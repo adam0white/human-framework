@@ -1,3 +1,5 @@
+import { assessCapacity, actionEffort, ENGINE_VERSION } from '../src/core/index.js';
+
 const number = (value) => Number.isFinite(value) ? Number(value.toFixed(2)).toLocaleString('en-US') : '—';
 
 // Presentation of known action contracts only. Forecasts come from the actor-view policy.
@@ -7,7 +9,7 @@ export function actionGuidance(view, action, candidate) {
   let benefit = '';
   if (action.kind === 'work') {
     benefit = `+${number(action.output)} ${view.world.resourceLabel} on success`;
-    costs.push(`Effort: +${number(action.effort * 100)} fatigue points`);
+    costs.push(`Effort: +${number(actionEffort(action) * 100)} fatigue points`);
   } else if (action.kind === 'rest') {
     benefit = 'Recover fatigue';
   } else if (action.kind === 'eat') {
@@ -18,12 +20,27 @@ export function actionGuidance(view, action, candidate) {
   } else if (action.kind === 'help') {
     benefit = !view.peers.length ? 'No partner available to assist'
       : view.options.modules.relationships ? 'Support a partner’s next work attempt' : 'Attempt help; assistance effects are off';
-    costs.push(`Effort: +${number((action.effort ?? 0.08) * 100)} fatigue points`);
+    costs.push(`Effort: +${number(actionEffort(action) * 100)} fatigue points`);
   }
+  const archived = view.engineVersion && view.engineVersion !== ENGINE_VERSION;
+  const capacity = !archived && ['work', 'help'].includes(action.kind) ? assessCapacity(view.actor.body, action, view.roundMinutes) : null;
   return {
     benefit,
     costs,
-    estimate: Number.isFinite(candidate?.forecast) ? `${Math.round(candidate.forecast * 100)}% estimated success` : null,
+    estimate: Number.isFinite(candidate?.forecast) ? `${Math.round(candidate.forecast * 100)}% estimated success if executed` : null,
     practice: view.options.modules.learning && action.skill && ['work', 'observe'].includes(action.kind) ? action.skill : null,
+    capacity,
+    capacityLabel: capacity ? (capacity.allowed ? 'Within estimated capacity' : 'Over estimated capacity') : null,
+    capacityDetail: capacity ? `Projected fatigue ${number(capacity.projectedFatigue * 100)}% · hunger ${number(capacity.projectedHunger * 100)}%` : null,
+  };
+}
+
+export function decisionGuidance(decision) {
+  return {
+    requested: decision.requestedActionLabel ?? decision.actionLabel,
+    executed: decision.actionLabel,
+    forced: Boolean(decision.intervention),
+    cause: decision.intervention?.cause ?? null,
+    reason: decision.intervention?.reason ?? '',
   };
 }

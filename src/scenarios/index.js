@@ -1,5 +1,6 @@
 // All values are authored microgame settings, not empirical measurements.
-// Presets share the same validated action vocabulary and kernel.
+// Presets share the same validated action vocabulary and kernel. Longer workloads
+// leave room for unsuccessful attempts, recovery and meals; they are not human calibration.
 const upkeepActions=(observationLabel,helpLabel)=>[
   {id:'rest',label:'Rest',description:'Use this interval to reduce fatigue.',kind:'rest'},
   {id:'eat',label:'Eat a ration',description:'Attempt to use one ration from the shared supply.',kind:'eat'},
@@ -10,9 +11,9 @@ const upkeepActions=(observationLabel,helpLabel)=>[
 export const scenarios=[
   {
     id:'courier',title:'Courier Crossing',subtitle:'A parcel route, an uncertain crossing, a promise.',theme:'courier',
-    brief:'Two couriers must complete a delivery route before the gate closes. The shortcut carries greater exposure to uncertain conditions; the careful route yields less progress. Inspection, food and rest cost time.',
+    brief:'Two couriers must complete a long delivery route before the gate closes. The shortcut carries greater exposure to uncertain conditions; the careful route yields less progress. Plan repeated rests and meals from six shared rations; inspection also costs time.',
     objective:'Complete the delivery route',resourceLabel:'delivery units',hazardLabel:'Crossing conditions',
-    target:16,initialProgress:0,food:2,roundMinutes:5,horizon:10,consumption:0,
+    target:60,initialProgress:0,food:6,roundMinutes:20,horizon:36,consumption:0,
     hazard:0.65,initialSignal:0.15,signalConfidence:0.25,observationNoise:0.18,
     skills:['routecraft','survey'],transfer:[],
     actions:[
@@ -27,9 +28,9 @@ export const scenarios=[
   },
   {
     id:'workshop',title:'Repair Bench',subtitle:'A tired craftsperson and one small repair order.',theme:'workshop',
-    brief:'Two repairers need to finish an order before closing. Precision work offers more output but demands greater skill and effort. They share rations and can prepare assistance for each other.',
+    brief:'Two repairers need to finish a sustained repair order before closing. Precision work offers more output but demands greater skill and effort. They share six rations and can alternate work, recovery, meals and assistance.',
     objective:'Finish the repair order',resourceLabel:'repair units',hazardLabel:'Equipment conditions',
-    target:18,initialProgress:0,food:2,roundMinutes:10,horizon:8,consumption:0,
+    target:60,initialProgress:0,food:6,roundMinutes:20,horizon:36,consumption:0,
     hazard:0.15,initialSignal:0.2,signalConfidence:0.75,observationNoise:0.1,
     skills:['craft','survey'],transfer:[],
     actions:[
@@ -44,9 +45,9 @@ export const scenarios=[
   },
   {
     id:'commons',title:'Water Commons',subtitle:'A shared supply that is used as it is replenished.',theme:'commons',
-    brief:'Two neighbors replenish a shared water store. The settlement uses half a unit each round. Faster collection is more exposed to uncertain conditions; careful collection, inspection and assistance offer alternatives.',
+    brief:'Two neighbors replenish a shared water store over a long work period. The settlement uses half a unit each round. Faster collection is more exposed to uncertain conditions. Six shared rations and repeated rest support the sustained task.',
     objective:'Build the shared water reserve',resourceLabel:'water units',hazardLabel:'Collection conditions',
-    target:12,initialProgress:0,food:2,roundMinutes:6,horizon:10,consumption:0.5,
+    target:45,initialProgress:0,food:6,roundMinutes:20,horizon:36,consumption:0.5,
     hazard:0.4,initialSignal:0.3,signalConfidence:0.45,observationNoise:0.2,
     skills:['collection','survey'],transfer:[],
     actions:[
@@ -61,9 +62,9 @@ export const scenarios=[
   },
   {
     id:'solo',title:'Solo Repair',subtitle:'One person, a small repair, no social effects.',theme:'workshop',
-    brief:'Finish a small repair on your own before the work period ends. Choose precision or simple work, rest, eat or inspect equipment. There are no partners, promises or assistance effects.',
+    brief:'Finish a sustained repair on your own before the work period ends. Alternate work with recovery and meals from three rations; the deadline leaves room for unsuccessful attempts. There are no partners, promises or assistance effects.',
     objective:'Finish your repair',resourceLabel:'repair units',hazardLabel:'Equipment conditions',
-    target:9,initialProgress:0,food:1,roundMinutes:10,horizon:8,consumption:0,
+    target:30,initialProgress:0,food:3,roundMinutes:20,horizon:36,consumption:0,
     hazard:0.15,initialSignal:0.2,signalConfidence:0.75,observationNoise:0.1,
     skills:['craft','survey'],transfer:[],
     actions:[

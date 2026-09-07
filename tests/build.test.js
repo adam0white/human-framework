@@ -9,12 +9,13 @@ import {buildSite} from '../scripts/build.js';
 test('deployment contains the playable module graph and excludes private project files',async()=>{
   const root=await mkdtemp(join(tmpdir(),'human-build-'));
   try {
-    for(const path of ['web','src/core','src/scenarios','research','dist'])await mkdir(join(root,path),{recursive:true});
+    for(const path of ['web','src/core','src/scenarios','src/legacy/v0.1','research','dist'])await mkdir(join(root,path),{recursive:true});
     for(const [path,body] of Object.entries({
       'index.html':'<script type="module" src="/web/app.js"></script>',
       'web/app.js':"import '../src/core/index.js';",
       'web/styles.css':'body{color:teal}',
       'src/core/index.js':'export const version=1;',
+      'src/legacy/v0.1/index.js':'export const version="0.1.0";',
       'src/scenarios/index.js':'export const scenarios=[];',
       'research/private.md':'private research',
       '.env':'secret fixture',
@@ -26,6 +27,7 @@ test('deployment contains the playable module graph and excludes private project
     assert.ok(files.includes('index.html'));
     assert.ok(files.includes('web/app.js'));
     assert.ok(files.includes('src/core/index.js'));
+    assert.ok(files.includes('src/legacy/v0.1/index.js'));
     assert.ok(files.includes('src/scenarios/index.js'));
     assert.equal(files.some(p=>/secret|private|\.env|research/.test(p)),false);
     assert.match(await readFile(join(root,'dist/_headers'),'utf8'),/Content-Security-Policy/);
@@ -38,10 +40,10 @@ test('deployment contains the playable module graph and excludes private project
 });
 
 test('deployment refuses symlinked public roots, their ancestors, and the entry page',async()=>{
-  for(const redirect of ['web','src','index.html']) {
+  for(const redirect of ['web','src','src/legacy','index.html']) {
     const root=await mkdtemp(join(tmpdir(),'human-build-links-'));
     try {
-      for(const path of ['web','src/core','src/scenarios','research','research/core','research/scenarios'])await mkdir(join(root,path),{recursive:true});
+      for(const path of ['web','src/core','src/scenarios','src/legacy/v0.1','research','research/core','research/scenarios','research/v0.1'])await mkdir(join(root,path),{recursive:true});
       await writeFile(join(root,'index.html'),'public');
       await writeFile(join(root,'research/private.js'),'private research');
       await writeFile(join(root,'research/private.html'),'private research');

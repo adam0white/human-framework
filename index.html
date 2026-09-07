@@ -17,7 +17,7 @@
         <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="14"/><path d="M4 18h28M18 4v28M8 8l20 20M8 28 28 8"/><circle cx="18" cy="18" r="5"/></svg>
         <span>HUMAN<br>FRAMEWORK</span>
       </a>
-      <span class="header-note"><span class="status-dot"></span> Research prototype <span class="mono">/ 0.1</span></span>
+      <span class="header-note"><span class="status-dot"></span> Research prototype <span class="mono" id="engine-version">/ 0.2</span></span>
     </header>
 
     <main class="page-width" id="laboratory" tabindex="-1">
@@ -44,7 +44,7 @@
           <button class="button button-light" type="submit" id="start-run">Start new run <span aria-hidden="true">↗</span></button>
         </form>
         <p class="setup-note" id="settings-note">Seed 7 · Full action loop · All components enabled</p>
-        <div class="model-help"><p id="model-summary"><strong>Full</strong> weighs current needs, evidence and promises. <strong>Baseline</strong> uses a simpler output-and-skill scoring rule.</p><details><summary>How the two models differ</summary><div><p><strong>Full action loop:</strong> with its components enabled, the policy weighs expected contribution, effort, perceived conditions, recovery, information gathering, assistance and recognized promises.</p><p><strong>Simple utility baseline:</strong> work is ranked using its output and the person's current task proficiency; rest, food, observation and help receive fixed scores. It does not adapt its scoring to strain, beliefs or promises.</p><p>Both use the same actions and world rules. Body changes, practice and shared consequences still occur with their components enabled. Either policy can complete or miss the objective. Manual choices always remain yours; the model controls delegated actions.</p><p>Keep the same seed to compare runs. Change a component to examine its contribution, then select <strong>Start new run</strong> to apply the settings.</p></div></details></div>
+        <div class="model-help"><p id="model-summary"><strong>Full</strong> weighs current needs, evidence and promises. <strong>Baseline</strong> uses a simpler output-and-skill scoring rule. Both obey physical capacity limits.</p><details><summary>How the two models differ</summary><div><p><strong>Full action loop:</strong> with its components enabled, the policy weighs expected contribution, effort, perceived conditions, recovery, information gathering, assistance and recognized promises.</p><p><strong>Simple utility baseline:</strong> work is ranked using its output and the person's current task proficiency; rest, food, observation and help receive fixed scores. It does not adapt its scoring to strain, beliefs or promises.</p><p>Both use the same actions and world rules. Your request and reason stay recorded, but work or help that exceeds physical capacity is replaced by automatic recovery. The same limit applies to manual play and both policies, including when Body coupling is off.</p><p>Keep the same seed to compare runs. Change a component to examine its contribution, then select <strong>Start new run</strong> to apply the settings.</p></div></details></div>
       </section>
 
       <div id="app-message" class="app-message" role="status" aria-live="polite" hidden></div>
@@ -54,6 +54,7 @@
           <section class="world-panel card" aria-labelledby="scenario-title">
             <div class="world-heading"><div><p class="eyebrow" id="scenario-kicker">Experiment 01</p><h2 id="scenario-title">Loading the laboratory…</h2><p id="scenario-subtitle" class="muted"></p></div><span id="run-status" class="run-status">Ready</span></div>
             <p class="run-identity" id="run-identity"></p>
+            <div class="archive-notice" id="archive-notice" hidden></div>
             <div class="scene" id="scene" aria-hidden="true"></div>
             <div class="objective"><div><span class="eyebrow" id="objective-label">Shared objective</span><p id="objective-text"></p></div><strong id="progress-text" class="mono">0 / 0</strong></div>
             <div class="progress-track"><div id="progress-fill"></div></div>
@@ -70,7 +71,7 @@
             <p class="choice-explainer" id="choice-explainer"></p>
             <label class="intention-field" for="intention-input"><span>Record a reason <small>optional</small></span><select id="intention-input"><option value="">Let the action speak for itself</option><option value="Complete the shared task">Complete the shared task</option><option value="Keep my commitment">Keep my commitment</option><option value="Recover my capacity">Recover my capacity</option><option value="Seek better evidence">Seek better evidence</option><option value="Help my partner">Help my partner</option></select></label>
             <div id="action-grid" class="action-grid"></div>
-            <p class="action-cost-note">Effort adds fatigue; time also affects fatigue and hunger. Each card uses one round.</p>
+            <p class="action-cost-note">Each request uses one round. If effort would exceed actual fatigue or hunger capacity, automatic recovery executes instead. Estimates below use the person's perceived state.</p>
             <p class="auto-intro">Or delegate the choices:</p>
             <div class="autoplay-controls"><button class="button button-primary" id="auto-round">Auto round <span aria-hidden="true">→</span></button><button class="button button-quiet" id="run-to-end">Run to end <span aria-hidden="true">↠</span></button><button class="text-button" id="restart-run">Restart</button></div>
             <p class="play-mode-help" id="play-mode-help"><strong>Auto round</strong> lets the model choose for everyone once. <strong>Run to end</strong> repeats until completion or the deadline; you can stop it.</p>

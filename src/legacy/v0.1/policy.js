@@ -1,4 +1,4 @@
-import {successChance,clamp,normalizeOptions,actionEffort} from './model.js';
+import {successChance,clamp,normalizeOptions} from './model.js';
 
 /** Pure deliberation: this function only accepts the actor-accessible projection. */
 export function rankActions(view,overrides={}) {
@@ -19,7 +19,7 @@ export function rankActions(view,overrides={}) {
       add('Expected contribution',forecast*action.output);
       add('Effort under current strain',-action.effort*(0.6+2*body.fatigue));
       add('Perceived exposure',-actor.priorities.caution*actor.beliefs.hazard.estimate*action.exposure*0.7);
-      add(modules.learning?'Practice interest':'Practice updates unavailable',modules.learning?actor.priorities.mastery*(1-actor.skills[action.skill])*0.3:0);
+      add('Practice interest',actor.priorities.mastery*(1-actor.skills[action.skill])*0.3);
     } else if(action.kind==='rest') {
       add('Recovery need',body.fatigue*body.fatigue*3.7);
       add('Time cost',-0.15);
@@ -29,13 +29,13 @@ export function rankActions(view,overrides={}) {
     } else if(action.kind==='observe') {
       const exposure=Math.max(0,...actions.filter(a=>a.kind==='work').map(a=>a.exposure));
       const horizon=clamp((view.horizon-view.round)/4);
-      add(modules.beliefs?'Uncertainty worth investigating':'Inspection updates unavailable',modules.beliefs?(1-actor.beliefs.hazard.confidence)*exposure*horizon*(0.8+actor.priorities.caution)*2:0);
+      add('Uncertainty worth investigating',(1-actor.beliefs.hazard.confidence)*exposure*horizon*(0.8+actor.priorities.caution)*2);
       add('Time cost',-0.15);
     } else if(action.kind==='help') {
       const peerNeed=modules.body?Math.max(0,...peers.map(p=>p.body.fatigue)):0;
       const trust=peers.length?peers.reduce((sum,p)=>sum+(actor.relationships[p.id]??0.5),0)/peers.length:0;
       add('Care and partner need',modules.relationships?actor.priorities.care*peerNeed*trust*2.5:0);
-      add('Time and effort',-0.15-actionEffort(action));
+      add('Time and effort',-0.15-(action.effort??0));
     }
     if(options.policy==='full'&&modules.commitments&&commitment&&!commitment.fulfilled&&!commitment.expired&&commitment.actionId===action.id) {
       const urgency=1+1/Math.max(1,commitment.dueRound-view.round);

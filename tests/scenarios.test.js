@@ -155,3 +155,63 @@ test('solo preserves player direction and contains no social actions or effects'
     }
   }
 });
+
+test('experiment metrics distinguish requested work from mandatory recovery and executed work',async()=>{
+  const {getScenario}=await scenarioModule();
+  const {summarizeRun}=await experimentModule();
+  const scenario=getScenario('solo');
+  scenario.actors[0].body={fatigue:1,hunger:1};
+  scenario.roundMinutes=20;
+  scenario.horizon=3;
+  scenario.target=100;
+  scenario.food=1;
+  let state=createSimulation(scenario,{seed:7});
+  while(state.status==='running')state=step(state,{type:'act',actorId:'leyla',actionId:'work'});
+  const summary=summarizeRun(state);
+  assert.equal(summary.workRequests,3);
+  assert.equal(summary.executedWork,1);
+  assert.equal(summary.workAttempts,1);
+  assert.equal(summary.forcedRecoveries,2);
+  assert.equal(summary.restActions,1);
+  assert.equal(summary.eatActions,1);
+  assert.equal(summary.foodUsed,1);
+  assert.equal(summary.decisions,3);
+});
+
+test('longer workloads admit a visible-state recovery strategy with room for failed work',async()=>{
+  const {scenarios,getScenario}=await scenarioModule();
+  const {runRecoveryProbe,summarizeRun}=await experimentModule();
+  assert.equal(typeof runRecoveryProbe,'function');
+  for(const scenario of scenarios) {
+    assert.equal(scenario.horizon,36);
+    assert.equal(scenario.roundMinutes,20);
+    for(const seed of [1,2,3,7,19,20,101,102,119,120]) {
+      const state=runRecoveryProbe(getScenario(scenario.id),{seed});
+      assert.equal(state.status,'won',`${scenario.id} seed ${seed} needs a feasible conservative path`);
+      const summary=summarizeRun(state);
+      assert.equal(summary.forcedRecoveries,0,'the probe should manage capacity from permitted observations');
+      assert.ok(summary.restActions>=2);
+      assert.ok(summary.eatActions>=2);
+    }
+  }
+  const solo=runRecoveryProbe(getScenario('solo'),{seed:7});
+  const summary=summarizeRun(solo);
+  assert.ok(summary.workSuccesses<summary.executedWork,'the route should tolerate unsuccessful attempts');
+  assert.ok(solo.round<solo.scenario.horizon,'the example should retain deadline slack');
+  assert.ok(summary.eatActions>=2,'the conservative example exercises repeated meal cycles');
+});
+
+test('conservative solo play needs its food supply and idle play cannot meet the objective',async()=>{
+  const {getScenario}=await scenarioModule();
+  const {runRecoveryProbe,summarizeRun}=await experimentModule();
+  const scenario=getScenario('solo');
+  scenario.food=0;
+  const hungry=runRecoveryProbe(scenario,{seed:7});
+  assert.equal(hungry.status,'lost');
+  assert.equal(summarizeRun(hungry).foodUsed,0);
+  assert.ok(summarizeRun(hungry).forcedRecoveries>0);
+  let idle=createSimulation(getScenario('solo'),{seed:7});
+  while(idle.status==='running')idle=step(idle,{type:'act',actorId:'leyla',actionId:'rest'});
+  assert.equal(idle.status,'lost');
+  assert.equal(idle.world.progress,0);
+});

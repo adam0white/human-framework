@@ -30,13 +30,16 @@ test('cycles in explicitly authored transfer cannot recursively create more prac
   assert.ok(Math.abs((a.skills.survey-0.4)-(direct.skills.craft-0.6)*0.5)<1e-12);
 });
 
-test('high fatigue can interrupt a recognized promise; commitments do not remove choices',()=>{
+test('high fatigue interrupts execution of a recognized promise while preserving the requested choice',()=>{
   const s=createSimulation(fixture,{seed:1});
   s.actors[0].body.fatigue=1;s.actors[0].body.hunger=0;
   const view=getView(s,'a');
   assert.equal(rankActions(view)[0].actionId,'rest');
   assert.ok(view.actions.some(a=>a.id==='work'));
-  assert.equal(step(s,{type:'act',actorId:'a',actionId:'work'}).history[0].decisions[0].actionId,'work');
+  const d=step(s,{type:'act',actorId:'a',actionId:'work'}).history[0].decisions[0];
+  assert.equal(d.requestedActionId,'work');
+  assert.equal(d.actionKind,'rest');
+  assert.equal(d.outcome.promiseKept,false);
 });
 
 test('unknown action kinds and replay commands cannot silently fall back to a default',()=>{
@@ -115,7 +118,7 @@ test('partial ranking options preserve the current policy and unaffected modules
 test('a failed action with learning disabled does not claim that practice was credited',()=>{
   const s=structuredClone(fixture);
   s.actors[0].skills.craft=0;
-  s.actors[0].body.fatigue=1;
+  s.actors[0].body.fatigue=.6;
   s.actions.find(a=>a.id==='work').difficulty=1;
   const d=step(createSimulation(s,{seed:7,modules:{learning:false}}),{type:'act',actorId:'a',actionId:'work'}).history[0].decisions[0];
   assert.equal(d.outcome.success,false);
@@ -132,4 +135,32 @@ test('disabled assistance records a paid attempt without claiming effective supp
   assert.ok(d.changes.fatigue>0);
   assert.match(d.outcome.reason,/disabled/i);
   assert.doesNotMatch(d.outcome.reason,/Prepared assistance/i);
+});
+
+test('disabled belief learning removes the value assigned to unusable inspection updates',()=>{
+  const active=getView(createSimulation(fixture),'a');
+  const disabled=getView(createSimulation(fixture,{modules:{beliefs:false}}),'a');
+  const inspection=view=>rankActions(view).find(a=>a.actionId==='observe');
+  assert.ok(inspection(active).score>0);
+  assert.ok(inspection(disabled).score<=0);
+  assert.equal(inspection(disabled).contributions.find(c=>c.label==='Inspection updates unavailable').value,0);
+  const before=createSimulation(fixture,{modules:{beliefs:false}});
+  const after=step(before,{type:'act',actorId:'a',actionId:'observe'});
+  assert.equal(after.round,1,'inspection remains requestable and costs its interval');
+  assert.deepEqual(after.actors[0].beliefs,before.actors[0].beliefs);
+  assert.ok(after.history[0].decisions[0].observations.some(o=>o.kind==='hazard-report'));
+});
+
+test('disabled practice learning removes its expected gain contribution but retains skill-based work',()=>{
+  const active=getView(createSimulation(fixture),'a');
+  const disabled=getView(createSimulation(fixture,{modules:{learning:false}}),'a');
+  const work=view=>rankActions(view).find(a=>a.actionId==='work');
+  assert.ok(work(active).contributions.find(c=>c.label==='Practice interest').value>0);
+  assert.equal(work(disabled).contributions.find(c=>c.label==='Practice updates unavailable')?.value,0);
+  assert.equal(work(active).forecast,work(disabled).forecast);
+  const before=createSimulation(fixture,{modules:{learning:false}});
+  const after=step(before,{type:'act',actorId:'a',actionId:'work'});
+  assert.equal(after.history[0].decisions[0].actionKind,'work');
+  assert.equal(after.history[0].decisions[0].learning.direct,null);
+  assert.deepEqual(after.actors[0].skills,before.actors[0].skills);
 });

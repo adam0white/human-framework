@@ -1,4 +1,4 @@
-export const ENGINE_VERSION='0.2.0';
+export const ENGINE_VERSION='0.1.0';
 export const MODULES=Object.freeze({body:true,beliefs:true,commitments:true,learning:true,relationships:true});
 // Engineering defaults for microgames. None is an empirical estimate or a spiritual metric.
 export const PARAMETERS=Object.freeze({
@@ -8,21 +8,6 @@ export const PARAMETERS=Object.freeze({
 });
 export const clamp=(x,min=0,max=1)=>Math.max(min,Math.min(max,x));
 export const clone=x=>structuredClone(x);
-export const actionEffort=action=>action.kind==='work'?action.effort:action.kind==='help'?(action.effort??0.08):0;
-
-// A simulation capacity contract, shared by all controllers and module ablations.
-// Forecasts may use perceived body; execution must use actual body. These proxy
-// ceilings do not assert a clinical threshold for fatigue, hunger or agency.
-export function assessCapacity(body,action,roundMinutes) {
-  const exertive=['work','help'].includes(action.kind);
-  const fatigueCost=PARAMETERS.fatiguePerMinute*roundMinutes+actionEffort(action);
-  const hungerCost=PARAMETERS.hungerPerMinute*roundMinutes;
-  const projectedFatigue=body.fatigue+fatigueCost,projectedHunger=body.hunger+hungerCost;
-  const causes=[];
-  if(exertive&&projectedFatigue>1+1e-12)causes.push('fatigue');
-  if(exertive&&projectedHunger>1+1e-12)causes.push('hunger');
-  return {allowed:causes.length===0,causes,fatigueCost,hungerCost,projectedFatigue,projectedHunger};
-}
 
 function assertJSON(value,path='scenario',ancestors=new Set(),depth=0) {
   if(depth>24)throw new Error(`${path} exceeds JSON depth limit`);

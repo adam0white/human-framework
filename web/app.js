@@ -1,6 +1,6 @@
-import { createSimulation, step, getView, rankActions, exportReplay, replay } from '../src/core/index.js';
+import { createSimulation, step, getView, rankActions, exportReplay, replay, ENGINE_VERSION } from '../src/core/index.js';
 import { scenarios, getScenario } from '../src/scenarios/index.js';
-import { actionGuidance } from './guidance.js';
+import { actionGuidance, decisionGuidance } from './guidance.js';
 
 const $ = (id) => document.getElementById(id);
 const escapeHTML = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
@@ -9,10 +9,10 @@ const percent = (value) => Number.isFinite(value) ? `${Math.round(value * 100)}%
 const displayName = (value) => String(value ?? '').replace(/[-_]/g, ' ').replace(/^./, (c) => c.toUpperCase());
 const signed = (value) => `${value > 0 ? '+' : ''}${number(value, 2)}`;
 const modules = [
-  ['body', 'Body coupling', 'Effort, hunger and fatigue'],
-  ['beliefs', 'Belief updating', 'Revise estimates after inspection'],
+  ['body', 'Body coupling', 'Scoring and performance; capacity limits remain'],
+  ['beliefs', 'Belief learning', 'Hazard updates and inspection value'],
   ['commitments', 'Promise weighting', 'Weight a recognized promise'],
-  ['learning', 'Learning', 'Practice changes task proficiency'],
+  ['learning', 'Practice learning', 'Practice updates and learning value'],
   ['relationships', 'Relationships', 'Assistance and partner trust'],
 ];
 const phases = [
@@ -33,6 +33,17 @@ let researcher = false;
 let running = false;
 let animationToken = 0;
 let lastAnimatedRound = -1;
+
+const isArchived = () => Boolean(state && state.version !== ENGINE_VERSION);
+const archiveLabel = () => `Archived ${String(state.version).split('.').slice(0, 2).join('.')} rules`;
+function restartScenario() {
+  if (!isArchived()) return state.scenario;
+  return getScenario(scenarios.some((scenario) => scenario.id === state.scenario.id) ? state.scenario.id : scenarios[0].id);
+}
+function requestExecutionMarkup(decision) {
+  const record = decisionGuidance(decision);
+  return `<dl class="request-execution"><div><dt>Requested</dt><dd>${escapeHTML(record.requested)}</dd></div><div><dt>Executed</dt><dd>${escapeHTML(record.executed)}</dd></div></dl>`;
+}
 
 function showMessage(message, error = false) {
   const element = $('app-message');
@@ -184,6 +195,10 @@ function renderScene(view) {
 }
 
 function renderWorld(view) {
+  const archived = isArchived();
+  $('engine-version').textContent = `/ ${ENGINE_VERSION}`;
+  $('archive-notice').hidden = !archived;
+  $('archive-notice').textContent = archived ? `${archiveLabel()} · Read-only. Inspect or export the original run. Restart loads the current scenario preset and capacity rules, keeping this seed and model settings.` : '';
   const index = scenarios.findIndex((scenario) => scenario.id === view.scenario.id);
   $('scenario-kicker').textContent = index >= 0 ? `Experiment 0${index + 1} / ${view.scenario.id}` : 'Imported experiment';
   $('scenario-title').textContent = view.scenario.title;
@@ -194,12 +209,12 @@ function renderWorld(view) {
   $('world-brief').textContent = view.scenario.brief;
   const modelName = state.options.policy === 'full' ? 'Full action loop' : 'Simple utility baseline';
   const disabled = modules.filter(([id]) => !state.options.modules[id]).map(([, label]) => label);
-  $('run-identity').textContent = `CURRENT RUN · Seed ${state.options.seed} · ${modelName}${disabled.length ? ` · Off: ${disabled.join(', ')}` : ''}`;
-  $('replay-identity').textContent = `${view.scenario.title} · Seed ${state.options.seed} · ${modelName} · Round ${view.round}${disabled.length ? ` · Off: ${disabled.join(', ')}` : ''}`;
+  $('run-identity').textContent = `${archived ? archiveLabel() : 'CURRENT RUN'} · Seed ${state.options.seed} · ${modelName}${disabled.length ? ` · Off: ${disabled.join(', ')}` : ''}`;
+  $('replay-identity').textContent = `${view.scenario.title} · Rules ${state.version} · Seed ${state.options.seed} · ${modelName} · Round ${view.round}${disabled.length ? ` · Off: ${disabled.join(', ')}` : ''}`;
   $('progress-text').textContent = `${number(view.world.progress)} / ${number(view.world.target)}`;
   $('progress-fill').style.width = `${Math.max(0, Math.min(100, 100 * view.world.progress / view.world.target))}%`;
   $('run-status').className = `run-status ${view.status}`;
-  $('run-status').textContent = view.status === 'won' ? 'Objective met' : view.status === 'lost' ? 'Time elapsed' : state.round ? 'In progress' : 'Ready to begin';
+  $('run-status').textContent = archived ? 'Archived · read-only' : view.status === 'won' ? 'Objective met' : view.status === 'lost' ? 'Time elapsed' : state.round ? 'In progress' : 'Ready to begin';
   $('world-metrics').innerHTML = `
     <div class="world-metric"><span>Round</span><strong>${view.round}<small>/ ${view.horizon}</small></strong></div>
     <div class="world-metric"><span>Simulated time</span><strong>${number(view.minutes)}<small>min</small></strong></div>
@@ -207,24 +222,28 @@ function renderWorld(view) {
   const terminal = $('terminal-summary');
   terminal.hidden = view.status === 'running';
   terminal.classList.toggle('is-lost', view.status === 'lost');
-  if (!terminal.hidden) terminal.innerHTML = `<strong>${view.status === 'won' ? 'The objective is complete.' : 'Time ran out before the objective was met.'}</strong>${number(view.world.progress)} of ${number(view.world.target)} ${escapeHTML(view.world.resourceLabel)} after ${view.round} rounds. Inspect the choices below, or restart the same seed to try another approach.`;
-  $('play-anchor').href = view.status === 'running' ? '#your-choice' : '#run-history';
-  $('play-anchor').innerHTML = `${view.status !== 'running' ? 'Review this run' : view.round ? 'Choose your next action' : 'Make your first choice'} <span aria-hidden="true">↓</span>`;
-  $('start-caption').textContent = view.status !== 'running' ? 'Run complete. Review the choices or restart.' : view.round ? 'The next round waits for your choice.' : 'Ready to play. No setup required.';
+  if (!terminal.hidden) terminal.innerHTML = `<strong>${view.status === 'won' ? 'The objective is complete.' : 'Time ran out before the objective was met.'}</strong>${number(view.world.progress)} of ${number(view.world.target)} ${escapeHTML(view.world.resourceLabel)} after ${view.round} rounds. ${archived ? 'Inspect the original choices below. Restart begins the current scenario preset and rules with this seed.' : 'Inspect the choices below, or restart the same seed to try another approach.'}`;
+  $('play-anchor').href = !archived && view.status === 'running' ? '#your-choice' : '#run-history';
+  $('play-anchor').innerHTML = `${archived ? 'Inspect archived run' : view.status !== 'running' ? 'Review this run' : view.round ? 'Choose your next action' : 'Make your first choice'} <span aria-hidden="true">↓</span>`;
+  $('start-caption').textContent = archived ? `${archiveLabel()}. Restart to play the current version.` : view.status !== 'running' ? 'Run complete. Review the choices or restart.' : view.round ? 'The next round waits for your choice.' : 'Ready to play. No setup required.';
   renderScene(view);
 }
 
 function renderRoundFeedback(view) {
   const last = state.history.at(-1);
+  const own = last?.decisions.find((decision) => decision.actorId === actorId);
+  const record = own ? decisionGuidance(own) : null;
+  $('round-feedback').classList.toggle('forced-recovery', Boolean(record?.forced));
   if (!last) {
-    $('round-feedback').innerHTML = `<strong>Start here: choose an action card.</strong><p>${escapeHTML(view.actor.name)} is ready. ${view.peers.length ? 'Each person takes one action, then' : 'Choose one action, then'} one round and ${number(view.roundMinutes)} simulated minutes pass.</p>`;
+    $('round-feedback').innerHTML = isArchived()
+      ? '<strong>Archived run · no recorded rounds</strong><p>Restart with current rules to play a new scenario.</p>'
+      : `<strong>Start here: request an action card.</strong><p>${escapeHTML(view.actor.name)} is ready. ${view.peers.length ? 'Each person takes one action, then' : 'Choose one action, then'} one round and ${number(view.roundMinutes)} simulated minutes pass.</p>`;
     return;
   }
-  const own = last.decisions.find((decision) => decision.actorId === actorId);
   const before = state.history.length > 1 ? state.history.at(-2).world.progress : state.scenario.initialProgress;
   const practice = own?.learning?.direct;
   const learningText = practice ? ` Practice: ${displayName(practice.skill)} +${number(practice.delta * 100, 2)} points.` : '';
-  $('round-feedback').innerHTML = `<span class="eyebrow">Last round · ${last.round}</span><strong>${escapeHTML(view.actor.name)}: ${escapeHTML(own?.actionLabel ?? 'Round completed')}</strong><p>${escapeHTML(own?.outcome.reason ?? '')}${escapeHTML(learningText)}${own?.outcome.promiseKept ? ' The promised attempt was made.' : ''}</p><p class="feedback-total">${view.peers.length ? 'Shared progress' : 'Progress'}: ${number(before)} → ${number(view.world.progress)} ${escapeHTML(view.world.resourceLabel)} · ${number(view.roundMinutes)} min elapsed</p>`;
+  $('round-feedback').innerHTML = `<span class="eyebrow">Last round · ${last.round}</span><strong>${escapeHTML(view.actor.name)}: ${record?.forced ? 'Automatic recovery' : escapeHTML(own?.actionLabel ?? 'Round completed')}</strong>${record?.forced ? requestExecutionMarkup(own) : ''}<p>${escapeHTML(own?.outcome.reason ?? '')}${escapeHTML(learningText)}${own?.outcome.promiseKept ? ' The promised attempt was made.' : ''}</p>${record?.forced ? '<p class="recovery-result">The blocked request produced no work, practice or fulfilled promise.</p>' : ''}<p class="feedback-total">${view.peers.length ? 'Shared progress' : 'Progress'}: ${number(before)} → ${number(view.world.progress)} ${escapeHTML(view.world.resourceLabel)} · ${number(view.roundMinutes)} min elapsed</p>`;
 }
 
 function renderActions(view, ranking) {
@@ -232,17 +251,21 @@ function renderActions(view, ranking) {
   const order = state.actors.map((actor) => actor.id);
   actors.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
   $('actor-tabs').innerHTML = actors.map((actor, index) => `<button class="actor-tab ${actor.id === actorId ? 'active' : ''}" data-actor="${escapeHTML(actor.id)}" aria-pressed="${actor.id === actorId}"><span class="actor-dot ${index ? 'alternate' : ''}" aria-hidden="true"></span>${escapeHTML(actor.name)}<small>${escapeHTML(actor.role)}</small></button>`).join('');
-  $('choice-round').textContent = view.status === 'running' ? `Round ${view.round + 1} / ${view.horizon}` : 'Run complete';
-  $('choice-explainer').textContent = `Manual play: select a card to choose for ${view.actor.name}. ${view.peers.length === 1 ? 'The other person chooses independently in the same round.' : view.peers.length ? 'The other people choose independently in the same round.' : 'There is one person, so one action completes a round.'}`;
-  const available = view.status === 'running' && !running;
+  $('choice-round').textContent = isArchived() ? 'Read-only archive' : view.status === 'running' ? `Round ${view.round + 1} / ${view.horizon}` : 'Run complete';
+  $('choice-explainer').textContent = isArchived() ? 'This historical run is read-only. Restart loads the current preset and rules.' : `Manual play: select a card to request an action for ${view.actor.name}. ${view.peers.length === 1 ? 'The other person chooses independently in the same round.' : view.peers.length ? 'The other people choose independently in the same round.' : 'There is one person, so one action completes a round.'}`;
+  const available = view.status === 'running' && !running && !isArchived();
   $('action-grid').innerHTML = view.actions.map((action) => {
     const rank = ranking.findIndex((candidate) => candidate.actionId === action.id);
     const guide = actionGuidance(view, action, ranking[rank]);
-    const accessible = `${action.label}. ${guide.benefit}. ${guide.costs.join('. ')}.${guide.estimate ? ` ${guide.estimate}.` : ''}${guide.practice ? ` Practice: ${displayName(guide.practice)}.` : ''}`;
-    return `<button class="action-button" data-action="${escapeHTML(action.id)}" ${available ? '' : 'disabled'} aria-label="${escapeHTML(accessible)}"><span class="action-icon" aria-hidden="true">${actionIcons[action.kind] ?? '→'}</span><span class="action-content"><strong>${escapeHTML(action.label)}</strong><small>${escapeHTML(action.description)}</small><span class="action-benefit">${escapeHTML(guide.benefit)}</span><span class="action-costs">${guide.costs.map((cost) => `<span>${escapeHTML(cost)}</span>`).join('')}${guide.practice ? `<span>Practice: ${escapeHTML(displayName(guide.practice))}</span>` : ''}</span>${guide.estimate ? `<span class="action-note">${escapeHTML(guide.estimate)}</span>` : ''}</span><span class="action-rank" title="Current policy ranking">#${rank + 1}</span></button>`;
+    const accessible = `${guide.capacityLabel ? guide.capacityLabel + ". " + guide.capacityDetail + ". " : ""}${action.label}. ${guide.benefit}. ${guide.costs.join('. ')}.${guide.estimate ? ` ${guide.estimate}.` : ''}${guide.practice ? ` Practice if executed: ${displayName(guide.practice)}.` : ''}`;
+    return `<button class="action-button ${guide.capacity && !guide.capacity.allowed ? 'capacity-warning' : ''}" data-action="${escapeHTML(action.id)}" ${available ? '' : 'disabled'} aria-label="${escapeHTML(accessible)}"><span class="action-icon" aria-hidden="true">${actionIcons[action.kind] ?? '→'}</span><span class="action-content"><strong>${escapeHTML(action.label)}</strong><small>${escapeHTML(action.description)}</small><span class="action-benefit">${escapeHTML(guide.benefit)}</span><span class="action-costs">${guide.costs.map((cost) => `<span>${escapeHTML(cost)}</span>`).join('')}${guide.practice ? `<span>Practice if executed: ${escapeHTML(displayName(guide.practice))}</span>` : ''}</span>${guide.estimate ? `<span class="action-note">${escapeHTML(guide.estimate)}</span>` : ''}${guide.capacity ? `<span class="capacity-label">${escapeHTML(guide.capacityLabel)}</span><span class="capacity-detail">${escapeHTML(guide.capacityDetail)}</span>` : ''}</span>${rank >= 0 ? `<span class="action-rank" title="Current policy ranking">#${rank + 1}</span>` : ''}</button>`;
   }).join('');
   $('auto-round').disabled = !available;
-  $('run-to-end').disabled = view.status !== 'running' && !running;
+  $('run-to-end').disabled = isArchived() || (view.status !== 'running' && !running);
+  $('auto-round').hidden = isArchived();
+  $('run-to-end').hidden = isArchived();
+  $('restart-run').textContent = isArchived() ? 'Restart with current rules' : 'Restart';
+  $('restart-run').classList.toggle('archived-restart', isArchived());
   $('run-to-end').innerHTML = running ? 'Stop autoplay <span aria-hidden="true">Ⅱ</span>' : 'Run to end <span aria-hidden="true">↠</span>';
   $('intention-input').disabled = !available;
   for (const option of $('intention-input').options) {
@@ -251,7 +274,7 @@ function renderActions(view, ranking) {
     option.disabled = unavailable;
     if (unavailable && option.selected) $('intention-input').value = '';
   }
-  $('play-mode-help').innerHTML = `<strong>Auto round</strong> lets the model choose ${view.peers.length ? 'for everyone once' : 'one action'}. <strong>Run to end</strong> repeats until completion or the deadline; you can stop it.`;
+  $('play-mode-help').innerHTML = isArchived() ? '<strong>Restart with current rules</strong> begins the current scenario preset. The archived record remains unchanged in your original replay file.' : `<strong>Auto round</strong> lets the model choose ${view.peers.length ? 'for everyone once' : 'one action'}. <strong>Run to end</strong> repeats until completion or the deadline; you can stop it.`;
   renderRoundFeedback(view);
 }
 
@@ -273,10 +296,15 @@ function renderPerson(view) {
 
 function candidateMarkup(view, candidate, index) {
     const extent = Math.max(.01, ...candidate.contributions.map((item) => Math.abs(item.value)));
-    return `<details class="candidate" ${index === 0 ? 'open' : ''}><summary><span class="candidate-rank">0${index + 1}</span><span class="candidate-label">${escapeHTML(actionLabel(candidate.actionId, view))}</span><span class="candidate-score">${signed(candidate.score)}</span></summary>${Number.isFinite(candidate.forecast) ? `<p class="forecast">Estimated success: ${percent(candidate.forecast)}</p>` : ''}<div class="contributions">${candidate.contributions.map((item) => `<div class="contribution"><span>${escapeHTML(item.label)}</span><span class="contribution-track"><i class="${item.value < 0 ? 'negative' : ''}" style="width:${100 * Math.abs(item.value) / extent}%"></i></span><strong>${signed(item.value)}</strong></div>`).join('')}</div></details>`;
+    return `<details class="candidate" ${index === 0 ? 'open' : ''}><summary><span class="candidate-rank">0${index + 1}</span><span class="candidate-label">${escapeHTML(actionLabel(candidate.actionId, view))}</span><span class="candidate-score">${signed(candidate.score)}</span></summary>${Number.isFinite(candidate.forecast) ? `<p class="forecast">Estimated success if executed: ${percent(candidate.forecast)}</p>` : ''}<div class="contributions">${candidate.contributions.map((item) => `<div class="contribution"><span>${escapeHTML(item.label)}</span><span class="contribution-track"><i class="${item.value < 0 ? 'negative' : ''}" style="width:${100 * Math.abs(item.value) / extent}%"></i></span><strong>${signed(item.value)}</strong></div>`).join('')}</div></details>`;
 }
 
 function renderDecision(view, ranking) {
+  if (isArchived()) {
+    $('decision-intro').textContent = `${archiveLabel()}. Recorded decision weights remain in the history; no new decisions can be executed here.`;
+    $('decision-details').replaceChildren();
+    return;
+  }
   $('decision-intro').textContent = view.status === 'running'
     ? `The ${state.options.policy === 'full' ? 'full-loop' : 'baseline'} policy currently favors “${actionLabel(ranking[0]?.actionId, view)}.” You can choose any available action. Open a row to see its actual score contributions.`
     : 'The run has ended. These are the final-state rankings, not a new decision. Recorded decisions remain in the history.';
@@ -286,12 +314,16 @@ function renderDecision(view, ranking) {
 function renderHistory(view) {
   $('history-count').textContent = state.history.length ? `${state.history.length} recorded round${state.history.length === 1 ? '' : 's'}` : 'No rounds yet';
   if (!state.history.length) {
-    $('history-list').innerHTML = '<div class="empty-state"><span aria-hidden="true">↳</span>Nothing has been decided yet.<br>Choose an action above. Its evidence, intention, attempt and consequence will appear here.</div>';
+    $('history-list').innerHTML = '<div class="empty-state"><span aria-hidden="true">↳</span>No recorded decisions yet.</div>';
     return;
   }
   $('history-list').innerHTML = [...state.history].reverse().map((round, index) => {
     const own = round.decisions.find((decision) => decision.actorId === actorId);
-    return `<details class="history-round" ${index === 0 ? 'open' : ''}><summary><span class="round-index">${round.round}</span><strong>${escapeHTML(own?.actionLabel ?? 'Shared round')}</strong><small>${number(round.minutes)} min</small></summary>${round.decisions.map((decision) => `<div class="history-event"><strong>${escapeHTML(decision.actorName)} · ${escapeHTML(decision.actionLabel)}</strong><span class="outcome-tag">${decision.outcome.progress > 0 ? `+${number(decision.outcome.progress)}` : decision.outcome.success ? 'completed' : 'attempted'}</span><p>${escapeHTML(decision.outcome.reason)}</p></div>`).join('')}${own ? `<p class="private-note">${own.source === 'player' ? 'Your chosen reason' : `${escapeHTML(view.actor.name)}'s recorded intention`}: ${escapeHTML(own.intention)}</p><ol class="trace-list">${own.phaseTrace.map((item) => `<li><strong>${escapeHTML(item.phase)}</strong><span>${escapeHTML(item.text)}</span></li>`).join('')}</ol><details class="past-ranking"><summary>Decision weights at the time</summary><div>${own.scores.map((candidate, position) => candidateMarkup(view, candidate, position)).join('')}</div></details>` : ''}</details>`;
+    const ownRecord = own ? decisionGuidance(own) : null;
+    const title = ownRecord?.forced ? `${ownRecord.requested} → ${ownRecord.executed}` : own?.actionLabel ?? 'Round';
+    const publicEvents = round.decisions.map((decision) => `<div class="history-event"><strong>${escapeHTML(decision.actorName)} · ${escapeHTML(decision.actionLabel)}</strong><span class="outcome-tag">${decision.intervention ? 'automatic recovery' : decision.outcome.progress > 0 ? `+${number(decision.outcome.progress)}` : decision.outcome.success ? 'completed' : 'attempted'}</span><p>${escapeHTML(decision.outcome.reason)}</p></div>`).join('');
+    const ownTrace = own ? `${ownRecord.forced ? requestExecutionMarkup(own) : ''}<p class="private-note">${own.source === 'player' ? 'Your requested reason' : `${escapeHTML(view.actor.name)}'s recorded intention`}: ${escapeHTML(own.intention)}</p><ol class="trace-list">${own.phaseTrace.map((item) => `<li><strong>${escapeHTML(item.phase)}</strong><span>${escapeHTML(item.text)}</span></li>`).join('')}</ol><details class="past-ranking"><summary>Decision weights at the time of the request</summary><div>${own.scores.map((candidate, position) => candidateMarkup(view, candidate, position)).join('')}</div></details>` : '';
+    return `<details class="history-round" ${index === 0 ? 'open' : ''}><summary title="${escapeHTML(title)}"><span class="round-index">${round.round}</span><strong>${escapeHTML(title)}</strong><small>${number(round.minutes)} min</small></summary>${publicEvents}${ownTrace}</details>`;
   }).join('');
 }
 
@@ -304,7 +336,7 @@ function renderInspector() {
   const last = state.history.at(-1);
   $('inspector-details').innerHTML = `
     <div class="inspector-metrics"><div>Actual hidden conditions<strong>${percent(state.world.hazard)}</strong></div><div>Engine / seed<strong>${escapeHTML(state.version)} / ${state.options.seed}</strong></div></div>
-    ${last ? last.decisions.map((decision) => `<div class="inspector-person"><h3>${escapeHTML(decision.actorName)} · round ${last.round}</h3><p><strong>Private intention:</strong> ${escapeHTML(decision.intention)}</p><p>Choice source: ${escapeHTML(decision.source)} · ${escapeHTML(decision.actionLabel)}</p>${Number.isFinite(decision.diagnostics.chance) ? `<p>Actual success chance: ${percent(decision.diagnostics.chance)}<br>Keyed random draw: ${number(decision.diagnostics.roll, 5)}</p>` : ''}<details><summary>Structured decision record</summary><pre>${escapeHTML(JSON.stringify(decision, null, 2))}</pre></details></div>`).join('') : '<p class="fine-print" style="margin-top:16px">Take a first action to inspect its resolved chances and recorded decisions.</p>'}`;
+    ${last ? last.decisions.map((decision) => `<div class="inspector-person"><h3>${escapeHTML(decision.actorName)} · round ${last.round}</h3><p><strong>Private intention:</strong> ${escapeHTML(decision.intention)}</p><p>Request source: ${escapeHTML(decision.source)}</p>${requestExecutionMarkup(decision)}${Number.isFinite(decision.diagnostics.chance) ? `<p>Actual success chance: ${percent(decision.diagnostics.chance)}<br>Keyed random draw: ${number(decision.diagnostics.roll, 5)}</p>` : ''}<details><summary>Structured decision record</summary><pre>${escapeHTML(JSON.stringify(decision, null, 2))}</pre></details></div>`).join('') : '<p class="fine-print" style="margin-top:16px">Take a first action to inspect its resolved chances and recorded decisions.</p>'}`;
 }
 
 function render() {
@@ -313,7 +345,7 @@ function render() {
     : focused?.dataset?.actor ? ['actor', focused.dataset.actor]
       : focused?.dataset?.scenario ? ['scenario', focused.dataset.scenario] : null;
   const view = getView(state, actorId);
-  const ranking = rankActions(view);
+  const ranking = isArchived() ? [] : rankActions(view);
   renderScenarios();
   renderLoop(view);
   renderWorld(view);
@@ -330,12 +362,13 @@ function render() {
 }
 
 function advance(command) {
+  if (isArchived()) { showMessage('Archived replay is read-only. Restart with current rules to play.'); return false; }
   try {
     state = step(state, command);
     clearMessage();
     render();
     const own = state.history.at(-1)?.decisions.find((decision) => decision.actorId === actorId);
-    showMessage(`Round ${state.round}. ${own?.actionLabel ?? 'Actions resolved'}. ${own?.outcome.reason ?? ''}${state.status === 'running' ? '' : state.status === 'won' ? ' The objective is complete.' : ' The available time has elapsed.'}`);
+    showMessage(`Round ${state.round}. ${own?.intervention ? `Requested ${own.requestedActionLabel}; executed ${own.actionLabel}` : own?.actionLabel ?? 'Actions resolved'}. ${own?.outcome.reason ?? ''}${state.status === 'running' ? '' : state.status === 'won' ? ' The objective is complete.' : ' The available time has elapsed.'}`);
     return true;
   } catch (error) {
     stopAutoplay();
@@ -347,7 +380,7 @@ function advance(command) {
 
 async function autoplay() {
   if (running) { stopAutoplay(); render(); return; }
-  if (state.status !== 'running') return;
+  if (state.status !== 'running' || isArchived()) return;
   running = true;
   const token = ++animationToken;
   render();
@@ -363,7 +396,7 @@ async function autoplay() {
 function installEvents() {
   $('setup-form').addEventListener('submit', (event) => {
     event.preventDefault();
-    try { newRun(state.scenario, getOptions()); showMessage('A new run has started with the selected settings.'); }
+    try { newRun(restartScenario(), getOptions()); showMessage('A new run has started with the selected settings and current rules.'); }
     catch (error) { showMessage(error.message, true); }
   });
   $('setup-form').addEventListener('input', updateSettingsNote);
@@ -380,15 +413,16 @@ function installEvents() {
   });
   $('action-grid').addEventListener('click', (event) => {
     const button = event.target.closest('[data-action]');
-    if (!button || running || state.status !== 'running') return;
+    if (!button || running || isArchived() || state.status !== 'running') return;
     const intention = $('intention-input').value;
     advance({ type: 'act', actorId, actionId: button.dataset.action, ...(intention ? { intention } : {}) });
   });
   $('auto-round').addEventListener('click', () => advance({ type: 'auto' }));
   $('run-to-end').addEventListener('click', autoplay);
   $('restart-run').addEventListener('click', () => {
-    newRun(state.scenario, state.options);
-    showMessage('Restarted the same scenario, seed and model settings.');
+    const archived = isArchived();
+    newRun(restartScenario(), state.options);
+    showMessage(archived ? 'Started the current scenario preset and capacity rules, keeping the replay seed and model settings.' : 'Restarted the same scenario, seed and model settings.');
   });
   $('actor-view').addEventListener('click', () => { researcher = false; renderInspector(); });
   $('researcher-view').addEventListener('click', () => { researcher = true; renderInspector(); });
@@ -415,7 +449,8 @@ function installEvents() {
       const imported = replay(record);
       const importedActor = imported.actors[0].id;
       // Validate the projection before replacing a currently playable run.
-      rankActions(getView(imported, importedActor));
+      const importedView = getView(imported, importedActor);
+      if (imported.version === ENGINE_VERSION) rankActions(importedView);
       stopAutoplay();
       state = imported;
       actorId = importedActor;
@@ -423,7 +458,7 @@ function installEvents() {
       $('intention-input').value = '';
       applyOptionsToForm(state.options);
       render();
-      showMessage(`Replay restored: ${state.scenario.title}, seed ${state.options.seed}, ${state.round} recorded round(s).`);
+      showMessage(`Replay restored: ${state.scenario.title}, seed ${state.options.seed}, ${state.round} recorded round(s).${isArchived() ? ` ${archiveLabel()} · read-only. Restart loads the current preset and rules.` : ''}`);
     } catch (error) { showMessage(`Replay was not imported. ${error.message || 'Invalid file.'} The current run is unchanged.`, true); }
   });
 }

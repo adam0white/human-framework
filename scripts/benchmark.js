@@ -25,13 +25,13 @@ try {
   const result=compareModels({seeds,startSeed});
   result.generatedAt=new Date().toISOString();
   result.environment={node:process.version,platform:process.platform,arch:process.arch};
-  result.sourceSha256=Object.fromEntries(['src/core/model.js','src/core/observation.js','src/core/policy.js','src/core/random.js','src/core/simulation.js','src/scenarios/index.js','src/experiments.js','scripts/benchmark.js'].map(path=>[path,createHash('sha256').update(readFileSync(new URL(`../${path}`,import.meta.url))).digest('hex')]));
+  result.sourceSha256=Object.fromEntries(['src/core/index.js','src/core/model.js','src/core/observation.js','src/core/policy.js','src/core/random.js','src/core/simulation.js','src/scenarios/index.js','src/experiments.js','scripts/benchmark.js'].map(path=>[path,createHash('sha256').update(readFileSync(new URL(`../${path}`,import.meta.url))).digest('hex')]));
   const path=resolve(file);mkdirSync(dirname(path),{recursive:true});
   writeFileSync(path,JSON.stringify(result,null,2)+'\n');
   for(const scenario of result.results) {
     const full=scenario.variants.find(v=>v.id==='full'),baseline=scenario.variants.find(v=>v.id==='baseline');
     const delta=scenario.comparisons.find(c=>c.against==='baseline').metrics.objectiveProgress;
-    console.log(`${scenario.title}: full ${full.means.objectiveProgress.toFixed(2)}, baseline ${baseline.means.objectiveProgress.toFixed(2)}, paired progress difference ${delta.mean.toFixed(2)}; null equality ${scenario.nullControl.equalPairs}/${seeds}.`);
+    console.log(`${scenario.title}: full ${full.means.objectiveProgress.toFixed(2)}, baseline ${baseline.means.objectiveProgress.toFixed(2)}, paired progress difference ${delta.mean.toFixed(2)}; recovery probe ${(scenario.feasibilityProbe.means.objectiveSuccess*100).toFixed(0)}% complete; null equality ${scenario.nullControl.equalPairs}/${seeds}.`);
   }
   console.log(`Saved ${path}; ${seeds} paired seeds, ${(result.elapsedMs/1000).toFixed(2)} seconds. Intervals describe Monte Carlo variability in a toy model, not human validity.`);
 } catch(error) {

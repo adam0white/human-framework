@@ -1,4 +1,4 @@
-import {ENGINE_VERSION,PARAMETERS,validateScenario,normalizeOptions,clone,clamp,practice,successChance,assessCapacity,actionEffort} from './model.js';
+import {ENGINE_VERSION,PARAMETERS,validateScenario,normalizeOptions,clone,clamp,practice,successChance} from './model.js';
 import {keyedRandom} from './random.js';
 import {getView} from './observation.js';
 import {rankActions} from './policy.js';
@@ -45,27 +45,25 @@ function resolve(state,actor,action,view) {
   const before=clone(actor.body),observations=[],diagnostics={actualHazard:world.hazard};
   let success=true,progress=0,reason='',skills={},learning={changes:{},direct:null,transfers:[]};
   // Natural maintenance costs happen exactly once per actor, per simulated interval.
-  // Integrate maintenance and the action together; clipping before recovery
-  // would erase maintenance at the ceiling and give a free recovery bonus.
-  actor.body.fatigue+=PARAMETERS.fatiguePerMinute*s.roundMinutes;
-  actor.body.hunger+=PARAMETERS.hungerPerMinute*s.roundMinutes;
+  actor.body.fatigue=clamp(actor.body.fatigue+PARAMETERS.fatiguePerMinute*s.roundMinutes);
+  actor.body.hunger=clamp(actor.body.hunger+PARAMETERS.hungerPerMinute*s.roundMinutes);
   if(action.kind==='work') {
     const chance=successChance(action,actor.skills[action.skill],before,world.hazard,options.modules.relationships?actor.support:0,options.modules.body);
     const roll=keyedRandom(options.seed,state.round,actor.id,'work-outcome');
     Object.assign(diagnostics,{chance,roll});success=roll<chance;
     progress=success?action.output:0;world.progress+=progress;
-    actor.body.fatigue+=actionEffort(action);
+    actor.body.fatigue=clamp(actor.body.fatigue+action.effort);
     actor.support=0;
     learning=learn(actor,action,state);skills=learning.changes;
     reason=success?`Added ${progress} ${s.resourceLabel}.`:`The attempt did not produce a contribution.${learning.direct?' Task practice was credited.':''}`;
     // Work outcome is visible, but does not reveal the hidden cause of failure.
     observations.push({kind:'work-result',success,progress});
   } else if(action.kind==='rest') {
-    actor.body.fatigue-=PARAMETERS.restPerMinute*s.roundMinutes;
-    reason=clamp(actor.body.fatigue)<before.fatigue?'Rest reduced accumulated fatigue.':'Rest kept fatigue at its minimum.';
+    actor.body.fatigue=clamp(actor.body.fatigue-PARAMETERS.restPerMinute*s.roundMinutes);
+    reason='Rest reduced accumulated fatigue.';
   } else if(action.kind==='eat') {
     success=world.food>=1;
-    if(success) {world.food-=1;actor.body.hunger-=PARAMETERS.mealRelief;reason='Used one shared ration.';}
+    if(success) {world.food-=1;actor.body.hunger=clamp(actor.body.hunger-PARAMETERS.mealRelief);reason='Used one shared ration.';}
     else reason='No ration remained. The attempted meal still used this interval.';
   } else if(action.kind==='observe') {
     const noise=(keyedRandom(options.seed,state.round,actor.id,'observation')*2-1)*s.observationNoise*(1-0.6*actor.skills[action.skill]);
@@ -80,12 +78,10 @@ function resolve(state,actor,action,view) {
     const peer=perceivedPeer?state.actors.find(p=>p.id===perceivedPeer.id):undefined;
     success=Boolean(peer);
     if(peer&&options.modules.relationships)peer.support=clamp(peer.support+PARAMETERS.assistance);
-    actor.body.fatigue+=actionEffort(action);
+    actor.body.fatigue=clamp(actor.body.fatigue+(action.effort??0.08));
     reason=peer?(options.modules.relationships?`Prepared assistance for ${peer.name}'s next work attempt.`:`Attempted assistance for ${peer.name}; assistance effects are disabled.`):'No partner was available to assist.';
     if(peer)observations.push({kind:'assistance',recipient:peer.id,effective:options.modules.relationships});
   }
-  actor.body.fatigue=clamp(actor.body.fatigue);
-  actor.body.hunger=clamp(actor.body.hunger);
   const promise=actor.commitment;
   let kept=false;
   if(promise&&!promise.fulfilled&&!promise.expired&&promise.actionId===action.id&&state.round+1<=promise.dueRound) {promise.fulfilled=true;kept=true;}
@@ -102,33 +98,19 @@ export function step(state,command={type:'auto'}) {
   for(const actor of next.actors) {
     const view=getView(next,actor.id),scores=rankActions(view),external=canonical.type==='act'&&canonical.actorId===actor.id;
     const actionId=external?canonical.actionId:scores[0].actionId;
-    const requested=next.scenario.actions.find(a=>a.id===actionId);
-    const intention=external?(canonical.intention??`Attempt ${requested.label.toLowerCase()}`):`Attempt ${requested.label.toLowerCase()}`;
-    const actualBefore=clone(actor.body),capacity=assessCapacity(actualBefore,requested,next.scenario.roundMinutes);
-    let action=requested,intervention=null;
-    if(!capacity.allowed) {
-      const hungry=capacity.causes.includes('hunger'),canEat=hungry&&next.world.food>=1;
-      // Reserved IDs cannot collide with validated scenario action IDs. Recovery
-      // exists even in adapters that offer only exertive choices.
-      action=canEat?{id:'_eat',label:'Eat to recover',kind:'eat'}:{id:'_rest',label:'Forced recovery',kind:'rest'};
-      intervention={cause:hungry?'hunger':'fatigue',reason:hungry?
-        (canEat?'Hunger reached the exertion limit; this interval was used to eat.':'Hunger prevents exertion and no ration remains; this recovery interval cannot relieve hunger.'):
-        'There was not enough fatigue capacity to complete the exertion; this interval was used to recover.'};
-    }
+    const action=next.scenario.actions.find(a=>a.id===actionId);
+    const intention=external?(canonical.intention??`Attempt ${action.label.toLowerCase()}`):`Attempt ${action.label.toLowerCase()}`;
     const result=resolve(next,actor,action,view);
-    result.diagnostics.capacity={...capacity,actualBefore};
-    if(intervention)result.outcome.reason=`${intervention.reason} ${result.outcome.reason}`;
     const phaseTrace=[
       {phase:'observe',text:`Working conditions estimate: ${Math.round(view.actor.beliefs.hazard.estimate*100)}%; confidence proxy ${Math.round(view.actor.beliefs.hazard.confidence*100)}%.`},
       {phase:'understand',text:`Perceived fatigue ${Math.round(view.actor.body.fatigue*100)}%; ${view.world.food} shared ration(s) available.`},
       {phase:'weigh',text:`Compared ${scores.length} attempts using ${next.options.policy} policy.`},
-      {phase:'choose',text:external?'Player supplied this choice.':`Selected ${requested.label.toLowerCase()} from the recorded ranking.`},
+      {phase:'choose',text:external?'Player supplied this choice.':`Selected ${action.label.toLowerCase()} from the recorded ranking.`},
       {phase:'attempt',text:`Intention: ${intention}`},
       {phase:'resolve',text:result.outcome.reason},
       {phase:'learn',text:result.learning.direct?`Direct practice in ${result.learning.direct.skill}.${result.learning.transfers.length?` Separate transfer effects recorded for ${result.learning.transfers.map(t=>t.to).join(', ')}.`:''}`:'No skill practice was credited.'}
     ];
-    decisions.push({actorId:actor.id,actorName:actor.name,requestedActionId:requested.id,requestedActionLabel:requested.label,
-      actionId:action.id,actionLabel:action.label,actionKind:action.kind,intervention,intention,source:external?'player':'policy',scores,...result,phaseTrace});
+    decisions.push({actorId:actor.id,actorName:actor.name,actionId,actionLabel:action.label,intention,source:external?'player':'policy',scores,...result,phaseTrace});
   }
   next.round++;next.minutes=next.round*next.scenario.roundMinutes;
   // Due dates concern the promised attempt, regardless of success; no moral-worth inference.

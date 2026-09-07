@@ -1,0 +1,263 @@
+{
+  "format": "human-framework-historical-workload-audit",
+  "engineVersion": "0.1.0",
+  "generatedAt": "2026-09-07T22:03:54.042Z",
+  "seedValues": {
+    "start": 1,
+    "end": 1000
+  },
+  "sourceSha256": {
+    "src/core/index.js": "9c2e21debe3e7f6263050368d0c32da920750ea0bb8166497d69d19c9ce92365",
+    "src/core/model.js": "57468434fea0306c895def14b2bfe9d65f08cafa2998e2bfc16a418229c2adf8",
+    "src/core/observation.js": "1d88d63ef05d9dffcd0ce9651f4e3f0e442359edabe0ae4b17625ca081e34da9",
+    "src/core/policy.js": "5b1cf7c41112c4456d45817bab64cba97f64aa1bb4b8ede01331c00eaea95ecc",
+    "src/core/random.js": "d2c76c3105a86b052a6694a4709e67f58f9a88dad9eccc62d397c2e87f4eaeec",
+    "src/core/simulation.js": "a209ebe9c592ca7d3a9dd14c718e696aa94caf5848951d176df3673a0e36e256"
+  },
+  "scenario": {
+    "id": "solo",
+    "title": "Solo Repair",
+    "subtitle": "One person, a small repair, no social effects.",
+    "theme": "workshop",
+    "brief": "Finish a small repair on your own before the work period ends. Choose precision or simple work, rest, eat or inspect equipment. There are no partners, promises or assistance effects.",
+    "objective": "Finish your repair",
+    "resourceLabel": "repair units",
+    "hazardLabel": "Equipment conditions",
+    "target": 9,
+    "initialProgress": 0,
+    "food": 1,
+    "roundMinutes": 10,
+    "horizon": 8,
+    "consumption": 0,
+    "hazard": 0.15,
+    "initialSignal": 0.2,
+    "signalConfidence": 0.75,
+    "observationNoise": 0.1,
+    "skills": [
+      "craft",
+      "survey"
+    ],
+    "transfer": [],
+    "actions": [
+      {
+        "id": "work",
+        "label": "Fit precision parts",
+        "description": "Attempt a larger repair with greater skill and effort demands.",
+        "kind": "work",
+        "skill": "craft",
+        "difficulty": 0.65,
+        "effort": 0.2,
+        "output": 3,
+        "exposure": 0.2
+      },
+      {
+        "id": "careful-work",
+        "label": "Repair simple fittings",
+        "description": "Attempt an easier repair with smaller output.",
+        "kind": "work",
+        "skill": "craft",
+        "difficulty": 0.3,
+        "effort": 0.1,
+        "output": 1.6,
+        "exposure": 0.05
+      },
+      {
+        "id": "rest",
+        "label": "Rest",
+        "description": "Use this interval to reduce fatigue.",
+        "kind": "rest"
+      },
+      {
+        "id": "eat",
+        "label": "Eat a ration",
+        "description": "Use your ration to reduce hunger.",
+        "kind": "eat"
+      },
+      {
+        "id": "observe",
+        "label": "Inspect the equipment",
+        "description": "Spend this interval inspecting conditions; the report can revise your estimate.",
+        "kind": "observe",
+        "skill": "survey"
+      }
+    ],
+    "actors": [
+      {
+        "id": "leyla",
+        "name": "Leyla",
+        "role": "Independent repairer",
+        "body": {
+          "fatigue": 0.7,
+          "hunger": 0.25
+        },
+        "skills": {
+          "craft": 0.75,
+          "survey": 0.55
+        },
+        "priorities": {
+          "duty": 0,
+          "care": 0,
+          "caution": 0.4,
+          "mastery": 0.6
+        }
+      }
+    ]
+  },
+  "method": "Replayed the supplied eight-round example and compared five deterministic controllers across seeds1–1000 with the preserved old kernel. Observable recovery rule: rest at perceived fatigue >=65%, else eat at hunger >=65%, else careful work. This old rule differs from the new probe, which prioritizes eating at60% before fatigue recovery.",
+  "userReplay": {
+    "fileName": "human-framework-solo-seed-7-round-8.json",
+    "commands": [
+      {
+        "type": "act",
+        "actorId": "leyla",
+        "actionId": "careful-work"
+      },
+      {
+        "type": "act",
+        "actorId": "leyla",
+        "actionId": "careful-work"
+      },
+      {
+        "type": "act",
+        "actorId": "leyla",
+        "actionId": "careful-work"
+      },
+      {
+        "type": "act",
+        "actorId": "leyla",
+        "actionId": "rest"
+      },
+      {
+        "type": "act",
+        "actorId": "leyla",
+        "actionId": "careful-work"
+      },
+      {
+        "type": "act",
+        "actorId": "leyla",
+        "actionId": "careful-work"
+      },
+      {
+        "type": "act",
+        "actorId": "leyla",
+        "actionId": "rest"
+      },
+      {
+        "type": "act",
+        "actorId": "leyla",
+        "actionId": "careful-work"
+      }
+    ],
+    "status": "won",
+    "progress": 9.6,
+    "finalBody": {
+      "fatigue": 0.86,
+      "hunger": 0.41000000000000014
+    }
+  },
+  "stats": {
+    "full": {
+      "wins": 575,
+      "seeds": 1000,
+      "meanProgress": 7.278,
+      "meanFinalFatigue": 0.6846050000000002,
+      "seed7": {
+        "status": "lost",
+        "progress": 6,
+        "fatigue": 0.62,
+        "choices": [
+          "rest",
+          "work",
+          "rest",
+          "work",
+          "rest",
+          "work",
+          "work",
+          "rest"
+        ]
+      }
+    },
+    "baseline": {
+      "wins": 830,
+      "seeds": 1000,
+      "meanProgress": 8.361,
+      "meanFinalFatigue": 1,
+      "seed7": {
+        "status": "won",
+        "progress": 9,
+        "fatigue": 1,
+        "choices": [
+          "work",
+          "work",
+          "work",
+          "work",
+          "work",
+          "work"
+        ]
+      }
+    },
+    "userSequence": {
+      "wins": 340,
+      "seeds": 1000,
+      "meanProgress": 8.032000000000028,
+      "meanFinalFatigue": 0.8600000000000115,
+      "seed7": {
+        "status": "won",
+        "progress": 9.6,
+        "fatigue": 0.86,
+        "choices": [
+          "careful-work",
+          "careful-work",
+          "careful-work",
+          "rest",
+          "careful-work",
+          "careful-work",
+          "rest",
+          "careful-work"
+        ]
+      }
+    },
+    "alwaysCareful": {
+      "wins": 837,
+      "seeds": 1000,
+      "meanProgress": 9.252800000000137,
+      "meanFinalFatigue": 1,
+      "seed7": {
+        "status": "won",
+        "progress": 9.6,
+        "fatigue": 1,
+        "choices": [
+          "careful-work",
+          "careful-work",
+          "careful-work",
+          "careful-work",
+          "careful-work",
+          "careful-work",
+          "careful-work"
+        ]
+      }
+    },
+    "observableRecovery": {
+      "wins": 0,
+      "seeds": 1000,
+      "meanProgress": 7.140799999999976,
+      "meanFinalFatigue": 0.5699999999999997,
+      "seed7": {
+        "status": "lost",
+        "progress": 8,
+        "fatigue": 0.57,
+        "choices": [
+          "rest",
+          "careful-work",
+          "careful-work",
+          "rest",
+          "careful-work",
+          "careful-work",
+          "rest",
+          "careful-work"
+        ]
+      }
+    }
+  },
+  "interpretation": "The latest supplied replay wins, but its six work slots require six successes. The old conservative rule has at most five work slots and cannot reach9. Fatigue saturation allowed indefinite work; these comparisons do not validate human behavior or policy superiority."
+}

@@ -1,75 +1,84 @@
-# Executable benchmark with a solo control
+# Capacity-aware workload benchmark
 
-Run recorded at 2026-09-07T20:02:00Z (2026-09-07, America/Chicago), engine 0.1.0. Full data, each paired seed, scenario snapshots, numerical defaults, runtime environment, and source SHA-256 identities are in [benchmark.json](../artifacts/benchmark.json).
+Recorded at **2026-09-07T22:14:38Z**, engine **0.2.0**. [Complete results and source identities](../artifacts/benchmark.json) include every paired seed, scenario snapshots, numerical defaults and runtime environment.
 
-The full loop **does not consistently beat the simpler policy**. It completes Courier Crossing more often in this sample, but loses objective performance in Repair Bench, Water Commons and Solo Repair. It also ends with less accumulated fatigue and, where promises exist, more promised attempts made on time. Those are separate outcomes; we have not combined them into an arbitrary “human quality” score.
+The repaired engine stops exertion that exceeds capacity. Longer scenarios let a straightforward, observable recovery strategy complete all four tasks across the 100 evaluation seeds. This establishes a feasible game workload. It does not establish that the full policy is a better model of people.
 
-No scenario settings were retuned after looking at these results. The original three two-person presets remain unchanged; Solo Repair adds one person with no peers, promises or assistance action. It retains the workshop's body, skill, hazard and work settings for Leyla, with a nine-unit target and one ration. All four use the same kernel and finite action kinds. Targets, durations, skill proxies, exposure and output values are authored game settings, not empirical estimates. Repair Bench does not yet simulate tool contention or material inventories; Water Commons does not yet implement bargaining, ownership institutions or community cohesion.
+## What changed
 
-## Experiment and reproducibility
+In 0.1.0, fatigue saturated at 100% while work could continue indefinitely. The baseline often exploited that omission; the full policy spent time recovering. The eight-round Solo workload could also make reasonable recovery schedules impossible: five successful careful repairs produce eight units against a nine-unit target.
 
-Run `npm run benchmark -- --seeds 100` from the project directory. Defaults use seeds 101–200, seven variants per scenario, and an additional full/baseline structural null pair for each scenario and seed: **3,600 complete simulation runs**. The artifact generation took 3.41 seconds on this run, using Node v26.8.1 on macOS arm64, excluding JSON writing.
+The latest supplied old replay actually **won 9.6/9**, with six careful repairs and two rests. That schedule required all six attempts to succeed. Across seeds 1–1000 it won 340 times; the old full policy won 575, baseline 830, and an observable fatigue-threshold recovery rule zero. Repeating a seed and its choices repeats the outcome. The [old workload audit](../artifacts/history/workload-audit-0.1.0-2026-09-07.json) records the exact strategies and source identities. The [0.1 benchmark report](history/benchmark-report-0.1.0-2026-09-07.md) and its negative findings remain historical evidence, not proof of policy superiority.
 
-Every comparison pairs identical seeds. Draws are keyed by seed, round, actor and purpose; a policy choosing to inspect does not consume the draw assigned to another actor's work. Different decisions still lead to different states and different use of available draws. Both policies receive the same permitted information; the static baseline ranks tasks from output and proficiency and does not read hidden hazard. There is no LLM, external inference or generated prose input.
+Engine 0.2.0 records requested and executed actions separately. If requested work/help exceeds capacity, recovery happens instead: rest for fatigue, a meal for hunger when a ration remains, otherwise rest with an explicit unmet-hunger reason. This applies to **every policy and ablation**. Recovery uses the net body change before clamping, removing an extra benefit at the old upper bound. Blocked work produces no output or task practice.
 
-The default evaluation seeds are separated from initial manual examples using 1–20, but automated tests also exercise evaluation seeds. This is a reproducibility convention, **not untouched held-out data**. There is no human calibration set or human evaluation set. Runtime measurements run variants in a fixed order and are affected by warm-up and machine load; they are descriptive timings, not a controlled efficiency comparison.
+All presets now allow **36 rounds of 20 simulated minutes**, with targets 60/60/45/30 for Courier/Repair/Commons/Solo and six shared rations or three solo rations. Initial bodies, proficiency, hazard and work costs are unchanged. Longer rounds also increase practice exposure through the existing duration rule. These are authored playability settings, including the twelve-hour maximum, not physiological calibration. No policy coefficients were tuned to reverse the rankings. Both execution and workloads changed, so this is not an isolated causal estimate of either change.
 
-For each metric, the artifact reports the full-minus-comparator mean paired difference, the sample paired standard error, and the descriptive interval `mean ± 1.96 × SE`. These describe Monte Carlo variation inside this particular toy model. They do not measure model uncertainty, human variation, or the credibility of the underlying mechanisms. The intervals are approximate, comparisons are exploratory, and there is no multiple-comparison adjustment. A one-seed run reports null for SE/interval rather than inventing precision.
+## Feasibility without secret information
 
-## Objective performance
+The separate recovery probe directs the first person through the UI's manual-action command: eat at observed hunger **60%** if food remains; otherwise rest at fatigue **65%**; otherwise choose the lowest-effort work. Any partner keeps the full policy. The probe reads `getView`, not hidden hazard, future draws or the seed. It is an example, not an optimal strategy.
 
-Progress can exceed its target because both actors complete the final round before termination. Success rate and capped completion are therefore recorded separately from raw progress. Each scenario has its own units; do not average raw progress across settings.
-
-| Scenario / target | Full mean progress | Baseline mean progress | Paired difference and descriptive interval | Full successes | Baseline successes |
+| Scenario | Probe successes | Mean rounds | Rest actions | Meals | Forced recovery |
 |---|---:|---:|---:|---:|---:|
-| Courier Crossing / 16 delivery units | 16.40 | 15.99 | +0.41 [−0.29, +1.10] | 70/100 | 56/100 |
-| Repair Bench / 18 repair units | 13.71 | 16.17 | −2.46 [−3.16, −1.75] | 18/100 | 62/100 |
-| Water Commons / 12 water units | 11.80 | 13.72 | −1.92 [−2.46, −1.38] | 76/100 | 99/100 |
-| Solo Repair / 9 repair units | 7.38 | 8.37 | −0.99 [−1.43, −0.55] | 58/100 | 84/100 |
+| Courier | 100/100 | 26.33 | 10.88 | 3.84 | 0 |
+| Repair | 100/100 | 26.60 | 13.12 | 3.98 | 0 |
+| Commons | 100/100 | 21.01 | 8.75 | 3.04 | 0 |
+| Solo | 100/100 | 28.51 | 6.12 | 2.00 | 0 |
 
-The courier progress interval spans zero. Its success-rate difference is +14 percentage points, with descriptive interval [+1.2, +26.8] points. That difference does not establish that our human model is better: the two task choices have different sizes of contribution, and the policy's scores were not fitted to human behavior. Repair and commons provide concrete counterexamples to claiming that extra mechanisms automatically improve the task objective.
+Counts sum across actors; Solo has one. The candidate also passed 100 development seeds before evaluation. A sample without losses does not guarantee success over all seeds or choices.
 
-## Costs, commitments, learning and information
+**Solo seed 7** finishes in 29 rounds: 21 work attempts, 19 successes, six rests and two meals. It tolerates two failures and leaves seven rounds unused. With one ration, the conditional strategy still wins in 30 rounds but finishes much hungrier. With no food it loses at 19.2/30 after 36 rounds and 17 compulsory recoveries. Resting every round loses with zero progress. Two meals are used by the normal conservative path; they are not required of every successful strategy. Full-auto seed 7 finishes earlier with one meal.
 
-Fatigue is the mean final fatigue proxy across the actors, or the sole actor's value in Solo Repair. Skill gain is the sum of changes in the task proficiency proxies, with no configured cross-skill transfer. Promises concern an attempt made by its deadline; success is not required. Inspection counts include only actual hazard-report observations produced by inspection actions, rather than a fabricated observation each decision.
+## Full and baseline comparisons
 
-| Scenario / policy | Final fatigue | Promises attempted on time | Summed skill gain | Inspection reports | Decisions |
+Full weighs body, perceived hazard, information, practice interest and promises. Baseline uses output and current proficiency to request work, assigning small fixed scores elsewhere. It usually fails to plan recovery, so the shared capacity rule interrupts it. Both receive the same permitted information and world mechanics when their switches match.
+
+| Scenario / target | Full progress | Baseline progress | Full − baseline, descriptive interval | Full successes | Baseline successes |
 |---|---:|---:|---:|---:|---:|
-| Courier / full | 0.659 | 2.00 | 0.163 | 2.00 | 19.06 |
-| Courier / baseline | 0.998 | 1.00 | 0.193 | 0.00 | 17.58 |
-| Repair / full | 0.603 | 2.00 | 0.159 | 0.00 | 15.72 |
-| Repair / baseline | 0.999 | 1.00 | 0.229 | 0.00 | 14.10 |
-| Commons / full | 0.670 | 2.00 | 0.082 | 0.00 | 15.92 |
-| Commons / baseline | 0.950 | 1.00 | 0.101 | 0.00 | 10.10 |
-| Solo / full | 0.685 | None authored | 0.043 | 0.00 | 7.09 |
-| Solo / baseline | 1.000 | None authored | 0.065 | 0.00 | 5.83 |
+| Courier / 60 | 62.35 | 60.51 | +1.84 [1.45, 2.22] | 100/100 | 99/100 |
+| Repair / 60 | 61.52 | 60.75 | +0.77 [0.38, 1.17] | 100/100 | 100/100 |
+| Commons / 45 | 46.81 | 46.34 | +0.47 [0.11, 0.83] | 100/100 | 100/100 |
+| Solo / 30 | 30.00 | 29.97 | +0.03 [−0.03, 0.09] | 100/100 | 99/100 |
 
-The baseline repeatedly works and accumulates more practice, including practice on failed attempts. The full policy allocates some intervals to recovery, eating, inspection or assistance. The observed tradeoff is consequently plausible *within the written mechanics*, but the magnitude remains uncalibrated. Final-state fatigue is also affected by early termination: the variants do not all run for the same simulated duration. The artifact includes rounds, minutes, work attempts/successes, hunger, food use and pending promises so that these distinctions remain visible.
+Completion is near its ceiling in these forgiving workloads. Much of the progress difference is **overshoot**: all actors finish a round before termination, and contributions have different sizes. This is not evidence of universal superiority. Each scenario has different units; do not average raw progress across games.
+
+| Scenario / policy | Rounds | Final fatigue | Requested work | Executed work | Rest / meals | Forced recoveries |
+|---|---:|---:|---:|---:|---:|---:|
+| Courier / full | 26.03 | 0.599 | 34.22 | 34.22 | 12.39 / 3.45 | 0 |
+| Courier / baseline | 28.40 | 0.661 | 56.80 | 38.66 | 15.58 / 2.56 | 18.14 |
+| Repair / full | 23.45 | 0.727 | 30.33 | 30.33 | 13.54 / 3.03 | 0 |
+| Repair / baseline | 25.87 | 0.774 | 51.74 | 33.55 | 15.33 / 2.86 | 18.19 |
+| Commons / full | 18.98 | 0.588 | 25.70 | 25.70 | 9.55 / 2.71 | 0 |
+| Commons / baseline | 19.68 | 0.700 | 39.36 | 27.81 | 9.86 / 1.69 | 11.55 |
+| Solo / full | 22.09 | 0.798 | 14.15 | 14.15 | 6.79 / 1.15 | 0 |
+| Solo / baseline | 23.15 | 0.774 | 23.15 | 15.05 | 7.26 / 0.84 | 8.10 |
+
+Full has **higher** final fatigue in Solo despite avoiding compulsory recovery. Final states occur at different stopping times; no universal lower-fatigue claim follows. Rest/meal counts include voluntary and compulsory executions. A work request replaced by rest is not an executed work attempt. The artifact also records food, work successes, practice gains, hunger, observations and promises. Promises concern a performed attempt by its deadline, not successful output or moral worth.
 
 ## Ablations and null controls
 
-These are interventions on this implementation. “No promise weighting” disables the preference contribution of promises; it retains measured fulfillment/expiry and their relationship consequences. “No body coupling” removes bodily influence on preference and work success while continuing to track body state. “No belief updates” leaves inspections available but freezes the stored belief. “No practice updates” freezes proficiency. “No relationship coupling” disables social preference/support and trust-update effects.
-
-| Comparator removed from full loop | Courier progress difference | Repair progress difference | Commons progress difference | Solo progress difference |
+| Comparator removed from full | Courier progress difference | Repair | Commons | Solo |
 |---|---:|---:|---:|---:|
-| Body coupling | −1.63 | −6.77 | −3.02 | −1.62 |
-| Belief updating | +10.37 | 0.00 | 0.00 | 0.00 |
-| Promise weighting | +0.35 | −1.12 | +0.05 | 0.00 |
-| Practice updating | +1.48 | +0.76 | +0.17 | +0.24 |
-| Relationship coupling | 0.00 | 0.00 | +0.05 | 0.00 |
+| Body influence on scoring and success | +0.50 | −0.69 | +0.04 | 0.00 |
+| Hazard updates and inspection value | +0.76 | 0.00 | 0.00 | 0.00 |
+| Promise weighting | +0.46 | −0.35 | 0.00 | 0.00 |
+| Practice updates and learning value | +1.67 | −0.24 | +0.31 | 0.00 |
+| Relationship coupling | 0.00 | 0.00 | 0.00 | 0.00 |
 
-These numbers are full-minus-ablation. Removing body costs from performance makes the objective easier by construction; its higher scores do not show that bodies are useless. Removing belief updates in Courier causes repeated inspections of unchanging uncertainty: 13 reports per run versus 2 in the full loop. That large loss exposes the policy's inability to learn that further observation is useless under this intervention. It is evidence about a computational dependency and a missing stopping rule, not evidence for the size of human belief updating's benefit.
+These are full-minus-comparator differences. Removing body coupling retains mandatory capacity. Removing promise weighting retains fulfillment/expiry. The practice ablation freezes proficiency and removes expected practice value; the belief ablation freezes estimates and removes expected information value while leaving inspection available. Initial skills and beliefs still affect work. These two ablations are coupled interventions, not isolated causal estimates of updating. Removing relationships disables support and trust effects.
 
-Belief updating has no objective effect in Repair or Commons because neither policy selects inspection there. Relationship coupling has no objective effect in Courier or Repair in this sample. Commons' small difference has interval [−0.28, +0.38] progress units; do not claim a demonstrated social-performance benefit. Even when progress is unchanged, relationship state itself may differ. An ablation can be operational yet contribute nothing to a particular scenario's objective.
+Belief and practice ablations now remove the expected benefit of the capacity they disable. This resolves the comparison defect where a controller could repeatedly seek information it could not store, or value practice gains it could not receive. The old behavior remains recorded in the historical 0.1 report. Relationship coupling changes no objective result in these presets; a stronger test needs independent acceptance/refusal. Solo remains identical with either social component disabled. Negative and null differences remain reported; existence does not establish benefit.
 
-Solo Repair is also a persistent control for social independence: its choices and outcomes stay identical when promise weighting, relationship coupling, or both are disabled. Its 100-seed promise/relationship comparisons have zero differences in every nontiming metric. The full policy still loses output to the baseline, despite no social effects; rest and immediate task scoring are enough to produce that tradeoff. This separates the personal work/recovery question from future social models.
+The corrected hazard ablation makes zero inspections and completes all four scenarios in every evaluation seed. The practice/learning-value ablation completes Courier in 77/100 and Repair in 97/100, versus 100/100 for Commons and Solo. These outcomes concern the specific paired interventions and authored workloads, not general claims about human learning.
 
-Each structural null removes all but one work action and removes commitments, retaining the same active modules. Full and baseline must therefore take the same actions. We compared world state, actor states, action events, observations, changes, outcomes and random draws while excluding deliberately different policy-score explanations. **All 400/400 null pairs were exactly equal**. This checks paired execution; it does not prove general equivalence of the policies.
+The null leaves one **requested** work action and removes commitments. Both policies make the same requests and encounter the same mandatory recovery. All **400/400 pairs** match world state, actors, requested/executed actions, interventions, observations, outcomes and draws, excluding policy-specific scores/prose. This verifies paired execution, not general policy equivalence.
 
-## What was verified, and what follows
+## Reproducibility and verification
 
-The initial scenario/CLI/experiment tests, source-identity artifact check and new solo-isolation test were observed failing before their respective implementations. The eight scenario/experiment/CLI tests pass, including all four adapters at boundary seeds, replay roundtrip, paid inspection, hidden-information separation, paired arithmetic, null equality, invalid counts/arguments, benchmark provenance and solo social independence. The full suite passes all 39 tests, including the core, guidance, adversarial and deployment checks. These checks verify software behavior, not human realism or theological adequacy.
+Run `npm run benchmark -- --seeds 100`. Defaults use seeds 101–200: seven variants, one feasibility probe and two null runs per scenario/seed, totaling **4,000 complete runs**. Generation took **29.56 seconds** on Node v26.8.1, macOS arm64, excluding writing. Timing is load/order dependent. SHA-256 identities include the core entry point and model files.
 
-Immediate research priorities follow from actual limitations: test an explicit stopping rule for redundant inspection; compare time budgets without changing bodily physics; measure tradeoffs over a fixed post-deadline follow-up period; and create a social task where another actor can independently accept or refuse. The current assistance mechanism is a support preparation, not a complete model of consent or persuasion. Parameter sensitivity and richer planning are future experiments; neither should be introduced merely to make the full policy win this table.
+Seeds 1–100 informed playability; evaluation uses 101–200. Tests and previous experiments have also used these seeds, so this is a reproducibility convention, not untouched held-out data. Draws are keyed by seed, round, actor and purpose; different choices still visit different states. Intervals use paired mean difference ± 1.96 × sample standard error. They describe Monte Carlo variation within this toy model, not model uncertainty or human confidence. One seed produces no estimated SE; comparisons are exploratory without multiplicity adjustment.
 
-For a single-person run, use `npm run simulate -- solo --seed 7`; use `courier`, `workshop` or `commons` for the two-person settings. Add `--json replay.json` to write a replay accepted by the core and browser importer, or use `--json -` for JSON on standard output. Scenario and source snapshots in the benchmark artifact preserve what this report evaluated; any later core or preset change requires regeneration before these numbers are described as current.
+All **57 tests pass**, including 11 scenario/experiment checks covering bounded runs, replay, hidden information, paid inspection, paired arithmetic, nulls, invalid CLI inputs, provenance, solo independence, requested/executed counts, feasible recovery, missing-food failure and idle failure. New metric/workload checks were observed red before implementation. These are software and playability checks, not human or theological validation.
+
+Next experiments should distinguish mechanisms: fixed-duration recovery/retest, redundant/changing evidence, food constraints and independent social responses. The [decision register](../research/decision-status.md) separates rejected formulations from deferred domains and states their return criteria.
