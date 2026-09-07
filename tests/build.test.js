@@ -30,6 +30,7 @@ test('deployment contains the playable module graph and excludes private project
     assert.equal(files.some(p=>/secret|private|\.env|research/.test(p)),false);
     assert.match(await readFile(join(root,'dist/_headers'),'utf8'),/Content-Security-Policy/);
     assert.match(await readFile(join(root,'dist/_headers'),'utf8'),/Cache-Control: no-cache/);
+    assert.match(await readFile(join(root,'dist/_headers'),'utf8'),/no-transform/);
     const digest=createHash('sha256');
     for(const file of built.files.filter(p=>p!=='release.json').sort())digest.update(file).update('\0').update(await readFile(join(root,'dist',file))).update('\0');
     assert.equal(built.release.assetsSha256,digest.digest('hex'),'release identity includes deployed headers as well as page assets');

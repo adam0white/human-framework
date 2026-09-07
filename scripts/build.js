@@ -10,7 +10,7 @@ const headers=`/*
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Cache-Control: no-cache
+  Cache-Control: no-cache, no-transform
 `;
 
 /** Build an explicit public asset set; project research, replays and tooling stay private. */
