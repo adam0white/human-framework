@@ -23,6 +23,10 @@ The first playtests identified two concrete failures: an eight-round repair coul
 
 Workload calibration should make a legible strategy feasible across seeds, permit some failed attempts, and expose the intended tradeoffs. It must not optimize coefficients until the policy called “full” beats its comparators. Human calibration would require a defined task, population and independently collected observations; whether a user wins is not such a measurement.
 
+**Later 2026-09-07 review decision:** do not add a forced-recovery efficiency penalty solely to separate policies. [Deadline-only experiments](../docs/recovery-design-exploration.md) already distinguish competent planned recovery from greedy requests, while preserving cases where greed is useful. Separating physical capacity from a host's fallback action is accepted integration work; automatic food choice is not a universal body rule. A genuine interruption/setup cost remains an eligible authored mechanism with a zero-cost control and sensitivity test. This defers an untested formulation rather than rejecting recovery consequences as a domain.
+
+The [fresh direction review](../docs/post-mvp-review.md) also identifies an open portability defect: equivalent progress-unit changes alter policy choices. An explicit task-to-goal value conversion and a host-owned game integration now precede broader faculties. Neither is already implemented. The default Full scorer may be replaced or narrowed if a simpler policy supplies the required benefit.
+
 ## Deferred domains with concrete return conditions
 
 | Domain | Why it is waiting | Smallest useful return experiment |

@@ -1,8 +1,10 @@
 # Human Framework
 
-A reusable simulation of situated human action and development, grounded in Islam with a **Sunni, Hanafi–Maturidi starting point**, informed by empirical research, and explicit about the difference between revelation, interpretation, evidence and engineering choices.
+A simulation laboratory developing reusable components for situated human action and development, grounded in Islam with a **Sunni, Hanafi–Maturidi starting point**, informed by empirical research, and explicit about the difference between revelation, interpretation, evidence and engineering choices.
 
 **2026-09-07 · Capacity and workload repair (engine 0.2.0):** four playable scenarios, deterministic replay, a simpler comparison policy, five ablations and a reproducible benchmark. Exertion cannot bypass capacity by saturating fatigue; requested and executed actions remain distinct. Longer workloads allow repeated recovery and meals. No LLM or API key is required. Play and local simulation need no package installation or build step; public deployment uses pinned Wrangler tooling. The numerical mechanisms remain authored and uncalibrated.
+
+**Direction review, later on 2026-09-07:** three fresh reviewers recommend testing a host-owned game before expanding faculties. The present kernel is independent of the UI but still owns the laboratory's world, scheduling and outcomes. The [consolidated review](docs/post-mvp-review.md) records verified defects, disagreements and the revised delivery gates. The live application remains 0.2.0; the new pressure experiments are research, not changed presets.
 
 ## Play
 

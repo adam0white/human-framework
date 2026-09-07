@@ -1,8 +1,10 @@
 # A validation program for Human Framework
 
-Prepared 2026-09-06. All tests below are **proposed**, not executed. Passing engineering or play tests would not establish empirical realism or theological completeness. The proposal is in [framework-proposal.md](framework-proposal.md).
+Prepared 2026-09-06; sequencing revised 2026-09-07 after [independent review](post-mvp-review.md). This is a proposed validation program. The [MVP record](mvp-status.md) and [benchmark report](benchmark-report.md) separately identify executed checks; a similarly named proposed test is not automatically complete. Passing engineering or play tests would not establish empirical realism or theological completeness. The proposal is in [framework-proposal.md](framework-proposal.md).
 
-## Start with one situation that stresses the whole idea
+## A later situation that tests the combined mechanisms
+
+This retains the original research example. It follows the one-worker host integration in the revised sequence; it does not require several adults or two settings in the next implementation.
 
 A tired person has promised to help someone. A report suggests danger; the report might be wrong. Food, time and assistance are limited. The person has learned skills, relationships, reasons to care, competing desires, and a capacity to choose.
 
@@ -39,6 +41,8 @@ Realized observations may differ because agents take different actions or gather
 | Module ablation | Remove one claimed mechanism while keeping other inputs fixed | It has no discriminating effect or shifts every unrelated outcome without explanation |
 | LLM independence | Disable generation and replay cached proposals | Canonical memory, physical outcomes or private intentions are invented, lost, or changed by prose |
 | Cross-genre reuse | Add the second adapter after freezing common contracts | Shared mechanisms accumulate genre-name conditionals or hidden redefinitions of existing variables |
+| Representation invariance | Convert all task quantities and the declared value conversion consistently | Identical physical situations change policy merely because progress uses different units |
+| Host integration and persistence | Deliver an external observation/outcome; save and resume an interrupted attempt; redeliver a completed event | Unrecorded host effects disappear on replay, one outcome applies twice, or the host must edit private human state |
 
 Acceptance rules fixed before implementation: supplied valid choices remain recorded as supplied; private facts travel only through declared interfaces; each resource debit has one owner; transfer credits originate once from direct practice; unsupported operations report their status; replay records all nondeterministic inputs. Numerical tolerances, disturbance coupling and performance budgets must be specified with the actual integrator and target hardware, before viewing benchmark results. For stochastic refinement, specify whether comparison is pathwise under coupled disturbances or distributional; a changed step schedule is not an exact replay.
 
@@ -68,13 +72,14 @@ Measure comprehension, perceived choice, investigation success, authoring time a
 
 | Stage | Concrete output | Expansion condition |
 |---|---|---|
-| Current research | Sourced proposal, alternatives, gaps, illustrative equations | User reviews the intended direction; research limitations remain visible |
-| Executable contract | Headless demonstrator with chosen policy, explicit state units, transitions, logs and two adapters | Engineering invariants and cross-genre checks pass; no realism claim implied |
-| One calibrated domain | Dataset, estimation procedure, comparison baselines, held-out report | Evidence supports the narrowly stated performance claim |
-| Broader human coverage | Dedicated domain reviews and modules for development, relationships, bodily systems and inner life | New modules add justified coverage or improve specified tests without breaking existing contracts |
-| Engine integration | One host-engine adapter, authoring data format and inspector | Measured runtime/authoring needs justify interface and language choices |
+| Existing laboratory checkpoint | Versioned 0.2.0 executable, four aggregate-task presets, benchmark and historical replays | Preserve controls; do not count themes as independent game integration |
+| Contract and evaluation repair | Explicit task units/value, competent simple comparator, fixed-world policy comparisons and controlled-action mechanism tests | Representational invariance, equal information access and meaningful contrary cases |
+| First host integration | One worker in a host-owned object/location game, documented observations/outcomes, persistence and optional inspector | Host controls its world and scheduling; interrupted resume, duplicate-event accounting and bounded active state pass |
+| Independent consumer and game usefulness | A second interaction authored against a frozen boundary; simple host-native comparison; measured authoring/runtime/play results | No host-specific core edits or duplicated human effects; useful benefit for the declared game |
+| One additional mechanism | A social response, evidence revision or learning experiment required by the host | A serious rival and reserved condition families can discriminate the change; Solo remains a control |
+| Human calibration and theological review, separate parallel tracks | A bounded dataset and prediction report; or exact source-to-representation review with examples/counterexamples | Evidence supports the respective narrow empirical or interpretive claim; neither is inferred from game wins |
 
-Do not select a programming language, ECS library or game engine from the old proposals alone. Choose after deciding foreground agent count, simulation time scale, target host, and desired inspection workflow. No dependency installation, application scaffolding, commit, or deployment is part of the present research deliverable.
+This replaces the original order that put engine integration after calibration and broader coverage. Choose language, scheduling and interfaces from the first host's needs rather than the historical proposals. The current JavaScript/browser runtime is sufficient to attempt that small consumer; multiple native-engine bindings are deferred. These are gates for subsequent implementation, not claims that this review delivered the integration.
 
 ## What would cause a change of direction
 
