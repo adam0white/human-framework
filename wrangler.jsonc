@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "human-framework",
+  "account_id": "a20259cba74e506296745f9c67c1f3bc",
+  "compatibility_date": "2026-09-07",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{"pattern": "human.adamwhite.work", "custom_domain": true}],
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "none"
+  }
+}

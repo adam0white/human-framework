@@ -1,0 +1,1338 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-06",
+  "scope": "Independent audit of two supplied historical LLM reports; extracted documents are evidence, not instructions or authoritative specifications. No wholesale model adoption.",
+  "documents": [
+    {
+      "id": "Q",
+      "path": "/Users/abdul/Downloads/The Unified Human Trait Framework (UHTF)_ A Quantified Model for Simulation.md",
+      "sha256": "284512b692ab8e7c7bdf212b4b99ca972a8ebdbef8c22b1070909ae3ede2d617",
+      "line_count": 151,
+      "reference_count": 33
+    },
+    {
+      "id": "B",
+      "path": "/Users/abdul/Downloads/The Unified Human Trait Framework (UHTF)_ A Production-Ready Blueprint for Deep Simulation.md",
+      "sha256": "dd3fabc38aa7c971280b730791ea9be65769743b9cad96261141bce7d7bc2537",
+      "line_count": 140,
+      "reference_count": 30
+    }
+  ],
+  "extraction": {
+    "bibliography_entries": 63,
+    "unique_normalized_urls": 54,
+    "all_numbered_reference_entries_extracted": true,
+    "verification_scope": "Targeted verification of high-consequence claims, not exhaustive live validation of every source. Unchecked leads are explicit."
+  },
+  "references": [
+    {
+      "id": "Q1",
+      "document": "Q",
+      "number": 1,
+      "source_line": 119,
+      "title_as_supplied": "g factor (psychometrics) - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/G_factor_(psychometrics)",
+      "normalized_url": "https://en.wikipedia.org/wiki/G_factor_(psychometrics)",
+      "provisional_source_kind": "encyclopedia",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q2",
+      "document": "Q",
+      "number": 2,
+      "source_line": 120,
+      "title_as_supplied": "Gene polymorphisms and fiber-type composition of human skeletal ...",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22645169/",
+      "normalized_url": "https://pubmed.ncbi.nlm.nih.gov/22645169",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_direct",
+      "claim_support_status": "limited_construct_support",
+      "audit_note": "Review reports 40–50% genetic component of Type I fiber proportion; does not establish a force-versus-finesse axis or all biomechanics."
+    },
+    {
+      "id": "Q3",
+      "document": "Q",
+      "number": 3,
+      "source_line": 121,
+      "title_as_supplied": "Genetics of muscle fiber composition | Request PDF - ResearchGate",
+      "url": "https://www.researchgate.net/publication/335508550_Genetics_of_muscle_fiber_composition",
+      "normalized_url": "https://www.researchgate.net/publication/335508550_Genetics_of_muscle_fiber_composition",
+      "provisional_source_kind": "social_or_repository",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q4",
+      "document": "Q",
+      "number": 4,
+      "source_line": 122,
+      "title_as_supplied": "www.simplypsychology.org",
+      "url": "https://www.simplypsychology.org/big-five-personality.html#:~:text=Factors%20that%20Influence%20the%20Big%205&text=(1996)%20conducted%20a%20study%20with,%2C%20and%2053%25%2C%20respectively.",
+      "normalized_url": "https://www.simplypsychology.org/big-five-personality.html",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q5",
+      "document": "Q",
+      "number": 5,
+      "source_line": 123,
+      "title_as_supplied": "Heritability of the Big Five Personality Dimensions ... - Squarespace",
+      "url": "https://static1.squarespace.com/static/5a372ca9f9a61ed6e86178a7/t/5c22ed70032be4789680f2ef/1545792883473/Heritability+of+the+Big+Five+Personality+Dimensions+and+Their+Facets+-+A+Twin+Study.pdf",
+      "normalized_url": "https://static1.squarespace.com/static/5a372ca9f9a61ed6e86178a7/t/5c22ed70032be4789680f2ef/1545792883473/Heritability+of+the+Big+Five+Personality+Dimensions+and+Their+Facets+-+A+Twin+Study.pdf",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_direct_pdf",
+      "claim_support_status": "supports_sample_estimates_only",
+      "audit_note": "Jang et al. twin study gives the quoted Big Five estimates in its sample; does not license universal constants or individual inheritance weights."
+    },
+    {
+      "id": "Q6",
+      "document": "Q",
+      "number": 6,
+      "source_line": 124,
+      "title_as_supplied": "The common genetic influence over processing speed and white matter microstructure: Evidence from the Old Order Amish and Human Connectome Projects - PubMed Central",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4691385/",
+      "normalized_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4691385",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_primary_search_content",
+      "claim_support_status": "supports_sample_estimates_only",
+      "audit_note": "Processing-speed estimates are 43% and 49% in two cohorts; not universal 45% or an action-duration rule."
+    },
+    {
+      "id": "Q7",
+      "document": "Q",
+      "number": 7,
+      "source_line": 125,
+      "title_as_supplied": "Heritability estimates of the Big Five personality traits based on common genetic variants",
+      "url": "https://www.researchgate.net/publication/280125157_Heritability_estimates_of_the_Big_Five_personality_traits_based_on_common_genetic_variants",
+      "normalized_url": "https://www.researchgate.net/publication/280125157_Heritability_estimates_of_the_Big_Five_personality_traits_based_on_common_genetic_variants",
+      "provisional_source_kind": "social_or_repository",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q8",
+      "document": "Q",
+      "number": 8,
+      "source_line": 126,
+      "title_as_supplied": "The genetics of specific cognitive abilities - PMC - PubMed Central",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10184120/",
+      "normalized_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10184120",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_direct",
+      "claim_support_status": "contradicts_related_blueprint_claim",
+      "audit_note": "2023 meta-analysis finds Gf 40%, Gs 64%, acquired-knowledge grouping 58%; does not support Gf as the most heritable component."
+    },
+    {
+      "id": "Q9",
+      "document": "Q",
+      "number": 9,
+      "source_line": 127,
+      "title_as_supplied": "Basal metabolic rate can evolve independently of morphological and behavioural traits",
+      "url": "https://www.researchgate.net/publication/236599593_Basal_metabolic_rate_can_evolve_independently_of_morphological_and_behavioural_traits",
+      "normalized_url": "https://www.researchgate.net/publication/236599593_Basal_metabolic_rate_can_evolve_independently_of_morphological_and_behavioural_traits",
+      "provisional_source_kind": "social_or_repository",
+      "existence_status": "work_verified_via_primary_alternative",
+      "claim_support_status": "wrong_species",
+      "audit_note": "The 45% estimate is from captive zebra finches, not humans. ResearchGate page itself not individually verified.",
+      "verification_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3746821/"
+    },
+    {
+      "id": "Q10",
+      "document": "Q",
+      "number": 10,
+      "source_line": 128,
+      "title_as_supplied": "Basal metabolic rate can evolve independently of morphological and behavioural traits",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23632896/",
+      "normalized_url": "https://pubmed.ncbi.nlm.nih.gov/23632896",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "work_verified_via_primary_alternative",
+      "claim_support_status": "wrong_species",
+      "audit_note": "PubMed challenge page; matching primary paper available through indexed PMC text. Captive zebra finches, population-specific 45%.",
+      "verification_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3746821/"
+    },
+    {
+      "id": "Q11",
+      "document": "Q",
+      "number": 11,
+      "source_line": 129,
+      "title_as_supplied": "Locus of Control: What It Is and How It Shapes Motivation - BetterUp",
+      "url": "https://www.betterup.com/blog/locus-of-control",
+      "normalized_url": "https://www.betterup.com/blog/locus-of-control",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q12",
+      "document": "Q",
+      "number": 12,
+      "source_line": 130,
+      "title_as_supplied": "Internal vs External Locus of Control: 7 Examples & Theories - Positive Psychology",
+      "url": "https://positivepsychology.com/internal-external-locus-of-control/",
+      "normalized_url": "https://positivepsychology.com/internal-external-locus-of-control",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q13",
+      "document": "Q",
+      "number": 13,
+      "source_line": 131,
+      "title_as_supplied": "Just how malleable is your personality? - ID37",
+      "url": "https://www.id37.io/en-post/just-how-malleable-is-your-personality",
+      "normalized_url": "https://www.id37.io/en-post/just-how-malleable-is-your-personality",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q14",
+      "document": "Q",
+      "number": 14,
+      "source_line": 132,
+      "title_as_supplied": "How Do Personality Traits Change from 16 to 66? | Psychology Today",
+      "url": "https://www.psychologytoday.com/us/blog/the-athletes-way/201808/how-do-personality-traits-change-16-66",
+      "normalized_url": "https://www.psychologytoday.com/us/blog/the-athletes-way/201808/how-do-personality-traits-change-16-66",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q15",
+      "document": "Q",
+      "number": 15,
+      "source_line": 133,
+      "title_as_supplied": "www.shortform.com",
+      "url": "https://www.shortform.com/blog/how-to-become-a-new-person/#:~:text=To%20become%20who%20you%20want,and%20physically%20ingrained%20in%20you.",
+      "normalized_url": "https://www.shortform.com/blog/how-to-become-a-new-person",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q16",
+      "document": "Q",
+      "number": 16,
+      "source_line": 134,
+      "title_as_supplied": "Neuroplasticity: How Experience Changes the Brain - Verywell Mind",
+      "url": "https://www.verywellmind.com/what-is-brain-plasticity-2794886",
+      "normalized_url": "https://www.verywellmind.com/what-is-brain-plasticity-2794886",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q17",
+      "document": "Q",
+      "number": 17,
+      "source_line": 135,
+      "title_as_supplied": "Change Your Brain to Change Your Personality - The New Personality Self-Portrait",
+      "url": "https://npsp25.com/change-your-brain/",
+      "normalized_url": "https://npsp25.com/change-your-brain",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q18",
+      "document": "Q",
+      "number": 18,
+      "source_line": 136,
+      "title_as_supplied": "Can Your Personality Change Over Your Lifetime? - Greater Good Science Center",
+      "url": "https://greatergood.berkeley.edu/article/item/can_your_personality_change_over_your_lifetime",
+      "normalized_url": "https://greatergood.berkeley.edu/article/item/can_your_personality_change_over_your_lifetime",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q19",
+      "document": "Q",
+      "number": 19,
+      "source_line": 137,
+      "title_as_supplied": "Physical Activity in Ageing and Falls - Physiopedia",
+      "url": "https://www.physio-pedia.com/Physical_Activity_in_Ageing_and_Falls",
+      "normalized_url": "https://www.physio-pedia.com/Physical_Activity_in_Ageing_and_Falls",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q20",
+      "document": "Q",
+      "number": 20,
+      "source_line": 138,
+      "title_as_supplied": "Why your performance will decline with age by Precision Fuel & Hydration",
+      "url": "https://www.precisionhydration.com/performance-advice/performance/age-aging-performance-decline/",
+      "normalized_url": "https://www.precisionhydration.com/performance-advice/performance/age-aging-performance-decline",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q21",
+      "document": "Q",
+      "number": 21,
+      "source_line": 139,
+      "title_as_supplied": "Age Differences in the Big Five Across the Life Span: Evidence from ...",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2562318/",
+      "normalized_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2562318",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_primary_search_content",
+      "claim_support_status": "qualitative_only",
+      "audit_note": "Cross-sectional age differences; does not supply annual causal trait drift constants."
+    },
+    {
+      "id": "Q22",
+      "document": "Q",
+      "number": 22,
+      "source_line": 140,
+      "title_as_supplied": "Personality and Birth Cohort: Does the Decade Make a Difference?",
+      "url": "https://www.psychologicalscience.org/publications/observer/obsonline/2022-march-personality-and-generations.html",
+      "normalized_url": "https://www.psychologicalscience.org/publications/observer/obsonline/2022-march-personality-and-generations.html",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q23",
+      "document": "Q",
+      "number": 23,
+      "source_line": 141,
+      "title_as_supplied": "Age Differences in the Big Five Across the Life Span: Evidence From Two National Samples",
+      "url": "https://www.researchgate.net/publication/23274153_Age_Differences_in_the_Big_Five_Across_the_Life_Span_Evidence_From_Two_National_Samples",
+      "normalized_url": "https://www.researchgate.net/publication/23274153_Age_Differences_in_the_Big_Five_Across_the_Life_Span_Evidence_From_Two_National_Samples",
+      "provisional_source_kind": "social_or_repository",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q24",
+      "document": "Q",
+      "number": 24,
+      "source_line": 142,
+      "title_as_supplied": "How Age Changes Your Personality | Psychology Today",
+      "url": "https://www.psychologytoday.com/us/blog/people-unexplained/202204/how-age-changes-your-personality",
+      "normalized_url": "https://www.psychologytoday.com/us/blog/people-unexplained/202204/how-age-changes-your-personality",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q25",
+      "document": "Q",
+      "number": 25,
+      "source_line": 143,
+      "title_as_supplied": "Development of Big Five Domains and Facets in Adulthood: MeanLevel Age Trends and Broadly Versus Narrowly Acting Mechanisms - CiteSeerX",
+      "url": "https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=5b8dc1b33df7701fcbd9ab4fe20c8f4836688cdd",
+      "normalized_url": "https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=5b8dc1b33df7701fcbd9ab4fe20c8f4836688cdd",
+      "provisional_source_kind": "social_or_repository",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q26",
+      "document": "Q",
+      "number": 26,
+      "source_line": 144,
+      "title_as_supplied": "Improving fluid intelligence with training on working memory - PNAS",
+      "url": "https://www.pnas.org/doi/10.1073/pnas.0801268105",
+      "normalized_url": "https://www.pnas.org/doi/10.1073/pnas.0801268105",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "work_verified_via_primary_alternative",
+      "claim_support_status": "limited_contested_transfer",
+      "audit_note": "Original 2008 dual n-back study reports dosage-sensitive transfer; no universal XP meter or all-skill transfer. PNAS direct fetch failed.",
+      "verification_url": "https://pubmed.ncbi.nlm.nih.gov/18443283/"
+    },
+    {
+      "id": "Q27",
+      "document": "Q",
+      "number": 27,
+      "source_line": 145,
+      "title_as_supplied": "Increasing fluid intelligence is possible after all - PNAS",
+      "url": "https://www.pnas.org/doi/10.1073/pnas.0803396105",
+      "normalized_url": "https://www.pnas.org/doi/10.1073/pnas.0803396105",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "work_verified_via_primary_alternative",
+      "claim_support_status": "commentary_not_independent_replication",
+      "audit_note": "Commentary on Q26; not a separate confirming experiment.",
+      "verification_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2383939/"
+    },
+    {
+      "id": "Q28",
+      "document": "Q",
+      "number": 28,
+      "source_line": 146,
+      "title_as_supplied": "Failure of Working Memory Training to Enhance Cognition or Intelligence | PLOS One",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0063614",
+      "normalized_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0063614",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_direct",
+      "claim_support_status": "contradicts_claim_it_is_attached_to",
+      "audit_note": "20 training sessions produced trained-task improvements but no transfer to untrained measurements; cannot justify automatic 1–5% Gf/Gs XP."
+    },
+    {
+      "id": "Q29",
+      "document": "Q",
+      "number": 29,
+      "source_line": 147,
+      "title_as_supplied": "Factors Influencing Attenuating Skill Decay in High-Risk Industries: A Scoping Review",
+      "url": "https://www.mdpi.com/2313-576X/8/2/22",
+      "normalized_url": "https://www.mdpi.com/2313-576X/8/2/22",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q30",
+      "document": "Q",
+      "number": 30,
+      "source_line": 148,
+      "title_as_supplied": "SKILL DECAY CURVES",
+      "url": "https://mari.com/wp-content/uploads/The-Science-of-MARi-Skill-Decay.pdf",
+      "normalized_url": "https://mari.com/wp-content/uploads/The-Science-of-MARi-Skill-Decay.pdf",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q31",
+      "document": "Q",
+      "number": 31,
+      "source_line": 149,
+      "title_as_supplied": "Measuring Learning Transfer and Decay From Initial Skill Training - CNA.org.",
+      "url": "https://www.cna.org/archive/CNA_Files/pdf/d0022799.a3.pdf",
+      "normalized_url": "https://www.cna.org/archive/CNA_Files/pdf/d0022799.a3.pdf",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q32",
+      "document": "Q",
+      "number": 32,
+      "source_line": 150,
+      "title_as_supplied": "(PDF) Developing a Model of Team Skill Decay - ResearchGate",
+      "url": "https://www.researchgate.net/publication/320091360_Developing_a_Model_of_Team_Skill_Decay",
+      "normalized_url": "https://www.researchgate.net/publication/320091360_Developing_a_Model_of_Team_Skill_Decay",
+      "provisional_source_kind": "social_or_repository",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "Q33",
+      "document": "Q",
+      "number": 33,
+      "source_line": 151,
+      "title_as_supplied": "Resolving problems with the skill retention literature: An empirical demonstration and recommendations for researchers - PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38108800/",
+      "normalized_url": "https://pubmed.ncbi.nlm.nih.gov/38108800",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_direct_abstract",
+      "claim_support_status": "warns_against_universal_decay",
+      "audit_note": "Empirical retention study and methodological critique; supports task-specific measurement, not a universal inverse-level decay constant."
+    },
+    {
+      "id": "B1",
+      "document": "B",
+      "number": 1,
+      "source_line": 111,
+      "title_as_supplied": "The evolutionary significance of variation in metabolic rates | Royal Society",
+      "url": "https://royalsociety.org/blog/2024/01/variation-in-metabolic-rates-phil-trans-b/",
+      "normalized_url": "https://royalsociety.org/blog/2024/01/variation-in-metabolic-rates-phil-trans-b",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B2",
+      "document": "B",
+      "number": 2,
+      "source_line": 112,
+      "title_as_supplied": "Metabolism | Better Health Channel",
+      "url": "https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/metabolism",
+      "normalized_url": "https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/metabolism",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B3",
+      "document": "B",
+      "number": 3,
+      "source_line": 113,
+      "title_as_supplied": "Metabolic enzyme cost explains variable trade-offs between microbial growth rate and yield",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5847312/",
+      "normalized_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5847312",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_primary_search_content",
+      "claim_support_status": "citation_mismatch",
+      "audit_note": "E. coli metabolism modeling, not autonomy/competence/relatedness. Trade-off is conditional even in its own domain."
+    },
+    {
+      "id": "B4",
+      "document": "B",
+      "number": 4,
+      "source_line": 114,
+      "title_as_supplied": "my.clevelandclinic.org",
+      "url": "https://my.clevelandclinic.org/health/body/basal-metabolic-rate-bmr#:~:text=Your%20BMR%20is%20your%20body's,energy%20fuels%20your%20physical%20movement.",
+      "normalized_url": "https://my.clevelandclinic.org/health/body/basal-metabolic-rate-bmr",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B5",
+      "document": "B",
+      "number": 5,
+      "source_line": 115,
+      "title_as_supplied": "Proprioception, the regulator of motor function - PMC - PubMed Central",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8411041/",
+      "normalized_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8411041",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B6",
+      "document": "B",
+      "number": 6,
+      "source_line": 116,
+      "title_as_supplied": "Proprioception in Biomechanics: A Comprehensive Guide - Number Analytics",
+      "url": "https://www.numberanalytics.com/blog/proprioception-in-biomechanics-ultimate-guide",
+      "normalized_url": "https://www.numberanalytics.com/blog/proprioception-in-biomechanics-ultimate-guide",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B7",
+      "document": "B",
+      "number": 7,
+      "source_line": 117,
+      "title_as_supplied": "Gene polymorphisms and fiber-type composition of human skeletal muscle - LJMU Research Online",
+      "url": "https://researchonline.ljmu.ac.uk/id/eprint/23068/3/Gene%20polymorphisms%20and%20fiber-type%20composition%20of%20human%20skeletal%20muscle.pdf",
+      "normalized_url": "https://researchonline.ljmu.ac.uk/id/eprint/23068/3/Gene%20polymorphisms%20and%20fiber-type%20composition%20of%20human%20skeletal%20muscle.pdf",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "work_verified_via_primary_alternative",
+      "claim_support_status": "limited_construct_support",
+      "audit_note": "Same Ahmetov review as Q2/B8; university mirror not individually fetched.",
+      "verification_url": "https://pubmed.ncbi.nlm.nih.gov/22645169/"
+    },
+    {
+      "id": "B8",
+      "document": "B",
+      "number": 8,
+      "source_line": 118,
+      "title_as_supplied": "Gene polymorphisms and fiber-type composition of human skeletal ...",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22645169/",
+      "normalized_url": "https://pubmed.ncbi.nlm.nih.gov/22645169",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_direct",
+      "claim_support_status": "limited_construct_support",
+      "audit_note": "Same work as Q2; genetic fiber variation does not supply global force/finesse competence."
+    },
+    {
+      "id": "B9",
+      "document": "B",
+      "number": 9,
+      "source_line": 119,
+      "title_as_supplied": "g factor (psychometrics) - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/G_factor_(psychometrics)",
+      "normalized_url": "https://en.wikipedia.org/wiki/G_factor_(psychometrics)",
+      "provisional_source_kind": "encyclopedia",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B10",
+      "document": "B",
+      "number": 10,
+      "source_line": 120,
+      "title_as_supplied": "The genetics of specific cognitive abilities - PMC - PubMed Central",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10184120/",
+      "normalized_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10184120",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_direct",
+      "claim_support_status": "contradicts_claim_it_is_attached_to",
+      "audit_note": "Same work as Q8; Gf is not highest heritability in this synthesis."
+    },
+    {
+      "id": "B11",
+      "document": "B",
+      "number": 11,
+      "source_line": 121,
+      "title_as_supplied": "Genetic Influences on Weight - MyHealth Alberta",
+      "url": "https://myhealth.alberta.ca/Health/pages/conditions.aspx?hwid=ug1798",
+      "normalized_url": "https://myhealth.alberta.ca/Health/pages/conditions.aspx?hwid=ug1798",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "apparent_citation_mismatch",
+      "audit_note": "Supplied title and URL identify genetic influences on weight; reference is attached to crystallized intelligence. Existence and page body were not checked."
+    },
+    {
+      "id": "B12",
+      "document": "B",
+      "number": 12,
+      "source_line": 122,
+      "title_as_supplied": "The common genetic influence over processing speed and white matter microstructure: Evidence from the Old Order Amish and Human Connectome Projects - PubMed Central",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4691385/",
+      "normalized_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4691385",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_primary_search_content",
+      "claim_support_status": "supports_sample_estimates_only",
+      "audit_note": "Same work as Q6. Does not justify processing speed as global clock multiplier."
+    },
+    {
+      "id": "B13",
+      "document": "B",
+      "number": 13,
+      "source_line": 123,
+      "title_as_supplied": "Testing the Effectiveness of Computerized Cognitive Training on an At-Risk Student Population - PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39199107/",
+      "normalized_url": "https://pubmed.ncbi.nlm.nih.gov/39199107",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B14",
+      "document": "B",
+      "number": 14,
+      "source_line": 124,
+      "title_as_supplied": "Big Five Personality Traits: The 5-Factor Model of Personality - Simply Psychology",
+      "url": "https://www.simplypsychology.org/big-five-personality.html",
+      "normalized_url": "https://www.simplypsychology.org/big-five-personality.html",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B15",
+      "document": "B",
+      "number": 15,
+      "source_line": 125,
+      "title_as_supplied": "Big 5 Personality Traits: The 5-Factor Model of Personality - Verywell Mind",
+      "url": "https://www.verywellmind.com/the-big-five-personality-dimensions-2795422",
+      "normalized_url": "https://www.verywellmind.com/the-big-five-personality-dimensions-2795422",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B16",
+      "document": "B",
+      "number": 16,
+      "source_line": 126,
+      "title_as_supplied": "www.simplypsychology.org",
+      "url": "https://www.simplypsychology.org/big-five-personality.html#:~:text=Factors%20that%20Influence%20the%20Big%205&text=(1996)%20conducted%20a%20study%20with,%2C%20and%2053%25%2C%20respectively.",
+      "normalized_url": "https://www.simplypsychology.org/big-five-personality.html",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B17",
+      "document": "B",
+      "number": 17,
+      "source_line": 127,
+      "title_as_supplied": "Heritability of the Big Five Personality Dimensions ... - Squarespace",
+      "url": "https://static1.squarespace.com/static/5a372ca9f9a61ed6e86178a7/t/5c22ed70032be4789680f2ef/1545792883473/Heritability+of+the+Big+Five+Personality+Dimensions+and+Their+Facets+-+A+Twin+Study.pdf",
+      "normalized_url": "https://static1.squarespace.com/static/5a372ca9f9a61ed6e86178a7/t/5c22ed70032be4789680f2ef/1545792883473/Heritability+of+the+Big+Five+Personality+Dimensions+and+Their+Facets+-+A+Twin+Study.pdf",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "verified_direct_pdf",
+      "claim_support_status": "supports_sample_estimates_only",
+      "audit_note": "Same paper as Q5. Repeated popular summaries do not provide independent replication."
+    },
+    {
+      "id": "B18",
+      "document": "B",
+      "number": 18,
+      "source_line": 128,
+      "title_as_supplied": "What Are Attachment Styles — And Can I Change Mine? - Alma",
+      "url": "https://helloalma.com/blog/attachment-styles/",
+      "normalized_url": "https://helloalma.com/blog/attachment-styles",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B19",
+      "document": "B",
+      "number": 19,
+      "source_line": 129,
+      "title_as_supplied": "A quick rundown of the four attachment styles. : r/attachment_theory - Reddit",
+      "url": "https://www.reddit.com/r/attachment_theory/comments/d9fwik/a_quick_rundown_of_the_four_attachment_styles/",
+      "normalized_url": "https://www.reddit.com/r/attachment_theory/comments/d9fwik/a_quick_rundown_of_the_four_attachment_styles",
+      "provisional_source_kind": "social_or_repository",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B20",
+      "document": "B",
+      "number": 20,
+      "source_line": 130,
+      "title_as_supplied": "Attachment Theory, Bowlby's Stages & Attachment Styles - Positive Psychology",
+      "url": "https://positivepsychology.com/attachment-theory/",
+      "normalized_url": "https://positivepsychology.com/attachment-theory",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B21",
+      "document": "B",
+      "number": 21,
+      "source_line": 131,
+      "title_as_supplied": "Locus of control - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Locus_of_control",
+      "normalized_url": "https://en.wikipedia.org/wiki/Locus_of_control",
+      "provisional_source_kind": "encyclopedia",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B22",
+      "document": "B",
+      "number": 22,
+      "source_line": 132,
+      "title_as_supplied": "Locus of Control: What It Is and How It Shapes Motivation - BetterUp",
+      "url": "https://www.betterup.com/blog/locus-of-control",
+      "normalized_url": "https://www.betterup.com/blog/locus-of-control",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B23",
+      "document": "B",
+      "number": 23,
+      "source_line": 133,
+      "title_as_supplied": "Internal vs External Locus of Control: 7 Examples & Theories - Positive Psychology",
+      "url": "https://positivepsychology.com/internal-external-locus-of-control/",
+      "normalized_url": "https://positivepsychology.com/internal-external-locus-of-control",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B24",
+      "document": "B",
+      "number": 24,
+      "source_line": 134,
+      "title_as_supplied": "7 Must-Have Skills for Data Analysts - Northeastern University Graduate Programs",
+      "url": "https://graduate.northeastern.edu/knowledge-hub/data-analyst-skills/",
+      "normalized_url": "https://graduate.northeastern.edu/knowledge-hub/data-analyst-skills",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B25",
+      "document": "B",
+      "number": 25,
+      "source_line": 135,
+      "title_as_supplied": "Understanding variation in metabolic rate - Company of Biologists Journals",
+      "url": "https://journals.biologists.com/jeb/article/221/1/jeb166876/19531/Understanding-variation-in-metabolic-rate",
+      "normalized_url": "https://journals.biologists.com/jeb/article/221/1/jeb166876/19531/Understanding-variation-in-metabolic-rate",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B26",
+      "document": "B",
+      "number": 26,
+      "source_line": 136,
+      "title_as_supplied": "Top 16 Cybersecurity Skills in High Demand - Champlain College Online",
+      "url": "https://online.champlain.edu/blog/top-cybersecurity-skills-in-high-demand",
+      "normalized_url": "https://online.champlain.edu/blog/top-cybersecurity-skills-in-high-demand",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B27",
+      "document": "B",
+      "number": 27,
+      "source_line": 137,
+      "title_as_supplied": "Impact of energy intake and exercise on resting metabolic rate - PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2204100/",
+      "normalized_url": "https://pubmed.ncbi.nlm.nih.gov/2204100",
+      "provisional_source_kind": "scholarly_or_institutional_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B28",
+      "document": "B",
+      "number": 28,
+      "source_line": 138,
+      "title_as_supplied": "ADHD Brain Training & Memory Games: Lumosity, Cogmed, Neurofeedback - ADDitude",
+      "url": "https://www.additudemag.com/adhd-brain-training-neurofeedback-memory/",
+      "normalized_url": "https://www.additudemag.com/adhd-brain-training-neurofeedback-memory",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B29",
+      "document": "B",
+      "number": 29,
+      "source_line": 139,
+      "title_as_supplied": "The Sensorimotor System, Part II: The Role of Proprioception in Motor Control and Functional Joint Stability - ResearchGate",
+      "url": "https://www.researchgate.net/publication/7219970_The_Sensorimotor_System_Part_II_The_Role_of_Proprioception_in_Motor_Control_and_Functional_Joint_Stability",
+      "normalized_url": "https://www.researchgate.net/publication/7219970_The_Sensorimotor_System_Part_II_The_Role_of_Proprioception_in_Motor_Control_and_Functional_Joint_Stability",
+      "provisional_source_kind": "social_or_repository",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    },
+    {
+      "id": "B30",
+      "document": "B",
+      "number": 30,
+      "source_line": 140,
+      "title_as_supplied": "Dual Process Theory - Exercises in Clinical Reasoning",
+      "url": "https://clinicalreasoning.org/dual-process-theory-2/",
+      "normalized_url": "https://clinicalreasoning.org/dual-process-theory-2",
+      "provisional_source_kind": "secondary_or_outreach_lead",
+      "existence_status": "not_individually_checked",
+      "claim_support_status": "not_assessed",
+      "audit_note": "Extracted lead only; inclusion is not verification."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C01",
+      "historical_documents": [
+        "Q",
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Foundational attributes govern all expressed abilities; skills always derived from Tier 1.",
+      "decision": "modify",
+      "rationale": "A disposition or capacity may affect performance but does not constitute task knowledge or practiced competence. Historical weights are illustrative rather than calibrated.",
+      "mvp_architecture_effect": "Store independently learned skills and explicit access/knowledge; capacities modulate task-specific performance.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C02",
+      "historical_documents": [
+        "Q"
+      ],
+      "mechanism_or_numerical_claim": "BaseValue = Genetic_Roll*h + Environmental_Roll*(1-h), both rolls 0–100; fixed heritability per attribute.",
+      "decision": "reject",
+      "rationale": "Heritability partitions variance in a population and environment, not an individual causal percentage. With equal independent roll variances the formula gives realized genetic variance fraction h²/[h²+(1-h)²], not h.",
+      "mvp_architecture_effect": "No genetic roll pipeline in MVP. Future population generators need specified covariance, context, and independent validation.",
+      "evidence_urls": [
+        "https://medlineplus.gov/genetics/understanding/inheritance/heritability/"
+      ]
+    },
+    {
+      "id": "C03",
+      "historical_documents": [
+        "Q",
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Gf 60% heritability (Q); 40–80% and most heritable intelligence component (B); Gs 45%.",
+      "decision": "reject",
+      "rationale": "Reported quantities conflate g and Gf and turn context-specific estimates into universal constants. Cited 2023 synthesis gives different patterns.",
+      "mvp_architecture_effect": "Keep capacities operationally defined; no hereditary truth labels or inherited learning ceilings.",
+      "evidence_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10184120/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC4691385/"
+      ]
+    },
+    {
+      "id": "C04",
+      "historical_documents": [
+        "Q"
+      ],
+      "mechanism_or_numerical_claim": "Metabolic Profile heritability 45%.",
+      "decision": "reject",
+      "rationale": "Cited estimate concerns captive zebra finches.",
+      "mvp_architecture_effect": "No imported human metabolic genotype coefficient.",
+      "evidence_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC3746821/"
+      ]
+    },
+    {
+      "id": "C05",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "High BMR implies peak performance; low BMR implies efficiency/scarcity resilience, represented on −100…100 axis.",
+      "decision": "defer",
+      "rationale": "Resting expenditure, maximal output, body size, health and efficiency are distinct. Microbial rate/yield trade-offs cannot validate a fixed human bipolar profile.",
+      "mvp_architecture_effect": "Use declared energy/fatigue abstractions now; physiology adapter later.",
+      "evidence_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC5847312/"
+      ]
+    },
+    {
+      "id": "C06",
+      "historical_documents": [
+        "Q",
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Biomechanical aptitude heritability 45%; force versus finesse on −100…100 axis.",
+      "decision": "reject",
+      "rationale": "Fiber-type proportion is not global motor competence, precision, coordination, or a necessary force–finesse opposition.",
+      "mvp_architecture_effect": "Do not force a character strong in one dimension to be weak in the other.",
+      "evidence_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/22645169/"
+      ]
+    },
+    {
+      "id": "C07",
+      "historical_documents": [
+        "Q",
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Big Five fixed heritabilities O 61%, C 44%, E 53%, A 41%, N 41%; −100…100 scales.",
+      "decision": "modify",
+      "rationale": "The numbers are traceable to one twin study; their existence does not validate universal percentages. Bipolar normalized scale is a convention.",
+      "mvp_architecture_effect": "Optional tendencies as priors; behavior also depends on situation, goals and learning.",
+      "evidence_urls": [
+        "https://static1.squarespace.com/static/5a372ca9f9a61ed6e86178a7/t/5c22ed70032be4789680f2ef/1545792883473/Heritability+of+the+Big+Five+Personality+Dimensions+and+Their+Facets+-+A+Twin+Study.pdf"
+      ]
+    },
+    {
+      "id": "C08",
+      "historical_documents": [
+        "Q",
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Attachment Schema 0% hereditary; categorical secure/anxious/avoidant; anxious–avoidant pair naturally produces pursuer–distancer pattern.",
+      "decision": "modify",
+      "rationale": "Adolescent attachment twin research suggests genetic influence; infancy results and adult relationship patterns cannot be equated. Categories do not dictate a dyad.",
+      "mvp_architecture_effect": "Relational expectations belong to relationship/context-sensitive beliefs, not hardwired deterministic pairing rules.",
+      "evidence_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/24256475/"
+      ]
+    },
+    {
+      "id": "C09",
+      "historical_documents": [
+        "Q",
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Locus of control 0% hereditary; internal failure means train, external means wait/give up; −100…100 scale.",
+      "decision": "modify",
+      "rationale": "Adult twin data contradict zero as universal claim. Internal/external attribution is distinct from controllable/uncontrollable and stable/unstable causes.",
+      "mvp_architecture_effect": "Use actor-specific causal belief updates; preserve external constraints and mistaken self-blame as possible.",
+      "evidence_urls": [
+        "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0047958"
+      ]
+    },
+    {
+      "id": "C10",
+      "historical_documents": [
+        "Q"
+      ],
+      "mechanism_or_numerical_claim": "Lifetime change cap BaseValue ± BaseValue*Malleability_Index; Gf ±15%, Gs ±25%, metabolism ±20%, biomechanics ±15%, O ±20%, C ±30%, E ±20%, A ±30%, N ±30%.",
+      "decision": "reject",
+      "rationale": "No source establishes these lifetime caps. Negative bases reverse interval order and zero bases prohibit all change; arbitrary scale origin changes allowed development.",
+      "mvp_architecture_effect": "Use explicit bounded state domains with model-specific learning dynamics; no birth-relative moral/trait cages.",
+      "evidence_urls": [
+        "https://doi.org/10.1073/pnas.2017548118"
+      ]
+    },
+    {
+      "id": "C11",
+      "historical_documents": [
+        "Q"
+      ],
+      "mechanism_or_numerical_claim": "Gf and Gs +0.5/year ages 1–25, then Gf −0.25/year and Gs −0.2/year; Gf peak 25–30.",
+      "decision": "defer",
+      "rationale": "Task-specific trajectories and heterogeneous peaks do not justify one linear annual schedule.",
+      "mvp_architecture_effect": "MVP spans hours/days; lifespan adapter needs longitudinal task-specific calibration.",
+      "evidence_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC4441622/"
+      ]
+    },
+    {
+      "id": "C12",
+      "historical_documents": [
+        "Q"
+      ],
+      "mechanism_or_numerical_claim": "Physical peak 25–35; ~10% decline/decade with acceleration after 60; table uses −1%/year after 35 offset by training.",
+      "decision": "defer",
+      "rationale": "Aerobic capacity, strength, precision and performance are different endpoints; a global decline is not established. Text and table have different acceleration assumptions.",
+      "mvp_architecture_effect": "Separate skill retention from bodily capacity; aging outside first scenarios.",
+      "evidence_urls": [
+        "https://www.ahajournals.org/doi/epdf/10.1161/CIRCULATIONAHA.105.545459"
+      ]
+    },
+    {
+      "id": "C13",
+      "historical_documents": [
+        "Q"
+      ],
+      "mechanism_or_numerical_claim": "Personality annual O −0.1 and E −0.1 after 20; C +0.2 ages 20–50; A +0.2 and N −0.2 ages 20–60.",
+      "decision": "defer",
+      "rationale": "Cross-sectional population differences do not yield each person’s causal annual drift, and the source includes nonlinear patterns.",
+      "mvp_architecture_effect": "No hidden annual stat drift in MVP.",
+      "evidence_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC2562318/"
+      ]
+    },
+    {
+      "id": "C14",
+      "historical_documents": [
+        "Q",
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "XP=BaseXP*Difficulty*(1+(Gf−50)/100); Gf is global learning multiplier, +50% at Gf100; Gf controls knowledge library size.",
+      "decision": "reject",
+      "rationale": "No cited experiment identifies this universal function across motor, social and knowledge tasks.",
+      "mvp_architecture_effect": "Task-specific learning rates, practice quality, opportunity and known procedures; no omnipotent intelligence stat.",
+      "evidence_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/18443283/"
+      ]
+    },
+    {
+      "id": "C15",
+      "historical_documents": [
+        "Q"
+      ],
+      "mechanism_or_numerical_claim": "Relevant practice accumulates a Dosage Meter and crosses level thresholds.",
+      "decision": "experiment",
+      "rationale": "Practice dose is useful bookkeeping; discrete XP thresholds and universal conversion are engineering conventions.",
+      "mvp_architecture_effect": "Track relevant practice and competence change, expose coefficients as provisional.",
+      "evidence_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/18443283/"
+      ]
+    },
+    {
+      "id": "C16",
+      "historical_documents": [
+        "Q"
+      ],
+      "mechanism_or_numerical_claim": "Every skill XP gain transfers 1–5% to underlying Gf/Gs XP pools.",
+      "decision": "reject",
+      "rationale": "The attached source found no untrained-task transfer. Positive findings in specific paradigms do not justify transfer from every skill.",
+      "mvp_architecture_effect": "Zero transfer by default; explicit directed task-to-task transfer adapter only.",
+      "evidence_urls": [
+        "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0063614",
+        "https://pubmed.ncbi.nlm.nih.gov/18443283/"
+      ]
+    },
+    {
+      "id": "C17",
+      "historical_documents": [
+        "Q"
+      ],
+      "mechanism_or_numerical_claim": "Skill decays as last_value*exp(−k*time_since_use); k inversely proportional to skill level.",
+      "decision": "experiment",
+      "rationale": "Forgetting is plausible, but neither this shape nor inverse-proficiency k is universal. Skill, retention and retrieval performance differ.",
+      "mvp_architecture_effect": "Separate practice/retention/expression; allow task-specific decay and elapsed-time-invariant integration.",
+      "evidence_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/38108800/"
+      ]
+    },
+    {
+      "id": "C18",
+      "historical_documents": [
+        "Q"
+      ],
+      "mechanism_or_numerical_claim": "All expressed abilities range 1–1000; cognitive attributes 1–100; several traits −100…100.",
+      "decision": "modify",
+      "rationale": "Arbitrary mixed scales make weighted combinations dimensionally ambiguous.",
+      "mvp_architecture_effect": "Use units/ranges per operational variable; normalized internal scale declared as simulation convention.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C19",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Endurance=.7 metabolic efficiency+.2 conscientiousness+.1 internal locus.",
+      "decision": "reject",
+      "rationale": "Handwritten weights conflate bodily capacity, willingness and attribution.",
+      "mvp_architecture_effect": "Compute ability, intent and effort separately.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C20",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Melee=.6 force+.3 Gs−.1 neuroticism; ranged=.6 finesse+.3 Gs−.1 neuroticism; dexterity=.7 finesse+.2 Gf+.1 conscientiousness.",
+      "decision": "reject",
+      "rationale": "No coefficient evidence; anxiety can have context-specific effects and motor skills require learning.",
+      "mvp_architecture_effect": "Task-specific execution adapters with uncertainty and learned proficiency.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C21",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Persuasion=.4 extraversion+.3 agreeableness+.3 secure attachment; leadership=.4 extraversion+.3 internal locus+.3 conscientiousness.",
+      "decision": "reject",
+      "rationale": "Treats dispositions as acquired expertise and encodes an untested ideal leader/personality.",
+      "mvp_architecture_effect": "Social outcomes depend on listener beliefs, relationship, legitimacy, content and context.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C22",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Deception=.4 Gf+.4 avoidant attachment−.2 agreeableness; insight=.5 secure attachment+.3 openness+.2 Gf.",
+      "decision": "reject",
+      "rationale": "Unsupported linkage pathologizes attachment and grants mind-reading from traits.",
+      "mvp_architecture_effect": "No attachment-to-dishonesty rule; inference remains uncertain and audience-specific.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C23",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Humanities=.6 Gf+.4 openness; sciences=.7 Gf+.3 openness; medicine/engineering=.6 Gf+.2 finesse+.2 conscientiousness; programming=.8 Gf+.2 conscientiousness; data=.7 Gf+.3 openness; cybersecurity=.6 Gf+.2 Gs−.2 neuroticism.",
+      "decision": "reject",
+      "rationale": "No task data justify coefficients; high capacities cannot provide unlearned factual or procedural knowledge.",
+      "mvp_architecture_effect": "Separate domain knowledge from skill and ability. No programming skill simply from birth stats.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C24",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Athletics formula truncated after (Metabolic_Pace*.5)+(.",
+      "decision": "reject",
+      "rationale": "Source table is syntactically incomplete.",
+      "mvp_architecture_effect": "Do not treat production-ready title as implementation evidence.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C25",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Gs globally changes crafting, aiming, searching, reading and dialogue-selection time.",
+      "decision": "modify",
+      "rationale": "These tasks contain different motor, perceptual, linguistic, decision and interface components.",
+      "mvp_architecture_effect": "Use per-action duration; display time and simulation time separated.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C26",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Autonomy, competence, relatedness meters continuously cause replenishment actions; cites B3.",
+      "decision": "modify",
+      "rationale": "SDT is a useful motivational lens but the citation is microbial metabolism and no reservoir dynamics are established.",
+      "mvp_architecture_effect": "Represent perceived opportunities/constraints or motives, with explicit engineering dynamics and no obligatory fixed ordering.",
+      "evidence_urls": [
+        "https://www.selfdeterminationtheory.org/SDT/documents/2000_RyanDeci_SDT.pdf"
+      ]
+    },
+    {
+      "id": "C27",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Nafs=impulsive System1 ego; ruh=altruistic ideal; aql=Gf/Gc calculator; qalb=weighted arbiter.",
+      "decision": "reject",
+      "rationale": "No Islamic sources supplied. Textual terms are not interchangeable with psychological subsystems; Qur’an connects hearts and reasoning and limits knowledge of ruh.",
+      "mvp_architecture_effect": "Use ordinary names for motivations, deliberation, intention and commitments; keep theological concepts as attributed interpretive annotations.",
+      "evidence_urls": [
+        "https://quran.com/17/85",
+        "https://quran.com/22/46",
+        "https://quran.com/91/7-10"
+      ]
+    },
+    {
+      "id": "C28",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Qalb health 0–100; altruism/sacrifice/honesty heal; selfishness/cruelty/deception damage; low score boosts ego weights.",
+      "decision": "reject",
+      "rationale": "Scalar spiritual ranking and action-only judgments conceal intention/context and permit circular self-validating morality.",
+      "mvp_architecture_effect": "No spiritual health scalar or divine approval score. Track declared commitments, observed action, intention and consequences separately.",
+      "evidence_urls": [
+        "https://sunnah.com/bukhari:1"
+      ]
+    },
+    {
+      "id": "C29",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Three compulsory self-development stages: commanding default, reproaching, tranquil; final stage unlocks abilities/status.",
+      "decision": "reject",
+      "rationale": "Scriptural language is not an authenticated finite-state game progression or externally measurable spiritual rank.",
+      "mvp_architecture_effect": "Character development can be modeled with revisable habits, commitments and repair actions without assigning religious attainment.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C30",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Positive/negative choices alter future tendencies and generate traceable emergent narratives.",
+      "decision": "retain",
+      "rationale": "Feedback and path dependence are useful engineering candidates, provided the transition is not presented as measured universal moral physiology.",
+      "mvp_architecture_effect": "Keep causal logs and reversible counterfactual replay; distinguish world effects, beliefs, habits and choices.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C31",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Complex emergent behavior is guaranteed by interconnected tiers; blueprint is production ready.",
+      "decision": "reject",
+      "rationale": "No code, fitted parameters, outcome benchmark, stability proof, validation, or reproducible run is present.",
+      "mvp_architecture_effect": "Demonstrate modular reuse and compare against simpler baselines; emergence is a result to measure, not a certification.",
+      "evidence_urls": []
+    },
+    {
+      "id": "C32",
+      "historical_documents": [
+        "B"
+      ],
+      "mechanism_or_numerical_claim": "Intellect example predicts a 70% chance of being caught stealing.",
+      "decision": "experiment",
+      "rationale": "An illustrative probability with no observation model or calibration; it must be the character’s belief rather than privileged world truth.",
+      "mvp_architecture_effect": "Separate subjective outcome estimates from world outcome generators; record confidence, provenance and revision.",
+      "evidence_urls": []
+    }
+  ],
+  "additional_verification_sources": [
+    {
+      "id": "V01",
+      "title": "What is heritability?",
+      "url": "https://medlineplus.gov/genetics/understanding/inheritance/heritability/",
+      "kind": "official_genetics_reference",
+      "verified": "direct"
+    },
+    {
+      "id": "V02",
+      "title": "Genetic and environmental influences on adolescent attachment",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24256475/",
+      "kind": "primary_twin_study_2014",
+      "verified": "primary_abstract_search"
+    },
+    {
+      "id": "V03",
+      "title": "Genetic and Environmental Influences on the Relationship between Flow Proneness, Locus of Control and Behavioral Inhibition",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0047958",
+      "kind": "primary_twin_study_2012",
+      "verified": "primary_search_content"
+    },
+    {
+      "id": "V04",
+      "title": "Changing personality traits with the help of a digital personality change intervention",
+      "url": "https://doi.org/10.1073/pnas.2017548118",
+      "kind": "primary_randomized_trial_2021",
+      "verified": "publisher_search_content"
+    },
+    {
+      "id": "V05",
+      "title": "When does cognitive functioning peak?",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4441622/",
+      "kind": "primary_age_comparison_study_2015",
+      "verified": "primary_search_content"
+    },
+    {
+      "id": "V06",
+      "title": "Accelerated Longitudinal Decline of Aerobic Capacity in Healthy Older Adults",
+      "url": "https://www.ahajournals.org/doi/epdf/10.1161/CIRCULATIONAHA.105.545459",
+      "kind": "primary_longitudinal_study_2005",
+      "verified": "publisher_indexed_pdf"
+    },
+    {
+      "id": "V07",
+      "title": "Self-Determination Theory and the Facilitation of Intrinsic Motivation, Social Development, and Well-Being",
+      "url": "https://www.selfdeterminationtheory.org/SDT/documents/2000_RyanDeci_SDT.pdf",
+      "kind": "original_theoretical_synthesis_2000",
+      "verified": "direct_pdf"
+    },
+    {
+      "id": "V08",
+      "title": "Quran 17:85",
+      "url": "https://quran.com/17/85",
+      "kind": "revelation_translation",
+      "verified": "direct",
+      "translation_attribution": "Dr. Mustafa Khattab, The Clear Quran, as displayed on Quran.com; interpretive English translation distinct from Arabic revelation."
+    },
+    {
+      "id": "V09",
+      "title": "Quran 22:46",
+      "url": "https://quran.com/22/46",
+      "kind": "revelation_translation",
+      "verified": "direct",
+      "translation_attribution": "Dr. Mustafa Khattab, The Clear Quran, as displayed on Quran.com; interpretive English translation distinct from Arabic revelation."
+    },
+    {
+      "id": "V10",
+      "title": "Quran 91:7–10",
+      "url": "https://quran.com/91/7-10",
+      "kind": "revelation_translation",
+      "verified": "direct",
+      "translation_attribution": "Dr. Mustafa Khattab, The Clear Quran, as displayed on Quran.com; interpretive English translation distinct from Arabic revelation."
+    },
+    {
+      "id": "V11",
+      "title": "Sahih al-Bukhari 1",
+      "url": "https://sunnah.com/bukhari:1",
+      "kind": "hadith_translation",
+      "verified": "direct"
+    }
+  ]
+}

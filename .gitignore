@@ -1,0 +1,9 @@
+.DS_Store
+.playwright-mcp/
+node_modules/
+dist/
+.wrangler/
+.env
+.env.*
+.dev.vars
+.dev.vars.*

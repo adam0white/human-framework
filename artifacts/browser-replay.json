@@ -1,0 +1,149 @@
+{
+  "format": "human-framework-replay",
+  "version": 1,
+  "engineVersion": "0.1.0",
+  "scenario": {
+    "id": "courier",
+    "title": "Courier Crossing",
+    "subtitle": "A parcel route, an uncertain crossing, a promise.",
+    "theme": "courier",
+    "brief": "Two couriers must complete a delivery route before the gate closes. The shortcut carries greater exposure to uncertain conditions; the careful route yields less progress. Inspection, food and rest cost time.",
+    "objective": "Complete the delivery route",
+    "resourceLabel": "delivery units",
+    "hazardLabel": "Crossing conditions",
+    "target": 16,
+    "initialProgress": 0,
+    "food": 2,
+    "roundMinutes": 5,
+    "horizon": 10,
+    "consumption": 0,
+    "hazard": 0.65,
+    "initialSignal": 0.15,
+    "signalConfidence": 0.25,
+    "observationNoise": 0.18,
+    "skills": [
+      "routecraft",
+      "survey"
+    ],
+    "transfer": [],
+    "actions": [
+      {
+        "id": "work",
+        "label": "Take the shortcut",
+        "description": "Attempt a larger delivery contribution with greater exposure.",
+        "kind": "work",
+        "skill": "routecraft",
+        "difficulty": 0.4,
+        "effort": 0.18,
+        "output": 3,
+        "exposure": 1
+      },
+      {
+        "id": "careful-work",
+        "label": "Take the marked route",
+        "description": "Attempt a smaller contribution with lower effort and exposure.",
+        "kind": "work",
+        "skill": "routecraft",
+        "difficulty": 0.3,
+        "effort": 0.1,
+        "output": 1.8,
+        "exposure": 0.15
+      },
+      {
+        "id": "rest",
+        "label": "Rest",
+        "description": "Use this interval to reduce fatigue.",
+        "kind": "rest"
+      },
+      {
+        "id": "eat",
+        "label": "Eat a ration",
+        "description": "Attempt to use one ration from the shared supply.",
+        "kind": "eat"
+      },
+      {
+        "id": "observe",
+        "label": "Inspect the crossing",
+        "description": "Spend this interval inspecting conditions; the report can revise your estimate.",
+        "kind": "observe",
+        "skill": "survey"
+      },
+      {
+        "id": "help",
+        "label": "Prepare a partner’s pack",
+        "description": "Prepare support for a partner’s next work attempt.",
+        "kind": "help",
+        "effort": 0.08
+      }
+    ],
+    "actors": [
+      {
+        "id": "amina",
+        "name": "Amina",
+        "role": "Route lead",
+        "body": {
+          "fatigue": 0.35,
+          "hunger": 0.35
+        },
+        "skills": {
+          "routecraft": 0.6,
+          "survey": 0.4
+        },
+        "priorities": {
+          "duty": 0.8,
+          "care": 0.45,
+          "caution": 0.65,
+          "mastery": 0.35
+        },
+        "commitment": {
+          "actionId": "work",
+          "weight": 0.65,
+          "dueRound": 4
+        }
+      },
+      {
+        "id": "yusuf",
+        "name": "Yusuf",
+        "role": "Second courier",
+        "body": {
+          "fatigue": 0.15,
+          "hunger": 0.3
+        },
+        "skills": {
+          "routecraft": 0.45,
+          "survey": 0.7
+        },
+        "priorities": {
+          "duty": 0.65,
+          "care": 0.6,
+          "caution": 0.8,
+          "mastery": 0.45
+        },
+        "commitment": {
+          "actionId": "careful-work",
+          "weight": 0.55,
+          "dueRound": 3
+        }
+      }
+    ]
+  },
+  "options": {
+    "seed": 7,
+    "policy": "full",
+    "modules": {
+      "body": true,
+      "beliefs": true,
+      "commitments": true,
+      "learning": true,
+      "relationships": true
+    }
+  },
+  "commands": [
+    {
+      "type": "act",
+      "actorId": "amina",
+      "actionId": "careful-work",
+      "intention": "Keep my commitment"
+    }
+  ]
+}

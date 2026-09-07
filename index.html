@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#172724" />
+    <meta name="description" content="A playable laboratory for Human Framework: evidence, effort, commitments and choice." />
+    <title>Human Framework — The action laboratory</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='8' fill='%23172724'/%3E%3Cg fill='none' stroke='%23bed9c8' stroke-width='1'%3E%3Ccircle cx='18' cy='18' r='12'/%3E%3Cpath d='M6 18h24M18 6v24M10 10l16 16M10 26l16-16'/%3E%3Ccircle cx='18' cy='18' r='4'/%3E%3C/g%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="/web/styles.css" />
+    <script type="module" src="/web/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#laboratory">Skip to the laboratory</a>
+    <header class="site-header page-width">
+      <a class="wordmark" href="/" aria-label="Human Framework home">
+        <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="14"/><path d="M4 18h28M18 4v28M8 8l20 20M8 28 28 8"/><circle cx="18" cy="18" r="5"/></svg>
+        <span>HUMAN<br>FRAMEWORK</span>
+      </a>
+      <span class="header-note"><span class="status-dot"></span> Research prototype <span class="mono">/ 0.1</span></span>
+    </header>
+
+    <main class="page-width" id="laboratory" tabindex="-1">
+      <section class="intro" aria-labelledby="page-title">
+        <div><p class="eyebrow">The action laboratory</p><h1 id="page-title">Every choice<br>has a <em>before & after.</em></h1></div>
+        <div class="intro-copy"><p>Guide one person through a small challenge. Choose an action, watch the result, then decide what to do next.</p><a class="button button-primary play-anchor" id="play-anchor" href="#your-choice">Make your first choice <span aria-hidden="true">↓</span></a><span class="annotation" id="start-caption">Ready to play. No setup required.</span></div>
+      </section>
+
+      <section class="loop-panel" aria-labelledby="loop-title">
+        <div class="section-caption"><h2 id="loop-title">The shared loop</h2><span id="loop-caption">A decision becomes an experience.</span></div>
+        <ol class="loop" id="loop"></ol>
+      </section>
+
+      <section aria-label="Choose an experiment" class="scenario-section">
+        <div class="section-caption"><h2>Choose a small world</h2><span>Changing worlds starts a new run.</span></div>
+        <div class="scenario-tabs" id="scenario-tabs"></div>
+      </section>
+
+      <section class="setup-panel" aria-label="Run settings">
+        <form id="setup-form">
+          <label class="field seed-field"><span>Seed</span><input id="seed-input" name="seed" type="number" step="1" value="7" required aria-describedby="settings-note" /></label>
+          <label class="field"><span>Decision model</span><select id="policy-input" name="policy" aria-describedby="model-summary"><option value="full">Full action loop</option><option value="baseline">Simple utility baseline</option></select></label>
+          <details class="module-settings"><summary>Model components <span id="module-count">5 / 5</span></summary><div id="module-options" class="module-options"></div></details>
+          <button class="button button-light" type="submit" id="start-run">Start new run <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="setup-note" id="settings-note">Seed 7 · Full action loop · All components enabled</p>
+        <div class="model-help"><p id="model-summary"><strong>Full</strong> weighs current needs, evidence and promises. <strong>Baseline</strong> uses a simpler output-and-skill scoring rule.</p><details><summary>How the two models differ</summary><div><p><strong>Full action loop:</strong> with its components enabled, the policy weighs expected contribution, effort, perceived conditions, recovery, information gathering, assistance and recognized promises.</p><p><strong>Simple utility baseline:</strong> work is ranked using its output and the person's current task proficiency; rest, food, observation and help receive fixed scores. It does not adapt its scoring to strain, beliefs or promises.</p><p>Both use the same actions and world rules. Body changes, practice and shared consequences still occur with their components enabled. Either policy can complete or miss the objective. Manual choices always remain yours; the model controls delegated actions.</p><p>Keep the same seed to compare runs. Change a component to examine its contribution, then select <strong>Start new run</strong> to apply the settings.</p></div></details></div>
+      </section>
+
+      <div id="app-message" class="app-message" role="status" aria-live="polite" hidden></div>
+      <div id="load-error" class="error-panel" hidden></div>
+      <div class="laboratory-grid" id="game-content">
+        <div class="world-column">
+          <section class="world-panel card" aria-labelledby="scenario-title">
+            <div class="world-heading"><div><p class="eyebrow" id="scenario-kicker">Experiment 01</p><h2 id="scenario-title">Loading the laboratory…</h2><p id="scenario-subtitle" class="muted"></p></div><span id="run-status" class="run-status">Ready</span></div>
+            <p class="run-identity" id="run-identity"></p>
+            <div class="scene" id="scene" aria-hidden="true"></div>
+            <div class="objective"><div><span class="eyebrow" id="objective-label">Shared objective</span><p id="objective-text"></p></div><strong id="progress-text" class="mono">0 / 0</strong></div>
+            <div class="progress-track"><div id="progress-fill"></div></div>
+            <div id="world-metrics" class="world-metrics"></div>
+            <div class="world-guide"><p class="eyebrow">The aim</p><p id="scenario-aim"></p><p class="eyebrow">The tradeoff</p><p class="world-brief" id="world-brief"></p></div>
+            <div id="terminal-summary" class="terminal-summary" hidden></div>
+          </section>
+
+          <section class="choice-panel card" id="your-choice" aria-labelledby="choice-title" tabindex="-1">
+            <div class="section-caption"><h2 id="choice-title">Your next choice</h2><span id="choice-round"></span></div>
+            <div class="round-feedback" id="round-feedback"></div>
+            <p class="choice-steps"><span>1. Choose a person</span><span>2. Pick an action card</span><span>3. Read the result</span></p>
+            <div id="actor-tabs" class="actor-tabs" aria-label="Person to direct"></div>
+            <p class="choice-explainer" id="choice-explainer"></p>
+            <label class="intention-field" for="intention-input"><span>Record a reason <small>optional</small></span><select id="intention-input"><option value="">Let the action speak for itself</option><option value="Complete the shared task">Complete the shared task</option><option value="Keep my commitment">Keep my commitment</option><option value="Recover my capacity">Recover my capacity</option><option value="Seek better evidence">Seek better evidence</option><option value="Help my partner">Help my partner</option></select></label>
+            <div id="action-grid" class="action-grid"></div>
+            <p class="action-cost-note">Effort adds fatigue; time also affects fatigue and hunger. Each card uses one round.</p>
+            <p class="auto-intro">Or delegate the choices:</p>
+            <div class="autoplay-controls"><button class="button button-primary" id="auto-round">Auto round <span aria-hidden="true">→</span></button><button class="button button-quiet" id="run-to-end">Run to end <span aria-hidden="true">↠</span></button><button class="text-button" id="restart-run">Restart</button></div>
+            <p class="play-mode-help" id="play-mode-help"><strong>Auto round</strong> lets the model choose for everyone once. <strong>Run to end</strong> repeats until completion or the deadline; you can stop it.</p>
+            <p class="fine-print">Time advances only when a round is played.</p>
+          </section>
+
+          <section class="history-panel card" id="run-history" aria-labelledby="history-title" tabindex="-1">
+            <div class="section-caption"><h2 id="history-title">What happened</h2><span id="history-count">No rounds yet</span></div>
+            <div id="history-list"></div>
+          </section>
+        </div>
+
+        <aside class="person-column" aria-label="Person and decision inspector">
+          <div class="view-switch" role="group" aria-label="Information viewpoint"><button id="actor-view" aria-pressed="true">Person's view</button><button id="researcher-view" aria-pressed="false">Researcher</button></div>
+          <div class="researcher-warning" id="researcher-warning" hidden><strong>Researcher view</strong><p>Hidden world facts and private decisions. These are not available to the simulated people.</p></div>
+          <section class="person-panel card" aria-labelledby="person-title"><div id="person-details"></div></section>
+          <section class="decision-panel card" aria-labelledby="decision-title"><div class="section-caption"><h2 id="decision-title">Before the choice</h2><span class="tiny-dot" aria-hidden="true"></span></div><p class="panel-intro" id="decision-intro"></p><div id="decision-details"></div></section>
+          <section class="inspector-panel card" id="inspector-panel" aria-labelledby="inspector-title" hidden><p class="eyebrow">Omniscient diagnostics</p><h2 id="inspector-title">Behind the observation</h2><div id="inspector-details"></div></section>
+          <section class="replay-panel card" aria-labelledby="replay-title"><p class="eyebrow">A repeatable experiment</p><h2 id="replay-title">Keep this run</h2><p>Export the setup and choices, then replay the same chain of events.</p><p class="replay-identity" id="replay-identity"></p><div class="replay-actions"><button class="button button-light" id="export-replay">Export JSON <span aria-hidden="true">↓</span></button><button class="button button-quiet" id="import-replay">Import replay</button><input type="file" id="replay-file" accept=".json,application/json" hidden /></div><p class="fine-print">Includes hidden scenario conditions.</p></section>
+        </aside>
+      </div>
+
+      <details class="model-limits" id="model-limits"><summary><span>About this model, its assumptions & limits</span><span class="mono">Read the research boundaries</span></summary><div><p>Human Framework is a simulation inspired by the world as we currently understand it. This prototype uses authored, uncalibrated scenarios and coefficients. Running successfully is an engineering result; it does not establish that the model explains real people.</p><p>Fatigue, hunger, proficiency, confidence and trust are bounded modeling quantities, not physiological or psychological measurements. A confidence value is not a calibrated probability that a belief is correct. Scores express policy preferences in arbitrary utility units. Completing a task does not measure a person's goodness or divine acceptance.</p><p>The Islamic grounding begins from a Sunni, Hanafi–Maturidi orientation, while distinguishing revelation, interpretation, empirical findings, explanatory models and engineering choices. Commitments here are authored promises. Spiritual faculties, consciousness and divine decree are not numerical mechanics.</p><p>The current scope is perception, effort, task-specific practice, promises and small shared tasks. Detailed physiology, genetics, lifespan development, clinical conditions and society-wide dynamics remain outside the prototype. No unsupported transfer between skills is added by these presets.</p><p>Action cards show known task rules and estimates from the selected person's viewpoint. Success also depends on hidden conditions. Effort is the action's fatigue contribution; elapsed time adds its own body changes, and bounds can limit the final change. The researcher panel exposes hidden facts for inspection, and replay exports include the full scenario.</p><p>All text is formatted from structured records. The simulation runs without an LLM or external service. Diagrams are illustrative; each round advances explicit simulated time. The same engine version, scenario, seed and command sequence reproduce a run. Shared seeds support comparison, but changed choices can still lead to different observations and consequences.</p></div></details>
+    </main>
+    <footer class="site-footer page-width"><span>Human Framework <span class="mono">/</span> Situated action & development</span><span>Observe. Question. Revise.</span></footer>
+    <noscript><p class="error-panel">Enable JavaScript to run this interactive laboratory. No external service is required.</p></noscript>
+  </body>
+</html>
