@@ -1,0 +1,210 @@
+{
+  "gameVersion": "0.1.0",
+  "design": "Four deterministic runs: two authored visible-state approaches, each alone and with an explicitly requested neighbor. No random conditions or seed samples.",
+  "censorMinutes": 4000,
+  "results": [
+    {
+      "policy": "build-first",
+      "solo": false,
+      "complete": true,
+      "minutes": 220,
+      "milestoneAt": 220,
+      "commands": 37,
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      },
+      "stock": {
+        "timber": 2,
+        "salvage": 1,
+        "food": 2
+      },
+      "pendingJobs": [],
+      "stats": {
+        "started": 23,
+        "completed": 23,
+        "canceled": 0,
+        "gathered": {
+          "timber": 20,
+          "salvage": 9,
+          "food": 0
+        },
+        "spent": {
+          "timber": 22,
+          "salvage": 10,
+          "food": 2
+        },
+        "consumedFood": 2,
+        "workMinutes": 298,
+        "restMinutes": 108,
+        "mealMinutes": 16,
+        "idleMinutes": 18,
+        "receipts": {
+          "gather-timber": 6,
+          "gather-salvage": 3,
+          "forage": 0,
+          "rest": 6,
+          "eat": 2,
+          "coveredTimber": 2,
+          "gardenFood": 0
+        }
+      }
+    },
+    {
+      "policy": "stock-first",
+      "solo": false,
+      "complete": true,
+      "minutes": 226,
+      "milestoneAt": 226,
+      "commands": 43,
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      },
+      "stock": {
+        "timber": 3,
+        "salvage": 4,
+        "food": 5
+      },
+      "pendingJobs": [
+        {
+          "id": "gather-timber",
+          "remaining": 10,
+          "reserved": {}
+        },
+        {
+          "id": "rest",
+          "remaining": 18,
+          "reserved": {}
+        }
+      ],
+      "stats": {
+        "started": 28,
+        "completed": 26,
+        "canceled": 0,
+        "gathered": {
+          "timber": 21,
+          "salvage": 12,
+          "food": 3
+        },
+        "spent": {
+          "timber": 22,
+          "salvage": 10,
+          "food": 2
+        },
+        "consumedFood": 2,
+        "workMinutes": 328,
+        "restMinutes": 108,
+        "mealMinutes": 16,
+        "idleMinutes": 0,
+        "receipts": {
+          "gather-timber": 7,
+          "gather-salvage": 4,
+          "forage": 1,
+          "rest": 6,
+          "eat": 2,
+          "coveredTimber": 0,
+          "gardenFood": 1
+        }
+      }
+    },
+    {
+      "policy": "build-first",
+      "solo": true,
+      "complete": true,
+      "minutes": 389,
+      "milestoneAt": 389,
+      "commands": 44,
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      },
+      "stock": {
+        "timber": 0,
+        "salvage": 1,
+        "food": 3
+      },
+      "pendingJobs": [],
+      "stats": {
+        "started": 22,
+        "completed": 22,
+        "canceled": 0,
+        "gathered": {
+          "timber": 18,
+          "salvage": 9,
+          "food": 0
+        },
+        "spent": {
+          "timber": 22,
+          "salvage": 10,
+          "food": 1
+        },
+        "consumedFood": 1,
+        "workMinutes": 273,
+        "restMinutes": 108,
+        "mealMinutes": 8,
+        "idleMinutes": 0,
+        "receipts": {
+          "gather-timber": 6,
+          "gather-salvage": 3,
+          "forage": 0,
+          "rest": 6,
+          "eat": 1,
+          "coveredTimber": 0,
+          "gardenFood": 0
+        }
+      }
+    },
+    {
+      "policy": "stock-first",
+      "solo": true,
+      "complete": true,
+      "minutes": 466,
+      "milestoneAt": 466,
+      "commands": 50,
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      },
+      "stock": {
+        "timber": 7,
+        "salvage": 4,
+        "food": 3
+      },
+      "pendingJobs": [],
+      "stats": {
+        "started": 25,
+        "completed": 25,
+        "canceled": 0,
+        "gathered": {
+          "timber": 25,
+          "salvage": 12,
+          "food": 0
+        },
+        "spent": {
+          "timber": 22,
+          "salvage": 10,
+          "food": 1
+        },
+        "consumedFood": 1,
+        "workMinutes": 332,
+        "restMinutes": 126,
+        "mealMinutes": 8,
+        "idleMinutes": 0,
+        "receipts": {
+          "gather-timber": 7,
+          "gather-salvage": 4,
+          "forage": 0,
+          "rest": 7,
+          "eat": 1,
+          "coveredTimber": 4,
+          "gardenFood": 0
+        }
+      }
+    }
+  ]
+}
