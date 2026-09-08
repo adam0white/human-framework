@@ -1,0 +1,155 @@
+{
+  "stage": "stages/01-gasket",
+  "files": [
+    {
+      "path": "stages/01-gasket/CHANGE.md",
+      "bytes": 2854,
+      "lines": 21,
+      "sha256": "9c55ca4d1177174b469d45b63e45908cc53e3da559ccbb2b68cb895bedbb29b2"
+    },
+    {
+      "path": "stages/01-gasket/changes.json",
+      "bytes": 4200,
+      "lines": 182,
+      "sha256": "d75995dc18e51c3e2b96592c230afb11b0a845641680142e2c6381c10542967d"
+    },
+    {
+      "path": "stages/01-gasket/costs.json",
+      "bytes": 4467,
+      "lines": 160,
+      "sha256": "288e8cc35fb1b5a476a85a9922700bb2d153ac4133fa8b52121797dc184440f7"
+    },
+    {
+      "path": "stages/01-gasket/src/candidate-pump.js",
+      "bytes": 1391,
+      "lines": 22,
+      "sha256": "965fc53238cfbe1c4f952a5022421571aebcefedaa5cc32cadc3faf9600bbcb3"
+    },
+    {
+      "path": "stages/01-gasket/src/direct-pump.js",
+      "bytes": 3118,
+      "lines": 57,
+      "sha256": "b8050f2767c413a77e363d0aa93b0cc3902730c5a014ea091a3fb1298ea13f10"
+    },
+    {
+      "path": "stages/01-gasket/src/shape.js",
+      "bytes": 1937,
+      "lines": 30,
+      "sha256": "26a7e7cbe833c7e4386a649b36a0e68b6bfa8ff8e05ca7e43ed66aedd398b14d"
+    },
+    {
+      "path": "stages/01-gasket/src/yard.js",
+      "bytes": 19363,
+      "lines": 268,
+      "sha256": "aabea27d34d01c470dc2070f96c6405a8ef8cc5d4094181a79a73ab65f6dbb8e"
+    },
+    {
+      "path": "stages/01-gasket/tests/histories.js",
+      "bytes": 3824,
+      "lines": 60,
+      "sha256": "addaa2a727f6cadd30437b0f78b42852509de4aa8b0dc6b317549a4d6f75ec46"
+    },
+    {
+      "path": "stages/01-gasket/tests/record.mjs",
+      "bytes": 6936,
+      "lines": 79,
+      "sha256": "3f84863d180fdb8f7a83ec54efdebe5ec62d7bb86ae3bb6a7142107ff15913de"
+    },
+    {
+      "path": "stages/01-gasket/tests/repair.test.js",
+      "bytes": 14639,
+      "lines": 218,
+      "sha256": "c11390198ed1d8d16c3aac8c09b4a01a94a8c046a14a939fd5a01270cedb9363"
+    },
+    {
+      "path": "evidence-gasket/H1.json",
+      "bytes": 1900403,
+      "lines": 59899,
+      "sha256": "10a5d3bc62859f6ec5c0015bce756875e71e46fce2127204fbe0d3cc38ce1ed1"
+    },
+    {
+      "path": "evidence-gasket/H2.json",
+      "bytes": 1898875,
+      "lines": 59761,
+      "sha256": "21d05eb7cc4f000e714d06da1028b497c9afef2212c36aa9cdb20a4f603713e4"
+    },
+    {
+      "path": "evidence-gasket/H3.json",
+      "bytes": 2156496,
+      "lines": 67925,
+      "sha256": "8c786a455e5317d76fa141a04cad77ca1b81e210ba7bf881734c56c1bb3a4681"
+    },
+    {
+      "path": "evidence-gasket/H4.json",
+      "bytes": 2071648,
+      "lines": 65195,
+      "sha256": "87e6806c17aaddd31a9c8ee20c5c8959f23afa2100413703e7e5a56bb3dd3541"
+    },
+    {
+      "path": "evidence-gasket/H5.json",
+      "bytes": 2052229,
+      "lines": 63979,
+      "sha256": "d6f0267a3234ca881efd29b0d208af1ddee7398270d6aacb317f9e2549a062b7"
+    },
+    {
+      "path": "evidence-gasket/H6.json",
+      "bytes": 2058096,
+      "lines": 64024,
+      "sha256": "41a4101abea8f27cb82ea59c2d94e3a5489e471e0a3094f7553d6c6b0a80c27f"
+    },
+    {
+      "path": "evidence-gasket/H7.json",
+      "bytes": 2021428,
+      "lines": 63535,
+      "sha256": "a48b3ea20f10d017723efe2833948a523c96078bbb2ba29ff93e28a38fe8de30"
+    },
+    {
+      "path": "evidence-gasket/comparison.json",
+      "bytes": 59610,
+      "lines": 2021,
+      "sha256": "b25d76f0d8f43570f535c5f852a02b09f3ddd8178aab6d1d3495f97817741cfd"
+    },
+    {
+      "path": "evidence-gasket/costs.json",
+      "bytes": 4467,
+      "lines": 160,
+      "sha256": "288e8cc35fb1b5a476a85a9922700bb2d153ac4133fa8b52121797dc184440f7"
+    },
+    {
+      "path": "evidence-gasket/initial-test.tap",
+      "bytes": 6205,
+      "lines": 178,
+      "sha256": "3f0f25a0a13b62b7aee1312f97d75762e287482d1b1bbf05af40f9433b76eb0d"
+    },
+    {
+      "path": "evidence-gasket/kit-after.json",
+      "bytes": 1504,
+      "lines": 53,
+      "sha256": "661ea8a618792443578e162dc5a53dfabd633f7e49c92ec0bba6d26adb0867a4"
+    },
+    {
+      "path": "evidence-gasket/record-run.json",
+      "bytes": 1400,
+      "lines": 76,
+      "sha256": "6266e28df40b3588b4c783f0cc205e5ce543184608397492ec529d78def17131"
+    },
+    {
+      "path": "evidence-gasket/restricted-test.tap",
+      "bytes": 6202,
+      "lines": 178,
+      "sha256": "a824f2d61e7a6f6008dbd00a149b008e80aa7d3362674f745e7c843342becff8"
+    },
+    {
+      "path": "evidence-gasket/source.diff",
+      "bytes": 4912,
+      "lines": 68,
+      "sha256": "c8bb18b5c6dea41132c2598bb15907c42c7561e5d1e9f9692b3a35a29e0957c9"
+    },
+    {
+      "path": "evidence-gasket/tests.diff",
+      "bytes": 7656,
+      "lines": 102,
+      "sha256": "fb2ffac12595b056f283ef615e22927c020e76c6208e0fd4c0275d7dd94400bb"
+    }
+  ]
+}

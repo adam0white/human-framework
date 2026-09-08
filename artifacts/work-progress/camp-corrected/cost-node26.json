@@ -1,0 +1,6875 @@
+{
+  "format": "paid-work-cost-probe",
+  "version": 1,
+  "createdAt": "2026-09-08T19:04:23.413Z",
+  "node": "v26.8.1",
+  "machine": {
+    "platform": "darwin",
+    "release": "25.6.0",
+    "arch": "arm64",
+    "cpu": "Apple M4"
+  },
+  "sourceFreeze": {
+    "format": "paid-work-source-freeze",
+    "version": 1,
+    "commit": "ebcea3a5aecccc8fe3edbf1ddcaa5d577cd7d568",
+    "createdAt": "2026-09-08T19:03:12.815Z",
+    "sources": {
+      "src/experiments/work-progress/candidate.js": "43f0093f118e98ce58bdf269d3bddd5cba7a83ce80d3ba82b1bb6e2b5193940b",
+      "src/experiments/work-progress/camp-candidate.js": "b688781b682cca9333b29993f1a2f3f42710bd5d66e983c525359cef8d174db7",
+      "src/experiments/work-progress/camp-direct.js": "0a0a977e1e5e51c0c564dbd28839ceef3638a0ccd3bf50cfb610aebdce127459",
+      "src/experiments/work-progress/camp-fixed.js": "66e0a3fc81d415e9da6d17a98a539a9dcfa2767ba71c7b96784fbfed741cf0ba",
+      "src/experiments/work-progress/cases.js": "43c97e2383d50619f5335bfca9b15f7d38c483eba1665ce7017f3db6dff50ef5",
+      "scripts/work-progress-comparison.js": "89ae1e7342b9e147752b0654e550632ef42148c50b0f5ff9583f7a9f57f925e2",
+      "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "docs/work-progress-api.md": "b9a4d420b58ec0cd2b54c05e9a115a1ecc5faf366f0c3f9a584c71ab0c6ea953",
+      "docs/work-progress-execution.md": "a7979b62481546c1e52672f635c81adbc7c5fc3722fa75c68fead881b613df0a"
+    }
+  },
+  "measurementScriptSha256": "6e1d8427bd4e7e77b1eb1662d25327e82d5acb4059c53f4472c8545eea517812",
+  "scope": "12 two-item worlds per arm; first world is warmup. One-minute host advance includes 3 Human payments, validation and settlement; excludes rendering, observation/export and initial setup. No randomized performance order; local timings are descriptive, not a causal speed ranking.",
+  "arms": {
+    "candidate": {
+      "source": {
+        "files": [
+          {
+            "path": "src/core/model.js",
+            "bytes": 7764,
+            "nonblankLines": 117,
+            "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+          },
+          {
+            "path": "src/experiments/work-progress/camp-candidate.js",
+            "bytes": 17180,
+            "nonblankLines": 183,
+            "sha256": "b688781b682cca9333b29993f1a2f3f42710bd5d66e983c525359cef8d174db7"
+          },
+          {
+            "path": "src/experiments/work-progress/candidate.js",
+            "bytes": 6682,
+            "nonblankLines": 85,
+            "sha256": "43f0093f118e98ce58bdf269d3bddd5cba7a83ce80d3ba82b1bb6e2b5193940b"
+          },
+          {
+            "path": "src/human/v0.1.1.js",
+            "bytes": 11580,
+            "nonblankLines": 176,
+            "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+          }
+        ],
+        "bytes": 43206,
+        "nonblankLines": 561
+      },
+      "workTransitions": 456,
+      "measuredAdvanceCalls": 220,
+      "medianMs": 0.10450000000000159,
+      "p95Ms": 0.16845800000001532,
+      "maxMs": 0.27862500000000523,
+      "budgetMs": 5,
+      "passesBudget": true,
+      "maxSnapshotBytes": 1895,
+      "maxItemBytes": 575,
+      "rows": [
+        {
+          "cycle": 0,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.618040999999991,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.29733299999999474,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.30304100000000744,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.23837499999999068,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.20754200000000367,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.21666600000000358,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.2869169999999883,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.13954200000000583,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.13879199999999514,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.13404199999999378,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.16575000000000273,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.14345799999999542,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.1407080000000036,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.24858400000000813,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.16287499999999966,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.1353330000000028,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.13504199999999855,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.11770900000000495,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.11804200000000264,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.20845800000000736,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": true
+        },
+        {
+          "cycle": 1,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.180499999999995,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.12100000000000932,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.1354999999999933,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.12495900000000404,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.12495799999999235,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.12408399999999631,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.12895899999999472,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.1529170000000022,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.1366249999999951,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.10341700000000742,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.11512500000000614,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.10974999999999113,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.12675000000000125,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.10175000000000978,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.1014160000000004,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.1664169999999956,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.10204099999999983,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.10183299999999917,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.10216700000000856,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.11008300000000304,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.09395800000000065,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.15854199999999707,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.27862500000000523,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.19266600000000267,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.1476249999999908,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.12795900000000415,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.13862500000000466,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.12166699999998798,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.10487500000000693,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.1006670000000014,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.12179199999999923,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.12000000000000455,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.1112499999999983,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.12212499999999693,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.10983399999999222,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.09662500000000307,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.11091599999998891,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.17974999999999852,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.1141669999999948,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.12395800000000179,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.10529200000000571,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.10033399999998949,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.0969170000000048,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.09491699999999526,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.15083400000000324,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.09495800000000543,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.09487500000000182,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.12966699999999776,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.09449999999999648,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.09499999999999886,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.11212499999999181,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.10575000000000045,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.1509580000000028,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.1055419999999998,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.14383300000000077,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.12279200000000401,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.11129200000000594,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.11450000000000671,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.11079100000000608,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.14195899999999995,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.17462500000000603,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.10695799999999167,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.09754199999999003,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.12391699999999162,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.09283299999999883,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.093915999999993,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.09258300000000474,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.11083299999999952,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.12162499999999454,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.109209000000007,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.09291699999999992,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.10858299999999588,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.09670799999999247,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.10312499999999147,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.1028750000000116,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.11929200000000151,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.10695799999999167,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.09345799999999826,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.09254199999999457,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.11537500000000023,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.09037499999999454,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.08412500000000023,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.09320899999998744,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.09241600000000005,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.09229200000000048,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.09204100000000892,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.0918750000000017,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.0921249999999958,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.09208299999998815,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.16279199999999605,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.09237500000000409,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.11670900000000017,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.09545899999999108,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.10945800000000361,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.09287500000000648,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.09237500000000409,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.09437499999999943,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.14270799999999895,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.09208299999998815,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.10079200000001265,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.10625000000000284,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.09487499999998761,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.10433300000001111,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.10387499999998795,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.16845800000001532,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.10254199999999969,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.119624999999985,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.10270799999997848,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.10662500000000819,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.11241700000002197,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.10533300000000168,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.1022920000000056,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.1731670000000065,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.12283300000001418,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.10245800000001282,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.1027080000000069,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.10420899999999733,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.10450000000000159,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.10354199999997604,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.11066600000000903,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.09458300000000008,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.09450000000001069,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.1164579999999944,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.10875000000001478,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.10445799999999394,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.10545900000002462,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.11158400000002189,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.22270800000001145,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.130833999999993,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.10933300000002077,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.10829200000000583,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.10608400000000984,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.1063750000000141,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.10779199999998923,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.10500000000001819,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.1749590000000012,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.10508400000000506,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.10487500000002115,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.10533300000000168,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.11616699999999014,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.0971670000000131,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.09462500000000773,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.15766700000000355,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.11833299999997848,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.11595800000000622,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.10820800000001896,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.10658300000000054,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.1054160000000195,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.14912499999999795,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.09683300000000372,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.1298749999999984,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.11912499999999682,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.18545899999998028,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.10633400000000393,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.10166700000002038,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.1009170000000097,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.09712499999997704,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.18583300000000236,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.10337499999999977,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.10941699999997923,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.08441700000000196,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.08174999999999955,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.09074999999998568,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.09079099999999585,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.08854199999998968,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.09079099999999585,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.11179200000000833,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.1011660000000063,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.10062500000000796,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.10025000000001683,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.09958299999999554,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.1008329999999944,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.11050000000000182,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.11070799999998826,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.08879199999998377,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.10891699999999105,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.09995900000001257,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.09958299999999554,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.09833299999999667,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.10675000000000523,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.16912500000000819,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.10745800000000827,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.11145799999999895,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.10150000000001569,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.10091699999998127,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.10737499999999045,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.0992080000000044,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.10058399999999779,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.14791700000000674,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.10304199999998787,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.09783400000000597,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.0972500000000025,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.09649999999999181,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.09699999999997999,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.09670900000000415,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.09441599999999539,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.0862499999999784,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.1469590000000096,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.08604199999999196,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.09366699999998218,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.09700000000000841,
+          "snapshotBytes": 1672,
+          "itemBytes": 431,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.09091700000001879,
+          "snapshotBytes": 1712,
+          "itemBytes": 429,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.08662499999999795,
+          "snapshotBytes": 1895,
+          "itemBytes": 575,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.08937499999998977,
+          "snapshotBytes": 1859,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.08608300000000213,
+          "snapshotBytes": 1862,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.09350000000000591,
+          "snapshotBytes": 1860,
+          "itemBytes": 540,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.08437499999999432,
+          "snapshotBytes": 1830,
+          "itemBytes": 526,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.08962500000001228,
+          "snapshotBytes": 1892,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.10291599999999335,
+          "snapshotBytes": 1876,
+          "itemBytes": 573,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.08470800000000622,
+          "snapshotBytes": 1884,
+          "itemBytes": 574,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.10537500000000932,
+          "snapshotBytes": 1848,
+          "itemBytes": 554,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.10241599999997675,
+          "snapshotBytes": 1853,
+          "itemBytes": 541,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.09591700000001424,
+          "snapshotBytes": 1855,
+          "itemBytes": 543,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.13966599999997698,
+          "snapshotBytes": 1884,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.08658399999998778,
+          "snapshotBytes": 1883,
+          "itemBytes": 571,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.08554200000000378,
+          "snapshotBytes": 1877,
+          "itemBytes": 568,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.084541999999999,
+          "snapshotBytes": 1881,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.08400000000000318,
+          "snapshotBytes": 1880,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.09004200000001106,
+          "snapshotBytes": 1878,
+          "itemBytes": 570,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.1006670000000156,
+          "snapshotBytes": 1810,
+          "itemBytes": 505,
+          "warmup": false
+        }
+      ]
+    },
+    "direct": {
+      "source": {
+        "files": [
+          {
+            "path": "src/core/model.js",
+            "bytes": 7764,
+            "nonblankLines": 117,
+            "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+          },
+          {
+            "path": "src/experiments/work-progress/camp-direct.js",
+            "bytes": 21334,
+            "nonblankLines": 244,
+            "sha256": "0a0a977e1e5e51c0c564dbd28839ceef3638a0ccd3bf50cfb610aebdce127459"
+          },
+          {
+            "path": "src/human/v0.1.1.js",
+            "bytes": 11580,
+            "nonblankLines": 176,
+            "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+          }
+        ],
+        "bytes": 40678,
+        "nonblankLines": 537
+      },
+      "workTransitions": 456,
+      "measuredAdvanceCalls": 220,
+      "medianMs": 0.07579200000000696,
+      "p95Ms": 0.11666700000000674,
+      "maxMs": 0.22212500000000546,
+      "budgetMs": 5,
+      "passesBudget": true,
+      "maxSnapshotBytes": 1833,
+      "maxItemBytes": 511,
+      "rows": [
+        {
+          "cycle": 0,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.36437499999999545,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.16941700000000992,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.11066700000000651,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.11708299999997962,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.10625000000001705,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.09704099999999016,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.11124999999998408,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.08212499999999068,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07491699999999923,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.1487499999999784,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.07379199999999742,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.07354200000000333,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.07333299999999099,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.07229100000000699,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.0725840000000062,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.08566700000000083,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.09254100000001131,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.08224999999998772,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.07320799999999394,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.10458400000001689,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": true
+        },
+        {
+          "cycle": 1,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.07583399999998619,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.06987499999999613,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.07191699999998491,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.07074999999997544,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.07066700000001447,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.0737089999999796,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.07016699999999787,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.13808299999999463,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07537500000000819,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.07033400000000256,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.06958399999999187,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.06958399999999187,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.0696670000000097,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.06979199999997832,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.06995800000001395,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.06970800000001987,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.06937499999997954,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.08499999999997954,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.08075000000002319,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.08145800000002623,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.08562499999999318,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.07595800000001418,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.09141700000000696,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.13320799999999622,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.11162499999997522,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.08950000000001523,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.08704199999999673,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.08216699999999832,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.08104099999999903,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.08062499999999773,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.07974999999999,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.08445800000001213,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.07845899999998096,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.07024999999998727,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.0706249999999784,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.06995799999998553,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.07008400000000847,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.07137500000001751,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.07012500000001864,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.07441699999998264,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.07012499999999022,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.07949999999999591,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.07087500000000091,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.07050000000000978,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.0709579999999903,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.06991699999997536,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.11966699999999264,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.08341699999999719,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.0696670000000097,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.07337499999999864,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.06962500000000205,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.08354199999999423,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.07045800000000213,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.0696670000000097,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.06987499999999613,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.06999999999999318,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.06916700000002152,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.12062499999998977,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.06979100000000926,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.07166699999999082,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.08029199999998582,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.0679580000000044,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.07012499999999022,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.08183299999998894,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.07775000000000887,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.06945899999999483,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.06924999999998249,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.07049999999998136,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.06929099999999266,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.0696659999999838,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.06949999999997658,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.08587499999998727,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.0691669999999931,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.06941599999998971,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.068916999999999,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.06999999999999318,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.06933300000000031,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.11679200000000378,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.06987500000002456,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.0877089999999896,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.06820899999999597,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.06741700000000606,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.06954199999998423,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.06908300000000622,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.06937500000000796,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.06937499999997954,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.07024999999998727,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.11529199999998241,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.10416699999998968,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.11212499999999181,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.09099999999997976,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.08437499999999432,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.08224999999998772,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.08216699999999832,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.08362500000001205,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.07262499999998795,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.08283299999999372,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.08087499999999181,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.21875,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.1048330000000135,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.09462500000000773,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.07204200000001038,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.07295899999999733,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.08299999999999841,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.08033399999999347,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.08183300000001736,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.08599999999998431,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.12695899999999938,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07312499999997613,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.07120899999998187,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.08687499999999204,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.07058299999999917,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.06966600000001222,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.06941699999998718,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.07229100000000699,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.07579200000000696,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.072749999999985,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.07120900000001029,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.12599999999997635,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.07458300000001827,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.07029199999999491,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.06900000000001683,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.08791700000000446,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.07999999999998408,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.08379099999999085,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.08070800000001555,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.08187500000002501,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.07937499999999886,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.19537500000001273,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.09300000000001774,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.08495800000000031,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.08225000000001614,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.08349999999998658,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.08112500000001432,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.08079200000000242,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.08070800000001555,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.08041700000001129,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.08016699999998878,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.0795829999999853,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.22212500000000546,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.08225000000001614,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.07800000000000296,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.07900000000000773,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.08154199999998468,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.08279099999998607,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.07941699999997809,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.0790839999999946,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.08083400000001006,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07862499999998818,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.08820800000000872,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.08220799999998007,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.08166699999998173,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.07649999999998158,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.07508400000000393,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.07545799999999758,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.07487500000002001,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.07408300000000168,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.08158299999999485,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.0780420000000106,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.07720800000001304,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.08224999999998772,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.0801659999999913,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.067875000000015,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.0665000000000191,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.06658299999998007,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.06700000000000728,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.06587500000000546,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.06629099999997834,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.06574999999997999,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.11666700000000674,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.07179099999999039,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.06583399999999529,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.06741600000000858,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.0658340000000237,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.0656669999999906,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.0660000000000025,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.07670800000002487,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.08937500000001819,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.0750409999999988,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.07583400000001461,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.08787499999999682,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.0771660000000054,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.07737499999998931,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.08270900000002257,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.07654200000001765,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.07537499999997976,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.07595899999998323,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.07620800000000827,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07541599999998994,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.07541699999998741,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.13187500000000796,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.07966600000000312,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.07520900000000097,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.07554099999998698,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.0766670000000147,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.07433300000002419,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.07495799999998098,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.07675000000000409,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.07562500000000227,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.07750000000001478,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.07404099999999403,
+          "snapshotBytes": 1612,
+          "itemBytes": 369,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.07737500000001774,
+          "snapshotBytes": 1652,
+          "itemBytes": 367,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.08620899999999665,
+          "snapshotBytes": 1833,
+          "itemBytes": 511,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.0694170000000156,
+          "snapshotBytes": 1797,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.0675420000000031,
+          "snapshotBytes": 1800,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.06529100000000199,
+          "snapshotBytes": 1798,
+          "itemBytes": 476,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.06512499999999477,
+          "snapshotBytes": 1768,
+          "itemBytes": 462,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.0645409999999913,
+          "snapshotBytes": 1830,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.11608300000000327,
+          "snapshotBytes": 1814,
+          "itemBytes": 509,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.09304099999999949,
+          "snapshotBytes": 1822,
+          "itemBytes": 510,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.09970900000001848,
+          "snapshotBytes": 1786,
+          "itemBytes": 490,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.07762500000001182,
+          "snapshotBytes": 1791,
+          "itemBytes": 477,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.06841600000001336,
+          "snapshotBytes": 1793,
+          "itemBytes": 479,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.06674999999998477,
+          "snapshotBytes": 1822,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.08787500000002524,
+          "snapshotBytes": 1821,
+          "itemBytes": 507,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.06629200000000424,
+          "snapshotBytes": 1815,
+          "itemBytes": 504,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.06508300000001555,
+          "snapshotBytes": 1819,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.07450000000000045,
+          "snapshotBytes": 1818,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.07800000000000296,
+          "snapshotBytes": 1816,
+          "itemBytes": 506,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.08424999999999727,
+          "snapshotBytes": 1740,
+          "itemBytes": 433,
+          "warmup": false
+        }
+      ]
+    },
+    "fixed": {
+      "source": {
+        "files": [
+          {
+            "path": "src/core/model.js",
+            "bytes": 7764,
+            "nonblankLines": 117,
+            "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+          },
+          {
+            "path": "src/experiments/work-progress/camp-fixed.js",
+            "bytes": 20179,
+            "nonblankLines": 218,
+            "sha256": "66e0a3fc81d415e9da6d17a98a539a9dcfa2767ba71c7b96784fbfed741cf0ba"
+          },
+          {
+            "path": "src/human/v0.1.1.js",
+            "bytes": 11580,
+            "nonblankLines": 176,
+            "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+          }
+        ],
+        "bytes": 39523,
+        "nonblankLines": 511
+      },
+      "workTransitions": 456,
+      "measuredAdvanceCalls": 220,
+      "medianMs": 0.07558299999999463,
+      "p95Ms": 0.12674999999998704,
+      "maxMs": 0.335708000000011,
+      "budgetMs": 5,
+      "passesBudget": true,
+      "maxSnapshotBytes": 1871,
+      "maxItemBytes": 551,
+      "rows": [
+        {
+          "cycle": 0,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.2078339999999912,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.20983300000000327,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.1160419999999931,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.11837499999998613,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.11275000000000546,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.0952920000000006,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.1009170000000097,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.08595799999997666,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.08287500000000136,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.08187499999999659,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.08079099999997652,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.18425000000002,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.09345799999999826,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.08462500000001683,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.08166699999998173,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.08475000000001387,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.08295900000001666,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.08516700000001265,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.07120800000001282,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": true
+        },
+        {
+          "cycle": 0,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.10437500000000455,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": true
+        },
+        {
+          "cycle": 1,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.12966700000001197,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.07020900000000552,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.07137499999998909,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.07008400000000847,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.06987499999999613,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.06945899999999483,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.07424999999997794,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.069500000000005,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07054099999999153,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.06954200000001265,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.12674999999998704,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.08133300000000077,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.07054100000001995,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.06937500000000796,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.08258299999999963,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.07766699999999105,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.07704100000000835,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.07895800000000008,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.07833299999998644,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 1,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.08100000000001728,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.07733300000001009,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.07566700000000992,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.07841700000000174,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.07749999999998636,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.07679199999998332,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.07704200000000583,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.07695799999999053,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.07691700000000878,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.08504199999998718,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.06874999999999432,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.06883400000000961,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.07916700000001242,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.07091600000001108,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.06870799999998667,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.06854200000000787,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.08337499999998954,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.09962499999997476,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.08245800000000258,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.07375000000001819,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 2,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.07558299999999463,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.07145799999997848,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.1302919999999972,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.0719999999999743,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.07070799999999622,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.07066599999998857,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.07054200000001742,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.07029200000002334,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.07004100000000335,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07029199999999491,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.0701660000000004,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.07133300000000986,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.07554199999998445,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.07775000000000887,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.07108299999998735,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.06979200000000674,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.06966600000001222,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.07645899999999983,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.08437499999999432,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.06999999999999318,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 3,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.07141599999999926,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.07995800000000486,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.06900000000001683,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.07037499999998431,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.1395419999999774,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.07641699999999219,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.07479100000000471,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.06954200000001265,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.06995799999998553,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.06933300000000031,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.06954199999998423,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.0695829999999944,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.069500000000005,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.06966699999998127,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.06954199999998423,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.06920900000000074,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.06999999999999318,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.0695829999999944,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.06941699999998718,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.0837500000000091,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 4,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.13241700000000378,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.08716699999999378,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.0795829999999853,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.0719999999999743,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.07041699999999196,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.08158299999999485,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.12683300000000486,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.07920899999999165,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.07816699999997923,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07837499999999409,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.07895800000000008,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.07841700000000174,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.07849999999999113,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.07829100000000722,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.07787500000000591,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.08179200000000719,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.08795800000001464,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.07941700000000651,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.09241699999998332,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.07916700000001242,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 5,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.08104099999999903,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.07712499999999523,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.0815420000000131,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.07854199999999878,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.08200000000002206,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.07004100000000335,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.08254199999998946,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.0916249999999934,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.11808300000001282,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.06983299999998849,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.06995800000001395,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.06983299999998849,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.06974999999999909,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.069500000000005,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.06970899999998892,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.08204200000000128,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.07758400000000165,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.07320799999999394,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.06920800000000327,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.06987499999999613,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 6,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.12125000000000341,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.06837500000000318,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.06720799999999372,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.08541700000000674,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.08108399999997573,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.0694170000000156,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.06895800000000918,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.152417000000014,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.07729199999999992,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07737500000001774,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.17091700000000287,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.09987499999999727,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.08566700000000083,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.08191699999997581,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.07987499999998704,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.07929099999998357,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.07845900000000938,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.07979199999999764,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.07775000000000887,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.08208300000001145,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 7,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.08174999999999955,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.335708000000011,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.0831659999999772,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.08174999999999955,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.07908299999999713,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.07845800000001191,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.07779200000001651,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.07699999999999818,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.0770000000000266,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07720900000001052,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.10987499999998818,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.09016699999997968,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.14066599999998175,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.086166999999989,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.06845899999999006,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.06708399999999415,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.06658299999998007,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.06641700000000128,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.07741599999999949,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.09100000000000819,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 8,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.0749580000000094,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.07379199999999742,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.06516700000000242,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.12212500000001114,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.06633400000001188,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.06587500000000546,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.06608399999998937,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.0654169999999965,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.06629200000000424,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.06637499999999363,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.06574999999997999,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.07654200000001765,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.08320799999998485,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.06554200000002197,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.06558300000000372,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.06687500000001023,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.0654999999999859,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.07804199999998218,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.07387499999998681,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.0730829999999969,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 9,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.0749580000000094,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.07250000000001933,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.07200000000000273,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.07408300000000168,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.07337499999999864,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.11733300000000213,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.07383399999997664,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.0761669999999981,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.07341700000000628,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07425000000000637,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.07379199999999742,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.07345799999998803,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.07349999999999568,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.07320799999999394,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.07391599999999698,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.07262500000001637,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.0730000000000075,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.30316700000000196,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.08137500000000841,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.07733399999997914,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 10,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.07787500000000591,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 1,
+          "workTransitions": 1,
+          "elapsedMs": 0.11366599999999494,
+          "snapshotBytes": 1649,
+          "itemBytes": 408,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 2,
+          "workTransitions": 1,
+          "elapsedMs": 0.07808299999999235,
+          "snapshotBytes": 1689,
+          "itemBytes": 406,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 3,
+          "workTransitions": 2,
+          "elapsedMs": 0.11474999999998658,
+          "snapshotBytes": 1871,
+          "itemBytes": 551,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 4,
+          "workTransitions": 2,
+          "elapsedMs": 0.10170800000000213,
+          "snapshotBytes": 1835,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 5,
+          "workTransitions": 2,
+          "elapsedMs": 0.0780420000000106,
+          "snapshotBytes": 1838,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 6,
+          "workTransitions": 2,
+          "elapsedMs": 0.08358400000000188,
+          "snapshotBytes": 1836,
+          "itemBytes": 516,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 7,
+          "workTransitions": 2,
+          "elapsedMs": 0.0742089999999962,
+          "snapshotBytes": 1806,
+          "itemBytes": 502,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 8,
+          "workTransitions": 2,
+          "elapsedMs": 0.12820800000000077,
+          "snapshotBytes": 1868,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 9,
+          "workTransitions": 2,
+          "elapsedMs": 0.07670899999999392,
+          "snapshotBytes": 1852,
+          "itemBytes": 549,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 10,
+          "workTransitions": 2,
+          "elapsedMs": 0.0680420000000197,
+          "snapshotBytes": 1860,
+          "itemBytes": 550,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 11,
+          "workTransitions": 2,
+          "elapsedMs": 0.06687499999998181,
+          "snapshotBytes": 1824,
+          "itemBytes": 530,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 12,
+          "workTransitions": 2,
+          "elapsedMs": 0.06616600000000972,
+          "snapshotBytes": 1829,
+          "itemBytes": 517,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 13,
+          "workTransitions": 2,
+          "elapsedMs": 0.06587499999997704,
+          "snapshotBytes": 1831,
+          "itemBytes": 519,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 14,
+          "workTransitions": 2,
+          "elapsedMs": 0.09816700000001788,
+          "snapshotBytes": 1860,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 15,
+          "workTransitions": 2,
+          "elapsedMs": 0.07337499999999864,
+          "snapshotBytes": 1859,
+          "itemBytes": 547,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 16,
+          "workTransitions": 2,
+          "elapsedMs": 0.06900000000001683,
+          "snapshotBytes": 1853,
+          "itemBytes": 544,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 17,
+          "workTransitions": 2,
+          "elapsedMs": 0.0665830000000085,
+          "snapshotBytes": 1857,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 18,
+          "workTransitions": 2,
+          "elapsedMs": 0.07691600000001131,
+          "snapshotBytes": 1856,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 19,
+          "workTransitions": 2,
+          "elapsedMs": 0.07508300000000645,
+          "snapshotBytes": 1854,
+          "itemBytes": 546,
+          "warmup": false
+        },
+        {
+          "cycle": 11,
+          "minute": 20,
+          "workTransitions": 2,
+          "elapsedMs": 0.07270800000000577,
+          "snapshotBytes": 1778,
+          "itemBytes": 473,
+          "warmup": false
+        }
+      ]
+    }
+  },
+  "wideComponent": {
+    "bytes": 6193,
+    "budgetBytes": 8192,
+    "passesBudget": true,
+    "items": 2,
+    "contributorsPerItem": 16,
+    "idLength": 80,
+    "additionalPaidWorkTransitions": 32,
+    "note": "Separate component shape fixture with real one-minute Human payments, basis17, fractional amounts and long IDs; not a worst-case byte-size proof or a full 16-person camp.",
+    "snapshots": [
+      {
+        "format": "paid-durable-work",
+        "version": 1,
+        "work": {
+          "version": "0.1.1",
+          "id": "item0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "effort": 0.2345678901234567,
+          "minimumDuration": 6,
+          "progress": 0.9411764705882354,
+          "workers": {
+            "worker00xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker01xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker02xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker03xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker04xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker05xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker06xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker07xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker08xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker09xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker10xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker11xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker12xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker13xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker14xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker15xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            }
+          },
+          "status": "open"
+        }
+      },
+      {
+        "format": "paid-durable-work",
+        "version": 1,
+        "work": {
+          "version": "0.1.1",
+          "id": "item1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "effort": 0.2345678901234567,
+          "minimumDuration": 6,
+          "progress": 0.9411764705882354,
+          "workers": {
+            "worker00xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker01xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker02xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker03xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker04xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker05xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker06xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker07xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker08xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker09xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker10xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker11xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker12xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker13xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker14xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            },
+            "worker15xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx": {
+              "basisMinutes": 17,
+              "minutes": 1,
+              "fraction": 0.058823529411764705,
+              "effort": 0.013798111183732746
+            }
+          },
+          "status": "open"
+        }
+      }
+    ]
+  },
+  "totalRealWorkTransitions": {
+    "candidate": 488,
+    "direct": 456,
+    "fixed": 456
+  },
+  "cautions": [
+    "Actual static dependency closure is counted, including any unused runtime exports transitively imported by an adapter.",
+    "Source length and local timings are not measured human authoring effort.",
+    "Rival first-assignment metadata and generic candidate contributor limits differ; report validation obligations separately."
+  ]
+}

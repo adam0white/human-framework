@@ -1,0 +1,227 @@
+{
+  "stage": "stages/02-two-pumps",
+  "previous": "stages/01-gasket",
+  "evidence": "evidence-two-pumps",
+  "capturedAt": "2026-09-08T19:06:08.692Z",
+  "kitMatchesFrozenManifest": true,
+  "changes": [
+    {
+      "path": "src/candidate-pump.js",
+      "before": {
+        "bytes": 1391,
+        "lines": 22,
+        "sha256": "965fc53238cfbe1c4f952a5022421571aebcefedaa5cc32cadc3faf9600bbcb3"
+      },
+      "after": {
+        "bytes": 1394,
+        "lines": 22,
+        "sha256": "cf8b12b3ddba63ddd3b66205e61655830006c1ec949342f43f9c8d0ac50b9c31"
+      },
+      "byteDelta": 3,
+      "lineDelta": 0
+    },
+    {
+      "path": "src/direct-pump.js",
+      "before": {
+        "bytes": 3118,
+        "lines": 57,
+        "sha256": "b8050f2767c413a77e363d0aa93b0cc3902730c5a014ea091a3fb1298ea13f10"
+      },
+      "after": {
+        "bytes": 3227,
+        "lines": 58,
+        "sha256": "e338595c8d2f97ad0eaabe08e16c2009d8139eea4a1dc7d6a7283373a9b86f57"
+      },
+      "byteDelta": 109,
+      "lineDelta": 1
+    },
+    {
+      "path": "src/yard.js",
+      "before": {
+        "bytes": 19363,
+        "lines": 268,
+        "sha256": "aabea27d34d01c470dc2070f96c6405a8ef8cc5d4094181a79a73ab65f6dbb8e"
+      },
+      "after": {
+        "bytes": 21690,
+        "lines": 295,
+        "sha256": "c4142e132fcefb2fce036e94a4a20d207f06f52816b895e30cd2391aca978c2c"
+      },
+      "byteDelta": 2327,
+      "lineDelta": 27
+    },
+    {
+      "path": "tests/histories.js",
+      "before": {
+        "bytes": 3824,
+        "lines": 60,
+        "sha256": "addaa2a727f6cadd30437b0f78b42852509de4aa8b0dc6b317549a4d6f75ec46"
+      },
+      "after": {
+        "bytes": 4562,
+        "lines": 63,
+        "sha256": "2ca651cdd8d191d0465ebacd9c176aa6e31c13fade9f43e65369b078d3978f87"
+      },
+      "byteDelta": 738,
+      "lineDelta": 3
+    },
+    {
+      "path": "tests/record.mjs",
+      "before": {
+        "bytes": 6936,
+        "lines": 79,
+        "sha256": "3f84863d180fdb8f7a83ec54efdebe5ec62d7bb86ae3bb6a7142107ff15913de"
+      },
+      "after": {
+        "bytes": 7229,
+        "lines": 80,
+        "sha256": "acba263dfc999b5eb80496a7c08774353dbcb5398012d49113c2ef712c1a8177"
+      },
+      "byteDelta": 293,
+      "lineDelta": 1
+    },
+    {
+      "path": "tests/repair.test.js",
+      "before": {
+        "bytes": 14639,
+        "lines": 218,
+        "sha256": "c11390198ed1d8d16c3aac8c09b4a01a94a8c046a14a939fd5a01270cedb9363"
+      },
+      "after": {
+        "bytes": 19547,
+        "lines": 282,
+        "sha256": "ac9584d4633fb368ddfa9a7de891bafd18d2bddb40b262e06025c94d134d8d0b"
+      },
+      "byteDelta": 4908,
+      "lineDelta": 64
+    }
+  ],
+  "sourceDiff": {
+    "added": 107,
+    "removed": 79
+  },
+  "testsDiff": {
+    "added": 104,
+    "removed": 36
+  },
+  "runtimeBefore": {
+    "shared": {
+      "bytes": 40644,
+      "lines": 608,
+      "files": [
+        "src/yard.js",
+        "src/shape.js",
+        "kit/src/human/v0.1.1.js",
+        "kit/src/core/model.js"
+      ]
+    },
+    "candidateOnly": {
+      "bytes": 7679,
+      "lines": 104,
+      "files": [
+        "src/candidate-pump.js",
+        "kit/candidate.js"
+      ]
+    },
+    "directOnly": {
+      "bytes": 3118,
+      "lines": 57,
+      "files": [
+        "src/direct-pump.js"
+      ]
+    },
+    "candidateInclusive": {
+      "bytes": 48323,
+      "lines": 712
+    },
+    "directInclusive": {
+      "bytes": 43762,
+      "lines": 665
+    }
+  },
+  "runtimeAfter": {
+    "shared": {
+      "bytes": 42971,
+      "lines": 635,
+      "files": [
+        "src/yard.js",
+        "src/shape.js",
+        "kit/src/human/v0.1.1.js",
+        "kit/src/core/model.js"
+      ]
+    },
+    "candidateOnly": {
+      "bytes": 7682,
+      "lines": 104,
+      "files": [
+        "src/candidate-pump.js",
+        "kit/candidate.js"
+      ]
+    },
+    "directOnly": {
+      "bytes": 3227,
+      "lines": 58,
+      "files": [
+        "src/direct-pump.js"
+      ]
+    },
+    "candidateInclusive": {
+      "bytes": 50653,
+      "lines": 739
+    },
+    "directInclusive": {
+      "bytes": 46198,
+      "lines": 693
+    }
+  },
+  "runtimeDelta": {
+    "candidateInclusive": {
+      "bytes": 2330,
+      "lines": 27
+    },
+    "directInclusive": {
+      "bytes": 2436,
+      "lines": 28
+    }
+  },
+  "supportBefore": {
+    "bytes": 25699,
+    "lines": 369,
+    "files": [
+      "tests/histories.js",
+      "tests/repair.test.js",
+      "tests/record.mjs",
+      "package.json",
+      "kit/package.json"
+    ],
+    "note": "Tests, recording/oracle and package metadata reported separately; they are part of this experiment, not omitted labor."
+  },
+  "supportAfter": {
+    "bytes": 31638,
+    "lines": 437,
+    "files": [
+      "tests/histories.js",
+      "tests/repair.test.js",
+      "tests/record.mjs",
+      "package.json",
+      "kit/package.json"
+    ],
+    "note": "Tests, recording/oracle and package metadata reported separately; they are part of this experiment, not omitted labor."
+  },
+  "stageMeasurementTools": [
+    {
+      "path": "stage-tools/capture-stage.mjs",
+      "bytes": 3684,
+      "lines": 42,
+      "sha256": "f686a2ee85a0256ef78ab244474c2ab2fcf22b0ef43187f27b9b050d6bae64ac"
+    },
+    {
+      "path": "stage-tools/exact-baseline.mjs",
+      "bytes": 2571,
+      "lines": 34,
+      "sha256": "14cae9e473ded0bd40e4d0fde6d23f9c9a462cf6ceffcdfb44140fb653106554"
+    }
+  ],
+  "sourceDiffFile": "evidence-two-pumps/source.diff",
+  "testsDiffFile": "evidence-two-pumps/tests.diff"
+}

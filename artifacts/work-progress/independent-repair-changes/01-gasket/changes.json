@@ -1,0 +1,182 @@
+{
+  "stage": "stages/01-gasket",
+  "previous": "stages/00-baseline",
+  "evidence": "evidence-gasket",
+  "capturedAt": "2026-09-08T18:57:52.508Z",
+  "kitMatchesFrozenManifest": true,
+  "changes": [
+    {
+      "path": "src/yard.js",
+      "before": {
+        "bytes": 19325,
+        "lines": 268,
+        "sha256": "edcdc65c56ae041dffb93afd358134d0472dc2a6ea5b59bb9d7e79ce348c77fd"
+      },
+      "after": {
+        "bytes": 19363,
+        "lines": 268,
+        "sha256": "aabea27d34d01c470dc2070f96c6405a8ef8cc5d4094181a79a73ab65f6dbb8e"
+      },
+      "byteDelta": 38,
+      "lineDelta": 0
+    },
+    {
+      "path": "tests/record.mjs",
+      "before": {
+        "bytes": 6417,
+        "lines": 71,
+        "sha256": "882ed2c44172b78a014f19b15abacd82c4698d5818f22d52cc2865b58bcfc322"
+      },
+      "after": {
+        "bytes": 6936,
+        "lines": 79,
+        "sha256": "3f84863d180fdb8f7a83ec54efdebe5ec62d7bb86ae3bb6a7142107ff15913de"
+      },
+      "byteDelta": 519,
+      "lineDelta": 8
+    },
+    {
+      "path": "tests/repair.test.js",
+      "before": {
+        "bytes": 14623,
+        "lines": 218,
+        "sha256": "c0ecd84de42f9bad51d4e975040e86a9d61f37cf20805bcddbafbd78db9ba1de"
+      },
+      "after": {
+        "bytes": 14639,
+        "lines": 218,
+        "sha256": "c11390198ed1d8d16c3aac8c09b4a01a94a8c046a14a939fd5a01270cedb9363"
+      },
+      "byteDelta": 16,
+      "lineDelta": 0
+    }
+  ],
+  "sourceDiff": {
+    "added": 9,
+    "removed": 9
+  },
+  "testsDiff": {
+    "added": 18,
+    "removed": 10
+  },
+  "runtimeBefore": {
+    "shared": {
+      "bytes": 40606,
+      "lines": 608,
+      "files": [
+        "src/yard.js",
+        "src/shape.js",
+        "kit/src/human/v0.1.1.js",
+        "kit/src/core/model.js"
+      ]
+    },
+    "candidateOnly": {
+      "bytes": 7679,
+      "lines": 104,
+      "files": [
+        "src/candidate-pump.js",
+        "kit/candidate.js"
+      ]
+    },
+    "directOnly": {
+      "bytes": 3118,
+      "lines": 57,
+      "files": [
+        "src/direct-pump.js"
+      ]
+    },
+    "candidateInclusive": {
+      "bytes": 48285,
+      "lines": 712
+    },
+    "directInclusive": {
+      "bytes": 43724,
+      "lines": 665
+    }
+  },
+  "runtimeAfter": {
+    "shared": {
+      "bytes": 40644,
+      "lines": 608,
+      "files": [
+        "src/yard.js",
+        "src/shape.js",
+        "kit/src/human/v0.1.1.js",
+        "kit/src/core/model.js"
+      ]
+    },
+    "candidateOnly": {
+      "bytes": 7679,
+      "lines": 104,
+      "files": [
+        "src/candidate-pump.js",
+        "kit/candidate.js"
+      ]
+    },
+    "directOnly": {
+      "bytes": 3118,
+      "lines": 57,
+      "files": [
+        "src/direct-pump.js"
+      ]
+    },
+    "candidateInclusive": {
+      "bytes": 48323,
+      "lines": 712
+    },
+    "directInclusive": {
+      "bytes": 43762,
+      "lines": 665
+    }
+  },
+  "runtimeDelta": {
+    "candidateInclusive": {
+      "bytes": 38,
+      "lines": 0
+    },
+    "directInclusive": {
+      "bytes": 38,
+      "lines": 0
+    }
+  },
+  "supportBefore": {
+    "bytes": 25164,
+    "lines": 361,
+    "files": [
+      "tests/histories.js",
+      "tests/repair.test.js",
+      "tests/record.mjs",
+      "package.json",
+      "kit/package.json"
+    ],
+    "note": "Tests, recording/oracle and package metadata reported separately; they are part of this experiment, not omitted labor."
+  },
+  "supportAfter": {
+    "bytes": 25699,
+    "lines": 369,
+    "files": [
+      "tests/histories.js",
+      "tests/repair.test.js",
+      "tests/record.mjs",
+      "package.json",
+      "kit/package.json"
+    ],
+    "note": "Tests, recording/oracle and package metadata reported separately; they are part of this experiment, not omitted labor."
+  },
+  "stageMeasurementTools": [
+    {
+      "path": "stage-tools/capture-stage.mjs",
+      "bytes": 3684,
+      "lines": 42,
+      "sha256": "f686a2ee85a0256ef78ab244474c2ab2fcf22b0ef43187f27b9b050d6bae64ac"
+    },
+    {
+      "path": "stage-tools/exact-baseline.mjs",
+      "bytes": 2571,
+      "lines": 34,
+      "sha256": "14cae9e473ded0bd40e4d0fde6d23f9c9a462cf6ceffcdfb44140fb653106554"
+    }
+  ],
+  "sourceDiffFile": "evidence-gasket/source.diff",
+  "testsDiffFile": "evidence-gasket/tests.diff"
+}

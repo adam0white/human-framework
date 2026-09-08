@@ -1,0 +1,95 @@
+{
+  "histories": 8,
+  "arms": [
+    "candidate",
+    "direct",
+    "fixed"
+  ],
+  "drivers": [
+    "minute",
+    "event",
+    "uneven"
+  ],
+  "restores": [
+    false,
+    true
+  ],
+  "records": 144,
+  "completions": [
+    {
+      "id": "H1",
+      "prospective": [
+        20
+      ],
+      "fixed": [
+        20
+      ]
+    },
+    {
+      "id": "H2",
+      "prospective": [
+        15
+      ],
+      "fixed": [
+        20
+      ]
+    },
+    {
+      "id": "H3",
+      "prospective": [
+        23
+      ],
+      "fixed": [
+        23
+      ]
+    },
+    {
+      "id": "H4",
+      "prospective": [
+        15
+      ],
+      "fixed": [
+        20
+      ]
+    },
+    {
+      "id": "H5",
+      "prospective": [
+        19
+      ],
+      "fixed": [
+        20
+      ]
+    },
+    {
+      "id": "H6",
+      "prospective": [
+        20
+      ],
+      "fixed": [
+        18
+      ]
+    },
+    {
+      "id": "H7",
+      "prospective": [
+        20
+      ],
+      "fixed": [
+        20
+      ]
+    },
+    {
+      "id": "H8",
+      "prospective": [
+        20,
+        20
+      ],
+      "fixed": [
+        20,
+        20
+      ]
+    }
+  ],
+  "scope": "Synthetic prescribed histories and repeated driver/serialization checks; not independent human samples"
+}

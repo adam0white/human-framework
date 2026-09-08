@@ -1,0 +1,10 @@
+{
+  "beforeSource": "7cd3dc0a05f202a6f6b064d73cf5dfd01b33fcc3",
+  "afterSource": "ebcea3a5aecccc8fe3edbf1ddcaa5d577cd7d568",
+  "runs": 144,
+  "normalizedRecords": 3207,
+  "snapshots": 3207,
+  "physicalObservationsExact": true,
+  "rawSnapshotsExactExceptDeclaredWorkVersion": true,
+  "scope": "Post-review validation on already seen histories; no policy, setup, expected timing or payment-law change"
+}

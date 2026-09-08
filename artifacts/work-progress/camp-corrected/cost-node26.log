@@ -1,0 +1,28 @@
+{
+  "out": "/tmp/work-progress-cost-corrected.json",
+  "source": "ebcea3a5aecccc8fe3edbf1ddcaa5d577cd7d568",
+  "arms": {
+    "candidate": {
+      "bytes": 43206,
+      "lines": 561,
+      "p95Ms": 0.16845800000001532,
+      "maxSnapshotBytes": 1895,
+      "workTransitions": 456
+    },
+    "direct": {
+      "bytes": 40678,
+      "lines": 537,
+      "p95Ms": 0.11666700000000674,
+      "maxSnapshotBytes": 1833,
+      "workTransitions": 456
+    },
+    "fixed": {
+      "bytes": 39523,
+      "lines": 511,
+      "p95Ms": 0.12674999999998704,
+      "maxSnapshotBytes": 1871,
+      "workTransitions": 456
+    }
+  },
+  "wideComponentBytes": 6193
+}
