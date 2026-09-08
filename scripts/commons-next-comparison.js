@@ -43,4 +43,9 @@ export function runComparison(){
     scope:'Physical output is expected to match the control. Allocation yield and ferry timing are host-authored outcomes; this does not measure enjoyment, human explanations, model realism or optimum play.',
     negativeFindings:['No physical output, body or resource advantage over the original world under matched commands.','Both existing controllers supply only one cache before the ferry; a different controller has not been optimized or validated.','Paid recovery and food gathering first can miss the ferry while matching build-first total caches and retaining more food.','Some needs remain unprovided in every scripted run. Keeping a first cache for camp can leave unused surplus by dusk.'],runs};
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){const path=resolve(process.argv[2]??'artifacts/commons-next/comparison.json');await mkdir(dirname(path),{recursive:true});await writeFile(path,JSON.stringify(runComparison(),null,2)+'\n');process.stdout.write(`Wrote bounded comparison to ${path}\n`);}
+if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){
+  if(!process.argv[2])throw new Error('Choose a new output path: node scripts/commons-next-comparison.js /tmp/commons-next-new.json');
+  const path=resolve(process.argv[2]);await mkdir(dirname(path),{recursive:true});
+  await writeFile(path,JSON.stringify(runComparison(),null,2)+'\n',{flag:'wx'});
+  process.stdout.write(`Wrote bounded comparison to ${path}\n`);
+}
