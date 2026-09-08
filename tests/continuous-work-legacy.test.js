@@ -50,3 +50,14 @@ test('retained independently reported failure: rounded capacity offers work that
   assert.equal(view.choices.find(c => c.id === 'build-workbench').unavailable, null);
   assert.throws(() => commons.startJob(game, 'build-workbench'), /Too much fatigue/);
 });
+
+test('finish-current-then-release ends the project while retaining the neighbor self-chosen recovery', () => {
+  const fork = commons.advanceGame(makeLegacyFixture(), 1);
+  let state = commons.advanceGame(fork, 19);
+  state = commons.releaseProject(state);
+  assert.equal(state.clock.now, 207);
+  assert.equal(state.structures.garden, 1);
+  assert.equal(state.commitment.status, 'released');
+  assert.equal(state.jobs.neighbor.id, 'rest');
+  assert.equal(state.people.neighbor.pending.elapsedMinutes, 0);
+});

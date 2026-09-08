@@ -42,7 +42,9 @@ let finishThenRelease = commons.advanceGame(originalFork, originalFork.jobs.neig
 finishThenRelease = commons.releaseProject(finishThenRelease);
 assert.equal(finishThenRelease.clock.now, 207);
 assert.equal(finishThenRelease.structures.garden, 1);
-assert.equal(finishThenRelease.jobs.neighbor, null);
+assert.equal(finishThenRelease.commitment.status, 'released');
+assert.equal(finishThenRelease.jobs.neighbor.id, 'rest');
+assert.equal(finishThenRelease.people.neighbor.pending.elapsedMinutes, 0);
 keep('finish-current-then-release.json', commons.exportGame(finishThenRelease));
 
 const arms = {};
