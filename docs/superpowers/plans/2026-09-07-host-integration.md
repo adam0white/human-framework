@@ -19,6 +19,8 @@ No runtime LLM or dependency. Keep Solo social-free. Keep old replays exact. Pol
 - [x] Root human component: write failing lifecycle/accounting tests against the exact public functions in the spec; implement bounded state, strict validation, snapshots and common formula reuse; verify hand-calculated effects and 10,000-event behavior.
 - [x] Host worker: write prerequisite/inventory/observable-policy and save/resume tests; implement workshop host and mobile page; add another object interaction through the frozen component boundary. Record integration exceptions instead of editing core.
 - [x] Root integration: add explicit asset entry points, laboratory policy descriptions and historical dispatch; run deterministic policy/game comparisons and preserve negative cases with source identity. Review public/private packaging and perform browser QA.
-- [ ] Root release: inspect complete diff, run appropriate tests/build, address independent reviews, update roadmap/status with executed versus pending gates, commit/push/deploy, verify exact live manifest and mobile interactions.
+- [x] Root release: inspect complete diff, run appropriate tests/build, address independent reviews, update roadmap/status with executed versus pending gates, commit/push/deploy, verify exact live manifest and mobile interactions.
+
+Execution evidence: [0.3 delivery and production verification](../../release-0.3.md). All mechanical work packages are delivered. The [roadmap](../../roadmap.md) retains human playtesting, physical-device performance, reserved condition families and broader source/model evaluation as separate open gates.
 
 Commands: `node --test tests/human.test.js`, `node --test tests/policy-contracts.test.js tests/legacy.test.js`, `node --test tests/workshop-game.test.js`, then `npm test`. Deploy only after the full release gate. Integration UI and APIs follow the spec signatures; no hidden callback serialization or action-name branches enter the human component.
