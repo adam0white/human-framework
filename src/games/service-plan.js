@@ -263,7 +263,12 @@ function check(s){
 export function requestTask(s,a,t){check(s);return check(taskRaw(copy(s),a,t));}
 export function interruptTask(s,a){check(s);return check(stopRaw(copy(s),a));}
 export function advanceTo(s,t){check(s);return check(advanceRaw(copy(s),t));}
-export function nextVisibleEvent(s){check(s);if(s.outcome)return s.clock.now;const own=ownChoice(s);return Math.min(CLOSING,s.coordination.current?.status==='active'?Math.max(s.clock.now+1,s.coordination.current.terms.waitUntil):CLOSING,s.clock.now<MORNING?MORNING:CLOSING,...actors.map(a=>s.jobs[a].task==='idle'?CLOSING:s.jobs[a].endsAt),own.task&&s.jobs.partner.task==='idle'?s.clock.now+spec(s,own.task).durationMinutes:own.at>s.clock.now?own.at:CLOSING);}
+export function nextVisibleEvent(s){
+ check(s);if(s.outcome)return s.clock.now;
+ const own=ownChoice(s),p=s.coordination.current;
+ const planTimes=p?.status==='active'?[p.terms.waitUntil,...(p.contribution.status==='promised'?[p.terms.pumpStartAt,p.terms.readyBy]:[])].filter(t=>t>s.clock.now):[];
+ return Math.min(CLOSING,...planTimes,s.clock.now<MORNING?MORNING:CLOSING,...actors.map(a=>s.jobs[a].task==='idle'?CLOSING:s.jobs[a].endsAt),own.task&&s.jobs.partner.task==='idle'?s.clock.now+spec(s,own.task).durationMinutes:own.at>s.clock.now?own.at:CLOSING);
+}
 export function receiveReceipt(s,e){check(s);json(e);const next=copy(s);settle(next,e);return check(next);}
 export function getServicePlanView(s){
  check(s);const people=Object.fromEntries(actors.map(a=>[a,getPersonView(s.people[a])])),jobs=Object.fromEntries(actors.map(a=>{const j=s.jobs[a];return [a,j&&j.task!=='idle'?{task:j.task,startedAt:j.startedAt,endsAt:j.endsAt,origin:j.origin,reservedParts:j.reservedParts,reservedMeal:j.reservedMeal}:null];}));
