@@ -36,7 +36,7 @@ export function chooseAction(view,policyState={},arm){
     return wait('Immediate-cart service attempt is complete or unavailable.');
   }
   if(v.location!==ownHome(v)){
-    if(arm==='contact'&&v.actorId==='keeper'&&v.location==='dock'&&!s.contactSent){s.contactSent=true;return report(v,s,'contact')??wait('No owned observation to convey.');}
+    if(arm==='contact'&&v.actorId==='keeper'&&v.location==='dock'&&!s.contactSent){s.contactSent=true;if(v.local.peerPresent)return report(v,s,'contact')??wait('No owned observation to convey.');}
     return take(s,{task:'travel',to:ownHome(v)},'Return physically to the station required for owned work.');
   }
   if(v.local.repairMinutes===null)return take(s,{task:'inspect'},'Inspect own station before choosing paid repair.');
@@ -69,12 +69,16 @@ export function chooseAction(view,policyState={},arm){
     }
   }
   if(!ownComplete(v)){
-    if(v.actorId==='receiver'&&v.now+Math.max(0,v.local.repairMinutes-v.local.repairProgress)+1>(v.local.launchAt??30)&&available(v,'cartWater')&&v.now+5<=(v.local.launchAt??30))return take(s,{task:'cart'},'Own inlet cannot finish before launch; preserve useful cart service.');
+    if(v.actorId==='receiver'&&v.now+Math.max(0,v.local.repairMinutes-v.local.repairProgress)+1>(v.local.launchAt??30)){
+      if(available(v,'cartWater')&&v.now+5<=(v.local.launchAt??30))return take(s,{task:'cart'},'Own inlet cannot finish before launch; preserve useful cart service.');
+      return wait('Own inlet work can no longer serve the known launch.');
+    }
+    if(v.actorId==='keeper'&&v.local.launchAt!==null&&v.now+v.local.repairMinutes-v.local.repairProgress+5>v.local.launchAt)return wait('Known launch leaves insufficient time for remaining own repair and water travel.');
     return take(s,{task:'repair',minutes:1},'Pay one minute of owned repair; retain partial progress and fitting.');
   }
   if(v.actorId==='keeper'){
     if(!hasWater(v))return wait('Own pipe water already reserved or consumed.');
-    const launch=fact(v,'launchAt',{reactive})??30;
+    const launch=fact(v,'launchAt',{reactive})??(notebook?15:30);
     if(notebook&&!s.proposed){
       const releaseAt=Math.max(v.now+2*v.channel.maxDelay+3,7),arrival=releaseAt+5;
       if(arrival<=launch&&releaseAt<=24&&available(v,'radio')){
@@ -95,15 +99,16 @@ export function chooseAction(view,policyState={},arm){
   let receiveFrom=11,receiveUntil=18;
   if(arm==='fixed-early'){receiveFrom=11;receiveUntil=12;}
   if(arm==='fixed-conservative'){receiveFrom=17;receiveUntil=18;}
-  if(arm==='contact'){receiveFrom=24;receiveUntil=25;}
-  if(arm==='one-way-report'){receiveFrom=Math.max(11,v.local.repairMinutes+2);receiveUntil=18;}
+  const contactReport=v.inbox.filter(e=>e.via==='contact'&&e.message.kind==='report').at(-1);
+  if(arm==='contact'&&contactReport){const work=contactReport.message.observations.find(o=>o.cue==='repairMinutes:valve')?.value??12;receiveUntil=contactReport.receivedAt+6+work+5;receiveFrom=receiveUntil-1;}
+  if(arm==='one-way-report'){receiveFrom=Math.max(11,v.local.repairMinutes+2);receiveUntil=Math.min(18,launch);}
   if(radioArms.has(arm)){
     const remoteWork=fact(v,'repairMinutes:valve',{reactive});
     if(remoteWork!==null){receiveFrom=remoteWork+6;receiveUntil=remoteWork+7;}
     if(accepted){receiveFrom=accepted.terms.attendFrom;receiveUntil=accepted.terms.attendUntil;}
   }
   if(v.now>=receiveFrom&&v.now<receiveUntil&&v.now<launch)return take(s,{task:'attend',minutes:1},'Attend the paid local window where a legal remote release may arrive.');
-  const protectWindow=arm==='fixed-early'||Boolean(accepted)||(arm==='one-way-report'&&v.local.repairMinutes===2)||(radioArms.has(arm)&&fact(v,'repairMinutes:valve',{reactive})===6);
+  const protectWindow=arm==='fixed-early'||Boolean(accepted)||(arm==='contact'&&Boolean(contactReport))||(arm==='one-way-report'&&v.local.repairMinutes===2)||(radioArms.has(arm)&&fact(v,'repairMinutes:valve',{reactive})===6);
   if(available(v,'cartWater')&&v.now+5<=launch&&(v.now>=receiveUntil||(v.now>=cartLast&&(!protectWindow||receiveUntil>launch))))return take(s,{task:'cart'},'Take cart insurance while its own launch deadline still permits delivery.');
   return wait('No local work is needed before the declared receiving or fallback window.');
 }

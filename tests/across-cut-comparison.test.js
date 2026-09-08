@@ -85,3 +85,11 @@ test('CLI rejects reserved output without a committed freeze before world execut
     assert.equal(run.status,1);assert.match(run.stderr,/requires a committed --freeze/);
   }finally{await rm(dir,{recursive:true,force:true});}
 });
+
+test('competent cheap report, contact fallback and unknown-launch notebook preserve useful service',async()=>{
+  const {runTrial}=await import('../src/experiments/across-cut/comparison/experiment.js');
+  const {selectCases}=await import('../src/experiments/across-cut/comparison/cases.js');const cases=selectCases();
+  for(const [id,arm]of [['D7','one-way-report'],['D8','contact'],['D3','notebook']]){
+    const t=runTrial(cases.find(x=>x.id===id),arm);assert.equal(t.final.service.units,2,`${id}/${arm} should retain its feasible local strategy`);
+  }
+});
