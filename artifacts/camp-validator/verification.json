@@ -1,0 +1,9 @@
+{
+  "sourceCommit": "b62fc0f6ff87bb32fc2aa0aba4d4d7276fcca928",
+  "node26": "v26.8.1",
+  "node22": "v22.0.0",
+  "matchingAcceptancePhysicalHashesAndSizes": 25,
+  "inputsVerified": 50,
+  "sourceChangedAfterFirstOutcome": false,
+  "scopedTestsPerNodeVersion": 2
+}

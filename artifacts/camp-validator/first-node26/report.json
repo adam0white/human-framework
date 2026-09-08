@@ -1,0 +1,811 @@
+{
+  "sourceCommit": "b62fc0f6ff87bb32fc2aa0aba4d4d7276fcca928",
+  "sources": {
+    "artifacts/camp-validator/run.mjs": "498c6f3b866cc9dbbd5434721ba938b67de238f5cd53427d22b39306f71f1394",
+    "artifacts/commons-next/two-cache-ferry-probe.mjs": "7a9bbb4d6f37e5300d5aace72a5fd848a35c7674e32481bcdb79d5b06630d5a0",
+    "docs/camp-validator.md": "c3e3790189724ab31c32575ea55f166233fd3ea41648b0c12c8ec4c272141d9a",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "src/experiments/camp-validator/fixtures.js": "5faaf6ded73fb57fab34410843998de9c9767d86c4e24912671ab989ff154cb7",
+    "src/experiments/camp-validator/local.js": "f3bc6f855f8f90db5ccc99394601c5b64abc849bf08dccc3fcf10397f585b323",
+    "src/games/camp-story.js": "c0070e54620e3e54bf363bd1dcbb0a7ab24f804e119ec35aca7daa028a2e0388",
+    "src/games/camp.js": "5852de534435378394b0438d69101307d0387198a31e5b6b84d75c092b76ef7c",
+    "src/games/commons-next.js": "cd7db395f2498ff52230fa799d3d40f254d03b36403a144f619c2b16daee2bd0",
+    "src/games/commons-policy.js": "d5700cbe386b91424f1aa4a6059a7cc0868ee920da264a1d12a66bee8979195f",
+    "src/games/commons.js": "b2c6f5e8bd38e84b729d73182170c88034edc3767e00c71cd65784233283aedb",
+    "src/human/index.js": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "tests/camp-validator.test.js": "f51d3aec465fc595a0805dd74eb0901f4f8104bf263ef05a45dfffb76720ed2c"
+  },
+  "node": "v26.8.1",
+  "protocol": "0d0cdd0",
+  "sourceCosts": {
+    "replayHost": {
+      "directBytes": 17503,
+      "directNonblankLines": 186,
+      "inclusiveBytes": 129480,
+      "files": [
+        "src/core/model.js",
+        "src/games/camp-story.js",
+        "src/games/camp.js",
+        "src/games/commons-next.js",
+        "src/games/commons-policy.js",
+        "src/games/commons.js",
+        "src/human/index.js",
+        "src/human/v0.1.1.js",
+        "src/runtime/clock.js",
+        "src/runtime/index.js"
+      ]
+    },
+    "localValidator": {
+      "directBytes": 10126,
+      "directNonblankLines": 117,
+      "inclusiveBytes": 122103,
+      "files": [
+        "src/core/model.js",
+        "src/experiments/camp-validator/local.js",
+        "src/games/camp.js",
+        "src/games/commons-next.js",
+        "src/games/commons-policy.js",
+        "src/games/commons.js",
+        "src/human/index.js",
+        "src/human/v0.1.1.js",
+        "src/runtime/clock.js",
+        "src/runtime/index.js"
+      ]
+    }
+  },
+  "results": [
+    {
+      "name": "new-pre-entry",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 1740,
+      "journalCommands": 0,
+      "inputSha256": "dd32acf763c54e9a5697aaf4d39ca15392ae3e2773cdb8f47abde74d5af125a9",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "6ebf33363f57231b5287c49a09172510b8259960eb2e0a60c2a9c7f1218c1577",
+        "milliseconds": [
+          0.2273330000000442,
+          0.36562500000002274,
+          0.18870800000001964
+        ],
+        "medianMs": 0.2273330000000442
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "6ebf33363f57231b5287c49a09172510b8259960eb2e0a60c2a9c7f1218c1577",
+        "milliseconds": [
+          0.31704100000001745,
+          0.12170800000001236,
+          0.10837500000002365
+        ],
+        "medianMs": 0.12170800000001236
+      },
+      "commandOmittedProjectionBytes": 1740
+    },
+    {
+      "name": "new-pre-entry-gather",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 2851,
+      "journalCommands": 0,
+      "inputSha256": "8372f2c97a63ad2a7bb23edaace6055e1db97e3fa776f48a4c80f88edceea740",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "bd8fd5cdc478f440c221344a778fcdec00f9e139ba3da0b9a294da469efe3e56",
+        "milliseconds": [
+          0.4035000000000082,
+          0.48908300000005056,
+          0.3353749999999991
+        ],
+        "medianMs": 0.4035000000000082
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "bd8fd5cdc478f440c221344a778fcdec00f9e139ba3da0b9a294da469efe3e56",
+        "milliseconds": [
+          0.19104200000003857,
+          0.16870800000003783,
+          0.15250000000003183
+        ],
+        "medianMs": 0.16870800000003783
+      },
+      "commandOmittedProjectionBytes": 2851
+    },
+    {
+      "name": "earned-entry",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 19906,
+      "journalCommands": 0,
+      "inputSha256": "5571979e15f2f5cd9f15fca865644b84d71f0e90d3808666341229e5ec0518ef",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "7739d7a2fce9212bc727ae158a479050dc1412a8908ba8493ad4c287a71ea0d5",
+        "milliseconds": [
+          2.376082999999994,
+          2.2854580000000624,
+          2.0214579999999387
+        ],
+        "medianMs": 2.2854580000000624
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "7739d7a2fce9212bc727ae158a479050dc1412a8908ba8493ad4c287a71ea0d5",
+        "milliseconds": [
+          1.3822079999999914,
+          1.0500420000000759,
+          0.8839159999999993
+        ],
+        "medianMs": 1.0500420000000759
+      },
+      "commandOmittedProjectionBytes": 19892
+    },
+    {
+      "name": "legacy-introduction",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 12750,
+      "journalCommands": 0,
+      "inputSha256": "2709553cbbbdfc70358000571af9124fa3f9d6496ef9352e6b305d919299c245",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "fcc2adf74695301f2b66bd7e8a72bdf2752c92b9e246cdcd42c76dfee46da219",
+        "milliseconds": [
+          1.36912499999994,
+          1.3910829999999805,
+          1.2817499999999882
+        ],
+        "medianMs": 1.36912499999994
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "fcc2adf74695301f2b66bd7e8a72bdf2752c92b9e246cdcd42c76dfee46da219",
+        "milliseconds": [
+          0.7259589999999889,
+          0.7148750000000064,
+          0.8455830000000333
+        ],
+        "medianMs": 0.7259589999999889
+      },
+      "commandOmittedProjectionBytes": 12736
+    },
+    {
+      "name": "paid-idle",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 12799,
+      "journalCommands": 2,
+      "inputSha256": "ecf6b3204b3e8d0c3a6bf47ea54770df9d02961434d09bc049ee68d57a697331",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "a46e0c202b43943f91900ba027ab15b58951fa8775efde742eb52c35e297f092",
+        "milliseconds": [
+          2.757667000000083,
+          2.47524999999996,
+          2.2491670000000568
+        ],
+        "medianMs": 2.47524999999996
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "a46e0c202b43943f91900ba027ab15b58951fa8775efde742eb52c35e297f092",
+        "milliseconds": [
+          0.6631249999999227,
+          0.6332499999999754,
+          0.62762500000008
+        ],
+        "medianMs": 0.6332499999999754
+      },
+      "commandOmittedProjectionBytes": 12735
+    },
+    {
+      "name": "partial-gather",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 13926,
+      "journalCommands": 3,
+      "inputSha256": "8fc1d0f9f23df36dd6c6f123e4e43fcd24268d373634f8d21bf49d2859121146",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "8b879cc860c3a43e5719ae504bbbfef50e4e15fa9b5378b49c4a2ec9761bb48d",
+        "milliseconds": [
+          2.901707999999985,
+          3.4062920000000076,
+          2.8503330000000915
+        ],
+        "medianMs": 2.901707999999985
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "8b879cc860c3a43e5719ae504bbbfef50e4e15fa9b5378b49c4a2ec9761bb48d",
+        "milliseconds": [
+          0.8340839999999616,
+          0.8084169999999631,
+          0.8074579999999969
+        ],
+        "medianMs": 0.8084169999999631
+      },
+      "commandOmittedProjectionBytes": 13824
+    },
+    {
+      "name": "partial-meal-ferry",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 13818,
+      "journalCommands": 4,
+      "inputSha256": "83bba666fe19e3a50d3a4a4185cd07a4274c999568df68cc7f44c2ef9b87c548",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "a0a41a25c83ce5e3477c987dc63fef0aa869bf8e878f49ac3783de29159312fb",
+        "milliseconds": [
+          22.73645799999997,
+          20.47854200000006,
+          19.74141599999996
+        ],
+        "medianMs": 20.47854200000006
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "a0a41a25c83ce5e3477c987dc63fef0aa869bf8e878f49ac3783de29159312fb",
+        "milliseconds": [
+          0.7477499999999964,
+          0.6466669999999795,
+          0.8097500000000082
+        ],
+        "medianMs": 0.7477499999999964
+      },
+      "commandOmittedProjectionBytes": 13694
+    },
+    {
+      "name": "partial-meal-after-ferry",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 12868,
+      "journalCommands": 6,
+      "inputSha256": "c93080cf4fbc97d9e2e693e3629373fb4f19950bee5b474bfb0ade1b170169c3",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "95d91e95e8602b3b9153a5e9b98fe020d99438c5524174d7600e850165d0a56c",
+        "milliseconds": [
+          21.641791000000012,
+          21.084458999999924,
+          20.663291000000072
+        ],
+        "medianMs": 21.084458999999924
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "95d91e95e8602b3b9153a5e9b98fe020d99438c5524174d7600e850165d0a56c",
+        "milliseconds": [
+          0.7228330000000369,
+          0.6677500000000691,
+          0.6682500000000573
+        ],
+        "medianMs": 0.6682500000000573
+      },
+      "commandOmittedProjectionBytes": 12693
+    },
+    {
+      "name": "rain-ended",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 12839,
+      "journalCommands": 5,
+      "inputSha256": "0cfd2eb88cfa95cdbbd4aef08da1dd46ce4a4b9ea64854e6f9e80cfe433a3727",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "0ce10caccffd7315e0f27d55226a1c269271ddb89c147a734784574285175747",
+        "milliseconds": [
+          37.75179200000002,
+          36.911749999999984,
+          37.37020899999993
+        ],
+        "medianMs": 37.37020899999993
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "0ce10caccffd7315e0f27d55226a1c269271ddb89c147a734784574285175747",
+        "milliseconds": [
+          0.7535410000000411,
+          0.6916250000000446,
+          0.6306660000000193
+        ],
+        "medianMs": 0.6916250000000446
+      },
+      "commandOmittedProjectionBytes": 12704
+    },
+    {
+      "name": "returned-six",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 12856,
+      "journalCommands": 6,
+      "inputSha256": "31724371c0222b75c7d49746e289f30795b0d62eecd51cfe7308bf22a64af545",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "24e2e44073839a986e7bc68660f4aa7f8b171954345be5858d93a24a028c0c0c",
+        "milliseconds": [
+          37.13695899999993,
+          36.391374999999925,
+          36.7953329999998
+        ],
+        "medianMs": 36.7953329999998
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "24e2e44073839a986e7bc68660f4aa7f8b171954345be5858d93a24a028c0c0c",
+        "milliseconds": [
+          0.6844589999998334,
+          0.6626250000001619,
+          0.78449999999998
+        ],
+        "medianMs": 0.6844589999998334
+      },
+      "commandOmittedProjectionBytes": 12703
+    },
+    {
+      "name": "legacy-rain-ferry",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 12179,
+      "journalCommands": 0,
+      "inputSha256": "8278b49b9f2fc3df887ef2f23534bc9feddc32486f02182f928099e5a5b954ed",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "81cf5fc86750cdd241b89c5c4153c3c49421beb52cdf36eb2632ecb2e692b9ca",
+        "milliseconds": [
+          1.3927919999998721,
+          1.27150000000006,
+          1.1854169999999158
+        ],
+        "medianMs": 1.27150000000006
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "81cf5fc86750cdd241b89c5c4153c3c49421beb52cdf36eb2632ecb2e692b9ca",
+        "milliseconds": [
+          0.8527910000000247,
+          0.775333000000046,
+          0.795415999999932
+        ],
+        "medianMs": 0.795415999999932
+      },
+      "commandOmittedProjectionBytes": 12165
+    },
+    {
+      "name": "legacy-rain-allocated",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 12273,
+      "journalCommands": 0,
+      "inputSha256": "ead6bfd1227636f49d3af8af84478d934b1f29c259a00200bb3d8fbfc98c7ced",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "81cf5fc86750cdd241b89c5c4153c3c49421beb52cdf36eb2632ecb2e692b9ca",
+        "milliseconds": [
+          1.230874999999969,
+          1.1071669999998903,
+          1.1167500000001382
+        ],
+        "medianMs": 1.1167500000001382
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "81cf5fc86750cdd241b89c5c4153c3c49421beb52cdf36eb2632ecb2e692b9ca",
+        "milliseconds": [
+          0.9167919999999867,
+          0.8577500000001237,
+          0.8817919999999049
+        ],
+        "medianMs": 0.8817919999999049
+      },
+      "commandOmittedProjectionBytes": 12259
+    },
+    {
+      "name": "legacy-rain-ended",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 10260,
+      "journalCommands": 0,
+      "inputSha256": "a7720863acfb7a931f0b03845c58c26d556f771cac39cfcbdf9f282b79641e0d",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "e23e4daefe7abe485b1011d2f31d52d1fb115c11764a4dea928ce2d2a954a9a8",
+        "milliseconds": [
+          0.9786249999999654,
+          0.8627080000001115,
+          0.7831670000000486
+        ],
+        "medianMs": 0.8627080000001115
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "e23e4daefe7abe485b1011d2f31d52d1fb115c11764a4dea928ce2d2a954a9a8",
+        "milliseconds": [
+          0.5259999999998399,
+          0.5084160000001248,
+          0.6982499999999163
+        ],
+        "medianMs": 0.5259999999998399
+      },
+      "commandOmittedProjectionBytes": 10246
+    },
+    {
+      "name": "carried-allocated-dispatched",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 16694,
+      "journalCommands": 4,
+      "inputSha256": "c5d6e13228595041fbd747d7702f75f30e2e891254689c6fc5e2968638912840",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "0ec939c6904574f78a457d708682d33c822bd896ba4d87eb3a614b424ca99a7d",
+        "milliseconds": [
+          28.189583000000084,
+          28.19329199999993,
+          28.049999999999955
+        ],
+        "medianMs": 28.189583000000084
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "0ec939c6904574f78a457d708682d33c822bd896ba4d87eb3a614b424ca99a7d",
+        "milliseconds": [
+          1.119083000000046,
+          0.9767919999999322,
+          0.8753329999999551
+        ],
+        "medianMs": 0.9767919999999322
+      },
+      "commandOmittedProjectionBytes": 16562
+    },
+    {
+      "name": "new-cache-completed",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 18561,
+      "journalCommands": 4,
+      "inputSha256": "7dc78351575d3ca482ba91ab6bb2641c5629ca06f9aa37a9b05cceed214e053b",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "c4d82fa206babedfa593472e8bd33b664f66aa19ad4e13c265604c72196bd08d",
+        "milliseconds": [
+          15.126457999999957,
+          14.834708000000091,
+          14.278999999999996
+        ],
+        "medianMs": 14.834708000000091
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "c4d82fa206babedfa593472e8bd33b664f66aa19ad4e13c265604c72196bd08d",
+        "milliseconds": [
+          1.4557910000000902,
+          1.1679169999999885,
+          1.258874999999989
+        ],
+        "medianMs": 1.258874999999989
+      },
+      "commandOmittedProjectionBytes": 18428
+    },
+    {
+      "name": "journal-500",
+      "kind": "legal-api-fixture",
+      "purpose": null,
+      "bytes": 31679,
+      "journalCommands": 500,
+      "inputSha256": "e8943ced10f1058306d612c6416cdbfd865e2d77714671f8941313f9e7b99e85",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "b823c6c883c0d011c76ed320d4460a84474f51fc628069974c031a09321e7d77",
+        "milliseconds": [
+          117.65579100000014,
+          124.81845899999985,
+          116.10149999999999
+        ],
+        "medianMs": 117.65579100000014
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "b823c6c883c0d011c76ed320d4460a84474f51fc628069974c031a09321e7d77",
+        "milliseconds": [
+          1.2046660000000884,
+          0.9469159999998737,
+          0.9566250000000309
+        ],
+        "medianMs": 0.9566250000000309
+      },
+      "commandOmittedProjectionBytes": 13500
+    },
+    {
+      "name": "changed-idle-body",
+      "kind": "prescribed-changed-snapshot",
+      "purpose": "Changed bounded body; no paid receipts or journal edited.",
+      "bytes": 12798,
+      "journalCommands": 2,
+      "inputSha256": "a2528e35c4e52ab5216b18eeeade91ec5cff3f7cf601bd7d735a951dc6a6dbb4",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": false,
+        "error": "Story world does not match the source journal",
+        "milliseconds": [
+          2.0038750000001073,
+          2.0511250000001837,
+          1.9044169999999667
+        ],
+        "medianMs": 2.0038750000001073
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "8062a7e8a1d8ac105b9ee392df04e54390117929510775bd262ee795eaa85e4d",
+        "milliseconds": [
+          0.6120829999999842,
+          0.5844589999999243,
+          0.7257079999999405
+        ],
+        "medianMs": 0.6120829999999842
+      },
+      "commandOmittedProjectionBytes": 12734
+    },
+    {
+      "name": "different-legal-paid-work",
+      "kind": "prescribed-changed-snapshot",
+      "purpose": "Replace idle world with a separately legal same-root five-minute work world, leaving journal unchanged.",
+      "bytes": 13888,
+      "journalCommands": 2,
+      "inputSha256": "13546b76ff9d4c7fd68b38dafad954b772e8dc23559a090e9aafab94ec274048",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": false,
+        "error": "Story world does not match the source journal",
+        "milliseconds": [
+          2.0152499999999236,
+          2.1210839999998825,
+          1.9622910000000502
+        ],
+        "medianMs": 2.0152499999999236
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "8b879cc860c3a43e5719ae504bbbfef50e4e15fa9b5378b49c4a2ec9761bb48d",
+        "milliseconds": [
+          0.65037499999994,
+          0.6367499999998927,
+          0.7107920000000831
+        ],
+        "medianMs": 0.65037499999994
+      },
+      "commandOmittedProjectionBytes": 13824
+    },
+    {
+      "name": "changed-new-cache-time",
+      "kind": "prescribed-changed-snapshot",
+      "purpose": "Move matching world/window latest completion timestamp one minute earlier without changing work totals.",
+      "bytes": 18561,
+      "journalCommands": 4,
+      "inputSha256": "6f3844bf532c11d834853fa9e6db0fd623db21742cb843695d99a95ba792a3bd",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": false,
+        "error": "Story facts do not match the source journal",
+        "milliseconds": [
+          14.521792000000005,
+          14.406624999999849,
+          14.519000000000005
+        ],
+        "medianMs": 14.519000000000005
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "b74944280918b3c7f0a162a20c8913eb9d4406089d68d18577b8b1c7670187f2",
+        "milliseconds": [
+          1.2237079999999878,
+          1.1349170000000868,
+          1.1175000000000637
+        ],
+        "medianMs": 1.1349170000000868
+      },
+      "commandOmittedProjectionBytes": 18428
+    },
+    {
+      "name": "dispatch-before-allocation-history",
+      "kind": "prescribed-changed-snapshot",
+      "purpose": "Reverse same-minute dispatch/allocation commands while retaining original valid window and world.",
+      "bytes": 16694,
+      "journalCommands": 4,
+      "inputSha256": "d15ceda741a465505aa6ae5d7ec2ea3a827beb8f863e50061aeba01465eb85b3",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": false,
+        "error": "The ferry has departed. Later caches can still provision camp.",
+        "milliseconds": [
+          27.812916000000087,
+          27.489040999999816,
+          27.061291999999867
+        ],
+        "medianMs": 27.489040999999816
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "0ec939c6904574f78a457d708682d33c822bd896ba4d87eb3a614b424ca99a7d",
+        "milliseconds": [
+          0.9768329999999423,
+          0.918292000000065,
+          1.0204579999999623
+        ],
+        "medianMs": 0.9768329999999423
+      },
+      "commandOmittedProjectionBytes": 16562
+    },
+    {
+      "name": "shifted-deadline",
+      "kind": "prescribed-changed-snapshot",
+      "purpose": "Obvious pinned-deadline corruption that the rival should catch.",
+      "bytes": 12799,
+      "journalCommands": 2,
+      "inputSha256": "526be40af6e1dc3683818ca40888327d68162f9ac11662784090ebc9e5b3cd80",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": false,
+        "error": "Story facts do not match the source journal",
+        "milliseconds": [
+          1.8962910000000193,
+          1.909958000000188,
+          1.828333000000157
+        ],
+        "medianMs": 1.8962910000000193
+      },
+      "local": {
+        "accepted": false,
+        "error": "Changed pinned window",
+        "milliseconds": [
+          0.5680419999998776,
+          0.5847920000001068,
+          0.5707499999998618
+        ],
+        "medianMs": 0.5707499999998618
+      },
+      "commandOmittedProjectionBytes": 12735
+    },
+    {
+      "name": "duplicate-cache-allocation",
+      "kind": "prescribed-changed-snapshot",
+      "purpose": "Obvious duplicate ownership corruption that the rival should catch.",
+      "bytes": 16742,
+      "journalCommands": 4,
+      "inputSha256": "6a298d9ced75163d372ddddccfbbd0de49296fc7a4145d7737779fbca81b3b89",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": false,
+        "error": "Story facts do not match the source journal",
+        "milliseconds": [
+          27.123832999999877,
+          27.54208400000016,
+          26.86283299999991
+        ],
+        "medianMs": 27.123832999999877
+      },
+      "local": {
+        "accepted": false,
+        "error": "Unborn or duplicate allocation",
+        "milliseconds": [
+          0.9126250000001619,
+          0.8402920000000904,
+          0.8312080000000606
+        ],
+        "medianMs": 0.8402920000000904
+      },
+      "commandOmittedProjectionBytes": 16610
+    },
+    {
+      "name": "changed-Rain-prefix",
+      "kind": "prescribed-changed-snapshot",
+      "purpose": "Alter already settled original Rain allocation; root prefix must remain authoritative.",
+      "bytes": 12267,
+      "journalCommands": 0,
+      "inputSha256": "43fa5240d58af7a71548af1f961c8443247d149824fb18be7baf2222748d6753",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": false,
+        "error": "Story facts do not match the source journal",
+        "milliseconds": [
+          1.1422079999999823,
+          0.9846669999999449,
+          0.9702920000001996
+        ],
+        "medianMs": 0.9846669999999449
+      },
+      "local": {
+        "accepted": false,
+        "error": "Changed fixed Rain prefix",
+        "milliseconds": [
+          0.8202919999998812,
+          0.6922500000000582,
+          0.6869999999998981
+        ],
+        "medianMs": 0.6922500000000582
+      },
+      "commandOmittedProjectionBytes": 12253
+    },
+    {
+      "name": "pre-entry-body-snapshot-limit",
+      "kind": "prescribed-changed-snapshot",
+      "purpose": "Pre-entry has no recorded command-history claim in either validator.",
+      "bytes": 1741,
+      "journalCommands": 0,
+      "inputSha256": "00aa861d81fd1bbc932748ff1d0c09f253db81ff4545fc53612c5aa11be15f86",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "e9c92d7d70ac6308cd872aa983594d87611e74ed424424f5dd9ff956bafc7c57",
+        "milliseconds": [
+          0.25404200000002675,
+          0.2102500000000873,
+          0.1794999999999618
+        ],
+        "medianMs": 0.2102500000000873
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "e9c92d7d70ac6308cd872aa983594d87611e74ed424424f5dd9ff956bafc7c57",
+        "milliseconds": [
+          0.10141700000008314,
+          0.1536670000000413,
+          0.12095900000008442
+        ],
+        "medianMs": 0.12095900000008442
+      },
+      "commandOmittedProjectionBytes": 1741
+    },
+    {
+      "name": "post-return-body-snapshot-limit",
+      "kind": "prescribed-changed-snapshot",
+      "purpose": "After Return, public source checks extension rather than replaying later body history.",
+      "bytes": 12859,
+      "journalCommands": 6,
+      "inputSha256": "74247bfe7d3fff2790c5be8a297cff64367663a892e2d67fea92de65fe000173",
+      "kernelAccepted": true,
+      "replay": {
+        "accepted": true,
+        "physicalSha256": "d88bf1909e482b835003cf47520fe804c0d2ce5dc83aa7372c56df4829997e6d",
+        "milliseconds": [
+          38.717291999999816,
+          36.91099999999983,
+          36.58433299999979
+        ],
+        "medianMs": 36.91099999999983
+      },
+      "local": {
+        "accepted": true,
+        "physicalSha256": "d88bf1909e482b835003cf47520fe804c0d2ce5dc83aa7372c56df4829997e6d",
+        "milliseconds": [
+          0.6492909999999483,
+          0.5868330000000697,
+          0.6019169999999576
+        ],
+        "medianMs": 0.6019169999999576
+      },
+      "commandOmittedProjectionBytes": 12706
+    }
+  ]
+}
