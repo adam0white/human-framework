@@ -4,6 +4,10 @@ Current restart guide: [handoff](../HANDOFF.md). The latest [Common Ground play 
 
 The laboratory establishes a working loop and reproducible comparisons. The [Before departure workshop](workshop-integration.md) embeds a shared body/practice component while owning its own world. The [0.4 milestone](release-0.4.md) adds three independently authored hosts around the same unchanged component: a longer pump yard, a parcel route and a two-household water game. The [initial direction reviews](post-mvp-review.md) and [two separate external Claude Fable reviews](../research/reviews/2026-09-07-claude-fable-verification.md) put integration before broader faculties. The [0.3 delivery record](release-0.3.md) separates implemented contracts from usefulness and validation still to test.
 
+## Active player-feedback milestone — 2026-09-08
+
+[New direct feedback](player-feedback-2026-09-08.md) supports compact persistent controls and a coherent continuing story. The [active parallel plan](superpowers/plans/2026-09-08-player-continuity.md) implements HUD/tab layouts across all games, reproduces the rest/ongoing-work issues, and designs actual chapter carryover. Keep the completed information study as evidence; its factual-report slice can become a later chapter. One player's perceived realism, meaningful stress and attachment guide product experiments without closing human-calibration or the five-person gate.
+
 ## Current private milestone and next work — actor-local information
 
 [Across the Cut feasibility](across-cut-feasibility.md) is complete: a private two-actor information boundary, actual paid bodies/resources, 170 source-frozen replayed records and 594 tests. Fable-driven and root-derived stronger no-radio/two-report controls are retained. Received withdrawal can change an actual release decision; final confirmation still earns no service gain in the tested policies. The unchanged public app remains 0.9. [Review dispositions](reviews/2026-09-08-across-cut-review.md).
