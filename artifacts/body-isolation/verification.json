@@ -1,0 +1,1106 @@
+{
+  "registrationCommit": "780d20d7f1aaa57f49c2ee1fde0d0042b28cd274",
+  "implementationCommit": "f8e146f6451d5649874f3f3637d4c1fd115604fa",
+  "sourceHashesVerified": 15,
+  "retainedHashes": {
+    "development": "61dacf697a587d1d6b386b96aa559f47d1da237fa153ab1c04b821cd323f7781",
+    "reserved": "68272ed722ccf1cde326b1eb35df70a257c3d157fff695b54735c8905f4a6c4a",
+    "sensitivity": "5713da5f13ce062e2675f61043ccedef182f0c1195a0057b4f321ec3d5bc3b13",
+    "state": "16c5586423022eaa1f993333428267902df7c99c18fbc89697b1155289227500"
+  },
+  "reproduced": true,
+  "pairs": 75,
+  "offeredModelCommands": 1512,
+  "retestBranches": 108,
+  "matchedExposureChecks": 1389,
+  "maxMatchedExposureSkillError": 0,
+  "maxCumulativePracticeError": 1.1102230246251565e-16,
+  "maxForecastLogitResidual": 1.9984014443252818e-15,
+  "maxOutputDecompositionResidual": 1.1324274851176597e-14,
+  "frozenHumanAllTrajectoriesEqual": true,
+  "commonInputTimeResourceAccounting": true,
+  "paidRetestAndTaskSpecificity": true,
+  "sizes": {
+    "pooledValidation": {
+      "path": "src/experiments/body-isolation/pooled-model.js",
+      "lineRange": [
+        4,
+        12
+      ],
+      "utf8Bytes": 867,
+      "nonblankLines": 9,
+      "sha256": "604dee8d2cc563854e00f065f8425f8620050867f1148c29bb55f31ccc0cd5b5"
+    },
+    "pooledStateValidation": {
+      "path": "src/experiments/body-isolation/pooled-model.js",
+      "lineRange": [
+        25,
+        44
+      ],
+      "utf8Bytes": 1874,
+      "nonblankLines": 20,
+      "sha256": "11ba906e4c89a5fcce3173497689a9207274c28366f777c8da72be9043130d02"
+    },
+    "hostValidation": {
+      "path": "src/experiments/body-isolation/host.js",
+      "lineRange": [
+        4,
+        40
+      ],
+      "utf8Bytes": 3638,
+      "nonblankLines": 37,
+      "sha256": "dac10ee8363ad31372464a1780d0ffc3730070e91e58af46bb095a2107740a93"
+    },
+    "practiceDependency": {
+      "path": "src/core/model.js",
+      "lineRange": [
+        108,
+        111
+      ],
+      "utf8Bytes": 289,
+      "nonblankLines": 4,
+      "sha256": "c90bfaf5d22f22b510a9a16b894d7e73c5aa6b4776cd80253c9e0b08cbeed810"
+    },
+    "humanValidation": [
+      {
+        "path": "src/human/v0.1.1.js",
+        "lineRange": [
+          8,
+          42
+        ],
+        "utf8Bytes": 1961,
+        "nonblankLines": 34,
+        "sha256": "5ed6789a16e7f3942c9a77f1ed683bba653355793f95eac53d42cecbcb515791"
+      },
+      {
+        "path": "src/human/v0.1.1.js",
+        "lineRange": [
+          56,
+          103
+        ],
+        "utf8Bytes": 3583,
+        "nonblankLines": 47,
+        "sha256": "570f36e869834609f519cc816b1fbf8fed740b2ea3e3bc376907db6897880921"
+      }
+    ],
+    "humanUsedModelDeclarations": [
+      {
+        "path": "src/core/model.js",
+        "lineRange": [
+          4,
+          9
+        ],
+        "utf8Bytes": 293,
+        "nonblankLines": 6,
+        "sha256": "73470a47878de37d91d9581d24a345455b3c4074c303c90439caa37d1bae8197"
+      },
+      {
+        "path": "src/core/model.js",
+        "lineRange": [
+          11,
+          11
+        ],
+        "utf8Bytes": 115,
+        "nonblankLines": 1,
+        "sha256": "77f25dccd7e27a7366b9cc95ef863f70fce904583e4e1e3610ffa2790d91a39f"
+      },
+      {
+        "path": "src/core/model.js",
+        "lineRange": [
+          22,
+          31
+        ],
+        "utf8Bytes": 596,
+        "nonblankLines": 10,
+        "sha256": "a0a967725294d2602799e09232fb0a7ac4e2a9fa80dae78ce57fd8e87847e26a"
+      },
+      {
+        "path": "src/core/model.js",
+        "lineRange": [
+          45,
+          47
+        ],
+        "utf8Bytes": 190,
+        "nonblankLines": 3,
+        "sha256": "7d7722226ff00654d1b2fdd9989837113c83025e04f14edde7bdc3690bbefe8a"
+      },
+      {
+        "path": "src/core/model.js",
+        "lineRange": [
+          108,
+          111
+        ],
+        "utf8Bytes": 289,
+        "nonblankLines": 4,
+        "sha256": "c90bfaf5d22f22b510a9a16b894d7e73c5aa6b4776cd80253c9e0b08cbeed810"
+      },
+      {
+        "path": "src/core/model.js",
+        "lineRange": [
+          116,
+          120
+        ],
+        "utf8Bytes": 269,
+        "nonblankLines": 5,
+        "sha256": "d0659cd221fd803f51ab68e41ef12ba432eb8e49bee5a84e9ede68822da8de21"
+      }
+    ],
+    "pooledUsedModelDeclarations": [
+      {
+        "path": "src/core/model.js",
+        "lineRange": [
+          4,
+          8
+        ],
+        "utf8Bytes": 226,
+        "nonblankLines": 5,
+        "sha256": "b9c8d896d310fe604daaeb834a7368b911411323200254dee7f4e41b10200a91"
+      },
+      {
+        "path": "src/core/model.js",
+        "lineRange": [
+          45,
+          47
+        ],
+        "utf8Bytes": 190,
+        "nonblankLines": 3,
+        "sha256": "7d7722226ff00654d1b2fdd9989837113c83025e04f14edde7bdc3690bbefe8a"
+      },
+      {
+        "path": "src/core/model.js",
+        "lineRange": [
+          108,
+          111
+        ],
+        "utf8Bytes": 289,
+        "nonblankLines": 4,
+        "sha256": "c90bfaf5d22f22b510a9a16b894d7e73c5aa6b4776cd80253c9e0b08cbeed810"
+      }
+    ],
+    "sharedReusedFunctions": [
+      {
+        "path": "src/experiments/mechanism-comparison/experiment.js",
+        "lineRange": [
+          64,
+          65
+        ],
+        "utf8Bytes": 169,
+        "nonblankLines": 2,
+        "sha256": "b9fd023e6f382e20007f9714716181fad8e3b2696143f39f348360584d4d9c6a"
+      },
+      {
+        "path": "src/experiments/mechanism-comparison/experiment.js",
+        "lineRange": [
+          76,
+          90
+        ],
+        "utf8Bytes": 1300,
+        "nonblankLines": 15,
+        "sha256": "8c2938991ce3db28017bde36d1eadb64d83cad2220ae7583ee152b830835729b"
+      }
+    ]
+  },
+  "comparisons": [
+    {
+      "id": "development/idle-control",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 0,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "development/balanced",
+      "equivalent": true,
+      "outputDifference": 0.3972615002717106,
+      "jointOutputGap": 0.3972615002717139,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 8,
+        "pooled": 8
+      }
+    },
+    {
+      "id": "development/sustained",
+      "equivalent": false,
+      "outputDifference": 3.8780451537211285,
+      "jointOutputGap": 7.771561172376096e-15,
+      "pooledOnlyOutput": 3.8780451537211205,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 7,
+        "pooled": 3
+      }
+    },
+    {
+      "id": "development/hungry-rest",
+      "equivalent": false,
+      "outputDifference": 32.3367374341327,
+      "jointOutputGap": 3.4408346524782987,
+      "pooledOnlyOutput": 28.895902781654403,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 10,
+        "pooled": 6
+      }
+    },
+    {
+      "id": "development/fatigued-meals",
+      "equivalent": false,
+      "outputDifference": 29.289380109104247,
+      "jointOutputGap": 0.7182329837993797,
+      "pooledOnlyOutput": 28.571147125304865,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 11,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "development/scarce",
+      "equivalent": true,
+      "outputDifference": 0.11346836538305283,
+      "jointOutputGap": 0.1134683653830515,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 8,
+        "pooled": 8
+      }
+    },
+    {
+      "id": "development/retest-novice/a",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 1.1102230246251565e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 1
+      }
+    },
+    {
+      "id": "development/retest-novice/b",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 1.1102230246251565e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 1
+      }
+    },
+    {
+      "id": "development/retest-novice/idle",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "development/retest-practiced/a",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 2.220446049250313e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 1
+      }
+    },
+    {
+      "id": "development/retest-practiced/b",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 2.220446049250313e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 1
+      }
+    },
+    {
+      "id": "development/retest-practiced/idle",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "reserved/alias-hungry-rest",
+      "equivalent": false,
+      "outputDifference": 22.5673580212475,
+      "jointOutputGap": 1.1102230246251565e-15,
+      "pooledOnlyOutput": 22.567358021247493,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 6,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "reserved/alias-fatigued-rest",
+      "equivalent": false,
+      "outputDifference": 1.5789818697713969,
+      "jointOutputGap": 1.5789818697713953,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "reserved/alias-hungry-meal",
+      "equivalent": false,
+      "outputDifference": 5.073412488409424,
+      "jointOutputGap": 0.4794058429176712,
+      "pooledOnlyOutput": 4.594006645491753,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 3,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "reserved/alias-fatigued-meal",
+      "equivalent": false,
+      "outputDifference": 15.065024936306717,
+      "jointOutputGap": 0.4416301524878252,
+      "pooledOnlyOutput": 14.623394783818892,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 7,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "reserved/long-mixed",
+      "equivalent": true,
+      "outputDifference": 0.4881715053941207,
+      "jointOutputGap": 0.48817150539410936,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 16,
+        "pooled": 15
+      }
+    },
+    {
+      "id": "reserved/material-shortage",
+      "equivalent": true,
+      "outputDifference": 0.14914001121635145,
+      "jointOutputGap": 0.14914001121635212,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 9,
+        "pooled": 8
+      }
+    },
+    {
+      "id": "reserved/retest-strained-mixed/a",
+      "equivalent": false,
+      "outputDifference": 3.337284096945279,
+      "jointOutputGap": 2.220446049250313e-15,
+      "pooledOnlyOutput": 3.337284096945278,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "reserved/retest-strained-mixed/b",
+      "equivalent": false,
+      "outputDifference": 6.219119064080026,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 6.2191190640800285,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "reserved/retest-strained-mixed/idle",
+      "equivalent": false,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "reserved/choice-hungry-rest",
+      "equivalent": false,
+      "outputDifference": 5.124973964842105,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 5.124973964842105,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "reserved/choice-hungry-meal",
+      "equivalent": true,
+      "outputDifference": -8.881784197001252e-16,
+      "jointOutputGap": -5.551115123125783e-16,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 0,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "reserved/choice-fatigued-rest",
+      "equivalent": true,
+      "outputDifference": 8.881784197001252e-16,
+      "jointOutputGap": 1.1102230246251565e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 0,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "reserved/choice-fatigued-meal",
+      "equivalent": false,
+      "outputDifference": 4.231147388679536,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 4.231147388679536,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/idle-control",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 0,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/balanced",
+      "equivalent": true,
+      "outputDifference": 0.3972615002717106,
+      "jointOutputGap": 0.3972615002717139,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 8,
+        "pooled": 4
+      }
+    },
+    {
+      "id": "recovery-low/sustained",
+      "equivalent": false,
+      "outputDifference": 3.8780451537211285,
+      "jointOutputGap": 7.771561172376096e-15,
+      "pooledOnlyOutput": 3.8780451537211205,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 7,
+        "pooled": 3
+      }
+    },
+    {
+      "id": "recovery-low/hungry-rest",
+      "equivalent": false,
+      "outputDifference": 31.838161461033057,
+      "jointOutputGap": 2.9422586793786554,
+      "pooledOnlyOutput": 28.895902781654403,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 10,
+        "pooled": 5
+      }
+    },
+    {
+      "id": "recovery-low/fatigued-meals",
+      "equivalent": false,
+      "outputDifference": 23.891821623263553,
+      "jointOutputGap": 0.49850861665700824,
+      "pooledOnlyOutput": 23.39331300660654,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 11,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/scarce",
+      "equivalent": true,
+      "outputDifference": 0.11346836538305283,
+      "jointOutputGap": 0.1134683653830515,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 8,
+        "pooled": 7
+      }
+    },
+    {
+      "id": "recovery-low/retest-novice/a",
+      "equivalent": false,
+      "outputDifference": 0,
+      "jointOutputGap": 1.1102230246251565e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/retest-novice/b",
+      "equivalent": false,
+      "outputDifference": 0,
+      "jointOutputGap": 1.1102230246251565e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/retest-novice/idle",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "recovery-low/retest-practiced/a",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 2.220446049250313e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/retest-practiced/b",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 2.220446049250313e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/retest-practiced/idle",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "recovery-low/alias-hungry-rest",
+      "equivalent": false,
+      "outputDifference": 19.720483979548682,
+      "jointOutputGap": -0.49857597309964197,
+      "pooledOnlyOutput": 20.219059952648323,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 6,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/alias-fatigued-rest",
+      "equivalent": false,
+      "outputDifference": -1.2678921719274143,
+      "jointOutputGap": -1.2678921719274128,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/alias-hungry-meal",
+      "equivalent": false,
+      "outputDifference": 3.1727770403086595,
+      "jointOutputGap": -0.8818473178696284,
+      "pooledOnlyOutput": 4.0546243581782875,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 3,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/alias-fatigued-meal",
+      "equivalent": false,
+      "outputDifference": 13.164389488205952,
+      "jointOutputGap": 0.17565026516102644,
+      "pooledOnlyOutput": 12.988739223044925,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 7,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/long-mixed",
+      "equivalent": true,
+      "outputDifference": -0.6455831858859256,
+      "jointOutputGap": -0.6455831858859318,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 16,
+        "pooled": 13
+      }
+    },
+    {
+      "id": "recovery-low/material-shortage",
+      "equivalent": true,
+      "outputDifference": -0.05746909743226958,
+      "jointOutputGap": -0.05746909743226891,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 9,
+        "pooled": 7
+      }
+    },
+    {
+      "id": "recovery-low/retest-strained-mixed/a",
+      "equivalent": false,
+      "outputDifference": 3.337284096945279,
+      "jointOutputGap": 2.220446049250313e-15,
+      "pooledOnlyOutput": 3.337284096945278,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/retest-strained-mixed/b",
+      "equivalent": false,
+      "outputDifference": 6.219119064080026,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 6.2191190640800285,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/retest-strained-mixed/idle",
+      "equivalent": false,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 1
+      }
+    },
+    {
+      "id": "recovery-low/choice-hungry-rest",
+      "equivalent": false,
+      "outputDifference": 4.625701546562505,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 4.625701546562505,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/choice-hungry-meal",
+      "equivalent": true,
+      "outputDifference": -0.2659798873267989,
+      "jointOutputGap": -0.2659798873267988,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 0,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/choice-fatigued-rest",
+      "equivalent": false,
+      "outputDifference": -0.4992724182795989,
+      "jointOutputGap": -0.4992724182795988,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 0,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-low/choice-fatigued-meal",
+      "equivalent": false,
+      "outputDifference": 3.9651675013527377,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 3.9651675013527377,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-high/idle-control",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 0,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-high/balanced",
+      "equivalent": true,
+      "outputDifference": 0.3972615002717106,
+      "jointOutputGap": 0.3972615002717139,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 8,
+        "pooled": 8
+      }
+    },
+    {
+      "id": "recovery-high/sustained",
+      "equivalent": false,
+      "outputDifference": 3.8780451537211285,
+      "jointOutputGap": 7.771561172376096e-15,
+      "pooledOnlyOutput": 3.8780451537211205,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 7,
+        "pooled": 3
+      }
+    },
+    {
+      "id": "recovery-high/hungry-rest",
+      "equivalent": false,
+      "outputDifference": 32.3367374341327,
+      "jointOutputGap": 3.4408346524782987,
+      "pooledOnlyOutput": 28.895902781654403,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 10,
+        "pooled": 6
+      }
+    },
+    {
+      "id": "recovery-high/fatigued-meals",
+      "equivalent": false,
+      "outputDifference": 33.235289352416245,
+      "jointOutputGap": 0.948489800046072,
+      "pooledOnlyOutput": 32.28679955237017,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 11,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "recovery-high/scarce",
+      "equivalent": true,
+      "outputDifference": 0.11346836538305283,
+      "jointOutputGap": 0.1134683653830515,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 8,
+        "pooled": 8
+      }
+    },
+    {
+      "id": "recovery-high/retest-novice/a",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 1.1102230246251565e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "recovery-high/retest-novice/b",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 1.1102230246251565e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "recovery-high/retest-novice/idle",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "recovery-high/retest-practiced/a",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 2.220446049250313e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "recovery-high/retest-practiced/b",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 2.220446049250313e-15,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "recovery-high/retest-practiced/idle",
+      "equivalent": true,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "recovery-high/alias-hungry-rest",
+      "equivalent": false,
+      "outputDifference": 23.79662090706524,
+      "jointOutputGap": 0.4980793040745035,
+      "pooledOnlyOutput": 23.29854160299074,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 6,
+        "pooled": 3
+      }
+    },
+    {
+      "id": "recovery-high/alias-fatigued-rest",
+      "equivalent": false,
+      "outputDifference": 2.8082447555891434,
+      "jointOutputGap": 2.808244755589142,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 3
+      }
+    },
+    {
+      "id": "recovery-high/alias-hungry-meal",
+      "equivalent": false,
+      "outputDifference": 6.987559292589015,
+      "jointOutputGap": 1.8444875293088718,
+      "pooledOnlyOutput": 5.14307176328014,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 3,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-high/alias-fatigued-meal",
+      "equivalent": false,
+      "outputDifference": 16.97917174048631,
+      "jointOutputGap": 0.7121427906835109,
+      "pooledOnlyOutput": 16.267028949802796,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 7,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-high/long-mixed",
+      "equivalent": true,
+      "outputDifference": 0.4881715053941207,
+      "jointOutputGap": 0.48817150539410936,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 16,
+        "pooled": 16
+      }
+    },
+    {
+      "id": "recovery-high/material-shortage",
+      "equivalent": true,
+      "outputDifference": 0.34429191952336424,
+      "jointOutputGap": 0.344291919523364,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 9,
+        "pooled": 8
+      }
+    },
+    {
+      "id": "recovery-high/retest-strained-mixed/a",
+      "equivalent": false,
+      "outputDifference": 3.337284096945279,
+      "jointOutputGap": 2.220446049250313e-15,
+      "pooledOnlyOutput": 3.337284096945278,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 1
+      }
+    },
+    {
+      "id": "recovery-high/retest-strained-mixed/b",
+      "equivalent": false,
+      "outputDifference": 6.219119064080026,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 6.2191190640800285,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 1
+      }
+    },
+    {
+      "id": "recovery-high/retest-strained-mixed/idle",
+      "equivalent": false,
+      "outputDifference": 0,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 2
+      }
+    },
+    {
+      "id": "recovery-high/choice-hungry-rest",
+      "equivalent": false,
+      "outputDifference": 5.621765008857981,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 5.621765008857981,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 2,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-high/choice-hungry-meal",
+      "equivalent": true,
+      "outputDifference": 0.27051263819568483,
+      "jointOutputGap": 0.27051263819568516,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 0,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-high/choice-fatigued-rest",
+      "equivalent": false,
+      "outputDifference": 0.49679104401587715,
+      "jointOutputGap": 0.49679104401587737,
+      "pooledOnlyOutput": 0,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 0,
+        "pooled": 0
+      }
+    },
+    {
+      "id": "recovery-high/choice-fatigued-meal",
+      "equivalent": false,
+      "outputDifference": 4.501660026875221,
+      "jointOutputGap": 0,
+      "pooledOnlyOutput": 4.501660026875221,
+      "humanOnlyOutput": 0,
+      "boundaryEndpointCounts": {
+        "human": 1,
+        "pooled": 0
+      }
+    }
+  ],
+  "limitations": "This post-freeze audit checks retained artifact arithmetic, reproducibility and frozen Human equivalence. It is not a blind study, authenticated import audit, human validation, authoring-effort measure or independent reviewer verdict."
+}

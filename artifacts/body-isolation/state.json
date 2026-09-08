@@ -1,0 +1,187 @@
+{
+  "format": "body-isolation-result",
+  "version": 1,
+  "action": "state",
+  "partition": null,
+  "result": {
+    "workload": {
+      "commands": 10000,
+      "food": 4000,
+      "parts": 4000,
+      "stateBudgetBytes": 8192
+    },
+    "models": {
+      "human": {
+        "initialBytes": 705,
+        "finalBytes": 792,
+        "peakBytes": 1396,
+        "withinBudget": true,
+        "finalStats": {
+          "output": 31987.146321781904,
+          "workMinutes": 66680,
+          "restMinutes": 66660,
+          "mealMinutes": 33330,
+          "idleMinutes": 0,
+          "blockedMinutes": 0,
+          "resourceMinutes": 0,
+          "foodConsumed": 3333,
+          "partsConsumed": 3334,
+          "practiceMinutes": {
+            "a": 66680,
+            "b": 0
+          },
+          "completedCommands": 10000
+        }
+      },
+      "pooled": {
+        "initialBytes": 765,
+        "finalBytes": 834,
+        "peakBytes": 1268,
+        "withinBudget": true,
+        "finalStats": {
+          "output": 32017.71995672167,
+          "workMinutes": 66680,
+          "restMinutes": 66660,
+          "mealMinutes": 33330,
+          "idleMinutes": 0,
+          "blockedMinutes": 0,
+          "resourceMinutes": 0,
+          "foodConsumed": 3333,
+          "partsConsumed": 3334,
+          "practiceMinutes": {
+            "a": 66680,
+            "b": 0
+          },
+          "completedCommands": 10000
+        }
+      }
+    },
+    "limitations": "Active serialized host/person state including pending attempts. No retained event history. Number/counter text grows modestly; no timing, physical-mobile or measured human authoring claim."
+  },
+  "counts": null,
+  "provenance": {
+    "registrationCommit": "780d20d",
+    "executionCommit": "f8e146f6451d5649874f3f3637d4c1fd115604fa",
+    "sourceSha256": {
+      "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "src/experiments/mechanism-comparison/experiment.js": "710a3b9db779ddb5f0b819dad5f4551daa792837ea3b9fea18d8025b68337dc8",
+      "src/experiments/mechanism-comparison/adapters.js": "c8703891fcc604ea74ce16b4b17304be8233214d72eddb1a3b4837b55c6dab01",
+      "src/experiments/mechanism-comparison/small-model.js": "9b2698353e644b29e45f860b23e5f7816d8631d526c7d475341f1444fd7f2eda",
+      "docs/body-isolation-protocol.md": "5ac8206039c704e06f7c6cccfdfc48ac81f2b49eea7895320f06508214ee1914",
+      "artifacts/body-isolation/protocol.json": "8b946ace0f3341c7484a22fd734c7db12d1b446d2b81f6559c9ae06e77041c03",
+      "src/experiments/body-isolation/pooled-model.js": "8a572cfd889207819935f8b78294470d96c41385052d9b594b33862285516a9a",
+      "src/experiments/body-isolation/host.js": "1dc63629ed5335bf1d454ae647203a14c7fdae23c8812adc8a2d1140d5e74d1d",
+      "src/experiments/body-isolation/adapters.js": "daccecf0bc81d63df0f1469655bf243565bdbd02a7e23b99552c2dc6fb5ce4c8",
+      "src/experiments/body-isolation/experiment.js": "bc23991e0bedc00e8b63ebcd65ee157643e7317f9581e90c40fa652ea64cb096",
+      "scripts/body-isolation.js": "162c62230aeee383d8937d524cc643ae9ddfd5958da846eb58715c6348d2438a",
+      "tests/body-isolation.test.js": "a2980a3d9a76faa62002392655d0de7d90b73dc7e661a8fd09091ff021499ef9"
+    },
+    "freeze": {
+      "format": "body-isolation-freeze",
+      "version": 1,
+      "registrationCommit": "780d20d",
+      "registrationFullCommit": "780d20d7f1aaa57f49c2ee1fde0d0042b28cd274",
+      "baseCommit": "33418c4557d3fd6cf5f8f3e4f8afd32145da6549",
+      "sourceCommit": "f8e146f6451d5649874f3f3637d4c1fd115604fa",
+      "frozenAt": "2026-09-08T06:17:52.677Z",
+      "sourceSha256": {
+        "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+        "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+        "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+        "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+        "src/experiments/mechanism-comparison/experiment.js": "710a3b9db779ddb5f0b819dad5f4551daa792837ea3b9fea18d8025b68337dc8",
+        "src/experiments/mechanism-comparison/adapters.js": "c8703891fcc604ea74ce16b4b17304be8233214d72eddb1a3b4837b55c6dab01",
+        "src/experiments/mechanism-comparison/small-model.js": "9b2698353e644b29e45f860b23e5f7816d8631d526c7d475341f1444fd7f2eda",
+        "docs/body-isolation-protocol.md": "5ac8206039c704e06f7c6cccfdfc48ac81f2b49eea7895320f06508214ee1914",
+        "artifacts/body-isolation/protocol.json": "8b946ace0f3341c7484a22fd734c7db12d1b446d2b81f6559c9ae06e77041c03",
+        "src/experiments/body-isolation/pooled-model.js": "8a572cfd889207819935f8b78294470d96c41385052d9b594b33862285516a9a",
+        "src/experiments/body-isolation/host.js": "1dc63629ed5335bf1d454ae647203a14c7fdae23c8812adc8a2d1140d5e74d1d",
+        "src/experiments/body-isolation/adapters.js": "daccecf0bc81d63df0f1469655bf243565bdbd02a7e23b99552c2dc6fb5ce4c8",
+        "src/experiments/body-isolation/experiment.js": "bc23991e0bedc00e8b63ebcd65ee157643e7317f9581e90c40fa652ea64cb096",
+        "scripts/body-isolation.js": "162c62230aeee383d8937d524cc643ae9ddfd5958da846eb58715c6348d2438a",
+        "tests/body-isolation.test.js": "a2980a3d9a76faa62002392655d0de7d90b73dc7e661a8fd09091ff021499ef9"
+      }
+    },
+    "resultSha256": "16c5586423022eaa1f993333428267902df7c99c18fbc89697b1155289227500",
+    "executedAt": "2026-09-08T06:17:54.036Z"
+  },
+  "environment": {
+    "node": "v26.8.1",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "osRelease": "25.6.0",
+    "cpu": "Apple M4",
+    "logicalCpus": 10,
+    "ramBytes": 17179869184,
+    "renderingIncluded": false,
+    "networkIncluded": false
+  },
+  "sourceSize": {
+    "src/human/v0.1.1.js": {
+      "utf8Bytes": 11580,
+      "nonblankLines": 176
+    },
+    "src/core/model.js": {
+      "utf8Bytes": 7764,
+      "nonblankLines": 117
+    },
+    "src/runtime/index.js": {
+      "utf8Bytes": 188,
+      "nonblankLines": 4
+    },
+    "src/runtime/clock.js": {
+      "utf8Bytes": 7513,
+      "nonblankLines": 130
+    },
+    "src/experiments/mechanism-comparison/experiment.js": {
+      "utf8Bytes": 9786,
+      "nonblankLines": 126
+    },
+    "src/experiments/mechanism-comparison/adapters.js": {
+      "utf8Bytes": 1117,
+      "nonblankLines": 20
+    },
+    "src/experiments/mechanism-comparison/small-model.js": {
+      "utf8Bytes": 5919,
+      "nonblankLines": 74
+    },
+    "src/experiments/body-isolation/pooled-model.js": {
+      "utf8Bytes": 6000,
+      "nonblankLines": 74
+    },
+    "src/experiments/body-isolation/host.js": {
+      "utf8Bytes": 7476,
+      "nonblankLines": 85
+    },
+    "src/experiments/body-isolation/adapters.js": {
+      "utf8Bytes": 1401,
+      "nonblankLines": 22
+    },
+    "src/experiments/body-isolation/experiment.js": {
+      "utf8Bytes": 6364,
+      "nonblankLines": 91
+    },
+    "scripts/body-isolation.js": {
+      "utf8Bytes": 8043,
+      "nonblankLines": 87
+    },
+    "tests/body-isolation.test.js": {
+      "utf8Bytes": 11231,
+      "nonblankLines": 134
+    },
+    "adapterSections": {
+      "human": {
+        "utf8Bytes": 649,
+        "nonblankLines": 9
+      },
+      "pooled": {
+        "utf8Bytes": 595,
+        "nonblankLines": 9
+      }
+    },
+    "scopeNote": "Whole source files and adapter sections; model.js includes unrelated exported laboratory helpers. No minification or measured human authoring effort. The pooled snapshot retains body parameters and the same single proficiency per skill; pending baselines are lifecycle bookkeeping. Host source is duplicated from the frozen closed-registry host, counted for both integrations."
+  }
+}
