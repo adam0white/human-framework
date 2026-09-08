@@ -5,3 +5,61 @@
 .service{background:#edf5ef}
 
 .plan{background:#f3efdf}
+
+/* One preview and an always available chooser, in a suggested learning order. */
+.compact-collection{height:100dvh;overflow:hidden;font-size:14px;line-height:1.45}
+.compact-collection [hidden]{display:none!important}
+.compact-collection .shell{height:100%;max-width:1080px;display:flex;flex-direction:column;padding:0 24px}
+.compact-collection header{min-height:44px;flex:0 0 auto}
+.compact-collection main{min-height:0;display:flex;flex-direction:column;flex:1}
+.compact-collection .intro{padding:17px 0 14px;max-width:750px;flex:0 0 auto}
+.compact-collection .intro .eyebrow{margin-bottom:7px}
+.compact-collection h1{font-size:35px;margin-bottom:8px;line-height:1.07}
+.compact-collection .intro>p:last-child{font-size:13px;max-width:680px}
+.compact-collection .collection-browser{display:grid;grid-template-columns:280px 1fr;gap:22px;flex:1;min-height:0}
+.compact-collection .game-chooser{min-height:0;overflow-y:auto}
+.compact-collection .game-chooser>label{display:none}
+.compact-collection .collection-list{display:grid;gap:4px}
+.compact-collection .collection-list button{display:flex;align-items:center;gap:12px;text-align:left;min-height:44px;padding:9px 12px;border:1px solid transparent;border-radius:7px;font:600 12px/1.25 system-ui,sans-serif;color:inherit;background:transparent;cursor:pointer}
+.compact-collection .collection-list button>span:first-child{color:#667d62;font-weight:400;font-variant-numeric:tabular-nums}
+.compact-collection .collection-list button[aria-selected=true]{border-color:#a5b59c;background:#e9eedd}
+.compact-collection .games{display:block;overflow-y:auto;min-height:0;padding:0 5px 8px 0}
+.compact-collection .learning-step{font-size:12px;color:#526c55;margin:0 0 8px}
+.compact-collection .game{min-height:320px;padding:24px;max-width:none}
+.compact-collection .game .illustration{height:150px;margin:12px 0}
+.compact-collection .game h2{font-size:32px}
+.compact-collection .game>p{font-size:14px;max-width:none}
+.compact-collection .save-note{font-size:11px;margin:10px 0 3px;flex:0 0 auto}
+.compact-collection .collection-notes{font-size:11px;flex:0 0 auto;max-height:30vh;overflow:auto;border-top:1px solid #d8dbcf}
+.compact-collection .collection-notes summary{min-height:36px;display:list-item;padding:9px 0;cursor:pointer}
+.compact-collection footer{display:none}
+.compact-collection :is(button,select):focus-visible{outline:3px solid #a56426;outline-offset:2px}
+@media(max-width:620px){
+ .compact-collection .shell{padding:0 16px}
+ .compact-collection header{min-height:40px;font-size:10px}
+ .compact-collection .intro{padding:12px 0}
+ .compact-collection h1{font-size:30px;margin-bottom:6px}
+ .compact-collection .intro>p:last-child{font-size:12px}
+ .compact-collection .collection-browser{display:flex;flex-direction:column;gap:12px}
+ .compact-collection .game-chooser{flex:0 0 auto;overflow:visible}
+ .compact-collection .game-chooser>label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:650}
+ .compact-collection .game-chooser select{width:100%;min-height:44px;padding:9px;border:1px solid #9dac99;border-radius:7px;font:600 13px system-ui,sans-serif;background:#fffef8;color:inherit}
+ .compact-collection .collection-list{display:none}
+ .compact-collection .games{flex:1;padding-right:3px}
+ .compact-collection .game{padding:18px;min-height:0}
+ .compact-collection .game h2{font-size:28px}
+ .compact-collection .game>p{font-size:12px;margin-bottom:16px}
+ .compact-collection .game .illustration{height:95px;margin:6px 0 10px}
+ .compact-collection .first-mark{font-size:57px;margin:8px 0}
+ .compact-collection .learning-step{font-size:11px;margin-bottom:7px}
+ .compact-collection .save-note{font-size:10px;line-height:1.4;margin-top:8px}
+ .compact-collection .collection-notes summary{min-height:34px;padding:8px 0;font-size:10px}
+}
+@media(max-height:570px),(max-width:340px){
+ .compact-collection{height:auto;overflow:auto}
+ .compact-collection .shell{height:auto;min-height:100dvh}
+ .compact-collection main{display:block}
+ .compact-collection .collection-browser{min-height:400px}
+ .compact-collection .games{overflow:visible}
+ .compact-collection .collection-notes{max-height:none}
+}

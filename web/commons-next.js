@@ -19,7 +19,7 @@ function render(){
   $('clock-detail').textContent=closed?'The day is finished. Your result is below.':`${view.elapsed} of 180 afternoon minutes used. ${view.departed?'The households can no longer receive a cache. Camp can still use supplies.':'Work pauses at the ferry so you can choose what goes aboard.'}`;
   $('timeline-progress').style.width=`${view.elapsed/180*100}%`;
   $('next-event').disabled=!working;$('play').disabled=!working;$('play').textContent=playing?'Ⅱ Pause':'▶ Play';$('play').setAttribute('aria-pressed',String(playing));
-  $('time-status').textContent=!working?'Time is paused for your decision.':playing?`Playing at ${$('speed').value}×. Both people share this clock.`:`Paused. Next job or checkpoint in ${view.nextEventAt-view.now} min. Choose work, then advance time.`;
+  $('time-status').textContent=!working?'Time is paused for your decision.':playing?`Playing at ${$('speed').value}×. Both people share this clock.`:`Paused · next job or checkpoint in ${view.nextEventAt-view.now} min.`;
   $('checkpoint').hidden=!['ferry','dusk'].includes(view.phase);
   $('checkpoint-label').textContent=view.phase==='ferry'?'A DECISION BEFORE DEPARTURE':'WORK STOPS HERE';
   $('checkpoint-title').textContent=view.phase==='ferry'?'The ferry is ready to leave.':'The rain is here. Take stock.';

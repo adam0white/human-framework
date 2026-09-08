@@ -1,0 +1,32 @@
+{
+  "synthetic": true,
+  "base": "http://127.0.0.1:64538",
+  "browser": "152.0.7977.77",
+  "checks": [
+    "Collection: suggested first job, ten options, desktop keyboard and no normal viewport document scroll",
+    "workshop-pending: downloaded save, reimport and paused reload preserve exact bytes",
+    "workshop: actual paid interval, tab-stable pending action, reachable Stop and result controls",
+    "shift-pending: downloaded save, reimport and paused reload preserve exact bytes",
+    "shift: actual paid interval, tab-stable pending action, reachable Stop and result controls",
+    "courier-pending: downloaded save, reimport and paused reload preserve exact bytes",
+    "courier: actual paid interval, tab-stable pending action, reachable Stop and result controls",
+    "courtyard: downloaded save, reimport and paused reload preserve exact bytes",
+    "Courtyard: immediate consequence feedback, end controls close, new afternoon restores Actions, and new proposal reveals/focuses Accept",
+    "commons-concurrent: downloaded save, reimport and paused reload preserve exact bytes",
+    "commons: concurrent paid work and rest can be stopped from a different tab",
+    "commons-next-concurrent: downloaded save, reimport and paused reload preserve exact bytes",
+    "commons-next: concurrent paid work and rest can be stopped from a different tab",
+    "Rain: both finite checkpoints reveal allocation/continue; final result remains visible",
+    "Watch: unchanged short-notice success with exactly three paid and interrupted rest minutes",
+    "signals-active-report: downloaded save, reimport and paused reload preserve exact bytes",
+    "Last Light: paid report pause and read badge; arrival12 still restores overnight beacon and misses exclusive launch deadline",
+    "service-pending: downloaded save, reimport and paused reload preserve exact bytes",
+    "Service Day: concurrent independent work and stop from Sites; exact save continuity",
+    "promise-accepted: downloaded save, reimport and paused reload preserve exact bytes",
+    "Shared Promise: discussion cancel, paid acceptance, exact save and unilateral withdrawal stay reachable from other tabs",
+    "New Save/About reading surface pauses playback through existing controls without advancing or changing saved world",
+    "320x400 short/zoom-equivalent fallback keeps all tabs and control dock reachable",
+    "Late review: live feedback remains mounted; ended/checkpoint reload avoids focus theft; dynamic tap caption and withdrawal consequence remain visible; synthetic storage failure is exposed outside Save"
+  ],
+  "errors": []
+}

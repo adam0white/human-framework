@@ -1,0 +1,116 @@
+{
+  "version": "shift-0.1.0",
+  "seed": 1,
+  "policy": "value-first",
+  "clock": 5,
+  "deadline": 480,
+  "status": "playing",
+  "finishReason": null,
+  "location": "depot",
+  "person": {
+    "format": "human-framework-person",
+    "version": 1,
+    "componentVersion": "0.1.0",
+    "person": {
+      "version": "0.1.0",
+      "id": "worker",
+      "body": {
+        "fatigue": 0.2275,
+        "hunger": 0.16
+      },
+      "skills": {
+        "repair": 0.55
+      },
+      "observationBias": 0,
+      "minutes": 5,
+      "nextAttempt": 2,
+      "pending": {
+        "id": "worker:1",
+        "action": {
+          "actionId": "take-tools",
+          "targetId": "tools",
+          "durationMinutes": 6,
+          "effort": 0,
+          "exertive": false,
+          "activity": "active",
+          "skill": null
+        },
+        "elapsedMinutes": 5,
+        "capacity": {
+          "allowed": true,
+          "causes": [],
+          "fatigueCost": 0.009000000000000001,
+          "hungerCost": 0.012,
+          "projectedFatigue": 0.229,
+          "projectedHunger": 0.162
+        },
+        "bodyBefore": {
+          "fatigue": 0.22,
+          "hunger": 0.15
+        },
+        "skillBefore": null,
+        "startedAt": 0
+      }
+    }
+  },
+  "inventory": {
+    "tools": false,
+    "seal": 0
+  },
+  "stock": {
+    "seal": 1,
+    "meals": 2
+  },
+  "pumps": {
+    "garden": {
+      "status": "broken",
+      "route": null,
+      "condition": "stubborn",
+      "inspection": null,
+      "completedRepairs": {
+        "patch": 0,
+        "replace": 0
+      },
+      "repairedAt": null,
+      "verifiedAt": null
+    },
+    "workshop": {
+      "status": "broken",
+      "route": null,
+      "condition": "stubborn",
+      "inspection": null,
+      "completedRepairs": {
+        "patch": 0,
+        "replace": 0
+      },
+      "repairedAt": null,
+      "verifiedAt": null
+    },
+    "intake": {
+      "status": "broken",
+      "route": null,
+      "condition": "ordinary",
+      "inspection": null,
+      "completedRepairs": {
+        "patch": 0,
+        "replace": 0
+      },
+      "repairedAt": null,
+      "verifiedAt": null
+    }
+  },
+  "pending": {
+    "actionId": "take-tools",
+    "attemptId": "worker:1",
+    "durationMinutes": 6
+  },
+  "lastEvent": {
+    "status": "started",
+    "message": "Take the toolkit started.",
+    "minutes": 0,
+    "actionId": "take-tools",
+    "skillBefore": null,
+    "skillAfter": null,
+    "practiceMinutes": 0
+  }
+}

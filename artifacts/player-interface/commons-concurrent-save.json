@@ -1,0 +1,197 @@
+{
+  "format": "human-common-ground",
+  "version": 1,
+  "game": {
+    "version": "0.1.0",
+    "solo": false,
+    "clock": {
+      "version": "0.1.0",
+      "now": 16,
+      "nextEvent": 3,
+      "queue": [
+        {
+          "id": "event:2",
+          "at": 24,
+          "type": "job-complete",
+          "actorId": "neighbor",
+          "data": {
+            "jobId": "build-shelter",
+            "attemptId": "neighbor:1"
+          }
+        }
+      ]
+    },
+    "people": {
+      "player": {
+        "version": "0.1.0",
+        "id": "player",
+        "body": {
+          "fatigue": 0.3539999999999999,
+          "hunger": 0.252
+        },
+        "skills": {
+          "gathering": 0.1718496141431711,
+          "construction": 0.05
+        },
+        "observationBias": 0,
+        "minutes": 16,
+        "nextAttempt": 2,
+        "pending": null
+      },
+      "neighbor": {
+        "version": "0.1.0",
+        "id": "neighbor",
+        "body": {
+          "fatigue": 0.45733333333333376,
+          "hunger": 0.31200000000000006
+        },
+        "skills": {
+          "gathering": 0.1,
+          "construction": 0.12584125937334728
+        },
+        "observationBias": 0,
+        "minutes": 16,
+        "nextAttempt": 2,
+        "pending": {
+          "id": "neighbor:1",
+          "action": {
+            "actionId": "build-shelter",
+            "targetId": "shelter",
+            "durationMinutes": 24,
+            "effort": 0.2,
+            "exertive": true,
+            "activity": "active",
+            "skill": "construction"
+          },
+          "elapsedMinutes": 16,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.23600000000000002,
+            "hungerCost": 0.048,
+            "projectedFatigue": 0.536,
+            "projectedHunger": 0.328
+          },
+          "bodyBefore": {
+            "fatigue": 0.3,
+            "hunger": 0.28
+          },
+          "skillBefore": 0.05,
+          "startedAt": 0
+        }
+      }
+    },
+    "jobs": {
+      "player": null,
+      "neighbor": {
+        "id": "build-shelter",
+        "label": "Woodshed: raise the frame",
+        "detail": "Keep an extra usable bundle dry: timber trips bring 4 instead of 3.",
+        "project": "shelter",
+        "stage": 0,
+        "cost": {
+          "timber": 4,
+          "salvage": 1
+        },
+        "output": {},
+        "duration": 24,
+        "benefits": {
+          "shelter": false,
+          "workbench": false,
+          "garden": false
+        },
+        "skillBefore": 0.05,
+        "action": {
+          "actionId": "build-shelter",
+          "targetId": "shelter",
+          "durationMinutes": 24,
+          "effort": 0.2,
+          "exertive": true,
+          "activity": "active",
+          "skill": "construction"
+        },
+        "startedAt": 0,
+        "endsAt": 24,
+        "eventId": "event:2",
+        "attemptId": "neighbor:1"
+      }
+    },
+    "stock": {
+      "timber": 3,
+      "salvage": 1,
+      "food": 4
+    },
+    "structures": {
+      "shelter": 0,
+      "workbench": 0,
+      "garden": 0
+    },
+    "caches": 0,
+    "milestoneAt": null,
+    "commitment": {
+      "status": "accepted",
+      "project": "shelter",
+      "acceptedAt": 0,
+      "finishedAt": null,
+      "startCaches": 0,
+      "reason": "I’m completing the accepted woodshed project."
+    },
+    "lastResponse": {
+      "at": 0,
+      "project": "shelter",
+      "accepted": true,
+      "reason": "Yes. I’ll help finish the woodshed, gathering its supplies and recovering when needed."
+    },
+    "stats": {
+      "started": 2,
+      "completed": 1,
+      "canceled": 0,
+      "gathered": {
+        "timber": 3,
+        "salvage": 0,
+        "food": 0
+      },
+      "spent": {
+        "timber": 0,
+        "salvage": 0,
+        "food": 0
+      },
+      "consumedFood": 0,
+      "workMinutes": 32,
+      "restMinutes": 0,
+      "mealMinutes": 0,
+      "idleMinutes": 0,
+      "receipts": {
+        "gather-timber": 1,
+        "gather-salvage": 0,
+        "forage": 0,
+        "rest": 0,
+        "eat": 0,
+        "coveredTimber": 0,
+        "gardenFood": 0
+      }
+    },
+    "recent": [
+      {
+        "at": 0,
+        "actor": "player",
+        "message": "You started gather timber (16 min)."
+      },
+      {
+        "at": 0,
+        "actor": "neighbor",
+        "message": "Yes. I’ll help finish the woodshed, gathering its supplies and recovering when needed."
+      },
+      {
+        "at": 0,
+        "actor": "neighbor",
+        "message": "Meryem started woodshed: raise the frame (24 min). I’m completing the accepted woodshed project."
+      },
+      {
+        "at": 16,
+        "actor": "player",
+        "message": "You finished gather timber. +3 timber."
+      }
+    ]
+  }
+}

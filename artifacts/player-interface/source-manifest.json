@@ -1,0 +1,82 @@
+{
+  "capturedAt": "2026-09-08T13:49:34.155Z",
+  "baseCommit": "953e2a35666bc175d80b51fed891c56913a86dd4",
+  "node": "v23.7.0",
+  "sourceHashes": {
+    "web/app.js": "c09dc8784ece327290c31f01735f3f1fc717c6469e4393d1eaa200375b5d2fe6",
+    "web/commons-next.css": "5bdee021c21688b2dd9f2da4791f439a5b6a160cd3306d45fca380a4b45d0ea1",
+    "web/commons-next.html": "15ea4dfcec509d86cdb2e8649d2f8f56c2b52305d18c2a45e43544110048ae39",
+    "web/commons-next.js": "23f8f8df57e46a78156bcf83e8de43c77304fe8dbc87636fee6d389e8aab1ebf",
+    "web/commons.css": "75fa4084b90b88838b186b4efb44d5455b877ea68b8178cc9e38568da2767487",
+    "web/commons.html": "2332b17fbeeb75f1091862b4f269f2d24431c732af15def1aeddca37a6e29acd",
+    "web/commons.js": "36642aeae757b3e266d49f95241c5447f064e23f0e88200795e3fea019c6bd9d",
+    "web/courier.css": "17fce75d3660fb9324a41f93633984403a80f2543cba7937774779089e243711",
+    "web/courier.html": "6ce3a95c7ac659ec9f185da3282a3481b1b67929428ed3267842e03e18e85dd2",
+    "web/courier.js": "fc1220258c3e9da303cca8e4d9b855f173afa58137a90a4c1de5dffd24cc851c",
+    "web/courtyard-guide.js": "cac4aff6caa89ba9d7cc2b3e5cc8d370aa9674fad69d53d7546269669d6b2463",
+    "web/courtyard.css": "7c19a8af1025e5a07ab3ea66d38f8cef00ad38e036d0d1f2067ff7e0eae61fd1",
+    "web/courtyard.html": "ac45e6f57812432f5495ee0d3cbe7b1d1091785d2e8010e941cfd706c5f95596",
+    "web/courtyard.js": "8fd633a42aac08eae859251a49b56a5a5a3d6a99106ef4bed481b743e15dcd54",
+    "web/game-shell.css": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f",
+    "web/game-shell.js": "69c7e934940f5678518fe7c6c4e443f26e1f2121383864284c0bd0f5f9d93bff",
+    "web/games.css": "d5fd9f277d526794913b251b744fd7d9677230791e6b008fabe173625a66c038",
+    "web/games.html": "4689e29b495c311e456e40223726b1297e1bf4cc4beb90ef7a2e101f63b2f81a",
+    "web/games.js": "d188636b1bf3be347503cbfbb455db1efa7ac8503a4b10f253c3cdfa17ad95f1",
+    "web/guidance.js": "de7edaee8b7acd7a8ac628824c83911a7cad82edffb517e9b464a6e58383968f",
+    "web/play-note.css": "03de00f1922bc4bb70dd6506f6dd26fd226251c5c5985666b42f122e1de20148",
+    "web/play-note.js": "ca6958dfa9d78b6eab0bd9cb6731444b13a55e40c9739b04a0758764c124c3c8",
+    "web/service-plan-session.js": "3f7c3f62dbb846add5f7a719d166542f0225974e886811c369d9982d708332c6",
+    "web/service-plan.css": "75de35fab39edaa7360b6d6c97657042ded7c58d173d0edfa3b39364bc30503f",
+    "web/service-plan.html": "6e054fb6dd173691825572257e0f20e0418f50542ad6bc9352dad145ee3aae91",
+    "web/service-plan.js": "0d75c023263661005b22d18e50a808bd38d8b1ff06d565b4e9a1cdd470ee3545",
+    "web/service-session.js": "a05f984ed977f8e29624c7cbcb6c80f3bb11728bee87eb43b76bee474cc07474",
+    "web/service.css": "52f0b0ee4debc7a880eceb0b858234983a4ea82f0019a61dddf3971b415ac2dd",
+    "web/service.html": "adec81c8b439de719743b68f565ebc3e46347ba5e453e9f20bf3cdd61c70f74d",
+    "web/service.js": "3ac621eeb90ef4bbd24b5b9f15bbba41bab851bd20fddf5e779a94fe62249ba6",
+    "web/shift.css": "5ee9b1309e558724dbf10dd9b06f8724c3663c0ad804cb6e84fbf115121a007b",
+    "web/shift.html": "bf45756a0d3337831f97109fb583f1a9e7bb94decf7006b111923c5c7c2e2c23",
+    "web/shift.js": "92ecca05bf305b57580eaf0176e4dca009a42e1f0435a03fc02ce4b736010418",
+    "web/signals-session.js": "26b4add21514bd1644b0a9845a4d3a6442b96be07553d6eafc53b96e2732cd32",
+    "web/signals.css": "8e060c54607c12f26671db0b14d5886df1d1fa67e1c155674c66217047685ed2",
+    "web/signals.html": "fccce10be7137a5c8dafdcdf92af773454fea4a996f2bda8c23afdffe2f9f299",
+    "web/signals.js": "703f0557827f6ce0d1722a4ecf69e0c87c64aff02cdc3be2e85e9735bc9c4392",
+    "web/styles.css": "b54c6a3c566d3e26f93d3afc1e3917e5a8edbd7f6327b64ad829b7008417aa68",
+    "web/watch-session.js": "1b634be8c468a498e372a647e16fa046fa8c8cd2d317da9bbb40989288b65527",
+    "web/watch.css": "974e209a8c375954fcebd9d144fb120c297bc66beffef423bbfe750dafd0835e",
+    "web/watch.html": "6f6b897d53056d4c9ec91ff8c223bdd26d4d209a1abd3fa937f24e016cfd02a3",
+    "web/watch.js": "c0d6ba04c19a1e14f093d4f5377e9685a6f5f9d14107cbfb9696501e0f862119",
+    "web/workshop.css": "9524ef6e65a5dd62d85adae624770e55b98c8b9755492df67691a5bf27401732",
+    "web/workshop.html": "921c866d7ed7335fef3fbbf80d0811994f7494bafaa42e671cc5854fc5c4949b",
+    "web/workshop.js": "73d2d7e30620980687c94f0d01163383479279f9ae0259f38430a9577f9124b9"
+  },
+  "synthetic": true,
+  "scope": "Local UI browser evidence; not a deployment receipt",
+  "repositoryTests": {
+    "pass": 594,
+    "fail": 0
+  },
+  "build": {
+    "files": 84,
+    "modules": 56,
+    "edges": 88
+  },
+  "ordinaryControls": {
+    "rain": {
+      "viewport": [
+        375,
+        667
+      ],
+      "activeActors": 2,
+      "lastTileBottom": 507.453125,
+      "panelBottom": 512.90625
+    },
+    "signals": {
+      "viewport": [
+        375,
+        667
+      ],
+      "lastConsequenceBottom": 490.34375,
+      "panelBottom": 569.203125
+    }
+  }
+}

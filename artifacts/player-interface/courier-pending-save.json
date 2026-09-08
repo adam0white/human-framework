@@ -1,0 +1,104 @@
+{
+  "version": "courier-0.1.0",
+  "seed": 1,
+  "clock": 1,
+  "deadline": 240,
+  "status": "playing",
+  "location": "depot",
+  "meals": 2,
+  "person": {
+    "format": "human-framework-person",
+    "version": 1,
+    "componentVersion": "0.1.0",
+    "person": {
+      "version": "0.1.0",
+      "id": "courier",
+      "body": {
+        "fatigue": 0.1215,
+        "hunger": 0.28200000000000003
+      },
+      "skills": {
+        "routecraft": 0.36
+      },
+      "observationBias": 0,
+      "minutes": 1,
+      "nextAttempt": 2,
+      "pending": {
+        "id": "courier:1",
+        "action": {
+          "actionId": "load-medicine",
+          "targetId": "medicine",
+          "durationMinutes": 2,
+          "effort": 0,
+          "exertive": false,
+          "activity": "active",
+          "skill": null
+        },
+        "elapsedMinutes": 1,
+        "capacity": {
+          "allowed": true,
+          "causes": [],
+          "fatigueCost": 0.003,
+          "hungerCost": 0.004,
+          "projectedFatigue": 0.123,
+          "projectedHunger": 0.28400000000000003
+        },
+        "bodyBefore": {
+          "fatigue": 0.12,
+          "hunger": 0.28
+        },
+        "skillBefore": null,
+        "startedAt": 0
+      }
+    }
+  },
+  "parcels": {
+    "medicine": {
+      "owner": "depot",
+      "deliveredAt": null
+    },
+    "fabric": {
+      "owner": "depot",
+      "deliveredAt": null
+    },
+    "tea": {
+      "owner": "depot",
+      "deliveredAt": null
+    },
+    "seeds": {
+      "owner": "depot",
+      "deliveredAt": null
+    },
+    "tools": {
+      "owner": "depot",
+      "deliveredAt": null
+    },
+    "papers": {
+      "owner": "depot",
+      "deliveredAt": null
+    }
+  },
+  "crossings": {
+    "footbridge": {
+      "condition": "calm",
+      "trials": 0,
+      "report": null
+    },
+    "lockbridge": {
+      "condition": "exposed",
+      "trials": 0,
+      "report": null
+    }
+  },
+  "pending": {
+    "actionId": "load-medicine",
+    "attemptId": "courier:1",
+    "durationMinutes": 2,
+    "label": "Load medicine case"
+  },
+  "lastEvent": {
+    "status": "started",
+    "message": "Load medicine case started.",
+    "minutes": 0
+  }
+}
