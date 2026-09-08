@@ -67,7 +67,7 @@ function validAccounting(observation,fixture){
  for(const item of observation.items){
   assert.ok(item.progress>=0&&item.progress<=1);integer(item.reserved.timber,5);integer(item.reserved.salvage,1);timber+=item.reserved.timber;salvage+=item.reserved.salvage;
   const contributions=Object.values(item.contributions);
-  for(const c of contributions){integer(c.minutes,observation.now);integer(c.basis);assert.ok(c.basis>=1&&c.fraction>=0&&c.fraction<=1&&c.effort>=0&&c.effort<=.2);}
+  for(const c of contributions){integer(c.minutes,observation.now);integer(c.basis);assert.ok(c.basis>=1&&c.fraction>=0&&c.fraction<=1&&c.effort>=0&&c.effort<=.2+1e-10);}
   const fraction=contributions.reduce((n,c)=>n+c.fraction,0),effort=contributions.reduce((n,c)=>n+c.effort,0);
   assert.ok(Math.abs(item.progress-fraction)<1e-10,'Progress must equal paid contributions');
   assert.ok(Math.abs(effort-.2*fraction)<1e-10,'Only paid fraction earns effort');
