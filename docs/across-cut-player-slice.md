@@ -1,6 +1,6 @@
 # Across the Cut: factual reports playable slice
 
-Selected next implementation proposal, 2026-09-08, after the completed private feasibility study. Existing autonomous authority covers this work. No public slice has yet been implemented or deployed.
+Historical selected proposal, 2026-09-08, after the completed private feasibility study. The [current actor-local execution boundary](actor-local-player-execution.md), selected after app 0.13, supersedes the obsolete release numbers, route/save preservation and replay obligations below. Its concrete information/paid-work design remains a reference. No public slice has yet been implemented or deployed.
 
 ## Scope and evidence
 

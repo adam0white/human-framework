@@ -1,0 +1,51 @@
+{
+  "verifiedAt": "2026-09-08T21:31:06.350420+00:00",
+  "appSource": "a07c2b3f2d06160239b4faa2e889ac7cf1cc121a",
+  "comparisonReport": "artifacts/camp-maintenance/release-current/report.json",
+  "reportSha256": "5f13b83b133c58f8623faa109d488f09b13b54c6aa697bb03c299affcdfbaef0",
+  "activeSourceHashesMatchedToGitAndWorkspace": [
+    {
+      "path": "src/core/model.js",
+      "bytes": 7764,
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "nonblankLines": 117
+    },
+    {
+      "path": "src/games/camp-current.js",
+      "bytes": 45911,
+      "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a",
+      "nonblankLines": 454
+    },
+    {
+      "path": "src/human/v0.1.1.js",
+      "bytes": 11580,
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "nonblankLines": 176
+    },
+    {
+      "path": "src/runtime/clock.js",
+      "bytes": 7513,
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "nonblankLines": 130
+    },
+    {
+      "path": "src/runtime/index.js",
+      "bytes": 188,
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "nonblankLines": 4
+    },
+    {
+      "path": "web/camp-current-session.js",
+      "bytes": 6233,
+      "sha256": "683d1c28887da20a89d1e01dd6d85d9eddec2d5d28fdd7fd5459eff4fa879c97",
+      "nonblankLines": 128
+    },
+    {
+      "path": "web/camp-current.js",
+      "bytes": 19764,
+      "sha256": "9bba1d23e43b65ea25a6a1f7810d84a47cb394e291d2007685417e3ac1c97c47",
+      "nonblankLines": 149
+    }
+  ],
+  "workerVersion": "ce7604f9-a6c1-40d1-921a-abd8c582775e"
+}

@@ -1,0 +1,5 @@
+
+> human-framework@0.13.0 verify:live
+> node scripts/verify-live.js /tmp/camp-current-live.json
+
+Verified app 0.13.0, runtime 0.1.1, 67 exact public payloads and 74 private/missing 404s at a07c2b3f2d06160239b4faa2e889ac7cf1cc121a.

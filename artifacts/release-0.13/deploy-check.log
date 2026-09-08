@@ -1,0 +1,16 @@
+
+> human-framework@0.13.0 deploy:check
+> npm run build && wrangler deploy --dry-run
+
+
+> human-framework@0.13.0 build
+> node scripts/build.js
+
+Built 69 public files in dist. Runtime 0.1.1. Checked 40 static modules and 54 import edges.
+
+ ⛅️ wrangler 4.129.0
+────────────────────
+✨ Read 87 files from the assets directory /Users/abdul/code/human-framework/dist
+Total Upload: 0.31 KiB / gzip: 0.22 KiB
+No bindings found.
+--dry-run: exiting now.

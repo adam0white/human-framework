@@ -1,0 +1,268 @@
+[
+  {
+    "probe": "phone fresh all tabs layout and keyboard",
+    "pass": true,
+    "detail": {
+      "work": {
+        "width": 375,
+        "height": 667,
+        "docWidth": 375,
+        "docHeight": 667,
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "bottom": 667
+        },
+        "panel": {
+          "height": 312,
+          "scrollHeight": 340,
+          "scrollWidth": 336,
+          "clientWidth": 336
+        },
+        "focus": "tab-work"
+      },
+      "people": {
+        "width": 375,
+        "height": 667,
+        "docWidth": 375,
+        "docHeight": 667,
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "bottom": 667
+        },
+        "panel": {
+          "height": 312,
+          "scrollHeight": 571,
+          "scrollWidth": 336,
+          "clientWidth": 336
+        },
+        "focus": "tab-people"
+      },
+      "camp": {
+        "width": 375,
+        "height": 667,
+        "docWidth": 375,
+        "docHeight": 667,
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "bottom": 667
+        },
+        "panel": {
+          "height": 312,
+          "scrollHeight": 389,
+          "scrollWidth": 336,
+          "clientWidth": 336
+        },
+        "focus": "tab-camp"
+      },
+      "journal": {
+        "width": 375,
+        "height": 667,
+        "docWidth": 375,
+        "docHeight": 667,
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "bottom": 667
+        },
+        "panel": {
+          "height": 312,
+          "scrollHeight": 312,
+          "scrollWidth": 336,
+          "clientWidth": 336
+        },
+        "focus": "tab-journal"
+      },
+      "save": {
+        "width": 375,
+        "height": 667,
+        "docWidth": 375,
+        "docHeight": 667,
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "bottom": 667
+        },
+        "panel": {
+          "height": 312,
+          "scrollHeight": 337,
+          "scrollWidth": 336,
+          "clientWidth": 336
+        },
+        "focus": "tab-save"
+      }
+    }
+  },
+  {
+    "probe": "paid start pause tab stop reload and old-key isolation",
+    "pass": true,
+    "detail": {
+      "minute": 1,
+      "retained": 0.041666666666666664,
+      "calls": [
+        [
+          "get",
+          "human-camp-current-v0.3.0"
+        ],
+        [
+          "set",
+          "human-camp-current-v0.3.0"
+        ]
+      ]
+    }
+  },
+  {
+    "probe": "actual current download import cancel confirm and unsupported old format",
+    "pass": true,
+    "detail": {
+      "filename": "camp-current-minute-1.json",
+      "minute": 838
+    }
+  },
+  {
+    "probe": "import preview invalidated by advancement and delayed stale success/failure",
+    "pass": true,
+    "detail": {
+      "original": 839,
+      "newer": 840
+    }
+  },
+  {
+    "probe": "phone introduction checkpoint continue and ferry allocation dispatch",
+    "pass": true,
+    "detail": {
+      "introLayout": {
+        "width": 375,
+        "height": 667,
+        "docWidth": 375,
+        "docHeight": 667,
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "bottom": 667
+        },
+        "panel": {
+          "height": 299,
+          "scrollHeight": 299,
+          "scrollWidth": 336,
+          "clientWidth": 336
+        },
+        "focus": ""
+      },
+      "ferryLayout": {
+        "width": 375,
+        "height": 667,
+        "docWidth": 375,
+        "docHeight": 667,
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "bottom": 667
+        },
+        "panel": {
+          "height": 312,
+          "scrollHeight": 577,
+          "scrollWidth": 336,
+          "clientWidth": 336
+        },
+        "focus": ""
+      },
+      "allocations": [
+        {
+          "at": 862,
+          "cache": 1,
+          "destination": "households"
+        },
+        {
+          "at": 862,
+          "cache": 2,
+          "destination": "camp"
+        }
+      ]
+    }
+  },
+  {
+    "probe": "rain close return preserves people work supply account",
+    "pass": true,
+    "detail": {
+      "width": 375,
+      "height": 667,
+      "docWidth": 375,
+      "docHeight": 667,
+      "dock": {
+        "x": 12,
+        "y": 528.40625,
+        "bottom": 667
+      },
+      "panel": {
+        "height": 298,
+        "scrollHeight": 577,
+        "scrollWidth": 336,
+        "clientWidth": 336
+      },
+      "focus": ""
+    }
+  },
+  {
+    "probe": "quota failure Save and leave keeps current downloadable",
+    "pass": true,
+    "detail": {
+      "minute": 952,
+      "warning": "Device storage is unavailable or full. Your camp is still here; download it before leaving."
+    }
+  },
+  {
+    "probe": "corruption remains protected through play new camp import and raw backup download",
+    "pass": true,
+    "detail": {
+      "width": 375,
+      "height": 667,
+      "docWidth": 375,
+      "docHeight": 667,
+      "dock": {
+        "x": 12,
+        "y": 541.90625,
+        "bottom": 667
+      },
+      "panel": {
+        "height": 203,
+        "scrollHeight": 357,
+        "scrollWidth": 336,
+        "clientWidth": 336
+      },
+      "focus": "tab-work"
+    }
+  },
+  {
+    "probe": "desktop and short-height expanded content keyboard dock accessibility",
+    "pass": true,
+    "detail": {
+      "width": 375,
+      "height": 500,
+      "docWidth": 375,
+      "docHeight": 1068,
+      "dock": {
+        "x": 12,
+        "y": 375.375,
+        "bottom": 500.46875
+      },
+      "panel": {
+        "height": 713,
+        "scrollHeight": 713,
+        "scrollWidth": 351,
+        "clientWidth": 351
+      },
+      "focus": "play"
+    }
+  },
+  {
+    "probe": "no browser warnings errors or external network",
+    "pass": true,
+    "detail": {
+      "errors": [],
+      "network": []
+    }
+  }
+]

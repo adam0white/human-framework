@@ -1,0 +1,1747 @@
+{
+  "intro": {
+    "format": "human-camp-current",
+    "version": 1,
+    "game": {
+      "version": "0.3.0",
+      "runtimeVersion": "0.1.1",
+      "humanVersion": "0.1.1",
+      "clock": {
+        "version": "0.1.0",
+        "now": 772,
+        "nextEvent": 34,
+        "queue": []
+      },
+      "people": {
+        "player": {
+          "version": "0.1.1",
+          "id": "player",
+          "body": {
+            "fatigue": 0.9019999999999521,
+            "hunger": 0.2020000000000005
+          },
+          "skills": {
+            "gathering": 0.8991943139447791,
+            "construction": 0.5217842528201801
+          },
+          "observationBias": 0,
+          "minutes": 772,
+          "nextAttempt": 358,
+          "pending": null
+        },
+        "neighbor": {
+          "version": "0.1.1",
+          "id": "neighbor",
+          "body": {
+            "fatigue": 0,
+            "hunger": 0.17400000000000126
+          },
+          "skills": {
+            "gathering": 0.1,
+            "construction": 0.05
+          },
+          "observationBias": 0,
+          "minutes": 772,
+          "nextAttempt": 752,
+          "pending": null
+        }
+      },
+      "jobs": {
+        "player": null,
+        "neighbor": null
+      },
+      "stock": {
+        "timber": 32,
+        "salvage": 19,
+        "food": 8
+      },
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      },
+      "caches": 0,
+      "milestoneAt": 772,
+      "commitment": {
+        "status": "none",
+        "project": null,
+        "acceptedAt": null,
+        "finishedAt": null,
+        "startCaches": 0,
+        "reason": "I need a meal, then I can continue."
+      },
+      "lastResponse": null,
+      "stats": {
+        "started": 39,
+        "completed": 39,
+        "canceled": 0,
+        "gathered": {
+          "timber": 50,
+          "salvage": 27,
+          "food": 10
+        },
+        "spent": {
+          "timber": 22,
+          "salvage": 10,
+          "food": 6
+        },
+        "consumedFood": 6,
+        "workMinutes": 553,
+        "restMinutes": 943,
+        "mealMinutes": 48,
+        "idleMinutes": 0,
+        "receipts": {
+          "gather-timber": 13,
+          "gather-salvage": 9,
+          "forage": 5,
+          "rest": 0,
+          "eat": 6,
+          "coveredTimber": 11,
+          "gardenFood": 0
+        }
+      },
+      "recent": [
+        {
+          "at": 684,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 684,
+          "actor": "player",
+          "message": "You started gather food (11 min)."
+        },
+        {
+          "at": 695,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 695,
+          "actor": "player",
+          "message": "You started gather food (11 min)."
+        },
+        {
+          "at": 706,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 706,
+          "actor": "player",
+          "message": "You started gather food (11 min)."
+        },
+        {
+          "at": 717,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 717,
+          "actor": "player",
+          "message": "You started eat a portion (8 min)."
+        },
+        {
+          "at": 725,
+          "actor": "player",
+          "message": "You finished eat a portion."
+        },
+        {
+          "at": 735,
+          "actor": "neighbor",
+          "message": "Meryem started eat a portion (8 min). I need a meal, then I can continue."
+        },
+        {
+          "at": 740,
+          "actor": "player",
+          "message": "You started garden: edge the beds (13 min)."
+        },
+        {
+          "at": 743,
+          "actor": "neighbor",
+          "message": "Meryem finished eat a portion."
+        },
+        {
+          "at": 753,
+          "actor": "player",
+          "message": "You finished garden: edge the beds."
+        },
+        {
+          "at": 753,
+          "actor": "player",
+          "message": "You started garden: plant and mulch (19 min)."
+        },
+        {
+          "at": 772,
+          "actor": "player",
+          "message": "You finished garden: plant and mulch."
+        },
+        {
+          "at": 772,
+          "actor": "world",
+          "message": "The worksite is established. Supplies and unfinished work continue with you."
+        }
+      ],
+      "work": {},
+      "lastAssemblies": {
+        "shelter": {
+          "id": "shelter-1",
+          "project": "shelter",
+          "stage": 1,
+          "cost": {
+            "timber": 4,
+            "salvage": 2
+          },
+          "progress": 1,
+          "workbenchAtStart": false,
+          "durationByActor": {
+            "player": 28
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 28,
+              "fraction": 0.9999999999999997,
+              "effort": 0.20000000000000004
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 93,
+              "paidBefore": 24,
+              "toolMinutes": 0
+            }
+          },
+          "startedAt": 93,
+          "completedAt": 121
+        },
+        "workbench": {
+          "id": "workbench-1",
+          "project": "workbench",
+          "stage": 1,
+          "cost": {
+            "timber": 3,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": false,
+          "durationByActor": {
+            "player": 27
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 27,
+              "fraction": 0.9999999999999993,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 216,
+              "paidBefore": 73,
+              "toolMinutes": 0
+            }
+          },
+          "startedAt": 216,
+          "completedAt": 243
+        },
+        "garden": {
+          "id": "garden-1",
+          "project": "garden",
+          "stage": 1,
+          "cost": {
+            "timber": 3,
+            "salvage": 1
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 25
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 19,
+              "fraction": 0.9999999999999996,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 753,
+              "paidBefore": 113,
+              "toolMinutes": 19
+            }
+          },
+          "startedAt": 753,
+          "completedAt": 772
+        }
+      },
+      "paid": {
+        "player": {
+          "work": 553,
+          "recovery": 195,
+          "idle": 0,
+          "meal": 24,
+          "effort": 4.420000000000017,
+          "constructionMinutes": 132,
+          "gatheringMinutes": 421
+        },
+        "neighbor": {
+          "work": 0,
+          "recovery": 748,
+          "idle": 0,
+          "meal": 24,
+          "effort": 0,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 0
+        }
+      },
+      "recovering": {
+        "player": false,
+        "neighbor": false
+      },
+      "window": {
+        "enteredAt": 772,
+        "ferryAt": 862,
+        "rainAt": 952,
+        "carriedCaches": 0,
+        "production": [],
+        "allocations": [],
+        "acknowledged": false,
+        "departedAt": null,
+        "finishedAt": null
+      },
+      "returned": false
+    }
+  },
+  "packing": {
+    "format": "human-camp-current",
+    "version": 1,
+    "game": {
+      "version": "0.3.0",
+      "runtimeVersion": "0.1.1",
+      "humanVersion": "0.1.1",
+      "clock": {
+        "version": "0.1.0",
+        "now": 838,
+        "nextEvent": 34,
+        "queue": []
+      },
+      "people": {
+        "player": {
+          "version": "0.1.1",
+          "id": "player",
+          "body": {
+            "fatigue": 0.6509999999999473,
+            "hunger": 0.33400000000000063
+          },
+          "skills": {
+            "gathering": 0.8991943139447791,
+            "construction": 0.6034262665395278
+          },
+          "observationBias": 0,
+          "minutes": 838,
+          "nextAttempt": 424,
+          "pending": null
+        },
+        "neighbor": {
+          "version": "0.1.1",
+          "id": "neighbor",
+          "body": {
+            "fatigue": 0,
+            "hunger": 0.3060000000000014
+          },
+          "skills": {
+            "gathering": 0.1,
+            "construction": 0.05
+          },
+          "observationBias": 0,
+          "minutes": 838,
+          "nextAttempt": 818,
+          "pending": null
+        }
+      },
+      "jobs": {
+        "player": null,
+        "neighbor": null
+      },
+      "stock": {
+        "timber": 20,
+        "salvage": 13,
+        "food": 8
+      },
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      },
+      "caches": 2,
+      "milestoneAt": 772,
+      "commitment": {
+        "status": "none",
+        "project": null,
+        "acceptedAt": null,
+        "finishedAt": null,
+        "startCaches": 0,
+        "reason": "I need a meal, then I can continue."
+      },
+      "lastResponse": null,
+      "stats": {
+        "started": 41,
+        "completed": 41,
+        "canceled": 0,
+        "gathered": {
+          "timber": 50,
+          "salvage": 27,
+          "food": 10
+        },
+        "spent": {
+          "timber": 34,
+          "salvage": 16,
+          "food": 6
+        },
+        "consumedFood": 6,
+        "workMinutes": 589,
+        "restMinutes": 1039,
+        "mealMinutes": 48,
+        "idleMinutes": 0,
+        "receipts": {
+          "gather-timber": 13,
+          "gather-salvage": 9,
+          "forage": 5,
+          "rest": 0,
+          "eat": 6,
+          "coveredTimber": 11,
+          "gardenFood": 0
+        }
+      },
+      "recent": [
+        {
+          "at": 706,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 706,
+          "actor": "player",
+          "message": "You started gather food (11 min)."
+        },
+        {
+          "at": 717,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 717,
+          "actor": "player",
+          "message": "You started eat a portion (8 min)."
+        },
+        {
+          "at": 725,
+          "actor": "player",
+          "message": "You finished eat a portion."
+        },
+        {
+          "at": 735,
+          "actor": "neighbor",
+          "message": "Meryem started eat a portion (8 min). I need a meal, then I can continue."
+        },
+        {
+          "at": 740,
+          "actor": "player",
+          "message": "You started garden: edge the beds (13 min)."
+        },
+        {
+          "at": 743,
+          "actor": "neighbor",
+          "message": "Meryem finished eat a portion."
+        },
+        {
+          "at": 753,
+          "actor": "player",
+          "message": "You finished garden: edge the beds."
+        },
+        {
+          "at": 753,
+          "actor": "player",
+          "message": "You started garden: plant and mulch (19 min)."
+        },
+        {
+          "at": 772,
+          "actor": "player",
+          "message": "You finished garden: plant and mulch."
+        },
+        {
+          "at": 772,
+          "actor": "world",
+          "message": "The worksite is established. Supplies and unfinished work continue with you."
+        },
+        {
+          "at": 787,
+          "actor": "player",
+          "message": "You started supply cache: pack a supply cache (18 min)."
+        },
+        {
+          "at": 805,
+          "actor": "player",
+          "message": "You finished supply cache: pack a supply cache."
+        },
+        {
+          "at": 820,
+          "actor": "player",
+          "message": "You started supply cache: pack a supply cache (18 min)."
+        },
+        {
+          "at": 838,
+          "actor": "player",
+          "message": "You finished supply cache: pack a supply cache."
+        }
+      ],
+      "work": {},
+      "lastAssemblies": {
+        "shelter": {
+          "id": "shelter-1",
+          "project": "shelter",
+          "stage": 1,
+          "cost": {
+            "timber": 4,
+            "salvage": 2
+          },
+          "progress": 1,
+          "workbenchAtStart": false,
+          "durationByActor": {
+            "player": 28
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 28,
+              "fraction": 0.9999999999999997,
+              "effort": 0.20000000000000004
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 93,
+              "paidBefore": 24,
+              "toolMinutes": 0
+            }
+          },
+          "startedAt": 93,
+          "completedAt": 121
+        },
+        "workbench": {
+          "id": "workbench-1",
+          "project": "workbench",
+          "stage": 1,
+          "cost": {
+            "timber": 3,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": false,
+          "durationByActor": {
+            "player": 27
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 27,
+              "fraction": 0.9999999999999993,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 216,
+              "paidBefore": 73,
+              "toolMinutes": 0
+            }
+          },
+          "startedAt": 216,
+          "completedAt": 243
+        },
+        "garden": {
+          "id": "garden-1",
+          "project": "garden",
+          "stage": 1,
+          "cost": {
+            "timber": 3,
+            "salvage": 1
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 25
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 19,
+              "fraction": 0.9999999999999996,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 753,
+              "paidBefore": 113,
+              "toolMinutes": 19
+            }
+          },
+          "startedAt": 753,
+          "completedAt": 772
+        },
+        "cache": {
+          "id": "cache-1",
+          "project": "cache",
+          "stage": 0,
+          "cost": {
+            "timber": 6,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 24
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 18,
+              "fraction": 1,
+              "effort": 0.19999999999999987
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 820,
+              "paidBefore": 150,
+              "toolMinutes": 18
+            }
+          },
+          "startedAt": 820,
+          "completedAt": 838
+        }
+      },
+      "paid": {
+        "player": {
+          "work": 589,
+          "recovery": 225,
+          "idle": 0,
+          "meal": 24,
+          "effort": 4.820000000000015,
+          "constructionMinutes": 168,
+          "gatheringMinutes": 421
+        },
+        "neighbor": {
+          "work": 0,
+          "recovery": 814,
+          "idle": 0,
+          "meal": 24,
+          "effort": 0,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 0
+        }
+      },
+      "recovering": {
+        "player": false,
+        "neighbor": false
+      },
+      "window": {
+        "enteredAt": 772,
+        "ferryAt": 862,
+        "rainAt": 952,
+        "carriedCaches": 0,
+        "production": [
+          {
+            "cache": 1,
+            "at": 805
+          },
+          {
+            "cache": 2,
+            "at": 838
+          }
+        ],
+        "allocations": [],
+        "acknowledged": true,
+        "departedAt": null,
+        "finishedAt": null
+      },
+      "returned": false
+    }
+  },
+  "ferry": {
+    "format": "human-camp-current",
+    "version": 1,
+    "game": {
+      "version": "0.3.0",
+      "runtimeVersion": "0.1.1",
+      "humanVersion": "0.1.1",
+      "clock": {
+        "version": "0.1.0",
+        "now": 862,
+        "nextEvent": 34,
+        "queue": []
+      },
+      "people": {
+        "player": {
+          "version": "0.1.1",
+          "id": "player",
+          "body": {
+            "fatigue": 0.08699999999994659,
+            "hunger": 0.3820000000000007
+          },
+          "skills": {
+            "gathering": 0.8991943139447791,
+            "construction": 0.6034262665395278
+          },
+          "observationBias": 0,
+          "minutes": 862,
+          "nextAttempt": 448,
+          "pending": null
+        },
+        "neighbor": {
+          "version": "0.1.1",
+          "id": "neighbor",
+          "body": {
+            "fatigue": 0,
+            "hunger": 0.3540000000000014
+          },
+          "skills": {
+            "gathering": 0.1,
+            "construction": 0.05
+          },
+          "observationBias": 0,
+          "minutes": 862,
+          "nextAttempt": 842,
+          "pending": null
+        }
+      },
+      "jobs": {
+        "player": null,
+        "neighbor": null
+      },
+      "stock": {
+        "timber": 20,
+        "salvage": 13,
+        "food": 8
+      },
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      },
+      "caches": 2,
+      "milestoneAt": 772,
+      "commitment": {
+        "status": "none",
+        "project": null,
+        "acceptedAt": null,
+        "finishedAt": null,
+        "startCaches": 0,
+        "reason": "I need a meal, then I can continue."
+      },
+      "lastResponse": null,
+      "stats": {
+        "started": 41,
+        "completed": 41,
+        "canceled": 0,
+        "gathered": {
+          "timber": 50,
+          "salvage": 27,
+          "food": 10
+        },
+        "spent": {
+          "timber": 34,
+          "salvage": 16,
+          "food": 6
+        },
+        "consumedFood": 6,
+        "workMinutes": 589,
+        "restMinutes": 1087,
+        "mealMinutes": 48,
+        "idleMinutes": 0,
+        "receipts": {
+          "gather-timber": 13,
+          "gather-salvage": 9,
+          "forage": 5,
+          "rest": 0,
+          "eat": 6,
+          "coveredTimber": 11,
+          "gardenFood": 0
+        }
+      },
+      "recent": [
+        {
+          "at": 706,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 706,
+          "actor": "player",
+          "message": "You started gather food (11 min)."
+        },
+        {
+          "at": 717,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 717,
+          "actor": "player",
+          "message": "You started eat a portion (8 min)."
+        },
+        {
+          "at": 725,
+          "actor": "player",
+          "message": "You finished eat a portion."
+        },
+        {
+          "at": 735,
+          "actor": "neighbor",
+          "message": "Meryem started eat a portion (8 min). I need a meal, then I can continue."
+        },
+        {
+          "at": 740,
+          "actor": "player",
+          "message": "You started garden: edge the beds (13 min)."
+        },
+        {
+          "at": 743,
+          "actor": "neighbor",
+          "message": "Meryem finished eat a portion."
+        },
+        {
+          "at": 753,
+          "actor": "player",
+          "message": "You finished garden: edge the beds."
+        },
+        {
+          "at": 753,
+          "actor": "player",
+          "message": "You started garden: plant and mulch (19 min)."
+        },
+        {
+          "at": 772,
+          "actor": "player",
+          "message": "You finished garden: plant and mulch."
+        },
+        {
+          "at": 772,
+          "actor": "world",
+          "message": "The worksite is established. Supplies and unfinished work continue with you."
+        },
+        {
+          "at": 787,
+          "actor": "player",
+          "message": "You started supply cache: pack a supply cache (18 min)."
+        },
+        {
+          "at": 805,
+          "actor": "player",
+          "message": "You finished supply cache: pack a supply cache."
+        },
+        {
+          "at": 820,
+          "actor": "player",
+          "message": "You started supply cache: pack a supply cache (18 min)."
+        },
+        {
+          "at": 838,
+          "actor": "player",
+          "message": "You finished supply cache: pack a supply cache."
+        }
+      ],
+      "work": {},
+      "lastAssemblies": {
+        "shelter": {
+          "id": "shelter-1",
+          "project": "shelter",
+          "stage": 1,
+          "cost": {
+            "timber": 4,
+            "salvage": 2
+          },
+          "progress": 1,
+          "workbenchAtStart": false,
+          "durationByActor": {
+            "player": 28
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 28,
+              "fraction": 0.9999999999999997,
+              "effort": 0.20000000000000004
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 93,
+              "paidBefore": 24,
+              "toolMinutes": 0
+            }
+          },
+          "startedAt": 93,
+          "completedAt": 121
+        },
+        "workbench": {
+          "id": "workbench-1",
+          "project": "workbench",
+          "stage": 1,
+          "cost": {
+            "timber": 3,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": false,
+          "durationByActor": {
+            "player": 27
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 27,
+              "fraction": 0.9999999999999993,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 216,
+              "paidBefore": 73,
+              "toolMinutes": 0
+            }
+          },
+          "startedAt": 216,
+          "completedAt": 243
+        },
+        "garden": {
+          "id": "garden-1",
+          "project": "garden",
+          "stage": 1,
+          "cost": {
+            "timber": 3,
+            "salvage": 1
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 25
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 19,
+              "fraction": 0.9999999999999996,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 753,
+              "paidBefore": 113,
+              "toolMinutes": 19
+            }
+          },
+          "startedAt": 753,
+          "completedAt": 772
+        },
+        "cache": {
+          "id": "cache-1",
+          "project": "cache",
+          "stage": 0,
+          "cost": {
+            "timber": 6,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 24
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 18,
+              "fraction": 1,
+              "effort": 0.19999999999999987
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 820,
+              "paidBefore": 150,
+              "toolMinutes": 18
+            }
+          },
+          "startedAt": 820,
+          "completedAt": 838
+        }
+      },
+      "paid": {
+        "player": {
+          "work": 589,
+          "recovery": 249,
+          "idle": 0,
+          "meal": 24,
+          "effort": 4.820000000000015,
+          "constructionMinutes": 168,
+          "gatheringMinutes": 421
+        },
+        "neighbor": {
+          "work": 0,
+          "recovery": 838,
+          "idle": 0,
+          "meal": 24,
+          "effort": 0,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 0
+        }
+      },
+      "recovering": {
+        "player": false,
+        "neighbor": false
+      },
+      "window": {
+        "enteredAt": 772,
+        "ferryAt": 862,
+        "rainAt": 952,
+        "carriedCaches": 0,
+        "production": [
+          {
+            "cache": 1,
+            "at": 805
+          },
+          {
+            "cache": 2,
+            "at": 838
+          }
+        ],
+        "allocations": [],
+        "acknowledged": true,
+        "departedAt": null,
+        "finishedAt": null
+      },
+      "returned": false
+    }
+  },
+  "rain": {
+    "format": "human-camp-current",
+    "version": 1,
+    "game": {
+      "version": "0.3.0",
+      "runtimeVersion": "0.1.1",
+      "humanVersion": "0.1.1",
+      "clock": {
+        "version": "0.1.0",
+        "now": 952,
+        "nextEvent": 34,
+        "queue": []
+      },
+      "people": {
+        "player": {
+          "version": "0.1.1",
+          "id": "player",
+          "body": {
+            "fatigue": 0,
+            "hunger": 0.5620000000000008
+          },
+          "skills": {
+            "gathering": 0.8991943139447791,
+            "construction": 0.6034262665395278
+          },
+          "observationBias": 0,
+          "minutes": 952,
+          "nextAttempt": 538,
+          "pending": null
+        },
+        "neighbor": {
+          "version": "0.1.1",
+          "id": "neighbor",
+          "body": {
+            "fatigue": 0,
+            "hunger": 0.5340000000000016
+          },
+          "skills": {
+            "gathering": 0.1,
+            "construction": 0.05
+          },
+          "observationBias": 0,
+          "minutes": 952,
+          "nextAttempt": 932,
+          "pending": null
+        }
+      },
+      "jobs": {
+        "player": null,
+        "neighbor": null
+      },
+      "stock": {
+        "timber": 20,
+        "salvage": 13,
+        "food": 8
+      },
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      },
+      "caches": 2,
+      "milestoneAt": 772,
+      "commitment": {
+        "status": "none",
+        "project": null,
+        "acceptedAt": null,
+        "finishedAt": null,
+        "startCaches": 0,
+        "reason": "I need a meal, then I can continue."
+      },
+      "lastResponse": null,
+      "stats": {
+        "started": 41,
+        "completed": 41,
+        "canceled": 0,
+        "gathered": {
+          "timber": 50,
+          "salvage": 27,
+          "food": 10
+        },
+        "spent": {
+          "timber": 34,
+          "salvage": 16,
+          "food": 6
+        },
+        "consumedFood": 6,
+        "workMinutes": 589,
+        "restMinutes": 1267,
+        "mealMinutes": 48,
+        "idleMinutes": 0,
+        "receipts": {
+          "gather-timber": 13,
+          "gather-salvage": 9,
+          "forage": 5,
+          "rest": 0,
+          "eat": 6,
+          "coveredTimber": 11,
+          "gardenFood": 0
+        }
+      },
+      "recent": [
+        {
+          "at": 706,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 706,
+          "actor": "player",
+          "message": "You started gather food (11 min)."
+        },
+        {
+          "at": 717,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 717,
+          "actor": "player",
+          "message": "You started eat a portion (8 min)."
+        },
+        {
+          "at": 725,
+          "actor": "player",
+          "message": "You finished eat a portion."
+        },
+        {
+          "at": 735,
+          "actor": "neighbor",
+          "message": "Meryem started eat a portion (8 min). I need a meal, then I can continue."
+        },
+        {
+          "at": 740,
+          "actor": "player",
+          "message": "You started garden: edge the beds (13 min)."
+        },
+        {
+          "at": 743,
+          "actor": "neighbor",
+          "message": "Meryem finished eat a portion."
+        },
+        {
+          "at": 753,
+          "actor": "player",
+          "message": "You finished garden: edge the beds."
+        },
+        {
+          "at": 753,
+          "actor": "player",
+          "message": "You started garden: plant and mulch (19 min)."
+        },
+        {
+          "at": 772,
+          "actor": "player",
+          "message": "You finished garden: plant and mulch."
+        },
+        {
+          "at": 772,
+          "actor": "world",
+          "message": "The worksite is established. Supplies and unfinished work continue with you."
+        },
+        {
+          "at": 787,
+          "actor": "player",
+          "message": "You started supply cache: pack a supply cache (18 min)."
+        },
+        {
+          "at": 805,
+          "actor": "player",
+          "message": "You finished supply cache: pack a supply cache."
+        },
+        {
+          "at": 820,
+          "actor": "player",
+          "message": "You started supply cache: pack a supply cache (18 min)."
+        },
+        {
+          "at": 838,
+          "actor": "player",
+          "message": "You finished supply cache: pack a supply cache."
+        }
+      ],
+      "work": {},
+      "lastAssemblies": {
+        "shelter": {
+          "id": "shelter-1",
+          "project": "shelter",
+          "stage": 1,
+          "cost": {
+            "timber": 4,
+            "salvage": 2
+          },
+          "progress": 1,
+          "workbenchAtStart": false,
+          "durationByActor": {
+            "player": 28
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 28,
+              "fraction": 0.9999999999999997,
+              "effort": 0.20000000000000004
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 93,
+              "paidBefore": 24,
+              "toolMinutes": 0
+            }
+          },
+          "startedAt": 93,
+          "completedAt": 121
+        },
+        "workbench": {
+          "id": "workbench-1",
+          "project": "workbench",
+          "stage": 1,
+          "cost": {
+            "timber": 3,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": false,
+          "durationByActor": {
+            "player": 27
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 27,
+              "fraction": 0.9999999999999993,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 216,
+              "paidBefore": 73,
+              "toolMinutes": 0
+            }
+          },
+          "startedAt": 216,
+          "completedAt": 243
+        },
+        "garden": {
+          "id": "garden-1",
+          "project": "garden",
+          "stage": 1,
+          "cost": {
+            "timber": 3,
+            "salvage": 1
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 25
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 19,
+              "fraction": 0.9999999999999996,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 753,
+              "paidBefore": 113,
+              "toolMinutes": 19
+            }
+          },
+          "startedAt": 753,
+          "completedAt": 772
+        },
+        "cache": {
+          "id": "cache-1",
+          "project": "cache",
+          "stage": 0,
+          "cost": {
+            "timber": 6,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 24
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 18,
+              "fraction": 1,
+              "effort": 0.19999999999999987
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 820,
+              "paidBefore": 150,
+              "toolMinutes": 18
+            }
+          },
+          "startedAt": 820,
+          "completedAt": 838
+        }
+      },
+      "paid": {
+        "player": {
+          "work": 589,
+          "recovery": 339,
+          "idle": 0,
+          "meal": 24,
+          "effort": 4.820000000000015,
+          "constructionMinutes": 168,
+          "gatheringMinutes": 421
+        },
+        "neighbor": {
+          "work": 0,
+          "recovery": 928,
+          "idle": 0,
+          "meal": 24,
+          "effort": 0,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 0
+        }
+      },
+      "recovering": {
+        "player": false,
+        "neighbor": false
+      },
+      "window": {
+        "enteredAt": 772,
+        "ferryAt": 862,
+        "rainAt": 952,
+        "carriedCaches": 0,
+        "production": [
+          {
+            "cache": 1,
+            "at": 805
+          },
+          {
+            "cache": 2,
+            "at": 838
+          }
+        ],
+        "allocations": [],
+        "acknowledged": true,
+        "departedAt": 862,
+        "finishedAt": null
+      },
+      "returned": false
+    }
+  },
+  "ended": {
+    "format": "human-camp-current",
+    "version": 1,
+    "game": {
+      "version": "0.3.0",
+      "runtimeVersion": "0.1.1",
+      "humanVersion": "0.1.1",
+      "clock": {
+        "version": "0.1.0",
+        "now": 952,
+        "nextEvent": 34,
+        "queue": []
+      },
+      "people": {
+        "player": {
+          "version": "0.1.1",
+          "id": "player",
+          "body": {
+            "fatigue": 0,
+            "hunger": 0.5620000000000008
+          },
+          "skills": {
+            "gathering": 0.8991943139447791,
+            "construction": 0.6034262665395278
+          },
+          "observationBias": 0,
+          "minutes": 952,
+          "nextAttempt": 538,
+          "pending": null
+        },
+        "neighbor": {
+          "version": "0.1.1",
+          "id": "neighbor",
+          "body": {
+            "fatigue": 0,
+            "hunger": 0.5340000000000016
+          },
+          "skills": {
+            "gathering": 0.1,
+            "construction": 0.05
+          },
+          "observationBias": 0,
+          "minutes": 952,
+          "nextAttempt": 932,
+          "pending": null
+        }
+      },
+      "jobs": {
+        "player": null,
+        "neighbor": null
+      },
+      "stock": {
+        "timber": 20,
+        "salvage": 13,
+        "food": 8
+      },
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      },
+      "caches": 2,
+      "milestoneAt": 772,
+      "commitment": {
+        "status": "none",
+        "project": null,
+        "acceptedAt": null,
+        "finishedAt": null,
+        "startCaches": 0,
+        "reason": "I need a meal, then I can continue."
+      },
+      "lastResponse": null,
+      "stats": {
+        "started": 41,
+        "completed": 41,
+        "canceled": 0,
+        "gathered": {
+          "timber": 50,
+          "salvage": 27,
+          "food": 10
+        },
+        "spent": {
+          "timber": 34,
+          "salvage": 16,
+          "food": 6
+        },
+        "consumedFood": 6,
+        "workMinutes": 589,
+        "restMinutes": 1267,
+        "mealMinutes": 48,
+        "idleMinutes": 0,
+        "receipts": {
+          "gather-timber": 13,
+          "gather-salvage": 9,
+          "forage": 5,
+          "rest": 0,
+          "eat": 6,
+          "coveredTimber": 11,
+          "gardenFood": 0
+        }
+      },
+      "recent": [
+        {
+          "at": 706,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 706,
+          "actor": "player",
+          "message": "You started gather food (11 min)."
+        },
+        {
+          "at": 717,
+          "actor": "player",
+          "message": "You finished gather food. +2 food."
+        },
+        {
+          "at": 717,
+          "actor": "player",
+          "message": "You started eat a portion (8 min)."
+        },
+        {
+          "at": 725,
+          "actor": "player",
+          "message": "You finished eat a portion."
+        },
+        {
+          "at": 735,
+          "actor": "neighbor",
+          "message": "Meryem started eat a portion (8 min). I need a meal, then I can continue."
+        },
+        {
+          "at": 740,
+          "actor": "player",
+          "message": "You started garden: edge the beds (13 min)."
+        },
+        {
+          "at": 743,
+          "actor": "neighbor",
+          "message": "Meryem finished eat a portion."
+        },
+        {
+          "at": 753,
+          "actor": "player",
+          "message": "You finished garden: edge the beds."
+        },
+        {
+          "at": 753,
+          "actor": "player",
+          "message": "You started garden: plant and mulch (19 min)."
+        },
+        {
+          "at": 772,
+          "actor": "player",
+          "message": "You finished garden: plant and mulch."
+        },
+        {
+          "at": 772,
+          "actor": "world",
+          "message": "The worksite is established. Supplies and unfinished work continue with you."
+        },
+        {
+          "at": 787,
+          "actor": "player",
+          "message": "You started supply cache: pack a supply cache (18 min)."
+        },
+        {
+          "at": 805,
+          "actor": "player",
+          "message": "You finished supply cache: pack a supply cache."
+        },
+        {
+          "at": 820,
+          "actor": "player",
+          "message": "You started supply cache: pack a supply cache (18 min)."
+        },
+        {
+          "at": 838,
+          "actor": "player",
+          "message": "You finished supply cache: pack a supply cache."
+        }
+      ],
+      "work": {},
+      "lastAssemblies": {
+        "shelter": {
+          "id": "shelter-1",
+          "project": "shelter",
+          "stage": 1,
+          "cost": {
+            "timber": 4,
+            "salvage": 2
+          },
+          "progress": 1,
+          "workbenchAtStart": false,
+          "durationByActor": {
+            "player": 28
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 28,
+              "fraction": 0.9999999999999997,
+              "effort": 0.20000000000000004
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 93,
+              "paidBefore": 24,
+              "toolMinutes": 0
+            }
+          },
+          "startedAt": 93,
+          "completedAt": 121
+        },
+        "workbench": {
+          "id": "workbench-1",
+          "project": "workbench",
+          "stage": 1,
+          "cost": {
+            "timber": 3,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": false,
+          "durationByActor": {
+            "player": 27
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 27,
+              "fraction": 0.9999999999999993,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 216,
+              "paidBefore": 73,
+              "toolMinutes": 0
+            }
+          },
+          "startedAt": 216,
+          "completedAt": 243
+        },
+        "garden": {
+          "id": "garden-1",
+          "project": "garden",
+          "stage": 1,
+          "cost": {
+            "timber": 3,
+            "salvage": 1
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 25
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 19,
+              "fraction": 0.9999999999999996,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 753,
+              "paidBefore": 113,
+              "toolMinutes": 19
+            }
+          },
+          "startedAt": 753,
+          "completedAt": 772
+        },
+        "cache": {
+          "id": "cache-1",
+          "project": "cache",
+          "stage": 0,
+          "cost": {
+            "timber": 6,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 24
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 18,
+              "fraction": 1,
+              "effort": 0.19999999999999987
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 820,
+              "paidBefore": 150,
+              "toolMinutes": 18
+            }
+          },
+          "startedAt": 820,
+          "completedAt": 838
+        }
+      },
+      "paid": {
+        "player": {
+          "work": 589,
+          "recovery": 339,
+          "idle": 0,
+          "meal": 24,
+          "effort": 4.820000000000015,
+          "constructionMinutes": 168,
+          "gatheringMinutes": 421
+        },
+        "neighbor": {
+          "work": 0,
+          "recovery": 928,
+          "idle": 0,
+          "meal": 24,
+          "effort": 0,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 0
+        }
+      },
+      "recovering": {
+        "player": false,
+        "neighbor": false
+      },
+      "window": {
+        "enteredAt": 772,
+        "ferryAt": 862,
+        "rainAt": 952,
+        "carriedCaches": 0,
+        "production": [
+          {
+            "cache": 1,
+            "at": 805
+          },
+          {
+            "cache": 2,
+            "at": 838
+          }
+        ],
+        "allocations": [],
+        "acknowledged": true,
+        "departedAt": 862,
+        "finishedAt": 952
+      },
+      "returned": false
+    }
+  }
+}
