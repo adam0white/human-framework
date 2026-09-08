@@ -26,7 +26,7 @@ function renderJobs(view){
 }
 function renderActions(view){
  const target=view.jobs.find(j=>j.id===selected);$('action-title').textContent=target?.name??'At the depot';
- $('target-description').textContent=target?target.description:'Pick up your toolkit and decide whether to carry the one spare. Meals stay here for later.';
+ $('target-description').textContent=target?target.description:!view.inventory.tools?'Pick up your toolkit, then choose a pump on the board.':view.stock.seal?'Toolkit ready. Collect the spare for an easier fitting, or choose a pump to patch.':'Toolkit ready. Choose a pump on the board. Eat here first if you need a meal.';
  $('actions').replaceChildren();$('actions').hidden=Boolean(view.pending)||view.status!=='playing';
  const visible=view.actions.filter(a=>selected!==view.location?a.id===`travel-${selected}`:a.type!=='travel');
  for(const a of visible){const b=element('button',`action ${a.type}`);b.type='button';b.dataset.action=a.id;const main=element('span','action-main');main.append(element('span','action-name',a.label),element('span','action-time',`${a.durationMinutes} min`));b.append(main,element('span','action-description',a.detail));
