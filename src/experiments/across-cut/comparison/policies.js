@@ -58,7 +58,9 @@ export function chooseAction(view,policyState={},arm){
       s[`responded:${proposalKey(peerProposal)}`]=true;
       return take(s,{task:'transmit',message:{kind:'response',proposalId:peerProposal.proposalId,revision:peerProposal.revision,decision:s[`decided:${proposalKey(peerProposal)}`]}},'Pay to communicate the exact own revision decision.');
     }
-    const response=v.inbox.find(e=>e.message.kind==='response'&&e.message.decision==='accept'&&!s[`confirmed:${e.messageId}`]);
+    const receivedResponses=v.inbox.filter(e=>e.message.kind==='response'&&e.message.proposalId===ownProposal?.proposalId&&e.message.revision===ownProposal?.revision).sort((a,b)=>(a.message.decidedAt??0)-(b.message.decidedAt??0)||a.receipt-b.receipt);
+    const latestResponse=receivedResponses.at(-1);
+    const response=latestResponse?.message.decision==='accept'&&!s[`confirmed:${latestResponse.messageId}`]?latestResponse:null;
     if(v.actorId==='keeper'&&response&&arm==='notebook'&&available(v,'radio')){
       s[`confirmed:${response.messageId}`]=true;return take(s,{task:'transmit',message:{kind:'confirm',messageId:response.messageId}},'Optional receipt-only confirmation carries no new readiness fact.');
     }
