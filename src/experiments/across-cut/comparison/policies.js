@@ -1,4 +1,5 @@
 /** Replaceable deterministic policies. Only detached actor-local views enter here. */
+import {compareResponseSource} from './representations.js';
 export const ARMS=Object.freeze(['cart-only','no-radio-earliest','fixed-early','fixed-conservative','contact','one-way-report','reactive-radio','notebook','notebook-no-confirm']);
 const radioArms=new Set(['reactive-radio','notebook','notebook-no-confirm']);
 const take=(state,action,reason)=>({state,action,reason});
@@ -58,7 +59,7 @@ export function chooseAction(view,policyState={},arm){
       s[`responded:${proposalKey(peerProposal)}`]=true;
       return take(s,{task:'transmit',message:{kind:'response',proposalId:peerProposal.proposalId,revision:peerProposal.revision,decision:s[`decided:${proposalKey(peerProposal)}`]}},'Pay to communicate the exact own revision decision.');
     }
-    const receivedResponses=v.inbox.filter(e=>e.message.kind==='response'&&e.message.proposalId===ownProposal?.proposalId&&e.message.revision===ownProposal?.revision).sort((a,b)=>(a.message.decidedAt??0)-(b.message.decidedAt??0)||a.receipt-b.receipt);
+    const receivedResponses=v.inbox.filter(e=>e.message.kind==='response'&&e.message.proposalId===ownProposal?.proposalId&&e.message.revision===ownProposal?.revision).sort(compareResponseSource);
     const latestResponse=receivedResponses.at(-1);
     const response=latestResponse?.message.decision==='accept'&&!s[`confirmed:${latestResponse.messageId}`]?latestResponse:null;
     if(v.actorId==='keeper'&&response&&arm==='notebook'&&available(v,'radio')){

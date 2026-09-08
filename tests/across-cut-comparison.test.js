@@ -22,7 +22,7 @@ test('nine legal rival families share detached actor-local decisions',async()=>{
   assert.deepEqual(view,before);
   assert.deepEqual(m.chooseAction(view,{},'notebook'),m.chooseAction(structuredClone(view),{},'notebook'));
   assert.throws(()=>m.chooseAction(view,{},'clairvoyant'),/Unknown/);
-  const keeper={...view,actorId:'keeper',location:'valve',position:0,local:{station:'valve',repairMinutes:6,repairProgress:6,launchAt:null,serviceUnits:null},inventory:{...view.inventory,water:{available:2}},proposals:[{proposalId:'keeper:p1',revision:1,author:'keeper',terms:{releaseAt:17,attendFrom:21,attendUntil:22}}],now:16,inbox:[{messageId:'receiver:m1',message:{kind:'response',proposalId:'keeper:p1',revision:1,decision:'accept',decidedAt:3}},{messageId:'receiver:m2',message:{kind:'response',proposalId:'keeper:p1',revision:1,decision:'withdraw',decidedAt:5}}]};
+  const keeper={...view,actorId:'keeper',location:'valve',position:0,local:{station:'valve',repairMinutes:6,repairProgress:6,launchAt:null,serviceUnits:null},inventory:{...view.inventory,water:{available:2}},proposals:[{proposalId:'keeper:p1',revision:1,author:'keeper',terms:{releaseAt:17,attendFrom:21,attendUntil:22}}],now:16,inbox:[{messageId:'receiver:m2',sentAt:5,message:{kind:'response',proposalId:'keeper:p1',revision:1,decision:'withdraw',decidedAt:3}},{messageId:'receiver:m1',sentAt:4,message:{kind:'response',proposalId:'keeper:p1',revision:1,decision:'accept',decidedAt:3}}]};
   const chosen=m.chooseAction(keeper,{'decided:keeper:p1|1':'accept',reportSent:true,proposed:true,releaseAt:17},'notebook');
   assert.equal(chosen.action,null,'Do not spend a receipt confirmation on an acceptance superseded by a received withdrawal.');
 });
