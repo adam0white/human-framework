@@ -1,0 +1,358 @@
+{
+  "format": "human-service-day",
+  "version": 1,
+  "hostVersion": "0.1.0",
+  "runtimeVersion": "0.1.1",
+  "scenario": "standard",
+  "commands": [
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "gate"
+    },
+    {
+      "type": "advance",
+      "to": 6
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "gate"
+    },
+    {
+      "type": "advance",
+      "to": 12
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "salvage"
+    },
+    {
+      "type": "advance",
+      "to": 20
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "meal"
+    },
+    {
+      "type": "advance",
+      "to": 24
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "cart"
+    },
+    {
+      "type": "stop",
+      "actor": "partner"
+    }
+  ],
+  "state": {
+    "version": "0.1.0",
+    "scenario": "standard",
+    "clock": {
+      "version": "0.1.0",
+      "now": 24,
+      "nextEvent": 16,
+      "queue": [
+        {
+          "id": "event:15",
+          "at": 30,
+          "type": "attempt-due",
+          "actorId": "partner",
+          "data": {
+            "attemptId": "partner:4",
+            "task": "pump"
+          }
+        },
+        {
+          "id": "event:2",
+          "at": 64,
+          "type": "closing",
+          "actorId": null,
+          "data": null
+        },
+        {
+          "id": "event:14",
+          "at": 88,
+          "type": "attempt-due",
+          "actorId": "keeper",
+          "data": {
+            "attemptId": "keeper:9",
+            "task": "idle"
+          }
+        }
+      ]
+    },
+    "people": {
+      "keeper": {
+        "version": "0.1.1",
+        "id": "keeper",
+        "body": {
+          "fatigue": 0.8959999999999981,
+          "hunger": 0.358
+        },
+        "skills": {
+          "repair": 0.2483943929464168,
+          "carry": 0.1
+        },
+        "observationBias": 0,
+        "minutes": 24,
+        "nextAttempt": 10,
+        "pending": {
+          "id": "keeper:9",
+          "action": {
+            "actionId": "idle",
+            "targetId": null,
+            "durationMinutes": 64,
+            "effort": 0,
+            "exertive": false,
+            "activity": "active",
+            "skill": null
+          },
+          "elapsedMinutes": 0,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.096,
+            "hungerCost": 0.128,
+            "projectedFatigue": 0.9919999999999981,
+            "projectedHunger": 0.486
+          },
+          "bodyBefore": {
+            "fatigue": 0.8959999999999981,
+            "hunger": 0.358
+          },
+          "skillBefore": null,
+          "startedAt": 24
+        }
+      },
+      "partner": {
+        "version": "0.1.1",
+        "id": "partner",
+        "body": {
+          "fatigue": 0.28600000000000003,
+          "hunger": 0.278
+        },
+        "skills": {
+          "repair": 0.2,
+          "carry": 0.1
+        },
+        "observationBias": 0,
+        "minutes": 24,
+        "nextAttempt": 5,
+        "pending": {
+          "id": "partner:4",
+          "action": {
+            "actionId": "pump",
+            "targetId": "clinic",
+            "durationMinutes": 6,
+            "effort": 0.16,
+            "exertive": true,
+            "activity": "active",
+            "skill": "repair"
+          },
+          "elapsedMinutes": 0,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.169,
+            "hungerCost": 0.012,
+            "projectedFatigue": 0.45500000000000007,
+            "projectedHunger": 0.29000000000000004
+          },
+          "bodyBefore": {
+            "fatigue": 0.28600000000000003,
+            "hunger": 0.278
+          },
+          "skillBefore": 0.2,
+          "startedAt": 24
+        }
+      }
+    },
+    "jobs": {
+      "keeper": {
+        "task": "idle",
+        "origin": "own",
+        "startedAt": 24,
+        "endsAt": 88,
+        "eventId": "event:14",
+        "attemptId": "keeper:9",
+        "startProgress": null,
+        "reservedParts": 0,
+        "reservedMeal": 0
+      },
+      "partner": {
+        "task": "pump",
+        "origin": "own",
+        "startedAt": 24,
+        "endsAt": 30,
+        "eventId": "event:15",
+        "attemptId": "partner:4",
+        "startProgress": 0,
+        "reservedParts": 1,
+        "reservedMeal": 0
+      }
+    },
+    "parts": {
+      "keeper": 1,
+      "partner": 0
+    },
+    "food": {
+      "keeper": 0,
+      "partner": 0
+    },
+    "eaten": {
+      "keeper": 1,
+      "partner": 1
+    },
+    "work": {
+      "gate": 12,
+      "divert": 0,
+      "pump": 0
+    },
+    "salvaged": 1,
+    "reopenedAt": null,
+    "morning": {
+      "at": 24,
+      "protected": true,
+      "waterService": true,
+      "route": "gate"
+    },
+    "delivery": null,
+    "outcome": null,
+    "paid": {
+      "gate": 12,
+      "divert": 0,
+      "reopen": 0,
+      "pump": 0,
+      "deliver": 0,
+      "cart": 0,
+      "share": 0,
+      "salvage": 8,
+      "rest": 0,
+      "meal": 8,
+      "idle": 20
+    },
+    "paidByActor": {
+      "keeper": {
+        "gate": 12,
+        "divert": 0,
+        "reopen": 0,
+        "pump": 0,
+        "deliver": 0,
+        "cart": 0,
+        "share": 0,
+        "salvage": 8,
+        "rest": 0,
+        "meal": 4,
+        "idle": 0
+      },
+      "partner": {
+        "gate": 0,
+        "divert": 0,
+        "reopen": 0,
+        "pump": 0,
+        "deliver": 0,
+        "cart": 0,
+        "share": 0,
+        "salvage": 0,
+        "rest": 0,
+        "meal": 4,
+        "idle": 20
+      }
+    },
+    "installedPartsByActor": {
+      "keeper": 2,
+      "partner": 0
+    },
+    "handedOver": {
+      "keeper": 0,
+      "partner": 0
+    },
+    "lastResponse": {
+      "at": 24,
+      "actor": "partner",
+      "task": "pump",
+      "accepted": false,
+      "code": "OWN_COMMITMENT",
+      "reason": "I chose this work for the clinic and will finish it. You can make another request when I am free."
+    },
+    "lastReceipt": {
+      "id": "event:12",
+      "at": 24,
+      "type": "attempt-due",
+      "actorId": "keeper",
+      "data": {
+        "attemptId": "keeper:8",
+        "task": "meal"
+      }
+    },
+    "recent": [
+      {
+        "at": 0,
+        "actor": "keeper",
+        "message": "Agreed: repair an inlet gate section, 6 paid minutes."
+      },
+      {
+        "at": 6,
+        "actor": "keeper",
+        "message": "Finished repair an inlet gate section."
+      },
+      {
+        "at": 6,
+        "actor": "keeper",
+        "message": "Agreed: repair an inlet gate section, 6 paid minutes."
+      },
+      {
+        "at": 12,
+        "actor": "keeper",
+        "message": "Finished repair an inlet gate section."
+      },
+      {
+        "at": 12,
+        "actor": "keeper",
+        "message": "Agreed: fetch the shed spare, 8 paid minutes."
+      },
+      {
+        "at": 20,
+        "actor": "keeper",
+        "message": "Finished fetch the shed spare."
+      },
+      {
+        "at": 20,
+        "actor": "partner",
+        "message": "I prefer to eat now before the later clinic work."
+      },
+      {
+        "at": 20,
+        "actor": "keeper",
+        "message": "Agreed: eat your meal, 4 paid minutes."
+      },
+      {
+        "at": 24,
+        "actor": "world",
+        "message": "The gate held and morning water service continued. The clinic now needs its pump and delivery."
+      },
+      {
+        "at": 24,
+        "actor": "partner",
+        "message": "Finished eat your meal."
+      },
+      {
+        "at": 24,
+        "actor": "keeper",
+        "message": "Finished eat your meal."
+      },
+      {
+        "at": 24,
+        "actor": "partner",
+        "message": "I will use my own part to repair the clinic pump."
+      }
+    ]
+  }
+}
