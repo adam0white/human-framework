@@ -1,0 +1,44 @@
+{
+  "declaredAt": "2026-09-08T17:46:17.896155+00:00",
+  "sourceBaseline": "add156c80fdaa546738a0f3cf677648d016e5174",
+  "phase": "concrete protocol before comparison matrix; candidate interface not yet frozen",
+  "sources": {
+    "docs/work-progress-proposal.md": "26c2e6700270d41943fe9eecc5099c71821549d5af685251a9b31bd699190424",
+    "docs/work-progress-execution.md": "bdf6e66410a5de6a0c7ec4c14a555253444faf4e4f19e7186110e1f0966655b8",
+    "src/games/camp.js": "a695c31258b8bc5339a20cd49f238e5a8f7fa1bed52c1cf2c0706822f804c078",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "src/coordination/attempt-clock.js": "1319b239e980bbf6a9a79461382d543284d406c7945cf16ef9587bf109c54948",
+    "docs/camp-comparison-reviewed.md": "5621ac0b7cde9385f941bfd8af4ce9488513a0c21cd4686240deecb95b68f345",
+    "docs/coordination-probe.md": "72185e82380fccd16487ad832bd50b71a53425d16a0130b96ea158d223adff61"
+  },
+  "expectedCompletion": {
+    "H1": [
+      20
+    ],
+    "H2": [
+      15
+    ],
+    "H3": [
+      23
+    ],
+    "H4": [
+      15
+    ],
+    "H5": [
+      19
+    ],
+    "H6": [
+      20
+    ],
+    "H7": [
+      20
+    ],
+    "H8": [
+      20,
+      20
+    ]
+  }
+}
