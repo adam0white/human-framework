@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as game from '../src/games/signals.js';
 const json=x=>JSON.parse(JSON.stringify(x));
+test('invalid setup envelopes reject as commands rather than save errors or TypeErrors',()=>{
+  for(const input of [null,7,[],{unexpected:true}])assert.throws(()=>game.createSignals(input),{code:'INVALID_COMMAND'});
+});
 const ask=(s,task)=>{const n=game.requestTask(s,task);assert.equal(n.lastResponse.accepted,true,n.lastResponse.reason);return n;};
 const finish=(s,task)=>game.advanceTo(ask(s,task),s.clock.now+game.getSignalsView(s).choices.find(c=>c.task===task).duration);
 

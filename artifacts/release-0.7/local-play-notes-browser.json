@@ -1,0 +1,27 @@
+{
+  "origin": "http://127.0.0.1:4192",
+  "checkedAt": "2026-09-08T07:03:23.200Z",
+  "browser": "152.0.7977.77",
+  "checks": [
+    {
+      "game": "watch",
+      "downloaded": true,
+      "blankRejected": true,
+      "pausesPlayback": true,
+      "noGameMutation": true,
+      "publicContextOnly": true,
+      "syntheticFixture": true
+    },
+    {
+      "game": "commons-next",
+      "downloaded": true,
+      "blankRejected": true,
+      "pausesPlayback": true,
+      "noGameMutation": true,
+      "publicContextOnly": true,
+      "syntheticFixture": true
+    }
+  ],
+  "errors": [],
+  "note": "Automated synthetic note fixtures, not human playtest responses. No user feedback or full save was exported by this check."
+}

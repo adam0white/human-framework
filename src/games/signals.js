@@ -22,7 +22,7 @@ const copy=x=>structuredClone(x),fail=(code,message)=>{const e=new Error(message
 const canonical=x=>Array.isArray(x)?`[${x.map(canonical).join(',')}]`:x&&typeof x==='object'?`{${Object.keys(x).sort().map(k=>`${JSON.stringify(k)}:${canonical(x[k])}`).join(',')}}`:JSON.stringify(x);
 const equal=(a,b)=>canonical(a)===canonical(b);
 function int(x,min,max,label){if(!Number.isSafeInteger(x)||Object.is(x,-0)||x<min||x>max)fail('INVALID_COMMAND',`Invalid ${label}.`);}
-function fields(x,names,label){if(!x||typeof x!=='object'||Array.isArray(x)||Object.keys(x).length!==names.length||names.some(k=>!Object.hasOwn(x,k)))fail('INVALID_SAVE',`Invalid ${label} fields.`);}
+function fields(x,names,label,code='INVALID_SAVE'){if(!x||typeof x!=='object'||Array.isArray(x)||Object.keys(x).length!==names.length||names.some(k=>!Object.hasOwn(x,k)))fail(code,`Invalid ${label} fields.`);}
 function json(x,depth=0,ancestors=new Set(),budget={nodes:0}){
  if(++budget.nodes>10000||depth>20)fail('INVALID_SAVE','Save exceeds structural limits.');
  if(x===null||typeof x==='boolean')return;
@@ -61,7 +61,7 @@ function initial(situation){
  start(s,'idle');note(s,'Deliver the lens before minute 32. The ridge is reliable; the canal needs an open landing at arrival. Choosing does not move time.');return s;
 }
 export function createSignals(input={}){
- json(input);fields(input,Object.keys(input).filter(k=>k==='situation'),'setup');const situation=input.situation??'turning';if(typeof situation!=='string'||!Object.hasOwn(timelines,situation))fail('INVALID_COMMAND','Unknown harbor situation.');return initial(situation);
+ json(input);fields(input,Object.keys(input??{}).filter(k=>k==='situation'),'setup','INVALID_COMMAND');const situation=input.situation??'turning';if(typeof situation!=='string'||!Object.hasOwn(timelines,situation))fail('INVALID_COMMAND','Unknown harbor situation.');return initial(situation);
 }
 /** Small task-keyed notebook rule: newest observed time, then newest receipt. */
 export function retainReport(previous,incoming){return copy(!previous||incoming.observedAt>previous.observedAt||incoming.observedAt===previous.observedAt&&incoming.sequence>previous.sequence?incoming:previous);}

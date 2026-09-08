@@ -1,0 +1,20 @@
+{
+  "seed": "0x31fac05a",
+  "commands": 19200,
+  "errors": 4686,
+  "summary": [
+    {
+      "host": "watch",
+      "episodes": 80,
+      "commands": 9600,
+      "errorCommands": 2395
+    },
+    {
+      "host": "maintenance",
+      "episodes": 80,
+      "commands": 9600,
+      "errorCommands": 2291
+    }
+  ],
+  "parity": "Exact full state and serialized export after every command; same error code and unchanged state on rejected API calls."
+}

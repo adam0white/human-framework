@@ -2,6 +2,8 @@
 
 Updated 2026-09-08 after the autonomous app 0.6 milestone. Start here, then [the MVP contract](docs/mvp-contract.md), [roadmap](docs/roadmap.md), [release evidence](docs/release-0.6.md) and [review dispositions](docs/reviews/2026-09-08-autonomous-review.md). Earlier lane branches and release records are provenance, not unfinished tasks.
 
+**Active next stage (hourly continuation begun 06:06 UTC):** [Next-stage plan](docs/superpowers/plans/2026-09-08-next-stage.md). Completed private coordination/body-isolation lanes are integrated on main; `codex/signals-game` is completing Last Light review fixes and comparison. Root owns optional play-note UI and shared release integration. Two fresh Astra reviews and two frozen Fable snapshot reviews are in progress/verification. Finish this stage rather than starting duplicate lanes. Public app is still the 0.6 release below until the new release is verified.
+
 The larger project is an Islam-guided, empirically informed human simulation framework with a Sunni Hanafi–Maturidi starting point. Preserve agency, non-LLM execution and the distinction between revelation, interpretation, empirical findings and authored software. A narrow useful kit and a comprehensive human model have different completion standards.
 
 ## Current delivery and contracts

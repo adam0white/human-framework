@@ -1,0 +1,380 @@
+TAP version 13
+# Subtest: human: interrupted paid work gains only trained skill and consumes owned part
+ok 1 - human: interrupted paid work gains only trained skill and consumes owned part
+  ---
+  duration_ms: 9.14425
+  ...
+# Subtest: human: missing resources and capacity refusal give no practice or free recovery
+ok 2 - human: missing resources and capacity refusal give no practice or free recovery
+  ---
+  duration_ms: 17.31375
+  ...
+# Subtest: human: mid-action JSON resume, chunking and single-use meal settlement
+ok 3 - human: mid-action JSON resume, chunking and single-use meal settlement
+  ---
+  duration_ms: 5.542583
+  ...
+# Subtest: human: obvious forged snapshot claims reject
+ok 4 - human: obvious forged snapshot claims reject
+  ---
+  duration_ms: 1.4055
+  ...
+# Subtest: pooled: interrupted paid work gains only trained skill and consumes owned part
+ok 5 - pooled: interrupted paid work gains only trained skill and consumes owned part
+  ---
+  duration_ms: 1.526875
+  ...
+# Subtest: pooled: missing resources and capacity refusal give no practice or free recovery
+ok 6 - pooled: missing resources and capacity refusal give no practice or free recovery
+  ---
+  duration_ms: 1.235625
+  ...
+# Subtest: pooled: mid-action JSON resume, chunking and single-use meal settlement
+ok 7 - pooled: mid-action JSON resume, chunking and single-use meal settlement
+  ---
+  duration_ms: 2.58925
+  ...
+# Subtest: pooled: obvious forged snapshot claims reject
+ok 8 - pooled: obvious forged snapshot claims reject
+  ---
+  duration_ms: 0.793833
+  ...
+# Subtest: nominal pooled gate is no stricter over mapped-state grid; initial forecasts match
+ok 9 - nominal pooled gate is no stricter over mapped-state grid; initial forecasts match
+  ---
+  duration_ms: 279.937041
+  ...
+# Subtest: identical admitted exposure produces identical saturating skill gains including interrupted intervals
+ok 10 - identical admitted exposure produces identical saturating skill gains including interrupted intervals
+  ---
+  duration_ms: 11.397916
+  ...
+# Subtest: one current proficiency per skill and one pooled body field, with no hidden history or coefficients
+ok 11 - one current proficiency per skill and one pooled body field, with no hidden history or coefficients
+  ---
+  duration_ms: 119.530292
+  ...
+# Subtest: development common inputs/time/actions agree and Human trajectory matches unchanged frozen host
+ok 12 - development common inputs/time/actions agree and Human trajectory matches unchanged frozen host
+  ---
+  duration_ms: 107.0635
+  ...
+# Subtest: paid A/B/idle retests preserve task specificity, matched exposure learning and common recovery costs
+ok 13 - paid A/B/idle retests preserve task specificity, matched exposure learning and common recovery costs
+  ---
+  duration_ms: 11.940125
+  ...
+# Subtest: reserved and sensitivity guard; immutable fresh artifact output; source-hash mutations reject
+ok 14 - reserved and sensitivity guard; immutable fresh artifact output; source-hash mutations reject
+  ---
+  duration_ms: 149.472625
+  ...
+# Subtest: diagnostics separate jointly admitted forecast output from capacity exposure and prove matched learning
+ok 15 - diagnostics separate jointly admitted forecast output from capacity exposure and prove matched learning
+  ---
+  duration_ms: 2.139792
+  ...
+# Subtest: pooled completed meal preserves maintenance through zero, interruptions do not add relief
+ok 16 - pooled completed meal preserves maintenance through zero, interruptions do not add relief
+  ---
+  duration_ms: 0.098625
+  ...
+# Subtest: snapshot envelope and exposure accounting are strict
+ok 17 - snapshot envelope and exposure accounting are strict
+  ---
+  duration_ms: 2.470208
+  ...
+# Subtest: watch keeps refusal, partial paid work, reservations, resume, early and duplicate receipts identical
+ok 18 - watch keeps refusal, partial paid work, reservations, resume, early and duplicate receipts identical
+  ---
+  duration_ms: 95.113667
+  ...
+# Subtest: watch keeps arrival-first warning ties and forged saved reservations identical
+ok 19 - watch keeps arrival-first warning ties and forged saved reservations identical
+  ---
+  duration_ms: 59.377125
+  ...
+# Subtest: maintenance keeps refusal, partial paid work, reservations, resume, early and duplicate receipts identical
+ok 20 - maintenance keeps refusal, partial paid work, reservations, resume, early and duplicate receipts identical
+  ---
+  duration_ms: 45.533833
+  ...
+# Subtest: maintenance keeps arrival-first warning ties and forged saved reservations identical
+ok 21 - maintenance keeps arrival-first warning ties and forged saved reservations identical
+  ---
+  duration_ms: 138.373791
+  ...
+# Subtest: Watch preserves own parts and meal authorization while maintenance keeps its separate resource rules
+ok 22 - Watch preserves own parts and meal authorization while maintenance keeps its separate resource rules
+  ---
+  duration_ms: 38.143292
+  ...
+# Subtest: Watch short arrival still admits three paid rest minutes then final repair
+ok 23 - Watch short arrival still admits three paid rest minutes then final repair
+  ---
+  duration_ms: 32.255167
+  ...
+# Subtest: comparison requires a fresh explicit path, preserves sentinels, and emits bounded two-host parity evidence
+ok 24 - comparison requires a fresh explicit path, preserves sentinels, and emits bounded two-host parity evidence
+  ---
+  duration_ms: 4688.12275
+  ...
+# Subtest: both private adapted consumers satisfy all original host regression assertions
+ok 25 - both private adapted consumers satisfy all original host regression assertions
+  ---
+  duration_ms: 2180.575292
+  ...
+# Subtest: host extensions cannot replace lifecycle identity or partially mutate the draft
+ok 26 - host extensions cannot replace lifecycle identity or partially mutate the draft
+  ---
+  duration_ms: 2.341833
+  ...
+# Subtest: accepted work preserves paid body/practice on interruption and cancels its unique due event
+ok 27 - accepted work preserves paid body/practice on interruption and cancels its unique due event
+  ---
+  duration_ms: 2.12075
+  ...
+# Subtest: mismatched, early, late and duplicate completion reject without changing borrowed state
+ok 28 - mismatched, early, late and duplicate completion reject without changing borrowed state
+  ---
+  duration_ms: 0.60625
+  ...
+# Subtest: paid meal requires explicit consumed outcome; interrupted or unconfirmed meals cannot reduce hunger
+ok 29 - paid meal requires explicit consumed outcome; interrupted or unconfirmed meals cannot reduce hunger
+  ---
+  duration_ms: 2.607541
+  ...
+# Subtest: arrival remains first at a tie and the host can interrupt before a duplicate due outcome
+ok 30 - arrival remains first at a tie and the host can interrupt before a duplicate due outcome
+  ---
+  duration_ms: 0.339917
+  ...
+# Subtest: a play note preserves entered words with bounded public context and makes no assessment
+ok 31 - a play note preserves entered words with bounded public context and makes no assessment
+  ---
+  duration_ms: 7.988375
+  ...
+# Subtest: blank notes, hidden context fields and malformed or oversized export data reject
+ok 32 - blank notes, hidden context fields and malformed or oversized export data reject
+  ---
+  duration_ms: 0.438875
+  ...
+# Subtest: solo notes can omit the response field; markup remains plain entered text
+ok 33 - solo notes can omit the response field; markup remains plain entered text
+  ---
+  duration_ms: 1.533834
+  ...
+# Subtest: matched arms share all paid predecision exposures, action options and atomic resume
+ok 34 - matched arms share all paid predecision exposures, action options and atomic resume
+  ---
+  duration_ms: 2457.454667
+  ...
+# Subtest: simple notebook keeps newer observation while candidate preserves its stale-overwrite failure
+ok 35 - simple notebook keeps newer observation while candidate preserves its stale-overwrite failure
+  ---
+  duration_ms: 1361.42225
+  ...
+# Subtest: retention can help an early service, while hidden changes and closing ties still defeat it
+ok 36 - retention can help an early service, while hidden changes and closing ties still defeat it
+  ---
+  duration_ms: 49.463709
+  ...
+# Subtest: immediate ridge is retained as a cheaper universally successful primary-delivery baseline
+ok 37 - immediate ridge is retained as a cheaper universally successful primary-delivery baseline
+  ---
+  duration_ms: 1099.822542
+  ...
+# Subtest: evidence refuses missing paths and existing output; verifies committed protocol and sources
+ok 38 - evidence refuses missing paths and existing output; verifies committed protocol and sources
+  ---
+  duration_ms: 1832.059958
+  ...
+# Subtest: new-profile evidence preserves route successes, refusals, wasted recovery and complete resume
+ok 39 - new-profile evidence preserves route successes, refusals, wasted recovery and complete resume
+  ---
+  duration_ms: 843.564291
+  ...
+# Subtest: new evidence verifies original comparison and committed amendment and refuses overwrite
+ok 40 - new evidence verifies original comparison and committed amendment and refuses overwrite
+  ---
+  duration_ms: 3698.543334
+  ...
+# Subtest: original twelve complete cases, checkpoint hashes, baselines and summary remain exactly equal
+ok 41 - original twelve complete cases, checkpoint hashes, baselines and summary remain exactly equal
+  ---
+  duration_ms: 2440.039542
+  ...
+# Subtest: clear connection offers visible two-minute latency and paid report-informed launch success
+ok 42 - clear connection offers visible two-minute latency and paid report-informed launch success
+  ---
+  duration_ms: 1.506584
+  ...
+# Subtest: tired carrier has real ridge refusal, feasible light crossing and paid-rest ridge route
+ok 43 - tired carrier has real ridge refusal, feasible light crossing and paid-rest ridge route
+  ---
+  duration_ms: 1.215958
+  ...
+# Subtest: hungry carrier needs a paid meal: rest alone and interrupted meals do not release exertion
+ok 44 - hungry carrier needs a paid meal: rest alone and interrupted meals do not release exertion
+  ---
+  duration_ms: 2.212625
+  ...
+# Subtest: new profiles preserve exact active/terminal resume and reject condition or delay forgeries
+ok 45 - new profiles preserve exact active/terminal resume and reject condition or delay forgeries
+  ---
+  duration_ms: 9.862708
+  ...
+# Subtest: malformed receipts including null fail with a coded envelope error before mutation
+ok 46 - malformed receipts including null fail with a coded envelope error before mutation
+  ---
+  duration_ms: 0.706541
+  ...
+# Subtest: reload/import starts paused, ignores offline elapsed time and never advances during choices
+ok 47 - reload/import starts paused, ignores offline elapsed time and never advances during choices
+  ---
+  duration_ms: 12.7775
+  ...
+# Subtest: running stops at a reply even while another action continues
+ok 48 - running stops at a reply even while another action continues
+  ---
+  duration_ms: 13.379458
+  ...
+# Subtest: a hidden world change neither pauses playback nor appears as the next visible event
+ok 49 - a hidden world change neither pauses playback nor appears as the next visible event
+  ---
+  duration_ms: 71.157833
+  ...
+# Subtest: speed changes and pauses clear fractional time; background gap is bounded
+ok 50 - speed changes and pauses clear fractional time; background gap is bounded
+  ---
+  duration_ms: 0.707667
+  ...
+# Subtest: stop pays elapsed effects and terminal playback cannot restart
+ok 51 - stop pays elapsed effects and terminal playback cannot restart
+  ---
+  duration_ms: 22.221958
+  ...
+# Subtest: invalid setup envelopes reject as commands rather than save errors or TypeErrors
+ok 52 - invalid setup envelopes reject as commands rather than save errors or TypeErrors
+  ---
+  duration_ms: 0.817875
+  ...
+# Subtest: new game offers both routes immediately through frozen Human 0.1.1
+ok 53 - new game offers both routes immediately through frozen Human 0.1.1
+  ---
+  duration_ms: 6.858459
+  ...
+# Subtest: two feasible approaches have different paid time, fares and exertion
+ok 54 - two feasible approaches have different paid time, fares and exertion
+  ---
+  duration_ms: 2.199334
+  ...
+# Subtest: undisclosed landing changes cannot leak through views, choices or next visible event
+ok 55 - undisclosed landing changes cannot leak through views, choices or next visible event
+  ---
+  duration_ms: 7.515584
+  ...
+# Subtest: paid current observation changes the report and therefore the same simple choice
+ok 56 - paid current observation changes the report and therefore the same simple choice
+  ---
+  duration_ms: 2.42025
+  ...
+# Subtest: radio samples at paid completion and delivers later without exposing in-flight contents
+ok 57 - radio samples at paid completion and delivers later without exposing in-flight contents
+  ---
+  duration_ms: 2.285042
+  ...
+# Subtest: old delayed reply remains visible but cannot overwrite a newer direct report
+ok 58 - old delayed reply remains visible but cannot overwrite a newer direct report
+  ---
+  duration_ms: 2.745917
+  ...
+# Subtest: closed crossing spends its fare and full time, keeps the lens, and permits a successful pivot
+ok 59 - closed crossing spends its fare and full time, keeps the lens, and permits a successful pivot
+  ---
+  duration_ms: 1.803458
+  ...
+# Subtest: deadline wins equal-time completion and terminal states stop all activity
+ok 60 - deadline wins equal-time completion and terminal states stop all activity
+  ---
+  duration_ms: 2.125166
+  ...
+# Subtest: interrupted travel and lookout keep paid effort/practice without world success
+ok 61 - interrupted travel and lookout keep paid effort/practice without world success
+  ---
+  duration_ms: 1.826625
+  ...
+# Subtest: request interruption is unpaid in charges, meals consume only on full completion
+ok 62 - request interruption is unpaid in charges, meals consume only on full completion
+  ---
+  duration_ms: 1.202458
+  ...
+# Subtest: duplicate, mismatched and early receipts cannot repeat observations or spend resources
+ok 63 - duplicate, mismatched and early receipts cannot repeat observations or spend resources
+  ---
+  duration_ms: 1.587834
+  ...
+# Subtest: canonical minute, visible-event and large-step schedules and active saves agree exactly
+ok 64 - canonical minute, visible-event and large-step schedules and active saves agree exactly
+  ---
+  duration_ms: 11.962458
+  ...
+# Subtest: strict replay imports reject world, receipt, resource, body and hidden-timeline forgeries
+ok 65 - strict replay imports reject world, receipt, resource, body and hidden-timeline forgeries
+  ---
+  duration_ms: 14.218333
+  ...
+# Subtest: hostile envelopes, prototypes, accessors, oversized inputs and commands reject atomically
+ok 66 - hostile envelopes, prototypes, accessors, oversized inputs and commands reject atomically
+  ---
+  duration_ms: 3.090708
+  ...
+# Subtest: repeated refusals and zero-time toggles stay bounded, detached views do not mutate world
+ok 67 - repeated refusals and zero-time toggles stay bounded, detached views do not mutate world
+  ---
+  duration_ms: 327.454875
+  ...
+# Subtest: repeating the just-accepted action records the first busy refusal and remains restorable
+ok 68 - repeating the just-accepted action records the first busy refusal and remains restorable
+  ---
+  duration_ms: 2.510459
+  ...
+# Subtest: a same-minute landing change is applied before direct observation or canal completion
+ok 69 - a same-minute landing change is applied before direct observation or canal completion
+  ---
+  duration_ms: 2.99925
+  ...
+# Subtest: insufficient remaining fares and charges refuse without a substituted action
+ok 70 - insufficient remaining fares and charges refuse without a substituted action
+  ---
+  duration_ms: 5.6185
+  ...
+# Subtest: earlier delivery releases the evening launch; safe ridge delivery preserves only the overnight beacon
+ok 71 - earlier delivery releases the evening launch; safe ridge delivery preserves only the overnight beacon
+  ---
+  duration_ms: 4.449708
+  ...
+# Subtest: alternating busy refusals cannot exhaust the replay budget
+ok 72 - alternating busy refusals cannot exhaust the replay budget
+  ---
+  duration_ms: 220.567958
+  ...
+# Subtest: exhausting meaningful action budget still permits elapsed work, interruption and terminal save/resume
+ok 73 - exhausting meaningful action budget still permits elapsed work, interruption and terminal save/resume
+  ---
+  duration_ms: 499.358833
+  ...
+# Subtest: a closed crossing identifies its direct lock observation in both receipt and journal
+ok 74 - a closed crossing identifies its direct lock observation in both receipt and journal
+  ---
+  duration_ms: 1.095125
+  ...
+1..74
+# tests 74
+# suites 0
+# pass 74
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6934.292125

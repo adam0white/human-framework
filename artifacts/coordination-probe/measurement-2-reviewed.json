@@ -1,0 +1,2643 @@
+{
+  "format": "human-framework-coordination-probe",
+  "version": 1,
+  "recordedAt": "2026-09-08T06:45:56.522Z",
+  "sourceCommit": "09cdc80af1853c878046e2b096e5b7d14fe80e8e",
+  "protocol": {
+    "path": "docs/coordination-probe-protocol.md",
+    "commit": "07907e027acc5ce52666ac80024650c2fff1866c",
+    "sha256": "aa357314f757245e0c4b51d1ad0d5f08b85949a11a382684045de9a5a78552ac"
+  },
+  "runtime": {
+    "node": "v26.8.1",
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M4"
+  },
+  "hosts": [
+    {
+      "host": "watch",
+      "direct": "src/games/watch.js",
+      "candidate": "src/experiments/coordination/watch.js"
+    },
+    {
+      "host": "maintenance",
+      "direct": "examples/maintenance-watch/host.js",
+      "candidate": "src/experiments/coordination/maintenance.js"
+    }
+  ],
+  "sources": {
+    "src/games/watch.js": {
+      "sha256": "2600779cd5321cba4162f2b9c921efb87fbf94499852e30e2c081a45d307d2a3",
+      "bytes": 23603,
+      "lines": 241,
+      "nonblank": 239
+    },
+    "src/experiments/coordination/watch.js": {
+      "sha256": "5258fe2419e4c2c55a602e47bf0808d10771579aaf772ed8b12b6436c39b0662",
+      "bytes": 22390,
+      "lines": 230,
+      "nonblank": 228
+    },
+    "examples/maintenance-watch/host.js": {
+      "sha256": "f7b677dd25801e99c5c8cffeed5b0a8f4390908a8ef1b41e67051ab570b90373",
+      "bytes": 17400,
+      "lines": 241,
+      "nonblank": 239
+    },
+    "src/experiments/coordination/maintenance.js": {
+      "sha256": "241c89fb4dfc92f6b7a83ca486ace05f7c68318d15e38b4669ff5e9fd3af2fc0",
+      "bytes": 16248,
+      "lines": 228,
+      "nonblank": 226
+    },
+    "src/coordination/attempt-clock.js": {
+      "sha256": "1319b239e980bbf6a9a79461382d543284d406c7945cf16ef9587bf109c54948",
+      "bytes": 2875,
+      "lines": 45,
+      "nonblank": 45
+    },
+    "src/runtime/index.js": {
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "bytes": 188,
+      "lines": 4,
+      "nonblank": 4
+    },
+    "src/human/v0.1.1.js": {
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "bytes": 11580,
+      "lines": 190,
+      "nonblank": 176
+    },
+    "src/runtime/clock.js": {
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "bytes": 7513,
+      "lines": 139,
+      "nonblank": 130
+    },
+    "src/core/model.js": {
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "bytes": 7764,
+      "lines": 120,
+      "nonblank": 117
+    },
+    "src/experiments/coordination/maintenance-direct.js": {
+      "sha256": "063a9831cc2a5827b208ef79e634d789ba61874231c9dd0fc56f145b35ebf31d",
+      "bytes": 17399,
+      "lines": 241,
+      "nonblank": 239
+    },
+    "scripts/coordination-probe.js": {
+      "sha256": "5eb344126f1462f1f75c0434ce58470fbbb93491f1b8e3b1ac261f8246a37285",
+      "bytes": 14156,
+      "lines": 175,
+      "nonblank": 172
+    },
+    "scripts/runtime-release-lock.json": {
+      "sha256": "f27bd54f0549f5dcb8016099669f3a74f27a4edf2378953a60803711cbd1b165",
+      "bytes": 1341,
+      "lines": 36,
+      "nonblank": 36
+    }
+  },
+  "sizes": {
+    "helper": {
+      "sha256": "1319b239e980bbf6a9a79461382d543284d406c7945cf16ef9587bf109c54948",
+      "bytes": 2875,
+      "lines": 45,
+      "nonblank": 45
+    },
+    "perHost": [
+      {
+        "host": "watch",
+        "direct": {
+          "sha256": "2600779cd5321cba4162f2b9c921efb87fbf94499852e30e2c081a45d307d2a3",
+          "bytes": 23603,
+          "lines": 241,
+          "nonblank": 239
+        },
+        "candidateCaller": {
+          "sha256": "5258fe2419e4c2c55a602e47bf0808d10771579aaf772ed8b12b6436c39b0662",
+          "bytes": 22390,
+          "lines": 230,
+          "nonblank": 228
+        },
+        "candidateInclusive": {
+          "bytes": 25265,
+          "lines": 275,
+          "nonblank": 273
+        }
+      },
+      {
+        "host": "maintenance",
+        "direct": {
+          "sha256": "f7b677dd25801e99c5c8cffeed5b0a8f4390908a8ef1b41e67051ab570b90373",
+          "bytes": 17400,
+          "lines": 241,
+          "nonblank": 239
+        },
+        "candidateCaller": {
+          "sha256": "241c89fb4dfc92f6b7a83ca486ace05f7c68318d15e38b4669ff5e9fd3af2fc0",
+          "bytes": 16248,
+          "lines": 228,
+          "nonblank": 226
+        },
+        "candidateInclusive": {
+          "bytes": 19123,
+          "lines": 273,
+          "nonblank": 271
+        }
+      }
+    ],
+    "aggregate": {
+      "direct": {
+        "bytes": 41003,
+        "lines": 482,
+        "nonblank": 478
+      },
+      "candidateCallers": {
+        "bytes": 38638,
+        "lines": 458,
+        "nonblank": 454
+      },
+      "candidateInclusive": {
+        "bytes": 41513,
+        "lines": 503,
+        "nonblank": 499
+      },
+      "unchangedDependencies": {
+        "bytes": 27045,
+        "lines": 453,
+        "nonblank": 427
+      }
+    }
+  },
+  "cases": [
+    {
+      "name": "watch-short-three-minute-rest",
+      "host": "watch",
+      "commands": 20,
+      "elapsedBoundaries": 14,
+      "deliveredEvents": 12,
+      "peakStateBytes": 3905,
+      "historyHash": "dd8b7da6b1f7a894b55c888e54e5b7315b4d697706e8285d7e862ec6239524cd",
+      "final": {
+        "direct": "e1afa0fe16f3ac4a08e96b2f42587acc96452aeca972754225c38a975b8b8488",
+        "candidate": "e1afa0fe16f3ac4a08e96b2f42587acc96452aeca972754225c38a975b8b8488"
+      },
+      "outcome": {
+        "at": 22,
+        "protected": true,
+        "waterService": true,
+        "route": "gate",
+        "breachedSections": 0,
+        "partsRemaining": 0,
+        "workMinutes": 26
+      },
+      "trace": [
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "repair"
+          ],
+          "stateHash": "606b152a15044de0abb5a8406b6367e6b418d76ca7e5f0642c03502e532a3272"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "share"
+          ],
+          "stateHash": "ad1c5a414301da306c70dfb6bc8216ea2ff116af29c4e663ccb6b204e509dea6"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "8741508ab66ddf594cc75df0b45c51258320bd764aab485a8466899a96d0ea44"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "5ffb56d2aafae829fdd15b6acb47600e2e733b7b7123b011edc36c5c851e6707"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "358533e18d12e32c4a768737c39cbdccc1a501203326eb6ac3d02d69705bb966"
+        },
+        {
+          "command": [
+            "receiveReceipt",
+            {
+              "id": "event:4",
+              "at": 6,
+              "type": "attempt-due",
+              "actorId": "keeper",
+              "data": {
+                "attemptId": "keeper:2",
+                "task": "repair"
+              }
+            },
+            "EARLY_RECEIPT"
+          ],
+          "stateHash": "358533e18d12e32c4a768737c39cbdccc1a501203326eb6ac3d02d69705bb966"
+        },
+        {
+          "command": [
+            "advanceTo",
+            6
+          ],
+          "stateHash": "48cbf93d4c3fc973ac8073eb0228cc43a8ee8ab00dd08808f992806064dff89c"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "fd96e33bca29c42ac55fb58ab8345b52917b11cba260d01938c9240e22536b14"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "share"
+          ],
+          "stateHash": "e54d527fb3ae7f84554024266493f7ef7a9d0a85cbb54208eba399ea038cb4fe"
+        },
+        {
+          "command": [
+            "advanceTo",
+            8
+          ],
+          "stateHash": "943d6bc22d67932e946d16c59b3f48c7e5b5460fac8a210a14116b91039a0609"
+        },
+        {
+          "command": [
+            "advanceTo",
+            12
+          ],
+          "stateHash": "eb5ed6b4583cf85f766b42f7ec496098c7a2065543bcbffb54c40a2607513bb1"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "d82714afce62221ea27efd91d62086a809b1ea66288b44842950719038b8f302"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "4988ae0655fa4bb1a9bb10f1ee4b178f1ac1d20030e566ab39d6b3e47ec0061a"
+        },
+        {
+          "command": [
+            "advanceTo",
+            15
+          ],
+          "stateHash": "166fc6d74519ca076d723a0a02f5c7e4e3ac092124b464fa84dc92168cb44c77"
+        },
+        {
+          "command": [
+            "interruptTask",
+            "keeper"
+          ],
+          "stateHash": "b3ea5fdb4f644841d65b103a6330f6494cf8e65d1a2895d315cd7cfbfb30b8fe"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "0b415b8359bb80fff1b50bfe013285441f58e0ff13dca98d5e2a420c3b45c78c"
+        },
+        {
+          "command": [
+            "advanceTo",
+            18
+          ],
+          "stateHash": "14182f38161f6f094974f009633a51d9d91e69fc828c052a52e84a5001678e99"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "14182f38161f6f094974f009633a51d9d91e69fc828c052a52e84a5001678e99"
+        },
+        {
+          "command": [
+            "advanceTo",
+            21
+          ],
+          "stateHash": "5d7fbcb9fca3ded6f2558b6eb1ca6b069c11b64605dbc23e1292110c9e128511"
+        },
+        {
+          "command": [
+            "advanceTo",
+            22
+          ],
+          "stateHash": "e1afa0fe16f3ac4a08e96b2f42587acc96452aeca972754225c38a975b8b8488"
+        }
+      ]
+    },
+    {
+      "name": "watch-paid-final-repair-arrival-tie",
+      "host": "watch",
+      "commands": 19,
+      "elapsedBoundaries": 14,
+      "deliveredEvents": 14,
+      "peakStateBytes": 3906,
+      "historyHash": "8a5693997082fa1d305bdec4b6dfbf8c2eaebb83ff9503bedb13cdd5b8cc4b97",
+      "final": {
+        "direct": "b195db567a999f0a39be0963d0261d42e2232e90f1060ca3af9824f902b38170",
+        "candidate": "b195db567a999f0a39be0963d0261d42e2232e90f1060ca3af9824f902b38170"
+      },
+      "outcome": {
+        "at": 32,
+        "protected": true,
+        "waterService": true,
+        "route": "gate",
+        "breachedSections": 0,
+        "partsRemaining": 0,
+        "workMinutes": 26
+      },
+      "trace": [
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "repair"
+          ],
+          "stateHash": "84bc220162a8b3722d06e396109d2dc3856da7915ab7e1e22d47626c6a52ee2d"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "share"
+          ],
+          "stateHash": "660d32179560c2b4cf375ab982d5dd49f4565e049516b293f939be194de2b860"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "69a57e6ae2dc88aa1e687ae2ec45fe793283a69a7ca4a6cd586dbce2a273d22c"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "413751496e93cd773059119f6338d1a4032a6b67d777bb5c7a5152d8c3930acc"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "5349fde5ce431bd7c9e101151c774eabf328be116dbda2dec41c81d67d064d9a"
+        },
+        {
+          "command": [
+            "receiveReceipt",
+            {
+              "id": "event:4",
+              "at": 6,
+              "type": "attempt-due",
+              "actorId": "keeper",
+              "data": {
+                "attemptId": "keeper:2",
+                "task": "repair"
+              }
+            },
+            "EARLY_RECEIPT"
+          ],
+          "stateHash": "5349fde5ce431bd7c9e101151c774eabf328be116dbda2dec41c81d67d064d9a"
+        },
+        {
+          "command": [
+            "advanceTo",
+            6
+          ],
+          "stateHash": "8ef0127d3f01de475e34e77f9f946fe009e12b74867c1ae4195fd05b0547a405"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "eb9a5263fc257476cab8843b146292e6b8d3f39883a06defea80e6b6ce54581a"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "share"
+          ],
+          "stateHash": "4080001b8ec04e5fba82324249961995ef49b10c16a2edb9be7ffd31929ed8e9"
+        },
+        {
+          "command": [
+            "advanceTo",
+            8
+          ],
+          "stateHash": "4effc1c4daf54436078454e508cc3d8741d5f29f46ca389eac767fda8ae4f7e5"
+        },
+        {
+          "command": [
+            "advanceTo",
+            12
+          ],
+          "stateHash": "a7ec466fb54bbef12048dea529fceb78fa54937811b2a546e5e6991fddad954c"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "ac32e83997c1127d8da40318ab748d3360730568ea00043a14aeaab107e01413"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "5be56c8064c989ea5d42a39d2f0212b58c5e43669ca15cccb71903b1ef8ff309"
+        },
+        {
+          "command": [
+            "advanceTo",
+            18
+          ],
+          "stateHash": "630dc20c70dcbbd34e1d5f8e2bd5681f676b6d4c33b5f4c193dc983575e28427"
+        },
+        {
+          "command": [
+            "advanceTo",
+            26
+          ],
+          "stateHash": "a98d7d2dd3c9ff6d3fba15c4446d429ceb955620375eac990554906bd99ea6fd"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "c574e92f71075aba455ed6e46bda0f00572ed9866f1af835a4e17ddbbbfb0158"
+        },
+        {
+          "command": [
+            "advanceTo",
+            29
+          ],
+          "stateHash": "15d183ce9da58f72d7a16cd3983691b5b306ab9b9f1647e47dd391c96b75ed5a"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "15d183ce9da58f72d7a16cd3983691b5b306ab9b9f1647e47dd391c96b75ed5a"
+        },
+        {
+          "command": [
+            "advanceTo",
+            32
+          ],
+          "stateHash": "b195db567a999f0a39be0963d0261d42e2232e90f1060ca3af9824f902b38170"
+        }
+      ]
+    },
+    {
+      "name": "watch-three-minute-rest-then-delay-refuses",
+      "host": "watch",
+      "commands": 13,
+      "elapsedBoundaries": 12,
+      "deliveredEvents": 10,
+      "peakStateBytes": 3911,
+      "historyHash": "2e02f0b29d65872effbc4c5d70a924893b453d4721c2b3922b4f3e30feef43ae",
+      "final": {
+        "direct": "62aac83ca511872a4f2ffd0ededf37446a92f8166a74c27190bc2931452d1c09",
+        "candidate": "62aac83ca511872a4f2ffd0ededf37446a92f8166a74c27190bc2931452d1c09"
+      },
+      "outcome": {
+        "at": 32,
+        "protected": false,
+        "waterService": false,
+        "route": "unfinished",
+        "breachedSections": 1,
+        "partsRemaining": 1,
+        "workMinutes": 20
+      },
+      "trace": [
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "ef3fc82a7f711b90b579cd15f5afc60cbd5624fa572bbba1b93752a043e35d58"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "9196c702e6e4ba5af37ff5b57f52665b6ebcc614f309e48f504341d96abaa32d"
+        },
+        {
+          "command": [
+            "advanceTo",
+            6
+          ],
+          "stateHash": "cd0a52f72d379eb80342bfb5bbb3710171d75641d9528c11059f515c2acf2260"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "11e4eebb4d94ecf87294972e9cb4afa1c63ae054e39a62120c0cc2cd11b1cbe8"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "share"
+          ],
+          "stateHash": "26c9c1427ab000b663a0ef8bf1c763e4add494d7190feefa134cef46ee3658a9"
+        },
+        {
+          "command": [
+            "advanceTo",
+            8
+          ],
+          "stateHash": "d94592d5465c27d0ddd1d1071eaeccad73bd2e0e8b1e2412321bd84c52d6bd35"
+        },
+        {
+          "command": [
+            "advanceTo",
+            12
+          ],
+          "stateHash": "a37f15b857351de890ba90a248900c007ca000e34bdc07f723e27d52caef0637"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "e23e5b93cd2ff02fdd03587dbe06153c31fd8825994c64495959a132c37f6aa3"
+        },
+        {
+          "command": [
+            "advanceTo",
+            15
+          ],
+          "stateHash": "8a2df3c1197094d1a402dc645180e8a602b9f15a433f969a7717d9dbbd02fd2c"
+        },
+        {
+          "command": [
+            "interruptTask",
+            "keeper"
+          ],
+          "stateHash": "0db2159d950a697041c59f5b402fc63cd9f6812a59361b67475241012c4e82b6"
+        },
+        {
+          "command": [
+            "advanceTo",
+            26
+          ],
+          "stateHash": "e07fc79bc725755426c36078fa943e06d2d31871c92441dbdbccf627a3e9fdb8"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "17319d79956cb35ec23746088680e5db335fa6b54c1b83b58f36611a3fd47dd7"
+        },
+        {
+          "command": [
+            "advanceTo",
+            32
+          ],
+          "stateHash": "62aac83ca511872a4f2ffd0ededf37446a92f8166a74c27190bc2931452d1c09"
+        }
+      ]
+    },
+    {
+      "name": "watch-owned-parts-meals-salvage",
+      "host": "watch",
+      "commands": 25,
+      "elapsedBoundaries": 14,
+      "deliveredEvents": 10,
+      "peakStateBytes": 3834,
+      "historyHash": "f5fb5ff5d55fb79e9a6daaca2dd7f778593913be81d06d2eb19fde5477aca7a6",
+      "final": {
+        "direct": "0119e3a3c865402c60e490855967f0cec4779ac22b5fdb5793226f8fc9100ce4",
+        "candidate": "0119e3a3c865402c60e490855967f0cec4779ac22b5fdb5793226f8fc9100ce4"
+      },
+      "outcome": {
+        "at": 32,
+        "protected": false,
+        "waterService": false,
+        "route": "unfinished",
+        "breachedSections": 3,
+        "partsRemaining": 3,
+        "workMinutes": 18
+      },
+      "trace": [
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "bypass"
+          ],
+          "stateHash": "88ca2b5f6509614f12f5294b318265d0aabcb78bb5e561b3caf82e7eb209792c"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "bypass"
+          ],
+          "stateHash": "8352fd7872562f6ae9a9a0dca4d64c43fd2d1fa89f7bd79621f159410395e864"
+        },
+        {
+          "command": [
+            "advanceTo",
+            2
+          ],
+          "stateHash": "89b2649dc5200c81afe3475f258cf6ebb565f097e1ba46cdd160fc6eccea92bf"
+        },
+        {
+          "command": [
+            "interruptTask",
+            "keeper"
+          ],
+          "stateHash": "a69fd12c3d3631c23dd80e8db7b0e83d2b6217ab0466998756d102652bb061ba"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "meal"
+          ],
+          "stateHash": "96967b6ae9d6c77b661c554dbbede061f0391f4039fa0b8f7e888480297f8b08"
+        },
+        {
+          "command": [
+            "advanceTo",
+            4
+          ],
+          "stateHash": "d0293c7eacb606211ec9ef7e5da5ca32d65795e94d9e56b6866bd11350f6e45d"
+        },
+        {
+          "command": [
+            "interruptTask",
+            "keeper"
+          ],
+          "stateHash": "229c338cfb687b38d3ce04fc92c707a4642478e64e2cdc82194839520efd123e"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "meal"
+          ],
+          "stateHash": "78623920d614ed0145e4ac98ece6ad997ec5644ba43f76d3de68386d1cdbafb3"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "78623920d614ed0145e4ac98ece6ad997ec5644ba43f76d3de68386d1cdbafb3"
+        },
+        {
+          "command": [
+            "advanceTo",
+            8
+          ],
+          "stateHash": "3013b9a55e322f8a339ac5bfa55c5be3cfd58404dde75d8e8fdf36eb7ce09d01"
+        },
+        {
+          "command": [
+            "receiveReceipt",
+            {
+              "id": "event:8",
+              "at": 8,
+              "type": "attempt-due",
+              "actorId": "keeper",
+              "data": {
+                "attemptId": "keeper:6",
+                "task": "meal"
+              }
+            },
+            "STALE_RECEIPT"
+          ],
+          "stateHash": "3013b9a55e322f8a339ac5bfa55c5be3cfd58404dde75d8e8fdf36eb7ce09d01"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "meal"
+          ],
+          "stateHash": "51fb703a5235a6a2a96f9613a9b383560fe53e1015bf8f7fe29e78d1ddb20f79"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "7dad5c1c16385f2427705c5d9d5c0f1ee9a13378712704ce109570cbe7e20882"
+        },
+        {
+          "command": [
+            "advanceTo",
+            14
+          ],
+          "stateHash": "ccad8c95ae72ec1bf9519eb3d034b2ee1880a4657b25642f779ecd22eaf035f7"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "share"
+          ],
+          "stateHash": "75aa56121ded07d272314e720614898f9d33e2f0916dd617e5ebce5fa5a97e0b"
+        },
+        {
+          "command": [
+            "advanceTo",
+            16
+          ],
+          "stateHash": "299556d3781ab3bd79dabfeaeeb57ad68ee7a3d201557585a5d28bb210fd38dc"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "salvage"
+          ],
+          "stateHash": "4d8c649fafc7214b82d16c12a9c264a7a0e4d3986208484f37bffd97d7c1dafc"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "salvage"
+          ],
+          "stateHash": "7e9ac82fb87b4cdffc603f325b938c0bcdff88f695624648c74b04156a57f789"
+        },
+        {
+          "command": [
+            "receiveReceipt",
+            {
+              "id": "event:14",
+              "at": 24,
+              "type": "attempt-due",
+              "actorId": "keeper",
+              "data": {
+                "attemptId": "keeper:8",
+                "task": "meal"
+              }
+            },
+            "STALE_RECEIPT"
+          ],
+          "stateHash": "7e9ac82fb87b4cdffc603f325b938c0bcdff88f695624648c74b04156a57f789"
+        },
+        {
+          "command": [
+            "reject-save",
+            "owned parts"
+          ],
+          "stateHash": "7e9ac82fb87b4cdffc603f325b938c0bcdff88f695624648c74b04156a57f789"
+        },
+        {
+          "command": [
+            "reject-save",
+            "pending timing"
+          ],
+          "stateHash": "7e9ac82fb87b4cdffc603f325b938c0bcdff88f695624648c74b04156a57f789"
+        },
+        {
+          "command": [
+            "advanceTo",
+            24
+          ],
+          "stateHash": "b5ea4e95c33c6460ff985be52675277057ef4b49ad38f1ac0b28b7addaa21cd0"
+        },
+        {
+          "command": [
+            "receiveReceipt",
+            {
+              "id": "event:14",
+              "at": 24,
+              "type": "attempt-due",
+              "actorId": "keeper",
+              "data": {
+                "attemptId": "keeper:8",
+                "task": "salvage"
+              }
+            },
+            "STALE_RECEIPT"
+          ],
+          "stateHash": "b5ea4e95c33c6460ff985be52675277057ef4b49ad38f1ac0b28b7addaa21cd0"
+        },
+        {
+          "command": [
+            "advanceTo",
+            32
+          ],
+          "stateHash": "0119e3a3c865402c60e490855967f0cec4779ac22b5fdb5793226f8fc9100ce4"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "0119e3a3c865402c60e490855967f0cec4779ac22b5fdb5793226f8fc9100ce4"
+        }
+      ]
+    },
+    {
+      "name": "watch-diversion-after-partial-work",
+      "host": "watch",
+      "commands": 11,
+      "elapsedBoundaries": 10,
+      "deliveredEvents": 8,
+      "peakStateBytes": 3600,
+      "historyHash": "d962f6fce2a4b4f69697ead9234d13f35d4bae7cf239aceaf40d1afd77c611f0",
+      "final": {
+        "direct": "7df9e09cd08c0dc8fd4139290df7a9917bd38dea3c61e05b6d3fbcc99da41f03",
+        "candidate": "7df9e09cd08c0dc8fd4139290df7a9917bd38dea3c61e05b6d3fbcc99da41f03"
+      },
+      "outcome": {
+        "at": 32,
+        "protected": true,
+        "waterService": false,
+        "route": "diversion",
+        "breachedSections": 0,
+        "partsRemaining": 1,
+        "workMinutes": 20
+      },
+      "trace": [
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "bypass"
+          ],
+          "stateHash": "88ca2b5f6509614f12f5294b318265d0aabcb78bb5e561b3caf82e7eb209792c"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "e48b2d9011ca521fefc27e24041b51b28c66c8e3bb77e69220dcac20f53d082f"
+        },
+        {
+          "command": [
+            "advanceTo",
+            2
+          ],
+          "stateHash": "d0fb13145978d51d1dec2d6df4a8bca3ff8fa0663105c4feb0b61137011b8ad4"
+        },
+        {
+          "command": [
+            "interruptTask",
+            "keeper"
+          ],
+          "stateHash": "2e26e0dd13562a3e039a1f3851707f8592261b7550b9e8f09b7e27871421c775"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "bypass"
+          ],
+          "stateHash": "f8dd484ea2b80d7bb425c5b6d2f28e883ced27e326b81576612c93928ae335db"
+        },
+        {
+          "command": [
+            "advanceTo",
+            6
+          ],
+          "stateHash": "0ec728a07786db80266d07ba8501dd5773aedc5bb4c0e8c58ad2edd9af34e27d"
+        },
+        {
+          "command": [
+            "advanceTo",
+            10
+          ],
+          "stateHash": "2cf71347ce42959e389e30ddf9434d1c2838d6a34a5680edf2dc42e746513331"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "2cf71347ce42959e389e30ddf9434d1c2838d6a34a5680edf2dc42e746513331"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "open"
+          ],
+          "stateHash": "a04fc594bf109d398a08a7c942699cb54e8636a921ac329d9c82468956e361f2"
+        },
+        {
+          "command": [
+            "advanceTo",
+            14
+          ],
+          "stateHash": "7d353c11b025c91756bbd27780052834b0f6e5b5129480bc5eb3d474b45a65e1"
+        },
+        {
+          "command": [
+            "advanceTo",
+            32
+          ],
+          "stateHash": "7df9e09cd08c0dc8fd4139290df7a9917bd38dea3c61e05b6d3fbcc99da41f03"
+        }
+      ]
+    },
+    {
+      "name": "watch-open-arrival-tie",
+      "host": "watch",
+      "commands": 11,
+      "elapsedBoundaries": 10,
+      "deliveredEvents": 8,
+      "peakStateBytes": 3473,
+      "historyHash": "c4432a7cac668040b90a7589a31b3690357930a12d793a5fac1a98fc90afb2df",
+      "final": {
+        "direct": "201371aa7eefd01ecd137b0ba0dba3011410500d100bd52e2f627bf1ea3b1269",
+        "candidate": "201371aa7eefd01ecd137b0ba0dba3011410500d100bd52e2f627bf1ea3b1269"
+      },
+      "outcome": {
+        "at": 32,
+        "protected": false,
+        "waterService": false,
+        "route": "unfinished",
+        "breachedSections": 3,
+        "partsRemaining": 1,
+        "workMinutes": 20
+      },
+      "trace": [
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "bypass"
+          ],
+          "stateHash": "88ca2b5f6509614f12f5294b318265d0aabcb78bb5e561b3caf82e7eb209792c"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "e48b2d9011ca521fefc27e24041b51b28c66c8e3bb77e69220dcac20f53d082f"
+        },
+        {
+          "command": [
+            "advanceTo",
+            2
+          ],
+          "stateHash": "d0fb13145978d51d1dec2d6df4a8bca3ff8fa0663105c4feb0b61137011b8ad4"
+        },
+        {
+          "command": [
+            "interruptTask",
+            "keeper"
+          ],
+          "stateHash": "2e26e0dd13562a3e039a1f3851707f8592261b7550b9e8f09b7e27871421c775"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "bypass"
+          ],
+          "stateHash": "f8dd484ea2b80d7bb425c5b6d2f28e883ced27e326b81576612c93928ae335db"
+        },
+        {
+          "command": [
+            "advanceTo",
+            6
+          ],
+          "stateHash": "0ec728a07786db80266d07ba8501dd5773aedc5bb4c0e8c58ad2edd9af34e27d"
+        },
+        {
+          "command": [
+            "advanceTo",
+            10
+          ],
+          "stateHash": "2cf71347ce42959e389e30ddf9434d1c2838d6a34a5680edf2dc42e746513331"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "2cf71347ce42959e389e30ddf9434d1c2838d6a34a5680edf2dc42e746513331"
+        },
+        {
+          "command": [
+            "advanceTo",
+            28
+          ],
+          "stateHash": "5c6815ef903f18d50978bc5489106e00928d4beddc8389392a7ce6051211f0ab"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "open"
+          ],
+          "stateHash": "0d74fcadecb78749290b89c604d59056a87bc591b5ce2a54961b06ca1cfe9a24"
+        },
+        {
+          "command": [
+            "advanceTo",
+            32
+          ],
+          "stateHash": "201371aa7eefd01ecd137b0ba0dba3011410500d100bd52e2f627bf1ea3b1269"
+        }
+      ]
+    },
+    {
+      "name": "watch-lookout-arrival-tie",
+      "host": "watch",
+      "commands": 4,
+      "elapsedBoundaries": 4,
+      "deliveredEvents": 4,
+      "peakStateBytes": 2765,
+      "historyHash": "4f9e39dc990817e25029a8ed64e033252fb4647133b0356602440a1be869a965",
+      "final": {
+        "direct": "e0ca81feacced14820ca71d462cb5f0bd458871eea0b3befed536e5b2f7dfdad",
+        "candidate": "e0ca81feacced14820ca71d462cb5f0bd458871eea0b3befed536e5b2f7dfdad"
+      },
+      "outcome": {
+        "at": 32,
+        "protected": false,
+        "waterService": false,
+        "route": "unfinished",
+        "breachedSections": 3,
+        "partsRemaining": 3,
+        "workMinutes": 6
+      },
+      "trace": [
+        {
+          "command": [
+            "advanceTo",
+            26
+          ],
+          "stateHash": "7ba9636b2015c4af544c155616276e5c07a0b770aa89c354e3a89859c4f8ec73"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "f9cd8369ac5d660436b5ebdd860b98f4ee9603aa9b39fd103aa9d7e5f5244570"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "f9cd8369ac5d660436b5ebdd860b98f4ee9603aa9b39fd103aa9d7e5f5244570"
+        },
+        {
+          "command": [
+            "advanceTo",
+            32
+          ],
+          "stateHash": "e0ca81feacced14820ca71d462cb5f0bd458871eea0b3befed536e5b2f7dfdad"
+        }
+      ]
+    },
+    {
+      "name": "maintenance-lookout-arrival-tie",
+      "host": "maintenance",
+      "commands": 4,
+      "elapsedBoundaries": 4,
+      "deliveredEvents": 4,
+      "peakStateBytes": 2471,
+      "historyHash": "75b76359064cae49d6ed3827dd4b1776a50f6fd70327328c6dbd710b7fe08652",
+      "final": {
+        "direct": "862cc74b226552b2e51cd1b25af463a6c53eda424e3750164a1fc33fb04303f0",
+        "candidate": "862cc74b226552b2e51cd1b25af463a6c53eda424e3750164a1fc33fb04303f0"
+      },
+      "outcome": {
+        "at": 18,
+        "repairMinutes": 0,
+        "unrepairedMinutes": 12,
+        "warningAvailable": false
+      },
+      "trace": [
+        {
+          "command": [
+            "advanceTo",
+            10
+          ],
+          "stateHash": "41ab530a2be48139dd07b72de19bd865ab774d06726bd625de102e4741d206e8"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "981b057224ba1b03a1e1401386e0bf64f75f12af9dc13badcb8db2cc3a630d89"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "981b057224ba1b03a1e1401386e0bf64f75f12af9dc13badcb8db2cc3a630d89"
+        },
+        {
+          "command": [
+            "advanceTo",
+            18
+          ],
+          "stateHash": "862cc74b226552b2e51cd1b25af463a6c53eda424e3750164a1fc33fb04303f0"
+        }
+      ]
+    },
+    {
+      "name": "watch-terminal-meal-refund",
+      "host": "watch",
+      "commands": 5,
+      "elapsedBoundaries": 4,
+      "deliveredEvents": 2,
+      "peakStateBytes": 2739,
+      "historyHash": "f8b2131bfd154c5d4c058b17a776ddc200e50cdca2ab1354e680beacb9d1418f",
+      "final": {
+        "direct": "1fcf9c0076a3e623064b57e5818415d7e21bdaec2a3473c3d31d7455382c324e",
+        "candidate": "1fcf9c0076a3e623064b57e5818415d7e21bdaec2a3473c3d31d7455382c324e"
+      },
+      "outcome": {
+        "at": 32,
+        "protected": false,
+        "waterService": false,
+        "route": "unfinished",
+        "breachedSections": 3,
+        "partsRemaining": 3,
+        "workMinutes": 0
+      },
+      "trace": [
+        {
+          "command": [
+            "advanceTo",
+            31
+          ],
+          "stateHash": "c11b671d2b09b73460ccdfef6d840aedf942a1b54a14d58c4da732caa399354a"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "meal"
+          ],
+          "stateHash": "40e08ae1fec04b9dfcf7d4734577216fbb9e27f1443129250d73710bfb34ade5"
+        },
+        {
+          "command": [
+            "advanceTo",
+            32
+          ],
+          "stateHash": "c36e0572a5484585683b9955ddd1c912f588ec844041560d2f01057e479a48eb"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "c36e0572a5484585683b9955ddd1c912f588ec844041560d2f01057e479a48eb"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "1fcf9c0076a3e623064b57e5818415d7e21bdaec2a3473c3d31d7455382c324e"
+        }
+      ]
+    },
+    {
+      "name": "maintenance-paid-repair-events",
+      "host": "maintenance",
+      "commands": 20,
+      "elapsedBoundaries": 14,
+      "deliveredEvents": 10,
+      "peakStateBytes": 3167,
+      "historyHash": "753a6be64aae8fc7c75b016e63f1c26f4ad6653ff9fc23e058ea02891574e653",
+      "final": {
+        "direct": "93f92e8152ad56c25e2e8c12abe73bb0c6b3b61fc147955981f94136d4cdbe22",
+        "candidate": "93f92e8152ad56c25e2e8c12abe73bb0c6b3b61fc147955981f94136d4cdbe22"
+      },
+      "outcome": {
+        "at": 18,
+        "repairMinutes": 12,
+        "unrepairedMinutes": 0,
+        "warningAvailable": true
+      },
+      "trace": [
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "repair"
+          ],
+          "stateHash": "e9feed18292ea51bb4c3647c0be291396b8bff8bad0cc4c77fba52b77489334d"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "710ac894e0bbeaf8f302b67755064ee28ec6be481a0d22df161337a766fbc6e2"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "97341644a7a3850e480fad110ae25de14ffd56c526d3091c3b9a4e4916ad96ee"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "9f2f3e26d35490b7c5654b0e467d6ca3eca48840bf0a575f1ac381ecdf80e3c3"
+        },
+        {
+          "command": [
+            "receiveReceipt",
+            {
+              "id": "event:4",
+              "at": 12,
+              "type": "attempt-due",
+              "actorId": "keeper",
+              "data": {
+                "attemptId": "keeper:2",
+                "task": "repair"
+              }
+            },
+            "EARLY_RECEIPT"
+          ],
+          "stateHash": "9f2f3e26d35490b7c5654b0e467d6ca3eca48840bf0a575f1ac381ecdf80e3c3"
+        },
+        {
+          "command": [
+            "advanceTo",
+            5
+          ],
+          "stateHash": "e82685c2bfa4a944b4cb33dabd88fa3a503884cec62c44519c051bebd9327109"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "e82685c2bfa4a944b4cb33dabd88fa3a503884cec62c44519c051bebd9327109"
+        },
+        {
+          "command": [
+            "interruptTask",
+            "keeper"
+          ],
+          "stateHash": "d8d0215d0efc4e4754147155f9566436c5dd3070c752ce3c85e2d8584339e309"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "898c366824306c9a36afaa100339bdf2fa326f08390491211522765d9a8312ed"
+        },
+        {
+          "command": [
+            "reject-save",
+            "part reservation"
+          ],
+          "stateHash": "898c366824306c9a36afaa100339bdf2fa326f08390491211522765d9a8312ed"
+        },
+        {
+          "command": [
+            "reject-save",
+            "person time"
+          ],
+          "stateHash": "898c366824306c9a36afaa100339bdf2fa326f08390491211522765d9a8312ed"
+        },
+        {
+          "command": [
+            "advanceTo",
+            8
+          ],
+          "stateHash": "e9010a068f8acefd46d30cd735407d2b0c05fa4384c7221acd50d01ef0a8df9f"
+        },
+        {
+          "command": [
+            "advanceTo",
+            12
+          ],
+          "stateHash": "a9db4ca8b9f9e58b8dcd85d18cca0da38880d667337d594cad34e48eed012222"
+        },
+        {
+          "command": [
+            "receiveReceipt",
+            {
+              "id": "event:7",
+              "at": 12,
+              "type": "attempt-due",
+              "actorId": "keeper",
+              "data": {
+                "attemptId": "keeper:4",
+                "task": "repair"
+              }
+            },
+            "STALE_RECEIPT"
+          ],
+          "stateHash": "a9db4ca8b9f9e58b8dcd85d18cca0da38880d667337d594cad34e48eed012222"
+        },
+        {
+          "command": [
+            "advanceTo",
+            18
+          ],
+          "stateHash": "cc6c24d7ddc6cc21ba99b4b9604945914d06785852933aa36ad2f93156c493b8"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "b7d2f7d37a37ed4701513e9f67cef077eae65580f430fdcc19639261ab77dd14"
+        },
+        {
+          "command": [
+            "advanceTo",
+            24
+          ],
+          "stateHash": "58d37c7d686755bc45a2180a6e15e98561813a37449374682d57b95da613ddd9"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "58d37c7d686755bc45a2180a6e15e98561813a37449374682d57b95da613ddd9"
+        },
+        {
+          "command": [
+            "advanceTo",
+            72
+          ],
+          "stateHash": "7bec84779557967f17ddb6a80380a905d33a70f820b7f5bdb1835d08064a1d14"
+        },
+        {
+          "command": [
+            "advanceTo",
+            80
+          ],
+          "stateHash": "93f92e8152ad56c25e2e8c12abe73bb0c6b3b61fc147955981f94136d4cdbe22"
+        }
+      ]
+    },
+    {
+      "name": "maintenance-paid-repair-minutes",
+      "host": "maintenance",
+      "commands": 93,
+      "elapsedBoundaries": 160,
+      "deliveredEvents": 10,
+      "peakStateBytes": 3271,
+      "historyHash": "b3347882f5a44056a20c9ad2557cb25f72b4ae312bb26405cbdf4c3721d1c760",
+      "final": {
+        "direct": "51986051a1854353fec5691ecfd0d803eeda4bad2460463026fad8f2eda0cbd2",
+        "candidate": "51986051a1854353fec5691ecfd0d803eeda4bad2460463026fad8f2eda0cbd2"
+      },
+      "outcome": {
+        "at": 18,
+        "repairMinutes": 12,
+        "unrepairedMinutes": 0,
+        "warningAvailable": true
+      },
+      "trace": [
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "repair"
+          ],
+          "stateHash": "e9feed18292ea51bb4c3647c0be291396b8bff8bad0cc4c77fba52b77489334d"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "710ac894e0bbeaf8f302b67755064ee28ec6be481a0d22df161337a766fbc6e2"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "97341644a7a3850e480fad110ae25de14ffd56c526d3091c3b9a4e4916ad96ee"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "9f2f3e26d35490b7c5654b0e467d6ca3eca48840bf0a575f1ac381ecdf80e3c3"
+        },
+        {
+          "command": [
+            "receiveReceipt",
+            {
+              "id": "event:4",
+              "at": 12,
+              "type": "attempt-due",
+              "actorId": "keeper",
+              "data": {
+                "attemptId": "keeper:2",
+                "task": "repair"
+              }
+            },
+            "EARLY_RECEIPT"
+          ],
+          "stateHash": "9f2f3e26d35490b7c5654b0e467d6ca3eca48840bf0a575f1ac381ecdf80e3c3"
+        },
+        {
+          "command": [
+            "advanceTo",
+            1
+          ],
+          "stateHash": "852d3352835c9c19e125d3c08ce8c12c94ed519243d82de5c57ee76da3a0b592"
+        },
+        {
+          "command": [
+            "advanceTo",
+            2
+          ],
+          "stateHash": "cb7238a1e05f1a605fc4803d31cf7349de1e2872b9801db93b22faae81f7e017"
+        },
+        {
+          "command": [
+            "advanceTo",
+            3
+          ],
+          "stateHash": "7a527a8d874fd8d00d1a602367d8510cbd699c3a37605f103a19a6e54e08949a"
+        },
+        {
+          "command": [
+            "advanceTo",
+            4
+          ],
+          "stateHash": "08908678adb123e1787cb6dbf1e5d66f28d11e98db54181d4a9a0d1b2d14f5b2"
+        },
+        {
+          "command": [
+            "advanceTo",
+            5
+          ],
+          "stateHash": "1ffa162018a21162849b6876f33b78fd8251e7837b45001d01586ce4a3ae3800"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "1ffa162018a21162849b6876f33b78fd8251e7837b45001d01586ce4a3ae3800"
+        },
+        {
+          "command": [
+            "interruptTask",
+            "keeper"
+          ],
+          "stateHash": "5cdf8a45fa5f92ccc59383cd420d36180888c638b64a51351a9293575586dd8a"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "11c24f383d9b7a6390bbffebcedfc721e359cedcb9099f9fe445ee668185e19a"
+        },
+        {
+          "command": [
+            "reject-save",
+            "part reservation"
+          ],
+          "stateHash": "11c24f383d9b7a6390bbffebcedfc721e359cedcb9099f9fe445ee668185e19a"
+        },
+        {
+          "command": [
+            "reject-save",
+            "person time"
+          ],
+          "stateHash": "11c24f383d9b7a6390bbffebcedfc721e359cedcb9099f9fe445ee668185e19a"
+        },
+        {
+          "command": [
+            "advanceTo",
+            6
+          ],
+          "stateHash": "659ee78b264764289a87614f80ffd5bef0012724ac392e93332ae7cae96339c2"
+        },
+        {
+          "command": [
+            "advanceTo",
+            7
+          ],
+          "stateHash": "4230ad12b03ac2bebac42f095fe035f32087c97200e05931a7aae90dfd6b9f40"
+        },
+        {
+          "command": [
+            "advanceTo",
+            8
+          ],
+          "stateHash": "1d9f0004d976e3fcc80729d3e91784d17a5554d92a49cc1c98078a6bd42bbc55"
+        },
+        {
+          "command": [
+            "advanceTo",
+            9
+          ],
+          "stateHash": "6d670d84d003ae211802a57068dfa1aaeb40eaa895c4e405af2bf4d30a7e9b79"
+        },
+        {
+          "command": [
+            "advanceTo",
+            10
+          ],
+          "stateHash": "4a5893c6981b84ebd2b5a21ca3b3a323d5223a411a9fc1e67f9d6d6e0636c474"
+        },
+        {
+          "command": [
+            "advanceTo",
+            11
+          ],
+          "stateHash": "56eb58fee3035903190256ad983837cfc3573f24d7c24762caf96d95a83735f7"
+        },
+        {
+          "command": [
+            "advanceTo",
+            12
+          ],
+          "stateHash": "04c2e079ad6adc2225cf3e2ec2a914d04e79fa917f2b4fd0e245c7dda07ff568"
+        },
+        {
+          "command": [
+            "receiveReceipt",
+            {
+              "id": "event:7",
+              "at": 12,
+              "type": "attempt-due",
+              "actorId": "keeper",
+              "data": {
+                "attemptId": "keeper:4",
+                "task": "repair"
+              }
+            },
+            "STALE_RECEIPT"
+          ],
+          "stateHash": "04c2e079ad6adc2225cf3e2ec2a914d04e79fa917f2b4fd0e245c7dda07ff568"
+        },
+        {
+          "command": [
+            "advanceTo",
+            13
+          ],
+          "stateHash": "e2e11b883d6d7904cb0e18bbce2a9687617e8cedd6340bf7ec8027bd16eb0d39"
+        },
+        {
+          "command": [
+            "advanceTo",
+            14
+          ],
+          "stateHash": "8dab1b6b2d0b6d65637f5ca7dde5348b7f91d5258da8515a7afdfbafe4170963"
+        },
+        {
+          "command": [
+            "advanceTo",
+            15
+          ],
+          "stateHash": "4b7cd8becc7c45ef875391f02d69b2373459ac0a0e0c99e0a762214093b08205"
+        },
+        {
+          "command": [
+            "advanceTo",
+            16
+          ],
+          "stateHash": "1a69f7136cdff824c3df8dc1aa25b05c9968e207ca350a39f7037648387d391b"
+        },
+        {
+          "command": [
+            "advanceTo",
+            17
+          ],
+          "stateHash": "f77e428819503080e6b56dc5885915dbcf8eb7ab42eb9d32f43a7ade7346c694"
+        },
+        {
+          "command": [
+            "advanceTo",
+            18
+          ],
+          "stateHash": "de9077706b8a718a149546f4d5b98eaa0b3755ced692b7def668d0961d74ff1e"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "7f2dbdc9515925e73e42d24aed2f78c3af83c3f65896a4c521a3840d2219c4f0"
+        },
+        {
+          "command": [
+            "advanceTo",
+            19
+          ],
+          "stateHash": "ec747ede47864d9c3f8ee0a8fdb0d018ffe3ccc41e7dd203a43b039edf845d68"
+        },
+        {
+          "command": [
+            "advanceTo",
+            20
+          ],
+          "stateHash": "9b339cd8042e7f571855f1d7a923f4552c59f303b663a1bc1c58ea2dfe30b9bf"
+        },
+        {
+          "command": [
+            "advanceTo",
+            21
+          ],
+          "stateHash": "967d8b4ebee36bfc99e1ba35b7988a3e70c3ffc271f627fcab1439f6c585eb87"
+        },
+        {
+          "command": [
+            "advanceTo",
+            22
+          ],
+          "stateHash": "c57f01c4974dcc1f52a040b63e4d13790c88484816f7b7baedc7a82a5735bc9e"
+        },
+        {
+          "command": [
+            "advanceTo",
+            23
+          ],
+          "stateHash": "c06952a3c40e630fa653c3f9e6a3898b92381e7adfade54ec2179b1cf7dab719"
+        },
+        {
+          "command": [
+            "advanceTo",
+            24
+          ],
+          "stateHash": "1123a3c69c1f4f666629592e22ebc2bbc8220701ec7cd7ba40795edda7094baf"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "1123a3c69c1f4f666629592e22ebc2bbc8220701ec7cd7ba40795edda7094baf"
+        },
+        {
+          "command": [
+            "advanceTo",
+            25
+          ],
+          "stateHash": "886bab026895ce29a941f7ae5a40bc4f4f05a86c420b68beb0e12a4b384155d5"
+        },
+        {
+          "command": [
+            "advanceTo",
+            26
+          ],
+          "stateHash": "e9e41670d956f2ac20efc0101975146cd174a18586d8d1fce0a980501ad6f372"
+        },
+        {
+          "command": [
+            "advanceTo",
+            27
+          ],
+          "stateHash": "0f0d83b3ace63ba4b812864d53293691316087839f97141ae0344d232f6a45d4"
+        },
+        {
+          "command": [
+            "advanceTo",
+            28
+          ],
+          "stateHash": "d27e471186bb8ff4cf7e7cb06b6aeabec7224d69a0af0459b5bcc276369638d3"
+        },
+        {
+          "command": [
+            "advanceTo",
+            29
+          ],
+          "stateHash": "5bc23320fc1e8d967c3404f75d5dc9bf14455a04f2e6d7a66d72621aa9ae8981"
+        },
+        {
+          "command": [
+            "advanceTo",
+            30
+          ],
+          "stateHash": "343260d4d98f1ebececcf53a6f7cfab34ab59eb44152fc53997ddc116a838a47"
+        },
+        {
+          "command": [
+            "advanceTo",
+            31
+          ],
+          "stateHash": "d520f6aea0fa1515e9301cfc0fea3cb5a66bafc2ed27baf1fe3c9e26d6df0eea"
+        },
+        {
+          "command": [
+            "advanceTo",
+            32
+          ],
+          "stateHash": "d74c1ca1ac59e934ffbf4f971030d8f19ab63f8bf39d48f5c57d68749d6cbebd"
+        },
+        {
+          "command": [
+            "advanceTo",
+            33
+          ],
+          "stateHash": "24a2358d60421b850d091688987d1ee6ca9824bd94da85e83de9177fd79cde04"
+        },
+        {
+          "command": [
+            "advanceTo",
+            34
+          ],
+          "stateHash": "f89f6e09e010812c754c68c0c4e999bf5457f099a46284e0c8fb02c70a724673"
+        },
+        {
+          "command": [
+            "advanceTo",
+            35
+          ],
+          "stateHash": "a2d2c77c9c7b45016f7e79b5872188fc319d8b2baf32875f8ba9e229ddad355c"
+        },
+        {
+          "command": [
+            "advanceTo",
+            36
+          ],
+          "stateHash": "0fbbba62dc1c1a88615f7390ad9aad74b1b5635127e1a485587dfc028c4c0382"
+        },
+        {
+          "command": [
+            "advanceTo",
+            37
+          ],
+          "stateHash": "d9f2608caecec268af350961bf40de782c4110fed65f5bb32f4b393ba4f9af62"
+        },
+        {
+          "command": [
+            "advanceTo",
+            38
+          ],
+          "stateHash": "04eefd168e105e87a8eb48acf025698789c2f58df484a7dbf513460439c9b2a9"
+        },
+        {
+          "command": [
+            "advanceTo",
+            39
+          ],
+          "stateHash": "b3870fec8de49621097be874523f68ccc86f049e341b09a7469226e5cbffa5e5"
+        },
+        {
+          "command": [
+            "advanceTo",
+            40
+          ],
+          "stateHash": "9809c7ed66a7aa9625a2f95d97f3eea5206b0169512bdd98bf8b187728b021d1"
+        },
+        {
+          "command": [
+            "advanceTo",
+            41
+          ],
+          "stateHash": "f5153a832adf27154d1a3d696818ebfe1fcd19a208fdad8eb5e6c10ab37f828b"
+        },
+        {
+          "command": [
+            "advanceTo",
+            42
+          ],
+          "stateHash": "232f0e020994be5c135f8ba69cefc9bb24010e0ce7d7d0e5b69394d9b97f7953"
+        },
+        {
+          "command": [
+            "advanceTo",
+            43
+          ],
+          "stateHash": "69f703f3c64d51f453a30a606b24bed3b0805c65b8495e9cc7e640eafe45cfd1"
+        },
+        {
+          "command": [
+            "advanceTo",
+            44
+          ],
+          "stateHash": "d476fbb6fbdcc45ff6d34f36057ddba0bf365f255f4bff47f7667873db05d26e"
+        },
+        {
+          "command": [
+            "advanceTo",
+            45
+          ],
+          "stateHash": "5e026e795f615779a86bcd064b947c2efe517f592a0af4052bfdf88c43ba4028"
+        },
+        {
+          "command": [
+            "advanceTo",
+            46
+          ],
+          "stateHash": "b73656a8fea67be6cb66b21cc4672b3aba5cbc63ea5889c0b25fda744c0ea9e5"
+        },
+        {
+          "command": [
+            "advanceTo",
+            47
+          ],
+          "stateHash": "64589f0c9dcd75f23803103a56193d78897eb29a069dbe6eb43fec02c0e31bc0"
+        },
+        {
+          "command": [
+            "advanceTo",
+            48
+          ],
+          "stateHash": "6da497b08cf517a7a9307857cee36b81bfc2f596d70fb43daea76b42aac43835"
+        },
+        {
+          "command": [
+            "advanceTo",
+            49
+          ],
+          "stateHash": "a4fd95ac071317ecb7e66241db389a14774a860b2782d554c9924b1f4d094eaa"
+        },
+        {
+          "command": [
+            "advanceTo",
+            50
+          ],
+          "stateHash": "e08997d7cc43fe40d524c57dd72f26d27a5bc3309805d1498bd8abac1586cef4"
+        },
+        {
+          "command": [
+            "advanceTo",
+            51
+          ],
+          "stateHash": "6548cd3a7c62d30c52b394b588bea29a6364779a3141e83d8194ed8724d64343"
+        },
+        {
+          "command": [
+            "advanceTo",
+            52
+          ],
+          "stateHash": "433a7f551b944affe76879d392e0f196b09c4aa30bdcaea61d3b872aec49a1c3"
+        },
+        {
+          "command": [
+            "advanceTo",
+            53
+          ],
+          "stateHash": "cf03c2a61e3585d972c326c8c04f4b7df14326ad0b6189c224ae90b2bf8237b4"
+        },
+        {
+          "command": [
+            "advanceTo",
+            54
+          ],
+          "stateHash": "b98d4caddf25e588b8e67ddfcba22f1728b70d8c0b6704760ab6c3a421d0cfa1"
+        },
+        {
+          "command": [
+            "advanceTo",
+            55
+          ],
+          "stateHash": "b7df03b9bd72930b72f98d07d78897e88f3d56d70d8d243a2e22a5fcfc56cd2a"
+        },
+        {
+          "command": [
+            "advanceTo",
+            56
+          ],
+          "stateHash": "7fc68579f7dd795c2fefae6c52518403552f7a4c0b9f8873432ad1f302a9312b"
+        },
+        {
+          "command": [
+            "advanceTo",
+            57
+          ],
+          "stateHash": "a0e8a90f616e3177ca8cc05312f1cfa5d2064ee36c02ab32c15b52455e8ac5ea"
+        },
+        {
+          "command": [
+            "advanceTo",
+            58
+          ],
+          "stateHash": "df3c590555eeb5bb8bba77d11268861774acb91f4a367fa71383181a8f0de581"
+        },
+        {
+          "command": [
+            "advanceTo",
+            59
+          ],
+          "stateHash": "a03089be2bd431b1eec9b6f1670edef85eabafec36ecef31cfe2f75b4b353c7b"
+        },
+        {
+          "command": [
+            "advanceTo",
+            60
+          ],
+          "stateHash": "27f7bddd040394207aba00e2a0cf589ddc3814a05515bb4d2eda51c33f856f04"
+        },
+        {
+          "command": [
+            "advanceTo",
+            61
+          ],
+          "stateHash": "6f9dbbb4eb67fdbf922bb3435b7ce6750a91e0d384cf967804f309ab0ec8cd13"
+        },
+        {
+          "command": [
+            "advanceTo",
+            62
+          ],
+          "stateHash": "4a0a9dbdf8cd96706f1069e5c9f8904abfdf6ae35f248dbe205b4b356a924868"
+        },
+        {
+          "command": [
+            "advanceTo",
+            63
+          ],
+          "stateHash": "d91d1e1d0b0e734fef3b68465c086e7105f5da63cdfc08eecc8d3bb591bdace0"
+        },
+        {
+          "command": [
+            "advanceTo",
+            64
+          ],
+          "stateHash": "58e65c55caba6bfde2646cc157968b4feb803fae4395d9c8133fb3aa51e3fbb6"
+        },
+        {
+          "command": [
+            "advanceTo",
+            65
+          ],
+          "stateHash": "a3e6adc8e46351a9feabcdfc0c8424f22d314511e07920a9051f55b4dcf2faba"
+        },
+        {
+          "command": [
+            "advanceTo",
+            66
+          ],
+          "stateHash": "7ff72cbd60782baa787f371d99d1e9f189b6f57edc58abb9df857b2898c06e3d"
+        },
+        {
+          "command": [
+            "advanceTo",
+            67
+          ],
+          "stateHash": "eed6c29690f1f647a4d02c3ba0213de1cffd93caaeb9ede074d14bd3be4c019d"
+        },
+        {
+          "command": [
+            "advanceTo",
+            68
+          ],
+          "stateHash": "04903d4a1fcec9601e2f3422de25d835613db8f666e3558d1f9b71a592214ba0"
+        },
+        {
+          "command": [
+            "advanceTo",
+            69
+          ],
+          "stateHash": "050ee6f7309b556fdf563eb16ead7f45d7fb3aefe9f897b86f1a59d5b3846f81"
+        },
+        {
+          "command": [
+            "advanceTo",
+            70
+          ],
+          "stateHash": "9b80df4af95590bd1b52070a16de0d2a66e752618008b46ba72c81d44930c941"
+        },
+        {
+          "command": [
+            "advanceTo",
+            71
+          ],
+          "stateHash": "502fb428923a78ff2db505bc64afac05d30be84300db2da488100c8ef33a889a"
+        },
+        {
+          "command": [
+            "advanceTo",
+            72
+          ],
+          "stateHash": "1e6e76514f960db8afa1b5d4b71e72ed76d967aaee239450f55cf348f79037b2"
+        },
+        {
+          "command": [
+            "advanceTo",
+            73
+          ],
+          "stateHash": "c40c5c7438c0ab5875b088b11d4e152a80d87c9f57386e861061ef003ac7aba5"
+        },
+        {
+          "command": [
+            "advanceTo",
+            74
+          ],
+          "stateHash": "88197b7819730663129256f0a6ffe7d8eff6e2948a32d35746f82afaf3b3182c"
+        },
+        {
+          "command": [
+            "advanceTo",
+            75
+          ],
+          "stateHash": "b40d3146a3af4d831cdca0d2419efb827659dcb505614d1fd6308f2fc6a2afce"
+        },
+        {
+          "command": [
+            "advanceTo",
+            76
+          ],
+          "stateHash": "bc2f80cd92439f77df0d92c6e523e9f31a14726696acaeb1f5e351555aadfa68"
+        },
+        {
+          "command": [
+            "advanceTo",
+            77
+          ],
+          "stateHash": "4b97985cc8be3746e390b776fc51dec714115528b4d5b51c6d0c8a603ce3511b"
+        },
+        {
+          "command": [
+            "advanceTo",
+            78
+          ],
+          "stateHash": "ff25e40b5b5ba1206c8f5ab89275e015c34e053292e9320595d1f18b74654b5e"
+        },
+        {
+          "command": [
+            "advanceTo",
+            79
+          ],
+          "stateHash": "68ede3695f34198444f660cac0786dd94b13295fdfe0ecb721957529f3a4d2cb"
+        },
+        {
+          "command": [
+            "advanceTo",
+            80
+          ],
+          "stateHash": "51986051a1854353fec5691ecfd0d803eeda4bad2460463026fad8f2eda0cbd2"
+        }
+      ]
+    },
+    {
+      "name": "maintenance-paid-repair-irregular",
+      "host": "maintenance",
+      "commands": 41,
+      "elapsedBoundaries": 56,
+      "deliveredEvents": 10,
+      "peakStateBytes": 3231,
+      "historyHash": "1694cf2483a64c0c92eda95e03cc4f10367f0143f78a0a9bf1749916c2e2e0b3",
+      "final": {
+        "direct": "5e57d9991383f49a58f7375f8dd4767fd14712e93a85cca909728a4e97c74abb",
+        "candidate": "5e57d9991383f49a58f7375f8dd4767fd14712e93a85cca909728a4e97c74abb"
+      },
+      "outcome": {
+        "at": 18,
+        "repairMinutes": 12,
+        "unrepairedMinutes": 0,
+        "warningAvailable": true
+      },
+      "trace": [
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "repair"
+          ],
+          "stateHash": "e9feed18292ea51bb4c3647c0be291396b8bff8bad0cc4c77fba52b77489334d"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "710ac894e0bbeaf8f302b67755064ee28ec6be481a0d22df161337a766fbc6e2"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "97341644a7a3850e480fad110ae25de14ffd56c526d3091c3b9a4e4916ad96ee"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "9f2f3e26d35490b7c5654b0e467d6ca3eca48840bf0a575f1ac381ecdf80e3c3"
+        },
+        {
+          "command": [
+            "receiveReceipt",
+            {
+              "id": "event:4",
+              "at": 12,
+              "type": "attempt-due",
+              "actorId": "keeper",
+              "data": {
+                "attemptId": "keeper:2",
+                "task": "repair"
+              }
+            },
+            "EARLY_RECEIPT"
+          ],
+          "stateHash": "9f2f3e26d35490b7c5654b0e467d6ca3eca48840bf0a575f1ac381ecdf80e3c3"
+        },
+        {
+          "command": [
+            "advanceTo",
+            3
+          ],
+          "stateHash": "32b8e9b9c97e85c166645e8c9c3957ef06bec7adff3e03f7720fec9838887518"
+        },
+        {
+          "command": [
+            "advanceTo",
+            5
+          ],
+          "stateHash": "ee2542c8bf07a7ee87964fc039c6ed299cf71542b79b6f9aa8a082f28ce81495"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "ee2542c8bf07a7ee87964fc039c6ed299cf71542b79b6f9aa8a082f28ce81495"
+        },
+        {
+          "command": [
+            "interruptTask",
+            "keeper"
+          ],
+          "stateHash": "a04979510552bf754b6a5f73251e992304dcca910f3cc02242f62d841cc6c109"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "03ad1c4ab1dc4836231f2038350d5cd8f6686035b25f70400f230fac94928a79"
+        },
+        {
+          "command": [
+            "reject-save",
+            "part reservation"
+          ],
+          "stateHash": "03ad1c4ab1dc4836231f2038350d5cd8f6686035b25f70400f230fac94928a79"
+        },
+        {
+          "command": [
+            "reject-save",
+            "person time"
+          ],
+          "stateHash": "03ad1c4ab1dc4836231f2038350d5cd8f6686035b25f70400f230fac94928a79"
+        },
+        {
+          "command": [
+            "advanceTo",
+            6
+          ],
+          "stateHash": "668b43f739c059537bc16c674ba1d7bce5ed38abb325fc26bb170dd12c98b93b"
+        },
+        {
+          "command": [
+            "advanceTo",
+            8
+          ],
+          "stateHash": "c788ac732c44f911cc20087ca7f5ab76eba7f839fffe03cb651171e6225b0028"
+        },
+        {
+          "command": [
+            "advanceTo",
+            11
+          ],
+          "stateHash": "33621f57ca939a0c10e4199abcd88935690a9f01e8a2c85a066095bc15b9bbc8"
+        },
+        {
+          "command": [
+            "advanceTo",
+            12
+          ],
+          "stateHash": "b6c4bb782247e18e6f0b93faa91f1f3739a10711e7efc5d59ec7aa89e1f81f6e"
+        },
+        {
+          "command": [
+            "receiveReceipt",
+            {
+              "id": "event:7",
+              "at": 12,
+              "type": "attempt-due",
+              "actorId": "keeper",
+              "data": {
+                "attemptId": "keeper:4",
+                "task": "repair"
+              }
+            },
+            "STALE_RECEIPT"
+          ],
+          "stateHash": "b6c4bb782247e18e6f0b93faa91f1f3739a10711e7efc5d59ec7aa89e1f81f6e"
+        },
+        {
+          "command": [
+            "advanceTo",
+            15
+          ],
+          "stateHash": "bcc276d326a1d9e3c86b2519233b80d07c81d3f7080560b15979e73d04212f71"
+        },
+        {
+          "command": [
+            "advanceTo",
+            17
+          ],
+          "stateHash": "65db3651c4c3d07fc94e51acbc618c4e34dcf2d192c394a3fcbce59f931b25cb"
+        },
+        {
+          "command": [
+            "advanceTo",
+            18
+          ],
+          "stateHash": "0b93d6a2040009aa3087a7c06b9c97b8e6328c13d6a25db31120114ca1f28158"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "rest"
+          ],
+          "stateHash": "1e1cc65fe29face80ffa9794866fb80c5ca98665a520081e2b27e0f1b855e378"
+        },
+        {
+          "command": [
+            "advanceTo",
+            24
+          ],
+          "stateHash": "6216f87a5a7fe4f50b6cf709733f804b00c31c397642c03e294835f53e010c66"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "6216f87a5a7fe4f50b6cf709733f804b00c31c397642c03e294835f53e010c66"
+        },
+        {
+          "command": [
+            "advanceTo",
+            27
+          ],
+          "stateHash": "5063107fe3d8f3efd402ea92c3172caa73d889b1aeb84fbd01d9d0bfdf183dd9"
+        },
+        {
+          "command": [
+            "advanceTo",
+            29
+          ],
+          "stateHash": "30b8f0d727c2e0e77373f6639b7b4d7d5705e3e58e5b3ec11c3e0a8e7aef97e0"
+        },
+        {
+          "command": [
+            "advanceTo",
+            30
+          ],
+          "stateHash": "9decb55a87eae559d259c3dda02ef38a56363929ac12eefbf64a74b0b7f41f0e"
+        },
+        {
+          "command": [
+            "advanceTo",
+            37
+          ],
+          "stateHash": "f5edef3a31b8a341060768cfb76ff949ab11c576dd27c109300c0d1bdd7faaa5"
+        },
+        {
+          "command": [
+            "advanceTo",
+            38
+          ],
+          "stateHash": "8ac4ed10c78bcb7e9d32860932cde500e086ce610efd9929c68c86cfc68a525e"
+        },
+        {
+          "command": [
+            "advanceTo",
+            45
+          ],
+          "stateHash": "bf417217b7f34f812bb1923c91e48d73fd3aea49f187743b971b3f65bf8b9e09"
+        },
+        {
+          "command": [
+            "advanceTo",
+            46
+          ],
+          "stateHash": "71927900b523919f2d4935ede74e847aa1b8da425af7da1160afadcea3fd060d"
+        },
+        {
+          "command": [
+            "advanceTo",
+            53
+          ],
+          "stateHash": "bad8517654a18b4f39aad5870dfa8a9fee00dd63f9afff0972003c2e30c3169e"
+        },
+        {
+          "command": [
+            "advanceTo",
+            54
+          ],
+          "stateHash": "0a19215bc39305f29752b7cc8a8119e3e8f1241e446069f10580779ca3060373"
+        },
+        {
+          "command": [
+            "advanceTo",
+            61
+          ],
+          "stateHash": "de2e16030bc0526a2a3ebaf87f1aeeaf0d03b627daee46e295b2be244b527ec4"
+        },
+        {
+          "command": [
+            "advanceTo",
+            62
+          ],
+          "stateHash": "3844d390dfac1ec0b916a07bae40160eccd8142de28201bea2bb2d8866ee9ffb"
+        },
+        {
+          "command": [
+            "advanceTo",
+            69
+          ],
+          "stateHash": "d12e6d4f1f20510beea368fbeff26ad6a179f8fabeee6f35367833eaaf5f9fbd"
+        },
+        {
+          "command": [
+            "advanceTo",
+            70
+          ],
+          "stateHash": "db2bcc90fcd3790389ef232fa0da86f49d9e2256226b7f405f58cbac46ef93ae"
+        },
+        {
+          "command": [
+            "advanceTo",
+            72
+          ],
+          "stateHash": "9a58096a7b94465560d866c584764fede990b65b18e907d14a6b2c921849a19c"
+        },
+        {
+          "command": [
+            "advanceTo",
+            75
+          ],
+          "stateHash": "7f8a58a8a1bc0a10c674634cea171f4395880831e6681bd62263a535a51a63a3"
+        },
+        {
+          "command": [
+            "advanceTo",
+            77
+          ],
+          "stateHash": "c391944546bfe5dc2954a66245c4b289b288f5739221996e92556c86d23871c6"
+        },
+        {
+          "command": [
+            "advanceTo",
+            78
+          ],
+          "stateHash": "ec49b64a943618a6a977a70497ea01785fd041f22b79493ee9c7275353b41d25"
+        },
+        {
+          "command": [
+            "advanceTo",
+            80
+          ],
+          "stateHash": "5e57d9991383f49a58f7375f8dd4767fd14712e93a85cca909728a4e97c74abb"
+        }
+      ]
+    },
+    {
+      "name": "maintenance-partial-arrival",
+      "host": "maintenance",
+      "commands": 7,
+      "elapsedBoundaries": 8,
+      "deliveredEvents": 2,
+      "peakStateBytes": 2684,
+      "historyHash": "758e9702bd680daee43cd192d943635694cc3e03e9ed92942458f495586ca5a3",
+      "final": {
+        "direct": "b2a70549186cd650dcf75c386a723b7506a25d99c3a4b04edba970b5cf3a9d39",
+        "candidate": "b2a70549186cd650dcf75c386a723b7506a25d99c3a4b04edba970b5cf3a9d39"
+      },
+      "outcome": {
+        "at": 18,
+        "repairMinutes": 8,
+        "unrepairedMinutes": 4,
+        "warningAvailable": false
+      },
+      "trace": [
+        {
+          "command": [
+            "advanceTo",
+            10
+          ],
+          "stateHash": "41ab530a2be48139dd07b72de19bd865ab774d06726bd625de102e4741d206e8"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "ccb249648eb6785058960f75fe47603945ecefbab1c1aad5ce51f0c7c539252c"
+        },
+        {
+          "command": [
+            "advanceTo",
+            15
+          ],
+          "stateHash": "a988a45204793e39bd1ea124abde08725efdacd001ce8f78ac3588c1d95827d3"
+        },
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "fbd68ae1a25f01f2ac81b941acf432c62483d723d92278f6eeab90f41eb0c232"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "fbd68ae1a25f01f2ac81b941acf432c62483d723d92278f6eeab90f41eb0c232"
+        },
+        {
+          "command": [
+            "advanceTo",
+            18
+          ],
+          "stateHash": "abfa14b736ee202b0335bf90af7a1a775f5790b9ae71d3f9b7de0778b92947a6"
+        },
+        {
+          "command": [
+            "advanceTo",
+            80
+          ],
+          "stateHash": "b2a70549186cd650dcf75c386a723b7506a25d99c3a4b04edba970b5cf3a9d39"
+        }
+      ]
+    },
+    {
+      "name": "maintenance-solo",
+      "host": "maintenance",
+      "commands": 5,
+      "elapsedBoundaries": 4,
+      "deliveredEvents": 2,
+      "peakStateBytes": 1724,
+      "historyHash": "5ae8cc57e6dfce7bcae47a62179f0f29a3bff884849abb8a4e9033ac469c622b",
+      "final": {
+        "direct": "6af8533aa0bf4d9c17389851b838f3f1f3d42798d60628f554c77e8a8f44cadd",
+        "candidate": "6af8533aa0bf4d9c17389851b838f3f1f3d42798d60628f554c77e8a8f44cadd"
+      },
+      "outcome": {
+        "at": 18,
+        "repairMinutes": 5,
+        "unrepairedMinutes": 7,
+        "warningAvailable": false
+      },
+      "trace": [
+        {
+          "command": [
+            "requestTask",
+            "watcher",
+            "watch"
+          ],
+          "stateHash": "df7b50c1fe1e3efec43d6748e446726edcedbf74f26207ab9cefa3134c8c9bb8"
+        },
+        {
+          "command": [
+            "advanceTo",
+            13
+          ],
+          "stateHash": "ec63d87aad35d0b7812dd171a23b52f6237341a54048c4fbde1693a038ca1891"
+        },
+        {
+          "command": [
+            "requestTask",
+            "keeper",
+            "repair"
+          ],
+          "stateHash": "9a40d930c1b04382f52ee81dafe38ed24fab78504a4b661aab31d99900f4bfc8"
+        },
+        {
+          "command": [
+            "advanceTo",
+            18
+          ],
+          "stateHash": "6af8533aa0bf4d9c17389851b838f3f1f3d42798d60628f554c77e8a8f44cadd"
+        },
+        {
+          "command": [
+            "JSON-resume"
+          ],
+          "stateHash": "6af8533aa0bf4d9c17389851b838f3f1f3d42798d60628f554c77e8a8f44cadd"
+        }
+      ]
+    }
+  ],
+  "longRun": {
+    "name": "maintenance-post-arrival-bounded-session",
+    "host": "maintenance",
+    "commands": 2476,
+    "elapsedBoundaries": 4948,
+    "deliveredEvents": 9894,
+    "peakStateBytes": 2196,
+    "historyHash": "f70de5c89156f7213b564e17629fd9bb7a578196dae4a266576e5eefc112ce34",
+    "final": {
+      "direct": "771b8fb7ec9671db04df5bb2683fb5b5ef6e48730f4bdb671d4c78d5de8331b8",
+      "candidate": "771b8fb7ec9671db04df5bb2683fb5b5ef6e48730f4bdb671d4c78d5de8331b8"
+    },
+    "outcome": {
+      "at": 18,
+      "repairMinutes": 0,
+      "unrepairedMinutes": 12,
+      "warningAvailable": false
+    },
+    "trace": []
+  },
+  "events": {
+    "limit": 10000,
+    "total": 10000,
+    "fixed": 106,
+    "longRun": 9894
+  },
+  "parity": {
+    "allCommands": true,
+    "fullStateAndSerializedSave": true,
+    "commandCount": 2754,
+    "elapsedBoundaries": 5276,
+    "peakStateBytes": 3911
+  },
+  "elapsedMs": 1096.8629580000002,
+  "limits": [
+    "Same-driver pairs only; irregular requests are clamped at each actual event boundary for auditable counting.",
+    "Two actual consumers share lifecycle ancestry.",
+    "Mechanical source and integration evidence; no measured human authoring effort or public package promotion.",
+    "No UI, rendering, network, physical-device or human timing is included."
+  ]
+}

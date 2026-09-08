@@ -1,3 +1,4 @@
+import {mountPlayNote} from './play-note.js';
 import {createSignals,getSignalsView,exportSignals,restoreSignals,SIGNALS_TASKS} from '../src/games/signals.js';
 import {createSession,pauseSession,toggleSession,commandSession,stopSession,stepSession,tickSession} from './signals-session.js';
 const $=id=>document.getElementById(id),SAVE='human-last-light-v1',text=(id,value)=>{$(id).textContent=value;};
@@ -13,14 +14,14 @@ for(const [task,t] of Object.entries(SIGNALS_TASKS)){
  $(['canal','ridge'].includes(task)?'routes':['radio','lookout'].includes(task)?'observations':'recovery').append(b);b.addEventListener('click',()=>{notice('');apply(s=>commandSession(s,task));});
 }
 function render(){
- const v=getSignalsView(session.game);text('minute',String(v.now).padStart(2,'0'));text('lens-status',v.outcome?v.outcome.delivered?'Lens delivered':'Too late':v.job&&['ridge','canal'].includes(v.job.task)?'Lens in transit':'Lens ready to carry');text('kit-status',v.outcome?.delivered?'Lens at the beacon':'One lens');
+ const v=getSignalsView(session.game);$('profile-note').hidden=!v.profile;text('profile-note',v.profile?.description??'');text('minute',String(v.now).padStart(2,'0'));text('lens-status',v.outcome?v.outcome.delivered?'Lens delivered':'Too late':v.job&&['ridge','canal'].includes(v.job.task)?'Lens in transit':'Lens ready to carry');text('kit-status',v.outcome?.delivered?'Lens at the beacon':'One lens');
  for(const key of ['fares','charges'])text(key,String(v.resources[key]));text('meal-count',String(v.resources.meal));
  for(const key of ['fatigue','hunger']){$(key).value=v.person.body[key];text(`${key}-text`,`${Math.round(v.person.body[key]*100)}%`);}
  text('job',v.outcome?'Journey complete':v.job?SIGNALS_TASKS[v.job.task].label:'Ready to choose');text('job-time',v.job?`${v.job.endsAt-v.now} min left · finishes at minute ${v.job.endsAt}`:v.outcome?'Try another journey to make a different choice.':'Nothing moves until you advance time.');
  $('job-progress').max=v.job?v.job.endsAt-v.job.startedAt:1;$('job-progress').value=v.job?v.now-v.job.startedAt:0;$('stop').hidden=!v.job;
  text('time-status',session.reason);text('play',session.running?'Ⅱ Pause':'▶ Play');$('play').setAttribute('aria-pressed',String(session.running));
- for(const id of ['play','next-event','one-minute'])$(id).disabled=Boolean(v.outcome);text('next-event',v.job?'Next event →':v.inFlight.length?'Wait for reply →':v.now<v.launchDeadline?'Wait until minute 12 →':'Wait until closing →');
- for(const c of v.choices){$(`action-${c.task}`).disabled=!c.available;text(`note-${c.task}`,c.reason??(c.tooLate?`Finishes at ${c.finishesAt}; the beacon closes at 32.`:`Arrives at ${c.finishesAt}${['canal','ridge'].includes(c.task)?' if you leave now':''}.`));if(!['canal','ridge'].includes(c.task)&&!c.reason&&!c.tooLate)text(`note-${c.task}`,'');}
+ for(const id of ['play','next-event','one-minute'])$(id).disabled=Boolean(v.outcome);const nextReply=Math.min(...v.inFlight.map(f=>f.arrivesAt));text('next-event',v.job?'Next event →':v.now<v.launchDeadline&&nextReply>=v.launchDeadline?'Wait until minute 12 →':nextReply<v.deadline?'Wait for reply →':'Wait until closing →');
+ for(const c of v.choices){$(`action-${c.task}`).querySelector('.choice-detail').textContent=c.detail;$(`action-${c.task}`).disabled=!c.available;text(`note-${c.task}`,c.reason??(c.tooLate?`Finishes at ${c.finishesAt}; the beacon closes at 32.`:`Arrives at ${c.finishesAt}${['canal','ridge'].includes(c.task)?' if you leave now':''}.`));if(!['canal','ridge'].includes(c.task)&&!c.reason&&!c.tooLate)text(`note-${c.task}`,'');}
  const r=v.report;text('freshness',!r?'No observation':r.ageMinutes===0?'Observed now':`${r.ageMinutes} min old`);text('report-value',r?r.value:'Unseen');$('report-value').className=`report-value ${r?.value??''}`;
  text('report-provenance',r?`${sources[r.source]} · ${r.channel==='radio'?'radio reply':'direct observation'} · observed ${r.observedAt}, received ${r.deliveredAt}`:'Pay for a lookout or a radio request to learn about the landing.');
  text('report-age',r?r.ageMinutes===0?'You observed this at the current minute. The landing can still change while you travel.':`This describes minute ${r.observedAt}, not the current landing. A new lookout costs 3 minutes.`:'The current landing is not visible from here.');
@@ -39,3 +40,14 @@ function leave(){lastWall=performance.now();session=pauseSession(session,'Paused
 window.addEventListener('pagehide',leave);document.addEventListener('visibilitychange',()=>{lastWall=performance.now();if(document.hidden)leave();});
 setInterval(()=>{const now=performance.now(),elapsed=now-lastWall;lastWall=now;if(session.running&&!document.hidden)apply(s=>tickSession(s,elapsed,Number($('speed').value)));},250);
 try{const raw=localStorage.getItem(SAVE);if(raw){if(raw.length>65536)throw new Error('Stored save too large.');session=createSession(restoreSignals(JSON.parse(raw)));}}catch(e){notice(`The stored journey could not be loaded (${e.message}). A fresh paused journey is ready.`);}render();
+
+mountPlayNote({container:document.querySelector('main'),game:{id:'signals',title:'Last Light',version:'0.1.0'},
+ onOpen:()=>apply(s=>pauseSession(s,'Paused while you write a play note.')),
+ getContext:()=>{const v=getSignalsView(session.game);return {minute:v.now,summary:[
+  v.report?`Notebook: ${v.report.value}, observed at ${v.report.observedAt}, received at ${v.report.deliveredAt}.`:'No landing report in the notebook.',
+  `${v.resources.fares} fares and ${v.resources.charges} radio charges remain.`,
+  `${v.failedCrossings} failed crossings.`,
+  v.outcome?`Lens ${v.outcome.delivered?'delivered':'not delivered'}; evening launch ${v.outcome.launchSailed?'sailed':'remained in harbor'}.`:'Journey still in progress.'
+ ]};}});
+
+$('choose-situation').addEventListener('click',()=>{apply(s=>pauseSession(s,'Paused while you choose another harbor or starting condition.'));$('new-episode').open=true;});

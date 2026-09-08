@@ -8,7 +8,7 @@ export function stopSession(s){return {...pauseSession(s,'Stopped. Paid time, ef
 export function stepSession(s,mode='event'){
  if(!['event','minute'].includes(mode))throw new Error('Unknown time step.');
  const game=advanceTo(s.game,mode==='event'?nextVisibleEvent(s.game):s.game.clock.now+1);
- return {...pauseSession(s,game.outcome?'Episode complete. Review the journey below.':game.sequence>s.game.sequence?'A report arrived. Its observation time may be older than its delivery time.':s.game.clock.now<12&&game.clock.now>=12?'The evening launch stays in harbor. The overnight beacon still needs the lens.':'Paused. Choose the next move when ready.'),game};
+ return {...pauseSession(s,game.outcome?'Episode complete. Review the journey below.':game.sequence>s.game.sequence?'A new report or direct observation is available. Check its source and observation time.':s.game.clock.now<12&&game.clock.now>=12?'The evening launch stays in harbor. The overnight beacon still needs the lens.':'Paused. Choose the next move when ready.'),game};
 }
 export function tickSession(s,milliseconds,speed=1){
  if(!Number.isFinite(milliseconds)||milliseconds<0||![1,4].includes(speed))throw new Error('Invalid playback interval or speed.');
@@ -16,6 +16,6 @@ export function tickSession(s,milliseconds,speed=1){
  const accumulated=s.remainder+Math.min(milliseconds,1000)/1000*speed,minutes=Math.floor(accumulated);
  if(!minutes)return {...s,remainder:accumulated};
  const boundary=nextVisibleEvent(s.game),game=advanceTo(s.game,Math.min(s.game.clock.now+minutes,boundary));
- if(game.clock.now===boundary)return {...pauseSession(s,game.outcome?'Episode complete. Review the journey below.':game.sequence>s.game.sequence?'A report arrived. Read its source and observation time.':s.game.clock.now<12&&game.clock.now>=12?'The evening launch stays in harbor. The overnight beacon still needs the lens.':'Your action finished. Time paused for your next choice.'),game};
+ if(game.clock.now===boundary)return {...pauseSession(s,game.outcome?'Episode complete. Review the journey below.':game.sequence>s.game.sequence?'A new report or direct observation is available. Check its source and observation time.':s.game.clock.now<12&&game.clock.now>=12?'The evening launch stays in harbor. The overnight beacon still needs the lens.':'Your action finished. Time paused for your next choice.'),game};
  return {...s,game,remainder:accumulated-minutes};
 }

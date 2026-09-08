@@ -1,8 +1,12 @@
 # Attempt/clock coordination: retain direct wiring
 
-2026-09-08. **Negative on the predeclared mechanical adoption gate.** A private stateless helper preserves both hosts' behavior and shortens each caller, but increases combined source by **335 UTF-8 bytes and 20 nonblank lines**. Keep both released hosts on direct wiring and leave this candidate outside the package and public asset allowlist. This experiment measures source and executable integration obligations, not human authoring effort.
+2026-09-08. **Negative on the predeclared mechanical adoption gate.** A private stateless helper preserves both hosts' behavior and shortens each caller, but increases combined source by **510 UTF-8 bytes and 21 nonblank lines** after review hardening (original measurement: 335 bytes/20 lines). Keep both released hosts on direct wiring and leave this candidate outside the package and public asset allowlist. This experiment measures source and executable integration obligations, not human authoring effort.
 
 The [protocol](coordination-probe-protocol.md) was committed as `07907e027acc5ce52666ac80024650c2fff1866c` before implementation/comparison outcomes. Implementation/evidence source is `5e2ea2d4292464d90c8289c268e7057b573a35fc`. The CLI verifies the protocol against that original full Git commit and verifies original host/runtime/model/release-lock bytes. Preserve both commits and [measurement-1.json](../artifacts/coordination-probe/measurement-1.json); later report commits do not change the measured source identity.
+
+**Dated review follow-up:** Fable identified that a host extension field could replace a lifecycle identity. Current callers passed disjoint fields, but the helper now rejects reserved-name overlap before mutation, with a failing-then-passing regression for all five reserved fields. The original measurement above is retained. [Reviewed measurement 2](../artifacts/coordination-probe/measurement-2-reviewed.json), from source `09cdc80`, preserves every paired state/export, 2,754 steps, 10,000 events and 3,911-byte peak while adding the guard. The current helper is 2,875 bytes/45 nonblank lines; inclusive growth is **510 bytes/21 nonblank lines**. The same predeclared adoption gate still fails.
+
+The size margin is small and the obligation criterion passed; this is a protocol-valid size-proxy result for two related hosts, not proof that the API is worse for every human or a third host. Signals uses a different single-person shape with additional report receipts, so its presence does not automatically establish reuse of this helper. A later third-shape experiment would need a new protocol and consumer. Source line totals follow the runner's line-count definition, including its handling of the final newline; they are not a semantic complexity measure.
 
 ## What was actually compared
 
@@ -28,7 +32,7 @@ The callers still own recipient decisions and refusal, parts/meal reservations a
 
 All seven listed mechanical implementations move out of each caller; all three explicit receipt guards move into the helper. They have **not disappeared from the system**. Host lifecycle decisions, resource work and save reconciliation still remain, and callers now depend on five helper entry points including `dueRecord`. There are no new host-specific helper exceptions or callback protocols. The generic capacity guard already present in Watch also applies to maintenance starts; its valid accepted-task paths already pass that condition. Error-code parity is exercised for the declared histories, not every forged internal draft.
 
-## Inclusive source result
+## Original measurement 1: inclusive source result
 
 Whole-file UTF-8 sizes include comments, imports, world rules and validation. No minification or formatting change was made after measurement to cross a threshold.
 
