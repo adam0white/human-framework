@@ -46,9 +46,9 @@ function start(s,a,task,origin='request'){
  if(['deliver','cart'].includes(task)){if(s.coordination.slot)fail('CLINIC_SLOT_USED','The clinic receiving slot is already committed.');s.coordination.slot={actor:a,route:task,departedAt:s.clock.now,arrivedAt:null,status:'in-transit'};}
 s.jobs[a]={task,origin,startedAt:s.clock.now,endsAt,eventId,attemptId,startProgress:Object.hasOwn(s.work,task)?s.work[task]:null,reservedParts,reservedMeal};
 }
-function stop(s,a,announce=false){const j=s.jobs[a];if(!j)return;s.people[a]=finishAttempt(s.people[a],{attemptId:j.attemptId,status:'interrupted'});s.clock=cancelEvent(s.clock,j.eventId);s.parts[a]+=j.reservedParts;s.food[a]+=j.reservedMeal;s.jobs[a]=null;if(['deliver','cart'].includes(j.task)&&s.coordination.slot?.status==='in-transit')s.coordination.slot.status=s.outcome?'closed':'abandoned';if(announce)note(s,a,`Stopped ${(j.task==='discuss'?DISCUSSION:SERVICE_TASKS[j.task]).label.toLowerCase()} after ${s.clock.now-j.startedAt} paid minutes. Installed work remains; unused supplies return.`);}
+function stop(s,a,announce=false){const j=s.jobs[a];if(!j)return;s.people[a]=finishAttempt(s.people[a],{attemptId:j.attemptId,status:'interrupted'});s.clock=cancelEvent(s.clock,j.eventId);s.parts[a]+=j.reservedParts;s.food[a]+=j.reservedMeal;s.jobs[a]=null;if(['deliver','cart'].includes(j.task)&&s.coordination.slot?.status==='in-transit')s.coordination.slot.status=s.clock.now===CLOSING?'closed':'abandoned';if(announce)note(s,a,`Stopped ${(j.task==='discuss'?DISCUSSION:SERVICE_TASKS[j.task]).label.toLowerCase()} after ${s.clock.now-j.startedAt} paid minutes. Installed work remains; unused supplies return.`);}
 function initial(scenario){
- const s={version:SERVICE_PLAN_VERSION,scenario,clock:createClock(),people:{},jobs:{},parts:{keeper:2,partner:1},food:{keeper:1,partner:1},eaten:{keeper:0,partner:0},work:{gate:0,divert:0,pump:0},salvaged:0,reopenedAt:null,morning:null,delivery:null,outcome:null,paid:Object.fromEntries(taskIds.map(t=>[t,0])),paidByActor:Object.fromEntries(actors.map(a=>[a,Object.fromEntries(taskIds.map(t=>[t,0]))])),installedPartsByActor:{keeper:0,partner:0},handedOver:{keeper:0,partner:0},coordination:{nextId:1,current:null,pending:null,lastResponse:null,slot:null},lastResponse:null,lastReceipt:null,recent:[],commands:[]};
+ const s={version:SERVICE_PLAN_VERSION,scenario,clock:createClock(),people:{},jobs:{},parts:{keeper:2,partner:1},food:{keeper:1,partner:1},eaten:{keeper:0,partner:0},work:{gate:0,divert:0,pump:0},salvaged:0,reopenedAt:null,morning:null,delivery:null,outcome:null,paid:Object.fromEntries(taskIds.map(t=>[t,0])),paidByActor:Object.fromEntries(actors.map(a=>[a,Object.fromEntries(taskIds.map(t=>[t,0]))])),installedPartsByActor:{keeper:0,partner:0},handedOver:{keeper:0,partner:0},coordination:{readyAt:null,nextId:1,current:null,pending:null,lastResponse:null,slot:null},lastResponse:null,lastReceipt:null,recent:[],commands:[]};
  schedule(s,{at:MORNING,type:'morning'});schedule(s,{at:CLOSING,type:'closing'});
  for(const a of actors){s.people[a]=createPerson({id:a,body:{fatigue:a==='keeper'?.5:.25,hunger:a==='keeper'?.86:.78},skills:{repair:.2,carry:.1}});start(s,a,'idle','own');}
  note(s,'world','Serve the inlet at minute 24, then the clinic at minute 64. The same people, parts, meals and unfinished repairs carry through the day.');return s;
@@ -93,8 +93,10 @@ function ownChoice(s){
  return {task:null,reason:'I need a completed pump, inlet supply or an owned spare. At minute 42 I will take the cart fallback if full delivery is still unavailable.',at:s.clock.now<42?42:CLOSING};
 }
 function auto(s){
- if(s.outcome||s.jobs.partner.task!=='idle')return;
- const decision=ownChoice(s),plan=s.coordination.current;
+ if(s.outcome)return;
+ const plan=s.coordination.current;
+ if(s.jobs.partner.task!=='idle'){if(plan?.status==='active'&&s.clock.now>=plan.terms.waitUntil){plan.status='expired';plan.closedAt=s.clock.now;plan.closeReason='BUSY_AT_EXPIRY';}return;}
+ const decision=ownChoice(s);
  if(decision.task&&!refusal(s,'partner',decision.task)){stop(s,'partner');start(s,'partner',decision.task,'own');note(s,'partner',decision.reason);if(plan?.status==='active'&&['deliver','cart'].includes(decision.task)){plan.status=decision.task==='deliver'?'delivering':'expired';plan.closedAt=s.clock.now;plan.closeReason=decision.task==='deliver'?'FULL_DEPARTURE':'FALLBACK_DEPARTURE';}}
  if(plan?.status==='active'&&s.clock.now>=plan.terms.waitUntil){plan.status='expired';plan.closedAt=s.clock.now;plan.closeReason='WAIT_EXPIRED';}
 }
@@ -116,14 +118,19 @@ function morning(s){
 }
 function closing(s){if(s.coordination.pending)interruptDiscussionRaw(s,'keeper',false,'CLOSED');if(s.coordination.current?.status==='active'||s.coordination.current?.status==='delivering'){s.coordination.current.status='expired';s.coordination.current.closedAt=CLOSING;s.coordination.current.closeReason='CLOSED';}for(const a of actors)stop(s,a);for(const e of [...s.clock.queue])s.clock=cancelEvent(s.clock,e.id);s.outcome={at:CLOSING,morningProtected:s.morning.protected,morningWater:s.morning.waterService,clinicUnits:s.delivery?.units??0,clinicRequired:2,clinicRoute:s.delivery?.route??'unfinished',allService:s.morning.waterService&&s.delivery?.units===2};note(s,'world',`The clinic intake closed with ${s.outcome.clinicUnits} of 2 requested water units. Morning service remains ${s.outcome.morningWater?'fulfilled':'missed'}.`);}
 function record(s,c,replace=false){const last=s.commands.at(-1);if(c.type==='advance'&&last?.type==='advance'){last.to=c.to;return;}if(replace){s.commands[s.commands.length-1]=copy(c);return;}if(s.commands.length>=MAX_COMMANDS)fail('COMMAND_LIMIT','The saved command limit has been reached.');s.commands.push(copy(c));}
-// Refusals have no world effect: retain only the latest response in a same-minute run, regardless of command kind or recipient.
-function replacesRefusal(s){return s.lastResponse?.accepted===false&&s.lastResponse.at===s.clock.now&&['request','stop'].includes(s.commands.at(-1)?.type);}
+// A refusal changes two visible response channels, never physical state. Keep the
+// latest entry per channel in its original order; accepted work breaks the run.
+const responseFamily=c=>['propose','withdraw'].includes(c.type)?'plan':'physical';
+function refusalTail(s){let i=s.commands.length;while(i>0&&s.commands[i-1].type==='refusal')i--;return i;}
+function replacesResponse(s,family){return s.commands.slice(refusalTail(s)).some(c=>responseFamily(c.command)===family);}
+function responseCommand(s,c,rejected){if(!rejected){record(s,c);return;}const start=refusalTail(s),tail=s.commands.slice(start).filter(x=>responseFamily(x.command)!==responseFamily(c));s.commands.splice(start);for(const entry of tail)record(s,entry);record(s,{type:'refusal',command:c});}
+function replacesRefusal(s){return replacesResponse(s,'physical');}
 function taskRaw(s,a,task){
  if(typeof a!=='string'||!actors.includes(a)||typeof task!=='string'||!Object.hasOwn(SERVICE_TASKS,task))fail('INVALID_COMMAND','Unknown person or task.');
  const r=refusal(s,a,task),replace=Boolean(r&&replacesRefusal(s));
  if(!replace&&s.commands.length>=MAX_COMMANDS-5)fail('COMMAND_LIMIT','No new requests remain. You can stop requested work and advance time to finish the day.');
  s.lastResponse={at:s.clock.now,actor:a,task,accepted:!r,code:r?.[0]??'ACCEPTED',reason:r?.[1]??`Agreed: ${SERVICE_TASKS[task].label.toLowerCase()}, ${spec(s,task).durationMinutes} paid minutes.`};
- if(!r){stop(s,a);start(s,a,task);note(s,a,s.lastResponse.reason);}record(s,{type:'request',actor:a,task},replace);return s;
+ if(!r){stop(s,a);start(s,a,task);note(s,a,s.lastResponse.reason);}responseCommand(s,{type:'request',actor:a,task},Boolean(r));return s;
 }
 function stopRaw(s,a){
  if(!actors.includes(a)||s.outcome||s.jobs[a].task==='idle')fail('NOT_WORKING','There is no current job to stop.');
@@ -131,19 +138,19 @@ function stopRaw(s,a){
  const j=s.jobs[a],rejected=a==='partner'&&j.origin==='own',replace=rejected&&replacesRefusal(s);
  if(!replace&&s.commands.length>=MAX_COMMANDS-2)fail('COMMAND_LIMIT','Advance time to finish the current work and reach closing.');
  s.lastResponse={at:s.clock.now,actor:a,task:j.task,accepted:!rejected,code:rejected?'OWN_COMMITMENT':'STOPPED',reason:rejected?'I chose this work for the clinic and will finish it. You can make another request when I am free.':'Stopped the agreed work; paid recovery and installed work remain.'};
- if(!rejected){stop(s,a,true);start(s,a,'idle','own');}record(s,{type:'stop',actor:a},replace);return s;
+ if(!rejected){stop(s,a,true);start(s,a,'idle','own');}responseCommand(s,{type:'stop',actor:a},rejected);return s;
 }
 function advanceRaw(s,target){
  int(target,s.clock.now,1000000,'target minute');if(s.outcome||target===s.clock.now)return s;
  while(s.clock.now<target&&!s.outcome){auto(s);const step=advanceClock(s.clock,s.clock.now+1),elapsed=step.clock.now-s.clock.now;
   for(const a of actors){const j=s.jobs[a];s.people[a]=advanceAttempt(s.people[a],elapsed);s.paid[j.task]+=elapsed;s.paidByActor[a][j.task]+=elapsed;if(Object.hasOwn(s.work,j.task)){const before=Math.ceil(s.work[j.task]/6);s.work[j.task]+=elapsed;const used=Math.ceil(s.work[j.task]/6)-before;j.reservedParts-=used;s.installedPartsByActor[a]+=used;}}
   s.clock=step.clock;for(const e of step.events){if(s.outcome)break;if(e.type==='morning')morning(s);else if(e.type==='closing')closing(s);else if(s.jobs[e.actorId]?.eventId===e.id)settle(s,e);}
+  if(s.outcome)updatePlan(s);
   if(!s.outcome){if(s.coordination.pending&&s.coordination.pending.endsAt===s.clock.now)responseRaw(s,s.coordination.pending.receipt);updatePlan(s);auto(s);}
  }record(s,{type:'advance',to:s.clock.now});return s;
 }
 // One direct plan and one pending revision. Physical work remains host-owned.
 const ready=s=>s.work.pump===12&&supply(s);
-const planCommands=['propose','withdraw'];
 const acceptanceRule='Authored rule: Deniz listens only while both people are idle. Terms require visible inlet supply, an owned keeper part for at most one remaining pump section, and a rounded-body forecast of the declared rest and pump schedule. Short holds retain the cart through 45; later holds explicitly risk losing it. Actual work and capacity still decide delivery.';
 function termsShape(t){json(t);fields(t,['pumpStartAt','readyBy','waitUntil','fallback'],'plan terms');for(const k of ['pumpStartAt','readyBy','waitUntil'])int(t[k],0,64,k);if(!['cart','none'].includes(t.fallback))fail('INVALID_COMMAND','Unknown fallback.');}
 function inviteRefusal(s){
@@ -175,11 +182,11 @@ function termRefusal(s,t){
  return null;
 }
 function planResponse(s,id,stage,accepted,code,reason){s.coordination.lastResponse={at:s.clock.now,id,stage,accepted,code,reason};s.lastResponse={at:s.clock.now,actor:'partner',task:'discuss',accepted,code,reason};}
-function replacesPlanRefusal(s){return s.lastResponse?.accepted===false&&s.lastResponse.at===s.clock.now&&planCommands.includes(s.commands.at(-1)?.type);}
+function replacesPlanRefusal(s){return replacesResponse(s,'plan');}
 function proposeRaw(s,terms){
  termsShape(terms);const r=inviteRefusal(s),replace=Boolean(r&&replacesPlanRefusal(s));
  if(!replace&&s.commands.length>=MAX_COMMANDS-6)fail('COMMAND_LIMIT','No new proposals remain. Stop discussion or requested work and advance to closing.');
- if(r){planResponse(s,null,'invitation',false,...r);record(s,{type:'propose',terms},replace);return s;}
+ if(r){planResponse(s,null,'invitation',false,...r);responseCommand(s,{type:'propose',terms},true);return s;}
  const id=`plan:${s.coordination.nextId++}`,revisionOf=s.coordination.current?.status==='active'?s.coordination.current.id:null,endsAt=s.clock.now+2;
  s.coordination.pending={id,revisionOf,createdAt:s.clock.now,endsAt,terms:copy(terms),receipt:{id,at:endsAt,participants:['keeper','partner']},invitationAccepted:true};
  for(const a of actors){stop(s,a);start(s,a,'discuss','request');}
@@ -203,25 +210,26 @@ function interruptDiscussionRaw(s,a,recordCommand,code='INTERRUPTED'){
  s.coordination.pending=null;planResponse(s,p.id,'interruption',false,code,code==='EXPIRED'?'The existing waiting deadline arrived during discussion. Those terms still apply.':code==='CLOSED'?'Clinic intake closed before these terms could take effect.':'Discussion stopped; only the active minutes actually paid remain. Previous terms still apply.');note(s,a,s.lastResponse.reason);if(recordCommand)record(s,{type:'interrupt-discussion',actor:a});return s;
 }
 function withdrawRaw(s){
- const p=s.coordination.current,invalid=!p||p.status!=='active',replace=invalid&&replacesPlanRefusal(s);
+ const p=s.coordination.current,invalid=!p||p.status!=='active'||p.contribution.status==='fulfilled',replace=invalid&&replacesPlanRefusal(s);
  if(!replace&&s.commands.length>=MAX_COMMANDS-2)fail('COMMAND_LIMIT','Advance time to finish the day.');
- if(invalid){planResponse(s,p?.id??null,'withdrawal',false,'NO_ACTIVE_PLAN','There is no active keeper promise to withdraw. The clinic obligation remains.');record(s,{type:'withdraw'},replace);return s;}
+ if(invalid){planResponse(s,p?.id??null,'withdrawal',false,'NO_ACTIVE_PLAN','There is no active keeper promise to withdraw. The clinic obligation remains.');responseCommand(s,{type:'withdraw'},true);return s;}
  if(s.coordination.pending)interruptDiscussionRaw(s,'keeper',false);
  p.contribution.status='withdrawn';p.contribution.fulfilledAt=null;p.status='withdrawn';p.closedAt=s.clock.now;p.closeReason='CONTRIBUTION_WITHDRAWN';planResponse(s,p.id,'withdrawal',true,'WITHDRAWN','You withdrew your promised contribution. Existing physical work continues and Deniz still owes the clinic a delivery.');note(s,'keeper',s.lastResponse.reason);record(s,{type:'withdraw'});return s;
 }
 function updatePlan(s){
+ if(ready(s)&&s.coordination.readyAt===null)s.coordination.readyAt=s.clock.now;
  const p=s.coordination.current;if(!p)return;
- if(ready(s)&&p.actualReadyAt===null){p.actualReadyAt=s.clock.now;if(p.contribution.status==='promised'&&s.clock.now<=p.terms.readyBy){p.contribution.status='fulfilled';p.contribution.fulfilledAt=s.clock.now;}}
+ if(ready(s)&&p.actualReadyAt===null){p.actualReadyAt=s.coordination.readyAt;if(p.contribution.status==='promised'&&p.actualReadyAt<=p.terms.readyBy){p.contribution.status='fulfilled';p.contribution.fulfilledAt=p.actualReadyAt;}}
  if(p.contribution.status==='promised'&&s.clock.now>=p.terms.readyBy){p.contribution.status='missed';note(s,'world',`Plan ${p.id}: promised readiness at ${p.terms.readyBy} was not achieved.`);}
  if(p.status==='active'&&s.clock.now>=p.terms.waitUntil&&s.coordination.pending)interruptDiscussionRaw(s,'partner',false,'EXPIRED');
 }
-function coordinationView(s){const r=inviteRefusal(s),p=s.coordination.current,budget=s.commands.length>=MAX_COMMANDS-6;return {...copy(s.coordination),readiness:{ready:ready(s),pumpWork:s.work.pump,pumpRequired:12,supplyAvailable:supply(s),keeperOwnedParts:s.parts.keeper,keeperReservedParts:s.jobs.keeper?.reservedParts??0},discussionAvailable:!r&&!budget,discussionReason:budget?'No new proposals remain; finish the current work and advance to closing.':r?.[1]??null,canWithdraw:p?.status==='active'&&s.commands.length<MAX_COMMANDS-2,canInterrupt:Boolean(s.coordination.pending)&&s.commands.length<MAX_COMMANDS-3,safeWaitUntil:45,latestFullStart:57,discussionMinutes:2,acceptanceRule};}
+function coordinationView(s){const r=inviteRefusal(s),p=s.coordination.current,budget=s.commands.length>=MAX_COMMANDS-6;return {...copy(s.coordination),readiness:{ready:ready(s),readyAt:s.coordination.readyAt,pumpWork:s.work.pump,pumpRequired:12,supplyAvailable:supply(s),keeperOwnedParts:s.parts.keeper,keeperReservedParts:s.jobs.keeper?.reservedParts??0},discussionAvailable:!r&&!budget,discussionReason:budget?'No new proposals remain; finish the current work and advance to closing.':r?.[1]??null,canWithdraw:p?.status==='active'&&p.contribution.status!=='fulfilled'&&s.commands.length<MAX_COMMANDS-2,canInterrupt:Boolean(s.coordination.pending)&&s.commands.length<MAX_COMMANDS-3,safeWaitUntil:45,latestFullStart:57,discussionMinutes:2,acceptanceRule};}
 function checkCoordination(s){
- const c=s.coordination;fields(c,['nextId','current','pending','lastResponse','slot'],'coordination');int(c.nextId,1,MAX_COMMANDS+1,'proposal identity');
+ const c=s.coordination;fields(c,['readyAt','nextId','current','pending','lastResponse','slot'],'coordination');int(c.nextId,1,MAX_COMMANDS+1,'proposal identity');if((c.readyAt!==null)!==ready(s))fail('INVALID_SAVE','Physical readiness time disagrees with work.');if(c.readyAt!==null)int(c.readyAt,24,s.clock.now,'physical readiness');
  if(c.pending){const p=c.pending;fields(p,['id','revisionOf','createdAt','endsAt','terms','receipt','invitationAccepted'],'pending plan');termsShape(p.terms);int(p.createdAt,24,s.clock.now,'proposal creation');if(p.endsAt!==p.createdAt+2||p.endsAt<=s.clock.now||p.invitationAccepted!==true||!equal(p.receipt,{id:p.id,at:p.endsAt,participants:actors})||actors.some(a=>s.jobs[a]?.task!=='discuss'||s.jobs[a].endsAt!==p.endsAt))fail('INVALID_SAVE','Pending discussion disagrees with paid participants.');}
  else if(actors.some(a=>s.jobs[a]?.task==='discuss'))fail('INVALID_SAVE','Discussion work has no proposal.');
  for(const p of [c.current,c.pending].filter(Boolean)){if(!/^plan:[1-9][0-9]*$/.test(p.id)||Number(p.id.slice(5))>=c.nextId||p.revisionOf!==null&&(!/^plan:[1-9][0-9]*$/.test(p.revisionOf)||Number(p.revisionOf.slice(5))>=Number(p.id.slice(5))))fail('INVALID_SAVE','Plan identities are not monotonic.');}
- if(c.current){const p=c.current;fields(p,['id','revisionOf','createdAt','respondedAt','proposer','recipient','terms','status','contribution','actualReadyAt','closedAt','closeReason'],'accepted plan');termsShape(p.terms);fields(p.contribution,['status','fulfilledAt'],'contribution');int(p.createdAt,24,s.clock.now,'accepted creation');int(p.respondedAt,p.createdAt+2,s.clock.now,'accepted response');if(p.proposer!=='keeper'||p.recipient!=='partner'||!['active','delivering','fulfilled','expired','withdrawn'].includes(p.status)||!['promised','fulfilled','missed','withdrawn'].includes(p.contribution.status))fail('INVALID_SAVE','Invalid agreement status.');for(const t of [p.actualReadyAt,p.closedAt,p.contribution.fulfilledAt])if(t!==null)int(t,p.respondedAt,s.clock.now,'plan factual time');if(p.actualReadyAt!==null&&!ready(s)||p.contribution.status==='fulfilled'&&(p.contribution.fulfilledAt!==p.actualReadyAt||p.actualReadyAt>p.terms.readyBy)||p.status==='fulfilled'&&s.delivery?.units!==2||p.status==='active'&&(s.outcome||p.closedAt!==null||s.clock.now>=p.terms.waitUntil))fail('INVALID_SAVE','Agreement facts disagree with world.');}
+ if(c.current){const p=c.current;fields(p,['id','revisionOf','createdAt','respondedAt','proposer','recipient','terms','status','contribution','actualReadyAt','closedAt','closeReason'],'accepted plan');termsShape(p.terms);fields(p.contribution,['status','fulfilledAt'],'contribution');int(p.createdAt,24,s.clock.now,'accepted creation');int(p.respondedAt,p.createdAt+2,s.clock.now,'accepted response');if(p.proposer!=='keeper'||p.recipient!=='partner'||!['active','delivering','fulfilled','expired','withdrawn'].includes(p.status)||!['promised','fulfilled','missed','withdrawn'].includes(p.contribution.status))fail('INVALID_SAVE','Invalid agreement status.');for(const t of [p.actualReadyAt,p.closedAt,p.contribution.fulfilledAt])if(t!==null)int(t,24,s.clock.now,'plan factual time');if(p.actualReadyAt!==null&&!ready(s)||p.contribution.status==='fulfilled'&&(p.contribution.fulfilledAt!==p.actualReadyAt||p.actualReadyAt>p.terms.readyBy)||p.status==='fulfilled'&&s.delivery?.units!==2||p.status==='active'&&(s.outcome||p.closedAt!==null||s.clock.now>=p.terms.waitUntil))fail('INVALID_SAVE','Agreement facts disagree with world.');}
  if(c.lastResponse){fields(c.lastResponse,['at','id','stage','accepted','code','reason'],'plan response');int(c.lastResponse.at,0,s.clock.now,'response time');if(!['invitation','terms','interruption','withdrawal'].includes(c.lastResponse.stage)||typeof c.lastResponse.accepted!=='boolean')fail('INVALID_SAVE','Invalid plan response.');}
  if(c.slot){const t=c.slot;fields(t,['actor','route','departedAt','arrivedAt','status'],'clinic slot');int(t.departedAt,24,s.clock.now,'departure');if(!actors.includes(t.actor)||!['deliver','cart'].includes(t.route)||!['in-transit','delivered','abandoned','closed'].includes(t.status))fail('INVALID_SAVE','Invalid clinic slot.');if(t.status==='in-transit'&&s.jobs[t.actor]?.task!==t.route||t.status==='delivered'&&(!s.delivery||t.arrivedAt!==s.delivery.at||t.route!==s.delivery.route)||t.status!=='delivered'&&t.arrivedAt!==null)fail('INVALID_SAVE','Clinic slot disagrees with actual work.');}else if(s.delivery||actors.some(a=>['deliver','cart'].includes(s.jobs[a]?.task)))fail('INVALID_SAVE','Delivery has no receiving slot.');
 }
@@ -265,7 +273,19 @@ export function getServicePlanView(s){
 export function exportServicePlan(s){check(s);const {commands,...state}=copy(s);return {format:'human-service-plan',version:1,hostVersion:SERVICE_PLAN_VERSION,runtimeVersion:RUNTIME_VERSION,scenario:s.scenario,commands,state};}
 export function restoreServicePlan(input){
  json(input);if(JSON.stringify(input).length>MAX_SAVE)fail('INVALID_SAVE','Save too large.');fields(input,['format','version','hostVersion','runtimeVersion','scenario','commands','state'],'save');if(input.format!=='human-service-plan'||input.version!==1||input.hostVersion!==SERVICE_PLAN_VERSION||input.runtimeVersion!==RUNTIME_VERSION||input.scenario!=='standard'||!Array.isArray(input.commands)||input.commands.length>MAX_COMMANDS)fail('INVALID_SAVE','Incompatible service-day replay.');
- const s=initial(input.scenario);for(const c of input.commands){if(c?.type==='request'){fields(c,['type','actor','task'],'request command');taskRaw(s,c.actor,c.task);}else if(c?.type==='stop'){fields(c,['type','actor'],'stop command');stopRaw(s,c.actor);}else if(c?.type==='advance'){fields(c,['type','to'],'advance command');advanceRaw(s,c.to);}else if(c?.type==='propose'){fields(c,['type','terms'],'propose command');proposeRaw(s,c.terms);}else if(c?.type==='interrupt-discussion'){fields(c,['type','actor'],'discussion interruption');interruptDiscussionRaw(s,c.actor,true);}else if(c?.type==='withdraw'){fields(c,['type'],'withdrawal');withdrawRaw(s);}else fail('INVALID_SAVE','Unknown replay command.');}const expected=exportServicePlan(s);
+ const s=initial(input.scenario);
+ for(const entry of input.commands){
+  const wrapped=entry?.type==='refusal';if(wrapped)fields(entry,['type','command'],'refusal command');const c=wrapped?entry.command:entry;
+  if(c?.type==='request'){fields(c,['type','actor','task'],'request command');taskRaw(s,c.actor,c.task);}
+  else if(c?.type==='stop'){fields(c,['type','actor'],'stop command');stopRaw(s,c.actor);}
+  else if(!wrapped&&c?.type==='advance'){fields(c,['type','to'],'advance command');advanceRaw(s,c.to);}
+  else if(c?.type==='propose'){fields(c,['type','terms'],'propose command');proposeRaw(s,c.terms);}
+  else if(!wrapped&&c?.type==='interrupt-discussion'){fields(c,['type','actor'],'discussion interruption');interruptDiscussionRaw(s,c.actor,true);}
+  else if(c?.type==='withdraw'){fields(c,['type'],'withdrawal');withdrawRaw(s);}
+  else fail('INVALID_SAVE','Unknown replay command.');
+  if(wrapped&&s.lastResponse?.accepted!==false)fail('INVALID_SAVE','A refusal wrapper cannot conceal accepted work.');
+ }
+ const expected=exportServicePlan(s);
  // Earlier development saves may retain redundant refusals. Normalize only the replay journal; every saved world/envelope field must still match exactly.
  if(!equal(expected,{...input,commands:expected.commands}))fail('INVALID_SAVE','Saved world does not match its deterministic command replay.');return s;
 }
