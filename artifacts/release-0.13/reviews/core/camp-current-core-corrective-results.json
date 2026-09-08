@@ -1,0 +1,32 @@
+{
+  "source": "/Users/abdul/code/human-framework/src/games/camp-current.js",
+  "sourceSha256": "1b0842a932aff34a94a30b474edfb3f862378bc378dfb54b3be3bb44db1511b5",
+  "scope": "Two exact current-constructor counterexamples and valid pending/completed counterparts only",
+  "results": [
+    {
+      "name": "exact current-constructor pending meal counterexample rejects",
+      "passed": true,
+      "error": "Pending meal lacks owned paid time"
+    },
+    {
+      "name": "exact current-constructor completed timber effort counterexample rejects",
+      "passed": true,
+      "error": "Inconsistent total paid time or effort"
+    },
+    {
+      "name": "valid meal pending and completed counterparts restore and progress",
+      "passed": true,
+      "pendingAt": 3,
+      "pendingMealMinutes": 3,
+      "finishedAt": 8,
+      "finishedMealMinutes": 8
+    },
+    {
+      "name": "valid timber pending and completed counterparts restore and progress",
+      "passed": true,
+      "pendingAt": 15,
+      "finishedAt": 16,
+      "finishedEffort": 0.12999999999999995
+    }
+  ]
+}

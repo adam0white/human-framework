@@ -1,0 +1,46 @@
+{
+  "sourceCaptures": [
+    {
+      "name": "final-current",
+      "reportSha256": "2e651e6ad0086afb7e05fcede8cac208e42466ea7716d5036c3fdbfb0583292a"
+    },
+    {
+      "name": "reviewed-current",
+      "reportSha256": "facdbfa7257557824fccf1b19881c8cc2df75ed8d2106048001751e9e06eb4c9"
+    }
+  ],
+  "harnessSha256": "8fac18e00603310c9b4b7661871f382e837b7340adbe1c2a126ba4e8bc33fa26",
+  "node": "v26.8.1",
+  "results": [
+    {
+      "id": "pending-meal-reclassified-as-recovery",
+      "boundary": "readiness-owned-meal-owned-partial-meal",
+      "originalSnapshotSha256": "8ffb2326b5bd36bde6a508a857bcdb308a2983f367b7d8da4ffe3d184a17de89",
+      "mutatedSnapshotSha256": "31f2a210b2b7c05cd7fccc64923c8214d96649bbea1de84c8e1aeb271e1c98c3",
+      "outcomes": {
+        "final-current": {
+          "accepted": true
+        },
+        "reviewed-current": {
+          "accepted": false,
+          "error": "Pending meal lacks owned paid time"
+        }
+      }
+    },
+    {
+      "id": "pending-gather-effort-shifted-to-neighbor",
+      "boundary": "gather-accepted-project-active-gather",
+      "originalSnapshotSha256": "7493f5563d5d9880aeb958abb12e4500713a2af47b9673edf42bafa29f8737e0",
+      "mutatedSnapshotSha256": "87bb8e99cbc44a8404fc098c4a604e72d9de4ef22141b9242da18826d74ea3ec",
+      "outcomes": {
+        "final-current": {
+          "accepted": true
+        },
+        "reviewed-current": {
+          "accepted": false,
+          "error": "Pending gathering lacks owned paid time or effort"
+        }
+      }
+    }
+  ]
+}

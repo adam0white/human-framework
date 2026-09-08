@@ -1,0 +1,225 @@
+TAP version 13
+# Subtest: source-frozen baseline bytes and all original commands remain intact
+ok 1 - source-frozen baseline bytes and all original commands remain intact
+  ---
+  duration_ms: 37.342791
+  ...
+# Subtest: current Camp retains frozen physical trace: gather-accepted-project
+ok 2 - current Camp retains frozen physical trace: gather-accepted-project
+  ---
+  duration_ms: 49.859
+  ...
+# Subtest: current Camp retains frozen physical trace: readiness-owned-meal
+ok 3 - current Camp retains frozen physical trace: readiness-owned-meal
+  ---
+  duration_ms: 55.13475
+  ...
+# Subtest: current Camp retains frozen physical trace: retained-work-consent
+ok 4 - current Camp retains frozen physical trace: retained-work-consent
+  ---
+  duration_ms: 19.555542
+  ...
+# Subtest: current Camp retains frozen physical trace: ongoing-tool-improvement
+ok 5 - current Camp retains frozen physical trace: ongoing-tool-improvement
+  ---
+  duration_ms: 65.77575
+  ...
+# Subtest: current Camp retains frozen physical trace: earned-supply-success
+ok 6 - current Camp retains frozen physical trace: earned-supply-success
+  ---
+  duration_ms: 486.24575
+  ...
+# Subtest: current Camp retains frozen physical trace: unmet-deadline-return
+ok 7 - current Camp retains frozen physical trace: unmet-deadline-return
+  ---
+  duration_ms: 234.195042
+  ...
+# Subtest: current-snapshot assurance retains pending and ownership checks while dropping window body replay
+ok 8 - current-snapshot assurance retains pending and ownership checks while dropping window body replay
+  ---
+  duration_ms: 108.718666
+  ...
+# Subtest: the active Camp page has no historical host, persistence, old Human or private experiment dependency
+ok 9 - the active Camp page has no historical host, persistence, old Human or private experiment dependency
+  ---
+  duration_ms: 2.612458
+  ...
+# Subtest: reviewed current validation rejects both preserved payment-ownership counterexamples
+ok 10 - reviewed current validation rejects both preserved payment-ownership counterexamples
+  ---
+  duration_ms: 1.479125
+  ...
+# Subtest: pause preserves paid pending work; stop preserves the stage and pays no time
+ok 11 - pause preserves paid pending work; stop preserves the stage and pays no time
+  ---
+  duration_ms: 27.515833
+  ...
+# Subtest: a large playback tick stops at completed work instead of consuming the remainder
+ok 12 - a large playback tick stops at completed work instead of consuming the remainder
+  ---
+  duration_ms: 73.354583
+  ...
+# Subtest: invalid commands preserve the game and available next-event recovery is finite
+ok 13 - invalid commands preserve the game and available next-event recovery is finite
+  ---
+  duration_ms: 4.621416
+  ...
+# Subtest: one current save reloads paid work paused and never reads or overwrites older keys
+ok 14 - one current save reloads paid work paused and never reads or overwrites older keys
+  ---
+  duration_ms: 14.798708
+  ...
+# Subtest: unreadable current save is preserved with a raw backup while new play remains exportable
+ok 15 - unreadable current save is preserved with a raw backup while new play remains exportable
+  ---
+  duration_ms: 37.660125
+  ...
+# Subtest: read denial and quota failure preserve play; a later successful write can retry quota failures
+ok 16 - read denial and quota failure preserve play; a later successful write can retry quota failures
+  ---
+  duration_ms: 5.129875
+  ...
+# Subtest: import previews current state without replacing it until explicit confirmation
+ok 17 - import previews current state without replacing it until explicit confirmation
+  ---
+  duration_ms: 3.470791
+  ...
+# Subtest: invalid, unsupported and oversized imports leave the active camp and preview unchanged
+ok 18 - invalid, unsupported and oversized imports leave the active camp and preview unchanged
+  ---
+  duration_ms: 2.431417
+  ...
+# Subtest: an older asynchronous success or failure cannot replace a newer preview
+ok 19 - an older asynchronous success or failure cannot replace a newer preview
+  ---
+  duration_ms: 2.761375
+  ...
+# Subtest: new play, replacing the camp and cancelling invalidate pending imports and previews
+ok 20 - new play, replacing the camp and cancelling invalidate pending imports and previews
+  ---
+  duration_ms: 2.789666
+  ...
+# Subtest: fresh current Camp has a versioned immutable current envelope and ordinary view
+ok 21 - fresh current Camp has a versioned immutable current envelope and ordinary view
+  ---
+  duration_ms: 10.463375
+  ...
+# Subtest: available recovery pays real time while keeping a person free for immediate work
+ok 22 - available recovery pays real time while keeping a person free for immediate work
+  ---
+  duration_ms: 4.514333
+  ...
+# Subtest: gathering and owned meals settle only after paid completion and interruption refunds only reservation
+ok 23 - gathering and owned meals settle only after paid completion and interruption refunds only reservation
+  ---
+  duration_ms: 7.019167
+  ...
+# Subtest: stop and resume retain installed material, physical progress, latched worker basis and practice
+ok 24 - stop and resume retain installed material, physical progress, latched worker basis and practice
+  ---
+  duration_ms: 10.742333
+  ...
+# Subtest: accepted handover preserves paid ownership and independently chooses the remaining project
+ok 25 - accepted handover preserves paid ownership and independently chooses the remaining project
+  ---
+  duration_ms: 4.304583
+  ...
+# Subtest: recipient can refuse a handover without transferring work or charging time
+ok 26 - recipient can refuse a handover without transferring work or charging time
+  ---
+  duration_ms: 0.854541
+  ...
+# Subtest: accepted project independently gathers, recovers and completes without player assignments
+ok 27 - accepted project independently gathers, recovers and completes without player assignments
+  ---
+  duration_ms: 7.211542
+  ...
+# Subtest: advancing is chunk invariant and restored current boundaries continue exactly
+ok 28 - advancing is chunk invariant and restored current boundaries continue exactly
+  ---
+  duration_ms: 44.158958
+  ...
+# Subtest: the earned supply introduction pauses actual people and starts exact checkpoint deadlines
+ok 29 - the earned supply introduction pauses actual people and starts exact checkpoint deadlines
+  ---
+  duration_ms: 127.032792
+  ...
+# Subtest: coarse and minute advances stop identically at ferry and preserve active jobs
+ok 30 - coarse and minute advances stop identically at ferry and preserve active jobs
+  ---
+  duration_ms: 72.362458
+  ...
+# Subtest: actual cache choices, dispatched loss and return preserve the same paid people and resources
+ok 31 - actual cache choices, dispatched loss and return preserve the same paid people and resources
+  ---
+  duration_ms: 61.159333
+  ...
+# Subtest: current validation rejects wrong ownership, pending clock, unpaid rate and malformed current facts
+ok 32 - current validation rejects wrong ownership, pending clock, unpaid rate and malformed current facts
+  ---
+  duration_ms: 5.419917
+  ...
+# Subtest: unsupported saves and unsafe JSON fail without running inherited behavior or changing current state
+ok 33 - unsupported saves and unsafe JSON fail without running inherited behavior or changing current state
+  ---
+  duration_ms: 0.815125
+  ...
+# Subtest: a prospective workbench improves an already paid garden without resetting either worker basis
+ok 34 - a prospective workbench improves an already paid garden without resetting either worker basis
+  ---
+  duration_ms: 87.361208
+  ...
+# Subtest: releasing a project retains its installed work and ends the accepted assignment
+ok 35 - releasing a project retains its installed work and ends the accepted assignment
+  ---
+  duration_ms: 6.837459
+  ...
+# Subtest: four actual cache allocations allow early close only after real ferry dispatch
+ok 36 - four actual cache allocations allow early close only after real ferry dispatch
+  ---
+  duration_ms: 228.460583
+  ...
+# Subtest: window inventory completion receipts respect physical cache time and the retained final assembly
+ok 37 - window inventory completion receipts respect physical cache time and the retained final assembly
+  ---
+  duration_ms: 146.698084
+  ...
+# Subtest: current snapshots do not authenticate absent body history or the recent activity text
+ok 38 - current snapshots do not authenticate absent body history or the recent activity text
+  ---
+  duration_ms: 0.480958
+  ...
+# Subtest: pending meal minutes cannot be reassigned to recovery before completion
+ok 39 - pending meal minutes cannot be reassigned to recovery before completion
+  ---
+  duration_ms: 1.082375
+  ...
+# Subtest: completed meals and a current pending meal require separate paid time
+ok 40 - completed meals and a current pending meal require separate paid time
+  ---
+  duration_ms: 1.400625
+  ...
+# Subtest: completed timber and salvage receipts require their authored paid effort
+ok 41 - completed timber and salvage receipts require their authored paid effort
+  ---
+  duration_ms: 3.262417
+  ...
+# Subtest: a pending gathering attempt owns its paid effort even if another person has surplus effort
+ok 42 - a pending gathering attempt owns its paid effort even if another person has surplus effort
+  ---
+  duration_ms: 2.160875
+  ...
+# Subtest: completed gathering and current gathering require disjoint paid effort
+ok 43 - completed gathering and current gathering require disjoint paid effort
+  ---
+  duration_ms: 3.980583
+  ...
+1..43
+# tests 43
+# suites 0
+# pass 43
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1147.344208

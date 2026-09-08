@@ -1,0 +1,206 @@
+{
+  "format": "human-camp-current",
+  "version": 1,
+  "game": {
+    "version": "0.3.0",
+    "runtimeVersion": "0.1.1",
+    "humanVersion": "0.1.1",
+    "clock": {
+      "version": "0.1.0",
+      "now": 3,
+      "nextEvent": 2,
+      "queue": [
+        {
+          "id": "event:1",
+          "at": 8,
+          "type": "job-complete",
+          "actorId": "player",
+          "data": {
+            "jobId": "eat",
+            "attemptId": "player:1"
+          }
+        }
+      ]
+    },
+    "people": {
+      "player": {
+        "version": "0.1.1",
+        "id": "player",
+        "body": {
+          "fatigue": 0.20450000000000002,
+          "hunger": 0.226
+        },
+        "skills": {
+          "gathering": 0.1,
+          "construction": 0.05
+        },
+        "observationBias": 0,
+        "minutes": 3,
+        "nextAttempt": 2,
+        "pending": {
+          "id": "player:1",
+          "action": {
+            "actionId": "eat",
+            "targetId": null,
+            "durationMinutes": 8,
+            "effort": 0,
+            "exertive": false,
+            "activity": "meal",
+            "skill": null
+          },
+          "elapsedMinutes": 3,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.012,
+            "hungerCost": 0.016,
+            "projectedFatigue": 0.21200000000000002,
+            "projectedHunger": 0.236
+          },
+          "bodyBefore": {
+            "fatigue": 0.2,
+            "hunger": 0.22
+          },
+          "skillBefore": null,
+          "startedAt": 0
+        }
+      },
+      "neighbor": {
+        "version": "0.1.1",
+        "id": "neighbor",
+        "body": {
+          "fatigue": 0.22949999999999995,
+          "hunger": 0.28600000000000003
+        },
+        "skills": {
+          "gathering": 0.1,
+          "construction": 0.05
+        },
+        "observationBias": 0,
+        "minutes": 3,
+        "nextAttempt": 4,
+        "pending": null
+      }
+    },
+    "jobs": {
+      "player": {
+        "kind": "fixed",
+        "id": "eat",
+        "label": "Eat a portion",
+        "detail": "Reserve one shared portion; hunger relief follows eight paid minutes.",
+        "project": null,
+        "stage": null,
+        "cost": {
+          "food": 1
+        },
+        "output": {},
+        "duration": 8,
+        "benefits": {
+          "shelter": false,
+          "workbench": false,
+          "garden": false
+        },
+        "skillBefore": null,
+        "action": {
+          "actionId": "eat",
+          "targetId": null,
+          "durationMinutes": 8,
+          "effort": 0,
+          "exertive": false,
+          "activity": "meal",
+          "skill": null
+        },
+        "startedAt": 0,
+        "endsAt": 8,
+        "eventId": "event:1",
+        "attemptId": "player:1"
+      },
+      "neighbor": null
+    },
+    "stock": {
+      "timber": 4,
+      "salvage": 2,
+      "food": 3
+    },
+    "structures": {
+      "shelter": 0,
+      "workbench": 0,
+      "garden": 0
+    },
+    "caches": 0,
+    "milestoneAt": null,
+    "commitment": {
+      "status": "none",
+      "project": null,
+      "acceptedAt": null,
+      "finishedAt": null,
+      "startCaches": 0,
+      "reason": "Ask me to help with a specific project. I’ll tell you what I can do."
+    },
+    "lastResponse": null,
+    "stats": {
+      "started": 1,
+      "completed": 0,
+      "canceled": 0,
+      "gathered": {
+        "timber": 0,
+        "salvage": 0,
+        "food": 0
+      },
+      "spent": {
+        "timber": 0,
+        "salvage": 0,
+        "food": 0
+      },
+      "consumedFood": 0,
+      "workMinutes": 0,
+      "restMinutes": 6,
+      "mealMinutes": 0,
+      "idleMinutes": 0,
+      "receipts": {
+        "gather-timber": 0,
+        "gather-salvage": 0,
+        "forage": 0,
+        "rest": 0,
+        "eat": 0,
+        "coveredTimber": 0,
+        "gardenFood": 0
+      }
+    },
+    "recent": [
+      {
+        "at": 0,
+        "actor": "player",
+        "message": "You started eat a portion (8 min)."
+      }
+    ],
+    "work": {},
+    "lastAssemblies": {},
+    "paid": {
+      "player": {
+        "work": 0,
+        "recovery": 3,
+        "idle": 0,
+        "meal": 0,
+        "effort": 0,
+        "constructionMinutes": 0,
+        "gatheringMinutes": 0
+      },
+      "neighbor": {
+        "work": 0,
+        "recovery": 3,
+        "idle": 0,
+        "meal": 0,
+        "effort": 0,
+        "constructionMinutes": 0,
+        "gatheringMinutes": 0
+      }
+    },
+    "recovering": {
+      "player": false,
+      "neighbor": false
+    },
+    "window": null,
+    "returned": false
+  }
+}

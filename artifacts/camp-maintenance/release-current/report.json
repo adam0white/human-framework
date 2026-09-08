@@ -1,0 +1,1392 @@
+{
+  "protocol": "camp-maintenance-fresh-traces-1",
+  "baselineFreezeCommit": "9f790040f595cba829381fcc8d25ae282e9fdc0e",
+  "baselineReportSha256": "064c33f31241ac1c3e348da3dfdf150c6fe88e98fcb4e35bb372c44a4a25d44b",
+  "sourceBaseCommit": "9f790040f595cba829381fcc8d25ae282e9fdc0e",
+  "sourceStatus": "M artifacts/camp-maintenance/compare-current.mjs\n M docs/camp-current-comparison.md\n M package-lock.json\n M package.json\n M scripts/public-assets.js\n M scripts/verify-live.js\n M tests/build.test.js\n M web/camp.css\n M web/camp.html\n?? artifacts/camp-maintenance/final-current/\n?? artifacts/camp-maintenance/first-current/\n?? artifacts/camp-maintenance/release-current/\n?? artifacts/camp-maintenance/review-corrections.mjs\n?? artifacts/camp-maintenance/reviewed-current/\n?? docs/camp-current-contract.md\n?? docs/camp-current-interface.md\n?? src/games/camp-current.js\n?? tests/camp-current-comparison.test.js\n?? tests/camp-current-session.test.js\n?? tests/camp-current.test.js\n?? web/camp-current-session.js\n?? web/camp-current.js",
+  "createdAt": "2026-09-08T21:11:08.962Z",
+  "node": "v26.8.1",
+  "execPath": "/opt/homebrew/Cellar/node/26.8.1/bin/node",
+  "command": "\"/opt/homebrew/Cellar/node/26.8.1/bin/node\" \"/Users/abdul/code/human-framework/artifacts/camp-maintenance/compare-current.mjs\" \"artifacts/camp-maintenance/release-current\" \"9f790040f595cba829381fcc8d25ae282e9fdc0e\"",
+  "sourceCosts": {
+    "activeBrowser": {
+      "entry": "web/camp-current.js",
+      "files": [
+        {
+          "path": "src/core/model.js",
+          "bytes": 7764,
+          "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+          "nonblankLines": 117
+        },
+        {
+          "path": "src/games/camp-current.js",
+          "bytes": 45911,
+          "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a",
+          "nonblankLines": 454
+        },
+        {
+          "path": "src/human/v0.1.1.js",
+          "bytes": 11580,
+          "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+          "nonblankLines": 176
+        },
+        {
+          "path": "src/runtime/clock.js",
+          "bytes": 7513,
+          "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+          "nonblankLines": 130
+        },
+        {
+          "path": "src/runtime/index.js",
+          "bytes": 188,
+          "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+          "nonblankLines": 4
+        },
+        {
+          "path": "web/camp-current-session.js",
+          "bytes": 6233,
+          "sha256": "683d1c28887da20a89d1e01dd6d85d9eddec2d5d28fdd7fd5459eff4fa879c97",
+          "nonblankLines": 128
+        },
+        {
+          "path": "web/camp-current.js",
+          "bytes": 19764,
+          "sha256": "9bba1d23e43b65ea25a6a1f7810d84a47cb394e291d2007685417e3ac1c97c47",
+          "nonblankLines": 149
+        }
+      ],
+      "totalBytes": 98953
+    },
+    "host": {
+      "entry": "src/games/camp-current.js",
+      "files": [
+        {
+          "path": "src/core/model.js",
+          "bytes": 7764,
+          "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+          "nonblankLines": 117
+        },
+        {
+          "path": "src/games/camp-current.js",
+          "bytes": 45911,
+          "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a",
+          "nonblankLines": 454
+        },
+        {
+          "path": "src/human/v0.1.1.js",
+          "bytes": 11580,
+          "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+          "nonblankLines": 176
+        },
+        {
+          "path": "src/runtime/clock.js",
+          "bytes": 7513,
+          "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+          "nonblankLines": 130
+        },
+        {
+          "path": "src/runtime/index.js",
+          "bytes": 188,
+          "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+          "nonblankLines": 4
+        }
+      ],
+      "totalBytes": 72956
+    }
+  },
+  "activePage": {
+    "path": "web/camp.html",
+    "sha256": "cc8562c65d718fe4c509b6ac9386bb6422106ee759078760942136dd18aed9f9",
+    "entry": "web/camp-current.js"
+  },
+  "sourceArchiveSha256": "56b1fee9a13627d0ed9236540f5abbbfc4ce2308dfa503e3aa91add7e5a901e1",
+  "sourceCaptureNote": "All imported source bytes were captured and hashed before import, then materialized in a fresh directory; evolving workspace changes cannot affect this run.",
+  "harness": [
+    {
+      "path": "artifacts/camp-maintenance/compare-current.mjs",
+      "sha256": "16e9af22c34e6ed169861a82a69ec3556cd52d1bbd13cc73ac940f1144a29a41"
+    },
+    {
+      "path": "artifacts/camp-maintenance/support.mjs",
+      "sha256": "0e5a40d2357e01bcf44093169d856c2765ef95a0a1b7217efc22ed30e485cd2f"
+    },
+    {
+      "path": "artifacts/camp-maintenance/cold-restore.mjs",
+      "sha256": "76eabcea19f1db51413f7d91998a984e3d6e760816c40d05724dc81fa8d7d137"
+    }
+  ],
+  "validationProbes": [
+    {
+      "traceId": "gather-accepted-project",
+      "label": "active-gather",
+      "mutation": "bounded-body-change",
+      "accepted": false,
+      "error": "Inconsistent pending body state",
+      "oldAccepted": false,
+      "oldError": "Inconsistent pending body state"
+    },
+    {
+      "traceId": "gather-accepted-project",
+      "label": "active-gather",
+      "mutation": "extra-unearned-food",
+      "accepted": false,
+      "error": "Material ownership does not balance",
+      "oldAccepted": false,
+      "oldError": "Resource conservation mismatch"
+    },
+    {
+      "traceId": "earned-supply-success",
+      "label": "ferry-dispatched",
+      "mutation": "bounded-body-change",
+      "accepted": true,
+      "oldAccepted": false,
+      "oldError": "Story world does not match the source journal"
+    },
+    {
+      "traceId": "earned-supply-success",
+      "label": "ferry-dispatched",
+      "mutation": "extra-unearned-food",
+      "accepted": false,
+      "error": "Material ownership does not balance",
+      "oldAccepted": false,
+      "oldError": "Resource conservation mismatch"
+    },
+    {
+      "traceId": "earned-supply-success",
+      "label": "final",
+      "mutation": "bounded-body-change",
+      "accepted": true,
+      "oldAccepted": true
+    },
+    {
+      "traceId": "earned-supply-success",
+      "label": "final",
+      "mutation": "extra-unearned-food",
+      "accepted": false,
+      "error": "Material ownership does not balance",
+      "oldAccepted": false,
+      "oldError": "Resource conservation mismatch"
+    }
+  ],
+  "rejectsOldFormat": true,
+  "oldFormatError": "Incompatible save. This page supports current Camp 0.3 saves only.",
+  "results": [
+    {
+      "id": "gather-accepted-project",
+      "expectedCommands": 5,
+      "executedCommands": 5,
+      "failedCommand": null,
+      "changedSteps": 0,
+      "differenceCount": 0,
+      "firstDifferences": [],
+      "traceSha256": "fdb6f6506faa62e9a834bc6b1896ed04840eaf21daea55c54e6fbae9d5cc307b",
+      "boundaries": [
+        {
+          "label": "active-gather",
+          "step": 3,
+          "now": 3,
+          "phase": "camp",
+          "serializedBytes": 3626,
+          "snapshotSha256": "35678cace6562e5252d7f62c72f5e75d1fe7e01d881376ae7e87f2368b5890b2",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4158329999999992,
+              "parseAndRestoreMs": 2.1249579999999995,
+              "now": 3
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3706669999999992,
+              "parseAndRestoreMs": 1.9355829999999994,
+              "now": 3
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.602583000000001,
+              "parseAndRestoreMs": 2.06775,
+              "now": 3
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4519160000000007,
+              "parseAndRestoreMs": 2.047625,
+              "now": 3
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.664708000000001,
+              "parseAndRestoreMs": 2.145166999999999,
+              "now": 3
+            }
+          ],
+          "medianImportMs": 1.4519160000000007,
+          "medianParseAndRestoreMs": 2.06775,
+          "oldSerializedBytes": 3693,
+          "oldMedianParseAndRestoreMs": 2.9598750000000003
+        },
+        {
+          "label": "gather-output",
+          "step": 4,
+          "now": 16,
+          "phase": "camp",
+          "serializedBytes": 2767,
+          "snapshotSha256": "1645089e62b3db642f1cab46087a565bbdde33c3cc60130fc9762d7d5f1af152",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3502919999999996,
+              "parseAndRestoreMs": 1.673,
+              "now": 16
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.357875,
+              "parseAndRestoreMs": 1.7029170000000011,
+              "now": 16
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4373749999999994,
+              "parseAndRestoreMs": 1.7672920000000012,
+              "now": 16
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3536669999999997,
+              "parseAndRestoreMs": 1.6295000000000002,
+              "now": 16
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3272499999999994,
+              "parseAndRestoreMs": 1.699542000000001,
+              "now": 16
+            }
+          ],
+          "medianImportMs": 1.3536669999999997,
+          "medianParseAndRestoreMs": 1.699542000000001,
+          "oldSerializedBytes": 2819,
+          "oldMedianParseAndRestoreMs": 2.4891250000000014
+        },
+        {
+          "label": "final",
+          "step": 5,
+          "now": 200,
+          "phase": "camp",
+          "serializedBytes": 3447,
+          "snapshotSha256": "e71ddae00f170221de7c17f7401caee20a2ca4311c360a17598188a15a9098d5",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.5207920000000001,
+              "parseAndRestoreMs": 1.633958999999999,
+              "now": 200
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3526249999999997,
+              "parseAndRestoreMs": 1.75075,
+              "now": 200
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.6047499999999992,
+              "parseAndRestoreMs": 1.615874999999999,
+              "now": 200
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3737089999999998,
+              "parseAndRestoreMs": 1.6935830000000003,
+              "now": 200
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3468750000000007,
+              "parseAndRestoreMs": 1.8824579999999997,
+              "now": 200
+            }
+          ],
+          "medianImportMs": 1.3737089999999998,
+          "medianParseAndRestoreMs": 1.6935830000000003,
+          "oldSerializedBytes": 3496,
+          "oldMedianParseAndRestoreMs": 2.497083999999999
+        }
+      ]
+    },
+    {
+      "id": "readiness-owned-meal",
+      "expectedCommands": 17,
+      "executedCommands": 17,
+      "failedCommand": null,
+      "changedSteps": 0,
+      "differenceCount": 0,
+      "firstDifferences": [],
+      "traceSha256": "0ed4b00d2ea5668e453caf7bc3c726e8ee9509b48460534dd0567de63b8b5ba5",
+      "boundaries": [
+        {
+          "label": "blocked-before-readiness",
+          "step": 10,
+          "now": 74,
+          "phase": "camp",
+          "serializedBytes": 3152,
+          "snapshotSha256": "ce659018981ec906d2990fcdd8e32f5aedc9724b4277dae44fce7f0adf7ec29c",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3647089999999995,
+              "parseAndRestoreMs": 1.8619579999999996,
+              "now": 74
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3574580000000012,
+              "parseAndRestoreMs": 1.681541000000001,
+              "now": 74
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.7019159999999989,
+              "parseAndRestoreMs": 1.8116249999999994,
+              "now": 74
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3506669999999996,
+              "parseAndRestoreMs": 1.8410410000000006,
+              "now": 74
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.410041999999999,
+              "parseAndRestoreMs": 1.6770829999999997,
+              "now": 74
+            }
+          ],
+          "medianImportMs": 1.3647089999999995,
+          "medianParseAndRestoreMs": 1.8116249999999994,
+          "oldSerializedBytes": 3202,
+          "oldMedianParseAndRestoreMs": 2.5376659999999998
+        },
+        {
+          "label": "ready",
+          "step": 11,
+          "now": 77,
+          "phase": "camp",
+          "serializedBytes": 3259,
+          "snapshotSha256": "9e2768b24c824e4ee17865299a1f92caaf4c785bf487f9f5e827bba5f649c293",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.353250000000001,
+              "parseAndRestoreMs": 1.6622500000000002,
+              "now": 77
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4226669999999988,
+              "parseAndRestoreMs": 1.8836250000000003,
+              "now": 77
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3589160000000007,
+              "parseAndRestoreMs": 1.6882920000000006,
+              "now": 77
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3722919999999998,
+              "parseAndRestoreMs": 1.726916000000001,
+              "now": 77
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3486659999999997,
+              "parseAndRestoreMs": 1.8117090000000005,
+              "now": 77
+            }
+          ],
+          "medianImportMs": 1.3589160000000007,
+          "medianParseAndRestoreMs": 1.726916000000001,
+          "oldSerializedBytes": 3309,
+          "oldMedianParseAndRestoreMs": 2.5099590000000003
+        },
+        {
+          "label": "owned-partial-meal",
+          "step": 13,
+          "now": 80,
+          "phase": "camp",
+          "serializedBytes": 4329,
+          "snapshotSha256": "9825b267fb82a8250a96c961467217ae76032fd5da010536f4fcdc139448526b",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3699580000000005,
+              "parseAndRestoreMs": 2.0162499999999994,
+              "now": 80
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4112090000000013,
+              "parseAndRestoreMs": 2.1492499999999986,
+              "now": 80
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4388749999999995,
+              "parseAndRestoreMs": 2.283249999999999,
+              "now": 80
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3263749999999987,
+              "parseAndRestoreMs": 2.0078750000000003,
+              "now": 80
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.6140410000000003,
+              "parseAndRestoreMs": 2.1743749999999995,
+              "now": 80
+            }
+          ],
+          "medianImportMs": 1.4112090000000013,
+          "medianParseAndRestoreMs": 2.1492499999999986,
+          "oldSerializedBytes": 4394,
+          "oldMedianParseAndRestoreMs": 2.9817920000000004
+        },
+        {
+          "label": "meal-before-relief",
+          "step": 16,
+          "now": 87,
+          "phase": "camp",
+          "serializedBytes": 4534,
+          "snapshotSha256": "0243e42df907d51c2a687d483a66fb9d2dc6a5b30634d872bb82bd85210b25fc",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3762090000000011,
+              "parseAndRestoreMs": 2.338374999999999,
+              "now": 87
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3546250000000004,
+              "parseAndRestoreMs": 2.1516660000000005,
+              "now": 87
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3716249999999999,
+              "parseAndRestoreMs": 2.1267500000000013,
+              "now": 87
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3708749999999998,
+              "parseAndRestoreMs": 2.0083330000000004,
+              "now": 87
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.328958,
+              "parseAndRestoreMs": 2.4873329999999996,
+              "now": 87
+            }
+          ],
+          "medianImportMs": 1.3708749999999998,
+          "medianParseAndRestoreMs": 2.1516660000000005,
+          "oldSerializedBytes": 4599,
+          "oldMedianParseAndRestoreMs": 3.101833000000001
+        },
+        {
+          "label": "final",
+          "step": 17,
+          "now": 88,
+          "phase": "camp",
+          "serializedBytes": 3584,
+          "snapshotSha256": "c71e450ce0fc8c0ca8bf6811c2d4b380a0e1903cc0e3179c909722d492f5183d",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3422909999999995,
+              "parseAndRestoreMs": 1.781917,
+              "now": 88
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3806250000000002,
+              "parseAndRestoreMs": 1.7562500000000014,
+              "now": 88
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4991249999999994,
+              "parseAndRestoreMs": 1.9045409999999983,
+              "now": 88
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3397919999999992,
+              "parseAndRestoreMs": 1.661332999999999,
+              "now": 88
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3796670000000013,
+              "parseAndRestoreMs": 1.7667909999999996,
+              "now": 88
+            }
+          ],
+          "medianImportMs": 1.3796670000000013,
+          "medianParseAndRestoreMs": 1.7667909999999996,
+          "oldSerializedBytes": 3634,
+          "oldMedianParseAndRestoreMs": 2.5660000000000007
+        }
+      ]
+    },
+    {
+      "id": "retained-work-consent",
+      "expectedCommands": 12,
+      "executedCommands": 12,
+      "failedCommand": null,
+      "changedSteps": 0,
+      "differenceCount": 0,
+      "firstDifferences": [],
+      "traceSha256": "80ce57c01747f48050b9adb7936f2fbc277ab48d17db19b417499a7fc78ae707",
+      "boundaries": [
+        {
+          "label": "refused",
+          "step": 4,
+          "now": 2,
+          "phase": "camp",
+          "serializedBytes": 3698,
+          "snapshotSha256": "b671f082f066302477f2a61192288f92460858993982a875dcf2467f36b2106a",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.360417,
+              "parseAndRestoreMs": 2.1006669999999996,
+              "now": 2
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3563749999999999,
+              "parseAndRestoreMs": 1.9536250000000006,
+              "now": 2
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.343833,
+              "parseAndRestoreMs": 2.070124999999999,
+              "now": 2
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.5446670000000005,
+              "parseAndRestoreMs": 2.058916,
+              "now": 2
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.363417,
+              "parseAndRestoreMs": 2.0455000000000005,
+              "now": 2
+            }
+          ],
+          "medianImportMs": 1.360417,
+          "medianParseAndRestoreMs": 2.058916,
+          "oldSerializedBytes": 3767,
+          "oldMedianParseAndRestoreMs": 2.972832999999998
+        },
+        {
+          "label": "shared-paid-work",
+          "step": 7,
+          "now": 4,
+          "phase": "camp",
+          "serializedBytes": 3279,
+          "snapshotSha256": "c4072f44902100d61244342f850be7f8f5edbd7d5afacf8e4009d356bf02a64c",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3950410000000009,
+              "parseAndRestoreMs": 1.9267920000000007,
+              "now": 4
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.395249999999999,
+              "parseAndRestoreMs": 1.7580829999999992,
+              "now": 4
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3577499999999993,
+              "parseAndRestoreMs": 1.811375,
+              "now": 4
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.6642089999999996,
+              "parseAndRestoreMs": 1.8499999999999996,
+              "now": 4
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.5222920000000002,
+              "parseAndRestoreMs": 1.7587089999999996,
+              "now": 4
+            }
+          ],
+          "medianImportMs": 1.395249999999999,
+          "medianParseAndRestoreMs": 1.811375,
+          "oldSerializedBytes": 3282,
+          "oldMedianParseAndRestoreMs": 2.5494579999999996
+        },
+        {
+          "label": "final",
+          "step": 12,
+          "now": 22,
+          "phase": "camp",
+          "serializedBytes": 3822,
+          "snapshotSha256": "5febba9462ba2201b405b3eb68e2aaa955d8c7cb7426df813ae8b8437256f295",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.363417,
+              "parseAndRestoreMs": 1.6282499999999995,
+              "now": 22
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3184999999999985,
+              "parseAndRestoreMs": 2.013541,
+              "now": 22
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3690420000000003,
+              "parseAndRestoreMs": 1.683166,
+              "now": 22
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.5889579999999999,
+              "parseAndRestoreMs": 1.8302080000000007,
+              "now": 22
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.6189579999999992,
+              "parseAndRestoreMs": 1.7264999999999997,
+              "now": 22
+            }
+          ],
+          "medianImportMs": 1.3690420000000003,
+          "medianParseAndRestoreMs": 1.7264999999999997,
+          "oldSerializedBytes": 3825,
+          "oldMedianParseAndRestoreMs": 2.4567499999999995
+        }
+      ]
+    },
+    {
+      "id": "ongoing-tool-improvement",
+      "expectedCommands": 22,
+      "executedCommands": 22,
+      "failedCommand": null,
+      "changedSteps": 0,
+      "differenceCount": 0,
+      "firstDifferences": [],
+      "traceSha256": "dc6005321151cf95526282cbd3a1b820216fee8527f244dc1a4f1ab9ef6735b0",
+      "boundaries": [
+        {
+          "label": "before-tools",
+          "step": 20,
+          "now": 183,
+          "phase": "camp",
+          "serializedBytes": 4505,
+          "snapshotSha256": "952800c5bebb3125b9ca8340dc87f44e70d1b6e7d742b7aea7493342e68aa5db",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3712499999999999,
+              "parseAndRestoreMs": 1.8517499999999991,
+              "now": 183
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.5165410000000001,
+              "parseAndRestoreMs": 2.126875,
+              "now": 183
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3693340000000003,
+              "parseAndRestoreMs": 2.008666999999999,
+              "now": 183
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3574169999999999,
+              "parseAndRestoreMs": 1.9614999999999991,
+              "now": 183
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3714999999999993,
+              "parseAndRestoreMs": 1.9628750000000004,
+              "now": 183
+            }
+          ],
+          "medianImportMs": 1.3712499999999999,
+          "medianParseAndRestoreMs": 1.9628750000000004,
+          "oldSerializedBytes": 4392,
+          "oldMedianParseAndRestoreMs": 2.822833000000001
+        },
+        {
+          "label": "tools-complete",
+          "step": 21,
+          "now": 184,
+          "phase": "camp",
+          "serializedBytes": 4088,
+          "snapshotSha256": "21c9c3d564026443d091f3d66f9ea830f1b90a6b6b868f03bf30d9d467bfd6f5",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3452910000000013,
+              "parseAndRestoreMs": 1.966375000000001,
+              "now": 184
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.470459,
+              "parseAndRestoreMs": 1.8937920000000013,
+              "now": 184
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3947500000000002,
+              "parseAndRestoreMs": 1.802041000000001,
+              "now": 184
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3439579999999989,
+              "parseAndRestoreMs": 1.9697499999999994,
+              "now": 184
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3839170000000003,
+              "parseAndRestoreMs": 1.8858750000000004,
+              "now": 184
+            }
+          ],
+          "medianImportMs": 1.3839170000000003,
+          "medianParseAndRestoreMs": 1.8937920000000013,
+          "oldSerializedBytes": 4055,
+          "oldMedianParseAndRestoreMs": 2.6817919999999997
+        },
+        {
+          "label": "final",
+          "step": 22,
+          "now": 198,
+          "phase": "camp",
+          "serializedBytes": 5046,
+          "snapshotSha256": "14b141f6b2c1a2c6570ab651345b4c619aa3f9ed9c16db0f85befd83b2e93382",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3680839999999996,
+              "parseAndRestoreMs": 2.185333999999999,
+              "now": 198
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.6715,
+              "parseAndRestoreMs": 2.2261250000000015,
+              "now": 198
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.474499999999999,
+              "parseAndRestoreMs": 2.224375,
+              "now": 198
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3464170000000006,
+              "parseAndRestoreMs": 2.066583999999999,
+              "now": 198
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3223749999999992,
+              "parseAndRestoreMs": 2.134958000000001,
+              "now": 198
+            }
+          ],
+          "medianImportMs": 1.3680839999999996,
+          "medianParseAndRestoreMs": 2.185333999999999,
+          "oldSerializedBytes": 5027,
+          "oldMedianParseAndRestoreMs": 3.0563339999999997
+        }
+      ]
+    },
+    {
+      "id": "earned-supply-success",
+      "expectedCommands": 79,
+      "executedCommands": 79,
+      "failedCommand": null,
+      "changedSteps": 3,
+      "differenceCount": 3,
+      "firstDifferences": [
+        {
+          "step": 41,
+          "command": {
+            "type": "next"
+          },
+          "differences": [
+            {
+              "path": "nextStop",
+              "old": {
+                "at": 230,
+                "reason": "review-interval"
+              },
+              "current": null
+            }
+          ]
+        },
+        {
+          "step": 59,
+          "command": {
+            "type": "next"
+          },
+          "differences": [
+            {
+              "path": "nextStop",
+              "old": {
+                "at": 316,
+                "reason": "job-complete"
+              },
+              "current": null
+            }
+          ]
+        },
+        {
+          "step": 77,
+          "command": {
+            "type": "finish"
+          },
+          "differences": [
+            {
+              "path": "nextStop",
+              "old": {
+                "at": 413,
+                "reason": "recovery-floor"
+              },
+              "current": null
+            }
+          ]
+        }
+      ],
+      "traceSha256": "2d7c2045210d30bdd8fa37f12e1463e51aa68697d1a6b10787f17fbab7701e7d",
+      "boundaries": [
+        {
+          "label": "earned-introduction",
+          "step": 41,
+          "now": 224,
+          "phase": "introduction",
+          "serializedBytes": 4633,
+          "snapshotSha256": "409525cfed61b8238ef9d653eaa0fff7a3fa52c4136032873e7ae348261023ed",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.762708,
+              "parseAndRestoreMs": 1.8673330000000004,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3288330000000013,
+              "parseAndRestoreMs": 1.7827920000000006,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4071669999999994,
+              "parseAndRestoreMs": 1.8709160000000011,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.7000410000000006,
+              "parseAndRestoreMs": 1.8178750000000008,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3530830000000016,
+              "parseAndRestoreMs": 1.7875829999999997,
+              "now": 224
+            }
+          ],
+          "medianImportMs": 1.4071669999999994,
+          "medianParseAndRestoreMs": 1.8178750000000008,
+          "oldSerializedBytes": 8836,
+          "oldMedianParseAndRestoreMs": 3.8013330000000014
+        },
+        {
+          "label": "ferry-before-dispatch",
+          "step": 59,
+          "now": 314,
+          "phase": "ferry",
+          "serializedBytes": 6461,
+          "snapshotSha256": "fdea8debdf85609863b5c06fed44eeefb48e1dcf1c90bf4cfcc528d8328f90f5",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3496670000000002,
+              "parseAndRestoreMs": 2.191834,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.9860830000000007,
+              "parseAndRestoreMs": 2.614542,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3647080000000003,
+              "parseAndRestoreMs": 2.4855839999999993,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.5677079999999997,
+              "parseAndRestoreMs": 2.2708329999999997,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3265419999999999,
+              "parseAndRestoreMs": 2.381583000000001,
+              "now": 314
+            }
+          ],
+          "medianImportMs": 1.3647080000000003,
+          "medianParseAndRestoreMs": 2.381583000000001,
+          "oldSerializedBytes": 11094,
+          "oldMedianParseAndRestoreMs": 30.668999999999997
+        },
+        {
+          "label": "ferry-dispatched",
+          "step": 60,
+          "now": 314,
+          "phase": "packing",
+          "serializedBytes": 6460,
+          "snapshotSha256": "7f43f860377280c17131d65270f55ed5d0347589e6b15d531f8c6804f6bb3e33",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3765840000000011,
+              "parseAndRestoreMs": 2.6265,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.347541999999999,
+              "parseAndRestoreMs": 2.1864169999999987,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3535000000000004,
+              "parseAndRestoreMs": 2.368417000000001,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4868330000000007,
+              "parseAndRestoreMs": 2.3314579999999996,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3270420000000005,
+              "parseAndRestoreMs": 2.282584,
+              "now": 314
+            }
+          ],
+          "medianImportMs": 1.3535000000000004,
+          "medianParseAndRestoreMs": 2.3314579999999996,
+          "oldSerializedBytes": 11113,
+          "oldMedianParseAndRestoreMs": 31.209624999999996
+        },
+        {
+          "label": "ended",
+          "step": 77,
+          "now": 403,
+          "phase": "ended",
+          "serializedBytes": 6510,
+          "snapshotSha256": "76c6180f09c9986103375aeaabae43f904a8dc56ff1754dcb991827d19714cc0",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.552999999999999,
+              "parseAndRestoreMs": 2.3323750000000008,
+              "now": 403
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.528500000000001,
+              "parseAndRestoreMs": 2.3724170000000004,
+              "now": 403
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3601659999999995,
+              "parseAndRestoreMs": 2.348541000000001,
+              "now": 403
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3207080000000015,
+              "parseAndRestoreMs": 2.192791999999999,
+              "now": 403
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3333750000000002,
+              "parseAndRestoreMs": 2.247917000000001,
+              "now": 403
+            }
+          ],
+          "medianImportMs": 1.3601659999999995,
+          "medianParseAndRestoreMs": 2.3323750000000008,
+          "oldSerializedBytes": 11508,
+          "oldMedianParseAndRestoreMs": 53.495667
+        },
+        {
+          "label": "final",
+          "step": 79,
+          "now": 409,
+          "phase": "camp-return",
+          "serializedBytes": 6509,
+          "snapshotSha256": "a3608870f8ecd62adbc001b20e54570e966b36576149c782b277c44d13cf7b45",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.324625000000001,
+              "parseAndRestoreMs": 2.4613329999999998,
+              "now": 409
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3236670000000004,
+              "parseAndRestoreMs": 2.3002079999999996,
+              "now": 409
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3219159999999999,
+              "parseAndRestoreMs": 2.309958,
+              "now": 409
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.9775419999999997,
+              "parseAndRestoreMs": 2.3977500000000003,
+              "now": 409
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3270410000000012,
+              "parseAndRestoreMs": 2.2197080000000007,
+              "now": 409
+            }
+          ],
+          "medianImportMs": 1.324625000000001,
+          "medianParseAndRestoreMs": 2.309958,
+          "oldSerializedBytes": 11525,
+          "oldMedianParseAndRestoreMs": 53.692583
+        }
+      ]
+    },
+    {
+      "id": "unmet-deadline-return",
+      "expectedCommands": 66,
+      "executedCommands": 66,
+      "failedCommand": null,
+      "changedSteps": 6,
+      "differenceCount": 6,
+      "firstDifferences": [
+        {
+          "step": 41,
+          "command": {
+            "type": "next"
+          },
+          "differences": [
+            {
+              "path": "nextStop",
+              "old": {
+                "at": 230,
+                "reason": "review-interval"
+              },
+              "current": null
+            }
+          ]
+        },
+        {
+          "step": 43,
+          "command": {
+            "type": "advance",
+            "minutes": 1440
+          },
+          "differences": [
+            {
+              "path": "nextStop",
+              "old": {
+                "at": 320,
+                "reason": "review-interval"
+              },
+              "current": null
+            }
+          ]
+        },
+        {
+          "step": 61,
+          "command": {
+            "type": "next"
+          },
+          "differences": [
+            {
+              "path": "nextStop",
+              "old": {
+                "at": 408,
+                "reason": "job-complete"
+              },
+              "current": null
+            }
+          ]
+        },
+        {
+          "step": 62,
+          "command": {
+            "type": "allocate",
+            "destination": "camp"
+          },
+          "differences": [
+            {
+              "path": "nextStop",
+              "old": {
+                "at": 408,
+                "reason": "job-complete"
+              },
+              "current": null
+            }
+          ]
+        },
+        {
+          "step": 63,
+          "command": {
+            "type": "allocate",
+            "destination": "camp"
+          },
+          "differences": [
+            {
+              "path": "nextStop",
+              "old": {
+                "at": 408,
+                "reason": "job-complete"
+              },
+              "current": null
+            }
+          ]
+        }
+      ],
+      "traceSha256": "2693c77eee036227710cb6cee51952463a9177576c959d3402fa86fdbe4c850e",
+      "boundaries": [
+        {
+          "label": "earned-introduction",
+          "step": 41,
+          "now": 224,
+          "phase": "introduction",
+          "serializedBytes": 4633,
+          "snapshotSha256": "409525cfed61b8238ef9d653eaa0fff7a3fa52c4136032873e7ae348261023ed",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.7144999999999992,
+              "parseAndRestoreMs": 1.8901660000000007,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3565000000000005,
+              "parseAndRestoreMs": 1.7832500000000007,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.320124999999999,
+              "parseAndRestoreMs": 1.800917,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4225829999999995,
+              "parseAndRestoreMs": 1.7732910000000004,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.332167,
+              "parseAndRestoreMs": 1.7734170000000002,
+              "now": 224
+            }
+          ],
+          "medianImportMs": 1.3565000000000005,
+          "medianParseAndRestoreMs": 1.7832500000000007,
+          "oldSerializedBytes": 8836,
+          "oldMedianParseAndRestoreMs": 3.7720830000000003
+        },
+        {
+          "label": "ferry-before-dispatch",
+          "step": 43,
+          "now": 314,
+          "phase": "ferry",
+          "serializedBytes": 4601,
+          "snapshotSha256": "55f7f6fea9da7adfbc37a556ef69015e9d0651696e2112d154d2a032c477d88a",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.406542,
+              "parseAndRestoreMs": 1.7988340000000012,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3493750000000002,
+              "parseAndRestoreMs": 1.8932920000000006,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.355042000000001,
+              "parseAndRestoreMs": 1.799792,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4809160000000006,
+              "parseAndRestoreMs": 1.875292,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3294999999999995,
+              "parseAndRestoreMs": 1.9949999999999992,
+              "now": 314
+            }
+          ],
+          "medianImportMs": 1.355042000000001,
+          "medianParseAndRestoreMs": 1.875292,
+          "oldSerializedBytes": 8855,
+          "oldMedianParseAndRestoreMs": 23.712958
+        },
+        {
+          "label": "ended",
+          "step": 64,
+          "now": 404,
+          "phase": "ended",
+          "serializedBytes": 7476,
+          "snapshotSha256": "e5d8d4dd6e277e38529e01303c173b08122fa6b8cf95a4405b25cb49b2b81b94",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3403340000000004,
+              "parseAndRestoreMs": 2.67375,
+              "now": 404
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4081670000000006,
+              "parseAndRestoreMs": 2.6108329999999995,
+              "now": 404
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.5561250000000015,
+              "parseAndRestoreMs": 2.9034580000000005,
+              "now": 404
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3479579999999984,
+              "parseAndRestoreMs": 2.6992089999999997,
+              "now": 404
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3355420000000002,
+              "parseAndRestoreMs": 2.734584,
+              "now": 404
+            }
+          ],
+          "medianImportMs": 1.3479579999999984,
+          "medianParseAndRestoreMs": 2.6992089999999997,
+          "oldSerializedBytes": 12287,
+          "oldMedianParseAndRestoreMs": 51.369167000000004
+        },
+        {
+          "label": "final",
+          "step": 66,
+          "now": 410,
+          "phase": "camp-return",
+          "serializedBytes": 5306,
+          "snapshotSha256": "fd74b8844c84d51a7d0833493ebeec3a2f7d384e645ee278ebc135183fd242ac",
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3982920000000014,
+              "parseAndRestoreMs": 1.8509590000000014,
+              "now": 410
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3635000000000002,
+              "parseAndRestoreMs": 1.8992920000000009,
+              "now": 410
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.4627079999999992,
+              "parseAndRestoreMs": 1.9585420000000013,
+              "now": 410
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.359957999999999,
+              "parseAndRestoreMs": 1.8532080000000004,
+              "now": 410
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 1.3279579999999989,
+              "parseAndRestoreMs": 1.9260409999999997,
+              "now": 410
+            }
+          ],
+          "medianImportMs": 1.3635000000000002,
+          "medianParseAndRestoreMs": 1.8992920000000009,
+          "oldSerializedBytes": 10105,
+          "oldMedianParseAndRestoreMs": 52.294833000000004
+        }
+      ]
+    }
+  ]
+}

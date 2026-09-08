@@ -1,0 +1,43 @@
+[
+  {
+    "probe": "restored checkpoint status",
+    "expected": "The ferry is waiting. Allocate supplies, then send it.",
+    "actual": "Choose a job. Available time lets you recover.",
+    "phase": "ferry"
+  },
+  {
+    "probe": "returned camp cache benefit",
+    "phase": "camp-return",
+    "hint": "Each finished cache can serve one household or two camp nights.",
+    "objective": "Your camp continues. Earlier supply choices stay settled.",
+    "allocationSectionHidden": true,
+    "result": "0 household kits sent; 0 wet nights provisioned. 2 households and 4 camp nights remain unprovided. 2 caches are still available. These are settled choices; returning to camp does not reset them."
+  },
+  {
+    "probe": "keyboard Meryem request scroll and submit",
+    "pass": true,
+    "tabSequence": [
+      "panel-people",
+      "Condition estimates",
+      "eat",
+      "How handovers work",
+      "Condition estimates",
+      "request-project",
+      "request"
+    ]
+  },
+  {
+    "probe": "newer read wins over delayed earlier success",
+    "pass": true,
+    "adoptedMinute": 838
+  },
+  {
+    "probe": "new camp invalidates a delayed import",
+    "pass": true
+  },
+  {
+    "probe": "read-denied storage never overwritten through play",
+    "pass": true,
+    "warning": "The unreadable device save is protected. Download your current camp before leaving."
+  }
+]

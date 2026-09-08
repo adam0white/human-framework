@@ -1,0 +1,17 @@
+✔ source-frozen baseline bytes and all original commands remain intact (9.074084ms)
+✔ current Camp retains frozen physical trace: gather-accepted-project (16.288875ms)
+✔ current Camp retains frozen physical trace: readiness-owned-meal (17.002166ms)
+✔ current Camp retains frozen physical trace: retained-work-consent (11.225792ms)
+✔ current Camp retains frozen physical trace: ongoing-tool-improvement (22.362916ms)
+✔ current Camp retains frozen physical trace: earned-supply-success (84.04525ms)
+✔ current Camp retains frozen physical trace: unmet-deadline-return (66.292666ms)
+✔ current-snapshot assurance retains pending and ownership checks while dropping window body replay (35.843875ms)
+✔ the active Camp page has no historical host, persistence, old Human or private experiment dependency (2.898125ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 313.209708

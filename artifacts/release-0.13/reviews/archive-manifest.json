@@ -1,0 +1,342 @@
+{
+  "archivedAt": "2026-09-08T21:25:46.573126+00:00",
+  "scope": "Existing independent core/UI synthetic review artifacts and root-provided test logs copied byte-for-byte. No new review, probe, test or browser execution performed during archival.",
+  "files": [
+    {
+      "source": "/tmp/camp-current-core-corrective-probes.mjs",
+      "archive": "core/camp-current-core-corrective-probes.mjs",
+      "bytes": 3417,
+      "sha256": "85be1391b566574ca946799ec3b9e4c81715d691d98eef5a6185103c2d3a21b1",
+      "kind": "independent-core-review"
+    },
+    {
+      "source": "/tmp/camp-current-core-corrective-results.json",
+      "archive": "core/camp-current-core-corrective-results.json",
+      "bytes": 1073,
+      "sha256": "130171219853054960c3e7c8cae241538d0c47772733e816f40366aa5ee6e962",
+      "kind": "independent-core-review"
+    },
+    {
+      "source": "/tmp/camp-current-core-first-probe-output.jsonl",
+      "archive": "core/camp-current-core-first-probe-output.jsonl",
+      "bytes": 3601,
+      "sha256": "cf36a9ce296ce16d711b706dac023e101e4fd1680db9a063b0ea49dca51285fc",
+      "kind": "independent-core-review"
+    },
+    {
+      "source": "/tmp/camp-current-core-probe-results.json",
+      "archive": "core/camp-current-core-probe-results.json",
+      "bytes": 3922,
+      "sha256": "742bf25dc8e5a9d51c1c55287fd508ed60111b54c987df22307c241345f6ada9",
+      "kind": "independent-core-review"
+    },
+    {
+      "source": "/tmp/camp-current-core-probes.mjs",
+      "archive": "core/camp-current-core-probes.mjs",
+      "bytes": 5256,
+      "sha256": "bae25b44e1ca6170564ca1369480981808727b082f8b279eb868250eff07c42f",
+      "kind": "independent-core-review"
+    },
+    {
+      "source": "/tmp/camp-current-core-readiness-corrected-output.json",
+      "archive": "core/camp-current-core-readiness-corrected-output.json",
+      "bytes": 544,
+      "sha256": "4c07c6d464bc1e4a70e410636fefcee836160f1567069d5bb4808df5b52dbfc4",
+      "kind": "independent-core-review"
+    },
+    {
+      "source": "/tmp/camp-current-core-readiness-corrected.mjs",
+      "archive": "core/camp-current-core-readiness-corrected.mjs",
+      "bytes": 914,
+      "sha256": "4d9637c800e1bf409de9dc05e1700ee1dc75cdbd65e24278d5dfb88eef3feedf",
+      "kind": "independent-core-review"
+    },
+    {
+      "source": "/tmp/camp-current-core-review-corrective-addendum.md",
+      "archive": "core/camp-current-core-review-corrective-addendum.md",
+      "bytes": 1548,
+      "sha256": "91da98b82c666eccedc1076cd8d9b024cf31934616cff6a5c37aedcb37065e70",
+      "kind": "independent-core-review"
+    },
+    {
+      "source": "/tmp/camp-current-core-review.md",
+      "archive": "core/camp-current-core-review.md",
+      "bytes": 5703,
+      "sha256": "23ac40f5a22f785aca958d97150798bb0ca1fe38970b64a8b6f60ea9473372ba",
+      "kind": "independent-core-review"
+    },
+    {
+      "source": "/tmp/camp-current-first-effort-counterexample.json",
+      "archive": "core/camp-current-first-effort-counterexample.json",
+      "bytes": 2979,
+      "sha256": "f99f6593fc0a164894429641b37ec317c6f60acaf31b984d6e7556a56ce0fcd0",
+      "kind": "synthetic-original-core-counterexample"
+    },
+    {
+      "source": "/tmp/camp-current-first-meal-counterexample.json",
+      "archive": "core/camp-current-first-meal-counterexample.json",
+      "bytes": 4591,
+      "sha256": "0ecaec65ca2b165188aabfc20f947b0a4eefe3ce1705609cd68d417e42de3114",
+      "kind": "synthetic-original-core-counterexample"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/REVIEW.md",
+      "archive": "ui/REVIEW.md",
+      "bytes": 6733,
+      "sha256": "7f1d8229d733c55d88ee8eb3d089d02000c4db8cbf2be94bb878365fdda14ce8",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/corrective-ferry-status.png",
+      "archive": "ui/corrective-ferry-status.png",
+      "bytes": 59267,
+      "sha256": "71ff0a12a92b7bf83e18c947bf1ddfb65a378a8c35f96fd5ddcada63d1e2aca8",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/corrective-recheck.mjs",
+      "archive": "ui/corrective-recheck.mjs",
+      "bytes": 5166,
+      "sha256": "811c605fe3f5a3b7c566d774b638c50b2db0f1d2dde093d41d75ae452b71e9c9",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/corrective-results.json",
+      "archive": "ui/corrective-results.json",
+      "bytes": 1622,
+      "sha256": "ebcda3983b593bf36a8be8f4c69ef5d84fd127b7fd6cc4b7ff09e49e0631a0ad",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/corrective-resumed-cache-card.png",
+      "archive": "ui/corrective-resumed-cache-card.png",
+      "bytes": 64938,
+      "sha256": "c48bd843adf10a30d961c78bfff08a41a52c053fca3e1ca3983be532fe7dd47e",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/corrective-returned-cache-hint.png",
+      "archive": "ui/corrective-returned-cache-hint.png",
+      "bytes": 60817,
+      "sha256": "1ab6b4c6680f1002dbbf310d37f2ae66fb2b3165899688ce2698e36cba362986",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/corrective-source.sha256",
+      "archive": "ui/corrective-source.sha256",
+      "bytes": 696,
+      "sha256": "5947910a0b493a11b6f9cc951cc5c457f2cc2d42dae8671189dd07088997d365",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/corrupt-backup.json",
+      "archive": "ui/corrupt-backup.json",
+      "bytes": 15,
+      "sha256": "2a374388ffb0a7a310cacd4e8d9238194fc62e90a018c2375313f3c8d21e0cd7",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/current-download.json",
+      "archive": "ui/current-download.json",
+      "bytes": 3812,
+      "sha256": "37c1af92a7b798c0df4ac9ebe8657911aaf6b21a363231bae389db6889e5c33b",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/desktop-people.png",
+      "archive": "ui/desktop-people.png",
+      "bytes": 72197,
+      "sha256": "4bf9fde0cba97dd3aa033a57ec37f48856858b789b4b9eb9ebb06de3dd7c796a",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/desktop-work.png",
+      "archive": "ui/desktop-work.png",
+      "bytes": 76193,
+      "sha256": "2ba2afef3beb9d307655efcb979678bd608f1905f4660890b94c7288cc3d3ed7",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/evidence.sha256",
+      "archive": "ui/evidence.sha256",
+      "bytes": 670,
+      "sha256": "8c50084187c99cee0f5bde4d1abe0f67c17378f020b92f6dfb5549ca60cd9833",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/finding-restored-ferry-status.png",
+      "archive": "ui/finding-restored-ferry-status.png",
+      "bytes": 58926,
+      "sha256": "d03db80b7680d1ff5550f6099fd6a46576edc13aa7b7d9fac07d2df0af6a00ee",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/finding-returned-cache-hint.png",
+      "archive": "ui/finding-returned-cache-hint.png",
+      "bytes": 60432,
+      "sha256": "9790e4eb1b41075aa4e79ac1d1abbeae6fa9e029d431ce584dc2866a0c360924",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/first-harness-results.json",
+      "archive": "ui/first-harness-results.json",
+      "bytes": 7318,
+      "sha256": "162cf445c08d8e2afb08c23302e48906bfd6844fc449d76dc7fdc70928fd267d",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/followup-results.json",
+      "archive": "ui/followup-results.json",
+      "bytes": 1361,
+      "sha256": "29e8bad14054da254ffef7947bea87d4d27d1b8daf0ebbb6982dd09d444a269e",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/followup.mjs",
+      "archive": "ui/followup.mjs",
+      "bytes": 5170,
+      "sha256": "e7ce89e0c75dc9ea82523c334e65c9f184239d5ffca204ed0f149ec171d7f229",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/phone-camp.png",
+      "archive": "ui/phone-camp.png",
+      "bytes": 43296,
+      "sha256": "82a3e9bd1e6c6d2324d4c600502a837287f2d3c388f8bdd818edc391a72085c9",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/phone-ended.png",
+      "archive": "ui/phone-ended.png",
+      "bytes": 50861,
+      "sha256": "ad9385535b117072b0ea41b17f5b318843c0bd43f120fd775cbb3f0d70e82f9b",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/phone-ferry.png",
+      "archive": "ui/phone-ferry.png",
+      "bytes": 58926,
+      "sha256": "d03db80b7680d1ff5550f6099fd6a46576edc13aa7b7d9fac07d2df0af6a00ee",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/phone-introduction.png",
+      "archive": "ui/phone-introduction.png",
+      "bytes": 56076,
+      "sha256": "c6b508410c0ce02f6ef5207cae2fa58ef72e773ea5ced43d91edbd5bedb3d285",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/phone-journal.png",
+      "archive": "ui/phone-journal.png",
+      "bytes": 39025,
+      "sha256": "83d7882687da6937db2781a8c7d2e0a135b2b5990ff8c2d78de3775abe17c330",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/phone-people.png",
+      "archive": "ui/phone-people.png",
+      "bytes": 45535,
+      "sha256": "3c381792572fc60c53e83890ccb591eea05c04c521a6e85fe72aab5cdc04c67b",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/phone-protected-save.png",
+      "archive": "ui/phone-protected-save.png",
+      "bytes": 61608,
+      "sha256": "deb80bc41d6326193fa598c285637df2505d0c3db02d581c64f8855d0bed49ab",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/phone-quota.png",
+      "archive": "ui/phone-quota.png",
+      "bytes": 62620,
+      "sha256": "409a5702e0ecbfc661be429251890e46376896666f67d3a3374f967ac1505404",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/phone-rain.png",
+      "archive": "ui/phone-rain.png",
+      "bytes": 62197,
+      "sha256": "1de0efac2b649272d30cc19a32bda7478997418eba46bf5d5b580f324e8008d3",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/phone-save.png",
+      "archive": "ui/phone-save.png",
+      "bytes": 52014,
+      "sha256": "5d37f974628faf1ec10196228e4fd16c784cf01a793d801467eafd1cfa7ba30c",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/phone-work.png",
+      "archive": "ui/phone-work.png",
+      "bytes": 54832,
+      "sha256": "9fdd4a43ec09484789aaedfc893561f19d1931cd01607644f1fc9c755a31e6fd",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/quota-download.json",
+      "archive": "ui/quota-download.json",
+      "bytes": 8041,
+      "sha256": "ff4e853fa004a1909897ae8903a5f2acdf71f8941282bac8bebb3369358cb72b",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/results.json",
+      "archive": "ui/results.json",
+      "bytes": 7612,
+      "sha256": "d7ebf7f6db24f2e10e8a3606b47fd043adc93e3efdd68303f086c2b9c32c9250",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/review.mjs",
+      "archive": "ui/review.mjs",
+      "bytes": 16018,
+      "sha256": "e8892cf58b0d4a1fe5725d3111ea06b93568cf8b8ea4e6a9f5038f95c011e26f",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/short-expanded-save.png",
+      "archive": "ui/short-expanded-save.png",
+      "bytes": 44569,
+      "sha256": "6b8de68a268326d4a1717d322dd2e8a11ea50b30486e7419aa0072ca5809182c",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/source-after.sha256",
+      "archive": "ui/source-after.sha256",
+      "bytes": 696,
+      "sha256": "64761b59fd8b5dfafe3ba78eecc61a4c62900c99c40c8911e185fcc1b08f790d",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/source-before.sha256",
+      "archive": "ui/source-before.sha256",
+      "bytes": 696,
+      "sha256": "322132f7b9a67464b72029f49306b9ec40503d4c76dcfc7de1db9bf942e9e925",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-ui-review/synthetic-states.json",
+      "archive": "ui/synthetic-states.json",
+      "bytes": 42915,
+      "sha256": "b08c36e35eb9980848f3c91707853df9aa12fffc66402b2eaa59f0a427cfd18d",
+      "kind": "synthetic-ui-review"
+    },
+    {
+      "source": "/tmp/camp-current-integrated-tests.log",
+      "archive": "validation/camp-current-integrated-tests.log",
+      "bytes": 78113,
+      "sha256": "635f84e01964f5341def0116ace2345f7e08488c98f268e732af6a315ea8f28f",
+      "kind": "root-provided-final-test-log"
+    },
+    {
+      "source": "/tmp/camp-current-node22-tests.log",
+      "archive": "validation/camp-current-node22-tests.log",
+      "bytes": 9590,
+      "sha256": "f192e047eb22d1bb43e6d66966b3c5af3b4a7b7eb565ab00e18424bf596b0bdb",
+      "kind": "root-provided-final-test-log"
+    }
+  ]
+}

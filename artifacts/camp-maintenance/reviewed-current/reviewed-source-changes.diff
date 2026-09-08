@@ -1,0 +1,61 @@
+--- final-current/src/games/camp-current.js
++++ reviewed-current/src/games/camp-current.js
+@@ -388,7 +388,7 @@
+   const spent={timber:6*g.caches,salvage:3*g.caches,food:r.eat},reserved={timber:0,salvage:0,food:0};
+   for(const p of ['shelter','workbench','garden'])for(let n=0;n<g.structures[p];n++)add(spent,PROJECTS[p].stages[n].cost);
+   for(const w of Object.values(g.work))add(reserved,w.cost);
+-  const totals={work:0,recovery:0,meal:0,construction:0,gathering:0,effort:0},events=[],assigned=[];
++  const totals={work:0,recovery:0,meal:0,construction:0,gathering:0,effort:0},pending={meal:0,gathering:0,effort:0},events=[],assigned=[];
+   for(const a of ACTORS){
+     const person=restorePerson(exportPerson(g.people[a])),paid=g.paid[a],j=g.jobs[a];
+     if(person.version!==HUMAN_VERSION||person.id!==a||person.minutes!==now||person.observationBias!==0)fail('Invalid person identity or clock');
+@@ -412,6 +412,7 @@
+       fields(j,['kind','id','label','detail','project','stage','cost','output','duration','benefits','skillBefore','action','startedAt','endsAt','eventId','attemptId'],'fixed job');
+       if(!Object.hasOwn(JOBS,j.id)||!person.pending)fail('Invalid fixed job');int(j.startedAt,0,now,'fixed start');int(j.endsAt,now+1,LIMIT,'fixed end');
+       const d=JOBS[j.id],skill=d.skill??null,elapsed=now-j.startedAt;
++      if(j.id==='eat'){if(paid.meal<elapsed)fail('Pending meal lacks owned paid time');pending.meal+=elapsed;}
+       fields(j.benefits,['shelter','workbench','garden'],'fixed benefits');
+       for(const p of ['shelter','workbench','garden'])if(j.benefits[p]!==(g.structures[p]===2&&g.lastAssemblies[p].completedAt<=j.startedAt))fail('Invalid fixed benefit timing');
+       const output=copy(d.output??{});if(j.id==='gather-timber'&&j.benefits.shelter)output.timber++;if(j.id==='forage'&&j.benefits.garden)output.food++;
+@@ -419,6 +420,11 @@
+       if(j.label!==d.label||j.detail!==d.detail||j.project!==null||j.stage!==null||j.duration!==duration||!same(j.cost,d.cost??{})||!same(j.output,output)||!same(j.action,action)||!same(j.action,person.pending.action))fail('Changed fixed job definition');
+       if(skill?(j.skillBefore!==person.pending.skillBefore||Math.abs(j.skillBefore-practice(.1,paid.gatheringMinutes-elapsed))>1e-10):j.skillBefore!==null)fail('Invalid fixed practice basis');
+       if(j.endsAt!==j.startedAt+j.duration||person.pending.startedAt!==j.startedAt||person.pending.elapsedMinutes!==elapsed||j.attemptId!==person.pending.id||!person.pending.capacity.allowed)fail('Invalid fixed pending time');
++      if(skill){
++        const effort=j.action.effort*elapsed/j.duration;
++        if(paid.gatheringMinutes<elapsed||paid.effort+1e-10<recordedEffort+effort)fail('Pending gathering lacks owned paid time or effort');
++        pending.gathering+=elapsed;pending.effort+=effort;
++      }
+       add(reserved,j.cost);events.push({id:j.eventId,at:j.endsAt,type:'job-complete',actorId:a,data:{jobId:j.id,attemptId:j.attemptId}});
+     }else fail('Unknown assignment kind');
+   }
+@@ -426,7 +432,7 @@
+   if(!same(events,g.clock.queue)||new Set(assigned).size!==assigned.length)fail('Inconsistent pending events or exclusive work');
+   const assemblies=Object.values(g.structures).reduce((a,b)=>a+b,0)+g.caches;
+   if(s.completed!==assemblies+r['gather-timber']+r['gather-salvage']+r.forage+r.eat||s.started-s.completed-s.canceled!==Object.values(g.jobs).filter(Boolean).length||s.started>Number.MAX_SAFE_INTEGER-2*(LIMIT-now))fail('Inconsistent completion and assignment counts');
+-  if(totals.work!==s.workMinutes||totals.recovery!==s.restMinutes||totals.meal!==s.mealMinutes||totals.meal<8*r.eat||totals.construction<6*assemblies||totals.effort+1e-10<.2*(assemblies+Object.values(g.work).reduce((sum,w)=>sum+w.progress,0))||totals.gathering<12*r['gather-timber']+18*r['gather-salvage']+10*r.forage)fail('Inconsistent total paid time or effort');
++  if(totals.work!==s.workMinutes||totals.recovery!==s.restMinutes||totals.meal!==s.mealMinutes||totals.meal<8*r.eat+pending.meal||totals.construction<6*assemblies||totals.effort+1e-10<.2*(assemblies+Object.values(g.work).reduce((sum,w)=>sum+w.progress,0))+.13*r['gather-timber']+.17*r['gather-salvage']+pending.effort||totals.gathering<12*r['gather-timber']+18*r['gather-salvage']+10*r.forage+pending.gathering)fail('Inconsistent total paid time or effort');
+   for(const resource of resources)if(s.spent[resource]!==spent[resource]||g.stock[resource]+reserved[resource]+spent[resource]!==INITIAL[resource]+s.gathered[resource])fail('Material ownership does not balance');
+   const c=g.commitment;fields(c,['status','project','acceptedAt','finishedAt','startCaches','reason'],'commitment');
+   if(!['none','declined','accepted','fulfilled','released'].includes(c.status)||typeof c.reason!=='string'||c.reason.length>600)fail('Invalid commitment');int(c.startCaches,0,g.caches,'commitment cache start');
+--- final-current/web/camp-current.js
++++ reviewed-current/web/camp-current.js
+@@ -33,7 +33,7 @@
+  for(const name of tabs){const active=id===name;$('panel-'+name).hidden=!active;$('tab-'+name).setAttribute('aria-selected',String(active));$('tab-'+name).tabIndex=active?0:-1;}
+  if(id==='journal'){unread=false;$('tab-journal').classList.remove('has-update');$('tab-journal').removeAttribute('aria-label');}
+  if(focus)$('tab-'+id).focus({preventScroll:true});
+- put('play',session.running?'Ⅱ Pause':'▶ Play');$('play').setAttribute('aria-pressed',String(session.running));put('time-status',session.reason);
++ put('play',session.running?'Ⅱ Pause':'▶ Play');$('play').setAttribute('aria-pressed',String(session.running));put('time-status',session.error??camp.getGameView(session.game).pauseReason??session.reason);
+ }
+ function perform(command){adopt(commandSession(session,command),{focus:true});if(command.type==='start'&&!session.error&&camp.getGameView(session.game).canAdvance)$('next-event').focus({preventScroll:true});}
+ function recommend(view){return ['shelter','workbench','garden'].find(id=>view.structures[id]<2)??'cache';}
+@@ -50,7 +50,8 @@
+  const signature=JSON.stringify(choices);
+  if(signature!==choiceSignature){$('work-choices').replaceChildren(...choices.map(choiceButton));choiceSignature=signature;}
+  put('work-heading',work?'Continue the '+project.label.toLowerCase():target==='cache'?'Pack useful supplies':stage===2?'The '+project.label.toLowerCase()+' is built':project.stages[stage]?.label??'Choose useful work');
+- put('work-hint',work?Math.round(work.progress*100)+'% of this stage is kept at the site.':target==='shelter'?'A dry woodshed saves more usable timber from later trips.':target==='workbench'?'Good tools shorten future assembly work, including work already underway.':target==='garden'?'A garden makes later food gathering more productive.':'Each finished cache can serve one household or two camp nights.');
++ const retained=work?Math.round(work.progress*100)+'% of this stage is kept at the site.':null,settledCache=target==='cache'&&['ended','camp-return'].includes(view.phase);
++ put('work-hint',settledCache?(retained?retained+' ':'')+'Further caches stay in storage. Supply allocations are settled.':retained??(target==='shelter'?'A dry woodshed saves more usable timber from later trips.':target==='workbench'?'Good tools shorten future assembly work, including work already underway.':target==='garden'?'A garden makes later food gathering more productive.':'Each finished cache can serve one household or two camp nights.'));
+ }
+ function renderPeople(view){
+  for(const id of ['player','neighbor']){const p=view.people[id];for(const key of ['fatigue','hunger']){put(id+'-'+key+'-label',percent(p.body[key]));$(id+'-'+key).value=p.body[key];}

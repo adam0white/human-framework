@@ -1,0 +1,196 @@
+{
+  "results": [
+    {
+      "probe": "served source",
+      "route": "/camp/",
+      "sha256": "cc8562c65d718fe4c509b6ac9386bb6422106ee759078760942136dd18aed9f9"
+    },
+    {
+      "probe": "served source",
+      "route": "/web/camp-current.js",
+      "sha256": "9c1d1c41e0ba9e49e91b2f1af19baebc6e24d0b4e6762f1f6c3e569b30944938"
+    },
+    {
+      "probe": "served source",
+      "route": "/web/camp-current-session.js",
+      "sha256": "683d1c28887da20a89d1e01dd6d85d9eddec2d5d28fdd7fd5459eff4fa879c97"
+    },
+    {
+      "probe": "served source",
+      "route": "/web/camp.css",
+      "sha256": "24627b3523108ecd5e68cb0dfd4af1cc47a423a71e95c7daea831454b35a2464"
+    },
+    {
+      "probe": "served source",
+      "route": "/web/game-shell.css",
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f"
+    },
+    {
+      "probe": "served source",
+      "route": "/src/games/camp-current.js",
+      "sha256": "cfa2db1f93b659a2d82d99c5644c03118a8095d03d9108867106f358d6b26616"
+    },
+    {
+      "probe": "phone fresh all tabs layout and keyboard",
+      "pass": true,
+      "detail": {
+        "work": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 312,
+            "scrollHeight": 340,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": "tab-work"
+        },
+        "people": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 312,
+            "scrollHeight": 571,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": "tab-people"
+        },
+        "camp": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 312,
+            "scrollHeight": 389,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": "tab-camp"
+        },
+        "journal": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 312,
+            "scrollHeight": 312,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": "tab-journal"
+        },
+        "save": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 312,
+            "scrollHeight": 337,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": "tab-save"
+        }
+      }
+    },
+    {
+      "probe": "paid start pause tab stop reload and old-key isolation",
+      "pass": true,
+      "detail": {
+        "minute": 1,
+        "retained": 0.041666666666666664,
+        "calls": [
+          [
+            "get",
+            "human-camp-current-v0.3.0"
+          ],
+          [
+            "set",
+            "human-camp-current-v0.3.0"
+          ]
+        ]
+      }
+    },
+    {
+      "probe": "actual current download import cancel confirm and unsupported old format",
+      "pass": false,
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Earlier camp formats are unsupported/. Input:\n\n''\n\n    at file:///private/tmp/camp-current-ui-review/review.mjs:35:591\n    at async probe (file:///private/tmp/camp-current-ui-review/review.mjs:28:48)\n    at async file:///private/tmp/camp-current-ui-review/review.mjs:35:1"
+    },
+    {
+      "probe": "import preview invalidated by advancement and delayed stale success/failure",
+      "pass": true,
+      "detail": {
+        "original": 2,
+        "newer": 3
+      }
+    },
+    {
+      "probe": "phone introduction checkpoint continue and ferry allocation dispatch",
+      "pass": false,
+      "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-job]').first() to be visible\u001b[22m\n\u001b[2m    63 × locator resolved to hidden <button disabled type=\"button\" class=\"camp-choice\" data-job=\"build-cache\">…</button>\u001b[22m\n\n    at load (/private/tmp/camp-current-ui-review/review.mjs:30:379)\n    at async file:///private/tmp/camp-current-ui-review/review.mjs:37:94\n    at async probe (/private/tmp/camp-current-ui-review/review.mjs:28:48)\n    at async file:///private/tmp/camp-current-ui-review/review.mjs:37:1"
+    },
+    {
+      "probe": "rain close return preserves people work supply account",
+      "pass": false,
+      "error": "locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('[data-job]').first() to be visible\u001b[22m\n\u001b[2m    27 × locator resolved to hidden <button disabled type=\"button\" class=\"camp-choice\" data-job=\"build-cache\">…</button>\u001b[22m\n\n    at load (/private/tmp/camp-current-ui-review/review.mjs:30:379)\n    at async file:///private/tmp/camp-current-ui-review/review.mjs:38:80\n    at async probe (/private/tmp/camp-current-ui-review/review.mjs:28:48)\n    at async file:///private/tmp/camp-current-ui-review/review.mjs:38:1"
+    },
+    {
+      "probe": "quota failure Save and leave keeps current downloadable",
+      "pass": false,
+      "error": "page.goto: Target page, context or browser has been closed\n    at load (/private/tmp/camp-current-ui-review/review.mjs:30:35)\n    at /private/tmp/camp-current-ui-review/review.mjs:39:87\n    at probe (/private/tmp/camp-current-ui-review/review.mjs:28:54)\n    at /private/tmp/camp-current-ui-review/review.mjs:39:7"
+    },
+    {
+      "probe": "corruption remains protected through play new camp import and raw backup download",
+      "pass": false,
+      "error": "page.goto: Target page, context or browser has been closed\n    at load (/private/tmp/camp-current-ui-review/review.mjs:30:35)\n    at /private/tmp/camp-current-ui-review/review.mjs:40:113\n    at probe (/private/tmp/camp-current-ui-review/review.mjs:28:54)\n    at /private/tmp/camp-current-ui-review/review.mjs:40:7"
+    },
+    {
+      "probe": "desktop and short-height expanded content keyboard dock accessibility",
+      "pass": false,
+      "error": "page.setViewportSize: Target page, context or browser has been closed\n    at /private/tmp/camp-current-ui-review/review.mjs:41:106\n    at probe (/private/tmp/camp-current-ui-review/review.mjs:28:54)\n    at /private/tmp/camp-current-ui-review/review.mjs:41:7"
+    },
+    {
+      "probe": "no browser warnings errors or external network",
+      "pass": true,
+      "detail": {
+        "errors": [],
+        "network": []
+      }
+    }
+  ],
+  "errors": [],
+  "network": []
+}

@@ -1,0 +1,317 @@
+{
+  "results": [
+    {
+      "probe": "served source",
+      "route": "/camp/",
+      "sha256": "cc8562c65d718fe4c509b6ac9386bb6422106ee759078760942136dd18aed9f9"
+    },
+    {
+      "probe": "served source",
+      "route": "/web/camp-current.js",
+      "sha256": "9c1d1c41e0ba9e49e91b2f1af19baebc6e24d0b4e6762f1f6c3e569b30944938"
+    },
+    {
+      "probe": "served source",
+      "route": "/web/camp-current-session.js",
+      "sha256": "683d1c28887da20a89d1e01dd6d85d9eddec2d5d28fdd7fd5459eff4fa879c97"
+    },
+    {
+      "probe": "served source",
+      "route": "/web/camp.css",
+      "sha256": "24627b3523108ecd5e68cb0dfd4af1cc47a423a71e95c7daea831454b35a2464"
+    },
+    {
+      "probe": "served source",
+      "route": "/web/game-shell.css",
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f"
+    },
+    {
+      "probe": "served source",
+      "route": "/src/games/camp-current.js",
+      "sha256": "cfa2db1f93b659a2d82d99c5644c03118a8095d03d9108867106f358d6b26616"
+    },
+    {
+      "probe": "phone fresh all tabs layout and keyboard",
+      "pass": true,
+      "detail": {
+        "work": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 312,
+            "scrollHeight": 340,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": "tab-work"
+        },
+        "people": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 312,
+            "scrollHeight": 571,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": "tab-people"
+        },
+        "camp": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 312,
+            "scrollHeight": 389,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": "tab-camp"
+        },
+        "journal": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 312,
+            "scrollHeight": 312,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": "tab-journal"
+        },
+        "save": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 312,
+            "scrollHeight": 337,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": "tab-save"
+        }
+      }
+    },
+    {
+      "probe": "paid start pause tab stop reload and old-key isolation",
+      "pass": true,
+      "detail": {
+        "minute": 1,
+        "retained": 0.041666666666666664,
+        "calls": [
+          [
+            "get",
+            "human-camp-current-v0.3.0"
+          ],
+          [
+            "set",
+            "human-camp-current-v0.3.0"
+          ]
+        ]
+      }
+    },
+    {
+      "probe": "actual current download import cancel confirm and unsupported old format",
+      "pass": true,
+      "detail": {
+        "filename": "camp-current-minute-1.json",
+        "minute": 838
+      }
+    },
+    {
+      "probe": "import preview invalidated by advancement and delayed stale success/failure",
+      "pass": true,
+      "detail": {
+        "original": 839,
+        "newer": 840
+      }
+    },
+    {
+      "probe": "phone introduction checkpoint continue and ferry allocation dispatch",
+      "pass": true,
+      "detail": {
+        "introLayout": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 299,
+            "scrollHeight": 299,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": ""
+        },
+        "ferryLayout": {
+          "width": 375,
+          "height": 667,
+          "docWidth": 375,
+          "docHeight": 667,
+          "dock": {
+            "x": 12,
+            "y": 541.90625,
+            "bottom": 667
+          },
+          "panel": {
+            "height": 312,
+            "scrollHeight": 577,
+            "scrollWidth": 336,
+            "clientWidth": 336
+          },
+          "focus": ""
+        },
+        "allocations": [
+          {
+            "at": 862,
+            "cache": 1,
+            "destination": "households"
+          },
+          {
+            "at": 862,
+            "cache": 2,
+            "destination": "camp"
+          }
+        ]
+      }
+    },
+    {
+      "probe": "rain close return preserves people work supply account",
+      "pass": true,
+      "detail": {
+        "width": 375,
+        "height": 667,
+        "docWidth": 375,
+        "docHeight": 667,
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "bottom": 667
+        },
+        "panel": {
+          "height": 312,
+          "scrollHeight": 577,
+          "scrollWidth": 336,
+          "clientWidth": 336
+        },
+        "focus": ""
+      }
+    },
+    {
+      "probe": "quota failure Save and leave keeps current downloadable",
+      "pass": true,
+      "detail": {
+        "minute": 952,
+        "warning": "Device storage is unavailable or full. Your camp is still here; download it before leaving."
+      }
+    },
+    {
+      "probe": "dialog",
+      "type": "beforeunload",
+      "message": ""
+    },
+    {
+      "probe": "corruption remains protected through play new camp import and raw backup download",
+      "pass": true,
+      "detail": {
+        "width": 375,
+        "height": 667,
+        "docWidth": 375,
+        "docHeight": 667,
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "bottom": 667
+        },
+        "panel": {
+          "height": 203,
+          "scrollHeight": 357,
+          "scrollWidth": 336,
+          "clientWidth": 336
+        },
+        "focus": "tab-work"
+      }
+    },
+    {
+      "probe": "dialog",
+      "type": "beforeunload",
+      "message": ""
+    },
+    {
+      "probe": "dialog",
+      "type": "beforeunload",
+      "message": ""
+    },
+    {
+      "probe": "desktop and short-height expanded content keyboard dock accessibility",
+      "pass": true,
+      "detail": {
+        "width": 375,
+        "height": 500,
+        "docWidth": 375,
+        "docHeight": 1068,
+        "dock": {
+          "x": 12,
+          "y": 375.375,
+          "bottom": 500.46875
+        },
+        "panel": {
+          "height": 713,
+          "scrollHeight": 713,
+          "scrollWidth": 351,
+          "clientWidth": 351
+        },
+        "focus": "play"
+      }
+    },
+    {
+      "probe": "no browser warnings errors or external network",
+      "pass": true,
+      "detail": {
+        "errors": [],
+        "network": []
+      }
+    }
+  ],
+  "errors": [],
+  "network": []
+}

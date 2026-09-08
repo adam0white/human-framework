@@ -1,0 +1,53 @@
+{
+  "sources": [
+    {
+      "file": "web/camp-current.js",
+      "sha256": "9bba1d23e43b65ea25a6a1f7810d84a47cb394e291d2007685417e3ac1c97c47"
+    },
+    {
+      "file": "web/camp-current-session.js",
+      "sha256": "683d1c28887da20a89d1e01dd6d85d9eddec2d5d28fdd7fd5459eff4fa879c97"
+    },
+    {
+      "file": "web/camp.html",
+      "sha256": "cc8562c65d718fe4c509b6ac9386bb6422106ee759078760942136dd18aed9f9"
+    },
+    {
+      "file": "web/camp.css",
+      "sha256": "24627b3523108ecd5e68cb0dfd4af1cc47a423a71e95c7daea831454b35a2464"
+    },
+    {
+      "file": "web/game-shell.css",
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f"
+    },
+    {
+      "file": "src/games/camp-current.js",
+      "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a"
+    }
+  ],
+  "observations": [
+    {
+      "case": "restored ferry checkpoint status",
+      "pass": true,
+      "actual": "The ferry is waiting. Allocate supplies, then send it."
+    },
+    {
+      "case": "imported ferry checkpoint status",
+      "pass": true,
+      "actual": "The ferry is waiting. Allocate supplies, then send it."
+    },
+    {
+      "case": "returned camp cache hint",
+      "pass": true,
+      "actual": "Further caches stay in storage. Supply allocations are settled."
+    },
+    {
+      "case": "stopped partially paid returned-cache card",
+      "pass": true,
+      "actual": "Pack timber and salvage into one supply cache.",
+      "hint": "6% of this stage is kept at the site. Further caches stay in storage. Supply allocations are settled."
+    }
+  ],
+  "errors": [],
+  "network": []
+}

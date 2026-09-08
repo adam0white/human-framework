@@ -22,7 +22,7 @@ async function fixture(){
 test('an unpublished static dependency blocks build before the previous output is cleared',async()=>{
   const root=await fixture();
   try{
-    await writeFile(join(root,'web/camp.js'),'import "../src/cognition/private.js";');
+    await writeFile(join(root,'web/camp-current.js'),'import "../src/cognition/private.js";');
     await assert.rejects(()=>buildSite({root}),/private|unavailable/i);
     assert.equal(await readFile(join(root,'dist/previous.txt'),'utf8'),'previous build remains');
   }finally{await rm(root,{recursive:true,force:true});}
@@ -51,7 +51,7 @@ test('deployment selects exact assets and retires the laboratory without leaking
 });
 
 test('deployment refuses symlinked selected assets, their ancestors, and HTML entries before clearing output',async()=>{
-  for(const redirect of ['web','src','src/core','src/runtime',...new Set(Object.values(PUBLIC_PAGES)),'web/camp.js','src/core/model.js']){
+  for(const redirect of ['web','src','src/core','src/runtime',...new Set(Object.values(PUBLIC_PAGES)),'web/camp-current.js','src/core/model.js']){
     const root=await fixture();
     try{
       const isFile=redirect.includes('.');

@@ -1,0 +1,50 @@
+{
+  "hashes": {
+    "docs/camp-current-contract.md": "9e0a582c7772b7223543070dbcc4c7446d359417ba56bebff10f76c5950393fc",
+    "src/games/camp-current.js": "cfa2db1f93b659a2d82d99c5644c03118a8095d03d9108867106f358d6b26616",
+    "tests/camp-current.test.js": "f9e0a5d6e73693ee65228b508e59755da8aa3436eb8b5cee09cca7a55514dfdc"
+  },
+  "results": [
+    {
+      "name": "pending meal owns its elapsed meal minutes",
+      "passed": false,
+      "error": "Missing expected exception: current 3-minute meal with zero owned meal minutes must reject",
+      "stack": "AssertionError [ERR_ASSERTION]: Missing expected exception: current 3-minute meal with zero owned meal minutes must reject\n    at file:///private/tmp/camp-current-core-probes.mjs:18:10\n    at probe (file:///private/tmp/camp-current-core-probes.mjs:12:41)\n    at file:///private/tmp/camp-current-core-probes.mjs:13:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)\n    at async node:internal/modules/esm/loader:650:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "name": "restored pending meal can actually finish",
+      "passed": false,
+      "error": "Inconsistent total paid time or effort",
+      "stack": "Error: Inconsistent total paid time or effort\n    at fail (file:///Users/abdul/code/human-framework/src/games/camp-current.js:24:28)\n    at validate (file:///Users/abdul/code/human-framework/src/games/camp-current.js:429:319)\n    at seal (file:///Users/abdul/code/human-framework/src/games/camp-current.js:11:21)\n    at Module.advanceGame (file:///Users/abdul/code/human-framework/src/games/camp-current.js:274:10)\n    at file:///private/tmp/camp-current-core-probes.mjs:23:8\n    at probe (file:///private/tmp/camp-current-core-probes.mjs:12:41)\n    at file:///private/tmp/camp-current-core-probes.mjs:20:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)\n    at async node:internal/modules/esm/loader:650:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "name": "completed gather owns required effort",
+      "passed": false,
+      "error": "Missing expected exception: completed exertive timber trip cannot have zero total paid effort",
+      "stack": "AssertionError [ERR_ASSERTION]: Missing expected exception: completed exertive timber trip cannot have zero total paid effort\n    at file:///private/tmp/camp-current-core-probes.mjs:29:10\n    at probe (file:///private/tmp/camp-current-core-probes.mjs:12:41)\n    at file:///private/tmp/camp-current-core-probes.mjs:25:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)\n    at async node:internal/modules/esm/loader:650:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "name": "handover return and release retain physical work and owned practice",
+      "passed": true,
+      "data": {
+        "now": 22,
+        "stage": 1
+      }
+    },
+    {
+      "name": "player readiness occurs at earliest feasible paid recovery minute",
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\n5 !== 2\n",
+      "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n5 !== 2\n\n    at file:///private/tmp/camp-current-core-probes.mjs:50:10\n    at probe (file:///private/tmp/camp-current-core-probes.mjs:12:41)\n    at file:///private/tmp/camp-current-core-probes.mjs:45:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)\n    at async node:internal/modules/esm/loader:650:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+    },
+    {
+      "name": "single earned window pauses dispatch and rain and resumes pending work",
+      "passed": true,
+      "data": {
+        "entry": 373,
+        "caches": 1,
+        "allocations": 0
+      }
+    }
+  ]
+}
