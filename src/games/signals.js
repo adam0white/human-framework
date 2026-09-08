@@ -1,7 +1,7 @@
 /** Last Light, a bounded host-owned delivery puzzle. The cognition candidate is private. */
 import {RUNTIME_VERSION,HUMAN_VERSION,CLOCK_VERSION,createPerson,getPersonView,assessEffort,beginAttempt,advanceAttempt,finishAttempt,exportPerson,restorePerson,createClock,scheduleEvent,cancelEvent,advanceClock,exportClock,restoreClock} from '../runtime/index.js';
 export const SIGNALS_VERSION='0.1.0';
-export const SIGNALS_SITUATIONS=Object.freeze({turning:'Harbor I',falling:'Harbor II',steady:'Harbor III',shut:'Harbor IV'});
+export const SIGNALS_SITUATIONS=Object.freeze({turning:'Harbor I',falling:'Harbor II',steady:'Harbor III',shut:'Harbor IV',clear:'Clear connection',tired:'After the long shift',hungry:'Without lunch'});
 export const SIGNALS_TASKS=Object.freeze({
  canal:{label:'Take the canal',duration:6,effort:.06,detail:'1 fare now. The landing must be open when you arrive. If closed, return with the lens after the full six minutes.'},
  ridge:{label:'Carry over the ridge',duration:14,effort:.22,detail:'No fare. More exertion, but the landing cannot block this route.'},
@@ -11,7 +11,13 @@ export const SIGNALS_TASKS=Object.freeze({
  meal:{label:'Eat your meal',duration:3,effort:0,detail:'Uses the meal only when all three minutes are complete.'}
 });
 const DEADLINE=32,LAUNCH_DEADLINE=12,MAX_COMMANDS=192,MAX_SAVE=65536;
-const timelines={turning:{initial:'closed',changes:[[4,'open'],[20,'closed']]},falling:{initial:'open',changes:[[4,'closed'],[20,'open']]},steady:{initial:'open',changes:[]},shut:{initial:'closed',changes:[]}};
+const timelines={turning:{initial:'closed',changes:[[4,'open'],[20,'closed']]},falling:{initial:'open',changes:[[4,'closed'],[20,'open']]},steady:{initial:'open',changes:[]},shut:{initial:'closed',changes:[]},clear:{initial:'open',changes:[]},tired:{initial:'open',changes:[]},hungry:{initial:'open',changes:[]}};
+// Additive authored setups. Original situation defaults and replay fields stay unchanged.
+const profiles={
+ clear:{body:{fatigue:.2,hunger:.2},radioDelayMinutes:2,description:'A clear connection: the keeper’s reply takes 2 minutes after your 1-minute request. You begin rested and fed.'},
+ tired:{body:{fatigue:.8,hunger:.2},radioDelayMinutes:5,description:'After a long shift, you feel very tired but have eaten. The heavier ridge may need paid rest; the canal is lighter. Radio replies take 5 minutes after the request.'},
+ hungry:{body:{fatigue:.2,hunger:1},radioDelayMinutes:5,description:'You missed lunch and feel too hungry for carrying. Your meal is still in your bag. Rest reduces fatigue, but eating relieves hunger. Radio replies take 5 minutes after the request.'}
+};
 const copy=x=>structuredClone(x),fail=(code,message)=>{const e=new Error(message);e.code=code;throw e;};
 const canonical=x=>Array.isArray(x)?`[${x.map(canonical).join(',')}]`:x&&typeof x==='object'?`{${Object.keys(x).sort().map(k=>`${JSON.stringify(k)}:${canonical(x[k])}`).join(',')}}`:JSON.stringify(x);
 const equal=(a,b)=>canonical(a)===canonical(b);
@@ -49,7 +55,7 @@ function stop(s,announce=false){
  if(announce)note(s,`Stopped ${SIGNALS_TASKS[j.task].label.toLowerCase()} after ${s.clock.now-j.startedAt} paid minutes. No unfinished observation or delivery is granted${j.task==='canal'?'; the fare was already spent':''}.`);
 }
 function initial(situation){
- const s={version:SIGNALS_VERSION,situation,clock:createClock(),person:createPerson({id:'carrier',body:{fatigue:.2,hunger:.2},skills:{carry:.15,lookout:.1}}),job:null,landing:timelines[situation].initial,resources:{fares:2,charges:3,meal:1},spent:{fares:0,charges:0,meal:0},notebook:null,deliveries:[],inFlight:[],sequence:0,outcome:null,paid:Object.fromEntries([...Object.keys(SIGNALS_TASKS),'idle'].map(k=>[k,0])),failedCrossings:0,lastResponse:null,lastReceipt:null,recent:[],commands:[]};
+ const s={version:SIGNALS_VERSION,situation,clock:createClock(),person:createPerson({id:'carrier',body:profiles[situation]?.body??{fatigue:.2,hunger:.2},skills:{carry:.15,lookout:.1}}),job:null,landing:timelines[situation].initial,resources:{fares:2,charges:3,meal:1},spent:{fares:0,charges:0,meal:0},notebook:null,deliveries:[],inFlight:[],sequence:0,outcome:null,paid:Object.fromEntries([...Object.keys(SIGNALS_TASKS),'idle'].map(k=>[k,0])),failedCrossings:0,lastResponse:null,lastReceipt:null,recent:[],commands:[]};
  schedule(s,{at:DEADLINE,type:'closing'});schedule(s,{at:LAUNCH_DEADLINE,type:'launch-closing'});
  for(const [at,value] of timelines[situation].changes)schedule(s,{at,type:'landing-change',data:{value}});
  start(s,'idle');note(s,'Deliver the lens before minute 32. The ridge is reliable; the canal needs an open landing at arrival. Choosing does not move time.');return s;
@@ -83,7 +89,7 @@ function due(s,event){
  s.person=finishAttempt(s.person,{attemptId:j.attemptId,status:failed?'failed':'completed',mealConsumed:j.task==='meal'});s.job=null;
  if(j.task==='lookout')deliver(s,{value:s.landing,observedAt:s.clock.now,source:'lookout',channel:'direct'});
  if(j.task==='radio'){
-  s.resources.charges--;s.spent.charges++;const r={observedAt:s.clock.now,value:s.landing,arrivesAt:s.clock.now+5};
+  s.resources.charges--;s.spent.charges++;const r={observedAt:s.clock.now,value:s.landing,arrivesAt:s.clock.now+(profiles[s.situation]?.radioDelayMinutes??5)};
   r.eventId=schedule(s,{at:r.arrivesAt,type:'report-due',actorId:'carrier',data:{observedAt:r.observedAt,value:r.value}});s.inFlight.push(r);note(s,`Request sent. A reply will arrive at minute ${r.arrivesAt}, describing the keeper's observation now.`);
  }
  if(j.task==='meal'){s.resources.meal--;s.spent.meal++;}
@@ -130,14 +136,26 @@ function advanceRaw(s,target,recording=true){
 export function requestTask(input,task){check(input);return taskRaw(copy(input),task);}
 export function interruptTask(input){check(input);return stopRaw(copy(input));}
 export function advanceTo(input,target){check(input);return advanceRaw(copy(input),target);}
-export function receiveReceipt(input,event){check(input);json(event);const s=copy(input);due(s,event);return s;}
+export function receiveReceipt(input,event){
+ check(input);
+ try{json(event);fields(event,['id','at','type','actorId','data'],'receipt');
+  if(typeof event.id!=='string'||!/^event:[1-9]\d*$/.test(event.id)||!Number.isSafeInteger(event.at)||event.at<1||!['attempt-due','report-due'].includes(event.type)||event.actorId!=='carrier')throw new Error('Invalid receipt values.');
+  fields(event.data,event.type==='report-due'?['observedAt','value']:['attemptId','task'],'receipt data');
+ }catch{fail('INVALID_RECEIPT','Receipt must be a complete host event envelope.');}
+ const s=copy(input);due(s,event);return s;
+}
 export function nextVisibleEvent(s){check(s);if(s.outcome)return s.clock.now;return Math.min(DEADLINE,s.clock.now<LAUNCH_DEADLINE?LAUNCH_DEADLINE:DEADLINE,s.job.task==='idle'?DEADLINE:s.job.endsAt,...s.inFlight.map(r=>r.arrivesAt));}
 function reportView(r,now,latest){return {...copy(r),ageMinutes:now-r.observedAt,olderThanNotebook:r.observedAt<(latest?.observedAt??-1)};}
 export function getSignalsView(s){
- check(s);const person=getPersonView(s.person),job=s.job&&s.job.task!=='idle'?{task:s.job.task,startedAt:s.job.startedAt,endsAt:s.job.endsAt}:null;
+ check(s);const person=getPersonView(s.person),job=s.job&&s.job.task!=='idle'?{task:s.job.task,startedAt:s.job.startedAt,endsAt:s.job.endsAt}:null,profile=profiles[s.situation];
  const deliveries=s.deliveries.map(r=>reportView(r,s.clock.now,s.notebook)),report=s.notebook?reportView(s.notebook,s.clock.now,s.notebook):null;
  return copy({version:SIGNALS_VERSION,runtimeVersion:RUNTIME_VERSION,humanVersion:HUMAN_VERSION,clockVersion:CLOCK_VERSION,now:s.clock.now,deadline:DEADLINE,launchDeadline:LAUNCH_DEADLINE,person,job,resources:s.resources,spent:s.spent,paid:s.paid,report,currentReport:[...deliveries].reverse().find(r=>r.observedAt===s.clock.now)??null,deliveries,inFlight:s.inFlight.map(r=>({arrivesAt:r.arrivesAt})),failedCrossings:s.failedCrossings,outcome:s.outcome,lastResponse:s.lastResponse,recent:s.recent,
- choices:Object.entries(SIGNALS_TASKS).map(([task,t])=>{const refused=reason(s,task,person.body);return {task,...t,available:!refused,code:refused?.[0]??null,reason:refused?.[1]??null,finishesAt:s.clock.now+t.duration,tooLate:s.clock.now+t.duration>=DEADLINE};})});
+ ...(profile?{profile:{label:SIGNALS_SITUATIONS[s.situation],description:profile.description,radioDelayMinutes:profile.radioDelayMinutes,capacityLabel:'Capacity estimates use how you feel. Actual attempts check capacity.'}}:{}),
+ choices:Object.entries(SIGNALS_TASKS).map(([task,t])=>{const refused=reason(s,task,person.body),choice={task,...t,available:!refused,code:refused?.[0]??null,reason:refused?.[1]??null,finishesAt:s.clock.now+t.duration,tooLate:s.clock.now+t.duration>=DEADLINE};
+  if(profile){choice.capacityEstimate={allowed:assessEffort(person.body,spec(task)).allowed};
+   if(task==='radio')choice.detail=`1 charge on completion. The keeper observes then; the reply takes ${profile.radioDelayMinutes} more minutes to reach you.`;
+   if(refused?.[0]==='CAPACITY'){choice.available=true;choice.code='CAPACITY_ESTIMATE';choice.reason='Capacity estimate: recovery may be needed. You may try; the actual attempt checks capacity.';}
+  }return choice;})});
 }
 export function exportSignals(s){check(s);const {commands,...state}=copy(s);return {format:'human-last-light',version:1,hostVersion:SIGNALS_VERSION,runtimeVersion:RUNTIME_VERSION,situation:s.situation,commands,state};}
 export function restoreSignals(input){
