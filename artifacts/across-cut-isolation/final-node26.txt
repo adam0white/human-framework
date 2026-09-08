@@ -1,0 +1,32 @@
+✔ the independently tested private host exists (0.292333ms)
+✔ a private early launch never ends or changes the remote actor before the common horizon (13.476167ms)
+✔ private receiver repair length, body and paid jobs cannot alter keeper views or command errors (9.537375ms)
+✔ upstream hidden repair and body differences do not leak into receiver information (5.473375ms)
+✔ future bounded delays are absent from local forecasts until an actual receipt (2.916667ms)
+✔ hidden loss versus future delivery is not revealed in the sender or unreceived peer view (5.859583ms)
+✔ unrelated peer commands and lost traffic do not shift local observations, proposal IDs or channel fate (1.881375ms)
+✔ local advance discovers a receipt only after paying time and leaves ongoing recovery intact (5.895917ms)
+✔ passive radio receipts do not interrupt paid repair or grant repair completion (1.051375ms)
+✔ an older late report stays inspectable without replacing a newer source-time observation (1.750417ms)
+✔ inaccessible observation and confirmation IDs cannot create owned messages (0.245334ms)
+✔ an integer-minute transmission canceled at its start restores charge and sends nothing (1.07ms)
+✔ local budgets and command legality are independent of exhausted remote actor controls (10.993208ms)
+✔ local consent, snapshotted response, received acceptance and actual work remain distinct (3.549833ms)
+✔ an old acceptance arriving after a newer revision response cannot rewrite own accepted terms (3.12425ms)
+✔ actual contributions and full service can succeed without an acceptance response or confirmation (2.639ms)
+✔ paid station arrival is the legitimate point where remote launch facts become locally different (1.876792ms)
+✔ a peer arrival is observed locally before a contact action depends on that presence (1.558709ms)
+✔ all allowed hidden channel seeds preserve the same initial local inputs within each declared mode (5.815042ms)
+✔ two exhausted actor budgets retain independent paid stops and all30 local clock advances (27.087459ms)
+✔ own budget reserves a stop and later withdrawal at separate paid minutes (10.498917ms)
+✔ saved actor observations and message receipts cannot be forged into gameplay history (1.750708ms)
+✔ equal pre-receipt forecasts permit different local stop times only after real paid reception (2.283666ms)
+✔ late work and messages beyond the common horizon do not reveal a private departure or channel outcome (4.942709ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.405625

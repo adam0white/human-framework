@@ -1,0 +1,23 @@
+/** Run only the independent development isolation suite; no policy case is imported. */
+import {readFileSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {execFileSync,spawnSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+const root=new URL('../../',import.meta.url).pathname,out=process.argv[2];
+if(!out)throw Error('Supply a fresh JSON output path.');
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const hostCommit='b3ec6942cbb6fb27b3c9a892934ff83b281fd8ba',baseline='1f835f6';
+const hostPath='src/experiments/across-cut/host.js',testPath='tests/across-cut-isolation.test.js';
+const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8'}).trim();
+const sourcePaths=[hostPath,testPath,'docs/across-cut-contract.md','docs/across-cut-isolation.md','artifacts/across-cut-isolation/verify.mjs'];
+const sourceSha256=Object.fromEntries(sourcePaths.map(path=>[path,hash(readFileSync(root+path))]));
+assert.equal(sourceSha256[hostPath],hash(execFileSync('git',['show',`${hostCommit}:${hostPath}`],{cwd:root})),'The tested host must match the recorded corrected core source.');
+assert.equal(git('diff','--name-only','HEAD','--',hostPath,testPath),'','Commit host and test bytes before verification.');
+const frozen=['src/human/v0.1.1.js','src/runtime/index.js','src/runtime/clock.js','src/core/model.js','scripts/runtime-release-lock.json'];
+const frozenSha256=Object.fromEntries(frozen.map(path=>{const bytes=readFileSync(root+path);assert.equal(hash(bytes),hash(execFileSync('git',['show',`${baseline}:${path}`],{cwd:root})),path);return [path,hash(bytes)];}));
+const result=spawnSync(process.execPath,['--test','--test-reporter=tap',testPath],{cwd:root,encoding:'utf8',maxBuffer:2*1024*1024});
+const count=name=>Number(result.stdout.match(new RegExp(`^# ${name} (\\d+)$`,'m'))?.[1]??NaN);
+const evidence={format:'across-cut-independent-isolation',version:1,createdAt:new Date().toISOString(),executionCommit:git('rev-parse','HEAD'),hostSourceCommit:hostCommit,registrationCommit:'4ca425c',initialTestsCommit:'42f1e18',nodeVersion:process.version,scope:'Independent legal-history development checks; no reserved policies executed and no human or general-faculty claim.',sourceSha256,frozenSha256,command:[process.execPath,'--test','--test-reporter=tap',testPath],tests:count('tests'),passed:count('pass'),failed:count('fail'),exitCode:result.status,stdout:result.stdout,stderr:result.stderr};
+writeFileSync(out,JSON.stringify(evidence,null,2)+'\n',{flag:'wx'});
+assert.equal(result.status,0,result.stderr||result.stdout);assert.equal(evidence.tests,24);assert.equal(evidence.passed,24);assert.equal(evidence.failed,0);
+console.log(JSON.stringify({out,nodeVersion:evidence.nodeVersion,hostSourceCommit:hostCommit,hostSha256:sourceSha256[hostPath],tests:evidence.tests,passed:evidence.passed,failed:evidence.failed,frozenUnchanged:true},null,2));

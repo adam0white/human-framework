@@ -1,0 +1,30 @@
+✔ the independently tested private host exists (0.297667ms)
+✔ a private early launch never ends or changes the remote actor before the common horizon (13.490583ms)
+✔ private receiver repair length, body and paid jobs cannot alter keeper views or command errors (9.147916ms)
+✔ upstream hidden repair and body differences do not leak into receiver information (5.36875ms)
+✔ future bounded delays are absent from local forecasts until an actual receipt (2.863583ms)
+✔ hidden loss versus future delivery is not revealed in the sender or unreceived peer view (5.760417ms)
+✔ unrelated peer commands and lost traffic do not shift local observations, proposal IDs or channel fate (1.878709ms)
+✔ local advance discovers a receipt only after paying time and leaves ongoing recovery intact (6.088167ms)
+✔ passive radio receipts do not interrupt paid repair or grant repair completion (1.090625ms)
+✔ an older late report stays inspectable without replacing a newer source-time observation (1.523083ms)
+✔ inaccessible observation and confirmation IDs cannot create owned messages (0.234792ms)
+✔ an integer-minute transmission canceled at its start restores charge and sends nothing (1.004166ms)
+✔ local budgets and command legality are independent of exhausted remote actor controls (10.912917ms)
+✔ local consent, snapshotted response, received acceptance and actual work remain distinct (3.4225ms)
+✔ an old acceptance arriving after a newer revision response cannot rewrite own accepted terms (3.086125ms)
+✔ actual contributions and full service can succeed without an acceptance response or confirmation (2.6925ms)
+✔ paid station arrival is the legitimate point where remote launch facts become locally different (1.857042ms)
+✔ a peer arrival is observed locally before a contact action depends on that presence (1.626291ms)
+✔ all allowed hidden channel seeds preserve the same initial local inputs within each declared mode (5.756125ms)
+✔ two exhausted actor budgets retain independent paid stops and all30 local clock advances (26.881333ms)
+✔ own budget reserves a stop and later withdrawal at separate paid minutes (10.658625ms)
+✔ saved actor observations and message receipts cannot be forged into gameplay history (1.822459ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 157.034791

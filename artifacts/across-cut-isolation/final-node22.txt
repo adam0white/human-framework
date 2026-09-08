@@ -1,0 +1,130 @@
+TAP version 13
+# Subtest: the independently tested private host exists
+ok 1 - the independently tested private host exists
+  ---
+  duration_ms: 0.514833
+  ...
+# Subtest: a private early launch never ends or changes the remote actor before the common horizon
+ok 2 - a private early launch never ends or changes the remote actor before the common horizon
+  ---
+  duration_ms: 18.122541
+  ...
+# Subtest: private receiver repair length, body and paid jobs cannot alter keeper views or command errors
+ok 3 - private receiver repair length, body and paid jobs cannot alter keeper views or command errors
+  ---
+  duration_ms: 11.246875
+  ...
+# Subtest: upstream hidden repair and body differences do not leak into receiver information
+ok 4 - upstream hidden repair and body differences do not leak into receiver information
+  ---
+  duration_ms: 6.095083
+  ...
+# Subtest: future bounded delays are absent from local forecasts until an actual receipt
+ok 5 - future bounded delays are absent from local forecasts until an actual receipt
+  ---
+  duration_ms: 3.332958
+  ...
+# Subtest: hidden loss versus future delivery is not revealed in the sender or unreceived peer view
+ok 6 - hidden loss versus future delivery is not revealed in the sender or unreceived peer view
+  ---
+  duration_ms: 5.979542
+  ...
+# Subtest: unrelated peer commands and lost traffic do not shift local observations, proposal IDs or channel fate
+ok 7 - unrelated peer commands and lost traffic do not shift local observations, proposal IDs or channel fate
+  ---
+  duration_ms: 1.953916
+  ...
+# Subtest: local advance discovers a receipt only after paying time and leaves ongoing recovery intact
+ok 8 - local advance discovers a receipt only after paying time and leaves ongoing recovery intact
+  ---
+  duration_ms: 6.839417
+  ...
+# Subtest: passive radio receipts do not interrupt paid repair or grant repair completion
+ok 9 - passive radio receipts do not interrupt paid repair or grant repair completion
+  ---
+  duration_ms: 1.481542
+  ...
+# Subtest: an older late report stays inspectable without replacing a newer source-time observation
+ok 10 - an older late report stays inspectable without replacing a newer source-time observation
+  ---
+  duration_ms: 1.76525
+  ...
+# Subtest: inaccessible observation and confirmation IDs cannot create owned messages
+ok 11 - inaccessible observation and confirmation IDs cannot create owned messages
+  ---
+  duration_ms: 0.270875
+  ...
+# Subtest: an integer-minute transmission canceled at its start restores charge and sends nothing
+ok 12 - an integer-minute transmission canceled at its start restores charge and sends nothing
+  ---
+  duration_ms: 1.146875
+  ...
+# Subtest: local budgets and command legality are independent of exhausted remote actor controls
+ok 13 - local budgets and command legality are independent of exhausted remote actor controls
+  ---
+  duration_ms: 11.858
+  ...
+# Subtest: local consent, snapshotted response, received acceptance and actual work remain distinct
+ok 14 - local consent, snapshotted response, received acceptance and actual work remain distinct
+  ---
+  duration_ms: 4.022667
+  ...
+# Subtest: an old acceptance arriving after a newer revision response cannot rewrite own accepted terms
+ok 15 - an old acceptance arriving after a newer revision response cannot rewrite own accepted terms
+  ---
+  duration_ms: 3.347125
+  ...
+# Subtest: actual contributions and full service can succeed without an acceptance response or confirmation
+ok 16 - actual contributions and full service can succeed without an acceptance response or confirmation
+  ---
+  duration_ms: 2.454042
+  ...
+# Subtest: paid station arrival is the legitimate point where remote launch facts become locally different
+ok 17 - paid station arrival is the legitimate point where remote launch facts become locally different
+  ---
+  duration_ms: 1.800625
+  ...
+# Subtest: a peer arrival is observed locally before a contact action depends on that presence
+ok 18 - a peer arrival is observed locally before a contact action depends on that presence
+  ---
+  duration_ms: 1.620334
+  ...
+# Subtest: all allowed hidden channel seeds preserve the same initial local inputs within each declared mode
+ok 19 - all allowed hidden channel seeds preserve the same initial local inputs within each declared mode
+  ---
+  duration_ms: 6.734416
+  ...
+# Subtest: two exhausted actor budgets retain independent paid stops and all30 local clock advances
+ok 20 - two exhausted actor budgets retain independent paid stops and all30 local clock advances
+  ---
+  duration_ms: 29.321459
+  ...
+# Subtest: own budget reserves a stop and later withdrawal at separate paid minutes
+ok 21 - own budget reserves a stop and later withdrawal at separate paid minutes
+  ---
+  duration_ms: 11.015125
+  ...
+# Subtest: saved actor observations and message receipts cannot be forged into gameplay history
+ok 22 - saved actor observations and message receipts cannot be forged into gameplay history
+  ---
+  duration_ms: 1.959416
+  ...
+# Subtest: equal pre-receipt forecasts permit different local stop times only after real paid reception
+ok 23 - equal pre-receipt forecasts permit different local stop times only after real paid reception
+  ---
+  duration_ms: 2.496459
+  ...
+# Subtest: late work and messages beyond the common horizon do not reveal a private departure or channel outcome
+ok 24 - late work and messages beyond the common horizon do not reveal a private departure or channel outcome
+  ---
+  duration_ms: 4.663959
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 198.15025
