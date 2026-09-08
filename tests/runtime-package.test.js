@@ -80,7 +80,10 @@ test('actual npm tarball installs offline into an external consumer denied repos
     `);
     // macOS /var is a symlink: avoid resolving unrestricted ancestors before
     // Node can load the permitted consumer. All installed files are real files.
-    const output=execFileSync(process.execPath,['--experimental-permission',`--allow-fs-read=${consumer}`,'--preserve-symlinks','--preserve-symlinks-main',join(consumer,'consumer.js')],{cwd:consumer,encoding:'utf8',stdio:['ignore','pipe','pipe'],env:{...process.env,NODE_OPTIONS:'',NODE_PATH:''}});
+    // Early Node 22 uses the experimental name; newer Node exposes --permission.
+    const permissionFlag=['--permission','--experimental-permission'].find(flag=>process.allowedNodeEnvironmentFlags.has(flag));
+    assert.ok(permissionFlag,'Node must support the filesystem permission model');
+    const output=execFileSync(process.execPath,[permissionFlag,`--allow-fs-read=${consumer}`,'--preserve-symlinks','--preserve-symlinks-main',join(consumer,'consumer.js')],{cwd:consumer,encoding:'utf8',stdio:['ignore','pipe','pipe'],env:{...process.env,NODE_OPTIONS:'',NODE_PATH:''}});
     assert.deepEqual(JSON.parse(output),{installed:true,repositoryReadDenied:true,resumeIdentical:true,versions:[packed.version,'0.1.0','0.1.0']});
   } finally {await rm(temporary,{recursive:true,force:true});}
 });
@@ -104,5 +107,32 @@ test('packer excludes arbitrary nearby files and rejects symlinked source or doc
     const document=join(temporary,'docs/portable-runtime.md');await rm(document);
     await symlink(join(project,'docs/portable-runtime.md'),document);
     await assert.rejects(packaging.packageRuntime({root:temporary,outputDirectory:join(temporary,'rejected-document')}),/symlink|source/i);
+  } finally {await rm(temporary,{recursive:true,force:true});}
+});
+
+test('packer rejects alternate source versions and unsupported declarations before writing an artifact',async()=>{
+  const temporary=await mkdtemp(join(tmpdir(),'human-runtime-versions-'));
+  try {
+    for(const source of [...packaging.RUNTIME_SOURCES,'docs/portable-runtime.md']) {
+      await mkdir(dirname(join(temporary,source)),{recursive:true});
+      await copyFile(join(project,source),join(temporary,source));
+    }
+    for(const [source,symbol] of [
+      ['src/runtime/index.js','RUNTIME_VERSION'],['src/human/index.js','HUMAN_VERSION'],['src/runtime/clock.js','CLOCK_VERSION']
+    ]) {
+      const path=join(temporary,source),original=await readFile(path,'utf8');
+      const changed=original.replace(new RegExp(`export const ${symbol}='[^']+';`),`export const ${symbol}='99.0.0';`);
+      assert.notEqual(changed,original,'fixture changes the declared version');
+      await writeFile(path,changed);
+      const outputDirectory=join(temporary,`${symbol}-mismatch`);
+      await assert.rejects(packaging.packageRuntime({root:temporary,outputDirectory}),new RegExp(`version mismatch.*${symbol}`));
+      assert.equal(existsSync(outputDirectory),false);
+      await writeFile(path,original);
+    }
+    const runtime=join(temporary,'src/runtime/index.js'),original=await readFile(runtime,'utf8');
+    await writeFile(runtime,original.replace("export const RUNTIME_VERSION='0.1.0';",'export const RUNTIME_VERSION=[0,1,0].join(".");'));
+    const outputDirectory=join(temporary,'unsupported-declaration');
+    await assert.rejects(packaging.packageRuntime({root:temporary,outputDirectory}),/Unsupported RUNTIME_VERSION declaration/);
+    assert.equal(existsSync(outputDirectory),false);
   } finally {await rm(temporary,{recursive:true,force:true});}
 });

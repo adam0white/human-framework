@@ -19,7 +19,7 @@ export async function buildSite({root=projectRoot}={}) {
   const base=resolve(root),output=join(base,'dist');
   const realBase=await realpath(base);
   const entries=new Map(Object.entries(PUBLIC_PAGES));
-  const directories=['web','src/core','src/scenarios','src/human','src/games','src/legacy/v0.1','src/legacy/v0.2'];
+  const directories=['web','src/core','src/scenarios','src/human','src/runtime','src/games','src/legacy/v0.1','src/legacy/v0.2'];
   for(const source of [...directories,...entries.values()]) {
     const path=join(base,source),info=await lstat(path);
     if(info.isSymbolicLink()||await realpath(path)!==join(realBase,source)||(directories.includes(source)?!info.isDirectory():!info.isFile()))throw new Error(`Invalid public source or symlink: ${source}`);

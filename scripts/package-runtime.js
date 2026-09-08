@@ -21,6 +21,19 @@ export async function packageRuntime({root=projectRoot,outputDirectory=join(root
     if(!info.isFile()||info.isSymbolicLink()||await realpath(path)!==join(realBase,source))throw new Error(`Invalid runtime source or symlink: ${source}`);
     contents.set(source,await readFile(path));
   }
+  // Alternate roots are fixture/copy inputs for this packer's versions. Require
+  // the authored one-line, single-quoted literal form; never execute their code
+  // to discover metadata or label different versions with this checkout's values.
+  for(const [source,symbol,expected] of [
+    ['src/runtime/index.js','RUNTIME_VERSION',RUNTIME_VERSION],
+    ['src/human/index.js','HUMAN_VERSION',HUMAN_VERSION],
+    ['src/runtime/clock.js','CLOCK_VERSION',CLOCK_VERSION]
+  ]) {
+    const pattern=new RegExp(`^export const ${symbol}='([^'\\r\\n]+)';$`,'gm');
+    const declarations=[...contents.get(source).toString('utf8').matchAll(pattern)];
+    if(declarations.length!==1)throw new Error(`Unsupported ${symbol} declaration in ${source}`);
+    if(declarations[0][1]!==expected)throw new Error(`Runtime source version mismatch for ${symbol} in ${source}: expected ${expected}, found ${declarations[0][1]}`);
+  }
   const metadata={
     name:packageName,version:RUNTIME_VERSION,private:true,type:'module',license:'UNLICENSED',
     description:'Deterministic body, practice and integer-minute event clock primitives for host-owned simulations',

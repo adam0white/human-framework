@@ -2,18 +2,18 @@
 
 This is an installable set of **body, capacity, task-practice and scheduling primitives** for a host-owned simulation. It requires no LLM, API key, UI, network service or runtime dependency. It is not the full laboratory actor loop: laboratory policies, beliefs, commitments, relationships, scenarios and replays are outside this package. It does not yet establish a general model of human cognition or behavior.
 
-The human component stays at **0.1.0**, copied byte-for-byte from its existing source together with the single `src/core/model.js` dependency. The clock is a separate **0.1.0** component. Packaging does not change existing laboratory physics, game rules, saves or engine versions. The model dependency contains additional laboratory helpers internally; package exports expose only the human boundary and clock.
+The human component stays at **0.1.0**, copied byte-for-byte from its existing source together with the single `src/core/model.js` dependency. The clock is a separate **0.1.0** component. Packaging does not change existing laboratory physics, game rules, saves or engine versions. The model dependency contains additional laboratory helpers internally. The frozen human boundary also exports the full `PARAMETERS` object, including unused trust and assistance coefficients. These retained constants do not implement portable trust or assistance; the package exposes no laboratory simulation or controller. Function-level extraction is deferred to avoid maintaining generated or duplicated formulas merely to remove unused code.
 
 ## Build, install and verify
 
-Node.js 22 or later is required for the build and test commands. From the source repository:
+Node.js 22 or later is required for the build and test commands. The restricted-consumer test detects the supported permission flag: older 22 releases use the experimental name, while newer Node releases use `--permission`. From the source repository:
 
 ```sh
 npm run package:runtime
 node --test tests/runtime-clock.test.js tests/runtime-package.test.js
 ```
 
-The equivalent direct build is `node scripts/package-runtime.js`. An optional output-directory argument changes the default `runtime-dist/`. The command produces `human-framework-runtime-0.1.0.tgz`, prints its SHA-256 and lists every included file. It never runs `npm publish` or changes the public website. The package is marked private and unlicensed; this local artifact does not grant redistribution rights.
+The equivalent direct build is `node scripts/package-runtime.js`. Its programmatic alternate-root option is for fixture/copy inputs: runtime, human and clock declarations must match this packer’s versions in the authored one-line literal form, or packaging fails before creating an artifact. An optional output-directory argument changes the default `runtime-dist/`. The command produces `human-framework-runtime-0.1.0.tgz`, prints its SHA-256 and lists every included file. It never runs `npm publish` or changes the public website. The package is marked private and unlicensed; this local artifact does not grant redistribution rights.
 
 From an independent project, install the built tarball by its actual path:
 

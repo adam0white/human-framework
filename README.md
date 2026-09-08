@@ -2,9 +2,9 @@
 
 A simulation laboratory developing reusable components for situated human action and development, grounded in Islam with a **Sunni, Hanafi–Maturidi starting point**, informed by empirical research, and explicit about the difference between revelation, interpretation, evidence and engineering choices.
 
-**2026-09-07 · App 0.4.0:** three complete small games extend the first workshop: **Pump Yard**, **The last water**, and **Courier Round**. All are live. Each owns its world and uses the unchanged human component for body, capacity and practice. They were authored in parallel by three separate GPT-6 Astra agents at ultra effort, on isolated branches. The laboratory remains engine 0.3.0, the human component 0.1.0, and the original workshop keeps its save format. [Current milestone and verification](docs/release-0.4.md). No LLM or API key is needed to play, simulate or replay. Local runtime needs no package installation; deployment uses an explicit asset allowlist and pinned Wrangler tooling.
+**2026-09-07 · App 0.5.0:** **Common Ground** adds continuing cooperative construction with concurrent jobs, an explicit shared project, and next-event or running-clock controls. The courtyard now explains both people's actions and preserves optional replays. The existing body/practice component and an additive event clock can be installed as a standalone local package. Laboratory engine **0.3.0** and human component **0.1.0** remain unchanged. [Milestone and verification](docs/release-0.5.md) · [What may graduate to MVP](docs/mvp-contract.md). No LLM or API key is needed to play or simulate.
 
-**Direction and external review:** three fresh internal reviewers and two separate Claude CLI processes requested with `--model fable` examined overlapping architecture, scientific and product questions. The [internal synthesis](docs/post-mvp-review.md) and [external review verification](research/reviews/2026-09-07-claude-fable-verification.md) preserve agreements, mistakes, disagreements and provenance. The external reviews examined frozen commit `08aab97`, before the present implementation; a [separate implementation review](docs/release-code-review-0.3.md) covers the later code.
+**Direction and review:** separate GPT-6 Astra agents at ultra effort own implementation lanes and cross-review other authors. Two new separate Claude CLI processes requested with `--model fable` reviewed a frozen design snapshot; the [current synthesis](docs/reviews/2026-09-07-ongoing-review.md) records what was accepted, corrected or rejected. Earlier [direction reviews](docs/post-mvp-review.md), [0.3 external verification](research/reviews/2026-09-07-claude-fable-verification.md) and [0.4 game reviews](docs/reviews/2026-09-07-games-review-synthesis.md) retain their original source scopes.
 
 ## Play
 
@@ -12,13 +12,14 @@ A simulation laboratory developing reusable components for situated human action
 
 | Game | What you decide |
 |---|---|
+| [Common Ground](https://human.adamwhite.work/commons/) | Gather, build, recover and agree on a shared project. Different jobs run concurrently; useful structures and supply caches persist. Optional solo setup. |
 | [Pump Yard](https://human.adamwhite.work/shift/) | Order three pump repairs across an eight-hour shift, allocate one spare, build task experience, recover, and verify useful service. Single person; partial service earns points. |
 | [The last water](https://human.adamwhite.work/courtyard/) | Carry and allocate scarce water between two households. Make requests and loans; independently accept or refuse exchanges. |
 | [Courier Round](https://human.adamwhite.work/courier/) | Deliver six parcels with three bag slots. Choose routes, inspections and parcel order against different due times. Single person. |
 | [Before departure](https://human.adamwhite.work/workshop/) | A short introduction: collect a tool, patch or replace one pump fitting, and test it before departure. Single person. |
 
 Each game stores its own active run on the device. Saves and optional command replays are game-specific. Instructions are in the game; model notes and policy hints stay collapsed. The longer games are available locally at the same paths after this revision is checked out.
-[Plain-language roadmap and evidence map](docs/roadmap.md) · [What is rejected or deferred](research/decision-status.md) · [Private source repository](https://github.com/adam0white/human-framework) · [Deployment workflow](docs/deployment.md)
+[Portable runtime and installation](docs/portable-runtime.md) · [Supplied play-run analysis](docs/user-run-feedback-2026-09-07.md) · [Plain-language roadmap and evidence map](docs/roadmap.md) · [What is rejected or deferred](research/decision-status.md) · [Private source repository](https://github.com/adam0white/human-framework) · [Deployment workflow](docs/deployment.md)
 
 For optional local development:
 
@@ -64,6 +65,8 @@ This is an engineering loop, not an anatomy of the soul or a model of divine dec
 
 ```sh
 npm test
+npm run package:runtime
+npm run benchmark:commons
 npm run simulate -- courier --seed 7
 npm run simulate -- workshop --seed 31 --policy baseline --json artifacts/my-replay.json
 npm run simulate -- solo --seed 7 --policy planned-simple
@@ -86,7 +89,7 @@ const restored = replay(exportReplay(next));
 
 The ranking override only inspects an alternative policy; it does not mutate the run. Candidates sort by `selectionTier`, then additive score, then action ID. Actor order is stable and serial within each lab round. Current scenarios require dimensionless `goalUtility`: converting physical units rescales progress/output/target/consumption, not that value. Full's deadline term is a utility heuristic, not multistep planning.
 
-Replay uses the embedded scenario, commands and matching engine: frozen 0.1.0 and 0.2.0 remain available for read-only historical inspection, while the current laboratory creates 0.3.0 runs. Unsupported versions are rejected. Replays include hidden setup. Laboratory modules are in `src/core`, historical execution in `src/legacy`, presets in `src/scenarios`, and browser adapters in `web`. The narrower component is `src/human` (version 0.1.0); its first host is `src/games/workshop.js`. All four hosts own their resources, clock, task outcomes and completion rules. The courtyard social responses are authored in that host; they have not been extracted into a shared social API. A new shared mechanism needs an explicit model change and validation.
+Replay uses the embedded scenario, commands and matching engine: frozen 0.1.0 and 0.2.0 remain available for read-only historical inspection, while the current laboratory creates 0.3.0 runs. Unsupported versions are rejected. Replays include hidden setup. Laboratory modules are in `src/core`, historical execution in `src/legacy`, presets in `src/scenarios`, and browser adapters in `web`. The narrower component is `src/human` (version 0.1.0); its first host is `src/games/workshop.js`. All hosts own their resources, task outcomes and completion rules. Common Ground uses the additive `src/runtime` event clock and its own canonical minute advancement; the browser is a clock driver. The local package exports the human component and clock, not the laboratory Full policy. The courtyard social responses are authored in that host; they have not been extracted into a shared social API. A new shared mechanism needs an explicit model change and validation.
 
 ## What the experiments found
 
@@ -109,6 +112,7 @@ The [archived 0.2 report](docs/history/benchmark-report-0.2.0-2026-09-07.md) pre
 
 | Document | Purpose |
 |---|---|
+| [Ongoing-play prior art](research/ongoing-play-prior-art.md) | WazHack and Universal Paperclips precedents, time controls, persistent productive capacity and progression traps |
 | [Learning through work](research/learning-through-work.md) | Evidence for and against learning from unsuccessful attempts, and a reproducible matched-exposure model probe |
 | [Model reference](docs/model-reference.md) | Implemented equations, units, parameter status, update order and API boundaries |
 | [Coverage ledger](docs/coverage-ledger.md) | Implemented proxies, missing faculties, deferred modules and next discriminating experiments |
