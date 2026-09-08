@@ -23,7 +23,8 @@ function apply(h,s,c,receipts){
  if(c.type==='response')return h.receivePlanResponse(s,receipts[c.receipt]);
  throw Error('Unknown prescribed command.');
 }
-export async function runTrial(condition){
+export async function runTrial(condition,{unseal=false}={}){
+ if(condition.partition==='reserved'&&!unseal)throw Error('Reserved fixture is sealed until committed source freeze verification.');
  const h=await hostFor(condition.arm);let s=h.create(),index=0,maxSaveBytes=0,maxSaveCharacters=0;const commands=[],receipts={},violations=[];
  const initialSaveSha256=hash(h.save(s));
  for(let n=0;n<256&&!h.view(s).outcome;n++){
@@ -58,6 +59,6 @@ export async function replayTrial(trial){
 }
 export async function runComparison({partition='development',unseal=false}={}){
  const conditions=selectCases(partition,{unseal}),trials=[];
- for(const c of conditions)trials.push(await runTrial(c));
+ for(const c of conditions)trials.push(await runTrial(c,{unseal}));
  return {format:'service-plan-comparison',version:1,partition,trials};
 }

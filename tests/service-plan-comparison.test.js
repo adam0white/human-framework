@@ -71,3 +71,24 @@ test('the CLI rejects unsealed reserved output and existing output paths before 
   assert.equal(await readFile(out,'utf8'),'preserve');
  }finally{await rm(dir,{recursive:true,force:true});}
 });
+
+test('low-level execution also refuses a reserved fixture before touching its host',async()=>{
+ const {runTrial}=await import('../src/experiments/service-plan/experiment.js');
+ await assert.rejects(runTrial({partition:'reserved',arm:'invalid'}),/sealed/i);
+});
+
+test('development cases retain simple successes, useful revision and real discussion losses',async()=>{
+ const {runComparison}=await import('../src/experiments/service-plan/experiment.js');
+ const {trials}=await runComparison();const by=id=>trials.find(x=>x.id===id);
+ assert.equal(trials.length,25);assert.ok(trials.every(t=>t.status==='ended'&&t.replayEqual));
+ assert.equal(by('D2-visible-pump').final.delivery.units,2);
+ assert.equal(by('D5-agreement-revised').final.delivery.units,2);
+ assert.equal(by('D5-agreement-unrevised').final.delivery.units,1);
+ assert.equal(by('D4-agreement-risky-miss').final.delivery,null);
+ assert.equal(by('D4-agreement-overhead').final.delivery.at-by('D4-direct-fixed-overhead').final.delivery.at,2);
+ for(const t of trials){
+  for(const a of ['keeper','partner'])assert.equal(Object.values(t.final.paidByActor[a]).reduce((x,y)=>x+y,0),64);
+  const r=t.final.resources;
+  assert.equal(r.parts.keeper+r.parts.partner+r.reservedParts.keeper+r.reservedParts.partner+r.installedParts,3+Number(!r.shedAvailable));
+ }
+});
