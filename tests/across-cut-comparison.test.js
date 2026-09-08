@@ -196,6 +196,16 @@ test('evidence cannot relabel a real policy decision as prescribed to suppress v
   for(const [id,arm]of [['D1','notebook'],['S9-withdrawal-received','prescribed']]){
     const trial=runTrial(cases.find(c=>c.id===id),arm),forged=structuredClone(trial);
     const event=forged.events.find(e=>e.controllers?.keeper==='notebook');event.controllers.keeper='prescribed';event.decisions.keeper.reason='forged';
-    assert.throws(()=>replayTrial(forged),/equal|Expected|controller/,id);
+    assert.throws(()=>replayTrial(forged),/equal|expected|controller/i,id);
   }
+  const original=runTrial(cases.find(c=>c.id==='D1'),'notebook');
+  for(const mutate of [
+    t=>{t.kind='script';t.arm='prescribed';},
+    t=>{t.arm='prescribed';},
+    t=>{t.caseId='unregistered';},
+    t=>{t.caseId='S1-confirm';t.id='S1-confirm/prescribed';t.kind='script';t.arm='prescribed';t.family='same-paid confirmation';},
+    t=>{t.family='forged';},
+    t=>{t.initialSave.state.config.valveMinutes=12;},
+    t=>{t.setup={valveMinutes:12};}
+  ]){const relabeled=structuredClone(original);mutate(relabeled);assert.throws(()=>replayTrial(relabeled));}
 });

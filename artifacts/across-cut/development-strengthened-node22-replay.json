@@ -1,0 +1,655 @@
+{
+  "format": "across-cut-history-replay",
+  "version": 1,
+  "input": "artifacts/across-cut/development-strengthened.json.gz",
+  "inputSha256": "6b89b0e7cb2a25e1186d6d2cb1dcb93618b769666588bfbaedc5729950d84aa4",
+  "sourceCommit": "d88f3725517932db39afe2ce9d04b7df715e1395",
+  "sourceSha256": {
+    "docs/across-cut-comparison-amendments.md": "13e38a8fb15c5c3959df52c55dfeb45cb452fdfe3d15dc30da77fe9dbfd3a687",
+    "docs/across-cut-comparison-protocol.md": "ab75ddeb79511787a118f8c2f0dca4b9ec410286e986b8c3724b88bd3e3a8812",
+    "docs/across-cut-contract.md": "bb26d2f9358964141b8c99f6059b4155db5ca9527b35e238bd77839eacf19d57",
+    "scripts/across-cut-comparison.js": "7b24075cb62dc37679d3430b7b2e6bcdfef5b4104c2736af0de05540bfdef51e",
+    "scripts/across-cut-replay-history.js": "d152292832dc5b0e300d49244c670eec2430ddd8e607fd6e9c57869648a698e1",
+    "scripts/runtime-release-lock.json": "f27bd54f0549f5dcb8016099669f3a74f27a4edf2378953a60803711cbd1b165",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "src/experiments/across-cut/comparison/cases.js": "9bada90916bb3d3b4d74f40eca58492b37d7a4bcf060e5889109c5515a2c1e57",
+    "src/experiments/across-cut/comparison/evidence.js": "7bd6d1e5ec2962b95c402f60a6bcaa4a45bec576933e5f382860d292d1bcc036",
+    "src/experiments/across-cut/comparison/experiment.js": "fbbb215a3ba1bc3c62dc3b3f3d200919c4d4ef9ef8b5d38b55c015e563c92d7b",
+    "src/experiments/across-cut/comparison/policies.js": "f295ad1db1f91191c1caf18a6f44aeb782b247c625b1f0682773aa85a90a35b3",
+    "src/experiments/across-cut/comparison/provenance.js": "d38fe6490386f98e021a134a12cd5757874f582c97be06f310d82178b3398d5f",
+    "src/experiments/across-cut/comparison/representations.js": "157f4d7a899b9fc636f394be2a76305a8e89c16468eeeab2969f8cac94f53cc9",
+    "src/experiments/across-cut/host.js": "13200cf52557d5c7c45319548e79512998c020e4c73eb6e8f35f17e5800080db",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "tests/across-cut-comparison.test.js": "4abeceab7c213c9a82a48cc2ea2a795771b0a6051341145a82f4c83fad1363d3"
+  },
+  "sourceVerified": true,
+  "verified": [
+    {
+      "id": "D1/cart-only",
+      "finalSaveSha256": "b5fe5a4d31a33806de2e3857c943c63e1255cf06819f7120c51e50a2130a0979"
+    },
+    {
+      "id": "D1/no-radio-earliest",
+      "finalSaveSha256": "be4baf7d2922220b4dad5b4683120010e73fcced837f19aa015f643820399918"
+    },
+    {
+      "id": "D1/adaptive-no-radio",
+      "finalSaveSha256": "be4baf7d2922220b4dad5b4683120010e73fcced837f19aa015f643820399918"
+    },
+    {
+      "id": "D1/cart-first-no-radio",
+      "finalSaveSha256": "4c66cc96d2d5ae143e33e6c38bbbb1b2c331c97263defd14450c51174fc97fe3"
+    },
+    {
+      "id": "D1/fixed-early",
+      "finalSaveSha256": "be4baf7d2922220b4dad5b4683120010e73fcced837f19aa015f643820399918"
+    },
+    {
+      "id": "D1/fixed-conservative",
+      "finalSaveSha256": "4c458a2bbc70b40b92dd47c105b2ad3b77129018e660693a214bc141b0e90154"
+    },
+    {
+      "id": "D1/contact",
+      "finalSaveSha256": "96f98edbfb4acb5d9f13abaf048da80db345c4cab6e379535154ea98a8cfe63e"
+    },
+    {
+      "id": "D1/one-way-report",
+      "finalSaveSha256": "1eee2baa633dd3ee684746dcb277ca5a0abae511fefa2c14d59f5cc67200216d"
+    },
+    {
+      "id": "D1/two-way-report",
+      "finalSaveSha256": "f9fd4e95c005a67bec8601401d4dee51e7571642b0bc06122e6bf5a5dcf8dd56"
+    },
+    {
+      "id": "D1/reactive-radio",
+      "finalSaveSha256": "f9fd4e95c005a67bec8601401d4dee51e7571642b0bc06122e6bf5a5dcf8dd56"
+    },
+    {
+      "id": "D1/notebook",
+      "finalSaveSha256": "efcadce628e6d0f3a7f6aede9907a222af93cd1fac7c62efc6523b2571a20e7e"
+    },
+    {
+      "id": "D1/notebook-no-confirm",
+      "finalSaveSha256": "9e8c58882de0073e2335a510b9dd558a7a7e367936c7664c6136e4210ed7f7c9"
+    },
+    {
+      "id": "D2/cart-only",
+      "finalSaveSha256": "e5df7b4258811c411d16ea614a47a6b442735360014a078e9cfd6d182493a630"
+    },
+    {
+      "id": "D2/no-radio-earliest",
+      "finalSaveSha256": "4698b0caecd41bb2a06b381011e2343996c44152d1f80a30c8b6f4e9c08d6bb7"
+    },
+    {
+      "id": "D2/adaptive-no-radio",
+      "finalSaveSha256": "4698b0caecd41bb2a06b381011e2343996c44152d1f80a30c8b6f4e9c08d6bb7"
+    },
+    {
+      "id": "D2/cart-first-no-radio",
+      "finalSaveSha256": "ecd46660eceb779ef90a84260524fbaa3213ca8f638133317ae3322a0eec43c1"
+    },
+    {
+      "id": "D2/fixed-early",
+      "finalSaveSha256": "64887e1ac96ca5dec939939cc1804b0411473949d65bbc8d2b0346ce3589d880"
+    },
+    {
+      "id": "D2/fixed-conservative",
+      "finalSaveSha256": "3f829bc041daddc2a905b390609ae7b5bb4de4ec6957112263628fa05649b9fb"
+    },
+    {
+      "id": "D2/contact",
+      "finalSaveSha256": "4698b0caecd41bb2a06b381011e2343996c44152d1f80a30c8b6f4e9c08d6bb7"
+    },
+    {
+      "id": "D2/one-way-report",
+      "finalSaveSha256": "efc45596824ab69fc34a2e0d32ff55838ff02bfd083312294370a651ef7d977b"
+    },
+    {
+      "id": "D2/two-way-report",
+      "finalSaveSha256": "5821f8b09f91dfacc700ee317eb419cf03702dbd40bc0be7d01d706dcb5f7033"
+    },
+    {
+      "id": "D2/reactive-radio",
+      "finalSaveSha256": "5821f8b09f91dfacc700ee317eb419cf03702dbd40bc0be7d01d706dcb5f7033"
+    },
+    {
+      "id": "D2/notebook",
+      "finalSaveSha256": "c69b4933dd898bcfbcb24cc682422e089001d9be18a5f965cebf44f3ceb07795"
+    },
+    {
+      "id": "D2/notebook-no-confirm",
+      "finalSaveSha256": "bfc33d00f074b7c4c8b7218996289b989fc612dce0c07a467d6cab41bf5ab57c"
+    },
+    {
+      "id": "D3/cart-only",
+      "finalSaveSha256": "0e54e341925f39558f04ffae97cc1aea3ae8183c8c5c93d43962e6d627b69980"
+    },
+    {
+      "id": "D3/no-radio-earliest",
+      "finalSaveSha256": "2a7de89dde3529c2f1bf5c20535b91eb77eca6f0ef0a6940fdecdca5648a0e05"
+    },
+    {
+      "id": "D3/adaptive-no-radio",
+      "finalSaveSha256": "84449b741be0f630b63da32bedbe1e94fcda6ce41c1355b96aca54f2e9207ae8"
+    },
+    {
+      "id": "D3/cart-first-no-radio",
+      "finalSaveSha256": "91bb2df26c8f1583cc94e7420c7d1eb7858590d98c8e62fed8a7278a2252f507"
+    },
+    {
+      "id": "D3/fixed-early",
+      "finalSaveSha256": "84449b741be0f630b63da32bedbe1e94fcda6ce41c1355b96aca54f2e9207ae8"
+    },
+    {
+      "id": "D3/fixed-conservative",
+      "finalSaveSha256": "15a169dce7d7324732f66cfc7bd22818ccc9b30e75ad5cfa62d9a423843a87ac"
+    },
+    {
+      "id": "D3/contact",
+      "finalSaveSha256": "d0aa2a2c69a696dc3564a872fbd4505025889c28b8f59fa0266df70240a03a40"
+    },
+    {
+      "id": "D3/one-way-report",
+      "finalSaveSha256": "839f2d5f109a64089283f529ab89e2f846bc75bf2bc24acef2a19255d065b513"
+    },
+    {
+      "id": "D3/two-way-report",
+      "finalSaveSha256": "4c9fe780c98a9ad83169f956736222756be6978229b34b410f67bdccc3a67394"
+    },
+    {
+      "id": "D3/reactive-radio",
+      "finalSaveSha256": "4c9fe780c98a9ad83169f956736222756be6978229b34b410f67bdccc3a67394"
+    },
+    {
+      "id": "D3/notebook",
+      "finalSaveSha256": "4c9fe780c98a9ad83169f956736222756be6978229b34b410f67bdccc3a67394"
+    },
+    {
+      "id": "D3/notebook-no-confirm",
+      "finalSaveSha256": "4c9fe780c98a9ad83169f956736222756be6978229b34b410f67bdccc3a67394"
+    },
+    {
+      "id": "D4/cart-only",
+      "finalSaveSha256": "8cae5db29ae3bf7bb7071a3731968388c38597282f39e0241cb039ef94c946e1"
+    },
+    {
+      "id": "D4/no-radio-earliest",
+      "finalSaveSha256": "4989cd421498166925d7d05f5ae132b9f29108e7e7e78b81c211818f7a2266a8"
+    },
+    {
+      "id": "D4/adaptive-no-radio",
+      "finalSaveSha256": "4989cd421498166925d7d05f5ae132b9f29108e7e7e78b81c211818f7a2266a8"
+    },
+    {
+      "id": "D4/cart-first-no-radio",
+      "finalSaveSha256": "b8f24728cbea53f6f17e6d5bb62e2b4df642cee169fa7ebef3a5bf8b29430874"
+    },
+    {
+      "id": "D4/fixed-early",
+      "finalSaveSha256": "b6ceda63a5131845862a632a4ab93ddc0de54e0671f9f70151bc4e129a034679"
+    },
+    {
+      "id": "D4/fixed-conservative",
+      "finalSaveSha256": "eb6638566ffd96b8cb36fc09c4b9a18d7d0fc457d18819b04f0756af1eacfd57"
+    },
+    {
+      "id": "D4/contact",
+      "finalSaveSha256": "aba44cb6ea04d42f38ba7619efdc1b22bc119fdafa6bb43cd3e3d15d5c474d05"
+    },
+    {
+      "id": "D4/one-way-report",
+      "finalSaveSha256": "84fbb806326b70e8ea48a4cfd5de242fbe7ea7d8f9add9d7c6ce318d478889a4"
+    },
+    {
+      "id": "D4/two-way-report",
+      "finalSaveSha256": "d5ebd9048895af24602f86eddbb430fe65aa8c9b9b03db857f5104d451dae188"
+    },
+    {
+      "id": "D4/reactive-radio",
+      "finalSaveSha256": "d5ebd9048895af24602f86eddbb430fe65aa8c9b9b03db857f5104d451dae188"
+    },
+    {
+      "id": "D4/notebook",
+      "finalSaveSha256": "b82af96754c13a93e02ac4b2a884e47111c7c5d33eb33ae7d929650591016414"
+    },
+    {
+      "id": "D4/notebook-no-confirm",
+      "finalSaveSha256": "c8a63ec183c0c354580d028bbc4849c230b7fb1e6b52ab02ef586e9b39962518"
+    },
+    {
+      "id": "D5/cart-only",
+      "finalSaveSha256": "27b884abe67c6743d6f0b34e97f370516986a6b275a250d7bc08572c80626048"
+    },
+    {
+      "id": "D5/no-radio-earliest",
+      "finalSaveSha256": "bac2970dd96e5497a9e5428ebf35dc5399d47044b9d833e346e6d97eacfe00dd"
+    },
+    {
+      "id": "D5/adaptive-no-radio",
+      "finalSaveSha256": "bac2970dd96e5497a9e5428ebf35dc5399d47044b9d833e346e6d97eacfe00dd"
+    },
+    {
+      "id": "D5/cart-first-no-radio",
+      "finalSaveSha256": "bac2970dd96e5497a9e5428ebf35dc5399d47044b9d833e346e6d97eacfe00dd"
+    },
+    {
+      "id": "D5/fixed-early",
+      "finalSaveSha256": "816c5876b0ddfe5fa1d496ee4552dcdcdcd773520cad3e727d1e54ce6e4d07c4"
+    },
+    {
+      "id": "D5/fixed-conservative",
+      "finalSaveSha256": "90850cee1c5b61c425f094ca8218ab1024f872dfb033fad524e7110c163725cf"
+    },
+    {
+      "id": "D5/contact",
+      "finalSaveSha256": "bac2970dd96e5497a9e5428ebf35dc5399d47044b9d833e346e6d97eacfe00dd"
+    },
+    {
+      "id": "D5/one-way-report",
+      "finalSaveSha256": "364f727fa7499bf2942ca88bdd6aacda7829cdad732fd6e4505038fb0661d47d"
+    },
+    {
+      "id": "D5/two-way-report",
+      "finalSaveSha256": "b4b5678418a45cf04f8c92b3f9762a9583d8c62cee5e538fdfe2cd215aeca0b5"
+    },
+    {
+      "id": "D5/reactive-radio",
+      "finalSaveSha256": "b4b5678418a45cf04f8c92b3f9762a9583d8c62cee5e538fdfe2cd215aeca0b5"
+    },
+    {
+      "id": "D5/notebook",
+      "finalSaveSha256": "0b56a76da3557bde5fa1788b17a2e66d63a26b54bdc5a80669a6c46ffbeac19b"
+    },
+    {
+      "id": "D5/notebook-no-confirm",
+      "finalSaveSha256": "13504fb2788ca405780fe2bbd94450275d3916197f7351b85f3d6362efbb86fc"
+    },
+    {
+      "id": "D6/cart-only",
+      "finalSaveSha256": "5208636d0501f842c51dc777f34d8a5faa183002195e93855bc99467def45787"
+    },
+    {
+      "id": "D6/no-radio-earliest",
+      "finalSaveSha256": "24609dceb52114c75477e4ad013baa58c285bf87a9e64a4d0173c5e47d3e75d0"
+    },
+    {
+      "id": "D6/adaptive-no-radio",
+      "finalSaveSha256": "24609dceb52114c75477e4ad013baa58c285bf87a9e64a4d0173c5e47d3e75d0"
+    },
+    {
+      "id": "D6/cart-first-no-radio",
+      "finalSaveSha256": "fb44cde0e7ff437921e714c52950c2a0d8d3b530754b23e485db5c9390b6cea4"
+    },
+    {
+      "id": "D6/fixed-early",
+      "finalSaveSha256": "24609dceb52114c75477e4ad013baa58c285bf87a9e64a4d0173c5e47d3e75d0"
+    },
+    {
+      "id": "D6/fixed-conservative",
+      "finalSaveSha256": "b389462f7189a4aef3564202c30d68f75aac39bce4e1de2dfa312de5ac546bc5"
+    },
+    {
+      "id": "D6/contact",
+      "finalSaveSha256": "ebd187285e7c604787c905640f0ae9b28ed9c06149c061c50fa8306dfdf4dfbe"
+    },
+    {
+      "id": "D6/one-way-report",
+      "finalSaveSha256": "e482129460967ec82c07dc03b1f306743273ea5555ffe60c51acba8844f94a52"
+    },
+    {
+      "id": "D6/two-way-report",
+      "finalSaveSha256": "5b4bae3aec8135e72a32a46e0f1a2053c61d4687de19dda6b1e6f03750ef9d24"
+    },
+    {
+      "id": "D6/reactive-radio",
+      "finalSaveSha256": "5b4bae3aec8135e72a32a46e0f1a2053c61d4687de19dda6b1e6f03750ef9d24"
+    },
+    {
+      "id": "D6/notebook",
+      "finalSaveSha256": "5b4bae3aec8135e72a32a46e0f1a2053c61d4687de19dda6b1e6f03750ef9d24"
+    },
+    {
+      "id": "D6/notebook-no-confirm",
+      "finalSaveSha256": "5b4bae3aec8135e72a32a46e0f1a2053c61d4687de19dda6b1e6f03750ef9d24"
+    },
+    {
+      "id": "D7/cart-only",
+      "finalSaveSha256": "844807e74c97cf2f44515aefc16a30d3fc3d53013d94b396b24c06516cd6c3a7"
+    },
+    {
+      "id": "D7/no-radio-earliest",
+      "finalSaveSha256": "41a2820bc98423269b6560bf201143072531a011d4ef2f4c75f4357b1358aa9e"
+    },
+    {
+      "id": "D7/adaptive-no-radio",
+      "finalSaveSha256": "8f57af9ad148a9e2614bc6dde080d4659cdd352172624c7b064603c3679f52dc"
+    },
+    {
+      "id": "D7/cart-first-no-radio",
+      "finalSaveSha256": "a64f9cdc551aa96dee2ea0881ad831aafc1900c4fb596edd471c51cb2bdf3800"
+    },
+    {
+      "id": "D7/fixed-early",
+      "finalSaveSha256": "8f57af9ad148a9e2614bc6dde080d4659cdd352172624c7b064603c3679f52dc"
+    },
+    {
+      "id": "D7/fixed-conservative",
+      "finalSaveSha256": "86b48f44eb7b0169500fea0f3606100133ed736402daceb9c56e0e893dbafb8d"
+    },
+    {
+      "id": "D7/contact",
+      "finalSaveSha256": "e1de2ffb4f3faa9c19a6e34d4848fe892a8ddb2e7cde24b4900305ded7353d1a"
+    },
+    {
+      "id": "D7/one-way-report",
+      "finalSaveSha256": "954b0ff4fc51fe8de076a93950911673cd99b75cd98a489d52793ab06a37047e"
+    },
+    {
+      "id": "D7/two-way-report",
+      "finalSaveSha256": "4f7c4291b3669df18a2cfbf253aee9ed11d52e38b91e00676beff9b026886761"
+    },
+    {
+      "id": "D7/reactive-radio",
+      "finalSaveSha256": "4f7c4291b3669df18a2cfbf253aee9ed11d52e38b91e00676beff9b026886761"
+    },
+    {
+      "id": "D7/notebook",
+      "finalSaveSha256": "3ad63a5d4af2e5c7fc7582cfe80e4903f9b9cf5069885419746eaee2b7c77cdd"
+    },
+    {
+      "id": "D7/notebook-no-confirm",
+      "finalSaveSha256": "c8ce85bf5b1067bdac4ffece49da0d40d104a7522e764eaff6a553968d139c88"
+    },
+    {
+      "id": "D8/cart-only",
+      "finalSaveSha256": "b164cd788afaf6d655ffd6651553cf90d1413c48ee65180e2c17f317abb8f154"
+    },
+    {
+      "id": "D8/no-radio-earliest",
+      "finalSaveSha256": "3842917ae316536bfacda0e2c381d5b40ff142bab1bc34b2b0ebfb32f5a80978"
+    },
+    {
+      "id": "D8/adaptive-no-radio",
+      "finalSaveSha256": "3842917ae316536bfacda0e2c381d5b40ff142bab1bc34b2b0ebfb32f5a80978"
+    },
+    {
+      "id": "D8/cart-first-no-radio",
+      "finalSaveSha256": "f2c5fd26c9a6af2ffdd10517936920b3342263563448e1dd269bddbdd6c1a9d6"
+    },
+    {
+      "id": "D8/fixed-early",
+      "finalSaveSha256": "bdc4fe3a01746001fbe7147daeac00e278a358aba6c96d95d83fbc2b476eef65"
+    },
+    {
+      "id": "D8/fixed-conservative",
+      "finalSaveSha256": "af6acc840f3013c73c4ebeae6b4b90eaaa951421e1af951f1718c78a2df6bfd1"
+    },
+    {
+      "id": "D8/contact",
+      "finalSaveSha256": "3842917ae316536bfacda0e2c381d5b40ff142bab1bc34b2b0ebfb32f5a80978"
+    },
+    {
+      "id": "D8/one-way-report",
+      "finalSaveSha256": "06ca3fb20ce8e9e652ac58bb690a9ab703179d56e4c3854bb36272646008bc7c"
+    },
+    {
+      "id": "D8/two-way-report",
+      "finalSaveSha256": "59e14fd49f368d54d66ac6b4a1bf6ba49b229431575b519cb73709292a1b49b2"
+    },
+    {
+      "id": "D8/reactive-radio",
+      "finalSaveSha256": "59e14fd49f368d54d66ac6b4a1bf6ba49b229431575b519cb73709292a1b49b2"
+    },
+    {
+      "id": "D8/notebook",
+      "finalSaveSha256": "59e14fd49f368d54d66ac6b4a1bf6ba49b229431575b519cb73709292a1b49b2"
+    },
+    {
+      "id": "D8/notebook-no-confirm",
+      "finalSaveSha256": "59e14fd49f368d54d66ac6b4a1bf6ba49b229431575b519cb73709292a1b49b2"
+    },
+    {
+      "id": "D9/cart-only",
+      "finalSaveSha256": "52055262ff9280a6d252e12cb8a1567dc8ef3301ec14f8144e72d2099cb10e1d"
+    },
+    {
+      "id": "D9/no-radio-earliest",
+      "finalSaveSha256": "48911603a65c248a22543ac6499d5159d490aad9a56c14c86202141c5e1acff7"
+    },
+    {
+      "id": "D9/adaptive-no-radio",
+      "finalSaveSha256": "48911603a65c248a22543ac6499d5159d490aad9a56c14c86202141c5e1acff7"
+    },
+    {
+      "id": "D9/cart-first-no-radio",
+      "finalSaveSha256": "17cee2d27057e0d1f3c1f1ecf9e6239fd70182014425c98206aef891ec568f45"
+    },
+    {
+      "id": "D9/fixed-early",
+      "finalSaveSha256": "24dda73ec442561cd3b53d09ee2e4eb63f38c2cd40bf501becaef6c441b21c27"
+    },
+    {
+      "id": "D9/fixed-conservative",
+      "finalSaveSha256": "c9aa79bc4d7cc6b3eeae4605f87aa7a7f6bacefa7193685734c64b0444f18e38"
+    },
+    {
+      "id": "D9/contact",
+      "finalSaveSha256": "48911603a65c248a22543ac6499d5159d490aad9a56c14c86202141c5e1acff7"
+    },
+    {
+      "id": "D9/one-way-report",
+      "finalSaveSha256": "b273245c14152871304f37898daf4489de5a95b54ca0b4a93706bf84d0de1ce9"
+    },
+    {
+      "id": "D9/two-way-report",
+      "finalSaveSha256": "4fd9331d70de8130ee010f77bd446ccedfd9cb2e53e41ea319f6a5c44e540c46"
+    },
+    {
+      "id": "D9/reactive-radio",
+      "finalSaveSha256": "4fd9331d70de8130ee010f77bd446ccedfd9cb2e53e41ea319f6a5c44e540c46"
+    },
+    {
+      "id": "D9/notebook",
+      "finalSaveSha256": "cd9a0dd636dfabb54c51e2bc01d4fd343f9c9f8b302a8b0bd8e643aa80ba0103"
+    },
+    {
+      "id": "D9/notebook-no-confirm",
+      "finalSaveSha256": "5ea7533bde2d38971cc425dde9bcbe18266678d922a08b86a240782fdadcb4d7"
+    },
+    {
+      "id": "D10/cart-only",
+      "finalSaveSha256": "50812be382d1ae041b7437c1bb4ee68b6e436097ffbbdade44dc6eaa38ee01a5"
+    },
+    {
+      "id": "D10/no-radio-earliest",
+      "finalSaveSha256": "cee53da1eb376ffb9932c147c6c2ac6b78dcc5fa0ea3219159542048bb382b05"
+    },
+    {
+      "id": "D10/adaptive-no-radio",
+      "finalSaveSha256": "cee53da1eb376ffb9932c147c6c2ac6b78dcc5fa0ea3219159542048bb382b05"
+    },
+    {
+      "id": "D10/cart-first-no-radio",
+      "finalSaveSha256": "cee53da1eb376ffb9932c147c6c2ac6b78dcc5fa0ea3219159542048bb382b05"
+    },
+    {
+      "id": "D10/fixed-early",
+      "finalSaveSha256": "ef8ced434efbf6c3d2f58be23d18e2c572aaba22dfe90631d7fc44d1abcf66ae"
+    },
+    {
+      "id": "D10/fixed-conservative",
+      "finalSaveSha256": "92e573cce501112e27c9c27dcf127d73788c9932aec97e6a0a5588b1b3658261"
+    },
+    {
+      "id": "D10/contact",
+      "finalSaveSha256": "cee53da1eb376ffb9932c147c6c2ac6b78dcc5fa0ea3219159542048bb382b05"
+    },
+    {
+      "id": "D10/one-way-report",
+      "finalSaveSha256": "666a8674bd109d2d4f254fa155a819c88da2e7c7f6dc5228ddd1c7bdbcc8e06c"
+    },
+    {
+      "id": "D10/two-way-report",
+      "finalSaveSha256": "9be45da6689d6b95e76cadc9513158a1419d9ec98297a01dfe35d4b6072d9352"
+    },
+    {
+      "id": "D10/reactive-radio",
+      "finalSaveSha256": "9be45da6689d6b95e76cadc9513158a1419d9ec98297a01dfe35d4b6072d9352"
+    },
+    {
+      "id": "D10/notebook",
+      "finalSaveSha256": "7e82cf010c9e10dbbd060162ebb1b8e5a120a3663c7c0aa00770ebd036cb6351"
+    },
+    {
+      "id": "D10/notebook-no-confirm",
+      "finalSaveSha256": "71dc78fab3a479645e1656064c5461698cc2f9859c4a0414c88c19e9420f9f1f"
+    },
+    {
+      "id": "D11/cart-only",
+      "finalSaveSha256": "3576fb16e157a08c208776a95ccc39f9ceff6451d967239109b0b0ece8470571"
+    },
+    {
+      "id": "D11/no-radio-earliest",
+      "finalSaveSha256": "e63a7418df7fb249a7497e882cbfc2b51828d3db15e80587b1cb998ab713ea68"
+    },
+    {
+      "id": "D11/adaptive-no-radio",
+      "finalSaveSha256": "6a0b365a0870b77cab97e59f870123a317260cb87b5058a16fb1f3e472eb5c0e"
+    },
+    {
+      "id": "D11/cart-first-no-radio",
+      "finalSaveSha256": "904e09d7a7ef4aa26e6547dc3b3a2148523a521a34792c154442b07d9ad2059b"
+    },
+    {
+      "id": "D11/fixed-early",
+      "finalSaveSha256": "33ba9584d888fe025b9fa0c6ed5a774b3476975ee3eacb0a9cb05bf51f9780fc"
+    },
+    {
+      "id": "D11/fixed-conservative",
+      "finalSaveSha256": "e63a7418df7fb249a7497e882cbfc2b51828d3db15e80587b1cb998ab713ea68"
+    },
+    {
+      "id": "D11/contact",
+      "finalSaveSha256": "e63a7418df7fb249a7497e882cbfc2b51828d3db15e80587b1cb998ab713ea68"
+    },
+    {
+      "id": "D11/one-way-report",
+      "finalSaveSha256": "64313e55072f16928cf59c5285865347bb0dcb6d91868c4e501127d87bfd280e"
+    },
+    {
+      "id": "D11/two-way-report",
+      "finalSaveSha256": "8f145442de12e9b5545b6e98fb365ade0512bde55a7f6684636685307b497bc2"
+    },
+    {
+      "id": "D11/reactive-radio",
+      "finalSaveSha256": "8f145442de12e9b5545b6e98fb365ade0512bde55a7f6684636685307b497bc2"
+    },
+    {
+      "id": "D11/notebook",
+      "finalSaveSha256": "8f145442de12e9b5545b6e98fb365ade0512bde55a7f6684636685307b497bc2"
+    },
+    {
+      "id": "D11/notebook-no-confirm",
+      "finalSaveSha256": "8f145442de12e9b5545b6e98fb365ade0512bde55a7f6684636685307b497bc2"
+    },
+    {
+      "id": "D12/cart-only",
+      "finalSaveSha256": "8e2cbfefcb1b3b6d6144163cac5cb8ade82eb01102845226f3ba16c56850f458"
+    },
+    {
+      "id": "D12/no-radio-earliest",
+      "finalSaveSha256": "53638ffdc986546565502cdb6776a9887d21e921ad6c59fed04ac008465be27b"
+    },
+    {
+      "id": "D12/adaptive-no-radio",
+      "finalSaveSha256": "53638ffdc986546565502cdb6776a9887d21e921ad6c59fed04ac008465be27b"
+    },
+    {
+      "id": "D12/cart-first-no-radio",
+      "finalSaveSha256": "53638ffdc986546565502cdb6776a9887d21e921ad6c59fed04ac008465be27b"
+    },
+    {
+      "id": "D12/fixed-early",
+      "finalSaveSha256": "53638ffdc986546565502cdb6776a9887d21e921ad6c59fed04ac008465be27b"
+    },
+    {
+      "id": "D12/fixed-conservative",
+      "finalSaveSha256": "53638ffdc986546565502cdb6776a9887d21e921ad6c59fed04ac008465be27b"
+    },
+    {
+      "id": "D12/contact",
+      "finalSaveSha256": "53638ffdc986546565502cdb6776a9887d21e921ad6c59fed04ac008465be27b"
+    },
+    {
+      "id": "D12/one-way-report",
+      "finalSaveSha256": "dcc8ffdd8b6ff3efe18946351b68fb8fe9d64e4b47ea9c49a1b72dd85f471c08"
+    },
+    {
+      "id": "D12/two-way-report",
+      "finalSaveSha256": "9b5ea105061330c4e685dd236c21b62f2d2bd6aec4f67ea1c4ae39826151b283"
+    },
+    {
+      "id": "D12/reactive-radio",
+      "finalSaveSha256": "9b5ea105061330c4e685dd236c21b62f2d2bd6aec4f67ea1c4ae39826151b283"
+    },
+    {
+      "id": "D12/notebook",
+      "finalSaveSha256": "9b5ea105061330c4e685dd236c21b62f2d2bd6aec4f67ea1c4ae39826151b283"
+    },
+    {
+      "id": "D12/notebook-no-confirm",
+      "finalSaveSha256": "9b5ea105061330c4e685dd236c21b62f2d2bd6aec4f67ea1c4ae39826151b283"
+    },
+    {
+      "id": "S1-confirm/prescribed",
+      "finalSaveSha256": "44303fb2f90b1859f775f795b8cec3de9f2684d28cbc2d72d6b854f212b5fe77"
+    },
+    {
+      "id": "S2-equal-cost-response/prescribed",
+      "finalSaveSha256": "6940b2aeb634d0cb3f5a999255a7814bddc779b65d5bdc016507f264c9decede"
+    },
+    {
+      "id": "S3-stale-response/prescribed",
+      "finalSaveSha256": "a6bac41089f568177a62a7f300b0975b953625118dbe9e05f9a482a909ef572c"
+    },
+    {
+      "id": "S4-stale-readiness/prescribed",
+      "finalSaveSha256": "8653364b9caac164aefd88445da7cd3686b1e7aef449e4201a61c2a928c8bdc8"
+    },
+    {
+      "id": "S5-omitted/prescribed",
+      "finalSaveSha256": "f6b9b35e8d0b8d39681f85b362b0d4cbe25ed8784a028d348ece6e6ac8975a8d"
+    },
+    {
+      "id": "S5-withdrawn/prescribed",
+      "finalSaveSha256": "9c28c340a477ae1f9485c9fa4b9078e5552c81f403b0066ebf8bdd9b69851333"
+    },
+    {
+      "id": "S6-contact/prescribed",
+      "finalSaveSha256": "b7dec6aca2b9cd668f72487634be3c63000f5a47ed0b4b73839f86bc5409cf82"
+    },
+    {
+      "id": "S7-cancel/prescribed",
+      "finalSaveSha256": "1900d37ecefaf9eb2c684e8d2746f60a70f1449d843ce080843b03bea759a40c"
+    },
+    {
+      "id": "S8-fixed-cart-insurance/prescribed",
+      "finalSaveSha256": "c4f952ac60438a2e8d08376f5a67ae37eb0f98d531bc6488f5bd4cec1b1df11c"
+    },
+    {
+      "id": "S9-withdrawal-received/prescribed",
+      "finalSaveSha256": "e1849cdac858844d6ac792f7c58efa08e9bb106dbcf5379c6609a8e87a4d5e48"
+    },
+    {
+      "id": "S10-withdrawal-lost/prescribed",
+      "finalSaveSha256": "940cb4c70d81af4acf594b461a959e22e2ea1f60b466b9db533e0711e7084683"
+    }
+  ],
+  "runtime": {
+    "node": "v22.0.0",
+    "platform": "darwin",
+    "architecture": "arm64"
+  }
+}

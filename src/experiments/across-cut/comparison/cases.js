@@ -62,6 +62,15 @@ const reserved=[
     ...successfulPrefix,a(13,'keeper',{task:'release'}),a(16,'receiver',{task:'attend',minutes:2}),a(17,'receiver',{control:'interrupt'}),a(17,'receiver',decide('withdraw'))
   ]),partition:'reserved'}
 ];
+// Registered unit diagnostic; it is outside the comparison matrix. Reading a
+// definition never grants the verified capability required to execute reserved cases.
+const noReplies=structuredClone(scripts.find(c=>c.id==='S10-withdrawal-lost'));
+noReplies.id='diagnostic-no-replies';noReplies.setup.channelOverrides['receiver:5']='loss';
+export function getCaseDefinition(id){
+  const definition=[...policyCases,...scripts,...reserved,noReplies].find(c=>c.id===id);
+  if(!definition)throw Error('Unregistered case cannot claim source-bound comparison replay; use a direct-host exploratory diagnostic or register its source definition.');
+  return structuredClone(definition);
+}
 export function selectCases(partition='development',freeze=null){
   if(!['development','reserved'].includes(partition))throw Error('Unknown comparison partition.');
   if(partition==='reserved'&&!isVerifiedFreeze(freeze))throw Error('Reserved cases are sealed until committed source freeze verification.');
