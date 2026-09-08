@@ -1,0 +1,61 @@
+# Independent Shared Promise UI and comparison review
+
+Reviewed 2026-09-08 in `/Users/abdul/code/human-framework`, HEAD `4d207341640cf5c9670310dc2ae66d2a70e7a482`. Read-only review; no source edits, commits, pushes, deploys or reserved-case executions. Other reviewer verdicts were not read. Root's in-progress package/gallery/live-verifier edits were present and excluded from the substantive review.
+
+## Verdict
+
+The comparison is reproducible and its reported claims are appropriately bounded. The shipped session/interaction paths tested well. Two concrete UI gaps should be fixed before claiming full conformity with the promised pause/slot-cost behavior. Neither requires changing the host or the comparison source.
+
+## Findings
+
+### P2: Explain permanent receiving-slot loss before requesting or stopping delivery
+
+Locations: `web/service-plan.js:96-98` (task details copied from the host), `web/service-plan.js:92` (generic stop control), `web/service-plan.html:27` (instructions); physical rule at `src/games/service-plan.js:46,49,66`.
+
+The task description only says the fallback uses the clinic's one load slot. The instructions say starting a cart commits it but omit that stopping cannot reclaim it; the full-delivery description does not mention a slot at all. The stop control simply says “Ask Deniz to stop,” and its response says “paid recovery and installed work remain.” The first explicit explanation that stopping permanently forfeits the slot appears in a disabled action after the slot has already been abandoned.
+
+Reproduced in Chrome at width 390: new clinic minute 37; expand Deniz's other requests; ask them to carry one unit by cart; immediately ask them to stop. Both actions are accepted at minute 37. The slot is now `{actor:'partner',route:'cart',departedAt:37,arrivedAt:null,status:'abandoned'}` and neither person can deliver anything, although no paid delivery minute elapsed. A reversible-looking stop thus decides the clinic outcome without explaining its decisive cost at the decision point. Add view-only explicit departure/stop copy for both cart and full delivery, e.g. starting commits today's slot permanently and stopping abandons that load without restoring it.
+
+Evidence: `/tmp/hf-plans-ui-review-browser/slot-repro.json`, `/tmp/hf-plans-ui-review-browser/abandoned-390.png`. The attempted keeper-cart version was refused by actual capacity despite an allowed rounded estimate, so the valid reproduction uses Deniz's accepted requested cart. That exploratory refusal was not treated as a defect.
+
+### P2: Editing an already-open play note does not pause running time
+
+Locations: `web/service-plan.js:137`, `web/play-note.js:49-55`, claimed behavior at `web/service-plan.html:27` and `docs/service-plan-ui.md:11`.
+
+The integration supplies only `onOpen`; the note component calls it only when its details opens. If the player opens the note, presses Play, and then returns to type in the still-open textarea, no focus/input/submit handler pauses the session. Reproduced at minute 37 with normal browser actions: immediately after filling the note the Play control remained `aria-pressed="true"`; after 1,250 ms the clock was 38 and still running. At 4x this can advance several meaningful minutes while the player writes, contrary to the plain UI promise that writing notes pauses time. Hook note focus/input/submit locally to `pauseSession` or extend the shared component's optional callback with corresponding regression coverage.
+
+Evidence: `/tmp/hf-plans-ui-review-browser/note-pause-repro.json`. The existing browser group exercises opening and then editing while paused; it does not cover editing after playback resumes with the note already open.
+
+## Scope and positive evidence
+
+Read `HANDOFF.md`, the MVP contract and roadmap for current boundaries; `docs/service-plan-ui.md`, all four `web/service-plan.*` files, the play-note component and session tests; all comparison protocol/report files, all four `src/experiments/service-plan/*` files, the CLI runner and its tests; development artifacts; relevant build allowlists and original-host bytes. Inspected selected host code only to verify the UI/experimental contract, leaving the full lifecycle audit to its separate reviewer.
+
+- Ran 23 tests from `tests/service-plan-session.test.js` and `tests/service-plan-comparison.test.js` on Node 26.8.1 and minimum 22.0.0. Both executions passed 23/23.
+- Ran a fresh development CLI output at `/tmp/hf-review-shared-plan-development.json`. All 25 variants completed, replayed exactly and retained their results. Every complete trial object is deep-equal to the corresponding `artifacts/service-plan/development-reviewed-host.json` trial; all bound source hashes also match. This verifies all reported morning/delivery/time/body/resource/coordination/response/journal values, not just a favorable subset.
+- Current maximum sampled save is 5,761 UTF-8 bytes. New host 44,997 bytes/296 nonblank lines; generated visible rival 45,231/297; transform 1,143/14. The report's current followup counts match. Earlier first-source counts remain clearly labeled as historical.
+- Competent timed controls retain two-unit arrivals at 59 in D1 and51 in D2; visible-pump retains two units at 51 in D2 and its one-unit failure at 60 in D1. Paid agreement does not dominate those controls. D4 preserves the two-minute unnecessary-discussion delay and zero-unit risky miss. D5 retains revised 59/two-unit versus unrevised 63/one-unit outcomes; D6 retains the paid refusal without erasing old terms.
+- Controller selection reads only detached public clock; prescribed schedules, different discussion/recovery exposure and old/new physical-rule differences are explicit. Old Service Day host/UI files are byte-identical against preregistration base 860aeb2. The visible rival is exactly one insertion before ordinary cart fallback and the transform reverses to the exact base host. No stronger cognition, human benefit or extraction claim is supported or made.
+- Default tests/default CLI execute development only. Reserved selectors and low-level runTrial reject absent unseal; reserved CLI refuses before import/execution without a committed manifest. `verifyFreeze` checks committed manifest bytes, current source hashes, committed source bytes and original protocol identity. The dependency list covers the actual host/runtime/model imports. This is a source/process gate, with an explicitly readable catalogue, not cryptographic blinding. No freeze or reserved evaluation was performed by this review.
+- Private comparison modules and evidence are outside `scripts/build.js`'s publication directories and package runtime source tree; the public route maps explicitly to the new page. No build/deploy was run during this review to avoid root's integration state.
+- Ran the actual browser runner against my own unmodified local server on 4198. Chrome 152.0.7977.77, widths 320x700, 390x844, 1280x900. The runner passed every documented group with zero console/page/request errors, zero HTTP errors and zero non-GET requests. Report and six screenshots at `/tmp/hf-plans-ui-review-browser/`. Visually inspected clinic 320, accepted 390 and clinic 1280 screenshots: layout is legible, initial discussion action fits first viewport (bottom 671.27px at 320), and accepted state elevates actual pump work rather than treating acceptance as work.
+- Browser/session coverage confirms paid real clinic 37 history; independent ownership/paid condition carryover; invitation versus completed terms acceptance; pending/revision labels; explicit actual readiness; no automatic keeper pump; promised-start/readiness boundaries; exact paused import/download/reload; rejected malformed/original-control saves; paid interruption/refusal; limited withdrawal preserving underway work; safe arrival and failed risky promises; optional bounded public note export without upload.
+
+## Remaining limits
+
+This is a local automated browser and source/evidence review, not production verification, physical-phone testing, human playtesting, measured clarity or authoring benefit. The initial session at 37, protocol E37 and protocol G41 are distinct paid histories and remain properly distinguished. The development controls are authored scripts and deliberately bounded rivals; they do not establish that a stronger simple controller would fail. Reserved outcomes remain unknown to this review. Source counts and maximum observed save sizes are not complexity/usefulness measures or worst-case size bounds.
+
+No reviewer-owned repository artifacts were created. The temporary 4198 server is stopped after the review; root owns fixes, scope-appropriate verification, source freezes, final independent dispositions and release.
+
+## Scoped recheck after root's UI patch, 2026-09-08
+
+**The two P2 findings above are resolved in the checked working-tree patch.** Root changed only `web/service-plan.js` and `.html` for these fixes. This reviewer made no repository edits. Host hash remains `fd65844c266aaaf50addb941c1f49a34ed5bef8780a2f2d4254b4d2a61f591f6`; shared play-note source remains unchanged. Checked UI hashes are JS `6d96ecb27bc1d9fc4366b18c6217322de0c538939ed911b99b85f124eae0bd79` and HTML `bf98bdb4f73885d153715f8ec05372251aa5147cfb3fbe0e0d4b9da58581991e`.
+
+I independently rechecked real Chrome interactions against root's server 4192. At 320/390/1280 widths, every cart/full-delivery action for both actors states that starting commits the only slot and a stopped trip cannot be replaced. A requested Deniz cart exposes the stop-forfeit label before stopping; after stopping the public state says the slot is forfeited with no replacement possible. All three widths pass initial action-in-viewport and document-width overflow assertions. At all three widths, focusing, typing into and downloading from an already-open note after deliberately resuming Play each returns playback to paused. A 1,100 ms wait after editing does not advance the minute; note export remains bounded public context.
+
+I also executed a legal requested **full delivery**: keeper rest 37–43, partner rest 38–43 and stop/restart 43–48 then 48–54; keeper pump 43–49; keeper full delivery starts 49. The available action already states slot permanence, and the underway stop says “Stop trip · forfeit delivery.” Stopping leaves the abandoned slot, as expected. My first scoped script tried keeper full delivery immediately after the 37–43 pump and correctly encountered actual fatigue refusal; its false assumption that this would start delivery failed the test assertion. I retained that report and changed only the verification setup to pay the needed recovery, then confirmed the accepted trip. This was a test-setup correction, not a host defect or concealed passing run.
+
+Additional root copy changes also pass: pending and accepted record IDs are absent from primary plan prose but retained in the collapsed Researcher view. The real accepted-plan path displays plain departure text at 45 and plain actual-arrival text at 51, retaining the accepted terms.
+
+Evidence: `/tmp/hf-plans-ui-review-browser/recheck/report.json` contains the three passing width groups and the initial full-trip capacity-assumption failure. `/tmp/hf-plans-ui-review-browser/recheck-followup/report.json` contains the corrected full-trip and plan-prose checks with no errors. The two temporary executable scripts are `/tmp/hf-plans-ui-recheck.mjs` and `/tmp/hf-plans-ui-recheck-followup.mjs`. Retained cart screenshots exist at all three widths and full-trip/arrival screenshots at 390. I visually inspected cart 320 and full-trip 390 screenshots in addition to DOM/overflow assertions. These scoped checks did not rerun broad tests or any comparison/reserved schedules; the frozen simulation and comparison source did not change.
+
+One non-blocking pre-existing copy issue surfaced on this less common direct-delivery route: with no agreement, the primary plan introduction still says “Deniz may cart at 42. Agree a wait for your pump work” at 49 when a full trip is already underway, and after slot abandonment. State-aware no-agreement copy for committed-slot and closed-day states would avoid suggesting an impossible negotiation. Root has been informed; this does not undermine either resolved P2 finding or the comparison evidence.

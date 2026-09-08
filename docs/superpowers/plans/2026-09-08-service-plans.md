@@ -19,13 +19,19 @@ The ordinary player view should explain a concrete promise, the recipient's answ
 
 ## Acceptance and release
 
-- [ ] Agree concrete core/public-view contract and new host/save boundary; commit protocol before comparison outcomes.
-- [ ] Execute two feasible plan terms and at least one useful revision with real paid costs; retain competent old-host result and direct-rule counterexamples.
-- [ ] Exercise refusal/interruption, stale or duplicate response, deadline/closing ties, missed promise, post-departure refusal, owned resources, save/import and command-budget continuation.
-- [ ] Implement and inspect the actual responsive UI, notes and save flows against real core.
-- [ ] Freeze/reproduce comparisons and reserved cases with complete outcome/cost accounting, avoiding claims of human authoring benefit or general cognition.
-- [ ] Obtain independent review, preserve actual Fable model/scope/failure provenance, fix defects and recheck their counterexamples.
+- [x] Agree concrete core/public-view contract and new host/save boundary; commit protocol before comparison outcomes.
+- [x] Execute two feasible plan terms and at least one useful revision with real paid costs; retain competent old-host result and direct-rule counterexamples.
+- [x] Exercise refusal/interruption, stale or duplicate response, deadline/closing ties, missed promise, post-departure refusal, owned resources, save/import and command-budget continuation.
+- [x] Implement and inspect the actual responsive UI, notes and save flows against real core.
+- [x] Freeze/reproduce comparisons and reserved cases with complete outcome/cost accounting, avoiding claims of human authoring benefit or general cognition.
+- [x] Obtain independent review, preserve actual Fable model/scope/failure provenance, fix defects and recheck their counterexamples.
 - [ ] Full suite, new tests on minimum Node22, runtime locks, static graph/build and production browser checks pass. Commit/push/deploy and verify `/release.json` plus every public payload against the exact app commit.
 - [ ] Record release evidence, current docs and next meaningful queue separately from deployed app source; no docs-only redeployment.
 
 Human playtesting, physical-device timing, useful human authoring effort, empirical calibration and qualified theological review remain open external tracks. Synthetic actors/notes and source-review verdicts do not fill them. The user's existing authorization covers implementation and delivery; no new approval pause is required for this bounded milestone.
+
+Integration checkpoint: core code `09c8460` and evidence `52cecfa`, UI `2d9b529`, and comparison development plus handover controls are integrated. Two fresh Astra reviews pass after scoped UI fixes. Fable design review is complete; Fable lifecycle source review timed out after 1,500 seconds without a verdict; a fresh extra Astra lifecycle review is running before the final reserved freeze/run. Current live app remains 0.8; do not restart completed lanes.
+
+Replacement lifecycle review found a release-blocking termination-budget defect at command counts 253/254. Original counterexamples are retained under `/tmp/hf-plans-fallback-*`; core lane is fixing general reserve guards, then the same fresh reviewer will recheck. Reserved cases remain sealed. Root UI fixes, both original Astra reviews, all 526 current tests and 53 minimum-version new tests otherwise pass.
+
+Final host review and comparison gates are now complete: corrective core `4de8965`, independently rechecked; freeze `b1ee8e8` binds source `91333d8`; four reserved outcomes retained and all 29 comparison journals replay on minimum Node 22. Main integrates final evidence `c69c14a`. Full final suite passes 530 tests and all 57 new tests pass Node 22. Root final UI/browser/build checks pass; push/deployment/live verification remains the current task.

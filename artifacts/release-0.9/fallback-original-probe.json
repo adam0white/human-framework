@@ -1,0 +1,70 @@
+{
+  "cap": {
+    "beforeAdvance": {
+      "now": 37,
+      "count": 252,
+      "pending": "plan:1",
+      "jobs": {
+        "keeper": "discuss",
+        "partner": "discuss"
+      },
+      "canInterrupt": true,
+      "paid": 0,
+      "current": null,
+      "slot": null
+    },
+    "atPartial": {
+      "now": 38,
+      "count": 253,
+      "pending": "plan:1",
+      "jobs": {
+        "keeper": "discuss",
+        "partner": "discuss"
+      },
+      "canInterrupt": false,
+      "paid": 2,
+      "current": null,
+      "slot": null
+    },
+    "interrupt": {
+      "code": "COMMAND_LIMIT",
+      "message": "Advance to finish the discussion and reach closing."
+    },
+    "ended": {
+      "now": 64,
+      "count": 253,
+      "jobs": {},
+      "canInterrupt": false,
+      "paid": 4,
+      "current": {
+        "id": "plan:1",
+        "revisionOf": null,
+        "createdAt": 37,
+        "respondedAt": 39,
+        "proposer": "keeper",
+        "recipient": "partner",
+        "terms": {
+          "pumpStartAt": 39,
+          "readyBy": 45,
+          "waitUntil": 45,
+          "fallback": "cart"
+        },
+        "status": "expired",
+        "contribution": {
+          "status": "missed",
+          "fulfilledAt": null
+        },
+        "actualReadyAt": null,
+        "closedAt": 45,
+        "closeReason": "FALLBACK_DEPARTURE"
+      },
+      "slot": {
+        "actor": "partner",
+        "route": "cart",
+        "departedAt": 45,
+        "arrivedAt": 63,
+        "status": "delivered"
+      }
+    }
+  }
+}

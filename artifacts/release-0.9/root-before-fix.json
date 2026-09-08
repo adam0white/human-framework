@@ -1,0 +1,30 @@
+{
+  "sourceSha256": "cbc62ed1c7cea778012e4dcbd60e4b3484702e27f94fe71810254b8feb8472c6",
+  "scope": "Four independently specified root regressions on actual imported host. No world edits, synthetic human feedback or reserved evaluation.",
+  "checks": [
+    {
+      "name": "cross-family no-effect refusals remain bounded and replayable",
+      "passed": false,
+      "code": "COMMAND_LIMIT",
+      "message": "No new proposals remain. Stop discussion or requested work and advance to closing."
+    },
+    {
+      "name": "an earlier contribution deadline is a visible event",
+      "passed": false,
+      "code": "ERR_ASSERTION",
+      "message": "Expected values to be strictly equal:\n\n53 !== 45\n"
+    },
+    {
+      "name": "planned work start pauses paid partial recovery before job end",
+      "passed": false,
+      "code": "ERR_ASSERTION",
+      "message": "Expected values to be strictly equal:\n\n49 !== 47\n"
+    },
+    {
+      "name": "a busy requested job crosses plan expiry without invalidating state or forced stop",
+      "passed": false,
+      "code": "INVALID_SAVE",
+      "message": "Agreement facts disagree with world."
+    }
+  ]
+}

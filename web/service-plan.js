@@ -33,7 +33,10 @@ for(const actor of actors){
 }
 function draft(){return {pumpStartAt:Number($('pump-at').value),readyBy:Number($('ready-by').value),waitUntil:Number($('wait-until').value),fallback};}
 function renderDraft(){
- const t=draft();text('proposed-summary','Proposed: after discussion, you rest until '+t.pumpStartAt+', then finish the pump by '+t.readyBy+'. Deniz waits until '+t.waitUntil+'. '+(t.fallback==='cart'?'If it is still unready, use the one-unit cart.':'If it is still unready, no cart fallback remains.'));
+ const t=draft(),v=getServicePlanView(session.game),end=v.now+v.coordination.discussionMinutes,remaining=v.coordination.readiness.pumpRequired-v.coordination.readiness.pumpWork;
+ const issue=![t.pumpStartAt,t.readyBy,t.waitUntil].every(Number.isSafeInteger)?'Use whole-minute times.':t.pumpStartAt<end?'Discussion ends at '+end+', after the proposed pump start.':t.pumpStartAt+remaining>t.readyBy?'The remaining pump work needs '+remaining+' paid minutes before readiness.':t.readyBy>t.waitUntil?'The promised readiness is later than the proposed wait.':t.waitUntil>57?'Full delivery must start by minute 57.':fallback==='cart'&&t.waitUntil>45?'A wait after 45 gives up the cart; choose the risk option.':fallback==='none'&&t.waitUntil<=45?'Use the cart option for a wait through 45.':v.coordination.current?.status==='active'&&end>=v.coordination.current.terms.waitUntil?'The current agreement expires before this revision can take effect.':null;
+ const warn=issue&&!v.coordination.pending&&v.coordination.discussionAvailable;
+ $('schedule-warning').hidden=!warn;text('schedule-warning',warn?'For a new discussion: '+issue+' This draft cannot be accepted. You would both still pay the discussion time.':'');text('proposed-summary','Proposed: after discussion, you rest until '+t.pumpStartAt+', then finish the pump by '+t.readyBy+'. Deniz waits until '+t.waitUntil+'. '+(t.fallback==='cart'?'If it is still unready, use the one-unit cart.':'If it is still unready, no cart fallback remains.'));
  $('safe-terms').setAttribute('aria-pressed',String(fallback==='cart'));$('risky-terms').setAttribute('aria-pressed',String(fallback==='none'));
 }
 function chooseTerms(risky){
@@ -52,16 +55,18 @@ function renderPlan(v){
  $('plan-panel').classList.toggle('early',v.phase==='morning'&&!current&&!pending);
  const labels={active:'Accepted',delivering:'Delivery underway',fulfilled:'Delivered',expired:'Wait ended',withdrawn:'Promise withdrawn'};
  text('plan-status',current?labels[current.status]??current.status:pending?'Proposed':'No agreement');
- text('plan-current',current?'Agreement '+current.id+' · accepted at '+current.respondedAt+(current.revisionOf?' · revises '+current.revisionOf:'')+'. '+(current.closeReason??'These are the terms Deniz accepted.'):'Deniz may cart at 42. Agree a wait for your pump work.');
+ const endings={FULL_ARRIVAL:'Two units arrived at the clinic.',FULL_DEPARTURE:'Deniz has departed with two units.',FALLBACK_DEPARTURE:'The one-unit cart has departed.',WAIT_EXPIRED:'The agreed waiting time ended.',BUSY_AT_EXPIRY:'Deniz was still busy when the agreed wait ended.',CONTRIBUTION_WITHDRAWN:'You withdrew your promised contribution.',CLOSED:'The clinic intake has closed.'};
+ const noAgreement=v.outcome?'The day is over. Review the actual delivery below.':c.slot?c.slot.status==='abandoned'?'The clinic slot was forfeited. A new agreement cannot restore it.':c.slot.status==='delivered'?'The clinic has received its delivery.':'A clinic trip has already committed the receiving slot. A new agreement cannot replace it.':v.phase==='morning'?'Clinic discussions open after the surge. Your work and remaining supplies carry forward.':v.now>57?'Neither delivery route has enough time left to arrive before closing.':v.now>45?'The safe cart window has passed. Full delivery still needs actual readiness and time to arrive.':'Deniz may cart from 42 when free. Agree a wait for your pump work.';
+ text('plan-current',current?(current.revisionOf?'Revised agreement':'Agreement')+' · accepted at '+current.respondedAt+'. '+(endings[current.closeReason]??'These are the terms Deniz accepted.'):noAgreement);
  $('accepted-terms').hidden=!current;$('accepted-terms').replaceChildren();
  if(current){const t=current.terms;
   $('accepted-terms').append(termLine('Your promise:', 'rest until '+t.pumpStartAt+', then finish the pump; inlet and pump ready by '+t.readyBy+'.'),termLine('Deniz agreed:', 'wait until '+t.waitUntil+'; '+(t.fallback==='cart'?'deliver if ready, otherwise take the one-unit cart.':'deliver if ready; risk losing the one-unit cart.')),termLine('Contribution:',current.contribution.status+(current.contribution.fulfilledAt!==null?' at '+current.contribution.fulfilledAt:'')+'.'+(current.actualReadyAt!==null?' Actual readiness recorded at '+current.actualReadyAt+'.':'')));
  }
  const r=c.readiness;let actual='Actually ready: '+(r.ready?'yes':'no')+' · pump '+r.pumpWork+'/'+r.pumpRequired+' min · inlet '+(r.supplyAvailable?'open':'unavailable')+'. You: '+r.keeperOwnedParts+' part'+(r.keeperOwnedParts===1?'':'s')+' available'+(r.keeperReservedParts?', '+r.keeperReservedParts+' reserved':'')+'.';
- if(c.slot)actual+=' Clinic slot: '+(c.slot.route==='cart'?'one-unit cart':'two-unit delivery')+', '+c.slot.status+'.';
+ if(c.slot)actual+=' Clinic slot: '+(c.slot.route==='cart'?'one-unit cart':'two-unit delivery')+', '+({['in-transit']:'on the way',delivered:'arrived',abandoned:'forfeited; no replacement trip is possible',closed:'intake closed'}[c.slot.status]??c.slot.status)+'.';
  text('actual-ready',actual);
  $('pending-plan').hidden=!pending;
- if(pending){const t=pending.terms;text('pending-title',(pending.revisionOf?'Proposed revision':'Proposed terms')+' '+pending.id+' · no terms accepted yet');text('pending-detail','Proposed at '+pending.createdAt+'. Rest until '+t.pumpStartAt+'; ready by '+t.readyBy+'; wait until '+t.waitUntil+'; '+(t.fallback==='cart'?'cart fallback.':'no cart fallback.')+' Answer at '+pending.endsAt+'.'+(current?' Existing agreement '+current.id+' still applies.':''));$('discussion-progress').value=v.now-pending.createdAt;}
+ if(pending){const t=pending.terms;text('pending-title',(pending.revisionOf?'Proposed revision':'Proposed terms')+' · no terms accepted yet');text('pending-detail','Proposed at '+pending.createdAt+'. Rest until '+t.pumpStartAt+'; ready by '+t.readyBy+'; wait until '+t.waitUntil+'; '+(t.fallback==='cart'?'cart fallback.':'no cart fallback.')+' Answer at '+pending.endsAt+'.'+(current?' The existing agreement still applies.':''));$('discussion-progress').value=v.now-pending.createdAt;}
  $('cancel-discussion').disabled=!c.canInterrupt;
  const response=c.lastResponse;$('plan-response').hidden=!response;
  if(response){text('plan-response','Minute '+response.at+' · '+({invitation:response.accepted?'Agreed to talk':'Invitation refused',terms:response.accepted?'Terms accepted':'Terms refused',interruption:'Discussion ended',withdrawal:'Contribution withdrawn'}[response.stage]??response.stage)+': '+response.reason);$('plan-response').classList.toggle('refused',!response.accepted);}
@@ -90,10 +95,13 @@ function renderPeople(v){
   const box=$(prefix+'job');box.replaceChildren();
   if(job){box.append(node('strong',null,(job.origin==='own'?'Chose: ':'')+taskLabel(job.task)),node('span',null,(job.endsAt-v.now)+' min left · finishes at '+job.endsAt));const bar=node('progress');bar.max=job.endsAt-job.startedAt;bar.value=v.now-job.startedAt;bar.setAttribute('aria-label',names[actor]+' current task progress');box.append(bar);}
   $(prefix+'stop').hidden=!job||job.task==='discuss'||Boolean(v.outcome);
+  const forfeits=job&&['cart','deliver'].includes(job.task)&&(actor==='keeper'||job.origin==='request');
+  text(prefix+'stop',forfeits?(actor==='partner'?'Ask Deniz to stop · forfeit delivery':'Stop trip · forfeit delivery'):(actor==='partner'?'Ask Deniz to stop':'Stop your work'));
   const response=v.lastResponse?.actor===actor&&v.lastResponse.task!=='discuss'?v.lastResponse:null;$(prefix+'response').hidden=!response;
   if(response){text(prefix+'response','Minute '+response.at+' · '+response.reason);$(prefix+'response').classList.toggle('refused',!response.accepted);}
   for(const c of v.choices[actor]){const button=$(prefix+c.task);
-   button.querySelector('.choice-detail').textContent=actor==='partner'?c.detail.replaceAll('your ','their ').replaceAll('Your ','Their ').replaceAll('yours','theirs'):c.detail;
+   const detail=actor==='partner'?c.detail.replaceAll('your ','their ').replaceAll('Your ','Their ').replaceAll('yours','theirs'):c.detail;
+   button.querySelector('.choice-detail').textContent=detail+(['cart','deliver'].includes(c.task)?' Starting commits the clinic’s only slot. If this trip is stopped, no later delivery can use it.':'');
    text(prefix+c.task+'-cost',c.duration+' min'+(c.parts?' · '+c.parts+' part'+(c.parts===1?'':'s'):'')+(c.meal?' · 1 meal':''));
    text(prefix+c.task+'-reason',c.code==='CAPACITY'?'Condition estimate: demanding. Try an actual check or recover.':c.reason||(!c.capacityEstimate.allowed?'Condition estimate: recovery may be needed.':c.tooLate?'Finishes at '+c.finishesAt+'; too late for this service.':''));
    button.hidden=(c.task==='gate'&&v.work.gate===12)||(c.task==='divert'&&(v.work.divert===6||v.now>=24||v.work.gate===12))||(c.task==='reopen'&&(v.supply.reopenedAt!==null||v.now>=24&&v.work.divert<6))||(c.task==='salvage'&&!v.resources.shedAvailable)||(c.task==='meal'&&!v.resources.food[actor])||(['deliver','cart'].includes(c.task)&&Boolean(v.delivery));
@@ -121,7 +129,7 @@ function renderOutcome(v){
 function render(){
  const v=getServicePlanView(session.game);renderBoard(v);renderPlan(v);renderPeople(v);renderTime(v);renderOutcome(v);
  $('journal').replaceChildren();for(const row of [...v.recent].reverse()){const li=node('li'),time=node('time',null,'+'+row.at+'m'),body=node('span'),name=node('strong',null,(names[row.actor]??row.actor)+' · ');body.append(name,document.createTextNode(serviceEventText(v,row)));li.append(time,body);$('journal').append(li);}
- text('researcher','Host '+v.version+'; Human/runtime '+v.humanVersion+'/'+v.runtimeVersion+'; clock '+v.clockVersion+'. '+v.remainingCommands+' player commands remain. Discussion paid: you '+v.paidByActor.keeper.discuss+' min, Deniz '+v.paidByActor.partner.discuss+' min. '+v.coordination.acceptanceRule);
+ text('researcher','Host '+v.version+'; Human/runtime '+v.humanVersion+'/'+v.runtimeVersion+'; clock '+v.clockVersion+'. '+v.remainingCommands+' player commands remain. Discussion paid: you '+v.paidByActor.keeper.discuss+' min, Deniz '+v.paidByActor.partner.discuss+' min. '+v.coordination.acceptanceRule+' Record IDs: accepted '+(v.coordination.current?.id??'none')+', proposed '+(v.coordination.pending?.id??'none')+'.');
  if(saveFailed)text('save-status','Device save unavailable. Download a save to keep this day.');
 }
 $('one-minute').addEventListener('click',()=>apply(s=>stepSession(s,'minute')));$('next-event').addEventListener('click',()=>apply(s=>stepSession(s)));
@@ -134,4 +142,6 @@ function leave(){lastWall=performance.now();session=pauseSession(session,'Paused
 window.addEventListener('pagehide',leave);document.addEventListener('visibilitychange',()=>{lastWall=performance.now();if(document.hidden)leave();});
 setInterval(()=>{const now=performance.now(),elapsed=now-lastWall;lastWall=now;if(session.running&&!document.hidden)apply(s=>tickSession(s,elapsed,Number($('speed').value)));},250);
 try{const raw=localStorage.getItem(SAVE);if(raw)session=importSession(session,raw);}catch(error){notice('The stored day could not be loaded ('+error.message+'). A fresh paused day is ready.');}
-render();mountPlayNote({container:document.querySelector('main'),game:{id:'service-plan',title:'A Shared Promise',version:SERVICE_PLAN_VERSION},hasCompanion:true,onOpen:()=>apply(s=>pauseSession(s,'Paused while you write a play note.')),getContext:()=>planNoteContext(session.game)});
+render();const notePanel=mountPlayNote({container:document.querySelector('main'),game:{id:'service-plan',title:'A Shared Promise',version:SERVICE_PLAN_VERSION},hasCompanion:true,onOpen:()=>apply(s=>pauseSession(s,'Paused while you write a play note.')),getContext:()=>planNoteContext(session.game)});
+
+for(const event of ['focusin','input','submit'])notePanel.addEventListener(event,()=>{lastWall=performance.now();apply(s=>pauseSession(s,'Paused while you write or save a play note.'));},{capture:true});

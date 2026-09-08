@@ -1,0 +1,295 @@
+TAP version 13
+# Subtest: comparison selectors expose six development families and seal four reserved cases
+ok 1 - comparison selectors expose six development families and seal four reserved cases
+  ---
+  duration_ms: 5.234917
+  ...
+# Subtest: script selection consults only public time and preserves explicit paid controls
+ok 2 - script selection consults only public time and preserves explicit paid controls
+  ---
+  duration_ms: 0.66275
+  ...
+# Subtest: the original timed schedule reproduces the retained outcome with compact replay evidence
+ok 3 - the original timed schedule reproduces the retained outcome with compact replay evidence
+  ---
+  duration_ms: 1387.97475
+  ...
+# Subtest: source evidence requires fresh outputs and binds the registered protocol
+ok 4 - source evidence requires fresh outputs and binds the registered protocol
+  ---
+  duration_ms: 25.08525
+  ...
+# Subtest: the visible-pump rival changes only one declared fallback insertion
+ok 5 - the visible-pump rival changes only one declared fallback insertion
+  ---
+  duration_ms: 1.201625
+  ...
+# Subtest: the CLI rejects unsealed reserved output and existing output paths before execution
+ok 6 - the CLI rejects unsealed reserved output and existing output paths before execution
+  ---
+  duration_ms: 140.012041
+  ...
+# Subtest: low-level execution also refuses a reserved fixture before touching its host
+ok 7 - low-level execution also refuses a reserved fixture before touching its host
+  ---
+  duration_ms: 0.355875
+  ...
+# Subtest: development cases retain simple successes, useful revision and real discussion losses
+ok 8 - development cases retain simple successes, useful revision and real discussion losses
+  ---
+  duration_ms: 4658.380708
+  ...
+# Subtest: new, imported and restored sessions stay paused without offline advancement
+ok 9 - new, imported and restored sessions stay paused without offline advancement
+  ---
+  duration_ms: 13.848833
+  ...
+# Subtest: play stops at real events while preserving unfinished simultaneous work
+ok 10 - play stops at real events while preserving unfinished simultaneous work
+  ---
+  duration_ms: 5.186625
+  ...
+# Subtest: commands, refusals and interruptions pause and discard fractional time
+ok 11 - commands, refusals and interruptions pause and discard fractional time
+  ---
+  duration_ms: 5.500333
+  ...
+# Subtest: morning pauses playback, carries state and only closing ends the day
+ok 12 - morning pauses playback, carries state and only closing ends the day
+  ---
+  duration_ms: 6.877584
+  ...
+# Subtest: event and minute stepping preserve the same exact world
+ok 13 - event and minute stepping preserve the same exact world
+  ---
+  duration_ms: 12.069334
+  ...
+# Subtest: invalid and original-control saves leave the active session untouched
+ok 14 - invalid and original-control saves leave the active session untouched
+  ---
+  duration_ms: 6.167
+  ...
+# Subtest: throttled frames cap catch-up and malformed time controls reject
+ok 15 - throttled frames cap catch-up and malformed time controls reject
+  ---
+  duration_ms: 3.046917
+  ...
+# Subtest: play-note context is a bounded explicit public projection and contains no host save
+ok 16 - play-note context is a bounded explicit public projection and contains no host save
+  ---
+  duration_ms: 2.819
+  ...
+# Subtest: completed diversion copy explains counted work without altering its receipt
+ok 17 - completed diversion copy explains counted work without altering its receipt
+  ---
+  duration_ms: 0.695709
+  ...
+# Subtest: clinic entry replays a paid morning and preserves exact ownership, condition and save history
+ok 18 - clinic entry replays a paid morning and preserves exact ownership, condition and save history
+  ---
+  duration_ms: 15.770458
+  ...
+# Subtest: paid unfinished discussions import exactly and interruption pauses both people without agreement
+ok 19 - paid unfinished discussions import exactly and interruption pauses both people without agreement
+  ---
+  duration_ms: 27.818584
+  ...
+# Subtest: the response boundary pauses play and distinguishes accepted promise from actual readiness
+ok 20 - the response boundary pauses play and distinguishes accepted promise from actual readiness
+  ---
+  duration_ms: 27.607416
+  ...
+# Subtest: refused and interrupted revision keep current exact terms; withdrawn contribution leaves paid work running
+ok 21 - refused and interrupted revision keep current exact terms; withdrawn contribution leaves paid work running
+  ---
+  duration_ms: 63.246
+  ...
+# Subtest: a promised readiness miss pauses play before a longer accepted wait expires
+ok 22 - a promised readiness miss pauses play before a longer accepted wait expires
+  ---
+  duration_ms: 19.088333
+  ...
+# Subtest: event stepping pauses a paid rest at the promised work start and explains that choice
+ok 23 - event stepping pauses a paid rest at the promised work start and explains that choice
+  ---
+  duration_ms: 33.353125
+  ...
+# Subtest: new shared clinic host exists independently of the frozen service host
+ok 24 - new shared clinic host exists independently of the frozen service host
+  ---
+  duration_ms: 0.517125
+  ...
+# Subtest: listening and term acceptance are separate and both people pay active time
+ok 25 - listening and term acceptance are separate and both people pay active time
+  ---
+  duration_ms: 24.262125
+  ...
+# Subtest: short hold enables actual full delivery and records readiness separately from arrival
+ok 26 - short hold enables actual full delivery and records readiness separately from arrival
+  ---
+  duration_ms: 14.255583
+  ...
+# Subtest: missed short promise retains a feasible one-unit fallback at45
+ok 27 - missed short promise retains a feasible one-unit fallback at45
+  ---
+  duration_ms: 11.352875
+  ...
+# Subtest: busy invitation never stops work and unsuitable terms cost the completed discussion
+ok 28 - busy invitation never stops work and unsuitable terms cost the completed discussion
+  ---
+  duration_ms: 14.233625
+  ...
+# Subtest: interruption retains paid active minutes and no accepted terms
+ok 29 - interruption retains paid active minutes and no accepted terms
+  ---
+  duration_ms: 12.846791
+  ...
+# Subtest: useful accepted revision prevents old45cart and preserves actual carried work
+ok 30 - useful accepted revision prevents old45cart and preserves actual carried work
+  ---
+  duration_ms: 36.859416
+  ...
+# Subtest: refused and interrupted revisions preserve original accepted terms
+ok 31 - refused and interrupted revisions preserve original accepted terms
+  ---
+  duration_ms: 29.6915
+  ...
+# Subtest: withdrawal retracts own promise but does not stop work or erase clinic obligation
+ok 32 - withdrawal retracts own promise but does not stop work or erase clinic obligation
+  ---
+  duration_ms: 31.045917
+  ...
+# Subtest: old response cannot accept a new revision or duplicate acceptance
+ok 33 - old response cannot accept a new revision or duplicate acceptance
+  ---
+  duration_ms: 29.292833
+  ...
+# Subtest: revision exactly at old expiry cannot revive it or delay the45cart
+ok 34 - revision exactly at old expiry cannot revive it or delay the45cart
+  ---
+  duration_ms: 12.495667
+  ...
+# Subtest: clinic receiving slot survives an interrupted departure and rejects renegotiation
+ok 35 - clinic receiving slot survives an interrupted departure and rejects renegotiation
+  ---
+  duration_ms: 14.8005
+  ...
+# Subtest: save identity is independent and forged promises cannot alter deterministic replay
+ok 36 - save identity is independent and forged promises cannot alter deterministic replay
+  ---
+  duration_ms: 47.403125
+  ...
+# Subtest: a requested partner job crossing the hold deadline is not compelled to stop
+ok 37 - a requested partner job crossing the hold deadline is not compelled to stop
+  ---
+  duration_ms: 128.222167
+  ...
+# Subtest: completed readiness retains its actual earlier timestamp and cannot be retracted
+ok 38 - completed readiness retains its actual earlier timestamp and cannot be retracted
+  ---
+  duration_ms: 17.935917
+  ...
+# Subtest: an already fulfilled contribution is not erased by withdrawal during a requested recovery
+ok 39 - an already fulfilled contribution is not erased by withdrawal during a requested recovery
+  ---
+  duration_ms: 22.456333
+  ...
+# Subtest: an accepted risky forecast does not supply unperformed recovery or guarantee capacity
+ok 40 - an accepted risky forecast does not supply unperformed recovery or guarantee capacity
+  ---
+  duration_ms: 12.182917
+  ...
+# Subtest: risky wait uses the retained gate checkpoint and actual paid four-minute rest
+ok 41 - risky wait uses the retained gate checkpoint and actual paid four-minute rest
+  ---
+  duration_ms: 14.4085
+  ...
+# Subtest: closing still defeats a tied delivery and records a closed receiving slot
+ok 42 - closing still defeats a tied delivery and records a closed receiving slot
+  ---
+  duration_ms: 23.347833
+  ...
+# Subtest: same-minute repeated invitation refusals coalesce without consuming proposal identities
+ok 43 - same-minute repeated invitation refusals coalesce without consuming proposal identities
+  ---
+  duration_ms: 3103.235417
+  ...
+# Subtest: capped discussions retain sufficient interruption and closing budget
+ok 44 - capped discussions retain sufficient interruption and closing budget
+  ---
+  duration_ms: 509.688708
+  ...
+# Subtest: all time drivers resume equal through accepted and interrupted revisions
+ok 45 - all time drivers resume equal through accepted and interrupted revisions
+  ---
+  duration_ms: 36.924792
+  ...
+# Subtest: cross-family latest refusal channels coalesce and resume without losing either response
+ok 46 - cross-family latest refusal channels coalesce and resume without losing either response
+  ---
+  duration_ms: 2076.059417
+  ...
+# Subtest: a predecessor deadline during discussion stops only the meeting and retains its paid partial cost
+ok 47 - a predecessor deadline during discussion stops only the meeting and retains its paid partial cost
+  ---
+  duration_ms: 22.235708
+  ...
+# Subtest: cross-family refusals at the final request budget leave stops and closing usable
+ok 48 - cross-family refusals at the final request budget leave stops and closing usable
+  ---
+  duration_ms: 2519.345375
+  ...
+# Subtest: owned spare and inlet supply are prerequisites for consent, not implied by a promise
+ok 49 - owned spare and inlet supply are prerequisites for consent, not implied by a promise
+  ---
+  duration_ms: 4.920375
+  ...
+# Subtest: malformed terms and hostile save structures reject before executing accessors or work
+ok 50 - malformed terms and hostile save structures reject before executing accessors or work
+  ---
+  duration_ms: 9.833917
+  ...
+# Subtest: mixed actual commands including plan edits preserve replay and bounded state over many paid days
+ok 51 - mixed actual commands including plan edits preserve replay and bounded state over many paid days
+  ---
+  duration_ms: 1696.259
+  ...
+# Subtest: visible event pauses at an earlier promised readiness before a longer accepted hold expires
+ok 52 - visible event pauses at an earlier promised readiness before a longer accepted hold expires
+  ---
+  duration_ms: 5.281167
+  ...
+# Subtest: visible event exposes promised pump start so paid rest can stop at its actual planned boundary
+ok 53 - visible event exposes promised pump start so paid rest can stop at its actual planned boundary
+  ---
+  duration_ms: 6.101292
+  ...
+# Subtest: cap reserves a unilateral partial-discussion stop after both refusal channels and elapsed time
+ok 54 - cap reserves a unilateral partial-discussion stop after both refusal channels and elapsed time
+  ---
+  duration_ms: 157.098208
+  ...
+# Subtest: cap retains separate stops for both requested jobs across a partial advance
+ok 55 - cap retains separate stops for both requested jobs across a partial advance
+  ---
+  duration_ms: 161.334709
+  ...
+# Subtest: a cap successor refusal cannot consume later interruption or accepted-plan withdrawal
+ok 56 - a cap successor refusal cannot consume later interruption or accepted-plan withdrawal
+  ---
+  duration_ms: 175.744125
+  ...
+# Subtest: cap preserves both requested stops and promise withdrawal at three different paid minutes
+ok 57 - cap preserves both requested stops and promise withdrawal at three different paid minutes
+  ---
+  duration_ms: 163.098541
+  ...
+1..57
+# tests 57
+# suites 0
+# pass 57
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11207.901459

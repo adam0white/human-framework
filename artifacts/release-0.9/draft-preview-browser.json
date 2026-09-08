@@ -1,0 +1,8 @@
+{
+  "scope": "Root actual browser check of draft preview and slot copy; no human evidence.",
+  "staticWarning": "For a new discussion: The remaining pump work needs 6 paid minutes before readiness. This draft cannot be accepted. You would both still pay the discussion time.",
+  "warningHiddenDuringExistingDiscussion": true,
+  "refusalStillPaysTwoMinutesEach": true,
+  "at": 39,
+  "slotCopy": "The clinic slot was forfeited. A new agreement cannot restore it."
+}

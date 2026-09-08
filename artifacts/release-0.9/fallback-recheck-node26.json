@@ -1,0 +1,24 @@
+{
+  "node": "v26.8.1",
+  "sha256": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7",
+  "originalDiscussion": {
+    "stoppedAt": 38,
+    "stopCount": 254,
+    "closingCount": 255,
+    "paid": 2
+  },
+  "originalSaveImport": true,
+  "refusalSuccessor": "advanced and withdrew",
+  "twoRequestedJobs": {
+    "stopCount": 255,
+    "closingCount": 256,
+    "paidPartnerRestAtStop": 2
+  },
+  "threeInterleavedControls": {
+    "stopCount": 255,
+    "closingCount": 256,
+    "keeperRestBeforeClosing": 9,
+    "partnerRestBeforeClosing": 1
+  },
+  "capSuccessorsChecked": 14
+}

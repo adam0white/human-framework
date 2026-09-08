@@ -1,0 +1,51 @@
+{
+  "sourceHashes": {
+    "web/service-plan.js": "6d96ecb27bc1d9fc4366b18c6217322de0c538939ed911b99b85f124eae0bd79",
+    "web/service-plan.html": "bf98bdb4f73885d153715f8ec05372251aa5147cfb3fbe0e0d4b9da58581991e",
+    "web/play-note.js": "ca6958dfa9d78b6eab0bd9cb6731444b13a55e40c9739b04a0758764c124c3c8",
+    "src/games/service-plan.js": "fd65844c266aaaf50addb941c1f49a34ed5bef8780a2f2d4254b4d2a61f591f6"
+  },
+  "widths": [
+    {
+      "width": 320,
+      "firstAction": {
+        "x": 31,
+        "y": 627.265625,
+        "width": 258,
+        "height": 44
+      },
+      "noteFocusInputSubmitPaused": true,
+      "cartWarningAndStop": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "firstAction": {
+        "x": 31,
+        "y": 557.234375,
+        "width": 328,
+        "height": 44
+      },
+      "noteFocusInputSubmitPaused": true,
+      "cartWarningAndStop": true,
+      "overflow": false
+    },
+    {
+      "width": 1280,
+      "firstAction": {
+        "x": 119,
+        "y": 567.609375,
+        "width": 766,
+        "height": 44
+      },
+      "noteFocusInputSubmitPaused": true,
+      "cartWarningAndStop": true,
+      "overflow": false
+    }
+  ],
+  "checks": [],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'idle' !== 'deliver'\n\n    at file:///private/tmp/hf-plans-ui-recheck.mjs:22:501"
+  ],
+  "passed": false
+}

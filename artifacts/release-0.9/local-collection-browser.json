@@ -1,0 +1,212 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-09-08T10:08:31.424Z",
+  "origin": "http://127.0.0.1:4192",
+  "browser": "152.0.7977.77",
+  "scope": "Actual gallery navigation, all ten game entry/host modules and rendered controls; representative prior Rain/Watch/Last Light flows. Isolated desktop Chrome at mobile viewport sizes, not physical-device or human-play evidence. Full Service Day gameplay is covered separately by artifacts/service-day/browser-qa.mjs.",
+  "viewports": [
+    320,
+    390,
+    1280
+  ],
+  "checks": [
+    "Gallery exposes exactly the ten expected game destinations, with collapsed notes and no horizontal overflow at 320/390/1280.",
+    "Clicked every gallery card and verified destination, exact heading, generated controls, successful entry/host module responses, and 320/390/1280 layout.",
+    "Rain: keyboard-started work and accepted concurrent cache request pay 15 minutes; actual download/import, invalid import and paused reload preserve state; original Common Ground keeps its separate save.",
+    "Watch: owned-part refusal is free; short-notice repair succeeds through actual buttons with precisely three interrupted paid rest minutes; Rain save remains separate.",
+    "Last Light: paid radio/lookout, older late receipt, concurrent canal work and minute-10 launch are preserved; ended reload remains paused and exact."
+  ],
+  "navigation": [
+    {
+      "route": "/service-plan/",
+      "heading": "A Shared Promise",
+      "generatedControls": 1,
+      "modules": [
+        "/src/core/model.js",
+        "/src/games/service-plan.js",
+        "/src/human/v0.1.1.js",
+        "/src/runtime/clock.js",
+        "/src/runtime/index.js",
+        "/web/play-note.js",
+        "/web/service-plan-session.js",
+        "/web/service-plan.js"
+      ],
+      "noHorizontalOverflow": [
+        320,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "/service/",
+      "heading": "Service Day",
+      "generatedControls": 1,
+      "modules": [
+        "/src/core/model.js",
+        "/src/games/service.js",
+        "/src/human/v0.1.1.js",
+        "/src/runtime/clock.js",
+        "/src/runtime/index.js",
+        "/web/play-note.js",
+        "/web/service-session.js",
+        "/web/service.js"
+      ],
+      "noHorizontalOverflow": [
+        320,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "/signals/",
+      "heading": "Last Light",
+      "generatedControls": 1,
+      "modules": [
+        "/src/core/model.js",
+        "/src/games/signals.js",
+        "/src/human/v0.1.1.js",
+        "/src/runtime/clock.js",
+        "/src/runtime/index.js",
+        "/web/play-note.js",
+        "/web/signals-session.js",
+        "/web/signals.js"
+      ],
+      "noHorizontalOverflow": [
+        320,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "/watch/",
+      "heading": "Before the Water",
+      "generatedControls": 1,
+      "modules": [
+        "/src/core/model.js",
+        "/src/games/watch.js",
+        "/src/human/v0.1.1.js",
+        "/src/runtime/clock.js",
+        "/src/runtime/index.js",
+        "/web/play-note.js",
+        "/web/watch-session.js",
+        "/web/watch.js"
+      ],
+      "noHorizontalOverflow": [
+        320,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "/commons-next/",
+      "heading": "Before the rain",
+      "generatedControls": 3,
+      "modules": [
+        "/src/core/model.js",
+        "/src/games/commons-next.js",
+        "/src/games/commons-policy.js",
+        "/src/games/commons.js",
+        "/src/human/index.js",
+        "/src/runtime/clock.js",
+        "/web/commons-next.js",
+        "/web/play-note.js"
+      ],
+      "noHorizontalOverflow": [
+        320,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "/commons/",
+      "heading": "Common Ground",
+      "generatedControls": 2,
+      "modules": [
+        "/src/core/model.js",
+        "/src/games/commons-policy.js",
+        "/src/games/commons.js",
+        "/src/human/index.js",
+        "/src/runtime/clock.js",
+        "/web/commons.js"
+      ],
+      "noHorizontalOverflow": [
+        320,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "/shift/",
+      "heading": "Pump Yard.",
+      "generatedControls": 4,
+      "modules": [
+        "/src/core/model.js",
+        "/src/games/shift.js",
+        "/src/human/index.js",
+        "/web/shift.js"
+      ],
+      "noHorizontalOverflow": [
+        320,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "/courtyard/",
+      "heading": "The last water",
+      "generatedControls": 3,
+      "modules": [
+        "/src/core/model.js",
+        "/src/core/random.js",
+        "/src/games/courtyard-session.js",
+        "/src/games/courtyard.js",
+        "/src/human/index.js",
+        "/web/courtyard-guide.js",
+        "/web/courtyard.js"
+      ],
+      "noHorizontalOverflow": [
+        320,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "/courier/",
+      "heading": "Courier Round",
+      "generatedControls": 11,
+      "modules": [
+        "/src/core/model.js",
+        "/src/games/courier-policy.js",
+        "/src/games/courier.js",
+        "/src/human/index.js",
+        "/web/courier.js"
+      ],
+      "noHorizontalOverflow": [
+        320,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "/workshop/",
+      "heading": "Before departure",
+      "generatedControls": 5,
+      "modules": [
+        "/src/core/model.js",
+        "/src/games/workshop.js",
+        "/src/human/index.js",
+        "/web/workshop.js"
+      ],
+      "noHorizontalOverflow": [
+        320,
+        390,
+        1280
+      ]
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "failedResponses": [],
+  "prefetchRefusals": [],
+  "failure": null
+}

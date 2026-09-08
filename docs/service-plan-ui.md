@@ -26,3 +26,9 @@ PORT=4197 /opt/homebrew/bin/node scripts/serve.js
 ```
 
 The runner defaults to the desktop’s bundled Playwright module and installed Chrome; `PLAYWRIGHT_MODULE` can point to another installed module. It refuses to overwrite its JSON evidence. Production verification, independent review, full suite and the exact deployed release remain root integration responsibilities.
+
+## Root review fixes
+
+Slot permanence is explicit before both cart and pipe departure and before a permitted trip stop. Note focus, editing and submission each pause playback even if a player resumed while the form stayed open; the shared note component and earlier games remain unchanged. Primary agreement prose uses readable state descriptions, with record IDs retained in the collapsed researcher view. No-agreement guidance now follows a committed or forfeited slot instead of suggesting a new wait.
+
+A draft timing preview flags impossible start/readiness/wait arithmetic before another discussion. It is hidden during an existing pending discussion and never rewrites accepted terms; submitting unsuitable new terms still exercises the real paid-listening/refusal path. Root browser regressions preserve the before/after cases in `artifacts/release-0.9/`. No simulation or frozen comparison source changed for these fixes.

@@ -1,0 +1,32 @@
+{
+  "base": "http://127.0.0.1:4192",
+  "scope": "Actual browser regressions; synthetic note text is not human evidence.",
+  "checks": [
+    {
+      "name": "permanent slot loss is explained before departure and before requested stop",
+      "passed": false,
+      "before": "The clinic can receive one load today. This fallback uses that slot for one of two requested units, independent of pump parts or inlet supply.",
+      "stop": "Ask Deniz to stop",
+      "minute": 37,
+      "slot": {
+        "actor": "partner",
+        "route": "cart",
+        "departedAt": 37,
+        "arrivedAt": null,
+        "status": "abandoned"
+      }
+    },
+    {
+      "name": "typing in an already-open note pauses resumed playback",
+      "passed": false,
+      "runningBeforeInput": "true",
+      "runningAfterInput": "true"
+    },
+    {
+      "name": "submitting an already-open note pauses resumed playback",
+      "passed": false,
+      "runningBeforeSubmit": "true",
+      "runningAfterSubmit": "true"
+    }
+  ]
+}

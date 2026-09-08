@@ -1,0 +1,59 @@
+{
+  "capturedAt": "2026-09-08T10:32:16.321Z",
+  "base": "http://127.0.0.1:4192",
+  "browser": "152.0.7977.77",
+  "synthetic": true,
+  "sourceHashes": {
+    "src/games/service-plan.js": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7",
+    "web/service-plan.html": "61039563331a88052789684fe1a5ba7f29a6f2a90e916574d13fdd849a061b56",
+    "web/service-plan.css": "75de35fab39edaa7360b6d6c97657042ded7c58d173d0edfa3b39364bc30503f",
+    "web/service-plan.js": "0d75c023263661005b22d18e50a808bd38d8b1ff06d565b4e9a1cdd470ee3545",
+    "web/service-plan-session.js": "3f7c3f62dbb846add5f7a719d166542f0225974e886811c369d9982d708332c6"
+  },
+  "widths": [
+    {
+      "width": 320,
+      "height": 700,
+      "firstAction": {
+        "x": 31,
+        "y": 627.265625,
+        "width": 258,
+        "height": 44
+      },
+      "overflow": false,
+      "acceptedAt": 39
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "firstAction": {
+        "x": 31,
+        "y": 575.234375,
+        "width": 328,
+        "height": 44
+      },
+      "overflow": false,
+      "acceptedAt": 39
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "firstAction": {
+        "x": 119,
+        "y": 567.609375,
+        "width": 766,
+        "height": 44
+      },
+      "overflow": false,
+      "acceptedAt": 39
+    }
+  ],
+  "checks": [],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /not loaded/. Input:\n\n''\n\n    at file:///Users/abdul/code/human-framework/artifacts/release-0.9/shared-plan-browser-qa.mjs:50:178"
+  ],
+  "httpErrors": [],
+  "nonGetRequests": [],
+  "prefetchRefusals": [],
+  "passed": false
+}

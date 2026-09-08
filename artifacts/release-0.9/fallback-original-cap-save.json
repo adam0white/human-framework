@@ -1,0 +1,1502 @@
+{
+  "format": "human-service-plan",
+  "version": 1,
+  "hostVersion": "0.1.0",
+  "runtimeVersion": "0.1.1",
+  "scenario": "standard",
+  "commands": [
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "meal"
+    },
+    {
+      "type": "advance",
+      "to": 4
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "gate"
+    },
+    {
+      "type": "advance",
+      "to": 10
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "gate"
+    },
+    {
+      "type": "advance",
+      "to": 16
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "salvage"
+    },
+    {
+      "type": "advance",
+      "to": 24
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "advance",
+      "to": 37
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "rest"
+    },
+    {
+      "type": "stop",
+      "actor": "keeper"
+    },
+    {
+      "type": "refusal",
+      "command": {
+        "type": "request",
+        "actor": "partner",
+        "task": "share"
+      }
+    },
+    {
+      "type": "propose",
+      "terms": {
+        "pumpStartAt": 39,
+        "readyBy": 45,
+        "waitUntil": 45,
+        "fallback": "cart"
+      }
+    },
+    {
+      "type": "refusal",
+      "command": {
+        "type": "request",
+        "actor": "keeper",
+        "task": "rest"
+      }
+    },
+    {
+      "type": "refusal",
+      "command": {
+        "type": "withdraw"
+      }
+    },
+    {
+      "type": "advance",
+      "to": 38
+    }
+  ],
+  "state": {
+    "version": "0.1.0",
+    "scenario": "standard",
+    "clock": {
+      "version": "0.1.0",
+      "now": 38,
+      "nextEvent": 259,
+      "queue": [
+        {
+          "id": "event:257",
+          "at": 39,
+          "type": "attempt-due",
+          "actorId": "keeper",
+          "data": {
+            "attemptId": "keeper:250",
+            "task": "discuss"
+          }
+        },
+        {
+          "id": "event:258",
+          "at": 39,
+          "type": "attempt-due",
+          "actorId": "partner",
+          "data": {
+            "attemptId": "partner:6",
+            "task": "discuss"
+          }
+        },
+        {
+          "id": "event:2",
+          "at": 64,
+          "type": "closing",
+          "actorId": null,
+          "data": null
+        }
+      ]
+    },
+    "people": {
+      "keeper": {
+        "version": "0.1.1",
+        "id": "keeper",
+        "body": {
+          "fatigue": 0.7669999999999972,
+          "hunger": 0.386
+        },
+        "skills": {
+          "repair": 0.2483943929464168,
+          "carry": 0.1
+        },
+        "observationBias": 0,
+        "minutes": 38,
+        "nextAttempt": 251,
+        "pending": {
+          "id": "keeper:250",
+          "action": {
+            "actionId": "discuss",
+            "targetId": null,
+            "durationMinutes": 2,
+            "effort": 0,
+            "exertive": false,
+            "activity": "active",
+            "skill": null
+          },
+          "elapsedMinutes": 1,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.003,
+            "hungerCost": 0.004,
+            "projectedFatigue": 0.7684999999999973,
+            "projectedHunger": 0.388
+          },
+          "bodyBefore": {
+            "fatigue": 0.7654999999999973,
+            "hunger": 0.384
+          },
+          "skillBefore": null,
+          "startedAt": 37
+        }
+      },
+      "partner": {
+        "version": "0.1.1",
+        "id": "partner",
+        "body": {
+          "fatigue": 0.4670000000000001,
+          "hunger": 0.30600000000000005
+        },
+        "skills": {
+          "repair": 0.2245746421202963,
+          "carry": 0.1
+        },
+        "observationBias": 0,
+        "minutes": 38,
+        "nextAttempt": 7,
+        "pending": {
+          "id": "partner:6",
+          "action": {
+            "actionId": "discuss",
+            "targetId": null,
+            "durationMinutes": 2,
+            "effort": 0,
+            "exertive": false,
+            "activity": "active",
+            "skill": null
+          },
+          "elapsedMinutes": 1,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.003,
+            "hungerCost": 0.004,
+            "projectedFatigue": 0.4685000000000001,
+            "projectedHunger": 0.30800000000000005
+          },
+          "bodyBefore": {
+            "fatigue": 0.4655000000000001,
+            "hunger": 0.30400000000000005
+          },
+          "skillBefore": null,
+          "startedAt": 37
+        }
+      }
+    },
+    "jobs": {
+      "keeper": {
+        "task": "discuss",
+        "origin": "request",
+        "startedAt": 37,
+        "endsAt": 39,
+        "eventId": "event:257",
+        "attemptId": "keeper:250",
+        "startProgress": null,
+        "reservedParts": 0,
+        "reservedMeal": 0
+      },
+      "partner": {
+        "task": "discuss",
+        "origin": "request",
+        "startedAt": 37,
+        "endsAt": 39,
+        "eventId": "event:258",
+        "attemptId": "partner:6",
+        "startProgress": null,
+        "reservedParts": 0,
+        "reservedMeal": 0
+      }
+    },
+    "parts": {
+      "keeper": 1,
+      "partner": 0
+    },
+    "food": {
+      "keeper": 0,
+      "partner": 0
+    },
+    "eaten": {
+      "keeper": 1,
+      "partner": 1
+    },
+    "work": {
+      "gate": 12,
+      "divert": 0,
+      "pump": 6
+    },
+    "salvaged": 1,
+    "reopenedAt": null,
+    "morning": {
+      "at": 24,
+      "protected": true,
+      "waterService": true,
+      "route": "gate"
+    },
+    "delivery": null,
+    "outcome": null,
+    "paid": {
+      "gate": 12,
+      "divert": 0,
+      "reopen": 0,
+      "pump": 6,
+      "deliver": 0,
+      "cart": 0,
+      "share": 0,
+      "salvage": 8,
+      "rest": 6,
+      "meal": 8,
+      "idle": 34,
+      "discuss": 2
+    },
+    "paidByActor": {
+      "keeper": {
+        "gate": 12,
+        "divert": 0,
+        "reopen": 0,
+        "pump": 0,
+        "deliver": 0,
+        "cart": 0,
+        "share": 0,
+        "salvage": 8,
+        "rest": 6,
+        "meal": 4,
+        "idle": 7,
+        "discuss": 1
+      },
+      "partner": {
+        "gate": 0,
+        "divert": 0,
+        "reopen": 0,
+        "pump": 6,
+        "deliver": 0,
+        "cart": 0,
+        "share": 0,
+        "salvage": 0,
+        "rest": 0,
+        "meal": 4,
+        "idle": 27,
+        "discuss": 1
+      }
+    },
+    "installedPartsByActor": {
+      "keeper": 2,
+      "partner": 1
+    },
+    "handedOver": {
+      "keeper": 0,
+      "partner": 0
+    },
+    "coordination": {
+      "readyAt": null,
+      "nextId": 2,
+      "current": null,
+      "pending": {
+        "id": "plan:1",
+        "revisionOf": null,
+        "createdAt": 37,
+        "endsAt": 39,
+        "terms": {
+          "pumpStartAt": 39,
+          "readyBy": 45,
+          "waitUntil": 45,
+          "fallback": "cart"
+        },
+        "receipt": {
+          "id": "plan:1",
+          "at": 39,
+          "participants": [
+            "keeper",
+            "partner"
+          ]
+        },
+        "invitationAccepted": true
+      },
+      "lastResponse": {
+        "at": 37,
+        "id": null,
+        "stage": "withdrawal",
+        "accepted": false,
+        "code": "NO_ACTIVE_PLAN",
+        "reason": "There is no active keeper promise to withdraw. The clinic obligation remains."
+      },
+      "slot": null
+    },
+    "lastResponse": {
+      "at": 37,
+      "actor": "partner",
+      "task": "discuss",
+      "accepted": false,
+      "code": "NO_ACTIVE_PLAN",
+      "reason": "There is no active keeper promise to withdraw. The clinic obligation remains."
+    },
+    "lastReceipt": {
+      "id": "event:16",
+      "at": 30,
+      "type": "attempt-due",
+      "actorId": "keeper",
+      "data": {
+        "attemptId": "keeper:10",
+        "task": "rest"
+      }
+    },
+    "recent": [
+      {
+        "at": 37,
+        "actor": "keeper",
+        "message": "Stopped rest after 0 paid minutes. Installed work remains; unused supplies return."
+      },
+      {
+        "at": 37,
+        "actor": "keeper",
+        "message": "Agreed: rest, 6 paid minutes."
+      },
+      {
+        "at": 37,
+        "actor": "keeper",
+        "message": "Stopped rest after 0 paid minutes. Installed work remains; unused supplies return."
+      },
+      {
+        "at": 37,
+        "actor": "keeper",
+        "message": "Agreed: rest, 6 paid minutes."
+      },
+      {
+        "at": 37,
+        "actor": "keeper",
+        "message": "Stopped rest after 0 paid minutes. Installed work remains; unused supplies return."
+      },
+      {
+        "at": 37,
+        "actor": "keeper",
+        "message": "Agreed: rest, 6 paid minutes."
+      },
+      {
+        "at": 37,
+        "actor": "keeper",
+        "message": "Stopped rest after 0 paid minutes. Installed work remains; unused supplies return."
+      },
+      {
+        "at": 37,
+        "actor": "keeper",
+        "message": "Agreed: rest, 6 paid minutes."
+      },
+      {
+        "at": 37,
+        "actor": "keeper",
+        "message": "Stopped rest after 0 paid minutes. Installed work remains; unused supplies return."
+      },
+      {
+        "at": 37,
+        "actor": "keeper",
+        "message": "Agreed: rest, 6 paid minutes."
+      },
+      {
+        "at": 37,
+        "actor": "keeper",
+        "message": "Stopped rest after 0 paid minutes. Installed work remains; unused supplies return."
+      },
+      {
+        "at": 37,
+        "actor": "partner",
+        "message": "I agree to listen for two active minutes. I have not yet agreed to these terms."
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "sourceSha256": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7",
+  "scope": "Four independently specified root regressions on actual imported host. No world edits, synthetic human feedback or reserved evaluation.",
+  "checks": [
+    {
+      "name": "cross-family no-effect refusals remain bounded and replayable",
+      "passed": true,
+      "details": {
+        "commands": 2,
+        "minute": 0,
+        "newWorkContinues": true
+      }
+    },
+    {
+      "name": "an earlier contribution deadline is a visible event",
+      "passed": true,
+      "details": {
+        "now": 39,
+        "next": 45,
+        "waitUntil": 53
+      }
+    },
+    {
+      "name": "planned work start pauses paid partial recovery before job end",
+      "passed": true,
+      "details": {
+        "plannedStart": 47,
+        "actualRestEnd": 49,
+        "workNotAutomaticallyChosen": true
+      }
+    },
+    {
+      "name": "a busy requested job crosses plan expiry without invalidating state or forced stop",
+      "passed": true,
+      "details": {
+        "expiredAt": 45,
+        "paidJobContinuesUntil": 46
+      }
+    }
+  ]
+}

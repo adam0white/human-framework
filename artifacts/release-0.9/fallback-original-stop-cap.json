@@ -1,0 +1,32 @@
+{
+  "now": 1,
+  "count": 254,
+  "jobs": {
+    "keeper": {
+      "task": "idle",
+      "origin": "own",
+      "startedAt": 0,
+      "endsAt": 64,
+      "eventId": "event:255",
+      "attemptId": "keeper:251",
+      "startProgress": null,
+      "reservedParts": 0,
+      "reservedMeal": 0
+    },
+    "partner": {
+      "task": "rest",
+      "origin": "request",
+      "startedAt": 0,
+      "endsAt": 6,
+      "eventId": "event:254",
+      "attemptId": "partner:2",
+      "startProgress": null,
+      "reservedParts": 0,
+      "reservedMeal": 0
+    }
+  },
+  "error": {
+    "code": "COMMAND_LIMIT",
+    "message": "Advance time to finish the current work and reach closing."
+  }
+}

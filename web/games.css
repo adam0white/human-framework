@@ -3,3 +3,5 @@
 .commons{grid-column:1/-1;background:#f1f7ec}.commons>.illustration{max-width:450px;height:130px}.commons>p{max-width:560px}@media(max-width:620px){.commons>.illustration{height:108px}}
 .signals{background:#f4f8f2}.commons{grid-column:auto}
 .service{background:#edf5ef}
+
+.plan{background:#f3efdf}
