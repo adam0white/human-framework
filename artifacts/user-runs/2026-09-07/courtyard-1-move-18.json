@@ -1,0 +1,101 @@
+{
+  "version": "0.1.0",
+  "seed": 1,
+  "profile": "standard",
+  "socialMemory": true,
+  "round": 18,
+  "clock": 180,
+  "status": "neighbor-ready",
+  "source": 8,
+  "spilled": 0,
+  "carried": {
+    "player": 0,
+    "neighbor": 0
+  },
+  "homes": {
+    "player": 12,
+    "neighbor": 14
+  },
+  "meals": {
+    "player": 0,
+    "neighbor": 1
+  },
+  "people": {
+    "player": {
+      "format": "human-framework-person",
+      "version": 1,
+      "componentVersion": "0.1.0",
+      "person": {
+        "version": "0.1.0",
+        "id": "player",
+        "body": {
+          "fatigue": 0.8200000000000001,
+          "hunger": 0.23
+        },
+        "skills": {
+          "collection": 0.64864886645041
+        },
+        "observationBias": 0,
+        "minutes": 180,
+        "nextAttempt": 19,
+        "pending": null
+      }
+    },
+    "neighbor": {
+      "format": "human-framework-person",
+      "version": 1,
+      "componentVersion": "0.1.0",
+      "person": {
+        "version": "0.1.0",
+        "id": "neighbor",
+        "body": {
+          "fatigue": 0,
+          "hunger": 0.6400000000000003
+        },
+        "skills": {
+          "collection": 0.6748875076590131
+        },
+        "observationBias": 0,
+        "minutes": 180,
+        "nextAttempt": 19,
+        "pending": null
+      }
+    }
+  },
+  "draws": {
+    "player": 6,
+    "neighbor": 3
+  },
+  "social": {
+    "given": {
+      "player": 6,
+      "neighbor": 2
+    },
+    "loan": null,
+    "returnedOnTime": 0,
+    "returnedLate": 0,
+    "lateLoans": 0,
+    "refusedByPlayer": 0,
+    "refusedByNeighbor": 0,
+    "ignored": 0,
+    "proposal": null,
+    "nextProposalRound": 13
+  },
+  "lastTurn": {
+    "round": 18,
+    "player": {
+      "actionId": "pour",
+      "status": "completed",
+      "amount": 3,
+      "message": "3 buckets added to your household barrel.",
+      "reason": null
+    },
+    "neighbor": {
+      "actionId": "rest",
+      "status": "completed",
+      "amount": 0,
+      "message": "Ten minutes in the shade eased fatigue.",
+      "reason": null
+    }
+  }
+}

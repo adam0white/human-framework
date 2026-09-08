@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-09-08T03:15:29.999Z",
+  "browser": "152.0.7977.77",
+  "environment": "Isolated headless desktop Chrome; emulated1280,390,320px viewports, not physical mobile",
+  "checks": [
+    "Initial shared clock and explicit per-person actions",
+    "Model notes and controller hints start collapsed",
+    "Borrow consumes neighbor response slot",
+    "A two-person move pays10 shared minutes",
+    "Repayment permits neighbor independent work",
+    "Separate replay recorded2 actions",
+    "Replay and history survive reload",
+    "Actual downloaded replay contains exact choices",
+    "Shared snapshot displays paid blocked final pour",
+    "Final carried water remains explicitly unstored",
+    "Meryem completed goal explains no collection for player",
+    "Snapshot cannot fabricate earlier history",
+    "Reload does not attach an old replay to imported snapshot",
+    "Replay import reconstructs exact history",
+    "No horizontal overflow at1280px",
+    "No horizontal overflow at390px",
+    "No horizontal overflow at320px",
+    "New afternoon records by default",
+    "Prechoice capacity warning shown on available work",
+    "Visible history includes separate player and neighbor outcomes",
+    "Invalid replay rejected without replacing current run",
+    "No JavaScript page errors"
+  ],
+  "errors": [],
+  "sources": {
+    "web/courtyard.js": "8fd633a42aac08eae859251a49b56a5a5a3d6a99106ef4bed481b743e15dcd54",
+    "web/courtyard.html": "ef35e68f2811c2a169c0d06468c336385c8a9194015f63727111ed1817b3cbd6",
+    "web/courtyard.css": "7c19a8af1025e5a07ab3ea66d38f8cef00ad38e036d0d1f2067ff7e0eae61fd1",
+    "web/courtyard-guide.js": "cac4aff6caa89ba9d7cc2b3e5cc8d370aa9674fad69d53d7546269669d6b2463",
+    "src/games/courtyard.js": "4bdc2d794855ebb45a5992c9b1cccd00274ed1aaf152ea32ee91c3b513ee7e4b",
+    "src/games/courtyard-session.js": "7f653afeff22e06e16a6abe0647c9be14de382fb0cd33318f5a64600e6d8b563"
+  }
+}

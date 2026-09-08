@@ -1,0 +1,79 @@
+{
+  "version": "courier-0.1.0",
+  "seed": 1,
+  "clock": 134,
+  "deadline": 240,
+  "status": "complete",
+  "location": "orchard",
+  "meals": 1,
+  "person": {
+    "format": "human-framework-person",
+    "version": 1,
+    "componentVersion": "0.1.0",
+    "person": {
+      "version": "0.1.0",
+      "id": "courier",
+      "body": {
+        "fatigue": 0.4400000000000001,
+        "hunger": 0.10400000000000001
+      },
+      "skills": {
+        "routecraft": 0.3955806915563059
+      },
+      "observationBias": 0,
+      "minutes": 134,
+      "nextAttempt": 25,
+      "pending": null
+    }
+  },
+  "parcels": {
+    "medicine": {
+      "owner": "clinic",
+      "deliveredAt": 112
+    },
+    "fabric": {
+      "owner": "market",
+      "deliveredAt": 19
+    },
+    "tea": {
+      "owner": "quay",
+      "deliveredAt": 35
+    },
+    "seeds": {
+      "owner": "orchard",
+      "deliveredAt": 134
+    },
+    "tools": {
+      "owner": "mill",
+      "deliveredAt": 123
+    },
+    "papers": {
+      "owner": "archive",
+      "deliveredAt": 51
+    }
+  },
+  "crossings": {
+    "footbridge": {
+      "condition": "calm",
+      "trials": 1,
+      "report": {
+        "condition": "calm",
+        "observedAt": 24
+      }
+    },
+    "lockbridge": {
+      "condition": "exposed",
+      "trials": 0,
+      "report": {
+        "condition": "exposed",
+        "observedAt": 40
+      }
+    }
+  },
+  "pending": null,
+  "lastEvent": {
+    "status": "completed",
+    "message": "Seed box delivered to Orchard on time.",
+    "minutes": 3
+  }
+}
