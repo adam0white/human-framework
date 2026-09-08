@@ -5,11 +5,29 @@ import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import assert from 'node:assert/strict';
+import {restorePerson} from '../src/human/v0.1.1.js';
+import {practice,PARAMETERS} from '../src/core/model.js';
 import {CASES,DRIVERS,END_AT} from '../src/experiments/work-progress/cases.js';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const clone=value=>structuredClone(value);
-export function canonical(value){if(Array.isArray(value))return '['+value.map(canonical).join(',')+']';if(value&&typeof value==='object')return '{'+Object.keys(value).sort().map(key=>JSON.stringify(key)+':'+canonical(value[key])).join(',')+'}';return JSON.stringify(value);}
+export function assertJson(value,ancestors=new Set()){
+ if(value===null||typeof value==='string'||typeof value==='boolean')return;
+ if(typeof value==='number'){assert.ok(Number.isFinite(value),'Non-finite JSON number');return;}
+ assert.equal(typeof value,'object','Non-JSON value');assert.ok(!ancestors.has(value),'Cyclic JSON value');
+ const array=Array.isArray(value);
+ assert.ok(array?Object.getPrototypeOf(value)===Array.prototype:[Object.prototype,null].includes(Object.getPrototypeOf(value)),'Non-plain JSON object');
+ const keys=Reflect.ownKeys(value);if(array)assert.equal(keys.length,value.length+1,'Sparse or extended JSON array');
+ ancestors.add(value);
+ for(const key of keys){
+  if(array&&key==='length')continue;
+  assert.equal(typeof key,'string','Symbol JSON field');const descriptor=Object.getOwnPropertyDescriptor(value,key);
+  assert.ok(descriptor.enumerable&&Object.hasOwn(descriptor,'value'),'Accessor or hidden JSON field');assertJson(descriptor.value,ancestors);
+ }
+ ancestors.delete(value);
+}
+function ordered(value){if(Array.isArray(value))return '['+value.map(ordered).join(',')+']';if(value&&typeof value==='object')return '{'+Object.keys(value).sort().map(key=>JSON.stringify(key)+':'+ordered(value[key])).join(',')+'}';return JSON.stringify(value);}
+export function canonical(value){assertJson(value);return ordered(value);}
 const relativeSources=[
  'src/experiments/work-progress/candidate.js','src/experiments/work-progress/camp-candidate.js',
  'src/experiments/work-progress/camp-direct.js','src/experiments/work-progress/camp-fixed.js',
@@ -19,12 +37,12 @@ const relativeSources=[
 ];
 export async function freezeSources(){
  const sources={};
+ const commit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
  for(const path of relativeSources){
   const bytes=await readFile(resolve(root,path));
-  const committed=execFileSync('git',['show','HEAD:'+path],{cwd:root});
+  const committed=execFileSync('git',['show',commit+':'+path],{cwd:root});
   assert.equal(sha(bytes),sha(committed),'Commit frozen input before recording source identity: '+path);sources[path]=sha(bytes);
  }
- const commit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
  return {format:'paid-work-source-freeze',version:1,commit,createdAt:new Date().toISOString(),sources};
 }
 export async function verifyFreeze(freeze){
@@ -36,6 +54,7 @@ export async function verifyFreeze(freeze){
  }
 }
 function validAccounting(observation,fixture){
+ assertJson(observation);
  assert.equal(Number.isSafeInteger(observation.now)&&observation.now>=0&&observation.now<=END_AT,true);
  for(const key of ['stock','spent','toolAvailable','outputs','actors','items','assignments','lastResponse'])assert.ok(Object.hasOwn(observation,key),'Missing accounting field '+key);
  assert.equal(typeof observation.toolAvailable,'boolean');
@@ -52,11 +71,16 @@ function validAccounting(observation,fixture){
  assert.equal(timber,5*count);assert.equal(salvage,count);
  assert.equal(observation.stock.toolBlank+observation.spent.toolBlank,fixture.setup.toolArrival?1:0);
  for(const actor of ['A','B','C']){
-  const {person,paid}=observation.actors[actor],p=person.person;
+  const {person,paid}=observation.actors[actor],p=restorePerson(person);
+  assert.equal(p.nextAttempt,observation.now+1,'Exactly one paid Human attempt per actor-minute');
   assert.equal(p.minutes,observation.now);assert.equal(p.pending,null);
   assert.equal(paid.work+paid.recovery,observation.now);
   assert.equal(paid.work,paid.construction+paid.hauling+paid.crafting);
   assert.ok(paid.effort>=0);
+  const initial=actor==='C'?{crafting:.1}:{construction:actor==='A'?.1:.6,hauling:.1};
+  assert.deepEqual(Object.keys(p.skills).sort(),Object.keys(initial).sort());
+  for(const [skill,start] of Object.entries(initial)){let expected=start;for(let i=0;i<paid[skill];i++)expected=practice(expected,1);assert.equal(p.skills[skill],expected,'Only actual paid task exposure changes practice');}
+  let hunger=.2;for(let i=0;i<observation.now;i++)hunger=Math.min(1,hunger+PARAMETERS.hungerPerMinute);assert.equal(p.body.hunger,hunger,'Every minute pays actual hunger');
  }
 }
 export function executeHistory(api,fixture,driver,{restore=false}={}){
@@ -68,7 +92,7 @@ export function executeHistory(api,fixture,driver,{restore=false}={}){
  const record=operation=>{
   const observation=api.observe(world);validAccounting(observation,fixture);
   records.push({operation:clone(operation),observation:clone(observation),snapshot:clone(api.exportWorld(world))});
-  return observation;
+  return clone(observation);
  };
  const initial=record({type:'create',setup:fixture.setup});assert.equal(initial.now,0,'Fixture starts at zero');checkpoints.push({tag:'initial',observation:initial});
  while(true){
@@ -95,7 +119,7 @@ export function executeHistory(api,fixture,driver,{restore=false}={}){
   assert.ok(target>now,'Driver cannot stop without a command or restore');
   world=api.advanceTo(world,target);assert.equal(api.observe(world).now,target);record({type:'advance',to:target});
  }
- const final=api.observe(world);
+ const final=clone(api.observe(world));
  const completed=final.items.map(item=>item.completedAt).sort((a,b)=>a-b);
  assert.deepEqual(completed,fixture.expected,'Unexpected physical completion '+fixture.id);
  assert.equal(final.outputs,fixture.expected.length);
