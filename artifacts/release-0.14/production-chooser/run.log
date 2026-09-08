@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "chooserToNewShift": true,
+      "paidInspectionMinute": 1,
+      "cardBounds": {
+        "x": 16,
+        "y": 232.859375,
+        "width": 340,
+        "height": 322.75
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "chooserToNewShift": true,
+      "paidInspectionMinute": 1,
+      "cardBounds": {
+        "x": 426,
+        "y": 161.78125,
+        "width": 725,
+        "height": 409.921875
+      }
+    },
+    {
+      "noJavaScriptChooser": true
+    }
+  ],
+  "errors": []
+}

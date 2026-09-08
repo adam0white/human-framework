@@ -1,0 +1,81 @@
+{
+  "verifiedAt": "2026-09-08T22:24:06.386908+00:00",
+  "appSource": "2ebdb8841215a26f69da1c394ab438b7a1f4d15d",
+  "workerVersion": "fc879d1a-82cc-4582-8210-40c2aacc26bd",
+  "reviewedFreezeSource": "cdcc9a3940e186c7f0209f18aeab849486497fa5",
+  "fileChecks": [
+    {
+      "path": "artifacts/across-player/inputs.json",
+      "frozenSha256": "7fa6361102f337e521539f9fce5e2b4694a63715f729f05947ba188950db8d61",
+      "appSha256": "7fa6361102f337e521539f9fce5e2b4694a63715f729f05947ba188950db8d61",
+      "matchesFrozenBytes": true
+    },
+    {
+      "path": "artifacts/across-player/policies.mjs",
+      "frozenSha256": "afd4354fd948e95edabc3513328e062ebda9ab5f6f9dd8e4029fc13a930ca7d1",
+      "appSha256": "afd4354fd948e95edabc3513328e062ebda9ab5f6f9dd8e4029fc13a930ca7d1",
+      "matchesFrozenBytes": true
+    },
+    {
+      "path": "artifacts/across-player/compare.mjs",
+      "frozenSha256": "c82ec20608278209624cbd7bab99d312edf15b987e933d53ab4559e9878afdd4",
+      "appSha256": "c82ec20608278209624cbd7bab99d312edf15b987e933d53ab4559e9878afdd4",
+      "matchesFrozenBytes": true
+    },
+    {
+      "path": "docs/across-player-comparison.md",
+      "frozenSha256": "9cae38c89b6150cdd619312737e015f10869f3c3effc0babfc6504c504535793",
+      "appSha256": "28625a58bf48fffe8e45c1e565c7c4c73ae6e01bac766d40ce08321cf37c1c61",
+      "matchesFrozenBytes": false,
+      "reason": "Private comparison report was extended with reviewed results after the preregistered freeze; executable sources and inputs remain exact."
+    },
+    {
+      "path": "tests/across-player-comparison.test.js",
+      "frozenSha256": "5cb7c02e49ad590697162b74daf747267ca932f8957168141bfec99f56ad650e",
+      "appSha256": "5cb7c02e49ad590697162b74daf747267ca932f8957168141bfec99f56ad650e",
+      "matchesFrozenBytes": true
+    },
+    {
+      "path": "src/games/across-cut.js",
+      "frozenSha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad",
+      "appSha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad",
+      "matchesFrozenBytes": true
+    },
+    {
+      "path": "src/runtime/index.js",
+      "frozenSha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "appSha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "matchesFrozenBytes": true
+    },
+    {
+      "path": "src/human/v0.1.1.js",
+      "frozenSha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "appSha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "matchesFrozenBytes": true
+    },
+    {
+      "path": "src/core/model.js",
+      "frozenSha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "appSha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "matchesFrozenBytes": true
+    },
+    {
+      "path": "src/runtime/clock.js",
+      "frozenSha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "appSha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "matchesFrozenBytes": true
+    },
+    {
+      "path": "src/games/across-cut-receiver.js",
+      "frozenSha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce",
+      "appSha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce",
+      "matchesFrozenBytes": true
+    },
+    {
+      "path": "src/games/across-cut-player.js",
+      "frozenSha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d",
+      "appSha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d",
+      "matchesFrozenBytes": true
+    }
+  ]
+}

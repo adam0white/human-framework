@@ -1,0 +1,33 @@
+{
+  "checks": [
+    "desktop initial layout",
+    "short initial layout",
+    "minute-eight report preserves underway release",
+    "stop at report refunds reservation and retains paid minute",
+    "real download, import preview/cancel/replace, continuation at nine",
+    "truth hidden until minute30 plus explicit Reveal",
+    "hidden inlet/launch twins have byte-equal DOM text initially and minute7",
+    "only own first-hand facts offered; selected fact transmitted with original observation time",
+    "partial travel retains position/owned supply; interrupted meal returns portion; completed meal consumed",
+    "report arrival after notebook had been scrolled",
+    "pending file reads invalidated by advancing or a newer selection",
+    "unreadable device save remains protected across play and explicit import; exact backup downloaded",
+    "storage write failure keeps current playable/downloadeable shift and visible warning"
+  ],
+  "findings": [],
+  "errors": [],
+  "screenshots": [
+    "/tmp/across-production/phone-initial.png",
+    "/tmp/across-production/desktop-initial.png",
+    "/tmp/across-production/desktop-report-eight.png",
+    "/tmp/across-production/short-initial.png",
+    "/tmp/across-production/short-report-eight.png",
+    "/tmp/across-production/phone-report-eight.png",
+    "/tmp/across-production/phone-account-before-reveal.png",
+    "/tmp/across-production/phone-account-revealed.png",
+    "/tmp/across-production/phone-own-report.png",
+    "/tmp/across-production/phone-partial-travel.png",
+    "/tmp/across-production/phone-report-after-notebook-scrolled.png"
+  ],
+  "sourceCount": 13
+}

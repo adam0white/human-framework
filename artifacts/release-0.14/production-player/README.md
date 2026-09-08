@@ -1,0 +1,7 @@
+# Production actor-local player checks
+
+Executed against https://human.adamwhite.work after app 0.14/source `2ebdb8841215a26f69da1c394ab438b7a1f4d15d` was pushed and deployed. Thirteen broad groups and seven corrective groups pass on final source, without browser warnings/errors or recorded findings. Broad served page/module/style hashes match both the workspace and their before/after capture; the separate strict live verification checks every public payload and 83 private/retired routes.
+
+`run.mjs` and `corrections.mjs` adapt the independently authored local review probes to an HTTPS UI_BASE and fresh UI_OUTPUT directory, with final assertions so caught failures cannot masquerade as a successful process. Launch from the repository using Node >=22 and the installed Playwright/Chrome path declared in the scripts. Run the broad script before its corrective supplement in the same output directory. All saves, downloads and storage corruption/quota canaries are synthetic; fresh contexts never read the player's actual device save.
+
+Phone 375x667, desktop 1280x900 and short 375x500 cases cover received-report paid work, stop/continue, source times, hidden-world equal DOM, ownership/travel/meals, save/import/races/failures, and researcher truth only after horizon plus explicit Reveal. Root inspected production phone and desktop screenshots. These are desktop Chrome viewports, not physical-device, Safari, screen-reader or human-usefulness evidence.

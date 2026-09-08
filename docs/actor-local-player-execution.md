@@ -1,6 +1,6 @@
 # Actor-local player integration: next executable milestone
 
-Selected after Camp 0.3.0 maintenance on 2026-09-08. This is the next bounded implementation, not a delivered capability. The framework is the product; the scene is a disposable consumer, with no required chapter order or old-save support.
+Selected after Camp 0.3.0 maintenance on 2026-09-08. Completed and delivered as [app 0.14](release-0.14.md). This execution boundary is now provenance; [the current action-offer proposal](action-offer-proposal.md) is next. The framework is the product; the scene is a disposable consumer, with no required chapter order or old-save support.
 
 ## Missing capability and selected scope
 

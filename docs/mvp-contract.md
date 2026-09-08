@@ -1,6 +1,6 @@
 # What may graduate to MVP
 
-Established 2026-09-07; current direction revised through app 0.13 and the private paid-work study on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
+Established 2026-09-07; current direction revised through app 0.14 and the private paid-work study on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
 
 ## Current scope correction
 
@@ -39,7 +39,7 @@ Package usability and a broader human model have different completion criteria. 
 
 ## Completed paid-work reuse study
 
-The [private work study](work-progress-results.md) strengthens lifecycle/portability evidence through an actual frozen API, independently authored repair consumer, two separate requirement changes, corrected invariant failures and restricted-runtime reproduction. It does not promote a runtime export: two-consumer source is nearly neutral, most host obligations remain, human authoring benefit is unmeasured, and strict projected bit equality remains unmet only for derived effort. The delivered [Camp maintenance result](camp-current-comparison.md) reduces obsolete dependencies under a weaker current-state contract while retaining exact physical values across 201 frozen commands. All 784 integrated tests, 43 new minimum-runtime tests and production checks pass. This earns a narrower maintained consumer, not a general faculty or equal historical validation claim. Next is [actor-local player reconsideration](actor-local-player-execution.md); no fixed player count or preservation of every old save is required.
+The [private work study](work-progress-results.md) strengthens lifecycle/portability evidence through an actual frozen API, independently authored repair consumer, two separate requirement changes, corrected invariant failures and restricted-runtime reproduction. It does not promote a runtime export: two-consumer source is nearly neutral, most host obligations remain, human authoring benefit is unmeasured, and strict projected bit equality remains unmet only for derived effort. The delivered [Camp maintenance result](camp-current-comparison.md) reduces obsolete dependencies under a weaker current-state contract while retaining exact physical values across 201 frozen commands. All 784 integrated tests, 43 new minimum-runtime tests and production checks pass. This earns a narrower maintained consumer, not a general faculty or equal historical validation claim. [App 0.14](release-0.14.md) now delivers actor-local player reconsideration, first-hand report ownership, automatic available recovery and a reviewed receiver policy. All 52 frozen/reviewed records, 844 tests and production checks pass, with simpler-policy successes and sampling limits explicit. No general cognition mechanism is promoted. Next is [what an offered action promises](action-offer-proposal.md); no fixed player count or preservation of every old save is required.
 
 ## Historical milestone records
 

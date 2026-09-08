@@ -1,0 +1,43 @@
+{
+  "scope": "Exploratory verification of an already identified next-priority counterexample, not part of the frozen52 comparison or a completed new experiment.",
+  "setup": {
+    "valveMinutes": 6,
+    "inletMinutes": 2,
+    "launchAt": 27,
+    "channelMode": "reliable",
+    "channelSeed": 0,
+    "channelOverrides": {},
+    "bodies": {
+      "keeper": {
+        "fatigue": 0.9751,
+        "hunger": 0.15
+      },
+      "receiver": {
+        "fatigue": 0.15,
+        "hunger": 0.15
+      }
+    }
+  },
+  "visibleBody": {
+    "fatigue": 1,
+    "hunger": 0.15
+  },
+  "offer": {
+    "id": "inspect",
+    "label": "Inspect",
+    "detail": "Learn this station’s repair requirement.",
+    "duration": 1,
+    "action": {
+      "task": "inspect"
+    },
+    "unavailable": "Your body estimate does not yet support this entire interval."
+  },
+  "actualAdmission": true,
+  "completedAt": 1,
+  "paidInspection": 1,
+  "actualPostBody": {
+    "fatigue": 0.9795999999999999,
+    "hunger": 0.152
+  },
+  "claimLimit": "Shows avoidable offer delay, not lost service or human misunderstanding."
+}
