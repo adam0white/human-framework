@@ -127,3 +127,16 @@ test('a blocked result names actual fatigue and hunger causes after an optimisti
  const started=startAction(s,'patch-intake');assert.equal(started.pending.durationMinutes,2);
  const done=finishAction(started);assert.match(done.lastEvent.message,/fatigue and hunger/i);assert.equal(done.lastEvent.status,'blocked');assert.equal(done.lastEvent.practiceMinutes,0);
 });
+test('shift imports preserve the authored zero observation bias',()=>{
+ const saved=exportShift(createShift());saved.person.person.observationBias=-1;
+ assert.throws(()=>importShift(saved),{name:'Error',message:/Invalid shift observation bias/});
+ assert.equal(importShift(exportShift(createShift())).person.observationBias,0);
+});
+test('wrong-type inspection attempt IDs fail validation before string parsing',()=>{
+ const saved=exportShift(act(at(),'inspect-garden'));saved.pumps.garden.inspection.attemptId=42;
+ assert.throws(()=>importShift(saved),{name:'Error',message:/Invalid inspection attempt ID/});
+});
+test('wrong-type pending action IDs fail validation before string parsing',()=>{
+ const saved=exportShift(startAction(createShift(),'take-tools'));saved.pending.actionId=42;
+ assert.throws(()=>importShift(saved),{name:'Error',message:/Invalid pending action ID/});
+});
