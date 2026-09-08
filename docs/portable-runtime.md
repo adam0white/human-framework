@@ -25,6 +25,8 @@ Import the combined API from `human-framework-runtime`, or use the explicit `/hu
 
 The package test actually runs `npm pack`, installs that tarball **offline** into a newly created temporary consumer, and executes the exported API with Node's filesystem permission model restricted to the consumer directory. It asserts that reading the original repository source is denied. That consumer advances and finishes a real person attempt, resumes person and clock JSON snapshots identically, checks a capacity rejection and rejects access to an unexported internal module. This proves local Node package consumption; it is not evidence of a Unity, Godot, native or browser-bundler integration. The source modules themselves use ordinary platform JavaScript, with no Node imports in their runtime dependency graph.
 
+The separate `tests/commons-package.test.js` also installs this package into an isolated consumer and runs the entire Common Ground host. Only two module specifiers change; no host rules are rewritten. A resumed concurrent run and its 600 one-minute advances match the original host exactly. The integrated test passes on Node 22.0.0 and Node 26.8.1.
+
 ## Human and host responsibilities
 
 The human API exports `createPerson`, `getPersonView`, `assessEffort`, `estimateSuccess`, `beginAttempt`, `advanceAttempt`, `finishAttempt`, `exportPerson` and `restorePerson`, plus its version and authored parameters. A person has actual body state, task skills, an observation bias, elapsed minutes and at most one pending attempt. A view is a detached perceived projection. Capacity checks can block exertion. Advancing actual elapsed minutes applies maintenance and task-specific practice; a matching host receipt settles an attempt once.

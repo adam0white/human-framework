@@ -60,4 +60,4 @@ Owner: root. Files: `scripts/public-pages.js`, `scripts/build.js`, `tests/build.
 - [x] Integrate all three branches, preserve source identity and add chooser entry and npm scripts.
 - [x] Cross-review each lane with a different author; reproduce material findings and fix before release.
 - [x] Full automated tests, package/host contract probe, actual desktop/mobile browser verification, deployment dry run.
-- [ ] Commit/push intended source, deploy, verify manifest and every public payload byte; record remaining MVP gates accurately.
+- [x] Commit/push intended source, deploy, verify manifest and every public payload byte; record remaining MVP gates accurately.

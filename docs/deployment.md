@@ -24,6 +24,8 @@ The laboratory is at `/`; the game chooser is at `/games/`. Host-owned games are
 
 The app has no history-based client routes, so unknown URLs return 404 instead of the homepage. Response headers constrain script loading and framing. `Cache-Control: no-cache, no-transform` asks browsers to revalidate stable module URLs and keeps the delivered payload from being rewritten. The latter prevents the zone's automatically injected analytics beacon from conflicting with the app's script policy; the zone-wide analytics setting is unchanged. This follows Cloudflare's [Web Analytics troubleshooting guidance](https://developers.cloudflare.com/web-analytics/faq/). Keep tabs on one engine release for a run; export before refreshing when preserving that run matters.
 
+Browser QA must distinguish a real failed navigation from a Cloudflare speculative prefetch refusal. Speed Brain can respond 503 to a request marked `sec-purpose: prefetch` on Worker routes; the response identifies `cf-speculation-refused`. Record that case separately only when it is a non-navigation prefetch with the expected refusal header. Keep actual page and module failures as blockers. [Cloudflare behavior](https://developers.cloudflare.com/speed/optimization/content/speed-brain/).
+
 ## Rollback and future setup
 
 Use the recorded deployed version from the release record to identify a prior good Worker deployment. Verify current Wrangler rollback help and Cloudflare's [rollback rules](https://developers.cloudflare.com/workers/versions-and-deployments/rollbacks/) before changing production. Alternatively, restore a known source commit on a separate branch, test/build it, and deploy that reviewed version. Never rewrite or reset the user's working changes to perform a rollback.

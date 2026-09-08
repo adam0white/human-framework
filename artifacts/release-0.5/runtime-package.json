@@ -11,7 +11,7 @@
     "src/runtime/clock.js",
     "src/runtime/index.js"
   ],
-  "sha256": "9bf33d8ece8b88688cd7705fd2d681a4bf711ce1325c934cfd314b99706ef587",
+  "sha256": "a79f0a3b2b938a8d0b4ee625ad7ae5a466c407d46b957e2d31eb98fd48e17d2f",
   "manifest": {
     "format": "human-framework-runtime",
     "version": 1,

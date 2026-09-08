@@ -1,0 +1,24 @@
+{
+  "observedAt": "2026-09-08T03:41:54Z",
+  "initialHarnessResult": "Failure: treated any HTTP status >=400 as a failed app request. Two normal runs and a diagnostic run reached this assertion after the interaction checks.",
+  "diagnostic": {
+    "url": "https://human.adamwhite.work/commons/",
+    "status": 503,
+    "method": "GET",
+    "resourceType": "other",
+    "cfRay": "a37af0af7b2233a1-AUS",
+    "responseHeaders": {
+      "cf-speculation-refused": "prefetch refused: disabled for worker requests",
+      "content-length": "0",
+      "vary": "sec-purpose"
+    }
+  },
+  "actualRouteChecks": {
+    "/commons/": 200,
+    "/commons": 200,
+    "/commons/index.html": 200,
+    "/release.json": 200
+  },
+  "resolution": "Require sec-purpose prefetch, non-navigation resource other, status503 and the exact Cloudflare refusal header to classify separately. Final production report preserves one matching refusal; it has zero actual failed requests. No application code or Cloudflare setting changed.",
+  "source": "https://developers.cloudflare.com/speed/optimization/content/speed-brain/"
+}

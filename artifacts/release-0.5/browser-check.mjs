@@ -4,9 +4,16 @@ import {writeFile,mkdir} from 'node:fs/promises';
 const base=process.argv[2]??'http://127.0.0.1:4188',label=process.argv[3]??'local';
 const browser=await chromium.launch({headless:true,channel:'chrome'});
 const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage();
-const errors=[],failedRequests=[],checks=[];
+const errors=[],failedRequests=[],prefetchRefusals=[],networkChecks=[],checks=[];
 page.on('pageerror',e=>errors.push(e.message));
-page.on('response',r=>{if(r.status()>=400)failedRequests.push({url:r.url(),status:r.status()});});
+page.on('response',r=>{if(r.status()>=400)networkChecks.push((async()=>{
+ const headers=await r.allHeaders(),requestHeaders=await r.request().allHeaders();
+ const item={url:r.url(),status:r.status(),resource:r.request().resourceType(),navigation:r.request().isNavigationRequest(),purpose:requestHeaders['sec-purpose']??null,refusal:headers['cf-speculation-refused']??null,ray:headers['cf-ray']??null};
+ // Cloudflare explicitly refuses speculative prefetches on Worker routes.
+ // Keep the observation; never exempt an actual document or module failure.
+ const knownPrefetch=item.status===503&&!item.navigation&&item.resource==='other'&&/prefetch/i.test(item.purpose??'')&&item.refusal==='prefetch refused: disabled for worker requests';
+ (knownPrefetch?prefetchRefusals:failedRequests).push(item);
+})());});
 const game=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('human-common-ground-v1'))?.game);
 const overflow=()=>page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
 try{
@@ -34,6 +41,6 @@ try{
  await page.getByText(/2 buckets remain in your cans/).waitFor();assert.match(await page.locator('body').innerText(),/Blocked: 10 minutes paid/);assert.match(await page.locator('body').innerText(),/does not collect more water/);checks.push('Courtyard replies, repayment and actual blocked final-pour snapshot explain separate action slots');
  assert.equal(await overflow(),false);assert.equal(JSON.stringify(await game()),manual,'courtyard did not overwrite the other game save');
  await page.setViewportSize({width:1280,height:900});await page.goto(base+'/games/');await page.screenshot({path:`/tmp/hf-0.5-${label}-games-1280.png`,fullPage:true});
- assert.deepEqual(errors,[]);assert.deepEqual(failedRequests,[]);
- const result={checkedAt:new Date().toISOString(),origin:base,browser:await browser.version(),environment:'Isolated headless desktop Chrome; viewport tests are not physical-device timings',checks,viewports:[320,390,1280],errors,failedRequests};await writeFile(`/tmp/hf-0.5-${label}-browser.json`,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
+ await Promise.all(networkChecks);assert.deepEqual(errors,[]);assert.deepEqual(failedRequests,[]);
+ const result={checkedAt:new Date().toISOString(),origin:base,browser:await browser.version(),environment:'Isolated headless desktop Chrome; viewport tests are not physical-device timings',checks,viewports:[320,390,1280],errors,failedRequests,prefetchRefusals};await writeFile(`/tmp/hf-0.5-${label}-browser.json`,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
 }finally{await context.close();await browser.close();}

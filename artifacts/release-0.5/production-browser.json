@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-09-08T03:43:15.080Z",
+  "origin": "https://human.adamwhite.work",
+  "browser": "152.0.7977.77",
+  "environment": "Isolated headless desktop Chrome; viewport tests are not physical-device timings",
+  "checks": [
+    "Five-game chooser, paused first view, visible opening choices",
+    "Concurrent jobs reserve shared materials, finish independently, and reload exactly",
+    "Neighbor completion does not finish the player job",
+    "Actual save download and file import resume pending work",
+    "Real 4x playback pauses exactly at player completion and matches the manual snapshot",
+    "Invalid save preserves the active run",
+    "Courtyard replies, repayment and actual blocked final-pour snapshot explain separate action slots"
+  ],
+  "viewports": [
+    320,
+    390,
+    1280
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "prefetchRefusals": [
+    {
+      "url": "https://human.adamwhite.work/commons/",
+      "status": 503,
+      "resource": "other",
+      "navigation": false,
+      "purpose": "prefetch",
+      "refusal": "prefetch refused: disabled for worker requests",
+      "ray": "a37af284c8208916-AUS"
+    }
+  ]
+}

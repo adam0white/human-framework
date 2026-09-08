@@ -1,0 +1,329 @@
+{
+  "verifiedAt": "2026-09-08T03:38:56.770Z",
+  "origin": "https://human.adamwhite.work",
+  "release": {
+    "appVersion": "0.5.0",
+    "engineVersion": "0.3.0",
+    "commit": "414a4bce06edc15ce47b5ec51b9aa0a85043b4d0",
+    "dirty": false,
+    "assetsSha256": "b1e5ca79d8f5b987ae51e9675a37b5d5c67faf6276bce3a247ccc38bdb33d13f"
+  },
+  "source": "414a4bce06edc15ce47b5ec51b9aa0a85043b4d0",
+  "pushedMain": "414a4bce06edc15ce47b5ec51b9aa0a85043b4d0",
+  "payloads": [
+    {
+      "route": "/commons/",
+      "bytes": 9222,
+      "sha256": "9572de481bd6efb5c73d660220df2c5e393d476f44790abbbf3b38c175faacc1"
+    },
+    {
+      "route": "/courier/",
+      "bytes": 7056,
+      "sha256": "65620bee90301664f5660f35ad54f223816ce6c00424f834756b46301dc34533"
+    },
+    {
+      "route": "/courtyard/",
+      "bytes": 10023,
+      "sha256": "ef35e68f2811c2a169c0d06468c336385c8a9194015f63727111ed1817b3cbd6"
+    },
+    {
+      "route": "/games/",
+      "bytes": 6072,
+      "sha256": "abdddf9b914bd817a695eaae3c358b8901fc087b44acc266b6c41d1110bf8dc6"
+    },
+    {
+      "route": "/",
+      "bytes": 13682,
+      "sha256": "977d545c73d43b26d084a4150f5605c73ed63ef1d32b36ab2db4f1a13e8207c0"
+    },
+    {
+      "route": "/shift/",
+      "bytes": 7798,
+      "sha256": "ab034c6790cda1cc999cf16cc30f0551d1f15130712651b423d2b95dc8e04145"
+    },
+    {
+      "route": "/src/core/index.js",
+      "bytes": 1801,
+      "sha256": "d5b0ddbb7a33a4bd3fdbe37c5322eeb39060a148c88f15a3e1ebb19d5e67ef4a"
+    },
+    {
+      "route": "/src/core/model.js",
+      "bytes": 7764,
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "route": "/src/core/observation.js",
+      "bytes": 1518,
+      "sha256": "c9d4e4322f4c55633c8422a09817aece7a7c92700df1ba565faf4ecf6b15b1c2"
+    },
+    {
+      "route": "/src/core/policy.js",
+      "bytes": 5122,
+      "sha256": "5e41b651d4d35192ef234d9c5246da0f03c3cf6c2b5b7c7b384bbcfa5751f0a3"
+    },
+    {
+      "route": "/src/core/random.js",
+      "bytes": 358,
+      "sha256": "d2c76c3105a86b052a6694a4709e67f58f9a88dad9eccc62d397c2e87f4eaeec"
+    },
+    {
+      "route": "/src/core/simulation.js",
+      "bytes": 11848,
+      "sha256": "a4ae351fab92af2c94b5967907504afbfde25d130dfec06ee538dd869f919c34"
+    },
+    {
+      "route": "/src/games/commons-policy.js",
+      "bytes": 2944,
+      "sha256": "d5700cbe386b91424f1aa4a6059a7cc0868ee920da264a1d12a66bee8979195f"
+    },
+    {
+      "route": "/src/games/commons.js",
+      "bytes": 23184,
+      "sha256": "b2c6f5e8bd38e84b729d73182170c88034edc3767e00c71cd65784233283aedb"
+    },
+    {
+      "route": "/src/games/courier-policy.js",
+      "bytes": 2829,
+      "sha256": "90757d495b17ca71b1ad2e540e35b617b3d2bc3a8b5e788aab21907bcadc845c"
+    },
+    {
+      "route": "/src/games/courier.js",
+      "bytes": 21565,
+      "sha256": "ddfcec4978380364bfb3b36d1dd936bc8b85825ffb960596e7a32b36561800aa"
+    },
+    {
+      "route": "/src/games/courtyard-session.js",
+      "bytes": 1133,
+      "sha256": "7f653afeff22e06e16a6abe0647c9be14de382fb0cd33318f5a64600e6d8b563"
+    },
+    {
+      "route": "/src/games/courtyard.js",
+      "bytes": 22814,
+      "sha256": "4bdc2d794855ebb45a5992c9b1cccd00274ed1aaf152ea32ee91c3b513ee7e4b"
+    },
+    {
+      "route": "/src/games/shift.js",
+      "bytes": 22788,
+      "sha256": "4789e22b746d9ee24711e3a011d9e40f67053b7b14e3204648487276f04b9e36"
+    },
+    {
+      "route": "/src/games/workshop.js",
+      "bytes": 20171,
+      "sha256": "b2ee4cb10fddf57455c0321e42da1d256b87a7a96225d92ff1940f45ed8f6f06"
+    },
+    {
+      "route": "/src/human/index.js",
+      "bytes": 10239,
+      "sha256": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308"
+    },
+    {
+      "route": "/src/legacy/v0.1/index.js",
+      "bytes": 291,
+      "sha256": "9c2e21debe3e7f6263050368d0c32da920750ea0bb8166497d69d19c9ce92365"
+    },
+    {
+      "route": "/src/legacy/v0.1/model.js",
+      "bytes": 6451,
+      "sha256": "57468434fea0306c895def14b2bfe9d65f08cafa2998e2bfc16a418229c2adf8"
+    },
+    {
+      "route": "/src/legacy/v0.1/observation.js",
+      "bytes": 1466,
+      "sha256": "1d88d63ef05d9dffcd0ce9651f4e3f0e442359edabe0ae4b17625ca081e34da9"
+    },
+    {
+      "route": "/src/legacy/v0.1/policy.js",
+      "bytes": 2983,
+      "sha256": "5b1cf7c41112c4456d45817bab64cba97f64aa1bb4b8ede01331c00eaea95ecc"
+    },
+    {
+      "route": "/src/legacy/v0.1/random.js",
+      "bytes": 358,
+      "sha256": "d2c76c3105a86b052a6694a4709e67f58f9a88dad9eccc62d397c2e87f4eaeec"
+    },
+    {
+      "route": "/src/legacy/v0.1/simulation.js",
+      "bytes": 10393,
+      "sha256": "a209ebe9c592ca7d3a9dd14c718e696aa94caf5848951d176df3673a0e36e256"
+    },
+    {
+      "route": "/src/legacy/v0.2/index.js",
+      "bytes": 402,
+      "sha256": "b597467a95eaf8976c3aed720c8ff40b91df3812262fb13b190dd96ebfe95b23"
+    },
+    {
+      "route": "/src/legacy/v0.2/model.js",
+      "bytes": 7405,
+      "sha256": "3b129e5ec7c7bbb826dbaf4aae5b9813e7e50d5051ad3cc3c5617e87eb89ca2f"
+    },
+    {
+      "route": "/src/legacy/v0.2/observation.js",
+      "bytes": 1466,
+      "sha256": "1d88d63ef05d9dffcd0ce9651f4e3f0e442359edabe0ae4b17625ca081e34da9"
+    },
+    {
+      "route": "/src/legacy/v0.2/policy.js",
+      "bytes": 3132,
+      "sha256": "8079cd76e77d7639bff57ec2828e592639981a4cc65742c738379e834fb33835"
+    },
+    {
+      "route": "/src/legacy/v0.2/random.js",
+      "bytes": 358,
+      "sha256": "d2c76c3105a86b052a6694a4709e67f58f9a88dad9eccc62d397c2e87f4eaeec"
+    },
+    {
+      "route": "/src/legacy/v0.2/simulation.js",
+      "bytes": 11798,
+      "sha256": "5534e54473afa75183e6a321e2feedba2bc3eda088493e18de2c9df2642828f6"
+    },
+    {
+      "route": "/src/runtime/clock.js",
+      "bytes": 7513,
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    },
+    {
+      "route": "/src/runtime/index.js",
+      "bytes": 187,
+      "sha256": "fd669e4f4bcbb3713249b64b34d0d369aa929d3904022b78acd8cc09ffefdb60"
+    },
+    {
+      "route": "/src/scenarios/index.js",
+      "bytes": 7967,
+      "sha256": "2fa598016e2c648d5f40ce773f9f685329fad3b089058c5b5f2e0c88d32adfa4"
+    },
+    {
+      "route": "/web/app.js",
+      "bytes": 36011,
+      "sha256": "c09dc8784ece327290c31f01735f3f1fc717c6469e4393d1eaa200375b5d2fe6"
+    },
+    {
+      "route": "/web/commons.css",
+      "bytes": 11158,
+      "sha256": "75fa4084b90b88838b186b4efb44d5455b877ea68b8178cc9e38568da2767487"
+    },
+    {
+      "route": "/web/commons.js",
+      "bytes": 8863,
+      "sha256": "36642aeae757b3e266d49f95241c5447f064e23f0e88200795e3fea019c6bd9d"
+    },
+    {
+      "route": "/web/courier.css",
+      "bytes": 9102,
+      "sha256": "17fce75d3660fb9324a41f93633984403a80f2543cba7937774779089e243711"
+    },
+    {
+      "route": "/web/courier.js",
+      "bytes": 11634,
+      "sha256": "fc1220258c3e9da303cca8e4d9b855f173afa58137a90a4c1de5dffd24cc851c"
+    },
+    {
+      "route": "/web/courtyard-guide.js",
+      "bytes": 4109,
+      "sha256": "cac4aff6caa89ba9d7cc2b3e5cc8d370aa9674fad69d53d7546269669d6b2463"
+    },
+    {
+      "route": "/web/courtyard.css",
+      "bytes": 13967,
+      "sha256": "7c19a8af1025e5a07ab3ea66d38f8cef00ad38e036d0d1f2067ff7e0eae61fd1"
+    },
+    {
+      "route": "/web/courtyard.js",
+      "bytes": 14334,
+      "sha256": "8fd633a42aac08eae859251a49b56a5a5a3d6a99106ef4bed481b743e15dcd54"
+    },
+    {
+      "route": "/web/games.css",
+      "bytes": 4173,
+      "sha256": "7e5fffeca47ca0296411aaadf80c7b1b38cf236a2f63fde7bafb0c46179f06df"
+    },
+    {
+      "route": "/web/guidance.js",
+      "bytes": 2567,
+      "sha256": "de7edaee8b7acd7a8ac628824c83911a7cad82edffb517e9b464a6e58383968f"
+    },
+    {
+      "route": "/web/shift.css",
+      "bytes": 14471,
+      "sha256": "5ee9b1309e558724dbf10dd9b06f8724c3663c0ad804cb6e84fbf115121a007b"
+    },
+    {
+      "route": "/web/shift.js",
+      "bytes": 15791,
+      "sha256": "92ecca05bf305b57580eaf0176e4dca009a42e1f0435a03fc02ce4b736010418"
+    },
+    {
+      "route": "/web/styles.css",
+      "bytes": 32939,
+      "sha256": "b54c6a3c566d3e26f93d3afc1e3917e5a8edbd7f6327b64ad829b7008417aa68"
+    },
+    {
+      "route": "/web/workshop.css",
+      "bytes": 10726,
+      "sha256": "9524ef6e65a5dd62d85adae624770e55b98c8b9755492df67691a5bf27401732"
+    },
+    {
+      "route": "/web/workshop.js",
+      "bytes": 9466,
+      "sha256": "73d2d7e30620980687c94f0d01163383479279f9ae0259f38430a9577f9124b9"
+    },
+    {
+      "route": "/workshop/",
+      "bytes": 7429,
+      "sha256": "49de1350092a5812de63c17be14b9f1b79d7b2dfe180729579d7dbfc88a7792b"
+    }
+  ],
+  "privatePaths": [
+    {
+      "path": "/README.md",
+      "status": 404
+    },
+    {
+      "path": "/research/islamic-foundations.md",
+      "status": 404
+    },
+    {
+      "path": "/research/reviews/2026-09-07-games-fable-product.raw.json",
+      "status": 404
+    },
+    {
+      "path": "/artifacts/courier-benchmark.json",
+      "status": 404
+    },
+    {
+      "path": "/artifacts/user-runs/2026-09-07/courtyard-1-move-18.json",
+      "status": 404
+    },
+    {
+      "path": "/runtime-dist/human-framework-runtime-0.1.0.tgz",
+      "status": 404
+    },
+    {
+      "path": "/docs/roadmap.md",
+      "status": 404
+    },
+    {
+      "path": "/package.json",
+      "status": 404
+    },
+    {
+      "path": "/wrangler.jsonc",
+      "status": 404
+    },
+    {
+      "path": "/.git/config",
+      "status": 404
+    },
+    {
+      "path": "/.worktrees/pump-shift/src/games/shift.js",
+      "status": 404
+    },
+    {
+      "path": "/missing-route",
+      "status": 404
+    },
+    {
+      "path": "/_headers",
+      "status": 404
+    }
+  ]
+}
