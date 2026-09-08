@@ -1,0 +1,30 @@
+✖ same-minute withdrawal survives a later-arriving earlier transmitted acceptance (8.275625ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43.88075
+
+✖ failing tests:
+
+test at tests/across-cut-comparison.test.js:135:1
+✖ same-minute withdrawal survives a later-arriving earlier transmitted acceptance (8.275625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'accept'
+  - 'withdraw'
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/across-cut-policies/tests/across-cut-comparison.test.js:150:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'accept',
+    expected: 'withdraw',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

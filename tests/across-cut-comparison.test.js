@@ -131,3 +131,21 @@ test('historical replay verifies original Git source bytes before loading a reco
     assert.equal(run.status,0,run.stderr);const result=JSON.parse(await readFile(out,'utf8'));assert.equal(result.verified.length,80);assert.match(result.sourceCommit,/^be1f104/);assert.equal(result.sourceVerified,true);
   }finally{await rm(dir,{recursive:true,force:true});}
 });
+
+test('same-minute withdrawal survives a later-arriving earlier transmitted acceptance',async()=>{
+  const host=await import('../src/experiments/across-cut/host.js');
+  const {compareRepresentations}=await import('../src/experiments/across-cut/comparison/representations.js');
+  let world=host.create({channelMode:'bounded',channelOverrides:{'keeper:1':2,'receiver:4':6,'receiver:5':2}});
+  world=host.request(world,'keeper',{task:'propose',terms:{releaseAt:15,attendFrom:19,attendUntil:20}});
+  world=host.advance(world,3);
+  world=host.request(world,'receiver',{task:'decide',proposalId:'keeper:p1',revision:1,decision:'accept'});
+  world=host.request(world,'receiver',{task:'transmit',message:{kind:'response',proposalId:'keeper:p1',revision:1,decision:'accept'}});
+  world=host.request(world,'receiver',{task:'decide',proposalId:'keeper:p1',revision:1,decision:'withdraw'});
+  world=host.advance(world,4);
+  world=host.request(world,'receiver',{task:'transmit',message:{kind:'response',proposalId:'keeper:p1',revision:1,decision:'withdraw'}});
+  world=host.advance(world,10);
+  const view=host.getActorView(world,'keeper'),responses=view.inbox.filter(e=>e.message.kind==='response');
+  assert.deepEqual(responses.map(e=>[e.message.decision,e.message.decidedAt,e.sentAt,e.receivedAt]),[['withdraw',3,5,7],['accept',3,4,10]]);
+  assert.deepEqual(host.restoreState(host.exportState(world)),world);
+  assert.equal(compareRepresentations(view.notebook,view.inbox).notebook.responses['keeper:p1|1'].decision,'withdraw');
+});
