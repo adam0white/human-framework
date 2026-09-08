@@ -169,6 +169,14 @@ check('saves cannot silently move carried water between owners without a recorde
   moved.carried.player++;moved.carried.neighbor--;
   assert.throws(()=>importGame(moved),/ownership/);
 });
+check('saves cannot change either person’s authored zero observation bias',()=>{
+  const game=playTurn(createGame(),'draw-careful');
+  assert.deepEqual(importGame(exportGame(game)),game);
+  for(const id of ['player','neighbor'])for(const bias of [-1,0.05,1]){
+    const save=exportGame(game);save.people[id].person.observationBias=bias;
+    assert.throws(()=>importGame(save),/observation bias/);
+  }
+});
 check('the final move deposits carried water instead of collecting water that cannot be stored in time',()=>{
   let game=createGame({seed:34});
   for(const action of ['draw-careful','eat','rest','draw-quick','ask','pour','accept','pour','draw-quick','refuse','draw-careful','rest','ask','pour','rest','rest','borrow'])game=playTurn(game,action);

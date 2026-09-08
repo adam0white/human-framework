@@ -4,7 +4,7 @@
   "hostVersion": "0.1.0",
   "humanVersion": "0.1.0",
   "sourceSha256": {
-    "src/games/courtyard.js": "c9fc1300be6675a21c12e173c3203cd0c49f3f5b656078e42094ca9afd2d4ab3",
+    "src/games/courtyard.js": "4bdc2d794855ebb45a5992c9b1cccd00274ed1aaf152ea32ee91c3b513ee7e4b",
     "src/games/courtyard-session.js": "7f653afeff22e06e16a6abe0647c9be14de382fb0cd33318f5a64600e6d8b563",
     "src/human/index.js": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308",
     "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
