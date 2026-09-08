@@ -1,0 +1,55 @@
+{
+  "environment": {
+    "node": "v23.7.0",
+    "executable": "/Users/abdul/.nvm/versions/node/v23.7.0/bin/node",
+    "platform": "darwin",
+    "release": "25.6.0",
+    "architecture": "arm64",
+    "cpu": "Apple M4",
+    "logicalCpus": 10,
+    "memoryBytes": 17179869184
+  },
+  "scope": "Local installed consumer only; excludes pack/install/render; no physical-mobile measurement.",
+  "workload": {
+    "people": 2,
+    "eventCases": [
+      "lookout due at minute 8 during repair",
+      "repair due at minute 12",
+      "water arrival at minute 18"
+    ],
+    "commandCases": [
+      "accept repair",
+      "accept concurrent lookout",
+      "refuse busy recipient",
+      "refuse role-mismatched repair"
+    ]
+  },
+  "eventBoundaries": {
+    "samples": 1000,
+    "warmups": 100,
+    "p50Ms": 0.10566699999998264,
+    "p95Ms": 0.1572089999999946,
+    "maxMs": 0.30758300000000816,
+    "p95BudgetMs": 8,
+    "budgetPassed": true
+  },
+  "requestCommands": {
+    "samples": 1000,
+    "warmups": 100,
+    "p50Ms": 0.08383300000002691,
+    "p95Ms": 0.12279100000000653,
+    "maxMs": 0.2771670000000199,
+    "p95BudgetMs": 8,
+    "budgetPassed": true
+  },
+  "maxSerializedStateCharacters": 2822,
+  "maxSerializedStateBytes": 2822,
+  "longSession": {
+    "worldMinute": 100000,
+    "serializedStateCharacters": 2822,
+    "serializedStateBytes": 2822,
+    "pendingEvents": 2,
+    "recentMessages": 7
+  },
+  "budgetPassed": true
+}

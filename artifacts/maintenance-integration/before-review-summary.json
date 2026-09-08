@@ -1,0 +1,22 @@
+{
+  "provenance": "These p95 summaries were retained from the earlier tool output. The complete initial Node 26/22 reports were overwritten when final reviewed sources were measured. No unavailable percentiles or maxima have been reconstructed. The complete initial Node23 record remains in node23-initial.",
+  "hostSha256": "98b28ef2290ccaa0be2185d62cb079fabb3792d9d22629809f477ad0074c5513",
+  "measureSha256": "9eefa55bba71d6a894b16cd89536b14440a1e07aa20050ad544f1bb5da0a9005",
+  "samplesPerWorkload": 1000,
+  "warmupsPerWorkload": 100,
+  "p95BudgetMs": 8,
+  "observations": [
+    {
+      "node": "v26.8.1",
+      "eventP95Ms": 0.15041599999999988,
+      "requestP95Ms": 0.11625000000000796,
+      "maxSerializedStateBytes": 2822
+    },
+    {
+      "node": "v22.0.0",
+      "eventP95Ms": 0.1697499999999934,
+      "requestP95Ms": 0.12366700000001174,
+      "maxSerializedStateBytes": 2822
+    }
+  ]
+}

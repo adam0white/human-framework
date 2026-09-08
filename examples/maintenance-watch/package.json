@@ -1,0 +1,17 @@
+{
+  "name": "maintenance-watch-consumer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node run.js",
+    "test": "node --test host.test.js",
+    "measure": "node measure.js"
+  },
+  "dependencies": {
+    "human-framework-runtime": "file:runtime.tgz"
+  }
+}

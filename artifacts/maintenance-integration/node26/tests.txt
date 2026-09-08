@@ -1,0 +1,23 @@
+✔ requests preserve recipient refusal, concurrent ownership and one reservation (3.285458ms)
+✔ interruption retains paid work and practice, consumes used parts and returns only unused reservation (1.346583ms)
+✔ the approaching event interrupts unfinished work and reports the actual partial outcome (1.2405ms)
+✔ completed repair and paid lookout produce distinct host results at their due times (0.798291ms)
+✔ a second completed lookout retains the first warning time (0.734459ms)
+✔ event, minute and irregular drivers preserve exact world facts and person floats within 1e-10 (20.690667ms)
+✔ a mid-action JSON snapshot resumes identically under the same subsequent driver (5.5015ms)
+✔ duplicate and premature receipts cannot grant work or consume resources twice (1.289459ms)
+✔ the solo variant has one actual person and does not invent a lookout or response (0.571208ms)
+✔ save validation rejects mismatched reservations, pending jobs, queue events and versions (1.754208ms)
+✔ a component-valid imported attempt cannot reduce the host-promised repair effort (0.486125ms)
+✔ a capacity-blocked imported component cannot execute the host repair job (0.387875ms)
+✔ an imported future warning cannot refuse a present lookout request (0.272375ms)
+✔ long idle continuation keeps only bounded active jobs, receipts and recent messages (161.388167ms)
+✔ repository source and unexported runtime internals are inaccessible (0.395625ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 203.571042

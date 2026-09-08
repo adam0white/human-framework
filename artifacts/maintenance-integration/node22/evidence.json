@@ -1,0 +1,61 @@
+{
+  "recordedAt": "2026-09-08T04:34:25.084Z",
+  "baseCommit": "9bd93c628132fc80968de922e84c2d6ee174bc25",
+  "node": "v22.0.0",
+  "executable": "/private/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/human-node22-review-xnBFhK/node-v22.0.0-darwin-arm64/bin/node",
+  "permissionFlag": "--experimental-permission",
+  "hostImportsRewritten": 0,
+  "repositoryReadsDenied": true,
+  "sourceHashes": {
+    "package.json": "27e6d736951ae3f6493e2bca26f840e2f5bd4dd166eb01b9f369e64151f2deca",
+    "host.js": "f7b677dd25801e99c5c8cffeed5b0a8f4390908a8ef1b41e67051ab570b90373",
+    "host.test.js": "5a5b15f76d950be08aad6e1bd1d49dec46187ece41f817315195f5b0bef433bf",
+    "run.js": "d58c587ee85c8c0f01e334e05d80b61e66fe4f0427cf98317e884fab80908bfc",
+    "measure.js": "9eefa55bba71d6a894b16cd89536b14440a1e07aa20050ad544f1bb5da0a9005"
+  },
+  "package": {
+    "name": "human-framework-runtime",
+    "version": "0.1.0",
+    "sha256": "c6cdfe06a8ce4345c96c13c69be86f748c4d148c817343a8aceea4073c808750",
+    "files": [
+      "README.md",
+      "package.json",
+      "runtime-manifest.json",
+      "src/core/model.js",
+      "src/human/index.js",
+      "src/runtime/clock.js",
+      "src/runtime/index.js"
+    ],
+    "exports": {
+      ".": "./src/runtime/index.js",
+      "./human": "./src/human/index.js",
+      "./clock": "./src/runtime/clock.js"
+    },
+    "manifest": {
+      "format": "human-framework-runtime",
+      "version": 1,
+      "packageVersion": "0.1.0",
+      "humanVersion": "0.1.0",
+      "clockVersion": "0.1.0",
+      "sources": [
+        {
+          "path": "src/runtime/index.js",
+          "sha256": "fd669e4f4bcbb3713249b64b34d0d369aa929d3904022b78acd8cc09ffefdb60"
+        },
+        {
+          "path": "src/runtime/clock.js",
+          "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+        },
+        {
+          "path": "src/human/index.js",
+          "sha256": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308"
+        },
+        {
+          "path": "src/core/model.js",
+          "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+        }
+      ]
+    }
+  },
+  "note": "Source-file hashes identify the authored consumer; the base commit predates these new files. Files are copied byte-for-byte, then run from the installed package."
+}

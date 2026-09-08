@@ -1,0 +1,29 @@
+{
+  "reorderedKeys": {
+    "before": [
+      "allowed",
+      "causes",
+      "fatigueCost",
+      "hungerCost",
+      "projectedFatigue",
+      "projectedHunger"
+    ],
+    "after": [
+      "projectedHunger",
+      "projectedFatigue",
+      "hungerCost",
+      "fatigueCost",
+      "causes",
+      "allowed"
+    ],
+    "accepted": false,
+    "error": "Inconsistent pending capacity"
+  },
+  "largeFraction": {
+    "startingMinutes": 100000000,
+    "increment": 0.1,
+    "successfulAdvances": 2,
+    "invalidReturnedAfter": 2,
+    "exportError": "Inconsistent elapsed person time"
+  }
+}

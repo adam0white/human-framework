@@ -1,0 +1,574 @@
+{
+  "scenario": "maintenance-watch",
+  "versions": {
+    "runtime": "0.1.0",
+    "human": "0.1.0",
+    "clock": "0.1.0"
+  },
+  "assumptions": {
+    "arrivalMinute": 18,
+    "repairMinutesRequired": 12,
+    "lookoutMinutesRequired": 8,
+    "initialParts": 2,
+    "driverFloatTolerance": 1e-10
+  },
+  "refusal": {
+    "at": 0,
+    "actor": "watcher",
+    "task": "repair",
+    "accepted": false,
+    "code": "ROLE_DECLINED",
+    "reason": "I agreed to lookout work, not gate repair."
+  },
+  "interrupted": {
+    "now": 5,
+    "solo": false,
+    "people": {
+      "keeper": {
+        "id": "keeper",
+        "body": {
+          "fatigue": 0.2,
+          "hunger": 0.1
+        },
+        "skills": {
+          "repair": 0.22053192831300056,
+          "watch": 0.1
+        },
+        "minutes": 5,
+        "pending": {
+          "id": "keeper:3",
+          "actionId": "idle",
+          "targetId": null,
+          "activity": "active",
+          "durationMinutes": 64,
+          "elapsedMinutes": 0
+        }
+      },
+      "watcher": {
+        "id": "watcher",
+        "body": {
+          "fatigue": 0.2,
+          "hunger": 0.1
+        },
+        "skills": {
+          "repair": 0.2,
+          "watch": 0.12309841935212561
+        },
+        "minutes": 5,
+        "pending": {
+          "id": "watcher:2",
+          "actionId": "watch",
+          "targetId": "channel",
+          "activity": "active",
+          "durationMinutes": 8,
+          "elapsedMinutes": 5
+        }
+      }
+    },
+    "jobs": {
+      "keeper": {
+        "task": "idle",
+        "startedAt": 5,
+        "endsAt": 69,
+        "eventId": "event:6",
+        "attemptId": "keeper:3",
+        "startProgress": null
+      },
+      "watcher": {
+        "task": "watch",
+        "startedAt": 0,
+        "endsAt": 8,
+        "eventId": "event:5",
+        "attemptId": "watcher:2",
+        "startProgress": null
+      }
+    },
+    "parts": {
+      "available": 1,
+      "reserved": 0,
+      "spent": 1
+    },
+    "repairMinutes": 5,
+    "watchMinutes": 5,
+    "warningAt": null,
+    "outcome": null,
+    "lastResponse": {
+      "at": 0,
+      "actor": "watcher",
+      "task": "watch",
+      "accepted": true,
+      "code": "ACCEPTED",
+      "reason": "I accept this task."
+    },
+    "recent": [
+      {
+        "at": 0,
+        "actor": "watcher",
+        "message": "I agreed to lookout work, not gate repair."
+      },
+      {
+        "at": 0,
+        "actor": "keeper",
+        "message": "I accept this task."
+      },
+      {
+        "at": 0,
+        "actor": "keeper",
+        "message": "Accepted repair for 12 minutes."
+      },
+      {
+        "at": 0,
+        "actor": "watcher",
+        "message": "I accept this task."
+      },
+      {
+        "at": 0,
+        "actor": "watcher",
+        "message": "Accepted watch for 8 minutes."
+      },
+      {
+        "at": 5,
+        "actor": "keeper",
+        "message": "Interrupted repair after 5 paid minutes."
+      }
+    ]
+  },
+  "paired": {
+    "now": 18,
+    "solo": false,
+    "people": {
+      "keeper": {
+        "id": "keeper",
+        "body": {
+          "fatigue": 0.25,
+          "hunger": 0.15
+        },
+        "skills": {
+          "repair": 0.24839439294641683,
+          "watch": 0.1
+        },
+        "minutes": 18,
+        "pending": {
+          "id": "keeper:5",
+          "actionId": "idle",
+          "targetId": null,
+          "activity": "active",
+          "durationMinutes": 64,
+          "elapsedMinutes": 6
+        }
+      },
+      "watcher": {
+        "id": "watcher",
+        "body": {
+          "fatigue": 0.25,
+          "hunger": 0.15
+        },
+        "skills": {
+          "repair": 0.2,
+          "watch": 0.13667193531592753
+        },
+        "minutes": 18,
+        "pending": {
+          "id": "watcher:3",
+          "actionId": "idle",
+          "targetId": null,
+          "activity": "active",
+          "durationMinutes": 64,
+          "elapsedMinutes": 10
+        }
+      }
+    },
+    "jobs": {
+      "keeper": {
+        "task": "idle",
+        "startedAt": 12,
+        "endsAt": 76,
+        "eventId": "event:9",
+        "attemptId": "keeper:5",
+        "startProgress": null
+      },
+      "watcher": {
+        "task": "idle",
+        "startedAt": 8,
+        "endsAt": 72,
+        "eventId": "event:8",
+        "attemptId": "watcher:3",
+        "startProgress": null
+      }
+    },
+    "parts": {
+      "available": 0,
+      "reserved": 0,
+      "spent": 2
+    },
+    "repairMinutes": 12,
+    "watchMinutes": 8,
+    "warningAt": 8,
+    "outcome": {
+      "at": 18,
+      "repairMinutes": 12,
+      "unrepairedMinutes": 0,
+      "warningAvailable": true
+    },
+    "lastResponse": {
+      "at": 5,
+      "actor": "keeper",
+      "task": "repair",
+      "accepted": true,
+      "code": "ACCEPTED",
+      "reason": "I accept this task."
+    },
+    "recent": [
+      {
+        "at": 0,
+        "actor": "watcher",
+        "message": "I agreed to lookout work, not gate repair."
+      },
+      {
+        "at": 0,
+        "actor": "keeper",
+        "message": "I accept this task."
+      },
+      {
+        "at": 0,
+        "actor": "keeper",
+        "message": "Accepted repair for 12 minutes."
+      },
+      {
+        "at": 0,
+        "actor": "watcher",
+        "message": "I accept this task."
+      },
+      {
+        "at": 0,
+        "actor": "watcher",
+        "message": "Accepted watch for 8 minutes."
+      },
+      {
+        "at": 5,
+        "actor": "keeper",
+        "message": "Interrupted repair after 5 paid minutes."
+      },
+      {
+        "at": 5,
+        "actor": "keeper",
+        "message": "I accept this task."
+      },
+      {
+        "at": 5,
+        "actor": "keeper",
+        "message": "Accepted repair for 7 minutes."
+      },
+      {
+        "at": 8,
+        "actor": "watcher",
+        "message": "Completed watch."
+      },
+      {
+        "at": 12,
+        "actor": "keeper",
+        "message": "Completed repair."
+      },
+      {
+        "at": 18,
+        "actor": "world",
+        "message": "Water arrived with 0 repair minutes still unfinished."
+      }
+    ]
+  },
+  "solo": {
+    "now": 18,
+    "solo": true,
+    "people": {
+      "keeper": {
+        "id": "keeper",
+        "body": {
+          "fatigue": 0.2,
+          "hunger": 0.15
+        },
+        "skills": {
+          "repair": 0.22053192831300056,
+          "watch": 0.1
+        },
+        "minutes": 18,
+        "pending": {
+          "id": "keeper:3",
+          "actionId": "idle",
+          "targetId": null,
+          "activity": "active",
+          "durationMinutes": 64,
+          "elapsedMinutes": 13
+        }
+      }
+    },
+    "jobs": {
+      "keeper": {
+        "task": "idle",
+        "startedAt": 5,
+        "endsAt": 69,
+        "eventId": "event:4",
+        "attemptId": "keeper:3",
+        "startProgress": null
+      }
+    },
+    "parts": {
+      "available": 1,
+      "reserved": 0,
+      "spent": 1
+    },
+    "repairMinutes": 5,
+    "watchMinutes": 0,
+    "warningAt": null,
+    "outcome": {
+      "at": 18,
+      "repairMinutes": 5,
+      "unrepairedMinutes": 7,
+      "warningAvailable": false
+    },
+    "lastResponse": {
+      "at": 0,
+      "actor": "keeper",
+      "task": "repair",
+      "accepted": true,
+      "code": "ACCEPTED",
+      "reason": "I accept this task."
+    },
+    "recent": [
+      {
+        "at": 0,
+        "actor": "keeper",
+        "message": "I accept this task."
+      },
+      {
+        "at": 0,
+        "actor": "keeper",
+        "message": "Accepted repair for 12 minutes."
+      },
+      {
+        "at": 5,
+        "actor": "keeper",
+        "message": "Interrupted repair after 5 paid minutes."
+      },
+      {
+        "at": 18,
+        "actor": "world",
+        "message": "Water arrived with 7 repair minutes still unfinished."
+      }
+    ]
+  },
+  "midActionSave": {
+    "format": "maintenance-watch",
+    "version": 1,
+    "state": {
+      "version": "0.1.0",
+      "solo": false,
+      "clock": {
+        "version": "0.1.0",
+        "now": 6,
+        "nextEvent": 8,
+        "queue": [
+          {
+            "id": "event:5",
+            "at": 8,
+            "type": "attempt-due",
+            "actorId": "watcher",
+            "data": {
+              "attemptId": "watcher:2",
+              "task": "watch"
+            }
+          },
+          {
+            "id": "event:7",
+            "at": 12,
+            "type": "attempt-due",
+            "actorId": "keeper",
+            "data": {
+              "attemptId": "keeper:4",
+              "task": "repair"
+            }
+          },
+          {
+            "id": "event:1",
+            "at": 18,
+            "type": "water-arrival",
+            "actorId": null,
+            "data": null
+          }
+        ]
+      },
+      "people": {
+        "keeper": {
+          "version": "0.1.0",
+          "id": "keeper",
+          "body": {
+            "fatigue": 0.189,
+            "hunger": 0.112
+          },
+          "skills": {
+            "repair": 0.22457464212029632,
+            "watch": 0.1
+          },
+          "observationBias": 0,
+          "minutes": 6,
+          "nextAttempt": 5,
+          "pending": {
+            "id": "keeper:4",
+            "action": {
+              "actionId": "repair",
+              "targetId": "gate",
+              "durationMinutes": 7,
+              "effort": 0.07,
+              "exertive": true,
+              "activity": "active",
+              "skill": "repair"
+            },
+            "elapsedMinutes": 1,
+            "capacity": {
+              "allowed": true,
+              "causes": [],
+              "fatigueCost": 0.0805,
+              "hungerCost": 0.014,
+              "projectedFatigue": 0.258,
+              "projectedHunger": 0.124
+            },
+            "bodyBefore": {
+              "fatigue": 0.1775,
+              "hunger": 0.11
+            },
+            "skillBefore": 0.22053192831300056,
+            "startedAt": 5
+          }
+        },
+        "watcher": {
+          "version": "0.1.0",
+          "id": "watcher",
+          "body": {
+            "fatigue": 0.20900000000000002,
+            "hunger": 0.112
+          },
+          "skills": {
+            "repair": 0.2,
+            "watch": 0.12764647238533333
+          },
+          "observationBias": 0,
+          "minutes": 6,
+          "nextAttempt": 3,
+          "pending": {
+            "id": "watcher:2",
+            "action": {
+              "actionId": "watch",
+              "targetId": "channel",
+              "durationMinutes": 8,
+              "effort": 0,
+              "exertive": false,
+              "activity": "active",
+              "skill": "watch"
+            },
+            "elapsedMinutes": 6,
+            "capacity": {
+              "allowed": true,
+              "causes": [],
+              "fatigueCost": 0.012,
+              "hungerCost": 0.016,
+              "projectedFatigue": 0.21200000000000002,
+              "projectedHunger": 0.116
+            },
+            "bodyBefore": {
+              "fatigue": 0.2,
+              "hunger": 0.1
+            },
+            "skillBefore": 0.1,
+            "startedAt": 0
+          }
+        }
+      },
+      "jobs": {
+        "keeper": {
+          "task": "repair",
+          "startedAt": 5,
+          "endsAt": 12,
+          "eventId": "event:7",
+          "attemptId": "keeper:4",
+          "startProgress": 5
+        },
+        "watcher": {
+          "task": "watch",
+          "startedAt": 0,
+          "endsAt": 8,
+          "eventId": "event:5",
+          "attemptId": "watcher:2",
+          "startProgress": null
+        }
+      },
+      "parts": {
+        "available": 0,
+        "reserved": 1,
+        "spent": 1
+      },
+      "repairMinutes": 6,
+      "watchMinutes": 6,
+      "warningAt": null,
+      "approachEventId": "event:1",
+      "outcome": null,
+      "stats": {
+        "requests": 4,
+        "started": 3,
+        "completed": 0,
+        "interrupted": 1
+      },
+      "lastResponse": {
+        "at": 5,
+        "actor": "keeper",
+        "task": "repair",
+        "accepted": true,
+        "code": "ACCEPTED",
+        "reason": "I accept this task."
+      },
+      "lastReceipt": null,
+      "recent": [
+        {
+          "at": 0,
+          "actor": "watcher",
+          "message": "I agreed to lookout work, not gate repair."
+        },
+        {
+          "at": 0,
+          "actor": "keeper",
+          "message": "I accept this task."
+        },
+        {
+          "at": 0,
+          "actor": "keeper",
+          "message": "Accepted repair for 12 minutes."
+        },
+        {
+          "at": 0,
+          "actor": "watcher",
+          "message": "I accept this task."
+        },
+        {
+          "at": 0,
+          "actor": "watcher",
+          "message": "Accepted watch for 8 minutes."
+        },
+        {
+          "at": 5,
+          "actor": "keeper",
+          "message": "Interrupted repair after 5 paid minutes."
+        },
+        {
+          "at": 5,
+          "actor": "keeper",
+          "message": "I accept this task."
+        },
+        {
+          "at": 5,
+          "actor": "keeper",
+          "message": "Accepted repair for 7 minutes."
+        }
+      ]
+    }
+  },
+  "resumeIdentical": true,
+  "finalSnapshotCharacters": 3078
+}
