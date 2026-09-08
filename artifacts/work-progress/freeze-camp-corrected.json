@@ -1,0 +1,20 @@
+{
+  "format": "paid-work-source-freeze",
+  "version": 1,
+  "commit": "ebcea3a5aecccc8fe3edbf1ddcaa5d577cd7d568",
+  "createdAt": "2026-09-08T19:03:12.815Z",
+  "sources": {
+    "src/experiments/work-progress/candidate.js": "43f0093f118e98ce58bdf269d3bddd5cba7a83ce80d3ba82b1bb6e2b5193940b",
+    "src/experiments/work-progress/camp-candidate.js": "b688781b682cca9333b29993f1a2f3f42710bd5d66e983c525359cef8d174db7",
+    "src/experiments/work-progress/camp-direct.js": "0a0a977e1e5e51c0c564dbd28839ceef3638a0ccd3bf50cfb610aebdce127459",
+    "src/experiments/work-progress/camp-fixed.js": "66e0a3fc81d415e9da6d17a98a539a9dcfa2767ba71c7b96784fbfed741cf0ba",
+    "src/experiments/work-progress/cases.js": "43c97e2383d50619f5335bfca9b15f7d38c483eba1665ce7017f3db6dff50ef5",
+    "scripts/work-progress-comparison.js": "89ae1e7342b9e147752b0654e550632ef42148c50b0f5ff9583f7a9f57f925e2",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "docs/work-progress-api.md": "b9a4d420b58ec0cd2b54c05e9a115a1ecc5faf366f0c3f9a584c71ab0c6ea953",
+    "docs/work-progress-execution.md": "a7979b62481546c1e52672f635c81adbc7c5fc3722fa75c68fead881b613df0a"
+  }
+}
