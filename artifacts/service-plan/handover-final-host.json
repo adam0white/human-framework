@@ -1,0 +1,4338 @@
+{
+  "format": "service-plan-handover-probe",
+  "version": 1,
+  "scope": "Post-review exploratory prescriptions requested after Fable suggested a cheaper part handover. Not part of the registered25development/fourreserved cases, not policy tuning, and not evidence for general planning. Old/new slot rules remain distinct; both use the same ownership and actual paid action costs.",
+  "provenance": {
+    "sourceCommit": "1642e8781c2f76dd867f847829b8b3c28f23f1f5",
+    "sourceSha256": {
+      "docs/service-plan-comparison-protocol.md": "477c23299c977c893183686432f1b79a2dee29f26fbc78653a9c6cf2dd5e3b2e",
+      "src/games/service.js": "50ce6e3e52a9e92c85532f3a73d8afa46e6bc0ca7993ef72ce9e4f58e51738d1",
+      "src/games/service-plan.js": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7",
+      "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "scripts/runtime-release-lock.json": "f27bd54f0549f5dcb8016099669f3a74f27a4edf2378953a60803711cbd1b165",
+      "src/experiments/service-plan/cases.js": "bcff876b39301885ac73ad619d20e44aed74f565f7741eac787873d098646c4f",
+      "src/experiments/service-plan/visible-pump.js": "f8d76670a034738a7551addad83f054c25ab5f05049a855dec2b8ce5c0bb9129",
+      "src/experiments/service-plan/experiment.js": "64834cdf902215d67dd444c636999256d5e761ecb605ebb28bc56b9fa0f11728",
+      "src/experiments/service-plan/provenance.js": "f43e9115ce007af8e2bfa162ea607df004f005c7b9380b44112b124c0a1198d0",
+      "scripts/service-plan-comparison.js": "eb2e34c2bfd428f5cf39aea698e553c1f4cff8d6f0a865528d2e34e1e345e7e7",
+      "tests/service-plan-comparison.test.js": "e445673ad29dc510da6a92552fc8ac0945adde8e5d43f510d72097a70a7a34d1",
+      "scripts/service-plan-handover-probe.js": "feed9585e5cab19feae741c33217e1faeeb87a3f8f4d86389b6b8c4b84ddf483"
+    }
+  },
+  "runtime": {
+    "node": "v26.8.1"
+  },
+  "trials": [
+    {
+      "id": "handover-early-22-original-fixed",
+      "family": "early-22",
+      "arm": "original-fixed",
+      "variant": "part-handover",
+      "partition": "post-review-exploratory",
+      "status": "ended",
+      "violations": [],
+      "initialSaveSha256": "9b87aff7d9a0189f139b6d1eefd5ebe597735e17e5418bb791ce8c1a70bf35ee",
+      "commands": [
+        {
+          "at": 0,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "c111f7eb5d984c4850db37ff0ad78619c478f3a0e39da2ef1b9f615db72e9eb8"
+        },
+        {
+          "at": 0,
+          "command": {
+            "type": "advance",
+            "to": 6
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 0,
+                "endsAt": 6,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "70366b690b287b7bda3510da617f2b10b16678847635a8d0fcdcca6af7f71df5"
+        },
+        {
+          "at": 6,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 6,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 6,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "c10341e7e3f09e35e17c502768b071d63ccffc7f82e56f30f933299b5954b3b5"
+        },
+        {
+          "at": 6,
+          "command": {
+            "type": "advance",
+            "to": 12
+          },
+          "decisionFacts": {
+            "now": 6,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 6,
+                "endsAt": 12,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 6,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "f3c500f6056bdc25fc30dbc947e90519d2be1672422bb210899f15013e077baf"
+        },
+        {
+          "at": 12,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "salvage"
+          },
+          "decisionFacts": {
+            "now": 12,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 12,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "779a2b1bbef01aa41c541540c71d73cccf84b69199b29efff32cb53bd624532d"
+        },
+        {
+          "at": 12,
+          "command": {
+            "type": "advance",
+            "to": 20
+          },
+          "decisionFacts": {
+            "now": 12,
+            "jobs": {
+              "keeper": {
+                "task": "salvage",
+                "startedAt": 12,
+                "endsAt": 20,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 12,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "d983f4380094f922b4ac61f22dfc7b18eba507ef3cb17ff9445a013a286ec8c8"
+        },
+        {
+          "at": 20,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "share"
+          },
+          "decisionFacts": {
+            "now": 20,
+            "jobs": {
+              "keeper": null,
+              "partner": {
+                "task": "meal",
+                "startedAt": 20,
+                "endsAt": 24,
+                "origin": "own",
+                "reservedParts": 0,
+                "reservedMeal": 1
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 20,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "95b1ebef1eec6c7d67b8f98718f378c7c32e31e3bb52cc987c6749f475df89c1"
+        },
+        {
+          "at": 20,
+          "command": {
+            "type": "advance",
+            "to": 64
+          },
+          "decisionFacts": {
+            "now": 20,
+            "jobs": {
+              "keeper": {
+                "task": "share",
+                "startedAt": 20,
+                "endsAt": 22,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": {
+                "task": "meal",
+                "startedAt": 20,
+                "endsAt": 24,
+                "origin": "own",
+                "reservedParts": 0,
+                "reservedMeal": 1
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 20,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "1d54396314919d0ba4828cd79519d7820203ffed76df6ae68b75843355c96418"
+        }
+      ],
+      "commandCount": 8,
+      "final": {
+        "now": 64,
+        "morning": {
+          "at": 24,
+          "protected": true,
+          "waterService": true,
+          "route": "gate"
+        },
+        "delivery": {
+          "at": 48,
+          "route": "deliver",
+          "units": 2
+        },
+        "outcome": {
+          "at": 64,
+          "morningProtected": true,
+          "morningWater": true,
+          "clinicUnits": 2,
+          "clinicRequired": 2,
+          "clinicRoute": "deliver",
+          "allService": true
+        },
+        "work": {
+          "gate": 12,
+          "divert": 0,
+          "pump": 12
+        },
+        "resources": {
+          "parts": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "food": {
+            "keeper": 1,
+            "partner": 0
+          },
+          "reservedParts": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "reservedMeals": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "installedParts": 4,
+          "installedPartsByActor": {
+            "keeper": 2,
+            "partner": 2
+          },
+          "eaten": {
+            "keeper": 0,
+            "partner": 1
+          },
+          "handedOver": {
+            "keeper": 1,
+            "partner": 0
+          },
+          "shedAvailable": false
+        },
+        "paidByActor": {
+          "keeper": {
+            "gate": 12,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 0,
+            "deliver": 0,
+            "cart": 0,
+            "share": 2,
+            "salvage": 8,
+            "rest": 0,
+            "meal": 0,
+            "idle": 42
+          },
+          "partner": {
+            "gate": 0,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 12,
+            "deliver": 6,
+            "cart": 0,
+            "share": 0,
+            "salvage": 0,
+            "rest": 12,
+            "meal": 4,
+            "idle": 30
+          }
+        },
+        "people": {
+          "keeper": {
+            "body": {
+              "fatigue": 0.95,
+              "hunger": 1
+            }
+          },
+          "partner": {
+            "body": {
+              "fatigue": 0.45,
+              "hunger": 0.35
+            }
+          }
+        },
+        "coordination": null
+      },
+      "finalSaveSha256": "1d54396314919d0ba4828cd79519d7820203ffed76df6ae68b75843355c96418",
+      "maxSaveBytes": 4267,
+      "maxSaveCharacters": 4267,
+      "replayEqual": true
+    },
+    {
+      "id": "handover-early-22-direct-fixed",
+      "family": "early-22",
+      "arm": "direct-fixed",
+      "variant": "part-handover",
+      "partition": "post-review-exploratory",
+      "status": "ended",
+      "violations": [],
+      "initialSaveSha256": "e423729fdd504d929cbb23ae607b50a1038104cbeed8e6a82428035bacade098",
+      "commands": [
+        {
+          "at": 0,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "a5e85cf9d69977b657277e64c15c25c783fbc08bb3291210f81b1db773443934"
+        },
+        {
+          "at": 0,
+          "command": {
+            "type": "advance",
+            "to": 6
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 0,
+                "endsAt": 6,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "16e9e94dd3399d1f7841325b74f34f3e5d9c1631f19bcde8adad44afdc82a892"
+        },
+        {
+          "at": 6,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 6,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 6,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "fbe8f26786ced559619e0e0c232bbc722cbc440d5f46377848055e4eeabeae22"
+        },
+        {
+          "at": 6,
+          "command": {
+            "type": "advance",
+            "to": 12
+          },
+          "decisionFacts": {
+            "now": 6,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 6,
+                "endsAt": 12,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 6,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "384a6b3b98c3a71f4ac2b52b20f6c94541581cd591785d87304e482490603d63"
+        },
+        {
+          "at": 12,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "salvage"
+          },
+          "decisionFacts": {
+            "now": 12,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 12,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "162e85e56991429a2cd977a49aa88d13cdf2a36146365dc7d65a950b936f7a4b"
+        },
+        {
+          "at": 12,
+          "command": {
+            "type": "advance",
+            "to": 20
+          },
+          "decisionFacts": {
+            "now": 12,
+            "jobs": {
+              "keeper": {
+                "task": "salvage",
+                "startedAt": 12,
+                "endsAt": 20,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 12,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "9eb223c03646e8ee86d174379fc504b3c799d82f5086626c63f811e6d909282d"
+        },
+        {
+          "at": 20,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "share"
+          },
+          "decisionFacts": {
+            "now": 20,
+            "jobs": {
+              "keeper": null,
+              "partner": {
+                "task": "meal",
+                "startedAt": 20,
+                "endsAt": 24,
+                "origin": "own",
+                "reservedParts": 0,
+                "reservedMeal": 1
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 20,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "fd8108ddb25dab77d702dcb8797a382c7afa6c9d1629eae5245d645c193a5870"
+        },
+        {
+          "at": 20,
+          "command": {
+            "type": "advance",
+            "to": 64
+          },
+          "decisionFacts": {
+            "now": 20,
+            "jobs": {
+              "keeper": {
+                "task": "share",
+                "startedAt": 20,
+                "endsAt": 22,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": {
+                "task": "meal",
+                "startedAt": 20,
+                "endsAt": 24,
+                "origin": "own",
+                "reservedParts": 0,
+                "reservedMeal": 1
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 20,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "ac1e00bdfadcb5a15dc1ec0287c156ce40fa2d243fd2fa147e8f9e37b74cc05d"
+        }
+      ],
+      "commandCount": 8,
+      "final": {
+        "now": 64,
+        "morning": {
+          "at": 24,
+          "protected": true,
+          "waterService": true,
+          "route": "gate"
+        },
+        "delivery": {
+          "at": 48,
+          "route": "deliver",
+          "units": 2
+        },
+        "outcome": {
+          "at": 64,
+          "morningProtected": true,
+          "morningWater": true,
+          "clinicUnits": 2,
+          "clinicRequired": 2,
+          "clinicRoute": "deliver",
+          "allService": true
+        },
+        "work": {
+          "gate": 12,
+          "divert": 0,
+          "pump": 12
+        },
+        "resources": {
+          "parts": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "food": {
+            "keeper": 1,
+            "partner": 0
+          },
+          "reservedParts": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "reservedMeals": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "installedParts": 4,
+          "installedPartsByActor": {
+            "keeper": 2,
+            "partner": 2
+          },
+          "eaten": {
+            "keeper": 0,
+            "partner": 1
+          },
+          "handedOver": {
+            "keeper": 1,
+            "partner": 0
+          },
+          "shedAvailable": false
+        },
+        "paidByActor": {
+          "keeper": {
+            "gate": 12,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 0,
+            "deliver": 0,
+            "cart": 0,
+            "share": 2,
+            "salvage": 8,
+            "rest": 0,
+            "meal": 0,
+            "idle": 42,
+            "discuss": 0
+          },
+          "partner": {
+            "gate": 0,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 12,
+            "deliver": 6,
+            "cart": 0,
+            "share": 0,
+            "salvage": 0,
+            "rest": 12,
+            "meal": 4,
+            "idle": 30,
+            "discuss": 0
+          }
+        },
+        "people": {
+          "keeper": {
+            "body": {
+              "fatigue": 0.95,
+              "hunger": 1
+            }
+          },
+          "partner": {
+            "body": {
+              "fatigue": 0.45,
+              "hunger": 0.35
+            }
+          }
+        },
+        "coordination": {
+          "readyAt": 36,
+          "nextId": 1,
+          "current": null,
+          "pending": null,
+          "lastResponse": null,
+          "slot": {
+            "actor": "partner",
+            "route": "deliver",
+            "departedAt": 42,
+            "arrivedAt": 48,
+            "status": "delivered"
+          },
+          "readiness": {
+            "ready": true,
+            "readyAt": 36,
+            "pumpWork": 12,
+            "pumpRequired": 12,
+            "supplyAvailable": true,
+            "keeperOwnedParts": 0,
+            "keeperReservedParts": 0
+          },
+          "discussionAvailable": false,
+          "discussionReason": "Clinic intake is closed.",
+          "canWithdraw": false,
+          "canInterrupt": false,
+          "safeWaitUntil": 45,
+          "latestFullStart": 57,
+          "discussionMinutes": 2,
+          "acceptanceRule": "Authored rule: Deniz listens only while both people are idle. Terms require visible inlet supply, an owned keeper part for at most one remaining pump section, and a rounded-body forecast of the declared rest and pump schedule. Short holds retain the cart through 45; later holds explicitly risk losing it. Actual work and capacity still decide delivery."
+        }
+      },
+      "finalSaveSha256": "ac1e00bdfadcb5a15dc1ec0287c156ce40fa2d243fd2fa147e8f9e37b74cc05d",
+      "maxSaveBytes": 4409,
+      "maxSaveCharacters": 4409,
+      "replayEqual": true
+    },
+    {
+      "id": "handover-clinic-37-original-fixed",
+      "family": "clinic-37",
+      "arm": "original-fixed",
+      "variant": "part-handover",
+      "partition": "post-review-exploratory",
+      "status": "ended",
+      "violations": [],
+      "initialSaveSha256": "9b87aff7d9a0189f139b6d1eefd5ebe597735e17e5418bb791ce8c1a70bf35ee",
+      "commands": [
+        {
+          "at": 0,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "meal"
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "meal",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: eat your meal, 4 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "b827a21e45c507f177a6d9132a01af9ab052b98afd97f1faace9c613ffd68ab4"
+        },
+        {
+          "at": 0,
+          "command": {
+            "type": "advance",
+            "to": 4
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": {
+                "task": "meal",
+                "startedAt": 0,
+                "endsAt": 4,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 1
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "meal",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: eat your meal, 4 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "d2e24be0ff6ebc39215525585c0db41ee9eaa29fa7f1e42b52c437ec0166d9c1"
+        },
+        {
+          "at": 4,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 4,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 4,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "bb3d492de0735abe506e2dd91a679f605ce71244b5b9f53d9d1ef20bdb1d91ab"
+        },
+        {
+          "at": 4,
+          "command": {
+            "type": "advance",
+            "to": 10
+          },
+          "decisionFacts": {
+            "now": 4,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 4,
+                "endsAt": 10,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 4,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "bfe886f788e5307c3a0171eccd2fcc9545c7cd852835c4ad2b414c4106bc6365"
+        },
+        {
+          "at": 10,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 10,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 10,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "0b7907a1690972dee9c57424999ed1a57d05b192b30f21c94705550f528b01db"
+        },
+        {
+          "at": 10,
+          "command": {
+            "type": "advance",
+            "to": 16
+          },
+          "decisionFacts": {
+            "now": 10,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 10,
+                "endsAt": 16,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 10,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "ab135344bceca219e59edc977c21fc365a71b6deb16cfcacf5f8ba319406454b"
+        },
+        {
+          "at": 16,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "salvage"
+          },
+          "decisionFacts": {
+            "now": 16,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 16,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "8cb780390cf27042f1aae6d2986a29af49f9d0d646d814ac264a765d0ba48b13"
+        },
+        {
+          "at": 16,
+          "command": {
+            "type": "advance",
+            "to": 24
+          },
+          "decisionFacts": {
+            "now": 16,
+            "jobs": {
+              "keeper": {
+                "task": "salvage",
+                "startedAt": 16,
+                "endsAt": 24,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 16,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "328ea38ebf807a8db1215a4362a8d4fa5a7751460ab7fd4c7d4a07007c7d489f"
+        },
+        {
+          "at": 24,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "rest"
+          },
+          "decisionFacts": {
+            "now": 24,
+            "jobs": {
+              "keeper": null,
+              "partner": {
+                "task": "pump",
+                "startedAt": 24,
+                "endsAt": 30,
+                "origin": "own",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 24,
+            "actor": "keeper",
+            "task": "rest",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: rest, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "689280487b2cb2366abe18fc41992e387758b4c9dc93003b0fe4230226f66349"
+        },
+        {
+          "at": 24,
+          "command": {
+            "type": "advance",
+            "to": 37
+          },
+          "decisionFacts": {
+            "now": 24,
+            "jobs": {
+              "keeper": {
+                "task": "rest",
+                "startedAt": 24,
+                "endsAt": 30,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": {
+                "task": "pump",
+                "startedAt": 24,
+                "endsAt": 30,
+                "origin": "own",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 24,
+            "actor": "keeper",
+            "task": "rest",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: rest, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "88cd7e86944a1e99fbcdbedeccb3f3f6afedcf9564e6535a992a22c32e0059a4"
+        },
+        {
+          "at": 37,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "share"
+          },
+          "decisionFacts": {
+            "now": 37,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 37,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "22015a1040ee3316661be9380ee325fc82299dbbbfcb776153ce49fc765bb4ba"
+        },
+        {
+          "at": 37,
+          "command": {
+            "type": "advance",
+            "to": 64
+          },
+          "decisionFacts": {
+            "now": 37,
+            "jobs": {
+              "keeper": {
+                "task": "share",
+                "startedAt": 37,
+                "endsAt": 39,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 37,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "5409af7b405ae4aea0a42d38d0762216c8b9e75e76923c91a06bfb8ba0f0502e"
+        }
+      ],
+      "commandCount": 12,
+      "final": {
+        "now": 64,
+        "morning": {
+          "at": 24,
+          "protected": true,
+          "waterService": true,
+          "route": "gate"
+        },
+        "delivery": {
+          "at": 57,
+          "route": "deliver",
+          "units": 2
+        },
+        "outcome": {
+          "at": 64,
+          "morningProtected": true,
+          "morningWater": true,
+          "clinicUnits": 2,
+          "clinicRequired": 2,
+          "clinicRoute": "deliver",
+          "allService": true
+        },
+        "work": {
+          "gate": 12,
+          "divert": 0,
+          "pump": 12
+        },
+        "resources": {
+          "parts": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "food": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "reservedParts": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "reservedMeals": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "installedParts": 4,
+          "installedPartsByActor": {
+            "keeper": 2,
+            "partner": 2
+          },
+          "eaten": {
+            "keeper": 1,
+            "partner": 1
+          },
+          "handedOver": {
+            "keeper": 1,
+            "partner": 0
+          },
+          "shedAvailable": false
+        },
+        "paidByActor": {
+          "keeper": {
+            "gate": 12,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 0,
+            "deliver": 0,
+            "cart": 0,
+            "share": 2,
+            "salvage": 8,
+            "rest": 6,
+            "meal": 4,
+            "idle": 32
+          },
+          "partner": {
+            "gate": 0,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 12,
+            "deliver": 6,
+            "cart": 0,
+            "share": 0,
+            "salvage": 0,
+            "rest": 12,
+            "meal": 4,
+            "idle": 30
+          }
+        },
+        "people": {
+          "keeper": {
+            "body": {
+              "fatigue": 0.8,
+              "hunger": 0.45
+            }
+          },
+          "partner": {
+            "body": {
+              "fatigue": 0.45,
+              "hunger": 0.35
+            }
+          }
+        },
+        "coordination": null
+      },
+      "finalSaveSha256": "5409af7b405ae4aea0a42d38d0762216c8b9e75e76923c91a06bfb8ba0f0502e",
+      "maxSaveBytes": 4600,
+      "maxSaveCharacters": 4600,
+      "replayEqual": true
+    },
+    {
+      "id": "handover-clinic-37-direct-fixed",
+      "family": "clinic-37",
+      "arm": "direct-fixed",
+      "variant": "part-handover",
+      "partition": "post-review-exploratory",
+      "status": "ended",
+      "violations": [],
+      "initialSaveSha256": "e423729fdd504d929cbb23ae607b50a1038104cbeed8e6a82428035bacade098",
+      "commands": [
+        {
+          "at": 0,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "meal"
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "meal",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: eat your meal, 4 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "c46eb4203952e771d968d89e3a21d71a00d2f2aae76c7d2b45de9855e3aa1533"
+        },
+        {
+          "at": 0,
+          "command": {
+            "type": "advance",
+            "to": 4
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": {
+                "task": "meal",
+                "startedAt": 0,
+                "endsAt": 4,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 1
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "meal",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: eat your meal, 4 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "0170735d4ca5927538f26d4608304f422c210613dfa7aad95ff277e9d82d3d76"
+        },
+        {
+          "at": 4,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 4,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 4,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "c486dfb492f6d1b07d86db63b65ac07cf61f4b4a021e541f993b9af3f03b3055"
+        },
+        {
+          "at": 4,
+          "command": {
+            "type": "advance",
+            "to": 10
+          },
+          "decisionFacts": {
+            "now": 4,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 4,
+                "endsAt": 10,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 4,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "c89dbff97fa77fcf5bde058fbb654c966692675e56d1e74e580f6349082a2838"
+        },
+        {
+          "at": 10,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 10,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 10,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "a45fbda8e8960528ceced7f70ac5445c945278e311685ebb00fc58d16e9203f7"
+        },
+        {
+          "at": 10,
+          "command": {
+            "type": "advance",
+            "to": 16
+          },
+          "decisionFacts": {
+            "now": 10,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 10,
+                "endsAt": 16,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 10,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "a69aa908999c9a8b9e2e7210ebe29e701b2e1a87f0bafe2c0a1a58a81e198387"
+        },
+        {
+          "at": 16,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "salvage"
+          },
+          "decisionFacts": {
+            "now": 16,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 16,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "1f717dbcfee93e3f0e0bd391364259fc29827e055ec90368c95b8a44d14281eb"
+        },
+        {
+          "at": 16,
+          "command": {
+            "type": "advance",
+            "to": 24
+          },
+          "decisionFacts": {
+            "now": 16,
+            "jobs": {
+              "keeper": {
+                "task": "salvage",
+                "startedAt": 16,
+                "endsAt": 24,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 16,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "a4095594a8aa2c0a9c36089d6fc87dc6fc574bff9600d31bef3c5408a56b73a7"
+        },
+        {
+          "at": 24,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "rest"
+          },
+          "decisionFacts": {
+            "now": 24,
+            "jobs": {
+              "keeper": null,
+              "partner": {
+                "task": "pump",
+                "startedAt": 24,
+                "endsAt": 30,
+                "origin": "own",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 24,
+            "actor": "keeper",
+            "task": "rest",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: rest, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "84310be40680aa2a8c95490156dbc4383896ec4203641974f3358d9011329b5a"
+        },
+        {
+          "at": 24,
+          "command": {
+            "type": "advance",
+            "to": 37
+          },
+          "decisionFacts": {
+            "now": 24,
+            "jobs": {
+              "keeper": {
+                "task": "rest",
+                "startedAt": 24,
+                "endsAt": 30,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": {
+                "task": "pump",
+                "startedAt": 24,
+                "endsAt": 30,
+                "origin": "own",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 24,
+            "actor": "keeper",
+            "task": "rest",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: rest, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "b1b46360b7c50e34a788962a20f4c9636d6b1dc24b8d09aac5ee2c93917f2418"
+        },
+        {
+          "at": 37,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "share"
+          },
+          "decisionFacts": {
+            "now": 37,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 37,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "49335a8697e117199bc61dcb539b2a3c7f7ff633e7b7bb8d347a6a6896f4da53"
+        },
+        {
+          "at": 37,
+          "command": {
+            "type": "advance",
+            "to": 64
+          },
+          "decisionFacts": {
+            "now": 37,
+            "jobs": {
+              "keeper": {
+                "task": "share",
+                "startedAt": 37,
+                "endsAt": 39,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 37,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "6e2a17ba2bdfd74c4649975a18c57b2cab6b402afdbb17385ece5ac50a31a16b"
+        }
+      ],
+      "commandCount": 12,
+      "final": {
+        "now": 64,
+        "morning": {
+          "at": 24,
+          "protected": true,
+          "waterService": true,
+          "route": "gate"
+        },
+        "delivery": {
+          "at": 57,
+          "route": "deliver",
+          "units": 2
+        },
+        "outcome": {
+          "at": 64,
+          "morningProtected": true,
+          "morningWater": true,
+          "clinicUnits": 2,
+          "clinicRequired": 2,
+          "clinicRoute": "deliver",
+          "allService": true
+        },
+        "work": {
+          "gate": 12,
+          "divert": 0,
+          "pump": 12
+        },
+        "resources": {
+          "parts": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "food": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "reservedParts": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "reservedMeals": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "installedParts": 4,
+          "installedPartsByActor": {
+            "keeper": 2,
+            "partner": 2
+          },
+          "eaten": {
+            "keeper": 1,
+            "partner": 1
+          },
+          "handedOver": {
+            "keeper": 1,
+            "partner": 0
+          },
+          "shedAvailable": false
+        },
+        "paidByActor": {
+          "keeper": {
+            "gate": 12,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 0,
+            "deliver": 0,
+            "cart": 0,
+            "share": 2,
+            "salvage": 8,
+            "rest": 6,
+            "meal": 4,
+            "idle": 32,
+            "discuss": 0
+          },
+          "partner": {
+            "gate": 0,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 12,
+            "deliver": 6,
+            "cart": 0,
+            "share": 0,
+            "salvage": 0,
+            "rest": 12,
+            "meal": 4,
+            "idle": 30,
+            "discuss": 0
+          }
+        },
+        "people": {
+          "keeper": {
+            "body": {
+              "fatigue": 0.8,
+              "hunger": 0.45
+            }
+          },
+          "partner": {
+            "body": {
+              "fatigue": 0.45,
+              "hunger": 0.35
+            }
+          }
+        },
+        "coordination": {
+          "readyAt": 45,
+          "nextId": 1,
+          "current": null,
+          "pending": null,
+          "lastResponse": null,
+          "slot": {
+            "actor": "partner",
+            "route": "deliver",
+            "departedAt": 51,
+            "arrivedAt": 57,
+            "status": "delivered"
+          },
+          "readiness": {
+            "ready": true,
+            "readyAt": 45,
+            "pumpWork": 12,
+            "pumpRequired": 12,
+            "supplyAvailable": true,
+            "keeperOwnedParts": 0,
+            "keeperReservedParts": 0
+          },
+          "discussionAvailable": false,
+          "discussionReason": "Clinic intake is closed.",
+          "canWithdraw": false,
+          "canInterrupt": false,
+          "safeWaitUntil": 45,
+          "latestFullStart": 57,
+          "discussionMinutes": 2,
+          "acceptanceRule": "Authored rule: Deniz listens only while both people are idle. Terms require visible inlet supply, an owned keeper part for at most one remaining pump section, and a rounded-body forecast of the declared rest and pump schedule. Short holds retain the cart through 45; later holds explicitly risk losing it. Actual work and capacity still decide delivery."
+        }
+      },
+      "finalSaveSha256": "6e2a17ba2bdfd74c4649975a18c57b2cab6b402afdbb17385ece5ac50a31a16b",
+      "maxSaveBytes": 4742,
+      "maxSaveCharacters": 4742,
+      "replayEqual": true
+    },
+    {
+      "id": "handover-late-41-original-fixed",
+      "family": "late-41",
+      "arm": "original-fixed",
+      "variant": "part-handover",
+      "partition": "post-review-exploratory",
+      "status": "ended",
+      "violations": [],
+      "initialSaveSha256": "9b87aff7d9a0189f139b6d1eefd5ebe597735e17e5418bb791ce8c1a70bf35ee",
+      "commands": [
+        {
+          "at": 0,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "meal"
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "meal",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: eat your meal, 4 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "b827a21e45c507f177a6d9132a01af9ab052b98afd97f1faace9c613ffd68ab4"
+        },
+        {
+          "at": 0,
+          "command": {
+            "type": "advance",
+            "to": 4
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": {
+                "task": "meal",
+                "startedAt": 0,
+                "endsAt": 4,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 1
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "meal",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: eat your meal, 4 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "d2e24be0ff6ebc39215525585c0db41ee9eaa29fa7f1e42b52c437ec0166d9c1"
+        },
+        {
+          "at": 4,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 4,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 4,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "bb3d492de0735abe506e2dd91a679f605ce71244b5b9f53d9d1ef20bdb1d91ab"
+        },
+        {
+          "at": 4,
+          "command": {
+            "type": "advance",
+            "to": 10
+          },
+          "decisionFacts": {
+            "now": 4,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 4,
+                "endsAt": 10,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 4,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "bfe886f788e5307c3a0171eccd2fcc9545c7cd852835c4ad2b414c4106bc6365"
+        },
+        {
+          "at": 10,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 10,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 10,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "0b7907a1690972dee9c57424999ed1a57d05b192b30f21c94705550f528b01db"
+        },
+        {
+          "at": 10,
+          "command": {
+            "type": "advance",
+            "to": 24
+          },
+          "decisionFacts": {
+            "now": 10,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 10,
+                "endsAt": 16,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 10,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "73ea63b63e7476c77cef1fbfde34828dc73857a316968788a0f132f916b3f10c"
+        },
+        {
+          "at": 24,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "pump"
+          },
+          "decisionFacts": {
+            "now": 24,
+            "jobs": {
+              "keeper": null,
+              "partner": {
+                "task": "pump",
+                "startedAt": 24,
+                "endsAt": 30,
+                "origin": "own",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 24,
+            "actor": "keeper",
+            "task": "pump",
+            "accepted": false,
+            "code": "TARGET_BUSY",
+            "reason": "The other person already has this work reserved. Choose another job alongside them."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "5bd32a46f10018993784952575bb322148496f731978fa037f99bf75832d44f1"
+        },
+        {
+          "at": 24,
+          "command": {
+            "type": "advance",
+            "to": 30
+          },
+          "decisionFacts": {
+            "now": 24,
+            "jobs": {
+              "keeper": null,
+              "partner": {
+                "task": "pump",
+                "startedAt": 24,
+                "endsAt": 30,
+                "origin": "own",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 24,
+            "actor": "keeper",
+            "task": "pump",
+            "accepted": false,
+            "code": "TARGET_BUSY",
+            "reason": "The other person already has this work reserved. Choose another job alongside them."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "4a3e2b99c4c0c0ffc3f8b23a220936104767a9f602d906e4cd84f060011d4812"
+        },
+        {
+          "at": 30,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "rest"
+          },
+          "decisionFacts": {
+            "now": 30,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 30,
+            "actor": "keeper",
+            "task": "rest",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: rest, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "4cccdddc63bf6ae1008e01f079197ac9bd0b8898befcdd8c90e926a687292c15"
+        },
+        {
+          "at": 30,
+          "command": {
+            "type": "advance",
+            "to": 33
+          },
+          "decisionFacts": {
+            "now": 30,
+            "jobs": {
+              "keeper": {
+                "task": "rest",
+                "startedAt": 30,
+                "endsAt": 36,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 30,
+            "actor": "keeper",
+            "task": "rest",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: rest, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "5a7a8f709d820cefbc8a3858cc674fccd0718b535655b9cdfab76e2b9154f8a7"
+        },
+        {
+          "at": 33,
+          "command": {
+            "type": "interrupt",
+            "actor": "keeper"
+          },
+          "decisionFacts": {
+            "now": 33,
+            "jobs": {
+              "keeper": {
+                "task": "rest",
+                "startedAt": 30,
+                "endsAt": 36,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 33,
+            "actor": "keeper",
+            "task": "rest",
+            "accepted": true,
+            "code": "STOPPED",
+            "reason": "Stopped the agreed work; paid recovery and installed work remain."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "c4d965e23d18364f065401a151b43d06f1f6221c92a47f7c7645959420dace9d"
+        },
+        {
+          "at": 33,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "salvage"
+          },
+          "decisionFacts": {
+            "now": 33,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 33,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "fcb3f1dc569901b9e27fb07febdaa2f870a617c5372536b21617b2bf52d9490b"
+        },
+        {
+          "at": 33,
+          "command": {
+            "type": "advance",
+            "to": 41
+          },
+          "decisionFacts": {
+            "now": 33,
+            "jobs": {
+              "keeper": {
+                "task": "salvage",
+                "startedAt": 33,
+                "endsAt": 41,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 33,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "87f531654d5c3038757bbcd5429bff5dff81ed564f1136c9eb4a308ba5c63d8c"
+        },
+        {
+          "at": 41,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "share"
+          },
+          "decisionFacts": {
+            "now": 41,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 41,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "59b4f8011ca2625f550455531c3db3f7a1511d78d26ca48cfa27a60b3e0db8fa"
+        },
+        {
+          "at": 41,
+          "command": {
+            "type": "advance",
+            "to": 64
+          },
+          "decisionFacts": {
+            "now": 41,
+            "jobs": {
+              "keeper": {
+                "task": "share",
+                "startedAt": 41,
+                "endsAt": 43,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 41,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "ebd2b2ffd013f9e790a25a965d65c756d5519567729a2a76db48297948f56ab9"
+        }
+      ],
+      "commandCount": 15,
+      "final": {
+        "now": 64,
+        "morning": {
+          "at": 24,
+          "protected": true,
+          "waterService": true,
+          "route": "gate"
+        },
+        "delivery": {
+          "at": 60,
+          "route": "cart",
+          "units": 1
+        },
+        "outcome": {
+          "at": 64,
+          "morningProtected": true,
+          "morningWater": true,
+          "clinicUnits": 1,
+          "clinicRequired": 2,
+          "clinicRoute": "cart",
+          "allService": false
+        },
+        "work": {
+          "gate": 12,
+          "divert": 0,
+          "pump": 6
+        },
+        "resources": {
+          "parts": {
+            "keeper": 0,
+            "partner": 1
+          },
+          "food": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "reservedParts": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "reservedMeals": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "installedParts": 3,
+          "installedPartsByActor": {
+            "keeper": 2,
+            "partner": 1
+          },
+          "eaten": {
+            "keeper": 1,
+            "partner": 1
+          },
+          "handedOver": {
+            "keeper": 1,
+            "partner": 0
+          },
+          "shedAvailable": false
+        },
+        "paidByActor": {
+          "keeper": {
+            "gate": 12,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 0,
+            "deliver": 0,
+            "cart": 0,
+            "share": 2,
+            "salvage": 8,
+            "rest": 3,
+            "meal": 4,
+            "idle": 35
+          },
+          "partner": {
+            "gate": 0,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 6,
+            "deliver": 0,
+            "cart": 18,
+            "share": 0,
+            "salvage": 0,
+            "rest": 4,
+            "meal": 4,
+            "idle": 32
+          }
+        },
+        "people": {
+          "keeper": {
+            "body": {
+              "fatigue": 0.9,
+              "hunger": 0.45
+            }
+          },
+          "partner": {
+            "body": {
+              "fatigue": 0.65,
+              "hunger": 0.35
+            }
+          }
+        },
+        "coordination": null
+      },
+      "finalSaveSha256": "ebd2b2ffd013f9e790a25a965d65c756d5519567729a2a76db48297948f56ab9",
+      "maxSaveBytes": 4783,
+      "maxSaveCharacters": 4783,
+      "replayEqual": true
+    },
+    {
+      "id": "handover-late-41-direct-fixed",
+      "family": "late-41",
+      "arm": "direct-fixed",
+      "variant": "part-handover",
+      "partition": "post-review-exploratory",
+      "status": "ended",
+      "violations": [],
+      "initialSaveSha256": "e423729fdd504d929cbb23ae607b50a1038104cbeed8e6a82428035bacade098",
+      "commands": [
+        {
+          "at": 0,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "meal"
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "meal",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: eat your meal, 4 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "c46eb4203952e771d968d89e3a21d71a00d2f2aae76c7d2b45de9855e3aa1533"
+        },
+        {
+          "at": 0,
+          "command": {
+            "type": "advance",
+            "to": 4
+          },
+          "decisionFacts": {
+            "now": 0,
+            "jobs": {
+              "keeper": {
+                "task": "meal",
+                "startedAt": 0,
+                "endsAt": 4,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 1
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 0,
+            "actor": "keeper",
+            "task": "meal",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: eat your meal, 4 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "0170735d4ca5927538f26d4608304f422c210613dfa7aad95ff277e9d82d3d76"
+        },
+        {
+          "at": 4,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 4,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 2,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 4,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "c486dfb492f6d1b07d86db63b65ac07cf61f4b4a021e541f993b9af3f03b3055"
+        },
+        {
+          "at": 4,
+          "command": {
+            "type": "advance",
+            "to": 10
+          },
+          "decisionFacts": {
+            "now": 4,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 4,
+                "endsAt": 10,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 0,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 4,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "c89dbff97fa77fcf5bde058fbb654c966692675e56d1e74e580f6349082a2838"
+        },
+        {
+          "at": 10,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "gate"
+          },
+          "decisionFacts": {
+            "now": 10,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 10,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "a45fbda8e8960528ceced7f70ac5445c945278e311685ebb00fc58d16e9203f7"
+        },
+        {
+          "at": 10,
+          "command": {
+            "type": "advance",
+            "to": 24
+          },
+          "decisionFacts": {
+            "now": 10,
+            "jobs": {
+              "keeper": {
+                "task": "gate",
+                "startedAt": 10,
+                "endsAt": 16,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 6,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": false
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 1
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 10,
+            "actor": "keeper",
+            "task": "gate",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "5a9be6106ab28337f43d8028862841ac3d0712122a840a5fbad26309cd5dd9c7"
+        },
+        {
+          "at": 24,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "pump"
+          },
+          "decisionFacts": {
+            "now": 24,
+            "jobs": {
+              "keeper": null,
+              "partner": {
+                "task": "pump",
+                "startedAt": 24,
+                "endsAt": 30,
+                "origin": "own",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 24,
+            "actor": "keeper",
+            "task": "pump",
+            "accepted": false,
+            "code": "TARGET_BUSY",
+            "reason": "The other person already has this work reserved. Choose another job alongside them."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "86df2170d2a8262012a9bc301f4328991bed658b3584c673bd0e38b5c642d6c3"
+        },
+        {
+          "at": 24,
+          "command": {
+            "type": "advance",
+            "to": 30
+          },
+          "decisionFacts": {
+            "now": 24,
+            "jobs": {
+              "keeper": null,
+              "partner": {
+                "task": "pump",
+                "startedAt": 24,
+                "endsAt": 30,
+                "origin": "own",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              }
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 0
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 24,
+            "actor": "keeper",
+            "task": "pump",
+            "accepted": false,
+            "code": "TARGET_BUSY",
+            "reason": "The other person already has this work reserved. Choose another job alongside them."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "e9d6276f64bf9623a2738340208b56dbfa87f6426815aafc574080673caf98e1"
+        },
+        {
+          "at": 30,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "rest"
+          },
+          "decisionFacts": {
+            "now": 30,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 30,
+            "actor": "keeper",
+            "task": "rest",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: rest, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "dcc89d7163c816e64bfddcd4d050b5a3b9958dd44b64ae1200ccd8850e1646e3"
+        },
+        {
+          "at": 30,
+          "command": {
+            "type": "advance",
+            "to": 33
+          },
+          "decisionFacts": {
+            "now": 30,
+            "jobs": {
+              "keeper": {
+                "task": "rest",
+                "startedAt": 30,
+                "endsAt": 36,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 30,
+            "actor": "keeper",
+            "task": "rest",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: rest, 6 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "c5f59080c0813ccee735f3469d893811c20c74c188bda19a8f50dd6726f0fda9"
+        },
+        {
+          "at": 33,
+          "command": {
+            "type": "interrupt",
+            "actor": "keeper"
+          },
+          "decisionFacts": {
+            "now": 33,
+            "jobs": {
+              "keeper": {
+                "task": "rest",
+                "startedAt": 30,
+                "endsAt": 36,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 33,
+            "actor": "keeper",
+            "task": "rest",
+            "accepted": true,
+            "code": "STOPPED",
+            "reason": "Stopped the agreed work; paid recovery and installed work remain."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "b69d3b1c8f6652a30de16a75fe0dd4e109f067677877e30f59f17bd07b931e8c"
+        },
+        {
+          "at": 33,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "salvage"
+          },
+          "decisionFacts": {
+            "now": 33,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 33,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "5c61a3b68056b9aed1fb032b0f414587ace4607a7c33a0df7f5fc86acc1d7052"
+        },
+        {
+          "at": 33,
+          "command": {
+            "type": "advance",
+            "to": 41
+          },
+          "decisionFacts": {
+            "now": 33,
+            "jobs": {
+              "keeper": {
+                "task": "salvage",
+                "startedAt": 33,
+                "endsAt": 41,
+                "origin": "request",
+                "reservedParts": 0,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": true,
+              "causes": []
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 33,
+            "actor": "keeper",
+            "task": "salvage",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: fetch the shed spare, 8 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "7ff4d703c2ebd12633ffee57a316bc737e63ee8307b577b06fd8287036101ecc"
+        },
+        {
+          "at": 41,
+          "command": {
+            "type": "request",
+            "actor": "keeper",
+            "task": "share"
+          },
+          "decisionFacts": {
+            "now": 41,
+            "jobs": {
+              "keeper": null,
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 1,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 41,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "0330b940732182135cb2eddaaf95d62e5f05c564ad1f2e447a0a7457c12aab49"
+        },
+        {
+          "at": 41,
+          "command": {
+            "type": "advance",
+            "to": 64
+          },
+          "decisionFacts": {
+            "now": 41,
+            "jobs": {
+              "keeper": {
+                "task": "share",
+                "startedAt": 41,
+                "endsAt": 43,
+                "origin": "request",
+                "reservedParts": 1,
+                "reservedMeal": 0
+              },
+              "partner": null
+            },
+            "work": {
+              "gate": 12,
+              "divert": 0,
+              "pump": 6
+            },
+            "supply": {
+              "reopenedAt": null,
+              "available": true
+            },
+            "ownedParts": {
+              "keeper": 0,
+              "partner": 0
+            },
+            "keeperPumpEstimate": {
+              "allowed": false,
+              "causes": [
+                "fatigue"
+              ]
+            },
+            "currentPlan": null,
+            "pending": null
+          },
+          "response": {
+            "at": 41,
+            "actor": "keeper",
+            "task": "share",
+            "accepted": true,
+            "code": "ACCEPTED",
+            "reason": "Agreed: hand over one owned part, 2 paid minutes."
+          },
+          "planResponse": null,
+          "error": null,
+          "saveSha256": "393e126a837c2894cfb40464e7ba14f54811d18e5e8ea781cd97282158f85dfe"
+        }
+      ],
+      "commandCount": 15,
+      "final": {
+        "now": 64,
+        "morning": {
+          "at": 24,
+          "protected": true,
+          "waterService": true,
+          "route": "gate"
+        },
+        "delivery": {
+          "at": 60,
+          "route": "cart",
+          "units": 1
+        },
+        "outcome": {
+          "at": 64,
+          "morningProtected": true,
+          "morningWater": true,
+          "clinicUnits": 1,
+          "clinicRequired": 2,
+          "clinicRoute": "cart",
+          "allService": false
+        },
+        "work": {
+          "gate": 12,
+          "divert": 0,
+          "pump": 6
+        },
+        "resources": {
+          "parts": {
+            "keeper": 0,
+            "partner": 1
+          },
+          "food": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "reservedParts": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "reservedMeals": {
+            "keeper": 0,
+            "partner": 0
+          },
+          "installedParts": 3,
+          "installedPartsByActor": {
+            "keeper": 2,
+            "partner": 1
+          },
+          "eaten": {
+            "keeper": 1,
+            "partner": 1
+          },
+          "handedOver": {
+            "keeper": 1,
+            "partner": 0
+          },
+          "shedAvailable": false
+        },
+        "paidByActor": {
+          "keeper": {
+            "gate": 12,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 0,
+            "deliver": 0,
+            "cart": 0,
+            "share": 2,
+            "salvage": 8,
+            "rest": 3,
+            "meal": 4,
+            "idle": 35,
+            "discuss": 0
+          },
+          "partner": {
+            "gate": 0,
+            "divert": 0,
+            "reopen": 0,
+            "pump": 6,
+            "deliver": 0,
+            "cart": 18,
+            "share": 0,
+            "salvage": 0,
+            "rest": 4,
+            "meal": 4,
+            "idle": 32,
+            "discuss": 0
+          }
+        },
+        "people": {
+          "keeper": {
+            "body": {
+              "fatigue": 0.9,
+              "hunger": 0.45
+            }
+          },
+          "partner": {
+            "body": {
+              "fatigue": 0.65,
+              "hunger": 0.35
+            }
+          }
+        },
+        "coordination": {
+          "readyAt": null,
+          "nextId": 1,
+          "current": null,
+          "pending": null,
+          "lastResponse": null,
+          "slot": {
+            "actor": "partner",
+            "route": "cart",
+            "departedAt": 42,
+            "arrivedAt": 60,
+            "status": "delivered"
+          },
+          "readiness": {
+            "ready": false,
+            "readyAt": null,
+            "pumpWork": 6,
+            "pumpRequired": 12,
+            "supplyAvailable": true,
+            "keeperOwnedParts": 0,
+            "keeperReservedParts": 0
+          },
+          "discussionAvailable": false,
+          "discussionReason": "Clinic intake is closed.",
+          "canWithdraw": false,
+          "canInterrupt": false,
+          "safeWaitUntil": 45,
+          "latestFullStart": 57,
+          "discussionMinutes": 2,
+          "acceptanceRule": "Authored rule: Deniz listens only while both people are idle. Terms require visible inlet supply, an owned keeper part for at most one remaining pump section, and a rounded-body forecast of the declared rest and pump schedule. Short holds retain the cart through 45; later holds explicitly risk losing it. Actual work and capacity still decide delivery."
+        }
+      },
+      "finalSaveSha256": "393e126a837c2894cfb40464e7ba14f54811d18e5e8ea781cd97282158f85dfe",
+      "maxSaveBytes": 4954,
+      "maxSaveCharacters": 4954,
+      "replayEqual": true
+    }
+  ]
+}
