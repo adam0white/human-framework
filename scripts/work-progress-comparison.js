@@ -28,9 +28,12 @@ export async function freezeSources(){
  return {format:'paid-work-source-freeze',version:1,commit,createdAt:new Date().toISOString(),sources};
 }
 export async function verifyFreeze(freeze){
- assert.equal(freeze.format,'paid-work-source-freeze');assert.equal(freeze.version,1);
+ assert.equal(freeze.format,'paid-work-source-freeze');assert.equal(freeze.version,1);assert.match(freeze.commit,/^[a-f0-9]{40}$/);
  assert.deepEqual(Object.keys(freeze.sources).sort(),[...relativeSources].sort(),'freeze must cover all declared inputs');
- for(const [path,hash] of Object.entries(freeze.sources))assert.equal(sha(await readFile(resolve(root,path))),hash,'Changed frozen source: '+path);
+ for(const [path,hash] of Object.entries(freeze.sources)){
+  assert.equal(sha(await readFile(resolve(root,path))),hash,'Changed frozen source: '+path);
+  assert.equal(sha(execFileSync('git',['show',freeze.commit+':'+path],{cwd:root})),hash,'Freeze does not match declared commit: '+path);
+ }
 }
 function validAccounting(observation,fixture){
  assert.equal(Number.isSafeInteger(observation.now)&&observation.now>=0&&observation.now<=END_AT,true);
@@ -67,17 +70,18 @@ export function executeHistory(api,fixture,driver,{restore=false}={}){
   records.push({operation:clone(operation),observation:clone(observation),snapshot:clone(api.exportWorld(world))});
   return observation;
  };
- const initial=record({type:'create',setup:fixture.setup});checkpoints.push({tag:'initial',observation:initial});
+ const initial=record({type:'create',setup:fixture.setup});assert.equal(initial.now,0,'Fixture starts at zero');checkpoints.push({tag:'initial',observation:initial});
  while(true){
   let now=api.observe(world).now;
   if(restore&&!restored&&now===1){
-   const before=canonical(api.observe(world));world=api.restoreWorld(JSON.parse(JSON.stringify(api.exportWorld(world))));
+   const before=canonical(api.observe(world)),snapshot=api.exportWorld(world);world=api.restoreWorld(JSON.parse(JSON.stringify(snapshot)));
+   assert.equal(canonical(api.exportWorld(world)),canonical(snapshot),'JSON round trip changes authoritative snapshot');
    assert.equal(canonical(api.observe(world)),before,'JSON round trip changes accounting');restored=true;record({type:'restore'});
   }
   while(cursor<fixture.commands.length&&fixture.commands[cursor].at===now){
    const command=fixture.commands[cursor].command;
    world=api.command(world,clone(command));
-   const observation=record({type:'command',at:now,command});
+   const observation=record({type:'command',at:now,command});assert.equal(observation.now,now,'A command may not advance time');
    checkpoints.push({tag:'command-'+cursor,observation});cursor++;
   }
   if(now===END_AT)break;
@@ -113,6 +117,7 @@ export async function runMatrix(freeze){
    let run;try{run=executeHistory(api,input,driver,{restore});}catch(error){error.evidence={...error.evidence,arm,freeze,completedRuns:runs};throw error;}run.arm=arm;runs.push(run);
   }
  }
+ try {
  for(const fixture of CASES){
   for(const driver of DRIVERS)for(const restore of [false,true]){
    const matching=runs.filter(run=>run.id===fixture.id&&run.driver===driver&&run.restore===restore);
@@ -124,6 +129,7 @@ export async function runMatrix(freeze){
    for(const run of matching)assert.equal(canonical(run.checkpoints),canonical(baseline.checkpoints),fixture.id+' '+arm+' synchronized driver/restore parity');
   }
  }
+ }catch(error){error.evidence={phase:'cross-arm-and-driver-comparison',freeze,runs};throw error;}
  return {format:'paid-work-camp-comparison',version:1,node:process.version,createdAt:new Date().toISOString(),freeze,runs,
   summary:{histories:CASES.length,arms:Object.keys(apis),drivers:DRIVERS,restores:[false,true],records:runs.length,
    completions:CASES.map(f=>({id:f.id,prospective:f.expected,fixed:f.fixed})),scope:'Synthetic prescribed histories and repeated driver/serialization checks; not independent human samples'}};
@@ -148,6 +154,6 @@ async function main(){
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href)main().catch(async error=>{
  const out=option(process.argv.slice(2),'--out');
- if(out&&error.evidence){const path=resolve(out+'.failed.json.gz');await mkdir(dirname(path),{recursive:true});await writeFile(path,gzipSync(Buffer.from(JSON.stringify({error:error.message,evidence:error.evidence},null,2)+'\\n')),{flag:'wx'}).catch(failure=>console.error('Could not write separate failure evidence: '+failure.message));}
+ if(out&&error.evidence){const path=resolve(out+'.failed.json.gz');await mkdir(dirname(path),{recursive:true});await writeFile(path,gzipSync(Buffer.from(JSON.stringify({error:error.message,evidence:error.evidence},null,2)+'\n')),{flag:'wx'}).catch(failure=>console.error('Could not write separate failure evidence: '+failure.message));}
  console.error(error.stack);process.exitCode=1;
 });
