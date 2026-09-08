@@ -3,6 +3,7 @@ export const PUBLIC_PAGES=Object.freeze({
   'index.html':'web/games.html',
   'games/index.html':'web/games.html',
   'camp/index.html':'web/camp.html',
+  'across/index.html':'web/across.html',
   'workshop/index.html':'web/workshop.html',
   'shift/index.html':'web/shift.html',
   'courtyard/index.html':'web/courtyard.html',
@@ -10,7 +11,6 @@ export const PUBLIC_PAGES=Object.freeze({
   'commons/index.html':'web/commons.html',
   'commons-next/index.html':'web/commons-next.html',
   'watch/index.html':'web/watch.html',
-  'signals/index.html':'web/signals.html',
   'service/index.html':'web/service.html',
   'service-plan/index.html':'web/service-plan.html'
 });

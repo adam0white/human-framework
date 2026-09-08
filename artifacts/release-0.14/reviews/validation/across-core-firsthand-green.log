@@ -1,0 +1,31 @@
+✔ public host has its own identity and contains no negotiation state or commands (2.326ms)
+✔ first-hop reports preserve exact source records and refuse received relays and relative presence (1.655584ms)
+✔ out-of-order old facts remain in the notebook without replacing a newer source-time claim (1.495209ms)
+✔ minute-eight receipt pauses a paid release; explicit stop preserves two units and one paid minute (3.750667ms)
+✔ interrupted repair retains paid progress, practice and the single installed fitting (1.009791ms)
+✔ fixed pipe schedule works without radio and attends through the launch endpoint (2.388208ms)
+✔ attendance requested at a settled arrival cannot recover lost pipe water (1.149542ms)
+✔ interrupted outbound cart retains supply and position; returning costs remaining distance (0.603709ms)
+✔ cart delivery is first-hand knowledge and interrupted return never delivers twice (1.674917ms)
+✔ partial station travel cannot teleport on stop or grant distant observations (0.613333ms)
+✔ radio interruption restores charge while completed sends consume time and reveal no outcome (0.537958ms)
+✔ paid contact succeeds only with observed co-location continuing through completion (0.836042ms)
+✔ rest and owned meals pay time, preserve body carryover and restore interrupted reservations (1.057209ms)
+✔ available actor time recovers automatically without holding a job or charging explicit rest (1.084417ms)
+✔ horizon stops unfinished release and late cart pays its incomplete return (4.950958ms)
+✔ actor-local command budgets reserve an actual stop and cannot leak or spend peer room (11.5615ms)
+✔ hidden work, launch, channel slots and remote actions have equal keeper views and local errors (3.360916ms)
+✔ remote pipe success and failure stay hidden through the keeper's real paid schedule (3.508583ms)
+✔ receipt-local advances pay actual minutes and distinct stopped receipts replay exactly (1.481083ms)
+✔ strict replay rejects fabricated local report origins, arrivals, paid body and negotiation injection (6.688709ms)
+✔ API returns immutable states and detached views and saves without mutating input (0.5485ms)
+✔ plain-data checks reject accessors and foreign prototypes without evaluating user code (0.32ms)
+✔ arriving after a report records first-hand visible facts without laundering prior reception (2.748ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 97.099791

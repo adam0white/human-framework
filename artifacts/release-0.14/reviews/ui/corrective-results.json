@@ -1,0 +1,130 @@
+{
+  "checks": [
+    {
+      "name": "incoming report resets prior notebook scroll and remains visible",
+      "prior": 575,
+      "position": {
+        "card": {
+          "x": 13,
+          "y": 355.46875,
+          "width": 329,
+          "height": 163.453125,
+          "top": 355.46875,
+          "right": 342,
+          "bottom": 518.921875,
+          "left": 13
+        },
+        "panel": {
+          "x": 13,
+          "y": 261.875,
+          "width": 349,
+          "height": 279.828125,
+          "top": 261.875,
+          "right": 362,
+          "bottom": 541.703125,
+          "left": 13
+        },
+        "scrollTop": 0
+      }
+    },
+    {
+      "name": "reload of paused report reopens Notebook at top",
+      "position": {
+        "card": {
+          "x": 13,
+          "y": 355.46875,
+          "width": 329,
+          "height": 163.453125,
+          "top": 355.46875,
+          "right": 342,
+          "bottom": 518.921875,
+          "left": 13
+        },
+        "panel": {
+          "x": 13,
+          "y": 261.875,
+          "width": 349,
+          "height": 279.828125,
+          "top": 261.875,
+          "right": 362,
+          "bottom": 541.703125,
+          "left": 13
+        },
+        "scrollTop": 0
+      }
+    },
+    {
+      "name": "import paused report opens Notebook at top",
+      "position": {
+        "card": {
+          "x": 13,
+          "y": 355.46875,
+          "width": 329,
+          "height": 163.453125,
+          "top": 355.46875,
+          "right": 342,
+          "bottom": 518.921875,
+          "left": 13
+        },
+        "panel": {
+          "x": 13,
+          "y": 261.875,
+          "width": 349,
+          "height": 279.828125,
+          "top": 261.875,
+          "right": 362,
+          "bottom": 541.703125,
+          "left": 13
+        },
+        "scrollTop": 0
+      }
+    },
+    {
+      "name": "outgoing report displays distinct observation7 and sent9",
+      "text": "Sent by radio at 9valve repair has 6 paid minutes · observed 7"
+    },
+    {
+      "name": "received-report copy matches no active task",
+      "copy": "A report arrived. Time is paused for your next choice.",
+      "alert": "A factual report arrived. Read it before your next choice."
+    },
+    {
+      "name": "file import has visible keyboard focus on label",
+      "focus": {
+        "focused": true,
+        "inputOpacity": "0",
+        "labelOutline": "solid",
+        "labelOutlineWidth": "3px"
+      }
+    },
+    {
+      "name": "send control disables unavailable body interval",
+      "note": "Your condition estimates cannot support sending yet. Recover or eat before retrying."
+    }
+  ],
+  "sources": {
+    "corrective-before": {
+      "/across/": "82789cc0016426eb01ce61d5bf3afad6b2f5d9d5e20d82b8119b541631ccc2a9",
+      "/web/across-player.js": "dd0b42785dbc3312c5a8e268d6ac0dd4d1056134ab650b69cbcae42d3148e831",
+      "/web/across.css": "aa78fa133017a4156e196b002bc92e4800c76184a281a63111404cc7cb60fecb",
+      "/web/game-shell.css": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f",
+      "/web/across-session.js": "9b1de7bdb19d8c51152439a7c100f687fbf2cc1d987677c5fc1ee02da8c93675",
+      "/web/across-view.js": "677df05a993c856cf3b55409a2f761acdb24fc1f991234aa00b04eab5b13133b",
+      "/src/games/across-cut-player.js": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d",
+      "/src/games/across-cut-receiver.js": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce",
+      "/src/games/across-cut.js": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad"
+    },
+    "corrective-after": {
+      "/across/": "82789cc0016426eb01ce61d5bf3afad6b2f5d9d5e20d82b8119b541631ccc2a9",
+      "/web/across-player.js": "dd0b42785dbc3312c5a8e268d6ac0dd4d1056134ab650b69cbcae42d3148e831",
+      "/web/across.css": "aa78fa133017a4156e196b002bc92e4800c76184a281a63111404cc7cb60fecb",
+      "/web/game-shell.css": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f",
+      "/web/across-session.js": "9b1de7bdb19d8c51152439a7c100f687fbf2cc1d987677c5fc1ee02da8c93675",
+      "/web/across-view.js": "677df05a993c856cf3b55409a2f761acdb24fc1f991234aa00b04eab5b13133b",
+      "/src/games/across-cut-player.js": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d",
+      "/src/games/across-cut-receiver.js": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce",
+      "/src/games/across-cut.js": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad"
+    }
+  },
+  "errors": []
+}

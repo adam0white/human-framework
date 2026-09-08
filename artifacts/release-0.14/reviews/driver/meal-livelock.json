@@ -1,0 +1,911 @@
+{
+  "setup": {
+    "inletMinutes": 14,
+    "launchAt": 15,
+    "bodies": {
+      "receiver": {
+        "fatigue": 0.15,
+        "hunger": 0.972
+      }
+    }
+  },
+  "trace": [
+    {
+      "now": 0,
+      "reason": "inspect-inlet",
+      "commands": [
+        {
+          "type": "request",
+          "action": {
+            "task": "inspect"
+          }
+        }
+      ],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.15,
+        "hunger": 0.95
+      }
+    },
+    {
+      "now": 1,
+      "reason": "report-local-facts",
+      "commands": [
+        {
+          "type": "request",
+          "action": {
+            "task": "transmit",
+            "message": {
+              "kind": "report",
+              "observationIds": [
+                1,
+                2,
+                3,
+                4,
+                6
+              ]
+            }
+          }
+        }
+      ],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.15,
+        "hunger": 0.95
+      }
+    },
+    {
+      "now": 2,
+      "reason": "eat-before-work",
+      "commands": [
+        {
+          "type": "request",
+          "action": {
+            "task": "meal"
+          }
+        }
+      ],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.15,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 3,
+      "reason": "pipe-too-late-recover",
+      "commands": [
+        {
+          "type": "stop"
+        }
+      ],
+      "job": {
+        "task": "meal",
+        "startedAt": 2,
+        "endsAt": 4,
+        "elapsed": 1
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 1,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.15,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 4,
+      "reason": "eat-before-work",
+      "commands": [
+        {
+          "type": "request",
+          "action": {
+            "task": "meal"
+          }
+        }
+      ],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.15,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 5,
+      "reason": "pipe-too-late-recover",
+      "commands": [
+        {
+          "type": "stop"
+        }
+      ],
+      "job": {
+        "task": "meal",
+        "startedAt": 4,
+        "endsAt": 6,
+        "elapsed": 1
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 1,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.15,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 6,
+      "reason": "eat-before-work",
+      "commands": [
+        {
+          "type": "request",
+          "action": {
+            "task": "meal"
+          }
+        }
+      ],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.1,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 7,
+      "reason": "pipe-too-late-recover",
+      "commands": [
+        {
+          "type": "stop"
+        }
+      ],
+      "job": {
+        "task": "meal",
+        "startedAt": 6,
+        "endsAt": 8,
+        "elapsed": 1
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 1,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.1,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 8,
+      "reason": "eat-before-work",
+      "commands": [
+        {
+          "type": "request",
+          "action": {
+            "task": "meal"
+          }
+        }
+      ],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.1,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 9,
+      "reason": "pipe-too-late-recover",
+      "commands": [
+        {
+          "type": "stop"
+        }
+      ],
+      "job": {
+        "task": "meal",
+        "startedAt": 8,
+        "endsAt": 10,
+        "elapsed": 1
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 1,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.1,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 10,
+      "reason": "eat-before-work",
+      "commands": [
+        {
+          "type": "request",
+          "action": {
+            "task": "meal"
+          }
+        }
+      ],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.05,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 11,
+      "reason": "no-timely-route",
+      "commands": [
+        {
+          "type": "stop"
+        }
+      ],
+      "job": {
+        "task": "meal",
+        "startedAt": 10,
+        "endsAt": 12,
+        "elapsed": 1
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 1,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.05,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 12,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.05,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 13,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0.05,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 14,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 15,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 16,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 17,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 18,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 19,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 20,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 21,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 22,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 23,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 24,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 25,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 26,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 27,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 28,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    },
+    {
+      "now": 29,
+      "reason": "finished",
+      "commands": [],
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "body": {
+        "fatigue": 0,
+        "hunger": 1
+      }
+    }
+  ],
+  "world": {
+    "researcherOnly": true,
+    "now": 30,
+    "ended": true,
+    "config": {
+      "valveMinutes": 6,
+      "inletMinutes": 14,
+      "launchAt": 15,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.972
+        },
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "work": {
+      "valve": 0,
+      "dock": 0
+    },
+    "service": {
+      "units": 0,
+      "departed": true,
+      "deliveries": []
+    },
+    "water": {
+      "pipeConsumed": 0,
+      "cartConsumed": 0,
+      "inTransit": 0,
+      "lost": 0,
+      "excess": 0,
+      "owned": 3,
+      "conservedTotal": 3
+    },
+    "actors": {
+      "keeper": {
+        "body": {
+          "fatigue": 0,
+          "hunger": 0.21000000000000005
+        },
+        "position": 0,
+        "inventory": {
+          "fitting": {
+            "available": 1,
+            "reserved": 0,
+            "installed": 0
+          },
+          "water": {
+            "available": 2,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "cartWater": {
+            "available": 0,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "radio": {
+            "available": 4,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "meal": {
+            "available": 1,
+            "reserved": 0,
+            "consumed": 0
+          }
+        },
+        "paid": {
+          "availableRecovery": 30,
+          "inspect": 0,
+          "repair": 0,
+          "release": 0,
+          "attend": 0,
+          "cart": 0,
+          "travel": 0,
+          "rest": 0,
+          "meal": 0,
+          "transmit": 0
+        }
+      },
+      "receiver": {
+        "body": {
+          "fatigue": 0,
+          "hunger": 1
+        },
+        "position": 6,
+        "inventory": {
+          "fitting": {
+            "available": 1,
+            "reserved": 0,
+            "installed": 0
+          },
+          "water": {
+            "available": 0,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "cartWater": {
+            "available": 1,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "radio": {
+            "available": 3,
+            "reserved": 0,
+            "consumed": 1
+          },
+          "meal": {
+            "available": 1,
+            "reserved": 0,
+            "consumed": 0
+          }
+        },
+        "paid": {
+          "availableRecovery": 23,
+          "inspect": 1,
+          "repair": 0,
+          "release": 0,
+          "attend": 0,
+          "cart": 0,
+          "travel": 0,
+          "rest": 0,
+          "meal": 5,
+          "transmit": 1
+        }
+      }
+    },
+    "transport": [
+      {
+        "messageId": "receiver:m1",
+        "sender": "receiver",
+        "recipient": "keeper",
+        "sentAt": 2,
+        "via": "radio",
+        "message": {
+          "kind": "report",
+          "observations": [
+            {
+              "receipt": 1,
+              "cue": "launchAt",
+              "value": 15,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 2,
+              "cue": "launchDeparted",
+              "value": false,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 3,
+              "cue": "serviceUnits",
+              "value": 0,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 4,
+              "cue": "repairProgress:dock",
+              "value": 0,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 6,
+              "cue": "repairMinutes:dock",
+              "value": 14,
+              "source": "dock",
+              "observedAt": 1,
+              "receivedAt": 1,
+              "via": "local"
+            }
+          ]
+        },
+        "delay": 2,
+        "deliveredAt": 4
+      }
+    ],
+    "journalEntries": 24
+  },
+  "save": {
+    "format": "human-across-cut-player",
+    "saveVersion": 1,
+    "playerVersion": "0.1.0",
+    "receiverVersion": "0.1.0",
+    "setup": {
+      "valveMinutes": 6,
+      "inletMinutes": 14,
+      "launchAt": 15,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.972
+        },
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "commands": [
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      },
+      {
+        "type": "advance",
+        "minutes": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+✔ fresh browser variations share identical player information before evidence arrives (3.21025ms)
+✔ a downloaded mid-release recipe resumes the actual receipt and owned water (8.05ms)
+✔ current storage reads one key and never overwrites a corrupt or read-denied save (0.312708ms)
+✔ quota failures retain the current game for download and later persistence can recover (1.724833ms)
+✔ import preview leaves current play untouched until an explicit current confirmation (1.451542ms)
+✔ a current import cannot be replaced by a stale asynchronous success or failure (1.063083ms)
+✔ advancing after a completed preview invalidates replacement even without an explicit UI invalidation (0.397208ms)
+✔ report controls use the same conservative owned-capacity and stop-reserve boundary as work (8.714333ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64.66125

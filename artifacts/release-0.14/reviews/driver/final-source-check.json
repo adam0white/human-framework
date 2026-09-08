@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-09-08T22:01:50.063414+00:00",
+  "checks": {
+    "src/games/across-cut-player.js": {
+      "originalFrozenUnchanged": true,
+      "correctiveCopyUnchanged": true,
+      "workingMatchesCorrective": true
+    },
+    "src/games/across-cut-receiver.js": {
+      "originalFrozenUnchanged": true,
+      "correctiveCopyUnchanged": true,
+      "workingMatchesCorrective": true
+    },
+    "docs/across-player-driver-contract.md": {
+      "originalFrozenUnchanged": true,
+      "correctiveCopyUnchanged": true,
+      "workingMatchesCorrective": true
+    },
+    "src/games/across-cut.js": {
+      "originalFrozenUnchanged": true,
+      "correctiveCopyUnchanged": true,
+      "workingMatchesCorrective": true
+    },
+    "src/runtime/index.js": {
+      "originalFrozenUnchanged": true,
+      "correctiveCopyUnchanged": true,
+      "workingMatchesCorrective": true
+    },
+    "src/human/v0.1.1.js": {
+      "originalFrozenUnchanged": true,
+      "correctiveCopyUnchanged": true,
+      "workingMatchesCorrective": true
+    },
+    "src/runtime/clock.js": {
+      "originalFrozenUnchanged": true,
+      "correctiveCopyUnchanged": true,
+      "workingMatchesCorrective": true
+    },
+    "src/core/model.js": {
+      "originalFrozenUnchanged": true,
+      "correctiveCopyUnchanged": true,
+      "workingMatchesCorrective": true
+    }
+  }
+}

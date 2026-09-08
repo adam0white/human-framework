@@ -1,0 +1,401 @@
+{
+  "checks": [
+    {
+      "name": "desktop initial layout",
+      "dimensions": {
+        "innerWidth": 1280,
+        "scrollWidth": 1280,
+        "bodyScroll": 900,
+        "innerHeight": 900,
+        "buttons": [
+          {
+            "id": "next-event",
+            "rect": {
+              "x": 650,
+              "y": 830.15625,
+              "width": 455.390625,
+              "height": 42,
+              "top": 830.15625,
+              "right": 1105.390625,
+              "bottom": 872.15625,
+              "left": 650
+            }
+          },
+          {
+            "id": "one-minute",
+            "rect": {
+              "x": 1111.390625,
+              "y": 830.15625,
+              "width": 64.609375,
+              "height": 42,
+              "top": 830.15625,
+              "right": 1176,
+              "bottom": 872.15625,
+              "left": 1111.390625
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "short initial layout",
+      "dimensions": {
+        "innerWidth": 375,
+        "scrollWidth": 375,
+        "bodyScroll": 650,
+        "innerHeight": 500,
+        "buttons": [
+          {
+            "id": "next-event",
+            "rect": {
+              "x": 13,
+              "y": 581.859375,
+              "width": 287.21875,
+              "height": 42,
+              "top": 581.859375,
+              "right": 300.21875,
+              "bottom": 623.859375,
+              "left": 13
+            }
+          },
+          {
+            "id": "one-minute",
+            "rect": {
+              "x": 306.21875,
+              "y": 581.859375,
+              "width": 55.78125,
+              "height": 42,
+              "top": 581.859375,
+              "right": 362,
+              "bottom": 623.859375,
+              "left": 306.21875
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "minute-eight report preserves underway release",
+      "state": {
+        "minute": "8",
+        "resources": "Water 0 (+2 reserved) · Fitting installed · Radio 4 · Meal 1",
+        "job": "Releasing two water units",
+        "timing": "1 min paid · 1 min left · 2 water reserved",
+        "reason": "A report arrived. Your unfinished work remains underway; continue or stop.",
+        "tab": "tab-notebook",
+        "focus": "tab-notebook",
+        "notice": "",
+        "body": "← Games\nAcross the cut\n8\nof 30 shift minutes\n\nTwo water units for the launch. You operate the valve; Deniz handles the inlet.\n\nWater 0 (+2 reserved) · Fitting installed · Radio 4 · Meal 1\n\nAt the valve\nYour estimates · fatigue 25% · hunger 15%\n\nA factual report arrived. Your task is still shown below.\n\nWork\nNotebook\nBrief\nSave\nWhat you know\n\nReports describe what someone observed then. They do not show the other station now.\n\nDeniz’s report\n\nSent 2 · received 8 · radio\n\nthe launch leaves at minute 15 · observed 0\nthe launch had not departed · observed 0\n0 of 2 water units had arrived · observed 0\ninlet repair has 0 paid minutes · observed 0\ninlet repair needs 14 paid minutes · observed 1\nLatest known facts\nvalve repair has 6 paid minutes\nObserved here · observed 7\nvalve repair needs 6 paid minutes\nObserved here · observed 1\nthe launch leaves at minute 15\nReported · observed 0 · received 8\nthe launch had not departed\nReported · observed 0 · received 8\n0 of 2 water units had arrived\nReported · observed 0 · received 8\ninlet repair has 0 paid minutes\nReported · observed 0 · received 8\ninlet repair needs 14 paid minutes\nReported · observed 1 · received 8\nShare your first-hand observations\nEarlier observations and outgoing reports\nReleasing two water units\n1 min paid · 1 min left · 2 water reserved\nContinue →\n+1 min\nStop work\n\nA report arrived. Your unfinished work remains underway; continue or stop.",
+        "allText": "← GamesTWO STATIONS · ONE LAUNCH\nAcross the cut8of 30 shift minutesTwo water units for the launch. You operate the valve; Deniz handles the inlet.Water 0 (+2 reserved) · Fitting installed · Radio 4 · Meal 1At the valveYour estimates · fatigue 25% · hunger 15%A factual report arrived. Your task is still shown below.\n\nWorkNotebookBriefSave\n\nYour valve6 / 6 paid minYour valve is ready. Remote readiness is known only through reports or visiting the inlet.Inspect1 minFinish or stop your current work first.Finish repair1 minFinish or stop your current work first.Release 2 water2 minFinish or stop your current work first.Move or eatWalk to the inlet6 minFinish or stop your current work first.Walk to the valve1 minFinish or stop your current work first.Eat your meal2 minFinish or stop your current work first.Water and stoppingReleasing reserves your two units for two paid minutes. Stop before completion to keep them. Once released, water takes three more minutes to reach the launch through the inlet. Deniz must have repaired the inlet and be holding it open when the water arrives.Stopping repair keeps every paid minute and the installed fitting. Available time lets you recover automatically; eating uses your owned portion only after two paid minutes.\nWhat you knowReports describe what someone observed then. They do not show the other station now.Deniz’s reportSent 2 · received 8 · radiothe launch leaves at minute 15 · observed 0the launch had not departed · observed 00 of 2 water units had arrived · observed 0inlet repair has 0 paid minutes · observed 0inlet repair needs 14 paid minutes · observed 1Latest known factsvalve repair has 6 paid minutesObserved here · observed 7valve repair needs 6 paid minutesObserved here · observed 1the launch leaves at minute 15Reported · observed 0 · received 8the launch had not departedReported · observed 0 · received 80 of 2 water units had arrivedReported · observed 0 · received 8inlet repair has 0 paid minutesReported · observed 0 · received 8inlet repair needs 14 paid minutesReported · observed 1 · received 8Share your first-hand observationsSelect facts you observed yourself. A message takes one paid minute. Radio uses one charge; contact needs Deniz at your station for the full minute.Your observationsvalve repair has 6 paid minutes · observed 7valve repair has 5 paid minutes · observed 6valve repair has 4 paid minutes · observed 5valve repair has 3 paid minutes · observed 4valve repair has 2 paid minutes · observed 3valve repair has 1 paid minutes · observed 2valve repair needs 6 paid minutes · observed 1valve repair has 0 paid minutes · observed 0Send by radio · 1 minTell Deniz · 1 minFinish or explicitly stop your current task before sending.Earlier observations and outgoing reportsinlet repair needs 14 paid minutesReceived by radio · inlet · observed 1 · received 8inlet repair has 0 paid minutesReceived by radio · inlet · observed 0 · received 80 of 2 water units had arrivedReceived by radio · inlet · observed 0 · received 8the launch had not departedReceived by radio · inlet · observed 0 · received 8the launch leaves at minute 15Received by radio · inlet · observed 0 · received 8valve repair has 6 paid minutesObserved here · valve · observed 7valve repair has 5 paid minutesObserved here · valve · observed 6valve repair has 4 paid minutesObserved here · valve · observed 5valve repair has 3 paid minutesObserved here · valve · observed 4valve repair has 2 paid minutesObserved here · valve · observed 3valve repair has 1 paid minutesObserved here · valve · observed 2valve repair needs 6 paid minutesObserved here · valve · observed 1Deniz was not hereObserved here · valve · observed 0valve repair has 0 paid minutesObserved here · valve · observed 0\nWater across the cutValve · youInletLaunch6 min walk5 min cartYou and Deniz serve the same two-unit launch. You own two units at the valve; Deniz owns one cart unit. Pipe water needs both repaired stations and Deniz attending the inlet. The cart reaches the launch after five minutes and then takes five minutes back.Inspect to learn your local repair. The launch notice is at the inlet. A delivery at its departure minute still counts.How Deniz choosesDeniz inspects the inlet, spends one minute reporting its repair and launch facts, then repairs and holds the inlet while pipe service remains possible. If the remaining repair or a received upstream fact proves the pipe route too late, Deniz uses the cart when it can still arrive. A missing report alone never proves failure. Every repair, message, cart trip and minute attending is paid. Available time recovers strength.Time and radioA radio report costs one charge and one paid minute, then takes 2–6 minutes to arrive. It is not lost under this channel’s stated rules. Both people may receive while working.Continue advances to your next useful local event. A received report stops time for your decision while leaving any unfinished job underway. Stop work explicitly if you change your mind. Reading tabs never advances the shift.Your shift lasts 30 minutes even if the launch leaves earlier. An unheard event at the other station cannot end your account.Your accountMinute 8 of 30. At the valve. Releasing two water units. 0 water available, 2 reserved.This account uses your own actions and received observations.Reveal episode outcomeResearcher view · actual episode outcome\nKeep your shiftSaved on this device. Minute 8 of 30. At the valve. Releasing two water units. 0 water available, 2 reserved.Download this shiftImport a saved shiftOne active shift is kept on this device. An imported shift replaces it after your review.Download unreadable device saveReplace this shift?Download the current shift first if you want to keep a copy.Replace active shiftCancelStart a new shiftA new shift replaces this one. Local repair and launch conditions may differ; you learn them through inspection and reports.Replace with a new shiftModel notesThis is an authored deterministic game using Human/runtime 0.1.1. Work, capacity, body estimates, information access and Deniz’s policy are software rules, not calibrated measurements of people. There is no LLM, moral-worth score or religious evaluator. Radio reception is automatic; it is not an attention or memory model.Save files contain the complete shift recipe, including starting conditions. Ordinary play shows only your character’s information. Downloads can reveal facts that have not yet reached your character.\nReleasing two water units1 min paid · 1 min left · 2 water reservedContinue →+1 minStop workA report arrived. Your unfinished work remains underway; continue or stop.\n\n",
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":14,\"launchAt\":15,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.15,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[{\"type\":\"request\",\"action\":{\"task\":\"inspect\"}},{\"type\":\"continue\"},{\"type\":\"request\",\"action\":{\"task\":\"repair\"}},{\"type\":\"continue\"},{\"type\":\"request\",\"action\":{\"task\":\"release\"}},{\"type\":\"continue\"}]}"
+      }
+    },
+    {
+      "name": "stop at report refunds reservation and retains paid minute",
+      "state": {
+        "minute": "8",
+        "resources": "Water 2 · Fitting installed · Radio 4 · Meal 1",
+        "job": "Recovering while available",
+        "timing": "Available time recovers you without holding a rest task.",
+        "reason": "Your work stopped. Paid time and lasting repair are kept.",
+        "tab": "tab-save",
+        "focus": "next-event",
+        "notice": "",
+        "body": "← Games\nAcross the cut\n8\nof 30 shift minutes\n\nTwo water units for the launch. You operate the valve; Deniz handles the inlet.\n\nWater 2 · Fitting installed · Radio 4 · Meal 1\n\nAt the valve\nYour estimates · fatigue 25% · hunger 15%\n\nWork\nNotebook\nBrief\nSave\nKeep your shift\n\nSaved on this device. Minute 8 of 30. At the valve. Recovering while available. 2 water available.\n\nDownload this shift\nImport a saved shift\n\nOne active shift is kept on this device. An imported shift replaces it after your review.\n\nStart a new shift\nModel notes\nRecovering while available\nAvailable time recovers you without holding a rest task.\nContinue →\n+1 min\n\nYour work stopped. Paid time and lasting repair are kept.",
+        "allText": "← GamesTWO STATIONS · ONE LAUNCH\nAcross the cut8of 30 shift minutesTwo water units for the launch. You operate the valve; Deniz handles the inlet.Water 2 · Fitting installed · Radio 4 · Meal 1At the valveYour estimates · fatigue 25% · hunger 15%\n\nWorkNotebookBriefSave\n\nYour valve6 / 6 paid minYour valve is ready. Remote readiness is known only through reports or visiting the inlet.Inspect1 minLearn this station’s repair requirement.Finish repair1 minYour valve repair is complete.Release 2 water2 minReserve 2 water for 2 minutes. Stop before completion to return both; arrival takes 3 more minutes.Move or eatWalk to the inlet6 minPay for each segment walked; stopping keeps your position.Walk to the valve1 minYou are already there.Eat your meal2 minReserve your meal for 2 minutes; stopping returns the uneaten meal.Water and stoppingReleasing reserves your two units for two paid minutes. Stop before completion to keep them. Once released, water takes three more minutes to reach the launch through the inlet. Deniz must have repaired the inlet and be holding it open when the water arrives.Stopping repair keeps every paid minute and the installed fitting. Available time lets you recover automatically; eating uses your owned portion only after two paid minutes.\nWhat you knowReports describe what someone observed then. They do not show the other station now.Deniz’s reportSent 2 · received 8 · radiothe launch leaves at minute 15 · observed 0the launch had not departed · observed 00 of 2 water units had arrived · observed 0inlet repair has 0 paid minutes · observed 0inlet repair needs 14 paid minutes · observed 1Latest known factsvalve repair has 6 paid minutesObserved here · observed 7valve repair needs 6 paid minutesObserved here · observed 1the launch leaves at minute 15Reported · observed 0 · received 8the launch had not departedReported · observed 0 · received 80 of 2 water units had arrivedReported · observed 0 · received 8inlet repair has 0 paid minutesReported · observed 0 · received 8inlet repair needs 14 paid minutesReported · observed 1 · received 8Share your first-hand observationsSelect facts you observed yourself. A message takes one paid minute. Radio uses one charge; contact needs Deniz at your station for the full minute.Your observationsvalve repair has 6 paid minutes · observed 7valve repair has 5 paid minutes · observed 6valve repair has 4 paid minutes · observed 5valve repair has 3 paid minutes · observed 4valve repair has 2 paid minutes · observed 3valve repair has 1 paid minutes · observed 2valve repair needs 6 paid minutes · observed 1valve repair has 0 paid minutes · observed 0Send by radio · 1 minTell Deniz · 1 minRadio messages take 2–6 minutes after sending. Sending does not reveal delivery.Earlier observations and outgoing reportsinlet repair needs 14 paid minutesReceived by radio · inlet · observed 1 · received 8inlet repair has 0 paid minutesReceived by radio · inlet · observed 0 · received 80 of 2 water units had arrivedReceived by radio · inlet · observed 0 · received 8the launch had not departedReceived by radio · inlet · observed 0 · received 8the launch leaves at minute 15Received by radio · inlet · observed 0 · received 8valve repair has 6 paid minutesObserved here · valve · observed 7valve repair has 5 paid minutesObserved here · valve · observed 6valve repair has 4 paid minutesObserved here · valve · observed 5valve repair has 3 paid minutesObserved here · valve · observed 4valve repair has 2 paid minutesObserved here · valve · observed 3valve repair has 1 paid minutesObserved here · valve · observed 2valve repair needs 6 paid minutesObserved here · valve · observed 1Deniz was not hereObserved here · valve · observed 0valve repair has 0 paid minutesObserved here · valve · observed 0\nWater across the cutValve · youInletLaunch6 min walk5 min cartYou and Deniz serve the same two-unit launch. You own two units at the valve; Deniz owns one cart unit. Pipe water needs both repaired stations and Deniz attending the inlet. The cart reaches the launch after five minutes and then takes five minutes back.Inspect to learn your local repair. The launch notice is at the inlet. A delivery at its departure minute still counts.How Deniz choosesDeniz inspects the inlet, spends one minute reporting its repair and launch facts, then repairs and holds the inlet while pipe service remains possible. If the remaining repair or a received upstream fact proves the pipe route too late, Deniz uses the cart when it can still arrive. A missing report alone never proves failure. Every repair, message, cart trip and minute attending is paid. Available time recovers strength.Time and radioA radio report costs one charge and one paid minute, then takes 2–6 minutes to arrive. It is not lost under this channel’s stated rules. Both people may receive while working.Continue advances to your next useful local event. A received report stops time for your decision while leaving any unfinished job underway. Stop work explicitly if you change your mind. Reading tabs never advances the shift.Your shift lasts 30 minutes even if the launch leaves earlier. An unheard event at the other station cannot end your account.Your accountMinute 8 of 30. At the valve. Recovering while available. 2 water available.This account uses your own actions and received observations.Reveal episode outcomeResearcher view · actual episode outcome\nKeep your shiftSaved on this device. Minute 8 of 30. At the valve. Recovering while available. 2 water available.Download this shiftImport a saved shiftOne active shift is kept on this device. An imported shift replaces it after your review.Download unreadable device saveReplace this shift?Download the current shift first if you want to keep a copy.Replace active shiftCancelStart a new shiftA new shift replaces this one. Local repair and launch conditions may differ; you learn them through inspection and reports.Replace with a new shiftModel notesThis is an authored deterministic game using Human/runtime 0.1.1. Work, capacity, body estimates, information access and Deniz’s policy are software rules, not calibrated measurements of people. There is no LLM, moral-worth score or religious evaluator. Radio reception is automatic; it is not an attention or memory model.Save files contain the complete shift recipe, including starting conditions. Ordinary play shows only your character’s information. Downloads can reveal facts that have not yet reached your character.\nRecovering while availableAvailable time recovers you without holding a rest task.Continue →+1 minStop workYour work stopped. Paid time and lasting repair are kept.\n\n",
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":14,\"launchAt\":15,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.15,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[{\"type\":\"request\",\"action\":{\"task\":\"inspect\"}},{\"type\":\"continue\"},{\"type\":\"request\",\"action\":{\"task\":\"repair\"}},{\"type\":\"continue\"},{\"type\":\"request\",\"action\":{\"task\":\"release\"}},{\"type\":\"continue\"},{\"type\":\"stop\"}]}"
+      }
+    },
+    {
+      "name": "real download, import preview/cancel/replace, continuation at nine",
+      "state": {
+        "minute": "9",
+        "resources": "Water 0 · Fitting installed · Radio 4 · Meal 1",
+        "job": "Recovering while available",
+        "timing": "Available time recovers you without holding a rest task.",
+        "reason": "Your task finished. Choose what to do next.",
+        "tab": "tab-work",
+        "focus": "next-event",
+        "notice": "",
+        "body": "← Games\nAcross the cut\n9\nof 30 shift minutes\n\nTwo water units for the launch. You operate the valve; Deniz handles the inlet.\n\nWater 0 · Fitting installed · Radio 4 · Meal 1\n\nAt the valve\nYour estimates · fatigue 25% · hunger 15%\n\nWork\nNotebook\nBrief\nSave\nYour valve\n6 / 6 paid min\n\nYour valve is ready. Remote readiness is known only through reports or visiting the inlet.\n\nInspect\n1 min\nLearn this station’s repair requirement.\nFinish repair\n1 min\nYour valve repair is complete.\nRelease 2 water\n2 min\nTwo owned water units are unavailable.\nMove or eat\nWater and stopping\nRecovering while available\nAvailable time recovers you without holding a rest task.\nContinue →\n+1 min\n\nYour task finished. Choose what to do next.",
+        "allText": "← GamesTWO STATIONS · ONE LAUNCH\nAcross the cut9of 30 shift minutesTwo water units for the launch. You operate the valve; Deniz handles the inlet.Water 0 · Fitting installed · Radio 4 · Meal 1At the valveYour estimates · fatigue 25% · hunger 15%\n\nWorkNotebookBriefSave\n\nYour valve6 / 6 paid minYour valve is ready. Remote readiness is known only through reports or visiting the inlet.Inspect1 minLearn this station’s repair requirement.Finish repair1 minYour valve repair is complete.Release 2 water2 minTwo owned water units are unavailable.Move or eatWalk to the inlet6 minPay for each segment walked; stopping keeps your position.Walk to the valve1 minYou are already there.Eat your meal2 minReserve your meal for 2 minutes; stopping returns the uneaten meal.Water and stoppingReleasing reserves your two units for two paid minutes. Stop before completion to keep them. Once released, water takes three more minutes to reach the launch through the inlet. Deniz must have repaired the inlet and be holding it open when the water arrives.Stopping repair keeps every paid minute and the installed fitting. Available time lets you recover automatically; eating uses your owned portion only after two paid minutes.\nWhat you knowReports describe what someone observed then. They do not show the other station now.Deniz’s reportSent 2 · received 8 · radiothe launch leaves at minute 15 · observed 0the launch had not departed · observed 00 of 2 water units had arrived · observed 0inlet repair has 0 paid minutes · observed 0inlet repair needs 14 paid minutes · observed 1Latest known factsvalve repair has 6 paid minutesObserved here · observed 7valve repair needs 6 paid minutesObserved here · observed 1the launch leaves at minute 15Reported · observed 0 · received 8the launch had not departedReported · observed 0 · received 80 of 2 water units had arrivedReported · observed 0 · received 8inlet repair has 0 paid minutesReported · observed 0 · received 8inlet repair needs 14 paid minutesReported · observed 1 · received 8Share your first-hand observationsSelect facts you observed yourself. A message takes one paid minute. Radio uses one charge; contact needs Deniz at your station for the full minute.Your observationsvalve repair has 6 paid minutes · observed 7valve repair has 5 paid minutes · observed 6valve repair has 4 paid minutes · observed 5valve repair has 3 paid minutes · observed 4valve repair has 2 paid minutes · observed 3valve repair has 1 paid minutes · observed 2valve repair needs 6 paid minutes · observed 1valve repair has 0 paid minutes · observed 0Send by radio · 1 minTell Deniz · 1 minRadio messages take 2–6 minutes after sending. Sending does not reveal delivery.Earlier observations and outgoing reportsinlet repair needs 14 paid minutesReceived by radio · inlet · observed 1 · received 8inlet repair has 0 paid minutesReceived by radio · inlet · observed 0 · received 80 of 2 water units had arrivedReceived by radio · inlet · observed 0 · received 8the launch had not departedReceived by radio · inlet · observed 0 · received 8the launch leaves at minute 15Received by radio · inlet · observed 0 · received 8valve repair has 6 paid minutesObserved here · valve · observed 7valve repair has 5 paid minutesObserved here · valve · observed 6valve repair has 4 paid minutesObserved here · valve · observed 5valve repair has 3 paid minutesObserved here · valve · observed 4valve repair has 2 paid minutesObserved here · valve · observed 3valve repair has 1 paid minutesObserved here · valve · observed 2valve repair needs 6 paid minutesObserved here · valve · observed 1Deniz was not hereObserved here · valve · observed 0valve repair has 0 paid minutesObserved here · valve · observed 0\nWater across the cutValve · youInletLaunch6 min walk5 min cartYou and Deniz serve the same two-unit launch. You own two units at the valve; Deniz owns one cart unit. Pipe water needs both repaired stations and Deniz attending the inlet. The cart reaches the launch after five minutes and then takes five minutes back.Inspect to learn your local repair. The launch notice is at the inlet. A delivery at its departure minute still counts.How Deniz choosesDeniz inspects the inlet, spends one minute reporting its repair and launch facts, then repairs and holds the inlet while pipe service remains possible. If the remaining repair or a received upstream fact proves the pipe route too late, Deniz uses the cart when it can still arrive. A missing report alone never proves failure. Every repair, message, cart trip and minute attending is paid. Available time recovers strength.Time and radioA radio report costs one charge and one paid minute, then takes 2–6 minutes to arrive. It is not lost under this channel’s stated rules. Both people may receive while working.Continue advances to your next useful local event. A received report stops time for your decision while leaving any unfinished job underway. Stop work explicitly if you change your mind. Reading tabs never advances the shift.Your shift lasts 30 minutes even if the launch leaves earlier. An unheard event at the other station cannot end your account.Your accountMinute 9 of 30. At the valve. Recovering while available. 0 water available.This account uses your own actions and received observations.Reveal episode outcomeResearcher view · actual episode outcome\nKeep your shiftSaved on this device. Minute 9 of 30. At the valve. Recovering while available. 0 water available.Download this shiftImport a saved shiftOne active shift is kept on this device. An imported shift replaces it after your review.Download unreadable device saveReplace this shift?Minute 8 of 30. At the valve. Releasing two water units. 0 water available, 2 reserved.Download the current shift first if you want to keep a copy.Replace active shiftCancelStart a new shiftA new shift replaces this one. Local repair and launch conditions may differ; you learn them through inspection and reports.Replace with a new shiftModel notesThis is an authored deterministic game using Human/runtime 0.1.1. Work, capacity, body estimates, information access and Deniz’s policy are software rules, not calibrated measurements of people. There is no LLM, moral-worth score or religious evaluator. Radio reception is automatic; it is not an attention or memory model.Save files contain the complete shift recipe, including starting conditions. Ordinary play shows only your character’s information. Downloads can reveal facts that have not yet reached your character.\nRecovering while availableAvailable time recovers you without holding a rest task.Continue →+1 minStop workYour task finished. Choose what to do next.\n\n",
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":14,\"launchAt\":15,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.15,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[{\"type\":\"request\",\"action\":{\"task\":\"inspect\"}},{\"type\":\"continue\"},{\"type\":\"request\",\"action\":{\"task\":\"repair\"}},{\"type\":\"continue\"},{\"type\":\"request\",\"action\":{\"task\":\"release\"}},{\"type\":\"continue\"},{\"type\":\"continue\"}]}"
+      }
+    },
+    {
+      "name": "truth hidden until minute30 plus explicit Reveal",
+      "revealed": "1 of 2 units delivered. 2 lost; 0 excess; 0 still owned. The launch left at minute 15.",
+      "focus": "account-summary"
+    },
+    {
+      "name": "hidden inlet/launch twins have byte-equal DOM text initially and minute7"
+    },
+    {
+      "name": "only own first-hand facts offered; selected fact transmitted with original observation time",
+      "labels": [
+        "valve repair has 6 paid minutes · observed 7",
+        "valve repair has 5 paid minutes · observed 6",
+        "valve repair has 4 paid minutes · observed 5",
+        "valve repair has 3 paid minutes · observed 4",
+        "valve repair has 2 paid minutes · observed 3",
+        "valve repair has 1 paid minutes · observed 2",
+        "valve repair needs 6 paid minutes · observed 1",
+        "valve repair has 0 paid minutes · observed 0"
+      ],
+      "sent": {
+        "messageId": "keeper:m1",
+        "sender": "keeper",
+        "recipient": "receiver",
+        "sentAt": 9,
+        "via": "radio",
+        "message": {
+          "kind": "report",
+          "observations": [
+            {
+              "receipt": 9,
+              "cue": "repairProgress:valve",
+              "value": 6,
+              "source": "valve",
+              "observedAt": 7,
+              "receivedAt": 7,
+              "via": "local"
+            }
+          ]
+        }
+      },
+      "outgoingText": "Sent by radio at 9valve repair has 6 paid minutes"
+    },
+    {
+      "name": "partial travel retains position/owned supply; interrupted meal returns portion; completed meal consumed",
+      "state": {
+        "minute": "15",
+        "resources": "Water 2 · Fitting installed · Radio 3 · Meal 0",
+        "job": "Recovering while available",
+        "timing": "Available time recovers you without holding a rest task.",
+        "reason": "Your task finished. Choose what to do next.",
+        "tab": "tab-work",
+        "focus": "next-event",
+        "notice": "",
+        "body": "← Games\nAcross the cut\n15\nof 30 shift minutes\n\nTwo water units for the launch. You operate the valve; Deniz handles the inlet.\n\nWater 2 · Fitting installed · Radio 3 · Meal 0\n\nOn the path · position 3\nYour estimates · fatigue 30% · hunger 0%\n\nWork\nNotebook\nBrief\nSave\nOn the path\nRepair unknown\n\nYour fitting and valve work stay at your station. Walk back to resume.\n\nInspect\n1 min\nReach a station first.\nRelease 2 water\n2 min\nReturn to your valve first.\nMove or eat\nWalk to the inlet\n3 min\nPay for each segment walked; stopping keeps your position.\nWalk to the valve\n3 min\nPay for each segment walked; stopping keeps your position.\nEat your meal\n2 min\nYour meal is unavailable.\nWater and stopping\nRecovering while available\nAvailable time recovers you without holding a rest task.\nContinue →\n+1 min\n\nYour task finished. Choose what to do next.",
+        "allText": "← GamesTWO STATIONS · ONE LAUNCH\nAcross the cut15of 30 shift minutesTwo water units for the launch. You operate the valve; Deniz handles the inlet.Water 2 · Fitting installed · Radio 3 · Meal 0On the path · position 3Your estimates · fatigue 30% · hunger 0%\n\nWorkNotebookBriefSave\n\nOn the pathRepair unknownYour fitting and valve work stay at your station. Walk back to resume.Inspect1 minReach a station first.Release 2 water2 minReturn to your valve first.Move or eatWalk to the inlet3 minPay for each segment walked; stopping keeps your position.Walk to the valve3 minPay for each segment walked; stopping keeps your position.Eat your meal2 minYour meal is unavailable.Water and stoppingReleasing reserves your two units for two paid minutes. Stop before completion to keep them. Once released, water takes three more minutes to reach the launch through the inlet. Deniz must have repaired the inlet and be holding it open when the water arrives.Stopping repair keeps every paid minute and the installed fitting. Available time lets you recover automatically; eating uses your owned portion only after two paid minutes.\nWhat you knowReports describe what someone observed then. They do not show the other station now.Deniz’s reportSent 2 · received 8 · radiothe launch leaves at minute 15 · observed 0the launch had not departed · observed 00 of 2 water units had arrived · observed 0inlet repair has 0 paid minutes · observed 0inlet repair needs 14 paid minutes · observed 1Latest known factsvalve repair has 6 paid minutesObserved here · observed 7valve repair needs 6 paid minutesObserved here · observed 1the launch leaves at minute 15Reported · observed 0 · received 8the launch had not departedReported · observed 0 · received 80 of 2 water units had arrivedReported · observed 0 · received 8inlet repair has 0 paid minutesReported · observed 0 · received 8inlet repair needs 14 paid minutesReported · observed 1 · received 8Share your first-hand observationsSelect facts you observed yourself. A message takes one paid minute. Radio uses one charge; contact needs Deniz at your station for the full minute.Your observationsvalve repair has 6 paid minutes · observed 7valve repair has 5 paid minutes · observed 6valve repair has 4 paid minutes · observed 5valve repair has 3 paid minutes · observed 4valve repair has 2 paid minutes · observed 3valve repair has 1 paid minutes · observed 2valve repair needs 6 paid minutes · observed 1valve repair has 0 paid minutes · observed 0Send by radio · 1 minTell Deniz · 1 minRadio messages take 2–6 minutes after sending. Sending does not reveal delivery.Earlier observations and outgoing reportsinlet repair needs 14 paid minutesReceived by radio · inlet · observed 1 · received 8inlet repair has 0 paid minutesReceived by radio · inlet · observed 0 · received 80 of 2 water units had arrivedReceived by radio · inlet · observed 0 · received 8the launch had not departedReceived by radio · inlet · observed 0 · received 8the launch leaves at minute 15Received by radio · inlet · observed 0 · received 8valve repair has 6 paid minutesObserved here · valve · observed 7valve repair has 5 paid minutesObserved here · valve · observed 6valve repair has 4 paid minutesObserved here · valve · observed 5valve repair has 3 paid minutesObserved here · valve · observed 4valve repair has 2 paid minutesObserved here · valve · observed 3valve repair has 1 paid minutesObserved here · valve · observed 2valve repair needs 6 paid minutesObserved here · valve · observed 1Deniz was not hereObserved here · valve · observed 0valve repair has 0 paid minutesObserved here · valve · observed 0Sent by radio at 9valve repair has 6 paid minutes\nWater across the cutValve · youInletLaunch6 min walk5 min cartYou and Deniz serve the same two-unit launch. You own two units at the valve; Deniz owns one cart unit. Pipe water needs both repaired stations and Deniz attending the inlet. The cart reaches the launch after five minutes and then takes five minutes back.Inspect to learn your local repair. The launch notice is at the inlet. A delivery at its departure minute still counts.How Deniz choosesDeniz inspects the inlet, spends one minute reporting its repair and launch facts, then repairs and holds the inlet while pipe service remains possible. If the remaining repair or a received upstream fact proves the pipe route too late, Deniz uses the cart when it can still arrive. A missing report alone never proves failure. Every repair, message, cart trip and minute attending is paid. Available time recovers strength.Time and radioA radio report costs one charge and one paid minute, then takes 2–6 minutes to arrive. It is not lost under this channel’s stated rules. Both people may receive while working.Continue advances to your next useful local event. A received report stops time for your decision while leaving any unfinished job underway. Stop work explicitly if you change your mind. Reading tabs never advances the shift.Your shift lasts 30 minutes even if the launch leaves earlier. An unheard event at the other station cannot end your account.Your accountMinute 15 of 30. On the path · position 3. Recovering while available. 2 water available.This account uses your own actions and received observations.Reveal episode outcomeResearcher view · actual episode outcome\nKeep your shiftSaved on this device. Minute 15 of 30. On the path · position 3. Recovering while available. 2 water available.Download this shiftImport a saved shiftOne active shift is kept on this device. An imported shift replaces it after your review.Download unreadable device saveReplace this shift?Download the current shift first if you want to keep a copy.Replace active shiftCancelStart a new shiftA new shift replaces this one. Local repair and launch conditions may differ; you learn them through inspection and reports.Replace with a new shiftModel notesThis is an authored deterministic game using Human/runtime 0.1.1. Work, capacity, body estimates, information access and Deniz’s policy are software rules, not calibrated measurements of people. There is no LLM, moral-worth score or religious evaluator. Radio reception is automatic; it is not an attention or memory model.Save files contain the complete shift recipe, including starting conditions. Ordinary play shows only your character’s information. Downloads can reveal facts that have not yet reached your character.\nRecovering while availableAvailable time recovers you without holding a rest task.Continue →+1 minStop workYour task finished. Choose what to do next.\n\n",
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":14,\"launchAt\":15,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.15,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[{\"type\":\"request\",\"action\":{\"task\":\"inspect\"}},{\"type\":\"continue\"},{\"type\":\"request\",\"action\":{\"task\":\"repair\"}},{\"type\":\"continue\"},{\"type\":\"request\",\"action\":{\"task\":\"release\"}},{\"type\":\"continue\"},{\"type\":\"stop\"},{\"type\":\"request\",\"action\":{\"task\":\"transmit\",\"message\":{\"kind\":\"report\",\"observationIds\":[9]},\"via\":\"radio\"}},{\"type\":\"advance\",\"minutes\":1},{\"type\":\"request\",\"action\":{\"task\":\"travel\",\"to\":\"dock\"}},{\"type\":\"advance\",\"minutes\":1},{\"type\":\"advance\",\"minutes\":1},{\"type\":\"advance\",\"minutes\":1},{\"type\":\"stop\"},{\"type\":\"request\",\"action\":{\"task\":\"meal\"}},{\"type\":\"advance\",\"minutes\":1},{\"type\":\"stop\"},{\"type\":\"request\",\"action\":{\"task\":\"meal\"}},{\"type\":\"continue\"}]}"
+      }
+    },
+    {
+      "name": "report arrival after notebook had been scrolled",
+      "priorScroll": 575,
+      "pos": {
+        "card": {
+          "x": 13,
+          "y": -219.53125,
+          "width": 329,
+          "height": 163.453125,
+          "top": -219.53125,
+          "right": 342,
+          "bottom": -56.078125,
+          "left": 13
+        },
+        "panel": {
+          "x": 13,
+          "y": 261.875,
+          "width": 349,
+          "height": 279.828125,
+          "top": 261.875,
+          "right": 362,
+          "bottom": 541.703125,
+          "left": 13
+        },
+        "scrollTop": 575
+      }
+    },
+    {
+      "name": "pending file reads invalidated by advancing or a newer selection"
+    },
+    {
+      "name": "unreadable device save remains protected across play and explicit import; exact backup downloaded"
+    },
+    {
+      "name": "storage write failure keeps current playable/downloadeable shift and visible warning"
+    }
+  ],
+  "findings": [
+    {
+      "priority": "P2",
+      "title": "Received report stays above retained Notebook scroll position",
+      "source": "web/across-player.js:11,15",
+      "evidence": {
+        "card": {
+          "x": 13,
+          "y": -219.53125,
+          "width": 329,
+          "height": 163.453125,
+          "top": -219.53125,
+          "right": 342,
+          "bottom": -56.078125,
+          "left": 13
+        },
+        "panel": {
+          "x": 13,
+          "y": 261.875,
+          "width": 349,
+          "height": 279.828125,
+          "top": 261.875,
+          "right": 362,
+          "bottom": 541.703125,
+          "left": 13
+        },
+        "scrollTop": 575
+      }
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "/tmp/across-ui-review/phone-initial.png",
+    "/tmp/across-ui-review/desktop-initial.png",
+    "/tmp/across-ui-review/desktop-report-eight.png",
+    "/tmp/across-ui-review/short-initial.png",
+    "/tmp/across-ui-review/short-report-eight.png",
+    "/tmp/across-ui-review/phone-report-eight.png",
+    "/tmp/across-ui-review/phone-account-before-reveal.png",
+    "/tmp/across-ui-review/phone-account-revealed.png",
+    "/tmp/across-ui-review/phone-own-report.png",
+    "/tmp/across-ui-review/phone-partial-travel.png",
+    "/tmp/across-ui-review/phone-report-after-notebook-scrolled.png"
+  ],
+  "sources": {
+    "before": {
+      "/across/": {
+        "status": 200,
+        "sha256": "82789cc0016426eb01ce61d5bf3afad6b2f5d9d5e20d82b8119b541631ccc2a9",
+        "file": "/tmp/across-ui-review/before__across__"
+      },
+      "/web/across.css": {
+        "status": 200,
+        "sha256": "af85e0cbcb300ac677d4e24cbb90c863311e3d5262d8c8ef0e5e123f1480a610",
+        "file": "/tmp/across-ui-review/before__web__across.css"
+      },
+      "/web/game-shell.css": {
+        "status": 200,
+        "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f",
+        "file": "/tmp/across-ui-review/before__web__game-shell.css"
+      },
+      "/web/across-player.js": {
+        "status": 200,
+        "sha256": "fce79b226471baaf03826a800132c10c8ad984d6de14a6ca77bebd3460f09f66",
+        "file": "/tmp/across-ui-review/before__web__across-player.js"
+      },
+      "/web/across-view.js": {
+        "status": 200,
+        "sha256": "2ee5ae65f2bbb5f93f6428747bc3485170d62bbf12d1bf4f5a81cf1d6047e924",
+        "file": "/tmp/across-ui-review/before__web__across-view.js"
+      },
+      "/src/games/across-cut-player.js": {
+        "status": 200,
+        "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d",
+        "file": "/tmp/across-ui-review/before__src__games__across-cut-player.js"
+      },
+      "/web/across-session.js": {
+        "status": 200,
+        "sha256": "9b1de7bdb19d8c51152439a7c100f687fbf2cc1d987677c5fc1ee02da8c93675",
+        "file": "/tmp/across-ui-review/before__web__across-session.js"
+      },
+      "/src/runtime/index.js": {
+        "status": 200,
+        "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+        "file": "/tmp/across-ui-review/before__src__runtime__index.js"
+      },
+      "/src/games/across-cut-receiver.js": {
+        "status": 200,
+        "sha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce",
+        "file": "/tmp/across-ui-review/before__src__games__across-cut-receiver.js"
+      },
+      "/src/games/across-cut.js": {
+        "status": 200,
+        "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad",
+        "file": "/tmp/across-ui-review/before__src__games__across-cut.js"
+      },
+      "/src/runtime/clock.js": {
+        "status": 200,
+        "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+        "file": "/tmp/across-ui-review/before__src__runtime__clock.js"
+      },
+      "/src/human/v0.1.1.js": {
+        "status": 200,
+        "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+        "file": "/tmp/across-ui-review/before__src__human__v0.1.1.js"
+      },
+      "/src/core/model.js": {
+        "status": 200,
+        "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+        "file": "/tmp/across-ui-review/before__src__core__model.js"
+      }
+    },
+    "after": {
+      "/across/": {
+        "status": 200,
+        "sha256": "82789cc0016426eb01ce61d5bf3afad6b2f5d9d5e20d82b8119b541631ccc2a9",
+        "file": "/tmp/across-ui-review/after__across__"
+      },
+      "/web/across.css": {
+        "status": 200,
+        "sha256": "af85e0cbcb300ac677d4e24cbb90c863311e3d5262d8c8ef0e5e123f1480a610",
+        "file": "/tmp/across-ui-review/after__web__across.css"
+      },
+      "/web/game-shell.css": {
+        "status": 200,
+        "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f",
+        "file": "/tmp/across-ui-review/after__web__game-shell.css"
+      },
+      "/web/across-player.js": {
+        "status": 200,
+        "sha256": "fce79b226471baaf03826a800132c10c8ad984d6de14a6ca77bebd3460f09f66",
+        "file": "/tmp/across-ui-review/after__web__across-player.js"
+      },
+      "/web/across-view.js": {
+        "status": 200,
+        "sha256": "2ee5ae65f2bbb5f93f6428747bc3485170d62bbf12d1bf4f5a81cf1d6047e924",
+        "file": "/tmp/across-ui-review/after__web__across-view.js"
+      },
+      "/src/games/across-cut-player.js": {
+        "status": 200,
+        "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d",
+        "file": "/tmp/across-ui-review/after__src__games__across-cut-player.js"
+      },
+      "/web/across-session.js": {
+        "status": 200,
+        "sha256": "9b1de7bdb19d8c51152439a7c100f687fbf2cc1d987677c5fc1ee02da8c93675",
+        "file": "/tmp/across-ui-review/after__web__across-session.js"
+      },
+      "/src/runtime/index.js": {
+        "status": 200,
+        "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+        "file": "/tmp/across-ui-review/after__src__runtime__index.js"
+      },
+      "/src/games/across-cut-receiver.js": {
+        "status": 200,
+        "sha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce",
+        "file": "/tmp/across-ui-review/after__src__games__across-cut-receiver.js"
+      },
+      "/src/games/across-cut.js": {
+        "status": 200,
+        "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad",
+        "file": "/tmp/across-ui-review/after__src__games__across-cut.js"
+      },
+      "/src/runtime/clock.js": {
+        "status": 200,
+        "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+        "file": "/tmp/across-ui-review/after__src__runtime__clock.js"
+      },
+      "/src/human/v0.1.1.js": {
+        "status": 200,
+        "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+        "file": "/tmp/across-ui-review/after__src__human__v0.1.1.js"
+      },
+      "/src/core/model.js": {
+        "status": 200,
+        "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+        "file": "/tmp/across-ui-review/after__src__core__model.js"
+      }
+    }
+  }
+}

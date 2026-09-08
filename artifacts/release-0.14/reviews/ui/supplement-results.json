@@ -1,0 +1,28 @@
+{
+  "supplement-before": {
+    "/web/across-player.js": "fce79b226471baaf03826a800132c10c8ad984d6de14a6ca77bebd3460f09f66",
+    "/web/across.css": "af85e0cbcb300ac677d4e24cbb90c863311e3d5262d8c8ef0e5e123f1480a610",
+    "/web/game-shell.css": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f",
+    "/src/games/across-cut-player.js": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+  },
+  "fileFocus": {
+    "focused": true,
+    "inputOpacity": "0",
+    "inputOutline": "rgb(201, 121, 40) solid 3px",
+    "labelOutline": "rgb(40, 62, 72) none 3px",
+    "labelBackground": "rgb(255, 254, 247) none repeat scroll 0% 0% / auto padding-box border-box"
+  },
+  "capacity": {
+    "inspectDisabled": true,
+    "sendDisabled": false,
+    "error": "Your present body cannot sustain that entire requested interval.",
+    "minute": "0"
+  },
+  "supplement-after": {
+    "/web/across-player.js": "fce79b226471baaf03826a800132c10c8ad984d6de14a6ca77bebd3460f09f66",
+    "/web/across.css": "af85e0cbcb300ac677d4e24cbb90c863311e3d5262d8c8ef0e5e123f1480a610",
+    "/web/game-shell.css": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f",
+    "/src/games/across-cut-player.js": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+  },
+  "sourceUnchanged": true
+}

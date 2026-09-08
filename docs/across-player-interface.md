@@ -1,0 +1,27 @@
+# Across the cut player interface
+
+The new `/across/` surface selects public host 0.2.0, player driver 0.1.0 and receiver 0.1.1. It replaces Last Light's featured slot and public route/assets; the earlier source, profiles, tests and negative results stay private. This is one disposable consumer of actor-local information and paid action, not an additional required chapter or a promoted cognition module.
+
+## Ordinary information and interaction
+
+`web/across-player.js` passes only `getGameView(game)` to ordinary rendering. Text helpers and report eligibility take that detached keeper view; no renderer reads setup, the host queue, receiver state, actual service or researcher summary. The HUD retains the keeper's location, owned resources, condition estimates, active task and paid/remaining time. Four keyboard tabs select Work, Notebook, Brief/Account and Save. Normal phone/desktop layouts keep the HUD and time/Stop dock visible while the selected panel contains longer details. Short-height/high-zoom layouts permit document flow rather than clip controls.
+
+Work offers inspection, whole/one-minute repair, release, travel and a meal. Available time recovers automatically without holding a rest task. Continue and +1 pay actual integer time through the same driver; panel changes and file previews pay none. Receiving a report opens Notebook at its top, preserves unfinished work, and keeps explicit Stop/Continue visible. Reloaded or imported receipt-paused saves reopen that same useful panel. A report received while available does not claim a task is underway.
+
+Incoming cards show sent/received times and each fact's observation time. Current notebook claims use latest source observations, while older receipts remain inspectable. Outgoing records also retain observation times. Only the keeper's own first-hand absolute facts can be selected for sending; received facts and relative peer-presence claims are excluded. Radio/contact controls use only own capacity estimates, owned charge, local presence, selected count and own Stop reserve. Their conservative upper-bin assessment matches the player driver's work offers; actual admission still belongs to the host. A refusal cannot mutate time or resources.
+
+The initial brief states the geometry and authored delivery endpoints: valve to inlet is six walking minutes, cart loading point is five minutes beyond inlet, pipe delivery follows two release minutes plus three transit minutes, and delivery at the launch endpoint counts. Deniz's paid receiver policy is disclosed. The ordinary view exposes its known channel bounds, not hidden delivery slots or arrival forecasts. The public thirty-minute horizon remains visible even if an unheard private launch event happens earlier.
+
+After minute 30, Account first shows the keeper's paid actions and own/received observations. Actual service, losses, transport outcomes and hidden launch time appear only after an explicit **Reveal episode outcome** action, labeled researcher view. The driver rejects early debrief access. General model/scientific/theological limitations stay in the single collapsed Model notes section.
+
+## Fresh shifts and persistence
+
+`web/across-session.js` chooses one of four fresh authored setups: valve repair six, inlet repair two/fourteen, launch fifteen/twenty-seven, bounded channel and initial receiver report delay six. It selects the two binary variations uniformly from an unsigned browser random draw only at creation, then passes the chosen setup to the deterministic driver. There are no condition labels, ordered levels or scenario-bearing URLs. All four fresh player views and preview summaries are equal before legitimate evidence differs. The generic headless constructor and comparison retain their separately declared setups; this browser selection is not a balanced scientific sample.
+
+The current local key is `human-across-cut-player-v0.1.0`. There is one active shift. Downloads contain the compact versioned player recipe; they include starting conditions and are not spoiler-free. Import accepts only this player format under its explicit receiver version, displays the imported keeper's own minute/location/job/resources, and replaces current play only after explicit confirmation. There is no old-game migration or same-shift replay obligation. A secondary new-shift action explicitly replaces the current save.
+
+Corrupt/read-denied storage becomes protected, retaining any readable raw value for download. Failed writes preserve current in-memory play and display a download path. Async imports use both an epoch and the original immutable game identity; stale success/failure, newer reads and intervening play cannot replace the current shift. A file-picker label has a visible keyboard focus outline. All failure/preview text uses text nodes, and no untrusted imported HTML is rendered.
+
+## Evidence scope
+
+Eight focused session tests cover four-world information equality, actual minute-eight recipe resume, format/size rejection, protected storage, quota recovery and stale import confirmation. Independent local Chromium review covers thirteen broad interaction groups, four observed UI defects and seven targeted corrective groups. The current release record adds final-source production browser and exact payload verification; local review alone is not deployment evidence. Desktop Chrome at specified viewport sizes is not physical-phone, Safari, assistive-technology or human-comprehension validation.

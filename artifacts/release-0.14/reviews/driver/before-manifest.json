@@ -1,0 +1,45 @@
+{
+  "commit": "4f46243681ea6e0edf5173ca16e5e5548b88632e",
+  "files": {
+    "src/games/across-cut-player.js": {
+      "commitSha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d",
+      "workingSha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d",
+      "matchesCommit": true
+    },
+    "src/games/across-cut-receiver.js": {
+      "commitSha256": "834b0d2f324355b965c6946c7dff37d4f794c1129dad917731caf030affea806",
+      "workingSha256": "834b0d2f324355b965c6946c7dff37d4f794c1129dad917731caf030affea806",
+      "matchesCommit": true
+    },
+    "docs/across-player-driver-contract.md": {
+      "commitSha256": "3533cd8250d9ff2d578fa55163b93cb2285bcbfb862f6670d1668b72809948fb",
+      "workingSha256": "3533cd8250d9ff2d578fa55163b93cb2285bcbfb862f6670d1668b72809948fb",
+      "matchesCommit": true
+    },
+    "src/games/across-cut.js": {
+      "commitSha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad",
+      "workingSha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad",
+      "matchesCommit": true
+    },
+    "src/runtime/index.js": {
+      "commitSha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "workingSha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "matchesCommit": true
+    },
+    "src/human/v0.1.1.js": {
+      "commitSha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "workingSha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "matchesCommit": true
+    },
+    "src/runtime/clock.js": {
+      "commitSha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "workingSha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "matchesCommit": true
+    },
+    "src/core/model.js": {
+      "commitSha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "workingSha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "matchesCommit": true
+    }
+  }
+}

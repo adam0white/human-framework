@@ -1,0 +1,846 @@
+{
+  "archivedAt": "2026-09-08T22:09:46.466515+00:00",
+  "scope": "Independent synthetic core, driver and actual-browser reviews; initial failures and narrow correction checks retained byte-for-byte. No new review executions during archival.",
+  "files": [
+    {
+      "source": "/tmp/across-core-review/across-cut.corrected.js",
+      "archive": "core/across-cut.corrected.js",
+      "bytes": 22519,
+      "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad"
+    },
+    {
+      "source": "/tmp/across-core-review/across-cut.initial.js",
+      "archive": "core/across-cut.initial.js",
+      "bytes": 22500,
+      "sha256": "788876ecb6b897d30224baa9f09d35996b6652408497d60b6b890a6c1c6ceaf2"
+    },
+    {
+      "source": "/tmp/across-core-review/core-contract.initial.md",
+      "archive": "core/core-contract.initial.md",
+      "bytes": 10408,
+      "sha256": "216dbe43be13e0ee4910d63f88816a078eb6729b17193cde911dcdff95873f20"
+    },
+    {
+      "source": "/tmp/across-core-review/core-tests.initial.js",
+      "archive": "core/core-tests.initial.js",
+      "bytes": 16730,
+      "sha256": "f068676157baecb074a8f53fedbe7a2057b94a9a8ed8e712190fb54f4a022330"
+    },
+    {
+      "source": "/tmp/across-core-review/corrective-recheck.mjs",
+      "archive": "core/corrective-recheck.mjs",
+      "bytes": 2602,
+      "sha256": "b80cca8d88f3616f039550990726028a6330895d626ad912249e36a10c48608a"
+    },
+    {
+      "source": "/tmp/across-core-review/corrective-results.json",
+      "archive": "core/corrective-results.json",
+      "bytes": 1259,
+      "sha256": "808376f6fd5002d5e6c724373ab93c10cfcaa066c360894c5592601cc45c1321"
+    },
+    {
+      "source": "/tmp/across-core-review/initial-source-manifest.json",
+      "archive": "core/initial-source-manifest.json",
+      "bytes": 632,
+      "sha256": "565d1b922939c671a155de938224acbe1d691c8752940b566ebf60e67f4deed5"
+    },
+    {
+      "source": "/tmp/across-core-review/probe-results.json",
+      "archive": "core/probe-results.json",
+      "bytes": 3972,
+      "sha256": "90c8c33b4bbf6ba5dc411a258ba9a3a5e841d9888315ce8360fba1dc1e9d8a52"
+    },
+    {
+      "source": "/tmp/across-core-review/probes.mjs",
+      "archive": "core/probes.mjs",
+      "bytes": 9019,
+      "sha256": "ffcd1f96362a8fda615e6683e349c214a698f33406645fc1972511e4b73d4336"
+    },
+    {
+      "source": "/tmp/across-core-review/review.md",
+      "archive": "core/review.md",
+      "bytes": 6598,
+      "sha256": "3fb2675e8874e5846a7fe5b19a4e9beb1d3e7cb7f22b7905c8679fb3c501848d"
+    },
+    {
+      "source": "/tmp/across-core-review/source/package.json",
+      "archive": "core/source/package.json",
+      "bytes": 18,
+      "sha256": "1239d4d885dcad42201a27ed9324f8f0f760b78700d8db9ced39a511cffe7eae"
+    },
+    {
+      "source": "/tmp/across-core-review/source/src/core/model.js",
+      "archive": "core/source/src/core/model.js",
+      "bytes": 7764,
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "source": "/tmp/across-core-review/source/src/games/across-cut.js",
+      "archive": "core/source/src/games/across-cut.js",
+      "bytes": 22500,
+      "sha256": "788876ecb6b897d30224baa9f09d35996b6652408497d60b6b890a6c1c6ceaf2"
+    },
+    {
+      "source": "/tmp/across-core-review/source/src/human/v0.1.1.js",
+      "archive": "core/source/src/human/v0.1.1.js",
+      "bytes": 11580,
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "source": "/tmp/across-core-review/source/src/runtime/clock.js",
+      "archive": "core/source/src/runtime/clock.js",
+      "bytes": 7513,
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    },
+    {
+      "source": "/tmp/across-core-review/source/src/runtime/index.js",
+      "archive": "core/source/src/runtime/index.js",
+      "bytes": 188,
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+    },
+    {
+      "source": "/tmp/across-core-review/supplied-tests.tap",
+      "archive": "core/supplied-tests.tap",
+      "bytes": 2387,
+      "sha256": "61b120a6c762412c953339d1138ccaa9b0ce5bbb521974d78ef8c312654f1ff5"
+    },
+    {
+      "source": "/tmp/across-driver-review/after-manifest.json",
+      "archive": "driver/after-manifest.json",
+      "bytes": 2638,
+      "sha256": "9e1d4a69a2dabcdf2241f43bba5282e0188e3839361d52a7a29ff09a0793bbc7"
+    },
+    {
+      "source": "/tmp/across-driver-review/artifact-hashes.json",
+      "archive": "driver/artifact-hashes.json",
+      "bytes": 3173,
+      "sha256": "21587293bbaba2579281f1c8bc456ef829201018aa0cd89ff2c9c2910ec294a1"
+    },
+    {
+      "source": "/tmp/across-driver-review/before-manifest.json",
+      "archive": "driver/before-manifest.json",
+      "bytes": 2082,
+      "sha256": "5eb5f8c910d71c1ebc1c81ceea51065e2dba1e80959443a65d85063f9facc4df"
+    },
+    {
+      "source": "/tmp/across-driver-review/corrected/docs/across-player-driver-contract.md",
+      "archive": "driver/corrected/docs/across-player-driver-contract.md",
+      "bytes": 11089,
+      "sha256": "d423101959e0e7acf087195e2744063809e7c475b9490b36365a62b2f842b904"
+    },
+    {
+      "source": "/tmp/across-driver-review/corrected/package.json",
+      "archive": "driver/corrected/package.json",
+      "bytes": 18,
+      "sha256": "1239d4d885dcad42201a27ed9324f8f0f760b78700d8db9ced39a511cffe7eae"
+    },
+    {
+      "source": "/tmp/across-driver-review/corrected/src/core/model.js",
+      "archive": "driver/corrected/src/core/model.js",
+      "bytes": 7764,
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "source": "/tmp/across-driver-review/corrected/src/games/across-cut-player.js",
+      "archive": "driver/corrected/src/games/across-cut-player.js",
+      "bytes": 10287,
+      "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+    },
+    {
+      "source": "/tmp/across-driver-review/corrected/src/games/across-cut-receiver.js",
+      "archive": "driver/corrected/src/games/across-cut-receiver.js",
+      "bytes": 4405,
+      "sha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce"
+    },
+    {
+      "source": "/tmp/across-driver-review/corrected/src/games/across-cut.js",
+      "archive": "driver/corrected/src/games/across-cut.js",
+      "bytes": 22519,
+      "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad"
+    },
+    {
+      "source": "/tmp/across-driver-review/corrected/src/human/v0.1.1.js",
+      "archive": "driver/corrected/src/human/v0.1.1.js",
+      "bytes": 11580,
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "source": "/tmp/across-driver-review/corrected/src/runtime/clock.js",
+      "archive": "driver/corrected/src/runtime/clock.js",
+      "bytes": 7513,
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    },
+    {
+      "source": "/tmp/across-driver-review/corrected/src/runtime/index.js",
+      "archive": "driver/corrected/src/runtime/index.js",
+      "bytes": 188,
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+    },
+    {
+      "source": "/tmp/across-driver-review/corrective-results.json",
+      "archive": "driver/corrective-results.json",
+      "bytes": 13373,
+      "sha256": "19feb76619ed92dcd01d605f53bcc6a9820ed3bd48868587929b5891d7c628c1"
+    },
+    {
+      "source": "/tmp/across-driver-review/explore.jsonl",
+      "archive": "driver/explore.jsonl",
+      "bytes": 18078,
+      "sha256": "80b7c024d72c2f24131a0d0265d262bcb4a1a76a2a7d2083febfe71d7f91c7fc"
+    },
+    {
+      "source": "/tmp/across-driver-review/explore.mjs",
+      "archive": "driver/explore.mjs",
+      "bytes": 738,
+      "sha256": "04a0c28e61f12180f6434225bcb69ff3126b45dc4cf68097cc774144c2185e0a"
+    },
+    {
+      "source": "/tmp/across-driver-review/final-source-check.json",
+      "archive": "driver/final-source-check.json",
+      "bytes": 1342,
+      "sha256": "7fd0b8cb01558c75513c453a0036864ac4d6e5de21337cd4b4c5ad6393e1ee9c"
+    },
+    {
+      "source": "/tmp/across-driver-review/frozen/docs/across-player-driver-contract.md",
+      "archive": "driver/frozen/docs/across-player-driver-contract.md",
+      "bytes": 10362,
+      "sha256": "3533cd8250d9ff2d578fa55163b93cb2285bcbfb862f6670d1668b72809948fb"
+    },
+    {
+      "source": "/tmp/across-driver-review/frozen/package.json",
+      "archive": "driver/frozen/package.json",
+      "bytes": 18,
+      "sha256": "1239d4d885dcad42201a27ed9324f8f0f760b78700d8db9ced39a511cffe7eae"
+    },
+    {
+      "source": "/tmp/across-driver-review/frozen/src/core/model.js",
+      "archive": "driver/frozen/src/core/model.js",
+      "bytes": 7764,
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "source": "/tmp/across-driver-review/frozen/src/games/across-cut-player.js",
+      "archive": "driver/frozen/src/games/across-cut-player.js",
+      "bytes": 10287,
+      "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+    },
+    {
+      "source": "/tmp/across-driver-review/frozen/src/games/across-cut-receiver.js",
+      "archive": "driver/frozen/src/games/across-cut-receiver.js",
+      "bytes": 4143,
+      "sha256": "834b0d2f324355b965c6946c7dff37d4f794c1129dad917731caf030affea806"
+    },
+    {
+      "source": "/tmp/across-driver-review/frozen/src/games/across-cut.js",
+      "archive": "driver/frozen/src/games/across-cut.js",
+      "bytes": 22519,
+      "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad"
+    },
+    {
+      "source": "/tmp/across-driver-review/frozen/src/human/v0.1.1.js",
+      "archive": "driver/frozen/src/human/v0.1.1.js",
+      "bytes": 11580,
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "source": "/tmp/across-driver-review/frozen/src/runtime/clock.js",
+      "archive": "driver/frozen/src/runtime/clock.js",
+      "bytes": 7513,
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    },
+    {
+      "source": "/tmp/across-driver-review/frozen/src/runtime/index.js",
+      "archive": "driver/frozen/src/runtime/index.js",
+      "bytes": 188,
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+    },
+    {
+      "source": "/tmp/across-driver-review/hunger-cart.jsonl",
+      "archive": "driver/hunger-cart.jsonl",
+      "bytes": 24477,
+      "sha256": "141189c1924f3d381470ddeed5cc0577345677304762a28ce2b7bfb6680ec410"
+    },
+    {
+      "source": "/tmp/across-driver-review/hunger-cart.mjs",
+      "archive": "driver/hunger-cart.mjs",
+      "bytes": 687,
+      "sha256": "a0351b074b42ad8cbaa702ec16ad2de54f1891b194c0e6268515dcd8e8713904"
+    },
+    {
+      "source": "/tmp/across-driver-review/meal-counterpart.json",
+      "archive": "driver/meal-counterpart.json",
+      "bytes": 10775,
+      "sha256": "96552229d5e8969d2a5df111892045a07b17a9e92bec875a4d7b7cfbe96c66e6"
+    },
+    {
+      "source": "/tmp/across-driver-review/meal-livelock.json",
+      "archive": "driver/meal-livelock.json",
+      "bytes": 16779,
+      "sha256": "f5ca54096caa2ff8b76a66adfa9d63d285e2f53221bc036fbc7a8b43178f2335"
+    },
+    {
+      "source": "/tmp/across-driver-review/narrow-recheck.mjs",
+      "archive": "driver/narrow-recheck.mjs",
+      "bytes": 1520,
+      "sha256": "688b51a4dbc4df95cd151d587cd0d1bbe4375804d4cf22d51db7b558b9ffc525"
+    },
+    {
+      "source": "/tmp/across-driver-review/probes.mjs",
+      "archive": "driver/probes.mjs",
+      "bytes": 10260,
+      "sha256": "8ca88a4aa2ee516b0fce0bdda040404be7940c8d0d23e61679570e76760e6b9c"
+    },
+    {
+      "source": "/tmp/across-driver-review/report.md",
+      "archive": "driver/report.md",
+      "bytes": 6475,
+      "sha256": "c57c2db7b5433bc45c81c9daa107f520b97f57c1b09c1b0804ac0bf4b072341c"
+    },
+    {
+      "source": "/tmp/across-driver-review/results.json",
+      "archive": "driver/results.json",
+      "bytes": 5794,
+      "sha256": "b8671cb4d0c55b6466398e51a50d77dd5a8835cf52641ccadec78ce8a57026ea"
+    },
+    {
+      "source": "/tmp/across-ui-review/README.md",
+      "archive": "ui/README.md",
+      "bytes": 6113,
+      "sha256": "3010854c681db57fa4f72bb4d1eb4fd5b20ba6c7449171fc3863ce34ce8b48d9"
+    },
+    {
+      "source": "/tmp/across-ui-review/across-cut-minute-1.json",
+      "archive": "ui/across-cut-minute-1.json",
+      "bytes": 632,
+      "sha256": "4e09191ecf5c3e8707e8fcd8b799b9509aa894e90b2a430608cc781e1cc57fa8"
+    },
+    {
+      "source": "/tmp/across-ui-review/across-cut-minute-8.json",
+      "archive": "ui/across-cut-minute-8.json",
+      "bytes": 887,
+      "sha256": "f4a04bc99d9079f662793006cc5685dd7449737aff32191c39a07dfdc1cc816e"
+    },
+    {
+      "source": "/tmp/across-ui-review/across-cut-unreadable-device-save.json",
+      "archive": "ui/across-cut-unreadable-device-save.json",
+      "bytes": 35,
+      "sha256": "5bfe058efe29aa1d867bc5ab4bd7264d10b71f4e5b353da6a8905267e22eaf2b"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__across__",
+      "archive": "ui/after__across__",
+      "bytes": 8043,
+      "sha256": "82789cc0016426eb01ce61d5bf3afad6b2f5d9d5e20d82b8119b541631ccc2a9"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__src__core__model.js",
+      "archive": "ui/after__src__core__model.js",
+      "bytes": 7764,
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__src__games__across-cut-player.js",
+      "archive": "ui/after__src__games__across-cut-player.js",
+      "bytes": 10287,
+      "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__src__games__across-cut-receiver.js",
+      "archive": "ui/after__src__games__across-cut-receiver.js",
+      "bytes": 4405,
+      "sha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__src__games__across-cut.js",
+      "archive": "ui/after__src__games__across-cut.js",
+      "bytes": 22519,
+      "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__src__human__v0.1.1.js",
+      "archive": "ui/after__src__human__v0.1.1.js",
+      "bytes": 11580,
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__src__runtime__clock.js",
+      "archive": "ui/after__src__runtime__clock.js",
+      "bytes": 7513,
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__src__runtime__index.js",
+      "archive": "ui/after__src__runtime__index.js",
+      "bytes": 188,
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__web__across-player.js",
+      "archive": "ui/after__web__across-player.js",
+      "bytes": 14023,
+      "sha256": "fce79b226471baaf03826a800132c10c8ad984d6de14a6ca77bebd3460f09f66"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__web__across-session.js",
+      "archive": "ui/after__web__across-session.js",
+      "bytes": 2618,
+      "sha256": "9b1de7bdb19d8c51152439a7c100f687fbf2cc1d987677c5fc1ee02da8c93675"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__web__across-view.js",
+      "archive": "ui/after__web__across-view.js",
+      "bytes": 1968,
+      "sha256": "2ee5ae65f2bbb5f93f6428747bc3485170d62bbf12d1bf4f5a81cf1d6047e924"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__web__across.css",
+      "archive": "ui/after__web__across.css",
+      "bytes": 3942,
+      "sha256": "af85e0cbcb300ac677d4e24cbb90c863311e3d5262d8c8ef0e5e123f1480a610"
+    },
+    {
+      "source": "/tmp/across-ui-review/after__web__game-shell.css",
+      "archive": "ui/after__web__game-shell.css",
+      "bytes": 13579,
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__across__",
+      "archive": "ui/before__across__",
+      "bytes": 8043,
+      "sha256": "82789cc0016426eb01ce61d5bf3afad6b2f5d9d5e20d82b8119b541631ccc2a9"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__src__core__model.js",
+      "archive": "ui/before__src__core__model.js",
+      "bytes": 7764,
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__src__games__across-cut-player.js",
+      "archive": "ui/before__src__games__across-cut-player.js",
+      "bytes": 10287,
+      "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__src__games__across-cut-receiver.js",
+      "archive": "ui/before__src__games__across-cut-receiver.js",
+      "bytes": 4405,
+      "sha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__src__games__across-cut.js",
+      "archive": "ui/before__src__games__across-cut.js",
+      "bytes": 22519,
+      "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__src__human__v0.1.1.js",
+      "archive": "ui/before__src__human__v0.1.1.js",
+      "bytes": 11580,
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__src__runtime__clock.js",
+      "archive": "ui/before__src__runtime__clock.js",
+      "bytes": 7513,
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__src__runtime__index.js",
+      "archive": "ui/before__src__runtime__index.js",
+      "bytes": 188,
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__web__across-player.js",
+      "archive": "ui/before__web__across-player.js",
+      "bytes": 14023,
+      "sha256": "fce79b226471baaf03826a800132c10c8ad984d6de14a6ca77bebd3460f09f66"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__web__across-session.js",
+      "archive": "ui/before__web__across-session.js",
+      "bytes": 2618,
+      "sha256": "9b1de7bdb19d8c51152439a7c100f687fbf2cc1d987677c5fc1ee02da8c93675"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__web__across-view.js",
+      "archive": "ui/before__web__across-view.js",
+      "bytes": 1968,
+      "sha256": "2ee5ae65f2bbb5f93f6428747bc3485170d62bbf12d1bf4f5a81cf1d6047e924"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__web__across.css",
+      "archive": "ui/before__web__across.css",
+      "bytes": 3942,
+      "sha256": "af85e0cbcb300ac677d4e24cbb90c863311e3d5262d8c8ef0e5e123f1480a610"
+    },
+    {
+      "source": "/tmp/across-ui-review/before__web__game-shell.css",
+      "archive": "ui/before__web__game-shell.css",
+      "bytes": 13579,
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-after__across__",
+      "archive": "ui/corrective-after__across__",
+      "bytes": 8043,
+      "sha256": "82789cc0016426eb01ce61d5bf3afad6b2f5d9d5e20d82b8119b541631ccc2a9"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-after__src__games__across-cut-player.js",
+      "archive": "ui/corrective-after__src__games__across-cut-player.js",
+      "bytes": 10287,
+      "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-after__src__games__across-cut-receiver.js",
+      "archive": "ui/corrective-after__src__games__across-cut-receiver.js",
+      "bytes": 4405,
+      "sha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-after__src__games__across-cut.js",
+      "archive": "ui/corrective-after__src__games__across-cut.js",
+      "bytes": 22519,
+      "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-after__web__across-player.js",
+      "archive": "ui/corrective-after__web__across-player.js",
+      "bytes": 14376,
+      "sha256": "dd0b42785dbc3312c5a8e268d6ac0dd4d1056134ab650b69cbcae42d3148e831"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-after__web__across-session.js",
+      "archive": "ui/corrective-after__web__across-session.js",
+      "bytes": 2618,
+      "sha256": "9b1de7bdb19d8c51152439a7c100f687fbf2cc1d987677c5fc1ee02da8c93675"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-after__web__across-view.js",
+      "archive": "ui/corrective-after__web__across-view.js",
+      "bytes": 2961,
+      "sha256": "677df05a993c856cf3b55409a2f761acdb24fc1f991234aa00b04eab5b13133b"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-after__web__across.css",
+      "archive": "ui/corrective-after__web__across.css",
+      "bytes": 4015,
+      "sha256": "aa78fa133017a4156e196b002bc92e4800c76184a281a63111404cc7cb60fecb"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-after__web__game-shell.css",
+      "archive": "ui/corrective-after__web__game-shell.css",
+      "bytes": 13579,
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-before__across__",
+      "archive": "ui/corrective-before__across__",
+      "bytes": 8043,
+      "sha256": "82789cc0016426eb01ce61d5bf3afad6b2f5d9d5e20d82b8119b541631ccc2a9"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-before__src__games__across-cut-player.js",
+      "archive": "ui/corrective-before__src__games__across-cut-player.js",
+      "bytes": 10287,
+      "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-before__src__games__across-cut-receiver.js",
+      "archive": "ui/corrective-before__src__games__across-cut-receiver.js",
+      "bytes": 4405,
+      "sha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-before__src__games__across-cut.js",
+      "archive": "ui/corrective-before__src__games__across-cut.js",
+      "bytes": 22519,
+      "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-before__web__across-player.js",
+      "archive": "ui/corrective-before__web__across-player.js",
+      "bytes": 14376,
+      "sha256": "dd0b42785dbc3312c5a8e268d6ac0dd4d1056134ab650b69cbcae42d3148e831"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-before__web__across-session.js",
+      "archive": "ui/corrective-before__web__across-session.js",
+      "bytes": 2618,
+      "sha256": "9b1de7bdb19d8c51152439a7c100f687fbf2cc1d987677c5fc1ee02da8c93675"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-before__web__across-view.js",
+      "archive": "ui/corrective-before__web__across-view.js",
+      "bytes": 2961,
+      "sha256": "677df05a993c856cf3b55409a2f761acdb24fc1f991234aa00b04eab5b13133b"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-before__web__across.css",
+      "archive": "ui/corrective-before__web__across.css",
+      "bytes": 4015,
+      "sha256": "aa78fa133017a4156e196b002bc92e4800c76184a281a63111404cc7cb60fecb"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-before__web__game-shell.css",
+      "archive": "ui/corrective-before__web__game-shell.css",
+      "bytes": 13579,
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-file-focus.png",
+      "archive": "ui/corrective-file-focus.png",
+      "bytes": 54038,
+      "sha256": "c124ef79e5db21714249cb61637c189d5617678297027af0fc4df894b9696d1d"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-imported-report.png",
+      "archive": "ui/corrective-imported-report.png",
+      "bytes": 60411,
+      "sha256": "6f1c3cefb8fea7809d4b82b072e02abb6990b742919ce284cd21697c22d9f034"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-outgoing-source-time.png",
+      "archive": "ui/corrective-outgoing-source-time.png",
+      "bytes": 53398,
+      "sha256": "01b5a9ebda7e8440f42a32106f5757aab133110dd69b25153cb576b597032790"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-report-idle.png",
+      "archive": "ui/corrective-report-idle.png",
+      "bytes": 59768,
+      "sha256": "c45e52b825254a64cbe3821375baf3b13b829338499677cecfd8f64b4b73a9bd"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-report-scroll.png",
+      "archive": "ui/corrective-report-scroll.png",
+      "bytes": 60411,
+      "sha256": "6f1c3cefb8fea7809d4b82b072e02abb6990b742919ce284cd21697c22d9f034"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-results.json",
+      "archive": "ui/corrective-results.json",
+      "bytes": 4521,
+      "sha256": "37294b82994e3d8596e64172d070546316cdd164e5e885241b55cfe57ad7d591"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective-send-capacity.png",
+      "archive": "ui/corrective-send-capacity.png",
+      "bytes": 55344,
+      "sha256": "33f8b9cb640caf82862b3945cf5e5a8def5d41beee1c47dc7a89a593e93fd708"
+    },
+    {
+      "source": "/tmp/across-ui-review/corrective.mjs",
+      "archive": "ui/corrective.mjs",
+      "bytes": 6924,
+      "sha256": "fc85978a7bccc9134a39919502cc061e23732e61537efe8b3f9c919914106339"
+    },
+    {
+      "source": "/tmp/across-ui-review/desktop-initial.png",
+      "archive": "ui/desktop-initial.png",
+      "bytes": 64976,
+      "sha256": "61bcc042e9eab86b229ebd730f338dc699140f1aad7de29e45b583afd9940c11"
+    },
+    {
+      "source": "/tmp/across-ui-review/desktop-report-eight.png",
+      "archive": "ui/desktop-report-eight.png",
+      "bytes": 106785,
+      "sha256": "34f921f33c40a9c33bdd24e5a6b198b7f93565933fb1a7d608a70b219996ee57"
+    },
+    {
+      "source": "/tmp/across-ui-review/initial-reviewed-results.json",
+      "archive": "ui/initial-reviewed-results.json",
+      "bytes": 47692,
+      "sha256": "fc62f9816d2953b9814e0ae661c506bffb824cab65375f6c92c106f545f6e93e"
+    },
+    {
+      "source": "/tmp/across-ui-review/phone-account-before-reveal.png",
+      "archive": "ui/phone-account-before-reveal.png",
+      "bytes": 54565,
+      "sha256": "5834cfc9ffb5d7a9c95ca61c9e756402e9cbc302298d9afa2cc981d5d42d88ba"
+    },
+    {
+      "source": "/tmp/across-ui-review/phone-account-revealed.png",
+      "archive": "ui/phone-account-revealed.png",
+      "bytes": 54019,
+      "sha256": "d38563722a0a70b950a4eb248a4e1b55166e7140c37da51a0fc8d393a6e1be90"
+    },
+    {
+      "source": "/tmp/across-ui-review/phone-file-keyboard-focus.png",
+      "archive": "ui/phone-file-keyboard-focus.png",
+      "bytes": 53490,
+      "sha256": "b8632c6bfd8aa7469ba9f1610bf4ece90d7b08359e4ee29a6534770f6c449ea1"
+    },
+    {
+      "source": "/tmp/across-ui-review/phone-initial.png",
+      "archive": "ui/phone-initial.png",
+      "bytes": 51001,
+      "sha256": "3c0aac1165ea416edc9d0c1e9b982d8b8eda712cc1251596b961781104d65750"
+    },
+    {
+      "source": "/tmp/across-ui-review/phone-own-report.png",
+      "archive": "ui/phone-own-report.png",
+      "bytes": 54714,
+      "sha256": "27fde2e9ea7520846b20d40a97817c395023d9cbf5d2289f85ccf625b3d02f95"
+    },
+    {
+      "source": "/tmp/across-ui-review/phone-partial-travel.png",
+      "archive": "ui/phone-partial-travel.png",
+      "bytes": 52640,
+      "sha256": "d7bd7c99a038f3e805d8704e7e90bbce4f2558982e34494e1fb4f450b1b87a5e"
+    },
+    {
+      "source": "/tmp/across-ui-review/phone-report-after-notebook-scrolled.png",
+      "archive": "ui/phone-report-after-notebook-scrolled.png",
+      "bytes": 57763,
+      "sha256": "eb4b8b7c16628c8b87ecacd84cc884034217505a1e3b56ba7cd524eb4ad83eaf"
+    },
+    {
+      "source": "/tmp/across-ui-review/phone-report-eight.png",
+      "archive": "ui/phone-report-eight.png",
+      "bytes": 60411,
+      "sha256": "6f1c3cefb8fea7809d4b82b072e02abb6990b742919ce284cd21697c22d9f034"
+    },
+    {
+      "source": "/tmp/across-ui-review/phone-send-capacity-error.png",
+      "archive": "ui/phone-send-capacity-error.png",
+      "bytes": 58871,
+      "sha256": "e41db54e922c076cf776a0dd7e6722ef4ed83162d4654e6d71dd13377ff2cc28"
+    },
+    {
+      "source": "/tmp/across-ui-review/results.json",
+      "archive": "ui/results.json",
+      "bytes": 47692,
+      "sha256": "fc62f9816d2953b9814e0ae661c506bffb824cab65375f6c92c106f545f6e93e"
+    },
+    {
+      "source": "/tmp/across-ui-review/review.mjs",
+      "archive": "ui/review.mjs",
+      "bytes": 15857,
+      "sha256": "ce71b152161fe50e3d6b79a30cd3cc23d4f1d2dfd672c0901231c85f30fcaa78"
+    },
+    {
+      "source": "/tmp/across-ui-review/short-initial.png",
+      "archive": "ui/short-initial.png",
+      "bytes": 50615,
+      "sha256": "d9f1629bf6dcfc6ffb5b76143c56d1ee8284c31f8e916951e5b589581788291c"
+    },
+    {
+      "source": "/tmp/across-ui-review/short-report-eight.png",
+      "archive": "ui/short-report-eight.png",
+      "bytes": 100549,
+      "sha256": "721c17145f3b2d02796f4c53575d27c4b0af3ceba15a04d206e0404f0df0eb6d"
+    },
+    {
+      "source": "/tmp/across-ui-review/supplement-after__src__games__across-cut-player.js",
+      "archive": "ui/supplement-after__src__games__across-cut-player.js",
+      "bytes": 10287,
+      "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+    },
+    {
+      "source": "/tmp/across-ui-review/supplement-after__web__across-player.js",
+      "archive": "ui/supplement-after__web__across-player.js",
+      "bytes": 14023,
+      "sha256": "fce79b226471baaf03826a800132c10c8ad984d6de14a6ca77bebd3460f09f66"
+    },
+    {
+      "source": "/tmp/across-ui-review/supplement-after__web__across.css",
+      "archive": "ui/supplement-after__web__across.css",
+      "bytes": 3942,
+      "sha256": "af85e0cbcb300ac677d4e24cbb90c863311e3d5262d8c8ef0e5e123f1480a610"
+    },
+    {
+      "source": "/tmp/across-ui-review/supplement-after__web__game-shell.css",
+      "archive": "ui/supplement-after__web__game-shell.css",
+      "bytes": 13579,
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f"
+    },
+    {
+      "source": "/tmp/across-ui-review/supplement-before__src__games__across-cut-player.js",
+      "archive": "ui/supplement-before__src__games__across-cut-player.js",
+      "bytes": 10287,
+      "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+    },
+    {
+      "source": "/tmp/across-ui-review/supplement-before__web__across-player.js",
+      "archive": "ui/supplement-before__web__across-player.js",
+      "bytes": 14023,
+      "sha256": "fce79b226471baaf03826a800132c10c8ad984d6de14a6ca77bebd3460f09f66"
+    },
+    {
+      "source": "/tmp/across-ui-review/supplement-before__web__across.css",
+      "archive": "ui/supplement-before__web__across.css",
+      "bytes": 3942,
+      "sha256": "af85e0cbcb300ac677d4e24cbb90c863311e3d5262d8c8ef0e5e123f1480a610"
+    },
+    {
+      "source": "/tmp/across-ui-review/supplement-before__web__game-shell.css",
+      "archive": "ui/supplement-before__web__game-shell.css",
+      "bytes": 13579,
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f"
+    },
+    {
+      "source": "/tmp/across-ui-review/supplement-results.json",
+      "archive": "ui/supplement-results.json",
+      "bytes": 1308,
+      "sha256": "3d70798cdf52279106e713ca2d7a3e75f93dbb48645fc85532ea2fd622eb9461"
+    },
+    {
+      "source": "/tmp/across-ui-review/supplement.mjs",
+      "archive": "ui/supplement.mjs",
+      "bytes": 2794,
+      "sha256": "8eb009ba1358e01a044995543a33691f740a19fcd2326c623ccf3285dd492cec"
+    },
+    {
+      "source": "/tmp/across-ui-review/synthetic-minute-eight.json",
+      "archive": "ui/synthetic-minute-eight.json",
+      "bytes": 887,
+      "sha256": "f4a04bc99d9079f662793006cc5685dd7449737aff32191c39a07dfdc1cc816e"
+    },
+    {
+      "source": "/tmp/across-integrated-tests.log",
+      "archive": "validation/across-integrated-tests.log",
+      "bytes": 84046,
+      "sha256": "7c22887ef891d6427a0085cb6dc7a2d396de93ae837a0399608fd5de361ca516"
+    },
+    {
+      "source": "/tmp/across-node22-tests.log",
+      "archive": "validation/across-node22-tests.log",
+      "bytes": 13242,
+      "sha256": "f17143137ce0bd7e2c82476405135482730374be2c8835b3c627465c19eade12"
+    },
+    {
+      "source": "/tmp/across-core-firsthand-red.log",
+      "archive": "validation/across-core-firsthand-red.log",
+      "bytes": 1023,
+      "sha256": "eb5129e823097ce7c87c8193f228287171c89cc2dd78bf4b4ed23bb771bb95db"
+    },
+    {
+      "source": "/tmp/across-core-firsthand-green.log",
+      "archive": "validation/across-core-firsthand-green.log",
+      "bytes": 2490,
+      "sha256": "82de6e7184a5479740c3dd0471f4049a16e24ed75101e80820efa854cdcd63d3"
+    },
+    {
+      "source": "/tmp/across-receiver-meal-red.log",
+      "archive": "validation/across-receiver-meal-red.log",
+      "bytes": 847,
+      "sha256": "4cbd2764d17a3f9abdbca306151a77bdce8ee4dce1ca8a22ba117af4716e4e83"
+    },
+    {
+      "source": "/tmp/across-receiver-meal-green.log",
+      "archive": "validation/across-receiver-meal-green.log",
+      "bytes": 2149,
+      "sha256": "bf975160acbe80a484492de19d043dafcfa87464b7f8d9c255a11bd41cf6b93f"
+    },
+    {
+      "source": "/tmp/across-session-tests.log",
+      "archive": "validation/across-session-tests.log",
+      "bytes": 925,
+      "sha256": "e4fa2e4acb460abe2e308f457b7c036869944e5e05ceeb717bb3b5d5634ba4d0"
+    }
+  ]
+}

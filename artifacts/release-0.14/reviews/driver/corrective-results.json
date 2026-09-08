@@ -1,0 +1,672 @@
+{
+  "node": "v26.8.1",
+  "receiverVersion": "0.1.1",
+  "setup": {
+    "inletMinutes": 14,
+    "launchAt": 15,
+    "bodies": {
+      "receiver": {
+        "fatigue": 0.15,
+        "hunger": 0.972
+      }
+    }
+  },
+  "trace": [
+    {
+      "now": 0,
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "cart": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 0,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 0,
+        "travel": 0,
+        "rest": 0,
+        "meal": 0,
+        "transmit": 0
+      }
+    },
+    {
+      "now": 1,
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "cart": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 0,
+        "travel": 0,
+        "rest": 0,
+        "meal": 0,
+        "transmit": 0
+      }
+    },
+    {
+      "now": 2,
+      "job": null,
+      "meal": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "cart": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 0,
+        "travel": 0,
+        "rest": 0,
+        "meal": 0,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 3,
+      "job": {
+        "task": "meal",
+        "startedAt": 2,
+        "endsAt": 4,
+        "elapsed": 1
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 1,
+        "consumed": 0
+      },
+      "cart": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 0,
+        "travel": 0,
+        "rest": 0,
+        "meal": 1,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 4,
+      "job": null,
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "cart": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 0,
+        "travel": 0,
+        "rest": 0,
+        "meal": 2,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 5,
+      "job": {
+        "task": "cart",
+        "startedAt": 4,
+        "endsAt": 14,
+        "elapsed": 1,
+        "delivered": false
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "cart": {
+        "available": 0,
+        "reserved": 1,
+        "consumed": 0
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 1,
+        "travel": 0,
+        "rest": 0,
+        "meal": 2,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 6,
+      "job": {
+        "task": "cart",
+        "startedAt": 4,
+        "endsAt": 14,
+        "elapsed": 2,
+        "delivered": false
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "cart": {
+        "available": 0,
+        "reserved": 1,
+        "consumed": 0
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 2,
+        "travel": 0,
+        "rest": 0,
+        "meal": 2,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 7,
+      "job": {
+        "task": "cart",
+        "startedAt": 4,
+        "endsAt": 14,
+        "elapsed": 3,
+        "delivered": false
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "cart": {
+        "available": 0,
+        "reserved": 1,
+        "consumed": 0
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 3,
+        "travel": 0,
+        "rest": 0,
+        "meal": 2,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 8,
+      "job": {
+        "task": "cart",
+        "startedAt": 4,
+        "endsAt": 14,
+        "elapsed": 4,
+        "delivered": false
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "cart": {
+        "available": 0,
+        "reserved": 1,
+        "consumed": 0
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 4,
+        "travel": 0,
+        "rest": 0,
+        "meal": 2,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 9,
+      "job": {
+        "task": "cart",
+        "startedAt": 4,
+        "endsAt": 14,
+        "elapsed": 5,
+        "delivered": true
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "cart": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 5,
+        "travel": 0,
+        "rest": 0,
+        "meal": 2,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 10,
+      "job": {
+        "task": "cart",
+        "startedAt": 4,
+        "endsAt": 14,
+        "elapsed": 6,
+        "delivered": true
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "cart": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 6,
+        "travel": 0,
+        "rest": 0,
+        "meal": 2,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 11,
+      "job": {
+        "task": "cart",
+        "startedAt": 4,
+        "endsAt": 14,
+        "elapsed": 7,
+        "delivered": true
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "cart": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 7,
+        "travel": 0,
+        "rest": 0,
+        "meal": 2,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 12,
+      "job": {
+        "task": "cart",
+        "startedAt": 4,
+        "endsAt": 14,
+        "elapsed": 8,
+        "delivered": true
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "cart": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 8,
+        "travel": 0,
+        "rest": 0,
+        "meal": 2,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 13,
+      "job": {
+        "task": "cart",
+        "startedAt": 4,
+        "endsAt": 14,
+        "elapsed": 9,
+        "delivered": true
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "cart": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 9,
+        "travel": 0,
+        "rest": 0,
+        "meal": 2,
+        "transmit": 1
+      }
+    },
+    {
+      "now": 14,
+      "job": null,
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "cart": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "paid": {
+        "availableRecovery": 0,
+        "inspect": 1,
+        "repair": 0,
+        "release": 0,
+        "attend": 0,
+        "cart": 10,
+        "travel": 0,
+        "rest": 0,
+        "meal": 2,
+        "transmit": 1
+      }
+    }
+  ],
+  "world": {
+    "researcherOnly": true,
+    "now": 15,
+    "ended": false,
+    "config": {
+      "valveMinutes": 6,
+      "inletMinutes": 14,
+      "launchAt": 15,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.972
+        },
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "work": {
+      "valve": 0,
+      "dock": 0
+    },
+    "service": {
+      "units": 1,
+      "departed": true,
+      "deliveries": [
+        {
+          "at": 9,
+          "route": "cart",
+          "units": 1,
+          "delivered": 1,
+          "lost": 0,
+          "excess": 0
+        }
+      ]
+    },
+    "water": {
+      "pipeConsumed": 0,
+      "cartConsumed": 1,
+      "inTransit": 0,
+      "lost": 0,
+      "excess": 0,
+      "owned": 2,
+      "conservedTotal": 3
+    },
+    "actors": {
+      "keeper": {
+        "body": {
+          "fatigue": 0,
+          "hunger": 0.18000000000000002
+        },
+        "position": 0,
+        "inventory": {
+          "fitting": {
+            "available": 1,
+            "reserved": 0,
+            "installed": 0
+          },
+          "water": {
+            "available": 2,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "cartWater": {
+            "available": 0,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "radio": {
+            "available": 4,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "meal": {
+            "available": 1,
+            "reserved": 0,
+            "consumed": 0
+          }
+        },
+        "paid": {
+          "availableRecovery": 15,
+          "inspect": 0,
+          "repair": 0,
+          "release": 0,
+          "attend": 0,
+          "cart": 0,
+          "travel": 0,
+          "rest": 0,
+          "meal": 0,
+          "transmit": 0
+        }
+      },
+      "receiver": {
+        "body": {
+          "fatigue": 0.25350000000000006,
+          "hunger": 0.45199999999999996
+        },
+        "position": 6,
+        "inventory": {
+          "fitting": {
+            "available": 1,
+            "reserved": 0,
+            "installed": 0
+          },
+          "water": {
+            "available": 0,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "cartWater": {
+            "available": 0,
+            "reserved": 0,
+            "consumed": 1
+          },
+          "radio": {
+            "available": 3,
+            "reserved": 0,
+            "consumed": 1
+          },
+          "meal": {
+            "available": 0,
+            "reserved": 0,
+            "consumed": 1
+          }
+        },
+        "paid": {
+          "availableRecovery": 1,
+          "inspect": 1,
+          "repair": 0,
+          "release": 0,
+          "attend": 0,
+          "cart": 10,
+          "travel": 0,
+          "rest": 0,
+          "meal": 2,
+          "transmit": 1
+        }
+      }
+    },
+    "transport": [
+      {
+        "messageId": "receiver:m1",
+        "sender": "receiver",
+        "recipient": "keeper",
+        "sentAt": 2,
+        "via": "radio",
+        "message": {
+          "kind": "report",
+          "observations": [
+            {
+              "receipt": 1,
+              "cue": "launchAt",
+              "value": 15,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 2,
+              "cue": "launchDeparted",
+              "value": false,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 3,
+              "cue": "serviceUnits",
+              "value": 0,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 4,
+              "cue": "repairProgress:dock",
+              "value": 0,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 6,
+              "cue": "repairMinutes:dock",
+              "value": 14,
+              "source": "dock",
+              "observedAt": 1,
+              "receivedAt": 1,
+              "via": "local"
+            }
+          ]
+        },
+        "delay": 2,
+        "deliveredAt": 4
+      }
+    ],
+    "journalEntries": 8
+  },
+  "assertions": "Exact original counterexample now consumes meal at4, delivers cart at9, returns14, and restores mid-meal/final state exactly."
+}

@@ -1,0 +1,310 @@
+TAP version 13
+# Subtest: preregistered scope is exactly six worlds, eight controls and four interventions
+ok 1 - preregistered scope is exactly six worlds, eight controls and four interventions
+  ---
+  duration_ms: 0.57925
+  ...
+# Subtest: exogenous radio slots cover both actors independent of actual traffic
+ok 2 - exogenous radio slots cover both actors independent of actual traffic
+  ---
+  duration_ms: 0.870583
+  ...
+# Subtest: latest facts use source time despite old later arrival
+ok 3 - latest facts use source time despite old later arrival
+  ---
+  duration_ms: 0.128208
+  ...
+# Subtest: earliest inlet attendance includes paid inspection and actual sender transmission
+ok 4 - earliest inlet attendance includes paid inspection and actual sender transmission
+  ---
+  duration_ms: 0.758834
+  ...
+# Subtest: late transmissions cannot delay an already feasible earlier completion bound
+ok 5 - late transmissions cannot delay an already feasible earlier completion bound
+  ---
+  duration_ms: 0.1195
+  ...
+# Subtest: missing incoming evidence does not interrupt paid release
+ok 6 - missing incoming evidence does not interrupt paid release
+  ---
+  duration_ms: 0.06175
+  ...
+# Subtest: keeper fixed controls ignore received receiver facts
+ok 7 - keeper fixed controls ignore received receiver facts
+  ---
+  duration_ms: 0.158958
+  ...
+# Subtest: joint cart-first receiver protects early service with actual cart before attendance
+ok 8 - joint cart-first receiver protects early service with actual cart before attendance
+  ---
+  duration_ms: 0.221375
+  ...
+# Subtest: public host has its own identity and contains no negotiation state or commands
+ok 9 - public host has its own identity and contains no negotiation state or commands
+  ---
+  duration_ms: 3.790375
+  ...
+# Subtest: first-hop reports preserve exact source records and refuse received relays and relative presence
+ok 10 - first-hop reports preserve exact source records and refuse received relays and relative presence
+  ---
+  duration_ms: 5.251542
+  ...
+# Subtest: out-of-order old facts remain in the notebook without replacing a newer source-time claim
+ok 11 - out-of-order old facts remain in the notebook without replacing a newer source-time claim
+  ---
+  duration_ms: 2.860958
+  ...
+# Subtest: minute-eight receipt pauses a paid release; explicit stop preserves two units and one paid minute
+ok 12 - minute-eight receipt pauses a paid release; explicit stop preserves two units and one paid minute
+  ---
+  duration_ms: 8.113375
+  ...
+# Subtest: interrupted repair retains paid progress, practice and the single installed fitting
+ok 13 - interrupted repair retains paid progress, practice and the single installed fitting
+  ---
+  duration_ms: 1.530334
+  ...
+# Subtest: fixed pipe schedule works without radio and attends through the launch endpoint
+ok 14 - fixed pipe schedule works without radio and attends through the launch endpoint
+  ---
+  duration_ms: 4.408458
+  ...
+# Subtest: attendance requested at a settled arrival cannot recover lost pipe water
+ok 15 - attendance requested at a settled arrival cannot recover lost pipe water
+  ---
+  duration_ms: 2.560791
+  ...
+# Subtest: interrupted outbound cart retains supply and position; returning costs remaining distance
+ok 16 - interrupted outbound cart retains supply and position; returning costs remaining distance
+  ---
+  duration_ms: 1.535792
+  ...
+# Subtest: cart delivery is first-hand knowledge and interrupted return never delivers twice
+ok 17 - cart delivery is first-hand knowledge and interrupted return never delivers twice
+  ---
+  duration_ms: 4.940208
+  ...
+# Subtest: partial station travel cannot teleport on stop or grant distant observations
+ok 18 - partial station travel cannot teleport on stop or grant distant observations
+  ---
+  duration_ms: 1.667083
+  ...
+# Subtest: radio interruption restores charge while completed sends consume time and reveal no outcome
+ok 19 - radio interruption restores charge while completed sends consume time and reveal no outcome
+  ---
+  duration_ms: 1.596709
+  ...
+# Subtest: paid contact succeeds only with observed co-location continuing through completion
+ok 20 - paid contact succeeds only with observed co-location continuing through completion
+  ---
+  duration_ms: 2.308959
+  ...
+# Subtest: rest and owned meals pay time, preserve body carryover and restore interrupted reservations
+ok 21 - rest and owned meals pay time, preserve body carryover and restore interrupted reservations
+  ---
+  duration_ms: 1.288042
+  ...
+# Subtest: available actor time recovers automatically without holding a job or charging explicit rest
+ok 22 - available actor time recovers automatically without holding a job or charging explicit rest
+  ---
+  duration_ms: 1.41625
+  ...
+# Subtest: horizon stops unfinished release and late cart pays its incomplete return
+ok 23 - horizon stops unfinished release and late cart pays its incomplete return
+  ---
+  duration_ms: 12.7435
+  ...
+# Subtest: actor-local command budgets reserve an actual stop and cannot leak or spend peer room
+ok 24 - actor-local command budgets reserve an actual stop and cannot leak or spend peer room
+  ---
+  duration_ms: 28.510209
+  ...
+# Subtest: hidden work, launch, channel slots and remote actions have equal keeper views and local errors
+ok 25 - hidden work, launch, channel slots and remote actions have equal keeper views and local errors
+  ---
+  duration_ms: 10.995542
+  ...
+# Subtest: remote pipe success and failure stay hidden through the keeper's real paid schedule
+ok 26 - remote pipe success and failure stay hidden through the keeper's real paid schedule
+  ---
+  duration_ms: 9.741625
+  ...
+# Subtest: receipt-local advances pay actual minutes and distinct stopped receipts replay exactly
+ok 27 - receipt-local advances pay actual minutes and distinct stopped receipts replay exactly
+  ---
+  duration_ms: 4.804041
+  ...
+# Subtest: strict replay rejects fabricated local report origins, arrivals, paid body and negotiation injection
+ok 28 - strict replay rejects fabricated local report origins, arrivals, paid body and negotiation injection
+  ---
+  duration_ms: 19.754166
+  ...
+# Subtest: API returns immutable states and detached views and saves without mutating input
+ok 29 - API returns immutable states and detached views and saves without mutating input
+  ---
+  duration_ms: 0.873667
+  ...
+# Subtest: plain-data checks reject accessors and foreign prototypes without evaluating user code
+ok 30 - plain-data checks reject accessors and foreign prototypes without evaluating user code
+  ---
+  duration_ms: 0.651833
+  ...
+# Subtest: arriving after a report records first-hand visible facts without laundering prior reception
+ok 31 - arriving after a report records first-hand visible facts without laundering prior reception
+  ---
+  duration_ms: 7.606791
+  ...
+# Subtest: the receiver and player driver are available
+ok 32 - the receiver and player driver are available
+  ---
+  duration_ms: 2.390333
+  ...
+# Subtest: minute-eight report pauses one paid release minute and explicit stop returns both units
+ok 33 - minute-eight report pauses one paid release minute and explicit stop returns both units
+  ---
+  duration_ms: 52.684791
+  ...
+# Subtest: continuing the same receipt preserves the pending release and loses its two consumed units
+ok 34 - continuing the same receipt preserves the pending release and loses its two consumed units
+  ---
+  duration_ms: 17.5085
+  ...
+# Subtest: rendering, saving and keeper admission do not start or pay the receiver before advancement
+ok 35 - rendering, saving and keeper admission do not start or pay the receiver before advancement
+  ---
+  duration_ms: 2.021208
+  ...
+# Subtest: own per-minute repair observations do not manufacture a Continue stop each minute
+ok 36 - own per-minute repair observations do not manufacture a Continue stop each minute
+  ---
+  duration_ms: 6.493084
+  ...
+# Subtest: hidden work and launch twins have equal views, choices and stopping behavior until receipt
+ok 37 - hidden work and launch twins have equal views, choices and stopping behavior until receipt
+  ---
+  duration_ms: 16.736458
+  ...
+# Subtest: a missing report and private departure do not end or stop the keeper early
+ok 38 - a missing report and private departure do not end or stop the keeper early
+  ---
+  duration_ms: 26.089875
+  ...
+# Subtest: the receiver pays full adaptive attendance despite absent keeper reports
+ok 39 - the receiver pays full adaptive attendance despite absent keeper reports
+  ---
+  duration_ms: 31.240541
+  ...
+# Subtest: save recipes reject injected NPC state, malformed controls and unsupported identities
+ok 40 - save recipes reject injected NPC state, malformed controls and unsupported identities
+  ---
+  duration_ms: 27.504417
+  ...
+# Subtest: researcher outcome stays unavailable until the public horizon
+ok 41 - researcher outcome stays unavailable until the public horizon
+  ---
+  duration_ms: 17.961625
+  ...
+# Subtest: actually received incomplete upstream work can establish a too-late earliest arrival
+ok 42 - actually received incomplete upstream work can establish a too-late earliest arrival
+  ---
+  duration_ms: 4.020083
+  ...
+# Subtest: the source-time bound allows arrival exactly at launch and never assumes delay means failure
+ok 43 - the source-time bound allows arrival exactly at launch and never assumes delay means failure
+  ---
+  duration_ms: 11.00575
+  ...
+# Subtest: interrupting walking retains physical position across repeated reads and save resume
+ok 44 - interrupting walking retains physical position across repeated reads and save resume
+  ---
+  duration_ms: 6.713292
+  ...
+# Subtest: horizon interrupts remaining paid work and returns unconsumed reservations
+ok 45 - horizon interrupts remaining paid work and returns unconsumed reservations
+  ---
+  duration_ms: 22.875083
+  ...
+# Subtest: local Stop stays legal after ordinary keeper decision room is exhausted
+ok 46 - local Stop stays legal after ordinary keeper decision room is exhausted
+  ---
+  duration_ms: 98.00275
+  ...
+# Subtest: save validation rejects accessors and sparse or amplified JSON without invoking getters
+ok 47 - save validation rejects accessors and sparse or amplified JSON without invoking getters
+  ---
+  duration_ms: 0.461166
+  ...
+# Subtest: Continue pauses when available recovery restores a blocked own work choice
+ok 48 - Continue pauses when available recovery restores a blocked own work choice
+  ---
+  duration_ms: 3.855542
+  ...
+# Subtest: public game handles cannot be mutated or forged and their recipes reproduce the current view
+ok 49 - public game handles cannot be mutated or forged and their recipes reproduce the current view
+  ---
+  duration_ms: 7.697875
+  ...
+# Subtest: enabled work choices remain admissible at body estimate rounding boundaries
+ok 50 - enabled work choices remain admissible at body estimate rounding boundaries
+  ---
+  duration_ms: 6.239
+  ...
+# Subtest: receiver decisions are detached, repeatable and equal across hidden upstream worlds
+ok 51 - receiver decisions are detached, repeatable and equal across hidden upstream worlds
+  ---
+  duration_ms: 0.295083
+  ...
+# Subtest: a hungry receiver finishes its owned meal before retrying the cart
+ok 52 - a hungry receiver finishes its owned meal before retrying the cart
+  ---
+  duration_ms: 16.025833
+  ...
+# Subtest: fresh browser variations share identical player information before evidence arrives
+ok 53 - fresh browser variations share identical player information before evidence arrives
+  ---
+  duration_ms: 5.585042
+  ...
+# Subtest: a downloaded mid-release recipe resumes the actual receipt and owned water
+ok 54 - a downloaded mid-release recipe resumes the actual receipt and owned water
+  ---
+  duration_ms: 18.647959
+  ...
+# Subtest: current storage reads one key and never overwrites a corrupt or read-denied save
+ok 55 - current storage reads one key and never overwrites a corrupt or read-denied save
+  ---
+  duration_ms: 0.481459
+  ...
+# Subtest: quota failures retain the current game for download and later persistence can recover
+ok 56 - quota failures retain the current game for download and later persistence can recover
+  ---
+  duration_ms: 3.60575
+  ...
+# Subtest: import preview leaves current play untouched until an explicit current confirmation
+ok 57 - import preview leaves current play untouched until an explicit current confirmation
+  ---
+  duration_ms: 1.936417
+  ...
+# Subtest: a current import cannot be replaced by a stale asynchronous success or failure
+ok 58 - a current import cannot be replaced by a stale asynchronous success or failure
+  ---
+  duration_ms: 1.549125
+  ...
+# Subtest: advancing after a completed preview invalidates replacement even without an explicit UI invalidation
+ok 59 - advancing after a completed preview invalidates replacement even without an explicit UI invalidation
+  ---
+  duration_ms: 0.53725
+  ...
+# Subtest: report controls use the same conservative owned-capacity and stop-reserve boundary as work
+ok 60 - report controls use the same conservative owned-capacity and stop-reserve boundary as work
+  ---
+  duration_ms: 12.690417
+  ...
+1..60
+# tests 60
+# suites 0
+# pass 60
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 471.668417

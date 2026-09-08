@@ -1,0 +1,140 @@
+{
+  "scope": "Across 0.2.0 host only; eight targeted cases, no driver or user exports",
+  "node": "v26.8.1",
+  "sourceBefore": "788876ecb6b897d30224baa9f09d35996b6652408497d60b6b890a6c1c6ceaf2",
+  "sourceAfter": "788876ecb6b897d30224baa9f09d35996b6652408497d60b6b890a6c1c6ceaf2",
+  "contractSha256": "216dbe43be13e0ee4910d63f88816a078eb6729b17193cde911dcdff95873f20",
+  "suppliedTestsSha256": "f068676157baecb074a8f53fedbe7a2057b94a9a8ed8e712190fb54f4a022330",
+  "results": [
+    {
+      "name": "finding: a radio claim suppresses first-hand receipt on later arrival",
+      "status": "passed",
+      "evidence": {
+        "classification": "P2",
+        "now": 9,
+        "location": "dock",
+        "records": [
+          {
+            "receipt": 4,
+            "cue": "launchAt",
+            "value": 27,
+            "source": "dock",
+            "observedAt": 0,
+            "receivedAt": 3,
+            "via": "radio"
+          },
+          {
+            "receipt": 5,
+            "cue": "launchDeparted",
+            "value": false,
+            "source": "dock",
+            "observedAt": 0,
+            "receivedAt": 3,
+            "via": "radio"
+          },
+          {
+            "receipt": 6,
+            "cue": "serviceUnits",
+            "value": 0,
+            "source": "dock",
+            "observedAt": 0,
+            "receivedAt": 3,
+            "via": "radio"
+          },
+          {
+            "receipt": 7,
+            "cue": "repairProgress:dock",
+            "value": 0,
+            "source": "dock",
+            "observedAt": 0,
+            "receivedAt": 3,
+            "via": "radio"
+          }
+        ],
+        "send": {
+          "accepted": false,
+          "code": "NOT_LOCAL_OBSERVATION",
+          "message": "Only your own local observations can be reported."
+        },
+        "paidInspectionAlsoFailsToCreateLaunchReceipt": true
+      }
+    },
+    {
+      "name": "hidden remote actions/outcomes do not alter whole keeper view, local command outcomes or receipt stop",
+      "status": "passed",
+      "evidence": {
+        "localActionsCompared": 10,
+        "stopTimes": [
+          30,
+          30
+        ],
+        "hiddenServiceUnits": [
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "name": "all state entrypoints reject a forged active report origin without mutating caller",
+      "status": "passed",
+      "evidence": {
+        "rejectedEntrypoints": [
+          "view",
+          "boundary",
+          "request",
+          "interrupt",
+          "advance",
+          "export",
+          "summary"
+        ],
+        "envelopeRejected": true
+      }
+    },
+    {
+      "name": "capacity refusal preserves cart water; paid interrupted meal restores its own reservation",
+      "status": "passed",
+      "evidence": {
+        "cartRefused": "CAPACITY",
+        "restoredMealAvailable": 1,
+        "paidPartialMeal": 1
+      }
+    },
+    {
+      "name": "cart interruption exactly at delivery consumes once and preserves loading endpoint",
+      "status": "passed",
+      "evidence": {
+        "deliveryAt": 5,
+        "stopPosition": 11,
+        "returnPaidMinutes": 5,
+        "deliveries": 1,
+        "waterConserved": 3
+      }
+    },
+    {
+      "name": "horizon-completing release owns consumed water and preserves due-after-end transit on restore",
+      "status": "passed",
+      "evidence": {
+        "ended": true,
+        "inTransit": 2,
+        "conservedTotal": 3
+      }
+    },
+    {
+      "name": "failed zero-time contact retains no sent envelope or charge; same-minute departure contact is paid without delivery",
+      "status": "passed",
+      "evidence": {
+        "paidTransmission": 1,
+        "deliveredMessages": 0,
+        "radioAvailable": 4
+      }
+    },
+    {
+      "name": "plain data rejection executes no accessors and handles state variants consistently",
+      "status": "passed",
+      "evidence": {
+        "variants": 6,
+        "executedAccessors": 0
+      }
+    }
+  ]
+}

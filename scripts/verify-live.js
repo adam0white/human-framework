@@ -63,6 +63,8 @@ async function verify(){
   for(const version of ['v0.1','v0.2'])for(const file of ['model','observation','policy','random','simulation'])privatePaths.push(`/src/legacy/${version}/${file}.js`);
   privatePaths.push('/src/games/camp.js','/src/games/camp-story.js','/web/camp.js','/web/camp-session.js','/web/camp-slots.js',
     '/docs/camp-current-contract.md','/artifacts/camp-maintenance/baseline/report.json','/src/experiments/work-progress/candidate.js');
+  privatePaths.push('/signals/','/src/games/signals.js','/web/signals.js','/web/signals-session.js','/web/signals.css','/web/signals.html',
+    '/docs/across-player-driver-contract.md','/artifacts/across-player/inputs.json','/artifacts/across-player/initial/results.json.gz');
   for(const path of privatePaths){const {response}=await get(path);if(response.status!==404)throw new Error(`Private/missing path returned ${response.status}: ${path}`);}
   const record={verifiedAt:new Date().toISOString(),origin,release:local,source,pushedMain:remote,payloads,privatePaths:privatePaths.map(path=>({path,status:404}))};
   if(output)await writeFile(resolve(output),JSON.stringify(record,null,2)+'\n');

@@ -5,7 +5,7 @@ const chooser=document.createElement('div');chooser.className='game-chooser';
 const label=document.createElement('label');label.htmlFor='game-choice';label.textContent='Choose a current example';
 const select=document.createElement('select');select.id='game-choice';
 const list=document.createElement('div');list.className='collection-list';list.setAttribute('role','tablist');list.setAttribute('aria-orientation','vertical');list.setAttribute('aria-label','Current examples');
-const focuses={'/camp/':'Ongoing work','/signals/':'Costly information','/service-plan/':'Coordination','/workshop/':'Work and recovery'};
+const focuses={'/camp/':'Ongoing work','/across/':'First-hand information','/service-plan/':'Coordination','/workshop/':'Work and recovery'};
 const buttons=[];
 cards.forEach((card,i)=>{
  const name=card.querySelector('h2').textContent,focus=focuses[card.getAttribute('href')];

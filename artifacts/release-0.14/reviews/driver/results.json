@@ -1,0 +1,257 @@
+{
+  "node": "v26.8.1",
+  "targetCommit": "4f46243681ea6e0edf5173ca16e5e5548b88632e",
+  "results": [
+    {
+      "name": "counterexample: chosen meal repeatedly interrupted in cart fallback",
+      "status": "pass",
+      "evidence": {
+        "service": 0,
+        "paidMeal": 5,
+        "mealConsumed": 0,
+        "paidCart": 0,
+        "interruptionTimes": [
+          3,
+          5,
+          7,
+          9,
+          11
+        ]
+      }
+    },
+    {
+      "name": "same-world lawful counterpart: finish selected meal then cart",
+      "status": "pass",
+      "evidence": {
+        "service": 1,
+        "deliveryAt": 9,
+        "paidMeal": 2,
+        "paidCart": 10,
+        "returnedToDock": true
+      }
+    },
+    {
+      "name": "nearby lawful hunger controls complete cart without interruption",
+      "status": "pass",
+      "evidence": [
+        {
+          "hunger": 0.97,
+          "service": 1,
+          "mealPaid": 0,
+          "cartPaid": 10
+        },
+        {
+          "hunger": 0.976,
+          "service": 1,
+          "mealPaid": 2,
+          "cartPaid": 10
+        }
+      ]
+    },
+    {
+      "name": "actual report pauses paid walking; reads and restore preserve it; stop preserves position",
+      "status": "pass",
+      "evidence": {
+        "receiptAt": 4,
+        "elapsed": 4,
+        "continuedArrivalAt": 6,
+        "stoppedPosition": 4
+      }
+    },
+    {
+      "name": "same-minute keeper controls do not change receiver decision or consume time",
+      "status": "pass",
+      "evidence": {
+        "receiverPaidInspect": 1,
+        "keeperA": 0,
+        "keeperB": 1
+      }
+    },
+    {
+      "name": "hidden launch/inlet twins preserve complete public view and Continue pauses under lost initial reports",
+      "status": "pass",
+      "evidence": {
+        "publicStops": [
+          1,
+          30
+        ],
+        "privateService": [
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "name": "source-time strict bound respects equality and switches only when later",
+      "status": "pass",
+      "evidence": [
+        {
+          "now": 9,
+          "progressFact": {
+            "receipt": 11,
+            "cue": "repairProgress:valve",
+            "value": 1,
+            "source": "valve",
+            "observedAt": 5,
+            "receivedAt": 8,
+            "via": "radio"
+          },
+          "paidCart": 0,
+          "job": null
+        },
+        {
+          "now": 10,
+          "progressFact": {
+            "receipt": 11,
+            "cue": "repairProgress:valve",
+            "value": 1,
+            "source": "valve",
+            "observedAt": 6,
+            "receivedAt": 9,
+            "via": "radio"
+          },
+          "paidCart": 1,
+          "job": {
+            "task": "cart",
+            "startedAt": 9,
+            "endsAt": 19,
+            "elapsed": 1,
+            "delivered": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "completed snapshot does not fabricate a late upstream lower bound",
+      "status": "pass",
+      "evidence": {
+        "receivedAt": 10,
+        "sourceProgress": {
+          "receipt": 15,
+          "cue": "repairProgress:valve",
+          "value": 6,
+          "source": "valve",
+          "observedAt": 7,
+          "receivedAt": 7,
+          "via": "local"
+        },
+        "paidAttend": 7
+      }
+    },
+    {
+      "name": "available public choices are admitted by the host at selected capacity-bin boundaries",
+      "status": "pass",
+      "evidence": [
+        {
+          "body": {
+            "fatigue": 0.9749,
+            "hunger": 0.15
+          },
+          "minute": 0,
+          "available": [
+            "inspect",
+            "meal"
+          ]
+        },
+        {
+          "body": {
+            "fatigue": 0.9749,
+            "hunger": 0.15
+          },
+          "minute": 1,
+          "available": [
+            "inspect",
+            "meal"
+          ]
+        },
+        {
+          "body": {
+            "fatigue": 0.9751,
+            "hunger": 0.15
+          },
+          "minute": 0,
+          "available": [
+            "meal"
+          ]
+        },
+        {
+          "body": {
+            "fatigue": 0.9751,
+            "hunger": 0.15
+          },
+          "minute": 1,
+          "available": [
+            "inspect",
+            "meal"
+          ]
+        },
+        {
+          "body": {
+            "fatigue": 0.15,
+            "hunger": 0.9749
+          },
+          "minute": 0,
+          "available": [
+            "inspect",
+            "travel-dock",
+            "meal"
+          ]
+        },
+        {
+          "body": {
+            "fatigue": 0.15,
+            "hunger": 0.9749
+          },
+          "minute": 1,
+          "available": [
+            "meal"
+          ]
+        },
+        {
+          "body": {
+            "fatigue": 0.15,
+            "hunger": 0.9751
+          },
+          "minute": 0,
+          "available": [
+            "meal"
+          ]
+        },
+        {
+          "body": {
+            "fatigue": 0.15,
+            "hunger": 0.9751
+          },
+          "minute": 1,
+          "available": [
+            "meal"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "save validation rejects injected state, accessors, sparse arrays and expansion without modifying valid history",
+      "status": "pass",
+      "evidence": {
+        "accessorCalls": 0,
+        "rejected": [
+          "accessor",
+          "sparse",
+          "injectedReceiver",
+          "sharedExpansion",
+          "copiedHandle"
+        ]
+      }
+    },
+    {
+      "name": "128 controls plus 30 paid advances fit exact recipe budget and restore",
+      "status": "pass",
+      "evidence": {
+        "controls": 128,
+        "advances": 30,
+        "commands": 158,
+        "horizon": 30
+      }
+    }
+  ]
+}

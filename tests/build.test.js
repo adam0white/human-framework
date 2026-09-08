@@ -30,7 +30,7 @@ test('an unpublished static dependency blocks build before the previous output i
 
 test('deployment selects exact assets and retires the laboratory without leaking adjacent experiments',async()=>{
   const root=await fixture();
-  const privateFiles=['index.html','web/app.js','web/guidance.js','web/styles.css','web/draft.js','web/private.html','src/core/index.js','src/scenarios/index.js','src/legacy/v0.1/index.js','src/legacy/v0.2/index.js','src/games/draft.js','src/runtime/draft.js','research/private.md','.env'];
+  const privateFiles=['index.html','web/app.js','web/guidance.js','web/styles.css','web/draft.js','web/private.html','web/signals.html','web/signals.js','web/signals-session.js','web/signals.css','src/games/signals.js','src/core/index.js','src/scenarios/index.js','src/legacy/v0.1/index.js','src/legacy/v0.2/index.js','src/games/draft.js','src/runtime/draft.js','research/private.md','.env'];
   try{
     for(const path of privateFiles){await mkdir(dirname(join(root,path)),{recursive:true});await writeFile(join(root,path),'PRIVATE LAB OR RESEARCH');}
     const built=await buildSite({root});

@@ -1,0 +1,22 @@
+[
+  {
+    "path": "src/games/across-cut.js",
+    "sha256": "788876ecb6b897d30224baa9f09d35996b6652408497d60b6b890a6c1c6ceaf2"
+  },
+  {
+    "path": "src/runtime/index.js",
+    "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+  },
+  {
+    "path": "src/human/v0.1.1.js",
+    "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+  },
+  {
+    "path": "src/core/model.js",
+    "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+  },
+  {
+    "path": "src/runtime/clock.js",
+    "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+  }
+]

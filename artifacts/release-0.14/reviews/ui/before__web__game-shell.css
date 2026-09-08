@@ -1,0 +1,148 @@
+/* Shared presentation. Each game retains its own palette, illustrations and controls. */
+.compact-game{height:100dvh;min-height:0;overflow:hidden;font-size:14px;line-height:1.45}
+.compact-game *{box-sizing:border-box}
+.compact-game [hidden]{display:none!important}
+.compact-game .shell{height:100%;max-width:1120px;margin:auto;padding:0 24px;display:flex;flex-direction:column;min-height:0}
+.compact-game .shell>header{flex:0 0 auto;min-height:40px;height:auto;padding:0;border-bottom:1px solid #738b8133;gap:12px;font-size:10px}
+.compact-game header a{min-height:40px;display:inline-flex;align-items:center;white-space:nowrap}
+.compact-game .shell>footer{display:none}
+.compact-game main{flex:1;min-height:0;display:flex;flex-direction:column;gap:0;padding:0;overflow:hidden}
+.compact-game .game-hud{flex:0 0 auto;margin:0;padding:12px 0 9px;border:0;border-radius:0;background:none;box-shadow:none}
+.compact-game .hud-top{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.compact-game .hud-top h1{font:400 32px/1.06 Georgia,serif;letter-spacing:-.035em;margin:0;padding:0;max-width:none}
+.compact-game .hud-clock{display:flex;align-items:baseline;gap:8px;text-align:right;flex-shrink:0}
+.compact-game .hud-clock strong{font-size:25px;font-variant-numeric:tabular-nums;line-height:1}
+.compact-game .hud-clock span{font-size:10px;max-width:110px;line-height:1.2}
+.compact-game .hud-objective{font-size:13px;line-height:1.4;margin:8px 0 5px;max-width:none;color:inherit}
+.compact-game .hud-resources{font-size:12px;margin:0;color:inherit;line-height:1.45}
+.compact-game .hud-bodies{display:flex;flex-wrap:wrap;gap:2px 16px;margin-top:3px;font-size:11px;color:inherit;opacity:.85}
+.compact-game .hud-alert{font-size:11px;line-height:1.3;margin:5px 0 0;color:inherit;font-weight:650}
+.compact-game .game-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;flex:0 0 auto;margin:0;padding:5px 0;border-block:1px solid #738b8133;background:none;overflow:visible}
+.compact-game .game-tab{min-height:42px;min-width:0;padding:7px 5px;margin:0;border:1px solid transparent;border-radius:7px;background:transparent;color:inherit;box-shadow:none;font:600 12px/1.2 system-ui,sans-serif;position:relative}
+.compact-game .game-tab[aria-selected=true]{background:#728b811a;border-color:#738b8155;color:inherit}
+.compact-game .game-tab.has-update::after{content:'';position:absolute;width:5px;height:5px;border-radius:50%;background:currentColor;top:5px;right:10px}
+.compact-game :is(button,a,summary,input,select,textarea,[role=tabpanel]):focus-visible{outline:3px solid #c97928;outline-offset:2px}
+.compact-game .game-content{flex:1;min-height:0;position:relative;overflow:hidden}
+.compact-game .game-panel{height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:12px 5px 12px 0;margin:0;border:0;border-radius:0;background:none;box-shadow:none;scroll-padding:12px}
+.compact-game .game-panel>section,.compact-game .game-panel>article{max-width:none;margin:0 0 12px;padding:15px;border-radius:10px}
+.compact-game .game-panel>details{margin:0 0 10px}
+.compact-game .game-panel .person{width:auto;min-width:0}
+.compact-game .game-panel :is(.action-panel,.choices,.jobs,.notebook,.kit,.session,.session-tools,.map-card,.worker-card,.job-board,.manifest,.map-panel,.practice-panel,.worksite,.waterside,.plan-panel,.journal,.courtyard,.condition,.neighbor-card,.people,.destinations,.service-board,.clock-card){position:static;max-height:none;overflow:visible;min-width:0}
+.compact-game .game-panel :is(.action-panel,.choices,.jobs,.notebook,.kit,.session,.session-tools){width:100%}
+.compact-game .game-panel h2{font-size:21px;line-height:1.2;margin-top:0}
+.compact-game .game-panel h3{font-size:14px}
+.compact-game .game-panel :is(.choice-list,.choice-list.primary-choices,.route-choices,.observation-choices,.recovery-choices,.actions,.choice-list,.job-choices){gap:8px}
+.compact-game .game-panel :is(.choice,.job-choice,.action){padding:12px;min-height:44px}
+.compact-game .game-panel .choice-title{font-size:14px}
+.compact-game .game-panel :is(.choice-detail,.choice-note,.action-detail,.action-forecast){font-size:12px;line-height:1.4}
+.compact-game .game-panel .choice-cost{font-size:12px;white-space:normal}
+.compact-game .game-panel :is(.site-scene,.river-scene,.route-map){max-height:210px;overflow:hidden}
+.compact-game .game-panel svg{max-width:100%}
+.compact-game .game-panel .people{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0}
+.compact-game .game-panel .person{margin:0}
+.compact-game .game-panel .journal ol,.compact-game .game-panel #journal{max-height:none;overflow:visible}
+.compact-game .game-panel .intro,.compact-game .game-panel .hero,.compact-game .game-panel .heading{display:block;margin:0;padding:12px 0}
+.compact-game .game-panel .intro h1,.compact-game .game-panel .hero h1{display:none}
+.compact-game .game-dock{flex:0 0 auto;max-width:none;margin:0;padding:8px 0 max(8px,env(safe-area-inset-bottom));border:0;border-top:1px solid #738b8155;border-radius:0;background:inherit;box-shadow:none;min-height:0}
+.compact-game .hud-jobs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:5px 14px;margin-bottom:6px}
+.compact-game .hud-job{display:flex;flex-direction:column;min-width:0;gap:1px}
+.compact-game .hud-job strong{font-size:12px;line-height:1.3;font-weight:650}
+.compact-game .hud-job>span{font-size:11px;line-height:1.3;opacity:.85}
+.compact-game .game-time-controls>section,.compact-game .game-time-controls>div{padding:0;margin:0;background:none;border:0;border-radius:0;box-shadow:none}
+.compact-game .game-dock :is(.time-buttons,.time-controls,.interval-buttons,.pending-buttons,.buttons){display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0;padding:0}
+.compact-game .game-dock .time-buttons>*{flex:0 0 auto}
+.compact-game .game-dock :is(button,select){min-height:42px;height:auto;font:600 12px/1.2 system-ui,sans-serif;padding:9px 12px;margin:0;width:auto}
+.compact-game .game-dock #next-event{flex:1;max-width:none;white-space:normal}
+.compact-game .game-dock select{padding:8px 4px;min-width:42px;max-width:55px}
+.compact-game .game-dock :is(.speed-label,label){display:flex;align-items:center;gap:3px;margin:0;font-size:0}
+.compact-game .game-dock .speed-label span{font-size:0}
+.compact-game .game-dock .status,.compact-game .game-dock #time-status{font-size:11px;line-height:1.35;margin:5px 0 0;min-height:0;max-width:none;color:inherit}
+.compact-game .game-dock :is(.job-row,#job-progress,.section-title,.choose-link,.pending-title,.pending-clock,#pending-title,#pending-time,#pending-detail,#pending-label,#pending-note,.pending-progress,#pending-progress,#action-progress){display:none}
+.compact-game .game-dock #next-explanation{font-size:11px;margin:0 0 5px}
+.compact-game .game-dock .time-guidance{display:block;margin:0}
+.compact-game .hud-stops{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.compact-game .hud-stops button{font-size:11px;min-height:35px;padding:7px 10px}
+.compact-game #notice:not([hidden]){flex:0 0 auto;padding:8px;margin:0 0 4px;font-size:12px;max-height:80px;overflow:auto}
+.compact-game .mobile-jump,.compact-game .play-nav{display:none}
+.compact-game .game-dock .promise-action{display:flex;gap:8px;align-items:center;padding:0 0 5px}
+.compact-game .game-dock .promise-action p{font-size:11px;margin:0}
+.compact-game .game-dock .promise-action button{font-size:11px;padding:7px;flex-shrink:0}
+@media(min-width:850px){
+ .compact-game .game-panel>.person{max-width:850px;margin-inline:auto}
+ .compact-game .game-panel :is(.route-choices,.observation-choices,.recovery-choices,.choice-list,#gather-choices,#build-choices){display:grid;grid-template-columns:1fr 1fr}
+ .compact-game .game-panel .choice{height:100%}
+ .compact-game .hud-bodies{font-size:12px}
+ .compact-game .game-dock{display:grid;grid-template-columns:1fr 1fr;column-gap:20px;align-items:center}
+ .compact-game .hud-stops{grid-column:1/-1}
+ .compact-game .hud-jobs{margin:0}
+}
+@media(max-width:600px){
+ .compact-game .shell{padding:0 13px}
+ .compact-game .shell>header{min-height:35px;font-size:9px}
+ .compact-game header a{min-height:35px}
+ .compact-game header>span{display:none}
+ .compact-game .game-hud{padding:9px 0 7px}
+ .compact-game .hud-top{gap:12px}
+ .compact-game .hud-top h1{font-size:25px;line-height:1.04;max-width:235px}
+ .compact-game .hud-clock{display:flex;flex-direction:column;align-items:flex-end;gap:2px;max-width:83px}
+ .compact-game .hud-clock strong{font-size:25px}
+ .compact-game .hud-clock span{font-size:9px;max-width:83px}
+ .compact-game .hud-objective{font-size:12px;margin:6px 0 4px;line-height:1.4}
+ .compact-game .hud-resources{font-size:11px;line-height:1.4}
+ .compact-game .hud-bodies{display:grid;grid-template-columns:1fr;gap:1px;margin-top:3px;font-size:10px;line-height:1.4}
+ .compact-game .game-tabs{gap:2px;padding:4px 0}
+ .compact-game .game-tab{min-height:41px;font-size:11px;padding:7px 2px}
+ .compact-game .game-panel{padding-top:9px;padding-bottom:9px}
+ .compact-game .game-panel>section,.compact-game .game-panel>article{padding:12px;margin-bottom:10px}
+ .compact-game .game-panel .people{grid-template-columns:1fr}
+ .compact-game .game-panel h2{font-size:20px}
+ .compact-game .hud-jobs{grid-template-columns:1fr;gap:4px}
+ .compact-game .hud-job strong{font-size:11px}
+ .compact-game .hud-job>span{font-size:10px}
+ .compact-game .game-dock :is(button,select){font-size:11px;padding:9px 9px}
+ .compact-game .game-dock #time-status{font-size:10px}
+ .compact-game .game-dock #next-explanation{font-size:10px}
+ .compact-game .game-dock .promise-action{flex-wrap:wrap}
+ .compact-game .game-panel :is(.supplies,.owned,.stock-items){flex-wrap:wrap}
+}
+/* At high zoom/short heights, preserve readable controls and allow document flow.
+   Ordinary phone/desktop sizes keep only the selected panel scrollable. */
+@media(max-height:570px),(max-width:340px){
+ .compact-game{height:auto;min-height:100dvh;overflow:auto}
+ .compact-game .shell{height:auto;min-height:100dvh}
+ .compact-game main{display:block;overflow:visible}
+ .compact-game .game-content{overflow:visible}
+ .compact-game .game-panel{height:auto;overflow:visible;scrollbar-gutter:auto}
+ .compact-game .game-dock{position:static}
+ .compact-game .game-tabs{position:sticky;top:0;background:Canvas;z-index:3}
+}
+@media(prefers-reduced-motion:reduce){.compact-game *{scroll-behavior:auto!important;transition:none!important}}
+.compact-game .hud-feedback{grid-column:1/-1;font-size:11px;line-height:1.4;margin:0;padding:5px 0 0;border-top:1px solid #738b8122}
+.compact-game[data-game="commons"] .game-panel #gather-choices,.compact-game[data-game="commons"] .game-panel #build-choices,
+.compact-game[data-game="commons-next"] .game-panel #gather-choices,.compact-game[data-game="commons-next"] .game-panel #build-choices{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.compact-game[data-game="commons-next"] .game-panel .jobs,.compact-game[data-game="commons"] .game-panel>.choices{padding:8px;border:0;background:none}
+.compact-game:is([data-game="commons"],[data-game="commons-next"]) .game-panel .job-choice{padding:9px;min-height:62px}
+.compact-game:is([data-game="commons"],[data-game="commons-next"]) .game-panel .job-choice .choice-title{display:flex;flex-wrap:wrap;gap:2px 5px;font-size:12px;line-height:1.3}
+.compact-game:is([data-game="commons"],[data-game="commons-next"]) .game-panel .job-choice .choice-title>strong{font-size:12px}
+.compact-game:is([data-game="commons"],[data-game="commons-next"]) .game-panel .job-choice .choice-title>span{font-size:11px}
+.compact-game:is([data-game="commons"],[data-game="commons-next"]) .game-panel .job-choice .choice-detail{font-size:11px;line-height:1.3;margin-top:4px}
+.compact-game:is([data-game="commons"],[data-game="commons-next"]) .game-panel h3{margin:10px 0 5px;font-size:12px}
+.compact-game .work-rules{margin:8px 0 0;font-size:12px}
+.compact-game .work-rules summary{min-height:34px;padding:8px 0;font-size:11px}
+.compact-game[data-game="commons-next"] .game-panel>.jobs{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.compact-game[data-game="commons-next"] .jobs>.caption,.compact-game[data-game="commons-next"] .jobs>.work-rules{grid-column:1/-1}
+.compact-game[data-game="commons-next"] .jobs>h3{display:none}
+.compact-game[data-game="commons-next"] .jobs #build-choices,.compact-game[data-game="commons-next"] .jobs #gather-choices{display:contents}
+.compact-game[data-game="commons-next"] .jobs .job-choice{min-height:65px}
+.compact-game .hud-job>span:empty{display:none}
+.compact-game .room-heading{flex-wrap:wrap;gap:5px}
+/* Ongoing camp work keeps both actors readable on one line when names are short. */
+.compact-game[data-game="commons-next"] .hud-job{flex-direction:row;justify-content:space-between;align-items:baseline;gap:8px}
+.compact-game[data-game="commons-next"] .hud-job>span{max-width:55%;text-align:right}
+.compact-game[data-game="commons-next"] .jobs [data-job="rest"] .choice-detail{display:none}
+.compact-game[data-game="commons-next"] .game-dock{padding-top:7px;padding-bottom:max(6px,env(safe-area-inset-bottom))}
+.compact-game .hud-stops{align-items:center}
+.compact-game .hud-stops #release{margin:0}
+.compact-game[data-game="commons-next"] .game-panel>.jobs{gap:5px}
+.compact-game .hud-feedback:empty,.compact-game .hud-alert:empty{position:absolute;width:1px;height:1px;padding:0;margin:0;border:0;clip-path:inset(50%);overflow:hidden}
+.compact-game .withdraw-context{flex-basis:100%;font-size:11px;line-height:1.35}

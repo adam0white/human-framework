@@ -1,0 +1,497 @@
+{
+  "setup": {
+    "inletMinutes": 14,
+    "launchAt": 15,
+    "bodies": {
+      "receiver": {
+        "fatigue": 0.15,
+        "hunger": 0.972
+      }
+    }
+  },
+  "description": "Same real host after receiver report at minute 2; hold its meal for both paid minutes, then resume unchanged cart decision.",
+  "afterMeal": {
+    "actorId": "receiver",
+    "now": 4,
+    "horizon": 30,
+    "ended": false,
+    "channel": {
+      "mode": "reliable",
+      "minDelay": 2,
+      "maxDelay": 2,
+      "lossPossible": false
+    },
+    "body": {
+      "id": "receiver",
+      "body": {
+        "fatigue": 0.15,
+        "hunger": 0.45
+      },
+      "skills": {
+        "repair": 0.2,
+        "carry": 0.2
+      },
+      "minutes": 4,
+      "pending": null
+    },
+    "position": 6,
+    "location": "dock",
+    "inventory": {
+      "fitting": {
+        "available": 1,
+        "reserved": 0,
+        "installed": 0
+      },
+      "water": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "cartWater": {
+        "available": 1,
+        "reserved": 0,
+        "consumed": 0
+      },
+      "radio": {
+        "available": 3,
+        "reserved": 0,
+        "consumed": 1
+      },
+      "meal": {
+        "available": 0,
+        "reserved": 0,
+        "consumed": 1
+      }
+    },
+    "job": null,
+    "local": {
+      "station": "dock",
+      "repairMinutes": 14,
+      "repairProgress": 0,
+      "launchAt": 15,
+      "launchDeparted": false,
+      "serviceUnits": 0,
+      "peerPresent": false
+    },
+    "notebook": [
+      {
+        "receipt": 1,
+        "cue": "launchAt",
+        "value": 15,
+        "source": "dock",
+        "observedAt": 0,
+        "receivedAt": 0,
+        "via": "local"
+      },
+      {
+        "receipt": 2,
+        "cue": "launchDeparted",
+        "value": false,
+        "source": "dock",
+        "observedAt": 0,
+        "receivedAt": 0,
+        "via": "local"
+      },
+      {
+        "receipt": 3,
+        "cue": "serviceUnits",
+        "value": 0,
+        "source": "dock",
+        "observedAt": 0,
+        "receivedAt": 0,
+        "via": "local"
+      },
+      {
+        "receipt": 4,
+        "cue": "repairProgress:dock",
+        "value": 0,
+        "source": "dock",
+        "observedAt": 0,
+        "receivedAt": 0,
+        "via": "local"
+      },
+      {
+        "receipt": 5,
+        "cue": "peerPresent:dock",
+        "value": false,
+        "source": "dock",
+        "observedAt": 0,
+        "receivedAt": 0,
+        "via": "local"
+      },
+      {
+        "receipt": 6,
+        "cue": "repairMinutes:dock",
+        "value": 14,
+        "source": "dock",
+        "observedAt": 1,
+        "receivedAt": 1,
+        "via": "local"
+      }
+    ],
+    "latest": [
+      {
+        "receipt": 1,
+        "cue": "launchAt",
+        "value": 15,
+        "source": "dock",
+        "observedAt": 0,
+        "receivedAt": 0,
+        "via": "local"
+      },
+      {
+        "receipt": 2,
+        "cue": "launchDeparted",
+        "value": false,
+        "source": "dock",
+        "observedAt": 0,
+        "receivedAt": 0,
+        "via": "local"
+      },
+      {
+        "receipt": 3,
+        "cue": "serviceUnits",
+        "value": 0,
+        "source": "dock",
+        "observedAt": 0,
+        "receivedAt": 0,
+        "via": "local"
+      },
+      {
+        "receipt": 4,
+        "cue": "repairProgress:dock",
+        "value": 0,
+        "source": "dock",
+        "observedAt": 0,
+        "receivedAt": 0,
+        "via": "local"
+      },
+      {
+        "receipt": 5,
+        "cue": "peerPresent:dock",
+        "value": false,
+        "source": "dock",
+        "observedAt": 0,
+        "receivedAt": 0,
+        "via": "local"
+      },
+      {
+        "receipt": 6,
+        "cue": "repairMinutes:dock",
+        "value": 14,
+        "source": "dock",
+        "observedAt": 1,
+        "receivedAt": 1,
+        "via": "local"
+      }
+    ],
+    "inbox": [],
+    "sent": [
+      {
+        "messageId": "receiver:m1",
+        "sender": "receiver",
+        "recipient": "keeper",
+        "sentAt": 2,
+        "via": "radio",
+        "message": {
+          "kind": "report",
+          "observations": [
+            {
+              "receipt": 1,
+              "cue": "launchAt",
+              "value": 15,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 2,
+              "cue": "launchDeparted",
+              "value": false,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 3,
+              "cue": "serviceUnits",
+              "value": 0,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 4,
+              "cue": "repairProgress:dock",
+              "value": 0,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 6,
+              "cue": "repairMinutes:dock",
+              "value": 14,
+              "source": "dock",
+              "observedAt": 1,
+              "receivedAt": 1,
+              "via": "local"
+            }
+          ]
+        }
+      }
+    ],
+    "paid": {
+      "availableRecovery": 0,
+      "inspect": 1,
+      "repair": 0,
+      "release": 0,
+      "attend": 0,
+      "cart": 0,
+      "travel": 0,
+      "rest": 0,
+      "meal": 2,
+      "transmit": 1
+    },
+    "lastResult": {
+      "at": 4,
+      "task": "meal",
+      "code": "COMPLETED",
+      "paidMinutes": 2
+    },
+    "budget": {
+      "used": 3,
+      "limit": 128,
+      "reserved": 0
+    },
+    "nextBoundary": {
+      "at": 15,
+      "kind": "known-launch"
+    }
+  },
+  "decision": {
+    "state": {
+      "version": "0.1.0",
+      "mode": "cart"
+    },
+    "commands": [
+      {
+        "type": "request",
+        "action": {
+          "task": "cart"
+        }
+      }
+    ],
+    "reason": "pipe-too-late-use-cart"
+  },
+  "world": {
+    "researcherOnly": true,
+    "now": 14,
+    "ended": false,
+    "config": {
+      "valveMinutes": 6,
+      "inletMinutes": 14,
+      "launchAt": 15,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.972
+        },
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "work": {
+      "valve": 0,
+      "dock": 0
+    },
+    "service": {
+      "units": 1,
+      "departed": false,
+      "deliveries": [
+        {
+          "at": 9,
+          "route": "cart",
+          "units": 1,
+          "delivered": 1,
+          "lost": 0,
+          "excess": 0
+        }
+      ]
+    },
+    "water": {
+      "pipeConsumed": 0,
+      "cartConsumed": 1,
+      "inTransit": 0,
+      "lost": 0,
+      "excess": 0,
+      "owned": 2,
+      "conservedTotal": 3
+    },
+    "actors": {
+      "keeper": {
+        "body": {
+          "fatigue": 0,
+          "hunger": 0.17800000000000002
+        },
+        "position": 0,
+        "inventory": {
+          "fitting": {
+            "available": 1,
+            "reserved": 0,
+            "installed": 0
+          },
+          "water": {
+            "available": 2,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "cartWater": {
+            "available": 0,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "radio": {
+            "available": 4,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "meal": {
+            "available": 1,
+            "reserved": 0,
+            "consumed": 0
+          }
+        },
+        "paid": {
+          "availableRecovery": 14,
+          "inspect": 0,
+          "repair": 0,
+          "release": 0,
+          "attend": 0,
+          "cart": 0,
+          "travel": 0,
+          "rest": 0,
+          "meal": 0,
+          "transmit": 0
+        }
+      },
+      "receiver": {
+        "body": {
+          "fatigue": 0.2770000000000001,
+          "hunger": 0.44999999999999996
+        },
+        "position": 6,
+        "inventory": {
+          "fitting": {
+            "available": 1,
+            "reserved": 0,
+            "installed": 0
+          },
+          "water": {
+            "available": 0,
+            "reserved": 0,
+            "consumed": 0
+          },
+          "cartWater": {
+            "available": 0,
+            "reserved": 0,
+            "consumed": 1
+          },
+          "radio": {
+            "available": 3,
+            "reserved": 0,
+            "consumed": 1
+          },
+          "meal": {
+            "available": 0,
+            "reserved": 0,
+            "consumed": 1
+          }
+        },
+        "paid": {
+          "availableRecovery": 0,
+          "inspect": 1,
+          "repair": 0,
+          "release": 0,
+          "attend": 0,
+          "cart": 10,
+          "travel": 0,
+          "rest": 0,
+          "meal": 2,
+          "transmit": 1
+        }
+      }
+    },
+    "transport": [
+      {
+        "messageId": "receiver:m1",
+        "sender": "receiver",
+        "recipient": "keeper",
+        "sentAt": 2,
+        "via": "radio",
+        "message": {
+          "kind": "report",
+          "observations": [
+            {
+              "receipt": 1,
+              "cue": "launchAt",
+              "value": 15,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 2,
+              "cue": "launchDeparted",
+              "value": false,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 3,
+              "cue": "serviceUnits",
+              "value": 0,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 4,
+              "cue": "repairProgress:dock",
+              "value": 0,
+              "source": "dock",
+              "observedAt": 0,
+              "receivedAt": 0,
+              "via": "local"
+            },
+            {
+              "receipt": 6,
+              "cue": "repairMinutes:dock",
+              "value": 14,
+              "source": "dock",
+              "observedAt": 1,
+              "receivedAt": 1,
+              "via": "local"
+            }
+          ]
+        },
+        "delay": 2,
+        "deliveredAt": 4
+      }
+    ],
+    "journalEntries": 8
+  }
+}

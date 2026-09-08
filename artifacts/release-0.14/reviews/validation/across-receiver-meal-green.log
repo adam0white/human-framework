@@ -1,0 +1,29 @@
+✔ the receiver and player driver are available (0.431125ms)
+✔ minute-eight report pauses one paid release minute and explicit stop returns both units (22.530917ms)
+✔ continuing the same receipt preserves the pending release and loses its two consumed units (12.122208ms)
+✔ rendering, saving and keeper admission do not start or pay the receiver before advancement (1.037292ms)
+✔ own per-minute repair observations do not manufacture a Continue stop each minute (2.4115ms)
+✔ hidden work and launch twins have equal views, choices and stopping behavior until receipt (6.512708ms)
+✔ a missing report and private departure do not end or stop the keeper early (12.4445ms)
+✔ the receiver pays full adaptive attendance despite absent keeper reports (8.83875ms)
+✔ save recipes reject injected NPC state, malformed controls and unsupported identities (14.490125ms)
+✔ researcher outcome stays unavailable until the public horizon (9.139833ms)
+✔ actually received incomplete upstream work can establish a too-late earliest arrival (2.989333ms)
+✔ the source-time bound allows arrival exactly at launch and never assumes delay means failure (5.017458ms)
+✔ interrupting walking retains physical position across repeated reads and save resume (2.672333ms)
+✔ horizon interrupts remaining paid work and returns unconsumed reservations (8.019292ms)
+✔ local Stop stays legal after ordinary keeper decision room is exhausted (38.5735ms)
+✔ save validation rejects accessors and sparse or amplified JSON without invoking getters (0.339166ms)
+✔ Continue pauses when available recovery restores a blocked own work choice (1.166083ms)
+✔ public game handles cannot be mutated or forged and their recipes reproduce the current view (4.192084ms)
+✔ enabled work choices remain admissible at body estimate rounding boundaries (4.015208ms)
+✔ receiver decisions are detached, repeatable and equal across hidden upstream worlds (0.170208ms)
+✔ a hungry receiver finishes its owned meal before retrying the cart (6.723334ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 200.962667

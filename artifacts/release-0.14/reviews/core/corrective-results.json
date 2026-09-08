@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "node": "v26.8.1",
+  "sourceBefore": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad",
+  "sourceAfter": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad",
+  "scope": "Narrow correction check only: prior radio, partial travel, physical arrival, restored first-hop contact, original relay rejection",
+  "partialPositionAt8": 5,
+  "ownRecordsAt9": [
+    {
+      "receipt": 8,
+      "cue": "launchAt",
+      "value": 27,
+      "source": "dock",
+      "observedAt": 9,
+      "receivedAt": 9,
+      "via": "local"
+    },
+    {
+      "receipt": 9,
+      "cue": "launchDeparted",
+      "value": false,
+      "source": "dock",
+      "observedAt": 9,
+      "receivedAt": 9,
+      "via": "local"
+    },
+    {
+      "receipt": 10,
+      "cue": "serviceUnits",
+      "value": 0,
+      "source": "dock",
+      "observedAt": 9,
+      "receivedAt": 9,
+      "via": "local"
+    },
+    {
+      "receipt": 11,
+      "cue": "repairProgress:dock",
+      "value": 0,
+      "source": "dock",
+      "observedAt": 9,
+      "receivedAt": 9,
+      "via": "local"
+    }
+  ],
+  "originalRadioRecordsUnchanged": true,
+  "oldRadioRelayRejected": true,
+  "deliveredSourceRecordsExact": true,
+  "restoreBeforeAndAfterSend": true
+}
