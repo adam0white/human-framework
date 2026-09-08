@@ -190,3 +190,12 @@ test('received withdrawal changes real keeper water action while missing respons
   const noReplies=structuredClone(cases.find(c=>c.id==='S10-withdrawal-lost'));noReplies.id='diagnostic-no-replies';noReplies.setup.channelOverrides['receiver:5']='loss';
   const silent=runTrial(noReplies);assert.equal(silent.finalLocal.keeper.inbox.length,0);assert.equal(silent.final.water.pipeConsumed,2);
 });
+
+test('evidence cannot relabel a real policy decision as prescribed to suppress validation',async()=>{
+  const {runTrial,replayTrial}=await import('../src/experiments/across-cut/comparison/experiment.js');const {selectCases}=await import('../src/experiments/across-cut/comparison/cases.js');const cases=selectCases();
+  for(const [id,arm]of [['D1','notebook'],['S9-withdrawal-received','prescribed']]){
+    const trial=runTrial(cases.find(c=>c.id===id),arm),forged=structuredClone(trial);
+    const event=forged.events.find(e=>e.controllers?.keeper==='notebook');event.controllers.keeper='prescribed';event.decisions.keeper.reason='forged';
+    assert.throws(()=>replayTrial(forged),/equal|Expected|controller/,id);
+  }
+});
