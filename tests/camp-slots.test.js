@@ -37,7 +37,8 @@ test('active paid work updates one slot while older camp and save copies stay ex
   const restored = restoreBook(serializeBook(updated));
   assert.deepEqual(restored, updated);
   assert.deepEqual(story.advanceGame(getActiveGame(restored), 1), story.advanceGame(next, 1));
-  restored.slots[1].save.game.world.stock.food = 999;
+  assert.throws(() => { restored.slots[1].save.game.world.stock.food = 999; }, TypeError);
+  const editedCopy = copy(restored); editedCopy.slots[1].save.game.world.stock.food = 999;
   assert.notEqual(updated.slots[1].save.game.world.stock.food, 999);
 });
 
@@ -68,7 +69,7 @@ test('invalid references and metadata reject without changing the valid book', (
 });
 
 test('every saved world validates, including inactive corruption and malformed raw JSON', () => {
-  const book = addStory(one(), newStory(), { id: 'second', at: 200 });
+  const book = copy(addStory(one(), newStory(), { id: 'second', at: 200 }));
   book.slots[0].save.game.world.stock.food++;
   assert.throws(() => getActiveGame(book)); assert.throws(() => serializeBook(book)); assert.throws(() => restoreBook(JSON.stringify(book)));
   for (const raw of [null, {}, '', '{bad', 'null', '[]', JSON.stringify(story.exportGame(newStory()))]) assert.throws(() => restoreBook(raw));
@@ -80,31 +81,62 @@ test('every saved world validates, including inactive corruption and malformed r
 
 test('cycles, aliases, accessors, symbol keys, sparse arrays and hidden fields reject before reading', () => {
   let read = 0;
-  const accessor = one(); Object.defineProperty(accessor, 'activeId', { enumerable: true, get() { read++; return 'first'; } });
+  const accessor = copy(one()); Object.defineProperty(accessor, 'activeId', { enumerable: true, get() { read++; return 'first'; } });
   assert.throws(() => serializeBook(accessor), /accessor|JSON/i); assert.equal(read, 0);
   const options = { id: 'next' }; Object.defineProperty(options, 'at', { enumerable: true, get() { read++; return 200; } });
   assert.throws(() => addStory(one(), newStory(), options)); assert.equal(read, 0);
-  const cycle = one(); cycle.slots[0].save.game.extra = cycle;
+  const cycle = copy(one()); cycle.slots[0].save.game.extra = cycle;
   assert.throws(() => serializeBook(cycle), /tree|shared|cycle|JSON/i);
-  const alias = addStory(one(), newStory(), { id: 'second', at: 200 }); alias.slots[1].save = alias.slots[0].save;
+  const alias = copy(addStory(one(), newStory(), { id: 'second', at: 200 })); alias.slots[1].save = alias.slots[0].save;
   assert.throws(() => serializeBook(alias), /tree|shared|alias|JSON/i);
   let expansion = {}; for (let n = 0; n < 25; n++) expansion = { a: expansion, b: expansion };
   assert.throws(() => serializeBook(expansion), /tree|shared|alias|JSON|fields/i);
-  const symbol = one(); symbol[Symbol('hidden')] = 1; assert.throws(() => serializeBook(symbol));
-  const hidden = one(); Object.defineProperty(hidden, 'hidden', { value: 1 }); assert.throws(() => serializeBook(hidden));
-  const sparse = one(); sparse.slots = new Array(1); assert.throws(() => serializeBook(sparse));
-  const customArray = one(); customArray.slots.foo = 1; assert.throws(() => serializeBook(customArray));
+  const symbol = copy(one()); symbol[Symbol('hidden')] = 1; assert.throws(() => serializeBook(symbol));
+  const hidden = copy(one()); Object.defineProperty(hidden, 'hidden', { value: 1 }); assert.throws(() => serializeBook(hidden));
+  const sparse = copy(one()); sparse.slots = new Array(1); assert.throws(() => serializeBook(sparse));
+  const customArray = copy(one()); customArray.slots.foo = 1; assert.throws(() => serializeBook(customArray));
 });
 
 test('raw six MiB is inclusive, story size is independent, and label exhaustion preserves access', () => {
   const valid = serializeBook(one()), maximum = valid + ' '.repeat(6 * 1024 * 1024 - Buffer.byteLength(valid, 'utf8'));
   assert.deepEqual(restoreBook(maximum), restoreBook(valid));
   assert.throws(() => restoreBook(maximum + ' '), /size|limit/i);
-  const oversizedStory = one();
+  const oversizedStory = copy(one());
   oversizedStory.slots[0].save.extra = Object.fromEntries(Array.from({ length: 1100 }, (_, n) => [String(n), 'x'.repeat(1000)]));
   assert.throws(() => serializeBook(oversizedStory), /size|limit/i);
-  const exhausted = one(); exhausted.nextOrdinal = Number.MAX_SAFE_INTEGER;
+  const exhausted = copy(one()); exhausted.nextOrdinal = Number.MAX_SAFE_INTEGER;
   assert.throws(() => addStory(exhausted, newStory(), { id: 'next', at: 200 }), /ordinal|limit/i);
   assert.deepEqual(getActiveGame(exhausted), newStory());
   assert.equal(removeStory(exhausted, 'first').activeId, null);
+});
+
+
+test('every returned book is deeply frozen before reuse and external copies still validate every slot', () => {
+  const game = story.advanceGame(story.startJob(newStory(), 'gather-timber'), 2);
+  const first = addStory(createBook(), game, { id: 'first', at: 100 });
+  const second = addStory(first, newStory(), { id: 'second', at: 200 });
+  const updated = updateActive(second, newStory(), 250);
+  const selected = selectStory(updated, 'first');
+  const removed = removeStory(selected, 'second');
+  const restored = restoreBook(serializeBook(removed));
+  function frozen(value) {
+    if (!value || typeof value !== 'object') return;
+    assert.equal(Object.isFrozen(value), true);
+    for (const child of Object.values(value)) frozen(child);
+  }
+  for (const book of [createBook(), first, second, updated, selected, removed, restored]) frozen(book);
+  const before = serializeBook(second);
+  assert.throws(() => { second.activeId = 'first'; }, TypeError);
+  assert.throws(() => { second.slots.push(first.slots[0]); }, TypeError);
+  assert.throws(() => { second.slots[0].save.game.world.stock.food++; }, TypeError);
+  assert.equal(serializeBook(second), before);
+  const external = copy(second), detached = selectStory(external, 'first');
+  assert.equal(Object.isFrozen(external), false);
+  external.slots[0].save.game.world.stock.food++;
+  assert.deepEqual(getActiveGame(detached), game);
+  const hostile = copy(second); hostile.slots[0].save.game.world.stock.food++;
+  assert.throws(() => restoreBook(JSON.stringify(hostile)));
+  assert.throws(() => serializeBook(hostile));
+  assert.throws(() => updateActive(hostile, newStory(), 250));
+  assert.equal(serializeBook(second), before);
 });

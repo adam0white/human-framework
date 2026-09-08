@@ -5,7 +5,7 @@ export const STORAGE_KEY = 'human-camp-story-slots-v1';
 export const MAX_SLOTS = 5;
 const MAX_BOOK_BYTES = 6 * 1024 * 1024, MAX_STORY_BYTES = 1024 * 1024;
 const MAX_NODES = 1250128, MAX_DEPTH = 64;
-const copy = value => structuredClone(value);
+const copy = value => structuredClone(value), trustedBooks = new WeakSet();
 const fail = message => { throw new Error(message); };
 
 // Count UTF-8 before JSON.parse or serialization; a large string never requires an encoded copy.
@@ -73,6 +73,7 @@ function id(value) {
 }
 function timestamp(value) { integer(value, 0, Number.MAX_SAFE_INTEGER, 'story timestamp'); }
 function validateBook(book) {
+  if (book && typeof book === 'object' && trustedBooks.has(book)) return book;
   inspectTree(book);
   fields(book, ['format', 'version', 'nextOrdinal', 'activeId', 'slots'], 'camp book');
   if (book.format !== 'human-camp-book' || book.version !== 1) fail('Incompatible camp book.');
@@ -98,12 +99,23 @@ function storySave(game) {
   inspectTree(game, MAX_STORY_BYTES);
   const save = story.exportGame(game);
   inspectTree(save, MAX_STORY_BYTES);
-  story.restoreGame(save);
+  // exportGame has already validated this world and constructs its exact save envelope.
   return save;
 }
 
+function sealBook(book) {
+  // Callers provide only a fully validated load or a derivation of validated inputs.
+  // Recheck tree/byte bounds, then freeze every reachable object before trusting identity.
+  inspectTree(book);
+  function freeze(value) {
+    if (!value || typeof value !== 'object') return;
+    for (const child of Object.values(value)) freeze(child);
+    Object.freeze(value);
+  }
+  freeze(book); trustedBooks.add(book); return book;
+}
 export function createBook() {
-  return { format: 'human-camp-book', version: 1, nextOrdinal: 1, activeId: null, slots: [] };
+  return sealBook({ format: 'human-camp-book', version: 1, nextOrdinal: 1, activeId: null, slots: [] });
 }
 export function addStory(book, game, metadata) {
   validateBook(book); inspectTree(metadata); fields(metadata, ['id', 'at'], 'new story metadata');
@@ -114,7 +126,7 @@ export function addStory(book, game, metadata) {
   const save = storySave(game), next = copy(book);
   next.slots.push({ id: metadata.id, label: `Camp ${book.nextOrdinal}`, createdAt: metadata.at, updatedAt: metadata.at, save });
   next.nextOrdinal++; next.activeId = metadata.id;
-  return validateBook(next);
+  return sealBook(next);
 }
 export function updateActive(book, game, at) {
   validateBook(book); timestamp(at);
@@ -123,19 +135,19 @@ export function updateActive(book, game, at) {
   if (at < active.createdAt) fail('Story update cannot precede its creation timestamp.');
   const save = storySave(game), next = copy(book), slot = next.slots.find(slot => slot.id === next.activeId);
   slot.updatedAt = at; slot.save = save;
-  return validateBook(next);
+  return sealBook(next);
 }
 export function selectStory(book, selectedId) {
   validateBook(book); id(selectedId);
   if (!book.slots.some(slot => slot.id === selectedId)) fail('Unknown story slot.');
-  return { ...copy(book), activeId: selectedId };
+  return sealBook({ ...copy(book), activeId: selectedId });
 }
 export function removeStory(book, removedId) {
   validateBook(book); id(removedId);
   if (!book.slots.some(slot => slot.id === removedId)) fail('Unknown story slot.');
   const next = copy(book); next.slots = next.slots.filter(slot => slot.id !== removedId);
   if (next.activeId === removedId) next.activeId = next.slots[0]?.id ?? null;
-  return next;
+  return sealBook(next);
 }
 export function getActiveGame(book) {
   validateBook(book);
@@ -145,7 +157,7 @@ export function restoreBook(rawString) {
   if (typeof rawString !== 'string') fail('Camp book storage must contain a JSON string.');
   if (rawString.length > MAX_BOOK_BYTES) fail('Camp book exceeds its bounded size limit.');
   utf8Bytes(rawString, MAX_BOOK_BYTES);
-  return validateBook(JSON.parse(rawString));
+  return sealBook(validateBook(JSON.parse(rawString)));
 }
 export function serializeBook(book) {
   validateBook(book);

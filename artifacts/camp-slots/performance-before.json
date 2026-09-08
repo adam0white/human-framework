@@ -1,0 +1,137 @@
+{
+  "sourceCommit": "8eae7fefa04c1bb4f44617c2927d9bff5df3654f",
+  "node": "v26.8.1",
+  "sources": {
+    "web/camp-slots.js": "35db0d7c78a1b1464e6b28fadbb8db85b5ea44a3e8f6393a17c205e6add2c560",
+    "src/games/camp-story.js": "892157d79398612dcec0b635be35ee09bda322a669aeb36cb9f54b6826b30e82",
+    "src/games/camp.js": "ccb71f95881382cb7a2e90ad03da994bc92e191526f695ac746db02d9cbabb47",
+    "artifacts/camp-slots/performance.mjs": "94dfa2317146114860d9b61010f925c47815ce2884262276478511aefcc2b9dc"
+  },
+  "scope": "Actual story saves with paid work and current jobs; repeated requests deliberately stress journal validation. These are synthetic reprioritization loads, not measured human command frequencies.",
+  "records": [
+    {
+      "commands": 100,
+      "slots": 1,
+      "paidWindowMinutes": 20,
+      "phase": "packing",
+      "caches": 0,
+      "restoreMs": 33.32900000000001,
+      "trials": [
+        {
+          "updateMs": 84.81354200000001,
+          "serializeMs": 28.131083999999987,
+          "totalMs": 112.944626,
+          "sha256": "33285d5c1b9161d1b43491b5e1d8032c3475b6e81a1fca2c5748b60febed5689",
+          "bytes": 18089
+        },
+        {
+          "updateMs": 82.23370799999998,
+          "serializeMs": 27.54925000000003,
+          "totalMs": 109.78295800000001,
+          "sha256": "33285d5c1b9161d1b43491b5e1d8032c3475b6e81a1fca2c5748b60febed5689",
+          "bytes": 18089
+        },
+        {
+          "updateMs": 81.85695800000008,
+          "serializeMs": 27.019499999999994,
+          "totalMs": 108.87645800000007,
+          "sha256": "33285d5c1b9161d1b43491b5e1d8032c3475b6e81a1fca2c5748b60febed5689",
+          "bytes": 18089
+        }
+      ]
+    },
+    {
+      "commands": 100,
+      "slots": 5,
+      "paidWindowMinutes": 20,
+      "phase": "packing",
+      "caches": 0,
+      "restoreMs": 132.29050000000007,
+      "trials": [
+        {
+          "updateMs": 291.09120900000016,
+          "serializeMs": 131.42724999999973,
+          "totalMs": 422.5184589999999,
+          "sha256": "b1b28f726cd3f0ac50e55155b8af2646e9dc51bd640ba6f1b30007de12045e91",
+          "bytes": 90093
+        },
+        {
+          "updateMs": 288.206459,
+          "serializeMs": 130.8829999999998,
+          "totalMs": 419.0894589999998,
+          "sha256": "b1b28f726cd3f0ac50e55155b8af2646e9dc51bd640ba6f1b30007de12045e91",
+          "bytes": 90093
+        },
+        {
+          "updateMs": 290.864458,
+          "serializeMs": 131.70941700000003,
+          "totalMs": 422.57387500000004,
+          "sha256": "b1b28f726cd3f0ac50e55155b8af2646e9dc51bd640ba6f1b30007de12045e91",
+          "bytes": 90093
+        }
+      ]
+    },
+    {
+      "commands": 500,
+      "slots": 1,
+      "paidWindowMinutes": 100,
+      "phase": "packing",
+      "caches": 1,
+      "restoreMs": 122.31445799999983,
+      "trials": [
+        {
+          "updateMs": 354.70650000000023,
+          "serializeMs": 118.33120899999994,
+          "totalMs": 473.0377090000002,
+          "sha256": "2807875d8bf80dc7e1e42521ea799fab18d2cf9dbe9e08f14f87a1c79ef839a3",
+          "bytes": 32928
+        },
+        {
+          "updateMs": 350.9484999999995,
+          "serializeMs": 115.84079199999996,
+          "totalMs": 466.7892919999995,
+          "sha256": "2807875d8bf80dc7e1e42521ea799fab18d2cf9dbe9e08f14f87a1c79ef839a3",
+          "bytes": 32928
+        },
+        {
+          "updateMs": 347.5737079999999,
+          "serializeMs": 116.26683300000059,
+          "totalMs": 463.8405410000005,
+          "sha256": "2807875d8bf80dc7e1e42521ea799fab18d2cf9dbe9e08f14f87a1c79ef839a3",
+          "bytes": 32928
+        }
+      ]
+    },
+    {
+      "commands": 500,
+      "slots": 5,
+      "paidWindowMinutes": 100,
+      "phase": "packing",
+      "caches": 1,
+      "restoreMs": 585.0912910000006,
+      "trials": [
+        {
+          "updateMs": 1292.5270410000012,
+          "serializeMs": 583.9563749999998,
+          "totalMs": 1876.483416000001,
+          "sha256": "ff314e9d9fbbf791b73ca03510cf7e6be0c82a85deb03038869d4c59b10d8a7b",
+          "bytes": 159920
+        },
+        {
+          "updateMs": 1290.5627920000006,
+          "serializeMs": 589.4229169999999,
+          "totalMs": 1879.9857090000005,
+          "sha256": "ff314e9d9fbbf791b73ca03510cf7e6be0c82a85deb03038869d4c59b10d8a7b",
+          "bytes": 159920
+        },
+        {
+          "updateMs": 1300.5196250000008,
+          "serializeMs": 592.9832080000015,
+          "totalMs": 1893.5028330000023,
+          "sha256": "ff314e9d9fbbf791b73ca03510cf7e6be0c82a85deb03038869d4c59b10d8a7b",
+          "bytes": 159920
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "originalCommit": "8eae7fe",
+  "originalSourceSha256": "35db0d7c78a1b1464e6b28fadbb8db85b5ea44a3e8f6393a17c205e6add2c560",
+  "candidateSourceSha256": "842402075ff83e5e67b4ee30f6715f4bfb0a44703cc6bf43f1e80b0fcedc02a4",
+  "candidateGitBlob": "423eb71f71655079b17b092af168aa130f41cae0",
+  "hostAndBenchmarkSourcesUnchanged": true,
+  "serializedTrialsExactlyEqual": 12,
+  "measurementHeadFieldMeans": "working-tree base HEAD, not a claim that corrected bytes were already committed"
+}
