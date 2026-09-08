@@ -19,21 +19,15 @@ export function currentClaims(view){
 }
 export function saveDescription(view){return `Minute ${view.now} of ${view.horizon}. ${ownLocation(view)}. ${jobText(view.job)}. ${view.inventory.water.available} water available${view.inventory.water.reserved?`, ${view.inventory.water.reserved} reserved`:''}.`;}
 
-export function reportOffer(view,count,via){
-  const blocked=unavailable=>({unavailable,capacityUncertain:false});
-  if(view.ended)return blocked('This shift has ended.');
-  if(view.job)return blocked('Finish or explicitly stop your current task before sending.');
-  if(count<1)return blocked('Select a first-hand observation to share.');
-  if(count>32)return blocked('Select at most 32 first-hand observations.');
-  if(view.budget.used+2>view.budget.limit)return blocked('Your remaining decisions are reserved for stopping work.');
-  if(via==='radio'&&view.inventory.radio.available<1)return blocked('No radio charge remains.');
-  if(via==='contact'&&(view.location==='path'||!view.local.peerPresent))return blocked('Deniz must be present at your station.');
+export function reportUnavailable(view,count,via){
+  if(view.ended)return 'This shift has ended.';
+  if(view.job)return 'Finish or explicitly stop your current task before sending.';
+  if(count<1)return 'Select a first-hand observation to share.';
+  if(count>32)return 'Select at most 32 first-hand observations.';
+  if(view.budget.used+2>view.budget.limit)return 'Your remaining decisions are reserved for stopping work.';
   const body=Object.fromEntries(Object.entries(view.body.body).map(([key,value])=>[key,Math.min(1,value+.025)]));
-  const effort={durationMinutes:1,effort:.003,exertive:true};
-  if(!assessEffort(body,effort).allowed){
-    const lowerBody=Object.fromEntries(Object.entries(view.body.body).map(([key,value])=>[key,Math.max(0,Math.min(1,value-.025))]));
-    return {unavailable:'Your condition estimates cannot support sending yet. Recover or eat before retrying.',capacityUncertain:assessEffort(lowerBody,effort).allowed};
-  }
-  return {unavailable:null,capacityUncertain:false};
+  if(!assessEffort(body,{durationMinutes:1,effort:.003,exertive:true}).allowed)return 'Your condition estimates cannot support sending yet. Recover or eat before retrying.';
+  if(via==='radio'&&view.inventory.radio.available<1)return 'No radio charge remains.';
+  if(via==='contact'&&(view.location==='path'||!view.local.peerPresent))return 'Deniz must be present at your station.';
+  return null;
 }
-export function reportUnavailable(view,count,via){return reportOffer(view,count,via).unavailable;}

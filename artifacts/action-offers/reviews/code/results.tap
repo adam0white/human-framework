@@ -1,0 +1,14 @@
+✔ all baseline source dependencies remain byte identical to bd944c8 (31.435375ms)
+✔ hunger-only admission twins share every visible offer; one refusal has no state effect (3.836625ms)
+✔ paid partial repair retains installed fitting and remaining interval without changing baseline state (13.15175ms)
+✔ release twins distinguish uncertain admission from owned water, with rollback before any payment (7.588333ms)
+✔ a final admissible decision pair becomes structural after an admitted completion at decision 127 (8.491458ms)
+✔ actor-local report supply and contact guards suppress both fatigue and hunger uncertainty without mutations (0.545375ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117.029084

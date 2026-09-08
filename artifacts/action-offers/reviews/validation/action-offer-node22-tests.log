@@ -1,0 +1,100 @@
+TAP version 13
+# Subtest: preregistration stays a ten-case two-arm source-informed boundary set
+ok 1 - preregistration stays a ten-case two-arm source-informed boundary set
+  ---
+  duration_ms: 1.03725
+  ...
+# Subtest: synthetic caller respects typed uncertainty rather than English wording
+ok 2 - synthetic caller respects typed uncertainty rather than English wording
+  ---
+  duration_ms: 0.137334
+  ...
+# Subtest: synthetic report caller uses visible structural facts before useless recovery
+ok 3 - synthetic report caller uses visible structural facts before useless recovery
+  ---
+  duration_ms: 0.089
+  ...
+# Subtest: synthetic active-job and unchanged authoritative Camp offers never become probes
+ok 4 - synthetic active-job and unchanged authoritative Camp offers never become probes
+  ---
+  duration_ms: 0.449583
+  ...
+# Subtest: an estimate-only work block is uncertain for both legal and impossible own-body twins
+ok 5 - an estimate-only work block is uncertain for both legal and impossible own-body twins
+  ---
+  duration_ms: 8.589667
+  ...
+# Subtest: whole repair can be uncertain while one paid minute has conservative capacity
+ok 6 - whole repair can be uncertain while one paid minute has conservative capacity
+  ---
+  duration_ms: 2.607959
+  ...
+# Subtest: repair remains blocked when even the lower estimate edge cannot finish it
+ok 7 - repair remains blocked when even the lower estimate edge cannot finish it
+  ---
+  duration_ms: 3.864625
+  ...
+# Subtest: a definitely impossible six-minute walk stays blocked while a one-minute walk can be uncertain
+ok 8 - a definitely impossible six-minute walk stays blocked while a one-minute walk can be uncertain
+  ---
+  duration_ms: 11.137916
+  ...
+# Subtest: hunger estimates preserve uncertainty on both sides of one-minute work and report admission
+ok 9 - hunger estimates preserve uncertainty on both sides of one-minute work and report admission
+  ---
+  duration_ms: 3.877958
+  ...
+# Subtest: unmet local work prerequisites and a busy actor never become uncertain tries
+ok 10 - unmet local work prerequisites and a busy actor never become uncertain tries
+  ---
+  duration_ms: 5.348083
+  ...
+# Subtest: consumed owned supplies stay blocked even when other work has uncertain capacity
+ok 11 - consumed owned supplies stay blocked even when other work has uncertain capacity
+  ---
+  duration_ms: 11.461333
+  ...
+# Subtest: decision reserves and the ended episode suppress all work uncertainty
+ok 12 - decision reserves and the ended episode suppress all work uncertainty
+  ---
+  duration_ms: 47.357834
+  ...
+# Subtest: report offers classify estimate uncertainty without promising actual admission
+ok 13 - report offers classify estimate uncertainty without promising actual admission
+  ---
+  duration_ms: 2.823042
+  ...
+# Subtest: report structural prerequisites take priority over capacity uncertainty
+ok 14 - report structural prerequisites take priority over capacity uncertainty
+  ---
+  duration_ms: 1.086125
+  ...
+# Subtest: detached offer reads cannot alter the recipe or expose hidden remote worlds
+ok 15 - detached offer reads cannot alter the recipe or expose hidden remote worlds
+  ---
+  duration_ms: 0.723916
+  ...
+# Subtest: the old known-inspection recipe reproduces its exact physical and receiver state
+ok 16 - the old known-inspection recipe reproduces its exact physical and receiver state
+  ---
+  duration_ms: 0.647834
+  ...
+# Subtest: offer metadata retains the conservative capacity-available stop
+ok 17 - offer metadata retains the conservative capacity-available stop
+  ---
+  duration_ms: 1.561583
+  ...
+# Subtest: the released Across admission, receiver and Human runtime sources remain byte-identical
+ok 18 - the released Across admission, receiver and Human runtime sources remain byte-identical
+  ---
+  duration_ms: 0.35775
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 790.245459

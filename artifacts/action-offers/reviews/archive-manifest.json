@@ -1,0 +1,690 @@
+{
+  "archivedAt": "2026-09-08T23:12:52.012807+00:00",
+  "scope": "Independent bounded candidate review, original defects, corrected rechecks and root validation. Synthetic files only; no user exports. Copied byte-for-byte.",
+  "files": [
+    {
+      "source": "/tmp/action-offer-code-review/after.sha256",
+      "archive": "code/after.sha256",
+      "sha256": "89b2e586ce31d22c230000ff47a6c7f3a96ceb9115e5f96b79450170e6d03692",
+      "bytes": 380
+    },
+    {
+      "source": "/tmp/action-offer-code-review/before.sha256",
+      "archive": "code/before.sha256",
+      "sha256": "89b2e586ce31d22c230000ff47a6c7f3a96ceb9115e5f96b79450170e6d03692",
+      "bytes": 380
+    },
+    {
+      "source": "/tmp/action-offer-code-review/bin-boundary-diagnostic.json",
+      "archive": "code/bin-boundary-diagnostic.json",
+      "sha256": "a4991882ce225ca2d88bfad7a397f19cbbdb2eeae346a5359ca085add87a0206",
+      "bytes": 3286
+    },
+    {
+      "source": "/tmp/action-offer-code-review/bin-boundary-diagnostic.mjs",
+      "archive": "code/bin-boundary-diagnostic.mjs",
+      "sha256": "d50667963e18ec6168b57c19b8cfbbbfa08bafb002ba9919094daba6fdb1d83b",
+      "bytes": 1719
+    },
+    {
+      "source": "/tmp/action-offer-code-review/correction-artifact.json",
+      "archive": "code/correction-artifact.json",
+      "sha256": "6db7093c346e95f0585a6881000c5984afd4cc08d9ac28792a15818992df2565",
+      "bytes": 3960
+    },
+    {
+      "source": "/tmp/action-offer-code-review/correction-check-first-attempt.mjs",
+      "archive": "code/correction-check-first-attempt.mjs",
+      "sha256": "296f2a42f1941244e03182f85f707692d207b7f75245b1cb71a9c775e126c18a",
+      "bytes": 5199
+    },
+    {
+      "source": "/tmp/action-offer-code-review/correction-check.mjs",
+      "archive": "code/correction-check.mjs",
+      "sha256": "0563c5ba77910d7005c27f4b76a3bda576d43f52a910b310e3d69908a5c173a5",
+      "bytes": 5199
+    },
+    {
+      "source": "/tmp/action-offer-code-review/correction-note.md",
+      "archive": "code/correction-note.md",
+      "sha256": "5194934815b7ea52d7c802e715c9de120588c42f29b1dd61fcb71d0eb776f659",
+      "bytes": 1514
+    },
+    {
+      "source": "/tmp/action-offer-code-review/probes.mjs",
+      "archive": "code/probes.mjs",
+      "sha256": "957dc32df1c4eee1dc95b09f40021896b343b6c39f5ea358d2d62c5f14ac30f2",
+      "bytes": 7542
+    },
+    {
+      "source": "/tmp/action-offer-code-review/results.tap",
+      "archive": "code/results.tap",
+      "sha256": "f51bd3ef2d018cbd9c509574a3e55ef77e90e780598c79efdb41b0b42dcd270e",
+      "bytes": 774
+    },
+    {
+      "source": "/tmp/action-offer-code-review/review.md",
+      "archive": "code/review.md",
+      "sha256": "d83d46f5b6cf76a6858fb230ee1291de451f392e1964b06fe3564d2e4320c6c8",
+      "bytes": 3635
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/REVIEW.md",
+      "archive": "ui/REVIEW.md",
+      "sha256": "ab83826e7b8b4c53c23c080653367bc3080e47a100e021ced9bfbfad2cd9bcfe",
+      "bytes": 4868
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__src__core__model.js",
+      "archive": "ui/after__src__core__model.js",
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "bytes": 7764
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__src__games__across-cut-player.js",
+      "archive": "ui/after__src__games__across-cut-player.js",
+      "sha256": "44c0ffdc75b8bbe3d95345075b2df78684d11b0586af7d30418a9aeac832f387",
+      "bytes": 10441
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__src__games__across-cut-receiver.js",
+      "archive": "ui/after__src__games__across-cut-receiver.js",
+      "sha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce",
+      "bytes": 4405
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__src__games__across-cut.js",
+      "archive": "ui/after__src__games__across-cut.js",
+      "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad",
+      "bytes": 22519
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__src__human__v0.1.1.js",
+      "archive": "ui/after__src__human__v0.1.1.js",
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "bytes": 11580
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__src__runtime__clock.js",
+      "archive": "ui/after__src__runtime__clock.js",
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "bytes": 7513
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__src__runtime__index.js",
+      "archive": "ui/after__src__runtime__index.js",
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "bytes": 188
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__web__across-player.js",
+      "archive": "ui/after__web__across-player.js",
+      "sha256": "1fd1b3788f0cd7672b88235db91065fa068b5b63d6aa3ada4482e43921b04028",
+      "bytes": 15336
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__web__across-view.js",
+      "archive": "ui/after__web__across-view.js",
+      "sha256": "61e81c2788d3e43f97f86240b155bcd716872c970a9f3579231b1859e4c6bf15",
+      "bytes": 3262
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__web__across.css",
+      "archive": "ui/after__web__across.css",
+      "sha256": "aa78fa133017a4156e196b002bc92e4800c76184a281a63111404cc7cb60fecb",
+      "bytes": 4015
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__web__across.html",
+      "archive": "ui/after__web__across.html",
+      "sha256": "41a9815ef872c292f1fb5c9b2305a783222d9d9dca1b13b32ffbf795aa38860e",
+      "bytes": 8209
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/after__web__game-shell.css",
+      "archive": "ui/after__web__game-shell.css",
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f",
+      "bytes": 13579
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/arrival-continue.png",
+      "archive": "ui/arrival-continue.png",
+      "sha256": "6f1c3cefb8fea7809d4b82b072e02abb6990b742919ce284cd21697c22d9f034",
+      "bytes": 60411
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/arrival-stop.png",
+      "archive": "ui/arrival-stop.png",
+      "sha256": "6f1c3cefb8fea7809d4b82b072e02abb6990b742919ce284cd21697c22d9f034",
+      "bytes": 60411
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__src__core__model.js",
+      "archive": "ui/before__src__core__model.js",
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "bytes": 7764
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__src__games__across-cut-player.js",
+      "archive": "ui/before__src__games__across-cut-player.js",
+      "sha256": "44c0ffdc75b8bbe3d95345075b2df78684d11b0586af7d30418a9aeac832f387",
+      "bytes": 10441
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__src__games__across-cut-receiver.js",
+      "archive": "ui/before__src__games__across-cut-receiver.js",
+      "sha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce",
+      "bytes": 4405
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__src__games__across-cut.js",
+      "archive": "ui/before__src__games__across-cut.js",
+      "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad",
+      "bytes": 22519
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__src__human__v0.1.1.js",
+      "archive": "ui/before__src__human__v0.1.1.js",
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "bytes": 11580
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__src__runtime__clock.js",
+      "archive": "ui/before__src__runtime__clock.js",
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "bytes": 7513
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__src__runtime__index.js",
+      "archive": "ui/before__src__runtime__index.js",
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "bytes": 188
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__web__across-player.js",
+      "archive": "ui/before__web__across-player.js",
+      "sha256": "1fd1b3788f0cd7672b88235db91065fa068b5b63d6aa3ada4482e43921b04028",
+      "bytes": 15336
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__web__across-view.js",
+      "archive": "ui/before__web__across-view.js",
+      "sha256": "61e81c2788d3e43f97f86240b155bcd716872c970a9f3579231b1859e4c6bf15",
+      "bytes": 3262
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__web__across.css",
+      "archive": "ui/before__web__across.css",
+      "sha256": "aa78fa133017a4156e196b002bc92e4800c76184a281a63111404cc7cb60fecb",
+      "bytes": 4015
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__web__across.html",
+      "archive": "ui/before__web__across.html",
+      "sha256": "41a9815ef872c292f1fb5c9b2305a783222d9d9dca1b13b32ffbf795aa38860e",
+      "bytes": 8209
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/before__web__game-shell.css",
+      "archive": "ui/before__web__game-shell.css",
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f",
+      "bytes": 13579
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/blocked-budget-recipe.json",
+      "archive": "ui/blocked-budget-recipe.json",
+      "sha256": "5da168ca521f792908ae470c83f4f792101e0936d49114b4778a200eaf9a05d2",
+      "bytes": 8441
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/blocked-budget.png",
+      "archive": "ui/blocked-budget.png",
+      "sha256": "c9fb92b7da9daaf721e85bd8f237a178277ab7216abe09781074ad4c531af9e2",
+      "bytes": 52553
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/blocked-busy-recipe.json",
+      "archive": "ui/blocked-busy-recipe.json",
+      "sha256": "3e9c211c11d819ecd86c4ad0be0df703fe0876aa47f6561a89b4a97f0b4b2e3c",
+      "bytes": 595
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/blocked-busy.png",
+      "archive": "ui/blocked-busy.png",
+      "sha256": "d26f80237e9e44981271a60d87aa81aa543b5742520741d576b49f9b39540c5e",
+      "bytes": 48622
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/blocked-ended-recipe.json",
+      "archive": "ui/blocked-ended-recipe.json",
+      "sha256": "d772de44d375ef750c127ab3597f9503f3a0a5ce8c9c1cf6764d6f1d6a3b6f67",
+      "bytes": 695
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/blocked-ended.png",
+      "archive": "ui/blocked-ended.png",
+      "sha256": "da3b84ec0098f6f372b00a5959b05bd4b66434791bc5938ed92edd1ffb3f72df",
+      "bytes": 50935
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/blocked-radio-empty-recipe.json",
+      "archive": "ui/blocked-radio-empty-recipe.json",
+      "sha256": "bae3b284819df2f9217335e84219a61f7f98fe44386739737fd058f7ba9102b1",
+      "bytes": 1657
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/blocked-radio-empty.png",
+      "archive": "ui/blocked-radio-empty.png",
+      "sha256": "1afa6e14f4af08ad53ca3dc2cbf267f868221473ccfe64ff47483b30d66db60a",
+      "bytes": 54456
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact-after__src__games__across-cut-player.js",
+      "archive": "ui/contact-after__src__games__across-cut-player.js",
+      "sha256": "44c0ffdc75b8bbe3d95345075b2df78684d11b0586af7d30418a9aeac832f387",
+      "bytes": 10441
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact-after__web__across-player.js",
+      "archive": "ui/contact-after__web__across-player.js",
+      "sha256": "1fd1b3788f0cd7672b88235db91065fa068b5b63d6aa3ada4482e43921b04028",
+      "bytes": 15336
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact-after__web__across-view.js",
+      "archive": "ui/contact-after__web__across-view.js",
+      "sha256": "61e81c2788d3e43f97f86240b155bcd716872c970a9f3579231b1859e4c6bf15",
+      "bytes": 3262
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact-before__src__games__across-cut-player.js",
+      "archive": "ui/contact-before__src__games__across-cut-player.js",
+      "sha256": "44c0ffdc75b8bbe3d95345075b2df78684d11b0586af7d30418a9aeac832f387",
+      "bytes": 10441
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact-before__web__across-player.js",
+      "archive": "ui/contact-before__web__across-player.js",
+      "sha256": "1fd1b3788f0cd7672b88235db91065fa068b5b63d6aa3ada4482e43921b04028",
+      "bytes": 15336
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact-before__web__across-view.js",
+      "archive": "ui/contact-before__web__across-view.js",
+      "sha256": "61e81c2788d3e43f97f86240b155bcd716872c970a9f3579231b1859e4c6bf15",
+      "bytes": 3262
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact-impossible-recipe.json",
+      "archive": "ui/contact-impossible-recipe.json",
+      "sha256": "5e0cca18570fe4bedd3e7a58d833fc92ae50a111650049f6948aad8b5a94e95b",
+      "bytes": 690
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact-impossible.png",
+      "archive": "ui/contact-impossible.png",
+      "sha256": "8009593d79af7f55a135ec96f612b68da99250ed4313f31bfc2e6fb7aa6e51ef",
+      "bytes": 54133
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact-legal-recipe.json",
+      "archive": "ui/contact-legal-recipe.json",
+      "sha256": "eefc8bcffcd32eab03212751b9b3db42d4fe4c8fa5a5c5cafedfbadc343afca0",
+      "bytes": 690
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact-legal.png",
+      "archive": "ui/contact-legal.png",
+      "sha256": "81fc29a7d467704870c695e416f1e1a8e276409453b3090c4f6f1f949d38db81",
+      "bytes": 52798
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact-results.json",
+      "archive": "ui/contact-results.json",
+      "sha256": "4048e2ca737d6b69fcd60f53e32ac47050dca4cc0c46217f919de4a04dd82fc3",
+      "bytes": 14601
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/contact.mjs",
+      "archive": "ui/contact.mjs",
+      "sha256": "938fe403ef239fdd67d46f19ddce78e32f53cfcf1fad602b3c3a24db59b8f881",
+      "bytes": 3714
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/REVIEW.md",
+      "archive": "ui/corrective/REVIEW.md",
+      "sha256": "10514340ecce95a77aa75a5963ce90f82640b5ae7765da6c11f41f1668bf2abd",
+      "bytes": 2088
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/after__src__games__across-cut-player.js",
+      "archive": "ui/corrective/after__src__games__across-cut-player.js",
+      "sha256": "fefb9f905d583c43fc86270542f423f6e967305c43aa1e3c6a956493afbfd349",
+      "bytes": 10647
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/after__web__across-player.js",
+      "archive": "ui/corrective/after__web__across-player.js",
+      "sha256": "7ec75ccce244b82f6e37d8f32fde3ac61cf5852cfcd90405e217e65669b0b3c5",
+      "bytes": 15447
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/after__web__across-view.js",
+      "archive": "ui/corrective/after__web__across-view.js",
+      "sha256": "887bfbb37f5c3d37cbb07dad6ec8c23d0ab7d8706c7684ed3ec7594f59062a55",
+      "bytes": 3462
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/before__src__games__across-cut-player.js",
+      "archive": "ui/corrective/before__src__games__across-cut-player.js",
+      "sha256": "fefb9f905d583c43fc86270542f423f6e967305c43aa1e3c6a956493afbfd349",
+      "bytes": 10647
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/before__web__across-player.js",
+      "archive": "ui/corrective/before__web__across-player.js",
+      "sha256": "7ec75ccce244b82f6e37d8f32fde3ac61cf5852cfcd90405e217e65669b0b3c5",
+      "bytes": 15447
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/before__web__across-view.js",
+      "archive": "ui/corrective/before__web__across-view.js",
+      "sha256": "887bfbb37f5c3d37cbb07dad6ec8c23d0ab7d8706c7684ed3ec7594f59062a55",
+      "bytes": 3462
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/contact-focus-recipe.json",
+      "archive": "ui/corrective/contact-focus-recipe.json",
+      "sha256": "52a894f32f0a7a5d593756f2af8b52df490f2300e6b3b586d5f1f518ac89ce16",
+      "bytes": 440
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/definitely-impossible-full-repair.png",
+      "archive": "ui/corrective/definitely-impossible-full-repair.png",
+      "sha256": "18c0856a3234bb3b579b6956463da8e8c84674387caa0dfff946d79f2f63b741",
+      "bytes": 61910
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/definitely-impossible-walk.png",
+      "archive": "ui/corrective/definitely-impossible-walk.png",
+      "sha256": "888441c34c411f8f84b534330a0c088d3b56465a9380475e28043f71cf171966",
+      "bytes": 62281
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/desktop-focus-recipe.json",
+      "archive": "ui/corrective/desktop-focus-recipe.json",
+      "sha256": "93344631bf6aa03b6c1123be3886be5e5cb47b238d4da1e43ea5104d4a70b52e",
+      "bytes": 345
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/desktop-refusal-focus.png",
+      "archive": "ui/corrective/desktop-refusal-focus.png",
+      "sha256": "a1f12affb774b812bb265a6fb2a2dba27c225b7198845de6b6441107a5f2129f",
+      "bytes": 78325
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/impossible-full-repair-recipe.json",
+      "archive": "ui/corrective/impossible-full-repair-recipe.json",
+      "sha256": "647e82a50095e56fe46140287ee4d98a74e1656f0efcdf60b0aa71a3b7ba2a5d",
+      "bytes": 420
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/impossible-six-minute-walk-recipe.json",
+      "archive": "ui/corrective/impossible-six-minute-walk-recipe.json",
+      "sha256": "91b597a07199758f506329f356576b1ca09c424a983f1c0297ae87c0dfec093e",
+      "bytes": 345
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/legal-inspection-recipe.json",
+      "archive": "ui/corrective/legal-inspection-recipe.json",
+      "sha256": "91b597a07199758f506329f356576b1ca09c424a983f1c0297ae87c0dfec093e",
+      "bytes": 345
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/phone-focus-recipe.json",
+      "archive": "ui/corrective/phone-focus-recipe.json",
+      "sha256": "93344631bf6aa03b6c1123be3886be5e5cb47b238d4da1e43ea5104d4a70b52e",
+      "bytes": 345
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/phone-refusal-focus.png",
+      "archive": "ui/corrective/phone-refusal-focus.png",
+      "sha256": "f40714d9d68de2356e5fa449f61c55570e4bba685d43c11e0d3439578c99ca23",
+      "bytes": 61009
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/radio-focus-recipe.json",
+      "archive": "ui/corrective/radio-focus-recipe.json",
+      "sha256": "93344631bf6aa03b6c1123be3886be5e5cb47b238d4da1e43ea5104d4a70b52e",
+      "bytes": 345
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/results.json",
+      "archive": "ui/corrective/results.json",
+      "sha256": "fe6b85176f0fc01e4195ee9af4bbce6aa66aa2293a3f44574e4ccf77879d6d36",
+      "bytes": 15194
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/short-focus-recipe.json",
+      "archive": "ui/corrective/short-focus-recipe.json",
+      "sha256": "93344631bf6aa03b6c1123be3886be5e5cb47b238d4da1e43ea5104d4a70b52e",
+      "bytes": 345
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/short-refusal-focus.png",
+      "archive": "ui/corrective/short-refusal-focus.png",
+      "sha256": "5180b5b2942ff7e0bb6ab33c11c400e810790d57ea819975278653c9cbaa8b9d",
+      "bytes": 63505
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective/uncertain-full-repair-recipe.json",
+      "archive": "ui/corrective/uncertain-full-repair-recipe.json",
+      "sha256": "af0bc2c5c04dc4efe48ec6f19acc4adb372ab7b554fa0d1611e1ac265213f987",
+      "bytes": 420
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/corrective.mjs",
+      "archive": "ui/corrective.mjs",
+      "sha256": "4948e3aa45b2157f335ee1498530425a165677ccc0e07cf8045d5f3b8f15c455",
+      "bytes": 7539
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/desktop-impossible-recipe.json",
+      "archive": "ui/desktop-impossible-recipe.json",
+      "sha256": "1835afee5ba280243ca290df3a0e0a6ccece04b68cde92482aab43d143142ce9",
+      "bytes": 503
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/desktop-inspection-refused.png",
+      "archive": "ui/desktop-inspection-refused.png",
+      "sha256": "c3eb0f267f38fe24861375663835fa865671d975b9346691674fbc555d4dc4c3",
+      "bytes": 77811
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/desktop-legal-recipe.json",
+      "archive": "ui/desktop-legal-recipe.json",
+      "sha256": "0ec5daed28314bd7a24d1904ca9fe72dcb1ac831ae1710ded8fbb9e4635e5481",
+      "bytes": 503
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/desktop-uncertain-initial.png",
+      "archive": "ui/desktop-uncertain-initial.png",
+      "sha256": "77a587c66104356a16a54de190287c3a059e4647d9f0dd83787cabf1a094322b",
+      "bytes": 72766
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/empty-selection-recipe.json",
+      "archive": "ui/empty-selection-recipe.json",
+      "sha256": "0ec5daed28314bd7a24d1904ca9fe72dcb1ac831ae1710ded8fbb9e4635e5481",
+      "bytes": 503
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/phone-impossible-recipe.json",
+      "archive": "ui/phone-impossible-recipe.json",
+      "sha256": "1835afee5ba280243ca290df3a0e0a6ccece04b68cde92482aab43d143142ce9",
+      "bytes": 503
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/phone-inspection-refused.png",
+      "archive": "ui/phone-inspection-refused.png",
+      "sha256": "3ef03c1e604f73607a9cf40c5ccd3534909d903835d1fb1163e445cdd5c20c3b",
+      "bytes": 60557
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/phone-legal-recipe.json",
+      "archive": "ui/phone-legal-recipe.json",
+      "sha256": "0ec5daed28314bd7a24d1904ca9fe72dcb1ac831ae1710ded8fbb9e4635e5481",
+      "bytes": 503
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/phone-uncertain-initial.png",
+      "archive": "ui/phone-uncertain-initial.png",
+      "sha256": "9c633561b1584ea238fe4d4342760a67b4d88a8d9c2deee4e0147aefe06b4b88",
+      "bytes": 57271
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/radio-impossible-recipe.json",
+      "archive": "ui/radio-impossible-recipe.json",
+      "sha256": "1835afee5ba280243ca290df3a0e0a6ccece04b68cde92482aab43d143142ce9",
+      "bytes": 503
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/radio-impossible.png",
+      "archive": "ui/radio-impossible.png",
+      "sha256": "0ba72ed2140bc56dcb82cde4afd014c11120e1f88dc9a34fd627111ac3442127",
+      "bytes": 58245
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/radio-legal-recipe.json",
+      "archive": "ui/radio-legal-recipe.json",
+      "sha256": "0ec5daed28314bd7a24d1904ca9fe72dcb1ac831ae1710ded8fbb9e4635e5481",
+      "bytes": 503
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/radio-legal.png",
+      "archive": "ui/radio-legal.png",
+      "sha256": "c247e3e3cff3b6d904bf7108ac22d2895630b5e9f4774e66738e9b624f8f2bd2",
+      "bytes": 54795
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/remote-twin-a-recipe.json",
+      "archive": "ui/remote-twin-a-recipe.json",
+      "sha256": "0ec5daed28314bd7a24d1904ca9fe72dcb1ac831ae1710ded8fbb9e4635e5481",
+      "bytes": 503
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/remote-twin-b-recipe.json",
+      "archive": "ui/remote-twin-b-recipe.json",
+      "sha256": "ae12b06844acbe8da3f3d118041dc2106fdedf01d48110d2ff8eeb1a48f38fd4",
+      "bytes": 504
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/repair-options-recipe.json",
+      "archive": "ui/repair-options-recipe.json",
+      "sha256": "6e2dd5002e018168d2dee7b8a91f2b7b0f3248f733afdd83c6d47734bfca6f2d",
+      "bytes": 650
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/repair-options.png",
+      "archive": "ui/repair-options.png",
+      "sha256": "5e4267e8dc0e868ac3c6e060bfdc40f83bde99c07a6328dfccf2bd7a95168f87",
+      "bytes": 58363
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/report-agency-continue-recipe.json",
+      "archive": "ui/report-agency-continue-recipe.json",
+      "sha256": "20cf82960cb74813b1bd2e03aa26ecaa2477b30e5b8c93f8ff4d088d991a1a2a",
+      "bytes": 868
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/report-agency-stop-recipe.json",
+      "archive": "ui/report-agency-stop-recipe.json",
+      "sha256": "20cf82960cb74813b1bd2e03aa26ecaa2477b30e5b8c93f8ff4d088d991a1a2a",
+      "bytes": 868
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/results.json",
+      "archive": "ui/results.json",
+      "sha256": "d513d54aa13bbfa4b0752104de208aa1634494a604f692c2675aa4121e899368",
+      "bytes": 201657
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/review.mjs",
+      "archive": "ui/review.mjs",
+      "sha256": "cd2f0ee8e4e724f23c63797e65f201c32562bd8c2105a66e2fe2b8b10ef83871",
+      "bytes": 13511
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/short-impossible-recipe.json",
+      "archive": "ui/short-impossible-recipe.json",
+      "sha256": "1835afee5ba280243ca290df3a0e0a6ccece04b68cde92482aab43d143142ce9",
+      "bytes": 503
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/short-inspection-refused.png",
+      "archive": "ui/short-inspection-refused.png",
+      "sha256": "7b2410bdc4186fe6dcb8448f837c8218bdc8e83ab0ad563103c86383b10df80b",
+      "bytes": 62914
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/short-legal-recipe.json",
+      "archive": "ui/short-legal-recipe.json",
+      "sha256": "0ec5daed28314bd7a24d1904ca9fe72dcb1ac831ae1710ded8fbb9e4635e5481",
+      "bytes": 503
+    },
+    {
+      "source": "/tmp/action-offer-ui-review/short-uncertain-initial.png",
+      "archive": "ui/short-uncertain-initial.png",
+      "sha256": "323e0a39d1afd24579ad5c08045cfec6636afc7c3a1c0c34fbdd5ab63c011ce5",
+      "bytes": 58204
+    },
+    {
+      "source": "/tmp/action-offer-pre-freeze-tests.log",
+      "archive": "validation/action-offer-pre-freeze-tests.log",
+      "sha256": "cf521f43d4910511a5ed816ad0063cca55090df07b3a35308a819b18ca31f399",
+      "bytes": 4686
+    },
+    {
+      "source": "/tmp/action-offer-private-tests.log",
+      "archive": "validation/action-offer-private-tests.log",
+      "sha256": "1895d26deede990e3f12278a1a5830af5ecbd123e3e07d58fddd45af3d5b5b07",
+      "bytes": 1835
+    },
+    {
+      "source": "/tmp/action-offer-integrated-tests.log",
+      "archive": "validation/action-offer-integrated-tests.log",
+      "sha256": "57125a48441f217e366b459ab1d09eb6bb06c2fbcf1f515d192a6efc6b5fd9ff",
+      "bytes": 85775
+    },
+    {
+      "source": "/tmp/action-offer-node22-tests.log",
+      "archive": "validation/action-offer-node22-tests.log",
+      "sha256": "ceed53506e35097fab59af00c1b4b85cf92127c2a451b5a991634c6d68b2a1f2",
+      "bytes": 3929
+    },
+    {
+      "source": "/tmp/action-offer-restored-build.log",
+      "archive": "validation/action-offer-restored-build.log",
+      "sha256": "f62bb47485512436bc61f4ce6d521d74760cbe7a993ad26352557c579920bf19",
+      "bytes": 150
+    },
+    {
+      "source": "/tmp/action-offer-code-review/admission-note.md",
+      "archive": "code/admission-note.md",
+      "sha256": "8b79309d2ab2f70e1931f83c56f8df40fd5a5f0577dc9c0ee9db8a25ec7c9bd6",
+      "bytes": 1646
+    },
+    {
+      "source": "/tmp/action-offer-private-final-tests.log",
+      "archive": "validation/action-offer-private-final-tests.log",
+      "sha256": "15de1d4c65810dc982d5055ab7a05d7ff31816f47b49dbfd7afcdf20969c71ab",
+      "bytes": 1825
+    },
+    {
+      "source": "/tmp/action-offer-private-final-node22.log",
+      "archive": "validation/action-offer-private-final-node22.log",
+      "sha256": "aa3e61dc50cb9e4acb2cde6153eb57f46083e8db1c8c1632a13f1777867451d7",
+      "bytes": 3914
+    }
+  ]
+}

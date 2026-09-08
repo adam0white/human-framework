@@ -1,0 +1,282 @@
+{
+  "deployedSource": "2ebdb8841215a26f69da1c394ab438b7a1f4d15d",
+  "scope": "Active source restored after private candidate nonpromotion. Every selected public source byte matches deployed app0.14. This is not a new deployment.",
+  "files": [
+    {
+      "path": "src/core/model.js",
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "path": "src/core/random.js",
+      "sha256": "d2c76c3105a86b052a6694a4709e67f58f9a88dad9eccc62d397c2e87f4eaeec"
+    },
+    {
+      "path": "src/games/across-cut.js",
+      "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad"
+    },
+    {
+      "path": "src/games/across-cut-player.js",
+      "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+    },
+    {
+      "path": "src/games/across-cut-receiver.js",
+      "sha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce"
+    },
+    {
+      "path": "src/games/camp-current.js",
+      "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a"
+    },
+    {
+      "path": "src/games/commons-next.js",
+      "sha256": "cd7db395f2498ff52230fa799d3d40f254d03b36403a144f619c2b16daee2bd0"
+    },
+    {
+      "path": "src/games/commons-policy.js",
+      "sha256": "d5700cbe386b91424f1aa4a6059a7cc0868ee920da264a1d12a66bee8979195f"
+    },
+    {
+      "path": "src/games/commons.js",
+      "sha256": "b2c6f5e8bd38e84b729d73182170c88034edc3767e00c71cd65784233283aedb"
+    },
+    {
+      "path": "src/games/courier-policy.js",
+      "sha256": "90757d495b17ca71b1ad2e540e35b617b3d2bc3a8b5e788aab21907bcadc845c"
+    },
+    {
+      "path": "src/games/courier.js",
+      "sha256": "ddfcec4978380364bfb3b36d1dd936bc8b85825ffb960596e7a32b36561800aa"
+    },
+    {
+      "path": "src/games/courtyard-session.js",
+      "sha256": "7f653afeff22e06e16a6abe0647c9be14de382fb0cd33318f5a64600e6d8b563"
+    },
+    {
+      "path": "src/games/courtyard.js",
+      "sha256": "4bdc2d794855ebb45a5992c9b1cccd00274ed1aaf152ea32ee91c3b513ee7e4b"
+    },
+    {
+      "path": "src/games/service-plan.js",
+      "sha256": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7"
+    },
+    {
+      "path": "src/games/service.js",
+      "sha256": "50ce6e3e52a9e92c85532f3a73d8afa46e6bc0ca7993ef72ce9e4f58e51738d1"
+    },
+    {
+      "path": "src/games/shift.js",
+      "sha256": "4789e22b746d9ee24711e3a011d9e40f67053b7b14e3204648487276f04b9e36"
+    },
+    {
+      "path": "src/games/watch.js",
+      "sha256": "2600779cd5321cba4162f2b9c921efb87fbf94499852e30e2c081a45d307d2a3"
+    },
+    {
+      "path": "src/games/workshop.js",
+      "sha256": "b2ee4cb10fddf57455c0321e42da1d256b87a7a96225d92ff1940f45ed8f6f06"
+    },
+    {
+      "path": "src/human/index.js",
+      "sha256": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308"
+    },
+    {
+      "path": "src/human/v0.1.1.js",
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "path": "src/runtime/clock.js",
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    },
+    {
+      "path": "src/runtime/index.js",
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+    },
+    {
+      "path": "web/across-player.js",
+      "sha256": "dd0b42785dbc3312c5a8e268d6ac0dd4d1056134ab650b69cbcae42d3148e831"
+    },
+    {
+      "path": "web/across-session.js",
+      "sha256": "9b1de7bdb19d8c51152439a7c100f687fbf2cc1d987677c5fc1ee02da8c93675"
+    },
+    {
+      "path": "web/across-view.js",
+      "sha256": "677df05a993c856cf3b55409a2f761acdb24fc1f991234aa00b04eab5b13133b"
+    },
+    {
+      "path": "web/across.css",
+      "sha256": "aa78fa133017a4156e196b002bc92e4800c76184a281a63111404cc7cb60fecb"
+    },
+    {
+      "path": "web/camp-current-session.js",
+      "sha256": "683d1c28887da20a89d1e01dd6d85d9eddec2d5d28fdd7fd5459eff4fa879c97"
+    },
+    {
+      "path": "web/camp.css",
+      "sha256": "24627b3523108ecd5e68cb0dfd4af1cc47a423a71e95c7daea831454b35a2464"
+    },
+    {
+      "path": "web/camp-current.js",
+      "sha256": "9bba1d23e43b65ea25a6a1f7810d84a47cb394e291d2007685417e3ac1c97c47"
+    },
+    {
+      "path": "web/commons-next.css",
+      "sha256": "5bdee021c21688b2dd9f2da4791f439a5b6a160cd3306d45fca380a4b45d0ea1"
+    },
+    {
+      "path": "web/commons-next.js",
+      "sha256": "23f8f8df57e46a78156bcf83e8de43c77304fe8dbc87636fee6d389e8aab1ebf"
+    },
+    {
+      "path": "web/commons.css",
+      "sha256": "75fa4084b90b88838b186b4efb44d5455b877ea68b8178cc9e38568da2767487"
+    },
+    {
+      "path": "web/commons.js",
+      "sha256": "36642aeae757b3e266d49f95241c5447f064e23f0e88200795e3fea019c6bd9d"
+    },
+    {
+      "path": "web/courier.css",
+      "sha256": "17fce75d3660fb9324a41f93633984403a80f2543cba7937774779089e243711"
+    },
+    {
+      "path": "web/courier.js",
+      "sha256": "fc1220258c3e9da303cca8e4d9b855f173afa58137a90a4c1de5dffd24cc851c"
+    },
+    {
+      "path": "web/courtyard-guide.js",
+      "sha256": "cac4aff6caa89ba9d7cc2b3e5cc8d370aa9674fad69d53d7546269669d6b2463"
+    },
+    {
+      "path": "web/courtyard.css",
+      "sha256": "7c19a8af1025e5a07ab3ea66d38f8cef00ad38e036d0d1f2067ff7e0eae61fd1"
+    },
+    {
+      "path": "web/courtyard.js",
+      "sha256": "8fd633a42aac08eae859251a49b56a5a5a3d6a99106ef4bed481b743e15dcd54"
+    },
+    {
+      "path": "web/game-shell.css",
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f"
+    },
+    {
+      "path": "web/game-shell.js",
+      "sha256": "69c7e934940f5678518fe7c6c4e443f26e1f2121383864284c0bd0f5f9d93bff"
+    },
+    {
+      "path": "web/games.css",
+      "sha256": "9e1a8e90ee2ca941d64f6a6b9e5ec318af027effe1110cf75ac62e2c3a83ffdd"
+    },
+    {
+      "path": "web/games.js",
+      "sha256": "16457e1a0a803fe0442df4abdb77e93e250ec8b8d2ae29384a692ce95a8df64f"
+    },
+    {
+      "path": "web/play-note.css",
+      "sha256": "03de00f1922bc4bb70dd6506f6dd26fd226251c5c5985666b42f122e1de20148"
+    },
+    {
+      "path": "web/play-note.js",
+      "sha256": "ca6958dfa9d78b6eab0bd9cb6731444b13a55e40c9739b04a0758764c124c3c8"
+    },
+    {
+      "path": "web/service-plan-session.js",
+      "sha256": "3f7c3f62dbb846add5f7a719d166542f0225974e886811c369d9982d708332c6"
+    },
+    {
+      "path": "web/service-plan.css",
+      "sha256": "75de35fab39edaa7360b6d6c97657042ded7c58d173d0edfa3b39364bc30503f"
+    },
+    {
+      "path": "web/service-plan.js",
+      "sha256": "0d75c023263661005b22d18e50a808bd38d8b1ff06d565b4e9a1cdd470ee3545"
+    },
+    {
+      "path": "web/service-session.js",
+      "sha256": "a05f984ed977f8e29624c7cbcb6c80f3bb11728bee87eb43b76bee474cc07474"
+    },
+    {
+      "path": "web/service.css",
+      "sha256": "52f0b0ee4debc7a880eceb0b858234983a4ea82f0019a61dddf3971b415ac2dd"
+    },
+    {
+      "path": "web/service.js",
+      "sha256": "3ac621eeb90ef4bbd24b5b9f15bbba41bab851bd20fddf5e779a94fe62249ba6"
+    },
+    {
+      "path": "web/shift.css",
+      "sha256": "5ee9b1309e558724dbf10dd9b06f8724c3663c0ad804cb6e84fbf115121a007b"
+    },
+    {
+      "path": "web/shift.js",
+      "sha256": "92ecca05bf305b57580eaf0176e4dca009a42e1f0435a03fc02ce4b736010418"
+    },
+    {
+      "path": "web/watch-session.js",
+      "sha256": "1b634be8c468a498e372a647e16fa046fa8c8cd2d317da9bbb40989288b65527"
+    },
+    {
+      "path": "web/watch.css",
+      "sha256": "974e209a8c375954fcebd9d144fb120c297bc66beffef423bbfe750dafd0835e"
+    },
+    {
+      "path": "web/watch.js",
+      "sha256": "c0d6ba04c19a1e14f093d4f5377e9685a6f5f9d14107cbfb9696501e0f862119"
+    },
+    {
+      "path": "web/workshop.css",
+      "sha256": "9524ef6e65a5dd62d85adae624770e55b98c8b9755492df67691a5bf27401732"
+    },
+    {
+      "path": "web/workshop.js",
+      "sha256": "73d2d7e30620980687c94f0d01163383479279f9ae0259f38430a9577f9124b9"
+    },
+    {
+      "path": "web/games.html",
+      "sha256": "a7de2cf7b1e9298f8558c5871b4864899f73cbf19534f268b6206172fc7b623d"
+    },
+    {
+      "path": "web/camp.html",
+      "sha256": "cc8562c65d718fe4c509b6ac9386bb6422106ee759078760942136dd18aed9f9"
+    },
+    {
+      "path": "web/across.html",
+      "sha256": "82789cc0016426eb01ce61d5bf3afad6b2f5d9d5e20d82b8119b541631ccc2a9"
+    },
+    {
+      "path": "web/workshop.html",
+      "sha256": "795cff55aa719cb253d1d3a1ed4d6cc8fa19e170fa914786621739e059243a5e"
+    },
+    {
+      "path": "web/shift.html",
+      "sha256": "ba5276219e469c4614a004be264ecead7e1352c3fd5ee5d98b7d46103f73322f"
+    },
+    {
+      "path": "web/courtyard.html",
+      "sha256": "f9006bcf099a8a26136f0c82b34ea7222aa4cd9bc4685b72cb12674be1acb56a"
+    },
+    {
+      "path": "web/courier.html",
+      "sha256": "10096339b0cdf49a07594c5957188150874bff9915073c8b4ca46ea65a318252"
+    },
+    {
+      "path": "web/commons.html",
+      "sha256": "78dc3aa3a6de7cf9be514b764185f0099408db98010e150157a70d2643d8c2e2"
+    },
+    {
+      "path": "web/commons-next.html",
+      "sha256": "15ea4dfcec509d86cdb2e8649d2f8f56c2b52305d18c2a45e43544110048ae39"
+    },
+    {
+      "path": "web/watch.html",
+      "sha256": "5abca5dce544bc65b78751621d337a5d7f8387634559ce7a385ac38235f7a405"
+    },
+    {
+      "path": "web/service.html",
+      "sha256": "adec81c8b439de719743b68f565ebc3e46347ba5e453e9f20bf3cdd61c70f74d"
+    },
+    {
+      "path": "web/service-plan.html",
+      "sha256": "6e054fb6dd173691825572257e0f20e0418f50542ad6bc9352dad145ee3aae91"
+    }
+  ]
+}

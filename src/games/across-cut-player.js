@@ -14,10 +14,8 @@ function check(game){if(!game||!handles.has(game))fail('INVALID_GAME','Restore a
 const rates={inspect:.003,repair:.012,release:.015,travel:.010,meal:0,transmit:.003};
 const capacityMessage='Your body estimate does not yet support this entire interval.';
 // Human 0.1.1 presents body estimates rounded to 0.05. Use the upper edge
-// of that public estimate bin for the conservative offer and recovery stop.
-// Uncertainty requires admission somewhere in the bin; actual admission stays in the host.
+// of that public estimate bin so an enabled choice cannot overpromise capacity.
 const upperBody=view=>Object.fromEntries(Object.entries(view.body.body).map(([k,n])=>[k,Math.min(1,n+.025)]));
-const lowerBody=view=>Object.fromEntries(Object.entries(view.body.body).map(([k,n])=>[k,Math.max(0,Math.min(1,n-.025))]));
 const absolute=/^(repairMinutes:(valve|dock)|repairProgress:(valve|dock)|launchAt|launchDeparted|serviceUnits|cartDelivery)$/;
 const fields=(x,names)=>{
  if(!x||typeof x!=='object'||Array.isArray(x)||Object.keys(x).length!==names.length||names.some(k=>!Object.hasOwn(x,k)))fail('INVALID_COMMAND','Unknown or missing field.');
@@ -59,15 +57,11 @@ export function createGame(options={}){
 function choices(view){
  const result=[];
  const add=(id,label,detail,duration,action,unavailable=null)=>{
-  let capacityUncertain=false;
   if(view.ended)unavailable='This shift has ended.';
   else if(view.job)unavailable='Finish or stop your current work first.';
   else if(view.budget.used+2>view.budget.limit)unavailable='Your remaining decisions are reserved for stopping work.';
-  else if(!unavailable){
-   const effort={durationMinutes:duration,effort:rates[action.task]*duration,exertive:rates[action.task]>0};
-   if(!assessEffort(upperBody(view),effort).allowed){unavailable=capacityMessage;capacityUncertain=assessEffort(lowerBody(view),effort).allowed;}
-  }
-  result.push({id,label,detail,duration,action,unavailable,capacityUncertain});
+  else if(!unavailable&&!assessEffort(upperBody(view),{durationMinutes:duration,effort:rates[action.task]*duration,exertive:rates[action.task]>0}).allowed)unavailable=capacityMessage;
+  result.push({id,label,detail,duration,action,unavailable});
  };
  const home=view.location==='valve',remaining=view.local.repairMinutes===null?null:view.local.repairMinutes-view.local.repairProgress;
  add('inspect','Inspect','Learn this station’s repair requirement.',1,{task:'inspect'},view.location==='path'?'Reach a station first.':null);

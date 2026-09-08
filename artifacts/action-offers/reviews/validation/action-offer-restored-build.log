@@ -1,0 +1,5 @@
+
+> human-framework@0.14.0 build
+> node scripts/build.js
+
+Built 72 public files in dist. Runtime 0.1.1. Checked 43 static modules and 59 import edges.

@@ -1,0 +1,273 @@
+{
+  "checks": [
+    {
+      "name": "phone work refusal restores same-choice keyboard focus",
+      "before": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9991,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "BODY",
+          "id": ""
+        },
+        "minute": "0",
+        "notice": "",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      },
+      "after": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9991,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "BUTTON",
+          "id": "",
+          "choice": "inspect"
+        },
+        "minute": "0",
+        "notice": "Your present body cannot sustain that entire requested interval.",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      },
+      "next": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9991,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        "minute": "0",
+        "notice": "Your present body cannot sustain that entire requested interval.",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      }
+    },
+    {
+      "name": "desktop work refusal restores same-choice keyboard focus",
+      "before": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9991,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "BODY",
+          "id": ""
+        },
+        "minute": "0",
+        "notice": "",
+        "job": "Recovering while available",
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      "after": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9991,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "BUTTON",
+          "id": "",
+          "choice": "inspect"
+        },
+        "minute": "0",
+        "notice": "Your present body cannot sustain that entire requested interval.",
+        "job": "Recovering while available",
+        "scrollWidth": 1280,
+        "width": 1280
+      },
+      "next": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9991,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        "minute": "0",
+        "notice": "Your present body cannot sustain that entire requested interval.",
+        "job": "Recovering while available",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "name": "short work refusal restores same-choice keyboard focus",
+      "before": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9991,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "BODY",
+          "id": ""
+        },
+        "minute": "0",
+        "notice": "",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      },
+      "after": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9991,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "BUTTON",
+          "id": "",
+          "choice": "inspect"
+        },
+        "minute": "0",
+        "notice": "Your present body cannot sustain that entire requested interval.",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      },
+      "next": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9991,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        "minute": "0",
+        "notice": "Your present body cannot sustain that entire requested interval.",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      }
+    },
+    {
+      "name": "legal inspection remains an explicit Try and pays one minute",
+      "started": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9751,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[{\"type\":\"request\",\"action\":{\"task\":\"inspect\"}}]}",
+        "focus": {
+          "tag": "BUTTON",
+          "id": "next-event"
+        },
+        "minute": "0",
+        "notice": "",
+        "job": "Inspecting the station",
+        "scrollWidth": 375,
+        "width": 375
+      },
+      "complete": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9751,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[{\"type\":\"request\",\"action\":{\"task\":\"inspect\"}},{\"type\":\"advance\",\"minutes\":1}]}",
+        "focus": {
+          "tag": "BUTTON",
+          "id": "next-event"
+        },
+        "minute": "1",
+        "notice": "",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      }
+    },
+    {
+      "name": "whole-bin impossible six-minute walk stays disabled beside uncertain inspection",
+      "walkLabel": "Walk to the inlet\n6 min\nYour body estimate does not yet support this entire interval.",
+      "state": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9751,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        "minute": "0",
+        "notice": "",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      }
+    },
+    {
+      "name": "whole-bin impossible full repair disabled while one-minute repair remains available",
+      "fullLabel": "Finish repair\n6 min\nYour body estimate does not yet support this entire interval.",
+      "state": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.95,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[{\"type\":\"request\",\"action\":{\"task\":\"inspect\"}},{\"type\":\"advance\",\"minutes\":1}]}",
+        "focus": {
+          "tag": "BODY",
+          "id": ""
+        },
+        "minute": "1",
+        "notice": "",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      }
+    },
+    {
+      "name": "straddling estimate retains full-repair Try",
+      "state": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.92,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[{\"type\":\"request\",\"action\":{\"task\":\"inspect\"}},{\"type\":\"advance\",\"minutes\":1}]}",
+        "focus": {
+          "tag": "BODY",
+          "id": ""
+        },
+        "minute": "1",
+        "notice": "",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      }
+    },
+    {
+      "name": "radio refusal keeps report-button focus and exact recipe",
+      "before": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9991,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        "minute": "0",
+        "notice": "",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      },
+      "after": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.9991,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[]}",
+        "focus": {
+          "tag": "BUTTON",
+          "id": "send-radio"
+        },
+        "minute": "0",
+        "notice": "Your present body cannot sustain that entire requested interval.",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      }
+    },
+    {
+      "name": "contact refusal keeps report-button focus and exact recipe",
+      "before": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.93,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[{\"type\":\"request\",\"action\":{\"task\":\"travel\",\"to\":\"dock\"}},{\"type\":\"continue\"},{\"type\":\"continue\"}]}",
+        "focus": {
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        "minute": "6",
+        "notice": "",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      },
+      "after": {
+        "storage": "{\"format\":\"human-across-cut-player\",\"saveVersion\":1,\"playerVersion\":\"0.1.0\",\"receiverVersion\":\"0.1.1\",\"setup\":{\"valveMinutes\":6,\"inletMinutes\":2,\"launchAt\":27,\"channelMode\":\"bounded\",\"channelSeed\":0,\"channelOverrides\":{\"receiver:2\":6},\"bodies\":{\"keeper\":{\"fatigue\":0.93,\"hunger\":0.15},\"receiver\":{\"fatigue\":0.15,\"hunger\":0.15}}},\"commands\":[{\"type\":\"request\",\"action\":{\"task\":\"travel\",\"to\":\"dock\"}},{\"type\":\"continue\"},{\"type\":\"continue\"}]}",
+        "focus": {
+          "tag": "BUTTON",
+          "id": "send-contact"
+        },
+        "minute": "6",
+        "notice": "Your present body cannot sustain that entire requested interval.",
+        "job": "Recovering while available",
+        "scrollWidth": 375,
+        "width": 375
+      }
+    }
+  ],
+  "sources": {
+    "before": {
+      "web/across-player.js": "7ec75ccce244b82f6e37d8f32fde3ac61cf5852cfcd90405e217e65669b0b3c5",
+      "src/games/across-cut-player.js": "fefb9f905d583c43fc86270542f423f6e967305c43aa1e3c6a956493afbfd349",
+      "web/across-view.js": "887bfbb37f5c3d37cbb07dad6ec8c23d0ab7d8706c7684ed3ec7594f59062a55"
+    },
+    "after": {
+      "web/across-player.js": "7ec75ccce244b82f6e37d8f32fde3ac61cf5852cfcd90405e217e65669b0b3c5",
+      "src/games/across-cut-player.js": "fefb9f905d583c43fc86270542f423f6e967305c43aa1e3c6a956493afbfd349",
+      "web/across-view.js": "887bfbb37f5c3d37cbb07dad6ec8c23d0ab7d8706c7684ed3ec7594f59062a55"
+    }
+  },
+  "screenshots": [
+    "/tmp/action-offer-ui-review/corrective/phone-refusal-focus.png",
+    "/tmp/action-offer-ui-review/corrective/desktop-refusal-focus.png",
+    "/tmp/action-offer-ui-review/corrective/short-refusal-focus.png",
+    "/tmp/action-offer-ui-review/corrective/definitely-impossible-walk.png",
+    "/tmp/action-offer-ui-review/corrective/definitely-impossible-full-repair.png"
+  ],
+  "errors": [],
+  "sourceStable": true
+}

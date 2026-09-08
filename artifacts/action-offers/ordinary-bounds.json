@@ -1,0 +1,181 @@
+{
+  "scope": "Post-outcome source-derived admission audit. These are loose analytic bounds over ordinary fresh setups, not newly executed policy histories or a human physiological claim.",
+  "source": "2ebdb8841215a26f69da1c394ab438b7a1f4d15d",
+  "identities": [
+    {
+      "path": "web/across-session.js",
+      "sha256": "9b1de7bdb19d8c51152439a7c100f687fbf2cc1d987677c5fc1ee02da8c93675"
+    },
+    {
+      "path": "src/games/across-cut-player.js",
+      "sha256": "b3500336e4852d11334f0923efcb1c1127c83e872ee8d773e3e6e58c3387174d"
+    },
+    {
+      "path": "src/games/across-cut.js",
+      "sha256": "21475414102a2e4238f639ab5546b2c01fa54586170cd952c397f966d38c60ad"
+    },
+    {
+      "path": "src/games/across-cut-receiver.js",
+      "sha256": "146b4b94d9ba37dae8f4e31550cbf7c1eb84c644120daedd985c060f8d63d8ce"
+    },
+    {
+      "path": "src/runtime/index.js",
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+    },
+    {
+      "path": "src/runtime/clock.js",
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    },
+    {
+      "path": "src/human/v0.1.1.js",
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "path": "src/core/model.js",
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    }
+  ],
+  "setups": [
+    {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "bounded",
+      "channelSeed": 0,
+      "channelOverrides": {
+        "receiver:2": 6
+      },
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    {
+      "valveMinutes": 6,
+      "inletMinutes": 14,
+      "launchAt": 27,
+      "channelMode": "bounded",
+      "channelSeed": 0,
+      "channelOverrides": {
+        "receiver:2": 6
+      },
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 15,
+      "channelMode": "bounded",
+      "channelSeed": 0,
+      "channelOverrides": {
+        "receiver:2": 6
+      },
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    {
+      "valveMinutes": 6,
+      "inletMinutes": 14,
+      "launchAt": 15,
+      "channelMode": "bounded",
+      "channelSeed": 0,
+      "channelOverrides": {
+        "receiver:2": 6
+      },
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    }
+  ],
+  "rates": {
+    "availableRecovery": 0,
+    "inspect": 0.003,
+    "repair": 0.012,
+    "release": 0.015,
+    "attend": 0.006,
+    "cart": 0.01,
+    "travel": 0.01,
+    "rest": 0,
+    "meal": 0,
+    "transmit": 0.003
+  },
+  "horizon": 30,
+  "maximumEffortPerMinute": 0.015,
+  "maximumActual": {
+    "fatigue": 0.645,
+    "hunger": 0.21
+  },
+  "maximumUpperEstimate": {
+    "fatigue": 0.675,
+    "hunger": 0.225
+  },
+  "intervalBounds": {
+    "inspect": {
+      "minutes": 1,
+      "fatigue": 0.6795,
+      "hunger": 0.227
+    },
+    "repair": {
+      "minutes": 6,
+      "fatigue": 0.756,
+      "hunger": 0.23700000000000002
+    },
+    "release": {
+      "minutes": 2,
+      "fatigue": 0.7080000000000001,
+      "hunger": 0.229
+    },
+    "travel": {
+      "minutes": 6,
+      "fatigue": 0.744,
+      "hunger": 0.23700000000000002
+    },
+    "transmit": {
+      "minutes": 1,
+      "fatigue": 0.6795,
+      "hunger": 0.227
+    },
+    "meal": {
+      "minutes": 2,
+      "fatigue": 0.678,
+      "hunger": 0.229
+    }
+  },
+  "assumptions": [
+    "At most30 paid minutes; refusals and other zero-time controls change no body.",
+    "Use greatest authored effort every minute, even though that loose schedule need not be feasible. Recovery and meals can only reduce these bounds.",
+    "Keeper ordinary work is at most six repair/walking minutes, two release/meal minutes or one inspection/report minute. It has no cart role or action that lengthens its initial six-minute valve repair.",
+    "Supported high-body custom/imported setups are outside the ordinary browser constructor bound."
+  ],
+  "conclusion": "No ordinary fresh-shift work or report offer can fail the conservative capacity check. The private candidate solves supported edge-state offer delays but has no current normal-play activation."
+}

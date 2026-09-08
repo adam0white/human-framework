@@ -1,0 +1,127 @@
+{
+  "review": "Narrow correction of prior whole-bin-impossible uncertainty finding",
+  "status": "resolved",
+  "scope": "Only prior repair/travel finding and shorter or straddling counterparts, plus hunger/report guard consistency; no preregistered comparison or broad test rerun.",
+  "beforeHashes": {
+    "src/games/across-cut-player.js": "fefb9f905d583c43fc86270542f423f6e967305c43aa1e3c6a956493afbfd349",
+    "web/across-view.js": "887bfbb37f5c3d37cbb07dad6ec8c23d0ab7d8706c7684ed3ec7594f59062a55"
+  },
+  "afterHashes": {
+    "src/games/across-cut-player.js": "fefb9f905d583c43fc86270542f423f6e967305c43aa1e3c6a956493afbfd349",
+    "web/across-view.js": "887bfbb37f5c3d37cbb07dad6ec8c23d0ab7d8706c7684ed3ec7594f59062a55"
+  },
+  "unchangedBaselineFunctions": [
+    "stopReason",
+    "run"
+  ],
+  "checks": [
+    {
+      "name": "entire repair bin impossible",
+      "id": "repair-full",
+      "duration": 6,
+      "visibleBody": {
+        "fatigue": 0.95,
+        "hunger": 0.15
+      },
+      "capacityUncertain": false,
+      "unavailable": "Your body estimate does not yet support this entire interval.",
+      "hostOutcome": "CAPACITY"
+    },
+    {
+      "name": "same repair state one minute conservative",
+      "id": "repair-one",
+      "duration": 1,
+      "visibleBody": {
+        "fatigue": 0.95,
+        "hunger": 0.15
+      },
+      "capacityUncertain": false,
+      "unavailable": null,
+      "hostOutcome": "admitted"
+    },
+    {
+      "name": "entire travel bin impossible",
+      "id": "travel-dock",
+      "duration": 6,
+      "visibleBody": {
+        "fatigue": 1,
+        "hunger": 0.15
+      },
+      "capacityUncertain": false,
+      "unavailable": "Your body estimate does not yet support this entire interval.",
+      "hostOutcome": "CAPACITY"
+    },
+    {
+      "name": "same state inspection straddles and admits",
+      "id": "inspect",
+      "duration": 1,
+      "visibleBody": {
+        "fatigue": 1,
+        "hunger": 0.15
+      },
+      "capacityUncertain": true,
+      "unavailable": "Your body estimate does not yet support this entire interval.",
+      "hostOutcome": "admitted"
+    },
+    {
+      "name": "full repair straddling legal twin",
+      "id": "repair-full",
+      "duration": 6,
+      "visibleBody": {
+        "fatigue": 0.9,
+        "hunger": 0.15
+      },
+      "capacityUncertain": true,
+      "unavailable": "Your body estimate does not yet support this entire interval.",
+      "hostOutcome": "admitted"
+    },
+    {
+      "name": "full repair straddling refused twin",
+      "id": "repair-full",
+      "duration": 6,
+      "visibleBody": {
+        "fatigue": 0.9,
+        "hunger": 0.15
+      },
+      "capacityUncertain": true,
+      "unavailable": "Your body estimate does not yet support this entire interval.",
+      "hostOutcome": "CAPACITY"
+    },
+    {
+      "name": "hunger straddling legal inspection",
+      "id": "inspect",
+      "duration": 1,
+      "visibleBody": {
+        "fatigue": 0.1,
+        "hunger": 1
+      },
+      "capacityUncertain": true,
+      "unavailable": "Your body estimate does not yet support this entire interval.",
+      "hostOutcome": "admitted"
+    },
+    {
+      "name": "hunger straddling refused inspection",
+      "id": "inspect",
+      "duration": 1,
+      "visibleBody": {
+        "fatigue": 0.1,
+        "hunger": 1
+      },
+      "capacityUncertain": true,
+      "unavailable": "Your body estimate does not yet support this entire interval.",
+      "hostOutcome": "CAPACITY"
+    },
+    {
+      "name": "hunger straddling legal report",
+      "unavailable": "Your condition estimates cannot support sending yet. Recover or eat before retrying.",
+      "capacityUncertain": true,
+      "hostOutcome": "admitted"
+    },
+    {
+      "name": "hunger straddling refused report",
+      "unavailable": "Your condition estimates cannot support sending yet. Recover or eat before retrying.",
+      "capacityUncertain": true,
+      "hostOutcome": "CAPACITY"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "format": "human-across-cut-player",
+  "saveVersion": 1,
+  "playerVersion": "0.1.0",
+  "receiverVersion": "0.1.1",
+  "setup": {
+    "valveMinutes": 6,
+    "inletMinutes": 2,
+    "launchAt": 27,
+    "channelMode": "bounded",
+    "channelSeed": 0,
+    "channelOverrides": {
+      "receiver:2": 6
+    },
+    "bodies": {
+      "keeper": {
+        "fatigue": 0.9751,
+        "hunger": 0.15
+      },
+      "receiver": {
+        "fatigue": 0.15,
+        "hunger": 0.15
+      }
+    }
+  },
+  "commands": [
+    {
+      "type": "request",
+      "action": {
+        "task": "inspect"
+      }
+    }
+  ]
+}

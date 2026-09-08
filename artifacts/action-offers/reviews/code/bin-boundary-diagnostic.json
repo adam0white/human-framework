@@ -1,0 +1,140 @@
+[
+  {
+    "caseName": "known-six-minute-repair",
+    "id": "repair-full",
+    "visibleBody": {
+      "fatigue": 0.95,
+      "hunger": 0.15
+    },
+    "duration": 6,
+    "capacityUncertain": true,
+    "unavailable": "Your body estimate does not yet support this entire interval.",
+    "lowerBounds": {
+      "fatigue": 0.9249999999999999,
+      "hunger": 0.125
+    },
+    "lowerAssessment": {
+      "allowed": false,
+      "causes": [
+        "fatigue"
+      ],
+      "fatigueCost": 0.08100000000000002,
+      "hungerCost": 0.012,
+      "projectedFatigue": 1.006,
+      "projectedHunger": 0.137
+    },
+    "upperAssessment": {
+      "allowed": false,
+      "causes": [
+        "fatigue"
+      ],
+      "fatigueCost": 0.08100000000000002,
+      "hungerCost": 0.012,
+      "projectedFatigue": 1.056,
+      "projectedHunger": 0.187
+    },
+    "hostOutcome": "CAPACITY"
+  },
+  {
+    "caseName": "known-six-minute-repair",
+    "id": "repair-one",
+    "visibleBody": {
+      "fatigue": 0.95,
+      "hunger": 0.15
+    },
+    "duration": 1,
+    "capacityUncertain": false,
+    "unavailable": null,
+    "lowerBounds": {
+      "fatigue": 0.9249999999999999,
+      "hunger": 0.125
+    },
+    "lowerAssessment": {
+      "allowed": true,
+      "causes": [],
+      "fatigueCost": 0.0135,
+      "hungerCost": 0.002,
+      "projectedFatigue": 0.9384999999999999,
+      "projectedHunger": 0.127
+    },
+    "upperAssessment": {
+      "allowed": true,
+      "causes": [],
+      "fatigueCost": 0.0135,
+      "hungerCost": 0.002,
+      "projectedFatigue": 0.9884999999999999,
+      "projectedHunger": 0.177
+    },
+    "hostOutcome": "admitted"
+  },
+  {
+    "caseName": "starting-fatigue-one",
+    "id": "inspect",
+    "visibleBody": {
+      "fatigue": 1,
+      "hunger": 0.15
+    },
+    "duration": 1,
+    "capacityUncertain": true,
+    "unavailable": "Your body estimate does not yet support this entire interval.",
+    "lowerBounds": {
+      "fatigue": 0.975,
+      "hunger": 0.125
+    },
+    "lowerAssessment": {
+      "allowed": true,
+      "causes": [],
+      "fatigueCost": 0.0045000000000000005,
+      "hungerCost": 0.002,
+      "projectedFatigue": 0.9794999999999999,
+      "projectedHunger": 0.127
+    },
+    "upperAssessment": {
+      "allowed": false,
+      "causes": [
+        "fatigue"
+      ],
+      "fatigueCost": 0.0045000000000000005,
+      "hungerCost": 0.002,
+      "projectedFatigue": 1.0045,
+      "projectedHunger": 0.177
+    },
+    "hostOutcome": "admitted"
+  },
+  {
+    "caseName": "starting-fatigue-one",
+    "id": "travel-dock",
+    "visibleBody": {
+      "fatigue": 1,
+      "hunger": 0.15
+    },
+    "duration": 6,
+    "capacityUncertain": true,
+    "unavailable": "Your body estimate does not yet support this entire interval.",
+    "lowerBounds": {
+      "fatigue": 0.975,
+      "hunger": 0.125
+    },
+    "lowerAssessment": {
+      "allowed": false,
+      "causes": [
+        "fatigue"
+      ],
+      "fatigueCost": 0.069,
+      "hungerCost": 0.012,
+      "projectedFatigue": 1.044,
+      "projectedHunger": 0.137
+    },
+    "upperAssessment": {
+      "allowed": false,
+      "causes": [
+        "fatigue"
+      ],
+      "fatigueCost": 0.069,
+      "hungerCost": 0.012,
+      "projectedFatigue": 1.069,
+      "projectedHunger": 0.187
+    },
+    "hostOutcome": "CAPACITY"
+  }
+]

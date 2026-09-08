@@ -1,10 +1,13 @@
-import test from 'node:test';
+import test,{after} from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync,rmSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {loadFrozen} from '../artifacts/action-offers/provenance.mjs';
 import {createHash} from 'node:crypto';
-import * as player from '../src/games/across-cut-player.js';
-import * as host from '../src/games/across-cut.js';
-import * as presentation from '../web/across-view.js';
+// The candidate stays private: exercise its exact reviewed source graph, not the active app.
+const frozen=await loadFrozen(fileURLToPath(new URL('../',import.meta.url)),JSON.parse(readFileSync(new URL('../artifacts/action-offers/freeze.json',import.meta.url),'utf8')));
+const {player,host,view:presentation}=frozen.api.candidate;
+after(()=>rmSync(frozen.directory,{recursive:true,force:true}));
 
 const bodyOptions=fatigue=>({bodies:{keeper:{fatigue,hunger:.15}}});
 const request=(game,action)=>player.applyCommand(game,{type:'request',action});
@@ -224,9 +227,9 @@ test('offer metadata retains the conservative capacity-available stop',()=>{
  assert.equal(choice(game,'repair-full').capacityUncertain,false);
 });
 
-test('the released Across admission, receiver and Human runtime sources remain byte-identical',()=>{
+test('the frozen candidate retains baseline admission, receiver and Human runtime bytes',()=>{
  const freeze=JSON.parse(readFileSync(new URL('../artifacts/across-player/reviewed-freeze.json',import.meta.url),'utf8'));
  for(const path of ['src/games/across-cut.js','src/games/across-cut-receiver.js','src/runtime/index.js','src/runtime/clock.js','src/human/v0.1.1.js','src/core/model.js']){
-  assert.equal(hash(readFileSync(new URL(`../${path}`,import.meta.url))),freeze.files[path].sha256,path);
+  assert.equal(hash(readFileSync(`${frozen.directory}/candidate/${path}`)),freeze.files[path].sha256,path);
  }
 });

@@ -1,6 +1,6 @@
 # Next bounded experiment: what an offered action promises
 
-Selected after app 0.14, 2026-09-08. This is a small host/interface experiment, not a new capability module, a new game requirement, or a rerun of the completed physiology comparisons.
+Selected after app 0.14, 2026-09-08; now completed as a [private study](action-offer-results.md). The corrected candidate is retained privately and the production gate remains unchanged. This is a small host/interface experiment, not a new capability module, a new game requirement, or a rerun of the completed physiology comparisons.
 
 ## Observed cost and current uncertainty
 

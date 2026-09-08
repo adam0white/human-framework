@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-09-08T23:27:48.962Z",
+  "scope": "Private milestone: current live manifest and restored payload digest match prior verified app0.14; three new private artifact paths are404. The full70payload verification remains the app0.14 release record.",
+  "release": {
+    "appVersion": "0.14.0",
+    "runtimeVersion": "0.1.1",
+    "clockVersion": "0.1.0",
+    "commit": "2ebdb8841215a26f69da1c394ab438b7a1f4d15d",
+    "dirty": false,
+    "assetsSha256": "4f9cccf8602c04a2fb7d7f8dd4aec3ba45950d9791791ed37c8eb5ae3f753c20"
+  },
+  "privatePaths": [
+    {
+      "path": "/artifacts/action-offers/candidate-source.json.gz",
+      "status": 404
+    },
+    {
+      "path": "/artifacts/action-offers/ordinary-bounds.json",
+      "status": 404
+    },
+    {
+      "path": "/docs/action-offer-results.md",
+      "status": 404
+    }
+  ]
+}
