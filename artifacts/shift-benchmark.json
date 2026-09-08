@@ -6,7 +6,7 @@
     "baselineCommit": "d62f84d",
     "node": "v23.7.0",
     "sourceSHA256": {
-      "src/games/shift.js": "2bf8d9c13f89f5f10e3e7a8592c6e2ec245e4b12d1e7e53150854fe84ef81539",
+      "src/games/shift.js": "4789e22b746d9ee24711e3a011d9e40f67053b7b14e3204648487276f04b9e36",
       "src/human/index.js": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308",
       "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
       "scripts/shift-benchmark.js": "785a06cf7f2430adf1e7baec00590cc9f61849b3c7be7c6de90d276167bcc095"
