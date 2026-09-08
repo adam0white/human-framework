@@ -1,0 +1,32 @@
+✖ reliable radio bounds never infer delivery of a missed contact transmission (6.690125ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40.162042
+
+✖ failing tests:
+
+test at tests/across-cut-comparison.test.js:156:1
+✖ reliable radio bounds never infer delivery of a missed contact transmission (6.690125ms)
+  AssertionError [ERR_ASSERTION]: A radio delivery bound cannot establish contact receipt.
+  + actual - expected
+  
+  + [
+  +   'keeper:m1'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/across-cut-policies/tests/across-cut-comparison.test.js:163:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'keeper:m1' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

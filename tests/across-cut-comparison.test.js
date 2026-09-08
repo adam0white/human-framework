@@ -152,3 +152,13 @@ test('same-minute withdrawal survives a later-arriving earlier transmitted accep
   assert.deepEqual(host.restoreState(host.exportState(world)),world);
   assert.equal(compareRepresentations(view.notebook,view.inbox).notebook.responses['keeper:p1|1'].decision,'withdraw');
 });
+
+test('reliable radio bounds never infer delivery of a missed contact transmission',async()=>{
+  const h=await import('../src/experiments/across-cut/host.js');const {chooseAction}=await import('../src/experiments/across-cut/comparison/policies.js');
+  let world=h.create();world=h.request(world,'receiver',{task:'travel',to:'valve'});world=h.advance(world,6);
+  const ids=h.getActorView(world,'keeper').notebook.filter(o=>o.via==='local').map(o=>o.receipt);
+  world=h.request(world,'keeper',{task:'transmit',via:'contact',message:{kind:'report',observationIds:ids}});
+  world=h.request(world,'receiver',{task:'travel',to:'dock'});world=h.advance(world,9);
+  const view=h.getActorView(world,'keeper');assert.equal(view.sent[0].via,'contact');assert.equal(h.getActorView(world,'receiver').inbox.length,0);
+  assert.deepEqual(chooseAction(view,{},'contact').state.inferredReceived,[],'A radio delivery bound cannot establish contact receipt.');
+});
