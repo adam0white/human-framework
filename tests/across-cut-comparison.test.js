@@ -35,6 +35,12 @@ test('source-time notebook retains newer facts after stale arrivals and exact re
   assert.equal(r.notebook.responses['keeper:p1|2'].decision,'accept');
   assert.equal(r.notebook.responses['keeper:p1|1'].decision,'refuse');
   assert.equal(r.identicalInput,true);
+  const changed=m.compareRepresentations([], [
+    {message:{kind:'response',proposalId:'keeper:p1',revision:1,decision:'withdraw',decidedAt:5}},
+    {message:{kind:'response',proposalId:'keeper:p1',revision:1,decision:'accept',decidedAt:3}}
+  ]);
+  assert.equal(changed.notebook.responses['keeper:p1|1'].decision,'withdraw');
+  assert.equal(changed.lastArrival.responses['keeper:p1'].decision,'accept');
 });
 
 test('registered comparison protocol and fresh output guards preserve evidence', async()=>{
