@@ -28,6 +28,9 @@ export async function sourcePaths(){
   // Tests use dynamic imports only for initial red-phase module-existence assertions;
   // their own bytes are bound, while production imports above form the source graph.
   found.add('tests/across-cut-comparison.test.js');
+  // This audit loader imports only an explicit historical Git-verified graph;
+  // its dynamic import is intentional, and its own complete source is still bound.
+  found.add('scripts/across-cut-replay-history.js');
   return [...found].sort();
 }
 export async function sourceHashes(){const paths=await sourcePaths();return Object.fromEntries(await Promise.all(paths.map(async path=>[path,hash(await readFile(resolve(ROOT,path)))])));}

@@ -93,3 +93,29 @@ test('competent cheap report, contact fallback and unknown-launch notebook prese
     const t=runTrial(cases.find(x=>x.id===id),arm);assert.equal(t.final.service.units,2,`${id}/${arm} should retain its feasible local strategy`);
   }
 });
+
+test('paid scripts distinguish stale facts, consent, omitted work and receipt-only overhead',async()=>{
+  const {runTrial}=await import('../src/experiments/across-cut/comparison/experiment.js');const {selectCases}=await import('../src/experiments/across-cut/comparison/cases.js');
+  const cases=selectCases(),run=id=>runTrial(cases.find(c=>c.id===id));
+  const confirm=run('S1-confirm'),alternative=run('S2-equal-cost-response');
+  assert.deepEqual(confirm.final.service,alternative.final.service);
+  assert.deepEqual(confirm.final.actors,alternative.final.actors);
+  const stale=run('S4-stale-readiness').representations.receiver;
+  assert.equal(stale.notebook.latest['valve|repairProgress:valve'].value,1);
+  assert.equal(stale.lastArrival.latest['valve|repairProgress:valve'].value,0);
+  const omitted=run('S5-omitted'),withdrawn=run('S5-withdrawn');
+  assert.equal(omitted.final.actors.receiver.contributions[0].status,'expired');
+  assert.equal(withdrawn.final.actors.receiver.contributions[0].status,'withdrawn');
+  assert.equal(omitted.final.service.units,1);assert.equal(omitted.final.water.lost,2);
+  const canceled=run('S7-cancel');assert.equal(canceled.final.actors.keeper.paid.transmit,0);assert.equal(canceled.final.actors.keeper.inventory.radio.consumed,0);
+  assert.equal(canceled.final.work.valve,6);assert.equal(canceled.final.actors.keeper.inventory.fitting.installed,1);
+});
+
+test('historical replay verifies original Git source bytes before loading a recorded controller',async()=>{
+  const {spawnSync}=await import('node:child_process');const {mkdtemp,readFile,rm}=await import('node:fs/promises');const {tmpdir}=await import('node:os');const {join}=await import('node:path');
+  const dir=await mkdtemp(join(tmpdir(),'across-cut-history-test-'));
+  try{
+    const out=join(dir,'result.json');const run=spawnSync(process.execPath,['scripts/across-cut-replay-history.js','--input','artifacts/across-cut/development-initial.json.gz','--out',out],{cwd:new URL('..',import.meta.url),encoding:'utf8'});
+    assert.equal(run.status,0,run.stderr);const result=JSON.parse(await readFile(out,'utf8'));assert.equal(result.verified.length,80);assert.match(result.sourceCommit,/^be1f104/);assert.equal(result.sourceVerified,true);
+  }finally{await rm(dir,{recursive:true,force:true});}
+});
