@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: new shared clinic host exists independently of the frozen service host
+ok 1 - new shared clinic host exists independently of the frozen service host
+  ---
+  duration_ms: 0.521583
+  ...
+# Subtest: listening and term acceptance are separate and both people pay active time
+ok 2 - listening and term acceptance are separate and both people pay active time
+  ---
+  duration_ms: 42.302042
+  ...
+# Subtest: short hold enables actual full delivery and records readiness separately from arrival
+ok 3 - short hold enables actual full delivery and records readiness separately from arrival
+  ---
+  duration_ms: 23.606708
+  ...
+# Subtest: missed short promise retains a feasible one-unit fallback at45
+ok 4 - missed short promise retains a feasible one-unit fallback at45
+  ---
+  duration_ms: 18.590208
+  ...
+# Subtest: busy invitation never stops work and unsuitable terms cost the completed discussion
+ok 5 - busy invitation never stops work and unsuitable terms cost the completed discussion
+  ---
+  duration_ms: 7.905375
+  ...
+# Subtest: interruption retains paid active minutes and no accepted terms
+ok 6 - interruption retains paid active minutes and no accepted terms
+  ---
+  duration_ms: 9.701667
+  ...
+# Subtest: useful accepted revision prevents old45cart and preserves actual carried work
+ok 7 - useful accepted revision prevents old45cart and preserves actual carried work
+  ---
+  duration_ms: 19.339667
+  ...
+# Subtest: refused and interrupted revisions preserve original accepted terms
+ok 8 - refused and interrupted revisions preserve original accepted terms
+  ---
+  duration_ms: 11.167458
+  ...
+# Subtest: withdrawal retracts own promise but does not stop work or erase clinic obligation
+ok 9 - withdrawal retracts own promise but does not stop work or erase clinic obligation
+  ---
+  duration_ms: 7.835959
+  ...
+# Subtest: old response cannot accept a new revision or duplicate acceptance
+ok 10 - old response cannot accept a new revision or duplicate acceptance
+  ---
+  duration_ms: 9.863375
+  ...
+# Subtest: revision exactly at old expiry cannot revive it or delay the45cart
+ok 11 - revision exactly at old expiry cannot revive it or delay the45cart
+  ---
+  duration_ms: 7.193333
+  ...
+# Subtest: clinic receiving slot survives an interrupted departure and rejects renegotiation
+ok 12 - clinic receiving slot survives an interrupted departure and rejects renegotiation
+  ---
+  duration_ms: 7.474792
+  ...
+# Subtest: save identity is independent and forged promises cannot alter deterministic replay
+ok 13 - save identity is independent and forged promises cannot alter deterministic replay
+  ---
+  duration_ms: 21.192291
+  ...
+# Subtest: a requested partner job crossing the hold deadline is not compelled to stop
+ok 14 - a requested partner job crossing the hold deadline is not compelled to stop
+  ---
+  duration_ms: 9.689875
+  ...
+# Subtest: completed readiness retains its actual earlier timestamp and cannot be retracted
+ok 15 - completed readiness retains its actual earlier timestamp and cannot be retracted
+  ---
+  duration_ms: 8.231875
+  ...
+# Subtest: an already fulfilled contribution is not erased by withdrawal during a requested recovery
+ok 16 - an already fulfilled contribution is not erased by withdrawal during a requested recovery
+  ---
+  duration_ms: 8.162292
+  ...
+# Subtest: an accepted risky forecast does not supply unperformed recovery or guarantee capacity
+ok 17 - an accepted risky forecast does not supply unperformed recovery or guarantee capacity
+  ---
+  duration_ms: 7.797917
+  ...
+# Subtest: risky wait uses the retained gate checkpoint and actual paid four-minute rest
+ok 18 - risky wait uses the retained gate checkpoint and actual paid four-minute rest
+  ---
+  duration_ms: 9.810375
+  ...
+# Subtest: closing still defeats a tied delivery and records a closed receiving slot
+ok 19 - closing still defeats a tied delivery and records a closed receiving slot
+  ---
+  duration_ms: 8.794125
+  ...
+# Subtest: same-minute repeated invitation refusals coalesce without consuming proposal identities
+ok 20 - same-minute repeated invitation refusals coalesce without consuming proposal identities
+  ---
+  duration_ms: 793.21425
+  ...
+# Subtest: capped discussions retain sufficient interruption and closing budget
+ok 21 - capped discussions retain sufficient interruption and closing budget
+  ---
+  duration_ms: 202.02725
+  ...
+# Subtest: all time drivers resume equal through accepted and interrupted revisions
+ok 22 - all time drivers resume equal through accepted and interrupted revisions
+  ---
+  duration_ms: 18.191917
+  ...
+# Subtest: cross-family latest refusal channels coalesce and resume without losing either response
+ok 23 - cross-family latest refusal channels coalesce and resume without losing either response
+  ---
+  duration_ms: 931.401334
+  ...
+# Subtest: a predecessor deadline during discussion stops only the meeting and retains its paid partial cost
+ok 24 - a predecessor deadline during discussion stops only the meeting and retains its paid partial cost
+  ---
+  duration_ms: 7.542959
+  ...
+# Subtest: cross-family refusals at the final request budget leave stops and closing usable
+ok 25 - cross-family refusals at the final request budget leave stops and closing usable
+  ---
+  duration_ms: 1946.10525
+  ...
+# Subtest: owned spare and inlet supply are prerequisites for consent, not implied by a promise
+ok 26 - owned spare and inlet supply are prerequisites for consent, not implied by a promise
+  ---
+  duration_ms: 4.817084
+  ...
+# Subtest: malformed terms and hostile save structures reject before executing accessors or work
+ok 27 - malformed terms and hostile save structures reject before executing accessors or work
+  ---
+  duration_ms: 9.519792
+  ...
+# Subtest: mixed actual commands including plan edits preserve replay and bounded state over many paid days
+ok 28 - mixed actual commands including plan edits preserve replay and bounded state over many paid days
+  ---
+  duration_ms: 1604.925125
+  ...
+# Subtest: visible event pauses at an earlier promised readiness before a longer accepted hold expires
+ok 29 - visible event pauses at an earlier promised readiness before a longer accepted hold expires
+  ---
+  duration_ms: 5.095042
+  ...
+# Subtest: visible event exposes promised pump start so paid rest can stop at its actual planned boundary
+ok 30 - visible event exposes promised pump start so paid rest can stop at its actual planned boundary
+  ---
+  duration_ms: 5.728125
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5833.201708
