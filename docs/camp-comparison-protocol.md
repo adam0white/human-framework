@@ -35,3 +35,7 @@ The actual player export and original feedback remain private and excluded from 
 ## Pre-execution scope amendment: existing Rain continuation
 
 Before executing candidate outcomes, the implementation scope adds explicit `migrateLegacyRainGame` for a validated original Before the rain save. Exercise original packing, paused-ferry and ended source states. Preserve the existing `openedAt`, deadline offsets, earned production receipts, allocations, departure and ending without creating a fresh window. Compare exact old and newly migrated bodies, supplies, paid jobs, absolute minute and service state, then JSON-roundtrip and continue where the selected phase admits it. This is a new development compatibility requirement, not a fourth withheld case or a retroactive claim that the original protocol included it.
+
+## Pre-execution clarification: paid ferry delivery
+
+The root's concrete surplus rule requires actual ferry dispatch at entry + 90 before an early successful ending. Allocation may be immediate; a fulfilled household delivery is not fabricated at entry. The surplus case therefore pays 90 minutes, dispatches, and may skip the remaining 90-minute rain wait once all needs are covered. Record retained supplies immediately after allocation separately from any additional paid production/recovery before dispatch.
