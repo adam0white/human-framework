@@ -59,11 +59,15 @@ function validAccounting(observation,fixture){
  for(const key of ['stock','spent','toolAvailable','outputs','actors','items','assignments','lastResponse'])assert.ok(Object.hasOwn(observation,key),'Missing accounting field '+key);
  assert.equal(typeof observation.toolAvailable,'boolean');
  const count=fixture.setup.items??1;
- assert.equal(observation.items.length,count);assert.ok(observation.outputs>=0&&observation.outputs<=count);
+ const integer=(value,max=1440)=>assert.ok(Number.isSafeInteger(value)&&value>=0&&value<=max,'Invalid nonnegative accounting integer');
+ integer(observation.outputs,count);
+ for(const values of [observation.stock,observation.spent])for(const key of ['timber','salvage','toolBlank'])integer(values[key]);
+ assert.equal(observation.items.length,count);
  let timber=observation.stock.timber+observation.spent.timber,salvage=observation.stock.salvage+observation.spent.salvage;
  for(const item of observation.items){
-  assert.ok(item.progress>=0&&item.progress<=1);timber+=item.reserved.timber;salvage+=item.reserved.salvage;
+  assert.ok(item.progress>=0&&item.progress<=1);integer(item.reserved.timber,5);integer(item.reserved.salvage,1);timber+=item.reserved.timber;salvage+=item.reserved.salvage;
   const contributions=Object.values(item.contributions);
+  for(const c of contributions){integer(c.minutes,observation.now);integer(c.basis);assert.ok(c.basis>=1&&c.fraction>=0&&c.fraction<=1&&c.effort>=0&&c.effort<=.2);}
   const fraction=contributions.reduce((n,c)=>n+c.fraction,0),effort=contributions.reduce((n,c)=>n+c.effort,0);
   assert.ok(Math.abs(item.progress-fraction)<1e-10,'Progress must equal paid contributions');
   assert.ok(Math.abs(effort-.2*fraction)<1e-10,'Only paid fraction earns effort');
@@ -72,12 +76,16 @@ function validAccounting(observation,fixture){
  assert.equal(observation.stock.toolBlank+observation.spent.toolBlank,fixture.setup.toolArrival?1:0);
  for(const actor of ['A','B','C']){
   const {person,paid}=observation.actors[actor],p=restorePerson(person);
+  for(const key of ['work','recovery','construction','hauling','crafting'])integer(paid[key],observation.now);
+  const credits=observation.items.map(item=>item.contributions[actor]).filter(Boolean);
+  assert.equal(credits.reduce((n,c)=>n+c.minutes,0),paid.construction,'Paid construction belongs to its worker');
+  assert.ok(Math.abs(credits.reduce((n,c)=>n+c.effort,0)+paid.hauling*.01+paid.crafting*.02-paid.effort)<1e-10,'Paid effort must match actual owned tasks');
   assert.equal(p.nextAttempt,observation.now+1,'Exactly one paid Human attempt per actor-minute');
   assert.equal(p.minutes,observation.now);assert.equal(p.pending,null);
   assert.equal(paid.work+paid.recovery,observation.now);
   assert.equal(paid.work,paid.construction+paid.hauling+paid.crafting);
   assert.ok(paid.effort>=0);
-  const initial=actor==='C'?{crafting:.1}:{construction:actor==='A'?.1:.6,hauling:.1};
+  const initial=actor==='C'?{crafting:.1}:{construction:actor==='A' ? .1 : .6,hauling:.1};
   assert.deepEqual(Object.keys(p.skills).sort(),Object.keys(initial).sort());
   for(const [skill,start] of Object.entries(initial)){let expected=start;for(let i=0;i<paid[skill];i++)expected=practice(expected,1);assert.equal(p.skills[skill],expected,'Only actual paid task exposure changes practice');}
   let hunger=.2;for(let i=0;i<observation.now;i++)hunger=Math.min(1,hunger+PARAMETERS.hungerPerMinute);assert.equal(p.body.hunger,hunger,'Every minute pays actual hunger');
@@ -91,7 +99,8 @@ export function executeHistory(api,fixture,driver,{restore=false}={}){
  world=api.createWorld(clone(fixture.setup));
  const record=operation=>{
   const observation=api.observe(world);validAccounting(observation,fixture);
-  records.push({operation:clone(operation),observation:clone(observation),snapshot:clone(api.exportWorld(world))});
+  const snapshot=api.exportWorld(world);assertJson(snapshot);
+  records.push({operation:clone(operation),observation:clone(observation),snapshot:clone(snapshot)});
   return clone(observation);
  };
  const initial=record({type:'create',setup:fixture.setup});assert.equal(initial.now,0,'Fixture starts at zero');checkpoints.push({tag:'initial',observation:initial});
@@ -126,8 +135,9 @@ export function executeHistory(api,fixture,driver,{restore=false}={}){
  checkpoints.push({tag:'final',observation:clone(final)});
  return {id:fixture.id,driver,restore,records,checkpoints,final,completed};
  }catch(error){
-  let snapshot=null;try{if(world)snapshot=api.exportWorld(world);}catch{/* Keep the original failure even if export also rejects. */}
-  error.evidence={id:fixture.id,driver,restore,fixture,records,checkpoints,snapshot};throw error;
+  let snapshot=null,snapshotError=null;
+  try{if(world){const candidate=api.exportWorld(world);assertJson(candidate);snapshot=clone(candidate);}}catch(failure){snapshotError=String(failure.message);}
+  error.evidence={id:fixture.id,driver,restore,fixture,records,checkpoints,snapshot,snapshotError};throw error;
  }
 }
 export async function runMatrix(freeze){
