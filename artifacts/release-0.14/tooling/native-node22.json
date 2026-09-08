@@ -1,0 +1,15 @@
+{
+  "node": "v22.0.0",
+  "sharp": "0.35.4",
+  "heif": "1.23.2",
+  "decoded": {
+    "format": "raw",
+    "width": 2,
+    "height": 2,
+    "channels": 3,
+    "depth": "uchar",
+    "premultiplied": false,
+    "hasAlpha": false,
+    "size": 12
+  }
+}
