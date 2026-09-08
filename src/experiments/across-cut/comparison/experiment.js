@@ -51,8 +51,10 @@ export function runTrial(condition,arm=condition.kind==='script'?'prescribed':nu
 }
 export function replayTrial(trial){
   assert.equal(hash(trial.initialSave),trial.initialSaveSha256);let world=host.restoreState(trial.initialSave),states={keeper:{},receiver:{}};
+  let maxSaveBytes=0;const errors=[];
+  const verifySnapshot=expected=>{const current=snapshot(world);maxSaveBytes=Math.max(maxSaveBytes,current.bytes);assert.equal(current.saveSha256,expected);};
   for(const event of trial.events){
-    if(event.kind==='advance'){world=host.advance(world,event.to);assert.equal(hash(host.exportState(world)),event.saveSha256);continue;}
+    if(event.kind==='advance'){world=host.advance(world,event.to);verifySnapshot(event.saveSha256);continue;}
     assert.equal(event.kind,'decisions');const current=views(world);
     for(const actor of actors){
       const input=resolveInput(trial.dictionary,event.inputs[actor]);assert.deepEqual(input,{view:current[actor],state:states[actor]});
@@ -61,13 +63,14 @@ export function replayTrial(trial){
     for(const actor of actors){
       const decision=event.decisions[actor];states[actor]=structuredClone(decision.state);const applied=apply(world,actor,decision.action);world=applied.world;
       assert.deepEqual(applied.error,event.results[actor].error);
-      if(applied.error)states[actor].lastRefusal={at:current[actor].now,action:decision.action,error:applied.error};
-      assert.equal(hash(host.exportState(world)),event.results[actor].saveSha256);
+      if(applied.error){states[actor].lastRefusal={at:current[actor].now,action:decision.action,error:applied.error};errors.push({at:current[actor].now,actor,...states[actor].lastRefusal});}
+      verifySnapshot(event.results[actor].saveSha256);
     }
     if(event.at===15)world=host.restoreState(JSON.parse(JSON.stringify(host.exportState(world))));
   }
   assert.deepEqual(host.exportState(world),trial.finalSave);assert.equal(hash(trial.finalSave),trial.finalSaveSha256);
   assert.deepEqual(host.getWorldSummary(world),trial.final);assert.deepEqual(views(world),trial.finalLocal);
+  assert.equal(trial.commandCount,trial.final.journalEntries);assert.equal(trial.maxSaveBytes,maxSaveBytes);assert.deepEqual(trial.errors,errors);
   assert.deepEqual(Object.fromEntries(actors.map(a=>[a,compareRepresentations(trial.finalLocal[a].notebook,trial.finalLocal[a].inbox)])),trial.representations);
   return trial.finalSaveSha256;
 }

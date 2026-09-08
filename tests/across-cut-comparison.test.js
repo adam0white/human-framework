@@ -83,6 +83,9 @@ test('actual paid no-radio control and both local decision inputs replay exactly
   assert.equal(m.replayTrial(trial),trial.finalSaveSha256);
   const altered=structuredClone(trial);altered.final.service.units=9;
   assert.throws(()=>m.replayTrial(altered),/equal|Expected/);
+  const count=structuredClone(trial);count.commandCount--;assert.throws(()=>m.replayTrial(count),/equal|Expected/);
+  const peak=structuredClone(trial);peak.maxSaveBytes--;assert.throws(()=>m.replayTrial(peak),/equal|Expected/);
+  const errors=structuredClone(trial);errors.errors.push({invented:true});assert.throws(()=>m.replayTrial(errors),/equal|Expected/);
   assert.throws(()=>m.runTrial({partition:'reserved'},'fixed-early'),/sealed/);
 });
 
