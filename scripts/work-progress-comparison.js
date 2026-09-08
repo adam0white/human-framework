@@ -17,7 +17,7 @@ export function assertJson(value,ancestors=new Set()){
  assert.equal(typeof value,'object','Non-JSON value');assert.ok(!ancestors.has(value),'Cyclic JSON value');
  const array=Array.isArray(value);
  assert.ok(array?Object.getPrototypeOf(value)===Array.prototype:[Object.prototype,null].includes(Object.getPrototypeOf(value)),'Non-plain JSON object');
- const keys=Reflect.ownKeys(value);if(array)assert.equal(keys.length,value.length+1,'Sparse or extended JSON array');
+ const keys=Reflect.ownKeys(value);if(array){assert.equal(keys.length,value.length+1,'Sparse or extended JSON array');for(let i=0;i<value.length;i++)assert.ok(Object.hasOwn(value,String(i)),'Missing JSON array index');}
  ancestors.add(value);
  for(const key of keys){
   if(array&&key==='length')continue;
@@ -171,7 +171,8 @@ export async function runMatrix(freeze){
 export async function replayMatrix(record){
  assert.equal(record.format,'paid-work-camp-comparison');await verifyFreeze(record.freeze);
  const current=await runMatrix(record.freeze);
- assert.equal(canonical(current.runs),canonical(record.runs),'Every full saved record must replay exactly');
+ try{assert.equal(canonical(current.runs),canonical(record.runs),'Every full saved record must replay exactly');}
+ catch(error){error.evidence={phase:'replay-comparison',freeze:record.freeze,expected:record.runs,current:current.runs};throw error;}
  return {format:'paid-work-camp-replay',version:1,node:process.version,freeze:record.freeze,replayed:record.runs.length,exact:true};
 }
 function option(args,name){const i=args.indexOf(name);return i<0?null:args[i+1];}
