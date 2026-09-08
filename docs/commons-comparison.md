@@ -33,4 +33,10 @@ All controllers face the same command dispatcher and decision opportunities. A r
 
 ## Execution record
 
-Results and exact freeze/reproduction commands will be appended after implementation and evaluation. The preregistration is retained verbatim in its own committed artifact.
+The preregistration was committed as `a3fbb03` before the rival and harness were implemented. The immutable copy is [preregistration.md](../artifacts/commons-comparison/preregistration.md). The baseline at `9bd93c6` passed 229 tests.
+
+The first development batch contains 36 trials. Its policy function was not tuned after inspecting results. The implementation makes the preregistered rules concrete: planned hunger/fatigue recovery thresholds are both 0.75; absent food triggers foraging at hunger 0.50. When useful work is waiting on a neighbor, it prepares food below two portions, can eat at hunger 0.45, and can rest at fatigue 0.35. Material priority is the longest missing gather workload, computed from visible costs, outputs, and durations. These are authored controller rules, not physiological estimates.
+
+The harness was subsequently clarified to distinguish policy errors from host rejection and retain independent proposal responses. Those changes did not alter any policy or the observed development outcomes. It never substitutes recovery for a blocked action. Nine experiment tests now exercise legal prefixes, public-view isolation, sealed conditions, exact checkpoints without extra decisions, explicit partial failure, rejection without free recovery, prescribed-command physics equality, long-run command liveness, and bounded active state.
+
+Initial development finding: every controller established the worksite and continued for the full 1,440-minute budget without a rejected command or liveness failure. Project-pull does not dominate: delayed-240 team reaches its first milestone in 248 additional minutes, versus 245 for build-first and 242 for stock-first. Full results, costs, and the reserved-family evaluation follow after the source freeze.
