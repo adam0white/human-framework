@@ -224,23 +224,42 @@ function stopMealRaw(state, actor) {
 }
 export function beginMeal(state, actor) { return change(state, { type: 'meal', actor }, s => beginMealRaw(s, actor)); }
 export function stopMeal(state, actor) { return change(state, { type: 'stop-meal', actor }, s => stopMealRaw(s, actor)); }
-function json(value, depth = 0, ancestors = new Set()) {
-  if (depth > 32) fail('JSON nesting exceeds limit');
-  if (value === null || typeof value === 'boolean' || typeof value === 'string') return;
-  if (typeof value === 'number') { if (!Number.isFinite(value) || Object.is(value, -0)) fail('Invalid JSON number'); return; }
-  if (!value || typeof value !== 'object' || ancestors.has(value)) fail('Save requires acyclic plain JSON');
-  const array = Array.isArray(value), proto = Object.getPrototypeOf(value), names = Reflect.ownKeys(value);
-  if (array ? proto !== Array.prototype : ![Object.prototype, null].includes(proto)) fail('Save requires plain JSON');
-  if (array && (value.length > 10000 || names.length !== value.length + 1)) fail('JSON arrays must be dense and bounded');
-  ancestors.add(value);
-  for (const key of names) {
-    if (array && key === 'length') continue;
-    const d = Object.getOwnPropertyDescriptor(value, key);
-    if (typeof key !== 'string' || !d.enumerable || !Object.hasOwn(d, 'value')) fail('Save requires data-only JSON properties');
-    json(d.value, depth + 1, ancestors);
+function json(value) {
+  // Bound serialized characters while walking, before expanding the full tree.
+  // Parsed JSON never shares object identities; reject direct-call DAGs as well
+  // as cycles so a small input cannot cause exponential repeated traversal.
+  let remaining = 262144;
+  const seen = new Set();
+  const debit = count => { remaining -= count; if (remaining < 0) fail('Save JSON exceeds size limit'); };
+  const string = text => {
+    if (text.length + 2 > remaining) fail('Save JSON exceeds size limit');
+    debit(JSON.stringify(text).length);
+  };
+  function visit(item, depth) {
+    if (depth > 32) fail('JSON nesting exceeds limit');
+    if (item === null) { debit(4); return; }
+    if (typeof item === 'boolean') { debit(item ? 4 : 5); return; }
+    if (typeof item === 'string') { string(item); return; }
+    if (typeof item === 'number') {
+      if (!Number.isFinite(item) || Object.is(item, -0)) fail('Invalid JSON number');
+      debit(JSON.stringify(item).length); return;
+    }
+    if (!item || typeof item !== 'object' || seen.has(item)) fail('Save requires an acyclic, unshared JSON tree');
+    const array = Array.isArray(item), proto = Object.getPrototypeOf(item), names = Reflect.ownKeys(item);
+    if (array ? proto !== Array.prototype : ![Object.prototype, null].includes(proto)) fail('Save requires plain JSON');
+    if (array && (item.length > 10000 || names.length !== item.length + 1)) fail('JSON arrays must be dense and bounded');
+    const count = names.length - (array ? 1 : 0);
+    debit(2 + Math.max(0, count - 1));
+    seen.add(item);
+    for (const key of names) {
+      if (array && key === 'length') continue;
+      const d = Object.getOwnPropertyDescriptor(item, key);
+      if (typeof key !== 'string' || !d.enumerable || !Object.hasOwn(d, 'value')) fail('Save requires data-only JSON properties');
+      if (!array) { string(key); debit(1); }
+      visit(d.value, depth + 1);
+    }
   }
-  ancestors.delete(value);
-  if (depth === 0 && JSON.stringify(value).length > 262144) fail('Save JSON exceeds size limit');
+  visit(value, 0);
 }
 function fields(value, names, label) {
   if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).length !== names.length || names.some(k => !Object.hasOwn(value, k))) fail(`Invalid ${label} fields`);

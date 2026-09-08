@@ -1,0 +1,62 @@
+✖ continuation JSON validation rejects shared expansion and oversized trees before serialization (2505.160208ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2538.536416
+
+✖ failing tests:
+
+test at tests/continuous-work-json-budget.test.js:5:1
+✖ continuation JSON validation rejects shared expansion and oversized trees before serialization (2505.160208ms)
+  AssertionError [ERR_ASSERTION]: Validation exceeded its bounded subprocess: spawnSync /opt/homebrew/Cellar/node/26.8.1/bin/node ETIMEDOUT
+  + actual - expected
+  
+  + Error: spawnSync /opt/homebrew/Cellar/node/26.8.1/bin/node ETIMEDOUT
+  +     at Object.spawnSync (node:internal/child_process:1144:20)
+  +     at spawnSync (node:child_process:928:24)
+  +     at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/continuous-work-json-budget.test.js:14:13)
+  +     at Test.runInAsyncScope (node:async_hooks:226:14)
+  +     at Test.run (node:internal/test_runner/test:1402:25)
+  +     at Test.start (node:internal/test_runner/test:1262:17)
+  +     at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+  +   code: 'ETIMEDOUT',
+  +   errno: -60,
+  +   path: '/opt/homebrew/Cellar/node/26.8.1/bin/node',
+  +   spawnargs: [
+  +     '--input-type=module',
+  +     '-e',
+  +     "import assert from 'node:assert/strict';\n" +
+  +       '    import {restoreContinuation} from "file:///Users/abdul/code/human-framework/src/experiments/continuous-work/host.js";\n' +
+  +       "    let dag={leaf:'x'}; for(let i=0;i<26;i++)dag={left:dag,right:dag};\n" +
+  +       '    assert.throws(()=>restoreContinuation(dag),/JSON|size|limit/i);\n' +
+  +       "    const wide=Array.from({length:9000},()=>({text:'x'.repeat(10000)}));\n" +
+  +       '    assert.throws(()=>restoreContinuation(wide),/JSON|size|limit/i);\n' +
+  +       "    process.stdout.write('bounded rejection');"
+  +   ],
+  +   syscall: 'spawnSync /opt/homebrew/Cellar/node/26.8.1/bin/node'
+  + }
+  - undefined
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/continuous-work-json-budget.test.js:15:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: spawnSync /opt/homebrew/Cellar/node/26.8.1/bin/node ETIMEDOUT
+        at Object.spawnSync (node:internal/child_process:1144:20)
+        at spawnSync (node:child_process:928:24)
+        at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/continuous-work-json-budget.test.js:14:13)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.start (node:internal/test_runner/test:1262:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
