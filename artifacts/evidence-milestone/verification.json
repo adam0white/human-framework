@@ -1,0 +1,43 @@
+{
+  "recordedAt": "2026-09-08T04:40:04.830242+00:00",
+  "sourceBaseBeforeIntegrationCommit": "3570f1abe7a881f6d439037d77cd0d756e13580e",
+  "scope": "Integrated source/worktree checks before final commit; source digests identify reviewed implementation. Deployment is verified separately.",
+  "tests": {
+    "node26FullSuite": {
+      "pass": 280,
+      "fail": 0
+    },
+    "node22CompatibilityClockPackageAndTransplant": {
+      "pass": 30,
+      "fail": 0
+    },
+    "installedMaintenanceConsumer": {
+      "node26InternalPass": 15,
+      "node22InternalPass": 15,
+      "repositoryReadDenied": true
+    }
+  },
+  "packageVersion": "0.1.1",
+  "packageSha256": "0e2ab7d94b712598fecbfec535fbeaa8562d108524f477db06c691db0fbd8d85",
+  "reviewedSources": {
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "scripts/package-runtime.js": "cfcde53d6d761043c66f82d00d73e3bf35be9c67de8dcf44a7d9e4f42772710b",
+    "scripts/runtime-release-lock.json": "f27bd54f0549f5dcb8016099669f3a74f27a4edf2378953a60803711cbd1b165",
+    "tests/runtime-package.test.js": "61efffacff21d7ca31b96073b6399e6c30e0befe45e324c035c15a345a6d6ecb",
+    "tests/commons-package.test.js": "4592cb791c76f86254392df4964522193e1dd13859644d8cd34440ab2de66a28",
+    "examples/maintenance-watch/host.js": "f7b677dd25801e99c5c8cffeed5b0a8f4390908a8ef1b41e67051ab570b90373"
+  },
+  "independentReviewers": [
+    "courtyard_experience",
+    "runtime_critic"
+  ],
+  "externalReviews": {
+    "requestedModel": "fable",
+    "processes": 2,
+    "snapshotScope": "earlier design and API, not final implementation"
+  },
+  "publicBuildFiles": 55,
+  "originalGamesUnchanged": true,
+  "note": "CommonGround transplant normalizes only Human version metadata. All other integer lifecycle state compares exactly. No human playtest or physical-mobile gate is marked complete."
+}

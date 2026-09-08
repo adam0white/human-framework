@@ -7,8 +7,9 @@ import {execFileSync} from 'node:child_process';
 import {RUNTIME_VERSION,HUMAN_VERSION,CLOCK_VERSION} from '../src/runtime/index.js';
 
 const projectRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+export const HUMAN_SOURCE='src/human/v0.1.1.js';
 export const RUNTIME_SOURCES=Object.freeze([
-  'src/runtime/index.js','src/runtime/clock.js','src/human/index.js','src/core/model.js'
+  'src/runtime/index.js','src/runtime/clock.js',HUMAN_SOURCE,'src/core/model.js'
 ]);
 const packageName='human-framework-runtime';
 
@@ -26,7 +27,7 @@ export async function packageRuntime({root=projectRoot,outputDirectory=join(root
   // to discover metadata or label different versions with this checkout's values.
   for(const [source,symbol,expected] of [
     ['src/runtime/index.js','RUNTIME_VERSION',RUNTIME_VERSION],
-    ['src/human/index.js','HUMAN_VERSION',HUMAN_VERSION],
+    [HUMAN_SOURCE,'HUMAN_VERSION',HUMAN_VERSION],
     ['src/runtime/clock.js','CLOCK_VERSION',CLOCK_VERSION]
   ]) {
     const pattern=new RegExp(`^export const ${symbol}='([^'\\r\\n]+)';$`,'gm');
@@ -34,11 +35,31 @@ export async function packageRuntime({root=projectRoot,outputDirectory=join(root
     if(declarations.length!==1)throw new Error(`Unsupported ${symbol} declaration in ${source}`);
     if(declarations[0][1]!==expected)throw new Error(`Runtime source version mismatch for ${symbol} in ${source}: expected ${expected}, found ${declarations[0][1]}`);
   }
+  // A matching version string alone does not protect saves: the human module
+  // imports formulas from model.js. Pin that transitive dependency to the human
+  // version as well. The packer's reviewed registry governs alternate fixture
+  // roots; a copied input cannot supply a different lock to bless changed code.
+  const lock=JSON.parse(await readFile(new URL('./runtime-release-lock.json',import.meta.url),'utf8'));
+  if(lock.format!=='human-framework-runtime-release-lock'||lock.version!==1)throw new Error('Invalid runtime release lock');
+  const bundle=lock.runtime?.[RUNTIME_VERSION];
+  if(!bundle||bundle.humanVersion!==HUMAN_VERSION||bundle.clockVersion!==CLOCK_VERSION)throw new Error(`Runtime ${RUNTIME_VERSION} does not match its frozen bundle component version tuple`);
+  for(const [component,version,sources] of [
+    ['human',HUMAN_VERSION,[HUMAN_SOURCE,'src/core/model.js']],
+    ['clock',CLOCK_VERSION,['src/runtime/clock.js']],
+    ['runtime',RUNTIME_VERSION,['src/runtime/index.js']]
+  ]) {
+    const frozen=component==='runtime'?bundle.sources:lock[component]?.[version];
+    if(!frozen||JSON.stringify(Object.keys(frozen).sort())!==JSON.stringify([...sources].sort()))throw new Error(`Missing frozen source contract for ${component} ${version}`);
+    for(const source of sources) {
+      const actual=createHash('sha256').update(contents.get(source)).digest('hex');
+      if(actual!==frozen[source])throw new Error(`Changed frozen source ${source} under ${component} ${version}; preserve released bytes or introduce a reviewed component version`);
+    }
+  }
   const metadata={
     name:packageName,version:RUNTIME_VERSION,private:true,type:'module',license:'UNLICENSED',
     description:'Deterministic body, practice and integer-minute event clock primitives for host-owned simulations',
     engines:{node:'>=22'},
-    exports:{'.':'./src/runtime/index.js','./human':'./src/human/index.js','./clock':'./src/runtime/clock.js'},
+    exports:{'.':'./src/runtime/index.js','./human':`./${HUMAN_SOURCE}`,'./clock':'./src/runtime/clock.js'},
     files:[...RUNTIME_SOURCES,'README.md','runtime-manifest.json']
   };
   const manifest={format:'human-framework-runtime',version:1,packageVersion:RUNTIME_VERSION,

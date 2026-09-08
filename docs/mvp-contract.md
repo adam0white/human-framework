@@ -31,12 +31,25 @@ The current laboratory Full policy is a distinct reactive experimental controlle
 
 The 0.5 milestone is meant to satisfy more of checks 1 and 2 and respond to observed clarity failures in check 3. It cannot predeclare checks 3 and 4 passed. Package usability and a broader human model have different completion criteria.
 
+## Progress during the 0.5 playtest
+
+| Check | Current evidence and remaining gate |
+|---|---|
+| External installation | Actual offline tarball installation with repository reads denied, plus an independently authored maintenance/watch host. This advances portability of the declared JavaScript API. |
+| Lifecycle | Concurrent/idle work, interruption, owned parts, timed arrival, JSON resume and alternate drivers are exercised in the independent consumer. Reviews exposed import-invariant defects; their fixes and runtime compatibility patch have separate regression evidence. |
+| Understandability | The user's Common Ground playtest is in progress. The five-person explanation gate remains open. No AI review substitutes for it. |
+| Useful complexity | A frozen 48-trial controller comparison preserves partial outcomes and counterexamples. It does **not** compare the mechanics against a stamina/practice-counter substitute or measure authoring benefit. The social candidate matches direct host rules while retaining more state; do not package it. |
+| Controls and cost | Solo operation, legacy engines and negative results remain. The independent consumer records a predeclared desktop CPU budget and bounded state. Physical-mobile timing remains open. |
+
+The first two checks now have more than a package smoke test behind them. Graduation still requires an intelligible useful game, a credible simpler-mechanism comparison, and a stable documented release boundary. [Evidence milestone](mvp-evidence-2026-09-07.md) · [Review dispositions](reviews/2026-09-07-evidence-review.md).
+
 ## Sequence after this milestone
 
-First, play one continuing worksite long enough to encounter a commitment, recovery and a change in productive capacity. Fix confusing or uninteresting choices. Use that host for a minimal stamina/controller comparison, and have another author consume the packaged runtime without importing internal files.
+1. Use the current play report to improve only the choices and explanations that fail. Keep Common Ground's existing live mechanics stable while collecting that report; do not add another public game merely to demonstrate activity.
+2. Run a separately preregistered **mechanism** comparison: prescribed work/rest/meal schedules and matched retests through the same host commands, using the current body/practice kit and a credible smaller stamina-plus-counter model. Count host exceptions and authoring work separately from output, and preserve cases where the simpler model suffices. Neither model gets a tailored controller or impossible exertion.
+3. Evaluate a thin attempt/clock coordination helper in two hosts. It may reduce repeated lifecycle checks, but must preserve host-owned resources, interruption effects, refusal and receipts. Compare it with today's direct wiring before adding it to the package.
+4. Turn the headless repair/lookout/arrival example into a playable cooperative-defense slice only after its choices warrant a UI. This supplies a bounded path toward the user's wave-defense idea. Full waves, campaigns, broad cognition and detailed physiology remain later work.
 
-Next, compare the courtyard response contract and worksite project contract. Extract a shared mechanism only if their common invariants are substantive: who proposed what, who agreed, what resource or action was authorized, what evidence changes an obligation, and how fulfillment/cancellation is recorded. Water volumes and building recipes stay in their games. A simple host rule remains the rival.
-
-After that, a bounded cooperative defense slice can use the same concurrent jobs: one repair, one lookout and one approaching threat, with the player free to intervene. Larger waves, progression and combat variety follow only if that slice has meaningful people and choices. The present worksite does not implement combat or threat appraisal.
+Keep the shared social record experimental until an observed game need and a second real integration justify its extra contract. A protocol that records acceptance is not a model of why someone accepts or cares.
 
 Islamic grounding, qualified Hanafi–Maturidi interpretation and empirical calibration continue as research tracks with their own evidence standards. They constrain how claims and agency are represented; they do not supply arbitrary software coefficients. The coverage and decision registers retain physiology, broader motives, cognition and social scale without making them blockers to a narrow useful kit.

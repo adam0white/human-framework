@@ -1,0 +1,55 @@
+{
+  "environment": {
+    "node": "v26.8.1",
+    "executable": "/opt/homebrew/Cellar/node/26.8.1/bin/node",
+    "platform": "darwin",
+    "release": "25.6.0",
+    "architecture": "arm64",
+    "cpu": "Apple M4",
+    "logicalCpus": 10,
+    "memoryBytes": 17179869184
+  },
+  "scope": "Local installed consumer only; excludes pack/install/render; no physical-mobile measurement.",
+  "workload": {
+    "people": 2,
+    "eventCases": [
+      "lookout due at minute 8 during repair",
+      "repair due at minute 12",
+      "water arrival at minute 18"
+    ],
+    "commandCases": [
+      "accept repair",
+      "accept concurrent lookout",
+      "refuse busy recipient",
+      "refuse role-mismatched repair"
+    ]
+  },
+  "eventBoundaries": {
+    "samples": 1000,
+    "warmups": 100,
+    "p50Ms": 0.09845799999999372,
+    "p95Ms": 0.1475420000000156,
+    "maxMs": 0.2530829999999966,
+    "p95BudgetMs": 8,
+    "budgetPassed": true
+  },
+  "requestCommands": {
+    "samples": 1000,
+    "warmups": 100,
+    "p50Ms": 0.08158299999999485,
+    "p95Ms": 0.12420900000000756,
+    "maxMs": 0.2482090000000028,
+    "p95BudgetMs": 8,
+    "budgetPassed": true
+  },
+  "maxSerializedStateCharacters": 2822,
+  "maxSerializedStateBytes": 2822,
+  "longSession": {
+    "worldMinute": 100000,
+    "serializedStateCharacters": 2822,
+    "serializedStateBytes": 2822,
+    "pendingEvents": 2,
+    "recentMessages": 7
+  },
+  "budgetPassed": true
+}

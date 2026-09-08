@@ -6,6 +6,8 @@ import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
 import {packageRuntime} from '../scripts/package-runtime.js';
+import {HUMAN_VERSION} from '../src/runtime/index.js';
+import {HUMAN_VERSION as LEGACY_HUMAN_VERSION} from '../src/human/index.js';
 
 const source=new URL('../src/games/commons.js',import.meta.url);
 const progression=`
@@ -61,6 +63,14 @@ test('the complete concurrent host runs from the installed package with only two
       ${progression}
       process.stdout.write(JSON.stringify(result));
     `],{encoding:'utf8',stdio:['ignore','pipe','pipe']});
-    assert.deepEqual(JSON.parse(actual),JSON.parse(direct));
+    const installedState=JSON.parse(actual),legacyState=JSON.parse(direct);
+    for(const [actor,person] of Object.entries(installedState.game.people)) {
+      assert.equal(person.version,HUMAN_VERSION,'installed consumer uses the selected package version');
+      assert.equal(legacyState.game.people[actor].version,LEGACY_HUMAN_VERSION,'live host retains its historical component');
+      person.version=LEGACY_HUMAN_VERSION;
+    }
+    // Only the explicitly changed human metadata differs. Every world, person,
+    // clock and pending-job field must remain identical under integer advances.
+    assert.deepEqual(installedState,legacyState);
   } finally {await rm(temporary,{recursive:true,force:true});}
 });

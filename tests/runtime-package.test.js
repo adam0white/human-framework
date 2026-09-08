@@ -4,9 +4,10 @@ import {mkdtemp,readFile,writeFile,mkdir,copyFile,rm,readdir,symlink} from 'node
 import {existsSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,dirname} from 'node:path';
-import {fileURLToPath} from 'node:url';
+import {fileURLToPath,pathToFileURL} from 'node:url';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
+import {RUNTIME_VERSION,HUMAN_VERSION,CLOCK_VERSION} from '../src/runtime/index.js';
 
 const project=fileURLToPath(new URL('..',import.meta.url));
 const script=new URL('../scripts/package-runtime.js',import.meta.url);
@@ -15,7 +16,7 @@ const packaging=existsSync(script)?await import(script):{};
 test('portable package exposes an executable packer with an explicit source allowlist',()=>{
   assert.equal(typeof packaging.packageRuntime,'function');
   assert.deepEqual(packaging.RUNTIME_SOURCES,[
-    'src/runtime/index.js','src/runtime/clock.js','src/human/index.js','src/core/model.js'
+    'src/runtime/index.js','src/runtime/clock.js','src/human/v0.1.1.js','src/core/model.js'
   ]);
 });
 
@@ -47,7 +48,7 @@ test('actual npm tarball installs offline into an external consumer denied repos
       import * as runtime from 'human-framework-runtime';
       import * as human from 'human-framework-runtime/human';
       import * as clockAPI from 'human-framework-runtime/clock';
-      assert.throws(()=>readFileSync(${JSON.stringify(join(project,'src/human/index.js'))}),{code:'ERR_ACCESS_DENIED'});
+      assert.throws(()=>readFileSync(${JSON.stringify(join(project,'src/human/v0.1.1.js'))}),{code:'ERR_ACCESS_DENIED'});
       assert.equal(runtime.createPerson,human.createPerson);
       assert.equal(runtime.createClock,clockAPI.createClock);
       assert.equal(runtime.createSimulation,undefined);
@@ -84,7 +85,7 @@ test('actual npm tarball installs offline into an external consumer denied repos
     const permissionFlag=['--permission','--experimental-permission'].find(flag=>process.allowedNodeEnvironmentFlags.has(flag));
     assert.ok(permissionFlag,'Node must support the filesystem permission model');
     const output=execFileSync(process.execPath,[permissionFlag,`--allow-fs-read=${consumer}`,'--preserve-symlinks','--preserve-symlinks-main',join(consumer,'consumer.js')],{cwd:consumer,encoding:'utf8',stdio:['ignore','pipe','pipe'],env:{...process.env,NODE_OPTIONS:'',NODE_PATH:''}});
-    assert.deepEqual(JSON.parse(output),{installed:true,repositoryReadDenied:true,resumeIdentical:true,versions:[packed.version,'0.1.0','0.1.0']});
+    assert.deepEqual(JSON.parse(output),{installed:true,repositoryReadDenied:true,resumeIdentical:true,versions:[packed.version,HUMAN_VERSION,CLOCK_VERSION]});
   } finally {await rm(temporary,{recursive:true,force:true});}
 });
 
@@ -99,11 +100,11 @@ test('packer excludes arbitrary nearby files and rejects symlinked source or doc
     await writeFile(join(temporary,'.env'),'do not package');
     const packed=await packaging.packageRuntime({root:temporary,outputDirectory:join(temporary,'result')});
     assert.equal(packed.files.includes('.env'),false);assert.equal(packed.files.includes('src/runtime/private-notes.js'),false);
-    const victim=join(temporary,'src/human/index.js');await rm(victim);
-    await symlink(join(project,'src/human/index.js'),victim);
+    const victim=join(temporary,'src/human/v0.1.1.js');await rm(victim);
+    await symlink(join(project,'src/human/v0.1.1.js'),victim);
     await assert.rejects(packaging.packageRuntime({root:temporary,outputDirectory:join(temporary,'rejected')}),/symlink|source/i);
     assert.equal(existsSync(join(temporary,'rejected')),false);
-    await rm(victim);await copyFile(join(project,'src/human/index.js'),victim);
+    await rm(victim);await copyFile(join(project,'src/human/v0.1.1.js'),victim);
     const document=join(temporary,'docs/portable-runtime.md');await rm(document);
     await symlink(join(project,'docs/portable-runtime.md'),document);
     await assert.rejects(packaging.packageRuntime({root:temporary,outputDirectory:join(temporary,'rejected-document')}),/symlink|source/i);
@@ -118,7 +119,7 @@ test('packer rejects alternate source versions and unsupported declarations befo
       await copyFile(join(project,source),join(temporary,source));
     }
     for(const [source,symbol] of [
-      ['src/runtime/index.js','RUNTIME_VERSION'],['src/human/index.js','HUMAN_VERSION'],['src/runtime/clock.js','CLOCK_VERSION']
+      ['src/runtime/index.js','RUNTIME_VERSION'],['src/human/v0.1.1.js','HUMAN_VERSION'],['src/runtime/clock.js','CLOCK_VERSION']
     ]) {
       const path=join(temporary,source),original=await readFile(path,'utf8');
       const changed=original.replace(new RegExp(`export const ${symbol}='[^']+';`),`export const ${symbol}='99.0.0';`);
@@ -130,9 +131,55 @@ test('packer rejects alternate source versions and unsupported declarations befo
       await writeFile(path,original);
     }
     const runtime=join(temporary,'src/runtime/index.js'),original=await readFile(runtime,'utf8');
-    await writeFile(runtime,original.replace("export const RUNTIME_VERSION='0.1.0';",'export const RUNTIME_VERSION=[0,1,0].join(".");'));
+    await writeFile(runtime,original.replace(`export const RUNTIME_VERSION='${RUNTIME_VERSION}';`,'export const RUNTIME_VERSION=[0,1,1].join(".");'));
     const outputDirectory=join(temporary,'unsupported-declaration');
     await assert.rejects(packaging.packageRuntime({root:temporary,outputDirectory}),/Unsupported RUNTIME_VERSION declaration/);
+    assert.equal(existsSync(outputDirectory),false);
+  } finally {await rm(temporary,{recursive:true,force:true});}
+});
+
+test('packer refuses changed formulas or implementation under a previously released component version',async()=>{
+  const temporary=await mkdtemp(join(tmpdir(),'human-runtime-compatibility-'));
+  try {
+    for(const source of [...packaging.RUNTIME_SOURCES,'docs/portable-runtime.md']) {
+      await mkdir(dirname(join(temporary,source)),{recursive:true});
+      await copyFile(join(project,source),join(temporary,source));
+    }
+    const changes=[
+      ['src/core/model.js','hungerPerMinute:0.002','hungerPerMinute:0.003'],
+      ['src/human/v0.1.1.js','const activities=', '// Unversioned implementation change.\nconst activities='],
+      ['src/runtime/clock.js','pendingEvents:1024','pendingEvents:512'],
+      ['src/runtime/index.js','/** Reusable','/** Changed reusable']
+    ];
+    for(const [source,from,to] of changes) {
+      const path=join(temporary,source),original=await readFile(path,'utf8');
+      const changed=original.replace(from,to);assert.notEqual(changed,original);
+      await writeFile(path,changed);
+      const outputDirectory=join(temporary,source.replaceAll('/','-'));
+      await assert.rejects(packaging.packageRuntime({root:temporary,outputDirectory}),/frozen.*source|source.*frozen/i);
+      assert.equal(existsSync(outputDirectory),false);
+      await writeFile(path,original);
+    }
+  } finally {await rm(temporary,{recursive:true,force:true});}
+});
+
+test('a newly registered component cannot silently reuse a released runtime package version',async()=>{
+  const temporary=await mkdtemp(join(tmpdir(),'human-runtime-bundle-'));
+  try {
+    for(const source of [...packaging.RUNTIME_SOURCES,'docs/portable-runtime.md','scripts/package-runtime.js','scripts/runtime-release-lock.json']) {
+      await mkdir(dirname(join(temporary,source)),{recursive:true});
+      await copyFile(join(project,source),join(temporary,source));
+    }
+    await writeFile(join(temporary,'package.json'),'{"type":"module"}');
+    const personPath=join(temporary,'src/human/v0.1.1.js');
+    const changed=(await readFile(personPath,'utf8')).replace(`export const HUMAN_VERSION='${HUMAN_VERSION}';`,"export const HUMAN_VERSION='0.2.0';");
+    await writeFile(personPath,changed);
+    const lockPath=join(temporary,'scripts/runtime-release-lock.json'),lock=JSON.parse(await readFile(lockPath,'utf8'));
+    lock.human['0.2.0']={...lock.human[HUMAN_VERSION],'src/human/v0.1.1.js':createHash('sha256').update(changed).digest('hex')};
+    await writeFile(lockPath,JSON.stringify(lock));
+    const fixture=await import(pathToFileURL(join(temporary,'scripts/package-runtime.js')));
+    const outputDirectory=join(temporary,'output');
+    await assert.rejects(fixture.packageRuntime({outputDirectory}),/frozen bundle|component version tuple/i);
     assert.equal(existsSync(outputDirectory),false);
   } finally {await rm(temporary,{recursive:true,force:true});}
 });

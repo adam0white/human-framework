@@ -402,9 +402,20 @@
       "url": "https://www.mdpi.com/2313-576X/8/2/22",
       "normalized_url": "https://www.mdpi.com/2313-576X/8/2/22",
       "provisional_source_kind": "scholarly_or_institutional_lead",
-      "existence_status": "not_individually_checked",
-      "claim_support_status": "not_assessed",
-      "audit_note": "Extracted lead only; inclusion is not verification."
+      "existence_status": "verified_via_institutional_full_text",
+      "claim_support_status": "supports_task_specific_retention_research_not_constants",
+      "audit_note": "2026-09-07: Scoping review identifies heterogeneous task/training/person influences and limitations; no universal decay coefficient adopted.",
+      "verification_history": [
+        {
+          "audit_date": "2026-09-06",
+          "existence_status": "not_individually_checked",
+          "claim_support_status": "not_assessed",
+          "audit_note": "Extracted lead only; inclusion is not verification."
+        }
+      ],
+      "verification_url": "https://bibb-dspace.bibb.de/rest/bitstreams/0ebbbb41-752f-435b-ac0e-673dd25a5ed0/retrieve",
+      "access_depth": "Bibliographic page, task/training passages and limitations; included studies not independently re-audited.",
+      "last_reviewed": "2026-09-07"
     },
     {
       "id": "Q30",
@@ -428,9 +439,20 @@
       "url": "https://www.cna.org/archive/CNA_Files/pdf/d0022799.a3.pdf",
       "normalized_url": "https://www.cna.org/archive/CNA_Files/pdf/d0022799.a3.pdf",
       "provisional_source_kind": "scholarly_or_institutional_lead",
-      "existence_status": "not_individually_checked",
+      "existence_status": "indexed_primary_excerpt_direct_404",
       "claim_support_status": "not_assessed",
-      "audit_note": "Extracted lead only; inclusion is not verification."
+      "audit_note": "2026-09-07: Supplied CNA PDF returns404; indexed institutional introduction is readable. Full report, metadata and results remain unverified.",
+      "verification_history": [
+        {
+          "audit_date": "2026-09-06",
+          "existence_status": "not_individually_checked",
+          "claim_support_status": "not_assessed",
+          "audit_note": "Extracted lead only; inclusion is not verification."
+        }
+      ],
+      "verification_url": "https://www.cna.org/archive/CNA_Files/pdf/d0022799.a3.pdf",
+      "access_depth": "Indexed introduction only; direct retrieval failed.",
+      "last_reviewed": "2026-09-07"
     },
     {
       "id": "Q32",
@@ -624,9 +646,20 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/39199107/",
       "normalized_url": "https://pubmed.ncbi.nlm.nih.gov/39199107",
       "provisional_source_kind": "scholarly_or_institutional_lead",
-      "existence_status": "not_individually_checked",
-      "claim_support_status": "not_assessed",
-      "audit_note": "Extracted lead only; inclusion is not verification."
+      "existence_status": "verified_via_primary_alternative",
+      "claim_support_status": "limited_uncontrolled_pre_post_evidence",
+      "audit_note": "2026-09-07: Training-related test changes in 62 students; no true control group. Does not establish universal transfer or a causal general-intelligence coefficient.",
+      "verification_history": [
+        {
+          "audit_date": "2026-09-06",
+          "existence_status": "not_individually_checked",
+          "claim_support_status": "not_assessed",
+          "audit_note": "Extracted lead only; inclusion is not verification."
+        }
+      ],
+      "verification_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11351393/",
+      "access_depth": "Methods, materials, discussion and limitations; no raw-data reanalysis.",
+      "last_reviewed": "2026-09-07"
     },
     {
       "id": "B14",
@@ -1333,6 +1366,18 @@
       "url": "https://sunnah.com/bukhari:1",
       "kind": "hadith_translation",
       "verified": "direct"
+    }
+  ],
+  "followup_audits": [
+    {
+      "date": "2026-09-07",
+      "reference_ids": [
+        "B13",
+        "Q29",
+        "Q31"
+      ],
+      "record": "learning-source-followup-2026-09-07.md",
+      "scope": "Two targeted claim assessments and one incomplete retrieval; no runtime coefficients adopted."
     }
   ]
 }

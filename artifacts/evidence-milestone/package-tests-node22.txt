@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: the complete concurrent host runs from the installed package with only two import substitutions
+ok 1 - the complete concurrent host runs from the installed package with only two import substitutions
+  ---
+  duration_ms: 903.238708
+  ...
+# Subtest: pending snapshots accept reversed capacity object keys without changing their values
+ok 2 - pending snapshots accept reversed capacity object keys without changing their values
+  ---
+  duration_ms: 2.007458
+  ...
+# Subtest: fractional advances at a nonzero accumulated origin remain exportable and resumable
+ok 3 - fractional advances at a nonzero accumulated origin remain exportable and resumable
+  ---
+  duration_ms: 12.259666
+  ...
+# Subtest: legacy snapshots migrate only version metadata and continue the same pending attempt
+ok 4 - legacy snapshots migrate only version metadata and continue the same pending attempt
+  ---
+  duration_ms: 0.733458
+  ...
+# Subtest: capacity comparison rejects missing, extra, mistyped and false receipt fields
+ok 5 - capacity comparison rejects missing, extra, mistyped and false receipt fields
+  ---
+  duration_ms: 0.867667
+  ...
+# Subtest: migration rejects unsupported or mixed versions and inconsistent historical state
+ok 6 - migration rejects unsupported or mixed versions and inconsistent historical state
+  ---
+  duration_ms: 0.33575
+  ...
+# Subtest: import rejects invalid capacity properties before detachment can discard them
+ok 7 - import rejects invalid capacity properties before detachment can discard them
+  ---
+  duration_ms: 0.647625
+  ...
+# Subtest: migration does not repair the invalid elapsed history produced by legacy fractional drift
+ok 8 - migration does not repair the invalid elapsed history produced by legacy fractional drift
+  ---
+  duration_ms: 0.411541
+  ...
+# Subtest: only explicit import migrates old people, including settled snapshots
+ok 9 - only explicit import migrates old people, including settled snapshots
+  ---
+  duration_ms: 0.120125
+  ...
+# Subtest: fractional advancement preserves person time and interval bounds
+ok 10 - fractional advancement preserves person time and interval bounds
+  ---
+  duration_ms: 0.627
+  ...
+# Subtest: second-sized steps remain valid after a legally elapsed long history
+ok 11 - second-sized steps remain valid after a legally elapsed long history
+  ---
+  duration_ms: 54.230125
+  ...
+# Subtest: integer lifecycle histories match legacy physics after normalizing only version metadata
+ok 12 - integer lifecycle histories match legacy physics after normalizing only version metadata
+  ---
+  duration_ms: 5.867042
+  ...
+# Subtest: clock exposes the portable scheduler contract
+ok 13 - clock exposes the portable scheduler contract
+  ---
+  duration_ms: 0.987042
+  ...
+# Subtest: clock stops at each earliest event boundary and preserves equal-time insertion order
+ok 14 - clock stops at each earliest event boundary and preserves equal-time insertion order
+  ---
+  duration_ms: 2.273208
+  ...
+# Subtest: clock idle and same-time targets settle no work and permit a nonzero origin
+ok 15 - clock idle and same-time targets settle no work and permit a nonzero origin
+  ---
+  duration_ms: 0.118125
+  ...
+# Subtest: advancing in chunks has the same event trace, state and host-scheduled continuations
+ok 16 - advancing in chunks has the same event trace, state and host-scheduled continuations
+  ---
+  duration_ms: 2.038542
+  ...
+# Subtest: cancellation is idempotent, leaves no receipt, and never reuses an event ID
+ok 17 - cancellation is idempotent, leaves no receipt, and never reuses an event ID
+  ---
+  duration_ms: 0.258708
+  ...
+# Subtest: JSON save and resume retain order, cancellation counters and future results
+ok 18 - JSON save and resume retain order, cancellation counters and future results
+  ---
+  duration_ms: 0.292875
+  ...
+# Subtest: event payloads and returned events have no mutable aliases to caller state
+ok 19 - event payloads and returned events have no mutable aliases to caller state
+  ---
+  duration_ms: 0.119958
+  ...
+# Subtest: clock rejects backward, fractional, nonfinite, unsafe and exhausted times and counters
+ok 20 - clock rejects backward, fractional, nonfinite, unsafe and exhausted times and counters
+  ---
+  duration_ms: 0.92825
+  ...
+# Subtest: clock bounds pending events and payloads while drained histories stay bounded
+ok 21 - clock bounds pending events and payloads while drained histories stay bounded
+  ---
+  duration_ms: 1383.584666
+  ...
+# Subtest: clock rejects non-JSON payloads rather than silently losing data during save
+ok 22 - clock rejects non-JSON payloads rather than silently losing data during save
+  ---
+  duration_ms: 0.586209
+  ...
+# Subtest: combined payload size cannot evade the total state bound with fewer large events
+ok 23 - combined payload size cannot evade the total state bound with fewer large events
+  ---
+  duration_ms: 247.475834
+  ...
+# Subtest: clock snapshots and API arguments reject unknown fields, malformed queues and forged ordering
+ok 24 - clock snapshots and API arguments reject unknown fields, malformed queues and forged ordering
+  ---
+  duration_ms: 1.029833
+  ...
+# Subtest: portable package exposes an executable packer with an explicit source allowlist
+ok 25 - portable package exposes an executable packer with an explicit source allowlist
+  ---
+  duration_ms: 0.933833
+  ...
+# Subtest: actual npm tarball installs offline into an external consumer denied repository access
+ok 26 - actual npm tarball installs offline into an external consumer denied repository access
+  ---
+  duration_ms: 684.232916
+  ...
+# Subtest: packer excludes arbitrary nearby files and rejects symlinked source or document inputs
+ok 27 - packer excludes arbitrary nearby files and rejects symlinked source or document inputs
+  ---
+  duration_ms: 215.933958
+  ...
+# Subtest: packer rejects alternate source versions and unsupported declarations before writing an artifact
+ok 28 - packer rejects alternate source versions and unsupported declarations before writing an artifact
+  ---
+  duration_ms: 7.079583
+  ...
+# Subtest: packer refuses changed formulas or implementation under a previously released component version
+ok 29 - packer refuses changed formulas or implementation under a previously released component version
+  ---
+  duration_ms: 5.415375
+  ...
+# Subtest: a newly registered component cannot silently reuse a released runtime package version
+ok 30 - a newly registered component cannot silently reuse a released runtime package version
+  ---
+  duration_ms: 4.923916
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1710.141333

@@ -1,0 +1,86 @@
+{
+  "recordedAt": "2026-09-08T04:30:13.552006+00:00",
+  "runtime": "Node v26.8.1 on Apple Silicon macOS",
+  "comparison": {
+    "development": {
+      "trials": 36,
+      "trialsAndPairsEqual": true,
+      "originalArtifactSha256": "26417648f0d4fd6cdebc3b3f866e6d57f4dfc66f3c0077711cd405e4d85ca434",
+      "newArtifactSha256": "025c354b9be62f83a35e9a17cda623a8142ad03b570b07ae8d71c68f0a0f9fb1",
+      "frozenSourcesEqual": true
+    },
+    "reserved": {
+      "trials": 12,
+      "trialsAndPairsEqual": true,
+      "originalArtifactSha256": "ff973c5d5e2a85484707e33b417fca1f430439aa2a99c4c3421e72d05c265cf8",
+      "newArtifactSha256": "6d3d04e4e3127037251f7e492d83e556e4478017be8601afba3c6a0dddf71d75",
+      "frozenSourcesEqual": true
+    }
+  },
+  "social": {
+    "comparison": {
+      "seed": 1701,
+      "runsPerHost": 100,
+      "stepsPerRun": 80,
+      "attemptedCommands": 16000,
+      "acceptedCommands": 5303,
+      "rejectedCommands": 10697,
+      "completed": {
+        "water": 140,
+        "work": 68
+      },
+      "mismatches": [],
+      "saveResumeMismatches": 0,
+      "mutationFailures": 0,
+      "maxSnapshotBytes": {
+        "water": {
+          "shared": 2443,
+          "direct": 764
+        },
+        "work": {
+          "shared": 2223,
+          "direct": 931
+        }
+      }
+    },
+    "bounded": {
+      "cycles": 10000,
+      "nextId": 10001,
+      "lastReceipt": 10000,
+      "retainedRecords": 0,
+      "largestSnapshotBytes": 511,
+      "finalSnapshotBytes": 204
+    },
+    "sources": {
+      "src/social/contracts.js": {
+        "sha256": "7071ea73fd2790feedd0f43ed3c2526f415c56c43386f092e1dbb910bebd4acc",
+        "bytes": 9303,
+        "nonblankLines": 115
+      },
+      "scripts/social-water-host.js": {
+        "sha256": "9e9c6ffe945df2f5e9e844fa1b92008575bedca5976b9ac8e93733acf1358c53",
+        "bytes": 6398,
+        "nonblankLines": 81,
+        "transitionLines": {
+          "direct": 19,
+          "shared": 7
+        }
+      },
+      "scripts/social-work-host.js": {
+        "sha256": "40eda2d930d04f2e6dc6d0a0a3adf54e4eb5e316ee39fe297b1bc6f1fa3d8dae",
+        "bytes": 7479,
+        "nonblankLines": 97,
+        "transitionLines": {
+          "direct": 16,
+          "shared": 9
+        }
+      },
+      "scripts/social-contract-probe.js": {
+        "sha256": "40c45884c73e329f48958e72bf773d5d2ece7b029d8ca1ec2ed0e1302941e8f8",
+        "bytes": 7312,
+        "nonblankLines": 91
+      }
+    }
+  },
+  "note": "Independent integrated rerun. Comparison metadata differs by executor/runtime; every complete trial and pair equals the retained authored artifact. Social results reproduced using final chronology-validated source. Temp rerun files are not required to reproduce the recorded commands."
+}

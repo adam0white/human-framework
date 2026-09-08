@@ -83,6 +83,8 @@ The publication guard builds the existing public asset set and checks that `src/
 
 An independent implementation author reviewed resource/receipt authority, recovery versus release, and the value claims. They reported zero outcome, mutation or resume mismatches in another **50,400 differential commands** (seeds 1, 19 and 991; 60 runs × 140 commands × two hosts per seed). Their prescribed checks also preserved unrelated gate work when releasing a pump commitment, retained ownership of already-loaned water after release, and rejected repayment by the wrong actor without mutating state. The review found no blocking issue. Its two documentation corrections were adopted: describe the generator's few appended relevant-ID choices accurately, and distinguish strict ledger imports from legitimate-state host JSON roundtrips. This is independent code review and software execution, not an independent consumer integration or a human playtest.
 
+Review timing clarification: the additional 50,400 commands ran on the core before the final chronology-only import correction (`c5487c30…`). The reviewer reran all 26 focused tests after that correction (`7071ea73…`). Adapters and nominal transitions were unchanged; do not attribute the earlier large differential run to the later exact source hash.
+
 Final implementation source identities from the probe's source account:
 
 | Source | SHA-256 |

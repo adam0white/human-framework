@@ -16,7 +16,7 @@ From the repository root:
 
 ~~~sh
 npm run package:runtime
-cp runtime-dist/human-framework-runtime-0.1.0.tgz examples/maintenance-watch/runtime.tgz
+cp runtime-dist/human-framework-runtime-0.1.1.tgz examples/maintenance-watch/runtime.tgz
 npm --prefix examples/maintenance-watch install --offline --ignore-scripts --no-audit --no-fund
 npm --prefix examples/maintenance-watch test
 npm --prefix examples/maintenance-watch start
@@ -55,3 +55,5 @@ Each row uses 1,000 samples after 100 warmups. The largest measured serialized s
 The first shell-resolved executable was Node 23.7.0, despite an earlier session using the Homebrew executable. The initial measurement retains that actual identity. Final verification selected the Homebrew Node 26.8.1 and official Node 22.0.0 binaries explicitly. The harness also had to remove inherited NODE_TEST_CONTEXT so its child Node test runner emitted readable output instead of the parent's private binary reporting protocol; this was a harness issue, not runtime behavior.
 
 Additional installed-public-API probes verified two existing human 0.1.0 limits. Reordering the pending capacity object's keys can reject otherwise identical data; ascending sorting happened to preserve this version's existing order, so the reproducer reverses it. At an accumulated origin of 100,000,000 minutes, two 0.1-minute advances can return a state its own exporter rejects for elapsed-time inconsistency. The consumer uses integer minutes at or below 1,000,000 and preserves component snapshot order. The original package bytes and these negative probes remain recorded while any compatible runtime patch is evaluated separately.
+
+The original authoring and measurement artifacts retain runtime/Human 0.1.0. The current build commands install 0.1.1; integrated patch checks are recorded separately in the evidence milestone. The example code requires no import or host-rule changes for that package update.

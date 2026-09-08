@@ -1,0 +1,55 @@
+{
+  "environment": {
+    "node": "v22.0.0",
+    "executable": "/private/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/human-node22-review-xnBFhK/node-v22.0.0-darwin-arm64/bin/node",
+    "platform": "darwin",
+    "release": "25.6.0",
+    "architecture": "arm64",
+    "cpu": "Apple M4",
+    "logicalCpus": 10,
+    "memoryBytes": 17179869184
+  },
+  "scope": "Local installed consumer only; excludes pack/install/render; no physical-mobile measurement.",
+  "workload": {
+    "people": 2,
+    "eventCases": [
+      "lookout due at minute 8 during repair",
+      "repair due at minute 12",
+      "water arrival at minute 18"
+    ],
+    "commandCases": [
+      "accept repair",
+      "accept concurrent lookout",
+      "refuse busy recipient",
+      "refuse role-mismatched repair"
+    ]
+  },
+  "eventBoundaries": {
+    "samples": 1000,
+    "warmups": 100,
+    "p50Ms": 0.11154099999998834,
+    "p95Ms": 0.16766700000000867,
+    "maxMs": 0.5628749999999982,
+    "p95BudgetMs": 8,
+    "budgetPassed": true
+  },
+  "requestCommands": {
+    "samples": 1000,
+    "warmups": 100,
+    "p50Ms": 0.08924999999999272,
+    "p95Ms": 0.1494170000000281,
+    "maxMs": 1.256416999999999,
+    "p95BudgetMs": 8,
+    "budgetPassed": true
+  },
+  "maxSerializedStateCharacters": 2822,
+  "maxSerializedStateBytes": 2822,
+  "longSession": {
+    "worldMinute": 100000,
+    "serializedStateCharacters": 2822,
+    "serializedStateBytes": 2822,
+    "pendingEvents": 2,
+    "recentMessages": 7
+  },
+  "budgetPassed": true
+}
