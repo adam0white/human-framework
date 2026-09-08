@@ -1,0 +1,165 @@
+{
+  "runtime": "v26.8.1",
+  "commands": 1715,
+  "now": 10002,
+  "caches": 224,
+  "structures": {
+    "shelter": 2,
+    "workbench": 2,
+    "garden": 2
+  },
+  "maxSaveCharacters": 7094,
+  "paid": {
+    "player": {
+      "work": 6536,
+      "recovery": 3178,
+      "idle": 0,
+      "meal": 288,
+      "effort": 64.85000000000328,
+      "constructionMinutes": 2015,
+      "gatheringMinutes": 4521
+    },
+    "neighbor": {
+      "work": 6545,
+      "recovery": 3169,
+      "idle": 0,
+      "meal": 288,
+      "effort": 64.44000000000327,
+      "constructionMinutes": 1968,
+      "gatheringMinutes": 4577
+    }
+  },
+  "stats": {
+    "started": 897,
+    "completed": 896,
+    "canceled": 0,
+    "gathered": {
+      "timber": 1365,
+      "salvage": 684,
+      "food": 72
+    },
+    "spent": {
+      "timber": 1366,
+      "salvage": 682,
+      "food": 72
+    },
+    "consumedFood": 72,
+    "workMinutes": 13081,
+    "restMinutes": 6347,
+    "mealMinutes": 576,
+    "idleMinutes": 0,
+    "receipts": {
+      "gather-timber": 342,
+      "gather-salvage": 228,
+      "forage": 24,
+      "rest": 0,
+      "eat": 72,
+      "coveredTimber": 339,
+      "gardenFood": 24
+    }
+  },
+  "rows": [
+    {
+      "commands": 100,
+      "now": 646,
+      "caches": 9,
+      "bytes": 5882
+    },
+    {
+      "commands": 200,
+      "now": 1257,
+      "caches": 23,
+      "bytes": 5930
+    },
+    {
+      "commands": 300,
+      "now": 1843,
+      "caches": 36,
+      "bytes": 6144
+    },
+    {
+      "commands": 400,
+      "now": 2397,
+      "caches": 49,
+      "bytes": 5846
+    },
+    {
+      "commands": 500,
+      "now": 2982,
+      "caches": 63,
+      "bytes": 4718
+    },
+    {
+      "commands": 600,
+      "now": 3533,
+      "caches": 75,
+      "bytes": 5842
+    },
+    {
+      "commands": 700,
+      "now": 4119,
+      "caches": 89,
+      "bytes": 5979
+    },
+    {
+      "commands": 800,
+      "now": 4702,
+      "caches": 102,
+      "bytes": 4743
+    },
+    {
+      "commands": 900,
+      "now": 5277,
+      "caches": 115,
+      "bytes": 4830
+    },
+    {
+      "commands": 1000,
+      "now": 5863,
+      "caches": 129,
+      "bytes": 4830
+    },
+    {
+      "commands": 1100,
+      "now": 6453,
+      "caches": 143,
+      "bytes": 4765
+    },
+    {
+      "commands": 1200,
+      "now": 6995,
+      "caches": 155,
+      "bytes": 7031
+    },
+    {
+      "commands": 1300,
+      "now": 7587,
+      "caches": 169,
+      "bytes": 4839
+    },
+    {
+      "commands": 1400,
+      "now": 8160,
+      "caches": 181,
+      "bytes": 6970
+    },
+    {
+      "commands": 1500,
+      "now": 8758,
+      "caches": 195,
+      "bytes": 4763
+    },
+    {
+      "commands": 1600,
+      "now": 9315,
+      "caches": 208,
+      "bytes": 5115
+    },
+    {
+      "commands": 1700,
+      "now": 9903,
+      "caches": 221,
+      "bytes": 5864
+    }
+  ]
+}

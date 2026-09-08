@@ -22,3 +22,9 @@ One stage owns one reservation. Each worker keeps the skill-duration basis from 
 Meryem pursues one accepted project, obtains missing material, and independently chooses a meal or available-time recovery when actual capacity requires it. Available recovery never produces food. Default unassigned time is low-demand recovery; the active-idle control retains a separately selectable recovery mode. A request is not a promise of immediate exertion. All future time remains pausable by the application.
 
 Active state uses bounded current work, aggregate receipts and sixteen recent messages; saves never accumulate a campaign-sized command journal. Numeric limits retain stop/export, and time advancement remains admitted independently of how many requests have occurred. Strict JSON traversal rejects cycles, repeated references, accessors, oversized inputs and nonfinite values before expansion.
+
+## Kernel verification
+
+Source `ffe8fb4` passes all 642 repository tests on Node 26.8.1 and all 22 new camp tests on minimum Node 22.0.0. The actual original stock-first minute-226 milestone imports its four paid timber minutes, frozen three-timber output and Meryem's paid rest without a reset. Both runtimes produce identical physical reports in the 10,002-minute new-host campaign: 224 caches, 1,715 commands, maximum save 7,094 characters. [Verification](../artifacts/camp-kernel/verification.json) binds source files and records the scope. This tests software continuation and bounded active state; independent integration review and delivery remain root work.
+
+The first lifecycle pass retained real failures for fixed six-minute job pacing, relief-response wording, fabricated paid practice, fabricated production receipts and missing counter reserve. The initial lifecycle test also had an incorrect imported export name; its separate failure remains recorded. No original host or frozen runtime/model/clock source was changed.

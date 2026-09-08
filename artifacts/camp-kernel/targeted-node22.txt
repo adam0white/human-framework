@@ -1,0 +1,120 @@
+TAP version 13
+# Subtest: Next Event goes directly to assigned job completion when there is no earlier meaningful event
+ok 1 - Next Event goes directly to assigned job completion when there is no earlier meaningful event
+  ---
+  duration_ms: 29.975375
+  ...
+# Subtest: taking Meryem work records her acceptance of the player relief offer
+ok 2 - taking Meryem work records her acceptance of the player relief offer
+  ---
+  duration_ms: 3.080833
+  ...
+# Subtest: an unwilling busy neighbor can refuse handover without any paid or physical mutation
+ok 3 - an unwilling busy neighbor can refuse handover without any paid or physical mutation
+  ---
+  duration_ms: 3.166125
+  ...
+# Subtest: paid practice and effort totals cannot be erased or fabricated in a snapshot
+ok 4 - paid practice and effort totals cannot be erased or fabricated in a snapshot
+  ---
+  duration_ms: 1.507833
+  ...
+# Subtest: coordinated fabricated gathering receipts still require paid work
+ok 5 - coordinated fabricated gathering receipts still require paid work
+  ---
+  duration_ms: 0.21175
+  ...
+# Subtest: a stopped stage resumes with no second material payment even after another worker contributes
+ok 6 - a stopped stage resumes with no second material payment even after another worker contributes
+  ---
+  duration_ms: 2.778
+  ...
+# Subtest: automatic recovery never feeds a hungry solo actor or relaxes hunger capacity
+ok 7 - automatic recovery never feeds a hungry solo actor or relaxes hunger capacity
+  ---
+  duration_ms: 20.840833
+  ...
+# Subtest: invalid options identities oversized trees and accessors do not mutate saved state
+ok 8 - invalid options identities oversized trees and accessors do not mutate saved state
+  ---
+  duration_ms: 1.377333
+  ...
+# Subtest: the actual stock-first milestone migrates its live gather without granting a new shelter bonus
+ok 9 - the actual stock-first milestone migrates its live gather without granting a new shelter bonus
+  ---
+  duration_ms: 70.888916
+  ...
+# Subtest: fixed attempt counter reservation retains stop save and automatic progression
+ok 10 - fixed attempt counter reservation retains stop save and automatic progression
+  ---
+  duration_ms: 3.35175
+  ...
+# Subtest: camp exposes the separately versioned full game API
+ok 11 - camp exposes the separately versioned full game API
+  ---
+  duration_ms: 4.837375
+  ...
+# Subtest: automatic available recovery pays real time without a job or food
+ok 12 - automatic available recovery pays real time without a job or food
+  ---
+  duration_ms: 6.919208
+  ...
+# Subtest: full gathering pays interval before fixed output; meal reservation returns only on interruption
+ok 13 - full gathering pays interval before fixed output; meal reservation returns only on interruption
+  ---
+  duration_ms: 10.659083
+  ...
+# Subtest: migration preserves mixed fixed gather, meal and converted rest paid state
+ok 14 - migration preserves mixed fixed gather, meal and converted rest paid state
+  ---
+  duration_ms: 38.1365
+  ...
+# Subtest: prospective workbench improves future physical work while snapshot is independent of recovery
+ok 15 - prospective workbench improves future physical work while snapshot is independent of recovery
+  ---
+  duration_ms: 58.727333
+  ...
+# Subtest: stopping and resuming preserve material and per-worker productivity basis
+ok 16 - stopping and resuming preserve material and per-worker productivity basis
+  ---
+  duration_ms: 10.299833
+  ...
+# Subtest: handover invokes recipient choice and charges only that recipient future work
+ok 17 - handover invokes recipient choice and charges only that recipient future work
+  ---
+  duration_ms: 5.5005
+  ...
+# Subtest: neighbor accepted project gathers missing material and recovers through own decisions
+ok 18 - neighbor accepted project gathers missing material and recovers through own decisions
+  ---
+  duration_ms: 9.121458
+  ...
+# Subtest: availability uses actual admission for the original rounded-capacity counterexample
+ok 19 - availability uses actual admission for the original rounded-capacity counterexample
+  ---
+  duration_ms: 6.01425
+  ...
+# Subtest: chunking and JSON snapshot continuation remain exact past the old fixture horizon
+ok 20 - chunking and JSON snapshot continuation remain exact past the old fixture horizon
+  ---
+  duration_ms: 69.229209
+  ...
+# Subtest: stop and save stay available after many same-minute assignments
+ok 21 - stop and save stay available after many same-minute assignments
+  ---
+  duration_ms: 339.718667
+  ...
+# Subtest: tampered ownership, contributions, counters and unsafe JSON are rejected
+ok 22 - tampered ownership, contributions, counters and unsafe JSON are rejected
+  ---
+  duration_ms: 1.754875
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 712.918208
