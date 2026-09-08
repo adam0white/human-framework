@@ -1,0 +1,343 @@
+{
+  "study": "Before the rain: bounded surplus allocation",
+  "date": "2026-09-08",
+  "episodeVersion": "0.1.0",
+  "design": "Exploratory, deterministic comparison of six scripted continuations of one authored opening. The same world commands and elapsed minutes run through unchanged Common Ground as control.",
+  "scope": "Physical output is expected to match the control. Allocation yield and ferry timing are host-authored outcomes; this does not measure enjoyment, human explanations, model realism or optimum play.",
+  "negativeFindings": [
+    "No physical output, body or resource advantage over the original world under matched commands.",
+    "Both existing controllers supply only one cache before the ferry; a different controller has not been optimized or validated.",
+    "Paid recovery and food gathering first can miss the ferry while matching build-first total caches and retaining more food.",
+    "Some needs remain unprovided in every scripted run. Keeping a first cache for camp can leave unused surplus by dusk."
+  ],
+  "runs": [
+    {
+      "approach": "build-first",
+      "destination": "households-first",
+      "openingMinute": 220,
+      "matchedCommands": 35,
+      "originalWorldMatched": true,
+      "atFerry": {
+        "caches": 1,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 2
+        },
+        "pending": {
+          "player": {
+            "job": "rest",
+            "remaining": 15
+          },
+          "neighbor": {
+            "job": "build-cache",
+            "remaining": 2
+          }
+        }
+      },
+      "atDusk": {
+        "caches": 3,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 2
+        },
+        "cacheCompletionOffsets": [
+          73,
+          92,
+          144
+        ],
+        "pending": {
+          "player": {
+            "job": "build-cache",
+            "remaining": 15
+          },
+          "neighbor": {
+            "job": "gather-salvage",
+            "remaining": 17
+          }
+        }
+      },
+      "outcome": {
+        "householdsEquipped": 1,
+        "campNights": 4,
+        "unusedCaches": 0,
+        "householdsWithoutKit": 1,
+        "campNightsWithoutSupplies": 0
+      }
+    },
+    {
+      "approach": "build-first",
+      "destination": "camp-first",
+      "openingMinute": 220,
+      "matchedCommands": 35,
+      "originalWorldMatched": true,
+      "atFerry": {
+        "caches": 1,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 2
+        },
+        "pending": {
+          "player": {
+            "job": "rest",
+            "remaining": 15
+          },
+          "neighbor": {
+            "job": "build-cache",
+            "remaining": 2
+          }
+        }
+      },
+      "atDusk": {
+        "caches": 3,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 2
+        },
+        "cacheCompletionOffsets": [
+          73,
+          92,
+          144
+        ],
+        "pending": {
+          "player": {
+            "job": "build-cache",
+            "remaining": 15
+          },
+          "neighbor": {
+            "job": "gather-salvage",
+            "remaining": 17
+          }
+        }
+      },
+      "outcome": {
+        "householdsEquipped": 0,
+        "campNights": 4,
+        "unusedCaches": 1,
+        "householdsWithoutKit": 2,
+        "campNightsWithoutSupplies": 0
+      }
+    },
+    {
+      "approach": "stock-first",
+      "destination": "households-first",
+      "openingMinute": 220,
+      "matchedCommands": 35,
+      "originalWorldMatched": true,
+      "atFerry": {
+        "caches": 1,
+        "stock": {
+          "timber": 12,
+          "salvage": 4,
+          "food": 5
+        },
+        "pending": {
+          "player": {
+            "job": "gather-timber",
+            "remaining": 4
+          },
+          "neighbor": {
+            "job": "rest",
+            "remaining": 16
+          }
+        }
+      },
+      "atDusk": {
+        "caches": 2,
+        "stock": {
+          "timber": 4,
+          "salvage": 7,
+          "food": 5
+        },
+        "cacheCompletionOffsets": [
+          73,
+          125
+        ],
+        "pending": {
+          "player": {
+            "job": "gather-timber",
+            "remaining": 4
+          },
+          "neighbor": {
+            "job": "build-cache",
+            "remaining": 2
+          }
+        }
+      },
+      "outcome": {
+        "householdsEquipped": 1,
+        "campNights": 2,
+        "unusedCaches": 0,
+        "householdsWithoutKit": 1,
+        "campNightsWithoutSupplies": 2
+      }
+    },
+    {
+      "approach": "stock-first",
+      "destination": "camp-first",
+      "openingMinute": 220,
+      "matchedCommands": 35,
+      "originalWorldMatched": true,
+      "atFerry": {
+        "caches": 1,
+        "stock": {
+          "timber": 12,
+          "salvage": 4,
+          "food": 5
+        },
+        "pending": {
+          "player": {
+            "job": "gather-timber",
+            "remaining": 4
+          },
+          "neighbor": {
+            "job": "rest",
+            "remaining": 16
+          }
+        }
+      },
+      "atDusk": {
+        "caches": 2,
+        "stock": {
+          "timber": 4,
+          "salvage": 7,
+          "food": 5
+        },
+        "cacheCompletionOffsets": [
+          73,
+          125
+        ],
+        "pending": {
+          "player": {
+            "job": "gather-timber",
+            "remaining": 4
+          },
+          "neighbor": {
+            "job": "build-cache",
+            "remaining": 2
+          }
+        }
+      },
+      "outcome": {
+        "householdsEquipped": 0,
+        "campNights": 4,
+        "unusedCaches": 0,
+        "householdsWithoutKit": 2,
+        "campNightsWithoutSupplies": 0
+      }
+    },
+    {
+      "approach": "recover-and-stock-food",
+      "destination": "households-first",
+      "openingMinute": 220,
+      "matchedCommands": 34,
+      "originalWorldMatched": true,
+      "atFerry": {
+        "caches": 0,
+        "stock": {
+          "timber": 4,
+          "salvage": 4,
+          "food": 4
+        },
+        "pending": {
+          "player": {
+            "job": "build-cache",
+            "remaining": 3
+          },
+          "neighbor": {
+            "job": "rest",
+            "remaining": 3
+          }
+        }
+      },
+      "atDusk": {
+        "caches": 3,
+        "stock": {
+          "timber": 8,
+          "salvage": 1,
+          "food": 4
+        },
+        "cacheCompletionOffsets": [
+          93,
+          127,
+          164
+        ],
+        "pending": {
+          "player": {
+            "job": "gather-timber",
+            "remaining": 11
+          },
+          "neighbor": {
+            "job": "rest",
+            "remaining": 16
+          }
+        }
+      },
+      "outcome": {
+        "householdsEquipped": 0,
+        "campNights": 4,
+        "unusedCaches": 1,
+        "householdsWithoutKit": 2,
+        "campNightsWithoutSupplies": 0
+      }
+    },
+    {
+      "approach": "recover-and-stock-food",
+      "destination": "camp-first",
+      "openingMinute": 220,
+      "matchedCommands": 34,
+      "originalWorldMatched": true,
+      "atFerry": {
+        "caches": 0,
+        "stock": {
+          "timber": 4,
+          "salvage": 4,
+          "food": 4
+        },
+        "pending": {
+          "player": {
+            "job": "build-cache",
+            "remaining": 3
+          },
+          "neighbor": {
+            "job": "rest",
+            "remaining": 3
+          }
+        }
+      },
+      "atDusk": {
+        "caches": 3,
+        "stock": {
+          "timber": 8,
+          "salvage": 1,
+          "food": 4
+        },
+        "cacheCompletionOffsets": [
+          93,
+          127,
+          164
+        ],
+        "pending": {
+          "player": {
+            "job": "gather-timber",
+            "remaining": 11
+          },
+          "neighbor": {
+            "job": "rest",
+            "remaining": 16
+          }
+        }
+      },
+      "outcome": {
+        "householdsEquipped": 0,
+        "campNights": 4,
+        "unusedCaches": 1,
+        "householdsWithoutKit": 2,
+        "campNightsWithoutSupplies": 0
+      }
+    }
+  ]
+}
