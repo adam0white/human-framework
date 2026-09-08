@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: watch keeps refusal, partial paid work, reservations, resume, early and duplicate receipts identical
+ok 1 - watch keeps refusal, partial paid work, reservations, resume, early and duplicate receipts identical
+  ---
+  duration_ms: 23.194167
+  ...
+# Subtest: watch keeps arrival-first warning ties and forged saved reservations identical
+ok 2 - watch keeps arrival-first warning ties and forged saved reservations identical
+  ---
+  duration_ms: 6.266167
+  ...
+# Subtest: maintenance keeps refusal, partial paid work, reservations, resume, early and duplicate receipts identical
+ok 3 - maintenance keeps refusal, partial paid work, reservations, resume, early and duplicate receipts identical
+  ---
+  duration_ms: 11.188666
+  ...
+# Subtest: maintenance keeps arrival-first warning ties and forged saved reservations identical
+ok 4 - maintenance keeps arrival-first warning ties and forged saved reservations identical
+  ---
+  duration_ms: 3.342625
+  ...
+# Subtest: Watch preserves own parts and meal authorization while maintenance keeps its separate resource rules
+ok 5 - Watch preserves own parts and meal authorization while maintenance keeps its separate resource rules
+  ---
+  duration_ms: 9.152125
+  ...
+# Subtest: Watch short arrival still admits three paid rest minutes then final repair
+ok 6 - Watch short arrival still admits three paid rest minutes then final repair
+  ---
+  duration_ms: 11.29575
+  ...
+# Subtest: comparison requires a fresh explicit path, preserves sentinels, and emits bounded two-host parity evidence
+ok 7 - comparison requires a fresh explicit path, preserves sentinels, and emits bounded two-host parity evidence
+  ---
+  duration_ms: 1340.822458
+  ...
+# Subtest: both private adapted consumers satisfy all original host regression assertions
+ok 8 - both private adapted consumers satisfy all original host regression assertions
+  ---
+  duration_ms: 509.849959
+  ...
+# Subtest: accepted work preserves paid body/practice on interruption and cancels its unique due event
+ok 9 - accepted work preserves paid body/practice on interruption and cancels its unique due event
+  ---
+  duration_ms: 2.282459
+  ...
+# Subtest: mismatched, early, late and duplicate completion reject without changing borrowed state
+ok 10 - mismatched, early, late and duplicate completion reject without changing borrowed state
+  ---
+  duration_ms: 0.833291
+  ...
+# Subtest: paid meal requires explicit consumed outcome; interrupted or unconfirmed meals cannot reduce hunger
+ok 11 - paid meal requires explicit consumed outcome; interrupted or unconfirmed meals cannot reduce hunger
+  ---
+  duration_ms: 0.775666
+  ...
+# Subtest: arrival remains first at a tie and the host can interrupt before a duplicate due outcome
+ok 12 - arrival remains first at a tie and the host can interrupt before a duplicate due outcome
+  ---
+  duration_ms: 0.196792
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1392.022542
