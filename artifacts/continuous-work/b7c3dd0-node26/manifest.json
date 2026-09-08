@@ -1,0 +1,26 @@
+{
+  "sourceCommit": "b7c3dd0b7c6b96cb4c9e33b13969ff6ac800da82",
+  "node": "v26.8.1",
+  "files": {
+    "original-counterexample.json": "d1327ea30de01b495adbd5750cdcfc3a7d9f6276dc5f741027b071e20825738a",
+    "finish-current-then-release.json": "b2a551faa7944d1fa8054905ff8998bea64d20f3706991e52add358d6b322522",
+    "snapshot-active-idle.json": "85fcdce8f27b9e13e9fd4150bea2bebe28884fc1d0f0d8f19ed28151bd77ded0",
+    "snapshot-automatic.json": "9acaf32aa6350be745452129a04831febb3dc5d92fb762a5000d91c7fa3bd4f6",
+    "prospective-active-idle.json": "723b208bc142bfcd42ac6a0b0b2bde9a2f5884dfc08b2073246f320578350003",
+    "prospective-automatic.json": "1dfc68a61b8ce14833d953127a1eaea65e185db7974487d3a580472d5947bfe1",
+    "stop-resume.json": "6aa40a398efacb957edf490ef4ee21d42cb9f3a352766798e6bc220923110d1b",
+    "takeover.json": "316fa261e45a2b20b50bb1a82921593d2ae9a363ee207c6defe6452a3094741d",
+    "overlap-1.json": "59fc3d117691c696bfaaacdefd2ce4c8b3d7f472f3d5ecc974017eec677cb791",
+    "overlap-2.json": "54de6d0fcccc3555eee6249b98496efb7339955aff1f5a9a0faf198c1f8be38e",
+    "overlap-3.json": "5af46c323d6a8f8231f4ffdbfb6e5b9ff6e9b8881f4ee426d72a922ede7fc2d5",
+    "overlap-4.json": "3b42435059d728020b87747232fcb90262c513fde096861d4184a0e5961e0222",
+    "overlap-5.json": "1e7ff63805d267aed4dc4a3122841f9b5d7ae0a4c9512073d3be4e05b2987e77",
+    "overlap-6.json": "cae100788ea957cf63260ffad58b6ae76f312b2ce8c1d2b67c16c9e3747f3220",
+    "overlap-7.json": "c491be57f9dbf8ca3f16fd5cfd4274e71dfc66a664b003f474dbb7e2f25beb2b",
+    "automatic-recovery.json": "12fc19f8740e4347ca044def1f4dcc2f6bc39980e6f28a0059f01332dee6c6d5",
+    "active-idle-control.json": "f19c1a74a101f0841e3f47c871b92875a3019f3edf23fdd9bc80223241767864",
+    "legacy-explicit-rest.json": "3f88d021a10c1188533979192b3fe866025accfd632adcdf2ec1ff6d7ca3a022",
+    "rounded-capacity-counterexample.json": "a96b4986c4612c0583dd8e5eafc97485c7e61e17f43ce6b950d922dd88e287f3",
+    "report.json": "77875a3ee65a85e7edc0a0e61858cee35104d4de9afd3f4d1e271083ffbbed28"
+  }
+}

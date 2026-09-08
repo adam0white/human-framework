@@ -1,0 +1,254 @@
+{
+  "format": "human-common-ground",
+  "version": 1,
+  "game": {
+    "version": "0.1.0",
+    "solo": false,
+    "clock": {
+      "version": "0.1.0",
+      "now": 207,
+      "nextEvent": 13,
+      "queue": [
+        {
+          "id": "event:12",
+          "at": 225,
+          "type": "job-complete",
+          "actorId": "neighbor",
+          "data": {
+            "jobId": "rest",
+            "attemptId": "neighbor:182"
+          }
+        }
+      ]
+    },
+    "people": {
+      "player": {
+        "version": "0.1.0",
+        "id": "player",
+        "body": {
+          "fatigue": 0.7404999999999883,
+          "hunger": 0.6340000000000003
+        },
+        "skills": {
+          "gathering": 0.4363718287081997,
+          "construction": 0.26750099348661205
+        },
+        "observationBias": 0,
+        "minutes": 207,
+        "nextAttempt": 41,
+        "pending": null
+      },
+      "neighbor": {
+        "version": "0.1.0",
+        "id": "neighbor",
+        "body": {
+          "fatigue": 0.8104999999999963,
+          "hunger": 0.14400000000000035
+        },
+        "skills": {
+          "gathering": 0.1,
+          "construction": 0.14383596744985547
+        },
+        "observationBias": 0,
+        "minutes": 207,
+        "nextAttempt": 183,
+        "pending": {
+          "id": "neighbor:182",
+          "action": {
+            "actionId": "rest",
+            "targetId": null,
+            "durationMinutes": 18,
+            "effort": 0,
+            "exertive": false,
+            "activity": "rest",
+            "skill": null
+          },
+          "elapsedMinutes": 0,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.027,
+            "hungerCost": 0.036000000000000004,
+            "projectedFatigue": 0.8374999999999964,
+            "projectedHunger": 0.18000000000000035
+          },
+          "bodyBefore": {
+            "fatigue": 0.8104999999999963,
+            "hunger": 0.14400000000000035
+          },
+          "skillBefore": null,
+          "startedAt": 207
+        }
+      }
+    },
+    "jobs": {
+      "player": null,
+      "neighbor": {
+        "id": "rest",
+        "label": "Rest in camp",
+        "detail": "Recover strength. Time and hunger continue.",
+        "project": null,
+        "stage": null,
+        "cost": {},
+        "output": {},
+        "duration": 18,
+        "benefits": {
+          "shelter": false,
+          "workbench": true,
+          "garden": false
+        },
+        "skillBefore": null,
+        "action": {
+          "actionId": "rest",
+          "targetId": null,
+          "durationMinutes": 18,
+          "effort": 0,
+          "exertive": false,
+          "activity": "rest",
+          "skill": null
+        },
+        "startedAt": 207,
+        "endsAt": 225,
+        "eventId": "event:12",
+        "attemptId": "neighbor:182"
+      }
+    },
+    "stock": {
+      "timber": 2,
+      "salvage": 2,
+      "food": 3
+    },
+    "structures": {
+      "shelter": 0,
+      "workbench": 2,
+      "garden": 1
+    },
+    "caches": 0,
+    "milestoneAt": null,
+    "commitment": {
+      "status": "released",
+      "project": "garden",
+      "acceptedAt": 187,
+      "finishedAt": 207,
+      "startCaches": 0,
+      "reason": "You released our project. I’m finishing my recovery; you can request another project."
+    },
+    "lastResponse": {
+      "at": 187,
+      "project": "garden",
+      "accepted": true,
+      "reason": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+    },
+    "stats": {
+      "started": 12,
+      "completed": 11,
+      "canceled": 0,
+      "gathered": {
+        "timber": 9,
+        "salvage": 6,
+        "food": 0
+      },
+      "spent": {
+        "timber": 11,
+        "salvage": 6,
+        "food": 1
+      },
+      "consumedFood": 1,
+      "workMinutes": 160,
+      "restMinutes": 36,
+      "mealMinutes": 8,
+      "idleMinutes": 210,
+      "receipts": {
+        "gather-timber": 3,
+        "gather-salvage": 2,
+        "forage": 0,
+        "rest": 2,
+        "eat": 1,
+        "coveredTimber": 0,
+        "gardenFood": 0
+      }
+    },
+    "recent": [
+      {
+        "at": 87,
+        "actor": "player",
+        "message": "You finished rest in camp."
+      },
+      {
+        "at": 87,
+        "actor": "player",
+        "message": "You started recover salvage (21 min)."
+      },
+      {
+        "at": 108,
+        "actor": "player",
+        "message": "You finished recover salvage. +3 salvage."
+      },
+      {
+        "at": 108,
+        "actor": "player",
+        "message": "You started workbench: build the table (22 min)."
+      },
+      {
+        "at": 130,
+        "actor": "player",
+        "message": "You finished workbench: build the table."
+      },
+      {
+        "at": 130,
+        "actor": "player",
+        "message": "You started rest in camp (18 min)."
+      },
+      {
+        "at": 148,
+        "actor": "player",
+        "message": "You finished rest in camp."
+      },
+      {
+        "at": 160,
+        "actor": "player",
+        "message": "You started workbench: fit the tools (28 min)."
+      },
+      {
+        "at": 173,
+        "actor": "neighbor",
+        "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+      },
+      {
+        "at": 181,
+        "actor": "neighbor",
+        "message": "Meryem finished eat a portion."
+      },
+      {
+        "at": 187,
+        "actor": "neighbor",
+        "message": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+      },
+      {
+        "at": 187,
+        "actor": "neighbor",
+        "message": "Meryem started garden: edge the beds (20 min). I’m completing the accepted garden project."
+      },
+      {
+        "at": 188,
+        "actor": "player",
+        "message": "You finished workbench: fit the tools."
+      },
+      {
+        "at": 207,
+        "actor": "neighbor",
+        "message": "Meryem finished garden: edge the beds."
+      },
+      {
+        "at": 207,
+        "actor": "neighbor",
+        "message": "Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project."
+      },
+      {
+        "at": 207,
+        "actor": "neighbor",
+        "message": "You released our project. I’m finishing my recovery; you can request another project."
+      }
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "format": "human-continuous-work-experiment",
+  "version": 1,
+  "state": {
+    "version": "0.1.0-experiment",
+    "runtimeVersion": "0.1.1",
+    "humanVersion": "0.1.1",
+    "origin": {
+      "format": "human-common-ground",
+      "version": 1,
+      "game": {
+        "version": "0.1.0",
+        "solo": true,
+        "clock": {
+          "version": "0.1.0",
+          "now": 0,
+          "nextEvent": 1,
+          "queue": []
+        },
+        "people": {
+          "player": {
+            "version": "0.1.0",
+            "id": "player",
+            "body": {
+              "fatigue": 0.2,
+              "hunger": 0.22
+            },
+            "skills": {
+              "gathering": 0.1,
+              "construction": 0.05
+            },
+            "observationBias": 0,
+            "minutes": 0,
+            "nextAttempt": 1,
+            "pending": null
+          }
+        },
+        "jobs": {
+          "player": null
+        },
+        "stock": {
+          "timber": 4,
+          "salvage": 2,
+          "food": 4
+        },
+        "structures": {
+          "shelter": 0,
+          "workbench": 0,
+          "garden": 0
+        },
+        "caches": 0,
+        "milestoneAt": null,
+        "commitment": {
+          "status": "none",
+          "project": null,
+          "acceptedAt": null,
+          "finishedAt": null,
+          "startCaches": 0,
+          "reason": "You are working alone."
+        },
+        "lastResponse": null,
+        "stats": {
+          "started": 0,
+          "completed": 0,
+          "canceled": 0,
+          "gathered": {
+            "timber": 0,
+            "salvage": 0,
+            "food": 0
+          },
+          "spent": {
+            "timber": 0,
+            "salvage": 0,
+            "food": 0
+          },
+          "consumedFood": 0,
+          "workMinutes": 0,
+          "restMinutes": 0,
+          "mealMinutes": 0,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 0,
+            "gather-salvage": 0,
+            "forage": 0,
+            "rest": 0,
+            "eat": 0,
+            "coveredTimber": 0,
+            "gardenFood": 0
+          }
+        },
+        "recent": []
+      }
+    },
+    "options": {
+      "improvement": "prospective",
+      "recovery": "automatic"
+    },
+    "now": 6,
+    "people": {
+      "player": {
+        "version": "0.1.1",
+        "id": "player",
+        "body": {
+          "fatigue": 0.059000000000000045,
+          "hunger": 0.232
+        },
+        "skills": {
+          "gathering": 0.1,
+          "construction": 0.05
+        },
+        "observationBias": 0,
+        "minutes": 6,
+        "nextAttempt": 7,
+        "pending": null
+      }
+    },
+    "stock": {
+      "timber": 4,
+      "salvage": 2,
+      "food": 4
+    },
+    "structures": {
+      "shelter": 0,
+      "workbench": 0,
+      "garden": 0
+    },
+    "caches": 0,
+    "work": {},
+    "assignments": {
+      "player": null
+    },
+    "meals": {
+      "player": null
+    },
+    "paid": {
+      "player": {
+        "work": 0,
+        "recovery": 6,
+        "idle": 0,
+        "meal": 0
+      }
+    },
+    "events": [],
+    "commands": [
+      {
+        "type": "advance",
+        "minutes": 6
+      }
+    ]
+  }
+}

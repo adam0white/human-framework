@@ -1,0 +1,38 @@
+{
+  "verifiedAt": "2026-09-08T13:38:18.712Z",
+  "sourceCommit": "b7c3dd0b7c6b96cb4c9e33b13969ff6ac800da82",
+  "sourceBase": "953e2a35666bc175d80b51fed891c56913a86dd4",
+  "suite": {
+    "node": "26.8.1",
+    "command": "/opt/homebrew/bin/node --test tests/*.test.js",
+    "pass": 619,
+    "fail": 0
+  },
+  "minimum": {
+    "node": "22.0.0",
+    "command": "node --test tests/continuous-work*.test.js",
+    "pass": 25,
+    "fail": 0
+  },
+  "artifactPayloadHashesRechecked": 40,
+  "crossVersionReportsEqualExceptEnvironment": true,
+  "publicBuild": {
+    "files": 81,
+    "modules": 54,
+    "staticEdges": 88,
+    "assetsSha256": "0f158916458dcfc8fb381fb61db3f8f571494b1311ee905dabe1920a80918709"
+  },
+  "logs": {
+    "node26-full-tests.log": "8db32a1021b652fa4c02eab8d076e4a455c6670575d5c3970c8e1d865c954da9",
+    "node22-focused-tests.log": "0f5317f7b066ea91b1ef91b4aee0f4a971cbd81b3457718061485b80f23df305"
+  },
+  "review": "Independent lifecycle review remains root-owned; no public host or runtime changed",
+  "initialProbeCorrection": {
+    "source": "b6017c13bbe2a0d12be001ea86ed40dddf1d46e6",
+    "incorrectAssertion": "finish-current then release leaves neighbor job null",
+    "actual": "released future project; self-chosen rest remains with zero elapsed minutes at207",
+    "fixedIn": "b7c3dd0b7c6b96cb4c9e33b13969ff6ac800da82",
+    "simulationChanged": false,
+    "failedBeforeArtifactWrites": true
+  }
+}
