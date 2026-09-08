@@ -1,0 +1,31 @@
+{
+  "format": "across-player-preregistration",
+  "version": 1,
+  "scope": "Six authored worlds, eight fixed controls, and four actual-receipt interventions. No withheld or human samples.",
+  "physicsDelta": "All current arms use host 0.2 automatic one-minute available recovery when unassigned, counted as paid.availableRecovery. Old private host active-idle physics and evidence remain unchanged; no physical equivalence claim is made.",
+  "worlds": [
+    {"id":"P1","purpose":"Easy early communication-overhead hypothesis","setup":{"valveMinutes":6,"inletMinutes":2,"launchAt":15,"channelMode":"reliable","channelSeed":0,"channelOverrides":{}}},
+    {"id":"P2","purpose":"Late long inlet, all bounded radio delays six","setup":{"valveMinutes":6,"inletMinutes":14,"launchAt":27,"channelMode":"bounded","channelSeed":0},"allRadioSlots":6},
+    {"id":"P3","purpose":"Early long inlet and required report receipt at eight","setup":{"valveMinutes":6,"inletMinutes":14,"launchAt":15,"channelMode":"bounded","channelSeed":0},"allRadioSlots":6},
+    {"id":"P4","purpose":"Early long keeper repair and cart insurance","setup":{"valveMinutes":12,"inletMinutes":2,"launchAt":15,"channelMode":"reliable","channelSeed":0,"channelOverrides":{}}},
+    {"id":"P5","purpose":"Both repairs long, late launch, bounded slow radio","setup":{"valveMinutes":12,"inletMinutes":14,"launchAt":27,"channelMode":"bounded","channelSeed":0},"allRadioSlots":6},
+    {"id":"P6","purpose":"All reports lost, long keeper and late launch","setup":{"valveMinutes":12,"inletMinutes":2,"launchAt":27,"channelMode":"lossy","channelSeed":0},"allRadioSlots":"loss"}
+  ],
+  "arms": [
+    {"id":"fixed-early","receiver":"player-receiver","releaseFloor":7,"family":"shared receiver"},
+    {"id":"fixed-conservative","receiver":"player-receiver","releaseFloor":13,"family":"shared receiver"},
+    {"id":"cart-first-keeper","receiver":"player-receiver","releaseFloor":9,"family":"shared receiver"},
+    {"id":"paid-contact","receiver":"player-receiver","releaseFloor":13,"family":"shared receiver"},
+    {"id":"radio-adaptive","receiver":"player-receiver","family":"shared receiver"},
+    {"id":"joint-cart-first-early","receiver":"joint-cart-first","releaseFloor":9,"family":"joint no-radio"},
+    {"id":"joint-cart-first-conservative","receiver":"joint-cart-first","releaseFloor":13,"family":"joint no-radio"},
+    {"id":"joint-immediate-cart","receiver":"immediate-cart","family":"joint no-radio"}
+  ],
+  "interventions": [
+    {"id":"I-stop","world":"P3","choice":"stop","restoreAtReceipt":false},
+    {"id":"I-continue","world":"P3","choice":"continue","restoreAtReceipt":false},
+    {"id":"I-stop-restored","world":"P3","choice":"stop","restoreAtReceipt":true},
+    {"id":"I-continue-restored","world":"P3","choice":"continue","restoreAtReceipt":true}
+  ],
+  "stopRule": "Keep exact failures and stop expansion after these 52 records if reports create no useful decision or outcome advantage over competent simpler alternatives. Do not add acknowledgments, memory, negotiation or retune the cases/policies after outcomes. Source-specific defect correction must preserve original output and receive a separately labeled revalidation freeze."
+}
