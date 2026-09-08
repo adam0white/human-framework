@@ -63,6 +63,8 @@ No generic ledger, planner or observation-memory adapter was integrated. The dir
 
 These are explicit scripts, not a learned controller, search planner, independently authored integration or player study. R2 deliberately omits promised recovery: it challenges execution after violating a forecast's premise. It cannot establish inaccurate forecasting when the declared schedule is actually followed. Co-located synchronous discussions test response identity/chronology, not a delayed-report cognition mechanism. Qualified human/theological/empirical evaluation and player legibility remain open.
 
+“Reserved” means these four comparison scripts are withheld from this runner until a committed source freeze. It does not mean blind or independently sampled evidence: their definitions are public preregistration, and core lifecycle tests exercise overlapping mechanisms such as omitted recovery and stale responses. Passing those implementation tests is not additional independent confirmation of reserved policy generalization. No comparison policy tuning has followed an unsealed result.
+
 ## Reproduce with fresh paths
 
 ```sh
