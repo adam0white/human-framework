@@ -7,6 +7,7 @@ const escapeHTML = (value) => String(value ?? '').replace(/[&<>"']/g, (character
 const number = (value, digits = 1) => Number.isFinite(value) ? Number(value.toFixed(digits)).toLocaleString('en-US') : '—';
 const percent = (value) => Number.isFinite(value) ? `${Math.round(value * 100)}%` : '—';
 const displayName = (value) => String(value ?? '').replace(/[-_]/g, ' ').replace(/^./, (c) => c.toUpperCase());
+const policyName = policy => ({full:'Full action loop',baseline:'Simple utility baseline','planned-simple':'Planned simple recovery'})[policy] ?? policy;
 const signed = (value) => `${value > 0 ? '+' : ''}${number(value, 2)}`;
 const modules = [
   ['body', 'Body coupling', 'Scoring and performance; capacity limits remain'],
@@ -85,7 +86,7 @@ function updateSettingsNote() {
   note.classList.toggle('dirty', dirty);
   note.textContent = dirty
     ? 'Settings changed. Start a new run to apply them; the current run keeps its recorded settings.'
-    : `Seed ${state.options.seed} · ${state.options.policy === 'full' ? 'Full action loop' : 'Simple utility baseline'} · ${count === modules.length ? 'All components enabled' : `${count} of ${modules.length} components enabled`}`;
+    : `Seed ${state.options.seed} · ${policyName(state.options.policy)} · ${count === modules.length ? 'All components enabled' : `${count} of ${modules.length} components enabled`}`;
 }
 
 function stopAutoplay() {
@@ -207,7 +208,7 @@ function renderWorld(view) {
   $('objective-label').textContent = view.peers.length ? 'Shared objective' : 'Your objective';
   $('scenario-aim').textContent = `Reach ${number(view.world.target)} ${view.world.resourceLabel} by round ${view.horizon} (${number(view.horizon * view.roundMinutes)} simulated minutes).`;
   $('world-brief').textContent = view.scenario.brief;
-  const modelName = state.options.policy === 'full' ? 'Full action loop' : 'Simple utility baseline';
+  const modelName = policyName(state.options.policy);
   const disabled = modules.filter(([id]) => !state.options.modules[id]).map(([, label]) => label);
   $('run-identity').textContent = `${archived ? archiveLabel() : 'CURRENT RUN'} · Seed ${state.options.seed} · ${modelName}${disabled.length ? ` · Off: ${disabled.join(', ')}` : ''}`;
   $('replay-identity').textContent = `${view.scenario.title} · Rules ${state.version} · Seed ${state.options.seed} · ${modelName} · Round ${view.round}${disabled.length ? ` · Off: ${disabled.join(', ')}` : ''}`;
@@ -296,7 +297,7 @@ function renderPerson(view) {
 
 function candidateMarkup(view, candidate, index) {
     const extent = Math.max(.01, ...candidate.contributions.map((item) => Math.abs(item.value)));
-    return `<details class="candidate" ${index === 0 ? 'open' : ''}><summary><span class="candidate-rank">0${index + 1}</span><span class="candidate-label">${escapeHTML(actionLabel(candidate.actionId, view))}</span><span class="candidate-score">${signed(candidate.score)}</span></summary>${Number.isFinite(candidate.forecast) ? `<p class="forecast">Estimated success if executed: ${percent(candidate.forecast)}</p>` : ''}<div class="contributions">${candidate.contributions.map((item) => `<div class="contribution"><span>${escapeHTML(item.label)}</span><span class="contribution-track"><i class="${item.value < 0 ? 'negative' : ''}" style="width:${100 * Math.abs(item.value) / extent}%"></i></span><strong>${signed(item.value)}</strong></div>`).join('')}</div></details>`;
+    return `<details class="candidate" ${index === 0 ? 'open' : ''}><summary><span class="candidate-rank">0${index + 1}</span><span class="candidate-label">${escapeHTML(actionLabel(candidate.actionId, view))}</span><span class="candidate-score">${signed(candidate.score)}</span></summary>${candidate.selectionReason ? `<p class="forecast">${escapeHTML(candidate.selectionReason)} Tier ${candidate.selectionTier}; scores compare choices within the same tier.</p>` : ''}${Number.isFinite(candidate.forecast) ? `<p class="forecast">Estimated success if executed: ${percent(candidate.forecast)}</p>` : ''}<div class="contributions">${candidate.contributions.map((item) => `<div class="contribution"><span>${escapeHTML(item.label)}</span><span class="contribution-track"><i class="${item.value < 0 ? 'negative' : ''}" style="width:${100 * Math.abs(item.value) / extent}%"></i></span><strong>${signed(item.value)}</strong></div>`).join('')}</div></details>`;
 }
 
 function renderDecision(view, ranking) {
@@ -306,7 +307,7 @@ function renderDecision(view, ranking) {
     return;
   }
   $('decision-intro').textContent = view.status === 'running'
-    ? `The ${state.options.policy === 'full' ? 'full-loop' : 'baseline'} policy currently favors “${actionLabel(ranking[0]?.actionId, view)}.” You can choose any available action. Open a row to see its actual score contributions.`
+    ? `The ${policyName(state.options.policy)} policy currently favors “${actionLabel(ranking[0]?.actionId, view)}.” You can choose any available action. Open a row to see its actual score contributions.`
     : 'The run has ended. These are the final-state rankings, not a new decision. Recorded decisions remain in the history.';
   $('decision-details').innerHTML = ranking.map((candidate, index) => candidateMarkup(view, candidate, index)).join('');
 }

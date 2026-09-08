@@ -1,0 +1,115 @@
+# Independent Claude Fable review: a-conceptual
+
+- Source commit: `08aab973bcaef51693d94beeed4d882e9c3124ee`
+- Requested model: `fable`; primary reported model: `claude-fable-5-1`. Raw JSON also records small additional Haiku usage, disclosed in the verification notes.
+- Method: separate one-shot CLI process; safe/restricted mode; only Read, Glob and Grep; no resumed/shared sessions.
+- Scope: frozen allowlisted source snapshot; no test execution or external source verification.
+- Reviewer text below is preserved verbatim from the final result and has not been treated as a verified finding.
+
+---
+
+# Independent review of Human Framework at commit 08aab973
+
+**Verdict.** Human Framework today is a well-disciplined observation, choice and replay contract wrapped around a small resource-allocation game. It is not yet a model of human faculties. Its strongest asset is that contract: an actor view that excludes hidden state, a request recorded separately from what executed, an intention that never becomes causal, keyed replay, and typed claims about sources. Its most serious mistaken assumption is that these distinctions can live inside one additive utility score. The project's own memos say such a score cannot carry commitments or principled sacrifice. The snapshot's own artifacts show the additive scorer is matched or beaten by a two-threshold rule, that two of its five modules never change a decision in any shipped world, and that its learning module runs at a time scale that contradicts its name. The theological grounding is real as method and as a list of refusals, but nothing running represents a reason for action other than production or upkeep. The project should become a host-embeddable contract with pluggable controllers, demote the policy called Full to one experimental controller among several, and earn positive Islamic representation through one reviewed practice scenario rather than more psychology parameters.
+
+**Scope of evidence.** I read every listed document, all of src/core, the scenario data, the experiment runner, six test files and the web guidance module, and I searched the benchmark and recovery artifacts for specific values. I executed nothing, so all counts are read from artifacts. Four documents the README and roadmap cite are absent from the snapshot: the post-MVP direction review, the MVP status record, the earlier review record and the deployment note. The roadmap's re-sequencing rests on a review I cannot inspect. Where I draw on Islamic theology beyond the memos, I mark it as recollection requiring qualified confirmation.
+
+## What is running and what the artifacts show
+
+**What it models.** One shared progress counter, integer rations and a stationary hidden hazard. Per actor: fatigue and hunger, two skills, one hazard estimate with a confidence proxy, four authored weights, at most one authored promise, trust scalars and a one-shot support buffer. Five action kinds. Choice is the argmax of an additive score at `src/core/policy.js:44`. Nothing else deliberates.
+
+Confirmed implementation facts, in priority order:
+
+1. **There is no controller boundary.** The options validator admits exactly two policy strings, and the step function calls the built-in ranking directly, so a third controller cannot drive actors without editing the kernel. The docs call Full "a replaceable reactive policy". The code does not make it replaceable. Evidence: `src/core/model.js:93` and `src/core/simulation.js:103`.
+2. **The resolver makes choices on the actor's behalf.** When hunger blocks exertion and food exists, the resolver eats a shared ration although the actor requested work. When an actor helps, the resolver picks the recipient. Both are consumption or targeting decisions hidden inside world resolution, which the project's own choice-sovereignty contract forbids. Evidence: `src/core/simulation.js:109-116` and `src/core/simulation.js:79`.
+3. **Two of five modules are behaviorally inert in every shipped world.** The relationship ablation shows exactly zero paired difference on every metric in all four presets. That is only possible if the full policy never executed help in any two-person benchmark run. Belief updating changes choices only in Courier, and promise weighting only in Courier and Repair. The README's "enables all five couplings" is true of switches, not behavior. Evidence: the comparison blocks in `artifacts/benchmark.json`, summarized in the table below.
+4. **The learning module is a within-shift warm-up booked as competence.** With the shipped rate, quality and round length, each attempt closes about a tenth of the remaining gap to mastery. The exported retention helper is never invoked by the simulation. The empirical memo's own distinction between current performance and learned competence is violated by the one variable carrying the word learning. Evidence: `src/core/model.js:4-8` and `src/core/model.js:101-108`.
+   Leyla's craft proficiency, one Solo shift under Full: 0.75 at start, above 0.9 at close.
+5. **Voluntary recovery is an artifact of output units.** Work scores scale with authored output. Rest and eat scores do not. Scale outputs up by ten and Full becomes greedy. Scale them down and it rests constantly. The roadmap names this defect. I confirm the mechanism at `src/core/policy.js:19-27`.
+6. **Perceived condition is actual condition rounded.** No shipped scenario sets an observation bias, so the cited dissociation between felt and actual impairment exists only as an unused field. Where bias is set, peers perceive an actor through that actor's own self-perception bias, conflating interoception with other-perception. Evidence: `src/core/observation.js:3-6` and `src/core/observation.js:17`.
+7. **The seven-phase trace is narration.** Phases are formatted after resolution. The "understand" phase prints perceived fatigue and the ration count. Evidence: `src/core/simulation.js:121-129`.
+8. **The baseline is pure greed.** Given shipped outputs its work score always exceeds its rest and eat constants, so it never voluntarily recovers. Every headline comparison against it measures the presence of any rest term, not the richness of the model. Evidence: `src/core/policy.js:16`.
+9. **Trust updates reach peers who observed nothing, and promises exist only if authored at start.** No command creates, revises or releases one. Evidence: `src/core/simulation.js:92` and `src/core/simulation.js:135-140`.
+10. **Evaluation seeds are exercised by the test suite, and workloads were lengthened until the recovery probe won.** The feasibility result is a design target met, not a finding. Evidence: `tests/scenarios.test.js:188`.
+
+Module activity across shipped presets, inferred from exact-zero paired differences:
+
+| Module | Courier | Repair | Commons | Solo |
+|---|---|---|---|---|
+| Body | active | active | active | active |
+| Learning | active | active | active | active |
+| Beliefs | active | inert | inert | inert |
+| Commitments | active | active | inert | none authored |
+| Relationships | inert | inert | inert | none |
+
+**Reading the benchmark critically.** The README leads with Full beating the baseline. The decisive comparison is in the recovery exploration. The planned-simple comparator keeps the baseline's work choice and adds two thresholds on perceived hunger and fatigue. Its Solo results on paired seeds:
+
+| Solo deadline in rounds | Planned-simple wins | Full wins | Greedy wins |
+|---|---:|---:|---:|
+| 18 | 14 | 11 | 17 |
+| 21 | 57 | 41 | 29 |
+| 24 | 75 | 75 | 58 |
+| 27 | 93 | 95 | 85 |
+
+Full is beaten by a three-line rule at moderate pressure, ties it at the candidate pressure profile, and both lose to greed at extreme pressure. The winner flips with the deadline. So "which policy is better" is not well posed until the world designer declares what the game rewards. Three questions are entangled in the reports. Policy comparison, which the sweep answers. Mechanism validation, which no synthetic run can answer. World preference, which is the author's choice of deadline and rations. The objectives that should decide whether complexity earns its place are different again: whether a controller produces a player-visible choice the simpler rule cannot, what a new situation costs to author, whether the contract's invariants hold under unit and hidden-state changes, and whether the game needs a distinction only the richer representation can carry.
+
+## Conceptual, scientific and theological assessment
+
+**Distinctions that should survive without task gains.** Perceived versus actual condition. Belief versus world fact. Requested versus executed action. Intention versus outcome. Capacity versus preference versus supplied choice. Direct practice versus transfer. Promise-to-attempt versus success. Each is enforced structurally and tested, for example at `tests/adversarial.test.js:15-23` and `tests/capacity.test.js:11-31`. These are cheap, they are the project's real intellectual property, and a host would benefit from them with a trivial controller.
+
+**Distinctions to cut, merge or replace.** Cut the trust scalar and help action until an independent accept-or-refuse response exists. Today they are dead weight presented as a social layer. Cut the "understand" phase or make it compute. Merge the four priority weights into declared authoring parameters and stop calling them motives. The weight named duty is a promise coefficient. Replace the learning module's name or its time constant. A proficiency that saturates in an afternoon is familiarity. Replace the additive scorer, discussed next. Missing entirely: a controller interface, commitment lifecycle events, time of day, and any reason for action that is not production or upkeep.
+
+**The most serious mistaken assumption is commensurability.** The architecture memo says to use priority rules or incomparable alternatives where tradeoffs should not be collapsed. The proposal warns that a morality-as-reward policy will misrepresent principled sacrifice. The implementation collapses everything into one sum, so a promise is a bonus with a fixed exchange rate against a meal, and no actor can hold anything as prior. This one choice fails all three lenses at once. Conceptually the module labels do no work. Theologically it reproduces the reward-morality the foundations memo rejects. For games it yields a worse-tuned version of a threshold controller. Evidence: `research/architecture-alternatives.md:67` and `docs/framework-proposal.md:192`.
+
+**Strongest contribution.** The contract together with its provenance discipline: typed claim kinds, exact formulas published with coefficients labeled as authored, negative results preserved rather than tuned away, and a frozen legacy kernel so old replays are never rewritten. The archived 0.1 report and the deadline sweep are model examples of publishing evidence against oneself. The request-versus-execution split is also the seed of a distinctive game feeling, a body that refuses, which few games make principled and explainable.
+
+**Where citations support distinctions but not dynamics.** Every equation is admitted to be authored, so the risk is subtler than false citation. Validity: the sleep-restriction study motivates a felt-versus-actual gap, but the implementation rounds to the nearest five percent with an unused bias field, so the dissociation is absent. Identifiability: with five switches, four weights per actor and outcomes at ceiling, weights cannot be recovered from behavior, and two modules cannot be detected at all. Circularity: probe thresholds were fixed on development seeds, workloads were then lengthened until the probe won, and tests assert its wins on evaluation seeds. Confounding: the baseline differs from Full in two ways, richer scoring and any recovery at all, and the learning ablation removes both a large within-shift performance gain and a preference term. Alternative explanation: Full avoids forced recovery because it has a rest term, not because it weighs beliefs or promises.
+
+**Feasible empirical claims at this scale.** None about human populations, and the docs mostly say so. Two kinds are worthwhile. Claims about players: whether they can explain a forced recovery, a belief error and a failed promise from the trace, scored against the actual record. Claims about the model: which mechanisms are behaviorally identifiable in which worlds, using exact-zero ablation as a design smell. Calibrating the practice curve to published learning data would need a multi-day horizon and retention, neither of which exists.
+
+**Theological representation.** The runtime contains no religious vocabulary, which I confirmed by search. The memos attribute carefully, including the warning that al-Ghazali is Ashʿari and Shafiʿi rather than Maturidi. The architecture already makes principled distinctions the sources motivate. Intention is recorded, private and non-causal, in line with the hadith on intentions. An attempt is distinct from success. Sincerity is never inferred from outcome. No scalar names faith, heart or spirit. That is real fidelity, and the software holds those lines without a scholar.
+
+The list of prohibitions does not fulfill the premise. "Grounded in Islam" is currently true as a method for typing claims and as a constraint on what may be computed. It is not true as representation. No actor in any world acts for anything but output, upkeep or a partner's output. The proposal's demand that spirituality have positive representation is unmet, and the commitments that exist are reward terms. Three school-specific points seem underused. I offer them as recollection for a qualified reviewer, not as rulings.
+
+- **Faith as assent that does not increase or decrease.** As I recall the classical Hanafi creedal texts, faith itself does not grow or shrink while deeds vary. If confirmed, that is a doctrinal reason against any faith scalar, stronger than the epistemic humility the memo relies on.
+- **Two-fold capacity.** Maturidi theology, as I recall, distinguishes a capacity of sound means preceding an act from the capacity accompanying it. The engine's precondition guard and execution roll form a suggestive analogy. It should be labeled analogy and nothing more.
+- **Rational knowability of some goods.** The Maturidi view that reason recognizes the goodness of some acts matters for the planned separation between the normative reference and the character's understanding. Moral understanding need not be modeled purely as received text.
+
+Two positive representations need no soul meter and can be judged by scholars on specifics the software cannot settle. First, a time-bound obligation inside the twelve-hour simulated day. Under Hanafi fiqh, as I recall, prayers are not combined outside the pilgrimage, so the windows are hard structure competing with work and rest without any reward score. The record would hold the recognized obligation, the chosen intention, the attempt and its timing. Second, a declared fast. This exposes the forced-eat defect directly, because the current resolver would break the fast at the hunger ceiling. Scholarly judgment is needed on windows, valid excuses, what fulfillment means, and whether depicting worship in a game is appropriate at all. The architecture can already distinguish recognition, intention, attempt, timing and outcome. Overrepresentation is not a present risk in the code. It becomes one the moment these scenarios are authored, which is why review must precede them.
+
+**Game utility.** Choices are interpretable because the contribution table is honest arithmetic, which is rarer than it sounds. Surprising-but-understandable behavior exists only in Courier, where believed and actual hazard differ. Authoring value is low while the kernel owns the world and the vocabulary is five action kinds around one counter. A designer with an ordinary utility system and a scripting hook has more. A much simpler controller serves as well or better, and the project measured it. The distinctive experiences this architecture could deliver are the refusal moment, the discoverable belief error, and a public promise with a refusable request behind it. The tradeoff is stark. Either the project becomes a library other controllers use, or it builds one distinctive controller around commitments and refusal. At this size it cannot do both.
+
+## Direction, gates and the case against them
+
+**Thesis.** Become a host-embeddable observation, choice and replay contract with a pluggable controller interface. Demote Full to one experimental controller among equals, with the planned-simple comparator as default NPC and reference. Narrow the human-model claim to what the contract distinguishes. Earn positive Islamic representation through one reviewed practice scenario. Shelve faculty research until a host demands a distinction the contract cannot carry.
+
+| Element | Judgment |
+|---|---|
+| View projection, request/execution split, non-causal intention, keyed replay, claim typing | Retain and make it the product |
+| Capacity guard | Retain, but remove consumption and targeting decisions from it |
+| Additive scorer named Full | Replace as default, keep as one controller |
+| Trust scalar and help | Cut until refusal exists |
+| Learning module | Replace time constant or rename to familiarity, add retention only with multi-day worlds |
+| Hazard belief and paid inspection | Retain, generalize only when a second evidence source exists |
+| Priority weights | Retain as authoring parameters, drop motive language |
+| Seven-phase trace | Cut or compute |
+| Emotion, memory, habits, physiology, macro scale | Defer, as the docs already do |
+
+**A serious competing direction.** Build the distinctive controller instead. Commitments as constraints with explicit release, deferral and breach events. An accept-or-refuse social action. Belief error fed by testimony. Keep the world in the kernel and aim at a recognizable game feel. This is closer to the roadmap's fourth gate and to the original ambition, and it would give the belief and promise mechanics a consumer. I rank it second because it spends effort on psychology before anyone has shown a host can use the contract at all.
+
+**The case against my direction.** A contract without a model is a logging library, every engine already has event logs, and its value is unproven until one host adopts it. Refusing to infer is thin theology, and a practice scenario risks trivializing worship, so the positive-representation gate could end with nothing shippable. Demoting Full leaves Courier's belief mechanic with no autonomous consumer. Lexicographic commitments make rigid, exploitable characters. Real people do trade a promise against exhaustion, and an authored priority order is as arbitrary as an authored weight. Narrowing the ambition may also drain the motivation that produced this unusually honest documentation.
+
+**Gates for the next two or three increments.** Each is falsifiable with the existing runner.
+
+1. **Controller parity.** Add a policy-provider interface so any controller can drive every actor. Run planned-simple, Full and greedy across all presets and deadlines from eighteen to thirty-six rounds on reserved seeds, pre-registered. Full stays default only if it beats planned-simple by a declared success margin in at least two presets at two deadlines and produces one player-visible choice the rule cannot, such as taking the marked route after a high inspection report. Otherwise demote it, and cut the mastery and caution terms if removing them changes no run.
+2. **Unit invariance.** Scale every output and target by ten and by one tenth and require identical choice sequences for every controller on every seed. Full will fail today. If the fix needs per-scenario tuning rather than one declared value conversion, replace the scorer rather than patch it.
+3. **Choice sovereignty and a declared fast.** Move all consumption out of the resolver. Blocked exertion becomes rest with recorded unmet hunger unless the choice provider authorized eating. Add a fasting variant of Solo. Accept when no ration is consumed without a recorded choice, the trace shows chosen non-eating with its intention, and the NPC controller copes without a piety term. If qualified review judges any mechanization of the practice a misrepresentation, confine positive representation to records and say so publicly.
+4. **Conditional social gate.** Keep trust and help only if a request-and-refuse scenario yields a non-zero relationship ablation and a refusal the player can see, within one increment.
+
+**Conditions that should cut or narrow rather than add.** If gate one demotes Full and gate two forces replacement, the project has no distinctive controller and should stop describing itself as a human model. If the first host integration duplicates body or capacity state on the host side, the human component is a controller and the contract is the deliverable. If matched-duration practice with a day's gap shows no retention, the learning claim narrows to familiarity. If the consulted scholar declines the practice scenario, the Islamic grounding remains method and constraint, and the README should say exactly that.
+
+**Roadmap critique.** The roadmap's first gate is right but assumes a comparator interface that does not exist. Its second gate, host integration, is premature until gates one and two pass, because embedding a non-invariant scorer whose social modules never fire wastes the integration. Its playtest criterion measures comprehension, which is good, but not value over a simpler controller. It rightly refuses to add a penalty to make Full win, yet the laboratory still starts every run with Full as the NPC default, which contradicts "not the success criterion". Evidence: `web/app.js:472`.
+
+**Unresolved questions that could change this verdict.** Whether the user wants a game, a research instrument or an educational artifact, since each changes which gate matters. What the absent post-MVP review argued, since the roadmap's order depends on it. Whether a qualified Hanafi–Maturidi reviewer regards a depicted fast or prayer window as acceptable content. Whether any host game is actually in view. Whether help never firing is an intended preset choice, which would soften "inert" to "unused" without changing the identifiability point.
+
+**What I could not complete.** I did not run tests or the benchmark, so the reported test count is unverified and all figures are read from artifacts. I could not inspect browser behavior beyond the guidance module. I could not verify any external citation, and my theological remarks are recollection flagged as such.

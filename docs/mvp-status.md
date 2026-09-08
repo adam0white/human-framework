@@ -1,6 +1,6 @@
 # MVP verification and iteration record
 
-Subsequent delivery: [mobile release and first playtest response](mobile-release.md) records public hosting, clearer controls and the added solo control. The counts and scope below describe the initial three-scenario MVP.
+Subsequent deliveries: [mobile release and first playtest response](mobile-release.md) records public hosting, clearer controls and the added solo control; [0.3 host integration](release-0.3.md) records the first separate game and external Fable reviews. The counts and scope below describe the initial three-scenario MVP.
 
 Recorded 2026-09-07, engine 0.1.0. The user authorized building and iterating a usable MVP; the earlier research-only proposal is preserved in [framework-proposal.md](framework-proposal.md). This release is a local executable prototype with defined behavior, not empirical validation of a whole person.
 
@@ -72,7 +72,7 @@ The fresh review independently ran all then-current tests and a 30-seed comparis
 
 The historical inventory contains **63 references, 54 normalized URLs and 32 mechanism decisions**. **46 references remain unchecked leads**, explicitly marked. Consequential checks found a human-metabolism coefficient borrowed from zebra finches, a transfer citation whose experiment found no transfer, unsupported use of population heritability as individual coefficients, and defective birth-relative malleability bounds. The [audit](../research/historical-source-audit.md) links the primary evidence and distinguishes access depth, existence and claim support. None of the inherited coefficient tables was promoted into empirical defaults.
 
-The final [benchmark artifact](../artifacts/benchmark.json) records 100 paired seeds across seven variants and three scenarios: 2,100 variant runs, plus 300 full/baseline null pairs. All null pairs agree exactly. The [report](benchmark-report.md) retains losses, null effects, descriptive intervals, fixed-order timing and early-termination confounds. Full-loop mean progress is 16.40/13.71/11.80 versus baseline 15.99/16.17/13.72 in Courier/Repair/Commons respectively. The data was not retuned to make the richer policy win.
+The initial [0.1 benchmark artifact](../artifacts/history/benchmark-0.1.0-2026-09-07.json) records 100 paired seeds across seven variants and three scenarios: 2,100 variant runs, plus 300 full/baseline null pairs. All null pairs agree exactly. The [archived report](history/benchmark-report-0.1.0-2026-09-07.md) retains losses, null effects, descriptive intervals, fixed-order timing and early-termination confounds. Full-loop mean progress is 16.40/13.71/11.80 versus baseline 15.99/16.17/13.72 in Courier/Repair/Commons respectively. The data was not retuned to make the richer policy win.
 
 Prior art includes The Sims, Versu, CiF/Ensemble, FAtiMA, PsychSim, Soar and ACT-R, with separate discussion of knowledge-sensitive interfaces, time contraction, pacing and macro-model limits. No broad novelty claim follows from recombining them. The distinct contribution at this stage is this inspectable implementation, its source/interpretation boundaries, and the comparative tests—not discovery of a universal human equation.
 

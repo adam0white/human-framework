@@ -2,13 +2,15 @@
 
 A simulation laboratory developing reusable components for situated human action and development, grounded in Islam with a **Sunni, Hanafi–Maturidi starting point**, informed by empirical research, and explicit about the difference between revelation, interpretation, evidence and engineering choices.
 
-**2026-09-07 · Capacity and workload repair (engine 0.2.0):** four playable scenarios, deterministic replay, a simpler comparison policy, five ablations and a reproducible benchmark. Exertion cannot bypass capacity by saturating fatigue; requested and executed actions remain distinct. Longer workloads allow repeated recovery and meals. No LLM or API key is required. Play and local simulation need no package installation or build step; public deployment uses pinned Wrangler tooling. The numerical mechanisms remain authored and uncalibrated.
+**2026-09-07 · Release candidate 0.3.0:** the four laboratory scenarios now have explicit goal value, deadline-aware Full scoring and an all-actor planned-simple comparison. A separate game, **Before departure**, embeds a smaller human component to test objects, prerequisites, interruptions and save/resume. Release verification is in progress; this README does not confirm a production deployment. No LLM or API key is required. Play and local simulation need no package installation or build step; public deployment uses a static asset allowlist and pinned Wrangler tooling.
 
-**Direction review, later on 2026-09-07:** three fresh reviewers recommend testing a host-owned game before expanding faculties. The present kernel is independent of the UI but still owns the laboratory's world, scheduling and outcomes. The [consolidated review](docs/post-mvp-review.md) records verified defects, disagreements and the revised delivery gates. The live application remains 0.2.0; the new pressure experiments are research, not changed presets.
+**Direction and external review:** three fresh internal reviewers and two separate Claude CLI processes requested with `--model fable` examined overlapping architecture, scientific and product questions. The [internal synthesis](docs/post-mvp-review.md) and [external review verification](research/reviews/2026-09-07-claude-fable-verification.md) preserve agreements, mistakes, disagreements and provenance. The external reviews examined frozen commit `08aab97`, before the present implementation; they are not a review of the finished candidate.
 
 ## Play
 
 **[Play at human.adamwhite.work](https://human.adamwhite.work).** Start with Solo Repair for one-person choices without social effects. The current run is loaded automatically; choose an action card or delegate with Auto round. General model notes are in one collapsed section.
+
+The candidate adds **[Before departure](https://human.adamwhite.work/workshop/)** at `/workshop/`: restore a water pump before departure, moving between storage and the pump room, carrying a wrench and choosing a patch or replacement seal. Work takes simulated time and can be interrupted. A completed repair still needs a test run. This route's production availability awaits release verification; it can also be opened locally at `/workshop/`.
 
 [Plain-language roadmap and evidence map](docs/roadmap.md) · [What is rejected or deferred](research/decision-status.md) · [Private source repository](https://github.com/adam0white/human-framework) · [Deployment workflow](docs/deployment.md)
 
@@ -31,7 +33,7 @@ Each preset allows 36 rounds of 20 simulated minutes. In Solo, one feasible exam
 | Water Commons | Maintain a shared resource against consumption, prepare assistance and keep commitments |
 | Solo Repair | Work, inspect, rest and practice alone; no promises, peers, assistance or relationship effects |
 
-The original three remain configurations of the same two-person cooperative resource-production structure; Solo Repair isolates the personal processes with one actor. Their illustrations do not implement navigation, repair physics or hydrology. They test reuse of one kernel and provide inspectable choices; broader genre reuse remains to be demonstrated.
+The original three remain configurations of the same two-person cooperative resource-production structure; Solo Repair isolates the personal processes with one actor. Their illustrations do not implement navigation, repair physics or hydrology. Before departure adds a host-owned object world through a separate boundary. Its `task-aware`, `planned-simple` and `greedy` controllers are authored by the host and do **not** call the lab Full policy. The shared human component currently supplies body, practice, observation and attempt timing, not the complete social/cognitive loop. [Integration record and remaining gates](docs/workshop-integration.md).
 
 ## The central loop
 
@@ -58,6 +60,7 @@ This is an engineering loop, not an anatomy of the soul or a model of divine dec
 npm test
 npm run simulate -- courier --seed 7
 npm run simulate -- workshop --seed 31 --policy baseline --json artifacts/my-replay.json
+npm run simulate -- solo --seed 7 --policy planned-simple
 npm run benchmark -- --seeds 100 --start-seed 101 --json artifacts/benchmark.json
 ```
 
@@ -75,15 +78,26 @@ const next = step(start, {
 const restored = replay(exportReplay(next));
 ```
 
-The ranking override only inspects an alternative policy; it does not mutate the run. Actor order is stable and serial within each round. Replay uses the embedded scenario, commands and matching engine: 0.1.0 remains available for read-only historical inspection, while new play uses 0.2.0. Unsupported versions are rejected. Replays include hidden setup. Runtime modules are in `src/core`, historical execution in `src/legacy`, presets in `src/scenarios`, and the browser adapter in `web`. Add a scenario by composing supported action kinds; a new mechanism needs an explicit model change and validation.
+The ranking override only inspects an alternative policy; it does not mutate the run. Candidates sort by `selectionTier`, then additive score, then action ID. Actor order is stable and serial within each lab round. Current scenarios require dimensionless `goalUtility`: converting physical units rescales progress/output/target/consumption, not that value. Full's deadline term is a utility heuristic, not multistep planning.
+
+Replay uses the embedded scenario, commands and matching engine: frozen 0.1.0 and 0.2.0 remain available for read-only historical inspection, while the candidate creates 0.3.0 runs. Unsupported versions are rejected. Replays include hidden setup. Laboratory modules are in `src/core`, historical execution in `src/legacy`, presets in `src/scenarios`, and browser adapters in `web`. The narrower component is `src/human` (version 0.1.0); its first host is `src/games/workshop.js`. The host owns inventory, time, task outcomes and victory. A new shared mechanism needs an explicit model change and validation.
 
 ## What the experiments found
 
-The observable recovery probe completed all four longer workloads across 100 evaluation seeds, with no compulsory recovery. Full completed 100/100 in each; baseline completed 99/100 in Courier and Solo and 100/100 in Repair and Commons. Full mean progress versus baseline was **62.35 vs 60.51**, **61.52 vs 60.75**, **46.81 vs 46.34**, and **30.00 vs 29.97**, respectively. Completion is near its ceiling; raw differences partly reflect overshooting targets, not superior human realism.
+The 0.3.0 artifact uses 100 paired seeds, 101–200. Full and planned simple complete 100/100 in every lab preset; greedy completes 99/100 in Courier and Solo and 100/100 in Repair and Commons.
 
-The baseline still requests work repeatedly, but the same mandatory capacity rule interrupts it: averages of 18.14/18.19/11.55/8.10 forced recoveries across the four scenarios. Full avoids those interventions in this sample, yet finishes Solo with slightly **higher** fatigue. Disabling relationships has no objective effect in these presets. Belief/practice ablations each disable both updates and their expected benefit; neither claims to isolate the effect of updating alone. Negative and null findings remain in the [benchmark report](docs/benchmark-report.md).
+| Mean simulated rounds | Full | Planned simple | Greedy baseline |
+|---|---:|---:|---:|
+| Courier Crossing | 25.70 | 25.39 | 28.40 |
+| Repair Bench | 23.29 | 23.00 | 25.87 |
+| Water Commons | 18.51 | 18.40 | 19.68 |
+| Solo Repair | 22.03 | 21.59 | 23.15 |
 
-All **400 structural null pairs** match exactly in the 4,000-run benchmark. Tests and browser QA verify software behavior and playable paths, not human behavior or theological adequacy. The [archived 0.1 report](docs/history/benchmark-report-0.1.0-2026-09-07.md) preserves the earlier outcomes, including the fatigue loophole and insufficient recovery slack; it cannot establish policy superiority. See the [capacity correction](docs/capacity-fix.md) for the behavioral change and [MVP record](docs/mvp-status.md) for verification history.
+**Planned simple is slightly faster than Full in all four sample means**, although each paired uncertainty interval includes zero. It also finishes with less fatigue/hunger and uses more food. Full keeps an additional promise in Courier and Repair and inspects Courier conditions. Those differences need their own gameplay and behavioral tests; faster completion alone is not the complete objective.
+
+The lab's mandatory recovery still helps greedy work requests. Full incurs 0.22 compulsory recoveries per Commons run and none in the other presets; planned simple incurs none. Disabling relationships changes no objective outcome in these defaults. All **400 structural null pairs** match in the **4,400-run** benchmark. The [current report](docs/benchmark-report.md) records paired intervals, costs, ablation limitations and source identities. The separate host game is not included in that lab comparison.
+
+The [archived 0.2 report](docs/history/benchmark-report-0.2.0-2026-09-07.md) preserves the capacity/workload repair comparison; the [0.1 report](docs/history/benchmark-report-0.1.0-2026-09-07.md) retains the fatigue loophole and inadequate recovery slack. Tests and browser QA verify software behavior and playable paths, not human behavior or theological adequacy. See the [capacity correction](docs/capacity-fix.md) and [MVP record](docs/mvp-status.md) for earlier verification history.
 
 ## Research and model records
 

@@ -1,7 +1,7 @@
 export const fixture = {
   id: 'fixture', title: 'Test workshop', subtitle: 'A bounded fixture',
   brief: 'Repair the shelter.', objective: 'Repair', resourceLabel: 'repairs',
-  target: 10, initialProgress: 0, food: 1, roundMinutes: 10, horizon: 8,
+  target: 10, goalUtility: 10, initialProgress: 0, food: 1, roundMinutes: 10, horizon: 8,
   hazard: 0.8, initialSignal: 0.2, signalConfidence: 0.3, observationNoise: 0,
   consumption: 0, skills: ['craft','survey'], transfer: [],
   actions: [

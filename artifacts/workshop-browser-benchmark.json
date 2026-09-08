@@ -1,0 +1,1186 @@
+{
+  "format": "human-framework-workshop-browser-benchmark",
+  "version": 1,
+  "generatedAt": "2026-09-08T00:15:41.839Z",
+  "sourceSha256": {
+    "scripts/workshop-browser-benchmark.js": "12173146a0fcf1ebb0940018f63f636121f7807bd13e8eae1d251de7ea04f50e",
+    "scripts/workshop-browser-benchmark.workload.js": "5c00bbe9d2be99b76acf10e5291ba628769571f0827874233e974fffdfcb4c71",
+    "src/games/workshop.js": "b2ee4cb10fddf57455c0321e42da1d256b87a7a96225d92ff1940f45ed8f6f06",
+    "src/human/index.js": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+  },
+  "environment": {
+    "node": "v26.8.1",
+    "os": {
+      "type": "Darwin",
+      "release": "25.6.0",
+      "arch": "arm64",
+      "cpuModel": "Apple M4",
+      "cpuCount": 10
+    },
+    "macOS": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83"
+  },
+  "driver": {
+    "transport": "Playwright MCP",
+    "packagePath": null,
+    "packageVersion": null
+  },
+  "methodology": {
+    "budget": "Predeclared pure-command p95 < 16 ms; pooled command p95 and every individual command fixture are reported.",
+    "timing": "Browser performance.now around one synchronous host public operation. Module downloads, fixture construction, warmup, validation, rendering and I/O are excluded. Save/projection operations are reported separately from command-budget samples.",
+    "workload": "19 equally weighted command fixtures, 3 save fixtures and 1 view/controller fixture. Deterministic seeds1 and2 cover successful and failed repairs; legal repeated partial work creates the blocked fixture. Each fixture is validated before warmup and on its final timed result.",
+    "warmup": "200 untimed operations per fixture, then1000 timed operations per fixture, round-robin deterministic fixture order. Separate new browser contexts and pages per viewport.",
+    "statistics": "Nearest-rank percentiles over individual-operation samples; persisted histograms round milliseconds to6 decimal places. Zero samples and minimum observed positive timer step expose browser timer quantization. No samples or GC/scheduler outliers are removed.",
+    "scope": "Desktop browser developer benchmark. The390x844 run changes viewport only, without CPU/network throttling or mobile hardware emulation. This is not CUA, physical mobile, rendering performance, a load test, or user playtesting."
+  },
+  "results": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "devicePixelRatio": 1
+      },
+      "browser": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+        "platform": "MacIntel",
+        "hardwareConcurrency": 10,
+        "userAgentData": {
+          "architecture": "arm",
+          "bitness": "64",
+          "brands": [
+            {
+              "brand": "Chromium",
+              "version": "152"
+            },
+            {
+              "brand": "Not?A_Brand",
+              "version": "24"
+            },
+            {
+              "brand": "Google Chrome",
+              "version": "152"
+            }
+          ],
+          "fullVersionList": [
+            {
+              "brand": "Chromium",
+              "version": "152.0.7977.77"
+            },
+            {
+              "brand": "Not?A_Brand",
+              "version": "24.0.0.0"
+            },
+            {
+              "brand": "Google Chrome",
+              "version": "152.0.7977.77"
+            }
+          ],
+          "mobile": false,
+          "platform": "macOS",
+          "platformVersion": "26.6.2"
+        },
+        "crossOriginIsolated": false
+      },
+      "timerMinimumPositiveStepMs": 0.09999999403953552,
+      "warmupPerFixture": 200,
+      "samplesPerFixture": 1000,
+      "fixtureChecksPassed": true,
+      "fixtures": [
+        {
+          "label": "start-retrieval",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "start",
+            "actionId": "take-wrench"
+          },
+          "clock": 0,
+          "pendingAction": null,
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.005100000023841858,
+          "zeroSamples": 949,
+          "histogramMs": {
+            "0.000000": 949,
+            "0.100000": 51
+          }
+        },
+        {
+          "label": "finish-retrieval",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 0,
+          "pendingAction": "take-wrench",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.20000001788139343,
+          "meanMs": 0.01380000013113022,
+          "zeroSamples": 863,
+          "histogramMs": {
+            "0.000000": 863,
+            "0.100000": 136,
+            "0.200000": 1
+          }
+        },
+        {
+          "label": "finish-travel",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 6,
+          "pendingAction": "go-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.01390000006556511,
+          "zeroSamples": 861,
+          "histogramMs": {
+            "0.000000": 861,
+            "0.100000": 139
+          }
+        },
+        {
+          "label": "start-inspection",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "start",
+            "actionId": "inspect-pump"
+          },
+          "clock": 18,
+          "pendingAction": null,
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.006100000023841858,
+          "zeroSamples": 939,
+          "histogramMs": {
+            "0.000000": 939,
+            "0.100000": 61
+          }
+        },
+        {
+          "label": "advance-inspection",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "advance",
+            "minutes": 4
+          },
+          "clock": 18,
+          "pendingAction": "inspect-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.006699999958276749,
+          "zeroSamples": 933,
+          "histogramMs": {
+            "0.000000": 933,
+            "0.100000": 67
+          }
+        },
+        {
+          "label": "finish-inspection",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 22,
+          "pendingAction": "inspect-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.19999998807907104,
+          "meanMs": 0.01110000017285347,
+          "zeroSamples": 890,
+          "histogramMs": {
+            "0.000000": 890,
+            "0.100000": 109,
+            "0.200000": 1
+          }
+        },
+        {
+          "label": "interrupt-inspection",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "interrupt",
+            "reason": "Benchmark interruption"
+          },
+          "clock": 22,
+          "pendingAction": "inspect-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.007200000166893005,
+          "zeroSamples": 928,
+          "histogramMs": {
+            "0.000000": 928,
+            "0.100000": 72
+          }
+        },
+        {
+          "label": "start-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "start",
+            "actionId": "patch"
+          },
+          "clock": 18,
+          "pendingAction": null,
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.09999999403953552,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.005099999994039536,
+          "zeroSamples": 949,
+          "histogramMs": {
+            "0.000000": 949,
+            "0.100000": 51
+          }
+        },
+        {
+          "label": "advance-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "advance",
+            "minutes": 5
+          },
+          "clock": 18,
+          "pendingAction": "patch",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.20000001788139343,
+          "meanMs": 0.008800000101327896,
+          "zeroSamples": 913,
+          "histogramMs": {
+            "0.000000": 913,
+            "0.100000": 86,
+            "0.200000": 1
+          }
+        },
+        {
+          "label": "interrupt-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "interrupt",
+            "reason": "Benchmark interruption"
+          },
+          "clock": 23,
+          "pendingAction": "patch",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.008499999940395355,
+          "zeroSamples": 915,
+          "histogramMs": {
+            "0.000000": 915,
+            "0.100000": 85
+          }
+        },
+        {
+          "label": "finish-successful-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 18,
+          "pendingAction": "patch",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.015299999803304673,
+          "zeroSamples": 847,
+          "histogramMs": {
+            "0.000000": 847,
+            "0.100000": 153
+          }
+        },
+        {
+          "label": "finish-failed-repair",
+          "kind": "command",
+          "seed": 2,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 18,
+          "pendingAction": "patch",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.20000001788139343,
+          "meanMs": 0.014200000077486038,
+          "zeroSamples": 860,
+          "histogramMs": {
+            "0.000000": 860,
+            "0.100000": 138,
+            "0.200000": 2
+          }
+        },
+        {
+          "label": "start-blocked-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "start",
+            "actionId": "patch"
+          },
+          "clock": 120,
+          "pendingAction": null,
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0,
+          "p99Ms": 0.09999999403953552,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.004500000029802323,
+          "zeroSamples": 955,
+          "histogramMs": {
+            "0.000000": 955,
+            "0.100000": 45
+          }
+        },
+        {
+          "label": "finish-blocked-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 120,
+          "pendingAction": "patch",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.19999998807907104,
+          "meanMs": 0.014099999666213989,
+          "zeroSamples": 860,
+          "histogramMs": {
+            "0.000000": 860,
+            "0.100000": 139,
+            "0.200000": 1
+          }
+        },
+        {
+          "label": "finish-meal",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 0,
+          "pendingAction": "eat",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.014900000005960465,
+          "zeroSamples": 851,
+          "histogramMs": {
+            "0.000000": 851,
+            "0.100000": 149
+          }
+        },
+        {
+          "label": "finish-rest",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 18,
+          "pendingAction": "rest",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.014300000041723252,
+          "zeroSamples": 857,
+          "histogramMs": {
+            "0.000000": 857,
+            "0.100000": 143
+          }
+        },
+        {
+          "label": "finish-victory",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 53,
+          "pendingAction": "test-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.19999998807907104,
+          "meanMs": 0.01540000006556511,
+          "zeroSamples": 847,
+          "histogramMs": {
+            "0.100000": 152,
+            "0.000000": 847,
+            "0.200000": 1
+          }
+        },
+        {
+          "label": "deadline-interruption",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 237,
+          "pendingAction": "inspect-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.015000000059604645,
+          "zeroSamples": 850,
+          "histogramMs": {
+            "0.000000": 850,
+            "0.100000": 150
+          }
+        },
+        {
+          "label": "near-complete-advance",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "advance",
+            "minutes": 5.9999999995
+          },
+          "clock": 0,
+          "pendingAction": "take-wrench",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.006700000196695328,
+          "zeroSamples": 933,
+          "histogramMs": {
+            "0.000000": 933,
+            "0.100000": 67
+          }
+        },
+        {
+          "label": "export-pending-save",
+          "kind": "save",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.09999999403953552,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.00699999988079071,
+          "zeroSamples": 930,
+          "histogramMs": {
+            "0.000000": 930,
+            "0.100000": 70
+          }
+        },
+        {
+          "label": "import-pending-save",
+          "kind": "save",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.19999998807907104,
+          "meanMs": 0.012199999809265137,
+          "zeroSamples": 879,
+          "histogramMs": {
+            "0.100000": 120,
+            "0.000000": 879,
+            "0.200000": 1
+          }
+        },
+        {
+          "label": "json-pending-roundtrip",
+          "kind": "save",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.10000002384185791,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.20000001788139343,
+          "meanMs": 0.020600000232458116,
+          "zeroSamples": 801,
+          "histogramMs": {
+            "0.000000": 801,
+            "0.100000": 192,
+            "0.200000": 7
+          }
+        },
+        {
+          "label": "view-and-policy",
+          "kind": "projection",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.19999998807907104,
+          "meanMs": 0.017499999582767486,
+          "zeroSamples": 827,
+          "histogramMs": {
+            "0.000000": 827,
+            "0.100000": 171,
+            "0.200000": 2
+          }
+        }
+      ],
+      "commands": {
+        "count": 19000,
+        "minMs": 0,
+        "medianMs": 0,
+        "p95Ms": 0.09999999403953552,
+        "p99Ms": 0.10000002384185791,
+        "maxMs": 0.20000001788139343,
+        "meanMs": 0.010563157922343204,
+        "zeroSamples": 17000,
+        "histogramMs": {
+          "0.000000": 17000,
+          "0.100000": 1993,
+          "0.200000": 7
+        }
+      },
+      "budget": {
+        "p95LimitMs": 16,
+        "aggregatePass": true,
+        "allCommandFixturesPass": true
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "devicePixelRatio": 1
+      },
+      "browser": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+        "platform": "MacIntel",
+        "hardwareConcurrency": 10,
+        "userAgentData": {
+          "architecture": "arm",
+          "bitness": "64",
+          "brands": [
+            {
+              "brand": "Chromium",
+              "version": "152"
+            },
+            {
+              "brand": "Not?A_Brand",
+              "version": "24"
+            },
+            {
+              "brand": "Google Chrome",
+              "version": "152"
+            }
+          ],
+          "fullVersionList": [
+            {
+              "brand": "Chromium",
+              "version": "152.0.7977.77"
+            },
+            {
+              "brand": "Not?A_Brand",
+              "version": "24.0.0.0"
+            },
+            {
+              "brand": "Google Chrome",
+              "version": "152.0.7977.77"
+            }
+          ],
+          "mobile": false,
+          "platform": "macOS",
+          "platformVersion": "26.6.2"
+        },
+        "crossOriginIsolated": false
+      },
+      "timerMinimumPositiveStepMs": 0.09999999403953552,
+      "warmupPerFixture": 200,
+      "samplesPerFixture": 1000,
+      "fixtureChecksPassed": true,
+      "fixtures": [
+        {
+          "label": "start-retrieval",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "start",
+            "actionId": "take-wrench"
+          },
+          "clock": 0,
+          "pendingAction": null,
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.006400000005960464,
+          "zeroSamples": 936,
+          "histogramMs": {
+            "0.000000": 936,
+            "0.100000": 64
+          }
+        },
+        {
+          "label": "finish-retrieval",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 0,
+          "pendingAction": "take-wrench",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.20000001788139343,
+          "meanMs": 0.014899999916553497,
+          "zeroSamples": 853,
+          "histogramMs": {
+            "0.100000": 145,
+            "0.000000": 853,
+            "0.200000": 2
+          }
+        },
+        {
+          "label": "finish-travel",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 6,
+          "pendingAction": "go-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.015600000232458115,
+          "zeroSamples": 844,
+          "histogramMs": {
+            "0.000000": 844,
+            "0.100000": 156
+          }
+        },
+        {
+          "label": "start-inspection",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "start",
+            "actionId": "inspect-pump"
+          },
+          "clock": 18,
+          "pendingAction": null,
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.005800000041723251,
+          "zeroSamples": 942,
+          "histogramMs": {
+            "0.000000": 942,
+            "0.100000": 58
+          }
+        },
+        {
+          "label": "advance-inspection",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "advance",
+            "minutes": 4
+          },
+          "clock": 18,
+          "pendingAction": "inspect-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.006999999970197677,
+          "zeroSamples": 930,
+          "histogramMs": {
+            "0.000000": 930,
+            "0.100000": 70
+          }
+        },
+        {
+          "label": "finish-inspection",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 22,
+          "pendingAction": "inspect-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.19999998807907104,
+          "meanMs": 0.01300000011920929,
+          "zeroSamples": 871,
+          "histogramMs": {
+            "0.000000": 871,
+            "0.100000": 128,
+            "0.200000": 1
+          }
+        },
+        {
+          "label": "interrupt-inspection",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "interrupt",
+            "reason": "Benchmark interruption"
+          },
+          "clock": 22,
+          "pendingAction": "inspect-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.007200000077486038,
+          "zeroSamples": 928,
+          "histogramMs": {
+            "0.000000": 928,
+            "0.100000": 72
+          }
+        },
+        {
+          "label": "start-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "start",
+            "actionId": "patch"
+          },
+          "clock": 18,
+          "pendingAction": null,
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.00490000006556511,
+          "zeroSamples": 951,
+          "histogramMs": {
+            "0.000000": 951,
+            "0.100000": 49
+          }
+        },
+        {
+          "label": "advance-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "advance",
+            "minutes": 5
+          },
+          "clock": 18,
+          "pendingAction": "patch",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.007099999904632569,
+          "zeroSamples": 929,
+          "histogramMs": {
+            "0.000000": 929,
+            "0.100000": 71
+          }
+        },
+        {
+          "label": "interrupt-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "interrupt",
+            "reason": "Benchmark interruption"
+          },
+          "clock": 23,
+          "pendingAction": "patch",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.007799999892711639,
+          "zeroSamples": 922,
+          "histogramMs": {
+            "0.000000": 922,
+            "0.100000": 78
+          }
+        },
+        {
+          "label": "finish-successful-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 18,
+          "pendingAction": "patch",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.20000001788139343,
+          "meanMs": 0.01510000005364418,
+          "zeroSamples": 850,
+          "histogramMs": {
+            "0.100000": 149,
+            "0.000000": 850,
+            "0.200000": 1
+          }
+        },
+        {
+          "label": "finish-failed-repair",
+          "kind": "command",
+          "seed": 2,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 18,
+          "pendingAction": "patch",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.016900000035762787,
+          "zeroSamples": 831,
+          "histogramMs": {
+            "0.000000": 831,
+            "0.100000": 169
+          }
+        },
+        {
+          "label": "start-blocked-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "start",
+            "actionId": "patch"
+          },
+          "clock": 120,
+          "pendingAction": null,
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.005600000113248825,
+          "zeroSamples": 944,
+          "histogramMs": {
+            "0.000000": 944,
+            "0.100000": 56
+          }
+        },
+        {
+          "label": "finish-blocked-repair",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 120,
+          "pendingAction": "patch",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.19999998807907104,
+          "meanMs": 0.015100000023841858,
+          "zeroSamples": 850,
+          "histogramMs": {
+            "0.000000": 850,
+            "0.100000": 149,
+            "0.200000": 1
+          }
+        },
+        {
+          "label": "finish-meal",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 0,
+          "pendingAction": "eat",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.015400000095367431,
+          "zeroSamples": 846,
+          "histogramMs": {
+            "0.000000": 846,
+            "0.100000": 154
+          }
+        },
+        {
+          "label": "finish-rest",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 18,
+          "pendingAction": "rest",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.19999998807907104,
+          "meanMs": 0.0135999998152256,
+          "zeroSamples": 865,
+          "histogramMs": {
+            "0.000000": 865,
+            "0.100000": 134,
+            "0.200000": 1
+          }
+        },
+        {
+          "label": "finish-victory",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 53,
+          "pendingAction": "test-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.014900000154972077,
+          "zeroSamples": 851,
+          "histogramMs": {
+            "0.000000": 851,
+            "0.100000": 149
+          }
+        },
+        {
+          "label": "deadline-interruption",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "finish"
+          },
+          "clock": 237,
+          "pendingAction": "inspect-pump",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.19999998807907104,
+          "meanMs": 0.014900000095367431,
+          "zeroSamples": 852,
+          "histogramMs": {
+            "0.000000": 852,
+            "0.100000": 147,
+            "0.200000": 1
+          }
+        },
+        {
+          "label": "near-complete-advance",
+          "kind": "command",
+          "seed": 1,
+          "command": {
+            "type": "advance",
+            "minutes": 5.9999999995
+          },
+          "clock": 0,
+          "pendingAction": "take-wrench",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.007200000017881393,
+          "zeroSamples": 928,
+          "histogramMs": {
+            "0.000000": 928,
+            "0.100000": 72
+          }
+        },
+        {
+          "label": "export-pending-save",
+          "kind": "save",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.10000002384185791,
+          "meanMs": 0.006300000071525574,
+          "zeroSamples": 937,
+          "histogramMs": {
+            "0.100000": 63,
+            "0.000000": 937
+          }
+        },
+        {
+          "label": "import-pending-save",
+          "kind": "save",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.20000001788139343,
+          "meanMs": 0.012999999701976777,
+          "zeroSamples": 872,
+          "histogramMs": {
+            "0.000000": 872,
+            "0.100000": 126,
+            "0.200000": 2
+          }
+        },
+        {
+          "label": "json-pending-roundtrip",
+          "kind": "save",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.19999998807907104,
+          "meanMs": 0.024999999940395354,
+          "zeroSamples": 752,
+          "histogramMs": {
+            "0.000000": 752,
+            "0.100000": 246,
+            "0.200000": 2
+          }
+        },
+        {
+          "label": "view-and-policy",
+          "kind": "projection",
+          "count": 1000,
+          "minMs": 0,
+          "medianMs": 0,
+          "p95Ms": 0.09999999403953552,
+          "p99Ms": 0.10000002384185791,
+          "maxMs": 0.20000001788139343,
+          "meanMs": 0.016699999660253526,
+          "zeroSamples": 835,
+          "histogramMs": {
+            "0.000000": 835,
+            "0.100000": 163,
+            "0.200000": 2
+          }
+        }
+      ],
+      "commands": {
+        "count": 19000,
+        "minMs": 0,
+        "medianMs": 0,
+        "p95Ms": 0.09999999403953552,
+        "p99Ms": 0.10000002384185791,
+        "maxMs": 0.20000001788139343,
+        "meanMs": 0.010968421085884696,
+        "zeroSamples": 16923,
+        "histogramMs": {
+          "0.000000": 16923,
+          "0.100000": 2070,
+          "0.200000": 7
+        }
+      },
+      "budget": {
+        "p95LimitMs": 16,
+        "aggregatePass": true,
+        "allCommandFixturesPass": true
+      }
+    }
+  ]
+}

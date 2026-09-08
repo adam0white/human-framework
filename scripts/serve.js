@@ -5,7 +5,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 
 const projectRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.ico':'image/x-icon'};
-function allowed(path) {return path==='index.html'||/^(web|src)\/[a-zA-Z0-9_./-]+\.(js|css|svg|png|ico)$/.test(path);}
+function allowed(path) {return path==='index.html'||path==='web/workshop.html'||/^(web|src)\/[a-zA-Z0-9_./-]+\.(js|css|svg|png|ico)$/.test(path);}
 function inside(path,root) {return path===root||path.startsWith(root+sep);}
 
 export function createAppServer({root=projectRoot}={}) {
@@ -17,7 +17,7 @@ export function createAppServer({root=projectRoot}={}) {
     if(!['GET','HEAD'].includes(req.method)) {res.writeHead(405,{Allow:'GET, HEAD'});res.end('Method not allowed');return;}
     try {
       const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
-      const relative=pathname==='/'?'index.html':pathname.slice(1);
+      const relative=pathname==='/'?'index.html':['/workshop','/workshop/'].includes(pathname)?'web/workshop.html':pathname.slice(1);
       if(!allowed(relative)||relative.split('/').some(p=>p==='..'||p.startsWith('.'))) {res.writeHead(404);res.end();return;}
       const path=await realpath(resolve(base,relative)),realBase=await realpath(base);
       const segment=relative.split('/')[0];

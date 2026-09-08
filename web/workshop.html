@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#163b34">
+  <title>Before departure · Human workshop</title>
+  <link rel="stylesheet" href="/web/workshop.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topline"><a href="/">← Human laboratory</a><span>ONE WORKER · TWO ROOMS</span></header>
+    <main>
+      <section class="heading" aria-labelledby="title">
+        <div><p class="eyebrow">THE WORKSHOP</p><h1 id="title">Before departure</h1>
+          <p class="objective">Restore the water pump, then run it before your ride leaves.</p></div>
+        <div class="clock"><span id="time-left">4h</span><small>until departure</small><div class="time-track"><div id="time-bar"></div></div></div>
+      </section>
+      <div id="notice" class="notice" aria-live="polite" hidden></div>
+      <div class="game-layout">
+        <div class="world-column">
+          <section class="map-card" aria-label="Workshop rooms and objects">
+            <div class="section-caption"><span>YOUR WORKSHOP</span><span id="location-text">In storage</span></div>
+            <div class="map">
+              <div class="room" id="storage-room">
+                <div class="room-heading"><h2>Storage</h2><span class="worker-marker" aria-hidden="true">YOU</span></div>
+                <svg class="room-art" viewBox="0 0 180 118" aria-hidden="true"><path class="wall" d="M20 18h140v86H20z"/><path class="line" d="M29 48h122M29 80h122M42 25v72M137 25v72"/><path class="crate" d="M53 55h32v23H53zM96 26h27v20H96z"/><path class="line" d="m57 59 24 15m0-15L57 74"/><path class="tool" d="m112 54-3 8 8 6 6-6-2-9 7 5 1 9-8 6-9-2-15 19-6-5 17-18-3-9z"/></svg>
+                <div id="storage-objects" class="object-list"></div>
+              </div>
+              <div class="corridor"><span>↔</span><small>12 min walk</small></div>
+              <div class="room" id="pump-room">
+                <div class="room-heading"><h2>Pump room</h2><span class="worker-marker" aria-hidden="true">YOU</span></div>
+                <svg class="room-art pump-art" viewBox="0 0 180 118" aria-hidden="true"><path class="pipe" d="M15 76h42M123 76h42V26"/><path class="machine" d="M51 51h74v49H51z"/><path class="machine" d="M63 38h50v16H63z"/><circle class="seal" cx="89" cy="75" r="17"/><path class="line" d="m77 63 24 24m0-24L77 87M45 103h87"/><path class="water" d="m88 104-4 8m15-9 4 7"/><path class="flow" d="m30 72 7 4-7 4m113-24 4-7 4 7"/></svg>
+                <div id="pump-objects" class="object-list"></div>
+              </div>
+            </div>
+            <div class="inventory"><span>Carrying</span><strong id="inventory">Nothing yet</strong></div>
+          </section>
+          <section class="worker-card" aria-labelledby="worker-title">
+            <div class="section-caption"><h2 id="worker-title">Your condition</h2><span>felt estimates</span></div>
+            <div class="body-meters"><div><div class="meter-label"><span>Fatigue</span><strong id="fatigue-text"></strong></div><meter id="fatigue" aria-label="Estimated fatigue" min="0" max="1"></meter></div>
+              <div><div class="meter-label"><span>Hunger</span><strong id="hunger-text"></strong></div><meter id="hunger" aria-label="Estimated hunger" min="0" max="1"></meter></div></div>
+            <p class="muted">Rest in either room. Meals are only available in storage.</p>
+          </section>
+          <details class="route-notes" open><summary>Two ways to fix it</summary><div class="route-grid"><div><strong>Patch · 35 min</strong><p>Take the wrench. Try a quicker repair, with a greater chance of needing another attempt.</p></div><div><strong>Replace · 50 min</strong><p>Spend 12 extra minutes collecting a seal. The fitting is easier, but needs more time and effort.</p></div></div><p class="muted">Both routes finish with an 8-minute test run. Leave time for failed attempts and recovery.</p></details>
+        </div>
+        <section class="action-panel" aria-labelledby="action-heading">
+          <div class="section-caption"><h2 id="action-heading">Your next move</h2><span id="elapsed"></span></div>
+          <div class="event" id="last-event" role="status"></div>
+          <div id="pending-panel" hidden>
+            <div class="pending-title"><h3 id="pending-title"></h3><span id="pending-time"></span></div>
+            <progress id="action-progress" aria-labelledby="pending-title" max="1" value="0"></progress>
+            <p id="pending-detail" class="muted"></p>
+            <div class="pending-buttons"><button id="advance" type="button">Advance 5 min</button><button id="finish" class="primary" type="button">Finish action</button><button id="interrupt" class="quiet" type="button">Stop action</button></div>
+          </div>
+          <div id="actions" class="actions"></div>
+          <div id="outcome" class="outcome" hidden></div>
+          <details class="delegate" id="controller-help"><summary>Controller help</summary><p id="suggestion"></p><div class="delegate-buttons"><button id="suggested" type="button">Take suggested action</button><button id="auto" type="button">Run controller</button></div></details>
+        </section>
+      </div>
+      <section class="session" aria-label="Save and configure game">
+        <div class="save-actions"><button id="save" type="button">Download save</button><label class="file-button" for="import">Load save<input type="file" id="import" accept="application/json,.json"></label><span id="save-status">Saved on this device after every move</span></div>
+        <details><summary>New run & controller</summary><div class="setup"><label>Seed<input id="seed" type="number" min="0" max="4294967295" step="1" value="1" inputmode="numeric"></label><label>Controller<select id="policy"><option value="task-aware">Task-aware · spare seal route</option><option value="planned-simple">Planned simple · patch + early recovery</option><option value="greedy">Greedy · quick patch + recovery when blocked</option></select></label><button id="reset" type="button">Start new run</button></div><label class="record-option"><input id="record" type="checkbox"> Record a separate replay from the next new run</label><p class="muted">The same seed and choices reproduce the same outcomes. A controller sees the same estimates and objects you do.</p></details>
+        <details id="inspector"><summary>Researcher view</summary><p id="research-facts"></p><button id="replay-download" type="button" disabled>Download replay</button><p class="muted">The active save contains one pending action and the current world. A replay records your commands separately, including interruptions. After loading a save, start a new run to record a complete replay.</p></details>
+        <details class="model-notes"><summary>Model notes</summary><p>This is an authored game model, not a calibrated explanation of human performance. Fatigue, hunger, skill and success estimates use invented engineering formulas. Actual pump condition and outcome draws stay outside the controller’s view. Ordinary play has no social or religious scoring. <a href="/">Explore the research laboratory and its sources.</a></p></details>
+      </section>
+    </main>
+    <footer>Human · A small game using a shared human component</footer>
+  </div>
+  <script type="module" src="/web/workshop.js"></script>
+</body>
+</html>

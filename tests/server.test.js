@@ -8,6 +8,8 @@ import {createAppServer} from '../scripts/serve.js';
 test('local server serves the app and modules but refuses traversal and symlink escape',async t=>{
   const root=await mkdtemp(join(tmpdir(),'human-framework-server-'));
   await mkdir(join(root,'src'));
+  await mkdir(join(root,'web'));
+  await writeFile(join(root,'web/workshop.html'),'<h1>Workshop</h1>');
   await writeFile(join(root,'index.html'),'<h1>Laboratory</h1>');
   await writeFile(join(root,'src','model.js'),'export const model = 1;');
   await writeFile(join(root,'private.json'),'sensitive test fixture');
@@ -18,6 +20,8 @@ test('local server serves the app and modules but refuses traversal and symlink 
   const base=`http://127.0.0.1:${server.address().port}`;
   const page=await fetch(base);
   assert.equal(page.status,200);assert.match(await page.text(),/Laboratory/);
+  const workshop=await fetch(`${base}/workshop`);
+  assert.equal(workshop.status,200);assert.match(await workshop.text(),/Workshop/);
   const module=await fetch(`${base}/src/model.js`);
   assert.equal(module.status,200);assert.match(module.headers.get('content-type'),/javascript/);
   for(const path of ['/private.json','/src/../private.json','/src/%2e%2e%2fprivate.json','/src/escape.js','/.env']) {

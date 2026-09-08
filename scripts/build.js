@@ -17,12 +17,13 @@ const headers=`/*
 export async function buildSite({root=projectRoot}={}) {
   const base=resolve(root),output=join(base,'dist');
   const realBase=await realpath(base);
-  const directories=['web','src/core','src/scenarios','src/legacy/v0.1'];
-  for(const source of ['index.html',...directories]) {
+  const entries=new Map([['index.html','index.html'],['workshop/index.html','web/workshop.html']]);
+  const directories=['web','src/core','src/scenarios','src/human','src/games','src/legacy/v0.1','src/legacy/v0.2'];
+  for(const source of [...directories,...entries.values()]) {
     const path=join(base,source),info=await lstat(path);
-    if(info.isSymbolicLink()||await realpath(path)!==join(realBase,source)||(source==='index.html'?!info.isFile():!info.isDirectory()))throw new Error(`Invalid public source or symlink: ${source}`);
+    if(info.isSymbolicLink()||await realpath(path)!==join(realBase,source)||(directories.includes(source)?!info.isDirectory():!info.isFile()))throw new Error(`Invalid public source or symlink: ${source}`);
   }
-  const files=['index.html'];
+  const files=[...entries.keys()];
   for(const directory of directories) {
     for(const entry of await readdir(join(base,directory),{withFileTypes:true})) {
       if(entry.isFile()&&!entry.name.startsWith('.')&&['.js','.css','.svg','.png','.ico'].includes(extname(entry.name)))files.push(`${directory}/${entry.name}`);
@@ -36,7 +37,7 @@ export async function buildSite({root=projectRoot}={}) {
   for(const file of files.sort()) {
     if(file!=='_headers') {
       await mkdir(dirname(join(output,file)),{recursive:true});
-      await copyFile(join(base,file),join(output,file));
+      await copyFile(join(base,entries.get(file)??file),join(output,file));
     }
     digest.update(file).update('\0').update(await readFile(join(output,file))).update('\0');
   }

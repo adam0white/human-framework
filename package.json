@@ -1,6 +1,6 @@
 {
   "name": "human-framework",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "A no-LLM laboratory for situated human action and development",
@@ -12,6 +12,7 @@
     "start": "node scripts/serve.js",
     "simulate": "node scripts/run.js",
     "benchmark": "node scripts/benchmark.js",
+    "benchmark:workshop": "node scripts/workshop-benchmark.js",
     "build": "node scripts/build.js",
     "deploy": "npm test && npm run build && node scripts/check-release.js && wrangler deploy",
     "deploy:check": "npm run build && wrangler deploy --dry-run"

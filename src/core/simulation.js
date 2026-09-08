@@ -1,4 +1,4 @@
-import {ENGINE_VERSION,PARAMETERS,validateScenario,normalizeOptions,clone,clamp,practice,successChance,assessCapacity,actionEffort} from './model.js';
+import {ENGINE_VERSION,PARAMETERS,validateScenario,normalizeOptions,clone,clamp,practice,successChance,assessCapacity,actionEffort,remainingGoal} from './model.js';
 import {keyedRandom} from './random.js';
 import {getView} from './observation.js';
 import {rankActions} from './policy.js';
@@ -9,7 +9,7 @@ export function createSimulation(scenario,options={}) {
   const actors=s.actors.map(a=>({...clone(a),beliefs:{hazard:{estimate:s.initialSignal,confidence:s.signalConfidence,source:'initial briefing'}},support:0,lastAction:null,
     commitment:a.commitment?{...a.commitment,fulfilled:false,expired:false}:null,
     relationships:Object.fromEntries(s.actors.filter(p=>p.id!==a.id).map(p=>[p.id,0.5]))}));
-  return {version:ENGINE_VERSION,scenario:s,options:opts,round:0,minutes:0,status:s.initialProgress>=s.target?'won':'running',
+  return {version:ENGINE_VERSION,scenario:s,options:opts,round:0,minutes:0,status:remainingGoal(s.initialProgress,s.target)===0?'won':'running',
     world:{progress:s.initialProgress,food:s.food,hazard:s.hazard},actors,history:[],commands:[]};
 }
 
@@ -140,7 +140,7 @@ export function step(state,command={type:'auto'}) {
     }
   }
   next.world.progress=Math.max(0,next.world.progress-next.scenario.consumption);
-  next.status=next.world.progress>=next.scenario.target?'won':next.round>=next.scenario.horizon?'lost':'running';
+  next.status=remainingGoal(next.world.progress,next.scenario.target)===0?'won':next.round>=next.scenario.horizon?'lost':'running';
   next.commands.push(canonical);
   next.history.push({round:next.round,minutes:next.minutes,decisions,world:{progress:next.world.progress,food:next.world.food},status:next.status});
   return next;

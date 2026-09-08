@@ -1,4 +1,4 @@
-export const ENGINE_VERSION='0.2.0';
+export const ENGINE_VERSION='0.3.0';
 export const MODULES=Object.freeze({body:true,beliefs:true,commitments:true,learning:true,relationships:true});
 // Engineering defaults for microgames. None is an empirical estimate or a spiritual metric.
 export const PARAMETERS=Object.freeze({
@@ -9,6 +9,12 @@ export const PARAMETERS=Object.freeze({
 export const clamp=(x,min=0,max=1)=>Math.max(min,Math.min(max,x));
 export const clone=x=>structuredClone(x);
 export const actionEffort=action=>action.kind==='work'?action.effort:action.kind==='help'?(action.effort??0.08):0;
+// Compare the completion boundary in relative units. Accumulating 0.1 ten
+// times must not miss a goal that succeeds after converting to integer units.
+export function remainingGoal(progress,target,consumption=0) {
+  const gap=target-progress+consumption;
+  return gap/target<=1e-12?0:gap;
+}
 
 // A simulation capacity contract, shared by all controllers and module ablations.
 // Forecasts may use perceived body; execution must use actual body. These proxy
@@ -49,6 +55,7 @@ export function validateScenario(s) {
   for(const name of ['title','brief','objective','resourceLabel'])text(s[name],name);
   for(const name of ['hazard','initialSignal','signalConfidence','observationNoise'])finite(s[name],name);
   finite(s.target,'target',0.01,100000);finite(s.initialProgress,'initialProgress',0,s.target);
+  finite(s.goalUtility,'goalUtility',0,100000);
   finite(s.food,'food',0,100000);if(!Number.isInteger(s.food))throw new Error('food must be an integer');
   finite(s.consumption,'consumption',0,100000);
   finite(s.roundMinutes,'roundMinutes',0.01,1440);finite(s.horizon,'horizon',1,120);
@@ -90,7 +97,7 @@ export function validateScenario(s) {
 export function normalizeOptions(options={}) {
   const seed=options.seed??1;finite(seed,'seed',0,4294967295);
   if(!Number.isInteger(seed))throw new Error('seed must be an integer');
-  const policy=options.policy??'full';if(!['full','baseline'].includes(policy))throw new Error('Unknown policy');
+  const policy=options.policy??'full';if(!['full','baseline','planned-simple'].includes(policy))throw new Error('Unknown policy');
   const modules={...MODULES};
   for(const [k,v] of Object.entries(options.modules??{})) {
     if(!Object.hasOwn(MODULES,k)||typeof v!=='boolean')throw new Error(`Invalid module ${k}`);

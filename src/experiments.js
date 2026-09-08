@@ -4,6 +4,7 @@ import {scenarios,getScenario} from './scenarios/index.js';
 export const VARIANTS=[
   {id:'full',label:'Full loop',options:{policy:'full'}},
   {id:'baseline',label:'Static task utility',options:{policy:'baseline'}},
+  {id:'planned-simple',label:'Planned simple recovery',options:{policy:'planned-simple'}},
   ...Object.keys(MODULES).map(module=>({id:`without-${module}`,label:{body:'No body coupling',beliefs:'No hazard updates or inspection value',commitments:'No promise weighting',learning:'No practice updates or learning value',relationships:'No relationship coupling'}[module],options:{policy:'full',modules:{[module]:false}}}))
 ];
 

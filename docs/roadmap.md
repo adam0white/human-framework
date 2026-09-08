@@ -1,6 +1,6 @@
 # What this prototype proves, and what comes next
 
-The games establish a working loop and reproducible comparisons. The next delivery must show that a separate game can use the human components while owning its own world. The [2026-09-07 independent reviews](post-mvp-review.md) changed the sequence below: integration now precedes broader faculties and does not wait for human-data calibration.
+The laboratory establishes a working loop and reproducible comparisons. The new [Before departure workshop](workshop-integration.md) now embeds a shared body/practice component while owning its own world. The [initial direction reviews](post-mvp-review.md) and [two separate external Claude Fable reviews](../research/reviews/2026-09-07-claude-fable-verification.md) put integration before broader faculties. The [0.3 delivery record](release-0.3.md) separates implemented contracts from usefulness and validation still to test.
 
 ## What is actually running
 
@@ -8,9 +8,9 @@ Three games combine body, hazard beliefs, task practice, promises and simple tru
 
 The loop's “understand” label summarizes accessible facts; comprehension, episodic memory, emotion and multistep planning are absent. Assistance prepares support for another actor without consent or negotiation.
 
-**Every policy and ablation faces the same exertion limit.** When requested exertion exceeds capacity, the body requires recovery; request and execution are recorded. The baseline mostly requests work using output and proficiency. Full weighs body, beliefs and promises and can choose recovery earlier. Matching switches retain identical mechanics; disabling hazard or practice updates also removes expected inspection or learning value. “Full” names the current considerations, not a complete human model.
+**Every laboratory policy faces the same exertion limit under matching module switches.** The laboratory records a recovery substitution when exertion exceeds capacity. Greedy mostly requests work using output and proficiency; planned-simple adds observed recovery thresholds for every actor. Full weighs body, beliefs, promises and remaining-task urgency. Disabling hazard or practice updates also removes expected inspection or learning value. “Full” names the current considerations, not a complete human model. The workshop uses a different host rule: blocked exertion costs two idle minutes and supplies no rest or meal. The player or host controller then chooses what to do.
 
-The logistic success equation, practice curve, trust increments, priority weights and inspection-confidence update are **our invented engineering formulas**. Their exact coefficients were not supplied by revelation or fitted to human data. [Exact implemented rules](model-reference.md).
+The success and practice equations use standard functional forms with **authored combinations and coefficients**; trust increments, priority weights and inspection-confidence updates are engineering rules. Their exact coefficients were not supplied by revelation or fitted to human data. [Exact implemented rules](model-reference.md).
 
 ## A short evidence map
 
@@ -33,7 +33,7 @@ These anchors support distinctions, not our numerical formulas.
 | Water Commons | Consumption makes delay costly; helping and personal recovery compete with collecting. | Let someone request a scarce resource and another independently accept or refuse. Does relationship history change choices for traceable reasons? |
 | Solo Repair | One person's work/recovery tradeoff, isolated from social causes. | Keep it throughout later iterations: switching off relationships or promise weighting must leave choices and outcomes unchanged. |
 
-All four share an aggregate-progress structure. Another theme alone adds little reuse evidence. The [benchmark](benchmark-report.md) separates voluntary recovery, compulsory recovery, playability and model comparisons; earlier results remain archived.
+All four laboratory presets share an aggregate-progress structure. The workshop adds two locations, a carried tool, a consumable part, targeted repair and paid inspection. Its shared component handles body and practice; its three route controllers are authored by the host and do not invoke laboratory Full. This is one narrower integration, not whole-framework portability. The [benchmark](benchmark-report.md) compares the laboratory controllers; the [workshop report](workshop-integration.md) records the separate host experiment.
 
 ## What remains on the research shelf
 
@@ -45,7 +45,7 @@ All four share an aggregate-progress structure. Another theme alone adds little 
 
 ## Delivery gates, revised after independent review
 
-These are proposed implementation gates, not completed capabilities. Preserve the current Solo Repair, replay engines and benchmark as controls throughout.
+Status after the 0.3 implementation: gate 1's unit/urgency/controller contracts and gate 2's mechanical integration are implemented and tested. Gate 3's independent interaction and bounded-state checks are implemented; the [desktop-browser command benchmark](workshop-performance.md) measures timing separately from rendering. The human playtest/usefulness criterion, physical-mobile timing and reserved condition-family evaluation remain open. Preserve Solo Repair, historical replay engines and archived benchmarks as controls throughout.
 
 1. **Correct the comparison and value contracts.** Make planned-simple recovery a first-class comparator for every controlled actor. Keep the same world physics when comparing policies; use prescribed actions and equal-duration retests when comparing mechanisms. Separate physical output units from goal value: expressing an equivalent task in units ten times larger must not silently make rest or promises less important. Include urgent last-action cases, ordinary workloads and reserved condition families. Accept when unit conversions preserve equivalent behavior, all policies receive the same accessible information, capacity is enforced, and useful counterexamples remain. Full is a replaceable reactive policy, not a multistep planner or the success criterion.
 2. **Embed one worker in a small host-owned game.** Build a two-location workshop with objects, a required tool/part, inventory, travel and a deadline. The host owns these facts, opportunities, action outcomes, time scheduling and victory. Extract only the human-state, choice and experience boundaries needed by this consumer. The worker can be player-controlled or delegated; this first integration has no social effects. Capacity can stop exertion without secretly selecting or obtaining a ration. Accept when targeted actions, a host interruption and external observations work through documented events; an interrupted save resumes identically; duplicate outcomes cannot grant duplicate effects; hidden host facts stay outside the actor view; diagnostics can be disabled without accumulating session history in active state. Keep LLM-free execution.
@@ -58,7 +58,7 @@ The earlier sequence placed social expansion and development before this host te
 
 Keep the normal workloads forgiving. At a **24-round Solo deadline**, another 100-seed block produced **82 Full wins, 81 planned-simple wins and 67 greedy wins** under unchanged 0.2 physics. Planning already helps; Full is not uniquely responsible. At an extreme 18-round deadline in the exploratory sweep, greedy wins more often than either. The [complete recovery exploration](recovery-design-exploration.md) preserves both results and the exact controller.
 
-Do not add an arbitrary efficiency penalty to make Full win. An optional pressure profile is a useful diagnostic candidate, not the next proof of game reuse. Treat capacity and the fallback action as separate responsibilities during integration: stopping impossible exertion does not establish that an actor can access food or chooses to consume it. An authored interruption/setup cost can be tested later only when a host action actually has that cost, with a zero-cost control and a published sensitivity sweep.
+Do not add an arbitrary efficiency penalty to make Full win. An optional pressure profile remains a diagnostic candidate. Capacity and the fallback action are now separate responsibilities in the workshop: stopping impossible exertion does not establish access to food or a choice to consume it. The workshop implements an authored two-minute idle interruption for blocked effort; its causal contribution has not been established. A zero-cost control and published sensitivity sweep remain outstanding before claiming that interruption cost rewards planning or improves the game.
 
 Human-data calibration and qualified theological review remain separate tracks. A game can earn a scoped usefulness claim before it explains a human population. Theological representation can earn its place through source fidelity and distinctions the game needs, without having to maximize production. Neither track is replaced by the integration gates.
 

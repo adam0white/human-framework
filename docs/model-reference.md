@@ -1,12 +1,14 @@
-# Implemented model reference — 0.2.0
+# Implemented model reference — lab 0.3.0
 
-Recorded 2026-09-07. This describes the actual JavaScript kernel, not every mechanism proposed in the earlier research. Every coefficient below is an **engineering default**, with no fitted human dataset or revealed numerical authority. The source code and benchmark source hashes identify this version.
+Recorded 2026-09-07. This describes the laboratory kernel at `src/core/`, with the separate host-integration component identified at the end. Every coefficient below is an **engineering default**, with no fitted human dataset or revealed numerical authority. The source code and benchmark source hashes identify this version.
 
 ## State and units
 
 Each actor has fatigue and hunger in `[0,1]`, task proficiency in `[0,1]`, a hazard estimate and confidence proxy, four authored priority weights (duty, care, caution, mastery), one optional announced promise, directed trust estimates, and temporary support. These are local state proxies. A value of `0.8` is neither a clinical measurement nor the 80th population percentile. Priors and initial conditions are supplied by scenario data.
 
-The shared world holds objective progress, integer food rations and hidden hazard in `[0,1]`. Hazard is stationary in this version. The presets have different progress units; scores cannot be averaged across them. Each round is a scenario-defined number of simulated minutes. Per-attempt effort and per-minute maintenance are distinct: changing the time step changes the experiment, rather than producing equivalent finer integration automatically.
+The shared world holds objective progress, integer food rations and hidden hazard in `[0,1]`. Hazard is stationary in this version. Each scenario requires `goalUtility`, an authored dimensionless value for completing its shared objective, independent of resource quantities. Converting units rescales `target`, `initialProgress`, `consumption` and each work action's `output`; it leaves `goalUtility` unchanged. The four presets use utilities 60, 60, 45 and 30, preserving their former initial output-value scale. Neither physical progress nor independently authored utilities justify averaging unlike scenarios.
+
+Each lab round is a scenario-defined number of simulated minutes. Per-attempt effort and per-minute maintenance are distinct: changing the lab round duration changes the experiment, rather than producing equivalent finer integration automatically. The separate human component supports partial attempt timing; it does not change this lab contract.
 
 There is no scalar human quality, faith, soul, moral worth or universal intelligence. The default full-loop configuration enables all five couplings; the full policy also supports targeted ablations. Neither means complete human functioning.
 
@@ -67,15 +69,30 @@ An over-capacity request executes a recovery interval instead. If hunger prevent
 
 Requested action and declared intention are preserved; `actionId`, `actionLabel` and `actionKind` describe **execution**. `intervention` records the cause of substitution. Synthetic `_rest` / `_eat` IDs cannot collide with scenario IDs. A blocked work request earns no progress, practice, work-promise fulfillment or support consumption. `outcome.success` describes the executed recovery, not a successful work attempt. Public outcomes omit an unexecuted requested action and its private intention.
 
-This guard applies equally to the player, baseline, full policy and all ablations. Body coupling off removes graded body influence on scoring and success probability; it does **not** abolish physical capacity. Forecasts and UI capacity estimates use perceived body, so they can differ from actual resolution. The ceiling is an authored simulation contract, not a clinical hunger threshold or a claim that ordinary hunger removes human choice. Injury, sleep pressure, dehydration and detailed physiology remain outside this version.
+This guard applies equally to the player, baseline, planned-simple, full policy and all ablations. Body coupling off removes body influence on scoring and success probability; it **does not** abolish execution capacity. Forecasts and UI capacity estimates use perceived body, so they can differ from actual resolution. The ceiling is an authored simulation contract, not a clinical hunger threshold or a claim that ordinary hunger removes human choice. Injury, sleep pressure, dehydration and detailed physiology remain outside this version.
 
 ## Deliberation
 
-The NPC chooses the highest score, breaking ties by action ID. Selection is deterministic; stochasticity is in outcomes and inspection noise. A player may request any supported action instead; the shared capacity guard determines whether exertion can execute. Scores are sums in arbitrary utility units:
+The NPC sorts by descending `selectionTier`, then descending `score`, then action ID. `score` remains the sum of named contributions within a tier; `selectionReason` explains a tier preference. Selection is deterministic; stochasticity is in outcomes and inspection noise. A player may request any supported action instead.
+
+Full gives perceived capacity-blocked exertion tier 0 and other choices tier 1. For blocked work its productive forecast, practice interest and promise contribution are zero. This uses only perceived body and is disabled with the body coupling; it is not an oracle for actual execution. For unblocked work, define:
+
+```text
+U = world.goalUtility
+R = max(0, target − progress + consumption)
+N = max(1, horizon − round)
+usefulOutput = min(output, R)
+expectedGoalProgress = forecast × U × usefulOutput / target
+deadlineOpportunity = forecast × U × (usefulOutput / R) / N  if R > 0; else 0
+```
+
+The relative completion tolerance below also sets negligible `R` to zero. The deadline term values the fraction of the remaining gap that this attempt could close, with greater weight as opportunities run out. Consumption is included because reaching the target before end-of-round use does not necessarily finish the task. This is a deadline-aware utility heuristic, not multistep planning or an estimate of eventual victory. Goal utility can still be outweighed by other authored motives; there is no unconditional final-round work override.
+
+Full's remaining score contributions are:
 
 | Action | Score contributions |
 |---|---|
-| Work | `forecast × output − effort × (0.6 + 2fatigue) − caution × believedHazard × exposure × 0.7`, plus `mastery × (1 − skill) × 0.3` when learning is enabled |
+| Work | `expectedGoalProgress + deadlineOpportunity − effort × (0.6 + 2fatigue) − caution × believedHazard × exposure × 0.7`, plus `mastery × (1 − skill) × 0.3` when learning is enabled and perceived capacity permits work |
 | Rest | `3.7 × fatigue² − 0.15` |
 | Eat | With food: `3.8 × hunger² − 0.18`; without food: `−1` |
 | Inspect | With belief learning: `(1 − confidence) × maxWorkExposure × clip(remainingRounds / 4) × (0.8 + caution) × 2 − 0.15`; without: `−0.15` |
@@ -83,7 +100,7 @@ The NPC chooses the highest score, breaking ties by action ID. Selection is dete
 
 Omitted help effort is `0.08` consistently in ranking, resolution, capacity and UI guidance. Version 0.2.0 fixes the former ranking-only zero default. Relationships off removes the positive help term. Body coupling off removes own fatigue/hunger and peer-fatigue influence from scoring. There is no multistep planning, value-of-information optimization, habit arbitration or counterfactual reasoning. The contribution table explains the arithmetic actually used, not an invented psychological explanation after the event.
 
-For a matching pending promise, add:
+For a matching pending promise on an action not perceived as capacity-blocked, add:
 
 ```text
 promiseWeight × duty × (1 + 1 / max(1, dueRound − currentRound))
@@ -91,7 +108,11 @@ promiseWeight × duty × (1 + 1 / max(1, dueRound − currentRound))
 
 The promise concerns an **attempt by its deadline**, not guaranteed production. An executed but unsuccessful work attempt can fulfill it. A blocked request followed by forced recovery cannot. Other scores or player choice can outweigh it. The promise-weight ablation removes this term while preserving fulfillment/expiry and relationship consequences; it does not remove all commitment effects.
 
-The baseline gives work `output × (0.35 + 0.65 × skill)`, rest `0.25`, eat `0.2`, and other actions `0.1`. It has identical action access, permitted inputs and mandatory capacity limits. Its fixed work preference can therefore cause forced rest or meals; these are resolver interventions, not newly learned baseline preferences. It is a simple task-oriented comparator, not an optimal planner or representative human population.
+The baseline gives work `(output / target) × goalUtility × (0.35 + 0.65 × skill)`, rest `0.25`, eat `0.2`, and other actions `0.1`; all candidates have tier 1. Its work ranking remains fixed rather than adapting to remaining progress. Forced rest or meals are resolver interventions, not newly learned baseline preferences.
+
+`planned-simple` uses the same fixed scores with a separate threshold rule for **every actor**: if perceived hunger is at least `0.6`, food remains and an eat action exists, eat; otherwise, if perceived fatigue is at least `0.65` and rest exists, rest. Matching recovery actions have tier 2, work tier 1 and other choices tier 0. With no matching recovery, it chooses the highest fixed work score if work exists. With body coupling disabled, neither threshold activates. Missing recovery actions are not invented by this policy; the common execution guard still applies. All three policies have identical action access, permitted inputs and bodily physics.
+
+None of these controllers is an optimal planner or a representative human population. Version 0.2.0 mixed physical output directly into utility and ignored goal proximity/deadline in work scoring. Version 0.3.0 corrects those contracts without tuning recovery costs to reward a particular controller.
 
 ## Practice and transfer
 
@@ -113,6 +134,8 @@ Assistance targets a peer using perceived fatigue and stable ID ties. It prepare
 
 `step` validates a command, clones state, then visits actors in scenario array order. Each gets a fresh view, ranks actions, receives the player override if addressed, attempts, resolves and learns. Later actors see earlier public resource/support changes. They do not receive the other actor's private inspection report. At round end, time advances, due promises expire, consumption is subtracted, and target/horizon determines termination. Every actor completes the final round before success is checked, so progress can overshoot the target.
 
+Completion uses `(target − progress) / target ≤ 1e−12`, including initial-state completion. The same relative tolerance defines the remaining gap for scoring, with consumption included there. This prevents equivalent unit conversions from changing terminal status because ten `0.1` additions produce `0.9999999999999999`. Recorded progress is not rounded or awarded extra work. This numerical correction is separate from the unchanged bodily capacity tolerance.
+
 Serial scheduling can favor an early eater or let help reach a later actor within the same round. It is not simultaneous decision-making. Alternative scheduling requires a separate experiment.
 
 ## API, reproducibility and unknown inputs
@@ -121,4 +144,10 @@ The [MVP specification](mvp-spec.md) lists exported functions. `rankActions(view
 
 The stateless keyed pseudo-random generator uses seed, round, actor and purpose. Work action ID is intentionally excluded so paired variants see the same exogenous quantile for a given actor/round. This is an experiment generator, not cryptographic randomness or a philosophical account of agency. Replay is checked within the current numerical/version contract, not across arbitrary engine edits or every floating-point platform.
 
-Current replays embed JSON-safe scenario data, normalized options and canonical commands. Version 0.1.0 exports are reconstructed by a frozen copy of that kernel and displayed read-only; they retain the old saturation behavior. A new attempt uses the current preset. No historical commands are silently reinterpreted under new physics. Unknown kinds/IDs, incompatible versions, invalid numbers, cycles and non-JSON metadata are rejected. Every **supported** action has defined behavior. Unknown phenomena do not silently become generic work, a random coefficient or generated prose; extension requires an explicit schema and model decision. See the [coverage ledger](coverage-ledger.md) for prioritized replacement experiments.
+Current replays embed JSON-safe scenario data, normalized options and canonical commands. Version 0.1.0 and 0.2.0 records are reconstructed by their frozen kernels and displayed read-only. They retain their original scores, physics and completion behavior; 0.2.0 does not acquire `goalUtility` or `planned-simple`. Five 0.2.0 implementation files were frozen byte-for-byte from commit `08aab973bcaef51693d94beeed4d882e9c3124ee`; source hashes and state goldens protect them. The facade routes historical replay, projection, ranking and export, while current `step` rejects historical states. A new attempt uses the current preset. Unknown kinds/IDs, incompatible versions, invalid numbers, cycles and non-JSON metadata are rejected. See the [coverage ledger](coverage-ledger.md) for extension decisions.
+
+## Separate host-integration component
+
+`src/human/index.js` exposes `HUMAN_VERSION = '0.1.0'` independently of lab engine 0.3.0. It owns one person's body, practice, observation and pending attempt. `beginAttempt`, `advanceAttempt` and `finishAttempt` separate declaration, actual elapsed time and a matching host outcome. Effort/practice accrue only for elapsed permitted activity; rest reduces fatigue during its actual elapsed time; a completed meal needs a host-confirmed `mealConsumed` receipt. Capacity-blocked exertion supplies neither automatic rest nor food. Snapshots preserve a pending attempt without accumulating an event history.
+
+The workshop game in `src/games/workshop.js` owns locations, objects, inventory, prerequisites, deadline, random outcomes and victory. It imports the human boundary rather than the lab world engine. Its `task-aware`, `planned-simple` and `greedy` controllers are host-authored; the lab's Full loop and social/belief mechanisms have not been ported into that component. This is a test of a narrower reusable boundary, not a claim that the complete laboratory framework is already embedded.

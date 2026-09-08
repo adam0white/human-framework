@@ -3,7 +3,7 @@ import {getScenario} from '../src/scenarios/index.js';
 import {runSimulation,exportReplay} from '../src/core/index.js';
 import {summarizeRun} from '../src/experiments.js';
 
-const usage='Usage: npm run simulate -- <courier|workshop|commons|solo> [--seed N] [--policy full|baseline] [--json [FILE|-]]';
+const usage='Usage: npm run simulate -- <courier|workshop|commons|solo> [--seed N] [--policy full|baseline|planned-simple] [--json [FILE|-]]';
 try {
   const args=process.argv.slice(2);
   if(args.includes('--help')) {console.log(usage);process.exit(0);}
@@ -22,7 +22,7 @@ try {
     else if(flag==='--json')json=args[0]&&!args[0].startsWith('--')?args.shift():'-';
     else throw new Error(`Unknown option: ${flag}`);
   }
-  if(!['full','baseline'].includes(policy))throw new Error('Unknown policy: use full or baseline');
+  if(!['full','baseline','planned-simple'].includes(policy))throw new Error('Unknown policy: use full, baseline or planned-simple');
   const state=runSimulation(getScenario(id),{seed,policy});
   if(json!==null) {
     const output=JSON.stringify(exportReplay(state),null,2)+'\n';

@@ -12,7 +12,7 @@ export function getView(state,actorId) {
     scenario:{id:s.id,title:s.title,subtitle:s.subtitle??'',brief:s.brief,objective:s.objective,hazardLabel:s.hazardLabel??'Conditions',theme:s.theme??'courier'},
     round:state.round,minutes:state.minutes,horizon:s.horizon,roundMinutes:s.roundMinutes,status:state.status,
     options:{policy:state.options.policy,modules:state.options.modules},
-    world:{progress:state.world.progress,target:s.target,food:state.world.food,resourceLabel:s.resourceLabel},
+    world:{progress:state.world.progress,target:s.target,goalUtility:s.goalUtility,consumption:s.consumption,food:state.world.food,resourceLabel:s.resourceLabel},
     actor:{id:actor.id,name:actor.name,role:actor.role,body:perceivedBody(actor),skills:actor.skills,beliefs:actor.beliefs,priorities:actor.priorities,commitment:actor.commitment,relationships:actor.relationships,support:actor.support},
     peers:state.actors.filter(a=>a.id!==actorId).map(a=>({id:a.id,name:a.name,role:a.role,lastAction:a.lastAction,body:perceivedBody(a)})),
     actions:s.actions,

@@ -59,7 +59,8 @@ test('paired summaries retain seed identities, exact null equality and independe
   for(const scenario of result.results) {
     assert.equal(scenario.nullControl.allEqual,true);
     assert.equal(scenario.nullControl.equalPairs,3);
-    assert.equal(scenario.variants.length,7);
+    assert.equal(scenario.variants.length,8);
+    assert.ok(scenario.variants.some(v=>v.id==='planned-simple'));
     const full=scenario.variants.find(v=>v.id==='full');
     const baseline=scenario.variants.find(v=>v.id==='baseline');
     const delta=scenario.comparisons.find(v=>v.against==='baseline').metrics.objectiveProgress;
@@ -95,6 +96,9 @@ test('simulate CLI validates inputs and writes a replay consumable by the core',
     assert.equal(record.format,'human-framework-replay');
     assert.equal(record.options.seed,7);
     assert.ok(['won','lost'].includes(replay(record).status));
+    const planned=spawnSync(process.execPath,['scripts/run.js','solo','--seed','7','--policy','planned-simple','--json','-'],{encoding:'utf8'});
+    assert.equal(planned.status,0,planned.stderr);
+    assert.equal(JSON.parse(planned.stdout).options.policy,'planned-simple');
     for(const args of [['courier','--seed','NaN'],['courier','--seed','7.2'],['courier','--surprise'],['missing']]) {
       const invalid=spawnSync(process.execPath,['scripts/run.js',...args],{encoding:'utf8'});
       assert.notEqual(invalid.status,0);
