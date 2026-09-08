@@ -1,0 +1,151 @@
+{
+  "format": "camp-comparison-freeze-1",
+  "sourceCommit": "5fd5ac3e28df3b93c4de9fede50be79ec7ef1f28",
+  "registrationCommit": "10a623f",
+  "validationStage": "post-review",
+  "artifactEncoding": "gzip-json",
+  "sources": {
+    "artifacts/user-runs/2026-09-07/common-ground-minute-1312.json": "1f295565936775f8921b427d9409a0682e3c891f8803802a94748be9dddf6206",
+    "docs/camp-comparison-protocol.md": "6734c808a65912051a97a7b3bf677e786025118ba75deb87999262b6296f4e78",
+    "docs/camp-comparison-reserved.md": "8705418040e901e38dddbaaf781433fc52ca6f1e94334af9a7d4a85adffa2425",
+    "scripts/camp-comparison.js": "98cd47b7e04334f26df6eb5347d131aafb54c69ecfd362e8113d1588a92b74ef",
+    "scripts/continuous-work-fixture.js": "6d36c8cfc9dc14877fb6c5555466f2dac21b3eb68b22d822964702ba0e1f2c6c",
+    "scripts/runtime-release-lock.json": "f27bd54f0549f5dcb8016099669f3a74f27a4edf2378953a60803711cbd1b165",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "src/experiments/camp-story/comparison.js": "381542f214719c26fde78e7f9f95ae3ff3b3cba8587d647f26733b04bcb9719b",
+    "src/experiments/camp-story/controls.js": "335419772c364f1ff9728fbd2e070ee4593d3949c39281d4ec3f8d0429841a77",
+    "src/experiments/camp-story/policy.js": "fa719e96a1120af57abd363c8c602e9bbd01b8198d054b0e42579d5992a92598",
+    "src/games/camp-story.js": "99300ffb03feb6d45a0dcd1313e71c7f8e20c7857f35701d6931dcc66c74e538",
+    "src/games/camp.js": "a695c31258b8bc5339a20cd49f238e5a8f7fa1bed52c1cf2c0706822f804c078",
+    "src/games/commons-next.js": "cd7db395f2498ff52230fa799d3d40f254d03b36403a144f619c2b16daee2bd0",
+    "src/games/commons-policy.js": "d5700cbe386b91424f1aa4a6059a7cc0868ee920da264a1d12a66bee8979195f",
+    "src/games/commons.js": "b2c6f5e8bd38e84b729d73182170c88034edc3767e00c71cd65784233283aedb",
+    "src/human/index.js": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "tests/camp-comparison-controls.test.js": "c9974062ed4d80bc35d98929af74c8a5d950899d662262e7865e5f70fc8a26be",
+    "tests/camp-comparison-evidence.test.js": "6394c79086fbf27d70cf697cc1278b18feb9639401075701c79c23b4998bd28b"
+  },
+  "sourceCosts": {
+    "kernel": {
+      "files": [
+        {
+          "path": "src/games/camp.js",
+          "bytes": 40063,
+          "nonblankLines": 389
+        }
+      ],
+      "bytes": 40063,
+      "nonblankLines": 389
+    },
+    "wrapper": {
+      "files": [
+        {
+          "path": "src/games/camp-story.js",
+          "bytes": 17571,
+          "nonblankLines": 187
+        }
+      ],
+      "bytes": 17571,
+      "nonblankLines": 187
+    },
+    "inclusiveCamp": {
+      "files": [
+        {
+          "path": "src/core/model.js",
+          "bytes": 7764,
+          "nonblankLines": 117
+        },
+        {
+          "path": "src/games/camp.js",
+          "bytes": 40063,
+          "nonblankLines": 389
+        },
+        {
+          "path": "src/games/commons.js",
+          "bytes": 23184,
+          "nonblankLines": 227
+        },
+        {
+          "path": "src/human/index.js",
+          "bytes": 10239,
+          "nonblankLines": 152
+        },
+        {
+          "path": "src/human/v0.1.1.js",
+          "bytes": 11580,
+          "nonblankLines": 176
+        },
+        {
+          "path": "src/runtime/clock.js",
+          "bytes": 7513,
+          "nonblankLines": 130
+        },
+        {
+          "path": "src/runtime/index.js",
+          "bytes": 188,
+          "nonblankLines": 4
+        }
+      ],
+      "bytes": 100531,
+      "nonblankLines": 1195
+    },
+    "inclusiveStory": {
+      "files": [
+        {
+          "path": "src/core/model.js",
+          "bytes": 7764,
+          "nonblankLines": 117
+        },
+        {
+          "path": "src/games/camp-story.js",
+          "bytes": 17571,
+          "nonblankLines": 187
+        },
+        {
+          "path": "src/games/camp.js",
+          "bytes": 40063,
+          "nonblankLines": 389
+        },
+        {
+          "path": "src/games/commons-next.js",
+          "bytes": 8606,
+          "nonblankLines": 89
+        },
+        {
+          "path": "src/games/commons-policy.js",
+          "bytes": 2944,
+          "nonblankLines": 41
+        },
+        {
+          "path": "src/games/commons.js",
+          "bytes": 23184,
+          "nonblankLines": 227
+        },
+        {
+          "path": "src/human/index.js",
+          "bytes": 10239,
+          "nonblankLines": 152
+        },
+        {
+          "path": "src/human/v0.1.1.js",
+          "bytes": 11580,
+          "nonblankLines": 176
+        },
+        {
+          "path": "src/runtime/clock.js",
+          "bytes": 7513,
+          "nonblankLines": 130
+        },
+        {
+          "path": "src/runtime/index.js",
+          "bytes": 188,
+          "nonblankLines": 4
+        }
+      ],
+      "bytes": 129652,
+      "nonblankLines": 1512
+    }
+  }
+}
