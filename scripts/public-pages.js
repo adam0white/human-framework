@@ -6,7 +6,9 @@ export const PUBLIC_PAGES=Object.freeze({
   'shift/index.html':'web/shift.html',
   'courtyard/index.html':'web/courtyard.html',
   'courier/index.html':'web/courier.html',
-  'commons/index.html':'web/commons.html'
+  'commons/index.html':'web/commons.html',
+  'commons-next/index.html':'web/commons-next.html',
+  'watch/index.html':'web/watch.html'
 });
 
 export const HTML_ROUTES=Object.freeze(Object.fromEntries(Object.entries(PUBLIC_PAGES).flatMap(([output,source])=>{

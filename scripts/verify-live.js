@@ -47,6 +47,8 @@ async function verify(){
     payloads.push({route,bytes:expected.length,sha256:hash(expected)});
   }
   const privatePaths=['/README.md','/research/islamic-foundations.md','/research/reviews/2026-09-07-games-fable-product.raw.json','/artifacts/courier-benchmark.json','/artifacts/user-runs/2026-09-07/courtyard-1-move-18.json','/runtime-dist/human-framework-runtime-0.1.0.tgz','/runtime-dist/human-framework-runtime-0.1.1.tgz','/src/social/contracts.js','/src/experiments/commons-comparison.js','/examples/maintenance-watch/host.js','/artifacts/evidence-milestone/verification.json','/research/reviews/2026-09-07-evidence-fable-api.raw.json','/docs/roadmap.md','/package.json','/wrangler.jsonc','/.git/config','/.worktrees/pump-shift/src/games/shift.js','/missing-route','/_headers'];
+  privatePaths.push('/src/cognition/observation-memory.js','/src/experiments/mechanism-comparison/small-model.js',
+    '/artifacts/observation-memory/2026-09-08-probe.json','/research/reviews/2026-09-08-autonomous-fable-provenance.json');
   for(const path of privatePaths){const {response}=await get(path);if(response.status!==404)throw new Error(`Private/missing path returned ${response.status}: ${path}`);}
   const record={verifiedAt:new Date().toISOString(),origin,release:local,source,pushedMain:remote,payloads,privatePaths:privatePaths.map(path=>({path,status:404}))};
   if(output)await writeFile(resolve(output),JSON.stringify(record,null,2)+'\n');
