@@ -1,0 +1,1742 @@
+[
+  {
+    "case": "courtyard-restart-fixed",
+    "state": {
+      "selected": "Actions",
+      "focus": "game-tab-0",
+      "clock": "18moves left",
+      "panelHeight": 395,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-courtyard-0.1": "{\"version\":\"0.1.0\",\"seed\":2,\"profile\":\"standard\",\"socialMemory\":true,\"round\":0,\"clock\":0,\"status\":\"playing\",\"source\":28,\"spilled\":0,\"carried\":{\"player\":2,\"neighbor\":4},\"homes\":{\"player\":0,\"neighbor\":0},\"meals\":{\"player\":1,\"neighbor\":1},\"people\":{\"player\":{\"format\":\"human-framework-person\",\"version\":1,\"componentVersion\":\"0.1.0\",\"person\":{\"version\":\"0.1.0\",\"id\":\"player\",\"body\":{\"fatigue\":0.3,\"hunger\":0.42},\"skills\":{\"collection\":0.52},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":1,\"pending\":null}},\"neighbor\":{\"format\":\"human-framework-person\",\"version\":1,\"componentVersion\":\"0.1.0\",\"person\":{\"version\":\"0.1.0\",\"id\":\"neighbor\",\"body\":{\"fatigue\":0.52,\"hunger\":0.28},\"skills\":{\"collection\":0.62},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":1,\"pending\":null}}},\"draws\":{\"player\":0,\"neighbor\":0},\"social\":{\"given\":{\"player\":0,\"neighbor\":0},\"loan\":null,\"returnedOnTime\":0,\"returnedLate\":0,\"lateLoans\":0,\"refusedByPlayer\":0,\"refusedByNeighbor\":0,\"ignored\":0,\"proposal\":null,\"nextProposalRound\":0},\"lastTurn\":null}",
+        "human-courtyard-replay-0.1": "{\"format\":\"courtyard-replay\",\"version\":\"0.1.0\",\"setup\":{\"seed\":2,\"profile\":\"standard\",\"socialMemory\":true},\"actions\":[]}"
+      }
+    }
+  },
+  {
+    "case": "courtyard-proposal-fixed",
+    "state": {
+      "selected": "Meryem",
+      "focus": "accept",
+      "clock": "15moves left",
+      "panelHeight": 354,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-courtyard-0.1": "{\"version\":\"0.1.0\",\"seed\":1,\"profile\":\"standard\",\"socialMemory\":true,\"round\":3,\"clock\":30,\"status\":\"playing\",\"source\":22,\"spilled\":0,\"carried\":{\"player\":3,\"neighbor\":3},\"homes\":{\"player\":3,\"neighbor\":3},\"meals\":{\"player\":1,\"neighbor\":1},\"people\":{\"player\":{\"format\":\"human-framework-person\",\"version\":1,\"componentVersion\":\"0.1.0\",\"person\":{\"version\":\"0.1.0\",\"id\":\"player\",\"body\":{\"fatigue\":0.605,\"hunger\":0.48000000000000004},\"skills\":{\"collection\":0.5674118572378217},\"observationBias\":0,\"minutes\":30,\"nextAttempt\":4,\"pending\":null}},\"neighbor\":{\"format\":\"human-framework-person\",\"version\":1,\"componentVersion\":\"0.1.0\",\"person\":{\"version\":\"0.1.0\",\"id\":\"neighbor\",\"body\":{\"fatigue\":0.725,\"hunger\":0.3400000000000001},\"skills\":{\"collection\":0.639255030599702},\"observationBias\":0,\"minutes\":30,\"nextAttempt\":4,\"pending\":null}}},\"draws\":{\"player\":2,\"neighbor\":1},\"social\":{\"given\":{\"player\":0,\"neighbor\":0},\"loan\":null,\"returnedOnTime\":0,\"returnedLate\":0,\"lateLoans\":0,\"refusedByPlayer\":0,\"refusedByNeighbor\":0,\"ignored\":0,\"proposal\":{\"kind\":\"request\",\"amount\":2,\"createdRound\":3,\"expiresRound\":4},\"nextProposalRound\":6},\"lastTurn\":{\"round\":3,\"player\":{\"actionId\":\"draw-careful\",\"status\":\"completed\",\"amount\":2,\"message\":\"2 buckets carried.\",\"reason\":null},\"neighbor\":{\"actionId\":\"request\",\"status\":\"completed\",\"amount\":0,\"message\":\"Could you give me two buckets? My household is still short.\",\"reason\":null}}}",
+        "human-courtyard-replay-0.1": "{\"format\":\"courtyard-replay\",\"version\":\"0.1.0\",\"setup\":{\"seed\":1,\"profile\":\"standard\",\"socialMemory\":true},\"actions\":[\"draw-careful\",\"pour\",\"draw-careful\"]}"
+      }
+    },
+    "accept": {
+      "visible": true,
+      "x": 26,
+      "y": 451.15625,
+      "width": 147.5,
+      "height": 44.296875,
+      "bottom": 495.453125,
+      "panel": {
+        "y": 216.78125,
+        "bottom": 570.625
+      }
+    }
+  },
+  {
+    "case": "rain-ferry-fixed",
+    "id": "#checkpoint",
+    "rect": {
+      "visible": true,
+      "x": 13,
+      "y": 251.578125,
+      "width": 329,
+      "height": 157.125,
+      "bottom": 408.703125,
+      "panel": {
+        "y": 242.578125,
+        "bottom": 509.90625
+      }
+    }
+  },
+  {
+    "case": "rain-ferry-fixed",
+    "id": "#continue",
+    "rect": {
+      "visible": true,
+      "x": 13,
+      "y": 624,
+      "width": 239.015625,
+      "height": 35,
+      "bottom": 659,
+      "panel": null
+    }
+  },
+  {
+    "case": "rain-dusk-result-fixed",
+    "state": {
+      "selected": "Journal",
+      "focus": "result",
+      "play": "false",
+      "clock": "0 minAFTERNOON COMPLETE",
+      "panelHeight": 308,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-common-ground-before-rain-v1": "{\"format\":\"human-common-ground-before-rain\",\"version\":1,\"game\":{\"version\":\"0.1.0\",\"world\":{\"version\":\"0.1.0\",\"solo\":false,\"clock\":{\"version\":\"0.1.0\",\"now\":400,\"nextEvent\":25,\"queue\":[]},\"people\":{\"player\":{\"version\":\"0.1.0\",\"id\":\"player\",\"body\":{\"fatigue\":0.779999999999981,\"hunger\":0.47000000000000064},\"skills\":{\"gathering\":0.4334333287389793,\"construction\":0.33641166181925103},\"observationBias\":0,\"minutes\":400,\"nextAttempt\":193,\"pending\":null},\"neighbor\":{\"version\":\"0.1.0\",\"id\":\"neighbor\",\"body\":{\"fatigue\":0.2599999999999851,\"hunger\":0.5300000000000007},\"skills\":{\"gathering\":0.371337363828764,\"construction\":0.3432772177639855},\"observationBias\":0,\"minutes\":400,\"nextAttempt\":193,\"pending\":null}},\"jobs\":{\"player\":null,\"neighbor\":null},\"stock\":{\"timber\":2,\"salvage\":1,\"food\":2},\"structures\":{\"shelter\":2,\"workbench\":2,\"garden\":2},\"caches\":0,\"milestoneAt\":220,\"commitment\":{\"status\":\"fulfilled\",\"project\":\"garden\",\"acceptedAt\":102,\"finishedAt\":220,\"startCaches\":0,\"reason\":\"I need to rest, then I’ll return to the project.\"},\"lastResponse\":{\"at\":102,\"project\":\"garden\",\"accepted\":true,\"reason\":\"Yes. I’ll help finish the garden, gathering its supplies and recovering when needed.\"},\"stats\":{\"started\":24,\"completed\":24,\"canceled\":0,\"gathered\":{\"timber\":20,\"salvage\":9,\"food\":0},\"spent\":{\"timber\":22,\"salvage\":10,\"food\":2},\"consumedFood\":2,\"workMinutes\":298,\"restMinutes\":126,\"mealMinutes\":16,\"idleMinutes\":360,\"receipts\":{\"gather-timber\":6,\"gather-salvage\":3,\"forage\":0,\"rest\":7,\"eat\":2,\"coveredTimber\":2,\"gardenFood\":0}},\"recent\":[{\"at\":175,\"actor\":\"player\",\"message\":\"You finished gather timber. +4 timber.\"},{\"at\":175,\"actor\":\"player\",\"message\":\"You started rest in camp (18 min).\"},{\"at\":176,\"actor\":\"neighbor\",\"message\":\"Meryem finished garden: edge the beds.\"},{\"at\":176,\"actor\":\"neighbor\",\"message\":\"Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project.\"},{\"at\":184,\"actor\":\"neighbor\",\"message\":\"Meryem finished eat a portion.\"},{\"at\":184,\"actor\":\"neighbor\",\"message\":\"Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project.\"},{\"at\":193,\"actor\":\"player\",\"message\":\"You finished rest in camp.\"},{\"at\":193,\"actor\":\"player\",\"message\":\"You started eat a portion (8 min).\"},{\"at\":201,\"actor\":\"player\",\"message\":\"You finished eat a portion.\"},{\"at\":201,\"actor\":\"player\",\"message\":\"You started garden: plant and mulch (19 min).\"},{\"at\":202,\"actor\":\"neighbor\",\"message\":\"Meryem finished rest in camp.\"},{\"at\":220,\"actor\":\"player\",\"message\":\"You finished garden: plant and mulch.\"},{\"at\":220,\"actor\":\"world\",\"message\":\"The worksite is established. Keep gathering or build supply caches for future visitors.\"},{\"at\":220,\"actor\":\"neighbor\",\"message\":\"The garden is complete. I’m available for another project.\"},{\"at\":377,\"actor\":\"neighbor\",\"message\":\"Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project.\"},{\"at\":395,\"actor\":\"neighbor\",\"message\":\"Meryem finished rest in camp.\"}]},\"openedAt\":220,\"production\":[],\"allocations\":[],\"departedAt\":310,\"ended\":true}}"
+      }
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "commons",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "08:00DAY 1",
+      "panelHeight": 258,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-common-ground-v1": "{\"format\":\"human-common-ground\",\"version\":1,\"game\":{\"version\":\"0.1.0\",\"solo\":false,\"clock\":{\"version\":\"0.1.0\",\"now\":0,\"nextEvent\":2,\"queue\":[{\"id\":\"event:1\",\"at\":16,\"type\":\"job-complete\",\"actorId\":\"player\",\"data\":{\"jobId\":\"gather-timber\",\"attemptId\":\"player:1\"}}]},\"people\":{\"player\":{\"version\":\"0.1.0\",\"id\":\"player\",\"body\":{\"fatigue\":0.2,\"hunger\":0.22},\"skills\":{\"gathering\":0.1,\"construction\":0.05},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":2,\"pending\":{\"id\":\"player:1\",\"action\":{\"actionId\":\"gather-timber\",\"targetId\":null,\"durationMinutes\":16,\"effort\":0.13,\"exertive\":true,\"activity\":\"active\",\"skill\":\"gathering\"},\"elapsedMinutes\":0,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.154,\"hungerCost\":0.032,\"projectedFatigue\":0.354,\"projectedHunger\":0.252},\"bodyBefore\":{\"fatigue\":0.2,\"hunger\":0.22},\"skillBefore\":0.1,\"startedAt\":0}},\"neighbor\":{\"version\":\"0.1.0\",\"id\":\"neighbor\",\"body\":{\"fatigue\":0.3,\"hunger\":0.28},\"skills\":{\"gathering\":0.1,\"construction\":0.05},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":1,\"pending\":null}},\"jobs\":{\"player\":{\"id\":\"gather-timber\",\"label\":\"Gather timber\",\"detail\":\"Bring wood from the grove.\",\"project\":null,\"stage\":null,\"cost\":{},\"output\":{\"timber\":3},\"duration\":16,\"benefits\":{\"shelter\":false,\"workbench\":false,\"garden\":false},\"skillBefore\":0.1,\"action\":{\"actionId\":\"gather-timber\",\"targetId\":null,\"durationMinutes\":16,\"effort\":0.13,\"exertive\":true,\"activity\":\"active\",\"skill\":\"gathering\"},\"startedAt\":0,\"endsAt\":16,\"eventId\":\"event:1\",\"attemptId\":\"player:1\"},\"neighbor\":null},\"stock\":{\"timber\":4,\"salvage\":2,\"food\":4},\"structures\":{\"shelter\":0,\"workbench\":0,\"garden\":0},\"caches\":0,\"milestoneAt\":null,\"commitment\":{\"status\":\"none\",\"project\":null,\"acceptedAt\":null,\"finishedAt\":null,\"startCaches\":0,\"reason\":\"Ask me to help with a specific project. I’ll tell you what I can do.\"},\"lastResponse\":null,\"stats\":{\"started\":1,\"completed\":0,\"canceled\":0,\"gathered\":{\"timber\":0,\"salvage\":0,\"food\":0},\"spent\":{\"timber\":0,\"salvage\":0,\"food\":0},\"consumedFood\":0,\"workMinutes\":0,\"restMinutes\":0,\"mealMinutes\":0,\"idleMinutes\":0,\"receipts\":{\"gather-timber\":0,\"gather-salvage\":0,\"forage\":0,\"rest\":0,\"eat\":0,\"coveredTimber\":0,\"gardenFood\":0}},\"recent\":[{\"at\":0,\"actor\":\"player\",\"message\":\"You started gather timber (16 min).\"}]}}"
+      }
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "commons-next",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "90 minUNTIL THE FERRY",
+      "panelHeight": 251,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-common-ground-before-rain-v1": "{\"format\":\"human-common-ground-before-rain\",\"version\":1,\"game\":{\"version\":\"0.1.0\",\"world\":{\"version\":\"0.1.0\",\"solo\":false,\"clock\":{\"version\":\"0.1.0\",\"now\":220,\"nextEvent\":25,\"queue\":[{\"id\":\"event:24\",\"at\":235,\"type\":\"job-complete\",\"actorId\":\"player\",\"data\":{\"jobId\":\"gather-timber\",\"attemptId\":\"player:13\"}}]},\"people\":{\"player\":{\"version\":\"0.1.0\",\"id\":\"player\",\"body\":{\"fatigue\":0.5099999999999908,\"hunger\":0.11000000000000032},\"skills\":{\"gathering\":0.4334333287389793,\"construction\":0.33641166181925103},\"observationBias\":0,\"minutes\":220,\"nextAttempt\":14,\"pending\":{\"id\":\"player:13\",\"action\":{\"actionId\":\"gather-timber\",\"targetId\":null,\"durationMinutes\":15,\"effort\":0.13,\"exertive\":true,\"activity\":\"active\",\"skill\":\"gathering\"},\"elapsedMinutes\":0,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.1525,\"hungerCost\":0.03,\"projectedFatigue\":0.6624999999999908,\"projectedHunger\":0.14000000000000032},\"bodyBefore\":{\"fatigue\":0.5099999999999908,\"hunger\":0.11000000000000032},\"skillBefore\":0.4334333287389793,\"startedAt\":220}},\"neighbor\":{\"version\":\"0.1.0\",\"id\":\"neighbor\",\"body\":{\"fatigue\":0.4399999999999921,\"hunger\":0.17000000000000037},\"skills\":{\"gathering\":0.371337363828764,\"construction\":0.3432772177639855},\"observationBias\":0,\"minutes\":220,\"nextAttempt\":30,\"pending\":null}},\"jobs\":{\"player\":{\"id\":\"gather-timber\",\"label\":\"Gather timber\",\"detail\":\"Bring wood from the grove.\",\"project\":null,\"stage\":null,\"cost\":{},\"output\":{\"timber\":4},\"duration\":15,\"benefits\":{\"shelter\":true,\"workbench\":true,\"garden\":true},\"skillBefore\":0.4334333287389793,\"action\":{\"actionId\":\"gather-timber\",\"targetId\":null,\"durationMinutes\":15,\"effort\":0.13,\"exertive\":true,\"activity\":\"active\",\"skill\":\"gathering\"},\"startedAt\":220,\"endsAt\":235,\"eventId\":\"event:24\",\"attemptId\":\"player:13\"},\"neighbor\":null},\"stock\":{\"timber\":2,\"salvage\":1,\"food\":2},\"structures\":{\"shelter\":2,\"workbench\":2,\"garden\":2},\"caches\":0,\"milestoneAt\":220,\"commitment\":{\"status\":\"fulfilled\",\"project\":\"garden\",\"acceptedAt\":102,\"finishedAt\":220,\"startCaches\":0,\"reason\":\"The garden is complete. I’m available for another project.\"},\"lastResponse\":{\"at\":102,\"project\":\"garden\",\"accepted\":true,\"reason\":\"Yes. I’ll help finish the garden, gathering its supplies and recovering when needed.\"},\"stats\":{\"started\":24,\"completed\":23,\"canceled\":0,\"gathered\":{\"timber\":20,\"salvage\":9,\"food\":0},\"spent\":{\"timber\":22,\"salvage\":10,\"food\":2},\"consumedFood\":2,\"workMinutes\":298,\"restMinutes\":108,\"mealMinutes\":16,\"idleMinutes\":18,\"receipts\":{\"gather-timber\":6,\"gather-salvage\":3,\"forage\":0,\"rest\":6,\"eat\":2,\"coveredTimber\":2,\"gardenFood\":0}},\"recent\":[{\"at\":160,\"actor\":\"player\",\"message\":\"You started gather timber (15 min).\"},{\"at\":175,\"actor\":\"player\",\"message\":\"You finished gather timber. +4 timber.\"},{\"at\":175,\"actor\":\"player\",\"message\":\"You started rest in camp (18 min).\"},{\"at\":176,\"actor\":\"neighbor\",\"message\":\"Meryem finished garden: edge the beds.\"},{\"at\":176,\"actor\":\"neighbor\",\"message\":\"Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project.\"},{\"at\":184,\"actor\":\"neighbor\",\"message\":\"Meryem finished eat a portion.\"},{\"at\":184,\"actor\":\"neighbor\",\"message\":\"Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project.\"},{\"at\":193,\"actor\":\"player\",\"message\":\"You finished rest in camp.\"},{\"at\":193,\"actor\":\"player\",\"message\":\"You started eat a portion (8 min).\"},{\"at\":201,\"actor\":\"player\",\"message\":\"You finished eat a portion.\"},{\"at\":201,\"actor\":\"player\",\"message\":\"You started garden: plant and mulch (19 min).\"},{\"at\":202,\"actor\":\"neighbor\",\"message\":\"Meryem finished rest in camp.\"},{\"at\":220,\"actor\":\"player\",\"message\":\"You finished garden: plant and mulch.\"},{\"at\":220,\"actor\":\"world\",\"message\":\"The worksite is established. Keep gathering or build supply caches for future visitors.\"},{\"at\":220,\"actor\":\"neighbor\",\"message\":\"The garden is complete. I’m available for another project.\"},{\"at\":220,\"actor\":\"player\",\"message\":\"You started gather timber (15 min).\"}]},\"openedAt\":220,\"production\":[],\"allocations\":[],\"departedAt\":null,\"ended\":false}}"
+      }
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "watch",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "00minutes elapsed",
+      "panelHeight": 239,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-before-the-water-v1": "{\"format\":\"before-the-water\",\"version\":1,\"state\":{\"version\":\"0.1.0\",\"scenario\":\"steady\",\"clock\":{\"version\":\"0.1.0\",\"now\":0,\"nextEvent\":5,\"queue\":[{\"id\":\"event:4\",\"at\":6,\"type\":\"attempt-due\",\"actorId\":\"keeper\",\"data\":{\"attemptId\":\"keeper:2\",\"task\":\"watch\"}},{\"id\":\"event:1\",\"at\":32,\"type\":\"water-arrival\",\"actorId\":null,\"data\":null},{\"id\":\"event:3\",\"at\":64,\"type\":\"attempt-due\",\"actorId\":\"watcher\",\"data\":{\"attemptId\":\"watcher:1\",\"task\":\"idle\"}}]},\"people\":{\"keeper\":{\"version\":\"0.1.1\",\"id\":\"keeper\",\"body\":{\"fatigue\":0.55,\"hunger\":0.2},\"skills\":{\"repair\":0.2,\"watch\":0.1},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":3,\"pending\":{\"id\":\"keeper:2\",\"action\":{\"actionId\":\"watch\",\"targetId\":\"channel\",\"durationMinutes\":6,\"effort\":0,\"exertive\":false,\"activity\":\"active\",\"skill\":\"watch\"},\"elapsedMinutes\":0,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.009000000000000001,\"hungerCost\":0.012,\"projectedFatigue\":0.559,\"projectedHunger\":0.21200000000000002},\"bodyBefore\":{\"fatigue\":0.55,\"hunger\":0.2},\"skillBefore\":0.1,\"startedAt\":0}},\"watcher\":{\"version\":\"0.1.1\",\"id\":\"watcher\",\"body\":{\"fatigue\":0.2,\"hunger\":0.2},\"skills\":{\"repair\":0.2,\"watch\":0.1},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":2,\"pending\":{\"id\":\"watcher:1\",\"action\":{\"actionId\":\"idle\",\"targetId\":null,\"durationMinutes\":64,\"effort\":0,\"exertive\":false,\"activity\":\"active\",\"skill\":null},\"elapsedMinutes\":0,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.096,\"hungerCost\":0.128,\"projectedFatigue\":0.29600000000000004,\"projectedHunger\":0.328},\"bodyBefore\":{\"fatigue\":0.2,\"hunger\":0.2},\"skillBefore\":null,\"startedAt\":0}}},\"jobs\":{\"keeper\":{\"task\":\"watch\",\"startedAt\":0,\"endsAt\":6,\"eventId\":\"event:4\",\"attemptId\":\"keeper:2\",\"startProgress\":null,\"reservedParts\":0,\"reservedMeal\":0},\"watcher\":{\"task\":\"idle\",\"startedAt\":0,\"endsAt\":64,\"eventId\":\"event:3\",\"attemptId\":\"watcher:1\",\"startProgress\":null,\"reservedParts\":0,\"reservedMeal\":0}},\"parts\":{\"keeper\":2,\"watcher\":1},\"food\":{\"keeper\":1,\"watcher\":1},\"eaten\":{\"keeper\":0,\"watcher\":0},\"repair\":0,\"bypass\":0,\"salvaged\":0,\"warningAt\":null,\"divertedAt\":null,\"arrivalEventId\":\"event:1\",\"outcome\":null,\"stats\":{\"requests\":1,\"started\":1,\"completed\":0,\"interrupted\":0},\"paid\":{\"repair\":0,\"bypass\":0,\"watch\":0,\"open\":0,\"share\":0,\"salvage\":0,\"rest\":0,\"meal\":0,\"idle\":0},\"lastResponse\":{\"at\":0,\"actor\":\"keeper\",\"task\":\"watch\",\"accepted\":true,\"code\":\"ACCEPTED\",\"reason\":\"Accepted: take the lookout, 6 minutes.\"},\"lastReceipt\":null,\"recent\":[{\"at\":0,\"actor\":\"world\",\"message\":\"Protect the site before the surge. Repair the gate to keep water service, or prepare and open a diversion. Nothing moves until you advance time.\"},{\"at\":0,\"actor\":\"keeper\",\"message\":\"Accepted: take the lookout, 6 minutes.\"}]}}"
+      }
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "signals",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "00of 32 minutes",
+      "panelHeight": 284,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-last-light-v1": "{\"format\":\"human-last-light\",\"version\":1,\"hostVersion\":\"0.1.0\",\"runtimeVersion\":\"0.1.1\",\"situation\":\"turning\",\"commands\":[{\"type\":\"task\",\"task\":\"canal\"}],\"state\":{\"version\":\"0.1.0\",\"situation\":\"turning\",\"clock\":{\"version\":\"0.1.0\",\"now\":0,\"nextEvent\":7,\"queue\":[{\"id\":\"event:3\",\"at\":4,\"type\":\"landing-change\",\"actorId\":null,\"data\":{\"value\":\"open\"}},{\"id\":\"event:6\",\"at\":6,\"type\":\"attempt-due\",\"actorId\":\"carrier\",\"data\":{\"attemptId\":\"carrier:2\",\"task\":\"canal\"}},{\"id\":\"event:2\",\"at\":12,\"type\":\"launch-closing\",\"actorId\":null,\"data\":null},{\"id\":\"event:4\",\"at\":20,\"type\":\"landing-change\",\"actorId\":null,\"data\":{\"value\":\"closed\"}},{\"id\":\"event:1\",\"at\":32,\"type\":\"closing\",\"actorId\":null,\"data\":null}]},\"person\":{\"version\":\"0.1.1\",\"id\":\"carrier\",\"body\":{\"fatigue\":0.2,\"hunger\":0.2},\"skills\":{\"carry\":0.15,\"lookout\":0.1},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":3,\"pending\":{\"id\":\"carrier:2\",\"action\":{\"actionId\":\"canal\",\"targetId\":\"beacon\",\"durationMinutes\":6,\"effort\":0.06,\"exertive\":true,\"activity\":\"active\",\"skill\":\"carry\"},\"elapsedMinutes\":0,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.069,\"hungerCost\":0.012,\"projectedFatigue\":0.269,\"projectedHunger\":0.21200000000000002},\"bodyBefore\":{\"fatigue\":0.2,\"hunger\":0.2},\"skillBefore\":0.15,\"startedAt\":0}},\"job\":{\"task\":\"canal\",\"startedAt\":0,\"endsAt\":6,\"attemptId\":\"carrier:2\",\"eventId\":\"event:6\"},\"landing\":\"closed\",\"resources\":{\"fares\":1,\"charges\":3,\"meal\":1},\"spent\":{\"fares\":1,\"charges\":0,\"meal\":0},\"notebook\":null,\"deliveries\":[],\"inFlight\":[],\"sequence\":0,\"outcome\":null,\"paid\":{\"canal\":0,\"ridge\":0,\"lookout\":0,\"radio\":0,\"rest\":0,\"meal\":0,\"idle\":0},\"failedCrossings\":0,\"lastResponse\":{\"at\":0,\"task\":\"canal\",\"accepted\":true,\"code\":\"ACCEPTED\",\"reason\":\"Take the canal: 6 minutes. Advance time when ready.\"},\"lastReceipt\":null,\"recent\":[{\"at\":0,\"message\":\"Deliver the lens before minute 32. The ridge is reliable; the canal needs an open landing at arrival. Choosing does not move time.\"},{\"at\":0,\"message\":\"Take the canal: 6 minutes. Advance time when ready.\"}]}}"
+      }
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "service",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "00Morning · inlet first",
+      "panelHeight": 191,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-service-day-v1": "{\"format\":\"human-service-day\",\"version\":1,\"hostVersion\":\"0.1.0\",\"runtimeVersion\":\"0.1.1\",\"scenario\":\"standard\",\"commands\":[{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"gate\"}],\"state\":{\"version\":\"0.1.0\",\"scenario\":\"standard\",\"clock\":{\"version\":\"0.1.0\",\"now\":0,\"nextEvent\":6,\"queue\":[{\"id\":\"event:5\",\"at\":6,\"type\":\"attempt-due\",\"actorId\":\"keeper\",\"data\":{\"attemptId\":\"keeper:2\",\"task\":\"gate\"}},{\"id\":\"event:1\",\"at\":24,\"type\":\"morning\",\"actorId\":null,\"data\":null},{\"id\":\"event:2\",\"at\":64,\"type\":\"closing\",\"actorId\":null,\"data\":null},{\"id\":\"event:4\",\"at\":64,\"type\":\"attempt-due\",\"actorId\":\"partner\",\"data\":{\"attemptId\":\"partner:1\",\"task\":\"idle\"}}]},\"people\":{\"keeper\":{\"version\":\"0.1.1\",\"id\":\"keeper\",\"body\":{\"fatigue\":0.5,\"hunger\":0.86},\"skills\":{\"repair\":0.2,\"carry\":0.1},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":3,\"pending\":{\"id\":\"keeper:2\",\"action\":{\"actionId\":\"gate\",\"targetId\":\"inlet\",\"durationMinutes\":6,\"effort\":0.16,\"exertive\":true,\"activity\":\"active\",\"skill\":\"repair\"},\"elapsedMinutes\":0,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.169,\"hungerCost\":0.012,\"projectedFatigue\":0.669,\"projectedHunger\":0.872},\"bodyBefore\":{\"fatigue\":0.5,\"hunger\":0.86},\"skillBefore\":0.2,\"startedAt\":0}},\"partner\":{\"version\":\"0.1.1\",\"id\":\"partner\",\"body\":{\"fatigue\":0.25,\"hunger\":0.78},\"skills\":{\"repair\":0.2,\"carry\":0.1},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":2,\"pending\":{\"id\":\"partner:1\",\"action\":{\"actionId\":\"idle\",\"targetId\":null,\"durationMinutes\":64,\"effort\":0,\"exertive\":false,\"activity\":\"active\",\"skill\":null},\"elapsedMinutes\":0,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.096,\"hungerCost\":0.128,\"projectedFatigue\":0.346,\"projectedHunger\":0.908},\"bodyBefore\":{\"fatigue\":0.25,\"hunger\":0.78},\"skillBefore\":null,\"startedAt\":0}}},\"jobs\":{\"keeper\":{\"task\":\"gate\",\"origin\":\"request\",\"startedAt\":0,\"endsAt\":6,\"eventId\":\"event:5\",\"attemptId\":\"keeper:2\",\"startProgress\":0,\"reservedParts\":1,\"reservedMeal\":0},\"partner\":{\"task\":\"idle\",\"origin\":\"own\",\"startedAt\":0,\"endsAt\":64,\"eventId\":\"event:4\",\"attemptId\":\"partner:1\",\"startProgress\":null,\"reservedParts\":0,\"reservedMeal\":0}},\"parts\":{\"keeper\":1,\"partner\":1},\"food\":{\"keeper\":1,\"partner\":1},\"eaten\":{\"keeper\":0,\"partner\":0},\"work\":{\"gate\":0,\"divert\":0,\"pump\":0},\"salvaged\":0,\"reopenedAt\":null,\"morning\":null,\"delivery\":null,\"outcome\":null,\"paid\":{\"gate\":0,\"divert\":0,\"reopen\":0,\"pump\":0,\"deliver\":0,\"cart\":0,\"share\":0,\"salvage\":0,\"rest\":0,\"meal\":0,\"idle\":0},\"paidByActor\":{\"keeper\":{\"gate\":0,\"divert\":0,\"reopen\":0,\"pump\":0,\"deliver\":0,\"cart\":0,\"share\":0,\"salvage\":0,\"rest\":0,\"meal\":0,\"idle\":0},\"partner\":{\"gate\":0,\"divert\":0,\"reopen\":0,\"pump\":0,\"deliver\":0,\"cart\":0,\"share\":0,\"salvage\":0,\"rest\":0,\"meal\":0,\"idle\":0}},\"installedPartsByActor\":{\"keeper\":0,\"partner\":0},\"handedOver\":{\"keeper\":0,\"partner\":0},\"lastResponse\":{\"at\":0,\"actor\":\"keeper\",\"task\":\"gate\",\"accepted\":true,\"code\":\"ACCEPTED\",\"reason\":\"Agreed: repair an inlet gate section, 6 paid minutes.\"},\"lastReceipt\":null,\"recent\":[{\"at\":0,\"actor\":\"world\",\"message\":\"Serve the inlet at minute 24, then the clinic at minute 64. The same people, parts, meals and unfinished repairs carry through the day.\"},{\"at\":0,\"actor\":\"keeper\",\"message\":\"Agreed: repair an inlet gate section, 6 paid minutes.\"}]}}"
+      }
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "service-plan",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "37of 64 minutes",
+      "panelHeight": 249,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-shared-promise-v1": "{\"format\":\"human-service-plan\",\"version\":1,\"hostVersion\":\"0.1.0\",\"runtimeVersion\":\"0.1.1\",\"scenario\":\"standard\",\"commands\":[{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"meal\"},{\"type\":\"advance\",\"to\":4},{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"gate\"},{\"type\":\"advance\",\"to\":10},{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"gate\"},{\"type\":\"advance\",\"to\":16},{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"salvage\"},{\"type\":\"advance\",\"to\":24},{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"rest\"},{\"type\":\"advance\",\"to\":37},{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"pump\"}],\"state\":{\"version\":\"0.1.0\",\"scenario\":\"standard\",\"clock\":{\"version\":\"0.1.0\",\"now\":37,\"nextEvent\":20,\"queue\":[{\"id\":\"event:19\",\"at\":43,\"type\":\"attempt-due\",\"actorId\":\"keeper\",\"data\":{\"attemptId\":\"keeper:12\",\"task\":\"pump\"}},{\"id\":\"event:2\",\"at\":64,\"type\":\"closing\",\"actorId\":null,\"data\":null},{\"id\":\"event:17\",\"at\":94,\"type\":\"attempt-due\",\"actorId\":\"partner\",\"data\":{\"attemptId\":\"partner:5\",\"task\":\"idle\"}}]},\"people\":{\"keeper\":{\"version\":\"0.1.1\",\"id\":\"keeper\",\"body\":{\"fatigue\":0.7654999999999973,\"hunger\":0.384},\"skills\":{\"repair\":0.2483943929464168,\"carry\":0.1},\"observationBias\":0,\"minutes\":37,\"nextAttempt\":13,\"pending\":{\"id\":\"keeper:12\",\"action\":{\"actionId\":\"pump\",\"targetId\":\"clinic\",\"durationMinutes\":6,\"effort\":0.16,\"exertive\":true,\"activity\":\"active\",\"skill\":\"repair\"},\"elapsedMinutes\":0,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.169,\"hungerCost\":0.012,\"projectedFatigue\":0.9344999999999973,\"projectedHunger\":0.396},\"bodyBefore\":{\"fatigue\":0.7654999999999973,\"hunger\":0.384},\"skillBefore\":0.2483943929464168,\"startedAt\":37}},\"partner\":{\"version\":\"0.1.1\",\"id\":\"partner\",\"body\":{\"fatigue\":0.4655000000000001,\"hunger\":0.30400000000000005},\"skills\":{\"repair\":0.2245746421202963,\"carry\":0.1},\"observationBias\":0,\"minutes\":37,\"nextAttempt\":6,\"pending\":{\"id\":\"partner:5\",\"action\":{\"actionId\":\"idle\",\"targetId\":null,\"durationMinutes\":64,\"effort\":0,\"exertive\":false,\"activity\":\"active\",\"skill\":null},\"elapsedMinutes\":7,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.096,\"hungerCost\":0.128,\"projectedFatigue\":0.551,\"projectedHunger\":0.41800000000000004},\"bodyBefore\":{\"fatigue\":0.45500000000000007,\"hunger\":0.29000000000000004},\"skillBefore\":null,\"startedAt\":30}}},\"jobs\":{\"keeper\":{\"task\":\"pump\",\"origin\":\"request\",\"startedAt\":37,\"endsAt\":43,\"eventId\":\"event:19\",\"attemptId\":\"keeper:12\",\"startProgress\":6,\"reservedParts\":1,\"reservedMeal\":0},\"partner\":{\"task\":\"idle\",\"origin\":\"own\",\"startedAt\":30,\"endsAt\":94,\"eventId\":\"event:17\",\"attemptId\":\"partner:5\",\"startProgress\":null,\"reservedParts\":0,\"reservedMeal\":0}},\"parts\":{\"keeper\":0,\"partner\":0},\"food\":{\"keeper\":0,\"partner\":0},\"eaten\":{\"keeper\":1,\"partner\":1},\"work\":{\"gate\":12,\"divert\":0,\"pump\":6},\"salvaged\":1,\"reopenedAt\":null,\"morning\":{\"at\":24,\"protected\":true,\"waterService\":true,\"route\":\"gate\"},\"delivery\":null,\"outcome\":null,\"paid\":{\"gate\":12,\"divert\":0,\"reopen\":0,\"pump\":6,\"deliver\":0,\"cart\":0,\"share\":0,\"salvage\":8,\"rest\":6,\"meal\":8,\"idle\":34,\"discuss\":0},\"paidByActor\":{\"keeper\":{\"gate\":12,\"divert\":0,\"reopen\":0,\"pump\":0,\"deliver\":0,\"cart\":0,\"share\":0,\"salvage\":8,\"rest\":6,\"meal\":4,\"idle\":7,\"discuss\":0},\"partner\":{\"gate\":0,\"divert\":0,\"reopen\":0,\"pump\":6,\"deliver\":0,\"cart\":0,\"share\":0,\"salvage\":0,\"rest\":0,\"meal\":4,\"idle\":27,\"discuss\":0}},\"installedPartsByActor\":{\"keeper\":2,\"partner\":1},\"handedOver\":{\"keeper\":0,\"partner\":0},\"coordination\":{\"readyAt\":null,\"nextId\":1,\"current\":null,\"pending\":null,\"lastResponse\":null,\"slot\":null},\"lastResponse\":{\"at\":37,\"actor\":\"keeper\",\"task\":\"pump\",\"accepted\":true,\"code\":\"ACCEPTED\",\"reason\":\"Agreed: repair a clinic pump section, 6 paid minutes.\"},\"lastReceipt\":{\"id\":\"event:16\",\"at\":30,\"type\":\"attempt-due\",\"actorId\":\"keeper\",\"data\":{\"attemptId\":\"keeper:10\",\"task\":\"rest\"}},\"recent\":[{\"at\":10,\"actor\":\"keeper\",\"message\":\"Agreed: repair an inlet gate section, 6 paid minutes.\"},{\"at\":16,\"actor\":\"keeper\",\"message\":\"Finished repair an inlet gate section.\"},{\"at\":16,\"actor\":\"keeper\",\"message\":\"Agreed: fetch the shed spare, 8 paid minutes.\"},{\"at\":20,\"actor\":\"partner\",\"message\":\"I prefer to eat now before the later clinic work.\"},{\"at\":24,\"actor\":\"world\",\"message\":\"The gate held and morning water service continued. The clinic now needs its pump and delivery.\"},{\"at\":24,\"actor\":\"keeper\",\"message\":\"Finished fetch the shed spare.\"},{\"at\":24,\"actor\":\"partner\",\"message\":\"Finished eat your meal.\"},{\"at\":24,\"actor\":\"partner\",\"message\":\"I will use my own part to repair the clinic pump.\"},{\"at\":24,\"actor\":\"keeper\",\"message\":\"Agreed: rest, 6 paid minutes.\"},{\"at\":30,\"actor\":\"partner\",\"message\":\"Finished repair a clinic pump section.\"},{\"at\":30,\"actor\":\"keeper\",\"message\":\"Finished rest.\"},{\"at\":37,\"actor\":\"keeper\",\"message\":\"Agreed: repair a clinic pump section, 6 paid minutes.\"}]}}"
+      }
+    }
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "workshop",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 607
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 554
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 430
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 430
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 430
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "workshop",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "workshop",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "workshop",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 547,
+        "scrollHeight": 547
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 493,
+        "scrollHeight": 493
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 169,
+        "scrollHeight": 169
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 24,
+        "scrollHeight": 24
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 412,
+        "scrollHeight": 412
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "shift",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 398,
+        "scrollHeight": 724
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 398,
+        "scrollHeight": 594
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 398,
+        "scrollHeight": 398
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 398,
+        "scrollHeight": 398
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 398,
+        "scrollHeight": 678
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "shift",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 575,
+        "scrollHeight": 705
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 575,
+        "scrollHeight": 579
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 575,
+        "scrollHeight": 575
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 575,
+        "scrollHeight": 575
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 575,
+        "scrollHeight": 678
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "shift",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 493,
+        "scrollHeight": 615
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 493,
+        "scrollHeight": 626
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 493,
+        "scrollHeight": 493
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 493,
+        "scrollHeight": 493
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 493,
+        "scrollHeight": 659
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "shift",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 632,
+        "scrollHeight": 632
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 577,
+        "scrollHeight": 577
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 258,
+        "scrollHeight": 258
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 24,
+        "scrollHeight": 24
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 665,
+        "scrollHeight": 665
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courier",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 1314
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 491
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 710
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 430
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 525
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courier",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 1314
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 691
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courier",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 1228
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 889
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courier",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 1241,
+        "scrollHeight": 1241
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 594,
+        "scrollHeight": 594
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 697,
+        "scrollHeight": 697
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 24,
+        "scrollHeight": 24
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 523,
+        "scrollHeight": 523
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courtyard",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 395,
+        "scrollHeight": 705
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 395,
+        "scrollHeight": 462
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 395,
+        "scrollHeight": 486
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 395,
+        "scrollHeight": 395
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 395,
+        "scrollHeight": 715
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courtyard",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 588,
+        "scrollHeight": 689
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 588,
+        "scrollHeight": 588
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 588,
+        "scrollHeight": 588
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 588,
+        "scrollHeight": 588
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 588,
+        "scrollHeight": 715
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courtyard",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 580
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 563
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 674
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courtyard",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 635,
+        "scrollHeight": 635
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 381,
+        "scrollHeight": 381
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 509,
+        "scrollHeight": 509
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 24,
+        "scrollHeight": 24
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 675,
+        "scrollHeight": 675
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 313,
+        "scrollHeight": 612
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 313,
+        "scrollHeight": 709
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 313,
+        "scrollHeight": 469
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 313,
+        "scrollHeight": 313
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 313,
+        "scrollHeight": 670
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 490,
+        "scrollHeight": 603
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 490,
+        "scrollHeight": 709
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 490,
+        "scrollHeight": 490
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 490,
+        "scrollHeight": 490
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 490,
+        "scrollHeight": 670
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 522,
+        "scrollHeight": 522
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 522,
+        "scrollHeight": 522
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 522,
+        "scrollHeight": 528
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 522,
+        "scrollHeight": 522
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 522,
+        "scrollHeight": 641
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 522,
+        "scrollHeight": 522
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 470,
+        "scrollHeight": 470
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 528,
+        "scrollHeight": 528
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 138,
+        "scrollHeight": 138
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 641,
+        "scrollHeight": 641
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons-next",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 306,
+        "scrollHeight": 392
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 306,
+        "scrollHeight": 637
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 306,
+        "scrollHeight": 820
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 306,
+        "scrollHeight": 306
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 306,
+        "scrollHeight": 1067
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons-next",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 483,
+        "scrollHeight": 483
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 483,
+        "scrollHeight": 619
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 483,
+        "scrollHeight": 820
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 483,
+        "scrollHeight": 483
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 483,
+        "scrollHeight": 1067
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons-next",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 920
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons-next",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 373,
+        "scrollHeight": 373
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 425,
+        "scrollHeight": 425
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 742,
+        "scrollHeight": 742
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 146,
+        "scrollHeight": 146
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 1046,
+        "scrollHeight": 1046
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "watch",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 294,
+        "scrollHeight": 782
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 294,
+        "scrollHeight": 836
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 294,
+        "scrollHeight": 421
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 294,
+        "scrollHeight": 294
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 294,
+        "scrollHeight": 505
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "watch",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 471,
+        "scrollHeight": 782
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 471,
+        "scrollHeight": 816
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 471,
+        "scrollHeight": 471
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 471,
+        "scrollHeight": 471
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 471,
+        "scrollHeight": 505
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "watch",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 477,
+        "scrollHeight": 602
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 477,
+        "scrollHeight": 602
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 477,
+        "scrollHeight": 477
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 477,
+        "scrollHeight": 477
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 477,
+        "scrollHeight": 500
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "watch",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 728,
+        "scrollHeight": 728
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 762,
+        "scrollHeight": 762
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 381,
+        "scrollHeight": 381
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 184,
+        "scrollHeight": 184
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 527,
+        "scrollHeight": 527
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "signals",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 352,
+        "scrollHeight": 456
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 352,
+        "scrollHeight": 517
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 352,
+        "scrollHeight": 532
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 352,
+        "scrollHeight": 352
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 352,
+        "scrollHeight": 534
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "signals",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 529,
+        "scrollHeight": 529
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 529,
+        "scrollHeight": 529
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 529,
+        "scrollHeight": 537
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 529,
+        "scrollHeight": 529
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 529,
+        "scrollHeight": 534
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "signals",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 516
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 548
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "signals",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 387,
+        "scrollHeight": 387
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 459,
+        "scrollHeight": 459
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 583,
+        "scrollHeight": 583
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 163,
+        "scrollHeight": 163
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 548,
+        "scrollHeight": 548
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 246,
+        "scrollHeight": 496
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 246,
+        "scrollHeight": 789
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 246,
+        "scrollHeight": 246
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 246,
+        "scrollHeight": 246
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 246,
+        "scrollHeight": 557
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 423,
+        "scrollHeight": 496
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 423,
+        "scrollHeight": 789
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 423,
+        "scrollHeight": 423
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 423,
+        "scrollHeight": 423
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 423,
+        "scrollHeight": 557
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 481,
+        "scrollHeight": 481
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 481,
+        "scrollHeight": 617
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 481,
+        "scrollHeight": 481
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 481,
+        "scrollHeight": 481
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 481,
+        "scrollHeight": 624
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 476,
+        "scrollHeight": 476
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 660,
+        "scrollHeight": 660
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 212,
+        "scrollHeight": 212
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 157,
+        "scrollHeight": 157
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 571,
+        "scrollHeight": 571
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service-plan",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 304,
+        "scrollHeight": 708
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 304,
+        "scrollHeight": 531
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 304,
+        "scrollHeight": 349
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 304,
+        "scrollHeight": 700
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 304,
+        "scrollHeight": 542
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service-plan",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 481,
+        "scrollHeight": 708
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 481,
+        "scrollHeight": 531
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 481,
+        "scrollHeight": 481
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 481,
+        "scrollHeight": 700
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 481,
+        "scrollHeight": 542
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service-plan",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 613
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 564
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service-plan",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 620,
+        "scrollHeight": 620
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 435,
+        "scrollHeight": 435
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 363,
+        "scrollHeight": 363
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 630,
+        "scrollHeight": 630
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 564,
+        "scrollHeight": 564
+      }
+    ]
+  },
+  {
+    "case": "actual-leave-return-pauses",
+    "game": "signals",
+    "state": {
+      "selected": "Route",
+      "focus": "",
+      "play": "false",
+      "clock": "00of 32 minutes",
+      "panelHeight": 352,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-last-light-v1": "{\"format\":\"human-last-light\",\"version\":1,\"hostVersion\":\"0.1.0\",\"runtimeVersion\":\"0.1.1\",\"situation\":\"turning\",\"commands\":[],\"state\":{\"version\":\"0.1.0\",\"situation\":\"turning\",\"clock\":{\"version\":\"0.1.0\",\"now\":0,\"nextEvent\":6,\"queue\":[{\"id\":\"event:3\",\"at\":4,\"type\":\"landing-change\",\"actorId\":null,\"data\":{\"value\":\"open\"}},{\"id\":\"event:2\",\"at\":12,\"type\":\"launch-closing\",\"actorId\":null,\"data\":null},{\"id\":\"event:4\",\"at\":20,\"type\":\"landing-change\",\"actorId\":null,\"data\":{\"value\":\"closed\"}},{\"id\":\"event:1\",\"at\":32,\"type\":\"closing\",\"actorId\":null,\"data\":null},{\"id\":\"event:5\",\"at\":32,\"type\":\"attempt-due\",\"actorId\":\"carrier\",\"data\":{\"attemptId\":\"carrier:1\",\"task\":\"idle\"}}]},\"person\":{\"version\":\"0.1.1\",\"id\":\"carrier\",\"body\":{\"fatigue\":0.2,\"hunger\":0.2},\"skills\":{\"carry\":0.15,\"lookout\":0.1},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":2,\"pending\":{\"id\":\"carrier:1\",\"action\":{\"actionId\":\"idle\",\"targetId\":null,\"durationMinutes\":32,\"effort\":0,\"exertive\":false,\"activity\":\"active\",\"skill\":null},\"elapsedMinutes\":0,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.048,\"hungerCost\":0.064,\"projectedFatigue\":0.248,\"projectedHunger\":0.264},\"bodyBefore\":{\"fatigue\":0.2,\"hunger\":0.2},\"skillBefore\":null,\"startedAt\":0}},\"job\":{\"task\":\"idle\",\"startedAt\":0,\"endsAt\":32,\"attemptId\":\"carrier:1\",\"eventId\":\"event:5\"},\"landing\":\"closed\",\"resources\":{\"fares\":2,\"charges\":3,\"meal\":1},\"spent\":{\"fares\":0,\"charges\":0,\"meal\":0},\"notebook\":null,\"deliveries\":[],\"inFlight\":[],\"sequence\":0,\"outcome\":null,\"paid\":{\"canal\":0,\"ridge\":0,\"lookout\":0,\"radio\":0,\"rest\":0,\"meal\":0,\"idle\":0},\"failedCrossings\":0,\"lastResponse\":null,\"lastReceipt\":null,\"recent\":[{\"at\":0,\"message\":\"Deliver the lens before minute 32. The ridge is reliable; the canal needs an open landing at arrival. Choosing does not move time.\"}]}}"
+      }
+    }
+  },
+  {
+    "case": "actual-leave-return-pauses",
+    "game": "service-plan",
+    "state": {
+      "selected": "You",
+      "focus": "",
+      "play": "false",
+      "clock": "37of 64 minutes",
+      "panelHeight": 304,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-shared-promise-v1": "{\"format\":\"human-service-plan\",\"version\":1,\"hostVersion\":\"0.1.0\",\"runtimeVersion\":\"0.1.1\",\"scenario\":\"standard\",\"commands\":[{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"meal\"},{\"type\":\"advance\",\"to\":4},{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"gate\"},{\"type\":\"advance\",\"to\":10},{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"gate\"},{\"type\":\"advance\",\"to\":16},{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"salvage\"},{\"type\":\"advance\",\"to\":24},{\"type\":\"request\",\"actor\":\"keeper\",\"task\":\"rest\"},{\"type\":\"advance\",\"to\":37}],\"state\":{\"version\":\"0.1.0\",\"scenario\":\"standard\",\"clock\":{\"version\":\"0.1.0\",\"now\":37,\"nextEvent\":19,\"queue\":[{\"id\":\"event:2\",\"at\":64,\"type\":\"closing\",\"actorId\":null,\"data\":null},{\"id\":\"event:17\",\"at\":94,\"type\":\"attempt-due\",\"actorId\":\"partner\",\"data\":{\"attemptId\":\"partner:5\",\"task\":\"idle\"}},{\"id\":\"event:18\",\"at\":94,\"type\":\"attempt-due\",\"actorId\":\"keeper\",\"data\":{\"attemptId\":\"keeper:11\",\"task\":\"idle\"}}]},\"people\":{\"keeper\":{\"version\":\"0.1.1\",\"id\":\"keeper\",\"body\":{\"fatigue\":0.7654999999999973,\"hunger\":0.384},\"skills\":{\"repair\":0.2483943929464168,\"carry\":0.1},\"observationBias\":0,\"minutes\":37,\"nextAttempt\":12,\"pending\":{\"id\":\"keeper:11\",\"action\":{\"actionId\":\"idle\",\"targetId\":null,\"durationMinutes\":64,\"effort\":0,\"exertive\":false,\"activity\":\"active\",\"skill\":null},\"elapsedMinutes\":7,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.096,\"hungerCost\":0.128,\"projectedFatigue\":0.8509999999999976,\"projectedHunger\":0.498},\"bodyBefore\":{\"fatigue\":0.7549999999999977,\"hunger\":0.37},\"skillBefore\":null,\"startedAt\":30}},\"partner\":{\"version\":\"0.1.1\",\"id\":\"partner\",\"body\":{\"fatigue\":0.4655000000000001,\"hunger\":0.30400000000000005},\"skills\":{\"repair\":0.2245746421202963,\"carry\":0.1},\"observationBias\":0,\"minutes\":37,\"nextAttempt\":6,\"pending\":{\"id\":\"partner:5\",\"action\":{\"actionId\":\"idle\",\"targetId\":null,\"durationMinutes\":64,\"effort\":0,\"exertive\":false,\"activity\":\"active\",\"skill\":null},\"elapsedMinutes\":7,\"capacity\":{\"allowed\":true,\"causes\":[],\"fatigueCost\":0.096,\"hungerCost\":0.128,\"projectedFatigue\":0.551,\"projectedHunger\":0.41800000000000004},\"bodyBefore\":{\"fatigue\":0.45500000000000007,\"hunger\":0.29000000000000004},\"skillBefore\":null,\"startedAt\":30}}},\"jobs\":{\"keeper\":{\"task\":\"idle\",\"origin\":\"own\",\"startedAt\":30,\"endsAt\":94,\"eventId\":\"event:18\",\"attemptId\":\"keeper:11\",\"startProgress\":null,\"reservedParts\":0,\"reservedMeal\":0},\"partner\":{\"task\":\"idle\",\"origin\":\"own\",\"startedAt\":30,\"endsAt\":94,\"eventId\":\"event:17\",\"attemptId\":\"partner:5\",\"startProgress\":null,\"reservedParts\":0,\"reservedMeal\":0}},\"parts\":{\"keeper\":1,\"partner\":0},\"food\":{\"keeper\":0,\"partner\":0},\"eaten\":{\"keeper\":1,\"partner\":1},\"work\":{\"gate\":12,\"divert\":0,\"pump\":6},\"salvaged\":1,\"reopenedAt\":null,\"morning\":{\"at\":24,\"protected\":true,\"waterService\":true,\"route\":\"gate\"},\"delivery\":null,\"outcome\":null,\"paid\":{\"gate\":12,\"divert\":0,\"reopen\":0,\"pump\":6,\"deliver\":0,\"cart\":0,\"share\":0,\"salvage\":8,\"rest\":6,\"meal\":8,\"idle\":34,\"discuss\":0},\"paidByActor\":{\"keeper\":{\"gate\":12,\"divert\":0,\"reopen\":0,\"pump\":0,\"deliver\":0,\"cart\":0,\"share\":0,\"salvage\":8,\"rest\":6,\"meal\":4,\"idle\":7,\"discuss\":0},\"partner\":{\"gate\":0,\"divert\":0,\"reopen\":0,\"pump\":6,\"deliver\":0,\"cart\":0,\"share\":0,\"salvage\":0,\"rest\":0,\"meal\":4,\"idle\":27,\"discuss\":0}},\"installedPartsByActor\":{\"keeper\":2,\"partner\":1},\"handedOver\":{\"keeper\":0,\"partner\":0},\"coordination\":{\"readyAt\":null,\"nextId\":1,\"current\":null,\"pending\":null,\"lastResponse\":null,\"slot\":null},\"lastResponse\":{\"at\":24,\"actor\":\"keeper\",\"task\":\"rest\",\"accepted\":true,\"code\":\"ACCEPTED\",\"reason\":\"Agreed: rest, 6 paid minutes.\"},\"lastReceipt\":{\"id\":\"event:16\",\"at\":30,\"type\":\"attempt-due\",\"actorId\":\"keeper\",\"data\":{\"attemptId\":\"keeper:10\",\"task\":\"rest\"}},\"recent\":[{\"at\":10,\"actor\":\"keeper\",\"message\":\"Finished repair an inlet gate section.\"},{\"at\":10,\"actor\":\"keeper\",\"message\":\"Agreed: repair an inlet gate section, 6 paid minutes.\"},{\"at\":16,\"actor\":\"keeper\",\"message\":\"Finished repair an inlet gate section.\"},{\"at\":16,\"actor\":\"keeper\",\"message\":\"Agreed: fetch the shed spare, 8 paid minutes.\"},{\"at\":20,\"actor\":\"partner\",\"message\":\"I prefer to eat now before the later clinic work.\"},{\"at\":24,\"actor\":\"world\",\"message\":\"The gate held and morning water service continued. The clinic now needs its pump and delivery.\"},{\"at\":24,\"actor\":\"keeper\",\"message\":\"Finished fetch the shed spare.\"},{\"at\":24,\"actor\":\"partner\",\"message\":\"Finished eat your meal.\"},{\"at\":24,\"actor\":\"partner\",\"message\":\"I will use my own part to repair the clinic pump.\"},{\"at\":24,\"actor\":\"keeper\",\"message\":\"Agreed: rest, 6 paid minutes.\"},{\"at\":30,\"actor\":\"partner\",\"message\":\"Finished repair a clinic pump section.\"},{\"at\":30,\"actor\":\"keeper\",\"message\":\"Finished rest.\"}]}}"
+      }
+    }
+  },
+  {
+    "case": "collection-vertical-keyboard-passes"
+  },
+  {
+    "allPassed": true
+  }
+]

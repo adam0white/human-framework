@@ -1,0 +1,22 @@
+{
+  "pass": true,
+  "node": "v22.0.0",
+  "sourceCommit": "76b7ffe89f9268d239ca8e361a0429939d38e6b6",
+  "boundaryChecks": 23,
+  "historicalSavesReplayed": 15,
+  "subprocess": {
+    "dagMs": 0.27345900000000256,
+    "wideMs": 5.727417000000003
+  },
+  "hashes": {
+    "src/experiments/continuous-work/host.js": "266ff107dc18c3477acf30ac77446e41fde7d299294101da43c7a98d85f28e37",
+    "tests/continuous-work-json-budget.test.js": "a42d09f2abe06eb81e2d8974c24b5e67358127b39046b0bb02348cda0d021c50",
+    "src/games/commons.js": "b2c6f5e8bd38e84b729d73182170c88034edc3767e00c71cd65784233283aedb",
+    "src/human/index.js": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "scripts/runtime-release-lock.json": "f27bd54f0549f5dcb8016099669f3a74f27a4edf2378953a60803711cbd1b165"
+  }
+}

@@ -1,0 +1,34 @@
+✔ continuation JSON validation rejects shared expansion and oversized trees before serialization (38.768375ms)
+✔ retained original failure: restarting the garden after workbench completion wins five minutes (13.442667ms)
+✔ retained original behavior: idle increases fatigue while paid rest reduces it (0.57ms)
+✔ retained original behavior: releasing assembly returns materials and preserves only worker exposure (7.346375ms)
+✔ retained independently reported failure: rounded capacity offers work that actual execution rejects (2.853458ms)
+✔ finish-current-then-release ends the project while retaining the neighbor self-chosen recovery (8.160958ms)
+✔ future workbench productivity completes the already-started garden by 202 without restarting (16.916084ms)
+✔ snapshot productivity control preserves the old 207 completion without automatic rest (13.394208ms)
+✔ migration and the improvement boundary preserve paid people, supplies and prior fractions (8.291833ms)
+✔ stopping retains installed work and materials; unassigned time gives no construction practice (8.294ms)
+✔ same-minute stop/resume cannot refresh productivity or erase paid effort (12.22125ms)
+✔ accepted handover carries remaining physical work but never the previous actor practice or effort (7.961792ms)
+✔ new assembly reserves material once and a second worker cannot start the same stage (1.293667ms)
+✔ automatic recovery matches actually paid legacy rest while active-idle remains a distinct control (0.711292ms)
+✔ Next Event reaches real completion before its finite six-minute unassigned review horizon (8.699375ms)
+✔ Next Event returns on an actual recovery floor instead of creating a rest job (0.80125ms)
+✔ interrupted eating reserves one portion for its actor, pays time, and gives no hunger relief (1.289208ms)
+✔ eating finishes only after eight paid minutes and consumes its reserved portion once (1.62275ms)
+✔ JSON replay preserves paid partial work, interrupted eating, takeover and future continuation (12.06325ms)
+✔ replay rejects fabricated food, erased effort, person practice and material duplication (10.277459ms)
+✔ new save identity rejects wrong versions, untrusted properties, and mixed legacy jobs explicitly (7.808084ms)
+✔ chunked advancement preserves exact state and never bills one actor time to another (20.107041ms)
+✔ private time horizon is explicit and new-command exhaustion retains stops and advancing (359.791458ms)
+✔ seven legal overlap cases retain prior fractions and never reward refreshing a same-worker assignment (58.809125ms)
+✔ automatic recovery cannot feed a hungry actor or authorize exertion that still exceeds hunger capacity (6.345708ms)
+✔ command identities reject coercible arrays rather than recording an ambiguous replay (7.086375ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 608.7195

@@ -1,0 +1,192 @@
+[
+  {
+    "case": "courtyard-ended",
+    "selected": "History",
+    "focus": "outcome",
+    "panelText": "THE TAP HAS CLOSED\n\nYour barrel is still short.\n\nYour barrel: 0 of 14. Meryem’s: 14 of 14. Meryem’s household is ready.\n\nAnother afternoon\nMove 18 · 170–180 min · 10 shared minutes\n1 · You: Rest\n\nTen minutes in the shade eased fatigue.\n\n2 · Meryem: Rest\n\nHer own choice. Ten minutes in the shade eased fatigue.",
+    "clock": "0\nmoves left",
+    "work": "You: Ten minutes in the shade eased fatigue. Meryem: Her own choice. Ten minutes in the shade eased fatigue.\n\nYou: Carrying 2 / 6\nMeryem: Carrying 0 / 6",
+    "panelHeight": 352,
+    "docHeight": 667
+  },
+  {
+    "case": "courtyard-again",
+    "selected": "History",
+    "focus": "",
+    "panelText": "",
+    "clock": "18\nmoves left",
+    "work": "You: Carrying 2 / 6\nMeryem: Carrying 4 / 6",
+    "panelHeight": 393,
+    "docHeight": 667
+  },
+  {
+    "case": "signals-direct-report-while-route",
+    "selected": "Route",
+    "focus": "next-event",
+    "panelText": "Choose your route\nLens ready to carry\nTake the canal\n6 min · 1 fare\n1 fare now. The landing must be open when you arrive. If closed, return with the lens after the full six minutes.\nIf the crossing succeeds: arrival 10. Before the evening launch departs at 12.\nCarry over the ridge\n14 min\nNo fare. More exertion, but the landing cannot block this route.\nArrival 18. Misses the evening launch; can still light the overnight beacon.\n\nThe landing can change during your journey. A report describes an observation; it does not reserve the crossing.\nChoose a harbor or starting condition ↓",
+    "clock": "04\nof 32 minutes",
+    "work": "You: Ready to choose\nNothing moves until you advance time.\nWait for reply →\n+1 min\n▶ Play\nPlayback speed\n1×\n4×\n\nA new report or direct observation is available. Check its source and observation time.",
+    "play": "false",
+    "panelHeight": 291,
+    "docHeight": 667
+  },
+  {
+    "case": "signals-stale-reply-while-route",
+    "selected": "Route",
+    "focus": "next-event",
+    "panelText": "Choose your route\nLens ready to carry\nTake the canal\n6 min · 1 fare\n1 fare now. The landing must be open when you arrive. If closed, return with the lens after the full six minutes.\nIf the crossing succeeds: arrival 12. Misses the evening launch; can still light the overnight beacon.\nCarry over the ridge\n14 min\nNo fare. More exertion, but the landing cannot block this route.\nArrival 20. Misses the evening launch; can still light the overnight beacon.\n\nThe landing can change during your journey. A report describes an observation; it does not reserve the crossing.\nChoose a harbor or starting condition ↓",
+    "clock": "06\nof 32 minutes",
+    "work": "You: Ready to choose\nNothing moves until you advance time.\nWait until minute 12 →\n+1 min\n▶ Play\nPlayback speed\n1×\n4×\n\nA new report or direct observation is available. Check its source and observation time.",
+    "play": "false",
+    "panelHeight": 306,
+    "docHeight": 667
+  },
+  {
+    "case": "signals-invalid-import-preserves",
+    "preserved": true,
+    "visible": true
+  },
+  {
+    "case": "signals-valid-import",
+    "selected": "Save",
+    "focus": "download",
+    "panelText": "Download save\nLoad save\n\nSaved on this device. Reloads begin paused.\n\nStart a new journey\nHow time and reports work\nResearcher view\nModel notes\nAbout this episode\nSave a play note",
+    "clock": "06\nof 32 minutes",
+    "work": "You: Ready to choose\nNothing moves until you advance time.\nWait until minute 12 →\n+1 min\n▶ Play\nPlayback speed\n1×\n4×\n\nPaused. Choose a route or an observation, then advance time.",
+    "play": "false",
+    "panelHeight": 319,
+    "docHeight": 667
+  },
+  {
+    "case": "signals-paused-reload",
+    "selected": "Route",
+    "focus": "",
+    "panelText": "Choose your route\nLens ready to carry\nTake the canal\n6 min · 1 fare\n1 fare now. The landing must be open when you arrive. If closed, return with the lens after the full six minutes.\nIf the crossing succeeds: arrival 12. Misses the evening launch; can still light the overnight beacon.\nCarry over the ridge\n14 min\nNo fare. More exertion, but the landing cannot block this route.\nArrival 20. Misses the evening launch; can still light the overnight beacon.\n\nThe landing can change during your journey. A report describes an observation; it does not reserve the crossing.\nChoose a harbor or starting condition ↓",
+    "clock": "06\nof 32 minutes",
+    "work": "You: Ready to choose\nNothing moves until you advance time.\nWait until minute 12 →\n+1 min\n▶ Play\nPlayback speed\n1×\n4×\n\nPaused. Choose a route or an observation, then advance time.",
+    "play": "false",
+    "panelHeight": 319,
+    "docHeight": 667
+  },
+  {
+    "case": "service-plan-read-overview-while-playing",
+    "minuteBefore": "37",
+    "minuteAfter": "38",
+    "selected": "Save",
+    "focus": "",
+    "panelText": "Download save\nLoad save\n\nSaved on this device. Reloads begin paused.\n\nStart a new day\nResearcher view\nModel notes\nHow this day works\nAbout this episode\n\nA SERVICE DAY CONTINUATION\n\nSupply two clinic units before minute 64. Agree a wait, then do your part.\n\n38\nof 64 minutes\nSave a play note",
+    "clock": "38\nof 64 minutes",
+    "work": "You: Ready to choose\nDeniz: Ready to choose\nNext event · minute 42 →\n+1 min\nⅡ Pause\n1×\n4×\n\nRunning. Time pauses at the next visible event.",
+    "play": "true",
+    "panelHeight": 302,
+    "docHeight": 667
+  },
+  {
+    "case": "plan-pending-hidden-panel",
+    "stopVisible": true,
+    "selected": "You",
+    "focus": "game-tab-0",
+    "panelText": "YOUR NEXT MOVE\n\nYou\nDiscussing\n\n1 part available · 0 meals available\n\nDiscuss clinic terms\n2 min left · finishes at 40\nRepair a clinic pump section\n6 min · 1 part\nOne owned part per new section. Both sections and a flowing inlet are needed for full delivery.\nI am already working. Finish or request a stop before choosing another job.\nDeliver both clinic water units\n6 min\nRequires a repaired pump and inlet supply. All six paid minutes must finish before minute 64. Starting commits the clinic’s only slot. If this trip is stopped, no later delivery can use it.\nI am already working. Finish or request a stop before choosing another job.\nCarry one unit by cart\n18 min\nThe clinic can receive one load today. This fallback uses that slot for one of two requested units, independent of pump parts or inlet supply. Starting commits the clinic’s only slot. If this trip is stopped, no later delivery can use it.\nI am already working. Finish or request a stop before choosing another job.\nRest\n6 min\nSix minutes of recovery. Stop early to keep only the recovery actually paid for.\nI am already working. Finish or request a stop before choosing another job.\nRecovery, supplies & other work",
+    "clock": "38\nof 64 minutes",
+    "work": "You: Discuss clinic terms\n2 min left · finishes at 40\nDeniz: Discuss clinic terms\n2 min left · finishes at 40\nNext event · minute 40 →\n+1 min\n▶ Play\n1×\n4×\n\nI agree to listen for two active minutes. I have not yet agreed to these terms.\n\nEnd discussion",
+    "play": "false",
+    "panelHeight": 221,
+    "docHeight": 667
+  },
+  {
+    "case": "plan-interrupt-discussion",
+    "stopVisible": false,
+    "selected": "You",
+    "focus": "",
+    "panelText": "YOUR NEXT MOVE\n\nYou\nReady\n\n1 part available · 0 meals available\n\nRepair a clinic pump section\n6 min · 1 part\nOne owned part per new section. Both sections and a flowing inlet are needed for full delivery.\nDeliver both clinic water units\n6 min\nRequires a repaired pump and inlet supply. All six paid minutes must finish before minute 64. Starting commits the clinic’s only slot. If this trip is stopped, no later delivery can use it.\nBoth pump sections must be repaired before full delivery.\nCarry one unit by cart\n18 min\nThe clinic can receive one load today. This fallback uses that slot for one of two requested units, independent of pump parts or inlet supply. Starting commits the clinic’s only slot. If this trip is stopped, no later delivery can use it.\nRest\n6 min\nSix minutes of recovery. Stop early to keep only the recovery actually paid for.\nRecovery, supplies & other work",
+    "clock": "38\nof 64 minutes",
+    "work": "You: Ready to choose\nDeniz: Ready to choose\nNext event · minute 42 →\n+1 min\n▶ Play\n1×\n4×\n\nDiscussion stopped; only the active minutes actually paid remain. Previous terms still apply.",
+    "play": "false",
+    "panelHeight": 288,
+    "docHeight": 667
+  },
+  {
+    "case": "rain-ferry-checkpoint",
+    "selected": "Caches",
+    "focus": "checkpoint",
+    "panelText": "Where will the supplies go?\n\n0 complete caches available\n\nAcross the river\n0 min to departure\n\n0 / 2\nhouseholds equipped\n\nA cache gives one household a kit for the wet spell. It must leave on the ferry.\n\nSend 1 cache · equip 1 household\n\nPack a complete cache to make this choice. Each one equips one household.\n\nHere at camp\nUseful until dusk\n\n0 / 4\nwet nights supplied\n\nA cache provides two nights of camp supplies. You can keep packing after the ferry leaves.\n\nKeep 1 cache · cover 2 nights\n\nPack a complete cache to make this choice. Each one covers two nights.\n\nAllocations are final. Only completed caches count; supplies reserved for unfinished work do not. Allocating takes no extra time.\n\nA DECISION BEFORE DEPARTURE\n\nThe ferry is ready to leave.\n\n0 complete caches are still available. Allocate any you want across the river below. Sending the ferry closes that option; work then resumes until dusk.\n\nSend ferry · 0 of 2 households equipped",
+    "clock": "0 min\nTHE FERRY IS WAITING",
+    "work": "You: Ready for your next job\nGather, pack, eat or rest.\nMeryem: Between jobs\nHer accepted project continues through recovery.\nAdvance to next event →\n▶ Play\nSpeed\n1×\n4×\n\nTime is paused for your decision.",
+    "play": "false",
+    "panelHeight": 280,
+    "docHeight": 667
+  },
+  {
+    "case": "rain-after-ferry",
+    "selected": "Caches",
+    "focus": "",
+    "panelText": "Where will the supplies go?\n\n0 complete caches available\n\nAcross the river\nFerry departed\n\n0 / 2\nhouseholds equipped\n\nA cache gives one household a kit for the wet spell. It must leave on the ferry.\n\nSend 1 cache · equip 1 household\n\nFerry departed with kits for 0 households. 2 received no kit.\n\nHere at camp\nUseful until dusk\n\n0 / 4\nwet nights supplied\n\nA cache provides two nights of camp supplies. You can keep packing after the ferry leaves.\n\nKeep 1 cache · cover 2 nights\n\nPack a complete cache to make this choice. Each one covers two nights.\n\nAllocations are final. Only completed caches count; supplies reserved for unfinished work do not. Allocating takes no extra time.",
+    "clock": "90 min\nUNTIL DUSK",
+    "work": "You: Ready for your next job\nGather, pack, eat or rest.\nMeryem: Between jobs\nHer accepted project continues through recovery.\nAdvance to next event →\n▶ Play\nSpeed\n1×\n4×\n\nPaused. Next job or checkpoint in 90 min. Choose work, then advance time.",
+    "play": "false",
+    "panelHeight": 278,
+    "docHeight": 667
+  },
+  {
+    "case": "rain-dusk",
+    "selected": "Caches",
+    "focus": "checkpoint",
+    "panelText": "Where will the supplies go?\n\n0 complete caches available\n\nAcross the river\nFerry departed\n\n0 / 2\nhouseholds equipped\n\nA cache gives one household a kit for the wet spell. It must leave on the ferry.\n\nSend 1 cache · equip 1 household\n\nFerry departed with kits for 0 households. 2 received no kit.\n\nHere at camp\nUseful until dusk\n\n0 / 4\nwet nights supplied\n\nA cache provides two nights of camp supplies. You can keep packing after the ferry leaves.\n\nKeep 1 cache · cover 2 nights\n\nPack a complete cache to make this choice. Each one covers two nights.\n\nAllocations are final. Only completed caches count; supplies reserved for unfinished work do not. Allocating takes no extra time.\n\nWORK STOPS HERE\n\nThe rain is here. Take stock.\n\n0 complete caches are still available. You may assign them to camp below. Unfinished jobs earn no cache; remaining unassigned caches stay unused.\n\nFinish the day →",
+    "clock": "0 min\nDUSK HAS ARRIVED",
+    "work": "You: Ready for your next job\nGather, pack, eat or rest.\nMeryem: Between jobs\nHer accepted project continues through recovery.\nAdvance to next event →\n▶ Play\nSpeed\n1×\n4×\n\nTime is paused for your decision.",
+    "play": "false",
+    "panelHeight": 280,
+    "docHeight": 667
+  },
+  {
+    "case": "rain-result",
+    "selected": "Journal",
+    "focus": "result",
+    "panelText": "AT THE END OF THE AFTERNOON\n\nA place put to use.\n\n0 of 2 households received a kit before the ferry left. Camp has supplies for 0 of 4 wet nights.\n\n2 households received no kit; 4 camp nights remain unprovided. 0 complete caches were left unused.\n\nTry another afternoon ↓\nThis afternoon\nMost recent first\nAfternoon +175 min\nMeryem finished rest in camp.\nAfternoon +157 min\nMeryem started rest in camp (18 min). I need to rest, then I’ll return to the project.\nAfternoon +90 min\nThe ferry departed. 0 of two households received a kit.",
+    "clock": "0 min\nAFTERNOON COMPLETE",
+    "work": "You: Ready for your next job\nGather, pack, eat or rest.\nMeryem: Between jobs\nHer accepted project continues through recovery.\nAdvance to next event →\n▶ Play\nSpeed\n1×\n4×\n\nTime is paused for your decision.",
+    "play": "false",
+    "panelHeight": 280,
+    "docHeight": 667
+  },
+  {
+    "case": "shift-select-yard",
+    "selected": "Actions",
+    "focus": "action-title",
+    "panelText": "YOUR NEXT MOVE\n0 min used\nGarden pump\n\nA small irrigation line. Quick access to a worn, simple seal.\n\nThree pumps are down. Choose an order, share one spare, and verify useful service before the shift ends.\nWalk to garden pump\n12 min\nCarry your tools and spare. Arrival changes where you can work.\n\nTravel here to see available work and current success estimates.\n\nEnd shift & keep earned service",
+    "clock": "8h 0m\nleft in shift",
+    "work": "You: Ready to choose",
+    "panelHeight": 397,
+    "docHeight": 667
+  },
+  {
+    "case": "shift-end",
+    "selected": "Result",
+    "focus": "outcome",
+    "panelText": "SHIFT ACCOUNT\n\nShift closed. The yard still needs work.\n\n0 points secured: 0 service + 0 early bonus. 12 min used; 7h 48m remaining. You kept the service already verified; unfinished repairs earn no points.\n\nGarden pump\nNot restored\nWorkshop pump\nNot restored\nMain intake\nNot restored\nTry a new shift",
+    "clock": "7h 48m\nleft in shift",
+    "work": "You: Ready to choose",
+    "panelHeight": 372,
+    "docHeight": 667
+  },
+  {
+    "case": "workshop-pending-import",
+    "selected": "Save",
+    "focus": "save",
+    "panelText": "Download save\nLoad save\nSaved on this device after every move\nNew run & controller\nResearcher view\nModel notes\nAbout this episode\nController help",
+    "clock": "3h 55m\nuntil departure",
+    "work": "You: Take the wrench\n5m / 6m\nAdvance 1 min\nFinish action\nStop action",
+    "panelHeight": 309,
+    "docHeight": 667
+  },
+  {
+    "case": "workshop-finish-from-save",
+    "selected": "Save",
+    "focus": "",
+    "panelText": "Download save\nLoad save\nSaved on this device after every move\nNew run & controller\nResearcher view\nModel notes\nAbout this episode\nController help",
+    "clock": "3h 54m\nuntil departure",
+    "work": "You: Ready to choose",
+    "panelHeight": 404,
+    "docHeight": 667
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "node": "v26.8.1",
+  "pass": true,
+  "cases": [
+    {
+      "background": "work",
+      "mode": "stop-first",
+      "atExhaustion": {
+        "commands": 507,
+        "activeWork": "workbench-0",
+        "meals": 0
+      },
+      "finalCommands": 510
+    },
+    {
+      "background": "work",
+      "mode": "advance-first",
+      "atExhaustion": {
+        "commands": 507,
+        "activeWork": "workbench-0",
+        "meals": 0
+      },
+      "finalCommands": 510
+    },
+    {
+      "background": "work",
+      "mode": "finish-naturally",
+      "atExhaustion": {
+        "commands": 507,
+        "activeWork": "workbench-0",
+        "meals": 0
+      },
+      "finalCommands": 508
+    },
+    {
+      "background": "meal",
+      "mode": "stop-first",
+      "atExhaustion": {
+        "commands": 507,
+        "activeWork": null,
+        "meals": 1
+      },
+      "finalCommands": 510
+    },
+    {
+      "background": "meal",
+      "mode": "advance-first",
+      "atExhaustion": {
+        "commands": 507,
+        "activeWork": null,
+        "meals": 1
+      },
+      "finalCommands": 510
+    },
+    {
+      "background": "meal",
+      "mode": "finish-naturally",
+      "atExhaustion": {
+        "commands": 507,
+        "activeWork": null,
+        "meals": 1
+      },
+      "finalCommands": 508
+    }
+  ]
+}

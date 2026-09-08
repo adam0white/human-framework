@@ -1,0 +1,217 @@
+{
+  "format": "human-last-light",
+  "version": 1,
+  "hostVersion": "0.1.0",
+  "runtimeVersion": "0.1.1",
+  "situation": "turning",
+  "commands": [
+    {
+      "type": "task",
+      "task": "radio"
+    },
+    {
+      "type": "advance",
+      "to": 1
+    },
+    {
+      "type": "task",
+      "task": "lookout"
+    },
+    {
+      "type": "advance",
+      "to": 6
+    }
+  ],
+  "state": {
+    "version": "0.1.0",
+    "situation": "turning",
+    "clock": {
+      "version": "0.1.0",
+      "now": 6,
+      "nextEvent": 11,
+      "queue": [
+        {
+          "id": "event:2",
+          "at": 12,
+          "type": "launch-closing",
+          "actorId": null,
+          "data": null
+        },
+        {
+          "id": "event:4",
+          "at": 20,
+          "type": "landing-change",
+          "actorId": null,
+          "data": {
+            "value": "closed"
+          }
+        },
+        {
+          "id": "event:1",
+          "at": 32,
+          "type": "closing",
+          "actorId": null,
+          "data": null
+        },
+        {
+          "id": "event:10",
+          "at": 36,
+          "type": "attempt-due",
+          "actorId": "carrier",
+          "data": {
+            "attemptId": "carrier:5",
+            "task": "idle"
+          }
+        }
+      ]
+    },
+    "person": {
+      "version": "0.1.1",
+      "id": "carrier",
+      "body": {
+        "fatigue": 0.23900000000000005,
+        "hunger": 0.21200000000000002
+      },
+      "skills": {
+        "carry": 0.15,
+        "lookout": 0.1139310552484079
+      },
+      "observationBias": 0,
+      "minutes": 6,
+      "nextAttempt": 6,
+      "pending": {
+        "id": "carrier:5",
+        "action": {
+          "actionId": "idle",
+          "targetId": null,
+          "durationMinutes": 32,
+          "effort": 0,
+          "exertive": false,
+          "activity": "active",
+          "skill": null
+        },
+        "elapsedMinutes": 2,
+        "capacity": {
+          "allowed": true,
+          "causes": [],
+          "fatigueCost": 0.048,
+          "hungerCost": 0.064,
+          "projectedFatigue": 0.28400000000000003,
+          "projectedHunger": 0.272
+        },
+        "bodyBefore": {
+          "fatigue": 0.23600000000000004,
+          "hunger": 0.20800000000000002
+        },
+        "skillBefore": null,
+        "startedAt": 4
+      }
+    },
+    "job": {
+      "task": "idle",
+      "startedAt": 4,
+      "endsAt": 36,
+      "attemptId": "carrier:5",
+      "eventId": "event:10"
+    },
+    "landing": "open",
+    "resources": {
+      "fares": 2,
+      "charges": 2,
+      "meal": 1
+    },
+    "spent": {
+      "fares": 0,
+      "charges": 1,
+      "meal": 0
+    },
+    "notebook": {
+      "sequence": 1,
+      "observer": "carrier",
+      "source": "lookout",
+      "channel": "direct",
+      "cue": "landing",
+      "value": "open",
+      "observedAt": 4,
+      "deliveredAt": 4
+    },
+    "deliveries": [
+      {
+        "sequence": 1,
+        "observer": "carrier",
+        "source": "lookout",
+        "channel": "direct",
+        "cue": "landing",
+        "value": "open",
+        "observedAt": 4,
+        "deliveredAt": 4
+      },
+      {
+        "sequence": 2,
+        "observer": "carrier",
+        "source": "landing-keeper",
+        "channel": "radio",
+        "cue": "landing",
+        "value": "closed",
+        "observedAt": 1,
+        "deliveredAt": 6
+      }
+    ],
+    "inFlight": [],
+    "sequence": 2,
+    "outcome": null,
+    "paid": {
+      "canal": 0,
+      "ridge": 0,
+      "lookout": 3,
+      "radio": 1,
+      "rest": 0,
+      "meal": 0,
+      "idle": 2
+    },
+    "failedCrossings": 0,
+    "lastResponse": {
+      "at": 1,
+      "task": "lookout",
+      "accepted": true,
+      "code": "ACCEPTED",
+      "reason": "Climb the lookout: 3 minutes. Advance time when ready."
+    },
+    "lastReceipt": {
+      "id": "event:7",
+      "at": 6,
+      "type": "report-due",
+      "actorId": "carrier",
+      "data": {
+        "observedAt": 1,
+        "value": "closed"
+      }
+    },
+    "recent": [
+      {
+        "at": 0,
+        "message": "Deliver the lens before minute 32. The ridge is reliable; the canal needs an open landing at arrival. Choosing does not move time."
+      },
+      {
+        "at": 0,
+        "message": "Call the landing keeper: 1 minutes. Advance time when ready."
+      },
+      {
+        "at": 1,
+        "message": "Request sent. A reply will arrive at minute 6, describing the keeper's observation now."
+      },
+      {
+        "at": 1,
+        "message": "Climb the lookout: 3 minutes. Advance time when ready."
+      },
+      {
+        "at": 4,
+        "message": "Your lookout: open, observed at 4; received at 4."
+      },
+      {
+        "at": 6,
+        "message": "Landing keeper reply: closed, observed at 1; received at 6. The notebook keeps your newer observation."
+      }
+    ]
+  }
+}

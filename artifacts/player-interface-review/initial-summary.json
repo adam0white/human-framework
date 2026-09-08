@@ -1,0 +1,618 @@
+[
+  {
+    "game": "workshop",
+    "size": [
+      375,
+      667
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 667,
+    "minPanel": 429,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "shift",
+    "size": [
+      375,
+      667
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 667,
+    "minPanel": 397,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "courier",
+    "size": [
+      375,
+      667
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 667,
+    "minPanel": 429,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "courtyard",
+    "size": [
+      375,
+      667
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 667,
+    "minPanel": 393,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "commons",
+    "size": [
+      375,
+      667
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 667,
+    "minPanel": 285,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "commons-next",
+    "size": [
+      375,
+      667
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 667,
+    "minPanel": 278,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "watch",
+    "size": [
+      375,
+      667
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 667,
+    "minPanel": 266,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "signals",
+    "size": [
+      375,
+      667
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 667,
+    "minPanel": 338,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "service",
+    "size": [
+      375,
+      667
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 667,
+    "minPanel": 232,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "service-plan",
+    "size": [
+      375,
+      667
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 667,
+    "minPanel": 302,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "games",
+    "size": [
+      375,
+      667
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 667,
+    "minPanel": null,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "workshop",
+    "size": [
+      390,
+      844
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 844,
+    "minPanel": 606,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "shift",
+    "size": [
+      390,
+      844
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 844,
+    "minPanel": 574,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "courier",
+    "size": [
+      390,
+      844
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 844,
+    "minPanel": 606,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "courtyard",
+    "size": [
+      390,
+      844
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 844,
+    "minPanel": 586,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "commons",
+    "size": [
+      390,
+      844
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 844,
+    "minPanel": 462,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "commons-next",
+    "size": [
+      390,
+      844
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 844,
+    "minPanel": 455,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "watch",
+    "size": [
+      390,
+      844
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 844,
+    "minPanel": 443,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "signals",
+    "size": [
+      390,
+      844
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 844,
+    "minPanel": 515,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "service",
+    "size": [
+      390,
+      844
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 844,
+    "minPanel": 409,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "service-plan",
+    "size": [
+      390,
+      844
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 844,
+    "minPanel": 479,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "games",
+    "size": [
+      390,
+      844
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 844,
+    "minPanel": null,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "workshop",
+    "size": [
+      1280,
+      800
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 800,
+    "minPanel": 548,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "shift",
+    "size": [
+      1280,
+      800
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 800,
+    "minPanel": 492,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "courier",
+    "size": [
+      1280,
+      800
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 800,
+    "minPanel": 548,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "courtyard",
+    "size": [
+      1280,
+      800
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 800,
+    "minPanel": 548,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "commons",
+    "size": [
+      1280,
+      800
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 800,
+    "minPanel": 522,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "commons-next",
+    "size": [
+      1280,
+      800
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 800,
+    "minPanel": 502,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "watch",
+    "size": [
+      1280,
+      800
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 800,
+    "minPanel": 477,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "signals",
+    "size": [
+      1280,
+      800
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 800,
+    "minPanel": 502,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "service",
+    "size": [
+      1280,
+      800
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 800,
+    "minPanel": 481,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "service-plan",
+    "size": [
+      1280,
+      800
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 800,
+    "minPanel": 502,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "games",
+    "size": [
+      1280,
+      800
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 800,
+    "minPanel": 383,
+    "dockOffscreen": false,
+    "missing": []
+  },
+  {
+    "game": "workshop",
+    "size": [
+      320,
+      400
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 884,
+    "minPanel": 18,
+    "dockOffscreen": true,
+    "missing": []
+  },
+  {
+    "game": "shift",
+    "size": [
+      320,
+      400
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 1011,
+    "minPanel": 18,
+    "dockOffscreen": true,
+    "missing": []
+  },
+  {
+    "game": "courier",
+    "size": [
+      320,
+      400
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 1569,
+    "minPanel": 18,
+    "dockOffscreen": true,
+    "missing": []
+  },
+  {
+    "game": "courtyard",
+    "size": [
+      320,
+      400
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 1014,
+    "minPanel": 18,
+    "dockOffscreen": true,
+    "missing": []
+  },
+  {
+    "game": "commons",
+    "size": [
+      320,
+      400
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 1058,
+    "minPanel": 136,
+    "dockOffscreen": true,
+    "missing": []
+  },
+  {
+    "game": "commons-next",
+    "size": [
+      320,
+      400
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 962,
+    "minPanel": 150,
+    "dockOffscreen": true,
+    "missing": []
+  },
+  {
+    "game": "watch",
+    "size": [
+      320,
+      400
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 1241,
+    "minPanel": 261,
+    "dockOffscreen": true,
+    "missing": []
+  },
+  {
+    "game": "signals",
+    "size": [
+      320,
+      400
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 826,
+    "minPanel": 186,
+    "dockOffscreen": true,
+    "missing": []
+  },
+  {
+    "game": "service",
+    "size": [
+      320,
+      400
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 1021,
+    "minPanel": 193,
+    "dockOffscreen": true,
+    "missing": []
+  },
+  {
+    "game": "service-plan",
+    "size": [
+      320,
+      400
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 1182,
+    "minPanel": 349,
+    "dockOffscreen": true,
+    "missing": []
+  },
+  {
+    "game": "games",
+    "size": [
+      320,
+      400
+    ],
+    "errors": [],
+    "dropped": [],
+    "docOverflow": false,
+    "docHeight": 705,
+    "minPanel": null,
+    "dockOffscreen": false,
+    "missing": []
+  }
+]

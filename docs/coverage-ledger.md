@@ -4,6 +4,10 @@ Snapshot updated 2026-09-08 after the private actor-local feasibility study; pub
 
 **Implemented** means an executable transition, interface, or record exists. **Proxy** means an implemented quantity or rule is an authored engineering approximation without human calibration. **Unmodeled** means the kernel supplies no mechanism for that function. A proposed interface below is a research design, not an existing plugin API. A rejection test states what would count against adding a mechanism or making the associated claim.
 
+## Compact interfaces and continuous-work update
+
+The 0.10 interface candidate preserves all public host/runtime/save identities. The new private [continuous-work fixture](continuous-work-results.md) implements prospective productivity, durable partial assembly, accepted takeover, automatic unassigned recovery, owned meals and strict bounded replay. Its source-verified controls separate the workbench correction from rest effects; it supports only idle/assembly imports. The original two Common Ground defects remain archived, and the public correction needs full mixed-job integration. These are authored software mechanics, not calibrated physiology or a general planning faculty. [Earned-camp story proposal](story-continuity-proposal.md).
+
 ## Private actor-local information update
 
 [Across the Cut feasibility](across-cut-feasibility.md) adds actor-owned observations, inbox/sent records, local known-boundary queries, source-time bookkeeping and independent contribution records in a private two-site host. Hidden-world twin tests exercise no leaks before accessible observation; paid radio/contact, stop/resume and strict source-bound replay are executable. This is not a general deductive knowledge, witness/trust, attention or human-comprehension module. Original cognition candidates remain unchanged and unpromoted.

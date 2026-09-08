@@ -1,0 +1,32 @@
+{
+  "pass": true,
+  "detail": [
+    {
+      "dir": "/Users/abdul/code/human-framework/.worktrees/rest-work/artifacts/continuous-work/b7c3dd0-node26",
+      "sourceCommit": "b7c3dd0b7c6b96cb4c9e33b13969ff6ac800da82",
+      "verifiedPayloads": 20,
+      "verifiedSources": 12
+    },
+    {
+      "dir": "/Users/abdul/code/human-framework/.worktrees/rest-work/artifacts/continuous-work/b7c3dd0-node22",
+      "sourceCommit": "b7c3dd0b7c6b96cb4c9e33b13969ff6ac800da82",
+      "verifiedPayloads": 20,
+      "verifiedSources": 12
+    },
+    {
+      "dir": "/tmp/hf-continuous-work-review-lifecycle/probe-artifacts-node26",
+      "sourceCommit": "811bc5c7d3e387d0a49d524bad1e0bf5b148e2eb",
+      "verifiedPayloads": 20,
+      "verifiedSources": 12
+    },
+    {
+      "dir": "/tmp/hf-continuous-work-review-lifecycle/probe-artifacts-node22",
+      "sourceCommit": "811bc5c7d3e387d0a49d524bad1e0bf5b148e2eb",
+      "verifiedPayloads": 20,
+      "verifiedSources": 12
+    }
+  ],
+  "physicalReportsIdentical": true,
+  "independentProbesIdentical": true,
+  "ownProbeCount": 7
+}

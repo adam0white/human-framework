@@ -1,0 +1,215 @@
+{
+  "node": "v26.8.1",
+  "sourceHostSha256": "266ff107dc18c3477acf30ac77446e41fde7d299294101da43c7a98d85f28e37",
+  "results": [
+    {
+      "name": "all four arms start from identical legal physical state; no history rewrite",
+      "pass": true,
+      "milliseconds": 28.968584,
+      "detail": [
+        {
+          "improvement": "snapshot",
+          "recovery": "active-idle",
+          "completedAt": 207,
+          "bodies": {
+            "player": {
+              "fatigue": 0.7404999999999883,
+              "hunger": 0.6340000000000003
+            },
+            "neighbor": {
+              "fatigue": 0.8104999999999962,
+              "hunger": 0.14400000000000035
+            }
+          },
+          "paid": {
+            "player": {
+              "work": 1,
+              "recovery": 0,
+              "idle": 19,
+              "meal": 0
+            },
+            "neighbor": {
+              "work": 20,
+              "recovery": 0,
+              "idle": 0,
+              "meal": 0
+            }
+          }
+        },
+        {
+          "improvement": "snapshot",
+          "recovery": "automatic",
+          "completedAt": 207,
+          "bodies": {
+            "player": {
+              "fatigue": 0.26549999999998836,
+              "hunger": 0.6340000000000003
+            },
+            "neighbor": {
+              "fatigue": 0.8104999999999962,
+              "hunger": 0.14400000000000035
+            }
+          },
+          "paid": {
+            "player": {
+              "work": 1,
+              "recovery": 19,
+              "idle": 0,
+              "meal": 0
+            },
+            "neighbor": {
+              "work": 20,
+              "recovery": 0,
+              "idle": 0,
+              "meal": 0
+            }
+          }
+        },
+        {
+          "improvement": "prospective",
+          "recovery": "active-idle",
+          "completedAt": 202,
+          "bodies": {
+            "player": {
+              "fatigue": 0.7404999999999883,
+              "hunger": 0.6340000000000003
+            },
+            "neighbor": {
+              "fatigue": 0.8104999999999956,
+              "hunger": 0.14400000000000035
+            }
+          },
+          "paid": {
+            "player": {
+              "work": 1,
+              "recovery": 0,
+              "idle": 19,
+              "meal": 0
+            },
+            "neighbor": {
+              "work": 15,
+              "recovery": 0,
+              "idle": 5,
+              "meal": 0
+            }
+          }
+        },
+        {
+          "improvement": "prospective",
+          "recovery": "automatic",
+          "completedAt": 202,
+          "bodies": {
+            "player": {
+              "fatigue": 0.26549999999998836,
+              "hunger": 0.6340000000000003
+            },
+            "neighbor": {
+              "fatigue": 0.6854999999999954,
+              "hunger": 0.14400000000000035
+            }
+          },
+          "paid": {
+            "player": {
+              "work": 1,
+              "recovery": 19,
+              "idle": 0,
+              "meal": 0
+            },
+            "neighbor": {
+              "work": 15,
+              "recovery": 5,
+              "idle": 0,
+              "meal": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "alternating handovers and stop/meal preserve per-actor fraction and reservations",
+      "pass": true,
+      "milliseconds": 9.675083,
+      "detail": {
+        "completedAt": 29,
+        "contributions": {
+          "player": {
+            "priorMinutes": 0,
+            "minutes": 3,
+            "fraction": 0.13636363636363635,
+            "effort": 0.027272727272727275
+          },
+          "neighbor": {
+            "priorMinutes": 0,
+            "minutes": 19,
+            "fraction": 0.8636363636363634,
+            "effort": 0.17272727272727276
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 3,
+            "recovery": 0,
+            "idle": 33,
+            "meal": 0
+          },
+          "neighbor": {
+            "work": 19,
+            "recovery": 0,
+            "idle": 10,
+            "meal": 7
+          }
+        }
+      }
+    },
+    {
+      "name": "tool completion while stopped is prospective; restored worker basis is retained",
+      "pass": true,
+      "milliseconds": 18.402791999999998,
+      "detail": {
+        "prospective": 200,
+        "snapshot": 205
+      }
+    },
+    {
+      "name": "own hungry meal interruption at saturation retains paid maintenance; recovery never feeds",
+      "pass": true,
+      "milliseconds": 6.975166999999999,
+      "detail": {
+        "initialHunger": 1,
+        "finalHunger": 0.476,
+        "mealMinutes": 15
+      }
+    },
+    {
+      "name": "finite Next Event repeatedly reaches limit for active-idle and automatic quiet people",
+      "pass": true,
+      "milliseconds": 260.424834,
+      "detail": [
+        {
+          "recovery": "active-idle",
+          "count": 40
+        },
+        {
+          "recovery": "automatic",
+          "count": 41
+        }
+      ]
+    },
+    {
+      "name": "every accepted remaining-work admission can execute the next six-minute view",
+      "pass": true,
+      "milliseconds": 182.32695900000004,
+      "detail": {
+        "admitted": 76
+      }
+    },
+    {
+      "name": "state tampering rejects changed attribution/clock/material/event and aliases",
+      "pass": true,
+      "milliseconds": 1.9840829999999414,
+      "detail": {
+        "rejections": 8
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+✔ retained original failure: restarting the garden after workbench completion wins five minutes (18.635042ms)
+✔ retained original behavior: idle increases fatigue while paid rest reduces it (1.355959ms)
+✔ retained original behavior: releasing assembly returns materials and preserves only worker exposure (9.596875ms)
+✔ retained independently reported failure: rounded capacity offers work that actual execution rejects (2.31025ms)
+✔ finish-current-then-release ends the project while retaining the neighbor self-chosen recovery (8.955667ms)
+✔ future workbench productivity completes the already-started garden by 202 without restarting (22.160584ms)
+✔ snapshot productivity control preserves the old 207 completion without automatic rest (19.55175ms)
+✔ migration and the improvement boundary preserve paid people, supplies and prior fractions (11.129917ms)
+✔ stopping retains installed work and materials; unassigned time gives no construction practice (9.5005ms)
+✔ same-minute stop/resume cannot refresh productivity or erase paid effort (13.552042ms)
+✔ accepted handover carries remaining physical work but never the previous actor practice or effort (9.801125ms)
+✔ new assembly reserves material once and a second worker cannot start the same stage (1.287958ms)
+✔ automatic recovery matches actually paid legacy rest while active-idle remains a distinct control (0.753083ms)
+✔ Next Event reaches real completion before its finite six-minute unassigned review horizon (9.076125ms)
+✔ Next Event returns on an actual recovery floor instead of creating a rest job (0.869708ms)
+✔ interrupted eating reserves one portion for its actor, pays time, and gives no hunger relief (1.275334ms)
+✔ eating finishes only after eight paid minutes and consumes its reserved portion once (1.625208ms)
+✔ JSON replay preserves paid partial work, interrupted eating, takeover and future continuation (14.080583ms)
+✔ replay rejects fabricated food, erased effort, person practice and material duplication (12.169209ms)
+✔ new save identity rejects wrong versions, untrusted properties, and mixed legacy jobs explicitly (7.363208ms)
+✔ chunked advancement preserves exact state and never bills one actor time to another (22.074625ms)
+✔ private time horizon is explicit and new-command exhaustion retains stops and advancing (373.003708ms)
+✔ seven legal overlap cases retain prior fractions and never reward refreshing a same-worker assignment (59.489458ms)
+✔ automatic recovery cannot feed a hungry actor or authorize exertion that still exceeds hunger capacity (6.0975ms)
+✔ command identities reject coercible arrays rather than recording an ambiguous replay (7.095625ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 649.551417

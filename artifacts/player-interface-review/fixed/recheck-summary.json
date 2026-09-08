@@ -1,0 +1,1718 @@
+[
+  {
+    "case": "courtyard-restart-fixed",
+    "state": {
+      "selected": "Actions",
+      "focus": "game-tab-0",
+      "clock": "18moves left",
+      "panelHeight": 395,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": "omitted from console only"
+    }
+  },
+  {
+    "case": "courtyard-proposal-fixed",
+    "accept": {
+      "visible": true,
+      "x": 26,
+      "y": 451.15625,
+      "width": 147.5,
+      "height": 44.296875,
+      "bottom": 495.453125,
+      "panel": {
+        "y": 216.78125,
+        "bottom": 570.625
+      }
+    },
+    "state": {
+      "selected": "Meryem",
+      "focus": "accept",
+      "clock": "15moves left",
+      "panelHeight": 354,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": "omitted from console only"
+    }
+  },
+  {
+    "case": "rain-ferry-fixed",
+    "id": "#checkpoint",
+    "rect": {
+      "visible": true,
+      "x": 13,
+      "y": 251.578125,
+      "width": 329,
+      "height": 157.125,
+      "bottom": 408.703125,
+      "panel": {
+        "y": 242.578125,
+        "bottom": 509.90625
+      }
+    }
+  },
+  {
+    "case": "rain-ferry-fixed",
+    "id": "#continue",
+    "rect": {
+      "visible": true,
+      "x": 13,
+      "y": 624,
+      "width": 239.015625,
+      "height": 35,
+      "bottom": 659,
+      "panel": null
+    }
+  },
+  {
+    "case": "rain-dusk-result-fixed",
+    "state": {
+      "selected": "Journal",
+      "focus": "result",
+      "play": "false",
+      "clock": "0 minAFTERNOON COMPLETE",
+      "panelHeight": 308,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": "omitted from console only"
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "commons",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "08:00DAY 1",
+      "panelHeight": 258,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": "omitted from console only"
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "commons-next",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "90 minUNTIL THE FERRY",
+      "panelHeight": 251,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": "omitted from console only"
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "watch",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "00minutes elapsed",
+      "panelHeight": 239,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": "omitted from console only"
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "signals",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "00of 32 minutes",
+      "panelHeight": 284,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": "omitted from console only"
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "service",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "00Morning · inlet first",
+      "panelHeight": 191,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": "omitted from console only"
+    }
+  },
+  {
+    "case": "read-tab-pauses-without-world-change",
+    "game": "service-plan",
+    "state": {
+      "selected": "Save",
+      "focus": "",
+      "play": "false",
+      "clock": "37of 64 minutes",
+      "panelHeight": 249,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": "omitted from console only"
+    }
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "workshop",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 607
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 554
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 430
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 430
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 430
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "workshop",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "workshop",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "workshop",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 547,
+        "scrollHeight": 547
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 493,
+        "scrollHeight": 493
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 169,
+        "scrollHeight": 169
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 24,
+        "scrollHeight": 24
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 412,
+        "scrollHeight": 412
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "shift",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 398,
+        "scrollHeight": 724
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 398,
+        "scrollHeight": 594
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 398,
+        "scrollHeight": 398
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 398,
+        "scrollHeight": 398
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 398,
+        "scrollHeight": 678
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "shift",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 575,
+        "scrollHeight": 705
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 575,
+        "scrollHeight": 579
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 575,
+        "scrollHeight": 575
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 575,
+        "scrollHeight": 575
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 575,
+        "scrollHeight": 678
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "shift",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 493,
+        "scrollHeight": 615
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 493,
+        "scrollHeight": 626
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 493,
+        "scrollHeight": 493
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 493,
+        "scrollHeight": 493
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 493,
+        "scrollHeight": 659
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "shift",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 632,
+        "scrollHeight": 632
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 577,
+        "scrollHeight": 577
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 258,
+        "scrollHeight": 258
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 24,
+        "scrollHeight": 24
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 665,
+        "scrollHeight": 665
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courier",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 1314
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 491
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 710
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 430
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 430,
+        "scrollHeight": 525
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courier",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 1314
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 691
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 607,
+        "scrollHeight": 607
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courier",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 1228
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 889
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courier",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 1241,
+        "scrollHeight": 1241
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 594,
+        "scrollHeight": 594
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 697,
+        "scrollHeight": 697
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 24,
+        "scrollHeight": 24
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 523,
+        "scrollHeight": 523
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courtyard",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 395,
+        "scrollHeight": 705
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 395,
+        "scrollHeight": 462
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 395,
+        "scrollHeight": 486
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 395,
+        "scrollHeight": 395
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 395,
+        "scrollHeight": 715
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courtyard",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 588,
+        "scrollHeight": 689
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 588,
+        "scrollHeight": 588
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 588,
+        "scrollHeight": 588
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 588,
+        "scrollHeight": 588
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 588,
+        "scrollHeight": 715
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courtyard",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 580
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 563
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 549
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 549,
+        "scrollHeight": 674
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "courtyard",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 635,
+        "scrollHeight": 635
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 381,
+        "scrollHeight": 381
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 509,
+        "scrollHeight": 509
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 24,
+        "scrollHeight": 24
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 675,
+        "scrollHeight": 675
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 313,
+        "scrollHeight": 612
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 313,
+        "scrollHeight": 709
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 313,
+        "scrollHeight": 469
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 313,
+        "scrollHeight": 313
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 313,
+        "scrollHeight": 670
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 490,
+        "scrollHeight": 603
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 490,
+        "scrollHeight": 709
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 490,
+        "scrollHeight": 490
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 490,
+        "scrollHeight": 490
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 490,
+        "scrollHeight": 670
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 522,
+        "scrollHeight": 522
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 522,
+        "scrollHeight": 522
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 522,
+        "scrollHeight": 528
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 522,
+        "scrollHeight": 522
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 522,
+        "scrollHeight": 641
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 522,
+        "scrollHeight": 522
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 470,
+        "scrollHeight": 470
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 528,
+        "scrollHeight": 528
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 138,
+        "scrollHeight": 138
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 641,
+        "scrollHeight": 641
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons-next",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 306,
+        "scrollHeight": 392
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 306,
+        "scrollHeight": 637
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 306,
+        "scrollHeight": 820
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 306,
+        "scrollHeight": 306
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 306,
+        "scrollHeight": 1067
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons-next",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 483,
+        "scrollHeight": 483
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 483,
+        "scrollHeight": 619
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 483,
+        "scrollHeight": 820
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 483,
+        "scrollHeight": 483
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 483,
+        "scrollHeight": 1067
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons-next",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 920
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "commons-next",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 373,
+        "scrollHeight": 373
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 425,
+        "scrollHeight": 425
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 742,
+        "scrollHeight": 742
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 146,
+        "scrollHeight": 146
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 1046,
+        "scrollHeight": 1046
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "watch",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 294,
+        "scrollHeight": 782
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 294,
+        "scrollHeight": 836
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 294,
+        "scrollHeight": 421
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 294,
+        "scrollHeight": 294
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 294,
+        "scrollHeight": 505
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "watch",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 471,
+        "scrollHeight": 782
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 471,
+        "scrollHeight": 816
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 471,
+        "scrollHeight": 471
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 471,
+        "scrollHeight": 471
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 471,
+        "scrollHeight": 505
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "watch",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 477,
+        "scrollHeight": 602
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 477,
+        "scrollHeight": 602
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 477,
+        "scrollHeight": 477
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 477,
+        "scrollHeight": 477
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 477,
+        "scrollHeight": 500
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "watch",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 728,
+        "scrollHeight": 728
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 762,
+        "scrollHeight": 762
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 381,
+        "scrollHeight": 381
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 184,
+        "scrollHeight": 184
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 527,
+        "scrollHeight": 527
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "signals",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 352,
+        "scrollHeight": 456
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 352,
+        "scrollHeight": 517
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 352,
+        "scrollHeight": 532
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 352,
+        "scrollHeight": 352
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 352,
+        "scrollHeight": 534
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "signals",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 529,
+        "scrollHeight": 529
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 529,
+        "scrollHeight": 529
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 529,
+        "scrollHeight": 537
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 529,
+        "scrollHeight": 529
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 529,
+        "scrollHeight": 534
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "signals",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 516
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 548
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "signals",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 387,
+        "scrollHeight": 387
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 459,
+        "scrollHeight": 459
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 583,
+        "scrollHeight": 583
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 163,
+        "scrollHeight": 163
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 548,
+        "scrollHeight": 548
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 246,
+        "scrollHeight": 496
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 246,
+        "scrollHeight": 789
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 246,
+        "scrollHeight": 246
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 246,
+        "scrollHeight": 246
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 246,
+        "scrollHeight": 557
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 423,
+        "scrollHeight": 496
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 423,
+        "scrollHeight": 789
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 423,
+        "scrollHeight": 423
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 423,
+        "scrollHeight": 423
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 423,
+        "scrollHeight": 557
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 481,
+        "scrollHeight": 481
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 481,
+        "scrollHeight": 617
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 481,
+        "scrollHeight": 481
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 481,
+        "scrollHeight": 481
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 481,
+        "scrollHeight": 624
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 476,
+        "scrollHeight": 476
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 660,
+        "scrollHeight": 660
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 212,
+        "scrollHeight": 212
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 157,
+        "scrollHeight": 157
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 571,
+        "scrollHeight": 571
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service-plan",
+    "width": 375,
+    "height": 667,
+    "panels": [
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 304,
+        "scrollHeight": 708
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 304,
+        "scrollHeight": 531
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 304,
+        "scrollHeight": 349
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 304,
+        "scrollHeight": 700
+      },
+      {
+        "width": 334,
+        "scrollWidth": 334,
+        "height": 304,
+        "scrollHeight": 542
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service-plan",
+    "width": 390,
+    "height": 844,
+    "panels": [
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 481,
+        "scrollHeight": 708
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 481,
+        "scrollHeight": 531
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 481,
+        "scrollHeight": 481
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 481,
+        "scrollHeight": 700
+      },
+      {
+        "width": 349,
+        "scrollWidth": 349,
+        "height": 481,
+        "scrollHeight": 542
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service-plan",
+    "width": 1280,
+    "height": 800,
+    "panels": [
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 502
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 613
+      },
+      {
+        "width": 1057,
+        "scrollWidth": 1057,
+        "height": 502,
+        "scrollHeight": 564
+      }
+    ]
+  },
+  {
+    "case": "final-panel-overflow",
+    "game": "service-plan",
+    "width": 640,
+    "height": 400,
+    "panels": [
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 620,
+        "scrollHeight": 620
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 435,
+        "scrollHeight": 435
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 363,
+        "scrollHeight": 363
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 630,
+        "scrollHeight": 630
+      },
+      {
+        "width": 592,
+        "scrollWidth": 592,
+        "height": 564,
+        "scrollHeight": 564
+      }
+    ]
+  },
+  {
+    "case": "actual-leave-return-pauses",
+    "game": "signals",
+    "state": {
+      "selected": "Route",
+      "focus": "",
+      "play": "false",
+      "clock": "00of 32 minutes",
+      "panelHeight": 352,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": "omitted from console only"
+    }
+  },
+  {
+    "case": "actual-leave-return-pauses",
+    "game": "service-plan",
+    "state": {
+      "selected": "You",
+      "focus": "",
+      "play": "false",
+      "clock": "37of 64 minutes",
+      "panelHeight": 304,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": "omitted from console only"
+    }
+  },
+  {
+    "case": "collection-vertical-keyboard-passes"
+  },
+  {
+    "allPassed": true
+  }
+]

@@ -1,0 +1,169 @@
+{
+  "source": "Independent source-review hypothesis verified by legal commands",
+  "commands": [
+    [
+      "start",
+      "gather-timber"
+    ],
+    [
+      "next"
+    ],
+    [
+      "start",
+      "gather-timber"
+    ],
+    [
+      "next"
+    ],
+    [
+      "start",
+      "gather-timber"
+    ],
+    [
+      "next"
+    ],
+    [
+      "advance",
+      72
+    ]
+  ],
+  "snapshot": {
+    "format": "human-common-ground",
+    "version": 1,
+    "game": {
+      "version": "0.1.0",
+      "solo": true,
+      "clock": {
+        "version": "0.1.0",
+        "now": 120,
+        "nextEvent": 4,
+        "queue": []
+      },
+      "people": {
+        "player": {
+          "version": "0.1.0",
+          "id": "player",
+          "body": {
+            "fatigue": 0.7699999999999959,
+            "hunger": 0.4600000000000002
+          },
+          "skills": {
+            "gathering": 0.2987988708726963,
+            "construction": 0.05
+          },
+          "observationBias": 0,
+          "minutes": 120,
+          "nextAttempt": 76,
+          "pending": null
+        }
+      },
+      "jobs": {
+        "player": null
+      },
+      "stock": {
+        "timber": 13,
+        "salvage": 2,
+        "food": 4
+      },
+      "structures": {
+        "shelter": 0,
+        "workbench": 0,
+        "garden": 0
+      },
+      "caches": 0,
+      "milestoneAt": null,
+      "commitment": {
+        "status": "none",
+        "project": null,
+        "acceptedAt": null,
+        "finishedAt": null,
+        "startCaches": 0,
+        "reason": "You are working alone."
+      },
+      "lastResponse": null,
+      "stats": {
+        "started": 3,
+        "completed": 3,
+        "canceled": 0,
+        "gathered": {
+          "timber": 9,
+          "salvage": 0,
+          "food": 0
+        },
+        "spent": {
+          "timber": 0,
+          "salvage": 0,
+          "food": 0
+        },
+        "consumedFood": 0,
+        "workMinutes": 48,
+        "restMinutes": 0,
+        "mealMinutes": 0,
+        "idleMinutes": 72,
+        "receipts": {
+          "gather-timber": 3,
+          "gather-salvage": 0,
+          "forage": 0,
+          "rest": 0,
+          "eat": 0,
+          "coveredTimber": 0,
+          "gardenFood": 0
+        }
+      },
+      "recent": [
+        {
+          "at": 0,
+          "actor": "player",
+          "message": "You started gather timber (16 min)."
+        },
+        {
+          "at": 16,
+          "actor": "player",
+          "message": "You finished gather timber. +3 timber."
+        },
+        {
+          "at": 16,
+          "actor": "player",
+          "message": "You started gather timber (16 min)."
+        },
+        {
+          "at": 32,
+          "actor": "player",
+          "message": "You finished gather timber. +3 timber."
+        },
+        {
+          "at": 32,
+          "actor": "player",
+          "message": "You started gather timber (16 min)."
+        },
+        {
+          "at": 48,
+          "actor": "player",
+          "message": "You finished gather timber. +3 timber."
+        }
+      ]
+    }
+  },
+  "actualBody": {
+    "fatigue": 0.7699999999999959,
+    "hunger": 0.4600000000000002
+  },
+  "visibleBody": {
+    "fatigue": 0.75,
+    "hunger": 0.45
+  },
+  "advertisedChoice": {
+    "id": "build-workbench",
+    "label": "Workbench: build the table",
+    "detail": "Every later assembly takes 6 fewer minutes.",
+    "duration": 22,
+    "cost": {
+      "timber": 3,
+      "salvage": 2
+    },
+    "output": {},
+    "project": "workbench",
+    "unavailable": null
+  },
+  "executionError": "Too much fatigue for this whole job. Choose recovery first."
+}

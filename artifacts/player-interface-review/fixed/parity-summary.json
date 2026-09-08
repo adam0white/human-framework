@@ -1,0 +1,171 @@
+[
+  {
+    "game": "workshop",
+    "exactSaveParity": true,
+    "counts": [
+      5,
+      5
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "proposal": [
+      null,
+      null
+    ]
+  },
+  {
+    "game": "shift",
+    "exactSaveParity": true,
+    "counts": [
+      4,
+      4
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "proposal": [
+      null,
+      null
+    ]
+  },
+  {
+    "game": "courier",
+    "exactSaveParity": true,
+    "counts": [
+      3,
+      3
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "proposal": [
+      null,
+      null
+    ]
+  },
+  {
+    "game": "courtyard",
+    "exactSaveParity": true,
+    "counts": [
+      5,
+      5
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "proposal": [
+      {
+        "proposalVisible": true,
+        "focus": "accept"
+      },
+      {
+        "proposalVisible": true,
+        "focus": "accept",
+        "selected": "Meryem",
+        "feedback": "You: 2 buckets carried. Meryem: Her own choice. Could you give me two buckets? My household is still short.",
+        "tabLabel": null
+      }
+    ]
+  },
+  {
+    "game": "commons",
+    "exactSaveParity": true,
+    "counts": [
+      6,
+      6
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "proposal": [
+      null,
+      null
+    ]
+  },
+  {
+    "game": "commons-next",
+    "exactSaveParity": true,
+    "counts": [
+      6,
+      6
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "proposal": [
+      null,
+      null
+    ]
+  },
+  {
+    "game": "watch",
+    "exactSaveParity": true,
+    "counts": [
+      5,
+      5
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "proposal": [
+      null,
+      null
+    ]
+  },
+  {
+    "game": "signals",
+    "exactSaveParity": true,
+    "counts": [
+      7,
+      7
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "proposal": [
+      null,
+      null
+    ]
+  },
+  {
+    "game": "service",
+    "exactSaveParity": true,
+    "counts": [
+      5,
+      5
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "proposal": [
+      null,
+      null
+    ]
+  },
+  {
+    "game": "service-plan",
+    "exactSaveParity": true,
+    "counts": [
+      7,
+      7
+    ],
+    "errors": [
+      [],
+      []
+    ],
+    "proposal": [
+      null,
+      null
+    ]
+  }
+]

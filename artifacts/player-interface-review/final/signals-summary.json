@@ -1,0 +1,67 @@
+[
+  {
+    "case": "both-initial-consequences-fit",
+    "initial": [
+      {
+        "task": "canal",
+        "text": "If the crossing succeeds: arrival 6. Before the evening launch departs at 12.",
+        "top": 337.96875,
+        "bottom": 371.5625,
+        "panel": {
+          "top": 216.78125,
+          "bottom": 569.203125
+        },
+        "fits": true
+      },
+      {
+        "task": "ridge",
+        "text": "Arrival 14. Misses the evening launch; can still light the overnight beacon.",
+        "top": 456.75,
+        "bottom": 490.34375,
+        "panel": {
+          "top": 216.78125,
+          "bottom": 569.203125
+        },
+        "fits": true
+      }
+    ]
+  },
+  {
+    "case": "minute-six-route-consequences-fit",
+    "boundary": [
+      {
+        "task": "canal",
+        "text": "If the crossing succeeds: arrival 12. Misses the evening launch; can still light the overnight beacon.",
+        "top": 337.96875,
+        "bottom": 388.359375,
+        "panel": {
+          "top": 216.78125,
+          "bottom": 569.203125
+        },
+        "fits": true
+      },
+      {
+        "task": "ridge",
+        "text": "Arrival 20. Misses the evening launch; can still light the overnight beacon.",
+        "top": 473.546875,
+        "bottom": 507.140625,
+        "panel": {
+          "top": 216.78125,
+          "bottom": 569.203125
+        },
+        "fits": true
+      }
+    ]
+  },
+  {
+    "case": "successful-exact-twelve-arrival-misses-launch",
+    "outcome": "JOURNEY COMPLETE\n\nThe overnight beacon is restored.\n\nYou arrived by the canal at minute 12, with 20 minutes to spare. The evening launch missed its window and stayed in harbor.\n\n1 fares retained · 3 radio charges retained · 6 minutes of paid work\n\nTry another journey ↓"
+  },
+  {
+    "case": "route-disclosure-keyboard-and-reading-pause",
+    "minute": "00"
+  },
+  {
+    "allPassed": true
+  }
+]

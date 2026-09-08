@@ -1,0 +1,88 @@
+{
+  "version": "workshop-0.1.0",
+  "seed": 1,
+  "policy": "task-aware",
+  "clock": 5,
+  "deadline": 240,
+  "status": "playing",
+  "location": "storage",
+  "person": {
+    "format": "human-framework-person",
+    "version": 1,
+    "componentVersion": "0.1.0",
+    "person": {
+      "version": "0.1.0",
+      "id": "worker",
+      "body": {
+        "fatigue": 0.2275,
+        "hunger": 0.16
+      },
+      "skills": {
+        "repair": 0.55
+      },
+      "observationBias": 0,
+      "minutes": 5,
+      "nextAttempt": 2,
+      "pending": {
+        "id": "worker:1",
+        "action": {
+          "actionId": "take-wrench",
+          "targetId": "wrench",
+          "durationMinutes": 6,
+          "effort": 0,
+          "exertive": false,
+          "activity": "active",
+          "skill": null
+        },
+        "elapsedMinutes": 5,
+        "capacity": {
+          "allowed": true,
+          "causes": [],
+          "fatigueCost": 0.009000000000000001,
+          "hungerCost": 0.012,
+          "projectedFatigue": 0.229,
+          "projectedHunger": 0.162
+        },
+        "bodyBefore": {
+          "fatigue": 0.22,
+          "hunger": 0.15
+        },
+        "skillBefore": null,
+        "startedAt": 0
+      }
+    }
+  },
+  "objects": {
+    "pump": {
+      "id": "pump",
+      "location": "pump-room",
+      "status": "broken",
+      "route": null,
+      "condition": "stubborn",
+      "inspection": null
+    },
+    "wrench": {
+      "id": "wrench",
+      "location": "storage"
+    },
+    "seal": {
+      "id": "seal",
+      "location": "storage"
+    },
+    "rations": {
+      "id": "rations",
+      "location": "storage",
+      "count": 2
+    }
+  },
+  "pending": {
+    "actionId": "take-wrench",
+    "attemptId": "worker:1",
+    "durationMinutes": 6
+  },
+  "lastEvent": {
+    "status": "started",
+    "message": "Take the wrench started.",
+    "minutes": 0
+  }
+}

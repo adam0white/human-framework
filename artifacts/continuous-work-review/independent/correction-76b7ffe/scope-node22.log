@@ -1,0 +1,140 @@
+TAP version 13
+# Subtest: continuation JSON validation rejects shared expansion and oversized trees before serialization
+ok 1 - continuation JSON validation rejects shared expansion and oversized trees before serialization
+  ---
+  duration_ms: 44.659333
+  ...
+# Subtest: retained original failure: restarting the garden after workbench completion wins five minutes
+ok 2 - retained original failure: restarting the garden after workbench completion wins five minutes
+  ---
+  duration_ms: 15.907
+  ...
+# Subtest: retained original behavior: idle increases fatigue while paid rest reduces it
+ok 3 - retained original behavior: idle increases fatigue while paid rest reduces it
+  ---
+  duration_ms: 0.712625
+  ...
+# Subtest: retained original behavior: releasing assembly returns materials and preserves only worker exposure
+ok 4 - retained original behavior: releasing assembly returns materials and preserves only worker exposure
+  ---
+  duration_ms: 7.999917
+  ...
+# Subtest: retained independently reported failure: rounded capacity offers work that actual execution rejects
+ok 5 - retained independently reported failure: rounded capacity offers work that actual execution rejects
+  ---
+  duration_ms: 2.555459
+  ...
+# Subtest: finish-current-then-release ends the project while retaining the neighbor self-chosen recovery
+ok 6 - finish-current-then-release ends the project while retaining the neighbor self-chosen recovery
+  ---
+  duration_ms: 8.613584
+  ...
+# Subtest: future workbench productivity completes the already-started garden by 202 without restarting
+ok 7 - future workbench productivity completes the already-started garden by 202 without restarting
+  ---
+  duration_ms: 17.91625
+  ...
+# Subtest: snapshot productivity control preserves the old 207 completion without automatic rest
+ok 8 - snapshot productivity control preserves the old 207 completion without automatic rest
+  ---
+  duration_ms: 13.825834
+  ...
+# Subtest: migration and the improvement boundary preserve paid people, supplies and prior fractions
+ok 9 - migration and the improvement boundary preserve paid people, supplies and prior fractions
+  ---
+  duration_ms: 9.317917
+  ...
+# Subtest: stopping retains installed work and materials; unassigned time gives no construction practice
+ok 10 - stopping retains installed work and materials; unassigned time gives no construction practice
+  ---
+  duration_ms: 9.736542
+  ...
+# Subtest: same-minute stop/resume cannot refresh productivity or erase paid effort
+ok 11 - same-minute stop/resume cannot refresh productivity or erase paid effort
+  ---
+  duration_ms: 13.729041
+  ...
+# Subtest: accepted handover carries remaining physical work but never the previous actor practice or effort
+ok 12 - accepted handover carries remaining physical work but never the previous actor practice or effort
+  ---
+  duration_ms: 8.250459
+  ...
+# Subtest: new assembly reserves material once and a second worker cannot start the same stage
+ok 13 - new assembly reserves material once and a second worker cannot start the same stage
+  ---
+  duration_ms: 1.403959
+  ...
+# Subtest: automatic recovery matches actually paid legacy rest while active-idle remains a distinct control
+ok 14 - automatic recovery matches actually paid legacy rest while active-idle remains a distinct control
+  ---
+  duration_ms: 0.731917
+  ...
+# Subtest: Next Event reaches real completion before its finite six-minute unassigned review horizon
+ok 15 - Next Event reaches real completion before its finite six-minute unassigned review horizon
+  ---
+  duration_ms: 8.472833
+  ...
+# Subtest: Next Event returns on an actual recovery floor instead of creating a rest job
+ok 16 - Next Event returns on an actual recovery floor instead of creating a rest job
+  ---
+  duration_ms: 0.990416
+  ...
+# Subtest: interrupted eating reserves one portion for its actor, pays time, and gives no hunger relief
+ok 17 - interrupted eating reserves one portion for its actor, pays time, and gives no hunger relief
+  ---
+  duration_ms: 1.583125
+  ...
+# Subtest: eating finishes only after eight paid minutes and consumes its reserved portion once
+ok 18 - eating finishes only after eight paid minutes and consumes its reserved portion once
+  ---
+  duration_ms: 1.515292
+  ...
+# Subtest: JSON replay preserves paid partial work, interrupted eating, takeover and future continuation
+ok 19 - JSON replay preserves paid partial work, interrupted eating, takeover and future continuation
+  ---
+  duration_ms: 11.974708
+  ...
+# Subtest: replay rejects fabricated food, erased effort, person practice and material duplication
+ok 20 - replay rejects fabricated food, erased effort, person practice and material duplication
+  ---
+  duration_ms: 11.045375
+  ...
+# Subtest: new save identity rejects wrong versions, untrusted properties, and mixed legacy jobs explicitly
+ok 21 - new save identity rejects wrong versions, untrusted properties, and mixed legacy jobs explicitly
+  ---
+  duration_ms: 7.274208
+  ...
+# Subtest: chunked advancement preserves exact state and never bills one actor time to another
+ok 22 - chunked advancement preserves exact state and never bills one actor time to another
+  ---
+  duration_ms: 19.726
+  ...
+# Subtest: private time horizon is explicit and new-command exhaustion retains stops and advancing
+ok 23 - private time horizon is explicit and new-command exhaustion retains stops and advancing
+  ---
+  duration_ms: 382.057625
+  ...
+# Subtest: seven legal overlap cases retain prior fractions and never reward refreshing a same-worker assignment
+ok 24 - seven legal overlap cases retain prior fractions and never reward refreshing a same-worker assignment
+  ---
+  duration_ms: 62.837417
+  ...
+# Subtest: automatic recovery cannot feed a hungry actor or authorize exertion that still exceeds hunger capacity
+ok 25 - automatic recovery cannot feed a hungry actor or authorize exertion that still exceeds hunger capacity
+  ---
+  duration_ms: 5.976583
+  ...
+# Subtest: command identities reject coercible arrays rather than recording an ambiguous replay
+ok 26 - command identities reject coercible arrays rather than recording an ambiguous replay
+  ---
+  duration_ms: 7.195625
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 647.080458

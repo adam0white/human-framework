@@ -1,0 +1,19 @@
+{
+  "web/game-shell.js": "4fcf450321a3a4d3454566fbcd44fc4cea44529e1f411b7bb13471774ea7cd8a",
+  "web/game-shell.css": "220973261ef0b225ff38feb74abe2f057baafdb613c10a3a568fddf82c866f91",
+  "web/games.js": "d188636b1bf3be347503cbfbb455db1efa7ac8503a4b10f253c3cdfa17ad95f1",
+  "web/games.css": "d5fd9f277d526794913b251b744fd7d9677230791e6b008fabe173625a66c038",
+  "web/games.html": "4689e29b495c311e456e40223726b1297e1bf4cc4beb90ef7a2e101f63b2f81a",
+  "web/workshop.html": "921c866d7ed7335fef3fbbf80d0811994f7494bafaa42e671cc5854fc5c4949b",
+  "web/shift.html": "bf45756a0d3337831f97109fb583f1a9e7bb94decf7006b111923c5c7c2e2c23",
+  "web/courier.html": "6ce3a95c7ac659ec9f185da3282a3481b1b67929428ed3267842e03e18e85dd2",
+  "web/courtyard.html": "ac45e6f57812432f5495ee0d3cbe7b1d1091785d2e8010e941cfd706c5f95596",
+  "web/commons.html": "2332b17fbeeb75f1091862b4f269f2d24431c732af15def1aeddca37a6e29acd",
+  "web/commons-next.html": "15ea4dfcec509d86cdb2e8649d2f8f56c2b52305d18c2a45e43544110048ae39",
+  "web/watch.html": "6f6b897d53056d4c9ec91ff8c223bdd26d4d209a1abd3fa937f24e016cfd02a3",
+  "web/signals.html": "fccce10be7137a5c8dafdcdf92af773454fea4a996f2bda8c23afdffe2f9f299",
+  "web/service.html": "adec81c8b439de719743b68f565ebc3e46347ba5e453e9f20bf3cdd61c70f74d",
+  "web/service-plan.html": "6e054fb6dd173691825572257e0f20e0418f50542ad6bc9352dad145ee3aae91",
+  "web/signals.js": "703f0557827f6ce0d1722a4ecf69e0c87c64aff02cdc3be2e85e9735bc9c4392",
+  "web/commons-next.js": "23f8f8df57e46a78156bcf83e8de43c77304fe8dbc87636fee6d389e8aab1ebf"
+}

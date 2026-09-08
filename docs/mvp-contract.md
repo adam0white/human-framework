@@ -75,6 +75,12 @@ The next step is an actor-local information feasibility study before another int
 
 594 tests pass, including 64 new tests on the minimum runtime. Existing public assets and package exports remain unchanged. The next public slice must preserve actor-local rendering and meaningful player stop/replan choices; its receiver policy and UI need their own verification. No actual human explanation, authoring-benefit, physical-device or external-validation gate was closed by this study.
 
+## Player-continuity and interface milestone
+
+The [0.10 candidate](release-0.10.md) implements a common HUD/tab interface across the ten existing games, with 620 integrated tests and independent exact-state browser comparisons. New direct feedback describes meaningful consequences, perceived coherence and attachment at short endings; it remains one player's qualitative evidence.
+
+A private [ongoing-work correction](continuous-work-results.md) reproduces and removes a restart advantage within its bounded fixture, separating prospective productivity from automatic recovery. The [story proposal](story-continuity-proposal.md) identifies actual earned-camp carryover into the supply window as a concrete next use. Neither is a complete public replacement host or a promoted general faculty. Full mixed-job migration, the new story wrapper, broader human explanation, authoring benefit and external validation remain open.
+
 ## Sequence proposed at 0.5 (partly executed; current queue is above)
 
 

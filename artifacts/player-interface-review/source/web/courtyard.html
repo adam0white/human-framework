@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f4efe5"><meta name="description" content="Two households, one finite cistern. A small game about carrying water and deciding what to share.">
+  <title>The last water · Human</title><link rel="stylesheet" href="/web/courtyard.css">
+<link rel="stylesheet" href="/web/game-shell.css"></head>
+<body>
+  <div class="shell">
+    <header class="site-header"><a class="brand" href="/games/">← Games</a><span>HUMAN / THE COURTYARD</span><a href="/">Laboratory</a></header>
+    <main>
+      <section class="intro" aria-labelledby="title">
+        <div><p class="eyebrow">A SMALL GAME OF SHARED WATER</p><h1 id="title">The last water</h1>
+          <p class="objective">Fill your barrel with <strong>14 buckets</strong> before the tap closes.<br class="desktop-break"> Meryem is filling her household’s barrel too.</p></div>
+        <div class="clock"><strong id="moves-left">18</strong><span id="clock-caption">moves left</span><div id="turn-dots" class="turn-dots" aria-hidden="true"></div></div>
+      </section>
+      <div id="notice" class="notice" role="alert" hidden></div>
+      <div class="layout">
+        <div class="place-column">
+          <section class="courtyard" aria-label="Water in the courtyard">
+            <div class="board-top"><span>THE AFTERNOON CISTERN</span><span id="supply-caption">A finite supply</span></div>
+            <div class="scene">
+              <div class="house yours"><span class="house-label">Your household</span>
+                <div class="barrel" aria-hidden="true"><div id="player-water" class="barrel-water"></div><div class="barrel-line one"></div><div class="barrel-line two"></div><span id="player-in-barrel">0</span></div>
+                <p class="barrel-count"><strong id="player-stored">0</strong> / 14 stored</p>
+                <div id="player-cans" class="cans" aria-hidden="true"></div><p class="carry-count" id="player-carried">Carrying 2 / 6</p>
+              </div>
+              <div class="source"><svg viewBox="0 0 160 150" aria-hidden="true"><path class="stone" d="M22 90h116v38H22z"/><path class="stone-edge" d="M17 90h126v9H17zM22 114h116M57 99v15M106 114v14"/><path class="tap" d="M79 77V31h38v12H93v34M72 29h24M83 20v9"/><path class="stream" d="M84 78v10"/><ellipse class="pool" cx="80" cy="90" rx="52" ry="6"/><path class="plant" d="M24 85V56m0 14L13 61m11 0 9-13M134 86V65m0 10 11-9"/></svg>
+                <p><strong id="source-water">28</strong><span>buckets left<br>in the cistern</span></p>
+              </div>
+              <div class="house hers"><span class="house-label">Meryem’s household</span>
+                <div class="barrel" aria-hidden="true"><div id="neighbor-water" class="barrel-water"></div><div class="barrel-line one"></div><div class="barrel-line two"></div><span id="neighbor-in-barrel">0</span></div>
+                <p class="barrel-count"><strong id="neighbor-stored">0</strong> / 14 stored</p>
+                <div id="neighbor-cans" class="cans" aria-hidden="true"></div><p class="carry-count" id="neighbor-carried">Carrying 4 / 6</p>
+              </div>
+            </div>
+            <div class="board-bottom"><span>Each can holds one bucket.</span><span id="spilled">No water spilled</span></div>
+          </section>
+          <section class="condition" aria-labelledby="condition-title">
+            <div class="caption"><h2 id="condition-title">How you feel</h2><span>estimates</span></div>
+            <div class="condition-grid"><label><span>Fatigue <strong id="fatigue-label"></strong></span><meter id="fatigue" min="0" max="1" aria-label="Your estimated fatigue"></meter></label>
+              <label><span>Hunger <strong id="hunger-label"></strong></span><meter id="hunger" min="0" max="1" aria-label="Your estimated hunger"></meter></label></div>
+          </section>
+          <section class="neighbor-card" aria-labelledby="neighbor-title">
+            <div class="caption"><h2 id="neighbor-title">Across the courtyard</h2><span id="neighbor-condition">Meryem</span></div>
+            <p id="neighbor-goal" class="neighbor-goal"></p>
+            <p id="neighbor-speech" class="speech">“We have until the tap closes. I’ll work on my household’s barrel.”</p>
+            <div id="proposal" class="proposal" hidden><p id="proposal-detail"></p><div class="reply-buttons"><button id="accept" type="button">Accept · 10 min</button><button id="refuse" type="button">Refuse · 10 min</button></div><small>Your reply uses your next action. Meryem then chooses her own action. Choose another action to let the proposal pass.</small></div>
+            <p id="loan" class="loan" hidden></p>
+            <p id="relationship" class="exchange-facts">No gifts have been exchanged yet.</p>
+          </section>
+          <details class="hint"><summary>A few things to try</summary><p>Alternate carrying water and filling your barrel. Your cans hold six, and you can pour three in one move. A careful trip never spills; a quick lift may save a move but takes more strength.</p><p>Meryem can refuse a gift if her cans are full. If you borrow, leave time and two buckets for the return. Filling your own barrel and helping hers are separate outcomes.</p></details>
+        </div>
+        <section class="choices" aria-labelledby="choices-title">
+          <div class="caption"><h2 id="choices-title">Your next move</h2><span id="turn-label">Move 1 of 18</span></div>
+          <p class="turn-rule">One move = 10 shared minutes, with one action each. You act first; Meryem then replies or chooses her action. <strong id="elapsed-time"></strong></p>
+          <p id="goal-guidance" class="goal-guidance"></p>
+          <div id="last-turn" class="last-turn" role="status" aria-live="polite" hidden><strong id="last-turn-title"></strong><div class="turn-person"><h3 id="your-phase"></h3><p id="your-event"></p></div><div class="turn-person"><h3 id="her-phase"></h3><p id="her-event"></p></div></div>
+          <div id="outcome" class="outcome" tabindex="-1" hidden><p class="eyebrow">THE TAP HAS CLOSED</p><h2 id="outcome-title"></h2><p id="outcome-detail"></p><button id="again" type="button">Another afternoon</button></div>
+          <div id="play-controls">
+            <div id="work-actions" class="work-actions"></div>
+            <div id="recovery-actions" class="small-actions"></div>
+            <div class="talk"><h3>Speak with Meryem</h3><p>An offer, request or loan uses your action to ask and hers to reply. Yes or no, 10 shared minutes pass; neither of you collects or pours on that move.</p><div id="social-actions" class="social-actions"></div></div>
+          </div>
+        </section>
+      </div>
+      <section class="session" aria-label="Save and configure the game">
+        <div class="save-row"><button id="download-save" type="button">Download snapshot</button><button id="download-replay" type="button">Download replay</button><label class="file-button">Load save or replay<input id="load-save" type="file" accept="application/json,.json"></label><span id="save-state">Saved on this device after each move</span></div>
+        <details><summary id="history-summary">Move history</summary><p id="history-note"></p><ol id="history-list" class="history-list"></ol></details>
+        <details><summary>New afternoon</summary><div class="setup"><label>Seed<input id="seed" type="number" min="0" max="4294967295" step="1" value="1" inputmode="numeric"></label><label>Water supply<select id="profile"><option value="standard">Standard · 28 buckets</option><option value="scarce">Scarce · 22 buckets</option><option value="plentiful">Plentiful · 36 buckets</option></select></label><button id="new-run" type="button">Start a new run</button></div><label class="check"><input id="record" type="checkbox" checked> Record a separate replay from the next new run</label><p class="muted">The same seed and choices reproduce the same afternoon. A replay keeps the whole sequence; a snapshot keeps current totals and the last move.</p></details>
+        <details id="controller"><summary>Controller hints</summary><p>These are simple authored rules. They see the same observations you do.</p><div class="setup"><label>Play style<select id="policy"><option value="reciprocal">Reciprocal · finish, then share</option><option value="self-sufficient">Self-sufficient · refuse exchanges</option><option value="generous">Generous · accept requests</option></select></label><button id="suggested" type="button">Take suggested move</button><button id="auto" type="button">Watch this controller</button></div><p id="suggestion" class="muted"></p></details>
+        <details><summary>Researcher view</summary><p id="research-facts"></p><label class="check"><input id="memory" type="checkbox" checked> Let Meryem use exchange history in the next new run</label><p class="muted">The comparison switch ignores earlier gifts and late-loan history in her preferences. It preserves current obligations, ownership, time and consent.</p></details>
+        <details class="model-notes"><summary>Model notes</summary><p>This is an authored small game, not a calibrated explanation of people. Work and recovery use the shared body/practice component. Meryem uses structured rules, without an LLM or hidden-state inference. Gifts and loan records describe exchanges; they are not moral-worth, faith or divine-approval scores. The project’s Islamic starting point does not supply this game’s numerical rules.</p><p>Turns are atomic: your choice settles first, then Meryem responds to what she can observe. The active save retains the current world and last turn; the optional replay retains choices separately. The laboratory’s original Water Commons and Solo Repair remain separate controls.</p></details>
+      </section>
+    </main>
+    <footer>A courtyard, two households, and a few decisions that matter.</footer>
+  </div>
+  <script type="module" src="/web/courtyard.js"></script>
+<script type="module" src="/web/game-shell.js"></script></body>
+</html>

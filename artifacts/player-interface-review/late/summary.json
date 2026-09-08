@@ -1,0 +1,703 @@
+[
+  {
+    "case": "persistent-feedback-live-region",
+    "emptyLive": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": ""
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "filledLive": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "You: Ten minutes in the shade eased fatigue. Meryem: Her own choice. 3 buckets added to Meryem’s household barrel."
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "case": "courtyard-singular-clock",
+    "state": {
+      "selected": "Actions",
+      "focus": "",
+      "focusTag": "BUTTON",
+      "clock": "1\nmove left",
+      "alert": "",
+      "feedback": "You: Ten minutes in the shade eased fatigue. Meryem: Her own choice. Ten minutes in the shade eased fatigue."
+    }
+  },
+  {
+    "case": "courtyard-ending-caption-and-event-focus",
+    "state": {
+      "selected": "History",
+      "focus": "outcome",
+      "focusTag": "DIV",
+      "clock": "0\ntap closed",
+      "alert": "",
+      "feedback": "You: Ten minutes in the shade eased fatigue. Meryem: Her own choice. Ten minutes in the shade eased fatigue."
+    }
+  },
+  {
+    "case": "initial-ended-panel-without-focus-steal"
+  },
+  {
+    "case": "initial-proposal-panel-without-focus-steal"
+  },
+  {
+    "case": "initial-checkpoint-without-focus-steal"
+  },
+  {
+    "case": "save-failure-visible-on-play-panel",
+    "game": "workshop",
+    "state": {
+      "selected": "Actions",
+      "focus": "finish",
+      "focusTag": "BUTTON",
+      "clock": "4h\nuntil departure",
+      "alert": "Device storage unavailable — download a save to keep this run",
+      "feedback": ""
+    },
+    "alert": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "Device storage unavailable — download a save to keep this run"
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "box": {
+      "x": 13,
+      "y": 146.984375,
+      "width": 349,
+      "height": 14.296875
+    }
+  },
+  {
+    "case": "save-failure-visible-on-play-panel",
+    "game": "shift",
+    "state": {
+      "selected": "Actions",
+      "focus": "",
+      "focusTag": "BODY",
+      "clock": "7h 54m\nleft in shift",
+      "alert": "Device storage unavailable — download a save to keep this shift",
+      "feedback": ""
+    },
+    "alert": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "Device storage unavailable — download a save to keep this shift"
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "box": {
+      "x": 13,
+      "y": 203.984375,
+      "width": 349,
+      "height": 28.59375
+    }
+  },
+  {
+    "case": "save-failure-visible-on-play-panel",
+    "game": "courier",
+    "state": {
+      "selected": "Actions",
+      "focus": "",
+      "focusTag": "BODY",
+      "clock": "238\nminutes left",
+      "alert": "Device save unavailable. Download a save to keep this round.",
+      "feedback": ""
+    },
+    "alert": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "Device save unavailable. Download a save to keep this round."
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "box": {
+      "x": 13,
+      "y": 146.984375,
+      "width": 349,
+      "height": 14.296875
+    }
+  },
+  {
+    "case": "save-failure-visible-on-play-panel",
+    "game": "courtyard",
+    "state": {
+      "selected": "Actions",
+      "focus": "",
+      "focusTag": "BUTTON",
+      "clock": "17\nmoves left",
+      "alert": "Device storage unavailable — download this run to keep it",
+      "feedback": "You: Ten minutes in the shade eased fatigue. Meryem: Her own choice. 3 buckets added to Meryem’s household barrel."
+    },
+    "alert": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "Device storage unavailable — download this run to keep it"
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "box": {
+      "x": 13,
+      "y": 163.78125,
+      "width": 349,
+      "height": 14.296875
+    }
+  },
+  {
+    "case": "save-failure-visible-on-play-panel",
+    "game": "commons",
+    "state": {
+      "selected": "Work",
+      "focus": "",
+      "focusTag": "BODY",
+      "clock": "08:00\nDAY 1",
+      "alert": "Device storage unavailable. Download a save to keep this worksite.",
+      "feedback": ""
+    },
+    "alert": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "Device storage unavailable. Download a save to keep this worksite."
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "box": {
+      "x": 13,
+      "y": 178.78125,
+      "width": 349,
+      "height": 28.59375
+    }
+  },
+  {
+    "case": "save-failure-visible-on-play-panel",
+    "game": "commons-next",
+    "state": {
+      "selected": "Work",
+      "focus": "",
+      "focusTag": "BODY",
+      "clock": "90 min\nUNTIL THE FERRY",
+      "alert": "Device storage unavailable. Download a save to keep this afternoon.",
+      "feedback": ""
+    },
+    "alert": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "Device storage unavailable. Download a save to keep this afternoon."
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "box": {
+      "x": 13,
+      "y": 178.78125,
+      "width": 349,
+      "height": 28.59375
+    }
+  },
+  {
+    "case": "save-failure-visible-on-play-panel",
+    "game": "watch",
+    "state": {
+      "selected": "You",
+      "focus": "keeper-repair",
+      "focusTag": "BUTTON",
+      "clock": "00\nminutes elapsed",
+      "alert": "Device save unavailable. Download a save to keep this episode. Surge expected: minute 28–36",
+      "feedback": ""
+    },
+    "alert": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "Device save unavailable. Download a save to keep this episode. Surge expected: minute 28–36"
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "box": {
+      "x": 13,
+      "y": 178.78125,
+      "width": 349,
+      "height": 28.59375
+    }
+  },
+  {
+    "case": "save-failure-visible-on-play-panel",
+    "game": "signals",
+    "state": {
+      "selected": "Route",
+      "focus": "action-canal",
+      "focusTag": "BUTTON",
+      "clock": "00\nof 32 minutes",
+      "alert": "Device save unavailable. Download a save to keep this journey.",
+      "feedback": ""
+    },
+    "alert": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "Device save unavailable. Download a save to keep this journey."
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "box": {
+      "x": 13,
+      "y": 163.78125,
+      "width": 349,
+      "height": 14.296875
+    }
+  },
+  {
+    "case": "save-recovery-clears-warning",
+    "state": {
+      "selected": "Route",
+      "focus": "one-minute",
+      "focusTag": "BUTTON",
+      "clock": "01\nof 32 minutes",
+      "alert": "",
+      "feedback": ""
+    }
+  },
+  {
+    "case": "save-failure-visible-on-play-panel",
+    "game": "service",
+    "state": {
+      "selected": "You",
+      "focus": "keeper-gate",
+      "focusTag": "BUTTON",
+      "clock": "00\nMorning · inlet first",
+      "alert": "Device save unavailable. Download a save to keep this day.",
+      "feedback": ""
+    },
+    "alert": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "Device save unavailable. Download a save to keep this day."
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "box": {
+      "x": 13,
+      "y": 204.96875,
+      "width": 349,
+      "height": 14.296875
+    }
+  },
+  {
+    "case": "save-failure-visible-on-play-panel",
+    "game": "service-plan",
+    "state": {
+      "selected": "You",
+      "focus": "",
+      "focusTag": "BODY",
+      "clock": "37\nof 64 minutes",
+      "alert": "Device save unavailable. Download a save to keep this day.",
+      "feedback": ""
+    },
+    "alert": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "Device save unavailable. Download a save to keep this day."
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "box": {
+      "x": 13,
+      "y": 194.171875,
+      "width": 349,
+      "height": 14.296875
+    }
+  },
+  {
+    "case": "withdraw-consequence-and-existing-work",
+    "explanation": "Ends the agreed wait; existing jobs continue.",
+    "full": "Ends your promised contribution and the agreed wait. It stops no work and does not cancel Deniz’s clinic obligation.",
+    "box": {
+      "x": 13,
+      "y": 644.15625,
+      "width": 349,
+      "height": 14.84375
+    },
+    "before": "Rest\n6 min left · finishes at 45",
+    "after": "Rest\n6 min left · finishes at 45"
+  },
+  {
+    "case": "independent-stop-refusal-already-visible",
+    "refusal": "I chose this work for the clinic and will finish it. You can make another request when I am free."
+  },
+  {
+    "allPassed": true
+  }
+]

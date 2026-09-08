@@ -1,0 +1,548 @@
+{
+  "sourceCommit": "811bc5c7d3e387d0a49d524bad1e0bf5b148e2eb",
+  "sources": {
+    "src/experiments/continuous-work/host.js": "13a804beeed7a96ddef89966f6925d1de4e6f23e75e972b4730c8634b6215454",
+    "scripts/continuous-work-fixture.js": "6d36c8cfc9dc14877fb6c5555466f2dac21b3eb68b22d822964702ba0e1f2c6c",
+    "scripts/continuous-work-probe.js": "6e06d3b5774449f65aca92e086aa351754bf149402dd15965497fb5a74a01df2",
+    "src/games/commons.js": "b2c6f5e8bd38e84b729d73182170c88034edc3767e00c71cd65784233283aedb",
+    "src/human/index.js": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "scripts/runtime-release-lock.json": "f27bd54f0549f5dcb8016099669f3a74f27a4edf2378953a60803711cbd1b165",
+    "tests/continuous-work-legacy.test.js": "7101b6daa9de0295faa2620ff068ea72cdc82d9f86b9890c524a9d7a320acf2c",
+    "tests/continuous-work.test.js": "282bc487d3a317eaa10e78c5579018de4f78d138cd73f8216ce31bd286751002"
+  },
+  "environment": {
+    "node": "v22.0.0",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "scope": "Private deterministic continuation fixtures, not a public game release, blind sample or human-validation result",
+  "original": {
+    "prelude": [
+      [
+        "start",
+        "gather-timber"
+      ],
+      [
+        "next"
+      ],
+      [
+        "start",
+        "gather-timber"
+      ],
+      [
+        "next"
+      ],
+      [
+        "start",
+        "gather-timber"
+      ],
+      [
+        "next"
+      ],
+      [
+        "start",
+        "gather-salvage"
+      ],
+      [
+        "next"
+      ],
+      [
+        "start",
+        "rest"
+      ],
+      [
+        "next"
+      ],
+      [
+        "start",
+        "gather-salvage"
+      ],
+      [
+        "next"
+      ],
+      [
+        "start",
+        "build-workbench"
+      ],
+      [
+        "next"
+      ],
+      [
+        "start",
+        "rest"
+      ],
+      [
+        "next"
+      ],
+      [
+        "advance",
+        12
+      ],
+      [
+        "start",
+        "build-workbench"
+      ],
+      [
+        "advance",
+        27
+      ],
+      [
+        "request",
+        "garden"
+      ]
+    ],
+    "improvementAt": 188,
+    "continueAt": 207,
+    "restartAt": 202,
+    "finishThenReleaseAt": 207,
+    "retainedGardenMinute": 1,
+    "priorEffort": 0.01,
+    "restartFutureEffort": 0.2
+  },
+  "arms": {
+    "snapshot-active-idle": {
+      "now": 207,
+      "gardenCompletedAt": 207,
+      "structures": {
+        "shelter": 0,
+        "workbench": 2,
+        "garden": 1
+      },
+      "stock": {
+        "timber": 2,
+        "salvage": 2,
+        "food": 3
+      },
+      "bodies": {
+        "player": {
+          "fatigue": 0.7404999999999883,
+          "hunger": 0.6340000000000003
+        },
+        "neighbor": {
+          "fatigue": 0.8104999999999962,
+          "hunger": 0.14400000000000035
+        }
+      },
+      "paid": {
+        "player": {
+          "work": 1,
+          "recovery": 0,
+          "idle": 19,
+          "meal": 0
+        },
+        "neighbor": {
+          "work": 20,
+          "recovery": 0,
+          "idle": 0,
+          "meal": 0
+        }
+      },
+      "gardenContributions": {
+        "neighbor": {
+          "priorMinutes": 0,
+          "minutes": 20,
+          "fraction": 1,
+          "effort": 0.20000000000000007
+        }
+      },
+      "nextStop": {
+        "at": 213,
+        "reason": "review-interval"
+      }
+    },
+    "snapshot-automatic": {
+      "now": 207,
+      "gardenCompletedAt": 207,
+      "structures": {
+        "shelter": 0,
+        "workbench": 2,
+        "garden": 1
+      },
+      "stock": {
+        "timber": 2,
+        "salvage": 2,
+        "food": 3
+      },
+      "bodies": {
+        "player": {
+          "fatigue": 0.26549999999998836,
+          "hunger": 0.6340000000000003
+        },
+        "neighbor": {
+          "fatigue": 0.8104999999999962,
+          "hunger": 0.14400000000000035
+        }
+      },
+      "paid": {
+        "player": {
+          "work": 1,
+          "recovery": 19,
+          "idle": 0,
+          "meal": 0
+        },
+        "neighbor": {
+          "work": 20,
+          "recovery": 0,
+          "idle": 0,
+          "meal": 0
+        }
+      },
+      "gardenContributions": {
+        "neighbor": {
+          "priorMinutes": 0,
+          "minutes": 20,
+          "fraction": 1,
+          "effort": 0.20000000000000007
+        }
+      },
+      "nextStop": {
+        "at": 213,
+        "reason": "review-interval"
+      }
+    },
+    "prospective-active-idle": {
+      "now": 207,
+      "gardenCompletedAt": 202,
+      "structures": {
+        "shelter": 0,
+        "workbench": 2,
+        "garden": 1
+      },
+      "stock": {
+        "timber": 2,
+        "salvage": 2,
+        "food": 3
+      },
+      "bodies": {
+        "player": {
+          "fatigue": 0.7404999999999883,
+          "hunger": 0.6340000000000003
+        },
+        "neighbor": {
+          "fatigue": 0.8104999999999956,
+          "hunger": 0.14400000000000035
+        }
+      },
+      "paid": {
+        "player": {
+          "work": 1,
+          "recovery": 0,
+          "idle": 19,
+          "meal": 0
+        },
+        "neighbor": {
+          "work": 15,
+          "recovery": 0,
+          "idle": 5,
+          "meal": 0
+        }
+      },
+      "gardenContributions": {
+        "neighbor": {
+          "priorMinutes": 0,
+          "minutes": 15,
+          "fraction": 1,
+          "effort": 0.20000000000000012
+        }
+      },
+      "nextStop": {
+        "at": 213,
+        "reason": "review-interval"
+      }
+    },
+    "prospective-automatic": {
+      "now": 207,
+      "gardenCompletedAt": 202,
+      "structures": {
+        "shelter": 0,
+        "workbench": 2,
+        "garden": 1
+      },
+      "stock": {
+        "timber": 2,
+        "salvage": 2,
+        "food": 3
+      },
+      "bodies": {
+        "player": {
+          "fatigue": 0.26549999999998836,
+          "hunger": 0.6340000000000003
+        },
+        "neighbor": {
+          "fatigue": 0.6854999999999954,
+          "hunger": 0.14400000000000035
+        }
+      },
+      "paid": {
+        "player": {
+          "work": 1,
+          "recovery": 19,
+          "idle": 0,
+          "meal": 0
+        },
+        "neighbor": {
+          "work": 15,
+          "recovery": 5,
+          "idle": 0,
+          "meal": 0
+        }
+      },
+      "gardenContributions": {
+        "neighbor": {
+          "priorMinutes": 0,
+          "minutes": 15,
+          "fraction": 1,
+          "effort": 0.20000000000000012
+        }
+      },
+      "nextStop": {
+        "at": 213,
+        "reason": "review-interval"
+      }
+    }
+  },
+  "stopResume": {
+    "now": 202,
+    "gardenCompletedAt": 202,
+    "structures": {
+      "shelter": 0,
+      "workbench": 2,
+      "garden": 1
+    },
+    "stock": {
+      "timber": 2,
+      "salvage": 2,
+      "food": 3
+    },
+    "bodies": {
+      "player": {
+        "fatigue": 0.7329999999999885,
+        "hunger": 0.6240000000000003
+      },
+      "neighbor": {
+        "fatigue": 0.8029999999999958,
+        "hunger": 0.13400000000000034
+      }
+    },
+    "paid": {
+      "player": {
+        "work": 1,
+        "recovery": 0,
+        "idle": 14,
+        "meal": 0
+      },
+      "neighbor": {
+        "work": 15,
+        "recovery": 0,
+        "idle": 0,
+        "meal": 0
+      }
+    },
+    "gardenContributions": {
+      "neighbor": {
+        "priorMinutes": 0,
+        "minutes": 15,
+        "fraction": 1,
+        "effort": 0.20000000000000012
+      }
+    },
+    "nextStop": {
+      "at": 208,
+      "reason": "review-interval"
+    }
+  },
+  "takeover": {
+    "now": 201,
+    "gardenCompletedAt": 201,
+    "structures": {
+      "shelter": 0,
+      "workbench": 2,
+      "garden": 1
+    },
+    "stock": {
+      "timber": 2,
+      "salvage": 2,
+      "food": 3
+    },
+    "bodies": {
+      "player": {
+        "fatigue": 0.9214999999999893,
+        "hunger": 0.6220000000000003
+      },
+      "neighbor": {
+        "fatigue": 0.6114999999999965,
+        "hunger": 0.13200000000000034
+      }
+    },
+    "paid": {
+      "player": {
+        "work": 14,
+        "recovery": 0,
+        "idle": 0,
+        "meal": 0
+      },
+      "neighbor": {
+        "work": 1,
+        "recovery": 0,
+        "idle": 13,
+        "meal": 0
+      }
+    },
+    "gardenContributions": {
+      "neighbor": {
+        "priorMinutes": 0,
+        "minutes": 1,
+        "fraction": 0.05,
+        "effort": 0.010000000000000002
+      },
+      "player": {
+        "priorMinutes": 0,
+        "minutes": 13,
+        "fraction": 0.9500000000000002,
+        "effort": 0.19000000000000009
+      }
+    },
+    "nextStop": {
+      "at": 207,
+      "reason": "review-interval"
+    }
+  },
+  "overlaps": [
+    {
+      "overlap": 1,
+      "gardenStartedAt": 187,
+      "oldContinueAt": 207,
+      "oldRestartAt": 202,
+      "prospectiveAt": 202,
+      "retainedEffort": 0.20000000000000012
+    },
+    {
+      "overlap": 2,
+      "gardenStartedAt": 186,
+      "oldContinueAt": 206,
+      "oldRestartAt": 202,
+      "prospectiveAt": 201,
+      "retainedEffort": 0.2000000000000001
+    },
+    {
+      "overlap": 3,
+      "gardenStartedAt": 185,
+      "oldContinueAt": 205,
+      "oldRestartAt": 202,
+      "prospectiveAt": 200,
+      "retainedEffort": 0.20000000000000007
+    },
+    {
+      "overlap": 4,
+      "gardenStartedAt": 184,
+      "oldContinueAt": 204,
+      "oldRestartAt": 202,
+      "prospectiveAt": 200,
+      "retainedEffort": 0.2000000000000001
+    },
+    {
+      "overlap": 5,
+      "gardenStartedAt": 183,
+      "oldContinueAt": 203,
+      "oldRestartAt": 202,
+      "prospectiveAt": 199,
+      "retainedEffort": 0.2000000000000001
+    },
+    {
+      "overlap": 6,
+      "gardenStartedAt": 182,
+      "oldContinueAt": 202,
+      "oldRestartAt": 202,
+      "prospectiveAt": 198,
+      "retainedEffort": 0.2000000000000001
+    },
+    {
+      "overlap": 7,
+      "gardenStartedAt": 181,
+      "oldContinueAt": 201,
+      "oldRestartAt": 202,
+      "prospectiveAt": 198,
+      "retainedEffort": 0.20000000000000012
+    }
+  ],
+  "recovery": {
+    "automatic": {
+      "now": 6,
+      "gardenCompletedAt": null,
+      "structures": {
+        "shelter": 0,
+        "workbench": 0,
+        "garden": 0
+      },
+      "stock": {
+        "timber": 4,
+        "salvage": 2,
+        "food": 4
+      },
+      "bodies": {
+        "player": {
+          "fatigue": 0.059000000000000045,
+          "hunger": 0.232
+        }
+      },
+      "paid": {
+        "player": {
+          "work": 0,
+          "recovery": 6,
+          "idle": 0,
+          "meal": 0
+        }
+      },
+      "gardenContributions": null,
+      "nextStop": {
+        "at": 9,
+        "reason": "recovery-floor"
+      }
+    },
+    "activeIdle": {
+      "now": 6,
+      "gardenCompletedAt": null,
+      "structures": {
+        "shelter": 0,
+        "workbench": 0,
+        "garden": 0
+      },
+      "stock": {
+        "timber": 4,
+        "salvage": 2,
+        "food": 4
+      },
+      "bodies": {
+        "player": {
+          "fatigue": 0.20900000000000002,
+          "hunger": 0.232
+        }
+      },
+      "paid": {
+        "player": {
+          "work": 0,
+          "recovery": 0,
+          "idle": 6,
+          "meal": 0
+        }
+      },
+      "gardenContributions": null,
+      "nextStop": {
+        "at": 12,
+        "reason": "review-interval"
+      }
+    },
+    "legacyRestBody": {
+      "fatigue": 0.059000000000000045,
+      "hunger": 0.232
+    }
+  },
+  "originalFailuresRetained": [
+    "workbench benefit snapshots at job start",
+    "rounded capacity advertises an actually blocked job"
+  ]
+}

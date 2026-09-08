@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-09-08T13:50:34.538379+00:00",
+  "sourceCommit": "76b7ffe89f9268d239ca8e361a0429939d38e6b6",
+  "correction": "Incremental serialized-character budget and shared-reference rejection; no physical policy change.",
+  "checks": [
+    {
+      "runtime": "node22",
+      "payloadHashesVerified": 20,
+      "unchangedNonReportPayloads": 19,
+      "physicalReportIdentical": true
+    },
+    {
+      "runtime": "node26",
+      "payloadHashesVerified": 20,
+      "unchangedNonReportPayloads": 19,
+      "physicalReportIdentical": true
+    }
+  ],
+  "regressionSha256": "a42d09f2abe06eb81e2d8974c24b5e67358127b39046b0bb02348cda0d021c50"
+}

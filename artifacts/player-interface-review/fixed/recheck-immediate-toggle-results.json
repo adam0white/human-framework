@@ -1,0 +1,91 @@
+[
+  {
+    "case": "courtyard-restart-fixed",
+    "state": {
+      "selected": "Actions",
+      "focus": "game-tab-0",
+      "clock": "18moves left",
+      "panelHeight": 395,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-courtyard-0.1": "{\"version\":\"0.1.0\",\"seed\":2,\"profile\":\"standard\",\"socialMemory\":true,\"round\":0,\"clock\":0,\"status\":\"playing\",\"source\":28,\"spilled\":0,\"carried\":{\"player\":2,\"neighbor\":4},\"homes\":{\"player\":0,\"neighbor\":0},\"meals\":{\"player\":1,\"neighbor\":1},\"people\":{\"player\":{\"format\":\"human-framework-person\",\"version\":1,\"componentVersion\":\"0.1.0\",\"person\":{\"version\":\"0.1.0\",\"id\":\"player\",\"body\":{\"fatigue\":0.3,\"hunger\":0.42},\"skills\":{\"collection\":0.52},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":1,\"pending\":null}},\"neighbor\":{\"format\":\"human-framework-person\",\"version\":1,\"componentVersion\":\"0.1.0\",\"person\":{\"version\":\"0.1.0\",\"id\":\"neighbor\",\"body\":{\"fatigue\":0.52,\"hunger\":0.28},\"skills\":{\"collection\":0.62},\"observationBias\":0,\"minutes\":0,\"nextAttempt\":1,\"pending\":null}}},\"draws\":{\"player\":0,\"neighbor\":0},\"social\":{\"given\":{\"player\":0,\"neighbor\":0},\"loan\":null,\"returnedOnTime\":0,\"returnedLate\":0,\"lateLoans\":0,\"refusedByPlayer\":0,\"refusedByNeighbor\":0,\"ignored\":0,\"proposal\":null,\"nextProposalRound\":0},\"lastTurn\":null}",
+        "human-courtyard-replay-0.1": "{\"format\":\"courtyard-replay\",\"version\":\"0.1.0\",\"setup\":{\"seed\":2,\"profile\":\"standard\",\"socialMemory\":true},\"actions\":[]}"
+      }
+    }
+  },
+  {
+    "case": "courtyard-proposal-fixed",
+    "state": {
+      "selected": "Meryem",
+      "focus": "accept",
+      "clock": "15moves left",
+      "panelHeight": 354,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-courtyard-0.1": "{\"version\":\"0.1.0\",\"seed\":1,\"profile\":\"standard\",\"socialMemory\":true,\"round\":3,\"clock\":30,\"status\":\"playing\",\"source\":22,\"spilled\":0,\"carried\":{\"player\":3,\"neighbor\":3},\"homes\":{\"player\":3,\"neighbor\":3},\"meals\":{\"player\":1,\"neighbor\":1},\"people\":{\"player\":{\"format\":\"human-framework-person\",\"version\":1,\"componentVersion\":\"0.1.0\",\"person\":{\"version\":\"0.1.0\",\"id\":\"player\",\"body\":{\"fatigue\":0.605,\"hunger\":0.48000000000000004},\"skills\":{\"collection\":0.5674118572378217},\"observationBias\":0,\"minutes\":30,\"nextAttempt\":4,\"pending\":null}},\"neighbor\":{\"format\":\"human-framework-person\",\"version\":1,\"componentVersion\":\"0.1.0\",\"person\":{\"version\":\"0.1.0\",\"id\":\"neighbor\",\"body\":{\"fatigue\":0.725,\"hunger\":0.3400000000000001},\"skills\":{\"collection\":0.639255030599702},\"observationBias\":0,\"minutes\":30,\"nextAttempt\":4,\"pending\":null}}},\"draws\":{\"player\":2,\"neighbor\":1},\"social\":{\"given\":{\"player\":0,\"neighbor\":0},\"loan\":null,\"returnedOnTime\":0,\"returnedLate\":0,\"lateLoans\":0,\"refusedByPlayer\":0,\"refusedByNeighbor\":0,\"ignored\":0,\"proposal\":{\"kind\":\"request\",\"amount\":2,\"createdRound\":3,\"expiresRound\":4},\"nextProposalRound\":6},\"lastTurn\":{\"round\":3,\"player\":{\"actionId\":\"draw-careful\",\"status\":\"completed\",\"amount\":2,\"message\":\"2 buckets carried.\",\"reason\":null},\"neighbor\":{\"actionId\":\"request\",\"status\":\"completed\",\"amount\":0,\"message\":\"Could you give me two buckets? My household is still short.\",\"reason\":null}}}",
+        "human-courtyard-replay-0.1": "{\"format\":\"courtyard-replay\",\"version\":\"0.1.0\",\"setup\":{\"seed\":1,\"profile\":\"standard\",\"socialMemory\":true},\"actions\":[\"draw-careful\",\"pour\",\"draw-careful\"]}"
+      }
+    },
+    "accept": {
+      "visible": true,
+      "x": 26,
+      "y": 451.15625,
+      "width": 147.5,
+      "height": 44.296875,
+      "bottom": 495.453125,
+      "panel": {
+        "y": 216.78125,
+        "bottom": 570.625
+      }
+    }
+  },
+  {
+    "case": "rain-ferry-fixed",
+    "id": "#checkpoint",
+    "rect": {
+      "visible": true,
+      "x": 13,
+      "y": 251.578125,
+      "width": 329,
+      "height": 157.125,
+      "bottom": 408.703125,
+      "panel": {
+        "y": 242.578125,
+        "bottom": 509.90625
+      }
+    }
+  },
+  {
+    "case": "rain-ferry-fixed",
+    "id": "#continue",
+    "rect": {
+      "visible": true,
+      "x": 13,
+      "y": 624,
+      "width": 239.015625,
+      "height": 35,
+      "bottom": 659,
+      "panel": null
+    }
+  },
+  {
+    "case": "rain-dusk-result-fixed",
+    "state": {
+      "selected": "Journal",
+      "focus": "result",
+      "play": "false",
+      "clock": "0 minAFTERNOON COMPLETE",
+      "panelHeight": 308,
+      "docWidth": 375,
+      "docHeight": 667,
+      "save": {
+        "human-common-ground-before-rain-v1": "{\"format\":\"human-common-ground-before-rain\",\"version\":1,\"game\":{\"version\":\"0.1.0\",\"world\":{\"version\":\"0.1.0\",\"solo\":false,\"clock\":{\"version\":\"0.1.0\",\"now\":400,\"nextEvent\":25,\"queue\":[]},\"people\":{\"player\":{\"version\":\"0.1.0\",\"id\":\"player\",\"body\":{\"fatigue\":0.779999999999981,\"hunger\":0.47000000000000064},\"skills\":{\"gathering\":0.4334333287389793,\"construction\":0.33641166181925103},\"observationBias\":0,\"minutes\":400,\"nextAttempt\":193,\"pending\":null},\"neighbor\":{\"version\":\"0.1.0\",\"id\":\"neighbor\",\"body\":{\"fatigue\":0.2599999999999851,\"hunger\":0.5300000000000007},\"skills\":{\"gathering\":0.371337363828764,\"construction\":0.3432772177639855},\"observationBias\":0,\"minutes\":400,\"nextAttempt\":193,\"pending\":null}},\"jobs\":{\"player\":null,\"neighbor\":null},\"stock\":{\"timber\":2,\"salvage\":1,\"food\":2},\"structures\":{\"shelter\":2,\"workbench\":2,\"garden\":2},\"caches\":0,\"milestoneAt\":220,\"commitment\":{\"status\":\"fulfilled\",\"project\":\"garden\",\"acceptedAt\":102,\"finishedAt\":220,\"startCaches\":0,\"reason\":\"I need to rest, then I’ll return to the project.\"},\"lastResponse\":{\"at\":102,\"project\":\"garden\",\"accepted\":true,\"reason\":\"Yes. I’ll help finish the garden, gathering its supplies and recovering when needed.\"},\"stats\":{\"started\":24,\"completed\":24,\"canceled\":0,\"gathered\":{\"timber\":20,\"salvage\":9,\"food\":0},\"spent\":{\"timber\":22,\"salvage\":10,\"food\":2},\"consumedFood\":2,\"workMinutes\":298,\"restMinutes\":126,\"mealMinutes\":16,\"idleMinutes\":360,\"receipts\":{\"gather-timber\":6,\"gather-salvage\":3,\"forage\":0,\"rest\":7,\"eat\":2,\"coveredTimber\":2,\"gardenFood\":0}},\"recent\":[{\"at\":175,\"actor\":\"player\",\"message\":\"You finished gather timber. +4 timber.\"},{\"at\":175,\"actor\":\"player\",\"message\":\"You started rest in camp (18 min).\"},{\"at\":176,\"actor\":\"neighbor\",\"message\":\"Meryem finished garden: edge the beds.\"},{\"at\":176,\"actor\":\"neighbor\",\"message\":\"Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project.\"},{\"at\":184,\"actor\":\"neighbor\",\"message\":\"Meryem finished eat a portion.\"},{\"at\":184,\"actor\":\"neighbor\",\"message\":\"Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project.\"},{\"at\":193,\"actor\":\"player\",\"message\":\"You finished rest in camp.\"},{\"at\":193,\"actor\":\"player\",\"message\":\"You started eat a portion (8 min).\"},{\"at\":201,\"actor\":\"player\",\"message\":\"You finished eat a portion.\"},{\"at\":201,\"actor\":\"player\",\"message\":\"You started garden: plant and mulch (19 min).\"},{\"at\":202,\"actor\":\"neighbor\",\"message\":\"Meryem finished rest in camp.\"},{\"at\":220,\"actor\":\"player\",\"message\":\"You finished garden: plant and mulch.\"},{\"at\":220,\"actor\":\"world\",\"message\":\"The worksite is established. Keep gathering or build supply caches for future visitors.\"},{\"at\":220,\"actor\":\"neighbor\",\"message\":\"The garden is complete. I’m available for another project.\"},{\"at\":377,\"actor\":\"neighbor\",\"message\":\"Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project.\"},{\"at\":395,\"actor\":\"neighbor\",\"message\":\"Meryem finished rest in camp.\"}]},\"openedAt\":220,\"production\":[],\"allocations\":[],\"departedAt\":310,\"ended\":true}}"
+      }
+    }
+  },
+  {
+    "fatal": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'true' !== 'false'\n\n    at file:///private/tmp/hf-game-hud-review-20260908/fixed/recheck.mjs:13:721"
+  }
+]

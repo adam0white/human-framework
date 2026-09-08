@@ -50,6 +50,10 @@ async function verify(){
   privatePaths.push('/src/cognition/observation-memory.js','/src/experiments/mechanism-comparison/small-model.js',
     '/artifacts/observation-memory/2026-09-08-probe.json','/research/reviews/2026-09-08-autonomous-fable-provenance.json',
     '/src/coordination/attempt-clock.js','/src/experiments/body-isolation/pooled-model.js','/artifacts/play-notes/local-browser.json','/src/experiments/service-day/policies.js','/scripts/inspect-static-modules.mjs','/src/experiments/service-plan/cases.js','/artifacts/service-plan/development-initial.json');
+  privatePaths.push('/src/experiments/across-cut/host.js','/src/experiments/across-cut/comparison/policies.js',
+    '/artifacts/across-cut/development-final.json.gz','/docs/across-cut-contract.md','/artifacts/across-cut-root/cart-first-control.mjs',
+    '/src/experiments/continuous-work/host.js','/artifacts/continuous-work/76b7ffe-node22/report.json',
+    '/docs/player-feedback-2026-09-08.md','/artifacts/story-continuity/root-node22.json','/research/reviews/2026-09-08-game-hud-fable.json');
   for(const path of privatePaths){const {response}=await get(path);if(response.status!==404)throw new Error(`Private/missing path returned ${response.status}: ${path}`);}
   const record={verifiedAt:new Date().toISOString(),origin,release:local,source,pushedMain:remote,payloads,privatePaths:privatePaths.map(path=>({path,status:404}))};
   if(output)await writeFile(resolve(output),JSON.stringify(record,null,2)+'\n');

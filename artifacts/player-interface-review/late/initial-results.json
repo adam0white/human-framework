@@ -1,0 +1,115 @@
+[
+  {
+    "case": "persistent-feedback-live-region",
+    "emptyLive": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": ""
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "filledLive": {
+      "dom": {
+        "hidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "role": "status",
+        "text": "You: Ten minutes in the shade eased fatigue. Meryem: Her own choice. 3 buckets added to Meryem’s household barrel."
+      },
+      "ax": [
+        {
+          "role": "status",
+          "ignored": false,
+          "properties": [
+            {
+              "name": "live",
+              "value": {
+                "type": "token",
+                "value": "polite"
+              }
+            },
+            {
+              "name": "atomic",
+              "value": {
+                "type": "boolean",
+                "value": true
+              }
+            },
+            {
+              "name": "relevant",
+              "value": {
+                "type": "tokenList",
+                "value": "additions text"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "case": "courtyard-singular-clock",
+    "state": {
+      "selected": "Actions",
+      "focus": "",
+      "focusTag": "BUTTON",
+      "clock": "1\nmove left",
+      "alert": "",
+      "feedback": "You: Ten minutes in the shade eased fatigue. Meryem: Her own choice. Ten minutes in the shade eased fatigue."
+    }
+  },
+  {
+    "case": "courtyard-ending-caption-and-event-focus",
+    "state": {
+      "selected": "History",
+      "focus": "outcome",
+      "focusTag": "DIV",
+      "clock": "0\ntap closed",
+      "alert": "",
+      "feedback": "You: Ten minutes in the shade eased fatigue. Meryem: Her own choice. Ten minutes in the shade eased fatigue."
+    }
+  },
+  {
+    "case": "initial-ended-panel-without-focus-steal"
+  },
+  {
+    "case": "initial-proposal-panel-without-focus-steal"
+  },
+  {
+    "case": "initial-checkpoint-without-focus-steal"
+  },
+  {
+    "fatal": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(alert.dom.text.includes('Download'))\n\n    at file:///private/tmp/hf-game-hud-review-20260908/late/probe.mjs:13:429"
+  }
+]

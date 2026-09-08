@@ -1,0 +1,157 @@
+{
+  "format": "human-common-ground",
+  "version": 1,
+  "game": {
+    "version": "0.1.0",
+    "solo": true,
+    "clock": {
+      "version": "0.1.0",
+      "now": 6,
+      "nextEvent": 2,
+      "queue": [
+        {
+          "id": "event:1",
+          "at": 18,
+          "type": "job-complete",
+          "actorId": "player",
+          "data": {
+            "jobId": "rest",
+            "attemptId": "player:1"
+          }
+        }
+      ]
+    },
+    "people": {
+      "player": {
+        "version": "0.1.0",
+        "id": "player",
+        "body": {
+          "fatigue": 0.059000000000000045,
+          "hunger": 0.232
+        },
+        "skills": {
+          "gathering": 0.1,
+          "construction": 0.05
+        },
+        "observationBias": 0,
+        "minutes": 6,
+        "nextAttempt": 2,
+        "pending": {
+          "id": "player:1",
+          "action": {
+            "actionId": "rest",
+            "targetId": null,
+            "durationMinutes": 18,
+            "effort": 0,
+            "exertive": false,
+            "activity": "rest",
+            "skill": null
+          },
+          "elapsedMinutes": 6,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.027,
+            "hungerCost": 0.036000000000000004,
+            "projectedFatigue": 0.227,
+            "projectedHunger": 0.256
+          },
+          "bodyBefore": {
+            "fatigue": 0.2,
+            "hunger": 0.22
+          },
+          "skillBefore": null,
+          "startedAt": 0
+        }
+      }
+    },
+    "jobs": {
+      "player": {
+        "id": "rest",
+        "label": "Rest in camp",
+        "detail": "Recover strength. Time and hunger continue.",
+        "project": null,
+        "stage": null,
+        "cost": {},
+        "output": {},
+        "duration": 18,
+        "benefits": {
+          "shelter": false,
+          "workbench": false,
+          "garden": false
+        },
+        "skillBefore": null,
+        "action": {
+          "actionId": "rest",
+          "targetId": null,
+          "durationMinutes": 18,
+          "effort": 0,
+          "exertive": false,
+          "activity": "rest",
+          "skill": null
+        },
+        "startedAt": 0,
+        "endsAt": 18,
+        "eventId": "event:1",
+        "attemptId": "player:1"
+      }
+    },
+    "stock": {
+      "timber": 4,
+      "salvage": 2,
+      "food": 4
+    },
+    "structures": {
+      "shelter": 0,
+      "workbench": 0,
+      "garden": 0
+    },
+    "caches": 0,
+    "milestoneAt": null,
+    "commitment": {
+      "status": "none",
+      "project": null,
+      "acceptedAt": null,
+      "finishedAt": null,
+      "startCaches": 0,
+      "reason": "You are working alone."
+    },
+    "lastResponse": null,
+    "stats": {
+      "started": 1,
+      "completed": 0,
+      "canceled": 0,
+      "gathered": {
+        "timber": 0,
+        "salvage": 0,
+        "food": 0
+      },
+      "spent": {
+        "timber": 0,
+        "salvage": 0,
+        "food": 0
+      },
+      "consumedFood": 0,
+      "workMinutes": 0,
+      "restMinutes": 6,
+      "mealMinutes": 0,
+      "idleMinutes": 0,
+      "receipts": {
+        "gather-timber": 0,
+        "gather-salvage": 0,
+        "forage": 0,
+        "rest": 0,
+        "eat": 0,
+        "coveredTimber": 0,
+        "gardenFood": 0
+      }
+    },
+    "recent": [
+      {
+        "at": 0,
+        "actor": "player",
+        "message": "You started rest in camp (18 min)."
+      }
+    ]
+  }
+}

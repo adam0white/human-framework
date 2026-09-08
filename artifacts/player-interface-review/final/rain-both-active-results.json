@@ -1,0 +1,377 @@
+[
+  {
+    "case": "rain-active-all-six-tiles",
+    "size": [
+      375,
+      667
+    ],
+    "shapes": [
+      {
+        "text": "Pack a supply cache\n19 min\nReserve 6 timber + 3 salvage",
+        "x": 21,
+        "right": 175,
+        "top": 277.78125,
+        "bottom": 362.265625,
+        "panel": {
+          "x": 13,
+          "right": 362,
+          "top": 231.78125,
+          "bottom": 512.90625
+        },
+        "fits": true
+      },
+      {
+        "text": "Gather timber\n15 min\nBring back 4 timber",
+        "x": 180,
+        "right": 334,
+        "top": 277.78125,
+        "bottom": 362.265625,
+        "panel": {
+          "x": 13,
+          "right": 362,
+          "top": 231.78125,
+          "bottom": 512.90625
+        },
+        "fits": true
+      },
+      {
+        "text": "Recover salvage\n21 min\nBring back 3 salvage",
+        "x": 21,
+        "right": 175,
+        "top": 367.265625,
+        "bottom": 437.453125,
+        "panel": {
+          "x": 13,
+          "right": 362,
+          "top": 231.78125,
+          "bottom": 512.90625
+        },
+        "fits": true
+      },
+      {
+        "text": "Gather food\n13 min\nBring back 3 food",
+        "x": 180,
+        "right": 334,
+        "top": 367.265625,
+        "bottom": 437.453125,
+        "panel": {
+          "x": 13,
+          "right": 362,
+          "top": 231.78125,
+          "bottom": 512.90625
+        },
+        "fits": true
+      },
+      {
+        "text": "Rest in camp\n18 min",
+        "x": 21,
+        "right": 175,
+        "top": 442.453125,
+        "bottom": 507.453125,
+        "panel": {
+          "x": 13,
+          "right": 362,
+          "top": 231.78125,
+          "bottom": 512.90625
+        },
+        "fits": true
+      },
+      {
+        "text": "Eat a portion\n8 min\nReserve 1 food",
+        "x": 180,
+        "right": 334,
+        "top": 442.453125,
+        "bottom": 507.453125,
+        "panel": {
+          "x": 13,
+          "right": 362,
+          "top": 231.78125,
+          "bottom": 512.90625
+        },
+        "fits": true
+      }
+    ]
+  },
+  {
+    "case": "rain-active-all-six-tiles",
+    "size": [
+      390,
+      844
+    ],
+    "shapes": [
+      {
+        "text": "Pack a supply cache\n19 min\nReserve 6 timber + 3 salvage",
+        "x": 21,
+        "right": 182.5,
+        "top": 277.78125,
+        "bottom": 362.265625,
+        "panel": {
+          "x": 13,
+          "right": 377,
+          "top": 231.78125,
+          "bottom": 689.90625
+        },
+        "fits": true
+      },
+      {
+        "text": "Gather timber\n15 min\nBring back 4 timber",
+        "x": 187.5,
+        "right": 349,
+        "top": 277.78125,
+        "bottom": 362.265625,
+        "panel": {
+          "x": 13,
+          "right": 377,
+          "top": 231.78125,
+          "bottom": 689.90625
+        },
+        "fits": true
+      },
+      {
+        "text": "Recover salvage\n21 min\nBring back 3 salvage",
+        "x": 21,
+        "right": 182.5,
+        "top": 367.265625,
+        "bottom": 437.453125,
+        "panel": {
+          "x": 13,
+          "right": 377,
+          "top": 231.78125,
+          "bottom": 689.90625
+        },
+        "fits": true
+      },
+      {
+        "text": "Gather food\n13 min\nBring back 3 food",
+        "x": 187.5,
+        "right": 349,
+        "top": 367.265625,
+        "bottom": 437.453125,
+        "panel": {
+          "x": 13,
+          "right": 377,
+          "top": 231.78125,
+          "bottom": 689.90625
+        },
+        "fits": true
+      },
+      {
+        "text": "Rest in camp\n18 min",
+        "x": 21,
+        "right": 182.5,
+        "top": 442.453125,
+        "bottom": 507.453125,
+        "panel": {
+          "x": 13,
+          "right": 377,
+          "top": 231.78125,
+          "bottom": 689.90625
+        },
+        "fits": true
+      },
+      {
+        "text": "Eat a portion\n8 min\nReserve 1 food",
+        "x": 187.5,
+        "right": 349,
+        "top": 442.453125,
+        "bottom": 507.453125,
+        "panel": {
+          "x": 13,
+          "right": 377,
+          "top": 231.78125,
+          "bottom": 689.90625
+        },
+        "fits": true
+      }
+    ]
+  },
+  {
+    "case": "rain-active-all-six-tiles",
+    "size": [
+      1280,
+      800
+    ],
+    "shapes": [
+      {
+        "text": "Pack a supply cache\n19 min\nReserve 6 timber + 3 salvage",
+        "x": 112,
+        "right": 627.5,
+        "top": 269.0625,
+        "bottom": 334.0625,
+        "panel": {
+          "x": 104,
+          "right": 1176,
+          "top": 218.875,
+          "bottom": 683.15625
+        },
+        "fits": true
+      },
+      {
+        "text": "Gather timber\n15 min\nBring back 4 timber",
+        "x": 632.5,
+        "right": 1148,
+        "top": 269.0625,
+        "bottom": 334.0625,
+        "panel": {
+          "x": 104,
+          "right": 1176,
+          "top": 218.875,
+          "bottom": 683.15625
+        },
+        "fits": true
+      },
+      {
+        "text": "Recover salvage\n21 min\nBring back 3 salvage",
+        "x": 112,
+        "right": 627.5,
+        "top": 339.0625,
+        "bottom": 404.0625,
+        "panel": {
+          "x": 104,
+          "right": 1176,
+          "top": 218.875,
+          "bottom": 683.15625
+        },
+        "fits": true
+      },
+      {
+        "text": "Gather food\n13 min\nBring back 3 food",
+        "x": 632.5,
+        "right": 1148,
+        "top": 339.0625,
+        "bottom": 404.0625,
+        "panel": {
+          "x": 104,
+          "right": 1176,
+          "top": 218.875,
+          "bottom": 683.15625
+        },
+        "fits": true
+      },
+      {
+        "text": "Rest in camp\n18 min",
+        "x": 112,
+        "right": 627.5,
+        "top": 409.0625,
+        "bottom": 474.0625,
+        "panel": {
+          "x": 104,
+          "right": 1176,
+          "top": 218.875,
+          "bottom": 683.15625
+        },
+        "fits": true
+      },
+      {
+        "text": "Eat a portion\n8 min\nReserve 1 food",
+        "x": 632.5,
+        "right": 1148,
+        "top": 409.0625,
+        "bottom": 474.0625,
+        "panel": {
+          "x": 104,
+          "right": 1176,
+          "top": 218.875,
+          "bottom": 683.15625
+        },
+        "fits": true
+      }
+    ]
+  },
+  {
+    "case": "rain-active-all-six-tiles",
+    "size": [
+      640,
+      400
+    ],
+    "shapes": [
+      {
+        "text": "Pack a supply cache\n19 min\nReserve 6 timber + 3 salvage",
+        "x": 32,
+        "right": 315,
+        "top": 267.609375,
+        "bottom": 332.609375,
+        "panel": {
+          "x": 24,
+          "right": 616,
+          "top": 217.421875,
+          "bottom": 582.609375
+        },
+        "fits": true
+      },
+      {
+        "text": "Gather timber\n15 min\nBring back 4 timber",
+        "x": 320,
+        "right": 603,
+        "top": 267.609375,
+        "bottom": 332.609375,
+        "panel": {
+          "x": 24,
+          "right": 616,
+          "top": 217.421875,
+          "bottom": 582.609375
+        },
+        "fits": true
+      },
+      {
+        "text": "Recover salvage\n21 min\nBring back 3 salvage",
+        "x": 32,
+        "right": 315,
+        "top": 337.609375,
+        "bottom": 402.609375,
+        "panel": {
+          "x": 24,
+          "right": 616,
+          "top": 217.421875,
+          "bottom": 582.609375
+        },
+        "fits": true
+      },
+      {
+        "text": "Gather food\n13 min\nBring back 3 food",
+        "x": 320,
+        "right": 603,
+        "top": 337.609375,
+        "bottom": 402.609375,
+        "panel": {
+          "x": 24,
+          "right": 616,
+          "top": 217.421875,
+          "bottom": 582.609375
+        },
+        "fits": true
+      },
+      {
+        "text": "Rest in camp\n18 min",
+        "x": 32,
+        "right": 315,
+        "top": 407.609375,
+        "bottom": 472.609375,
+        "panel": {
+          "x": 24,
+          "right": 616,
+          "top": 217.421875,
+          "bottom": 582.609375
+        },
+        "fits": true
+      },
+      {
+        "text": "Eat a portion\n8 min\nReserve 1 food",
+        "x": 320,
+        "right": 603,
+        "top": 407.609375,
+        "bottom": 472.609375,
+        "panel": {
+          "x": 24,
+          "right": 616,
+          "top": 217.421875,
+          "bottom": 582.609375
+        },
+        "fits": true
+      }
+    ]
+  },
+  {
+    "allPassed": true
+  }
+]
