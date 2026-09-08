@@ -54,6 +54,9 @@ async function verify(){
     '/artifacts/across-cut/development-final.json.gz','/docs/across-cut-contract.md','/artifacts/across-cut-root/cart-first-control.mjs',
     '/src/experiments/continuous-work/host.js','/artifacts/continuous-work/76b7ffe-node22/report.json',
     '/docs/player-feedback-2026-09-08.md','/artifacts/story-continuity/root-node22.json','/research/reviews/2026-09-08-game-hud-fable.json');
+  privatePaths.push('/src/experiments/camp-validator/local.js','/docs/camp-kernel-contract.md',
+    '/artifacts/camp-comparison/reviewed-node26/report.json.gz','/artifacts/user-runs/2026-09-07/common-ground-minute-1312.json',
+    '/artifacts/camp-slots/performance-before.json');
   for(const path of privatePaths){const {response}=await get(path);if(response.status!==404)throw new Error(`Private/missing path returned ${response.status}: ${path}`);}
   const record={verifiedAt:new Date().toISOString(),origin,release:local,source,pushedMain:remote,payloads,privatePaths:privatePaths.map(path=>({path,status:404}))};
   if(output)await writeFile(resolve(output),JSON.stringify(record,null,2)+'\n');

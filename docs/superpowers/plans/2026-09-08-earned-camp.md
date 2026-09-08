@@ -25,8 +25,10 @@
 
 ## Completion sequence
 
-- [ ] Commit/share exact kernel and wrapper contracts, then implement with meaningful failing lifecycle/migration tests.
-- [ ] Execute full mixed-job continuity, independent simpler controls and source-frozen withheld boundary checks; preserve original/corrected evidence.
-- [ ] Implement the real story UI and inspect small-phone/desktop behavior, save slots, active job controls, chapter stops and meaningful later failure recovery.
-- [ ] Obtain fresh overlapping Astra Ultra reviews and focused Fable snapshots, fix concrete findings and record scope/failures accurately.
+- [x] Commit/share exact kernel and wrapper contracts, then implement with meaningful failing lifecycle/migration tests.
+- [x] Execute full mixed-job continuity, independent simpler controls and source-frozen withheld boundary checks; preserve original/corrected evidence.
+- [x] Implement the real story UI and inspect small-phone/desktop behavior, save slots, active job controls, chapter stops and meaningful later failure recovery.
+- [x] Obtain fresh overlapping Astra Ultra reviews and focused Fable snapshots, fix concrete findings and record scope/failures accurately.
 - [ ] Run integrated and minimum-version checks, commit/push main and original source branches, deploy app 0.11 through the existing workflow, verify live manifest/payloads and production browser actions, then update HANDOFF with the next executable milestone.
+
+Implementation/review complete; app 0.11 delivery verification remains. The original three reserved cases were unsealed before final review; later runs are explicitly post-review validation, not new withheld evidence. Frozen policies and old source/artifacts are preserved. Fable is now used sparingly per the user; other future Claude reviews use the default CLI without `--model` and record the actual returned model.

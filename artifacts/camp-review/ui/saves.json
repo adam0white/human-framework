@@ -1,0 +1,22 @@
+[
+  {
+    "test": "five-slots",
+    "countBefore": 5,
+    "countAfter": 4,
+    "importIsExact": true,
+    "deleteCancelNoWrite": true,
+    "isolatedStory": true
+  },
+  {
+    "test": "corruption",
+    "rawProtected": true,
+    "backupExact": true,
+    "warning": "Stored stories are protected because they could not be read. Download this camp to keep new work."
+  },
+  {
+    "test": "quota",
+    "retainedInMemory": true,
+    "downloadPendingMinutes": 1,
+    "warning": "Device storage is unavailable or full. Download this story before leaving."
+  }
+]

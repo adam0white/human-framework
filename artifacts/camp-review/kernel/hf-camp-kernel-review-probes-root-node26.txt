@@ -1,0 +1,28 @@
+✔ detached views and failed input leave callers exact (3.915666ms)
+✔ paid minute changes actual fatigue/practice and durable fraction once (0.92875ms)
+✔ zero time stop/resume cannot improve physical completion or refresh basis (51.296ms)
+✔ positive handover in both directions preserves installed work and charges future worker (1.920625ms)
+✔ busy and conflicting recipient refuses transfer without altering work (61.390459ms)
+✔ recipient hunger independently refuses transfer (0.641417ms)
+✔ release preserves independently owned meal and reservation (3.751417ms)
+✔ interrupted meal returns its one owned portion with no hunger relief (2.929833ms)
+✔ interrupted gather keeps paid practice while returning no output (1.481417ms)
+✔ prospective tools improve future fraction after completion without restarting (144.130375ms)
+✔ assembly plus fixed gather tied completions settle together and preserve snapshot output (63.340875ms)
+✔ actual body governs availability at rounded threshold (0.5915ms)
+✔ legacy assembly plus meal import retains body skill reservation and paid fraction (2.343083ms)
+✔ legacy rest immediately becomes interruptible recovery without free time (0.74225ms)
+✔ JSON rejects accessors before evaluation, shared references, cycles, sparse arrays, NaN and excessive nesting (0.725ms)
+✔ schema rejects stolen resources, unpaid practice, fake completed output and inconsistent paid minutes (0.835709ms)
+✔ near numeric world limit remains exportable and advances to finite final stop (0.96525ms)
+✔ Next Event should stop when recovering player can newly gather timber (16.325667ms)
+✔ active-idle control stops on capacity only when recovery is explicitly selected (15.83375ms)
+✔ new readiness stops remain selective and assigned work keeps actual completion pacing (16.012166ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 433.333375

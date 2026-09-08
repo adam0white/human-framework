@@ -1,0 +1,24 @@
+{
+  "synthetic": true,
+  "base": "http://127.0.0.1:56391",
+  "node": "v26.8.1",
+  "browser": "152.0.7977.77",
+  "source": {
+    "web/camp.js": "66ba3d226677ac2d5bc41f1751f20596b4a4ab4b0b00138865b4401a7fceb959",
+    "web/camp.html": "af43cf0e98b0bffd7ee6660d8a6ac8cdc139e6dfbe924e0d64d9152577a7adf4",
+    "web/camp.css": "d999b1bcf730735e11b6af99b68a4fda99087141cd2fc734a75ea76227ff7c3b",
+    "web/camp-session.js": "853f62dbd25d4941586349cf97ff45228b71ca760e205d5442578a8f95d1ceeb",
+    "web/camp-slots.js": "842402075ff83e5e67b4ee30f6715f4bfb0a44703cc6bf43f1e80b0fcedc02a4",
+    "src/games/camp.js": "5852de534435378394b0438d69101307d0387198a31e5b6b84d75c092b76ef7c",
+    "src/games/camp-story.js": "c0070e54620e3e54bf363bd1dcbb0a7ab24f804e119ec35aca7daa028a2e0388"
+  },
+  "checks": [
+    "Three viewport sizes, all five panels, keyboard tabs and exact book preservation",
+    "Concurrent paid work, pause while reading, actual download/import into separate slot and paused reload",
+    "Stop and resume preserve real partial assembly and its material reservation",
+    "Busy old camp import keeps 4/14 paid gather, converts rest explicitly, and Continue preserves the complete migrated world",
+    "Ferry and rain preserve an owned partial meal, require real dispatch, retain unmet needs and return without resetting the camp"
+  ],
+  "errors": [],
+  "failure": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Start a separate story', { exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <summary>Start a separate story</summary>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /Users/abdul/code/human-framework/artifacts/camp-ui/browser-qa.mjs:62:62"
+}

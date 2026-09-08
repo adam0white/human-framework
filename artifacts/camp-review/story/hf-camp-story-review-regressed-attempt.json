@@ -1,0 +1,860 @@
+{
+  "format": "human-camp-story",
+  "version": 1,
+  "game": {
+    "version": "0.1.0",
+    "world": {
+      "version": "0.2.0",
+      "runtimeVersion": "0.1.1",
+      "humanVersion": "0.1.1",
+      "solo": false,
+      "options": {
+        "improvement": "prospective",
+        "recovery": "automatic"
+      },
+      "origin": {
+        "format": "human-common-ground",
+        "version": 1,
+        "game": {
+          "version": "0.1.0",
+          "solo": false,
+          "clock": {
+            "version": "0.1.0",
+            "now": 1312,
+            "nextEvent": 95,
+            "queue": []
+          },
+          "people": {
+            "player": {
+              "version": "0.1.0",
+              "id": "player",
+              "body": {
+                "fatigue": 1,
+                "hunger": 1
+              },
+              "skills": {
+                "gathering": 0.7965958750651904,
+                "construction": 0.1787217363626361
+              },
+              "observationBias": 0,
+              "minutes": 1312,
+              "nextAttempt": 892,
+              "pending": null
+            },
+            "neighbor": {
+              "version": "0.1.0",
+              "id": "neighbor",
+              "body": {
+                "fatigue": 0.619052631578892,
+                "hunger": 0.15400000000000214
+              },
+              "skills": {
+                "gathering": 0.8887260962288985,
+                "construction": 0.8210221626309332
+              },
+              "observationBias": 0,
+              "minutes": 1312,
+              "nextAttempt": 275,
+              "pending": null
+            }
+          },
+          "jobs": {
+            "player": null,
+            "neighbor": null
+          },
+          "stock": {
+            "timber": 0,
+            "salvage": 1,
+            "food": 13
+          },
+          "structures": {
+            "shelter": 2,
+            "workbench": 2,
+            "garden": 2
+          },
+          "caches": 12,
+          "milestoneAt": 217,
+          "commitment": {
+            "status": "fulfilled",
+            "project": "cache",
+            "acceptedAt": 1223,
+            "finishedAt": 1298,
+            "startCaches": 11,
+            "reason": "The supply cache is complete. I’m available for another project."
+          },
+          "lastResponse": {
+            "at": 1223,
+            "project": "cache",
+            "accepted": true,
+            "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+          },
+          "stats": {
+            "started": 94,
+            "completed": 93,
+            "canceled": 1,
+            "gathered": {
+              "timber": 90,
+              "salvage": 45,
+              "food": 15
+            },
+            "spent": {
+              "timber": 94,
+              "salvage": 46,
+              "food": 6
+            },
+            "consumedFood": 6,
+            "workMinutes": 1037,
+            "restMinutes": 468,
+            "mealMinutes": 48,
+            "idleMinutes": 1071,
+            "receipts": {
+              "gather-timber": 23,
+              "gather-salvage": 15,
+              "forage": 5,
+              "rest": 26,
+              "eat": 6,
+              "coveredTimber": 21,
+              "gardenFood": 5
+            }
+          },
+          "recent": [
+            {
+              "at": 1232,
+              "actor": "player",
+              "message": "You started gather food (11 min)."
+            },
+            {
+              "at": 1236,
+              "actor": "neighbor",
+              "message": "Meryem finished gather timber. +4 timber."
+            },
+            {
+              "at": 1236,
+              "actor": "neighbor",
+              "message": "Meryem started recover salvage (19 min). I’m collecting salvage for the supply cache."
+            },
+            {
+              "at": 1243,
+              "actor": "player",
+              "message": "You finished gather food. +3 food."
+            },
+            {
+              "at": 1249,
+              "actor": "player",
+              "message": "You started gather food (11 min)."
+            },
+            {
+              "at": 1255,
+              "actor": "neighbor",
+              "message": "Meryem finished recover salvage. +3 salvage."
+            },
+            {
+              "at": 1255,
+              "actor": "neighbor",
+              "message": "Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project."
+            },
+            {
+              "at": 1260,
+              "actor": "player",
+              "message": "You finished gather food. +3 food."
+            },
+            {
+              "at": 1269,
+              "actor": "player",
+              "message": "You started gather food (11 min)."
+            },
+            {
+              "at": 1273,
+              "actor": "neighbor",
+              "message": "Meryem finished rest in camp."
+            },
+            {
+              "at": 1273,
+              "actor": "neighbor",
+              "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+            },
+            {
+              "at": 1280,
+              "actor": "player",
+              "message": "You finished gather food. +3 food."
+            },
+            {
+              "at": 1281,
+              "actor": "neighbor",
+              "message": "Meryem finished eat a portion."
+            },
+            {
+              "at": 1281,
+              "actor": "neighbor",
+              "message": "Meryem started supply cache: pack a supply cache (17 min). I’m completing the accepted supply cache project."
+            },
+            {
+              "at": 1298,
+              "actor": "neighbor",
+              "message": "Meryem finished supply cache: pack a supply cache."
+            },
+            {
+              "at": 1298,
+              "actor": "neighbor",
+              "message": "The supply cache is complete. I’m available for another project."
+            }
+          ]
+        }
+      },
+      "clock": {
+        "version": "0.1.0",
+        "now": 1492,
+        "nextEvent": 95,
+        "queue": []
+      },
+      "people": {
+        "player": {
+          "version": "0.1.1",
+          "id": "player",
+          "body": {
+            "fatigue": 0,
+            "hunger": 1
+          },
+          "skills": {
+            "gathering": 0.7965958750651904,
+            "construction": 0.1787217363626361
+          },
+          "observationBias": 0,
+          "minutes": 1492,
+          "nextAttempt": 892,
+          "pending": null
+        },
+        "neighbor": {
+          "version": "0.1.1",
+          "id": "neighbor",
+          "body": {
+            "fatigue": 0,
+            "hunger": 0.5140000000000025
+          },
+          "skills": {
+            "gathering": 0.8887260962288985,
+            "construction": 0.8210221626309332
+          },
+          "observationBias": 0,
+          "minutes": 1492,
+          "nextAttempt": 455,
+          "pending": null
+        }
+      },
+      "jobs": {
+        "player": null,
+        "neighbor": null
+      },
+      "stock": {
+        "timber": 0,
+        "salvage": 1,
+        "food": 13
+      },
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      },
+      "caches": 12,
+      "milestoneAt": 217,
+      "commitment": {
+        "status": "fulfilled",
+        "project": "cache",
+        "acceptedAt": 1223,
+        "finishedAt": 1298,
+        "startCaches": 11,
+        "reason": "The supply cache is complete. I’m available for another project."
+      },
+      "lastResponse": {
+        "at": 1223,
+        "project": "cache",
+        "accepted": true,
+        "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+      },
+      "stats": {
+        "started": 94,
+        "completed": 93,
+        "canceled": 1,
+        "gathered": {
+          "timber": 90,
+          "salvage": 45,
+          "food": 15
+        },
+        "spent": {
+          "timber": 94,
+          "salvage": 46,
+          "food": 6
+        },
+        "consumedFood": 6,
+        "workMinutes": 1037,
+        "restMinutes": 828,
+        "mealMinutes": 48,
+        "idleMinutes": 1071,
+        "receipts": {
+          "gather-timber": 23,
+          "gather-salvage": 15,
+          "forage": 5,
+          "rest": 26,
+          "eat": 6,
+          "coveredTimber": 21,
+          "gardenFood": 5
+        }
+      },
+      "recent": [
+        {
+          "at": 1232,
+          "actor": "player",
+          "message": "You started gather food (11 min)."
+        },
+        {
+          "at": 1236,
+          "actor": "neighbor",
+          "message": "Meryem finished gather timber. +4 timber."
+        },
+        {
+          "at": 1236,
+          "actor": "neighbor",
+          "message": "Meryem started recover salvage (19 min). I’m collecting salvage for the supply cache."
+        },
+        {
+          "at": 1243,
+          "actor": "player",
+          "message": "You finished gather food. +3 food."
+        },
+        {
+          "at": 1249,
+          "actor": "player",
+          "message": "You started gather food (11 min)."
+        },
+        {
+          "at": 1255,
+          "actor": "neighbor",
+          "message": "Meryem finished recover salvage. +3 salvage."
+        },
+        {
+          "at": 1255,
+          "actor": "neighbor",
+          "message": "Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project."
+        },
+        {
+          "at": 1260,
+          "actor": "player",
+          "message": "You finished gather food. +3 food."
+        },
+        {
+          "at": 1269,
+          "actor": "player",
+          "message": "You started gather food (11 min)."
+        },
+        {
+          "at": 1273,
+          "actor": "neighbor",
+          "message": "Meryem finished rest in camp."
+        },
+        {
+          "at": 1273,
+          "actor": "neighbor",
+          "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+        },
+        {
+          "at": 1280,
+          "actor": "player",
+          "message": "You finished gather food. +3 food."
+        },
+        {
+          "at": 1281,
+          "actor": "neighbor",
+          "message": "Meryem finished eat a portion."
+        },
+        {
+          "at": 1281,
+          "actor": "neighbor",
+          "message": "Meryem started supply cache: pack a supply cache (17 min). I’m completing the accepted supply cache project."
+        },
+        {
+          "at": 1298,
+          "actor": "neighbor",
+          "message": "Meryem finished supply cache: pack a supply cache."
+        },
+        {
+          "at": 1298,
+          "actor": "neighbor",
+          "message": "The supply cache is complete. I’m available for another project."
+        }
+      ],
+      "work": {},
+      "lastAssemblies": {},
+      "paid": {
+        "player": {
+          "work": 0,
+          "recovery": 180,
+          "idle": 0,
+          "meal": 0,
+          "effort": 0,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 0
+        },
+        "neighbor": {
+          "work": 0,
+          "recovery": 180,
+          "idle": 0,
+          "meal": 0,
+          "effort": 0,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 0
+        }
+      },
+      "recovering": {
+        "player": false,
+        "neighbor": false
+      }
+    },
+    "window": {
+      "enteredAt": 1312,
+      "ferryAt": 1402,
+      "rainAt": 1492,
+      "carriedCaches": 12,
+      "production": [],
+      "allocations": [],
+      "acknowledged": true,
+      "departedAt": 1402,
+      "finishedAt": 1492
+    },
+    "record": {
+      "kind": "legacy",
+      "root": {
+        "format": "human-camp",
+        "version": 2,
+        "game": {
+          "version": "0.2.0",
+          "runtimeVersion": "0.1.1",
+          "humanVersion": "0.1.1",
+          "solo": false,
+          "options": {
+            "improvement": "prospective",
+            "recovery": "automatic"
+          },
+          "origin": {
+            "format": "human-common-ground",
+            "version": 1,
+            "game": {
+              "version": "0.1.0",
+              "solo": false,
+              "clock": {
+                "version": "0.1.0",
+                "now": 1312,
+                "nextEvent": 95,
+                "queue": []
+              },
+              "people": {
+                "player": {
+                  "version": "0.1.0",
+                  "id": "player",
+                  "body": {
+                    "fatigue": 1,
+                    "hunger": 1
+                  },
+                  "skills": {
+                    "gathering": 0.7965958750651904,
+                    "construction": 0.1787217363626361
+                  },
+                  "observationBias": 0,
+                  "minutes": 1312,
+                  "nextAttempt": 892,
+                  "pending": null
+                },
+                "neighbor": {
+                  "version": "0.1.0",
+                  "id": "neighbor",
+                  "body": {
+                    "fatigue": 0.619052631578892,
+                    "hunger": 0.15400000000000214
+                  },
+                  "skills": {
+                    "gathering": 0.8887260962288985,
+                    "construction": 0.8210221626309332
+                  },
+                  "observationBias": 0,
+                  "minutes": 1312,
+                  "nextAttempt": 275,
+                  "pending": null
+                }
+              },
+              "jobs": {
+                "player": null,
+                "neighbor": null
+              },
+              "stock": {
+                "timber": 0,
+                "salvage": 1,
+                "food": 13
+              },
+              "structures": {
+                "shelter": 2,
+                "workbench": 2,
+                "garden": 2
+              },
+              "caches": 12,
+              "milestoneAt": 217,
+              "commitment": {
+                "status": "fulfilled",
+                "project": "cache",
+                "acceptedAt": 1223,
+                "finishedAt": 1298,
+                "startCaches": 11,
+                "reason": "The supply cache is complete. I’m available for another project."
+              },
+              "lastResponse": {
+                "at": 1223,
+                "project": "cache",
+                "accepted": true,
+                "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+              },
+              "stats": {
+                "started": 94,
+                "completed": 93,
+                "canceled": 1,
+                "gathered": {
+                  "timber": 90,
+                  "salvage": 45,
+                  "food": 15
+                },
+                "spent": {
+                  "timber": 94,
+                  "salvage": 46,
+                  "food": 6
+                },
+                "consumedFood": 6,
+                "workMinutes": 1037,
+                "restMinutes": 468,
+                "mealMinutes": 48,
+                "idleMinutes": 1071,
+                "receipts": {
+                  "gather-timber": 23,
+                  "gather-salvage": 15,
+                  "forage": 5,
+                  "rest": 26,
+                  "eat": 6,
+                  "coveredTimber": 21,
+                  "gardenFood": 5
+                }
+              },
+              "recent": [
+                {
+                  "at": 1232,
+                  "actor": "player",
+                  "message": "You started gather food (11 min)."
+                },
+                {
+                  "at": 1236,
+                  "actor": "neighbor",
+                  "message": "Meryem finished gather timber. +4 timber."
+                },
+                {
+                  "at": 1236,
+                  "actor": "neighbor",
+                  "message": "Meryem started recover salvage (19 min). I’m collecting salvage for the supply cache."
+                },
+                {
+                  "at": 1243,
+                  "actor": "player",
+                  "message": "You finished gather food. +3 food."
+                },
+                {
+                  "at": 1249,
+                  "actor": "player",
+                  "message": "You started gather food (11 min)."
+                },
+                {
+                  "at": 1255,
+                  "actor": "neighbor",
+                  "message": "Meryem finished recover salvage. +3 salvage."
+                },
+                {
+                  "at": 1255,
+                  "actor": "neighbor",
+                  "message": "Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project."
+                },
+                {
+                  "at": 1260,
+                  "actor": "player",
+                  "message": "You finished gather food. +3 food."
+                },
+                {
+                  "at": 1269,
+                  "actor": "player",
+                  "message": "You started gather food (11 min)."
+                },
+                {
+                  "at": 1273,
+                  "actor": "neighbor",
+                  "message": "Meryem finished rest in camp."
+                },
+                {
+                  "at": 1273,
+                  "actor": "neighbor",
+                  "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+                },
+                {
+                  "at": 1280,
+                  "actor": "player",
+                  "message": "You finished gather food. +3 food."
+                },
+                {
+                  "at": 1281,
+                  "actor": "neighbor",
+                  "message": "Meryem finished eat a portion."
+                },
+                {
+                  "at": 1281,
+                  "actor": "neighbor",
+                  "message": "Meryem started supply cache: pack a supply cache (17 min). I’m completing the accepted supply cache project."
+                },
+                {
+                  "at": 1298,
+                  "actor": "neighbor",
+                  "message": "Meryem finished supply cache: pack a supply cache."
+                },
+                {
+                  "at": 1298,
+                  "actor": "neighbor",
+                  "message": "The supply cache is complete. I’m available for another project."
+                }
+              ]
+            }
+          },
+          "clock": {
+            "version": "0.1.0",
+            "now": 1312,
+            "nextEvent": 95,
+            "queue": []
+          },
+          "people": {
+            "player": {
+              "version": "0.1.1",
+              "id": "player",
+              "body": {
+                "fatigue": 1,
+                "hunger": 1
+              },
+              "skills": {
+                "gathering": 0.7965958750651904,
+                "construction": 0.1787217363626361
+              },
+              "observationBias": 0,
+              "minutes": 1312,
+              "nextAttempt": 892,
+              "pending": null
+            },
+            "neighbor": {
+              "version": "0.1.1",
+              "id": "neighbor",
+              "body": {
+                "fatigue": 0.619052631578892,
+                "hunger": 0.15400000000000214
+              },
+              "skills": {
+                "gathering": 0.8887260962288985,
+                "construction": 0.8210221626309332
+              },
+              "observationBias": 0,
+              "minutes": 1312,
+              "nextAttempt": 275,
+              "pending": null
+            }
+          },
+          "jobs": {
+            "player": null,
+            "neighbor": null
+          },
+          "stock": {
+            "timber": 0,
+            "salvage": 1,
+            "food": 13
+          },
+          "structures": {
+            "shelter": 2,
+            "workbench": 2,
+            "garden": 2
+          },
+          "caches": 12,
+          "milestoneAt": 217,
+          "commitment": {
+            "status": "fulfilled",
+            "project": "cache",
+            "acceptedAt": 1223,
+            "finishedAt": 1298,
+            "startCaches": 11,
+            "reason": "The supply cache is complete. I’m available for another project."
+          },
+          "lastResponse": {
+            "at": 1223,
+            "project": "cache",
+            "accepted": true,
+            "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+          },
+          "stats": {
+            "started": 94,
+            "completed": 93,
+            "canceled": 1,
+            "gathered": {
+              "timber": 90,
+              "salvage": 45,
+              "food": 15
+            },
+            "spent": {
+              "timber": 94,
+              "salvage": 46,
+              "food": 6
+            },
+            "consumedFood": 6,
+            "workMinutes": 1037,
+            "restMinutes": 468,
+            "mealMinutes": 48,
+            "idleMinutes": 1071,
+            "receipts": {
+              "gather-timber": 23,
+              "gather-salvage": 15,
+              "forage": 5,
+              "rest": 26,
+              "eat": 6,
+              "coveredTimber": 21,
+              "gardenFood": 5
+            }
+          },
+          "recent": [
+            {
+              "at": 1232,
+              "actor": "player",
+              "message": "You started gather food (11 min)."
+            },
+            {
+              "at": 1236,
+              "actor": "neighbor",
+              "message": "Meryem finished gather timber. +4 timber."
+            },
+            {
+              "at": 1236,
+              "actor": "neighbor",
+              "message": "Meryem started recover salvage (19 min). I’m collecting salvage for the supply cache."
+            },
+            {
+              "at": 1243,
+              "actor": "player",
+              "message": "You finished gather food. +3 food."
+            },
+            {
+              "at": 1249,
+              "actor": "player",
+              "message": "You started gather food (11 min)."
+            },
+            {
+              "at": 1255,
+              "actor": "neighbor",
+              "message": "Meryem finished recover salvage. +3 salvage."
+            },
+            {
+              "at": 1255,
+              "actor": "neighbor",
+              "message": "Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project."
+            },
+            {
+              "at": 1260,
+              "actor": "player",
+              "message": "You finished gather food. +3 food."
+            },
+            {
+              "at": 1269,
+              "actor": "player",
+              "message": "You started gather food (11 min)."
+            },
+            {
+              "at": 1273,
+              "actor": "neighbor",
+              "message": "Meryem finished rest in camp."
+            },
+            {
+              "at": 1273,
+              "actor": "neighbor",
+              "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+            },
+            {
+              "at": 1280,
+              "actor": "player",
+              "message": "You finished gather food. +3 food."
+            },
+            {
+              "at": 1281,
+              "actor": "neighbor",
+              "message": "Meryem finished eat a portion."
+            },
+            {
+              "at": 1281,
+              "actor": "neighbor",
+              "message": "Meryem started supply cache: pack a supply cache (17 min). I’m completing the accepted supply cache project."
+            },
+            {
+              "at": 1298,
+              "actor": "neighbor",
+              "message": "Meryem finished supply cache: pack a supply cache."
+            },
+            {
+              "at": 1298,
+              "actor": "neighbor",
+              "message": "The supply cache is complete. I’m available for another project."
+            }
+          ],
+          "work": {},
+          "lastAssemblies": {},
+          "paid": {
+            "player": {
+              "work": 0,
+              "recovery": 0,
+              "idle": 0,
+              "meal": 0,
+              "effort": 0,
+              "constructionMinutes": 0,
+              "gatheringMinutes": 0
+            },
+            "neighbor": {
+              "work": 0,
+              "recovery": 0,
+              "idle": 0,
+              "meal": 0,
+              "effort": 0,
+              "constructionMinutes": 0,
+              "gatheringMinutes": 0
+            }
+          },
+          "recovering": {
+            "player": false,
+            "neighbor": false
+          }
+        }
+      },
+      "commands": [
+        {
+          "type": "continue"
+        },
+        {
+          "type": "advance",
+          "minutes": 90
+        },
+        {
+          "type": "dispatch"
+        },
+        {
+          "type": "advance",
+          "minutes": 90
+        },
+        {
+          "type": "finish"
+        },
+        {
+          "type": "return"
+        }
+      ]
+    },
+    "returned": true
+  }
+}

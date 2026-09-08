@@ -1,6 +1,6 @@
 {
   "name": "human-framework",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "private": true,
   "type": "module",
   "description": "A no-LLM laboratory for situated human action and development",

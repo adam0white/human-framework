@@ -1,0 +1,142 @@
+{
+  "at": "2026-09-08T15:36:16.464Z",
+  "hashes": {
+    "web/camp.html": "6b72b01f7b5354df5bca111b64a2dab207936126c3e95e7afc58e8cb6fcddcf7",
+    "web/camp.css": "4a25b7fdb9638b7ea504803a145d010461468c55bcdac6fc4518a88ff34af488",
+    "web/camp.js": "378bc086b22c83eda970636ac1fcd99e4ecd1d55e20eba92d27ff8302b50ee2f",
+    "web/camp-session.js": "853f62dbd25d4941586349cf97ff45228b71ca760e205d5442578a8f95d1ceeb",
+    "web/camp-slots.js": "842402075ff83e5e67b4ee30f6715f4bfb0a44703cc6bf43f1e80b0fcedc02a4",
+    "web/game-shell.css": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f",
+    "src/games/camp.js": "5852de534435378394b0438d69101307d0387198a31e5b6b84d75c092b76ef7c",
+    "src/games/camp-story.js": "c0070e54620e3e54bf363bd1dcbb0a7ab24f804e119ec35aca7daa028a2e0388"
+  },
+  "out": [
+    {
+      "test": "keyboard-intro",
+      "focus": {
+        "id": "tab-work",
+        "tag": "BUTTON",
+        "hidden": false,
+        "rect": {
+          "x": 12,
+          "y": 183.984375,
+          "width": 68.59375,
+          "height": 41,
+          "top": 183.984375,
+          "right": 80.59375,
+          "bottom": 224.984375,
+          "left": 12
+        }
+      }
+    },
+    {
+      "test": "keyboard-ferry",
+      "focus": {
+        "id": "tab-work",
+        "tag": "BUTTON",
+        "hidden": false,
+        "rect": {
+          "x": 12,
+          "y": 183.984375,
+          "width": 68.59375,
+          "height": 41,
+          "top": 183.984375,
+          "right": 80.59375,
+          "bottom": 224.984375,
+          "left": 12
+        }
+      }
+    },
+    {
+      "test": "offer-handover",
+      "focus": {
+        "id": "tab-work",
+        "tag": "BUTTON",
+        "hidden": false,
+        "rect": {
+          "x": 12,
+          "y": 200.78125,
+          "width": 68.59375,
+          "height": 41,
+          "top": 200.78125,
+          "right": 80.59375,
+          "bottom": 241.78125,
+          "left": 12
+        }
+      }
+    },
+    {
+      "test": "take-handover",
+      "focus": {
+        "id": "tab-work",
+        "tag": "BUTTON",
+        "hidden": false,
+        "rect": {
+          "x": 12,
+          "y": 200.78125,
+          "width": 68.59375,
+          "height": 41,
+          "top": 200.78125,
+          "right": 80.59375,
+          "bottom": 241.78125,
+          "left": 12
+        }
+      }
+    },
+    {
+      "test": "stop",
+      "focus": {
+        "id": "tab-work",
+        "tag": "BUTTON",
+        "hidden": false,
+        "rect": {
+          "x": 12,
+          "y": 213.78125,
+          "width": 68.59375,
+          "height": 41,
+          "top": 213.78125,
+          "right": 80.59375,
+          "bottom": 254.78125,
+          "left": 12
+        }
+      }
+    },
+    {
+      "test": "import-ring",
+      "data": {
+        "active": "import",
+        "outline": "solid",
+        "width": "3px",
+        "shadow": "none",
+        "border": "rgb(165, 180, 163)"
+      }
+    },
+    {
+      "test": "checkpoint-scroll",
+      "data": {
+        "focus": "chapter-title",
+        "scroll": 0,
+        "panel": {
+          "x": 12,
+          "y": 229.984375,
+          "width": 351,
+          "height": 311.921875,
+          "top": 229.984375,
+          "right": 363,
+          "bottom": 541.90625,
+          "left": 12
+        },
+        "heading": {
+          "x": 24,
+          "y": 279.484375,
+          "width": 306,
+          "height": 24,
+          "top": 279.484375,
+          "right": 330,
+          "bottom": 303.484375,
+          "left": 24
+        }
+      }
+    }
+  ]
+}

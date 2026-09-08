@@ -1,0 +1,364 @@
+{
+  "node": "v22.0.0",
+  "sources": {
+    "camp-story.js": "c0070e54620e3e54bf363bd1dcbb0a7ab24f804e119ec35aca7daa028a2e0388",
+    "camp.js": "5852de534435378394b0438d69101307d0387198a31e5b6b84d75c092b76ef7c",
+    "commons.js": "b2c6f5e8bd38e84b729d73182170c88034edc3767e00c71cd65784233283aedb",
+    "commons-next.js": "cd7db395f2498ff52230fa799d3d40f254d03b36403a144f619c2b16daee2bd0"
+  },
+  "results": [
+    {
+      "name": "earn actual new camp and freeze/roundtrip untouched entry",
+      "pass": true,
+      "ms": 105.761542,
+      "detail": {
+        "at": 202,
+        "jobs": {
+          "player": null,
+          "neighbor": {
+            "kind": "fixed",
+            "legacy": false,
+            "id": "eat",
+            "label": "Eat a portion",
+            "detail": "Reserve one shared portion; hunger relief follows eight paid minutes.",
+            "project": null,
+            "stage": null,
+            "cost": {
+              "food": 1
+            },
+            "output": {},
+            "duration": 8,
+            "benefits": {
+              "shelter": true,
+              "workbench": true,
+              "garden": true
+            },
+            "skillBefore": null,
+            "action": {
+              "actionId": "eat",
+              "targetId": null,
+              "durationMinutes": 8,
+              "effort": 0,
+              "exertive": false,
+              "activity": "meal",
+              "skill": null
+            },
+            "startedAt": 202,
+            "endsAt": 210,
+            "eventId": "event:11",
+            "attemptId": "neighbor:173"
+          }
+        }
+      }
+    },
+    {
+      "name": "coarse minute and next-event parity over both chapter stops",
+      "pass": true,
+      "ms": 330.155875,
+      "detail": {
+        "production": [
+          {
+            "cache": 1,
+            "at": 292
+          }
+        ],
+        "commands": 5
+      }
+    },
+    {
+      "name": "second earned path has its own authoritative milestone and paid carryover",
+      "pass": true,
+      "ms": 94.60374999999999,
+      "detail": {
+        "at": 275,
+        "jobs": {
+          "player": null,
+          "neighbor": null
+        },
+        "paid": {
+          "player": {
+            "work": 105,
+            "recovery": 162,
+            "idle": 0,
+            "meal": 8,
+            "effort": 0.8300000000000003,
+            "constructionMinutes": 52,
+            "gatheringMinutes": 53
+          },
+          "neighbor": {
+            "work": 199,
+            "recovery": 68,
+            "idle": 0,
+            "meal": 8,
+            "effort": 1.6599999999999957,
+            "constructionMinutes": 94,
+            "gatheringMinutes": 105
+          }
+        }
+      }
+    },
+    {
+      "name": "actual 1312 old camp preserves 12 ownership ids without invented receipts",
+      "pass": true,
+      "ms": 5.911292000000003,
+      "detail": {
+        "at": 1312,
+        "stock": {
+          "timber": 0,
+          "salvage": 1,
+          "food": 13
+        }
+      }
+    },
+    {
+      "name": "surplus needs actual ferry; return keeps ownership and never reopens",
+      "pass": true,
+      "ms": 102.29508299999998,
+      "detail": {
+        "finish": 1402,
+        "now": 1602
+      }
+    },
+    {
+      "name": "missed ferry keeps lost households while camp can gain later provisions",
+      "pass": true,
+      "ms": 100.56645800000001,
+      "detail": {
+        "phase": "camp-return",
+        "unprovided": 2
+      }
+    },
+    {
+      "name": "legacy before-rain every paid minute plus allocated/departed/ended prefixes import unchanged",
+      "pass": true,
+      "ms": 689.1527910000001,
+      "detail": {
+        "prefixes": 191,
+        "production": [
+          {
+            "at": 296
+          },
+          {
+            "at": 381
+          }
+        ],
+        "allocations": [
+          {
+            "at": 296,
+            "cache": 1,
+            "destination": "households"
+          },
+          {
+            "at": 381,
+            "cache": 2,
+            "destination": "camp"
+          }
+        ],
+        "ended": true
+      }
+    },
+    {
+      "name": "legacy build and stock strategies migrate busy snapshot prefixes",
+      "pass": true,
+      "ms": 253.65429100000006,
+      "detail": {
+        "snapshots": 80,
+        "busy": [
+          "build-shelter",
+          "gather-timber",
+          "gather-salvage",
+          "build-workbench",
+          "rest",
+          "build-garden",
+          "eat",
+          "forage"
+        ]
+      }
+    },
+    {
+      "name": "forged finite journal/derived state clones reject without mutating pristine save",
+      "pass": true,
+      "ms": 25.152207999999973,
+      "detail": {
+        "rejections": 8
+      }
+    },
+    {
+      "name": "immutable validation cache cannot be contaminated by read/export clones",
+      "pass": true,
+      "ms": 3.3336249999999836
+    },
+    {
+      "name": "hostile JSON descriptors and graph shapes reject before access",
+      "pass": true,
+      "ms": 1.6734589999998661,
+      "detail": {
+        "getterCalls": 0
+      }
+    },
+    {
+      "name": "finite journal cap reserves unilateral controls and chapter progression",
+      "pass": true,
+      "ms": 1009.815208,
+      "detail": {
+        "commands": 1031,
+        "phase": "camp-return"
+      }
+    },
+    {
+      "name": "returned snapshot preserves settled person attempt identity counter",
+      "pass": true,
+      "ms": 89.50608300000022,
+      "detail": {
+        "rejected": "Returned camp changed a person or reversed an attempt identity"
+      }
+    },
+    {
+      "name": "cache completed exactly at ferry is allocatable before actual dispatch",
+      "pass": true,
+      "ms": 36.709292000000005,
+      "detail": {
+        "production": [
+          {
+            "cache": 1,
+            "at": 292
+          }
+        ],
+        "allocation": [
+          {
+            "at": 292,
+            "cache": 1,
+            "destination": "households"
+          }
+        ]
+      }
+    },
+    {
+      "name": "missed zero-cache ferry followed by paid production and partial camp success",
+      "pass": true,
+      "ms": 71.47454199999993,
+      "detail": {
+        "production": [
+          {
+            "cache": 1,
+            "at": 348
+          }
+        ],
+        "households": 0,
+        "campNights": 2,
+        "retainedJobs": {
+          "player": null,
+          "neighbor": null
+        }
+      }
+    },
+    {
+      "name": "early-rain import continues active old assembly and fixed jobs by each driver",
+      "pass": true,
+      "ms": 317.96391700000004,
+      "detail": {
+        "oldJobs": {
+          "player": {
+            "id": "forage",
+            "label": "Gather food",
+            "detail": "Pick food near camp. Light work remains possible when heavy work is blocked.",
+            "project": null,
+            "stage": null,
+            "cost": {},
+            "output": {
+              "food": 3
+            },
+            "duration": 13,
+            "benefits": {
+              "shelter": true,
+              "workbench": true,
+              "garden": true
+            },
+            "skillBefore": 0.4334333287389793,
+            "action": {
+              "actionId": "forage",
+              "targetId": null,
+              "durationMinutes": 13,
+              "effort": 0,
+              "exertive": false,
+              "activity": "active",
+              "skill": "gathering"
+            },
+            "startedAt": 220,
+            "endsAt": 233,
+            "eventId": "event:25",
+            "attemptId": "player:13"
+          },
+          "neighbor": {
+            "id": "gather-timber",
+            "label": "Gather timber",
+            "detail": "Bring wood from the grove.",
+            "project": null,
+            "stage": null,
+            "cost": {},
+            "output": {
+              "timber": 4
+            },
+            "duration": 15,
+            "benefits": {
+              "shelter": true,
+              "workbench": true,
+              "garden": true
+            },
+            "skillBefore": 0.371337363828764,
+            "action": {
+              "actionId": "gather-timber",
+              "targetId": null,
+              "durationMinutes": 15,
+              "effort": 0.13,
+              "exertive": true,
+              "activity": "active",
+              "skill": "gathering"
+            },
+            "startedAt": 220,
+            "endsAt": 235,
+            "eventId": "event:24",
+            "attemptId": "neighbor:30"
+          }
+        },
+        "production": [
+          {
+            "cache": 1,
+            "at": 290
+          }
+        ]
+      }
+    },
+    {
+      "name": "rain-minute cache completion settles before final allocation",
+      "pass": true,
+      "ms": 671.6880419999998,
+      "detail": {
+        "delay": 34,
+        "production": [
+          {
+            "cache": 1,
+            "at": 382
+          }
+        ],
+        "allocations": [
+          {
+            "at": 382,
+            "cache": 1,
+            "destination": "camp"
+          }
+        ]
+      }
+    },
+    {
+      "name": "rain ending preserves an unfinished fixed job through Return and completion",
+      "pass": true,
+      "ms": 87.52720899999986,
+      "detail": {
+        "started": 1491,
+        "ended": 1502,
+        "rain": 1492
+      }
+    }
+  ]
+}

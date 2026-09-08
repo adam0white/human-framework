@@ -1,0 +1,217 @@
+{
+  "format": "human-camp-story",
+  "version": 1,
+  "game": {
+    "version": "0.1.0",
+    "world": {
+      "version": "0.2.0",
+      "runtimeVersion": "0.1.1",
+      "humanVersion": "0.1.1",
+      "solo": false,
+      "options": {
+        "improvement": "prospective",
+        "recovery": "automatic"
+      },
+      "origin": null,
+      "clock": {
+        "version": "0.1.0",
+        "now": 1,
+        "nextEvent": 2,
+        "queue": [
+          {
+            "id": "event:1",
+            "at": 16,
+            "type": "job-complete",
+            "actorId": "player",
+            "data": {
+              "jobId": "gather-timber",
+              "attemptId": "player:1"
+            }
+          }
+        ]
+      },
+      "people": {
+        "player": {
+          "version": "0.1.1",
+          "id": "player",
+          "body": {
+            "fatigue": 0.209625,
+            "hunger": 0.222
+          },
+          "skills": {
+            "gathering": 0.10466785306380993,
+            "construction": 0.05
+          },
+          "observationBias": 0,
+          "minutes": 1,
+          "nextAttempt": 2,
+          "pending": {
+            "id": "player:1",
+            "action": {
+              "actionId": "gather-timber",
+              "targetId": null,
+              "durationMinutes": 16,
+              "effort": 0.13,
+              "exertive": true,
+              "activity": "active",
+              "skill": "gathering"
+            },
+            "elapsedMinutes": 1,
+            "capacity": {
+              "allowed": true,
+              "causes": [],
+              "fatigueCost": 0.154,
+              "hungerCost": 0.032,
+              "projectedFatigue": 0.354,
+              "projectedHunger": 0.252
+            },
+            "bodyBefore": {
+              "fatigue": 0.2,
+              "hunger": 0.22
+            },
+            "skillBefore": 0.1,
+            "startedAt": 0
+          }
+        },
+        "neighbor": {
+          "version": "0.1.1",
+          "id": "neighbor",
+          "body": {
+            "fatigue": 0.27649999999999997,
+            "hunger": 0.28200000000000003
+          },
+          "skills": {
+            "gathering": 0.1,
+            "construction": 0.05
+          },
+          "observationBias": 0,
+          "minutes": 1,
+          "nextAttempt": 2,
+          "pending": null
+        }
+      },
+      "jobs": {
+        "player": {
+          "kind": "fixed",
+          "legacy": false,
+          "id": "gather-timber",
+          "label": "Gather timber",
+          "detail": "Bring wood from the grove.",
+          "project": null,
+          "stage": null,
+          "cost": {},
+          "output": {
+            "timber": 3
+          },
+          "duration": 16,
+          "benefits": {
+            "shelter": false,
+            "workbench": false,
+            "garden": false
+          },
+          "skillBefore": 0.1,
+          "action": {
+            "actionId": "gather-timber",
+            "targetId": null,
+            "durationMinutes": 16,
+            "effort": 0.13,
+            "exertive": true,
+            "activity": "active",
+            "skill": "gathering"
+          },
+          "startedAt": 0,
+          "endsAt": 16,
+          "eventId": "event:1",
+          "attemptId": "player:1"
+        },
+        "neighbor": null
+      },
+      "stock": {
+        "timber": 4,
+        "salvage": 2,
+        "food": 4
+      },
+      "structures": {
+        "shelter": 0,
+        "workbench": 0,
+        "garden": 0
+      },
+      "caches": 0,
+      "milestoneAt": null,
+      "commitment": {
+        "status": "none",
+        "project": null,
+        "acceptedAt": null,
+        "finishedAt": null,
+        "startCaches": 0,
+        "reason": "Ask me to help with a specific project. I’ll tell you what I can do."
+      },
+      "lastResponse": null,
+      "stats": {
+        "started": 1,
+        "completed": 0,
+        "canceled": 0,
+        "gathered": {
+          "timber": 0,
+          "salvage": 0,
+          "food": 0
+        },
+        "spent": {
+          "timber": 0,
+          "salvage": 0,
+          "food": 0
+        },
+        "consumedFood": 0,
+        "workMinutes": 1,
+        "restMinutes": 1,
+        "mealMinutes": 0,
+        "idleMinutes": 0,
+        "receipts": {
+          "gather-timber": 0,
+          "gather-salvage": 0,
+          "forage": 0,
+          "rest": 0,
+          "eat": 0,
+          "coveredTimber": 0,
+          "gardenFood": 0
+        }
+      },
+      "recent": [
+        {
+          "at": 0,
+          "actor": "player",
+          "message": "You started gather timber (16 min)."
+        }
+      ],
+      "work": {},
+      "lastAssemblies": {},
+      "paid": {
+        "player": {
+          "work": 1,
+          "recovery": 0,
+          "idle": 0,
+          "meal": 0,
+          "effort": 0.008125,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 1
+        },
+        "neighbor": {
+          "work": 0,
+          "recovery": 1,
+          "idle": 0,
+          "meal": 0,
+          "effort": 0,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 0
+        }
+      },
+      "recovering": {
+        "player": false,
+        "neighbor": false
+      }
+    },
+    "window": null,
+    "record": null,
+    "returned": false
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "synthetic": true,
+  "base": "http://127.0.0.1:56976",
+  "node": "v26.8.1",
+  "browser": "152.0.7977.77",
+  "source": {
+    "web/camp.js": "378bc086b22c83eda970636ac1fcd99e4ecd1d55e20eba92d27ff8302b50ee2f",
+    "web/camp.html": "6b72b01f7b5354df5bca111b64a2dab207936126c3e95e7afc58e8cb6fcddcf7",
+    "web/camp.css": "4a25b7fdb9638b7ea504803a145d010461468c55bcdac6fc4518a88ff34af488",
+    "web/camp-session.js": "853f62dbd25d4941586349cf97ff45228b71ca760e205d5442578a8f95d1ceeb",
+    "web/camp-slots.js": "842402075ff83e5e67b4ee30f6715f4bfb0a44703cc6bf43f1e80b0fcedc02a4",
+    "src/games/camp.js": "5852de534435378394b0438d69101307d0387198a31e5b6b84d75c092b76ef7c",
+    "src/games/camp-story.js": "c0070e54620e3e54bf363bd1dcbb0a7ab24f804e119ec35aca7daa028a2e0388"
+  },
+  "checks": [
+    "Three viewport sizes, all five panels, keyboard tabs and exact book preservation",
+    "Concurrent paid work, pause while reading, actual download/import into separate slot and paused reload",
+    "Stop and resume preserve real partial assembly and its material reservation",
+    "Busy old camp import keeps 4/14 paid gather, converts rest explicitly, and Continue preserves the complete migrated world",
+    "Ferry and rain preserve an owned partial meal, require real dispatch, retain unmet needs and return without resetting the camp",
+    "Finished old Rain keeps its settled window; five slots never overwrite, removal requires confirmation, and other saves remain exact",
+    "Invalid imports/corrupt collections preserve original data; quota failure stays visible without losing in-memory paid work",
+    "Short-height fallback remains operable and chooser retains all ten controls beside the continuing story"
+  ],
+  "errors": [],
+  "failure": null
+}

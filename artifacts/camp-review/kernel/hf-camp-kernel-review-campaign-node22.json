@@ -1,0 +1,62 @@
+{
+  "node": "v22.0.0",
+  "summaries": [
+    {
+      "legacy": false,
+      "now": 20000,
+      "caches": 454,
+      "commands": 20979,
+      "maxSize": 7115,
+      "imports": 0,
+      "minImportCaches": null,
+      "kinds": [],
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      }
+    },
+    {
+      "legacy": true,
+      "now": 1600,
+      "caches": 30,
+      "commands": 1702,
+      "maxSize": 5293,
+      "imports": 428,
+      "minImportCaches": 1,
+      "kinds": [
+        "build-cache/eat",
+        "build-cache/gather-salvage",
+        "build-cache/gather-timber",
+        "build-cache/idle",
+        "build-cache/rest",
+        "eat/build-cache",
+        "eat/rest",
+        "forage/rest",
+        "gather-salvage/build-cache",
+        "gather-salvage/eat",
+        "gather-salvage/gather-salvage",
+        "gather-salvage/rest",
+        "gather-timber/build-cache",
+        "gather-timber/eat",
+        "gather-timber/gather-salvage",
+        "gather-timber/gather-timber",
+        "gather-timber/rest",
+        "idle/build-cache",
+        "idle/forage",
+        "idle/gather-salvage",
+        "idle/gather-timber",
+        "idle/rest",
+        "rest/build-cache",
+        "rest/forage",
+        "rest/gather-salvage",
+        "rest/rest"
+      ],
+      "structures": {
+        "shelter": 2,
+        "workbench": 2,
+        "garden": 2
+      }
+    }
+  ]
+}

@@ -5,7 +5,7 @@ const chooser=document.createElement('div');chooser.className='game-chooser';
 const label=document.createElement('label');label.htmlFor='game-choice';label.textContent='Choose a world';
 const select=document.createElement('select');select.id='game-choice';
 const list=document.createElement('div');list.className='collection-list';list.setAttribute('role','tablist');list.setAttribute('aria-orientation','vertical');list.setAttribute('aria-label','Games in suggested learning order');
-const learning=['Start with one job','Choose an order','Plan a delivery round','Meet an independent neighbor','Build a place together','Choose who receives supplies','Protect a shared site','Act on changing reports','Carry a morning into the afternoon','Agree a plan, then do the work'];
+const learning={'/camp/':'One camp, continuing consequences','/workshop/':'Start with one job','/shift/':'Choose an order','/courier/':'Plan a delivery round','/courtyard/':'Meet an independent neighbor','/commons/':'Build a place together','/commons-next/':'Choose who receives supplies','/watch/':'Protect a shared site','/signals/':'Act on changing reports','/service/':'Carry a morning into the afternoon','/service-plan/':'Agree a plan, then do the work'};
 const buttons=[];
 cards.forEach((card,i)=>{
  const name=card.querySelector('h2').textContent;
@@ -17,7 +17,7 @@ cards.forEach((card,i)=>{
  button.addEventListener('keydown',event=>{const next=event.key==='ArrowDown'?(i+1)%cards.length:event.key==='ArrowUp'?(i-1+cards.length)%cards.length:event.key==='Home'?0:event.key==='End'?cards.length-1:null;if(next!==null){event.preventDefault();choose(next);buttons[next].focus();}});
  buttons.push(button);list.append(button);
  const panel=document.createElement('section');panel.className='collection-preview';panel.id='collection-preview-'+i;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',button.id);
- const step=document.createElement('p');step.className='learning-step';step.textContent=learning[i];card.querySelector('.tag').textContent=card.querySelector('.tag').textContent.replace(/^New · /,'');
+ const step=document.createElement('p');step.className='learning-step';step.textContent=learning[card.getAttribute('href')];card.querySelector('.tag').textContent=card.querySelector('.tag').textContent.replace(/^New · /,'');
  panel.append(step,card);games.append(panel);
 });
 function choose(index){select.value=index;cards.forEach((card,i)=>{card.parentElement.hidden=i!==index;buttons[i].setAttribute('aria-selected',String(i===index));buttons[i].tabIndex=i===index?0:-1;});}

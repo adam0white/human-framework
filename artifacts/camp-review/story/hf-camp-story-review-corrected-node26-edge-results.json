@@ -1,0 +1,47 @@
+{
+  "node": "v26.8.1",
+  "result": [
+    {
+      "name": "returned clock nextEvent regression",
+      "accepted": false,
+      "error": "Returned camp reversed an event identity counter"
+    },
+    {
+      "name": "returned person paid/skill regression",
+      "accepted": false,
+      "error": "Returned camp reversed a lifetime receipt",
+      "original": {
+        "player": {
+          "work": 11,
+          "recovery": 169,
+          "idle": 0,
+          "meal": 0,
+          "effort": 0,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 11
+        },
+        "neighbor": {
+          "work": 0,
+          "recovery": 180,
+          "idle": 0,
+          "meal": 0,
+          "effort": 0,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 0
+        }
+      }
+    },
+    {
+      "name": "prototype-bearing array source calls iterator before rejection",
+      "accepted": false,
+      "invoked": 0,
+      "error": "Invalid story JSON object prototype"
+    },
+    {
+      "name": "prototype-bearing array hidden huge iterator is executed",
+      "accepted": false,
+      "invoked": 0,
+      "error": "Invalid story JSON object prototype"
+    }
+  ]
+}

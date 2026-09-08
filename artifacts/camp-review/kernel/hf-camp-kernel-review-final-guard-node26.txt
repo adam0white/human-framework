@@ -1,0 +1,11 @@
+✔ automatic recovery rejects rest and preserves exact input (4.067458ms)
+✔ active-idle recovery remains selectable without elapsed time and detaches input (1.488666ms)
+✔ active-idle busy rejection also leaves its input exact (0.648416ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43.397292

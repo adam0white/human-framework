@@ -25,6 +25,7 @@ test('deployment contains the playable module graph and excludes private project
   const root=await mkdtemp(join(tmpdir(),'human-build-'));
   try {
     for(const path of ['web','src/core','src/scenarios','src/human','src/runtime','src/games','src/legacy/v0.1','src/legacy/v0.2','src/cognition','src/coordination','research','dist'])await mkdir(join(root,path),{recursive:true});
+    for(const source of Object.values(PUBLIC_PAGES))await writeFile(join(root,source),'public page');
     for(const [path,body] of Object.entries({
       'index.html':'<script type="module" src="/web/app.js"></script>',
       'package.json':'{"version":"0.4.0"}',
@@ -45,6 +46,10 @@ test('deployment contains the playable module graph and excludes private project
       'web/signals.html':'<script type="module" src="/web/signals.js"></script>',
       'web/service.html':'<script type="module" src="/web/service.js"></script>',
       'web/service-plan.html':'<script type="module" src="/web/service-plan.js"></script>',
+      'web/camp.html':'<script type="module" src="/web/camp.js"></script>',
+      'web/camp.js':"import '../src/games/camp-story.js';",
+      'src/games/camp-story.js':"import './camp.js';",
+      'src/games/camp.js':"import '../runtime/clock.js';",
       'src/coordination/attempt-clock.js':'private experimental helper',
       'src/cognition/observation-memory.js':'private experimental memory',
       'web/styles.css':'body{color:teal}',
@@ -80,9 +85,9 @@ test('deployment contains the playable module graph and excludes private project
     assert.ok(files.includes('src/games/commons.js'));
     assert.ok(files.includes('src/games/workshop.js'));
     assert.ok(files.includes('src/legacy/v0.2/index.js'));
-    for(const route of ['games','shift','courtyard','courier','commons','commons-next','watch','signals','service','service-plan']) {
-      assert.ok(files.includes(`${route}/index.html`),`${route} has an explicit public entry`);
-      assert.equal(await readFile(join(root,`dist/${route}/index.html`),'utf8'),await readFile(join(root,`web/${route}.html`),'utf8'));
+    for(const [output,source] of Object.entries(PUBLIC_PAGES)) {
+      assert.ok(files.includes(output),`${output} has an explicit public entry`);
+      assert.equal(await readFile(join(root,'dist',output),'utf8'),await readFile(join(root,source),'utf8'));
     }
     assert.equal(files.some(p=>/secret|private|\.env|research|courtyard-1-move-18|cognition|coordination/.test(p)),false);
     assert.match(await readFile(join(root,'dist/_headers'),'utf8'),/Content-Security-Policy/);
@@ -96,13 +101,11 @@ test('deployment contains the playable module graph and excludes private project
 });
 
 test('deployment refuses symlinked public roots, their ancestors, and the entry page',async()=>{
-  for(const redirect of ['web','src','src/legacy','index.html','web/workshop.html','web/games.html','web/shift.html','web/courtyard.html','web/courier.html','web/commons.html','web/commons-next.html','web/watch.html','web/signals.html','web/service.html','web/service-plan.html','src/runtime']) {
+  for(const redirect of ['web','src','src/legacy',...new Set(Object.values(PUBLIC_PAGES)),'src/runtime']) {
     const root=await mkdtemp(join(tmpdir(),'human-build-links-'));
     try {
       for(const path of ['web','src/core','src/scenarios','src/human','src/runtime','src/games','src/legacy/v0.1','src/legacy/v0.2','research','research/core','research/scenarios','research/v0.1'])await mkdir(join(root,path),{recursive:true});
-      await writeFile(join(root,'index.html'),'public');
-      await writeFile(join(root,'web/workshop.html'),'public game');
-      for(const route of ['games','shift','courtyard','courier','commons','commons-next','watch','signals','service','service-plan'])await writeFile(join(root,`web/${route}.html`),'public game');
+      for(const source of Object.values(PUBLIC_PAGES))await writeFile(join(root,source),'public game');
       await writeFile(join(root,'research/private.js'),'private research');
       await writeFile(join(root,'research/private.html'),'private research');
       await rm(join(root,redirect),{recursive:true,force:true});

@@ -1,0 +1,96 @@
+[
+  {
+    "test": "available-recovery",
+    "before": 0,
+    "after": 6,
+    "fatigue": 0.059000000000000045
+  },
+  {
+    "test": "refresh-active",
+    "at": 7,
+    "work": 0.041666666666666664
+  },
+  {
+    "test": "handover-offer",
+    "notice": "",
+    "status": "Meryem accepted the remaining woodshed work.",
+    "jobs": {
+      "player": {
+        "id": "player",
+        "body": {
+          "fatigue": 0.05,
+          "hunger": 0.25
+        },
+        "skills": {
+          "gathering": 0.1,
+          "construction": 0.054927178234021594
+        },
+        "minutes": 7,
+        "pending": null,
+        "job": null,
+        "availableActivity": "recovery"
+      },
+      "neighbor": {
+        "id": "neighbor",
+        "body": {
+          "fatigue": 0.15,
+          "hunger": 0.3
+        },
+        "skills": {
+          "gathering": 0.1,
+          "construction": 0.05
+        },
+        "minutes": 7,
+        "pending": null,
+        "job": {
+          "id": "build-shelter",
+          "label": "Woodshed: raise the frame",
+          "project": "shelter",
+          "startedAt": 7,
+          "endsAt": 30,
+          "duration": 23,
+          "remaining": 23,
+          "cost": {
+            "timber": 4,
+            "salvage": 1
+          },
+          "workId": "shelter-0",
+          "progress": 0.041666666666666664
+        },
+        "availableActivity": "recovery"
+      }
+    }
+  },
+  {
+    "test": "handover-take",
+    "notice": "",
+    "status": "Meryem accepted your offer to finish the remaining woodshed work.",
+    "focus": "BODY"
+  },
+  {
+    "test": "stop-persistent",
+    "focus": "BODY"
+  },
+  {
+    "test": "continue-transition",
+    "focus": "BODY",
+    "selected": "tab-work",
+    "project": "cache"
+  },
+  {
+    "test": "dispatch-transition",
+    "focus": "BODY",
+    "selected": "tab-work",
+    "phase": "packing"
+  },
+  {
+    "test": "return-transition",
+    "focus": "next-event",
+    "selected": "tab-work",
+    "now": 382
+  },
+  {
+    "failure": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#new-story')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"new-story\">Start another camp</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+    "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#new-story')\u001b[22m\n\u001b[2m    - locator resolved to <button id=\"new-story\">Start another camp</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at click (/private/tmp/camp-ui-review/interactions.mjs:11:45)\n    at /private/tmp/camp-ui-review/interactions.mjs:30:96"
+  }
+]

@@ -1,0 +1,1109 @@
+[
+  {
+    "viewport": [
+      375,
+      667
+    ],
+    "label": "new",
+    "errors": [],
+    "text": "← Games\nThe camp\n0\ncamp minutes\n\nBuild a woodshed, workbench and garden. Begin with one useful stage.\n\nTimber 4 · Salvage 2 · Food 4\n\nYou · fatigue 20% · hunger 20%\nMeryem · fatigue 30% · hunger 30%\n\nWork\nPeople\nCamp\nJournal\nSave\nRaise the frame\nProject\nWoodshed\nWorkbench\nGarden\nSupply cache\n\nA dry woodshed saves more usable timber from later trips.\n\nWoodshed: raise the frame\n24 min\nReserve 4 timber + 1 salvage\nGather timber\n16 min\nBring back 3 timber\nRecover salvage\n22 min\nBring back 3 salvage\nGather food\n14 min\nBring back 2 food\nWork, recovery and materials\nYou: recovering while available\nMeryem: recovering while available\nNext event →\n+1 min\n▶ Play\n1×\n4×\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      375,
+      667
+    ],
+    "selected": "tab-work",
+    "panel": [
+      {
+        "id": "panel-work",
+        "client": 312,
+        "scroll": 340,
+        "width": 336,
+        "scrollWidth": 336
+      }
+    ],
+    "controls": [
+      {
+        "id": "next-event",
+        "rect": {
+          "x": 12,
+          "y": 598.5,
+          "width": 170.09375,
+          "height": 42,
+          "top": 598.5,
+          "right": 182.09375,
+          "bottom": 640.5,
+          "left": 12
+        }
+      },
+      {
+        "id": "one-minute",
+        "rect": {
+          "x": 187.09375,
+          "y": 598.5,
+          "width": 55.78125,
+          "height": 42,
+          "top": 598.5,
+          "right": 242.875,
+          "bottom": 640.5,
+          "left": 187.09375
+        }
+      },
+      {
+        "id": "play",
+        "rect": {
+          "x": 247.875,
+          "y": 598.5,
+          "width": 55.125,
+          "height": 42,
+          "top": 598.5,
+          "right": 303,
+          "bottom": 640.5,
+          "left": 247.875
+        }
+      },
+      {
+        "id": "speed",
+        "rect": {
+          "x": 308,
+          "y": 598.5,
+          "width": 55,
+          "height": 42,
+          "top": 598.5,
+          "right": 363,
+          "bottom": 640.5,
+          "left": 308
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      375,
+      667
+    ],
+    "label": "intro",
+    "errors": [],
+    "text": "← Games\nThe camp\n90 min\nuntil the ferry\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 40% · hunger 5%\nMeryem · fatigue 80% · hunger 70%\n\nMeryem started eat a portion (8 min). I need a meal, then I can continue.\n\nWork\nPeople\nSupplies\nJournal\nSave\n\nA NEW USE FOR THE CAMP\n\nBefore the rain\n\nTwo households need kits on the next ferry. Your camp needs supplies for four wet nights. One cache can only go one way. Your actual people, supplies and unfinished jobs continue here.\n\nCamp minute 198. 0 completed caches available. Ferry in 90 minutes; rain in 180.\n\nYou: recovering while available\nMeryem: Eat a portion8 min left\nContinue into the supply window\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      375,
+      667
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 312,
+        "scroll": 312,
+        "width": 336,
+        "scrollWidth": 336
+      }
+    ],
+    "controls": [
+      {
+        "id": "chapter-action",
+        "rect": {
+          "x": 12,
+          "y": 598.5,
+          "width": 351,
+          "height": 42,
+          "top": 598.5,
+          "right": 363,
+          "bottom": 640.5,
+          "left": 12
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      375,
+      667
+    ],
+    "label": "packing",
+    "errors": [],
+    "text": "← Games\nThe camp\n90 min\nuntil the ferry\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 40% · hunger 5%\nMeryem · fatigue 80% · hunger 70%\n\nMeryem started eat a portion (8 min). I need a meal, then I can continue.\n\nWork\nPeople\nSupplies\nJournal\nSave\nPack useful supplies\nProject\nWoodshed\nWorkbench\nGarden\nSupply cache\n\nEach finished cache can serve one household or two camp nights.\n\nSupply cache: pack a supply cache\n19 min\nNeeds 6 timber; only 2 is available.\nGather timber\n15 min\nBring back 4 timber\nRecover salvage\n21 min\nBring back 3 salvage\nGather food\n13 min\nBring back 3 food\nWork, recovery and materials\nYou: recovering while available\nMeryem: Eat a portion8 min left\nNext event →\n+1 min\n▶ Play\n1×\n4×\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      375,
+      667
+    ],
+    "selected": "tab-work",
+    "panel": [
+      {
+        "id": "panel-work",
+        "client": 312,
+        "scroll": 357,
+        "width": 336,
+        "scrollWidth": 336
+      }
+    ],
+    "controls": [
+      {
+        "id": "next-event",
+        "rect": {
+          "x": 12,
+          "y": 598.5,
+          "width": 170.09375,
+          "height": 42,
+          "top": 598.5,
+          "right": 182.09375,
+          "bottom": 640.5,
+          "left": 12
+        }
+      },
+      {
+        "id": "one-minute",
+        "rect": {
+          "x": 187.09375,
+          "y": 598.5,
+          "width": 55.78125,
+          "height": 42,
+          "top": 598.5,
+          "right": 242.875,
+          "bottom": 640.5,
+          "left": 187.09375
+        }
+      },
+      {
+        "id": "play",
+        "rect": {
+          "x": 247.875,
+          "y": 598.5,
+          "width": 55.125,
+          "height": 42,
+          "top": 598.5,
+          "right": 303,
+          "bottom": 640.5,
+          "left": 247.875
+        }
+      },
+      {
+        "id": "speed",
+        "rect": {
+          "x": 308,
+          "y": 598.5,
+          "width": 55,
+          "height": 42,
+          "top": 598.5,
+          "right": 363,
+          "bottom": 640.5,
+          "left": 308
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      375,
+      667
+    ],
+    "label": "ferry",
+    "errors": [],
+    "text": "← Games\nThe camp\n0 min\nuntil the ferry\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 25%\nMeryem · fatigue 0% · hunger 30%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\n\nTHE FERRY IS WAITING\n\nWhat goes aboard?\n\nAllocate the completed caches you want to send, then dispatch the ferry. Unfinished work stays in progress.\n\nCamp minute 288. 0 completed caches available.\n\nWhere will the supplies go?\n0 available\nAcross the river\n0 / 2 kits\n\nAllocated kits are ready for the ferry. They leave when you dispatch it.\n\nReady 1 kit for the ferry\nHere at camp\n0 / 4 nights\n\nOne cache covers two wet nights.\n\nKeep 1 cache for camp\n\nEach cache can go only one way. Allocations are final. A cache finished at the ferry checkpoint can still go aboard before you dispatch it.\n\nYou: recovering while available\nMeryem: recovering while available\nDispatch the ferry →\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      375,
+      667
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 312,
+        "scroll": 577,
+        "width": 336,
+        "scrollWidth": 336
+      }
+    ],
+    "controls": [
+      {
+        "id": "chapter-action",
+        "rect": {
+          "x": 12,
+          "y": 598.5,
+          "width": 351,
+          "height": 42,
+          "top": 598.5,
+          "right": 363,
+          "bottom": 640.5,
+          "left": 12
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      375,
+      667
+    ],
+    "label": "rain",
+    "errors": [],
+    "text": "← Games\nThe camp\n378\ncamp minutes\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 45%\nMeryem · fatigue 0% · hunger 50%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\n\nTHE SUPPLY WINDOW CLOSES\n\nKeep what can still help\n\nThe ferry has left. Allocate any remaining caches to camp, then close this chapter. Your people and unfinished work stay with you.\n\nCamp minute 378. 0 completed caches available.\n\nWhere will the supplies go?\n0 available\nAcross the river\n0 / 2 kits\n\nThe ferry has left. These kits were sent; later caches stay at camp.\n\nReady 1 kit for the ferry\nHere at camp\n0 / 4 nights\n\nOne cache covers two wet nights.\n\nKeep 1 cache for camp\n\nEach cache can go only one way. Allocations are final. A cache finished at the ferry checkpoint can still go aboard before you dispatch it.\n\nYou: recovering while available\nMeryem: recovering while available\nFinish this chapter →\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      375,
+      667
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 312,
+        "scroll": 577,
+        "width": 336,
+        "scrollWidth": 336
+      }
+    ],
+    "controls": [
+      {
+        "id": "chapter-action",
+        "rect": {
+          "x": 12,
+          "y": 598.5,
+          "width": 351,
+          "height": 42,
+          "top": 598.5,
+          "right": 363,
+          "bottom": 640.5,
+          "left": 12
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      375,
+      667
+    ],
+    "label": "ended",
+    "errors": [],
+    "text": "← Games\nThe camp\n378\ncamp minutes\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 45%\nMeryem · fatigue 0% · hunger 50%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\nThe work stays with you.\n\n0 household kits sent; 0 wet nights provisioned. 2 households and 4 camp nights remain unprovided. 0 caches are still available. These are settled choices; returning to camp does not reset them.\n\nReturn to your campSave and leave\nYou: recovering while available\nMeryem: recovering while available\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      375,
+      667
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 354,
+        "scroll": 354,
+        "width": 336,
+        "scrollWidth": 336
+      }
+    ],
+    "controls": []
+  },
+  {
+    "viewport": [
+      375,
+      667
+    ],
+    "label": "back",
+    "errors": [],
+    "text": "← Games\nThe camp\n378\ncamp minutes\n\nYour camp continues. Earlier supply choices stay settled.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 45%\nMeryem · fatigue 0% · hunger 50%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\nPack useful supplies\nProject\nWoodshed\nWorkbench\nGarden\nSupply cache\n\nEach finished cache can serve one household or two camp nights.\n\nSupply cache: pack a supply cache\n19 min\nNeeds 6 timber; only 2 is available.\nGather timber\n15 min\nBring back 4 timber\nRecover salvage\n21 min\nBring back 3 salvage\nGather food\n13 min\nBring back 3 food\nWork, recovery and materials\nYou: recovering while available\nMeryem: recovering while available\nNext event →\n+1 min\n▶ Play\n1×\n4×\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      375,
+      667
+    ],
+    "selected": "tab-work",
+    "panel": [
+      {
+        "id": "panel-work",
+        "client": 312,
+        "scroll": 357,
+        "width": 336,
+        "scrollWidth": 336
+      }
+    ],
+    "controls": [
+      {
+        "id": "next-event",
+        "rect": {
+          "x": 12,
+          "y": 598.5,
+          "width": 170.09375,
+          "height": 42,
+          "top": 598.5,
+          "right": 182.09375,
+          "bottom": 640.5,
+          "left": 12
+        }
+      },
+      {
+        "id": "one-minute",
+        "rect": {
+          "x": 187.09375,
+          "y": 598.5,
+          "width": 55.78125,
+          "height": 42,
+          "top": 598.5,
+          "right": 242.875,
+          "bottom": 640.5,
+          "left": 187.09375
+        }
+      },
+      {
+        "id": "play",
+        "rect": {
+          "x": 247.875,
+          "y": 598.5,
+          "width": 55.125,
+          "height": 42,
+          "top": 598.5,
+          "right": 303,
+          "bottom": 640.5,
+          "left": 247.875
+        }
+      },
+      {
+        "id": "speed",
+        "rect": {
+          "x": 308,
+          "y": 598.5,
+          "width": 55,
+          "height": 42,
+          "top": 598.5,
+          "right": 363,
+          "bottom": 640.5,
+          "left": 308
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "label": "new",
+    "errors": [],
+    "text": "← Games\nThe camp\n0\ncamp minutes\n\nBuild a woodshed, workbench and garden. Begin with one useful stage.\n\nTimber 4 · Salvage 2 · Food 4\n\nYou · fatigue 20% · hunger 20%\nMeryem · fatigue 30% · hunger 30%\n\nWork\nPeople\nCamp\nJournal\nSave\nRaise the frame\nProject\nWoodshed\nWorkbench\nGarden\nSupply cache\n\nA dry woodshed saves more usable timber from later trips.\n\nWoodshed: raise the frame\n24 min\nReserve 4 timber + 1 salvage\nGather timber\n16 min\nBring back 3 timber\nRecover salvage\n22 min\nBring back 3 salvage\nGather food\n14 min\nBring back 2 food\nWork, recovery and materials\nYou: recovering while available\nMeryem: recovering while available\nNext event →\n+1 min\n▶ Play\n1×\n4×\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      390,
+      844
+    ],
+    "selected": "tab-work",
+    "panel": [
+      {
+        "id": "panel-work",
+        "client": 489,
+        "scroll": 489,
+        "width": 351,
+        "scrollWidth": 351
+      }
+    ],
+    "controls": [
+      {
+        "id": "next-event",
+        "rect": {
+          "x": 12,
+          "y": 775.5,
+          "width": 185.09375,
+          "height": 42,
+          "top": 775.5,
+          "right": 197.09375,
+          "bottom": 817.5,
+          "left": 12
+        }
+      },
+      {
+        "id": "one-minute",
+        "rect": {
+          "x": 202.09375,
+          "y": 775.5,
+          "width": 55.78125,
+          "height": 42,
+          "top": 775.5,
+          "right": 257.875,
+          "bottom": 817.5,
+          "left": 202.09375
+        }
+      },
+      {
+        "id": "play",
+        "rect": {
+          "x": 262.875,
+          "y": 775.5,
+          "width": 55.125,
+          "height": 42,
+          "top": 775.5,
+          "right": 318,
+          "bottom": 817.5,
+          "left": 262.875
+        }
+      },
+      {
+        "id": "speed",
+        "rect": {
+          "x": 323,
+          "y": 775.5,
+          "width": 55,
+          "height": 42,
+          "top": 775.5,
+          "right": 378,
+          "bottom": 817.5,
+          "left": 323
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "label": "intro",
+    "errors": [],
+    "text": "← Games\nThe camp\n90 min\nuntil the ferry\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 40% · hunger 5%\nMeryem · fatigue 80% · hunger 70%\n\nMeryem started eat a portion (8 min). I need a meal, then I can continue.\n\nWork\nPeople\nSupplies\nJournal\nSave\n\nA NEW USE FOR THE CAMP\n\nBefore the rain\n\nTwo households need kits on the next ferry. Your camp needs supplies for four wet nights. One cache can only go one way. Your actual people, supplies and unfinished jobs continue here.\n\nCamp minute 198. 0 completed caches available. Ferry in 90 minutes; rain in 180.\n\nYou: recovering while available\nMeryem: Eat a portion8 min left\nContinue into the supply window\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      390,
+      844
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 489,
+        "scroll": 489,
+        "width": 351,
+        "scrollWidth": 351
+      }
+    ],
+    "controls": [
+      {
+        "id": "chapter-action",
+        "rect": {
+          "x": 12,
+          "y": 775.5,
+          "width": 366,
+          "height": 42,
+          "top": 775.5,
+          "right": 378,
+          "bottom": 817.5,
+          "left": 12
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "label": "packing",
+    "errors": [],
+    "text": "← Games\nThe camp\n90 min\nuntil the ferry\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 40% · hunger 5%\nMeryem · fatigue 80% · hunger 70%\n\nMeryem started eat a portion (8 min). I need a meal, then I can continue.\n\nWork\nPeople\nSupplies\nJournal\nSave\nPack useful supplies\nProject\nWoodshed\nWorkbench\nGarden\nSupply cache\n\nEach finished cache can serve one household or two camp nights.\n\nSupply cache: pack a supply cache\n19 min\nNeeds 6 timber; only 2 is available.\nGather timber\n15 min\nBring back 4 timber\nRecover salvage\n21 min\nBring back 3 salvage\nGather food\n13 min\nBring back 3 food\nWork, recovery and materials\nYou: recovering while available\nMeryem: Eat a portion8 min left\nNext event →\n+1 min\n▶ Play\n1×\n4×\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      390,
+      844
+    ],
+    "selected": "tab-work",
+    "panel": [
+      {
+        "id": "panel-work",
+        "client": 489,
+        "scroll": 489,
+        "width": 351,
+        "scrollWidth": 351
+      }
+    ],
+    "controls": [
+      {
+        "id": "next-event",
+        "rect": {
+          "x": 12,
+          "y": 775.5,
+          "width": 185.09375,
+          "height": 42,
+          "top": 775.5,
+          "right": 197.09375,
+          "bottom": 817.5,
+          "left": 12
+        }
+      },
+      {
+        "id": "one-minute",
+        "rect": {
+          "x": 202.09375,
+          "y": 775.5,
+          "width": 55.78125,
+          "height": 42,
+          "top": 775.5,
+          "right": 257.875,
+          "bottom": 817.5,
+          "left": 202.09375
+        }
+      },
+      {
+        "id": "play",
+        "rect": {
+          "x": 262.875,
+          "y": 775.5,
+          "width": 55.125,
+          "height": 42,
+          "top": 775.5,
+          "right": 318,
+          "bottom": 817.5,
+          "left": 262.875
+        }
+      },
+      {
+        "id": "speed",
+        "rect": {
+          "x": 323,
+          "y": 775.5,
+          "width": 55,
+          "height": 42,
+          "top": 775.5,
+          "right": 378,
+          "bottom": 817.5,
+          "left": 323
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "label": "ferry",
+    "errors": [],
+    "text": "← Games\nThe camp\n0 min\nuntil the ferry\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 25%\nMeryem · fatigue 0% · hunger 30%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\n\nTHE FERRY IS WAITING\n\nWhat goes aboard?\n\nAllocate the completed caches you want to send, then dispatch the ferry. Unfinished work stays in progress.\n\nCamp minute 288. 0 completed caches available.\n\nWhere will the supplies go?\n0 available\nAcross the river\n0 / 2 kits\n\nAllocated kits are ready for the ferry. They leave when you dispatch it.\n\nReady 1 kit for the ferry\nHere at camp\n0 / 4 nights\n\nOne cache covers two wet nights.\n\nKeep 1 cache for camp\n\nEach cache can go only one way. Allocations are final. A cache finished at the ferry checkpoint can still go aboard before you dispatch it.\n\nYou: recovering while available\nMeryem: recovering while available\nDispatch the ferry →\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      390,
+      844
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 489,
+        "scroll": 570,
+        "width": 351,
+        "scrollWidth": 351
+      }
+    ],
+    "controls": [
+      {
+        "id": "chapter-action",
+        "rect": {
+          "x": 12,
+          "y": 775.5,
+          "width": 366,
+          "height": 42,
+          "top": 775.5,
+          "right": 378,
+          "bottom": 817.5,
+          "left": 12
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "label": "rain",
+    "errors": [],
+    "text": "← Games\nThe camp\n378\ncamp minutes\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 45%\nMeryem · fatigue 0% · hunger 50%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\n\nTHE SUPPLY WINDOW CLOSES\n\nKeep what can still help\n\nThe ferry has left. Allocate any remaining caches to camp, then close this chapter. Your people and unfinished work stay with you.\n\nCamp minute 378. 0 completed caches available.\n\nWhere will the supplies go?\n0 available\nAcross the river\n0 / 2 kits\n\nThe ferry has left. These kits were sent; later caches stay at camp.\n\nReady 1 kit for the ferry\nHere at camp\n0 / 4 nights\n\nOne cache covers two wet nights.\n\nKeep 1 cache for camp\n\nEach cache can go only one way. Allocations are final. A cache finished at the ferry checkpoint can still go aboard before you dispatch it.\n\nYou: recovering while available\nMeryem: recovering while available\nFinish this chapter →\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      390,
+      844
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 489,
+        "scroll": 577,
+        "width": 351,
+        "scrollWidth": 351
+      }
+    ],
+    "controls": [
+      {
+        "id": "chapter-action",
+        "rect": {
+          "x": 12,
+          "y": 775.5,
+          "width": 366,
+          "height": 42,
+          "top": 775.5,
+          "right": 378,
+          "bottom": 817.5,
+          "left": 12
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "label": "ended",
+    "errors": [],
+    "text": "← Games\nThe camp\n378\ncamp minutes\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 45%\nMeryem · fatigue 0% · hunger 50%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\nThe work stays with you.\n\n0 household kits sent; 0 wet nights provisioned. 2 households and 4 camp nights remain unprovided. 0 caches are still available. These are settled choices; returning to camp does not reset them.\n\nReturn to your campSave and leave\nYou: recovering while available\nMeryem: recovering while available\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      390,
+      844
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 531,
+        "scroll": 531,
+        "width": 351,
+        "scrollWidth": 351
+      }
+    ],
+    "controls": []
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "label": "back",
+    "errors": [],
+    "text": "← Games\nThe camp\n378\ncamp minutes\n\nYour camp continues. Earlier supply choices stay settled.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 45%\nMeryem · fatigue 0% · hunger 50%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\nPack useful supplies\nProject\nWoodshed\nWorkbench\nGarden\nSupply cache\n\nEach finished cache can serve one household or two camp nights.\n\nSupply cache: pack a supply cache\n19 min\nNeeds 6 timber; only 2 is available.\nGather timber\n15 min\nBring back 4 timber\nRecover salvage\n21 min\nBring back 3 salvage\nGather food\n13 min\nBring back 3 food\nWork, recovery and materials\nYou: recovering while available\nMeryem: recovering while available\nNext event →\n+1 min\n▶ Play\n1×\n4×\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      390,
+      844
+    ],
+    "selected": "tab-work",
+    "panel": [
+      {
+        "id": "panel-work",
+        "client": 489,
+        "scroll": 489,
+        "width": 351,
+        "scrollWidth": 351
+      }
+    ],
+    "controls": [
+      {
+        "id": "next-event",
+        "rect": {
+          "x": 12,
+          "y": 775.5,
+          "width": 185.09375,
+          "height": 42,
+          "top": 775.5,
+          "right": 197.09375,
+          "bottom": 817.5,
+          "left": 12
+        }
+      },
+      {
+        "id": "one-minute",
+        "rect": {
+          "x": 202.09375,
+          "y": 775.5,
+          "width": 55.78125,
+          "height": 42,
+          "top": 775.5,
+          "right": 257.875,
+          "bottom": 817.5,
+          "left": 202.09375
+        }
+      },
+      {
+        "id": "play",
+        "rect": {
+          "x": 262.875,
+          "y": 775.5,
+          "width": 55.125,
+          "height": 42,
+          "top": 775.5,
+          "right": 318,
+          "bottom": 817.5,
+          "left": 262.875
+        }
+      },
+      {
+        "id": "speed",
+        "rect": {
+          "x": 323,
+          "y": 775.5,
+          "width": 55,
+          "height": 42,
+          "top": 775.5,
+          "right": 378,
+          "bottom": 817.5,
+          "left": 323
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "label": "new",
+    "errors": [],
+    "text": "← Games\nONE CAMP · YOUR CONTINUING STORY\nThe camp\n0\ncamp minutes\n\nBuild a woodshed, workbench and garden. Begin with one useful stage.\n\nTimber 4 · Salvage 2 · Food 4\n\nYou · fatigue 20% · hunger 20%\nMeryem · fatigue 30% · hunger 30%\n\nWork\nPeople\nCamp\nJournal\nSave\nRaise the frame\nProject\nWoodshed\nWorkbench\nGarden\nSupply cache\n\nA dry woodshed saves more usable timber from later trips.\n\nWoodshed: raise the frame\n24 min\nReserve 4 timber + 1 salvage\nGather timber\n16 min\nBring back 3 timber\nRecover salvage\n22 min\nBring back 3 salvage\nGather food\n14 min\nBring back 2 food\nWork, recovery and materials\nYou: recovering while available\nMeryem: recovering while available\nNext event →\n+1 min\n▶ Play\n1×\n4×\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      1280,
+      800
+    ],
+    "selected": "tab-work",
+    "panel": [
+      {
+        "id": "panel-work",
+        "client": 503,
+        "scroll": 503,
+        "width": 1045,
+        "scrollWidth": 1045
+      }
+    ],
+    "controls": [
+      {
+        "id": "next-event",
+        "rect": {
+          "x": 650,
+          "y": 730.15625,
+          "width": 330.5,
+          "height": 42,
+          "top": 730.15625,
+          "right": 980.5,
+          "bottom": 772.15625,
+          "left": 650
+        }
+      },
+      {
+        "id": "one-minute",
+        "rect": {
+          "x": 985.5,
+          "y": 730.15625,
+          "width": 64.609375,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1050.109375,
+          "bottom": 772.15625,
+          "left": 985.5
+        }
+      },
+      {
+        "id": "play",
+        "rect": {
+          "x": 1055.109375,
+          "y": 730.15625,
+          "width": 63.890625,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1119,
+          "bottom": 772.15625,
+          "left": 1055.109375
+        }
+      },
+      {
+        "id": "speed",
+        "rect": {
+          "x": 1124,
+          "y": 730.15625,
+          "width": 46,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1170,
+          "bottom": 772.15625,
+          "left": 1124
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "label": "intro",
+    "errors": [],
+    "text": "← Games\nONE CAMP · YOUR CONTINUING STORY\nThe camp\n90 min\nuntil the ferry\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 40% · hunger 5%\nMeryem · fatigue 80% · hunger 70%\n\nMeryem started eat a portion (8 min). I need a meal, then I can continue.\n\nWork\nPeople\nSupplies\nJournal\nSave\n\nA NEW USE FOR THE CAMP\n\nBefore the rain\n\nTwo households need kits on the next ferry. Your camp needs supplies for four wet nights. One cache can only go one way. Your actual people, supplies and unfinished jobs continue here.\n\nCamp minute 198. 0 completed caches available. Ferry in 90 minutes; rain in 180.\n\nYou: recovering while available\nMeryem: Eat a portion8 min left\nContinue into the supply window\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      1280,
+      800
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 485,
+        "scroll": 485,
+        "width": 1045,
+        "scrollWidth": 1045
+      }
+    ],
+    "controls": [
+      {
+        "id": "chapter-action",
+        "rect": {
+          "x": 650,
+          "y": 730.15625,
+          "width": 520,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1170,
+          "bottom": 772.15625,
+          "left": 650
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "label": "packing",
+    "errors": [],
+    "text": "← Games\nONE CAMP · YOUR CONTINUING STORY\nThe camp\n90 min\nuntil the ferry\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 40% · hunger 5%\nMeryem · fatigue 80% · hunger 70%\n\nMeryem started eat a portion (8 min). I need a meal, then I can continue.\n\nWork\nPeople\nSupplies\nJournal\nSave\nPack useful supplies\nProject\nWoodshed\nWorkbench\nGarden\nSupply cache\n\nEach finished cache can serve one household or two camp nights.\n\nSupply cache: pack a supply cache\n19 min\nNeeds 6 timber; only 2 is available.\nGather timber\n15 min\nBring back 4 timber\nRecover salvage\n21 min\nBring back 3 salvage\nGather food\n13 min\nBring back 3 food\nWork, recovery and materials\nYou: recovering while available\nMeryem: Eat a portion8 min left\nNext event →\n+1 min\n▶ Play\n1×\n4×\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      1280,
+      800
+    ],
+    "selected": "tab-work",
+    "panel": [
+      {
+        "id": "panel-work",
+        "client": 485,
+        "scroll": 485,
+        "width": 1045,
+        "scrollWidth": 1045
+      }
+    ],
+    "controls": [
+      {
+        "id": "next-event",
+        "rect": {
+          "x": 650,
+          "y": 730.15625,
+          "width": 330.5,
+          "height": 42,
+          "top": 730.15625,
+          "right": 980.5,
+          "bottom": 772.15625,
+          "left": 650
+        }
+      },
+      {
+        "id": "one-minute",
+        "rect": {
+          "x": 985.5,
+          "y": 730.15625,
+          "width": 64.609375,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1050.109375,
+          "bottom": 772.15625,
+          "left": 985.5
+        }
+      },
+      {
+        "id": "play",
+        "rect": {
+          "x": 1055.109375,
+          "y": 730.15625,
+          "width": 63.890625,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1119,
+          "bottom": 772.15625,
+          "left": 1055.109375
+        }
+      },
+      {
+        "id": "speed",
+        "rect": {
+          "x": 1124,
+          "y": 730.15625,
+          "width": 46,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1170,
+          "bottom": 772.15625,
+          "left": 1124
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "label": "ferry",
+    "errors": [],
+    "text": "← Games\nONE CAMP · YOUR CONTINUING STORY\nThe camp\n0 min\nuntil the ferry\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 25%\nMeryem · fatigue 0% · hunger 30%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\n\nTHE FERRY IS WAITING\n\nWhat goes aboard?\n\nAllocate the completed caches you want to send, then dispatch the ferry. Unfinished work stays in progress.\n\nCamp minute 288. 0 completed caches available.\n\nWhere will the supplies go?\n0 available\nAcross the river\n0 / 2 kits\n\nAllocated kits are ready for the ferry. They leave when you dispatch it.\n\nReady 1 kit for the ferry\nHere at camp\n0 / 4 nights\n\nOne cache covers two wet nights.\n\nKeep 1 cache for camp\n\nEach cache can go only one way. Allocations are final. A cache finished at the ferry checkpoint can still go aboard before you dispatch it.\n\nYou: recovering while available\nMeryem: recovering while available\nDispatch the ferry →\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      1280,
+      800
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 485,
+        "scroll": 491,
+        "width": 1045,
+        "scrollWidth": 1045
+      }
+    ],
+    "controls": [
+      {
+        "id": "chapter-action",
+        "rect": {
+          "x": 650,
+          "y": 730.15625,
+          "width": 520,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1170,
+          "bottom": 772.15625,
+          "left": 650
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "label": "rain",
+    "errors": [],
+    "text": "← Games\nONE CAMP · YOUR CONTINUING STORY\nThe camp\n378\ncamp minutes\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 45%\nMeryem · fatigue 0% · hunger 50%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\n\nTHE SUPPLY WINDOW CLOSES\n\nKeep what can still help\n\nThe ferry has left. Allocate any remaining caches to camp, then close this chapter. Your people and unfinished work stay with you.\n\nCamp minute 378. 0 completed caches available.\n\nWhere will the supplies go?\n0 available\nAcross the river\n0 / 2 kits\n\nThe ferry has left. These kits were sent; later caches stay at camp.\n\nReady 1 kit for the ferry\nHere at camp\n0 / 4 nights\n\nOne cache covers two wet nights.\n\nKeep 1 cache for camp\n\nEach cache can go only one way. Allocations are final. A cache finished at the ferry checkpoint can still go aboard before you dispatch it.\n\nYou: recovering while available\nMeryem: recovering while available\nFinish this chapter →\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      1280,
+      800
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 485,
+        "scroll": 485,
+        "width": 1045,
+        "scrollWidth": 1045
+      }
+    ],
+    "controls": [
+      {
+        "id": "chapter-action",
+        "rect": {
+          "x": 650,
+          "y": 730.15625,
+          "width": 520,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1170,
+          "bottom": 772.15625,
+          "left": 650
+        }
+      }
+    ]
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "label": "ended",
+    "errors": [],
+    "text": "← Games\nONE CAMP · YOUR CONTINUING STORY\nThe camp\n378\ncamp minutes\n\nOne cache equips a household or covers two camp nights.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 45%\nMeryem · fatigue 0% · hunger 50%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\nThe work stays with you.\n\n0 household kits sent; 0 wet nights provisioned. 2 households and 4 camp nights remain unprovided. 0 caches are still available. These are settled choices; returning to camp does not reset them.\n\nReturn to your campSave and leave\nYou: recovering while available\nMeryem: recovering while available\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      1280,
+      800
+    ],
+    "selected": "tab-camp",
+    "panel": [
+      {
+        "id": "panel-camp",
+        "client": 527,
+        "scroll": 527,
+        "width": 1045,
+        "scrollWidth": 1045
+      }
+    ],
+    "controls": []
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "label": "back",
+    "errors": [],
+    "text": "← Games\nONE CAMP · YOUR CONTINUING STORY\nThe camp\n378\ncamp minutes\n\nYour camp continues. Earlier supply choices stay settled.\n\nTimber 2 · Salvage 1 · Food 2 · Caches 0\n\nYou · fatigue 0% · hunger 45%\nMeryem · fatigue 0% · hunger 50%\n\nMeryem finished eat a portion.\n\nWork\nPeople\nSupplies\nJournal\nSave\nPack useful supplies\nProject\nWoodshed\nWorkbench\nGarden\nSupply cache\n\nEach finished cache can serve one household or two camp nights.\n\nSupply cache: pack a supply cache\n19 min\nNeeds 6 timber; only 2 is available.\nGather timber\n15 min\nBring back 4 timber\nRecover salvage\n21 min\nBring back 3 salvage\nGather food\n13 min\nBring back 3 food\nWork, recovery and materials\nYou: recovering while available\nMeryem: recovering while available\nNext event →\n+1 min\n▶ Play\n1×\n4×\n\nChoose a job. Available time lets you recover.",
+    "doc": [
+      1280,
+      800
+    ],
+    "selected": "tab-work",
+    "panel": [
+      {
+        "id": "panel-work",
+        "client": 485,
+        "scroll": 485,
+        "width": 1045,
+        "scrollWidth": 1045
+      }
+    ],
+    "controls": [
+      {
+        "id": "next-event",
+        "rect": {
+          "x": 650,
+          "y": 730.15625,
+          "width": 330.5,
+          "height": 42,
+          "top": 730.15625,
+          "right": 980.5,
+          "bottom": 772.15625,
+          "left": 650
+        }
+      },
+      {
+        "id": "one-minute",
+        "rect": {
+          "x": 985.5,
+          "y": 730.15625,
+          "width": 64.609375,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1050.109375,
+          "bottom": 772.15625,
+          "left": 985.5
+        }
+      },
+      {
+        "id": "play",
+        "rect": {
+          "x": 1055.109375,
+          "y": 730.15625,
+          "width": 63.890625,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1119,
+          "bottom": 772.15625,
+          "left": 1055.109375
+        }
+      },
+      {
+        "id": "speed",
+        "rect": {
+          "x": 1124,
+          "y": 730.15625,
+          "width": 46,
+          "height": 42,
+          "top": 730.15625,
+          "right": 1170,
+          "bottom": 772.15625,
+          "left": 1124
+        }
+      }
+    ]
+  }
+]

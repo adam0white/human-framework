@@ -1,0 +1,110 @@
+TAP version 13
+# Subtest: detached views and failed input leave callers exact
+ok 1 - detached views and failed input leave callers exact
+  ---
+  duration_ms: 5.315375
+  ...
+# Subtest: paid minute changes actual fatigue/practice and durable fraction once
+ok 2 - paid minute changes actual fatigue/practice and durable fraction once
+  ---
+  duration_ms: 1.005334
+  ...
+# Subtest: zero time stop/resume cannot improve physical completion or refresh basis
+ok 3 - zero time stop/resume cannot improve physical completion or refresh basis
+  ---
+  duration_ms: 56.346625
+  ...
+# Subtest: positive handover in both directions preserves installed work and charges future worker
+ok 4 - positive handover in both directions preserves installed work and charges future worker
+  ---
+  duration_ms: 1.775417
+  ...
+# Subtest: busy and conflicting recipient refuses transfer without altering work
+ok 5 - busy and conflicting recipient refuses transfer without altering work
+  ---
+  duration_ms: 64.232666
+  ...
+# Subtest: recipient hunger independently refuses transfer
+ok 6 - recipient hunger independently refuses transfer
+  ---
+  duration_ms: 0.512792
+  ...
+# Subtest: release preserves independently owned meal and reservation
+ok 7 - release preserves independently owned meal and reservation
+  ---
+  duration_ms: 0.741417
+  ...
+# Subtest: interrupted meal returns its one owned portion with no hunger relief
+ok 8 - interrupted meal returns its one owned portion with no hunger relief
+  ---
+  duration_ms: 0.669375
+  ...
+# Subtest: interrupted gather keeps paid practice while returning no output
+ok 9 - interrupted gather keeps paid practice while returning no output
+  ---
+  duration_ms: 0.80475
+  ...
+# Subtest: prospective tools improve future fraction after completion without restarting
+ok 10 - prospective tools improve future fraction after completion without restarting
+  ---
+  duration_ms: 136.587791
+  ...
+# Subtest: assembly plus fixed gather tied completions settle together and preserve snapshot output
+ok 11 - assembly plus fixed gather tied completions settle together and preserve snapshot output
+  ---
+  duration_ms: 69.637875
+  ...
+# Subtest: actual body governs availability at rounded threshold
+ok 12 - actual body governs availability at rounded threshold
+  ---
+  duration_ms: 0.576958
+  ...
+# Subtest: legacy assembly plus meal import retains body skill reservation and paid fraction
+ok 13 - legacy assembly plus meal import retains body skill reservation and paid fraction
+  ---
+  duration_ms: 2.706209
+  ...
+# Subtest: legacy rest immediately becomes interruptible recovery without free time
+ok 14 - legacy rest immediately becomes interruptible recovery without free time
+  ---
+  duration_ms: 0.868959
+  ...
+# Subtest: JSON rejects accessors before evaluation, shared references, cycles, sparse arrays, NaN and excessive nesting
+ok 15 - JSON rejects accessors before evaluation, shared references, cycles, sparse arrays, NaN and excessive nesting
+  ---
+  duration_ms: 0.74025
+  ...
+# Subtest: schema rejects stolen resources, unpaid practice, fake completed output and inconsistent paid minutes
+ok 16 - schema rejects stolen resources, unpaid practice, fake completed output and inconsistent paid minutes
+  ---
+  duration_ms: 0.906666
+  ...
+# Subtest: near numeric world limit remains exportable and advances to finite final stop
+ok 17 - near numeric world limit remains exportable and advances to finite final stop
+  ---
+  duration_ms: 0.74875
+  ...
+# Subtest: Next Event should stop when recovering player can newly gather timber
+ok 18 - Next Event should stop when recovering player can newly gather timber
+  ---
+  duration_ms: 18.0675
+  ...
+# Subtest: active-idle control stops on capacity only when recovery is explicitly selected
+ok 19 - active-idle control stops on capacity only when recovery is explicitly selected
+  ---
+  duration_ms: 16.260292
+  ...
+# Subtest: new readiness stops remain selective and assigned work keeps actual completion pacing
+ok 20 - new readiness stops remain selective and assigned work keeps actual completion pacing
+  ---
+  duration_ms: 16.930625
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 444.117583

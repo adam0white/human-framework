@@ -1,0 +1,49 @@
+✔ detached views and failed input leave callers exact (5.096958ms)
+✔ paid minute changes actual fatigue/practice and durable fraction once (1.179333ms)
+✔ zero time stop/resume cannot improve physical completion or refresh basis (58.096375ms)
+✔ positive handover in both directions preserves installed work and charges future worker (2.958875ms)
+✔ busy and conflicting recipient refuses transfer without altering work (87.683625ms)
+✔ recipient hunger independently refuses transfer (0.777625ms)
+✔ release preserves independently owned meal and reservation (0.80825ms)
+✔ interrupted meal returns its one owned portion with no hunger relief (0.510792ms)
+✔ interrupted gather keeps paid practice while returning no output (0.600416ms)
+✔ prospective tools improve future fraction after completion without restarting (134.821ms)
+✔ assembly plus fixed gather tied completions settle together and preserve snapshot output (70.043667ms)
+✔ actual body governs availability at rounded threshold (0.696417ms)
+✔ legacy assembly plus meal import retains body skill reservation and paid fraction (2.922834ms)
+✔ legacy rest immediately becomes interruptible recovery without free time (0.906ms)
+✔ JSON rejects accessors before evaluation, shared references, cycles, sparse arrays, NaN and excessive nesting (0.796333ms)
+✔ schema rejects stolen resources, unpaid practice, fake completed output and inconsistent paid minutes (0.823708ms)
+✔ near numeric world limit remains exportable and advances to finite final stop (0.682125ms)
+✖ Next Event should stop when recovering player can newly gather timber (18.721125ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 440.788417
+
+✖ failing tests:
+
+test at ../../../../../../private/tmp/hf-camp-kernel-review-probes.mjs:27:1
+✖ Next Event should stop when recovering player can newly gather timber (18.721125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  96 !== 77
+  
+      at TestContext.<anonymous> (file:///private/tmp/hf-camp-kernel-review-probes.mjs:27:672)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 96,
+    expected: 77,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

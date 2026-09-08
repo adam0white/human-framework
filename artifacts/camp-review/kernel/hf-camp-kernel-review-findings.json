@@ -1,0 +1,11 @@
+[
+  {
+    "case": "recovered player readiness",
+    "now": 74,
+    "expectedAt": 77,
+    "actual": {
+      "at": 77,
+      "reason": "player-ready-for-work"
+    }
+  }
+]

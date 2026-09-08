@@ -1,0 +1,23 @@
+[
+  {
+    "test": "read-pauses",
+    "minute": 2
+  },
+  {
+    "test": "reload-paused",
+    "minute": 3,
+    "job": "You: Gather timber"
+  },
+  {
+    "test": "real-other-tab",
+    "hidden": false,
+    "running": "true",
+    "before": 3,
+    "after": 4
+  },
+  {
+    "test": "manual-pause",
+    "running": "true",
+    "minute": 4
+  }
+]

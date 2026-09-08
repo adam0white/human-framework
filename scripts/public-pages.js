@@ -2,6 +2,7 @@
 export const PUBLIC_PAGES=Object.freeze({
   'index.html':'index.html',
   'games/index.html':'web/games.html',
+  'camp/index.html':'web/camp.html',
   'workshop/index.html':'web/workshop.html',
   'shift/index.html':'web/shift.html',
   'courtyard/index.html':'web/courtyard.html',

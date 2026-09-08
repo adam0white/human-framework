@@ -1,0 +1,71 @@
+✔ detached views and failed input leave callers exact (4.427333ms)
+✔ paid minute changes actual fatigue/practice and durable fraction once (0.848958ms)
+✔ zero time stop/resume cannot improve physical completion or refresh basis (55.339708ms)
+✔ positive handover in both directions preserves installed work and charges future worker (2.090834ms)
+✔ busy and conflicting recipient refuses transfer without altering work (66.949833ms)
+✔ recipient hunger independently refuses transfer (0.56925ms)
+✔ release preserves independently owned meal and reservation (0.752375ms)
+✔ interrupted meal returns its one owned portion with no hunger relief (0.504625ms)
+✔ interrupted gather keeps paid practice while returning no output (0.589375ms)
+✔ prospective tools improve future fraction after completion without restarting (134.715958ms)
+✔ assembly plus fixed gather tied completions settle together and preserve snapshot output (69.889416ms)
+✔ actual body governs availability at rounded threshold (1.450084ms)
+✔ legacy assembly plus meal import retains body skill reservation and paid fraction (2.719667ms)
+✔ legacy rest immediately becomes interruptible recovery without free time (0.813625ms)
+✔ JSON rejects accessors before evaluation, shared references, cycles, sparse arrays, NaN and excessive nesting (0.901166ms)
+✔ schema rejects stolen resources, unpaid practice, fake completed output and inconsistent paid minutes (0.903334ms)
+✔ near numeric world limit remains exportable and advances to finite final stop (0.700791ms)
+✖ Next Event should stop when recovering player can newly gather timber (18.467416ms)
+✖ active-idle control stops on capacity only when recovery is explicitly selected (16.609958ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 17
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 423.666917
+
+✖ failing tests:
+
+test at ../../../../../../private/tmp/hf-camp-kernel-review-probes.mjs:27:1
+✖ Next Event should stop when recovering player can newly gather timber (18.467416ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  96 !== 77
+  
+      at TestContext.<anonymous> (file:///private/tmp/hf-camp-kernel-review-probes.mjs:27:672)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 96,
+    expected: 77,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at ../../../../../../private/tmp/hf-camp-kernel-review-probes.mjs:28:1
+✖ active-idle control stops on capacity only when recovery is explicitly selected (16.609958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  96 !== 77
+  
+      at TestContext.<anonymous> (file:///private/tmp/hf-camp-kernel-review-probes.mjs:28:367)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 96,
+    expected: 77,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

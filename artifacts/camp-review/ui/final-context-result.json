@@ -1,0 +1,169 @@
+[
+  {
+    "test": "inactive-removal-context",
+    "selected": "tab-save",
+    "focus": "tab-save",
+    "paidMinute": 4,
+    "unsavedMemoryPreserved": true
+  },
+  {
+    "test": "basic-375-geometry",
+    "layouts": [
+      {
+        "panel": "panel-work",
+        "doc": [
+          375,
+          667
+        ],
+        "width": [
+          336,
+          336
+        ],
+        "dock": {
+          "x": 12,
+          "y": 504.90625,
+          "width": 351,
+          "height": 162.09375,
+          "top": 504.90625,
+          "right": 363,
+          "bottom": 667,
+          "left": 12
+        },
+        "scene": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "panel": "panel-people",
+        "doc": [
+          375,
+          667
+        ],
+        "width": [
+          336,
+          336
+        ],
+        "dock": {
+          "x": 12,
+          "y": 504.90625,
+          "width": 351,
+          "height": 162.09375,
+          "top": 504.90625,
+          "right": 363,
+          "bottom": 667,
+          "left": 12
+        },
+        "scene": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "panel": "panel-camp",
+        "doc": [
+          375,
+          667
+        ],
+        "width": [
+          336,
+          336
+        ],
+        "dock": {
+          "x": 12,
+          "y": 504.90625,
+          "width": 351,
+          "height": 162.09375,
+          "top": 504.90625,
+          "right": 363,
+          "bottom": 667,
+          "left": 12
+        },
+        "scene": {
+          "x": 12,
+          "y": 309.5625,
+          "width": 330,
+          "height": 90.296875,
+          "top": 309.5625,
+          "right": 342,
+          "bottom": 399.859375,
+          "left": 12
+        }
+      },
+      {
+        "panel": "panel-journal",
+        "doc": [
+          375,
+          667
+        ],
+        "width": [
+          336,
+          336
+        ],
+        "dock": {
+          "x": 12,
+          "y": 504.90625,
+          "width": 351,
+          "height": 162.09375,
+          "top": 504.90625,
+          "right": 363,
+          "bottom": 667,
+          "left": 12
+        },
+        "scene": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "panel": "panel-save",
+        "doc": [
+          375,
+          667
+        ],
+        "width": [
+          336,
+          336
+        ],
+        "dock": {
+          "x": 12,
+          "y": 504.90625,
+          "width": 351,
+          "height": 162.09375,
+          "top": 504.90625,
+          "right": 363,
+          "bottom": 667,
+          "left": 12
+        },
+        "scene": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ]
+  }
+]

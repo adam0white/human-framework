@@ -1,0 +1,73 @@
+✔ detached views and failed input leave callers exact (4.584125ms)
+✖ paid minute changes actual fatigue/practice and durable fraction once (1.525083ms)
+✔ zero time stop/resume cannot improve physical completion or refresh basis (54.129375ms)
+✔ positive handover in both directions preserves installed work and charges future worker (2.047708ms)
+✔ busy and conflicting recipient refuses transfer without altering work (66.62625ms)
+✔ recipient hunger independently refuses transfer (0.484ms)
+✔ release preserves independently owned meal and reservation (0.747459ms)
+✔ interrupted meal returns its one owned portion with no hunger relief (0.667708ms)
+✔ interrupted gather keeps paid practice while returning no output (0.62425ms)
+✔ prospective tools improve future fraction after completion without restarting (127.804083ms)
+✔ assembly plus fixed gather tied completions settle together and preserve snapshot output (64.72475ms)
+✔ actual body governs availability at rounded threshold (0.674125ms)
+✔ legacy assembly plus meal import retains body skill reservation and paid fraction (2.460458ms)
+✔ legacy rest immediately becomes interruptible recovery without free time (0.84225ms)
+✔ JSON rejects accessors before evaluation, shared references, cycles, sparse arrays, NaN and excessive nesting (0.721334ms)
+✔ schema rejects stolen resources, unpaid practice, fake completed output and inconsistent paid minutes (0.784792ms)
+✔ near numeric world limit remains exportable and advances to finite final stop (0.758833ms)
+✖ Next Event should stop when recovering player can newly gather timber (17.0675ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 16
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 397.388709
+
+✖ failing tests:
+
+test at ../../../../../../private/tmp/hf-camp-kernel-review-probes.mjs:11:1
+✖ paid minute changes actual fatigue/practice and durable fraction once (1.525083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 0.20833333333333331
+  - 0.20833333333333334
+                      ^
+  
+      at TestContext.<anonymous> (file:///private/tmp/hf-camp-kernel-review-probes.mjs:11:175)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.20833333333333331,
+    expected: 0.20833333333333334,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at ../../../../../../private/tmp/hf-camp-kernel-review-probes.mjs:27:1
+✖ Next Event should stop when recovering player can newly gather timber (17.0675ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  96 !== 77
+  
+      at TestContext.<anonymous> (file:///private/tmp/hf-camp-kernel-review-probes.mjs:27:672)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 96,
+    expected: 77,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

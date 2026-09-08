@@ -1,0 +1,17 @@
+[
+  {
+    "test": "manual-pause",
+    "minute": 1
+  },
+  {
+    "test": "details-pause"
+  },
+  {
+    "test": "synthetic-visibility-handler",
+    "minute": 1
+  },
+  {
+    "test": "corrupt-inactive-protected",
+    "warning": "Stored stories are protected because they could not be read. Download this camp to keep new work."
+  }
+]

@@ -1,0 +1,120 @@
+TAP version 13
+# Subtest: detached views and failed input leave callers exact
+ok 1 - detached views and failed input leave callers exact
+  ---
+  duration_ms: 6.721708
+  ...
+# Subtest: paid minute changes actual fatigue/practice and durable fraction once
+ok 2 - paid minute changes actual fatigue/practice and durable fraction once
+  ---
+  duration_ms: 0.99675
+  ...
+# Subtest: zero time stop/resume cannot improve physical completion or refresh basis
+ok 3 - zero time stop/resume cannot improve physical completion or refresh basis
+  ---
+  duration_ms: 64.569875
+  ...
+# Subtest: positive handover in both directions preserves installed work and charges future worker
+ok 4 - positive handover in both directions preserves installed work and charges future worker
+  ---
+  duration_ms: 1.968292
+  ...
+# Subtest: busy and conflicting recipient refuses transfer without altering work
+ok 5 - busy and conflicting recipient refuses transfer without altering work
+  ---
+  duration_ms: 71.0375
+  ...
+# Subtest: recipient hunger independently refuses transfer
+ok 6 - recipient hunger independently refuses transfer
+  ---
+  duration_ms: 0.500084
+  ...
+# Subtest: release preserves independently owned meal and reservation
+ok 7 - release preserves independently owned meal and reservation
+  ---
+  duration_ms: 0.977875
+  ...
+# Subtest: interrupted meal returns its one owned portion with no hunger relief
+ok 8 - interrupted meal returns its one owned portion with no hunger relief
+  ---
+  duration_ms: 0.652209
+  ...
+# Subtest: interrupted gather keeps paid practice while returning no output
+ok 9 - interrupted gather keeps paid practice while returning no output
+  ---
+  duration_ms: 0.912958
+  ...
+# Subtest: prospective tools improve future fraction after completion without restarting
+ok 10 - prospective tools improve future fraction after completion without restarting
+  ---
+  duration_ms: 145.724375
+  ...
+# Subtest: assembly plus fixed gather tied completions settle together and preserve snapshot output
+ok 11 - assembly plus fixed gather tied completions settle together and preserve snapshot output
+  ---
+  duration_ms: 74.993334
+  ...
+# Subtest: actual body governs availability at rounded threshold
+ok 12 - actual body governs availability at rounded threshold
+  ---
+  duration_ms: 0.848667
+  ...
+# Subtest: legacy assembly plus meal import retains body skill reservation and paid fraction
+ok 13 - legacy assembly plus meal import retains body skill reservation and paid fraction
+  ---
+  duration_ms: 3.138292
+  ...
+# Subtest: legacy rest immediately becomes interruptible recovery without free time
+ok 14 - legacy rest immediately becomes interruptible recovery without free time
+  ---
+  duration_ms: 1.059666
+  ...
+# Subtest: JSON rejects accessors before evaluation, shared references, cycles, sparse arrays, NaN and excessive nesting
+ok 15 - JSON rejects accessors before evaluation, shared references, cycles, sparse arrays, NaN and excessive nesting
+  ---
+  duration_ms: 0.782459
+  ...
+# Subtest: schema rejects stolen resources, unpaid practice, fake completed output and inconsistent paid minutes
+ok 16 - schema rejects stolen resources, unpaid practice, fake completed output and inconsistent paid minutes
+  ---
+  duration_ms: 0.934875
+  ...
+# Subtest: near numeric world limit remains exportable and advances to finite final stop
+ok 17 - near numeric world limit remains exportable and advances to finite final stop
+  ---
+  duration_ms: 0.630459
+  ...
+# Subtest: Next Event should stop when recovering player can newly gather timber
+not ok 18 - Next Event should stop when recovering player can newly gather timber
+  ---
+  duration_ms: 21.428083
+  location: '/private/tmp/hf-camp-kernel-review-probes.mjs:27:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    96 !== 77
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 77
+  actual: 96
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/hf-camp-kernel-review-probes.mjs:27:672)
+    Test.runInAsyncScope (node:async_hooks:206:9)
+    Test.run (node:internal/test_runner/test:735:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:449:18)
+    Test.postRun (node:internal/test_runner/test:842:19)
+    Test.run (node:internal/test_runner/test:777:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:449:7)
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 17
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 461.561667

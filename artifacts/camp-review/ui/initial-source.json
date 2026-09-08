@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-08T15:33:27.945Z",
+  "files": {
+    "web/camp.html": "af43cf0e98b0bffd7ee6660d8a6ac8cdc139e6dfbe924e0d64d9152577a7adf4",
+    "web/camp.css": "d999b1bcf730735e11b6af99b68a4fda99087141cd2fc734a75ea76227ff7c3b",
+    "web/camp.js": "66ba3d226677ac2d5bc41f1751f20596b4a4ab4b0b00138865b4401a7fceb959",
+    "web/camp-session.js": "853f62dbd25d4941586349cf97ff45228b71ca760e205d5442578a8f95d1ceeb",
+    "web/camp-slots.js": "842402075ff83e5e67b4ee30f6715f4bfb0a44703cc6bf43f1e80b0fcedc02a4",
+    "web/game-shell.css": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f",
+    "src/games/camp.js": "5852de534435378394b0438d69101307d0387198a31e5b6b84d75c092b76ef7c",
+    "src/games/camp-story.js": "c0070e54620e3e54bf363bd1dcbb0a7ab24f804e119ec35aca7daa028a2e0388"
+  }
+}

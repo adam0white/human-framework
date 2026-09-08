@@ -1,0 +1,61 @@
+{
+  "at": "2026-09-08T16:00:02.217Z",
+  "hashes": {
+    "web/camp.html": "51064b7f3ba9e4d353c1038d6ee6b69e8e319afee8f4b41ebd836a66c2d3be3a",
+    "web/camp.css": "4a25b7fdb9638b7ea504803a145d010461468c55bcdac6fc4518a88ff34af488",
+    "web/camp.js": "1031c2532ecf7d85cd2b2bca45a08cb15753d7f15b4857135ce02309f5ad97d8",
+    "web/camp-session.js": "853f62dbd25d4941586349cf97ff45228b71ca760e205d5442578a8f95d1ceeb",
+    "web/camp-slots.js": "842402075ff83e5e67b4ee30f6715f4bfb0a44703cc6bf43f1e80b0fcedc02a4",
+    "src/games/camp.js": "a695c31258b8bc5339a20cd49f238e5a8f7fa1bed52c1cf2c0706822f804c078",
+    "src/games/camp-story.js": "99300ffb03feb6d45a0dcd1313e71c7f8e20c7857f35701d6931dcc66c74e538"
+  },
+  "out": [
+    {
+      "test": "default-375",
+      "geometry": {
+        "doc": [
+          375,
+          667
+        ],
+        "viewport": [
+          375,
+          667
+        ],
+        "panel": [
+          336,
+          336
+        ],
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "width": 351,
+          "height": 125.09375,
+          "top": 541.90625,
+          "right": 363,
+          "bottom": 667,
+          "left": 12
+        }
+      },
+      "presetHidden": true,
+      "recoverButtonHidden": true
+    },
+    {
+      "test": "research-label-copy",
+      "label": "Research control: snapshot productivity · active-idle recovery.",
+      "hint": "Snapshot control: ongoing work keeps its initial productivity.",
+      "rule": "This snapshot control keeps ongoing work at its initial productivity. Later work can use the improved tools.",
+      "available": "This research control uses active idle. Choose available-time recovery in People when you want to recover."
+    },
+    {
+      "test": "select-then-paid-recovery",
+      "selectedAt": 0,
+      "advancedAt": 6,
+      "fatigueBefore": 0.2,
+      "fatigueAfter": 0.059000000000000045,
+      "recoveryMinutesBefore": 0,
+      "recoveryMinutesAfter": 6,
+      "exactHostState": true
+    }
+  ],
+  "errors": []
+}

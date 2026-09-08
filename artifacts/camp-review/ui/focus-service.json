@@ -1,0 +1,19 @@
+[
+  {
+    "test": "import-focus",
+    "data": {
+      "active": "import",
+      "opacity": "0",
+      "focusVisible": true,
+      "labelOutline": "rgb(36, 60, 51) none 3px",
+      "labelBoxShadow": "none"
+    }
+  },
+  {
+    "test": "meaningful-allocations",
+    "kits": 2,
+    "nights": 4,
+    "phase": "ended",
+    "result": "2 household kits sent; 4 wet nights provisioned. 0 households and 0 camp nights remain unprovided. 0 caches are still available. These are settled choices; returning to camp does not reset them."
+  }
+]

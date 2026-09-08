@@ -1,0 +1,47 @@
+{
+  "node": "v26.8.1",
+  "sourceHash": "99300ffb03feb6d45a0dcd1313e71c7f8e20c7857f35701d6931dcc66c74e538",
+  "stages": [
+    {
+      "stage": "active-packing",
+      "now": 1312,
+      "ferryAt": 1402,
+      "rainAt": 1492,
+      "eligibleFerry": 5,
+      "eligibleRain": 5,
+      "exportBytesEqual": true,
+      "readsPure": true
+    },
+    {
+      "stage": "packing-after-dispatch",
+      "now": 1402,
+      "ferryAt": 1402,
+      "rainAt": 1492,
+      "eligibleFerry": 0,
+      "eligibleRain": 5,
+      "exportBytesEqual": true,
+      "readsPure": true
+    },
+    {
+      "stage": "early-finished",
+      "now": 1402,
+      "ferryAt": 1402,
+      "rainAt": 1492,
+      "eligibleFerry": 0,
+      "eligibleRain": 0,
+      "exportBytesEqual": true,
+      "readsPure": true
+    },
+    {
+      "stage": "returned-before-rain",
+      "now": 1402,
+      "ferryAt": 1402,
+      "rainAt": 1492,
+      "eligibleFerry": 0,
+      "eligibleRain": 0,
+      "exportBytesEqual": true,
+      "readsPure": true
+    }
+  ],
+  "pass": true
+}
