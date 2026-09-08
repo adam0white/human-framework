@@ -1,0 +1,107 @@
+✔ the independently tested private host exists (0.299458ms)
+✔ a private early launch never ends or changes the remote actor before the common horizon (12.73875ms)
+✔ private receiver repair length, body and paid jobs cannot alter keeper views or command errors (8.835417ms)
+✔ upstream hidden repair and body differences do not leak into receiver information (4.998084ms)
+✔ future bounded delays are absent from local forecasts until an actual receipt (2.823209ms)
+✔ hidden loss versus future delivery is not revealed in the sender or unreceived peer view (5.225459ms)
+✔ unrelated peer commands and lost traffic do not shift local observations, proposal IDs or channel fate (1.761792ms)
+✖ local advance discovers a receipt only after paying time and leaves ongoing recovery intact (4.470209ms)
+✔ passive radio receipts do not interrupt paid repair or grant repair completion (0.995791ms)
+✖ an older late report stays inspectable without replacing a newer source-time observation (0.918333ms)
+✔ inaccessible observation and confirmation IDs cannot create owned messages (0.246667ms)
+✔ an interrupted transmission keeps active cost and restores charge without sending an envelope (0.961125ms)
+✔ local budgets and command legality are independent of exhausted remote actor controls (10.719583ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 11
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.935958
+
+✖ failing tests:
+
+test at tests/across-cut-isolation.test.js:103:1
+✖ local advance discovers a receipt only after paying time and leaves ongoing recovery intact (4.470209ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      actors: {
+        keeper: {
+          contributions: [],
+          decisions: 1,
+  ...
+          options: {},
+  +       to: 2,
+  +       type: 'advance'
+  +     },
+  +     {
+  +       options: {
+  +         actorId: 'keeper',
+  +         stopOnReceipt: true
+  +       },
+  +       to: 8,
+  +       type: 'advance'
+  +     },
+  +     {
+  +       options: {},
+          to: 30,
+          type: 'advance'
+        }
+      ],
+      config: {
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/across-cut-isolation/tests/across-cut-isolation.test.js:111:9)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      version: '0.1.0',
+      config: { valveMinutes: 6, inletMinutes: 2, launchAt: 27, channelMode: 'bounded', channelSeed: 0, channelOverrides: [Object], bodies: [Object] },
+      clock: { version: '0.1.0', now: 30, nextEvent: 2, queue: [] },
+      people: { keeper: [Object], receiver: [Object] },
+      actors: { keeper: [Object], receiver: [Object] },
+      work: { valve: 0, dock: 0 },
+      service: { units: 0, departed: true, deliveries: [] },
+      water: { pipeConsumed: 0, cartConsumed: 0, inTransit: 0, lost: 0, excess: 0 },
+      transport: [ [Object] ],
+      commands: [
+        [Object], [Object],
+        [Object], [Object],
+        [Object], [Object],
+        [Object]
+      ]
+    },
+    expected: { version: '0.1.0', config: { valveMinutes: 6, inletMinutes: 2, launchAt: 27, channelMode: 'bounded', channelSeed: 0, channelOverrides: [Object], bodies: [Object] }, clock: { version: '0.1.0', now: 30, nextEvent: 2, queue: [] }, people: { keeper: [Object], receiver: [Object] }, actors: { keeper: [Object], receiver: [Object] }, work: { valve: 0, dock: 0 }, service: { units: 0, departed: true, deliveries: [] }, water: { pipeConsumed: 0, cartConsumed: 0, inTransit: 0, lost: 0, excess: 0 }, transport: [ [Object] ], commands: [ [Object], [Object], [Object], [Object], [Object] ] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/across-cut-isolation.test.js:119:1
+✖ an older late report stays inspectable without replacing a newer source-time observation (0.918333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/across-cut-isolation/tests/across-cut-isolation.test.js:128:200)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

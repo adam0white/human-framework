@@ -32,3 +32,9 @@ Run the isolation suite on Node26.8.1 and minimum Node22.0.0. Compact evidence r
 ## Execution record
 
 Pending committed host implementation and its independent tests. No isolation outcome or reserved policy result has been evaluated in this lane at registration.
+
+### First execution and fixture corrections
+
+The first source was core `37b1592b67606545ee51efc764455eaca5040f97`, cherry-picked here as `e4fea6f`. Prewritten test commit `42f1e18` ran13 tests:11 passed and2 exposed fixture assumptions rather than host defects; the original output remains in `artifacts/across-cut-isolation/initial-node26.txt`. Physical parity had incorrectly included deliberately different driver journals, and a stale-report assertion had assumed the zero-progress cue originated at inspection1 although local progress0 is already observed at0. The corrected checks compare complete public views and the privileged physical summary excluding only `journalEntries`, and retain the actual earlier observation's source timestamp. No implementation was changed or hidden-state history patched.
+
+Because radio transmission is one integer minute, its reachable cancellation point before completion has zero paid transmission minutes. This suite tests that cancellation/refund/no-envelope boundary explicitly; it does not invent fractional partial transmission. Positive paid partial-stop checks use longer physical jobs. No reserved policy outcome has been run.

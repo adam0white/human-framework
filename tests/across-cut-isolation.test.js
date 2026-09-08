@@ -108,7 +108,10 @@ test('local advance discovers a receipt only after paying time and leaves ongoin
  const stopped=h.advance(s,13,{actorId:'keeper',stopOnReceipt:true});
  assert.equal(view(stopped,'keeper').now,8);assert.equal(view(stopped,'keeper').job.task,'rest');
  assert.equal(view(stopped,'keeper').paid.rest,8);assert.equal(view(stopped,'keeper').inbox.length,1);saveEqual(stopped);
- assert.deepEqual(h.exportState(advance(stopped,30)).state,h.exportState(advance(s,30)).state);
+ const localFinal=saveEqual(advance(stopped,30)),worldFinal=saveEqual(advance(s,30));
+ for(const actor of ['keeper','receiver'])assert.deepEqual(view(localFinal,actor),view(worldFinal,actor));
+ const {journalEntries:localEntries,...localWorld}=h.getWorldSummary(localFinal),{journalEntries:worldEntries,...globalWorld}=h.getWorldSummary(worldFinal);
+ assert.deepEqual(localWorld,globalWorld);assert.notEqual(localEntries,worldEntries);
 });
 test('passive radio receipts do not interrupt paid repair or grant repair completion',()=>{
  let s=h.create({valveMinutes:12});
@@ -120,12 +123,13 @@ test('an older late report stays inspectable without replacing a newer source-ti
  let s=h.create({channelMode:'bounded',channelOverrides:{'receiver:2':6,'receiver:5':2}});
  s=ask(s,'receiver',{task:'inspect'});s=advance(s,1);
  const oldIds=reportIds(s,'receiver','repairProgress:dock');assert.ok(oldIds.length);
+ const oldObservation=json(view(s,'receiver').notebook.find(n=>n.receipt===oldIds.at(-1))); 
  s=ask(s,'receiver',{task:'transmit',message:{kind:'report',observationIds:[oldIds.at(-1)]}});s=advance(s,2);
  s=ask(s,'receiver',{task:'repair'});s=advance(s,4);
  const newIds=reportIds(s,'receiver','repairProgress:dock');s=ask(s,'receiver',{task:'transmit',message:{kind:'report',observationIds:[newIds.at(-1)]}});s=advance(s,7);
  const newest=json(latest(s,'keeper','repairProgress:dock'));assert.equal(newest.value,2);assert.equal(newest.observedAt,4);
  s=advance(s,8);assert.deepEqual(latest(s,'keeper','repairProgress:dock'),newest);
- const records=view(s,'keeper').notebook.filter(n=>n.cue==='repairProgress:dock');assert.equal(records.length,2);assert.equal(records.at(-1).value,0);assert.equal(records.at(-1).receivedAt,8);assert.equal(records.at(-1).observedAt,1);saveEqual(s);
+ const records=view(s,'keeper').notebook.filter(n=>n.cue==='repairProgress:dock');assert.equal(records.length,2);assert.equal(records.at(-1).value,0);assert.equal(records.at(-1).receivedAt,8);assert.equal(records.at(-1).observedAt,oldObservation.observedAt);saveEqual(s);
 });
 test('inaccessible observation and confirmation IDs cannot create owned messages',()=>{
  let s=h.create();const before=json(s);
@@ -134,10 +138,10 @@ test('inaccessible observation and confirmation IDs cannot create owned messages
  }
  assert.equal(view(s,'keeper').inventory.radio.available,4);assert.equal(view(s,'keeper').sent.length,0);
 });
-test('an interrupted transmission keeps active cost and restores charge without sending an envelope',()=>{
+test('an integer-minute transmission canceled at its start restores charge and sends nothing',()=>{
  let s=ask(h.create(),'keeper',{task:'propose',terms});
  assert.equal(view(s,'keeper').inventory.radio.reserved,1);s=h.interrupt(s,'keeper');
- assert.equal(view(s,'keeper').inventory.radio.available,4);assert.equal(view(s,'keeper').sent.length,0);
+ assert.equal(view(s,'keeper').inventory.radio.available,4);assert.equal(view(s,'keeper').sent.length,0);assert.equal(view(s,'keeper').paid.transmit,0);
  s=advance(s,10);assert.equal(view(s,'receiver').inbox.length,0);saveEqual(s);
 });
 test('local budgets and command legality are independent of exhausted remote actor controls',()=>{
