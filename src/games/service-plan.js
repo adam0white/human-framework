@@ -117,7 +117,23 @@ function morning(s){
  note(s,'world',gate?'The gate held and morning water service continued. The clinic now needs its pump and delivery.':divert?'The diversion protected the inlet. Morning water was lost; reopen supply for the clinic.':'The inlet flooded and morning water was lost. Paid gate work remains: completing it can still restore clinic supply.');
 }
 function closing(s){if(s.coordination.pending)interruptDiscussionRaw(s,'keeper',false,'CLOSED');if(s.coordination.current?.status==='active'||s.coordination.current?.status==='delivering'){s.coordination.current.status='expired';s.coordination.current.closedAt=CLOSING;s.coordination.current.closeReason='CLOSED';}for(const a of actors)stop(s,a);for(const e of [...s.clock.queue])s.clock=cancelEvent(s.clock,e.id);s.outcome={at:CLOSING,morningProtected:s.morning.protected,morningWater:s.morning.waterService,clinicUnits:s.delivery?.units??0,clinicRequired:2,clinicRoute:s.delivery?.route??'unfinished',allService:s.morning.waterService&&s.delivery?.units===2};note(s,'world',`The clinic intake closed with ${s.outcome.clinicUnits} of 2 requested water units. Morning service remains ${s.outcome.morningWater?'fulfilled':'missed'}.`);}
-function record(s,c,replace=false){const last=s.commands.at(-1);if(c.type==='advance'&&last?.type==='advance'){last.to=c.to;return;}if(replace){s.commands[s.commands.length-1]=copy(c);return;}if(s.commands.length>=MAX_COMMANDS)fail('COMMAND_LIMIT','The saved command limit has been reached.');s.commands.push(copy(c));}
+const withdrawable=s=>s.coordination.current?.status==='active'&&s.coordination.current.contribution.status!=='fulfilled';
+function commandReserve(s){
+ if(s.outcome)return 0;
+ const stops=s.coordination.pending?1:actors.filter(a=>s.jobs[a]?.task!=='idle'&&(a==='keeper'||s.jobs[a]?.origin==='request')).length;
+ const controls=stops+Number(withdrawable(s));
+ // One advance before each remaining control, then closing. An existing last
+ // advance already owns the first segment, so more elapsed time coalesces there.
+ return 2*controls+1-Number(s.commands.at(-1)?.type==='advance');
+}
+function commandRoom(s){if(s.commands.length+commandReserve(s)>MAX_COMMANDS)fail('COMMAND_LIMIT','The remaining journal space is reserved for stopping requested work, withdrawing an active promise and advancing time.');}
+function record(s,c,replace=false){
+ const last=s.commands.at(-1);
+ if(c.type==='advance'&&last?.type==='advance')last.to=c.to;
+ else if(replace)s.commands[s.commands.length-1]=copy(c);
+ else{if(s.commands.length>=MAX_COMMANDS)fail('COMMAND_LIMIT','The saved command limit has been reached.');s.commands.push(copy(c));}
+ commandRoom(s);
+}
 // A refusal changes two visible response channels, never physical state. Keep the
 // latest entry per channel in its original order; accepted work breaks the run.
 const responseFamily=c=>['propose','withdraw'].includes(c.type)?'plan':'physical';
@@ -135,8 +151,7 @@ function taskRaw(s,a,task){
 function stopRaw(s,a){
  if(!actors.includes(a)||s.outcome||s.jobs[a].task==='idle')fail('NOT_WORKING','There is no current job to stop.');
  if(s.jobs[a].task==='discuss')return interruptDiscussionRaw(s,a,true);
- const j=s.jobs[a],rejected=a==='partner'&&j.origin==='own',replace=rejected&&replacesRefusal(s);
- if(!replace&&s.commands.length>=MAX_COMMANDS-2)fail('COMMAND_LIMIT','Advance time to finish the current work and reach closing.');
+ const j=s.jobs[a],rejected=a==='partner'&&j.origin==='own';
  s.lastResponse={at:s.clock.now,actor:a,task:j.task,accepted:!rejected,code:rejected?'OWN_COMMITMENT':'STOPPED',reason:rejected?'I chose this work for the clinic and will finish it. You can make another request when I am free.':'Stopped the agreed work; paid recovery and installed work remain.'};
  if(!rejected){stop(s,a,true);start(s,a,'idle','own');}responseCommand(s,{type:'stop',actor:a},rejected);return s;
 }
@@ -205,13 +220,11 @@ function responseRaw(s,envelope){
 function interruptDiscussionRaw(s,a,recordCommand,code='INTERRUPTED'){
  if(!actors.includes(a))fail('INVALID_COMMAND','Unknown discussion participant.');
  const p=s.coordination.pending;if(!p)fail('NO_DISCUSSION','There is no discussion to interrupt.');
- if(recordCommand&&s.commands.length>=MAX_COMMANDS-3)fail('COMMAND_LIMIT','Advance to finish the discussion and reach closing.');
  for(const actor of actors)if(s.jobs[actor]?.task==='discuss'){stop(s,actor);start(s,actor,'idle','own');}
  s.coordination.pending=null;planResponse(s,p.id,'interruption',false,code,code==='EXPIRED'?'The existing waiting deadline arrived during discussion. Those terms still apply.':code==='CLOSED'?'Clinic intake closed before these terms could take effect.':'Discussion stopped; only the active minutes actually paid remain. Previous terms still apply.');note(s,a,s.lastResponse.reason);if(recordCommand)record(s,{type:'interrupt-discussion',actor:a});return s;
 }
 function withdrawRaw(s){
- const p=s.coordination.current,invalid=!p||p.status!=='active'||p.contribution.status==='fulfilled',replace=invalid&&replacesPlanRefusal(s);
- if(!replace&&s.commands.length>=MAX_COMMANDS-2)fail('COMMAND_LIMIT','Advance time to finish the day.');
+ const p=s.coordination.current,invalid=!withdrawable(s);
  if(invalid){planResponse(s,p?.id??null,'withdrawal',false,'NO_ACTIVE_PLAN','There is no active keeper promise to withdraw. The clinic obligation remains.');responseCommand(s,{type:'withdraw'},true);return s;}
  if(s.coordination.pending)interruptDiscussionRaw(s,'keeper',false);
  p.contribution.status='withdrawn';p.contribution.fulfilledAt=null;p.status='withdrawn';p.closedAt=s.clock.now;p.closeReason='CONTRIBUTION_WITHDRAWN';planResponse(s,p.id,'withdrawal',true,'WITHDRAWN','You withdrew your promised contribution. Existing physical work continues and Deniz still owes the clinic a delivery.');note(s,'keeper',s.lastResponse.reason);record(s,{type:'withdraw'});return s;
@@ -223,7 +236,7 @@ function updatePlan(s){
  if(p.contribution.status==='promised'&&s.clock.now>=p.terms.readyBy){p.contribution.status='missed';note(s,'world',`Plan ${p.id}: promised readiness at ${p.terms.readyBy} was not achieved.`);}
  if(p.status==='active'&&s.clock.now>=p.terms.waitUntil&&s.coordination.pending)interruptDiscussionRaw(s,'partner',false,'EXPIRED');
 }
-function coordinationView(s){const r=inviteRefusal(s),p=s.coordination.current,budget=s.commands.length>=MAX_COMMANDS-6;return {...copy(s.coordination),readiness:{ready:ready(s),readyAt:s.coordination.readyAt,pumpWork:s.work.pump,pumpRequired:12,supplyAvailable:supply(s),keeperOwnedParts:s.parts.keeper,keeperReservedParts:s.jobs.keeper?.reservedParts??0},discussionAvailable:!r&&!budget,discussionReason:budget?'No new proposals remain; finish the current work and advance to closing.':r?.[1]??null,canWithdraw:p?.status==='active'&&p.contribution.status!=='fulfilled'&&s.commands.length<MAX_COMMANDS-2,canInterrupt:Boolean(s.coordination.pending)&&s.commands.length<MAX_COMMANDS-3,safeWaitUntil:45,latestFullStart:57,discussionMinutes:2,acceptanceRule};}
+function coordinationView(s){const r=inviteRefusal(s),p=s.coordination.current,budget=s.commands.length>=MAX_COMMANDS-6;return {...copy(s.coordination),readiness:{ready:ready(s),readyAt:s.coordination.readyAt,pumpWork:s.work.pump,pumpRequired:12,supplyAvailable:supply(s),keeperOwnedParts:s.parts.keeper,keeperReservedParts:s.jobs.keeper?.reservedParts??0},discussionAvailable:!r&&!budget,discussionReason:budget?'No new proposals remain; finish the current work and advance to closing.':r?.[1]??null,canWithdraw:withdrawable(s),canInterrupt:Boolean(s.coordination.pending),safeWaitUntil:45,latestFullStart:57,discussionMinutes:2,acceptanceRule};}
 function checkCoordination(s){
  const c=s.coordination;fields(c,['readyAt','nextId','current','pending','lastResponse','slot'],'coordination');int(c.nextId,1,MAX_COMMANDS+1,'proposal identity');if((c.readyAt!==null)!==ready(s))fail('INVALID_SAVE','Physical readiness time disagrees with work.');if(c.readyAt!==null)int(c.readyAt,24,s.clock.now,'physical readiness');
  if(c.pending){const p=c.pending;fields(p,['id','revisionOf','createdAt','endsAt','terms','receipt','invitationAccepted'],'pending plan');termsShape(p.terms);int(p.createdAt,24,s.clock.now,'proposal creation');if(p.endsAt!==p.createdAt+2||p.endsAt<=s.clock.now||p.invitationAccepted!==true||!equal(p.receipt,{id:p.id,at:p.endsAt,participants:actors})||actors.some(a=>s.jobs[a]?.task!=='discuss'||s.jobs[a].endsAt!==p.endsAt))fail('INVALID_SAVE','Pending discussion disagrees with paid participants.');}
@@ -258,7 +271,7 @@ function check(s){
  if(s.parts.keeper+s.parts.partner+reserved+installed(s)!==3+s.salvaged)fail('INVALID_SAVE','Parts do not conserve.');
  if(s.clock.queue.length!==events.length||events.some(e=>!s.clock.queue.some(q=>equal(e,q))))fail('INVALID_SAVE','Host event queue mismatch.');
  checkCoordination(s);
- if(!Array.isArray(s.commands)||s.commands.length>MAX_COMMANDS||!Array.isArray(s.recent)||s.recent.length>12)fail('INVALID_SAVE','Bounded state exceeded.');return s;
+ if(!Array.isArray(s.commands)||s.commands.length>MAX_COMMANDS||!Array.isArray(s.recent)||s.recent.length>12)fail('INVALID_SAVE','Bounded state exceeded.');commandRoom(s);return s;
 }
 export function requestTask(s,a,t){check(s);return check(taskRaw(copy(s),a,t));}
 export function interruptTask(s,a){check(s);return check(stopRaw(copy(s),a));}
