@@ -77,7 +77,7 @@ export function startAction(s,id){
  if(s.pending)throw new Error('An action is already in progress');if(s.status!=='playing')throw new Error('The shift is finished');if(!availableIds(s).includes(id))throw new Error('Action is not available: check location and prerequisites');
  const next=copy(s),a=definition(id,s.location);next.person=beginAttempt(s.person,humanAction(a));const allowed=next.person.pending.capacity.allowed;
  next.pending={actionId:id,attemptId:next.person.pending.id,durationMinutes:allowed?a.durationMinutes:BLOCKED_MINUTES};
- next.lastEvent=event(allowed?'started':'blocked',allowed?`${a.label} started.`:'The effort exceeds current capacity. This request costs two idle minutes, with no repair or practice.',{actionId:id});return next;
+ next.lastEvent=event(allowed?'started':'blocked',allowed?`${a.label} started.`:`This request is blocked by ${next.person.pending.capacity.causes.join(' and ')}. It costs two idle minutes, with no repair or practice.`,{actionId:id});return next;
 }
 function settle(s,status,message){
  const next=copy(s),pending=s.pending,a=definition(pending.actionId,s.location),before=s.person.pending.skillBefore,elapsed=s.person.pending.elapsedMinutes;let mealConsumed=false;
@@ -105,8 +105,8 @@ export function advanceTime(s,minutes){
  if(!Number.isFinite(minutes)||minutes<=0)throw new Error('Minutes must be positive and finite');if(!s.pending)throw new Error('No pending action');
  const next=copy(s),elapsed=Math.min(minutes,s.pending.durationMinutes-s.person.pending.elapsedMinutes,DEADLINE-s.clock);
  next.person=advanceAttempt(next.person,elapsed);next.clock+=elapsed;const blocked=!next.person.pending.capacity.allowed;
- if(next.person.pending.elapsedMinutes>=next.pending.durationMinutes||next.clock>=next.person.pending.startedAt+next.pending.durationMinutes)return settle(next,blocked?'blocked':'completed',blocked?'Two idle minutes spent. No work or practice occurred; choose recovery or another move.':undefined);
- if(next.clock>=DEADLINE)return settle(next,blocked?'blocked':'interrupted','The shift ended during this action. Paid time and practice remain; its unfinished effect does not occur.');return next;
+ if(next.person.pending.elapsedMinutes>=next.pending.durationMinutes||next.clock>=next.person.pending.startedAt+next.pending.durationMinutes)return settle(next,blocked?'blocked':'completed',blocked?`Blocked by ${next.person.pending.capacity.causes.join(' and ')}. Two idle minutes spent. No work or practice occurred; choose recovery or another move.`:undefined);
+ if(next.clock>=DEADLINE)return settle(next,blocked?'blocked':'interrupted',blocked?`Blocked by ${next.person.pending.capacity.causes.join(' and ')}. The shift ended after ${next.person.pending.elapsedMinutes} idle minutes, with no work or practice.`:'The shift ended during this action. Paid time and practice remain; its unfinished effect does not occur.');return next;
 }
 export function finishAction(s){if(!s.pending)throw new Error('No pending action');return advanceTime(s,s.pending.durationMinutes-s.person.pending.elapsedMinutes);}
 export function interruptAction(s,reason='You stopped the action'){

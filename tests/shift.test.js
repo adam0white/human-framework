@@ -121,3 +121,9 @@ test('impossible inspection receipts cannot be reused on two pumps',()=>{
  let s=act(at(),'inspect-garden');s=act(s,'travel-workshop');s=act(s,'inspect-workshop');
  const save=exportShift(s);save.pumps.workshop.inspection.attemptId=save.pumps.garden.inspection.attemptId;assert.throws(()=>importShift(save),/inspection/);
 });
+test('a blocked result names actual fatigue and hunger causes after an optimistic rounded forecast',()=>{
+ let s=at('intake');s.person.body={fatigue:.56,hunger:.86};
+ assert.equal(getActions(s).find(a=>a.id==='patch-intake').capacity.allowed,true);
+ const started=startAction(s,'patch-intake');assert.equal(started.pending.durationMinutes,2);
+ const done=finishAction(started);assert.match(done.lastEvent.message,/fatigue and hunger/i);assert.equal(done.lastEvent.status,'blocked');assert.equal(done.lastEvent.practiceMinutes,0);
+});
