@@ -33,7 +33,9 @@ export async function verifyFreeze(freeze){
  for(const [path,hash] of Object.entries(freeze.sources))assert.equal(sha(await readFile(resolve(root,path))),hash,'Changed frozen source: '+path);
 }
 function validAccounting(observation,fixture){
- assert.equal(observation.now>=0&&observation.now<=END_AT,true);
+ assert.equal(Number.isSafeInteger(observation.now)&&observation.now>=0&&observation.now<=END_AT,true);
+ for(const key of ['stock','spent','toolAvailable','outputs','actors','items','assignments','lastResponse'])assert.ok(Object.hasOwn(observation,key),'Missing accounting field '+key);
+ assert.equal(typeof observation.toolAvailable,'boolean');
  const count=fixture.setup.items??1;
  assert.equal(observation.items.length,count);assert.ok(observation.outputs>=0&&observation.outputs<=count);
  let timber=observation.stock.timber+observation.spent.timber,salvage=observation.stock.salvage+observation.spent.salvage;
@@ -56,8 +58,10 @@ function validAccounting(observation,fixture){
 }
 export function executeHistory(api,fixture,driver,{restore=false}={}){
  assert.ok(DRIVERS.includes(driver));
- let world=api.createWorld(clone(fixture.setup)),cursor=0,chunk=0,restored=false;
+ let world,cursor=0,chunk=0,restored=false;
  const records=[],checkpoints=[];
+ try {
+ world=api.createWorld(clone(fixture.setup));
  const record=operation=>{
   const observation=api.observe(world);validAccounting(observation,fixture);
   records.push({operation:clone(operation),observation:clone(observation),snapshot:clone(api.exportWorld(world))});
@@ -93,6 +97,10 @@ export function executeHistory(api,fixture,driver,{restore=false}={}){
  assert.equal(final.outputs,fixture.expected.length);
  checkpoints.push({tag:'final',observation:clone(final)});
  return {id:fixture.id,driver,restore,records,checkpoints,final,completed};
+ }catch(error){
+  let snapshot=null;try{if(world)snapshot=api.exportWorld(world);}catch{/* Keep the original failure even if export also rejects. */}
+  error.evidence={id:fixture.id,driver,restore,fixture,records,checkpoints,snapshot};throw error;
+ }
 }
 export async function runMatrix(freeze){
  await verifyFreeze(freeze);
@@ -102,7 +110,7 @@ export async function runMatrix(freeze){
  for(const fixture of CASES)for(const driver of DRIVERS)for(const restore of [false,true]){
   for(const [arm,api] of Object.entries(apis)){
    const input=arm==='fixed'?{...fixture,expected:fixture.fixed}:fixture;
-   const run=executeHistory(api,input,driver,{restore});run.arm=arm;runs.push(run);
+   let run;try{run=executeHistory(api,input,driver,{restore});}catch(error){error.evidence={...error.evidence,arm,freeze,completedRuns:runs};throw error;}run.arm=arm;runs.push(run);
   }
  }
  for(const fixture of CASES){
@@ -138,4 +146,8 @@ async function main(){
  await writeFile(resolve(out),out.endsWith('.gz')?gzipSync(bytes):bytes,{flag:'wx'});
  console.log(JSON.stringify(result.summary??{format:result.format,replayed:result.replayed??null,exact:result.exact??null,out},null,2));
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href)main().catch(error=>{console.error(error.stack);process.exitCode=1;});
+if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href)main().catch(async error=>{
+ const out=option(process.argv.slice(2),'--out');
+ if(out&&error.evidence){const path=resolve(out+'.failed.json.gz');await mkdir(dirname(path),{recursive:true});await writeFile(path,gzipSync(Buffer.from(JSON.stringify({error:error.message,evidence:error.evidence},null,2)+'\\n')),{flag:'wx'}).catch(failure=>console.error('Could not write separate failure evidence: '+failure.message));}
+ console.error(error.stack);process.exitCode=1;
+});
