@@ -57,6 +57,8 @@ Every inventory entry is `{available,reserved,consumed}`, except the fitting use
 
 All times are integer minutes. Interrupting a one-minute transmission before completion therefore has zero elapsed transmission exposure; this host cannot demonstrate a positive fractional partial-radio payment. Positive partial work/travel and already-paid responses are covered separately. This limitation is retained explicitly.
 
+The policy lane's initial eighty runs (`dbf1553`) exposed an implementation admission defect: requesting the cart at22 was rejected because its return ended32, even though it could load the launch at27. The contract's public30 closure already interrupts remaining work. Before revised policy outcomes, remove the implementation's whole-job-before30 requirement: duration/capacity admission remains, but any admitted task may be interrupted at30 with paid partial progress/position and unused reservations retained/restored under the existing stop rules. A cart22 departure consequently pays8 minutes, delivers at27 and ends at position8 on its incomplete return. This restores the declared finite-episode/partial-work semantics; it changes neither route duration nor launch timing. Preserve the original refused runs and their source ID.
+
 ## First hypotheses to preserve
 
 These exact costs precede outcomes. The six/two repair case, launch27, legal fixed pipe plus cart insurance is intentionally retained. Six/fourteen with launch15 may deny full pipe service. Paid radio and six-minute contact may be dominated in easy cases. No costs will be silently tuned after evaluating them; any correction/amendment preserves its triggering case and is dated here before new policy outcomes.

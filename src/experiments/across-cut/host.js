@@ -113,7 +113,6 @@ function requestRaw(s,a,input){
  else if(task==='transmit'){fields(input,['task','message'],['via']);extra.message=payload(s,a,input.message);duration=1;}
  else fail('INVALID_COMMAND','Unknown task.');
  if(task==='transmit'){extra.via=input.via??'radio';if(!['radio','contact'].includes(extra.via))fail('INVALID_COMMAND','Unknown message channel.');if(extra.via==='radio')reserve(x,'radio',1);else if(here==='path'||s.actors[other(a)].position!==x.position)fail('NO_CONTACT','The other actor is not present at your station.');extra.contactPosition=x.position;}
- if(s.clock.now+duration>HORIZON)fail('HORIZON','The requested interval exceeds the known episode horizon.');
  begin(s,a,task,duration,extra);x.lastResult={at:s.clock.now,task:input.task,code:'STARTED'};recordDecision(s,a,{type:'request',actorId:a,action:input});return s;
 }
 export function request(state,actorId,action){check(state);return requestRaw(clone(state),actorId,action);}

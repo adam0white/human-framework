@@ -126,3 +126,11 @@ test('strict JSON rejects unknown fields and accessors without evaluating them',
  const h=await host();let read=false;const bad={};Object.defineProperty(bad,'launchAt',{enumerable:true,get(){read=true;return 15;}});assert.throws(()=>h.create(bad),{code:'INVALID_COMMAND'});assert.equal(read,false);
  assert.throws(()=>h.request(h.create(),'keeper',{task:'rest',minutes:1,secret:true}),{code:'INVALID_COMMAND'});assert.throws(()=>h.restoreState({...h.exportState(h.create()),extra:true}),{code:'INVALID_SAVE'});
 });
+test('late cart may deliver by launch then pay its incomplete return until public horizon',async()=>{
+ const h=await host();let s=h.create({launchAt:27});s=h.advance(s,22);s=h.request(s,'receiver',{task:'cart'});s=h.advance(s,30);
+ const v=h.getActorView(s,'receiver');assert.equal(h.getWorldSummary(s).service.units,1);assert.equal(v.paid.cart,8);assert.equal(v.position,8);assert.equal(v.inventory.cartWater.consumed,1);assert.equal(v.job,null);assert.equal(v.ended,true);assert.deepEqual(h.restoreState(h.exportState(s)),s);
+});
+test('horizon interrupts an unfinished release and restores unused owned water',async()=>{
+ let {h,s}=await repaired();s=h.advance(s,29);s=h.request(s,'keeper',{task:'release'});s=h.advance(s,30);const v=h.getActorView(s,'keeper');
+ assert.equal(v.paid.release,1);assert.equal(v.inventory.water.available,2);assert.equal(v.inventory.water.reserved,0);assert.equal(h.getWorldSummary(s).water.pipeConsumed,0);assert.deepEqual(h.restoreState(h.exportState(s)),s);
+});
