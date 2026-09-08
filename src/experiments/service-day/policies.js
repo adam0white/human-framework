@@ -5,7 +5,7 @@ export function chooseServiceCommand(view,policy='deadline-first'){
  if(!POLICIES.includes(policy))throw new Error('Unknown service policy.');
  if(view.outcome)return advance();
  const target=view.phase==='morning'?morningTarget(view,policy):clinicTarget(view);
- const partner=partnerCommand(view,target,policy);if(partner)return partner;
+ const partner=partnerCommand(view,target);if(partner)return partner;
  const job=view.jobs.keeper;
  if(job){
   if(job.task==='rest'&&job.origin==='request'){

@@ -26,10 +26,10 @@ export function clinicTarget(view){
  }else if(view.work.gate>0&&view.now+(12-view.work.gate)+(12-view.work.pump)+6<deadline)return 'gate';
  return view.now+18<deadline?'cart':null;
 }
-export function partnerCommand(view,target,policy){
+export function partnerCommand(view,target){
  if(view.jobs.partner)return null;
  // A gate route requires four installed parts across the two obligations.
- const gateRoute=policy==='deadline-first'&&view.phase==='morning'&&view.work.divert===0;
+ const gateRoute=view.phase==='morning'&&view.work.divert===0&&(target==='gate'||view.work.gate===12);
  if(gateRoute&&view.resources.shedAvailable&&available(view,'partner','salvage'))return request('partner','salvage');
  const need=choice(view,'keeper',target)?.parts??0;
  const reserve=view.work.pump<6?1:0;
