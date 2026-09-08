@@ -34,11 +34,12 @@ function renderMap(view){
   }
   $('crossings').replaceChildren(...['footbridge','lockbridge'].map(id=>{const div=text('div','', 'crossing-report');div.append(text('strong',view.routes.find(r=>r.id===id).name),text('span',view.crossings[id].report?`${view.crossings[id].report.condition} · observed at ${view.crossings[id].report.observedAt} min`:'Uninspected · pay 5 min at either endpoint'));return div;}));
 }
-function actionButton(action){
+function actionButton(action,remainingMinutes){
   const button=document.createElement('button');button.className=`action ${action.capacity.allowed?'':'blocked'}`;button.dataset.action=action.id;
   const top=text('span','', 'action-top');top.append(text('strong',action.label),text('span',`${action.minutes} min`));button.append(top,text('span',action.detail,'action-detail'));
   if(action.estimatedSuccess!==null)button.append(text('span',`${percent(action.estimatedSuccess)} estimated crossing chance`,'action-chance'));
   if(!action.capacity.allowed)button.append(text('span',`Capacity estimate: ${action.capacity.causes.join(' and ')} too high. A blocked request costs 2 idle minutes.`,'action-chance'));
+  if(action.minutes>remainingMinutes)button.append(text('span','Not enough time to finish','action-chance'));
   button.addEventListener('click',()=>takeAction(action.id));return button;
 }
 function render(){
@@ -54,7 +55,7 @@ function render(){
   $('actions').replaceChildren();
   for(const [name,kinds] of [['Hand over parcels',['deliver']],['Load your bag',['load']],['Travel',['travel']],['Inspect the crossing',['inspect']],['Recovery',['rest','eat']],['Repack at the depot',['unload']]]){
     const matches=view.actions.filter(a=>kinds.includes(a.kind));if(!matches.length)continue;
-    const group=document.createElement(name.startsWith('Repack')?'details':'div');group.className='action-group';group.append(text(name.startsWith('Repack')?'summary':'h3',name));const list=text('div','','action-list');list.append(...matches.map(actionButton));group.append(list);$('actions').append(group);
+    const group=document.createElement(name.startsWith('Repack')?'details':'div');group.className='action-group';group.append(text(name.startsWith('Repack')?'summary':'h3',name));const list=text('div','','action-list');list.append(...matches.map(action=>actionButton(action,view.remainingMinutes)));group.append(list);$('actions').append(group);
   }
   $('outcome').hidden=view.status==='playing';$('end-round').hidden=view.status!=='playing';
   if(view.status!=='playing'){$('outcome').replaceChildren(text('h3',view.status==='complete'?'All six delivered':view.status==='ended'?'Round ended early':'Time is up'),text('p',`${view.summary.delivered} delivered: ${view.summary.onTime} on time, ${view.summary.late} late. ${view.summary.undelivered?`${view.summary.undelivered} undelivered parcels remain in your bag or at the depot.`:`Finished in ${view.clock} minutes.`} ${view.status==='ended'?`You stopped at minute ${view.clock}, with ${view.remainingMinutes} minutes left. `:''}Your full parcel record is below.`));stopAuto();}
