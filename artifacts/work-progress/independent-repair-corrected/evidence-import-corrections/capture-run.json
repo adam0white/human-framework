@@ -1,0 +1,83 @@
+{
+  "packageOnly": {
+    "shared": {
+      "bytes": 42971,
+      "lines": 635
+    },
+    "candidateInclusive": {
+      "bytes": 51047,
+      "lines": 742
+    },
+    "directInclusive": {
+      "bytes": 46198,
+      "lines": 693
+    }
+  },
+  "final": {
+    "shared": {
+      "bytes": 47535,
+      "lines": 710
+    },
+    "candidateInclusive": {
+      "bytes": 55611,
+      "lines": 817
+    },
+    "directInclusive": {
+      "bytes": 51171,
+      "lines": 771
+    }
+  },
+  "packageDelta": {
+    "candidateInclusive": {
+      "bytes": 394,
+      "lines": 3
+    },
+    "directInclusive": {
+      "bytes": 0,
+      "lines": 0
+    }
+  },
+  "hostCorrectionDelta": {
+    "candidateInclusive": {
+      "bytes": 4564,
+      "lines": 75
+    },
+    "directInclusive": {
+      "bytes": 4973,
+      "lines": 78
+    }
+  },
+  "changedHostSource": [
+    {
+      "path": "src/direct-pump.js",
+      "bytes": 409,
+      "lines": 3
+    },
+    {
+      "path": "src/import-exposure.js",
+      "bytes": 4422,
+      "lines": 73
+    },
+    {
+      "path": "src/yard.js",
+      "bytes": 142,
+      "lines": 2
+    }
+  ],
+  "preservedStagesAndKits": true,
+  "identicalRedGreenFixtures": true,
+  "manifests": [
+    {
+      "path": "stages/03-package-only/freeze.json",
+      "bytes": 5265,
+      "lines": 167,
+      "sha256": "84f074719e9f69d41cf7e14b7cbb0fc127346df87cf79db9ba3178aee2b5107c"
+    },
+    {
+      "path": "stages/04-import-corrections/freeze.json",
+      "bytes": 9826,
+      "lines": 299,
+      "sha256": "539a8695d39f48b64cc84c9229e36f287fc931e77750558bd867e284f0ea7e31"
+    }
+  ]
+}

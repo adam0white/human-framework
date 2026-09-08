@@ -1,0 +1,162 @@
+diff -ruN stages/03-package-only/tests/all.test.js tests/all.test.js
+--- stages/03-package-only/tests/all.test.js	1969-12-31 18:00:00
++++ tests/all.test.js	2026-09-08 14:22:04
+@@ -0,0 +1,3 @@
++// Entry-point execution keeps Node 22 tests inside the filesystem-restricted process.
++import './repair.test.js';
++import './import-invariants.test.js';
+diff -ruN stages/03-package-only/tests/import-fixtures.js tests/import-fixtures.js
+--- stages/03-package-only/tests/import-fixtures.js	1969-12-31 18:00:00
++++ tests/import-fixtures.js	2026-09-08 14:18:53
+@@ -0,0 +1,59 @@
++import {candidate} from '../src/candidate-pump.js';
++import {direct} from '../src/direct-pump.js';
++import {payMinute} from '../src/yard.js';
++import {exportPerson} from 'paid-work-probe/human';
++
++export const importCases = [
++  {name: 'extra-terminal-exposure', invariant: 'generic-terminal', now: 40, completed: 21, hands: {mara: [21, 1]}},
++  {name: 'zero-work-terminal-exposure', invariant: 'generic-terminal', now: 40, toolAt: 1, completed: 20, hands: {mara: [11, .5], tomas: [9, .5]}},
++  {name: 'two-truncated-terminal-workers', invariant: 'generic-terminal', now: 40, toolAt: 1, completed: 20, hands: {mara: [10, .46], tomas: [10, .54]}},
++  {name: 'no-tool-overcredit', invariant: 'paid-rate', now: 1, hands: {mara: [1, .06]}},
++  {name: 'tool-arrival-does-not-speed-minute-zero', invariant: 'paid-rate', now: 1, toolAt: 1, hands: {mara: [1, 1 / 14]}},
++  {name: 'completion-before-fourteen-post-tool-minutes-fit', invariant: 'item-time', now: 40, toolAt: 1, completed: 14, hands: {mara: [14, 1]}},
++  {name: 'one-pump-cannot-pay-two-workers-in-one-minute', invariant: 'item-time', now: 1, hands: {mara: [1, 1 / 20], tomas: [1, 1 / 18]}},
++  {name: 'one-pump-cannot-use-two-pre-tool-first-minutes', invariant: 'item-time', now: 4, toolAt: 1, hands: {mara: [1, 1 / 20], tomas: [1, 1 / 18]}},
++  {name: 'one-actor-cannot-own-both-pre-tool-first-minutes', invariant: 'actor-time', now: 4, toolAt: 1, twoPumps: true, hands: {mara: [1, 1 / 20]}, northHands: {mara: [1, 1 / 20]}},
++  {name: 'no-tool-completion-before-sequential-paid-minutes-fit', invariant: 'item-time', now: 40, completed: 19, hands: {mara: [20, 1]}}
++];
++
++// These intentionally false host snapshots contain internally real paid Human
++// attempts for each person's ledger. Their proposed item allocation/time is the lie.
++export function importFixture(arm, spec) {
++  const host = arm === 'candidate' ? candidate : direct;
++  const initial = host.create({twoPumps: spec.twoPumps ?? false});
++  const snapshot = host.exportState(initial), state = snapshot.state;
++  state.minute = spec.now;
++  if (spec.toolAt) { state.tooling.blank = 'spent'; state.tooling.readyAt = spec.toolAt; }
++  const assignedHands = {south: spec.hands, ...(spec.twoPumps ? {north: spec.northHands} : {})};
++  for (const [key, hands] of Object.entries(assignedHands)) {
++    const pump = state.pumps[key];
++    const progress = Object.values(hands).reduce((sum, [, share]) => sum + share, 0);
++    if (arm === 'candidate') {
++      const work = pump.work.work;
++      work.progress = progress; work.status = spec.completed ? 'settled' : 'open';
++      work.workers = Object.fromEntries(Object.entries(hands).map(([id, [minutes, fraction]]) => [id, {basisMinutes: id === 'mara' ? 20 : 18, minutes, fraction, effort: .20 * fraction}]));
++    } else {
++      pump.work.coverage = progress; pump.work.discharged = Boolean(spec.completed);
++      pump.work.crew = Object.fromEntries(Object.entries(hands).map(([id, [paidMinutes, covered]]) => [id, {firstMinutes: id === 'mara' ? 20 : 18, paidMinutes, covered}]));
++    }
++    pump.finishedAt = spec.completed ?? null;
++    pump.gasket.place = spec.completed ? 'spent' : 'installed';
++  }
++  for (const id of ['mara', 'tomas', 'nuri']) {
++    let person = initial.people[id];
++    const charges = [];
++    if (id === 'nuri' && spec.toolAt) charges.push({kind: 'crafting', effort: .02});
++    if (id !== 'nuri') for (const hands of Object.values(assignedHands)) {
++      const [minutes, coverage] = hands[id] ?? [0, 0];
++      for (let minute = 0; minute < minutes; minute++) charges.push({kind: 'repair', effort: .20 * coverage / minutes});
++    }
++    if (charges.length > spec.now) throw new Error('Fixture exceeds person time');
++    while (charges.length < spec.now) charges.push({kind: 'rest', effort: 0});
++    for (const charge of charges) {
++      person = payMinute(person, charge.kind, charge.effort);
++      state.paid[id][charge.kind].minutes++; state.paid[id][charge.kind].effort += charge.effort;
++    }
++    state.people[id] = exportPerson(person);
++  }
++  return snapshot;
++}
+diff -ruN stages/03-package-only/tests/import-invariants.test.js tests/import-invariants.test.js
+--- stages/03-package-only/tests/import-invariants.test.js	1969-12-31 18:00:00
++++ tests/import-invariants.test.js	2026-09-08 14:22:04
+@@ -0,0 +1,41 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import {candidate, candidatePump} from '../src/candidate-pump.js';
++import {direct, directPump} from '../src/direct-pump.js';
++import {importCases, importFixture} from './import-fixtures.js';
++for (const [arm, host, rules] of [['candidate', candidate, candidatePump], ['direct', direct, directPump]]) {
++  for (const spec of importCases) test(`${arm}: reject ${spec.name}`, () => {
++    const snapshot = importFixture(arm, spec), before = structuredClone(snapshot);
++    assert.throws(() => host.restoreState(snapshot));
++    assert.deepEqual(snapshot, before);
++    if (spec.invariant === 'generic-terminal') assert.throws(() => rules.unpack(snapshot.state.pumps.south.work));
++  });
++  test(`${arm}: distinct actors can pay each item's minute zero before the tool`, () => {
++    let state = host.start(host.create({twoPumps: true, tool: true}), 'mara', 'south').state;
++    state = host.start(state, 'tomas', 'north').state;
++    for (let minute = 1; minute <= 40; minute++) {
++      state = host.advance(state, minute);
++      assert.deepEqual(host.exportState(host.restoreState(host.exportState(state))), host.exportState(state));
++    }
++    assert.equal(state.pumps.south.finishedAt, 15); assert.equal(state.pumps.north.finishedAt, 13);
++  });
++  test(`${arm}: delayed tool setup retains legal exposure before and after arrival`, () => {
++    let state = host.stop(host.create({tool: true}), 'nuri').state;
++    state = host.start(state, 'mara').state;
++    for (let minute = 1; minute <= 40; minute++) {
++      if (minute === 8) state = host.startTool(state, 'nuri').state;
++      state = host.advance(state, minute);
++      assert.deepEqual(host.exportState(host.restoreState(host.exportState(state))), host.exportState(state));
++    }
++    assert.equal(state.tooling.readyAt, 8); assert.equal(state.pumps.south.finishedAt, 17);
++  });
++  test(`${arm}: a hauler can begin paid repair after the initial duty`, () => {
++    let state = host.advance(host.create({busy: true, tool: true}), 4);
++    state = host.start(state, 'tomas').state;
++    for (let minute = 5; minute <= 40; minute++) {
++      state = host.advance(state, minute);
++      assert.deepEqual(host.exportState(host.restoreState(host.exportState(state))), host.exportState(state));
++    }
++    assert.equal(state.pumps.south.finishedAt, 16); assert.equal(state.paid.tomas.hauling.minutes, 4);
++  });
++}
+diff -ruN stages/03-package-only/tests/record.mjs tests/record.mjs
+--- stages/03-package-only/tests/record.mjs	2026-09-08 14:15:52
++++ tests/record.mjs	2026-09-08 14:24:50
+@@ -54,10 +54,10 @@
+   write(`evidence/${name}.json`, {metadata, runs}); summary.push(metadata);
+ }
+ write('evidence/comparison.json', {endpoint: 40, tolerance: 1e-10, prescribedHistories: Object.keys(histories).length, driverConfigurations: Object.keys(histories).length * 12, summary});
+-const shared = ['src/yard.js', 'src/shape.js', 'kit/src/human/v0.1.1.js', 'kit/src/core/model.js'];
+-const candidateOnly = ['src/candidate-pump.js', 'kit/candidate.js'];
++const shared = ['src/yard.js', 'src/shape.js', 'src/import-exposure.js', 'kit-corrected/src/human/v0.1.1.js', 'kit-corrected/src/core/model.js'];
++const candidateOnly = ['src/candidate-pump.js', 'kit-corrected/candidate.js'];
+ const directOnly = ['src/direct-pump.js'];
+-const support = ['tests/histories.js', 'tests/repair.test.js', 'tests/record.mjs', 'package.json', 'kit/package.json'];
++const support = ['tests/histories.js', 'tests/repair.test.js', 'tests/record.mjs', 'tests/import-fixtures.js', 'tests/import-invariants.test.js', 'tests/all.test.js', 'package.json', 'package-lock.json', 'kit-corrected/package.json'];
+ const all = [...shared, ...candidateOnly, ...directOnly, ...support].map(measure);
+ const sum = paths => ({bytes: paths.reduce((total, path) => total + all.find(file => file.path === path).bytes, 0), lines: paths.reduce((total, path) => total + all.find(file => file.path === path).lines, 0)});
+ const span = (path, from, until) => {
+@@ -72,9 +72,9 @@
+     candidateInclusive: sum([...shared, ...candidateOnly]), directInclusive: sum([...shared, ...directOnly])},
+   support: {...sum(support), files: support, note: 'Tests, recording/oracle and package metadata reported separately; they are part of this experiment, not omitted labor.'},
+   validationSpans: [span('src/yard.js', '  function validate(state)', '  return Object.freeze'), span('src/yard.js', '  function restoreState(snapshot)', '  function projection'),
+-    span('src/direct-pump.js', '  unpack(record)', '  inspect:'), span('kit/candidate.js', 'function validate(work)', 'export function createWork')],
+-  validationNotes: ['The whole src/shape.js file is shared validation/freezing support.', 'Human validation is retained inside the counted Human and core source files.', 'Candidate item validation costs count in full through kit/candidate.js.', 'Direct omits redundant contribution effort storage; shared host validation still reconciles .20 times contribution coverage against separately paid effort.', 'Both host arms use the same host restore function and tests. Extra general candidate behavior is not tested or credited as a one-pump benefit.']});
+-const frozenKit = ['kit/API.md', 'kit/HUMAN.md', 'kit/candidate.js', 'kit/package.json', 'kit/src/human/v0.1.1.js', 'kit/src/core/model.js', 'kit/src/runtime/index.js', 'kit/src/runtime/clock.js'].map(measure);
++    span('src/direct-pump.js', '  unpack(record)', '  inspect:'), span('kit-corrected/candidate.js', 'function validate(work)', 'export function createWork')],
++  validationNotes: ['The whole src/shape.js file is shared validation/freezing support.', 'The whole src/import-exposure.js file is shared bounded import feasibility validation and counts in both arms.', 'Human validation is retained inside the counted Human and core source files.', 'Candidate item validation costs count in full through kit-corrected/candidate.js.', 'Direct omits redundant contribution effort storage; shared host validation still reconciles .20 times contribution coverage against separately paid effort.', 'Both host arms use the same host restore function and tests. Extra general candidate behavior is not tested or credited as a two-pump benefit.']});
++const frozenKit = ['kit-corrected/API.md', 'kit-corrected/HUMAN.md', 'kit-corrected/candidate.js', 'kit-corrected/package.json', 'kit-corrected/src/human/v0.1.1.js', 'kit-corrected/src/core/model.js', 'kit-corrected/src/runtime/index.js', 'kit-corrected/src/runtime/clock.js'].map(measure);
+ write('evidence/kit-after.json', {root, files: frozenKit});
+ console.log(JSON.stringify({histories: summary.map(s => ({history: s.history, at: s.completionMinute, maxDifference: s.comparison.maxAbsoluteDifference, bytes: s.maxSnapshotBytes})),
+   candidateInclusive: sum([...shared, ...candidateOnly]), directInclusive: sum([...shared, ...directOnly]), evidenceBytes: ['comparison.json', ...Object.keys(histories).map(name => `${name}.json`)].reduce((n, name) => n + statSync(`${root}/${evidenceDirectory}/${name}`).size, 0)}, null, 2));
+diff -ruN stages/03-package-only/tests/repair.test.js tests/repair.test.js
+--- stages/03-package-only/tests/repair.test.js	2026-09-08 14:15:52
++++ tests/repair.test.js	2026-09-08 14:20:34
+@@ -64,7 +64,12 @@
+           delete pump.owner; delete pump.gasket.id;
+           assert.deepEqual(pump.gasket, old.gasket); delete pump.gasket;
+           if (arm === 'direct') delete pump.work.id;
+-          assert.deepEqual(pump, old.pump);
++          const previousPump = structuredClone(old.pump);
++          if (arm === 'candidate') {
++            assert.equal(previousPump.work.work.version, '0.1.0'); assert.equal(pump.work.work.version, '0.1.1');
++            previousPump.work.work.version = '0.1.1'; // Comparison metadata only; original evidence is unchanged.
++          }
++          assert.deepEqual(pump, previousPump);
+           const decision = structuredClone(now.decision); delete decision.repair;
+           assert.deepEqual(decision, old.decision);
+         }

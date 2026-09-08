@@ -1,0 +1,59 @@
+{
+  "node": "v22.0.0",
+  "phase": "package-only",
+  "source": [
+    {
+      "path": "stages/03-package-only/src/candidate-pump.js",
+      "unchangedFromTwoPumpStage": true
+    },
+    {
+      "path": "stages/03-package-only/src/direct-pump.js",
+      "unchangedFromTwoPumpStage": true
+    },
+    {
+      "path": "stages/03-package-only/src/yard.js",
+      "unchangedFromTwoPumpStage": true
+    },
+    {
+      "path": "stages/03-package-only/src/shape.js",
+      "unchangedFromTwoPumpStage": true
+    }
+  ],
+  "comparisons": [
+    {
+      "history": "H1",
+      "bothArmsAllDriversAndRoundTripsExactToStage2": true
+    },
+    {
+      "history": "H2",
+      "bothArmsAllDriversAndRoundTripsExactToStage2": true
+    },
+    {
+      "history": "H3",
+      "bothArmsAllDriversAndRoundTripsExactToStage2": true
+    },
+    {
+      "history": "H4",
+      "bothArmsAllDriversAndRoundTripsExactToStage2": true
+    },
+    {
+      "history": "H5",
+      "bothArmsAllDriversAndRoundTripsExactToStage2": true
+    },
+    {
+      "history": "H6",
+      "bothArmsAllDriversAndRoundTripsExactToStage2": true
+    },
+    {
+      "history": "H7",
+      "bothArmsAllDriversAndRoundTripsExactToStage2": true
+    },
+    {
+      "history": "H8",
+      "bothArmsAllDriversAndRoundTripsExactToStage2": true
+    }
+  ],
+  "adjustedComparisonMetadataOnly": "candidate raw work version 0.1.0 -> 0.1.1",
+  "originalRecordsModified": false,
+  "physicalFieldsExactlyEqual": true
+}

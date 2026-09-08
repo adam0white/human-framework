@@ -1,0 +1,216 @@
+{
+  "beforeInstalled": {
+    "candidateInclusive": {
+      "bytes": 50653,
+      "lines": 739
+    },
+    "directInclusive": {
+      "bytes": 46198,
+      "lines": 693
+    }
+  },
+  "packageOnly": {
+    "shared": {
+      "bytes": 42971,
+      "lines": 635
+    },
+    "candidateInclusive": {
+      "bytes": 51047,
+      "lines": 742
+    },
+    "directInclusive": {
+      "bytes": 46198,
+      "lines": 693
+    }
+  },
+  "packageDelta": {
+    "candidateInclusive": {
+      "bytes": 394,
+      "lines": 3
+    },
+    "directInclusive": {
+      "bytes": 0,
+      "lines": 0
+    }
+  },
+  "final": {
+    "shared": {
+      "bytes": 47535,
+      "lines": 710
+    },
+    "candidateInclusive": {
+      "bytes": 55611,
+      "lines": 817
+    },
+    "directInclusive": {
+      "bytes": 51171,
+      "lines": 771
+    }
+  },
+  "hostCorrectionDelta": {
+    "candidateInclusive": {
+      "bytes": 4564,
+      "lines": 75
+    },
+    "directInclusive": {
+      "bytes": 4973,
+      "lines": 78
+    }
+  },
+  "changedHostSource": [
+    {
+      "path": "src/direct-pump.js",
+      "before": {
+        "path": "stages/03-package-only/src/direct-pump.js",
+        "bytes": 3227,
+        "lines": 58,
+        "sha256": "e338595c8d2f97ad0eaabe08e16c2009d8139eea4a1dc7d6a7283373a9b86f57"
+      },
+      "after": {
+        "path": "src/direct-pump.js",
+        "bytes": 3636,
+        "lines": 61,
+        "sha256": "7cc43521ecedb3a518a18f9581485b86381da50954bfd1818d0a39eb14aaa965"
+      },
+      "delta": {
+        "bytes": 409,
+        "lines": 3
+      }
+    },
+    {
+      "path": "src/import-exposure.js",
+      "before": {
+        "bytes": 0,
+        "lines": 0,
+        "sha256": null
+      },
+      "after": {
+        "path": "src/import-exposure.js",
+        "bytes": 4422,
+        "lines": 73,
+        "sha256": "0c79c3b89f3f6273336740fd4be6b2075f57d9a1a6f7840d517ea36974e07e24"
+      },
+      "delta": {
+        "bytes": 4422,
+        "lines": 73
+      }
+    },
+    {
+      "path": "src/yard.js",
+      "before": {
+        "path": "stages/03-package-only/src/yard.js",
+        "bytes": 21690,
+        "lines": 295,
+        "sha256": "c4142e132fcefb2fce036e94a4a20d207f06f52816b895e30cd2391aca978c2c"
+      },
+      "after": {
+        "path": "src/yard.js",
+        "bytes": 21832,
+        "lines": 297,
+        "sha256": "325672095764e4f76903a8f6ac58f64f79b4ba3bd180f32da84818648cab7038"
+      },
+      "delta": {
+        "bytes": 142,
+        "lines": 2
+      }
+    }
+  ],
+  "packageCandidateSource": {
+    "before": {
+      "path": "kit/candidate.js",
+      "bytes": 6288,
+      "lines": 82,
+      "sha256": "84f858d56aa77bbdfcc1e7bc44b214373851f8b00773985061acbce66d32ad35"
+    },
+    "after": {
+      "path": "kit-corrected/candidate.js",
+      "bytes": 6682,
+      "lines": 85,
+      "sha256": "43f0093f118e98ce58bdf269d3bddd5cba7a83ce80d3ba82b1bb6e2b5193940b"
+    }
+  },
+  "metadata": [
+    {
+      "path": "package.json",
+      "bytes": 88,
+      "lines": 1,
+      "sha256": "650ccc93a47396a4c8367ad92b805067c89acf36b0353dcf5a000c814933d2da"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 550,
+      "lines": 28,
+      "sha256": "1015f59e2683d232808496974837d3c3a36bbfd6ab552d5339239240c129af12"
+    },
+    {
+      "path": "kit-corrected/package.json",
+      "bytes": 261,
+      "lines": 14,
+      "sha256": "a38a231c8b9baf7a18f026360af581d40f2fcb3d7b72f27eae9fc0ba6e0a2487"
+    }
+  ],
+  "finalSupport": {
+    "bytes": 39548,
+    "lines": 576,
+    "files": [
+      "tests/histories.js",
+      "tests/repair.test.js",
+      "tests/record.mjs",
+      "tests/import-fixtures.js",
+      "tests/import-invariants.test.js",
+      "tests/all.test.js",
+      "package.json",
+      "package-lock.json",
+      "kit-corrected/package.json"
+    ],
+    "note": "Tests, recording/oracle and package metadata reported separately; they are part of this experiment, not omitted labor."
+  },
+  "additionalCorrectionMeasurementTools": [
+    {
+      "path": "stage-tools/check-legal-histories.mjs",
+      "bytes": 2572,
+      "lines": 37,
+      "sha256": "5c31bd4198c1545477a5ead81b6dbe67b0f438f6469726f50a9178ac7d4add9f"
+    },
+    {
+      "path": "stage-tools/record-import-cases.mjs",
+      "bytes": 1169,
+      "lines": 16,
+      "sha256": "e01173ea30115593a91b7297e862c78384269ea8b02f9565e4510dda714b526b"
+    },
+    {
+      "path": "stage-tools/capture-correction.mjs",
+      "bytes": 6040,
+      "lines": 65,
+      "sha256": "69c092148c9a7d5833138647f52686cac36f725263c7988f17a0b1d067bd5d9d"
+    }
+  ],
+  "kitChecks": [
+    {
+      "directory": "kit",
+      "files": 8,
+      "unchanged": true
+    },
+    {
+      "directory": "kit-corrected",
+      "files": 8,
+      "unchanged": true
+    }
+  ],
+  "acceptedStages": [
+    {
+      "path": "stages/01-gasket/freeze.json",
+      "unchanged": true,
+      "sha256": "f6dbf7d6b75093132298c3ec7bcefc9c16d85aef249b56ea39ed62c8fca56fd9"
+    },
+    {
+      "path": "stages/02-two-pumps/freeze.json",
+      "unchanged": true,
+      "sha256": "02b4aca1c3da3459a7d249968837c09b37d9d558813b91ac797e12ca6ab47332"
+    }
+  ],
+  "identicalRedGreenFixtures": true,
+  "redAcceptedInvalid": 13,
+  "finalRejectedInvalid": 20,
+  "scope": "Package-only compatibility separately recorded from common host and direct rule import corrections; no new saved fields."
+}

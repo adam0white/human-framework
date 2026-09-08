@@ -1,0 +1,228 @@
+[
+  {
+    "arm": "candidate",
+    "name": "extra-terminal-exposure",
+    "host": {
+      "accepted": false,
+      "error": "Inconsistent total work progress"
+    },
+    "component": {
+      "accepted": false,
+      "error": "Inconsistent total work progress"
+    }
+  },
+  {
+    "arm": "candidate",
+    "name": "zero-work-terminal-exposure",
+    "host": {
+      "accepted": false,
+      "error": "Work cannot have multiple or zero-work terminal exposures"
+    },
+    "component": {
+      "accepted": false,
+      "error": "Work cannot have multiple or zero-work terminal exposures"
+    }
+  },
+  {
+    "arm": "candidate",
+    "name": "two-truncated-terminal-workers",
+    "host": {
+      "accepted": false,
+      "error": "Work cannot have multiple or zero-work terminal exposures"
+    },
+    "component": {
+      "accepted": false,
+      "error": "Work cannot have multiple or zero-work terminal exposures"
+    }
+  },
+  {
+    "arm": "candidate",
+    "name": "no-tool-overcredit",
+    "host": {
+      "accepted": false,
+      "error": "Unearned productivity"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "candidate",
+    "name": "tool-arrival-does-not-speed-minute-zero",
+    "host": {
+      "accepted": false,
+      "error": "Item exposure cannot fit its paid rate and tool/time boundary"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "candidate",
+    "name": "completion-before-fourteen-post-tool-minutes-fit",
+    "host": {
+      "accepted": false,
+      "error": "Item exposure cannot fit its paid rate and tool/time boundary"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "candidate",
+    "name": "one-pump-cannot-pay-two-workers-in-one-minute",
+    "host": {
+      "accepted": false,
+      "error": "Item paid work exceeds its sequential time"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "candidate",
+    "name": "one-pump-cannot-use-two-pre-tool-first-minutes",
+    "host": {
+      "accepted": false,
+      "error": "Item exposure cannot fit its paid rate and tool/time boundary"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "candidate",
+    "name": "one-actor-cannot-own-both-pre-tool-first-minutes",
+    "host": {
+      "accepted": false,
+      "error": "One actor cannot pay incompatible item time windows"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "candidate",
+    "name": "no-tool-completion-before-sequential-paid-minutes-fit",
+    "host": {
+      "accepted": false,
+      "error": "Completion before paid work"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "direct",
+    "name": "extra-terminal-exposure",
+    "host": {
+      "accepted": false,
+      "error": "Direct coverage mismatch"
+    },
+    "component": {
+      "accepted": false,
+      "error": "Direct coverage mismatch"
+    }
+  },
+  {
+    "arm": "direct",
+    "name": "zero-work-terminal-exposure",
+    "host": {
+      "accepted": false,
+      "error": "No single positive terminal exposure"
+    },
+    "component": {
+      "accepted": false,
+      "error": "No single positive terminal exposure"
+    }
+  },
+  {
+    "arm": "direct",
+    "name": "two-truncated-terminal-workers",
+    "host": {
+      "accepted": false,
+      "error": "No single positive terminal exposure"
+    },
+    "component": {
+      "accepted": false,
+      "error": "No single positive terminal exposure"
+    }
+  },
+  {
+    "arm": "direct",
+    "name": "no-tool-overcredit",
+    "host": {
+      "accepted": false,
+      "error": "Unearned productivity"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "direct",
+    "name": "tool-arrival-does-not-speed-minute-zero",
+    "host": {
+      "accepted": false,
+      "error": "Item exposure cannot fit its paid rate and tool/time boundary"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "direct",
+    "name": "completion-before-fourteen-post-tool-minutes-fit",
+    "host": {
+      "accepted": false,
+      "error": "Item exposure cannot fit its paid rate and tool/time boundary"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "direct",
+    "name": "one-pump-cannot-pay-two-workers-in-one-minute",
+    "host": {
+      "accepted": false,
+      "error": "Item paid work exceeds its sequential time"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "direct",
+    "name": "one-pump-cannot-use-two-pre-tool-first-minutes",
+    "host": {
+      "accepted": false,
+      "error": "Item exposure cannot fit its paid rate and tool/time boundary"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "direct",
+    "name": "one-actor-cannot-own-both-pre-tool-first-minutes",
+    "host": {
+      "accepted": false,
+      "error": "One actor cannot pay incompatible item time windows"
+    },
+    "component": {
+      "accepted": true
+    }
+  },
+  {
+    "arm": "direct",
+    "name": "no-tool-completion-before-sequential-paid-minutes-fit",
+    "host": {
+      "accepted": false,
+      "error": "Completion before paid work"
+    },
+    "component": {
+      "accepted": true
+    }
+  }
+]

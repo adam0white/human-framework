@@ -1,8 +1,16 @@
 # Executable coverage and research boundaries
 
-Snapshot updated 2026-09-08 through delivered app 0.11.0, laboratory engine 0.3.0, original games and rain chapter Human 0.1.0, Watch, Last Light, Service Day and Shared Promise Human 0.1.1, portable runtime/Human 0.1.1 and clock 0.1.0. This ledger distinguishes the [laboratory kernel](../src/core/index.js), [scenario data](../src/scenarios/index.js), [experiment runner](../src/experiments.js), and narrower [portable host components](portable-runtime.md). It narrows the broader [framework proposal](framework-proposal.md); responsibilities listed in that proposal are not evidence that their mechanisms have been implemented.
+Snapshot updated 2026-09-08 through app 0.12 and the private paid-work study. The laboratory is retired from public/local serving; its headless sources remain historical evidence. Current delivered games use their recorded Human 0.1.0/0.1.1 host boundaries; the portable package remains Human/runtime 0.1.1 plus clock 0.1.0. This ledger distinguishes historical laboratory mechanisms from the narrower [portable components](portable-runtime.md), private experiments and unimplemented responsibilities in the [broader proposal](framework-proposal.md). Older “next” statements below are dated provenance; use the current handoff/roadmap.
 
 **Implemented** means an executable transition, interface, or record exists. **Proxy** means an implemented quantity or rule is an authored engineering approximation without human calibration. **Unmodeled** means the kernel supplies no mechanism for that function. A proposed interface below is a research design, not an existing plugin API. A rejection test states what would count against adding a mechanism or making the associated claim.
+
+## Paid-work and retirement update
+
+[App 0.12](release-0.12.md) removes the public laboratory and presents independent current/earlier examples. The [private paid-work study](work-progress-results.md) implements a reusable work item, a camp-shaped consumer, direct/fixed rivals and a fresh independent repair consumer. Tool changes, retained partial work, consent/owned materials and paid practice are executed; restore defects are corrected without a journal. Both predeclared repair changes need no shared API change. The work component remains unpromoted after near-neutral source and unproven maintenance value; no general human faculty, calibration or human authoring result is established. 741 integrated tests and 61 independent consumer tests pass.
+
+## Historical coverage updates
+
+The boundaries and planned next steps below describe their dates; they do not impose old-save, public-route or all-game continuation requirements.
 
 ## App 0.11 coverage update
 

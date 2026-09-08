@@ -1,0 +1,166 @@
+{
+  "scope": "Two corrected consumers. Identical authoritative Human/model/work source counted once; independently authored host/adapter/validation files counted fully. F is a separate work-contract control, not part of this same-physics adoption comparison. Test/measurement apparatus is reported separately in source inventories.",
+  "campFreeze": "ebcea3a5aecccc8fe3edbf1ddcaa5d577cd7d568",
+  "repairCostSha256": "a9c67c8d1ced3e69e289bbf9c582742f8f45d088b5e3517af6a82830105a28be",
+  "arms": {
+    "candidate": {
+      "bytes": 72791,
+      "nonblankLines": 978,
+      "files": [
+        {
+          "identity": "src/core/model.js",
+          "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+          "bytes": 7764,
+          "nonblankLines": 117,
+          "uses": [
+            "camp",
+            "repair"
+          ]
+        },
+        {
+          "identity": "src/experiments/work-progress/camp-candidate.js",
+          "sha256": "b688781b682cca9333b29993f1a2f3f42710bd5d66e983c525359cef8d174db7",
+          "bytes": 17180,
+          "nonblankLines": 183,
+          "uses": [
+            "camp"
+          ]
+        },
+        {
+          "identity": "src/experiments/work-progress/candidate.js",
+          "sha256": "43f0093f118e98ce58bdf269d3bddd5cba7a83ce80d3ba82b1bb6e2b5193940b",
+          "bytes": 6682,
+          "nonblankLines": 85,
+          "uses": [
+            "camp",
+            "repair"
+          ]
+        },
+        {
+          "identity": "src/human/v0.1.1.js",
+          "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+          "bytes": 11580,
+          "nonblankLines": 176,
+          "uses": [
+            "camp",
+            "repair"
+          ]
+        },
+        {
+          "identity": "independent-repair/src/yard.js",
+          "sha256": "325672095764e4f76903a8f6ac58f64f79b4ba3bd180f32da84818648cab7038",
+          "bytes": 21832,
+          "nonblankLines": 294,
+          "uses": [
+            "repair"
+          ]
+        },
+        {
+          "identity": "independent-repair/src/shape.js",
+          "sha256": "26a7e7cbe833c7e4386a649b36a0e68b6bfa8ff8e05ca7e43ed66aedd398b14d",
+          "bytes": 1937,
+          "nonblankLines": 30,
+          "uses": [
+            "repair"
+          ]
+        },
+        {
+          "identity": "independent-repair/src/import-exposure.js",
+          "sha256": "0c79c3b89f3f6273336740fd4be6b2075f57d9a1a6f7840d517ea36974e07e24",
+          "bytes": 4422,
+          "nonblankLines": 72,
+          "uses": [
+            "repair"
+          ]
+        },
+        {
+          "identity": "independent-repair/src/candidate-pump.js",
+          "sha256": "cf8b12b3ddba63ddd3b66205e61655830006c1ec949342f43f9c8d0ac50b9c31",
+          "bytes": 1394,
+          "nonblankLines": 21,
+          "uses": [
+            "repair"
+          ]
+        }
+      ]
+    },
+    "direct": {
+      "bytes": 72505,
+      "nonblankLines": 993,
+      "files": [
+        {
+          "identity": "src/core/model.js",
+          "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+          "bytes": 7764,
+          "nonblankLines": 117,
+          "uses": [
+            "camp",
+            "repair"
+          ]
+        },
+        {
+          "identity": "src/experiments/work-progress/camp-direct.js",
+          "sha256": "0a0a977e1e5e51c0c564dbd28839ceef3638a0ccd3bf50cfb610aebdce127459",
+          "bytes": 21334,
+          "nonblankLines": 244,
+          "uses": [
+            "camp"
+          ]
+        },
+        {
+          "identity": "src/human/v0.1.1.js",
+          "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+          "bytes": 11580,
+          "nonblankLines": 176,
+          "uses": [
+            "camp",
+            "repair"
+          ]
+        },
+        {
+          "identity": "independent-repair/src/yard.js",
+          "sha256": "325672095764e4f76903a8f6ac58f64f79b4ba3bd180f32da84818648cab7038",
+          "bytes": 21832,
+          "nonblankLines": 294,
+          "uses": [
+            "repair"
+          ]
+        },
+        {
+          "identity": "independent-repair/src/shape.js",
+          "sha256": "26a7e7cbe833c7e4386a649b36a0e68b6bfa8ff8e05ca7e43ed66aedd398b14d",
+          "bytes": 1937,
+          "nonblankLines": 30,
+          "uses": [
+            "repair"
+          ]
+        },
+        {
+          "identity": "independent-repair/src/import-exposure.js",
+          "sha256": "0c79c3b89f3f6273336740fd4be6b2075f57d9a1a6f7840d517ea36974e07e24",
+          "bytes": 4422,
+          "nonblankLines": 72,
+          "uses": [
+            "repair"
+          ]
+        },
+        {
+          "identity": "independent-repair/src/direct-pump.js",
+          "sha256": "7cc43521ecedb3a518a18f9581485b86381da50954bfd1818d0a39eb14aaa965",
+          "bytes": 3636,
+          "nonblankLines": 60,
+          "uses": [
+            "repair"
+          ]
+        }
+      ]
+    }
+  },
+  "candidateExtraBytes": 286,
+  "candidateExtraNonblankLines": -15,
+  "cautions": [
+    "Byte/line counts are not human authoring effort or maintenance value.",
+    "The direct camp retains a stronger historical skill-basis check; the candidate has a broader standalone generic item contract.",
+    "Strict whole-projection equality in repair is not met; actual paid physical quantities match and raw derived effort differences are retained."
+  ]
+}

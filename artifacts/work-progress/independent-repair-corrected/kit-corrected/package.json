@@ -1,0 +1,14 @@
+{
+  "name": "paid-work-probe",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": "./candidate.js",
+    "./human": "./src/human/v0.1.1.js",
+    "./runtime": "./src/runtime/index.js"
+  }
+}

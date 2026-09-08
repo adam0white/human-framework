@@ -1,0 +1,331 @@
+{
+  "verifiedAt": "2026-09-08T20:15:38.752Z",
+  "deployed": {
+    "appVersion": "0.12.0",
+    "runtimeVersion": "0.1.1",
+    "clockVersion": "0.1.0",
+    "commit": "7dbf9aeff7e91fcc8717cc7635e180db2129219f",
+    "dirty": false,
+    "assetsSha256": "5c5e10da18c1a1d9f7d4d773195807e3e613bcd5e31817a8bacc15cb36e5b56d"
+  },
+  "privateSourceHead": "6a6399564453b087e3e369dd36413769850d55be",
+  "localBuildDirty": true,
+  "matchingPublicDigest": true,
+  "payloads": [
+    {
+      "route": "/",
+      "sha256": "dabcd133e604e8aba12058e0270a70536a73774c377cc414889699017d60d020"
+    },
+    {
+      "route": "/workshop/",
+      "sha256": "795cff55aa719cb253d1d3a1ed4d6cc8fa19e170fa914786621739e059243a5e"
+    },
+    {
+      "route": "/web/camp-session.js",
+      "sha256": "853f62dbd25d4941586349cf97ff45228b71ca760e205d5442578a8f95d1ceeb"
+    },
+    {
+      "route": "/web/camp-slots.js",
+      "sha256": "842402075ff83e5e67b4ee30f6715f4bfb0a44703cc6bf43f1e80b0fcedc02a4"
+    },
+    {
+      "route": "/web/camp.css",
+      "sha256": "4a25b7fdb9638b7ea504803a145d010461468c55bcdac6fc4518a88ff34af488"
+    },
+    {
+      "route": "/web/camp.js",
+      "sha256": "1031c2532ecf7d85cd2b2bca45a08cb15753d7f15b4857135ce02309f5ad97d8"
+    },
+    {
+      "route": "/web/commons-next.css",
+      "sha256": "5bdee021c21688b2dd9f2da4791f439a5b6a160cd3306d45fca380a4b45d0ea1"
+    },
+    {
+      "route": "/web/commons-next.js",
+      "sha256": "23f8f8df57e46a78156bcf83e8de43c77304fe8dbc87636fee6d389e8aab1ebf"
+    },
+    {
+      "route": "/web/commons.css",
+      "sha256": "75fa4084b90b88838b186b4efb44d5455b877ea68b8178cc9e38568da2767487"
+    },
+    {
+      "route": "/web/commons.js",
+      "sha256": "36642aeae757b3e266d49f95241c5447f064e23f0e88200795e3fea019c6bd9d"
+    },
+    {
+      "route": "/web/courier.css",
+      "sha256": "17fce75d3660fb9324a41f93633984403a80f2543cba7937774779089e243711"
+    },
+    {
+      "route": "/web/courier.js",
+      "sha256": "fc1220258c3e9da303cca8e4d9b855f173afa58137a90a4c1de5dffd24cc851c"
+    },
+    {
+      "route": "/web/courtyard-guide.js",
+      "sha256": "cac4aff6caa89ba9d7cc2b3e5cc8d370aa9674fad69d53d7546269669d6b2463"
+    },
+    {
+      "route": "/web/courtyard.css",
+      "sha256": "7c19a8af1025e5a07ab3ea66d38f8cef00ad38e036d0d1f2067ff7e0eae61fd1"
+    },
+    {
+      "route": "/web/courtyard.js",
+      "sha256": "8fd633a42aac08eae859251a49b56a5a5a3d6a99106ef4bed481b743e15dcd54"
+    },
+    {
+      "route": "/web/game-shell.css",
+      "sha256": "b053e80dd8fba61ab0286c297724653b94b1c29d09c503b8a892da34bc1d444f"
+    },
+    {
+      "route": "/web/game-shell.js",
+      "sha256": "69c7e934940f5678518fe7c6c4e443f26e1f2121383864284c0bd0f5f9d93bff"
+    },
+    {
+      "route": "/web/games.css",
+      "sha256": "730f74e4f1b35c19330a6dad5825d3fae50f9b2d4b7509d56e6263eeb8fde6d6"
+    },
+    {
+      "route": "/web/games.js",
+      "sha256": "371486b704391b7dbd82dd4810eecdd1e54dc07255f45923283921e521f1a700"
+    },
+    {
+      "route": "/web/play-note.css",
+      "sha256": "03de00f1922bc4bb70dd6506f6dd26fd226251c5c5985666b42f122e1de20148"
+    },
+    {
+      "route": "/web/play-note.js",
+      "sha256": "ca6958dfa9d78b6eab0bd9cb6731444b13a55e40c9739b04a0758764c124c3c8"
+    },
+    {
+      "route": "/web/service-plan-session.js",
+      "sha256": "3f7c3f62dbb846add5f7a719d166542f0225974e886811c369d9982d708332c6"
+    },
+    {
+      "route": "/web/service-plan.css",
+      "sha256": "75de35fab39edaa7360b6d6c97657042ded7c58d173d0edfa3b39364bc30503f"
+    },
+    {
+      "route": "/web/service-plan.js",
+      "sha256": "0d75c023263661005b22d18e50a808bd38d8b1ff06d565b4e9a1cdd470ee3545"
+    },
+    {
+      "route": "/web/service-session.js",
+      "sha256": "a05f984ed977f8e29624c7cbcb6c80f3bb11728bee87eb43b76bee474cc07474"
+    },
+    {
+      "route": "/web/service.css",
+      "sha256": "52f0b0ee4debc7a880eceb0b858234983a4ea82f0019a61dddf3971b415ac2dd"
+    },
+    {
+      "route": "/web/service.js",
+      "sha256": "3ac621eeb90ef4bbd24b5b9f15bbba41bab851bd20fddf5e779a94fe62249ba6"
+    },
+    {
+      "route": "/web/shift.css",
+      "sha256": "5ee9b1309e558724dbf10dd9b06f8724c3663c0ad804cb6e84fbf115121a007b"
+    },
+    {
+      "route": "/web/shift.js",
+      "sha256": "92ecca05bf305b57580eaf0176e4dca009a42e1f0435a03fc02ce4b736010418"
+    },
+    {
+      "route": "/web/signals-session.js",
+      "sha256": "26b4add21514bd1644b0a9845a4d3a6442b96be07553d6eafc53b96e2732cd32"
+    },
+    {
+      "route": "/web/signals.css",
+      "sha256": "8e060c54607c12f26671db0b14d5886df1d1fa67e1c155674c66217047685ed2"
+    },
+    {
+      "route": "/web/signals.js",
+      "sha256": "703f0557827f6ce0d1722a4ecf69e0c87c64aff02cdc3be2e85e9735bc9c4392"
+    },
+    {
+      "route": "/web/watch-session.js",
+      "sha256": "1b634be8c468a498e372a647e16fa046fa8c8cd2d317da9bbb40989288b65527"
+    },
+    {
+      "route": "/web/watch.css",
+      "sha256": "974e209a8c375954fcebd9d144fb120c297bc66beffef423bbfe750dafd0835e"
+    },
+    {
+      "route": "/web/watch.js",
+      "sha256": "c0d6ba04c19a1e14f093d4f5377e9685a6f5f9d14107cbfb9696501e0f862119"
+    },
+    {
+      "route": "/web/workshop.css",
+      "sha256": "9524ef6e65a5dd62d85adae624770e55b98c8b9755492df67691a5bf27401732"
+    },
+    {
+      "route": "/web/workshop.js",
+      "sha256": "73d2d7e30620980687c94f0d01163383479279f9ae0259f38430a9577f9124b9"
+    },
+    {
+      "route": "/watch/",
+      "sha256": "5abca5dce544bc65b78751621d337a5d7f8387634559ce7a385ac38235f7a405"
+    },
+    {
+      "route": "/src/runtime/clock.js",
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    },
+    {
+      "route": "/src/runtime/index.js",
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+    },
+    {
+      "route": "/src/human/index.js",
+      "sha256": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308"
+    },
+    {
+      "route": "/src/human/v0.1.1.js",
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "route": "/src/games/camp-story.js",
+      "sha256": "99300ffb03feb6d45a0dcd1313e71c7f8e20c7857f35701d6931dcc66c74e538"
+    },
+    {
+      "route": "/src/games/camp.js",
+      "sha256": "a695c31258b8bc5339a20cd49f238e5a8f7fa1bed52c1cf2c0706822f804c078"
+    },
+    {
+      "route": "/src/games/commons-next.js",
+      "sha256": "cd7db395f2498ff52230fa799d3d40f254d03b36403a144f619c2b16daee2bd0"
+    },
+    {
+      "route": "/src/games/commons-policy.js",
+      "sha256": "d5700cbe386b91424f1aa4a6059a7cc0868ee920da264a1d12a66bee8979195f"
+    },
+    {
+      "route": "/src/games/commons.js",
+      "sha256": "b2c6f5e8bd38e84b729d73182170c88034edc3767e00c71cd65784233283aedb"
+    },
+    {
+      "route": "/src/games/courier-policy.js",
+      "sha256": "90757d495b17ca71b1ad2e540e35b617b3d2bc3a8b5e788aab21907bcadc845c"
+    },
+    {
+      "route": "/src/games/courier.js",
+      "sha256": "ddfcec4978380364bfb3b36d1dd936bc8b85825ffb960596e7a32b36561800aa"
+    },
+    {
+      "route": "/src/games/courtyard-session.js",
+      "sha256": "7f653afeff22e06e16a6abe0647c9be14de382fb0cd33318f5a64600e6d8b563"
+    },
+    {
+      "route": "/src/games/courtyard.js",
+      "sha256": "4bdc2d794855ebb45a5992c9b1cccd00274ed1aaf152ea32ee91c3b513ee7e4b"
+    },
+    {
+      "route": "/src/games/service-plan.js",
+      "sha256": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7"
+    },
+    {
+      "route": "/src/games/service.js",
+      "sha256": "50ce6e3e52a9e92c85532f3a73d8afa46e6bc0ca7993ef72ce9e4f58e51738d1"
+    },
+    {
+      "route": "/src/games/shift.js",
+      "sha256": "4789e22b746d9ee24711e3a011d9e40f67053b7b14e3204648487276f04b9e36"
+    },
+    {
+      "route": "/src/games/signals.js",
+      "sha256": "b546cdc1a9215bfa79e7e505b71185b9341ff1a90a9f97f2f6fca5db3ca1203e"
+    },
+    {
+      "route": "/src/games/watch.js",
+      "sha256": "2600779cd5321cba4162f2b9c921efb87fbf94499852e30e2c081a45d307d2a3"
+    },
+    {
+      "route": "/src/games/workshop.js",
+      "sha256": "b2ee4cb10fddf57455c0321e42da1d256b87a7a96225d92ff1940f45ed8f6f06"
+    },
+    {
+      "route": "/src/core/model.js",
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "route": "/src/core/random.js",
+      "sha256": "d2c76c3105a86b052a6694a4709e67f58f9a88dad9eccc62d397c2e87f4eaeec"
+    },
+    {
+      "route": "/signals/",
+      "sha256": "fccce10be7137a5c8dafdcdf92af773454fea4a996f2bda8c23afdffe2f9f299"
+    },
+    {
+      "route": "/shift/",
+      "sha256": "ba5276219e469c4614a004be264ecead7e1352c3fd5ee5d98b7d46103f73322f"
+    },
+    {
+      "route": "/service-plan/",
+      "sha256": "6e054fb6dd173691825572257e0f20e0418f50542ad6bc9352dad145ee3aae91"
+    },
+    {
+      "route": "/service/",
+      "sha256": "adec81c8b439de719743b68f565ebc3e46347ba5e453e9f20bf3cdd61c70f74d"
+    },
+    {
+      "route": "/games/",
+      "sha256": "dabcd133e604e8aba12058e0270a70536a73774c377cc414889699017d60d020"
+    },
+    {
+      "route": "/courtyard/",
+      "sha256": "f9006bcf099a8a26136f0c82b34ea7222aa4cd9bc4685b72cb12674be1acb56a"
+    },
+    {
+      "route": "/courier/",
+      "sha256": "10096339b0cdf49a07594c5957188150874bff9915073c8b4ca46ea65a318252"
+    },
+    {
+      "route": "/commons-next/",
+      "sha256": "15ea4dfcec509d86cdb2e8649d2f8f56c2b52305d18c2a45e43544110048ae39"
+    },
+    {
+      "route": "/commons/",
+      "sha256": "78dc3aa3a6de7cf9be514b764185f0099408db98010e150157a70d2643d8c2e2"
+    },
+    {
+      "route": "/camp/",
+      "sha256": "51064b7f3ba9e4d353c1038d6ee6b69e8e319afee8f4b41ebd836a66c2d3be3a"
+    }
+  ],
+  "privatePaths": [
+    {
+      "path": "/src/experiments/work-progress/candidate.js",
+      "status": 404
+    },
+    {
+      "path": "/src/experiments/work-progress/camp-candidate.js",
+      "status": 404
+    },
+    {
+      "path": "/src/experiments/work-progress/camp-direct.js",
+      "status": 404
+    },
+    {
+      "path": "/docs/work-progress-results.md",
+      "status": 404
+    },
+    {
+      "path": "/artifacts/work-progress/combined-cost.json",
+      "status": 404
+    },
+    {
+      "path": "/research/reviews/2026-09-08-work-progress-opus/result.json",
+      "status": 404
+    },
+    {
+      "path": "/scripts/work-progress-comparison.js",
+      "status": 404
+    },
+    {
+      "path": "/web/app.js",
+      "status": 404
+    },
+    {
+      "path": "/src/core/index.js",
+      "status": 404
+    }
+  ],
+  "note": "Private framework work leaves the delivered app unchanged. This is a payload/boundary check, not a new deployment or a claim that current private HEAD equals deployed source."
+}

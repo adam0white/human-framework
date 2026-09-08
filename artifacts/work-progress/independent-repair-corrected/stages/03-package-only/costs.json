@@ -1,0 +1,58 @@
+{
+  "packageOnly": {
+    "shared": {
+      "bytes": 42971,
+      "lines": 635
+    },
+    "candidateInclusive": {
+      "bytes": 51047,
+      "lines": 742
+    },
+    "directInclusive": {
+      "bytes": 46198,
+      "lines": 693
+    }
+  },
+  "packageDelta": {
+    "candidateInclusive": {
+      "bytes": 394,
+      "lines": 3
+    },
+    "directInclusive": {
+      "bytes": 0,
+      "lines": 0
+    }
+  },
+  "metadata": [
+    {
+      "path": "package.json",
+      "bytes": 88,
+      "lines": 1,
+      "sha256": "650ccc93a47396a4c8367ad92b805067c89acf36b0353dcf5a000c814933d2da"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 550,
+      "lines": 28,
+      "sha256": "1015f59e2683d232808496974837d3c3a36bbfd6ab552d5339239240c129af12"
+    },
+    {
+      "path": "kit-corrected/package.json",
+      "bytes": 261,
+      "lines": 14,
+      "sha256": "a38a231c8b9baf7a18f026360af581d40f2fcb3d7b72f27eae9fc0ba6e0a2487"
+    }
+  ],
+  "kitChecks": [
+    {
+      "directory": "kit",
+      "files": 8,
+      "unchanged": true
+    },
+    {
+      "directory": "kit-corrected",
+      "files": 8,
+      "unchanged": true
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # What may graduate to MVP
 
-Established 2026-09-07; current direction revised after app 0.11 on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
+Established 2026-09-07; current direction revised through app 0.12 and the private paid-work study on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
 
 ## Current scope correction
 
@@ -36,6 +36,10 @@ The retired laboratory Full policy was a distinct reactive experimental controll
 5. **Retain independent controls and evidence.** Use socially isolated controls where needed. Preserve negative results and sufficient versioned source to reproduce material comparisons privately; old public interfaces and automatic save migration are not required. CPU/event latency and memory measurements must name hardware, workload and what rendering was excluded; physical-mobile timing remains a separate check.
 
 Package usability and a broader human model have different completion criteria. Passing software lifecycle checks does not establish understandable play, useful authoring complexity or human validity.
+
+## Completed paid-work reuse study
+
+The [private work study](work-progress-results.md) strengthens lifecycle/portability evidence through an actual frozen API, independently authored repair consumer, two separate requirement changes, corrected invariant failures and restricted-runtime reproduction. It does not promote a runtime export: two-consumer source is nearly neutral, most host obligations remain, human authoring benefit is unmeasured, and strict projected bit equality remains unmet only for derived effort. The current [next task](camp-maintenance-proposal.md) reduces obsolete Camp obligations under an explicit smaller contract. No fixed player count or preservation of every old save is required for that work.
 
 ## Historical milestone records
 

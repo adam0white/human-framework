@@ -1,0 +1,21 @@
+--- kit/candidate.js	2026-09-08 13:03:07
++++ kit-corrected/candidate.js	2026-09-08 13:42:08
+@@ -1,5 +1,5 @@
+ /** Private dependency-free item accounting; the caller owns payment and effects. */
+-export const WORK_VERSION='0.1.0';
++export const WORK_VERSION='0.1.1';
+ export const WORK_LIMITS=Object.freeze({workers:16,durationMinutes:1440});
+ const EPS=1e-12,TOLERANCE=1e-10,copy=structuredClone,trusted=new WeakSet();
+ const fail=message=>{throw new Error(message);};
+@@ -34,7 +34,10 @@
+     if(Math.abs(worker.effort-work.effort*worker.fraction)>TOLERANCE||worker.fraction>worker.minutes/work.minimumDuration+EPS||worker.fraction<minimumFraction-EPS||(!worker.minutes&&worker.fraction)||(worker.minutes>0&&worker.fraction===0))fail('Unpaid or inconsistent worker contribution');
+     fraction+=worker.fraction;minutes+=worker.minutes;
+   }
+-  if(minutes>WORK_LIMITS.durationMinutes||Math.abs(fraction-work.progress)>TOLERANCE)fail('Inconsistent total work progress');
++  const contributors=ids.map(id=>work.workers[id]),paid=contributors.filter(worker=>worker.minutes>0);
++  if(minutes>Math.max(0,...paid.map(worker=>worker.basisMinutes))||Math.abs(fraction-work.progress)>TOLERANCE)fail('Inconsistent total work progress');
++  if(work.status!=='open'&&!paid.some(last=>last.fraction>(last.minutes-1)/last.basisMinutes&&
++    contributors.every(worker=>worker===last||worker.fraction>=worker.minutes/worker.basisMinutes-EPS)))fail('Work cannot have multiple or zero-work terminal exposures');
+   return work;
+ }
+ export function createWork(input){

@@ -1,0 +1,196 @@
+{
+  "files": [
+    {
+      "path": "src/yard.js",
+      "bytes": 21832,
+      "lines": 297,
+      "sha256": "325672095764e4f76903a8f6ac58f64f79b4ba3bd180f32da84818648cab7038"
+    },
+    {
+      "path": "src/shape.js",
+      "bytes": 1937,
+      "lines": 30,
+      "sha256": "26a7e7cbe833c7e4386a649b36a0e68b6bfa8ff8e05ca7e43ed66aedd398b14d"
+    },
+    {
+      "path": "src/import-exposure.js",
+      "bytes": 4422,
+      "lines": 73,
+      "sha256": "0c79c3b89f3f6273336740fd4be6b2075f57d9a1a6f7840d517ea36974e07e24"
+    },
+    {
+      "path": "kit-corrected/src/human/v0.1.1.js",
+      "bytes": 11580,
+      "lines": 190,
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "path": "kit-corrected/src/core/model.js",
+      "bytes": 7764,
+      "lines": 120,
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "path": "src/candidate-pump.js",
+      "bytes": 1394,
+      "lines": 22,
+      "sha256": "cf8b12b3ddba63ddd3b66205e61655830006c1ec949342f43f9c8d0ac50b9c31"
+    },
+    {
+      "path": "kit-corrected/candidate.js",
+      "bytes": 6682,
+      "lines": 85,
+      "sha256": "43f0093f118e98ce58bdf269d3bddd5cba7a83ce80d3ba82b1bb6e2b5193940b"
+    },
+    {
+      "path": "src/direct-pump.js",
+      "bytes": 3636,
+      "lines": 61,
+      "sha256": "7cc43521ecedb3a518a18f9581485b86381da50954bfd1818d0a39eb14aaa965"
+    },
+    {
+      "path": "tests/histories.js",
+      "bytes": 4562,
+      "lines": 63,
+      "sha256": "2ca651cdd8d191d0465ebacd9c176aa6e31c13fade9f43e65369b078d3978f87"
+    },
+    {
+      "path": "tests/repair.test.js",
+      "bytes": 19887,
+      "lines": 287,
+      "sha256": "7ec4bbcd8b085f7bda189905b6a5ce8617cbe07c957147d1e24aa46b81c064ac"
+    },
+    {
+      "path": "tests/record.mjs",
+      "bytes": 7614,
+      "lines": 80,
+      "sha256": "6b4031ad4ad21743af083a8d2b9c722cb2a247fea243da4a90e6feb86a752fe8"
+    },
+    {
+      "path": "tests/import-fixtures.js",
+      "bytes": 4027,
+      "lines": 59,
+      "sha256": "532b930f4b1941f73c664c7d3c4ba8dec3f739610388c526bb40a717a60f010c"
+    },
+    {
+      "path": "tests/import-invariants.test.js",
+      "bytes": 2407,
+      "lines": 41,
+      "sha256": "a7c25aa9f4ec4686c8a306fded24bc669266cf8ea3cc9031672b670f716ebfde"
+    },
+    {
+      "path": "tests/all.test.js",
+      "bytes": 152,
+      "lines": 3,
+      "sha256": "4f19beb5d852a5359e958f9002042f7ec8dab38cabb2072db42d2afe601477cf"
+    },
+    {
+      "path": "package.json",
+      "bytes": 88,
+      "lines": 1,
+      "sha256": "650ccc93a47396a4c8367ad92b805067c89acf36b0353dcf5a000c814933d2da"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 550,
+      "lines": 28,
+      "sha256": "1015f59e2683d232808496974837d3c3a36bbfd6ab552d5339239240c129af12"
+    },
+    {
+      "path": "kit-corrected/package.json",
+      "bytes": 261,
+      "lines": 14,
+      "sha256": "a38a231c8b9baf7a18f026360af581d40f2fcb3d7b72f27eae9fc0ba6e0a2487"
+    }
+  ],
+  "runtime": {
+    "shared": {
+      "bytes": 47535,
+      "lines": 710,
+      "files": [
+        "src/yard.js",
+        "src/shape.js",
+        "src/import-exposure.js",
+        "kit-corrected/src/human/v0.1.1.js",
+        "kit-corrected/src/core/model.js"
+      ]
+    },
+    "candidateOnly": {
+      "bytes": 8076,
+      "lines": 107,
+      "files": [
+        "src/candidate-pump.js",
+        "kit-corrected/candidate.js"
+      ]
+    },
+    "directOnly": {
+      "bytes": 3636,
+      "lines": 61,
+      "files": [
+        "src/direct-pump.js"
+      ]
+    },
+    "candidateInclusive": {
+      "bytes": 55611,
+      "lines": 817
+    },
+    "directInclusive": {
+      "bytes": 51171,
+      "lines": 771
+    }
+  },
+  "support": {
+    "bytes": 39548,
+    "lines": 576,
+    "files": [
+      "tests/histories.js",
+      "tests/repair.test.js",
+      "tests/record.mjs",
+      "tests/import-fixtures.js",
+      "tests/import-invariants.test.js",
+      "tests/all.test.js",
+      "package.json",
+      "package-lock.json",
+      "kit-corrected/package.json"
+    ],
+    "note": "Tests, recording/oracle and package metadata reported separately; they are part of this experiment, not omitted labor."
+  },
+  "validationSpans": [
+    {
+      "path": "src/yard.js",
+      "startLine": 192,
+      "endLine": 295,
+      "bytes": 9680,
+      "note": "Literal contiguous source span; not a complexity or maintenance metric."
+    },
+    {
+      "path": "src/yard.js",
+      "startLine": 171,
+      "endLine": 186,
+      "bytes": 980,
+      "note": "Literal contiguous source span; not a complexity or maintenance metric."
+    },
+    {
+      "path": "src/direct-pump.js",
+      "startLine": 35,
+      "endLine": 54,
+      "bytes": 1703,
+      "note": "Literal contiguous source span; not a complexity or maintenance metric."
+    },
+    {
+      "path": "kit-corrected/candidate.js",
+      "startLine": 20,
+      "endLine": 42,
+      "bytes": 2138,
+      "note": "Literal contiguous source span; not a complexity or maintenance metric."
+    }
+  ],
+  "validationNotes": [
+    "The whole src/shape.js file is shared validation/freezing support.",
+    "The whole src/import-exposure.js file is shared bounded import feasibility validation and counts in both arms.",
+    "Human validation is retained inside the counted Human and core source files.",
+    "Candidate item validation costs count in full through kit-corrected/candidate.js.",
+    "Direct omits redundant contribution effort storage; shared host validation still reconciles .20 times contribution coverage against separately paid effort.",
+    "Both host arms use the same host restore function and tests. Extra general candidate behavior is not tested or credited as a two-pump benefit."
+  ]
+}

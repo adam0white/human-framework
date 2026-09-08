@@ -1,0 +1,125 @@
+{
+  "lossless": true,
+  "files": [
+    {
+      "original": "exact-comparison.json",
+      "stored": "exact-comparison.json.gz",
+      "sha256": "fba0c0660ec0078e35742c8f956b66b368fe5c75e59610539f61390e43b12988",
+      "storedSha256": "7dc38c9b91f701d47160db4bb54e6544f50573941dda62126c4b786246b89665",
+      "bytes": 235682,
+      "storedBytes": 5846
+    },
+    {
+      "original": "CONSUMER.md",
+      "stored": "CONSUMER.md",
+      "sha256": "84f25c5662ef0e2623aaa23d9912ef0d7f651f71d00210bd01e2e1f69b5b20c5",
+      "storedSha256": "84f25c5662ef0e2623aaa23d9912ef0d7f651f71d00210bd01e2e1f69b5b20c5",
+      "bytes": 6759,
+      "storedBytes": 6759
+    },
+    {
+      "original": "EVIDENCE.md",
+      "stored": "EVIDENCE.md",
+      "sha256": "c01b3f435befba841f369c9e4a69b95e6850a01680c2fdf871f2bed7ba75b48a",
+      "storedSha256": "c01b3f435befba841f369c9e4a69b95e6850a01680c2fdf871f2bed7ba75b48a",
+      "bytes": 5613,
+      "storedBytes": 5613
+    },
+    {
+      "original": "RUNBOOK.md",
+      "stored": "RUNBOOK.md",
+      "sha256": "1263bc13e770be919b1f60d038aec0de53e02648d9a008fbb4b1ac399d26e86c",
+      "storedSha256": "1263bc13e770be919b1f60d038aec0de53e02648d9a008fbb4b1ac399d26e86c",
+      "bytes": 2792,
+      "storedBytes": 2792
+    },
+    {
+      "original": "PROVENANCE.md",
+      "stored": "PROVENANCE.md",
+      "sha256": "f2983480b4348b16db54ac14358288fb8dd2774839fd3c3e09feb048750a28d5",
+      "storedSha256": "f2983480b4348b16db54ac14358288fb8dd2774839fd3c3e09feb048750a28d5",
+      "bytes": 2853,
+      "storedBytes": 2853
+    },
+    {
+      "original": "exact-run.json",
+      "stored": "exact-run.json",
+      "sha256": "a026c1cd28c5590fc199cfac4994f42414edbfd34058e4f753783355ad460206",
+      "storedSha256": "a026c1cd28c5590fc199cfac4994f42414edbfd34058e4f753783355ad460206",
+      "bytes": 2682,
+      "storedBytes": 2682
+    },
+    {
+      "original": "freeze.json",
+      "stored": "freeze.json",
+      "sha256": "3d4bb94bb6ec973d1d1a38729fbcd2462b932db30d6d2716857debc7c378eb7d",
+      "storedSha256": "3d4bb94bb6ec973d1d1a38729fbcd2462b932db30d6d2716857debc7c378eb7d",
+      "bytes": 5808,
+      "storedBytes": 5808
+    },
+    {
+      "original": "costs.json",
+      "stored": "costs.json",
+      "sha256": "9079e4b2d80fc4c5a7d1455c6b420a82fa06d977d709a65a4e457044229d7417",
+      "storedSha256": "9079e4b2d80fc4c5a7d1455c6b420a82fa06d977d709a65a4e457044229d7417",
+      "bytes": 4467,
+      "storedBytes": 4467
+    },
+    {
+      "original": "tests/record.mjs",
+      "stored": "tests/record.mjs",
+      "sha256": "882ed2c44172b78a014f19b15abacd82c4698d5818f22d52cc2865b58bcfc322",
+      "storedSha256": "882ed2c44172b78a014f19b15abacd82c4698d5818f22d52cc2865b58bcfc322",
+      "bytes": 6417,
+      "storedBytes": 6417
+    },
+    {
+      "original": "tests/repair.test.js",
+      "stored": "tests/repair.test.js",
+      "sha256": "c0ecd84de42f9bad51d4e975040e86a9d61f37cf20805bcddbafbd78db9ba1de",
+      "storedSha256": "c0ecd84de42f9bad51d4e975040e86a9d61f37cf20805bcddbafbd78db9ba1de",
+      "bytes": 14623,
+      "storedBytes": 14623
+    },
+    {
+      "original": "tests/histories.js",
+      "stored": "tests/histories.js",
+      "sha256": "addaa2a727f6cadd30437b0f78b42852509de4aa8b0dc6b317549a4d6f75ec46",
+      "storedSha256": "addaa2a727f6cadd30437b0f78b42852509de4aa8b0dc6b317549a4d6f75ec46",
+      "bytes": 3824,
+      "storedBytes": 3824
+    },
+    {
+      "original": "src/candidate-pump.js",
+      "stored": "src/candidate-pump.js",
+      "sha256": "965fc53238cfbe1c4f952a5022421571aebcefedaa5cc32cadc3faf9600bbcb3",
+      "storedSha256": "965fc53238cfbe1c4f952a5022421571aebcefedaa5cc32cadc3faf9600bbcb3",
+      "bytes": 1391,
+      "storedBytes": 1391
+    },
+    {
+      "original": "src/yard.js",
+      "stored": "src/yard.js",
+      "sha256": "edcdc65c56ae041dffb93afd358134d0472dc2a6ea5b59bb9d7e79ce348c77fd",
+      "storedSha256": "edcdc65c56ae041dffb93afd358134d0472dc2a6ea5b59bb9d7e79ce348c77fd",
+      "bytes": 19325,
+      "storedBytes": 19325
+    },
+    {
+      "original": "src/shape.js",
+      "stored": "src/shape.js",
+      "sha256": "26a7e7cbe833c7e4386a649b36a0e68b6bfa8ff8e05ca7e43ed66aedd398b14d",
+      "storedSha256": "26a7e7cbe833c7e4386a649b36a0e68b6bfa8ff8e05ca7e43ed66aedd398b14d",
+      "bytes": 1937,
+      "storedBytes": 1937
+    },
+    {
+      "original": "src/direct-pump.js",
+      "stored": "src/direct-pump.js",
+      "sha256": "b8050f2767c413a77e363d0aa93b0cc3902730c5a014ea091a3fb1298ea13f10",
+      "storedSha256": "b8050f2767c413a77e363d0aa93b0cc3902730c5a014ea091a3fb1298ea13f10",
+      "bytes": 3118,
+      "storedBytes": 3118
+    }
+  ]
+}

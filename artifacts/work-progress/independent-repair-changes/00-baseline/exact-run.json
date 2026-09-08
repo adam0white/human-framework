@@ -1,0 +1,121 @@
+[
+  {
+    "history": "H1",
+    "unequalCheckpointsAcrossRepeatedDrivers": 98,
+    "firstDifference": {
+      "driver": "minute",
+      "roundTrip": false,
+      "checkpoint": 6,
+      "minute": 5,
+      "differences": [
+        {
+          "path": ".pump.work.hands.mara.effort",
+          "candidate": 0.05000000000000001,
+          "direct": 0.05
+        }
+      ]
+    }
+  },
+  {
+    "history": "H2",
+    "unequalCheckpointsAcrossRepeatedDrivers": 98,
+    "firstDifference": {
+      "driver": "minute",
+      "roundTrip": false,
+      "checkpoint": 6,
+      "minute": 5,
+      "differences": [
+        {
+          "path": ".pump.work.hands.mara.effort",
+          "candidate": 0.06714285714285714,
+          "direct": 0.06714285714285713
+        }
+      ]
+    }
+  },
+  {
+    "history": "H3",
+    "unequalCheckpointsAcrossRepeatedDrivers": 116,
+    "firstDifference": {
+      "driver": "minute",
+      "roundTrip": false,
+      "checkpoint": 6,
+      "minute": 5,
+      "differences": [
+        {
+          "path": ".pump.work.hands.mara.effort",
+          "candidate": 0.05000000000000001,
+          "direct": 0.05
+        }
+      ]
+    }
+  },
+  {
+    "history": "H4",
+    "unequalCheckpointsAcrossRepeatedDrivers": 98,
+    "firstDifference": {
+      "driver": "minute",
+      "roundTrip": false,
+      "checkpoint": 8,
+      "minute": 5,
+      "differences": [
+        {
+          "path": ".pump.work.hands.mara.effort",
+          "candidate": 0.06714285714285714,
+          "direct": 0.06714285714285713
+        }
+      ]
+    }
+  },
+  {
+    "history": "H5",
+    "unequalCheckpointsAcrossRepeatedDrivers": 94,
+    "firstDifference": {
+      "driver": "minute",
+      "roundTrip": false,
+      "checkpoint": 9,
+      "minute": 7,
+      "differences": [
+        {
+          "path": ".pump.work.hands.tomas.effort",
+          "candidate": 0.06666666666666667,
+          "direct": 0.06666666666666668
+        }
+      ]
+    }
+  },
+  {
+    "history": "H6",
+    "unequalCheckpointsAcrossRepeatedDrivers": 96,
+    "firstDifference": {
+      "driver": "minute",
+      "roundTrip": false,
+      "checkpoint": 8,
+      "minute": 6,
+      "differences": [
+        {
+          "path": ".pump.work.hands.mara.effort",
+          "candidate": 0.05000000000000001,
+          "direct": 0.05
+        }
+      ]
+    }
+  },
+  {
+    "history": "H7",
+    "unequalCheckpointsAcrossRepeatedDrivers": 98,
+    "firstDifference": {
+      "driver": "minute",
+      "roundTrip": false,
+      "checkpoint": 7,
+      "minute": 5,
+      "differences": [
+        {
+          "path": ".pump.work.hands.mara.effort",
+          "candidate": 0.05000000000000001,
+          "direct": 0.05
+        }
+      ]
+    }
+  }
+]

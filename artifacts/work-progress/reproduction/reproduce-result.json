@@ -1,0 +1,9 @@
+{
+  "node": "v26.8.1",
+  "directory": "/private/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/hf-repair-reproduction-RzBfMt",
+  "readAllowance": "/private/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/hf-repair-reproduction-RzBfMt",
+  "nodeWritePermission": false,
+  "nodeChildProcessPermission": false,
+  "passed": true,
+  "method": "Source and evidence restored from Git archives; local package installed offline with scripts/config sources restricted; tests run without repository reads."
+}
