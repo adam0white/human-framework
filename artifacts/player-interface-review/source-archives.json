@@ -1,0 +1,26 @@
+[
+  {
+    "archive": "source.tar.gz",
+    "files": 151,
+    "sha256": "43f5ffc326ae675a73e7ef3242c1cc80eac2dcd0873c2735c9dc600f8c8cbc61",
+    "allFileBytesVerified": true
+  },
+  {
+    "archive": "fixed/source.tar.gz",
+    "files": 151,
+    "sha256": "bb8e1e64c6939ab81fc386bc5f97afaa502a65253e1172a555f82e7ddd9add8b",
+    "allFileBytesVerified": true
+  },
+  {
+    "archive": "final/source.tar.gz",
+    "files": 151,
+    "sha256": "5b160e70100558a69632b80644073444ae29ab59279afd6e95dd05840f0d1098",
+    "allFileBytesVerified": true
+  },
+  {
+    "archive": "late/source.tar.gz",
+    "files": 151,
+    "sha256": "cfae441532ca16de45900dd40c93100af25d6b9e8a3af47b305ae74d3d40756f",
+    "allFileBytesVerified": true
+  }
+]
