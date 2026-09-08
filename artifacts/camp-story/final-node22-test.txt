@@ -1,0 +1,195 @@
+TAP version 13
+# Subtest: Next Event goes directly to assigned job completion when there is no earlier meaningful event
+ok 1 - Next Event goes directly to assigned job completion when there is no earlier meaningful event
+  ---
+  duration_ms: 8.212875
+  ...
+# Subtest: taking Meryem work records her acceptance of the player relief offer
+ok 2 - taking Meryem work records her acceptance of the player relief offer
+  ---
+  duration_ms: 2.460958
+  ...
+# Subtest: an unwilling busy neighbor can refuse handover without any paid or physical mutation
+ok 3 - an unwilling busy neighbor can refuse handover without any paid or physical mutation
+  ---
+  duration_ms: 2.696333
+  ...
+# Subtest: paid practice and effort totals cannot be erased or fabricated in a snapshot
+ok 4 - paid practice and effort totals cannot be erased or fabricated in a snapshot
+  ---
+  duration_ms: 3.186041
+  ...
+# Subtest: coordinated fabricated gathering receipts still require paid work
+ok 5 - coordinated fabricated gathering receipts still require paid work
+  ---
+  duration_ms: 0.210709
+  ...
+# Subtest: a stopped stage resumes with no second material payment even after another worker contributes
+ok 6 - a stopped stage resumes with no second material payment even after another worker contributes
+  ---
+  duration_ms: 4.507916
+  ...
+# Subtest: automatic recovery never feeds a hungry solo actor or relaxes hunger capacity
+ok 7 - automatic recovery never feeds a hungry solo actor or relaxes hunger capacity
+  ---
+  duration_ms: 10.649042
+  ...
+# Subtest: invalid options identities oversized trees and accessors do not mutate saved state
+ok 8 - invalid options identities oversized trees and accessors do not mutate saved state
+  ---
+  duration_ms: 1.114333
+  ...
+# Subtest: the actual stock-first milestone migrates its live gather without granting a new shelter bonus
+ok 9 - the actual stock-first milestone migrates its live gather without granting a new shelter bonus
+  ---
+  duration_ms: 29.917
+  ...
+# Subtest: fixed attempt counter reservation retains stop save and automatic progression
+ok 10 - fixed attempt counter reservation retains stop save and automatic progression
+  ---
+  duration_ms: 3.025166
+  ...
+# Subtest: camp exposes the separately versioned full game API
+ok 11 - camp exposes the separately versioned full game API
+  ---
+  duration_ms: 3.457125
+  ...
+# Subtest: automatic available recovery pays real time without a job or food
+ok 12 - automatic available recovery pays real time without a job or food
+  ---
+  duration_ms: 3.574583
+  ...
+# Subtest: full gathering pays interval before fixed output; meal reservation returns only on interruption
+ok 13 - full gathering pays interval before fixed output; meal reservation returns only on interruption
+  ---
+  duration_ms: 6.133125
+  ...
+# Subtest: migration preserves mixed fixed gather, meal and converted rest paid state
+ok 14 - migration preserves mixed fixed gather, meal and converted rest paid state
+  ---
+  duration_ms: 21.961917
+  ...
+# Subtest: prospective workbench improves future physical work while snapshot is independent of recovery
+ok 15 - prospective workbench improves future physical work while snapshot is independent of recovery
+  ---
+  duration_ms: 20.908375
+  ...
+# Subtest: stopping and resuming preserve material and per-worker productivity basis
+ok 16 - stopping and resuming preserve material and per-worker productivity basis
+  ---
+  duration_ms: 4.481209
+  ...
+# Subtest: handover invokes recipient choice and charges only that recipient future work
+ok 17 - handover invokes recipient choice and charges only that recipient future work
+  ---
+  duration_ms: 2.428375
+  ...
+# Subtest: neighbor accepted project gathers missing material and recovers through own decisions
+ok 18 - neighbor accepted project gathers missing material and recovers through own decisions
+  ---
+  duration_ms: 7.259292
+  ...
+# Subtest: availability uses actual admission for the original rounded-capacity counterexample
+ok 19 - availability uses actual admission for the original rounded-capacity counterexample
+  ---
+  duration_ms: 4.423416
+  ...
+# Subtest: chunking and JSON snapshot continuation remain exact past the old fixture horizon
+ok 20 - chunking and JSON snapshot continuation remain exact past the old fixture horizon
+  ---
+  duration_ms: 33.8915
+  ...
+# Subtest: stop and save stay available after many same-minute assignments
+ok 21 - stop and save stay available after many same-minute assignments
+  ---
+  duration_ms: 143.94125
+  ...
+# Subtest: tampered ownership, contributions, counters and unsafe JSON are rejected
+ok 22 - tampered ownership, contributions, counters and unsafe JSON are rejected
+  ---
+  duration_ms: 1.441792
+  ...
+# Subtest: the first actual milestone is the same complete world across all three drivers
+ok 23 - the first actual milestone is the same complete world across all three drivers
+  ---
+  duration_ms: 71.087541
+  ...
+# Subtest: legacy Rain imports retain their existing window, paid world and settlement instead of starting again
+ok 24 - legacy Rain imports retain their existing window, paid world and settlement instead of starting again
+  ---
+  duration_ms: 80.443917
+  ...
+# Subtest: an import-root time cannot move while keeping the same original Common Ground source
+ok 25 - an import-root time cannot move while keeping the same original Common Ground source
+  ---
+  duration_ms: 27.061167
+  ...
+# Subtest: a cache completing exactly at the ferry can be allocated before its inclusive dispatch
+ok 26 - a cache completing exactly at the ferry can be allocated before its inclusive dispatch
+  ---
+  duration_ms: 127.309167
+  ...
+# Subtest: a partially paid meal survives the ferry checkpoint and an explicit stop returns only its own reserved portion
+ok 27 - a partially paid meal survives the ferry checkpoint and an explicit stop returns only its own reserved portion
+  ---
+  duration_ms: 69.775417
+  ...
+# Subtest: ordinary request exhaustion still permits unilateral stop, release, both checkpoints and saved return
+ok 28 - ordinary request exhaustion still permits unilateral stop, release, both checkpoints and saved return
+  ---
+  duration_ms: 1455.558333
+  ...
+# Subtest: invalid, recursive and oversized input rejects without getters, cloning expansion or world mutation
+ok 29 - invalid, recursive and oversized input rejects without getters, cloning expansion or world mutation
+  ---
+  duration_ms: 25.819583
+  ...
+# Subtest: window deadlines reserve numeric time and final Return exposes a stopped limit with save access
+ok 30 - window deadlines reserve numeric time and final Return exposes a stopped limit with save access
+  ---
+  duration_ms: 104.143625
+  ...
+# Subtest: new story earns its actual camp and pauses after the first milestone
+ok 31 - new story earns its actual camp and pauses after the first milestone
+  ---
+  duration_ms: 142.533083
+  ...
+# Subtest: mixed stock-first legacy migration enters the complete selected world without a canonical opening
+ok 32 - mixed stock-first legacy migration enters the complete selected world without a canonical opening
+  ---
+  duration_ms: 29.874208
+  ...
+# Subtest: actual legacy surplus keeps twelve earned caches and can close without empty time
+ok 33 - actual legacy surplus keeps twelve earned caches and can close without empty time
+  ---
+  duration_ms: 113.6715
+  ...
+# Subtest: coarse, minute and Next Event drivers stop identically at the ferry and retain pending work
+ok 34 - coarse, minute and Next Event drivers stop identically at the ferry and retain pending work
+  ---
+  duration_ms: 272.031959
+  ...
+# Subtest: missing the ferry permits later paid camp service and retains the household loss on return
+ok 35 - missing the ferry permits later paid camp service and retains the household loss on return
+  ---
+  duration_ms: 163.844
+  ...
+# Subtest: source replay rejects forged window, receipts, allocations, continuation and world snapshots
+ok 36 - source replay rejects forged window, receipts, allocations, continuation and world snapshots
+  ---
+  duration_ms: 253.861208
+  ...
+# Subtest: views and reading do not alter the saved world and expose source kernel fields
+ok 37 - views and reading do not alter the saved world and expose source kernel fields
+  ---
+  duration_ms: 21.155833
+  ...
+1..37
+# tests 37
+# suites 0
+# pass 37
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2020.739708

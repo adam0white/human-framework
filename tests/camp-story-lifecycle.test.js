@@ -74,6 +74,8 @@ test('a partially paid meal survives the ferry checkpoint and an explicit stop r
 test('ordinary request exhaustion still permits unilateral stop, release, both checkpoints and saved return',()=>{
   let game=baseline();game=story.requestProject(game,'cache');
   while(game.record.commands.length<story.ORDINARY_COMMAND_LIMIT)game=story.requestProject(game,'cache');
+  const limited=story.getGameView(game);assert.equal(limited.canAssign,false);assert.equal(limited.ordinaryCommandsRemaining,0);
+  assert.ok(limited.choices.every(choice=>choice.unavailable));assert.equal(limited.canAdvance,true);
   assert.throws(()=>story.requestProject(game,'cache'),/budget/i);assert.throws(()=>story.startJob(game,'eat'),/budget/i);
   game=story.cancelJob(game);game=story.releaseProject(game);
   game=story.advanceGame(game,180);assert.equal(story.getGameView(game).phase,'ferry');game=story.dispatchFerry(game);
@@ -90,4 +92,20 @@ test('invalid, recursive and oversized input rejects without getters, cloning ex
   const over=story.exportGame(game);over.game.record.commands=Array.from({length:story.MAX_WINDOW_COMMANDS+1},()=>({type:'continue'}));assert.throws(()=>story.restoreGame(over),/bounded|journal/i);
   const hugeKey=story.exportGame(game);hugeKey.game['x'.repeat(2000000)]=null;assert.throws(()=>story.restoreGame(hugeKey),/size|large|bound/i);
   assert.deepEqual(story.exportGame(game),original);
+});
+
+test('window deadlines reserve numeric time and final Return exposes a stopped limit with save access',()=>{
+  // A synthetic validator-only authority fixture, not evidence of earned billion-minute play.
+  // The original host validates snapshots; it does not reconstruct their missing history.
+  const source=milestone('build-first'),g=source.game,shift=camp.CAMP_LIMITS.worldMinutes-180-g.clock.now;
+  g.clock.now+=shift;g.milestoneAt+=shift;g.stats.idleMinutes+=shift*2;
+  for(const person of Object.values(g.people))person.minutes+=shift;
+  for(const key of ['acceptedAt','finishedAt'])if(g.commitment[key]!==null)g.commitment[key]+=shift;
+  if(g.lastResponse)g.lastResponse.at+=shift;for(const event of g.recent)event.at+=shift;
+  legacy.restoreGame(source);
+  const tooLate=json(source);tooLate.game.clock.now++;tooLate.game.stats.idleMinutes+=2;for(const person of Object.values(tooLate.game.people))person.minutes++;
+  assert.throws(()=>story.migrateLegacyGame(tooLate),/entry time/i);
+  let game=story.continueStory(story.migrateLegacyGame(source));game=story.dispatchFerry(story.advanceGame(game,1440));game=story.finishStory(story.advanceGame(game,1440));game=story.returnToCamp(game);
+  const view=story.getGameView(game);assert.equal(view.now,camp.CAMP_LIMITS.worldMinutes);assert.equal(view.canAdvance,false);assert.equal(view.canAssign,false);assert.equal(view.nextEventAt,null);assert.match(view.pauseReason,/limit/i);
+  assert.throws(()=>story.advanceToNextEvent(game),/limit/i);assert.deepEqual(story.restoreGame(json(story.exportGame(game))),game);
 });

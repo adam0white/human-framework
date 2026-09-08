@@ -45,8 +45,9 @@ function phase(game){
   if(w.departedAt===null&&game.world.clock.now===w.ferryAt)return 'ferry';
   return 'packing';
 }
-const pauseReason=game=>({introduction:'Read the new supply objective, then Continue.',ferry:'The ferry is waiting. Allocate supplies, then send it.',rain:'The rain checkpoint is here. Allocate remaining camp supplies, then finish.',ended:'This supply window is finished. Return to camp or save and leave.'})[phase(game)]??null;
-const runs=game=>['camp','packing','camp-return'].includes(phase(game));
+const timeLimit=game=>game.window?WORLD_LIMIT:WORLD_LIMIT-RAIN_MINUTES;
+const pauseReason=game=>({introduction:'Read the new supply objective, then Continue.',ferry:'The ferry is waiting. Allocate supplies, then send it.',rain:'The rain checkpoint is here. Allocate remaining camp supplies, then finish.',ended:'This supply window is finished. Return to camp or save and leave.'})[phase(game)]??(game.world.clock.now>=timeLimit(game)?'The supported camp time limit is reached. Stop active work or save and leave.':null);
+const runs=game=>['camp','packing','camp-return'].includes(phase(game))&&game.world.clock.now<timeLimit(game);
 function requireRunning(game){if(!runs(game))throw new Error(pauseReason(game));}
 function windowFor(world){
   integer(world.clock.now,0,WORLD_LIMIT-RAIN_MINUTES,'supply-window entry time');
@@ -170,11 +171,13 @@ export function returnToCamp(game){return act(game,{type:'return'});}
 export function getGameView(game){
   validate(game);const view=camp.getGameView(game.world),w=game.window,current=phase(game),now=game.world.clock.now,canAdvance=runs(game),households=count(game,'households'),campCount=count(game,'camp');
   const stop=w&&!game.returned?(w.departedAt===null?w.ferryAt:w.rainAt):game.window?WORLD_LIMIT:WORLD_LIMIT-RAIN_MINUTES;
+  const ordinaryCommandsRemaining=w&&!game.returned?Math.max(0,ORDINARY_COMMAND_LIMIT-game.record.commands.length):null;
+  const canAssign=canAdvance&&ordinaryCommandsRemaining!==0,assignmentReason=ordinaryCommandsRemaining===0?'The ordinary command budget is used. Stop work, advance, or finish this window.':null;
   return {...view,version:CAMP_STORY_VERSION,worldVersion:view.version,phase:current,window:copy(w),enteredAt:w?.enteredAt??null,ferryAt:w?.ferryAt??null,rainAt:w?.rainAt??null,
     elapsed:w?now-w.enteredAt:null,remaining:w?Math.max(0,w.rainAt-now):null,ferryRemaining:w?Math.max(0,w.ferryAt-now):null,availableCaches:game.world.caches-(w?.allocations.length??0),carriedCaches:w?.carriedCaches??0,
     householdsEquipped:households,campNights:campCount*2,unprovidedHouseholds:2-households,unprovidedNights:4-campCount*2,departed:w?.departedAt!==null&&Boolean(w),
-    canFinish:current==='rain'||current==='packing'&&w.departedAt!==null&&covered(game),canAdvance,pauseReason:pauseReason(game),nextEventAt:canAdvance?Math.min(view.nextEventAt,stop):null,
-    choices:view.choices.map(choice=>({...choice,finishesBeforeFerry:Boolean(w)&&w.departedAt===null&&now+choice.duration<=w.ferryAt,finishesBeforeRain:Boolean(w)&&now+choice.duration<=w.rainAt,unavailable:canAdvance?choice.unavailable:pauseReason(game)}))};
+    canFinish:current==='rain'||current==='packing'&&w.departedAt!==null&&covered(game),canAdvance,canAssign,ordinaryCommandsRemaining,pauseReason:pauseReason(game),nextEventAt:canAdvance?Math.min(view.nextEventAt,stop):null,
+    choices:view.choices.map(choice=>({...choice,finishesBeforeFerry:Boolean(w)&&w.departedAt===null&&now+choice.duration<=w.ferryAt,finishesBeforeRain:Boolean(w)&&now+choice.duration<=w.rainAt,unavailable:!canAdvance?pauseReason(game):assignmentReason??choice.unavailable}))};
 }
 export function exportGame(game){validate(game);return copy({format:'human-camp-story',version:1,game});}
 export function restoreGame(snapshot){inspect(snapshot);exact(snapshot,['format','version','game'],'story snapshot');if(snapshot.format!=='human-camp-story'||snapshot.version!==1)throw new Error('Incompatible save. This page loads camp story saves; use explicit legacy continuation for older games.');return seal(copy(validate(snapshot.game)));}
