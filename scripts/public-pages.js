@@ -10,7 +10,8 @@ export const PUBLIC_PAGES=Object.freeze({
   'commons-next/index.html':'web/commons-next.html',
   'watch/index.html':'web/watch.html',
   'signals/index.html':'web/signals.html',
-  'service/index.html':'web/service.html'
+  'service/index.html':'web/service.html',
+  'service-plan/index.html':'web/service-plan.html'
 });
 
 export const HTML_ROUTES=Object.freeze(Object.fromEntries(Object.entries(PUBLIC_PAGES).flatMap(([output,source])=>{
