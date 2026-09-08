@@ -18,7 +18,7 @@ function inspect(value){
     if(typeof item==='number'){if(!Number.isFinite(item)||Object.is(item,-0))throw new Error('Invalid nonfinite story number');debit(String(item).length);return;}
     if(typeof item==='string'){string(item);return;}
     if(typeof item!=='object'||seen.has(item))throw new Error('Story save must be an unshared JSON tree');
-    seen.add(item);if(!Array.isArray(item)&&![Object.prototype,null].includes(Object.getPrototypeOf(item)))throw new Error('Invalid story JSON object');
+    seen.add(item);if(Array.isArray(item)?Object.getPrototypeOf(item)!==Array.prototype:![Object.prototype,null].includes(Object.getPrototypeOf(item)))throw new Error('Invalid story JSON object prototype');
     if(Reflect.ownKeys(item).some(key=>typeof key!=='string'))throw new Error('Invalid story JSON key');
     debit(2);for(const [key,descriptor] of Object.entries(Object.getOwnPropertyDescriptors(item))){
       if(Array.isArray(item)&&key==='length')continue;
@@ -132,9 +132,13 @@ function mutate(game,command,{record=true}={}){
 function continuationExtends(world,settled){
   if(world.clock.now<settled.clock.now||world.caches<settled.caches||world.milestoneAt!==settled.milestoneAt||!equal(world.options,settled.options)||!equal(world.origin,settled.origin)||world.solo!==settled.solo)throw new Error('Returned camp does not extend the settled world');
   for(const project of Object.keys(settled.structures))if(world.structures[project]!==settled.structures[project])throw new Error('Returned camp changed an established structure');
-  for(const id of Object.keys(settled.people))if(world.people[id].id!==settled.people[id].id||world.people[id].minutes<settled.people[id].minutes)throw new Error('Returned camp changed a person');
+  if(world.clock.nextEvent<settled.clock.nextEvent)throw new Error('Returned camp reversed an event identity counter');
+  for(const id of Object.keys(settled.people)){
+    if(world.people[id].id!==settled.people[id].id||world.people[id].minutes<settled.people[id].minutes||world.people[id].nextAttempt<settled.people[id].nextAttempt)throw new Error('Returned camp changed a person or reversed an attempt identity');
+    monotone(world.people[id].skills,settled.people[id].skills);
+  }
   function monotone(a,b){for(const key of Object.keys(b)){if(typeof b[key]==='number'&&typeof a?.[key]==='number'&&a[key]<b[key])throw new Error('Returned camp reversed a lifetime receipt');if(b[key]&&typeof b[key]==='object')monotone(a?.[key],b[key]);}}
-  monotone(world.stats,settled.stats);
+  monotone(world.stats,settled.stats);monotone(world.paid,settled.paid);
 }
 function validate(game){
   if(trusted.has(game))return game;

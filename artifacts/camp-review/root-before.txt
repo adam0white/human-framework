@@ -1,0 +1,100 @@
+✖ Next Event stops at renewed player capacity while the other person keeps working (23.839917ms)
+✖ returned camp cannot reuse lifetime attempt or clock identities from before the chapter (156.344916ms)
+✖ returned camp cannot move already-paid work and practice between people (81.037333ms)
+✖ story JSON rejects custom array prototypes before invoking inherited accessors (42.698541ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 345.0385
+
+✖ failing tests:
+
+test at tests/camp-review-regressions.test.js:9:1
+✖ Next Event stops at renewed player capacity while the other person keeps working (23.839917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  96 !== 77
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-review-regressions.test.js:12:9)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 96,
+    expected: 77,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/camp-review-regressions.test.js:16:1
+✖ returned camp cannot reuse lifetime attempt or clock identities from before the chapter (156.344916ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-review-regressions.test.js:21:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Returned camp|receipt|identity|counter/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/camp-review-regressions.test.js:24:1
+✖ returned camp cannot move already-paid work and practice between people (81.037333ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-review-regressions.test.js:29:9)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Returned camp|receipt/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/camp-review-regressions.test.js:31:1
+✖ story JSON rejects custom array prototypes before invoking inherited accessors (42.698541ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /JSON|prototype/. Input:
+  
+  'Error: Inherited code executed'
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-review-regressions.test.js:35:9)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Inherited code executed
+        at Array.get (file:///Users/abdul/code/human-framework/tests/camp-review-regressions.test.js:33:69)
+        at validate (file:///Users/abdul/code/human-framework/src/games/camp-story.js:149:36)
+        at Module.restoreGame (file:///Users/abdul/code/human-framework/src/games/camp-story.js:183:319)
+        at file:///Users/abdul/code/human-framework/tests/camp-review-regressions.test.js:35:26
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-review-regressions.test.js:35:9)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    expected: /JSON|prototype/,
+    operator: 'throws',
+    diff: 'simple'
+  }

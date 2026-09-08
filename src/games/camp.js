@@ -232,11 +232,14 @@ export function advanceGame(game,minutes){validate(game);int(minutes,0,1440,'adv
 function nextStop(g){
   const scheduled=actors(g).filter(a=>g.jobs[a]).map(a=>g.jobs[a].kind==='fixed'?g.jobs[a].endsAt-g.clock.now:remaining(g,g.work[g.jobs[a].project],a));
   const probe=copy(g),horizon=Math.min(scheduled.length?Math.min(...scheduled):6,LIMIT-g.clock.now),start=g.stats.completed;
+  const blocked=!g.jobs.player&&(g.options.recovery==='automatic'||g.recovering.player)
+    ?[...Object.keys(JOBS),...projects.filter(p=>!complete(g,p)).map(p=>`build-${p}`)].filter(id=>unavailable(g,blueprint(g,id,'player'),'player')):[];
   for(let n=1;n<=horizon;n++){
     const before=Object.fromEntries(actors(g).map(a=>[a,{fatigue:probe.people[a].body.fatigue,job:probe.jobs[a]?.id??null}]));
     advanceRaw(probe,1);
     if(probe.stats.completed>start)return {at:probe.clock.now,reason:'job-complete'};
     if(actors(g).some(a=>!before[a].job&&probe.jobs[a]))return {at:probe.clock.now,reason:'ready-for-work'};
+    if(!probe.jobs.player&&blocked.some(id=>!unavailable(probe,blueprint(probe,id,'player'),'player')))return {at:probe.clock.now,reason:'player-ready-for-work'};
     if(actors(g).some(a=>before[a].fatigue>0&&probe.people[a].body.fatigue===0))return {at:probe.clock.now,reason:'recovery-floor'};
   }return {at:g.clock.now+horizon,reason:horizon?'review-interval':'world-limit'};
 }

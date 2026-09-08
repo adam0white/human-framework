@@ -1,0 +1,73 @@
+✖ pause preserves paid pending work; stop is a distinct world command (0.278333ms)
+✖ playback stops on actual work completion instead of spending the rest of a large tick (0.046583ms)
+✖ introduction and ferry are real paused boundaries; Continue and dispatch pay no hidden time (24.047209ms)
+✖ invalid commands retain the current story and surface a reason (0.067ms)
+✖ next event remains finite during available recovery and reload starts paused (0.042167ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64.137458
+
+✖ failing tests:
+
+test at tests/camp-session.test.js:9:1
+✖ pause preserves paid pending work; stop is a distinct world command (0.278333ms)
+  Error: Session implementation pending
+      at createSession (file:///Users/abdul/code/human-framework/web/camp-session.js:2:39)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-session.test.js:10:29)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/camp-session.test.js:19:1
+✖ playback stops on actual work completion instead of spending the rest of a large tick (0.046583ms)
+  Error: Session implementation pending
+      at createSession (file:///Users/abdul/code/human-framework/web/camp-session.js:2:39)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-session.test.js:20:29)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests/camp-session.test.js:26:1
+✖ introduction and ferry are real paused boundaries; Continue and dispatch pay no hidden time (24.047209ms)
+  Error: Session implementation pending
+      at createSession (file:///Users/abdul/code/human-framework/web/camp-session.js:2:39)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-session.test.js:27:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/camp-session.test.js:38:1
+✖ invalid commands retain the current story and surface a reason (0.067ms)
+  Error: Session implementation pending
+      at createSession (file:///Users/abdul/code/human-framework/web/camp-session.js:2:39)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-session.test.js:39:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/camp-session.test.js:44:1
+✖ next event remains finite during available recovery and reload starts paused (0.042167ms)
+  Error: Session implementation pending
+      at createSession (file:///Users/abdul/code/human-framework/web/camp-session.js:2:39)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-session.test.js:45:31)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
