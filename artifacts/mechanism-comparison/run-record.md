@@ -1,0 +1,11 @@
+# Execution record
+
+- Base: `33418c4`; original preregistration commit: `904b7e4` (protocol and numeric matrix only). No comparison outcome code or result existed at preregistration.
+- Wrote 15 failing host/model contract tests, observed 15 assertion failures for missing implementation; implemented the independent rival/common host; all 15 passed.
+- Wrote two freeze/artifact integrity tests, observed both fail for missing runner; implemented CLI, both passed (17 total).
+- First development run retained in `development.json`. Its execution commit is the preregistration HEAD, while its provenance lists the exact then-uncommitted source hashes. Development counts were inspected; no coefficients, conditions, rules or interpretation thresholds were changed.
+- Added an analytic-initial-forecast/input-isolation check (existing behavior), then a failing snapshot regression for extra hidden history, extra counters and zero coefficients. Added field/range validation to the small model. This changes malformed-input rejection only, not valid trajectories. It is not a protocol amendment or outcome tuning. Nineteen comparison tests and the complete 299-test suite passed on Node v26.8.1 before freezing.
+- The small model retains the initially implemented rule of clamping stamina during a meal interval and adding relief at completion. Human preserves interval maintenance through its hunger relief calculation. This authored boundary difference is retained; no post-result matching correction is applied.
+- Both adapters test interrupted ordinary JSON snapshots and common ownership/time invariants. The small model and experimental common host do not provide equal hostile-import validation assurance to released Human. The host does not authenticate arbitrary user-edited pending forecast/action/status fields. These are trusted internal experiment snapshots, not a new public import API. Report the validator scope difference alongside source size.
+
+Reserved and sensitivity execution must follow a committed-source freeze. See the manifest and result provenance for exact implementation commit, source hashes and execution times. The source-visible condition table is procedurally reserved, not blinded or external human data. A low-level JavaScript call could bypass the CLI's freeze gate; the retained executions use the checked CLI.
