@@ -1,0 +1,167 @@
+✖ camp exposes the separately versioned full game API (0.698375ms)
+✖ automatic available recovery pays real time without a job or food (0.062583ms)
+✖ full gathering pays interval before fixed output; meal reservation returns only on interruption (0.047833ms)
+✖ migration preserves mixed fixed gather, meal and converted rest paid state (2.371042ms)
+✖ prospective workbench improves future physical work while snapshot is independent of recovery (8.739542ms)
+✖ stopping and resuming preserve material and per-worker productivity basis (0.07775ms)
+✖ handover invokes recipient choice and charges only that recipient future work (0.064833ms)
+✖ neighbor accepted project gathers missing material and recovers through own decisions (0.043542ms)
+✖ availability uses actual admission for the original rounded-capacity counterexample (2.043125ms)
+✖ chunking and JSON snapshot continuation remain exact past the old fixture horizon (0.078709ms)
+✖ stop and save stay available after many same-minute assignments (0.048917ms)
+✖ tampered ownership, contributions, counters and unsafe JSON are rejected (0.0635ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 0
+ℹ fail 12
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61.850625
+
+✖ failing tests:
+
+test at tests/camp-kernel.test.js:10:1
+✖ camp exposes the separately versioned full game API (0.698375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:11:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/camp-kernel.test.js:15:1
+✖ automatic available recovery pays real time without a job or food (0.062583ms)
+  TypeError: camp.createGame is not a function
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:16:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests/camp-kernel.test.js:24:1
+✖ full gathering pays interval before fixed output; meal reservation returns only on interruption (0.047833ms)
+  TypeError: camp.createGame is not a function
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:25:28)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/camp-kernel.test.js:33:1
+✖ migration preserves mixed fixed gather, meal and converted rest paid state (2.371042ms)
+  TypeError: camp.migrateLegacyGame is not a function
+      at migrate (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:8:33)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:35:90)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/camp-kernel.test.js:45:1
+✖ prospective workbench improves future physical work while snapshot is independent of recovery (8.739542ms)
+  TypeError: camp.migrateLegacyGame is not a function
+      at migrate (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:8:33)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:48:30)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/camp-kernel.test.js:55:1
+✖ stopping and resuming preserve material and per-worker productivity basis (0.07775ms)
+  TypeError: camp.createGame is not a function
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:56:45)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/camp-kernel.test.js:62:1
+✖ handover invokes recipient choice and charges only that recipient future work (0.064833ms)
+  TypeError: camp.createGame is not a function
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:63:45)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/camp-kernel.test.js:71:1
+✖ neighbor accepted project gathers missing material and recovers through own decisions (0.043542ms)
+  TypeError: camp.createGame is not a function
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:72:34)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/camp-kernel.test.js:76:1
+✖ availability uses actual admission for the original rounded-capacity counterexample (2.043125ms)
+  TypeError: camp.migrateLegacyGame is not a function
+      at migrate (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:8:33)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:80:11)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/camp-kernel.test.js:83:1
+✖ chunking and JSON snapshot continuation remain exact past the old fixture horizon (0.078709ms)
+  TypeError: camp.createGame is not a function
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:84:36)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/camp-kernel.test.js:89:1
+✖ stop and save stay available after many same-minute assignments (0.048917ms)
+  TypeError: camp.createGame is not a function
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:90:28)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/camp-kernel.test.js:94:1
+✖ tampered ownership, contributions, counters and unsafe JSON are rejected (0.0635ms)
+  TypeError: camp.createGame is not a function
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel.test.js:95:54)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

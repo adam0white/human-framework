@@ -1,0 +1,20 @@
+✔ camp exposes the separately versioned full game API (5.454541ms)
+✔ automatic available recovery pays real time without a job or food (5.981334ms)
+✔ full gathering pays interval before fixed output; meal reservation returns only on interruption (6.825917ms)
+✔ migration preserves mixed fixed gather, meal and converted rest paid state (29.126042ms)
+✔ prospective workbench improves future physical work while snapshot is independent of recovery (34.950791ms)
+✔ stopping and resuming preserve material and per-worker productivity basis (4.437042ms)
+✔ handover invokes recipient choice and charges only that recipient future work (5.247708ms)
+✔ neighbor accepted project gathers missing material and recovers through own decisions (12.660125ms)
+✔ availability uses actual admission for the original rounded-capacity counterexample (5.686875ms)
+✔ chunking and JSON snapshot continuation remain exact past the old fixture horizon (56.868084ms)
+✔ stop and save stay available after many same-minute assignments (238.270334ms)
+✔ tampered ownership, contributions, counters and unsafe JSON are rejected (2.50775ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 491.986333
