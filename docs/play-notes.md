@@ -1,6 +1,6 @@
 # Optional play-note export
 
-Watch, Before the rain and Last Light now offer a collapsed **Save a play note** form. A player may describe their goal, a costly choice, an unexpected or unclear event, and another person's response. All fields are optional, but a completely blank note does not download. Opening the form pauses playback; downloading the note does not advance or otherwise change the game.
+Watch, Before the rain, Last Light and Service Day offer a collapsed **Save a play note** form. A player may describe their goal, a costly choice, an unexpected or unclear event, and another person's response. All fields are optional, but a completely blank note does not download. Opening the form pauses playback; downloading the note does not advance or otherwise change the game.
 
 The file contains the entered words, capture time, game identity/version and a small explicitly selected public summary at download time. It contains neither a full save nor hidden world state. Existing game-save controls remain separate. Draft text lasts only while the page remains open; no note is submitted over the network or automatically stored. The UI explains the download and draft lifetime.
 

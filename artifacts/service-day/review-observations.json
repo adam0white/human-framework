@@ -1,0 +1,105 @@
+{
+  "scope": "Post-review inspection of unchanged frozen policies on final host, not a new comparison or human evidence.",
+  "carryover": [
+    {
+      "route": "gate",
+      "pumpAt24": {
+        "code": "TARGET_BUSY",
+        "available": false,
+        "capacityEstimate": {
+          "allowed": false,
+          "causes": [
+            "fatigue"
+          ]
+        },
+        "response": "TARGET_BUSY"
+      },
+      "firstCart": {
+        "observedAt": 42,
+        "job": {
+          "task": "cart",
+          "startedAt": 42,
+          "endsAt": 60,
+          "origin": "own",
+          "reservedParts": 0,
+          "reservedMeal": 0
+        },
+        "keeperJob": {
+          "task": "rest",
+          "startedAt": 41,
+          "endsAt": 47,
+          "origin": "request",
+          "reservedParts": 0,
+          "reservedMeal": 0
+        },
+        "keeperParts": 1,
+        "pumpProgress": 6
+      },
+      "outcome": {
+        "at": 64,
+        "morningProtected": true,
+        "morningWater": true,
+        "clinicUnits": 1,
+        "clinicRequired": 2,
+        "clinicRoute": "cart",
+        "allService": false
+      },
+      "delivery": {
+        "at": 60,
+        "route": "cart",
+        "units": 1
+      }
+    },
+    {
+      "route": "diversion",
+      "pumpAt24": {
+        "code": "TARGET_BUSY",
+        "available": false,
+        "capacityEstimate": {
+          "allowed": true,
+          "causes": []
+        },
+        "response": "TARGET_BUSY"
+      },
+      "firstCart": null,
+      "outcome": {
+        "at": 64,
+        "morningProtected": true,
+        "morningWater": false,
+        "clinicUnits": 2,
+        "clinicRequired": 2,
+        "clinicRoute": "deliver",
+        "allService": false
+      },
+      "delivery": {
+        "at": 45,
+        "route": "deliver",
+        "units": 2
+      }
+    }
+  ],
+  "freshDeadlineFirstTransfers": [
+    {
+      "at": 10,
+      "keeperJob": {
+        "task": "gate",
+        "startedAt": 10,
+        "endsAt": 16,
+        "origin": "request",
+        "reservedParts": 1,
+        "reservedMeal": 0
+      },
+      "keeperParts": 0,
+      "reservedKeeperParts": 1,
+      "gatePartCost": 1,
+      "response": {
+        "at": 10,
+        "actor": "partner",
+        "task": "share",
+        "accepted": true,
+        "code": "ACCEPTED",
+        "reason": "Agreed: hand over one owned part, 2 paid minutes."
+      }
+    }
+  ]
+}

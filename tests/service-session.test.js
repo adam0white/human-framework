@@ -1,7 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createService,getServiceView,exportService,restoreService,advanceTo} from '../src/games/service.js';
-import {createSession,pauseSession,toggleSession,commandSession,stopSession,stepSession,tickSession,importSession} from '../web/service-session.js';
+import {createSession,pauseSession,toggleSession,commandSession,stopSession,stepSession,tickSession,importSession,serviceEventText} from '../web/service-session.js';
+
+test('completed diversion at the surge is presented as counted work without altering the saved event',()=>{
+  const entry={at:24,actor:'keeper',message:'Stopped divert the morning surge after 6 paid minutes. Installed work remains; unused supplies return.'};
+  const before=structuredClone(entry),v={morning:{at:24},work:{divert:6}};
+  assert.match(serviceEventText(v,entry),/complete|counted/i);assert.deepEqual(entry,before);
+  assert.equal(serviceEventText({...v,work:{divert:5}},entry),entry.message);
+  assert.equal(serviceEventText(v,{...entry,at:12}),entry.message);
+});
 
 test('a new or restored day stays paused and never catches up offline time',()=>{
  let s=commandSession(createSession(),'keeper','meal');

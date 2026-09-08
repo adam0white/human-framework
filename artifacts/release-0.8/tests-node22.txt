@@ -1,0 +1,280 @@
+TAP version 13
+# Subtest: an unpublished static dependency blocks build before the previous output is cleared
+ok 1 - an unpublished static dependency blocks build before the previous output is cleared
+  ---
+  duration_ms: 75.354
+  ...
+# Subtest: deployment contains the playable module graph and excludes private project files
+ok 2 - deployment contains the playable module graph and excludes private project files
+  ---
+  duration_ms: 140.248208
+  ...
+# Subtest: deployment refuses symlinked public roots, their ancestors, and the entry page
+ok 3 - deployment refuses symlinked public roots, their ancestors, and the entry page
+  ---
+  duration_ms: 182.820458
+  ...
+# Subtest: static graph links browser imports and reexports without executing any target source
+ok 4 - static graph links browser imports and reexports without executing any target source
+  ---
+  duration_ms: 75.784042
+  ...
+# Subtest: URL-instance aliases are rejected rather than collapsed into a false export proof
+ok 5 - URL-instance aliases are rejected rather than collapsed into a false export proof
+  ---
+  duration_ms: 192.700708
+  ...
+# Subtest: a private or missing static dependency cannot hide in otherwise valid public source
+ok 6 - a private or missing static dependency cannot hide in otherwise valid public source
+  ---
+  duration_ms: 110.062875
+  ...
+# Subtest: bare and remote imports reject and real export mismatches fail linkage
+ok 7 - bare and remote imports reject and real export mismatches fail linkage
+  ---
+  duration_ms: 214.786958
+  ...
+# Subtest: cycles are valid; comments and string contents do not become fake dependencies
+ok 8 - cycles are valid; comments and string contents do not become fake dependencies
+  ---
+  duration_ms: 66.881916
+  ...
+# Subtest: invalid syntax and duplicate or noncanonical public paths fail before build output is touched
+ok 9 - invalid syntax and duplicate or noncanonical public paths fail before build output is touched
+  ---
+  duration_ms: 54.505625
+  ...
+# Subtest: the guard labels its static scope instead of claiming runtime or dynamic-import coverage
+ok 10 - the guard labels its static scope instead of claiming runtime or dynamic-import coverage
+  ---
+  duration_ms: 55.964166
+  ...
+# Subtest: view-only policies are exported and select explicit paid requests
+ok 11 - view-only policies are exported and select explicit paid requests
+  ---
+  duration_ms: 1.559958
+  ...
+# Subtest: both small priorities can be identified from identical public information
+ok 12 - both small priorities can be identified from identical public information
+  ---
+  duration_ms: 0.164709
+  ...
+# Subtest: the policy uses no partner body and respects accepted commitment work
+ok 13 - the policy uses no partner body and respects accepted commitment work
+  ---
+  duration_ms: 0.106375
+  ...
+# Subtest: three-minute recovery is paid and interrupted explicitly before work resumes
+ok 14 - three-minute recovery is paid and interrupted explicitly before work resumes
+  ---
+  duration_ms: 0.082833
+  ...
+# Subtest: public refusal stops immediate repeated partner requests without free work
+ok 15 - public refusal stops immediate repeated partner requests without free work
+  ---
+  duration_ms: 0.148958
+  ...
+# Subtest: evidence writes require a fresh path and cannot replace an existing artifact
+ok 16 - evidence writes require a fresh path and cannot replace an existing artifact
+  ---
+  duration_ms: 16.783292
+  ...
+# Subtest: reserved conditions remain sealed before a freeze and are absent from default selection
+ok 17 - reserved conditions remain sealed before a freeze and are absent from default selection
+  ---
+  duration_ms: 11.722
+  ...
+# Subtest: a paid prefix preserves ownership, partial work and paid recovery
+ok 18 - a paid prefix preserves ownership, partial work and paid recovery
+  ---
+  duration_ms: 18.003209
+  ...
+# Subtest: real public command traces replay with identical saves and no checkpoint decisions
+ok 19 - real public command traces replay with identical saves and no checkpoint decisions
+  ---
+  duration_ms: 1477.8245
+  ...
+# Subtest: invalid policy commands and repeated zero-time refusals preserve partial outcomes
+ok 20 - invalid policy commands and repeated zero-time refusals preserve partial outcomes
+  ---
+  duration_ms: 39.019792
+  ...
+# Subtest: both policies acquire the shed part when following an already-started gate route
+ok 21 - both policies acquire the shed part when following an already-started gate route
+  ---
+  duration_ms: 0.392666
+  ...
+# Subtest: per-person paid time cross-foots to the day and evidence views omit peer condition
+ok 22 - per-person paid time cross-foots to the day and evidence views omit peer condition
+  ---
+  duration_ms: 196.060542
+  ...
+# Subtest: the CLI rejects missing output, sealed evaluation and existing evidence before results
+ok 23 - the CLI rejects missing output, sealed evaluation and existing evidence before results
+  ---
+  duration_ms: 204.526167
+  ...
+# Subtest: completed diversion at the surge is presented as counted work without altering the saved event
+ok 24 - completed diversion at the surge is presented as counted work without altering the saved event
+  ---
+  duration_ms: 1.782166
+  ...
+# Subtest: a new or restored day stays paused and never catches up offline time
+ok 25 - a new or restored day stays paused and never catches up offline time
+  ---
+  duration_ms: 16.622708
+  ...
+# Subtest: play pauses at the next real event and preserves concurrent unfinished work
+ok 26 - play pauses at the next real event and preserves concurrent unfinished work
+  ---
+  duration_ms: 4.008791
+  ...
+# Subtest: choice, refusal, interruption and visibility pauses clear fractional elapsed time
+ok 27 - choice, refusal, interruption and visibility pauses clear fractional elapsed time
+  ---
+  duration_ms: 8.758541
+  ...
+# Subtest: morning is a pause boundary, carries paid state forward, and only clinic closing ends the day
+ok 28 - morning is a pause boundary, carries paid state forward, and only clinic closing ends the day
+  ---
+  duration_ms: 13.278583
+  ...
+# Subtest: event stepping and one-minute stepping have the same host outcome
+ok 29 - event stepping and one-minute stepping have the same host outcome
+  ---
+  duration_ms: 13.829042
+  ...
+# Subtest: imports are paused and malformed imports cannot mutate the valid active session
+ok 30 - imports are paused and malformed imports cannot mutate the valid active session
+  ---
+  duration_ms: 7.03775
+  ...
+# Subtest: a throttled frame is capped and invalid step, time and speed reject
+ok 31 - a throttled frame is capped and invalid step, time and speed reject
+  ---
+  duration_ms: 2.744125
+  ...
+# Subtest: successive services have feasible direct and diversion routes with actual later part use
+ok 32 - successive services have feasible direct and diversion routes with actual later part use
+  ---
+  duration_ms: 40.679625
+  ...
+# Subtest: morning boundary carries same paid bodies, meals, parts and ongoing partial gate work
+ok 33 - morning boundary carries same paid bodies, meals, parts and ongoing partial gate work
+  ---
+  duration_ms: 7.885333
+  ...
+# Subtest: Deniz keeps owned clinic reserve, chooses own work, and can refuse cancellation
+ok 34 - Deniz keeps owned clinic reserve, chooses own work, and can refuse cancellation
+  ---
+  duration_ms: 5.207
+  ...
+# Subtest: accepted partner requests pay independent time alongside keeper work
+ok 35 - accepted partner requests pay independent time alongside keeper work
+  ---
+  duration_ms: 4.502208
+  ...
+# Subtest: partial work consumes installed parts once and paid rest is retained on interruption
+ok 36 - partial work consumes installed parts once and paid rest is retained on interruption
+  ---
+  duration_ms: 7.443
+  ...
+# Subtest: meal and handover reservations return if interrupted and completion relief occurs once
+ok 37 - meal and handover reservations return if interrupted and completion relief occurs once
+  ---
+  duration_ms: 26.074792
+  ...
+# Subtest: with no player work early failure continues to a real paid later partial delivery
+ok 38 - with no player work early failure continues to a real paid later partial delivery
+  ---
+  duration_ms: 6.336416
+  ...
+# Subtest: save and resume mid-action and across milestone preserve deterministic replay
+ok 39 - save and resume mid-action and across milestone preserve deterministic replay
+  ---
+  duration_ms: 87.653166
+  ...
+# Subtest: integer, lump and visible-event time drivers have identical worlds and saves
+ok 40 - integer, lump and visible-event time drivers have identical worlds and saves
+  ---
+  duration_ms: 90.931125
+  ...
+# Subtest: deadline precedes an exactly tied delivery completion but already paid gate work counts
+ok 41 - deadline precedes an exactly tied delivery completion but already paid gate work counts
+  ---
+  duration_ms: 10.8465
+  ...
+# Subtest: public view remains valid after completed diversion and preserves supply boolean
+ok 42 - public view remains valid after completed diversion and preserves supply boolean
+  ---
+  duration_ms: 2.279416
+  ...
+# Subtest: external early or replayed completion receipts cannot grant resources
+ok 43 - external early or replayed completion receipts cannot grant resources
+  ---
+  duration_ms: 1.383666
+  ...
+# Subtest: hostile saves reject forged resources, bodies, queues, outcomes and malformed JSON
+ok 44 - hostile saves reject forged resources, bodies, queues, outcomes and malformed JSON
+  ---
+  duration_ms: 9.299708
+  ...
+# Subtest: bounded action journal never prevents advancing through closing
+ok 45 - bounded action journal never prevents advancing through closing
+  ---
+  duration_ms: 546.76725
+  ...
+# Subtest: public per-person accounting reconciles actual paid work, installed ownership and handovers
+ok 46 - public per-person accounting reconciles actual paid work, installed ownership and handovers
+  ---
+  duration_ms: 22.55125
+  ...
+# Subtest: rounded capacity remains advisory and real carried fatigue can refuse a later task
+ok 47 - rounded capacity remains advisory and real carried fatigue can refuse a later task
+  ---
+  duration_ms: 23.823542
+  ...
+# Subtest: saves survive many deterministic mixed accepted and refused command sequences
+ok 48 - saves survive many deterministic mixed accepted and refused command sequences
+  ---
+  duration_ms: 3076.63775
+  ...
+# Subtest: paid progress that exactly meets the morning boundary is available and not labeled too late
+ok 49 - paid progress that exactly meets the morning boundary is available and not labeled too late
+  ---
+  duration_ms: 1.59925
+  ...
+# Subtest: ten thousand repeated refusals preserve bounded save and original owned state
+ok 50 - ten thousand repeated refusals preserve bounded save and original owned state
+  ---
+  duration_ms: 2349.790167
+  ...
+# Subtest: alternating same-minute refused requests and cancellation across actors cannot consume the action budget
+ok 51 - alternating same-minute refused requests and cancellation across actors cannot consume the action budget
+  ---
+  duration_ms: 104.50525
+  ...
+# Subtest: coalescing refusals never removes accepted work, earlier times, or the latest reason
+ok 52 - coalescing refusals never removes accepted work, earlier times, or the latest reason
+  ---
+  duration_ms: 3.044291
+  ...
+# Subtest: older valid saves with redundant cross-type refusal commands normalize without changing the saved world
+ok 53 - older valid saves with redundant cross-type refusal commands normalize without changing the saved world
+  ---
+  duration_ms: 5.139916
+  ...
+# Subtest: refusal replacement at the request-budget boundary preserves room to stop requested work and finish
+ok 54 - refusal replacement at the request-budget boundary preserves room to stop requested work and finish
+  ---
+  duration_ms: 530.880583
+  ...
+1..54
+# tests 54
+# suites 0
+# pass 54
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7076.676208

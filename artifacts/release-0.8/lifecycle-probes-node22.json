@@ -1,0 +1,55 @@
+{
+  "node": "v22.0.0",
+  "results": [
+    {
+      "name": "conservation-preserving ownership and public-ledger forgeries reject",
+      "status": "passed",
+      "rejected": 6
+    },
+    {
+      "name": "maximum-length legacy refusal journal normalizes without loosening state equality",
+      "status": "passed",
+      "legacyCommands": 256,
+      "normalizedCommands": 2,
+      "rejected": 3
+    },
+    {
+      "name": "two accepted concurrent jobs can both stop at exhausted request budget and still close",
+      "status": "passed",
+      "closingCommands": 254,
+      "saveCharacters": 13799
+    },
+    {
+      "name": "different actor completes already installed partial gate without spending reserved clinic part",
+      "status": "passed"
+    },
+    {
+      "name": "terminal requests cannot change resource, body, receipt, outcome, or completed work",
+      "status": "passed"
+    },
+    {
+      "name": "parser never executes top-level source or dynamic filesystem import",
+      "status": "passed"
+    },
+    {
+      "name": "URL escape aliases, external authorities, attributes, and ambiguous star exports reject",
+      "status": "passed",
+      "rejected": 9
+    },
+    {
+      "name": "current complete public JavaScript set statically links without evaluation",
+      "status": "passed",
+      "modules": 51,
+      "staticEdges": 83
+    }
+  ],
+  "hashes": {
+    "src/games/service.js": "50ce6e3e52a9e92c85532f3a73d8afa46e6bc0ca7993ef72ce9e4f58e51738d1",
+    "web/service.js": "ffcd4702a610503f0cbaf22caa2d6fb2b8aa7031408dac68c43f7cec7a24f999",
+    "web/service-session.js": "52aaad8e21135f0bba760444eae3bfd58c0366ba90092ad387099da3a52ad041",
+    "docs/service-day-design.md": "c42d2ad79de1121cc89691b0bc6c7203af1aaaabaaf4732a1c36d1843887e6db",
+    "scripts/public-module-graph.js": "6e41af60d6c72e7a48bcb6d04b3918f9f9f6e1873ffbf21a1d2fa67278e930ea",
+    "scripts/inspect-static-modules.mjs": "39857f8c05c7af22d150167545cbfab3bb0ff5d805235dcf437e92a46f83e10a",
+    "scripts/build.js": "8309e689be84692c2b026690374d5c927d59b7bf43392d140641632415d2d3b0"
+  }
+}

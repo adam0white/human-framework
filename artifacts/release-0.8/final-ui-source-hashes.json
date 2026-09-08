@@ -1,0 +1,22 @@
+[
+  {
+    "path": "web/service.js",
+    "sha256": "3ac621eeb90ef4bbd24b5b9f15bbba41bab851bd20fddf5e779a94fe62249ba6"
+  },
+  {
+    "path": "web/service.html",
+    "sha256": "209688a7ec25ca34617824d7559d8f8a086d2dd3e7d24afd12214049cb29c11b"
+  },
+  {
+    "path": "web/service-session.js",
+    "sha256": "a05f984ed977f8e29624c7cbcb6c80f3bb11728bee87eb43b76bee474cc07474"
+  },
+  {
+    "path": "web/service.css",
+    "sha256": "52f0b0ee4debc7a880eceb0b858234983a4ea82f0019a61dddf3971b415ac2dd"
+  },
+  {
+    "path": "src/games/service.js",
+    "sha256": "50ce6e3e52a9e92c85532f3a73d8afa46e6bc0ca7993ef72ce9e4f58e51738d1"
+  }
+]

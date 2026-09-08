@@ -1,0 +1,7 @@
+{
+  "browser": "152.0.7977.77",
+  "errors": [
+    "The requested module './barrel.js' contains conflicting star exports for name 'value'"
+  ],
+  "loaded": null
+}

@@ -19,12 +19,12 @@ The check concerns **static JavaScript imports/reexports**. Computed/dynamic imp
 
 - [x] Reconcile handoff/contract/roadmap and live manifest; run baseline; create isolated lanes and dispatch Astra Ultra workers.
 - [x] Agree core exports/view contract and transfer dependency commits to UI/comparison without confusing their ownership.
-- [ ] Core: test two feasible service routes, paid carryover, owned resources, independent decisions/refusals, partial interruption, late recovery, event precedence, strict imports and command-budget terminal continuation. Commit scoped source/evidence.
-- [ ] UI: actual core-driven responsive interface and session tests, real browser download/import, phase transition with no reset, useful first actions and accurate consequence/response labels. Commit only UI-owned files.
-- [ ] Comparison: preregister, freeze, execute matched view-only policies and carryover forks, retain failures/simple-policy sufficiency, audit individual owned costs and time, commit reproducible evidence.
-- [ ] Root: failing tests for static graph errors/nonexecution/cycles/exports; implement guard and integrate before build output deletion; confirm unchanged public bytes on existing source.
-- [ ] Obtain fresh Astra review plus two scoped Fable lenses; verify findings and fix concrete defects while preserving counterexamples.
-- [ ] Integrate specific commits, add `/service/` and gallery/app metadata, full tests + minimum-version new tests + package/build checks.
+- [x] Core: test two feasible service routes, paid carryover, owned resources, independent decisions/refusals, partial interruption, late recovery, event precedence, strict imports and command-budget terminal continuation. Commit scoped source/evidence.
+- [x] UI: actual core-driven responsive interface and session tests, real browser download/import, phase transition with no reset, useful first actions and accurate consequence/response labels. Commit only UI-owned files.
+- [x] Comparison: preregister, freeze, execute matched view-only policies and carryover forks, retain failures/simple-policy sufficiency, audit individual owned costs and time, commit reproducible evidence.
+- [x] Root: failing tests for static graph errors/nonexecution/cycles/exports; implement guard and integrate before build output deletion; confirm unchanged public bytes on existing source.
+- [x] Obtain fresh independent review and resolve findings. Three Astra lenses completed; Fable value completed on claude-fable-5-1, while the lifecycle Fable process timed out after 1,500 seconds. A fresh executed Astra lifecycle review replaced that missing verdict; do not count the timeout as completed review.
+- [x] Integrate specific commits, add `/service/` and gallery/app metadata, full tests + minimum-version new tests + package/build checks.
 - [ ] Local and production browser QA, pushed main, deployment, exact payload/manifest/private-path verification; save private release evidence and update current handoff/roadmap.
 
 No generated note or agent review supplies a human participant. Human explanation, authoring benefit, physical-device timing and external empirical/theological validation remain open. If a strong simple policy gets all services, keep that result rather than making the host harder to favor another controller.

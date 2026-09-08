@@ -1,0 +1,14 @@
+# Final Service Day presentation review
+
+**Verdict: pass; no actionable defect found in the bounded changes.** Checked the uncommitted presentation diff above main `06939c0d025317c4dc719a9c30f6f82c3d44ee64`, then actual UI at `http://127.0.0.1:4192/service/` on 2026-09-08. No source changes, commits or deployment by this reviewer.
+
+- **Tied diversion:** imported a real host save with diversion requested at 18 and six paid minutes complete at the minute-24 surge. The visible record says the diversion was complete and its paid work counted. The original frozen `Stopped … after 6 paid minutes` receipt remains exactly in the saved history. Local save and downloaded save equal the input; subsequent UI event stepping through minute 64 equals direct headless continuation in every field. A five-minute incomplete diversion still renders its original stopped-work message and retains its exact save.
+- **Meal presentation:** keeper and partner meals are absent from primary tasks at initial and clinic states. The keeper's meal remains available under expanded recovery/supplies, with the explicit standard-day statement that timely jobs remain physically possible without it. No meal was silently requested or consumed by presentation.
+- **Clinic choice:** the board says one collection; expanded help explicitly says cart cannot be topped up later. Deniz's minute-42 possibility and irrevocable self-chosen clinic work are visible outside collapsed help. The help also describes preempting later pipe delivery even when the player's remaining pump work could finish. Importing a real minute-42 autonomous-cart save displays `Chose:`; requesting cancellation receives a refusal and leaves Deniz's owned cart work active.
+- **Deadline copy:** the initial rendered objective says clinic delivery **before minute 64**; clinic-phase text also retains this strict deadline.
+- **Responsive/browser checks:** Chrome 152.0.7977.77 at widths 320, 390 and 1280, all height 844. The initial gate choice ends at 805.36/744.20/721.64 pixels respectively. No horizontal overflow in initial, expanded help/recovery, tied diversion or cart states. Visually inspected the 390 initial and 1280 tied screenshots. Each run recorded 11 HTTP responses with **zero HTTP >=400 responses, zero failed requests and zero page errors**.
+- **Session regressions:** all eight current service-session tests pass on Node 26.8.1 and minimum Node 22.0.0, including the new nonmutating event-text check.
+
+Evidence: `/tmp/hf-service-final-ui-evidence/result.json`, `reviewed-source-hashes.json`, tied/partial input saves and downloaded saves, and initial/tied/cart42 screenshots at each width. Independent runner: `/tmp/hf-service-final-ui-probe.mjs`.
+
+This verifies the current local browser presentation and exact host-state preservation for these cases. It does not verify deployment, physical-device timing, human explanation or enjoyment; those claims were not made.

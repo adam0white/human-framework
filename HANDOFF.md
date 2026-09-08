@@ -2,7 +2,7 @@
 
 Updated 2026-09-08 after the hourly app 0.7 milestone. Start here, then [the MVP contract](docs/mvp-contract.md), [roadmap](docs/roadmap.md), [release evidence](docs/release-0.7.md) and [review dispositions](docs/reviews/2026-09-08-next-review.md). Earlier lane branches and release records are provenance, not unfinished tasks.
 
-**Current stage complete:** [Next-stage plan](docs/superpowers/plans/2026-09-08-next-stage.md). Coordination/body-isolation, Last Light including its additive profiles, and optional play notes are integrated, reviewed, pushed and live-verified. No implementation lane remains pending. Start new work from the next executable queue below; completed branches are provenance.
+**Active 0.8 release integration:** [Service Day plan](docs/superpowers/plans/2026-09-08-service-day.md). Core, UI, frozen comparison and build guard are integrated on main. The three implementation lanes are complete; independent review fixes and final browser/release checks are underway. Do not restart those lanes or treat the next queue's Service Day entry as unstarted. Current deployed app remains 0.7 until exact 0.8 verification is recorded.
 
 The larger project is an Islam-guided, empirically informed human simulation framework with a Sunni Hanafi–Maturidi starting point. Preserve agency, non-LLM execution and the distinction between revelation, interpretation, empirical findings and authored software. A narrow useful kit and a comprehensive human model have different completion standards.
 

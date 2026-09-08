@@ -1,5 +1,12 @@
 /** Wall time is presentation state. It is never exported with the world. */
-import {createService,getServiceView,requestTask,interruptTask,advanceTo,nextVisibleEvent,restoreService} from '../src/games/service.js';
+import {createService,getServiceView,requestTask,interruptTask,advanceTo,nextVisibleEvent,restoreService,SERVICE_TASKS} from '../src/games/service.js';
+
+/** Explain a phase-canceled receipt without rewriting frozen host history. */
+export function serviceEventText(view,entry){
+ if(entry.at===view.morning?.at&&view.work.divert===SERVICE_TASKS.divert.duration&&entry.message.startsWith(`Stopped ${SERVICE_TASKS.divert.label.toLowerCase()} after `))
+  return 'The diversion was complete at the morning surge. Its paid work counted before the job ended.';
+ return entry.message;
+}
 
 export function createSession(game=createService()){
  getServiceView(game);

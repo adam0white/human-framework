@@ -28,3 +28,7 @@ PATH=/opt/homebrew/bin:$PATH node artifacts/service-day/browser-qa.mjs http://12
 ```
 
 The browser runner's Playwright import follows the machine's existing bundled-runtime convention. Its output directory can be changed without altering the game.
+
+## Integrated value-review clarification
+
+The final app places meals among optional recovery/supply actions and states that a keeper meal is not physically necessary for timely work in the standard day. Clinic copy names the sole receiving slot and Deniz's possible self-chosen cart from minute42, including its ability to preempt a still-feasible pipe delivery. The objective says delivery **before**64. A completed diversion at the minute24 surge gets an accurate counted-work presentation label while raw host records and all saved physics stay unchanged; an incomplete diversion retains its stopped label. [Final browser recheck](../artifacts/release-0.8/astra-final-ui-review.md).

@@ -84,3 +84,14 @@ PATH=/opt/homebrew/bin:$PATH node scripts/service-day-final-validation.js run --
 ```
 
 The original full runner can also use manifest 3 on this final host, but the compact validator supplies the necessary outcome/replay proof without duplicating full checkpoint views.
+
+## Final value-review observations
+
+The [post-review inspection](../artifacts/service-day/review-observations.json) makes four limitations concrete without changing frozen host physics or policies. Reproduce it with `node artifacts/service-day/review-observations.mjs /tmp/service-observations-new.json`; the runner refuses overwrite.
+
+- At minute 24 both carryover pump requests return `TARGET_BUSY`, but their capacity forecasts differ: the gate branch also fails the fatigue estimate while the diversion branch passes it. The same actual response remains the negative immediate-action result; visible capacity is not identical.
+- The gate continuation's missed second clinic unit is specifically a coordination failure under this controller: keeper salvages through 41 and rests through 47, while Deniz starts the self-chosen cart at 42. Keeper holds a part and six pump minutes are complete. The cart commits the clinic's only receiving slot. This is authored fallback preemption, not proof that gate repair precludes full clinic service. A later explicit shared-plan/renegotiation experiment should compare against this preserved control.
+- In the fresh deadline-first route, the helper requests a part transfer at minute 10 because the gate choice lists one part, although keeper's current gate section already reserves it. The accepted transfer prepositions the later clinic part. This stale-need quirk remains in the frozen rules and does not change the recorded outcomes; it is not evidence of an intentional multistep planner.
+- Removing `people.partner` prevents direct access to the peer-body record. Public intent times, jobs and capacity choices can still reveal information about condition. This is not an information-theoretic privacy guarantee. The selectors do not read the removed record.
+
+Clinic completion times are often pinned by Deniz's common meal/pump/delivery schedule, while elective keeper meals and later resting affect cost columns. These are executions of authored priorities, not minimum-cost plans. In the UI, meals remain available with an explicit standard-day optionality explanation and are no longer promoted merely because hunger reaches .8. The exact-minute-24 diversion lifecycle message is rendered as completed paid work; raw host receipts/saves remain unchanged.

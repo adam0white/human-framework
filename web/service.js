@@ -1,6 +1,6 @@
 import {mountPlayNote} from './play-note.js';
 import {createService,getServiceView,exportService,SERVICE_TASKS,SERVICE_VERSION,nextVisibleEvent} from '../src/games/service.js';
-import {createSession,pauseSession,toggleSession,commandSession,stopSession,stepSession,tickSession,importSession} from './service-session.js';
+import {createSession,pauseSession,toggleSession,commandSession,stopSession,stepSession,tickSession,importSession,serviceEventText} from './service-session.js';
 
 const $=id=>document.getElementById(id),SAVE='human-service-day-v1';
 const actors=['keeper','partner'],names={keeper:'You',partner:'Deniz',world:'The service day'};
@@ -42,7 +42,7 @@ for(const [id,label,max] of [['inlet','Morning inlet',12],['clinic','Clinic inta
  const description=node('p');description.id=id+'-detail';site.append(title,progress,description);$('sites').append(site);
 }
 function renderBoard(v){
- text('minute',String(v.now).padStart(2,'0'));text('objective',v.outcome?'The clinic intake is closed. Review the morning service and clinic delivery below.':v.objective);text('phase-label',v.phase==='morning'?'Morning · inlet first':v.phase==='clinic'?'Afternoon · clinic next':'Both obligations settled');
+ text('minute',String(v.now).padStart(2,'0'));text('objective',v.outcome?'The clinic intake is closed. Review the morning service and clinic delivery below.':v.objective.replace('clinic delivery at minute 64','clinic delivery before minute 64'));text('phase-label',v.phase==='morning'?'Morning · inlet first':v.phase==='clinic'?'Afternoon · clinic next':'Both obligations settled');
  const firstPending=v.milestones.find(m=>m.status==='pending');
  for(const m of v.milestones){
   text('milestone-'+m.id+'-title',m.label+' · minute '+m.at);
@@ -52,11 +52,11 @@ function renderBoard(v){
  text('inlet-value',v.work.gate+' / 12 min gate');$('inlet-progress').value=v.work.gate;
  text('inlet-detail',v.morning?(v.morning.waterService?'Morning service kept. ':v.morning.protected?'Diversion protected the inlet; morning service lost. ':'Morning surge flooded the inlet. ')+(v.supply.available?'Inlet supplies the clinic.':v.work.divert===6?'Reopen for the clinic: 3 min.':'Finish the gate to restore clinic supply.'):'Gate: 2 parts. Or divert: 6 min, 1 part; reopen after 24.');
  text('clinic-value',v.delivery?v.delivery.units+' / 2 units':v.work.pump+' / 12 min pump');$('clinic-progress').value=v.work.pump;
- text('clinic-detail',v.delivery?(v.delivery.route==='cart'?'Cart delivered 1 unit.':'Pipe delivery supplied 2 units.'):'Pump: 2 parts, then deliver 6 min. Or cart: 18 min, 1 unit.');
+ text('clinic-detail',v.delivery?(v.delivery.route==='cart'?'Cart delivered 1 unit.':'Pipe delivery supplied 2 units.'):'One collection: pump 2 parts + deliver 6 min for 2 units, or cart 18 min for 1.');
  $('site-inlet').classList.toggle('completed',Boolean(v.morning?.protected));$('site-inlet').classList.toggle('failed',Boolean(v.morning&&!v.morning.protected));$('site-clinic').classList.toggle('completed',Boolean(v.delivery));
 }
 function mainTasks(v,actor){
- const recovery=v.people[actor].body.hunger>=.8&&v.resources.food[actor]>0?'meal':v.people[actor].body.fatigue>=.55?'rest':null;
+ const recovery=v.people[actor].body.fatigue>=.55?'rest':null;
  const work=actor==='partner'?['salvage','share','pump']:v.phase==='morning'?['gate','divert']:[...(v.work.divert<6&&v.work.gate<12?['gate']:[]),'reopen','pump','deliver','cart'];
  return [...work,...(recovery?[recovery]:[])].filter(task=>{const c=v.choices[actor].find(c=>c.task===task);return c&&c.code!=='ALREADY_DONE'&&!(task==='reopen'&&v.work.divert<6);});
 }
@@ -73,7 +73,7 @@ function renderPeople(v){
   const response=v.lastResponse?.actor===actor?v.lastResponse:null;$(prefix+'response').hidden=!response;
   if(response){text(prefix+'response','Minute '+response.at+' · '+(actor==='partner'?(response.accepted?'Accepted · ':'Refused · '):'')+response.reason);$(prefix+'response').classList.toggle('refused',!response.accepted);}
   for(const c of v.choices[actor]){
-   const button=$(prefix+c.task);button.querySelector('.choice-detail').textContent=actor==='partner'?c.detail.replaceAll('your ', 'their ').replaceAll('Your ', 'Their ').replaceAll('yours', 'theirs'):c.detail;
+   const button=$(prefix+c.task);button.querySelector('.choice-detail').textContent=actor==='partner'?c.detail.replaceAll('your ', 'their ').replaceAll('Your ', 'Their ').replaceAll('yours', 'theirs'):c.task==='meal'?c.detail+' In this standard day, your timely jobs remain physically possible without this meal.':c.detail;
    text(prefix+c.task+'-cost',c.duration+' min'+(c.parts?' · '+c.parts+' part'+(c.parts===1?'':'s'):'')+(c.meal?' · 1 meal':''));
    const capacityWarning=!c.capacityEstimate.allowed;
    const reason=c.code==='CAPACITY'?'Condition estimate: this may be too demanding. Try an actual check, or recover.':c.reason||(!c.available?'Unavailable':'');
@@ -111,7 +111,7 @@ function renderOutcome(v){
 }
 function render(){
  const v=getServiceView(session.game);renderBoard(v);renderPeople(v);renderTime(v);renderCarryover(v);renderOutcome(v);
- $('journal').replaceChildren();for(const row of [...v.recent].reverse()){const li=node('li'),time=node('time',null,'+'+String(row.at).padStart(2,'0')+'m'),body=node('span'),name=node('strong',null,(names[row.actor]??row.actor)+' · ');body.append(name,document.createTextNode(row.message));li.append(time,body);$('journal').append(li);}
+ $('journal').replaceChildren();for(const row of [...v.recent].reverse()){const li=node('li'),time=node('time',null,'+'+String(row.at).padStart(2,'0')+'m'),body=node('span'),name=node('strong',null,(names[row.actor]??row.actor)+' · ');body.append(name,document.createTextNode(serviceEventText(v,row)));li.append(time,body);$('journal').append(li);}
  text('researcher','Host '+v.version+'; Human/runtime '+v.humanVersion+'/'+v.runtimeVersion+'; clock '+v.clockVersion+'. Canonical integer-minute transitions; no random draws. Direct host rules own Deniz’s clinic decisions and consent. Body values shown above are estimates. Saves verify bounded deterministic command replay. '+v.remainingCommands+' player commands remain.');
  if(saveFailed)text('save-status','Device save unavailable. Download a save to keep this day.');
 }
