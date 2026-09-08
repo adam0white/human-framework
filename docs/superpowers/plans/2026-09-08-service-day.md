@@ -25,6 +25,8 @@ The check concerns **static JavaScript imports/reexports**. Computed/dynamic imp
 - [x] Root: failing tests for static graph errors/nonexecution/cycles/exports; implement guard and integrate before build output deletion; confirm unchanged public bytes on existing source.
 - [x] Obtain fresh independent review and resolve findings. Three Astra lenses completed; Fable value completed on claude-fable-5-1, while the lifecycle Fable process timed out after 1,500 seconds. A fresh executed Astra lifecycle review replaced that missing verdict; do not count the timeout as completed review.
 - [x] Integrate specific commits, add `/service/` and gallery/app metadata, full tests + minimum-version new tests + package/build checks.
-- [ ] Local and production browser QA, pushed main, deployment, exact payload/manifest/private-path verification; save private release evidence and update current handoff/roadmap.
+- [x] Local and production browser QA, pushed main, deployment, exact payload/manifest/private-path verification; save private release evidence and update current handoff/roadmap.
 
 No generated note or agent review supplies a human participant. Human explanation, authoring benefit, physical-device timing and external empirical/theological validation remain open. If a strong simple policy gets all services, keep that result rather than making the host harder to favor another controller.
+
+Completed as [app 0.8](../../release-0.8.md), pushed/live app commit `afe95c7009f88b82fc6391d269014d2cc500d79e`. All lanes and release checks are complete; the next coordination milestone is a separate task scope.

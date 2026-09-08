@@ -1,8 +1,8 @@
 # Human Framework handoff
 
-Updated 2026-09-08 after the hourly app 0.7 milestone. Start here, then [the MVP contract](docs/mvp-contract.md), [roadmap](docs/roadmap.md), [release evidence](docs/release-0.7.md) and [review dispositions](docs/reviews/2026-09-08-next-review.md). Earlier lane branches and release records are provenance, not unfinished tasks.
+Updated 2026-09-08 after the hourly app 0.8 milestone. Start here, then [the MVP contract](docs/mvp-contract.md), [roadmap](docs/roadmap.md), [release evidence](docs/release-0.8.md) and [review dispositions](docs/reviews/2026-09-08-service-review.md). Earlier lane branches and release records are provenance, not unfinished tasks.
 
-**Active 0.8 release integration:** [Service Day plan](docs/superpowers/plans/2026-09-08-service-day.md). Core, UI, frozen comparison and build guard are integrated on main. The three implementation lanes are complete; independent review fixes and final browser/release checks are underway. Do not restart those lanes or treat the next queue's Service Day entry as unstarted. Current deployed app remains 0.7 until exact 0.8 verification is recorded.
+**Current stage complete:** [Service Day plan](docs/superpowers/plans/2026-09-08-service-day.md). Core, UI, frozen comparison and static build guard are integrated, reviewed, pushed and live-verified. All three implementation lanes and final reviews are complete. Do not restart completed lanes; continue the explicit coordination queue below. The active hourly heartbeat `advance-human-framework` retains the user's autonomous implementation/push/deploy authorization and requests Astra Ultra tracks plus scoped Fable reviews.
 
 The larger project is an Islam-guided, empirically informed human simulation framework with a Sunni Hanafi–Maturidi starting point. Preserve agency, non-LLM execution and the distinction between revelation, interpretation, empirical findings and authored software. A narrow useful kit and a comprehensive human model have different completion standards.
 
@@ -10,24 +10,35 @@ The larger project is an Islam-guided, empirically informed human simulation fra
 
 | Scope | Current version / boundary |
 |---|---|
-| Browser app | **0.7.0**, eight games plus laboratory |
+| Browser app | **0.8.0**, nine games plus laboratory |
 | Laboratory | 0.3.0, `src/core/index.js`; historical 0.1/0.2 replay kernels remain frozen |
 | Original five games and Before the rain | Human 0.1.0, `src/human/index.js` |
-| Before the Water, Last Light and installed package | Human/runtime 0.1.1, `src/runtime/index.js` → `src/human/v0.1.1.js` |
+| Before the Water, Last Light, Service Day and installed package | Human/runtime 0.1.1, `src/runtime/index.js` → `src/human/v0.1.1.js` |
 | Integer event clock | 0.1.0, `src/runtime/clock.js` |
 | Before the rain | Separate host wrapper 0.1.0/save 1; `/commons-next/`; original `/commons/` unchanged |
 | Before the Water | Host 0.1.0/save 1; `/watch/`; original headless maintenance/watch consumer unchanged |
 | Last Light | Host 0.1.0/save 1; `/signals/`; seven authored situations, timestamped notebook, paid radio/lookout/recovery |
-| Play notes | Optional local form in Watch/rain/Last Light; user words + bounded public summary, no assessment or full save |
+| Service Day | Host 0.1.0/save 1; `/service/`; two obligations, owned parts and paid work/body carryover, independent clinic choices |
+| Play notes | Optional local form in Watch/rain/Last Light/Service Day; user words + bounded public summary, no assessment or full save |
 | Coordination helper | Private `src/coordination/attempt-clock.js`; negative inclusive-size result, **not packaged or published** |
 | Observation memory | Private `src/cognition/observation-memory.js`, candidate 0.1.0; **not packaged or published** |
 | Shared social record | Private `src/social/contracts.js`; **not packaged or published** |
 
-Review on **[human.adamwhite.work/games/](https://human.adamwhite.work/games/)**. Verified app source is **`fa16e743feeaee8a9623c1f8da60082a9222c9f2`**, Worker **`2636b9a0-16fb-45fe-89ad-bf2ea9bc865c`**, public digest **`980d4f7dba80e535ff64d432e549186007f8e7f7c70e2954d95063ebd3affd3e`**. [Live byte verification](artifacts/release-0.7/live.json) checks all 69 payloads and 26 private/missing 404s. [Production browser QA](artifacts/release-0.7/production-signals-browser.json) exercises all seven Last Light situations at 320/390/1280 widths; existing-game and note checks are in the release record. Recheck `/release.json` on resume; later private documentation commits do not imply a new app deployment.
+Review on **[human.adamwhite.work/games/](https://human.adamwhite.work/games/)** or **[Service Day](https://human.adamwhite.work/service/)**. Verified app source is **`afe95c7009f88b82fc6391d269014d2cc500d79e`**, Worker **`d73508d4-459c-43a2-bbe2-27d181df75b8`**, public digest **`308f90d536c3536283e56b9227b207901de800a3a4ce641a5d63d05791680bfe`**. [Live byte verification](artifacts/release-0.8/live.json) checks all 74 payloads and 28 private/missing 404s. [Production Service Day QA](artifacts/release-0.8/production-service-browser.json) and [all-game regression](artifacts/release-0.8/production-game-regression.json) cover 320/390/1280 widths and real interaction. Nine precisely identified non-navigation Cloudflare prefetch refusals are excluded from actual failures; all navigations succeed. Recheck `/release.json` on resume; later private documentation commits do not imply a new app deployment.
 
 Keep `scripts/runtime-release-lock.json` and its frozen transitive model dependencies unchanged. Human 0.1.1 already fixes capacity-object key order and fractional accumulated-time consistency and explicitly migrates valid 0.1.0 person snapshots. New host behavior must use a declared version/save contract; do not silently swap old imports. [Portable API](docs/portable-runtime.md).
 
-## Latest completed milestone: 0.7
+## Latest completed milestone: 0.8
+
+- **Service Day:** gate repair or diversion at minute 24, then a two-unit pipe or one-unit cart clinic delivery before 64. Same independent people, owned parts/meals, actual Human condition/practice and paid partial work carry over. No resets or replenishment. Deniz keeps an explicit own commitment and refusal rules. [Design](docs/service-day-design.md) · [UI](docs/service-day-ui.md).
+- **Frozen comparison:** two simple public-view priorities each protect the inlet and deliver two clinic units in nine conditions, totaling 18 runs. Keep the interrupted-diversion waste and bundled carryover contrast. Final compact validation matches original saves/results for all 18 runs and two continuations; policies remain frozen. The watchdog actually applies command nine before stopping, while recorded runs reach at most two. [Report](docs/service-day-comparison.md).
+- **Concrete next need:** Deniz's minute-42 self-chosen cart can preempt a still-feasible keeper pump plan. The UI and report name this authored rule. It is a coordination/legibility target, not proof of general planning necessity. Meals remain optional in this standard day. Preserve this host and its comparison as controls.
+- **473 tests pass** on Node 26.8.1, repeated by deployment; 54 targeted tests pass on minimum Node 22.0.0 (all 52 new tests plus two existing build tests). Browser saves, both routes, independent fallback, refusal, short recovery and synthetic notes pass. The build links 51 selected JavaScript modules/83 static edges before deleting output; dynamic/runtime/HTML/CSS/fetch/worker checks remain outside that guard.
+- Fresh Astra core/UI/comparison/build reviews fixed refusal-budget and browser URL-identity defects. One Fable value process completed on `claude-fable-5-1`; the lifecycle process timed out after 1,500 seconds and a fresh executed Astra review replaced the missing verdict. Never count the timeout as a completed Fable review. [Dispositions](docs/reviews/2026-09-08-service-review.md).
+
+The branches `codex/service-day-core`, `codex/service-day-ui` and `codex/service-day-comparison` are complete and pushed. Preserve final heads `0a48e9f`, `977198a` and `b0b2775`, original protocol/source/freeze commits, all three manifests and large raw artifacts. Final host manifest `da4deea` binds the compact validation runner. Root app integration is `afe95c7`; newer private evidence documentation must not force redeployment.
+
+## Earlier completed milestone: 0.7
 
 - **Last Light** makes paid radio/lookout, stale delivery ordering and route/service timing playable. Separate clear/tired/hungry profiles make radio latency and food/rest choices consequential while every field of the original twelve-case result remains exact. Notebook/candidate/no-retention deliver 11/10/10 of twelve cases; always-ridge and blind-canal baselines remain. [Game](docs/signals-game.md) · [Profiles](docs/signals-profiles.md).
 - **Optional play notes** in Watch/rain/Last Light collect words and bounded public context only when the player downloads. No identity, grading, hidden truth, automatic upload or full save; all browser fixtures are synthetic and not human evidence. [Contract](docs/play-notes.md).
@@ -50,7 +61,7 @@ Three completed new branches are pushed: `codex/commons-next`, `codex/mechanism-
 
 ## Next executable milestones
 
-1. **One sustained cooperative service day.** Build a new bounded continuation/application with two independent people and competing service obligations, using Watch or Common Ground as preserved controls. Resources and condition carried from an earlier event must have a real later use: no free body reset, automatic replacement parts, longer quota without a decision, or arbitrary efficiency bonus. Start from a concrete two-event or two-site tradeoff, two feasible approaches and a simpler host-native controller. Keep host resources/consent outside Human and retain the clever partial-rest solutions as controls.
+1. **Explicit shared plans and revision/renegotiation.** Start from [the concrete proposal](docs/service-plan-proposal.md), including the executed existing-host timed-request control: full delivery at 59 with 12 paid Deniz rest minutes. This post-comparison exploratory route is not a new reserved result. Preserve Service Day host 0.1.0 and existing saves as a control. Give a new declared host version a small paid proposal/accept/refuse/withdraw flow for a concrete contribution and deadline, with each person owning their work and response. Test the minute-42 fallback case, a missed/withdrawn contribution, delayed information, sensible refusal, and cases where communication is needless overhead. Compare a competent controller using existing timed requests, a plain visible host plan record and only then any proposed abstraction. A new faculty must earn value beyond shared progress visibility; no general planner follows from this authored fixture.
 2. **An independent second consumer of report reasoning only if demanded.** Last Light uses a one-task notebook; the candidate is not general memory. A real communication/coordination need with another independent actor could test source age, experienced information and ambiguous delay. Compare direct records first. Do not promote cognition or social code merely because a second copy can import it, or infer motives from indistinguishable outcomes.
 3. **Use actual supplied feedback.** The new optional note exports enable real people to describe goals/tradeoffs/confusion. Keep supplied files private with provenance; establish distinct human participants manually before the five-person gate. Do not harvest unrelated Downloads or fabricate participants. No verdict on user enjoyment of the new games has arrived yet.
 4. **Choose a research claim before broadening a faculty.** Body/learning isolation and the two-host helper study are completed, not recurring work to rerun each hour. A third helper shape, attention/planning/affect mechanism, physiological refinement or normatively grounded scenario requires its own specific use, simpler rival, rejection condition and version boundary. Qualified theological review, external human-data calibration, measured human authoring benefit and physical-device timing remain open tracks; none may be invented from automated runs.
@@ -64,6 +75,8 @@ Use Node >=22. Here `/opt/homebrew/bin/node` is 26.8.1; prefix `PATH=/opt/homebr
 ```sh
 PATH=/opt/homebrew/bin:$PATH npm test
 PATH=/opt/homebrew/bin:$PATH npm run package:runtime
+node scripts/service-day-final-validation.js run --freeze artifacts/service-day/freeze-final-host.json --out /tmp/service-final-new.json
+node artifacts/service-day/review-observations.mjs /tmp/service-observations-new.json
 node scripts/signals-profile-evidence.js /tmp/signals-profiles-new.json
 node scripts/signals-comparison.js /tmp/signals-comparison-new.json
 node scripts/coordination-probe.js /tmp/coordination-new.json

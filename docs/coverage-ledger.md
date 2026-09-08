@@ -1,8 +1,12 @@
 # Executable coverage and research boundaries
 
-Snapshot updated 2026-09-08, app 0.7.0, laboratory engine 0.3.0, original games and rain chapter Human 0.1.0, Watch and Last Light Human 0.1.1, portable runtime/Human 0.1.1 and clock 0.1.0. This ledger distinguishes the [laboratory kernel](../src/core/index.js), [scenario data](../src/scenarios/index.js), [experiment runner](../src/experiments.js), and narrower [portable host components](portable-runtime.md). It narrows the broader [framework proposal](framework-proposal.md); responsibilities listed in that proposal are not evidence that their mechanisms have been implemented.
+Snapshot updated 2026-09-08, app 0.8.0, laboratory engine 0.3.0, original games and rain chapter Human 0.1.0, Watch, Last Light and Service Day Human 0.1.1, portable runtime/Human 0.1.1 and clock 0.1.0. This ledger distinguishes the [laboratory kernel](../src/core/index.js), [scenario data](../src/scenarios/index.js), [experiment runner](../src/experiments.js), and narrower [portable host components](portable-runtime.md). It narrows the broader [framework proposal](framework-proposal.md); responsibilities listed in that proposal are not evidence that their mechanisms have been implemented.
 
 **Implemented** means an executable transition, interface, or record exists. **Proxy** means an implemented quantity or rule is an authored engineering approximation without human calibration. **Unmodeled** means the kernel supplies no mechanism for that function. A proposed interface below is a research design, not an existing plugin API. A rejection test states what would count against adding a mechanism or making the associated claim.
+
+## App 0.8 coverage update
+
+[Service Day](release-0.8.md) adds two sequential obligations with concurrent people, retained owned materials, paid partial work and unchanged Human condition/practice. Deniz's independent clinic preference and cart fallback are explicit host rules. Both small priorities complete nine conditions each, totaling 18 frozen runs; an uncoordinated fallback provides a concrete next experiment for shared plans and renegotiation. General planning and portable social cognition remain unimplemented. The static public-module guard is build infrastructure, not a human faculty.
 
 ## App 0.7 coverage update
 

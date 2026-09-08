@@ -4,7 +4,17 @@ Current restart guide: [handoff](../HANDOFF.md). The latest [Common Ground play 
 
 The laboratory establishes a working loop and reproducible comparisons. The [Before departure workshop](workshop-integration.md) embeds a shared body/practice component while owning its own world. The [0.4 milestone](release-0.4.md) adds three independently authored hosts around the same unchanged component: a longer pump yard, a parcel route and a two-household water game. The [initial direction reviews](post-mvp-review.md) and [two separate external Claude Fable reviews](../research/reviews/2026-09-07-claude-fable-verification.md) put integration before broader faculties. The [0.3 delivery record](release-0.3.md) separates implemented contracts from usefulness and validation still to test.
 
-## Current milestone and next work — app 0.7
+## Current milestone and next work — app 0.8
+
+[App 0.8](release-0.8.md) delivers Service Day, the ninth game: two people, two obligations, retained parts/condition/partial work, paid accepted work and independent request refusal. 473 tests and exact live checks pass. Its 18-run frozen comparison shows both simple priorities completing service; keep their sufficiency, counterexamples and post-unsealing validation labels. [Review dispositions](reviews/2026-09-08-service-review.md).
+
+**Next: explicit shared plans and revision/renegotiation.** [Concrete proposal and stronger existing control](service-plan-proposal.md): timed rest requests already enable full delivery at 59, with 12 paid Deniz rest minutes. Preserve that exploratory result and compare against it. In the preserved control, Deniz can choose a cart at 42 while keeper holds the spare and is recovering for viable pump work. That fallback commits the only clinic slot. Give the player an intelligible paid way to propose a concrete contribution/timing, let Deniz independently accept or refuse, and test delayed, missed or revised contributions. Preserve Service Day 0.1.0 and its save/runtime boundaries; any incompatible host must have an explicit version and independent comparison.
+
+Compare a plain host plan record first, including shared visibility of current work. A portable commitment/planning abstraction needs measurable removed obligations and a real second consumer, not just another name. Conditions must include coordination benefit, missed/withdrawn contribution, sensible refusal and a situation where paying to communicate loses to direct action. Keep actual timing, ownership and the same body physics. A controller seeing both actors' private state is not an admissible information rival.
+
+Optional notes now exist in four games, but no new actual human responses were supplied. Human explanation, measured authoring benefit, physical-device work and empirical/qualified theological review remain open. [Current executable queue](../HANDOFF.md) supersedes the completed sequence below.
+
+## Completed 0.7 sequence — 2026-09-08
 
 [App 0.7](release-0.7.md) is delivered and verified: Last Light, seven authored situations, optional play-note export in three games, a completed two-host coordination experiment and equal-learning body comparison. 421 tests and production browser/payload checks pass. [Review dispositions](reviews/2026-09-08-next-review.md) preserve the design criticisms and concrete fixes.
 

@@ -4,11 +4,11 @@
 
 A simulation laboratory developing reusable components for situated human action and development, grounded in Islam with a **Sunni, Hanafi–Maturidi starting point**, informed by empirical research, and explicit about the difference between revelation, interpretation, evidence and engineering choices.
 
-**2026-09-08 · App 0.7.0:** **[Last Light](https://human.adamwhite.work/signals/)** adds paid changing reports, two routes and an early-launch/overnight-beacon tradeoff. Clear-connection, tired-carrier and hungry-carrier profiles expose radio timing and different recovery needs. Watch, Before the rain and Last Light offer optional downloaded play notes. [Release and live evidence](docs/release-0.7.md) · [Open MVP gates](docs/mvp-contract.md). No LLM or API key is needed to play.
+**2026-09-08 · App 0.8.0:** **[Service Day](https://human.adamwhite.work/service/)** carries two people's owned parts, paid work and condition from a morning inlet repair to a later clinic delivery. Coordinate two obligations, make requests and retain the consequences of the earlier route. Nine example games now run around the preserved framework. [Release and live evidence](docs/release-0.8.md) · [Open MVP gates](docs/mvp-contract.md). No LLM or API key is needed to play.
 
-**Framework evidence:** the [equal-learning body comparison](docs/body-isolation.md) isolates body constraints and retains simpler cases. The [coordination-helper probe](docs/coordination-probe.md) preserves exact behavior but fails its inclusive size gate; it stays private. Last Light selects a small notebook over the unpromoted [memory candidate](docs/observation-memory-probe.md). The earlier [0.6](docs/release-0.6.md) and [portable-kit](docs/mvp-evidence-2026-09-07.md) evidence remain dated records. Human/runtime 0.1.0/0.1.1, clock 0.1.0 and laboratory 0.3.0 stay frozen.
+**Framework evidence:** the two [Service Day priorities](docs/service-day-comparison.md) each protect the inlet and fully supply the clinic in nine conditions, totaling 18 runs; retained counterexamples identify the next coordination need. The [equal-learning body comparison](docs/body-isolation.md) isolates body constraints and retains simpler cases. The [coordination-helper probe](docs/coordination-probe.md) preserves exact behavior but fails its inclusive size gate; it stays private. Last Light selects a small notebook over the unpromoted [memory candidate](docs/observation-memory-probe.md). The earlier [0.6](docs/release-0.6.md) and [portable-kit](docs/mvp-evidence-2026-09-07.md) evidence remain dated records. Human/runtime 0.1.0/0.1.1, clock 0.1.0 and laboratory 0.3.0 stay frozen.
 
-**Autonomous continuation:** the hourly Codex heartbeat advances executable milestones with independent Astra Ultra work and scoped Fable reviews. [Latest dispositions](docs/reviews/2026-09-08-next-review.md) · [Current handoff](HANDOFF.md). Human playtest, measured authoring-usefulness and physical-device gates remain open.
+**Autonomous continuation:** the hourly Codex heartbeat advances executable milestones with independent Astra Ultra work and scoped Fable reviews. [Latest dispositions](docs/reviews/2026-09-08-service-review.md) · [Current handoff](HANDOFF.md). Human playtest, measured authoring-usefulness and physical-device gates remain open.
 
 ## Play
 
@@ -16,6 +16,7 @@ A simulation laboratory developing reusable components for situated human action
 
 | Game | What you decide |
 |---|---|
+| [Service Day](https://human.adamwhite.work/service/) | Protect the morning inlet and supply the clinic using the same two people and remaining supplies; make requests, see Deniz’s responses and manage carryover. |
 | [Last Light](https://human.adamwhite.work/signals/) | Deliver the lens by canal or ridge; pay for observations, interpret delayed reports, recover when needed, and catch the launch if possible. |
 | [Before the Water](https://human.adamwhite.work/watch/) | Repair the gate or open a diversion before the surge. Coordinate owned parts, lookout, recovery and partial work. |
 | [Before the rain](https://human.adamwhite.work/commons-next/) | Pack supplies for households before the ferry or retain them for camp. A finite afternoon from an established worksite. |

@@ -1,6 +1,6 @@
 # What may graduate to MVP
 
-Established 2026-09-07; updated through app 0.7 on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
+Established 2026-09-07; updated through app 0.8 on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
 
 ## Intended first deliverable
 
@@ -56,6 +56,12 @@ Mechanical integration checks have stronger evidence; graduation still requires 
 [Last Light and its profiles](release-0.7.md) exercise paid information and separate recovery consequences, with exact original-result preservation and stronger saved-state continuation checks. [Equal-learning body isolation](body-isolation.md) completes the curve-confound follow-up; [coordination](coordination-probe.md) passes parity but fails its narrow inclusive-size gate, so direct wiring remains. Neither experimental module is promoted.
 
 [Play notes](play-notes.md) now let real users export descriptions with limited public context. Automated synthetic fixtures do not authenticate people or satisfy the five-person gate. The package boundary remains frozen, 421 tests pass and production desktop/mobile-width QA is verified. Real human understanding, useful authoring complexity and physical-device evidence remain open. The next application tests sustained cooperative obligations and actual later uses of retained resources, rather than declaring graduation from another passing suite.
+
+## Progress through the hourly 0.8 milestone
+
+[Service Day](release-0.8.md) carries independent simulated people, scarce owned parts and paid partial work through two obligations. Both simple priorities complete nine conditions each, totaling 18 comparison runs; a matched continuation exposes a specific uncoordinated fallback rather than a general planning necessity. The new host strengthens lifecycle/ownership evidence, with 473 tests, minimum-version checks and actual production browser verification. Static public-module linkage is now checked before building.
+
+These checks do not graduate the broader human model. Explicit shared plans and renegotiation are the next discriminating application, with the 0.8 host retained as a control and direct host records as a serious rival. No new player feedback arrived; explanation, human authoring benefit, physical-device and external scientific/theological gates remain open.
 
 ## Sequence proposed at 0.5 (partly executed; current queue is above)
 

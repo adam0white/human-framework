@@ -1,0 +1,20 @@
+{
+  "scope": "Independent root repeat of post-comparison exploratory control; no new reserved evidence.",
+  "sourceCommit": "afe95c7009f88b82fc6391d269014d2cc500d79e",
+  "equality": "Entire original result after removing createdAt only",
+  "delivery": {
+    "at": 59,
+    "route": "deliver",
+    "units": 2
+  },
+  "outcome": {
+    "at": 64,
+    "morningProtected": true,
+    "morningWater": true,
+    "clinicUnits": 2,
+    "clinicRequired": 2,
+    "clinicRoute": "deliver",
+    "allService": true
+  },
+  "partnerPaidRest": 12
+}
