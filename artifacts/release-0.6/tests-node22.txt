@@ -1,0 +1,345 @@
+TAP version 13
+# Subtest: visible event-boundary coordination earns two caches before the ferry with paid partial rest
+ok 1 - visible event-boundary coordination earns two caches before the ferry with paid partial rest
+  ---
+  duration_ms: 89.069
+  ...
+# Subtest: finishing the full first rest leaves the second cache unpaid at the unchanged ferry deadline
+ok 2 - finishing the full first rest leaves the second cache unpaid at the unchanged ferry deadline
+  ---
+  duration_ms: 35.405875
+  ...
+# Subtest: opening starts directly at an earned established camp without free supplies or recovery
+ok 3 - opening starts directly at an earned established camp without free supplies or recovery
+  ---
+  duration_ms: 76.340167
+  ...
+# Subtest: completed caches buy competing useful outcomes and cannot be spent twice
+ok 4 - completed caches buy competing useful outcomes and cannot be spent twice
+  ---
+  duration_ms: 38.294458
+  ...
+# Subtest: time stops for the ferry decision and late caches cannot equip households
+ok 5 - time stops for the ferry decision and late caches cannot equip households
+  ---
+  duration_ms: 53.759292
+  ...
+# Subtest: checkpoint clamping preserves pending jobs, paid work and JSON resume across drivers
+ok 6 - checkpoint clamping preserves pending jobs, paid work and JSON resume across drivers
+  ---
+  duration_ms: 34.689583
+  ...
+# Subtest: Meryem retains consent, refusal and paid recovery through the wrapper
+ok 7 - Meryem retains consent, refusal and paid recovery through the wrapper
+  ---
+  duration_ms: 2.296291
+  ...
+# Subtest: dusk permits final allocation and records unused supplies and unfinished work without rewarding either
+ok 8 - dusk permits final allocation and records unused supplies and unfinished work without rewarding either
+  ---
+  duration_ms: 38.949875
+  ...
+# Subtest: old saves and forged allocations, deadlines, production or ended state reject
+ok 9 - old saves and forged allocations, deadlines, production or ended state reject
+  ---
+  duration_ms: 20.089875
+  ...
+# Subtest: allocation decisions do not alter underlying Human, resources, consent or paid time
+ok 10 - allocation decisions do not alter underlying Human, resources, consent or paid time
+  ---
+  duration_ms: 58.6205
+  ...
+# Subtest: a paid food and recovery opening can miss the ferry without reducing total cache production
+ok 11 - a paid food and recovery opening can miss the ferry without reducing total cache production
+  ---
+  duration_ms: 64.522667
+  ...
+# Subtest: the executable comparison preserves equal physical output and reports the missed-ferry counterexample
+ok 12 - the executable comparison preserves equal physical output and reports the missed-ferry counterexample
+  ---
+  duration_ms: 305.434125
+  ...
+# Subtest: human: only admitted elapsed work earns task-specific practice and spends a part
+ok 13 - human: only admitted elapsed work earns task-specific practice and spends a part
+  ---
+  duration_ms: 1.7765
+  ...
+# Subtest: human: missing resources cannot create work practice or a meal
+ok 14 - human: missing resources cannot create work practice or a meal
+  ---
+  duration_ms: 0.605584
+  ...
+# Subtest: human: exhausted work is capacity-blocked with no free recovery
+ok 15 - human: exhausted work is capacity-blocked with no free recovery
+  ---
+  duration_ms: 0.825459
+  ...
+# Subtest: human: JSON mid-action resume is deterministic and meal receipts are single-use
+ok 16 - human: JSON mid-action resume is deterministic and meal receipts are single-use
+  ---
+  duration_ms: 1.021167
+  ...
+# Subtest: human: action chunking agrees including saturated recovery
+ok 17 - human: action chunking agrees including saturated recovery
+  ---
+  duration_ms: 2.156084
+  ...
+# Subtest: small: only admitted elapsed work earns task-specific practice and spends a part
+ok 18 - small: only admitted elapsed work earns task-specific practice and spends a part
+  ---
+  duration_ms: 0.61625
+  ...
+# Subtest: small: missing resources cannot create work practice or a meal
+ok 19 - small: missing resources cannot create work practice or a meal
+  ---
+  duration_ms: 0.266458
+  ...
+# Subtest: small: exhausted work is capacity-blocked with no free recovery
+ok 20 - small: exhausted work is capacity-blocked with no free recovery
+  ---
+  duration_ms: 0.144166
+  ...
+# Subtest: small: JSON mid-action resume is deterministic and meal receipts are single-use
+ok 21 - small: JSON mid-action resume is deterministic and meal receipts are single-use
+  ---
+  duration_ms: 0.714583
+  ...
+# Subtest: small: action chunking agrees including saturated recovery
+ok 22 - small: action chunking agrees including saturated recovery
+  ---
+  duration_ms: 2.825084
+  ...
+# Subtest: protocol equality: both arms receive identical offered actions, time, task constants and initial resources
+ok 23 - protocol equality: both arms receive identical offered actions, time, task constants and initial resources
+  ---
+  duration_ms: 4.737875
+  ...
+# Subtest: matched retests pay for equal exposure and recovery; A and B practice have equal body paths within each model
+ok 24 - matched retests pay for equal exposure and recovery; A and B practice have equal body paths within each model
+  ---
+  duration_ms: 6.876125
+  ...
+# Subtest: retained idle control demonstrates a smaller model suffices under predeclared tolerances
+ok 25 - retained idle control demonstrates a smaller model suffices under predeclared tolerances
+  ---
+  duration_ms: 2.633958
+  ...
+# Subtest: reserved and sensitivity partitions require a verified-freeze capability
+ok 26 - reserved and sensitivity partitions require a verified-freeze capability
+  ---
+  duration_ms: 0.35475
+  ...
+# Subtest: invalid commands, overshooting time and inconsistent snapshot accounting reject
+ok 27 - invalid commands, overshooting time and inconsistent snapshot accounting reject
+  ---
+  duration_ms: 2.119584
+  ...
+# Subtest: freeze integrity rejects mutated protocol or source and requires original registration
+ok 28 - freeze integrity rejects mutated protocol or source and requires original registration
+  ---
+  duration_ms: 0.153542
+  ...
+# Subtest: artifact writing refuses to overwrite a retained result or freeze
+ok 29 - artifact writing refuses to overwrite a retained result or freeze
+  ---
+  duration_ms: 8.910167
+  ...
+# Subtest: initial forecasts match analytically; unrelated protocol fields cannot change either model
+ok 30 - initial forecasts match analytically; unrelated protocol fields cannot change either model
+  ---
+  duration_ms: 0.407708
+  ...
+# Subtest: small-model snapshot validation rejects hidden history, extra skill counters and invalid coefficients
+ok 31 - small-model snapshot validation rejects hidden history, extra skill counters and invalid coefficients
+  ---
+  duration_ms: 0.169
+  ...
+# Subtest: delayed-cue comparison preserves equal deliveries, paid exposure and resume while retaining counterexamples
+ok 32 - delayed-cue comparison preserves equal deliveries, paid exposure and resume while retaining counterexamples
+  ---
+  duration_ms: 141.447125
+  ...
+# Subtest: an actor retrieves an experienced report after the cue disappears, with provenance and detached state
+ok 33 - an actor retrieves an experienced report after the cue disappears, with provenance and detached state
+  ---
+  duration_ms: 0.939916
+  ...
+# Subtest: memory receives only owner observations and rejects future, decreasing, unknown and replayed deliveries
+ok 34 - memory receives only owner observations and rejects future, decreasing, unknown and replayed deliveries
+  ---
+  duration_ms: 0.387292
+  ...
+# Subtest: capacity evicts oldest delivery; retrieval cannot refresh age and receipts stay rejected after eviction
+ok 35 - capacity evicts oldest delivery; retrieval cannot refresh age and receipts stay rejected after eviction
+  ---
+  duration_ms: 0.524542
+  ...
+# Subtest: a contradictory report replaces delivery history but carries its own source rather than inferring truth
+ok 36 - a contradictory report replaces delivery history but carries its own source rather than inferring truth
+  ---
+  duration_ms: 0.751458
+  ...
+# Subtest: expired incoming reports consume a receipt without displacing a newer still-valid report
+ok 37 - expired incoming reports consume a receipt without displacing a newer still-valid report
+  ---
+  duration_ms: 0.176625
+  ...
+# Subtest: JSON restore validates bounds, ownership, time, sequence and cue uniqueness
+ok 38 - JSON restore validates bounds, ownership, time, sequence and cue uniqueness
+  ---
+  duration_ms: 0.899125
+  ...
+# Subtest: ten thousand unique observations keep memory bounded without retaining a receipt log
+ok 39 - ten thousand unique observations keep memory bounded without retaining a receipt log
+  ---
+  duration_ms: 134.240958
+  ...
+# Subtest: watch evidence writer preserves any existing destination
+ok 40 - watch evidence writer preserves any existing destination
+  ---
+  duration_ms: 115.035417
+  ...
+# Subtest: watch evidence writer emits six route traces to an explicit new destination
+ok 41 - watch evidence writer emits six route traces to an explicit new destination
+  ---
+  duration_ms: 79.167292
+  ...
+# Subtest: new or restored browser sessions begin paused and paused frames never move time
+ok 42 - new or restored browser sessions begin paused and paused frames never move time
+  ---
+  duration_ms: 6.99
+  ...
+# Subtest: playback stops exactly when either worker finishes without consuming the remaining wall interval
+ok 43 - playback stops exactly when either worker finishes without consuming the remaining wall interval
+  ---
+  duration_ms: 4.743042
+  ...
+# Subtest: issuing, refusing, stopping and losing visibility reset playback without advancing time
+ok 44 - issuing, refusing, stopping and losing visibility reset playback without advancing time
+  ---
+  duration_ms: 8.776875
+  ...
+# Subtest: event stepping and one-minute stepping reach the same state and arrival stops playback
+ok 45 - event stepping and one-minute stepping reach the same state and arrival stops playback
+  ---
+  duration_ms: 13.497875
+  ...
+# Subtest: a throttled frame cannot catch up offline time and unsupported speed/time reject
+ok 46 - a throttled frame cannot catch up offline time and unsupported speed/time reject
+  ---
+  duration_ms: 0.919792
+  ...
+# Subtest: creation is paused data with per-person ownership and only forecast timing exposed
+ok 47 - creation is paused data with per-person ownership and only forecast timing exposed
+  ---
+  duration_ms: 8.200208
+  ...
+# Subtest: two feasible default approaches protect the site with different service, parts and work consequences
+ok 48 - two feasible default approaches protect the site with different service, parts and work consequences
+  ---
+  duration_ms: 18.86675
+  ...
+# Subtest: short notice preserves the same mechanics and rejects the slower repair schedule by outcome
+ok 49 - short notice preserves the same mechanics and rejects the slower repair schedule by outcome
+  ---
+  duration_ms: 12.209791
+  ...
+# Subtest: neighbor role and owned-spare refusals are explicit and free of time or resource substitutions
+ok 50 - neighbor role and owned-spare refusals are explicit and free of time or resource substitutions
+  ---
+  duration_ms: 1.503292
+  ...
+# Subtest: capacity refusal preserves the accepted action boundary and recovery makes another repair possible
+ok 51 - capacity refusal preserves the accepted action boundary and recovery makes another repair possible
+  ---
+  duration_ms: 6.239375
+  ...
+# Subtest: partial repair keeps paid progress and installed part; resuming never charges it twice
+ok 52 - partial repair keeps paid progress and installed part; resuming never charges it twice
+  ---
+  duration_ms: 2.742541
+  ...
+# Subtest: diversion returns only unused parts, preserves partial work and allows no parallel target reservation
+ok 53 - diversion returns only unused parts, preserves partial work and allows no parallel target reservation
+  ---
+  duration_ms: 1.915833
+  ...
+# Subtest: share and meal use owned reservations and need full paid intervals
+ok 54 - share and meal use owned reservations and need full paid intervals
+  ---
+  duration_ms: 3.797833
+  ...
+# Subtest: salvage is a single world resource, unavailable during another reservation and returned on interrupt
+ok 55 - salvage is a single world resource, unavailable during another reservation and returned on interrupt
+  ---
+  duration_ms: 4.236209
+  ...
+# Subtest: an interrupted lookout grants no warning and completion preserves first warning time
+ok 56 - an interrupted lookout grants no warning and completion preserves first warning time
+  ---
+  duration_ms: 3.087917
+  ...
+# Subtest: arrival precedes equal-time watch/open receipts but counts already-paid repair progress
+ok 57 - arrival precedes equal-time watch/open receipts but counts already-paid repair progress
+  ---
+  duration_ms: 10.45625
+  ...
+# Subtest: arrival returns unpaid reservations and terminal world cannot advance or accept productive jobs
+ok 58 - arrival returns unpaid reservations and terminal world cannot advance or accept productive jobs
+  ---
+  duration_ms: 2.668667
+  ...
+# Subtest: minute/event/large-step drivers and mid-action JSON resumption are exactly equal
+ok 59 - minute/event/large-step drivers and mid-action JSON resumption are exactly equal
+  ---
+  duration_ms: 9.829125
+  ...
+# Subtest: duplicate or early completion receipts reject before any world effect
+ok 60 - duplicate or early completion receipts reject before any world effect
+  ---
+  duration_ms: 1.359833
+  ...
+# Subtest: imports reject world, job, capacity, ownership, receipt and terminal contradictions
+ok 61 - imports reject world, job, capacity, ownership, receipt and terminal contradictions
+  ---
+  duration_ms: 9.499375
+  ...
+# Subtest: imports reject accessors, oversized nesting, incompatible envelopes and malformed commands
+ok 62 - imports reject accessors, oversized nesting, incompatible envelopes and malformed commands
+  ---
+  duration_ms: 2.429041
+  ...
+# Subtest: refusal loops retain bounded active state and views/saves cannot mutate the host
+ok 63 - refusal loops retain bounded active state and views/saves cannot mutate the host
+  ---
+  duration_ms: 55.493833
+  ...
+# Subtest: every completed target and terminal result still produces a renderable public view
+ok 64 - every completed target and terminal result still produces a renderable public view
+  ---
+  duration_ms: 9.56625
+  ...
+# Subtest: false terminal markers and coerced scenario identifiers are not valid save states
+ok 65 - false terminal markers and coerced scenario identifiers are not valid save states
+  ---
+  duration_ms: 0.850542
+  ...
+# Subtest: short-notice gate can succeed by interrupting recovery after three paid minutes
+ok 66 - short-notice gate can succeed by interrupting recovery after three paid minutes
+  ---
+  duration_ms: 3.052542
+  ...
+# Subtest: imports preserve arrival-first ordering when completion ties the surge
+ok 67 - imports preserve arrival-first ordering when completion ties the surge
+  ---
+  duration_ms: 1.13475
+  ...
+1..67
+# tests 67
+# suites 0
+# pass 67
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 761.981125

@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-09-08T05:50:36.901Z",
+  "deployedSource": "ac4e54429581e3052f9e7edf40945bad55baa127",
+  "release": {
+    "appVersion": "0.6.0",
+    "engineVersion": "0.3.0",
+    "commit": "ac4e54429581e3052f9e7edf40945bad55baa127",
+    "dirty": false,
+    "assetsSha256": "fff63d891d1cb541900405de3c39810e664894012cac14412bd95d609988d93e"
+  },
+  "sourcePayloadsUnchanged": 62,
+  "documentationOnlyHandoff": true,
+  "localMarkdownLinksChecked": 154,
+  "missingLocalLinks": 0,
+  "node26Tests": 347,
+  "node22NewTests": 67,
+  "automation": {
+    "id": "advance-human-framework",
+    "kind": "heartbeat",
+    "interval": "hourly",
+    "status": "ACTIVE",
+    "targetTask": "01a07f66-d78e-7140-bd9e-b5691a048b2a"
+  },
+  "note": "This handoff advances private documents/evidence only. The deployed app remains at the source identified above; later private commits are not new app releases."
+}

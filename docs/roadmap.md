@@ -4,6 +4,24 @@ Current restart guide: [handoff](../HANDOFF.md). The latest [Common Ground play 
 
 The laboratory establishes a working loop and reproducible comparisons. The [Before departure workshop](workshop-integration.md) embeds a shared body/practice component while owning its own world. The [0.4 milestone](release-0.4.md) adds three independently authored hosts around the same unchanged component: a longer pump yard, a parcel route and a two-household water game. The [initial direction reviews](post-mvp-review.md) and [two separate external Claude Fable reviews](../research/reviews/2026-09-07-claude-fable-verification.md) put integration before broader faculties. The [0.3 delivery record](release-0.3.md) separates implemented contracts from usefulness and validation still to test.
 
+## Current delivery and next autonomous milestones — 2026-09-08
+
+App 0.6 delivers two bounded games, a frozen simpler-mechanism comparison and a private observation-memory candidate. [Release evidence](release-0.6.md) records 347 tests, production browser checks and exact live payload verification. The user now authorizes ongoing autonomous implementation and hourly continuation with parallel Astra Ultra and scoped Fable reviews.
+
+The finite rain chapter answers the surplus-use question with household/camp allocations and ferry timing, while preserving the original worksite. A reviewer-prompted [two-cache route](commons-next-two-cache-probe.md) reaches 40/88 through paid partial rest; the original dominated allocation and late-cache cases remain. [Watch](watch-game.md) supports repair/diversion and a previously overlooked short-notice repair through three paid rest minutes. These are demonstrated scheduling choices, not a human enjoyment result or a complete late-game solution.
+
+The [mechanism comparison](mechanism-comparison.md) completes the previously prescribed synthetic study: 9/21 pairs fall within authored tolerance, with reserved simpler-model cases preserved. It separates operational differences from human realism and notes that the learning half compares curves rather than additional state. [Observation memory](observation-memory-probe.md) now executes a bounded delayed-report contract, but the notebook is at least as accurate in the short probe; the candidate stays private. The five-person explanation gate, measured authoring benefit and physical-device testing remain open.
+
+Next executable queue (supersedes the older sequence below):
+
+1. Compare a thin attempt/clock helper in Watch and another host against direct wiring. Preserve resources, refusals, interruption, actual paid time and canonical arrival priority. Measure removed host obligations and new exceptions before promoting any API.
+2. Build one changing-evidence/delayed-report game with equal paid observation access and a credible notebook rival. Use a small host-specific representation if it suffices; require a real second consumer before packaging the memory candidate.
+3. Add a competing service obligation or second site that gives Watch's spare parts/capacity an actual later use. Preserve the current bounded episode and partial-rest solutions; do not extend quotas or waves without a new decision.
+4. If a new host needs it, isolate body structure with pooled stamina plus the same saturating practice update. This requires a new frozen protocol, not rewriting the completed linear-counter comparison.
+5. Advance real playtest evidence as it becomes available. A local optional explanation/export surface may collect future responses; synthetic agents cannot supply the five human participants.
+
+Broader faculties, physiology, social scale and theological representation remain eligible research directions, with one discriminating task, one serious simpler rival and explicit rejection conditions per addition. The hourly task must keep doing concrete work across these milestones rather than repeatedly auditing unchanged state. [Execution plan](superpowers/plans/2026-09-08-autonomous-advancement.md) · [Review dispositions](reviews/2026-09-08-autonomous-review.md).
+
 ## What is actually running
 
 Three laboratory presets combine body, hazard beliefs, task practice, promises and simple trust for two actors. **Solo Repair is the persistent single-person control:** work, rest, eat or inspect, with no peers, promises or social effects. Longer workloads allow repeated work, recovery and meals. Choices and consequences are traced and replayed without an LLM.
@@ -41,7 +59,7 @@ All four laboratory presets share an aggregate-progress structure. The workshop 
 
 ## What remains on the research shelf
 
-**Promising but unused:** bounded attention; actor-owned memory and forgetting; learned habits versus planning; emotional appraisal and regulation; broader motives including worship, beauty and service; revisable commitments; testimony and mistaken beliefs about others. Each needs a situation where its presence changes a prediction. Existing cognitive and social architectures provide alternatives to compare, not a list of components to install together.
+**Promising, mostly unmodeled:** bounded attention; a private observation-memory candidate and unmodeled general forgetting; learned habits versus planning; emotional appraisal and regulation; broader motives including worship, beauty and service; revisable commitments; testimony and mistaken beliefs about others. Each needs a situation where its presence changes a prediction. Existing cognitive and social architectures provide alternatives to compare, not a list of components to install together.
 
 **Rejected formulations, open domains:** inherited formulas converting heritability into individual stats, granting expertise without learning, universal transfer, fixed lifetime caps, sacred-variable meters, and guaranteed emergence are not justified. This does not reject genetics, intelligence, spiritual life or social history. The [decision register](../research/decision-status.md) states what each claim would need to return.
 
@@ -68,7 +86,7 @@ Human-data calibration and qualified theological review remain separate tracks. 
 
 Your feedback calibrates clarity, tradeoffs and playability. Record the seed, choice and reason—not just whether you won. Improving the game and explaining human behavior require different evidence.
 
-## Current milestone: evidence for the portable kit
+## Prior 0.5 milestone: evidence for the portable kit
 
 The user's [four shared snapshots and play account](user-run-feedback-2026-09-07.md) motivated Common Ground: concurrent work, a shared project and continuing productive capacity. The latest supplied run reaches minute 1,312 with 12 caches; the player finds the games increasingly interesting but says the late game is not there yet. Its next-event and running-time controls drive the same deterministic host transitions; it does not invoke laboratory Full.
 

@@ -1,6 +1,6 @@
 # What may graduate to MVP
 
-Established 2026-09-07; handoff updated 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
+Established 2026-09-07; updated through app 0.6 on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
 
 ## Intended first deliverable
 
@@ -43,7 +43,16 @@ The 0.5 milestone is meant to satisfy more of checks 1 and 2 and respond to obse
 
 The first two checks now have more than a package smoke test behind them. Graduation still requires an intelligible useful game, a credible simpler-mechanism comparison, and a stable documented release boundary. [Evidence milestone](mvp-evidence-2026-09-07.md) · [Review dispositions](reviews/2026-09-07-evidence-review.md).
 
-## Sequence after this milestone
+## Progress through the autonomous 0.6 milestone
+
+The [0.6 release](release-0.6.md) adds two playable scheduling puzzles, reviewed save/arrival invariants and 347 passing tests. Both games support exact saved-state and UI clock behavior; existing games and frozen package boundaries remain unchanged. A [new two-cache sequence](commons-next-two-cache-probe.md) and short-notice partial-rest repair demonstrate consequences of paid timing without retuning the model.
+
+The [preregistered mechanism study](mechanism-comparison.md) now supplies the synthetic prescribed-action/matched-retest comparison previously missing from check 4, preserving simpler-model agreement in 9/21 pairs. It does not measure human authoring effort, player indifference or human validity. The private [memory candidate](observation-memory-probe.md) loses to a simpler notebook on its short decision probe and remains unexported. No general faculty is promoted from a regression suite.
+
+Mechanical integration checks have stronger evidence; graduation still requires understandable useful play and demonstrated complexity/authoring benefit. The five-person gate and physical-device timings remain open. [Current executable roadmap](roadmap.md) proceeds to a two-host coordination-helper experiment, a changing-evidence game with a notebook rival and meaningful later uses of retained resources.
+
+## Sequence proposed at 0.5 (partly executed; current queue is above)
+
 
 1. Use the [minute-1,312 play report](common-ground-feedback-2026-09-07.md) to test one meaningful post-milestone choice or pacing change against the current loop. Identify the cause before selecting a fix: repeated cache requests, surplus use and recovery/role clarity are candidates. Preserve the current game as a control; do not add a new game or longer quota merely to demonstrate activity.
 2. Run a separately preregistered **mechanism** comparison: prescribed work/rest/meal schedules and matched retests through the same host commands, using the current body/practice kit and a credible smaller stamina-plus-counter model. Count host exceptions and authoring work separately from output, and preserve cases where the simpler model suffices. Neither model gets a tailored controller or impossible exertion.

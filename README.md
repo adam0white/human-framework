@@ -4,11 +4,11 @@
 
 A simulation laboratory developing reusable components for situated human action and development, grounded in Islam with a **Sunni, Hanafi–Maturidi starting point**, informed by empirical research, and explicit about the difference between revelation, interpretation, evidence and engineering choices.
 
-**2026-09-07 · App 0.5.0:** **Common Ground** adds continuing cooperative construction with concurrent jobs, an explicit shared project, and next-event or running-clock controls. The courtyard now explains both people's actions and preserves optional replays. The existing body/practice component and an additive event clock can be installed as a standalone local package. Laboratory engine **0.3.0** and the games’ human component **0.1.0** remain unchanged. [Milestone and verification](docs/release-0.5.md) · [What may graduate to MVP](docs/mvp-contract.md). No LLM or API key is needed to play or simulate.
+**2026-09-08 · App 0.6.0:** **Before the rain** turns Common Ground surplus into a finite ferry/camp allocation puzzle; **Before the Water** adds playable repair, lookout and diversion. Both preserve paid work, independent responses and versioned saves. Original games, laboratory **0.3.0**, Human **0.1.0/0.1.1** and clock **0.1.0** remain frozen. [Release and live verification](docs/release-0.6.md) · [MVP contract and open gates](docs/mvp-contract.md). No LLM or API key is needed to play.
 
-**Portable-kit progress:** the [new evidence milestone](docs/mvp-evidence-2026-09-07.md) adds an independently authored installed-package consumer, 48 frozen controller trials and a social candidate retained as experimental. Runtime/Human **0.1.1** corrects two API edge cases with explicit migration; current games continue using frozen Human **0.1.0**.
+**Framework evidence:** a [preregistered simpler-mechanism comparison](docs/mechanism-comparison.md) retains agreement in 9/21 protocols and specific food/rest distinctions; an [observation-memory candidate](docs/observation-memory-probe.md) remains private after a simpler notebook wins its short probe. The earlier [installed consumer and social probe](docs/mvp-evidence-2026-09-07.md) retain their provenance. New Watch uses runtime/Human 0.1.1; the original five games and rain wrapper keep Human 0.1.0.
 
-**Direction and review:** separate GPT-6 Astra agents at ultra effort own implementation lanes and cross-review other authors. Two additional separate Claude CLI processes requested with `--model fable` reviewed a frozen design/API snapshot; the [current synthesis](docs/reviews/2026-09-07-evidence-review.md) records accepted findings, corrected examples and the later implementation reviews. The [0.5 design review](docs/reviews/2026-09-07-ongoing-review.md) retains its earlier scope. Earlier [direction reviews](docs/post-mvp-review.md), [0.3 external verification](research/reviews/2026-09-07-claude-fable-verification.md) and [0.4 game reviews](docs/reviews/2026-09-07-games-review-synthesis.md) retain their original source scopes.
+**Autonomous continuation:** an hourly Codex heartbeat advances executable milestones under the user's authorization, with independent Astra Ultra tracks and scoped Claude Fable reviews. [Current review findings and fixes](docs/reviews/2026-09-08-autonomous-review.md) · [Next work](HANDOFF.md). Human playtest, authoring-usefulness and physical-device gates remain open.
 
 ## Play
 
@@ -16,6 +16,8 @@ A simulation laboratory developing reusable components for situated human action
 
 | Game | What you decide |
 |---|---|
+| [Before the Water](https://human.adamwhite.work/watch/) | Repair the gate or open a diversion before the surge. Coordinate owned parts, lookout, recovery and partial work. |
+| [Before the rain](https://human.adamwhite.work/commons-next/) | Pack supplies for households before the ferry or retain them for camp. A finite afternoon from an established worksite. |
 | [Common Ground](https://human.adamwhite.work/commons/) | Gather, build, recover and agree on a shared project. Different jobs run concurrently; useful structures and supply caches persist. Optional solo setup. |
 | [Pump Yard](https://human.adamwhite.work/shift/) | Order three pump repairs across an eight-hour shift, allocate one spare, build task experience, recover, and verify useful service. Single person; partial service earns points. |
 | [The last water](https://human.adamwhite.work/courtyard/) | Carry and allocate scarce water between two households. Make requests and loans; independently accept or refuse exchanges. |

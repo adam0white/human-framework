@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-09-08T05:43:30.590Z",
+  "origin": "https://human.adamwhite.work",
+  "browser": "152.0.7977.77",
+  "environment": "Isolated headless desktop Chrome. Viewport checks are not physical-device testing; late Rain checkpoints use valid public-API-generated fixtures.",
+  "checks": [
+    "Rain: visible keyboard-operable first action; simultaneous work; actual download/import; invalid save preservation; paused reload; real 4x playback matches event step exactly",
+    "Rain: full two-cache schedule through visible buttons and next-event boundaries, including14 paid rest minutes and two households equipped before ferry90",
+    "Rain: valid generated ferry/dusk fixtures exercise actual allocation, irreversible departure, paused checkpoints, bounded ending and result UI",
+    "Original ongoing Common Ground remains available and uses separate save state",
+    "Watch: refusal preserves resources/time; partial owned work; actual save download/import; invalid file and reload preservation; exact playback pause; completed diversion with service closed",
+    "Watch: full short-notice gate route succeeds through visible controls with three paid rest minutes, preserved as a counterexample; independent saves and 320/390/1280 layouts"
+  ],
+  "viewports": [
+    320,
+    390,
+    1280
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "prefetchRefusals": [
+    {
+      "url": "https://human.adamwhite.work/commons-next/",
+      "status": 503,
+      "resource": "other",
+      "navigation": false,
+      "purpose": "prefetch",
+      "refusal": "prefetch refused: disabled for worker requests"
+    }
+  ]
+}
