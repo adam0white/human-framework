@@ -39,3 +39,9 @@ Before executing candidate outcomes, the implementation scope adds explicit `mig
 ## Pre-execution clarification: paid ferry delivery
 
 The root's concrete surplus rule requires actual ferry dispatch at entry + 90 before an early successful ending. Allocation may be immediate; a fulfilled household delivery is not fabricated at entry. The surplus case therefore pays 90 minutes, dispatches, and may skip the remaining 90-minute rain wait once all needs are covered. Record retained supplies immediately after allocation separately from any additional paid production/recovery before dispatch.
+
+## Registered post-review source and packaging amendment
+
+The initial source `9970cdc`, its freeze and all original records remain immutable. The three reserved cases have been seen; every later execution is **post-review validation**, not a fresh withheld evaluation. The root selected reviewed kernel SHA256 `a695c31258b8bc5339a20cd49f238e5a8f7fa1bed52c1cf2c0706822f804c078` and story SHA256 `99300ffb03feb6d45a0dcd1313e71c7f8e20c7857f35701d6931dcc66c74e538` for final confirmation. Keep the existing fixtures, policies and assertions unchanged; record changed outputs or first failures rather than tune them.
+
+Before this final source freeze, the runner adds lossless gzip JSON payload support. Each new manifest records both stored compressed hashes and original JSON byte counts/SHA256; replay reads compressed reports directly. Compression does not change scenario inputs, decisions, record JSON or physics. New final runs use distinct directories and carry an explicit post-review label. The original plain artifacts and Git objects stay preserved. Report initial-to-reviewed physical outcomes and source costs separately; the root owns the integrated full suite and delivery.

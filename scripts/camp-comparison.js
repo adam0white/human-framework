@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { gzipSync, gunzipSync } from 'node:zlib';
 import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs';
 import { resolve, dirname, relative } from 'node:path';
@@ -7,11 +8,12 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2), mode = args.shift();
-const option = name => args[args.indexOf(name) + 1];
+const option = name => { const index = args.indexOf(name); return index < 0 ? undefined : args[index + 1]; };
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const git = args => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
 const head = git(['rev-parse', 'HEAD']);
 const read = path => readFileSync(resolve(root, path));
+const parse = path => JSON.parse(path.endsWith('.gz') ? gunzipSync(read(path)) : read(path));
 function graph(entry) {
   const seen = new Set();
   function visit(path) {
@@ -45,19 +47,24 @@ function loadFreeze(path) {
   execFileSync('git', ['cat-file', '-e', `${head}:${relative(root, resolve(root, path))}`], { cwd: root });
   return freeze;
 }
-function save(path, value) {
+function save(path, value, compress = false) {
   mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, JSON.stringify(value, null, 2) + '\n', { flag: 'wx' });
+  const raw = Buffer.from(JSON.stringify(value, null, 2) + '\n'), destination = compress ? path + '.gz' : path;
+  const stored = compress ? gzipSync(raw, { level: 9 }) : raw;
+  if (compress) assert.deepEqual(gunzipSync(stored), raw, 'Compression changed payload bytes');
+  writeFileSync(destination, stored, { flag: 'wx' });
+  return { file: relative(dirname(path), destination), sha256: sha(raw), bytes: raw.length };
 }
 if (mode === 'freeze') {
   const out = resolve(root, option('--out'));
-  save(out, { format: 'camp-comparison-freeze-1', sourceCommit: head, registrationCommit: '10a623f', sources: sources(),
+  save(out, { format: 'camp-comparison-freeze-1', sourceCommit: head, registrationCommit: '10a623f', validationStage: option('--stage') ?? 'post-review', artifactEncoding: args.includes('--gzip') ? 'gzip-json' : 'plain-json', sources: sources(),
     sourceCosts: { kernel: metrics(['src/games/camp.js']), wrapper: metrics(['src/games/camp-story.js']),
       inclusiveCamp: metrics(graph('src/games/camp.js')), inclusiveStory: metrics(graph('src/games/camp-story.js')) } });
   console.log(JSON.stringify({ freeze: out, sourceCommit: head }));
 } else if (mode === 'run' || mode === 'replay') {
   const freeze = loadFreeze(option('--freeze'));
-  const partition = mode === 'replay' ? JSON.parse(read(option('--input'))).partition : option('--partition');
+  const partition = mode === 'replay' ? parse(option('--input')).partition : option('--partition');
+  const compressed = freeze.artifactEncoding === 'gzip-json', payloads = {};
   assert.ok(['development', 'reserved'].includes(partition));
   const out = resolve(root, option('--out'));
   assert.equal(existsSync(out), false, 'Evidence output already exists');
@@ -69,16 +76,16 @@ if (mode === 'freeze') {
     try { record = { name, status: 'passed', evidence: await execute() }; }
     catch (error) { record = { name, status: 'failed', error: { name: error.name, message: error.message, stack: error.stack } }; }
     records.push(record);
-    save(resolve(out, `${name}.json`), record);
+    payloads[`${name}.json`] = save(resolve(out, `${name}.json`), record, compressed);
     console.log(JSON.stringify({ name, status: record.status }));
   }
-  const report = { format: 'camp-comparison-1', sourceCommit: freeze.sourceCommit, sources: freeze.sources, partition,
+  const report = { format: 'camp-comparison-1', sourceCommit: freeze.sourceCommit, sources: freeze.sources, partition, validationStage: freeze.validationStage ?? 'initial',
     environment: { node: process.version, platform: process.platform, architecture: process.arch }, sourceCosts: freeze.sourceCosts,
     records, summary: { cases: records.length, passed: records.filter(r => r.status === 'passed').length, failed: records.filter(r => r.status === 'failed').length } };
-  save(resolve(out, 'report.json'), report);
-  save(resolve(out, 'manifest.json'), { sourceCommit: freeze.sourceCommit, files: Object.fromEntries(readdirSync(out).map(p => [p, sha(readFileSync(resolve(out, p)))])) });
+  payloads['report.json'] = save(resolve(out, 'report.json'), report, compressed);
+  save(resolve(out, 'manifest.json'), { sourceCommit: freeze.sourceCommit, validationStage: report.validationStage, encoding: compressed ? 'gzip-json' : 'plain-json', payloads, files: Object.fromEntries(readdirSync(out).map(p => [p, sha(readFileSync(resolve(out, p)))])) });
   if (mode === 'replay') {
-    const original = JSON.parse(read(option('--input')));
+    const original = parse(option('--input'));
     assert.deepEqual(report.records, original.records, 'Current source replay differs from retained records');
     save(resolve(out, 'replay.json'), { exactRecords: true, original: option('--input'), node: process.version });
   }
