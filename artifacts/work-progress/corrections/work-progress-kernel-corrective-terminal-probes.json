@@ -1,0 +1,22 @@
+{
+  "node": "v26.8.1",
+  "workVersion": "0.1.1",
+  "probes": [
+    {
+      "name": "two_positive_terminal_deficits",
+      "rejected": true,
+      "error": "Work cannot have multiple or zero-work terminal exposures",
+      "totalPaidMinutes": 8,
+      "maximumPaidBasis": 10,
+      "unchangedInput": true
+    },
+    {
+      "name": "zero_physical_terminal_exposure",
+      "rejected": true,
+      "error": "Work cannot have multiple or zero-work terminal exposures",
+      "totalPaidMinutes": 8,
+      "maximumPaidBasis": 10,
+      "unchangedInput": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "names": [
+    "createPerson",
+    "assessEffort",
+    "beginAttempt",
+    "advanceAttempt",
+    "finishAttempt",
+    "exportPerson",
+    "restorePerson",
+    "HUMAN_VERSION"
+  ],
+  "identical": true,
+  "change": "Camp adapter imports Human directly, removing unused clock dependency; no runtime function changes"
+}

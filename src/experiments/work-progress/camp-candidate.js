@@ -1,6 +1,6 @@
 /** Private complete camp-shaped consumer of the candidate, not the released Camp host. */
 import * as work from './candidate.js';
-import {createPerson,assessEffort,beginAttempt,advanceAttempt,finishAttempt,exportPerson,restorePerson,HUMAN_VERSION} from '../../runtime/index.js';
+import {createPerson,assessEffort,beginAttempt,advanceAttempt,finishAttempt,exportPerson,restorePerson,HUMAN_VERSION} from '../../human/v0.1.1.js';
 import {practice} from '../../core/model.js';
 
 export const HOST_VERSION='0.1.0';
@@ -41,6 +41,27 @@ const quote=(world,item,actor)=>work.quoteWork(item.work,{workerId:actor,duratio
 function prepared(world,item,actor){return work.prepareWorker(item.work,{workerId:actor,basisMinutes:20-Math.floor(world.actors[actor].person.skills.construction*4)});}
 function capable(person,quote){return assessEffort(person.body,{durationMinutes:quote.remainingMinutes,effort:quote.remainingEffort,exertive:true}).allowed;}
 
+// Necessary per-item rate/chronology checks for this host's one known tool event.
+// No replay is inferred: the first and terminal contributors are bounded possibilities.
+function validItemRates(world,item){
+  const contributors=Object.entries(item.work.workers).filter(([,worker])=>worker.minutes>0);
+  const minutes=contributors.reduce((sum,[,worker])=>sum+worker.minutes,0),done=item.completedAt!==null;
+  const at=done?item.completedAt:world.now;if(minutes>at)return false;
+  const faster=world.setup.toolArrival===1&&at>1;
+  // An item with one exposure every elapsed minute must include the slow minute 1.
+  const first=faster?[...(minutes<at?[null]:[]),...contributors.map(([id])=>id)]:[null];
+  const last=done?contributors.map(([id])=>id):[null];
+  return first.some(firstId=>last.some(lastId=>contributors.every(([id,worker])=>{
+    const slow=1/worker.basisMinutes,rate=faster?1/Math.max(6,worker.basisMinutes-6):slow;
+    const full=worker.minutes*rate-(firstId===id?rate-slow:0);
+    if(id!==lastId)return Math.abs(worker.fraction-full)<=EPS;
+    // A worker whose only exposure was minute 1 cannot also finish after other work.
+    if(firstId===id&&worker.minutes===1&&minutes>1)return false;
+    const finalRate=firstId===id&&worker.minutes===1?slow:rate;
+    return worker.fraction<=full+EPS&&worker.fraction>full-finalRate;
+  })));
+}
+
 function validate(world){
   if(trusted.has(world))return world;json(world);
   fields(world,['version','setup','now','stock','spent','toolAvailable','outputs','actors','items','assignments','lastResponse']);
@@ -63,6 +84,7 @@ function validate(world){
       integer(contribution.basisMinutes,20-Math.floor(person.skills.construction*4),20-Math.floor(initial*4));
       credit[id].minutes+=contribution.minutes;credit[id].effort+=contribution.effort;
     }
+    if(!validItemRates(world,item))fail('Item rate or completion chronology contradicts paid work/tool availability');
   }
   if(world.outputs!==settled||world.spent.timber!==5*settled||world.spent.salvage!==settled||world.stock.timber+reservedTimber+world.spent.timber!==5*world.setup.items||world.stock.salvage+reservedSalvage+world.spent.salvage!==world.setup.items)fail('Host material/output conservation failed');
   const supplied=world.setup.toolArrival===1,delivered=supplied&&world.now>=1;

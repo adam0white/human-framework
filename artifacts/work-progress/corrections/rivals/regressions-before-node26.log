@@ -1,0 +1,230 @@
+✔ D and F pay an unchanged stage once and retain a bounded completed contribution (10.1125ms)
+✔ paid supplier changes future D work; F preserves its initial snapshot through stop and resume (7.501208ms)
+✔ D accepts a capable recipient and keeps prior construction credit with its worker; F refuses optional handover (2.270584ms)
+✔ busy recipient refusal preserves work and stopping hauling retains paid costs without resuming it (1.13125ms)
+✔ synchronized completions, driver chunking and JSON mid-work continuation preserve exact accounting (13.266125ms)
+✔ unknown actions, ownership forgery and unsafe JSON reject without mutating input (1.218792ms)
+✔ unfit starts and recipients cannot bypass whole remaining-work capacity (1.662166ms)
+✔ same-worker resume retains an item basis after paid practice crosses the next skill floor (4.2905ms)
+✔ setup values reject before constructing arbitrary item collections (0.11275ms)
+✔ an active auxiliary assignment must retain capacity for its remaining paid interval (0.55875ms)
+✔ the numeric endpoint preserves export and rejects work with no future execution interval (0.43475ms)
+✖ D rejects the confirmed extra work-record forgery (1.508333ms)
+✖ D rejects the confirmed rate work-record forgery (0.998125ms)
+✖ D rejects the confirmed time work-record forgery (1.282875ms)
+✖ D rejects the confirmed zero work-record forgery (1.189291ms)
+✖ F rejects the confirmed extra work-record forgery (1.110083ms)
+✖ F rejects the confirmed rate work-record forgery (0.967625ms)
+✖ F rejects the confirmed time work-record forgery (0.947458ms)
+✖ F rejects the confirmed zero work-record forgery (1.090875ms)
+✖ an unfinished tool fixture cannot credit the boosted rate to the first paid minute (0.369875ms)
+✖ only one contributor can own a shortened terminal minute of one completed item (0.992125ms)
+✖ D cannot assign the same worker two pre-tool paid minutes across different items (0.610209ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 11
+ℹ fail 11
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 92.672416
+
+✖ failing tests:
+
+test at tests/work-progress-rivals.test.js:179:3
+✖ D rejects the confirmed extra work-record forgery (1.508333ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-rivals.test.js:181:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/work-progress-rivals.test.js:179:3
+✖ D rejects the confirmed rate work-record forgery (0.998125ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-rivals.test.js:181:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/work-progress-rivals.test.js:179:3
+✖ D rejects the confirmed time work-record forgery (1.282875ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-rivals.test.js:181:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/work-progress-rivals.test.js:179:3
+✖ D rejects the confirmed zero work-record forgery (1.189291ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-rivals.test.js:181:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/work-progress-rivals.test.js:179:3
+✖ F rejects the confirmed extra work-record forgery (1.110083ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-rivals.test.js:181:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/work-progress-rivals.test.js:179:3
+✖ F rejects the confirmed rate work-record forgery (0.967625ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-rivals.test.js:181:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/work-progress-rivals.test.js:179:3
+✖ F rejects the confirmed time work-record forgery (0.947458ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-rivals.test.js:181:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/work-progress-rivals.test.js:179:3
+✖ F rejects the confirmed zero work-record forgery (1.090875ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-rivals.test.js:181:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/work-progress-rivals.test.js:185:1
+✖ an unfinished tool fixture cannot credit the boosted rate to the first paid minute (0.369875ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-rivals.test.js:191:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/work-progress-rivals.test.js:194:1
+✖ only one contributor can own a shortened terminal minute of one completed item (0.992125ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-rivals.test.js:201:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/work-progress-rivals.test.js:204:1
+✖ D cannot assign the same worker two pre-tool paid minutes across different items (0.610209ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-rivals.test.js:212:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

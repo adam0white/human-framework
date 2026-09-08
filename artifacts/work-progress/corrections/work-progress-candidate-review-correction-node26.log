@@ -1,0 +1,36 @@
+✔ prospective progress retains paid fractions and the first worker basis (1.287833ms)
+✔ replacement workers receive only their future work and settlement is single-use (0.618ms)
+✔ component save rejects unpaid credit, shape tricks and invalid productivity (0.247ms)
+✔ open work cannot claim an extra paid minute without its minimum physical fraction (0.343084ms)
+✔ component worker/state limits remain bounded without a transition journal (0.636666ms)
+✔ H1 retains paid body, owned material and prescribed completion (6.545042ms)
+✔ H2 retains paid body, owned material and prescribed completion (3.92825ms)
+✔ H3 retains paid body, owned material and prescribed completion (3.862583ms)
+✔ H4 retains paid body, owned material and prescribed completion (3.474583ms)
+✔ H5 retains paid body, owned material and prescribed completion (3.70275ms)
+✔ H6 retains paid body, owned material and prescribed completion (3.448667ms)
+✔ H7 retains paid body, owned material and prescribed completion (3.105584ms)
+✔ H8 retains paid body, owned material and prescribed completion (3.522ms)
+✔ active saves and event/minute drivers preserve exact authoritative world (12.24425ms)
+✔ host preserves partial installed work on stop and pays actual recovery (0.902667ms)
+✔ busy-worker refusal and unilateral hauling stop preserve past duty payment (2.174834ms)
+✔ host rejects tampered ownership, practice and duplicate assignment without mutating input (0.799125ms)
+✔ whole-action capacity rejects an unfit start or recipient without installing or moving work (0.70175ms)
+✔ actual one-minute capacity failure discards earlier actors provisional payment and tool effects (0.360833ms)
+✔ next event includes paid supplier and hauling completion and becomes null after their end (0.473334ms)
+✔ host bounds each advance and rejects new work past the numeric endpoint (49.597042ms)
+✔ review regression: completed work has only one possible terminal fractional minute (0.138292ms)
+✔ review regression: a terminal minute must add strictly positive physical work (0.099416ms)
+✔ review regression: invented final exposure cannot grant host construction practice (1.040042ms)
+✔ review regression: host progress cannot use unavailable or retroactive tool productivity (0.720541ms)
+✔ review regression: completion time must accommodate sequential paid item minutes (0.925542ms)
+✔ corrected rate checks preserve late starts and a legitimate transferred final partial minute (1.868958ms)
+✔ corrected component explicitly rejects the original work version without migration (0.107875ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 153.017584

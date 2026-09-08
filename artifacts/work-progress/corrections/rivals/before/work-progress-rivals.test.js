@@ -2,7 +2,6 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as direct from '../src/experiments/work-progress/camp-direct.js';
 import * as fixed from '../src/experiments/work-progress/camp-fixed.js';
-import { beginAttempt, advanceAttempt, finishAttempt } from '../src/human/v0.1.1.js';
 const json = value => JSON.parse(JSON.stringify(value));
 const start = (host, world, actor = 'A', item = 'work-1') => host.command(world, { type: 'start', actor, item });
 
@@ -145,69 +144,4 @@ test('the numeric endpoint preserves export and rejects work with no future exec
     assert.throws(() => start(host, terminal), /time|interval/i);
     assert.deepEqual(host.exportWorld(terminal), snapshot);
   }
-});
-
-
-function zeroConstructionMinute(person) {
-  let next = beginAttempt(person, { actionId: 'construct', targetId: 'work-1', durationMinutes: 1, effort: 0, exertive: true, activity: 'active', skill: 'construction' });
-  next = advanceAttempt(next, 1);
-  return finishAttempt(next, { attemptId: next.pending.id, status: 'completed' });
-}
-function forgedWorkRecord(host, kind) {
-  const initial = start(host, host.createWorld()), one = host.advanceTo(initial, 1), done = host.advanceTo(initial, 20);
-  if (kind === 'rate') {
-    const saved = host.exportWorld(one), c = saved.world.items['work-1'].contributions.A, old = c.effort;
-    c.fraction = 1 / 6; c.effort = .2 / 6; saved.world.items['work-1'].progress = c.fraction;
-    saved.world.paid.A.effort = c.effort; saved.world.people.A.body.fatigue += c.effort - old;
-    return saved;
-  }
-  if (kind === 'time') { const saved = host.exportWorld(done); saved.world.items['work-1'].completedAt = 1; return saved; }
-  const saved = host.exportWorld(host.advanceTo(done, 21));
-  if (kind === 'extra') {
-    saved.world.items['work-1'].contributions.A.minutes = 21;
-    saved.world.paid.A.work = 21; saved.world.paid.A.recovery = 0; saved.world.paid.A.construction = 21;
-    saved.world.people.A = zeroConstructionMinute(done.people.A);
-  } else {
-    saved.world.items['work-1'].contributions.B = { basis: 18, minutes: 1, fraction: 0, effort: 0 };
-    saved.world.items['work-1'].basisPaid.B = 0;
-    saved.world.paid.B.work = 1; saved.world.paid.B.recovery = 20; saved.world.paid.B.construction = 1;
-    saved.world.people.B = zeroConstructionMinute(done.people.B);
-  }
-  return saved;
-}
-for (const [label, host] of [['D', direct], ['F', fixed]]) for (const kind of ['extra', 'rate', 'time', 'zero']) {
-  test(`${label} rejects the confirmed ${kind} work-record forgery`, () => {
-    const saved = forgedWorkRecord(host, kind), before = json(saved);
-    assert.throws(() => host.restoreWorld(saved)); assert.deepEqual(saved, before);
-  });
-}
-
-test('an unfinished tool fixture cannot credit the boosted rate to the first paid minute', () => {
-  for (const host of [direct, fixed]) {
-    const saved = host.exportWorld(host.advanceTo(start(host, host.createWorld({ toolArrival: 1 })), 1));
-    const c = saved.world.items['work-1'].contributions.A, old = c.effort;
-    c.fraction = 1 / 14; c.effort = .2 / 14; saved.world.items['work-1'].progress = c.fraction;
-    saved.world.paid.A.effort = c.effort; saved.world.people.A.body.fatigue += c.effort - old;
-    assert.throws(() => host.restoreWorld(saved));
-  }
-});
-test('only one contributor can own a shortened terminal minute of one completed item', () => {
-  for (const host of [direct, fixed]) {
-    let world = host.advanceTo(start(host, host.createWorld()), 1);
-    world = host.command(world, { type: 'stop', actor: 'A' }); world = start(host, world, 'B');
-    const saved = host.exportWorld(host.advanceTo(world, 19)), c = saved.world.items['work-1'].contributions;
-    c.A.fraction = .025; c.A.effort = .005; c.B.fraction = .975; c.B.effort = .195;
-    saved.world.paid.A.effort = .005; saved.world.paid.B.effort = .195;
-    assert.throws(() => host.restoreWorld(saved));
-  }
-});
-test('D cannot assign the same worker two pre-tool paid minutes across different items', () => {
-  let world = start(direct, direct.createWorld({ toolArrival: 1, items: 2 }), 'A', 'work-2');
-  world = direct.command(world, { type: 'stop', actor: 'A' }); world = start(direct, world);
-  world = direct.advanceTo(world, 1); world = direct.command(world, { type: 'stop', actor: 'A' });
-  world = start(direct, world, 'A', 'work-2'); world = direct.advanceTo(world, 2);
-  const saved = direct.exportWorld(world), c = saved.world.items['work-2'].contributions.A, old = c.effort;
-  c.fraction = .05; c.effort = .01; saved.world.items['work-2'].progress = .05;
-  saved.world.paid.A.effort += c.effort - old; saved.world.people.A.body.fatigue += c.effort - old;
-  assert.throws(() => direct.restoreWorld(saved));
 });

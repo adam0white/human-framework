@@ -1,0 +1,6 @@
+{
+  "src/experiments/work-progress/camp-direct.js": "0a0a977e1e5e51c0c564dbd28839ceef3638a0ccd3bf50cfb610aebdce127459",
+  "src/experiments/work-progress/camp-fixed.js": "66e0a3fc81d415e9da6d17a98a539a9dcfa2767ba71c7b96784fbfed741cf0ba",
+  "tests/work-progress-rivals.test.js": "dadd286b812b660ec01972fe9434dee8630e41da306c840989e83f3fbbd01f3d",
+  "docs/work-progress-rivals.md": "181c8400ef917eec84838d2bac5f1264d103305b454721136ea1bd04e050d89a"
+}

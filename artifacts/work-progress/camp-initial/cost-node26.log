@@ -1,0 +1,28 @@
+{
+  "out": "/tmp/work-progress-cost-initial.json",
+  "source": "7cd3dc0a05f202a6f6b064d73cf5dfd01b33fcc3",
+  "arms": {
+    "candidate": {
+      "bytes": 49042,
+      "lines": 671,
+      "p95Ms": 0.15791699999999764,
+      "maxSnapshotBytes": 1895,
+      "workTransitions": 456
+    },
+    "direct": {
+      "bytes": 38233,
+      "lines": 493,
+      "p95Ms": 0.09962500000000318,
+      "maxSnapshotBytes": 1833,
+      "workTransitions": 456
+    },
+    "fixed": {
+      "bytes": 38555,
+      "lines": 494,
+      "p95Ms": 0.11054100000001199,
+      "maxSnapshotBytes": 1871,
+      "workTransitions": 456
+    }
+  },
+  "wideComponentBytes": 6193
+}

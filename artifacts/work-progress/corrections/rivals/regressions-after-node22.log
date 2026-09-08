@@ -1,0 +1,120 @@
+TAP version 13
+# Subtest: D and F pay an unchanged stage once and retain a bounded completed contribution
+ok 1 - D and F pay an unchanged stage once and retain a bounded completed contribution
+  ---
+  duration_ms: 17.717917
+  ...
+# Subtest: paid supplier changes future D work; F preserves its initial snapshot through stop and resume
+ok 2 - paid supplier changes future D work; F preserves its initial snapshot through stop and resume
+  ---
+  duration_ms: 9.631333
+  ...
+# Subtest: D accepts a capable recipient and keeps prior construction credit with its worker; F refuses optional handover
+ok 3 - D accepts a capable recipient and keeps prior construction credit with its worker; F refuses optional handover
+  ---
+  duration_ms: 2.942125
+  ...
+# Subtest: busy recipient refusal preserves work and stopping hauling retains paid costs without resuming it
+ok 4 - busy recipient refusal preserves work and stopping hauling retains paid costs without resuming it
+  ---
+  duration_ms: 1.427625
+  ...
+# Subtest: synchronized completions, driver chunking and JSON mid-work continuation preserve exact accounting
+ok 5 - synchronized completions, driver chunking and JSON mid-work continuation preserve exact accounting
+  ---
+  duration_ms: 23.155
+  ...
+# Subtest: unknown actions, ownership forgery and unsafe JSON reject without mutating input
+ok 6 - unknown actions, ownership forgery and unsafe JSON reject without mutating input
+  ---
+  duration_ms: 1.173542
+  ...
+# Subtest: unfit starts and recipients cannot bypass whole remaining-work capacity
+ok 7 - unfit starts and recipients cannot bypass whole remaining-work capacity
+  ---
+  duration_ms: 1.578292
+  ...
+# Subtest: same-worker resume retains an item basis after paid practice crosses the next skill floor
+ok 8 - same-worker resume retains an item basis after paid practice crosses the next skill floor
+  ---
+  duration_ms: 4.646875
+  ...
+# Subtest: setup values reject before constructing arbitrary item collections
+ok 9 - setup values reject before constructing arbitrary item collections
+  ---
+  duration_ms: 0.304959
+  ...
+# Subtest: an active auxiliary assignment must retain capacity for its remaining paid interval
+ok 10 - an active auxiliary assignment must retain capacity for its remaining paid interval
+  ---
+  duration_ms: 0.839625
+  ...
+# Subtest: the numeric endpoint preserves export and rejects work with no future execution interval
+ok 11 - the numeric endpoint preserves export and rejects work with no future execution interval
+  ---
+  duration_ms: 0.539875
+  ...
+# Subtest: D rejects the confirmed extra work-record forgery
+ok 12 - D rejects the confirmed extra work-record forgery
+  ---
+  duration_ms: 1.550792
+  ...
+# Subtest: D rejects the confirmed rate work-record forgery
+ok 13 - D rejects the confirmed rate work-record forgery
+  ---
+  duration_ms: 1.271417
+  ...
+# Subtest: D rejects the confirmed time work-record forgery
+ok 14 - D rejects the confirmed time work-record forgery
+  ---
+  duration_ms: 1.131792
+  ...
+# Subtest: D rejects the confirmed zero work-record forgery
+ok 15 - D rejects the confirmed zero work-record forgery
+  ---
+  duration_ms: 1.153042
+  ...
+# Subtest: F rejects the confirmed extra work-record forgery
+ok 16 - F rejects the confirmed extra work-record forgery
+  ---
+  duration_ms: 1.289375
+  ...
+# Subtest: F rejects the confirmed rate work-record forgery
+ok 17 - F rejects the confirmed rate work-record forgery
+  ---
+  duration_ms: 0.932459
+  ...
+# Subtest: F rejects the confirmed time work-record forgery
+ok 18 - F rejects the confirmed time work-record forgery
+  ---
+  duration_ms: 1.079584
+  ...
+# Subtest: F rejects the confirmed zero work-record forgery
+ok 19 - F rejects the confirmed zero work-record forgery
+  ---
+  duration_ms: 1.133708
+  ...
+# Subtest: an unfinished tool fixture cannot credit the boosted rate to the first paid minute
+ok 20 - an unfinished tool fixture cannot credit the boosted rate to the first paid minute
+  ---
+  duration_ms: 0.51675
+  ...
+# Subtest: only one contributor can own a shortened terminal minute of one completed item
+ok 21 - only one contributor can own a shortened terminal minute of one completed item
+  ---
+  duration_ms: 2.299167
+  ...
+# Subtest: D cannot assign the same worker two pre-tool paid minutes across different items
+ok 22 - D cannot assign the same worker two pre-tool paid minutes across different items
+  ---
+  duration_ms: 0.576917
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 140.270291

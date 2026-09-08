@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as work from '../src/experiments/work-progress/candidate.js';
 import * as camp from '../src/experiments/work-progress/camp-candidate.js';
+import {practice} from '../src/core/model.js';
 
 const close=(actual,expected)=>assert.ok(Math.abs(actual-expected)<1e-10,`${actual} != ${expected}`);
 function item(){return work.prepareWorker(work.createWork({id:'beam',effort:.2,minimumDuration:6}),{workerId:'A',basisMinutes:20});}
@@ -177,4 +178,67 @@ test('host bounds each advance and rejects new work past the numeric endpoint',(
   assert.equal(JSON.stringify(nearEnd),before);
   const ended=camp.advanceTo(nearEnd,1000000);assert.equal(camp.observe(ended).now,1000000);
   assert.equal(camp.nextEvent(ended),null);assert.throws(()=>camp.advanceTo(ended,1000001));
+});
+
+test('review regression: completed work has only one possible terminal fractional minute',()=>{
+  for(const rows of [
+    [['A',1,1,.5],['B',1,1,.5]],
+    [['A',2,1,.25],['B',2,1,.25],['C',10,1,.5]]
+  ]){
+    let state=work.createWork({id:'piece',effort:.2,minimumDuration:1});
+    for(const [workerId,basisMinutes] of rows)state=work.prepareWorker(state,{workerId,basisMinutes});
+    const snapshot=work.exportWork(state);snapshot.work.progress=1;snapshot.work.status='complete';
+    for(const [id,,minutes,fraction] of rows)Object.assign(snapshot.work.workers[id],{minutes,fraction,effort:.2*fraction});
+    assert.throws(()=>work.restoreWork(snapshot));
+  }
+});
+
+test('review regression: a terminal minute must add strictly positive physical work',()=>{
+  let state=work.prepareWorker(work.createWork({id:'piece',effort:.2,minimumDuration:1}),{workerId:'A',basisMinutes:1});
+  state=pay(state);const snapshot=work.exportWork(state);snapshot.work.workers.A.minutes=2;
+  assert.throws(()=>work.restoreWork(snapshot));
+  let multi=work.createWork({id:'piece',effort:.2,minimumDuration:1});
+  for(const [workerId,basisMinutes] of [['A',2],['B',5],['C',10]])multi=work.prepareWorker(multi,{workerId,basisMinutes});
+  const forged=work.exportWork(multi);forged.work.progress=1;forged.work.status='complete';
+  for(const [id,minutes,fraction] of [['A',2,.5],['B',2,.4],['C',1,.1]])Object.assign(forged.work.workers[id],{minutes,fraction,effort:.2*fraction});
+  assert.throws(()=>work.restoreWork(forged),'A cannot attach a zero-work second minute to its one full half-stage');
+});
+
+test('review regression: invented final exposure cannot grant host construction practice',()=>{
+  const original=camp.advanceTo(camp.command(camp.createWorld(),start('A')),21),snapshot=camp.exportWorld(original),world=snapshot.world;
+  world.items[0].work.workers.A.minutes=21;world.items[0].completedAt=21;
+  Object.assign(world.actors.A.paid,{work:21,recovery:0,construction:21});world.actors.A.person.skills.construction=practice(.1,21);
+  assert.throws(()=>camp.restoreWorld(snapshot));assert.equal(camp.observe(original).actors.A.paid.construction,20);
+});
+
+test('review regression: host progress cannot use unavailable or retroactive tool productivity',()=>{
+  for(const [setup,at,fraction] of [[{},1,1/6],[{toolArrival:1},1,1/14],[{toolArrival:1},2,2/14]]){
+    const original=camp.advanceTo(camp.command(camp.createWorld(setup),start('A')),at),snapshot=camp.exportWorld(original),world=snapshot.world;
+    world.items[0].work.progress=fraction;world.items[0].work.workers.A.fraction=fraction;
+    world.items[0].work.workers.A.effort=.2*fraction;world.actors.A.paid.effort=.2*fraction;
+    assert.throws(()=>camp.restoreWorld(snapshot));
+  }
+});
+
+test('review regression: completion time must accommodate sequential paid item minutes',()=>{
+  const original=camp.advanceTo(camp.command(camp.createWorld(),start('A')),20),snapshot=camp.exportWorld(original);
+  snapshot.world.items[0].completedAt=1;assert.throws(()=>camp.restoreWorld(snapshot));
+});
+
+test('corrected rate checks preserve late starts and a legitimate transferred final partial minute',()=>{
+  let late=camp.advanceTo(camp.createWorld({toolArrival:1}),1);late=camp.command(late,start('A'));late=camp.advanceTo(late,15);
+  assert.equal(camp.observe(late).items[0].completedAt,15);
+  assert.deepEqual(camp.restoreWorld(JSON.parse(JSON.stringify(camp.exportWorld(late)))),late);
+  let transferred=camp.command(camp.createWorld({toolArrival:1}),start('A'));transferred=camp.advanceTo(transferred,1);
+  transferred=camp.command(transferred,transfer('A','B'));transferred=camp.advanceTo(transferred,13);
+  const view=camp.observe(transferred);assert.equal(view.items[0].completedAt,13);
+  assert.equal(view.items[0].contributions.A.minutes,1);assert.equal(view.items[0].contributions.B.minutes,12);
+  close(view.items[0].contributions.B.fraction,.95);
+  assert.deepEqual(camp.restoreWorld(JSON.parse(JSON.stringify(camp.exportWorld(transferred)))),transferred);
+});
+
+test('corrected component explicitly rejects the original work version without migration',()=>{
+  const current=work.exportWork(item()),previous=structuredClone(current);previous.work.version='0.1.0';
+  assert.throws(()=>work.restoreWork(previous),/version/);
+  assert.deepEqual(work.restoreWork(current),item());
 });

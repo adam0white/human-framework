@@ -1,0 +1,171 @@
+{
+  "node": "v26.8.1",
+  "workVersion": "0.1.1",
+  "hostVersion": "0.1.0",
+  "probes": [
+    {
+      "name": "legal_exact_one_minute_with_unused_contributor",
+      "ok": true,
+      "transitions": 1,
+      "lastPayment": {
+        "workerId": "A",
+        "minutes": 1,
+        "fraction": 1,
+        "effort": 0.2
+      },
+      "workers": {
+        "A": {
+          "basisMinutes": 1,
+          "minutes": 1,
+          "fraction": 1,
+          "effort": 0.2
+        },
+        "B": {
+          "basisMinutes": 1,
+          "minutes": 0,
+          "fraction": 0,
+          "effort": 0
+        }
+      }
+    },
+    {
+      "name": "legal_two_worker_positive_final_partial",
+      "ok": true,
+      "transitions": 19,
+      "lastPayment": {
+        "workerId": "B",
+        "minutes": 1,
+        "fraction": 0.005555555555555314,
+        "effort": 0.0011111111111110628
+      },
+      "workers": {
+        "A": {
+          "basisMinutes": 20,
+          "minutes": 1,
+          "fraction": 0.05,
+          "effort": 0.010000000000000002
+        },
+        "B": {
+          "basisMinutes": 18,
+          "minutes": 18,
+          "fraction": 0.9500000000000001,
+          "effort": 0.1899999999999999
+        }
+      }
+    },
+    {
+      "name": "legal_returning_worker_positive_final_partial",
+      "ok": true,
+      "transitions": 9,
+      "lastPayment": {
+        "workerId": "A",
+        "minutes": 1,
+        "fraction": 0.012987012987013102,
+        "effort": 0.002597402597402621
+      },
+      "workers": {
+        "A": {
+          "basisMinutes": 7,
+          "minutes": 6,
+          "fraction": 0.7272727272727273,
+          "effort": 0.14545454545454548
+        },
+        "B": {
+          "basisMinutes": 11,
+          "minutes": 3,
+          "fraction": 0.2727272727272727,
+          "effort": 0.05454545454545455
+        }
+      }
+    },
+    {
+      "name": "legal_variable_productivity_multiworker_partial",
+      "ok": true,
+      "transitions": 10,
+      "lastPayment": {
+        "workerId": "A",
+        "minutes": 1,
+        "fraction": 0.029487179487179604,
+        "effort": 0.005897435897435921
+      },
+      "workers": {
+        "A": {
+          "basisMinutes": 13,
+          "minutes": 5,
+          "fraction": 0.5833333333333335,
+          "effort": 0.11666666666666671
+        },
+        "B": {
+          "basisMinutes": 17,
+          "minutes": 5,
+          "fraction": 0.41666666666666663,
+          "effort": 0.08333333333333333
+        }
+      }
+    },
+    {
+      "name": "legal_late_tool_start",
+      "ok": true,
+      "completedAt": 31,
+      "contributions": {
+        "A": {
+          "basisMinutes": 20,
+          "minutes": 14,
+          "fraction": 0.9999999999999997,
+          "effort": 0.20000000000000004
+        }
+      }
+    },
+    {
+      "name": "legal_late_no_tool_start",
+      "ok": true,
+      "completedAt": 25,
+      "contributions": {
+        "B": {
+          "basisMinutes": 18,
+          "minutes": 18,
+          "fraction": 1,
+          "effort": 0.19999999999999987
+        }
+      }
+    },
+    {
+      "name": "legal_tool_first_minute_then_pause_transfer_partial",
+      "ok": true,
+      "completedAt": 19,
+      "contributions": {
+        "A": {
+          "basisMinutes": 20,
+          "minutes": 2,
+          "fraction": 0.12142857142857143,
+          "effort": 0.024285714285714285
+        },
+        "B": {
+          "basisMinutes": 18,
+          "minutes": 11,
+          "fraction": 0.8785714285714284,
+          "effort": 0.17571428571428568
+        }
+      }
+    },
+    {
+      "name": "legal_tool_prepared_without_exposure_late_start",
+      "ok": true,
+      "completedAt": 17,
+      "contributions": {
+        "A": {
+          "basisMinutes": 20,
+          "minutes": 0,
+          "fraction": 0,
+          "effort": 0
+        },
+        "B": {
+          "basisMinutes": 18,
+          "minutes": 12,
+          "fraction": 1,
+          "effort": 0.19999999999999998
+        }
+      }
+    }
+  ]
+}

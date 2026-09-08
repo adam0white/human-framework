@@ -1,0 +1,30 @@
+[
+  {
+    "host": "D",
+    "case": "extra-terminal-exposure-21",
+    "completedAt": 21,
+    "rejected": true,
+    "reason": "Work fraction has no valid rate and positive terminal exposure"
+  },
+  {
+    "host": "D",
+    "case": "zero-terminal-recipient-exposure",
+    "completedAt": 21,
+    "rejected": true,
+    "reason": "Work fraction has no valid rate and positive terminal exposure"
+  },
+  {
+    "host": "F",
+    "case": "extra-terminal-exposure-21",
+    "completedAt": 21,
+    "rejected": true,
+    "reason": "Work fraction has no valid fixed rate and positive terminal exposure"
+  },
+  {
+    "host": "F",
+    "case": "zero-terminal-recipient-exposure",
+    "completedAt": 21,
+    "rejected": true,
+    "reason": "Work fraction has no valid fixed rate and positive terminal exposure"
+  }
+]

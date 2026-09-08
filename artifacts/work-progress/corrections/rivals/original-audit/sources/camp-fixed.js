@@ -1,7 +1,7 @@
-/** Private direct host: prospective durable work, with no candidate/helper dependency. */
+/** Private fixed rival: first-item tool snapshot and refusal of optional handover. No shared helper dependency. */
 import { createPerson, assessEffort, beginAttempt, advanceAttempt, finishAttempt, exportPerson, restorePerson } from '../../human/v0.1.1.js';
 import { practice } from '../../core/model.js';
-const HOST = 'work-progress-camp-direct', EPS = 1e-12, MAX_TIME = 1000000;
+const HOST = 'work-progress-camp-fixed', EPS = 1e-12, MAX_TIME = 1000000;
 const actors = ['A', 'B', 'C'], workers = ['A', 'B'];
 const initialSkills = { A: { construction: .1, hauling: .1 }, B: { construction: .6, hauling: .1 }, C: { crafting: .1 } };
 const copy = value => structuredClone(value), trusted = new WeakSet();
@@ -33,13 +33,14 @@ function inspect(value) {
 }
 function freeze(value) { if (value && typeof value === 'object') { for (const child of Object.values(value)) freeze(child); Object.freeze(value); } return value; }
 function seal(world) { validate(world); freeze(world); trusted.add(world); return world; }
-function duration(world, item, actor) { return Math.max(6, item.contributions[actor].basis - (world.toolAvailable ? 6 : 0)); }
+function duration(world, item, actor) { return Math.max(6, item.contributions[actor].basis - (item.toolAtStart === true ? 6 : 0)); }
 function forecast(world, item, actor) {
   const basis = item.contributions[actor]?.basis ?? 20 - Math.floor(world.people[actor].skills.construction * 4);
-  const d = Math.max(6, basis - (world.toolAvailable ? 6 : 0));
+  const d = Math.max(6, basis - ((item.toolAtStart ?? world.toolAvailable) ? 6 : 0));
   return { durationMinutes: Math.max(1, Math.ceil((1 - item.progress) * d - EPS)), effort: .2 * (1 - item.progress), exertive: true };
 }
 function prepare(world, item, actor) {
+  if (item.toolAtStart === null) item.toolAtStart = world.toolAvailable;
   if (!item.contributions[actor]) {
     item.contributions[actor] = { basis: 20 - Math.floor(world.people[actor].skills.construction * 4), minutes: 0, fraction: 0, effort: 0 };
     item.basisPaid[actor] = world.paid[actor].construction;
@@ -80,47 +81,6 @@ function tick(world) {
   }
   if (world.assignments.B === 'hauling' && world.now === 4) world.assignments.B = null;
 }
-
-/** Necessary exposure consistency, using this host's only tool transition at minute one.
- * Returns possible actors paid before the tool; no command history is reconstructed.
- */
-function rateMasks(world, item) {
-  const entries = Object.entries(item.contributions), end = item.completedAt ?? world.now;
-  const minutes = entries.reduce((sum, [, c]) => sum + c.minutes, 0);
-  if (minutes > end) fail('Item paid minutes exceed its elapsed completion interval');
-  const hasTool = world.setup.toolArrival === 1, possible = new Set();
-  const terminals = item.settled ? entries.filter(([, c]) => c.minutes > 0).map(([actor]) => actor) : [null];
-  function choose(index, rates, before, mask) {
-    if (index < entries.length) {
-      const [actor, c] = entries[index], prefixes = [0];
-      if (hasTool && end >= 1 && c.minutes > 0 && item.basisPaid[actor] === 0 && !(actor === 'B' && world.setup.busyB && world.haulStoppedAt !== 0)) prefixes.push(1);
-      for (const pre of prefixes) {
-        if (before + pre > 1) continue; // One item has one worker during minute zero-to-one.
-        const earlyRate = 1 / c.basis, laterRate = 1 / Math.max(6, c.basis - (hasTool ? 6 : 0));
-        const after = c.minutes - pre;
-        choose(index + 1, [...rates, { actor, c, after, full: pre * earlyRate + after * laterRate, last: after ? laterRate : earlyRate }], before + pre, mask | (pre ? 1 << workers.indexOf(actor) : 0));
-      }
-      return;
-    }
-    const after = minutes - before;
-    if (hasTool && after > Math.max(0, end - 1)) return;
-    for (const terminal of terminals) {
-      const valid = rates.every(({ actor, c, full, last, after: ownAfter }) => {
-        if (c.minutes === 0) return c.fraction === 0;
-        if (c.fraction <= EPS) return false;
-        if (actor !== terminal) return Math.abs(c.fraction - full) <= EPS;
-        if (hasTool && ownAfter === 0 && after > 0) return false;
-        const finalFraction = c.fraction - (full - last);
-        return finalFraction > EPS && finalFraction <= last + EPS;
-      });
-      if (valid) { possible.add(mask); break; }
-    }
-  }
-  choose(0, [], 0, 0);
-  if (!possible.size) fail('Work fraction has no valid rate and positive terminal exposure');
-  return [...possible];
-}
-
 function validate(world) {
   if (trusted.has(world)) return world;
   inspect(world); fields(world, ['host', 'setup', 'now', 'people', 'paid', 'stock', 'spent', 'toolAvailable', 'outputs', 'items', 'assignments', 'haulStoppedAt', 'lastResponse'], 'world');
@@ -135,30 +95,25 @@ function validate(world) {
   for (const key of ['stock', 'spent']) { fields(world[key], ['timber', 'salvage', 'toolBlank'], key); for (const value of Object.values(world[key])) integer(value, 0, 10, key); }
   const ids = Array.from({ length: world.setup.items }, (_, n) => `work-${n + 1}`); fields(world.items, ids, 'items');
   let outputs = 0, reservedTimber = 0, reservedSalvage = 0;
-  let prefixAllocations = [0];
   const credited = Object.fromEntries(workers.map(actor => [actor, { minutes: 0, effort: 0 }]));
   for (const id of ids) {
-    const item = world.items[id]; fields(item, ['id', 'progress', 'completedAt', 'settled', 'reserved', 'contributions', 'basisPaid'], 'item');
+    const item = world.items[id]; fields(item, ['id', 'progress', 'completedAt', 'settled', 'reserved', 'contributions', 'basisPaid', 'toolAtStart'], 'item');
     if (item.id !== id || typeof item.settled !== 'boolean') fail('Invalid item identity'); number(item.progress, 0, 1, 'progress');
     fields(item.reserved, ['timber', 'salvage'], 'reservation');
-    const participants = Object.keys(item.contributions); if (participants.some(a => !workers.includes(a))) fail('Invalid contributor'); fields(item.basisPaid, participants, 'basis credit');
+    const participants = Object.keys(item.contributions); if (participants.length ? typeof item.toolAtStart !== 'boolean' || item.toolAtStart && !world.toolAvailable : item.toolAtStart !== null) fail('Invalid fixed tool snapshot'); if (participants.some(a => !workers.includes(a))) fail('Invalid contributor'); fields(item.basisPaid, participants, 'basis credit');
     let fraction = 0;
     for (const actor of participants) {
       const c = item.contributions[actor]; fields(c, ['basis', 'minutes', 'fraction', 'effort'], 'contribution');
       integer(item.basisPaid[actor], 0, world.paid[actor].construction, 'basis exposure');
       if (c.basis !== 20 - Math.floor(practice(initialSkills[actor].construction, item.basisPaid[actor]) * 4)) fail('Changed worker basis');
       integer(c.minutes, 0, world.now, 'contribution minutes'); number(c.fraction, 0, 1, 'fraction'); number(c.effort, 0, .2, 'effort');
-      if (Math.abs(c.effort - .2 * c.fraction) > 1e-10) fail('Inconsistent paid effort');
+      if (Math.abs(c.effort - .2 * c.fraction) > 1e-10 || c.fraction > c.minutes / 6 + EPS || c.minutes && c.fraction < (c.minutes - 1) / 20 - EPS || !c.minutes && c.fraction !== 0) fail('Inconsistent paid fraction');
       if (item.basisPaid[actor] + c.minutes > world.paid[actor].construction) fail('Reversed basis exposure');
       fraction += c.fraction; credited[actor].minutes += c.minutes; credited[actor].effort += c.effort;
     }
     if (Math.abs(fraction - item.progress) > 1e-10) fail('Progress and contributors disagree');
     if (item.settled) { integer(item.completedAt, 1, world.now, 'completion time'); if (item.progress !== 1 || item.reserved.timber || item.reserved.salvage) fail('Invalid settlement'); outputs++; }
     else if (item.completedAt !== null || item.progress >= 1 - EPS || item.reserved.timber !== (participants.length ? 5 : 0) || item.reserved.salvage !== (participants.length ? 1 : 0)) fail('Invalid active material');
-    const itemMasks = rateMasks(world, item), combined = new Set();
-    for (const used of prefixAllocations) for (const mask of itemMasks) if (!(used & mask)) combined.add(used | mask);
-    if (!combined.size) fail('A worker cannot pay two pre-tool item minutes');
-    prefixAllocations = [...combined];
     reservedTimber += item.reserved.timber; reservedSalvage += item.reserved.salvage;
   }
   if (outputs !== world.outputs || world.spent.timber !== outputs * 5 || world.spent.salvage !== outputs || world.spent.toolBlank !== crafted || world.stock.toolBlank !== (world.setup.toolArrival === 1 ? 1 : 0) - crafted || world.stock.timber + world.spent.timber + reservedTimber !== 5 * world.setup.items || world.stock.salvage + world.spent.salvage + reservedSalvage !== world.setup.items) fail('Resource/output conservation mismatch');
@@ -184,7 +139,7 @@ function validate(world) {
   if (new Set(assigned).size !== assigned.length || world.assignments.C !== (world.setup.toolArrival === 1 && world.now === 0 ? 'crafting' : null) || world.setup.busyB && world.haulStoppedAt === null && world.now < 4 && world.assignments.B !== 'hauling') fail('Invalid exclusive assignment');
   if (world.lastResponse !== null) {
     const r = world.lastResponse; fields(r, ['at', 'item', 'from', 'to', 'accepted', 'reason'], 'response'); integer(r.at, 0, world.now, 'response time');
-    if (!ids.includes(r.item) || !workers.includes(r.from) || !workers.includes(r.to) || r.from === r.to || typeof r.accepted !== 'boolean' || !['accepted', 'recipient-busy', 'recipient-capacity'].includes(r.reason) || r.accepted !== (r.reason === 'accepted')) fail('Invalid handover response');
+    if (!ids.includes(r.item) || !workers.includes(r.from) || !workers.includes(r.to) || r.from === r.to || typeof r.accepted !== 'boolean' || !['recipient-busy', 'recipient-capacity', 'fixed-assignment'].includes(r.reason) || r.accepted !== (r.reason === 'accepted')) fail('Invalid handover response');
   }
   return world;
 }
@@ -196,7 +151,7 @@ export function createWorld(input = {}) {
     people: Object.fromEntries(actors.map(id => [id, createPerson({ id, body: { fatigue: .2, hunger: .2 }, skills: copy(initialSkills[id]), observationBias: 0 })])),
     paid: Object.fromEntries(actors.map(a => [a, { work: 0, recovery: 0, effort: 0, construction: 0, hauling: 0, crafting: 0 }])),
     stock: { timber: 5 * setup.items, salvage: setup.items, toolBlank: setup.toolArrival === 1 ? 1 : 0 }, spent: { timber: 0, salvage: 0, toolBlank: 0 },
-    toolAvailable: false, outputs: 0, items: Object.fromEntries(Array.from({ length: setup.items }, (_, n) => { const id = `work-${n + 1}`; return [id, { id, progress: 0, completedAt: null, settled: false, reserved: { timber: 0, salvage: 0 }, contributions: {}, basisPaid: {} }]; })),
+    toolAvailable: false, outputs: 0, items: Object.fromEntries(Array.from({ length: setup.items }, (_, n) => { const id = `work-${n + 1}`; return [id, { id, progress: 0, completedAt: null, settled: false, reserved: { timber: 0, salvage: 0 }, contributions: {}, basisPaid: {}, toolAtStart: null }]; })),
     assignments: { A: null, B: setup.busyB ? 'hauling' : null, C: setup.toolArrival === 1 ? 'crafting' : null }, haulStoppedAt: null, lastResponse: null };
   return seal(world);
 }
@@ -219,9 +174,9 @@ export function command(world, input) {
   } else {
     const { from, to, item: id } = input, item = next.items[id];
     if (!workers.includes(from) || !workers.includes(to) || from === to || !item || next.assignments[from] !== id) fail('Invalid handover offer');
-    const reason = next.assignments[to] ? 'recipient-busy' : (!assessEffort(next.people[to].body, forecast(next, item, to)).allowed || next.now + forecast(next, item, to).durationMinutes > MAX_TIME) ? 'recipient-capacity' : 'accepted';
+    const reason = next.assignments[to] ? 'recipient-busy' : (!assessEffort(next.people[to].body, forecast(next, item, to)).allowed || next.now + forecast(next, item, to).durationMinutes > MAX_TIME) ? 'recipient-capacity' : 'fixed-assignment';
     next.lastResponse = { at: next.now, item: id, from, to, accepted: reason === 'accepted', reason };
-    if (reason === 'accepted') { prepare(next, item, to); next.assignments[from] = null; next.assignments[to] = id; }
+    // This smaller contract declines optional transfers; explicit stop remains available.
   }
   return seal(next);
 }

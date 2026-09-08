@@ -1,0 +1,77 @@
+{
+  "head": "563cc95c524a6e1299d810ca95abf397ae0d3423",
+  "node": "v22.0.0",
+  "sources": {
+    "src/experiments/work-progress/camp-direct.js": "38322c721383639f6095b8a86055b07757d1e732ed26b46723d2eefcb9204c90",
+    "src/experiments/work-progress/camp-fixed.js": "6b1a0e7e83f351e84c081a6aa758e35d28cfd5ba97bca52fd64d69bf2e030b6c",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+  },
+  "scope": "Four bounded malicious current-snapshot probes per rival; no candidate/repair source read, no matrix execution, no repository edits",
+  "outcomes": [
+    {
+      "host": "D",
+      "name": "extra-terminal-exposure-21",
+      "accepted": true,
+      "error": null,
+      "roundtripPreservesChangedSnapshot": true,
+      "file": "D-extra-terminal-exposure-21-22.0.0.json"
+    },
+    {
+      "host": "D",
+      "name": "inflated-no-tool-minute",
+      "accepted": true,
+      "error": null,
+      "roundtripPreservesChangedSnapshot": true,
+      "file": "D-inflated-no-tool-minute-22.0.0.json"
+    },
+    {
+      "host": "D",
+      "name": "completion-at-one-with-20-paid-minutes",
+      "accepted": true,
+      "error": null,
+      "roundtripPreservesChangedSnapshot": true,
+      "file": "D-completion-at-one-with-20-paid-minutes-22.0.0.json"
+    },
+    {
+      "host": "D",
+      "name": "zero-terminal-recipient-exposure",
+      "accepted": true,
+      "error": null,
+      "roundtripPreservesChangedSnapshot": true,
+      "file": "D-zero-terminal-recipient-exposure-22.0.0.json"
+    },
+    {
+      "host": "F",
+      "name": "extra-terminal-exposure-21",
+      "accepted": true,
+      "error": null,
+      "roundtripPreservesChangedSnapshot": true,
+      "file": "F-extra-terminal-exposure-21-22.0.0.json"
+    },
+    {
+      "host": "F",
+      "name": "inflated-no-tool-minute",
+      "accepted": true,
+      "error": null,
+      "roundtripPreservesChangedSnapshot": true,
+      "file": "F-inflated-no-tool-minute-22.0.0.json"
+    },
+    {
+      "host": "F",
+      "name": "completion-at-one-with-20-paid-minutes",
+      "accepted": true,
+      "error": null,
+      "roundtripPreservesChangedSnapshot": true,
+      "file": "F-completion-at-one-with-20-paid-minutes-22.0.0.json"
+    },
+    {
+      "host": "F",
+      "name": "zero-terminal-recipient-exposure",
+      "accepted": true,
+      "error": null,
+      "roundtripPreservesChangedSnapshot": true,
+      "file": "F-zero-terminal-recipient-exposure-22.0.0.json"
+    }
+  ]
+}

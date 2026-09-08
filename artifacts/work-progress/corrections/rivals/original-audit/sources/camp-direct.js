@@ -80,47 +80,6 @@ function tick(world) {
   }
   if (world.assignments.B === 'hauling' && world.now === 4) world.assignments.B = null;
 }
-
-/** Necessary exposure consistency, using this host's only tool transition at minute one.
- * Returns possible actors paid before the tool; no command history is reconstructed.
- */
-function rateMasks(world, item) {
-  const entries = Object.entries(item.contributions), end = item.completedAt ?? world.now;
-  const minutes = entries.reduce((sum, [, c]) => sum + c.minutes, 0);
-  if (minutes > end) fail('Item paid minutes exceed its elapsed completion interval');
-  const hasTool = world.setup.toolArrival === 1, possible = new Set();
-  const terminals = item.settled ? entries.filter(([, c]) => c.minutes > 0).map(([actor]) => actor) : [null];
-  function choose(index, rates, before, mask) {
-    if (index < entries.length) {
-      const [actor, c] = entries[index], prefixes = [0];
-      if (hasTool && end >= 1 && c.minutes > 0 && item.basisPaid[actor] === 0 && !(actor === 'B' && world.setup.busyB && world.haulStoppedAt !== 0)) prefixes.push(1);
-      for (const pre of prefixes) {
-        if (before + pre > 1) continue; // One item has one worker during minute zero-to-one.
-        const earlyRate = 1 / c.basis, laterRate = 1 / Math.max(6, c.basis - (hasTool ? 6 : 0));
-        const after = c.minutes - pre;
-        choose(index + 1, [...rates, { actor, c, after, full: pre * earlyRate + after * laterRate, last: after ? laterRate : earlyRate }], before + pre, mask | (pre ? 1 << workers.indexOf(actor) : 0));
-      }
-      return;
-    }
-    const after = minutes - before;
-    if (hasTool && after > Math.max(0, end - 1)) return;
-    for (const terminal of terminals) {
-      const valid = rates.every(({ actor, c, full, last, after: ownAfter }) => {
-        if (c.minutes === 0) return c.fraction === 0;
-        if (c.fraction <= EPS) return false;
-        if (actor !== terminal) return Math.abs(c.fraction - full) <= EPS;
-        if (hasTool && ownAfter === 0 && after > 0) return false;
-        const finalFraction = c.fraction - (full - last);
-        return finalFraction > EPS && finalFraction <= last + EPS;
-      });
-      if (valid) { possible.add(mask); break; }
-    }
-  }
-  choose(0, [], 0, 0);
-  if (!possible.size) fail('Work fraction has no valid rate and positive terminal exposure');
-  return [...possible];
-}
-
 function validate(world) {
   if (trusted.has(world)) return world;
   inspect(world); fields(world, ['host', 'setup', 'now', 'people', 'paid', 'stock', 'spent', 'toolAvailable', 'outputs', 'items', 'assignments', 'haulStoppedAt', 'lastResponse'], 'world');
@@ -135,7 +94,6 @@ function validate(world) {
   for (const key of ['stock', 'spent']) { fields(world[key], ['timber', 'salvage', 'toolBlank'], key); for (const value of Object.values(world[key])) integer(value, 0, 10, key); }
   const ids = Array.from({ length: world.setup.items }, (_, n) => `work-${n + 1}`); fields(world.items, ids, 'items');
   let outputs = 0, reservedTimber = 0, reservedSalvage = 0;
-  let prefixAllocations = [0];
   const credited = Object.fromEntries(workers.map(actor => [actor, { minutes: 0, effort: 0 }]));
   for (const id of ids) {
     const item = world.items[id]; fields(item, ['id', 'progress', 'completedAt', 'settled', 'reserved', 'contributions', 'basisPaid'], 'item');
@@ -148,17 +106,13 @@ function validate(world) {
       integer(item.basisPaid[actor], 0, world.paid[actor].construction, 'basis exposure');
       if (c.basis !== 20 - Math.floor(practice(initialSkills[actor].construction, item.basisPaid[actor]) * 4)) fail('Changed worker basis');
       integer(c.minutes, 0, world.now, 'contribution minutes'); number(c.fraction, 0, 1, 'fraction'); number(c.effort, 0, .2, 'effort');
-      if (Math.abs(c.effort - .2 * c.fraction) > 1e-10) fail('Inconsistent paid effort');
+      if (Math.abs(c.effort - .2 * c.fraction) > 1e-10 || c.fraction > c.minutes / 6 + EPS || c.minutes && c.fraction < (c.minutes - 1) / 20 - EPS || !c.minutes && c.fraction !== 0) fail('Inconsistent paid fraction');
       if (item.basisPaid[actor] + c.minutes > world.paid[actor].construction) fail('Reversed basis exposure');
       fraction += c.fraction; credited[actor].minutes += c.minutes; credited[actor].effort += c.effort;
     }
     if (Math.abs(fraction - item.progress) > 1e-10) fail('Progress and contributors disagree');
     if (item.settled) { integer(item.completedAt, 1, world.now, 'completion time'); if (item.progress !== 1 || item.reserved.timber || item.reserved.salvage) fail('Invalid settlement'); outputs++; }
     else if (item.completedAt !== null || item.progress >= 1 - EPS || item.reserved.timber !== (participants.length ? 5 : 0) || item.reserved.salvage !== (participants.length ? 1 : 0)) fail('Invalid active material');
-    const itemMasks = rateMasks(world, item), combined = new Set();
-    for (const used of prefixAllocations) for (const mask of itemMasks) if (!(used & mask)) combined.add(used | mask);
-    if (!combined.size) fail('A worker cannot pay two pre-tool item minutes');
-    prefixAllocations = [...combined];
     reservedTimber += item.reserved.timber; reservedSalvage += item.reserved.salvage;
   }
   if (outputs !== world.outputs || world.spent.timber !== outputs * 5 || world.spent.salvage !== outputs || world.spent.toolBlank !== crafted || world.stock.toolBlank !== (world.setup.toolArrival === 1 ? 1 : 0) - crafted || world.stock.timber + world.spent.timber + reservedTimber !== 5 * world.setup.items || world.stock.salvage + world.spent.salvage + reservedSalvage !== world.setup.items) fail('Resource/output conservation mismatch');

@@ -1,0 +1,30 @@
+✔ D and F pay an unchanged stage once and retain a bounded completed contribution (10.726208ms)
+✔ paid supplier changes future D work; F preserves its initial snapshot through stop and resume (7.078333ms)
+✔ D accepts a capable recipient and keeps prior construction credit with its worker; F refuses optional handover (2.090167ms)
+✔ busy recipient refusal preserves work and stopping hauling retains paid costs without resuming it (1.347083ms)
+✔ synchronized completions, driver chunking and JSON mid-work continuation preserve exact accounting (13.686167ms)
+✔ unknown actions, ownership forgery and unsafe JSON reject without mutating input (0.986417ms)
+✔ unfit starts and recipients cannot bypass whole remaining-work capacity (1.782875ms)
+✔ same-worker resume retains an item basis after paid practice crosses the next skill floor (4.114292ms)
+✔ setup values reject before constructing arbitrary item collections (0.134959ms)
+✔ an active auxiliary assignment must retain capacity for its remaining paid interval (0.551417ms)
+✔ the numeric endpoint preserves export and rejects work with no future execution interval (0.427ms)
+✔ D rejects the confirmed extra work-record forgery (1.193792ms)
+✔ D rejects the confirmed rate work-record forgery (1.05625ms)
+✔ D rejects the confirmed time work-record forgery (1.145375ms)
+✔ D rejects the confirmed zero work-record forgery (1.130834ms)
+✔ F rejects the confirmed extra work-record forgery (1.065792ms)
+✔ F rejects the confirmed rate work-record forgery (0.920334ms)
+✔ F rejects the confirmed time work-record forgery (0.852584ms)
+✔ F rejects the confirmed zero work-record forgery (1.009166ms)
+✔ an unfinished tool fixture cannot credit the boosted rate to the first paid minute (0.503416ms)
+✔ only one contributor can own a shortened terminal minute of one completed item (1.941583ms)
+✔ D cannot assign the same worker two pre-tool paid minutes across different items (0.552625ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 96.351959

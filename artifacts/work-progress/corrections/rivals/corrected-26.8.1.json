@@ -1,0 +1,95 @@
+{
+  "node": "v26.8.1",
+  "originalSources": {
+    "src/experiments/work-progress/camp-direct.js": "38322c721383639f6095b8a86055b07757d1e732ed26b46723d2eefcb9204c90",
+    "src/experiments/work-progress/camp-fixed.js": "6b1a0e7e83f351e84c081a6aa758e35d28cfd5ba97bca52fd64d69bf2e030b6c",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+  },
+  "correctedWorkspaceSources": {
+    "camp-direct": "0a0a977e1e5e51c0c564dbd28839ceef3638a0ccd3bf50cfb610aebdce127459",
+    "camp-fixed": "66e0a3fc81d415e9da6d17a98a539a9dcfa2767ba71c7b96784fbfed741cf0ba"
+  },
+  "results": [
+    {
+      "host": "D",
+      "name": "extra-terminal-exposure-21",
+      "baselineExact": true,
+      "originalAccepted": true,
+      "correctedAccepted": false,
+      "error": "Item paid minutes exceed its elapsed completion interval",
+      "inputFile": "D-extra-terminal-exposure-21-26.8.1.json",
+      "inputSha256": "d48c0fbf64c3996f0247dacfe71542cd63578d679e1b27c2ccb1a601bb3cfce4"
+    },
+    {
+      "host": "D",
+      "name": "inflated-no-tool-minute",
+      "baselineExact": true,
+      "originalAccepted": true,
+      "correctedAccepted": false,
+      "error": "Work fraction has no valid rate and positive terminal exposure",
+      "inputFile": "D-inflated-no-tool-minute-26.8.1.json",
+      "inputSha256": "9790b92d0ea463e652df3708d254af2b3fc3300cf04782ef6c4db36c685b15c8"
+    },
+    {
+      "host": "D",
+      "name": "completion-at-one-with-20-paid-minutes",
+      "baselineExact": true,
+      "originalAccepted": true,
+      "correctedAccepted": false,
+      "error": "Item paid minutes exceed its elapsed completion interval",
+      "inputFile": "D-completion-at-one-with-20-paid-minutes-26.8.1.json",
+      "inputSha256": "ed148af18c5be1ff4a01f821e0f4a17374e22c46c8fd2a4e87cc410e21e7158a"
+    },
+    {
+      "host": "D",
+      "name": "zero-terminal-recipient-exposure",
+      "baselineExact": true,
+      "originalAccepted": true,
+      "correctedAccepted": false,
+      "error": "Item paid minutes exceed its elapsed completion interval",
+      "inputFile": "D-zero-terminal-recipient-exposure-26.8.1.json",
+      "inputSha256": "165687fe8ab023dd50e712072145cf75aeed18de7ff5ab31177cd3667dbc1c53"
+    },
+    {
+      "host": "F",
+      "name": "extra-terminal-exposure-21",
+      "baselineExact": true,
+      "originalAccepted": true,
+      "correctedAccepted": false,
+      "error": "Item paid minutes exceed its elapsed completion interval",
+      "inputFile": "F-extra-terminal-exposure-21-26.8.1.json",
+      "inputSha256": "15ad0a92893abc97241e9e84c3ec06e2c1be1b48a72f593ea798889e6c204333"
+    },
+    {
+      "host": "F",
+      "name": "inflated-no-tool-minute",
+      "baselineExact": true,
+      "originalAccepted": true,
+      "correctedAccepted": false,
+      "error": "Work fraction has no valid fixed rate and positive terminal exposure",
+      "inputFile": "F-inflated-no-tool-minute-26.8.1.json",
+      "inputSha256": "b57961a1731b1b32357c9c5fb4e72ce46c91f5a72fa4630797954414cdf0107f"
+    },
+    {
+      "host": "F",
+      "name": "completion-at-one-with-20-paid-minutes",
+      "baselineExact": true,
+      "originalAccepted": true,
+      "correctedAccepted": false,
+      "error": "Item paid minutes exceed its elapsed completion interval",
+      "inputFile": "F-completion-at-one-with-20-paid-minutes-26.8.1.json",
+      "inputSha256": "c3467e619cd3dd989b4c9ba88fc83d374347701b6eb287b84f325be3a68d7b98"
+    },
+    {
+      "host": "F",
+      "name": "zero-terminal-recipient-exposure",
+      "baselineExact": true,
+      "originalAccepted": true,
+      "correctedAccepted": false,
+      "error": "Item paid minutes exceed its elapsed completion interval",
+      "inputFile": "F-zero-terminal-recipient-exposure-26.8.1.json",
+      "inputSha256": "a5662a04d7930ebdf2794b7e9c486e651ebbfe82cc226f630b5d28ab42583439"
+    }
+  ]
+}
