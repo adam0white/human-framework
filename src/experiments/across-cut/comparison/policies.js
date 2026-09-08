@@ -28,7 +28,7 @@ export function chooseAction(view,policyState={},arm){
   if(v.ended)return wait('Local episode horizon reached.');
   if(s.lastRefusal?.at===v.now)return wait('This local attempt was refused; allow paid time before reconsidering.');
   // These facts are inferred from own completed transmissions and a PUBLIC bound.
-  s.inferredReceived=(v.channel.lossPossible?[]:v.sent.filter(x=>v.now>=x.sentAt+v.channel.maxDelay).map(x=>x.messageId));
+  s.inferredReceived=(v.channel.lossPossible?[]:v.sent.filter(x=>x.via==='radio'&&v.now>=x.sentAt+v.channel.maxDelay).map(x=>x.messageId));
   if(v.job)return wait('Own paid task is still running; passive receipt does not interrupt it.');
   if(v.local.serviceUnits>=2)return wait('Observed complete two-unit service; preserve remaining owned supplies.');
   const rec=recovery(v,s);if(rec)return rec;
