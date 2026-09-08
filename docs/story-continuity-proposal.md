@@ -118,3 +118,5 @@ Implement the earned-world wrapper and its state tests before expanding narrativ
 - [Initial run](../artifacts/story-continuity/feasibility-initial.json) is retained. The final run additionally binds the probe itself and transitive model source and exercises literal JSON serialization before restore; its observed outcomes are unchanged.
 - `node --test tests/commons-game.test.js tests/commons-next.test.js tests/commons-next-two-cache.test.js tests/service.test.js`: **51 passed, 0 failed**. These exercise the current hosts and establish the controls; no new story implementation exists in this lane.
 - No public asset, runtime/model/clock source, original save, older evidence file or deployment was changed.
+
+Root independently reran the source-bound feasibility probe on minimum Node 22.0.0 after integration. [Retained output](../artifacts/story-continuity/root-node22.json) reproduces the same existing-host entry, allocation and late-recovery results; it still implements no new story host.
