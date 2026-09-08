@@ -4,11 +4,15 @@ Current restart guide: [handoff](../HANDOFF.md). The latest [Common Ground play 
 
 The laboratory establishes a working loop and reproducible comparisons. The [Before departure workshop](workshop-integration.md) embeds a shared body/practice component while owning its own world. The [0.4 milestone](release-0.4.md) adds three independently authored hosts around the same unchanged component: a longer pump yard, a parcel route and a two-household water game. The [initial direction reviews](post-mvp-review.md) and [two separate external Claude Fable reviews](../research/reviews/2026-09-07-claude-fable-verification.md) put integration before broader faculties. The [0.3 delivery record](release-0.3.md) separates implemented contracts from usefulness and validation still to test.
 
-## Active player-feedback milestone — 2026-09-08
+## Current delivery and next implementation — 2026-09-08
 
-[New direct feedback](player-feedback-2026-09-08.md) supports compact persistent controls and a coherent continuing story. The [active parallel plan](superpowers/plans/2026-09-08-player-continuity.md) implements HUD/tab layouts across all games, reproduces the rest/ongoing-work issues, and designs actual chapter carryover. Keep the completed information study as evidence; its factual-report slice can become a later chapter. One player's perceived realism, meaningful stress and attachment guide product experiments without closing human-calibration or the five-person gate.
+[App 0.10](release-0.10.md) is delivered: a compact shared HUD/tab layout across all ten games, learning-order chooser, clearer deadline consequences and independently checked interaction/save preservation. The integrated suite passes 620 tests and exact production checks pass. [Direct player feedback](player-feedback-2026-09-08.md) supports persistent consequences and a coherent story; it remains one known player's qualitative evidence.
 
-## Current private milestone and next work — actor-local information
+**Next: the full versioned camp kernel and earned-world story.** The private [continuous-work correction](continuous-work-results.md) demonstrates prospective improvements, retained partial work, accepted takeover, automatic available-time recovery, finite Next Event and owned meals. Complete its [mixed-job/public integration](continuous-work-migration.md), preserving original hosts and distinguishing each new semantic choice. Then implement the [actual Common Ground camp → supply-window seam](story-continuity-proposal.md), carrying the player's people, supplies, clock and unfinished jobs. Do not replace them with the existing authored afternoon opening. The busy stock-first milestone and the actual archived long-lived camp are mandatory migration/carryover cases.
+
+Reuse the new common interface with progressive disclosure. Preserve meaningful local failure and continued camp use; keep primary story progression separate from deliberate replay/new-story access. A playlist or renamed Service Day phase is a useful UI control but does not demonstrate new earned-world carryover. [Current executable handoff](../HANDOFF.md) supersedes the completed milestone records below.
+
+## Completed private milestone — actor-local information
 
 [Across the Cut feasibility](across-cut-feasibility.md) is complete: a private two-actor information boundary, actual paid bodies/resources, 170 source-frozen replayed records and 594 tests. Fable-driven and root-derived stronger no-radio/two-report controls are retained. Received withdrawal can change an actual release decision; final confirmation still earns no service gain in the tested policies. The unchanged public app remains 0.9. [Review dispositions](reviews/2026-09-08-across-cut-review.md).
 

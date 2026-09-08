@@ -1,0 +1,101 @@
+{
+  "version": "0.1.0",
+  "seed": 1,
+  "profile": "standard",
+  "socialMemory": true,
+  "round": 1,
+  "clock": 10,
+  "status": "playing",
+  "source": 25,
+  "spilled": 0,
+  "carried": {
+    "player": 5,
+    "neighbor": 1
+  },
+  "homes": {
+    "player": 0,
+    "neighbor": 3
+  },
+  "meals": {
+    "player": 1,
+    "neighbor": 1
+  },
+  "people": {
+    "player": {
+      "format": "human-framework-person",
+      "version": 1,
+      "componentVersion": "0.1.0",
+      "person": {
+        "version": "0.1.0",
+        "id": "player",
+        "body": {
+          "fatigue": 0.495,
+          "hunger": 0.44
+        },
+        "skills": {
+          "collection": 0.544322143915413
+        },
+        "observationBias": 0,
+        "minutes": 10,
+        "nextAttempt": 2,
+        "pending": null
+      }
+    },
+    "neighbor": {
+      "format": "human-framework-person",
+      "version": 1,
+      "componentVersion": "0.1.0",
+      "person": {
+        "version": "0.1.0",
+        "id": "neighbor",
+        "body": {
+          "fatigue": 0.595,
+          "hunger": 0.30000000000000004
+        },
+        "skills": {
+          "collection": 0.62
+        },
+        "observationBias": 0,
+        "minutes": 10,
+        "nextAttempt": 2,
+        "pending": null
+      }
+    }
+  },
+  "draws": {
+    "player": 1,
+    "neighbor": 0
+  },
+  "social": {
+    "given": {
+      "player": 0,
+      "neighbor": 0
+    },
+    "loan": null,
+    "returnedOnTime": 0,
+    "returnedLate": 0,
+    "lateLoans": 0,
+    "refusedByPlayer": 0,
+    "refusedByNeighbor": 0,
+    "ignored": 0,
+    "proposal": null,
+    "nextProposalRound": 0
+  },
+  "lastTurn": {
+    "round": 1,
+    "player": {
+      "actionId": "draw-quick",
+      "status": "completed",
+      "amount": 3,
+      "message": "3 buckets carried.",
+      "reason": null
+    },
+    "neighbor": {
+      "actionId": "pour",
+      "status": "completed",
+      "amount": 3,
+      "message": "3 buckets added to Meryem’s household barrel.",
+      "reason": null
+    }
+  }
+}

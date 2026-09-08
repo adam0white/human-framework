@@ -1,0 +1,265 @@
+{
+  "format": "human-service-day",
+  "version": 1,
+  "hostVersion": "0.1.0",
+  "runtimeVersion": "0.1.1",
+  "scenario": "standard",
+  "commands": [
+    {
+      "type": "request",
+      "actor": "keeper",
+      "task": "gate"
+    },
+    {
+      "type": "advance",
+      "to": 1
+    }
+  ],
+  "state": {
+    "version": "0.1.0",
+    "scenario": "standard",
+    "clock": {
+      "version": "0.1.0",
+      "now": 1,
+      "nextEvent": 6,
+      "queue": [
+        {
+          "id": "event:5",
+          "at": 6,
+          "type": "attempt-due",
+          "actorId": "keeper",
+          "data": {
+            "attemptId": "keeper:2",
+            "task": "gate"
+          }
+        },
+        {
+          "id": "event:1",
+          "at": 24,
+          "type": "morning",
+          "actorId": null,
+          "data": null
+        },
+        {
+          "id": "event:2",
+          "at": 64,
+          "type": "closing",
+          "actorId": null,
+          "data": null
+        },
+        {
+          "id": "event:4",
+          "at": 64,
+          "type": "attempt-due",
+          "actorId": "partner",
+          "data": {
+            "attemptId": "partner:1",
+            "task": "idle"
+          }
+        }
+      ]
+    },
+    "people": {
+      "keeper": {
+        "version": "0.1.1",
+        "id": "keeper",
+        "body": {
+          "fatigue": 0.5281666666666666,
+          "hunger": 0.862
+        },
+        "skills": {
+          "repair": 0.2041492027233866,
+          "carry": 0.1
+        },
+        "observationBias": 0,
+        "minutes": 1,
+        "nextAttempt": 3,
+        "pending": {
+          "id": "keeper:2",
+          "action": {
+            "actionId": "gate",
+            "targetId": "inlet",
+            "durationMinutes": 6,
+            "effort": 0.16,
+            "exertive": true,
+            "activity": "active",
+            "skill": "repair"
+          },
+          "elapsedMinutes": 1,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.169,
+            "hungerCost": 0.012,
+            "projectedFatigue": 0.669,
+            "projectedHunger": 0.872
+          },
+          "bodyBefore": {
+            "fatigue": 0.5,
+            "hunger": 0.86
+          },
+          "skillBefore": 0.2,
+          "startedAt": 0
+        }
+      },
+      "partner": {
+        "version": "0.1.1",
+        "id": "partner",
+        "body": {
+          "fatigue": 0.2515,
+          "hunger": 0.782
+        },
+        "skills": {
+          "repair": 0.2,
+          "carry": 0.1
+        },
+        "observationBias": 0,
+        "minutes": 1,
+        "nextAttempt": 2,
+        "pending": {
+          "id": "partner:1",
+          "action": {
+            "actionId": "idle",
+            "targetId": null,
+            "durationMinutes": 64,
+            "effort": 0,
+            "exertive": false,
+            "activity": "active",
+            "skill": null
+          },
+          "elapsedMinutes": 1,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.096,
+            "hungerCost": 0.128,
+            "projectedFatigue": 0.346,
+            "projectedHunger": 0.908
+          },
+          "bodyBefore": {
+            "fatigue": 0.25,
+            "hunger": 0.78
+          },
+          "skillBefore": null,
+          "startedAt": 0
+        }
+      }
+    },
+    "jobs": {
+      "keeper": {
+        "task": "gate",
+        "origin": "request",
+        "startedAt": 0,
+        "endsAt": 6,
+        "eventId": "event:5",
+        "attemptId": "keeper:2",
+        "startProgress": 0,
+        "reservedParts": 0,
+        "reservedMeal": 0
+      },
+      "partner": {
+        "task": "idle",
+        "origin": "own",
+        "startedAt": 0,
+        "endsAt": 64,
+        "eventId": "event:4",
+        "attemptId": "partner:1",
+        "startProgress": null,
+        "reservedParts": 0,
+        "reservedMeal": 0
+      }
+    },
+    "parts": {
+      "keeper": 1,
+      "partner": 1
+    },
+    "food": {
+      "keeper": 1,
+      "partner": 1
+    },
+    "eaten": {
+      "keeper": 0,
+      "partner": 0
+    },
+    "work": {
+      "gate": 1,
+      "divert": 0,
+      "pump": 0
+    },
+    "salvaged": 0,
+    "reopenedAt": null,
+    "morning": null,
+    "delivery": null,
+    "outcome": null,
+    "paid": {
+      "gate": 1,
+      "divert": 0,
+      "reopen": 0,
+      "pump": 0,
+      "deliver": 0,
+      "cart": 0,
+      "share": 0,
+      "salvage": 0,
+      "rest": 0,
+      "meal": 0,
+      "idle": 1
+    },
+    "paidByActor": {
+      "keeper": {
+        "gate": 1,
+        "divert": 0,
+        "reopen": 0,
+        "pump": 0,
+        "deliver": 0,
+        "cart": 0,
+        "share": 0,
+        "salvage": 0,
+        "rest": 0,
+        "meal": 0,
+        "idle": 0
+      },
+      "partner": {
+        "gate": 0,
+        "divert": 0,
+        "reopen": 0,
+        "pump": 0,
+        "deliver": 0,
+        "cart": 0,
+        "share": 0,
+        "salvage": 0,
+        "rest": 0,
+        "meal": 0,
+        "idle": 1
+      }
+    },
+    "installedPartsByActor": {
+      "keeper": 1,
+      "partner": 0
+    },
+    "handedOver": {
+      "keeper": 0,
+      "partner": 0
+    },
+    "lastResponse": {
+      "at": 0,
+      "actor": "keeper",
+      "task": "gate",
+      "accepted": true,
+      "code": "ACCEPTED",
+      "reason": "Agreed: repair an inlet gate section, 6 paid minutes."
+    },
+    "lastReceipt": null,
+    "recent": [
+      {
+        "at": 0,
+        "actor": "world",
+        "message": "Serve the inlet at minute 24, then the clinic at minute 64. The same people, parts, meals and unfinished repairs carry through the day."
+      },
+      {
+        "at": 0,
+        "actor": "keeper",
+        "message": "Agreed: repair an inlet gate section, 6 paid minutes."
+      }
+    ]
+  }
+}

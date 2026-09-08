@@ -6,7 +6,7 @@ Snapshot updated 2026-09-08 after the private actor-local feasibility study; pub
 
 ## Compact interfaces and continuous-work update
 
-The 0.10 interface candidate preserves all public host/runtime/save identities. The new private [continuous-work fixture](continuous-work-results.md) implements prospective productivity, durable partial assembly, accepted takeover, automatic unassigned recovery, owned meals and strict bounded replay. Its source-verified controls separate the workbench correction from rest effects; it supports only idle/assembly imports. The original two Common Ground defects remain archived, and the public correction needs full mixed-job integration. These are authored software mechanics, not calibrated physiology or a general planning faculty. [Earned-camp story proposal](story-continuity-proposal.md).
+The delivered 0.10 interface preserves all public host/runtime/save identities. The new private [continuous-work fixture](continuous-work-results.md) implements prospective productivity, durable partial assembly, accepted takeover, automatic unassigned recovery, owned meals and strict bounded replay. Its source-verified controls separate the workbench correction from rest effects; it supports only idle/assembly imports. The original two Common Ground defects remain archived, and the public correction needs full mixed-job integration. These are authored software mechanics, not calibrated physiology or a general planning faculty. [Earned-camp story proposal](story-continuity-proposal.md).
 
 ## Private actor-local information update
 
