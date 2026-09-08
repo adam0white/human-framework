@@ -1,0 +1,40 @@
+{
+  "format": "service-plan-cap-reserve-validation",
+  "version": 1,
+  "createdAt": "2026-09-08T10:29:35.479Z",
+  "sourceCommit": "4de89659616bc3c5804e70b44ca37bee3a830ae1",
+  "sourceSha256": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7",
+  "testsSha256": "82825b4a58f30779cb708a985864cc14d58775c661c5ecb1a6157042653722c1",
+  "tests": [
+    {
+      "path": "artifacts/service-plan-core/cap-reserve-tests-node26.txt",
+      "sha256": "c55737fd6bd673f0e71d4858d8bfa3ce2065b493ed2ba8557c15e30051bed4cb"
+    },
+    {
+      "path": "artifacts/service-plan-core/cap-reserve-tests-node22.txt",
+      "sha256": "81a3b34739117d93a9d7110ae6c7fd2e9afc78baff206426a6141cd54dfb9883"
+    }
+  ],
+  "executions": [
+    {
+      "path": "/tmp/service-plan-core-cap-reserve-node26.json",
+      "sha256": "6ec4b2032dd18d6299fdd88d7a2c19795c268b407f4972ed8ee133553e813da2",
+      "nodeVersion": "v26.8.1",
+      "executionCommit": "4de89659616bc3c5804e70b44ca37bee3a830ae1",
+      "caseCount": 9,
+      "allPriorCaseFieldsExact": true,
+      "hostSha256": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7"
+    },
+    {
+      "path": "/tmp/service-plan-core-cap-reserve-node22.json",
+      "sha256": "e15a97f7cea4946baed97b7b0a927bf0b0b21b17cd8c752cd840648742fd010c",
+      "nodeVersion": "v22.0.0",
+      "executionCommit": "4de89659616bc3c5804e70b44ca37bee3a830ae1",
+      "caseCount": 9,
+      "allPriorCaseFieldsExact": true,
+      "hostSha256": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7"
+    }
+  ],
+  "frozenSourceHashesUnchanged": true,
+  "scope": "Core-author verification of reserved stop and withdrawal journal space; independent reviewer recheck is recorded separately by root."
+}

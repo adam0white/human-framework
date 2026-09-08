@@ -1,0 +1,217 @@
+[
+  {
+    "seq": [],
+    "now": 38,
+    "count": 253,
+    "pending": true,
+    "events": {
+      "physicalRefusal": {
+        "code": "COMMAND_LIMIT"
+      },
+      "planRefusal": {
+        "count": 254,
+        "accepted": false,
+        "ended": false
+      },
+      "interrupt": {
+        "code": "COMMAND_LIMIT"
+      },
+      "advance": {
+        "count": 253,
+        "accepted": true,
+        "ended": false
+      },
+      "close": {
+        "count": 253,
+        "accepted": true,
+        "ended": true
+      }
+    }
+  },
+  {
+    "seq": [
+      "planRefusal"
+    ],
+    "now": 38,
+    "count": 254,
+    "pending": true,
+    "events": {
+      "physicalRefusal": {
+        "code": "COMMAND_LIMIT"
+      },
+      "planRefusal": {
+        "count": 254,
+        "accepted": false,
+        "ended": false
+      },
+      "interrupt": {
+        "code": "COMMAND_LIMIT"
+      },
+      "advance": {
+        "count": 255,
+        "accepted": true,
+        "ended": false
+      },
+      "close": {
+        "count": 255,
+        "accepted": true,
+        "ended": true
+      }
+    }
+  },
+  {
+    "seq": [
+      "planRefusal",
+      "planRefusal"
+    ],
+    "now": 38,
+    "count": 254,
+    "pending": true,
+    "events": {
+      "physicalRefusal": {
+        "code": "COMMAND_LIMIT"
+      },
+      "planRefusal": {
+        "count": 254,
+        "accepted": false,
+        "ended": false
+      },
+      "interrupt": {
+        "code": "COMMAND_LIMIT"
+      },
+      "advance": {
+        "count": 255,
+        "accepted": true,
+        "ended": false
+      },
+      "close": {
+        "count": 255,
+        "accepted": true,
+        "ended": true
+      }
+    }
+  },
+  {
+    "seq": [
+      "planRefusal",
+      "advance"
+    ],
+    "now": 39,
+    "count": 255,
+    "pending": false,
+    "events": {
+      "physicalRefusal": {
+        "code": "COMMAND_LIMIT"
+      },
+      "planRefusal": {
+        "code": "COMMAND_LIMIT"
+      },
+      "interrupt": {
+        "code": "NO_DISCUSSION"
+      },
+      "advance": {
+        "count": 255,
+        "accepted": true,
+        "ended": false
+      },
+      "close": {
+        "count": 255,
+        "accepted": true,
+        "ended": true
+      }
+    }
+  },
+  {
+    "seq": [
+      "advance"
+    ],
+    "now": 39,
+    "count": 253,
+    "pending": false,
+    "events": {
+      "physicalRefusal": {
+        "code": "COMMAND_LIMIT"
+      },
+      "planRefusal": {
+        "count": 254,
+        "accepted": true,
+        "ended": false
+      },
+      "interrupt": {
+        "code": "NO_DISCUSSION"
+      },
+      "advance": {
+        "count": 253,
+        "accepted": true,
+        "ended": false
+      },
+      "close": {
+        "count": 253,
+        "accepted": true,
+        "ended": true
+      }
+    }
+  },
+  {
+    "seq": [
+      "advance",
+      "planRefusal"
+    ],
+    "now": 39,
+    "count": 254,
+    "pending": false,
+    "events": {
+      "physicalRefusal": {
+        "code": "COMMAND_LIMIT"
+      },
+      "planRefusal": {
+        "code": "COMMAND_LIMIT"
+      },
+      "interrupt": {
+        "code": "NO_DISCUSSION"
+      },
+      "advance": {
+        "count": 255,
+        "accepted": true,
+        "ended": false
+      },
+      "close": {
+        "count": 255,
+        "accepted": true,
+        "ended": true
+      }
+    }
+  },
+  {
+    "seq": [
+      "advance",
+      "advance"
+    ],
+    "now": 40,
+    "count": 253,
+    "pending": false,
+    "events": {
+      "physicalRefusal": {
+        "code": "COMMAND_LIMIT"
+      },
+      "planRefusal": {
+        "count": 254,
+        "accepted": true,
+        "ended": false
+      },
+      "interrupt": {
+        "code": "NO_DISCUSSION"
+      },
+      "advance": {
+        "count": 253,
+        "accepted": true,
+        "ended": false
+      },
+      "close": {
+        "count": 253,
+        "accepted": true,
+        "ended": true
+      }
+    }
+  }
+]
