@@ -4,6 +4,8 @@ Status: 2026-09-07. The earlier roadmap compressed several different judgments i
 
 **2026-09-08 advancement:** app 0.6 adds finite surplus and repair/watch games; the [mechanism comparison](../docs/mechanism-comparison.md) now executes prescribed actions and paid retests against a smaller rival. A private [observation-memory candidate](../docs/observation-memory-probe.md) implements bounded report retention, but its short probe favors a simpler notebook. Neither memory nor the social record is packaged. This changes implementation status, not the rejected universal-forgetting or sacred-variable claims below. The current autonomous queue is in [HANDOFF](../HANDOFF.md) and [roadmap](../docs/roadmap.md).
 
+**Later 2026-09-08 correction, app 0.7:** the two-host helper and equal-learning pooled-body comparison are executed, not deferred. The helper remains private after its small inclusive-size failure; the learning curve is identical in the new body study. Last Light selects a host notebook, and its additive profiles make paid message timing and food/rest choices useful without general-faculty promotion. [Latest evidence](../docs/release-0.7.md). Sustained cooperative obligations are the next application; actual human explanations and source-specific validation remain open.
+
 ## Formulations we should not carry forward
 
 | Formulation | Why it is rejected | What could return, and the admission test |

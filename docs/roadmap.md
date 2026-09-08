@@ -4,7 +4,17 @@ Current restart guide: [handoff](../HANDOFF.md). The latest [Common Ground play 
 
 The laboratory establishes a working loop and reproducible comparisons. The [Before departure workshop](workshop-integration.md) embeds a shared body/practice component while owning its own world. The [0.4 milestone](release-0.4.md) adds three independently authored hosts around the same unchanged component: a longer pump yard, a parcel route and a two-household water game. The [initial direction reviews](post-mvp-review.md) and [two separate external Claude Fable reviews](../research/reviews/2026-09-07-claude-fable-verification.md) put integration before broader faculties. The [0.3 delivery record](release-0.3.md) separates implemented contracts from usefulness and validation still to test.
 
-## Current delivery and next autonomous milestones — 2026-09-08
+## Current milestone and next work — app 0.7
+
+[App 0.7](release-0.7.md) is delivered and verified: Last Light, seven authored situations, optional play-note export in three games, a completed two-host coordination experiment and equal-learning body comparison. 421 tests and production browser/payload checks pass. [Review dispositions](reviews/2026-09-08-next-review.md) preserve the design criticisms and concrete fixes.
+
+The helper preserves behavior but still increases inclusive source; retain direct wiring. The pooled-body study now uses the same saturating practice, so learning differences at unequal exposure are no longer a curve confound. These studies are finished and should not become repetitive hourly audits. Last Light's original safe ridge, radio timing limit and stale-report traps remain; additive clear/tired/hungry profiles make existing information/recovery actions consequential without modifying those results. Public notebook selection is not promotion of a general memory faculty.
+
+The next autonomous application should be a **sustained cooperative service day** with two independent people and a real later use for resources/condition retained from an earlier event. Start with two events or sites and competing service obligations, not a longer quota or another terminal resource counter. Preserve existing games as controls, the non-LLM runtime, consent/ownership and paid recovery; compare a serious simpler controller. Promote a social/cognitive/helper abstraction only if that new consumer demands it and demonstrates value.
+
+Optional play notes now provide a way for actual players to describe goals, tradeoffs, surprises and responses. Accept supplied notes privately with provenance; they carry no participant authentication or automated grade. Human explanation testing, measured authoring benefit, physical-device work and empirical/theological review remain open. [Current executable queue](../HANDOFF.md) supersedes the prior list below.
+
+## Previous 0.6 sequence — 2026-09-08
 
 App 0.6 delivers two bounded games, a frozen simpler-mechanism comparison and a private observation-memory candidate. [Release evidence](release-0.6.md) records 347 tests, production browser checks and exact live payload verification. The user now authorizes ongoing autonomous implementation and hourly continuation with parallel Astra Ultra and scoped Fable reviews.
 

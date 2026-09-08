@@ -4,11 +4,11 @@
 
 A simulation laboratory developing reusable components for situated human action and development, grounded in Islam with a **Sunni, Hanafi–Maturidi starting point**, informed by empirical research, and explicit about the difference between revelation, interpretation, evidence and engineering choices.
 
-**2026-09-08 · App 0.6.0:** **Before the rain** turns Common Ground surplus into a finite ferry/camp allocation puzzle; **Before the Water** adds playable repair, lookout and diversion. Both preserve paid work, independent responses and versioned saves. Original games, laboratory **0.3.0**, Human **0.1.0/0.1.1** and clock **0.1.0** remain frozen. [Release and live verification](docs/release-0.6.md) · [MVP contract and open gates](docs/mvp-contract.md). No LLM or API key is needed to play.
+**2026-09-08 · App 0.7.0:** **[Last Light](https://human.adamwhite.work/signals/)** adds paid changing reports, two routes and an early-launch/overnight-beacon tradeoff. Clear-connection, tired-carrier and hungry-carrier profiles expose radio timing and different recovery needs. Watch, Before the rain and Last Light offer optional downloaded play notes. [Release and live evidence](docs/release-0.7.md) · [Open MVP gates](docs/mvp-contract.md). No LLM or API key is needed to play.
 
-**Framework evidence:** a [preregistered simpler-mechanism comparison](docs/mechanism-comparison.md) retains agreement in 9/21 protocols and specific food/rest distinctions; an [observation-memory candidate](docs/observation-memory-probe.md) remains private after a simpler notebook wins its short probe. The earlier [installed consumer and social probe](docs/mvp-evidence-2026-09-07.md) retain their provenance. New Watch uses runtime/Human 0.1.1; the original five games and rain wrapper keep Human 0.1.0.
+**Framework evidence:** the [equal-learning body comparison](docs/body-isolation.md) isolates body constraints and retains simpler cases. The [coordination-helper probe](docs/coordination-probe.md) preserves exact behavior but fails its inclusive size gate; it stays private. Last Light selects a small notebook over the unpromoted [memory candidate](docs/observation-memory-probe.md). The earlier [0.6](docs/release-0.6.md) and [portable-kit](docs/mvp-evidence-2026-09-07.md) evidence remain dated records. Human/runtime 0.1.0/0.1.1, clock 0.1.0 and laboratory 0.3.0 stay frozen.
 
-**Autonomous continuation:** an hourly Codex heartbeat advances executable milestones under the user's authorization, with independent Astra Ultra tracks and scoped Claude Fable reviews. [Current review findings and fixes](docs/reviews/2026-09-08-autonomous-review.md) · [Next work](HANDOFF.md). Human playtest, authoring-usefulness and physical-device gates remain open.
+**Autonomous continuation:** the hourly Codex heartbeat advances executable milestones with independent Astra Ultra work and scoped Fable reviews. [Latest dispositions](docs/reviews/2026-09-08-next-review.md) · [Current handoff](HANDOFF.md). Human playtest, measured authoring-usefulness and physical-device gates remain open.
 
 ## Play
 
@@ -16,6 +16,7 @@ A simulation laboratory developing reusable components for situated human action
 
 | Game | What you decide |
 |---|---|
+| [Last Light](https://human.adamwhite.work/signals/) | Deliver the lens by canal or ridge; pay for observations, interpret delayed reports, recover when needed, and catch the launch if possible. |
 | [Before the Water](https://human.adamwhite.work/watch/) | Repair the gate or open a diversion before the surge. Coordinate owned parts, lookout, recovery and partial work. |
 | [Before the rain](https://human.adamwhite.work/commons-next/) | Pack supplies for households before the ferry or retain them for camp. A finite afternoon from an established worksite. |
 | [Common Ground](https://human.adamwhite.work/commons/) | Gather, build, recover and agree on a shared project. Different jobs run concurrently; useful structures and supply caches persist. Optional solo setup. |

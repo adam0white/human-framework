@@ -1,8 +1,14 @@
 # Executable coverage and research boundaries
 
-Snapshot updated 2026-09-08, app 0.6.0, laboratory engine 0.3.0, original games and rain chapter Human 0.1.0, Watch Human 0.1.1, portable runtime/Human 0.1.1 and clock 0.1.0. This ledger distinguishes the [laboratory kernel](../src/core/index.js), [scenario data](../src/scenarios/index.js), [experiment runner](../src/experiments.js), and narrower [portable host components](portable-runtime.md). It narrows the broader [framework proposal](framework-proposal.md); responsibilities listed in that proposal are not evidence that their mechanisms have been implemented.
+Snapshot updated 2026-09-08, app 0.7.0, laboratory engine 0.3.0, original games and rain chapter Human 0.1.0, Watch and Last Light Human 0.1.1, portable runtime/Human 0.1.1 and clock 0.1.0. This ledger distinguishes the [laboratory kernel](../src/core/index.js), [scenario data](../src/scenarios/index.js), [experiment runner](../src/experiments.js), and narrower [portable host components](portable-runtime.md). It narrows the broader [framework proposal](framework-proposal.md); responsibilities listed in that proposal are not evidence that their mechanisms have been implemented.
 
 **Implemented** means an executable transition, interface, or record exists. **Proxy** means an implemented quantity or rule is an authored engineering approximation without human calibration. **Unmodeled** means the kernel supplies no mechanism for that function. A proposed interface below is a research design, not an existing plugin API. A rejection test states what would count against adding a mechanism or making the associated claim.
+
+## App 0.7 coverage update
+
+Last Light publicly implements a host-owned timestamped notebook, paid delayed radio/direct observations and a before-launch versus overnight-delivery choice. Three additive profiles demonstrate shorter message transit, fatigue recovery and meal-dependent capacity through unchanged Human 0.1.1. It has no general belief, memory, attention or planning module. [Game](signals-game.md) · [Profiles](signals-profiles.md).
+
+The private [coordination candidate](coordination-probe.md) moves mechanical obligations but fails its inclusive size gate; the public hosts retain direct wiring. [Body isolation](body-isolation.md) uses identical practice and disaggregates expected identity checks from diagnostic body distinctions. Optional [play notes](play-notes.md) collect ungraded user words only through deliberate download; no human gate is automatically satisfied. Current delivery and future admission conditions are in [the handoff](../HANDOFF.md).
 
 ## Autonomous 0.6 evidence update
 

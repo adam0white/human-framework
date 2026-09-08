@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-09-08T07:26:16.168Z",
+  "deployedSource": "fa16e743feeaee8a9623c1f8da60082a9222c9f2",
+  "release": {
+    "appVersion": "0.7.0",
+    "engineVersion": "0.3.0",
+    "commit": "fa16e743feeaee8a9623c1f8da60082a9222c9f2",
+    "dirty": false,
+    "assetsSha256": "980d4f7dba80e535ff64d432e549186007f8e7f7c70e2954d95063ebd3affd3e"
+  },
+  "sourcePayloadsUnchanged": 69,
+  "documentationOnlyHandoff": true,
+  "node26Tests": 421,
+  "node22NewTests": 74,
+  "localLinksChecked": 177,
+  "missing": [],
+  "automation": {
+    "id": "advance-human-framework",
+    "status": "ACTIVE",
+    "kind": "heartbeat",
+    "targetTask": "01a07f66-d78e-7140-bd9e-b5691a048b2a"
+  },
+  "note": "Private documents/evidence advance after app delivery. Later source HEAD is not a new deployment; the exact app release stays identified above."
+}

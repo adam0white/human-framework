@@ -1,6 +1,6 @@
 # What may graduate to MVP
 
-Established 2026-09-07; updated through app 0.6 on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
+Established 2026-09-07; updated through app 0.7 on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
 
 ## Intended first deliverable
 
@@ -50,6 +50,12 @@ The [0.6 release](release-0.6.md) adds two playable scheduling puzzles, reviewed
 The [preregistered mechanism study](mechanism-comparison.md) now supplies the synthetic prescribed-action/matched-retest comparison previously missing from check 4, preserving simpler-model agreement in 9/21 pairs. It does not measure human authoring effort, player indifference or human validity. The private [memory candidate](observation-memory-probe.md) loses to a simpler notebook on its short decision probe and remains unexported. No general faculty is promoted from a regression suite.
 
 Mechanical integration checks have stronger evidence; graduation still requires understandable useful play and demonstrated complexity/authoring benefit. The five-person gate and physical-device timings remain open. [Current executable roadmap](roadmap.md) proceeds to a two-host coordination-helper experiment, a changing-evidence game with a notebook rival and meaningful later uses of retained resources.
+
+## Progress through the hourly 0.7 milestone
+
+[Last Light and its profiles](release-0.7.md) exercise paid information and separate recovery consequences, with exact original-result preservation and stronger saved-state continuation checks. [Equal-learning body isolation](body-isolation.md) completes the curve-confound follow-up; [coordination](coordination-probe.md) passes parity but fails its narrow inclusive-size gate, so direct wiring remains. Neither experimental module is promoted.
+
+[Play notes](play-notes.md) now let real users export descriptions with limited public context. Automated synthetic fixtures do not authenticate people or satisfy the five-person gate. The package boundary remains frozen, 421 tests pass and production desktop/mobile-width QA is verified. Real human understanding, useful authoring complexity and physical-device evidence remain open. The next application tests sustained cooperative obligations and actual later uses of retained resources, rather than declaring graduation from another passing suite.
 
 ## Sequence proposed at 0.5 (partly executed; current queue is above)
 
