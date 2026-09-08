@@ -7,7 +7,7 @@ import * as camp from '../../games/camp.js';
 import * as story from '../../games/camp-story.js';
 import { legacyEarned, legacyBusy, legacySupply, worldFacts, oldControls } from './controls.js';
 import { makeLegacyFixture } from '../../../scripts/continuous-work-fixture.js';
-import { drive } from './policy.js';
+import { drive, applyCampCommand } from './policy.js';
 
 const json = value => JSON.parse(JSON.stringify(value));
 const bytes = value => Buffer.byteLength(JSON.stringify(value));
@@ -58,12 +58,15 @@ function freshStory(approach) {
   const run = drive(story, story.createGame(), approach, v => v.phase === 'introduction', { maxMinutes: 1000 });
   assert.equal(story.getGameView(run.state).phase, 'introduction', 'Policy did not reach first actual camp milestone');
   assert.equal(run.state.world.clock.now, run.state.world.milestoneAt);
+  let directEntry = camp.createGame();
+  for (const { view, command } of run.decisions) directEntry = applyCampCommand(camp, directEntry, command, 1000 - view.now);
+  assert.deepEqual(directEntry, run.state.world);
   const acknowledged = unchangedWorld(story.continueStory, run.state);
   const direct = camp.advanceGame(acknowledged.world, 5), advanced = story.advanceGame(acknowledged, 5);
   assert.deepEqual(advanced.world, direct);
   assert.deepEqual(story.advanceGame(story.restoreGame(json(story.exportGame(acknowledged))), 5), advanced);
   return { approach, decisions: run.decisions, entry: roundtrip(story, run.state), continued: roundtrip(story, advanced),
-    exactPaidKernelContinuation: true, sameZeroTimeAcknowledgment: true, service: service(advanced) };
+    exactEarnedEntryKernelState: true, exactPaidKernelContinuation: true, sameZeroTimeAcknowledgment: true, service: service(advanced) };
 }
 function workArm(improvement, recovery) {
   const origin = old.exportGame(makeLegacyFixture());
@@ -79,6 +82,8 @@ function workArm(improvement, recovery) {
     }
   }
   assert.equal(completedAt, improvement === 'snapshot' ? 207 : 202);
+  assert.ok(Math.abs(firstComplete.game.lastAssemblies.garden.contributions.neighbor.effort - .2) < 1e-12);
+  assert.equal(firstComplete.game.lastAssemblies.garden.contributions.neighbor.minutes, completedAt - 187);
   return { options: { improvement, recovery }, initial, completedAt, firstComplete, completedStage: firstComplete.game.lastAssemblies.garden, final: roundtrip(camp, state), traces,
     costBoundary: 'First completion includes only paid minutes through stage one; subsequent zero-paid stage admission/material remains explicit.' };
 }
@@ -105,6 +110,11 @@ function handover() {
   while (state.structures.garden === 0 && state.clock.now < 220) state = camp.advanceGame(state, 1);
   assert.equal(state.structures.garden, 1);
   assert.ok(state.people.player.skills.construction !== undefined);
+  const receipt = state.lastAssemblies.garden;
+  assert.ok(receipt.contributions.neighbor.effort > 0);
+  assert.ok(receipt.contributions.player.effort > 0);
+  assert.ok(Math.abs(receipt.contributions.neighbor.effort + receipt.contributions.player.effort - .2) < 1e-12);
+  assert.equal(receipt.contributions.player.minutes, state.clock.now - accepted.clock.now);
   return { initial: camp.exportGame(initial), accepted: camp.exportGame(accepted), final: roundtrip(camp, state),
     receiverUsesOwnPaidTime: state.people.player.minutes - accepted.people.player.minutes, facts: worldFacts(state) };
 }
