@@ -16,6 +16,7 @@ test('an actor retrieves an experienced report after the cue disappears, with pr
 });
 
 test('memory receives only owner observations and rejects future, decreasing, unknown and replayed deliveries',()=>{
+  assert.throws(()=>createMemory({owner:'Ada',hiddenTruth:'right'}),/field/);
   const seen=encodeObservation(setup(),report(1),1);
   assert.throws(()=>encodeObservation(seen,{...report(2),observer:'Bea'},2),/observer/);
   assert.throws(()=>encodeObservation(seen,report(2,'gate','right',3),2),/future/);

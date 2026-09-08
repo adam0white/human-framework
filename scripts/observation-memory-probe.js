@@ -4,6 +4,7 @@ import {resolve,dirname} from 'node:path';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {cpus,platform,arch} from 'node:os';
+import {execFileSync} from 'node:child_process';
 
 const opposite=value=>value==='left'?'right':'left';
 const conditions=['visible','delayed','one-distractor','two-distractors','expired','corrected','undisclosed-change'];
@@ -31,7 +32,7 @@ function chooseMemory(deliveries,visible,queryAt,resume=false){
     if(resume)state=restoreMemory(JSON.parse(JSON.stringify(exportMemory(state))));
   }
   const recalled=recallObservation(state,'gate',queryAt);
-  return {choice:visible??recalled?.value??'left',stateBytes:bytes(state),retainedReports:state.entries.length,
+  return {state,choice:visible??recalled?.value??'left',stateBytes:bytes(state),retainedReports:state.entries.length,
     paidObservationMinutes:deliveries.length};
 }
 function chooseNotebook(deliveries,visible){
@@ -51,24 +52,43 @@ export function runObservationMemoryProbe(){
     const arms={memory:chooseMemory(deliveries,visible,queryAt),notebook:chooseNotebook(deliveries,visible),none:chooseNone(deliveries,visible)};
     const resumed=chooseMemory(deliveries,visible,queryAt,true);
     const resumeIdentical=JSON.stringify(resumed)===JSON.stringify(arms.memory);
+    const resumeStateSha256=createHash('sha256').update(JSON.stringify(resumed.state)).digest('hex');
+    delete arms.memory.state;
     for(const result of Object.values(arms))result.correct=result.choice===oracle;
-    cases.push({condition,initialTarget,queryAt,visible,oracle,deliveries,arms,resumeIdentical});
+    cases.push({condition,initialTarget,queryAt,visible,oracle,deliveries,arms,resumeIdentical,resumeStateSha256});
   }
   const correct=Object.fromEntries(['memory','notebook','none'].map(arm=>[arm,cases.filter(row=>row.arms[arm].correct).length]));
   const maxStateBytes=Object.fromEntries(['memory','notebook','none'].map(arm=>[arm,Math.max(...cases.map(row=>row.arms[arm].stateBytes))]));
-  return {protocolVersion:1,memoryVersion:MEMORY_VERSION,cases,summary:{trials:cases.length,correct,maxStateBytes},
-    decision:'Retaining observations helps over no retention in this synthetic task; the simpler notebook is at least as accurate and smaller. Keep the memory candidate private and unpromoted.',
+  return {protocolVersion:1,memoryVersion:MEMORY_VERSION,cases,summary:{trials:cases.length,correct,maxStateBytes},boundCheck:runMemoryBoundCheck(),
     limits:['Authored capacity and expiry, not fitted human mechanisms.','Notebook has no capacity or expiry constraint; this compares engineering alternatives, not an isolated capacity effect.',
       'Identical prescribed one-minute observations; no physiological cost model or human timing measured.','Saved-state bytes exclude program code and full host state.','Structural validation cannot prove the truth or real occurrence of reports.']};
 }
 
+function runMemoryBoundCheck(){
+  let state=createMemory({owner:'Ada',capacity:2,lifetimeMinutes:6}),maxStateBytes=bytes(state),maxEntries=0;
+  const notebook=Object.create(null);
+  for(let sequence=1;sequence<=10000;sequence++){
+    const delivery={sequence,observer:'Ada',source:'signal',channel:'sight',cue:`cue${sequence}`,value:'left',observedAt:sequence-1};
+    state=encodeObservation(state,delivery,sequence);notebook[delivery.cue]=delivery.value;
+    maxStateBytes=Math.max(maxStateBytes,bytes(state));maxEntries=Math.max(maxEntries,state.entries.length);
+  }
+  const restored=restoreMemory(JSON.parse(JSON.stringify(exportMemory(state))));
+  const resumeStateIdentical=JSON.stringify(restored)===JSON.stringify(state);
+  if(maxEntries>2||maxStateBytes>=1000||state.lastSequence!==10000||!resumeStateIdentical)throw new Error('Observation memory bounded-state contract failed');
+  return {deliveries:10000,maxEntries,maxStateBytes,lastReceipt:state.lastSequence,resumeStateIdentical,
+    notebookFinalStateBytes:bytes(notebook),note:'Different contracts: the notebook retains all 10000 cues, the candidate only two recent claims. Byte count is not evidence that forgetting improves decisions.'};
+}
+
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){
   const root=fileURLToPath(new URL('../',import.meta.url));
+  const preregistrationCommit=execFileSync('git',['rev-parse','d3ed0d1'],{cwd:root,encoding:'utf8'}).trim();
   const files=['docs/superpowers/specs/2026-09-08-observation-memory-design.md','src/cognition/observation-memory.js','scripts/observation-memory-probe.js'];
   const sources=await Promise.all(files.map(async path=>({path,sha256:createHash('sha256').update(await readFile(resolve(root,path))).digest('hex')})));
-  const result={...runObservationMemoryProbe(),recordedAt:new Date().toISOString(),preregistrationCommit:'d3ed0d1',sources,
+  const original=execFileSync('git',['show',`${preregistrationCommit}:${files[0]}`],{cwd:root});
+  if(createHash('sha256').update(original).digest('hex')!==sources[0].sha256)throw new Error('Preregistered memory protocol changed; use a dated amendment');
+  const result={...runObservationMemoryProbe(),recordedAt:new Date().toISOString(),preregistrationCommit,preregistrationVerified:true,sources,
     environment:{node:process.version,platform:platform(),arch:arch(),cpu:cpus()[0]?.model}};
   const output=process.argv[2];
   if(output){await mkdir(dirname(resolve(output)),{recursive:true});await writeFile(resolve(output),JSON.stringify(result,null,2)+'\n',{flag:'wx'});}
-  console.log(JSON.stringify({output:output??null,summary:result.summary,decision:result.decision},null,2));
+  console.log(JSON.stringify({output:output??null,summary:result.summary,boundCheck:result.boundCheck},null,2));
 }

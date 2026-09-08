@@ -55,7 +55,9 @@ function checkNow(memory,now){
   time(now,'query');if(now<memory.now)throw new Error('Memory time cannot decrease');
 }
 
-export function createMemory({owner,capacity=4,lifetimeMinutes=60}={}){
+export function createMemory(input={}){
+  object(input,Object.keys(input??{}).filter(key=>['owner','capacity','lifetimeMinutes'].includes(key)),'memory setup');
+  const {owner,capacity=4,lifetimeMinutes=60}=input;
   return validate({version:MEMORY_VERSION,owner,capacity,lifetimeMinutes,now:0,lastSequence:0,entries:[]});
 }
 

@@ -5,11 +5,19 @@ import {runObservationMemoryProbe} from '../scripts/observation-memory-probe.js'
 test('delayed-cue comparison preserves equal deliveries, paid exposure and resume while retaining counterexamples',()=>{
   const probe=runObservationMemoryProbe();
   assert.equal(probe.cases.length,14);
+  assert.equal(probe.decision,undefined,'the runner reports evidence; dated interpretation belongs in the report');
+  assert.equal(probe.boundCheck.deliveries,10000);
+  assert.equal(probe.boundCheck.lastReceipt,10000);
+  assert.equal(probe.boundCheck.maxEntries,2);
+  assert.ok(probe.boundCheck.maxStateBytes<1000);
+  assert.equal(probe.boundCheck.resumeStateIdentical,true);
+  assert.ok(probe.boundCheck.notebookFinalStateBytes>probe.boundCheck.maxStateBytes);
   for(const row of probe.cases){
     const arms=Object.values(row.arms);
     assert.equal(new Set(arms.map(arm=>arm.paidObservationMinutes)).size,1);
     assert.equal(arms[0].paidObservationMinutes,row.deliveries.length);
     assert.equal(row.resumeIdentical,true);
+    assert.match(row.resumeStateSha256,/^[a-f0-9]{64}$/);
   }
   for(const row of probe.cases.filter(row=>row.condition==='visible'))
     assert.ok(Object.values(row.arms).every(arm=>arm.correct));
