@@ -1,0 +1,13 @@
+# Common Ground
+
+Accepted implementation scope: a new deterministic persistent worksite at `/commons/`, outside the existing lab and fixed deadline games. One player and optionally Meryem share clearly labeled communal timber, salvage, and food. Gathering takes distinct durations; simultaneous jobs reserve costs immediately. Woodshed, workbench, and garden each require two stages. The first milestone is all three structures; repeatable supply caches continue afterward. There is no deadline, enemy, combat, or offline progression.
+
+Meryem accepts one explicit project commitment, gathers its missing resources, recovers when necessary, and returns to the accepted work. She can decline unavailable projects or replacing unfinished accepted work. Her reasons are authored, visible host rules. No trust, faith, or moral-worth meters are introduced. Idle maintenance is still paid elapsed Human time; gathering food remains a deliberate accessible fallback when heavy exertion is blocked.
+
+The unchanged Human 0.1.0 owns body, capacity, and task-specific practice. The shared runtime clock owns ordered integer-minute events. This host owns resources, structures, commitments, reservations, and outcomes. One canonical minute at a time advances Human attempts so different advance chunking is bit-identical. The browser starts paused and adapts real seconds into whole simulated minutes; hidden tabs pause, saved jobs resume paused.
+
+Save format is separate and versioned. Strict snapshots reject unknown fields, mismatched clocks, forged job receipts, ownership violations, nonfinite values, and inconsistent milestones. Active state retains bounded recent messages, no full transcript. Cancellation preserves elapsed body/practice but returns all unconsumed reserved materials and food. A canceled task produces nothing.
+
+Validation must include concurrent durations, exactly-once resolution, reservation conflicts, meals and interruptions, accepted commitment lifecycle, recoverability, persistent milestones, strict save/resume, chunk-invariant progress, and long-run bounded state. A reproducible deterministic comparison of two visible-state approaches reports time, work, recovery, and resources without claiming general human validity or guaranteed superiority.
+
+During implementation, the shelter was named woodshed to make its benefit concrete: covered storage retains one extra usable timber bundle per trip. The workbench shortens assembly by six minutes and the garden adds one food portion per forage trip. These are host-owned production rules, with no change to Human recovery rates.
