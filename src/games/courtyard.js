@@ -257,6 +257,7 @@ export function importGame(record) {
     integer(next.carried[id],0,CARRY_LIMIT,'carried water');integer(next.homes[id],0,TARGET,'barrel water');integer(next.meals[id],0,1,'meals');integer(next.draws[id],0,next.round,'draw count');
     next.people[id]=restorePerson(record.people[id]);const person=next.people[id];
     requireKeys(person.skills,['collection'],'courtyard skills');
+    if(person.observationBias!==0)throw new Error('Invalid courtyard observation bias');
     if(person.id!==id||person.minutes!==next.clock||person.pending!==null||person.nextAttempt!==next.round+1)throw new Error('Invalid courtyard person or clock');
   }
   integer(next.source,0,initial.source,'cistern water');integer(next.spilled,0,next.round*2,'spilled water');
