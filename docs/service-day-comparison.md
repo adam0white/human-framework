@@ -60,3 +60,11 @@ PATH=/opt/homebrew/bin:$PATH node scripts/service-day-comparison.js run --partit
 ```
 
 Manifest 1 sources/freeze are available at commit `3f66b9c`. A separate temporary checkout at that commit reproduces original evidence even when current app source has advanced. The 13 comparison tests and 15 initial host tests pass on Node 26.8.1 and minimum Node 22.0.0; the complete initial integrated suite passes 449 tests. Parent owns final independent review and deployment.
+
+## Post-unsealing host view correction
+
+After the original freeze/results, the host author supplied `94cb980` (this lane's dependency cherry-pick `16318cc`). It corrects the advisory diversion deadline label for a finish exactly at 24, explains the existing single clinic receiving slot used by cart, and references the same frozen hunger coefficient instead of copying its numeric value. These changes preserve physics. They were not used to select or revise a policy.
+
+[Manifest 2](../artifacts/service-day/freeze-reviewed-host.json), committed as `48c020c`, binds that final host before a new validation batch. The [reviewed-host development](../artifacts/service-day/development-reviewed-host.json) and [reviewed-host reserved-condition](../artifacts/service-day/reserved-reviewed-host.json) outputs are **post-unsealing validation**, not independent reserved evidence. [Exact comparison](../artifacts/service-day/reviewed-host-verification.json) verifies all 18 initial/final saves, command/response sequences excluding the changed view copy, service/resource/paid observations, and both carryover final saves against the original frozen results. All remain equal. No policy or harness changed after manifest 1.
+
+The corrected host source is 26,023 bytes; maximum detached policy view becomes 11,398 bytes. Active-save maximum stays 5,815 bytes and all budgets still pass. The final complete suite passes **453 tests on Node 26.8.1**; all **32 service/comparison tests pass on minimum Node 22.0.0**. Those are software checks, not human observations. On the final host checkout, use `--freeze artifacts/service-day/freeze-reviewed-host.json`; manifest 1 intentionally rejects changed current source and remains reproducible from its earlier source checkout.

@@ -1,0 +1,193 @@
+{
+  "format": "service-day-reviewed-host-validation",
+  "version": 1,
+  "note": "Explicit post-unsealing host correction validation, not new reserved evidence. Core 94cb980 corrects diversion deadline label, explains existing cart slot and references the unchanged frozen hunger coefficient. No policy or harness changes. All 18 initial/final saves, decisions excluding view copy, paid/service/resource observations and both carryover final saves equal the original frozen run. View text/tooLate and provenance differ.",
+  "rows": [
+    {
+      "partition": "development",
+      "conditionId": "fresh",
+      "policy": "deadline-first",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "6b093a4b4dbfeb13d7daf37b436bb73604d11083c3532e2e9b9fd5b3b091d84f"
+    },
+    {
+      "partition": "development",
+      "conditionId": "fresh",
+      "policy": "reserve-clinic",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "8b875f8918e50b67769a040b8110cfff794ab202f563291d53667d52ba49dc6d"
+    },
+    {
+      "partition": "development",
+      "conditionId": "delay-4",
+      "policy": "deadline-first",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "aae49f6355c2eab96fe0f4e56ba87893c7276870ce3f3ad0056808c9a3669424"
+    },
+    {
+      "partition": "development",
+      "conditionId": "delay-4",
+      "policy": "reserve-clinic",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "4f7326123ba6ece1d97456abd0695af447ff89b7e7edc6d04c9b70c5e798dd91"
+    },
+    {
+      "partition": "development",
+      "conditionId": "delay-8",
+      "policy": "deadline-first",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "9f605f3f4b564bbde97522af83aaa033f470dd400c9b1c6781b1e7c03fab5945"
+    },
+    {
+      "partition": "development",
+      "conditionId": "delay-8",
+      "policy": "reserve-clinic",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "a702bb017e52e1c70a0638693aed8653fcb9a7c5af379e0f7c0a98b05e0673e0"
+    },
+    {
+      "partition": "development",
+      "conditionId": "meal-first",
+      "policy": "deadline-first",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "25d550247c60703d6e1c8656ba9638f7f0855e7c29c442100861abbd36fcfd65"
+    },
+    {
+      "partition": "development",
+      "conditionId": "meal-first",
+      "policy": "reserve-clinic",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "8b875f8918e50b67769a040b8110cfff794ab202f563291d53667d52ba49dc6d"
+    },
+    {
+      "partition": "development",
+      "conditionId": "interrupted-gate",
+      "policy": "deadline-first",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "3093a193b825935e9a56d8c64e2ee34181065403b22f46c6e5575bd00e7db589"
+    },
+    {
+      "partition": "development",
+      "conditionId": "interrupted-gate",
+      "policy": "reserve-clinic",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "3093a193b825935e9a56d8c64e2ee34181065403b22f46c6e5575bd00e7db589"
+    },
+    {
+      "partition": "development",
+      "conditionId": "partial-rest",
+      "policy": "deadline-first",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "40ed91aa8afb37466498401742802e070e469e6da01ec8bdea16646800fb8c42"
+    },
+    {
+      "partition": "development",
+      "conditionId": "partial-rest",
+      "policy": "reserve-clinic",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "ba39f649d8b1a53819a949c56b25114732b6de901aa771881e01a631ad801842"
+    },
+    {
+      "partition": "reserved",
+      "conditionId": "delay-14",
+      "policy": "deadline-first",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "023f5c65a3d30e853e7c7ed4a27af6021a60345f7de5d5ea7f2dc76cfd5b8502"
+    },
+    {
+      "partition": "reserved",
+      "conditionId": "delay-14",
+      "policy": "reserve-clinic",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "023f5c65a3d30e853e7c7ed4a27af6021a60345f7de5d5ea7f2dc76cfd5b8502"
+    },
+    {
+      "partition": "reserved",
+      "conditionId": "delay-18",
+      "policy": "deadline-first",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "4b8a2173d3197ec1aceea863de3dc963713aa0a4d107b56bcfbd2cc58499be75"
+    },
+    {
+      "partition": "reserved",
+      "conditionId": "delay-18",
+      "policy": "reserve-clinic",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "4b8a2173d3197ec1aceea863de3dc963713aa0a4d107b56bcfbd2cc58499be75"
+    },
+    {
+      "partition": "reserved",
+      "conditionId": "interrupted-diversion",
+      "policy": "deadline-first",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "3999ec3535149e6ca53c23a9bdbef412d7d0a2901776ae808b814c84a5ee763a"
+    },
+    {
+      "partition": "reserved",
+      "conditionId": "interrupted-diversion",
+      "policy": "reserve-clinic",
+      "initialStateEqual": true,
+      "finalStateEqual": true,
+      "serviceResourcePaidObservationEqual": true,
+      "commandsExcludingViewEqual": true,
+      "finalSha256": "bf27eaa05c6782404c107709d8ebecb59308f84a40877e1d58287bccfa3cc986"
+    }
+  ],
+  "carryoverFinalStatesEqual": true,
+  "verification": {
+    "node26FullSuite": 453,
+    "node22FocusedSuite": 32,
+    "allPassed": true
+  }
+}
