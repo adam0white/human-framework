@@ -1,0 +1,212 @@
+{
+  "format": "before-the-water",
+  "version": 1,
+  "state": {
+    "version": "0.1.0",
+    "scenario": "steady",
+    "clock": {
+      "version": "0.1.0",
+      "now": 3,
+      "nextEvent": 6,
+      "queue": [
+        {
+          "id": "event:5",
+          "at": 6,
+          "type": "attempt-due",
+          "actorId": "watcher",
+          "data": {
+            "attemptId": "watcher:2",
+            "task": "watch"
+          }
+        },
+        {
+          "id": "event:4",
+          "at": 10,
+          "type": "attempt-due",
+          "actorId": "keeper",
+          "data": {
+            "attemptId": "keeper:2",
+            "task": "bypass"
+          }
+        },
+        {
+          "id": "event:1",
+          "at": 32,
+          "type": "water-arrival",
+          "actorId": null,
+          "data": null
+        }
+      ]
+    },
+    "people": {
+      "keeper": {
+        "version": "0.1.1",
+        "id": "keeper",
+        "body": {
+          "fatigue": 0.5904999999999999,
+          "hunger": 0.20600000000000002
+        },
+        "skills": {
+          "repair": 0.2,
+          "watch": 0.1
+        },
+        "observationBias": 0,
+        "minutes": 3,
+        "nextAttempt": 3,
+        "pending": {
+          "id": "keeper:2",
+          "action": {
+            "actionId": "bypass",
+            "targetId": "diversion",
+            "durationMinutes": 10,
+            "effort": 0.12,
+            "exertive": true,
+            "activity": "active",
+            "skill": null
+          },
+          "elapsedMinutes": 3,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.135,
+            "hungerCost": 0.02,
+            "projectedFatigue": 0.685,
+            "projectedHunger": 0.22
+          },
+          "bodyBefore": {
+            "fatigue": 0.55,
+            "hunger": 0.2
+          },
+          "skillBefore": null,
+          "startedAt": 0
+        }
+      },
+      "watcher": {
+        "version": "0.1.1",
+        "id": "watcher",
+        "body": {
+          "fatigue": 0.20450000000000002,
+          "hunger": 0.20600000000000002
+        },
+        "skills": {
+          "repair": 0.2,
+          "watch": 0.1139310552484079
+        },
+        "observationBias": 0,
+        "minutes": 3,
+        "nextAttempt": 3,
+        "pending": {
+          "id": "watcher:2",
+          "action": {
+            "actionId": "watch",
+            "targetId": "channel",
+            "durationMinutes": 6,
+            "effort": 0,
+            "exertive": false,
+            "activity": "active",
+            "skill": "watch"
+          },
+          "elapsedMinutes": 3,
+          "capacity": {
+            "allowed": true,
+            "causes": [],
+            "fatigueCost": 0.009000000000000001,
+            "hungerCost": 0.012,
+            "projectedFatigue": 0.20900000000000002,
+            "projectedHunger": 0.21200000000000002
+          },
+          "bodyBefore": {
+            "fatigue": 0.2,
+            "hunger": 0.2
+          },
+          "skillBefore": 0.1,
+          "startedAt": 0
+        }
+      }
+    },
+    "jobs": {
+      "keeper": {
+        "task": "bypass",
+        "startedAt": 0,
+        "endsAt": 10,
+        "eventId": "event:4",
+        "attemptId": "keeper:2",
+        "startProgress": 0,
+        "reservedParts": 1,
+        "reservedMeal": 0
+      },
+      "watcher": {
+        "task": "watch",
+        "startedAt": 0,
+        "endsAt": 6,
+        "eventId": "event:5",
+        "attemptId": "watcher:2",
+        "startProgress": null,
+        "reservedParts": 0,
+        "reservedMeal": 0
+      }
+    },
+    "parts": {
+      "keeper": 0,
+      "watcher": 1
+    },
+    "food": {
+      "keeper": 1,
+      "watcher": 1
+    },
+    "eaten": {
+      "keeper": 0,
+      "watcher": 0
+    },
+    "repair": 0,
+    "bypass": 3,
+    "salvaged": 0,
+    "warningAt": null,
+    "divertedAt": null,
+    "arrivalEventId": "event:1",
+    "outcome": null,
+    "stats": {
+      "requests": 2,
+      "started": 2,
+      "completed": 0,
+      "interrupted": 0
+    },
+    "paid": {
+      "repair": 0,
+      "bypass": 3,
+      "watch": 3,
+      "open": 0,
+      "share": 0,
+      "salvage": 0,
+      "rest": 0,
+      "meal": 0,
+      "idle": 0
+    },
+    "lastResponse": {
+      "at": 0,
+      "actor": "watcher",
+      "task": "watch",
+      "accepted": true,
+      "code": "ACCEPTED",
+      "reason": "Accepted: take the lookout, 6 minutes."
+    },
+    "lastReceipt": null,
+    "recent": [
+      {
+        "at": 0,
+        "actor": "world",
+        "message": "Protect the site before the surge. Repair the gate to keep water service, or prepare and open a diversion. Nothing moves until you advance time."
+      },
+      {
+        "at": 0,
+        "actor": "keeper",
+        "message": "Accepted: prepare the diversion, 10 minutes."
+      },
+      {
+        "at": 0,
+        "actor": "watcher",
+        "message": "Accepted: take the lookout, 6 minutes."
+      }
+    ]
+  }
+}

@@ -1,0 +1,1537 @@
+{
+  "format": "watch-playable-evidence",
+  "version": 1,
+  "node": "v26.8.1",
+  "runtime": "0.1.1",
+  "human": "0.1.1",
+  "clock": "0.1.0",
+  "cadence": "canonical one-minute steps",
+  "scope": "Two initial authored routes plus an independently found partial-recovery route and the original short-notice counterexample; no human playtest or nondominated preference claim.",
+  "sourceSha256": {
+    "src/games/watch.js": "2600779cd5321cba4162f2b9c921efb87fbf94499852e30e2c081a45d307d2a3",
+    "web/watch-session.js": "1b634be8c468a498e372a647e16fa046fa8c8cd2d317da9bbb40989288b65527",
+    "web/watch.js": "583c0f62aacb04722308dbd1024185720f9dad005d9214fab199fc839132c2b2",
+    "web/watch.html": "29c1e62e415529955353e4ee87b87c1d4f6917cf7386827c4fff87aa9b039cf6",
+    "web/watch.css": "974e209a8c375954fcebd9d144fb120c297bc66beffef423bbfe750dafd0835e",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+  },
+  "runs": [
+    {
+      "scenario": "steady",
+      "route": "briefRest",
+      "outcome": {
+        "at": 32,
+        "protected": true,
+        "waterService": true,
+        "route": "gate",
+        "breachedSections": 0,
+        "partsRemaining": 0,
+        "workMinutes": 26
+      },
+      "paid": {
+        "repair": 18,
+        "bypass": 0,
+        "watch": 6,
+        "open": 0,
+        "share": 2,
+        "salvage": 0,
+        "rest": 3,
+        "meal": 0,
+        "idle": 35
+      },
+      "condition": {
+        "keeper": {
+          "fatigue": 1,
+          "hunger": 0.26400000000000007
+        },
+        "watcher": {
+          "fatigue": 0.24800000000000005,
+          "hunger": 0.26400000000000007
+        }
+      },
+      "snapshotBytes": 2434,
+      "trace": [
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "watch"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 6,
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 0,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "share"
+          ],
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 2,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 12,
+          "at": 12,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.9,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "rest"
+          ],
+          "at": 12,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.9,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 15,
+          "at": 15,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.8,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.25
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "stop"
+          ],
+          "at": 15,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.8,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.25
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 15,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 1,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.8,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.25
+            }
+          }
+        },
+        {
+          "command": 40,
+          "at": 32,
+          "repair": 18,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 3,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 1,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.25,
+              "hunger": 0.25
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "steady",
+      "route": "repair",
+      "outcome": {
+        "at": 32,
+        "protected": true,
+        "waterService": true,
+        "route": "gate",
+        "breachedSections": 0,
+        "partsRemaining": 0,
+        "workMinutes": 26
+      },
+      "paid": {
+        "repair": 18,
+        "bypass": 0,
+        "watch": 6,
+        "open": 0,
+        "share": 2,
+        "salvage": 0,
+        "rest": 6,
+        "meal": 0,
+        "idle": 32
+      },
+      "condition": {
+        "keeper": {
+          "fatigue": 0.9279999999999973,
+          "hunger": 0.26400000000000007
+        },
+        "watcher": {
+          "fatigue": 0.24800000000000005,
+          "hunger": 0.26400000000000007
+        }
+      },
+      "snapshotBytes": 2383,
+      "trace": [
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "watch"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 6,
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 0,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "share"
+          ],
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 2,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 12,
+          "at": 12,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.9,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "rest"
+          ],
+          "at": 12,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.9,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 18,
+          "at": 18,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.75,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.25,
+              "hunger": 0.25
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 18,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 1,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.75,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.25,
+              "hunger": 0.25
+            }
+          }
+        },
+        {
+          "command": 40,
+          "at": 32,
+          "repair": 18,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 3,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.95,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.25,
+              "hunger": 0.25
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "steady",
+      "route": "diversion",
+      "outcome": {
+        "at": 32,
+        "protected": true,
+        "waterService": false,
+        "route": "diversion",
+        "breachedSections": 0,
+        "partsRemaining": 1,
+        "workMinutes": 20
+      },
+      "paid": {
+        "repair": 0,
+        "bypass": 10,
+        "watch": 6,
+        "open": 4,
+        "share": 0,
+        "salvage": 0,
+        "rest": 0,
+        "meal": 0,
+        "idle": 44
+      },
+      "condition": {
+        "keeper": {
+          "fatigue": 0.7179999999999984,
+          "hunger": 0.26400000000000007
+        },
+        "watcher": {
+          "fatigue": 0.2780000000000001,
+          "hunger": 0.26400000000000007
+        }
+      },
+      "snapshotBytes": 2243,
+      "trace": [
+        {
+          "command": [
+            "keeper",
+            "bypass"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 2,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "watch"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 2,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 10,
+          "at": 10,
+          "repair": 0,
+          "bypass": 10,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "open"
+          ],
+          "at": 10,
+          "repair": 0,
+          "bypass": 10,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 40,
+          "at": 32,
+          "repair": 0,
+          "bypass": 10,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.3,
+              "hunger": 0.25
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "short",
+      "route": "briefRest",
+      "outcome": {
+        "at": 22,
+        "protected": true,
+        "waterService": true,
+        "route": "gate",
+        "breachedSections": 0,
+        "partsRemaining": 0,
+        "workMinutes": 26
+      },
+      "paid": {
+        "repair": 18,
+        "bypass": 0,
+        "watch": 6,
+        "open": 0,
+        "share": 2,
+        "salvage": 0,
+        "rest": 3,
+        "meal": 0,
+        "idle": 15
+      },
+      "condition": {
+        "keeper": {
+          "fatigue": 0.9879999999999979,
+          "hunger": 0.24400000000000005
+        },
+        "watcher": {
+          "fatigue": 0.23300000000000004,
+          "hunger": 0.24400000000000005
+        }
+      },
+      "snapshotBytes": 2450,
+      "trace": [
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "watch"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 6,
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 0,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "share"
+          ],
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 2,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 12,
+          "at": 12,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.9,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "rest"
+          ],
+          "at": 12,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.9,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 15,
+          "at": 15,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.8,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.25
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "stop"
+          ],
+          "at": 15,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.8,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.25
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 15,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 1,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.8,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.25
+            }
+          }
+        },
+        {
+          "command": 40,
+          "at": 22,
+          "repair": 18,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 3,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 1,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.25,
+              "hunger": 0.25
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "short",
+      "route": "repair",
+      "outcome": {
+        "at": 22,
+        "protected": false,
+        "waterService": false,
+        "route": "unfinished",
+        "breachedSections": 1,
+        "partsRemaining": 0,
+        "workMinutes": 24
+      },
+      "paid": {
+        "repair": 16,
+        "bypass": 0,
+        "watch": 6,
+        "open": 0,
+        "share": 2,
+        "salvage": 0,
+        "rest": 6,
+        "meal": 0,
+        "idle": 14
+      },
+      "condition": {
+        "keeper": {
+          "fatigue": 0.8596666666666646,
+          "hunger": 0.24400000000000005
+        },
+        "watcher": {
+          "fatigue": 0.23300000000000004,
+          "hunger": 0.24400000000000005
+        }
+      },
+      "snapshotBytes": 2444,
+      "trace": [
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "watch"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 6,
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 1,
+            "reserved": 0,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 1,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "share"
+          ],
+          "at": 6,
+          "repair": 6,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 2,
+            "installed": 1,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 12,
+          "at": 12,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.9,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "rest"
+          ],
+          "at": 12,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.9,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 18,
+          "at": 18,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 1,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.75,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.25,
+              "hunger": 0.25
+            }
+          }
+        },
+        {
+          "command": [
+            "keeper",
+            "repair"
+          ],
+          "at": 18,
+          "repair": 12,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 1,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.75,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.25,
+              "hunger": 0.25
+            }
+          }
+        },
+        {
+          "command": 40,
+          "at": 22,
+          "repair": 16,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 0,
+            "reserved": 0,
+            "installed": 3,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.85,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.25,
+              "hunger": 0.25
+            }
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "short",
+      "route": "diversion",
+      "outcome": {
+        "at": 22,
+        "protected": true,
+        "waterService": false,
+        "route": "diversion",
+        "breachedSections": 0,
+        "partsRemaining": 1,
+        "workMinutes": 20
+      },
+      "paid": {
+        "repair": 0,
+        "bypass": 10,
+        "watch": 6,
+        "open": 4,
+        "share": 0,
+        "salvage": 0,
+        "rest": 0,
+        "meal": 0,
+        "idle": 24
+      },
+      "condition": {
+        "keeper": {
+          "fatigue": 0.702999999999999,
+          "hunger": 0.24400000000000005
+        },
+        "watcher": {
+          "fatigue": 0.26300000000000007,
+          "hunger": 0.24400000000000005
+        }
+      },
+      "snapshotBytes": 2242,
+      "trace": [
+        {
+          "command": [
+            "keeper",
+            "bypass"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 2,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "watch"
+          ],
+          "at": 0,
+          "repair": 0,
+          "bypass": 0,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 2,
+            "installed": 0,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.55,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 10,
+          "at": 10,
+          "repair": 0,
+          "bypass": 10,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": [
+            "watcher",
+            "open"
+          ],
+          "at": 10,
+          "repair": 0,
+          "bypass": 10,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.2
+            },
+            "watcher": {
+              "fatigue": 0.2,
+              "hunger": 0.2
+            }
+          }
+        },
+        {
+          "command": 40,
+          "at": 22,
+          "repair": 0,
+          "bypass": 10,
+          "parts": {
+            "keeper": 0,
+            "watcher": 1,
+            "reserved": 0,
+            "installed": 2,
+            "salvageAvailable": true
+          },
+          "condition": {
+            "keeper": {
+              "fatigue": 0.7,
+              "hunger": 0.25
+            },
+            "watcher": {
+              "fatigue": 0.25,
+              "hunger": 0.25
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

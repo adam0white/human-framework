@@ -21,25 +21,25 @@
 
 Files: create `tests/watch.test.js`, `src/games/watch.js`.
 
-- [ ] Write tests importing `createWatch`, `requestTask`, `interruptTask`, `advanceTo`, `nextEvent`, `getWatchView`, `exportWatch`, `restoreWatch`, `receiveReceipt`.
-- [ ] Run `PATH=/opt/homebrew/bin:$PATH node --test tests/watch.test.js` and confirm the missing host is the cause of failure.
-- [ ] Implement the declared lifecycle with action blueprints and strict host reconciliation.
-- [ ] Run the same tests, inspect route outcomes and amend tests only if a predeclared assumption was wrong; record such changes.
+- [x] Write tests importing `createWatch`, `requestTask`, `interruptTask`, `advanceTo`, `nextEvent`, `getWatchView`, `exportWatch`, `restoreWatch`, `receiveReceipt`.
+- [x] Run `PATH=/opt/homebrew/bin:$PATH node --test tests/watch.test.js` and confirm the missing host is the cause of failure.
+- [x] Implement the declared lifecycle with action blueprints and strict host reconciliation.
+- [x] Run the same tests, inspect route outcomes and amend tests only if a predeclared assumption was wrong; record such changes.
 
 ## Task 2: Play and persistence
 
-Files: create `web/watch.html`, `web/watch.css`, `web/watch.js`, `tests/watch-ui.test.js`.
+Files: create `web/watch.html`, `web/watch.css`, `web/watch.js`, `tests/watch-session.test.js`.
 
-- [ ] Write static delivery-contract checks for time controls, module dependencies and accessible input labels.
-- [ ] Build responsive layout, part ownership display, per-person action cards and route outcomes.
-- [ ] Use the same host functions for playback, step, command, interruption, file save/load and autosave. Pause on decision boundaries and visibility change.
-- [ ] Verify browser behavior against both headless routes and inspect narrow/wide layouts when a browser surface is available.
+- [x] Write executable presentation-session checks for pause controls, event boundaries, commands and no offline catch-up. Static markup checks were replaced by behavioral tests plus browser QA.
+- [x] Build responsive layout, part ownership display, per-person action cards and route outcomes.
+- [x] Use the same host functions for playback, step, command, interruption, file save/load and autosave. Pause on decision boundaries and visibility change.
+- [x] Verify browser behavior against both headless routes and inspect narrow/wide layouts when a browser surface is available.
 
 ## Task 3: Evidence and review
 
 Files: create `docs/watch-game.md`, `artifacts/watch-playable/verification.json`.
 
-- [ ] Record executable default repair/diversion and short-notice counterexample traces; preserve exact state comparisons.
-- [ ] Run the complete existing suite with `PATH=/opt/homebrew/bin:$PATH npm test`; inspect all failures.
-- [ ] Request parent peer review, reproduce substantive findings with regressions and fix them.
-- [ ] Commit scoped files and send exact hashes, route/gallery integration steps, tests and remaining limits to the parent.
+- [x] Record executable default repair/diversion, the fixed short-notice failure and reviewer-found partial-recovery success traces; preserve exact state comparisons.
+- [x] Run the complete existing suite with `PATH=/opt/homebrew/bin:$PATH npm test`; inspect all failures.
+- [x] Request parent peer review, reproduce substantive findings with regressions and fix them.
+- [x] Commit scoped files and send exact hashes, route/gallery integration steps, tests and remaining limits to the parent.

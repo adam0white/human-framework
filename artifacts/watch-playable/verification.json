@@ -1,0 +1,79 @@
+{
+  "format": "watch-playable-verification",
+  "version": 1,
+  "date": "2026-09-08",
+  "node": "v26.8.1",
+  "designCommit": "b05823d",
+  "scope": "Isolated lane checks before parent route registration, integration, push and deployment.",
+  "sourceSha256": {
+    "src/games/watch.js": "2600779cd5321cba4162f2b9c921efb87fbf94499852e30e2c081a45d307d2a3",
+    "web/watch-session.js": "1b634be8c468a498e372a647e16fa046fa8c8cd2d317da9bbb40989288b65527",
+    "web/watch.js": "583c0f62aacb04722308dbd1024185720f9dad005d9214fab199fc839132c2b2",
+    "web/watch.html": "29c1e62e415529955353e4ee87b87c1d4f6917cf7386827c4fff87aa9b039cf6",
+    "web/watch.css": "974e209a8c375954fcebd9d144fb120c297bc66beffef423bbfe750dafd0835e",
+    "scripts/watch-evidence.js": "05022793210d43520877eca1ff1cb1e4c5be621db4ecf74fb518c7c270ddc402",
+    "tests/watch.test.js": "b316c02d956dfc01698ea943790ce3620dbba3385ae11a5e05830f97d8196803",
+    "tests/watch-session.test.js": "de7ddfd7e0160c7a8e3526ef83b0075fb62ca86d10961c09a2c38dc6012e794e",
+    "tests/watch-evidence.test.js": "e815a106ecc259dbd71fc83a6d2362ab632cfc007884416591a367dbf54b3817"
+  },
+  "targeted": {
+    "tests": 28,
+    "passed": 28,
+    "failed": 0,
+    "command": "PATH=/opt/homebrew/bin:$PATH node --test tests/watch.test.js tests/watch-session.test.js tests/watch-evidence.test.js"
+  },
+  "fullSuite": {
+    "tests": 308,
+    "passed": 308,
+    "failed": 0,
+    "durationMilliseconds": 4535.568417,
+    "command": "PATH=/opt/homebrew/bin:$PATH npm test",
+    "existingTests": 280
+  },
+  "build": {
+    "command": "PATH=/opt/homebrew/bin:$PATH node scripts/build.js",
+    "publicFilesBeforePageRegistration": 59,
+    "htmlPreview": "Copied web/watch.html into ignored dist/watch/index.html for the isolated preview only; root registers the page before deployment."
+  },
+  "frozenAndSharedFiles": {
+    "runtimeHumanCoreChanged": false,
+    "originalHeadlessConsumerChanged": false,
+    "sharedRegistrationPackageHandoffChanged": false
+  },
+  "browser": {
+    "surface": "Codex in-app browser through CUA",
+    "url": "http://127.0.0.1:4177/watch/",
+    "checks": [
+      "Desktop screenshot inspected at the default viewport; mobile screenshot inspected with a temporary 390x844 override.",
+      "At mobile width: window.innerWidth=390; documentElement.scrollWidth=375 (no horizontal overflow). Temporary viewport override reset.",
+      "Neighbor spare-part request before lookout visibly refused with ownership reason and no elapsed time.",
+      "Concurrent diversion/lookout played through minute 32: protected site, closed service, one retained part, 20 person-minutes work.",
+      "Terminal saved episode reloaded paused.",
+      "Mid-action minute-3 fixture imported; both pending jobs and progress retained; file imports start paused.",
+      "Malformed JSON envelope rejected with visible reason, retaining minute 3 and the current episode.",
+      "Browser download created before-the-water-minute-3.json; Node restore/export compared exactly with imported mid-action snapshot.",
+      "Short-notice gate solution played through visible controls: keyboard Enter starts repair, three one-minute steps interrupt recovery at 15, repair completes at 21, service continues after arrival at 22.",
+      "Actual 4x playback paused exactly at lookout completion minute 6, keeper diversion retained four minutes remaining.",
+      "No browser console warning/error entries observed during outcome/import checks."
+    ],
+    "limitations": [
+      "The browser download-event waiter timed out, but the actual downloaded file existed and validated byte-content-equivalent after JSON parsing.",
+      "A later temporary-preview reload returned 404 because the full-suite build recreated dist without this lane’s unregistered HTML copy; this was preview setup, not a delivered-route result.",
+      "Visibility pause has deterministic session tests and a browser event handler; physical-device timing and a real user playtest were not performed."
+    ]
+  },
+  "reviewCorrections": [
+    "Self-review: completed diversion choice produced a zero-duration estimate; failing view regression fixed without changing playable action costs.",
+    "Self-review: falsy terminal markers and array-coerced scenario identifiers were rejected with regressions.",
+    "Independent lifecycle review: swapped equal-time arrival/receipt IDs were accepted then failed on advance; import now requires canonical first arrival event identity, verified red then green.",
+    "Independent evidence review: three paid rest minutes make the short gate route succeed; added regression and retained all six route/scenario traces without retuning mechanics.",
+    "Independent design/evidence reviews: removed arbitrary-route lower-work outcome assertion; document absence of downstream spare/capacity use and no nondominated-choice claim.",
+    "Root review: evidence runner requires an explicit fresh output path and uses exclusive creation; overwrite regression verified red then green, missing destination also checked."
+  ],
+  "evidenceSafety": {
+    "existingDestinationsRejected": true,
+    "missingDestinationRejected": true,
+    "retainedRoutesUnchangedDuringMissingArgumentCheck": true
+  },
+  "releaseStatus": "Not deployed by this lane. Parent owns final merged suite, gallery/route registration and live release verification."
+}
