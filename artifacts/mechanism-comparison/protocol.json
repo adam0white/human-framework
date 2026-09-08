@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "baseCommit": "33418c4",
+  "rival": {"drainPerMinute": 0.0016666666666666668, "effortWeight": 0.6666666666666666, "restPerMinute": 0.016666666666666666, "mealRelief": 0.18333333333333332, "learningPerMinute": 0.0052},
+  "task": {"difficulty": 0.5, "hazard": 0.1, "exposure": 0.2, "output": 10},
+  "development": [
+    {"id":"idle-control","kind":"schedule","body":{"fatigue":0.1,"hunger":0.2},"skills":{"a":0.2,"b":0.2},"food":4,"parts":30,"repeat":12,"cycle":[["idle",20,0]]},
+    {"id":"balanced","kind":"schedule","body":{"fatigue":0.1,"hunger":0.2},"skills":{"a":0.2,"b":0.2},"food":4,"parts":30,"repeat":4,"cycle":[["a",20,0.12],["rest",20,0],["meal",10,0],["b",20,0.12]]},
+    {"id":"sustained","kind":"schedule","body":{"fatigue":0.1,"hunger":0.2},"skills":{"a":0.2,"b":0.2},"food":0,"parts":30,"repeat":12,"cycle":[["a",20,0.12]]},
+    {"id":"hungry-rest","kind":"schedule","body":{"fatigue":0.05,"hunger":0.8},"skills":{"a":0.2,"b":0.2},"food":0,"parts":30,"repeat":6,"cycle":[["rest",20,0],["a",20,0.12]]},
+    {"id":"fatigued-meals","kind":"schedule","body":{"fatigue":0.8,"hunger":0.05},"skills":{"a":0.2,"b":0.2},"food":6,"parts":30,"repeat":6,"cycle":[["meal",10,0],["a",20,0.12]]},
+    {"id":"scarce","kind":"schedule","body":{"fatigue":0.1,"hunger":0.2},"skills":{"a":0.2,"b":0.2},"food":2,"parts":3,"repeat":6,"cycle":[["a",20,0.15],["rest",20,0],["meal",10,0]]},
+    {"id":"retest-novice","kind":"retest","body":{"fatigue":0.1,"hunger":0.2},"skills":{"a":0.2,"b":0.2},"food":1,"parts":20},
+    {"id":"retest-practiced","kind":"retest","body":{"fatigue":0.1,"hunger":0.2},"skills":{"a":0.75,"b":0.75},"food":1,"parts":20}
+  ],
+  "reserved": [
+    {"id":"alias-hungry-rest","kind":"schedule","body":{"fatigue":0.5,"hunger":0.9},"skills":{"a":0.4,"b":0.4},"food":2,"parts":30,"repeat":4,"cycle":[["rest",20,0],["a",20,0.12]]},
+    {"id":"alias-fatigued-rest","kind":"schedule","body":{"fatigue":0.8,"hunger":0.3},"skills":{"a":0.4,"b":0.4},"food":2,"parts":30,"repeat":4,"cycle":[["rest",20,0],["a",20,0.12]]},
+    {"id":"alias-hungry-meal","kind":"schedule","body":{"fatigue":0.5,"hunger":0.9},"skills":{"a":0.4,"b":0.4},"food":2,"parts":30,"repeat":4,"cycle":[["meal",10,0],["a",20,0.12]]},
+    {"id":"alias-fatigued-meal","kind":"schedule","body":{"fatigue":0.8,"hunger":0.3},"skills":{"a":0.4,"b":0.4},"food":2,"parts":30,"repeat":4,"cycle":[["meal",10,0],["a",20,0.12]]},
+    {"id":"long-mixed","kind":"schedule","body":{"fatigue":0.3,"hunger":0.3},"skills":{"a":0.3,"b":0.6},"food":8,"parts":40,"repeat":8,"cycle":[["a",15,0.1],["b",25,0.2],["rest",30,0],["meal",10,0]]},
+    {"id":"material-shortage","kind":"schedule","body":{"fatigue":0.2,"hunger":0.4},"skills":{"a":0.6,"b":0.3},"food":3,"parts":2,"repeat":6,"cycle":[["b",15,0.1],["meal",10,0],["a",25,0.2],["rest",30,0]]},
+    {"id":"retest-strained-mixed","kind":"retest","body":{"fatigue":0.35,"hunger":0.35},"skills":{"a":0.15,"b":0.65},"food":1,"parts":20}
+  ],
+  "retest":{"exposureIntervals":6,"exposureMinutes":20,"exposureEffort":0.08,"restMinutes":40,"mealMinutes":10,"testMinutes":10,"testEffort":0.02},
+  "sensitivity":[{"id":"learning-low","learningScale":0.75,"recoveryScale":1},{"id":"learning-high","learningScale":1.25,"recoveryScale":1},{"id":"recovery-low","learningScale":1,"recoveryScale":0.75},{"id":"recovery-high","learningScale":1,"recoveryScale":1.25}],
+  "equivalence":{"outputFractionOfOffered":0.05,"meanForecastAbsoluteDifference":0.03,"retestForecastAbsoluteDifference":0.03},
+  "performance":{"warmupCommands":300,"commands":10000,"repeats":5,"food":4000,"parts":4000,"p95BudgetMs":5,"stateBudgetBytes":8192}
+}
