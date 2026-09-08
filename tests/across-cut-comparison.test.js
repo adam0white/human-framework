@@ -209,3 +209,11 @@ test('evidence cannot relabel a real policy decision as prescribed to suppress v
     t=>{t.setup={valveMinutes:12};}
   ]){const relabeled=structuredClone(original);mutate(relabeled);assert.throws(()=>replayTrial(relabeled));}
 });
+
+test('source-bound replay rejects even valid no-op policy events appended after closure',async()=>{
+  const {runTrial,replayTrial}=await import('../src/experiments/across-cut/comparison/experiment.js');const {selectCases}=await import('../src/experiments/across-cut/comparison/cases.js');const {chooseAction}=await import('../src/experiments/across-cut/comparison/policies.js');const {intern}=await import('../src/experiments/across-cut/comparison/evidence.js');
+  const trial=runTrial(selectCases().find(c=>c.id==='D1'),'fixed-early'),last=trial.events.filter(e=>e.kind==='decisions').at(-1),inputs={},decisions={},results={};
+  for(const actor of ['keeper','receiver']){const input={view:trial.finalLocal[actor],state:last.decisions[actor].state};inputs[actor]=intern(trial.dictionary,input);decisions[actor]=chooseAction(input.view,input.state,trial.arm);results[actor]={error:null,saveSha256:trial.finalSaveSha256};}
+  trial.events.push({kind:'decisions',at:30,inputs,controllers:{keeper:trial.arm,receiver:trial.arm},decisions,results},{kind:'advance',to:31,saveSha256:trial.finalSaveSha256});
+  assert.throws(()=>replayTrial(trial),/source|closure|horizon/i);
+});
