@@ -1,0 +1,2062 @@
+{
+  "validationProbes": [
+    {
+      "traceId": "gather-accepted-project",
+      "label": "active-gather",
+      "mutation": "bounded-body-change",
+      "accepted": false,
+      "error": "Inconsistent pending body state"
+    },
+    {
+      "traceId": "gather-accepted-project",
+      "label": "active-gather",
+      "mutation": "extra-unearned-food",
+      "accepted": false,
+      "error": "Resource conservation mismatch"
+    },
+    {
+      "traceId": "earned-supply-success",
+      "label": "ferry-dispatched",
+      "mutation": "bounded-body-change",
+      "accepted": false,
+      "error": "Story world does not match the source journal"
+    },
+    {
+      "traceId": "earned-supply-success",
+      "label": "ferry-dispatched",
+      "mutation": "extra-unearned-food",
+      "accepted": false,
+      "error": "Resource conservation mismatch"
+    },
+    {
+      "traceId": "earned-supply-success",
+      "label": "final",
+      "mutation": "bounded-body-change",
+      "accepted": true
+    },
+    {
+      "traceId": "earned-supply-success",
+      "label": "final",
+      "mutation": "extra-unearned-food",
+      "accepted": false,
+      "error": "Resource conservation mismatch"
+    }
+  ],
+  "protocol": "camp-maintenance-fresh-traces-1",
+  "sourceCommit": "91697f2697f4bc9d26a3df36552f71a865d973c6",
+  "deliveredSourceCommit": "7dbf9aeff7e91fcc8717cc7635e180db2129219f",
+  "createdAt": "2026-09-08T20:39:23.987Z",
+  "node": "v26.8.1",
+  "execPath": "/opt/homebrew/Cellar/node/26.8.1/bin/node",
+  "command": "\"/opt/homebrew/Cellar/node/26.8.1/bin/node\" \"/Users/abdul/code/human-framework/artifacts/camp-maintenance/freeze-baseline.mjs\" \"artifacts/camp-maintenance/baseline\"",
+  "deliveredIdentity": [
+    {
+      "path": "src/games/camp.js",
+      "sourceSha256": "a695c31258b8bc5339a20cd49f238e5a8f7fa1bed52c1cf2c0706822f804c078",
+      "deliveredSha256": "a695c31258b8bc5339a20cd49f238e5a8f7fa1bed52c1cf2c0706822f804c078"
+    },
+    {
+      "path": "src/games/camp-story.js",
+      "sourceSha256": "99300ffb03feb6d45a0dcd1313e71c7f8e20c7857f35701d6931dcc66c74e538",
+      "deliveredSha256": "99300ffb03feb6d45a0dcd1313e71c7f8e20c7857f35701d6931dcc66c74e538"
+    },
+    {
+      "path": "web/camp.js",
+      "sourceSha256": "1031c2532ecf7d85cd2b2bca45a08cb15753d7f15b4857135ce02309f5ad97d8",
+      "deliveredSha256": "1031c2532ecf7d85cd2b2bca45a08cb15753d7f15b4857135ce02309f5ad97d8"
+    },
+    {
+      "path": "web/camp-session.js",
+      "sourceSha256": "853f62dbd25d4941586349cf97ff45228b71ca760e205d5442578a8f95d1ceeb",
+      "deliveredSha256": "853f62dbd25d4941586349cf97ff45228b71ca760e205d5442578a8f95d1ceeb"
+    },
+    {
+      "path": "web/camp-slots.js",
+      "sourceSha256": "842402075ff83e5e67b4ee30f6715f4bfb0a44703cc6bf43f1e80b0fcedc02a4",
+      "deliveredSha256": "842402075ff83e5e67b4ee30f6715f4bfb0a44703cc6bf43f1e80b0fcedc02a4"
+    },
+    {
+      "path": "web/camp.html",
+      "sourceSha256": "51064b7f3ba9e4d353c1038d6ee6b69e8e319afee8f4b41ebd836a66c2d3be3a",
+      "deliveredSha256": "51064b7f3ba9e4d353c1038d6ee6b69e8e319afee8f4b41ebd836a66c2d3be3a"
+    },
+    {
+      "path": "web/camp.css",
+      "sourceSha256": "4a25b7fdb9638b7ea504803a145d010461468c55bcdac6fc4518a88ff34af488",
+      "deliveredSha256": "4a25b7fdb9638b7ea504803a145d010461468c55bcdac6fc4518a88ff34af488"
+    }
+  ],
+  "sourceCosts": {
+    "activeBrowser": {
+      "entry": "web/camp.js",
+      "files": [
+        {
+          "path": "src/core/model.js",
+          "bytes": 7764,
+          "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+          "nonblankLines": 117
+        },
+        {
+          "path": "src/games/camp-story.js",
+          "bytes": 17571,
+          "sha256": "99300ffb03feb6d45a0dcd1313e71c7f8e20c7857f35701d6931dcc66c74e538",
+          "nonblankLines": 187
+        },
+        {
+          "path": "src/games/camp.js",
+          "bytes": 40063,
+          "sha256": "a695c31258b8bc5339a20cd49f238e5a8f7fa1bed52c1cf2c0706822f804c078",
+          "nonblankLines": 389
+        },
+        {
+          "path": "src/games/commons-next.js",
+          "bytes": 8606,
+          "sha256": "cd7db395f2498ff52230fa799d3d40f254d03b36403a144f619c2b16daee2bd0",
+          "nonblankLines": 89
+        },
+        {
+          "path": "src/games/commons-policy.js",
+          "bytes": 2944,
+          "sha256": "d5700cbe386b91424f1aa4a6059a7cc0868ee920da264a1d12a66bee8979195f",
+          "nonblankLines": 41
+        },
+        {
+          "path": "src/games/commons.js",
+          "bytes": 23184,
+          "sha256": "b2c6f5e8bd38e84b729d73182170c88034edc3767e00c71cd65784233283aedb",
+          "nonblankLines": 227
+        },
+        {
+          "path": "src/human/index.js",
+          "bytes": 10239,
+          "sha256": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308",
+          "nonblankLines": 152
+        },
+        {
+          "path": "src/human/v0.1.1.js",
+          "bytes": 11580,
+          "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+          "nonblankLines": 176
+        },
+        {
+          "path": "src/runtime/clock.js",
+          "bytes": 7513,
+          "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+          "nonblankLines": 130
+        },
+        {
+          "path": "src/runtime/index.js",
+          "bytes": 188,
+          "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+          "nonblankLines": 4
+        },
+        {
+          "path": "web/camp-session.js",
+          "bytes": 3677,
+          "sha256": "853f62dbd25d4941586349cf97ff45228b71ca760e205d5442578a8f95d1ceeb",
+          "nonblankLines": 52
+        },
+        {
+          "path": "web/camp-slots.js",
+          "bytes": 8656,
+          "sha256": "842402075ff83e5e67b4ee30f6715f4bfb0a44703cc6bf43f1e80b0fcedc02a4",
+          "nonblankLines": 160
+        },
+        {
+          "path": "web/camp.js",
+          "bytes": 23796,
+          "sha256": "1031c2532ecf7d85cd2b2bca45a08cb15753d7f15b4857135ce02309f5ad97d8",
+          "nonblankLines": 159
+        }
+      ],
+      "totalBytes": 165781
+    },
+    "host": {
+      "entry": "src/games/camp-story.js",
+      "files": [
+        {
+          "path": "src/core/model.js",
+          "bytes": 7764,
+          "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+          "nonblankLines": 117
+        },
+        {
+          "path": "src/games/camp-story.js",
+          "bytes": 17571,
+          "sha256": "99300ffb03feb6d45a0dcd1313e71c7f8e20c7857f35701d6931dcc66c74e538",
+          "nonblankLines": 187
+        },
+        {
+          "path": "src/games/camp.js",
+          "bytes": 40063,
+          "sha256": "a695c31258b8bc5339a20cd49f238e5a8f7fa1bed52c1cf2c0706822f804c078",
+          "nonblankLines": 389
+        },
+        {
+          "path": "src/games/commons-next.js",
+          "bytes": 8606,
+          "sha256": "cd7db395f2498ff52230fa799d3d40f254d03b36403a144f619c2b16daee2bd0",
+          "nonblankLines": 89
+        },
+        {
+          "path": "src/games/commons-policy.js",
+          "bytes": 2944,
+          "sha256": "d5700cbe386b91424f1aa4a6059a7cc0868ee920da264a1d12a66bee8979195f",
+          "nonblankLines": 41
+        },
+        {
+          "path": "src/games/commons.js",
+          "bytes": 23184,
+          "sha256": "b2c6f5e8bd38e84b729d73182170c88034edc3767e00c71cd65784233283aedb",
+          "nonblankLines": 227
+        },
+        {
+          "path": "src/human/index.js",
+          "bytes": 10239,
+          "sha256": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308",
+          "nonblankLines": 152
+        },
+        {
+          "path": "src/human/v0.1.1.js",
+          "bytes": 11580,
+          "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+          "nonblankLines": 176
+        },
+        {
+          "path": "src/runtime/clock.js",
+          "bytes": 7513,
+          "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+          "nonblankLines": 130
+        },
+        {
+          "path": "src/runtime/index.js",
+          "bytes": 188,
+          "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+          "nonblankLines": 4
+        }
+      ],
+      "totalBytes": 129652
+    }
+  },
+  "harness": [
+    {
+      "path": "artifacts/camp-maintenance/support.mjs",
+      "sha256": "0e5a40d2357e01bcf44093169d856c2765ef95a0a1b7217efc22ed30e485cd2f"
+    },
+    {
+      "path": "artifacts/camp-maintenance/recipes.mjs",
+      "sha256": "8f661f853db4d10573c4ab71b45326ad1980c216b2ca1c5752640261c433aa9f"
+    },
+    {
+      "path": "artifacts/camp-maintenance/cold-restore.mjs",
+      "sha256": "76eabcea19f1db51413f7d91998a984e3d6e760816c40d05724dc81fa8d7d137"
+    },
+    {
+      "path": "artifacts/camp-maintenance/freeze-baseline.mjs",
+      "sha256": "b1f423522bd17dcf22cb8dcafe3cfd193dcaeebbd7f9e2a95ff850144d723c6a"
+    }
+  ],
+  "results": [
+    {
+      "id": "gather-accepted-project",
+      "purpose": "Gathering pays before output while Meryem independently completes an accepted project.",
+      "commands": [
+        {
+          "type": "request",
+          "project": "workbench"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "advance",
+          "minutes": 3
+        },
+        {
+          "type": "advance",
+          "minutes": 13
+        },
+        {
+          "type": "advance",
+          "minutes": 184
+        }
+      ],
+      "steps": 5,
+      "compressedTraceBytes": 2876,
+      "traceSha256": "6fbbbbf61f5ff2b527200a1b329e3a0a9f6cef28d98c9c619e1380e6af02908a",
+      "boundaries": [
+        {
+          "label": "active-gather",
+          "step": 3,
+          "now": 3,
+          "phase": "camp",
+          "serializedBytes": 3693,
+          "snapshotSha256": "8927e5d3b3b088d3dc8968b3b2930e90b7320154dc25d208b2f1b36f1e559de5",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.638290999999999,
+              "parseAndRestoreMs": 2.9598750000000003,
+              "now": 3
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3984999999999985,
+              "parseAndRestoreMs": 2.962917000000001,
+              "now": 3
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.612958000000001,
+              "parseAndRestoreMs": 2.824583999999998,
+              "now": 3
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.8331669999999995,
+              "parseAndRestoreMs": 2.944957999999998,
+              "now": 3
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.461417000000001,
+              "parseAndRestoreMs": 3.173166,
+              "now": 3
+            }
+          ],
+          "medianImportMs": 2.612958000000001,
+          "medianParseAndRestoreMs": 2.9598750000000003
+        },
+        {
+          "label": "gather-output",
+          "step": 4,
+          "now": 16,
+          "phase": "camp",
+          "serializedBytes": 2819,
+          "snapshotSha256": "15de504b01c36ab390b4693573abc741764d999f0f8cbeddd0dc6716eaa12efe",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3447499999999994,
+              "parseAndRestoreMs": 2.4452499999999997,
+              "now": 16
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.562958,
+              "parseAndRestoreMs": 2.3944170000000007,
+              "now": 16
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3386250000000004,
+              "parseAndRestoreMs": 2.4891250000000014,
+              "now": 16
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.7107909999999986,
+              "parseAndRestoreMs": 2.515625,
+              "now": 16
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.366624999999999,
+              "parseAndRestoreMs": 2.659917,
+              "now": 16
+            }
+          ],
+          "medianImportMs": 2.366624999999999,
+          "medianParseAndRestoreMs": 2.4891250000000014
+        },
+        {
+          "label": "final",
+          "step": 5,
+          "now": 200,
+          "phase": "camp",
+          "serializedBytes": 3496,
+          "snapshotSha256": "919d873eaedc70dcfc04324fa148b2468310ec4deba8aa056547eaeaf6b88ba7",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.561250000000001,
+              "parseAndRestoreMs": 2.560167,
+              "now": 200
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3350409999999986,
+              "parseAndRestoreMs": 2.477124999999999,
+              "now": 200
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.4032090000000004,
+              "parseAndRestoreMs": 2.497083999999999,
+              "now": 200
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.6676249999999992,
+              "parseAndRestoreMs": 2.476749999999999,
+              "now": 200
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.624041,
+              "parseAndRestoreMs": 2.5990840000000013,
+              "now": 200
+            }
+          ],
+          "medianImportMs": 2.561250000000001,
+          "medianParseAndRestoreMs": 2.497083999999999
+        }
+      ]
+    },
+    {
+      "id": "readiness-owned-meal",
+      "purpose": "Automatic recovery pays real time; first renewed capacity stops Next; interruption returns only the unused owned meal, completion pays hunger relief.",
+      "commands": [
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-salvage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-salvage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "request",
+          "project": "workbench"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "eat"
+        },
+        {
+          "type": "advance",
+          "minutes": 3
+        },
+        {
+          "type": "cancel"
+        },
+        {
+          "type": "start",
+          "job": "eat"
+        },
+        {
+          "type": "advance",
+          "minutes": 7
+        },
+        {
+          "type": "advance",
+          "minutes": 1
+        }
+      ],
+      "steps": 17,
+      "compressedTraceBytes": 5335,
+      "traceSha256": "3052455265486cc916e68fbb7dcc5df74d3c52806e0a7c1d237641700f1f8e54",
+      "boundaries": [
+        {
+          "label": "blocked-before-readiness",
+          "step": 10,
+          "now": 74,
+          "phase": "camp",
+          "serializedBytes": 3202,
+          "snapshotSha256": "011323be45fee421b6c94b92db0085d38f38e1b7b3fcfe6b5bef16c5805dcccc",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.7792080000000006,
+              "parseAndRestoreMs": 2.5887920000000015,
+              "now": 74
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.58075,
+              "parseAndRestoreMs": 2.5188749999999995,
+              "now": 74
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.335541000000001,
+              "parseAndRestoreMs": 2.450791999999998,
+              "now": 74
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.4139170000000014,
+              "parseAndRestoreMs": 2.5376659999999998,
+              "now": 74
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.416417000000001,
+              "parseAndRestoreMs": 2.580874999999999,
+              "now": 74
+            }
+          ],
+          "medianImportMs": 2.416417000000001,
+          "medianParseAndRestoreMs": 2.5376659999999998
+        },
+        {
+          "label": "ready",
+          "step": 11,
+          "now": 77,
+          "phase": "camp",
+          "serializedBytes": 3309,
+          "snapshotSha256": "18482e15fb930f4201618ef0ebd1047e3598afd676ad2132fbf07302de3201f6",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.5927499999999988,
+              "parseAndRestoreMs": 2.574417000000002,
+              "now": 77
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.302042,
+              "parseAndRestoreMs": 2.873709,
+              "now": 77
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.388833,
+              "parseAndRestoreMs": 2.4852500000000006,
+              "now": 77
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3600829999999995,
+              "parseAndRestoreMs": 2.4789580000000004,
+              "now": 77
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.9849999999999994,
+              "parseAndRestoreMs": 2.5099590000000003,
+              "now": 77
+            }
+          ],
+          "medianImportMs": 2.388833,
+          "medianParseAndRestoreMs": 2.5099590000000003
+        },
+        {
+          "label": "owned-partial-meal",
+          "step": 13,
+          "now": 80,
+          "phase": "camp",
+          "serializedBytes": 4394,
+          "snapshotSha256": "99f11ee79426c1b45f325addddeb8c172f47bae6592d3a83a220c783c4ad69ba",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3060410000000005,
+              "parseAndRestoreMs": 3.1651249999999997,
+              "now": 80
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3071670000000015,
+              "parseAndRestoreMs": 2.9541249999999994,
+              "now": 80
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.4870420000000006,
+              "parseAndRestoreMs": 2.9817920000000004,
+              "now": 80
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.2995,
+              "parseAndRestoreMs": 2.8911250000000006,
+              "now": 80
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 3.0095420000000015,
+              "parseAndRestoreMs": 3.1402500000000018,
+              "now": 80
+            }
+          ],
+          "medianImportMs": 2.3071670000000015,
+          "medianParseAndRestoreMs": 2.9817920000000004
+        },
+        {
+          "label": "meal-before-relief",
+          "step": 16,
+          "now": 87,
+          "phase": "camp",
+          "serializedBytes": 4599,
+          "snapshotSha256": "03d7f3b369505809e5167bd71fff3aa3c130a9262f75b8e2275d8e3011a73936",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.735125,
+              "parseAndRestoreMs": 3.1338749999999997,
+              "now": 87
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.5233749999999997,
+              "parseAndRestoreMs": 3.0781670000000005,
+              "now": 87
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.4141250000000003,
+              "parseAndRestoreMs": 3.2819580000000013,
+              "now": 87
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3369169999999997,
+              "parseAndRestoreMs": 3.101833000000001,
+              "now": 87
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.360792,
+              "parseAndRestoreMs": 3.0829590000000007,
+              "now": 87
+            }
+          ],
+          "medianImportMs": 2.4141250000000003,
+          "medianParseAndRestoreMs": 3.101833000000001
+        },
+        {
+          "label": "final",
+          "step": 17,
+          "now": 88,
+          "phase": "camp",
+          "serializedBytes": 3634,
+          "snapshotSha256": "9f55faeaffaa676eed3a35c5c274a187552f292e4f581e107fcf2dab3a65f9dc",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.2900419999999997,
+              "parseAndRestoreMs": 2.58375,
+              "now": 88
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3959580000000003,
+              "parseAndRestoreMs": 2.5042920000000013,
+              "now": 88
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.357792,
+              "parseAndRestoreMs": 2.808625000000001,
+              "now": 88
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3772080000000013,
+              "parseAndRestoreMs": 2.5383749999999985,
+              "now": 88
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.2738329999999998,
+              "parseAndRestoreMs": 2.5660000000000007,
+              "now": 88
+            }
+          ],
+          "medianImportMs": 2.357792,
+          "medianParseAndRestoreMs": 2.5660000000000007
+        }
+      ]
+    },
+    {
+      "id": "retained-work-consent",
+      "purpose": "Refused busy handover, explicit release, accepted transfer, partial contributions and resume without double material or free practice.",
+      "commands": [
+        {
+          "type": "request",
+          "project": "garden"
+        },
+        {
+          "type": "start",
+          "job": "build-workbench"
+        },
+        {
+          "type": "advance",
+          "minutes": 2
+        },
+        {
+          "type": "handover",
+          "from": "player",
+          "to": "neighbor"
+        },
+        {
+          "type": "release"
+        },
+        {
+          "type": "handover",
+          "from": "player",
+          "to": "neighbor"
+        },
+        {
+          "type": "advance",
+          "minutes": 2
+        },
+        {
+          "type": "release"
+        },
+        {
+          "type": "start",
+          "job": "build-workbench"
+        },
+        {
+          "type": "cancel"
+        },
+        {
+          "type": "start",
+          "job": "build-workbench"
+        },
+        {
+          "type": "advance",
+          "minutes": 18
+        }
+      ],
+      "steps": 12,
+      "compressedTraceBytes": 3901,
+      "traceSha256": "44c22460d2a37f3c31b58c6699c7641506bccf42b0d9ead765daac3e7c2a2395",
+      "boundaries": [
+        {
+          "label": "refused",
+          "step": 4,
+          "now": 2,
+          "phase": "camp",
+          "serializedBytes": 3767,
+          "snapshotSha256": "244ef38e10ebf696d6b7636944abe32fa4cc294e75cbbed7ca06faa9ae41107f",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3707499999999992,
+              "parseAndRestoreMs": 3.0045420000000007,
+              "now": 2
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.452207999999999,
+              "parseAndRestoreMs": 2.972832999999998,
+              "now": 2
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3544160000000005,
+              "parseAndRestoreMs": 3.2225,
+              "now": 2
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3475,
+              "parseAndRestoreMs": 2.9011250000000004,
+              "now": 2
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.592625,
+              "parseAndRestoreMs": 2.882416000000001,
+              "now": 2
+            }
+          ],
+          "medianImportMs": 2.3707499999999992,
+          "medianParseAndRestoreMs": 2.972832999999998
+        },
+        {
+          "label": "shared-paid-work",
+          "step": 7,
+          "now": 4,
+          "phase": "camp",
+          "serializedBytes": 3282,
+          "snapshotSha256": "284c0eb670b0f7d67c256d8fd5d612516a9f6838737558b68ee9fad89ee24986",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.2913750000000004,
+              "parseAndRestoreMs": 2.4964589999999998,
+              "now": 4
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.5887919999999998,
+              "parseAndRestoreMs": 2.5600830000000006,
+              "now": 4
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.320124999999999,
+              "parseAndRestoreMs": 2.6886670000000006,
+              "now": 4
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.6388750000000005,
+              "parseAndRestoreMs": 2.445333999999999,
+              "now": 4
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.364833000000001,
+              "parseAndRestoreMs": 2.5494579999999996,
+              "now": 4
+            }
+          ],
+          "medianImportMs": 2.364833000000001,
+          "medianParseAndRestoreMs": 2.5494579999999996
+        },
+        {
+          "label": "final",
+          "step": 12,
+          "now": 22,
+          "phase": "camp",
+          "serializedBytes": 3825,
+          "snapshotSha256": "3a4dc1b345f2b8b0782058a9248c71ea32bfe0894cf6ad90f1a16e55c116bace",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.6077499999999993,
+              "parseAndRestoreMs": 2.4567499999999995,
+              "now": 22
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.691457999999999,
+              "parseAndRestoreMs": 2.4119160000000015,
+              "now": 22
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.4423749999999984,
+              "parseAndRestoreMs": 2.488332999999999,
+              "now": 22
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.360875,
+              "parseAndRestoreMs": 2.4220000000000006,
+              "now": 22
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.305249999999999,
+              "parseAndRestoreMs": 2.661082999999998,
+              "now": 22
+            }
+          ],
+          "medianImportMs": 2.4423749999999984,
+          "medianParseAndRestoreMs": 2.4567499999999995
+        }
+      ]
+    },
+    {
+      "id": "ongoing-tool-improvement",
+      "purpose": "A fresh paid prelude reaches garden assembly one minute before tools complete; ongoing work receives the prospective boost.",
+      "commands": [
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-salvage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "advance",
+          "minutes": 18
+        },
+        {
+          "type": "start",
+          "job": "gather-salvage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "build-workbench"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "advance",
+          "minutes": 18
+        },
+        {
+          "type": "start",
+          "job": "eat"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "build-workbench"
+        },
+        {
+          "type": "advance",
+          "minutes": 27
+        },
+        {
+          "type": "request",
+          "project": "garden"
+        },
+        {
+          "type": "advance",
+          "minutes": 1
+        },
+        {
+          "type": "advance",
+          "minutes": 14
+        }
+      ],
+      "steps": 22,
+      "compressedTraceBytes": 6104,
+      "traceSha256": "d6acae0730007ddf90d9abd967ab4be1891faee56ea16892e0d83ba9a5a75820",
+      "boundaries": [
+        {
+          "label": "before-tools",
+          "step": 20,
+          "now": 183,
+          "phase": "camp",
+          "serializedBytes": 4392,
+          "snapshotSha256": "1cffccb50d65b75b95505f8e87f2171e8337c779e34e2d1fc7dbf083e0e97f51",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.337167000000001,
+              "parseAndRestoreMs": 2.822833000000001,
+              "now": 183
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3903750000000006,
+              "parseAndRestoreMs": 2.891292,
+              "now": 183
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.478833,
+              "parseAndRestoreMs": 2.76975,
+              "now": 183
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.277583,
+              "parseAndRestoreMs": 3.0845830000000003,
+              "now": 183
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.390042000000001,
+              "parseAndRestoreMs": 2.722708000000001,
+              "now": 183
+            }
+          ],
+          "medianImportMs": 2.390042000000001,
+          "medianParseAndRestoreMs": 2.822833000000001
+        },
+        {
+          "label": "tools-complete",
+          "step": 21,
+          "now": 184,
+          "phase": "camp",
+          "serializedBytes": 4055,
+          "snapshotSha256": "929f9a38cb6c2d63d1815c2f638d2ada71db8408c0958e3300153912dbd53f00",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3362920000000003,
+              "parseAndRestoreMs": 2.74925,
+              "now": 184
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3752499999999994,
+              "parseAndRestoreMs": 2.6495409999999993,
+              "now": 184
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.638833,
+              "parseAndRestoreMs": 2.6817919999999997,
+              "now": 184
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.341042,
+              "parseAndRestoreMs": 2.630083000000001,
+              "now": 184
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.4133750000000003,
+              "parseAndRestoreMs": 2.781709000000001,
+              "now": 184
+            }
+          ],
+          "medianImportMs": 2.3752499999999994,
+          "medianParseAndRestoreMs": 2.6817919999999997
+        },
+        {
+          "label": "final",
+          "step": 22,
+          "now": 198,
+          "phase": "camp",
+          "serializedBytes": 5027,
+          "snapshotSha256": "743e553613a16e3397c3f59279dfe9ae28025c01473e6bfcd5c711ae8e05779e",
+          "historyRootBytes": 0,
+          "journalBytes": 0,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.472042,
+              "parseAndRestoreMs": 3.071083,
+              "now": 198
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.838291,
+              "parseAndRestoreMs": 2.992375000000001,
+              "now": 198
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3105410000000006,
+              "parseAndRestoreMs": 3.1749170000000007,
+              "now": 198
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.5923750000000005,
+              "parseAndRestoreMs": 2.961584000000002,
+              "now": 198
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3699580000000005,
+              "parseAndRestoreMs": 3.0563339999999997,
+              "now": 198
+            }
+          ],
+          "medianImportMs": 2.472042,
+          "medianParseAndRestoreMs": 3.0563339999999997
+        }
+      ]
+    },
+    {
+      "id": "earned-supply-success",
+      "purpose": "A fresh earned window uses four actual caches in competing destinations; ferry dispatch, early close and paid return continue the people and work.",
+      "commands": [
+        {
+          "type": "request",
+          "project": "workbench"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-salvage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "request",
+          "project": "garden"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "request",
+          "project": "shelter"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "eat"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "forage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "continue"
+        },
+        {
+          "type": "request",
+          "project": "cache"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-salvage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "allocate",
+          "destination": "households"
+        },
+        {
+          "type": "request",
+          "project": "cache"
+        },
+        {
+          "type": "start",
+          "job": "build-cache"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "allocate",
+          "destination": "households"
+        },
+        {
+          "type": "request",
+          "project": "cache"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "dispatch"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-salvage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "allocate",
+          "destination": "camp"
+        },
+        {
+          "type": "request",
+          "project": "cache"
+        },
+        {
+          "type": "start",
+          "job": "build-cache"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "allocate",
+          "destination": "camp"
+        },
+        {
+          "type": "finish"
+        },
+        {
+          "type": "return"
+        },
+        {
+          "type": "advance",
+          "minutes": 6
+        }
+      ],
+      "steps": 79,
+      "compressedTraceBytes": 24782,
+      "traceSha256": "144da595319eb3033621824f4a1fdec0ae83506dc3cc532f43bf82b51b524132",
+      "boundaries": [
+        {
+          "label": "earned-introduction",
+          "step": 41,
+          "now": 224,
+          "phase": "introduction",
+          "serializedBytes": 8836,
+          "snapshotSha256": "5ebc132d5122970e37260e28e0d1fe87ad6d5702212ec8114cb9729ae292c43a",
+          "historyRootBytes": 4287,
+          "journalBytes": 2,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.341750000000001,
+              "parseAndRestoreMs": 4.017332999999999,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.4397909999999996,
+              "parseAndRestoreMs": 3.783042000000002,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.325667000000001,
+              "parseAndRestoreMs": 3.835207999999998,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3847500000000004,
+              "parseAndRestoreMs": 3.8013330000000014,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 3.018334000000001,
+              "parseAndRestoreMs": 3.7687910000000002,
+              "now": 224
+            }
+          ],
+          "medianImportMs": 2.3847500000000004,
+          "medianParseAndRestoreMs": 3.8013330000000014
+        },
+        {
+          "label": "ferry-before-dispatch",
+          "step": 59,
+          "now": 314,
+          "phase": "ferry",
+          "serializedBytes": 11094,
+          "snapshotSha256": "9505fe08691711a43a6bd53bf40a57347c2924076225b555825113356614de6c",
+          "historyRootBytes": 4287,
+          "journalBytes": 498,
+          "journalCommands": 14,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.6271250000000013,
+              "parseAndRestoreMs": 30.383584,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3924579999999995,
+              "parseAndRestoreMs": 31.321917,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.6902089999999994,
+              "parseAndRestoreMs": 29.866082999999996,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.4876249999999995,
+              "parseAndRestoreMs": 30.668999999999997,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.6737909999999996,
+              "parseAndRestoreMs": 32.935625,
+              "now": 314
+            }
+          ],
+          "medianImportMs": 2.6271250000000013,
+          "medianParseAndRestoreMs": 30.668999999999997
+        },
+        {
+          "label": "ferry-dispatched",
+          "step": 60,
+          "now": 314,
+          "phase": "packing",
+          "serializedBytes": 11113,
+          "snapshotSha256": "2a9157826ad26ca4c2c7af162c272323018e93ac1fd7f136edca990cf65d2636",
+          "historyRootBytes": 4287,
+          "journalBytes": 518,
+          "journalCommands": 15,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3369999999999997,
+              "parseAndRestoreMs": 30.201334000000003,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.633209000000001,
+              "parseAndRestoreMs": 31.662833,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.996333,
+              "parseAndRestoreMs": 31.314792000000004,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.6624999999999996,
+              "parseAndRestoreMs": 31.209624999999996,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.366416000000001,
+              "parseAndRestoreMs": 30.370833,
+              "now": 314
+            }
+          ],
+          "medianImportMs": 2.633209000000001,
+          "medianParseAndRestoreMs": 31.209624999999996
+        },
+        {
+          "label": "ended",
+          "step": 77,
+          "now": 403,
+          "phase": "ended",
+          "serializedBytes": 11508,
+          "snapshotSha256": "71611828a34da6002228e4812a06105dedb3c5abc2e9ab775ef7342510eafda2",
+          "historyRootBytes": 4287,
+          "journalBytes": 864,
+          "journalCommands": 25,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3461670000000012,
+              "parseAndRestoreMs": 53.499583,
+              "now": 403
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.373583,
+              "parseAndRestoreMs": 53.299667,
+              "now": 403
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.477875000000001,
+              "parseAndRestoreMs": 52.99591600000001,
+              "now": 403
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3595419999999994,
+              "parseAndRestoreMs": 53.495667,
+              "now": 403
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3170409999999997,
+              "parseAndRestoreMs": 53.546,
+              "now": 403
+            }
+          ],
+          "medianImportMs": 2.3595419999999994,
+          "medianParseAndRestoreMs": 53.495667
+        },
+        {
+          "label": "final",
+          "step": 79,
+          "now": 409,
+          "phase": "camp-return",
+          "serializedBytes": 11525,
+          "snapshotSha256": "5b76ed2aa50ae70d12138b97e4bdc709ef455f0d51b734e96b2e668eb52c8bb9",
+          "historyRootBytes": 4287,
+          "journalBytes": 882,
+          "journalCommands": 26,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.459250000000001,
+              "parseAndRestoreMs": 53.417500000000004,
+              "now": 409
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.346667,
+              "parseAndRestoreMs": 53.500709,
+              "now": 409
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3745829999999994,
+              "parseAndRestoreMs": 53.692583,
+              "now": 409
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.865,
+              "parseAndRestoreMs": 54.08624999999999,
+              "now": 409
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.5113330000000005,
+              "parseAndRestoreMs": 53.84141700000001,
+              "now": 409
+            }
+          ],
+          "medianImportMs": 2.459250000000001,
+          "medianParseAndRestoreMs": 53.692583
+        }
+      ]
+    },
+    {
+      "id": "unmet-deadline-return",
+      "purpose": "The same fresh earned opening misses household service, supplies camp later, retains unmet needs and paid current work after return.",
+      "commands": [
+        {
+          "type": "request",
+          "project": "workbench"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-salvage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "request",
+          "project": "garden"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "request",
+          "project": "shelter"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "eat"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "forage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "continue"
+        },
+        {
+          "type": "advance",
+          "minutes": 1440
+        },
+        {
+          "type": "dispatch"
+        },
+        {
+          "type": "request",
+          "project": "cache"
+        },
+        {
+          "type": "start",
+          "job": "gather-salvage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "build-cache"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "request",
+          "project": "cache"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-timber"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "request",
+          "project": "cache"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "start",
+          "job": "gather-salvage"
+        },
+        {
+          "type": "next"
+        },
+        {
+          "type": "allocate",
+          "destination": "camp"
+        },
+        {
+          "type": "allocate",
+          "destination": "camp"
+        },
+        {
+          "type": "finish"
+        },
+        {
+          "type": "return"
+        },
+        {
+          "type": "advance",
+          "minutes": 6
+        }
+      ],
+      "steps": 66,
+      "compressedTraceBytes": 21064,
+      "traceSha256": "6371065d43fcfe7a6c7acec17008ade2221ff1720e0a334d6ba7ec9265fb0c6d",
+      "boundaries": [
+        {
+          "label": "earned-introduction",
+          "step": 41,
+          "now": 224,
+          "phase": "introduction",
+          "serializedBytes": 8836,
+          "snapshotSha256": "5ebc132d5122970e37260e28e0d1fe87ad6d5702212ec8114cb9729ae292c43a",
+          "historyRootBytes": 4287,
+          "journalBytes": 2,
+          "journalCommands": 0,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3010420000000007,
+              "parseAndRestoreMs": 4.016959,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.5618750000000006,
+              "parseAndRestoreMs": 3.6805830000000004,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3355420000000002,
+              "parseAndRestoreMs": 3.760042000000002,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.391083,
+              "parseAndRestoreMs": 3.7720830000000003,
+              "now": 224
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3194169999999996,
+              "parseAndRestoreMs": 3.8805000000000014,
+              "now": 224
+            }
+          ],
+          "medianImportMs": 2.3355420000000002,
+          "medianParseAndRestoreMs": 3.7720830000000003
+        },
+        {
+          "label": "ferry-before-dispatch",
+          "step": 43,
+          "now": 314,
+          "phase": "ferry",
+          "serializedBytes": 8855,
+          "snapshotSha256": "fdeee3dfb9b4e1cf44ed19b09e2e6f6fef1b8295b28845616bfcf2967473900e",
+          "historyRootBytes": 4287,
+          "journalBytes": 53,
+          "journalCommands": 2,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.397124999999999,
+              "parseAndRestoreMs": 23.712958,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3295840000000005,
+              "parseAndRestoreMs": 23.766125,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.6581670000000006,
+              "parseAndRestoreMs": 23.517874999999997,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3567920000000004,
+              "parseAndRestoreMs": 23.502000000000002,
+              "now": 314
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.6907500000000013,
+              "parseAndRestoreMs": 23.939583999999996,
+              "now": 314
+            }
+          ],
+          "medianImportMs": 2.397124999999999,
+          "medianParseAndRestoreMs": 23.712958
+        },
+        {
+          "label": "ended",
+          "step": 64,
+          "now": 404,
+          "phase": "ended",
+          "serializedBytes": 12287,
+          "snapshotSha256": "d9e990022ea86e57f8296bf5e40abadc47950585009315afccb588a3c21655e6",
+          "historyRootBytes": 4287,
+          "journalBytes": 665,
+          "journalCommands": 20,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.5229169999999996,
+              "parseAndRestoreMs": 54.321916,
+              "now": 404
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3300409999999996,
+              "parseAndRestoreMs": 51.369167000000004,
+              "now": 404
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.73475,
+              "parseAndRestoreMs": 51.352957999999994,
+              "now": 404
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.454708,
+              "parseAndRestoreMs": 52.328959,
+              "now": 404
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3087079999999993,
+              "parseAndRestoreMs": 51.34904099999999,
+              "now": 404
+            }
+          ],
+          "medianImportMs": 2.454708,
+          "medianParseAndRestoreMs": 51.369167000000004
+        },
+        {
+          "label": "final",
+          "step": 66,
+          "now": 410,
+          "phase": "camp-return",
+          "serializedBytes": 10105,
+          "snapshotSha256": "c4a5aaaa50c2521c121d9a3f735283a262b36ccf5ee0e5545c50e10b403c9b51",
+          "historyRootBytes": 4287,
+          "journalBytes": 683,
+          "journalCommands": 21,
+          "cold": [
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3615840000000006,
+              "parseAndRestoreMs": 51.77525,
+              "now": 410
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.5770409999999995,
+              "parseAndRestoreMs": 52.294833000000004,
+              "now": 410
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.289334,
+              "parseAndRestoreMs": 52.18470800000001,
+              "now": 410
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3266660000000012,
+              "parseAndRestoreMs": 52.320916999999994,
+              "now": 410
+            },
+            {
+              "node": "v26.8.1",
+              "importMs": 2.3491670000000013,
+              "parseAndRestoreMs": 52.458958,
+              "now": 410
+            }
+          ],
+          "medianImportMs": 2.3491670000000013,
+          "medianParseAndRestoreMs": 52.294833000000004
+        }
+      ]
+    }
+  ]
+}
