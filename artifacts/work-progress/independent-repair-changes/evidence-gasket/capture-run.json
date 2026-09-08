@@ -1,0 +1,26 @@
+{
+  "runtimeDelta": {
+    "candidateInclusive": {
+      "bytes": 38,
+      "lines": 0
+    },
+    "directInclusive": {
+      "bytes": 38,
+      "lines": 0
+    }
+  },
+  "sourceDiff": {
+    "added": 9,
+    "removed": 9
+  },
+  "testsDiff": {
+    "added": 18,
+    "removed": 10
+  },
+  "filesChanged": [
+    "src/yard.js",
+    "tests/record.mjs",
+    "tests/repair.test.js"
+  ],
+  "freezeSHA256": "f6dbf7d6b75093132298c3ec7bcefc9c16d85aef249b56ea39ed62c8fca56fd9"
+}

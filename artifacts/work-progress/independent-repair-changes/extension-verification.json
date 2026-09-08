@@ -1,0 +1,18 @@
+{
+  "verified": true,
+  "stages": [
+    {
+      "path": "stages/01-gasket/freeze.json",
+      "filesVerified": 25,
+      "sha256": "f6dbf7d6b75093132298c3ec7bcefc9c16d85aef249b56ea39ed62c8fca56fd9"
+    },
+    {
+      "path": "stages/02-two-pumps/freeze.json",
+      "filesVerified": 26,
+      "sha256": "02b4aca1c3da3459a7d249968837c09b37d9d558813b91ac797e12ca6ab47332"
+    }
+  ],
+  "preservedBaselineFiles": 11,
+  "kitFilesUnchanged": 8,
+  "currentSourceMatchesStage2": true
+}

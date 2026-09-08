@@ -1,0 +1,344 @@
+diff -ru stages/01-gasket/src/candidate-pump.js src/candidate-pump.js
+--- stages/01-gasket/src/candidate-pump.js	2026-09-08 13:57:52
++++ src/candidate-pump.js	2026-09-08 14:00:58
+@@ -3,7 +3,7 @@
+ 
+ // Translation of the fixed pump domain to the supplied item API.
+ export const candidatePump = {
+-  create: () => createWork({id: 'south-pump', effort: .20, minimumDuration: 6}),
++  create: (id = 'south-pump') => createWork({id, effort: .20, minimumDuration: 6}),
+   enlist: (work, worker, basis) => prepareWorker(work, {workerId: worker, basisMinutes: basis}),
+   plan: (work, worker, tool) => {
+     const q = quoteWork(work, {workerId: worker, durationReduction: tool ? 6 : 0});
+diff -ru stages/01-gasket/src/direct-pump.js src/direct-pump.js
+--- stages/01-gasket/src/direct-pump.js	2026-09-08 13:57:52
++++ src/direct-pump.js	2026-09-08 14:00:58
+@@ -3,7 +3,7 @@
+ 
+ // Only this pump's coverage and its two possible repairers; no general work API.
+ export const directPump = {
+-  create: () => ({coverage: 0, discharged: false, crew: {}}),
++  create: (id = 'south-pump') => ({id, coverage: 0, discharged: false, crew: {}}),
+   enlist(pump, id, basis) {
+     insist(['mara', 'tomas'].includes(id), 'Not a pump repairer');
+     integer(basis, 6, 1440); insist(pump.coverage < 1 - 1e-12, 'Pump complete');
+@@ -33,7 +33,8 @@
+   },
+   pack: clone,
+   unpack(record) {
+-    fields(record, ['coverage', 'discharged', 'crew']); number(record.coverage, 0, 1);
++    fields(record, ['id', 'coverage', 'discharged', 'crew']); number(record.coverage, 0, 1);
++    insist(['south-pump', 'north-pump'].includes(record.id), 'Unknown pump identity');
+     insist(typeof record.discharged === 'boolean' && (!record.discharged || record.coverage === 1), 'Invalid discharge');
+     insist(record.coverage < 1 - 1e-12 || record.coverage === 1, 'Unsettled rounding gap');
+     insist(record.crew && Object.keys(record.crew).every(id => ['mara', 'tomas'].includes(id)), 'Unknown repairer');
+@@ -48,7 +49,7 @@
+     insist(minutes <= 1440 && near(coverage, record.coverage), 'Direct coverage mismatch');
+     return clone(record);
+   },
+-  inspect: pump => ({id: 'south-pump', coefficient: .20, floor: 6, coverage: pump.coverage,
++  inspect: pump => ({id: pump.id, coefficient: .20, floor: 6, coverage: pump.coverage,
+     released: pump.discharged, complete: pump.coverage === 1,
+     hands: Object.fromEntries(Object.entries(pump.crew).map(([id, hand]) => [id, {
+       basis: hand.firstMinutes, minutes: hand.paidMinutes, coverage: hand.covered, effort: .20 * hand.covered
+diff -ru stages/01-gasket/src/yard.js src/yard.js
+--- stages/01-gasket/src/yard.js	2026-09-08 13:57:52
++++ src/yard.js	2026-09-08 14:00:58
+@@ -4,6 +4,7 @@
+ export const REPAIRERS = ['mara', 'tomas'];
+ export const PEOPLE = [...REPAIRERS, 'nuri'];
+ const ACCOUNTS = ['repair', 'hauling', 'crafting', 'rest'];
++const OWNERS = {south: 'yard', north: 'orchard'};
+ const initial = {
+   mara: {body: {fatigue: .20, hunger: .20}, skills: {repair: .10, hauling: .10}},
+   tomas: {body: {fatigue: .20, hunger: .20}, skills: {repair: .60, hauling: .10}},
+@@ -17,9 +18,9 @@
+ 
+ // An actual attempt is provisionally created, capacity-checked, paid, and finished.
+ // Caller commits its returned person together with the corresponding world credit.
+-export function payMinute(person, kind, effort) {
++export function payMinute(person, kind, effort, repairTarget = 'south-pump') {
+   let next = beginAttempt(person, {actionId: kind === 'rest' ? 'recovery' : kind,
+-    targetId: kind === 'repair' ? 'south-pump' : kind === 'crafting' ? 'tool-blank' : null,
++    targetId: kind === 'repair' ? repairTarget : kind === 'crafting' ? 'tool-blank' : null,
+     durationMinutes: 1, effort, exertive: kind !== 'rest', activity: kind === 'rest' ? 'rest' : 'active',
+     skill: kind === 'rest' ? null : kind});
+   insist(next.pending.capacity.allowed, 'Actual paid minute exceeds capacity');
+@@ -34,62 +35,69 @@
+     if (!known.has(state)) { validate(state); }
+     return state;
+   }
+-  function review(state, request, from, to, accepted, reason) {
++  function review(state, request, from, to, accepted, reason, repair = null) {
+     const next = clone(state);
+-    next.decision = {at: state.minute, request, from, to, accepted, reason};
++    next.decision = {at: state.minute, request, from, to, accepted, reason, repair};
+     return {state: seal(next), result: clone(next.decision)};
+   }
+-  function create({tool = false, busy = false, origins = initial} = {}) {
+-    insist(typeof tool === 'boolean' && typeof busy === 'boolean', 'Invalid setup');
++  function create({tool = false, busy = false, twoPumps = false, origins = initial} = {}) {
++    insist(typeof tool === 'boolean' && typeof busy === 'boolean' && typeof twoPumps === 'boolean', 'Invalid setup');
+     const state = {
+-      schema: 'pump-yard-gasket-1', minute: 0, origins: clone(origins),
++      schema: 'pump-yard-two-1', minute: 0, origins: clone(origins),
+       people: Object.fromEntries(PEOPLE.map(id => [id, createPerson({id, ...origins[id]})])),
+       paid: Object.fromEntries(PEOPLE.map(id => [id, accounting()])),
+       occupied: {mara: 'free', tomas: busy ? 'hauling' : 'free', nuri: tool ? 'crafting' : 'free'},
+-      pump: {work: pumpRules.create(), permission: null, finishedAt: null},
+-      gasket: {owner: 'yard', place: 'shelf'},
++      pumps: Object.fromEntries((twoPumps ? ['south', 'north'] : ['south']).map(id => [id, {
++        owner: OWNERS[id], work: pumpRules.create(`${id}-pump`), permission: null, finishedAt: null,
++        gasket: {id: `${id}-gasket`, owner: OWNERS[id], place: 'shelf'}
++      }])),
+       tooling: {blankOwner: 'nuri', blank: tool ? 'shelf' : 'absent', readyAt: null},
+       hauling: {enabled: busy, stopped: false, finishedAt: null},
+-      decision: {at: 0, request: 'setup', from: null, to: null, accepted: true, reason: 'created'}
++      decision: {at: 0, request: 'setup', from: null, to: null, accepted: true, reason: 'created', repair: null}
+     };
+     if (tool) insist(mayPay(state.people.nuri, 1, .02), 'Supplier cannot begin');
+     if (busy) insist(mayPay(state.people.tomas, 4, .04), 'Hauler cannot begin');
+     validate(state); return seal(state);
+   }
+-  function start(state, id) {
++  function start(state, id, repair = 'south') {
+     checked(state); insist(PEOPLE.includes(id), 'Unknown actor');
+-    if (!willing(id)) return review(state, 'start', id, id, false, 'not-a-repairer');
+-    if (state.pump.permission || state.occupied[id] !== 'free') return review(state, 'start', id, id, false, 'busy');
+-    if (pumpRules.inspect(state.pump.work).complete) return review(state, 'start', id, id, false, 'finished');
+-    const prepared = pumpRules.enlist(state.pump.work, id, basis(state.people[id]));
++    insist(Object.hasOwn(state.pumps, repair), 'Unknown repair');
++    const pump = state.pumps[repair];
++    if (!willing(id)) return review(state, 'start', id, id, false, 'not-a-repairer', repair);
++    if (pump.permission || state.occupied[id] !== 'free') return review(state, 'start', id, id, false, 'busy', repair);
++    if (pumpRules.inspect(pump.work).complete) return review(state, 'start', id, id, false, 'finished', repair);
++    const prepared = pumpRules.enlist(pump.work, id, basis(state.people[id]));
+     const plan = pumpRules.plan(prepared, id, state.tooling.readyAt !== null);
+-    if (!mayPay(state.people[id], plan.minutesLeft, plan.effortLeft)) return review(state, 'start', id, id, false, 'capacity');
+-    const next = clone(state); next.pump.work = prepared;
+-    next.pump.permission = {worker: id, acceptedAt: state.minute, via: 'start', offeredBy: id};
+-    next.occupied[id] = 'repair'; next.gasket.place = 'installed';
+-    return review(next, 'start', id, id, true, 'accepted');
++    if (!mayPay(state.people[id], plan.minutesLeft, plan.effortLeft)) return review(state, 'start', id, id, false, 'capacity', repair);
++    const next = clone(state); next.pumps[repair].work = prepared;
++    next.pumps[repair].permission = {worker: id, acceptedAt: state.minute, via: 'start', offeredBy: id};
++    next.occupied[id] = 'repair'; next.pumps[repair].gasket.place = 'installed';
++    return review(next, 'start', id, id, true, 'accepted', repair);
+   }
+-  function offerHandover(state, from, to) {
++  function offerHandover(state, from, to, repair = 'south') {
+     checked(state); insist(PEOPLE.includes(from) && PEOPLE.includes(to), 'Unknown actor');
+-    if (state.pump.permission?.worker !== from || from === to) return review(state, 'handover', from, to, false, 'not-current-worker');
+-    if (!willing(to)) return review(state, 'handover', from, to, false, 'not-a-repairer');
+-    if (state.occupied[to] !== 'free') return review(state, 'handover', from, to, false, 'busy');
+-    const prepared = pumpRules.enlist(state.pump.work, to, basis(state.people[to]));
++    insist(Object.hasOwn(state.pumps, repair), 'Unknown repair');
++    const pump = state.pumps[repair];
++    if (pump.permission?.worker !== from || from === to) return review(state, 'handover', from, to, false, 'not-current-worker', repair);
++    if (!willing(to)) return review(state, 'handover', from, to, false, 'not-a-repairer', repair);
++    if (state.occupied[to] !== 'free') return review(state, 'handover', from, to, false, 'busy', repair);
++    const prepared = pumpRules.enlist(pump.work, to, basis(state.people[to]));
+     const plan = pumpRules.plan(prepared, to, state.tooling.readyAt !== null);
+-    if (!mayPay(state.people[to], plan.minutesLeft, plan.effortLeft)) return review(state, 'handover', from, to, false, 'capacity');
+-    const next = clone(state); next.pump.work = prepared;
++    if (!mayPay(state.people[to], plan.minutesLeft, plan.effortLeft)) return review(state, 'handover', from, to, false, 'capacity', repair);
++    const next = clone(state); next.pumps[repair].work = prepared;
+     next.occupied[from] = 'free'; next.occupied[to] = 'repair';
+-    next.pump.permission = {worker: to, acceptedAt: state.minute, via: 'handover', offeredBy: from};
+-    return review(next, 'handover', from, to, true, 'accepted');
++    next.pumps[repair].permission = {worker: to, acceptedAt: state.minute, via: 'handover', offeredBy: from};
++    return review(next, 'handover', from, to, true, 'accepted', repair);
+   }
+   function stop(state, id) {
+     checked(state); insist(PEOPLE.includes(id), 'Unknown actor');
+     if (state.occupied[id] === 'free') return review(state, 'stop', id, null, false, 'already-free');
+     const next = clone(state);
+-    if (next.occupied[id] === 'repair') next.pump.permission = null;
++    const repair = Object.keys(state.pumps).find(key => state.pumps[key].permission?.worker === id) ?? null;
++    if (repair !== null) next.pumps[repair].permission = null;
+     if (next.occupied[id] === 'hauling') next.hauling.stopped = true;
+     next.occupied[id] = 'free';
+-    return review(next, 'stop', id, null, true, 'stopped');
++    return review(next, 'stop', id, null, true, 'stopped', repair);
+   }
+   function startTool(state, id) {
+     checked(state); insist(PEOPLE.includes(id), 'Unknown actor');
+@@ -102,27 +110,29 @@
+   }
+   function settle(state) {
+     checked(state);
+-    const work = pumpRules.inspect(state.pump.work);
+-    if (!work.complete) return state;
+-    const release = pumpRules.release(state.pump.work);
+-    if (!release.first) return state;
+-    insist(state.gasket.place === 'installed' && state.pump.finishedAt === null, 'No installed gasket to settle');
+-    const next = clone(state); next.pump.work = release.work;
+-    next.gasket.place = 'spent'; next.pump.finishedAt = state.minute;
+-    if (next.pump.permission) next.occupied[next.pump.permission.worker] = 'free';
+-    next.pump.permission = null;
+-    return seal(next);
++    const next = clone(state); let changed = false;
++    for (const [id, pump] of Object.entries(state.pumps)) {
++      if (!pumpRules.inspect(pump.work).complete) continue;
++      const release = pumpRules.release(pump.work);
++      if (!release.first) continue;
++      insist(pump.gasket.place === 'installed' && pump.gasket.owner === pump.owner && pump.finishedAt === null, 'No owned installed gasket to settle');
++      next.pumps[id].work = release.work; next.pumps[id].gasket.place = 'spent'; next.pumps[id].finishedAt = state.minute;
++      if (pump.permission) next.occupied[pump.permission.worker] = 'free';
++      next.pumps[id].permission = null; changed = true;
++    }
++    return changed ? seal(next) : state;
+   }
+   function minute(state) {
+     // Nothing outside this detached prospective minute changes before every payment succeeds.
+     const next = clone(state), tool = state.tooling.readyAt !== null;
+     for (const id of PEOPLE) {
+       const kind = state.occupied[id] === 'free' ? 'rest' : state.occupied[id];
++      const repair = kind === 'repair' ? Object.keys(state.pumps).find(key => state.pumps[key].permission?.worker === id) : null;
+       let effort = kind === 'hauling' ? .01 : kind === 'crafting' ? .02 : 0;
+-      if (kind === 'repair') effort = pumpRules.plan(state.pump.work, id, tool).effort;
+-      next.people[id] = payMinute(state.people[id], kind, effort);
++      if (kind === 'repair') effort = pumpRules.plan(state.pumps[repair].work, id, tool).effort;
++      next.people[id] = payMinute(state.people[id], kind, effort, repair === null ? null : `${repair}-pump`);
+       next.paid[id][kind].minutes++; next.paid[id][kind].effort += effort;
+-      if (kind === 'repair') next.pump.work = pumpRules.pay(state.pump.work, id, tool);
++      if (kind === 'repair') next.pumps[repair].work = pumpRules.pay(state.pumps[repair].work, id, tool);
+     }
+     next.minute++;
+     // Only now can a completion alter availability. Nuri's minute-0 tool never speeds that same minute.
+@@ -147,12 +157,13 @@
+     checked(state); const waits = [];
+     if (state.occupied.nuri === 'crafting') waits.push(1);
+     if (state.occupied.tomas === 'hauling') waits.push(4 - state.paid.tomas.hauling.minutes);
+-    if (state.pump.permission) waits.push(pumpRules.plan(state.pump.work, state.pump.permission.worker, state.tooling.readyAt !== null).minutesLeft);
++    for (const pump of Object.values(state.pumps)) if (pump.permission) waits.push(pumpRules.plan(pump.work, pump.permission.worker, state.tooling.readyAt !== null).minutesLeft);
+     return waits.length ? Math.min(1_000_000, state.minute + Math.min(...waits)) : null;
+   }
+   function exportState(state) {
+     checked(state);
+-    const wire = clone(state); wire.pump.work = pumpRules.pack(state.pump.work);
++    const wire = clone(state);
++    for (const id of Object.keys(state.pumps)) wire.pumps[id].work = pumpRules.pack(state.pumps[id].work);
+     wire.people = Object.fromEntries(PEOPLE.map(id => [id, exportPerson(state.people[id])]));
+     return {format: 'pump-yard', version: 1, state: wire};
+   }
+@@ -160,30 +171,39 @@
+     jsonTree(snapshot); fields(snapshot, ['format', 'version', 'state']);
+     insist(snapshot.format === 'pump-yard' && snapshot.version === 1, 'Unsupported yard snapshot');
+     const next = clone(snapshot.state);
+-    fields(next.people, PEOPLE); fields(next.pump, ['work', 'permission', 'finishedAt']);
++    fields(next.people, PEOPLE); fields(next.pumps, Object.hasOwn(next.pumps, 'north') ? ['south', 'north'] : ['south']);
+     for (const id of PEOPLE) {
+       fields(snapshot.state.people[id], ['format', 'version', 'componentVersion', 'person']);
+       insist(snapshot.state.people[id].componentVersion === '0.1.1', 'Yard requires the frozen Human version');
+     }
+-    next.pump.work = pumpRules.unpack(snapshot.state.pump.work);
++    for (const id of Object.keys(next.pumps)) {
++      fields(next.pumps[id], ['owner', 'work', 'permission', 'finishedAt', 'gasket']);
++      next.pumps[id].work = pumpRules.unpack(snapshot.state.pumps[id].work);
++    }
+     next.people = Object.fromEntries(PEOPLE.map(id => [id, restorePerson(snapshot.state.people[id])]));
+     validate(next); return seal(next);
+   }
+   function projection(state) {
+-    checked(state); const next = clone(state); next.pump.work = pumpRules.inspect(state.pump.work); return next;
++    checked(state); const next = clone(state);
++    for (const id of Object.keys(state.pumps)) next.pumps[id].work = pumpRules.inspect(state.pumps[id].work);
++    return next;
+   }
+   function validate(state) {
+     jsonTree(state);
+-    fields(state, ['schema', 'minute', 'origins', 'people', 'paid', 'occupied', 'pump', 'gasket', 'tooling', 'hauling', 'decision']);
+-    insist(state.schema === 'pump-yard-gasket-1', 'Unknown yard schema'); integer(state.minute, 0, 1_000_000);
++    fields(state, ['schema', 'minute', 'origins', 'people', 'paid', 'occupied', 'pumps', 'tooling', 'hauling', 'decision']);
++    insist(state.schema === 'pump-yard-two-1', 'Unknown yard schema'); integer(state.minute, 0, 1_000_000);
+     fields(state.origins, PEOPLE); fields(state.people, PEOPLE); fields(state.paid, PEOPLE); fields(state.occupied, PEOPLE);
+-    fields(state.pump, ['work', 'permission', 'finishedAt']);
+-    // Run the work arm's own validator in addition to host conservation checks.
+-    const work = pumpRules.inspect(pumpRules.unpack(pumpRules.pack(state.pump.work)));
+-    insist(work.id === 'south-pump' && work.coefficient === .20 && work.floor === 6, 'Wrong pump law or identity');
++    fields(state.pumps, Object.hasOwn(state.pumps, 'north') ? ['south', 'north'] : ['south']);
++    const works = {};
+     const timeOrNull = value => { if (value !== null) integer(value, 1, state.minute); };
+-    timeOrNull(state.pump.finishedAt);
+-    fields(state.gasket, ['owner', 'place']); insist(state.gasket.owner === 'yard' && ['shelf', 'installed', 'spent'].includes(state.gasket.place), 'Invalid gasket ownership');
++    for (const [id, pump] of Object.entries(state.pumps)) {
++      fields(pump, ['owner', 'work', 'permission', 'finishedAt', 'gasket']);
++      // Each independent work identity and owned gasket must match this pump.
++      const work = pumpRules.inspect(pumpRules.unpack(pumpRules.pack(pump.work))); works[id] = work;
++      insist(work.id === `${id}-pump` && work.coefficient === .20 && work.floor === 6, 'Wrong pump law or identity');
++      timeOrNull(pump.finishedAt); fields(pump.gasket, ['id', 'owner', 'place']);
++      insist(pump.owner === OWNERS[id] && pump.gasket.owner === pump.owner && pump.gasket.id === `${id}-gasket` && ['shelf', 'installed', 'spent'].includes(pump.gasket.place), 'Invalid gasket identity or ownership');
++    }
+     fields(state.tooling, ['blankOwner', 'blank', 'readyAt']);
+     insist(state.tooling.blankOwner === 'nuri' && ['absent', 'shelf', 'spent'].includes(state.tooling.blank), 'Invalid blank ownership');
+     timeOrNull(state.tooling.readyAt);
+@@ -221,30 +241,35 @@
+       if (id === 'nuri') insist(paid.repair.minutes === 0 && paid.hauling.minutes === 0 && paid.crafting.minutes <= 1, 'Supplier wrong work');
+       else insist(paid.crafting.minutes === 0 && (id !== 'mara' || paid.hauling.minutes === 0), 'Repairer wrong work');
+       if (id !== 'nuri') {
+-        const hand = work.hands[id];
+-        insist(paid.repair.minutes === (hand?.minutes ?? 0) && near(paid.repair.effort, hand?.effort ?? 0), 'Repair credit without matched Human payment');
+-        if (hand) {
++        const hands = Object.values(works).flatMap(work => work.hands[id] ? [work.hands[id]] : []);
++        insist(paid.repair.minutes === hands.reduce((sum, hand) => sum + hand.minutes, 0) && near(paid.repair.effort, hands.reduce((sum, hand) => sum + hand.effort, 0)), 'Repair credit without matched Human payment');
++        for (const hand of hands) {
+           integer(hand.basis, basis(person), basis({skills: origin.skills}));
+           const fastest = Math.max(6, hand.basis - (state.tooling.readyAt === null ? 0 : 6));
+           insist(hand.coverage <= hand.minutes / fastest + 1e-12, 'Unearned productivity');
+         }
+       }
+     }
+-    insist(Object.keys(work.hands).every(willing), 'Unknown repair contributor');
+-    const hasHands = Object.keys(work.hands).length > 0;
+-    insist(state.gasket.place === (work.released ? 'spent' : hasHands ? 'installed' : 'shelf'), 'Gasket conservation mismatch');
+-    insist(work.complete === work.released && work.released === (state.pump.finishedAt !== null), 'Output settlement mismatch');
+-    const repairTicks = REPAIRERS.reduce((sum, id) => sum + state.paid[id].repair.minutes, 0);
+-    if (state.pump.finishedAt !== null) insist(repairTicks <= state.pump.finishedAt, 'Completion before paid work');
+-    const permission = state.pump.permission;
+-    if (permission !== null) {
+-      fields(permission, ['worker', 'acceptedAt', 'via', 'offeredBy']);
+-      insist(willing(permission.worker) && willing(permission.offeredBy) && ['start', 'handover'].includes(permission.via), 'Invalid assignment consent');
+-      integer(permission.acceptedAt, 0, state.minute);
+-      insist((permission.via === 'start') === (permission.worker === permission.offeredBy), 'Invalid consent origin');
+-      insist(Object.hasOwn(work.hands, permission.worker) && !work.complete && state.occupied[permission.worker] === 'repair', 'Assignment not linked to work');
++    const assigned = new Set();
++    for (const [id, pump] of Object.entries(state.pumps)) {
++      const work = works[id];
++      insist(Object.keys(work.hands).every(willing), 'Unknown repair contributor');
++      const hasHands = Object.keys(work.hands).length > 0;
++      insist(pump.gasket.place === (work.released ? 'spent' : hasHands ? 'installed' : 'shelf'), 'Gasket conservation mismatch');
++      insist(work.complete === work.released && work.released === (pump.finishedAt !== null), 'Output settlement mismatch');
++      const repairTicks = Object.values(work.hands).reduce((sum, hand) => sum + hand.minutes, 0);
++      if (pump.finishedAt !== null) insist(repairTicks <= pump.finishedAt, 'Completion before paid work');
++      const permission = pump.permission;
++      if (permission !== null) {
++        fields(permission, ['worker', 'acceptedAt', 'via', 'offeredBy']);
++        insist(willing(permission.worker) && willing(permission.offeredBy) && ['start', 'handover'].includes(permission.via), 'Invalid assignment consent');
++        integer(permission.acceptedAt, 0, state.minute);
++        insist((permission.via === 'start') === (permission.worker === permission.offeredBy), 'Invalid consent origin');
++        insist(!assigned.has(permission.worker) && Object.hasOwn(work.hands, permission.worker) && !work.complete && state.occupied[permission.worker] === 'repair', 'Assignment not linked exclusively to work');
++        assigned.add(permission.worker);
++      }
+     }
+-    insist(REPAIRERS.filter(id => state.occupied[id] === 'repair').length === (permission ? 1 : 0), 'Nonexclusive repair assignment');
++    insist(REPAIRERS.filter(id => state.occupied[id] === 'repair').length === assigned.size, 'Nonexclusive repair assignment');
+     insist(state.paid.nuri.crafting.minutes === (state.tooling.readyAt === null ? 0 : 1), 'Unpaid tool');
+     if (state.occupied.nuri === 'crafting') insist(state.tooling.blank === 'shelf', 'Crafting without owned blank');
+     const haul = state.paid.tomas.hauling.minutes;
+@@ -253,12 +278,14 @@
+     else if (state.hauling.stopped) insist(haul < 4 && state.hauling.finishedAt === null && state.occupied.tomas !== 'hauling', 'Interrupted hauling produced output');
+     else if (haul === 4) insist(state.hauling.finishedAt === 4 && state.occupied.tomas !== 'hauling', 'Hauling completion mismatch');
+     else insist(haul === state.minute && state.occupied.tomas === 'hauling' && state.hauling.finishedAt === null, 'Lost active hauling');
+-    fields(state.decision, ['at', 'request', 'from', 'to', 'accepted', 'reason']);
++    fields(state.decision, ['at', 'request', 'from', 'to', 'accepted', 'reason', 'repair']);
+     integer(state.decision.at, 0, state.minute);
+     insist(['setup', 'start', 'handover', 'stop', 'tool'].includes(state.decision.request) && typeof state.decision.accepted === 'boolean' && [null, ...PEOPLE].includes(state.decision.from) && [null, ...PEOPLE].includes(state.decision.to), 'Invalid decision');
+     insist(['created', 'not-a-repairer', 'busy', 'finished', 'capacity', 'accepted', 'not-current-worker', 'already-free', 'stopped', 'not-owner', 'no-blank'].includes(state.decision.reason), 'Invalid decision reason');
+     insist(state.decision.accepted === ['created', 'accepted', 'stopped'].includes(state.decision.reason), 'Decision outcome contradicts reason');
+     const decision = state.decision;
++    insist(decision.repair === null || Object.hasOwn(state.pumps, decision.repair), 'Invalid decision repair');
++    if (['start', 'handover'].includes(decision.request)) insist(decision.repair !== null, 'Missing decision repair');
+     if (decision.request === 'setup') insist(decision.reason === 'created' && decision.at === 0 && decision.from === null && decision.to === null, 'Invalid setup decision');
+     else if (decision.request === 'handover') insist(PEOPLE.includes(decision.from) && PEOPLE.includes(decision.to), 'Missing handover actors');
+     else if (decision.request === 'start') insist(PEOPLE.includes(decision.from) && decision.from === decision.to, 'Invalid starter');

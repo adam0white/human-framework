@@ -1,0 +1,280 @@
+diff -ru stages/01-gasket/tests/histories.js tests/histories.js
+--- stages/01-gasket/tests/histories.js	2026-09-08 13:57:52
++++ tests/histories.js	2026-09-08 14:02:49
+@@ -5,28 +5,31 @@
+   H4: {setup: {tool: true}, commands: [[0, 'start', 'mara'], [1, 'stop', 'mara'], [1, 'start', 'mara']], expected: {at: 15, mara: 15, tomas: 0}},
+   H5: {setup: {}, commands: [[0, 'start', 'mara'], [1, 'offerHandover', 'mara', 'tomas']], expected: {at: 19, mara: 1, tomas: 18}},
+   H6: {setup: {}, commands: [[0, 'start', 'tomas'], [1, 'offerHandover', 'tomas', 'mara']], expected: {at: 20, mara: 19, tomas: 1}},
+-  H7: {setup: {busy: true}, commands: [[0, 'start', 'mara'], [1, 'offerHandover', 'mara', 'tomas']], expected: {at: 20, mara: 20, tomas: 0}}
++  H7: {setup: {busy: true}, commands: [[0, 'start', 'mara'], [1, 'offerHandover', 'mara', 'tomas']], expected: {at: 20, mara: 20, tomas: 0}},
++  H8: {setup: {twoPumps: true}, commands: [[0, 'start', 'mara', 'south'], [2, 'start', 'tomas', 'north']], expected: {at: 20, mara: 20, tomas: 18}}
+ };
+ 
+ // Independently evaluated arithmetic oracle: only the prospective scalar work law.
+ // It has no candidate, direct host, or Human imports and never reads their results.
+ export function oracle(name) {
+   const script = histories[name];
+-  let elapsed = 0, share = 0, assigned = null;
++  const pumps = Object.fromEntries((script.setup.twoPumps ? ['south', 'north'] : ['south']).map(id => [id, {share: 0, assigned: null, finishedAt: null}]));
+   const credit = {mara: {minutes: 0, effort: 0}, tomas: {minutes: 0, effort: 0}};
+-  for (; elapsed < 40; elapsed++) {
+-    for (const [at, action, actor, to] of script.commands) {
++  for (let elapsed = 0; elapsed < 40; elapsed++) {
++    for (const [at, action, actor, argument, target = 'south'] of script.commands) {
+       if (at !== elapsed) continue;
+-      if (action === 'start') assigned = actor;
+-      if (action === 'stop') assigned = null;
+-      if (action === 'offerHandover' && !(script.setup.busy && elapsed < 4)) assigned = to;
++      if (action === 'start') pumps[argument ?? 'south'].assigned = actor;
++      if (action === 'stop') for (const pump of Object.values(pumps)) if (pump.assigned === actor) pump.assigned = null;
++      if (action === 'offerHandover' && !(script.setup.busy && elapsed < 4)) pumps[target].assigned = argument;
+     }
+-    if (assigned) {
++    for (const pump of Object.values(pumps)) if (pump.assigned) {
++      const assigned = pump.assigned;
+       const divisor = (assigned === 'mara' ? 20 : 18) - (script.setup.tool && elapsed >= 1 ? 6 : 0);
+-      const slice = Math.min(1 - share, 1 / divisor);
+-      share += slice; credit[assigned].minutes++; credit[assigned].effort += .20 * slice;
+-      if (share >= 1 - 1e-12) return {at: elapsed + 1, credit};
++      const slice = Math.min(1 - pump.share, 1 / divisor);
++      pump.share += slice; credit[assigned].minutes++; credit[assigned].effort += .20 * slice;
++      if (pump.share >= 1 - 1e-12) { pump.finishedAt = elapsed + 1; pump.assigned = null; }
+     }
++    if (Object.values(pumps).every(pump => pump.finishedAt !== null)) return {at: elapsed + 1, credit, pumps: Object.fromEntries(Object.entries(pumps).map(([id, pump]) => [id, pump.finishedAt]))};
+   }
+   throw new Error('Oracle did not finish');
+ }
+diff -ru stages/01-gasket/tests/record.mjs tests/record.mjs
+--- stages/01-gasket/tests/record.mjs	2026-09-08 13:57:52
++++ tests/record.mjs	2026-09-08 14:02:49
+@@ -18,7 +18,7 @@
+     const gap = Math.abs(a - b); details.comparedNumericFields++;
+     if (gap > details.maxAbsoluteDifference) { details.maxAbsoluteDifference = gap; details.maxDifferencePath = path; }
+     if (!Object.is(a, b)) {
+-      assert.match(path, /\.pump\.work\.hands\.(mara|tomas)\.effort$/);
++      assert.match(path, /\.pumps\.(south|north)\.work\.hands\.(mara|tomas)\.effort$/);
+       details.rawDifferences.push({path, candidate: a, direct: b});
+     }
+     assert.ok(gap <= 1e-10, `${path} differs`);
+@@ -44,15 +44,16 @@
+   comparison.strictFullProjectionEqual = comparison.rawDifferences.length === 0;
+   comparison.peoplePaidProgressTimingResourcesExactlyEqual = true;
+   const expected = oracle(name), result = candidateReference.projection;
+-  assert.equal(result.pump.finishedAt, expected.at);
++  for (const [id, pump] of Object.entries(result.pumps)) assert.equal(pump.finishedAt, expected.pumps[id]);
+   for (const arm of ['candidate', 'direct']) for (const run of runs[arm]) assert.deepEqual(run.final, runs[arm][0].final);
+   const metadata = {history: name, specification: histories[name], arithmeticOracle: expected,
+-    completionMinute: result.pump.finishedAt, paid: result.paid, comparison,
++    completionMinute: Math.max(...Object.values(result.pumps).map(pump => pump.finishedAt)),
++    completionByPump: Object.fromEntries(Object.entries(result.pumps).map(([id, pump]) => [id, pump.finishedAt])), paid: result.paid, comparison,
+     maxSnapshotBytes: Object.fromEntries(['candidate', 'direct'].map(arm => [arm, Math.max(...runs[arm].flatMap(run => run.checkpoints.map(c => Buffer.byteLength(JSON.stringify(c.snapshot)))))])),
+     interpretation: 'One prescribed history, with repeated advance/restore drivers; not independent empirical samples.'};
+   write(`evidence/${name}.json`, {metadata, runs}); summary.push(metadata);
+ }
+-write('evidence/comparison.json', {endpoint: 40, tolerance: 1e-10, prescribedHistories: 7, driverConfigurations: 84, summary});
++write('evidence/comparison.json', {endpoint: 40, tolerance: 1e-10, prescribedHistories: Object.keys(histories).length, driverConfigurations: Object.keys(histories).length * 12, summary});
+ const shared = ['src/yard.js', 'src/shape.js', 'kit/src/human/v0.1.1.js', 'kit/src/core/model.js'];
+ const candidateOnly = ['src/candidate-pump.js', 'kit/candidate.js'];
+ const directOnly = ['src/direct-pump.js'];
+diff -ru stages/01-gasket/tests/repair.test.js tests/repair.test.js
+--- stages/01-gasket/tests/repair.test.js	2026-09-08 13:57:52
++++ tests/repair.test.js	2026-09-08 14:02:49
+@@ -29,8 +29,13 @@
+     for (const [arm, host] of [['candidate', candidate], ['direct', direct]]) {
+       const reference = runHistory(host, name, 'minute'); references[arm] = reference;
+       const final = reference.projection;
+-      assert.equal(final.pump.finishedAt, expectation.at);
+-      assert.equal(final.gasket.place, 'spent'); assert.equal(final.pump.work.coverage, 1);
++      assert.equal(final.pumps.south.finishedAt, expectation.at);
++      assert.equal(final.pumps.south.gasket.place, 'spent'); assert.equal(final.pumps.south.work.coverage, 1);
++      if (name === 'H8') {
++        assert.equal(final.pumps.north.finishedAt, 20); assert.equal(final.pumps.north.gasket.place, 'spent');
++        assert.equal(final.pumps.north.work.coverage, 1); assert.equal(final.pumps.north.owner, 'orchard');
++        assert.equal(final.pumps.north.gasket.owner, 'orchard'); assert.equal(final.pumps.south.owner, 'yard');
++      }
+       for (const id of ['mara', 'tomas']) {
+         assert.equal(final.paid[id].repair.minutes, script.expected[id]);
+         approximately(final.paid[id].repair, expectation.credit[id]);
+@@ -48,6 +53,22 @@
+         assert.equal(offer.result.accepted, false); assert.equal(offer.result.reason, 'busy');
+         assert.equal(final.paid.tomas.hauling.minutes, 4); assert.equal(final.hauling.finishedAt, 4);
+       }
++      if (name !== 'H8') {
++        // Compare unchanged actual history against the frozen gasket-stage evidence.
++        const prior = JSON.parse(readFileSync(new URL(`../evidence-gasket/${name}.json`, import.meta.url), 'utf8')).runs[arm][0];
++        assert.equal(reference.checkpoints.length, prior.checkpoints.length);
++        for (let index = 0; index < reference.checkpoints.length; index++) {
++          const old = prior.checkpoints[index].snapshot.state, now = reference.checkpoints[index].snapshot.state;
++          for (const field of ['minute', 'origins', 'people', 'paid', 'occupied', 'tooling', 'hauling']) assert.deepEqual(now[field], old[field]);
++          const pump = structuredClone(now.pumps.south);
++          delete pump.owner; delete pump.gasket.id;
++          assert.deepEqual(pump.gasket, old.gasket); delete pump.gasket;
++          if (arm === 'direct') delete pump.work.id;
++          assert.deepEqual(pump, old.pump);
++          const decision = structuredClone(now.decision); delete decision.repair;
++          assert.deepEqual(decision, old.decision);
++        }
++      }
+       for (const driver of ['minute', 'event', 'uneven']) for (const roundTrip of [false, true]) {
+         const run = runHistory(host, name, driver, roundTrip);
+         assert.deepEqual(run.final, reference.final);
+@@ -69,12 +90,55 @@
+ }
+ 
+ for (const [arm, host, rules] of [['candidate', candidate, candidatePump], ['direct', direct, directPump]]) {
++  test(`${arm}: independent ownership, exclusive workers and interrupted per-item progress`, () => {
++    let state = host.start(host.create({twoPumps: true}), 'mara', 'south').state;
++    const refused = host.start(state, 'mara', 'north');
++    assert.equal(refused.result.reason, 'busy'); assert.deepEqual(economic(refused.state), economic(state));
++    assert.equal(state.pumps.north.gasket.place, 'shelf'); assert.equal(Object.keys(host.projection(state).pumps.north.work.hands).length, 0);
++    state = host.advance(state, 2); state = host.start(state, 'tomas', 'north').state;
++    assert.equal(host.offerHandover(state, 'mara', 'tomas', 'south').result.reason, 'busy');
++    state = host.advance(state, 3);
++    state = host.restoreState(JSON.parse(JSON.stringify(host.exportState(state))));
++    const northBefore = structuredClone(state.pumps.north);
++    state = host.stop(state, 'mara').state; assert.deepEqual(state.pumps.north, northBefore);
++    state = host.advance(state, 40);
++    assert.equal(state.pumps.south.finishedAt, null); assert.equal(state.pumps.south.gasket.place, 'installed');
++    assert.equal(state.pumps.north.finishedAt, 20); assert.equal(state.pumps.north.gasket.place, 'spent');
++    assert.equal(state.paid.mara.repair.minutes, 3); assert.equal(state.paid.tomas.repair.minutes, 18);
++    assert.deepEqual(host.exportState(host.settle(state)), host.exportState(state));
++  });
++  test(`${arm}: handover chooses the specified pump and preserves the other reservation`, () => {
++    let state = host.start(host.create({twoPumps: true}), 'mara', 'south').state;
++    state = host.start(state, 'tomas', 'north').state; state = host.advance(state, 1);
++    state = host.stop(state, 'mara').state;
++    const south = structuredClone(state.pumps.south);
++    const transfer = host.offerHandover(state, 'tomas', 'mara', 'north'); assert.equal(transfer.result.accepted, true);
++    state = host.advance(transfer.state, 40); assert.deepEqual(state.pumps.south, south);
++    assert.equal(state.pumps.north.finishedAt, 20); assert.equal(state.paid.mara.repair.minutes, 20);
++    assert.deepEqual(host.exportState(host.restoreState(host.exportState(state))), host.exportState(state));
++  });
++  test(`${arm}: restore rejects swapped identities, borrowed gaskets and duplicate assignments`, () => {
++    let state = host.start(host.create({twoPumps: true}), 'mara', 'south').state;
++    state = host.start(state, 'tomas', 'north').state; state = host.advance(state, 1);
++    const snapshot = host.exportState(state);
++    const changes = [
++      s => { s.state.pumps.north.work = structuredClone(s.state.pumps.south.work); },
++      s => { s.state.pumps.north.gasket = structuredClone(s.state.pumps.south.gasket); },
++      s => { s.state.pumps.north.owner = 'yard'; },
++      s => { s.state.pumps.north.gasket.place = 'spent'; },
++      s => { s.state.pumps.north.permission.worker = 'mara'; },
++      s => { s.state.pumps.east = structuredClone(s.state.pumps.north); },
++      s => { s.state.decision.repair = 'missing'; }
++    ];
++    for (const change of changes) { const altered = structuredClone(snapshot); change(altered); assert.throws(() => host.restoreState(altered)); }
++    assert.deepEqual(host.exportState(host.restoreState(snapshot)), snapshot);
++  });
+   test(`${arm}: consent refusal changes no economics or enrollment`, () => {
+     let state = host.start(host.create({busy: true}), 'mara').state;
+     state = host.advance(state, 1);
+     const refused = host.offerHandover(state, 'mara', 'tomas');
+     assert.equal(refused.result.reason, 'busy'); assert.deepEqual(economic(refused.state), economic(state));
+-    assert.equal(host.projection(refused.state).pump.work.hands.tomas, undefined);
++    assert.equal(host.projection(refused.state).pumps.south.work.hands.tomas, undefined);
+     const foreign = host.offerHandover(state, 'mara', 'nuri');
+     assert.equal(foreign.result.reason, 'not-a-repairer'); assert.deepEqual(economic(foreign.state), economic(state));
+     assert.equal(host.offerHandover(state, 'tomas', 'mara').result.reason, 'not-current-worker');
+@@ -84,7 +148,7 @@
+     const state = host.create({origins: seed});
+     const denied = host.start(state, 'mara'); assert.equal(denied.result.reason, 'capacity');
+     assert.deepEqual(economic(denied.state), economic(state));
+-    assert.equal(host.projection(denied.state).pump.work.hands.mara, undefined);
++    assert.equal(host.projection(denied.state).pumps.south.work.hands.mara, undefined);
+     const second = origins(); second.tomas.body.hunger = .99;
+     let active = host.start(host.create({origins: second}), 'mara').state; active = host.advance(active, 1);
+     const handover = host.offerHandover(active, 'mara', 'tomas'); assert.equal(handover.result.reason, 'capacity');
+@@ -93,8 +157,8 @@
+   test(`${arm}: stop retains installed gasket and all paid costs; interrupted haul never resumes`, () => {
+     let state = host.start(host.create({busy: true}), 'mara').state; state = host.advance(state, 1);
+     const before = host.exportState(state); state = host.stop(state, 'mara').state;
+-    assert.equal(state.gasket.place, 'installed'); assert.deepEqual(state.paid, before.state.paid);
+-    assert.deepEqual(state.pump.work, rules.unpack(before.state.pump.work));
++    assert.equal(state.pumps.south.gasket.place, 'installed'); assert.deepEqual(state.paid, before.state.paid);
++    assert.deepEqual(state.pumps.south.work, rules.unpack(before.state.pumps.south.work));
+     state = host.stop(state, 'tomas').state; state = host.advance(state, 5);
+     assert.equal(state.paid.tomas.hauling.minutes, 1); approximately(state.paid.tomas.hauling.effort, .01);
+     assert.equal(state.hauling.finishedAt, null); assert.equal(state.occupied.tomas, 'free');
+@@ -104,13 +168,13 @@
+   test(`${arm}: actual changed proposed basis is ignored on same-worker resume`, () => {
+     const seed = origins(); seed.mara.skills.repair = .249;
+     let state = host.start(host.create({origins: seed}), 'mara').state;
+-    assert.equal(host.projection(state).pump.work.hands.mara.basis, 20);
++    assert.equal(host.projection(state).pumps.south.work.hands.mara.basis, 20);
+     state = host.advance(state, 1); assert.ok(state.people.mara.skills.repair > .25);
+     assert.equal(20 - Math.floor(state.people.mara.skills.repair * 4), 19);
+     state = host.stop(state, 'mara').state; state = host.start(state, 'mara').state;
+-    assert.equal(host.projection(state).pump.work.hands.mara.basis, 20);
+-    state = host.advance(state, 2); approximately(host.projection(state).pump.work.coverage, .10);
+-    state = host.advance(state, 40); assert.equal(state.pump.finishedAt, 20);
++    assert.equal(host.projection(state).pumps.south.work.hands.mara.basis, 20);
++    state = host.advance(state, 2); approximately(host.projection(state).pumps.south.work.coverage, .10);
++    state = host.advance(state, 40); assert.equal(state.pumps.south.finishedAt, 20);
+   });
+   test(`${arm}: supplier ownership and delayed tool settlement`, () => {
+     let state = host.create({tool: true}); state = host.stop(state, 'nuri').state;
+@@ -118,8 +182,8 @@
+     const denied = host.startTool(state, 'mara'); assert.equal(denied.result.reason, 'not-owner');
+     assert.deepEqual(economic(denied.state), economic(state));
+     state = host.startTool(state, 'nuri').state; state = host.start(state, 'mara').state;
+-    state = host.advance(state, 1); approximately(host.projection(state).pump.work.coverage, .05);
+-    state = host.advance(state, 2); approximately(host.projection(state).pump.work.coverage, .05 + 1 / 14);
++    state = host.advance(state, 1); approximately(host.projection(state).pumps.south.work.coverage, .05);
++    state = host.advance(state, 2); approximately(host.projection(state).pumps.south.work.coverage, .05 + 1 / 14);
+     assert.equal(state.tooling.readyAt, 1); assert.equal(state.paid.nuri.crafting.minutes, 1);
+     assert.equal(host.startTool(state, 'nuri').result.reason, 'no-blank');
+   });
+@@ -142,7 +206,7 @@
+     for (let repeat = 0; repeat < 10; repeat++) state = host.settle(host.advance(state, 20));
+     assert.deepEqual(host.exportState(state), before);
+     assert.equal(host.start(state, 'tomas').result.reason, 'finished');
+-    state = host.advance(state, 40); assert.equal(state.pump.finishedAt, 20); assert.equal(state.paid.mara.repair.minutes, 20);
++    state = host.advance(state, 40); assert.equal(state.pumps.south.finishedAt, 20); assert.equal(state.paid.mara.repair.minutes, 20);
+   });
+   test(`${arm}: restore rejects structural and cross-domain lies`, () => {
+     let state = host.start(host.create({tool: true}), 'mara').state; state = host.advance(state, 1);
+@@ -150,8 +214,8 @@
+     const mutations = [
+       s => { s.state.minute = 1.5; },
+       s => { s.state.extra = true; },
+-      s => { s.state.gasket.owner = 'mara'; },
+-      s => { s.state.gasket.place = 'shelf'; },
++      s => { s.state.pumps.south.gasket.owner = 'mara'; },
++      s => { s.state.pumps.south.gasket.place = 'shelf'; },
+       s => { s.state.tooling.blankOwner = 'mara'; },
+       s => { s.state.tooling.blank = 'shelf'; },
+       s => { s.state.people.mara.person.skills.repair += .01; },
+@@ -160,19 +224,19 @@
+       s => { s.state.paid.mara.repair.effort = 0; },
+       s => { s.state.paid.nuri.crafting.minutes = 0; },
+       s => { s.state.occupied.tomas = 'repair'; },
+-      s => { s.state.pump.permission.worker = 'tomas'; },
+-      s => { s.state.pump.finishedAt = 1; },
++      s => { s.state.pumps.south.permission.worker = 'tomas'; },
++      s => { s.state.pumps.south.finishedAt = 1; },
+       s => { s.state.decision.at = 2; },
+       s => { s.state.decision.accepted = false; },
+       s => { s.state.people.mara.componentVersion = '0.1.0'; s.state.people.mara.person.version = '0.1.0'; },
+       s => { Object.defineProperty(s.state, 'hidden', {value: 1}); },
+-      s => { Object.defineProperty(s.state.gasket, 'place', {get() { throw new Error('must-not-invoke-getter'); }, enumerable: true}); },
++      s => { Object.defineProperty(s.state.pumps.south.gasket, 'place', {get() { throw new Error('must-not-invoke-getter'); }, enumerable: true}); },
+       s => { s.state.origins.mara.body = s.state.origins.tomas.body; }
+     ];
+     for (const mutate of mutations) { const changed = structuredClone(snapshot); mutate(changed); assert.throws(() => host.restoreState(changed)); }
+     const malformed = structuredClone(snapshot);
+-    if (arm === 'candidate') malformed.state.pump.work.work.workers.mara.fraction = .5;
+-    else malformed.state.pump.work.crew.mara.covered = .5;
++    if (arm === 'candidate') malformed.state.pumps.south.work.work.workers.mara.fraction = .5;
++    else malformed.state.pumps.south.work.crew.mara.covered = .5;
+     assert.throws(() => host.restoreState(malformed));
+     assert.deepEqual(host.exportState(host.restoreState(snapshot)), snapshot);
+   });
+@@ -184,7 +248,7 @@
+     const wire = host.exportState(idle); assert.ok(JSON.stringify(wire).length < 8192);
+     assert.equal(idle.minute, 2880); assert.equal(idle.paid.mara.rest.minutes, 2880);
+     assert.deepEqual(host.exportState(host.restoreState(wire)), wire);
+-    wire.state.gasket.place = 'spent'; assert.equal(idle.gasket.place, 'shelf');
++    wire.state.pumps.south.gasket.place = 'spent'; assert.equal(idle.pumps.south.gasket.place, 'shelf');
+     assert.ok(Object.isFrozen(idle.people.mara.body));
+     // An explicitly constructed current-state boundary fixture, not an observed history.
+     const boundary = host.exportState(state); boundary.state.minute = 999999;

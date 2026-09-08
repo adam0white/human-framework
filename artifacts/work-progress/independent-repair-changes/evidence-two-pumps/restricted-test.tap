@@ -1,0 +1,220 @@
+TAP version 13
+# Subtest: H1: independent completion, all minute payments, driver equivalence and active restore
+ok 1 - H1: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 121.487083
+  type: 'test'
+  ...
+# Subtest: H2: independent completion, all minute payments, driver equivalence and active restore
+ok 2 - H2: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 100.010958
+  type: 'test'
+  ...
+# Subtest: H3: independent completion, all minute payments, driver equivalence and active restore
+ok 3 - H3: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 104.528083
+  type: 'test'
+  ...
+# Subtest: H4: independent completion, all minute payments, driver equivalence and active restore
+ok 4 - H4: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 105.450958
+  type: 'test'
+  ...
+# Subtest: H5: independent completion, all minute payments, driver equivalence and active restore
+ok 5 - H5: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 101.598875
+  type: 'test'
+  ...
+# Subtest: H6: independent completion, all minute payments, driver equivalence and active restore
+ok 6 - H6: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 100.657667
+  type: 'test'
+  ...
+# Subtest: H7: independent completion, all minute payments, driver equivalence and active restore
+ok 7 - H7: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 99.311916
+  type: 'test'
+  ...
+# Subtest: H8: independent completion, all minute payments, driver equivalence and active restore
+ok 8 - H8: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 101.292917
+  type: 'test'
+  ...
+# Subtest: candidate: independent ownership, exclusive workers and interrupted per-item progress
+ok 9 - candidate: independent ownership, exclusive workers and interrupted per-item progress
+  ---
+  duration_ms: 3.382042
+  type: 'test'
+  ...
+# Subtest: candidate: handover chooses the specified pump and preserves the other reservation
+ok 10 - candidate: handover chooses the specified pump and preserves the other reservation
+  ---
+  duration_ms: 3.393792
+  type: 'test'
+  ...
+# Subtest: candidate: restore rejects swapped identities, borrowed gaskets and duplicate assignments
+ok 11 - candidate: restore rejects swapped identities, borrowed gaskets and duplicate assignments
+  ---
+  duration_ms: 1.542917
+  type: 'test'
+  ...
+# Subtest: candidate: consent refusal changes no economics or enrollment
+ok 12 - candidate: consent refusal changes no economics or enrollment
+  ---
+  duration_ms: 0.361917
+  type: 'test'
+  ...
+# Subtest: candidate: whole remaining capacity refuses unfit starts and recipients atomically
+ok 13 - candidate: whole remaining capacity refuses unfit starts and recipients atomically
+  ---
+  duration_ms: 0.486416
+  type: 'test'
+  ...
+# Subtest: candidate: stop retains installed gasket and all paid costs; interrupted haul never resumes
+ok 14 - candidate: stop retains installed gasket and all paid costs; interrupted haul never resumes
+  ---
+  duration_ms: 0.971916
+  type: 'test'
+  ...
+# Subtest: candidate: actual changed proposed basis is ignored on same-worker resume
+ok 15 - candidate: actual changed proposed basis is ignored on same-worker resume
+  ---
+  duration_ms: 3.04525
+  type: 'test'
+  ...
+# Subtest: candidate: supplier ownership and delayed tool settlement
+ok 16 - candidate: supplier ownership and delayed tool settlement
+  ---
+  duration_ms: 0.436792
+  type: 'test'
+  ...
+# Subtest: candidate: every provisional minute rolls back on a downstream error
+ok 17 - candidate: every provisional minute rolls back on a downstream error
+  ---
+  duration_ms: 0.494833
+  type: 'test'
+  ...
+# Subtest: candidate: repeated settlement and repeated completion-time advance grant nothing
+ok 18 - candidate: repeated settlement and repeated completion-time advance grant nothing
+  ---
+  duration_ms: 2.855458
+  type: 'test'
+  ...
+# Subtest: candidate: restore rejects structural and cross-domain lies
+ok 19 - candidate: restore rejects structural and cross-domain lies
+  ---
+  duration_ms: 2.293166
+  type: 'test'
+  ...
+# Subtest: candidate: clock, immutable exports, and bounded state
+ok 20 - candidate: clock, immutable exports, and bounded state
+  ---
+  duration_ms: 166.827875
+  type: 'test'
+  ...
+# Subtest: direct: independent ownership, exclusive workers and interrupted per-item progress
+ok 21 - direct: independent ownership, exclusive workers and interrupted per-item progress
+  ---
+  duration_ms: 3.317917
+  type: 'test'
+  ...
+# Subtest: direct: handover chooses the specified pump and preserves the other reservation
+ok 22 - direct: handover chooses the specified pump and preserves the other reservation
+  ---
+  duration_ms: 3.0515
+  type: 'test'
+  ...
+# Subtest: direct: restore rejects swapped identities, borrowed gaskets and duplicate assignments
+ok 23 - direct: restore rejects swapped identities, borrowed gaskets and duplicate assignments
+  ---
+  duration_ms: 1.086
+  type: 'test'
+  ...
+# Subtest: direct: consent refusal changes no economics or enrollment
+ok 24 - direct: consent refusal changes no economics or enrollment
+  ---
+  duration_ms: 0.303542
+  type: 'test'
+  ...
+# Subtest: direct: whole remaining capacity refuses unfit starts and recipients atomically
+ok 25 - direct: whole remaining capacity refuses unfit starts and recipients atomically
+  ---
+  duration_ms: 0.355125
+  type: 'test'
+  ...
+# Subtest: direct: stop retains installed gasket and all paid costs; interrupted haul never resumes
+ok 26 - direct: stop retains installed gasket and all paid costs; interrupted haul never resumes
+  ---
+  duration_ms: 0.617416
+  type: 'test'
+  ...
+# Subtest: direct: actual changed proposed basis is ignored on same-worker resume
+ok 27 - direct: actual changed proposed basis is ignored on same-worker resume
+  ---
+  duration_ms: 2.589917
+  type: 'test'
+  ...
+# Subtest: direct: supplier ownership and delayed tool settlement
+ok 28 - direct: supplier ownership and delayed tool settlement
+  ---
+  duration_ms: 0.371333
+  type: 'test'
+  ...
+# Subtest: direct: every provisional minute rolls back on a downstream error
+ok 29 - direct: every provisional minute rolls back on a downstream error
+  ---
+  duration_ms: 0.376666
+  type: 'test'
+  ...
+# Subtest: direct: repeated settlement and repeated completion-time advance grant nothing
+ok 30 - direct: repeated settlement and repeated completion-time advance grant nothing
+  ---
+  duration_ms: 2.751833
+  type: 'test'
+  ...
+# Subtest: direct: restore rejects structural and cross-domain lies
+ok 31 - direct: restore rejects structural and cross-domain lies
+  ---
+  duration_ms: 2.330917
+  type: 'test'
+  ...
+# Subtest: direct: clock, immutable exports, and bounded state
+ok 32 - direct: clock, immutable exports, and bounded state
+  ---
+  duration_ms: 159.971625
+  type: 'test'
+  ...
+# Subtest: actual per-minute Human capacity is checked and leaves the original person unpaid
+ok 33 - actual per-minute Human capacity is checked and leaves the original person unpaid
+  ---
+  duration_ms: 0.122291
+  type: 'test'
+  ...
+# Subtest: direct dependency source does not import or call the candidate
+ok 34 - direct dependency source does not import or call the candidate
+  ---
+  duration_ms: 0.155542
+  type: 'test'
+  ...
+# Subtest: permission-model run confines reads to the independent directory
+ok 35 - permission-model run confines reads to the independent directory
+  ---
+  duration_ms: 0.056083
+  type: 'test'
+  ...
+1..35
+# tests 35
+# suites 0
+# pass 35
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1226.956458

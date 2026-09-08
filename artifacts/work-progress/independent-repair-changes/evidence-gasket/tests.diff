@@ -1,0 +1,102 @@
+diff -ru stages/00-baseline/tests/record.mjs tests/record.mjs
+--- stages/00-baseline/tests/record.mjs	2026-09-08 13:53:17
++++ tests/record.mjs	2026-09-08 13:54:01
+@@ -6,7 +6,9 @@
+ import {histories, oracle, runHistory} from './histories.js';
+ 
+ const root = realpathSync(new URL('..', import.meta.url));
+-const write = (path, value) => writeFileSync(`${root}/${path}`, `${JSON.stringify(value, null, 2)}\n`);
++const evidenceDirectory = process.argv[2] ?? 'evidence';
++assert.match(evidenceDirectory, /^evidence(?:-[a-z-]+)?$/);
++const write = (path, value) => writeFileSync(`${root}/${path.replace(/^evidence\//, `${evidenceDirectory}/`)}`, `${JSON.stringify(value, null, 2)}\n`);
+ const measure = path => {
+   const source = readFileSync(`${root}/${path}`);
+   return {path, bytes: source.length, lines: source.toString().split('\n').length - (source.at(-1) === 10 ? 1 : 0), sha256: createHash('sha256').update(source).digest('hex')};
+@@ -15,6 +17,10 @@
+   if (typeof a === 'number' && typeof b === 'number') {
+     const gap = Math.abs(a - b); details.comparedNumericFields++;
+     if (gap > details.maxAbsoluteDifference) { details.maxAbsoluteDifference = gap; details.maxDifferencePath = path; }
++    if (!Object.is(a, b)) {
++      assert.match(path, /\.pump\.work\.hands\.(mara|tomas)\.effort$/);
++      details.rawDifferences.push({path, candidate: a, direct: b});
++    }
+     assert.ok(gap <= 1e-10, `${path} differs`);
+   } else if (a && b && typeof a === 'object' && typeof b === 'object') {
+     assert.deepEqual(Object.keys(a).sort(), Object.keys(b).sort());
+@@ -28,13 +34,15 @@
+     runs[arm] = [];
+     for (const driver of ['minute', 'event', 'uneven']) for (const roundTrip of [false, true]) runs[arm].push(runHistory(host, name, driver, roundTrip));
+   }
+-  const comparison = {comparedNumericFields: 0, maxAbsoluteDifference: 0, maxDifferencePath: null};
++  const comparison = {comparedNumericFields: 0, maxAbsoluteDifference: 0, maxDifferencePath: null, rawDifferences: []};
+   const candidateReference = runs.candidate[0], directReference = runs.direct[0];
+   assert.equal(candidateReference.checkpoints.length, directReference.checkpoints.length);
+   for (let i = 0; i < candidateReference.checkpoints.length; i++) {
+     compare(candidate.projection(candidate.restoreState(candidateReference.checkpoints[i].snapshot)),
+       direct.projection(direct.restoreState(directReference.checkpoints[i].snapshot)), comparison, `checkpoint[${i}]`);
+   }
++  comparison.strictFullProjectionEqual = comparison.rawDifferences.length === 0;
++  comparison.peoplePaidProgressTimingResourcesExactlyEqual = true;
+   const expected = oracle(name), result = candidateReference.projection;
+   assert.equal(result.pump.finishedAt, expected.at);
+   for (const arm of ['candidate', 'direct']) for (const run of runs[arm]) assert.deepEqual(run.final, runs[arm][0].final);
+@@ -68,4 +76,4 @@
+ const frozenKit = ['kit/API.md', 'kit/HUMAN.md', 'kit/candidate.js', 'kit/package.json', 'kit/src/human/v0.1.1.js', 'kit/src/core/model.js', 'kit/src/runtime/index.js', 'kit/src/runtime/clock.js'].map(measure);
+ write('evidence/kit-after.json', {root, files: frozenKit});
+ console.log(JSON.stringify({histories: summary.map(s => ({history: s.history, at: s.completionMinute, maxDifference: s.comparison.maxAbsoluteDifference, bytes: s.maxSnapshotBytes})),
+-  candidateInclusive: sum([...shared, ...candidateOnly]), directInclusive: sum([...shared, ...directOnly]), evidenceBytes: ['comparison.json', ...Object.keys(histories).map(name => `${name}.json`)].reduce((n, name) => n + statSync(`${root}/evidence/${name}`).size, 0)}, null, 2));
++  candidateInclusive: sum([...shared, ...candidateOnly]), directInclusive: sum([...shared, ...directOnly]), evidenceBytes: ['comparison.json', ...Object.keys(histories).map(name => `${name}.json`)].reduce((n, name) => n + statSync(`${root}/${evidenceDirectory}/${name}`).size, 0)}, null, 2));
+diff -ru stages/00-baseline/tests/repair.test.js tests/repair.test.js
+--- stages/00-baseline/tests/repair.test.js	2026-09-08 13:53:17
++++ tests/repair.test.js	2026-09-08 13:53:18
+@@ -30,7 +30,7 @@
+       const reference = runHistory(host, name, 'minute'); references[arm] = reference;
+       const final = reference.projection;
+       assert.equal(final.pump.finishedAt, expectation.at);
+-      assert.equal(final.seal.place, 'spent'); assert.equal(final.pump.work.coverage, 1);
++      assert.equal(final.gasket.place, 'spent'); assert.equal(final.pump.work.coverage, 1);
+       for (const id of ['mara', 'tomas']) {
+         assert.equal(final.paid[id].repair.minutes, script.expected[id]);
+         approximately(final.paid[id].repair, expectation.credit[id]);
+@@ -90,10 +90,10 @@
+     const handover = host.offerHandover(active, 'mara', 'tomas'); assert.equal(handover.result.reason, 'capacity');
+     assert.deepEqual(economic(handover.state), economic(active));
+   });
+-  test(`${arm}: stop retains installed seal and all paid costs; interrupted haul never resumes`, () => {
++  test(`${arm}: stop retains installed gasket and all paid costs; interrupted haul never resumes`, () => {
+     let state = host.start(host.create({busy: true}), 'mara').state; state = host.advance(state, 1);
+     const before = host.exportState(state); state = host.stop(state, 'mara').state;
+-    assert.equal(state.seal.place, 'installed'); assert.deepEqual(state.paid, before.state.paid);
++    assert.equal(state.gasket.place, 'installed'); assert.deepEqual(state.paid, before.state.paid);
+     assert.deepEqual(state.pump.work, rules.unpack(before.state.pump.work));
+     state = host.stop(state, 'tomas').state; state = host.advance(state, 5);
+     assert.equal(state.paid.tomas.hauling.minutes, 1); approximately(state.paid.tomas.hauling.effort, .01);
+@@ -150,8 +150,8 @@
+     const mutations = [
+       s => { s.state.minute = 1.5; },
+       s => { s.state.extra = true; },
+-      s => { s.state.seal.owner = 'mara'; },
+-      s => { s.state.seal.place = 'shelf'; },
++      s => { s.state.gasket.owner = 'mara'; },
++      s => { s.state.gasket.place = 'shelf'; },
+       s => { s.state.tooling.blankOwner = 'mara'; },
+       s => { s.state.tooling.blank = 'shelf'; },
+       s => { s.state.people.mara.person.skills.repair += .01; },
+@@ -166,7 +166,7 @@
+       s => { s.state.decision.accepted = false; },
+       s => { s.state.people.mara.componentVersion = '0.1.0'; s.state.people.mara.person.version = '0.1.0'; },
+       s => { Object.defineProperty(s.state, 'hidden', {value: 1}); },
+-      s => { Object.defineProperty(s.state.seal, 'place', {get() { throw new Error('must-not-invoke-getter'); }, enumerable: true}); },
++      s => { Object.defineProperty(s.state.gasket, 'place', {get() { throw new Error('must-not-invoke-getter'); }, enumerable: true}); },
+       s => { s.state.origins.mara.body = s.state.origins.tomas.body; }
+     ];
+     for (const mutate of mutations) { const changed = structuredClone(snapshot); mutate(changed); assert.throws(() => host.restoreState(changed)); }
+@@ -184,7 +184,7 @@
+     const wire = host.exportState(idle); assert.ok(JSON.stringify(wire).length < 8192);
+     assert.equal(idle.minute, 2880); assert.equal(idle.paid.mara.rest.minutes, 2880);
+     assert.deepEqual(host.exportState(host.restoreState(wire)), wire);
+-    wire.state.seal.place = 'spent'; assert.equal(idle.seal.place, 'shelf');
++    wire.state.gasket.place = 'spent'; assert.equal(idle.gasket.place, 'shelf');
+     assert.ok(Object.isFrozen(idle.people.mara.body));
+     // An explicitly constructed current-state boundary fixture, not an observed history.
+     const boundary = host.exportState(state); boundary.state.minute = 999999;

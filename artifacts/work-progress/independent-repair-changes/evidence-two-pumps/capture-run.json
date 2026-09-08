@@ -1,0 +1,29 @@
+{
+  "runtimeDelta": {
+    "candidateInclusive": {
+      "bytes": 2330,
+      "lines": 27
+    },
+    "directInclusive": {
+      "bytes": 2436,
+      "lines": 28
+    }
+  },
+  "sourceDiff": {
+    "added": 107,
+    "removed": 79
+  },
+  "testsDiff": {
+    "added": 104,
+    "removed": 36
+  },
+  "filesChanged": [
+    "src/candidate-pump.js",
+    "src/direct-pump.js",
+    "src/yard.js",
+    "tests/histories.js",
+    "tests/record.mjs",
+    "tests/repair.test.js"
+  ],
+  "freezeSHA256": "02b4aca1c3da3459a7d249968837c09b37d9d558813b91ac797e12ca6ab47332"
+}

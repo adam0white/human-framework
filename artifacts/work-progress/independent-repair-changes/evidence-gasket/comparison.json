@@ -1,0 +1,2021 @@
+{
+  "endpoint": 40,
+  "tolerance": 1e-10,
+  "prescribedHistories": 7,
+  "driverConfigurations": 84,
+  "summary": [
+    {
+      "history": "H1",
+      "specification": {
+        "setup": {},
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ]
+        ],
+        "expected": {
+          "at": 20,
+          "mara": 20,
+          "tomas": 0
+        }
+      },
+      "arithmeticOracle": {
+        "at": 20,
+        "credit": {
+          "mara": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "tomas": {
+            "minutes": 0,
+            "effort": 0
+          }
+        }
+      },
+      "completionMinute": 20,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 20,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2725,
+        "maxAbsoluteDifference": 5.551115123125783e-17,
+        "maxDifferencePath": "checkpoint[12].pump.work.hands.mara.effort",
+        "rawDifferences": [
+          {
+            "path": "checkpoint[6].pump.work.hands.mara.effort",
+            "candidate": 0.05000000000000001,
+            "direct": 0.05
+          },
+          {
+            "path": "checkpoint[7].pump.work.hands.mara.effort",
+            "candidate": 0.06000000000000001,
+            "direct": 0.06
+          },
+          {
+            "path": "checkpoint[8].pump.work.hands.mara.effort",
+            "candidate": 0.07,
+            "direct": 0.06999999999999999
+          },
+          {
+            "path": "checkpoint[9].pump.work.hands.mara.effort",
+            "candidate": 0.08000000000000002,
+            "direct": 0.08
+          },
+          {
+            "path": "checkpoint[10].pump.work.hands.mara.effort",
+            "candidate": 0.09000000000000002,
+            "direct": 0.09
+          },
+          {
+            "path": "checkpoint[11].pump.work.hands.mara.effort",
+            "candidate": 0.10000000000000003,
+            "direct": 0.09999999999999999
+          },
+          {
+            "path": "checkpoint[12].pump.work.hands.mara.effort",
+            "candidate": 0.11000000000000004,
+            "direct": 0.10999999999999999
+          },
+          {
+            "path": "checkpoint[13].pump.work.hands.mara.effort",
+            "candidate": 0.12000000000000005,
+            "direct": 0.12
+          },
+          {
+            "path": "checkpoint[14].pump.work.hands.mara.effort",
+            "candidate": 0.13000000000000006,
+            "direct": 0.13
+          },
+          {
+            "path": "checkpoint[15].pump.work.hands.mara.effort",
+            "candidate": 0.14000000000000007,
+            "direct": 0.14
+          },
+          {
+            "path": "checkpoint[16].pump.work.hands.mara.effort",
+            "candidate": 0.15000000000000008,
+            "direct": 0.15000000000000002
+          },
+          {
+            "path": "checkpoint[17].pump.work.hands.mara.effort",
+            "candidate": 0.1600000000000001,
+            "direct": 0.16000000000000003
+          },
+          {
+            "path": "checkpoint[18].pump.work.hands.mara.effort",
+            "candidate": 0.1700000000000001,
+            "direct": 0.17000000000000004
+          },
+          {
+            "path": "checkpoint[19].pump.work.hands.mara.effort",
+            "candidate": 0.1800000000000001,
+            "direct": 0.18000000000000005
+          },
+          {
+            "path": "checkpoint[20].pump.work.hands.mara.effort",
+            "candidate": 0.1900000000000001,
+            "direct": 0.19000000000000006
+          },
+          {
+            "path": "checkpoint[21].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[22].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[23].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[24].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[25].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[26].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[27].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[28].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[29].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[30].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[31].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[32].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[33].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[34].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[35].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[36].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[37].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[38].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[39].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[40].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[41].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          }
+        ],
+        "strictFullProjectionEqual": false,
+        "peoplePaidProgressTimingResourcesExactlyEqual": true
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2417,
+        "direct": 2272
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H2",
+      "specification": {
+        "setup": {
+          "tool": true
+        },
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ]
+        ],
+        "expected": {
+          "at": 15,
+          "mara": 15,
+          "tomas": 0
+        }
+      },
+      "arithmeticOracle": {
+        "at": 15,
+        "credit": {
+          "mara": {
+            "minutes": 15,
+            "effort": 0.20000000000000012
+          },
+          "tomas": {
+            "minutes": 0,
+            "effort": 0
+          }
+        }
+      },
+      "completionMinute": 15,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 15,
+            "effort": 0.20000000000000012
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 25,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 1,
+            "effort": 0.02
+          },
+          "rest": {
+            "minutes": 39,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2765,
+        "maxAbsoluteDifference": 1.1102230246251565e-16,
+        "maxDifferencePath": "checkpoint[15].pump.work.hands.mara.effort",
+        "rawDifferences": [
+          {
+            "path": "checkpoint[6].pump.work.hands.mara.effort",
+            "candidate": 0.06714285714285714,
+            "direct": 0.06714285714285713
+          },
+          {
+            "path": "checkpoint[7].pump.work.hands.mara.effort",
+            "candidate": 0.08142857142857143,
+            "direct": 0.0814285714285714
+          },
+          {
+            "path": "checkpoint[8].pump.work.hands.mara.effort",
+            "candidate": 0.09571428571428572,
+            "direct": 0.0957142857142857
+          },
+          {
+            "path": "checkpoint[9].pump.work.hands.mara.effort",
+            "candidate": 0.11000000000000001,
+            "direct": 0.10999999999999997
+          },
+          {
+            "path": "checkpoint[10].pump.work.hands.mara.effort",
+            "candidate": 0.1242857142857143,
+            "direct": 0.12428571428571425
+          },
+          {
+            "path": "checkpoint[11].pump.work.hands.mara.effort",
+            "candidate": 0.1385714285714286,
+            "direct": 0.13857142857142854
+          },
+          {
+            "path": "checkpoint[12].pump.work.hands.mara.effort",
+            "candidate": 0.15285714285714289,
+            "direct": 0.1528571428571428
+          },
+          {
+            "path": "checkpoint[13].pump.work.hands.mara.effort",
+            "candidate": 0.16714285714285718,
+            "direct": 0.1671428571428571
+          },
+          {
+            "path": "checkpoint[14].pump.work.hands.mara.effort",
+            "candidate": 0.18142857142857147,
+            "direct": 0.18142857142857138
+          },
+          {
+            "path": "checkpoint[15].pump.work.hands.mara.effort",
+            "candidate": 0.19571428571428576,
+            "direct": 0.19571428571428565
+          },
+          {
+            "path": "checkpoint[16].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[17].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[18].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[19].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[20].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[21].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[22].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[23].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[24].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[25].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[26].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[27].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[28].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[29].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[30].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[31].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[32].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[33].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[34].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[35].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[36].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[37].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[38].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[39].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[40].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[41].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          }
+        ],
+        "strictFullProjectionEqual": false,
+        "peoplePaidProgressTimingResourcesExactlyEqual": true
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2431,
+        "direct": 2286
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H3",
+      "specification": {
+        "setup": {},
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ],
+          [
+            7,
+            "stop",
+            "mara"
+          ],
+          [
+            10,
+            "start",
+            "mara"
+          ]
+        ],
+        "expected": {
+          "at": 23,
+          "mara": 20,
+          "tomas": 0
+        }
+      },
+      "arithmeticOracle": {
+        "at": 23,
+        "credit": {
+          "mara": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "tomas": {
+            "minutes": 0,
+            "effort": 0
+          }
+        }
+      },
+      "completionMinute": 23,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 20,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2851,
+        "maxAbsoluteDifference": 5.551115123125783e-17,
+        "maxDifferencePath": "checkpoint[17].pump.work.hands.mara.effort",
+        "rawDifferences": [
+          {
+            "path": "checkpoint[6].pump.work.hands.mara.effort",
+            "candidate": 0.05000000000000001,
+            "direct": 0.05
+          },
+          {
+            "path": "checkpoint[7].pump.work.hands.mara.effort",
+            "candidate": 0.06000000000000001,
+            "direct": 0.06
+          },
+          {
+            "path": "checkpoint[8].pump.work.hands.mara.effort",
+            "candidate": 0.07,
+            "direct": 0.06999999999999999
+          },
+          {
+            "path": "checkpoint[9].pump.work.hands.mara.effort",
+            "candidate": 0.07,
+            "direct": 0.06999999999999999
+          },
+          {
+            "path": "checkpoint[10].pump.work.hands.mara.effort",
+            "candidate": 0.07,
+            "direct": 0.06999999999999999
+          },
+          {
+            "path": "checkpoint[11].pump.work.hands.mara.effort",
+            "candidate": 0.07,
+            "direct": 0.06999999999999999
+          },
+          {
+            "path": "checkpoint[12].pump.work.hands.mara.effort",
+            "candidate": 0.07,
+            "direct": 0.06999999999999999
+          },
+          {
+            "path": "checkpoint[13].pump.work.hands.mara.effort",
+            "candidate": 0.07,
+            "direct": 0.06999999999999999
+          },
+          {
+            "path": "checkpoint[14].pump.work.hands.mara.effort",
+            "candidate": 0.08000000000000002,
+            "direct": 0.08
+          },
+          {
+            "path": "checkpoint[15].pump.work.hands.mara.effort",
+            "candidate": 0.09000000000000002,
+            "direct": 0.09
+          },
+          {
+            "path": "checkpoint[16].pump.work.hands.mara.effort",
+            "candidate": 0.10000000000000003,
+            "direct": 0.09999999999999999
+          },
+          {
+            "path": "checkpoint[17].pump.work.hands.mara.effort",
+            "candidate": 0.11000000000000004,
+            "direct": 0.10999999999999999
+          },
+          {
+            "path": "checkpoint[18].pump.work.hands.mara.effort",
+            "candidate": 0.12000000000000005,
+            "direct": 0.12
+          },
+          {
+            "path": "checkpoint[19].pump.work.hands.mara.effort",
+            "candidate": 0.13000000000000006,
+            "direct": 0.13
+          },
+          {
+            "path": "checkpoint[20].pump.work.hands.mara.effort",
+            "candidate": 0.14000000000000007,
+            "direct": 0.14
+          },
+          {
+            "path": "checkpoint[21].pump.work.hands.mara.effort",
+            "candidate": 0.15000000000000008,
+            "direct": 0.15000000000000002
+          },
+          {
+            "path": "checkpoint[22].pump.work.hands.mara.effort",
+            "candidate": 0.1600000000000001,
+            "direct": 0.16000000000000003
+          },
+          {
+            "path": "checkpoint[23].pump.work.hands.mara.effort",
+            "candidate": 0.1700000000000001,
+            "direct": 0.17000000000000004
+          },
+          {
+            "path": "checkpoint[24].pump.work.hands.mara.effort",
+            "candidate": 0.1800000000000001,
+            "direct": 0.18000000000000005
+          },
+          {
+            "path": "checkpoint[25].pump.work.hands.mara.effort",
+            "candidate": 0.1900000000000001,
+            "direct": 0.19000000000000006
+          },
+          {
+            "path": "checkpoint[26].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[27].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[28].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[29].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[30].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[31].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[32].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[33].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[34].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[35].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[36].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[37].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[38].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[39].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[40].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[41].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[42].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[43].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          }
+        ],
+        "strictFullProjectionEqual": false,
+        "peoplePaidProgressTimingResourcesExactlyEqual": true
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2417,
+        "direct": 2271
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H4",
+      "specification": {
+        "setup": {
+          "tool": true
+        },
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ],
+          [
+            1,
+            "stop",
+            "mara"
+          ],
+          [
+            1,
+            "start",
+            "mara"
+          ]
+        ],
+        "expected": {
+          "at": 15,
+          "mara": 15,
+          "tomas": 0
+        }
+      },
+      "arithmeticOracle": {
+        "at": 15,
+        "credit": {
+          "mara": {
+            "minutes": 15,
+            "effort": 0.20000000000000012
+          },
+          "tomas": {
+            "minutes": 0,
+            "effort": 0
+          }
+        }
+      },
+      "completionMinute": 15,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 15,
+            "effort": 0.20000000000000012
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 25,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 1,
+            "effort": 0.02
+          },
+          "rest": {
+            "minutes": 39,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2896,
+        "maxAbsoluteDifference": 1.1102230246251565e-16,
+        "maxDifferencePath": "checkpoint[17].pump.work.hands.mara.effort",
+        "rawDifferences": [
+          {
+            "path": "checkpoint[8].pump.work.hands.mara.effort",
+            "candidate": 0.06714285714285714,
+            "direct": 0.06714285714285713
+          },
+          {
+            "path": "checkpoint[9].pump.work.hands.mara.effort",
+            "candidate": 0.08142857142857143,
+            "direct": 0.0814285714285714
+          },
+          {
+            "path": "checkpoint[10].pump.work.hands.mara.effort",
+            "candidate": 0.09571428571428572,
+            "direct": 0.0957142857142857
+          },
+          {
+            "path": "checkpoint[11].pump.work.hands.mara.effort",
+            "candidate": 0.11000000000000001,
+            "direct": 0.10999999999999997
+          },
+          {
+            "path": "checkpoint[12].pump.work.hands.mara.effort",
+            "candidate": 0.1242857142857143,
+            "direct": 0.12428571428571425
+          },
+          {
+            "path": "checkpoint[13].pump.work.hands.mara.effort",
+            "candidate": 0.1385714285714286,
+            "direct": 0.13857142857142854
+          },
+          {
+            "path": "checkpoint[14].pump.work.hands.mara.effort",
+            "candidate": 0.15285714285714289,
+            "direct": 0.1528571428571428
+          },
+          {
+            "path": "checkpoint[15].pump.work.hands.mara.effort",
+            "candidate": 0.16714285714285718,
+            "direct": 0.1671428571428571
+          },
+          {
+            "path": "checkpoint[16].pump.work.hands.mara.effort",
+            "candidate": 0.18142857142857147,
+            "direct": 0.18142857142857138
+          },
+          {
+            "path": "checkpoint[17].pump.work.hands.mara.effort",
+            "candidate": 0.19571428571428576,
+            "direct": 0.19571428571428565
+          },
+          {
+            "path": "checkpoint[18].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[19].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[20].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[21].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[22].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[23].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[24].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[25].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[26].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[27].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[28].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[29].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[30].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[31].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[32].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[33].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[34].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[35].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[36].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[37].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[38].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[39].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[40].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[41].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[42].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[43].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000012,
+            "direct": 0.2
+          }
+        ],
+        "strictFullProjectionEqual": false,
+        "peoplePaidProgressTimingResourcesExactlyEqual": true
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2431,
+        "direct": 2286
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H5",
+      "specification": {
+        "setup": {},
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ],
+          [
+            1,
+            "offerHandover",
+            "mara",
+            "tomas"
+          ]
+        ],
+        "expected": {
+          "at": 19,
+          "mara": 1,
+          "tomas": 18
+        }
+      },
+      "arithmeticOracle": {
+        "at": 19,
+        "credit": {
+          "mara": {
+            "minutes": 1,
+            "effort": 0.010000000000000002
+          },
+          "tomas": {
+            "minutes": 18,
+            "effort": 0.1899999999999999
+          }
+        }
+      },
+      "completionMinute": 19,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 1,
+            "effort": 0.010000000000000002
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 39,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 18,
+            "effort": 0.1899999999999999
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 22,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2950,
+        "maxAbsoluteDifference": 1.3877787807814457e-16,
+        "maxDifferencePath": "checkpoint[20].pump.work.hands.tomas.effort",
+        "rawDifferences": [
+          {
+            "path": "checkpoint[9].pump.work.hands.tomas.effort",
+            "candidate": 0.06666666666666667,
+            "direct": 0.06666666666666668
+          },
+          {
+            "path": "checkpoint[10].pump.work.hands.tomas.effort",
+            "candidate": 0.07777777777777778,
+            "direct": 0.07777777777777779
+          },
+          {
+            "path": "checkpoint[11].pump.work.hands.tomas.effort",
+            "candidate": 0.08888888888888889,
+            "direct": 0.0888888888888889
+          },
+          {
+            "path": "checkpoint[12].pump.work.hands.tomas.effort",
+            "candidate": 0.1,
+            "direct": 0.10000000000000003
+          },
+          {
+            "path": "checkpoint[13].pump.work.hands.tomas.effort",
+            "candidate": 0.11111111111111112,
+            "direct": 0.11111111111111115
+          },
+          {
+            "path": "checkpoint[14].pump.work.hands.tomas.effort",
+            "candidate": 0.12222222222222223,
+            "direct": 0.12222222222222226
+          },
+          {
+            "path": "checkpoint[15].pump.work.hands.tomas.effort",
+            "candidate": 0.13333333333333333,
+            "direct": 0.1333333333333334
+          },
+          {
+            "path": "checkpoint[16].pump.work.hands.tomas.effort",
+            "candidate": 0.14444444444444443,
+            "direct": 0.1444444444444445
+          },
+          {
+            "path": "checkpoint[17].pump.work.hands.tomas.effort",
+            "candidate": 0.15555555555555553,
+            "direct": 0.1555555555555556
+          },
+          {
+            "path": "checkpoint[18].pump.work.hands.tomas.effort",
+            "candidate": 0.16666666666666663,
+            "direct": 0.16666666666666674
+          },
+          {
+            "path": "checkpoint[19].pump.work.hands.tomas.effort",
+            "candidate": 0.17777777777777773,
+            "direct": 0.17777777777777784
+          },
+          {
+            "path": "checkpoint[20].pump.work.hands.tomas.effort",
+            "candidate": 0.18888888888888883,
+            "direct": 0.18888888888888897
+          },
+          {
+            "path": "checkpoint[21].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[22].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[23].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[24].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[25].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[26].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[27].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[28].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[29].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[30].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[31].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[32].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[33].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[34].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[35].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[36].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[37].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[38].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[39].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[40].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[41].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          },
+          {
+            "path": "checkpoint[42].pump.work.hands.tomas.effort",
+            "candidate": 0.1899999999999999,
+            "direct": 0.19000000000000003
+          }
+        ],
+        "strictFullProjectionEqual": false,
+        "peoplePaidProgressTimingResourcesExactlyEqual": true
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2546,
+        "direct": 2373
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H6",
+      "specification": {
+        "setup": {},
+        "commands": [
+          [
+            0,
+            "start",
+            "tomas"
+          ],
+          [
+            1,
+            "offerHandover",
+            "tomas",
+            "mara"
+          ]
+        ],
+        "expected": {
+          "at": 20,
+          "mara": 19,
+          "tomas": 1
+        }
+      },
+      "arithmeticOracle": {
+        "at": 20,
+        "credit": {
+          "mara": {
+            "minutes": 19,
+            "effort": 0.1888888888888889
+          },
+          "tomas": {
+            "minutes": 1,
+            "effort": 0.011111111111111112
+          }
+        }
+      },
+      "completionMinute": 20,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 19,
+            "effort": 0.1888888888888889
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 21,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 1,
+            "effort": 0.011111111111111112
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 39,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2950,
+        "maxAbsoluteDifference": 5.551115123125783e-17,
+        "maxDifferencePath": "checkpoint[14].pump.work.hands.mara.effort",
+        "rawDifferences": [
+          {
+            "path": "checkpoint[8].pump.work.hands.mara.effort",
+            "candidate": 0.05000000000000001,
+            "direct": 0.05
+          },
+          {
+            "path": "checkpoint[9].pump.work.hands.mara.effort",
+            "candidate": 0.06000000000000001,
+            "direct": 0.06
+          },
+          {
+            "path": "checkpoint[10].pump.work.hands.mara.effort",
+            "candidate": 0.07,
+            "direct": 0.06999999999999999
+          },
+          {
+            "path": "checkpoint[11].pump.work.hands.mara.effort",
+            "candidate": 0.08000000000000002,
+            "direct": 0.08
+          },
+          {
+            "path": "checkpoint[12].pump.work.hands.mara.effort",
+            "candidate": 0.09000000000000002,
+            "direct": 0.09
+          },
+          {
+            "path": "checkpoint[13].pump.work.hands.mara.effort",
+            "candidate": 0.10000000000000003,
+            "direct": 0.09999999999999999
+          },
+          {
+            "path": "checkpoint[14].pump.work.hands.mara.effort",
+            "candidate": 0.11000000000000004,
+            "direct": 0.10999999999999999
+          },
+          {
+            "path": "checkpoint[15].pump.work.hands.mara.effort",
+            "candidate": 0.12000000000000005,
+            "direct": 0.12
+          },
+          {
+            "path": "checkpoint[16].pump.work.hands.mara.effort",
+            "candidate": 0.13000000000000006,
+            "direct": 0.13
+          },
+          {
+            "path": "checkpoint[17].pump.work.hands.mara.effort",
+            "candidate": 0.14000000000000007,
+            "direct": 0.14
+          },
+          {
+            "path": "checkpoint[18].pump.work.hands.mara.effort",
+            "candidate": 0.15000000000000008,
+            "direct": 0.15000000000000002
+          },
+          {
+            "path": "checkpoint[19].pump.work.hands.mara.effort",
+            "candidate": 0.1600000000000001,
+            "direct": 0.16000000000000003
+          },
+          {
+            "path": "checkpoint[20].pump.work.hands.mara.effort",
+            "candidate": 0.1700000000000001,
+            "direct": 0.17000000000000004
+          },
+          {
+            "path": "checkpoint[21].pump.work.hands.mara.effort",
+            "candidate": 0.1800000000000001,
+            "direct": 0.18000000000000005
+          },
+          {
+            "path": "checkpoint[22].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[23].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[24].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[25].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[26].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[27].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[28].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[29].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[30].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[31].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[32].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[33].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[34].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[35].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[36].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[37].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[38].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[39].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[40].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[41].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          },
+          {
+            "path": "checkpoint[42].pump.work.hands.mara.effort",
+            "candidate": 0.1888888888888889,
+            "direct": 0.18888888888888888
+          }
+        ],
+        "strictFullProjectionEqual": false,
+        "peoplePaidProgressTimingResourcesExactlyEqual": true
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2560,
+        "direct": 2387
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H7",
+      "specification": {
+        "setup": {
+          "busy": true
+        },
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ],
+          [
+            1,
+            "offerHandover",
+            "mara",
+            "tomas"
+          ]
+        ],
+        "expected": {
+          "at": 20,
+          "mara": 20,
+          "tomas": 0
+        }
+      },
+      "arithmeticOracle": {
+        "at": 20,
+        "credit": {
+          "mara": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "tomas": {
+            "minutes": 0,
+            "effort": 0
+          }
+        }
+      },
+      "completionMinute": 20,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 20,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 4,
+            "effort": 0.04
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 36,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2827,
+        "maxAbsoluteDifference": 5.551115123125783e-17,
+        "maxDifferencePath": "checkpoint[13].pump.work.hands.mara.effort",
+        "rawDifferences": [
+          {
+            "path": "checkpoint[7].pump.work.hands.mara.effort",
+            "candidate": 0.05000000000000001,
+            "direct": 0.05
+          },
+          {
+            "path": "checkpoint[8].pump.work.hands.mara.effort",
+            "candidate": 0.06000000000000001,
+            "direct": 0.06
+          },
+          {
+            "path": "checkpoint[9].pump.work.hands.mara.effort",
+            "candidate": 0.07,
+            "direct": 0.06999999999999999
+          },
+          {
+            "path": "checkpoint[10].pump.work.hands.mara.effort",
+            "candidate": 0.08000000000000002,
+            "direct": 0.08
+          },
+          {
+            "path": "checkpoint[11].pump.work.hands.mara.effort",
+            "candidate": 0.09000000000000002,
+            "direct": 0.09
+          },
+          {
+            "path": "checkpoint[12].pump.work.hands.mara.effort",
+            "candidate": 0.10000000000000003,
+            "direct": 0.09999999999999999
+          },
+          {
+            "path": "checkpoint[13].pump.work.hands.mara.effort",
+            "candidate": 0.11000000000000004,
+            "direct": 0.10999999999999999
+          },
+          {
+            "path": "checkpoint[14].pump.work.hands.mara.effort",
+            "candidate": 0.12000000000000005,
+            "direct": 0.12
+          },
+          {
+            "path": "checkpoint[15].pump.work.hands.mara.effort",
+            "candidate": 0.13000000000000006,
+            "direct": 0.13
+          },
+          {
+            "path": "checkpoint[16].pump.work.hands.mara.effort",
+            "candidate": 0.14000000000000007,
+            "direct": 0.14
+          },
+          {
+            "path": "checkpoint[17].pump.work.hands.mara.effort",
+            "candidate": 0.15000000000000008,
+            "direct": 0.15000000000000002
+          },
+          {
+            "path": "checkpoint[18].pump.work.hands.mara.effort",
+            "candidate": 0.1600000000000001,
+            "direct": 0.16000000000000003
+          },
+          {
+            "path": "checkpoint[19].pump.work.hands.mara.effort",
+            "candidate": 0.1700000000000001,
+            "direct": 0.17000000000000004
+          },
+          {
+            "path": "checkpoint[20].pump.work.hands.mara.effort",
+            "candidate": 0.1800000000000001,
+            "direct": 0.18000000000000005
+          },
+          {
+            "path": "checkpoint[21].pump.work.hands.mara.effort",
+            "candidate": 0.1900000000000001,
+            "direct": 0.19000000000000006
+          },
+          {
+            "path": "checkpoint[22].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[23].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[24].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[25].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[26].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[27].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[28].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[29].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[30].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[31].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[32].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[33].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[34].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[35].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[36].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[37].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[38].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[39].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[40].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[41].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          },
+          {
+            "path": "checkpoint[42].pump.work.hands.mara.effort",
+            "candidate": 0.20000000000000007,
+            "direct": 0.2
+          }
+        ],
+        "strictFullProjectionEqual": false,
+        "peoplePaidProgressTimingResourcesExactlyEqual": true
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2438,
+        "direct": 2292
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    }
+  ]
+}

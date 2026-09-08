@@ -1,0 +1,68 @@
+diff -ru stages/00-baseline/src/yard.js src/yard.js
+--- stages/00-baseline/src/yard.js	2026-09-08 13:53:17
++++ src/yard.js	2026-09-08 13:53:18
+@@ -42,12 +42,12 @@
+   function create({tool = false, busy = false, origins = initial} = {}) {
+     insist(typeof tool === 'boolean' && typeof busy === 'boolean', 'Invalid setup');
+     const state = {
+-      schema: 'pump-yard-1', minute: 0, origins: clone(origins),
++      schema: 'pump-yard-gasket-1', minute: 0, origins: clone(origins),
+       people: Object.fromEntries(PEOPLE.map(id => [id, createPerson({id, ...origins[id]})])),
+       paid: Object.fromEntries(PEOPLE.map(id => [id, accounting()])),
+       occupied: {mara: 'free', tomas: busy ? 'hauling' : 'free', nuri: tool ? 'crafting' : 'free'},
+       pump: {work: pumpRules.create(), permission: null, finishedAt: null},
+-      seal: {owner: 'yard', place: 'shelf'},
++      gasket: {owner: 'yard', place: 'shelf'},
+       tooling: {blankOwner: 'nuri', blank: tool ? 'shelf' : 'absent', readyAt: null},
+       hauling: {enabled: busy, stopped: false, finishedAt: null},
+       decision: {at: 0, request: 'setup', from: null, to: null, accepted: true, reason: 'created'}
+@@ -66,7 +66,7 @@
+     if (!mayPay(state.people[id], plan.minutesLeft, plan.effortLeft)) return review(state, 'start', id, id, false, 'capacity');
+     const next = clone(state); next.pump.work = prepared;
+     next.pump.permission = {worker: id, acceptedAt: state.minute, via: 'start', offeredBy: id};
+-    next.occupied[id] = 'repair'; next.seal.place = 'installed';
++    next.occupied[id] = 'repair'; next.gasket.place = 'installed';
+     return review(next, 'start', id, id, true, 'accepted');
+   }
+   function offerHandover(state, from, to) {
+@@ -106,9 +106,9 @@
+     if (!work.complete) return state;
+     const release = pumpRules.release(state.pump.work);
+     if (!release.first) return state;
+-    insist(state.seal.place === 'installed' && state.pump.finishedAt === null, 'No installed seal to settle');
++    insist(state.gasket.place === 'installed' && state.pump.finishedAt === null, 'No installed gasket to settle');
+     const next = clone(state); next.pump.work = release.work;
+-    next.seal.place = 'spent'; next.pump.finishedAt = state.minute;
++    next.gasket.place = 'spent'; next.pump.finishedAt = state.minute;
+     if (next.pump.permission) next.occupied[next.pump.permission.worker] = 'free';
+     next.pump.permission = null;
+     return seal(next);
+@@ -174,8 +174,8 @@
+   }
+   function validate(state) {
+     jsonTree(state);
+-    fields(state, ['schema', 'minute', 'origins', 'people', 'paid', 'occupied', 'pump', 'seal', 'tooling', 'hauling', 'decision']);
+-    insist(state.schema === 'pump-yard-1', 'Unknown yard schema'); integer(state.minute, 0, 1_000_000);
++    fields(state, ['schema', 'minute', 'origins', 'people', 'paid', 'occupied', 'pump', 'gasket', 'tooling', 'hauling', 'decision']);
++    insist(state.schema === 'pump-yard-gasket-1', 'Unknown yard schema'); integer(state.minute, 0, 1_000_000);
+     fields(state.origins, PEOPLE); fields(state.people, PEOPLE); fields(state.paid, PEOPLE); fields(state.occupied, PEOPLE);
+     fields(state.pump, ['work', 'permission', 'finishedAt']);
+     // Run the work arm's own validator in addition to host conservation checks.
+@@ -183,7 +183,7 @@
+     insist(work.id === 'south-pump' && work.coefficient === .20 && work.floor === 6, 'Wrong pump law or identity');
+     const timeOrNull = value => { if (value !== null) integer(value, 1, state.minute); };
+     timeOrNull(state.pump.finishedAt);
+-    fields(state.seal, ['owner', 'place']); insist(state.seal.owner === 'yard' && ['shelf', 'installed', 'spent'].includes(state.seal.place), 'Invalid seal ownership');
++    fields(state.gasket, ['owner', 'place']); insist(state.gasket.owner === 'yard' && ['shelf', 'installed', 'spent'].includes(state.gasket.place), 'Invalid gasket ownership');
+     fields(state.tooling, ['blankOwner', 'blank', 'readyAt']);
+     insist(state.tooling.blankOwner === 'nuri' && ['absent', 'shelf', 'spent'].includes(state.tooling.blank), 'Invalid blank ownership');
+     timeOrNull(state.tooling.readyAt);
+@@ -232,7 +232,7 @@
+     }
+     insist(Object.keys(work.hands).every(willing), 'Unknown repair contributor');
+     const hasHands = Object.keys(work.hands).length > 0;
+-    insist(state.seal.place === (work.released ? 'spent' : hasHands ? 'installed' : 'shelf'), 'Seal conservation mismatch');
++    insist(state.gasket.place === (work.released ? 'spent' : hasHands ? 'installed' : 'shelf'), 'Gasket conservation mismatch');
+     insist(work.complete === work.released && work.released === (state.pump.finishedAt !== null), 'Output settlement mismatch');
+     const repairTicks = REPAIRERS.reduce((sum, id) => sum + state.paid[id].repair.minutes, 0);
+     if (state.pump.finishedAt !== null) insist(repairTicks <= state.pump.finishedAt, 'Completion before paid work');
