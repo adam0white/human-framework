@@ -1,0 +1,23 @@
+{
+  "format": "service-plan-comparison-freeze",
+  "version": 1,
+  "sourceCommit": "91333d8865770a500ffe37665b2cd3f157945972",
+  "registeredCommit": "5b87ceb4301f45570a1ac60d59b152dd0efbbb2b",
+  "frozenAt": "2026-09-08T10:31:24.257Z",
+  "sourceSha256": {
+    "docs/service-plan-comparison-protocol.md": "477c23299c977c893183686432f1b79a2dee29f26fbc78653a9c6cf2dd5e3b2e",
+    "src/games/service.js": "50ce6e3e52a9e92c85532f3a73d8afa46e6bc0ca7993ef72ce9e4f58e51738d1",
+    "src/games/service-plan.js": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "scripts/runtime-release-lock.json": "f27bd54f0549f5dcb8016099669f3a74f27a4edf2378953a60803711cbd1b165",
+    "src/experiments/service-plan/cases.js": "bcff876b39301885ac73ad619d20e44aed74f565f7741eac787873d098646c4f",
+    "src/experiments/service-plan/visible-pump.js": "f8d76670a034738a7551addad83f054c25ab5f05049a855dec2b8ce5c0bb9129",
+    "src/experiments/service-plan/experiment.js": "64834cdf902215d67dd444c636999256d5e761ecb605ebb28bc56b9fa0f11728",
+    "src/experiments/service-plan/provenance.js": "f43e9115ce007af8e2bfa162ea607df004f005c7b9380b44112b124c0a1198d0",
+    "scripts/service-plan-comparison.js": "eb2e34c2bfd428f5cf39aea698e553c1f4cff8d6f0a865528d2e34e1e345e7e7",
+    "tests/service-plan-comparison.test.js": "e445673ad29dc510da6a92552fc8ac0945adde8e5d43f510d72097a70a7a34d1"
+  }
+}
