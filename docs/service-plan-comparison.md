@@ -65,6 +65,20 @@ These are explicit scripts, not a learned controller, search planner, independen
 
 “Reserved” means these four comparison scripts are withheld from this runner until a committed source freeze. It does not mean blind or independently sampled evidence: their definitions are public preregistration, and core lifecycle tests exercise overlapping mechanisms such as omitted recovery and stale responses. Passing those implementation tests is not additional independent confirmation of reserved policy generalization. No comparison policy tuning has followed an unsealed result.
 
+## Post-review exploration: hand over the spare
+
+The Fable design reviewer proposed a cheaper existing physical handover and suggested an arrival at 42 without executing it. Root requested three exact old/new-host probes. Their separate prescriptions were committed in `13b208d` before execution, after the original development outcomes. [The executable probe](../scripts/service-plan-handover-probe.js), [six complete compact journals](../artifacts/service-plan/handover-exploratory.json) and [Node 22/26 parity record](../artifacts/service-plan/handover-node22-parity.json) preserve the results. None changes the original protocol, scripts, reserved catalogue or claims of preregistration.
+
+| Keeper prescription | Old host | New host | Keeper handover | Deniz pump / whole-day rest | Spare left |
+|---|---|---|---:|---:|---|
+| Gate 0–6/6–12; salvage 12–20; share 20–22; then autonomous | 2 units at 48 | 2 units at 48 | 2 minutes | 12 / 12 minutes | none |
+| Actual UI clinic prefix: meal 0–4; gate 4–16; salvage 16–24; rest 24–30; wait 37; share 37–39 | 2 units at 57 | 2 units at 57 | 2 minutes | 12 / 12 minutes | none |
+| G41 prefix; share 41–43; then autonomous | 1 unit at 60 | 1 unit at 60 | 2 minutes | 6 / 4 minutes | Deniz owns one |
+
+All six preserve morning water, each person's 64-minute paid account, owned-resource conservation and exact replay. Complete trial objects and source accounts match between Node 26.8.1 and 22.0.0. The early route has **zero keeper rest**; the exact paid-body simulation gives arrival 48, not the reviewer's unexecuted 42. The minute-37 handover supplies two units without any discussion or keeper pump work, arriving six minutes after the short agreement route. At 41, the two-minute transfer completes after Deniz has committed the cart at 42; it leaves an unused Deniz-owned spare and retains the one-unit failure. Receiving a resource later does not cancel already-owned delivery work.
+
+This is another sufficient simple control and materially narrows the motivation for explicit plans. The proposed mechanic can express a chosen wait/revision and make its refusal visible; it is not necessary for completing the early or minute-37 service. The exact timings and differing labor allocations are tradeoffs, not proof that one interaction is universally preferable or clearer to people. Reproduce with `node scripts/service-plan-handover-probe.js <fresh-output>` from its source-bound state; the runner refuses uncommitted source and output replacement.
+
 ## Reproduce with fresh paths
 
 ```sh
