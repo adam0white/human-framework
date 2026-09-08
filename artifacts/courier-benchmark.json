@@ -7,7 +7,7 @@
   "seeds": 100,
   "sourceSha256": {
     "scripts/courier-benchmark.js": "33b187fea80ef72284e5e60e1d7ee3e75894c990aaa65a7e3d82f89b4dadc84b",
-    "src/games/courier.js": "e3cdd6a29bb89166fc2e92a938e2560a9b69d3073a8316e78828dd5e6049426c",
+    "src/games/courier.js": "2dd67cfd2111b069fa546d07caa95e3f668c290369dad6cadc015aad0ed4d9cd",
     "src/games/courier-policy.js": "90757d495b17ca71b1ad2e540e35b617b3d2bc3a8b5e788aab21907bcadc845c",
     "src/human/index.js": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308",
     "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"

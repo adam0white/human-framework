@@ -8,7 +8,12 @@ const percent=value=>`${Math.round(value*100)}%`;
 function notice(message){$('notice').textContent=message;$('notice').hidden=!message;}
 function persist(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(exportGame(game)));$('save-status').textContent='Saved on this device after every action';}catch{$('save-status').textContent='Device save unavailable. Download a save to keep this round.';}}
 function stopAuto(){if(autoTimer!==null)clearTimeout(autoTimer);autoTimer=null;$('auto').textContent='Run controller';}
-function command(value){try{game=applyCommand(game,value);if(recording){if(recording.commands.length>=10000){recording=null;notice('Replay recording reached its limit. Your active save continues.');}else recording.commands.push(structuredClone(value));}persist();render();if(value.type==='start'&&autoTimer===null)$('pending').scrollIntoView({block:'nearest',behavior:'instant'});}catch(error){stopAuto();notice(error.message);}}
+function command(value){try{game=applyCommand(game,value);if(recording){if(recording.commands.length>=10000){recording=null;notice('Replay recording reached its limit. Your active save continues.');}else recording.commands.push(structuredClone(value));}persist();render();return true;}catch(error){stopAuto();notice(error.message);return false;}}
+function takeAction(actionId){
+  stopAuto();if(!command({type:'start',actionId}))return;
+  if(!$('interval-mode').checked&&!command({type:'finish'}))return;
+  if(game.pending){$('pending').scrollIntoView({block:'nearest',behavior:'instant'});$('finish').focus({preventScroll:true});}
+}
 function svg(tag,attrs,content){const node=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value] of Object.entries(attrs))node.setAttribute(key,value);if(content!==undefined)node.textContent=content;return node;}
 function renderMap(view){
   const map=$('map');map.querySelectorAll(':scope > :not(desc)').forEach(n=>n.remove());
@@ -34,7 +39,7 @@ function actionButton(action){
   const top=text('span','', 'action-top');top.append(text('strong',action.label),text('span',`${action.minutes} min`));button.append(top,text('span',action.detail,'action-detail'));
   if(action.estimatedSuccess!==null)button.append(text('span',`${percent(action.estimatedSuccess)} estimated crossing chance`,'action-chance'));
   if(!action.capacity.allowed)button.append(text('span',`Capacity estimate: ${action.capacity.causes.join(' and ')} too high. A blocked request costs 2 idle minutes.`,'action-chance'));
-  button.addEventListener('click',()=>{stopAuto();command({type:'start',actionId:action.id});});return button;
+  button.addEventListener('click',()=>takeAction(action.id));return button;
 }
 function render(){
   const view=getGameView(game),place=id=>view.places.find(p=>p.id===id).name;
@@ -51,8 +56,8 @@ function render(){
     const matches=view.actions.filter(a=>kinds.includes(a.kind));if(!matches.length)continue;
     const group=document.createElement(name.startsWith('Repack')?'details':'div');group.className='action-group';group.append(text(name.startsWith('Repack')?'summary':'h3',name));const list=text('div','','action-list');list.append(...matches.map(actionButton));group.append(list);$('actions').append(group);
   }
-  $('outcome').hidden=view.status==='playing';
-  if(view.status!=='playing'){$('outcome').replaceChildren(text('h3',view.status==='complete'?'All six delivered':'Round finished'),text('p',`${view.summary.delivered} delivered: ${view.summary.onTime} on time, ${view.summary.late} late. ${view.summary.undelivered?`${view.summary.undelivered} undelivered parcels remain in your bag or at the depot.`:`Finished in ${view.clock} minutes.`} Your full parcel record is below.`));stopAuto();}
+  $('outcome').hidden=view.status==='playing';$('end-round').hidden=view.status!=='playing';
+  if(view.status!=='playing'){$('outcome').replaceChildren(text('h3',view.status==='complete'?'All six delivered':view.status==='ended'?'Round ended early':'Time is up'),text('p',`${view.summary.delivered} delivered: ${view.summary.onTime} on time, ${view.summary.late} late. ${view.summary.undelivered?`${view.summary.undelivered} undelivered parcels remain in your bag or at the depot.`:`Finished in ${view.clock} minutes.`} ${view.status==='ended'?`You stopped at minute ${view.clock}, with ${view.remainingMinutes} minutes left. `:''}Your full parcel record is below.`));stopAuto();}
   $('practice').textContent=percent(view.worker.skills.routecraft);$('practice-meter').value=view.worker.skills.routecraft;$('meals').textContent=`${view.meals} packed meal${view.meals===1?'':'s'} left.`;
   $('manifest').replaceChildren(...view.parcels.map(p=>{const row=text('div','',`manifest-row ${p.deliveredAt!==null?'delivered':''}`);row.append(text('strong',p.name),text('span',place(p.destination),'destination'),text('small',`Due ${p.due} min`),text('span',p.deliveredAt!==null?`${p.deliveredAt<=p.due?'On time':'Late'} · ${p.deliveredAt} min`:p.owner==='bag'?'In your bag':'At depot','parcel-status'));return row;}));
   const id=chooseAction(view,$('policy').value),suggested=view.actions.find(a=>a.id===id);$('suggestion').textContent=suggested?`Suggestion: ${suggested.label}. ${suggested.minutes} minutes.`:view.pending?'Finish or stop this action before the next suggestion.':'This round is finished.';
@@ -61,9 +66,10 @@ function render(){
   $('replay-save').disabled=!recording;renderMap(view);
 }
 function download(value,name){const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-function autoStep(){if(game.status!=='playing'){stopAuto();return;}const view=getGameView(game);command(view.pending?{type:'finish'}:{type:'start',actionId:chooseAction(view,$('policy').value)});if(game.status==='playing'){autoTimer=setTimeout(autoStep,350);$('auto').textContent='Pause controller';}}
+function autoStep(){if(game.status!=='playing'){stopAuto();return;}const view=getGameView(game);if(!command(view.pending?{type:'finish'}:{type:'start',actionId:chooseAction(view,$('policy').value)}))return;if(game.status==='playing'){autoTimer=setTimeout(autoStep,350);$('auto').textContent='Pause controller';}}
 $('finish').addEventListener('click',()=>{stopAuto();command({type:'finish'});});$('advance').addEventListener('click',()=>{stopAuto();command({type:'advance',minutes:1});});$('interrupt').addEventListener('click',()=>{stopAuto();command({type:'interrupt'});});
-$('policy').addEventListener('change',()=>{stopAuto();render();});$('hint-action').addEventListener('click',()=>{stopAuto();const id=chooseAction(getGameView(game),$('policy').value);if(id)command({type:'start',actionId:id});});
+$('end-round').addEventListener('click',()=>{stopAuto();if(command({type:'end'}))$('outcome').scrollIntoView({block:'nearest',behavior:'instant'});});
+$('policy').addEventListener('change',()=>{stopAuto();render();});$('hint-action').addEventListener('click',()=>{const id=chooseAction(getGameView(game),$('policy').value);if(id)takeAction(id);});
 $('auto').addEventListener('click',()=>{if(autoTimer!==null)stopAuto();else autoStep();});
 $('save').addEventListener('click',()=>download(exportGame(game),`courier-${game.seed}-${game.clock}min.json`));
 $('replay-save').addEventListener('click',()=>{if(recording)download(recording,`courier-replay-${recording.seed}.json`);});

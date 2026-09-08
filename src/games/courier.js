@@ -111,7 +111,7 @@ export function startAction(game,actionId){
   const next=clone(game);next.person=beginAttempt(game.person,personSpec(action));
   const allowed=next.person.pending.capacity.allowed;
   next.pending={actionId,attemptId:next.person.pending.id,durationMinutes:allowed?action.minutes:BLOCKED_MINUTES,label:action.label};
-  next.lastEvent={status:allowed?'started':'blocked',message:allowed?`${action.label} started.`:'This journey exceeds your capacity. It costs two idle minutes, with no movement or recovery.',minutes:0};
+  next.lastEvent={status:allowed?'started':'blocked',message:allowed?`${action.label} started.`:`This journey exceeds your capacity because of ${next.person.pending.capacity.causes.join(' and ')}. It costs two idle minutes, with no movement or recovery.`,minutes:0};
   return next;
 }
 
@@ -155,12 +155,21 @@ export function advanceTime(game,minutes){
   const elapsed=Math.min(minutes,remaining,DEADLINE-game.clock);
   next.person=advanceAttempt(next.person,elapsed);next.clock+=elapsed;
   const blocked=!next.person.pending.capacity.allowed;
-  if(next.person.pending.elapsedMinutes>=next.pending.durationMinutes||next.clock>=next.person.pending.startedAt+next.pending.durationMinutes)return settle(next,blocked?'blocked':'completed',blocked?'Journey stopped after two idle minutes. No movement, practice or recovery occurred.':undefined);
-  if(next.clock>=DEADLINE)return settle(next,blocked?'blocked':'interrupted','The round ended during this action. Its unfinished world effects did not occur.');
+  if(next.person.pending.elapsedMinutes>=next.pending.durationMinutes||next.clock>=next.person.pending.startedAt+next.pending.durationMinutes)return settle(next,blocked?'blocked':'completed',blocked?`Journey blocked by ${next.person.pending.capacity.causes.join(' and ')} after two idle minutes. No movement, practice or recovery occurred.`:undefined);
+  if(next.clock>=DEADLINE)return settle(next,blocked?'blocked':'interrupted',blocked?`The round ended during a journey blocked by ${next.person.pending.capacity.causes.join(' and ')}. Only ${next.person.pending.elapsedMinutes} idle minutes were paid; no movement or recovery occurred.`:'The round ended during this action. Its unfinished world effects did not occur.');
   return next;
 }
 export function finishAction(game){if(!game.pending)throw new Error('No pending action');return advanceTime(game,game.pending.durationMinutes-game.person.pending.elapsedMinutes);}
 export function interruptAction(game){if(!game.pending)throw new Error('No pending action');return game.person.pending.capacity.allowed?settle(game,'interrupted'):finishAction(game);}
+export function endRound(game){
+  if(game.status!=='playing')return clone(game);
+  const next=game.pending?interruptAction(game):clone(game);
+  if(next.status==='playing'){
+    next.status='ended';const delivered=Object.values(next.parcels).filter(p=>p.deliveredAt!==null).length;
+    next.lastEvent={status:'ended',message:`${game.pending?next.lastEvent.message+' ':''}You ended the round. ${delivered} completed deliver${delivered===1?'y is':'ies are'} retained.`,minutes:game.pending?next.lastEvent.minutes:0};
+  }
+  return next;
+}
 export function exportGame(game){const save=clone(game);save.person=exportPerson(game.person);return save;}
 
 export function importGame(record){
@@ -172,7 +181,7 @@ export function importGame(record){
   if(next.deadline!==DEADLINE||next.person.minutes!==next.clock||next.person.id!=='courier'||next.person.observationBias!==0)throw new Error('Invalid host/person contract');
   keys(next.person.skills,['routecraft'],'courier skills');
   if(next.person.skills.routecraft<0.36)throw new Error('Invalid routecraft baseline');
-  if(!places.some(p=>p.id===next.location)||!['playing','complete','expired'].includes(next.status))throw new Error('Invalid location/status');
+  if(!places.some(p=>p.id===next.location)||!['playing','complete','expired','ended'].includes(next.status))throw new Error('Invalid location/status');
   keys(next.parcels,parcels.map(p=>p.id),'parcels');
   for(const p of parcels){
     const held=next.parcels[p.id];keys(held,['owner','deliveredAt'],'parcel');
@@ -181,7 +190,7 @@ export function importGame(record){
   }
   if(countBag(next)>BAG_CAPACITY)throw new Error('Overfilled parcel bag');
   const all=Object.values(next.parcels).every(p=>p.deliveredAt!==null);
-  if((next.status==='complete')!==all||next.status==='expired'&&next.clock!==DEADLINE||next.status==='playing'&&next.clock===DEADLINE)throw new Error('Inconsistent terminal outcome');
+  if((next.status==='complete')!==all||next.status==='expired'&&next.clock!==DEADLINE||['playing','ended'].includes(next.status)&&next.clock===DEADLINE)throw new Error('Inconsistent terminal outcome');
   keys(next.crossings,['footbridge','lockbridge'],'crossings');
   for(const [id,crossing] of Object.entries(next.crossings)){
     keys(crossing,['condition','trials','report'],'crossing');
@@ -194,7 +203,7 @@ export function importGame(record){
     (next.person.pending?.elapsedMinutes??0);
   if(next.clock+1e-9<committedMinutes)throw new Error('Insufficient paid time for committed effects');
   keys(next.lastEvent,['status','message','minutes'],'last event');
-  if(!['ready','started','completed','interrupted','blocked','failed'].includes(next.lastEvent.status)||typeof next.lastEvent.message!=='string'||next.lastEvent.message.length>650)throw new Error('Invalid event');
+  if(!['ready','started','completed','interrupted','blocked','failed','ended'].includes(next.lastEvent.status)||(next.lastEvent.status==='ended')!==(next.status==='ended')||typeof next.lastEvent.message!=='string'||next.lastEvent.message.length>650)throw new Error('Invalid event');
   number(next.lastEvent.minutes,0,24,'event minutes');
   if(Boolean(next.pending)!==Boolean(next.person.pending))throw new Error('Pending host/person mismatch');
   if(next.pending){
@@ -211,6 +220,7 @@ export function applyCommand(game,command){
   if(command.type==='advance'){keys(command,['type','minutes'],'advance command');return advanceTime(game,command.minutes);}
   if(command.type==='finish'){keys(command,['type'],'finish command');return finishAction(game);}
   if(command.type==='interrupt'){keys(command,['type'],'interrupt command');return interruptAction(game);}
+  if(command.type==='end'){keys(command,['type'],'end command');return endRound(game);}
   throw new Error('Unknown courier command');
 }
 export function replaySession(record){

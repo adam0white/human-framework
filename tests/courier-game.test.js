@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {createPerson} from '../src/human/index.js';
 const host=await import('../src/games/courier.js').catch(()=>({}));
 const {createGame,getGameView,startAction,finishAction,advanceTime,interruptAction,exportGame,importGame,applyCommand,replaySession}=host;
 const act=(game,id)=>finishAction(startAction(game,id));
@@ -105,6 +106,31 @@ test('deadline midway through loading gives no parcel to the bag',()=>{
   assert.equal(g.parcels.medicine.owner,'depot');assert.equal(g.lastEvent.status,'interrupted');
 });
 
+test('ending early retains delivered and late counts without waiting or granting unfinished effects',()=>{
+  let g=act(act(act(act(createGame(),'load-fabric'),'load-tea'),'travel-depot-market'),'deliver-fabric');
+  for(let i=0;i<6;i++)g=act(g,'rest');g=act(act(g,'travel-market-quay'),'deliver-tea');
+  const view=getGameView(g);g=host.endRound(g);
+  assert.equal(g.status,'ended');assert.equal(g.clock,118);assert.deepEqual(getGameView(g).summary,view.summary);
+  assert.equal(view.summary.onTime,1);assert.equal(view.summary.late,1);
+  assert.equal(g.pending,null);assert.deepEqual(getGameView(g).actions,[]);
+  assert.deepEqual(host.endRound(g),g);assert.deepEqual(importGame(exportGame(g)),g);
+  assert.throws(()=>startAction(g,'rest'),/finished/);
+  let pending=advanceTime(startAction(createGame(),'load-medicine'),1);
+  pending=host.endRound(pending);assert.equal(pending.status,'ended');assert.equal(pending.clock,1);
+  assert.equal(pending.parcels.medicine.owner,'depot');assert.equal(pending.pending,null);
+  assert.deepEqual(importGame(exportGame(pending)),pending);
+});
+
+test('ending a partial crossing retains only paid practice and replays exactly',()=>{
+  const commands=[{type:'start',actionId:'travel-depot-market'},{type:'finish'},{type:'start',actionId:'travel-footbridge'},{type:'advance',minutes:4},{type:'end'}];
+  const g=commands.reduce(applyCommand,createGame({seed:37}));
+  assert.equal(g.status,'ended');assert.equal(g.clock,14);assert.equal(g.location,'market');
+  assert.ok(g.person.skills.routecraft>0.36);assert.equal(g.crossings.footbridge.trials,0);
+  assert.deepEqual(replaySession({version:host.HOST_VERSION,seed:37,commands}),g);
+  assert.deepEqual(importGame(exportGame(g)),g);
+  assert.throws(()=>applyCommand(createGame(),{type:'end',score:99}),/Malformed/);
+});
+
 test('a blocked journey costs idle time and grants no movement, recovery or practice',()=>{
   let g=createGame();
   while(getGameView(g).actions.find(a=>a.id==='travel-depot-market').capacity.allowed){
@@ -113,7 +139,25 @@ test('a blocked journey costs idle time and grants no movement, recovery or prac
   const before=structuredClone(g);g=act(g,'travel-depot-market');
   assert.equal(g.clock,before.clock+2);assert.equal(g.location,before.location);
   assert.equal(g.lastEvent.status,'blocked');assert.ok(g.person.body.fatigue>=before.person.body.fatigue);
+  assert.match(g.lastEvent.message,/fatigue/i);
   assert.equal(g.person.skills.routecraft,before.person.skills.routecraft);
+});
+
+test('blocked feedback names hunger from the public capacity assessment',()=>{
+  const g=createGame();
+  // Offline capacity fixture: the production round still uses its normal body.
+  g.person=createPerson({id:'courier',body:{fatigue:0.12,hunger:0.99},skills:{routecraft:0.36}});
+  const pending=startAction(g,'travel-depot-market');assert.match(pending.lastEvent.message,/hunger/i);
+  const ended=host.endRound(pending);assert.equal(ended.clock,2);assert.equal(ended.status,'ended');
+  assert.match(ended.lastEvent.message,/hunger/i);assert.equal(ended.location,'depot');
+});
+
+test('ending a blocked last-minute request preserves deadline status and the assessed cause',()=>{
+  let g=createGame();g.person=createPerson({id:'courier',body:{fatigue:0.12,hunger:0.99},skills:{routecraft:0.36}});
+  for(let i=0;i<15;i++)g=act(g,'rest');g=interruptAction(advanceTime(startAction(g,'rest'),14));
+  const ended=host.endRound(startAction(g,'travel-depot-market'));
+  assert.equal(ended.status,'expired');assert.equal(ended.clock,240);assert.match(ended.lastEvent.message,/hunger/i);
+  assert.equal(ended.lastEvent.minutes,1);assert.equal(ended.location,'depot');assert.deepEqual(importGame(exportGame(ended)),ended);
 });
 
 test('meals are owned, completed once, and interrupted meals give no relief',()=>{
@@ -137,4 +181,8 @@ test('malformed saves reject overfilled bag, hidden condition changes, clocks an
   for(const mutate of mutations){const save=structuredClone(clean);mutate(save);assert.throws(()=>importGame(save));}
   const save=exportGame(startAction(createGame(),'load-fabric'));save.pending.actionId='load-medicine';
   assert.throws(()=>importGame(save));
+  const ended=exportGame(host.endRound(createGame()));ended.clock=240;ended.person.person.minutes=240;
+  assert.throws(()=>importGame(ended),/terminal/);
+  const pending=exportGame(startAction(createGame(),'load-medicine'));pending.status='ended';
+  assert.throws(()=>importGame(pending),/pending|event/);
 });
