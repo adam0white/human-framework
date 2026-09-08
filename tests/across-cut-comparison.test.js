@@ -56,7 +56,7 @@ test('development cases retain all repair combinations and seal reserved executi
   const m=await import('../src/experiments/across-cut/comparison/cases.js').catch(()=>null);
   assert.ok(m?.selectCases,'The source-declared case matrix must exist.');
   const cases=m.selectCases();assert.equal(cases.filter(x=>x.kind==='policy').length,8);
-  assert.equal(cases.filter(x=>x.kind==='script').length,8);
+  assert.equal(cases.filter(x=>x.kind==='script').length,9);
   assert.equal(new Set(cases.filter(x=>x.kind==='policy').map(x=>`${x.setup.valveMinutes}/${x.setup.inletMinutes}`)).size,4);
   assert.throws(()=>m.selectCases('reserved'),/sealed/);
   assert.throws(()=>m.selectCases('reserved',{sourceCommit:'forged'}),/sealed/);
@@ -109,6 +109,9 @@ test('paid scripts distinguish stale facts, consent, omitted work and receipt-on
   assert.equal(omitted.final.service.units,1);assert.equal(omitted.final.water.lost,2);
   const canceled=run('S7-cancel');assert.equal(canceled.final.actors.keeper.paid.transmit,0);assert.equal(canceled.final.actors.keeper.inventory.radio.consumed,0);
   assert.equal(canceled.final.work.valve,6);assert.equal(canceled.final.actors.keeper.inventory.fitting.installed,1);
+  const insurance=run('S8-fixed-cart-insurance');
+  assert.equal(insurance.final.service.units,2);assert.equal(insurance.final.water.excess,1);
+  assert.equal(insurance.final.actors.receiver.paid.cart,10);assert.equal(insurance.final.actors.receiver.inventory.cartWater.consumed,1);
 });
 
 test('historical replay verifies original Git source bytes before loading a recorded controller',async()=>{

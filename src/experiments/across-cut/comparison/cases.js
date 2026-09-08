@@ -38,6 +38,9 @@ const scripts=[
   ]),
   script('S7-cancel','zero-minute radio cancellation and positive partial repair',[
     a(0,'keeper',{task:'inspect'}),a(1,'keeper',report),a(1,'keeper',{control:'interrupt'}),a(2,'keeper',{task:'repair'}),a(4,'keeper',{control:'interrupt'}),a(5,'keeper',{task:'repair'})
+  ]),
+  script('S8-fixed-cart-insurance','literal original easy fixed plan plus cart insurance',[
+    a(0,'keeper',{task:'inspect'}),a(0,'receiver',{task:'inspect'}),a(1,'keeper',{task:'repair'}),a(1,'receiver',{task:'repair'}),a(7,'keeper',{task:'release'}),a(11,'receiver',{task:'attend',minutes:1}),a(12,'receiver',{task:'cart'})
   ])
 ];
 const reserved=[
