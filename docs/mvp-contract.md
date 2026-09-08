@@ -1,6 +1,6 @@
 # What may graduate to MVP
 
-Established 2026-09-07; updated through app 0.9 and the private actor-local study on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
+Established 2026-09-07; updated through app 0.11 on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
 
 ## Intended first deliverable
 
@@ -80,6 +80,12 @@ The next step is an actor-local information feasibility study before another int
 The [0.10 release](release-0.10.md) implements a common HUD/tab interface across the ten existing games, with 620 integrated tests and independent exact-state browser comparisons. New direct feedback describes meaningful consequences, perceived coherence and attachment at short endings; it remains one player's qualitative evidence.
 
 A private [ongoing-work correction](continuous-work-results.md) reproduces and removes a restart advantage within its bounded fixture, separating prospective productivity from automatic recovery. The [story proposal](story-continuity-proposal.md) identifies actual earned-camp carryover into the supply window as a concrete next use. Neither is a complete public replacement host or a promoted general faculty. Full mixed-job migration, the new story wrapper, broader human explanation, authoring benefit and external validation remain open.
+
+## Delivered earned-camp milestone
+
+[App 0.11](release-0.11.md) delivers one actual camp through an earned supply window and Return, with automatic available recovery, durable assemblies, accepted handover and full explicit legacy continuation. The old hosts/runtime remain frozen controls. Independent reviews fixed real readiness, identity/practice, decoder and UI defects. All 685 integrated tests and production checks pass; 29 source-selected comparison records replay on minimum Node 22.
+
+This strengthens software lifecycle and continuing-game evidence. Both simple policies still complete five caches at the shared budget; changed partial work and free/installed resources prevent a blanket efficiency ranking. A competent snapshot validator is faster and remains sufficient for a weaker contract; the selected journal earns only specific window integrity checks, not universal necessity. No new real-player assessment was collected in this milestone, and the explanation, human authoring, physical-device, calibration and qualified theological gates remain open. The next story use should consume or change a real retained consequence rather than add a quota or a new general faculty by name.
 
 ## Sequence proposed at 0.5 (partly executed; current queue is above)
 

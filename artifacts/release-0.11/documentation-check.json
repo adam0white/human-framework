@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-09-08T17:14:41.522940+00:00",
+  "localLinksChecked": 252,
+  "missingLocalLinks": 0,
+  "livePayloads": 89,
+  "privatePaths404": 45,
+  "productionCampGroups": 9,
+  "originalGamesWithThreeViewportChecks": 10,
+  "deployedSource": "2c600240967ed42b2174f2c409349f62cadbf06e",
+  "scope": "Documentation/link/count verification against retained production evidence; no additional human or physical-device claim."
+}

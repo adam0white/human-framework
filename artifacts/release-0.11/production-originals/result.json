@@ -1,0 +1,150 @@
+{
+  "synthetic": true,
+  "base": "https://human.adamwhite.work",
+  "browser": "152.0.7977.77",
+  "checks": [
+    {
+      "route": "workshop",
+      "tabs": 5,
+      "savedWorldUnchanged": true,
+      "keyboard": true,
+      "viewports": [
+        375,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "shift",
+      "tabs": 5,
+      "savedWorldUnchanged": true,
+      "keyboard": true,
+      "viewports": [
+        375,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "courier",
+      "tabs": 5,
+      "savedWorldUnchanged": true,
+      "keyboard": true,
+      "viewports": [
+        375,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "courtyard",
+      "tabs": 5,
+      "savedWorldUnchanged": true,
+      "keyboard": true,
+      "viewports": [
+        375,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "commons",
+      "tabs": 5,
+      "savedWorldUnchanged": true,
+      "keyboard": true,
+      "viewports": [
+        375,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "commons-next",
+      "tabs": 5,
+      "savedWorldUnchanged": true,
+      "keyboard": true,
+      "viewports": [
+        375,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "watch",
+      "tabs": 5,
+      "savedWorldUnchanged": true,
+      "keyboard": true,
+      "viewports": [
+        375,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "signals",
+      "tabs": 5,
+      "savedWorldUnchanged": true,
+      "keyboard": true,
+      "viewports": [
+        375,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "service",
+      "tabs": 5,
+      "savedWorldUnchanged": true,
+      "keyboard": true,
+      "viewports": [
+        375,
+        390,
+        1280
+      ]
+    },
+    {
+      "route": "service-plan",
+      "tabs": 5,
+      "savedWorldUnchanged": true,
+      "keyboard": true,
+      "viewports": [
+        375,
+        390,
+        1280
+      ]
+    }
+  ],
+  "screenshots": [
+    "workshop-375.png",
+    "workshop-390.png",
+    "workshop-1280.png",
+    "shift-375.png",
+    "shift-390.png",
+    "shift-1280.png",
+    "courier-375.png",
+    "courier-390.png",
+    "courier-1280.png",
+    "courtyard-375.png",
+    "courtyard-390.png",
+    "courtyard-1280.png",
+    "commons-375.png",
+    "commons-390.png",
+    "commons-1280.png",
+    "commons-next-375.png",
+    "commons-next-390.png",
+    "commons-next-1280.png",
+    "watch-375.png",
+    "watch-390.png",
+    "watch-1280.png",
+    "signals-375.png",
+    "signals-390.png",
+    "signals-1280.png",
+    "service-375.png",
+    "service-390.png",
+    "service-1280.png",
+    "service-plan-375.png",
+    "service-plan-390.png",
+    "service-plan-1280.png"
+  ],
+  "errors": []
+}

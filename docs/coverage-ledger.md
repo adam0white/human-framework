@@ -1,8 +1,12 @@
 # Executable coverage and research boundaries
 
-Snapshot updated 2026-09-08 after the private actor-local feasibility study; public app 0.9.0, laboratory engine 0.3.0, original games and rain chapter Human 0.1.0, Watch, Last Light, Service Day and Shared Promise Human 0.1.1, portable runtime/Human 0.1.1 and clock 0.1.0. This ledger distinguishes the [laboratory kernel](../src/core/index.js), [scenario data](../src/scenarios/index.js), [experiment runner](../src/experiments.js), and narrower [portable host components](portable-runtime.md). It narrows the broader [framework proposal](framework-proposal.md); responsibilities listed in that proposal are not evidence that their mechanisms have been implemented.
+Snapshot updated 2026-09-08 through delivered app 0.11.0, laboratory engine 0.3.0, original games and rain chapter Human 0.1.0, Watch, Last Light, Service Day and Shared Promise Human 0.1.1, portable runtime/Human 0.1.1 and clock 0.1.0. This ledger distinguishes the [laboratory kernel](../src/core/index.js), [scenario data](../src/scenarios/index.js), [experiment runner](../src/experiments.js), and narrower [portable host components](portable-runtime.md). It narrows the broader [framework proposal](framework-proposal.md); responsibilities listed in that proposal are not evidence that their mechanisms have been implemented.
 
 **Implemented** means an executable transition, interface, or record exists. **Proxy** means an implemented quantity or rule is an authored engineering approximation without human calibration. **Unmodeled** means the kernel supplies no mechanism for that function. A proposed interface below is a research design, not an existing plugin API. A rejection test states what would count against adding a mechanism or making the associated claim.
+
+## App 0.11 coverage update
+
+[The camp](release-0.11.md) publicly selects a separate full camp 0.2.0/story 0.1.0 host: prospective/durable assembly, automatic available recovery, owned meals, consent-based handover, actual legacy migration and one earned supply window. Five-slot persistence and UI support are delivered. The private fixture is no longer the only implementation, while old hosts/runtime/source studies remain unchanged. No generic campaign, cognition or physiological-calibration claim is promoted. Outcomes after the supply window remain retained records pending their next meaningful use. [Reviewed comparisons](camp-comparison-reviewed.md) · [Validator scope/cost](camp-validator.md).
 
 ## Compact interfaces and continuous-work update
 

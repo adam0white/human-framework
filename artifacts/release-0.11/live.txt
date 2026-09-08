@@ -1,0 +1,5 @@
+
+> human-framework@0.11.0 verify:live
+> node scripts/verify-live.js /tmp/hf-0.11-live.json
+
+Verified app 0.11.0, engine 0.3.0, 89 exact public payloads and 45 private/missing 404s at 2c600240967ed42b2174f2c409349f62cadbf06e.
