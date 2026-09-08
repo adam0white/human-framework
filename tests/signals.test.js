@@ -101,3 +101,12 @@ test('earlier delivery releases the evening launch; safe ridge delivery preserve
 test('alternating busy refusals cannot exhaust the replay budget',()=>{
  let s=ask(game.createSignals(),'ridge');for(let i=0;i<500;i++)s=game.requestTask(s,i%2?'radio':'canal');assert.ok(s.commands.length<5);assert.deepEqual(game.restoreSignals(json(game.exportSignals(s))),s);
 });
+test('exhausting meaningful action budget still permits elapsed work, interruption and terminal save/resume',()=>{
+ let idle=game.createSignals();for(let i=0;i<100;i++){try{idle=game.requestTask(idle,'rest');idle=game.interruptTask(idle);}catch(e){assert.equal(e.code,'COMMAND_LIMIT');break;}}
+ const saved=game.restoreSignals(json(game.exportSignals(idle))),ended=game.advanceTo(saved,32);assert.equal(ended.outcome.delivered,false);assert.equal(ended.clock.now,32);assert.deepEqual(game.restoreSignals(json(game.exportSignals(ended))),ended);
+ let active=game.createSignals();for(let i=0;i<93;i++){active=ask(active,'rest');active=game.interruptTask(active);}active=ask(active,'rest');active=game.advanceTo(active,1);assert.ok(active.job.task==='rest');
+ active=game.restoreSignals(json(game.exportSignals(active)));active=game.interruptTask(active);for(let at=2;at<=32;at++)active=game.advanceTo(active,at);assert.equal(active.outcome.delivered,false);assert.deepEqual(game.restoreSignals(json(game.exportSignals(active))),active);
+});
+test('a closed crossing identifies its direct lock observation in both receipt and journal',()=>{
+ const s=finish(game.createSignals({situation:'shut'}),'canal');assert.equal(s.deliveries.at(-1).source,'canal-lock');assert.equal(s.deliveries.at(-1).channel,'direct');assert.ok(s.recent.some(r=>/At the canal lock: closed/.test(r.message)));assert.ok(!s.recent.some(r=>/Landing keeper reply/.test(r.message)));
+});

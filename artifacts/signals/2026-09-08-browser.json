@@ -1,0 +1,48 @@
+{
+  "browser": "152.0.7977.77",
+  "scope": "Desktop Chrome at mobile viewport widths; local isolated Signals route. No physical-device or public-deployment claim.",
+  "results": [
+    {
+      "width": 320,
+      "height": 844,
+      "firstActionBottom": 441.65625,
+      "noOverflow": true,
+      "paidRadioAndStaleReceipt": true,
+      "downloadImport": true,
+      "invalidImportPreserved": true,
+      "launchAndOvernightRoutes": true,
+      "failedCrossingPivot": true,
+      "finiteFailure": true,
+      "pausedReload": true,
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "firstActionBottom": 403.15625,
+      "noOverflow": true,
+      "paidRadioAndStaleReceipt": true,
+      "downloadImport": true,
+      "invalidImportPreserved": true,
+      "launchAndOvernightRoutes": true,
+      "failedCrossingPivot": true,
+      "finiteFailure": true,
+      "pausedReload": true,
+      "pageErrors": []
+    },
+    {
+      "width": 1280,
+      "height": 844,
+      "firstActionBottom": 404.265625,
+      "noOverflow": true,
+      "paidRadioAndStaleReceipt": true,
+      "downloadImport": true,
+      "invalidImportPreserved": true,
+      "launchAndOvernightRoutes": true,
+      "failedCrossingPivot": true,
+      "finiteFailure": true,
+      "pausedReload": true,
+      "pageErrors": []
+    }
+  ]
+}

@@ -62,7 +62,7 @@ export function retainReport(previous,incoming){return copy(!previous||incoming.
 function deliver(s,{value,observedAt,source,channel}){
  const r={sequence:++s.sequence,observer:'carrier',source,channel,cue:'landing',value,observedAt,deliveredAt:s.clock.now};
  s.notebook=retainReport(s.notebook,r);s.deliveries.push(r);if(s.deliveries.length>8)s.deliveries.shift();
- note(s,`${source==='lookout'?'Your lookout':'Landing keeper reply'}: ${value}, observed at ${observedAt}; received at ${s.clock.now}${r.observedAt<s.notebook.observedAt?'. The notebook keeps your newer observation':''}.`);
+ note(s,`${source==='lookout'?'Your lookout':source==='canal-lock'?'At the canal lock':'Landing keeper reply'}: ${value}, observed at ${observedAt}; received at ${s.clock.now}${r.observedAt<s.notebook.observedAt?'. The notebook keeps your newer observation':''}.`);
 }
 function terminal(s,delivered,route){
  if(s.job)stop(s);for(const e of [...s.clock.queue])s.clock=cancelEvent(s.clock,e.id);s.inFlight=[];
@@ -94,6 +94,8 @@ function due(s,event){
 }
 function reason(s,task,body=s.person.body){
  if(s.outcome)return ['ENDED','The episode has ended. Start fresh to try another route.'];
+ // Leave room for advance, an optional stop, final advance, and terminal refusal.
+ if(s.commands.length>=MAX_COMMANDS-4)return ['ACTION_BUDGET','No new actions remain in this journey. Advance time to finish the current action or reach closing; stopping active work is still available.'];
  if(s.job.task!=='idle')return ['BUSY','Finish or stop the current action first.'];
  if(task==='canal'&&!s.resources.fares)return ['NO_FARE','No fares remain. The ridge is still available.'];
  if(task==='radio'&&!s.resources.charges)return ['NO_CHARGE','No radio charges remain. The lookout is still available.'];
@@ -104,12 +106,14 @@ function record(s,command,deduplicate=false){
  const previous=s.commands.at(-1);
  if(command.type==='advance'&&previous?.type==='advance'){previous.to=command.to;return;}
  if(deduplicate&&previous?.type==='task'){s.commands[s.commands.length-1]=copy(command);return;}
- if(s.commands.length>=MAX_COMMANDS)fail('COMMAND_LIMIT','This bounded episode has reached its command limit. Download it or start fresh.');
+ if(s.commands.length>=MAX_COMMANDS)fail('COMMAND_LIMIT','Replay command limit exceeded.');
  s.commands.push(copy(command));
 }
 function taskRaw(s,task,recording=true){
  if(typeof task!=='string'||!Object.hasOwn(SIGNALS_TASKS,task))fail('INVALID_COMMAND','Unknown action.');
- const rejected=reason(s,task),deduplicate=Boolean(rejected&&s.lastResponse?.accepted===false&&s.lastResponse.at===s.clock.now);s.lastResponse={at:s.clock.now,task,accepted:!rejected,code:rejected?.[0]??'ACCEPTED',reason:rejected?.[1]??`${SIGNALS_TASKS[task].label}: ${SIGNALS_TASKS[task].duration} minutes. Advance time when ready.`};
+ const rejected=reason(s,task),deduplicate=Boolean(rejected&&s.lastResponse?.accepted===false&&s.lastResponse.at===s.clock.now);
+ if(rejected?.[0]==='ACTION_BUDGET')fail('COMMAND_LIMIT',rejected[1]);
+ s.lastResponse={at:s.clock.now,task,accepted:!rejected,code:rejected?.[0]??'ACCEPTED',reason:rejected?.[1]??`${SIGNALS_TASKS[task].label}: ${SIGNALS_TASKS[task].duration} minutes. Advance time when ready.`};
  // Refusals do not add an unbounded activity transcript.
  if(!rejected){stop(s);start(s,task);note(s,s.lastResponse.reason);}
  if(recording)record(s,{type:'task',task},deduplicate);return s;
