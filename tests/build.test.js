@@ -5,6 +5,21 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {createHash} from 'node:crypto';
 import {buildSite} from '../scripts/build.js';
+import {PUBLIC_PAGES} from '../scripts/public-pages.js';
+
+test('an unpublished static dependency blocks build before the previous output is cleared',async()=>{
+  const root=await mkdtemp(join(tmpdir(),'human-build-graph-'));
+  try{
+    for(const path of ['web','src/core','src/scenarios','src/human','src/runtime','src/games','src/legacy/v0.1','src/legacy/v0.2','src/cognition','dist'])await mkdir(join(root,path),{recursive:true});
+    for(const source of Object.values(PUBLIC_PAGES))await writeFile(join(root,source),'public page');
+    await writeFile(join(root,'package.json'),'{"version":"0.7.0"}');
+    await writeFile(join(root,'web/app.js'),'import "../src/cognition/private.js";');
+    await writeFile(join(root,'src/cognition/private.js'),'export const secret=1;');
+    await writeFile(join(root,'dist/previous.txt'),'previous build remains');
+    await assert.rejects(()=>buildSite({root}),/private|unavailable/i);
+    assert.equal(await readFile(join(root,'dist/previous.txt'),'utf8'),'previous build remains');
+  }finally{await rm(root,{recursive:true,force:true});}
+});
 
 test('deployment contains the playable module graph and excludes private project files',async()=>{
   const root=await mkdtemp(join(tmpdir(),'human-build-'));
@@ -28,6 +43,7 @@ test('deployment contains the playable module graph and excludes private project
       'web/commons-next.html':'<script type="module" src="/web/commons-next.js"></script>',
       'web/watch.html':'<script type="module" src="/web/watch.js"></script>',
       'web/signals.html':'<script type="module" src="/web/signals.js"></script>',
+      'web/service.html':'<script type="module" src="/web/service.js"></script>',
       'src/coordination/attempt-clock.js':'private experimental helper',
       'src/cognition/observation-memory.js':'private experimental memory',
       'web/styles.css':'body{color:teal}',
@@ -63,7 +79,7 @@ test('deployment contains the playable module graph and excludes private project
     assert.ok(files.includes('src/games/commons.js'));
     assert.ok(files.includes('src/games/workshop.js'));
     assert.ok(files.includes('src/legacy/v0.2/index.js'));
-    for(const route of ['games','shift','courtyard','courier','commons','commons-next','watch','signals']) {
+    for(const route of ['games','shift','courtyard','courier','commons','commons-next','watch','signals','service']) {
       assert.ok(files.includes(`${route}/index.html`),`${route} has an explicit public entry`);
       assert.equal(await readFile(join(root,`dist/${route}/index.html`),'utf8'),await readFile(join(root,`web/${route}.html`),'utf8'));
     }
@@ -79,13 +95,13 @@ test('deployment contains the playable module graph and excludes private project
 });
 
 test('deployment refuses symlinked public roots, their ancestors, and the entry page',async()=>{
-  for(const redirect of ['web','src','src/legacy','index.html','web/workshop.html','web/games.html','web/shift.html','web/courtyard.html','web/courier.html','web/commons.html','web/commons-next.html','web/watch.html','web/signals.html','src/runtime']) {
+  for(const redirect of ['web','src','src/legacy','index.html','web/workshop.html','web/games.html','web/shift.html','web/courtyard.html','web/courier.html','web/commons.html','web/commons-next.html','web/watch.html','web/signals.html','web/service.html','src/runtime']) {
     const root=await mkdtemp(join(tmpdir(),'human-build-links-'));
     try {
       for(const path of ['web','src/core','src/scenarios','src/human','src/runtime','src/games','src/legacy/v0.1','src/legacy/v0.2','research','research/core','research/scenarios','research/v0.1'])await mkdir(join(root,path),{recursive:true});
       await writeFile(join(root,'index.html'),'public');
       await writeFile(join(root,'web/workshop.html'),'public game');
-      for(const route of ['games','shift','courtyard','courier','commons','commons-next','watch','signals'])await writeFile(join(root,`web/${route}.html`),'public game');
+      for(const route of ['games','shift','courtyard','courier','commons','commons-next','watch','signals','service'])await writeFile(join(root,`web/${route}.html`),'public game');
       await writeFile(join(root,'research/private.js'),'private research');
       await writeFile(join(root,'research/private.html'),'private research');
       await rm(join(root,redirect),{recursive:true,force:true});

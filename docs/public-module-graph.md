@@ -1,0 +1,13 @@
+# Static public-module build check
+
+The build now parses and links every selected public JavaScript module against the exact JavaScript allowlist **before clearing the previous output**. Missing/private targets, unsupported bare/remote imports, invalid syntax and missing/ambiguous exports stop the build. Cycles and comments/string literals are handled by Node's parser, not a regular-expression import scan.
+
+[Wrapper](../scripts/public-module-graph.js) · [Parser/linker child](../scripts/inspect-static-modules.mjs) · [Build integration](../scripts/build.js) · [Tests](../tests/public-module-graph.test.js).
+
+The child uses Node's built-in `vm.SourceTextModule`, under `--experimental-vm-modules`, to inspect requested dependencies and link modules without calling `evaluate`. Compilation/linking and evaluation are distinct API stages. [Node 22 documentation](https://nodejs.org/download/release/v22.0.0/docs/api/vm.html#moduledependencyspecifiers). Target modules are not executed by this guard, and a hanging/throwing top-level body is covered by a nonexecution test. VM is not being used as a security sandbox; ordinary build tooling still executes its own trusted code. The process is bounded by a ten-second timeout. No package dependency or application-runtime requirement is added.
+
+Review caught an initial mistake: file identity is not module identity when query strings, fragments or encoded URL aliases differ. Chrome reproduced conflicting star exports that the first checker incorrectly accepted. The current guard conservatively rejects `?`, `#` and `%` in static import specifiers, including empty modifiers. It does not pretend that two browser module instances are one file instance. Current public sources require none of those forms. A future loader using them needs explicit URL-identity support and review.
+
+**Scope:** static JavaScript imports and reexports only. Dynamic/computed imports, HTML script/style links, CSS URLs, fetch/worker assets and runtime behavior are outside this check; canonical browser QA and live byte verification remain required. The guard is not a complete browser compatibility or confidentiality proof. It cannot decide whether an intentionally allowlisted file's content belongs in public source.
+
+Tests cover missing private modules, Unicode escape decoding, local browser paths, real export conflicts, cycles, nondependencies in comments/strings, syntax errors, duplicate/noncanonical paths, URL alias rejection, nonexecution and preserving the old build on failure. The current static graph and tests pass on Node 26.8.1 and minimum Node 22.0.0. Existing payload contents are unchanged by the validator itself; only new game/presentation assets change this release.

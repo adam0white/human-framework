@@ -10,7 +10,7 @@ test('local server serves the app and modules but refuses traversal and symlink 
   await mkdir(join(root,'src'));
   await mkdir(join(root,'web'));
   await writeFile(join(root,'web/workshop.html'),'<h1>Workshop</h1>');
-  for(const route of ['games','shift','courtyard','courier','commons','commons-next','watch','signals'])await writeFile(join(root,`web/${route}.html`),`<h1>${route}</h1>`);
+  for(const route of ['games','shift','courtyard','courier','commons','commons-next','watch','signals','service'])await writeFile(join(root,`web/${route}.html`),`<h1>${route}</h1>`);
   await writeFile(join(root,'web/private.html'),'sensitive test fixture');
   await writeFile(join(root,'index.html'),'<h1>Laboratory</h1>');
   await writeFile(join(root,'src','model.js'),'export const model = 1;');
@@ -24,7 +24,7 @@ test('local server serves the app and modules but refuses traversal and symlink 
   assert.equal(page.status,200);assert.match(await page.text(),/Laboratory/);
   const workshop=await fetch(`${base}/workshop`);
   assert.equal(workshop.status,200);assert.match(await workshop.text(),/Workshop/);
-  for(const route of ['games','shift','courtyard','courier','commons','commons-next','watch','signals'])for(const suffix of ['','/']) {
+  for(const route of ['games','shift','courtyard','courier','commons','commons-next','watch','signals','service'])for(const suffix of ['','/']) {
     const response=await fetch(`${base}/${route}${suffix}`);
     assert.equal(response.status,200,route+suffix);assert.equal(await response.text(),`<h1>${route}</h1>`);
   }

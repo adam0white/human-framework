@@ -5,6 +5,7 @@ import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {ENGINE_VERSION} from '../src/core/index.js';
 import {PUBLIC_PAGES} from './public-pages.js';
+import {verifyStaticModules} from './public-module-graph.js';
 
 const projectRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const headers=`/*
@@ -32,6 +33,7 @@ export async function buildSite({root=projectRoot}={}) {
       if(entry.isFile()&&!entry.name.startsWith('.')&&['.js','.css','.svg','.png','.ico'].includes(extname(entry.name)))files.push(`${directory}/${entry.name}`);
     }
   }
+  const moduleGraph=verifyStaticModules(await Promise.all(files.filter(file=>file.endsWith('.js')).map(async file=>({path:file,source:await readFile(join(base,file),'utf8')}))));
   await rm(output,{recursive:true,force:true});
   await mkdir(output,{recursive:true});
   await writeFile(join(output,'_headers'),headers);
@@ -52,10 +54,10 @@ export async function buildSite({root=projectRoot}={}) {
   } catch { /* Local play and tests do not require Git. */ }
   const release={appVersion,engineVersion:ENGINE_VERSION,commit,dirty,assetsSha256:digest.digest('hex')};
   await writeFile(join(output,'release.json'),JSON.stringify(release,null,2)+'\n');
-  return {directory:output,files:[...files,'release.json'],release};
+  return {directory:output,files:[...files,'release.json'],release,moduleGraph};
 }
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href) {
   const result=await buildSite();
-  process.stdout.write(`Built ${result.files.length} public files in dist. Engine ${result.release.engineVersion}.\n`);
+  process.stdout.write(`Built ${result.files.length} public files in dist. Engine ${result.release.engineVersion}. Checked ${result.moduleGraph.modules} static modules and ${result.moduleGraph.staticEdges.length} import edges.\n`);
 }
