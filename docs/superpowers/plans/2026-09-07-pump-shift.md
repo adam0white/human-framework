@@ -16,10 +16,10 @@ No runtime LLM. Single worker/no social effects. No shared-human or old-host beh
 - [x] Same whole-game author: implement `web/shift.html`, `.js`, `.css` against the documented projected view; retain optional controller help, local saves, download/upload and separate command replay. No direct authoritative state edits.
 - [x] Root: integrate public `/shift/` entry, local server and navigation with meaningful packaging tests; keep existing module bytes and benchmark identities intact.
 - [x] Root/critic: run strategy and learning comparisons, probe terminal/interrupt/farming issues, preserve unfavorable findings and exact source hashes. Review design and implementation through overlapping fresh lenses; fix reproduced defects.
-- [ ] Root: browser QA at desktop and narrow viewport, full tests/build/dry-run, docs/roadmap update, commit/push/deploy, exact production verification and concise user handoff.
+- [x] Root: browser QA at desktop and narrow viewport, full tests/build/dry-run, docs/roadmap update, commit/push/deploy, exact production verification and concise user handoff.
 
 Each substantive behavior starts with an observed failing test and ends with its focused passing checks. Full test suite and deployment guards run once the integrated files are stable. The independent scientific memo informs interpretation without promoting a game curve into an empirical law.
 
 ## Parallel expansion and integration status
 
-The user expanded the accepted plan to whole-game lanes. Three GPT-6 Astra agents at ultra effort implemented Pump Yard, Courier Round and The last water on isolated `codex/*` branches, then reviewed another author's game. All lane commits and verified fixes are merged. Root added a game chooser, six explicit public entries, app-version metadata and exact live verification. The integrated 186-test suite and deployment dry run pass. The final push/deploy/live verification box stays open until production is actually checked.
+The user expanded the accepted plan to whole-game lanes. Three GPT-6 Astra agents at ultra effort implemented Pump Yard, Courier Round and The last water on isolated `codex/*` branches, then reviewed another author's game. All lane commits and verified fixes are merged. Root added a game chooser, six explicit public entries, app-version metadata and exact live verification. The integrated 186-test suite and deployment dry run pass. Push, deployment and exact production/browser verification are complete; the delivery record preserves the evidence.

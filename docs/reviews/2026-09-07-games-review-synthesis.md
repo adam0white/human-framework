@@ -1,6 +1,6 @@
 # New-game reviews and disposition
 
-2026-09-07. Review notes for the app 0.4 candidate. The reviews completed and their verified fixes are being integrated. Live verification is recorded separately in the release record.
+2026-09-07. Review notes for the app 0.4 candidate. The reviews completed and their verified fixes are integrated. Live verification is recorded separately in the release record.
 
 ## Scope and independence
 
@@ -54,4 +54,4 @@ Several coverage concerns refer to the older snapshot: the later courier volunta
 
 ## Remaining decisions
 
-The verified fixes are complete; finish exact production verification. Then compare a small shared host helper and a host-native stamina implementation against the current boundary, preserving the same relevant world behavior. Choose what to retain from recorded authoring effort and a small ordinary-play explanation test. Keep the single-person controls, older replay bytes and negative outcomes. No broad rewrite is authorized by a reviewer's confident wording alone.
+The verified fixes and exact production checks are complete; see the [delivery record](../release-0.4.md). Then compare a small shared host helper and a host-native stamina implementation against the current boundary, preserving the same relevant world behavior. Choose what to retain from recorded authoring effort and a small ordinary-play explanation test. Keep the single-person controls, older replay bytes and negative outcomes. No broad rewrite is authorized by a reviewer's confident wording alone.

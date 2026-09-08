@@ -1,6 +1,6 @@
 # Three parallel small games: app 0.4
 
-2026-09-07. Release candidate; production verification is still pending. Laboratory engine 0.3.0, human component 0.1.0 and the original workshop runtime/save version remain unchanged.
+2026-09-07. Delivered and verified at [human.adamwhite.work/games/](https://human.adamwhite.work/games/). Laboratory engine 0.3.0, human component 0.1.0 and the original workshop runtime/save version remain unchanged.
 
 ## Delivered scope
 
@@ -34,7 +34,9 @@ All **186 automated tests pass** after the final fixes. The build produces **46 
 
 Each author ran isolated desktop-browser QA, including small viewports, pending save/reload/import where supported, terminal results and replay. Root independently checked all three integrated game pages at 390 px, verified a pump repair/flow test persisted after reload, resumed a half-loaded courier parcel, and borrowed/returned water across reload. The game chooser was checked at desktop, 390 px and 320 px. These are desktop browser viewport checks, not measurements on physical mobile hardware.
 
-The new `verify:live` command checks current Git cleanliness, pushed/current/build identity, the complete local payload digest, the exact live manifest, every served payload byte, response headers and 11 private/missing 404s. Regression fixtures reject a removed asset, changed header file and dirty source tree; a valid independent fixture passes. Production verification remains the final release step.
+The new `verify:live` command checks current Git cleanliness, pushed/current/build identity, the complete local payload digest, the exact live manifest, every served payload byte, response headers and 11 private/missing 404s. Regression fixtures reject a removed asset, changed header file and dirty source tree; a valid independent fixture passes. Production verification passed: all 44 served payloads match the release exactly, required headers are present, and all 11 private/missing paths return 404. The [machine-readable verification record](../artifacts/release-0.4-verification.json) preserves the first publication's source `ca00695b6e6ae243741609969f7ad354216013c9`, Worker version `5762393b-04e2-4d57-876a-e7e20cbbf260`, payload digest `313852638bc1323533ee3ec8ff4406b923fd4bb47a5cfdc602c1da168de17247`, exact route hashes and browser results. Later documentation-only commits retain these payload bytes; [live release metadata](https://human.adamwhite.work/release.json) supplies the current source identity.
+
+A fresh isolated Chrome 152 session exercised the production chooser, pump tool/travel/repair/verification and reload, courier one-click delivery plus partial interval/reload/early ending, and accepted water loan/reload/on-time repayment. Every flow passed at 390 px with no horizontal overflow or page JavaScript errors; the chooser also passed at 1280 px. Saves stayed separate between games. The isolated browser was closed afterward, so these checks did not alter the user's saved production runs.
 
 ## What this earns, and the next decision
 
