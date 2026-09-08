@@ -1,5 +1,5 @@
 /** Replaceable deterministic policies. Only detached actor-local views enter here. */
-export const ARMS=Object.freeze(['cart-only','no-radio-earliest','fixed-early','fixed-conservative','contact','reactive-radio','notebook','notebook-no-confirm']);
+export const ARMS=Object.freeze(['cart-only','no-radio-earliest','fixed-early','fixed-conservative','contact','one-way-report','reactive-radio','notebook','notebook-no-confirm']);
 const radioArms=new Set(['reactive-radio','notebook','notebook-no-confirm']);
 const take=(state,action,reason)=>({state,action,reason});
 function fact(view,cue,{reactive=false}={}){
@@ -42,6 +42,7 @@ export function chooseAction(view,policyState={},arm){
   if(v.local.repairMinutes===null)return take(s,{task:'inspect'},'Inspect own station before choosing paid repair.');
   if(arm==='contact'&&v.actorId==='keeper'&&!s.contactVisited&&v.local.repairMinutes===6){s.contactVisited=true;return take(s,{task:'travel',to:'dock'},'Price a six-minute direct visit to learn the launch notice.');}
   if(radioArms.has(arm)&&!s.reportSent&&available(v,'radio'))return report(v,s);
+  if(arm==='one-way-report'&&v.actorId==='receiver'&&!s.reportSent&&available(v,'radio'))return report(v,s);
   const notebook=arm.startsWith('notebook'),reactive=arm==='reactive-radio';
   if(notebook){
     const ownProposal=v.proposals.filter(p=>p.author===v.actorId).at(-1);
@@ -82,7 +83,8 @@ export function chooseAction(view,policyState={},arm){
       }
       s.proposed=true;
     }
-    const releaseAt=s.releaseAt??(arm==='fixed-conservative'?13:arm==='fixed-early'?7:v.now);
+    const inlet=fact(v,'repairMinutes:dock');
+    const releaseAt=s.releaseAt??(arm==='fixed-conservative'?13:arm==='fixed-early'?7:arm==='one-way-report'&&inlet!==null?Math.max(v.now,inlet-2):v.now);
     if(v.now<releaseAt)return wait('Wait for the pre-agreed or locally proposed release minute.');
     if(v.now+5>launch)return wait('Known launch notice makes a new release late.');
     return take(s,{task:'release'},'Release own water; remote acknowledgment is not a physical prerequisite.');
@@ -94,13 +96,14 @@ export function chooseAction(view,policyState={},arm){
   if(arm==='fixed-early'){receiveFrom=11;receiveUntil=12;}
   if(arm==='fixed-conservative'){receiveFrom=17;receiveUntil=18;}
   if(arm==='contact'){receiveFrom=24;receiveUntil=25;}
+  if(arm==='one-way-report'){receiveFrom=Math.max(11,v.local.repairMinutes+2);receiveUntil=18;}
   if(radioArms.has(arm)){
     const remoteWork=fact(v,'repairMinutes:valve',{reactive});
     if(remoteWork!==null){receiveFrom=remoteWork+6;receiveUntil=remoteWork+7;}
     if(accepted){receiveFrom=accepted.terms.attendFrom;receiveUntil=accepted.terms.attendUntil;}
   }
   if(v.now>=receiveFrom&&v.now<receiveUntil&&v.now<launch)return take(s,{task:'attend',minutes:1},'Attend the paid local window where a legal remote release may arrive.');
-  const protectWindow=arm==='fixed-early'||Boolean(accepted)||(radioArms.has(arm)&&fact(v,'repairMinutes:valve',{reactive})===6);
+  const protectWindow=arm==='fixed-early'||Boolean(accepted)||(arm==='one-way-report'&&v.local.repairMinutes===2)||(radioArms.has(arm)&&fact(v,'repairMinutes:valve',{reactive})===6);
   if(available(v,'cartWater')&&v.now+5<=launch&&(v.now>=receiveUntil||(v.now>=cartLast&&(!protectWindow||receiveUntil>launch))))return take(s,{task:'cart'},'Take cart insurance while its own launch deadline still permits delivery.');
   return wait('No local work is needed before the declared receiving or fallback window.');
 }

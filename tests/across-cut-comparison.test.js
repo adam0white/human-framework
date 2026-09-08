@@ -11,10 +11,10 @@ test('comparison evidence hashes complete detached local inputs and rejects muta
   dictionary[id].now=2;assert.throws(()=>m.resolveInput(dictionary,id),/hash/);
 });
 
-test('eight legal rival families share detached actor-local decisions',async()=>{
+test('nine legal rival families share detached actor-local decisions',async()=>{
   const m=await import('../src/experiments/across-cut/comparison/policies.js').catch(()=>null);
   assert.ok(m?.chooseAction,'Actor-local rival policies must exist.');
-  assert.equal(m.ARMS.length,8);
+  assert.equal(m.ARMS.length,9);
   const view={actorId:'receiver',now:0,horizon:30,ended:false,channel:{mode:'reliable',minDelay:2,maxDelay:2,lossPossible:false},body:{body:{fatigue:.15,hunger:.15}},position:6,location:'dock',inventory:{cartWater:{available:1},meal:{available:1},radio:{available:4}},local:{station:'dock',repairMinutes:null,repairProgress:null,launchAt:27},job:null,notebook:[],inbox:[],sent:[],proposals:[],contributions:[],paid:{}};
   const before=structuredClone(view);
   assert.equal(m.chooseAction(view,{},'cart-only').action.task,'cart');
