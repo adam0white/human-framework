@@ -29,3 +29,9 @@ Record full exposed receipts, decisions, costs, actual outcomes, state bytes and
 ## Verification before delivery
 
 Tests first: both routes, changing report changes choice, inaccessible hidden changes leave identical views/available actions/visible-event time, report sampling versus delayed delivery, old replies versus newer direct observations, deadline ties, charge/fare ownership, paid interruption and practice, duplicate/early receipts, snapshots mid-request/in-flight/travel/terminal, hostile imports, bounded refusals and pause/reload clock policy. Run full suite. Parent registers only `signals/index.html: web/signals.html`; ordinary JS/CSS game assets already fall within the existing allowlist. Private experiment stays under scripts/artifacts/docs and imports cognition only there.
+
+## Design review amendment, before experiment implementation
+
+The immediate fourteen-minute ridge is a guaranteed primary-delivery baseline in every authored situation. Time and capacity counters alone give its slower arrival no later purpose. Add a visible service window: the evening launch can sail only when the lens reaches the beacon **before minute 12**. A later delivery still restores the overnight beacon before 32, but the launch stays in harbor. Early arrival immediately clears the waiting launch; no future sail is claimed after a terminal state. Minute 12 is a visible event; tied arrival misses the launch. This gives time an explicit consequence without penalizing the reliable ridge or hiding a reward. The comparison must include immediate ridge and immediate canal baselines, and must not claim observations are needed for primary delivery.
+
+Consecutive refused commands at the same minute are coalesced regardless of requested task. Meaningful accepted actions and interruptions retain a maximum 192-command episode budget; ordinary play needs far fewer. The first busy refusal after an accepted command must remain in replay.
