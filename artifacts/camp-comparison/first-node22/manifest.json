@@ -1,0 +1,32 @@
+{
+  "sourceCommit": "9970cdc7283d88f36af99d65dbda78c88216729a",
+  "files": {
+    "earned-build-first.json": "6ee82eb04f23a570f69f77bf5dad7f64d40f9c7e85c5955cfa1211a4ecf045a0",
+    "earned-stock-first.json": "7b7939786d35309c4cc7e0002c89b9c819ebbc5985eaad03e7fdd6994343a2d3",
+    "import-build-first.json": "0c2c9b9c4b76689aefd371ca61234486d1443f0242321d36ac6d3ba3bd4cb7ce",
+    "import-stock-first.json": "1fec221e7a71da2c1586d38ecec7d72dd2aa2e54c4b196dc944392fce22ec834",
+    "kernel-build-first-prospective-active-idle.json": "5756da405cb8ff81ee4374180efeaba313ef928ffc30e78e22b3e6002553fda8",
+    "kernel-build-first-prospective-automatic.json": "71f044ccf10fe39205d0025918c3d9c5c09de3215f70111a60a3a255e6243762",
+    "kernel-build-first-snapshot-active-idle.json": "c1c6ed3972fdcdebf892ad1e993a2befa080df4f1da8c9bd984a2fc9449bb4be",
+    "kernel-build-first-snapshot-automatic.json": "80431177904a972262427e9dcb229c7ce2a4443dafc630f799bccaec8123ef77",
+    "kernel-stock-first-prospective-active-idle.json": "dd95d574533da45b90c41b604d7168c3cadeae3c6a5d661d4ce516414dca7909",
+    "kernel-stock-first-prospective-automatic.json": "8270dd3c4d6aab7e66272e17ea39b19f0e2105cdfb08882f73c886d71efbb40f",
+    "kernel-stock-first-snapshot-active-idle.json": "1a092c2cf841caf08832a5e6a6e3e28fa3e1eba0c2426cca54870a30031c1e60",
+    "kernel-stock-first-snapshot-automatic.json": "57229732f2558706353abab3bc9b3b78764d5e413bbdba31c0deaac96a59023b",
+    "late-ferry.json": "a9cb70d4b616d1b63223d4a7db8faf5de9d9360d60ce0c3e5c7b95afecc170e4",
+    "old-controls.json": "3f772bbd51510dc2a45685fca599375f1c32425b8fff541264e589e275220afa",
+    "owned-meal-import.json": "39159ccd689af1cb0fdc45dd0e4af951bf35905d354703543ed23113c8e98802",
+    "private-supplied-state.json": "1193f4c8ee64dbd54cdd5db726209380a4bd16bf6a8ecd181011915da123ee06",
+    "rain-import-ended.json": "c7497f0d275553f64b6c2566b884580d78532534a4aa9c4b6667fdf6cae84053",
+    "rain-import-ferry.json": "bb9e98e9389c30e4326666837450912894ff0036288dbcc7ebe396d1da47648f",
+    "rain-import-packing.json": "a175b148726e24fc7ccb890999d6a1113449ea6b2fc1ce0c4e9607ce04daa28c",
+    "report.json": "bc0c52461924a0c35fad202cee968f1d111c64ee1acf937197783aabf21504c6",
+    "surplus-early-ending.json": "69ededbdf47420bbd9fea92bda4cd5c58a7f448cf4595c15c155ac6ab5aa463d",
+    "work-handover.json": "d8e7986afe385d38585b337866fd0c1062f8fc6010529792fcf95d4f6e67b06f",
+    "work-prospective-active-idle.json": "ee49989585f727178f682d927faaeb67a97ef2127042770e4e126e27ba3b025b",
+    "work-prospective-automatic.json": "ef211aacab130bf7e6ea8ef2e6f2d536b576e0506d85ef24cd22f9d88731d735",
+    "work-snapshot-active-idle.json": "6343eae521e6d0203803bb628de75b28fd7d9af0b79f7ab3983204e62b79c930",
+    "work-snapshot-automatic.json": "f78db0fc673282765b80dd09b6d63d154550e8404f3f50f886bded67e8260272",
+    "work-stop-resume.json": "7b027483b5e0da319d686984843eb4373aa6f516ccb7be0909e393243a1526bf"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "9970cdc7283d88f36af99d65dbda78c88216729a",
+  "reports": [
+    "first-node26",
+    "first-node22",
+    "reserved-first-node26",
+    "reserved-first-node22"
+  ],
+  "payloadHashesVerified": 62,
+  "development": 26,
+  "reservedNowUnsealed": 3,
+  "node26Tests": 646,
+  "node22ComparisonTests": 7,
+  "recordReplayExact": true,
+  "finalReviewedSource": false
+}

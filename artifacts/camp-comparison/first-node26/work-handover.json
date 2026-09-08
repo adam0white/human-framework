@@ -1,0 +1,2053 @@
+{
+  "name": "work-handover",
+  "status": "passed",
+  "evidence": {
+    "initial": {
+      "format": "human-camp",
+      "version": 2,
+      "game": {
+        "version": "0.2.0",
+        "runtimeVersion": "0.1.1",
+        "humanVersion": "0.1.1",
+        "solo": false,
+        "options": {
+          "improvement": "prospective",
+          "recovery": "active-idle"
+        },
+        "origin": {
+          "format": "human-common-ground",
+          "version": 1,
+          "game": {
+            "version": "0.1.0",
+            "solo": false,
+            "clock": {
+              "version": "0.1.0",
+              "now": 187,
+              "nextEvent": 12,
+              "queue": [
+                {
+                  "id": "event:9",
+                  "at": 188,
+                  "type": "job-complete",
+                  "actorId": "player",
+                  "data": {
+                    "jobId": "build-workbench",
+                    "attemptId": "player:21"
+                  }
+                },
+                {
+                  "id": "event:11",
+                  "at": 207,
+                  "type": "job-complete",
+                  "actorId": "neighbor",
+                  "data": {
+                    "jobId": "build-garden",
+                    "attemptId": "neighbor:181"
+                  }
+                }
+              ]
+            },
+            "people": {
+              "player": {
+                "version": "0.1.0",
+                "id": "player",
+                "body": {
+                  "fatigue": 0.7033571428571322,
+                  "hunger": 0.5940000000000003
+                },
+                "skills": {
+                  "gathering": 0.4363718287081997,
+                  "construction": 0.26368207807796545
+                },
+                "observationBias": 0,
+                "minutes": 187,
+                "nextAttempt": 22,
+                "pending": {
+                  "id": "player:21",
+                  "action": {
+                    "actionId": "build-workbench",
+                    "targetId": "workbench",
+                    "durationMinutes": 28,
+                    "effort": 0.2,
+                    "exertive": true,
+                    "activity": "active",
+                    "skill": "construction"
+                  },
+                  "elapsedMinutes": 27,
+                  "capacity": {
+                    "allowed": true,
+                    "causes": [],
+                    "fatigueCost": 0.24200000000000002,
+                    "hungerCost": 0.056,
+                    "projectedFatigue": 0.7119999999999913,
+                    "projectedHunger": 0.5960000000000003
+                  },
+                  "bodyBefore": {
+                    "fatigue": 0.46999999999999126,
+                    "hunger": 0.5400000000000003
+                  },
+                  "skillBefore": 0.15269393213238341,
+                  "startedAt": 160
+                }
+              },
+              "neighbor": {
+                "version": "0.1.0",
+                "id": "neighbor",
+                "body": {
+                  "fatigue": 0.5804999999999972,
+                  "hunger": 0.10400000000000031
+                },
+                "skills": {
+                  "gathering": 0.1,
+                  "construction": 0.05
+                },
+                "observationBias": 0,
+                "minutes": 187,
+                "nextAttempt": 182,
+                "pending": {
+                  "id": "neighbor:181",
+                  "action": {
+                    "actionId": "build-garden",
+                    "targetId": "garden",
+                    "durationMinutes": 20,
+                    "effort": 0.2,
+                    "exertive": true,
+                    "activity": "active",
+                    "skill": "construction"
+                  },
+                  "elapsedMinutes": 0,
+                  "capacity": {
+                    "allowed": true,
+                    "causes": [],
+                    "fatigueCost": 0.23,
+                    "hungerCost": 0.04,
+                    "projectedFatigue": 0.8104999999999972,
+                    "projectedHunger": 0.14400000000000032
+                  },
+                  "bodyBefore": {
+                    "fatigue": 0.5804999999999972,
+                    "hunger": 0.10400000000000031
+                  },
+                  "skillBefore": 0.05,
+                  "startedAt": 187
+                }
+              }
+            },
+            "jobs": {
+              "player": {
+                "id": "build-workbench",
+                "label": "Workbench: fit the tools",
+                "detail": "Every later assembly takes 6 fewer minutes.",
+                "project": "workbench",
+                "stage": 1,
+                "cost": {
+                  "timber": 3,
+                  "salvage": 3
+                },
+                "output": {},
+                "duration": 28,
+                "benefits": {
+                  "shelter": false,
+                  "workbench": false,
+                  "garden": false
+                },
+                "skillBefore": 0.15269393213238341,
+                "action": {
+                  "actionId": "build-workbench",
+                  "targetId": "workbench",
+                  "durationMinutes": 28,
+                  "effort": 0.2,
+                  "exertive": true,
+                  "activity": "active",
+                  "skill": "construction"
+                },
+                "startedAt": 160,
+                "endsAt": 188,
+                "eventId": "event:9",
+                "attemptId": "player:21"
+              },
+              "neighbor": {
+                "id": "build-garden",
+                "label": "Garden: edge the beds",
+                "detail": "Food trips bring 3 portions instead of 2.",
+                "project": "garden",
+                "stage": 0,
+                "cost": {
+                  "timber": 5,
+                  "salvage": 1
+                },
+                "output": {},
+                "duration": 20,
+                "benefits": {
+                  "shelter": false,
+                  "workbench": false,
+                  "garden": false
+                },
+                "skillBefore": 0.05,
+                "action": {
+                  "actionId": "build-garden",
+                  "targetId": "garden",
+                  "durationMinutes": 20,
+                  "effort": 0.2,
+                  "exertive": true,
+                  "activity": "active",
+                  "skill": "construction"
+                },
+                "startedAt": 187,
+                "endsAt": 207,
+                "eventId": "event:11",
+                "attemptId": "neighbor:181"
+              }
+            },
+            "stock": {
+              "timber": 2,
+              "salvage": 2,
+              "food": 3
+            },
+            "structures": {
+              "shelter": 0,
+              "workbench": 1,
+              "garden": 0
+            },
+            "caches": 0,
+            "milestoneAt": null,
+            "commitment": {
+              "status": "accepted",
+              "project": "garden",
+              "acceptedAt": 187,
+              "finishedAt": null,
+              "startCaches": 0,
+              "reason": "I’m completing the accepted garden project."
+            },
+            "lastResponse": {
+              "at": 187,
+              "project": "garden",
+              "accepted": true,
+              "reason": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+            },
+            "stats": {
+              "started": 11,
+              "completed": 9,
+              "canceled": 0,
+              "gathered": {
+                "timber": 9,
+                "salvage": 6,
+                "food": 0
+              },
+              "spent": {
+                "timber": 3,
+                "salvage": 2,
+                "food": 1
+              },
+              "consumedFood": 1,
+              "workMinutes": 139,
+              "restMinutes": 36,
+              "mealMinutes": 8,
+              "idleMinutes": 191,
+              "receipts": {
+                "gather-timber": 3,
+                "gather-salvage": 2,
+                "forage": 0,
+                "rest": 2,
+                "eat": 1,
+                "coveredTimber": 0,
+                "gardenFood": 0
+              }
+            },
+            "recent": [
+              {
+                "at": 48,
+                "actor": "player",
+                "message": "You finished gather timber. +3 timber."
+              },
+              {
+                "at": 48,
+                "actor": "player",
+                "message": "You started recover salvage (21 min)."
+              },
+              {
+                "at": 69,
+                "actor": "player",
+                "message": "You finished recover salvage. +3 salvage."
+              },
+              {
+                "at": 69,
+                "actor": "player",
+                "message": "You started rest in camp (18 min)."
+              },
+              {
+                "at": 87,
+                "actor": "player",
+                "message": "You finished rest in camp."
+              },
+              {
+                "at": 87,
+                "actor": "player",
+                "message": "You started recover salvage (21 min)."
+              },
+              {
+                "at": 108,
+                "actor": "player",
+                "message": "You finished recover salvage. +3 salvage."
+              },
+              {
+                "at": 108,
+                "actor": "player",
+                "message": "You started workbench: build the table (22 min)."
+              },
+              {
+                "at": 130,
+                "actor": "player",
+                "message": "You finished workbench: build the table."
+              },
+              {
+                "at": 130,
+                "actor": "player",
+                "message": "You started rest in camp (18 min)."
+              },
+              {
+                "at": 148,
+                "actor": "player",
+                "message": "You finished rest in camp."
+              },
+              {
+                "at": 160,
+                "actor": "player",
+                "message": "You started workbench: fit the tools (28 min)."
+              },
+              {
+                "at": 173,
+                "actor": "neighbor",
+                "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+              },
+              {
+                "at": 181,
+                "actor": "neighbor",
+                "message": "Meryem finished eat a portion."
+              },
+              {
+                "at": 187,
+                "actor": "neighbor",
+                "message": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+              },
+              {
+                "at": 187,
+                "actor": "neighbor",
+                "message": "Meryem started garden: edge the beds (20 min). I’m completing the accepted garden project."
+              }
+            ]
+          }
+        },
+        "clock": {
+          "version": "0.1.0",
+          "now": 188,
+          "nextEvent": 12,
+          "queue": []
+        },
+        "people": {
+          "player": {
+            "version": "0.1.1",
+            "id": "player",
+            "body": {
+              "fatigue": 0.7119999999999893,
+              "hunger": 0.5960000000000003
+            },
+            "skills": {
+              "gathering": 0.4363718287081997,
+              "construction": 0.26750099348661205
+            },
+            "observationBias": 0,
+            "minutes": 188,
+            "nextAttempt": 23,
+            "pending": null
+          },
+          "neighbor": {
+            "version": "0.1.1",
+            "id": "neighbor",
+            "body": {
+              "fatigue": 0.5919999999999972,
+              "hunger": 0.10600000000000032
+            },
+            "skills": {
+              "gathering": 0.1,
+              "construction": 0.054927178234021594
+            },
+            "observationBias": 0,
+            "minutes": 188,
+            "nextAttempt": 183,
+            "pending": null
+          }
+        },
+        "jobs": {
+          "player": null,
+          "neighbor": {
+            "kind": "assembly",
+            "id": "build-garden",
+            "project": "garden",
+            "workId": "garden-0",
+            "startedAt": 187
+          }
+        },
+        "stock": {
+          "timber": 2,
+          "salvage": 2,
+          "food": 3
+        },
+        "structures": {
+          "shelter": 0,
+          "workbench": 2,
+          "garden": 0
+        },
+        "caches": 0,
+        "milestoneAt": null,
+        "commitment": {
+          "status": "accepted",
+          "project": "garden",
+          "acceptedAt": 187,
+          "finishedAt": null,
+          "startCaches": 0,
+          "reason": "I’m completing the accepted garden project."
+        },
+        "lastResponse": {
+          "at": 187,
+          "project": "garden",
+          "accepted": true,
+          "reason": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+        },
+        "stats": {
+          "started": 11,
+          "completed": 10,
+          "canceled": 0,
+          "gathered": {
+            "timber": 9,
+            "salvage": 6,
+            "food": 0
+          },
+          "spent": {
+            "timber": 6,
+            "salvage": 5,
+            "food": 1
+          },
+          "consumedFood": 1,
+          "workMinutes": 141,
+          "restMinutes": 36,
+          "mealMinutes": 8,
+          "idleMinutes": 191,
+          "receipts": {
+            "gather-timber": 3,
+            "gather-salvage": 2,
+            "forage": 0,
+            "rest": 2,
+            "eat": 1,
+            "coveredTimber": 0,
+            "gardenFood": 0
+          }
+        },
+        "recent": [
+          {
+            "at": 48,
+            "actor": "player",
+            "message": "You started recover salvage (21 min)."
+          },
+          {
+            "at": 69,
+            "actor": "player",
+            "message": "You finished recover salvage. +3 salvage."
+          },
+          {
+            "at": 69,
+            "actor": "player",
+            "message": "You started rest in camp (18 min)."
+          },
+          {
+            "at": 87,
+            "actor": "player",
+            "message": "You finished rest in camp."
+          },
+          {
+            "at": 87,
+            "actor": "player",
+            "message": "You started recover salvage (21 min)."
+          },
+          {
+            "at": 108,
+            "actor": "player",
+            "message": "You finished recover salvage. +3 salvage."
+          },
+          {
+            "at": 108,
+            "actor": "player",
+            "message": "You started workbench: build the table (22 min)."
+          },
+          {
+            "at": 130,
+            "actor": "player",
+            "message": "You finished workbench: build the table."
+          },
+          {
+            "at": 130,
+            "actor": "player",
+            "message": "You started rest in camp (18 min)."
+          },
+          {
+            "at": 148,
+            "actor": "player",
+            "message": "You finished rest in camp."
+          },
+          {
+            "at": 160,
+            "actor": "player",
+            "message": "You started workbench: fit the tools (28 min)."
+          },
+          {
+            "at": 173,
+            "actor": "neighbor",
+            "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+          },
+          {
+            "at": 181,
+            "actor": "neighbor",
+            "message": "Meryem finished eat a portion."
+          },
+          {
+            "at": 187,
+            "actor": "neighbor",
+            "message": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+          },
+          {
+            "at": 187,
+            "actor": "neighbor",
+            "message": "Meryem started garden: edge the beds (20 min). I’m completing the accepted garden project."
+          },
+          {
+            "at": 188,
+            "actor": "player",
+            "message": "You finished workbench: fit the tools."
+          }
+        ],
+        "work": {
+          "garden": {
+            "id": "garden-0",
+            "project": "garden",
+            "stage": 0,
+            "cost": {
+              "timber": 5,
+              "salvage": 1
+            },
+            "progress": 0.05,
+            "workbenchAtStart": false,
+            "durationByActor": {
+              "neighbor": 20
+            },
+            "contributions": {
+              "neighbor": {
+                "priorMinutes": 0,
+                "minutes": 1,
+                "fraction": 0.05,
+                "effort": 0.010000000000000002
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "lastAssemblies": {
+          "workbench": {
+            "id": "workbench-1",
+            "project": "workbench",
+            "stage": 1,
+            "cost": {
+              "timber": 3,
+              "salvage": 3
+            },
+            "progress": 1,
+            "workbenchAtStart": false,
+            "durationByActor": {
+              "player": 28
+            },
+            "contributions": {
+              "player": {
+                "priorMinutes": 27,
+                "minutes": 1,
+                "fraction": 1,
+                "effort": 0.2
+              }
+            },
+            "completedAt": 188
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 1,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.00714285714285714,
+            "constructionMinutes": 1,
+            "gatheringMinutes": 0
+          },
+          "neighbor": {
+            "work": 1,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.010000000000000002,
+            "constructionMinutes": 1,
+            "gatheringMinutes": 0
+          }
+        },
+        "recovering": {
+          "player": false,
+          "neighbor": false
+        }
+      }
+    },
+    "accepted": {
+      "format": "human-camp",
+      "version": 2,
+      "game": {
+        "version": "0.2.0",
+        "runtimeVersion": "0.1.1",
+        "humanVersion": "0.1.1",
+        "solo": false,
+        "options": {
+          "improvement": "prospective",
+          "recovery": "active-idle"
+        },
+        "origin": {
+          "format": "human-common-ground",
+          "version": 1,
+          "game": {
+            "version": "0.1.0",
+            "solo": false,
+            "clock": {
+              "version": "0.1.0",
+              "now": 187,
+              "nextEvent": 12,
+              "queue": [
+                {
+                  "id": "event:9",
+                  "at": 188,
+                  "type": "job-complete",
+                  "actorId": "player",
+                  "data": {
+                    "jobId": "build-workbench",
+                    "attemptId": "player:21"
+                  }
+                },
+                {
+                  "id": "event:11",
+                  "at": 207,
+                  "type": "job-complete",
+                  "actorId": "neighbor",
+                  "data": {
+                    "jobId": "build-garden",
+                    "attemptId": "neighbor:181"
+                  }
+                }
+              ]
+            },
+            "people": {
+              "player": {
+                "version": "0.1.0",
+                "id": "player",
+                "body": {
+                  "fatigue": 0.7033571428571322,
+                  "hunger": 0.5940000000000003
+                },
+                "skills": {
+                  "gathering": 0.4363718287081997,
+                  "construction": 0.26368207807796545
+                },
+                "observationBias": 0,
+                "minutes": 187,
+                "nextAttempt": 22,
+                "pending": {
+                  "id": "player:21",
+                  "action": {
+                    "actionId": "build-workbench",
+                    "targetId": "workbench",
+                    "durationMinutes": 28,
+                    "effort": 0.2,
+                    "exertive": true,
+                    "activity": "active",
+                    "skill": "construction"
+                  },
+                  "elapsedMinutes": 27,
+                  "capacity": {
+                    "allowed": true,
+                    "causes": [],
+                    "fatigueCost": 0.24200000000000002,
+                    "hungerCost": 0.056,
+                    "projectedFatigue": 0.7119999999999913,
+                    "projectedHunger": 0.5960000000000003
+                  },
+                  "bodyBefore": {
+                    "fatigue": 0.46999999999999126,
+                    "hunger": 0.5400000000000003
+                  },
+                  "skillBefore": 0.15269393213238341,
+                  "startedAt": 160
+                }
+              },
+              "neighbor": {
+                "version": "0.1.0",
+                "id": "neighbor",
+                "body": {
+                  "fatigue": 0.5804999999999972,
+                  "hunger": 0.10400000000000031
+                },
+                "skills": {
+                  "gathering": 0.1,
+                  "construction": 0.05
+                },
+                "observationBias": 0,
+                "minutes": 187,
+                "nextAttempt": 182,
+                "pending": {
+                  "id": "neighbor:181",
+                  "action": {
+                    "actionId": "build-garden",
+                    "targetId": "garden",
+                    "durationMinutes": 20,
+                    "effort": 0.2,
+                    "exertive": true,
+                    "activity": "active",
+                    "skill": "construction"
+                  },
+                  "elapsedMinutes": 0,
+                  "capacity": {
+                    "allowed": true,
+                    "causes": [],
+                    "fatigueCost": 0.23,
+                    "hungerCost": 0.04,
+                    "projectedFatigue": 0.8104999999999972,
+                    "projectedHunger": 0.14400000000000032
+                  },
+                  "bodyBefore": {
+                    "fatigue": 0.5804999999999972,
+                    "hunger": 0.10400000000000031
+                  },
+                  "skillBefore": 0.05,
+                  "startedAt": 187
+                }
+              }
+            },
+            "jobs": {
+              "player": {
+                "id": "build-workbench",
+                "label": "Workbench: fit the tools",
+                "detail": "Every later assembly takes 6 fewer minutes.",
+                "project": "workbench",
+                "stage": 1,
+                "cost": {
+                  "timber": 3,
+                  "salvage": 3
+                },
+                "output": {},
+                "duration": 28,
+                "benefits": {
+                  "shelter": false,
+                  "workbench": false,
+                  "garden": false
+                },
+                "skillBefore": 0.15269393213238341,
+                "action": {
+                  "actionId": "build-workbench",
+                  "targetId": "workbench",
+                  "durationMinutes": 28,
+                  "effort": 0.2,
+                  "exertive": true,
+                  "activity": "active",
+                  "skill": "construction"
+                },
+                "startedAt": 160,
+                "endsAt": 188,
+                "eventId": "event:9",
+                "attemptId": "player:21"
+              },
+              "neighbor": {
+                "id": "build-garden",
+                "label": "Garden: edge the beds",
+                "detail": "Food trips bring 3 portions instead of 2.",
+                "project": "garden",
+                "stage": 0,
+                "cost": {
+                  "timber": 5,
+                  "salvage": 1
+                },
+                "output": {},
+                "duration": 20,
+                "benefits": {
+                  "shelter": false,
+                  "workbench": false,
+                  "garden": false
+                },
+                "skillBefore": 0.05,
+                "action": {
+                  "actionId": "build-garden",
+                  "targetId": "garden",
+                  "durationMinutes": 20,
+                  "effort": 0.2,
+                  "exertive": true,
+                  "activity": "active",
+                  "skill": "construction"
+                },
+                "startedAt": 187,
+                "endsAt": 207,
+                "eventId": "event:11",
+                "attemptId": "neighbor:181"
+              }
+            },
+            "stock": {
+              "timber": 2,
+              "salvage": 2,
+              "food": 3
+            },
+            "structures": {
+              "shelter": 0,
+              "workbench": 1,
+              "garden": 0
+            },
+            "caches": 0,
+            "milestoneAt": null,
+            "commitment": {
+              "status": "accepted",
+              "project": "garden",
+              "acceptedAt": 187,
+              "finishedAt": null,
+              "startCaches": 0,
+              "reason": "I’m completing the accepted garden project."
+            },
+            "lastResponse": {
+              "at": 187,
+              "project": "garden",
+              "accepted": true,
+              "reason": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+            },
+            "stats": {
+              "started": 11,
+              "completed": 9,
+              "canceled": 0,
+              "gathered": {
+                "timber": 9,
+                "salvage": 6,
+                "food": 0
+              },
+              "spent": {
+                "timber": 3,
+                "salvage": 2,
+                "food": 1
+              },
+              "consumedFood": 1,
+              "workMinutes": 139,
+              "restMinutes": 36,
+              "mealMinutes": 8,
+              "idleMinutes": 191,
+              "receipts": {
+                "gather-timber": 3,
+                "gather-salvage": 2,
+                "forage": 0,
+                "rest": 2,
+                "eat": 1,
+                "coveredTimber": 0,
+                "gardenFood": 0
+              }
+            },
+            "recent": [
+              {
+                "at": 48,
+                "actor": "player",
+                "message": "You finished gather timber. +3 timber."
+              },
+              {
+                "at": 48,
+                "actor": "player",
+                "message": "You started recover salvage (21 min)."
+              },
+              {
+                "at": 69,
+                "actor": "player",
+                "message": "You finished recover salvage. +3 salvage."
+              },
+              {
+                "at": 69,
+                "actor": "player",
+                "message": "You started rest in camp (18 min)."
+              },
+              {
+                "at": 87,
+                "actor": "player",
+                "message": "You finished rest in camp."
+              },
+              {
+                "at": 87,
+                "actor": "player",
+                "message": "You started recover salvage (21 min)."
+              },
+              {
+                "at": 108,
+                "actor": "player",
+                "message": "You finished recover salvage. +3 salvage."
+              },
+              {
+                "at": 108,
+                "actor": "player",
+                "message": "You started workbench: build the table (22 min)."
+              },
+              {
+                "at": 130,
+                "actor": "player",
+                "message": "You finished workbench: build the table."
+              },
+              {
+                "at": 130,
+                "actor": "player",
+                "message": "You started rest in camp (18 min)."
+              },
+              {
+                "at": 148,
+                "actor": "player",
+                "message": "You finished rest in camp."
+              },
+              {
+                "at": 160,
+                "actor": "player",
+                "message": "You started workbench: fit the tools (28 min)."
+              },
+              {
+                "at": 173,
+                "actor": "neighbor",
+                "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+              },
+              {
+                "at": 181,
+                "actor": "neighbor",
+                "message": "Meryem finished eat a portion."
+              },
+              {
+                "at": 187,
+                "actor": "neighbor",
+                "message": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+              },
+              {
+                "at": 187,
+                "actor": "neighbor",
+                "message": "Meryem started garden: edge the beds (20 min). I’m completing the accepted garden project."
+              }
+            ]
+          }
+        },
+        "clock": {
+          "version": "0.1.0",
+          "now": 188,
+          "nextEvent": 12,
+          "queue": []
+        },
+        "people": {
+          "player": {
+            "version": "0.1.1",
+            "id": "player",
+            "body": {
+              "fatigue": 0.7119999999999893,
+              "hunger": 0.5960000000000003
+            },
+            "skills": {
+              "gathering": 0.4363718287081997,
+              "construction": 0.26750099348661205
+            },
+            "observationBias": 0,
+            "minutes": 188,
+            "nextAttempt": 23,
+            "pending": null
+          },
+          "neighbor": {
+            "version": "0.1.1",
+            "id": "neighbor",
+            "body": {
+              "fatigue": 0.5919999999999972,
+              "hunger": 0.10600000000000032
+            },
+            "skills": {
+              "gathering": 0.1,
+              "construction": 0.054927178234021594
+            },
+            "observationBias": 0,
+            "minutes": 188,
+            "nextAttempt": 183,
+            "pending": null
+          }
+        },
+        "jobs": {
+          "player": {
+            "kind": "assembly",
+            "id": "build-garden",
+            "project": "garden",
+            "workId": "garden-0",
+            "startedAt": 188
+          },
+          "neighbor": null
+        },
+        "stock": {
+          "timber": 2,
+          "salvage": 2,
+          "food": 3
+        },
+        "structures": {
+          "shelter": 0,
+          "workbench": 2,
+          "garden": 0
+        },
+        "caches": 0,
+        "milestoneAt": null,
+        "commitment": {
+          "status": "accepted",
+          "project": "garden",
+          "acceptedAt": 187,
+          "finishedAt": null,
+          "startCaches": 0,
+          "reason": "I’m completing the accepted garden project."
+        },
+        "lastResponse": {
+          "at": 188,
+          "project": "garden",
+          "accepted": true,
+          "reason": "You accepted the remaining garden work.",
+          "kind": "handover",
+          "from": "neighbor",
+          "to": "player"
+        },
+        "stats": {
+          "started": 11,
+          "completed": 10,
+          "canceled": 0,
+          "gathered": {
+            "timber": 9,
+            "salvage": 6,
+            "food": 0
+          },
+          "spent": {
+            "timber": 6,
+            "salvage": 5,
+            "food": 1
+          },
+          "consumedFood": 1,
+          "workMinutes": 141,
+          "restMinutes": 36,
+          "mealMinutes": 8,
+          "idleMinutes": 191,
+          "receipts": {
+            "gather-timber": 3,
+            "gather-salvage": 2,
+            "forage": 0,
+            "rest": 2,
+            "eat": 1,
+            "coveredTimber": 0,
+            "gardenFood": 0
+          }
+        },
+        "recent": [
+          {
+            "at": 69,
+            "actor": "player",
+            "message": "You finished recover salvage. +3 salvage."
+          },
+          {
+            "at": 69,
+            "actor": "player",
+            "message": "You started rest in camp (18 min)."
+          },
+          {
+            "at": 87,
+            "actor": "player",
+            "message": "You finished rest in camp."
+          },
+          {
+            "at": 87,
+            "actor": "player",
+            "message": "You started recover salvage (21 min)."
+          },
+          {
+            "at": 108,
+            "actor": "player",
+            "message": "You finished recover salvage. +3 salvage."
+          },
+          {
+            "at": 108,
+            "actor": "player",
+            "message": "You started workbench: build the table (22 min)."
+          },
+          {
+            "at": 130,
+            "actor": "player",
+            "message": "You finished workbench: build the table."
+          },
+          {
+            "at": 130,
+            "actor": "player",
+            "message": "You started rest in camp (18 min)."
+          },
+          {
+            "at": 148,
+            "actor": "player",
+            "message": "You finished rest in camp."
+          },
+          {
+            "at": 160,
+            "actor": "player",
+            "message": "You started workbench: fit the tools (28 min)."
+          },
+          {
+            "at": 173,
+            "actor": "neighbor",
+            "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+          },
+          {
+            "at": 181,
+            "actor": "neighbor",
+            "message": "Meryem finished eat a portion."
+          },
+          {
+            "at": 187,
+            "actor": "neighbor",
+            "message": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+          },
+          {
+            "at": 187,
+            "actor": "neighbor",
+            "message": "Meryem started garden: edge the beds (20 min). I’m completing the accepted garden project."
+          },
+          {
+            "at": 188,
+            "actor": "player",
+            "message": "You finished workbench: fit the tools."
+          },
+          {
+            "at": 188,
+            "actor": "player",
+            "message": "You accepted the remaining garden work."
+          }
+        ],
+        "work": {
+          "garden": {
+            "id": "garden-0",
+            "project": "garden",
+            "stage": 0,
+            "cost": {
+              "timber": 5,
+              "salvage": 1
+            },
+            "progress": 0.05,
+            "workbenchAtStart": false,
+            "durationByActor": {
+              "neighbor": 20,
+              "player": 19
+            },
+            "contributions": {
+              "neighbor": {
+                "priorMinutes": 0,
+                "minutes": 1,
+                "fraction": 0.05,
+                "effort": 0.010000000000000002
+              },
+              "player": {
+                "priorMinutes": 0,
+                "minutes": 0,
+                "fraction": 0,
+                "effort": 0
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "lastAssemblies": {
+          "workbench": {
+            "id": "workbench-1",
+            "project": "workbench",
+            "stage": 1,
+            "cost": {
+              "timber": 3,
+              "salvage": 3
+            },
+            "progress": 1,
+            "workbenchAtStart": false,
+            "durationByActor": {
+              "player": 28
+            },
+            "contributions": {
+              "player": {
+                "priorMinutes": 27,
+                "minutes": 1,
+                "fraction": 1,
+                "effort": 0.2
+              }
+            },
+            "completedAt": 188
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 1,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.00714285714285714,
+            "constructionMinutes": 1,
+            "gatheringMinutes": 0
+          },
+          "neighbor": {
+            "work": 1,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.010000000000000002,
+            "constructionMinutes": 1,
+            "gatheringMinutes": 0
+          }
+        },
+        "recovering": {
+          "player": false,
+          "neighbor": false
+        }
+      }
+    },
+    "final": {
+      "snapshot": {
+        "format": "human-camp",
+        "version": 2,
+        "game": {
+          "version": "0.2.0",
+          "runtimeVersion": "0.1.1",
+          "humanVersion": "0.1.1",
+          "solo": false,
+          "options": {
+            "improvement": "prospective",
+            "recovery": "active-idle"
+          },
+          "origin": {
+            "format": "human-common-ground",
+            "version": 1,
+            "game": {
+              "version": "0.1.0",
+              "solo": false,
+              "clock": {
+                "version": "0.1.0",
+                "now": 187,
+                "nextEvent": 12,
+                "queue": [
+                  {
+                    "id": "event:9",
+                    "at": 188,
+                    "type": "job-complete",
+                    "actorId": "player",
+                    "data": {
+                      "jobId": "build-workbench",
+                      "attemptId": "player:21"
+                    }
+                  },
+                  {
+                    "id": "event:11",
+                    "at": 207,
+                    "type": "job-complete",
+                    "actorId": "neighbor",
+                    "data": {
+                      "jobId": "build-garden",
+                      "attemptId": "neighbor:181"
+                    }
+                  }
+                ]
+              },
+              "people": {
+                "player": {
+                  "version": "0.1.0",
+                  "id": "player",
+                  "body": {
+                    "fatigue": 0.7033571428571322,
+                    "hunger": 0.5940000000000003
+                  },
+                  "skills": {
+                    "gathering": 0.4363718287081997,
+                    "construction": 0.26368207807796545
+                  },
+                  "observationBias": 0,
+                  "minutes": 187,
+                  "nextAttempt": 22,
+                  "pending": {
+                    "id": "player:21",
+                    "action": {
+                      "actionId": "build-workbench",
+                      "targetId": "workbench",
+                      "durationMinutes": 28,
+                      "effort": 0.2,
+                      "exertive": true,
+                      "activity": "active",
+                      "skill": "construction"
+                    },
+                    "elapsedMinutes": 27,
+                    "capacity": {
+                      "allowed": true,
+                      "causes": [],
+                      "fatigueCost": 0.24200000000000002,
+                      "hungerCost": 0.056,
+                      "projectedFatigue": 0.7119999999999913,
+                      "projectedHunger": 0.5960000000000003
+                    },
+                    "bodyBefore": {
+                      "fatigue": 0.46999999999999126,
+                      "hunger": 0.5400000000000003
+                    },
+                    "skillBefore": 0.15269393213238341,
+                    "startedAt": 160
+                  }
+                },
+                "neighbor": {
+                  "version": "0.1.0",
+                  "id": "neighbor",
+                  "body": {
+                    "fatigue": 0.5804999999999972,
+                    "hunger": 0.10400000000000031
+                  },
+                  "skills": {
+                    "gathering": 0.1,
+                    "construction": 0.05
+                  },
+                  "observationBias": 0,
+                  "minutes": 187,
+                  "nextAttempt": 182,
+                  "pending": {
+                    "id": "neighbor:181",
+                    "action": {
+                      "actionId": "build-garden",
+                      "targetId": "garden",
+                      "durationMinutes": 20,
+                      "effort": 0.2,
+                      "exertive": true,
+                      "activity": "active",
+                      "skill": "construction"
+                    },
+                    "elapsedMinutes": 0,
+                    "capacity": {
+                      "allowed": true,
+                      "causes": [],
+                      "fatigueCost": 0.23,
+                      "hungerCost": 0.04,
+                      "projectedFatigue": 0.8104999999999972,
+                      "projectedHunger": 0.14400000000000032
+                    },
+                    "bodyBefore": {
+                      "fatigue": 0.5804999999999972,
+                      "hunger": 0.10400000000000031
+                    },
+                    "skillBefore": 0.05,
+                    "startedAt": 187
+                  }
+                }
+              },
+              "jobs": {
+                "player": {
+                  "id": "build-workbench",
+                  "label": "Workbench: fit the tools",
+                  "detail": "Every later assembly takes 6 fewer minutes.",
+                  "project": "workbench",
+                  "stage": 1,
+                  "cost": {
+                    "timber": 3,
+                    "salvage": 3
+                  },
+                  "output": {},
+                  "duration": 28,
+                  "benefits": {
+                    "shelter": false,
+                    "workbench": false,
+                    "garden": false
+                  },
+                  "skillBefore": 0.15269393213238341,
+                  "action": {
+                    "actionId": "build-workbench",
+                    "targetId": "workbench",
+                    "durationMinutes": 28,
+                    "effort": 0.2,
+                    "exertive": true,
+                    "activity": "active",
+                    "skill": "construction"
+                  },
+                  "startedAt": 160,
+                  "endsAt": 188,
+                  "eventId": "event:9",
+                  "attemptId": "player:21"
+                },
+                "neighbor": {
+                  "id": "build-garden",
+                  "label": "Garden: edge the beds",
+                  "detail": "Food trips bring 3 portions instead of 2.",
+                  "project": "garden",
+                  "stage": 0,
+                  "cost": {
+                    "timber": 5,
+                    "salvage": 1
+                  },
+                  "output": {},
+                  "duration": 20,
+                  "benefits": {
+                    "shelter": false,
+                    "workbench": false,
+                    "garden": false
+                  },
+                  "skillBefore": 0.05,
+                  "action": {
+                    "actionId": "build-garden",
+                    "targetId": "garden",
+                    "durationMinutes": 20,
+                    "effort": 0.2,
+                    "exertive": true,
+                    "activity": "active",
+                    "skill": "construction"
+                  },
+                  "startedAt": 187,
+                  "endsAt": 207,
+                  "eventId": "event:11",
+                  "attemptId": "neighbor:181"
+                }
+              },
+              "stock": {
+                "timber": 2,
+                "salvage": 2,
+                "food": 3
+              },
+              "structures": {
+                "shelter": 0,
+                "workbench": 1,
+                "garden": 0
+              },
+              "caches": 0,
+              "milestoneAt": null,
+              "commitment": {
+                "status": "accepted",
+                "project": "garden",
+                "acceptedAt": 187,
+                "finishedAt": null,
+                "startCaches": 0,
+                "reason": "I’m completing the accepted garden project."
+              },
+              "lastResponse": {
+                "at": 187,
+                "project": "garden",
+                "accepted": true,
+                "reason": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+              },
+              "stats": {
+                "started": 11,
+                "completed": 9,
+                "canceled": 0,
+                "gathered": {
+                  "timber": 9,
+                  "salvage": 6,
+                  "food": 0
+                },
+                "spent": {
+                  "timber": 3,
+                  "salvage": 2,
+                  "food": 1
+                },
+                "consumedFood": 1,
+                "workMinutes": 139,
+                "restMinutes": 36,
+                "mealMinutes": 8,
+                "idleMinutes": 191,
+                "receipts": {
+                  "gather-timber": 3,
+                  "gather-salvage": 2,
+                  "forage": 0,
+                  "rest": 2,
+                  "eat": 1,
+                  "coveredTimber": 0,
+                  "gardenFood": 0
+                }
+              },
+              "recent": [
+                {
+                  "at": 48,
+                  "actor": "player",
+                  "message": "You finished gather timber. +3 timber."
+                },
+                {
+                  "at": 48,
+                  "actor": "player",
+                  "message": "You started recover salvage (21 min)."
+                },
+                {
+                  "at": 69,
+                  "actor": "player",
+                  "message": "You finished recover salvage. +3 salvage."
+                },
+                {
+                  "at": 69,
+                  "actor": "player",
+                  "message": "You started rest in camp (18 min)."
+                },
+                {
+                  "at": 87,
+                  "actor": "player",
+                  "message": "You finished rest in camp."
+                },
+                {
+                  "at": 87,
+                  "actor": "player",
+                  "message": "You started recover salvage (21 min)."
+                },
+                {
+                  "at": 108,
+                  "actor": "player",
+                  "message": "You finished recover salvage. +3 salvage."
+                },
+                {
+                  "at": 108,
+                  "actor": "player",
+                  "message": "You started workbench: build the table (22 min)."
+                },
+                {
+                  "at": 130,
+                  "actor": "player",
+                  "message": "You finished workbench: build the table."
+                },
+                {
+                  "at": 130,
+                  "actor": "player",
+                  "message": "You started rest in camp (18 min)."
+                },
+                {
+                  "at": 148,
+                  "actor": "player",
+                  "message": "You finished rest in camp."
+                },
+                {
+                  "at": 160,
+                  "actor": "player",
+                  "message": "You started workbench: fit the tools (28 min)."
+                },
+                {
+                  "at": 173,
+                  "actor": "neighbor",
+                  "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+                },
+                {
+                  "at": 181,
+                  "actor": "neighbor",
+                  "message": "Meryem finished eat a portion."
+                },
+                {
+                  "at": 187,
+                  "actor": "neighbor",
+                  "message": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+                },
+                {
+                  "at": 187,
+                  "actor": "neighbor",
+                  "message": "Meryem started garden: edge the beds (20 min). I’m completing the accepted garden project."
+                }
+              ]
+            }
+          },
+          "clock": {
+            "version": "0.1.0",
+            "now": 201,
+            "nextEvent": 13,
+            "queue": [
+              {
+                "id": "event:12",
+                "at": 205,
+                "type": "job-complete",
+                "actorId": "neighbor",
+                "data": {
+                  "jobId": "gather-timber",
+                  "attemptId": "neighbor:184"
+                }
+              }
+            ]
+          },
+          "people": {
+            "player": {
+              "version": "0.1.1",
+              "id": "player",
+              "body": {
+                "fatigue": 0.9214999999999893,
+                "hunger": 0.6220000000000003
+              },
+              "skills": {
+                "gathering": 0.4363718287081997,
+                "construction": 0.3153813385775859
+              },
+              "observationBias": 0,
+              "minutes": 201,
+              "nextAttempt": 36,
+              "pending": null
+            },
+            "neighbor": {
+              "version": "0.1.1",
+              "id": "neighbor",
+              "body": {
+                "fatigue": 0.7089999999999971,
+                "hunger": 0.13200000000000034
+              },
+              "skills": {
+                "gathering": 0.15444369206471886,
+                "construction": 0.054927178234021594
+              },
+              "observationBias": 0,
+              "minutes": 201,
+              "nextAttempt": 185,
+              "pending": {
+                "id": "neighbor:184",
+                "action": {
+                  "actionId": "gather-timber",
+                  "targetId": null,
+                  "durationMinutes": 16,
+                  "effort": 0.13,
+                  "exertive": true,
+                  "activity": "active",
+                  "skill": "gathering"
+                },
+                "elapsedMinutes": 12,
+                "capacity": {
+                  "allowed": true,
+                  "causes": [],
+                  "fatigueCost": 0.154,
+                  "hungerCost": 0.032,
+                  "projectedFatigue": 0.7474999999999972,
+                  "projectedHunger": 0.14000000000000032
+                },
+                "bodyBefore": {
+                  "fatigue": 0.5934999999999971,
+                  "hunger": 0.10800000000000032
+                },
+                "skillBefore": 0.1,
+                "startedAt": 189
+              }
+            }
+          },
+          "jobs": {
+            "player": null,
+            "neighbor": {
+              "kind": "fixed",
+              "legacy": false,
+              "id": "gather-timber",
+              "label": "Gather timber",
+              "detail": "Bring wood from the grove.",
+              "project": null,
+              "stage": null,
+              "cost": {},
+              "output": {
+                "timber": 3
+              },
+              "duration": 16,
+              "benefits": {
+                "shelter": false,
+                "workbench": true,
+                "garden": false
+              },
+              "skillBefore": 0.1,
+              "action": {
+                "actionId": "gather-timber",
+                "targetId": null,
+                "durationMinutes": 16,
+                "effort": 0.13,
+                "exertive": true,
+                "activity": "active",
+                "skill": "gathering"
+              },
+              "startedAt": 189,
+              "endsAt": 205,
+              "eventId": "event:12",
+              "attemptId": "neighbor:184"
+            }
+          },
+          "stock": {
+            "timber": 2,
+            "salvage": 2,
+            "food": 3
+          },
+          "structures": {
+            "shelter": 0,
+            "workbench": 2,
+            "garden": 1
+          },
+          "caches": 0,
+          "milestoneAt": null,
+          "commitment": {
+            "status": "accepted",
+            "project": "garden",
+            "acceptedAt": 187,
+            "finishedAt": null,
+            "startCaches": 0,
+            "reason": "I am gathering timber for our accepted garden."
+          },
+          "lastResponse": {
+            "at": 188,
+            "project": "garden",
+            "accepted": true,
+            "reason": "You accepted the remaining garden work.",
+            "kind": "handover",
+            "from": "neighbor",
+            "to": "player"
+          },
+          "stats": {
+            "started": 12,
+            "completed": 11,
+            "canceled": 0,
+            "gathered": {
+              "timber": 9,
+              "salvage": 6,
+              "food": 0
+            },
+            "spent": {
+              "timber": 11,
+              "salvage": 6,
+              "food": 1
+            },
+            "consumedFood": 1,
+            "workMinutes": 166,
+            "restMinutes": 36,
+            "mealMinutes": 8,
+            "idleMinutes": 192,
+            "receipts": {
+              "gather-timber": 3,
+              "gather-salvage": 2,
+              "forage": 0,
+              "rest": 2,
+              "eat": 1,
+              "coveredTimber": 0,
+              "gardenFood": 0
+            }
+          },
+          "recent": [
+            {
+              "at": 87,
+              "actor": "player",
+              "message": "You finished rest in camp."
+            },
+            {
+              "at": 87,
+              "actor": "player",
+              "message": "You started recover salvage (21 min)."
+            },
+            {
+              "at": 108,
+              "actor": "player",
+              "message": "You finished recover salvage. +3 salvage."
+            },
+            {
+              "at": 108,
+              "actor": "player",
+              "message": "You started workbench: build the table (22 min)."
+            },
+            {
+              "at": 130,
+              "actor": "player",
+              "message": "You finished workbench: build the table."
+            },
+            {
+              "at": 130,
+              "actor": "player",
+              "message": "You started rest in camp (18 min)."
+            },
+            {
+              "at": 148,
+              "actor": "player",
+              "message": "You finished rest in camp."
+            },
+            {
+              "at": 160,
+              "actor": "player",
+              "message": "You started workbench: fit the tools (28 min)."
+            },
+            {
+              "at": 173,
+              "actor": "neighbor",
+              "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+            },
+            {
+              "at": 181,
+              "actor": "neighbor",
+              "message": "Meryem finished eat a portion."
+            },
+            {
+              "at": 187,
+              "actor": "neighbor",
+              "message": "Yes. I’ll help finish the garden, gathering its supplies and recovering when needed."
+            },
+            {
+              "at": 187,
+              "actor": "neighbor",
+              "message": "Meryem started garden: edge the beds (20 min). I’m completing the accepted garden project."
+            },
+            {
+              "at": 188,
+              "actor": "player",
+              "message": "You finished workbench: fit the tools."
+            },
+            {
+              "at": 188,
+              "actor": "player",
+              "message": "You accepted the remaining garden work."
+            },
+            {
+              "at": 189,
+              "actor": "neighbor",
+              "message": "Meryem started gather timber (16 min). I am gathering timber for our accepted garden."
+            },
+            {
+              "at": 201,
+              "actor": "player",
+              "message": "You finished garden: edge the beds."
+            }
+          ],
+          "work": {},
+          "lastAssemblies": {
+            "workbench": {
+              "id": "workbench-1",
+              "project": "workbench",
+              "stage": 1,
+              "cost": {
+                "timber": 3,
+                "salvage": 3
+              },
+              "progress": 1,
+              "workbenchAtStart": false,
+              "durationByActor": {
+                "player": 28
+              },
+              "contributions": {
+                "player": {
+                  "priorMinutes": 27,
+                  "minutes": 1,
+                  "fraction": 1,
+                  "effort": 0.2
+                }
+              },
+              "completedAt": 188
+            },
+            "garden": {
+              "id": "garden-0",
+              "project": "garden",
+              "stage": 0,
+              "cost": {
+                "timber": 5,
+                "salvage": 1
+              },
+              "progress": 1,
+              "workbenchAtStart": false,
+              "durationByActor": {
+                "neighbor": 20,
+                "player": 19
+              },
+              "contributions": {
+                "neighbor": {
+                  "priorMinutes": 0,
+                  "minutes": 1,
+                  "fraction": 0.05,
+                  "effort": 0.010000000000000002
+                },
+                "player": {
+                  "priorMinutes": 0,
+                  "minutes": 13,
+                  "fraction": 0.9500000000000002,
+                  "effort": 0.19000000000000009
+                }
+              },
+              "completedAt": 201
+            }
+          },
+          "paid": {
+            "player": {
+              "work": 14,
+              "recovery": 0,
+              "idle": 0,
+              "meal": 0,
+              "effort": 0.19714285714285723,
+              "constructionMinutes": 14,
+              "gatheringMinutes": 0
+            },
+            "neighbor": {
+              "work": 13,
+              "recovery": 0,
+              "idle": 1,
+              "meal": 0,
+              "effort": 0.10749999999999998,
+              "constructionMinutes": 1,
+              "gatheringMinutes": 12
+            }
+          },
+          "recovering": {
+            "player": false,
+            "neighbor": false
+          }
+        }
+      },
+      "bytes": 10211,
+      "exactRoundtrip": true
+    },
+    "receiverUsesOwnPaidTime": 13,
+    "facts": {
+      "now": 201,
+      "milestoneAt": null,
+      "caches": 0,
+      "stock": {
+        "timber": 2,
+        "salvage": 2,
+        "food": 3
+      },
+      "structures": {
+        "shelter": 0,
+        "workbench": 2,
+        "garden": 1
+      },
+      "commitment": {
+        "status": "accepted",
+        "project": "garden",
+        "acceptedAt": 187,
+        "finishedAt": null,
+        "startCaches": 0,
+        "reason": "I am gathering timber for our accepted garden."
+      },
+      "jobs": {
+        "player": null,
+        "neighbor": {
+          "kind": "fixed",
+          "legacy": false,
+          "id": "gather-timber",
+          "label": "Gather timber",
+          "detail": "Bring wood from the grove.",
+          "project": null,
+          "stage": null,
+          "cost": {},
+          "output": {
+            "timber": 3
+          },
+          "duration": 16,
+          "benefits": {
+            "shelter": false,
+            "workbench": true,
+            "garden": false
+          },
+          "skillBefore": 0.1,
+          "action": {
+            "actionId": "gather-timber",
+            "targetId": null,
+            "durationMinutes": 16,
+            "effort": 0.13,
+            "exertive": true,
+            "activity": "active",
+            "skill": "gathering"
+          },
+          "startedAt": 189,
+          "endsAt": 205,
+          "eventId": "event:12",
+          "attemptId": "neighbor:184"
+        }
+      },
+      "people": {
+        "player": {
+          "id": "player",
+          "minutes": 201,
+          "body": {
+            "fatigue": 0.9214999999999893,
+            "hunger": 0.6220000000000003
+          },
+          "skills": {
+            "gathering": 0.4363718287081997,
+            "construction": 0.3153813385775859
+          },
+          "pending": null
+        },
+        "neighbor": {
+          "id": "neighbor",
+          "minutes": 201,
+          "body": {
+            "fatigue": 0.7089999999999971,
+            "hunger": 0.13200000000000034
+          },
+          "skills": {
+            "gathering": 0.15444369206471886,
+            "construction": 0.054927178234021594
+          },
+          "pending": {
+            "id": "neighbor:184",
+            "action": {
+              "actionId": "gather-timber",
+              "targetId": null,
+              "durationMinutes": 16,
+              "effort": 0.13,
+              "exertive": true,
+              "activity": "active",
+              "skill": "gathering"
+            },
+            "elapsedMinutes": 12,
+            "capacity": {
+              "allowed": true,
+              "causes": [],
+              "fatigueCost": 0.154,
+              "hungerCost": 0.032,
+              "projectedFatigue": 0.7474999999999972,
+              "projectedHunger": 0.14000000000000032
+            },
+            "bodyBefore": {
+              "fatigue": 0.5934999999999971,
+              "hunger": 0.10800000000000032
+            },
+            "skillBefore": 0.1,
+            "startedAt": 189
+          }
+        }
+      },
+      "stats": {
+        "started": 12,
+        "completed": 11,
+        "canceled": 0,
+        "gathered": {
+          "timber": 9,
+          "salvage": 6,
+          "food": 0
+        },
+        "spent": {
+          "timber": 11,
+          "salvage": 6,
+          "food": 1
+        },
+        "consumedFood": 1,
+        "workMinutes": 166,
+        "restMinutes": 36,
+        "mealMinutes": 8,
+        "idleMinutes": 192,
+        "receipts": {
+          "gather-timber": 3,
+          "gather-salvage": 2,
+          "forage": 0,
+          "rest": 2,
+          "eat": 1,
+          "coveredTimber": 0,
+          "gardenFood": 0
+        }
+      },
+      "work": {},
+      "paid": {
+        "player": {
+          "work": 14,
+          "recovery": 0,
+          "idle": 0,
+          "meal": 0,
+          "effort": 0.19714285714285723,
+          "constructionMinutes": 14,
+          "gatheringMinutes": 0
+        },
+        "neighbor": {
+          "work": 13,
+          "recovery": 0,
+          "idle": 1,
+          "meal": 0,
+          "effort": 0.10749999999999998,
+          "constructionMinutes": 1,
+          "gatheringMinutes": 12
+        }
+      }
+    }
+  }
+}
