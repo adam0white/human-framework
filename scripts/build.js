@@ -1,10 +1,11 @@
-import {mkdir,readdir,readFile,writeFile,rm,copyFile,realpath,lstat} from 'node:fs/promises';
-import {resolve,dirname,extname,join} from 'node:path';
+import {mkdir,readFile,writeFile,rm,copyFile,realpath,lstat} from 'node:fs/promises';
+import {resolve,dirname,join} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-import {ENGINE_VERSION} from '../src/core/index.js';
+import {RUNTIME_VERSION,CLOCK_VERSION} from '../src/runtime/index.js';
 import {PUBLIC_PAGES} from './public-pages.js';
+import {PUBLIC_ASSETS} from './public-assets.js';
 import {verifyStaticModules} from './public-module-graph.js';
 
 const projectRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');
@@ -20,19 +21,15 @@ export async function buildSite({root=projectRoot}={}) {
   const base=resolve(root),output=join(base,'dist');
   const realBase=await realpath(base);
   const entries=new Map(Object.entries(PUBLIC_PAGES));
-  const directories=['web','src/core','src/scenarios','src/human','src/runtime','src/games','src/legacy/v0.1','src/legacy/v0.2'];
-  for(const source of [...directories,...entries.values()]) {
-    const path=join(base,source),info=await lstat(path);
-    if(info.isSymbolicLink()||await realpath(path)!==join(realBase,source)||(directories.includes(source)?!info.isDirectory():!info.isFile()))throw new Error(`Invalid public source or symlink: ${source}`);
+  for(const source of new Set([...PUBLIC_ASSETS,...entries.values()])) {
+    try {
+      const path=join(base,source),info=await lstat(path);
+      if(info.isSymbolicLink()||!info.isFile()||await realpath(path)!==join(realBase,source))throw new Error('Redirected or non-file source');
+    }catch(error){throw new Error(`Invalid public source or symlink: ${source}`,{cause:error});}
   }
   const appVersion=JSON.parse(await readFile(join(base,'package.json'),'utf8')).version;
   if(typeof appVersion!=='string'||!/^\d+\.\d+\.\d+$/.test(appVersion))throw new Error('Invalid application version');
-  const files=[...entries.keys()];
-  for(const directory of directories) {
-    for(const entry of await readdir(join(base,directory),{withFileTypes:true})) {
-      if(entry.isFile()&&!entry.name.startsWith('.')&&['.js','.css','.svg','.png','.ico'].includes(extname(entry.name)))files.push(`${directory}/${entry.name}`);
-    }
-  }
+  const files=[...entries.keys(),...PUBLIC_ASSETS];
   const moduleGraph=verifyStaticModules(await Promise.all(files.filter(file=>file.endsWith('.js')).map(async file=>({path:file,source:await readFile(join(base,file),'utf8')}))));
   await rm(output,{recursive:true,force:true});
   await mkdir(output,{recursive:true});
@@ -52,12 +49,12 @@ export async function buildSite({root=projectRoot}={}) {
     commit=execFileSync('git',['rev-parse','HEAD'],options).trim();
     dirty=Boolean(execFileSync('git',['status','--porcelain'],options).trim());
   } catch { /* Local play and tests do not require Git. */ }
-  const release={appVersion,engineVersion:ENGINE_VERSION,commit,dirty,assetsSha256:digest.digest('hex')};
+  const release={appVersion,runtimeVersion:RUNTIME_VERSION,clockVersion:CLOCK_VERSION,commit,dirty,assetsSha256:digest.digest('hex')};
   await writeFile(join(output,'release.json'),JSON.stringify(release,null,2)+'\n');
   return {directory:output,files:[...files,'release.json'],release,moduleGraph};
 }
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href) {
   const result=await buildSite();
-  process.stdout.write(`Built ${result.files.length} public files in dist. Engine ${result.release.engineVersion}. Checked ${result.moduleGraph.modules} static modules and ${result.moduleGraph.staticEdges.length} import edges.\n`);
+  process.stdout.write(`Built ${result.files.length} public files in dist. Runtime ${result.release.runtimeVersion}. Checked ${result.moduleGraph.modules} static modules and ${result.moduleGraph.staticEdges.length} import edges.\n`);
 }

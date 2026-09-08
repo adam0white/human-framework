@@ -1,0 +1,50 @@
+TAP version 13
+# Subtest: an unpublished static dependency blocks build before the previous output is cleared
+ok 1 - an unpublished static dependency blocks build before the previous output is cleared
+  ---
+  duration_ms: 102.640583
+  ...
+# Subtest: deployment selects exact assets and retires the laboratory without leaking adjacent experiments
+ok 2 - deployment selects exact assets and retires the laboratory without leaking adjacent experiments
+  ---
+  duration_ms: 113.9875
+  ...
+# Subtest: deployment refuses symlinked selected assets, their ancestors, and HTML entries before clearing output
+ok 3 - deployment refuses symlinked selected assets, their ancestors, and HTML entries before clearing output
+  ---
+  duration_ms: 228.843042
+  ...
+# Subtest: live verification rejects missing asset before accepting deployment
+ok 4 - live verification rejects missing asset before accepting deployment
+  ---
+  duration_ms: 146.169
+  ...
+# Subtest: live verification rejects changed headers before accepting deployment
+ok 5 - live verification rejects changed headers before accepting deployment
+  ---
+  duration_ms: 125.044
+  ...
+# Subtest: live verification rejects dirty source before accepting deployment
+ok 6 - live verification rejects dirty source before accepting deployment
+  ---
+  duration_ms: 109.698416
+  ...
+# Subtest: local server serves the app and modules but refuses traversal and symlink escape
+ok 7 - local server serves the app and modules but refuses traversal and symlink escape
+  ---
+  duration_ms: 109.740375
+  ...
+# Subtest: a selected local asset cannot redirect to an unlisted file inside web or src
+ok 8 - a selected local asset cannot redirect to an unlisted file inside web or src
+  ---
+  duration_ms: 5.441041
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 523.344583

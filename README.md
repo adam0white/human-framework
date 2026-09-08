@@ -2,19 +2,19 @@
 
 **Resuming work? Start with the [handoff](HANDOFF.md): current versions, live release, latest player feedback, next priorities and safe reproduction commands.**
 
-A simulation laboratory developing reusable components for situated human action and development, grounded in Islam with a **Sunni, Hanafi–Maturidi starting point**, informed by empirical research, and explicit about the difference between revelation, interpretation, evidence and engineering choices.
+A framework of reusable components for situated human action and development, grounded in Islam with a **Sunni, Hanafi–Maturidi starting point**, informed by empirical research, and explicit about the difference between revelation, interpretation, evidence and engineering choices.
 
 **2026-09-08 · App 0.11.0:** **[The camp](https://human.adamwhite.work/camp/)** carries your actual worksite into a ferry/rain chapter, then lets you return to the same people, supplies and unfinished work. Recovery is automatic while available; construction keeps progress and supports accepted handover. Five story slots preserve new and imported camps. [Release and production evidence](docs/release-0.11.md) · [All original experiments](https://human.adamwhite.work/games/). No LLM or API key is needed to play.
 
 **Framework evidence:** the full [camp kernel and story comparison](docs/camp-comparison-reviewed.md) preserves simple-policy successes, the targeted restart correction and explicit migration/cost boundaries. All 29 reviewed cases replay on minimum Node 22. The [validator rival](docs/camp-validator.md) shows narrower replay-integrity benefits at higher cold-load cost; [immutable save caching](docs/camp-slots-contract.md) reduces ordinary update latency without changing bytes. Human usefulness and broader validation remain open. [Current handoff](HANDOFF.md).
 
-**Earlier framework evidence:** [shared-plan comparisons](docs/service-plan-comparison.md) retain successful timed-request/visible-pump/handover alternatives, useful revisions and zero-unit failures. The two [Service Day priorities](docs/service-day-comparison.md) each protect the inlet and fully supply the clinic in nine conditions, totaling 18 runs; retained counterexamples identify the next coordination need. The [equal-learning body comparison](docs/body-isolation.md) isolates body constraints and retains simpler cases. The [coordination-helper probe](docs/coordination-probe.md) preserves exact behavior but fails its inclusive size gate; it stays private. Last Light selects a small notebook over the unpromoted [memory candidate](docs/observation-memory-probe.md). The earlier [0.6](docs/release-0.6.md) and [portable-kit](docs/mvp-evidence-2026-09-07.md) evidence remain dated records. Human/runtime 0.1.0/0.1.1, clock 0.1.0 and laboratory 0.3.0 stay frozen.
+**Earlier framework evidence:** [shared-plan comparisons](docs/service-plan-comparison.md) retain successful timed-request/visible-pump/handover alternatives, useful revisions and zero-unit failures. The two [Service Day priorities](docs/service-day-comparison.md) each protect the inlet and fully supply the clinic in nine conditions, totaling 18 runs; retained counterexamples identify the next coordination need. The [equal-learning body comparison](docs/body-isolation.md) isolates body constraints and retains simpler cases. The [coordination-helper probe](docs/coordination-probe.md) preserves exact behavior but fails its inclusive size gate; it stays private. Last Light selects a small notebook over the unpromoted [memory candidate](docs/observation-memory-probe.md). The earlier [0.6](docs/release-0.6.md) and [portable-kit](docs/mvp-evidence-2026-09-07.md) evidence remain dated records. This retirement changes no Human/runtime, clock or historical engine sources; future incompatible changes use explicit versions without mandatory old-save migrations.
 
-**Autonomous continuation:** the hourly Codex heartbeat advances executable milestones with independent Astra Ultra work and scoped Fable reviews. [Latest dispositions](docs/reviews/2026-09-08-earned-camp-review.md) · [Current handoff](HANDOFF.md). Human playtest, measured authoring-usefulness and physical-device gates remain open.
+**Autonomous continuation:** the hourly Codex heartbeat advances framework milestones with bounded Astra Ultra work and focused independent reviews. Fable is used sparingly; other Claude reviews use the CLI default and record the actual returned model. [Latest dispositions](docs/reviews/2026-09-08-earned-camp-review.md) · [Current handoff](HANDOFF.md). Human playtest, measured authoring-usefulness and physical-device gates remain open.
 
 ## Play
 
-**[Choose a small game](https://human.adamwhite.work/games/).** The laboratory remains at [human.adamwhite.work](https://human.adamwhite.work/).
+**[Explore the examples](https://human.adamwhite.work/).** The laboratory is retired. Current examples cover different framework questions; earlier experiments are optional, with no required progression.
 
 | Game | What you decide |
 |---|---|
@@ -40,18 +40,7 @@ Requires Node.js 22 or later and a modern browser. From this directory:
 npm start
 ```
 
-Open [the optional local laboratory](http://127.0.0.1:4173). Choose a person and an action, or delegate with **Auto round**. **Run to end** plays out the current policy. Inspect the reasons and consequences; switch to **Researcher** for hidden conditions and random draws. Settings apply to a new run. Export a replay to preserve setup and choices, then import it to reconstruct the run.
-
-Each preset allows 36 rounds of 20 simulated minutes. In Solo, one feasible example is to eat at observed hunger 60% when food remains, rest at fatigue 65%, and otherwise choose careful work. Seed 7 completes in 29 rounds with two failed repairs, six rests and two meals. This is an example, not an optimal or universally guaranteed strategy; faster successful strategies can use fewer meals.
-
-| Small world | Decisions it exposes |
-|---|---|
-| Courier Crossing | Investigate uncertain conditions, choose a risky or careful contribution, manage fatigue, keep an announced promise |
-| Repair Bench | Allocate scarce time between work, rest, food and task practice |
-| Water Commons | Maintain a shared resource against consumption, prepare assistance and keep commitments |
-| Solo Repair | Work, inspect, rest and practice alone; no promises, peers, assistance or relationship effects |
-
-The original three laboratory presets remain configurations of the same two-person cooperative resource-production structure; Solo Repair isolates the personal processes with one actor. Their illustrations do not implement navigation, repair physics or hydrology. Before departure adds a host-owned object world through a separate boundary. Its `task-aware`, `planned-simple` and `greedy` controllers are authored by the host and do **not** call the lab Full policy. The shared human component currently supplies body, practice, observation and attempt timing, not the complete social/cognitive loop. [Integration record and remaining gates](docs/workshop-integration.md).
+Open [the optional local examples](http://127.0.0.1:4173). The local server and public build share an exact asset list; private experiments and the retired laboratory interface are not served. Historical headless comparisons remain reproducible through their source-linked scripts and dated release records.
 
 ## The central loop
 
@@ -68,11 +57,13 @@ flowchart LR
     L --> W
 ```
 
-Every laboratory decision records these seven phases. The person's accessible view is separate from hidden world state. A player can override the ranking, while capacity determines whether exertion executes or recovery is required. Both request and execution are recorded. An executed task can fail and still yield task-specific practice; work replaced by recovery earns none. Intention is separate from outcome and never parsed to manufacture an effect. History is an audit log, not autobiographical memory.
+The historical headless laboratory records these seven phases; the portable kit exports a narrower body/practice and clock boundary. The person's accessible view is separate from hidden world state. A player can override the ranking, while capacity determines whether exertion executes or recovery is required. Both request and execution are recorded. An executed task can fail and still yield task-specific practice; work replaced by recovery earns none. Intention is separate from outcome and never parsed to manufacture an effect. History is an audit log, not autobiographical memory.
 
 This is an engineering loop, not an anatomy of the soul or a model of divine decree. Religious source distinctions guide the architecture and its boundaries; the MVP contains no fiqh evaluator, piety meter, spiritual-health score or calculation of divine acceptance. [Islamic foundations](research/islamic-foundations.md) preserves the positive theological treatment and attribution behind those boundaries.
 
-## Run and extend
+## Runtime and historical reproduction
+
+Use the [portable API](docs/portable-runtime.md) for a new host. The simulation and benchmark commands below reproduce private historical experiments; they are not a public laboratory product or a required controller for new games.
 
 ```sh
 npm test
@@ -100,7 +91,7 @@ const restored = replay(exportReplay(next));
 
 The ranking override only inspects an alternative policy; it does not mutate the run. Candidates sort by `selectionTier`, then additive score, then action ID. Actor order is stable and serial within each lab round. Current scenarios require dimensionless `goalUtility`: converting physical units rescales progress/output/target/consumption, not that value. Full's deadline term is a utility heuristic, not multistep planning.
 
-Replay uses the embedded scenario, commands and matching engine: frozen 0.1.0 and 0.2.0 remain available for read-only historical inspection, while the current laboratory creates 0.3.0 runs. Unsupported versions are rejected. Replays include hidden setup. Laboratory modules are in `src/core`, historical execution in `src/legacy`, presets in `src/scenarios`, and browser adapters in `web`. The narrower component is `src/human`: `index.js` preserves version 0.1.0 for existing games, while `v0.1.1.js` supplies the current portable package. Workshop (`src/games/workshop.js`) was the first consumer of 0.1.0; the independently authored maintenance/watch example now exercises the package. All hosts own their resources, task outcomes and completion rules. Common Ground uses the additive `src/runtime` event clock and its own canonical minute advancement; the browser is a clock driver. The local package exports the human component and clock, not the laboratory Full policy. The courtyard social responses are authored in that host; they have not been extracted into a shared social API. A new shared mechanism needs an explicit model change and validation.
+Replay uses the embedded scenario, commands and matching engine: frozen 0.1.0 and 0.2.0 remain available for read-only historical inspection, while the preserved headless engine reproduces 0.3.0 runs. Unsupported versions are rejected. Replays include hidden setup. Laboratory modules are in `src/core`, historical execution in `src/legacy`, presets in `src/scenarios`, and the retired browser adapters remain private source in `web`. The narrower component is `src/human`: `index.js` preserves version 0.1.0 for existing games, while `v0.1.1.js` supplies the current portable package. Workshop (`src/games/workshop.js`) was the first consumer of 0.1.0; the independently authored maintenance/watch example now exercises the package. All hosts own their resources, task outcomes and completion rules. Common Ground uses the additive `src/runtime` event clock and its own canonical minute advancement; the browser is a clock driver. The local package exports the human component and clock, not the laboratory Full policy. The courtyard social responses are authored in that host; they have not been extracted into a shared social API. A new shared mechanism needs an explicit model change and validation.
 
 ## What the experiments found
 

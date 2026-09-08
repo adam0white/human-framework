@@ -20,7 +20,7 @@ for(const mutation of ['missing asset','changed headers','dirty source'])test(`l
     const payloads={'_headers':'/*\n Cache-Control: no-cache, no-transform\n','index.html':'<h1>Game</h1>','required.js':'export const ready=true;'};
     const digest=createHash('sha256');
     for(const path of Object.keys(payloads).sort()){await writeFile(join(root,'dist',path),payloads[path]);digest.update(path).update('\0').update(payloads[path]).update('\0');}
-    await writeFile(join(root,'dist/release.json'),JSON.stringify({appVersion:'0.4.0',engineVersion:'0.3.0',commit,dirty:false,assetsSha256:digest.digest('hex')}));
+    await writeFile(join(root,'dist/release.json'),JSON.stringify({appVersion:'0.4.0',runtimeVersion:'0.1.1',clockVersion:'0.1.0',commit,dirty:false,assetsSha256:digest.digest('hex')}));
     if(mutation==='missing asset')await rm(join(root,'dist/required.js'));
     if(mutation==='changed headers')await writeFile(join(root,'dist/_headers'),'changed');
     if(mutation==='dirty source')await writeFile(join(root,'package.json'),' {"type":"module","changed":true}');

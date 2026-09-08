@@ -1,0 +1,21 @@
+{
+  "node": "v26.8.1",
+  "pass": true,
+  "publicFiles": 71,
+  "publicAssets": 56,
+  "staticModules": 42,
+  "staticEdges": 60,
+  "htmlCssReferences": 90,
+  "assetsFetched": 56,
+  "routeChecks": 26,
+  "retired404s": 14,
+  "dynamic": [],
+  "release": {
+    "appVersion": "0.12.0",
+    "runtimeVersion": "0.1.1",
+    "clockVersion": "0.1.0",
+    "commit": null,
+    "dirty": null,
+    "assetsSha256": "63bc0073232ee88a27158031863e184d5658f7aac1b206a69c96b1f48999dc66"
+  }
+}

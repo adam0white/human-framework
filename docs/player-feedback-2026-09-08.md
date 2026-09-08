@@ -14,8 +14,17 @@ Source: direct user messages in Codex task `01a07f66-d78e-7140-bd9e-b5691a048b2a
 
 > Oh no I thought arriving at minute 12 to the beacon would save the evening launch. On a second look it clearly says before minute 12 lol. The games feel short because I can only make a few decisions before the end, spending more time understanding what's going on and devising approaches (which is okay if we want to keep things a bit difficult and like a strategy game) and understanding the UI (which shows that games are just too short to be standalone). It'll matter less once we try to keep things coherent with progressive disclosure of a UI while merging the games into a single, branched game (or whatever you want to come up with)
 
-## Working interpretation, distinct from the observations
+## Initial working interpretation, superseded where corrected below
 
 The player describes attachment to a persistent world and perceives coherent human constraints beneath simple tasks. This supports a continuing-story and common-interface hypothesis; it does not validate psychological realism or establish that every game is enjoyable. Repeated interface learning can consume the few decisions in a short episode. Test compact persistent controls before explaining shortness solely with more content. Keep consequential choices while making deadlines and action estimates explicit.
 
 The ongoing-garden report is a specific bug hypothesis needing an actual reproducible state. Automatic rest and continuous partial work are proposed mechanics requiring a deliberate versioned contract. A restart-free main story is a candidate direction, not authorization to erase players' existing saves or remove preserved experimental controls. [Active implementation plan](superpowers/plans/2026-09-08-player-continuity.md).
+
+
+## Later correction after app 0.11
+
+Source: the same player in the same task, after delivery of The camp. This is a completion report for the games in their own words, without individual play logs or measured explanations. It supersedes the earlier inference that all games should become one story and the prior compatibility caution.
+
+> I think it's safe to retire the laboratory altogether now. Also, I'm the only player, don't worry too much about breaking my saves; the games were pretty short anyway. And we don't need to force them to merge into a single story; we don't need to include all of them in the new chapter based progression as training, and we can change them as you see fit. It might be easier to throw some earlier experiments away and build some things from scratch. Don't hesitate, follow the best practices. I finished all the games btw. Good progression, I'll probably ask to shorten/merge some levels entirely. But please keep going, we're making good progress. The progression isn't about the levels, it's about improving and iterating on our framework.
+
+Current direction: retire the public laboratory; freely edit, shorten, merge, replace or remove examples and break old saves when worthwhile. The framework is the objective. A campaign is an optional application, not the required next milestone or an obligation to retain every experiment. Preserve useful research evidence privately without turning old interfaces and migrations into permanent product requirements. Continued iteration with this one player does not establish general human validity.

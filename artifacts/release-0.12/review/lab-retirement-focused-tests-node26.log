@@ -1,0 +1,16 @@
+✔ an unpublished static dependency blocks build before the previous output is cleared (58.04825ms)
+✔ deployment selects exact assets and retires the laboratory without leaking adjacent experiments (67.632917ms)
+✔ deployment refuses symlinked selected assets, their ancestors, and HTML entries before clearing output (366.340916ms)
+✔ live verification rejects missing asset before accepting deployment (131.649292ms)
+✔ live verification rejects changed headers before accepting deployment (143.217333ms)
+✔ live verification rejects dirty source before accepting deployment (120.77325ms)
+✔ local server serves the app and modules but refuses traversal and symlink escape (83.721833ms)
+✔ a selected local asset cannot redirect to an unlisted file inside web or src (7.994875ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 535.992875

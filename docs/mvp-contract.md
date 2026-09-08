@@ -1,12 +1,18 @@
 # What may graduate to MVP
 
-Established 2026-09-07; updated through app 0.11 on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
+Established 2026-09-07; current direction revised after app 0.11 on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
+
+## Current scope correction
+
+The [latest direct instruction](player-feedback-2026-09-08.md#later-correction-after-app-011) makes framework improvement the objective. Games are replaceable experiments, with no required unified campaign, level count, full tutorial sequence or old-save compatibility. The public laboratory is retired; its headless comparisons and historical sources remain private evidence. The only current player reports finishing all games. We can iterate from that feedback without recruiting a fixed number of players as a condition of each software release. Broader human validity and usefulness remain separate unproven claims.
+
+A milestone should fix a demonstrated inconsistency, reduce real host integration obligations, or add a mechanism whose useful consequences survive a serious simpler rival. A new chapter, larger catalog or more validation code alone does not establish progress.
 
 ## Intended first deliverable
 
 An embeddable, deterministic JavaScript kit for situated game actors: existing body/capacity/practice execution, host-owned actions and outcomes, a separable event clock, validated saved state, and working reference consumers. A host can use the mechanics with a player, an ordinary utility policy or a later planner. It never requires generated text to advance.
 
-The current laboratory Full policy is a distinct reactive experimental controller. The standalone human component does not yet transport its belief, commitment and action-ranking machinery to arbitrary hosts. The laboratory's assistance, the courtyard's loans and Common Ground's shared projects are different host rules. None is a general implementation of human social cognition.
+The retired laboratory Full policy was a distinct reactive experimental controller. The standalone human component does not yet transport its belief, commitment and action-ranking machinery to arbitrary hosts. The historical laboratory's assistance, the courtyard's loans and Common Ground's shared projects are different host rules. None is a general implementation of human social cognition.
 
 ## Responsibility contract
 
@@ -25,11 +31,15 @@ The current laboratory Full policy is a distinct reactive experimental controlle
 
 1. **Install outside this repository.** A packed artifact must execute in an empty consumer using only declared exports. No hidden imports from a game, browser or private research. Record the exact source and tarball contents. Success means portability of that exported scope.
 2. **Survive host lifecycle changes.** Concurrent work, interrupted work, saving mid-action and alternate clock drivers must preserve outcomes and ownership. No double meals, instant resources, free recovery or hidden historical state growth.
-3. **Make behavior understandable.** A person playing should explain the objective, a tradeoff, an unsuccessful action and another person's response from visible information. The practical five-person/four-correct-explanations gate remains open; one developer and AI reviews do not substitute for it.
+3. **Make behavior understandable.** A person playing should explain the objective, a tradeoff, an unsuccessful action and another person's response from visible information. Record the current player’s actual explanations and observed confusions with provenance. The earlier five-person/four-explanation study is a possible later validation design, not a current release gate; one player and AI reviews do not establish general understandability.
 4. **Earn complexity against a serious simpler rival.** Same information and world physics, with the simpler host controller allowed sensible recovery. Compare useful authoring effort and player explanations as well as outputs. Prescribed actions and equal-duration retests isolate mechanisms. A complicated policy winning every sample is neither required nor desirable.
-5. **Retain independent controls and evidence.** Solo Repair stays socially isolated. Old replays and negative benchmarks remain executable. CPU/event latency and memory measurements must name hardware, workload and what rendering was excluded; physical-mobile timing remains a separate check.
+5. **Retain independent controls and evidence.** Use socially isolated controls where needed. Preserve negative results and sufficient versioned source to reproduce material comparisons privately; old public interfaces and automatic save migration are not required. CPU/event latency and memory measurements must name hardware, workload and what rendering was excluded; physical-mobile timing remains a separate check.
 
-The 0.5 milestone is meant to satisfy more of checks 1 and 2 and respond to observed clarity failures in check 3. It cannot predeclare checks 3 and 4 passed. Package usability and a broader human model have different completion criteria.
+Package usability and a broader human model have different completion criteria. Passing software lifecycle checks does not establish understandable play, useful authoring complexity or human validity.
+
+## Historical milestone records
+
+The sections below describe evidence and proposed gates at their dates. Their “next” steps and compatibility commitments are superseded by the current scope above and the current roadmap.
 
 ## Progress during the 0.5 playtest
 

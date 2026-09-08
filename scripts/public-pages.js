@@ -1,6 +1,6 @@
 // Public HTML is explicit: research or draft HTML in web/ is never published.
 export const PUBLIC_PAGES=Object.freeze({
-  'index.html':'index.html',
+  'index.html':'web/games.html',
   'games/index.html':'web/games.html',
   'camp/index.html':'web/camp.html',
   'workshop/index.html':'web/workshop.html',

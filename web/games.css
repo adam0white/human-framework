@@ -6,7 +6,7 @@
 
 .plan{background:#f3efdf}
 
-/* One preview and an always available chooser, in a suggested learning order. */
+/* One current example at a time, with earlier experiments in a disclosure. */
 .compact-collection{height:100dvh;overflow:hidden;font-size:14px;line-height:1.45}
 .compact-collection [hidden]{display:none!important}
 .compact-collection .shell{height:100%;max-width:1080px;display:flex;flex-direction:column;padding:0 24px}
@@ -21,7 +21,7 @@
 .compact-collection .game-chooser>label{display:none}
 .compact-collection .collection-list{display:grid;gap:4px}
 .compact-collection .collection-list button{display:flex;align-items:center;gap:12px;text-align:left;min-height:44px;padding:9px 12px;border:1px solid transparent;border-radius:7px;font:600 12px/1.25 system-ui,sans-serif;color:inherit;background:transparent;cursor:pointer}
-.compact-collection .collection-list button>span:first-child{color:#667d62;font-weight:400;font-variant-numeric:tabular-nums}
+.compact-collection .collection-list button{flex-direction:column;align-items:flex-start;gap:3px}.compact-collection .collection-list button small{color:#667d62;font-size:11px;font-weight:400}
 .compact-collection .collection-list button[aria-selected=true]{border-color:#a5b59c;background:#e9eedd}
 .compact-collection .games{display:block;overflow-y:auto;min-height:0;padding:0 5px 8px 0}
 .compact-collection .learning-step{font-size:12px;color:#526c55;margin:0 0 8px}
@@ -63,3 +63,15 @@
  .compact-collection .games{overflow:visible}
  .compact-collection .collection-notes{max-height:none}
 }
+
+.earlier{margin-top:20px;border-top:1px solid #d8dbcf;padding:8px 0}.earlier summary{min-height:44px;padding:10px 0;font-size:12px;font-weight:650;cursor:pointer}.earlier summary>span{font-size:11px;font-weight:400;color:#657465;margin-left:8px}.earlier>p{font-size:12px;color:#657465;margin:0 0 12px}.earlier-list{display:grid;grid-template-columns:1fr 1fr;gap:7px 18px;padding-bottom:10px}.earlier-list a{position:relative;display:flex;flex-direction:column;min-height:52px;justify-content:center;padding:8px 25px 8px 10px;text-decoration:none;border:1px solid #d4dbce;border-radius:7px;background:#fffef8}.earlier-list strong{font-size:12px;font-weight:600}.earlier-list span{font-size:11px;color:#657465}.earlier-list .earlier-arrow{position:absolute;right:9px;top:50%;transform:translateY(-50%);font-size:16px}.earlier-list a:hover{border-color:#7e9a7b}.compact-collection .earlier{margin-top:10px;flex:0 0 auto;max-height:35vh;overflow:auto;padding:0}.compact-collection .earlier summary{min-height:38px;padding:10px 0}.compact-collection .collection-notes{margin-top:0;padding:0}.compact-collection .notes p{margin:6px 0 10px}
+@media(max-width:620px){.earlier-list{grid-template-columns:1fr;gap:6px}.compact-collection .earlier{margin-top:8px}.compact-collection .earlier summary{font-size:11px;min-height:37px}.earlier>p{font-size:11px}.compact-collection .collection-browser{gap:9px}.compact-collection .game-chooser>label{font-weight:500}.compact-collection .intro{padding:12px 0 10px}.compact-collection .game h2{font-size:27px}.compact-collection .game .illustration{height:85px}}
+@media(max-height:570px),(max-width:340px){.compact-collection .earlier{max-height:none;overflow:visible}}
+/* Opening a disclosure uses ordinary page flow instead of squeezing the preview. */
+.compact-collection:has(.earlier[open],.collection-notes[open]){height:auto;min-height:100dvh;overflow:auto}
+.compact-collection:has(.earlier[open],.collection-notes[open]) .shell{height:auto;min-height:100dvh}
+.compact-collection:has(.earlier[open],.collection-notes[open]) .collection-browser{flex:0 0 auto}
+.compact-collection:has(.earlier[open],.collection-notes[open]) .games{overflow:visible}
+.compact-collection:has(.earlier[open],.collection-notes[open]) :is(.earlier,.collection-notes){max-height:none;overflow:visible}
+.earlier summary:focus-visible,.collection-notes summary:focus-visible{outline-offset:-2px}.earlier-list a:focus-visible{outline-offset:2px}
+@media(min-width:621px){.compact-collection .game-chooser{padding:5px}}

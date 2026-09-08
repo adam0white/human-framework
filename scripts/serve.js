@@ -1,13 +1,14 @@
 import {createServer} from 'node:http';
 import {readFile,realpath,stat} from 'node:fs/promises';
-import {resolve,dirname,extname,sep} from 'node:path';
+import {resolve,dirname,extname} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {PUBLIC_PAGES,HTML_ROUTES} from './public-pages.js';
+import {PUBLIC_ASSETS} from './public-assets.js';
 
 const projectRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.ico':'image/x-icon'};
-function allowed(path) {return Object.values(PUBLIC_PAGES).includes(path)||/^(web|src)\/[a-zA-Z0-9_./-]+\.(js|css|svg|png|ico)$/.test(path);}
-function inside(path,root) {return path===root||path.startsWith(root+sep);}
+const publicSources=new Set([...Object.values(PUBLIC_PAGES),...PUBLIC_ASSETS]);
+function allowed(path) {return publicSources.has(path);}
 
 export function createAppServer({root=projectRoot}={}) {
   const base=resolve(root);
@@ -18,12 +19,10 @@ export function createAppServer({root=projectRoot}={}) {
     if(!['GET','HEAD'].includes(req.method)) {res.writeHead(405,{Allow:'GET, HEAD'});res.end('Method not allowed');return;}
     try {
       const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
-      const relative=Object.hasOwn(HTML_ROUTES,pathname)?HTML_ROUTES[pathname]:pathname.slice(1);
+      const relative=pathname==='/index.html'?PUBLIC_PAGES['index.html']:Object.hasOwn(HTML_ROUTES,pathname)?HTML_ROUTES[pathname]:pathname.slice(1);
       if(!allowed(relative)||relative.split('/').some(p=>p==='..'||p.startsWith('.'))) {res.writeHead(404);res.end();return;}
       const path=await realpath(resolve(base,relative)),realBase=await realpath(base);
-      const segment=relative.split('/')[0];
-      const expectedRoot=relative==='index.html'?realBase:resolve(realBase,segment);
-      if(!inside(path,expectedRoot)||(relative==='index.html'&&path!==resolve(realBase,'index.html'))) {res.writeHead(403);res.end();return;}
+      if(path!==resolve(realBase,relative)) {res.writeHead(403);res.end();return;}
       const info=await stat(path);
       if(!info.isFile()) {res.writeHead(404);res.end();return;}
       const content=await readFile(path);
@@ -41,7 +40,7 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).hr
   if(!Number.isInteger(port)||port<1||port>65535) {process.stderr.write('PORT must be an integer from 1 to 65535.\n');process.exitCode=1;}
   else {
     const server=createAppServer();
-    server.on('error',error=>{process.stderr.write(`Cannot start laboratory: ${error.message}\n`);process.exitCode=1;});
-    server.listen(port,'127.0.0.1',()=>process.stdout.write(`Human Framework laboratory: http://127.0.0.1:${port}\nLocal only. Press Ctrl+C to stop.\n`));
+    server.on('error',error=>{process.stderr.write(`Cannot start examples: ${error.message}\n`);process.exitCode=1;});
+    server.listen(port,'127.0.0.1',()=>process.stdout.write(`Human Framework examples: http://127.0.0.1:${port}\nLocal only. Press Ctrl+C to stop.\n`));
   }
 }

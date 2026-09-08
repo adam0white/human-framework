@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/web/games.js",
+    "status": 200,
+    "body": "PRIVATE_INSIDE_WEB"
+  },
+  {
+    "path": "/src/core/model.js",
+    "status": 200,
+    "body": "PRIVATE_INSIDE_SRC"
+  },
+  {
+    "path": "/web/private.js",
+    "status": 404,
+    "body": ""
+  },
+  {
+    "path": "/src/private/model.js",
+    "status": 404,
+    "body": ""
+  }
+]
