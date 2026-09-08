@@ -101,18 +101,21 @@ function morning(s){
 }
 function closing(s){for(const a of actors)stop(s,a);for(const e of [...s.clock.queue])s.clock=cancelEvent(s.clock,e.id);s.outcome={at:CLOSING,morningProtected:s.morning.protected,morningWater:s.morning.waterService,clinicUnits:s.delivery?.units??0,clinicRequired:2,clinicRoute:s.delivery?.route??'unfinished',allService:s.morning.waterService&&s.delivery?.units===2};note(s,'world',`The clinic intake closed with ${s.outcome.clinicUnits} of 2 requested water units. Morning service remains ${s.outcome.morningWater?'fulfilled':'missed'}.`);}
 function record(s,c,replace=false){const last=s.commands.at(-1);if(c.type==='advance'&&last?.type==='advance'){last.to=c.to;return;}if(replace){s.commands[s.commands.length-1]=copy(c);return;}if(s.commands.length>=MAX_COMMANDS)fail('COMMAND_LIMIT','The saved command limit has been reached.');s.commands.push(copy(c));}
+// Refusals have no world effect: retain only the latest response in a same-minute run, regardless of command kind or recipient.
+function replacesRefusal(s){return s.lastResponse?.accepted===false&&s.lastResponse.at===s.clock.now&&['request','stop'].includes(s.commands.at(-1)?.type);}
 function taskRaw(s,a,task){
  if(typeof a!=='string'||!actors.includes(a)||typeof task!=='string'||!Object.hasOwn(SERVICE_TASKS,task))fail('INVALID_COMMAND','Unknown person or task.');
- if(s.commands.length>=MAX_COMMANDS-5)fail('COMMAND_LIMIT','No new requests remain. You can stop requested work and advance time to finish the day.');
- const r=refusal(s,a,task),previous=s.commands.at(-1),replace=Boolean(r&&s.lastResponse?.accepted===false&&s.lastResponse.at===s.clock.now&&previous?.type==='request');
+ const r=refusal(s,a,task),replace=Boolean(r&&replacesRefusal(s));
+ if(!replace&&s.commands.length>=MAX_COMMANDS-5)fail('COMMAND_LIMIT','No new requests remain. You can stop requested work and advance time to finish the day.');
  s.lastResponse={at:s.clock.now,actor:a,task,accepted:!r,code:r?.[0]??'ACCEPTED',reason:r?.[1]??`Agreed: ${SERVICE_TASKS[task].label.toLowerCase()}, ${spec(s,task).durationMinutes} paid minutes.`};
  if(!r){stop(s,a);start(s,a,task);note(s,a,s.lastResponse.reason);}record(s,{type:'request',actor:a,task},replace);return s;
 }
 function stopRaw(s,a){
  if(!actors.includes(a)||s.outcome||s.jobs[a].task==='idle')fail('NOT_WORKING','There is no current job to stop.');
- if(s.commands.length>=MAX_COMMANDS-2)fail('COMMAND_LIMIT','Advance time to finish the current work and reach closing.');
- const j=s.jobs[a],rejected=a==='partner'&&j.origin==='own';s.lastResponse={at:s.clock.now,actor:a,task:j.task,accepted:!rejected,code:rejected?'OWN_COMMITMENT':'STOPPED',reason:rejected?'I chose this work for the clinic and will finish it. You can make another request when I am free.':'Stopped the agreed work; paid recovery and installed work remain.'};
- if(!rejected){stop(s,a,true);start(s,a,'idle','own');}record(s,{type:'stop',actor:a},rejected&&s.commands.at(-1)?.type==='stop'&&s.commands.at(-1)?.actor===a);return s;
+ const j=s.jobs[a],rejected=a==='partner'&&j.origin==='own',replace=rejected&&replacesRefusal(s);
+ if(!replace&&s.commands.length>=MAX_COMMANDS-2)fail('COMMAND_LIMIT','Advance time to finish the current work and reach closing.');
+ s.lastResponse={at:s.clock.now,actor:a,task:j.task,accepted:!rejected,code:rejected?'OWN_COMMITMENT':'STOPPED',reason:rejected?'I chose this work for the clinic and will finish it. You can make another request when I am free.':'Stopped the agreed work; paid recovery and installed work remain.'};
+ if(!rejected){stop(s,a,true);start(s,a,'idle','own');}record(s,{type:'stop',actor:a},replace);return s;
 }
 function advanceRaw(s,target){
  int(target,s.clock.now,1000000,'target minute');if(s.outcome||target===s.clock.now)return s;
@@ -156,5 +159,7 @@ export function getServiceView(s){
 export function exportService(s){check(s);const {commands,...state}=copy(s);return {format:'human-service-day',version:1,hostVersion:SERVICE_VERSION,runtimeVersion:RUNTIME_VERSION,scenario:s.scenario,commands,state};}
 export function restoreService(input){
  json(input);if(JSON.stringify(input).length>MAX_SAVE)fail('INVALID_SAVE','Save too large.');fields(input,['format','version','hostVersion','runtimeVersion','scenario','commands','state'],'save');if(input.format!=='human-service-day'||input.version!==1||input.hostVersion!==SERVICE_VERSION||input.runtimeVersion!==RUNTIME_VERSION||input.scenario!=='standard'||!Array.isArray(input.commands)||input.commands.length>MAX_COMMANDS)fail('INVALID_SAVE','Incompatible service-day replay.');
- const s=initial(input.scenario);for(const c of input.commands){if(c?.type==='request'){fields(c,['type','actor','task'],'request command');taskRaw(s,c.actor,c.task);}else if(c?.type==='stop'){fields(c,['type','actor'],'stop command');stopRaw(s,c.actor);}else if(c?.type==='advance'){fields(c,['type','to'],'advance command');advanceRaw(s,c.to);}else fail('INVALID_SAVE','Unknown replay command.');}if(!equal(exportService(s),input))fail('INVALID_SAVE','Saved world does not match its deterministic command replay.');return s;
+ const s=initial(input.scenario);for(const c of input.commands){if(c?.type==='request'){fields(c,['type','actor','task'],'request command');taskRaw(s,c.actor,c.task);}else if(c?.type==='stop'){fields(c,['type','actor'],'stop command');stopRaw(s,c.actor);}else if(c?.type==='advance'){fields(c,['type','to'],'advance command');advanceRaw(s,c.to);}else fail('INVALID_SAVE','Unknown replay command.');}const expected=exportService(s);
+ // Earlier development saves may retain redundant refusals. Normalize only the replay journal; every saved world/envelope field must still match exactly.
+ if(!equal(expected,{...input,commands:expected.commands}))fail('INVALID_SAVE','Saved world does not match its deterministic command replay.');return s;
 }

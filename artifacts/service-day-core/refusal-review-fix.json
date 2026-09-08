@@ -1,0 +1,54 @@
+{
+  "format": "service-day-refusal-review-fix",
+  "version": 1,
+  "reviewedOriginalCommit": "94cb980c63520276c3cb9374b1c4c6b9f73d0d95",
+  "originalSourceSha256": "23854936dfc6aa716b8ae95a5e21c2b1b1ea02fd220e92672966a65cf0d2027e",
+  "sourceSha256": {
+    "src/games/service.js": "50ce6e3e52a9e92c85532f3a73d8afa46e6bc0ca7993ef72ce9e4f58e51738d1",
+    "tests/service.test.js": "6fa90efb31a95e50f21954562bef0eaa87cecfa41de1b1413f4b63d78091dceb",
+    "docs/service-day-design.md": "c42d2ad79de1121cc89691b0bc6c7203af1aaaabaaf4732a1c36d1843887e6db"
+  },
+  "findings": {
+    "P2": "Fixed: same-minute no-effect refusals coalesce across request/stop and recipients, including replacement at the action budget.",
+    "P3": "Contract clarified: lastResponse retains the latest response until the next response; recent is not a durable refusal transcript. No unrecorded recent entries were added."
+  },
+  "legacySourceProbe": {
+    "rawCommands": 251,
+    "normalizedCommands": 2,
+    "savedWorldExactlyPreserved": true,
+    "keeperRestAcceptedAfterRestore": true,
+    "closingAt": 64
+  },
+  "tests": [
+    {
+      "command": "PATH=/opt/homebrew/bin:$PATH npm test",
+      "node": "26.8.1",
+      "passed": 444,
+      "failed": 0
+    },
+    {
+      "command": "PATH=/opt/homebrew/bin:$PATH node --test tests/service.test.js",
+      "node": "26.8.1",
+      "passed": 23,
+      "failed": 0
+    },
+    {
+      "command": "PATH=/opt/homebrew/bin:$PATH npx --yes node@22.0.0 --test tests/service.test.js",
+      "node": "22.0.0",
+      "passed": 23,
+      "failed": 0
+    },
+    {
+      "command": "PATH=/opt/homebrew/bin:$PATH node --test --test-name-pattern 'Alternating' /tmp/hf-service-core-counterexamples.mjs",
+      "passed": 1,
+      "failed": 0
+    }
+  ],
+  "impact": {
+    "stateAndViewFieldsChanged": false,
+    "hostVersionChanged": false,
+    "physicsAndControllerChanged": false,
+    "restoreBehavior": "Replay normalizes redundant command journals while requiring an exact match for all saved world and envelope fields.",
+    "originalEvidencePreserved": true
+  }
+}
