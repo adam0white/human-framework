@@ -1,0 +1,41 @@
+✔ Next Event goes directly to assigned job completion when there is no earlier meaningful event (5.614834ms)
+✔ taking Meryem work records her acceptance of the player relief offer (1.111333ms)
+✔ an unwilling busy neighbor can refuse handover without any paid or physical mutation (1.16175ms)
+✔ paid practice and effort totals cannot be erased or fabricated in a snapshot (0.654167ms)
+✔ coordinated fabricated gathering receipts still require paid work (0.137167ms)
+✔ a stopped stage resumes with no second material payment even after another worker contributes (2.004584ms)
+✔ automatic recovery never feeds a hungry solo actor or relaxes hunger capacity (8.979709ms)
+✔ invalid options identities oversized trees and accessors do not mutate saved state (0.496125ms)
+✔ the actual stock-first milestone migrates its live gather without granting a new shelter bonus (21.672666ms)
+✖ fixed attempt counter reservation retains stop save and automatic progression (3.553166ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 83.718125
+
+✖ failing tests:
+
+test at tests/camp-kernel-lifecycle.test.js:74:1
+✖ fixed attempt counter reservation retains stop save and automatic progression (3.553166ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(choice.unavailable)
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel-lifecycle.test.js:76:73)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

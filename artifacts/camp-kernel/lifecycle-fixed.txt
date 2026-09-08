@@ -1,0 +1,28 @@
+✔ Next Event goes directly to assigned job completion when there is no earlier meaningful event (6.166625ms)
+✔ taking Meryem work records her acceptance of the player relief offer (1.332ms)
+✔ an unwilling busy neighbor can refuse handover without any paid or physical mutation (1.681708ms)
+✔ paid practice and effort totals cannot be erased or fabricated in a snapshot (0.859333ms)
+✔ coordinated fabricated gathering receipts still require paid work (0.165458ms)
+✔ a stopped stage resumes with no second material payment even after another worker contributes (2.468916ms)
+✔ automatic recovery never feeds a hungry solo actor or relaxes hunger capacity (9.630291ms)
+✔ invalid options identities oversized trees and accessors do not mutate saved state (0.829875ms)
+✔ camp exposes the separately versioned full game API (2.655084ms)
+✔ automatic available recovery pays real time without a job or food (2.872375ms)
+✔ full gathering pays interval before fixed output; meal reservation returns only on interruption (3.624875ms)
+✔ migration preserves mixed fixed gather, meal and converted rest paid state (14.131791ms)
+✔ prospective workbench improves future physical work while snapshot is independent of recovery (17.209791ms)
+✔ stopping and resuming preserve material and per-worker productivity basis (3.297959ms)
+✔ handover invokes recipient choice and charges only that recipient future work (2.178084ms)
+✔ neighbor accepted project gathers missing material and recovers through own decisions (7.614875ms)
+✔ availability uses actual admission for the original rounded-capacity counterexample (3.345542ms)
+✔ chunking and JSON snapshot continuation remain exact past the old fixture horizon (29.611292ms)
+✔ stop and save stay available after many same-minute assignments (129.876334ms)
+✔ tampered ownership, contributions, counters and unsafe JSON are rejected (0.895708ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 260.894167

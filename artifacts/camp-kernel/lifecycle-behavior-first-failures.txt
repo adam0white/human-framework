@@ -1,0 +1,94 @@
+✖ Next Event goes directly to assigned job completion when there is no earlier meaningful event (3.486ms)
+✖ taking Meryem work records her acceptance of the player relief offer (1.5365ms)
+✔ an unwilling busy neighbor can refuse handover without any paid or physical mutation (1.546416ms)
+✖ paid practice and effort totals cannot be erased or fabricated in a snapshot (0.572167ms)
+✖ coordinated fabricated gathering receipts still require paid work (0.152041ms)
+✔ a stopped stage resumes with no second material payment even after another worker contributes (2.2295ms)
+✔ automatic recovery never feeds a hungry solo actor or relaxes hunger capacity (8.989791ms)
+✔ invalid options identities oversized trees and accessors do not mutate saved state (0.462708ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 4
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55.868875
+
+✖ failing tests:
+
+test at tests/camp-kernel-lifecycle.test.js:8:1
+✖ Next Event goes directly to assigned job completion when there is no earlier meaningful event (3.486ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  6 !== 16
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel-lifecycle.test.js:10:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 6,
+    expected: 16,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/camp-kernel-lifecycle.test.js:14:1
+✖ taking Meryem work records her acceptance of the player relief offer (1.5365ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Meryem accepted your offer/i. Input:
+  
+  'You accepted the remaining workbench work.'
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel-lifecycle.test.js:17:53)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'You accepted the remaining workbench work.',
+    expected: /Meryem accepted your offer/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/camp-kernel-lifecycle.test.js:25:1
+✖ paid practice and effort totals cannot be erased or fabricated in a snapshot (0.572167ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel-lifecycle.test.js:28:56)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /practice|effort|paid/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/camp-kernel-lifecycle.test.js:31:1
+✖ coordinated fabricated gathering receipts still require paid work (0.152041ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/.worktrees/camp-kernel/tests/camp-kernel-lifecycle.test.js:33:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /paid|receipt/i,
+    operator: 'throws',
+    diff: 'simple'
+  }

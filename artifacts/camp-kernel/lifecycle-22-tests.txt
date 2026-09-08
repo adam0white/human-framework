@@ -1,0 +1,30 @@
+✔ Next Event goes directly to assigned job completion when there is no earlier meaningful event (5.711875ms)
+✔ taking Meryem work records her acceptance of the player relief offer (1.171125ms)
+✔ an unwilling busy neighbor can refuse handover without any paid or physical mutation (1.388292ms)
+✔ paid practice and effort totals cannot be erased or fabricated in a snapshot (0.771583ms)
+✔ coordinated fabricated gathering receipts still require paid work (0.158625ms)
+✔ a stopped stage resumes with no second material payment even after another worker contributes (2.76375ms)
+✔ automatic recovery never feeds a hungry solo actor or relaxes hunger capacity (9.1105ms)
+✔ invalid options identities oversized trees and accessors do not mutate saved state (0.4715ms)
+✔ the actual stock-first milestone migrates its live gather without granting a new shelter bonus (22.66675ms)
+✔ fixed attempt counter reservation retains stop save and automatic progression (2.808958ms)
+✔ camp exposes the separately versioned full game API (2.729958ms)
+✔ automatic available recovery pays real time without a job or food (2.51575ms)
+✔ full gathering pays interval before fixed output; meal reservation returns only on interruption (2.867416ms)
+✔ migration preserves mixed fixed gather, meal and converted rest paid state (13.498083ms)
+✔ prospective workbench improves future physical work while snapshot is independent of recovery (16.040458ms)
+✔ stopping and resuming preserve material and per-worker productivity basis (2.711459ms)
+✔ handover invokes recipient choice and charges only that recipient future work (2.065666ms)
+✔ neighbor accepted project gathers missing material and recovers through own decisions (6.810334ms)
+✔ availability uses actual admission for the original rounded-capacity counterexample (2.823292ms)
+✔ chunking and JSON snapshot continuation remain exact past the old fixture horizon (26.884709ms)
+✔ stop and save stay available after many same-minute assignments (117.89075ms)
+✔ tampered ownership, contributions, counters and unsafe JSON are rejected (0.778125ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 236.729334

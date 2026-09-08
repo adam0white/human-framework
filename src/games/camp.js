@@ -2,7 +2,8 @@
  * Snapshot continuation is validated, not authenticated historical replay.
  */
 import * as legacy from './commons.js';
-import {HUMAN_VERSION,RUNTIME_VERSION,createPerson,restorePerson,exportPerson,getPersonView,beginAttempt,advanceAttempt,finishAttempt,assessEffort,createClock,restoreClock,exportClock,scheduleEvent,cancelEvent,advanceClock} from '../runtime/index.js';
+import {practice} from '../core/model.js';
+import {HUMAN_VERSION,RUNTIME_VERSION,restorePerson,exportPerson,getPersonView,beginAttempt,advanceAttempt,finishAttempt,assessEffort,createClock,restoreClock,exportClock,scheduleEvent,cancelEvent,advanceClock} from '../runtime/index.js';
 
 export const CAMP_VERSION='0.2.0';
 export const COMMONS_VERSION=CAMP_VERSION;
@@ -63,6 +64,9 @@ function blueprint(g,id,a){
 }
 function unavailable(g,b,a){
   if(g.jobs[a])return 'Already working. Finish or stop the current job first.';
+  const future=LIMIT-g.clock.now;
+  if(g.stats.started>=Number.MAX_SAFE_INTEGER-2*future)return 'Job counter space is reserved for progression and stops.';
+  if(!b.project&&(g.people[a].nextAttempt>=Number.MAX_SAFE_INTEGER-future||g.clock.nextEvent>=Number.MAX_SAFE_INTEGER-2*future))return 'Attempt and event counter space is reserved for automatic progression.';
   if(b.project==='cache'&&!built(g))return 'Finish the woodshed, workbench, and garden before packing caches.';
   if(b.project&&Object.values(g.jobs).some(j=>j?.project===b.project))return 'Someone is already building this stage.';
   if(g.clock.now+b.duration>LIMIT)return 'Insufficient remaining world time for this whole job.';
@@ -213,10 +217,11 @@ export function requestHandover(game,from='player',to='neighbor'){return change(
   const j=g.jobs[from];if(j?.kind!=='assembly')fail('No active physical assembly to hand over');
   const w=copy(g.work[j.project]);prepare(g,w,to);
   let reason=g.jobs[to]?'I already have a job.':null;
+  if(!reason&&from==='neighbor'&&(g.commitment.status!=='accepted'||g.commitment.project!==j.project))reason='I have not agreed to transfer this work.';
   if(!reason&&to==='neighbor')reason=g.commitment.status==='accepted'&&g.commitment.project!==j.project?'I have a different accepted project.':g.people.neighbor.body.hunger>=.65?'I need a meal first.':g.people.neighbor.body.fatigue>=.68||g.recovering.neighbor&&g.people.neighbor.body.fatigue>.45?'I need to recover first.':null;
   if(!reason){const capacity=assessEffort(g.people[to].body,{durationMinutes:remaining(g,w,to),effort:.2*(1-w.progress),exertive:true});if(!capacity.allowed)reason=`I lack ${capacity.causes.join(' and ')} capacity for the remaining work.`;}
   if(!reason&&g.clock.now+remaining(g,w,to)>LIMIT)reason='There is insufficient remaining world time.';
-  g.lastResponse={at:g.clock.now,project:j.project,accepted:!reason,reason:reason??`${name(to)} accepted the remaining ${PROJECTS[j.project].label.toLowerCase()} work.`,kind:'handover',from,to};
+  g.lastResponse={at:g.clock.now,project:j.project,accepted:!reason,reason:reason??(from==='neighbor'?`Meryem accepted your offer to finish the remaining ${PROJECTS[j.project].label.toLowerCase()} work.`:`Meryem accepted the remaining ${PROJECTS[j.project].label.toLowerCase()} work.`),kind:'handover',from,to};
   if(!reason){
     g.work[j.project]=w;g.jobs[from]=null;g.jobs[to]={...j,startedAt:g.clock.now};g.recovering[to]=false;
     if(to==='neighbor'&&g.commitment.status!=='accepted')g.commitment={status:'accepted',project:j.project,acceptedAt:g.clock.now,finishedAt:null,startCaches:g.caches,reason:g.lastResponse.reason};
@@ -225,7 +230,8 @@ export function requestHandover(game,from='player',to='neighbor'){return change(
 });}
 export function advanceGame(game,minutes){validate(game);int(minutes,0,1440,'advance minutes');int(game.clock.now+minutes,0,LIMIT,'world time');return validate(advanceRaw(copy(game),minutes));}
 function nextStop(g){
-  const probe=copy(g),horizon=Math.min(6,LIMIT-g.clock.now),start=g.stats.completed;
+  const scheduled=actors(g).filter(a=>g.jobs[a]).map(a=>g.jobs[a].kind==='fixed'?g.jobs[a].endsAt-g.clock.now:remaining(g,g.work[g.jobs[a].project],a));
+  const probe=copy(g),horizon=Math.min(scheduled.length?Math.min(...scheduled):6,LIMIT-g.clock.now),start=g.stats.completed;
   for(let n=1;n<=horizon;n++){
     const before=Object.fromEntries(actors(g).map(a=>[a,{fatigue:probe.people[a].body.fatigue,job:probe.jobs[a]?.id??null}]));
     advanceRaw(probe,1);
@@ -302,6 +308,7 @@ function validate(game){
   const old=g.origin?legacy.restoreGame(g.origin):legacy.createGame({solo:g.solo});
   if(old.solo!==g.solo)fail('Inconsistent migration actors');
   restoreClock(exportClock(g.clock));int(g.clock.now,old.clock.now,LIMIT,'world time');if(g.clock.nextEvent<old.clock.nextEvent)fail('Clock identity regressed');
+  if(g.clock.nextEvent>Number.MAX_SAFE_INTEGER-2*(LIMIT-g.clock.now))fail('Event counter reserve would block progression');
   const as=actors(g);fields(g.people,as,'people');fields(g.jobs,as,'jobs');fields(g.paid,as,'paid');fields(g.recovering,as,'recovery modes');fields(g.stock,resources,'stock');fields(g.structures,['shelter','workbench','garden'],'structures');
   for(const r of resources)int(g.stock[r],0,LIMIT,'stock');
   for(const p of ['shelter','workbench','garden'])int(g.structures[p],old.structures[p],2,'structure stage');int(g.caches,old.caches,LIMIT,'caches');
@@ -317,11 +324,17 @@ function validate(game){
   for(const a of as){
     const person=restorePerson(exportPerson(g.people[a])),j=g.jobs[a],paid=g.paid[a];
     if(person.version!==HUMAN_VERSION||person.id!==a||person.minutes!==g.clock.now||person.observationBias!==0||person.nextAttempt<old.people[a].nextAttempt)fail('Inconsistent person identity or clock');
+    if(person.nextAttempt>Number.MAX_SAFE_INTEGER-(LIMIT-g.clock.now))fail('Attempt counter reserve would block progression');
     fields(person.skills,['gathering','construction'],'camp skills');for(const s of ['gathering','construction'])if(person.skills[s]<old.people[a].skills[s]-EPS)fail('Regressed paid skill');
     if(typeof g.recovering[a]!=='boolean')fail('Invalid recovery selection');
     fields(paid,['work','recovery','idle','meal','effort','constructionMinutes','gatheringMinutes'],'paid work');
     for(const [k,n]of Object.entries(paid))if(k==='effort')number(n,0,LIMIT,'paid effort');else int(n,0,LIMIT,'paid minutes');
     if(paid.work+paid.recovery+paid.idle+paid.meal!==g.clock.now-old.clock.now||paid.constructionMinutes+paid.gatheringMinutes!==paid.work)fail('Inconsistent actor paid minutes');
+    for(const skill of ['construction','gathering'])if(Math.abs(person.skills[skill]-practice(old.people[a].skills[skill],paid[`${skill}Minutes`]))>1e-10)fail('Inconsistent paid practice');
+    let recordedEffort=0,recordedMinutes=0;
+    for(const w of [...Object.values(g.work),...Object.values(g.lastAssemblies)]){const contribution=w.contributions[a];if(!contribution)continue;
+      const priorEffort=contribution.priorMinutes ? .2*contribution.priorMinutes/g.origin.game.jobs[a].duration : 0;recordedEffort+=contribution.effort-priorEffort;recordedMinutes+=contribution.minutes;}
+    if(paid.effort+1e-10<recordedEffort||paid.constructionMinutes<recordedMinutes||paid.effort>paid.constructionMinutes*.2/6+paid.gatheringMinutes*.13/12+1e-10)fail('Inconsistent paid effort or construction minutes');
     for(const k of Object.keys(paidTotals))paidTotals[k]+=paid[k];
     if(!j){if(person.pending)fail('Unassigned pending attempt');continue;}
     if(j.kind==='assembly'){
@@ -353,9 +366,12 @@ function validate(game){
   for(const r of resources)if(g.stock[r]+reserved[r]+g.stats.spent[r]!==INITIAL[r]+g.stats.gathered[r])fail('Resource conservation mismatch');
   const material={timber:0,salvage:0};for(const p of ['shelter','workbench','garden'])for(let n=0;n<g.structures[p];n++)add(material,PROJECTS[p].stages[n].cost);add(material,PROJECTS.cache.stages[0].cost,g.caches);
   const active=Object.values(g.jobs).filter(Boolean).length;
+  if(g.stats.started>Number.MAX_SAFE_INTEGER-2*(LIMIT-g.clock.now))fail('Job counter reserve would block progression');
   if(material.timber!==g.stats.spent.timber||material.salvage!==g.stats.spent.salvage||g.stats.spent.food!==g.stats.consumedFood||g.stats.started!==g.stats.completed+g.stats.canceled+active)fail('Inconsistent material or completion receipts');
   const c=g.stats.receipts,assemblies=Object.values(g.structures).reduce((a,b)=>a+b,0)+g.caches;
   if(c.coveredTimber>c['gather-timber']||c.gardenFood>c.forage||c.coveredTimber>0&&g.structures.shelter!==2||c.gardenFood>0&&g.structures.garden!==2||g.stats.gathered.timber!==3*c['gather-timber']+c.coveredTimber||g.stats.gathered.salvage!==3*c['gather-salvage']||g.stats.gathered.food!==2*c.forage+c.gardenFood||c.eat!==g.stats.consumedFood||g.stats.completed!==assemblies+c['gather-timber']+c['gather-salvage']+c.forage+c.rest+c.eat)fail('Inconsistent production receipts');
+  let minimumBuild=g.caches*16;for(const p of ['shelter','workbench','garden'])for(let n=0;n<g.structures[p];n++)minimumBuild+=PROJECTS[p].stages[n].minutes-10;
+  if(g.stats.workMinutes<c['gather-timber']*12+c['gather-salvage']*18+c.forage*10+minimumBuild||g.stats.restMinutes<c.rest*18||g.stats.mealMinutes<c.eat*8||c.rest!==old.stats.receipts.rest)fail('Unpaid completion receipts');
   if(g.stats.workMinutes-old.stats.workMinutes!==paidTotals.work||g.stats.restMinutes-old.stats.restMinutes!==paidTotals.recovery||g.stats.mealMinutes-old.stats.mealMinutes!==paidTotals.meal||g.stats.idleMinutes-old.stats.idleMinutes!==paidTotals.idle)fail('Inconsistent paid totals');
   if(g.stats.workMinutes+g.stats.restMinutes+g.stats.mealMinutes+g.stats.idleMinutes!==g.clock.now*as.length)fail('Inconsistent elapsed receipts');
   const commitment=g.commitment;fields(commitment,['status','project','acceptedAt','finishedAt','startCaches','reason'],'commitment');
