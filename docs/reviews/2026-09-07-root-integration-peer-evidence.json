@@ -1,0 +1,180 @@
+{
+  "browser": "152.0.7977.77",
+  "appVersion": "0.4.0",
+  "engineVersion": "0.3.0",
+  "routes": [
+    {
+      "path": "/",
+      "status": 200,
+      "pendingSource": false
+    },
+    {
+      "path": "/games/",
+      "status": 200,
+      "pendingSource": false
+    },
+    {
+      "path": "/games",
+      "status": 200,
+      "pendingSource": false
+    },
+    {
+      "path": "/workshop/",
+      "status": 200,
+      "pendingSource": false
+    },
+    {
+      "path": "/workshop",
+      "status": 200,
+      "pendingSource": false
+    },
+    {
+      "path": "/shift/",
+      "status": 200,
+      "pendingSource": false
+    },
+    {
+      "path": "/shift",
+      "status": 200,
+      "pendingSource": false
+    },
+    {
+      "path": "/courtyard/",
+      "status": 404,
+      "pendingSource": true
+    },
+    {
+      "path": "/courtyard",
+      "status": 404,
+      "pendingSource": true
+    },
+    {
+      "path": "/courier/",
+      "status": 200,
+      "pendingSource": false
+    },
+    {
+      "path": "/courier",
+      "status": 200,
+      "pendingSource": false
+    }
+  ],
+  "viewports": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "cards": [
+        {
+          "title": "Pump Yard",
+          "href": "/shift/",
+          "width": 498,
+          "height": 407.484375
+        },
+        {
+          "title": "The last water",
+          "href": "/courtyard/",
+          "width": 498,
+          "height": 407.484375
+        },
+        {
+          "title": "Courier Round",
+          "href": "/courier/",
+          "width": 498,
+          "height": 407.484375
+        },
+        {
+          "title": "Before departure",
+          "href": "/workshop/",
+          "width": 498,
+          "height": 407.484375
+        }
+      ],
+      "errors": [],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "cards": [
+        {
+          "title": "Pump Yard",
+          "href": "/shift/",
+          "width": 352,
+          "height": 377.96875
+        },
+        {
+          "title": "The last water",
+          "href": "/courtyard/",
+          "width": 352,
+          "height": 377.96875
+        },
+        {
+          "title": "Courier Round",
+          "href": "/courier/",
+          "width": 352,
+          "height": 377.96875
+        },
+        {
+          "title": "Before departure",
+          "href": "/workshop/",
+          "width": 352,
+          "height": 342.46875
+        }
+      ],
+      "errors": [],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "cards": [
+        {
+          "title": "Pump Yard",
+          "href": "/shift/",
+          "width": 282,
+          "height": 377.96875
+        },
+        {
+          "title": "The last water",
+          "href": "/courtyard/",
+          "width": 282,
+          "height": 377.96875
+        },
+        {
+          "title": "Courier Round",
+          "href": "/courier/",
+          "width": 282,
+          "height": 377.96875
+        },
+        {
+          "title": "Before departure",
+          "href": "/workshop/",
+          "width": 282,
+          "height": 342.46875
+        }
+      ],
+      "errors": [],
+      "overflow": false
+    }
+  ],
+  "sourceSHA256": {
+    "scripts/public-pages.js": "575a9c9b2423aef491b3e2747acbed504cc1d066773d63997c47b00990a1aeba",
+    "scripts/build.js": "187966a9d231eccba8b2b056d38f3eff1ab0cc408a85c8251fbb5425c0b4ce61",
+    "scripts/serve.js": "a242df7d6fd8817389498a7461086e845c67d9c4e7997288a2bca1e3a3a36c6c",
+    "tests/build.test.js": "31c851f7155cb070dac523ff13b251b995bce881d14e743b37ab57ef86acfc93",
+    "tests/server.test.js": "87e855dedb0c825a0c996f6d52461dbe3c21e70b043351dda834215a1219b9d7",
+    "web/games.html": "bf3bd0304b0d3d556d785b4de534078f075b84a8a7ffc3cc1ee7f2086a6e3c05",
+    "web/games.css": "06c80e9204409934e94904855fabaf9c3b0b65b0498149b06393556d51823e69",
+    "package.json": "be30663b30893bdacfc181023e8d08c517a2d133d665df32ae41b57b60d9e4ab",
+    "package-lock.json": "7746b148787804a744cd62edc5d9959a6ba2a57e4613fbb51206050e301731eb",
+    "README.md": "9eb2c8b75fd9ca1d2e7e15082183fddb74ab3e47637ccd2b8f173d2b922e1606",
+    "docs/roadmap.md": "12a26f6afdb86331a650d14b926734a70f8033f8890bbc64b10c68ebcd70cbab",
+    "docs/release-0.4.md": "0d6e7723db7be00b91aec6dab5e24db73377b89f33c638c398c5bd296e18b266"
+  }
+}

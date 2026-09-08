@@ -50,6 +50,8 @@ Executed against the baseline on 2026-09-07:
 | Frozen skill; earlier attempts failed | 0.55 | 0 / 0.45 | 81.608% | 817 |
 | Frozen skill; earlier attempts completed | 0.55 | 0 / 0.45 | 81.608% | 817 |
 
+The [reproducible runner](../scripts/learning-probe.js) and [source-identified artifact](../artifacts/learning-probe.json) independently reproduce these rows with `node scripts/learning-probe.js`. The artifact retains all retest quantiles and successful seed IDs; assertions verify equal body/time and the outcome-label null.
+
 The probability difference is **8.834 percentage points**. Shared draws changed 85 outcomes from failure to success and none in the other direction. Reproduction of the retest draws: for integer seeds 1–1000, SHA-256 the UTF-8 string `learning-probe-retest-v1:${seed}`; interpret the first four bytes as an unsigned big-endian integer; divide by `4294967296`; success is `u < probability`. Each row uses the same quantiles. Practice exposure uses the lifecycle and defaults above; the retest does not advance time or consume another attempt.
 
 This establishes a working numerical distinction from the no-learning rival and an outcome-label null: earlier failure has no special learning power in this implementation. The result follows from the encoded rule; it is not human-data validation, a whole-shift benchmark, or a measured improvement in player enjoyment. In the longer host, a follow-up matched retest must hold target condition and exposure fixed and retain all runs. A seed-7 victory alone would not answer this question.

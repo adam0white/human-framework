@@ -4,6 +4,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {ENGINE_VERSION} from '../src/core/index.js';
+import {PUBLIC_PAGES} from './public-pages.js';
 
 const projectRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const headers=`/*
@@ -17,12 +18,14 @@ const headers=`/*
 export async function buildSite({root=projectRoot}={}) {
   const base=resolve(root),output=join(base,'dist');
   const realBase=await realpath(base);
-  const entries=new Map([['index.html','index.html'],['workshop/index.html','web/workshop.html']]);
+  const entries=new Map(Object.entries(PUBLIC_PAGES));
   const directories=['web','src/core','src/scenarios','src/human','src/games','src/legacy/v0.1','src/legacy/v0.2'];
   for(const source of [...directories,...entries.values()]) {
     const path=join(base,source),info=await lstat(path);
     if(info.isSymbolicLink()||await realpath(path)!==join(realBase,source)||(directories.includes(source)?!info.isDirectory():!info.isFile()))throw new Error(`Invalid public source or symlink: ${source}`);
   }
+  const appVersion=JSON.parse(await readFile(join(base,'package.json'),'utf8')).version;
+  if(typeof appVersion!=='string'||!/^\d+\.\d+\.\d+$/.test(appVersion))throw new Error('Invalid application version');
   const files=[...entries.keys()];
   for(const directory of directories) {
     for(const entry of await readdir(join(base,directory),{withFileTypes:true})) {
@@ -47,7 +50,7 @@ export async function buildSite({root=projectRoot}={}) {
     commit=execFileSync('git',['rev-parse','HEAD'],options).trim();
     dirty=Boolean(execFileSync('git',['status','--porcelain'],options).trim());
   } catch { /* Local play and tests do not require Git. */ }
-  const release={engineVersion:ENGINE_VERSION,commit,dirty,assetsSha256:digest.digest('hex')};
+  const release={appVersion,engineVersion:ENGINE_VERSION,commit,dirty,assetsSha256:digest.digest('hex')};
   await writeFile(join(output,'release.json'),JSON.stringify(release,null,2)+'\n');
   return {directory:output,files:[...files,'release.json'],release};
 }

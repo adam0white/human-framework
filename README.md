@@ -2,16 +2,22 @@
 
 A simulation laboratory developing reusable components for situated human action and development, grounded in Islam with a **Sunni, Hanafi–Maturidi starting point**, informed by empirical research, and explicit about the difference between revelation, interpretation, evidence and engineering choices.
 
-**2026-09-07 · Version 0.3.0:** the four laboratory scenarios now have explicit goal value, deadline-aware Full scoring and an all-actor planned-simple comparison. A separate game, **Before departure**, embeds a smaller human component to test objects, prerequisites, interruptions and save/resume. Both are deployed; the [delivery record](docs/release-0.3.md) records verification and remaining gates. No LLM or API key is required. Play and local simulation need no package installation or build step; public deployment uses a static asset allowlist and pinned Wrangler tooling.
+**2026-09-07 · App 0.4.0 candidate:** three complete small games extend the first workshop: **Pump Yard**, **The last water**, and **Courier Round**. Each owns its world and uses the unchanged human component for body, capacity and practice. They were authored in parallel by three separate GPT-6 Astra agents at ultra effort, on isolated branches. The laboratory remains engine 0.3.0, the human component 0.1.0, and the original workshop keeps its save format. [Current milestone and verification](docs/release-0.4.md). No LLM or API key is needed to play, simulate or replay. Local runtime needs no package installation; deployment uses an explicit asset allowlist and pinned Wrangler tooling.
 
 **Direction and external review:** three fresh internal reviewers and two separate Claude CLI processes requested with `--model fable` examined overlapping architecture, scientific and product questions. The [internal synthesis](docs/post-mvp-review.md) and [external review verification](research/reviews/2026-09-07-claude-fable-verification.md) preserve agreements, mistakes, disagreements and provenance. The external reviews examined frozen commit `08aab97`, before the present implementation; a [separate implementation review](docs/release-code-review-0.3.md) covers the later code.
 
 ## Play
 
-**[Play at human.adamwhite.work](https://human.adamwhite.work).** Start with Solo Repair for one-person choices without social effects. The current run is loaded automatically; choose an action card or delegate with Auto round. General model notes are in one collapsed section.
+**[Choose a small game](https://human.adamwhite.work/games/).** The laboratory remains at [human.adamwhite.work](https://human.adamwhite.work/).
 
-Play **[Before departure](https://human.adamwhite.work/workshop/)** at `/workshop/`: restore a water pump before departure, moving between storage and the pump room, carrying a wrench and choosing a patch or replacement seal. Work takes simulated time and can be interrupted. A completed repair still needs a test run. It can also be opened locally at `/workshop/`.
+| Game | What you decide |
+|---|---|
+| [Pump Yard](https://human.adamwhite.work/shift/) | Order three pump repairs across an eight-hour shift, allocate one spare, build task experience, recover, and verify useful service. Single person; partial service earns points. |
+| [The last water](https://human.adamwhite.work/courtyard/) | Carry and allocate scarce water between two households. Make requests and loans; independently accept or refuse exchanges. |
+| [Courier Round](https://human.adamwhite.work/courier/) | Deliver six parcels with three bag slots. Choose routes, inspections and parcel order against different due times. Single person. |
+| [Before departure](https://human.adamwhite.work/workshop/) | A short introduction: collect a tool, patch or replace one pump fitting, and test it before departure. Single person. |
 
+Each game stores its own active run on the device. Saves and optional command replays are game-specific. Instructions are in the game; model notes and policy hints stay collapsed. The longer games are available locally at the same paths after this revision is checked out.
 [Plain-language roadmap and evidence map](docs/roadmap.md) · [What is rejected or deferred](research/decision-status.md) · [Private source repository](https://github.com/adam0white/human-framework) · [Deployment workflow](docs/deployment.md)
 
 For optional local development:
@@ -33,7 +39,7 @@ Each preset allows 36 rounds of 20 simulated minutes. In Solo, one feasible exam
 | Water Commons | Maintain a shared resource against consumption, prepare assistance and keep commitments |
 | Solo Repair | Work, inspect, rest and practice alone; no promises, peers, assistance or relationship effects |
 
-The original three remain configurations of the same two-person cooperative resource-production structure; Solo Repair isolates the personal processes with one actor. Their illustrations do not implement navigation, repair physics or hydrology. Before departure adds a host-owned object world through a separate boundary. Its `task-aware`, `planned-simple` and `greedy` controllers are authored by the host and do **not** call the lab Full policy. The shared human component currently supplies body, practice, observation and attempt timing, not the complete social/cognitive loop. [Integration record and remaining gates](docs/workshop-integration.md).
+The original three laboratory presets remain configurations of the same two-person cooperative resource-production structure; Solo Repair isolates the personal processes with one actor. Their illustrations do not implement navigation, repair physics or hydrology. Before departure adds a host-owned object world through a separate boundary. Its `task-aware`, `planned-simple` and `greedy` controllers are authored by the host and do **not** call the lab Full policy. The shared human component currently supplies body, practice, observation and attempt timing, not the complete social/cognitive loop. [Integration record and remaining gates](docs/workshop-integration.md).
 
 ## The central loop
 
@@ -50,7 +56,7 @@ flowchart LR
     L --> W
 ```
 
-Every decision records these seven phases. The person's accessible view is separate from hidden world state. A player can override the ranking, while capacity determines whether exertion executes or recovery is required. Both request and execution are recorded. An executed task can fail and still yield task-specific practice; work replaced by recovery earns none. Intention is separate from outcome and never parsed to manufacture an effect. History is an audit log, not autobiographical memory.
+Every laboratory decision records these seven phases. The person's accessible view is separate from hidden world state. A player can override the ranking, while capacity determines whether exertion executes or recovery is required. Both request and execution are recorded. An executed task can fail and still yield task-specific practice; work replaced by recovery earns none. Intention is separate from outcome and never parsed to manufacture an effect. History is an audit log, not autobiographical memory.
 
 This is an engineering loop, not an anatomy of the soul or a model of divine decree. Religious source distinctions guide the architecture and its boundaries; the MVP contains no fiqh evaluator, piety meter, spiritual-health score or calculation of divine acceptance. [Islamic foundations](research/islamic-foundations.md) preserves the positive theological treatment and attribution behind those boundaries.
 
@@ -80,7 +86,7 @@ const restored = replay(exportReplay(next));
 
 The ranking override only inspects an alternative policy; it does not mutate the run. Candidates sort by `selectionTier`, then additive score, then action ID. Actor order is stable and serial within each lab round. Current scenarios require dimensionless `goalUtility`: converting physical units rescales progress/output/target/consumption, not that value. Full's deadline term is a utility heuristic, not multistep planning.
 
-Replay uses the embedded scenario, commands and matching engine: frozen 0.1.0 and 0.2.0 remain available for read-only historical inspection, while the current laboratory creates 0.3.0 runs. Unsupported versions are rejected. Replays include hidden setup. Laboratory modules are in `src/core`, historical execution in `src/legacy`, presets in `src/scenarios`, and browser adapters in `web`. The narrower component is `src/human` (version 0.1.0); its first host is `src/games/workshop.js`. The host owns inventory, time, task outcomes and victory. A new shared mechanism needs an explicit model change and validation.
+Replay uses the embedded scenario, commands and matching engine: frozen 0.1.0 and 0.2.0 remain available for read-only historical inspection, while the current laboratory creates 0.3.0 runs. Unsupported versions are rejected. Replays include hidden setup. Laboratory modules are in `src/core`, historical execution in `src/legacy`, presets in `src/scenarios`, and browser adapters in `web`. The narrower component is `src/human` (version 0.1.0); its first host is `src/games/workshop.js`. All four hosts own their resources, clock, task outcomes and completion rules. The courtyard social responses are authored in that host; they have not been extracted into a shared social API. A new shared mechanism needs an explicit model change and validation.
 
 ## What the experiments found
 
@@ -95,7 +101,7 @@ The 0.3.0 artifact uses 100 paired seeds, 101–200. Full and planned simple com
 
 **Planned simple is slightly faster than Full in all four sample means**, although each paired uncertainty interval includes zero. It also finishes with less fatigue/hunger and uses more food. Full keeps an additional promise in Courier and Repair and inspects Courier conditions. Those differences need their own gameplay and behavioral tests; faster completion alone is not the complete objective.
 
-The lab's mandatory recovery still helps greedy work requests. Full incurs 0.22 compulsory recoveries per Commons run and none in the other presets; planned simple incurs none. Disabling relationships changes no objective outcome in these defaults. All **400 structural null pairs** match in the **4,400-run** benchmark. The [current report](docs/benchmark-report.md) records paired intervals, costs, ablation limitations and source identities. The separate host game is not included in that lab comparison.
+The lab's mandatory recovery still helps greedy work requests. Full incurs 0.22 compulsory recoveries per Commons run and none in the other presets; planned simple incurs none. Disabling relationships changes no objective outcome in these defaults. All **400 structural null pairs** match in the **4,400-run** benchmark. The [current report](docs/benchmark-report.md) records paired intervals, costs, ablation limitations and source identities. The separate host games are not included in that lab comparison. Their controllers, metrics and seed blocks are reported separately in the [milestone record](docs/release-0.4.md).
 
 The [archived 0.2 report](docs/history/benchmark-report-0.2.0-2026-09-07.md) preserves the capacity/workload repair comparison; the [0.1 report](docs/history/benchmark-report-0.1.0-2026-09-07.md) retains the fatigue loophole and inadequate recovery slack. Tests and browser QA verify software behavior and playable paths, not human behavior or theological adequacy. See the [capacity correction](docs/capacity-fix.md) and [MVP record](docs/mvp-status.md) for earlier verification history.
 
@@ -103,6 +109,7 @@ The [archived 0.2 report](docs/history/benchmark-report-0.2.0-2026-09-07.md) pre
 
 | Document | Purpose |
 |---|---|
+| [Learning through work](research/learning-through-work.md) | Evidence for and against learning from unsuccessful attempts, and a reproducible matched-exposure model probe |
 | [Model reference](docs/model-reference.md) | Implemented equations, units, parameter status, update order and API boundaries |
 | [Coverage ledger](docs/coverage-ledger.md) | Implemented proxies, missing faculties, deferred modules and next discriminating experiments |
 | [Research decision status](research/decision-status.md) | Rejected formulations versus deferred domains, with explicit conditions for returning |

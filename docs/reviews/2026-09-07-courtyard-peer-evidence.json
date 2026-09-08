@@ -1,0 +1,17 @@
+{
+  "reviewedSourceSHA256": {
+    "src/games/courtyard.js": "091c94fbaa079a4d465f34c48779ba436dba9b66ed859ca83eb059f0da963f25",
+    "src/games/courtyard-session.js": "7f653afeff22e06e16a6abe0647c9be14de382fb0cd33318f5a64600e6d8b563",
+    "src/human/index.js": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "src/core/random.js": "d2c76c3105a86b052a6694a4709e67f58f9a88dad9eccc62d397c2e87f4eaeec",
+    "scripts/courtyard-benchmark.js": "6246d7f05c3ce1989e94feba8a3ad2bc7f59890c90342ff21bc938e0947557e4"
+  },
+  "tests": 22,
+  "randomizedLegalRoundtripsBeforeFix": 18000,
+  "malformedSaveRepros": "both rejected after fix",
+  "lastTurnController": "seed34 pours2 into own7 to finish9 after fix",
+  "memoryPairs": 450,
+  "nonzeroWaterPairs": 39,
+  "changedActions": 150
+}

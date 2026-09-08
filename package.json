@@ -1,6 +1,6 @@
 {
   "name": "human-framework",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "description": "A no-LLM laboratory for situated human action and development",
@@ -15,7 +15,12 @@
     "benchmark:workshop": "node scripts/workshop-benchmark.js",
     "build": "node scripts/build.js",
     "deploy": "npm test && npm run build && node scripts/check-release.js && wrangler deploy",
-    "deploy:check": "npm run build && wrangler deploy --dry-run"
+    "deploy:check": "npm run build && wrangler deploy --dry-run",
+    "benchmark:shift": "node scripts/shift-benchmark.js",
+    "benchmark:courier": "node scripts/courier-benchmark.js",
+    "benchmark:courtyard": "node scripts/courtyard-benchmark.js",
+    "probe:learning": "node scripts/learning-probe.js",
+    "verify:live": "node scripts/verify-live.js"
   },
   "devDependencies": {
     "wrangler": "4.129.0"
