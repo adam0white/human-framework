@@ -1,5 +1,7 @@
 # A validation program for Human Framework
 
+> Historical or version-scoped record. Original counts, proposals and observations below are retained. For current project state and delivery order, read the [handoff](../HANDOFF.md), [MVP contract](mvp-contract.md) and [roadmap](roadmap.md).
+
 Prepared 2026-09-06; sequencing revised 2026-09-07 after [independent review](post-mvp-review.md). This is a proposed validation program. The [MVP record](mvp-status.md) and [benchmark report](benchmark-report.md) separately identify executed checks; a similarly named proposed test is not automatically complete. Passing engineering or play tests would not establish empirical realism or theological completeness. The proposal is in [framework-proposal.md](framework-proposal.md).
 
 ## A later situation that tests the combined mechanisms

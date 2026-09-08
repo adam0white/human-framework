@@ -1,5 +1,7 @@
 # App 0.5: portable components and continuing work
 
+> Historical or version-scoped record. Original counts, proposals and observations below are retained. For current project state and delivery order, read the [handoff](../HANDOFF.md), [MVP contract](mvp-contract.md) and [roadmap](roadmap.md).
+
 Date: 2026-09-07. The delivery target is [human.adamwhite.work](https://human.adamwhite.work). The source remains the private `adam0white/human-framework` repository. This record distinguishes this app release from the unchanged laboratory engine 0.3.0 and human component 0.1.0.
 
 ## What changed

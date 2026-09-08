@@ -1,5 +1,7 @@
 # Independent host consumer: pump inspection
 
+> Historical or version-scoped record. Original counts, proposals and observations below are retained. For current project state and delivery order, read the [handoff](../HANDOFF.md), [MVP contract](mvp-contract.md) and [roadmap](roadmap.md).
+
 Date: 2026-09-07. Author: the independently dispatched `independent_host_consumer` agent. The first host author paused edits to `src/games/workshop.js` while this work was performed. This records a second author's actual implementation, rather than a proposed integration or an external review label.
 
 ## Boundary and file provenance

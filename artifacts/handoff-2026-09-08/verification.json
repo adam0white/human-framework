@@ -1,0 +1,83 @@
+{
+  "recordedAt": "2026-09-08T05:01:12.261731+00:00",
+  "scope": "Documentation and user-evidence handoff; no simulation or public UI change.",
+  "baseMainAndDeployedCommit": "8b503c014a7a7ce845564287d4e7fcb648097047",
+  "tests": {
+    "node": "26.8.1",
+    "pass": 280,
+    "fail": 0
+  },
+  "markdownLinkCheck": {
+    "documents": 97,
+    "missingLocalTargets": 0,
+    "scope": "Non-artifact Markdown documents; local target existence, not external URLs or fragment anchors."
+  },
+  "publicBuild": {
+    "files": 55,
+    "assetsSha256": "c6ce3bd568deb78d66da70fccc2e13470fb5d75a334053b280d0856f3a6578e3",
+    "sameAsVerifiedLive": true
+  },
+  "liveBeforeDocumentation": {
+    "exactPublicPayloads": 53,
+    "privateMissing404s": 19
+  },
+  "userSaveSha256": "1f295565936775f8921b427d9409a0682e3c891f8803802a94748be9dddf6206",
+  "independentReviews": {
+    "handoff": "courtyard_experience: no remaining actionable issue",
+    "saveAnalysis": "ongoing_commons: exact reproduction; no consequential issue"
+  },
+  "historicalBranches": [
+    {
+      "branch": "codex/commons-clock",
+      "commit": "ceaba22240db7e3c2b303d34795ca411897619f3",
+      "pushed": true
+    },
+    {
+      "branch": "codex/commons-comparison",
+      "commit": "6dc3ace1e16f37c912e4b8ade2d5b6312ad04572",
+      "pushed": true
+    },
+    {
+      "branch": "codex/courier-route",
+      "commit": "cf7c449f503b798570ee8626043c21c67ec05136",
+      "pushed": true
+    },
+    {
+      "branch": "codex/courtyard-clarity",
+      "commit": "247b7c1e5c5d0b0835e7d5a1cdf543452d15540f",
+      "pushed": true
+    },
+    {
+      "branch": "codex/human-compatibility",
+      "commit": "74494f8f6e0faaf6c6100713be41683bd48ff7ad",
+      "pushed": true
+    },
+    {
+      "branch": "codex/maintenance-watch",
+      "commit": "ddc29437f49eb990a8ccd31deba7cd1f5e811963",
+      "pushed": true
+    },
+    {
+      "branch": "codex/pump-shift",
+      "commit": "b16d777e92212bb9202e0d701d7397c24f584c8d",
+      "pushed": true
+    },
+    {
+      "branch": "codex/runtime-mvp",
+      "commit": "824f2c27088f1d53dddb8c29e3ecb3568a03ff85",
+      "pushed": true
+    },
+    {
+      "branch": "codex/social-contract-probe",
+      "commit": "89fbf9b52c9cc80e6f6406c5bb026c8259ede0f4",
+      "pushed": true
+    },
+    {
+      "branch": "codex/water-courtyard",
+      "commit": "16088810c4cca1fe3580df1fca93766232ccb214",
+      "pushed": true
+    }
+  ],
+  "worktreeNote": "All retained lane worktrees clean except commons-clock/src/runtime/clock.js, an untracked byte-identical dependency mirror of the frozen main clock. Deliberately retained; no unique pending implementation.",
+  "publication": "This private-source handoff is not redeployed. Live app source remains the recorded8b503c0; main advances only with docs and archived evidence."
+}

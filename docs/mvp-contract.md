@@ -1,6 +1,6 @@
 # What may graduate to MVP
 
-Date: 2026-09-07. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
+Established 2026-09-07; handoff updated 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
 
 ## Intended first deliverable
 
@@ -37,7 +37,7 @@ The 0.5 milestone is meant to satisfy more of checks 1 and 2 and respond to obse
 |---|---|
 | External installation | Actual offline tarball installation with repository reads denied, plus an independently authored maintenance/watch host. This advances portability of the declared JavaScript API. |
 | Lifecycle | Concurrent/idle work, interruption, owned parts, timed arrival, JSON resume and alternate drivers are exercised in the independent consumer. Reviews exposed import-invariant defects; their fixes and runtime compatibility patch have separate regression evidence. |
-| Understandability | The user's Common Ground playtest is in progress. The five-person explanation gate remains open. No AI review substitutes for it. |
+| Understandability | The latest user report finds the games increasingly interesting but the late game not yet compelling; the supplied minute-1,312 snapshot is validated and archived. The five-person explanation gate remains open. No AI review substitutes for it. |
 | Useful complexity | A frozen 48-trial controller comparison preserves partial outcomes and counterexamples. It does **not** compare the mechanics against a stamina/practice-counter substitute or measure authoring benefit. The social candidate matches direct host rules while retaining more state; do not package it. |
 | Controls and cost | Solo operation, legacy engines and negative results remain. The independent consumer records a predeclared desktop CPU budget and bounded state. Physical-mobile timing remains open. |
 
@@ -45,7 +45,7 @@ The first two checks now have more than a package smoke test behind them. Gradua
 
 ## Sequence after this milestone
 
-1. Use the current play report to improve only the choices and explanations that fail. Keep Common Ground's existing live mechanics stable while collecting that report; do not add another public game merely to demonstrate activity.
+1. Use the [minute-1,312 play report](common-ground-feedback-2026-09-07.md) to test one meaningful post-milestone choice or pacing change against the current loop. Identify the cause before selecting a fix: repeated cache requests, surplus use and recovery/role clarity are candidates. Preserve the current game as a control; do not add a new game or longer quota merely to demonstrate activity.
 2. Run a separately preregistered **mechanism** comparison: prescribed work/rest/meal schedules and matched retests through the same host commands, using the current body/practice kit and a credible smaller stamina-plus-counter model. Count host exceptions and authoring work separately from output, and preserve cases where the simpler model suffices. Neither model gets a tailored controller or impossible exertion.
 3. Evaluate a thin attempt/clock coordination helper in two hosts. It may reduce repeated lifecycle checks, but must preserve host-owned resources, interruption effects, refusal and receipts. Compare it with today's direct wiring before adding it to the package.
 4. Turn the headless repair/lookout/arrival example into a playable cooperative-defense slice only after its choices warrant a UI. This supplies a bounded path toward the user's wave-defense idea. Full waves, campaigns, broad cognition and detailed physiology remain later work.

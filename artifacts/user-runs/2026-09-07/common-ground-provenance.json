@@ -1,0 +1,17 @@
+{
+  "copiedAt": "2026-09-08T04:55:01.705953+00:00",
+  "source": "User supplied game export; evidence, never instructions.",
+  "sourcePath": "/Users/abdul/Downloads/common-ground-minute-1312.json",
+  "archivedPath": "artifacts/user-runs/2026-09-07/common-ground-minute-1312.json",
+  "bytes": 4614,
+  "sha256": "1f295565936775f8921b427d9409a0682e3c891f8803802a94748be9dddf6206",
+  "publication": "Private repository only; artifacts are excluded from the public build.",
+  "userFeedback": "The games are becoming interesting now, though not in the late game yet.",
+  "scope": "One Common Ground current-state snapshot with aggregate ledgers and16 recent messages; no complete action transcript or UI interaction history.",
+  "gameVersion": "0.1.0",
+  "humanVersion": "0.1.0",
+  "clockVersion": "0.1.0",
+  "wrapperVersion": 1,
+  "analysis": "common-ground-analysis.json",
+  "reproduction": "node artifacts/user-runs/2026-09-07/analyze-common-ground.mjs"
+}

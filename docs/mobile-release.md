@@ -1,5 +1,7 @@
 # Mobile delivery and first playtest response
 
+> Historical or version-scoped record. Original counts, proposals and observations below are retained. For current project state and delivery order, read the [handoff](../HANDOFF.md), [MVP contract](mvp-contract.md) and [roadmap](roadmap.md).
+
 2026-09-07. This follows the [initial MVP record](mvp-status.md). Delivery target: **https://human.adamwhite.work**; private repository: **https://github.com/adam0white/human-framework**. [Release procedure](deployment.md).
 
 ## User feedback and concrete response

@@ -1,8 +1,10 @@
 # Human Framework
 
+**Resuming work? Start with the [handoff](HANDOFF.md): current versions, live release, latest player feedback, next priorities and safe reproduction commands.**
+
 A simulation laboratory developing reusable components for situated human action and development, grounded in Islam with a **Sunni, Hanafi–Maturidi starting point**, informed by empirical research, and explicit about the difference between revelation, interpretation, evidence and engineering choices.
 
-**2026-09-07 · App 0.5.0:** **Common Ground** adds continuing cooperative construction with concurrent jobs, an explicit shared project, and next-event or running-clock controls. The courtyard now explains both people's actions and preserves optional replays. The existing body/practice component and an additive event clock can be installed as a standalone local package. Laboratory engine **0.3.0** and human component **0.1.0** remain unchanged. [Milestone and verification](docs/release-0.5.md) · [What may graduate to MVP](docs/mvp-contract.md). No LLM or API key is needed to play or simulate.
+**2026-09-07 · App 0.5.0:** **Common Ground** adds continuing cooperative construction with concurrent jobs, an explicit shared project, and next-event or running-clock controls. The courtyard now explains both people's actions and preserves optional replays. The existing body/practice component and an additive event clock can be installed as a standalone local package. Laboratory engine **0.3.0** and the games’ human component **0.1.0** remain unchanged. [Milestone and verification](docs/release-0.5.md) · [What may graduate to MVP](docs/mvp-contract.md). No LLM or API key is needed to play or simulate.
 
 **Portable-kit progress:** the [new evidence milestone](docs/mvp-evidence-2026-09-07.md) adds an independently authored installed-package consumer, 48 frozen controller trials and a social candidate retained as experimental. Runtime/Human **0.1.1** corrects two API edge cases with explicit migration; current games continue using frozen Human **0.1.0**.
 
@@ -21,7 +23,7 @@ A simulation laboratory developing reusable components for situated human action
 | [Before departure](https://human.adamwhite.work/workshop/) | A short introduction: collect a tool, patch or replace one pump fitting, and test it before departure. Single person. |
 
 Each game stores its own active run on the device. Saves and optional command replays are game-specific. Instructions are in the game; model notes and policy hints stay collapsed. The longer games are available locally at the same paths after this revision is checked out.
-[Portable runtime and installation](docs/portable-runtime.md) · [Supplied play-run analysis](docs/user-run-feedback-2026-09-07.md) · [Plain-language roadmap and evidence map](docs/roadmap.md) · [What is rejected or deferred](research/decision-status.md) · [Private source repository](https://github.com/adam0white/human-framework) · [Deployment workflow](docs/deployment.md)
+[Portable runtime and installation](docs/portable-runtime.md) · [Latest Common Ground feedback](docs/common-ground-feedback-2026-09-07.md) · [Earlier supplied play runs](docs/user-run-feedback-2026-09-07.md) · [Plain-language roadmap and evidence map](docs/roadmap.md) · [What is rejected or deferred](research/decision-status.md) · [Private source repository](https://github.com/adam0white/human-framework) · [Deployment workflow](docs/deployment.md)
 
 For optional local development:
 
@@ -70,9 +72,9 @@ npm test
 npm run package:runtime
 npm run benchmark:commons
 npm run simulate -- courier --seed 7
-npm run simulate -- workshop --seed 31 --policy baseline --json artifacts/my-replay.json
+npm run simulate -- workshop --seed 31 --policy baseline --json /tmp/human-workshop-replay.json
 npm run simulate -- solo --seed 7 --policy planned-simple
-npm run benchmark -- --seeds 100 --start-seed 101 --json artifacts/benchmark.json
+npm run benchmark -- --seeds 100 --start-seed 101 --json /tmp/human-benchmark-repeat.json
 ```
 
 ```js

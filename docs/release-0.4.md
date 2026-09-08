@@ -1,5 +1,7 @@
 # Three parallel small games: app 0.4
 
+> Historical or version-scoped record. Original counts, proposals and observations below are retained. For current project state and delivery order, read the [handoff](../HANDOFF.md), [MVP contract](mvp-contract.md) and [roadmap](roadmap.md).
+
 2026-09-07. Delivered and verified at [human.adamwhite.work/games/](https://human.adamwhite.work/games/). Laboratory engine 0.3.0, human component 0.1.0 and the original workshop runtime/save version remain unchanged.
 
 ## Delivered scope

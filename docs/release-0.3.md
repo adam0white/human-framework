@@ -1,5 +1,7 @@
 # Laboratory 0.3 and the first host-owned game
 
+> Historical or version-scoped record. Original counts, proposals and observations below are retained. For current project state and delivery order, read the [handoff](../HANDOFF.md), [MVP contract](mvp-contract.md) and [roadmap](roadmap.md).
+
 Work begun 2026-09-07. Laboratory engine `0.3.0`; human component `0.1.0`; host `workshop-0.1.0`. This record describes the implemented slice. The live `/release.json` identifies the deployed source commit; release checks are recorded below after execution.
 
 ## What changed

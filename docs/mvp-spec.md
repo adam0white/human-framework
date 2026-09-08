@@ -1,5 +1,7 @@
 # Human Framework MVP specification — lab 0.3.0
 
+This is the laboratory 0.3.0 specification. The current reusable-kit graduation contract is [mvp-contract.md](mvp-contract.md); package consumers should read [portable-runtime.md](portable-runtime.md). Start a resumed project task with the [handoff](../HANDOFF.md).
+
 Accepted direction: the user's instruction on 2026-09-07 to build, test and iterate the proposal into a usable MVP. This document records implementation choices within that authorization. It narrows the first release, not the eventual research goal.
 
 ## Central loop and boundaries

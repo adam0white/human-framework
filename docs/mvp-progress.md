@@ -1,5 +1,7 @@
 # MVP progress — plan: docs/superpowers/plans/2026-09-07-mvp.md
 
+> Historical or version-scoped record. Original counts, proposals and observations below are retained. For current project state and delivery order, read the [handoff](../HANDOFF.md), [MVP contract](mvp-contract.md) and [roadmap](roadmap.md).
+
 User authorized build/test/iterate on 2026-09-07. Existing directory contains research only, no git repository or baseline application/tests. Work proceeds in this dedicated project directory. No separate worktree is applicable before a repository exists; no existing branch is being modified.
 
 | Tasks/interfaces checked | Finding/ruling |

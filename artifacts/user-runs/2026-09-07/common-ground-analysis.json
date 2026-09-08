@@ -1,0 +1,324 @@
+{
+  "sourceSha256": "1f295565936775f8921b427d9409a0682e3c891f8803802a94748be9dddf6206",
+  "sourceBytes": 4614,
+  "validated": true,
+  "exactRoundTrip": true,
+  "worldMinutes": 1312,
+  "milestoneAt": 217,
+  "minutesAfterMilestone": 1095,
+  "completedStages": 6,
+  "caches": 12,
+  "stock": {
+    "timber": 0,
+    "salvage": 1,
+    "food": 13
+  },
+  "stats": {
+    "started": 94,
+    "completed": 93,
+    "canceled": 1,
+    "gathered": {
+      "timber": 90,
+      "salvage": 45,
+      "food": 15
+    },
+    "spent": {
+      "timber": 94,
+      "salvage": 46,
+      "food": 6
+    },
+    "consumedFood": 6,
+    "workMinutes": 1037,
+    "restMinutes": 468,
+    "mealMinutes": 48,
+    "idleMinutes": 1071,
+    "receipts": {
+      "gather-timber": 23,
+      "gather-salvage": 15,
+      "forage": 5,
+      "rest": 26,
+      "eat": 6,
+      "coveredTimber": 21,
+      "gardenFood": 5
+    }
+  },
+  "personMinutes": 2624,
+  "body": {
+    "player": {
+      "fatigue": 1,
+      "hunger": 1
+    },
+    "neighbor": {
+      "fatigue": 0.619052631578892,
+      "hunger": 0.15400000000000214
+    }
+  },
+  "pendingJobs": 0,
+  "pendingEvents": 0,
+  "latestCommitment": {
+    "status": "fulfilled",
+    "project": "cache",
+    "acceptedAt": 1223,
+    "finishedAt": 1298,
+    "startCaches": 11,
+    "reason": "The supply cache is complete. I’m available for another project."
+  },
+  "journal": {
+    "entries": 16,
+    "earliest": 1232,
+    "latest": 1298
+  },
+  "publicView": {
+    "version": "0.1.0",
+    "solo": false,
+    "now": 1312,
+    "stock": {
+      "timber": 0,
+      "salvage": 1,
+      "food": 13
+    },
+    "structures": {
+      "shelter": 2,
+      "workbench": 2,
+      "garden": 2
+    },
+    "caches": 12,
+    "milestoneAt": 217,
+    "people": {
+      "player": {
+        "id": "player",
+        "body": {
+          "fatigue": 1,
+          "hunger": 1
+        },
+        "skills": {
+          "gathering": 0.7965958750651904,
+          "construction": 0.1787217363626361
+        },
+        "minutes": 1312,
+        "pending": null,
+        "job": null
+      },
+      "neighbor": {
+        "id": "neighbor",
+        "body": {
+          "fatigue": 0.6,
+          "hunger": 0.15
+        },
+        "skills": {
+          "gathering": 0.8887260962288985,
+          "construction": 0.8210221626309332
+        },
+        "minutes": 1312,
+        "pending": null,
+        "job": null
+      }
+    },
+    "commitment": {
+      "status": "fulfilled",
+      "project": "cache",
+      "acceptedAt": 1223,
+      "finishedAt": 1298,
+      "startCaches": 11,
+      "reason": "The supply cache is complete. I’m available for another project."
+    },
+    "lastResponse": {
+      "at": 1223,
+      "project": "cache",
+      "accepted": true,
+      "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+    },
+    "recent": [
+      {
+        "at": 1232,
+        "actor": "player",
+        "message": "You started gather food (11 min)."
+      },
+      {
+        "at": 1236,
+        "actor": "neighbor",
+        "message": "Meryem finished gather timber. +4 timber."
+      },
+      {
+        "at": 1236,
+        "actor": "neighbor",
+        "message": "Meryem started recover salvage (19 min). I’m collecting salvage for the supply cache."
+      },
+      {
+        "at": 1243,
+        "actor": "player",
+        "message": "You finished gather food. +3 food."
+      },
+      {
+        "at": 1249,
+        "actor": "player",
+        "message": "You started gather food (11 min)."
+      },
+      {
+        "at": 1255,
+        "actor": "neighbor",
+        "message": "Meryem finished recover salvage. +3 salvage."
+      },
+      {
+        "at": 1255,
+        "actor": "neighbor",
+        "message": "Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project."
+      },
+      {
+        "at": 1260,
+        "actor": "player",
+        "message": "You finished gather food. +3 food."
+      },
+      {
+        "at": 1269,
+        "actor": "player",
+        "message": "You started gather food (11 min)."
+      },
+      {
+        "at": 1273,
+        "actor": "neighbor",
+        "message": "Meryem finished rest in camp."
+      },
+      {
+        "at": 1273,
+        "actor": "neighbor",
+        "message": "Meryem started eat a portion (8 min). I need a meal, then I’ll return to the project."
+      },
+      {
+        "at": 1280,
+        "actor": "player",
+        "message": "You finished gather food. +3 food."
+      },
+      {
+        "at": 1281,
+        "actor": "neighbor",
+        "message": "Meryem finished eat a portion."
+      },
+      {
+        "at": 1281,
+        "actor": "neighbor",
+        "message": "Meryem started supply cache: pack a supply cache (17 min). I’m completing the accepted supply cache project."
+      },
+      {
+        "at": 1298,
+        "actor": "neighbor",
+        "message": "Meryem finished supply cache: pack a supply cache."
+      },
+      {
+        "at": 1298,
+        "actor": "neighbor",
+        "message": "The supply cache is complete. I’m available for another project."
+      }
+    ],
+    "choices": [
+      {
+        "id": "gather-timber",
+        "label": "Gather timber",
+        "detail": "Bring wood from the grove.",
+        "duration": 13,
+        "cost": {},
+        "output": {
+          "timber": 4
+        },
+        "project": null,
+        "unavailable": "Too much fatigue and hunger for this whole job. Choose recovery first."
+      },
+      {
+        "id": "gather-salvage",
+        "label": "Recover salvage",
+        "detail": "Bring reusable fittings from the old shed.",
+        "duration": 19,
+        "cost": {},
+        "output": {
+          "salvage": 3
+        },
+        "project": null,
+        "unavailable": "Too much fatigue and hunger for this whole job. Choose recovery first."
+      },
+      {
+        "id": "forage",
+        "label": "Gather food",
+        "detail": "Pick food near camp. Light work remains possible when heavy work is blocked.",
+        "duration": 11,
+        "cost": {},
+        "output": {
+          "food": 3
+        },
+        "project": null,
+        "unavailable": null
+      },
+      {
+        "id": "rest",
+        "label": "Rest in camp",
+        "detail": "Recover strength. Time and hunger continue.",
+        "duration": 18,
+        "cost": {},
+        "output": {},
+        "project": null,
+        "unavailable": null
+      },
+      {
+        "id": "eat",
+        "label": "Eat a portion",
+        "detail": "Reserve 1 shared food; hunger relief comes when the meal finishes.",
+        "duration": 8,
+        "cost": {
+          "food": 1
+        },
+        "output": {},
+        "project": null,
+        "unavailable": null
+      },
+      {
+        "id": "build-cache",
+        "label": "Supply cache: pack a supply cache",
+        "detail": "A permanent cache for future visitors. Build as many as you like.",
+        "duration": 20,
+        "cost": {
+          "timber": 6,
+          "salvage": 3
+        },
+        "output": {},
+        "project": "cache",
+        "unavailable": "Needs 6 timber; only 0 is available."
+      }
+    ],
+    "nextEventAt": null,
+    "stats": {
+      "started": 94,
+      "completed": 93,
+      "canceled": 1,
+      "gathered": {
+        "timber": 90,
+        "salvage": 45,
+        "food": 15
+      },
+      "spent": {
+        "timber": 94,
+        "salvage": 46,
+        "food": 6
+      },
+      "consumedFood": 6,
+      "workMinutes": 1037,
+      "restMinutes": 468,
+      "mealMinutes": 48,
+      "idleMinutes": 1071,
+      "receipts": {
+        "gather-timber": 23,
+        "gather-salvage": 15,
+        "forage": 5,
+        "rest": 26,
+        "eat": 6,
+        "coveredTimber": 21,
+        "gardenFood": 5
+      }
+    }
+  },
+  "continuationCheck": {
+    "minutes": 60,
+    "exactOneMinuteEquivalence": true,
+    "unmodifiedInput": true,
+    "scope": "Prospective test only; no actual player choices inferred."
+  },
+  "limits": "Current-state consistency is not authenticated history. Aggregate activity minutes combine both people; the retained journal is incomplete."
+}

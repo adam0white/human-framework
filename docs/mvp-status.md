@@ -1,5 +1,7 @@
 # MVP verification and iteration record
 
+> Historical or version-scoped record. Original counts, proposals and observations below are retained. For current project state and delivery order, read the [handoff](../HANDOFF.md), [MVP contract](mvp-contract.md) and [roadmap](roadmap.md).
+
 Subsequent deliveries: [mobile release and first playtest response](mobile-release.md) records public hosting, clearer controls and the added solo control; [0.3 host integration](release-0.3.md) records the first separate game and external Fable reviews. The counts and scope below describe the initial three-scenario MVP.
 
 Recorded 2026-09-07, engine 0.1.0. The user authorized building and iterating a usable MVP; the earlier research-only proposal is preserved in [framework-proposal.md](framework-proposal.md). This release is a local executable prototype with defined behavior, not empirical validation of a whole person.
