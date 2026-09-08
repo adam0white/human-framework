@@ -1,0 +1,24 @@
+✔ prospective progress retains paid fractions and the first worker basis (1.003ms)
+✔ replacement workers receive only their future work and settlement is single-use (0.893333ms)
+✔ component save rejects unpaid credit, shape tricks and invalid productivity (0.240917ms)
+✔ component worker/state limits remain bounded without a transition journal (0.200834ms)
+✔ H1 retains paid body, owned material and prescribed completion (6.047584ms)
+✔ H2 retains paid body, owned material and prescribed completion (3.409167ms)
+✔ H3 retains paid body, owned material and prescribed completion (3.301833ms)
+✔ H4 retains paid body, owned material and prescribed completion (3.009833ms)
+✔ H5 retains paid body, owned material and prescribed completion (3.558125ms)
+✔ H6 retains paid body, owned material and prescribed completion (2.974958ms)
+✔ H7 retains paid body, owned material and prescribed completion (2.884833ms)
+✔ H8 retains paid body, owned material and prescribed completion (3.01475ms)
+✔ active saves and event/minute drivers preserve exact authoritative world (11.27275ms)
+✔ host preserves partial installed work on stop and pays actual recovery (0.821292ms)
+✔ busy-worker refusal and unilateral hauling stop preserve past duty payment (2.085875ms)
+✔ host rejects tampered ownership, practice and duplicate assignment without mutating input (0.613084ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 84.295292

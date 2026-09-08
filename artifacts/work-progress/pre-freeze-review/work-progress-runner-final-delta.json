@@ -1,0 +1,9 @@
+{
+  "sourceCommit": "4d13e88",
+  "sourceHash": "3ad57faa06e6f9becc0bfc09631f3746250491cf1aa17530e7296cacf6494f67",
+  "scope": "Two final deltas only; actual replay function source tested with verification/run doubles, not a real matrix",
+  "sparseExtraArrayRejected": true,
+  "denseArrayFaithful": true,
+  "replayMismatchPreservesExpectedAndCurrent": true,
+  "replayEvidenceSerializable": true
+}

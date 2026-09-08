@@ -12,6 +12,8 @@ Both candidate adapter and D/F rivals export these immutable operations (world s
 - observe(world): the complete normalized accounting record below, separate from the actual authoritative snapshot.
 - exportWorld(world) / restoreWorld(snapshot): JSON round trip with structural and cross-field checks appropriate to this bounded snapshot contract; no new history journal or authentication claim.
 
+Both camp-shaped hosts use the same numeric horizon 1,000,000 and maximum advance delta 1,440; starts/accepted transfers must fit that numeric horizon. The evaluation budget remains minute 40. These limits were aligned before source freeze.
+
 All worlds start at minute 0. A has construction .10, B .60; both have hauling .10, fatigue .20, hunger .20 and observationBias 0. Supplier C has crafting .10, fatigue .20, hunger .20, observationBias 0. Everybody uses unmodified Human 0.1.1. Free A/B/C automatically pay one rest minute per world minute; no food is consumed during these 40-minute fixtures. Use one-minute completed Human attempts for all activity so unequal outer drivers cannot change practice curves.
 
 Each owned work item reserves 5 timber and 1 salvage on first start, retains that installed material on stop/transfer, and produces one completed stage once only. Initial free stock is 5 timber/1 salvage per configured item; no spare materials enter. A/B first basis is 20 minus floor(current construction*4), latched separately for each item/worker; never refresh after stop/resume. Actual duration basis is max(6, latched basis minus 6 when the paid tool is available), and one minute pays min(remainingFraction, 1/durationBasis), .20 times that fraction in effort, and one minute of construction practice. Use the existing Camp EPS=1e-12 completion rule. In D/candidate, tool availability changes future fractions without cancelling work.
@@ -65,3 +67,6 @@ The first concrete declaration is commit 1d20c5d. Independent protocol review ag
 
 
 The independent reviewer confirmed legal whole-task and one-minute capacity for these fixtures, so they do not themselves test rejection of unfit work. Separate lifecycle checks must cover whole-remaining-work admission, an unfit recipient, per-minute capacity, changed proposed basis on a returning worker, duplicate settlement, and source immutability. The minute-1 restore boundary clamps every driver, including H1; nextEvent includes tool and hauling completion. Endpoint fatigue at minute40 is zero for every prescribed arm, so intermediate records and paid effort/practice are retained rather than interpreting endpoint equality as equal work cost.
+
+
+The direct rival records an additional per-worker first-assignment paid-exposure baseline to validate a saved skill-derived basis. The candidate adapter currently provides weaker current-snapshot assurance for that historical basis while retaining runtime paid credit. This distinction must be counted explicitly in snapshot state/validation cost; a weaker check cannot be credited as a demonstrated abstraction benefit.

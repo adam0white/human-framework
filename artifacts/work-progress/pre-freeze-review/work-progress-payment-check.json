@@ -1,0 +1,620 @@
+{
+  "scope": "Independent prescribed Human payment check only; no candidate or rival source used",
+  "admission": {
+    "AStart": {
+      "allowed": true,
+      "causes": [],
+      "fatigueCost": 0.23,
+      "hungerCost": 0.04,
+      "projectedFatigue": 0.43000000000000005,
+      "projectedHunger": 0.24000000000000002
+    },
+    "BStart": {
+      "allowed": true,
+      "causes": [],
+      "fatigueCost": 0.227,
+      "hungerCost": 0.036000000000000004,
+      "projectedFatigue": 0.42700000000000005,
+      "projectedHunger": 0.23600000000000002
+    },
+    "supplier": {
+      "allowed": true,
+      "causes": [],
+      "fatigueCost": 0.021500000000000002,
+      "hungerCost": 0.002,
+      "projectedFatigue": 0.2215,
+      "projectedHunger": 0.202
+    },
+    "busyB": {
+      "allowed": true,
+      "causes": [],
+      "fatigueCost": 0.046,
+      "hungerCost": 0.008,
+      "projectedFatigue": 0.246,
+      "projectedHunger": 0.20800000000000002
+    }
+  },
+  "result": [
+    {
+      "id": "H1",
+      "completed": {
+        "work-1": 20
+      },
+      "credit": {
+        "work-1": {
+          "A": {
+            "basis": 20,
+            "minutes": 20,
+            "fraction": 1,
+            "effort": 0.20000000000000007
+          }
+        }
+      },
+      "paid": {
+        "A": {
+          "work": 20,
+          "recovery": 20,
+          "effort": 0.20000000000000007,
+          "construction": 20,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "B": {
+          "work": 0,
+          "recovery": 40,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "C": {
+          "work": 0,
+          "recovery": 40,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        }
+      },
+      "bodyAt40": {
+        "A": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "B": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "C": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        }
+      },
+      "skillsAt40": {
+        "A": {
+          "construction": 0.18889723232091568,
+          "hauling": 0.1
+        },
+        "B": {
+          "construction": 0.6,
+          "hauling": 0.1
+        },
+        "C": {
+          "crafting": 0.1
+        }
+      },
+      "highestPaidProjection": 0.43150000000000016
+    },
+    {
+      "id": "H2",
+      "completed": {
+        "work-1": 15
+      },
+      "credit": {
+        "work-1": {
+          "A": {
+            "basis": 20,
+            "minutes": 15,
+            "fraction": 1,
+            "effort": 0.20000000000000012
+          }
+        }
+      },
+      "paid": {
+        "A": {
+          "work": 15,
+          "recovery": 25,
+          "effort": 0.20000000000000012,
+          "construction": 15,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "B": {
+          "work": 0,
+          "recovery": 40,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "C": {
+          "work": 1,
+          "recovery": 39,
+          "effort": 0.02,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 1
+        }
+      },
+      "bodyAt40": {
+        "A": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "B": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "C": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        }
+      },
+      "skillsAt40": {
+        "A": {
+          "construction": 0.16753201611081464,
+          "hauling": 0.1
+        },
+        "B": {
+          "construction": 0.6,
+          "hauling": 0.1
+        },
+        "C": {
+          "crafting": 0.10466785306380993
+        }
+      },
+      "highestPaidProjection": 0.42400000000000015
+    },
+    {
+      "id": "H3",
+      "completed": {
+        "work-1": 23
+      },
+      "credit": {
+        "work-1": {
+          "A": {
+            "basis": 20,
+            "minutes": 20,
+            "fraction": 1,
+            "effort": 0.20000000000000007
+          }
+        }
+      },
+      "paid": {
+        "A": {
+          "work": 20,
+          "recovery": 20,
+          "effort": 0.20000000000000007,
+          "construction": 20,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "B": {
+          "work": 0,
+          "recovery": 40,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "C": {
+          "work": 0,
+          "recovery": 40,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        }
+      },
+      "bodyAt40": {
+        "A": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "B": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "C": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        }
+      },
+      "skillsAt40": {
+        "A": {
+          "construction": 0.18889723232091568,
+          "hauling": 0.1
+        },
+        "B": {
+          "construction": 0.6,
+          "hauling": 0.1
+        },
+        "C": {
+          "crafting": 0.1
+        }
+      },
+      "highestPaidProjection": 0.36100000000000015
+    },
+    {
+      "id": "H4",
+      "completed": {
+        "work-1": 15
+      },
+      "credit": {
+        "work-1": {
+          "A": {
+            "basis": 20,
+            "minutes": 15,
+            "fraction": 1,
+            "effort": 0.20000000000000012
+          }
+        }
+      },
+      "paid": {
+        "A": {
+          "work": 15,
+          "recovery": 25,
+          "effort": 0.20000000000000012,
+          "construction": 15,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "B": {
+          "work": 0,
+          "recovery": 40,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "C": {
+          "work": 1,
+          "recovery": 39,
+          "effort": 0.02,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 1
+        }
+      },
+      "bodyAt40": {
+        "A": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "B": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "C": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        }
+      },
+      "skillsAt40": {
+        "A": {
+          "construction": 0.16753201611081464,
+          "hauling": 0.1
+        },
+        "B": {
+          "construction": 0.6,
+          "hauling": 0.1
+        },
+        "C": {
+          "crafting": 0.10466785306380993
+        }
+      },
+      "highestPaidProjection": 0.42400000000000015
+    },
+    {
+      "id": "H5",
+      "completed": {
+        "work-1": 19
+      },
+      "credit": {
+        "work-1": {
+          "A": {
+            "basis": 20,
+            "minutes": 1,
+            "fraction": 0.05,
+            "effort": 0.010000000000000002
+          },
+          "B": {
+            "basis": 18,
+            "minutes": 18,
+            "fraction": 0.9500000000000001,
+            "effort": 0.1899999999999999
+          }
+        }
+      },
+      "paid": {
+        "A": {
+          "work": 1,
+          "recovery": 39,
+          "effort": 0.010000000000000002,
+          "construction": 1,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "B": {
+          "work": 18,
+          "recovery": 22,
+          "effort": 0.1899999999999999,
+          "construction": 18,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "C": {
+          "work": 0,
+          "recovery": 40,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        }
+      },
+      "bodyAt40": {
+        "A": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "B": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "C": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        }
+      },
+      "skillsAt40": {
+        "A": {
+          "construction": 0.10466785306380993,
+          "hauling": 0.1
+        },
+        "B": {
+          "construction": 0.635741220728802,
+          "hauling": 0.1
+        },
+        "C": {
+          "crafting": 0.1
+        }
+      },
+      "highestPaidProjection": 0.39500000000000013
+    },
+    {
+      "id": "H6",
+      "completed": {
+        "work-1": 20
+      },
+      "credit": {
+        "work-1": {
+          "B": {
+            "basis": 18,
+            "minutes": 1,
+            "fraction": 0.05555555555555555,
+            "effort": 0.011111111111111112
+          },
+          "A": {
+            "basis": 20,
+            "minutes": 19,
+            "fraction": 0.9444444444444443,
+            "effort": 0.1888888888888889
+          }
+        }
+      },
+      "paid": {
+        "A": {
+          "work": 19,
+          "recovery": 21,
+          "effort": 0.1888888888888889,
+          "construction": 19,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "B": {
+          "work": 1,
+          "recovery": 39,
+          "effort": 0.011111111111111112,
+          "construction": 1,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "C": {
+          "work": 0,
+          "recovery": 40,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        }
+      },
+      "bodyAt40": {
+        "A": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "B": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "C": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        }
+      },
+      "skillsAt40": {
+        "A": {
+          "construction": 0.1846685127869064,
+          "hauling": 0.1
+        },
+        "B": {
+          "construction": 0.6020746013616933,
+          "hauling": 0.1
+        },
+        "C": {
+          "crafting": 0.1
+        }
+      },
+      "highestPaidProjection": 0.395388888888889
+    },
+    {
+      "id": "H7",
+      "completed": {
+        "work-1": 20
+      },
+      "credit": {
+        "work-1": {
+          "A": {
+            "basis": 20,
+            "minutes": 20,
+            "fraction": 1,
+            "effort": 0.20000000000000007
+          }
+        }
+      },
+      "paid": {
+        "A": {
+          "work": 20,
+          "recovery": 20,
+          "effort": 0.20000000000000007,
+          "construction": 20,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "B": {
+          "work": 4,
+          "recovery": 36,
+          "effort": 0.04,
+          "construction": 0,
+          "hauling": 4,
+          "crafting": 0
+        },
+        "C": {
+          "work": 0,
+          "recovery": 40,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        }
+      },
+      "bodyAt40": {
+        "A": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "B": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "C": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        }
+      },
+      "skillsAt40": {
+        "A": {
+          "construction": 0.18889723232091568,
+          "hauling": 0.1
+        },
+        "B": {
+          "construction": 0.6,
+          "hauling": 0.1185266548467474
+        },
+        "C": {
+          "crafting": 0.1
+        }
+      },
+      "highestPaidProjection": 0.43150000000000016
+    },
+    {
+      "id": "H8",
+      "completed": {
+        "work-1": 20,
+        "work-2": 20
+      },
+      "credit": {
+        "work-1": {
+          "A": {
+            "basis": 20,
+            "minutes": 20,
+            "fraction": 1,
+            "effort": 0.20000000000000007
+          }
+        },
+        "work-2": {
+          "B": {
+            "basis": 18,
+            "minutes": 18,
+            "fraction": 1,
+            "effort": 0.19999999999999987
+          }
+        }
+      },
+      "paid": {
+        "A": {
+          "work": 20,
+          "recovery": 20,
+          "effort": 0.20000000000000007,
+          "construction": 20,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "B": {
+          "work": 18,
+          "recovery": 22,
+          "effort": 0.19999999999999987,
+          "construction": 18,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "C": {
+          "work": 0,
+          "recovery": 40,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        }
+      },
+      "bodyAt40": {
+        "A": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "B": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        },
+        "C": {
+          "fatigue": 0,
+          "hunger": 0.2800000000000001
+        }
+      },
+      "skillsAt40": {
+        "A": {
+          "construction": 0.18889723232091568,
+          "hauling": 0.1
+        },
+        "B": {
+          "construction": 0.635741220728802,
+          "hauling": 0.1
+        },
+        "C": {
+          "crafting": 0.1
+        }
+      },
+      "highestPaidProjection": 0.43150000000000016
+    }
+  ]
+}

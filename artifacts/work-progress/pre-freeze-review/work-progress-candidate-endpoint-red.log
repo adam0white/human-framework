@@ -1,0 +1,38 @@
+✖ host bounds each advance and rejects new work past the numeric endpoint (1.374916ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39.831875
+
+✖ failing tests:
+
+test at tests/work-progress-candidate.test.js:163:1
+✖ host bounds each advance and rejects new work past the numeric endpoint (1.374916ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Invalid host integer"
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:165:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Invalid host integer
+        at fail (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:8:28)
+        at integer (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:28:108)
+        at Module.advanceTo (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:148:53)
+        at file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:165:42
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:165:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.start (node:internal/test_runner/test:1262:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

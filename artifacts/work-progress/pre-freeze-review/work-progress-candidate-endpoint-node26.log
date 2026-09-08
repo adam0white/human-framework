@@ -1,0 +1,29 @@
+✔ prospective progress retains paid fractions and the first worker basis (1.014125ms)
+✔ replacement workers receive only their future work and settlement is single-use (0.895ms)
+✔ component save rejects unpaid credit, shape tricks and invalid productivity (0.243958ms)
+✔ open work cannot claim an extra paid minute without its minimum physical fraction (0.296625ms)
+✔ component worker/state limits remain bounded without a transition journal (0.600166ms)
+✔ H1 retains paid body, owned material and prescribed completion (6.545417ms)
+✔ H2 retains paid body, owned material and prescribed completion (4.401542ms)
+✔ H3 retains paid body, owned material and prescribed completion (3.546375ms)
+✔ H4 retains paid body, owned material and prescribed completion (3.423416ms)
+✔ H5 retains paid body, owned material and prescribed completion (3.426834ms)
+✔ H6 retains paid body, owned material and prescribed completion (3.605542ms)
+✔ H7 retains paid body, owned material and prescribed completion (3.272333ms)
+✔ H8 retains paid body, owned material and prescribed completion (3.327417ms)
+✔ active saves and event/minute drivers preserve exact authoritative world (12.137667ms)
+✔ host preserves partial installed work on stop and pays actual recovery (0.814166ms)
+✔ busy-worker refusal and unilateral hauling stop preserve past duty payment (2.201333ms)
+✔ host rejects tampered ownership, practice and duplicate assignment without mutating input (0.649708ms)
+✔ whole-action capacity rejects an unfit start or recipient without installing or moving work (0.862458ms)
+✔ actual one-minute capacity failure discards earlier actors provisional payment and tool effects (0.389625ms)
+✔ next event includes paid supplier and hauling completion and becomes null after their end (0.347458ms)
+✔ host bounds each advance and rejects new work past the numeric endpoint (50.445625ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 143.400875

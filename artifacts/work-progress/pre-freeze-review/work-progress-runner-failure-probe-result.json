@@ -1,0 +1,11 @@
+{
+  "sourceHash": "43f6ac872d3010a95d61d2a05efc5db7c2483bd6581e1f94b9d8021b3ce40320",
+  "scope": "Exact runner comparison catch and CLI failure handler extracted in isolation; no matrix or real arms",
+  "postComparisonEvidence": true,
+  "failureJsonParses": true,
+  "endsWithActualNewline": true,
+  "existingFailureNotOverwritten": true,
+  "unsafeCurrentExportDiagnostic": true,
+  "priorValidRecords": 2,
+  "artifact": "/tmp/work-progress-runner-failure-probe-1788890907303.failed.json.gz"
+}

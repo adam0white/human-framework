@@ -1,0 +1,20 @@
+[
+  {
+    "name": "invalid-nonfinite-person",
+    "rejected": true,
+    "error": "Non-finite JSON number",
+    "hasEvidence": true
+  },
+  {
+    "name": "start-illegally-pays-one-minute",
+    "rejected": true,
+    "error": "A command may not advance time\n\n1 !== 0\n",
+    "hasEvidence": true
+  },
+  {
+    "name": "reused-observation-detached",
+    "initial": 0,
+    "command": 0,
+    "final": 40
+  }
+]

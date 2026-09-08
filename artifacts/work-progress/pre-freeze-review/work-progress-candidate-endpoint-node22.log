@@ -1,0 +1,115 @@
+TAP version 13
+# Subtest: prospective progress retains paid fractions and the first worker basis
+ok 1 - prospective progress retains paid fractions and the first worker basis
+  ---
+  duration_ms: 2.317667
+  ...
+# Subtest: replacement workers receive only their future work and settlement is single-use
+ok 2 - replacement workers receive only their future work and settlement is single-use
+  ---
+  duration_ms: 0.763708
+  ...
+# Subtest: component save rejects unpaid credit, shape tricks and invalid productivity
+ok 3 - component save rejects unpaid credit, shape tricks and invalid productivity
+  ---
+  duration_ms: 0.543916
+  ...
+# Subtest: open work cannot claim an extra paid minute without its minimum physical fraction
+ok 4 - open work cannot claim an extra paid minute without its minimum physical fraction
+  ---
+  duration_ms: 0.324916
+  ...
+# Subtest: component worker/state limits remain bounded without a transition journal
+ok 5 - component worker/state limits remain bounded without a transition journal
+  ---
+  duration_ms: 0.605125
+  ...
+# Subtest: H1 retains paid body, owned material and prescribed completion
+ok 6 - H1 retains paid body, owned material and prescribed completion
+  ---
+  duration_ms: 9.02775
+  ...
+# Subtest: H2 retains paid body, owned material and prescribed completion
+ok 7 - H2 retains paid body, owned material and prescribed completion
+  ---
+  duration_ms: 5.545375
+  ...
+# Subtest: H3 retains paid body, owned material and prescribed completion
+ok 8 - H3 retains paid body, owned material and prescribed completion
+  ---
+  duration_ms: 4.649333
+  ...
+# Subtest: H4 retains paid body, owned material and prescribed completion
+ok 9 - H4 retains paid body, owned material and prescribed completion
+  ---
+  duration_ms: 3.71775
+  ...
+# Subtest: H5 retains paid body, owned material and prescribed completion
+ok 10 - H5 retains paid body, owned material and prescribed completion
+  ---
+  duration_ms: 3.558791
+  ...
+# Subtest: H6 retains paid body, owned material and prescribed completion
+ok 11 - H6 retains paid body, owned material and prescribed completion
+  ---
+  duration_ms: 3.758791
+  ...
+# Subtest: H7 retains paid body, owned material and prescribed completion
+ok 12 - H7 retains paid body, owned material and prescribed completion
+  ---
+  duration_ms: 3.547375
+  ...
+# Subtest: H8 retains paid body, owned material and prescribed completion
+ok 13 - H8 retains paid body, owned material and prescribed completion
+  ---
+  duration_ms: 3.419375
+  ...
+# Subtest: active saves and event/minute drivers preserve exact authoritative world
+ok 14 - active saves and event/minute drivers preserve exact authoritative world
+  ---
+  duration_ms: 11.494292
+  ...
+# Subtest: host preserves partial installed work on stop and pays actual recovery
+ok 15 - host preserves partial installed work on stop and pays actual recovery
+  ---
+  duration_ms: 0.791083
+  ...
+# Subtest: busy-worker refusal and unilateral hauling stop preserve past duty payment
+ok 16 - busy-worker refusal and unilateral hauling stop preserve past duty payment
+  ---
+  duration_ms: 1.919917
+  ...
+# Subtest: host rejects tampered ownership, practice and duplicate assignment without mutating input
+ok 17 - host rejects tampered ownership, practice and duplicate assignment without mutating input
+  ---
+  duration_ms: 0.698458
+  ...
+# Subtest: whole-action capacity rejects an unfit start or recipient without installing or moving work
+ok 18 - whole-action capacity rejects an unfit start or recipient without installing or moving work
+  ---
+  duration_ms: 0.717459
+  ...
+# Subtest: actual one-minute capacity failure discards earlier actors provisional payment and tool effects
+ok 19 - actual one-minute capacity failure discards earlier actors provisional payment and tool effects
+  ---
+  duration_ms: 0.289292
+  ...
+# Subtest: next event includes paid supplier and hauling completion and becomes null after their end
+ok 20 - next event includes paid supplier and hauling completion and becomes null after their end
+  ---
+  duration_ms: 0.428542
+  ...
+# Subtest: host bounds each advance and rejects new work past the numeric endpoint
+ok 21 - host bounds each advance and rejects new work past the numeric endpoint
+  ---
+  duration_ms: 48.614208
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 175.014

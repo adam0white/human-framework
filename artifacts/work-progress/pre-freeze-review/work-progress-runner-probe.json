@@ -1,0 +1,39 @@
+[
+  {
+    "name": "invalid-nonfinite-person",
+    "rejected": false,
+    "completion": [
+      20
+    ],
+    "commandObservations": [
+      {
+        "commandAt": 0,
+        "observedAt": 0
+      }
+    ],
+    "rawNonfinite": true,
+    "canonical": "{\"fatigue\":null,\"hunger\":0.2}"
+  },
+  {
+    "name": "start-illegally-pays-one-minute",
+    "rejected": false,
+    "completion": [
+      20
+    ],
+    "commandObservations": [
+      {
+        "commandAt": 0,
+        "observedAt": 1
+      }
+    ]
+  },
+  {
+    "name": "actual-newline",
+    "parses": true
+  },
+  {
+    "name": "literal-backslash-n",
+    "parses": false,
+    "error": "Unexpected non-whitespace character after JSON at position 16 (line 1 column 17)"
+  }
+]

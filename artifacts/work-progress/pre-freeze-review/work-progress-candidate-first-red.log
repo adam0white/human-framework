@@ -1,0 +1,228 @@
+✖ prospective progress retains paid fractions and the first worker basis (0.368291ms)
+✖ replacement workers receive only their future work and settlement is single-use (0.052917ms)
+✖ component save rejects unpaid credit, shape tricks and invalid productivity (0.053542ms)
+✖ component worker/state limits remain bounded without a transition journal (0.042333ms)
+✖ H1 retains paid body, owned material and prescribed completion (0.084958ms)
+✖ H2 retains paid body, owned material and prescribed completion (0.027667ms)
+✖ H3 retains paid body, owned material and prescribed completion (0.026709ms)
+✖ H4 retains paid body, owned material and prescribed completion (0.021834ms)
+✖ H5 retains paid body, owned material and prescribed completion (0.032667ms)
+✖ H6 retains paid body, owned material and prescribed completion (0.054541ms)
+✖ H7 retains paid body, owned material and prescribed completion (0.034334ms)
+✖ H8 retains paid body, owned material and prescribed completion (0.034833ms)
+✖ active saves and event/minute drivers preserve exact authoritative world (0.042208ms)
+✖ host preserves partial installed work on stop and pays actual recovery (0.0445ms)
+✖ busy-worker refusal and unilateral hauling stop preserve past duty payment (0.038625ms)
+✖ host rejects tampered ownership, practice and duplicate assignment without mutating input (0.043375ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 0
+ℹ fail 16
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 38.210958
+
+✖ failing tests:
+
+test at tests/work-progress-candidate.test.js:10:1
+✖ prospective progress retains paid fractions and the first worker basis (0.368291ms)
+  Error: Work candidate not implemented
+      at Module.createWork (file:///Users/abdul/code/human-framework/src/experiments/work-progress/candidate.js:2:36)
+      at item (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:7:48)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:11:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/work-progress-candidate.test.js:20:1
+✖ replacement workers receive only their future work and settlement is single-use (0.052917ms)
+  Error: Work candidate not implemented
+      at Module.createWork (file:///Users/abdul/code/human-framework/src/experiments/work-progress/candidate.js:2:36)
+      at item (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:7:48)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:21:17)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at tests/work-progress-candidate.test.js:30:1
+✖ component save rejects unpaid credit, shape tricks and invalid productivity (0.053542ms)
+  Error: Work candidate not implemented
+      at Module.createWork (file:///Users/abdul/code/human-framework/src/experiments/work-progress/candidate.js:2:36)
+      at item (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:7:48)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:31:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:43:1
+✖ component worker/state limits remain bounded without a transition journal (0.042333ms)
+  Error: Work candidate not implemented
+      at Module.createWork (file:///Users/abdul/code/human-framework/src/experiments/work-progress/candidate.js:2:36)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:44:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:71:32
+✖ H1 retains paid body, owned material and prescribed completion (0.084958ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at run (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:64:18)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:72:15)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:71:32
+✖ H2 retains paid body, owned material and prescribed completion (0.027667ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at run (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:64:18)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:72:15)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:71:32
+✖ H3 retains paid body, owned material and prescribed completion (0.026709ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at run (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:64:18)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:72:15)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:71:32
+✖ H4 retains paid body, owned material and prescribed completion (0.021834ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at run (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:64:18)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:72:15)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:71:32
+✖ H5 retains paid body, owned material and prescribed completion (0.032667ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at run (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:64:18)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:72:15)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:71:32
+✖ H6 retains paid body, owned material and prescribed completion (0.054541ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at run (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:64:18)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:72:15)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:71:32
+✖ H7 retains paid body, owned material and prescribed completion (0.034334ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at run (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:64:18)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:72:15)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:71:32
+✖ H8 retains paid body, owned material and prescribed completion (0.034833ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at run (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:64:18)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:72:15)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:86:1
+✖ active saves and event/minute drivers preserve exact authoritative world (0.042208ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at run (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:64:18)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:87:37)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:96:1
+✖ host preserves partial installed work on stop and pays actual recovery (0.0445ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:97:31)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:106:1
+✖ busy-worker refusal and unilateral hauling stop preserve past duty payment (0.038625ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:107:31)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tests/work-progress-candidate.test.js:114:1
+✖ host rejects tampered ownership, practice and duplicate assignment without mutating input (0.043375ms)
+  Error: Camp candidate not implemented
+      at Module.createWorld (file:///Users/abdul/code/human-framework/src/experiments/work-progress/camp-candidate.js:2:37)
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/work-progress-candidate.test.js:115:48)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
