@@ -98,3 +98,26 @@ PATH=/opt/homebrew/bin:$PATH node artifacts/body-isolation/verify.mjs /tmp/body-
 ```
 
 Use a new directory each time; all outputs refuse overwrite. Freeze validation checks current bytes and the retained implementation commit, plus preregistration and historical model dependencies. Preserve both original new commits after integration, as well as the earlier experiment's commits. This private experiment adds no package export, public route or deployed asset.
+
+## 2026-09-08 review addendum: what the equality checks count
+
+The [read-only breakdown](../artifacts/body-isolation/exposure-check-breakdown.json) disaggregates the original 1,389 matched cumulative task-exposure endpoint checks into three non-overlapping groups:
+
+| Endpoint check | Development | Reserved | Recovery .75 | Recovery 1.25 | Total |
+|---|---:|---:|---:|---:|---:|
+| Both models have zero exposure to this skill | 147 | 87 | 234 | 234 | **702** |
+| Equal positive exposure immediately after both actually practiced this skill | 44 | 39 | 83 | 83 | **249** |
+| Equal positive exposure after a step when neither practiced this skill | 47 | 99 | 146 | 146 | **438** |
+| Total | 238 | 225 | 463 | 463 | **1,389** |
+
+The third group retains learned proficiency across other work, idle, recovery or refusal steps. The script checks actual admitted-practice increments, not merely an offered work label. These counts cover the same 75 paired trajectories as the original audit; separate paid retest branches were outside this particular count. Maximum matched-exposure proficiency difference remains zero in all groups.
+
+These are repeated consistency checks of an **expected implementation identity**: the same deterministic practice update applied to matched admitted exposure preserves the same proficiency. Untrained skills, repeated endpoints and sensitivity repeats do not constitute independent scientific discoveries, participants or independent learning observations. The 249 immediate post-practice checks more directly exercise the update than the 702 zero-exposure checks; their count still measures software coverage rather than scientific evidence.
+
+The **13/25** nominal result is a diagnostic classification under authored tolerances, not a model score or estimated prevalence across games. Forecast and output criteria are related: expected output sums admitted start forecasts multiplied by ten, so their agreement is not independent corroboration. Admission decisions, actual exposure and resource costs provide the separate operational distinctions. This addendum changes no frozen source, protocol, result or threshold and does not execute a new experiment.
+
+Reproduce the accounting alone, using a fresh output file:
+
+```sh
+PATH=/opt/homebrew/bin:$PATH node artifacts/body-isolation/exposure-check-breakdown.mjs /tmp/body-exposure-breakdown-new.json
+```

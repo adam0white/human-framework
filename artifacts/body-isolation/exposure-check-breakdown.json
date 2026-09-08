@@ -1,0 +1,63 @@
+{
+  "format": "body-isolation-exposure-check-breakdown",
+  "version": 1,
+  "result": {
+    "date": "2026-09-08",
+    "scope": "The original 1389 matched cumulative task-exposure endpoint checks; paid retest branches were outside this particular count.",
+    "pairs": 75,
+    "checks": 1389,
+    "total": {
+      "zeroExposure": 702,
+      "positiveAfterBothPracticed": 249,
+      "positiveWithoutPracticeThisStep": 438
+    },
+    "partitions": {
+      "development": {
+        "zeroExposure": 147,
+        "positiveAfterBothPracticed": 44,
+        "positiveWithoutPracticeThisStep": 47
+      },
+      "reserved": {
+        "zeroExposure": 87,
+        "positiveAfterBothPracticed": 39,
+        "positiveWithoutPracticeThisStep": 99
+      },
+      "recovery-low": {
+        "zeroExposure": 234,
+        "positiveAfterBothPracticed": 83,
+        "positiveWithoutPracticeThisStep": 146
+      },
+      "recovery-high": {
+        "zeroExposure": 234,
+        "positiveAfterBothPracticed": 83,
+        "positiveWithoutPracticeThisStep": 146
+      }
+    },
+    "maximumSkillDifference": 0,
+    "definitions": {
+      "zeroExposure": "Both models have zero cumulative admitted minutes for the checked skill at this endpoint.",
+      "positiveAfterBothPracticed": "Equal positive cumulative exposure, and both models actually practiced the checked skill during this just-completed step.",
+      "positiveWithoutPracticeThisStep": "Equal positive cumulative exposure retained across a step in which neither model practiced the checked skill (other work, idle, recovery or refusal)."
+    },
+    "interpretation": "These disjoint counts include repeated checkpoints, untrained skills and repeated conditions across sensitivity variants. The equality is an expected implementation identity of the same deterministic practice update at matched admitted exposure, not independent scientific discoveries or evidence from people."
+  },
+  "resultSha256": "871baab3e7b31d1e435f13fbbc5d1c5539006a6ec5265e883807e474c313b50f",
+  "scriptSha256": "c58f0c356d39d76d1a8f51be87d4aba7547414288507b690375407ef38d2045e",
+  "inputs": {
+    "development.json": {
+      "fileSha256": "cc114de00bf440651c3ab66565611ea0890b1d2027dae07220e5df70a33d88bd",
+      "resultSha256": "61dacf697a587d1d6b386b96aa559f47d1da237fa153ab1c04b821cd323f7781"
+    },
+    "reserved.json": {
+      "fileSha256": "833f2c1f56eb9b9a848f53aef427a452bd38b89ac5c4bea06782183ef152e762",
+      "resultSha256": "68272ed722ccf1cde326b1eb35df70a257c3d157fff695b54735c8905f4a6c4a"
+    },
+    "sensitivity.json": {
+      "fileSha256": "1dd7b8becf7cf0320ce021604c01920133504b8aa2c48bee0afd8938af8cd79e",
+      "resultSha256": "5713da5f13ce062e2675f61043ccedef182f0c1195a0057b4f321ec3d5bc3b13"
+    },
+    "verification.json": {
+      "fileSha256": "9f3ad0f42dc982374eba13196e04677c4a8fb7fb0f582de53c36484310861075"
+    }
+  }
+}
