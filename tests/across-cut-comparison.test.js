@@ -161,4 +161,7 @@ test('reliable radio bounds never infer delivery of a missed contact transmissio
   world=h.request(world,'receiver',{task:'travel',to:'dock'});world=h.advance(world,9);
   const view=h.getActorView(world,'keeper');assert.equal(view.sent[0].via,'contact');assert.equal(h.getActorView(world,'receiver').inbox.length,0);
   assert.deepEqual(chooseAction(view,{},'contact').state.inferredReceived,[],'A radio delivery bound cannot establish contact receipt.');
+  let radio=h.create();radio=h.request(radio,'keeper',{task:'transmit',message:{kind:'report',observationIds:[h.getActorView(radio,'keeper').notebook[0].receipt]}});
+  radio=h.advance(radio,2);assert.deepEqual(chooseAction(h.getActorView(radio,'keeper'),{},'fixed-early').state.inferredReceived,[]);
+  radio=h.advance(radio,3);assert.deepEqual(chooseAction(h.getActorView(radio,'keeper'),{},'fixed-early').state.inferredReceived,['keeper:m1'],'A completed reliable radio transmission can be inferred delivered after its known bound.');
 });
