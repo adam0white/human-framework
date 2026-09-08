@@ -1,0 +1,5 @@
+
+> human-framework@0.9.0 build
+> node scripts/build.js
+
+Built 81 public files in dist. Engine 0.3.0. Checked 54 static modules and 88 import edges.

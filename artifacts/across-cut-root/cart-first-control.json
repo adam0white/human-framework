@@ -1,0 +1,1454 @@
+{
+  "scope": "Root post-review exploratory zero-message control. Same receiver rules/local history, own keeper repair-dependent timing; not a new reserved result or optimality proof.",
+  "sourceSha256": "13200cf52557d5c7c45319548e79512998c020e4c73eb6e8f35f17e5800080db",
+  "runs": [
+    {
+      "valveMinutes": 6,
+      "decisions": [
+        {
+          "at": 0,
+          "actor": "keeper",
+          "action": {
+            "task": "inspect"
+          }
+        },
+        {
+          "at": 0,
+          "actor": "receiver",
+          "action": {
+            "task": "inspect"
+          }
+        },
+        {
+          "at": 1,
+          "actor": "keeper",
+          "action": {
+            "task": "repair"
+          }
+        },
+        {
+          "at": 1,
+          "actor": "receiver",
+          "action": {
+            "task": "repair"
+          }
+        },
+        {
+          "at": 3,
+          "actor": "receiver",
+          "action": {
+            "task": "cart"
+          }
+        },
+        {
+          "at": 9,
+          "actor": "keeper",
+          "action": {
+            "task": "release"
+          }
+        },
+        {
+          "at": 13,
+          "actor": "receiver",
+          "action": {
+            "task": "attend",
+            "minutes": 2
+          }
+        }
+      ],
+      "final": {
+        "researcherOnly": true,
+        "now": 30,
+        "ended": true,
+        "config": {
+          "valveMinutes": 6,
+          "inletMinutes": 2,
+          "launchAt": 15,
+          "channelMode": "reliable",
+          "channelSeed": 0,
+          "channelOverrides": {},
+          "bodies": {
+            "keeper": {
+              "fatigue": 0.15,
+              "hunger": 0.15
+            },
+            "receiver": {
+              "fatigue": 0.15,
+              "hunger": 0.15
+            }
+          }
+        },
+        "work": {
+          "valve": 6,
+          "dock": 2
+        },
+        "service": {
+          "units": 2,
+          "departed": true,
+          "deliveries": [
+            {
+              "at": 8,
+              "route": "cart",
+              "units": 1,
+              "delivered": 1,
+              "lost": 0,
+              "excess": 0
+            },
+            {
+              "at": 14,
+              "route": "pipe",
+              "units": 2,
+              "delivered": 1,
+              "lost": 0,
+              "excess": 1
+            }
+          ]
+        },
+        "water": {
+          "pipeConsumed": 2,
+          "cartConsumed": 1,
+          "inTransit": 0,
+          "lost": 0,
+          "excess": 1,
+          "owned": 0,
+          "conservedTotal": 3
+        },
+        "actors": {
+          "keeper": {
+            "body": {
+              "fatigue": 0.3000000000000001,
+              "hunger": 0.21000000000000005
+            },
+            "position": 0,
+            "inventory": {
+              "fitting": {
+                "available": 0,
+                "reserved": 0,
+                "installed": 1
+              },
+              "water": {
+                "available": 0,
+                "reserved": 0,
+                "consumed": 2
+              },
+              "cartWater": {
+                "available": 0,
+                "reserved": 0,
+                "consumed": 0
+              },
+              "radio": {
+                "available": 4,
+                "reserved": 0,
+                "consumed": 0
+              },
+              "meal": {
+                "available": 1,
+                "reserved": 0,
+                "consumed": 0
+              }
+            },
+            "paid": {
+              "idle": 21,
+              "inspect": 1,
+              "repair": 6,
+              "release": 2,
+              "attend": 0,
+              "cart": 0,
+              "travel": 0,
+              "rest": 0,
+              "meal": 0,
+              "transmit": 0
+            },
+            "contributions": []
+          },
+          "receiver": {
+            "body": {
+              "fatigue": 0.33400000000000013,
+              "hunger": 0.21000000000000005
+            },
+            "position": 6,
+            "inventory": {
+              "fitting": {
+                "available": 0,
+                "reserved": 0,
+                "installed": 1
+              },
+              "water": {
+                "available": 0,
+                "reserved": 0,
+                "consumed": 0
+              },
+              "cartWater": {
+                "available": 0,
+                "reserved": 0,
+                "consumed": 1
+              },
+              "radio": {
+                "available": 4,
+                "reserved": 0,
+                "consumed": 0
+              },
+              "meal": {
+                "available": 1,
+                "reserved": 0,
+                "consumed": 0
+              }
+            },
+            "paid": {
+              "idle": 15,
+              "inspect": 1,
+              "repair": 2,
+              "release": 0,
+              "attend": 2,
+              "cart": 10,
+              "travel": 0,
+              "rest": 0,
+              "meal": 0,
+              "transmit": 0
+            },
+            "contributions": []
+          }
+        },
+        "transport": [],
+        "journalEntries": 12
+      },
+      "finalSave": {
+        "format": "across-cut",
+        "saveVersion": 1,
+        "hostVersion": "0.1.0",
+        "state": {
+          "version": "0.1.0",
+          "config": {
+            "valveMinutes": 6,
+            "inletMinutes": 2,
+            "launchAt": 15,
+            "channelMode": "reliable",
+            "channelSeed": 0,
+            "channelOverrides": {},
+            "bodies": {
+              "keeper": {
+                "fatigue": 0.15,
+                "hunger": 0.15
+              },
+              "receiver": {
+                "fatigue": 0.15,
+                "hunger": 0.15
+              }
+            }
+          },
+          "clock": {
+            "version": "0.1.0",
+            "now": 30,
+            "nextEvent": 2,
+            "queue": []
+          },
+          "people": {
+            "keeper": {
+              "version": "0.1.1",
+              "id": "keeper",
+              "body": {
+                "fatigue": 0.3000000000000001,
+                "hunger": 0.21000000000000005
+              },
+              "skills": {
+                "repair": 0.2245746421202963,
+                "carry": 0.2
+              },
+              "observationBias": 0,
+              "minutes": 30,
+              "nextAttempt": 25,
+              "pending": null
+            },
+            "receiver": {
+              "version": "0.1.1",
+              "id": "receiver",
+              "body": {
+                "fatigue": 0.33400000000000013,
+                "hunger": 0.21000000000000005
+              },
+              "skills": {
+                "repair": 0.2082768855927235,
+                "carry": 0.24053690652568835
+              },
+              "observationBias": 0,
+              "minutes": 30,
+              "nextAttempt": 20,
+              "pending": null
+            }
+          },
+          "actors": {
+            "keeper": {
+              "position": 0,
+              "job": null,
+              "inventory": {
+                "fitting": {
+                  "available": 0,
+                  "reserved": 0,
+                  "installed": 1
+                },
+                "water": {
+                  "available": 0,
+                  "reserved": 0,
+                  "consumed": 2
+                },
+                "cartWater": {
+                  "available": 0,
+                  "reserved": 0,
+                  "consumed": 0
+                },
+                "radio": {
+                  "available": 4,
+                  "reserved": 0,
+                  "consumed": 0
+                },
+                "meal": {
+                  "available": 1,
+                  "reserved": 0,
+                  "consumed": 0
+                }
+              },
+              "notebook": [
+                {
+                  "receipt": 1,
+                  "cue": "repairProgress:valve",
+                  "value": 0,
+                  "source": "valve",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 2,
+                  "cue": "peerPresent:valve",
+                  "value": false,
+                  "source": "valve",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 3,
+                  "cue": "repairMinutes:valve",
+                  "value": 6,
+                  "source": "valve",
+                  "observedAt": 1,
+                  "receivedAt": 1,
+                  "via": "local"
+                },
+                {
+                  "receipt": 4,
+                  "cue": "repairProgress:valve",
+                  "value": 1,
+                  "source": "valve",
+                  "observedAt": 2,
+                  "receivedAt": 2,
+                  "via": "local"
+                },
+                {
+                  "receipt": 5,
+                  "cue": "repairProgress:valve",
+                  "value": 2,
+                  "source": "valve",
+                  "observedAt": 3,
+                  "receivedAt": 3,
+                  "via": "local"
+                },
+                {
+                  "receipt": 6,
+                  "cue": "repairProgress:valve",
+                  "value": 3,
+                  "source": "valve",
+                  "observedAt": 4,
+                  "receivedAt": 4,
+                  "via": "local"
+                },
+                {
+                  "receipt": 7,
+                  "cue": "repairProgress:valve",
+                  "value": 4,
+                  "source": "valve",
+                  "observedAt": 5,
+                  "receivedAt": 5,
+                  "via": "local"
+                },
+                {
+                  "receipt": 8,
+                  "cue": "repairProgress:valve",
+                  "value": 5,
+                  "source": "valve",
+                  "observedAt": 6,
+                  "receivedAt": 6,
+                  "via": "local"
+                },
+                {
+                  "receipt": 9,
+                  "cue": "repairProgress:valve",
+                  "value": 6,
+                  "source": "valve",
+                  "observedAt": 7,
+                  "receivedAt": 7,
+                  "via": "local"
+                }
+              ],
+              "inbox": [],
+              "sent": [],
+              "proposals": [],
+              "contributions": [],
+              "nextReceipt": 10,
+              "nextMessage": 1,
+              "nextProposal": 1,
+              "decisions": 3,
+              "paid": {
+                "idle": 21,
+                "inspect": 1,
+                "repair": 6,
+                "release": 2,
+                "attend": 0,
+                "cart": 0,
+                "travel": 0,
+                "rest": 0,
+                "meal": 0,
+                "transmit": 0
+              },
+              "lastResult": {
+                "at": 11,
+                "task": "release",
+                "code": "COMPLETED",
+                "paidMinutes": 2
+              }
+            },
+            "receiver": {
+              "position": 6,
+              "job": null,
+              "inventory": {
+                "fitting": {
+                  "available": 0,
+                  "reserved": 0,
+                  "installed": 1
+                },
+                "water": {
+                  "available": 0,
+                  "reserved": 0,
+                  "consumed": 0
+                },
+                "cartWater": {
+                  "available": 0,
+                  "reserved": 0,
+                  "consumed": 1
+                },
+                "radio": {
+                  "available": 4,
+                  "reserved": 0,
+                  "consumed": 0
+                },
+                "meal": {
+                  "available": 1,
+                  "reserved": 0,
+                  "consumed": 0
+                }
+              },
+              "notebook": [
+                {
+                  "receipt": 1,
+                  "cue": "launchAt",
+                  "value": 15,
+                  "source": "dock",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 2,
+                  "cue": "launchDeparted",
+                  "value": false,
+                  "source": "dock",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 3,
+                  "cue": "serviceUnits",
+                  "value": 0,
+                  "source": "dock",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 4,
+                  "cue": "repairProgress:dock",
+                  "value": 0,
+                  "source": "dock",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 5,
+                  "cue": "peerPresent:dock",
+                  "value": false,
+                  "source": "dock",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 6,
+                  "cue": "repairMinutes:dock",
+                  "value": 2,
+                  "source": "dock",
+                  "observedAt": 1,
+                  "receivedAt": 1,
+                  "via": "local"
+                },
+                {
+                  "receipt": 7,
+                  "cue": "repairProgress:dock",
+                  "value": 1,
+                  "source": "dock",
+                  "observedAt": 2,
+                  "receivedAt": 2,
+                  "via": "local"
+                },
+                {
+                  "receipt": 8,
+                  "cue": "repairProgress:dock",
+                  "value": 2,
+                  "source": "dock",
+                  "observedAt": 3,
+                  "receivedAt": 3,
+                  "via": "local"
+                },
+                {
+                  "receipt": 9,
+                  "cue": "cartDelivery",
+                  "value": {
+                    "at": 8,
+                    "route": "cart",
+                    "units": 1,
+                    "delivered": 1,
+                    "lost": 0,
+                    "excess": 0
+                  },
+                  "source": "cart",
+                  "observedAt": 8,
+                  "receivedAt": 8,
+                  "via": "local"
+                },
+                {
+                  "receipt": 10,
+                  "cue": "serviceUnits",
+                  "value": 1,
+                  "source": "dock",
+                  "observedAt": 13,
+                  "receivedAt": 13,
+                  "via": "local"
+                },
+                {
+                  "receipt": 11,
+                  "cue": "serviceUnits",
+                  "value": 2,
+                  "source": "dock",
+                  "observedAt": 14,
+                  "receivedAt": 14,
+                  "via": "local"
+                },
+                {
+                  "receipt": 12,
+                  "cue": "launchDeparted",
+                  "value": true,
+                  "source": "dock",
+                  "observedAt": 15,
+                  "receivedAt": 15,
+                  "via": "local"
+                }
+              ],
+              "inbox": [],
+              "sent": [],
+              "proposals": [],
+              "contributions": [],
+              "nextReceipt": 13,
+              "nextMessage": 1,
+              "nextProposal": 1,
+              "decisions": 4,
+              "paid": {
+                "idle": 15,
+                "inspect": 1,
+                "repair": 2,
+                "release": 0,
+                "attend": 2,
+                "cart": 10,
+                "travel": 0,
+                "rest": 0,
+                "meal": 0,
+                "transmit": 0
+              },
+              "lastResult": {
+                "at": 15,
+                "task": "attend",
+                "code": "COMPLETED",
+                "paidMinutes": 2
+              }
+            }
+          },
+          "work": {
+            "valve": 6,
+            "dock": 2
+          },
+          "service": {
+            "units": 2,
+            "departed": true,
+            "deliveries": [
+              {
+                "at": 8,
+                "route": "cart",
+                "units": 1,
+                "delivered": 1,
+                "lost": 0,
+                "excess": 0
+              },
+              {
+                "at": 14,
+                "route": "pipe",
+                "units": 2,
+                "delivered": 1,
+                "lost": 0,
+                "excess": 1
+              }
+            ]
+          },
+          "water": {
+            "pipeConsumed": 2,
+            "cartConsumed": 1,
+            "inTransit": 0,
+            "lost": 0,
+            "excess": 1
+          },
+          "transport": [],
+          "commands": [
+            {
+              "type": "request",
+              "actorId": "keeper",
+              "action": {
+                "task": "inspect"
+              }
+            },
+            {
+              "type": "request",
+              "actorId": "receiver",
+              "action": {
+                "task": "inspect"
+              }
+            },
+            {
+              "type": "advance",
+              "to": 1,
+              "options": {}
+            },
+            {
+              "type": "request",
+              "actorId": "keeper",
+              "action": {
+                "task": "repair"
+              }
+            },
+            {
+              "type": "request",
+              "actorId": "receiver",
+              "action": {
+                "task": "repair"
+              }
+            },
+            {
+              "type": "advance",
+              "to": 3,
+              "options": {}
+            },
+            {
+              "type": "request",
+              "actorId": "receiver",
+              "action": {
+                "task": "cart"
+              }
+            },
+            {
+              "type": "advance",
+              "to": 9,
+              "options": {}
+            },
+            {
+              "type": "request",
+              "actorId": "keeper",
+              "action": {
+                "task": "release"
+              }
+            },
+            {
+              "type": "advance",
+              "to": 13,
+              "options": {}
+            },
+            {
+              "type": "request",
+              "actorId": "receiver",
+              "action": {
+                "task": "attend",
+                "minutes": 2
+              }
+            },
+            {
+              "type": "advance",
+              "to": 30,
+              "options": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "valveMinutes": 12,
+      "decisions": [
+        {
+          "at": 0,
+          "actor": "keeper",
+          "action": {
+            "task": "inspect"
+          }
+        },
+        {
+          "at": 0,
+          "actor": "receiver",
+          "action": {
+            "task": "inspect"
+          }
+        },
+        {
+          "at": 1,
+          "actor": "keeper",
+          "action": {
+            "task": "repair"
+          }
+        },
+        {
+          "at": 1,
+          "actor": "receiver",
+          "action": {
+            "task": "repair"
+          }
+        },
+        {
+          "at": 3,
+          "actor": "receiver",
+          "action": {
+            "task": "cart"
+          }
+        },
+        {
+          "at": 13,
+          "actor": "keeper",
+          "action": {
+            "task": "release"
+          }
+        },
+        {
+          "at": 13,
+          "actor": "receiver",
+          "action": {
+            "task": "attend",
+            "minutes": 2
+          }
+        }
+      ],
+      "final": {
+        "researcherOnly": true,
+        "now": 30,
+        "ended": true,
+        "config": {
+          "valveMinutes": 12,
+          "inletMinutes": 2,
+          "launchAt": 15,
+          "channelMode": "reliable",
+          "channelSeed": 0,
+          "channelOverrides": {},
+          "bodies": {
+            "keeper": {
+              "fatigue": 0.15,
+              "hunger": 0.15
+            },
+            "receiver": {
+              "fatigue": 0.15,
+              "hunger": 0.15
+            }
+          }
+        },
+        "work": {
+          "valve": 12,
+          "dock": 2
+        },
+        "service": {
+          "units": 1,
+          "departed": true,
+          "deliveries": [
+            {
+              "at": 8,
+              "route": "cart",
+              "units": 1,
+              "delivered": 1,
+              "lost": 0,
+              "excess": 0
+            },
+            {
+              "at": 18,
+              "route": "pipe",
+              "units": 2,
+              "delivered": 0,
+              "lost": 2,
+              "excess": 0
+            }
+          ]
+        },
+        "water": {
+          "pipeConsumed": 2,
+          "cartConsumed": 1,
+          "inTransit": 0,
+          "lost": 2,
+          "excess": 0,
+          "owned": 0,
+          "conservedTotal": 3
+        },
+        "actors": {
+          "keeper": {
+            "body": {
+              "fatigue": 0.37200000000000016,
+              "hunger": 0.21000000000000005
+            },
+            "position": 0,
+            "inventory": {
+              "fitting": {
+                "available": 0,
+                "reserved": 0,
+                "installed": 1
+              },
+              "water": {
+                "available": 0,
+                "reserved": 0,
+                "consumed": 2
+              },
+              "cartWater": {
+                "available": 0,
+                "reserved": 0,
+                "consumed": 0
+              },
+              "radio": {
+                "available": 4,
+                "reserved": 0,
+                "consumed": 0
+              },
+              "meal": {
+                "available": 1,
+                "reserved": 0,
+                "consumed": 0
+              }
+            },
+            "paid": {
+              "idle": 15,
+              "inspect": 1,
+              "repair": 12,
+              "release": 2,
+              "attend": 0,
+              "cart": 0,
+              "travel": 0,
+              "rest": 0,
+              "meal": 0,
+              "transmit": 0
+            },
+            "contributions": []
+          },
+          "receiver": {
+            "body": {
+              "fatigue": 0.33400000000000013,
+              "hunger": 0.21000000000000005
+            },
+            "position": 6,
+            "inventory": {
+              "fitting": {
+                "available": 0,
+                "reserved": 0,
+                "installed": 1
+              },
+              "water": {
+                "available": 0,
+                "reserved": 0,
+                "consumed": 0
+              },
+              "cartWater": {
+                "available": 0,
+                "reserved": 0,
+                "consumed": 1
+              },
+              "radio": {
+                "available": 4,
+                "reserved": 0,
+                "consumed": 0
+              },
+              "meal": {
+                "available": 1,
+                "reserved": 0,
+                "consumed": 0
+              }
+            },
+            "paid": {
+              "idle": 15,
+              "inspect": 1,
+              "repair": 2,
+              "release": 0,
+              "attend": 2,
+              "cart": 10,
+              "travel": 0,
+              "rest": 0,
+              "meal": 0,
+              "transmit": 0
+            },
+            "contributions": []
+          }
+        },
+        "transport": [],
+        "journalEntries": 11
+      },
+      "finalSave": {
+        "format": "across-cut",
+        "saveVersion": 1,
+        "hostVersion": "0.1.0",
+        "state": {
+          "version": "0.1.0",
+          "config": {
+            "valveMinutes": 12,
+            "inletMinutes": 2,
+            "launchAt": 15,
+            "channelMode": "reliable",
+            "channelSeed": 0,
+            "channelOverrides": {},
+            "bodies": {
+              "keeper": {
+                "fatigue": 0.15,
+                "hunger": 0.15
+              },
+              "receiver": {
+                "fatigue": 0.15,
+                "hunger": 0.15
+              }
+            }
+          },
+          "clock": {
+            "version": "0.1.0",
+            "now": 30,
+            "nextEvent": 2,
+            "queue": []
+          },
+          "people": {
+            "keeper": {
+              "version": "0.1.1",
+              "id": "keeper",
+              "body": {
+                "fatigue": 0.37200000000000016,
+                "hunger": 0.21000000000000005
+              },
+              "skills": {
+                "repair": 0.2483943929464168,
+                "carry": 0.2
+              },
+              "observationBias": 0,
+              "minutes": 30,
+              "nextAttempt": 19,
+              "pending": null
+            },
+            "receiver": {
+              "version": "0.1.1",
+              "id": "receiver",
+              "body": {
+                "fatigue": 0.33400000000000013,
+                "hunger": 0.21000000000000005
+              },
+              "skills": {
+                "repair": 0.2082768855927235,
+                "carry": 0.24053690652568835
+              },
+              "observationBias": 0,
+              "minutes": 30,
+              "nextAttempt": 20,
+              "pending": null
+            }
+          },
+          "actors": {
+            "keeper": {
+              "position": 0,
+              "job": null,
+              "inventory": {
+                "fitting": {
+                  "available": 0,
+                  "reserved": 0,
+                  "installed": 1
+                },
+                "water": {
+                  "available": 0,
+                  "reserved": 0,
+                  "consumed": 2
+                },
+                "cartWater": {
+                  "available": 0,
+                  "reserved": 0,
+                  "consumed": 0
+                },
+                "radio": {
+                  "available": 4,
+                  "reserved": 0,
+                  "consumed": 0
+                },
+                "meal": {
+                  "available": 1,
+                  "reserved": 0,
+                  "consumed": 0
+                }
+              },
+              "notebook": [
+                {
+                  "receipt": 1,
+                  "cue": "repairProgress:valve",
+                  "value": 0,
+                  "source": "valve",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 2,
+                  "cue": "peerPresent:valve",
+                  "value": false,
+                  "source": "valve",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 3,
+                  "cue": "repairMinutes:valve",
+                  "value": 12,
+                  "source": "valve",
+                  "observedAt": 1,
+                  "receivedAt": 1,
+                  "via": "local"
+                },
+                {
+                  "receipt": 4,
+                  "cue": "repairProgress:valve",
+                  "value": 1,
+                  "source": "valve",
+                  "observedAt": 2,
+                  "receivedAt": 2,
+                  "via": "local"
+                },
+                {
+                  "receipt": 5,
+                  "cue": "repairProgress:valve",
+                  "value": 2,
+                  "source": "valve",
+                  "observedAt": 3,
+                  "receivedAt": 3,
+                  "via": "local"
+                },
+                {
+                  "receipt": 6,
+                  "cue": "repairProgress:valve",
+                  "value": 3,
+                  "source": "valve",
+                  "observedAt": 4,
+                  "receivedAt": 4,
+                  "via": "local"
+                },
+                {
+                  "receipt": 7,
+                  "cue": "repairProgress:valve",
+                  "value": 4,
+                  "source": "valve",
+                  "observedAt": 5,
+                  "receivedAt": 5,
+                  "via": "local"
+                },
+                {
+                  "receipt": 8,
+                  "cue": "repairProgress:valve",
+                  "value": 5,
+                  "source": "valve",
+                  "observedAt": 6,
+                  "receivedAt": 6,
+                  "via": "local"
+                },
+                {
+                  "receipt": 9,
+                  "cue": "repairProgress:valve",
+                  "value": 6,
+                  "source": "valve",
+                  "observedAt": 7,
+                  "receivedAt": 7,
+                  "via": "local"
+                },
+                {
+                  "receipt": 10,
+                  "cue": "repairProgress:valve",
+                  "value": 7,
+                  "source": "valve",
+                  "observedAt": 8,
+                  "receivedAt": 8,
+                  "via": "local"
+                },
+                {
+                  "receipt": 11,
+                  "cue": "repairProgress:valve",
+                  "value": 8,
+                  "source": "valve",
+                  "observedAt": 9,
+                  "receivedAt": 9,
+                  "via": "local"
+                },
+                {
+                  "receipt": 12,
+                  "cue": "repairProgress:valve",
+                  "value": 9,
+                  "source": "valve",
+                  "observedAt": 10,
+                  "receivedAt": 10,
+                  "via": "local"
+                },
+                {
+                  "receipt": 13,
+                  "cue": "repairProgress:valve",
+                  "value": 10,
+                  "source": "valve",
+                  "observedAt": 11,
+                  "receivedAt": 11,
+                  "via": "local"
+                },
+                {
+                  "receipt": 14,
+                  "cue": "repairProgress:valve",
+                  "value": 11,
+                  "source": "valve",
+                  "observedAt": 12,
+                  "receivedAt": 12,
+                  "via": "local"
+                },
+                {
+                  "receipt": 15,
+                  "cue": "repairProgress:valve",
+                  "value": 12,
+                  "source": "valve",
+                  "observedAt": 13,
+                  "receivedAt": 13,
+                  "via": "local"
+                }
+              ],
+              "inbox": [],
+              "sent": [],
+              "proposals": [],
+              "contributions": [],
+              "nextReceipt": 16,
+              "nextMessage": 1,
+              "nextProposal": 1,
+              "decisions": 3,
+              "paid": {
+                "idle": 15,
+                "inspect": 1,
+                "repair": 12,
+                "release": 2,
+                "attend": 0,
+                "cart": 0,
+                "travel": 0,
+                "rest": 0,
+                "meal": 0,
+                "transmit": 0
+              },
+              "lastResult": {
+                "at": 15,
+                "task": "release",
+                "code": "COMPLETED",
+                "paidMinutes": 2
+              }
+            },
+            "receiver": {
+              "position": 6,
+              "job": null,
+              "inventory": {
+                "fitting": {
+                  "available": 0,
+                  "reserved": 0,
+                  "installed": 1
+                },
+                "water": {
+                  "available": 0,
+                  "reserved": 0,
+                  "consumed": 0
+                },
+                "cartWater": {
+                  "available": 0,
+                  "reserved": 0,
+                  "consumed": 1
+                },
+                "radio": {
+                  "available": 4,
+                  "reserved": 0,
+                  "consumed": 0
+                },
+                "meal": {
+                  "available": 1,
+                  "reserved": 0,
+                  "consumed": 0
+                }
+              },
+              "notebook": [
+                {
+                  "receipt": 1,
+                  "cue": "launchAt",
+                  "value": 15,
+                  "source": "dock",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 2,
+                  "cue": "launchDeparted",
+                  "value": false,
+                  "source": "dock",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 3,
+                  "cue": "serviceUnits",
+                  "value": 0,
+                  "source": "dock",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 4,
+                  "cue": "repairProgress:dock",
+                  "value": 0,
+                  "source": "dock",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 5,
+                  "cue": "peerPresent:dock",
+                  "value": false,
+                  "source": "dock",
+                  "observedAt": 0,
+                  "receivedAt": 0,
+                  "via": "local"
+                },
+                {
+                  "receipt": 6,
+                  "cue": "repairMinutes:dock",
+                  "value": 2,
+                  "source": "dock",
+                  "observedAt": 1,
+                  "receivedAt": 1,
+                  "via": "local"
+                },
+                {
+                  "receipt": 7,
+                  "cue": "repairProgress:dock",
+                  "value": 1,
+                  "source": "dock",
+                  "observedAt": 2,
+                  "receivedAt": 2,
+                  "via": "local"
+                },
+                {
+                  "receipt": 8,
+                  "cue": "repairProgress:dock",
+                  "value": 2,
+                  "source": "dock",
+                  "observedAt": 3,
+                  "receivedAt": 3,
+                  "via": "local"
+                },
+                {
+                  "receipt": 9,
+                  "cue": "cartDelivery",
+                  "value": {
+                    "at": 8,
+                    "route": "cart",
+                    "units": 1,
+                    "delivered": 1,
+                    "lost": 0,
+                    "excess": 0
+                  },
+                  "source": "cart",
+                  "observedAt": 8,
+                  "receivedAt": 8,
+                  "via": "local"
+                },
+                {
+                  "receipt": 10,
+                  "cue": "serviceUnits",
+                  "value": 1,
+                  "source": "dock",
+                  "observedAt": 13,
+                  "receivedAt": 13,
+                  "via": "local"
+                },
+                {
+                  "receipt": 11,
+                  "cue": "launchDeparted",
+                  "value": true,
+                  "source": "dock",
+                  "observedAt": 15,
+                  "receivedAt": 15,
+                  "via": "local"
+                }
+              ],
+              "inbox": [],
+              "sent": [],
+              "proposals": [],
+              "contributions": [],
+              "nextReceipt": 12,
+              "nextMessage": 1,
+              "nextProposal": 1,
+              "decisions": 4,
+              "paid": {
+                "idle": 15,
+                "inspect": 1,
+                "repair": 2,
+                "release": 0,
+                "attend": 2,
+                "cart": 10,
+                "travel": 0,
+                "rest": 0,
+                "meal": 0,
+                "transmit": 0
+              },
+              "lastResult": {
+                "at": 15,
+                "task": "attend",
+                "code": "COMPLETED",
+                "paidMinutes": 2
+              }
+            }
+          },
+          "work": {
+            "valve": 12,
+            "dock": 2
+          },
+          "service": {
+            "units": 1,
+            "departed": true,
+            "deliveries": [
+              {
+                "at": 8,
+                "route": "cart",
+                "units": 1,
+                "delivered": 1,
+                "lost": 0,
+                "excess": 0
+              },
+              {
+                "at": 18,
+                "route": "pipe",
+                "units": 2,
+                "delivered": 0,
+                "lost": 2,
+                "excess": 0
+              }
+            ]
+          },
+          "water": {
+            "pipeConsumed": 2,
+            "cartConsumed": 1,
+            "inTransit": 0,
+            "lost": 2,
+            "excess": 0
+          },
+          "transport": [],
+          "commands": [
+            {
+              "type": "request",
+              "actorId": "keeper",
+              "action": {
+                "task": "inspect"
+              }
+            },
+            {
+              "type": "request",
+              "actorId": "receiver",
+              "action": {
+                "task": "inspect"
+              }
+            },
+            {
+              "type": "advance",
+              "to": 1,
+              "options": {}
+            },
+            {
+              "type": "request",
+              "actorId": "keeper",
+              "action": {
+                "task": "repair"
+              }
+            },
+            {
+              "type": "request",
+              "actorId": "receiver",
+              "action": {
+                "task": "repair"
+              }
+            },
+            {
+              "type": "advance",
+              "to": 3,
+              "options": {}
+            },
+            {
+              "type": "request",
+              "actorId": "receiver",
+              "action": {
+                "task": "cart"
+              }
+            },
+            {
+              "type": "advance",
+              "to": 13,
+              "options": {}
+            },
+            {
+              "type": "request",
+              "actorId": "keeper",
+              "action": {
+                "task": "release"
+              }
+            },
+            {
+              "type": "request",
+              "actorId": "receiver",
+              "action": {
+                "task": "attend",
+                "minutes": 2
+              }
+            },
+            {
+              "type": "advance",
+              "to": 30,
+              "options": {}
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

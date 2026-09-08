@@ -1,0 +1,33 @@
+# Across the Cut private feasibility review
+
+This stage implements a private headless host and evidence study. The released app, existing games, frozen runtime/model/clock and package exports remain unchanged. No new UI or general cognition component is claimed.
+
+## Independent scopes
+
+- [Fresh Astra core review](../../artifacts/across-cut-milestone/astra-core-review.md) inspected corrected host `b3ec694` and frozen dependencies. The 23 host tests and 20 new independent lifecycle/isolation probes pass on Node 26 and minimum Node 22. No actionable defect remained in the reviewed scope.
+- The independent [isolation lane](../across-cut-isolation.md) contributes 24 tests on both Node versions, legal equal-local-history twins, source-time/receipt/consent boundaries and the 286-entry control-limit case. Two initial assertions confused researcher journal counts with physical state and first inspection time with an earlier visible observation; original failures and corrected fixtures are retained.
+- [Fresh Astra evidence review](../../artifacts/across-cut-milestone/astra-evidence-review.md) and [strengthened-source recheck](../../artifacts/across-cut-milestone/astra-strengthened-review.md) audit actor-local policy inputs, exact original Git-source replay, stronger rivals, complete case attribution and final outcomes. The final 40 core/comparison tests pass on both Node versions; all 155 final-source development trial records match the retained strengthened result.
+- [Fable value review](../../research/reviews/2026-09-08-across-cut-fable-value.md) completed on actual `claude-fable-5-1`, with auxiliary Haiku use, in 867 words. Its frozen five-file scope includes early contract/protocol/policy plus an [all 80-run mechanical summary](../../research/reviews/2026-09-08-across-cut-fable-summary.json); no full host, raw trajectories, tests, prior verdicts, reserved results, player data or credentials were supplied. [Exact process/snapshot provenance](../../research/reviews/2026-09-08-across-cut-fable-value-provenance.json). It is source/summary inspection, not executed verification of later source.
+
+## Findings and dispositions
+
+| Finding | Concrete correction or limit |
+|---|---|
+| Whole-trip horizon admission rejected a useful cart starting 22 | Core now permits paid partial work through common horizon 30. Cart delivers at 27, pays 8 minutes and stops two minutes short of home; original refusals remain in the first matrix. Water/reservations and position are conserved. |
+| Same-revision responses were selected by arrival | Select by source decision time, then completed send time and sender-local sequence. A real accept/withdraw at the same minute now preserves the newer withdrawal arriving first; the later stale acceptance cannot revive it. Original failing source/test output remains. |
+| Radio-bound delivery inference included a failed contact | Infer receipt by the radio bound only for actual radio envelopes. Contact remains a legal physical rival; its delivery requires separate local co-presence evidence. The failed-contact counterexample and positive radio-bound recheck are retained. |
+| Artifact controller labels could bypass policy recomputation | Replay now binds kind, arm, case/setup and each prescribed/policy step to trusted source definitions, then recomputes outputs. It rejects relabeled controller attribution, adjacent header forgeries and appended events after the source driver ends. |
+| Reported error/count/peak-size metadata was not independently checked | Replay recalculates these fields alongside full world and local decision-input/state checks. Tampered metadata regressions are retained. |
+| Earlier rivals discarded available facts or used weaker local fallback rules | Before freeze, register and implement adaptive no-radio, root cart-first and two-way factual-report rivals; complete the reliable physical grid; use received inlet/launch facts consistently and declare common unknown-launch assumptions. Original 80/81 results stay intact. |
+| Proposals waited for a complete return exchange, and received refusal did not affect physical work | Earlier proposals now budget their actual one-way effects; received current refusal/withdrawal can cancel the keeper's own contribution and preserve water. Silence/absent confirmation still does not mechanically prevent release. Scripted-prefix/policy-continuation cases remain distinctly labeled. |
+| Confirmation benefit and general cognition were overstated | No measured service improvement from final confirmation is established. Retry remains unexercised, and the finite role/timing cases do not prove every possible confirmation strategy useless. The original confirmation-centered game is unearned; factual-report work/water savings support a narrower option. |
+
+Fable's proposed adaptive no-radio 14-unit result on the original eight configurations was executed and confirmed. Root's further cart-first control secures two units with a short valve and one with a long valve at the early launch, with no messages; it retains excess/lost-water costs. This corrects any claim that a backward report is uniquely necessary for that raw service guarantee. [Root exploratory source/results](../../artifacts/across-cut-root/cart-first-control.json) and [registered expanded matrix](../across-cut-comparison.md) preserve both.
+
+## Final scope
+
+Freeze `74d84d1` binds source `dc87a06` and 18 exact source files before the 15 withheld runs. The final 170 records comprise 155 development cases (144 policy runs plus 11 scripts/continuations) and 15 reserved cases (12 policy runs plus 3 scripts). All replay on minimum Node 22, retain every cost/failure, and account for 30 paid minutes per actor and three owned water units. No post-reserved tuning occurred. Maximum observed save 19,316 bytes/journal 57 is a sample maximum, not the host's universal worst case.
+
+The full repository suite passes 594 tests; all 64 new tests pass Node 22. Equal-history tests establish the exercised actor-local boundary, not complete deductive knowledge or human comprehension. Reports retain known claims and timing; no calibrated trust, attention, belief probability, witness assessment, human usefulness or theological finding follows. There was no actual human playtest this stage. [Milestone decision](../across-cut-feasibility.md) records the accepted narrow result and next work.
+
+A final [independent documentation audit](../../artifacts/across-cut-milestone/astra-documentation-audit.md) checked the retained counts, costs, source freeze, review scope and public/private distinction without rerunning the study. It found no substantive inconsistency.

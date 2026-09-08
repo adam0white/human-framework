@@ -1,6 +1,6 @@
 # Proposal: Across the Cut
 
-**Status:** selected next-stage feasibility study after app 0.9, 2026-09-08; no implementation, outcomes, player feedback or promotion. Begin with the headless gate, not a public page. All timings below are proposed game rules awaiting actual paid execution. The user’s existing autonomous authorization covers this work; no additional approval pause is required.
+**Status:** historical preflight proposal, 2026-09-08. The [executed study](across-cut-feasibility.md) now supplies actual contracts/results and narrows the original confirmation-centered premise. The [factual-report player slice](across-cut-player-slice.md) is the next queue. Timings/rules below retain the earlier proposal's provenance, not a claim that every proposed feature was validated.
 
 ## Decision and alternatives
 

@@ -1,6 +1,6 @@
 # Across the Cut: actor-local information feasibility
 
-Started 2026-09-08 at private main `38deade`; deployed app0.9 remains `cf4270c`. The shared-plan milestone is complete. This stage implements a private headless feasibility study before adding another public game or promoting any cognition package.
+Started 2026-09-08 at private main `38deade`; deployed app 0.9 remains `cf4270c`. The shared-plan milestone is complete. This stage implements a private headless feasibility study before adding another public game or promoting any cognition package.
 
 ## Decision and boundaries
 
@@ -31,11 +31,13 @@ Core owner commits `docs/across-cut-contract.md` before evaluating new-host outc
 
 ## Completion gates
 
-- [ ] Exact local-information, physical-cost, message/consent and event-order contract committed and shared; protocol committed before controller outcomes.
-- [ ] Actual host and strong simpler policies run with preserved ownership, paid bodies and complete replay. Original easy no-radio case remains.
-- [ ] Equal-history isolation tests cover views, action outcomes/reasons and next-event forecasts without global queue leakage; any allowed observation divergence is explicit.
-- [ ] Complete development and committed-source reserved outcomes, serious contact/fixed rivals, failed/overhead cases, source/bytes/commands and actual paid-cost accounting are retained. Do not claim usefulness from a more elaborate controller alone.
-- [ ] Fresh independent review and focused Fable outcome/scope recorded; concrete defects fixed and counterexamples rerun.
-- [ ] Full repository and minimum Node22 checks pass; old public/runtime/package bytes remain unchanged. Commit/push source and original freeze branches, verify existing live app remains exact, and update handoff with a concrete acceptance/rejection/next-step decision.
+- [x] Exact local-information, physical-cost, message/consent and event-order contract committed and shared; protocol committed before controller outcomes.
+- [x] Actual host and strong simpler policies run with preserved ownership, paid bodies and complete replay. Original easy no-radio case remains.
+- [x] Equal-history isolation tests cover views, action outcomes/reasons and next-event forecasts without global queue leakage; any allowed observation divergence is explicit.
+- [x] Complete development and committed-source reserved outcomes, serious contact/fixed rivals, failed/overhead cases, source/bytes/commands and actual paid-cost accounting are retained. Do not claim usefulness from a more elaborate controller alone.
+- [x] Fresh independent review and focused Fable outcome/scope recorded; concrete defects fixed and counterexamples rerun.
+- [x] Full repository and minimum Node 22 checks pass; old public/runtime/package bytes remain unchanged. Commit/push source and original freeze branches, verify existing live app remains exact, and update handoff with a concrete acceptance/rejection/next-step decision.
 
 If stronger fixed/contact/notebook approaches remove the interesting decision, record that result and narrow or reject the proposed game. A correct actor-local boundary can remain private engineering evidence without earning a new public page or a general cognition claim. Human playtest, authoring effort, physical-device and empirical/qualified theological gates remain open.
+
+Completed as [the private feasibility milestone](../../across-cut-feasibility.md). Core/isolation/policy and fresh review tracks are complete; source `dc87a06`/freeze `74d84d1` precede the final 170 runs. 594 tests and all 64 minimum-version new tests pass; all 79 live public payloads remain app 0.9. The next task is the separately versioned factual-report player slice, not rerunning this study.

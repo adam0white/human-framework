@@ -1,0 +1,330 @@
+TAP version 13
+# Subtest: comparison evidence hashes complete detached local inputs and rejects mutation
+ok 1 - comparison evidence hashes complete detached local inputs and rejects mutation
+  ---
+  duration_ms: 9.04475
+  ...
+# Subtest: twelve legal rival families share detached actor-local decisions
+ok 2 - twelve legal rival families share detached actor-local decisions
+  ---
+  duration_ms: 11.185458
+  ...
+# Subtest: source-time notebook retains newer facts after stale arrivals and exact revision identities
+ok 3 - source-time notebook retains newer facts after stale arrivals and exact revision identities
+  ---
+  duration_ms: 0.47275
+  ...
+# Subtest: registered comparison protocol and fresh output guards preserve evidence
+ok 4 - registered comparison protocol and fresh output guards preserve evidence
+  ---
+  duration_ms: 16.698792
+  ...
+# Subtest: development cases retain all repair combinations and seal reserved execution
+ok 5 - development cases retain all repair combinations and seal reserved execution
+  ---
+  duration_ms: 2.2595
+  ...
+# Subtest: actual paid no-radio control and both local decision inputs replay exactly
+ok 6 - actual paid no-radio control and both local decision inputs replay exactly
+  ---
+  duration_ms: 553.114334
+  ...
+# Subtest: CLI rejects reserved output without a committed freeze before world execution
+ok 7 - CLI rejects reserved output without a committed freeze before world execution
+  ---
+  duration_ms: 62.46
+  ...
+# Subtest: competent cheap report, contact fallback and unknown-launch notebook preserve useful service
+ok 8 - competent cheap report, contact fallback and unknown-launch notebook preserve useful service
+  ---
+  duration_ms: 429.903209
+  ...
+# Subtest: paid scripts distinguish stale facts, consent, omitted work and receipt-only overhead
+ok 9 - paid scripts distinguish stale facts, consent, omitted work and receipt-only overhead
+  ---
+  duration_ms: 321.343792
+  ...
+# Subtest: historical replay verifies original Git source bytes before loading a recorded controller
+ok 10 - historical replay verifies original Git source bytes before loading a recorded controller
+  ---
+  duration_ms: 5122.284125
+  ...
+# Subtest: same-minute withdrawal survives a later-arriving earlier transmitted acceptance
+ok 11 - same-minute withdrawal survives a later-arriving earlier transmitted acceptance
+  ---
+  duration_ms: 5.968291
+  ...
+# Subtest: reliable radio bounds never infer delivery of a missed contact transmission
+ok 12 - reliable radio bounds never infer delivery of a missed contact transmission
+  ---
+  duration_ms: 2.568417
+  ...
+# Subtest: cart-first no-radio secures early fast/slow service without a backward report
+ok 13 - cart-first no-radio secures early fast/slow service without a backward report
+  ---
+  duration_ms: 243.211875
+  ...
+# Subtest: every informed keeper uses the inlet fact to avoid a knowingly late pipe
+ok 14 - every informed keeper uses the inlet fact to avoid a knowingly late pipe
+  ---
+  duration_ms: 525.290292
+  ...
+# Subtest: received withdrawal changes real keeper water action while missing responses never gate release
+ok 15 - received withdrawal changes real keeper water action while missing responses never gate release
+  ---
+  duration_ms: 181.656
+  ...
+# Subtest: evidence cannot relabel a real policy decision as prescribed to suppress validation
+ok 16 - evidence cannot relabel a real policy decision as prescribed to suppress validation
+  ---
+  duration_ms: 326.945375
+  ...
+# Subtest: source-bound replay rejects even valid no-op policy events appended after closure
+ok 17 - source-bound replay rejects even valid no-op policy events appended after closure
+  ---
+  duration_ms: 79.134084
+  ...
+# Subtest: the private Across Cut host implements the frozen API
+ok 18 - the private Across Cut host implements the frozen API
+  ---
+  duration_ms: 12.163958
+  ...
+# Subtest: paid fixed schedule supplies two units without any messages
+ok 19 - paid fixed schedule supplies two units without any messages
+  ---
+  duration_ms: 9.984042
+  ...
+# Subtest: interrupted repairs preserve paid work and installed fitting; release returns reservation
+ok 20 - interrupted repairs preserve paid work and installed fitting; release returns reservation
+  ---
+  duration_ms: 6.035292
+  ...
+# Subtest: same-minute receiving and launch endpoints are end-inclusive
+ok 21 - same-minute receiving and launch endpoints are end-inclusive
+  ---
+  duration_ms: 2.841292
+  ...
+# Subtest: a late receiver cannot recover water already lost
+ok 22 - a late receiver cannot recover water already lost
+  ---
+  duration_ms: 2.063209
+  ...
+# Subtest: cart delivery and interrupted return conserve water and actual position
+ok 23 - cart delivery and interrupted return conserve water and actual position
+  ---
+  duration_ms: 1.104583
+  ...
+# Subtest: receipt-local stepping pays elapsed time without forecasting inbound radio
+ok 24 - receipt-local stepping pays elapsed time without forecasting inbound radio
+  ---
+  duration_ms: 0.704667
+  ...
+# Subtest: own acceptance survives interrupted response and never performs promised work
+ok 25 - own acceptance survives interrupted response and never performs promised work
+  ---
+  duration_ms: 1.395625
+  ...
+# Subtest: passive reception preserves a paid job and stale reports retain source times
+ok 26 - passive reception preserves a paid job and stale reports retain source times
+  ---
+  duration_ms: 1.068959
+  ...
+# Subtest: walking contact pays six minutes each way and reveals dock notice locally
+ok 27 - walking contact pays six minutes each way and reveals dock notice locally
+  ---
+  duration_ms: 0.865291
+  ...
+# Subtest: strict replay rejects changed hidden physics, paid body, and message arrival
+ok 28 - strict replay rejects changed hidden physics, paid body, and message arrival
+  ---
+  duration_ms: 2.836791
+  ...
+# Subtest: actor-local decisions cannot spend another actor stop and withdrawal room
+ok 29 - actor-local decisions cannot spend another actor stop and withdrawal room
+  ---
+  duration_ms: 18.431083
+  ...
+# Subtest: successive local receipt stops replay without merging distinct observations
+ok 30 - successive local receipt stops replay without merging distinct observations
+  ---
+  duration_ms: 3.907458
+  ...
+# Subtest: local physical service observations support voluntary cart insurance decisions
+ok 31 - local physical service observations support voluntary cart insurance decisions
+  ---
+  duration_ms: 1.181542
+  ...
+# Subtest: physical contact availability is observable at a station and follows actual departure
+ok 32 - physical contact availability is observable at a station and follows actual departure
+  ---
+  duration_ms: 2.128834
+  ...
+# Subtest: cart outbound receipt tells its owner whether their actual delivery counted
+ok 33 - cart outbound receipt tells its owner whether their actual delivery counted
+  ---
+  duration_ms: 0.914708
+  ...
+# Subtest: infeasible fourteen-minute inlet stays paid and cannot meet early launch
+ok 34 - infeasible fourteen-minute inlet stays paid and cannot meet early launch
+  ---
+  duration_ms: 2.644333
+  ...
+# Subtest: whole-attempt Human capacity and paid recovery govern admission
+ok 35 - whole-attempt Human capacity and paid recovery govern admission
+  ---
+  duration_ms: 1.838125
+  ...
+# Subtest: withdrawal after response send leaves a stale acceptance claim in flight
+ok 36 - withdrawal after response send leaves a stale acceptance claim in flight
+  ---
+  duration_ms: 1.844208
+  ...
+# Subtest: actual promised attendance fulfills without requiring a response or confirmation
+ok 37 - actual promised attendance fulfills without requiring a response or confirmation
+  ---
+  duration_ms: 2.607083
+  ...
+# Subtest: strict JSON rejects unknown fields and accessors without evaluating them
+ok 38 - strict JSON rejects unknown fields and accessors without evaluating them
+  ---
+  duration_ms: 0.814958
+  ...
+# Subtest: late cart may deliver by launch then pay its incomplete return until public horizon
+ok 39 - late cart may deliver by launch then pay its incomplete return until public horizon
+  ---
+  duration_ms: 5.964084
+  ...
+# Subtest: horizon interrupts an unfinished release and restores unused owned water
+ok 40 - horizon interrupts an unfinished release and restores unused owned water
+  ---
+  duration_ms: 6.54
+  ...
+# Subtest: the independently tested private host exists
+ok 41 - the independently tested private host exists
+  ---
+  duration_ms: 0.580167
+  ...
+# Subtest: a private early launch never ends or changes the remote actor before the common horizon
+ok 42 - a private early launch never ends or changes the remote actor before the common horizon
+  ---
+  duration_ms: 30.061875
+  ...
+# Subtest: private receiver repair length, body and paid jobs cannot alter keeper views or command errors
+ok 43 - private receiver repair length, body and paid jobs cannot alter keeper views or command errors
+  ---
+  duration_ms: 27.614333
+  ...
+# Subtest: upstream hidden repair and body differences do not leak into receiver information
+ok 44 - upstream hidden repair and body differences do not leak into receiver information
+  ---
+  duration_ms: 11.174625
+  ...
+# Subtest: future bounded delays are absent from local forecasts until an actual receipt
+ok 45 - future bounded delays are absent from local forecasts until an actual receipt
+  ---
+  duration_ms: 6.556792
+  ...
+# Subtest: hidden loss versus future delivery is not revealed in the sender or unreceived peer view
+ok 46 - hidden loss versus future delivery is not revealed in the sender or unreceived peer view
+  ---
+  duration_ms: 12.347875
+  ...
+# Subtest: unrelated peer commands and lost traffic do not shift local observations, proposal IDs or channel fate
+ok 47 - unrelated peer commands and lost traffic do not shift local observations, proposal IDs or channel fate
+  ---
+  duration_ms: 9.95325
+  ...
+# Subtest: local advance discovers a receipt only after paying time and leaves ongoing recovery intact
+ok 48 - local advance discovers a receipt only after paying time and leaves ongoing recovery intact
+  ---
+  duration_ms: 21.090541
+  ...
+# Subtest: passive radio receipts do not interrupt paid repair or grant repair completion
+ok 49 - passive radio receipts do not interrupt paid repair or grant repair completion
+  ---
+  duration_ms: 3.902292
+  ...
+# Subtest: an older late report stays inspectable without replacing a newer source-time observation
+ok 50 - an older late report stays inspectable without replacing a newer source-time observation
+  ---
+  duration_ms: 3.127667
+  ...
+# Subtest: inaccessible observation and confirmation IDs cannot create owned messages
+ok 51 - inaccessible observation and confirmation IDs cannot create owned messages
+  ---
+  duration_ms: 0.363375
+  ...
+# Subtest: an integer-minute transmission canceled at its start restores charge and sends nothing
+ok 52 - an integer-minute transmission canceled at its start restores charge and sends nothing
+  ---
+  duration_ms: 3.349417
+  ...
+# Subtest: local budgets and command legality are independent of exhausted remote actor controls
+ok 53 - local budgets and command legality are independent of exhausted remote actor controls
+  ---
+  duration_ms: 24.770292
+  ...
+# Subtest: local consent, snapshotted response, received acceptance and actual work remain distinct
+ok 54 - local consent, snapshotted response, received acceptance and actual work remain distinct
+  ---
+  duration_ms: 11.572542
+  ...
+# Subtest: an old acceptance arriving after a newer revision response cannot rewrite own accepted terms
+ok 55 - an old acceptance arriving after a newer revision response cannot rewrite own accepted terms
+  ---
+  duration_ms: 51.650375
+  ...
+# Subtest: actual contributions and full service can succeed without an acceptance response or confirmation
+ok 56 - actual contributions and full service can succeed without an acceptance response or confirmation
+  ---
+  duration_ms: 8.775958
+  ...
+# Subtest: paid station arrival is the legitimate point where remote launch facts become locally different
+ok 57 - paid station arrival is the legitimate point where remote launch facts become locally different
+  ---
+  duration_ms: 16.326583
+  ...
+# Subtest: a peer arrival is observed locally before a contact action depends on that presence
+ok 58 - a peer arrival is observed locally before a contact action depends on that presence
+  ---
+  duration_ms: 8.066625
+  ...
+# Subtest: all allowed hidden channel seeds preserve the same initial local inputs within each declared mode
+ok 59 - all allowed hidden channel seeds preserve the same initial local inputs within each declared mode
+  ---
+  duration_ms: 12.764625
+  ...
+# Subtest: two exhausted actor budgets retain independent paid stops and all30 local clock advances
+ok 60 - two exhausted actor budgets retain independent paid stops and all30 local clock advances
+  ---
+  duration_ms: 44.450458
+  ...
+# Subtest: own budget reserves a stop and later withdrawal at separate paid minutes
+ok 61 - own budget reserves a stop and later withdrawal at separate paid minutes
+  ---
+  duration_ms: 22.317
+  ...
+# Subtest: saved actor observations and message receipts cannot be forged into gameplay history
+ok 62 - saved actor observations and message receipts cannot be forged into gameplay history
+  ---
+  duration_ms: 4.373875
+  ...
+# Subtest: equal pre-receipt forecasts permit different local stop times only after real paid reception
+ok 63 - equal pre-receipt forecasts permit different local stop times only after real paid reception
+  ---
+  duration_ms: 36.388209
+  ...
+# Subtest: late work and messages beyond the common horizon do not reveal a private departure or channel outcome
+ok 64 - late work and messages beyond the common horizon do not reveal a private departure or channel outcome
+  ---
+  duration_ms: 25.365167
+  ...
+1..64
+# tests 64
+# suites 0
+# pass 64
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7965.514167

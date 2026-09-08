@@ -1,8 +1,14 @@
 # Executable coverage and research boundaries
 
-Snapshot updated 2026-09-08, app 0.9.0, laboratory engine 0.3.0, original games and rain chapter Human 0.1.0, Watch, Last Light, Service Day and Shared Promise Human 0.1.1, portable runtime/Human 0.1.1 and clock 0.1.0. This ledger distinguishes the [laboratory kernel](../src/core/index.js), [scenario data](../src/scenarios/index.js), [experiment runner](../src/experiments.js), and narrower [portable host components](portable-runtime.md). It narrows the broader [framework proposal](framework-proposal.md); responsibilities listed in that proposal are not evidence that their mechanisms have been implemented.
+Snapshot updated 2026-09-08 after the private actor-local feasibility study; public app 0.9.0, laboratory engine 0.3.0, original games and rain chapter Human 0.1.0, Watch, Last Light, Service Day and Shared Promise Human 0.1.1, portable runtime/Human 0.1.1 and clock 0.1.0. This ledger distinguishes the [laboratory kernel](../src/core/index.js), [scenario data](../src/scenarios/index.js), [experiment runner](../src/experiments.js), and narrower [portable host components](portable-runtime.md). It narrows the broader [framework proposal](framework-proposal.md); responsibilities listed in that proposal are not evidence that their mechanisms have been implemented.
 
 **Implemented** means an executable transition, interface, or record exists. **Proxy** means an implemented quantity or rule is an authored engineering approximation without human calibration. **Unmodeled** means the kernel supplies no mechanism for that function. A proposed interface below is a research design, not an existing plugin API. A rejection test states what would count against adding a mechanism or making the associated claim.
+
+## Private actor-local information update
+
+[Across the Cut feasibility](across-cut-feasibility.md) adds actor-owned observations, inbox/sent records, local known-boundary queries, source-time bookkeeping and independent contribution records in a private two-site host. Hidden-world twin tests exercise no leaks before accessible observation; paid radio/contact, stop/resume and strict source-bound replay are executable. This is not a general deductive knowledge, witness/trust, attention or human-comprehension module. Original cognition candidates remain unchanged and unpromoted.
+
+Factual reports can improve observed work/water choices; stronger no-radio/cart-first strategies and withheld failures constrain that benefit. The confirmation-centered premise remains unearned. The selected public derivative is a future factual-report slice, not a current release. All 170 evidence records and 594 tests concern authored software, not human understanding or calibrated science.
 
 ## App 0.9 coverage update
 

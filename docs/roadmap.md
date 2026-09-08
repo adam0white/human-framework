@@ -4,7 +4,15 @@ Current restart guide: [handoff](../HANDOFF.md). The latest [Common Ground play 
 
 The laboratory establishes a working loop and reproducible comparisons. The [Before departure workshop](workshop-integration.md) embeds a shared body/practice component while owning its own world. The [0.4 milestone](release-0.4.md) adds three independently authored hosts around the same unchanged component: a longer pump yard, a parcel route and a two-household water game. The [initial direction reviews](post-mvp-review.md) and [two separate external Claude Fable reviews](../research/reviews/2026-09-07-claude-fable-verification.md) put integration before broader faculties. The [0.3 delivery record](release-0.3.md) separates implemented contracts from usefulness and validation still to test.
 
-## Current milestone and next work — app 0.9
+## Current private milestone and next work — actor-local information
+
+[Across the Cut feasibility](across-cut-feasibility.md) is complete: a private two-actor information boundary, actual paid bodies/resources, 170 source-frozen replayed records and 594 tests. Fable-driven and root-derived stronger no-radio/two-report controls are retained. Received withdrawal can change an actual release decision; final confirmation still earns no service gain in the tested policies. The unchanged public app remains 0.9. [Review dispositions](reviews/2026-09-08-across-cut-review.md).
+
+**Next: the factual-report playable slice.** [Selected proposal](across-cut-player-slice.md) narrows the application to first-hop absolute facts, actor-local play and explicit mid-action reconsideration after actual reports. Preserve the private study, all public controls and runtime locks; give the public derivative distinct source/save/policy versions. Its receiver policy must accommodate a human's changing timing, and be compared separately against strong fixed/cart/contact strategies. Do not expose unearned negotiation/confirmation controls or infer human understanding from automated success.
+
+Keep hidden condition names, global queue times and researcher truth out of ordinary player views. The public UI can pause on real received evidence without stopping the underlying job automatically. A separate end-of-episode debrief can contrast what the player knew with what physically happened. Actual human explanation, measured authoring usefulness, physical-device, empirical and qualified theological gates remain open. [Current handoff](../HANDOFF.md).
+
+## Completed public 0.9 sequence — 2026-09-08
 
 [App 0.9](release-0.9.md) delivers A Shared Promise: paid discussion, separate acceptance/readiness/arrival, revision and withdrawal, and strict bounded continuation. 530 tests and production verification pass. The 25 development variants, four source-frozen withheld cases and six exploratory handovers preserve simpler sufficient routes and meaningful failure. [Review dispositions](reviews/2026-09-08-shared-plans-review.md).
 

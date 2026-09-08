@@ -1,0 +1,21 @@
+# Across Cut final documentation consistency audit
+
+2026-09-08. **Verdict: favorable; no substantive factual inconsistency or unsupported promotion claim found. No meaningful copyedit is required.**
+
+Scope: uncommitted milestone/review/handoff/README, MVP/roadmap/coverage/decision-register additions, plus their proposal/plan links, in `/Users/abdul/code/human-framework` at root HEAD `bf07220c7d5af932cc0e597f91fbafd4048ce28d`. This was a documentation-only audit: I read retained logs, manifests, reports and artifacts and performed metadata/arithmetic/hash/link comparisons. I did not rerun tests, policy studies, reserved studies, live HTTP verification or builds. I changed only this `/tmp` report.
+
+## Verified against retained evidence
+
+- `tests-node26.txt` records594/594 passing; `tests-node22.txt` records64/64 passing. The64 added repository tests comprise17 comparison,23 host and24 isolation checks. The fresh core review's20 independent probes are described separately and are not incorrectly added to the594/64 totals.
+- Final development artifact has155 records:144 policy runs (12 arms ×12 configurations) and11 scripts/continuations. Reserved artifact has15 records:12 policy runs and3 scripts. Their retained minimum Node22.0.0 replay reports validate155 and15 respectively. Both final artifacts bind source `dc87a06` through execution/freeze commit `74d84d1`.
+- The freeze names18 exact source files. Every current file still matches its frozen SHA-256; no post-freeze source tuning is present. Original branch tips remain locally available at core `7d1623f`, isolation `336008b`, policies `b63e0bb`, and the original freeze commit resolves. This audit did not independently verify remote push completion.
+- Across the12 development configurations, two-way report, retained last-report and both notebook variants each serve21. Their radio totals are24,24,45,38. One-way/cart-first each serve20; reported losses/excess and the qualification that these are separate costs rather than a weighted ranking are consistent with the retained study.
+- Withheld outcomes match the narrative: R2 one-way supplies1 and loses2; conservative fixed supplies2 without radio; two-way supplies2 at17 using2 charges; notebook variants supply2 at18 with5/4 charges. Lost-confirmation script supplies2, and interrupted-attendance script loses both pipe units. No confirmation superiority or universal impossibility is claimed.
+- 19,316-byte/57-entry maxima are accurately identified as observed comparison maxima, distinct from the independently exercised286-entry bound.
+- Fable process provenance records a completed867-word result on actual `claude-fable-5-1`, auxiliary Haiku usage, unchanged five-file snapshot and no execution permission. The supplied scope is contract/protocol/amendments/policies plus the complete mechanical80-run summary. The documents correctly avoid attributing later code, full trajectories, tests, reserved results or human evidence to that review; later executed Astra rechecks carry the strengthened-source coverage.
+- The retained build log records81 public files,54 modules and88 static edges. Public-boundary evidence records79 successful public payload matches and35 private/missing404s, still app0.9.0/source `cf4270c0a75880f8e9b0a29011a6b80c829e5701` and digest `0f158916458dcfc8fb381fb61db3f8f571494b1311ee905dabe1920a80918709`. The Worker identifier is labeled as recorded at delivery, not newly queried. The documentation consistently distinguishes newer private commits from the unchanged public release and states that no deployment occurred.
+- All local Markdown targets in the eight primary audited documents resolve. The selected player slice is clearly future work with separate host/save/policy versions; its proposed UI is not described as already implemented. Human explanation, authoring usefulness, device timing, calibration and qualified theological gates remain open.
+
+## Completion boundary
+
+The scientific/software claims and evidence counts are ready for the final handoff. The plan's checked final item includes committing/pushing the integration and original branches; that operational step should be completed as part of the root task's final handoff workflow. Local source availability was verified here; this report makes no claim about a remote push.

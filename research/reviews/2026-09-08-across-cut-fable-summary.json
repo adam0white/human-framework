@@ -1,0 +1,7596 @@
+{
+  "scope": "All80 corrected development runs, mechanically extracted from source-bound raw artifact. No reserved outcomes. Full trajectories and test logs are not supplied.",
+  "sourceArtifactSha256": "490617cb98bc6c2c3f27a1026b7bdbcb9fe90ac4582fdc3e3a977c423fcb2ed4",
+  "provenance": {
+    "executionCommit": "5c1dc720d4aadb04f0e1f51d303a8e6468b70bbc",
+    "protocolSha256": "ab75ddeb79511787a118f8c2f0dca4b9ec410286e986b8c3724b88bd3e3a8812",
+    "sourceSha256": {
+      "docs/across-cut-comparison-amendments.md": "5f90cb24009dbc715bc213d62e76b8686d0740861f7bdf786583aed8cebf6961",
+      "docs/across-cut-comparison-protocol.md": "ab75ddeb79511787a118f8c2f0dca4b9ec410286e986b8c3724b88bd3e3a8812",
+      "docs/across-cut-contract.md": "bb26d2f9358964141b8c99f6059b4155db5ca9527b35e238bd77839eacf19d57",
+      "scripts/across-cut-comparison.js": "7b24075cb62dc37679d3430b7b2e6bcdfef5b4104c2736af0de05540bfdef51e",
+      "scripts/runtime-release-lock.json": "f27bd54f0549f5dcb8016099669f3a74f27a4edf2378953a60803711cbd1b165",
+      "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "src/experiments/across-cut/comparison/cases.js": "0b64ee12bf571b2cfc576afa76535af855bcb55d172ce740ddfa3d32a32b0bcb",
+      "src/experiments/across-cut/comparison/evidence.js": "7bd6d1e5ec2962b95c402f60a6bcaa4a45bec576933e5f382860d292d1bcc036",
+      "src/experiments/across-cut/comparison/experiment.js": "8679e4448d4afcad4eb6d78694ec4247d91e699e372a7d5ea2d1e92f1a920746",
+      "src/experiments/across-cut/comparison/policies.js": "7532801f6d70431a3b60870c9a401b168756bc1d0f17a98cd8182d29dbb2b01b",
+      "src/experiments/across-cut/comparison/provenance.js": "dcdbec69a2ba1097a001b61ca58ea2783cc7f73ecec782e69a6f36a048c3e048",
+      "src/experiments/across-cut/comparison/representations.js": "8ed071bd270a6c2b3867fffc62abc1e4af867cdf1ce67382f7a03aa4e92f4cab",
+      "src/experiments/across-cut/host.js": "13200cf52557d5c7c45319548e79512998c020e4c73eb6e8f35f17e5800080db",
+      "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "tests/across-cut-comparison.test.js": "9de0dafc960f0a125a105e1a8b79de49a2383d383b5101ea7d7e1550beac297b"
+    },
+    "freeze": null
+  },
+  "cases": {
+    "D1": {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "D2": {
+      "valveMinutes": 12,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "bounded",
+      "channelSeed": 0,
+      "channelOverrides": {
+        "keeper:1": 6,
+        "keeper:2": 6,
+        "keeper:3": 6,
+        "keeper:4": 6,
+        "keeper:5": 6,
+        "keeper:6": 6,
+        "keeper:7": 6,
+        "keeper:8": 6,
+        "keeper:9": 6,
+        "keeper:10": 6,
+        "keeper:11": 6,
+        "keeper:12": 6,
+        "keeper:13": 6,
+        "keeper:14": 6,
+        "keeper:15": 6,
+        "keeper:16": 6,
+        "keeper:17": 6,
+        "keeper:18": 6,
+        "keeper:19": 6,
+        "keeper:20": 6,
+        "keeper:21": 6,
+        "keeper:22": 6,
+        "keeper:23": 6,
+        "keeper:24": 6,
+        "keeper:25": 6,
+        "keeper:26": 6,
+        "keeper:27": 6,
+        "keeper:28": 6,
+        "keeper:29": 6,
+        "keeper:30": 6,
+        "receiver:1": 6,
+        "receiver:2": 6,
+        "receiver:3": 6,
+        "receiver:4": 6,
+        "receiver:5": 6,
+        "receiver:6": 6,
+        "receiver:7": 6,
+        "receiver:8": 6,
+        "receiver:9": 6,
+        "receiver:10": 6,
+        "receiver:11": 6,
+        "receiver:12": 6,
+        "receiver:13": 6,
+        "receiver:14": 6,
+        "receiver:15": 6,
+        "receiver:16": 6,
+        "receiver:17": 6,
+        "receiver:18": 6,
+        "receiver:19": 6,
+        "receiver:20": 6,
+        "receiver:21": 6,
+        "receiver:22": 6,
+        "receiver:23": 6,
+        "receiver:24": 6,
+        "receiver:25": 6,
+        "receiver:26": 6,
+        "receiver:27": 6,
+        "receiver:28": 6,
+        "receiver:29": 6,
+        "receiver:30": 6
+      },
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "D3": {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 15,
+      "channelMode": "lossy",
+      "channelSeed": 0,
+      "channelOverrides": {
+        "keeper:1": 2,
+        "keeper:2": 2,
+        "keeper:3": 2,
+        "keeper:4": 2,
+        "keeper:5": 2,
+        "keeper:6": 2,
+        "keeper:7": 2,
+        "keeper:8": 2,
+        "keeper:9": 2,
+        "keeper:10": 2,
+        "keeper:11": 2,
+        "keeper:12": 2,
+        "keeper:13": 2,
+        "keeper:14": 2,
+        "keeper:15": 2,
+        "keeper:16": 2,
+        "keeper:17": 2,
+        "keeper:18": 2,
+        "keeper:19": 2,
+        "keeper:20": 2,
+        "keeper:21": 2,
+        "keeper:22": 2,
+        "keeper:23": 2,
+        "keeper:24": 2,
+        "keeper:25": 2,
+        "keeper:26": 2,
+        "keeper:27": 2,
+        "keeper:28": 2,
+        "keeper:29": 2,
+        "keeper:30": 2,
+        "receiver:1": "loss",
+        "receiver:2": "loss",
+        "receiver:3": "loss",
+        "receiver:4": "loss",
+        "receiver:5": "loss",
+        "receiver:6": "loss",
+        "receiver:7": "loss",
+        "receiver:8": "loss",
+        "receiver:9": "loss",
+        "receiver:10": "loss",
+        "receiver:11": "loss",
+        "receiver:12": "loss",
+        "receiver:13": "loss",
+        "receiver:14": "loss",
+        "receiver:15": "loss",
+        "receiver:16": "loss",
+        "receiver:17": "loss",
+        "receiver:18": "loss",
+        "receiver:19": "loss",
+        "receiver:20": "loss",
+        "receiver:21": "loss",
+        "receiver:22": "loss",
+        "receiver:23": "loss",
+        "receiver:24": "loss",
+        "receiver:25": "loss",
+        "receiver:26": "loss",
+        "receiver:27": "loss",
+        "receiver:28": "loss",
+        "receiver:29": "loss",
+        "receiver:30": "loss"
+      },
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "D4": {
+      "valveMinutes": 6,
+      "inletMinutes": 14,
+      "launchAt": 27,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "D5": {
+      "valveMinutes": 12,
+      "inletMinutes": 14,
+      "launchAt": 27,
+      "channelMode": "bounded",
+      "channelSeed": 0,
+      "channelOverrides": {
+        "keeper:1": 6,
+        "keeper:2": 6,
+        "keeper:3": 6,
+        "keeper:4": 6,
+        "keeper:5": 6,
+        "keeper:6": 6,
+        "keeper:7": 6,
+        "keeper:8": 6,
+        "keeper:9": 6,
+        "keeper:10": 6,
+        "keeper:11": 6,
+        "keeper:12": 6,
+        "keeper:13": 6,
+        "keeper:14": 6,
+        "keeper:15": 6,
+        "keeper:16": 6,
+        "keeper:17": 6,
+        "keeper:18": 6,
+        "keeper:19": 6,
+        "keeper:20": 6,
+        "keeper:21": 6,
+        "keeper:22": 6,
+        "keeper:23": 6,
+        "keeper:24": 6,
+        "keeper:25": 6,
+        "keeper:26": 6,
+        "keeper:27": 6,
+        "keeper:28": 6,
+        "keeper:29": 6,
+        "keeper:30": 6,
+        "receiver:1": 6,
+        "receiver:2": 6,
+        "receiver:3": 6,
+        "receiver:4": 6,
+        "receiver:5": 6,
+        "receiver:6": 6,
+        "receiver:7": 6,
+        "receiver:8": 6,
+        "receiver:9": 6,
+        "receiver:10": 6,
+        "receiver:11": 6,
+        "receiver:12": 6,
+        "receiver:13": 6,
+        "receiver:14": 6,
+        "receiver:15": 6,
+        "receiver:16": 6,
+        "receiver:17": 6,
+        "receiver:18": 6,
+        "receiver:19": 6,
+        "receiver:20": 6,
+        "receiver:21": 6,
+        "receiver:22": 6,
+        "receiver:23": 6,
+        "receiver:24": 6,
+        "receiver:25": 6,
+        "receiver:26": 6,
+        "receiver:27": 6,
+        "receiver:28": 6,
+        "receiver:29": 6,
+        "receiver:30": 6
+      },
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "D6": {
+      "valveMinutes": 6,
+      "inletMinutes": 14,
+      "launchAt": 15,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "D7": {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 15,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "D8": {
+      "valveMinutes": 12,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "lossy",
+      "channelSeed": 0,
+      "channelOverrides": {
+        "keeper:1": "loss",
+        "keeper:2": "loss",
+        "keeper:3": "loss",
+        "keeper:4": "loss",
+        "keeper:5": "loss",
+        "keeper:6": "loss",
+        "keeper:7": "loss",
+        "keeper:8": "loss",
+        "keeper:9": "loss",
+        "keeper:10": "loss",
+        "keeper:11": "loss",
+        "keeper:12": "loss",
+        "keeper:13": "loss",
+        "keeper:14": "loss",
+        "keeper:15": "loss",
+        "keeper:16": "loss",
+        "keeper:17": "loss",
+        "keeper:18": "loss",
+        "keeper:19": "loss",
+        "keeper:20": "loss",
+        "keeper:21": "loss",
+        "keeper:22": "loss",
+        "keeper:23": "loss",
+        "keeper:24": "loss",
+        "keeper:25": "loss",
+        "keeper:26": "loss",
+        "keeper:27": "loss",
+        "keeper:28": "loss",
+        "keeper:29": "loss",
+        "keeper:30": "loss",
+        "receiver:1": "loss",
+        "receiver:2": "loss",
+        "receiver:3": "loss",
+        "receiver:4": "loss",
+        "receiver:5": "loss",
+        "receiver:6": "loss",
+        "receiver:7": "loss",
+        "receiver:8": "loss",
+        "receiver:9": "loss",
+        "receiver:10": "loss",
+        "receiver:11": "loss",
+        "receiver:12": "loss",
+        "receiver:13": "loss",
+        "receiver:14": "loss",
+        "receiver:15": "loss",
+        "receiver:16": "loss",
+        "receiver:17": "loss",
+        "receiver:18": "loss",
+        "receiver:19": "loss",
+        "receiver:20": "loss",
+        "receiver:21": "loss",
+        "receiver:22": "loss",
+        "receiver:23": "loss",
+        "receiver:24": "loss",
+        "receiver:25": "loss",
+        "receiver:26": "loss",
+        "receiver:27": "loss",
+        "receiver:28": "loss",
+        "receiver:29": "loss",
+        "receiver:30": "loss"
+      },
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "S1-confirm": {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "S2-equal-cost-response": {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "S3-stale-response": {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "bounded",
+      "channelSeed": 0,
+      "channelOverrides": {
+        "receiver:4": 6,
+        "receiver:5": 2,
+        "keeper:1": 2,
+        "keeper:2": 2
+      },
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "S4-stale-readiness": {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "bounded",
+      "channelSeed": 0,
+      "channelOverrides": {
+        "keeper:2": 6,
+        "keeper:4": 2
+      },
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "S5-omitted": {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "S5-withdrawn": {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "S6-contact": {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    },
+    "S7-cancel": {
+      "valveMinutes": 6,
+      "inletMinutes": 2,
+      "launchAt": 27,
+      "channelMode": "reliable",
+      "channelSeed": 0,
+      "channelOverrides": {},
+      "bodies": {
+        "keeper": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        },
+        "receiver": {
+          "fatigue": 0.15,
+          "hunger": 0.15
+        }
+      }
+    }
+  },
+  "trials": [
+    {
+      "id": "D1/cart-only",
+      "arm": "cart-only",
+      "errors": [],
+      "commandCount": 2,
+      "replayEqual": true,
+      "maxSaveBytes": 3713,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 5,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.19500000000000003,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 30,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2950000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D1/no-radio-earliest",
+      "arm": "no-radio-earliest",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 5941,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.22800000000000006,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 26,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D1/fixed-early",
+      "arm": "fixed-early",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 5941,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.22800000000000006,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 26,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D1/fixed-conservative",
+      "arm": "fixed-conservative",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 5944,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.22800000000000006,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 26,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D1/contact",
+      "arm": "contact",
+      "errors": [],
+      "commandCount": 28,
+      "replayEqual": true,
+      "maxSaveBytes": 11238,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 25,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.4230000000000002,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 8,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 12,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.22800000000000006,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 26,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 8,
+          "kind": "report",
+          "delay": 0,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D1/one-way-report",
+      "arm": "one-way-report",
+      "errors": [],
+      "commandCount": 22,
+      "replayEqual": true,
+      "maxSaveBytes": 9173,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D1/reactive-radio",
+      "arm": "reactive-radio",
+      "errors": [],
+      "commandCount": 24,
+      "replayEqual": true,
+      "maxSaveBytes": 11181,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 13,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D1/notebook",
+      "arm": "notebook",
+      "errors": [],
+      "commandCount": 33,
+      "replayEqual": true,
+      "maxSaveBytes": 14842,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 20,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3090000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 18,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 3
+          },
+          "radioConsumed": 3,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 9,
+              "acceptedAt": 9,
+              "withdrawnAt": null,
+              "fulfilledAt": 17,
+              "paidMinutes": 2,
+              "releaseStartedAt": 15,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 9
+                }
+              ]
+            }
+          ]
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23400000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 24,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 11,
+              "acceptedAt": 11,
+              "withdrawnAt": null,
+              "fulfilledAt": 20,
+              "paidMinutes": 1,
+              "releaseStartedAt": null,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 11
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "keeper",
+          "sentAt": 9,
+          "kind": "proposal",
+          "delay": 2,
+          "deliveredAt": 11
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 12,
+          "kind": "response",
+          "delay": 2,
+          "deliveredAt": 14
+        },
+        {
+          "sender": "keeper",
+          "sentAt": 15,
+          "kind": "confirm",
+          "delay": 2,
+          "deliveredAt": 17
+        }
+      ]
+    },
+    {
+      "id": "D1/notebook-no-confirm",
+      "arm": "notebook-no-confirm",
+      "errors": [],
+      "commandCount": 31,
+      "replayEqual": true,
+      "maxSaveBytes": 14180,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 20,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3060000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 9,
+              "acceptedAt": 9,
+              "withdrawnAt": null,
+              "fulfilledAt": 17,
+              "paidMinutes": 2,
+              "releaseStartedAt": 15,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 9
+                }
+              ]
+            }
+          ]
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23400000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 24,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 11,
+              "acceptedAt": 11,
+              "withdrawnAt": null,
+              "fulfilledAt": 20,
+              "paidMinutes": 1,
+              "releaseStartedAt": null,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 11
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "keeper",
+          "sentAt": 9,
+          "kind": "proposal",
+          "delay": 2,
+          "deliveredAt": 11
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 12,
+          "kind": "response",
+          "delay": 2,
+          "deliveredAt": 14
+        }
+      ]
+    },
+    {
+      "id": "D2/cart-only",
+      "arm": "cart-only",
+      "errors": [],
+      "commandCount": 2,
+      "replayEqual": true,
+      "maxSaveBytes": 4594,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 5,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.19500000000000003,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 30,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2950000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D2/no-radio-earliest",
+      "arm": "no-radio-earliest",
+      "errors": [],
+      "commandCount": 42,
+      "replayEqual": true,
+      "maxSaveBytes": 8855,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.26400000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 7,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D2/fixed-early",
+      "arm": "fixed-early",
+      "errors": [],
+      "commandCount": 33,
+      "replayEqual": true,
+      "maxSaveBytes": 8695,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 17,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3280000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 16,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D2/fixed-conservative",
+      "arm": "fixed-conservative",
+      "errors": [],
+      "commandCount": 33,
+      "replayEqual": true,
+      "maxSaveBytes": 8230,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.22800000000000006,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 26,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D2/contact",
+      "arm": "contact",
+      "errors": [],
+      "commandCount": 42,
+      "replayEqual": true,
+      "maxSaveBytes": 8855,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.26400000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 7,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D2/one-way-report",
+      "arm": "one-way-report",
+      "errors": [],
+      "commandCount": 43,
+      "replayEqual": true,
+      "maxSaveBytes": 12087,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.26700000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 7,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D2/reactive-radio",
+      "arm": "reactive-radio",
+      "errors": [],
+      "commandCount": 36,
+      "replayEqual": true,
+      "maxSaveBytes": 13476,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 19,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37500000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 14,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D2/notebook",
+      "arm": "notebook",
+      "errors": [],
+      "commandCount": 36,
+      "replayEqual": true,
+      "maxSaveBytes": 13476,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 19,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37500000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 14,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D2/notebook-no-confirm",
+      "arm": "notebook-no-confirm",
+      "errors": [],
+      "commandCount": 36,
+      "replayEqual": true,
+      "maxSaveBytes": 13476,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 19,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37500000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 14,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D3/cart-only",
+      "arm": "cart-only",
+      "errors": [],
+      "commandCount": 2,
+      "replayEqual": true,
+      "maxSaveBytes": 4741,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 5,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.19500000000000003,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 30,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2950000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D3/no-radio-earliest",
+      "arm": "no-radio-earliest",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 7230,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          },
+          {
+            "at": 15,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3220000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 17,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D3/fixed-early",
+      "arm": "fixed-early",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 6969,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.22800000000000006,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 26,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D3/fixed-conservative",
+      "arm": "fixed-conservative",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 7385,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 15,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3220000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 17,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D3/contact",
+      "arm": "contact",
+      "errors": [],
+      "commandCount": 14,
+      "replayEqual": true,
+      "maxSaveBytes": 11177,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 15,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3210000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 16,
+            "inspect": 1,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 12,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3220000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 17,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 8,
+          "kind": "report",
+          "delay": 0,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D3/one-way-report",
+      "arm": "one-way-report",
+      "errors": [],
+      "commandCount": 22,
+      "replayEqual": true,
+      "maxSaveBytes": 8729,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": "loss",
+          "deliveredAt": null
+        }
+      ]
+    },
+    {
+      "id": "D3/reactive-radio",
+      "arm": "reactive-radio",
+      "errors": [],
+      "commandCount": 24,
+      "replayEqual": true,
+      "maxSaveBytes": 10737,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 13,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": "loss",
+          "deliveredAt": null
+        }
+      ]
+    },
+    {
+      "id": "D3/notebook",
+      "arm": "notebook",
+      "errors": [],
+      "commandCount": 24,
+      "replayEqual": true,
+      "maxSaveBytes": 10737,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 13,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": "loss",
+          "deliveredAt": null
+        }
+      ]
+    },
+    {
+      "id": "D3/notebook-no-confirm",
+      "arm": "notebook-no-confirm",
+      "errors": [],
+      "commandCount": 24,
+      "replayEqual": true,
+      "maxSaveBytes": 10737,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 13,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": "loss",
+          "deliveredAt": null
+        }
+      ]
+    },
+    {
+      "id": "D4/cart-only",
+      "arm": "cart-only",
+      "errors": [],
+      "commandCount": 2,
+      "replayEqual": true,
+      "maxSaveBytes": 3714,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 5,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.19500000000000003,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 30,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2950000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D4/no-radio-earliest",
+      "arm": "no-radio-earliest",
+      "errors": [],
+      "commandCount": 46,
+      "replayEqual": true,
+      "maxSaveBytes": 9194,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          },
+          {
+            "at": 23,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.48400000000000026,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 2,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 3,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D4/fixed-early",
+      "arm": "fixed-early",
+      "errors": [],
+      "commandCount": 40,
+      "replayEqual": true,
+      "maxSaveBytes": 8821,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          },
+          {
+            "at": 20,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.46600000000000025,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 5,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D4/fixed-conservative",
+      "arm": "fixed-conservative",
+      "errors": [],
+      "commandCount": 40,
+      "replayEqual": true,
+      "maxSaveBytes": 8736,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 14,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D4/contact",
+      "arm": "contact",
+      "errors": [],
+      "commandCount": 49,
+      "replayEqual": true,
+      "maxSaveBytes": 14031,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 25,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.4230000000000002,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 8,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 12,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 14,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 8,
+          "kind": "report",
+          "delay": 0,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D4/one-way-report",
+      "arm": "one-way-report",
+      "errors": [],
+      "commandCount": 42,
+      "replayEqual": true,
+      "maxSaveBytes": 11824,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 17,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.37500000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 13,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D4/reactive-radio",
+      "arm": "reactive-radio",
+      "errors": [],
+      "commandCount": 43,
+      "replayEqual": true,
+      "maxSaveBytes": 14070,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 13,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          },
+          {
+            "at": 21,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.46900000000000025,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 4,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D4/notebook",
+      "arm": "notebook",
+      "errors": [],
+      "commandCount": 49,
+      "replayEqual": true,
+      "maxSaveBytes": 17567,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 20,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3090000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 18,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 3
+          },
+          "radioConsumed": 3,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 9,
+              "acceptedAt": 9,
+              "withdrawnAt": null,
+              "fulfilledAt": 17,
+              "paidMinutes": 2,
+              "releaseStartedAt": 15,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 9
+                }
+              ]
+            }
+          ]
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.37800000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 12,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 11,
+              "acceptedAt": 11,
+              "withdrawnAt": null,
+              "fulfilledAt": 20,
+              "paidMinutes": 1,
+              "releaseStartedAt": null,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 11
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "keeper",
+          "sentAt": 9,
+          "kind": "proposal",
+          "delay": 2,
+          "deliveredAt": 11
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 12,
+          "kind": "response",
+          "delay": 2,
+          "deliveredAt": 14
+        },
+        {
+          "sender": "keeper",
+          "sentAt": 15,
+          "kind": "confirm",
+          "delay": 2,
+          "deliveredAt": 17
+        }
+      ]
+    },
+    {
+      "id": "D4/notebook-no-confirm",
+      "arm": "notebook-no-confirm",
+      "errors": [],
+      "commandCount": 48,
+      "replayEqual": true,
+      "maxSaveBytes": 16903,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 20,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3060000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 9,
+              "acceptedAt": 9,
+              "withdrawnAt": null,
+              "fulfilledAt": 17,
+              "paidMinutes": 2,
+              "releaseStartedAt": 15,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 9
+                }
+              ]
+            }
+          ]
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.37800000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 12,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 11,
+              "acceptedAt": 11,
+              "withdrawnAt": null,
+              "fulfilledAt": 20,
+              "paidMinutes": 1,
+              "releaseStartedAt": null,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 11
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "keeper",
+          "sentAt": 9,
+          "kind": "proposal",
+          "delay": 2,
+          "deliveredAt": 11
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 12,
+          "kind": "response",
+          "delay": 2,
+          "deliveredAt": 14
+        }
+      ]
+    },
+    {
+      "id": "D5/cart-only",
+      "arm": "cart-only",
+      "errors": [],
+      "commandCount": 2,
+      "replayEqual": true,
+      "maxSaveBytes": 4595,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 5,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.19500000000000003,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 30,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2950000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D5/no-radio-earliest",
+      "arm": "no-radio-earliest",
+      "errors": [],
+      "commandCount": 50,
+      "replayEqual": true,
+      "maxSaveBytes": 10833,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3840000000000002,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 12,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 3,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D5/fixed-early",
+      "arm": "fixed-early",
+      "errors": [],
+      "commandCount": 46,
+      "replayEqual": true,
+      "maxSaveBytes": 10870,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          },
+          {
+            "at": 20,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.46600000000000025,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 5,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D5/fixed-conservative",
+      "arm": "fixed-conservative",
+      "errors": [],
+      "commandCount": 46,
+      "replayEqual": true,
+      "maxSaveBytes": 10784,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 14,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D5/contact",
+      "arm": "contact",
+      "errors": [],
+      "commandCount": 50,
+      "replayEqual": true,
+      "maxSaveBytes": 10833,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3840000000000002,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 12,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 3,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D5/one-way-report",
+      "arm": "one-way-report",
+      "errors": [],
+      "commandCount": 50,
+      "replayEqual": true,
+      "maxSaveBytes": 13992,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.38100000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 12,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 2,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D5/reactive-radio",
+      "arm": "reactive-radio",
+      "errors": [],
+      "commandCount": 49,
+      "replayEqual": true,
+      "maxSaveBytes": 16037,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 19,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37500000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 14,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.37500000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 13,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D5/notebook",
+      "arm": "notebook",
+      "errors": [],
+      "commandCount": 49,
+      "replayEqual": true,
+      "maxSaveBytes": 16037,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 19,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37500000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 14,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.37500000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 13,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D5/notebook-no-confirm",
+      "arm": "notebook-no-confirm",
+      "errors": [],
+      "commandCount": 49,
+      "replayEqual": true,
+      "maxSaveBytes": 16037,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 19,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37500000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 14,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.37500000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 13,
+            "inspect": 1,
+            "repair": 14,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D6/cart-only",
+      "arm": "cart-only",
+      "errors": [],
+      "commandCount": 2,
+      "replayEqual": true,
+      "maxSaveBytes": 3714,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 5,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.19500000000000003,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 30,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2950000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D6/no-radio-earliest",
+      "arm": "no-radio-earliest",
+      "errors": [],
+      "commandCount": 18,
+      "replayEqual": true,
+      "maxSaveBytes": 6063,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 6,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2980000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 1,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D6/fixed-early",
+      "arm": "fixed-early",
+      "errors": [],
+      "commandCount": 18,
+      "replayEqual": true,
+      "maxSaveBytes": 6063,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 6,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2980000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 1,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D6/fixed-conservative",
+      "arm": "fixed-conservative",
+      "errors": [],
+      "commandCount": 18,
+      "replayEqual": true,
+      "maxSaveBytes": 5842,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 6,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2980000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 1,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D6/contact",
+      "arm": "contact",
+      "errors": [],
+      "commandCount": 8,
+      "replayEqual": true,
+      "maxSaveBytes": 5414,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 6,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3180000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 17,
+            "inspect": 1,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 12,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2980000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 1,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D6/one-way-report",
+      "arm": "one-way-report",
+      "errors": [],
+      "commandCount": 17,
+      "replayEqual": true,
+      "maxSaveBytes": 8839,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 7,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.2700000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 23,
+            "inspect": 1,
+            "repair": 6,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3010000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 18,
+            "inspect": 1,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D6/reactive-radio",
+      "arm": "reactive-radio",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 11303,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 7,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 13,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3010000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 18,
+            "inspect": 1,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D6/notebook",
+      "arm": "notebook",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 11303,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 7,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 13,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3010000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 18,
+            "inspect": 1,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D6/notebook-no-confirm",
+      "arm": "notebook-no-confirm",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 11303,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 7,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 13,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3010000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 18,
+            "inspect": 1,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D7/cart-only",
+      "arm": "cart-only",
+      "errors": [],
+      "commandCount": 2,
+      "replayEqual": true,
+      "maxSaveBytes": 3713,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 5,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.19500000000000003,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 30,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2950000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D7/no-radio-earliest",
+      "arm": "no-radio-earliest",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 6202,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          },
+          {
+            "at": 15,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3220000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 17,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D7/fixed-early",
+      "arm": "fixed-early",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 5941,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.22800000000000006,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 26,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D7/fixed-conservative",
+      "arm": "fixed-conservative",
+      "errors": [],
+      "commandCount": 21,
+      "replayEqual": true,
+      "maxSaveBytes": 6357,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 15,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3220000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 17,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D7/contact",
+      "arm": "contact",
+      "errors": [],
+      "commandCount": 14,
+      "replayEqual": true,
+      "maxSaveBytes": 10149,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 15,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3210000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 16,
+            "inspect": 1,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 12,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3220000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 17,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 8,
+          "kind": "report",
+          "delay": 0,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "D7/one-way-report",
+      "arm": "one-way-report",
+      "errors": [],
+      "commandCount": 22,
+      "replayEqual": true,
+      "maxSaveBytes": 9173,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 12,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3000000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 21,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D7/reactive-radio",
+      "arm": "reactive-radio",
+      "errors": [],
+      "commandCount": 24,
+      "replayEqual": true,
+      "maxSaveBytes": 11181,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 13,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D7/notebook",
+      "arm": "notebook",
+      "errors": [],
+      "commandCount": 24,
+      "replayEqual": true,
+      "maxSaveBytes": 11181,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 13,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D7/notebook-no-confirm",
+      "arm": "notebook-no-confirm",
+      "errors": [],
+      "commandCount": 24,
+      "replayEqual": true,
+      "maxSaveBytes": 11181,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 13,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 4
+        }
+      ]
+    },
+    {
+      "id": "D8/cart-only",
+      "arm": "cart-only",
+      "errors": [],
+      "commandCount": 2,
+      "replayEqual": true,
+      "maxSaveBytes": 4892,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 5,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.19500000000000003,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 30,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2950000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D8/no-radio-earliest",
+      "arm": "no-radio-earliest",
+      "errors": [],
+      "commandCount": 42,
+      "replayEqual": true,
+      "maxSaveBytes": 9153,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.26400000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 7,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D8/fixed-early",
+      "arm": "fixed-early",
+      "errors": [],
+      "commandCount": 33,
+      "replayEqual": true,
+      "maxSaveBytes": 8993,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 17,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3280000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 16,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D8/fixed-conservative",
+      "arm": "fixed-conservative",
+      "errors": [],
+      "commandCount": 33,
+      "replayEqual": true,
+      "maxSaveBytes": 8528,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.22800000000000006,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 26,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D8/contact",
+      "arm": "contact",
+      "errors": [],
+      "commandCount": 42,
+      "replayEqual": true,
+      "maxSaveBytes": 9153,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.26400000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 7,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    },
+    {
+      "id": "D8/one-way-report",
+      "arm": "one-way-report",
+      "errors": [],
+      "commandCount": 43,
+      "replayEqual": true,
+      "maxSaveBytes": 10913,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37200000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 15,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.26700000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 7,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": "loss",
+          "deliveredAt": null
+        }
+      ]
+    },
+    {
+      "id": "D8/reactive-radio",
+      "arm": "reactive-radio",
+      "errors": [],
+      "commandCount": 46,
+      "replayEqual": true,
+      "maxSaveBytes": 12421,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 19,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          },
+          {
+            "at": 23,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.37500000000000017,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 14,
+            "inspect": 1,
+            "repair": 12,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.36700000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 9,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 7,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": "loss",
+          "deliveredAt": null
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": "loss",
+          "deliveredAt": null
+        }
+      ]
+    },
+    {
+      "id": "D8/notebook",
+      "arm": "notebook",
+      "errors": [],
+      "commandCount": 45,
+      "replayEqual": true,
+      "maxSaveBytes": 12285,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 23,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.34500000000000014,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 16,
+            "inspect": 1,
+            "repair": 12,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.36700000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 9,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 7,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": "loss",
+          "deliveredAt": null
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": "loss",
+          "deliveredAt": null
+        }
+      ]
+    },
+    {
+      "id": "D8/notebook-no-confirm",
+      "arm": "notebook-no-confirm",
+      "errors": [],
+      "commandCount": 45,
+      "replayEqual": true,
+      "maxSaveBytes": 12285,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 23,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 2,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.34500000000000014,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 16,
+            "inspect": 1,
+            "repair": 12,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.36700000000000016,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 9,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 7,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": "loss",
+          "deliveredAt": null
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": "loss",
+          "deliveredAt": null
+        }
+      ]
+    },
+    {
+      "id": "S1-confirm/prescribed",
+      "arm": "prescribed",
+      "errors": [],
+      "commandCount": 18,
+      "replayEqual": true,
+      "maxSaveBytes": 8856,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3060000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 8,
+              "acceptedAt": 8,
+              "withdrawnAt": null,
+              "fulfilledAt": 15,
+              "paidMinutes": 2,
+              "releaseStartedAt": 13,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 8
+                }
+              ]
+            }
+          ]
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 4,
+              "acceptedAt": 4,
+              "withdrawnAt": null,
+              "fulfilledAt": 18,
+              "paidMinutes": 1,
+              "releaseStartedAt": null,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 4
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "proposal",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 5,
+          "kind": "response",
+          "delay": 2,
+          "deliveredAt": 7
+        },
+        {
+          "sender": "keeper",
+          "sentAt": 9,
+          "kind": "confirm",
+          "delay": 2,
+          "deliveredAt": 11
+        }
+      ]
+    },
+    {
+      "id": "S2-equal-cost-response/prescribed",
+      "arm": "prescribed",
+      "errors": [],
+      "commandCount": 18,
+      "replayEqual": true,
+      "maxSaveBytes": 9030,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3060000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 8,
+              "acceptedAt": 8,
+              "withdrawnAt": null,
+              "fulfilledAt": 15,
+              "paidMinutes": 2,
+              "releaseStartedAt": 13,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 8
+                }
+              ]
+            }
+          ]
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23100000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 25,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 4,
+              "acceptedAt": 4,
+              "withdrawnAt": null,
+              "fulfilledAt": 18,
+              "paidMinutes": 1,
+              "releaseStartedAt": null,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 4
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "proposal",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 5,
+          "kind": "response",
+          "delay": 2,
+          "deliveredAt": 7
+        },
+        {
+          "sender": "keeper",
+          "sentAt": 9,
+          "kind": "response",
+          "delay": 2,
+          "deliveredAt": 11
+        }
+      ]
+    },
+    {
+      "id": "S3-stale-response/prescribed",
+      "arm": "prescribed",
+      "errors": [],
+      "commandCount": 22,
+      "replayEqual": true,
+      "maxSaveBytes": 10736,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 18,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3060000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.23400000000000007,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 24,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "withdraw",
+              "status": "withdrawn",
+              "decidedAt": 4,
+              "acceptedAt": 3,
+              "withdrawnAt": 4,
+              "fulfilledAt": null,
+              "paidMinutes": 0,
+              "releaseStartedAt": null,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 3
+                },
+                {
+                  "decision": "withdraw",
+                  "at": 4
+                }
+              ]
+            },
+            {
+              "proposalId": "keeper:p1",
+              "revision": 2,
+              "decision": "accept",
+              "status": "fulfilled",
+              "decidedAt": 4,
+              "acceptedAt": 4,
+              "withdrawnAt": null,
+              "fulfilledAt": 18,
+              "paidMinutes": 1,
+              "releaseStartedAt": null,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 4
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 1,
+          "kind": "proposal",
+          "delay": 2,
+          "deliveredAt": 3
+        },
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "proposal",
+          "delay": 2,
+          "deliveredAt": 4
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 4,
+          "kind": "response",
+          "delay": 6,
+          "deliveredAt": 10
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 5,
+          "kind": "response",
+          "delay": 2,
+          "deliveredAt": 7
+        }
+      ]
+    },
+    {
+      "id": "S4-stale-readiness/prescribed",
+      "arm": "prescribed",
+      "errors": [],
+      "commandCount": 8,
+      "replayEqual": true,
+      "maxSaveBytes": 8019,
+      "service": {
+        "units": 0,
+        "departed": true,
+        "deliveries": []
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 3,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.21600000000000005,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 26,
+            "inspect": 1,
+            "repair": 1,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.19500000000000003,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 30,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 2,
+          "kind": "report",
+          "delay": 6,
+          "deliveredAt": 8
+        },
+        {
+          "sender": "keeper",
+          "sentAt": 4,
+          "kind": "report",
+          "delay": 2,
+          "deliveredAt": 6
+        }
+      ]
+    },
+    {
+      "id": "S5-omitted/prescribed",
+      "arm": "prescribed",
+      "errors": [],
+      "commandCount": 13,
+      "replayEqual": true,
+      "maxSaveBytes": 7968,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 11,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 15,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.2980000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 19,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "accept",
+              "status": "expired",
+              "decidedAt": 3,
+              "acceptedAt": 3,
+              "withdrawnAt": null,
+              "fulfilledAt": null,
+              "paidMinutes": 0,
+              "releaseStartedAt": null,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 3
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 1,
+          "kind": "proposal",
+          "delay": 2,
+          "deliveredAt": 3
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 4,
+          "kind": "response",
+          "delay": 2,
+          "deliveredAt": 6
+        }
+      ]
+    },
+    {
+      "id": "S5-withdrawn/prescribed",
+      "arm": "prescribed",
+      "errors": [],
+      "commandCount": 16,
+      "replayEqual": true,
+      "maxSaveBytes": 8971,
+      "service": {
+        "units": 1,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 11,
+            "route": "cart",
+            "units": 1,
+            "delivered": 1,
+            "lost": 0,
+            "excess": 0
+          },
+          {
+            "at": 15,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 0,
+            "lost": 2,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 1,
+        "inTransit": 0,
+        "lost": 2,
+        "excess": 0,
+        "owned": 0,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.3030000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 20,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 1,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.3010000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 18,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 10,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 2
+          },
+          "radioConsumed": 2,
+          "contributions": [
+            {
+              "proposalId": "keeper:p1",
+              "revision": 1,
+              "decision": "withdraw",
+              "status": "withdrawn",
+              "decidedAt": 5,
+              "acceptedAt": 3,
+              "withdrawnAt": 5,
+              "fulfilledAt": null,
+              "paidMinutes": 0,
+              "releaseStartedAt": null,
+              "decisions": [
+                {
+                  "decision": "accept",
+                  "at": 3
+                },
+                {
+                  "decision": "withdraw",
+                  "at": 5
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 1,
+          "kind": "proposal",
+          "delay": 2,
+          "deliveredAt": 3
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 4,
+          "kind": "response",
+          "delay": 2,
+          "deliveredAt": 6
+        },
+        {
+          "sender": "receiver",
+          "sentAt": 6,
+          "kind": "response",
+          "delay": 2,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "S6-contact/prescribed",
+      "arm": "prescribed",
+      "errors": [],
+      "commandCount": 16,
+      "replayEqual": true,
+      "maxSaveBytes": 10509,
+      "service": {
+        "units": 2,
+        "departed": true,
+        "deliveries": [
+          {
+            "at": 25,
+            "route": "pipe",
+            "units": 2,
+            "delivered": 2,
+            "lost": 0,
+            "excess": 0
+          }
+        ]
+      },
+      "water": {
+        "pipeConsumed": 2,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 1,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.4230000000000002,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 8,
+            "inspect": 1,
+            "repair": 6,
+            "release": 2,
+            "attend": 0,
+            "cart": 0,
+            "travel": 12,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 1
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.22800000000000006,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 26,
+            "inspect": 1,
+            "repair": 2,
+            "release": 0,
+            "attend": 1,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": [
+        {
+          "sender": "keeper",
+          "sentAt": 8,
+          "kind": "report",
+          "delay": 0,
+          "deliveredAt": 8
+        }
+      ]
+    },
+    {
+      "id": "S7-cancel/prescribed",
+      "arm": "prescribed",
+      "errors": [],
+      "commandCount": 11,
+      "replayEqual": true,
+      "maxSaveBytes": 4680,
+      "service": {
+        "units": 0,
+        "departed": true,
+        "deliveries": []
+      },
+      "water": {
+        "pipeConsumed": 0,
+        "cartConsumed": 0,
+        "inTransit": 0,
+        "lost": 0,
+        "excess": 0,
+        "owned": 3,
+        "conservedTotal": 3
+      },
+      "actors": {
+        "keeper": {
+          "body": {
+            "fatigue": 0.2700000000000001,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 23,
+            "inspect": 1,
+            "repair": 6,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        },
+        "receiver": {
+          "body": {
+            "fatigue": 0.19500000000000003,
+            "hunger": 0.21000000000000005
+          },
+          "paid": {
+            "idle": 30,
+            "inspect": 0,
+            "repair": 0,
+            "release": 0,
+            "attend": 0,
+            "cart": 0,
+            "travel": 0,
+            "rest": 0,
+            "meal": 0,
+            "transmit": 0
+          },
+          "radioConsumed": 0,
+          "contributions": []
+        }
+      },
+      "transport": []
+    }
+  ]
+}

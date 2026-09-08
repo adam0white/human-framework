@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import * as h from '/Users/abdul/code/human-framework/.worktrees/across-cut-policies/src/experiments/across-cut/host.js';
+import {chooseAction} from '/Users/abdul/code/human-framework/.worktrees/across-cut-policies/src/experiments/across-cut/comparison/policies.js';
+let world=h.create();
+world=h.request(world,'receiver',{task:'travel',to:'valve'});
+world=h.advance(world,6);
+const ids=h.getActorView(world,'keeper').notebook.filter(o=>o.via==='local').map(o=>o.receipt);
+world=h.request(world,'keeper',{task:'transmit',via:'contact',message:{kind:'report',observationIds:ids}});
+world=h.request(world,'receiver',{task:'travel',to:'dock'});
+world=h.advance(world,9);
+const view=h.getActorView(world,'keeper');
+const choice=chooseAction(view,{},'contact');
+assert.equal(view.sent[0].via,'contact');
+assert.equal(h.getActorView(world,'receiver').inbox.length,0);
+assert.deepEqual(choice.state.inferredReceived,[], 'Radio delivery bounds cannot prove a missed contact delivered.');
+process.stdout.write('Missed contact remains uninferred.\n');
