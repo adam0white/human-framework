@@ -66,7 +66,7 @@ function render(){
   if(view.social.returnedLate)facts.push(`${view.social.returnedLate} returned late`);
   if(view.social.refusedByPlayer)facts.push(`You declined ${view.social.refusedByPlayer}`);
   if(view.social.refusedByNeighbor)facts.push(`Meryem declined ${view.social.refusedByNeighbor}`);
-  $('relationship').textContent=facts.length?facts.join(' · ')+'.':'No water has changed hands yet.';
+  $('relationship').textContent=facts.length?facts.join(' · ')+'.':'No gifts have been exchanged yet.';
   $('play-controls').hidden=ended;$('outcome').hidden=!ended;
   if(ended){
     pause();$('outcome-title').textContent=view.homes.player===TARGET?'Your household has its water.':'Your barrel is still short.';
