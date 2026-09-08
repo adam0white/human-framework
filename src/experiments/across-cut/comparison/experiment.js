@@ -63,6 +63,7 @@ export function replayTrial(trial){
   let maxSaveBytes=0,scriptIndex=0,rounds=0,lastHadAction=false;const errors=[];
   const verifySnapshot=expected=>{const current=snapshot(world);maxSaveBytes=Math.max(maxSaveBytes,current.bytes);assert.equal(current.saveSha256,expected);};
   for(const event of trial.events){
+    assert.ok(host.getActorView(world,'keeper').now<30,'The source driver emits no events after episode closure.');
     if(event.kind==='advance'){
       const now=host.getActorView(world,'keeper').now;assert.equal(event.to,now+1);
       if(definition.kind==='policy')assert.ok(rounds>0&&!lastHadAction,'The source policy must yield before the next paid minute.');
