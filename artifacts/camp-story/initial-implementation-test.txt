@@ -1,0 +1,15 @@
+✔ new story earns its actual camp and pauses after the first milestone (119.853291ms)
+✔ mixed stock-first legacy migration enters the complete selected world without a canonical opening (22.927ms)
+✔ actual legacy surplus keeps twelve earned caches and can close without empty time (90.0245ms)
+✔ coarse, minute and Next Event drivers stop identically at the ferry and retain pending work (235.638708ms)
+✔ missing the ferry permits later paid camp service and retains the household loss on return (146.429958ms)
+✔ source replay rejects forged window, receipts, allocations, continuation and world snapshots (216.024041ms)
+✔ views and reading do not alter the saved world and expose source kernel fields (18.253958ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 894.733875
