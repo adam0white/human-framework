@@ -1,0 +1,13 @@
+{
+  "format": "courtyard-replay",
+  "version": "0.1.0",
+  "setup": {
+    "seed": 1,
+    "profile": "standard",
+    "socialMemory": true
+  },
+  "actions": [
+    "borrow",
+    "repay"
+  ]
+}

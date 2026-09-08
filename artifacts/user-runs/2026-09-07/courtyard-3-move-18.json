@@ -1,0 +1,101 @@
+{
+  "version": "0.1.0",
+  "seed": 3,
+  "profile": "standard",
+  "socialMemory": true,
+  "round": 18,
+  "clock": 180,
+  "status": "both-ready",
+  "source": 6,
+  "spilled": 0,
+  "carried": {
+    "player": 0,
+    "neighbor": 0
+  },
+  "homes": {
+    "player": 14,
+    "neighbor": 14
+  },
+  "meals": {
+    "player": 0,
+    "neighbor": 1
+  },
+  "people": {
+    "player": {
+      "format": "human-framework-person",
+      "version": 1,
+      "componentVersion": "0.1.0",
+      "person": {
+        "version": "0.1.0",
+        "id": "player",
+        "body": {
+          "fatigue": 0.6900000000000001,
+          "hunger": 0.23000000000000004
+        },
+        "skills": {
+          "collection": 0.6298952388142882
+        },
+        "observationBias": 0,
+        "minutes": 180,
+        "nextAttempt": 19,
+        "pending": null
+      }
+    },
+    "neighbor": {
+      "format": "human-framework-person",
+      "version": 1,
+      "componentVersion": "0.1.0",
+      "person": {
+        "version": "0.1.0",
+        "id": "neighbor",
+        "body": {
+          "fatigue": 0,
+          "hunger": 0.6400000000000003
+        },
+        "skills": {
+          "collection": 0.6913613260494632
+        },
+        "observationBias": 0,
+        "minutes": 180,
+        "nextAttempt": 19,
+        "pending": null
+      }
+    }
+  },
+  "draws": {
+    "player": 5,
+    "neighbor": 4
+  },
+  "social": {
+    "given": {
+      "player": 4,
+      "neighbor": 2
+    },
+    "loan": null,
+    "returnedOnTime": 0,
+    "returnedLate": 0,
+    "lateLoans": 0,
+    "refusedByPlayer": 0,
+    "refusedByNeighbor": 0,
+    "ignored": 0,
+    "proposal": null,
+    "nextProposalRound": 15
+  },
+  "lastTurn": {
+    "round": 18,
+    "player": {
+      "actionId": "rest",
+      "status": "completed",
+      "amount": 0,
+      "message": "Ten minutes in the shade eased fatigue.",
+      "reason": null
+    },
+    "neighbor": {
+      "actionId": "rest",
+      "status": "completed",
+      "amount": 0,
+      "message": "Ten minutes in the shade eased fatigue.",
+      "reason": null
+    }
+  }
+}

@@ -43,8 +43,9 @@
           </section>
           <section class="neighbor-card" aria-labelledby="neighbor-title">
             <div class="caption"><h2 id="neighbor-title">Across the courtyard</h2><span id="neighbor-condition">Meryem</span></div>
+            <p id="neighbor-goal" class="neighbor-goal"></p>
             <p id="neighbor-speech" class="speech">“We have until the tap closes. I’ll work on my household’s barrel.”</p>
-            <div id="proposal" class="proposal" hidden><p id="proposal-detail"></p><div class="reply-buttons"><button id="accept" type="button">Accept · 1 move</button><button id="refuse" type="button">Refuse · 1 move</button></div><small>Choose another action to let the proposal pass.</small></div>
+            <div id="proposal" class="proposal" hidden><p id="proposal-detail"></p><div class="reply-buttons"><button id="accept" type="button">Accept · 10 min</button><button id="refuse" type="button">Refuse · 10 min</button></div><small>Your reply uses your next action. Meryem then chooses her own action. Choose another action to let the proposal pass.</small></div>
             <p id="loan" class="loan" hidden></p>
             <p id="relationship" class="exchange-facts">No gifts have been exchanged yet.</p>
           </section>
@@ -52,21 +53,23 @@
         </div>
         <section class="choices" aria-labelledby="choices-title">
           <div class="caption"><h2 id="choices-title">Your next move</h2><span id="turn-label">Move 1 of 18</span></div>
-          <p class="turn-rule">Every choice takes 10 minutes. Both of you act.</p>
-          <div id="last-turn" class="last-turn" role="status" aria-live="polite"><p id="your-event">The water is here. Decide what to carry, keep, or share.</p><p id="her-event" hidden></p></div>
+          <p class="turn-rule">One move = 10 shared minutes, with one action each. You act first; Meryem then replies or chooses her action. <strong id="elapsed-time"></strong></p>
+          <p id="goal-guidance" class="goal-guidance"></p>
+          <div id="last-turn" class="last-turn" role="status" aria-live="polite" hidden><strong id="last-turn-title"></strong><div class="turn-person"><h3 id="your-phase"></h3><p id="your-event"></p></div><div class="turn-person"><h3 id="her-phase"></h3><p id="her-event"></p></div></div>
           <div id="outcome" class="outcome" tabindex="-1" hidden><p class="eyebrow">THE TAP HAS CLOSED</p><h2 id="outcome-title"></h2><p id="outcome-detail"></p><button id="again" type="button">Another afternoon</button></div>
           <div id="play-controls">
             <div id="work-actions" class="work-actions"></div>
             <div id="recovery-actions" class="small-actions"></div>
-            <div class="talk"><h3>Speak with Meryem</h3><p>A reply may be yes or no. Talking uses a move for each of you.</p><div id="social-actions" class="social-actions"></div></div>
+            <div class="talk"><h3>Speak with Meryem</h3><p>An offer, request or loan uses your action to ask and hers to reply. Yes or no, 10 shared minutes pass; neither of you collects or pours on that move.</p><div id="social-actions" class="social-actions"></div></div>
           </div>
         </section>
       </div>
       <section class="session" aria-label="Save and configure the game">
-        <div class="save-row"><button id="download-save" type="button">Download save</button><label class="file-button">Load save or replay<input id="load-save" type="file" accept="application/json,.json"></label><span id="save-state">Saved on this device after each move</span></div>
-        <details><summary>New afternoon</summary><div class="setup"><label>Seed<input id="seed" type="number" min="0" max="4294967295" step="1" value="1" inputmode="numeric"></label><label>Water supply<select id="profile"><option value="standard">Standard · 28 buckets</option><option value="scarce">Scarce · 22 buckets</option><option value="plentiful">Plentiful · 36 buckets</option></select></label><button id="new-run" type="button">Start a new run</button></div><label class="check"><input id="record" type="checkbox"> Record a separate replay from the next new run</label><p class="muted">The same seed and choices reproduce the same afternoon. Download an optional replay before leaving this page.</p></details>
+        <div class="save-row"><button id="download-save" type="button">Download snapshot</button><button id="download-replay" type="button">Download replay</button><label class="file-button">Load save or replay<input id="load-save" type="file" accept="application/json,.json"></label><span id="save-state">Saved on this device after each move</span></div>
+        <details><summary id="history-summary">Move history</summary><p id="history-note"></p><ol id="history-list" class="history-list"></ol></details>
+        <details><summary>New afternoon</summary><div class="setup"><label>Seed<input id="seed" type="number" min="0" max="4294967295" step="1" value="1" inputmode="numeric"></label><label>Water supply<select id="profile"><option value="standard">Standard · 28 buckets</option><option value="scarce">Scarce · 22 buckets</option><option value="plentiful">Plentiful · 36 buckets</option></select></label><button id="new-run" type="button">Start a new run</button></div><label class="check"><input id="record" type="checkbox" checked> Record a separate replay from the next new run</label><p class="muted">The same seed and choices reproduce the same afternoon. A replay keeps the whole sequence; a snapshot keeps current totals and the last move.</p></details>
         <details id="controller"><summary>Controller hints</summary><p>These are simple authored rules. They see the same observations you do.</p><div class="setup"><label>Play style<select id="policy"><option value="reciprocal">Reciprocal · finish, then share</option><option value="self-sufficient">Self-sufficient · refuse exchanges</option><option value="generous">Generous · accept requests</option></select></label><button id="suggested" type="button">Take suggested move</button><button id="auto" type="button">Watch this controller</button></div><p id="suggestion" class="muted"></p></details>
-        <details><summary>Researcher view</summary><p id="research-facts"></p><label class="check"><input id="memory" type="checkbox" checked> Let Meryem use exchange history in the next new run</label><p class="muted">The comparison switch ignores earlier gifts and late-loan history in her preferences. It preserves current obligations, ownership, time and consent.</p><button id="download-replay" type="button" disabled>Download replay</button></details>
+        <details><summary>Researcher view</summary><p id="research-facts"></p><label class="check"><input id="memory" type="checkbox" checked> Let Meryem use exchange history in the next new run</label><p class="muted">The comparison switch ignores earlier gifts and late-loan history in her preferences. It preserves current obligations, ownership, time and consent.</p></details>
         <details class="model-notes"><summary>Model notes</summary><p>This is an authored small game, not a calibrated explanation of people. Work and recovery use the shared body/practice component. Meryem uses structured rules, without an LLM or hidden-state inference. Gifts and loan records describe exchanges; they are not moral-worth, faith or divine-approval scores. The project’s Islamic starting point does not supply this game’s numerical rules.</p><p>Turns are atomic: your choice settles first, then Meryem responds to what she can observe. The active save retains the current world and last turn; the optional replay retains choices separately. The laboratory’s original Water Commons and Solo Repair remain separate controls.</p></details>
       </section>
     </main>

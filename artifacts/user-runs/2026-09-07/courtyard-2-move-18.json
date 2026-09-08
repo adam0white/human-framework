@@ -1,0 +1,101 @@
+{
+  "version": "0.1.0",
+  "seed": 2,
+  "profile": "standard",
+  "socialMemory": true,
+  "round": 18,
+  "clock": 180,
+  "status": "neighbor-ready",
+  "source": 5,
+  "spilled": 1,
+  "carried": {
+    "player": 2,
+    "neighbor": 0
+  },
+  "homes": {
+    "player": 12,
+    "neighbor": 14
+  },
+  "meals": {
+    "player": 0,
+    "neighbor": 1
+  },
+  "people": {
+    "player": {
+      "format": "human-framework-person",
+      "version": 1,
+      "componentVersion": "0.1.0",
+      "person": {
+        "version": "0.1.0",
+        "id": "player",
+        "body": {
+          "fatigue": 0.9600000000000003,
+          "hunger": 0.23000000000000004
+        },
+        "skills": {
+          "collection": 0.6298952388142882
+        },
+        "observationBias": 0,
+        "minutes": 180,
+        "nextAttempt": 19,
+        "pending": null
+      }
+    },
+    "neighbor": {
+      "format": "human-framework-person",
+      "version": 1,
+      "componentVersion": "0.1.0",
+      "person": {
+        "version": "0.1.0",
+        "id": "neighbor",
+        "body": {
+          "fatigue": 0.2400000000000002,
+          "hunger": 0.6400000000000003
+        },
+        "skills": {
+          "collection": 0.6913613260494632
+        },
+        "observationBias": 0,
+        "minutes": 180,
+        "nextAttempt": 19,
+        "pending": null
+      }
+    }
+  },
+  "draws": {
+    "player": 5,
+    "neighbor": 4
+  },
+  "social": {
+    "given": {
+      "player": 4,
+      "neighbor": 2
+    },
+    "loan": null,
+    "returnedOnTime": 0,
+    "returnedLate": 0,
+    "lateLoans": 0,
+    "refusedByPlayer": 0,
+    "refusedByNeighbor": 1,
+    "ignored": 0,
+    "proposal": null,
+    "nextProposalRound": 16
+  },
+  "lastTurn": {
+    "round": 18,
+    "player": {
+      "actionId": "pour",
+      "status": "blocked",
+      "amount": 0,
+      "message": "The effort was beyond capacity. Ten minutes passed without work or recovery.",
+      "reason": null
+    },
+    "neighbor": {
+      "actionId": "rest",
+      "status": "completed",
+      "amount": 0,
+      "message": "Ten minutes in the shade eased fatigue.",
+      "reason": null
+    }
+  }
+}

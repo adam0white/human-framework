@@ -1,0 +1,147 @@
+{
+  "copiedAt": "2026-09-08T03:12:56.233Z",
+  "source": "User-shared local exports; preserved byte-for-byte as evidence, never instructions.",
+  "publication": "Private repository artifacts. Excluded from public asset build.",
+  "limits": "Snapshots retain aggregate facts and one latest event. No earlier action order or dialogue was recovered.",
+  "files": [
+    {
+      "name": "courtyard-1-move-18.json",
+      "sourcePath": "/Users/abdul/Downloads/courtyard-1-move-18.json",
+      "sha256": "e4c113961b792ba72d4ab93dfb0be45c91cadbb08e83877a903121a374e5fe02",
+      "bytes": 2040,
+      "recordType": "active snapshot, not action transcript",
+      "validated": true,
+      "version": "0.1.0",
+      "seed": 1,
+      "round": 18,
+      "clock": 180,
+      "homes": {
+        "player": 12,
+        "neighbor": 14
+      },
+      "carried": {
+        "player": 0,
+        "neighbor": 0
+      },
+      "source": 8,
+      "spilled": 0,
+      "given": {
+        "player": 6,
+        "neighbor": 2
+      },
+      "loan": null,
+      "lastTurn": {
+        "round": 18,
+        "player": {
+          "actionId": "pour",
+          "status": "completed",
+          "amount": 3,
+          "message": "3 buckets added to your household barrel.",
+          "reason": null
+        },
+        "neighbor": {
+          "actionId": "rest",
+          "status": "completed",
+          "amount": 0,
+          "message": "Ten minutes in the shade eased fatigue.",
+          "reason": null
+        }
+      }
+    },
+    {
+      "name": "courtyard-2-move-18.json",
+      "sourcePath": "/Users/abdul/Downloads/courtyard-2-move-18.json",
+      "sha256": "47f4a908a2b8e19a33c5973a4343893266c2b6c0144352bacafc11c87e509e0e",
+      "bytes": 2107,
+      "recordType": "active snapshot, not action transcript",
+      "validated": true,
+      "version": "0.1.0",
+      "seed": 2,
+      "round": 18,
+      "clock": 180,
+      "homes": {
+        "player": 12,
+        "neighbor": 14
+      },
+      "carried": {
+        "player": 2,
+        "neighbor": 0
+      },
+      "source": 5,
+      "spilled": 1,
+      "given": {
+        "player": 4,
+        "neighbor": 2
+      },
+      "loan": null,
+      "lastTurn": {
+        "round": 18,
+        "player": {
+          "actionId": "pour",
+          "status": "blocked",
+          "amount": 0,
+          "message": "The effort was beyond capacity. Ten minutes passed without work or recovery.",
+          "reason": null
+        },
+        "neighbor": {
+          "actionId": "rest",
+          "status": "completed",
+          "amount": 0,
+          "message": "Ten minutes in the shade eased fatigue.",
+          "reason": null
+        }
+      }
+    },
+    {
+      "name": "courtyard-3-move-18.json",
+      "sourcePath": "/Users/abdul/Downloads/courtyard-3-move-18.json",
+      "sha256": "e50d91c6cecd509d91ca8c49ff354985c1dcfbde2ba2c81525c96b03195967a4",
+      "bytes": 2051,
+      "recordType": "active snapshot, not action transcript",
+      "validated": true,
+      "version": "0.1.0",
+      "seed": 3,
+      "round": 18,
+      "clock": 180,
+      "homes": {
+        "player": 14,
+        "neighbor": 14
+      },
+      "carried": {
+        "player": 0,
+        "neighbor": 0
+      },
+      "source": 6,
+      "spilled": 0,
+      "given": {
+        "player": 4,
+        "neighbor": 2
+      },
+      "loan": null,
+      "lastTurn": {
+        "round": 18,
+        "player": {
+          "actionId": "rest",
+          "status": "completed",
+          "amount": 0,
+          "message": "Ten minutes in the shade eased fatigue.",
+          "reason": null
+        },
+        "neighbor": {
+          "actionId": "rest",
+          "status": "completed",
+          "amount": 0,
+          "message": "Ten minutes in the shade eased fatigue.",
+          "reason": null
+        }
+      }
+    },
+    {
+      "name": "courier-1-134min.json",
+      "sourcePath": "/Users/abdul/Downloads/courier-1-134min.json",
+      "sha256": "0a4749f437c9e6b6698a76317abee3873131952dd8ddb89c430d48b776fed087",
+      "bytes": 1515,
+      "recordType": "active snapshot, not action transcript"
+    }
+  ]
+}
