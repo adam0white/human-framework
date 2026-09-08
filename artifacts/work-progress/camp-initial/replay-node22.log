@@ -1,0 +1,6 @@
+{
+  "format": "paid-work-camp-replay",
+  "replayed": 144,
+  "exact": true,
+  "out": "/tmp/work-progress-camp-node22-replay.json"
+}

@@ -1,0 +1,76 @@
+{
+  "histories": [
+    {
+      "history": "H1",
+      "at": 20,
+      "maxDifference": 5.551115123125783e-17,
+      "bytes": {
+        "candidate": 2408,
+        "direct": 2263
+      }
+    },
+    {
+      "history": "H2",
+      "at": 15,
+      "maxDifference": 1.1102230246251565e-16,
+      "bytes": {
+        "candidate": 2422,
+        "direct": 2277
+      }
+    },
+    {
+      "history": "H3",
+      "at": 23,
+      "maxDifference": 5.551115123125783e-17,
+      "bytes": {
+        "candidate": 2408,
+        "direct": 2262
+      }
+    },
+    {
+      "history": "H4",
+      "at": 15,
+      "maxDifference": 1.1102230246251565e-16,
+      "bytes": {
+        "candidate": 2422,
+        "direct": 2277
+      }
+    },
+    {
+      "history": "H5",
+      "at": 19,
+      "maxDifference": 1.3877787807814457e-16,
+      "bytes": {
+        "candidate": 2537,
+        "direct": 2364
+      }
+    },
+    {
+      "history": "H6",
+      "at": 20,
+      "maxDifference": 5.551115123125783e-17,
+      "bytes": {
+        "candidate": 2551,
+        "direct": 2378
+      }
+    },
+    {
+      "history": "H7",
+      "at": 20,
+      "maxDifference": 5.551115123125783e-17,
+      "bytes": {
+        "candidate": 2429,
+        "direct": 2283
+      }
+    }
+  ],
+  "candidateInclusive": {
+    "bytes": 48285,
+    "lines": 712
+  },
+  "directInclusive": {
+    "bytes": 43724,
+    "lines": 665
+  },
+  "evidenceBytes": 14115895
+}

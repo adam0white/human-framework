@@ -1,0 +1,19 @@
+node:internal/test_runner/harness:99
+      throw err;
+      ^
+
+Error [ERR_ACCESS_DENIED]: Access to this API has been restricted
+    at lstatSync (node:fs:1711:11)
+    at getDirentSync (node:internal/fs/glob:66:16)
+    at Cache.statSync (node:internal/fs/glob:131:17)
+    at #addSubpatterns (node:internal/fs/glob:341:30)
+    at Glob.globSync (node:internal/fs/glob:310:29)
+    at createTestFileList (node:internal/test_runner/runner:118:24)
+    at run (node:internal/test_runner/runner:683:28)
+    at node:internal/main/test_runner:34:1 {
+  code: 'ERR_ACCESS_DENIED',
+  permission: 'FileSystemRead',
+  resource: '/private/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/hf-independent-repair-ajr5o5f_'
+}
+
+Node.js v23.7.0

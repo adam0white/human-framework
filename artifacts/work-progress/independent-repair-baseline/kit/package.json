@@ -1,0 +1,11 @@
+{
+  "name": "paid-work-probe",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./candidate.js",
+    "./human": "./src/human/v0.1.1.js",
+    "./runtime": "./src/runtime/index.js"
+  }
+}

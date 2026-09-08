@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "cf46083",
+  "candidateSha256": "84f858d56aa77bbdfcc1e7bc44b214373851f8b00773985061acbce66d32ad35",
+  "apiFullSha256": "441e3ce8a875f51a765d1abcf8395d882fa07fcda90b6de87681c66951e38716",
+  "promptSha256": "7efbc96bf41178eea0ad417110cef7cd82ca0f39a3953bf5c2b24ab66500266e",
+  "modelOverride": null,
+  "scope": "candidate source and API prefix only; no host implementations, comparisons, player data or other reviews",
+  "tools": false,
+  "completed": true,
+  "actualModels": [
+    "claude-haiku-4-5-20251001",
+    "claude-opus-5[1m]"
+  ],
+  "primaryReviewer": "claude-opus-5[1m]",
+  "totalCostUsd": 0.6948009999999999,
+  "successfulCommand": "claude -p --restricted --tools \"\" --strict-mcp-config --disable-slash-commands --no-session-persistence --output-format json --max-budget-usd 2",
+  "priorAttempt": "--bare had no usable authentication and returned Not logged in with zero API tokens; it is not a review"
+}

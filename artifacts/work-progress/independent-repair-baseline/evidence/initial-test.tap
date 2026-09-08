@@ -1,0 +1,36 @@
+✔ H1: independent completion, all minute payments, driver equivalence and active restore (100.30975ms)
+✔ H2: independent completion, all minute payments, driver equivalence and active restore (81.928834ms)
+✔ H3: independent completion, all minute payments, driver equivalence and active restore (83.417917ms)
+✔ H4: independent completion, all minute payments, driver equivalence and active restore (83.774208ms)
+✔ H5: independent completion, all minute payments, driver equivalence and active restore (84.87475ms)
+✔ H6: independent completion, all minute payments, driver equivalence and active restore (80.624959ms)
+✔ H7: independent completion, all minute payments, driver equivalence and active restore (79.447041ms)
+✔ candidate: consent refusal changes no economics or enrollment (0.392833ms)
+✔ candidate: whole remaining capacity refuses unfit starts and recipients atomically (0.613041ms)
+✔ candidate: stop retains installed seal and all paid costs; interrupted haul never resumes (0.813125ms)
+✔ candidate: actual changed proposed basis is ignored on same-worker resume (2.535459ms)
+✔ candidate: supplier ownership and delayed tool settlement (0.437667ms)
+✔ candidate: every provisional minute rolls back on a downstream error (0.372167ms)
+✔ candidate: repeated settlement and repeated completion-time advance grant nothing (2.312958ms)
+✔ candidate: restore rejects structural and cross-domain lies (2.271291ms)
+✔ candidate: clock, immutable exports, and bounded state (128.8395ms)
+✔ direct: consent refusal changes no economics or enrollment (0.365625ms)
+✔ direct: whole remaining capacity refuses unfit starts and recipients atomically (0.325208ms)
+✔ direct: stop retains installed seal and all paid costs; interrupted haul never resumes (0.554125ms)
+✔ direct: actual changed proposed basis is ignored on same-worker resume (1.959792ms)
+✔ direct: supplier ownership and delayed tool settlement (0.34725ms)
+✔ direct: every provisional minute rolls back on a downstream error (0.196333ms)
+✔ direct: repeated settlement and repeated completion-time advance grant nothing (1.978333ms)
+✔ direct: restore rejects structural and cross-domain lies (1.976125ms)
+✔ direct: clock, immutable exports, and bounded state (124.328791ms)
+✔ actual per-minute Human capacity is checked and leaves the original person unpaid (0.138792ms)
+✔ direct dependency source does not import or call the candidate (0.2475ms)
+﹣ permission-model run confines reads to the independent directory (0.020792ms) # SKIP
+ℹ tests 28
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 886.887917

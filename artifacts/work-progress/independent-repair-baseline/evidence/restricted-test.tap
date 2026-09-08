@@ -1,0 +1,178 @@
+TAP version 13
+# Subtest: H1: independent completion, all minute payments, driver equivalence and active restore
+ok 1 - H1: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 101.872959
+  type: 'test'
+  ...
+# Subtest: H2: independent completion, all minute payments, driver equivalence and active restore
+ok 2 - H2: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 82.427417
+  type: 'test'
+  ...
+# Subtest: H3: independent completion, all minute payments, driver equivalence and active restore
+ok 3 - H3: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 84.2705
+  type: 'test'
+  ...
+# Subtest: H4: independent completion, all minute payments, driver equivalence and active restore
+ok 4 - H4: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 83.523542
+  type: 'test'
+  ...
+# Subtest: H5: independent completion, all minute payments, driver equivalence and active restore
+ok 5 - H5: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 84.781333
+  type: 'test'
+  ...
+# Subtest: H6: independent completion, all minute payments, driver equivalence and active restore
+ok 6 - H6: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 79.720375
+  type: 'test'
+  ...
+# Subtest: H7: independent completion, all minute payments, driver equivalence and active restore
+ok 7 - H7: independent completion, all minute payments, driver equivalence and active restore
+  ---
+  duration_ms: 79.108583
+  type: 'test'
+  ...
+# Subtest: candidate: consent refusal changes no economics or enrollment
+ok 8 - candidate: consent refusal changes no economics or enrollment
+  ---
+  duration_ms: 0.426667
+  type: 'test'
+  ...
+# Subtest: candidate: whole remaining capacity refuses unfit starts and recipients atomically
+ok 9 - candidate: whole remaining capacity refuses unfit starts and recipients atomically
+  ---
+  duration_ms: 0.736
+  type: 'test'
+  ...
+# Subtest: candidate: stop retains installed seal and all paid costs; interrupted haul never resumes
+ok 10 - candidate: stop retains installed seal and all paid costs; interrupted haul never resumes
+  ---
+  duration_ms: 0.80975
+  type: 'test'
+  ...
+# Subtest: candidate: actual changed proposed basis is ignored on same-worker resume
+ok 11 - candidate: actual changed proposed basis is ignored on same-worker resume
+  ---
+  duration_ms: 2.482333
+  type: 'test'
+  ...
+# Subtest: candidate: supplier ownership and delayed tool settlement
+ok 12 - candidate: supplier ownership and delayed tool settlement
+  ---
+  duration_ms: 0.413417
+  type: 'test'
+  ...
+# Subtest: candidate: every provisional minute rolls back on a downstream error
+ok 13 - candidate: every provisional minute rolls back on a downstream error
+  ---
+  duration_ms: 0.546291
+  type: 'test'
+  ...
+# Subtest: candidate: repeated settlement and repeated completion-time advance grant nothing
+ok 14 - candidate: repeated settlement and repeated completion-time advance grant nothing
+  ---
+  duration_ms: 2.206042
+  type: 'test'
+  ...
+# Subtest: candidate: restore rejects structural and cross-domain lies
+ok 15 - candidate: restore rejects structural and cross-domain lies
+  ---
+  duration_ms: 2.222041
+  type: 'test'
+  ...
+# Subtest: candidate: clock, immutable exports, and bounded state
+ok 16 - candidate: clock, immutable exports, and bounded state
+  ---
+  duration_ms: 127.243417
+  type: 'test'
+  ...
+# Subtest: direct: consent refusal changes no economics or enrollment
+ok 17 - direct: consent refusal changes no economics or enrollment
+  ---
+  duration_ms: 0.330333
+  type: 'test'
+  ...
+# Subtest: direct: whole remaining capacity refuses unfit starts and recipients atomically
+ok 18 - direct: whole remaining capacity refuses unfit starts and recipients atomically
+  ---
+  duration_ms: 0.330125
+  type: 'test'
+  ...
+# Subtest: direct: stop retains installed seal and all paid costs; interrupted haul never resumes
+ok 19 - direct: stop retains installed seal and all paid costs; interrupted haul never resumes
+  ---
+  duration_ms: 0.5585
+  type: 'test'
+  ...
+# Subtest: direct: actual changed proposed basis is ignored on same-worker resume
+ok 20 - direct: actual changed proposed basis is ignored on same-worker resume
+  ---
+  duration_ms: 1.933833
+  type: 'test'
+  ...
+# Subtest: direct: supplier ownership and delayed tool settlement
+ok 21 - direct: supplier ownership and delayed tool settlement
+  ---
+  duration_ms: 0.337875
+  type: 'test'
+  ...
+# Subtest: direct: every provisional minute rolls back on a downstream error
+ok 22 - direct: every provisional minute rolls back on a downstream error
+  ---
+  duration_ms: 0.335
+  type: 'test'
+  ...
+# Subtest: direct: repeated settlement and repeated completion-time advance grant nothing
+ok 23 - direct: repeated settlement and repeated completion-time advance grant nothing
+  ---
+  duration_ms: 2.030542
+  type: 'test'
+  ...
+# Subtest: direct: restore rejects structural and cross-domain lies
+ok 24 - direct: restore rejects structural and cross-domain lies
+  ---
+  duration_ms: 1.919042
+  type: 'test'
+  ...
+# Subtest: direct: clock, immutable exports, and bounded state
+ok 25 - direct: clock, immutable exports, and bounded state
+  ---
+  duration_ms: 122.46375
+  type: 'test'
+  ...
+# Subtest: actual per-minute Human capacity is checked and leaves the original person unpaid
+ok 26 - actual per-minute Human capacity is checked and leaves the original person unpaid
+  ---
+  duration_ms: 0.123917
+  type: 'test'
+  ...
+# Subtest: direct dependency source does not import or call the candidate
+ok 27 - direct dependency source does not import or call the candidate
+  ---
+  duration_ms: 1.027209
+  type: 'test'
+  ...
+# Subtest: permission-model run confines reads to the independent directory
+ok 28 - permission-model run confines reads to the independent directory
+  ---
+  duration_ms: 0.059708
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 891.1115

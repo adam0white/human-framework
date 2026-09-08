@@ -1,0 +1,738 @@
+{
+  "endpoint": 40,
+  "tolerance": 1e-10,
+  "prescribedHistories": 7,
+  "driverConfigurations": 84,
+  "summary": [
+    {
+      "history": "H1",
+      "specification": {
+        "setup": {},
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ]
+        ],
+        "expected": {
+          "at": 20,
+          "mara": 20,
+          "tomas": 0
+        }
+      },
+      "arithmeticOracle": {
+        "at": 20,
+        "credit": {
+          "mara": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "tomas": {
+            "minutes": 0,
+            "effort": 0
+          }
+        }
+      },
+      "completionMinute": 20,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 20,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2725,
+        "maxAbsoluteDifference": 5.551115123125783e-17,
+        "maxDifferencePath": "checkpoint[12].pump.work.hands.mara.effort"
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2408,
+        "direct": 2263
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H2",
+      "specification": {
+        "setup": {
+          "tool": true
+        },
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ]
+        ],
+        "expected": {
+          "at": 15,
+          "mara": 15,
+          "tomas": 0
+        }
+      },
+      "arithmeticOracle": {
+        "at": 15,
+        "credit": {
+          "mara": {
+            "minutes": 15,
+            "effort": 0.20000000000000012
+          },
+          "tomas": {
+            "minutes": 0,
+            "effort": 0
+          }
+        }
+      },
+      "completionMinute": 15,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 15,
+            "effort": 0.20000000000000012
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 25,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 1,
+            "effort": 0.02
+          },
+          "rest": {
+            "minutes": 39,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2765,
+        "maxAbsoluteDifference": 1.1102230246251565e-16,
+        "maxDifferencePath": "checkpoint[15].pump.work.hands.mara.effort"
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2422,
+        "direct": 2277
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H3",
+      "specification": {
+        "setup": {},
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ],
+          [
+            7,
+            "stop",
+            "mara"
+          ],
+          [
+            10,
+            "start",
+            "mara"
+          ]
+        ],
+        "expected": {
+          "at": 23,
+          "mara": 20,
+          "tomas": 0
+        }
+      },
+      "arithmeticOracle": {
+        "at": 23,
+        "credit": {
+          "mara": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "tomas": {
+            "minutes": 0,
+            "effort": 0
+          }
+        }
+      },
+      "completionMinute": 23,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 20,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2851,
+        "maxAbsoluteDifference": 5.551115123125783e-17,
+        "maxDifferencePath": "checkpoint[17].pump.work.hands.mara.effort"
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2408,
+        "direct": 2262
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H4",
+      "specification": {
+        "setup": {
+          "tool": true
+        },
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ],
+          [
+            1,
+            "stop",
+            "mara"
+          ],
+          [
+            1,
+            "start",
+            "mara"
+          ]
+        ],
+        "expected": {
+          "at": 15,
+          "mara": 15,
+          "tomas": 0
+        }
+      },
+      "arithmeticOracle": {
+        "at": 15,
+        "credit": {
+          "mara": {
+            "minutes": 15,
+            "effort": 0.20000000000000012
+          },
+          "tomas": {
+            "minutes": 0,
+            "effort": 0
+          }
+        }
+      },
+      "completionMinute": 15,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 15,
+            "effort": 0.20000000000000012
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 25,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 1,
+            "effort": 0.02
+          },
+          "rest": {
+            "minutes": 39,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2896,
+        "maxAbsoluteDifference": 1.1102230246251565e-16,
+        "maxDifferencePath": "checkpoint[17].pump.work.hands.mara.effort"
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2422,
+        "direct": 2277
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H5",
+      "specification": {
+        "setup": {},
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ],
+          [
+            1,
+            "offerHandover",
+            "mara",
+            "tomas"
+          ]
+        ],
+        "expected": {
+          "at": 19,
+          "mara": 1,
+          "tomas": 18
+        }
+      },
+      "arithmeticOracle": {
+        "at": 19,
+        "credit": {
+          "mara": {
+            "minutes": 1,
+            "effort": 0.010000000000000002
+          },
+          "tomas": {
+            "minutes": 18,
+            "effort": 0.1899999999999999
+          }
+        }
+      },
+      "completionMinute": 19,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 1,
+            "effort": 0.010000000000000002
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 39,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 18,
+            "effort": 0.1899999999999999
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 22,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2950,
+        "maxAbsoluteDifference": 1.3877787807814457e-16,
+        "maxDifferencePath": "checkpoint[20].pump.work.hands.tomas.effort"
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2537,
+        "direct": 2364
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H6",
+      "specification": {
+        "setup": {},
+        "commands": [
+          [
+            0,
+            "start",
+            "tomas"
+          ],
+          [
+            1,
+            "offerHandover",
+            "tomas",
+            "mara"
+          ]
+        ],
+        "expected": {
+          "at": 20,
+          "mara": 19,
+          "tomas": 1
+        }
+      },
+      "arithmeticOracle": {
+        "at": 20,
+        "credit": {
+          "mara": {
+            "minutes": 19,
+            "effort": 0.1888888888888889
+          },
+          "tomas": {
+            "minutes": 1,
+            "effort": 0.011111111111111112
+          }
+        }
+      },
+      "completionMinute": 20,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 19,
+            "effort": 0.1888888888888889
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 21,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 1,
+            "effort": 0.011111111111111112
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 39,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2950,
+        "maxAbsoluteDifference": 5.551115123125783e-17,
+        "maxDifferencePath": "checkpoint[14].pump.work.hands.mara.effort"
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2551,
+        "direct": 2378
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    },
+    {
+      "history": "H7",
+      "specification": {
+        "setup": {
+          "busy": true
+        },
+        "commands": [
+          [
+            0,
+            "start",
+            "mara"
+          ],
+          [
+            1,
+            "offerHandover",
+            "mara",
+            "tomas"
+          ]
+        ],
+        "expected": {
+          "at": 20,
+          "mara": 20,
+          "tomas": 0
+        }
+      },
+      "arithmeticOracle": {
+        "at": 20,
+        "credit": {
+          "mara": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "tomas": {
+            "minutes": 0,
+            "effort": 0
+          }
+        }
+      },
+      "completionMinute": 20,
+      "paid": {
+        "mara": {
+          "repair": {
+            "minutes": 20,
+            "effort": 0.20000000000000007
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 20,
+            "effort": 0
+          }
+        },
+        "tomas": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 4,
+            "effort": 0.04
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 36,
+            "effort": 0
+          }
+        },
+        "nuri": {
+          "repair": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "hauling": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "crafting": {
+            "minutes": 0,
+            "effort": 0
+          },
+          "rest": {
+            "minutes": 40,
+            "effort": 0
+          }
+        }
+      },
+      "comparison": {
+        "comparedNumericFields": 2827,
+        "maxAbsoluteDifference": 5.551115123125783e-17,
+        "maxDifferencePath": "checkpoint[13].pump.work.hands.mara.effort"
+      },
+      "maxSnapshotBytes": {
+        "candidate": 2429,
+        "direct": 2283
+      },
+      "interpretation": "One prescribed history, with repeated advance/restore drivers; not independent empirical samples."
+    }
+  ]
+}

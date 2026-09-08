@@ -1,0 +1,53 @@
+{
+  "root": "/private/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/hf-independent-repair-ajr5o5f_",
+  "files": [
+    {
+      "path": "kit/API.md",
+      "bytes": 10608,
+      "lines": 116,
+      "sha256": "3c7e0ab5927b36f25597d5f7342fdc1482ba55fad362b90fdf8b3525d9cdfbeb"
+    },
+    {
+      "path": "kit/HUMAN.md",
+      "bytes": 22205,
+      "lines": 176,
+      "sha256": "6e0a74644158090f301c165e84498e09d98911dd985b59811ef69b5179d4bf34"
+    },
+    {
+      "path": "kit/candidate.js",
+      "bytes": 6288,
+      "lines": 82,
+      "sha256": "84f858d56aa77bbdfcc1e7bc44b214373851f8b00773985061acbce66d32ad35"
+    },
+    {
+      "path": "kit/package.json",
+      "bytes": 222,
+      "lines": 11,
+      "sha256": "05a28ced316dc2c8444f1dd610ca77ed577cdb9f34fcd0f239ac3430cfd406fb"
+    },
+    {
+      "path": "kit/src/human/v0.1.1.js",
+      "bytes": 11580,
+      "lines": 190,
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "path": "kit/src/core/model.js",
+      "bytes": 7764,
+      "lines": 120,
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "path": "kit/src/runtime/index.js",
+      "bytes": 188,
+      "lines": 4,
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+    },
+    {
+      "path": "kit/src/runtime/clock.js",
+      "bytes": 7513,
+      "lines": 139,
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    }
+  ]
+}

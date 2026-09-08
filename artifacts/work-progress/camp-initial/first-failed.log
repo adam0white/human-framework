@@ -1,0 +1,9 @@
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(c.basis>=1&&c.fraction>=0&&c.fraction<=1&&c.effort>=0&&c.effort<=.2)
+
+    at validAccounting (file:///Users/abdul/code/human-framework/scripts/work-progress-comparison.js:70:92)
+    at record (file:///Users/abdul/code/human-framework/scripts/work-progress-comparison.js:101:40)
+    at executeHistory (file:///Users/abdul/code/human-framework/scripts/work-progress-comparison.js:129:81)
+    at runMatrix (file:///Users/abdul/code/human-framework/scripts/work-progress-comparison.js:151:20)
+    at async main (file:///Users/abdul/code/human-framework/scripts/work-progress-comparison.js:183:110)

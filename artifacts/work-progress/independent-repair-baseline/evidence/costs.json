@@ -1,0 +1,160 @@
+{
+  "files": [
+    {
+      "path": "src/yard.js",
+      "bytes": 19325,
+      "lines": 268,
+      "sha256": "edcdc65c56ae041dffb93afd358134d0472dc2a6ea5b59bb9d7e79ce348c77fd"
+    },
+    {
+      "path": "src/shape.js",
+      "bytes": 1937,
+      "lines": 30,
+      "sha256": "26a7e7cbe833c7e4386a649b36a0e68b6bfa8ff8e05ca7e43ed66aedd398b14d"
+    },
+    {
+      "path": "kit/src/human/v0.1.1.js",
+      "bytes": 11580,
+      "lines": 190,
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "path": "kit/src/core/model.js",
+      "bytes": 7764,
+      "lines": 120,
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "path": "src/candidate-pump.js",
+      "bytes": 1391,
+      "lines": 22,
+      "sha256": "965fc53238cfbe1c4f952a5022421571aebcefedaa5cc32cadc3faf9600bbcb3"
+    },
+    {
+      "path": "kit/candidate.js",
+      "bytes": 6288,
+      "lines": 82,
+      "sha256": "84f858d56aa77bbdfcc1e7bc44b214373851f8b00773985061acbce66d32ad35"
+    },
+    {
+      "path": "src/direct-pump.js",
+      "bytes": 3118,
+      "lines": 57,
+      "sha256": "b8050f2767c413a77e363d0aa93b0cc3902730c5a014ea091a3fb1298ea13f10"
+    },
+    {
+      "path": "tests/histories.js",
+      "bytes": 3824,
+      "lines": 60,
+      "sha256": "addaa2a727f6cadd30437b0f78b42852509de4aa8b0dc6b317549a4d6f75ec46"
+    },
+    {
+      "path": "tests/repair.test.js",
+      "bytes": 14623,
+      "lines": 218,
+      "sha256": "c0ecd84de42f9bad51d4e975040e86a9d61f37cf20805bcddbafbd78db9ba1de"
+    },
+    {
+      "path": "tests/record.mjs",
+      "bytes": 6417,
+      "lines": 71,
+      "sha256": "882ed2c44172b78a014f19b15abacd82c4698d5818f22d52cc2865b58bcfc322"
+    },
+    {
+      "path": "package.json",
+      "bytes": 78,
+      "lines": 1,
+      "sha256": "cecb2a26038c9289852f51be7b0f34c7d8794e0f8034aa929a3cbe1f8d0fa473"
+    },
+    {
+      "path": "kit/package.json",
+      "bytes": 222,
+      "lines": 11,
+      "sha256": "05a28ced316dc2c8444f1dd610ca77ed577cdb9f34fcd0f239ac3430cfd406fb"
+    }
+  ],
+  "runtime": {
+    "shared": {
+      "bytes": 40606,
+      "lines": 608,
+      "files": [
+        "src/yard.js",
+        "src/shape.js",
+        "kit/src/human/v0.1.1.js",
+        "kit/src/core/model.js"
+      ]
+    },
+    "candidateOnly": {
+      "bytes": 7679,
+      "lines": 104,
+      "files": [
+        "src/candidate-pump.js",
+        "kit/candidate.js"
+      ]
+    },
+    "directOnly": {
+      "bytes": 3118,
+      "lines": 57,
+      "files": [
+        "src/direct-pump.js"
+      ]
+    },
+    "candidateInclusive": {
+      "bytes": 48285,
+      "lines": 712
+    },
+    "directInclusive": {
+      "bytes": 43724,
+      "lines": 665
+    }
+  },
+  "support": {
+    "bytes": 25164,
+    "lines": 361,
+    "files": [
+      "tests/histories.js",
+      "tests/repair.test.js",
+      "tests/record.mjs",
+      "package.json",
+      "kit/package.json"
+    ],
+    "note": "Tests, recording/oracle and package metadata reported separately; they are part of this experiment, not omitted labor."
+  },
+  "validationSpans": [
+    {
+      "path": "src/yard.js",
+      "startLine": 175,
+      "endLine": 266,
+      "bytes": 8694,
+      "note": "Literal contiguous source span; not a complexity or maintenance metric."
+    },
+    {
+      "path": "src/yard.js",
+      "startLine": 159,
+      "endLine": 171,
+      "bytes": 795,
+      "note": "Literal contiguous source span; not a complexity or maintenance metric."
+    },
+    {
+      "path": "src/direct-pump.js",
+      "startLine": 35,
+      "endLine": 50,
+      "bytes": 1201,
+      "note": "Literal contiguous source span; not a complexity or maintenance metric."
+    },
+    {
+      "path": "kit/candidate.js",
+      "startLine": 20,
+      "endLine": 39,
+      "bytes": 1744,
+      "note": "Literal contiguous source span; not a complexity or maintenance metric."
+    }
+  ],
+  "validationNotes": [
+    "The whole src/shape.js file is shared validation/freezing support.",
+    "Human validation is retained inside the counted Human and core source files.",
+    "Candidate item validation costs count in full through kit/candidate.js.",
+    "Direct omits redundant contribution effort storage; shared host validation still reconciles .20 times contribution coverage against separately paid effort.",
+    "Both host arms use the same host restore function and tests. Extra general candidate behavior is not tested or credited as a one-pump benefit."
+  ]
+}

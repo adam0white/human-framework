@@ -1,0 +1,418 @@
+{
+  "host": "F",
+  "name": "zero-terminal-recipient-exposure",
+  "baseline": {
+    "format": "work-progress-camp-fixed",
+    "version": 1,
+    "world": {
+      "host": "work-progress-camp-fixed",
+      "setup": {
+        "toolArrival": null,
+        "busyB": false,
+        "items": 1
+      },
+      "now": 21,
+      "people": {
+        "A": {
+          "version": "0.1.1",
+          "id": "A",
+          "body": {
+            "fatigue": 0.40650000000000014,
+            "hunger": 0.24200000000000005
+          },
+          "skills": {
+            "construction": 0.18889723232091568,
+            "hauling": 0.1
+          },
+          "observationBias": 0,
+          "minutes": 21,
+          "nextAttempt": 22,
+          "pending": null
+        },
+        "B": {
+          "version": "0.1.1",
+          "id": "B",
+          "body": {
+            "fatigue": 0,
+            "hunger": 0.24200000000000005
+          },
+          "skills": {
+            "construction": 0.6,
+            "hauling": 0.1
+          },
+          "observationBias": 0,
+          "minutes": 21,
+          "nextAttempt": 22,
+          "pending": null
+        },
+        "C": {
+          "version": "0.1.1",
+          "id": "C",
+          "body": {
+            "fatigue": 0,
+            "hunger": 0.24200000000000005
+          },
+          "skills": {
+            "crafting": 0.1
+          },
+          "observationBias": 0,
+          "minutes": 21,
+          "nextAttempt": 22,
+          "pending": null
+        }
+      },
+      "paid": {
+        "A": {
+          "work": 20,
+          "recovery": 1,
+          "effort": 0.20000000000000007,
+          "construction": 20,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "B": {
+          "work": 0,
+          "recovery": 21,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "C": {
+          "work": 0,
+          "recovery": 21,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        }
+      },
+      "stock": {
+        "timber": 0,
+        "salvage": 0,
+        "toolBlank": 0
+      },
+      "spent": {
+        "timber": 5,
+        "salvage": 1,
+        "toolBlank": 0
+      },
+      "toolAvailable": false,
+      "outputs": 1,
+      "items": {
+        "work-1": {
+          "id": "work-1",
+          "progress": 1,
+          "completedAt": 20,
+          "settled": true,
+          "reserved": {
+            "timber": 0,
+            "salvage": 0
+          },
+          "contributions": {
+            "A": {
+              "basis": 20,
+              "minutes": 20,
+              "fraction": 1,
+              "effort": 0.20000000000000007
+            }
+          },
+          "basisPaid": {
+            "A": 0
+          },
+          "toolAtStart": false
+        }
+      },
+      "assignments": {
+        "A": null,
+        "B": null,
+        "C": null
+      },
+      "haulStoppedAt": null,
+      "lastResponse": null
+    }
+  },
+  "changed": {
+    "format": "work-progress-camp-fixed",
+    "version": 1,
+    "world": {
+      "host": "work-progress-camp-fixed",
+      "setup": {
+        "toolArrival": null,
+        "busyB": false,
+        "items": 1
+      },
+      "now": 21,
+      "people": {
+        "A": {
+          "version": "0.1.1",
+          "id": "A",
+          "body": {
+            "fatigue": 0.40650000000000014,
+            "hunger": 0.24200000000000005
+          },
+          "skills": {
+            "construction": 0.18889723232091568,
+            "hauling": 0.1
+          },
+          "observationBias": 0,
+          "minutes": 21,
+          "nextAttempt": 22,
+          "pending": null
+        },
+        "B": {
+          "version": "0.1.1",
+          "id": "B",
+          "body": {
+            "fatigue": 0.0015,
+            "hunger": 0.24200000000000005
+          },
+          "skills": {
+            "construction": 0.6020746013616933,
+            "hauling": 0.1
+          },
+          "observationBias": 0,
+          "minutes": 21,
+          "nextAttempt": 22,
+          "pending": null
+        },
+        "C": {
+          "version": "0.1.1",
+          "id": "C",
+          "body": {
+            "fatigue": 0,
+            "hunger": 0.24200000000000005
+          },
+          "skills": {
+            "crafting": 0.1
+          },
+          "observationBias": 0,
+          "minutes": 21,
+          "nextAttempt": 22,
+          "pending": null
+        }
+      },
+      "paid": {
+        "A": {
+          "work": 20,
+          "recovery": 1,
+          "effort": 0.20000000000000007,
+          "construction": 20,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "B": {
+          "work": 1,
+          "recovery": 20,
+          "effort": 0,
+          "construction": 1,
+          "hauling": 0,
+          "crafting": 0
+        },
+        "C": {
+          "work": 0,
+          "recovery": 21,
+          "effort": 0,
+          "construction": 0,
+          "hauling": 0,
+          "crafting": 0
+        }
+      },
+      "stock": {
+        "timber": 0,
+        "salvage": 0,
+        "toolBlank": 0
+      },
+      "spent": {
+        "timber": 5,
+        "salvage": 1,
+        "toolBlank": 0
+      },
+      "toolAvailable": false,
+      "outputs": 1,
+      "items": {
+        "work-1": {
+          "id": "work-1",
+          "progress": 1,
+          "completedAt": 20,
+          "settled": true,
+          "reserved": {
+            "timber": 0,
+            "salvage": 0
+          },
+          "contributions": {
+            "A": {
+              "basis": 20,
+              "minutes": 20,
+              "fraction": 1,
+              "effort": 0.20000000000000007
+            },
+            "B": {
+              "basis": 18,
+              "minutes": 1,
+              "fraction": 0,
+              "effort": 0
+            }
+          },
+          "basisPaid": {
+            "A": 0,
+            "B": 0
+          },
+          "toolAtStart": false
+        }
+      },
+      "assignments": {
+        "A": null,
+        "B": null,
+        "C": null
+      },
+      "haulStoppedAt": null,
+      "lastResponse": null
+    }
+  },
+  "outcome": {
+    "accepted": true,
+    "roundtripPreservesChangedSnapshot": true,
+    "observation": {
+      "now": 21,
+      "stock": {
+        "timber": 0,
+        "salvage": 0,
+        "toolBlank": 0
+      },
+      "spent": {
+        "timber": 5,
+        "salvage": 1,
+        "toolBlank": 0
+      },
+      "toolAvailable": false,
+      "outputs": 1,
+      "actors": {
+        "A": {
+          "person": {
+            "format": "human-framework-person",
+            "version": 1,
+            "componentVersion": "0.1.1",
+            "person": {
+              "version": "0.1.1",
+              "id": "A",
+              "body": {
+                "fatigue": 0.40650000000000014,
+                "hunger": 0.24200000000000005
+              },
+              "skills": {
+                "construction": 0.18889723232091568,
+                "hauling": 0.1
+              },
+              "observationBias": 0,
+              "minutes": 21,
+              "nextAttempt": 22,
+              "pending": null
+            }
+          },
+          "paid": {
+            "work": 20,
+            "recovery": 1,
+            "effort": 0.20000000000000007,
+            "construction": 20,
+            "hauling": 0,
+            "crafting": 0
+          }
+        },
+        "B": {
+          "person": {
+            "format": "human-framework-person",
+            "version": 1,
+            "componentVersion": "0.1.1",
+            "person": {
+              "version": "0.1.1",
+              "id": "B",
+              "body": {
+                "fatigue": 0.0015,
+                "hunger": 0.24200000000000005
+              },
+              "skills": {
+                "construction": 0.6020746013616933,
+                "hauling": 0.1
+              },
+              "observationBias": 0,
+              "minutes": 21,
+              "nextAttempt": 22,
+              "pending": null
+            }
+          },
+          "paid": {
+            "work": 1,
+            "recovery": 20,
+            "effort": 0,
+            "construction": 1,
+            "hauling": 0,
+            "crafting": 0
+          }
+        },
+        "C": {
+          "person": {
+            "format": "human-framework-person",
+            "version": 1,
+            "componentVersion": "0.1.1",
+            "person": {
+              "version": "0.1.1",
+              "id": "C",
+              "body": {
+                "fatigue": 0,
+                "hunger": 0.24200000000000005
+              },
+              "skills": {
+                "crafting": 0.1
+              },
+              "observationBias": 0,
+              "minutes": 21,
+              "nextAttempt": 22,
+              "pending": null
+            }
+          },
+          "paid": {
+            "work": 0,
+            "recovery": 21,
+            "effort": 0,
+            "construction": 0,
+            "hauling": 0,
+            "crafting": 0
+          }
+        }
+      },
+      "items": [
+        {
+          "id": "work-1",
+          "progress": 1,
+          "completedAt": 20,
+          "settled": true,
+          "reserved": {
+            "timber": 0,
+            "salvage": 0
+          },
+          "contributions": {
+            "A": {
+              "basis": 20,
+              "minutes": 20,
+              "fraction": 1,
+              "effort": 0.20000000000000007
+            },
+            "B": {
+              "basis": 18,
+              "minutes": 1,
+              "fraction": 0,
+              "effort": 0
+            }
+          }
+        }
+      ],
+      "assignments": {
+        "A": null,
+        "B": null,
+        "C": null
+      },
+      "lastResponse": null
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "node": "v26.8.1",
+  "probes": [
+    {
+      "name": "component_multiple_final_partial_minutes",
+      "accepted": {
+        "version": "0.1.0",
+        "id": "piece",
+        "effort": 0.2,
+        "minimumDuration": 1,
+        "progress": 1,
+        "workers": {
+          "A": {
+            "basisMinutes": 1,
+            "minutes": 1,
+            "fraction": 0.5,
+            "effort": 0.1
+          },
+          "B": {
+            "basisMinutes": 1,
+            "minutes": 1,
+            "fraction": 0.5,
+            "effort": 0.1
+          }
+        },
+        "status": "complete"
+      },
+      "actualFirst": {
+        "version": "0.1.0",
+        "id": "piece",
+        "effort": 0.2,
+        "minimumDuration": 1,
+        "progress": 1,
+        "workers": {
+          "A": {
+            "basisMinutes": 1,
+            "minutes": 1,
+            "fraction": 1,
+            "effort": 0.2
+          },
+          "B": {
+            "basisMinutes": 1,
+            "minutes": 0,
+            "fraction": 0,
+            "effort": 0
+          }
+        },
+        "status": "complete"
+      },
+      "explanation": "With floor and both bases exactly 1, every legal first paid minute completes the item. Two workers each claiming a half paid minute is impossible."
+    },
+    {
+      "name": "host_progress_without_any_productivity_change",
+      "acceptedProgress": 0.16666666666666666,
+      "paidMinutes": 1,
+      "tool": false,
+      "acceptedCompletion": 18,
+      "controlCompletion": 20
+    },
+    {
+      "name": "host_completion_before_paid_work_can_fit",
+      "acceptedCompletion": 1,
+      "constructionMinutes": 20,
+      "actualCompletion": 20
+    },
+    {
+      "name": "component_single_extra_minute_after_completion",
+      "acceptedMinutes": 2,
+      "basis": 1,
+      "floor": 1,
+      "actualLegalMinutes": 1
+    },
+    {
+      "name": "host_fabricated_final_minute_and_practice",
+      "acceptedMinutes": 21,
+      "actualMinutes": 20,
+      "acceptedSkill": 0.1931040195866663,
+      "actualSkill": 0.18889723232091568
+    }
+  ]
+}
