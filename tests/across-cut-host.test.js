@@ -91,3 +91,38 @@ test('local physical service observations support voluntary cart insurance decis
  assert.equal(h.getActorView(s,'receiver').local.serviceUnits,2);assert.equal(h.getActorView(s,'keeper').local.serviceUnits,null);
  assert.equal(h.getWorldSummary(s).water.conservedTotal,3);
 });
+test('physical contact availability is observable at a station and follows actual departure',async()=>{
+ const h=await host();let s=h.create();assert.equal(h.getActorView(s,'receiver').local.peerPresent,false);
+ s=h.request(s,'keeper',{task:'travel',to:'dock'});s=h.advance(s,6);assert.equal(h.getActorView(s,'receiver').local.peerPresent,true);
+ s=h.request(s,'keeper',{task:'transmit',via:'contact',message:{kind:'report',observationIds:[1]}});s=h.request(s,'receiver',{task:'travel',to:'valve'});s=h.advance(s,7);
+ assert.equal(h.getActorView(s,'keeper').local.peerPresent,false);assert.equal(h.getActorView(s,'receiver').inbox.length,0);assert.equal(h.getActorView(s,'keeper').paid.transmit,1);assert.equal(h.getActorView(s,'keeper').inventory.radio.available,4);
+});
+test('cart outbound receipt tells its owner whether their actual delivery counted',async()=>{
+ const h=await host();let s=h.create();s=h.request(s,'receiver',{task:'cart'});s=h.advance(s,5);
+ const v=h.getActorView(s,'receiver');assert.equal(v.notebook.find(o=>o.cue==='cartDelivery').value.delivered,1);assert.equal(v.job.task,'cart');
+});
+test('infeasible fourteen-minute inlet stays paid and cannot meet early launch',async()=>{
+ let {h,s}=await repaired({inletMinutes:14,launchAt:15});s=h.advance(s,7);s=h.request(s,'keeper',{task:'release'});s=h.advance(s,15);
+ assert.equal(h.getWorldSummary(s).work.dock,14);assert.equal(h.getWorldSummary(s).service.units,0);assert.equal(h.getWorldSummary(s).water.lost,2);
+ assert.equal(h.getActorView(s,'receiver').paid.repair,14);assert.equal(h.getWorldSummary(s).water.conservedTotal,3);
+});
+test('whole-attempt Human capacity and paid recovery govern admission',async()=>{
+ const h=await host();let s=h.create({bodies:{keeper:{fatigue:.95,hunger:.15}}});s=h.request(s,'keeper',{task:'inspect'});s=h.advance(s,1);
+ assert.throws(()=>h.request(s,'keeper',{task:'repair'}),{code:'CAPACITY'});const before=h.getWorldSummary(s).actors.keeper.body.fatigue;
+ s=h.request(s,'keeper',{task:'rest',minutes:6});s=h.advance(s,7);assert.ok(h.getWorldSummary(s).actors.keeper.body.fatigue<before);s=h.request(s,'keeper',{task:'repair'});assert.equal(h.getActorView(s,'keeper').job.task,'repair');
+});
+test('withdrawal after response send leaves a stale acceptance claim in flight',async()=>{
+ const h=await host();let s=h.create();s=h.request(s,'keeper',{task:'propose',terms:{releaseAt:8,attendFrom:10,attendUntil:14}});s=h.advance(s,3);
+ s=h.request(s,'receiver',{task:'decide',proposalId:'keeper:p1',revision:1,decision:'accept'});s=h.request(s,'receiver',{task:'transmit',message:{kind:'response',proposalId:'keeper:p1',revision:1,decision:'accept'}});s=h.advance(s,4);
+ s=h.request(s,'receiver',{task:'decide',proposalId:'keeper:p1',revision:1,decision:'withdraw'});s=h.advance(s,6);
+ assert.equal(h.getActorView(s,'keeper').inbox[0].message.decision,'accept');assert.equal(h.getActorView(s,'receiver').contributions[0].status,'withdrawn');assert.equal(h.getActorView(s,'receiver').paid.attend,0);
+});
+test('actual promised attendance fulfills without requiring a response or confirmation',async()=>{
+ const h=await host();let s=h.create();s=h.request(s,'keeper',{task:'propose',terms:{releaseAt:8,attendFrom:10,attendUntil:14}});s=h.advance(s,3);
+ s=h.request(s,'receiver',{task:'decide',proposalId:'keeper:p1',revision:1,decision:'accept'});s=h.advance(s,10);s=h.request(s,'receiver',{task:'attend',minutes:4});s=h.advance(s,14);
+ const v=h.getActorView(s,'receiver');assert.equal(v.contributions[0].status,'fulfilled');assert.equal(v.contributions[0].paidMinutes,4);assert.equal(v.sent.length,0);assert.equal(h.getWorldSummary(s).service.units,0);
+});
+test('strict JSON rejects unknown fields and accessors without evaluating them',async()=>{
+ const h=await host();let read=false;const bad={};Object.defineProperty(bad,'launchAt',{enumerable:true,get(){read=true;return 15;}});assert.throws(()=>h.create(bad),{code:'INVALID_COMMAND'});assert.equal(read,false);
+ assert.throws(()=>h.request(h.create(),'keeper',{task:'rest',minutes:1,secret:true}),{code:'INVALID_COMMAND'});assert.throws(()=>h.restoreState({...h.exportState(h.create()),extra:true}),{code:'INVALID_SAVE'});
+});

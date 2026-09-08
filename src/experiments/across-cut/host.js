@@ -48,6 +48,7 @@ function observeStation(s,a){
  const observe=(cue,value)=>{const old=known(x,cue,station);if(!old||!same(old.value,value))addObservation(s,a,{cue,value,source:station,observedAt:s.clock.now});};
  if(station==='dock'){observe('launchAt',s.config.launchAt);observe('launchDeparted',s.service.departed);observe('serviceUnits',s.service.units);}
  observe(`repairProgress:${station}`,s.work[station]);
+ observe(`peerPresent:${station}`,s.actors[other(a)]?.position===x.position);
 }
 function initial(config){
  const s={version:ACROSS_CUT_VERSION,config:clone(config),clock:createClock(),people:{},actors:{},work:{valve:0,dock:0},service:{units:0,departed:false,deliveries:[]},water:{pipeConsumed:0,cartConsumed:0,inTransit:0,lost:0,excess:0},transport:[],commands:[]};
@@ -58,7 +59,7 @@ export function create(options={}){return initial(setup(options));}
 function check(s){if(!s||s.version!==ACROSS_CUT_VERSION||!s.clock||!s.actors||!s.people)fail('INVALID_STATE','Invalid Across Cut state.');}
 function room(s,a){const x=s.actors[a];return {used:x.decisions,limit:DECISIONS,reserved:Number(Boolean(x.job))+x.contributions.filter(c=>c.status==='accepted').length};}
 function recordDecision(s,a,command){s.actors[a].decisions++;const b=room(s,a);if(b.used+b.reserved>b.limit)fail('COMMAND_LIMIT','Your remaining decision space is reserved for stopping work and withdrawing your promise.');s.commands.push(clone(command));}
-function local(s,a){const x=s.actors[a],station=location(x.position);return {station:station==='path'?null:station,repairMinutes:station==='path'?null:known(x,`repairMinutes:${station}`,station)?.value??null,repairProgress:station==='path'?null:known(x,`repairProgress:${station}`,station)?.value??null,launchAt:known(x,'launchAt','dock')?.value??null,launchDeparted:known(x,'launchDeparted','dock')?.value??null,serviceUnits:known(x,'serviceUnits','dock')?.value??null};}
+function local(s,a){const x=s.actors[a],station=location(x.position);return {station:station==='path'?null:station,repairMinutes:station==='path'?null:known(x,`repairMinutes:${station}`,station)?.value??null,repairProgress:station==='path'?null:known(x,`repairProgress:${station}`,station)?.value??null,launchAt:known(x,'launchAt','dock')?.value??null,launchDeparted:known(x,'launchDeparted','dock')?.value??null,serviceUnits:known(x,'serviceUnits','dock')?.value??null,peerPresent:station==='path'?null:known(x,`peerPresent:${station}`,station)?.value??false};}
 function exactProposal(x,id,revision){const p=x.proposals.find(p=>p.proposalId===id&&p.revision===revision);if(!p)fail('UNKNOWN_PROPOSAL','That exact proposal revision has not been observed.');return p;}
 function proposalKey(input){integer(input.revision,1,128,'proposal revision');if(typeof input.proposalId!=='string'||!/^(keeper|receiver):p[1-9]\d*$/.test(input.proposalId))fail('INVALID_COMMAND','Invalid proposal identity.');}
 function termShape(t){fields(t,['releaseAt','attendFrom','attendUntil']);integer(t.releaseAt,0,28,'release time');integer(t.attendFrom,0,29,'attend start');integer(t.attendUntil,1,30,'attend end');if(t.attendUntil<=t.attendFrom)fail('INVALID_COMMAND','Attendance must have a positive interval.');}
@@ -186,7 +187,7 @@ function tick(s){
  for(const a of ACTORS)payMinute(s,a);
  const moved=advanceClock(s.clock,s.clock.now+1);s.clock=moved.clock;
  s._attending=Boolean(prior.receiver?.task==='attend'&&s.actors.receiver.position===6);
- for(const a of ACTORS){const x=s.actors[a],j=x.job;if(j?.task==='cart'&&j.elapsed===5){j.delivered=true;releaseReservation(x,'cartWater',1,true);s.water.cartConsumed++;waterDelivery(s,'cart',1);}if(j&&j.endsAt===s.clock.now)complete(s,a);}
+ for(const a of ACTORS){const x=s.actors[a],j=x.job;if(j?.task==='cart'&&j.elapsed===5){j.delivered=true;releaseReservation(x,'cartWater',1,true);s.water.cartConsumed++;waterDelivery(s,'cart',1);addObservation(s,a,{cue:'cartDelivery',value:s.service.deliveries.at(-1),source:'cart',observedAt:s.clock.now});}if(j&&j.endsAt===s.clock.now)complete(s,a);}
  for(const e of moved.events)if(e.type==='water'){s.water.inTransit-=e.data.units;waterDelivery(s,'pipe',e.data.units);}
  for(const e of moved.events)if(e.type==='message')deliverMessage(s,e.data);
  if(s.clock.now===s.config.launchAt)s.service.departed=true;
