@@ -1,0 +1,5 @@
+
+> human-framework@0.12.0 verify:live
+> node scripts/verify-live.js /tmp/hf-retirement-live.json
+
+Verified app 0.12.0, runtime 0.1.1, 69 exact public payloads and 66 private/missing 404s at 7dbf9aeff7e91fcc8717cc7635e180db2129219f.

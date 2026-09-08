@@ -1,0 +1,38 @@
+[
+  {
+    "route": "/workshop/",
+    "status": 200,
+    "header": "← Games",
+    "errors": []
+  },
+  {
+    "route": "/shift/",
+    "status": 200,
+    "header": "← Games",
+    "errors": []
+  },
+  {
+    "route": "/courier/",
+    "status": 200,
+    "header": "← Games",
+    "errors": []
+  },
+  {
+    "route": "/courtyard/",
+    "status": 200,
+    "header": "← Games",
+    "errors": []
+  },
+  {
+    "route": "/commons/",
+    "status": 200,
+    "header": "← Games",
+    "errors": []
+  },
+  {
+    "route": "/watch/",
+    "status": 200,
+    "header": "← All games",
+    "errors": []
+  }
+]

@@ -1,10 +1,10 @@
 # Human Framework handoff
 
-Updated 2026-09-08 after delivery of app 0.11, The camp. Start here, then [the MVP contract](docs/mvp-contract.md), [roadmap](docs/roadmap.md), [release evidence](docs/release-0.11.md) and [review dispositions](docs/reviews/2026-09-08-earned-camp-review.md). Earlier lane branches and dated release records are provenance, not unfinished tasks.
+Updated 2026-09-08 after delivery of app 0.12, laboratory retirement. Start here, then [the MVP contract](docs/mvp-contract.md), [roadmap](docs/roadmap.md), [release evidence](docs/release-0.12.md) and [review dispositions](docs/reviews/2026-09-08-laboratory-retirement.md). Earlier lane branches and dated release records are provenance, not unfinished tasks.
 
 **Current direction supersedes the old story queue.** The user has finished the games, retires the public laboratory, accepts breaking old saves, and permits shortening, merging, replacing or deleting experiments. The framework is the product; no unified campaign or all-game tutorial is required. Keep useful source/evidence privately, without indefinite public-route, save-migration or old-UI obligations. Autonomous design, implementation, private commit/push and deployment authority remains active.
 
-**App 0.12 in preparation:** root becomes a curated example chooser; laboratory assets are removed from publication and local serving; publication uses an exact asset list. App 0.11 below remains the last verified live delivery until the release record is updated. The next framework milestone is paid durable work in an independent repair host, tested against direct host code.
+**Current stage complete.** App 0.12 is pushed, deployed and verified: a curated chooser replaces the laboratory, whose assets are removed from public and local serving. All current implementation/review lanes are complete. The next framework milestone is paid durable work in an independent repair host, tested against direct host code; its protocol is proposed, not yet executed.
 
 **Review usage preference:** The user reset usage themselves and asked to be more conscious of consumption. Astra Ultra parallel tracks remain authorized; keep them bounded and avoid redundant reruns. Use Fable sparingly. For other focused Claude reviews, omit `--model` as the user requested for Opus, and record the actual returned model. Do not purchase capacity or consume reset credits without a separate explicit request. The hourly automation already carries this preference.
 
@@ -16,8 +16,8 @@ The larger project is an Islam-guided, empirically informed human simulation fra
 
 | Scope | Current version / boundary |
 |---|---|
-| Browser app | **0.11.0**, The camp story plus ten original games/variations and laboratory |
-| Laboratory | 0.3.0, `src/core/index.js`; historical 0.1/0.2 replay kernels remain frozen |
+| Browser app | **0.12.0**, four current examples plus seven optional earlier experiments |
+| Laboratory | Retired from public/local serving; headless 0.3.0 and historical 0.1/0.2 source remain private evidence |
 | Original five games and Before the rain | Human 0.1.0, `src/human/index.js` |
 | Before the Water, Last Light, Service Day, Shared Promise and installed package | Human/runtime 0.1.1, `src/runtime/index.js` → `src/human/v0.1.1.js` |
 | Integer event clock | 0.1.0, `src/runtime/clock.js` |
@@ -33,11 +33,18 @@ The larger project is an Islam-guided, empirically informed human simulation fra
 | Observation memory | Private `src/cognition/observation-memory.js`, candidate 0.1.0; **not packaged or published** |
 | Shared social record | Private `src/social/contracts.js`; **not packaged or published** |
 
-Review **[The camp](https://human.adamwhite.work/camp/)** or **[all games](https://human.adamwhite.work/games/)**. Verified app source is **`2c600240967ed42b2174f2c409349f62cadbf06e`**, Worker **`b0539ad8-ae00-4bc2-a6e3-4752fe204566`**, public digest **`ff830e4c87bd4251de47118fc0f1dbcb75d99d3b93bd428ec8fcb83ef94ad48b`**. [Exact live verification](artifacts/release-0.11/live.json) checks all 89 payloads, required headers and 45 private/missing 404s. [Production story checks](artifacts/release-0.11/production-camp/result.json) pass nine interaction/save/phase groups; [production original-game checks](artifacts/release-0.11/production-originals/result.json) pass ten games and three viewport sizes. Later private evidence/docs commits are distinct from this deployed source and require no redeployment while public bytes are unchanged.
+Review **[current examples](https://human.adamwhite.work/)** or **[The camp](https://human.adamwhite.work/camp/)**. Verified app source is **`7dbf9aeff7e91fcc8717cc7635e180db2129219f`**, Worker **`33c66591-b5ff-4d5a-b99c-d1fd470fabaf`**, public digest **`5c5e10da18c1a1d9f7d4d773195807e3e613bcd5e31817a8bacc15cb36e5b56d`**. [Exact live verification](artifacts/release-0.12/live.json) checks all 69 payloads, required headers and 66 private/missing 404s, including all 20 removed laboratory files. [Production chooser checks](artifacts/release-0.12/production-chooser/result.json) cover four choices, seven earlier links, keyboard/disclosure and no-JavaScript access; [six changed player routes](artifacts/release-0.12/production-navigation.json) and a [fresh paid Camp continuation](artifacts/release-0.12/production-camp-smoke.json) also pass. Later private evidence/docs commits are distinct from this app source and require no redeployment while public bytes are unchanged.
 
 Keep released source identities in `scripts/runtime-release-lock.json` attributable. Use an explicit new version for incompatible runtime changes; a new game need not migrate prior saves. Human 0.1.1 already fixes capacity-object key order and fractional accumulated-time consistency. This retirement release changes no simulation code. [Portable API](docs/portable-runtime.md).
 
-## Latest completed milestone: app 0.11, The camp
+## Latest completed milestone: app 0.12, laboratory retirement
+
+- Root and games chooser emphasize four distinct examples without numbering or required order; seven earlier routes are under a native disclosure. All public laboratory links and player-page references are removed.
+- Exact page/asset selection replaces directory-wide publication and local access. Independent review reproduced/fixed same-directory selected-file and ancestor symlink exposure. The removed 20 files are verified absent in production; historical controls stay private.
+- 686 integrated tests pass, repeated at deployment; 8 focused checks pass independently on Node 26 and minimum 22. Production chooser, navigation and paid/reloaded Camp interaction pass. Build is 71 files, 42 modules and 60 edges.
+- Current instructions and the active hourly task now prioritize framework benefit, disposable examples and optional save migrations. No new simulation mechanism was implemented in this release. The next paid-work proposal is source-pinned and unexecuted. [Release](docs/release-0.12.md) · [Review](docs/reviews/2026-09-08-laboratory-retirement.md).
+
+## Earlier completed milestone: app 0.11, The camp
 
 - **A real continuing world:** camp creation, an earned supply window, actual ferry dispatch/rain, early close only after dispatch and full provision, and Return to the same people/resources/work. Busy Common Ground and existing Rain saves migrate explicitly into separate story slots; no scripted replacement camp, missing cache timestamps or old command history is invented. [Interface](docs/camp-interface.md) · [Contracts](docs/camp-story-contract.md).
 - **Full kernel:** gathering, durable/prospective assembly, automatic available recovery, owned eight-minute meals, independent accepted-project policy, consent-based handover and full mixed legacy conversion. Same-worker stop/resume cannot refresh bonuses. A legal old garden case finishes at 207 versus 202 after restart; the new prospective work finishes at 202 without restarting, preserving .20 effort. Old hosts and frozen Human/runtime/model/clock sources stay exact. [Kernel contract](docs/camp-kernel-contract.md).

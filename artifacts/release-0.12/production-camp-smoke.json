@@ -1,0 +1,12 @@
+{
+  "url": "https://human.adamwhite.work/camp/",
+  "viewport": {
+    "width": 375,
+    "height": 667
+  },
+  "firstJob": "You: Gather timber",
+  "paidMinute": 1,
+  "reloadPreserved": true,
+  "nextEventMinute": 13,
+  "errors": []
+}

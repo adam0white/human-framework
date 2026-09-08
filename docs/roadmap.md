@@ -2,9 +2,9 @@
 
 Current restart guide: [handoff](../HANDOFF.md). The [latest player correction](player-feedback-2026-09-08.md#later-correction-after-app-011) supersedes prior campaign and compatibility obligations: improve the framework; freely replace its experiments.
 
-## Current direction — 2026-09-08, after app 0.11
+## Current delivery and direction — 2026-09-08, app 0.12
 
-Retire the public laboratory. Feature a small selection of examples with distinct uses, put earlier games behind a disclosure, and remove any required order. The only current player reports finishing all games and accepts old-save breakage. Neither keeping every route nor building a unified story is an MVP requirement. Research provenance, negative findings and enough historical source to reproduce material comparisons remain private evidence.
+[App 0.12](release-0.12.md) retires the public laboratory, features four examples with distinct uses, puts seven earlier games behind a disclosure, and removes the required order. All 686 tests and production verification pass; no simulation mechanism changes in this release. The only current player reports finishing all games and accepts old-save breakage. Neither keeping every route nor building a unified story is an MVP requirement. Research provenance, negative findings and enough historical source to reproduce material comparisons remain private evidence.
 
 App 0.11 already delivers durable work, prospective improvements, automatic recovery and accepted handover. Its reviewed 207→202 restart correction identifies a real improvement, but those rules are still largely embedded in one camp host. Its window journal is not a universal requirement: the [snapshot rival](camp-validator.md) is faster for a weaker contract. Avoid compatibility and validation machinery that has no current use.
 

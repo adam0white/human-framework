@@ -71,6 +71,15 @@ This is a working-diff review, not an assertion that the changes have been commi
 | `scripts/public-pages.js` | `08f3fb57e4dd787c76316e7e8a49dc7f68d83b533a262f255a60b7bd811b9475` |
 | `scripts/build.js` | `037633a9f8d627db2cadc149873686fb914be05050d0a28f2daf380e6ec942ea` |
 | `scripts/serve.js` | `dda4b65ed55807ceb508964971ab061e1b629a0ae66200fed2979df4ed05b523` |
-| `scripts/verify-live.js` | `f0d315b0fa23a9b0d5d81821f51bd91e8f8edb33c81df17eab514dfe81d1667d` |
+| `scripts/verify-live.js` | `2006ae07d27b294e04ea41d4d79db6ac4d93e6035d4f46b0bff108b5ff090ade` |
 
 The source and HTTP dependency checks do not replace the separate UI review or root's exact committed-and-pushed release/deployment verification.
+
+
+## Final verification-list-only delta — inspected PASS
+
+The final `verify-live.js` change adds the five `model`, `observation`, `policy`, `random` and `simulation` endpoints for each retired legacy version (`v0.1`, `v0.2`). These ten paths match the actual legacy filenames. Together with the already listed two legacy entry modules, retired web/core/scenario files and `/laboratory/`, the verifier now configures all **20 removed file endpoints**, the retired page route, and **66 distinct private/missing paths** overall.
+
+A source-only check confirmed that deleting exactly this added line reproduces the previously reviewed hash `f0d315b0fa23a9b0d5d81821f51bd91e8f8edb33c81df17eab514dfe81d1667d`; no other verifier logic changed. The configured path count and uniqueness were checked without executing network requests. No build or test suite was rerun for this list-only change.
+
+Final `scripts/verify-live.js` SHA256: `2006ae07d27b294e04ea41d4d79db6ac4d93e6035d4f46b0bff108b5ff090ade` (also updated in the source table above). This confirms the verification configuration, **not** live endpoint status. Exact production execution remains with the root deployment task.
