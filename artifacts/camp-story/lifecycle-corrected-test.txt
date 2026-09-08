@@ -1,0 +1,22 @@
+✔ the first actual milestone is the same complete world across all three drivers (44.336458ms)
+✔ legacy Rain imports retain their existing window, paid world and settlement instead of starting again (67.80425ms)
+✔ an import-root time cannot move while keeping the same original Common Ground source (24.618792ms)
+✔ a cache completing exactly at the ferry can be allocated before its inclusive dispatch (112.758709ms)
+✔ a partially paid meal survives the ferry checkpoint and an explicit stop returns only its own reserved portion (66.606833ms)
+✔ ordinary request exhaustion still permits unilateral stop, release, both checkpoints and saved return (1362.522792ms)
+✔ invalid, recursive and oversized input rejects without getters, cloning expansion or world mutation (23.70075ms)
+✔ new story earns its actual camp and pauses after the first milestone (124.533084ms)
+✔ mixed stock-first legacy migration enters the complete selected world without a canonical opening (25.474625ms)
+✔ actual legacy surplus keeps twelve earned caches and can close without empty time (95.693084ms)
+✔ coarse, minute and Next Event drivers stop identically at the ferry and retain pending work (268.012792ms)
+✔ missing the ferry permits later paid camp service and retains the household loss on return (151.318667ms)
+✔ source replay rejects forged window, receipts, allocations, continuation and world snapshots (226.254666ms)
+✔ views and reading do not alter the saved world and expose source kernel fields (19.790916ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1751.40825

@@ -4,23 +4,26 @@ import * as rain from './commons-next.js';
 export const CAMP_STORY_VERSION='0.1.0';
 export const FERRY_MINUTES=90,RAIN_MINUTES=180;
 export const MAX_WINDOW_COMMANDS=2048,ORDINARY_COMMAND_LIMIT=1024;
-const WORLD_LIMIT=1e9,MAX_NODES=250000,MAX_DEPTH=48;
+const WORLD_LIMIT=1e9,MAX_NODES=250000,MAX_DEPTH=48,MAX_JSON_CHARACTERS=1048576;
 const copy=value=>structuredClone(value),trusted=new WeakSet();
 const exact=(value,fields,label)=>{if(!value||typeof value!=='object'||Array.isArray(value)||![Object.prototype,null].includes(Object.getPrototypeOf(value))||Object.keys(value).length!==fields.length||fields.some(key=>!Object.hasOwn(value,key)))throw new Error(`Invalid ${label} fields`);};
 const integer=(value,min,max,label)=>{if(!Number.isSafeInteger(value)||value<min||value>max)throw new Error(`Invalid ${label}`);};
 function inspect(value){
-  const seen=new WeakSet();let nodes=0;
+  const seen=new WeakSet();let nodes=0,characters=0;
+  const debit=amount=>{characters+=amount;if(characters>MAX_JSON_CHARACTERS)throw new Error('Story save exceeds bounded JSON size');};
+  const string=value=>{if(value.length>10000)throw new Error('Story save string too large');debit(JSON.stringify(value).length);};
   function visit(item,depth){
     if(++nodes>MAX_NODES||depth>MAX_DEPTH)throw new Error('Story save exceeds bounded JSON size');
-    if(item===null||typeof item==='boolean')return;
-    if(typeof item==='number'){if(!Number.isFinite(item))throw new Error('Invalid nonfinite story number');return;}
-    if(typeof item==='string'){if(item.length>10000)throw new Error('Story save string too large');return;}
+    if(item===null||typeof item==='boolean'){debit(5);return;}
+    if(typeof item==='number'){if(!Number.isFinite(item)||Object.is(item,-0))throw new Error('Invalid nonfinite story number');debit(String(item).length);return;}
+    if(typeof item==='string'){string(item);return;}
     if(typeof item!=='object'||seen.has(item))throw new Error('Story save must be an unshared JSON tree');
     seen.add(item);if(!Array.isArray(item)&&![Object.prototype,null].includes(Object.getPrototypeOf(item)))throw new Error('Invalid story JSON object');
     if(Reflect.ownKeys(item).some(key=>typeof key!=='string'))throw new Error('Invalid story JSON key');
-    for(const [key,descriptor] of Object.entries(Object.getOwnPropertyDescriptors(item))){
+    debit(2);for(const [key,descriptor] of Object.entries(Object.getOwnPropertyDescriptors(item))){
       if(Array.isArray(item)&&key==='length')continue;
       if(!Object.hasOwn(descriptor,'value')||!descriptor.enumerable)throw new Error('Invalid story JSON accessor');
+      if(!Array.isArray(item))string(key);debit(2);
       visit(descriptor.value,depth+1);
     }
     if(Array.isArray(item)&&Object.keys(item).length!==item.length)throw new Error('Invalid sparse story array');
@@ -67,7 +70,7 @@ function rootGame(record){
   if(!['earned','legacy'].includes(record.kind))throw new Error('Invalid story entry origin');
   const world=camp.restoreGame(record.root);
   if(world.solo||world.milestoneAt===null||record.kind==='earned'&&world.milestoneAt!==world.clock.now)throw new Error('Invalid earned camp entry snapshot');
-  if(record.kind==='legacy'&&!world.origin)throw new Error('Legacy continuation needs its validated source');
+  if(record.kind==='legacy'&&(!world.origin||!equal(world,camp.migrateLegacyGame(world.origin,world.options))))throw new Error('Legacy entry must equal the explicit migration of its original source');
   const game=fromWorld(world);enter(game,record.kind);return game;
 }
 function append(game,command){
