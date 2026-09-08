@@ -1,6 +1,6 @@
 # Across the Cut player comparison
 
-Preregistered on 2026-09-08 before execution of the new host/receiver outcomes. Status: input and policy design pending root's source-freeze commit; no new evaluation has run in this lane. The completed private Across the Cut study remains historical evidence and does not certify the new receiver.
+Preregistered on 2026-09-08 before execution of the new host/receiver outcomes. The 52 initial records and their exact minimum-Node-22 reproduction are now complete. Implementation, inputs, policies, runner and tests were committed at `4f46243681ea6e0edf5173ca16e5e5548b88632e`; the [source freeze](../artifacts/across-player/freeze.json) was separately committed at `c3cf4896a87ea1f8106347eeb74f1c3251605a6b` before outcome execution. No evaluated code, case or policy was retuned. The completed private Across the Cut study remains historical evidence and does not certify the new receiver. Browser controls and deployment remain separate release checks.
 
 ## Exact scope and fixed choices
 
@@ -25,3 +25,84 @@ Freeze exact inputs, policy/runner source, new host, receiver, player driver and
 Report service (including timing), water lost/excess/in transit, every owned inventory ledger, paid work, actual attendance, available recovery, meals/rest, travel, and radio/contact minutes and charges separately. Retain action refusals, failure to reproduce the required case, interrupted paid work, no-radio successes and any radio failures. Do not choose a weighted aggregate or imply optimality from a narrow count. Source/line/byte costs should distinguish common player/host code, the shared receiver and the changed joint receiver; they are software counts, not measured human maintenance savings.
 
 After these 52 records, stop expansion if reports create no useful decision or outcome advantage over competent simpler alternatives. Preserve the simpler option and failed premise; do not add memory, acknowledgments or negotiation. A useful stop/continue difference may justify the narrow player information boundary without demonstrating broad policy superiority, human comprehension or a portable cognition module. Source defects require preserving original outputs and a separately labeled revalidation freeze; do not retune policies after results.
+
+## Frozen initial outcomes
+
+All 52 records finish at the public horizon with zero refused commands. Each actor accounts for exactly 30 paid Human minutes, and each world reconciles to its original three water units. [Complete captured evidence](../artifacts/across-player/initial/results.json.gz) is 357,767 compressed bytes, SHA-256 `d1ce9689f0347183e60867df9df228cb90571ec5d5eb9680b9911d72c46e7e98`. It retains both actors' complete decision inputs, state, decisions and results; all world/player saves, actual report envelopes and receipt claims; final body, inventory and payment ledgers; and exact transition/final hashes. The [readable derived summary](../artifacts/across-player/initial/summary.json) contains every record's disaggregated metrics and binds the original evidence hash.
+
+Actual service units, capped at two per world:
+
+| Keeper / joint control | P1 easy early | P2 long inlet late | P3 long inlet early | P4 long keeper early | P5 both long late | P6 all reports lost |
+|---|---:|---:|---:|---:|---:|---:|
+| Shared receiver: fixed early | 2 | 0 | 1 | 0 | 2 | 2 |
+| Shared receiver: conservative | 0 | 2 | 1 | 0 | 2 | 2 |
+| Shared receiver: cart-first keeper timing | 2 | 0 | 1 | 0 | 2 | 2 |
+| Shared receiver: paid contact/fallback | 0 | 2 | 1 | 0 | 2 | 2 |
+| Shared receiver: adaptive radio | 2 | 2 | 1 | 1 | 2 | 2 |
+| Joint no-radio: cart-first early | 2 | 1 | 1 | 1 | 2 | 2 |
+| Joint no-radio: cart-first conservative | 1 | 2 | 1 | 1 | 2 | 2 |
+| Joint no-radio: immediate cart | 1 | 1 | 1 | 1 | 1 | 1 |
+
+Lost pipe units, separately from service:
+
+| Keeper / joint control | P1 | P2 | P3 | P4 | P5 | P6 |
+|---|---:|---:|---:|---:|---:|---:|
+| Shared receiver: fixed early | 0 | 2 | 2 | 2 | 0 | 0 |
+| Shared receiver: conservative | 2 | 0 | 2 | 2 | 0 | 0 |
+| Shared receiver: cart-first keeper timing | 0 | 2 | 2 | 2 | 0 | 0 |
+| Shared receiver: paid contact/fallback | 0 | 0 | 0 | 0 | 0 | 0 |
+| Shared receiver: adaptive radio | 0 | 0 | 0 | 0 | 0 | 0 |
+| Joint no-radio: cart-first early | 0 | 2 | 2 | 2 | 0 | 0 |
+| Joint no-radio: cart-first conservative | 2 | 0 | 2 | 2 | 0 | 0 |
+| Joint no-radio: immediate cart | 0 | 0 | 0 | 0 | 0 | 0 |
+
+P1 joint cart-first early consumes all three water units: one cart delivery at 8, one further pipe unit at 14 and one **excess** pipe unit. It is the only policy record with excess water. No record ends with in-transit or reserved water. Adaptive radio retains both pipe units in P3/P4 and retains the cart unit in P1/P2/P5/P6. Immediate cart retains both pipe units and both fittings in every world. Exact fitting, water/cart, radio and meal ledgers remain in the summary; no arm consumes a meal or requests explicit timed rest. Available recovery varies with paid work and attendance and is not free elapsed time or a body reset.
+
+### Timing, paid work and communication
+
+`Work K/R` counts each actor's inspection, repair, release, cart, travel and transmission minutes; paid attendance and available recovery are reported separately. Completed one-minute radio/contact transmissions and radio charges remain separately identified in the full ledger. All five shared-receiver controls include its initial paid radio even when their keeper sends none.
+
+| Record | Successful delivery minute(s) | Work K/R | Receiver attendance | Recovery K/R | Radio charges K/R | Contact minutes K/R |
+|---|---|---:|---:|---:|---:|---:|
+| P1 fixed early | 2 at 12 | 9 / 4 | 8 | 21 / 18 | 0 / 1 | 0 / 0 |
+| P1 adaptive radio | 2 at 13 | 10 / 4 | 9 | 20 / 17 | 1 / 1 | 0 / 0 |
+| P1 joint cart-first early | 1 at 8; 1 at 14 | 9 / 13 | 1 | 21 / 16 | 0 / 0 | 0 / 0 |
+| P2 shared conservative | 2 at 18 | 9 / 16 | 2 | 21 / 12 | 0 / 1 | 0 / 0 |
+| P2 adaptive radio | 2 at 17 | 10 / 16 | 1 | 20 / 13 | 1 / 1 | 0 / 0 |
+| P2 joint conservative | 2 at 18 | 9 / 15 | 3 | 21 / 12 | 0 / 0 | 0 / 0 |
+| P2 paid contact | 2 at 26 | 23 / 16 | 10 | 7 / 4 | 0 / 1 | 1 / 0 |
+| P4 shared fixed early | None | 15 / 4 | 11 | 15 / 15 | 0 / 1 | 0 / 0 |
+| P4 adaptive radio | 1 at 9 | 4 / 14 | 0 | 26 / 16 | 1 / 1 | 0 / 0 |
+| P4 joint immediate cart | 1 at 5 | 0 / 10 | 0 | 30 / 20 | 0 / 0 | 0 / 0 |
+| P6 shared conservative | 2 at 18 | 15 / 4 | 14 | 15 / 12 | 0 / 1 | 0 / 0 |
+| P6 adaptive radio | 2 at 19 | 16 / 4 | 15 | 14 / 11 | 1 / 1 | 0 / 0 |
+| P6 joint cart-first early | 2 at 18 | 15 / 3 | 5 | 15 / 22 | 0 / 0 | 0 / 0 |
+
+The P1 overhead hypothesis is borne out: adaptive radio supplies the same two units a minute later than shared fixed early, spending an extra keeper transmission/charge and an extra receiver attendance minute. P5 and P6 also preserve a radio delay/cost loss. The much smaller P6 joint attendance window succeeds with five paid attendance minutes, versus fifteen for adaptive radio. A broad receiver window accommodates unpredictable player timing at a real labor cost.
+
+P2 retains a narrow useful tradeoff: source-time radio schedules service at 17 with one receiver attendance minute; shared conservative reaches 18 with two attendance minutes, while joint conservative reaches 18 with three and no radio. Paid contact reaches 26 after twelve keeper travel minutes, two keeper inspections and one contact minute. The contact policy uses already received facts when available, so its P1 visit does not repeat a dock inspection whose requirement is already known; in P3 the receiver is away and no contact is attempted. It is explicitly a shared-reporting-receiver control, not a pure communication-free or radio-isolated arm. Its long-valve fallback still uses any received launch knowledge: P4 preserves water after three repair minutes but supplies zero.
+
+P4 upstream reporting makes the fixed receiver take its useful cart at 4, serving one unit at 9; shared fixed controls omit the report and serve zero. This is a real change in the selected receiver's behavior. Joint immediate cart serves the same unit at 5, preserves both pipe units and fittings, and pays no keeper work or radio. P3 immediate cart likewise achieves the same one-unit service earlier and more cheaply than the reporting arms. These negatives prevent a general communication or receiver-policy superiority claim.
+
+### Actual receipt, explicit stop and saved continuation
+
+All four prescribed records have the same actual minute-eight receipt save hash. The source report was observed at 1, sent after paid transmission at 2 and actually received at 8. At receipt the keeper has paid one release minute, still has an active release, and has both water units reserved. These are actual driver outputs, not injected receipts or predicted timestamps.
+
+| Choice at receipt | Final pipe water available | Paid release minutes | Pipe consumed / lost | Actual service |
+|---|---:|---:|---:|---|
+| Stop | 2 | 1 | 0 / 0 | 1 cart unit at 7 |
+| Continue | 0 | 2 | 2 / 2 | 1 cart unit at 7; failed pipe arrival at 12 |
+| Restore receipt, then stop | 2 | 1 | 0 / 0 | Exact same final save as Stop |
+| Restore receipt, then continue | 0 | 2 | 2 / 2 | Exact same final save as Continue |
+
+The interface pause leaves paid work pending. Explicit stop preserves two owned units and one further work minute; continuing makes the loss irreversible. This earns a narrow consequential information/stop boundary. It does not increase service in this case, and a player who never releases can retain the same water without paying the sunk repair/release work.
+
+## Verification, cost and decision
+
+[Exact Node 22.0.0 replay](../artifacts/across-player/initial/node22-replay.json) reconstructs the frozen Git import graph and reproduces all 52 complete records, including every actor input and actual receipt save/resume. The eight preregistered synthetic policy/registration tests passed on Node 26.8.1 and minimum Node 22 before outcomes. A separately labeled [post-outcome integrity probe](../artifacts/across-player/verify-evidence.mjs) passes [11 checks](../artifacts/across-player/initial/integrity-probes.json): two retained originals and nine rejections for changed setup, controller, actor input, decision reason, world metric, unregistered identity, receipt choice, source time or restoration claim. These repeats validate the same authored records and are not additional independent cases.
+
+The frozen common runtime is 27,045 bytes / 427 nonblank lines, current host 22,519 / 200, player driver 10,287 / 150, and shared receiver 4,143 / 68. All comparison policies together add 6,101 / 80; capture/replay runner adds 14,606 / 184. The explicitly different joint receiver function is 1,404 bytes / 17 lines **before** its shared helpers, so comparing that partial count alone with the complete shared receiver would undercount its implementation. Full source-count boundaries are in the summary. No human authoring or maintenance saving is measured, and UI source is outside these counts.
+
+The bounded comparison stops here. Preserve the narrow actual-receipt stop/continue result and the disclosed receiver as a disposable player consumer; preserve competent no-radio and contact alternatives with their actual costs. Do not promote a general cognition component or enlarge the policy search to rescue a broad advantage claim.
+
+The six worlds are representative exact schedules, not a balanced information-necessity experiment. Public channel mode correlates with hidden repair/deadline combinations in this small selection. A different no-radio policy could exploit that correlation; it has not been run, and no post-outcome policy tuning is included here. The observed policy table therefore cannot establish that communication is necessary or that these rivals exhaust the simpler alternatives. Human understanding, enjoyment, calibration and authoring benefit remain unmeasured.

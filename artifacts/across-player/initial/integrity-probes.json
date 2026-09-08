@@ -1,0 +1,56 @@
+{
+  "format": "across-player-integrity-probes",
+  "version": 1,
+  "scope": "Post-outcome source-specific verification, not additional comparison cases or independent outcome samples.",
+  "sourceCommit": "4f46243681ea6e0edf5173ca16e5e5548b88632e",
+  "freezeSha256": "a4fc21cc3f97e5005a294182b4153172801bb73eaf52e4fbc8f6f135591e198b",
+  "inputSha256": "d1ce9689f0347183e60867df9df228cb90571ec5d5eb9680b9911d72c46e7e98",
+  "probeSha256": "ae2d67e19aa2a6963ce92bc57ee1a99a60df5b373070aa295567731a1c272514",
+  "node": "v26.8.1",
+  "checks": [
+    {
+      "name": "original P2/radio-adaptive",
+      "passed": true
+    },
+    {
+      "name": "original I-stop-restored",
+      "passed": true
+    },
+    {
+      "name": "initial setup changed",
+      "passed": true
+    },
+    {
+      "name": "controller relabeled",
+      "passed": true
+    },
+    {
+      "name": "actor input changed",
+      "passed": true
+    },
+    {
+      "name": "decision reason changed",
+      "passed": true
+    },
+    {
+      "name": "world metric changed",
+      "passed": true
+    },
+    {
+      "name": "unregistered identity",
+      "passed": true
+    },
+    {
+      "name": "receipt choice relabeled",
+      "passed": true
+    },
+    {
+      "name": "receipt source time changed",
+      "passed": true
+    },
+    {
+      "name": "receipt restoration claim changed",
+      "passed": true
+    }
+  ]
+}
