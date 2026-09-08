@@ -9,3 +9,9 @@
 - Both adapters test interrupted ordinary JSON snapshots and common ownership/time invariants. The small model and experimental common host do not provide equal hostile-import validation assurance to released Human. The host does not authenticate arbitrary user-edited pending forecast/action/status fields. These are trusted internal experiment snapshots, not a new public import API. Report the validator scope difference alongside source size.
 
 Reserved and sensitivity execution must follow a committed-source freeze. See the manifest and result provenance for exact implementation commit, source hashes and execution times. The source-visible condition table is procedurally reserved, not blinded or external human data. A low-level JavaScript call could bypass the CLI's freeze gate; the retained executions use the checked CLI.
+
+## Frozen execution and handoff
+
+Implementation `3e60c003ca78864804ed1efd2d29114265dbe8d6` was frozen before the reserved/sensitivity/performance reports. The frozen development result matches the earlier development result exactly. Reserved and sensitivity were each repeated to a new temporary file and their complete deterministic result objects matched; all source hashes and frozen component bytes matched. The verification artifact records the 105-pair accounting audit. Every one of ten 10,000-command measured runs met both preregistered budgets. Both study documents' local links resolve.
+
+The root agent's preliminary source inspection identified weaker hostile-import guarantees and the retained meal-clipping difference; both are explicitly documented. Independent implementation/report review follows in parent integration and is not represented as completed here.

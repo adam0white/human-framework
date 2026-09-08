@@ -1,0 +1,75 @@
+{
+  "date": "2026-09-08T05:19:55.849Z",
+  "sourceCommit": "3e60c003ca78864804ed1efd2d29114265dbe8d6",
+  "node": "v26.8.1",
+  "tests": {
+    "command": "PATH=/opt/homebrew/bin:$PATH npm test",
+    "passed": 299,
+    "failed": 0,
+    "comparisonTests": 19
+  },
+  "pairedTrajectoryAudit": {
+    "pairsIncludingSensitivity": 105,
+    "offeredCommandsExcludingRetestBranches": 2420,
+    "checks": [
+      "Identical offered inputs and initial resource/task facts",
+      "Identical offered duration",
+      "Only admitted work consumes parts and earns task-specific elapsed practice",
+      "Only completed paid meals consume food",
+      "Final resource accounts reconcile",
+      "A/B matched exposure body paths identical within each model"
+    ]
+  },
+  "reproduction": {
+    "developmentPreFreezeMatchesFrozen": true,
+    "reservedExactResultMatch": true,
+    "sensitivityExactResultMatch": true,
+    "allFrozenSourceHashesMatch": true,
+    "frozenHumanModelRuntimeBytesUnchanged": true
+  },
+  "modelSourceScope": {
+    "humanModuleBytes": 11580,
+    "humanAdapterBytes": 508,
+    "smallModuleBytes": 5919,
+    "smallAdapterBytes": 454,
+    "commonHostBytes": 9786,
+    "fullImportedModelBytes": 7764,
+    "narrowImportedModel": {
+      "ranges": [
+        [
+          4,
+          9
+        ],
+        [
+          11,
+          11
+        ],
+        [
+          22,
+          31
+        ],
+        [
+          45,
+          47
+        ],
+        [
+          108,
+          111
+        ],
+        [
+          116,
+          120
+        ]
+      ],
+      "utf8Bytes": 1752,
+      "nonblankLines": 29,
+      "explanation": "Complete used declarations PARAMETERS, clamp, actionEffort, assessCapacity, finite, practice, successChance; includes all parameter keys, excludes unused scenario validation and retain. Static source selection, not measured tree-shaken bundle."
+    }
+  },
+  "limitations": [
+    "Trusted internal host snapshots; not equal hostile-input validation guarantees",
+    "Procedurally reserved source-visible conditions, not blind or human data",
+    "Code/source metrics do not measure human authoring effort",
+    "No controller, player explanations, empirical calibration, or mobile rendering test"
+  ]
+}

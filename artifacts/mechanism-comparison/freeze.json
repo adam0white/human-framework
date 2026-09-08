@@ -1,0 +1,22 @@
+{
+  "format": "mechanism-comparison-freeze",
+  "version": 1,
+  "registrationCommit": "904b7e4",
+  "registrationFullCommit": "904b7e43ff4d311041e6633bdbf1b7a15a3eaa29",
+  "baseCommit": "33418c4557d3fd6cf5f8f3e4f8afd32145da6549",
+  "sourceCommit": "3e60c003ca78864804ed1efd2d29114265dbe8d6",
+  "frozenAt": "2026-09-08T05:18:13.020Z",
+  "sourceSha256": {
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "docs/mechanism-comparison-protocol.md": "6db987396150f4db216748fd0f74ff3de9159f87da7bf481f1641883f206a237",
+    "artifacts/mechanism-comparison/protocol.json": "b0f7bcfdbc9712a18c00a5a95f6277665e291d7d39d67c361d73c6ae46ff8962",
+    "src/experiments/mechanism-comparison/small-model.js": "9b2698353e644b29e45f860b23e5f7816d8631d526c7d475341f1444fd7f2eda",
+    "src/experiments/mechanism-comparison/adapters.js": "c8703891fcc604ea74ce16b4b17304be8233214d72eddb1a3b4837b55c6dab01",
+    "src/experiments/mechanism-comparison/experiment.js": "710a3b9db779ddb5f0b819dad5f4551daa792837ea3b9fea18d8025b68337dc8",
+    "scripts/mechanism-comparison.js": "8c9c6c8369465280b8241f463b152bd6b68d2faf6dada2b5a6f672ab52048f73",
+    "tests/mechanism-comparison.test.js": "f7dfb439d4d74b2ddf3e979ad8819028c2ac56710ad015d220061b5ff72d12df"
+  }
+}
