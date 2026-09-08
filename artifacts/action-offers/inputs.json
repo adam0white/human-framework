@@ -1,0 +1,25 @@
+{
+  "format": "action-offer-preregistration",
+  "version": 1,
+  "baselineCommit": "bd944c8a5c7850952ce1214a11bc7cd275daa1ac",
+  "deployedAppCommit": "2ebdb8841215a26f69da1c394ab438b7a1f4d15d",
+  "scope": "Ten authored source-informed cases, two scripted offer callers. No withheld samples, human clarity measurement, broad matrix or shared-module claim.",
+  "exploratoryPrior": "artifacts/release-0.14/next-offer-counterexample.json already established the .9751 inspection counterexample. This is not a newly discovered or withheld result.",
+  "arms": ["conservative", "explicit-try"],
+  "uncertaintyDefinition": "A typed capacityUncertain=true requires the upper edge of the known 0.05 rounded-body bin to fail and the lower edge to pass. If both edges fail, the interval remains blocked. This is a pre-freeze source-review correction, not an outcome-tuned policy. Actual host admission stays authoritative.",
+  "defaults": {"valveMinutes": 6, "inletMinutes": 2, "launchAt": 27, "channelMode": "reliable", "channelSeed": 0, "channelOverrides": {}},
+  "cases": [
+    {"id":"inspection-hidden","host":"across","purpose":"Known exploratory legal inspection hidden by rounded upper-bin estimate","fatigue":0.9751,"prefix":[],"policy":"inspect","maxMinutes":6},
+    {"id":"inspection-impossible","host":"across","purpose":"Nearby actually impossible inspection with the same rounded fatigue estimate","fatigue":0.9961,"prefix":[],"policy":"inspect","maxMinutes":6},
+    {"id":"whole-or-one-repair","host":"across","purpose":"Whole-job versus one-minute repair; competent caller falls back to legal short progress","fatigue":0.909,"prefix":[{"task":"inspect"}],"policy":"repair","maxMinutes":16},
+    {"id":"report-fatigue","host":"across","purpose":"Fatigue-only uncertain radio send","fatigue":0.9751,"prefix":[],"policy":"report","via":"radio","maxMinutes":6},
+    {"id":"report-no-charge","host":"across","purpose":"Four lawful paid reports exhaust owned charges while reaching uncertain capacity","fatigue":0.9616,"prefix":[{"task":"report"},{"task":"report"},{"task":"report"},{"task":"report"}],"policy":"report","via":"radio","maxMinutes":6},
+    {"id":"report-no-contact","host":"across","purpose":"Remote peer prevents contact even when capacity is uncertain","fatigue":0.9751,"prefix":[],"policy":"report","via":"contact","maxMinutes":6},
+    {"id":"report-budget","host":"across","purpose":"Sixty-four lawful zero-paid-minute start/stop pairs exhaust keeper's local command budget","fatigue":0.9751,"prefix":[{"repeat":64,"task":"start-stop-rest"}],"policy":"report","via":"radio","maxMinutes":6},
+    {"id":"deadline-continuation","host":"across","purpose":"Lawful common inspection and full repair prefix, then release before existing launch 15; retain no service effect","fatigue":0.909,"setup":{"launchAt":15},"prefix":[{"task":"inspect"},{"task":"repair"}],"policy":"release","maxMinutes":23,"toHorizon":true},
+    {"id":"camp-offered","host":"camp","purpose":"Unchanged authoritative initial timber offer","prefix":[],"target":"gather-timber","maxMinutes":30},
+    {"id":"camp-capacity","host":"camp","purpose":"Three lawful salvage jobs approach whole-job capacity; same authoritative recovery and retry in both arms","prefix":[{"repeat":3,"job":"gather-salvage"}],"target":"gather-salvage","maxMinutes":30}
+  ],
+  "callerContract": "Decisions receive only detached actor/game views and own controller state. The conservative caller honors all unavailable flags; explicit-try may deliberately request an offer with capacityUncertain=true. Both prefer full repair when usable, then usable one-minute repair; otherwise take one paid available-recovery minute. After any refused Try, advance exactly one paid minute before reconsideration. No retry at the same minute, hidden-state admission probe or rendering request. For structurally impossible sends, both use visible supply/contact/budget information to stop immediately, even if the old copy reports capacity first. Camp retains its existing authoritative offers with no invented uncertainty; blocked Camp capacity waits one paid minute. Prefix requests are common prescribed legal host/player commands, not chosen from offers, and all prefix costs are reported separately. Receiver and physical host remain unchanged. Boundary cases stop at their goal, structural blocker or fixed cap; deadline continuation continues to minute 30 after release so endpoint service is recorded. No post-outcome tuning or new cases.",
+  "decisionRule": "Report offer access, successful deliberately uncertain requests, refusals, blocked decisions, wait minutes, actual paid time/body/resources and endpoint work/service separately. No weighted score. A service tie is retained; fewer imposed waits may support only a narrow optional-control claim. No generic capability module is promoted."
+}

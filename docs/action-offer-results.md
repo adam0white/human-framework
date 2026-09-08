@@ -1,0 +1,28 @@
+# Action offers: frozen comparison protocol and results
+
+Prepared 2026-09-08. **Pending source freeze and evaluation. No new case outcomes have been executed.** The [earlier .9751 inspection](../artifacts/release-0.14/next-offer-counterexample.json) is exploratory prior evidence, not a withheld finding. This small set implements the [proposal](action-offer-proposal.md).
+
+Ten authored cases and two callers are specified in [inputs](../artifacts/action-offers/inputs.json). The caller is [literal executable policy](../artifacts/action-offers/policy.mjs); the [runner](../artifacts/action-offers/runner.mjs) records full detached decision inputs, offered intervals, actual requests and refusals, prefix commands, final saves, paid ledgers, body/resource values and work/service endpoints. This is a scripted software comparison, not human understanding or empirical body validation.
+
+| Case | Fixed boundary / common prefix | Caller |
+|---|---|---|
+| Inspection hidden | Starting fatigue .9751, hunger .15; known exploratory case | Inspect, or recover one paid minute and reconsider |
+| Inspection impossible | Starting fatigue .9961; same displayed fatigue 1, actual projected inspection exceeds 1 | Same caller; a refused Try changes no state and is followed by one paid recovery minute |
+| Whole or one-minute repair | Starting fatigue .909; pay one inspection minute | Prefer usable whole repair, then usable one-minute repair; otherwise recover one minute |
+| Report fatigue | Starting fatigue .9751, one initial first-hand progress fact | Send by radio when offered or explicitly uncertain |
+| Report no charge | Start .9616; four prescribed lawful one-minute reports consume all four charges | Stop on visible exhausted supply, even if old copy incorrectly prioritizes capacity |
+| Report no contact | Start .9751; keeper at valve and peer at inlet | Stop on visible absence |
+| Report budget | Start .9751; 64 lawful start-rest/stop pairs exhaust 128 keeper decisions without advancing time | Stop on visible reserved/exhausted budget |
+| Near-deadline continuation | Start .909; prescribed inspection and full-six-minute repair, launch 15 | Release when offered/explicitly uncertain; recover one minute when refused or blocked; continue to 30 |
+| Camp offered | Initial Camp; gather timber | Existing authoritative offer in both arms |
+| Camp capacity | Three complete legal salvage jobs, then one further salvage job | Existing authoritative offer and one-minute recovery in both arms |
+
+All Across setups use the existing six-minute valve, two-minute inlet and reliable channel. Only the registered continuation changes the existing launch selector to 15. Receiver, actual admission, clock, reservations, stop, paid work and save recipes stay unchanged. Common prefixes are prescribed legal requests, including ones a conservative UI may hide; they are not policy choices. Their elapsed time, payments and resulting state are reported separately, so they cannot be mistaken for free setup or evidence that the old UI offered those controls.
+
+The conservative caller honors unavailable flags. The explicit-try caller only relaxes a flag accompanied by typed `capacityUncertain: true`; structural restrictions remain binding. True uncertainty requires the upper edge of the known 0.05 rounded-body bin to fail and the lower edge to pass. If both edges fail, the interval remains blocked in both arms. This classification was tightened during source review before freeze or outcomes; cases and caller priorities were not retuned. Both callers use the same priority and recovery rule, including short repair intervals as an alternative to a blocked whole interval. Each failed actual request is a deliberate caller action, recorded with an exact unchanged-save assertion; there is exactly one paid advance before any reconsideration. Rendering never invokes requests. Camp is not given new uncertainty metadata or alternate admission.
+
+Boundary cases stop at their registered goal, visible structural blocker or fixed cap. The release continuation continues through the unchanged thirty-minute episode so actual service is measured. No failed boundary, service tie, refusal or no-effect control may be replaced after results. Fewer offered waits and earlier work do not by themselves establish more service or better human understanding. No weighted score or shared capability module follows from this set.
+
+Source provenance uses the exact private baseline `bd944c8a5c7850952ce1214a11bc7cd275daa1ac` and verifies its compared application graph equals delivered app `2ebdb8841215a26f69da1c394ab438b7a1f4d15d`. A candidate freeze must name a commit containing inputs, caller, driver, source-graph verifier, synthetic tests and application changes. Every transitive local import is reconstructed from that Git object for both arms. The freeze rejects any physical-host/runtime/receiver/Camp change and permits only the two offer-producing modules to differ. Replay requires exact complete records, including case order and all decision inputs. Historical artifacts are preserved; new outputs require fresh paths.
+
+Only synthetic policy and registration checks run before the root's explicit freeze signal. The intended commands after that signal are `node artifacts/action-offers/runner.mjs freeze --commit COMMIT --out artifacts/action-offers/freeze.json`, then `run --freeze ... --out ...json.gz`, `replay --freeze ... --input ...json.gz --out ...json`, and `summarize --input ...json.gz --out ...json`. Minimum-runtime replay is a separate verification of the same records, not another independent sample.
