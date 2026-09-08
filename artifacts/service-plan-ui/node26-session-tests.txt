@@ -1,0 +1,23 @@
+✔ new, imported and restored sessions stay paused without offline advancement (6.991542ms)
+✔ play stops at real events while preserving unfinished simultaneous work (2.91225ms)
+✔ commands, refusals and interruptions pause and discard fractional time (3.393042ms)
+✔ morning pauses playback, carries state and only closing ends the day (3.198792ms)
+✔ event and minute stepping preserve the same exact world (5.975583ms)
+✔ invalid and original-control saves leave the active session untouched (2.249166ms)
+✔ throttled frames cap catch-up and malformed time controls reject (0.640625ms)
+✔ play-note context is a bounded explicit public projection and contains no host save (1.199583ms)
+✔ completed diversion copy explains counted work without altering its receipt (0.083917ms)
+✔ clinic entry replays a paid morning and preserves exact ownership, condition and save history (7.260709ms)
+✔ paid unfinished discussions import exactly and interruption pauses both people without agreement (8.708583ms)
+✔ the response boundary pauses play and distinguishes accepted promise from actual readiness (6.090833ms)
+✔ refused and interrupted revision keep current exact terms; withdrawn contribution leaves paid work running (10.953167ms)
+✔ a promised readiness miss pauses play before a longer accepted wait expires (7.680375ms)
+✔ event stepping pauses a paid rest at the promised work start and explains that choice (11.537667ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 114.92075

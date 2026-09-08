@@ -1,0 +1,29 @@
+{
+  "format": "human-framework-play-note",
+  "version": 1,
+  "game": {
+    "id": "service-plan",
+    "title": "A Shared Promise",
+    "version": "0.1.0"
+  },
+  "capturedAt": "2026-09-08T09:48:20.570Z",
+  "context": {
+    "minute": 39,
+    "summary": [
+      "Morning water kept.",
+      "Actual readiness: pump 6/12 min; inlet available.",
+      "Agreement plan:1 withdrawn: ready by 45, wait until 45, cart fallback.",
+      "Promised contribution withdrawn; actual ready not yet recorded.",
+      "No discussion underway.",
+      "Latest response: withdrawal accepted at 39.",
+      "No clinic delivery completed.",
+      "Day in progress."
+    ]
+  },
+  "answers": {
+    "objective": "Synthetic browser QA: understand the clinic agreement.",
+    "tradeoff": "",
+    "surprise": "",
+    "response": ""
+  }
+}

@@ -1,0 +1,85 @@
+TAP version 13
+# Subtest: new, imported and restored sessions stay paused without offline advancement
+ok 1 - new, imported and restored sessions stay paused without offline advancement
+  ---
+  duration_ms: 7.804333
+  ...
+# Subtest: play stops at real events while preserving unfinished simultaneous work
+ok 2 - play stops at real events while preserving unfinished simultaneous work
+  ---
+  duration_ms: 3.213292
+  ...
+# Subtest: commands, refusals and interruptions pause and discard fractional time
+ok 3 - commands, refusals and interruptions pause and discard fractional time
+  ---
+  duration_ms: 4.539333
+  ...
+# Subtest: morning pauses playback, carries state and only closing ends the day
+ok 4 - morning pauses playback, carries state and only closing ends the day
+  ---
+  duration_ms: 4.054917
+  ...
+# Subtest: event and minute stepping preserve the same exact world
+ok 5 - event and minute stepping preserve the same exact world
+  ---
+  duration_ms: 6.416875
+  ...
+# Subtest: invalid and original-control saves leave the active session untouched
+ok 6 - invalid and original-control saves leave the active session untouched
+  ---
+  duration_ms: 2.832875
+  ...
+# Subtest: throttled frames cap catch-up and malformed time controls reject
+ok 7 - throttled frames cap catch-up and malformed time controls reject
+  ---
+  duration_ms: 0.771625
+  ...
+# Subtest: play-note context is a bounded explicit public projection and contains no host save
+ok 8 - play-note context is a bounded explicit public projection and contains no host save
+  ---
+  duration_ms: 1.180167
+  ...
+# Subtest: completed diversion copy explains counted work without altering its receipt
+ok 9 - completed diversion copy explains counted work without altering its receipt
+  ---
+  duration_ms: 0.219375
+  ...
+# Subtest: clinic entry replays a paid morning and preserves exact ownership, condition and save history
+ok 10 - clinic entry replays a paid morning and preserves exact ownership, condition and save history
+  ---
+  duration_ms: 7.145833
+  ...
+# Subtest: paid unfinished discussions import exactly and interruption pauses both people without agreement
+ok 11 - paid unfinished discussions import exactly and interruption pauses both people without agreement
+  ---
+  duration_ms: 8.988709
+  ...
+# Subtest: the response boundary pauses play and distinguishes accepted promise from actual readiness
+ok 12 - the response boundary pauses play and distinguishes accepted promise from actual readiness
+  ---
+  duration_ms: 6.575667
+  ...
+# Subtest: refused and interrupted revision keep current exact terms; withdrawn contribution leaves paid work running
+ok 13 - refused and interrupted revision keep current exact terms; withdrawn contribution leaves paid work running
+  ---
+  duration_ms: 11.483542
+  ...
+# Subtest: a promised readiness miss pauses play before a longer accepted wait expires
+ok 14 - a promised readiness miss pauses play before a longer accepted wait expires
+  ---
+  duration_ms: 7.847542
+  ...
+# Subtest: event stepping pauses a paid rest at the promised work start and explains that choice
+ok 15 - event stepping pauses a paid rest at the promised work start and explains that choice
+  ---
+  duration_ms: 12.020667
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 128.632916
