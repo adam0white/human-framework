@@ -1,0 +1,709 @@
+{
+  "protocolVersion": 1,
+  "memoryVersion": "observation-memory-0.1.0",
+  "cases": [
+    {
+      "condition": "visible",
+      "initialTarget": "left",
+      "queryAt": 1,
+      "visible": "left",
+      "oracle": "left",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "left",
+          "observedAt": 0
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "left",
+          "stateBytes": 233,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": true
+        },
+        "notebook": {
+          "choice": "left",
+          "stateBytes": 15,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": true
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 1,
+          "correct": true
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "visible",
+      "initialTarget": "right",
+      "queryAt": 1,
+      "visible": "right",
+      "oracle": "right",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "right",
+          "observedAt": 0
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "right",
+          "stateBytes": 234,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": true
+        },
+        "notebook": {
+          "choice": "right",
+          "stateBytes": 16,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": true
+        },
+        "none": {
+          "choice": "right",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 1,
+          "correct": true
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "delayed",
+      "initialTarget": "left",
+      "queryAt": 2,
+      "visible": null,
+      "oracle": "left",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "left",
+          "observedAt": 0
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "left",
+          "stateBytes": 233,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": true
+        },
+        "notebook": {
+          "choice": "left",
+          "stateBytes": 15,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": true
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 1,
+          "correct": true
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "delayed",
+      "initialTarget": "right",
+      "queryAt": 2,
+      "visible": null,
+      "oracle": "right",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "right",
+          "observedAt": 0
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "right",
+          "stateBytes": 234,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": true
+        },
+        "notebook": {
+          "choice": "right",
+          "stateBytes": 16,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": true
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 1,
+          "correct": false
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "one-distractor",
+      "initialTarget": "left",
+      "queryAt": 2,
+      "visible": null,
+      "oracle": "left",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "left",
+          "observedAt": 0
+        },
+        {
+          "sequence": 2,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "bell",
+          "value": "quiet",
+          "observedAt": 1
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "left",
+          "stateBytes": 345,
+          "retainedReports": 2,
+          "paidObservationMinutes": 2,
+          "correct": true
+        },
+        "notebook": {
+          "choice": "left",
+          "stateBytes": 30,
+          "retainedReports": 2,
+          "paidObservationMinutes": 2,
+          "correct": true
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 2,
+          "correct": true
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "one-distractor",
+      "initialTarget": "right",
+      "queryAt": 2,
+      "visible": null,
+      "oracle": "right",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "right",
+          "observedAt": 0
+        },
+        {
+          "sequence": 2,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "bell",
+          "value": "quiet",
+          "observedAt": 1
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "right",
+          "stateBytes": 346,
+          "retainedReports": 2,
+          "paidObservationMinutes": 2,
+          "correct": true
+        },
+        "notebook": {
+          "choice": "right",
+          "stateBytes": 31,
+          "retainedReports": 2,
+          "paidObservationMinutes": 2,
+          "correct": true
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 2,
+          "correct": false
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "two-distractors",
+      "initialTarget": "left",
+      "queryAt": 3,
+      "visible": null,
+      "oracle": "left",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "left",
+          "observedAt": 0
+        },
+        {
+          "sequence": 2,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "bell",
+          "value": "quiet",
+          "observedAt": 1
+        },
+        {
+          "sequence": 3,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "flag",
+          "value": "red",
+          "observedAt": 2
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "left",
+          "stateBytes": 344,
+          "retainedReports": 2,
+          "paidObservationMinutes": 3,
+          "correct": true
+        },
+        "notebook": {
+          "choice": "left",
+          "stateBytes": 43,
+          "retainedReports": 3,
+          "paidObservationMinutes": 3,
+          "correct": true
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 3,
+          "correct": true
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "two-distractors",
+      "initialTarget": "right",
+      "queryAt": 3,
+      "visible": null,
+      "oracle": "right",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "right",
+          "observedAt": 0
+        },
+        {
+          "sequence": 2,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "bell",
+          "value": "quiet",
+          "observedAt": 1
+        },
+        {
+          "sequence": 3,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "flag",
+          "value": "red",
+          "observedAt": 2
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "left",
+          "stateBytes": 344,
+          "retainedReports": 2,
+          "paidObservationMinutes": 3,
+          "correct": false
+        },
+        "notebook": {
+          "choice": "right",
+          "stateBytes": 44,
+          "retainedReports": 3,
+          "paidObservationMinutes": 3,
+          "correct": true
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 3,
+          "correct": false
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "expired",
+      "initialTarget": "left",
+      "queryAt": 6,
+      "visible": null,
+      "oracle": "left",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "left",
+          "observedAt": 0
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "left",
+          "stateBytes": 233,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": true
+        },
+        "notebook": {
+          "choice": "left",
+          "stateBytes": 15,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": true
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 1,
+          "correct": true
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "expired",
+      "initialTarget": "right",
+      "queryAt": 6,
+      "visible": null,
+      "oracle": "right",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "right",
+          "observedAt": 0
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "left",
+          "stateBytes": 234,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": false
+        },
+        "notebook": {
+          "choice": "right",
+          "stateBytes": 16,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": true
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 1,
+          "correct": false
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "corrected",
+      "initialTarget": "left",
+      "queryAt": 2,
+      "visible": null,
+      "oracle": "left",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "right",
+          "observedAt": 0
+        },
+        {
+          "sequence": 2,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "left",
+          "observedAt": 1
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "left",
+          "stateBytes": 233,
+          "retainedReports": 1,
+          "paidObservationMinutes": 2,
+          "correct": true
+        },
+        "notebook": {
+          "choice": "left",
+          "stateBytes": 15,
+          "retainedReports": 1,
+          "paidObservationMinutes": 2,
+          "correct": true
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 2,
+          "correct": true
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "corrected",
+      "initialTarget": "right",
+      "queryAt": 2,
+      "visible": null,
+      "oracle": "right",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "left",
+          "observedAt": 0
+        },
+        {
+          "sequence": 2,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "right",
+          "observedAt": 1
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "right",
+          "stateBytes": 234,
+          "retainedReports": 1,
+          "paidObservationMinutes": 2,
+          "correct": true
+        },
+        "notebook": {
+          "choice": "right",
+          "stateBytes": 16,
+          "retainedReports": 1,
+          "paidObservationMinutes": 2,
+          "correct": true
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 2,
+          "correct": false
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "undisclosed-change",
+      "initialTarget": "left",
+      "queryAt": 2,
+      "visible": null,
+      "oracle": "right",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "left",
+          "observedAt": 0
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "left",
+          "stateBytes": 233,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": false
+        },
+        "notebook": {
+          "choice": "left",
+          "stateBytes": 15,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": false
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 1,
+          "correct": false
+        }
+      },
+      "resumeIdentical": true
+    },
+    {
+      "condition": "undisclosed-change",
+      "initialTarget": "right",
+      "queryAt": 2,
+      "visible": null,
+      "oracle": "left",
+      "deliveries": [
+        {
+          "sequence": 1,
+          "observer": "Ada",
+          "source": "signal",
+          "channel": "sight",
+          "cue": "gate",
+          "value": "right",
+          "observedAt": 0
+        }
+      ],
+      "arms": {
+        "memory": {
+          "choice": "right",
+          "stateBytes": 234,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": false
+        },
+        "notebook": {
+          "choice": "right",
+          "stateBytes": 16,
+          "retainedReports": 1,
+          "paidObservationMinutes": 1,
+          "correct": false
+        },
+        "none": {
+          "choice": "left",
+          "stateBytes": 4,
+          "retainedReports": 0,
+          "paidObservationMinutes": 1,
+          "correct": true
+        }
+      },
+      "resumeIdentical": true
+    }
+  ],
+  "summary": {
+    "trials": 14,
+    "correct": {
+      "memory": 10,
+      "notebook": 12,
+      "none": 8
+    },
+    "maxStateBytes": {
+      "memory": 346,
+      "notebook": 44,
+      "none": 4
+    }
+  },
+  "decision": "Retaining observations helps over no retention in this synthetic task; the simpler notebook is at least as accurate and smaller. Keep the memory candidate private and unpromoted.",
+  "limits": [
+    "Authored capacity and expiry, not fitted human mechanisms.",
+    "Notebook has no capacity or expiry constraint; this compares engineering alternatives, not an isolated capacity effect.",
+    "Identical prescribed one-minute observations; no physiological cost model or human timing measured.",
+    "Saved-state bytes exclude program code and full host state.",
+    "Structural validation cannot prove the truth or real occurrence of reports."
+  ],
+  "recordedAt": "2026-09-08T05:13:04.855Z",
+  "preregistrationCommit": "d3ed0d1",
+  "sources": [
+    {
+      "path": "docs/superpowers/specs/2026-09-08-observation-memory-design.md",
+      "sha256": "3630e0aa5cf41e1c17a18d18a53f531f77613875a24891dd3526451551254fa5"
+    },
+    {
+      "path": "src/cognition/observation-memory.js",
+      "sha256": "40c0b55d66fa74ffaf3704264e1a6be68d263a6a0445c6288e0db4b1dcfcf707"
+    },
+    {
+      "path": "scripts/observation-memory-probe.js",
+      "sha256": "7158156187cc3239d3e7bd9efe9f65b26c82fd7cfe17ebce3b3fa816e589d682"
+    }
+  ],
+  "environment": {
+    "node": "v26.8.1",
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M4"
+  }
+}
