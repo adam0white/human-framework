@@ -2,7 +2,7 @@
 
 The first development execution preserves both the proposed mechanic and its smaller alternatives. A paid agreement matches the existing timed-rest control's two-unit delivery at 59; noticing an already-running pump also solves the short-ready case without discussion. An accepted revision changes the later outcome from one unit to two, while unnecessary discussion delays easy delivery by two minutes. A risky accepted promise with no keeper work delivers zero. These are authored scripted results, not general planning, human usefulness or architectural extraction evidence.
 
-This report is initially a development checkpoint. Reserved evaluation remains sealed until the reviewed host and comparison sources have a committed common freeze. Root owns independent review and release integration.
+The comparison is complete: 25 development variants and four reserved scripts ran against frozen sources, with all outcomes retained and no policy tuning after unsealing. Six additional handover probes remain separately labeled post-review exploration. Root owns release integration and deployment; no human explanation or general-planning gate is closed by these results.
 
 ## Registration and source boundaries
 
@@ -12,6 +12,10 @@ This report is initially a development checkpoint. Reserved evaluation remains s
 - Existing Service Day remains byte-identical. The new host has a permanent departure-slot rule; the old host permitted stopping requested delivery work differently. Old and new results are separate interventions, not pooled matched-physics estimates.
 
 The first reviewed-host followup applies original `e13bb97`/`09c8460` as comparison `7148c10`/`6b2972f`. It fixes cross-channel refusal budgeting, actual readiness timestamps, busy hold expiry, closing slot state and visible promised-event boundaries. [Fresh development evidence](../artifacts/service-plan/development-reviewed-host.json) binds source `6b2972f16413dec917e1553de159ec40c248beeb`. All 25 morning/delivery/outcome/work/resource/paid-body projections remain exactly equal to the initial artifact; coordination metadata and replay source/state identities are explicitly newer. Its sampled maximum save is 5,761 UTF-8 bytes. The source is 44,997 bytes/296 nonblank lines; the visible variant is 45,231/297 plus the unchanged transform. All 38 core/comparison tests pass on Node 26.8.1 and minimum Node 22.0.0. Reserved cases remain unopened at this checkpoint.
+
+The final pre-freeze correction is original `4de8965`, applied here as `1642e87`. Independent lifecycle review found that a discussion near the command cap could lose its interruption affordance; the correction reserves remaining physical stops, contribution withdrawal and intervening advances. [Final development evidence](../artifacts/service-plan/development-final-host.json) and [final handover evidence](../artifacts/service-plan/handover-final-host.json) bind `1642e8781c2f76dd867f847829b8b3c28f23f1f5`. All 31 complete trial objects deep-match their preceding records, including every response, decision fact, save hash and final projection. The final host is 45,240 bytes/309 nonblank lines; its visible-pump variant adds the unchanged 234-byte line. All 42 core/comparison tests pass on both Node versions. Source-bound prior records remain intact.
+
+Freeze source commit: **`91333d8865770a500ffe37665b2cd3f157945972`**. The [manifest](../artifacts/service-plan/freeze.json) was committed as **`b1ee8e8568473f752faa4ac1c89386fb52b25a72` before reserved execution**. Its new-host SHA-256 is `b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7`. Protocol, case/controller, ordinary-host, rival, harness, model, runtime and comparison-test bytes are bound explicitly. Original Service Day, Human/model/runtime/clock and release-lock files remain unchanged from the starting base.
 
 `original-fixed` and `original-timed` use old Service Day. `direct-fixed`, `direct-timed`, `visible-pump` and `agreement` all use the new physical/slot rules. The visible-pump variant inserts exactly one condition before the new host's ordinary cart fallback. Its source transformation can be reversed to the exact base host, and a test guards that scope. It retains all normal recovery, ownership, consent, slot and receipt rules. It knows only current visible final pump work, its completion time and current supply; it has no forecast of future keeper intentions.
 
@@ -57,6 +61,21 @@ D5 holds the keeper's later physical schedule fixed: after the proposed change, 
 
 D3 separates withdrawal from physical completion or third-party forgiveness. Withdrawal at 40 ends the keeper's promised contribution; Deniz still independently serves one clinic unit at 60. An unfulfilled safe hold waits until 45 and delivers at 63. The risky D4 promise gives up this fallback and the keeper performs nothing; zero units is retained.
 
+## Reserved execution and verification
+
+All four [reserved scripts](../artifacts/service-plan/reserved.json) completed on the committed freeze without unexpected errors. Their clocks, resources, actual work and responses were replayed exactly. No case, policy, timing or acceptance rule changed after unsealing.
+
+| Reserved case | Clinic result | Deniz whole-day rest / discussion | Observed boundary |
+|---|---|---:|---|
+| R1 interrupted revision | 2 units at 51 | 6 / 3 minutes | The one paid revision minute per person remains; the original plan is fulfilled. |
+| R2 omitted promised recovery | 0 units | 0 / 2 minutes | The minute-43 agreement is accepted; actual pump execution at 47 refuses with `CAPACITY` due to fatigue; no hidden recovery or late cart rescues it. |
+| R3 old response after revision | 2 units at 59 | 5 / 4 minutes | The old receipt rejects specifically with `STALE_RESPONSE`, without state mutation or replacing plan 2. |
+| R4 expiry tie and later invitation | 1 unit at 63 | 1 / 4 minutes | The minute-45 revision cannot supersede old terms; cart departs at 45, and the minute-46 invitation refuses with `CLINIC_SLOT_USED`. |
+
+Maximum reserved save is 5,905 UTF-8 bytes (sampled, not a global maximum); all per-person paid accounts sum to 64 minutes. Minimum Node 22.0.0 independently replayed [all 25 final development journals](../artifacts/service-plan/development-node22-replay.json) and [all four reserved journals](../artifacts/service-plan/reserved-node22-replay.json), checking each response, decision fact, restored save hash and final projection. The six final handover cases also have [complete trial equality on Node 22 and 26](../artifacts/service-plan/handover-final-node22-parity.json).
+
+Independent comparison review reported no actionable findings and reproduced the 25 pre-cap development objects and source hashes exactly. The Fable design review supplied the useful handover challenge below. Its separate lifecycle process timed out after 1,500 seconds without a verdict; it is not counted as a completed review. A fresh independent Astra replacement found the cap issue, then rechecked its correction before root cleared the freeze. These checks establish scoped implementation/replay evidence, not human uptake or validity.
+
 ## Representation and retained limits
 
 No generic ledger, planner or observation-memory adapter was integrated. The direct host record suffices for this consumer, and prior negative shared-ledger results remain intact. The initial base new host is 43,539 bytes/271 nonblank lines versus old host 26,414/165. The private visible variant is the entire new host plus a 234-byte one-line insertion; its transform/loader is another 1,143 bytes/14 lines. Counts include relevant complete source, are formatting-sensitive, and do not estimate human authoring effort. Final frozen source accounts may grow with correctness fixes and must be reported separately.
@@ -83,8 +102,9 @@ This is another sufficient simple control and materially narrows the motivation 
 
 ```sh
 node --test tests/service-plan-comparison.test.js
-node scripts/service-plan-comparison.js run --out /tmp/service-plan-development-new.json
-node scripts/service-plan-comparison.js freeze --out artifacts/service-plan/freeze.json
+node scripts/service-plan-comparison.js run --freeze artifacts/service-plan/freeze.json --out /tmp/service-plan-development-new.json
+node scripts/service-plan-comparison.js run --partition reserved --freeze artifacts/service-plan/freeze.json --out /tmp/service-plan-reserved-new.json
+node scripts/service-plan-comparison.js replay --input artifacts/service-plan/reserved.json --freeze artifacts/service-plan/freeze.json --out /tmp/service-plan-replay-new.json
 ```
 
-The freeze command refuses uncommitted source. Commit that manifest before any reserved run; then use `run --partition reserved --freeze artifacts/service-plan/freeze.json --out /tmp/service-plan-reserved-new.json`. `replay --input <artifact> --freeze <manifest> --out <fresh-output>` checks every command's public decision facts, response, save hash, exact restored continuation and final projection. It refuses mismatched current source and existing output files. Historical artifacts require their own exact recorded source state; later source changes do not invalidate or silently replace earlier evidence.
+The retained freeze is reusable while its bound source bytes match. The freeze command refuses uncommitted source and never replaces an existing manifest. `replay --input <artifact> --freeze <manifest> --out <fresh-output>` checks every command's public decision facts, response, save hash, exact restored continuation and final projection. It refuses mismatched current source and existing output files. Historical artifacts require their own exact recorded source state; later source changes do not invalidate or silently replace earlier evidence.

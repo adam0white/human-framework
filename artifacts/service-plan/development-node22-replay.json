@@ -1,0 +1,146 @@
+{
+  "format": "service-plan-comparison-replay",
+  "version": 1,
+  "input": "artifacts/service-plan/development-final-host.json",
+  "sourceSha256": {
+    "docs/service-plan-comparison-protocol.md": "477c23299c977c893183686432f1b79a2dee29f26fbc78653a9c6cf2dd5e3b2e",
+    "src/games/service.js": "50ce6e3e52a9e92c85532f3a73d8afa46e6bc0ca7993ef72ce9e4f58e51738d1",
+    "src/games/service-plan.js": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "scripts/runtime-release-lock.json": "f27bd54f0549f5dcb8016099669f3a74f27a4edf2378953a60803711cbd1b165",
+    "src/experiments/service-plan/cases.js": "bcff876b39301885ac73ad619d20e44aed74f565f7741eac787873d098646c4f",
+    "src/experiments/service-plan/visible-pump.js": "f8d76670a034738a7551addad83f054c25ab5f05049a855dec2b8ce5c0bb9129",
+    "src/experiments/service-plan/experiment.js": "64834cdf902215d67dd444c636999256d5e761ecb605ebb28bc56b9fa0f11728",
+    "src/experiments/service-plan/provenance.js": "f43e9115ce007af8e2bfa162ea607df004f005c7b9380b44112b124c0a1198d0",
+    "scripts/service-plan-comparison.js": "eb2e34c2bfd428f5cf39aea698e553c1f4cff8d6f0a865528d2e34e1e345e7e7",
+    "tests/service-plan-comparison.test.js": "e445673ad29dc510da6a92552fc8ac0945adde8e5d43f510d72097a70a7a34d1"
+  },
+  "freeze": {
+    "format": "service-plan-comparison-freeze",
+    "version": 1,
+    "sourceCommit": "91333d8865770a500ffe37665b2cd3f157945972",
+    "registeredCommit": "5b87ceb4301f45570a1ac60d59b152dd0efbbb2b",
+    "frozenAt": "2026-09-08T10:31:24.257Z",
+    "sourceSha256": {
+      "docs/service-plan-comparison-protocol.md": "477c23299c977c893183686432f1b79a2dee29f26fbc78653a9c6cf2dd5e3b2e",
+      "src/games/service.js": "50ce6e3e52a9e92c85532f3a73d8afa46e6bc0ca7993ef72ce9e4f58e51738d1",
+      "src/games/service-plan.js": "b3c4eb2407856b255d3f7a23b69983e217c26a6ee313d6715c444525df1bccb7",
+      "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "scripts/runtime-release-lock.json": "f27bd54f0549f5dcb8016099669f3a74f27a4edf2378953a60803711cbd1b165",
+      "src/experiments/service-plan/cases.js": "bcff876b39301885ac73ad619d20e44aed74f565f7741eac787873d098646c4f",
+      "src/experiments/service-plan/visible-pump.js": "f8d76670a034738a7551addad83f054c25ab5f05049a855dec2b8ce5c0bb9129",
+      "src/experiments/service-plan/experiment.js": "64834cdf902215d67dd444c636999256d5e761ecb605ebb28bc56b9fa0f11728",
+      "src/experiments/service-plan/provenance.js": "f43e9115ce007af8e2bfa162ea607df004f005c7b9380b44112b124c0a1198d0",
+      "scripts/service-plan-comparison.js": "eb2e34c2bfd428f5cf39aea698e553c1f4cff8d6f0a865528d2e34e1e345e7e7",
+      "tests/service-plan-comparison.test.js": "e445673ad29dc510da6a92552fc8ac0945adde8e5d43f510d72097a70a7a34d1"
+    }
+  },
+  "verified": [
+    {
+      "id": "D1-original-fixed",
+      "finalSaveSha256": "cd9b484f621d0e559daeeef2a5ee845eb5837e63f6040c641adc8d5b3cac46d8"
+    },
+    {
+      "id": "D2-original-fixed",
+      "finalSaveSha256": "f5a4587b2f5dde74a65c1e9ad9786c73bda28d74f89ac87fa21ac506ed127c03"
+    },
+    {
+      "id": "D1-original-timed",
+      "finalSaveSha256": "afca88bf20ee0257604430318f06a05d7396b3f7573c128cf968baca2d4f8d3b"
+    },
+    {
+      "id": "D2-original-timed",
+      "finalSaveSha256": "20d4a891516173f59eb8e9c5f83b6b9d4b0e6d6173897892157e9d7f007a5266"
+    },
+    {
+      "id": "D1-direct-fixed",
+      "finalSaveSha256": "ddaf36ee8d0830aea429bc4071c87175037b3afed5ce0eeeddce57b446730954"
+    },
+    {
+      "id": "D2-direct-fixed",
+      "finalSaveSha256": "9fdb3b4b397b5857deae1b527c1f108fec3625cd993f7f2b75a288ff1b46f614"
+    },
+    {
+      "id": "D1-direct-timed",
+      "finalSaveSha256": "41a2b4a516a3217e1815cd6a2bc781bbdb97b6debac52fc073c892d59f3c93db"
+    },
+    {
+      "id": "D2-direct-timed",
+      "finalSaveSha256": "d713f5414e0cdbe32bd27db7ad621a77566eedfb2da37e3d50a69bd4c6ee80db"
+    },
+    {
+      "id": "D1-visible-pump",
+      "finalSaveSha256": "ddaf36ee8d0830aea429bc4071c87175037b3afed5ce0eeeddce57b446730954"
+    },
+    {
+      "id": "D2-visible-pump",
+      "finalSaveSha256": "64af21f5e93a55e1439791b7e0e5c4bd39743878d0175f75bba60cf1bc45a12f"
+    },
+    {
+      "id": "D1-agreement",
+      "finalSaveSha256": "eff6c5373b283c5fc716fc1c0d0f990c107b7dd90ce438a3f41453acfb599f7b"
+    },
+    {
+      "id": "D2-agreement",
+      "finalSaveSha256": "e65e22f49f1537f6ca870bcd5f3ff9301b15375603ecad50fb7cf94c3b2f326a"
+    },
+    {
+      "id": "D3-direct-fixed",
+      "finalSaveSha256": "c02f5000aa1a662797c1943c059566f980fe10534a1e5a60fe46001f9231635d"
+    },
+    {
+      "id": "D3-direct-timed",
+      "finalSaveSha256": "c89fbbcc0e8f0bde090d14e5cfc829f6c522de2ad304fd4449ecafbb3de3b18f"
+    },
+    {
+      "id": "D3-visible-pump",
+      "finalSaveSha256": "c02f5000aa1a662797c1943c059566f980fe10534a1e5a60fe46001f9231635d"
+    },
+    {
+      "id": "D3-agreement-missed",
+      "finalSaveSha256": "84d5dc79ce1a263455ede517d9683e415ad83e6b07674b4167c45ad60e13eb9d"
+    },
+    {
+      "id": "D3-agreement-withdrawn",
+      "finalSaveSha256": "a1d07c9386b14d37da585e25a3e05205b3ca5a7e4267e20d855ecbccfa0d0d30"
+    },
+    {
+      "id": "D4-direct-fixed-overhead",
+      "finalSaveSha256": "8a9c9bb2c631c3ebf671a61e652f1378c030c4cccbddda07eb28bfb1d0cd20a2"
+    },
+    {
+      "id": "D4-direct-timed-overhead",
+      "finalSaveSha256": "8a9c9bb2c631c3ebf671a61e652f1378c030c4cccbddda07eb28bfb1d0cd20a2"
+    },
+    {
+      "id": "D4-visible-pump-overhead",
+      "finalSaveSha256": "8a9c9bb2c631c3ebf671a61e652f1378c030c4cccbddda07eb28bfb1d0cd20a2"
+    },
+    {
+      "id": "D4-agreement-overhead",
+      "finalSaveSha256": "5a2018680b3ea8c789fb6e6f164e714dbb79087ddbc2e781d89dc2f130240ce5"
+    },
+    {
+      "id": "D4-agreement-risky-miss",
+      "finalSaveSha256": "5d331304c05709be76cc9edadc99ea95734d82439ea4f47fc860e3c501628dde"
+    },
+    {
+      "id": "D5-agreement-revised",
+      "finalSaveSha256": "09ba83b59603f63040c677c12a8382493036c5619c8217939ff4c78e2a548c91"
+    },
+    {
+      "id": "D5-agreement-unrevised",
+      "finalSaveSha256": "888c93c1929ba65a1d920bddbf3c9ac917c99e841a8caee55a58ce337783f399"
+    },
+    {
+      "id": "D6-agreement-refused",
+      "finalSaveSha256": "fe16f237c48d5661d6048fad209c387a40f2da595650756cd178627e6c275c5e"
+    }
+  ]
+}
