@@ -1,0 +1,171 @@
+{
+  "sourceCommit": "5fd5ac3e28df3b93c4de9fede50be79ec7ef1f28",
+  "validationStage": "post-review",
+  "encoding": "gzip-json",
+  "payloads": {
+    "old-controls.json": {
+      "file": "old-controls.json.gz",
+      "sha256": "3f772bbd51510dc2a45685fca599375f1c32425b8fff541264e589e275220afa",
+      "bytes": 63114
+    },
+    "kernel-build-first-snapshot-active-idle.json": {
+      "file": "kernel-build-first-snapshot-active-idle.json.gz",
+      "sha256": "7ec4e59f2fdadd9c96f3458e3a7352e08a8b828d1c9a514bc1a4c0edb2a2d9aa",
+      "bytes": 978452
+    },
+    "kernel-build-first-snapshot-automatic.json": {
+      "file": "kernel-build-first-snapshot-automatic.json.gz",
+      "sha256": "216938094c356a5b637c4f9138f32542b4f7bfb50bfb31a7dfff31522b103ddb",
+      "bytes": 946825
+    },
+    "kernel-build-first-prospective-active-idle.json": {
+      "file": "kernel-build-first-prospective-active-idle.json.gz",
+      "sha256": "aad3abfa92a81529aee32caf6462aea91e0379484185852dc4241c2edcf8d248",
+      "bytes": 978704
+    },
+    "kernel-build-first-prospective-automatic.json": {
+      "file": "kernel-build-first-prospective-automatic.json.gz",
+      "sha256": "b7b60d08505159e374b0dbdf3946935822a0f27616459cf029b824c7970793e3",
+      "bytes": 947077
+    },
+    "kernel-stock-first-snapshot-active-idle.json": {
+      "file": "kernel-stock-first-snapshot-active-idle.json.gz",
+      "sha256": "4d4356346cb2aabe9224b326a63251038ae330f55e716c3772bec1e7b765a370",
+      "bytes": 1045508
+    },
+    "kernel-stock-first-snapshot-automatic.json": {
+      "file": "kernel-stock-first-snapshot-automatic.json.gz",
+      "sha256": "aa79c14d8828ea7f5f6e8e37c1206840491b9771031bd409ad8c49c7c73e1312",
+      "bytes": 1011480
+    },
+    "kernel-stock-first-prospective-active-idle.json": {
+      "file": "kernel-stock-first-prospective-active-idle.json.gz",
+      "sha256": "426b641321439e435996bb7ffc0e4c0d71f33ef1732584f98f29887cfd9a79af",
+      "bytes": 1045781
+    },
+    "kernel-stock-first-prospective-automatic.json": {
+      "file": "kernel-stock-first-prospective-automatic.json.gz",
+      "sha256": "7baa5287377e21e661842936dc6e9860fbbc3bd0f66228ad5018803bd1765d04",
+      "bytes": 1011753
+    },
+    "earned-build-first.json": {
+      "file": "earned-build-first.json.gz",
+      "sha256": "13272c5b54585746340c80b67ccc704c98184701d197d3fba648543d9607f549",
+      "bytes": 432865
+    },
+    "earned-stock-first.json": {
+      "file": "earned-stock-first.json.gz",
+      "sha256": "0334a6f36a33cf13e0e112a2ccc786a43471978d7b822007c08c0ad6a5725d35",
+      "bytes": 539615
+    },
+    "import-build-first.json": {
+      "file": "import-build-first.json.gz",
+      "sha256": "0c2c9b9c4b76689aefd371ca61234486d1443f0242321d36ac6d3ba3bd4cb7ce",
+      "bytes": 79340
+    },
+    "import-stock-first.json": {
+      "file": "import-stock-first.json.gz",
+      "sha256": "1fec221e7a71da2c1586d38ecec7d72dd2aa2e54c4b196dc944392fce22ec834",
+      "bytes": 123012
+    },
+    "work-snapshot-active-idle.json": {
+      "file": "work-snapshot-active-idle.json.gz",
+      "sha256": "6343eae521e6d0203803bb628de75b28fd7d9af0b79f7ab3983204e62b79c930",
+      "bytes": 131752
+    },
+    "work-snapshot-automatic.json": {
+      "file": "work-snapshot-automatic.json.gz",
+      "sha256": "f78db0fc673282765b80dd09b6d63d154550e8404f3f50f886bded67e8260272",
+      "bytes": 131749
+    },
+    "work-prospective-active-idle.json": {
+      "file": "work-prospective-active-idle.json.gz",
+      "sha256": "ee49989585f727178f682d927faaeb67a97ef2127042770e4e126e27ba3b025b",
+      "bytes": 127596
+    },
+    "work-prospective-automatic.json": {
+      "file": "work-prospective-automatic.json.gz",
+      "sha256": "ef211aacab130bf7e6ea8ef2e6f2d536b576e0506d85ef24cd22f9d88731d735",
+      "bytes": 127593
+    },
+    "work-stop-resume.json": {
+      "file": "work-stop-resume.json.gz",
+      "sha256": "7b027483b5e0da319d686984843eb4373aa6f516ccb7be0909e393243a1526bf",
+      "bytes": 60653
+    },
+    "work-handover.json": {
+      "file": "work-handover.json.gz",
+      "sha256": "25dc0c8316bcc752342a5487999ca651da61b9b8437ac23ff9b41b0b1f6368a4",
+      "bytes": 63277
+    },
+    "owned-meal-import.json": {
+      "file": "owned-meal-import.json.gz",
+      "sha256": "39159ccd689af1cb0fdc45dd0e4af951bf35905d354703543ed23113c8e98802",
+      "bytes": 31052
+    },
+    "private-supplied-state.json": {
+      "file": "private-supplied-state.json.gz",
+      "sha256": "1193f4c8ee64dbd54cdd5db726209380a4bd16bf6a8ecd181011915da123ee06",
+      "bytes": 124704
+    },
+    "surplus-early-ending.json": {
+      "file": "surplus-early-ending.json.gz",
+      "sha256": "69ededbdf47420bbd9fea92bda4cd5c58a7f448cf4595c15c155ac6ab5aa463d",
+      "bytes": 91878
+    },
+    "late-ferry.json": {
+      "file": "late-ferry.json.gz",
+      "sha256": "f28649d895641976f1b68b97035e861863219d3b78aa46e419017717ebb3d71f",
+      "bytes": 287114
+    },
+    "rain-import-packing.json": {
+      "file": "rain-import-packing.json.gz",
+      "sha256": "a175b148726e24fc7ccb890999d6a1113449ea6b2fc1ce0c4e9607ce04daa28c",
+      "bytes": 50654
+    },
+    "rain-import-ferry.json": {
+      "file": "rain-import-ferry.json.gz",
+      "sha256": "bb9e98e9389c30e4326666837450912894ff0036288dbcc7ebe396d1da47648f",
+      "bytes": 50633
+    },
+    "rain-import-ended.json": {
+      "file": "rain-import-ended.json.gz",
+      "sha256": "c7497f0d275553f64b6c2566b884580d78532534a4aa9c4b6667fdf6cae84053",
+      "bytes": 50879
+    },
+    "report.json": {
+      "file": "report.json.gz",
+      "sha256": "3c104b43dd7336be3e634c9f64850f9608fef123c9f7aa778c5fad8135f2bb5a",
+      "bytes": 11903114
+    }
+  },
+  "files": {
+    "earned-build-first.json.gz": "0a46a0f476318e7cc7344595239f8ad9b6162340606f757fdf81899406a60c2d",
+    "earned-stock-first.json.gz": "c77087c9bb422ed5b5dd51d17401c9b38ca45c8e0d79fd69f6b875d45ef1dbca",
+    "import-build-first.json.gz": "2d0c34ec54213e0c223867f650171863b74789cf4071440fef501b987ba1fb70",
+    "import-stock-first.json.gz": "4c2611425a3f4424ecaf16081ca94cf7ea0f3fb85b18ade568f26dd7d1fe14b4",
+    "kernel-build-first-prospective-active-idle.json.gz": "9dee27c4e0a2e2d00ef40fe67fec5c8653cdd108a829643822d25aa791ff0be6",
+    "kernel-build-first-prospective-automatic.json.gz": "24700c06db4ee5272f75598a2e233d0c750531f2edddc6247b50c444dd9e48ef",
+    "kernel-build-first-snapshot-active-idle.json.gz": "2fc49c542d04b52e0aa4ed824741d8cff718fc298e6986edd995ee6723aace06",
+    "kernel-build-first-snapshot-automatic.json.gz": "7ac720b6a0288d80a1d345eaaf205c6cae66a156d5a0882579d0e47076196672",
+    "kernel-stock-first-prospective-active-idle.json.gz": "3be413cca47336e3923916c73b0756ea136ff045d66b1d5903100f0b76d60dbb",
+    "kernel-stock-first-prospective-automatic.json.gz": "2a8c85e39a5261d04ab0826388322faa4e54d7fa1f40f239fc15cfb40efd5e1e",
+    "kernel-stock-first-snapshot-active-idle.json.gz": "2006011722e3673ca846f4d245abda98893d603c77f31d5c9f9fbe6f7d159a8c",
+    "kernel-stock-first-snapshot-automatic.json.gz": "d2058c7be6ffc797c575091c8fb485bc728bc9730f26913d124f2955bde5c7f9",
+    "late-ferry.json.gz": "4808ab9a361a5e4ea3cf079e4a08fa2f7824d4d00655e3919f995b0fc1bea1fa",
+    "old-controls.json.gz": "e4a217d71715951da4235688232e5d8cd7eedde5f50870c28bfc7c58d7bb0f15",
+    "owned-meal-import.json.gz": "cc7686a291ee12880731e073f930e95cb0f4c0a8da06c4adb4551f440a5132d7",
+    "private-supplied-state.json.gz": "3e77f7d6d3d71cbec093c39aef38eb323afa9d19728bc92a5782adb36d45153c",
+    "rain-import-ended.json.gz": "47a127d765805c12e63db9170df1a75ca13263dd12c6fadfe95c03aeafc04ae4",
+    "rain-import-ferry.json.gz": "408bc98b50cc7c5552d16813da706d5f233de49bcb227e1e448796a93bf5e62d",
+    "rain-import-packing.json.gz": "5cbef4043f1a5064848caeb836e4d2efb9d00c791d37ec3b2119caaa470e7161",
+    "report.json.gz": "caef40b3cd72d51e8b68c604e7cfcb4d05920e97ec72b855c8248750d30772cb",
+    "surplus-early-ending.json.gz": "afc66c63799a3cf5f66bd22feb4917104cf7503dd136ea7a622107c16835b677",
+    "work-handover.json.gz": "c05788ecb07add3f9551ff21fd005e4ae5219e953d73a45767d397dae701e90f",
+    "work-prospective-active-idle.json.gz": "f394de7e6363ea96ab376b819a1fdd5bcd2d982e8bc2b2f8b0d41e2132a67ad2",
+    "work-prospective-automatic.json.gz": "eeebb46bd43658f0c5c0f19add1132a721047bb4fbe4a2b98a066ca16a2d6b4b",
+    "work-snapshot-active-idle.json.gz": "18a79e6cecbd57192f59a3cc947bac836d3c70f6d30ebc74be6346d702bb0f92",
+    "work-snapshot-automatic.json.gz": "d9673ebb3e349c9c684cc21bfc8178d86907b19cdb51db43f5e232d5a56af3e7",
+    "work-stop-resume.json.gz": "6acd907718bc8caad51a1c30c45b0e1a42e2134c6e91b0c3d49652331191c9df"
+  }
+}

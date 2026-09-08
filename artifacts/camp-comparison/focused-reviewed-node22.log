@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: independent old controls retain distinct earned milestone states and exact replay
+ok 1 - independent old controls retain distinct earned milestone states and exact replay
+  ---
+  duration_ms: 75.767417
+  ...
+# Subtest: registered busy legacy input is legal and retains two paid jobs
+ok 2 - registered busy legacy input is legal and retains two paid jobs
+  ---
+  duration_ms: 7.154209
+  ...
+# Subtest: a synthetic legal surplus is retained separately from player data
+ok 3 - a synthetic legal surplus is retained separately from player data
+  ---
+  duration_ms: 35.370166
+  ...
+# Subtest: old negative and simpler controls remain executable
+ok 4 - old negative and simpler controls remain executable
+  ---
+  duration_ms: 40.77575
+  ...
+# Subtest: candidate evidence keeps registered reserved execution separate
+ok 5 - candidate evidence keeps registered reserved execution separate
+  ---
+  duration_ms: 0.807791
+  ...
+# Subtest: real earned stock-first entry keeps selected kernel world exactly
+ok 6 - real earned stock-first entry keeps selected kernel world exactly
+  ---
+  duration_ms: 82.710458
+  ...
+# Subtest: late ferry loss permits paid later camp provision
+ok 7 - late ferry loss permits paid later camp provision
+  ---
+  duration_ms: 296.728709
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 438.23575

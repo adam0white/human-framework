@@ -1,4 +1,8 @@
-# Earned-camp comparison: initial frozen evidence
+# Earned-camp comparison
+
+**Reviewed validation is complete:** all 26 development cases and three previously seen reserved cases pass on the root-selected hosts, with exact Node 22 replays. Read [the reviewed report](camp-comparison-reviewed.md) for current physical outcomes, costs and source identities. The original results below remain historical evidence and include conclusions that changed with event timing.
+
+## Initial frozen evidence
 
 **Initial source, not the final reviewed delivery.** Source `9970cdc7283d88f36af99d65dbda78c88216729a` combines the first camp kernel (`2f67bd1`) and first story wrapper (`21e785e`) with the committed comparison. All 26 development cases and three reserved cases pass on Node 26.8.1; all 29 records replay exactly on minimum Node 22.0.0. Kernel/wrapper lifecycle review is still active. The three reserved cases are now unsealed: subsequent executions must be labeled post-review validation, never fresh withheld evidence.
 
@@ -59,11 +63,11 @@ At this initial source, direct kernel/wrapper source costs are **37,138 / 16,064
 
 Recorded development save samples range from **3,432 to 19,272 compact JSON bytes**; this is an observed range, not a worst-case bound. Kernel admission declares a 262,144-character JSON limit, depth 32, a 1,000,000,000-minute world ceiling and 1,440-minute advance calls. The story declares 250,000 JSON nodes/depth 48 and a 2,048-command journal with 1,024 ordinary commands. These limits are source declarations; other lifecycle tests own adversarial boundary coverage. Retained origin/entry roots and capped recent/completion records are included in the measured saves.
 
-- [First Node 26 development report](../artifacts/camp-comparison/first-node26/report.json) · [Node 22 exact replay](../artifacts/camp-comparison/first-node22/replay.json)
-- [First reserved Node 26 report](../artifacts/camp-comparison/reserved-first-node26/report.json) · [Node 22 exact replay](../artifacts/camp-comparison/reserved-first-node22/replay.json)
-- Each directory retains individual case JSON, complete saved inputs/outputs and a payload-hash manifest. All **62 manifested payloads** were rehashed successfully. Reports retain full visible policy decision inputs and executable commands, watchdog limits, paid accounts and pending work.
+- [First Node 26 development archive](../artifacts/camp-comparison/initial-archives/first-node26.tar.gz) · [Node 22 exact replay](../artifacts/camp-comparison/first-node22/replay.json)
+- [First reserved Node 26 archive](../artifacts/camp-comparison/initial-archives/reserved-first-node26.tar.gz) · [Node 22 exact replay](../artifacts/camp-comparison/reserved-first-node22/replay.json)
+- The lossless initial archives retain individual case JSON, complete saved inputs/outputs and original payload-hash manifests; original manifests also remain at their existing paths. All **62 manifested payloads** were rehashed successfully. Reports retain full visible policy decision inputs and executable commands, watchdog limits, paid accounts and pending work.
 - [Initial full suite](../artifacts/camp-comparison/full-first-node26.log): **646 tests pass** on Node 26.8.1, including the unchanged 620 controls. [Seven focused comparison tests](../artifacts/camp-comparison/focused-first-node22.log) pass on minimum Node 22.
 
-The runner refuses dirty bound source and existing evidence output paths. Reproduce historical runs by checking out their source, restoring the committed freeze manifest if needed, and using a new output path. The actual export and all full reports containing it are private and must be excluded from external reviewer snapshots. These prescribed software cases establish neither human realism, calibrated physiology/motives, five-person usability nor theological validation.
+The runner refuses dirty bound source and existing evidence output paths. Reproduce these initial runs by checking out freeze commit `013eb75` (which binds source `9970cdc` and includes its manifest) and using a new output path. The actual export and all full reports containing it are private and must be excluded from external reviewer snapshots. These prescribed software cases establish neither human realism, calibrated physiology/motives, five-person usability nor theological validation.
 
-No final-source freeze, post-review outcome or deployment claim is made here. Preserve this initial source and all artifacts unchanged when reviewed source is later validated.
+These sections describe the initial source only. The separately linked reviewed report now records final-source validation and changed outcomes. Original bytes and Git objects remain preserved; neither report alone claims production deployment.

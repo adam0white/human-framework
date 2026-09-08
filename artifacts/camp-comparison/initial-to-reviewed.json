@@ -1,0 +1,1855 @@
+{
+  "initialSource": "9970cdc7283d88f36af99d65dbda78c88216729a",
+  "reviewedSource": "5fd5ac3e28df3b93c4de9fede50be79ec7ef1f28",
+  "kernelSha256": "a695c31258b8bc5339a20cd49f238e5a8f7fa1bed52c1cf2c0706822f804c078",
+  "storySha256": "99300ffb03feb6d45a0dcd1313e71c7f8e20c7857f35701d6931dcc66c74e538",
+  "unchangedPoliciesFixturesAndAssertions": true,
+  "validationStage": "post-review; reserved cases previously unsealed",
+  "compression": {
+    "payloadsVerified": 62,
+    "compressedBytes": 1363534,
+    "rawBytes": 45938808
+  },
+  "observedCompactSaveBytes": {
+    "min": 3432,
+    "max": 19272
+  },
+  "comparison": [
+    {
+      "name": "old-controls",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed"
+    },
+    {
+      "name": "kernel-build-first-snapshot-active-idle",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initial": {
+        "milestone": 198,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 0
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.631578947368421,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "neighbor": 25
+            },
+            "contributions": {
+              "neighbor": {
+                "priorMinutes": 0,
+                "minutes": 12,
+                "fraction": 0.631578947368421,
+                "effort": 0.12631578947368424
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 333,
+            "recovery": 131,
+            "idle": 0,
+            "meal": 16,
+            "effort": 3.0000000000000067,
+            "constructionMinutes": 120,
+            "gatheringMinutes": 213
+          },
+          "neighbor": {
+            "work": 331,
+            "recovery": 133,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.9363157894736927,
+            "constructionMinutes": 121,
+            "gatheringMinutes": 210
+          }
+        },
+        "stats": {
+          "started": 41,
+          "completed": 40,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 0
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 664,
+          "restMinutes": 264,
+          "mealMinutes": 32,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 0,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 12,
+            "gardenFood": 0
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.6449999999999692,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.6313157894736613,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 135
+      },
+      "reviewed": {
+        "milestone": 198,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 0
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.3684210526315789,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "player": 25
+            },
+            "contributions": {
+              "player": {
+                "priorMinutes": 0,
+                "minutes": 7,
+                "fraction": 0.3684210526315789,
+                "effort": 0.0736842105263158
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 329,
+            "recovery": 135,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.9636842105263246,
+            "constructionMinutes": 108,
+            "gatheringMinutes": 221
+          },
+          "neighbor": {
+            "work": 330,
+            "recovery": 134,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.92000000000001,
+            "constructionMinutes": 128,
+            "gatheringMinutes": 202
+          }
+        },
+        "stats": {
+          "started": 41,
+          "completed": 40,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 0
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 659,
+          "restMinutes": 269,
+          "mealMinutes": 32,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 0,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 12,
+            "gardenFood": 0
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.5176842105262961,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.5899999999999743,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 80
+      }
+    },
+    {
+      "name": "kernel-build-first-snapshot-automatic",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initial": {
+        "milestone": 198,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 0
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.631578947368421,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "neighbor": 25
+            },
+            "contributions": {
+              "neighbor": {
+                "priorMinutes": 0,
+                "minutes": 12,
+                "fraction": 0.631578947368421,
+                "effort": 0.12631578947368424
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 333,
+            "recovery": 131,
+            "idle": 0,
+            "meal": 16,
+            "effort": 3.0000000000000067,
+            "constructionMinutes": 120,
+            "gatheringMinutes": 213
+          },
+          "neighbor": {
+            "work": 331,
+            "recovery": 133,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.9363157894736927,
+            "constructionMinutes": 121,
+            "gatheringMinutes": 210
+          }
+        },
+        "stats": {
+          "started": 41,
+          "completed": 40,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 0
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 664,
+          "restMinutes": 264,
+          "mealMinutes": 32,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 0,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 12,
+            "gardenFood": 0
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.6449999999999692,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.6313157894736613,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 135
+      },
+      "reviewed": {
+        "milestone": 198,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 0
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.3684210526315789,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "player": 25
+            },
+            "contributions": {
+              "player": {
+                "priorMinutes": 0,
+                "minutes": 7,
+                "fraction": 0.3684210526315789,
+                "effort": 0.0736842105263158
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 329,
+            "recovery": 135,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.9636842105263246,
+            "constructionMinutes": 108,
+            "gatheringMinutes": 221
+          },
+          "neighbor": {
+            "work": 330,
+            "recovery": 134,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.92000000000001,
+            "constructionMinutes": 128,
+            "gatheringMinutes": 202
+          }
+        },
+        "stats": {
+          "started": 41,
+          "completed": 40,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 0
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 659,
+          "restMinutes": 269,
+          "mealMinutes": 32,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 0,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 12,
+            "gardenFood": 0
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.5176842105262961,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.5899999999999743,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 80
+      }
+    },
+    {
+      "name": "kernel-build-first-prospective-active-idle",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initial": {
+        "milestone": 198,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 0
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.631578947368421,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "neighbor": 25
+            },
+            "contributions": {
+              "neighbor": {
+                "priorMinutes": 0,
+                "minutes": 12,
+                "fraction": 0.631578947368421,
+                "effort": 0.12631578947368424
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 333,
+            "recovery": 131,
+            "idle": 0,
+            "meal": 16,
+            "effort": 3.0000000000000067,
+            "constructionMinutes": 120,
+            "gatheringMinutes": 213
+          },
+          "neighbor": {
+            "work": 331,
+            "recovery": 133,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.9363157894736927,
+            "constructionMinutes": 121,
+            "gatheringMinutes": 210
+          }
+        },
+        "stats": {
+          "started": 41,
+          "completed": 40,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 0
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 664,
+          "restMinutes": 264,
+          "mealMinutes": 32,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 0,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 12,
+            "gardenFood": 0
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.6449999999999692,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.6313157894736613,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 135
+      },
+      "reviewed": {
+        "milestone": 198,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 0
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.3684210526315789,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "player": 25
+            },
+            "contributions": {
+              "player": {
+                "priorMinutes": 0,
+                "minutes": 7,
+                "fraction": 0.3684210526315789,
+                "effort": 0.0736842105263158
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 329,
+            "recovery": 135,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.9636842105263246,
+            "constructionMinutes": 108,
+            "gatheringMinutes": 221
+          },
+          "neighbor": {
+            "work": 330,
+            "recovery": 134,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.92000000000001,
+            "constructionMinutes": 128,
+            "gatheringMinutes": 202
+          }
+        },
+        "stats": {
+          "started": 41,
+          "completed": 40,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 0
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 659,
+          "restMinutes": 269,
+          "mealMinutes": 32,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 0,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 12,
+            "gardenFood": 0
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.5176842105262961,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.5899999999999743,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 80
+      }
+    },
+    {
+      "name": "kernel-build-first-prospective-automatic",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initial": {
+        "milestone": 198,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 0
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.631578947368421,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "neighbor": 25
+            },
+            "contributions": {
+              "neighbor": {
+                "priorMinutes": 0,
+                "minutes": 12,
+                "fraction": 0.631578947368421,
+                "effort": 0.12631578947368424
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 333,
+            "recovery": 131,
+            "idle": 0,
+            "meal": 16,
+            "effort": 3.0000000000000067,
+            "constructionMinutes": 120,
+            "gatheringMinutes": 213
+          },
+          "neighbor": {
+            "work": 331,
+            "recovery": 133,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.9363157894736927,
+            "constructionMinutes": 121,
+            "gatheringMinutes": 210
+          }
+        },
+        "stats": {
+          "started": 41,
+          "completed": 40,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 0
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 664,
+          "restMinutes": 264,
+          "mealMinutes": 32,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 0,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 12,
+            "gardenFood": 0
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.6449999999999692,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.6313157894736613,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 135
+      },
+      "reviewed": {
+        "milestone": 198,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 0
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.3684210526315789,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "player": 25
+            },
+            "contributions": {
+              "player": {
+                "priorMinutes": 0,
+                "minutes": 7,
+                "fraction": 0.3684210526315789,
+                "effort": 0.0736842105263158
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 329,
+            "recovery": 135,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.9636842105263246,
+            "constructionMinutes": 108,
+            "gatheringMinutes": 221
+          },
+          "neighbor": {
+            "work": 330,
+            "recovery": 134,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.92000000000001,
+            "constructionMinutes": 128,
+            "gatheringMinutes": 202
+          }
+        },
+        "stats": {
+          "started": 41,
+          "completed": 40,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 0
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 659,
+          "restMinutes": 269,
+          "mealMinutes": 32,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 0,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 12,
+            "gardenFood": 0
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.5176842105262961,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.5899999999999743,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 80
+      }
+    },
+    {
+      "name": "kernel-stock-first-snapshot-active-idle",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initial": {
+        "milestone": 224,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 12,
+          "salvage": 4,
+          "food": 3
+        },
+        "work": {},
+        "paid": {
+          "player": {
+            "work": 338,
+            "recovery": 126,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.8984210526315786,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 338
+          },
+          "neighbor": {
+            "work": 327,
+            "recovery": 141,
+            "idle": 0,
+            "meal": 12,
+            "effort": 3.139999999999998,
+            "constructionMinutes": 211,
+            "gatheringMinutes": 116
+          }
+        },
+        "stats": {
+          "started": 43,
+          "completed": 41,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 3
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 3
+          },
+          "consumedFood": 3,
+          "workMinutes": 665,
+          "restMinutes": 267,
+          "mealMinutes": 28,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 17,
+            "gather-salvage": 9,
+            "forage": 1,
+            "rest": 0,
+            "eat": 3,
+            "coveredTimber": 9,
+            "gardenFood": 1
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.6684210526315462,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.6349999999999714,
+            "hunger": 0.6900000000000008
+          }
+        },
+        "decisions": 137
+      },
+      "reviewed": {
+        "milestone": 224,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 1,
+          "salvage": 1,
+          "food": 3
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.6666666666666669,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "neighbor": 24
+            },
+            "contributions": {
+              "neighbor": {
+                "priorMinutes": 0,
+                "minutes": 12,
+                "fraction": 0.6666666666666669,
+                "effort": 0.13333333333333333
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 334,
+            "recovery": 130,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.869999999999996,
+            "constructionMinutes": 20,
+            "gatheringMinutes": 314
+          },
+          "neighbor": {
+            "work": 321,
+            "recovery": 139,
+            "idle": 4,
+            "meal": 16,
+            "effort": 3.073333333333332,
+            "constructionMinutes": 205,
+            "gatheringMinutes": 116
+          }
+        },
+        "stats": {
+          "started": 42,
+          "completed": 41,
+          "canceled": 0,
+          "gathered": {
+            "timber": 55,
+            "salvage": 27,
+            "food": 3
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 655,
+          "restMinutes": 269,
+          "mealMinutes": 32,
+          "idleMinutes": 4,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 1,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 7,
+            "gardenFood": 1
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.5399999999999724,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.6183333333333052,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 87
+      }
+    },
+    {
+      "name": "kernel-stock-first-snapshot-automatic",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initial": {
+        "milestone": 224,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 12,
+          "salvage": 4,
+          "food": 3
+        },
+        "work": {},
+        "paid": {
+          "player": {
+            "work": 338,
+            "recovery": 126,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.8984210526315786,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 338
+          },
+          "neighbor": {
+            "work": 327,
+            "recovery": 141,
+            "idle": 0,
+            "meal": 12,
+            "effort": 3.139999999999998,
+            "constructionMinutes": 211,
+            "gatheringMinutes": 116
+          }
+        },
+        "stats": {
+          "started": 43,
+          "completed": 41,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 3
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 3
+          },
+          "consumedFood": 3,
+          "workMinutes": 665,
+          "restMinutes": 267,
+          "mealMinutes": 28,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 17,
+            "gather-salvage": 9,
+            "forage": 1,
+            "rest": 0,
+            "eat": 3,
+            "coveredTimber": 9,
+            "gardenFood": 1
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.6684210526315462,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.6349999999999714,
+            "hunger": 0.6900000000000008
+          }
+        },
+        "decisions": 137
+      },
+      "reviewed": {
+        "milestone": 224,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 1,
+          "salvage": 1,
+          "food": 3
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.6666666666666669,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "neighbor": 24
+            },
+            "contributions": {
+              "neighbor": {
+                "priorMinutes": 0,
+                "minutes": 12,
+                "fraction": 0.6666666666666669,
+                "effort": 0.13333333333333333
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 334,
+            "recovery": 130,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.869999999999996,
+            "constructionMinutes": 20,
+            "gatheringMinutes": 314
+          },
+          "neighbor": {
+            "work": 321,
+            "recovery": 143,
+            "idle": 0,
+            "meal": 16,
+            "effort": 3.073333333333332,
+            "constructionMinutes": 205,
+            "gatheringMinutes": 116
+          }
+        },
+        "stats": {
+          "started": 42,
+          "completed": 41,
+          "canceled": 0,
+          "gathered": {
+            "timber": 55,
+            "salvage": 27,
+            "food": 3
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 655,
+          "restMinutes": 273,
+          "mealMinutes": 32,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 1,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 7,
+            "gardenFood": 1
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.5399999999999724,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.518333333333306,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 87
+      }
+    },
+    {
+      "name": "kernel-stock-first-prospective-active-idle",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initial": {
+        "milestone": 224,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 12,
+          "salvage": 4,
+          "food": 3
+        },
+        "work": {},
+        "paid": {
+          "player": {
+            "work": 338,
+            "recovery": 126,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.8984210526315786,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 338
+          },
+          "neighbor": {
+            "work": 327,
+            "recovery": 141,
+            "idle": 0,
+            "meal": 12,
+            "effort": 3.139999999999998,
+            "constructionMinutes": 211,
+            "gatheringMinutes": 116
+          }
+        },
+        "stats": {
+          "started": 43,
+          "completed": 41,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 3
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 3
+          },
+          "consumedFood": 3,
+          "workMinutes": 665,
+          "restMinutes": 267,
+          "mealMinutes": 28,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 17,
+            "gather-salvage": 9,
+            "forage": 1,
+            "rest": 0,
+            "eat": 3,
+            "coveredTimber": 9,
+            "gardenFood": 1
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.6684210526315462,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.6349999999999714,
+            "hunger": 0.6900000000000008
+          }
+        },
+        "decisions": 137
+      },
+      "reviewed": {
+        "milestone": 224,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 1,
+          "salvage": 1,
+          "food": 3
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.6666666666666669,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "neighbor": 24
+            },
+            "contributions": {
+              "neighbor": {
+                "priorMinutes": 0,
+                "minutes": 12,
+                "fraction": 0.6666666666666669,
+                "effort": 0.13333333333333333
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 334,
+            "recovery": 130,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.869999999999996,
+            "constructionMinutes": 20,
+            "gatheringMinutes": 314
+          },
+          "neighbor": {
+            "work": 321,
+            "recovery": 139,
+            "idle": 4,
+            "meal": 16,
+            "effort": 3.073333333333332,
+            "constructionMinutes": 205,
+            "gatheringMinutes": 116
+          }
+        },
+        "stats": {
+          "started": 42,
+          "completed": 41,
+          "canceled": 0,
+          "gathered": {
+            "timber": 55,
+            "salvage": 27,
+            "food": 3
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 655,
+          "restMinutes": 269,
+          "mealMinutes": 32,
+          "idleMinutes": 4,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 1,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 7,
+            "gardenFood": 1
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.5399999999999724,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.6183333333333052,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 87
+      }
+    },
+    {
+      "name": "kernel-stock-first-prospective-automatic",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initial": {
+        "milestone": 224,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 12,
+          "salvage": 4,
+          "food": 3
+        },
+        "work": {},
+        "paid": {
+          "player": {
+            "work": 338,
+            "recovery": 126,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.8984210526315786,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 338
+          },
+          "neighbor": {
+            "work": 327,
+            "recovery": 141,
+            "idle": 0,
+            "meal": 12,
+            "effort": 3.139999999999998,
+            "constructionMinutes": 211,
+            "gatheringMinutes": 116
+          }
+        },
+        "stats": {
+          "started": 43,
+          "completed": 41,
+          "canceled": 0,
+          "gathered": {
+            "timber": 60,
+            "salvage": 27,
+            "food": 3
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 3
+          },
+          "consumedFood": 3,
+          "workMinutes": 665,
+          "restMinutes": 267,
+          "mealMinutes": 28,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 17,
+            "gather-salvage": 9,
+            "forage": 1,
+            "rest": 0,
+            "eat": 3,
+            "coveredTimber": 9,
+            "gardenFood": 1
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.6684210526315462,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.6349999999999714,
+            "hunger": 0.6900000000000008
+          }
+        },
+        "decisions": 137
+      },
+      "reviewed": {
+        "milestone": 224,
+        "clock": 480,
+        "caches": 5,
+        "stock": {
+          "timber": 1,
+          "salvage": 1,
+          "food": 3
+        },
+        "work": {
+          "cache": {
+            "id": "cache-5",
+            "project": "cache",
+            "stage": 0,
+            "cost": {
+              "timber": 6,
+              "salvage": 3
+            },
+            "progress": 0.6666666666666669,
+            "workbenchAtStart": true,
+            "durationByActor": {
+              "neighbor": 24
+            },
+            "contributions": {
+              "neighbor": {
+                "priorMinutes": 0,
+                "minutes": 12,
+                "fraction": 0.6666666666666669,
+                "effort": 0.13333333333333333
+              }
+            },
+            "completedAt": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 334,
+            "recovery": 130,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.869999999999996,
+            "constructionMinutes": 20,
+            "gatheringMinutes": 314
+          },
+          "neighbor": {
+            "work": 321,
+            "recovery": 143,
+            "idle": 0,
+            "meal": 16,
+            "effort": 3.073333333333332,
+            "constructionMinutes": 205,
+            "gatheringMinutes": 116
+          }
+        },
+        "stats": {
+          "started": 42,
+          "completed": 41,
+          "canceled": 0,
+          "gathered": {
+            "timber": 55,
+            "salvage": 27,
+            "food": 3
+          },
+          "spent": {
+            "timber": 52,
+            "salvage": 25,
+            "food": 4
+          },
+          "consumedFood": 4,
+          "workMinutes": 655,
+          "restMinutes": 273,
+          "mealMinutes": 32,
+          "idleMinutes": 0,
+          "receipts": {
+            "gather-timber": 16,
+            "gather-salvage": 9,
+            "forage": 1,
+            "rest": 0,
+            "eat": 4,
+            "coveredTimber": 7,
+            "gardenFood": 1
+          }
+        },
+        "bodies": {
+          "player": {
+            "fatigue": 0.5399999999999724,
+            "hunger": 0.08000000000000074
+          },
+          "neighbor": {
+            "fatigue": 0.518333333333306,
+            "hunger": 0.1400000000000008
+          }
+        },
+        "decisions": 87
+      }
+    },
+    {
+      "name": "earned-build-first",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "sameService": true,
+      "initialService": {
+        "phase": "packing",
+        "now": 203,
+        "enteredAt": 198,
+        "ferryAt": 288,
+        "rainAt": 378,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      },
+      "reviewedService": {
+        "phase": "packing",
+        "now": 203,
+        "enteredAt": 198,
+        "ferryAt": 288,
+        "rainAt": 378,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      }
+    },
+    {
+      "name": "earned-stock-first",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "sameService": true,
+      "initialService": {
+        "phase": "packing",
+        "now": 229,
+        "enteredAt": 224,
+        "ferryAt": 314,
+        "rainAt": 404,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      },
+      "reviewedService": {
+        "phase": "packing",
+        "now": 229,
+        "enteredAt": 224,
+        "ferryAt": 314,
+        "rainAt": 404,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      }
+    },
+    {
+      "name": "import-build-first",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "sameService": true,
+      "initialService": {
+        "phase": "packing",
+        "now": 226,
+        "enteredAt": 220,
+        "ferryAt": 310,
+        "rainAt": 400,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      },
+      "reviewedService": {
+        "phase": "packing",
+        "now": 226,
+        "enteredAt": 220,
+        "ferryAt": 310,
+        "rainAt": 400,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      }
+    },
+    {
+      "name": "import-stock-first",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "sameService": true,
+      "initialService": {
+        "phase": "packing",
+        "now": 232,
+        "enteredAt": 226,
+        "ferryAt": 316,
+        "rainAt": 406,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      },
+      "reviewedService": {
+        "phase": "packing",
+        "now": 232,
+        "enteredAt": 226,
+        "ferryAt": 316,
+        "rainAt": 406,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      }
+    },
+    {
+      "name": "work-snapshot-active-idle",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initialCompletedAt": 207,
+      "reviewedCompletedAt": 207,
+      "sameCompletedStage": true
+    },
+    {
+      "name": "work-snapshot-automatic",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initialCompletedAt": 207,
+      "reviewedCompletedAt": 207,
+      "sameCompletedStage": true
+    },
+    {
+      "name": "work-prospective-active-idle",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initialCompletedAt": 202,
+      "reviewedCompletedAt": 202,
+      "sameCompletedStage": true
+    },
+    {
+      "name": "work-prospective-automatic",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "initialCompletedAt": 202,
+      "reviewedCompletedAt": 202,
+      "sameCompletedStage": true
+    },
+    {
+      "name": "work-stop-resume",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed"
+    },
+    {
+      "name": "work-handover",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed"
+    },
+    {
+      "name": "owned-meal-import",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed"
+    },
+    {
+      "name": "private-supplied-state",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "sameService": true,
+      "initialService": {
+        "phase": "ended",
+        "now": 1402,
+        "enteredAt": 1312,
+        "ferryAt": 1402,
+        "rainAt": 1492,
+        "caches": 12,
+        "availableCaches": 8,
+        "carriedCaches": 12,
+        "householdsEquipped": 2,
+        "campNights": 4,
+        "departed": true
+      },
+      "reviewedService": {
+        "phase": "ended",
+        "now": 1402,
+        "enteredAt": 1312,
+        "ferryAt": 1402,
+        "rainAt": 1492,
+        "caches": 12,
+        "availableCaches": 8,
+        "carriedCaches": 12,
+        "householdsEquipped": 2,
+        "campNights": 4,
+        "departed": true
+      }
+    },
+    {
+      "name": "surplus-early-ending",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "sameService": true,
+      "initialService": {
+        "phase": "camp-return",
+        "now": 505,
+        "enteredAt": 415,
+        "ferryAt": 505,
+        "rainAt": 595,
+        "caches": 4,
+        "availableCaches": 0,
+        "carriedCaches": 4,
+        "householdsEquipped": 2,
+        "campNights": 4,
+        "departed": true
+      },
+      "reviewedService": {
+        "phase": "camp-return",
+        "now": 505,
+        "enteredAt": 415,
+        "ferryAt": 505,
+        "rainAt": 595,
+        "caches": 4,
+        "availableCaches": 0,
+        "carriedCaches": 4,
+        "householdsEquipped": 2,
+        "campNights": 4,
+        "departed": true
+      }
+    },
+    {
+      "name": "late-ferry",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "sameService": true,
+      "initialService": {
+        "phase": "camp-return",
+        "now": 400,
+        "enteredAt": 220,
+        "ferryAt": 310,
+        "rainAt": 400,
+        "caches": 2,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 4,
+        "departed": true
+      },
+      "reviewedService": {
+        "phase": "camp-return",
+        "now": 400,
+        "enteredAt": 220,
+        "ferryAt": 310,
+        "rainAt": 400,
+        "caches": 2,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 4,
+        "departed": true
+      }
+    },
+    {
+      "name": "rain-import-packing",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "sameService": true,
+      "initialService": {
+        "phase": "packing",
+        "now": 220,
+        "enteredAt": 220,
+        "ferryAt": 310,
+        "rainAt": 400,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      },
+      "reviewedService": {
+        "phase": "packing",
+        "now": 220,
+        "enteredAt": 220,
+        "ferryAt": 310,
+        "rainAt": 400,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      }
+    },
+    {
+      "name": "rain-import-ferry",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "sameService": true,
+      "initialService": {
+        "phase": "ferry",
+        "now": 310,
+        "enteredAt": 220,
+        "ferryAt": 310,
+        "rainAt": 400,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      },
+      "reviewedService": {
+        "phase": "ferry",
+        "now": 310,
+        "enteredAt": 220,
+        "ferryAt": 310,
+        "rainAt": 400,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": false
+      }
+    },
+    {
+      "name": "rain-import-ended",
+      "initialStatus": "passed",
+      "reviewedStatus": "passed",
+      "sameService": true,
+      "initialService": {
+        "phase": "ended",
+        "now": 400,
+        "enteredAt": 220,
+        "ferryAt": 310,
+        "rainAt": 400,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": true
+      },
+      "reviewedService": {
+        "phase": "ended",
+        "now": 400,
+        "enteredAt": 220,
+        "ferryAt": 310,
+        "rainAt": 400,
+        "caches": 0,
+        "availableCaches": 0,
+        "carriedCaches": 0,
+        "householdsEquipped": 0,
+        "campNights": 0,
+        "departed": true
+      }
+    }
+  ]
+}
