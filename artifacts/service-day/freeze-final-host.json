@@ -1,0 +1,25 @@
+{
+  "format": "service-day-comparison-freeze",
+  "version": 1,
+  "sourceCommit": "4daa65708ec9e7b176d5e0ccf2fcdc404a38f4b3",
+  "registeredCommit": "42c482d7ce8f2a2c42e2616ff2118a22ffbc7640",
+  "frozenAt": "2026-09-08T08:20:33.987Z",
+  "sourceSha256": {
+    "docs/service-day-comparison-protocol.md": "e98b6be07feccd28309402a6ca88ae3f6398722c979b08e2a806f0ffe6858606",
+    "src/games/service.js": "50ce6e3e52a9e92c85532f3a73d8afa46e6bc0ca7993ef72ce9e4f58e51738d1",
+    "src/runtime/index.js": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/runtime/clock.js": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "src/experiments/service-day/shared.js": "9a1ba0636d307a546cab2e26b824dbdfb8042f7ceeb1347f32018dfcf045d3aa",
+    "src/experiments/service-day/policies.js": "131b3f25586d68e5fe4cf3d4b7f8979ce2bcc4278439873013d3c7eda7a29f86",
+    "src/experiments/service-day/experiment.js": "a60d083f4eb94013dbef8d811479686bea9257d7c6a279ffdcd156898c3cfe51",
+    "src/experiments/service-day/provenance.js": "b144f0874e90d4791f550760220b955ee125492dc21e300e47600b4bccb146b8",
+    "scripts/service-day-comparison.js": "d5ccdb835ec9762523be0c839051a0e55995bc6f5de2b4a27bcdc844dd94fafd"
+  },
+  "validation": {
+    "path": "scripts/service-day-final-validation.js",
+    "sha256": "e9c20afc3a67b1b7e2381726f5cb582814a8224efef9efcca1285bb5cefa9a80"
+  },
+  "hostFix": "0a48e9fb058b3c2011ac77d5c0267f6c908f7e90"
+}
