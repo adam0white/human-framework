@@ -1,0 +1,4551 @@
+{
+  "study": "Two caches before the ferry through visible coordination",
+  "date": "2026-09-08",
+  "episodeVersion": "0.1.0",
+  "design": "Exploratory capability search prompted by a design critic, after the original six-run comparison. No game, opening, body, timing or controller rules changed. This fixed schedule consumes only public job availability, material stocks and event boundaries.",
+  "searchBounds": "Inspected the suggested salvage-first opening and four first-rest durations: 14, 15, 16 and 18 paid minutes. Found the 14-minute event-boundary schedule; stopped searching. This is not an exhaustive search or an optimality result.",
+  "limits": [
+    "This is a supported informed player schedule, not a new autonomous controller or matched player study.",
+    "Canceling paid partial rest is a timing affordance that deserves explanation testing. It grants no free recovery or resources.",
+    "The nearby full-rest schedule differs in resulting worker assignment as well as timing; it does not isolate a causal physiological coefficient.",
+    "Reaching two caches by the ferry does not remove the dominated camp-first result in the preserved original six-run study, or prove fun, fairness, optimal play or total-day provision."
+  ],
+  "runs": [
+    {
+      "approach": "Coordinate after paid partial rest",
+      "checks": {
+        "partialRestPaidMinutes": 14,
+        "cancelPreservedExactCondition": true,
+        "everyRequestedProjectAccepted": true
+      },
+      "trace": [
+        {
+          "step": 1,
+          "command": {
+            "type": "start",
+            "jobId": "gather-salvage"
+          },
+          "reason": "You gather the missing salvage while Meryem can collect timber.",
+          "before": {
+            "elapsed": 0,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.1
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.45,
+                  "hunger": 0.15
+                },
+                "job": null
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "garden",
+              "reason": "The garden is complete. I’m available for another project."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 15,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 21,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 0,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.1
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.45,
+                  "hunger": 0.15
+                },
+                "job": null
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "garden",
+              "reason": "The garden is complete. I’m available for another project."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 2,
+          "command": {
+            "type": "request",
+            "project": "cache"
+          },
+          "reason": "Request one complete cache. Her own policy chooses its materials and recovery.",
+          "before": {
+            "elapsed": 0,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.1
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.45,
+                  "hunger": 0.15
+                },
+                "job": null
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "garden",
+              "reason": "The garden is complete. I’m available for another project."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 0,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.1
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.45,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 3,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Meryem finishes timber at minute 15; your salvage trip still needs six minutes.",
+          "before": {
+            "elapsed": 0,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.1
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.45,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 15,
+            "phase": "packing",
+            "stock": {
+              "timber": 6,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 6,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 4,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Your salvage arrives at minute 21. Public stock now covers a cache.",
+          "before": {
+            "elapsed": 15,
+            "phase": "packing",
+            "stock": {
+              "timber": 6,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 6,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 21,
+            "phase": "packing",
+            "stock": {
+              "timber": 6,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.15
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 15,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 15,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 21,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              },
+              {
+                "id": "build-cache",
+                "duration": 19,
+                "cost": {
+                  "timber": 6,
+                  "salvage": 3
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "command": {
+            "type": "start",
+            "jobId": "build-cache"
+          },
+          "reason": "Use the available materials to pack the first cache while Meryem finishes her existing trip.",
+          "before": {
+            "elapsed": 21,
+            "phase": "packing",
+            "stock": {
+              "timber": 6,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.15
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 15,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 15,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 21,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              },
+              {
+                "id": "build-cache",
+                "duration": 19,
+                "cost": {
+                  "timber": 6,
+                  "salvage": 3
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 21,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 19,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 15,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 6,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Meryem finishes salvage at minute 36 and independently starts resting.",
+          "before": {
+            "elapsed": 21,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 19,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 15,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 36,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.9,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 4,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.8,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I need to rest, then I’ll return to the project."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 7,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Your cache finishes at minute 40. The shared project is fulfilled.",
+          "before": {
+            "elapsed": 36,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.9,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 4,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.8,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I need to rest, then I’ll return to the project."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "cache",
+              "reason": "The supply cache is complete. I’m available for another project."
+            },
+            "availableJobs": [
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 8,
+          "command": {
+            "type": "request",
+            "project": "cache"
+          },
+          "reason": "Request a second cache after the first commitment is fulfilled; her rest continues.",
+          "before": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "cache",
+              "reason": "The supply cache is complete. I’m available for another project."
+            },
+            "availableJobs": [
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+            },
+            "availableJobs": [
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 9,
+          "command": {
+            "type": "start",
+            "jobId": "rest"
+          },
+          "reason": "Recover while Meryem finishes her current rest.",
+          "before": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+            },
+            "availableJobs": [
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 10,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "At minute 54 Meryem finishes resting and starts a 15-minute timber trip; your rest has four minutes left.",
+          "before": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 54,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 4,
+                  "duration": 18
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 11,
+          "command": {
+            "type": "cancel"
+          },
+          "reason": "Cancel your rest after 14 paid minutes, at the visible next-event boundary. No time or recovery is refunded.",
+          "before": {
+            "elapsed": 54,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 4,
+                  "duration": 18
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 54,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 15,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 21,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 12,
+          "command": {
+            "type": "start",
+            "jobId": "gather-timber"
+          },
+          "reason": "Match Meryem’s visible 15-minute timber trip with your own 15-minute trip.",
+          "before": {
+            "elapsed": 54,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 15,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 21,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 54,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 13,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Both timber trips finish at minute 69. Meryem sees enough supplies and starts the 19-minute cache assembly herself.",
+          "before": {
+            "elapsed": 54,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 69,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.75,
+                  "hunger": 0.25
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 19,
+                  "duration": 19
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m completing the accepted supply cache project."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 14,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 20,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 12,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 14,
+          "command": {
+            "type": "start",
+            "jobId": "rest"
+          },
+          "reason": "Recover again while Meryem packs the second cache.",
+          "before": {
+            "elapsed": 69,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.75,
+                  "hunger": 0.25
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 19,
+                  "duration": 19
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m completing the accepted supply cache project."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 14,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 20,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 12,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 69,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.75,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 19,
+                  "duration": 19
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m completing the accepted supply cache project."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 15,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Your full rest finishes at minute 87; her assembly has one minute remaining.",
+          "before": {
+            "elapsed": 69,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.75,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 19,
+                  "duration": 19
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m completing the accepted supply cache project."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 87,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.75,
+                  "hunger": 0.35
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 1,
+                  "duration": 19
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m completing the accepted supply cache project."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 14,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 20,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 12,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 16,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Meryem completes the second cache at minute 88.",
+          "before": {
+            "elapsed": 87,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.75,
+                  "hunger": 0.35
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 1,
+                  "duration": 19
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m completing the accepted supply cache project."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 14,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 20,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 12,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 88,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 2,
+            "availableCaches": 2,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.75,
+                  "hunger": 0.35
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "cache",
+              "reason": "I need to rest, then I’ll return to the project."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 14,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 20,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 12,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 17,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Reach the unchanged minute-90 ferry checkpoint with two complete caches.",
+          "before": {
+            "elapsed": 88,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 2,
+            "availableCaches": 2,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.75,
+                  "hunger": 0.35
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "cache",
+              "reason": "I need to rest, then I’ll return to the project."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 14,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 20,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 12,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 90,
+            "phase": "ferry",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 2,
+            "availableCaches": 2,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.35
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 16,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "cache",
+              "reason": "I need to rest, then I’ll return to the project."
+            },
+            "availableJobs": []
+          }
+        }
+      ],
+      "summary": {
+        "ferryMinute": 90,
+        "completedCaches": 2,
+        "cacheCompletionOffsets": [
+          40,
+          88
+        ],
+        "canceledJobs": 1,
+        "afternoonPersonMinutes": {
+          "workMinutes": 125,
+          "restMinutes": 52,
+          "mealMinutes": 0,
+          "idleMinutes": 3
+        },
+        "stock": {
+          "timber": 2,
+          "salvage": 1,
+          "food": 2
+        },
+        "reportedCondition": {
+          "player": {
+            "fatigue": 0.35,
+            "hunger": 0.3
+          },
+          "neighbor": {
+            "fatigue": 0.7,
+            "hunger": 0.35
+          }
+        },
+        "unfinishedPlayerJob": null
+      },
+      "ferrySave": {
+        "format": "human-common-ground-before-rain",
+        "version": 1,
+        "game": {
+          "version": "0.1.0",
+          "world": {
+            "version": "0.1.0",
+            "solo": false,
+            "clock": {
+              "version": "0.1.0",
+              "now": 310,
+              "nextEvent": 35,
+              "queue": [
+                {
+                  "id": "event:34",
+                  "at": 326,
+                  "type": "job-complete",
+                  "actorId": "neighbor",
+                  "data": {
+                    "jobId": "rest",
+                    "attemptId": "neighbor:35"
+                  }
+                }
+              ]
+            },
+            "people": {
+              "player": {
+                "version": "0.1.0",
+                "id": "player",
+                "body": {
+                  "fatigue": 0.34499999999998593,
+                  "hunger": 0.2900000000000005
+                },
+                "skills": {
+                  "gathering": 0.5301588009150857,
+                  "construction": 0.3988394814820273
+                },
+                "observationBias": 0,
+                "minutes": 310,
+                "nextAttempt": 21,
+                "pending": null
+              },
+              "neighbor": {
+                "version": "0.1.0",
+                "id": "neighbor",
+                "body": {
+                  "fatigue": 0.7049999999999881,
+                  "hunger": 0.35000000000000053
+                },
+                "skills": {
+                  "gathering": 0.5177827380992898,
+                  "construction": 0.40505915252532176
+                },
+                "observationBias": 0,
+                "minutes": 310,
+                "nextAttempt": 36,
+                "pending": {
+                  "id": "neighbor:35",
+                  "action": {
+                    "actionId": "rest",
+                    "targetId": null,
+                    "durationMinutes": 18,
+                    "effort": 0,
+                    "exertive": false,
+                    "activity": "rest",
+                    "skill": null
+                  },
+                  "elapsedMinutes": 2,
+                  "capacity": {
+                    "allowed": true,
+                    "causes": [],
+                    "fatigueCost": 0.027,
+                    "hungerCost": 0.036000000000000004,
+                    "projectedFatigue": 0.7789999999999883,
+                    "projectedHunger": 0.38200000000000056
+                  },
+                  "bodyBefore": {
+                    "fatigue": 0.7519999999999882,
+                    "hunger": 0.34600000000000053
+                  },
+                  "skillBefore": null,
+                  "startedAt": 308
+                }
+              }
+            },
+            "jobs": {
+              "player": null,
+              "neighbor": {
+                "id": "rest",
+                "label": "Rest in camp",
+                "detail": "Recover strength. Time and hunger continue.",
+                "project": null,
+                "stage": null,
+                "cost": {},
+                "output": {},
+                "duration": 18,
+                "benefits": {
+                  "shelter": true,
+                  "workbench": true,
+                  "garden": true
+                },
+                "skillBefore": null,
+                "action": {
+                  "actionId": "rest",
+                  "targetId": null,
+                  "durationMinutes": 18,
+                  "effort": 0,
+                  "exertive": false,
+                  "activity": "rest",
+                  "skill": null
+                },
+                "startedAt": 308,
+                "endsAt": 326,
+                "eventId": "event:34",
+                "attemptId": "neighbor:35"
+              }
+            },
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "structures": {
+              "shelter": 2,
+              "workbench": 2,
+              "garden": 2
+            },
+            "caches": 2,
+            "milestoneAt": 220,
+            "commitment": {
+              "status": "fulfilled",
+              "project": "cache",
+              "acceptedAt": 260,
+              "finishedAt": 308,
+              "startCaches": 1,
+              "reason": "I need to rest, then I’ll return to the project."
+            },
+            "lastResponse": {
+              "at": 260,
+              "project": "cache",
+              "accepted": true,
+              "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+            },
+            "stats": {
+              "started": 34,
+              "completed": 32,
+              "canceled": 1,
+              "gathered": {
+                "timber": 32,
+                "salvage": 15,
+                "food": 0
+              },
+              "spent": {
+                "timber": 34,
+                "salvage": 16,
+                "food": 2
+              },
+              "consumedFood": 2,
+              "workMinutes": 423,
+              "restMinutes": 160,
+              "mealMinutes": 16,
+              "idleMinutes": 21,
+              "receipts": {
+                "gather-timber": 9,
+                "gather-salvage": 5,
+                "forage": 0,
+                "rest": 8,
+                "eat": 2,
+                "coveredTimber": 5,
+                "gardenFood": 0
+              }
+            },
+            "recent": [
+              {
+                "at": 260,
+                "actor": "player",
+                "message": "You finished supply cache: pack a supply cache."
+              },
+              {
+                "at": 260,
+                "actor": "neighbor",
+                "message": "The supply cache is complete. I’m available for another project."
+              },
+              {
+                "at": 260,
+                "actor": "neighbor",
+                "message": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+              },
+              {
+                "at": 260,
+                "actor": "player",
+                "message": "You started rest in camp (18 min)."
+              },
+              {
+                "at": 274,
+                "actor": "neighbor",
+                "message": "Meryem finished rest in camp."
+              },
+              {
+                "at": 274,
+                "actor": "neighbor",
+                "message": "Meryem started gather timber (15 min). I’m collecting timber for the supply cache."
+              },
+              {
+                "at": 274,
+                "actor": "player",
+                "message": "You canceled rest in camp. Reserved supplies returned; elapsed work remains paid."
+              },
+              {
+                "at": 274,
+                "actor": "player",
+                "message": "You started gather timber (15 min)."
+              },
+              {
+                "at": 289,
+                "actor": "neighbor",
+                "message": "Meryem finished gather timber. +4 timber."
+              },
+              {
+                "at": 289,
+                "actor": "player",
+                "message": "You finished gather timber. +4 timber."
+              },
+              {
+                "at": 289,
+                "actor": "neighbor",
+                "message": "Meryem started supply cache: pack a supply cache (19 min). I’m completing the accepted supply cache project."
+              },
+              {
+                "at": 289,
+                "actor": "player",
+                "message": "You started rest in camp (18 min)."
+              },
+              {
+                "at": 307,
+                "actor": "player",
+                "message": "You finished rest in camp."
+              },
+              {
+                "at": 308,
+                "actor": "neighbor",
+                "message": "Meryem finished supply cache: pack a supply cache."
+              },
+              {
+                "at": 308,
+                "actor": "neighbor",
+                "message": "The supply cache is complete. I’m available for another project."
+              },
+              {
+                "at": 308,
+                "actor": "neighbor",
+                "message": "Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project."
+              }
+            ]
+          },
+          "openedAt": 220,
+          "production": [
+            {
+              "at": 260
+            },
+            {
+              "at": 308
+            }
+          ],
+          "allocations": [],
+          "departedAt": null,
+          "ended": false
+        }
+      }
+    },
+    {
+      "approach": "Complete the first rest",
+      "checks": {
+        "partialRestPaidMinutes": 0,
+        "cancelPreservedExactCondition": true,
+        "everyRequestedProjectAccepted": true
+      },
+      "trace": [
+        {
+          "step": 1,
+          "command": {
+            "type": "start",
+            "jobId": "gather-salvage"
+          },
+          "reason": "You gather the missing salvage while Meryem can collect timber.",
+          "before": {
+            "elapsed": 0,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.1
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.45,
+                  "hunger": 0.15
+                },
+                "job": null
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "garden",
+              "reason": "The garden is complete. I’m available for another project."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 15,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 21,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 0,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.1
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.45,
+                  "hunger": 0.15
+                },
+                "job": null
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "garden",
+              "reason": "The garden is complete. I’m available for another project."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 2,
+          "command": {
+            "type": "request",
+            "project": "cache"
+          },
+          "reason": "Request one complete cache. Her own policy chooses its materials and recovery.",
+          "before": {
+            "elapsed": 0,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.1
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.45,
+                  "hunger": 0.15
+                },
+                "job": null
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "garden",
+              "reason": "The garden is complete. I’m available for another project."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 0,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.1
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.45,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 3,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Meryem finishes timber at minute 15; your salvage trip still needs six minutes.",
+          "before": {
+            "elapsed": 0,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.1
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.45,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 15,
+            "phase": "packing",
+            "stock": {
+              "timber": 6,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 6,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 4,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Your salvage arrives at minute 21. Public stock now covers a cache.",
+          "before": {
+            "elapsed": 15,
+            "phase": "packing",
+            "stock": {
+              "timber": 6,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 6,
+                  "duration": 21
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 21,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 21,
+            "phase": "packing",
+            "stock": {
+              "timber": 6,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.15
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 15,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 15,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 21,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              },
+              {
+                "id": "build-cache",
+                "duration": 19,
+                "cost": {
+                  "timber": 6,
+                  "salvage": 3
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 5,
+          "command": {
+            "type": "start",
+            "jobId": "build-cache"
+          },
+          "reason": "Use the available materials to pack the first cache while Meryem finishes her existing trip.",
+          "before": {
+            "elapsed": 21,
+            "phase": "packing",
+            "stock": {
+              "timber": 6,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.15
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 15,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 15,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 21,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              },
+              {
+                "id": "build-cache",
+                "duration": 19,
+                "cost": {
+                  "timber": 6,
+                  "salvage": 3
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 21,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 19,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 15,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 6,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Meryem finishes salvage at minute 36 and independently starts resting.",
+          "before": {
+            "elapsed": 21,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.15
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 19,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 15,
+                  "duration": 21
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 36,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.9,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 4,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.8,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I need to rest, then I’ll return to the project."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 7,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Your cache finishes at minute 40. The shared project is fulfilled.",
+          "before": {
+            "elapsed": 36,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 0,
+            "availableCaches": 0,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.9,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 4,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.8,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I need to rest, then I’ll return to the project."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "cache",
+              "reason": "The supply cache is complete. I’m available for another project."
+            },
+            "availableJobs": [
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 8,
+          "command": {
+            "type": "request",
+            "project": "cache"
+          },
+          "reason": "Request a second cache after the first commitment is fulfilled; her rest continues.",
+          "before": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "fulfilled",
+              "project": "cache",
+              "reason": "The supply cache is complete. I’m available for another project."
+            },
+            "availableJobs": [
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+            },
+            "availableJobs": [
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 9,
+          "command": {
+            "type": "start",
+            "jobId": "rest"
+          },
+          "reason": "Recover while Meryem finishes her current rest.",
+          "before": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+            },
+            "availableJobs": [
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 10,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "At minute 54 Meryem finishes resting and starts a 15-minute timber trip; your rest has four minutes left.",
+          "before": {
+            "elapsed": 40,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.95,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 18,
+                  "duration": 18
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.7,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 14,
+                  "duration": 18
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 54,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 4,
+                  "duration": 18
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 11,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Complete all 18 minutes of your rest, finishing at minute 58.",
+          "before": {
+            "elapsed": 54,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.6,
+                  "hunger": 0.2
+                },
+                "job": {
+                  "id": "rest",
+                  "remaining": 4,
+                  "duration": 18
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.35,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 58,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.25
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.4,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 11,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 15,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 21,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 12,
+          "command": {
+            "type": "start",
+            "jobId": "gather-timber"
+          },
+          "reason": "Gather timber after the full rest.",
+          "before": {
+            "elapsed": 58,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.25
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.4,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 11,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 15,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 21,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 13,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 58,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.4,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 11,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 13,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Meryem finishes timber at minute 69, before your trip arrives; she starts another timber trip.",
+          "before": {
+            "elapsed": 58,
+            "phase": "packing",
+            "stock": {
+              "timber": 0,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 15,
+                  "duration": 15
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.4,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 11,
+                  "duration": 15
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 69,
+            "phase": "packing",
+            "stock": {
+              "timber": 4,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 4,
+                  "duration": 15
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 14,
+                  "duration": 14
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 14,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Your timber arrives at minute 73. Materials now cover the second cache.",
+          "before": {
+            "elapsed": 69,
+            "phase": "packing",
+            "stock": {
+              "timber": 4,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 4,
+                  "duration": 15
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.5,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 14,
+                  "duration": 14
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 73,
+            "phase": "packing",
+            "stock": {
+              "timber": 8,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.25
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.55,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 10,
+                  "duration": 14
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 14,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 20,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 12,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              },
+              {
+                "id": "build-cache",
+                "duration": 19,
+                "cost": {
+                  "timber": 6,
+                  "salvage": 3
+                },
+                "output": {}
+              }
+            ]
+          }
+        },
+        {
+          "step": 15,
+          "command": {
+            "type": "start",
+            "jobId": "build-cache"
+          },
+          "reason": "The public assembly estimate is 19 minutes, so this cache will finish two minutes after the ferry.",
+          "before": {
+            "elapsed": 73,
+            "phase": "packing",
+            "stock": {
+              "timber": 8,
+              "salvage": 4,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.25
+                },
+                "job": null
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.55,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 10,
+                  "duration": 14
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": [
+              {
+                "id": "gather-timber",
+                "duration": 14,
+                "cost": {},
+                "output": {
+                  "timber": 4
+                }
+              },
+              {
+                "id": "gather-salvage",
+                "duration": 20,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                }
+              },
+              {
+                "id": "forage",
+                "duration": 12,
+                "cost": {},
+                "output": {
+                  "food": 3
+                }
+              },
+              {
+                "id": "rest",
+                "duration": 18,
+                "cost": {},
+                "output": {}
+              },
+              {
+                "id": "eat",
+                "duration": 8,
+                "cost": {
+                  "food": 1
+                },
+                "output": {}
+              },
+              {
+                "id": "build-cache",
+                "duration": 19,
+                "cost": {
+                  "timber": 6,
+                  "salvage": 3
+                },
+                "output": {}
+              }
+            ]
+          },
+          "after": {
+            "elapsed": 73,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 19,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.55,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 10,
+                  "duration": 14
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 16,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "Meryem finishes her second timber trip at minute 84 and chooses recovery.",
+          "before": {
+            "elapsed": 73,
+            "phase": "packing",
+            "stock": {
+              "timber": 2,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.25
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 19,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.55,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "gather-timber",
+                  "remaining": 10,
+                  "duration": 14
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting timber for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 83,
+            "phase": "packing",
+            "stock": {
+              "timber": 6,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.8,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 9,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.35
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 20,
+                  "duration": 20
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": []
+          }
+        },
+        {
+          "step": 17,
+          "command": {
+            "type": "advance-event"
+          },
+          "reason": "The ferry checkpoint stops the paid assembly with two minutes still remaining.",
+          "before": {
+            "elapsed": 83,
+            "phase": "packing",
+            "stock": {
+              "timber": 6,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.8,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 9,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.65,
+                  "hunger": 0.35
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 20,
+                  "duration": 20
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": []
+          },
+          "after": {
+            "elapsed": 90,
+            "phase": "ferry",
+            "stock": {
+              "timber": 6,
+              "salvage": 1,
+              "food": 2
+            },
+            "caches": 1,
+            "availableCaches": 1,
+            "people": {
+              "player": {
+                "body": {
+                  "fatigue": 0.85,
+                  "hunger": 0.3
+                },
+                "job": {
+                  "id": "build-cache",
+                  "remaining": 2,
+                  "duration": 19
+                }
+              },
+              "neighbor": {
+                "body": {
+                  "fatigue": 0.75,
+                  "hunger": 0.35
+                },
+                "job": {
+                  "id": "gather-salvage",
+                  "remaining": 13,
+                  "duration": 20
+                }
+              }
+            },
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "availableJobs": []
+          }
+        }
+      ],
+      "summary": {
+        "ferryMinute": 90,
+        "completedCaches": 1,
+        "cacheCompletionOffsets": [
+          40
+        ],
+        "canceledJobs": 0,
+        "afternoonPersonMinutes": {
+          "workMinutes": 144,
+          "restMinutes": 36,
+          "mealMinutes": 0,
+          "idleMinutes": 0
+        },
+        "stock": {
+          "timber": 6,
+          "salvage": 1,
+          "food": 2
+        },
+        "reportedCondition": {
+          "player": {
+            "fatigue": 0.85,
+            "hunger": 0.3
+          },
+          "neighbor": {
+            "fatigue": 0.75,
+            "hunger": 0.35
+          }
+        },
+        "unfinishedPlayerJob": {
+          "id": "build-cache",
+          "remaining": 2
+        }
+      },
+      "ferrySave": {
+        "format": "human-common-ground-before-rain",
+        "version": 1,
+        "game": {
+          "version": "0.1.0",
+          "world": {
+            "version": "0.1.0",
+            "solo": false,
+            "clock": {
+              "version": "0.1.0",
+              "now": 310,
+              "nextEvent": 35,
+              "queue": [
+                {
+                  "id": "event:33",
+                  "at": 312,
+                  "type": "job-complete",
+                  "actorId": "player",
+                  "data": {
+                    "jobId": "build-cache",
+                    "attemptId": "player:17"
+                  }
+                },
+                {
+                  "id": "event:34",
+                  "at": 323,
+                  "type": "job-complete",
+                  "actorId": "neighbor",
+                  "data": {
+                    "jobId": "gather-salvage",
+                    "attemptId": "neighbor:35"
+                  }
+                }
+              ]
+            },
+            "people": {
+              "player": {
+                "version": "0.1.0",
+                "id": "player",
+                "body": {
+                  "fatigue": 0.8739473684210389,
+                  "hunger": 0.2900000000000005
+                },
+                "skills": {
+                  "gathering": 0.5301588009150857,
+                  "construction": 0.44970088018825694
+                },
+                "observationBias": 0,
+                "minutes": 310,
+                "nextAttempt": 18,
+                "pending": {
+                  "id": "player:17",
+                  "action": {
+                    "actionId": "build-cache",
+                    "targetId": "cache",
+                    "durationMinutes": 19,
+                    "effort": 0.2,
+                    "exertive": true,
+                    "activity": "active",
+                    "skill": "construction"
+                  },
+                  "elapsedMinutes": 17,
+                  "capacity": {
+                    "allowed": true,
+                    "causes": [],
+                    "fatigueCost": 0.2285,
+                    "hungerCost": 0.038,
+                    "projectedFatigue": 0.8979999999999867,
+                    "projectedHunger": 0.2940000000000004
+                  },
+                  "bodyBefore": {
+                    "fatigue": 0.6694999999999867,
+                    "hunger": 0.25600000000000045
+                  },
+                  "skillBefore": 0.3988394814820273,
+                  "startedAt": 293
+                }
+              },
+              "neighbor": {
+                "version": "0.1.0",
+                "id": "neighbor",
+                "body": {
+                  "fatigue": 0.7444999999999865,
+                  "hunger": 0.35000000000000053
+                },
+                "skills": {
+                  "gathering": 0.5676675885404368,
+                  "construction": 0.3432772177639855
+                },
+                "observationBias": 0,
+                "minutes": 310,
+                "nextAttempt": 36,
+                "pending": {
+                  "id": "neighbor:35",
+                  "action": {
+                    "actionId": "gather-salvage",
+                    "targetId": null,
+                    "durationMinutes": 20,
+                    "effort": 0.17,
+                    "exertive": true,
+                    "activity": "active",
+                    "skill": "gathering"
+                  },
+                  "elapsedMinutes": 7,
+                  "capacity": {
+                    "allowed": true,
+                    "causes": [],
+                    "fatigueCost": 0.2,
+                    "hungerCost": 0.04,
+                    "projectedFatigue": 0.8744999999999872,
+                    "projectedHunger": 0.3760000000000005
+                  },
+                  "bodyBefore": {
+                    "fatigue": 0.6744999999999872,
+                    "hunger": 0.3360000000000005
+                  },
+                  "skillBefore": 0.5516407702049625,
+                  "startedAt": 303
+                }
+              }
+            },
+            "jobs": {
+              "player": {
+                "id": "build-cache",
+                "label": "Supply cache: pack a supply cache",
+                "detail": "A permanent cache for future visitors. Build as many as you like.",
+                "project": "cache",
+                "stage": 0,
+                "cost": {
+                  "timber": 6,
+                  "salvage": 3
+                },
+                "output": {},
+                "duration": 19,
+                "benefits": {
+                  "shelter": true,
+                  "workbench": true,
+                  "garden": true
+                },
+                "skillBefore": 0.3988394814820273,
+                "action": {
+                  "actionId": "build-cache",
+                  "targetId": "cache",
+                  "durationMinutes": 19,
+                  "effort": 0.2,
+                  "exertive": true,
+                  "activity": "active",
+                  "skill": "construction"
+                },
+                "startedAt": 293,
+                "endsAt": 312,
+                "eventId": "event:33",
+                "attemptId": "player:17"
+              },
+              "neighbor": {
+                "id": "gather-salvage",
+                "label": "Recover salvage",
+                "detail": "Bring reusable fittings from the old shed.",
+                "project": null,
+                "stage": null,
+                "cost": {},
+                "output": {
+                  "salvage": 3
+                },
+                "duration": 20,
+                "benefits": {
+                  "shelter": true,
+                  "workbench": true,
+                  "garden": true
+                },
+                "skillBefore": 0.5516407702049625,
+                "action": {
+                  "actionId": "gather-salvage",
+                  "targetId": null,
+                  "durationMinutes": 20,
+                  "effort": 0.17,
+                  "exertive": true,
+                  "activity": "active",
+                  "skill": "gathering"
+                },
+                "startedAt": 303,
+                "endsAt": 323,
+                "eventId": "event:34",
+                "attemptId": "neighbor:35"
+              }
+            },
+            "stock": {
+              "timber": 6,
+              "salvage": 1,
+              "food": 2
+            },
+            "structures": {
+              "shelter": 2,
+              "workbench": 2,
+              "garden": 2
+            },
+            "caches": 1,
+            "milestoneAt": 220,
+            "commitment": {
+              "status": "accepted",
+              "project": "cache",
+              "acceptedAt": 260,
+              "finishedAt": null,
+              "startCaches": 1,
+              "reason": "I’m collecting salvage for the supply cache."
+            },
+            "lastResponse": {
+              "at": 260,
+              "project": "cache",
+              "accepted": true,
+              "reason": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+            },
+            "stats": {
+              "started": 34,
+              "completed": 32,
+              "canceled": 0,
+              "gathered": {
+                "timber": 36,
+                "salvage": 15,
+                "food": 0
+              },
+              "spent": {
+                "timber": 28,
+                "salvage": 13,
+                "food": 2
+              },
+              "consumedFood": 2,
+              "workMinutes": 442,
+              "restMinutes": 144,
+              "mealMinutes": 16,
+              "idleMinutes": 18,
+              "receipts": {
+                "gather-timber": 10,
+                "gather-salvage": 5,
+                "forage": 0,
+                "rest": 8,
+                "eat": 2,
+                "coveredTimber": 6,
+                "gardenFood": 0
+              }
+            },
+            "recent": [
+              {
+                "at": 256,
+                "actor": "neighbor",
+                "message": "Meryem finished recover salvage. +3 salvage."
+              },
+              {
+                "at": 256,
+                "actor": "neighbor",
+                "message": "Meryem started rest in camp (18 min). I need to rest, then I’ll return to the project."
+              },
+              {
+                "at": 260,
+                "actor": "player",
+                "message": "You finished supply cache: pack a supply cache."
+              },
+              {
+                "at": 260,
+                "actor": "neighbor",
+                "message": "The supply cache is complete. I’m available for another project."
+              },
+              {
+                "at": 260,
+                "actor": "neighbor",
+                "message": "Yes. I’ll help finish the supply cache, gathering its supplies and recovering when needed."
+              },
+              {
+                "at": 260,
+                "actor": "player",
+                "message": "You started rest in camp (18 min)."
+              },
+              {
+                "at": 274,
+                "actor": "neighbor",
+                "message": "Meryem finished rest in camp."
+              },
+              {
+                "at": 274,
+                "actor": "neighbor",
+                "message": "Meryem started gather timber (15 min). I’m collecting timber for the supply cache."
+              },
+              {
+                "at": 278,
+                "actor": "player",
+                "message": "You finished rest in camp."
+              },
+              {
+                "at": 278,
+                "actor": "player",
+                "message": "You started gather timber (15 min)."
+              },
+              {
+                "at": 289,
+                "actor": "neighbor",
+                "message": "Meryem finished gather timber. +4 timber."
+              },
+              {
+                "at": 289,
+                "actor": "neighbor",
+                "message": "Meryem started gather timber (14 min). I’m collecting timber for the supply cache."
+              },
+              {
+                "at": 293,
+                "actor": "player",
+                "message": "You finished gather timber. +4 timber."
+              },
+              {
+                "at": 293,
+                "actor": "player",
+                "message": "You started supply cache: pack a supply cache (19 min)."
+              },
+              {
+                "at": 303,
+                "actor": "neighbor",
+                "message": "Meryem finished gather timber. +4 timber."
+              },
+              {
+                "at": 303,
+                "actor": "neighbor",
+                "message": "Meryem started recover salvage (20 min). I’m collecting salvage for the supply cache."
+              }
+            ]
+          },
+          "openedAt": 220,
+          "production": [
+            {
+              "at": 260
+            }
+          ],
+          "allocations": [],
+          "departedAt": null,
+          "ended": false
+        }
+      }
+    }
+  ]
+}
