@@ -11,7 +11,7 @@ await mkdir(out); // Deliberately fails if evidence already exists.
 const browser=await chromium.launch({headless:true,channel:'chrome'}),context=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true}),page=await context.newPage();
 const errors=[],failedRequests=[],failedResponses=[],prefetchRefusals=[],networkChecks=[],navigation=[],checks=[],scriptResponses=[];
 const games=[
- {route:'service-plan',heading:'A Shared Promise',ready:'#discuss-label'},
+ {route:'service-plan',heading:'A Shared Promise',ready:'#keeper-pump'},
  {route:'service',heading:'Service Day',ready:'#keeper-gate'},
  {route:'signals',heading:'Last Light',ready:'#action-canal'},
  {route:'watch',heading:'Before the Water',ready:'#keeper-repair'},

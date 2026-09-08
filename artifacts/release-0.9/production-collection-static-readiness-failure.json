@@ -1,0 +1,34 @@
+{
+  "status": "failed",
+  "checkedAt": "2026-09-08T10:45:30.935Z",
+  "origin": "https://human.adamwhite.work",
+  "browser": "152.0.7977.77",
+  "scope": "Actual gallery navigation, all ten game entry/host modules and rendered controls; representative prior Rain/Watch/Last Light flows. Isolated desktop Chrome at mobile viewport sizes, not physical-device or human-play evidence. Full Service Day gameplay is covered separately by artifacts/service-day/browser-qa.mjs.",
+  "viewports": [
+    320,
+    390,
+    1280
+  ],
+  "checks": [
+    "Gallery exposes exactly the ten expected game destinations, with collapsed notes and no horizontal overflow at 320/390/1280."
+  ],
+  "navigation": [],
+  "errors": [],
+  "failedRequests": [],
+  "failedResponses": [],
+  "prefetchRefusals": [
+    {
+      "url": "https://human.adamwhite.work/service-plan/",
+      "status": 503,
+      "resource": "other",
+      "navigation": false,
+      "purpose": "prefetch",
+      "refusal": "prefetch refused: disabled for worker requests"
+    }
+  ],
+  "failure": {
+    "name": "AssertionError",
+    "message": "service-plan: browser loaded host module",
+    "stack": "AssertionError [ERR_ASSERTION]: service-plan: browser loaded host module\n    at file:///Users/abdul/code/human-framework/artifacts/release-0.9/browser-regression.mjs:66:10"
+  }
+}

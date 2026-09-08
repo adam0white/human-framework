@@ -25,8 +25,8 @@ The ordinary player view should explain a concrete promise, the recipient's answ
 - [x] Implement and inspect the actual responsive UI, notes and save flows against real core.
 - [x] Freeze/reproduce comparisons and reserved cases with complete outcome/cost accounting, avoiding claims of human authoring benefit or general cognition.
 - [x] Obtain independent review, preserve actual Fable model/scope/failure provenance, fix defects and recheck their counterexamples.
-- [ ] Full suite, new tests on minimum Node22, runtime locks, static graph/build and production browser checks pass. Commit/push/deploy and verify `/release.json` plus every public payload against the exact app commit.
-- [ ] Record release evidence, current docs and next meaningful queue separately from deployed app source; no docs-only redeployment.
+- [x] Full suite, new tests on minimum Node 22, runtime locks, static graph/build and production browser checks pass. Commit/push/deploy and verify `/release.json` plus every public payload against the exact app commit.
+- [x] Record release evidence, current docs and next meaningful queue separately from deployed app source; no docs-only redeployment.
 
 Human playtesting, physical-device timing, useful human authoring effort, empirical calibration and qualified theological review remain open external tracks. Synthetic actors/notes and source-review verdicts do not fill them. The user's existing authorization covers implementation and delivery; no new approval pause is required for this bounded milestone.
 
@@ -35,3 +35,5 @@ Integration checkpoint: core code `09c8460` and evidence `52cecfa`, UI `2d9b529`
 Replacement lifecycle review found a release-blocking termination-budget defect at command counts 253/254. Original counterexamples are retained under `/tmp/hf-plans-fallback-*`; core lane is fixing general reserve guards, then the same fresh reviewer will recheck. Reserved cases remain sealed. Root UI fixes, both original Astra reviews, all 526 current tests and 53 minimum-version new tests otherwise pass.
 
 Final host review and comparison gates are now complete: corrective core `4de8965`, independently rechecked; freeze `b1ee8e8` binds source `91333d8`; four reserved outcomes retained and all 29 comparison journals replay on minimum Node 22. Main integrates final evidence `c69c14a`. Full final suite passes 530 tests and all 57 new tests pass Node 22. Root final UI/browser/build checks pass; push/deployment/live verification remains the current task.
+
+Completed as [app 0.9](../../release-0.9.md), deployed source `cf4270c0a75880f8e9b0a29011a6b80c829e5701`. All lanes and verification are complete. Later private evidence/tooling/handoff is separate from the deployed app.

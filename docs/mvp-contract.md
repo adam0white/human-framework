@@ -1,6 +1,6 @@
 # What may graduate to MVP
 
-Established 2026-09-07; updated through app 0.8 on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
+Established 2026-09-07; updated through app 0.9 on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
 
 ## Intended first deliverable
 
@@ -62,6 +62,12 @@ Mechanical integration checks have stronger evidence; graduation still requires 
 [Service Day](release-0.8.md) carries independent simulated people, scarce owned parts and paid partial work through two obligations. Both simple priorities complete nine conditions each, totaling 18 comparison runs; a matched continuation exposes a specific uncoordinated fallback rather than a general planning necessity. The new host strengthens lifecycle/ownership evidence, with 473 tests, minimum-version checks and actual production browser verification. Static public-module linkage is now checked before building.
 
 These checks do not graduate the broader human model. Explicit shared plans and renegotiation are the next discriminating application, with the 0.8 host retained as a control and direct host records as a serious rival. No new player feedback arrived; explanation, human authoring benefit, physical-device and external scientific/theological gates remain open.
+
+## Progress through the hourly 0.9 milestone
+
+[A Shared Promise](release-0.9.md) adds a direct paid coordination/revision record without changing the package or prior controls. Independent review found and fixed termination-budget defects, and 530 tests plus minimum-version/production checks pass. Twenty-five development variants, four committed-source withheld scripts and six exploratory handovers preserve simpler successes and failed promises. This demonstrates authored lifecycle and coordination choices, not a general planner or human authoring benefit.
+
+The next step is an actor-local information feasibility study before another interface. A draft no-radio counterexample must be retained, and message/acknowledgment value must survive competent fixed/contact and notebook rivals. No new actual human notes arrived; the explanation, physical-device, authoring-benefit and external validation gates remain open.
 
 ## Sequence proposed at 0.5 (partly executed; current queue is above)
 

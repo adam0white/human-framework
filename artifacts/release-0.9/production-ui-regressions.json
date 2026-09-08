@@ -1,0 +1,32 @@
+{
+  "base": "https://human.adamwhite.work",
+  "scope": "Actual browser regressions; synthetic note text is not human evidence.",
+  "checks": [
+    {
+      "name": "permanent slot loss is explained before departure and before requested stop",
+      "passed": true,
+      "before": "The clinic can receive one load today. This fallback uses that slot for one of two requested units, independent of pump parts or inlet supply. Starting commits the clinic’s only slot. If this trip is stopped, no later delivery can use it.",
+      "stop": "Ask Deniz to stop · forfeit delivery",
+      "minute": 37,
+      "slot": {
+        "actor": "partner",
+        "route": "cart",
+        "departedAt": 37,
+        "arrivedAt": null,
+        "status": "abandoned"
+      }
+    },
+    {
+      "name": "typing in an already-open note pauses resumed playback",
+      "passed": true,
+      "runningBeforeInput": "true",
+      "runningAfterInput": "false"
+    },
+    {
+      "name": "submitting an already-open note pauses resumed playback",
+      "passed": true,
+      "runningBeforeSubmit": "true",
+      "runningAfterSubmit": "false"
+    }
+  ]
+}
