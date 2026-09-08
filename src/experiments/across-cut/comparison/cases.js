@@ -15,7 +15,11 @@ const policyCases=[
   p('D5','both repairs long',setup(12,14,27,'bounded',slots(['keeper','receiver'],6))),
   p('D6','early slow inlet',setup(6,14,15)),
   p('D7','easy early overhead',setup(6,2,15)),
-  p('D8','contact opportunity',setup(12,2,27,'lossy',slots(['keeper','receiver'],'loss')))
+  p('D8','contact opportunity',setup(12,2,27,'lossy',slots(['keeper','receiver'],'loss'))),
+  p('D9','reliable long keeper late launch',setup(12,2,27)),
+  p('D10','reliable both long late launch',setup(12,14,27)),
+  p('D11','reliable long keeper early launch',setup(12,2,15)),
+  p('D12','reliable both long early launch',setup(12,14,15))
 ];
 const script=(id,family,steps,config=setup(6,2,27))=>({id,family,partition:'development',kind:'script',setup:config,steps});
 const successfulPrefix=[a(0,'keeper',{task:'inspect'}),a(0,'receiver',{task:'inspect'}),a(1,'keeper',{task:'propose',terms:term(13)}),a(1,'receiver',{task:'repair'}),a(2,'keeper',{task:'repair'}),a(4,'receiver',decide('accept')),a(4,'receiver',response('accept')),a(8,'keeper',decide('accept'))];
@@ -41,7 +45,12 @@ const scripts=[
   ]),
   script('S8-fixed-cart-insurance','literal original easy fixed plan plus cart insurance',[
     a(0,'keeper',{task:'inspect'}),a(0,'receiver',{task:'inspect'}),a(1,'keeper',{task:'repair'}),a(1,'receiver',{task:'repair'}),a(7,'keeper',{task:'release'}),a(11,'receiver',{task:'attend',minutes:1}),a(12,'receiver',{task:'cart'})
-  ])
+  ]),
+  ...['received','lost'].map((variant,index)=>script(`S${9+index}-withdrawal-${variant}`,'scripted prefix then real local-policy release or hold',[
+    a(0,'keeper',{task:'inspect'}),a(0,'receiver',{task:'inspect'}),a(1,'keeper',{task:'propose',terms:term(10)}),a(1,'receiver',{task:'repair'}),a(2,'keeper',{task:'repair'}),a(2,'keeper',decide('accept')),
+    a(4,'receiver',decide('accept')),a(4,'receiver',response('accept')),a(5,'receiver',decide('withdraw')),a(5,'receiver',response('withdraw')),
+    a(8,'keeper',{control:'choose-policy',arm:'notebook'}),a(10,'keeper',{control:'choose-policy',arm:'notebook'})
+  ],setup(6,2,27,'lossy',{...slots(['keeper','receiver'],2),...(variant==='lost'?{'receiver:6':'loss'}:{})})))
 ];
 const reserved=[
   {...script('R1-arrival-launch-tie','paid arrival at early launch endpoint',[

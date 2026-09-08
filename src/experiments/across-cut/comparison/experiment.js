@@ -26,7 +26,8 @@ export function runTrial(condition,arm=condition.kind==='script'?'prescribed':nu
   function decisionRound(scriptEntry=null){
     const current=views(world),inputs=Object.fromEntries(actors.map(actor=>[actor,intern(dictionary,{view:current[actor],state:states[actor]})]));
     // Both decisions are computed before the first world command is dispatched.
-    const decisions=Object.fromEntries(actors.map(actor=>[actor,scriptEntry?{state:structuredClone(states[actor]),action:actor===scriptEntry.actor?resolveScript(scriptEntry.action,current[actor]):null,reason:'Source-prescribed legal paid intervention; not an autonomous policy.'}:chooseAction(structuredClone(current[actor]),structuredClone(states[actor]),arm)]));
+    const controllers=Object.fromEntries(actors.map(actor=>[actor,scriptEntry?(scriptEntry.actor===actor&&scriptEntry.action.control==='choose-policy'?scriptEntry.action.arm:'prescribed'):arm]));
+    const decisions=Object.fromEntries(actors.map(actor=>[actor,controllers[actor]==='prescribed'?{state:structuredClone(states[actor]),action:actor===scriptEntry.actor?resolveScript(scriptEntry.action,current[actor]):null,reason:'Source-prescribed legal paid intervention; not an autonomous policy.'}:chooseAction(structuredClone(current[actor]),structuredClone(states[actor]),controllers[actor])]));
     const results={};
     for(const actor of actors){
       states[actor]=structuredClone(decisions[actor].state);
@@ -34,7 +35,7 @@ export function runTrial(condition,arm=condition.kind==='script'?'prescribed':nu
       if(applied.error){states[actor].lastRefusal={at:current[actor].now,action:decisions[actor].action,error:applied.error};errors.push({at:current[actor].now,actor,...states[actor].lastRefusal});}
       results[actor]={error:applied.error,saveSha256:measure()};
     }
-    events.push({kind:'decisions',at:current.keeper.now,inputs,decisions,results});
+    events.push({kind:'decisions',at:current.keeper.now,inputs,controllers,decisions,results});
     return actors.some(a=>decisions[a].action!==null);
   }
   for(let minute=0;minute<30;minute++){
@@ -58,7 +59,8 @@ export function replayTrial(trial){
     assert.equal(event.kind,'decisions');const current=views(world);
     for(const actor of actors){
       const input=resolveInput(trial.dictionary,event.inputs[actor]);assert.deepEqual(input,{view:current[actor],state:states[actor]});
-      if(trial.kind==='policy')assert.deepEqual(chooseAction(structuredClone(input.view),structuredClone(input.state),trial.arm),event.decisions[actor]);
+      const controller=event.controllers?.[actor]??(trial.kind==='policy'?trial.arm:'prescribed');
+      if(controller!=='prescribed')assert.deepEqual(chooseAction(structuredClone(input.view),structuredClone(input.state),controller),event.decisions[actor]);
     }
     for(const actor of actors){
       const decision=event.decisions[actor];states[actor]=structuredClone(decision.state);const applied=apply(world,actor,decision.action);world=applied.world;

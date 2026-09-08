@@ -11,10 +11,10 @@ test('comparison evidence hashes complete detached local inputs and rejects muta
   dictionary[id].now=2;assert.throws(()=>m.resolveInput(dictionary,id),/hash/);
 });
 
-test('nine legal rival families share detached actor-local decisions',async()=>{
+test('twelve legal rival families share detached actor-local decisions',async()=>{
   const m=await import('../src/experiments/across-cut/comparison/policies.js').catch(()=>null);
   assert.ok(m?.chooseAction,'Actor-local rival policies must exist.');
-  assert.equal(m.ARMS.length,9);
+  assert.equal(m.ARMS.length,12);
   const view={actorId:'receiver',now:0,horizon:30,ended:false,channel:{mode:'reliable',minDelay:2,maxDelay:2,lossPossible:false},body:{body:{fatigue:.15,hunger:.15}},position:6,location:'dock',inventory:{cartWater:{available:1},meal:{available:1},radio:{available:4}},local:{station:'dock',repairMinutes:null,repairProgress:null,launchAt:27},job:null,notebook:[],inbox:[],sent:[],proposals:[],contributions:[],paid:{}};
   const before=structuredClone(view);
   assert.equal(m.chooseAction(view,{},'cart-only').action.task,'cart');
@@ -64,9 +64,10 @@ test('registered comparison protocol and fresh output guards preserve evidence',
 test('development cases retain all repair combinations and seal reserved execution',async()=>{
   const m=await import('../src/experiments/across-cut/comparison/cases.js').catch(()=>null);
   assert.ok(m?.selectCases,'The source-declared case matrix must exist.');
-  const cases=m.selectCases();assert.equal(cases.filter(x=>x.kind==='policy').length,8);
-  assert.equal(cases.filter(x=>x.kind==='script').length,9);
+  const cases=m.selectCases();assert.equal(cases.filter(x=>x.kind==='policy').length,12);
+  assert.equal(cases.filter(x=>x.kind==='script').length,11);
   assert.equal(new Set(cases.filter(x=>x.kind==='policy').map(x=>`${x.setup.valveMinutes}/${x.setup.inletMinutes}`)).size,4);
+  assert.equal(new Set(cases.filter(x=>x.kind==='policy'&&x.setup.channelMode==='reliable').map(x=>`${x.setup.valveMinutes}/${x.setup.inletMinutes}/${x.setup.launchAt}`)).size,8);
   assert.throws(()=>m.selectCases('reserved'),/sealed/);
   assert.throws(()=>m.selectCases('reserved',{sourceCommit:'forged'}),/sealed/);
 });
@@ -164,4 +165,28 @@ test('reliable radio bounds never infer delivery of a missed contact transmissio
   let radio=h.create();radio=h.request(radio,'keeper',{task:'transmit',message:{kind:'report',observationIds:[h.getActorView(radio,'keeper').notebook[0].receipt]}});
   radio=h.advance(radio,2);assert.deepEqual(chooseAction(h.getActorView(radio,'keeper'),{},'fixed-early').state.inferredReceived,[]);
   radio=h.advance(radio,3);assert.deepEqual(chooseAction(h.getActorView(radio,'keeper'),{},'fixed-early').state.inferredReceived,['keeper:m1'],'A completed reliable radio transmission can be inferred delivered after its known bound.');
+});
+
+test('cart-first no-radio secures early fast/slow service without a backward report',async()=>{
+  const {runTrial}=await import('../src/experiments/across-cut/comparison/experiment.js');const {selectCases}=await import('../src/experiments/across-cut/comparison/cases.js');const cases=selectCases();
+  const fast=runTrial(cases.find(c=>c.id==='D7'),'cart-first-no-radio'),slow=runTrial(cases.find(c=>c.id==='D11'),'cart-first-no-radio');
+  assert.equal(fast.final.service.units,2);assert.equal(fast.final.water.excess,1);
+  assert.equal(slow.final.service.units,1);assert.equal(slow.final.water.lost,2);
+  assert.equal(slow.final.service.deliveries.find(d=>d.route==='cart').at,8);
+  for(const t of [fast,slow])assert.equal(t.final.transport.length,0);
+});
+
+test('every informed keeper uses the inlet fact to avoid a knowingly late pipe',async()=>{
+  const {runTrial}=await import('../src/experiments/across-cut/comparison/experiment.js');const {selectCases}=await import('../src/experiments/across-cut/comparison/cases.js');const condition=selectCases().find(c=>c.id==='D6');
+  for(const arm of ['one-way-report','two-way-report','reactive-radio','notebook','notebook-no-confirm']){const t=runTrial(condition,arm);assert.equal(t.final.water.pipeConsumed,0,arm);assert.equal(t.final.service.units,1,arm);}
+});
+
+test('received withdrawal changes real keeper water action while missing responses never gate release',async()=>{
+  const {runTrial}=await import('../src/experiments/across-cut/comparison/experiment.js');const {selectCases}=await import('../src/experiments/across-cut/comparison/cases.js');const cases=selectCases();
+  const heard=runTrial(cases.find(c=>c.id==='S9-withdrawal-received')),missed=runTrial(cases.find(c=>c.id==='S10-withdrawal-lost'));
+  assert.equal(heard.final.water.pipeConsumed,0);assert.equal(heard.final.actors.keeper.inventory.water.available,2);assert.equal(heard.final.actors.keeper.contributions[0].status,'withdrawn');
+  assert.equal(missed.final.water.pipeConsumed,2);assert.equal(missed.final.water.lost,2);
+  assert.ok(heard.events.some(e=>e.controllers?.keeper==='notebook'&&e.decisions.keeper.action?.decision==='withdraw'));
+  const noReplies=structuredClone(cases.find(c=>c.id==='S10-withdrawal-lost'));noReplies.id='diagnostic-no-replies';noReplies.setup.channelOverrides['receiver:5']='loss';
+  const silent=runTrial(noReplies);assert.equal(silent.finalLocal.keeper.inbox.length,0);assert.equal(silent.final.water.pipeConsumed,2);
 });
