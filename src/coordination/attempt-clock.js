@@ -12,6 +12,7 @@ export function dueRecord(actor,job) {
   return {id:job.eventId,at:job.endsAt,type:'attempt-due',actorId:actor,data:{attemptId:job.attemptId,task:job.task}};
 }
 export function beginJob(state,actor,task,spec,fields) {
+  if(['task','startedAt','endsAt','eventId','attemptId'].some(key=>Object.hasOwn(fields??{},key)))fail('INVALID_JOB_FIELDS','Host fields cannot replace lifecycle identity.');
   const person=beginAttempt(state.people[actor],spec);
   if(!person.pending.capacity.allowed)fail('CAPACITY','A blocked attempt cannot start a host job.');
   const endsAt=state.clock.now+spec.durationMinutes;

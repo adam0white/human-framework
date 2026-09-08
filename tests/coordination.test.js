@@ -5,6 +5,14 @@ import {beginJob,interruptJob,completeJob,advanceJobs,dueRecord} from '../src/co
 const state=()=>({people:{person:createPerson({id:'person',body:{fatigue:.3,hunger:.6},skills:{repair:.2}})},jobs:{person:null},clock:createClock(),stock:1});
 const action=(activity='active')=>({actionId:'test',targetId:null,durationMinutes:4,effort:activity==='active'?.02:0,exertive:activity==='active',activity,skill:activity==='active'?'repair':null});
 
+test('host extensions cannot replace lifecycle identity or partially mutate the draft',()=>{
+  for(const key of ['task','startedAt','endsAt','eventId','attemptId']){
+    const s=state(),before=structuredClone(s);
+    assert.throws(()=>beginJob(s,'person','repair',action(),{[key]:'override',reserved:1}),{code:'INVALID_JOB_FIELDS'});
+    assert.deepEqual(s,before);
+  }
+});
+
 test('accepted work preserves paid body/practice on interruption and cancels its unique due event',()=>{
   const s=state();beginJob(s,'person','repair',action(),{reserved:1});
   assert.equal(s.jobs.person.endsAt,4);assert.equal(s.jobs.person.reserved,1);
