@@ -38,6 +38,41 @@ const countBag=game=>Object.values(game.parcels).filter(p=>p.owner==='bag').leng
 const otherEnd=(route,location)=>route.from===location?route.to:route.from;
 const difficulty=condition=>condition==='calm'?0.24:0.58;
 
+// Optimistic travel times allow every shortcut to succeed. They establish
+// necessary chronology bounds, not proof that a saved itinerary occurred.
+function shortestDistances(source){
+  const distance=Object.fromEntries(places.map(p=>[p.id,p.id===source?0:Infinity])),remaining=new Set(places.map(p=>p.id));
+  while(remaining.size){
+    const here=[...remaining].sort((a,b)=>distance[a]-distance[b])[0];remaining.delete(here);
+    for(const route of routes.filter(r=>r.from===here||r.to===here)){
+      const there=otherEnd(route,here);distance[there]=Math.min(distance[there],distance[here]+route.minutes);
+    }
+  }
+  return distance;
+}
+const distances=Object.fromEntries(places.map(p=>[p.id,shortestDistances(p.id)]));
+function minimumTravel(game){
+  const required=new Set(['depot',game.location,...parcels.filter(p=>game.parcels[p.id].deliveredAt!==null).map(p=>p.destination)]);
+  const visitedCrossings=Object.entries(game.crossings).filter(([,c])=>c.trials>0||c.report).map(([id])=>routeById(id));
+  // Inspection/failed-trial records do not identify which bank was visited.
+  // Minimize across both possible endpoints before taking a spanning-tree bound.
+  let best=Infinity;
+  for(let choices=0;choices<2**visitedCrossings.length;choices++){
+    const targets=new Set(required);visitedCrossings.forEach((r,i)=>targets.add(choices&(1<<i)?r.to:r.from));
+    const reached=new Set(['depot']);let cost=0;
+    while([...targets].some(id=>!reached.has(id))){
+      let edge=null;for(const from of reached)for(const to of targets)if(!reached.has(to)&&(!edge||distances[from][to]<edge.cost))edge={to,cost:distances[from][to]};
+      cost+=edge.cost;reached.add(edge.to);
+    }
+    best=Math.min(best,cost);
+  }
+  const completed=Object.entries(game.crossings).filter(([,c])=>c.trials>0);
+  const trialMinutes=completed.reduce((sum,[,c])=>sum+c.trials*11,0);
+  const entryMinutes=completed.length?Math.min(...completed.map(([id])=>{const r=routeById(id);return Math.min(distances.depot[r.from],distances.depot[r.to]);})):0;
+  // Trial minutes can already be part of the travel tree; never add them twice.
+  return Math.max(best,trialMinutes+entryMinutes);
+}
+
 function random(seed,...keys){
   let hash=2166136261;
   for(const letter of JSON.stringify([seed,...keys])){hash^=letter.charCodeAt(0);hash=Math.imul(hash,16777619);}
@@ -182,11 +217,13 @@ export function importGame(record){
   keys(next.person.skills,['routecraft'],'courier skills');
   if(next.person.skills.routecraft<0.36)throw new Error('Invalid routecraft baseline');
   if(!places.some(p=>p.id===next.location)||!['playing','complete','expired','ended'].includes(next.status))throw new Error('Invalid location/status');
+  const committedBefore=next.person.pending?.startedAt??next.clock;
+  if(committedBefore+1e-9<distances.depot[next.location])throw new Error('Insufficient travel time for current location');
   keys(next.parcels,parcels.map(p=>p.id),'parcels');
   for(const p of parcels){
     const held=next.parcels[p.id];keys(held,['owner','deliveredAt'],'parcel');
     if(!['depot','bag',p.destination].includes(held.owner)||(held.owner===p.destination)!==(held.deliveredAt!==null))throw new Error('Invalid parcel ownership');
-    if(held.deliveredAt!==null)number(held.deliveredAt,5,next.person.pending?.startedAt??next.clock,'delivery time');
+    if(held.deliveredAt!==null)number(held.deliveredAt,2+distances.depot[p.destination]+3,committedBefore,'delivery time');
   }
   if(countBag(next)>BAG_CAPACITY)throw new Error('Overfilled parcel bag');
   const all=Object.values(next.parcels).every(p=>p.deliveredAt!==null);
@@ -196,10 +233,10 @@ export function importGame(record){
     keys(crossing,['condition','trials','report'],'crossing');
     if(crossing.condition!==(random(next.seed,'condition',id)<0.5?'calm':'exposed'))throw new Error('Invalid crossing condition');
     number(crossing.trials,0,Math.floor(next.clock/11),'crossing trials',true);
-    if(crossing.report!==null){keys(crossing.report,['condition','observedAt'],'crossing report');if(crossing.report.condition!==crossing.condition)throw new Error('Invalid observation');number(crossing.report.observedAt,5,next.person.pending?.startedAt??next.clock,'observation time');}
+    if(crossing.report!==null){keys(crossing.report,['condition','observedAt'],'crossing report');if(crossing.report.condition!==crossing.condition)throw new Error('Invalid observation');const route=routeById(id);number(crossing.report.observedAt,5+Math.min(distances.depot[route.from],distances.depot[route.to]),committedBefore,'observation time');}
   }
   const committedMinutes=Object.values(next.parcels).reduce((sum,p)=>sum+(p.deliveredAt!==null?5:p.owner==='bag'?2:0),0)+
-    (2-next.meals)*8+Object.values(next.crossings).reduce((sum,c)=>sum+c.trials*11+(c.report?5:0),0)+
+    (2-next.meals)*8+Object.values(next.crossings).reduce((sum,c)=>sum+(c.report?5:0),0)+minimumTravel(next)+
     (next.person.pending?.elapsedMinutes??0);
   if(next.clock+1e-9<committedMinutes)throw new Error('Insufficient paid time for committed effects');
   keys(next.lastEvent,['status','message','minutes'],'last event');
