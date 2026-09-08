@@ -186,3 +186,31 @@ test('malformed saves reject overfilled bag, hidden condition changes, clocks an
   const pending=exportGame(startAction(createGame(),'load-medicine'));pending.status='ended';
   assert.throws(()=>importGame(pending),/pending|event/);
 });
+
+test('save chronology rejects unreachable current locations, premature deliveries and remote inspections',()=>{
+  const teleported=exportGame(createGame());teleported.location='mill';
+  assert.throws(()=>importGame(teleported),/travel|elapsed|location/i);
+  let g=act(createGame(),'load-medicine');g=interruptAction(advanceTime(startAction(g,'rest'),3));
+  const delivered=exportGame(g);delivered.parcels.medicine={owner:'clinic',deliveredAt:5};
+  assert.throws(()=>importGame(delivered),/delivery|travel/i);
+  const inspected=exportGame(interruptAction(advanceTime(startAction(createGame(),'rest'),5)));
+  inspected.crossings.footbridge.report={condition:inspected.crossings.footbridge.condition,observedAt:5};
+  assert.throws(()=>importGame(inspected),/observation|travel/i);
+  const pending=exportGame(advanceTime(startAction(createGame(),'rest'),14));pending.location='market';
+  assert.throws(()=>importGame(pending),/travel|location/i);
+});
+
+test('earliest legal shortcut delivery and partial crossing saves do not count travel twice',()=>{
+  let successful=0;
+  for(let seed=1;seed<=30;seed++){
+    let g=act(act(createGame({seed}),'load-medicine'),'travel-depot-market');
+    const pending=advanceTime(startAction(g,'travel-footbridge'),3);
+    assert.deepEqual(importGame(exportGame(pending)),pending);
+    g=finishAction(pending);
+    if(g.location==='clinic'){
+      g=act(g,'deliver-medicine');assert.equal(g.clock,26);assert.equal(g.parcels.medicine.deliveredAt,26);
+      assert.deepEqual(importGame(exportGame(g)),g);successful++;
+    }
+  }
+  assert.ok(successful>0);
+});
