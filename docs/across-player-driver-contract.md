@@ -1,6 +1,6 @@
 # Across the Cut player and receiver contract
 
-Selected implementation for the [actor-local execution boundary](actor-local-player-execution.md), 2026-09-08. Player `0.1.0`, receiver `0.1.0`, player save `1`, public host `0.2.0`. This is authored software behavior for one disposable scene. The frozen private study, Human/runtime `0.1.1`, and clock `0.1.0` remain unchanged. The public host's unassigned paid recovery is an explicit difference from the historical private study's active idle maintenance.
+Selected implementation for the [actor-local execution boundary](actor-local-player-execution.md), 2026-09-08. Player `0.1.0`, receiver `0.1.1`, player save `1`, public host `0.2.0`. This is authored software behavior for one disposable scene. The frozen private study, Human/runtime `0.1.1`, and clock `0.1.0` remain unchanged. The public host's unassigned paid recovery is an explicit difference from the historical private study's active idle maintenance.
 
 ## Player facade and information ownership
 
@@ -51,7 +51,7 @@ If the conservative body estimate cannot support the next interval, the receiver
 
 ## Compact save recipe and reconstruction
 
-The only player save shape is `{format:'human-across-cut-player',saveVersion:1,playerVersion:'0.1.0',receiverVersion:'0.1.0',setup,commands}`. It stores normalized host setup and player commands, including `{type:'advance',minutes}` and `{type:'continue'}`. There is no supplied receiver state, injected observation, computed interface frame, duplicated host snapshot, or trusted world result.
+The only player save shape is `{format:'human-across-cut-player',saveVersion:1,playerVersion:'0.1.0',receiverVersion:'0.1.1',setup,commands}`. It stores normalized host setup and player commands, including `{type:'advance',minutes}` and `{type:'continue'}`. There is no supplied receiver state, injected observation, computed interface frame, duplicated host snapshot, or trusted world result.
 
 Restore validates bounded plain JSON and exact fields, creates the selected host/setup, and deterministically reruns the real player controls and minute driver. This reconstructs the receiver, its decisions, the current host state, the same-minute frame, and the interface's actual pause. At most 128 keeper controls and 30 positive time advances fit the 158-command bound. Zero-time advances, unsupported identities, extra fields, sparse arrays, accessors, nonfinite numbers, cycles, and excessive expansion reject. An accessor is rejected before it executes. A horizon no-op is not a valid saved command.
 
@@ -62,3 +62,7 @@ This verifies lawful policy/provenance reconstruction, not cryptographic authent
 `tests/across-player-driver.test.js` exercises the specified valve-six/inlet-fourteen/launch-fifteen/six-delay receipt at minute eight. The pending release has one paid minute and two reserved water units. Stop returns both units without erasing the paid minute; Continue consumes both at nine and the host records their later loss. Both routes resume through the receipt save recipe.
 
 Additional checks cover hidden-work/launch twins, missing reports and private departure, adaptive paid attendance, source-time upstream bounds, interrupted walking, horizon reservations, final Stop budget, conservative capacity recovery, immutable handles, strict save JSON, and detached receiver decisions. These are executable authored software checks. Browser controls, comparison outcomes, and independent review remain separately recorded delivery evidence; none establish human usefulness or a general cognition capability.
+
+## Reviewed receiver patch 0.1.1
+
+Independent review reproduced a legal hunger `.972` state where an impossible-pipe cart fallback started a meal, then canceled it after one paid minute on each retry. The owned portion was never consumed and the feasible cart missed service. Receiver 0.1.1 finishes an already-started meal before reconsidering capacity and route work; automatic available recovery and player-controlled interruption remain distinct. The corrected same-world route consumes the meal after two minutes and delivers the cart at minute nine, including a save restored during the meal. Initial 0.1.0 source/outcomes remain frozen; a new source-bound revalidation uses the same comparison inputs without retuning.

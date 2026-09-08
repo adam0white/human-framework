@@ -1,7 +1,7 @@
 /** Authored receiver policy. Its only world input is its detached actor view. */
 import {assessEffort} from '../runtime/index.js';
 
-export const RECEIVER_VERSION='0.1.0';
+export const RECEIVER_VERSION='0.1.1';
 export const createReceiverState=()=>({version:RECEIVER_VERSION,mode:'pipe'});
 const rates={inspect:.003,transmit:.003,repair:.012,attend:.006,cart:.010,meal:0};
 const sustainable=(v,task,minutes)=>assessEffort(Object.fromEntries(Object.entries(v.body.body).map(([k,n])=>[k,Math.min(1,n+.025)])),{durationMinutes:minutes,effort:rates[task]*minutes,exertive:rates[task]>0}).allowed;
@@ -37,6 +37,9 @@ export function decideReceiver(state,view){
   if(view.job)return result([],'finish-cart');
   next.mode='done';return result([],'cart-finished');
  }
+ // A meal is owned recovery already underway. Let consumption complete before
+ // reconsidering the capacity-blocked cart; stopping it would repeatedly cancel the meal before any hunger relief.
+ if(view.job?.task==='meal')return result([],'finish-owned-meal');
  if(view.local.launchDeparted||view.local.serviceUnits>=2){
   next.mode='done';return result(view.job?[{type:'stop'}]:[],'observed-service-ended');
  }

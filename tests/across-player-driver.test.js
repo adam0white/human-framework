@@ -155,3 +155,12 @@ test('receiver decisions are detached, repeatable and equal across hidden upstre
  assert.deepEqual(r.decideReceiver(state,a),r.decideReceiver(state,b));assert.deepEqual({state,a},saved);
  const decision=r.decideReceiver(state,a);decision.state.mode='done';assert.equal(state.mode,'pipe');assert.deepEqual(r.decideReceiver(state,a).commands,[{type:'request',action:{task:'inspect'}}]);
 });
+
+test('a hungry receiver finishes its owned meal before retrying the cart',async()=>{
+ const {p,h}=await modules();let g=p.createGame({inletMinutes:14,launchAt:15,bodies:{receiver:{fatigue:.15,hunger:.972}}});
+ g=through(p,g,3);assert.equal(h.getActorView(g.host,'receiver').job.task,'meal');
+ g=p.restoreGame(p.exportGame(g));g=through(p,g,4);
+ let receiver=h.getActorView(g.host,'receiver');assert.equal(receiver.inventory.meal.consumed,1);assert.equal(receiver.paid.meal,2);
+ g=through(p,g,30);const world=p.getDebrief(g);assert.equal(world.service.units,1);assert.equal(world.service.deliveries[0].at,9);
+ assert.equal(world.actors.receiver.paid.meal,2);assert.equal(world.actors.receiver.inventory.meal.available,0);
+});
