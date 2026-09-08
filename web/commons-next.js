@@ -1,3 +1,4 @@
+import {mountPlayNote} from './play-note.js';
 import {createGame,startJob,cancelJob,requestProject,releaseProject,advanceGame,advanceToNextEvent,allocateCache,dispatchFerry,finishDay,getGameView,exportGame,restoreGame} from '/src/games/commons-next.js';
 const $=id=>document.getElementById(id),SAVE='human-common-ground-before-rain-v1';
 const clean=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -68,3 +69,11 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden){pause();re
 setInterval(()=>{const now=performance.now(),delta=Math.min((now-lastWall)/1000,1);lastWall=now;if(!playing||document.hidden)return;fraction+=delta*Number($('speed').value);const minutes=Math.floor(fraction);if(minutes){fraction-=minutes;act(current=>advanceGame(current,$('pause-idle').checked&&current.world.jobs.player?Math.min(minutes,current.world.jobs.player.endsAt-current.world.clock.now):minutes));}},250);
 try{const raw=localStorage.getItem(SAVE);if(raw)game=restoreGame(JSON.parse(raw));}catch{notice('The stored afternoon could not be loaded. A fresh paused afternoon is ready.');}
 render();
+
+mountPlayNote({container:$('session'),game:{id:'commons-next',title:'Before the rain',version:'0.1.0'},hasCompanion:true,
+ onOpen:()=>{pause();render();},getContext:()=>{const v=getGameView(game);return {minute:v.elapsed,summary:[
+  `Afternoon: ${v.phase}; ${v.remaining} minutes remain.`,
+  `${v.caches} caches packed; ${v.availableCaches} unassigned.`,
+  `${v.householdsEquipped} of 2 households equipped; ${v.campNights} of 4 wet nights supplied.`,
+  `Meryem's project: ${v.commitment.status}.`
+ ]};}});

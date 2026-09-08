@@ -1,3 +1,4 @@
+import {mountPlayNote} from './play-note.js';
 import {createWatch,getWatchView,exportWatch,restoreWatch,WATCH_TASKS,WATCH_SCENARIOS} from '../src/games/watch.js';
 import {createSession,pauseSession,toggleSession,commandSession,stopSession,stepSession,tickSession} from './watch-session.js';
 const $=id=>document.getElementById(id),SAVE='human-before-the-water-v1',names={keeper:'You',watcher:'Deniz',world:'The waterside'};
@@ -74,3 +75,12 @@ window.addEventListener('pagehide',()=>{session=pauseSession(session);persist();
 setInterval(()=>{const now=performance.now(),elapsed=now-lastWall;lastWall=now;if(!session.running||document.hidden)return;apply(s=>tickSession(s,elapsed,Number($('speed').value)));},250);
 try{const raw=localStorage.getItem(SAVE);if(raw){if(raw.length>65536)throw new Error('Stored save is too large.');session=createSession(restoreWatch(JSON.parse(raw)));}}catch(error){notice(`The stored episode could not be loaded (${error.message}). A fresh paused episode is ready; download it to keep your progress.`);}
 render();
+
+mountPlayNote({container:document.querySelector('main'),game:{id:'watch',title:'Before the Water',version:'0.1.0'},hasCompanion:true,
+ onOpen:()=>apply(s=>pauseSession(s,'Paused while you write a play note.')),
+ getContext:()=>{const v=getWatchView(session.game);return {minute:v.now,summary:[
+  `Gate repair: ${v.repair} of 18 minutes.`,
+  `Diversion preparation: ${v.bypass} of 10 minutes; ${v.divertedAt===null?'not open':'open'}.`,
+  v.arrivalAt===null?'Arrival time has not been confirmed by a lookout.':`Known surge time: minute ${v.arrivalAt}.`,
+  v.outcome?`Site ${v.outcome.protected?'protected':'flooded'}; water service ${v.outcome.waterService?'continuing':'closed or interrupted'}.`:'Episode still in progress.'
+ ]};}});
