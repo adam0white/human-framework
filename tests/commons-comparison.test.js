@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createGame,getGameView,exportGame,restoreGame,startJob,advanceGame} from '../src/games/commons.js';
+import {readFileSync,writeFileSync,mkdtempSync,existsSync,rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {createGame,getGameView,exportGame,restoreGame,startJob,requestProject,advanceGame} from '../src/games/commons.js';
 import {CONDITIONS,createCondition,chooseRival,runTrial,runComparison} from '../src/experiments/commons-comparison.js';
 
 const freeze=value=>{if(value&&typeof value==='object'){Object.freeze(value);Object.values(value).forEach(freeze);}return value;};
@@ -78,4 +82,28 @@ test('invalid policy commands and exceptions are distinguished from host rejecti
   const trial=runTrial({controller:()=>({type:'grant',food:100})});
   assert.equal(trial.status,'policy-error');assert.equal(trial.commands[0].errorOrigin,'policy');
   assert.equal(trial.final.elapsed,0);assert.deepEqual(trial.finalState,trial.initialState);
+});
+
+
+test('a saved experiment trace replays under the unchanged public host API exactly',()=>{
+  const trial=runTrial({solo:false,policy:'project-pull',budgetMinutes:137,checkpoints:[11,40,137]});
+  let game=restoreGame(trial.initialState);
+  for(const entry of trial.commands){
+    assert.equal(entry.status,'applied');
+    if(entry.command.type==='start')game=startJob(game,entry.command.jobId);
+    else if(entry.command.type==='request')game=requestProject(game,entry.command.projectId);
+    else game=advanceGame(game,entry.advanced);
+  }
+  assert.deepEqual(exportGame(game),trial.finalState);
+});
+
+test('the reserved CLI rejects a changed-source manifest before producing results',()=>{
+  const temp=mkdtempSync(join(tmpdir(),'commons-freeze-test-'));
+  try{
+    const manifest=JSON.parse(readFileSync(new URL('../artifacts/commons-comparison/freeze.json',import.meta.url),'utf8'));
+    manifest.sourceSha256['src/experiments/commons-comparison.js']='0'.repeat(64);
+    const input=join(temp,'invalid.json'),output=join(temp,'forbidden.json');writeFileSync(input,JSON.stringify(manifest));
+    const result=spawnSync(process.execPath,['scripts/commons-comparison.js','run','--partition','reserved','--freeze',input,'--out',output],{cwd:new URL('..',import.meta.url),encoding:'utf8'});
+    assert.equal(result.status,1);assert.match(result.stderr,/Freeze manifest does not match/);assert.equal(existsSync(output),false);
+  }finally{rmSync(temp,{recursive:true,force:true});}
 });
