@@ -1,0 +1,19 @@
+{
+  "format": "service-day-reproduction-check",
+  "version": 1,
+  "method": "Entire JSON output bytes exactly equal on a fresh repeat under the same execution commit; every included trial also verifies restored-after-each-input and public-command replay parity.",
+  "artifacts": [
+    {
+      "partition": "development",
+      "trials": 12,
+      "sha256": "447edad72e6eac864a2999f7b3d006bbe1cbf6b7aab2b273e50d6355e565dff4",
+      "byteEqual": true
+    },
+    {
+      "partition": "reserved",
+      "trials": 6,
+      "sha256": "e55c8e11790486ef337b79dcd35ec26653a568666028c2feeccf0df38f86424c",
+      "byteEqual": true
+    }
+  ]
+}
