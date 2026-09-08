@@ -1,0 +1,44 @@
+{
+  "format": "service-day-core-verification",
+  "version": 1,
+  "designCommit": "3e947d9",
+  "initialImplementationCommit": "5058328",
+  "sourceSha256": {
+    "src/games/service.js": "23854936dfc6aa716b8ae95a5e21c2b1b1ea02fd220e92672966a65cf0d2027e",
+    "tests/service.test.js": "9781b22134946c4fa440a0f78a6838eb7a4f390cc3eb932c1d8ecf1a736887bb",
+    "docs/service-day-design.md": "4f0115752cbdd5c36bfcc97fff0225ba7814d2da6563111f9e317af5c5d92013"
+  },
+  "tests": [
+    {
+      "command": "PATH=/opt/homebrew/bin:$PATH npm test",
+      "node": "26.8.1",
+      "passed": 440,
+      "failed": 0,
+      "scope": "entire repository suite after timing correction; subsequent edit only explains the existing cart receiving-slot rule"
+    },
+    {
+      "command": "PATH=/opt/homebrew/bin:$PATH node --test tests/service.test.js",
+      "node": "26.8.1",
+      "passed": 19,
+      "failed": 0,
+      "scope": "service core including final copy clarification"
+    },
+    {
+      "command": "PATH=/opt/homebrew/bin:$PATH npx --yes node@22.0.0 --test tests/service.test.js",
+      "node": "22.0.0",
+      "passed": 19,
+      "failed": 0,
+      "scope": "service core after timing correction; subsequent edit only explains the existing cart receiving-slot rule"
+    }
+  ],
+  "invariants": {
+    "runtimeHumanModelClockAndReleaseLocksUnchanged": true,
+    "mixedHistoryRuns": 40,
+    "repeatedRefusals": 10000
+  },
+  "limits": [
+    "No human playtest, enjoyment or explanation-gate evidence.",
+    "Meals change condition but are not physically mandatory for on-time work in the standard day.",
+    "Comparison policy outcomes are owned by the separate service comparison report."
+  ]
+}
