@@ -2,7 +2,7 @@
 
 Updated 2026-09-08 after the hourly app 0.8 milestone. Start here, then [the MVP contract](docs/mvp-contract.md), [roadmap](docs/roadmap.md), [release evidence](docs/release-0.8.md) and [review dispositions](docs/reviews/2026-09-08-service-review.md). Earlier lane branches and release records are provenance, not unfinished tasks.
 
-**Current stage complete:** [Service Day plan](docs/superpowers/plans/2026-09-08-service-day.md). Core, UI, frozen comparison and static build guard are integrated, reviewed, pushed and live-verified. All three implementation lanes and final reviews are complete. Do not restart completed lanes; continue the explicit coordination queue below. The active hourly heartbeat `advance-human-framework` retains the user's autonomous implementation/push/deploy authorization and requests Astra Ultra tracks plus scoped Fable reviews.
+**Active stage: shared clinic plans.** [Current implementation plan](docs/superpowers/plans/2026-09-08-service-plans.md). App 0.8 is complete and remains the verified delivery below. New isolated core/UI/comparison lanes are starting from `2822179`; continue those lanes before starting duplicate work. The active hourly heartbeat `advance-human-framework` retains the user's autonomous implementation/push/deploy authorization and requests Astra Ultra tracks plus scoped Fable reviews.
 
 The larger project is an Islam-guided, empirically informed human simulation framework with a Sunni Hanafi–Maturidi starting point. Preserve agency, non-LLM execution and the distinction between revelation, interpretation, empirical findings and authored software. A narrow useful kit and a comprehensive human model have different completion standards.
 
