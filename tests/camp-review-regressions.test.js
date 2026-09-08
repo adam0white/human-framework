@@ -5,6 +5,7 @@ import * as story from '../src/games/camp-story.js';
 import * as old from '../src/games/commons.js';
 import * as rain from '../src/games/commons-next.js';
 import {practice} from '../src/core/model.js';
+import {chooseCommand,applyCommand} from '../src/games/commons-policy.js';
 function completed(){let g=story.continueStory(story.migrateLegacyGame(old.exportGame(rain.createGame().world)));g=story.startJob(g,'forage');g=story.advanceGame(g,90);g=story.dispatchFerry(g);g=story.advanceGame(g,90);return story.exportGame(story.returnToCamp(story.finishStory(g)));}
 test('Next Event stops at renewed player capacity while the other person keeps working',()=>{
  let g=camp.createGame();for(const id of ['gather-timber','gather-salvage','gather-timber','gather-salvage']){g=camp.startJob(g,id);while(g.jobs.player)g=camp.advanceGame(g,1);}
@@ -33,4 +34,16 @@ test('story JSON rejects custom array prototypes before invoking inherited acces
  Object.defineProperty(proto,Symbol.iterator,{get(){invoked++;throw new Error('Inherited code executed');}});
  Object.setPrototypeOf(save.game.record.commands,proto);
  assert.throws(()=>story.restoreGame(save),/JSON|prototype/);assert.equal(invoked,0);
+});
+test('automatic recovery rejects a redundant rest command while the explicit control can select recovery',()=>{
+ const automatic=camp.createGame();assert.throws(()=>camp.startJob(automatic,'rest'),/already automatic/i);
+ const control=camp.startJob(camp.createGame({recovery:'active-idle'}),'rest');assert.equal(control.clock.now,0);assert.equal(control.recovering.player,true);
+});
+test('closed supply windows do not advertise new work as eligible for old deadlines',()=>{
+ let world=old.createGame();for(let i=0;world.caches<4&&i<1000;i++)world=applyCommand(world,chooseCommand(old.getGameView(world)));assert.ok(world.caches>=4);
+ let game=story.continueStory(story.migrateLegacyGame(old.exportGame(world)));
+ for(const destination of ['households','households','camp','camp'])game=story.allocateCache(game,destination);
+ game=story.advanceGame(game,90);game=story.dispatchFerry(game);game=story.finishStory(game);game=story.returnToCamp(game);
+ const view=story.getGameView(game);assert.ok(view.now<view.rainAt);
+ assert.ok(view.choices.every(c=>!c.finishesBeforeFerry&&!c.finishesBeforeRain));
 });

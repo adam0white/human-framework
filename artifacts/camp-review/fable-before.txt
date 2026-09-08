@@ -1,0 +1,55 @@
+✔ Next Event stops at renewed player capacity while the other person keeps working (22.898666ms)
+✔ returned camp cannot reuse lifetime attempt or clock identities from before the chapter (194.568709ms)
+✔ returned camp cannot move already-paid work and practice between people (78.703292ms)
+✔ story JSON rejects custom array prototypes before invoking inherited accessors (39.594583ms)
+✖ automatic recovery rejects a redundant rest command while the explicit control can select recovery (0.456083ms)
+✖ closed supply windows do not advertise new work as eligible for old deadlines (65.732542ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 447.312541
+
+✖ failing tests:
+
+test at tests/camp-review-regressions.test.js:38:1
+✖ automatic recovery rejects a redundant rest command while the explicit control can select recovery (0.456083ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-review-regressions.test.js:39:43)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /already automatic/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/camp-review-regressions.test.js:42:1
+✖ closed supply windows do not advertise new work as eligible for old deadlines (65.732542ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(view.choices.every(c=>!c.finishesBeforeFerry&&!c.finishesBeforeRain))
+  
+      at TestContext.<anonymous> (file:///Users/abdul/code/human-framework/tests/camp-review-regressions.test.js:48:9)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

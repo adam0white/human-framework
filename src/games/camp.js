@@ -196,7 +196,7 @@ export function createGame(input={}){
 export function migrateLegacyGame(snapshot,options={}){json(snapshot);const old=legacy.restoreGame(snapshot);return validate(initial(old,options,snapshot));}
 function change(game,apply){validate(game);const next=copy(game);apply(next);return validate(next);}
 export function startJob(game,id){return change(game,g=>{
-  if(id==='rest'){if(g.jobs.player)fail('Stop the current job before selecting recovery');g.recovering.player=true;record(g,'player','You are available and recovering; another job can start immediately.');}
+  if(id==='rest'){if(g.options.recovery==='automatic')fail('Recovery is already automatic; advance time or choose work.');if(g.jobs.player)fail('Stop the current job before selecting recovery');g.recovering.player=true;record(g,'player','You are available and recovering; another job can start immediately.');}
   else begin(g,id,'player');neighbor(g);
 });}
 export function cancelJob(game){return change(game,g=>{stop(g,'player');neighbor(g);});}

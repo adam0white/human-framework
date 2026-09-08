@@ -1,0 +1,27 @@
+✔ Next Event stops at renewed player capacity while the other person keeps working (28.069542ms)
+✔ returned camp cannot reuse lifetime attempt or clock identities from before the chapter (237.369458ms)
+✔ returned camp cannot move already-paid work and practice between people (92.652542ms)
+✔ story JSON rejects custom array prototypes before invoking inherited accessors (47.19475ms)
+✔ automatic recovery rejects a redundant rest command while the explicit control can select recovery (0.387ms)
+✔ closed supply windows do not advertise new work as eligible for old deadlines (65.885084ms)
+✔ pause preserves paid pending work; stop is a distinct world command (15.29775ms)
+✔ playback stops on actual work completion instead of spending the rest of a large tick (29.296208ms)
+✔ introduction and ferry are real paused boundaries; Continue and dispatch pay no hidden time (143.17575ms)
+✔ invalid commands retain the current story and surface a reason (1.079417ms)
+✔ next event remains finite during available recovery and reload starts paused (5.182042ms)
+✔ new book and stories have an explicit separate bounded identity (4.657167ms)
+✔ active paid work updates one slot while older camp and save copies stay exact (10.911709ms)
+✔ only explicit removal deletes a slot, selects a survivor, and keeps ordinal monotonic (1.303458ms)
+✔ invalid references and metadata reject without changing the valid book (2.573708ms)
+✔ every saved world validates, including inactive corruption and malformed raw JSON (6.817792ms)
+✔ cycles, aliases, accessors, symbol keys, sparse arrays and hidden fields reject before reading (2.204709ms)
+✔ raw six MiB is inclusive, story size is independent, and label exhaustion preserves access (41.039ms)
+✔ every returned book is deeply frozen before reuse and external copies still validate every slot (7.766125ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 518.913166

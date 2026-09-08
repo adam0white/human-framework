@@ -1,0 +1,105 @@
+TAP version 13
+# Subtest: Next Event stops at renewed player capacity while the other person keeps working
+ok 1 - Next Event stops at renewed player capacity while the other person keeps working
+  ---
+  duration_ms: 42.281208
+  ...
+# Subtest: returned camp cannot reuse lifetime attempt or clock identities from before the chapter
+ok 2 - returned camp cannot reuse lifetime attempt or clock identities from before the chapter
+  ---
+  duration_ms: 244.152541
+  ...
+# Subtest: returned camp cannot move already-paid work and practice between people
+ok 3 - returned camp cannot move already-paid work and practice between people
+  ---
+  duration_ms: 92.557167
+  ...
+# Subtest: story JSON rejects custom array prototypes before invoking inherited accessors
+ok 4 - story JSON rejects custom array prototypes before invoking inherited accessors
+  ---
+  duration_ms: 46.965042
+  ...
+# Subtest: automatic recovery rejects a redundant rest command while the explicit control can select recovery
+ok 5 - automatic recovery rejects a redundant rest command while the explicit control can select recovery
+  ---
+  duration_ms: 0.327541
+  ...
+# Subtest: closed supply windows do not advertise new work as eligible for old deadlines
+ok 6 - closed supply windows do not advertise new work as eligible for old deadlines
+  ---
+  duration_ms: 64.896375
+  ...
+# Subtest: pause preserves paid pending work; stop is a distinct world command
+ok 7 - pause preserves paid pending work; stop is a distinct world command
+  ---
+  duration_ms: 21.56525
+  ...
+# Subtest: playback stops on actual work completion instead of spending the rest of a large tick
+ok 8 - playback stops on actual work completion instead of spending the rest of a large tick
+  ---
+  duration_ms: 34.084458
+  ...
+# Subtest: introduction and ferry are real paused boundaries; Continue and dispatch pay no hidden time
+ok 9 - introduction and ferry are real paused boundaries; Continue and dispatch pay no hidden time
+  ---
+  duration_ms: 149.638292
+  ...
+# Subtest: invalid commands retain the current story and surface a reason
+ok 10 - invalid commands retain the current story and surface a reason
+  ---
+  duration_ms: 0.744125
+  ...
+# Subtest: next event remains finite during available recovery and reload starts paused
+ok 11 - next event remains finite during available recovery and reload starts paused
+  ---
+  duration_ms: 3.071291
+  ...
+# Subtest: new book and stories have an explicit separate bounded identity
+ok 12 - new book and stories have an explicit separate bounded identity
+  ---
+  duration_ms: 9.788458
+  ...
+# Subtest: active paid work updates one slot while older camp and save copies stay exact
+ok 13 - active paid work updates one slot while older camp and save copies stay exact
+  ---
+  duration_ms: 18.188291
+  ...
+# Subtest: only explicit removal deletes a slot, selects a survivor, and keeps ordinal monotonic
+ok 14 - only explicit removal deletes a slot, selects a survivor, and keeps ordinal monotonic
+  ---
+  duration_ms: 0.829666
+  ...
+# Subtest: invalid references and metadata reject without changing the valid book
+ok 15 - invalid references and metadata reject without changing the valid book
+  ---
+  duration_ms: 2.8025
+  ...
+# Subtest: every saved world validates, including inactive corruption and malformed raw JSON
+ok 16 - every saved world validates, including inactive corruption and malformed raw JSON
+  ---
+  duration_ms: 7.018291
+  ...
+# Subtest: cycles, aliases, accessors, symbol keys, sparse arrays and hidden fields reject before reading
+ok 17 - cycles, aliases, accessors, symbol keys, sparse arrays and hidden fields reject before reading
+  ---
+  duration_ms: 2.817416
+  ...
+# Subtest: raw six MiB is inclusive, story size is independent, and label exhaustion preserves access
+ok 18 - raw six MiB is inclusive, story size is independent, and label exhaustion preserves access
+  ---
+  duration_ms: 49.540917
+  ...
+# Subtest: every returned book is deeply frozen before reuse and external copies still validate every slot
+ok 19 - every returned book is deeply frozen before reuse and external copies still validate every slot
+  ---
+  duration_ms: 7.295458
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 558.947292
