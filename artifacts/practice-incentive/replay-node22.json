@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "node": "v22.0.0",
+  "scope": "Independent direct API replay of every recorded state/view, JSON restore, summary physical fields/objective, marks and recorded refusals. No new comparison conditions.",
+  "stateChecks": 434,
+  "viewChecks": 434,
+  "markChecks": 28,
+  "refusalChecks": 1,
+  "files": [
+    {
+      "input": "artifacts/practice-incentive/gathering/run-initial/G1-arms.json",
+      "sha256": "4d89e2ea17baabfd314034be5a543b49c067fa3190e25e320f15ecf94b7ad471",
+      "trajectories": [
+        {
+          "id": "G1-finish-timber-then-forage",
+          "commands": 65,
+          "states": 66,
+          "refusals": 0,
+          "finalMinute": 60
+        },
+        {
+          "id": "G1-finish-forage-then-timber",
+          "commands": 65,
+          "states": 66,
+          "refusals": 0,
+          "finalMinute": 60
+        },
+        {
+          "id": "G1-partial-forage-then-timber",
+          "commands": 66,
+          "states": 67,
+          "refusals": 0,
+          "finalMinute": 60
+        },
+        {
+          "id": "G1-recover-then-timber",
+          "commands": 64,
+          "states": 65,
+          "refusals": 0,
+          "finalMinute": 60
+        }
+      ]
+    },
+    {
+      "input": "artifacts/practice-incentive/construction/comparison-initial.json",
+      "sha256": "949605fb7f160e6b00f0f443103f85a0c7210bcab189cdd9ec6538879924a672",
+      "trajectories": [
+        {
+          "id": "finish-woodshed-first",
+          "commands": 26,
+          "states": 27,
+          "refusals": 0,
+          "finalMinute": 160
+        },
+        {
+          "id": "garden-immediately",
+          "commands": 24,
+          "states": 25,
+          "refusals": 0,
+          "finalMinute": 160
+        },
+        {
+          "id": "one-minute-construction-then-garden",
+          "commands": 25,
+          "states": 26,
+          "refusals": 0,
+          "finalMinute": 160
+        },
+        {
+          "id": "one-minute-recovery-then-garden",
+          "commands": 25,
+          "states": 26,
+          "refusals": 0,
+          "finalMinute": 160
+        }
+      ]
+    },
+    {
+      "input": "artifacts/practice-incentive/gathering/G1-prefix.json",
+      "sha256": "e041016f1de27170bf3f4badc394e5f9094bea250938947c9cbf89c7cedd5f1f",
+      "trajectories": [
+        {
+          "id": "G1-prefix",
+          "commands": 32,
+          "states": 33,
+          "refusals": 0,
+          "finalMinute": 30
+        }
+      ]
+    },
+    {
+      "input": "artifacts/practice-incentive/construction/prefix.json",
+      "sha256": "eecefbf97e00bdc3d7e1d6213fa978dc8eb1b2b1ed89802395e1cb3beda5d605",
+      "trajectories": [
+        {
+          "id": "C1-administrative-prefix",
+          "commands": 15,
+          "states": 16,
+          "refusals": 1,
+          "finalMinute": 83
+        }
+      ]
+    },
+    {
+      "input": "artifacts/practice-incentive/construction/prefix-corrected.json",
+      "sha256": "031eb135d8f135fbe589decb970406a15b9ceda8e2cedc584d4ea7034713d852",
+      "trajectories": [
+        {
+          "id": "C1-administrative-prefix",
+          "commands": 16,
+          "states": 17,
+          "refusals": 0,
+          "finalMinute": 84
+        }
+      ]
+    }
+  ],
+  "verifierSha256": "58809fe37cf904a446d1a0749dce76718e7b805f813307ce5b439d970f4abcbd"
+}

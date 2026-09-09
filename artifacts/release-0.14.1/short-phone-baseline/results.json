@@ -1,0 +1,220 @@
+{
+  "scope": "Same C1 garden-complete fixture, 375x667 only; prechange HTML/JS from Git fe540da versus current files; no gameplay or fixture edits",
+  "fixture": {
+    "trajectory": "finish-woodshed-first",
+    "mark": "garden-complete",
+    "commandIndex": 22,
+    "now": 126
+  },
+  "errors": [],
+  "states": {
+    "baseline": {
+      "before": {
+        "documentWidth": 375,
+        "documentHeight": 667,
+        "hud": {
+          "top": 36,
+          "bottom": 195.78125,
+          "height": 159.78125,
+          "scrollTop": 0,
+          "scrollHeight": 160,
+          "clientHeight": 160,
+          "overflowY": "visible"
+        },
+        "dock": {
+          "top": 504.90625,
+          "bottom": 667,
+          "height": 162.09375,
+          "scrollTop": 0,
+          "scrollHeight": 161,
+          "clientHeight": 161,
+          "overflowY": "visible"
+        },
+        "panel": {
+          "top": 246.78125,
+          "bottom": 504.90625,
+          "height": 258.125,
+          "scrollTop": 0,
+          "scrollHeight": 391,
+          "clientHeight": 258,
+          "overflowY": "auto"
+        },
+        "salvage": {
+          "top": 458.140625,
+          "bottom": 569.3125,
+          "height": 111.171875,
+          "scrollTop": 0,
+          "scrollHeight": 109,
+          "clientHeight": 109,
+          "overflowY": "visible"
+        },
+        "forage": {
+          "top": 458.140625,
+          "bottom": 569.3125,
+          "height": 111.171875,
+          "scrollTop": 0,
+          "scrollHeight": 109,
+          "clientHeight": 109,
+          "overflowY": "visible"
+        },
+        "forageText": "Gather food14 minBring back 3 food"
+      },
+      "afterKeyboardFocus": {
+        "documentWidth": 375,
+        "documentHeight": 667,
+        "hud": {
+          "top": 36,
+          "bottom": 195.78125,
+          "height": 159.78125,
+          "scrollTop": 0,
+          "scrollHeight": 160,
+          "clientHeight": 160,
+          "overflowY": "visible"
+        },
+        "dock": {
+          "top": 504.90625,
+          "bottom": 667,
+          "height": 162.09375,
+          "scrollTop": 0,
+          "scrollHeight": 161,
+          "clientHeight": 161,
+          "overflowY": "visible"
+        },
+        "panel": {
+          "top": 246.78125,
+          "bottom": 504.90625,
+          "height": 258.125,
+          "scrollTop": 76,
+          "scrollHeight": 391,
+          "clientHeight": 258,
+          "overflowY": "auto"
+        },
+        "salvage": {
+          "top": 382.140625,
+          "bottom": 493.3125,
+          "height": 111.171875,
+          "scrollTop": 0,
+          "scrollHeight": 109,
+          "clientHeight": 109,
+          "overflowY": "visible"
+        },
+        "forage": {
+          "top": 382.140625,
+          "bottom": 493.3125,
+          "height": 111.171875,
+          "scrollTop": 0,
+          "scrollHeight": 109,
+          "clientHeight": 109,
+          "overflowY": "visible"
+        },
+        "forageText": "Gather food14 minBring back 3 food",
+        "focused": "forage"
+      }
+    },
+    "current": {
+      "before": {
+        "documentWidth": 375,
+        "documentHeight": 667,
+        "hud": {
+          "top": 36,
+          "bottom": 195.78125,
+          "height": 159.78125,
+          "scrollTop": 0,
+          "scrollHeight": 160,
+          "clientHeight": 160,
+          "overflowY": "visible"
+        },
+        "dock": {
+          "top": 504.90625,
+          "bottom": 667,
+          "height": 162.09375,
+          "scrollTop": 0,
+          "scrollHeight": 161,
+          "clientHeight": 161,
+          "overflowY": "visible"
+        },
+        "panel": {
+          "top": 246.78125,
+          "bottom": 504.90625,
+          "height": 258.125,
+          "scrollTop": 0,
+          "scrollHeight": 391,
+          "clientHeight": 258,
+          "overflowY": "auto"
+        },
+        "salvage": {
+          "top": 458.140625,
+          "bottom": 569.3125,
+          "height": 111.171875,
+          "scrollTop": 0,
+          "scrollHeight": 109,
+          "clientHeight": 109,
+          "overflowY": "visible"
+        },
+        "forage": {
+          "top": 458.140625,
+          "bottom": 569.3125,
+          "height": 111.171875,
+          "scrollTop": 0,
+          "scrollHeight": 109,
+          "clientHeight": 109,
+          "overflowY": "visible"
+        },
+        "forageText": "Gather food14 minBring back 3 food · Light work"
+      },
+      "afterKeyboardFocus": {
+        "documentWidth": 375,
+        "documentHeight": 667,
+        "hud": {
+          "top": 36,
+          "bottom": 195.78125,
+          "height": 159.78125,
+          "scrollTop": 0,
+          "scrollHeight": 160,
+          "clientHeight": 160,
+          "overflowY": "visible"
+        },
+        "dock": {
+          "top": 504.90625,
+          "bottom": 667,
+          "height": 162.09375,
+          "scrollTop": 0,
+          "scrollHeight": 161,
+          "clientHeight": 161,
+          "overflowY": "visible"
+        },
+        "panel": {
+          "top": 246.78125,
+          "bottom": 504.90625,
+          "height": 258.125,
+          "scrollTop": 76,
+          "scrollHeight": 391,
+          "clientHeight": 258,
+          "overflowY": "auto"
+        },
+        "salvage": {
+          "top": 382.140625,
+          "bottom": 493.3125,
+          "height": 111.171875,
+          "scrollTop": 0,
+          "scrollHeight": 109,
+          "clientHeight": 109,
+          "overflowY": "visible"
+        },
+        "forage": {
+          "top": 382.140625,
+          "bottom": 493.3125,
+          "height": 111.171875,
+          "scrollTop": 0,
+          "scrollHeight": 109,
+          "clientHeight": 109,
+          "overflowY": "visible"
+        },
+        "forageText": "Gather food14 minBring back 3 food · Light work",
+        "focused": "forage"
+      }
+    }
+  },
+  "passed": true,
+  "conclusion": "Existing identical internal Work-panel scroll at short-phone C1 fixture; new copy introduces no geometry change. Forage becomes fully visible by keyboard focus while document and HUD remain contained."
+}

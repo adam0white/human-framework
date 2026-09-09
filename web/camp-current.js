@@ -40,7 +40,7 @@ function recommend(view){return ['shelter','workbench','garden'].find(id=>view.s
 function choiceButton(choice){
  const button=node('button',undefined,'camp-choice');button.type='button';button.dataset.job=choice.id;button.disabled=Boolean(choice.unavailable);
  const heading=node('span',undefined,'choice-heading'),title=node('strong',choice.label),duration=node('span',choice.duration+' min','choice-cost');heading.append(title,duration);
- const detail=choice.unavailable??(Object.keys(choice.cost).length?'Reserve '+amount(choice.cost):Object.keys(choice.output).length?'Bring back '+amount(choice.output):choice.detail);
+ const detail=choice.unavailable??(Object.keys(choice.cost).length?'Reserve '+amount(choice.cost):Object.keys(choice.output).length?'Bring back '+amount(choice.output)+(choice.id==='forage'?' · Light work':''):choice.detail);
  button.append(heading,node('span',detail,'choice-detail'));return button;
 }
 function renderChoices(view){
