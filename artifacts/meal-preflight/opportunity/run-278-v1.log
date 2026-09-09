@@ -1,0 +1,622 @@
+[
+  {
+    "id": "finish-meal-first",
+    "marks": [
+      {
+        "label": "anchor-at-278",
+        "now": 278,
+        "body": {
+          "fatigue": 0.5569999999999848,
+          "hunger": 0.22600000000000042
+        },
+        "paid": {
+          "work": 202,
+          "recovery": 68,
+          "idle": 0,
+          "meal": 8,
+          "effort": 1.6400000000000035,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 202
+        },
+        "households": 0,
+        "nights": 0
+      },
+      {
+        "label": "meal-partly-paid-at-natural-completion",
+        "now": 283,
+        "body": {
+          "fatigue": 0.5644999999999846,
+          "hunger": 0.23600000000000043
+        },
+        "paid": {
+          "work": 202,
+          "recovery": 68,
+          "idle": 0,
+          "meal": 13,
+          "effort": 1.6400000000000035,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 202
+        },
+        "households": 0,
+        "nights": 0
+      },
+      {
+        "label": "second-household-cache-allocated",
+        "now": 306,
+        "body": {
+          "fatigue": 0.7989999999999834,
+          "hunger": 0.04000000000000002
+        },
+        "paid": {
+          "work": 222,
+          "recovery": 68,
+          "idle": 0,
+          "meal": 16,
+          "effort": 1.8400000000000036,
+          "constructionMinutes": 20,
+          "gatheringMinutes": 202
+        },
+        "households": 2,
+        "nights": 0
+      },
+      {
+        "label": "both-second-cache-and-one-completed-meal",
+        "now": 306,
+        "body": {
+          "fatigue": 0.7989999999999834,
+          "hunger": 0.04000000000000002
+        },
+        "paid": {
+          "work": 222,
+          "recovery": 68,
+          "idle": 0,
+          "meal": 16,
+          "effort": 1.8400000000000036,
+          "constructionMinutes": 20,
+          "gatheringMinutes": 202
+        },
+        "households": 2,
+        "nights": 0
+      },
+      {
+        "label": "supply-window-finished",
+        "now": 403,
+        "body": {
+          "fatigue": 0.36949999999997774,
+          "hunger": 0.23400000000000018
+        },
+        "paid": {
+          "work": 276,
+          "recovery": 111,
+          "idle": 0,
+          "meal": 16,
+          "effort": 2.340000000000003,
+          "constructionMinutes": 40,
+          "gatheringMinutes": 236
+        },
+        "households": 2,
+        "nights": 4
+      }
+    ],
+    "final": {
+      "now": 403,
+      "phase": "ended",
+      "stock": {
+        "timber": 1,
+        "salvage": 1,
+        "food": 4
+      },
+      "playerBody": {
+        "fatigue": 0.36949999999997774,
+        "hunger": 0.23400000000000018
+      },
+      "neighborBody": {
+        "fatigue": 0.4630714285714056,
+        "hunger": 0.5360000000000007
+      },
+      "paid": {
+        "player": {
+          "work": 276,
+          "recovery": 111,
+          "idle": 0,
+          "meal": 16,
+          "effort": 2.340000000000003,
+          "constructionMinutes": 40,
+          "gatheringMinutes": 236
+        },
+        "neighbor": {
+          "work": 275,
+          "recovery": 120,
+          "idle": 0,
+          "meal": 8,
+          "effort": 2.558571428571429,
+          "constructionMinutes": 157,
+          "gatheringMinutes": 118
+        }
+      },
+      "caches": 4,
+      "householdsEquipped": 2,
+      "campNights": 4,
+      "unprovidedHouseholds": 0,
+      "unprovidedNights": 0,
+      "playerJob": null,
+      "neighborJob": {
+        "id": "gather-timber",
+        "label": "Gather timber",
+        "project": null,
+        "startedAt": 401,
+        "endsAt": 415,
+        "duration": 14,
+        "remaining": 12,
+        "cost": {},
+        "workId": null,
+        "progress": 0.14285714285714285
+      },
+      "commitment": {
+        "status": "fulfilled",
+        "project": "cache",
+        "acceptedAt": 383,
+        "finishedAt": 403,
+        "startCaches": 3,
+        "reason": "The supply cache is complete. I am available."
+      },
+      "nextStop": null,
+      "window": {
+        "enteredAt": 224,
+        "ferryAt": 314,
+        "rainAt": 404,
+        "carriedCaches": 0,
+        "production": [
+          {
+            "cache": 1,
+            "at": 283
+          },
+          {
+            "cache": 2,
+            "at": 306
+          },
+          {
+            "cache": 3,
+            "at": 383
+          },
+          {
+            "cache": 4,
+            "at": 403
+          }
+        ],
+        "allocations": [
+          {
+            "at": 286,
+            "cache": 1,
+            "destination": "households"
+          },
+          {
+            "at": 306,
+            "cache": 2,
+            "destination": "households"
+          },
+          {
+            "at": 383,
+            "cache": 3,
+            "destination": "camp"
+          },
+          {
+            "at": 403,
+            "cache": 4,
+            "destination": "camp"
+          }
+        ],
+        "acknowledged": true,
+        "departedAt": 314,
+        "finishedAt": 403
+      }
+    }
+  },
+  {
+    "id": "wait-task-then-meal",
+    "marks": [
+      {
+        "label": "anchor-at-278",
+        "now": 278,
+        "body": {
+          "fatigue": 0.5569999999999848,
+          "hunger": 0.22600000000000042
+        },
+        "paid": {
+          "work": 202,
+          "recovery": 68,
+          "idle": 0,
+          "meal": 8,
+          "effort": 1.6400000000000035,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 202
+        },
+        "households": 0,
+        "nights": 0
+      },
+      {
+        "label": "second-household-cache-allocated",
+        "now": 303,
+        "body": {
+          "fatigue": 0.6694999999999839,
+          "hunger": 0.27600000000000047
+        },
+        "paid": {
+          "work": 222,
+          "recovery": 73,
+          "idle": 0,
+          "meal": 8,
+          "effort": 1.8400000000000036,
+          "constructionMinutes": 20,
+          "gatheringMinutes": 202
+        },
+        "households": 2,
+        "nights": 0
+      },
+      {
+        "label": "both-second-cache-and-one-completed-meal",
+        "now": 311,
+        "body": {
+          "fatigue": 0.6814999999999835,
+          "hunger": 0
+        },
+        "paid": {
+          "work": 222,
+          "recovery": 73,
+          "idle": 0,
+          "meal": 16,
+          "effort": 1.8400000000000036,
+          "constructionMinutes": 20,
+          "gatheringMinutes": 202
+        },
+        "households": 2,
+        "nights": 0
+      },
+      {
+        "label": "supply-window-finished",
+        "now": 403,
+        "body": {
+          "fatigue": 0.3694999999999782,
+          "hunger": 0.18400000000000014
+        },
+        "paid": {
+          "work": 276,
+          "recovery": 111,
+          "idle": 0,
+          "meal": 16,
+          "effort": 2.340000000000003,
+          "constructionMinutes": 40,
+          "gatheringMinutes": 236
+        },
+        "households": 2,
+        "nights": 4
+      }
+    ],
+    "final": {
+      "now": 403,
+      "phase": "ended",
+      "stock": {
+        "timber": 1,
+        "salvage": 1,
+        "food": 4
+      },
+      "playerBody": {
+        "fatigue": 0.3694999999999782,
+        "hunger": 0.18400000000000014
+      },
+      "neighborBody": {
+        "fatigue": 0.4630714285714056,
+        "hunger": 0.5360000000000007
+      },
+      "paid": {
+        "player": {
+          "work": 276,
+          "recovery": 111,
+          "idle": 0,
+          "meal": 16,
+          "effort": 2.340000000000003,
+          "constructionMinutes": 40,
+          "gatheringMinutes": 236
+        },
+        "neighbor": {
+          "work": 275,
+          "recovery": 120,
+          "idle": 0,
+          "meal": 8,
+          "effort": 2.558571428571429,
+          "constructionMinutes": 157,
+          "gatheringMinutes": 118
+        }
+      },
+      "caches": 4,
+      "householdsEquipped": 2,
+      "campNights": 4,
+      "unprovidedHouseholds": 0,
+      "unprovidedNights": 0,
+      "playerJob": null,
+      "neighborJob": {
+        "id": "gather-timber",
+        "label": "Gather timber",
+        "project": null,
+        "startedAt": 401,
+        "endsAt": 415,
+        "duration": 14,
+        "remaining": 12,
+        "cost": {},
+        "workId": null,
+        "progress": 0.14285714285714285
+      },
+      "commitment": {
+        "status": "fulfilled",
+        "project": "cache",
+        "acceptedAt": 383,
+        "finishedAt": 403,
+        "startCaches": 3,
+        "reason": "The supply cache is complete. I am available."
+      },
+      "nextStop": null,
+      "window": {
+        "enteredAt": 224,
+        "ferryAt": 314,
+        "rainAt": 404,
+        "carriedCaches": 0,
+        "production": [
+          {
+            "cache": 1,
+            "at": 283
+          },
+          {
+            "cache": 2,
+            "at": 303
+          },
+          {
+            "cache": 3,
+            "at": 383
+          },
+          {
+            "cache": 4,
+            "at": 403
+          }
+        ],
+        "allocations": [
+          {
+            "at": 283,
+            "cache": 1,
+            "destination": "households"
+          },
+          {
+            "at": 303,
+            "cache": 2,
+            "destination": "households"
+          },
+          {
+            "at": 383,
+            "cache": 3,
+            "destination": "camp"
+          },
+          {
+            "at": 403,
+            "cache": 4,
+            "destination": "camp"
+          }
+        ],
+        "acknowledged": true,
+        "departedAt": 314,
+        "finishedAt": 403
+      }
+    }
+  },
+  {
+    "id": "cancel-task-restart",
+    "marks": [
+      {
+        "label": "anchor-at-278",
+        "now": 278,
+        "body": {
+          "fatigue": 0.5569999999999848,
+          "hunger": 0.22600000000000042
+        },
+        "paid": {
+          "work": 202,
+          "recovery": 68,
+          "idle": 0,
+          "meal": 8,
+          "effort": 1.6400000000000035,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 202
+        },
+        "households": 0,
+        "nights": 0
+      },
+      {
+        "label": "meal-partly-paid-at-natural-completion",
+        "now": 283,
+        "body": {
+          "fatigue": 0.5644999999999846,
+          "hunger": 0.23600000000000043
+        },
+        "paid": {
+          "work": 202,
+          "recovery": 68,
+          "idle": 0,
+          "meal": 13,
+          "effort": 1.6400000000000035,
+          "constructionMinutes": 0,
+          "gatheringMinutes": 202
+        },
+        "households": 0,
+        "nights": 0
+      },
+      {
+        "label": "second-household-cache-allocated",
+        "now": 303,
+        "body": {
+          "fatigue": 0.7944999999999836,
+          "hunger": 0.27600000000000047
+        },
+        "paid": {
+          "work": 222,
+          "recovery": 68,
+          "idle": 0,
+          "meal": 13,
+          "effort": 1.8400000000000036,
+          "constructionMinutes": 20,
+          "gatheringMinutes": 202
+        },
+        "households": 2,
+        "nights": 0
+      },
+      {
+        "label": "both-second-cache-and-one-completed-meal",
+        "now": 311,
+        "body": {
+          "fatigue": 0.8064999999999831,
+          "hunger": 0
+        },
+        "paid": {
+          "work": 222,
+          "recovery": 68,
+          "idle": 0,
+          "meal": 21,
+          "effort": 1.8400000000000036,
+          "constructionMinutes": 20,
+          "gatheringMinutes": 202
+        },
+        "households": 2,
+        "nights": 0
+      },
+      {
+        "label": "supply-window-finished",
+        "now": 399,
+        "body": {
+          "fatigue": 0.8084999999999791,
+          "hunger": 0.17600000000000013
+        },
+        "paid": {
+          "work": 282,
+          "recovery": 96,
+          "idle": 0,
+          "meal": 21,
+          "effort": 2.4099999999999944,
+          "constructionMinutes": 60,
+          "gatheringMinutes": 222
+        },
+        "households": 2,
+        "nights": 4
+      }
+    ],
+    "final": {
+      "now": 399,
+      "phase": "ended",
+      "stock": {
+        "timber": 1,
+        "salvage": 1,
+        "food": 4
+      },
+      "playerBody": {
+        "fatigue": 0.8084999999999791,
+        "hunger": 0.17600000000000013
+      },
+      "neighborBody": {
+        "fatigue": 0.48992857142854884,
+        "hunger": 0.5280000000000007
+      },
+      "paid": {
+        "player": {
+          "work": 282,
+          "recovery": 96,
+          "idle": 0,
+          "meal": 21,
+          "effort": 2.4099999999999944,
+          "constructionMinutes": 60,
+          "gatheringMinutes": 222
+        },
+        "neighbor": {
+          "work": 274,
+          "recovery": 117,
+          "idle": 0,
+          "meal": 8,
+          "effort": 2.5164285714285737,
+          "constructionMinutes": 139,
+          "gatheringMinutes": 135
+        }
+      },
+      "caches": 4,
+      "householdsEquipped": 2,
+      "campNights": 4,
+      "unprovidedHouseholds": 0,
+      "unprovidedNights": 0,
+      "playerJob": null,
+      "neighborJob": {
+        "id": "gather-timber",
+        "label": "Gather timber",
+        "project": null,
+        "startedAt": 394,
+        "endsAt": 408,
+        "duration": 14,
+        "remaining": 9,
+        "cost": {},
+        "workId": null,
+        "progress": 0.35714285714285715
+      },
+      "commitment": {
+        "status": "fulfilled",
+        "project": "cache",
+        "acceptedAt": 371,
+        "finishedAt": 399,
+        "startCaches": 3,
+        "reason": "The supply cache is complete. I am available."
+      },
+      "nextStop": null,
+      "window": {
+        "enteredAt": 224,
+        "ferryAt": 314,
+        "rainAt": 404,
+        "carriedCaches": 0,
+        "production": [
+          {
+            "cache": 1,
+            "at": 283
+          },
+          {
+            "cache": 2,
+            "at": 303
+          },
+          {
+            "cache": 3,
+            "at": 371
+          },
+          {
+            "cache": 4,
+            "at": 399
+          }
+        ],
+        "allocations": [
+          {
+            "at": 283,
+            "cache": 1,
+            "destination": "households"
+          },
+          {
+            "at": 303,
+            "cache": 2,
+            "destination": "households"
+          },
+          {
+            "at": 371,
+            "cache": 3,
+            "destination": "camp"
+          },
+          {
+            "at": 399,
+            "cache": 4,
+            "destination": "camp"
+          }
+        ],
+        "acknowledged": true,
+        "departedAt": 314,
+        "finishedAt": 399
+      }
+    }
+  }
+]
