@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-09-09T01:43:08.401Z",
+  "scope": "Fresh current public build digest, unchanged source boundary and four new private-route 404s; not a new deployment or repeated full production interaction matrix.",
+  "localBuild": {
+    "appVersion": "0.14.0",
+    "runtimeVersion": "0.1.1",
+    "clockVersion": "0.1.0",
+    "commit": "1267107c7c74954f4f9211514bdcdccf1c3f9003",
+    "dirty": true,
+    "assetsSha256": "4f9cccf8602c04a2fb7d7f8dd4aec3ba45950d9791791ed37c8eb5ae3f753c20"
+  },
+  "liveRelease": {
+    "appVersion": "0.14.0",
+    "runtimeVersion": "0.1.1",
+    "clockVersion": "0.1.0",
+    "commit": "2ebdb8841215a26f69da1c394ab438b7a1f4d15d",
+    "dirty": false,
+    "assetsSha256": "4f9cccf8602c04a2fb7d7f8dd4aec3ba45950d9791791ed37c8eb5ae3f753c20"
+  },
+  "privateRoutes": [
+    {
+      "path": "/artifacts/learning-pilot/run-initial/projection.csv",
+      "status": 404
+    },
+    {
+      "path": "/artifacts/learning-pilot/data-access/originals/00.exp1a-raw-batch1.csv",
+      "status": 404
+    },
+    {
+      "path": "/docs/learning-pilot-results.md",
+      "status": 404
+    },
+    {
+      "path": "/scripts/learning-pilot.py",
+      "status": 404
+    }
+  ],
+  "publicSourceChanges": [],
+  "redeploymentRequired": false
+}

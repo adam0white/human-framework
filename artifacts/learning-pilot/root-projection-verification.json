@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "scope": "Independent original-file hash, main-row selection, namespaced ID projection, numeric row chronology and exact normalized-error comparison; no runner imports.",
+  "participants": 55,
+  "main_rows": 2750,
+  "columns": [
+    "analysis_id",
+    "toss",
+    "prior_throws",
+    "normalized_error"
+  ],
+  "projection_sha256": "9d859f36295e2d8c22ed29c0e30a7fffff1f880e835f404beb7745a5fda861e0"
+}

@@ -2,6 +2,8 @@
 
 2026-09-07. Scoped research and design recommendation for a longer, single-person pump-repair shift. This note adds no runtime mechanism or religious mapping. Scientific findings, implemented arithmetic, and authored gameplay choices are separate below.
 
+**Later empirical check, 2026-09-08:** the [completed learning pilot](../docs/learning-pilot-results.md) adds a source-frozen 55-person chronological comparison. Exponential has no clear forecast advantage over the recent-ten performance mean, and individual/aggregate ordering differs. This narrows the curve claim without identifying latent repair skill or calibrating a minute-based rule. The following 2026-09-07 software probe remains its original synthetic evidence; the next [practice-incentive preflight](../docs/practice-incentive-preflight.md) addresses ordinary Camp consequences separately.
+
 ## Recommendation
 
 Carry one worker's repair practice across a finite set of pumps. Give each pump a concrete contribution to the shift objective and a visible completion test. Successful repairs advance that objective; executed repairs can supply practice even when they fail. **Do not add a failure bonus, an experience-points objective, or a minimum-failure requirement.** A player should have a reason to finish the current pump and use that experience on the next one.

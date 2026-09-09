@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "scope": "One complete second execution of frozen runner on the same machine and environment; exact output-byte reproduction, not an independent cohort or optimizer audit.",
+  "artifacts": [
+    {
+      "file": "diagnostics.png",
+      "sha256": "fdd231e0db0c9bf525ca97d1a6e64a1995e938ddb3306384b9a32b16628ef5e5",
+      "bytes": 197461,
+      "exact_repeat": true
+    },
+    {
+      "file": "diagnostics.svg",
+      "sha256": "32f3df77e273ededd996762773cbf230a132ca4987cba7e3f86ddb23ac753a64",
+      "bytes": 155162,
+      "exact_repeat": true
+    },
+    {
+      "file": "projection.csv",
+      "sha256": "9d859f36295e2d8c22ed29c0e30a7fffff1f880e835f404beb7745a5fda861e0",
+      "bytes": 81889,
+      "exact_repeat": true
+    },
+    {
+      "file": "results.json",
+      "sha256": "796b71e95d79d57c1549049ce7d6ff15f640378b7629d7980c47768db8410f08",
+      "bytes": 1006488,
+      "exact_repeat": true
+    }
+  ]
+}

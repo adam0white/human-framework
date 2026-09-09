@@ -124,6 +124,8 @@ s' = s + (1 − s) × (1 − exp(−kqd))
 
 Work and inspection receive task practice, including failed work attempts. No intention or success narrative is parsed. Quality is fixed; feedback, sleep, aptitude, task variation and consolidation are absent. Learning off freezes proficiency updates and removes the full policy’s expected practice-value contribution. Existing proficiency still affects work success. This is a coupled ablation, not an isolated estimate of learning’s effect.
 
+The [2026-09-08 real-data pilot](learning-pilot-results.md) tests individual throw-error forecasts, not this latent proficiency or success equation. Its small mixed exponential-versus-recent-performance result does not calibrate the shared rate or quality. Those coefficients remain authored; observed task error, latent skill and active-practice minutes must not be substituted for one another.
+
 Cross-skill transfer defaults to **none** in every shipped scenario. Explicit links carry source skill, target skill, signed rate and provenance. Each applies `rate × directPracticeDelta` once and clips its target. Transfer never recursively triggers another link, so cycles cannot manufacture practice. Direct practice and signed transfer appear in separate trace fields. A provenance string records an assumption; it does not validate it scientifically.
 
 The exported `retain` helper implements `r + (s − r) × exp(−kd)`, with effective floor `r = min(configuredFloor, s)` to prevent unpracticed gains. It is tested but **not invoked by these short scenarios**. Runtime forgetting is not implemented.
