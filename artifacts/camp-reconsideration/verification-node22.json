@@ -1,0 +1,161 @@
+{
+  "scope": "Independent API replay of frozen recorded histories only; no comparison-runner import, new condition, policy change or replacement outcome.",
+  "startedAt": "2026-09-09T15:03:09.836Z",
+  "node": "v22.0.0",
+  "verifierSha256": "48e0130fc7980584592a301c1ff05ff942d9100d7bbe8c54172d692155107939",
+  "counts": {
+    "administrativeRecords": 4,
+    "comparisonRecords": 12,
+    "prefixReplays": 12,
+    "states": 2228,
+    "views": 2228,
+    "restores": 2228,
+    "operations": 2200,
+    "completionMarks": 48,
+    "fixedJobRecords": 96,
+    "refusals": 0,
+    "versionOnlyBoundaries": 4
+  },
+  "cases": [
+    {
+      "caseId": "R0-known-zero",
+      "arm": "finish-current",
+      "frameAt": 135,
+      "roofAt": 191,
+      "gardenAt": 110,
+      "foodAt": 124,
+      "now": 240,
+      "refusals": 0,
+      "operations": 158
+    },
+    {
+      "caseId": "R0-known-zero",
+      "arm": "release-and-rerequest",
+      "frameAt": 101,
+      "roofAt": 191,
+      "gardenAt": 110,
+      "foodAt": 124,
+      "now": 240,
+      "refusals": 0,
+      "operations": 160
+    },
+    {
+      "caseId": "R0-known-zero",
+      "arm": "automatic-reconsideration",
+      "frameAt": 101,
+      "roofAt": 191,
+      "gardenAt": 110,
+      "foodAt": 124,
+      "now": 240,
+      "refusals": 0,
+      "operations": 158
+    },
+    {
+      "caseId": "R1-paid-one",
+      "arm": "finish-current",
+      "frameAt": 134,
+      "roofAt": 189,
+      "gardenAt": 111,
+      "foodAt": 125,
+      "now": 240,
+      "refusals": 0,
+      "operations": 157
+    },
+    {
+      "caseId": "R1-paid-one",
+      "arm": "release-and-rerequest",
+      "frameAt": 101,
+      "roofAt": 191,
+      "gardenAt": 111,
+      "foodAt": 125,
+      "now": 240,
+      "refusals": 0,
+      "operations": 159
+    },
+    {
+      "caseId": "R1-paid-one",
+      "arm": "automatic-reconsideration",
+      "frameAt": 101,
+      "roofAt": 191,
+      "gardenAt": 111,
+      "foodAt": 125,
+      "now": 240,
+      "refusals": 0,
+      "operations": 157
+    },
+    {
+      "caseId": "R8-paid-eight",
+      "arm": "finish-current",
+      "frameAt": 127,
+      "roofAt": 170,
+      "gardenAt": 118,
+      "foodAt": 132,
+      "now": 240,
+      "refusals": 0,
+      "operations": 150
+    },
+    {
+      "caseId": "R8-paid-eight",
+      "arm": "release-and-rerequest",
+      "frameAt": 101,
+      "roofAt": 191,
+      "gardenAt": 118,
+      "foodAt": 132,
+      "now": 240,
+      "refusals": 0,
+      "operations": 152
+    },
+    {
+      "caseId": "R8-paid-eight",
+      "arm": "automatic-reconsideration",
+      "frameAt": 101,
+      "roofAt": 191,
+      "gardenAt": 118,
+      "foodAt": 132,
+      "now": 240,
+      "refusals": 0,
+      "operations": 150
+    },
+    {
+      "caseId": "R15-paid-fifteen",
+      "arm": "finish-current",
+      "frameAt": 120,
+      "roofAt": 163,
+      "gardenAt": 125,
+      "foodAt": 139,
+      "now": 240,
+      "refusals": 0,
+      "operations": 143
+    },
+    {
+      "caseId": "R15-paid-fifteen",
+      "arm": "release-and-rerequest",
+      "frameAt": 101,
+      "roofAt": 191,
+      "gardenAt": 125,
+      "foodAt": 139,
+      "now": 240,
+      "refusals": 0,
+      "operations": 145
+    },
+    {
+      "caseId": "R15-paid-fifteen",
+      "arm": "automatic-reconsideration",
+      "frameAt": 101,
+      "roofAt": 191,
+      "gardenAt": 125,
+      "foodAt": 139,
+      "now": 240,
+      "refusals": 0,
+      "operations": 143
+    }
+  ],
+  "passed": true,
+  "failure": null,
+  "freezeSha256": "e8dae473f4a4f2ba4d6ac43a775953d8f5d2ec5d3c7747eabf798eca16523b14",
+  "freezePath": "artifacts/camp-reconsideration/freeze.json",
+  "summaryPath": "artifacts/camp-reconsideration/run-initial/summary.json",
+  "summarySha256": "b7d3d26c4735c8806f223c395a87223ecfe36c7a37c2abddb520c566b725e9d6",
+  "recordsSha256": "6749b0a1aa166ae5de841fb46a60f8e8492e4c0e9b935727f0a52dd1b21ac5cd",
+  "finishedAt": "2026-09-09T15:03:13.157Z"
+}

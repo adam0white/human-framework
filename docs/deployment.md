@@ -2,6 +2,8 @@
 
 The review site is **https://human.adamwhite.work**, deployed as the `human-framework` Cloudflare Worker with Static Assets in the existing Default account. The private source repository is **https://github.com/adam0white/human-framework**. This replaces localhost as the delivery destination. The browser runs the simulation locally; no simulation backend, account login or inference API is required.
 
+**Current scheduling status, 2026-09-09:** the user paused `advance-human-framework` and requested completion of the interrupted reconsideration study. That study is complete; the task remains paused. The workflow below still applies to authorized deliveries, but it is not permission to resume the schedule.
+
 ## Release workflow
 
 The user's 2026-09-07 instruction authorizes pushing and deploying app changes as the ongoing workflow. This is an explicit release workflow, not automatic deployment on every GitHub push.

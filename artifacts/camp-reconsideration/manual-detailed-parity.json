@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "scope": "Aligned existing states after the respective reconsideration actions through minute240. All game fields match except the listed version/communication/acceptance metadata. Not full save equality or measured human-effort benefit.",
+  "omittedFields": [
+    "version",
+    "recent",
+    "lastResponse",
+    "commitment.acceptedAt",
+    "commitment.reason"
+  ],
+  "pairedStateChecks": 608,
+  "cases": [
+    {
+      "caseId": "R0-known-zero",
+      "automaticOperations": 158,
+      "manualOperations": 160,
+      "alignedStates": 158
+    },
+    {
+      "caseId": "R1-paid-one",
+      "automaticOperations": 157,
+      "manualOperations": 159,
+      "alignedStates": 157
+    },
+    {
+      "caseId": "R8-paid-eight",
+      "automaticOperations": 150,
+      "manualOperations": 152,
+      "alignedStates": 150
+    },
+    {
+      "caseId": "R15-paid-fifteen",
+      "automaticOperations": 143,
+      "manualOperations": 145,
+      "alignedStates": 143
+    }
+  ],
+  "sourceRecordsSha256": "6749b0a1aa166ae5de841fb46a60f8e8492e4c0e9b935727f0a52dd1b21ac5cd"
+}

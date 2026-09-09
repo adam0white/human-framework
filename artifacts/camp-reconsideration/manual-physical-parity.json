@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "scope": "Exact full-game-field equality after respective reconsideration actions through minute240, excluding explicit hostversion and commitment/response/log metadata; not full save equality or measured human-effort savings.",
+  "omittedFields": [
+    "version",
+    "commitment",
+    "lastResponse",
+    "recent"
+  ],
+  "pairedStateChecks": 608,
+  "sourceRecordsSha256": "6749b0a1aa166ae5de841fb46a60f8e8492e4c0e9b935727f0a52dd1b21ac5cd",
+  "cases": [
+    {
+      "caseId": "R0-known-zero",
+      "automaticOperations": 158,
+      "manualOperations": 160,
+      "alignedPhysicalStates": 158,
+      "frameAt": 101,
+      "roofAt": 191
+    },
+    {
+      "caseId": "R1-paid-one",
+      "automaticOperations": 157,
+      "manualOperations": 159,
+      "alignedPhysicalStates": 157,
+      "frameAt": 101,
+      "roofAt": 191
+    },
+    {
+      "caseId": "R8-paid-eight",
+      "automaticOperations": 150,
+      "manualOperations": 152,
+      "alignedPhysicalStates": 150,
+      "frameAt": 101,
+      "roofAt": 191
+    },
+    {
+      "caseId": "R15-paid-fifteen",
+      "automaticOperations": 143,
+      "manualOperations": 145,
+      "alignedPhysicalStates": 143,
+      "frameAt": 101,
+      "roofAt": 191
+    }
+  ]
+}

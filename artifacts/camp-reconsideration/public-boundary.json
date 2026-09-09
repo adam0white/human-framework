@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-09-09T15:12:40.118Z",
+  "scope": "Public source/digest and three new private paths; not a new deployment or repeated production interaction matrix.",
+  "live": {
+    "appVersion": "0.14.1",
+    "runtimeVersion": "0.1.1",
+    "clockVersion": "0.1.0",
+    "commit": "235d2e6c077df1a68c508091f54c673391e3a88f",
+    "dirty": false,
+    "assetsSha256": "671311ad92bedce24376e84ebe8264cf7fddb8cc70af9fb024a61b86a8bce48b"
+  },
+  "privateRoutes": [
+    {
+      "path": "/src/experiments/camp-reconsideration/host.js",
+      "status": 404
+    },
+    {
+      "path": "/artifacts/camp-reconsideration/run-initial/comparison-records.json.gz",
+      "status": 404
+    },
+    {
+      "path": "/docs/camp-reconsideration-results.md",
+      "status": 404
+    }
+  ],
+  "publicSourceChanges": [],
+  "frozenSourcesUnchanged": true
+}

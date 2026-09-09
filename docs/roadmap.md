@@ -2,7 +2,7 @@
 
 Current restart guide: [handoff](../HANDOFF.md). The [latest player correction](player-feedback-2026-09-08.md#later-correction-after-app-011) supersedes prior campaign and compatibility obligations: improve the framework; freely replace its experiments.
 
-## Current delivery and direction — 2026-09-08, app 0.14.1
+## Current delivery and direction — 2026-09-09, app 0.14.1
 
 [App 0.14.1](release-0.14.1.md) adds two evidence-supported Camp explanations: paid practice can shorten later jobs, and food gathering is light work. All physics remain unchanged; 864 tests and nine local/nine production browser groups pass. The public laboratory stays retired.
 
@@ -20,7 +20,9 @@ App 0.11 already delivers durable work, prospective improvements, automatic reco
 
 **Completed practice-incentive preflight:** two default-origin opportunities/eight frozen routes show real later-job reductions without an unmatched withholding-completion benefit. Productive/partial/recovery costs, pending work and Meryem's 34-minute frame delay remain explicit. Root replays 434 states/views and 28 marks on minimum Node 22; no mechanics change is admitted. [Results](practice-incentive-results.md).
 
-**Next: Camp reconsideration after released work.** Compare a minimal actor-owned response with finish-current and the existing release/re-request control. C1 is known zero-elapsed development evidence; require positive-paid and useful-output/roof-timing negative controls before promotion. Retain complete bodies/materials/work/ownership, and avoid same-time cancel/restart loops or a presumed general planner. [Proposal](camp-reconsideration-preflight.md).
+**Completed Camp reconsideration:** twelve frozen records preserve earlier frames, roof delays of 2/21/28 minutes in positive-paid cases, and exact automatic/manual physical parity after explicit metadata exclusions. Extra gathering practice is retained and could affect later jobs; no universal dominance claim follows. The unconditional candidate remains private, and public app 0.14.1 is unchanged. All 871 tests and 2,228 minimum-Node-22 state/view/restore checks pass. [Results](camp-reconsideration-results.md).
+
+**Paused for joint review, 2026-09-09.** The user paused the scheduled task and requested completion of the interrupted study; that work is now complete. Do not resume the automation or treat earlier “next” proposals as an active work queue. Further policy refinement or other framework work will be chosen with the user.
 
 Continue empirical/theological research with explicit claim types, while keeping one-player iteration and general human validation distinct. Completed matrices are provenance; rerun only for changed code or a concrete concern.
 
