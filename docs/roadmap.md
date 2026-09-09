@@ -2,7 +2,9 @@
 
 Current restart guide: [handoff](../HANDOFF.md). The [latest player correction](player-feedback-2026-09-08.md#later-correction-after-app-011) supersedes prior campaign and compatibility obligations: improve the framework; freely replace its experiments.
 
-## Current delivery and direction — 2026-09-08, app 0.14
+## Current delivery and direction — 2026-09-08, app 0.14.1
+
+[App 0.14.1](release-0.14.1.md) adds two evidence-supported Camp explanations: paid practice can shorten later jobs, and food gathering is light work. All physics remain unchanged; 864 tests and nine local/nine production browser groups pass. The public laboratory stays retired.
 
 [App 0.14](release-0.14.md) delivers actor-local player reconsideration in Across the cut, replacing Last Light’s public slot/assets while retaining historical source. All 52 source-defined comparisons and exact minimum-runtime replays are complete; useful report timing/Stop choices coexist with cheaper no-radio cases and a case-selection confound. All 844 tests and final-source production checks pass. The framework remains the product; no campaign, larger example count or old-save compatibility is required. The earlier collection has one known player’s feedback; no actual player evaluation of this new slice has yet arrived.
 
@@ -16,7 +18,9 @@ App 0.11 already delivers durable work, prospective improvements, automatic reco
 
 **Completed empirical learning pilot:** a committed chronological analysis retains all 55 people/2,750 throws. Exponential barely improves on the recent-ten constant on mean person RMSE (−0.00370; descriptive 95% interval −0.01557 to +0.00768), with 26 lower-error versus 29 higher-error people. Power origin 1 descriptively leads individual forecasts; aggregate ordering and origin sensitivity differ. Fourteen synthetic checks, 168 independent numerical audits, all score/CI reconstructions, raw projection verification and exact full reproduction pass. This does not identify latent proficiency or per-minute parameters; runtime/app bytes remain unchanged. [Results](learning-pilot-results.md).
 
-**Next: the bounded practice-incentive preflight.** Test at most three opportunities from fresh default Camp with paid prefixes and strong productive controls. Establish whether useful practice changes a later choice, whether deliberate training has a defensible cost, or whether withholding completion produces an unwanted advantage. Do not repeat the fixed restart bug or add a meter/faculty merely to show progress. A concrete rule inconsistency or confusing current consequence can earn a focused implementation. [Proposal](practice-incentive-preflight.md).
+**Completed practice-incentive preflight:** two default-origin opportunities/eight frozen routes show real later-job reductions without an unmatched withholding-completion benefit. Productive/partial/recovery costs, pending work and Meryem's 34-minute frame delay remain explicit. Root replays 434 states/views and 28 marks on minimum Node 22; no mechanics change is admitted. [Results](practice-incentive-results.md).
+
+**Next: Camp reconsideration after released work.** Compare a minimal actor-owned response with finish-current and the existing release/re-request control. C1 is known zero-elapsed development evidence; require positive-paid and useful-output/roof-timing negative controls before promotion. Retain complete bodies/materials/work/ownership, and avoid same-time cancel/restart loops or a presumed general planner. [Proposal](camp-reconsideration-preflight.md).
 
 Continue empirical/theological research with explicit claim types, while keeping one-player iteration and general human validation distinct. Completed matrices are provenance; rerun only for changed code or a concrete concern.
 

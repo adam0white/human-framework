@@ -1,5 +1,7 @@
 # Current Camp interface and persistence
 
+App 0.14.1 adds a short practice explanation to the existing Work disclosure and labels food gathering as light work beside its dynamic yield. The host/save/interaction contracts below are unchanged. [Evidence and live verification](release-0.14.1.md).
+
 The active `/camp/` page uses `web/camp-current.js` and `web/camp-current-session.js` against the facade in `src/games/camp-current.js`. The historical `web/camp.js`, `web/camp-session.js` and `web/camp-slots.js` remain source evidence; they are not dependencies of the active page.
 
 ## Player interface

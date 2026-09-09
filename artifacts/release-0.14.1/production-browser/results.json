@@ -1,0 +1,3004 @@
+{
+  "scope": "Isolated Chrome contexts; three viewport sizes; existing default, G1 prefix and C1 garden-complete fixtures only. No modified people, added comparison cases or user browser profile.",
+  "harnessSha256": "6c32134f738d34a7435a37ba1544d51fe3a8395340bd60c0a8d36f152475daae",
+  "harnessCorrection": "Initial and geometry runs required all C1 short-phone actions above the dock without panel scrolling and failed. Exact prechange fe540da/current comparison in short-phone-baseline/results.json proved identical existing internal scroll. This runner retains strict default-action visibility and separately verifies keyboard reach of the existing C1 short-phone fallback; original failures remain preserved.",
+  "startedAt": "2026-09-09T02:22:33.787Z",
+  "commit": "235d2e6c077df1a68c508091f54c673391e3a88f",
+  "sources": {
+    "web/camp-current.js": "2a7da454d02540c0e0b49366998d188f6cf53a672f33b9263beb4ef322bf643b",
+    "web/camp.html": "ef078fa62202123c8178316b7f48983c6410c6a90032c807876e105017d0fd95",
+    "web/camp-current-session.js": "683d1c28887da20a89d1e01dd6d85d9eddec2d5d28fdd7fd5459eff4fa879c97",
+    "src/games/camp-current.js": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a"
+  },
+  "fixtures": {
+    "G1": {
+      "path": "artifacts/practice-incentive/gathering/G1-prefix.json",
+      "sha256": "e041016f1de27170bf3f4badc394e5f9094bea250938947c9cbf89c7cedd5f1f",
+      "selection": "trajectory.states.at(-1)",
+      "now": 30
+    },
+    "C1": {
+      "path": "artifacts/practice-incentive/construction/comparison-initial.json",
+      "sha256": "949605fb7f160e6b00f0f443103f85a0c7210bcab189cdd9ec6538879924a672",
+      "selection": "finish-woodshed-first, garden-complete mark, states[commandIndex]",
+      "now": 126
+    }
+  },
+  "checks": [
+    {
+      "name": "390x844 default choices, keyboard disclosure, keyboard tabs and persistent HUD",
+      "layout": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 844,
+        "bodyWidth": 390,
+        "bodyHeight": 844,
+        "hud": {
+          "x": 12,
+          "y": 36,
+          "width": 366,
+          "height": 142.78125,
+          "right": 378,
+          "bottom": 178.78125,
+          "visible": true
+        },
+        "dock": {
+          "x": 12,
+          "y": 718.90625,
+          "width": 366,
+          "height": 125.09375,
+          "right": 378,
+          "bottom": 844,
+          "visible": true
+        },
+        "tabs": {
+          "x": 12,
+          "y": 178.78125,
+          "width": 366,
+          "height": 51,
+          "right": 378,
+          "bottom": 229.78125,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": 305.578125,
+            "bottom": 399.953125,
+            "left": 12,
+            "right": 181
+          },
+          {
+            "id": "gather-timber",
+            "top": 305.578125,
+            "bottom": 399.953125,
+            "left": 188,
+            "right": 357
+          },
+          {
+            "id": "gather-salvage",
+            "top": 406.953125,
+            "bottom": 483.9375,
+            "left": 12,
+            "right": 181
+          },
+          {
+            "id": "forage",
+            "top": 406.953125,
+            "bottom": 483.9375,
+            "left": 188,
+            "right": 357
+          }
+        ]
+      },
+      "expanded": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 844,
+        "bodyWidth": 390,
+        "bodyHeight": 844,
+        "hud": {
+          "x": 12,
+          "y": 36,
+          "width": 366,
+          "height": 142.78125,
+          "right": 378,
+          "bottom": 178.78125,
+          "visible": true
+        },
+        "dock": {
+          "x": 12,
+          "y": 718.90625,
+          "width": 366,
+          "height": 125.09375,
+          "right": 378,
+          "bottom": 844,
+          "visible": true
+        },
+        "tabs": {
+          "x": 12,
+          "y": 178.78125,
+          "width": 366,
+          "height": 51,
+          "right": 378,
+          "bottom": 229.78125,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": 86.578125,
+            "bottom": 180.953125,
+            "left": 12,
+            "right": 181
+          },
+          {
+            "id": "gather-timber",
+            "top": 86.578125,
+            "bottom": 180.953125,
+            "left": 188,
+            "right": 357
+          },
+          {
+            "id": "gather-salvage",
+            "top": 187.953125,
+            "bottom": 264.9375,
+            "left": 12,
+            "right": 181
+          },
+          {
+            "id": "forage",
+            "top": 187.953125,
+            "bottom": 264.9375,
+            "left": 188,
+            "right": 357
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 exact G1 UI sequence, busy reasons and save/reload",
+      "marks": [
+        {
+          "label": "G1-prefix",
+          "now": 30,
+          "ui": {
+            "clock": "30",
+            "forage": "Gather food\n14 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n16 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You finished gather food. +2 food."
+          },
+          "stateSha256": "e120131d86141b5e55f6a68b09e641c0f0900ae47decdb37bf547adb26679591",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 30,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 30
+          },
+          "job": null
+        },
+        {
+          "label": "six paid forage minutes",
+          "now": 36,
+          "ui": {
+            "clock": "36",
+            "forage": "Gather food\n13 min\nAlready working. Finish or stop the current job first.",
+            "timber": "Gather timber\n15 min\nAlready working. Finish or stop the current job first.",
+            "playerJob": "You: Gather food",
+            "playerTiming": "8 min left",
+            "latest": "You started gather food (14 min)."
+          },
+          "stateSha256": "d7ffa6644b5d2535c0d8d3f73b7530b7223198a77de20cdf7872bfa86b5715c9",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 36,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 36
+          },
+          "job": {
+            "kind": "fixed",
+            "id": "forage",
+            "label": "Gather food",
+            "detail": "Pick food near camp. Light work remains possible when heavy work is blocked.",
+            "project": null,
+            "stage": null,
+            "cost": {},
+            "output": {
+              "food": 2
+            },
+            "duration": 14,
+            "benefits": {
+              "shelter": false,
+              "workbench": false,
+              "garden": false
+            },
+            "skillBefore": 0.22999672866608334,
+            "action": {
+              "actionId": "forage",
+              "targetId": null,
+              "durationMinutes": 14,
+              "effort": 0,
+              "exertive": false,
+              "activity": "active",
+              "skill": "gathering"
+            },
+            "startedAt": 30,
+            "endsAt": 44,
+            "eventId": "event:3",
+            "attemptId": "player:3"
+          }
+        },
+        {
+          "label": "forage stopped without output",
+          "now": 36,
+          "ui": {
+            "clock": "36",
+            "forage": "Gather food\n13 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n15 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You stopped forage. No completion output; its unused reservation returns. Paid time remains."
+          },
+          "stateSha256": "eb0d0c0f73f4cbb067889824dc5374719641079ff92042206469716e424eeac7",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 36,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 36
+          },
+          "job": null
+        },
+        {
+          "label": "new timber admitted",
+          "now": 36,
+          "ui": {
+            "clock": "36",
+            "forage": "Gather food\n13 min\nAlready working. Finish or stop the current job first.",
+            "timber": "Gather timber\n15 min\nAlready working. Finish or stop the current job first.",
+            "playerJob": "You: Gather timber",
+            "playerTiming": "15 min left",
+            "latest": "You started gather timber (15 min)."
+          },
+          "stateSha256": "eb4def4cb7ebf1036ad4dddaf5d5fea56fad5d94969d9e4d3ba5e3940de045d7",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 36,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 36
+          },
+          "job": {
+            "kind": "fixed",
+            "id": "gather-timber",
+            "label": "Gather timber",
+            "detail": "Bring wood from the grove.",
+            "project": null,
+            "stage": null,
+            "cost": {},
+            "output": {
+              "timber": 3
+            },
+            "duration": 15,
+            "benefits": {
+              "shelter": false,
+              "workbench": false,
+              "garden": false
+            },
+            "skillBefore": 0.25364992219669386,
+            "action": {
+              "actionId": "gather-timber",
+              "targetId": null,
+              "durationMinutes": 15,
+              "effort": 0.13,
+              "exertive": true,
+              "activity": "active",
+              "skill": "gathering"
+            },
+            "startedAt": 36,
+            "endsAt": 51,
+            "eventId": "event:4",
+            "attemptId": "player:4"
+          }
+        },
+        {
+          "label": "timber complete",
+          "now": 51,
+          "ui": {
+            "clock": "51",
+            "forage": "Gather food\n13 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n15 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You finished gather timber. +3 timber."
+          },
+          "stateSha256": "73cc27e8ef6dc821dd9ccc235b251c54a872d009cc6512a13402b30fa70162a3",
+          "stock": {
+            "timber": 10,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 51,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.2599999999999998,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 51
+          },
+          "job": null
+        },
+        {
+          "label": "reload",
+          "now": 51,
+          "ui": {
+            "clock": "51",
+            "forage": "Gather food\n13 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n15 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You finished gather timber. +3 timber."
+          },
+          "stateSha256": "73cc27e8ef6dc821dd9ccc235b251c54a872d009cc6512a13402b30fa70162a3",
+          "stock": {
+            "timber": 10,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 51,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.2599999999999998,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 51
+          },
+          "job": null
+        }
+      ]
+    },
+    {
+      "name": "390x844 existing C1 garden-complete fixture retains dynamic 3-food yield",
+      "now": 126,
+      "forage": "Gather food\n14 min\nBring back 3 food · Light work",
+      "initial": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 844,
+        "bodyWidth": 390,
+        "bodyHeight": 844,
+        "hud": {
+          "x": 12,
+          "y": 36,
+          "width": 366,
+          "height": 159.78125,
+          "right": 378,
+          "bottom": 195.78125,
+          "visible": true
+        },
+        "dock": {
+          "x": 12,
+          "y": 681.90625,
+          "width": 366,
+          "height": 162.09375,
+          "right": 378,
+          "bottom": 844,
+          "visible": true
+        },
+        "tabs": {
+          "x": 12,
+          "y": 195.78125,
+          "width": 366,
+          "height": 51,
+          "right": 378,
+          "bottom": 246.78125,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": 322.578125,
+            "bottom": 416.953125,
+            "left": 12,
+            "right": 181
+          },
+          {
+            "id": "gather-timber",
+            "top": 322.578125,
+            "bottom": 416.953125,
+            "left": 188,
+            "right": 357
+          },
+          {
+            "id": "gather-salvage",
+            "top": 423.953125,
+            "bottom": 517.734375,
+            "left": 12,
+            "right": 181
+          },
+          {
+            "id": "forage",
+            "top": 423.953125,
+            "bottom": 517.734375,
+            "left": 188,
+            "right": 357
+          }
+        ]
+      },
+      "layout": {
+        "width": 390,
+        "height": 844,
+        "documentWidth": 390,
+        "documentHeight": 844,
+        "bodyWidth": 390,
+        "bodyHeight": 844,
+        "hud": {
+          "x": 12,
+          "y": 36,
+          "width": 366,
+          "height": 159.78125,
+          "right": 378,
+          "bottom": 195.78125,
+          "visible": true
+        },
+        "dock": {
+          "x": 12,
+          "y": 681.90625,
+          "width": 366,
+          "height": 162.09375,
+          "right": 378,
+          "bottom": 844,
+          "visible": true
+        },
+        "tabs": {
+          "x": 12,
+          "y": 195.78125,
+          "width": 366,
+          "height": 51,
+          "right": 378,
+          "bottom": 246.78125,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": 322.578125,
+            "bottom": 416.953125,
+            "left": 12,
+            "right": 181
+          },
+          {
+            "id": "gather-timber",
+            "top": 322.578125,
+            "bottom": 416.953125,
+            "left": 188,
+            "right": 357
+          },
+          {
+            "id": "gather-salvage",
+            "top": 423.953125,
+            "bottom": 517.734375,
+            "left": 12,
+            "right": 181
+          },
+          {
+            "id": "forage",
+            "top": 423.953125,
+            "bottom": 517.734375,
+            "left": 188,
+            "right": 357
+          }
+        ]
+      },
+      "existingPanelScroll": null
+    },
+    {
+      "name": "1280x800 default choices, keyboard disclosure, keyboard tabs and persistent HUD",
+      "layout": {
+        "width": 1280,
+        "height": 800,
+        "documentWidth": 1280,
+        "documentHeight": 800,
+        "bodyWidth": 1280,
+        "bodyHeight": 800,
+        "hud": {
+          "x": 110,
+          "y": 41,
+          "width": 1060,
+          "height": 122.875,
+          "right": 1170,
+          "bottom": 163.875,
+          "visible": true
+        },
+        "dock": {
+          "x": 110,
+          "y": 721.15625,
+          "width": 1060,
+          "height": 78.84375,
+          "right": 1170,
+          "bottom": 800,
+          "visible": true
+        },
+        "tabs": {
+          "x": 110,
+          "y": 163.875,
+          "width": 1060,
+          "height": 54,
+          "right": 1170,
+          "bottom": 217.875,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": 300.671875,
+            "bottom": 386.671875,
+            "left": 202.5,
+            "right": 628.5
+          },
+          {
+            "id": "gather-timber",
+            "top": 300.671875,
+            "bottom": 386.671875,
+            "left": 636.5,
+            "right": 1062.5
+          },
+          {
+            "id": "gather-salvage",
+            "top": 394.671875,
+            "bottom": 480.671875,
+            "left": 202.5,
+            "right": 628.5
+          },
+          {
+            "id": "forage",
+            "top": 394.671875,
+            "bottom": 480.671875,
+            "left": 636.5,
+            "right": 1062.5
+          }
+        ]
+      },
+      "expanded": {
+        "width": 1280,
+        "height": 800,
+        "documentWidth": 1280,
+        "documentHeight": 800,
+        "bodyWidth": 1280,
+        "bodyHeight": 800,
+        "hud": {
+          "x": 110,
+          "y": 41,
+          "width": 1060,
+          "height": 122.875,
+          "right": 1170,
+          "bottom": 163.875,
+          "visible": true
+        },
+        "dock": {
+          "x": 110,
+          "y": 721.15625,
+          "width": 1060,
+          "height": 78.84375,
+          "right": 1170,
+          "bottom": 800,
+          "visible": true
+        },
+        "tabs": {
+          "x": 110,
+          "y": 163.875,
+          "width": 1060,
+          "height": 54,
+          "right": 1170,
+          "bottom": 217.875,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": 300.671875,
+            "bottom": 386.671875,
+            "left": 202.5,
+            "right": 628.5
+          },
+          {
+            "id": "gather-timber",
+            "top": 300.671875,
+            "bottom": 386.671875,
+            "left": 636.5,
+            "right": 1062.5
+          },
+          {
+            "id": "gather-salvage",
+            "top": 394.671875,
+            "bottom": 480.671875,
+            "left": 202.5,
+            "right": 628.5
+          },
+          {
+            "id": "forage",
+            "top": 394.671875,
+            "bottom": 480.671875,
+            "left": 636.5,
+            "right": 1062.5
+          }
+        ]
+      }
+    },
+    {
+      "name": "1280x800 exact G1 UI sequence, busy reasons and save/reload",
+      "marks": [
+        {
+          "label": "G1-prefix",
+          "now": 30,
+          "ui": {
+            "clock": "30",
+            "forage": "Gather food\n14 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n16 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You finished gather food. +2 food."
+          },
+          "stateSha256": "e120131d86141b5e55f6a68b09e641c0f0900ae47decdb37bf547adb26679591",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 30,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 30
+          },
+          "job": null
+        },
+        {
+          "label": "six paid forage minutes",
+          "now": 36,
+          "ui": {
+            "clock": "36",
+            "forage": "Gather food\n13 min\nAlready working. Finish or stop the current job first.",
+            "timber": "Gather timber\n15 min\nAlready working. Finish or stop the current job first.",
+            "playerJob": "You: Gather food",
+            "playerTiming": "8 min left",
+            "latest": "You started gather food (14 min)."
+          },
+          "stateSha256": "d7ffa6644b5d2535c0d8d3f73b7530b7223198a77de20cdf7872bfa86b5715c9",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 36,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 36
+          },
+          "job": {
+            "kind": "fixed",
+            "id": "forage",
+            "label": "Gather food",
+            "detail": "Pick food near camp. Light work remains possible when heavy work is blocked.",
+            "project": null,
+            "stage": null,
+            "cost": {},
+            "output": {
+              "food": 2
+            },
+            "duration": 14,
+            "benefits": {
+              "shelter": false,
+              "workbench": false,
+              "garden": false
+            },
+            "skillBefore": 0.22999672866608334,
+            "action": {
+              "actionId": "forage",
+              "targetId": null,
+              "durationMinutes": 14,
+              "effort": 0,
+              "exertive": false,
+              "activity": "active",
+              "skill": "gathering"
+            },
+            "startedAt": 30,
+            "endsAt": 44,
+            "eventId": "event:3",
+            "attemptId": "player:3"
+          }
+        },
+        {
+          "label": "forage stopped without output",
+          "now": 36,
+          "ui": {
+            "clock": "36",
+            "forage": "Gather food\n13 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n15 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You stopped forage. No completion output; its unused reservation returns. Paid time remains."
+          },
+          "stateSha256": "eb0d0c0f73f4cbb067889824dc5374719641079ff92042206469716e424eeac7",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 36,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 36
+          },
+          "job": null
+        },
+        {
+          "label": "new timber admitted",
+          "now": 36,
+          "ui": {
+            "clock": "36",
+            "forage": "Gather food\n13 min\nAlready working. Finish or stop the current job first.",
+            "timber": "Gather timber\n15 min\nAlready working. Finish or stop the current job first.",
+            "playerJob": "You: Gather timber",
+            "playerTiming": "15 min left",
+            "latest": "You started gather timber (15 min)."
+          },
+          "stateSha256": "eb4def4cb7ebf1036ad4dddaf5d5fea56fad5d94969d9e4d3ba5e3940de045d7",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 36,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 36
+          },
+          "job": {
+            "kind": "fixed",
+            "id": "gather-timber",
+            "label": "Gather timber",
+            "detail": "Bring wood from the grove.",
+            "project": null,
+            "stage": null,
+            "cost": {},
+            "output": {
+              "timber": 3
+            },
+            "duration": 15,
+            "benefits": {
+              "shelter": false,
+              "workbench": false,
+              "garden": false
+            },
+            "skillBefore": 0.25364992219669386,
+            "action": {
+              "actionId": "gather-timber",
+              "targetId": null,
+              "durationMinutes": 15,
+              "effort": 0.13,
+              "exertive": true,
+              "activity": "active",
+              "skill": "gathering"
+            },
+            "startedAt": 36,
+            "endsAt": 51,
+            "eventId": "event:4",
+            "attemptId": "player:4"
+          }
+        },
+        {
+          "label": "timber complete",
+          "now": 51,
+          "ui": {
+            "clock": "51",
+            "forage": "Gather food\n13 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n15 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You finished gather timber. +3 timber."
+          },
+          "stateSha256": "73cc27e8ef6dc821dd9ccc235b251c54a872d009cc6512a13402b30fa70162a3",
+          "stock": {
+            "timber": 10,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 51,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.2599999999999998,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 51
+          },
+          "job": null
+        },
+        {
+          "label": "reload",
+          "now": 51,
+          "ui": {
+            "clock": "51",
+            "forage": "Gather food\n13 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n15 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You finished gather timber. +3 timber."
+          },
+          "stateSha256": "73cc27e8ef6dc821dd9ccc235b251c54a872d009cc6512a13402b30fa70162a3",
+          "stock": {
+            "timber": 10,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 51,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.2599999999999998,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 51
+          },
+          "job": null
+        }
+      ]
+    },
+    {
+      "name": "1280x800 existing C1 garden-complete fixture retains dynamic 3-food yield",
+      "now": 126,
+      "forage": "Gather food\n14 min\nBring back 3 food · Light work",
+      "initial": {
+        "width": 1280,
+        "height": 800,
+        "documentWidth": 1280,
+        "documentHeight": 800,
+        "bodyWidth": 1280,
+        "bodyHeight": 800,
+        "hud": {
+          "x": 110,
+          "y": 41,
+          "width": 1060,
+          "height": 141.171875,
+          "right": 1170,
+          "bottom": 182.171875,
+          "visible": true
+        },
+        "dock": {
+          "x": 110,
+          "y": 680.15625,
+          "width": 1060,
+          "height": 119.84375,
+          "right": 1170,
+          "bottom": 800,
+          "visible": true
+        },
+        "tabs": {
+          "x": 110,
+          "y": 182.171875,
+          "width": 1060,
+          "height": 54,
+          "right": 1170,
+          "bottom": 236.171875,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": 318.96875,
+            "bottom": 404.96875,
+            "left": 202.5,
+            "right": 628.5
+          },
+          {
+            "id": "gather-timber",
+            "top": 318.96875,
+            "bottom": 404.96875,
+            "left": 636.5,
+            "right": 1062.5
+          },
+          {
+            "id": "gather-salvage",
+            "top": 412.96875,
+            "bottom": 498.96875,
+            "left": 202.5,
+            "right": 628.5
+          },
+          {
+            "id": "forage",
+            "top": 412.96875,
+            "bottom": 498.96875,
+            "left": 636.5,
+            "right": 1062.5
+          }
+        ]
+      },
+      "layout": {
+        "width": 1280,
+        "height": 800,
+        "documentWidth": 1280,
+        "documentHeight": 800,
+        "bodyWidth": 1280,
+        "bodyHeight": 800,
+        "hud": {
+          "x": 110,
+          "y": 41,
+          "width": 1060,
+          "height": 141.171875,
+          "right": 1170,
+          "bottom": 182.171875,
+          "visible": true
+        },
+        "dock": {
+          "x": 110,
+          "y": 680.15625,
+          "width": 1060,
+          "height": 119.84375,
+          "right": 1170,
+          "bottom": 800,
+          "visible": true
+        },
+        "tabs": {
+          "x": 110,
+          "y": 182.171875,
+          "width": 1060,
+          "height": 54,
+          "right": 1170,
+          "bottom": 236.171875,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": 318.96875,
+            "bottom": 404.96875,
+            "left": 202.5,
+            "right": 628.5
+          },
+          {
+            "id": "gather-timber",
+            "top": 318.96875,
+            "bottom": 404.96875,
+            "left": 636.5,
+            "right": 1062.5
+          },
+          {
+            "id": "gather-salvage",
+            "top": 412.96875,
+            "bottom": 498.96875,
+            "left": 202.5,
+            "right": 628.5
+          },
+          {
+            "id": "forage",
+            "top": 412.96875,
+            "bottom": 498.96875,
+            "left": 636.5,
+            "right": 1062.5
+          }
+        ]
+      },
+      "existingPanelScroll": null
+    },
+    {
+      "name": "375x667 default choices, keyboard disclosure, keyboard tabs and persistent HUD",
+      "layout": {
+        "width": 375,
+        "height": 667,
+        "documentWidth": 375,
+        "documentHeight": 667,
+        "bodyWidth": 375,
+        "bodyHeight": 667,
+        "hud": {
+          "x": 12,
+          "y": 36,
+          "width": 351,
+          "height": 142.78125,
+          "right": 363,
+          "bottom": 178.78125,
+          "visible": true
+        },
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "width": 351,
+          "height": 125.09375,
+          "right": 363,
+          "bottom": 667,
+          "visible": true
+        },
+        "tabs": {
+          "x": 12,
+          "y": 178.78125,
+          "width": 351,
+          "height": 51,
+          "right": 363,
+          "bottom": 229.78125,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": 322.375,
+            "bottom": 416.75,
+            "left": 12,
+            "right": 173.5
+          },
+          {
+            "id": "gather-timber",
+            "top": 322.375,
+            "bottom": 416.75,
+            "left": 180.5,
+            "right": 342
+          },
+          {
+            "id": "gather-salvage",
+            "top": 423.75,
+            "bottom": 501.328125,
+            "left": 12,
+            "right": 173.5
+          },
+          {
+            "id": "forage",
+            "top": 423.75,
+            "bottom": 501.328125,
+            "left": 180.5,
+            "right": 342
+          }
+        ]
+      },
+      "expanded": {
+        "width": 375,
+        "height": 667,
+        "documentWidth": 375,
+        "documentHeight": 667,
+        "bodyWidth": 375,
+        "bodyHeight": 667,
+        "hud": {
+          "x": 12,
+          "y": 36,
+          "width": 351,
+          "height": 142.78125,
+          "right": 363,
+          "bottom": 178.78125,
+          "visible": true
+        },
+        "dock": {
+          "x": 12,
+          "y": 541.90625,
+          "width": 351,
+          "height": 125.09375,
+          "right": 363,
+          "bottom": 667,
+          "visible": true
+        },
+        "tabs": {
+          "x": 12,
+          "y": 178.78125,
+          "width": 351,
+          "height": 51,
+          "right": 363,
+          "bottom": 229.78125,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": -106.625,
+            "bottom": -12.25,
+            "left": 12,
+            "right": 173.5
+          },
+          {
+            "id": "gather-timber",
+            "top": -106.625,
+            "bottom": -12.25,
+            "left": 180.5,
+            "right": 342
+          },
+          {
+            "id": "gather-salvage",
+            "top": -5.25,
+            "bottom": 72.328125,
+            "left": 12,
+            "right": 173.5
+          },
+          {
+            "id": "forage",
+            "top": -5.25,
+            "bottom": 72.328125,
+            "left": 180.5,
+            "right": 342
+          }
+        ]
+      }
+    },
+    {
+      "name": "375x667 exact G1 UI sequence, busy reasons and save/reload",
+      "marks": [
+        {
+          "label": "G1-prefix",
+          "now": 30,
+          "ui": {
+            "clock": "30",
+            "forage": "Gather food\n14 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n16 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You finished gather food. +2 food."
+          },
+          "stateSha256": "e120131d86141b5e55f6a68b09e641c0f0900ae47decdb37bf547adb26679591",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 30,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 30
+          },
+          "job": null
+        },
+        {
+          "label": "six paid forage minutes",
+          "now": 36,
+          "ui": {
+            "clock": "36",
+            "forage": "Gather food\n13 min\nAlready working. Finish or stop the current job first.",
+            "timber": "Gather timber\n15 min\nAlready working. Finish or stop the current job first.",
+            "playerJob": "You: Gather food",
+            "playerTiming": "8 min left",
+            "latest": "You started gather food (14 min)."
+          },
+          "stateSha256": "d7ffa6644b5d2535c0d8d3f73b7530b7223198a77de20cdf7872bfa86b5715c9",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 36,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 36
+          },
+          "job": {
+            "kind": "fixed",
+            "id": "forage",
+            "label": "Gather food",
+            "detail": "Pick food near camp. Light work remains possible when heavy work is blocked.",
+            "project": null,
+            "stage": null,
+            "cost": {},
+            "output": {
+              "food": 2
+            },
+            "duration": 14,
+            "benefits": {
+              "shelter": false,
+              "workbench": false,
+              "garden": false
+            },
+            "skillBefore": 0.22999672866608334,
+            "action": {
+              "actionId": "forage",
+              "targetId": null,
+              "durationMinutes": 14,
+              "effort": 0,
+              "exertive": false,
+              "activity": "active",
+              "skill": "gathering"
+            },
+            "startedAt": 30,
+            "endsAt": 44,
+            "eventId": "event:3",
+            "attemptId": "player:3"
+          }
+        },
+        {
+          "label": "forage stopped without output",
+          "now": 36,
+          "ui": {
+            "clock": "36",
+            "forage": "Gather food\n13 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n15 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You stopped forage. No completion output; its unused reservation returns. Paid time remains."
+          },
+          "stateSha256": "eb0d0c0f73f4cbb067889824dc5374719641079ff92042206469716e424eeac7",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 36,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 36
+          },
+          "job": null
+        },
+        {
+          "label": "new timber admitted",
+          "now": 36,
+          "ui": {
+            "clock": "36",
+            "forage": "Gather food\n13 min\nAlready working. Finish or stop the current job first.",
+            "timber": "Gather timber\n15 min\nAlready working. Finish or stop the current job first.",
+            "playerJob": "You: Gather timber",
+            "playerTiming": "15 min left",
+            "latest": "You started gather timber (15 min)."
+          },
+          "stateSha256": "eb4def4cb7ebf1036ad4dddaf5d5fea56fad5d94969d9e4d3ba5e3940de045d7",
+          "stock": {
+            "timber": 7,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 36,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.12999999999999995,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 36
+          },
+          "job": {
+            "kind": "fixed",
+            "id": "gather-timber",
+            "label": "Gather timber",
+            "detail": "Bring wood from the grove.",
+            "project": null,
+            "stage": null,
+            "cost": {},
+            "output": {
+              "timber": 3
+            },
+            "duration": 15,
+            "benefits": {
+              "shelter": false,
+              "workbench": false,
+              "garden": false
+            },
+            "skillBefore": 0.25364992219669386,
+            "action": {
+              "actionId": "gather-timber",
+              "targetId": null,
+              "durationMinutes": 15,
+              "effort": 0.13,
+              "exertive": true,
+              "activity": "active",
+              "skill": "gathering"
+            },
+            "startedAt": 36,
+            "endsAt": 51,
+            "eventId": "event:4",
+            "attemptId": "player:4"
+          }
+        },
+        {
+          "label": "timber complete",
+          "now": 51,
+          "ui": {
+            "clock": "51",
+            "forage": "Gather food\n13 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n15 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You finished gather timber. +3 timber."
+          },
+          "stateSha256": "73cc27e8ef6dc821dd9ccc235b251c54a872d009cc6512a13402b30fa70162a3",
+          "stock": {
+            "timber": 10,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 51,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.2599999999999998,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 51
+          },
+          "job": null
+        },
+        {
+          "label": "reload",
+          "now": 51,
+          "ui": {
+            "clock": "51",
+            "forage": "Gather food\n13 min\nBring back 2 food · Light work",
+            "timber": "Gather timber\n15 min\nBring back 3 timber",
+            "playerJob": "You: recovering while available",
+            "playerTiming": "",
+            "latest": "You finished gather timber. +3 timber."
+          },
+          "stateSha256": "73cc27e8ef6dc821dd9ccc235b251c54a872d009cc6512a13402b30fa70162a3",
+          "stock": {
+            "timber": 10,
+            "salvage": 2,
+            "food": 6
+          },
+          "paid": {
+            "work": 51,
+            "recovery": 0,
+            "idle": 0,
+            "meal": 0,
+            "effort": 0.2599999999999998,
+            "constructionMinutes": 0,
+            "gatheringMinutes": 51
+          },
+          "job": null
+        }
+      ]
+    },
+    {
+      "name": "375x667 existing C1 garden-complete fixture retains dynamic 3-food yield",
+      "now": 126,
+      "forage": "Gather food\n14 min\nBring back 3 food · Light work",
+      "initial": {
+        "width": 375,
+        "height": 667,
+        "documentWidth": 375,
+        "documentHeight": 667,
+        "bodyWidth": 375,
+        "bodyHeight": 667,
+        "hud": {
+          "x": 12,
+          "y": 36,
+          "width": 351,
+          "height": 159.78125,
+          "right": 363,
+          "bottom": 195.78125,
+          "visible": true
+        },
+        "dock": {
+          "x": 12,
+          "y": 504.90625,
+          "width": 351,
+          "height": 162.09375,
+          "right": 363,
+          "bottom": 667,
+          "visible": true
+        },
+        "tabs": {
+          "x": 12,
+          "y": 195.78125,
+          "width": 351,
+          "height": 51,
+          "right": 363,
+          "bottom": 246.78125,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": 339.375,
+            "bottom": 451.140625,
+            "left": 12,
+            "right": 173.5
+          },
+          {
+            "id": "gather-timber",
+            "top": 339.375,
+            "bottom": 451.140625,
+            "left": 180.5,
+            "right": 342
+          },
+          {
+            "id": "gather-salvage",
+            "top": 458.140625,
+            "bottom": 569.3125,
+            "left": 12,
+            "right": 173.5
+          },
+          {
+            "id": "forage",
+            "top": 458.140625,
+            "bottom": 569.3125,
+            "left": 180.5,
+            "right": 342
+          }
+        ]
+      },
+      "layout": {
+        "width": 375,
+        "height": 667,
+        "documentWidth": 375,
+        "documentHeight": 667,
+        "bodyWidth": 375,
+        "bodyHeight": 667,
+        "hud": {
+          "x": 12,
+          "y": 36,
+          "width": 351,
+          "height": 159.78125,
+          "right": 363,
+          "bottom": 195.78125,
+          "visible": true
+        },
+        "dock": {
+          "x": 12,
+          "y": 504.90625,
+          "width": 351,
+          "height": 162.09375,
+          "right": 363,
+          "bottom": 667,
+          "visible": true
+        },
+        "tabs": {
+          "x": 12,
+          "y": 195.78125,
+          "width": 351,
+          "height": 51,
+          "right": 363,
+          "bottom": 246.78125,
+          "visible": true
+        },
+        "actions": [
+          {
+            "id": "build-shelter",
+            "top": 263.375,
+            "bottom": 375.140625,
+            "left": 12,
+            "right": 173.5
+          },
+          {
+            "id": "gather-timber",
+            "top": 263.375,
+            "bottom": 375.140625,
+            "left": 180.5,
+            "right": 342
+          },
+          {
+            "id": "gather-salvage",
+            "top": 382.140625,
+            "bottom": 493.3125,
+            "left": 12,
+            "right": 173.5
+          },
+          {
+            "id": "forage",
+            "top": 382.140625,
+            "bottom": 493.3125,
+            "left": 180.5,
+            "right": 342
+          }
+        ]
+      },
+      "existingPanelScroll": {
+        "classification": "Existing prechange short-phone fallback, independently compared against fe540da; no new copy-induced geometry change",
+        "evidence": "artifacts/release-0.14.1/short-phone-baseline/results.json",
+        "before": {
+          "scrollTop": 0,
+          "clientHeight": 258,
+          "scrollHeight": 391,
+          "overflowY": "auto"
+        },
+        "after": {
+          "scrollTop": 76,
+          "clientHeight": 258,
+          "scrollHeight": 391
+        }
+      }
+    }
+  ],
+  "screenshots": [
+    "390x844-default.png",
+    "390x844-practice-details.png",
+    "390x844-shorter-timber.png",
+    "390x844-timber-complete.png",
+    "390x844-garden-yield.png",
+    "1280x800-default.png",
+    "1280x800-practice-details.png",
+    "1280x800-shorter-timber.png",
+    "1280x800-timber-complete.png",
+    "1280x800-garden-yield.png",
+    "375x667-default.png",
+    "375x667-practice-details.png",
+    "375x667-shorter-timber.png",
+    "375x667-timber-complete.png",
+    "375x667-garden-yield.png",
+    "375x667-garden-keyboard-reachable.png"
+  ],
+  "errors": [],
+  "requests": [],
+  "failure": null,
+  "origin": "https://human.adamwhite.work",
+  "servedBefore": {
+    "web/camp-current.js": {
+      "status": 200,
+      "sha256": "2a7da454d02540c0e0b49366998d188f6cf53a672f33b9263beb4ef322bf643b"
+    },
+    "web/camp.html": {
+      "status": 200,
+      "sha256": "ef078fa62202123c8178316b7f48983c6410c6a90032c807876e105017d0fd95"
+    },
+    "web/camp-current-session.js": {
+      "status": 200,
+      "sha256": "683d1c28887da20a89d1e01dd6d85d9eddec2d5d28fdd7fd5459eff4fa879c97"
+    },
+    "src/games/camp-current.js": {
+      "status": 200,
+      "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a"
+    }
+  },
+  "browserVersion": "152.0.7977.83",
+  "geometry": [
+    {
+      "label": "390x844",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "bodyWidth": 390,
+      "bodyHeight": 844,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 366,
+        "height": 142.78125,
+        "right": 378,
+        "bottom": 178.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 718.90625,
+        "width": 366,
+        "height": 125.09375,
+        "right": 378,
+        "bottom": 844,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 178.78125,
+        "width": 366,
+        "height": 51,
+        "right": 378,
+        "bottom": 229.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 305.578125,
+          "bottom": 399.953125,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "gather-timber",
+          "top": 305.578125,
+          "bottom": 399.953125,
+          "left": 188,
+          "right": 357
+        },
+        {
+          "id": "gather-salvage",
+          "top": 406.953125,
+          "bottom": 483.9375,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "forage",
+          "top": 406.953125,
+          "bottom": 483.9375,
+          "left": 188,
+          "right": 357
+        }
+      ]
+    },
+    {
+      "label": "390x844 details",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "bodyWidth": 390,
+      "bodyHeight": 844,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 366,
+        "height": 142.78125,
+        "right": 378,
+        "bottom": 178.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 718.90625,
+        "width": 366,
+        "height": 125.09375,
+        "right": 378,
+        "bottom": 844,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 178.78125,
+        "width": 366,
+        "height": 51,
+        "right": 378,
+        "bottom": 229.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 86.578125,
+          "bottom": 180.953125,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "gather-timber",
+          "top": 86.578125,
+          "bottom": 180.953125,
+          "left": 188,
+          "right": 357
+        },
+        {
+          "id": "gather-salvage",
+          "top": 187.953125,
+          "bottom": 264.9375,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "forage",
+          "top": 187.953125,
+          "bottom": 264.9375,
+          "left": 188,
+          "right": 357
+        }
+      ]
+    },
+    {
+      "label": "390x844 keyboard tabs",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "bodyWidth": 390,
+      "bodyHeight": 844,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 366,
+        "height": 142.78125,
+        "right": 378,
+        "bottom": 178.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 718.90625,
+        "width": 366,
+        "height": 125.09375,
+        "right": 378,
+        "bottom": 844,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 178.78125,
+        "width": 366,
+        "height": 51,
+        "right": 378,
+        "bottom": 229.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 305.578125,
+          "bottom": 399.953125,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "gather-timber",
+          "top": 305.578125,
+          "bottom": 399.953125,
+          "left": 188,
+          "right": 357
+        },
+        {
+          "id": "gather-salvage",
+          "top": 406.953125,
+          "bottom": 483.9375,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "forage",
+          "top": 406.953125,
+          "bottom": 483.9375,
+          "left": 188,
+          "right": 357
+        }
+      ]
+    },
+    {
+      "label": "390x844 post-practice",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "bodyWidth": 390,
+      "bodyHeight": 844,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 366,
+        "height": 172.78125,
+        "right": 378,
+        "bottom": 208.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 718.90625,
+        "width": 366,
+        "height": 125.09375,
+        "right": 378,
+        "bottom": 844,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 208.78125,
+        "width": 366,
+        "height": 51,
+        "right": 378,
+        "bottom": 259.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 335.578125,
+          "bottom": 429.953125,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "gather-timber",
+          "top": 335.578125,
+          "bottom": 429.953125,
+          "left": 188,
+          "right": 357
+        },
+        {
+          "id": "gather-salvage",
+          "top": 436.953125,
+          "bottom": 513.9375,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "forage",
+          "top": 436.953125,
+          "bottom": 513.9375,
+          "left": 188,
+          "right": 357
+        }
+      ]
+    },
+    {
+      "label": "390x844 reload",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "bodyWidth": 390,
+      "bodyHeight": 844,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 366,
+        "height": 159.78125,
+        "right": 378,
+        "bottom": 195.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 718.90625,
+        "width": 366,
+        "height": 125.09375,
+        "right": 378,
+        "bottom": 844,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 195.78125,
+        "width": 366,
+        "height": 51,
+        "right": 378,
+        "bottom": 246.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 322.578125,
+          "bottom": 416.953125,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "gather-timber",
+          "top": 322.578125,
+          "bottom": 416.953125,
+          "left": 188,
+          "right": 357
+        },
+        {
+          "id": "gather-salvage",
+          "top": 423.953125,
+          "bottom": 500.9375,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "forage",
+          "top": 423.953125,
+          "bottom": 500.9375,
+          "left": 188,
+          "right": 357
+        }
+      ]
+    },
+    {
+      "label": "390x844 garden initial",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "bodyWidth": 390,
+      "bodyHeight": 844,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 366,
+        "height": 159.78125,
+        "right": 378,
+        "bottom": 195.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 681.90625,
+        "width": 366,
+        "height": 162.09375,
+        "right": 378,
+        "bottom": 844,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 195.78125,
+        "width": 366,
+        "height": 51,
+        "right": 378,
+        "bottom": 246.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 322.578125,
+          "bottom": 416.953125,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "gather-timber",
+          "top": 322.578125,
+          "bottom": 416.953125,
+          "left": 188,
+          "right": 357
+        },
+        {
+          "id": "gather-salvage",
+          "top": 423.953125,
+          "bottom": 517.734375,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "forage",
+          "top": 423.953125,
+          "bottom": 517.734375,
+          "left": 188,
+          "right": 357
+        }
+      ]
+    },
+    {
+      "label": "390x844 garden reachable",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 844,
+      "bodyWidth": 390,
+      "bodyHeight": 844,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 366,
+        "height": 159.78125,
+        "right": 378,
+        "bottom": 195.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 681.90625,
+        "width": 366,
+        "height": 162.09375,
+        "right": 378,
+        "bottom": 844,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 195.78125,
+        "width": 366,
+        "height": 51,
+        "right": 378,
+        "bottom": 246.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 322.578125,
+          "bottom": 416.953125,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "gather-timber",
+          "top": 322.578125,
+          "bottom": 416.953125,
+          "left": 188,
+          "right": 357
+        },
+        {
+          "id": "gather-salvage",
+          "top": 423.953125,
+          "bottom": 517.734375,
+          "left": 12,
+          "right": 181
+        },
+        {
+          "id": "forage",
+          "top": 423.953125,
+          "bottom": 517.734375,
+          "left": 188,
+          "right": 357
+        }
+      ]
+    },
+    {
+      "label": "1280x800",
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "documentHeight": 800,
+      "bodyWidth": 1280,
+      "bodyHeight": 800,
+      "hud": {
+        "x": 110,
+        "y": 41,
+        "width": 1060,
+        "height": 122.875,
+        "right": 1170,
+        "bottom": 163.875,
+        "visible": true
+      },
+      "dock": {
+        "x": 110,
+        "y": 721.15625,
+        "width": 1060,
+        "height": 78.84375,
+        "right": 1170,
+        "bottom": 800,
+        "visible": true
+      },
+      "tabs": {
+        "x": 110,
+        "y": 163.875,
+        "width": 1060,
+        "height": 54,
+        "right": 1170,
+        "bottom": 217.875,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 300.671875,
+          "bottom": 386.671875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 300.671875,
+          "bottom": 386.671875,
+          "left": 636.5,
+          "right": 1062.5
+        },
+        {
+          "id": "gather-salvage",
+          "top": 394.671875,
+          "bottom": 480.671875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "forage",
+          "top": 394.671875,
+          "bottom": 480.671875,
+          "left": 636.5,
+          "right": 1062.5
+        }
+      ]
+    },
+    {
+      "label": "1280x800 details",
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "documentHeight": 800,
+      "bodyWidth": 1280,
+      "bodyHeight": 800,
+      "hud": {
+        "x": 110,
+        "y": 41,
+        "width": 1060,
+        "height": 122.875,
+        "right": 1170,
+        "bottom": 163.875,
+        "visible": true
+      },
+      "dock": {
+        "x": 110,
+        "y": 721.15625,
+        "width": 1060,
+        "height": 78.84375,
+        "right": 1170,
+        "bottom": 800,
+        "visible": true
+      },
+      "tabs": {
+        "x": 110,
+        "y": 163.875,
+        "width": 1060,
+        "height": 54,
+        "right": 1170,
+        "bottom": 217.875,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 300.671875,
+          "bottom": 386.671875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 300.671875,
+          "bottom": 386.671875,
+          "left": 636.5,
+          "right": 1062.5
+        },
+        {
+          "id": "gather-salvage",
+          "top": 394.671875,
+          "bottom": 480.671875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "forage",
+          "top": 394.671875,
+          "bottom": 480.671875,
+          "left": 636.5,
+          "right": 1062.5
+        }
+      ]
+    },
+    {
+      "label": "1280x800 keyboard tabs",
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "documentHeight": 800,
+      "bodyWidth": 1280,
+      "bodyHeight": 800,
+      "hud": {
+        "x": 110,
+        "y": 41,
+        "width": 1060,
+        "height": 122.875,
+        "right": 1170,
+        "bottom": 163.875,
+        "visible": true
+      },
+      "dock": {
+        "x": 110,
+        "y": 721.15625,
+        "width": 1060,
+        "height": 78.84375,
+        "right": 1170,
+        "bottom": 800,
+        "visible": true
+      },
+      "tabs": {
+        "x": 110,
+        "y": 163.875,
+        "width": 1060,
+        "height": 54,
+        "right": 1170,
+        "bottom": 217.875,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 300.671875,
+          "bottom": 386.671875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 300.671875,
+          "bottom": 386.671875,
+          "left": 636.5,
+          "right": 1062.5
+        },
+        {
+          "id": "gather-salvage",
+          "top": 394.671875,
+          "bottom": 480.671875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "forage",
+          "top": 394.671875,
+          "bottom": 480.671875,
+          "left": 636.5,
+          "right": 1062.5
+        }
+      ]
+    },
+    {
+      "label": "1280x800 post-practice",
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "documentHeight": 800,
+      "bodyWidth": 1280,
+      "bodyHeight": 800,
+      "hud": {
+        "x": 110,
+        "y": 41,
+        "width": 1060,
+        "height": 141.171875,
+        "right": 1170,
+        "bottom": 182.171875,
+        "visible": true
+      },
+      "dock": {
+        "x": 110,
+        "y": 721.15625,
+        "width": 1060,
+        "height": 78.84375,
+        "right": 1170,
+        "bottom": 800,
+        "visible": true
+      },
+      "tabs": {
+        "x": 110,
+        "y": 182.171875,
+        "width": 1060,
+        "height": 54,
+        "right": 1170,
+        "bottom": 236.171875,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 318.96875,
+          "bottom": 404.96875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 318.96875,
+          "bottom": 404.96875,
+          "left": 636.5,
+          "right": 1062.5
+        },
+        {
+          "id": "gather-salvage",
+          "top": 412.96875,
+          "bottom": 498.96875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "forage",
+          "top": 412.96875,
+          "bottom": 498.96875,
+          "left": 636.5,
+          "right": 1062.5
+        }
+      ]
+    },
+    {
+      "label": "1280x800 reload",
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "documentHeight": 800,
+      "bodyWidth": 1280,
+      "bodyHeight": 800,
+      "hud": {
+        "x": 110,
+        "y": 41,
+        "width": 1060,
+        "height": 141.171875,
+        "right": 1170,
+        "bottom": 182.171875,
+        "visible": true
+      },
+      "dock": {
+        "x": 110,
+        "y": 721.15625,
+        "width": 1060,
+        "height": 78.84375,
+        "right": 1170,
+        "bottom": 800,
+        "visible": true
+      },
+      "tabs": {
+        "x": 110,
+        "y": 182.171875,
+        "width": 1060,
+        "height": 54,
+        "right": 1170,
+        "bottom": 236.171875,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 318.96875,
+          "bottom": 404.96875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 318.96875,
+          "bottom": 404.96875,
+          "left": 636.5,
+          "right": 1062.5
+        },
+        {
+          "id": "gather-salvage",
+          "top": 412.96875,
+          "bottom": 498.96875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "forage",
+          "top": 412.96875,
+          "bottom": 498.96875,
+          "left": 636.5,
+          "right": 1062.5
+        }
+      ]
+    },
+    {
+      "label": "1280x800 garden initial",
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "documentHeight": 800,
+      "bodyWidth": 1280,
+      "bodyHeight": 800,
+      "hud": {
+        "x": 110,
+        "y": 41,
+        "width": 1060,
+        "height": 141.171875,
+        "right": 1170,
+        "bottom": 182.171875,
+        "visible": true
+      },
+      "dock": {
+        "x": 110,
+        "y": 680.15625,
+        "width": 1060,
+        "height": 119.84375,
+        "right": 1170,
+        "bottom": 800,
+        "visible": true
+      },
+      "tabs": {
+        "x": 110,
+        "y": 182.171875,
+        "width": 1060,
+        "height": 54,
+        "right": 1170,
+        "bottom": 236.171875,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 318.96875,
+          "bottom": 404.96875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 318.96875,
+          "bottom": 404.96875,
+          "left": 636.5,
+          "right": 1062.5
+        },
+        {
+          "id": "gather-salvage",
+          "top": 412.96875,
+          "bottom": 498.96875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "forage",
+          "top": 412.96875,
+          "bottom": 498.96875,
+          "left": 636.5,
+          "right": 1062.5
+        }
+      ]
+    },
+    {
+      "label": "1280x800 garden reachable",
+      "width": 1280,
+      "height": 800,
+      "documentWidth": 1280,
+      "documentHeight": 800,
+      "bodyWidth": 1280,
+      "bodyHeight": 800,
+      "hud": {
+        "x": 110,
+        "y": 41,
+        "width": 1060,
+        "height": 141.171875,
+        "right": 1170,
+        "bottom": 182.171875,
+        "visible": true
+      },
+      "dock": {
+        "x": 110,
+        "y": 680.15625,
+        "width": 1060,
+        "height": 119.84375,
+        "right": 1170,
+        "bottom": 800,
+        "visible": true
+      },
+      "tabs": {
+        "x": 110,
+        "y": 182.171875,
+        "width": 1060,
+        "height": 54,
+        "right": 1170,
+        "bottom": 236.171875,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 318.96875,
+          "bottom": 404.96875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 318.96875,
+          "bottom": 404.96875,
+          "left": 636.5,
+          "right": 1062.5
+        },
+        {
+          "id": "gather-salvage",
+          "top": 412.96875,
+          "bottom": 498.96875,
+          "left": 202.5,
+          "right": 628.5
+        },
+        {
+          "id": "forage",
+          "top": 412.96875,
+          "bottom": 498.96875,
+          "left": 636.5,
+          "right": 1062.5
+        }
+      ]
+    },
+    {
+      "label": "375x667",
+      "width": 375,
+      "height": 667,
+      "documentWidth": 375,
+      "documentHeight": 667,
+      "bodyWidth": 375,
+      "bodyHeight": 667,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 351,
+        "height": 142.78125,
+        "right": 363,
+        "bottom": 178.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 541.90625,
+        "width": 351,
+        "height": 125.09375,
+        "right": 363,
+        "bottom": 667,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 178.78125,
+        "width": 351,
+        "height": 51,
+        "right": 363,
+        "bottom": 229.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 322.375,
+          "bottom": 416.75,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 322.375,
+          "bottom": 416.75,
+          "left": 180.5,
+          "right": 342
+        },
+        {
+          "id": "gather-salvage",
+          "top": 423.75,
+          "bottom": 501.328125,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "forage",
+          "top": 423.75,
+          "bottom": 501.328125,
+          "left": 180.5,
+          "right": 342
+        }
+      ]
+    },
+    {
+      "label": "375x667 details",
+      "width": 375,
+      "height": 667,
+      "documentWidth": 375,
+      "documentHeight": 667,
+      "bodyWidth": 375,
+      "bodyHeight": 667,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 351,
+        "height": 142.78125,
+        "right": 363,
+        "bottom": 178.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 541.90625,
+        "width": 351,
+        "height": 125.09375,
+        "right": 363,
+        "bottom": 667,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 178.78125,
+        "width": 351,
+        "height": 51,
+        "right": 363,
+        "bottom": 229.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": -106.625,
+          "bottom": -12.25,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "gather-timber",
+          "top": -106.625,
+          "bottom": -12.25,
+          "left": 180.5,
+          "right": 342
+        },
+        {
+          "id": "gather-salvage",
+          "top": -5.25,
+          "bottom": 72.328125,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "forage",
+          "top": -5.25,
+          "bottom": 72.328125,
+          "left": 180.5,
+          "right": 342
+        }
+      ]
+    },
+    {
+      "label": "375x667 keyboard tabs",
+      "width": 375,
+      "height": 667,
+      "documentWidth": 375,
+      "documentHeight": 667,
+      "bodyWidth": 375,
+      "bodyHeight": 667,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 351,
+        "height": 142.78125,
+        "right": 363,
+        "bottom": 178.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 541.90625,
+        "width": 351,
+        "height": 125.09375,
+        "right": 363,
+        "bottom": 667,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 178.78125,
+        "width": 351,
+        "height": 51,
+        "right": 363,
+        "bottom": 229.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 294.375,
+          "bottom": 388.75,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 294.375,
+          "bottom": 388.75,
+          "left": 180.5,
+          "right": 342
+        },
+        {
+          "id": "gather-salvage",
+          "top": 395.75,
+          "bottom": 473.328125,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "forage",
+          "top": 395.75,
+          "bottom": 473.328125,
+          "left": 180.5,
+          "right": 342
+        }
+      ]
+    },
+    {
+      "label": "375x667 post-practice",
+      "width": 375,
+      "height": 667,
+      "documentWidth": 375,
+      "documentHeight": 667,
+      "bodyWidth": 375,
+      "bodyHeight": 667,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 351,
+        "height": 172.78125,
+        "right": 363,
+        "bottom": 208.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 541.90625,
+        "width": 351,
+        "height": 125.09375,
+        "right": 363,
+        "bottom": 667,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 208.78125,
+        "width": 351,
+        "height": 51,
+        "right": 363,
+        "bottom": 259.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 352.375,
+          "bottom": 446.75,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 352.375,
+          "bottom": 446.75,
+          "left": 180.5,
+          "right": 342
+        },
+        {
+          "id": "gather-salvage",
+          "top": 453.75,
+          "bottom": 531.328125,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "forage",
+          "top": 453.75,
+          "bottom": 531.328125,
+          "left": 180.5,
+          "right": 342
+        }
+      ]
+    },
+    {
+      "label": "375x667 reload",
+      "width": 375,
+      "height": 667,
+      "documentWidth": 375,
+      "documentHeight": 667,
+      "bodyWidth": 375,
+      "bodyHeight": 667,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 351,
+        "height": 159.78125,
+        "right": 363,
+        "bottom": 195.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 541.90625,
+        "width": 351,
+        "height": 125.09375,
+        "right": 363,
+        "bottom": 667,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 195.78125,
+        "width": 351,
+        "height": 51,
+        "right": 363,
+        "bottom": 246.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 339.375,
+          "bottom": 433.75,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 339.375,
+          "bottom": 433.75,
+          "left": 180.5,
+          "right": 342
+        },
+        {
+          "id": "gather-salvage",
+          "top": 440.75,
+          "bottom": 518.328125,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "forage",
+          "top": 440.75,
+          "bottom": 518.328125,
+          "left": 180.5,
+          "right": 342
+        }
+      ]
+    },
+    {
+      "label": "375x667 garden initial",
+      "width": 375,
+      "height": 667,
+      "documentWidth": 375,
+      "documentHeight": 667,
+      "bodyWidth": 375,
+      "bodyHeight": 667,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 351,
+        "height": 159.78125,
+        "right": 363,
+        "bottom": 195.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 504.90625,
+        "width": 351,
+        "height": 162.09375,
+        "right": 363,
+        "bottom": 667,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 195.78125,
+        "width": 351,
+        "height": 51,
+        "right": 363,
+        "bottom": 246.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 339.375,
+          "bottom": 451.140625,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 339.375,
+          "bottom": 451.140625,
+          "left": 180.5,
+          "right": 342
+        },
+        {
+          "id": "gather-salvage",
+          "top": 458.140625,
+          "bottom": 569.3125,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "forage",
+          "top": 458.140625,
+          "bottom": 569.3125,
+          "left": 180.5,
+          "right": 342
+        }
+      ]
+    },
+    {
+      "label": "375x667 garden reachable",
+      "width": 375,
+      "height": 667,
+      "documentWidth": 375,
+      "documentHeight": 667,
+      "bodyWidth": 375,
+      "bodyHeight": 667,
+      "hud": {
+        "x": 12,
+        "y": 36,
+        "width": 351,
+        "height": 159.78125,
+        "right": 363,
+        "bottom": 195.78125,
+        "visible": true
+      },
+      "dock": {
+        "x": 12,
+        "y": 504.90625,
+        "width": 351,
+        "height": 162.09375,
+        "right": 363,
+        "bottom": 667,
+        "visible": true
+      },
+      "tabs": {
+        "x": 12,
+        "y": 195.78125,
+        "width": 351,
+        "height": 51,
+        "right": 363,
+        "bottom": 246.78125,
+        "visible": true
+      },
+      "actions": [
+        {
+          "id": "build-shelter",
+          "top": 263.375,
+          "bottom": 375.140625,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "gather-timber",
+          "top": 263.375,
+          "bottom": 375.140625,
+          "left": 180.5,
+          "right": 342
+        },
+        {
+          "id": "gather-salvage",
+          "top": 382.140625,
+          "bottom": 493.3125,
+          "left": 12,
+          "right": 173.5
+        },
+        {
+          "id": "forage",
+          "top": 382.140625,
+          "bottom": 493.3125,
+          "left": 180.5,
+          "right": 342
+        }
+      ]
+    }
+  ],
+  "servedAfter": {
+    "web/camp-current.js": {
+      "status": 200,
+      "sha256": "2a7da454d02540c0e0b49366998d188f6cf53a672f33b9263beb4ef322bf643b"
+    },
+    "web/camp.html": {
+      "status": 200,
+      "sha256": "ef078fa62202123c8178316b7f48983c6410c6a90032c807876e105017d0fd95"
+    },
+    "web/camp-current-session.js": {
+      "status": 200,
+      "sha256": "683d1c28887da20a89d1e01dd6d85d9eddec2d5d28fdd7fd5459eff4fa879c97"
+    },
+    "src/games/camp-current.js": {
+      "status": 200,
+      "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a"
+    }
+  },
+  "passed": true,
+  "finishedAt": "2026-09-09T02:22:48.528Z"
+}
