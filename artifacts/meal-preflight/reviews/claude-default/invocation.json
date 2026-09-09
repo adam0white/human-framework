@@ -1,0 +1,40 @@
+{
+  "command": "claude --print --restricted --strict-mcp-config --tools \"\" --disable-slash-commands --no-session-persistence --output-format json < prompt.md > response.json 2> stderr.txt",
+  "requestedModel": "CLI default; no --model flag",
+  "actualModelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 9328,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.009413,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-opus-5[1m]": {
+      "inputTokens": 2,
+      "outputTokens": 11337,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 14028,
+      "webSearchRequests": 0,
+      "costUSD": 0.423715,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 9828,
+      "canonicalModel": "claude-opus-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "durationMs": 156393,
+  "turns": 1,
+  "isError": false,
+  "reportedListPriceCostUSD": 0.433128,
+  "costNote": "Provider-reported list-price equivalent, not proof of an account charge or purchase. No credits were purchased and no usage-reset credit was redeemed.",
+  "scope": "One source-only review with no tools; main returned model claude-opus-5[1m], auxiliary Haiku usage retained."
+}

@@ -1,0 +1,90 @@
+{
+  "archivedAt": "2026-09-09T00:34:57.576898+00:00",
+  "scope": "Independent static Opus review, source/record Astra review and root verification logs. Only public source and synthetic facts were supplied externally; original raw outputs preserved.",
+  "files": [
+    {
+      "source": "/tmp/meal-preflight-final-review/record-excerpts.json",
+      "archive": "astra/record-excerpts.json",
+      "sha256": "8f21fa96fdfae9b657c7a1f74a15a31f488a4ce72fc18e15b1ae4e079e225860",
+      "bytes": 110907
+    },
+    {
+      "source": "/tmp/meal-preflight-final-review/report.md",
+      "archive": "astra/report.md",
+      "sha256": "fe448546908224c1b1b3b09742b021ec30fd3c10d6a0521ec06fe864ae23560a",
+      "bytes": 12570
+    },
+    {
+      "source": "/tmp/meal-preflight-final-review/review-artifacts.json",
+      "archive": "astra/review-artifacts.json",
+      "sha256": "9bc59ec4d19b74969260bf49f2c2289f27d08c7aa09428fd88b190f0408bdfa5",
+      "bytes": 438
+    },
+    {
+      "source": "/tmp/meal-preflight-final-review/scope-and-source-hashes.json",
+      "archive": "astra/scope-and-source-hashes.json",
+      "sha256": "d27ae3de4f057afeacad5f8cd3b9077a7b7c4de235854d86efe7a6b2476af5a0",
+      "bytes": 6190
+    },
+    {
+      "source": "/tmp/hf-meal-preflight-opus-20260908/manifest.json",
+      "archive": "claude-default/manifest.json",
+      "sha256": "5dfac1332bd88ed8ae5b6bf059a35b2618ab85dff263299534d5c619f41391a4",
+      "bytes": 756
+    },
+    {
+      "source": "/tmp/hf-meal-preflight-opus-20260908/prompt.md",
+      "archive": "claude-default/prompt.md",
+      "sha256": "9e677a70c9086ab43f7f26368256d3720675f6846212e4eddb54d9ae3aa4420b",
+      "bytes": 25798
+    },
+    {
+      "source": "/tmp/hf-meal-preflight-opus-20260908/response.json",
+      "archive": "claude-default/response.json",
+      "sha256": "6ff719d8a169bdfb8d108b4abcd955eb9fae07bfe668c6e36e90d3d4104b20a4",
+      "bytes": 6179
+    },
+    {
+      "source": "/tmp/hf-meal-preflight-opus-20260908/stderr.txt",
+      "archive": "claude-default/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "/tmp/meal-independent-replay.log",
+      "archive": "validation/meal-independent-replay.log",
+      "sha256": "76267fead755ab3ecad3e32dc07400b4264beb29f62e9487e293920805cab9d2",
+      "bytes": 84
+    },
+    {
+      "source": "/tmp/meal-independent-replay-final.log",
+      "archive": "validation/meal-independent-replay-final.log",
+      "sha256": "76267fead755ab3ecad3e32dc07400b4264beb29f62e9487e293920805cab9d2",
+      "bytes": 84
+    },
+    {
+      "source": "/tmp/meal-high-hunger-tests.log",
+      "archive": "validation/meal-high-hunger-tests.log",
+      "sha256": "a9e2abdd6a8e168ab9363c257e7c75e68e4d1535a6b5a877799f051f73cdc084",
+      "bytes": 1156
+    },
+    {
+      "source": "/tmp/meal-high-hunger-tests-corrected.log",
+      "archive": "validation/meal-high-hunger-tests-corrected.log",
+      "sha256": "05425c685f5e102b69e97b082096284d3e2e5b0eff8210d8fca460f6c4356fbe",
+      "bytes": 351
+    },
+    {
+      "source": "/tmp/meal-preflight-all-tests.log",
+      "archive": "validation/meal-preflight-all-tests.log",
+      "sha256": "504da9fffe2fe03e6a3c283172d6042cf663000f404d98e1f52630c617524283",
+      "bytes": 85987
+    },
+    {
+      "source": "/tmp/meal-preflight-node22.log",
+      "archive": "validation/meal-preflight-node22.log",
+      "sha256": "3d62a3a7d89b12d7e1f579acd6d8a5a669cdae5252831c91a1ce468e23b461db",
+      "bytes": 5826
+    }
+  ]
+}

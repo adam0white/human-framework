@@ -1,0 +1,1113 @@
+{
+  "scope": "Independent recorded-command replay on pinned physical source. Original archived prefixes plus all recorded full snapshots, before/after views, summary marks and four refusals checked; no exploration-controller code used.",
+  "node": "v22.0.0",
+  "evidenceCommit": "78d2b29b1781c95a818e1dab91aaa6921778c40c",
+  "sourceGraph": {
+    "commit": "f5ced4473769ceedbe10cded297599231b052bb5",
+    "files": {
+      "src/games/camp-current.js": {
+        "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a",
+        "bytes": 45911
+      },
+      "src/core/model.js": {
+        "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+        "bytes": 7764
+      },
+      "src/runtime/index.js": {
+        "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+        "bytes": 188
+      },
+      "src/human/v0.1.1.js": {
+        "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+        "bytes": 11580
+      },
+      "src/runtime/clock.js": {
+        "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+        "bytes": 7513
+      }
+    }
+  },
+  "verifierSha256": "f36a0ed40b02fadc37b95ea90f91c7d1d90e726a035f76193813b402f488cc52",
+  "records": [
+    {
+      "path": "artifacts/meal-preflight/opportunity/run-278-v1/finish-meal-first.json.gz",
+      "sha256": "0e8facc02f6678ec98fd187266683627fcfbd578b330c71ae91078595cd841ff",
+      "id": "finish-meal-first",
+      "successfulCommands": 79,
+      "verifiedRefusals": 1,
+      "marks": 5,
+      "final": {
+        "now": 403,
+        "phase": "ended",
+        "stock": {
+          "timber": 1,
+          "salvage": 1,
+          "food": 4
+        },
+        "playerBody": {
+          "fatigue": 0.36949999999997774,
+          "hunger": 0.23400000000000018
+        },
+        "neighborBody": {
+          "fatigue": 0.4630714285714056,
+          "hunger": 0.5360000000000007
+        },
+        "paid": {
+          "player": {
+            "work": 276,
+            "recovery": 111,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.340000000000003,
+            "constructionMinutes": 40,
+            "gatheringMinutes": 236
+          },
+          "neighbor": {
+            "work": 275,
+            "recovery": 120,
+            "idle": 0,
+            "meal": 8,
+            "effort": 2.558571428571429,
+            "constructionMinutes": 157,
+            "gatheringMinutes": 118
+          }
+        },
+        "caches": 4,
+        "householdsEquipped": 2,
+        "campNights": 4,
+        "unprovidedHouseholds": 0,
+        "unprovidedNights": 0,
+        "playerJob": null,
+        "neighborJob": {
+          "id": "gather-timber",
+          "label": "Gather timber",
+          "project": null,
+          "startedAt": 401,
+          "endsAt": 415,
+          "duration": 14,
+          "remaining": 12,
+          "cost": {},
+          "workId": null,
+          "progress": 0.14285714285714285
+        },
+        "commitment": {
+          "status": "fulfilled",
+          "project": "cache",
+          "acceptedAt": 383,
+          "finishedAt": 403,
+          "startCaches": 3,
+          "reason": "The supply cache is complete. I am available."
+        },
+        "nextStop": null,
+        "window": {
+          "enteredAt": 224,
+          "ferryAt": 314,
+          "rainAt": 404,
+          "carriedCaches": 0,
+          "production": [
+            {
+              "cache": 1,
+              "at": 283
+            },
+            {
+              "cache": 2,
+              "at": 306
+            },
+            {
+              "cache": 3,
+              "at": 383
+            },
+            {
+              "cache": 4,
+              "at": 403
+            }
+          ],
+          "allocations": [
+            {
+              "at": 286,
+              "cache": 1,
+              "destination": "households"
+            },
+            {
+              "at": 306,
+              "cache": 2,
+              "destination": "households"
+            },
+            {
+              "at": 383,
+              "cache": 3,
+              "destination": "camp"
+            },
+            {
+              "at": 403,
+              "cache": 4,
+              "destination": "camp"
+            }
+          ],
+          "acknowledged": true,
+          "departedAt": 314,
+          "finishedAt": 403
+        }
+      }
+    },
+    {
+      "path": "artifacts/meal-preflight/opportunity/run-278-v1/wait-task-then-meal.json.gz",
+      "sha256": "31288a6431ac022de3a5cec5710bc86d9ede597c25a5b22713e22894fc3cc43a",
+      "id": "wait-task-then-meal",
+      "successfulCommands": 79,
+      "verifiedRefusals": 1,
+      "marks": 4,
+      "final": {
+        "now": 403,
+        "phase": "ended",
+        "stock": {
+          "timber": 1,
+          "salvage": 1,
+          "food": 4
+        },
+        "playerBody": {
+          "fatigue": 0.3694999999999782,
+          "hunger": 0.18400000000000014
+        },
+        "neighborBody": {
+          "fatigue": 0.4630714285714056,
+          "hunger": 0.5360000000000007
+        },
+        "paid": {
+          "player": {
+            "work": 276,
+            "recovery": 111,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.340000000000003,
+            "constructionMinutes": 40,
+            "gatheringMinutes": 236
+          },
+          "neighbor": {
+            "work": 275,
+            "recovery": 120,
+            "idle": 0,
+            "meal": 8,
+            "effort": 2.558571428571429,
+            "constructionMinutes": 157,
+            "gatheringMinutes": 118
+          }
+        },
+        "caches": 4,
+        "householdsEquipped": 2,
+        "campNights": 4,
+        "unprovidedHouseholds": 0,
+        "unprovidedNights": 0,
+        "playerJob": null,
+        "neighborJob": {
+          "id": "gather-timber",
+          "label": "Gather timber",
+          "project": null,
+          "startedAt": 401,
+          "endsAt": 415,
+          "duration": 14,
+          "remaining": 12,
+          "cost": {},
+          "workId": null,
+          "progress": 0.14285714285714285
+        },
+        "commitment": {
+          "status": "fulfilled",
+          "project": "cache",
+          "acceptedAt": 383,
+          "finishedAt": 403,
+          "startCaches": 3,
+          "reason": "The supply cache is complete. I am available."
+        },
+        "nextStop": null,
+        "window": {
+          "enteredAt": 224,
+          "ferryAt": 314,
+          "rainAt": 404,
+          "carriedCaches": 0,
+          "production": [
+            {
+              "cache": 1,
+              "at": 283
+            },
+            {
+              "cache": 2,
+              "at": 303
+            },
+            {
+              "cache": 3,
+              "at": 383
+            },
+            {
+              "cache": 4,
+              "at": 403
+            }
+          ],
+          "allocations": [
+            {
+              "at": 283,
+              "cache": 1,
+              "destination": "households"
+            },
+            {
+              "at": 303,
+              "cache": 2,
+              "destination": "households"
+            },
+            {
+              "at": 383,
+              "cache": 3,
+              "destination": "camp"
+            },
+            {
+              "at": 403,
+              "cache": 4,
+              "destination": "camp"
+            }
+          ],
+          "acknowledged": true,
+          "departedAt": 314,
+          "finishedAt": 403
+        }
+      }
+    },
+    {
+      "path": "artifacts/meal-preflight/opportunity/run-278-v1/cancel-task-restart.json.gz",
+      "sha256": "1c5510656b4ec95daa51b73978f07aad2c29643e3cc2b55367acc0bb85f95d45",
+      "id": "cancel-task-restart",
+      "successfulCommands": 81,
+      "verifiedRefusals": 1,
+      "marks": 5,
+      "final": {
+        "now": 399,
+        "phase": "ended",
+        "stock": {
+          "timber": 1,
+          "salvage": 1,
+          "food": 4
+        },
+        "playerBody": {
+          "fatigue": 0.8084999999999791,
+          "hunger": 0.17600000000000013
+        },
+        "neighborBody": {
+          "fatigue": 0.48992857142854884,
+          "hunger": 0.5280000000000007
+        },
+        "paid": {
+          "player": {
+            "work": 282,
+            "recovery": 96,
+            "idle": 0,
+            "meal": 21,
+            "effort": 2.4099999999999944,
+            "constructionMinutes": 60,
+            "gatheringMinutes": 222
+          },
+          "neighbor": {
+            "work": 274,
+            "recovery": 117,
+            "idle": 0,
+            "meal": 8,
+            "effort": 2.5164285714285737,
+            "constructionMinutes": 139,
+            "gatheringMinutes": 135
+          }
+        },
+        "caches": 4,
+        "householdsEquipped": 2,
+        "campNights": 4,
+        "unprovidedHouseholds": 0,
+        "unprovidedNights": 0,
+        "playerJob": null,
+        "neighborJob": {
+          "id": "gather-timber",
+          "label": "Gather timber",
+          "project": null,
+          "startedAt": 394,
+          "endsAt": 408,
+          "duration": 14,
+          "remaining": 9,
+          "cost": {},
+          "workId": null,
+          "progress": 0.35714285714285715
+        },
+        "commitment": {
+          "status": "fulfilled",
+          "project": "cache",
+          "acceptedAt": 371,
+          "finishedAt": 399,
+          "startCaches": 3,
+          "reason": "The supply cache is complete. I am available."
+        },
+        "nextStop": null,
+        "window": {
+          "enteredAt": 224,
+          "ferryAt": 314,
+          "rainAt": 404,
+          "carriedCaches": 0,
+          "production": [
+            {
+              "cache": 1,
+              "at": 283
+            },
+            {
+              "cache": 2,
+              "at": 303
+            },
+            {
+              "cache": 3,
+              "at": 371
+            },
+            {
+              "cache": 4,
+              "at": 399
+            }
+          ],
+          "allocations": [
+            {
+              "at": 283,
+              "cache": 1,
+              "destination": "households"
+            },
+            {
+              "at": 303,
+              "cache": 2,
+              "destination": "households"
+            },
+            {
+              "at": 371,
+              "cache": 3,
+              "destination": "camp"
+            },
+            {
+              "at": 399,
+              "cache": 4,
+              "destination": "camp"
+            }
+          ],
+          "acknowledged": true,
+          "departedAt": 314,
+          "finishedAt": 399
+        }
+      }
+    },
+    {
+      "path": "artifacts/meal-preflight/atomic-rival/exploratory-b-v1.json.gz",
+      "sha256": "06d5ee6c045649c7e2b5e6c0593b652b5e7c5cf746c3fac04beab8171545e9e0",
+      "id": "task-before-meal-at-381",
+      "prefixCommands": 69,
+      "successfulCommands": 0,
+      "verifiedRefusals": 1,
+      "marks": 1,
+      "final": {
+        "now": 381,
+        "phase": "packing",
+        "stock": {
+          "timber": 7,
+          "salvage": 4,
+          "food": 5
+        },
+        "people": {
+          "player": {
+            "body": {
+              "fatigue": 0,
+              "hunger": 0.4320000000000006
+            },
+            "skills": {
+              "gathering": 0.7361990706201217,
+              "construction": 0.14383596744985547
+            },
+            "job": null
+          },
+          "neighbor": {
+            "body": {
+              "fatigue": 0.8392777777777563,
+              "hunger": 0.49200000000000066
+            },
+            "skills": {
+              "gathering": 0.5076475787986703,
+              "construction": 0.5756909910028486
+            },
+            "job": {
+              "id": "build-cache",
+              "label": "Supply cache: pack a supply cache",
+              "project": "cache",
+              "startedAt": 365,
+              "endsAt": 383,
+              "duration": 18,
+              "remaining": 2,
+              "cost": {
+                "timber": 6,
+                "salvage": 3
+              },
+              "workId": "cache-2",
+              "progress": 0.8888888888888892
+            }
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 256,
+            "recovery": 117,
+            "idle": 0,
+            "meal": 8,
+            "effort": 2.1400000000000072,
+            "constructionMinutes": 20,
+            "gatheringMinutes": 236
+          },
+          "neighbor": {
+            "work": 271,
+            "recovery": 102,
+            "idle": 0,
+            "meal": 8,
+            "effort": 2.5177777777777783,
+            "constructionMinutes": 155,
+            "gatheringMinutes": 116
+          }
+        },
+        "caches": 2,
+        "completedCache": {
+          "id": "cache-1",
+          "project": "cache",
+          "stage": 0,
+          "cost": {
+            "timber": 6,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 26
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 20,
+              "fraction": 1,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 283,
+              "paidBefore": 0,
+              "toolMinutes": 20
+            }
+          },
+          "startedAt": 283,
+          "completedAt": 303
+        },
+        "window": {
+          "enteredAt": 224,
+          "ferryAt": 314,
+          "rainAt": 404,
+          "carriedCaches": 0,
+          "production": [
+            {
+              "cache": 1,
+              "at": 283
+            },
+            {
+              "cache": 2,
+              "at": 303
+            }
+          ],
+          "allocations": [
+            {
+              "at": 283,
+              "cache": 1,
+              "destination": "households"
+            },
+            {
+              "at": 303,
+              "cache": 2,
+              "destination": "households"
+            }
+          ],
+          "acknowledged": true,
+          "departedAt": 314,
+          "finishedAt": null
+        },
+        "households": 2,
+        "campNights": 0,
+        "unprovidedNights": 4
+      }
+    },
+    {
+      "path": "artifacts/meal-preflight/atomic-rival/exploratory-b-v1.json.gz",
+      "sha256": "06d5ee6c045649c7e2b5e6c0593b652b5e7c5cf746c3fac04beab8171545e9e0",
+      "id": "finish-meal-first",
+      "prefixCommands": 69,
+      "successfulCommands": 11,
+      "verifiedRefusals": 0,
+      "marks": 5,
+      "final": {
+        "now": 420,
+        "phase": "camp-return",
+        "stock": {
+          "timber": 5,
+          "salvage": 1,
+          "food": 4
+        },
+        "people": {
+          "player": {
+            "body": {
+              "fatigue": 0,
+              "hunger": 0.06200000000000004
+            },
+            "skills": {
+              "gathering": 0.7361990706201217,
+              "construction": 0.22840331512365794
+            },
+            "job": null
+          },
+          "neighbor": {
+            "body": {
+              "fatigue": 0.47499999999997594,
+              "hunger": 0.5700000000000007
+            },
+            "skills": {
+              "gathering": 0.5422172331877178,
+              "construction": 0.5800809374071377
+            },
+            "job": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 276,
+            "recovery": 128,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.340000000000003,
+            "constructionMinutes": 40,
+            "gatheringMinutes": 236
+          },
+          "neighbor": {
+            "work": 287,
+            "recovery": 125,
+            "idle": 0,
+            "meal": 8,
+            "effort": 2.6700000000000013,
+            "constructionMinutes": 157,
+            "gatheringMinutes": 130
+          }
+        },
+        "caches": 4,
+        "completedCache": {
+          "id": "cache-3",
+          "project": "cache",
+          "stage": 0,
+          "cost": {
+            "timber": 6,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 26
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 20,
+              "fraction": 1,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 389,
+              "paidBefore": 20,
+              "toolMinutes": 20
+            }
+          },
+          "startedAt": 389,
+          "completedAt": 409
+        },
+        "window": {
+          "enteredAt": 224,
+          "ferryAt": 314,
+          "rainAt": 404,
+          "carriedCaches": 0,
+          "production": [
+            {
+              "cache": 1,
+              "at": 283
+            },
+            {
+              "cache": 2,
+              "at": 303
+            },
+            {
+              "cache": 3,
+              "at": 383
+            }
+          ],
+          "allocations": [
+            {
+              "at": 283,
+              "cache": 1,
+              "destination": "households"
+            },
+            {
+              "at": 303,
+              "cache": 2,
+              "destination": "households"
+            },
+            {
+              "at": 383,
+              "cache": 3,
+              "destination": "camp"
+            }
+          ],
+          "acknowledged": true,
+          "departedAt": 314,
+          "finishedAt": 404
+        },
+        "households": 2,
+        "campNights": 2,
+        "unprovidedNights": 2
+      }
+    },
+    {
+      "path": "artifacts/meal-preflight/atomic-rival/exploratory-b-v1.json.gz",
+      "sha256": "06d5ee6c045649c7e2b5e6c0593b652b5e7c5cf746c3fac04beab8171545e9e0",
+      "id": "cancel-task-restart",
+      "prefixCommands": 69,
+      "successfulCommands": 14,
+      "verifiedRefusals": 0,
+      "marks": 6,
+      "final": {
+        "now": 420,
+        "phase": "camp-return",
+        "stock": {
+          "timber": 5,
+          "salvage": 1,
+          "food": 4
+        },
+        "people": {
+          "player": {
+            "body": {
+              "fatigue": 0.033500000000000155,
+              "hunger": 0.018000000000000002
+            },
+            "skills": {
+              "gathering": 0.7361990706201217,
+              "construction": 0.22840331512365794
+            },
+            "job": null
+          },
+          "neighbor": {
+            "body": {
+              "fatigue": 0.47499999999997594,
+              "hunger": 0.5700000000000007
+            },
+            "skills": {
+              "gathering": 0.5422172331877178,
+              "construction": 0.5800809374071377
+            },
+            "job": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 276,
+            "recovery": 126,
+            "idle": 0,
+            "meal": 18,
+            "effort": 2.340000000000003,
+            "constructionMinutes": 40,
+            "gatheringMinutes": 236
+          },
+          "neighbor": {
+            "work": 287,
+            "recovery": 125,
+            "idle": 0,
+            "meal": 8,
+            "effort": 2.6700000000000013,
+            "constructionMinutes": 157,
+            "gatheringMinutes": 130
+          }
+        },
+        "caches": 4,
+        "completedCache": {
+          "id": "cache-3",
+          "project": "cache",
+          "stage": 0,
+          "cost": {
+            "timber": 6,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 26
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 20,
+              "fraction": 1,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 383,
+              "paidBefore": 20,
+              "toolMinutes": 20
+            }
+          },
+          "startedAt": 383,
+          "completedAt": 403
+        },
+        "window": {
+          "enteredAt": 224,
+          "ferryAt": 314,
+          "rainAt": 404,
+          "carriedCaches": 0,
+          "production": [
+            {
+              "cache": 1,
+              "at": 283
+            },
+            {
+              "cache": 2,
+              "at": 303
+            },
+            {
+              "cache": 3,
+              "at": 383
+            },
+            {
+              "cache": 4,
+              "at": 403
+            }
+          ],
+          "allocations": [
+            {
+              "at": 283,
+              "cache": 1,
+              "destination": "households"
+            },
+            {
+              "at": 303,
+              "cache": 2,
+              "destination": "households"
+            },
+            {
+              "at": 383,
+              "cache": 3,
+              "destination": "camp"
+            },
+            {
+              "at": 403,
+              "cache": 4,
+              "destination": "camp"
+            }
+          ],
+          "acknowledged": true,
+          "departedAt": 314,
+          "finishedAt": 404
+        },
+        "households": 2,
+        "campNights": 4,
+        "unprovidedNights": 0
+      }
+    },
+    {
+      "path": "artifacts/meal-preflight/atomic-rival/exploratory-b-v1.json.gz",
+      "sha256": "06d5ee6c045649c7e2b5e6c0593b652b5e7c5cf746c3fac04beab8171545e9e0",
+      "id": "wait-recover-task-full-meal",
+      "prefixCommands": 69,
+      "successfulCommands": 12,
+      "verifiedRefusals": 0,
+      "marks": 5,
+      "final": {
+        "now": 420,
+        "phase": "camp-return",
+        "stock": {
+          "timber": 5,
+          "salvage": 1,
+          "food": 4
+        },
+        "people": {
+          "player": {
+            "body": {
+              "fatigue": 0.030500000000000152,
+              "hunger": 0.018000000000000002
+            },
+            "skills": {
+              "gathering": 0.7361990706201217,
+              "construction": 0.22840331512365794
+            },
+            "job": null
+          },
+          "neighbor": {
+            "body": {
+              "fatigue": 0.47499999999997594,
+              "hunger": 0.5700000000000007
+            },
+            "skills": {
+              "gathering": 0.5422172331877178,
+              "construction": 0.5800809374071377
+            },
+            "job": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 276,
+            "recovery": 128,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.340000000000003,
+            "constructionMinutes": 40,
+            "gatheringMinutes": 236
+          },
+          "neighbor": {
+            "work": 287,
+            "recovery": 125,
+            "idle": 0,
+            "meal": 8,
+            "effort": 2.6700000000000013,
+            "constructionMinutes": 157,
+            "gatheringMinutes": 130
+          }
+        },
+        "caches": 4,
+        "completedCache": {
+          "id": "cache-3",
+          "project": "cache",
+          "stage": 0,
+          "cost": {
+            "timber": 6,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 26
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 20,
+              "fraction": 1,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 383,
+              "paidBefore": 20,
+              "toolMinutes": 20
+            }
+          },
+          "startedAt": 383,
+          "completedAt": 403
+        },
+        "window": {
+          "enteredAt": 224,
+          "ferryAt": 314,
+          "rainAt": 404,
+          "carriedCaches": 0,
+          "production": [
+            {
+              "cache": 1,
+              "at": 283
+            },
+            {
+              "cache": 2,
+              "at": 303
+            },
+            {
+              "cache": 3,
+              "at": 383
+            },
+            {
+              "cache": 4,
+              "at": 403
+            }
+          ],
+          "allocations": [
+            {
+              "at": 283,
+              "cache": 1,
+              "destination": "households"
+            },
+            {
+              "at": 303,
+              "cache": 2,
+              "destination": "households"
+            },
+            {
+              "at": 383,
+              "cache": 3,
+              "destination": "camp"
+            },
+            {
+              "at": 403,
+              "cache": 4,
+              "destination": "camp"
+            }
+          ],
+          "acknowledged": true,
+          "departedAt": 314,
+          "finishedAt": 404
+        },
+        "households": 2,
+        "campNights": 4,
+        "unprovidedNights": 0
+      }
+    },
+    {
+      "path": "artifacts/meal-preflight/atomic-rival/exploratory-upstream-v1.json.gz",
+      "sha256": "a3510f669a1dc6dc134c7e24336df2d31270d2389b988b6d049e0dc83c629283",
+      "id": "upstream-whole-meal-365-373-before-task-383",
+      "prefixCommands": 68,
+      "successfulCommands": 13,
+      "verifiedRefusals": 0,
+      "marks": 7,
+      "final": {
+        "now": 420,
+        "phase": "camp-return",
+        "stock": {
+          "timber": 5,
+          "salvage": 1,
+          "food": 4
+        },
+        "people": {
+          "player": {
+            "body": {
+              "fatigue": 0,
+              "hunger": 0.09400000000000007
+            },
+            "skills": {
+              "gathering": 0.7361990706201217,
+              "construction": 0.22840331512365794
+            },
+            "job": null
+          },
+          "neighbor": {
+            "body": {
+              "fatigue": 0.47499999999997594,
+              "hunger": 0.5700000000000007
+            },
+            "skills": {
+              "gathering": 0.5422172331877178,
+              "construction": 0.5800809374071377
+            },
+            "job": null
+          }
+        },
+        "paid": {
+          "player": {
+            "work": 276,
+            "recovery": 128,
+            "idle": 0,
+            "meal": 16,
+            "effort": 2.340000000000003,
+            "constructionMinutes": 40,
+            "gatheringMinutes": 236
+          },
+          "neighbor": {
+            "work": 287,
+            "recovery": 125,
+            "idle": 0,
+            "meal": 8,
+            "effort": 2.6700000000000013,
+            "constructionMinutes": 157,
+            "gatheringMinutes": 130
+          }
+        },
+        "caches": 4,
+        "completedCache": {
+          "id": "cache-3",
+          "project": "cache",
+          "stage": 0,
+          "cost": {
+            "timber": 6,
+            "salvage": 3
+          },
+          "progress": 1,
+          "workbenchAtStart": true,
+          "durationByActor": {
+            "player": 26
+          },
+          "contributions": {
+            "player": {
+              "priorMinutes": 0,
+              "minutes": 20,
+              "fraction": 1,
+              "effort": 0.20000000000000007
+            }
+          },
+          "exposure": {
+            "player": {
+              "at": 383,
+              "paidBefore": 20,
+              "toolMinutes": 20
+            }
+          },
+          "startedAt": 383,
+          "completedAt": 403
+        },
+        "window": {
+          "enteredAt": 224,
+          "ferryAt": 314,
+          "rainAt": 404,
+          "carriedCaches": 0,
+          "production": [
+            {
+              "cache": 1,
+              "at": 283
+            },
+            {
+              "cache": 2,
+              "at": 303
+            },
+            {
+              "cache": 3,
+              "at": 383
+            },
+            {
+              "cache": 4,
+              "at": 403
+            }
+          ],
+          "allocations": [
+            {
+              "at": 283,
+              "cache": 1,
+              "destination": "households"
+            },
+            {
+              "at": 303,
+              "cache": 2,
+              "destination": "households"
+            },
+            {
+              "at": 383,
+              "cache": 3,
+              "destination": "camp"
+            },
+            {
+              "at": 403,
+              "cache": 4,
+              "destination": "camp"
+            }
+          ],
+          "acknowledged": true,
+          "departedAt": 314,
+          "finishedAt": 404
+        },
+        "households": 2,
+        "campNights": 4,
+        "unprovidedNights": 0
+      }
+    }
+  ]
+}

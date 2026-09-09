@@ -1,0 +1,20 @@
+test('a default-created Camp meal crosses the hunger ceiling and preserves its complete receipt through restore',()=>{
+ const base=camp.advanceGame(camp.createGame(),395),before=base.people.player.body.hunger,food=base.stock.food,consumed=base.stats.consumedFood;
+ assert(before>.55&&before<1);
+ const begun=start(base,'eat');let split=camp.advanceGame(begun,4);assert(split.people.player.body.hunger<1);
+ split=camp.restoreGame(camp.exportGame(split));split=camp.advanceGame(split,2);assert.equal(split.people.player.body.hunger,1);
+ split=camp.advanceGame(split,2);const whole=camp.advanceGame(begun,8);
+ assert.deepEqual(camp.exportGame(split),camp.exportGame(whole));
+ assert(Math.abs(split.people.player.body.hunger-(before+.002*8-.55))<1e-12);
+ assert.equal(split.paid.player.meal,8);assert.equal(split.stock.food,food-1);assert.equal(split.stats.consumedFood,consumed+1);
+});
+
+test('an interrupted default high-hunger meal refunds once without relief before a full paid restart',()=>{
+ const base=camp.advanceGame(camp.createGame(),395),food=base.stock.food,consumed=base.stats.consumedFood;
+ let game=camp.advanceGame(start(base,'eat'),4),partialHunger=game.people.player.body.hunger;
+ game=command(game,'cancel');assert.equal(game.people.player.body.hunger,partialHunger);assert.equal(game.stock.food,food);assert.equal(game.stats.consumedFood,consumed);assert.equal(game.paid.player.meal,4);
+ game=camp.restoreGame(camp.exportGame(game));game=camp.advanceGame(start(game,'eat'),8);
+ assert(Math.abs(game.people.player.body.hunger-(partialHunger+.002*8-.55))<1e-12);
+ assert.equal(game.paid.player.meal,12);assert.equal(game.stock.food,food-1);assert.equal(game.stats.consumedFood,consumed+1);
+ assert.throws(()=>command(game,'cancel'),/No job/);assert.deepEqual(camp.exportGame(camp.restoreGame(camp.exportGame(game))),camp.exportGame(game));
+});

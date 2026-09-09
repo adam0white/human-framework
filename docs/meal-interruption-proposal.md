@@ -1,6 +1,6 @@
 # Next preflight: when interrupting a meal is useful
 
-Selected after the completed private action-offer study, 2026-09-08. This is an ordinary-use preflight. A meal-resume implementation depends on finding a useful existing interruption case.
+Selected after the completed private action-offer study, 2026-09-08; now closed as [the ordinary-meal preflight](meal-preflight-results.md), without candidate implementation. [The empirical learning-data pilot](learning-data-pilot-proposal.md) is next. This is an ordinary-use preflight. A meal-resume implementation depends on finding a useful existing interruption case.
 
 ## Current semantics and evidence gap
 

@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-09-09T00:50:48.693Z",
+  "scope": "Live app manifest matches prior fully verified0.14; new private evidence endpoints are404. No public code change or redeployment.",
+  "release": {
+    "appVersion": "0.14.0",
+    "runtimeVersion": "0.1.1",
+    "clockVersion": "0.1.0",
+    "commit": "2ebdb8841215a26f69da1c394ab438b7a1f4d15d",
+    "dirty": false,
+    "assetsSha256": "4f9cccf8602c04a2fb7d7f8dd4aec3ba45950d9791791ed37c8eb5ae3f753c20"
+  },
+  "privatePaths": [
+    {
+      "path": "/artifacts/meal-preflight/independent-node22-final.json",
+      "status": 404
+    },
+    {
+      "path": "/artifacts/meal-preflight/reviews/claude-default/response.json",
+      "status": 404
+    },
+    {
+      "path": "/docs/meal-preflight-results.md",
+      "status": 404
+    }
+  ]
+}

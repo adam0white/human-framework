@@ -1,0 +1,135 @@
+TAP version 13
+# Subtest: fresh current Camp has a versioned immutable current envelope and ordinary view
+ok 1 - fresh current Camp has a versioned immutable current envelope and ordinary view
+  ---
+  duration_ms: 11.617125
+  ...
+# Subtest: available recovery pays real time while keeping a person free for immediate work
+ok 2 - available recovery pays real time while keeping a person free for immediate work
+  ---
+  duration_ms: 4.705958
+  ...
+# Subtest: gathering and owned meals settle only after paid completion and interruption refunds only reservation
+ok 3 - gathering and owned meals settle only after paid completion and interruption refunds only reservation
+  ---
+  duration_ms: 16.06375
+  ...
+# Subtest: stop and resume retain installed material, physical progress, latched worker basis and practice
+ok 4 - stop and resume retain installed material, physical progress, latched worker basis and practice
+  ---
+  duration_ms: 12.825208
+  ...
+# Subtest: accepted handover preserves paid ownership and independently chooses the remaining project
+ok 5 - accepted handover preserves paid ownership and independently chooses the remaining project
+  ---
+  duration_ms: 3.144625
+  ...
+# Subtest: recipient can refuse a handover without transferring work or charging time
+ok 6 - recipient can refuse a handover without transferring work or charging time
+  ---
+  duration_ms: 1.583667
+  ...
+# Subtest: accepted project independently gathers, recovers and completes without player assignments
+ok 7 - accepted project independently gathers, recovers and completes without player assignments
+  ---
+  duration_ms: 19.247584
+  ...
+# Subtest: advancing is chunk invariant and restored current boundaries continue exactly
+ok 8 - advancing is chunk invariant and restored current boundaries continue exactly
+  ---
+  duration_ms: 56.77
+  ...
+# Subtest: the earned supply introduction pauses actual people and starts exact checkpoint deadlines
+ok 9 - the earned supply introduction pauses actual people and starts exact checkpoint deadlines
+  ---
+  duration_ms: 135.125875
+  ...
+# Subtest: coarse and minute advances stop identically at ferry and preserve active jobs
+ok 10 - coarse and minute advances stop identically at ferry and preserve active jobs
+  ---
+  duration_ms: 30.60325
+  ...
+# Subtest: actual cache choices, dispatched loss and return preserve the same paid people and resources
+ok 11 - actual cache choices, dispatched loss and return preserve the same paid people and resources
+  ---
+  duration_ms: 48.235333
+  ...
+# Subtest: current validation rejects wrong ownership, pending clock, unpaid rate and malformed current facts
+ok 12 - current validation rejects wrong ownership, pending clock, unpaid rate and malformed current facts
+  ---
+  duration_ms: 2.387708
+  ...
+# Subtest: unsupported saves and unsafe JSON fail without running inherited behavior or changing current state
+ok 13 - unsupported saves and unsafe JSON fail without running inherited behavior or changing current state
+  ---
+  duration_ms: 0.599958
+  ...
+# Subtest: a prospective workbench improves an already paid garden without resetting either worker basis
+ok 14 - a prospective workbench improves an already paid garden without resetting either worker basis
+  ---
+  duration_ms: 19.7835
+  ...
+# Subtest: releasing a project retains its installed work and ends the accepted assignment
+ok 15 - releasing a project retains its installed work and ends the accepted assignment
+  ---
+  duration_ms: 1.19875
+  ...
+# Subtest: four actual cache allocations allow early close only after real ferry dispatch
+ok 16 - four actual cache allocations allow early close only after real ferry dispatch
+  ---
+  duration_ms: 169.164708
+  ...
+# Subtest: window inventory completion receipts respect physical cache time and the retained final assembly
+ok 17 - window inventory completion receipts respect physical cache time and the retained final assembly
+  ---
+  duration_ms: 175.155833
+  ...
+# Subtest: current snapshots do not authenticate absent body history or the recent activity text
+ok 18 - current snapshots do not authenticate absent body history or the recent activity text
+  ---
+  duration_ms: 1.094167
+  ...
+# Subtest: pending meal minutes cannot be reassigned to recovery before completion
+ok 19 - pending meal minutes cannot be reassigned to recovery before completion
+  ---
+  duration_ms: 2.236208
+  ...
+# Subtest: completed meals and a current pending meal require separate paid time
+ok 20 - completed meals and a current pending meal require separate paid time
+  ---
+  duration_ms: 2.242375
+  ...
+# Subtest: completed timber and salvage receipts require their authored paid effort
+ok 21 - completed timber and salvage receipts require their authored paid effort
+  ---
+  duration_ms: 4.5135
+  ...
+# Subtest: a pending gathering attempt owns its paid effort even if another person has surplus effort
+ok 22 - a pending gathering attempt owns its paid effort even if another person has surplus effort
+  ---
+  duration_ms: 4.565333
+  ...
+# Subtest: completed gathering and current gathering require disjoint paid effort
+ok 23 - completed gathering and current gathering require disjoint paid effort
+  ---
+  duration_ms: 5.329041
+  ...
+# Subtest: a default-created Camp meal crosses the hunger ceiling and preserves its complete receipt through restore
+ok 24 - a default-created Camp meal crosses the hunger ceiling and preserves its complete receipt through restore
+  ---
+  duration_ms: 19.662875
+  ...
+# Subtest: an interrupted default high-hunger meal refunds once without relief before a full paid restart
+ok 25 - an interrupted default high-hunger meal refunds once without relief before a full paid restart
+  ---
+  duration_ms: 21.894583
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 857.97325

@@ -1,0 +1,20 @@
+{
+  "scope": "Public source excerpts and synthetic fact summary only; no original player feedback/private exports; no tools enabled.",
+  "promptSha256": "9e677a70c9086ab43f7f26368256d3720675f6846212e4eddb54d9ae3aa4420b",
+  "sourceCommit": "f5ced4473769ceedbe10cded297599231b052bb5",
+  "requestedModel": "CLI default; --model omitted",
+  "files": [
+    {
+      "path": "src/games/camp-current.js",
+      "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a"
+    },
+    {
+      "path": "src/human/v0.1.1.js",
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "path": "src/core/model.js",
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    }
+  ]
+}

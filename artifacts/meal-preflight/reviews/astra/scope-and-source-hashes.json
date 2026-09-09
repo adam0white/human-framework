@@ -1,0 +1,173 @@
+{
+  "createdAt": "2026-09-09T00:17:02.383Z",
+  "repo": "/Users/abdul/code/human-framework",
+  "head": "f5ced4473769ceedbe10cded297599231b052bb5",
+  "pinnedCommit": "f5ced4473769ceedbe10cded297599231b052bb5",
+  "node": "v26.8.1",
+  "scope": {
+    "staticReview": [
+      "requested two reports and proposal",
+      "source-pinned runners",
+      "current Camp/Human implementation passages",
+      "recorded action/body/resource/checkpoint excerpts",
+      "Opus opinion independently checked",
+      "existing meal/lifecycle coverage"
+    ],
+    "checks": [
+      "all five current graph hashes match opportunity manifest and pinned Git bytes",
+      "all atomic/upstream recorded source hashes match current files",
+      "four targeted existing tests passed"
+    ],
+    "testCommand": "/opt/homebrew/bin/node --test --test-name-pattern='meal|integer lifecycle' tests/human.test.js tests/human-compatibility.test.js",
+    "testCount": 4,
+    "testFailures": 0,
+    "notPerformed": [
+      "full-record runtime replay (root owns)",
+      "default-created high-hunger Camp probe (root owns)",
+      "broad matrix or full suite",
+      "candidate or public implementation",
+      "new agents, external calls, or player exports",
+      "repository edits"
+    ],
+    "note": "record-excerpts.json contains extracted existing data, not new simulated histories"
+  },
+  "physicalGraph": [
+    {
+      "path": "src/games/camp-current.js",
+      "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a",
+      "bytes": 45911,
+      "currentEqualsPinnedGit": true
+    },
+    {
+      "path": "src/core/model.js",
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+      "bytes": 7764,
+      "currentEqualsPinnedGit": true
+    },
+    {
+      "path": "src/runtime/index.js",
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f",
+      "bytes": 188,
+      "currentEqualsPinnedGit": true
+    },
+    {
+      "path": "src/human/v0.1.1.js",
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+      "bytes": 11580,
+      "currentEqualsPinnedGit": true
+    },
+    {
+      "path": "src/runtime/clock.js",
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c",
+      "bytes": 7513,
+      "currentEqualsPinnedGit": true
+    }
+  ],
+  "reviewedIdentities": [
+    {
+      "path": "HANDOFF.md",
+      "bytes": 36066,
+      "sha256": "e46f82fcb507b217438ef02a81b609d132a27bc8d569adc3425b9f969e1d7cf3"
+    },
+    {
+      "path": "docs/mvp-contract.md",
+      "bytes": 18677,
+      "sha256": "10919c5c3e208d418a6113c14f05aacc7ea438c12f62682fc289ec6dac059dbf"
+    },
+    {
+      "path": "docs/roadmap.md",
+      "bytes": 30313,
+      "sha256": "8a33d32d57e872449c87953de8ef79949a50a1e77ed7b5094e3cb095dbf0ae18"
+    },
+    {
+      "path": "docs/meal-interruption-proposal.md",
+      "bytes": 3049,
+      "sha256": "306816cfe5f7fda0ec039a42a1a4a2ecb13a6660a02826c0303a31e09e241177"
+    },
+    {
+      "path": "docs/meal-preflight-opportunities.md",
+      "bytes": 9175,
+      "sha256": "897dcd68b69497de3797695681fb7a564d0a2557610c5e9183f17155fd44d27d"
+    },
+    {
+      "path": "docs/meal-atomic-rival.md",
+      "bytes": 12327,
+      "sha256": "85d756be23fe168c64a1d56e8a647519028d221890b06f62ef9612148aa24d9f"
+    },
+    {
+      "path": "artifacts/meal-preflight/opportunity/probe.mjs",
+      "bytes": 7848,
+      "sha256": "a5067dd104440bcf85d6ff4fdd6a30184b7d0954ac3e339699aff3b414eded67"
+    },
+    {
+      "path": "artifacts/meal-preflight/opportunity/run-278-v1/report.json",
+      "bytes": 48835,
+      "sha256": "99b401d813630df755be0d236ad9d88c22c6c7db5e6cc26eb6444c5a7c3ca1e8"
+    },
+    {
+      "path": "artifacts/meal-preflight/opportunity/run-278-v1/sources.json.gz",
+      "bytes": 21238,
+      "sha256": "5056dda2c69632e01eeacc5ea09ff056e4846fb942893b12653c9632ddbd4822"
+    },
+    {
+      "path": "artifacts/meal-preflight/opportunity/run-278-v1/finish-meal-first.json.gz",
+      "bytes": 37573,
+      "sha256": "0e8facc02f6678ec98fd187266683627fcfbd578b330c71ae91078595cd841ff"
+    },
+    {
+      "path": "artifacts/meal-preflight/opportunity/run-278-v1/wait-task-then-meal.json.gz",
+      "bytes": 36980,
+      "sha256": "31288a6431ac022de3a5cec5710bc86d9ede597c25a5b22713e22894fc3cc43a"
+    },
+    {
+      "path": "artifacts/meal-preflight/opportunity/run-278-v1/cancel-task-restart.json.gz",
+      "bytes": 38856,
+      "sha256": "1c5510656b4ec95daa51b73978f07aad2c29643e3cc2b55367acc0bb85f95d45"
+    },
+    {
+      "path": "artifacts/meal-preflight/atomic-rival/probe.mjs",
+      "bytes": 7007,
+      "sha256": "276805ad0f85564faba46a594caac2d9092ccdffd5b928732ebf7d164d5c98a4"
+    },
+    {
+      "path": "artifacts/meal-preflight/atomic-rival/upstream-probe.mjs",
+      "bytes": 5125,
+      "sha256": "9282ae9a0f95de0a605a0be0e7a3ba8189efc4949454006a5f04e96373e46a03"
+    },
+    {
+      "path": "artifacts/meal-preflight/atomic-rival/exploratory-b-v1.json.gz",
+      "bytes": 31491,
+      "sha256": "06d5ee6c045649c7e2b5e6c0593b652b5e7c5cf746c3fac04beab8171545e9e0"
+    },
+    {
+      "path": "artifacts/meal-preflight/atomic-rival/exploratory-upstream-v1.json.gz",
+      "bytes": 20477,
+      "sha256": "a3510f669a1dc6dc134c7e24336df2d31270d2389b988b6d049e0dc83c629283"
+    },
+    {
+      "path": "artifacts/camp-maintenance/release-current/earned-supply-success.json.gz",
+      "bytes": 23296,
+      "sha256": "2d7c2045210d30bdd8fa37f12e1463e51aa68697d1a6b10787f17fbab7701e7d"
+    },
+    {
+      "path": "tests/human.test.js",
+      "bytes": 7240,
+      "sha256": "2ab3ed13f80306d8cccbb4127f2de50ca09d85b93dfdbd93e4fb627804f50d6b"
+    },
+    {
+      "path": "tests/human-compatibility.test.js",
+      "bytes": 10467,
+      "sha256": "95f94c409923e6bb8466108d5ddeecdcb4dd955161d680032c2c55e948eeb12e"
+    },
+    {
+      "path": "src/human/index.js",
+      "bytes": 10239,
+      "sha256": "0f6d30cf2b5e07f5e18dc791fecd691b9004f290e138abeab7336b1c2e2ee308"
+    },
+    {
+      "path": "/tmp/hf-meal-preflight-opus-20260908/response.json",
+      "bytes": 6179,
+      "sha256": "6ff719d8a169bdfb8d108b4abcd955eb9fae07bfe668c6e36e90d3d4104b20a4"
+    }
+  ]
+}
