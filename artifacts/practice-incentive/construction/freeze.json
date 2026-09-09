@@ -1,0 +1,43 @@
+{
+  "sourceCommit": "29b135e37308337fb2619c2359f1ef6de51b4cc2",
+  "createdAt": "2026-09-09T02:08:29.951375+00:00",
+  "scope": "Source-derived ordinary Camp practice comparison; prefix administration only before this freeze; no comparison arms evaluated.",
+  "files": [
+    {
+      "path": "artifacts/practice-incentive/construction/runner.mjs",
+      "sha256": "d153634649a4f54dc5de21f1927b7a8aaa53150c7eb7fca3d88a002aac3f005b"
+    },
+    {
+      "path": "docs/practice-construction-protocol.md",
+      "sha256": "5060f48cc991492f1b8f93c417e2832bb5802b44d215efba9d93b3c83329eaa9"
+    },
+    {
+      "path": "docs/practice-incentive-preflight.md",
+      "sha256": "4724c01b3a16d97ec607ba45889373be635ed85c8dcdef79150f77a0cbc6726e"
+    },
+    {
+      "path": "src/core/model.js",
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "path": "src/games/camp-current.js",
+      "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a"
+    },
+    {
+      "path": "src/human/v0.1.1.js",
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "path": "src/runtime/clock.js",
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    },
+    {
+      "path": "src/runtime/index.js",
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+    }
+  ],
+  "prefix": {
+    "path": "artifacts/practice-incentive/construction/prefix-corrected.json",
+    "sha256": "031eb135d8f135fbe589decb970406a15b9ceda8e2cedc584d4ea7034713d852"
+  }
+}
