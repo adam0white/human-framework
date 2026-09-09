@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/Users/abdul/.local/bin/claude",
+    "--print",
+    "--restricted",
+    "--strict-mcp-config",
+    "--tools",
+    "",
+    "--disable-slash-commands",
+    "--no-session-persistence",
+    "--effort",
+    "high",
+    "--output-format",
+    "json"
+  ],
+  "requestedModel": "CLI default, no --model flag",
+  "scope": "Source-only policy/lifecycle review, tools disabled; no original user feedback or player exports provided.",
+  "timedOut": true,
+  "elapsedSeconds": 240.02986598014832
+}
