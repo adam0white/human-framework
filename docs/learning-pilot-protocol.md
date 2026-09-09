@@ -1,6 +1,6 @@
 # Frozen empirical learning-curve pilot
 
-Protocol version 1, written 2026-09-08 before participant trend summaries, fitting or holdout evaluation. This is a secondary analysis of already published data; the authors' exponential result is known. It is not a prospective participant study, a reproduction of their analysis, or an untouched external validation cohort. The Git commit containing this protocol fixes the analysis decisions below. An additional source freeze will bind the executable implementation before its first real-data fit. Correctness repairs must preserve both original output and the reason for any rerun.
+Protocol version 1, written 2026-09-08 before participant trend summaries, fitting or holdout evaluation. A later pre-execution wording clarification makes the private-output boundary explicit; no analytic decision changed. This is a secondary analysis of already published data; the authors' exponential result is known. It is not a prospective participant study, a reproduction of their analysis, or an untouched external validation cohort. The Git commit containing this protocol fixes the analysis decisions below. An additional source freeze will bind the executable implementation before its first real-data fit. Correctness repairs must preserve both original output and the reason for any rerun.
 
 ## Question and data
 
@@ -15,7 +15,7 @@ Keep every row with `condition == main`: all 55 participants and all 50 throws e
 
 Toss position `t = (trial_num - 1) * 5 + which_throw + 1`; exposure `x = t - 1` completed main throws. The prior keyboard check was not a live target-practice trial. Unmeasured prior experience and within-task strategy changes remain limits. Timers cannot establish total active practice duration, so units stay **throws**, never minutes. Primary observation `y = distance_from_radius / board_outerRing_radius` is Euclidean center error in outer-target-radius units, lower better. This geometry normalization uses each row's task configuration, not an outcome-derived scale or pooled mean. Do not use scores, timestamps, questionnaires, free text or demographics in modeling.
 
-Use batch-namespaced study IDs internally, sorted by SHA-256 of `filename + ':' + unique_id` and relabeled `P001`–`P055`. Publish only the restricted private analytical projection (analysis ID, toss, prior throws, normalized error). Keep the untouched CC0 source and provenance in this private repository and outside the public asset allowlist; never reconstruct identities or publish participant profiles.
+Use batch-namespaced study IDs internally, sorted by SHA-256 of `filename + ':' + unique_id` and relabeled `P001`–`P055`. Write only the restricted analytical projection (analysis ID, toss, prior throws, normalized error) to private artifacts; all participant-level outputs remain private. Keep the untouched CC0 source and provenance in this private repository and outside the public asset allowlist; never reconstruct identities or publish participant profiles.
 
 ## Split and predictors
 
