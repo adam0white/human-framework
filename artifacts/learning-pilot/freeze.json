@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "protocol_commit": "69c793e0a0a033361cf92ad492b0b0ef99caac33",
+  "original_analytic_protocol_commit": "de2fc86527ec073a89ddba5ea884cc32887c620d",
+  "implementation_commit": "8562f26408fab9c0f35cff4a8ef0164804cc6acd",
+  "frozen_at_utc": "2026-09-09T01:31:21.781969+00:00",
+  "protocol": {
+    "path": "docs/learning-pilot-protocol.md",
+    "sha256": "1dd92ae266ee29b38023518366df7a50cf5aef8b997cb6bf089b95206006cfae"
+  },
+  "files": [
+    {
+      "path": "scripts/learning-pilot.py",
+      "sha256": "2afac99481e02ba90a43ce45533eb17c3fa6ebc5f36946927d260a51818c21ac"
+    },
+    {
+      "path": "scripts/verify-learning-pilot.py",
+      "sha256": "6261d583373f9cb67083f1876b4f9a4be1618e61b7f73a15080b30e6ae8348a6"
+    },
+    {
+      "path": "tests/learning_pilot_test.py",
+      "sha256": "0582b5b5d17862ada0a513ce6c256df931e41fadc12a3d878caf30108ee8ea92"
+    },
+    {
+      "path": "artifacts/learning-pilot/requirements.txt",
+      "sha256": "ef9be4dbfca2b0424cfa17a3aecd24f0db078d6d576a8eb5a9f6c6586cb2f653"
+    }
+  ],
+  "data": [
+    {
+      "path": "artifacts/learning-pilot/data-access/originals/00.exp1a-raw-batch1.csv",
+      "sha256": "25b454aa2cbe878f0db25d3c054c545cbc867829c861d74ef826155a9eb8c7a3"
+    },
+    {
+      "path": "artifacts/learning-pilot/data-access/originals/02.exp1a-raw-batch2.csv",
+      "sha256": "53322c18dc906de306798a4c24e20acc2f683ad44bc571d6bf9d954aa8828cee"
+    }
+  ],
+  "pre_execution_checks": {
+    "runner_synthetic_tests": 14,
+    "independent_synthetic_curve_fits": 12,
+    "status": "passed",
+    "no_actual_data_fit_or_outcome_trends_examined": true
+  },
+  "scope": "One secondary chronological forecast analysis; all participant artifacts remain private."
+}
