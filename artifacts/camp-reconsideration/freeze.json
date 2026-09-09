@@ -1,0 +1,59 @@
+{
+  "sourceCommit": "d94666469cc3c2bcb496069193e28d4fafd0c0d8",
+  "createdAt": "2026-09-09T15:00:51.672164+00:00",
+  "files": [
+    {
+      "path": "src/core/model.js",
+      "sha256": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+    },
+    {
+      "path": "src/games/camp-current.js",
+      "sha256": "73a535b879e552c7d1bcbd592b82cb751362f42ee7eeb95ad16f8f4473d69d9a"
+    },
+    {
+      "path": "src/human/v0.1.1.js",
+      "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+    },
+    {
+      "path": "src/runtime/clock.js",
+      "sha256": "ab770e36dcbf9a248fae30ce614b42d2e131a72176658c3eb130b40f4a49eb6c"
+    },
+    {
+      "path": "src/runtime/index.js",
+      "sha256": "e685a514993fc0e32a84cad54d4a2a23287525e1d9923b4ee479b4cf3421ed7f"
+    },
+    {
+      "path": "src/experiments/camp-reconsideration/host.js",
+      "sha256": "e26777ef45b35415175a5eaa9211585d1847facba3dc78a632cffa4224cd34e6"
+    },
+    {
+      "path": "tests/camp-reconsideration.test.js",
+      "sha256": "f91018a5a05593c5729bd7786e3c84df3b784360c955c44e40f8c6075176c3fd"
+    },
+    {
+      "path": "artifacts/camp-reconsideration/cases.mjs",
+      "sha256": "b1e2c2dc5a3a01464f664c840656d0407b1ab611ae4128f29302d614a1b00609"
+    },
+    {
+      "path": "artifacts/camp-reconsideration/runner.mjs",
+      "sha256": "6b5014099a760dedfccfb0a25e89e14885302f3289d8b09d92f9d5d45534931e"
+    },
+    {
+      "path": "docs/camp-reconsideration-protocol.md",
+      "sha256": "0ebb0af0e99bd01eba3cbba4e0dc3b6615b60539d3bf55755c4d973ba76e6d1f"
+    },
+    {
+      "path": "docs/camp-reconsideration-candidate.md",
+      "sha256": "1f6cd9cf0686033cadc4c7e4561b15ba8021ecee66176734c6f57822a378ff26"
+    },
+    {
+      "path": "docs/camp-reconsideration-preflight.md",
+      "sha256": "4b5f5ec9495ff3082e9c2d491da8a68e2b681da497e96eae1351c6554ea22838"
+    }
+  ],
+  "prefix": {
+    "path": "artifacts/camp-reconsideration/administrative-corrected/prefixes.json",
+    "sha256": "52c7fba877dc095c8a9fa2553627255b5f5373419226cd29335855257f00a033"
+  },
+  "scope": "Four prespecified timings x three controls; no final comparison arm evaluated before this committed freeze; baseline-produced prefixes with explicit version-only policy intervention."
+}
