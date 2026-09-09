@@ -1,0 +1,776 @@
+---
+title: "Experiment 1a analysis"
+output: html_document
+---
+
+# setup
+```{r setup, include=FALSE}
+rm(list=ls()) # empty the workspace
+knitr::opts_chunk$set(echo = FALSE, message = F, warning = F)
+```
+
+```{r load libraries, message = F, warning = F, echo=FALSE}
+library(tidyverse)
+library(dplyr)
+library(stringr)
+
+library(tidyboot)
+library(nlstools)
+library(nls.multstart)
+library(MuMIn)
+library(lme4)
+library(lmerTest)
+library(effects)
+library(modelr)
+library(segmented)
+
+library(ggplot2)
+library(wesanderson)
+
+select <- dplyr::select
+
+#packinfo <- installed.packages(fields = c("Package", "Version"))
+#Rpackage_version <- packinfo[,c("Package", "Version")]
+```
+
+```{r read in data}
+# batch 1
+data1 <- read.csv("./data/exp-1a/00.exp1a-raw-batch1.csv")%>%mutate(batch=1)
+data1_attnchecks <- read.csv("./data/exp-1a/01.exp1a-attncheck-batch1.csv")%>%mutate(batch=1)
+
+data1_unique_ids <- data1%>%
+  distinct(unique_id,.keep_all = FALSE)%>%
+  mutate(batch=1)
+
+# batch 2
+data2 <- read.csv("./data/exp-1a/02.exp1a-raw-batch2.csv")%>%mutate(batch=2)
+data2_attnchecks <- read.csv("./data/exp-1a/03.exp1a-attncheck-batch2.csv")%>%mutate(batch=2)
+
+data2_unique_ids <- data2%>%
+  distinct(unique_id,.keep_all = FALSE)%>%
+  mutate(batch=2)
+
+data_unique_ids <- rbind(data1_unique_ids,data2_unique_ids)
+data_attnchecks <-rbind(data1_attnchecks,data2_attnchecks)
+```
+
+```{r clean data}
+data <- rbind(data1,data2)%>%
+  filter(condition=="main")%>%
+  mutate(which_throw=as.numeric(which_throw),
+         distance_from_radius=as.numeric(distance_from_radius),
+         board_center_x = as.numeric(board_center_x),
+         board_center_y = as.numeric(board_center_y),
+         arrow_V_stopping_x=as.numeric(arrow_V_stopping_x),
+         arrow_V_stopping_y=as.numeric(arrow_V_stopping_y),
+         arrow_H_stopping_x=as.numeric(arrow_V_stopping_x), # corrected, they are the same measurement
+         arrow_H_stopping_y=as.numeric(arrow_H_stopping_y),
+    cumulative_num_throw = case_when(trial_num==1 ~ which_throw+1,
+                                         trial_num==2 ~ which_throw+6,
+                                         trial_num==3 ~ which_throw+11,
+                                         trial_num==4 ~ which_throw+16,
+                                         trial_num==5 ~ which_throw+21,
+                                         trial_num==6 ~ which_throw+26,
+                                         trial_num==7 ~ which_throw+31,
+                                         trial_num==8 ~ which_throw+36,
+                                         trial_num==9 ~ which_throw+41,
+                                         trial_num==10 ~ which_throw+46))
+```
+
+# apply exclusion criteria
+```{r create function: check sign of the slope}
+get_lm_slope <- function(subj_id){
+  individual_data <- data%>%filter(unique_id==subj_id)
+  lm_object <- lm(distance_from_radius ~ cumulative_num_throw, individual_data)
+  slope <- round(summary(lm_object)$coefficients[2,1],4)
+  return(slope)
+}
+
+get_lm_p_value <- function(subj_id){
+  individual_data <- data%>%filter(unique_id==subj_id)
+  lm_object <- lm(distance_from_radius ~ cumulative_num_throw, individual_data)
+  p_value <- round(summary(lm_object)$coefficients[2,4],4)
+  return(p_value)
+}
+```
+
+```{r apply function to participant data}
+individual_slopes_data <- data_unique_ids%>%
+  group_by(batch,unique_id)%>%
+  mutate(slope = get_lm_slope(unique_id),
+         p_value = get_lm_p_value(unique_id),
+         is_negative = case_when(slope < 0 ~ TRUE,
+                                 TRUE ~ FALSE),
+         p_05orless = case_when(p_value < 0.05 ~ TRUE,
+                                TRUE ~ FALSE))
+
+slopes_data_summary <- individual_slopes_data%>%
+  ungroup()%>%
+  group_by(batch)%>%
+  summarise(inclusion_rate = sum(is_negative)/n(),
+            p05significant_rate = sum(p_05orless)/n())
+
+included_unique_ids <- individual_slopes_data%>%
+  filter(is_negative==TRUE)%>%
+  ungroup()
+
+nrow(included_unique_ids)/nrow(data_unique_ids) #overall inclusion rate 91% (50/55)
+```
+
+```{r data by X and Y axis}
+study1a_50 <- data%>%filter(unique_id %in% included_unique_ids$unique_id)
+
+byAxis_wide <- study1a_50%>%
+  mutate(x_to_center = arrow_V_stopping_x - board_center_x,
+         y_to_center = -(arrow_V_stopping_y - board_center_y),
+         x_axis_direction = case_when(x_to_center < 0 ~ "left",
+                                      x_to_center == 0 ~ "y_axis",
+                                      x_to_center > 0 ~ "right"),
+         y_axis_direction = case_when(y_to_center < 0 ~ "bottom",
+                                      y_to_center == 0 ~ "x_axis",
+                                      y_to_center > 0 ~ "top"))%>%
+  select(unique_id, trial_num, cumulative_num_throw, x_to_center, y_to_center, x_axis_direction, y_axis_direction)
+
+byAxis_long <- byAxis_wide%>%
+  gather(which_axis, axis_value, x_to_center, y_to_center)
+
+# by absolute values
+abs_X <- byAxis_wide%>%mutate(distance_by_axis = abs(x_to_center))%>%select(unique_id, cumulative_num_throw, distance_by_axis)
+
+abs_Y <- byAxis_wide%>%mutate(distance_by_axis = abs(y_to_center))%>%select(unique_id, cumulative_num_throw, distance_by_axis)
+```
+
+# demographic information
+```{r}
+attnchecks <- data_attnchecks%>%filter(unique_id %in% included_unique_ids$unique_id)
+```
+
+```{r age}
+attnchecks%>%summarise(mean=mean(age_response), sd=sd(age_response),
+                              min=min(age_response),max=max(age_response))%>%
+  as.data.frame()
+```
+
+```{r gender}
+attnchecks%>%group_by(gender_response)%>%
+  summarise(n()/nrow(attnchecks))%>%
+  as.data.frame()
+```
+
+```{r race}
+attnchecks%>%group_by(race_response)%>%
+  summarise(n()/nrow(attnchecks))%>%
+  as.data.frame()%>%
+  arrange()
+```
+
+```{r education}
+attnchecks%>%group_by(education_response)%>%
+  summarise(n()/nrow(attnchecks))%>%
+  as.data.frame()
+```
+
+```{r income}
+attnchecks%>%group_by(income_response)%>%
+  summarise(perc = n()/nrow(attnchecks))%>%
+  arrange(-perc)%>%
+  as.data.frame()
+```
+
+# basic statistics
+```{r average Euclidean performance with 95% bootstrapped CIs}
+study1a_CIs <- study1a_50%>%
+  group_by(cumulative_num_throw)%>%
+  tidyboot(distance_from_radius, statistics_functions = c(ci_lower, mean, ci_upper), na.rm=TRUE)%>%
+  rename(mean=empirical_mean, ci_lower=fn1, ci_upper=fn2)
+```
+
+```{r average performance by axis}
+byAxis_long$abs_axis_value <- abs(byAxis_long$axis_value)
+byAxis_long%>%
+  group_by(which_axis)%>%
+  summarise(mean = mean(abs_axis_value),
+            sd = sd(abs_axis_value),
+            median = median(abs_axis_value))%>%
+  as.data.frame()
+
+wilcox.test(abs_X$distance_by_axis,abs_Y$distance_by_axis, paired = T)
+```
+
+# modeling
+## create functions
+```{r exponential function}
+fit_individual_exponential <- function(ls_unique_ids, subject_data, start_b, is_Euclidean = TRUE, find_b = FALSE){
+  # input: ls_unique_ids, subject_data, start_b, which_distance, find_b
+  # return: list(df_predictions, df_predictions_long)
+
+  ls_model_failed <- list()
+  df_predictions <- data.frame()
+  for(subj_id in ls_unique_ids$unique_id){
+    set.seed(1)
+    
+    if(is_Euclidean == TRUE){
+      upper_a_value <- max(subject_data%>%filter(cumulative_num_throw==1)%>%select(distance_from_radius))
+      upper_c_value <- max(subject_data%>%filter(cumulative_num_throw==50)%>%select(distance_from_radius))
+      
+      f_x <- distance_from_radius ~ a*exp(-b * cumulative_num_throw) + c
+      subj_xy <- subject_data%>%
+      filter(unique_id==subj_id)%>%
+      select(cumulative_num_throw, distance_from_radius)
+    } else {
+      upper_a_value <- max(subject_data%>%filter(cumulative_num_throw==1)%>%select(distance_by_axis))
+      upper_c_value <- max(subject_data%>%filter(cumulative_num_throw==50)%>%select(distance_by_axis))
+      f_x <- distance_by_axis ~ a*exp(-b * cumulative_num_throw) + c
+      subj_xy <- subject_data%>%
+      filter(unique_id==subj_id)%>%
+      select(cumulative_num_throw, distance_by_axis)
+    }
+    
+    start_a <- subj_xy[subj_xy$cumulative_num_throw==1,][[2]]
+    start_c <- subj_xy[subj_xy$cumulative_num_throw==50,][[2]]
+    
+    tryCatch({
+      fm <- nls(f_x, data = subj_xy, start = list(a=start_a, b = start_b, c = start_c),
+                lower=list(a=0, b=0, c=0), upper = list(a=upper_a_value, b=1, c=upper_c_value), 
+                control = list(minFactor=0.000001,maxiter=1000), algorithm = "port") 
+      ls_model_failed <- c(ls_model_failed,"worked")
+      fm_para <- summary(fm)$parameters
+      df_predictions<-df_predictions%>%rbind(c(subj_id, predict(fm),AIC(fm),
+                                               fm_para[1,1],fm_para[1,2],fm_para[1,3],round(fm_para[1,4],4),
+                                               fm_para[2,1],fm_para[2,2],fm_para[2,3],round(fm_para[2,4],4),
+                                               fm_para[3,1],fm_para[3,2],fm_para[3,3],round(fm_para[3,4],4)))
+    }, error=function(e){
+      ls_model_failed <- c(ls_model_failed,"failed")
+      #print(conditionMessage(e))
+    })
+  }
+  
+  colnames_cumulative_throw <- unique(subject_data$cumulative_num_throw)
+  colnames(df_predictions) <- c("unique_id", colnames_cumulative_throw, "AIC",
+                                "a_coef","a_std","a_tvalue","a_pvalue",
+                                "b_coef","b_std","b_tvalue","b_pvalue",
+                                "c_coef","c_std","c_tvalue","c_pvalue")
+  
+  df_predictions_long <- df_predictions%>%
+    gather(cumulative_num_throw,nls_prediction,`1`:`50`)
+  
+  df_predictions_long$cumulative_num_throw <- as.numeric(df_predictions_long$cumulative_num_throw)
+  df_predictions_long$nls_prediction <- as.numeric(df_predictions_long$nls_prediction)
+  
+  if(find_b == TRUE){
+    return(nrow(df_predictions))
+  } else {
+    return(list(df_predictions, df_predictions_long))
+  }
+  
+}
+
+find_start_b <- function(which_ids, which_data, euclidean=TRUE){
+  # input: which_ids, which_data, euclidean
+  # return: b, num_failure
+  ls_possible_start_b <- seq(0.01,1, by=0.01)
+  df_b_failure <- data.frame()
+  for(b in ls_possible_start_b){
+    num_success <- fit_individual_exponential(which_ids, which_data, is_Euclidean=euclidean, start_b = b, find_b = TRUE)
+    num_failure = nrow(which_ids) - num_success
+    print(c(b, num_failure))
+    df_b_failure <- df_b_failure%>%rbind(c(b, num_failure))
+    if(num_failure == 0){
+      print(c(b, num_failure))
+      return(c(b, num_failure))
+    }
+  }
+  
+  min_failure <- min(df_b_failure[2])
+  min_b <- df_b_failure[df_b_failure[2]==min_failure][1]
+  print(df_b_failure)
+  print(c(min_b, min_failure))
+  return(c(min_b, min_failure))
+}
+```
+
+```{r linear function}
+fit_individual_linear <- function(ls_unique_ids, subject_data, is_Euclidean = TRUE){
+  # input: ls_unique_ids, subject_data, is_Euclidean
+  # return: df_predictions_lm
+  ls_model_failed <- list()
+  df_predictions_lm <- data.frame()
+  
+  for(subj_id in ls_unique_ids$unique_id){
+    if(is_Euclidean == TRUE){
+      subj_xy <- subject_data%>%
+      filter(unique_id==subj_id)%>%
+      select(cumulative_num_throw, distance_from_radius)
+      fm <- lm(distance_from_radius ~ cumulative_num_throw, data = subj_xy)
+    } else {
+      subj_xy <- subject_data%>%
+      filter(unique_id==subj_id)%>%
+      select(cumulative_num_throw, distance_by_axis)
+      fm <- lm(distance_by_axis ~ cumulative_num_throw, data = subj_xy)
+    }
+    tryCatch({
+      fm_para <- summary(fm)$coefficients
+      ls_model_failed <- c(ls_model_failed,"worked")
+      df_predictions_lm<-df_predictions_lm%>%rbind(c(subj_id, predict(fm),AIC(fm),
+                                                                   fm_para[2,1],fm_para[2,2],
+                                                                   fm_para[2,3],round(fm_para[2,4],4)))
+    }, error=function(e){
+      ls_model_failed <- c(ls_model_failed,"failed")
+      print(conditionMessage(e))
+    })
+  }
+  
+  colnames_cumulative_throw <- unique(subject_data$cumulative_num_throw)
+  colnames(df_predictions_lm) <- c("unique_id",  colnames_cumulative_throw,"AIC","b_coef","b_std","b_tvalue","b_pvalue")
+  
+  return(df_predictions_lm)
+}
+```
+
+## Euclidean distance
+```{r exponential model}
+# individual
+## find b
+b_num_failure<- find_start_b(included_unique_ids, study1a_50) # b=.02, failed convergence=0
+chosen_b <- .02 #b_num_failure[1]
+## get parameter estimates
+ls_predictions <- fit_individual_exponential(included_unique_ids, study1a_50, start_b = chosen_b, find_b = FALSE)
+df_exp <- ls_predictions[[1]]
+nrow(df_exp)
+df_exp_long <- ls_predictions[[2]]
+```
+
+```{r linear model}
+# individual
+## get parameter estimates
+df_lm <- fit_individual_linear(included_unique_ids, study1a_50)
+```
+
+```{r model comprison: AIC score & Wilcox test}
+Study1a_AIC <- df_exp%>%
+  select(unique_id,AIC)%>%
+  rename(exp_AIC = AIC)%>%
+  left_join(df_lm)%>%
+  rename(lm_AIC = AIC)%>%
+  mutate(exp_AIC = as.numeric(exp_AIC), lm_AIC = as.numeric(lm_AIC))%>%
+  mutate(difference = exp_AIC-lm_AIC)%>%
+  arrange(difference)%>%
+  mutate(sorted_id = 1:n())%>%
+  select(sorted_id, unique_id,exp_AIC, lm_AIC,difference)
+
+Study1a_AIC%>%
+  mutate(exponential_better=case_when(difference<0 ~ TRUE,
+                                      TRUE ~ FALSE))%>%
+  summarise(exp_better_n = sum(exponential_better),
+            perc = exp_better_n/nrow(Study1a_AIC),
+            mean(exp_AIC),
+            median(exp_AIC),
+            sd(exp_AIC),
+            mean(lm_AIC),
+            median(lm_AIC),
+            sd(lm_AIC))
+
+wilcox.test(Study1a_AIC$exp_AIC,Study1a_AIC$lm_AIC, paired=TRUE, alternative = "two.sided")
+```
+
+# exploratory analyses
+## additional model fits
+### segmented linear regression (with one break point)
+```{r create segmented function}
+fit_individual_segmented <- function(ls_unique_ids, subject_data){
+  # input: ls_unique_ids, subject_data, is_Euclidean
+  # return: df_predictions_segmented
+  df_predictions_seg <- data.frame()
+  
+  for(subj_id in ls_unique_ids$unique_id){
+    subject_xy <- subject_data%>%
+      filter(unique_id==subj_id)%>%
+      select(cumulative_num_throw, distance_from_radius)
+    
+    # run linear model and segmented model
+    lm_1subject <- lm(distance_from_radius ~ cumulative_num_throw, data=subject_xy)
+    seg_1subject <- segmented(lm_1subject, ~ cumulative_num_throw)
+    slope_seg_1subject <- slope(seg_1subject) # slopes for each segment
+    slope1_1subject <- slope_seg_1subject[[1]][1]
+    slope2_1subject <- slope_seg_1subject[[1]][2]
+    breakpoint_1subject <- round(seg_1subject$psi[2]) # break point 
+    
+    ## boundary points and break points for plotting
+    xp <- c(min(subject_xy$cumulative_num_throw), 
+            round(seg_1subject$psi[, "Est."]), max(subject_xy$cumulative_num_throw))
+    yp <- predict(seg_1subject, newdata = data.frame(cumulative_num_throw = xp))
+    
+    df_predictions_seg<-df_predictions_seg%>%rbind(c(subj_id, xp, yp, slope1_1subject, slope2_1subject, breakpoint_1subject, AIC(seg_1subject)))
+  }
+  colnames(df_predictions_seg) <- c("unique_id","x_min", "x_breakpoint", "x_max",
+                                    "y_min", "y_breakpoint", "y_max",
+                                    "slope_1", "slope_2", "trial_breakpoint", "seg_AIC")
+  
+  return(df_predictions_seg)
+}
+```
+
+```{r segmented model}
+# individual
+## get parameter estimates
+df_segmented <- fit_individual_segmented(included_unique_ids, study1a_50)
+```
+
+```{r testing if the second segment slope is significantly different from zero}
+df_seg_slopes <- df_segmented%>%mutate(slope_1 = as.numeric(slope_1), slope_2 = as.numeric(slope_2))
+
+df_seg_slopes%>%summarise(mean(slope_1), sd(slope_1),
+                          mean(slope_2), sd(slope_2))
+wilcox.test(df_seg_slopes$slope_1, df_seg_slopes$slope_2, paired=TRUE, alternative = "two.sided")
+wilcox.test(df_seg_slopes$slope_2, mu = 0,alternative = "two.sided")
+```
+
+### logarithmic functions
+```{r create log function}
+fit_individual_log <- function(ls_unique_ids, subject_data, start_b, is_Euclidean = TRUE, find_b = FALSE){
+  # input: ls_unique_ids, subject_data, start_b, which_distance, find_b
+  # return: list(df_predictions, df_predictions_long)
+
+  ls_model_failed <- list()
+  df_predictions <- data.frame()
+  ct_loop <- 0
+  for(subj_id in ls_unique_ids$unique_id){
+    set.seed(1)
+    if(is_Euclidean == TRUE){
+      f_x <- distance_from_radius ~ a - b * log(cumulative_num_throw)
+      subj_xy <- subject_data%>%
+      filter(unique_id==subj_id)%>%
+      select(cumulative_num_throw, distance_from_radius)
+    } else {
+      f_x <- distance_from_radius ~ a - b * log(cumulative_num_throw)
+      subj_xy <- subject_data%>%
+      filter(unique_id==subj_id)%>%
+      select(cumulative_num_throw, distance_by_axis)
+    }
+    
+    start_a <- subj_xy[subj_xy$cumulative_num_throw==1,][[2]]
+   
+    tryCatch({
+      fm <- nls(f_x, data = subj_xy, start = list(a=start_a, b = start_b),
+                #lower=list(a=0, b=0), upper = list(a=upper_a_value, b=1), 
+                control = list(minFactor=0.000001,maxiter=1000), algorithm = "port") 
+      ls_model_failed <- c(ls_model_failed,"worked")
+      fm_para <- summary(fm)$parameters
+      df_predictions<-df_predictions%>%rbind(c(subj_id, predict(fm),AIC(fm),
+                                               fm_para[1,1],fm_para[1,2],fm_para[1,3],round(fm_para[1,4],4),
+                                               fm_para[2,1],fm_para[2,2],fm_para[2,3],round(fm_para[2,4],4)))
+    }, error=function(e){
+      ls_model_failed <- c(ls_model_failed,"failed")
+      #print(conditionMessage(e))
+    })
+  }
+  
+  colnames_cumulative_throw <- unique(subject_data$cumulative_num_throw)
+  colnames(df_predictions) <- c("unique_id", colnames_cumulative_throw, "AIC",
+                                "a_coef","a_std","a_tvalue","a_pvalue",
+                                "b_coef","b_std","b_tvalue","b_pvalue")
+  
+  df_predictions_long <- df_predictions%>%
+    gather(cumulative_num_throw,nls_prediction,`1`:`50`)
+  
+  df_predictions_long$cumulative_num_throw <- as.numeric(df_predictions_long$cumulative_num_throw)
+  df_predictions_long$nls_prediction <- as.numeric(df_predictions_long$nls_prediction)
+  
+  if(find_b == TRUE){
+    return(nrow(df_predictions))
+  } else {
+    return(list(df_predictions, df_predictions_long))
+  }
+}
+```
+
+```{r learn: fit model}
+# individual
+## get parameter estimates
+ls_log_predictions_learn <- fit_individual_log(included_unique_ids, study1a_50, start_b = 1)
+df_log_learn <- ls_log_predictions_learn[[1]]
+nrow(df_log_learn)
+df_log_long_learn <- ls_log_predictions_learn[[2]]
+```
+
+```{r learn: model comparison AIC score & Wilcox test}
+learn_exp_log_AIC <- df_exp%>%
+  select(unique_id,AIC)%>%
+  rename(exp_AIC = AIC)%>%
+  left_join(df_log_learn)%>%
+  rename(log_AIC = AIC)%>%
+  mutate(exp_AIC = as.numeric(exp_AIC), log_AIC = as.numeric(log_AIC))%>%
+  mutate(difference = exp_AIC-log_AIC)%>%
+  arrange(difference)%>%
+  mutate(sorted_id = 1:n())%>%
+  select(sorted_id, unique_id,exp_AIC, log_AIC,difference)
+
+learn_exp_log_AIC%>%
+  mutate(exponential_better=case_when(difference<0 ~ TRUE,
+                                      TRUE ~ FALSE))%>%
+  summarise(exp_better_n = sum(exponential_better),
+            perc = exp_better_n/nrow(learn_exp_log_AIC),
+            mean(exp_AIC),
+            median(exp_AIC),
+            sd(exp_AIC),
+            mean(log_AIC),
+            median(log_AIC),
+            sd(log_AIC))
+
+wilcox.test(learn_exp_log_AIC$exp_AIC,learn_exp_log_AIC$log_AIC, paired=TRUE, alternative = "two.sided")
+```
+
+### power function
+```{r create power function}
+fit_individual_power <- function(ls_unique_ids, subject_data, find_b = FALSE){
+  # input: ls_unique_ids, subject_data, which_distance, find_b
+  # return: list(df_predictions, df_predictions_long)
+  
+  ls_model_failed <- list()
+  df_predictions <- data.frame()
+  for(subj_id in ls_unique_ids$unique_id){
+    set.seed(1)
+    f_x <- distance_from_radius ~ a*cumulative_num_throw^(-b) + c
+    subj_xy <- subject_data%>%
+      filter(unique_id==subj_id)%>%
+      select(cumulative_num_throw, distance_from_radius)
+    
+    start_c <- min(subj_xy$distance_from_radius)-.01
+    subj_xy$log_y_minus_c <- log(subj_xy$distance_from_radius - start_c)
+    subj_xy$log_x <- log(subj_xy$cumulative_num_throw)
+    subj_linear_fit <- lm(log_y_minus_c ~ log_x, data=subj_xy)
+    #summary(subj_linear_fit)
+    start_a <- exp(coef(subj_linear_fit)[1])
+    start_b <- abs(coef(subj_linear_fit)[2])
+    
+    tryCatch({
+      fm <- nls(f_x, data = subj_xy, start = list(a=start_a, b = start_b, c = start_c),
+                control = list(minFactor=0.000001,maxiter=1000), algorithm = "port") 
+      ls_model_failed <- c(ls_model_failed,"worked")
+      fm_para <- summary(fm)$parameters
+      df_predictions<-df_predictions%>%rbind(c(subj_id, predict(fm),AIC(fm),
+                                               fm_para[1,1],fm_para[1,2],fm_para[1,3],round(fm_para[1,4],4),
+                                               fm_para[2,1],fm_para[2,2],fm_para[2,3],round(fm_para[2,4],4),
+                                               fm_para[3,1],fm_para[3,2],fm_para[3,3],round(fm_para[3,4],4)))
+    }, error=function(e){
+      ls_model_failed <- c(ls_model_failed,"failed")
+      #print(conditionMessage(e))
+    })
+  }
+  
+  colnames_cumulative_throw <- unique(subject_data$cumulative_num_throw)
+  colnames(df_predictions) <- c("unique_id", colnames_cumulative_throw, "AIC",
+                                "a_coef","a_std","a_tvalue","a_pvalue",
+                                "b_coef","b_std","b_tvalue","b_pvalue",
+                                "c_coef","c_std","c_tvalue","c_pvalue")
+  
+  df_predictions_long <- df_predictions%>%
+    gather(cumulative_num_throw,nls_prediction,`1`:`50`)
+  
+  df_predictions_long$cumulative_num_throw <- as.numeric(df_predictions_long$cumulative_num_throw)
+  df_predictions_long$nls_prediction <- as.numeric(df_predictions_long$nls_prediction)
+  
+    if(find_b == TRUE){
+    return(nrow(df_predictions))
+  } else {
+    return(list(df_predictions, df_predictions_long))
+  }
+}
+```
+
+```{r learn: fit model}
+# individual
+## get parameter estimates
+ls_power_predictions_learn <- fit_individual_power(included_unique_ids, study1a_50)
+df_power_learn <- ls_power_predictions_learn[[1]]
+nrow(df_power_learn) #41
+df_power_long_learn <- ls_power_predictions_learn[[2]]%>%mutate(trial_type="learn")
+```
+
+```{r learn: model comparison AIC score & Wilcox test}
+learn_exp_power_AIC <- df_power_learn%>%
+  select(unique_id,AIC)%>%
+  rename(power_AIC = AIC)%>%
+  left_join(df_exp)%>%
+  rename(exp_AIC = AIC)%>%
+  mutate(exp_AIC = as.numeric(exp_AIC), power_AIC = as.numeric(power_AIC))%>%
+  mutate(difference = exp_AIC-power_AIC)%>%
+  arrange(difference)%>%
+  mutate(sorted_id = 1:n())%>%
+  select(sorted_id, unique_id,exp_AIC, power_AIC,difference)
+
+learn_exp_power_AIC%>%
+  mutate(exponential_better=case_when(difference<0 ~ TRUE,
+                                      TRUE ~ FALSE))%>%
+  summarise(exp_better_n = sum(exponential_better),
+            perc = exp_better_n/nrow(learn_exp_power_AIC),
+            mean(exp_AIC),
+            median(exp_AIC),
+            sd(exp_AIC),
+            mean(power_AIC),
+            median(power_AIC),
+            sd(power_AIC))
+
+wilcox.test(learn_exp_power_AIC$exp_AIC,learn_exp_power_AIC$power_AIC, paired=TRUE, alternative = "two.sided")
+```
+
+## exp vs linear comparison for all participants (including excluded participants)
+```{r exponential model}
+# individual
+## find b
+b_num_failure_raw<- find_start_b(data_unique_ids, data) # b=.02, failed convergence=4
+chosen_b_raw <- .02 #b_num_failure[1]
+## get parameter estimates
+ls_predictions_raw <- fit_individual_exponential(data_unique_ids, data, start_b = chosen_b_raw, find_b = FALSE)
+df_exp_raw <- ls_predictions_raw[[1]]
+nrow(df_exp_raw)
+df_exp_long_raw <- ls_predictions_raw[[2]]
+```
+
+```{r linear model}
+# individual
+## get parameter estimates
+df_lm_raw <- fit_individual_linear(data_unique_ids, data)
+```
+
+```{r model comprison: AIC score & Wilcox test}
+Study1a_AIC_raw <- df_exp_raw%>%
+  select(unique_id,AIC)%>%
+  rename(exp_AIC = AIC)%>%
+  left_join(df_lm_raw)%>%
+  rename(lm_AIC = AIC)%>%
+  mutate(exp_AIC = as.numeric(exp_AIC), lm_AIC = as.numeric(lm_AIC))%>%
+  mutate(difference = exp_AIC-lm_AIC)%>%
+  arrange(difference)%>%
+  mutate(sorted_id = 1:n())%>%
+  select(sorted_id, unique_id,exp_AIC, lm_AIC,difference)
+
+Study1a_AIC_raw%>%
+  mutate(exponential_better=case_when(difference<0 ~ TRUE,
+                                      TRUE ~ FALSE))%>%
+  summarise(exp_better_n = sum(exponential_better),
+            perc = exp_better_n/nrow(Study1a_AIC_raw),
+            mean(exp_AIC),
+            median(exp_AIC),
+            sd(exp_AIC),
+            mean(lm_AIC),
+            median(lm_AIC),
+            sd(lm_AIC))
+
+wilcox.test(Study1a_AIC_raw$exp_AIC,Study1a_AIC_raw$lm_AIC, paired=TRUE, alternative = "two.sided")
+```
+
+## relating to post-task difficulty judgments
+```{r create dataframes}
+difficulty <- attnchecks%>%select(unique_id, difficulty_response)
+
+difficulty%>%summarise(mean(difficulty_response), median(difficulty_response), sd(difficulty_response))%>%as.data.frame()
+
+## average performance
+data_wDifficulty <- study1a_50%>%select(unique_id, cumulative_num_throw, distance_from_radius)%>%
+  group_by(unique_id)%>%
+  summarise(avg_error = mean(distance_from_radius))%>%
+  ungroup()%>%
+  mutate(avg_errors_Zscored = (avg_error - mean(avg_error))/sd(avg_error))%>%
+  left_join(difficulty)
+
+## learning rate
+rate_wDifficulty<- df_exp%>%select(unique_id,b_coef)%>%mutate(b_coef=-as.numeric(b_coef))%>%left_join(difficulty)
+```
+
+```{r initial analysis (reported in 1st submission)}
+cor.test(data_wDifficulty$avg_error,data_wDifficulty$difficulty_response, method="spearman")
+cor.test(rate_wDifficulty$b_coef, rate_wDifficulty$difficulty_response, method = "spearman")
+```
+
+## relating to demographic information
+```{r similar game experience}
+attnchecks%>%group_by(frequency_response)%>%summarise(n()/nrow(included_unique_ids))
+```
+
+```{r Supplemental: demographic factors}
+data_wDemo <- study1a_50%>%select(unique_id, cumulative_num_throw, distance_from_radius)%>%
+  group_by(unique_id)%>%
+  summarise(avg_errors = mean(distance_from_radius))%>%
+  ungroup()%>%
+  left_join(attnchecks)
+
+rate_wDemo<- df_exp%>%select(unique_id,b_coef)%>%mutate(b_coef=-as.numeric(b_coef))%>%left_join(attnchecks)
+
+# avg errors
+## age
+cor.test(data_wDemo$avg_errors, data_wDemo$age_response, method="spearman")
+
+## gender
+Female <- data_wDemo%>%filter(gender_response=="Female")%>%left_join(rate_wDemo)
+Female%>%summarise(mean(avg_errors), sd(avg_errors))%>%as.data.frame()
+Female%>%filter(is.na(b_coef)==F)%>%summarise(mean(b_coef), sd(b_coef))%>%as.data.frame()
+
+Male <- data_wDemo%>%filter(gender_response=="Male")%>%left_join(rate_wDemo)
+Male%>%summarise(mean(avg_errors), sd(avg_errors))%>%as.data.frame()
+Male%>%filter(is.na(b_coef)==F)%>%summarise(mean(b_coef), sd(b_coef))%>%as.data.frame()
+
+learn_gender_avg <- wilcox.test(Female$avg_errors, Male$avg_errors, method="two.sided")
+learn_gender_avg
+
+# education
+education_BAandUp <- data_wDemo%>%
+  filter(education_response=="Bachelor's degree"|
+                                        education_response=="Master's degree"|
+                                        education_response=="Professional degree (J.D., M.D., Ph.D)")%>%
+  left_join(rate_wDemo)
+
+education_belowBA <- data_wDemo%>%
+  filter(education_response!="Bachelor's degree"&
+                                        education_response!="Master's degree"&
+                                        education_response!="Professional degree (J.D., M.D., Ph.D)"&
+          education_response!="Prefer not to answer" 
+           )%>%
+  left_join(rate_wDemo)
+
+learn_education_avg <- wilcox.test(education_belowBA$avg_errors, education_BAandUp$avg_errors, method="two.sided")
+learn_education_avg
+
+# rate
+## age
+cor.test(rate_wDemo$b_coef, rate_wDemo$age_response, method = "spearman")
+
+## gender
+learn_gender_rate <- wilcox.test(Female$b_coef, Male$b_coef, method="two.sided")
+learn_gender_rate
+
+## education
+learn_education_rate <- wilcox.test(education_belowBA$b_coef, education_BAandUp$b_coef, method="two.sided")
+learn_education_rate
+
+# correcting p-value
+## average performance
+p.adjust(c(learn_gender_avg$p.value, learn_education_avg$p.value), method = "fdr") # gender, education
+## learning rate
+p.adjust(c(learn_gender_rate$p.value, learn_education_rate$p.value), method = "fdr") # gender, education
+```
+
+# export data
+```{r write out data for comparison with exp 1b}
+# cleaned data for 50 participants passed inclusion
+#write.csv(study1a_50, "./data/exp-1a/04.exp1a-cleaned-data.csv")
+
+# learning rate data from exp model fit
+study1a_rates <- df_exp%>%select(unique_id,b_coef)
+#write.csv(study1a_rates, "./data/exp-1a/05.exp1a-learning-rate.csv")
+```
+
+# visualization
+```{r Figure 2(a): exp. 1a trajectory}
+study1a_CIs %>%
+  ggplot(aes(cumulative_num_throw, mean))+
+  geom_line(linewidth=2,color="#C3272B")+
+  geom_errorbar(aes(ymin=ci_lower, ymax=ci_upper),
+                  size=1,width=0, color="#C3272B")+
+  ylim(0,300)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black",size=1),
+axis.text.y= element_text(size=10,color="black"),axis.text.x= element_text(size=10,color="black"))+
+  ylab("Distance to center")+xlab("Trial")
+```
+saved as pdf 4 x 6.5inches

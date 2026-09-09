@@ -1,0 +1,50 @@
+# Frozen empirical learning-curve pilot
+
+Protocol version 1, written 2026-09-08 before participant trend summaries, fitting or holdout evaluation. This is a secondary analysis of already published data; the authors' exponential result is known. It is not a prospective participant study, a reproduction of their analysis, or an untouched external validation cohort. The Git commit containing this protocol fixes the analysis decisions below. An additional source freeze will bind the executable implementation before its first real-data fit. Correctness repairs must preserve both original output and the reason for any rerun.
+
+## Question and data
+
+Can a decreasing exponential forecast the next twenty throws of an individual's observed task error better than serious simple controls, after thirty observed throws? This checks a restricted performance-curve analogy to the framework's practice rule. It does not observe proficiency, isolate learning from changing execution or strategy, identify separate rate/quality, or estimate a per-minute coefficient.
+
+Use [Zhang, McDougle and Leonard's Experiment 1a](https://doi.org/10.1016/j.cognition.2025.106083), qualified in [the data-access record](learning-data-access.md). The public [OSF data project](https://osf.io/xzm5c/) declares CC0 1.0. Use both original version-1 raw batches, with SHA-256:
+
+- `00.exp1a-raw-batch1.csv`: `25b454aa2cbe878f0db25d3c054c545cbc867829c861d74ef826155a9eb8c7a3`.
+- `02.exp1a-raw-batch2.csv`: `53322c18dc906de306798a4c24e20acc2f683ad44bc571d6bf9d954aa8828cee`.
+
+Keep every row with `condition == main`: all 55 participants and all 50 throws each, including the five people the published analysis excluded using fitted improvement. Do not apply attention-score, slope, outcome, demographic, outlier, or model-fit exclusions. Non-main rows are not practice observations. Require unique complete positions 1–50, finite nonnegative distance and finite positive target radius; stop on a failed schema assertion rather than silently dropping observations. Administrative checks have already established completeness and measurement identity; no performance trends were inspected to select these rules.
+
+Toss position `t = (trial_num - 1) * 5 + which_throw + 1`; exposure `x = t - 1` completed main throws. The prior keyboard check was not a live target-practice trial. Unmeasured prior experience and within-task strategy changes remain limits. Timers cannot establish total active practice duration, so units stay **throws**, never minutes. Primary observation `y = distance_from_radius / board_outerRing_radius` is Euclidean center error in outer-target-radius units, lower better. This geometry normalization uses each row's task configuration, not an outcome-derived scale or pooled mean. Do not use scores, timestamps, questionnaires, free text or demographics in modeling.
+
+Use batch-namespaced study IDs internally, sorted by SHA-256 of `filename + ':' + unique_id` and relabeled `P001`–`P055`. Publish only the restricted private analytical projection (analysis ID, toss, prior throws, normalized error). Keep the untouched CC0 source and provenance in this private repository and outside the public asset allowlist; never reconstruct identities or publish participant profiles.
+
+## Split and predictors
+
+For each person, fit on tosses 1–30 (`x=0..29`) and issue one fixed forecast for tosses 31–50 (`x=30..49`). No updates during the forecast, missing-value imputation, outcome smoothing, cross-person shrinkage, hyperparameter tuning, alternate splits, or best-subset selection. Fit individuals separately. Fifty-five people, not 2,750 independent people, are the sampling units for uncertainty.
+
+All predictors target expected normalized task error. Compare five primary models:
+
+| Name | Fit and forecast |
+|---|---|
+| `mean` | Mean of all thirty training errors; no change thereafter. |
+| `recent10` | Mean of training throws 21–30; no change thereafter. This is the designated strong primary control. |
+| `linear` | Ordinary least squares `b + m*x`, with unrestricted signed slope and intercept; output `max(0, b+m*x)` at all prediction positions. Fit minimizes the ordinary **unclipped** linear residual sum of squares; report that objective separately from errors of the final clipped predictor. Clipping enforces nonnegative error support, not a learned floor. |
+| `exponential` | `b + a*exp(-k*x)`, `a,b >= 0`, `1e-4 <= k <= 10`. |
+| `power1` | `b + a*(1+x)^(-k)`, same amplitude/asymptote and exponent bounds. |
+
+Prespecified **sensitivity only**: `power5 = b + a*(1+x/5)^(-k)` with the same bounds. Compute power shape as `(offset/(x+offset))^k` so amplitude always means initial excess. Fixed origin matters more to power curvature than exponential curvature. Report both offsets; never select the better offset using holdout outcomes or relabel it as the primary result. All three curved models also admit an explicit instantaneous boundary, `g(0)=1`, `g(x>0)=0`, with nonnegative amplitude and asymptote. This avoids relying on a finite shape cap to approximate a first-throw step. Record this boundary by name, not a finite rate. A four-parameter free-offset curve, task-specific strategy model and hierarchical model are outside this pilot. OLS has two fitted coefficients and the finite curved models have three parameters; held-out forecasting can compare them without pretending they have identical flexibility. Declining families constrain the conditional mean; worsening observed trajectories remain in evaluation and are not treated as evidence of a person's latent capacity or motivation.
+
+For the two decreasing families and the sensitivity, minimize raw training squared error. At each shape parameter, solve the nonnegative two-coefficient least-squares problem by comparing the feasible unconstrained solution with amplitude-zero and asymptote-zero boundary solutions. Use the best nonnegative solution; no coefficient upper bounds. Explore 1,001 equally spaced log-shapes from `log(1e-4)` to `log(10)`, inclusive. Refine every interior grid minimum strictly lower than at least one neighbor, using bounded scalar minimization between its neighboring log-grid positions (`xatol=1e-10`, maximum 100 iterations); include all grid candidates, endpoints and the explicit instantaneous limit. Select the smallest shape among candidates whose SSE is within `1e-10*(1+minimum SSE)` of the minimum, ordering the instantaneous limit after every finite shape. Record grid-only minimum, chosen objective, parameters, refinement success, coefficient-zero/shape-boundary flags and finite predictions. Abort on optimizer exceptions, failed refinements or nonfinite solutions; no silent fallback to another model. A constant optimum is an admissible no-improvement prediction, not a separately identified rate. Parameter values at bounds and amplitude-zero degeneracy must remain visible; no fitted parameter is a calibration recommendation.
+
+## Reporting and uncertainty
+
+Primary loss: each person's RMSE across the twenty held-out throws, then the arithmetic mean across people. Also report median person RMSE, mean person MAE, pooled RMSE, and training RMSE with their distinct meanings. Rank primary mean RMSE descriptively only. The primary effect is `exponential minus recent10` person RMSE; negative favors exponential. Report the same paired difference against every other model, retaining sensitivity labels, and counts of lower/tied/higher errors (`1e-12` absolute tie tolerance).
+
+Produce descriptive 95% percentile intervals for mean person RMSE and paired mean differences by resampling the 55 participant indices with replacement 10,000 times, NumPy PCG64 seed `20260908`, using identical resamples for all models and linear-interpolation quantiles. Do not call these individual prediction intervals, claim randomized causal effects, use significance stars, or treat overlapping descriptive comparisons as a corrected multiple-hypothesis decision. The selected online cohort, known published outcome, short forecast horizon and dependent throws limit generalization; these intervals do not address selection bias.
+
+As a separate aggregation diagnostic, fit the same predictors to the 30 training means across all 55 people and evaluate the 20 held-out means. Label this as prediction of a cohort mean, not individual performance; do not mix its errors with the primary ranking. Plot the observed cohort means and model forecasts, and all 55 paired individual RMSE differences against `recent10` in analysis-ID order. Do not select successful exemplar participants. Preserve per-person predictions, fitted parameters and losses for reproduction, without interpretation of participant attributes.
+
+Before real fitting, test the runner on synthetic constant, decreasing exponential, power and worsening trajectories; verify chronology, raw-file hashes, no holdout dependence in fit, and model/prediction identities. Bind source/protocol/data hashes in a committed freeze. After fitting, independently reconstruct predictions and scores and check numerical fitting against a different numerical path on training observations only. Any post-unsealing correction or extra comparison must be explicitly labeled and cannot replace the frozen results.
+
+## Decision boundary
+
+Complete this milestone by executing the frozen comparison and reporting heterogeneity and negative results. No Human/runtime/model/game source changes are part of this pilot. Even a favorable task-level exponential forecast would not validate a universal human learning law, the runtime observation link, `.008` per minute or `.65` quality. An unfavorable result narrows the empirical claim; it does not automatically earn a replacement faculty or a more complicated curve. Choose the next framework work from the demonstrated gap, not from a desire to promote an implementation.

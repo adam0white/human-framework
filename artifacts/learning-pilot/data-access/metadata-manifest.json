@@ -1,0 +1,65 @@
+[
+  {
+    "file": "metadata/project.json",
+    "url": "https://api.osf.io/v2/nodes/xzm5c/",
+    "bytes": 4465,
+    "sha256": "c5bb24bf524b1ecf993351b83808bc6ba2be247a59362f9a44940003849febb7",
+    "captured_utc_from_local_file_mtime": "2026-09-09T00:58:46.612585+00:00"
+  },
+  {
+    "file": "metadata/license.json",
+    "url": "https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e96c/",
+    "bytes": 6681,
+    "sha256": "852c5c07ec6c25ae6d8e89a120d3133a53371b6c5f043cee1f86d4ef8fe9468c",
+    "captured_utc_from_local_file_mtime": "2026-09-09T00:58:46.733289+00:00"
+  },
+  {
+    "file": "metadata/data-folder.json",
+    "url": "https://api.osf.io/v2/nodes/xzm5c/files/osfstorage/65e0eb9d47a5b7098240ff8f/?page%5Bsize%5D=100",
+    "bytes": 20690,
+    "sha256": "92851295d73fd475d00a2fdff353ac3bab7bf8d859bc3e219a2d2ceb56da9df3",
+    "captured_utc_from_local_file_mtime": "2026-09-09T00:58:47.572926+00:00"
+  },
+  {
+    "file": "metadata/materials-folder.json",
+    "url": "https://api.osf.io/v2/nodes/xzm5c/files/osfstorage/65e0eb840d9acb0976c2ddc3/?page%5Bsize%5D=100",
+    "bytes": 5814,
+    "sha256": "5d345ddc2168fb32b8b9f8f2969fe4a08feec182e536e429a53bc0e09455a927",
+    "captured_utc_from_local_file_mtime": "2026-09-09T00:58:47.883175+00:00"
+  },
+  {
+    "file": "metadata/raw-data-folder.json",
+    "url": "https://api.osf.io/v2/nodes/xzm5c/files/osfstorage/65e0ebaa6d0cb813b21a930f/?page%5Bsize%5D=100",
+    "bytes": 10386,
+    "sha256": "b3f999062232fb4996603406481fd6ce63b80c10574f5739147145c2d7f561ae",
+    "captured_utc_from_local_file_mtime": "2026-09-09T00:59:03.370338+00:00"
+  },
+  {
+    "file": "metadata/exp1a-data-folder.json",
+    "url": "https://api.osf.io/v2/nodes/xzm5c/files/osfstorage/6691a15c1de9f7029e30d99e/?page%5Bsize%5D=100",
+    "bytes": 15279,
+    "sha256": "f0e17a84a5078fa291f2fcecaa0607c50f5918e0d432bb4486ad1e5d2a1e95d7",
+    "captured_utc_from_local_file_mtime": "2026-09-09T00:59:23.267063+00:00"
+  },
+  {
+    "file": "metadata/exp1a-code-folder.json",
+    "url": "https://api.osf.io/v2/nodes/xzm5c/files/osfstorage/65e1fdf340bb8000f8cfce96/?page%5Bsize%5D=100",
+    "bytes": 12662,
+    "sha256": "ed470f73d9102a163f6a7d6021d781f09caaca1351a87a946bb01299fbb63660",
+    "captured_utc_from_local_file_mtime": "2026-09-09T00:59:23.824593+00:00"
+  },
+  {
+    "file": "metadata/exp1a-preregistration.json",
+    "url": "https://api.osf.io/v2/registrations/cw7g2/",
+    "bytes": 11011,
+    "sha256": "1fe60265b8495db3725ab56414c0daf9dc0f780c2b92a1d7d8b131758cf361d7",
+    "captured_utc_from_local_file_mtime": "2026-09-09T00:59:24.582918+00:00"
+  },
+  {
+    "file": "metadata/task-code-folder.json",
+    "url": "https://api.osf.io/v2/nodes/xzm5c/files/osfstorage/65e1fdbcb9c7e500ef84f2c6/?page%5Bsize%5D=100",
+    "bytes": 10506,
+    "sha256": "14c25db4a98c00fa9ef30286c3c5fb157c4c37bde8172b3c0e99ab9f99894eaa",
+    "captured_utc_from_local_file_mtime": "2026-09-09T00:59:03.864882+00:00"
+  }
+]

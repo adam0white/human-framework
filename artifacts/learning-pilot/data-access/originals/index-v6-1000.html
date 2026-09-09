@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lolli-toss</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src='./victor.min.js'></script>
+    <link rel="stylesheet" href="archery-board.css">
+    
+  </head>
+
+  <body onload="show_Slide('intro-0')">
+    <div class="slide" id = "intro-0" style="display: none;">
+      <br>      
+      <p>Thank you for being interested in this game. </p>
+      <br>
+      <p> <b>This game is for computer and laptop users only.</b> You will not be able to proceed later in the game if you are on a mobile or tablet device. Please return the task if you are using a mobile or tablet device. </p> 
+      <br>
+      <p>This game will take around <b>9</b> minutes.</p>
+      <br>
+      <p><span>At the end of the experiment, you will receive a unique Prolific code. Please copy and paste this code to Prolific to mark your completion of the study.</span></p>
+      <br>      
+      <p>Please make sure your browser window is in the fullscreen mode or spanned over your screen maximally.</p>
+      <br>
+      <button class="next_button" onclick="show_Slide('intro-1');">Next</button>
+    </div>
+
+    <div class="slide" id = "intro-1" style="display: none;">
+      <br>      
+      <div style="text-align: center;">
+        <img src="./img/board-candies-1.png" height="300">
+      </div>
+      <p>Hi there!</p> 
+      <p>You are going play a new game today.</p>
+      <p>It is called: <b>Lolli-toss</b>.</p>
+
+      <br>
+      <button class="next_button" onclick="show_Slide('intro-2');">Next</button>
+    </div>
+
+    <div class="slide" id = "intro-2" style="display: none;">
+      <br>
+      <div style="text-align: center;">
+        <img src="./img/board-1.png" height="400" >
+      </div>
+      <p>In the game of <b>Lolli-toss</b>, you will see a board.</p> 
+      <p>The goal of this game is to toss sticky lollipops toward the board and gain the most points.</p> 
+
+      <br>
+      <button class="next_button" onclick="show_Slide('intro-3');">Next</button>
+    </div>
+
+    <div class="slide" id = "intro-3" style="display: none;">
+      <p><b>How do you get the most points?</b></p>
+      <div style="text-align: center;" >
+        <img src="./img/50-pt.png" height="350" >
+      </div>
+
+      <p>If you hit the lollipop at the center of the board (the yellow region), you will gain <b><span style="color: red">50</span></b> points.</p> 
+
+      <br>
+      <button class="next_button" onclick="show_Slide('intro-4');">Next</button>
+    </div> 
+
+    <div class="slide" id = "intro-4" style="display: none;">
+
+      <p>Aside from the bullseye, if you hit the red ring, you will get <b>30</b> points. Hitting anywhere within the blue ring is worth <b>20</b> points. The black ring is worth <b>10</b> points. And, if you hit the white ring, you will get <b>5</b> points. However, if you missed the board, you will get <b>0</b> point.</p> 
+
+      <div style="text-align: center;" >
+        <img src="./img/else-pt.png" height="400" >
+      </div>
+      <p>Hitting the center will get you the most points on a given round. But as long as you hit the board, you will get some points as well.</p>
+      <br>
+      <button class="next_button" onclick="show_Slide('intro-5');">Next</button>
+    </div> 
+
+
+    <div class="slide" id = "intro-5" style="display: none;">
+      <br>
+      <p>Okay, you already know what scores you will get by hitting the board.</p>
+      <p> Now we will introduce you to the sticky lollipops you will be using in this game.</p> 
+      <p>To make this game more fun, the lollipop will be moving sideways on the screen: </p>
+      <br>
+      <div id="intro-dart-example">
+      <div class="dart-example" id="dart-example">
+        <img src="./img/sticky-candy-1.png" height="70px">
+      </div>
+      </div>
+      <br><br><br><br><br>
+      <p>The lollipop will sometime starts from the left side, and sometimes from the right side.</p>
+      <p>It will go back and forth for 5 times before coming to a stopping position.</p>
+      <br>
+      <button class="next_button" onclick="show_Slide('practice-1');" >Next</button>
+    </div> 
+
+    <div class="slide" id = "practice-1" style="display: none;">
+      <p>In this game, there are two keys you will use: the <b>space</b> bar and the <b>enter</b> key. </p>
+      <div id="practice-space">
+        <br>
+        <p>* <b>Space</b> bar *</p>
+        <p>You will hit the <b>space</b> bar to stop the lollipop from moving sideways.</p> 
+        <p><i>Please press <b>space</b> now to confirm that you can use it in this game.</i></p>
+      </div>
+      <br>
+      <div id="practice-enter" style="visibility: hidden;">
+        <br>
+        <p>* <b>Enter (Return)</b> key *</p>
+        <p>Then, you will use the <b>enter</b> key to toss lollipops.</p> 
+        <p>The <i>duration</i> you hold the enter key will decide how far your lollipop is tossed.</p>
+        <p>The <i>longer</i> you hold the <b>enter</b> key down, the <i>farther</i> the lollipop will go. </p>
+        <p><i>Please press <b>enter /return</b> now to confirm that you can use it in the game.</i></p>
+      </div>
+
+      <br>
+      <button class="next_button" id="practice-1-next-button" onclick="show_Slide('pre-attn-check');" style="visibility: hidden;">Next</button>  
+    </div> 
+
+    <div class="slide" id = "pre-attn-check" style="display: none;">
+      <p><b>Before you get started with this game, let's make sure everything is clear!</b></p>
+      <div id="minimum_selection_prescreening" style="visibility: hidden;color:red;">
+          <p><span> Please respond to the question and make sure your answers are correct.</span></p>
+      </div>
+      <div id="pre_attn_check_1">
+        <div>
+          <div style="float: left; width: 30%;">
+            <img src="./img/board-center-1.png" height="220" >
+          </div>
+          <div style="float: left; width: 70%;">
+            <p>How many points will you get if you hit the lollipop on the bullseye (yellow region)?</p>
+            <form name="form_pre_attn_check_1" method="post">        
+                <input type="radio" name="pre_attn_check_1" value="10">10
+                <br>
+                <input type="radio" name="pre_attn_check_1" value="25">25
+                <br>
+                <input type="radio" name="pre_attn_check_1" value="50">50
+                <br>
+                <input type="radio" name="pre_attn_check_1" value="75">75
+                <br><br> 
+                <br><br> <br><br>       
+            </form>          
+          </div>          
+        </div>
+      </div>
+
+      <div id="pre_attn_check_2">
+        <p>Which key will be used to toss the lollipop toward the board?</p> 
+          <form name="form_pre_attn_check_2" method="post">        
+              <input type="radio" name="pre_attn_check_2" value="Tab">Tab
+              <br>
+              <input type="radio" name="pre_attn_check_2" value="Enter /return">Enter /return
+              <br>
+              <input type="radio" name="pre_attn_check_2" value="Shift">Shift
+              <br>
+              <input type="radio" name="pre_attn_check_2" value="Space">Space
+              <br><br>       
+          </form>
+      </div>
+      <br>
+      <button class="next_button" onclick="submit_preScreening();">Next</button>
+    </div> 
+
+    <div class="slide" id = "intro-final" style="display: none;">
+      <br>
+      <p>Now that you have understood the basics of Lolli-toss, let’s get started with this game!</p> 
+      <br>
+      <p>There will be <b>10</b> rounds of the game. You have <b>5</b> lollipops to toss during each round of the game.</p>
+
+      <p>Your total score will be displayed during the game on the upper left corner. </p>
+
+      <br>
+      <p>As a reminder, in this game, you will get <b><span style="color: red">50</span></b> points if you hit the bullseye (in yellow). Aside from the bullseye, if you hit the red ring, you will get <b>30</b> points. Hitting anywhere within the blue ring is worth <b>20</b> points. The black ring is worth <b>10</b> points. And, if you hit the white ring, you will get <b>5</b> points. However, if you missed the board, you will get <b>0</b> point.</p>
+
+      <br>
+      <p><b>When you are ready, click on the button below to start the game!</b></p>
+      <br>
+      <button class="next_button" onclick="show_Slide('game-section');">Play</button>
+    </div> 
+
+
+    <!-- MAIN GAME HTML -->
+    <div class="slide" id="game-section" style="display: none;">
+      <div id="score" style="font-weight: bold;">
+      </div>
+      <div class="fadeIn" id="throw-feedback" style="font-weight:bold;">
+      </div>
+
+      <div class="target" id="target">
+        <div class="white-outer" id="white-outer"></div>
+        <div class="white-inner" id="white-inner"></div>
+        <div class="black-outer" id="black-outer"></div>
+        <div class="black-inner"></div>
+        <div class="blue-outer" id="blue-outer"></div>
+        <div class="blue-inner"></div>
+        <div class="red-outer" id="red-outer"></div>
+        <div class="red-inner" id="red-inner"></div>
+        <div class="gold-outer" id="gold-outer"></div>
+        <div class="gold-inner" id="gold-inner">
+          <div class="cross"></div>
+        </div>
+      </div>
+    
+      <div class="block" id="dart">
+        <img id ="game-dart-img" src="./img/sticky-candy-1.png" height="75px">
+      </div>
+
+    </div>
+
+    <div class="slide" id="distractor" style="display:none">
+      <br>
+      <br>
+      <br>
+      <div id="distractor-total-score" style="font-weight: bold;">    
+
+      </div>
+      <div id="distractor-round-score" style="font-weight: bold;">    
+
+      </div>
+      <br>
+      <br>
+      <div id="distractor-which-round">
+
+      </div>
+
+      <p>Please click 'Next' to continue.</p><br>
+        <div> 
+            <button class="next_button" id="distractor_next_button" onclick="show_Slide('game-section');">Next</button>
+        </div>
+    </div>
+
+    <div class="slide" id="demographic_question" style="display:none">
+        <br>
+        <br>
+        <div id="final-score-display">
+          
+        </div>
+      <p>You are almost done!</p>
+        <div id="minimum_selection_demographic_question" style="visibility: hidden;color:red;">
+            <p><span> Please respond to the question(s). A minimum of 2 characters is required for text-box questions, and a choice is required for radio-choice questions.</span></p>
+        </div>
+
+        <p><span>How easy or difficult do you find this game is?</span></p>
+        <form name="form_difficulty" method="post">        
+            <input type="radio" name="difficulty_response" value="1">Extremely easy
+            <br>
+            <input type="radio" name="difficulty_response" value="2">Moderately easy
+            <br>
+            <input type="radio" name="difficulty_response" value="3">Somewhat easy
+            <br>
+            <input type="radio" name="difficulty_response" value="4">Neither easy or difficult
+            <br>
+            <input type="radio" name="difficulty_response" value="5">Somewhat difficult
+            <br>
+            <input type="radio" name="difficulty_response" value="6">Moderately difficult
+            <br>
+            <input type="radio" name="difficulty_response" value="7">Extremely difficult
+            <br>
+            <br>       
+        </form>
+        <br>
+        <br> 
+
+        <p><span>During the game, which hand did you use to press the *space* bar?</span></p>
+        <form name="form_press_space" method="post">        
+            <input type="radio" name="press_space_response" value="left">Left hand
+            <br>
+            <input type="radio" name="press_space_response" value="right">Right hand
+            <br><br>       
+        </form>
+        <br>
+        <br>  
+
+        <p><span>During the game, which hand did you use to press the *enter* key?</span></p>
+        <form name="form_press_enter" method="post">        
+            <input type="radio" name="press_enter_response" value="left">Left hand
+            <br>
+            <input type="radio" name="press_enter_response" value="right">Right hand
+            <br><br>       
+        </form>
+        <br>
+        <br>  
+
+        <p><span>Which is your dominant hand (e.g., the hand you are most likely to use for writing, brushing your teeth, or throwing a ball)?</span></p>
+        <form name="form_dominant_hand" method="post">        
+            <input type="radio" name="dominant_hand_response" value="left">Left hand
+            <br>
+            <input type="radio" name="dominant_hand_response" value="right">Right hand
+            <br>
+            <input type="radio" name="dominant_hand_response" value="ambidextrous">Ambidextrous (use both hands equally well)
+            <br><br>       
+        </form>
+        <br>
+        <br>  
+
+        <p><span>Have you played a game similar to this before?</span></p>
+        <form name="form_played" method="post">        
+            <input type="radio" name="played_response" value="Yes">Yes
+            <br>
+            <input type="radio" name="played_response" value="No">No
+            <br><br>       
+        </form>
+        <br>
+        <br>  
+
+        <form name="form_frequency" method="post">
+            <label for="frequency_response">How long have you played a similar game before (in hours)? If you haven't played any game similar before, put down '0'.</label>
+            <br><br>        
+            <input type="text" name="frequency_response" id="frequency_response" minlength="1" size="30">
+            <br><br>       
+        </form>
+        <br>
+        <br>
+
+        <form name="form_names" method="post">
+            <label for="names_response">What are the names of games similar to Lolli-toss that you have seen before? If you haven't seen any game similar before, put down 'None'.</label>
+            <br><br>        
+            <input type="text" name="names_response" id="names_response" minlength="1" size="30">
+            <br><br>       
+        </form>
+        <br>
+        <br>
+
+        <form name="form_country" method="post">
+            <label for="country_response">Which country have you spent most of your time in?</label>
+            <br><br>        
+            <input type="text" name="country_response" id="country_response" minlength="2" size="30">
+            <br><br>       
+        </form>
+        <br>
+        <br>
+
+        <form name="form_age" method="post">
+            <label for="age_response">How old are you?</label>
+            <br><br>        
+            <input type="text" name="age_response" id="age_response" minlength="2" size="30">
+            <br><br>       
+        </form>
+        <br>
+        <br>
+
+        <p><span>Which of the following best describes you?</span></p>
+        <form name="form_race" method="post">        
+            <input type="radio" name="race_response" value="American Indean or Alaska Native">American Indian or Alaska Native
+            <br>
+            <input type="radio" name="race_response" value="Asian">Asian
+            <br>
+            <input type="radio" name="race_response" value="Black or African American">Black or African American
+            <br>
+            <input type="radio" name="race_response" value="Hispanic or Latino">Hispanic or Latino
+            <br>
+            <input type="radio" name="race_response" value="White">White
+            <br>
+            <input type="radio" name="race_response" value="Multiracial or Biracial">Multiracial or Biracial
+            <br>
+            <input type="radio" name="race_response" value="A race/ethnicity not listed here">A race/ethnicity not listed here
+            <br>  
+            <input type="radio" name="race_response" value="Prefer not to answer">Prefer not to answer
+            <br>       
+        </form>
+        <br>
+        <br>  
+
+        <p><span>What gender do you identify with?</span></p>
+        <form name="form_gender" method="post">        
+            <input type="radio" name="gender_response" value="Female">Female
+            <br>
+            <input type="radio" name="gender_response" value="Male">Male
+            <br>
+            <input type="radio" name="gender_response" value="Non-binary">Non-binary
+            <br>
+            <input type="radio" name="gender_response" value="Other">Other
+            <br>
+            <input type="radio" name="gender_response" value="Prefer not to answer">Prefer not to answer
+            <br>       
+        </form>
+        <br>
+        <br>        
+
+
+        <p><span>What is the highest degree you have earned?</span></p>
+        <form name="form_education" method="post">        
+            <input type="radio" name="education_response" value="Less than high school">Less than high school
+            <br>
+            <input type="radio" name="education_response" value="High school or GED">High school or GED
+            <br>
+            <input type="radio" name="education_response" value="Associate's degree">Associate's degree
+            <br>
+            <input type="radio" name="education_response" value="Bachelor's degree">Bachelor's degree
+            <br>
+            <input type="radio" name="education_response" value="Master's degree">Master's degree
+            <br>
+            <input type="radio" name="education_response" value="Professional degree (J.D., M.D., Ph.D)">Professional degree (J.D., M.D., Ph.D)
+            <br>  
+            <input type="radio" name="education_response" value="Prefer not to answer">Prefer not to answer
+            <br>       
+        </form>
+        <br>
+        <br>  
+
+        <p><span>Which of these categories best describes your total combine family income for the past 12 months? This should include income (before taxes) from all sources, wages, rent from properties, social security, disability and/or veteran’s benefits, unemployment benefits, workman’s compensation, help from relatives (including child payments and alimony), and so on.</span></p>
+        <form name="form_income" method="post">        
+            <input type="radio" name="income_response" value="$0 through $4,999">$0 through $4,999
+            <br>
+            <input type="radio" name="income_response" value="$5,000 through $11,999">$5,000 through $11,999
+            <br>
+            <input type="radio" name="income_response" value="$12,000 through $15,999">$12,000 through $15,999
+            <br>
+            <input type="radio" name="income_response" value="$16,000 through $24,999">$16,000 through $24,999
+            <br>
+            <input type="radio" name="income_response" value="$25,000 through $34,999">$25,000 through $34,999
+            <br>
+            <input type="radio" name="income_response" value="$35,000 through $49,999">$35,000 through $49,999
+            <br>
+            <input type="radio" name="income_response" value="$50,000 through $74,999">$50,000 through $74,999
+            <br>
+            <input type="radio" name="income_response" value="$75,000 through $99,999">$75,000 through $99,999
+            <br>
+            <input type="radio" name="income_response" value="$100,000 through $149,999">$100,000 through $149,999
+            <br>
+            <input type="radio" name="income_response" value="$150,000 through $199,999">$150,000 through $199,999
+            <br>
+            <input type="radio" name="income_response" value="$200,000 and greater">$200,000 and greater
+            <br>
+            <input type="radio" name="income_response" value="Unsure">Unsure
+            <br>
+            <input type="radio" name="income_response" value="Prefer not to answer">Prefer not to answer
+            <br>       
+        </form>
+        <br>
+        <br>  
+
+        <button class="next_button" onclick="submit_AttentionCheck();">Next</button>
+    </div>
+
+    <!-- This is the completion code page -->
+    <div class="slide" id="confirmation_code" style="display:none">
+        <p><span style="font-size:16px;"> You are all done! Thank you for contributing to science!</span></p>
+        <p><span style="font-size:16px;"> Here is your unique prolific code: </span></p>
+        <div class="slide" id="generated_confirmation_code">
+
+        </div>    
+
+        <p><span style="font-size:16px;"> Please copy and paste this code to Prolific to complete this study. </span></p>
+    </div>
+    <script src="./moving-dart-v6-1000.js"></script>
+  </body>
+</html>

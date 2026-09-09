@@ -1,0 +1,10 @@
+{
+  "url": "https://ndownloader.figshare.com/files/26035079",
+  "status": 206,
+  "content_range": "bytes 0-8191/466171904",
+  "content_length": "8192",
+  "range_requested": "bytes=0-8191",
+  "bytes_saved": 8192,
+  "sha256": "f3d929c3152b17c09542d8d0cc8a45867d0e22f74c5aff617dd728e679aa75b6",
+  "magic": "b'SQLite format 3\\x00'"
+}

@@ -1,0 +1,93 @@
+[
+  {
+    "file": "originals/00.exp1a-raw-batch1.csv",
+    "osf_id": "6691a1681de9f7029230df12",
+    "url": "https://osf.io/download/rbc8d/?version=1",
+    "osf_materialized_path": "/Data & Analysis Code/data/exp-1a/00.exp1a-raw-batch1.csv",
+    "version": 1,
+    "date_modified": "2024-07-12T21:34:32.407944",
+    "retrieved_utc": "2026-09-09T00:59:47.806961+00:00",
+    "bytes": 1637312,
+    "sha256": "25b454aa2cbe878f0db25d3c054c545cbc867829c861d74ef826155a9eb8c7a3",
+    "osf_sha256": "25b454aa2cbe878f0db25d3c054c545cbc867829c861d74ef826155a9eb8c7a3",
+    "license": "CC0 1.0 Universal (OSF project xzm5c metadata)"
+  },
+  {
+    "file": "originals/02.exp1a-raw-batch2.csv",
+    "osf_id": "6691a166ec07f9021fbdbd92",
+    "url": "https://osf.io/download/qf8bc/?version=1",
+    "osf_materialized_path": "/Data & Analysis Code/data/exp-1a/02.exp1a-raw-batch2.csv",
+    "version": 1,
+    "date_modified": "2024-07-12T21:34:30.668499",
+    "retrieved_utc": "2026-09-09T00:59:50.928900+00:00",
+    "bytes": 162524,
+    "sha256": "53322c18dc906de306798a4c24e20acc2f683ad44bc571d6bf9d954aa8828cee",
+    "osf_sha256": "53322c18dc906de306798a4c24e20acc2f683ad44bc571d6bf9d954aa8828cee",
+    "license": "CC0 1.0 Universal (OSF project xzm5c metadata)"
+  },
+  {
+    "file": "originals/01.exp1a-attncheck-batch1.csv",
+    "osf_id": "6691a167ec07f9021fbdbd94",
+    "url": "https://osf.io/download/3wqs2/?version=1",
+    "osf_materialized_path": "/Data & Analysis Code/data/exp-1a/01.exp1a-attncheck-batch1.csv",
+    "version": 1,
+    "date_modified": "2024-07-12T21:34:31.296447",
+    "retrieved_utc": "2026-09-09T00:59:54.088868+00:00",
+    "bytes": 40958,
+    "sha256": "af0fc9429e6c45120a66f977049fce0e3b3f8c61c2fd6b140adaa6e9bda31abd",
+    "osf_sha256": "af0fc9429e6c45120a66f977049fce0e3b3f8c61c2fd6b140adaa6e9bda31abd",
+    "license": "CC0 1.0 Universal (OSF project xzm5c metadata)"
+  },
+  {
+    "file": "originals/03.exp1a-attncheck-batch2.csv",
+    "osf_id": "6691a1675a51c402c4e80790",
+    "url": "https://osf.io/download/bmwh7/?version=1",
+    "osf_materialized_path": "/Data & Analysis Code/data/exp-1a/03.exp1a-attncheck-batch2.csv",
+    "version": 1,
+    "date_modified": "2024-07-12T21:34:31.236243",
+    "retrieved_utc": "2026-09-09T00:59:56.858285+00:00",
+    "bytes": 4740,
+    "sha256": "dd4a53c667e16b443aa3f2f7e9e35a0f06661113885190577d1f3c04565375bd",
+    "osf_sha256": "dd4a53c667e16b443aa3f2f7e9e35a0f06661113885190577d1f3c04565375bd",
+    "license": "CC0 1.0 Universal (OSF project xzm5c metadata)"
+  },
+  {
+    "file": "originals/Experiment 1a.Rmd",
+    "osf_id": "67ae374f1badeac69219f349",
+    "url": "https://osf.io/download/seb9w/?version=1",
+    "osf_materialized_path": "/Data & Analysis Code/Experiment 1a.Rmd",
+    "version": 1,
+    "date_modified": "2025-02-13T18:17:51.601760",
+    "retrieved_utc": "2026-09-09T01:00:03.125197+00:00",
+    "bytes": 29315,
+    "sha256": "3600c6f0c247352ceecff2bee8635b21b751179e3b2c54063a89b092b1243d4a",
+    "osf_sha256": "3600c6f0c247352ceecff2bee8635b21b751179e3b2c54063a89b092b1243d4a",
+    "license": "CC0 1.0 Universal (OSF project xzm5c metadata)"
+  },
+  {
+    "file": "originals/index-v6-1000.html",
+    "osf_id": "65e1fef5c2c66f00d6fb21e4",
+    "url": "https://osf.io/download/uk5yt/?version=1",
+    "osf_materialized_path": "/Study Materials/Code for online experiments/Exp. 1a/index-v6-1000.html",
+    "version": 1,
+    "date_modified": "2024-03-01T16:14:45.161032",
+    "retrieved_utc": "2026-09-09T01:00:06.454028+00:00",
+    "bytes": 20438,
+    "sha256": "a0c28079aee1c6999107e83b8b44948ae06fc43aa1a39c8e91b089daa0cf4a50",
+    "osf_sha256": "a0c28079aee1c6999107e83b8b44948ae06fc43aa1a39c8e91b089daa0cf4a50",
+    "license": "CC0 1.0 Universal (OSF project xzm5c metadata)"
+  },
+  {
+    "file": "originals/moving-dart-v6-1000.js",
+    "osf_id": "65e1fef340bb8000ebcfd831",
+    "url": "https://osf.io/download/yqz2n/?version=1",
+    "osf_materialized_path": "/Study Materials/Code for online experiments/Exp. 1a/moving-dart-v6-1000.js",
+    "version": 1,
+    "date_modified": "2024-03-01T16:14:43.690165",
+    "retrieved_utc": "2026-09-09T01:00:10.233330+00:00",
+    "bytes": 28963,
+    "sha256": "4263eead63da47a50c1067094f4597f9bd3d1c131a5b28f474772ae05966583c",
+    "osf_sha256": "4263eead63da47a50c1067094f4597f9bd3d1c131a5b28f474772ae05966583c",
+    "license": "CC0 1.0 Universal (OSF project xzm5c metadata)"
+  }
+]

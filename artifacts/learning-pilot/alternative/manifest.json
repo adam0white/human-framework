@@ -1,0 +1,141 @@
+{
+  "inspected_at_utc": "2026-09-09T01:03:51.832178+00:00",
+  "scope": "Feasibility only. No participant-row decoding, curve fits, author-pipeline execution, model selection, or questionnaire/profile downloads.",
+  "licenses": {
+    "figshare_7268387_v1_v2": {
+      "name": "CC BY 4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "evidence": "item API metadata"
+    },
+    "figshare_13567409_v3": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT",
+      "evidence": "item API metadata; title expressly covers analysis code and data"
+    },
+    "adm": "not established; no license file in captured complete tree"
+  },
+  "records": [
+    {
+      "path": "adm-dataset-readme.md",
+      "bytes": 297,
+      "sha256": "b645a887a5685c4f7714da69614066a0f1579f5243c36142c320f5dc5b6e113f",
+      "md5": "fde0702e062692004bc581702dd3f2d2",
+      "source_url": "https://raw.githubusercontent.com/ccnu-mathits/ADM/main/Dataset/README.md",
+      "source_scope": "full source file"
+    },
+    {
+      "path": "adm-real-readme.md",
+      "bytes": 1304,
+      "sha256": "c68993b00de65c54a25f04ccfafcc5e61bf294b5aca927a60031bfcbc839a20d",
+      "md5": "632e34e8e7143635d9f4aa59eea6fd79",
+      "source_url": "https://raw.githubusercontent.com/ccnu-mathits/ADM/main/Real_world_dataset_application/README.md",
+      "source_scope": "full source file"
+    },
+    {
+      "path": "adm-tree.json",
+      "bytes": 15728,
+      "sha256": "f6a4cd733cbbb613d323c6bd4736e9bdca26cb00cd0e7a4f6ef3604a89d57c2f",
+      "md5": "8493e02f04c59cda9e5d91c62a3d3f6e",
+      "source_url": "https://api.github.com/repos/ccnu-mathits/ADM/git/trees/main?recursive=1",
+      "source_scope": "full source file"
+    },
+    {
+      "path": "cogcarsim2_2017.header.bin",
+      "bytes": 8192,
+      "sha256": "f3d929c3152b17c09542d8d0cc8a45867d0e22f74c5aff617dd728e679aa75b6",
+      "md5": "ac95ee2501813e15c14eb4ecb7aca2cd",
+      "source_url": "https://ndownloader.figshare.com/files/26035079",
+      "source_scope": "partial range bytes 0-8191 of 466171904; no whole-file hash claim"
+    },
+    {
+      "path": "cogcarsim2_2017.header.json",
+      "bytes": 331,
+      "sha256": "f1ace521d5a9f6610b28de3f392fcada95d0c0181e35eeeb1ea3b407035b5222",
+      "md5": "ca2df5d5fd9e2882eb374272f7c3a5cc",
+      "source_url": null,
+      "source_scope": "derived local metadata"
+    },
+    {
+      "path": "cogcarsim2_2017.schema-extract.json",
+      "bytes": 1205,
+      "sha256": "5b6f4eba54a4d4fc2110dff2d286ea4a553ebafcb63974d3666865f8e86df11a",
+      "md5": "c1dc1fc0d5ac1bd0ff30d985537f0f47",
+      "source_url": null,
+      "source_scope": "derived local metadata"
+    },
+    {
+      "path": "cogcarsim_analyses.Rmd",
+      "bytes": 65890,
+      "sha256": "92011e6093438ff9e4f79d5e81df8fff1bb9ea25fae919b3780f3e4caa11e503",
+      "md5": "da0a880e751f6b0053d9be40986745b0",
+      "source_url": "https://ndownloader.figshare.com/files/27512372",
+      "source_scope": "full source file"
+    },
+    {
+      "path": "figshare-13567409.json",
+      "bytes": 7227,
+      "sha256": "647fda159c19762efd62cf65a88d224c437b66efabcf6ba1531c1ae0dc6012f6",
+      "md5": "2a7be2bbb5bf3153464640583030cf12",
+      "source_url": "https://api.figshare.com/v2/articles/13567409",
+      "source_scope": "full source file"
+    },
+    {
+      "path": "figshare-7268387-versions-1.json",
+      "bytes": 3106,
+      "sha256": "c0bc4085d1cee60d8a220bfcdefee1950597242f40c667d85d8041aca6362b12",
+      "md5": "37c9216fde420791219a7004d57c74a3",
+      "source_url": "https://api.figshare.com/v2/articles/7268387/versions/1",
+      "source_scope": "full source file"
+    },
+    {
+      "path": "figshare-7268387-versions.json",
+      "bytes": 164,
+      "sha256": "83604af195b1407435d7b3f3e906c819168ac0cc3940b478685b4fb8949eba75",
+      "md5": "99eb1864629f84c715d05531d1f4aff3",
+      "source_url": "https://api.figshare.com/v2/articles/7268387/versions",
+      "source_scope": "full source file"
+    },
+    {
+      "path": "figshare-7268387.json",
+      "bytes": 3341,
+      "sha256": "6a90580884336d2555a682a5c1caeaad121b82bcf9357acbb07a6f068be80074",
+      "md5": "aad8b7635b040a0334666c266d7f88a0",
+      "source_url": "https://api.figshare.com/v2/articles/7268387",
+      "source_scope": "full source file"
+    },
+    {
+      "path": "flowcar-readme.md",
+      "bytes": 2296,
+      "sha256": "635df0865512dfe062b98aec178f1e0864157308bd8655e427b67f578bb9308e",
+      "md5": "29de532c96878399f11a2eb433670999",
+      "source_url": "https://raw.githubusercontent.com/hipercog/flowcar/master/README.md",
+      "source_scope": "full source file"
+    },
+    {
+      "path": "flowcar-tree.json",
+      "bytes": 16089,
+      "sha256": "a60e667fb7adb40b2f62e8a03852513678a5f8990b3868a8878b48529bc2dcd5",
+      "md5": "6444aacaece380ec5eb67abd040eab8e",
+      "source_url": "https://api.github.com/repos/hipercog/flowcar/git/trees/master?recursive=1",
+      "source_scope": "full source file"
+    }
+  ],
+  "access_failures": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6530424/",
+      "result": "Web tool returned browser check; primary Frontiers article used instead."
+    },
+    {
+      "url": "https://zenodo.org/api/records/10938670",
+      "result": "First attempt HTTP 504; second attempt 20-second read timeout. No payload saved."
+    },
+    {
+      "url": "https://zenodo.org/records/10938670",
+      "result": "Web tool fetch failure. No payload saved."
+    },
+    {
+      "url": "https://drive.google.com/file/d/1iN2SculPeAjInIpkisDL-LQT0rGsdIQg/view?usp=drive_link",
+      "result": "Web tool fetch failure. No payload saved."
+    }
+  ]
+}

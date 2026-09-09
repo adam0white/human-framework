@@ -1,0 +1,41 @@
+{
+  "checked_local_date": "2026-09-08 America/Chicago",
+  "checked_utc_date": "2026-09-09",
+  "paper": {
+    "authors": [
+      "Xiuyuan Zhang",
+      "Samuel D. McDougle",
+      "Julia A. Leonard"
+    ],
+    "title": "People accurately predict the shape but not the parameters of skill learning curves",
+    "journal": "Cognition",
+    "year": 2025,
+    "volume": 258,
+    "article": "106083",
+    "doi": "10.1016/j.cognition.2025.106083",
+    "doi_url": "https://doi.org/10.1016/j.cognition.2025.106083",
+    "author_hosted_pdf": "https://jlnrd.github.io/Publications/Zhang%2C%20McDougle%2C%20%26%20Leonard%202025.pdf",
+    "methods_location": "section 2.1, printed page 3 (PDF zero-based page 2)",
+    "license_note": "Journal article has its own copyright; OSF project CC0 is not attributed to the published article. Paper was read as a primary source, not copied into the repository."
+  },
+  "project": {
+    "url": "https://osf.io/xzm5c/",
+    "api": "https://api.osf.io/v2/nodes/xzm5c/",
+    "license": "CC0 1.0 Universal",
+    "license_api": "https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e96c/",
+    "access": "Public anonymous API read and OSF supplied versioned downloads; no credentials or contact with authors."
+  },
+  "preregistration": {
+    "url": "https://osf.io/cw7g2/",
+    "api": "https://api.osf.io/v2/registrations/cw7g2/",
+    "use": "Prospective original sample/exclusion rule; no outcome-dependent exclusion adopted for this pilot."
+  },
+  "nonanalysis_declaration": "No candidate model fit, slope evaluation, outcome-by-dose summary, trajectory plot, or chronological holdout score was generated in access work. Methods/source search exposed the published exponential claim; this is not a blind cohort.",
+  "not_downloaded": [
+    "04.exp1a-cleaned-data.csv",
+    "05.exp1a-learning-rate.csv",
+    "06.exp1a-exponential-model-output.csv",
+    "other experiments"
+  ],
+  "local_reproduction": "python3 artifacts/learning-pilot/data-access/check-schema.py"
+}

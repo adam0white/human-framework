@@ -1,0 +1,251 @@
+{
+  "scope": "Administrative schema, completeness, chronology and measurement-identity checks only; no fitted models, outcome summaries by dose, trend plots, or learning-based exclusions.",
+  "downloaded_originals_verified": 7,
+  "metadata_snapshots_verified": 9,
+  "total_participants": 55,
+  "total_main_toss_rows": 2750,
+  "reports": [
+    {
+      "file": "00.exp1a-raw-batch1.csv",
+      "headers": [
+        "unique_id",
+        "window.scrollY",
+        "window.scrollX",
+        "board_center_x",
+        "board_center_y",
+        "board_bullseye_radius",
+        "board_outerRing_radius",
+        "startExperimentTime",
+        "endExperimentTime",
+        "startTrialTime",
+        "endTrialTime",
+        "trial_num",
+        "condition",
+        "trial_duration",
+        "which_throw",
+        "arrow_startingDirection",
+        "H_animation_speed_time",
+        "arrow_H_moving_duration",
+        "arrow_H_stopping_x",
+        "arrow_H_stopping_y",
+        "arrow_V_stopping_x",
+        "arrow_V_stopping_y",
+        "strength_duration",
+        "up_distance_traveled",
+        "up_distance_unit",
+        "distance_from_radius",
+        "which_ring",
+        "which_quadrant",
+        "throw_score",
+        "trial_score",
+        "total_score",
+        "played_response",
+        "difficulty_response",
+        "press_space_response",
+        "press_enter_response",
+        "dominant_hand_response",
+        "frequency_response",
+        "names_response",
+        "race_response",
+        "gender_response",
+        "education_response",
+        "income_response",
+        "country_response",
+        "age_response",
+        "id"
+      ],
+      "all_rows": 2550,
+      "conditions": {
+        "main": 2500,
+        "attention_checks": 50
+      },
+      "participants": 50,
+      "main_rows": 2500,
+      "main_rows_per_participant": {
+        "50": 50
+      },
+      "participants_with_order_other_than_1_to_50": 0,
+      "duplicate_participant_ids_between_batches": 0,
+      "main_trial_num_values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "main_which_throw_values": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "finite_numeric_counts": {
+        "distance_from_radius": 2500,
+        "arrow_V_stopping_x": 2500,
+        "arrow_V_stopping_y": 2500,
+        "board_center_x": 2500,
+        "board_center_y": 2500,
+        "board_outerRing_radius": 2500,
+        "board_bullseye_radius": 2500,
+        "strength_duration": 2500,
+        "arrow_H_moving_duration": 2500,
+        "trial_duration": 2500
+      },
+      "negative_distance_rows": 0,
+      "distance_matches_euclidean_coordinates_rows": 2500,
+      "task_geometry_values": {
+        "board_outerRing_radius": [
+          139.922,
+          139.974,
+          140.0
+        ],
+        "board_bullseye_radius": [
+          13.9974,
+          13.9986,
+          14.0
+        ],
+        "H_animation_speed_time": [
+          1000.0
+        ],
+        "up_distance_unit": [
+          300.0
+        ]
+      },
+      "startTrialTime_missing_by_within_block_throw": {
+        "0": 0,
+        "1": 500,
+        "2": 500,
+        "3": 500,
+        "4": 500
+      },
+      "record_id_strictly_increasing_within_participant": true,
+      "all_main_unique_ids_have_WLL_prefix": true,
+      "direct_platform_id_columns_absent": true
+    },
+    {
+      "file": "02.exp1a-raw-batch2.csv",
+      "headers": [
+        "unique_id",
+        "window.scrollY",
+        "window.scrollX",
+        "board_center_x",
+        "board_center_y",
+        "board_bullseye_radius",
+        "board_outerRing_radius",
+        "startExperimentTime",
+        "endExperimentTime",
+        "startTrialTime",
+        "endTrialTime",
+        "trial_num",
+        "condition",
+        "trial_duration",
+        "which_throw",
+        "arrow_startingDirection",
+        "H_animation_speed_time",
+        "arrow_H_moving_duration",
+        "arrow_H_stopping_x",
+        "arrow_H_stopping_y",
+        "arrow_V_stopping_x",
+        "arrow_V_stopping_y",
+        "strength_duration",
+        "up_distance_traveled",
+        "up_distance_unit",
+        "distance_from_radius",
+        "which_ring",
+        "which_quadrant",
+        "throw_score",
+        "trial_score",
+        "total_score",
+        "played_response",
+        "difficulty_response",
+        "press_space_response",
+        "press_enter_response",
+        "dominant_hand_response",
+        "frequency_response",
+        "names_response",
+        "race_response",
+        "gender_response",
+        "education_response",
+        "income_response",
+        "country_response",
+        "age_response",
+        "id"
+      ],
+      "all_rows": 255,
+      "conditions": {
+        "main": 250,
+        "attention_checks": 5
+      },
+      "participants": 5,
+      "main_rows": 250,
+      "main_rows_per_participant": {
+        "50": 5
+      },
+      "participants_with_order_other_than_1_to_50": 0,
+      "duplicate_participant_ids_between_batches": 0,
+      "main_trial_num_values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "main_which_throw_values": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "finite_numeric_counts": {
+        "distance_from_radius": 250,
+        "arrow_V_stopping_x": 250,
+        "arrow_V_stopping_y": 250,
+        "board_center_x": 250,
+        "board_center_y": 250,
+        "board_outerRing_radius": 250,
+        "board_bullseye_radius": 250,
+        "strength_duration": 250,
+        "arrow_H_moving_duration": 250,
+        "trial_duration": 250
+      },
+      "negative_distance_rows": 0,
+      "distance_matches_euclidean_coordinates_rows": 250,
+      "task_geometry_values": {
+        "board_outerRing_radius": [
+          140.0
+        ],
+        "board_bullseye_radius": [
+          14.0
+        ],
+        "H_animation_speed_time": [
+          1000.0
+        ],
+        "up_distance_unit": [
+          300.0
+        ]
+      },
+      "startTrialTime_missing_by_within_block_throw": {
+        "0": 0,
+        "1": 50,
+        "2": 50,
+        "3": 50,
+        "4": 50
+      },
+      "record_id_strictly_increasing_within_participant": true,
+      "all_main_unique_ids_have_WLL_prefix": true,
+      "direct_platform_id_columns_absent": true
+    }
+  ]
+}

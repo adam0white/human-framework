@@ -1,0 +1,8 @@
+{
+  "note": "CREATE TABLE strings only, extracted from first 8192 bytes; not a complete database integrity or row count check.",
+  "schema": [
+    "CREATE TABLE blob (blob integer, run integer, x real, y real, shape integer, color integer, \n                                                    step_show integer, step_hide integer, step_near integer, xgap real)",
+    "CREATE TABLE run (run integer, participant text, date text, task integer, totalblobs integer, \n                                                    seed integer, min_velocity real, max_velocity real, \n                                                    start_velocity real, end_velocity real, avg_velocity real, collisions integer,\n                                                    speed_drops integer,\n                                                    duration real, distance real, steps integer, version string, description string)",
+    "CREATE TABLE step (step integer, run integer, clock_begin real, time real,\n                                                    x real, y real, collision integer, \n                                                    wheelpos real, throttlepos real, velocity real, chosenvel real)"
+  ]
+}
