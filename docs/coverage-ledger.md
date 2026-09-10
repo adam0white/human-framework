@@ -1,8 +1,19 @@
 # Executable coverage and research boundaries
 
-Snapshot updated 2026-09-08 through app 0.14 and the private paid-work, action-offer and ordinary-meal studies. The laboratory is retired from public/local serving; its headless sources remain historical evidence. Current delivered games use their recorded Human 0.1.0/0.1.1 host boundaries; the portable package remains Human/runtime 0.1.1 plus clock 0.1.0. This ledger distinguishes historical laboratory mechanisms from the narrower [portable components](portable-runtime.md), private experiments and unimplemented responsibilities in the [broader proposal](framework-proposal.md). Older “next” statements below are dated provenance; use the current handoff/roadmap.
+Snapshot updated 2026-09-09 after the completed reconsideration study and the user's request to leave games aside. The goal remains situated human action and development. The [roadmap](roadmap.md) and [latest direction record](direction-2026-09-09.md) describe the gap and proposed stages; the adult-over-days/weeks recommendation, horizon and reference situations are not selected. The scheduled task remains paused, and documenting the roadmap does not start implementation.
+
+Current delivery remains app 0.14.1. The portable package is Human/runtime 0.1.1 plus clock 0.1.0; delivered hosts retain their recorded Human 0.1.0/0.1.1 boundaries. The laboratory is retired from serving, with source and evidence retained privately. Older “next” statements below are dated provenance, not the current queue.
 
 **Implemented** means an executable transition, interface, or record exists. **Proxy** means an implemented quantity or rule is an authored engineering approximation without human calibration. **Unmodeled** means the kernel supplies no mechanism for that function. A proposed interface below is a research design, not an existing plugin API. A rejection test states what would count against adding a mechanism or making the associated claim.
+
+| Current boundary | Coverage |
+|---|---|
+| [Portable kit](portable-runtime.md) | Body/capacity proxies, paid task practice, attempt lifecycle, validated snapshots and an optional event clock. It exports no general cognition, social or development module. |
+| Delivered host rules | Automatic available recovery, owned meals, durable partial work, accepted projects, consent, bounded revision and actor-local factual reports. These are distinct implementations, not interchangeable faculties. |
+| Private candidates | Observation memory, social contracts, work and coordination helpers, and the reconsideration policy have executable evidence but remain unpromoted. |
+| Broader open work | Sleep/health, retention and knowledge, attention, deliberation, habits, emotion, broader motives and relationships, childhood, aging/inheritance and institutions. Positive representation of understood duty, worship, repentance and moral development remains proposed; no spiritual-standing measurement is admitted. |
+
+Software checks establish execution within these boundaries. They do not supply a completion percentage for the broader person model or empirical validation of the authored coefficients.
 
 ## Latest ordinary-meal preflight
 

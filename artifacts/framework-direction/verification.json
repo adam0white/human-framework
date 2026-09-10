@@ -1,0 +1,122 @@
+{
+  "verifiedAt": "2026-09-10T04:05:14.550Z",
+  "baseline": "45e95b5a16158a5f5a1bf12c0151ac6436270aa7",
+  "scope": "Private documentation; fresh build/manifest and two sampled live payloads, not a full production browser audit or simulation rerun",
+  "changedPaths": [
+    "AGENTS.md",
+    "HANDOFF.md",
+    "README.md",
+    "artifacts/framework-direction/verification.json",
+    "docs/coverage-ledger.md",
+    "docs/deployment.md",
+    "docs/direction-2026-09-09.md",
+    "docs/framework-proposal.md",
+    "docs/history/handoff-through-2026-09-09.md",
+    "docs/history/roadmap-through-2026-09-09.md",
+    "docs/mvp-contract.md",
+    "docs/player-feedback-2026-09-08.md",
+    "docs/reviews/2026-09-09-framework-direction.md",
+    "docs/roadmap.md",
+    "research/decision-status.md"
+  ],
+  "documentation": {
+    "markdownFiles": 14,
+    "localLinks": 353,
+    "markdownFragments": 3,
+    "failures": [],
+    "whitespaceCheck": "passed",
+    "archives": [
+      {
+        "source": "HANDOFF.md",
+        "archive": "docs/history/handoff-through-2026-09-09.md",
+        "sourceCommit": "45e95b5a16158a5f5a1bf12c0151ac6436270aa7",
+        "markdownLinks": 74,
+        "prosePreserved": true,
+        "linkDestinationsPreserved": true
+      },
+      {
+        "source": "docs/roadmap.md",
+        "archive": "docs/history/roadmap-through-2026-09-09.md",
+        "sourceCommit": "45e95b5a16158a5f5a1bf12c0151ac6436270aa7",
+        "markdownLinks": 54,
+        "prosePreserved": true,
+        "linkDestinationsPreserved": true
+      }
+    ]
+  },
+  "publicBoundary": {
+    "runtimePublicPackageLocksUnchanged": true,
+    "build": {
+      "files": 72,
+      "modules": 43,
+      "staticEdges": 59,
+      "release": {
+        "appVersion": "0.14.1",
+        "runtimeVersion": "0.1.1",
+        "clockVersion": "0.1.0",
+        "commit": "45e95b5a16158a5f5a1bf12c0151ac6436270aa7",
+        "dirty": true,
+        "assetsSha256": "671311ad92bedce24376e84ebe8264cf7fddb8cc70af9fb024a61b86a8bce48b"
+      }
+    },
+    "liveManifest": {
+      "appVersion": "0.14.1",
+      "runtimeVersion": "0.1.1",
+      "clockVersion": "0.1.0",
+      "commit": "235d2e6c077df1a68c508091f54c673391e3a88f",
+      "dirty": false,
+      "assetsSha256": "671311ad92bedce24376e84ebe8264cf7fddb8cc70af9fb024a61b86a8bce48b"
+    },
+    "liveManifestMatchesHistoricalRelease": true,
+    "publicSamples": [
+      {
+        "route": "/",
+        "status": 200,
+        "bytes": 6188,
+        "sha256": "a7de2cf7b1e9298f8558c5871b4864899f73cbf19534f268b6206172fc7b623d"
+      },
+      {
+        "route": "/src/human/v0.1.1.js",
+        "status": 200,
+        "bytes": 11580,
+        "sha256": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00"
+      }
+    ],
+    "privateChecks": [
+      {
+        "path": "/docs/roadmap.md",
+        "status": 404
+      },
+      {
+        "path": "/docs/direction-2026-09-09.md",
+        "status": 404
+      },
+      {
+        "path": "/docs/history/handoff-through-2026-09-09.md",
+        "status": 404
+      },
+      {
+        "path": "/docs/history/roadmap-through-2026-09-09.md",
+        "status": 404
+      },
+      {
+        "path": "/docs/reviews/2026-09-09-framework-direction.md",
+        "status": 404
+      },
+      {
+        "path": "/artifacts/framework-direction/verification.json",
+        "status": 404
+      }
+    ]
+  },
+  "automation": {
+    "id": "advance-human-framework",
+    "status": "PAUSED",
+    "readOnly": true
+  },
+  "simulationTests": {
+    "rerun": false,
+    "priorBaseline": "45e95b5a16158a5f5a1bf12c0151ac6436270aa7",
+    "priorReportedPassCount": 871
+  }
+}

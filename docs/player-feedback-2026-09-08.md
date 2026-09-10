@@ -1,5 +1,7 @@
 # Direct player feedback, 2026-09-08
 
+Later direction: on 2026-09-09 the user called the games “ok,” set them aside, and requested the broader framework roadmap and a clean remotely pushed handoff. See the [separate exact direction record](direction-2026-09-09.md). It does not add another participant or game-specific play observation to the feedback below.
+
 Source: direct user messages in Codex task `01a07f66-d78e-7140-bd9e-b5691a048b2a`, during autonomous work after app 0.9. One known speaker. No new save, transcript export, participant identity study or timed observation accompanied these messages. The first message was later repeated verbatim; retain it once and do not count the duplicate as another participant or independent confirmation. Preserve the user's phrase “I'm down with the Before the Rain” without silently interpreting it as a completion receipt.
 
 ## Exact messages

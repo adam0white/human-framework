@@ -2,7 +2,7 @@
 
 The review site is **https://human.adamwhite.work**, deployed as the `human-framework` Cloudflare Worker with Static Assets in the existing Default account. The private source repository is **https://github.com/adam0white/human-framework**. This replaces localhost as the delivery destination. The browser runs the simulation locally; no simulation backend, account login or inference API is required.
 
-**Current scheduling status, 2026-09-09:** the user paused `advance-human-framework` and requested completion of the interrupted reconsideration study. That study is complete; the task remains paused. The workflow below still applies to authorized deliveries, but it is not permission to resume the schedule.
+**Current scheduling status, 2026-09-09:** the user paused `advance-human-framework`; the interrupted reconsideration study is complete. The later [direction and handoff request](direction-2026-09-09.md) sets games aside and authorizes documentation plus a remote push. The task remains paused. The workflow below applies to authorized app deliveries; private documentation changes use the separately verified deployed source and do not require a deployment.
 
 ## Release workflow
 
@@ -36,6 +36,6 @@ Browser QA must distinguish a real failed navigation from a Cloudflare speculati
 
 Use the recorded deployed version from the release record to identify a prior good Worker deployment. Verify current Wrangler rollback help and Cloudflare's [rollback rules](https://developers.cloudflare.com/workers/versions-and-deployments/rollbacks/) before changing production. Alternatively, restore a known source commit on a separate branch, test/build it, and deploy that reviewed version. Never rewrite or reset the user's working changes to perform a rollback.
 
-App 0.6 adds no GitHub auto-deployment credential. The user-authorized hourly Codex heartbeat `advance-human-framework` continues development in the originating task, including the same review/test/push/deploy/live-verification workflow for app changes. It is a local task continuation, not a simulation backend or Worker cron. It reports meaningful milestones and blockers rather than routine hourly status. Future CI deployment should retain these release requirements.
+App 0.6 added no GitHub auto-deployment credential. Its user-authorized hourly Codex heartbeat `advance-human-framework` previously continued development in the originating task, including the same review/test/push/deploy/live-verification workflow for app changes. That heartbeat is now paused and requires a new user instruction to resume. It is a local task continuation, not a simulation backend or Worker cron. If resumed, it should report meaningful milestones and blockers rather than routine hourly status. Future CI deployment should retain these release requirements.
 
 Configuration references: [Static Assets](https://developers.cloudflare.com/workers/static-assets/), [custom domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/), [headers](https://developers.cloudflare.com/workers/static-assets/headers/).

@@ -1,6 +1,7 @@
 # Project workflow
 
 - Start a resumed task with [HANDOFF.md](HANDOFF.md), then [the MVP contract](docs/mvp-contract.md) and [the roadmap](docs/roadmap.md). Historical lane branches and dated release records are provenance, not the current work queue.
+- Current direction, 2026-09-09: leave games aside and keep scheduled work paused. Preserve the full goal of situated human action and development; the narrow body/action kit is an intermediate deliverable. The [direction record](docs/direction-2026-09-09.md) distinguishes confirmed instructions from the roadmap's unselected population, horizon and candidate stages. A documentation handoff does not resume implementation or automation.
 
 The user's public review site is **https://human.adamwhite.work**. Use this for mobile review and future deliveries; localhost is optional development tooling.
 

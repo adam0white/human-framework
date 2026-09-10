@@ -1,6 +1,10 @@
 # Human Framework — research proposal v0.1
 
-Prepared 2026-09-06, America/Chicago. Status: **proposal for discussion**, with illustrative mathematics; no engine or empirical calibration exists yet. The governing brief is the current conversation, including the user's Sunni, Hanafi–Maturidi starting point. See the [source method](../research/source-method.md) for evidence limits and attribution.
+Prepared 2026-09-06, America/Chicago; current interpretation updated 2026-09-09. This is the broader **research proposal**, with illustrative mathematics, not a specification of everything implemented. A deterministic body/practice/clock kit and richer host experiments now exist; a comprehensive person model and empirical calibration do not. See the [coverage ledger](coverage-ledger.md) for actual boundaries and the [source method](../research/source-method.md) for evidence limits and attribution.
+
+The [latest user direction](direction-2026-09-09.md) leaves games aside and asks how to reach the full goal of situated human action and development. The [roadmap](roadmap.md) proposes a staged route without reducing that goal to the current kit. An adult-over-days/weeks starting point is a recommendation: the user has not selected the horizon or reference situations. This documentation checkpoint does not authorize the proposed next implementation, and the scheduled task remains paused. The user's Sunni, Hanafi–Maturidi starting point and the positive treatment of purpose, worship and moral development below remain part of the research direction.
+
+The sections below retain the original proposal. Their suggested demonstrator and sequence are historical design proposals; use the current roadmap for further decisions.
 
 ## 1. What we should try to build
 

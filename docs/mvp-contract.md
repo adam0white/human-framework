@@ -1,10 +1,14 @@
 # What may graduate to MVP
 
-Established 2026-09-07; current direction revised through app 0.14.1 and the private work, offer, meal, empirical-learning and practice-incentive studies on 2026-09-08. The project has a broader research direction than its first reusable software deliverable. This contract makes the first deliverable small enough to finish without silently renaming the larger goal.
+Established 2026-09-07; current direction updated 2026-09-09 after the completed reconsideration study and the user's request to leave games aside and review the framework roadmap. This contract defines a useful first software deliverable within the larger goal of situated human action and development.
 
 ## Current scope correction
 
-The [latest direct instruction](player-feedback-2026-09-08.md#later-correction-after-app-011) makes framework improvement the objective. Games are replaceable experiments, with no required unified campaign, level count, full tutorial sequence or old-save compatibility. The public laboratory is retired; its headless comparisons and historical sources remain private evidence. The only current player reports finishing all games. We can iterate from that feedback without recruiting a fixed number of players as a condition of each software release. Broader human validity and usefulness remain separate unproven claims.
+The [latest direction](direction-2026-09-09.md) puts games aside for now and returns attention to the full framework: embodied people whose knowledge, motives, relationships and capacities can develop over time. The narrow portable kit is useful, but broad faculties and lifespan development remain early or unimplemented. Meaning, understood duty, worship and moral development remain positive research aims, with sourced normative claims, a person's understanding and observable action kept distinct.
+
+The [roadmap](roadmap.md) proposes stages toward that goal; it does not claim that the user has selected an adult-over-days/weeks horizon or the reference situations. This is a documentation and joint-review checkpoint, not authorization to start a proposed implementation. The scheduled task remains paused.
+
+The [earlier correction](player-feedback-2026-09-08.md#later-correction-after-app-011) also remains in force: games are replaceable experiments, with no required unified campaign, level count, full tutorial sequence or old-save compatibility. The public laboratory is retired; its headless comparisons and historical sources remain private evidence. The only current player reports finishing all games. No fixed player count is a condition of each software release; broader human validity and usefulness remain separate unproven claims.
 
 A milestone should fix a demonstrated inconsistency, reduce real host integration obligations, or add a mechanism whose useful consequences survive a serious simpler rival. A new chapter, larger catalog or more validation code alone does not establish progress. Check whether a proposed mechanism can activate in its intended ordinary use before implementation when that check is cheap; supported edge-state benefits need not justify new normal-play controls.
 
