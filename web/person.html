@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#153b2e">
+  <meta name="description" content="Three brief decisions show what one person carries between learning, responsibility, and collaboration.">
+  <link rel="icon" href="data:,">
+  <title>Three moments · Human</title>
+  <link rel="stylesheet" href="/web/person.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a href="/">Human</a>
+      <button id="restart" class="text-button" type="button">Start over</button>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">A two-minute simulation</p>
+          <h1 id="page-title">Three moments</h1>
+          <p class="lede">One person, carried across learning, responsibility, and collaboration.</p>
+        </div>
+        <p id="progress" class="progress" aria-live="polite"></p>
+      </section>
+
+      <div id="notice" class="notice" role="alert" hidden></div>
+
+      <section id="moment" class="moment" aria-labelledby="scene-title">
+        <div class="moment-heading">
+          <p id="day" class="day"></p>
+          <h2 id="scene-title" tabindex="-1"></h2>
+        </div>
+        <p id="situation" class="situation"></p>
+
+        <section id="last-outcome-panel" class="last-outcome" aria-labelledby="last-outcome-title" hidden>
+          <p class="eyebrow">What followed</p>
+          <h3 id="last-outcome-title"></h3>
+          <p id="last-outcome-text"></p>
+        </section>
+
+        <div class="context-grid">
+          <section id="known-panel" class="context-panel" aria-labelledby="known-title" hidden>
+            <h3 id="known-title">Known now</h3>
+            <dl id="known"></dl>
+          </section>
+          <section id="carry-panel" class="context-panel" aria-labelledby="carry-title" hidden>
+            <h3 id="carry-title">Carried here</h3>
+            <dl id="carry"></dl>
+          </section>
+        </div>
+
+        <section id="choice-panel" class="choice-panel" aria-labelledby="choice-title">
+          <h3 id="choice-title">What do you do?</h3>
+          <div id="choices" class="choices"></div>
+        </section>
+      </section>
+
+      <section id="ending" class="ending" aria-labelledby="ending-title" tabindex="-1" hidden>
+        <p class="eyebrow">Across the three moments</p>
+        <h2 id="ending-title">What this person carried</h2>
+        <dl id="summary" class="summary"></dl>
+        <article id="comparison-panel" class="comparison" hidden>
+          <h3 id="comparison-title"></h3>
+          <p id="comparison-text"></p>
+        </article>
+        <div class="replay">
+          <h3>Change an earlier experience</h3>
+          <p>Replay from the beginning with one more experience removed.</p>
+          <div class="replay-buttons" role="group" aria-label="Replay without one earlier experience">
+            <button type="button" data-replay="instruction">Without the lesson</button>
+            <button type="button" data-replay="accepted">Without the promise</button>
+            <button type="button" data-replay="observedBreach">Without observed history</button>
+          </div>
+        </div>
+      </section>
+
+      <details class="model-notes">
+        <summary>Model notes</summary>
+        <p>This simulation uses authored, deterministic rules across three dated episodes. It does not simulate the days between them.</p>
+        <p>The rules are not a calibrated model of physiology or psychology. The simulation does not score spiritual worth or divine acceptance.</p>
+      </details>
+    </main>
+
+    <footer>A small view of knowledge, responsibility, and interaction carried forward.</footer>
+  </div>
+  <script type="module" src="/web/person.js"></script>
+</body>
+</html>

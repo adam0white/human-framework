@@ -11,3 +11,11 @@ This approves the proposed three-adult, connected dated-episode milestone and ro
 The selected [design](plans/2026-09-14-focused-framework-milestone.md) is an integrated advance toward the full framework. The [delivery](connected-person.md) records executable coverage and limitations. The full ambition remains situated human action and development, including cognition, relationships, moral/spiritual life and aging. Existing games remain set aside.
 
 The scenario content, generic ordered decision rules and dated-episode approximation are engineering choices made for this milestone. The user's approval is not empirical validation, scholarly endorsement or a selection of every later roadmap stage.
+
+## Requested focused showcase
+
+After the connected-person milestone was delivered, the user requested:
+
+> Cool thanks. Now let's progress a bit more, and deliver a tiny, focused game or a simulation to showcase our progress so far.
+
+This authorizes the focused Three moments simulation and its normal public deployment. It supersedes the earlier restriction on starting a new showcase for this task only; it does not reopen the older game queues or resume scheduled work. The selected scope is three interactive decisions through the existing shared person model, an explanation of carried consequences and a replay with one earlier experience removed. [Design and execution record](plans/2026-09-14-three-moments.md).

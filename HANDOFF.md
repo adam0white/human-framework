@@ -6,15 +6,15 @@ Updated 2026-09-14 for the approved focused manual resumption. Read this file, t
 
 The framework is the product: a reusable account of situated human action and development, including cognition, purposes, relationships, moral/spiritual life and aging. It is Islam-guided, with a Sunni Hanafi–Maturidi starting point, and empirically informed. Distinguish revelation, interpretation, empirical findings and engineering rules. Do not equate software correctness with a validated human model.
 
-The user approved the connected-person milestone and asked for progress without excessive caution or small-task drift. The lead owns routine decisions, bounded delegation, integration and delivery. Games remain set aside; the scheduled task stays paused. No automatic restart or new game is authorized by this handoff.
+The user approved the connected-person milestone and asked for progress without excessive caution or small-task drift. The lead owns routine decisions, bounded delegation, integration and delivery. The user subsequently requested the focused Three moments showcase at `/person/`; that delivery is authorized. Older game queues remain set aside and the scheduled task stays paused.
 
-## Current private milestone
+## Current framework milestone
 
-Situated-person **0.1.0** is a new private candidate composing the unchanged Human **0.1.1** component. It carries attributed boolean knowledge, explicit purpose states, understood commitment terms/status/revision and context-specific interaction evidence. A common deterministic rule interface returns attempted choices and executed evidence; external choices can override the baseline. Hosts own canonical outcomes and provide verified fulfillment receipts.
+Situated-person **0.1.0** is a new candidate composing the unchanged Human **0.1.1** component. It carries attributed boolean knowledge, explicit purpose states, understood commitment terms/status/revision and context-specific interaction evidence. A common deterministic rule interface returns attempted choices and executed evidence; external choices can override the baseline. Hosts own canonical outcomes and provide verified fulfillment receipts.
 
 Three adults cross learning, household responsibility and collaboration over dated episodes spanning fourteen days. Instruction changes the attempted method and output; an accepted responsibility changes delivery choices; a communicated breach changes later coordination and the colleague's response. Revised terms change the delivery location. The sequence preserves actor-specific information and survives save/restore and segmented clock advancement.
 
-The [delivery report](docs/connected-person.md) explains scope, APIs and evidence. The [comparison](artifacts/connected-person/comparison.json) includes eight scenarios; the smaller direct notebook baseline matches their actions and world outcomes. The independent asynchronous lending consumer installs the private tarball with repository access denied. This establishes bounded portable software behavior, not psychological calibration or measured human authoring savings.
+The [framework delivery report](docs/connected-person.md) explains scope, APIs and evidence. [App 0.15](docs/release-0.15.md) adds a tiny interactive Three moments simulation with three player choices, carried consequences and one-experience replays. The [comparison](artifacts/connected-person/comparison.json) includes eight scenarios; the smaller direct notebook baseline matches their actions and world outcomes. The independent asynchronous lending consumer installs the private tarball with repository access denied. This establishes bounded portable software behavior, not psychological calibration or measured human authoring savings.
 
 ## What remains missing
 
@@ -29,12 +29,12 @@ The next recommended substantial milestone is continuous daily condition and ret
 | Repository | Private `adam0white/human-framework`; `main` is the integration branch |
 | New private candidate | situated-person 0.1.0, implementation `87645ea1fb4eb8a9ea20b3928a9e6933f339f1a3`; subsequent handoff-only commits may follow |
 | Existing selected package | Human/runtime 0.1.1; integer clock 0.1.0, unchanged |
-| Public browser app | 0.14.1, unchanged by this private milestone |
-| Deployed app source | `235d2e6c077df1a68c508091f54c673391e3a88f` |
-| Public payload digest | `671311ad92bedce24376e84ebe8264cf7fddb8cc70af9fb024a61b86a8bce48b` |
+| Public browser app | 0.15.0, featuring Three moments at `/person/` |
+| Previous deployed app source (0.14.1) | `235d2e6c077df1a68c508091f54c673391e3a88f` |
+| Previous public payload digest (0.14.1) | `671311ad92bedce24376e84ebe8264cf7fddb8cc70af9fb024a61b86a8bce48b` |
 | Schedule | `advance-human-framework`, paused |
 
-Public review site: [human.adamwhite.work](https://human.adamwhite.work). Its release manifest was refreshed during this delivery and still reports the identity above. Private-source commits do not require redeployment when the allowlisted public payload is unchanged. [Deployment workflow](docs/deployment.md).
+Public review site: [human.adamwhite.work](https://human.adamwhite.work). App 0.15 production verification will replace the previous deployment identity above after deployment. Private-source commits do not require redeployment when the allowlisted public payload is unchanged. [Deployment workflow](docs/deployment.md).
 
 ## Reproduce and verify
 
@@ -50,7 +50,7 @@ npm run package:runtime
 
 [Verification record](artifacts/connected-person/verification.json) records final results and source hashes. [Review disposition](docs/reviews/2026-09-14-connected-person.md) distinguishes fixed findings from rejected recommendations. The [execution plan](docs/superpowers/plans/2026-09-14-connected-person.md) records the interface and implementation decisions; [approved design](docs/plans/2026-09-14-focused-framework-milestone.md) records the selected scope.
 
-Preserve released source bytes and `scripts/runtime-release-lock.json`. New candidate files remain outside the public asset allowlist. Keep the actor loop independent of LLMs and UI. One authoritative owner per causal state; world truth reaches actors only through observations. Each substantial task must identify the missing capability and the acceptance check it serves. Stop completed milestones rather than automatically extending them with refinements.
+Preserve released source bytes and `scripts/runtime-release-lock.json`. The two candidate person modules now support the selected public showcase; private research, comparison artifacts and package tooling remain outside the asset allowlist. Keep the actor loop independent of LLMs and UI. One authoritative owner per causal state; world truth reaches actors only through observations. Each substantial task must identify the missing capability and the acceptance check it serves. Stop completed milestones rather than automatically extending them with refinements.
 
 ## Historical evidence
 

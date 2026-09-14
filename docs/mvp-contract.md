@@ -6,9 +6,9 @@ Established 2026-09-07; current direction updated 2026-09-09 after the completed
 
 ## Current scope correction
 
-The [latest direction](direction-2026-09-09.md) puts games aside for now and returns attention to the full framework: embodied people whose knowledge, motives, relationships and capacities can develop over time. The narrow portable kit is useful, but broad faculties and lifespan development remain early or unimplemented. Meaning, understood duty, worship and moral development remain positive research aims, with sourced normative claims, a person's understanding and observable action kept distinct.
+The [latest direction](direction-2026-09-14.md) approves the connected-person milestone and its focused Three moments showcase while keeping older game queues set aside. The full framework remains the goal: embodied people whose knowledge, motives, relationships and capacities can develop over time. The narrow portable kit is useful, but broad faculties and lifespan development remain early or unimplemented. Meaning, understood duty, worship and moral development remain positive research aims, with sourced normative claims, a person's understanding and observable action kept distinct.
 
-The [roadmap](roadmap.md) proposes stages toward that goal; it does not claim that the user has selected an adult-over-days/weeks horizon or the reference situations. This is a documentation and joint-review checkpoint, not authorization to start a proposed implementation. The scheduled task remains paused.
+The [roadmap](roadmap.md) proposes later stages; the selected first reference uses three adults across dated episodes rather than continuous multi-day development. The scheduled task remains paused.
 
 The [earlier correction](player-feedback-2026-09-08.md#later-correction-after-app-011) also remains in force: games are replaceable experiments, with no required unified campaign, level count, full tutorial sequence or old-save compatibility. The public laboratory is retired; its headless comparisons and historical sources remain private evidence. The only current player reports finishing all games. No fixed player count is a condition of each software release; broader human validity and usefulness remain separate unproven claims.
 

@@ -2,7 +2,7 @@
 
 Updated 2026-09-14 after approved focused manual work on the connected-person milestone. [Direct instructions and proposal provenance](direction-2026-09-09.md) · [Current handoff](../HANDOFF.md) · [First-deliverable contract](mvp-contract.md).
 
-**Execution status:** game work is set aside and the scheduled task remains paused. The user approved the connected-person milestone on 2026-09-14; see [approval](direction-2026-09-14.md) and [delivery](connected-person.md). It adds private candidate 0.1.0 with attributed boolean knowledge, explicit purposes, actor-local commitment/interaction records and a shared deterministic rule interface. Three adults persist across dated episodes; continuous multi-day physiology and development remain open. Later stages below remain proposals. Earlier milestone narratives are retained in the [historical roadmap](history/roadmap-through-2026-09-09.md).
+**Execution status:** the user requested a focused public Three moments showcase of the new candidate; [app 0.15](release-0.15.md) records it. Older game queues remain set aside and the scheduled task remains paused. The user approved the connected-person milestone on 2026-09-14; see [approval](direction-2026-09-14.md) and [delivery](connected-person.md). It adds private candidate 0.1.0 with attributed boolean knowledge, explicit purposes, actor-local commitment/interaction records and a shared deterministic rule interface. Three adults persist across dated episodes; continuous multi-day physiology and development remain open. Later stages below remain proposals. Earlier milestone narratives are retained in the [historical roadmap](history/roadmap-through-2026-09-09.md).
 
 ## The grand goal
 

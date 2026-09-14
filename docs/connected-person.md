@@ -1,6 +1,6 @@
 # Connected person candidate 0.1.0
 
-The private candidate carries attributed knowledge, explicit purposes, known commitments and interaction evidence between situations. It composes the released Human 0.1.1 component without changing its bytes or the selected runtime 0.1.1 package. The public games are unchanged.
+The candidate carries attributed knowledge, explicit purposes, known commitments and interaction evidence between situations. It composes the released Human 0.1.1 component without changing its bytes or the selected runtime 0.1.1 package. The subsequent [Three moments showcase](release-0.15.md) exposes selected candidate source through three interactive choices at `/person/`; the original evidence and packaging remain private.
 
 ## What it does
 

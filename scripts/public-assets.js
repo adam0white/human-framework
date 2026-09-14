@@ -1,6 +1,11 @@
 // Exact public assets. New experiments stay private until deliberately selected here.
 export const PUBLIC_ASSETS=Object.freeze([
   'src/core/model.js',
+  'src/person/index.js',
+  'src/person/commitments.js',
+  'src/games/three-moments.js',
+  'web/person.js',
+  'web/person.css',
   'src/core/random.js',
   'src/games/across-cut.js',
   'src/games/across-cut-player.js',
