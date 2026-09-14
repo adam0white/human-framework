@@ -1,0 +1,1048 @@
+{
+  "format": "connected-person-comparison",
+  "version": 1,
+  "cases": [
+    {
+      "name": "connected",
+      "world": {
+        "produced": 2,
+        "delivered": 1,
+        "wages": 0,
+        "confirmations": 1,
+        "plans": 1,
+        "coordinated": 0,
+        "alternativeRequests": 0,
+        "deliveryPlace": "original meeting place"
+      },
+      "actions": [
+        "guided-practice",
+        "deliver",
+        "acknowledge",
+        "confirm",
+        "send-plan"
+      ],
+      "trace": [
+        {
+          "stage": "learning",
+          "actor": "learner",
+          "at": 1440,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "guided-practice",
+            "provider": "baseline",
+            "ruleId": "apply-instruction",
+            "evidence": [
+              "instruction-method",
+              "purpose:learn"
+            ],
+            "noticedOptions": [
+              "guided-practice",
+              "basic-practice"
+            ]
+          }
+        },
+        {
+          "stage": "household",
+          "actor": "learner",
+          "at": 10080,
+          "bodyBefore": {
+            "fatigue": 0.115,
+            "hunger": 0.12000000000000001
+          },
+          "decision": {
+            "actionId": "deliver",
+            "provider": "baseline",
+            "ruleId": "honor-known-responsibility",
+            "evidence": [
+              "purpose:care",
+              "delivery-agreement-learner"
+            ],
+            "noticedOptions": [
+              "deliver",
+              "deliver-revised",
+              "paid-work"
+            ]
+          }
+        },
+        {
+          "stage": "housemate-response",
+          "actor": "housemate",
+          "at": 10142,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "acknowledge",
+            "provider": "baseline",
+            "ruleId": "respond-to-received-delivery",
+            "evidence": [
+              "delivery-observation"
+            ],
+            "noticedOptions": [
+              "acknowledge",
+              "seek-alternative"
+            ]
+          }
+        },
+        {
+          "stage": "collaboration",
+          "actor": "learner",
+          "at": 18720,
+          "bodyBefore": {
+            "fatigue": 0.1375,
+            "hunger": 0.15000000000000002
+          },
+          "decision": {
+            "actionId": "confirm",
+            "provider": "baseline",
+            "ruleId": "confirm-after-observed-breach",
+            "evidence": [
+              "purpose:work",
+              "observed-supply-breach"
+            ],
+            "noticedOptions": [
+              "confirm",
+              "coordinate"
+            ]
+          }
+        },
+        {
+          "stage": "colleague-response",
+          "actor": "colleague",
+          "at": 18726,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "send-plan",
+            "provider": "baseline",
+            "ruleId": "respond-to-request",
+            "evidence": [
+              "coordination-message"
+            ],
+            "noticedOptions": [
+              "send-plan",
+              "start-together"
+            ]
+          }
+        }
+      ],
+      "directBaselineMatches": true
+    },
+    {
+      "name": "without-instruction",
+      "world": {
+        "produced": 1,
+        "delivered": 1,
+        "wages": 0,
+        "confirmations": 1,
+        "plans": 1,
+        "coordinated": 0,
+        "alternativeRequests": 0,
+        "deliveryPlace": "original meeting place"
+      },
+      "actions": [
+        "basic-practice",
+        "deliver",
+        "acknowledge",
+        "confirm",
+        "send-plan"
+      ],
+      "trace": [
+        {
+          "stage": "learning",
+          "actor": "learner",
+          "at": 1440,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "basic-practice",
+            "provider": "baseline",
+            "ruleId": null,
+            "evidence": [],
+            "noticedOptions": [
+              "basic-practice"
+            ]
+          }
+        },
+        {
+          "stage": "household",
+          "actor": "learner",
+          "at": 10080,
+          "bodyBefore": {
+            "fatigue": 0.115,
+            "hunger": 0.12000000000000001
+          },
+          "decision": {
+            "actionId": "deliver",
+            "provider": "baseline",
+            "ruleId": "honor-known-responsibility",
+            "evidence": [
+              "purpose:care",
+              "delivery-agreement-learner"
+            ],
+            "noticedOptions": [
+              "deliver",
+              "deliver-revised",
+              "paid-work"
+            ]
+          }
+        },
+        {
+          "stage": "housemate-response",
+          "actor": "housemate",
+          "at": 10142,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "acknowledge",
+            "provider": "baseline",
+            "ruleId": "respond-to-received-delivery",
+            "evidence": [
+              "delivery-observation"
+            ],
+            "noticedOptions": [
+              "acknowledge",
+              "seek-alternative"
+            ]
+          }
+        },
+        {
+          "stage": "collaboration",
+          "actor": "learner",
+          "at": 18720,
+          "bodyBefore": {
+            "fatigue": 0.1375,
+            "hunger": 0.15000000000000002
+          },
+          "decision": {
+            "actionId": "confirm",
+            "provider": "baseline",
+            "ruleId": "confirm-after-observed-breach",
+            "evidence": [
+              "purpose:work",
+              "observed-supply-breach"
+            ],
+            "noticedOptions": [
+              "confirm",
+              "coordinate"
+            ]
+          }
+        },
+        {
+          "stage": "colleague-response",
+          "actor": "colleague",
+          "at": 18726,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "send-plan",
+            "provider": "baseline",
+            "ruleId": "respond-to-request",
+            "evidence": [
+              "coordination-message"
+            ],
+            "noticedOptions": [
+              "send-plan",
+              "start-together"
+            ]
+          }
+        }
+      ],
+      "directBaselineMatches": true
+    },
+    {
+      "name": "without-acceptance",
+      "world": {
+        "produced": 2,
+        "delivered": 0,
+        "wages": 1,
+        "confirmations": 1,
+        "plans": 1,
+        "coordinated": 0,
+        "alternativeRequests": 1,
+        "deliveryPlace": null
+      },
+      "actions": [
+        "guided-practice",
+        "paid-work",
+        "seek-alternative",
+        "confirm",
+        "send-plan"
+      ],
+      "trace": [
+        {
+          "stage": "learning",
+          "actor": "learner",
+          "at": 1440,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "guided-practice",
+            "provider": "baseline",
+            "ruleId": "apply-instruction",
+            "evidence": [
+              "instruction-method",
+              "purpose:learn"
+            ],
+            "noticedOptions": [
+              "guided-practice",
+              "basic-practice"
+            ]
+          }
+        },
+        {
+          "stage": "household",
+          "actor": "learner",
+          "at": 10080,
+          "bodyBefore": {
+            "fatigue": 0.115,
+            "hunger": 0.12000000000000001
+          },
+          "decision": {
+            "actionId": "paid-work",
+            "provider": "baseline",
+            "ruleId": null,
+            "evidence": [],
+            "noticedOptions": [
+              "deliver",
+              "deliver-revised",
+              "paid-work"
+            ]
+          }
+        },
+        {
+          "stage": "housemate-response",
+          "actor": "housemate",
+          "at": 10142,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "seek-alternative",
+            "provider": "baseline",
+            "ruleId": null,
+            "evidence": [],
+            "noticedOptions": [
+              "acknowledge",
+              "seek-alternative"
+            ]
+          }
+        },
+        {
+          "stage": "collaboration",
+          "actor": "learner",
+          "at": 18720,
+          "bodyBefore": {
+            "fatigue": 0.1375,
+            "hunger": 0.15000000000000002
+          },
+          "decision": {
+            "actionId": "confirm",
+            "provider": "baseline",
+            "ruleId": "confirm-after-observed-breach",
+            "evidence": [
+              "purpose:work",
+              "observed-supply-breach"
+            ],
+            "noticedOptions": [
+              "confirm",
+              "coordinate"
+            ]
+          }
+        },
+        {
+          "stage": "colleague-response",
+          "actor": "colleague",
+          "at": 18726,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "send-plan",
+            "provider": "baseline",
+            "ruleId": "respond-to-request",
+            "evidence": [
+              "coordination-message"
+            ],
+            "noticedOptions": [
+              "send-plan",
+              "start-together"
+            ]
+          }
+        }
+      ],
+      "directBaselineMatches": true
+    },
+    {
+      "name": "without-observed-interaction",
+      "world": {
+        "produced": 2,
+        "delivered": 1,
+        "wages": 0,
+        "confirmations": 0,
+        "plans": 0,
+        "coordinated": 1,
+        "alternativeRequests": 0,
+        "deliveryPlace": "original meeting place"
+      },
+      "actions": [
+        "guided-practice",
+        "deliver",
+        "acknowledge",
+        "coordinate",
+        "start-together"
+      ],
+      "trace": [
+        {
+          "stage": "learning",
+          "actor": "learner",
+          "at": 1440,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "guided-practice",
+            "provider": "baseline",
+            "ruleId": "apply-instruction",
+            "evidence": [
+              "instruction-method",
+              "purpose:learn"
+            ],
+            "noticedOptions": [
+              "guided-practice",
+              "basic-practice"
+            ]
+          }
+        },
+        {
+          "stage": "household",
+          "actor": "learner",
+          "at": 10080,
+          "bodyBefore": {
+            "fatigue": 0.115,
+            "hunger": 0.12000000000000001
+          },
+          "decision": {
+            "actionId": "deliver",
+            "provider": "baseline",
+            "ruleId": "honor-known-responsibility",
+            "evidence": [
+              "purpose:care",
+              "delivery-agreement-learner"
+            ],
+            "noticedOptions": [
+              "deliver",
+              "deliver-revised",
+              "paid-work"
+            ]
+          }
+        },
+        {
+          "stage": "housemate-response",
+          "actor": "housemate",
+          "at": 10142,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "acknowledge",
+            "provider": "baseline",
+            "ruleId": "respond-to-received-delivery",
+            "evidence": [
+              "delivery-observation"
+            ],
+            "noticedOptions": [
+              "acknowledge",
+              "seek-alternative"
+            ]
+          }
+        },
+        {
+          "stage": "collaboration",
+          "actor": "learner",
+          "at": 18720,
+          "bodyBefore": {
+            "fatigue": 0.1375,
+            "hunger": 0.15000000000000002
+          },
+          "decision": {
+            "actionId": "coordinate",
+            "provider": "baseline",
+            "ruleId": null,
+            "evidence": [],
+            "noticedOptions": [
+              "confirm",
+              "coordinate"
+            ]
+          }
+        },
+        {
+          "stage": "colleague-response",
+          "actor": "colleague",
+          "at": 18726,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "start-together",
+            "provider": "baseline",
+            "ruleId": null,
+            "evidence": [],
+            "noticedOptions": [
+              "send-plan",
+              "start-together"
+            ]
+          }
+        }
+      ],
+      "directBaselineMatches": true
+    },
+    {
+      "name": "external-neglect",
+      "world": {
+        "produced": 2,
+        "delivered": 0,
+        "wages": 1,
+        "confirmations": 1,
+        "plans": 1,
+        "coordinated": 0,
+        "alternativeRequests": 1,
+        "deliveryPlace": null
+      },
+      "actions": [
+        "guided-practice",
+        "paid-work",
+        "seek-alternative",
+        "confirm",
+        "send-plan"
+      ],
+      "trace": [
+        {
+          "stage": "learning",
+          "actor": "learner",
+          "at": 1440,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "guided-practice",
+            "provider": "baseline",
+            "ruleId": "apply-instruction",
+            "evidence": [
+              "instruction-method",
+              "purpose:learn"
+            ],
+            "noticedOptions": [
+              "guided-practice",
+              "basic-practice"
+            ]
+          }
+        },
+        {
+          "stage": "household",
+          "actor": "learner",
+          "at": 10080,
+          "bodyBefore": {
+            "fatigue": 0.115,
+            "hunger": 0.12000000000000001
+          },
+          "decision": {
+            "actionId": "paid-work",
+            "provider": "external",
+            "ruleId": null,
+            "evidence": [],
+            "noticedOptions": [
+              "deliver",
+              "deliver-revised",
+              "paid-work"
+            ]
+          }
+        },
+        {
+          "stage": "housemate-response",
+          "actor": "housemate",
+          "at": 10142,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "seek-alternative",
+            "provider": "baseline",
+            "ruleId": null,
+            "evidence": [],
+            "noticedOptions": [
+              "acknowledge",
+              "seek-alternative"
+            ]
+          }
+        },
+        {
+          "stage": "collaboration",
+          "actor": "learner",
+          "at": 18720,
+          "bodyBefore": {
+            "fatigue": 0.1375,
+            "hunger": 0.15000000000000002
+          },
+          "decision": {
+            "actionId": "confirm",
+            "provider": "baseline",
+            "ruleId": "confirm-after-observed-breach",
+            "evidence": [
+              "purpose:work",
+              "observed-supply-breach"
+            ],
+            "noticedOptions": [
+              "confirm",
+              "coordinate"
+            ]
+          }
+        },
+        {
+          "stage": "colleague-response",
+          "actor": "colleague",
+          "at": 18726,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "send-plan",
+            "provider": "baseline",
+            "ruleId": "respond-to-request",
+            "evidence": [
+              "coordination-message"
+            ],
+            "noticedOptions": [
+              "send-plan",
+              "start-together"
+            ]
+          }
+        }
+      ],
+      "directBaselineMatches": true
+    },
+    {
+      "name": "revised-responsibility",
+      "world": {
+        "produced": 2,
+        "delivered": 1,
+        "wages": 0,
+        "confirmations": 1,
+        "plans": 1,
+        "coordinated": 0,
+        "alternativeRequests": 0,
+        "deliveryPlace": "revised meeting place"
+      },
+      "actions": [
+        "guided-practice",
+        "deliver-revised",
+        "acknowledge",
+        "confirm",
+        "send-plan"
+      ],
+      "trace": [
+        {
+          "stage": "learning",
+          "actor": "learner",
+          "at": 1440,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "guided-practice",
+            "provider": "baseline",
+            "ruleId": "apply-instruction",
+            "evidence": [
+              "instruction-method",
+              "purpose:learn"
+            ],
+            "noticedOptions": [
+              "guided-practice",
+              "basic-practice"
+            ]
+          }
+        },
+        {
+          "stage": "household",
+          "actor": "learner",
+          "at": 10080,
+          "bodyBefore": {
+            "fatigue": 0.115,
+            "hunger": 0.12000000000000001
+          },
+          "decision": {
+            "actionId": "deliver-revised",
+            "provider": "baseline",
+            "ruleId": "honor-revised-terms",
+            "evidence": [
+              "purpose:care",
+              "delivery-reacceptance-learner"
+            ],
+            "noticedOptions": [
+              "deliver",
+              "deliver-revised",
+              "paid-work"
+            ]
+          }
+        },
+        {
+          "stage": "housemate-response",
+          "actor": "housemate",
+          "at": 10142,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "acknowledge",
+            "provider": "baseline",
+            "ruleId": "respond-to-received-delivery",
+            "evidence": [
+              "delivery-observation"
+            ],
+            "noticedOptions": [
+              "acknowledge",
+              "seek-alternative"
+            ]
+          }
+        },
+        {
+          "stage": "collaboration",
+          "actor": "learner",
+          "at": 18720,
+          "bodyBefore": {
+            "fatigue": 0.1375,
+            "hunger": 0.15000000000000002
+          },
+          "decision": {
+            "actionId": "confirm",
+            "provider": "baseline",
+            "ruleId": "confirm-after-observed-breach",
+            "evidence": [
+              "purpose:work",
+              "observed-supply-breach"
+            ],
+            "noticedOptions": [
+              "confirm",
+              "coordinate"
+            ]
+          }
+        },
+        {
+          "stage": "colleague-response",
+          "actor": "colleague",
+          "at": 18726,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "send-plan",
+            "provider": "baseline",
+            "ruleId": "respond-to-request",
+            "evidence": [
+              "coordination-message"
+            ],
+            "noticedOptions": [
+              "send-plan",
+              "start-together"
+            ]
+          }
+        }
+      ],
+      "directBaselineMatches": true
+    },
+    {
+      "name": "withdrawn-responsibility",
+      "world": {
+        "produced": 2,
+        "delivered": 0,
+        "wages": 1,
+        "confirmations": 1,
+        "plans": 1,
+        "coordinated": 0,
+        "alternativeRequests": 1,
+        "deliveryPlace": null
+      },
+      "actions": [
+        "guided-practice",
+        "paid-work",
+        "seek-alternative",
+        "confirm",
+        "send-plan"
+      ],
+      "trace": [
+        {
+          "stage": "learning",
+          "actor": "learner",
+          "at": 1440,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "guided-practice",
+            "provider": "baseline",
+            "ruleId": "apply-instruction",
+            "evidence": [
+              "instruction-method",
+              "purpose:learn"
+            ],
+            "noticedOptions": [
+              "guided-practice",
+              "basic-practice"
+            ]
+          }
+        },
+        {
+          "stage": "household",
+          "actor": "learner",
+          "at": 10080,
+          "bodyBefore": {
+            "fatigue": 0.115,
+            "hunger": 0.12000000000000001
+          },
+          "decision": {
+            "actionId": "paid-work",
+            "provider": "baseline",
+            "ruleId": null,
+            "evidence": [],
+            "noticedOptions": [
+              "deliver",
+              "deliver-revised",
+              "paid-work"
+            ]
+          }
+        },
+        {
+          "stage": "housemate-response",
+          "actor": "housemate",
+          "at": 10142,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "seek-alternative",
+            "provider": "baseline",
+            "ruleId": null,
+            "evidence": [],
+            "noticedOptions": [
+              "acknowledge",
+              "seek-alternative"
+            ]
+          }
+        },
+        {
+          "stage": "collaboration",
+          "actor": "learner",
+          "at": 18720,
+          "bodyBefore": {
+            "fatigue": 0.1375,
+            "hunger": 0.15000000000000002
+          },
+          "decision": {
+            "actionId": "confirm",
+            "provider": "baseline",
+            "ruleId": "confirm-after-observed-breach",
+            "evidence": [
+              "purpose:work",
+              "observed-supply-breach"
+            ],
+            "noticedOptions": [
+              "confirm",
+              "coordinate"
+            ]
+          }
+        },
+        {
+          "stage": "colleague-response",
+          "actor": "colleague",
+          "at": 18726,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "send-plan",
+            "provider": "baseline",
+            "ruleId": "respond-to-request",
+            "evidence": [
+              "coordination-message"
+            ],
+            "noticedOptions": [
+              "send-plan",
+              "start-together"
+            ]
+          }
+        }
+      ],
+      "directBaselineMatches": true
+    },
+    {
+      "name": "hidden-obstacle",
+      "world": {
+        "produced": 0,
+        "delivered": 0,
+        "wages": 0,
+        "confirmations": 1,
+        "plans": 1,
+        "coordinated": 0,
+        "alternativeRequests": 1,
+        "deliveryPlace": null
+      },
+      "actions": [
+        "guided-practice",
+        "deliver",
+        "seek-alternative",
+        "confirm",
+        "send-plan"
+      ],
+      "trace": [
+        {
+          "stage": "learning",
+          "actor": "learner",
+          "at": 1440,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "guided-practice",
+            "provider": "baseline",
+            "ruleId": "apply-instruction",
+            "evidence": [
+              "instruction-method",
+              "purpose:learn"
+            ],
+            "noticedOptions": [
+              "guided-practice",
+              "basic-practice"
+            ]
+          }
+        },
+        {
+          "stage": "household",
+          "actor": "learner",
+          "at": 10080,
+          "bodyBefore": {
+            "fatigue": 0.115,
+            "hunger": 0.12000000000000001
+          },
+          "decision": {
+            "actionId": "deliver",
+            "provider": "baseline",
+            "ruleId": "honor-known-responsibility",
+            "evidence": [
+              "purpose:care",
+              "delivery-agreement-learner"
+            ],
+            "noticedOptions": [
+              "deliver",
+              "deliver-revised",
+              "paid-work"
+            ]
+          }
+        },
+        {
+          "stage": "housemate-response",
+          "actor": "housemate",
+          "at": 10142,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "seek-alternative",
+            "provider": "baseline",
+            "ruleId": null,
+            "evidence": [],
+            "noticedOptions": [
+              "acknowledge",
+              "seek-alternative"
+            ]
+          }
+        },
+        {
+          "stage": "collaboration",
+          "actor": "learner",
+          "at": 18720,
+          "bodyBefore": {
+            "fatigue": 0.1375,
+            "hunger": 0.15000000000000002
+          },
+          "decision": {
+            "actionId": "confirm",
+            "provider": "baseline",
+            "ruleId": "confirm-after-observed-breach",
+            "evidence": [
+              "purpose:work",
+              "observed-supply-breach"
+            ],
+            "noticedOptions": [
+              "confirm",
+              "coordinate"
+            ]
+          }
+        },
+        {
+          "stage": "colleague-response",
+          "actor": "colleague",
+          "at": 18726,
+          "bodyBefore": {
+            "fatigue": 0.1,
+            "hunger": 0.1
+          },
+          "decision": {
+            "actionId": "send-plan",
+            "provider": "baseline",
+            "ruleId": "respond-to-request",
+            "evidence": [
+              "coordination-message"
+            ],
+            "noticedOptions": [
+              "send-plan",
+              "start-together"
+            ]
+          }
+        }
+      ],
+      "directBaselineMatches": true
+    }
+  ],
+  "claims": {
+    "empiricalValidation": false,
+    "continuousPhysiology": false,
+    "baselineSuperiority": false,
+    "demonstrated": [
+      "attributed knowledge affects attempted method",
+      "known responsibility affects action with override",
+      "delivered interaction evidence affects coordination",
+      "separate recipient response",
+      "person persistence across dated episodes"
+    ]
+  }
+}

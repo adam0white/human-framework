@@ -1,0 +1,55 @@
+{
+  "format": "connected-person-verification",
+  "version": 1,
+  "verifiedAt": "2026-09-14T07:37:59.452360+00:00",
+  "sourceBase": "cdde1285afe4d61ae972c48a77617148d2f11f29",
+  "candidateVersion": "0.1.0",
+  "sourceSha256": {
+    "src/person/commitments.js": "fc826761cc54762a51f7a34164af29ba1cbc2678aeb0fcf22e9fc7b86c248c35",
+    "src/person/index.js": "74b04267eeb345e8f72a2fda4b5fe00b9529122e051d20767cbe30635efcdf73",
+    "examples/connected-person/direct-baseline.js": "67f32a61609fb8e71c837dc884f5c432a48c499a1da6562524bcea2b19292585",
+    "examples/connected-person/sequence.js": "6ecef8f81c843e8d60ca8e375b53edb44bf5781f52ec5d970a70e61648beffe7",
+    "examples/person-consumer/consumer.js": "c6ad0f34ad148db503eba662eb293fb82f0eec60e968e97338da6d9a8a161bac",
+    "scripts/package-person.js": "e4d977ca4a955b38120c94eee2d6a565d3fbc6246feab74a4fd0007861a730a5",
+    "scripts/run-connected-person.js": "78aa05d97497e11c330022468069e214b433b89f2b340b862511d5ab4f5dd096",
+    "tests/situated-person.test.js": "b32a973bfdf91807ce7bf7479458118138023ce7d233918738818c19b6579091",
+    "tests/person-commitments.test.js": "19b9f6fd0980969523e31a193021728704aaefce798e331f27dfba9f04d5fa32",
+    "tests/connected-person.test.js": "8512beebdd55a06c82606be3d1f65e495892a980d6feb54d3518b571d0040789",
+    "tests/person-consumer.test.js": "8aad6b485de085e9de909db12533571872fc3f3d1b52234cd916084c41fd0c92"
+  },
+  "checks": {
+    "fullRepository": {
+      "tests": 903,
+      "pass": 903,
+      "fail": 0,
+      "skipped": 0
+    },
+    "focused": {
+      "tests": 32,
+      "pass": 32,
+      "fail": 0,
+      "skipped": 0
+    },
+    "comparisonCases": 8,
+    "directNotebookMatches": true,
+    "independentInstall": "two local tarball builds installed and executed with filesystem access restricted to consumer directory",
+    "frozenRuntimePackaging": "passed existing release source-lock checks",
+    "publicBuild": "passed; payload digest unchanged",
+    "schedule": "PAUSED"
+  },
+  "publicReleaseObserved": {
+    "appVersion": "0.14.1",
+    "runtimeVersion": "0.1.1",
+    "clockVersion": "0.1.0",
+    "commit": "235d2e6c077df1a68c508091f54c673391e3a88f",
+    "dirty": false,
+    "assetsSha256": "671311ad92bedce24376e84ebe8264cf7fddb8cc70af9fb024a61b86a8bce48b"
+  },
+  "publicPayloadMatchesBuild": true,
+  "limitations": [
+    "authored generic ordered rule policy",
+    "dated episodes, not continuous physiology",
+    "boolean attributed facts without general belief revision",
+    "AI-authored independent consumer, not measured human authoring benefit"
+  ]
+}

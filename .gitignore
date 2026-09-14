@@ -10,3 +10,4 @@ dist/
 .dev.vars.*
 runtime-dist/
 __pycache__/
+person-dist/

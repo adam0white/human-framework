@@ -1,8 +1,8 @@
 # Roadmap toward situated human action and development
 
-Updated 2026-09-09 after the user's broader-framework discussion and request for a clean handoff. [Direct instructions and proposal provenance](direction-2026-09-09.md) · [Current handoff](../HANDOFF.md) · [First-deliverable contract](mvp-contract.md).
+Updated 2026-09-14 after approved focused manual work on the connected-person milestone. [Direct instructions and proposal provenance](direction-2026-09-09.md) · [Current handoff](../HANDOFF.md) · [First-deliverable contract](mvp-contract.md).
 
-**Execution status:** game work is set aside and the scheduled task remains paused. This document records the grand goal, current gaps and a recommended route. The user authorized this documentation and remote push; no next implementation stage, population, horizon or mechanism has yet been selected. Earlier milestone narratives are retained in the [historical roadmap](history/roadmap-through-2026-09-09.md).
+**Execution status:** game work is set aside and the scheduled task remains paused. The user approved the connected-person milestone on 2026-09-14; see [approval](direction-2026-09-14.md) and [delivery](connected-person.md). It adds private candidate 0.1.0 with attributed boolean knowledge, explicit purposes, actor-local commitment/interaction records and a shared deterministic rule interface. Three adults persist across dated episodes; continuous multi-day physiology and development remain open. Later stages below remain proposals. Earlier milestone narratives are retained in the [historical roadmap](history/roadmap-through-2026-09-09.md).
 
 ## The grand goal
 
@@ -21,9 +21,9 @@ The narrow body/action/time kit is technically usable and has substantial lifecy
 | Execution and time | Shared paid attempts, interruption, recovery effects, persistence and integer event clock | Consistent long-horizon and mixed-resolution simulation; broader integration and scale evidence |
 | Bodily life | Shared fatigue/hunger/capacity and perceived-condition proxies | Sleep/wake, hydration, pain, injury, illness, sensory and motor limits; calibrated physiology |
 | Learning and knowledge | Shared task practice; hosts apply skill to work; private empirical pilot | Knowledge acquisition, instruction, delayed retention, supported transfer, differing learning trajectories |
-| Perception and cognition | Perceived body projection; host-local observations, factual reports and notebooks; private bounded memory candidate | Portable beliefs/knowledge, attention, working/episodic/semantic memory, inference, planning and metacognition |
-| Affect, motives and development | Authored host priorities and narrow commitments | Appraisal and emotion regulation, persistent changing purposes, habits, self-regulation and character development |
-| Relationships | Host-specific requests, consent, loans, promises, revision and withdrawal | Continuing care/attachment, evidence-based trust, misunderstanding, deception, conflict, reconciliation and networks |
+| Perception and cognition | Perceived body projection; private situated-person 0.1.0 adds portable attributed boolean observations and causal rule traces | Portable beliefs/knowledge, attention, working/episodic/semantic memory, inference, planning and metacognition |
+| Affect, motives and development | Private candidate carries explicit purpose lifecycle and executes authored rule priorities | Appraisal and emotion regulation, persistent changing purposes, habits, self-regulation and character development |
+| Relationships | Private candidate carries actor-local interaction/commitment evidence; canonical agreements and independent recipient responses execute | Continuing care/attachment, evidence-based trust, misunderstanding, deception, conflict, reconciliation and networks |
 | Moral and spiritual life | Documented source/agency boundaries and limited intention records | Reviewed positive representations of understood duty, worship, reflection, repentance, repair and life purpose |
 | Lifespan | Elapsed component minutes only; no age model | Childhood, maturation, adult aging, health trajectories, parentage, reproduction, inheritance and death |
 | Social environment | Host-owned resources, tools, places and opportunities, including narrow household water/exchange rules | General household dynamics, education, employment, institutions, culture, power and macro dynamics |
@@ -37,7 +37,7 @@ These stages express dependencies and candidate outcomes, not an approved waterf
 
 | Stage | Candidate deliverable | What must be resolved or demonstrated |
 |---|---|---|
-| 1. Define the first fuller-person milestone | A small set of headless reference situations, a population/horizon, and a versioned account of persistent person state and host responsibilities | Select three anchor situations; state what the same person must carry between them, what each actor can know, and which differences matter. A few adults over days/weeks is the recommended default, still unselected. |
+| 1. Define the first fuller-person milestone | A small set of headless reference situations, a population/horizon, and a versioned account of persistent person state and host responsibilities | Select three anchor situations; state what the same person must carry between them, what each actor can know, and which differences matter. The first selected increment now uses three adults across dated episodes; see connected-person delivery. Continuous days remain open. |
 | 2. Make life across days meaningful | A bounded sleep/wake and repeated-day recovery candidate, with continuing work, learning and obligations | Separate temporary condition from lasting change. Compare a simpler recovery model. Check detailed versus accelerated time against declared tolerances, including interruptions and resource/commitment continuity. Sleep is first only if the chosen context warrants it. |
 | 3. Develop knowledge, purposes and choice | Separate experiments in experienced-fact retrieval, knowledge prerequisites, continuing goals, short planning, then habit and revision | Same current body/skill but different acquired knowledge or remembered experience should yield traceable differences where predicted. Compare notebook, direct-rule and simple-policy controls with equivalent information and cost. |
 | 4. Deepen relationships and inner life alongside stages 2–3 | Continuing interaction histories, care, obligation, trust/misunderstanding, and selected moral/spiritual situations | Distinguish actual events, each person's knowledge, intention, understood duties and observers' interpretations. Review normative mappings with qualified scholarship. Measure relevant behavior or representational fidelity; productivity is not the universal objective. |
@@ -62,11 +62,11 @@ Retain cheaper sufficient rules and negative results. Do not demand victory over
 
 ## Decisions and resources for the next discussion
 
-The highest-value user input is three concrete situations the finished framework should explain, and the desired near-term population/time horizon. Adults over weeks is an assistant recommendation; a selected aging or childhood question could change that order. Preferred scholarly references or a review relationship would help when choosing positive Hanafi–Maturidi representations. These are open design choices, not prerequisites for the current documentation handoff.
+The first reference situations are now selected and implemented: learning, household responsibility and collaboration with three adults over dated episodes. Further user examples may guide the next milestone, particularly aging or childhood; they are not required for routine delivery of the approved work. Preferred scholarly references or a review relationship would help when choosing positive Hanafi–Maturidi representations. These are open design choices, not prerequisites for the current documentation handoff.
 
 The assistant can own technical decomposition, source and dataset discovery, competing implementations, evaluation and integration. Later access to real developers, suitable observations and qualified scholarship would support claims that software tests cannot settle. No new paid service, credit purchase or usage reset is authorized by this roadmap.
 
-When the user resumes implementation, select one bounded milestone from these stages and state its target and evidence criteria before implementing. Keep parallel tracks concrete and limited: one engineering question, a relevant evidence question and an independent review where useful. Do not infer an automatic restart from this document.
+For each subsequent milestone, retain the focused approach: state its concrete framework capability and evidence criteria before implementing. Keep parallel tracks concrete and limited: one engineering question, a relevant evidence question and an independent review where useful. Do not infer an automatic restart from this document.
 
 ## Completed evidence to carry forward
 
@@ -79,4 +79,6 @@ When the user resumes implementation, select one bounded milestone from these st
 | [Empirical learning pilot](learning-pilot-results.md) | Heterogeneous forecasts, no clear exponential advantage over the recent-performance control, no runtime calibration |
 | [Camp reconsideration](camp-reconsideration-results.md) | Earlier frames coexist with later roofs and retained practice; existing manual controls reproduce physical outcomes; candidate stays private |
 
-All these studies are complete. Do not rerun, retune or expand them merely to keep activity moving. The last implementation/evidence baseline is `45e95b5a16158a5f5a1bf12c0151ac6436270aa7`; public app 0.14.1 remains on its separately recorded source. The [historical roadmap](history/roadmap-through-2026-09-09.md) retains earlier proposals and dated gates; [HANDOFF.md](../HANDOFF.md) owns current delivery and restart instructions.
+The [connected-person milestone](connected-person.md) additionally demonstrates cross-context persistence and independent private installation. It does not resolve continuous days, lifespan, affect or validated choice models.
+
+All the historical studies listed above are complete. Do not rerun, retune or expand them merely to keep activity moving. The historical implementation/evidence baseline for those studies is `45e95b5a16158a5f5a1bf12c0151ac6436270aa7`; the connected-person delivery follows it, and public app 0.14.1 remains on its separately recorded source. The [historical roadmap](history/roadmap-through-2026-09-09.md) retains earlier proposals and dated gates; [HANDOFF.md](../HANDOFF.md) owns current delivery and restart instructions.
