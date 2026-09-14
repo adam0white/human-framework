@@ -27,7 +27,7 @@ The next recommended substantial milestone is continuous daily condition and ret
 | Scope | Identity |
 |---|---|
 | Repository | Private `adam0white/human-framework`; `main` is the integration branch |
-| New private candidate | situated-person 0.1.0; read current Git HEAD for delivered source |
+| New private candidate | situated-person 0.1.0, implementation `87645ea1fb4eb8a9ea20b3928a9e6933f339f1a3`; subsequent handoff-only commits may follow |
 | Existing selected package | Human/runtime 0.1.1; integer clock 0.1.0, unchanged |
 | Public browser app | 0.14.1, unchanged by this private milestone |
 | Deployed app source | `235d2e6c077df1a68c508091f54c673391e3a88f` |

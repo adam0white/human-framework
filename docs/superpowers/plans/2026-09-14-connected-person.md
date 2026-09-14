@@ -95,7 +95,7 @@ Files: `docs/connected-person.md`, `HANDOFF.md`, `docs/roadmap.md`, `AGENTS.md`,
 - [x] Run two independent reviews (correctness/information boundaries and goal alignment/reuse), check findings, fix real issues in one bounded round.
 - [x] Run focused tests, entire repository tests, existing runtime packaging, and candidate external install. Verify frozen bytes and public build remain unchanged.
 - [x] Update current direction to manual approved milestone completion, keep schedule paused, preserve open whole-person gaps.
-- [ ] Commit, integrate into main, push and verify local HEAD equals remote main. No public deployment if public payload unchanged.
+- [x] Commit, integrate into main, push and verify local HEAD equals remote main. No public deployment if public payload unchanged.
 
 ## Execution ledger
 
@@ -107,4 +107,4 @@ Files: `docs/connected-person.md`, `HANDOFF.md`, `docs/roadmap.md`, `AGENTS.md`,
 - Review corrections: interaction context prevents unrelated events replacing relevant evidence; commitment views retain terms/deadlines/revisions; host fulfillment retains receipt; packaging uses an explicit source manifest and fresh staging.
 
 - Tasks 1–3 complete: candidate core, host commitments, three connected adapters, direct baseline and independently installed consumer.
-- Task 4 verification complete: 903 repository tests, 32 focused tests, eight matching direct controls, frozen runtime packaging and unchanged public payload; integration/push remains the final action.
+- Task 4 verification complete: 903 repository tests, 32 focused tests, eight matching direct controls, frozen runtime packaging and unchanged public payload; implementation integrated and pushed at `87645ea1fb4eb8a9ea20b3928a9e6933f339f1a3`; local HEAD and remote main were verified equal.
