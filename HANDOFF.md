@@ -30,11 +30,13 @@ The next recommended substantial milestone is continuous daily condition and ret
 | New private candidate | situated-person 0.1.0, implementation `87645ea1fb4eb8a9ea20b3928a9e6933f339f1a3`; subsequent handoff-only commits may follow |
 | Existing selected package | Human/runtime 0.1.1; integer clock 0.1.0, unchanged |
 | Public browser app | 0.15.0, featuring Three moments at `/person/` |
-| Previous deployed app source (0.14.1) | `235d2e6c077df1a68c508091f54c673391e3a88f` |
-| Previous public payload digest (0.14.1) | `671311ad92bedce24376e84ebe8264cf7fddb8cc70af9fb024a61b86a8bce48b` |
+| Deployed app source | `de52d9c95e89dc25e163fca773fec2269b8b06a4` |
+| Public payload digest | `3138fa05c3a061adb922423932849c0630a14559b05858b7b3ed895143ff15b4` |
 | Schedule | `advance-human-framework`, paused |
 
-Public review site: [human.adamwhite.work](https://human.adamwhite.work). App 0.15 production verification will replace the previous deployment identity above after deployment. Private-source commits do not require redeployment when the allowlisted public payload is unchanged. [Deployment workflow](docs/deployment.md).
+Public review site: [human.adamwhite.work](https://human.adamwhite.work). App 0.15 production verification matched all 76 public payloads and 88 private/missing 404 checks to this app commit. Desktop/mobile interaction and replay passed. Subsequent private evidence commits may be newer than the deployed app commit. Private-source commits do not require redeployment when the allowlisted public payload is unchanged. [Deployment workflow](docs/deployment.md).
+
+The [showcase release evidence](artifacts/release-0.15/verification.json) records 912 passing tests, production verification and browser checks.
 
 ## Reproduce and verify
 
