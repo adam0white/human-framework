@@ -1,0 +1,921 @@
+{
+  "scope": "Eleven authored interventions with equally informed direct controllers sharing candidate execution state; no empirical or authoring advantage claim.",
+  "runs": 33,
+  "comparisons": [
+    {
+      "id": "remembered-route",
+      "candidate": {
+        "nextAction": "detour",
+        "recalledCount": 1,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "direct",
+            "startedAt": 0,
+            "finishedAt": 5,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          },
+          {
+            "actionId": "detour",
+            "startedAt": 8,
+            "finishedAt": 18,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "paidMinutes": 15,
+        "observedMinutes": 18
+      },
+      "direct": {
+        "nextAction": "detour",
+        "recalledCount": 1,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "direct",
+            "startedAt": 0,
+            "finishedAt": 5,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          },
+          {
+            "actionId": "detour",
+            "startedAt": 8,
+            "finishedAt": 18,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "paidMinutes": 15,
+        "observedMinutes": 18
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "no-record",
+      "candidate": {
+        "nextAction": "direct",
+        "recalledCount": 0,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 0
+        },
+        "trace": [
+          {
+            "actionId": "direct",
+            "startedAt": 0,
+            "finishedAt": 5,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          },
+          {
+            "actionId": "direct",
+            "startedAt": 8,
+            "finishedAt": 13,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          }
+        ],
+        "paidMinutes": 10,
+        "observedMinutes": 13
+      },
+      "direct": {
+        "nextAction": "direct",
+        "recalledCount": 0,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 0
+        },
+        "trace": [
+          {
+            "actionId": "direct",
+            "startedAt": 0,
+            "finishedAt": 5,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          },
+          {
+            "actionId": "direct",
+            "startedAt": 8,
+            "finishedAt": 13,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          }
+        ],
+        "paidMinutes": 10,
+        "observedMinutes": 13
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "different-context",
+      "candidate": {
+        "nextAction": "direct",
+        "recalledCount": 0,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 0
+        },
+        "trace": [
+          {
+            "actionId": "direct",
+            "startedAt": 0,
+            "finishedAt": 5,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          },
+          {
+            "actionId": "direct",
+            "startedAt": 8,
+            "finishedAt": 13,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          }
+        ],
+        "paidMinutes": 10,
+        "observedMinutes": 13
+      },
+      "direct": {
+        "nextAction": "direct",
+        "recalledCount": 0,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 0
+        },
+        "trace": [
+          {
+            "actionId": "direct",
+            "startedAt": 0,
+            "finishedAt": 5,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          },
+          {
+            "actionId": "direct",
+            "startedAt": 8,
+            "finishedAt": 13,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          }
+        ],
+        "paidMinutes": 10,
+        "observedMinutes": 13
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "expired-episode",
+      "candidate": {
+        "nextAction": "direct",
+        "recalledCount": 0,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 0
+        },
+        "trace": [
+          {
+            "actionId": "direct",
+            "startedAt": 0,
+            "finishedAt": 5,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          },
+          {
+            "actionId": "direct",
+            "startedAt": 8,
+            "finishedAt": 13,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          }
+        ],
+        "paidMinutes": 10,
+        "observedMinutes": 13
+      },
+      "direct": {
+        "nextAction": "direct",
+        "recalledCount": 0,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 0
+        },
+        "trace": [
+          {
+            "actionId": "direct",
+            "startedAt": 0,
+            "finishedAt": 5,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          },
+          {
+            "actionId": "direct",
+            "startedAt": 8,
+            "finishedAt": 13,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          }
+        ],
+        "paidMinutes": 10,
+        "observedMinutes": 13
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "attended-premises",
+      "candidate": {
+        "nextAction": "direct",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "true",
+          "value": true,
+          "effectiveReceiptIds": [],
+          "supports": [
+            {
+              "value": true,
+              "propositionIds": [
+                "gateOpen",
+                "permitValid"
+              ],
+              "originIds": [
+                "dispatcher"
+              ],
+              "evidenceIds": [
+                "gate",
+                "permit"
+              ],
+              "ruleIds": [
+                "route-permission"
+              ]
+            }
+          ]
+        },
+        "processedCount": 2,
+        "world": {
+          "gateOpen": true,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "permit",
+            "startedAt": 2,
+            "finishedAt": 4,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "direct",
+            "startedAt": 4,
+            "finishedAt": 9,
+            "elapsedMinutes": 5,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 9
+      },
+      "direct": {
+        "nextAction": "direct",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "true",
+          "value": true,
+          "effectiveReceiptIds": [],
+          "supports": [
+            {
+              "value": true,
+              "propositionIds": [
+                "gateOpen",
+                "permitValid"
+              ],
+              "originIds": [
+                "dispatcher"
+              ],
+              "evidenceIds": [
+                "gate",
+                "permit"
+              ],
+              "ruleIds": [
+                "route-permission"
+              ]
+            }
+          ]
+        },
+        "processedCount": 2,
+        "world": {
+          "gateOpen": true,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "permit",
+            "startedAt": 2,
+            "finishedAt": 4,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "direct",
+            "startedAt": 4,
+            "finishedAt": 9,
+            "elapsedMinutes": 5,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 9
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "one-message",
+      "candidate": {
+        "nextAction": "detour",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "unknown",
+          "value": null,
+          "effectiveReceiptIds": [],
+          "supports": []
+        },
+        "processedCount": 1,
+        "world": {
+          "gateOpen": true,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "detour",
+            "startedAt": 2,
+            "finishedAt": 12,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 12
+      },
+      "direct": {
+        "nextAction": "detour",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "unknown",
+          "value": null,
+          "effectiveReceiptIds": [],
+          "supports": []
+        },
+        "processedCount": 1,
+        "world": {
+          "gateOpen": true,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "detour",
+            "startedAt": 2,
+            "finishedAt": 12,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 12
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "no-reading",
+      "candidate": {
+        "nextAction": "detour",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "unknown",
+          "value": null,
+          "effectiveReceiptIds": [],
+          "supports": []
+        },
+        "processedCount": 0,
+        "world": {
+          "gateOpen": true,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "detour",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 10
+      },
+      "direct": {
+        "nextAction": "detour",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "unknown",
+          "value": null,
+          "effectiveReceiptIds": [],
+          "supports": []
+        },
+        "processedCount": 0,
+        "world": {
+          "gateOpen": true,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "detour",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 10
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "expired-premise",
+      "candidate": {
+        "nextAction": "detour",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "unknown",
+          "value": null,
+          "effectiveReceiptIds": [],
+          "supports": []
+        },
+        "processedCount": 2,
+        "world": {
+          "gateOpen": true,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "permit",
+            "startedAt": 2,
+            "finishedAt": 4,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "detour",
+            "startedAt": 4,
+            "finishedAt": 14,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 14
+      },
+      "direct": {
+        "nextAction": "detour",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "unknown",
+          "value": null,
+          "effectiveReceiptIds": [],
+          "supports": []
+        },
+        "processedCount": 2,
+        "world": {
+          "gateOpen": true,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "permit",
+            "startedAt": 2,
+            "finishedAt": 4,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "detour",
+            "startedAt": 4,
+            "finishedAt": 14,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 14
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "conflicting-report",
+      "candidate": {
+        "nextAction": "detour",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "unknown",
+          "value": null,
+          "effectiveReceiptIds": [],
+          "supports": []
+        },
+        "processedCount": 3,
+        "world": {
+          "gateOpen": true,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "permit",
+            "startedAt": 2,
+            "finishedAt": 4,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "opposed",
+            "startedAt": 4,
+            "finishedAt": 6,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "detour",
+            "startedAt": 6,
+            "finishedAt": 16,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 16
+      },
+      "direct": {
+        "nextAction": "detour",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "unknown",
+          "value": null,
+          "effectiveReceiptIds": [],
+          "supports": []
+        },
+        "processedCount": 3,
+        "world": {
+          "gateOpen": true,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "permit",
+            "startedAt": 2,
+            "finishedAt": 4,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "opposed",
+            "startedAt": 4,
+            "finishedAt": 6,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "detour",
+            "startedAt": 6,
+            "finishedAt": 16,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 16
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "processed-correction",
+      "candidate": {
+        "nextAction": "detour",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "unknown",
+          "value": null,
+          "effectiveReceiptIds": [],
+          "supports": []
+        },
+        "processedCount": 3,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "permit",
+            "startedAt": 2,
+            "finishedAt": 4,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "gate-update",
+            "startedAt": 4,
+            "finishedAt": 6,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "detour",
+            "startedAt": 6,
+            "finishedAt": 16,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 16
+      },
+      "direct": {
+        "nextAction": "detour",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "unknown",
+          "value": null,
+          "effectiveReceiptIds": [],
+          "supports": []
+        },
+        "processedCount": 3,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 1
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "permit",
+            "startedAt": 2,
+            "finishedAt": 4,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "gate-update",
+            "startedAt": 4,
+            "finishedAt": 6,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "detour",
+            "startedAt": 6,
+            "finishedAt": 16,
+            "elapsedMinutes": 10,
+            "status": "completed"
+          }
+        ],
+        "observedMinutes": 16
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "unread-correction",
+      "candidate": {
+        "nextAction": "direct",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "true",
+          "value": true,
+          "effectiveReceiptIds": [],
+          "supports": [
+            {
+              "value": true,
+              "propositionIds": [
+                "gateOpen",
+                "permitValid"
+              ],
+              "originIds": [
+                "dispatcher"
+              ],
+              "evidenceIds": [
+                "gate",
+                "permit"
+              ],
+              "ruleIds": [
+                "route-permission"
+              ]
+            }
+          ]
+        },
+        "processedCount": 2,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 0
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "permit",
+            "startedAt": 2,
+            "finishedAt": 4,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "direct",
+            "startedAt": 4,
+            "finishedAt": 9,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          }
+        ],
+        "observedMinutes": 9
+      },
+      "direct": {
+        "nextAction": "direct",
+        "conclusion": {
+          "propositionId": "directAllowed",
+          "status": "true",
+          "value": true,
+          "effectiveReceiptIds": [],
+          "supports": [
+            {
+              "value": true,
+              "propositionIds": [
+                "gateOpen",
+                "permitValid"
+              ],
+              "originIds": [
+                "dispatcher"
+              ],
+              "evidenceIds": [
+                "gate",
+                "permit"
+              ],
+              "ruleIds": [
+                "route-permission"
+              ]
+            }
+          ]
+        },
+        "processedCount": 2,
+        "world": {
+          "gateOpen": false,
+          "permitValid": true,
+          "delivered": 0
+        },
+        "trace": [
+          {
+            "actionId": "read",
+            "messageId": "gate",
+            "startedAt": 0,
+            "finishedAt": 2,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "read",
+            "messageId": "permit",
+            "startedAt": 2,
+            "finishedAt": 4,
+            "elapsedMinutes": 2,
+            "status": "completed"
+          },
+          {
+            "actionId": "direct",
+            "startedAt": 4,
+            "finishedAt": 9,
+            "elapsedMinutes": 5,
+            "status": "failed"
+          }
+        ],
+        "observedMinutes": 9
+      },
+      "directParity": true,
+      "restoreParity": true
+    }
+  ]
+}

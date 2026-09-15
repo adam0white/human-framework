@@ -1,0 +1,1127 @@
+{
+  "remembered": {
+    "nextAction": "detour",
+    "recalledCount": 1,
+    "world": {
+      "gateOpen": false,
+      "permitValid": true,
+      "delivered": 1
+    },
+    "trace": [
+      {
+        "actionId": "direct",
+        "startedAt": 0,
+        "finishedAt": 5,
+        "elapsedMinutes": 5,
+        "status": "failed"
+      },
+      {
+        "actionId": "detour",
+        "startedAt": 8,
+        "finishedAt": 18,
+        "elapsedMinutes": 10,
+        "status": "completed"
+      }
+    ],
+    "paidMinutes": 15,
+    "observedMinutes": 18,
+    "state": {
+      "format": "human-framework-experience-workspace",
+      "version": 1,
+      "workspace": {
+        "version": "0.1.0",
+        "ownerId": "courier",
+        "actor": {
+          "version": "0.1.0",
+          "id": "courier",
+          "person": {
+            "version": "0.1.0",
+            "id": "courier",
+            "sustained": {
+              "version": "0.1.0",
+              "id": "courier",
+              "situated": {
+                "version": "0.1.0",
+                "id": "courier",
+                "human": {
+                  "version": "0.1.1",
+                  "id": "courier",
+                  "body": {
+                    "fatigue": 0.12400000000000001,
+                    "hunger": 0.1315
+                  },
+                  "skills": {
+                    "navigation": 0.26002845876516856
+                  },
+                  "observationBias": 0,
+                  "minutes": 18,
+                  "nextAttempt": 3,
+                  "pending": null
+                },
+                "now": 18,
+                "purposes": [
+                  {
+                    "id": "deliver",
+                    "status": "active"
+                  }
+                ],
+                "observations": []
+              },
+              "learning": {
+                "version": "0.1.0",
+                "ownerId": "courier",
+                "originAt": 0,
+                "now": 18,
+                "skills": [
+                  "navigation"
+                ],
+                "config": {
+                  "rule": "authored-exponential-retention-v1",
+                  "halfLifeMinutes": 43200,
+                  "gainPerMinute": {
+                    "instruction": 0.01,
+                    "practice": 0.006,
+                    "retrieval": 0.008
+                  },
+                  "maxAccessibility": 1,
+                  "evidenceHorizonMinutes": 129600,
+                  "recentEvidenceLimit": 8,
+                  "maxReceipts": 512
+                },
+                "items": [],
+                "receipts": []
+              },
+              "condition": {
+                "version": "0.1.0",
+                "now": 18,
+                "mode": "awake",
+                "awakeMinutes": 18,
+                "sleepMinutes": 0,
+                "rules": {
+                  "awakeFatiguePerMinute": 0.0005,
+                  "awakeHungerPerMinute": 0.0005,
+                  "sleepFatigueRecoveryPerMinute": 0.001,
+                  "sleepHungerPerMinute": 0.00025
+                }
+              }
+            },
+            "beliefs": {
+              "version": "beliefs-0.1.0",
+              "ownerId": "courier",
+              "originAt": 0,
+              "now": 18,
+              "propositions": [
+                "gateOpen",
+                "permitValid"
+              ],
+              "sources": [
+                "courier",
+                "dispatcher",
+                "observer"
+              ],
+              "maxReceipts": 256,
+              "receipts": []
+            },
+            "relationships": {
+              "version": "0.1.0",
+              "ownerId": "courier",
+              "now": 18,
+              "actors": [
+                "courier",
+                "dispatcher",
+                "observer"
+              ],
+              "contexts": [
+                "route"
+              ],
+              "ties": [],
+              "events": []
+            },
+            "duties": {
+              "version": "0.1.0",
+              "ownerId": "courier",
+              "now": 18,
+              "cases": [],
+              "notices": [],
+              "intentions": [],
+              "outcomes": [],
+              "recipientResponses": []
+            },
+            "course": {
+              "version": "0.1.0",
+              "actorId": "courier",
+              "startDay": 0,
+              "day": 0,
+              "ageAtStartYears": 30,
+              "maxDays": 730,
+              "catalog": {
+                "actors": [
+                  "courier",
+                  "dispatcher",
+                  "observer"
+                ],
+                "skills": [
+                  "navigation"
+                ],
+                "qualifications": [],
+                "roles": [],
+                "opportunities": []
+              },
+              "intervals": [],
+              "events": []
+            },
+            "appraisal": {
+              "version": "0.1.0",
+              "ownerId": "courier",
+              "now": 18,
+              "contexts": [],
+              "maxConcernMinutes": 30,
+              "minReflectionMinutes": 5,
+              "records": [],
+              "receipts": []
+            },
+            "lastAttempt": {
+              "attemptId": "courier:2",
+              "actionId": "detour",
+              "startedAt": 8,
+              "finishedAt": 18,
+              "elapsedMinutes": 10,
+              "status": "completed"
+            }
+          },
+          "habits": {
+            "version": "0.1.0",
+            "ownerId": "courier",
+            "now": 18,
+            "habits": [],
+            "revisions": [],
+            "receipts": [
+              {
+                "ownerId": "courier",
+                "attemptId": "courier:1",
+                "at": 5,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "direct",
+                "status": "failed",
+                "elapsedMinutes": 5,
+                "durationMinutes": 5
+              },
+              {
+                "ownerId": "courier",
+                "attemptId": "courier:2",
+                "at": 18,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "detour",
+                "status": "completed",
+                "elapsedMinutes": 10,
+                "durationMinutes": 10
+              }
+            ],
+            "acceptedRevisions": []
+          },
+          "pendingContext": null
+        },
+        "episodes": {
+          "version": "episodes-0.1.0",
+          "ownerId": "courier",
+          "originAt": 0,
+          "now": 18,
+          "contexts": [
+            "route",
+            "warehouse"
+          ],
+          "sources": [
+            "courier",
+            "dispatcher",
+            "observer"
+          ],
+          "propositions": [
+            "gateOpen",
+            "permitValid"
+          ],
+          "maxRecords": 128,
+          "records": [
+            {
+              "kind": "episode",
+              "episodeId": "past-route",
+              "eventId": "closed-trip",
+              "contextId": "route",
+              "sourceId": "courier",
+              "originId": "courier",
+              "occurredAt": 5,
+              "receivedAt": 5,
+              "expiresAt": 105,
+              "actionId": "direct",
+              "outcomeId": "blocked-gate",
+              "facts": [
+                {
+                  "propositionId": "gateOpen",
+                  "value": false
+                }
+              ],
+              "correctsEpisodeId": null
+            }
+          ]
+        },
+        "attention": {
+          "version": "attention-0.1.0",
+          "ownerId": "courier",
+          "originAt": 0,
+          "now": 18,
+          "reviewActionId": "read",
+          "minReviewMinutes": 2,
+          "maxMessages": 128,
+          "messages": [],
+          "processings": []
+        },
+        "inference": {
+          "version": "inference-0.1.0",
+          "ownerId": "courier",
+          "propositions": [
+            "gateOpen",
+            "permitValid",
+            "directAllowed"
+          ],
+          "rules": [
+            {
+              "ruleId": "route-permission",
+              "when": [
+                {
+                  "propositionId": "gateOpen",
+                  "value": true
+                },
+                {
+                  "propositionId": "permitValid",
+                  "value": true
+                }
+              ],
+              "then": {
+                "propositionId": "directAllowed",
+                "value": true
+              }
+            }
+          ]
+        },
+        "selection": null
+      }
+    }
+  },
+  "attended": {
+    "nextAction": "direct",
+    "conclusion": {
+      "propositionId": "directAllowed",
+      "status": "true",
+      "value": true,
+      "effectiveReceiptIds": [],
+      "supports": [
+        {
+          "value": true,
+          "propositionIds": [
+            "gateOpen",
+            "permitValid"
+          ],
+          "originIds": [
+            "dispatcher"
+          ],
+          "evidenceIds": [
+            "gate",
+            "permit"
+          ],
+          "ruleIds": [
+            "route-permission"
+          ]
+        }
+      ]
+    },
+    "processedCount": 2,
+    "world": {
+      "gateOpen": true,
+      "permitValid": true,
+      "delivered": 1
+    },
+    "trace": [
+      {
+        "actionId": "read",
+        "messageId": "gate",
+        "startedAt": 0,
+        "finishedAt": 2,
+        "elapsedMinutes": 2,
+        "status": "completed"
+      },
+      {
+        "actionId": "read",
+        "messageId": "permit",
+        "startedAt": 2,
+        "finishedAt": 4,
+        "elapsedMinutes": 2,
+        "status": "completed"
+      },
+      {
+        "actionId": "direct",
+        "startedAt": 4,
+        "finishedAt": 9,
+        "elapsedMinutes": 5,
+        "status": "completed"
+      }
+    ],
+    "observedMinutes": 9,
+    "state": {
+      "format": "human-framework-experience-workspace",
+      "version": 1,
+      "workspace": {
+        "version": "0.1.0",
+        "ownerId": "courier",
+        "actor": {
+          "version": "0.1.0",
+          "id": "courier",
+          "person": {
+            "version": "0.1.0",
+            "id": "courier",
+            "sustained": {
+              "version": "0.1.0",
+              "id": "courier",
+              "situated": {
+                "version": "0.1.0",
+                "id": "courier",
+                "human": {
+                  "version": "0.1.1",
+                  "id": "courier",
+                  "body": {
+                    "fatigue": 0.11350000000000002,
+                    "hunger": 0.11800000000000002
+                  },
+                  "skills": {
+                    "navigation": 0.22053192831300053
+                  },
+                  "observationBias": 0,
+                  "minutes": 9,
+                  "nextAttempt": 4,
+                  "pending": null
+                },
+                "now": 9,
+                "purposes": [
+                  {
+                    "id": "deliver",
+                    "status": "active"
+                  }
+                ],
+                "observations": []
+              },
+              "learning": {
+                "version": "0.1.0",
+                "ownerId": "courier",
+                "originAt": 0,
+                "now": 9,
+                "skills": [
+                  "navigation"
+                ],
+                "config": {
+                  "rule": "authored-exponential-retention-v1",
+                  "halfLifeMinutes": 43200,
+                  "gainPerMinute": {
+                    "instruction": 0.01,
+                    "practice": 0.006,
+                    "retrieval": 0.008
+                  },
+                  "maxAccessibility": 1,
+                  "evidenceHorizonMinutes": 129600,
+                  "recentEvidenceLimit": 8,
+                  "maxReceipts": 512
+                },
+                "items": [],
+                "receipts": []
+              },
+              "condition": {
+                "version": "0.1.0",
+                "now": 9,
+                "mode": "awake",
+                "awakeMinutes": 9,
+                "sleepMinutes": 0,
+                "rules": {
+                  "awakeFatiguePerMinute": 0.0005,
+                  "awakeHungerPerMinute": 0.0005,
+                  "sleepFatigueRecoveryPerMinute": 0.001,
+                  "sleepHungerPerMinute": 0.00025
+                }
+              }
+            },
+            "beliefs": {
+              "version": "beliefs-0.1.0",
+              "ownerId": "courier",
+              "originAt": 0,
+              "now": 9,
+              "propositions": [
+                "gateOpen",
+                "permitValid"
+              ],
+              "sources": [
+                "courier",
+                "dispatcher",
+                "observer"
+              ],
+              "maxReceipts": 256,
+              "receipts": [
+                {
+                  "kind": "evidence",
+                  "receiptId": "gate",
+                  "propositionId": "gateOpen",
+                  "sourceId": "dispatcher",
+                  "originId": "dispatcher",
+                  "value": true,
+                  "observedAt": 0,
+                  "receivedAt": 2,
+                  "expiresAt": 100,
+                  "correctsReceiptId": null
+                },
+                {
+                  "kind": "evidence",
+                  "receiptId": "permit",
+                  "propositionId": "permitValid",
+                  "sourceId": "dispatcher",
+                  "originId": "dispatcher",
+                  "value": true,
+                  "observedAt": 0,
+                  "receivedAt": 4,
+                  "expiresAt": 100,
+                  "correctsReceiptId": null
+                }
+              ]
+            },
+            "relationships": {
+              "version": "0.1.0",
+              "ownerId": "courier",
+              "now": 9,
+              "actors": [
+                "courier",
+                "dispatcher",
+                "observer"
+              ],
+              "contexts": [
+                "route"
+              ],
+              "ties": [],
+              "events": []
+            },
+            "duties": {
+              "version": "0.1.0",
+              "ownerId": "courier",
+              "now": 9,
+              "cases": [],
+              "notices": [],
+              "intentions": [],
+              "outcomes": [],
+              "recipientResponses": []
+            },
+            "course": {
+              "version": "0.1.0",
+              "actorId": "courier",
+              "startDay": 0,
+              "day": 0,
+              "ageAtStartYears": 30,
+              "maxDays": 730,
+              "catalog": {
+                "actors": [
+                  "courier",
+                  "dispatcher",
+                  "observer"
+                ],
+                "skills": [
+                  "navigation"
+                ],
+                "qualifications": [],
+                "roles": [],
+                "opportunities": []
+              },
+              "intervals": [],
+              "events": []
+            },
+            "appraisal": {
+              "version": "0.1.0",
+              "ownerId": "courier",
+              "now": 9,
+              "contexts": [],
+              "maxConcernMinutes": 30,
+              "minReflectionMinutes": 5,
+              "records": [],
+              "receipts": []
+            },
+            "lastAttempt": {
+              "attemptId": "courier:3",
+              "actionId": "direct",
+              "startedAt": 4,
+              "finishedAt": 9,
+              "elapsedMinutes": 5,
+              "status": "completed"
+            }
+          },
+          "habits": {
+            "version": "0.1.0",
+            "ownerId": "courier",
+            "now": 9,
+            "habits": [],
+            "revisions": [],
+            "receipts": [
+              {
+                "ownerId": "courier",
+                "attemptId": "courier:1",
+                "at": 2,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "read",
+                "status": "completed",
+                "elapsedMinutes": 2,
+                "durationMinutes": 2
+              },
+              {
+                "ownerId": "courier",
+                "attemptId": "courier:2",
+                "at": 4,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "read",
+                "status": "completed",
+                "elapsedMinutes": 2,
+                "durationMinutes": 2
+              },
+              {
+                "ownerId": "courier",
+                "attemptId": "courier:3",
+                "at": 9,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "direct",
+                "status": "completed",
+                "elapsedMinutes": 5,
+                "durationMinutes": 5
+              }
+            ],
+            "acceptedRevisions": []
+          },
+          "pendingContext": null
+        },
+        "episodes": {
+          "version": "episodes-0.1.0",
+          "ownerId": "courier",
+          "originAt": 0,
+          "now": 9,
+          "contexts": [
+            "route",
+            "warehouse"
+          ],
+          "sources": [
+            "courier",
+            "dispatcher",
+            "observer"
+          ],
+          "propositions": [
+            "gateOpen",
+            "permitValid"
+          ],
+          "maxRecords": 128,
+          "records": []
+        },
+        "attention": {
+          "version": "attention-0.1.0",
+          "ownerId": "courier",
+          "originAt": 0,
+          "now": 9,
+          "reviewActionId": "read",
+          "minReviewMinutes": 2,
+          "maxMessages": 128,
+          "messages": [
+            {
+              "messageId": "gate",
+              "contextId": "route",
+              "propositionId": "gateOpen",
+              "sourceId": "dispatcher",
+              "originId": "dispatcher",
+              "value": true,
+              "occurredAt": 0,
+              "deliveredAt": 0,
+              "expiresAt": 100,
+              "correctsReceiptId": null
+            },
+            {
+              "messageId": "permit",
+              "contextId": "route",
+              "propositionId": "permitValid",
+              "sourceId": "dispatcher",
+              "originId": "dispatcher",
+              "value": true,
+              "occurredAt": 0,
+              "deliveredAt": 0,
+              "expiresAt": 100,
+              "correctsReceiptId": null
+            }
+          ],
+          "processings": [
+            {
+              "messageId": "gate",
+              "attemptId": "courier:1",
+              "processedAt": 2
+            },
+            {
+              "messageId": "permit",
+              "attemptId": "courier:2",
+              "processedAt": 4
+            }
+          ]
+        },
+        "inference": {
+          "version": "inference-0.1.0",
+          "ownerId": "courier",
+          "propositions": [
+            "gateOpen",
+            "permitValid",
+            "directAllowed"
+          ],
+          "rules": [
+            {
+              "ruleId": "route-permission",
+              "when": [
+                {
+                  "propositionId": "gateOpen",
+                  "value": true
+                },
+                {
+                  "propositionId": "permitValid",
+                  "value": true
+                }
+              ],
+              "then": {
+                "propositionId": "directAllowed",
+                "value": true
+              }
+            }
+          ]
+        },
+        "selection": null
+      }
+    }
+  },
+  "corrected": {
+    "nextAction": "detour",
+    "conclusion": {
+      "propositionId": "directAllowed",
+      "status": "unknown",
+      "value": null,
+      "effectiveReceiptIds": [],
+      "supports": []
+    },
+    "processedCount": 3,
+    "world": {
+      "gateOpen": false,
+      "permitValid": true,
+      "delivered": 1
+    },
+    "trace": [
+      {
+        "actionId": "read",
+        "messageId": "gate",
+        "startedAt": 0,
+        "finishedAt": 2,
+        "elapsedMinutes": 2,
+        "status": "completed"
+      },
+      {
+        "actionId": "read",
+        "messageId": "permit",
+        "startedAt": 2,
+        "finishedAt": 4,
+        "elapsedMinutes": 2,
+        "status": "completed"
+      },
+      {
+        "actionId": "read",
+        "messageId": "gate-update",
+        "startedAt": 4,
+        "finishedAt": 6,
+        "elapsedMinutes": 2,
+        "status": "completed"
+      },
+      {
+        "actionId": "detour",
+        "startedAt": 6,
+        "finishedAt": 16,
+        "elapsedMinutes": 10,
+        "status": "completed"
+      }
+    ],
+    "observedMinutes": 16,
+    "state": {
+      "format": "human-framework-experience-workspace",
+      "version": 1,
+      "workspace": {
+        "version": "0.1.0",
+        "ownerId": "courier",
+        "actor": {
+          "version": "0.1.0",
+          "id": "courier",
+          "person": {
+            "version": "0.1.0",
+            "id": "courier",
+            "sustained": {
+              "version": "0.1.0",
+              "id": "courier",
+              "situated": {
+                "version": "0.1.0",
+                "id": "courier",
+                "human": {
+                  "version": "0.1.1",
+                  "id": "courier",
+                  "body": {
+                    "fatigue": 0.12400000000000001,
+                    "hunger": 0.132
+                  },
+                  "skills": {
+                    "navigation": 0.24053690652568832
+                  },
+                  "observationBias": 0,
+                  "minutes": 16,
+                  "nextAttempt": 5,
+                  "pending": null
+                },
+                "now": 16,
+                "purposes": [
+                  {
+                    "id": "deliver",
+                    "status": "active"
+                  }
+                ],
+                "observations": []
+              },
+              "learning": {
+                "version": "0.1.0",
+                "ownerId": "courier",
+                "originAt": 0,
+                "now": 16,
+                "skills": [
+                  "navigation"
+                ],
+                "config": {
+                  "rule": "authored-exponential-retention-v1",
+                  "halfLifeMinutes": 43200,
+                  "gainPerMinute": {
+                    "instruction": 0.01,
+                    "practice": 0.006,
+                    "retrieval": 0.008
+                  },
+                  "maxAccessibility": 1,
+                  "evidenceHorizonMinutes": 129600,
+                  "recentEvidenceLimit": 8,
+                  "maxReceipts": 512
+                },
+                "items": [],
+                "receipts": []
+              },
+              "condition": {
+                "version": "0.1.0",
+                "now": 16,
+                "mode": "awake",
+                "awakeMinutes": 16,
+                "sleepMinutes": 0,
+                "rules": {
+                  "awakeFatiguePerMinute": 0.0005,
+                  "awakeHungerPerMinute": 0.0005,
+                  "sleepFatigueRecoveryPerMinute": 0.001,
+                  "sleepHungerPerMinute": 0.00025
+                }
+              }
+            },
+            "beliefs": {
+              "version": "beliefs-0.1.0",
+              "ownerId": "courier",
+              "originAt": 0,
+              "now": 16,
+              "propositions": [
+                "gateOpen",
+                "permitValid"
+              ],
+              "sources": [
+                "courier",
+                "dispatcher",
+                "observer"
+              ],
+              "maxReceipts": 256,
+              "receipts": [
+                {
+                  "kind": "evidence",
+                  "receiptId": "gate",
+                  "propositionId": "gateOpen",
+                  "sourceId": "dispatcher",
+                  "originId": "dispatcher",
+                  "value": true,
+                  "observedAt": 0,
+                  "receivedAt": 2,
+                  "expiresAt": 100,
+                  "correctsReceiptId": null
+                },
+                {
+                  "kind": "evidence",
+                  "receiptId": "permit",
+                  "propositionId": "permitValid",
+                  "sourceId": "dispatcher",
+                  "originId": "dispatcher",
+                  "value": true,
+                  "observedAt": 0,
+                  "receivedAt": 4,
+                  "expiresAt": 100,
+                  "correctsReceiptId": null
+                },
+                {
+                  "kind": "evidence",
+                  "receiptId": "gate-update",
+                  "propositionId": "gateOpen",
+                  "sourceId": "dispatcher",
+                  "originId": "dispatcher",
+                  "value": false,
+                  "observedAt": 4,
+                  "receivedAt": 6,
+                  "expiresAt": 100,
+                  "correctsReceiptId": "gate"
+                }
+              ]
+            },
+            "relationships": {
+              "version": "0.1.0",
+              "ownerId": "courier",
+              "now": 16,
+              "actors": [
+                "courier",
+                "dispatcher",
+                "observer"
+              ],
+              "contexts": [
+                "route"
+              ],
+              "ties": [],
+              "events": []
+            },
+            "duties": {
+              "version": "0.1.0",
+              "ownerId": "courier",
+              "now": 16,
+              "cases": [],
+              "notices": [],
+              "intentions": [],
+              "outcomes": [],
+              "recipientResponses": []
+            },
+            "course": {
+              "version": "0.1.0",
+              "actorId": "courier",
+              "startDay": 0,
+              "day": 0,
+              "ageAtStartYears": 30,
+              "maxDays": 730,
+              "catalog": {
+                "actors": [
+                  "courier",
+                  "dispatcher",
+                  "observer"
+                ],
+                "skills": [
+                  "navigation"
+                ],
+                "qualifications": [],
+                "roles": [],
+                "opportunities": []
+              },
+              "intervals": [],
+              "events": []
+            },
+            "appraisal": {
+              "version": "0.1.0",
+              "ownerId": "courier",
+              "now": 16,
+              "contexts": [],
+              "maxConcernMinutes": 30,
+              "minReflectionMinutes": 5,
+              "records": [],
+              "receipts": []
+            },
+            "lastAttempt": {
+              "attemptId": "courier:4",
+              "actionId": "detour",
+              "startedAt": 6,
+              "finishedAt": 16,
+              "elapsedMinutes": 10,
+              "status": "completed"
+            }
+          },
+          "habits": {
+            "version": "0.1.0",
+            "ownerId": "courier",
+            "now": 16,
+            "habits": [],
+            "revisions": [],
+            "receipts": [
+              {
+                "ownerId": "courier",
+                "attemptId": "courier:1",
+                "at": 2,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "read",
+                "status": "completed",
+                "elapsedMinutes": 2,
+                "durationMinutes": 2
+              },
+              {
+                "ownerId": "courier",
+                "attemptId": "courier:2",
+                "at": 4,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "read",
+                "status": "completed",
+                "elapsedMinutes": 2,
+                "durationMinutes": 2
+              },
+              {
+                "ownerId": "courier",
+                "attemptId": "courier:3",
+                "at": 6,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "read",
+                "status": "completed",
+                "elapsedMinutes": 2,
+                "durationMinutes": 2
+              },
+              {
+                "ownerId": "courier",
+                "attemptId": "courier:4",
+                "at": 16,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "detour",
+                "status": "completed",
+                "elapsedMinutes": 10,
+                "durationMinutes": 10
+              }
+            ],
+            "acceptedRevisions": []
+          },
+          "pendingContext": null
+        },
+        "episodes": {
+          "version": "episodes-0.1.0",
+          "ownerId": "courier",
+          "originAt": 0,
+          "now": 16,
+          "contexts": [
+            "route",
+            "warehouse"
+          ],
+          "sources": [
+            "courier",
+            "dispatcher",
+            "observer"
+          ],
+          "propositions": [
+            "gateOpen",
+            "permitValid"
+          ],
+          "maxRecords": 128,
+          "records": []
+        },
+        "attention": {
+          "version": "attention-0.1.0",
+          "ownerId": "courier",
+          "originAt": 0,
+          "now": 16,
+          "reviewActionId": "read",
+          "minReviewMinutes": 2,
+          "maxMessages": 128,
+          "messages": [
+            {
+              "messageId": "gate",
+              "contextId": "route",
+              "propositionId": "gateOpen",
+              "sourceId": "dispatcher",
+              "originId": "dispatcher",
+              "value": true,
+              "occurredAt": 0,
+              "deliveredAt": 0,
+              "expiresAt": 100,
+              "correctsReceiptId": null
+            },
+            {
+              "messageId": "permit",
+              "contextId": "route",
+              "propositionId": "permitValid",
+              "sourceId": "dispatcher",
+              "originId": "dispatcher",
+              "value": true,
+              "occurredAt": 0,
+              "deliveredAt": 0,
+              "expiresAt": 100,
+              "correctsReceiptId": null
+            },
+            {
+              "messageId": "gate-update",
+              "contextId": "route",
+              "propositionId": "gateOpen",
+              "sourceId": "dispatcher",
+              "originId": "dispatcher",
+              "value": false,
+              "occurredAt": 4,
+              "deliveredAt": 4,
+              "expiresAt": 100,
+              "correctsReceiptId": "gate"
+            }
+          ],
+          "processings": [
+            {
+              "messageId": "gate",
+              "attemptId": "courier:1",
+              "processedAt": 2
+            },
+            {
+              "messageId": "permit",
+              "attemptId": "courier:2",
+              "processedAt": 4
+            },
+            {
+              "messageId": "gate-update",
+              "attemptId": "courier:3",
+              "processedAt": 6
+            }
+          ]
+        },
+        "inference": {
+          "version": "inference-0.1.0",
+          "ownerId": "courier",
+          "propositions": [
+            "gateOpen",
+            "permitValid",
+            "directAllowed"
+          ],
+          "rules": [
+            {
+              "ruleId": "route-permission",
+              "when": [
+                {
+                  "propositionId": "gateOpen",
+                  "value": true
+                },
+                {
+                  "propositionId": "permitValid",
+                  "value": true
+                }
+              ],
+              "then": {
+                "propositionId": "directAllowed",
+                "value": true
+              }
+            }
+          ]
+        },
+        "selection": null
+      }
+    }
+  }
+}

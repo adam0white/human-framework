@@ -1,5 +1,7 @@
 # Executable coverage and research boundaries
 
+Latest experience addition, 2026-09-15: [experienced-person](experienced-person.md) adds original-provenance contextual episodes, selected paid attention and traceable acyclic inference. A workspace adapter derives actual reading payment; route and separately authored installed maintenance applications exercise the same 26-source package. Eleven interventions preserve direct-controller and restoration parity. General autobiographical memory, perception, cognition and model validity remain open. The subsequent [game shortlist](game-ideas-2026-09-15.md) is a proposal, not a delivered game.
+
 Latest 2026-09-15 addition: [adaptive-person](adaptive-person.md) implements paid cue-linked habits, voluntarily accepted purpose revision, canonical functional restrictions with accommodation, and granted FIFO facility allocation. Reference interventions and independently installed reuse exercise these bounded engineering rules. General habit/purpose development, clinical recovery, broader institutions and empirical/interpretive validation remain open.
 
 
