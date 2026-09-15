@@ -25,3 +25,7 @@ This authorizes the focused Three moments simulation and its normal public deplo
 After reviewing Three moments, the user called it small and linear, reiterated that simulations and games are not the main focus, and requested continued autonomous work on a substantial part of the remaining framework before another game. This authorizes routine technical scope choices, targeted delegation, implementation, evaluation, integration and delivery in the current manual session. It does not request a scheduled task restart.
 
 The selected technical scope is continuous daily condition and retained learning with ongoing obligations, tested in a fourteen-day reference and a separately authored installable consumer. See [design](superpowers/specs/2026-09-14-sustained-person.md), [execution plan](superpowers/plans/2026-09-14-sustained-person.md), and [delivery](sustained-person.md). These are assistant-selected implementation details under the user's broader authorization, not quoted user model requirements.
+
+## Sequential gaps after sustained-person
+
+The user explicitly permitted addressing more than one remaining gap, one after another. The selected sequence is evidence-sensitive belief revision, then bounded planning across continuing purposes, with integrated actual execution, comparison controls and separate installed reuse. See [delivery](deliberating-person.md) and [plan](superpowers/plans/2026-09-14-belief-planning.md). This is further manual framework work; games and scheduled automation remain deferred.

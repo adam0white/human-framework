@@ -1,0 +1,1219 @@
+{
+  "version": "deliberating-person-host-0.1.0",
+  "now": 63,
+  "person": {
+    "version": "0.1.0",
+    "id": "learner",
+    "situated": {
+      "version": "0.1.0",
+      "id": "learner",
+      "human": {
+        "version": "0.1.1",
+        "id": "learner",
+        "body": {
+          "fatigue": 0.2245,
+          "hunger": 0.176
+        },
+        "skills": {
+          "craft": 0.25
+        },
+        "observationBias": 0,
+        "minutes": 63,
+        "nextAttempt": 5,
+        "pending": null
+      },
+      "now": 63,
+      "purposes": [
+        {
+          "id": "deliver-duty",
+          "status": "completed"
+        },
+        {
+          "id": "paid-work",
+          "status": "completed"
+        }
+      ],
+      "observations": []
+    },
+    "learning": {
+      "version": "0.1.0",
+      "ownerId": "learner",
+      "originAt": 0,
+      "now": 63,
+      "skills": [
+        "craft"
+      ],
+      "config": {
+        "rule": "authored-exponential-retention-v1",
+        "halfLifeMinutes": 43200,
+        "gainPerMinute": {
+          "instruction": 0.01,
+          "practice": 0.006,
+          "retrieval": 0.008
+        },
+        "maxAccessibility": 1,
+        "evidenceHorizonMinutes": 129600,
+        "recentEvidenceLimit": 8,
+        "maxReceipts": 512
+      },
+      "items": [],
+      "receipts": []
+    },
+    "condition": {
+      "version": "0.1.0",
+      "now": 63,
+      "mode": "awake",
+      "awakeMinutes": 63,
+      "sleepMinutes": 0,
+      "rules": {
+        "awakeFatiguePerMinute": 0.0005,
+        "awakeHungerPerMinute": 0.0005,
+        "sleepFatigueRecoveryPerMinute": 0.001,
+        "sleepHungerPerMinute": 0.00025
+      }
+    }
+  },
+  "housemate": {
+    "version": "0.1.0",
+    "id": "housemate",
+    "human": {
+      "version": "0.1.1",
+      "id": "housemate",
+      "body": {
+        "fatigue": 0.05,
+        "hunger": 0.05
+      },
+      "skills": {
+        "craft": 0.25
+      },
+      "observationBias": 0,
+      "minutes": 0,
+      "nextAttempt": 1,
+      "pending": null
+    },
+    "now": 38,
+    "purposes": [],
+    "observations": [
+      {
+        "id": "kit-delivery-observed",
+        "at": 38,
+        "source": "learner",
+        "channel": "experience",
+        "kind": "fact",
+        "subject": "delivery-received",
+        "value": true
+      }
+    ]
+  },
+  "beliefs": {
+    "version": "beliefs-0.1.0",
+    "ownerId": "learner",
+    "now": 63,
+    "beliefs": [
+      {
+        "propositionId": "cache-stocked",
+        "status": "conflict",
+        "value": null,
+        "supportingOriginIds": [
+          "housemate"
+        ],
+        "opposingOriginIds": [
+          "learner"
+        ],
+        "effectiveReceiptIds": [
+          "housemate-cache-report",
+          "cache-attempt-1"
+        ]
+      }
+    ],
+    "receiptCount": 2,
+    "maxReceipts": 32
+  },
+  "commitment": {
+    "id": "kit-delivery",
+    "debtorId": "learner",
+    "creditorId": "housemate",
+    "dueAt": 40,
+    "terms": "Deliver one prepared kit",
+    "status": "fulfilled",
+    "revision": 0,
+    "updatedAt": 38,
+    "outcomeId": "kit-delivery-receipt"
+  },
+  "purposes": [
+    {
+      "id": "deliver-duty",
+      "status": "completed"
+    },
+    {
+      "id": "paid-work",
+      "status": "completed"
+    }
+  ],
+  "world": {
+    "cacheUnits": 0,
+    "kit": 0,
+    "money": 0,
+    "wages": 1,
+    "deliveries": 1,
+    "alternativePurchases": 1,
+    "recipientResponses": 1
+  },
+  "conditions": {
+    "cache-empty-confirmed": true,
+    "kit-delivered": true,
+    "paid-work-complete": true
+  },
+  "deliberations": [
+    {
+      "at": 0,
+      "beliefs": {
+        "version": "beliefs-0.1.0",
+        "ownerId": "learner",
+        "now": 0,
+        "beliefs": [
+          {
+            "propositionId": "cache-stocked",
+            "status": "resolved",
+            "value": true,
+            "supportingOriginIds": [
+              "housemate"
+            ],
+            "opposingOriginIds": [],
+            "effectiveReceiptIds": [
+              "housemate-cache-report"
+            ]
+          }
+        ],
+        "receiptCount": 1,
+        "maxReceipts": 32
+      },
+      "worldBefore": {
+        "kit": 0,
+        "money": 1
+      },
+      "plan": {
+        "version": "planner-0.1.0",
+        "provider": "bounded-search",
+        "actionId": "cache-pickup",
+        "steps": [
+          {
+            "actionId": "cache-pickup",
+            "startAt": 0,
+            "finishAt": 10,
+            "preconditions": [
+              {
+                "kind": "belief",
+                "propositionId": "cache-stocked",
+                "value": true,
+                "status": "satisfied"
+              }
+            ],
+            "expectedEffects": {
+              "conditions": [],
+              "resources": [
+                {
+                  "resourceId": "kit",
+                  "delta": 1
+                }
+              ]
+            },
+            "completedGoalIds": []
+          },
+          {
+            "actionId": "deliver-kit",
+            "startAt": 10,
+            "finishAt": 30,
+            "preconditions": [
+              {
+                "kind": "resource",
+                "resourceId": "kit",
+                "atLeast": 1,
+                "status": "satisfied"
+              }
+            ],
+            "expectedEffects": {
+              "conditions": [
+                {
+                  "conditionId": "kit-delivered",
+                  "value": true
+                }
+              ],
+              "resources": [
+                {
+                  "resourceId": "kit",
+                  "delta": -1
+                }
+              ]
+            },
+            "completedGoalIds": [
+              "deliver-duty"
+            ]
+          },
+          {
+            "actionId": "paid-work",
+            "startAt": 30,
+            "finishAt": 55,
+            "preconditions": [],
+            "expectedEffects": {
+              "conditions": [
+                {
+                  "conditionId": "paid-work-complete",
+                  "value": true
+                }
+              ],
+              "resources": []
+            },
+            "completedGoalIds": [
+              "paid-work"
+            ]
+          }
+        ],
+        "forecast": {
+          "at": 55,
+          "conditions": [
+            {
+              "id": "cache-empty-confirmed",
+              "value": false
+            },
+            {
+              "id": "kit-delivered",
+              "value": true
+            },
+            {
+              "id": "paid-work-complete",
+              "value": true
+            }
+          ],
+          "resources": [
+            {
+              "id": "kit",
+              "quantity": 0
+            },
+            {
+              "id": "money",
+              "quantity": 1
+            }
+          ],
+          "achievedGoals": [
+            {
+              "goalId": "deliver-duty",
+              "at": 30
+            },
+            {
+              "goalId": "paid-work",
+              "at": 55
+            }
+          ],
+          "unachievedGoalIds": []
+        },
+        "trace": {
+          "steps": [
+            {
+              "actionId": "cache-pickup",
+              "startAt": 0,
+              "finishAt": 10,
+              "preconditions": [
+                {
+                  "kind": "belief",
+                  "propositionId": "cache-stocked",
+                  "value": true,
+                  "status": "satisfied"
+                }
+              ],
+              "expectedEffects": {
+                "conditions": [],
+                "resources": [
+                  {
+                    "resourceId": "kit",
+                    "delta": 1
+                  }
+                ]
+              },
+              "completedGoalIds": []
+            },
+            {
+              "actionId": "deliver-kit",
+              "startAt": 10,
+              "finishAt": 30,
+              "preconditions": [
+                {
+                  "kind": "resource",
+                  "resourceId": "kit",
+                  "atLeast": 1,
+                  "status": "satisfied"
+                }
+              ],
+              "expectedEffects": {
+                "conditions": [
+                  {
+                    "conditionId": "kit-delivered",
+                    "value": true
+                  }
+                ],
+                "resources": [
+                  {
+                    "resourceId": "kit",
+                    "delta": -1
+                  }
+                ]
+              },
+              "completedGoalIds": [
+                "deliver-duty"
+              ]
+            },
+            {
+              "actionId": "paid-work",
+              "startAt": 30,
+              "finishAt": 55,
+              "preconditions": [],
+              "expectedEffects": {
+                "conditions": [
+                  {
+                    "conditionId": "paid-work-complete",
+                    "value": true
+                  }
+                ],
+                "resources": []
+              },
+              "completedGoalIds": [
+                "paid-work"
+              ]
+            }
+          ],
+          "rootRejections": [
+            {
+              "actionId": "alternative-supply",
+              "reason": "condition-mismatch"
+            },
+            {
+              "actionId": "deliver-kit",
+              "reason": "resource-below-minimum"
+            }
+          ]
+        },
+        "eligibleGoalIds": [
+          "deliver-duty",
+          "paid-work"
+        ],
+        "inactiveGoals": [],
+        "search": {
+          "maxDepth": 6,
+          "maxNodes": 256,
+          "horizonMinutes": 80,
+          "nodesVisited": 112,
+          "nodeLimitReached": false,
+          "depthPruned": true,
+          "horizonPruned": true,
+          "frontierComplete": true
+        }
+      }
+    },
+    {
+      "at": 10,
+      "beliefs": {
+        "version": "beliefs-0.1.0",
+        "ownerId": "learner",
+        "now": 10,
+        "beliefs": [
+          {
+            "propositionId": "cache-stocked",
+            "status": "conflict",
+            "value": null,
+            "supportingOriginIds": [
+              "housemate"
+            ],
+            "opposingOriginIds": [
+              "learner"
+            ],
+            "effectiveReceiptIds": [
+              "housemate-cache-report",
+              "cache-attempt-1"
+            ]
+          }
+        ],
+        "receiptCount": 2,
+        "maxReceipts": 32
+      },
+      "worldBefore": {
+        "kit": 0,
+        "money": 1
+      },
+      "plan": {
+        "version": "planner-0.1.0",
+        "provider": "bounded-search",
+        "actionId": "alternative-supply",
+        "steps": [
+          {
+            "actionId": "alternative-supply",
+            "startAt": 10,
+            "finishAt": 18,
+            "preconditions": [
+              {
+                "kind": "condition",
+                "conditionId": "cache-empty-confirmed",
+                "value": true,
+                "status": "satisfied"
+              },
+              {
+                "kind": "resource",
+                "resourceId": "money",
+                "atLeast": 1,
+                "status": "satisfied"
+              }
+            ],
+            "expectedEffects": {
+              "conditions": [],
+              "resources": [
+                {
+                  "resourceId": "money",
+                  "delta": -1
+                },
+                {
+                  "resourceId": "kit",
+                  "delta": 1
+                }
+              ]
+            },
+            "completedGoalIds": []
+          },
+          {
+            "actionId": "deliver-kit",
+            "startAt": 18,
+            "finishAt": 38,
+            "preconditions": [
+              {
+                "kind": "resource",
+                "resourceId": "kit",
+                "atLeast": 1,
+                "status": "satisfied"
+              }
+            ],
+            "expectedEffects": {
+              "conditions": [
+                {
+                  "conditionId": "kit-delivered",
+                  "value": true
+                }
+              ],
+              "resources": [
+                {
+                  "resourceId": "kit",
+                  "delta": -1
+                }
+              ]
+            },
+            "completedGoalIds": [
+              "deliver-duty"
+            ]
+          },
+          {
+            "actionId": "paid-work",
+            "startAt": 38,
+            "finishAt": 63,
+            "preconditions": [],
+            "expectedEffects": {
+              "conditions": [
+                {
+                  "conditionId": "paid-work-complete",
+                  "value": true
+                }
+              ],
+              "resources": []
+            },
+            "completedGoalIds": [
+              "paid-work"
+            ]
+          }
+        ],
+        "forecast": {
+          "at": 63,
+          "conditions": [
+            {
+              "id": "cache-empty-confirmed",
+              "value": true
+            },
+            {
+              "id": "kit-delivered",
+              "value": true
+            },
+            {
+              "id": "paid-work-complete",
+              "value": true
+            }
+          ],
+          "resources": [
+            {
+              "id": "kit",
+              "quantity": 0
+            },
+            {
+              "id": "money",
+              "quantity": 0
+            }
+          ],
+          "achievedGoals": [
+            {
+              "goalId": "deliver-duty",
+              "at": 38
+            },
+            {
+              "goalId": "paid-work",
+              "at": 63
+            }
+          ],
+          "unachievedGoalIds": []
+        },
+        "trace": {
+          "steps": [
+            {
+              "actionId": "alternative-supply",
+              "startAt": 10,
+              "finishAt": 18,
+              "preconditions": [
+                {
+                  "kind": "condition",
+                  "conditionId": "cache-empty-confirmed",
+                  "value": true,
+                  "status": "satisfied"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "money",
+                  "atLeast": 1,
+                  "status": "satisfied"
+                }
+              ],
+              "expectedEffects": {
+                "conditions": [],
+                "resources": [
+                  {
+                    "resourceId": "money",
+                    "delta": -1
+                  },
+                  {
+                    "resourceId": "kit",
+                    "delta": 1
+                  }
+                ]
+              },
+              "completedGoalIds": []
+            },
+            {
+              "actionId": "deliver-kit",
+              "startAt": 18,
+              "finishAt": 38,
+              "preconditions": [
+                {
+                  "kind": "resource",
+                  "resourceId": "kit",
+                  "atLeast": 1,
+                  "status": "satisfied"
+                }
+              ],
+              "expectedEffects": {
+                "conditions": [
+                  {
+                    "conditionId": "kit-delivered",
+                    "value": true
+                  }
+                ],
+                "resources": [
+                  {
+                    "resourceId": "kit",
+                    "delta": -1
+                  }
+                ]
+              },
+              "completedGoalIds": [
+                "deliver-duty"
+              ]
+            },
+            {
+              "actionId": "paid-work",
+              "startAt": 38,
+              "finishAt": 63,
+              "preconditions": [],
+              "expectedEffects": {
+                "conditions": [
+                  {
+                    "conditionId": "paid-work-complete",
+                    "value": true
+                  }
+                ],
+                "resources": []
+              },
+              "completedGoalIds": [
+                "paid-work"
+              ]
+            }
+          ],
+          "rootRejections": [
+            {
+              "actionId": "cache-pickup",
+              "reason": "belief-unresolved",
+              "beliefStatus": "conflict"
+            },
+            {
+              "actionId": "deliver-kit",
+              "reason": "resource-below-minimum"
+            }
+          ]
+        },
+        "eligibleGoalIds": [
+          "deliver-duty",
+          "paid-work"
+        ],
+        "inactiveGoals": [],
+        "search": {
+          "maxDepth": 6,
+          "maxNodes": 256,
+          "horizonMinutes": 80,
+          "nodesVisited": 20,
+          "nodeLimitReached": false,
+          "depthPruned": false,
+          "horizonPruned": true,
+          "frontierComplete": true
+        }
+      }
+    },
+    {
+      "at": 18,
+      "beliefs": {
+        "version": "beliefs-0.1.0",
+        "ownerId": "learner",
+        "now": 18,
+        "beliefs": [
+          {
+            "propositionId": "cache-stocked",
+            "status": "conflict",
+            "value": null,
+            "supportingOriginIds": [
+              "housemate"
+            ],
+            "opposingOriginIds": [
+              "learner"
+            ],
+            "effectiveReceiptIds": [
+              "housemate-cache-report",
+              "cache-attempt-1"
+            ]
+          }
+        ],
+        "receiptCount": 2,
+        "maxReceipts": 32
+      },
+      "worldBefore": {
+        "kit": 1,
+        "money": 0
+      },
+      "plan": {
+        "version": "planner-0.1.0",
+        "provider": "bounded-search",
+        "actionId": "deliver-kit",
+        "steps": [
+          {
+            "actionId": "deliver-kit",
+            "startAt": 18,
+            "finishAt": 38,
+            "preconditions": [
+              {
+                "kind": "resource",
+                "resourceId": "kit",
+                "atLeast": 1,
+                "status": "satisfied"
+              }
+            ],
+            "expectedEffects": {
+              "conditions": [
+                {
+                  "conditionId": "kit-delivered",
+                  "value": true
+                }
+              ],
+              "resources": [
+                {
+                  "resourceId": "kit",
+                  "delta": -1
+                }
+              ]
+            },
+            "completedGoalIds": [
+              "deliver-duty"
+            ]
+          },
+          {
+            "actionId": "paid-work",
+            "startAt": 38,
+            "finishAt": 63,
+            "preconditions": [],
+            "expectedEffects": {
+              "conditions": [
+                {
+                  "conditionId": "paid-work-complete",
+                  "value": true
+                }
+              ],
+              "resources": []
+            },
+            "completedGoalIds": [
+              "paid-work"
+            ]
+          }
+        ],
+        "forecast": {
+          "at": 63,
+          "conditions": [
+            {
+              "id": "cache-empty-confirmed",
+              "value": true
+            },
+            {
+              "id": "kit-delivered",
+              "value": true
+            },
+            {
+              "id": "paid-work-complete",
+              "value": true
+            }
+          ],
+          "resources": [
+            {
+              "id": "kit",
+              "quantity": 0
+            },
+            {
+              "id": "money",
+              "quantity": 0
+            }
+          ],
+          "achievedGoals": [
+            {
+              "goalId": "deliver-duty",
+              "at": 38
+            },
+            {
+              "goalId": "paid-work",
+              "at": 63
+            }
+          ],
+          "unachievedGoalIds": []
+        },
+        "trace": {
+          "steps": [
+            {
+              "actionId": "deliver-kit",
+              "startAt": 18,
+              "finishAt": 38,
+              "preconditions": [
+                {
+                  "kind": "resource",
+                  "resourceId": "kit",
+                  "atLeast": 1,
+                  "status": "satisfied"
+                }
+              ],
+              "expectedEffects": {
+                "conditions": [
+                  {
+                    "conditionId": "kit-delivered",
+                    "value": true
+                  }
+                ],
+                "resources": [
+                  {
+                    "resourceId": "kit",
+                    "delta": -1
+                  }
+                ]
+              },
+              "completedGoalIds": [
+                "deliver-duty"
+              ]
+            },
+            {
+              "actionId": "paid-work",
+              "startAt": 38,
+              "finishAt": 63,
+              "preconditions": [],
+              "expectedEffects": {
+                "conditions": [
+                  {
+                    "conditionId": "paid-work-complete",
+                    "value": true
+                  }
+                ],
+                "resources": []
+              },
+              "completedGoalIds": [
+                "paid-work"
+              ]
+            }
+          ],
+          "rootRejections": [
+            {
+              "actionId": "cache-pickup",
+              "reason": "belief-unresolved",
+              "beliefStatus": "conflict"
+            },
+            {
+              "actionId": "alternative-supply",
+              "reason": "resource-below-minimum"
+            }
+          ]
+        },
+        "eligibleGoalIds": [
+          "deliver-duty",
+          "paid-work"
+        ],
+        "inactiveGoals": [],
+        "search": {
+          "maxDepth": 6,
+          "maxNodes": 256,
+          "horizonMinutes": 80,
+          "nodesVisited": 10,
+          "nodeLimitReached": false,
+          "depthPruned": false,
+          "horizonPruned": true,
+          "frontierComplete": true
+        }
+      }
+    },
+    {
+      "at": 38,
+      "beliefs": {
+        "version": "beliefs-0.1.0",
+        "ownerId": "learner",
+        "now": 38,
+        "beliefs": [
+          {
+            "propositionId": "cache-stocked",
+            "status": "conflict",
+            "value": null,
+            "supportingOriginIds": [
+              "housemate"
+            ],
+            "opposingOriginIds": [
+              "learner"
+            ],
+            "effectiveReceiptIds": [
+              "housemate-cache-report",
+              "cache-attempt-1"
+            ]
+          }
+        ],
+        "receiptCount": 2,
+        "maxReceipts": 32
+      },
+      "worldBefore": {
+        "kit": 0,
+        "money": 0
+      },
+      "plan": {
+        "version": "planner-0.1.0",
+        "provider": "bounded-search",
+        "actionId": "paid-work",
+        "steps": [
+          {
+            "actionId": "paid-work",
+            "startAt": 38,
+            "finishAt": 63,
+            "preconditions": [],
+            "expectedEffects": {
+              "conditions": [
+                {
+                  "conditionId": "paid-work-complete",
+                  "value": true
+                }
+              ],
+              "resources": []
+            },
+            "completedGoalIds": [
+              "paid-work"
+            ]
+          }
+        ],
+        "forecast": {
+          "at": 63,
+          "conditions": [
+            {
+              "id": "cache-empty-confirmed",
+              "value": true
+            },
+            {
+              "id": "kit-delivered",
+              "value": true
+            },
+            {
+              "id": "paid-work-complete",
+              "value": true
+            }
+          ],
+          "resources": [
+            {
+              "id": "kit",
+              "quantity": 0
+            },
+            {
+              "id": "money",
+              "quantity": 0
+            }
+          ],
+          "achievedGoals": [
+            {
+              "goalId": "paid-work",
+              "at": 63
+            }
+          ],
+          "unachievedGoalIds": []
+        },
+        "trace": {
+          "steps": [
+            {
+              "actionId": "paid-work",
+              "startAt": 38,
+              "finishAt": 63,
+              "preconditions": [],
+              "expectedEffects": {
+                "conditions": [
+                  {
+                    "conditionId": "paid-work-complete",
+                    "value": true
+                  }
+                ],
+                "resources": []
+              },
+              "completedGoalIds": [
+                "paid-work"
+              ]
+            }
+          ],
+          "rootRejections": [
+            {
+              "actionId": "cache-pickup",
+              "reason": "belief-unresolved",
+              "beliefStatus": "conflict"
+            },
+            {
+              "actionId": "alternative-supply",
+              "reason": "resource-below-minimum"
+            },
+            {
+              "actionId": "deliver-kit",
+              "reason": "resource-below-minimum"
+            }
+          ]
+        },
+        "eligibleGoalIds": [
+          "paid-work"
+        ],
+        "inactiveGoals": [
+          {
+            "goalId": "deliver-duty",
+            "purposeId": "deliver-duty",
+            "status": "completed"
+          }
+        ],
+        "search": {
+          "maxDepth": 6,
+          "maxNodes": 256,
+          "horizonMinutes": 80,
+          "nodesVisited": 4,
+          "nodeLimitReached": false,
+          "depthPruned": false,
+          "horizonPruned": true,
+          "frontierComplete": true
+        }
+      }
+    },
+    {
+      "at": 63,
+      "beliefs": {
+        "version": "beliefs-0.1.0",
+        "ownerId": "learner",
+        "now": 63,
+        "beliefs": [
+          {
+            "propositionId": "cache-stocked",
+            "status": "conflict",
+            "value": null,
+            "supportingOriginIds": [
+              "housemate"
+            ],
+            "opposingOriginIds": [
+              "learner"
+            ],
+            "effectiveReceiptIds": [
+              "housemate-cache-report",
+              "cache-attempt-1"
+            ]
+          }
+        ],
+        "receiptCount": 2,
+        "maxReceipts": 32
+      },
+      "worldBefore": {
+        "kit": 0,
+        "money": 0
+      },
+      "plan": {
+        "version": "planner-0.1.0",
+        "provider": "bounded-search",
+        "actionId": null,
+        "steps": [],
+        "forecast": {
+          "at": 63,
+          "conditions": [
+            {
+              "id": "cache-empty-confirmed",
+              "value": true
+            },
+            {
+              "id": "kit-delivered",
+              "value": true
+            },
+            {
+              "id": "paid-work-complete",
+              "value": true
+            }
+          ],
+          "resources": [
+            {
+              "id": "kit",
+              "quantity": 0
+            },
+            {
+              "id": "money",
+              "quantity": 0
+            }
+          ],
+          "achievedGoals": [],
+          "unachievedGoalIds": []
+        },
+        "trace": {
+          "steps": [],
+          "rootRejections": [
+            {
+              "actionId": "cache-pickup",
+              "reason": "belief-unresolved",
+              "beliefStatus": "conflict"
+            },
+            {
+              "actionId": "alternative-supply",
+              "reason": "resource-below-minimum"
+            },
+            {
+              "actionId": "deliver-kit",
+              "reason": "resource-below-minimum"
+            }
+          ]
+        },
+        "eligibleGoalIds": [],
+        "inactiveGoals": [
+          {
+            "goalId": "deliver-duty",
+            "purposeId": "deliver-duty",
+            "status": "completed"
+          },
+          {
+            "goalId": "paid-work",
+            "purposeId": "paid-work",
+            "status": "completed"
+          }
+        ],
+        "search": {
+          "maxDepth": 6,
+          "maxNodes": 256,
+          "horizonMinutes": 80,
+          "nodesVisited": 4,
+          "nodeLimitReached": false,
+          "depthPruned": false,
+          "horizonPruned": true,
+          "frontierComplete": true
+        }
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "actionId": "cache-pickup",
+      "status": "failed",
+      "startedAt": 0,
+      "completedAt": 10,
+      "worldAfter": {
+        "cacheUnits": 0,
+        "kit": 0,
+        "money": 1,
+        "wages": 0,
+        "deliveries": 0,
+        "alternativePurchases": 0,
+        "recipientResponses": 0
+      },
+      "commitmentAfter": "accepted"
+    },
+    {
+      "actionId": "alternative-supply",
+      "status": "completed",
+      "startedAt": 10,
+      "completedAt": 18,
+      "worldAfter": {
+        "cacheUnits": 0,
+        "kit": 1,
+        "money": 0,
+        "wages": 0,
+        "deliveries": 0,
+        "alternativePurchases": 1,
+        "recipientResponses": 0
+      },
+      "commitmentAfter": "accepted"
+    },
+    {
+      "actionId": "deliver-kit",
+      "status": "completed",
+      "startedAt": 18,
+      "completedAt": 38,
+      "worldAfter": {
+        "cacheUnits": 0,
+        "kit": 0,
+        "money": 0,
+        "wages": 0,
+        "deliveries": 1,
+        "alternativePurchases": 1,
+        "recipientResponses": 1
+      },
+      "commitmentAfter": "fulfilled"
+    },
+    {
+      "actionId": "paid-work",
+      "status": "completed",
+      "startedAt": 38,
+      "completedAt": 63,
+      "worldAfter": {
+        "cacheUnits": 0,
+        "kit": 0,
+        "money": 0,
+        "wages": 1,
+        "deliveries": 1,
+        "alternativePurchases": 1,
+        "recipientResponses": 1
+      },
+      "commitmentAfter": "fulfilled"
+    }
+  ],
+  "recipientDecisions": [
+    {
+      "at": 38,
+      "actionId": "acknowledge-delivery",
+      "provider": "baseline",
+      "ruleId": "acknowledge-received-kit",
+      "evidence": [
+        "kit-delivery-observed"
+      ],
+      "noticedOptions": [
+        "acknowledge-delivery",
+        "seek-alternative"
+      ]
+    }
+  ],
+  "checkpoints": []
+}

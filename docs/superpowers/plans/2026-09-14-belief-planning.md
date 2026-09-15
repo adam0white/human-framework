@@ -12,10 +12,12 @@ No modification to frozen src/person, src/development, src/human, src/runtime or
 ## Sequence
 
 - [x] Implement and verify `src/cognition/beliefs.js` with tests for stale arrival, independent disagreement, duplicate origin, expiry, correction/retraction, ownership and JSON continuation.
-- [ ] Freeze belief API; implement `src/cognition/planner.js` and tests for multistep preparation, deadlines, unknown/conflict, competing goals, deterministic budget exhaustion and parity with a greedy control.
-- [ ] Integrate both with real sustained-person attempts in `examples/deliberating-person`; verify forecast failure leads to observed revision/replanning without imaginary fulfillment.
-- [ ] Package explicitly selected sources; run separately authored consumer with repository reads denied and compare exact installed source bytes.
-- [ ] Independent correctness/causal reviews, fix concrete defects, run full regression, save comparative evidence and boundaries.
-- [ ] Update handoff/roadmap/coverage; commit and push; verify remote equality and unchanged public release; remove own worktree.
+- [x] Freeze belief API; implement `src/cognition/planner.js` and tests for multistep preparation, deadlines, unknown/conflict, competing goals, deterministic budget exhaustion and parity with a greedy control.
+- [x] Integrate both with real sustained-person attempts in `examples/deliberating-person`; verify forecast failure leads to observed revision/replanning without imaginary fulfillment.
+- [x] Package explicitly selected sources; run separately authored consumer with repository reads denied and compare exact installed source bytes.
+- [x] Independent correctness/causal reviews, fix concrete defects, run full regression, save comparative evidence and boundaries.
+- [x] Update handoff/roadmap/coverage; commit and push; verify remote equality and unchanged public release; remove own worktree.
 
 Ruling: sequential gaps means belief behavior is verified before planner implementation proceeds; independent planning design and package scaffolding can proceed alongside belief work. User authorization covers routine technical decisions and delivery without repeated approval.
+
+Final verification: 966 tests pass. Both gaps are implemented in sequence; twenty-one comparison runs and the independent installed consumer are recorded in artifacts/deliberating-person. Public source remains app 0.15 on its recorded commit.

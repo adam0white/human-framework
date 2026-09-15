@@ -1,0 +1,296 @@
+{
+  "format": "deliberating-person-comparison",
+  "version": 1,
+  "cases": [
+    {
+      "name": "missing-preparation",
+      "config": {
+        "actualCache": "stocked"
+      },
+      "results": {
+        "bounded-search": {
+          "now": 55,
+          "commitmentUpdatedAt": 30,
+          "firstAction": "cache-pickup",
+          "actions": [
+            "cache-pickup",
+            "deliver-kit",
+            "paid-work"
+          ],
+          "deliveryStatus": "fulfilled",
+          "wages": 1
+        },
+        "greedy": {
+          "now": 41,
+          "commitmentUpdatedAt": 41,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "breached",
+          "wages": 1
+        },
+        "direct": {
+          "now": 55,
+          "commitmentUpdatedAt": 30,
+          "firstAction": "cache-pickup",
+          "actions": [
+            "cache-pickup",
+            "deliver-kit",
+            "paid-work"
+          ],
+          "deliveryStatus": "fulfilled",
+          "wages": 1
+        }
+      }
+    },
+    {
+      "name": "prepared-parity",
+      "config": {
+        "initialKit": 1,
+        "evidence": "unknown"
+      },
+      "results": {
+        "bounded-search": {
+          "now": 45,
+          "commitmentUpdatedAt": 20,
+          "firstAction": "deliver-kit",
+          "actions": [
+            "deliver-kit",
+            "paid-work"
+          ],
+          "deliveryStatus": "fulfilled",
+          "wages": 1
+        },
+        "greedy": {
+          "now": 45,
+          "commitmentUpdatedAt": 20,
+          "firstAction": "deliver-kit",
+          "actions": [
+            "deliver-kit",
+            "paid-work"
+          ],
+          "deliveryStatus": "fulfilled",
+          "wages": 1
+        },
+        "direct": {
+          "now": 45,
+          "commitmentUpdatedAt": 20,
+          "firstAction": "deliver-kit",
+          "actions": [
+            "deliver-kit",
+            "paid-work"
+          ],
+          "deliveryStatus": "fulfilled",
+          "wages": 1
+        }
+      }
+    },
+    {
+      "name": "withdrawn-duty-parity",
+      "config": {
+        "duty": "withdrawn"
+      },
+      "results": {
+        "bounded-search": {
+          "now": 25,
+          "commitmentUpdatedAt": 0,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "withdrawn",
+          "wages": 1
+        },
+        "greedy": {
+          "now": 25,
+          "commitmentUpdatedAt": 0,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "withdrawn",
+          "wages": 1
+        },
+        "direct": {
+          "now": 25,
+          "commitmentUpdatedAt": 0,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "withdrawn",
+          "wages": 1
+        }
+      }
+    },
+    {
+      "name": "deadline-pressure",
+      "config": {
+        "dutyDueAt": 15
+      },
+      "results": {
+        "bounded-search": {
+          "now": 25,
+          "commitmentUpdatedAt": 25,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "breached",
+          "wages": 1
+        },
+        "greedy": {
+          "now": 25,
+          "commitmentUpdatedAt": 25,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "breached",
+          "wages": 1
+        },
+        "direct": {
+          "now": 25,
+          "commitmentUpdatedAt": 25,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "breached",
+          "wages": 1
+        }
+      }
+    },
+    {
+      "name": "resource-shortage",
+      "config": {
+        "actualCache": "empty",
+        "money": 0
+      },
+      "results": {
+        "bounded-search": {
+          "now": 41,
+          "commitmentUpdatedAt": 41,
+          "firstAction": "cache-pickup",
+          "actions": [
+            "cache-pickup",
+            "paid-work"
+          ],
+          "deliveryStatus": "breached",
+          "wages": 1
+        },
+        "greedy": {
+          "now": 41,
+          "commitmentUpdatedAt": 41,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "breached",
+          "wages": 1
+        },
+        "direct": {
+          "now": 41,
+          "commitmentUpdatedAt": 41,
+          "firstAction": "cache-pickup",
+          "actions": [
+            "cache-pickup",
+            "paid-work"
+          ],
+          "deliveryStatus": "breached",
+          "wages": 1
+        }
+      }
+    },
+    {
+      "name": "evidence-conflict",
+      "config": {
+        "evidence": "conflict"
+      },
+      "results": {
+        "bounded-search": {
+          "now": 41,
+          "commitmentUpdatedAt": 41,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "breached",
+          "wages": 1
+        },
+        "greedy": {
+          "now": 41,
+          "commitmentUpdatedAt": 41,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "breached",
+          "wages": 1
+        },
+        "direct": {
+          "now": 41,
+          "commitmentUpdatedAt": 41,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "breached",
+          "wages": 1
+        }
+      }
+    },
+    {
+      "name": "evidence-correction",
+      "config": {
+        "evidence": "stale-after-correction"
+      },
+      "results": {
+        "bounded-search": {
+          "now": 53,
+          "commitmentUpdatedAt": 28,
+          "firstAction": "alternative-supply",
+          "actions": [
+            "alternative-supply",
+            "deliver-kit",
+            "paid-work"
+          ],
+          "deliveryStatus": "fulfilled",
+          "wages": 1
+        },
+        "greedy": {
+          "now": 41,
+          "commitmentUpdatedAt": 41,
+          "firstAction": "paid-work",
+          "actions": [
+            "paid-work"
+          ],
+          "deliveryStatus": "breached",
+          "wages": 1
+        },
+        "direct": {
+          "now": 53,
+          "commitmentUpdatedAt": 28,
+          "firstAction": "alternative-supply",
+          "actions": [
+            "alternative-supply",
+            "deliver-kit",
+            "paid-work"
+          ],
+          "deliveryStatus": "fulfilled",
+          "wages": 1
+        }
+      }
+    }
+  ],
+  "execution": {
+    "durationMilliseconds": 68.009,
+    "stateBytes": 14392
+  },
+  "claims": {
+    "modelSuperiority": false,
+    "empiricalCalibration": false,
+    "causalScope": "authored deterministic evidence, purpose, deadline and resource interventions"
+  }
+}

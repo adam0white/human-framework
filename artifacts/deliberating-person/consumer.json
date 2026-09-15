@@ -1,0 +1,38 @@
+{
+  "result": {
+    "format": "deliberating-person-independent-consumer",
+    "initialAction": "primary-room",
+    "replannedAction": "fallback-room",
+    "staleArrivalIgnored": true,
+    "forecastMutatedWorld": false,
+    "commitmentStatus": "fulfilled",
+    "readyAt": 30,
+    "credits": 3,
+    "history": [
+      {
+        "actionId": "fallback-room",
+        "startedAt": 10,
+        "finishedAt": 30
+      },
+      {
+        "actionId": "paid-admin",
+        "startedAt": 30,
+        "finishedAt": 50
+      }
+    ],
+    "resumeEqual": true
+  },
+  "sourceSha256": {
+    "src/cognition/index.js": "3dc64e8bbba58c49ce8cb32001a889059b2e203451c9692df4ba36af8b895ca7",
+    "src/cognition/beliefs.js": "fc9ca63ea969c38138972a6c0555d1734814dfe7e6a3ded5518114f0f9931213",
+    "src/cognition/planner.js": "5a8912bb660582a1ca47ea18c361813f8369dc3e3a756de03378f2be1c3a44d5",
+    "src/development/index.js": "2766b896cc285afac02fafd74233343ce1f2fb2a329a2fa0accf68053a24d4a4",
+    "src/development/condition.js": "e55191436d315d301e036a53d6564e786ad2345d23cb5fad03559185b7c1dc7d",
+    "src/development/learning.js": "a80f2b7821dd46529d5c684f8361aafe7a94b68efaa46b8c1af943669329acf2",
+    "src/person/index.js": "74b04267eeb345e8f72a2fda4b5fe00b9529122e051d20767cbe30635efcdf73",
+    "src/person/commitments.js": "fc826761cc54762a51f7a34164af29ba1cbc2678aeb0fcf22e9fc7b86c248c35",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+  },
+  "repositoryAccessDenied": true
+}

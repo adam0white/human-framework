@@ -1,6 +1,6 @@
 # What may graduate to MVP
 
-2026-09-14: the approved [connected-person milestone](connected-person.md) and subsequent [sustained-person delivery](sustained-person.md) add private compositional candidates beyond this original narrow package. The released Human/runtime remains 0.1.1. See [current handoff](../HANDOFF.md) for manual execution status.
+2026-09-14: the approved [connected-person milestone](connected-person.md) and subsequent [sustained-person delivery](sustained-person.md) add private compositional candidates beyond this original narrow package. The subsequent [deliberating-person delivery](deliberating-person.md) adds evidence revision and bounded planning. The released Human/runtime remains 0.1.1. See [current handoff](../HANDOFF.md) for manual execution status.
 
 Established 2026-09-07; current direction updated 2026-09-09 after the completed reconsideration study and the user's request to leave games aside and review the framework roadmap. This contract defines a useful first software deliverable within the larger goal of situated human action and development.
 

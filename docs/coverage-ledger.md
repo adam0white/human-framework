@@ -1,5 +1,8 @@
 # Executable coverage and research boundaries
 
+Subsequent 2026-09-14 update: [deliberating-person](deliberating-person.md) adds actor-bound evidence revision (conflict, stale receipt, expiry, correction/retraction, origin deduplication) and bounded symbolic planning from actor-visible data. Plans are detached forecasts; real execution and observations drive replanning. Goal ordering and resource/deadline constraints are authored. General probabilistic cognition, learned source reliability and long-horizon planning remain open.
+
+
 Current update, 2026-09-14: [sustained-person](sustained-person.md) adds private continuous awake/sleep condition, synchronized paid attempts and attributed retained learning. [Connected-person](connected-person.md) supplies actor-local purposes, observations and commitment records. These extend the frozen Human/runtime 0.1.1 package through a separate candidate; app 0.15 remains on its separately recorded deployed source. The following September 9 tables are historical coverage and must not be read as denying these later additions. Calibrated sleep, general memory/planning, positive moral/spiritual mechanisms and lifespan development remain open.
 
 | Newly executable scope | Current boundary |
