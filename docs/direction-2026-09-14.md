@@ -29,3 +29,7 @@ The selected technical scope is continuous daily condition and retained learning
 ## Sequential gaps after sustained-person
 
 The user explicitly permitted addressing more than one remaining gap, one after another. The selected sequence is evidence-sensitive belief revision, then bounded planning across continuing purposes, with integrated actual execution, comparison controls and separate installed reuse. See [delivery](deliberating-person.md) and [plan](superpowers/plans/2026-09-14-belief-planning.md). This is further manual framework work; games and scheduled automation remain deferred.
+
+## 2026-09-15 continuation
+
+The user explicitly requested continued autonomous implementation, targeted subagents, and all remaining gaps addressed one by one before another game. This authorizes the lead to select and execute successive bounded capabilities from the roadmap. It does not turn authored software tests into empirical or qualified interpretive validation. The [developing-person delivery](developing-person.md) records relationships, understood duty/repair, sparse adult role development and appraisal. Games remain deferred and the scheduled task remains paused.

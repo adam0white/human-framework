@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-09-15T11:42:51.923Z",
+  "release": {
+    "appVersion": "0.15.0",
+    "runtimeVersion": "0.1.1",
+    "clockVersion": "0.1.0",
+    "commit": "de52d9c95e89dc25e163fca773fec2269b8b06a4",
+    "dirty": false,
+    "assetsSha256": "3138fa05c3a061adb922423932849c0630a14559b05858b7b3ed895143ff15b4"
+  },
+  "localPayloadSha256": "3138fa05c3a061adb922423932849c0630a14559b05858b7b3ed895143ff15b4",
+  "privatePaths": [
+    {
+      "path": "/src/social/relationships.js",
+      "status": 404
+    },
+    {
+      "path": "/src/meaning/duties.js",
+      "status": 404
+    },
+    {
+      "path": "/src/lifecourse/adult.js",
+      "status": 404
+    },
+    {
+      "path": "/src/affect/appraisal.js",
+      "status": 404
+    },
+    {
+      "path": "/docs/developing-person.md",
+      "status": 404
+    },
+    {
+      "path": "/artifacts/developing-person/sequence.json",
+      "status": 404
+    }
+  ],
+  "deployed": false,
+  "reason": "Private additions; allowlisted payload unchanged"
+}

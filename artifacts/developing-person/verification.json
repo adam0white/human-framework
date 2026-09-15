@@ -1,0 +1,104 @@
+{
+  "format": "human-framework-developing-verification",
+  "checkedAt": "2026-09-15T11:54:02.128Z",
+  "baselineCommit": "c915606d0bef71f3624a6bb149198f40e9cc6cbf",
+  "relationshipDutyAdultCommit": "b20feb99220909dcce8fe74ff950a0c5eac1c3c3",
+  "appraisalCommit": "3120f2b071b8caf0d9ce88b5b37ae77acea6827a",
+  "lifecycleCommit": "bf74c7ff57a527a8b42da330872e6ac3c8557f05",
+  "candidate": "developing-person",
+  "version": "0.1.0",
+  "tests": {
+    "passed": 1027,
+    "failed": 0,
+    "added": 61,
+    "durationMs": 17702.916084,
+    "command": "npm test"
+  },
+  "comparison": {
+    "developingRuns": 18,
+    "appraisalRuns": 12,
+    "directParity": true,
+    "scope": "Authored cases; behavioral comparison, no human or authoring benchmark"
+  },
+  "installedConsumer": {
+    "offline": true,
+    "repositoryAccessDenied": true,
+    "sourceBytesVerified": true,
+    "resumeEqual": true,
+    "compositeRestored": true,
+    "compositeSynchronized": true
+  },
+  "sources": [
+    "src/developing/index.js",
+    "src/developing/person.js",
+    "src/affect/appraisal.js",
+    "src/social/relationships.js",
+    "src/meaning/duties.js",
+    "src/lifecourse/adult.js",
+    "src/cognition/index.js",
+    "src/cognition/beliefs.js",
+    "src/cognition/planner.js",
+    "src/development/index.js",
+    "src/development/condition.js",
+    "src/development/learning.js",
+    "src/person/index.js",
+    "src/person/commitments.js",
+    "src/human/v0.1.1.js",
+    "src/core/model.js"
+  ],
+  "sourceSha256": {
+    "src/developing/index.js": "edf90970c0ecff962532dbd5e14263ab49fc5336ffa5b38c66e4965a6fad9a26",
+    "src/developing/person.js": "f0a0116552fe0df4bf3e1649c916986abe57b121a259273a5c7e45c7eb8cedf2",
+    "src/affect/appraisal.js": "c9cd4178e399aef8f6c172ce5303d312d0f6a6c74c9d12f88aeaacb6032f4637",
+    "src/social/relationships.js": "f5bf74767520ffcd18f1a40619b362b4df072a723b31bcede5a0bf13e681501f",
+    "src/meaning/duties.js": "8689436360df37197d10f1908ebe6f76c7956416e9d511ed14b21b34cbeb5ef1",
+    "src/lifecourse/adult.js": "c830d82230ad45706345b575ce8f7977a3adf806ff159c6b41ad2c2a7cb41c25",
+    "src/cognition/index.js": "3dc64e8bbba58c49ce8cb32001a889059b2e203451c9692df4ba36af8b895ca7",
+    "src/cognition/beliefs.js": "fc9ca63ea969c38138972a6c0555d1734814dfe7e6a3ded5518114f0f9931213",
+    "src/cognition/planner.js": "5a8912bb660582a1ca47ea18c361813f8369dc3e3a756de03378f2be1c3a44d5",
+    "src/development/index.js": "2766b896cc285afac02fafd74233343ce1f2fb2a329a2fa0accf68053a24d4a4",
+    "src/development/condition.js": "e55191436d315d301e036a53d6564e786ad2345d23cb5fad03559185b7c1dc7d",
+    "src/development/learning.js": "a80f2b7821dd46529d5c684f8361aafe7a94b68efaa46b8c1af943669329acf2",
+    "src/person/index.js": "74b04267eeb345e8f72a2fda4b5fe00b9529122e051d20767cbe30635efcdf73",
+    "src/person/commitments.js": "fc826761cc54762a51f7a34164af29ba1cbc2678aeb0fcf22e9fc7b86c248c35",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+  },
+  "tarballSha256": "f941b30d5d216222b120bfbf8e04cbcac29b234369920f96cab8ebb6ab3bd5e6",
+  "preservedSourceScopes": [
+    "src/development",
+    "src/cognition",
+    "src/person",
+    "src/human",
+    "src/core/model.js",
+    "src/runtime",
+    "scripts/runtime-release-lock.json",
+    "scripts/public-assets.js",
+    "scripts/public-pages.js",
+    "web",
+    "package.json",
+    "package-lock.json"
+  ],
+  "public": {
+    "commit": "de52d9c95e89dc25e163fca773fec2269b8b06a4",
+    "assetsSha256": "3138fa05c3a061adb922423932849c0630a14559b05858b7b3ed895143ff15b4",
+    "privatePaths404": 6,
+    "deployed": false
+  },
+  "schedule": "PAUSED",
+  "environment": {
+    "node": "v26.8.2",
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M4"
+  },
+  "limits": [
+    "Authored rules; no empirical or qualified interpretive calibration",
+    "730 calendar days are unmodeled gaps between paid episodes, not continuous physiology",
+    "Contextual expectations are not general trust or attachment",
+    "Appraisal tendencies are not experienced emotion or a forced choice",
+    "Coherent saved provenance remains host-trusted; live regulation derives actual attempt",
+    "Split advancement uses frozen Human body tolerance of 1e-12; identical replay remains exact",
+    "Full framework and broader validation remain incomplete"
+  ]
+}

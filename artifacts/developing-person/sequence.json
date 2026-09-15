@@ -1,0 +1,525 @@
+{
+  "repair": {
+    "action": "return-item",
+    "returned": 1,
+    "originalCommitment": "breached",
+    "understood": true,
+    "progress": {
+      "status": "completed",
+      "requirements": [
+        {
+          "id": "item",
+          "requiredAmount": 1,
+          "completedAmount": 1
+        }
+      ]
+    },
+    "observer": {
+      "ownerId": "learner",
+      "now": 196,
+      "notices": [],
+      "intentions": [],
+      "outcomes": [],
+      "recipientResponses": []
+    }
+  },
+  "relationship": {
+    "before": "guarded",
+    "after": "open",
+    "response": "accept"
+  },
+  "care": {
+    "action": "provide-aid",
+    "aid": 1,
+    "promiseRequired": false
+  },
+  "adult": {
+    "actions": [
+      "assist",
+      "mentor-session",
+      "assist"
+    ],
+    "unmodeledDays": 730,
+    "ageOnlySkillChange": 0,
+    "initialSkill": 0.1888972323209157,
+    "finalSkill": 0.4920440336925775,
+    "view": {
+      "actorId": "learner",
+      "day": 730,
+      "ageYears": 31.99867211510161,
+      "roles": [
+        "trainee"
+      ],
+      "qualifications": [
+        "teaching"
+      ],
+      "unmodeledIntervals": [
+        {
+          "fromDay": 0,
+          "toDay": 365,
+          "kind": "unmodeled"
+        },
+        {
+          "fromDay": 365,
+          "toDay": 730,
+          "kind": "unmodeled"
+        }
+      ]
+    },
+    "seams": [
+      {
+        "toDay": 365,
+        "kind": "unmodeled",
+        "carriedSkill": 0.30605357277679035,
+        "observedMinutes": 86,
+        "bodyProjection": "not advanced or interpreted across gap"
+      },
+      {
+        "toDay": 730,
+        "kind": "unmodeled",
+        "carriedSkill": 0.40628775656404986,
+        "observedMinutes": 146,
+        "bodyProjection": "not advanced or interpreted across gap"
+      }
+    ],
+    "assessments": [
+      {
+        "id": "paid-support-assessment",
+        "assessorId": "assessor",
+        "day": 365,
+        "startedAt": 86,
+        "finishedAt": 96,
+        "assessedSkill": 0.30605357277679035,
+        "passed": true,
+        "rule": "authored minimum support skill 0.1"
+      }
+    ]
+  },
+  "actualActivityMinutes": 135,
+  "modeledRecoveryMinutes": 60,
+  "world": {
+    "coins": 1,
+    "returned": 1,
+    "aid": 1,
+    "teaching": 1,
+    "assistance": 2,
+    "itemAvailable": true
+  },
+  "trace": [
+    {
+      "actionId": "return-item",
+      "episodeDay": 0,
+      "startedAt": 1,
+      "finishedAt": 16
+    },
+    {
+      "actionId": "provide-aid",
+      "episodeDay": 0,
+      "startedAt": 16,
+      "finishedAt": 36
+    },
+    {
+      "actionId": "rest",
+      "episodeDay": 0,
+      "startedAt": 36,
+      "finishedAt": 56
+    },
+    {
+      "actionId": "assist",
+      "episodeDay": 0,
+      "startedAt": 56,
+      "finishedAt": 86
+    },
+    {
+      "actionId": "assessment",
+      "episodeDay": 365,
+      "startedAt": 86,
+      "finishedAt": 96,
+      "outcomeId": "paid-support-assessment"
+    },
+    {
+      "actionId": "rest",
+      "episodeDay": 365,
+      "startedAt": 96,
+      "finishedAt": 116
+    },
+    {
+      "actionId": "mentor-session",
+      "episodeDay": 365,
+      "startedAt": 116,
+      "finishedAt": 146
+    },
+    {
+      "actionId": "rest",
+      "episodeDay": 730,
+      "startedAt": 146,
+      "finishedAt": 166
+    },
+    {
+      "actionId": "assist",
+      "episodeDay": 730,
+      "startedAt": 166,
+      "finishedAt": 196
+    }
+  ],
+  "state": {
+    "person": {
+      "format": "human-framework-sustained-person",
+      "version": 1,
+      "person": {
+        "version": "0.1.0",
+        "id": "learner",
+        "situated": {
+          "version": "0.1.0",
+          "id": "learner",
+          "human": {
+            "version": "0.1.1",
+            "id": "learner",
+            "body": {
+              "fatigue": 0.14500000000000002,
+              "hunger": 0.4905
+            },
+            "skills": {
+              "support": 0.4920440336925775
+            },
+            "observationBias": 0,
+            "minutes": 196,
+            "nextAttempt": 10,
+            "pending": null
+          },
+          "now": 196,
+          "purposes": [
+            {
+              "id": "care",
+              "status": "active"
+            },
+            {
+              "id": "repair",
+              "status": "active"
+            },
+            {
+              "id": "earn",
+              "status": "active"
+            }
+          ],
+          "observations": []
+        },
+        "learning": {
+          "version": "0.1.0",
+          "ownerId": "learner",
+          "originAt": 0,
+          "now": 196,
+          "skills": [
+            "support"
+          ],
+          "config": {
+            "rule": "authored-exponential-retention-v1",
+            "halfLifeMinutes": 43200,
+            "gainPerMinute": {
+              "instruction": 0.01,
+              "practice": 0.006,
+              "retrieval": 0.008
+            },
+            "maxAccessibility": 1,
+            "evidenceHorizonMinutes": 129600,
+            "recentEvidenceLimit": 8,
+            "maxReceipts": 512
+          },
+          "items": [],
+          "receipts": []
+        },
+        "condition": {
+          "version": "0.1.0",
+          "now": 196,
+          "mode": "awake",
+          "awakeMinutes": 196,
+          "sleepMinutes": 0,
+          "rules": {
+            "awakeFatiguePerMinute": 0.0005,
+            "awakeHungerPerMinute": 0.0005,
+            "sleepFatigueRecoveryPerMinute": 0.001,
+            "sleepHungerPerMinute": 0.00025
+          }
+        }
+      }
+    },
+    "self": {
+      "format": "human-framework-relationships",
+      "version": 1,
+      "relationships": {
+        "version": "0.1.0",
+        "ownerId": "learner",
+        "now": 196,
+        "actors": [
+          "learner",
+          "neighbor",
+          "assessor"
+        ],
+        "contexts": [
+          "care",
+          "property"
+        ],
+        "ties": [
+          {
+            "otherId": "neighbor",
+            "care": "active"
+          }
+        ],
+        "events": []
+      }
+    },
+    "recipient": {
+      "format": "human-framework-relationships",
+      "version": 1,
+      "relationships": {
+        "version": "0.1.0",
+        "ownerId": "neighbor",
+        "now": 196,
+        "actors": [
+          "learner",
+          "neighbor",
+          "assessor"
+        ],
+        "contexts": [
+          "care",
+          "property"
+        ],
+        "ties": [
+          {
+            "otherId": "learner",
+            "care": "inactive"
+          }
+        ],
+        "events": [
+          {
+            "id": "failed-return",
+            "originId": "failed-return-origin",
+            "occurredAt": 1,
+            "receivedAt": 1,
+            "sourceId": "neighbor",
+            "otherId": "learner",
+            "contextId": "property",
+            "kind": "support_failed",
+            "outcomeId": "missed-return",
+            "relatedEventId": null
+          },
+          {
+            "id": "repair-completed",
+            "originId": "repair-completed-origin",
+            "occurredAt": 16,
+            "receivedAt": 16,
+            "sourceId": "neighbor",
+            "otherId": "learner",
+            "contextId": "property",
+            "kind": "repair_completed",
+            "outcomeId": "actual-return",
+            "relatedEventId": "failed-return"
+          },
+          {
+            "id": "ack-return",
+            "originId": "ack-return-origin",
+            "occurredAt": 16,
+            "receivedAt": 16,
+            "sourceId": "neighbor",
+            "otherId": "learner",
+            "contextId": "property",
+            "kind": "repair_acknowledged",
+            "outcomeId": null,
+            "relatedEventId": "repair-completed"
+          }
+        ]
+      }
+    },
+    "duties": {
+      "format": "human-framework-duties",
+      "version": 1,
+      "state": {
+        "version": "0.1.0",
+        "ownerId": "learner",
+        "now": 196,
+        "cases": [
+          {
+            "id": "entrusted-item",
+            "source": {
+              "kind": "revelation",
+              "locator": "https://quran.com/4/58",
+              "translationAttribution": "Mustafa Khattab, The Clear Quran"
+            },
+            "interpretation": {
+              "summary": "Authored entrusted-item case: return the item after a lapse; no ruling on this fictional case is claimed.",
+              "school": "Hanafi-Maturidi starting point; no case ruling",
+              "reviewStatus": "unreviewed"
+            },
+            "requirements": [
+              {
+                "id": "item",
+                "requiredAmount": 1
+              }
+            ]
+          }
+        ],
+        "notices": [
+          {
+            "id": "duty-notice",
+            "at": 1,
+            "caseId": "entrusted-item",
+            "sourceActorId": "neighbor",
+            "understanding": "Return entrusted property; attempt restitution after lapse",
+            "stance": "accepted",
+            "disclosedTo": []
+          }
+        ],
+        "intentions": [
+          {
+            "id": "repair-intention",
+            "at": 1,
+            "caseId": "entrusted-item",
+            "statement": "Return what was entrusted despite losing paid work time",
+            "disclosedTo": []
+          }
+        ],
+        "outcomes": [
+          {
+            "id": "return-receipt",
+            "at": 16,
+            "caseId": "entrusted-item",
+            "kind": "restitution",
+            "requirementId": "item",
+            "amount": 1,
+            "outcomeId": "actual-return",
+            "disclosedTo": []
+          }
+        ],
+        "recipientResponses": [
+          {
+            "id": "recipient-message",
+            "at": 16,
+            "caseId": "entrusted-item",
+            "kind": "recipient-response",
+            "recipientId": "neighbor",
+            "response": "accepted",
+            "disclosedTo": []
+          }
+        ]
+      }
+    },
+    "course": {
+      "format": "human-framework-adult-course",
+      "version": 1,
+      "course": {
+        "version": "0.1.0",
+        "actorId": "learner",
+        "startDay": 0,
+        "day": 730,
+        "ageAtStartYears": 30,
+        "maxDays": 730,
+        "catalog": {
+          "actors": [
+            "learner",
+            "neighbor",
+            "assessor"
+          ],
+          "skills": [
+            "support"
+          ],
+          "roles": [
+            {
+              "id": "trainee",
+              "requiredQualifications": []
+            },
+            {
+              "id": "mentor",
+              "requiredQualifications": [
+                "teaching"
+              ]
+            }
+          ],
+          "qualifications": [
+            {
+              "id": "teaching",
+              "skillId": "support",
+              "minimumSkill": 0.1
+            }
+          ],
+          "opportunities": [
+            {
+              "id": "assist",
+              "roleId": "trainee",
+              "requiredQualifications": []
+            },
+            {
+              "id": "mentor-session",
+              "roleId": "mentor",
+              "requiredQualifications": [
+                "teaching"
+              ]
+            }
+          ]
+        },
+        "intervals": [
+          {
+            "fromDay": 0,
+            "toDay": 365,
+            "kind": "unmodeled"
+          },
+          {
+            "fromDay": 365,
+            "toDay": 730,
+            "kind": "unmodeled"
+          }
+        ],
+        "events": [
+          {
+            "type": "role",
+            "receiptId": "trainee-entered-0",
+            "atDay": 0,
+            "roleId": "trainee",
+            "kind": "entered",
+            "sourceId": "assessor",
+            "deliveredTo": "learner"
+          },
+          {
+            "type": "qualification",
+            "receiptId": "teaching-award",
+            "atDay": 365,
+            "id": "teaching",
+            "kind": "awarded",
+            "assessorId": "assessor",
+            "deliveredTo": "learner",
+            "evidenceRef": "paid-support-assessment",
+            "assessedSkill": 0.30605357277679035
+          },
+          {
+            "type": "role",
+            "receiptId": "mentor-entered-365",
+            "atDay": 365,
+            "roleId": "mentor",
+            "kind": "entered",
+            "sourceId": "assessor",
+            "deliveredTo": "learner"
+          },
+          {
+            "type": "role",
+            "receiptId": "mentor-exited-730",
+            "atDay": 730,
+            "roleId": "mentor",
+            "kind": "exited",
+            "sourceId": "assessor",
+            "deliveredTo": "learner"
+          }
+        ]
+      }
+    },
+    "commitment": {
+      "id": "return",
+      "debtorId": "learner",
+      "creditorId": "neighbor",
+      "dueAt": 0,
+      "terms": "Return entrusted item",
+      "status": "breached",
+      "revision": 0,
+      "updatedAt": 1,
+      "outcomeId": null
+    }
+  }
+}

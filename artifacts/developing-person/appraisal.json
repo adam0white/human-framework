@@ -1,0 +1,414 @@
+{
+  "sequence": {
+    "before": {
+      "tendency": "check",
+      "preferredActionIds": [
+        "check"
+      ],
+      "expiresAt": 30
+    },
+    "after": {
+      "tendency": "deliberate",
+      "preferredActionIds": [
+        "alternative-route"
+      ],
+      "expiresAt": 30
+    },
+    "beliefAfterReflection": "conflict",
+    "actions": [
+      "reflect",
+      "alternative-route"
+    ],
+    "actualMinutes": 25,
+    "delivered": true,
+    "world": {
+      "routeOpen": false,
+      "delivered": true
+    },
+    "trace": [
+      {
+        "attemptId": "traveler:1",
+        "actionId": "reflect",
+        "startedAt": 0,
+        "finishedAt": 5,
+        "status": "completed"
+      },
+      {
+        "attemptId": "traveler:2",
+        "actionId": "alternative-route",
+        "startedAt": 5,
+        "finishedAt": 25,
+        "status": "completed"
+      }
+    ],
+    "state": {
+      "format": "human-framework-developing-person",
+      "version": 1,
+      "person": {
+        "version": "0.1.0",
+        "id": "traveler",
+        "sustained": {
+          "version": "0.1.0",
+          "id": "traveler",
+          "situated": {
+            "version": "0.1.0",
+            "id": "traveler",
+            "human": {
+              "version": "0.1.1",
+              "id": "traveler",
+              "body": {
+                "fatigue": 0.1775,
+                "hunger": 0.15
+              },
+              "skills": {
+                "travel": 0.1
+              },
+              "observationBias": 0,
+              "minutes": 25,
+              "nextAttempt": 3,
+              "pending": null
+            },
+            "now": 25,
+            "purposes": [
+              {
+                "id": "deliver",
+                "status": "active"
+              }
+            ],
+            "observations": []
+          },
+          "learning": {
+            "version": "0.1.0",
+            "ownerId": "traveler",
+            "originAt": 0,
+            "now": 25,
+            "skills": [
+              "travel"
+            ],
+            "config": {
+              "rule": "authored-exponential-retention-v1",
+              "halfLifeMinutes": 43200,
+              "gainPerMinute": {
+                "instruction": 0.01,
+                "practice": 0.006,
+                "retrieval": 0.008
+              },
+              "maxAccessibility": 1,
+              "evidenceHorizonMinutes": 129600,
+              "recentEvidenceLimit": 8,
+              "maxReceipts": 512
+            },
+            "items": [],
+            "receipts": []
+          },
+          "condition": {
+            "version": "0.1.0",
+            "now": 25,
+            "mode": "awake",
+            "awakeMinutes": 25,
+            "sleepMinutes": 0,
+            "rules": {
+              "awakeFatiguePerMinute": 0.0005,
+              "awakeHungerPerMinute": 0.0005,
+              "sleepFatigueRecoveryPerMinute": 0.001,
+              "sleepHungerPerMinute": 0.00025
+            }
+          }
+        },
+        "beliefs": {
+          "version": "beliefs-0.1.0",
+          "ownerId": "traveler",
+          "originAt": 0,
+          "now": 25,
+          "propositions": [
+            "route-open"
+          ],
+          "sources": [
+            "custodian",
+            "colleague",
+            "traveler"
+          ],
+          "maxReceipts": 256,
+          "receipts": [
+            {
+              "kind": "evidence",
+              "receiptId": "custodian-report",
+              "propositionId": "route-open",
+              "sourceId": "custodian",
+              "originId": "custodian",
+              "value": false,
+              "observedAt": 0,
+              "receivedAt": 0,
+              "expiresAt": 120,
+              "correctsReceiptId": null
+            },
+            {
+              "kind": "evidence",
+              "receiptId": "colleague-report",
+              "propositionId": "route-open",
+              "sourceId": "colleague",
+              "originId": "colleague",
+              "value": true,
+              "observedAt": 0,
+              "receivedAt": 0,
+              "expiresAt": 120,
+              "correctsReceiptId": null
+            }
+          ]
+        },
+        "relationships": {
+          "version": "0.1.0",
+          "ownerId": "traveler",
+          "now": 25,
+          "actors": [
+            "traveler",
+            "custodian",
+            "colleague"
+          ],
+          "contexts": [
+            "delivery"
+          ],
+          "ties": [],
+          "events": []
+        },
+        "duties": {
+          "version": "0.1.0",
+          "ownerId": "traveler",
+          "now": 25,
+          "cases": [],
+          "notices": [],
+          "intentions": [],
+          "outcomes": [],
+          "recipientResponses": []
+        },
+        "course": {
+          "version": "0.1.0",
+          "actorId": "traveler",
+          "startDay": 0,
+          "day": 0,
+          "ageAtStartYears": 30,
+          "maxDays": 730,
+          "catalog": {
+            "actors": [
+              "traveler",
+              "custodian",
+              "colleague"
+            ],
+            "skills": [
+              "travel"
+            ],
+            "roles": [],
+            "qualifications": [],
+            "opportunities": []
+          },
+          "intervals": [],
+          "events": []
+        },
+        "appraisal": {
+          "version": "0.1.0",
+          "ownerId": "traveler",
+          "now": 25,
+          "contexts": [
+            {
+              "id": "delivery",
+              "purposeId": "deliver",
+              "propositionId": "route-open",
+              "checkActionId": "check",
+              "deliberateActionId": "alternative-route",
+              "reflectionActionId": "reflect"
+            }
+          ],
+          "maxConcernMinutes": 30,
+          "minReflectionMinutes": 5,
+          "records": [
+            {
+              "id": "delivery",
+              "tendency": "deliberate",
+              "startedAt": 0,
+              "expiresAt": 30,
+              "signature": "[\"conflict\",null,[\"colleague\"],[\"custodian\"]]",
+              "lastKey": "[\"conflict\",null,[\"colleague\"],[\"custodian\"]]",
+              "seenSignatures": [
+                "[\"conflict\",null,[\"colleague\"],[\"custodian\"]]"
+              ]
+            }
+          ],
+          "receipts": [
+            {
+              "receiptId": "paid-reflection",
+              "at": 5,
+              "contextId": "delivery",
+              "attemptId": "traveler:1",
+              "actionId": "reflect",
+              "elapsedMinutes": 5,
+              "selectedByActor": true,
+              "completed": true,
+              "concernStartedAt": 0,
+              "concernExpiresAt": 30,
+              "concernSignature": "[\"conflict\",null,[\"colleague\"],[\"custodian\"]]"
+            }
+          ]
+        },
+        "lastAttempt": {
+          "attemptId": "traveler:2",
+          "actionId": "alternative-route",
+          "startedAt": 5,
+          "finishedAt": 25,
+          "elapsedMinutes": 20,
+          "status": "completed"
+        }
+      }
+    }
+  },
+  "runs": 12,
+  "comparisons": [
+    {
+      "options": {},
+      "actions": [
+        "reflect",
+        "alternative-route"
+      ],
+      "actualMinutes": 25,
+      "delivered": true,
+      "before": {
+        "tendency": "check",
+        "preferredActionIds": [
+          "check"
+        ],
+        "expiresAt": 30
+      },
+      "after": {
+        "tendency": "deliberate",
+        "preferredActionIds": [
+          "alternative-route"
+        ],
+        "expiresAt": 30
+      },
+      "beliefStatus": "conflict",
+      "equal": true
+    },
+    {
+      "options": {
+        "conflict": false
+      },
+      "actions": [
+        "alternative-route"
+      ],
+      "actualMinutes": 20,
+      "delivered": true,
+      "before": {
+        "tendency": "none",
+        "preferredActionIds": [],
+        "expiresAt": null
+      },
+      "after": {
+        "tendency": "none",
+        "preferredActionIds": [],
+        "expiresAt": null
+      },
+      "beliefStatus": "resolved",
+      "equal": true
+    },
+    {
+      "options": {
+        "regulate": false
+      },
+      "actions": [
+        "check",
+        "alternative-route"
+      ],
+      "actualMinutes": 25,
+      "delivered": true,
+      "before": {
+        "tendency": "check",
+        "preferredActionIds": [
+          "check"
+        ],
+        "expiresAt": 30
+      },
+      "after": {
+        "tendency": "check",
+        "preferredActionIds": [
+          "check"
+        ],
+        "expiresAt": 30
+      },
+      "beliefStatus": "conflict",
+      "equal": true
+    },
+    {
+      "options": {
+        "purposeActive": false
+      },
+      "actions": [
+        "alternative-route"
+      ],
+      "actualMinutes": 20,
+      "delivered": true,
+      "before": {
+        "tendency": "none",
+        "preferredActionIds": [],
+        "expiresAt": null
+      },
+      "after": {
+        "tendency": "none",
+        "preferredActionIds": [],
+        "expiresAt": null
+      },
+      "beliefStatus": "conflict",
+      "equal": true
+    },
+    {
+      "options": {
+        "expire": true,
+        "regulate": false
+      },
+      "actions": [
+        "alternative-route"
+      ],
+      "actualMinutes": 51,
+      "delivered": true,
+      "before": {
+        "tendency": "check",
+        "preferredActionIds": [
+          "check"
+        ],
+        "expiresAt": 30
+      },
+      "after": {
+        "tendency": "none",
+        "preferredActionIds": [],
+        "expiresAt": null
+      },
+      "beliefStatus": "conflict",
+      "equal": true
+    },
+    {
+      "options": {
+        "regulate": false,
+        "override": "direct-route"
+      },
+      "actions": [
+        "direct-route"
+      ],
+      "actualMinutes": 10,
+      "delivered": false,
+      "before": {
+        "tendency": "check",
+        "preferredActionIds": [
+          "check"
+        ],
+        "expiresAt": 30
+      },
+      "after": {
+        "tendency": "check",
+        "preferredActionIds": [
+          "check"
+        ],
+        "expiresAt": 30
+      },
+      "beliefStatus": "conflict",
+      "equal": true
+    }
+  ]
+}

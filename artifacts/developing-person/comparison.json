@@ -1,0 +1,402 @@
+{
+  "scope": "Nine authored interventions, two equally informed policies; no measured authoring or empirical claim",
+  "runs": 18,
+  "comparisons": [
+    {
+      "id": "ordinary",
+      "candidate": {
+        "returned": 1,
+        "stance": "open",
+        "response": "accept",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 135,
+        "world": {
+          "coins": 1,
+          "returned": 1,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "direct": {
+        "returned": 1,
+        "stance": "open",
+        "response": "accept",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 135,
+        "world": {
+          "coins": 1,
+          "returned": 1,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "equal": true
+    },
+    {
+      "id": "no-duty-notice",
+      "candidate": {
+        "returned": 0,
+        "stance": "guarded",
+        "response": "request-confirmation",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 145,
+        "world": {
+          "coins": 5,
+          "returned": 0,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "direct": {
+        "returned": 0,
+        "stance": "guarded",
+        "response": "request-confirmation",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 145,
+        "world": {
+          "coins": 5,
+          "returned": 0,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "equal": true
+    },
+    {
+      "id": "uncertain-duty",
+      "candidate": {
+        "returned": 0,
+        "stance": "guarded",
+        "response": "request-confirmation",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 145,
+        "world": {
+          "coins": 5,
+          "returned": 0,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "direct": {
+        "returned": 0,
+        "stance": "guarded",
+        "response": "request-confirmation",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 145,
+        "world": {
+          "coins": 5,
+          "returned": 0,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "equal": true
+    },
+    {
+      "id": "rejected-duty",
+      "candidate": {
+        "returned": 0,
+        "stance": "guarded",
+        "response": "request-confirmation",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 145,
+        "world": {
+          "coins": 5,
+          "returned": 0,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "direct": {
+        "returned": 0,
+        "stance": "guarded",
+        "response": "request-confirmation",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 145,
+        "world": {
+          "coins": 5,
+          "returned": 0,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "equal": true
+    },
+    {
+      "id": "no-care",
+      "candidate": {
+        "returned": 1,
+        "stance": "open",
+        "response": "no-offer",
+        "aid": 0,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 135,
+        "world": {
+          "coins": 4,
+          "returned": 1,
+          "aid": 0,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "direct": {
+        "returned": 1,
+        "stance": "open",
+        "response": "no-offer",
+        "aid": 0,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 135,
+        "world": {
+          "coins": 4,
+          "returned": 1,
+          "aid": 0,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "equal": true
+    },
+    {
+      "id": "no-acknowledgment",
+      "candidate": {
+        "returned": 1,
+        "stance": "guarded",
+        "response": "request-confirmation",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 145,
+        "world": {
+          "coins": 1,
+          "returned": 1,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "direct": {
+        "returned": 1,
+        "stance": "guarded",
+        "response": "request-confirmation",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 145,
+        "world": {
+          "coins": 1,
+          "returned": 1,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "equal": true
+    },
+    {
+      "id": "hidden-failure",
+      "candidate": {
+        "returned": 1,
+        "stance": "unknown",
+        "response": "accept",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 135,
+        "world": {
+          "coins": 1,
+          "returned": 1,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "direct": {
+        "returned": 1,
+        "stance": "unknown",
+        "response": "accept",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 135,
+        "world": {
+          "coins": 1,
+          "returned": 1,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": true
+        }
+      },
+      "equal": true
+    },
+    {
+      "id": "failed-repair",
+      "candidate": {
+        "returned": 0,
+        "stance": "guarded",
+        "response": "request-confirmation",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 145,
+        "world": {
+          "coins": 1,
+          "returned": 0,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": false
+        }
+      },
+      "direct": {
+        "returned": 0,
+        "stance": "guarded",
+        "response": "request-confirmation",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "mentor-session",
+          "assist"
+        ],
+        "actualActivityMinutes": 145,
+        "world": {
+          "coins": 1,
+          "returned": 0,
+          "aid": 1,
+          "teaching": 1,
+          "assistance": 2,
+          "itemAvailable": false
+        }
+      },
+      "equal": true
+    },
+    {
+      "id": "no-qualification",
+      "candidate": {
+        "returned": 1,
+        "stance": "open",
+        "response": "accept",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "assist",
+          "assist"
+        ],
+        "actualActivityMinutes": 125,
+        "world": {
+          "coins": 1,
+          "returned": 1,
+          "aid": 1,
+          "teaching": 0,
+          "assistance": 3,
+          "itemAvailable": true
+        }
+      },
+      "direct": {
+        "returned": 1,
+        "stance": "open",
+        "response": "accept",
+        "aid": 1,
+        "adultActions": [
+          "assist",
+          "assist",
+          "assist"
+        ],
+        "actualActivityMinutes": 125,
+        "world": {
+          "coins": 1,
+          "returned": 1,
+          "aid": 1,
+          "teaching": 0,
+          "assistance": 3,
+          "itemAvailable": true
+        }
+      },
+      "equal": true
+    }
+  ]
+}

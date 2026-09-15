@@ -1,14 +1,18 @@
 # Human Framework handoff
 
-Updated 2026-09-14 after sequential belief-revision and bounded-planning delivery. Read this file, the [current milestone delivery](docs/connected-person.md), the [MVP contract](docs/mvp-contract.md) and the [roadmap](docs/roadmap.md). [Direct approval](docs/direction-2026-09-14.md) supersedes the earlier absence of a selected implementation milestone.
+Updated 2026-09-15 after sequential relationships, understood duty/repair, adult course, appraisal and unified person lifecycle delivery. Read this file, the [current milestone delivery](docs/developing-person.md), the [MVP contract](docs/mvp-contract.md) and the [roadmap](docs/roadmap.md). [Direct approval](docs/direction-2026-09-14.md) supersedes the earlier absence of a selected implementation milestone.
 
 ## Direction
 
 The framework is the product: a reusable account of situated human action and development, including cognition, purposes, relationships, moral/spiritual life and aging. It is Islam-guided, with a Sunni Hanafi–Maturidi starting point, and empirically informed. Distinguish revelation, interpretation, empirical findings and engineering rules. Do not equate software correctness with a validated human model.
 
-The user approved the connected-person milestone and asked for progress without excessive caution or small-task drift. The lead owns routine decisions, bounded delegation, integration and delivery. Three moments at `/person/` is complete. The user then requested substantial autonomous progress on remaining framework capabilities before another game. The sustained-person delivery integrates continuous days, retained learning, ongoing duties and independent reuse. The user then authorized multiple gaps in sequence; the deliberating-person delivery adds evidence-sensitive belief revision followed by bounded planning. Games are deferred; the scheduled task stays paused.
+The user approved the connected-person milestone and asked for progress without excessive caution or small-task drift. The lead owns routine decisions, bounded delegation, integration and delivery. Three moments at `/person/` is complete. The user then requested substantial autonomous progress on remaining framework capabilities before another game. The sustained-person delivery integrates continuous days, retained learning, ongoing duties and independent reuse. The user then authorized multiple gaps in sequence; the deliberating-person delivery adds evidence-sensitive belief revision followed by bounded planning. The user subsequently requested all remaining gaps be addressed in sequence with subagents before the next game. The developing-person delivery adds four bounded capabilities and a unified actor lifecycle; completion of the full human framework remains open. Games are deferred; the scheduled task stays paused.
 
 ## Current framework milestone
+
+The [developing-person delivery](docs/developing-person.md) adds contextual relationship expectations and unpromised care; sourced, actor-understood duty with actual repair and independent recipient response; adult role/qualification changes across explicitly unmodeled calendar gaps; and actor-local appraisal with optional paid regulation. Actual attempts, costs, qualification assessment, recipient acknowledgment and later opportunities are exercised in reference and installed consumers. The unified person lifecycle synchronizes actor identity, observed time and pending attempts and derives regulation payment from the actual completed attempt. These are private authored candidates. [Evidence](artifacts/developing-person/verification.json) records 1,027 passing tests, 30 comparison runs, independent composite installation and preserved public identity.
+
+### Earlier deliberating foundation
 
 The [deliberating-person delivery](docs/deliberating-person.md) completes two subsequent software gaps: an actor-bound evidence ledger with conflict, stale delivery, expiry, correction/retraction and origin deduplication; then bounded symbolic planning across authored purposes, resources and deadlines. Actual failures deliver evidence and cause replanning; plans cannot fulfill obligations. The separate private package is exercised by a reference delivery host and an independently installed community-session consumer. [Evidence](artifacts/deliberating-person/verification.json) records 966 passing tests, 21 comparison runs, independent installed reuse and source identities. Direct purpose-aware control retains parity; these are authored candidates, not calibrated general cognition.
 
@@ -26,9 +30,9 @@ The [framework delivery report](docs/connected-person.md) explains scope, APIs a
 
 ## What remains missing
 
-Purposes and policy priorities are authored. The original situated facts remain latest attributed boolean assertions. A separate evidence ledger now resolves delivered reports conservatively, and bounded planning uses explicit purpose priorities. Learned source reliability, probabilistic belief revision, general episodic memory, long-horizon planning and automatic purpose development remain open. The new candidate adds item-specific retained access and delay under authored parameters. Interaction records are not a model of attachment or trust. The original connected-person reference covers dated episodes and thirty learner activity minutes. The sustained-person reference now covers continuous days with explicit awake/sleep recovery and meals; it does not model calibrated sleep physiology, circadian rhythms or sleep debt. Emotion, positive moral/spiritual modeling, lifespan development and broader institutions remain open.
+Purposes and policy priorities are authored. The original situated facts remain latest attributed boolean assertions. A separate evidence ledger now resolves delivered reports conservatively, and bounded planning uses explicit purpose priorities. Learned source reliability, probabilistic belief revision, general episodic memory, long-horizon planning and automatic purpose development remain open. The new candidate adds item-specific retained access and delay under authored parameters. New contextual expectations and care ties do not constitute calibrated attachment or general trust. The original connected-person reference covers dated episodes and thirty learner activity minutes. The sustained-person reference now covers continuous days with explicit awake/sleep recovery and meals; it does not model calibrated sleep physiology, circadian rhythms or sleep debt. The new appraisal and understood-duty candidates cover bounded tendencies and sourced repair; general emotion, worship, habits, purpose development, biological aging, childhood and broader institutions remain open.
 
-The next substantial work is relationships beyond agreement records, positive sourced duty/repair representation, and a defined adult development trajectory, alongside empirical and qualified interpretive evaluation. Carry forward the simpler alternatives and the distinction between software behavior and validity. Further games should wait for substantial framework progress.
+The next substantial work is persistent habits and purpose revision, bodily disruption/health and opportunity constraints, followed by broader institution and developmental trajectories. The sparse adult course does not close biological aging; contextual expectations do not close relationships; appraisal does not close emotion. Empirical and qualified interpretive evaluation remain separate work. Carry forward the simpler alternatives and the distinction between software behavior and validity. Further games should wait for substantial framework progress.
 
 ## Source and public delivery
 
@@ -37,6 +41,7 @@ The next substantial work is relationships beyond agreement records, positive so
 | Repository | Private `adam0white/human-framework`; `main` is the integration branch |
 | Connected-person foundation | situated-person 0.1.0, implementation `87645ea1fb4eb8a9ea20b3928a9e6933f339f1a3`; subsequent handoff-only commits may follow |
 | Sustained candidate | sustained-person 0.1.0; source and test identities in `artifacts/sustained-person/verification.json` |
+| Developing candidate | developing-person 0.1.0; relationships, duties, adult course and appraisal source/evidence in `artifacts/developing-person/verification.json` |
 | Deliberating candidate | deliberating-person 0.1.0; source and tests in `artifacts/deliberating-person/verification.json` |
 | Existing selected package | Human/runtime 0.1.1; integer clock 0.1.0, unchanged |
 | Public browser app | 0.15.0, featuring Three moments at `/person/` |
@@ -53,6 +58,9 @@ The [showcase release evidence](artifacts/release-0.15/verification.json) record
 Use Node >=22. On this machine put `/opt/homebrew/bin` first on PATH.
 
 ```sh
+node --test tests/social-relationships.test.js tests/meaning-duties.test.js tests/lifecourse-adult.test.js tests/affect-appraisal.test.js tests/developing-*.test.js
+node scripts/run-developing-person.js /tmp/developing-review
+node scripts/package-developing-person.js /tmp/developing-package
 node --test tests/cognition-beliefs.test.js tests/cognition-planner.test.js tests/deliberation-sequence.test.js tests/deliberating-consumer.test.js
 node scripts/run-deliberating-person.js /tmp/deliberating-review
 node scripts/package-deliberating-person.js /tmp/deliberating-package

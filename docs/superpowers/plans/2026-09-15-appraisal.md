@@ -5,6 +5,8 @@
 **Spec:** docs/superpowers/specs/2026-09-15-appraisal.md
 **Tech stack:** Node >=22, dependency-free JS, node:test.
 
-- [ ] Implement src/affect/appraisal.js with tests/affect-appraisal.test.js: owner-bound inputs, source evidence, active-purpose relevance, finite expiry, paid attempt provenance, duplicate rejection and validated persistence.
-- [ ] Integrate examples/developing-person/appraisal.js and tests/developing-appraisal.test.js: actual paid check/reflection followed by allowed action; uncertainty does not become truth, supplied choice remains possible, direct rule comparison and restored state equality.
-- [ ] Extend private package/independent consumer, review through two independent lenses, run focused/full checks and save artifacts. Preserve every released component/public byte.
+- [x] Implement src/affect/appraisal.js with tests/affect-appraisal.test.js: owner-bound inputs, source evidence, active-purpose relevance, finite expiry, paid attempt provenance, duplicate rejection and validated persistence.
+- [x] Integrate examples/developing-person/appraisal.js and tests/developing-appraisal.test.js: actual paid check/reflection followed by allowed action; uncertainty does not become truth, supplied choice remains possible, direct rule comparison and restored state equality.
+- [x] Extend private package/independent consumer, review through two independent lenses, run focused/full checks and save artifacts. Preserve every released component/public byte.
+
+Final integration: 1,027 tests pass, 61 added over baseline. Thirty comparison runs retain direct-rule parity; independent offline consumer verifies exact source bytes and composite restoration. Review and scope limits are recorded in docs/reviews/2026-09-15-developing-person.md.

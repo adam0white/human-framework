@@ -1,5 +1,8 @@
 # Executable coverage and research boundaries
 
+
+2026-09-15 current addition: [developing-person](developing-person.md) implements private contextual relationships/care, sourced unreviewed understood duty/repair, sparse adult role/qualification opportunity changes, and appraisal with voluntary paid regulation. These supersede the older absence statements below only for their documented bounded scope. Biological aging, general emotion/relationships, qualified interpretive review and empirical calibration remain open.
+
 Subsequent 2026-09-14 update: [deliberating-person](deliberating-person.md) adds actor-bound evidence revision (conflict, stale receipt, expiry, correction/retraction, origin deduplication) and bounded symbolic planning from actor-visible data. Plans are detached forecasts; real execution and observations drive replanning. Goal ordering and resource/deadline constraints are authored. General probabilistic cognition, learned source reliability and long-horizon planning remain open.
 
 
