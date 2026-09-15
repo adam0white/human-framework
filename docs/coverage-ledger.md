@@ -1,5 +1,15 @@
 # Executable coverage and research boundaries
 
+Current update, 2026-09-14: [sustained-person](sustained-person.md) adds private continuous awake/sleep condition, synchronized paid attempts and attributed retained learning. [Connected-person](connected-person.md) supplies actor-local purposes, observations and commitment records. These extend the frozen Human/runtime 0.1.1 package through a separate candidate; app 0.15 remains on its separately recorded deployed source. The following September 9 tables are historical coverage and must not be read as denying these later additions. Calibrated sleep, general memory/planning, positive moral/spiritual mechanisms and lifespan development remain open.
+
+| Newly executable scope | Current boundary |
+|---|---|
+| Continuous days | Authored awake/sleep intervals and paid actions share chronology/body ownership; no sleep stages, circadian model or calibration |
+| Retained access | Item-specific paid instruction/practice/retrieval evidence and delay; no general belief revision or arbitrary transfer |
+| Cross-context continuity | Ongoing purposes, canonical duties, resources and actor-local responses in sustained reference consumers |
+| Independent reuse | Separate private package with explicit exports and repository-denied installation test |
+
+
 Snapshot updated 2026-09-09 after the completed reconsideration study and the user's request to leave games aside. The goal remains situated human action and development. The [roadmap](roadmap.md) and [latest direction record](direction-2026-09-09.md) describe the gap and proposed stages; the adult-over-days/weeks recommendation, horizon and reference situations are not selected. The scheduled task remains paused, and documenting the roadmap does not start implementation.
 
 Current delivery remains app 0.14.1. The portable package is Human/runtime 0.1.1 plus clock 0.1.0; delivered hosts retain their recorded Human 0.1.0/0.1.1 boundaries. The laboratory is retired from serving, with source and evidence retained privately. Older “next” statements below are dated provenance, not the current queue.

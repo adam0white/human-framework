@@ -1,6 +1,6 @@
 # What may graduate to MVP
 
-2026-09-14: the approved [connected-person milestone](connected-person.md) adds a private compositional candidate beyond this original narrow package. The released Human/runtime remains 0.1.1. See [current handoff](../HANDOFF.md) for manual execution status.
+2026-09-14: the approved [connected-person milestone](connected-person.md) and subsequent [sustained-person delivery](sustained-person.md) add private compositional candidates beyond this original narrow package. The released Human/runtime remains 0.1.1. See [current handoff](../HANDOFF.md) for manual execution status.
 
 Established 2026-09-07; current direction updated 2026-09-09 after the completed reconsideration study and the user's request to leave games aside and review the framework roadmap. This contract defines a useful first software deliverable within the larger goal of situated human action and development.
 
@@ -8,7 +8,7 @@ Established 2026-09-07; current direction updated 2026-09-09 after the completed
 
 The [latest direction](direction-2026-09-14.md) approves the connected-person milestone and its focused Three moments showcase while keeping older game queues set aside. The full framework remains the goal: embodied people whose knowledge, motives, relationships and capacities can develop over time. The narrow portable kit is useful, but broad faculties and lifespan development remain early or unimplemented. Meaning, understood duty, worship and moral development remain positive research aims, with sourced normative claims, a person's understanding and observable action kept distinct.
 
-The [roadmap](roadmap.md) proposes later stages; the selected first reference uses three adults across dated episodes rather than continuous multi-day development. The scheduled task remains paused.
+The [roadmap](roadmap.md) proposes later stages. The first reference used three adults across dated episodes; the sustained-person candidate adds explicit continuous awake/sleep intervals and retained access across days. The scheduled task remains paused.
 
 The [earlier correction](player-feedback-2026-09-08.md#later-correction-after-app-011) also remains in force: games are replaceable experiments, with no required unified campaign, level count, full tutorial sequence or old-save compatibility. The public laboratory is retired; its headless comparisons and historical sources remain private evidence. The only current player reports finishing all games. No fixed player count is a condition of each software release; broader human validity and usefulness remain separate unproven claims.
 
@@ -29,7 +29,7 @@ The retired laboratory Full policy was a distinct reactive experimental controll
 | Objects and resources | No knowledge of them | Owns availability, reservations, consumption, locations and goals | Explains prerequisites and costs |
 | Choice and consent | No mandatory controller | Player commands or replaceable policy; recipient chooses response | Labels request versus command accurately |
 | Learning evidence | Actual paid practice changes task skill | Decides which task earns practice and how skill affects outcomes | Shows useful effects, without manufactured XP score |
-| Relationships and commitments | No portable social module yet | Explicit promises/loans/projects and observable reasons | Shows whose action was used and what was agreed |
+| Relationships and commitments | Situated-person candidate carries actor-local agreement and interaction records | Explicit promises/loans/projects and observable reasons | Shows whose action was used and what was agreed |
 | Persistence | Validates component and clock snapshots | Validates its world and reconciles pending jobs/resources | Imports/exports active state; optional transcript is separate |
 | Randomness | No required inference service | Owns reproducible draws and when they are consumed | Shows a seed only when the host actually samples outcomes |
 

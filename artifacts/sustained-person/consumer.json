@@ -1,0 +1,40 @@
+{
+  "result": {
+    "format": "sustained-person-independent-consumer",
+    "withRehearsal": {
+      "accessibility": 0.9855050609412748,
+      "instructionsStillRecorded": true,
+      "resumeEqual": true,
+      "clockMinutes": 10080,
+      "returnedItemCount": 1,
+      "commitmentStatus": "fulfilled",
+      "mealsRemaining": 0,
+      "consultationMinutes": 0
+    },
+    "withoutRehearsal": {
+      "accessibility": 0.17158639718672158,
+      "instructionsStillRecorded": true,
+      "resumeEqual": true,
+      "clockMinutes": 10080,
+      "returnedItemCount": 1,
+      "commitmentStatus": "fulfilled",
+      "mealsRemaining": 0,
+      "consultationMinutes": 20
+    },
+    "resumeEqual": true,
+    "clockMinutes": 10080,
+    "unseenReceiptChangedChoice": false,
+    "returnedItemCount": 1,
+    "commitmentStatus": "fulfilled"
+  },
+  "sourceSha256": {
+    "src/development/index.js": "2766b896cc285afac02fafd74233343ce1f2fb2a329a2fa0accf68053a24d4a4",
+    "src/development/condition.js": "e55191436d315d301e036a53d6564e786ad2345d23cb5fad03559185b7c1dc7d",
+    "src/development/learning.js": "a80f2b7821dd46529d5c684f8361aafe7a94b68efaa46b8c1af943669329acf2",
+    "src/person/index.js": "74b04267eeb345e8f72a2fda4b5fe00b9529122e051d20767cbe30635efcdf73",
+    "src/person/commitments.js": "fc826761cc54762a51f7a34164af29ba1cbc2678aeb0fcf22e9fc7b86c248c35",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+  },
+  "repositoryAccessDenied": true
+}

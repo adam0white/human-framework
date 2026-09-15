@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-14",
+  "candidate": "sustained-person 0.1.0",
+  "baselineCommit": "dac3de03cc561f5d425a470613e9c3fce53e9f83",
+  "sourceSha256": {
+    "src/development/index.js": "2766b896cc285afac02fafd74233343ce1f2fb2a329a2fa0accf68053a24d4a4",
+    "src/development/condition.js": "e55191436d315d301e036a53d6564e786ad2345d23cb5fad03559185b7c1dc7d",
+    "src/development/learning.js": "a80f2b7821dd46529d5c684f8361aafe7a94b68efaa46b8c1af943669329acf2",
+    "src/person/index.js": "74b04267eeb345e8f72a2fda4b5fe00b9529122e051d20767cbe30635efcdf73",
+    "src/person/commitments.js": "fc826761cc54762a51f7a34164af29ba1cbc2678aeb0fcf22e9fc7b86c248c35",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59",
+    "examples/sustained-person/sequence.js": "4171093b668efb4c7a4673cea5d9fcb085659efd5b61d3f2688de9c9dea0526a",
+    "examples/sustained-person/comparison.js": "f3aae9b7d470cdeefa543efe43b1d226b77f937c25bd1ebff5765ae37af04f4e",
+    "examples/sustained-consumer/consumer.js": "a43cc0f53c002f013a3902327ce0c3fcf8831995743b347746458d4889919241",
+    "scripts/run-sustained-person.js": "4495d95e2fc76f43b67dc0e1ee1686eb224fb991b94af7ae6bc0364f782f1d61",
+    "scripts/package-sustained-person.js": "68470f7e5876d9aa4490a978f1d71ce97de527d9a513f1396af31834867ec620",
+    "tests/development-person.test.js": "8c1608a80506f16c1a69a5d3d1e65f2df2e62f638ca66b6ca4ae55d2d819f989",
+    "tests/development-learning.test.js": "3e15115feaf98e8fa5d318e87649316aa8be46527672d7c63aa47e99688aeac4",
+    "tests/sustained-sequence.test.js": "6cae20ad24e2ea0b3cd146811e66c32d0cd1f183d26acffa3722f5a2c0d1fd27",
+    "tests/sustained-consumer.test.js": "0610563d03e4da3b73898db2d1993677f3904c6caa967ca7d1652b400addc226"
+  },
+  "package": {
+    "name": "sustained-person",
+    "version": "0.1.0",
+    "tarballSha256": "4cf5c67e15b42f51be308d7b01233e39d488b06a90ea349215ee8a5e808dde7d",
+    "sources": [
+      "src/development/index.js",
+      "src/development/condition.js",
+      "src/development/learning.js",
+      "src/person/index.js",
+      "src/person/commitments.js",
+      "src/human/v0.1.1.js",
+      "src/core/model.js"
+    ],
+    "repositoryAccessDenied": true
+  },
+  "tests": {
+    "passed": 939,
+    "failed": 0,
+    "focusedPassed": 27,
+    "durationMilliseconds": 22566.253667
+  },
+  "comparisons": {
+    "referenceDays": 14,
+    "actors": 3,
+    "alternateClockMinutes": 1,
+    "bodyComparisonResolution": 1e-09,
+    "independentConsumerDays": 7,
+    "retainedAccessConsultationMinutes": [
+      0,
+      20
+    ],
+    "scope": "authored software interventions; simpler-rule parity retained"
+  },
+  "environment": {
+    "architecture": "arm64",
+    "cpu": "Apple M4",
+    "node": "26.8.2",
+    "comparisonTiming": "Wall-clock sample under concurrent regression load, no rendering; not a controlled benchmark"
+  },
+  "frozenSourceAndPublicAssets": "No changes to Human/runtime/person released modules or public asset selection/payload",
+  "publicAppCommit": "de52d9c95e89dc25e163fca773fec2269b8b06a4",
+  "publicPayloadSha256": "3138fa05c3a061adb922423932849c0630a14559b05858b7b3ed895143ff15b4",
+  "scheduledTask": "PAUSED",
+  "review": "docs/reviews/2026-09-14-sustained-person.md"
+}

@@ -19,3 +19,9 @@ After the connected-person milestone was delivered, the user requested:
 > Cool thanks. Now let's progress a bit more, and deliver a tiny, focused game or a simulation to showcase our progress so far.
 
 This authorizes the focused Three moments simulation and its normal public deployment. It supersedes the earlier restriction on starting a new showcase for this task only; it does not reopen the older game queues or resume scheduled work. The selected scope is three interactive decisions through the existing shared person model, an explanation of carried consequences and a replay with one earlier experience removed. [Design and execution record](plans/2026-09-14-three-moments.md).
+
+## Subsequent authorization: substantial autonomous framework progress
+
+After reviewing Three moments, the user called it small and linear, reiterated that simulations and games are not the main focus, and requested continued autonomous work on a substantial part of the remaining framework before another game. This authorizes routine technical scope choices, targeted delegation, implementation, evaluation, integration and delivery in the current manual session. It does not request a scheduled task restart.
+
+The selected technical scope is continuous daily condition and retained learning with ongoing obligations, tested in a fourteen-day reference and a separately authored installable consumer. See [design](superpowers/specs/2026-09-14-sustained-person.md), [execution plan](superpowers/plans/2026-09-14-sustained-person.md), and [delivery](sustained-person.md). These are assistant-selected implementation details under the user's broader authorization, not quoted user model requirements.

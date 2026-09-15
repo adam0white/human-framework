@@ -1,14 +1,18 @@
 # Human Framework handoff
 
-Updated 2026-09-14 for the approved focused manual resumption. Read this file, the [current milestone delivery](docs/connected-person.md), the [MVP contract](docs/mvp-contract.md) and the [roadmap](docs/roadmap.md). [Direct approval](docs/direction-2026-09-14.md) supersedes the earlier absence of a selected implementation milestone.
+Updated 2026-09-14 for substantial autonomous framework work after Three moments. Read this file, the [current milestone delivery](docs/connected-person.md), the [MVP contract](docs/mvp-contract.md) and the [roadmap](docs/roadmap.md). [Direct approval](docs/direction-2026-09-14.md) supersedes the earlier absence of a selected implementation milestone.
 
 ## Direction
 
 The framework is the product: a reusable account of situated human action and development, including cognition, purposes, relationships, moral/spiritual life and aging. It is Islam-guided, with a Sunni Hanafi–Maturidi starting point, and empirically informed. Distinguish revelation, interpretation, empirical findings and engineering rules. Do not equate software correctness with a validated human model.
 
-The user approved the connected-person milestone and asked for progress without excessive caution or small-task drift. The lead owns routine decisions, bounded delegation, integration and delivery. The user subsequently requested the focused Three moments showcase at `/person/`; that delivery is authorized. Older game queues remain set aside and the scheduled task stays paused.
+The user approved the connected-person milestone and asked for progress without excessive caution or small-task drift. The lead owns routine decisions, bounded delegation, integration and delivery. Three moments at `/person/` is complete. The user then requested substantial autonomous progress on remaining framework capabilities before another game. The selected sustained-person delivery integrates continuous days, retained learning, ongoing duties and independent reuse. Games are deferred; the scheduled task stays paused.
 
 ## Current framework milestone
+
+The [sustained-person delivery](docs/sustained-person.md) adds private candidate **0.1.0** over the unchanged components below. It synchronizes awake/sleep intervals, paid actions and retained learning, preserves actor-local purposes and obligations, and packages the combination for independent installation. A fourteen-day reference and a separately authored seven-day library consumer exercise it. [Verification](artifacts/sustained-person/verification.json) records 939 passing tests, package/source hashes and preserved public identity. All modeled time is accounted for; the body has one update owner per interval. Retained access can change a later method or incur a paid consultation, without erasing the original instruction record.
+
+### Earlier connected-person foundation
 
 Situated-person **0.1.0** is a new candidate composing the unchanged Human **0.1.1** component. It carries attributed boolean knowledge, explicit purpose states, understood commitment terms/status/revision and context-specific interaction evidence. A common deterministic rule interface returns attempted choices and executed evidence; external choices can override the baseline. Hosts own canonical outcomes and provide verified fulfillment receipts.
 
@@ -18,16 +22,17 @@ The [framework delivery report](docs/connected-person.md) explains scope, APIs a
 
 ## What remains missing
 
-Purposes and policy priorities are authored. Facts are latest attributed boolean assertions; there is no general belief revision, source reliability, memory decay, planning or automatic purpose development. Interaction records are not a model of attachment or trust. Fourteen days are dated episodes: body state changes only during modeled activity, with no overnight physiology or recovery. The learner executes thirty activity minutes. Emotion, positive moral/spiritual modeling, lifespan development and broader institutions remain open.
+Purposes and policy priorities are authored. Facts are latest attributed boolean assertions; there is no general belief revision, source reliability, general episodic memory, planning or automatic purpose development. The new candidate adds item-specific retained access and delay under authored parameters. Interaction records are not a model of attachment or trust. The original connected-person reference covers dated episodes and thirty learner activity minutes. The sustained-person reference now covers continuous days with explicit awake/sleep recovery and meals; it does not model calibrated sleep physiology, circadian rhythms or sleep debt. Emotion, positive moral/spiritual modeling, lifespan development and broader institutions remain open.
 
-The next recommended substantial milestone is continuous daily condition and retained learning within these same connected situations, with obligations and relationships present. It should connect episodes without returning to game polish or isolated mechanism churn. Later scope is not automatically selected by this recommendation.
+The next substantial work is evidence-sensitive belief revision and short-horizon choice across continuing purposes, then relationships beyond agreement records, positive sourced duty/repair representation, and a defined adult development trajectory. Carry forward the simpler alternatives and the distinction between software behavior and validity. Further games should wait for substantial framework progress.
 
 ## Source and public delivery
 
 | Scope | Identity |
 |---|---|
 | Repository | Private `adam0white/human-framework`; `main` is the integration branch |
-| New private candidate | situated-person 0.1.0, implementation `87645ea1fb4eb8a9ea20b3928a9e6933f339f1a3`; subsequent handoff-only commits may follow |
+| Connected-person foundation | situated-person 0.1.0, implementation `87645ea1fb4eb8a9ea20b3928a9e6933f339f1a3`; subsequent handoff-only commits may follow |
+| Sustained candidate | sustained-person 0.1.0; source and test identities in `artifacts/sustained-person/verification.json` |
 | Existing selected package | Human/runtime 0.1.1; integer clock 0.1.0, unchanged |
 | Public browser app | 0.15.0, featuring Three moments at `/person/` |
 | Deployed app source | `de52d9c95e89dc25e163fca773fec2269b8b06a4` |
@@ -43,6 +48,9 @@ The [showcase release evidence](artifacts/release-0.15/verification.json) record
 Use Node >=22. On this machine put `/opt/homebrew/bin` first on PATH.
 
 ```sh
+node --test tests/development-*.test.js tests/sustained-*.test.js
+node scripts/run-sustained-person.js /tmp/sustained-person-review
+node scripts/package-sustained-person.js /tmp/sustained-package
 node --test tests/situated-person.test.js tests/person-commitments.test.js tests/connected-person.test.js tests/person-consumer.test.js
 node scripts/run-connected-person.js /tmp/connected-person-review
 node scripts/package-person.js /tmp/situated-person-package

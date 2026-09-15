@@ -1,0 +1,405 @@
+{
+  "format": "sustained-person-comparison",
+  "version": 1,
+  "horizonMinutes": 20160,
+  "reference": {
+    "completedWork": 12,
+    "deliveries": 1,
+    "recoveryServices": 1,
+    "householdStatus": "fulfilled",
+    "delayedAccessibility": 0.7007582236796834,
+    "lateAction": "use-retained-method",
+    "shortageAction": "deliver",
+    "shortageCapacityAllowed": true
+  },
+  "cases": [
+    {
+      "name": "equal-time-learning",
+      "config": {
+        "learning": "equal-time-control"
+      },
+      "controls": {
+        "equalElapsedMinutes": true
+      },
+      "result": {
+        "completedWork": 11,
+        "deliveries": 1,
+        "recoveryServices": 1,
+        "householdStatus": "fulfilled",
+        "delayedAccessibility": 0.23784287327344927,
+        "lateAction": "consult-source",
+        "shortageAction": "deliver",
+        "shortageCapacityAllowed": true
+      },
+      "differences": [
+        {
+          "metric": "completedWork",
+          "reference": 12,
+          "variation": 11
+        },
+        {
+          "metric": "delayedAccessibility",
+          "reference": 0.7007582236796834,
+          "variation": 0.23784287327344927
+        },
+        {
+          "metric": "lateAction",
+          "reference": "use-retained-method",
+          "variation": "consult-source"
+        }
+      ],
+      "parity": [
+        {
+          "metric": "completedWork",
+          "matches": false
+        },
+        {
+          "metric": "deliveries",
+          "matches": true
+        },
+        {
+          "metric": "recoveryServices",
+          "matches": true
+        },
+        {
+          "metric": "householdStatus",
+          "matches": true
+        },
+        {
+          "metric": "delayedAccessibility",
+          "matches": false
+        },
+        {
+          "metric": "lateAction",
+          "matches": false
+        },
+        {
+          "metric": "shortageAction",
+          "matches": true
+        },
+        {
+          "metric": "shortageCapacityAllowed",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "name": "short-sleep",
+      "config": {
+        "condition": "short-sleep"
+      },
+      "controls": {
+        "sameWorldTimeline": true
+      },
+      "result": {
+        "completedWork": 12,
+        "deliveries": 1,
+        "recoveryServices": 1,
+        "householdStatus": "fulfilled",
+        "delayedAccessibility": 0.7007582236796834,
+        "lateAction": "use-retained-method",
+        "shortageAction": "deliver",
+        "shortageCapacityAllowed": false
+      },
+      "differences": [
+        {
+          "metric": "shortageCapacityAllowed",
+          "reference": true,
+          "variation": false
+        }
+      ],
+      "parity": [
+        {
+          "metric": "completedWork",
+          "matches": true
+        },
+        {
+          "metric": "deliveries",
+          "matches": true
+        },
+        {
+          "metric": "recoveryServices",
+          "matches": true
+        },
+        {
+          "metric": "householdStatus",
+          "matches": true
+        },
+        {
+          "metric": "delayedAccessibility",
+          "matches": true
+        },
+        {
+          "metric": "lateAction",
+          "matches": true
+        },
+        {
+          "metric": "shortageAction",
+          "matches": true
+        },
+        {
+          "metric": "shortageCapacityAllowed",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "name": "withdrawn-duty",
+      "config": {
+        "service": "withdrawn"
+      },
+      "controls": {
+        "canonicalWithdrawal": true
+      },
+      "result": {
+        "completedWork": 12,
+        "deliveries": 0,
+        "recoveryServices": 1,
+        "householdStatus": "withdrawn",
+        "delayedAccessibility": 0.7007582236796834,
+        "lateAction": "use-retained-method",
+        "shortageAction": "deliver",
+        "shortageCapacityAllowed": true
+      },
+      "differences": [
+        {
+          "metric": "deliveries",
+          "reference": 1,
+          "variation": 0
+        },
+        {
+          "metric": "householdStatus",
+          "reference": "fulfilled",
+          "variation": "withdrawn"
+        }
+      ],
+      "parity": [
+        {
+          "metric": "completedWork",
+          "matches": true
+        },
+        {
+          "metric": "deliveries",
+          "matches": false
+        },
+        {
+          "metric": "recoveryServices",
+          "matches": true
+        },
+        {
+          "metric": "householdStatus",
+          "matches": false
+        },
+        {
+          "metric": "delayedAccessibility",
+          "matches": true
+        },
+        {
+          "metric": "lateAction",
+          "matches": true
+        },
+        {
+          "metric": "shortageAction",
+          "matches": true
+        },
+        {
+          "metric": "shortageCapacityAllowed",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "name": "communicated-shortage",
+      "config": {
+        "shortage": true
+      },
+      "controls": {
+        "hiddenUntilCommunication": true
+      },
+      "result": {
+        "completedWork": 12,
+        "deliveries": 0,
+        "recoveryServices": 1,
+        "householdStatus": "breached",
+        "delayedAccessibility": 0.7007582236796834,
+        "lateAction": "use-retained-method",
+        "shortageAction": "seek-supply",
+        "shortageCapacityAllowed": true
+      },
+      "differences": [
+        {
+          "metric": "deliveries",
+          "reference": 1,
+          "variation": 0
+        },
+        {
+          "metric": "householdStatus",
+          "reference": "fulfilled",
+          "variation": "breached"
+        },
+        {
+          "metric": "shortageAction",
+          "reference": "deliver",
+          "variation": "seek-supply"
+        }
+      ],
+      "parity": [
+        {
+          "metric": "completedWork",
+          "matches": true
+        },
+        {
+          "metric": "deliveries",
+          "matches": false
+        },
+        {
+          "metric": "recoveryServices",
+          "matches": true
+        },
+        {
+          "metric": "householdStatus",
+          "matches": false
+        },
+        {
+          "metric": "delayedAccessibility",
+          "matches": true
+        },
+        {
+          "metric": "lateAction",
+          "matches": true
+        },
+        {
+          "metric": "shortageAction",
+          "matches": false
+        },
+        {
+          "metric": "shortageCapacityAllowed",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "name": "direct-rule-rival",
+      "config": {
+        "policy": "direct"
+      },
+      "controls": {
+        "simplerAccessRule": true
+      },
+      "result": {
+        "completedWork": 12,
+        "deliveries": 1,
+        "recoveryServices": 1,
+        "householdStatus": "fulfilled",
+        "delayedAccessibility": 1,
+        "lateAction": "use-retained-method",
+        "shortageAction": "deliver",
+        "shortageCapacityAllowed": true
+      },
+      "differences": [
+        {
+          "metric": "delayedAccessibility",
+          "reference": 0.7007582236796834,
+          "variation": 1
+        }
+      ],
+      "parity": [
+        {
+          "metric": "completedWork",
+          "matches": true
+        },
+        {
+          "metric": "deliveries",
+          "matches": true
+        },
+        {
+          "metric": "recoveryServices",
+          "matches": true
+        },
+        {
+          "metric": "householdStatus",
+          "matches": true
+        },
+        {
+          "metric": "delayedAccessibility",
+          "matches": false
+        },
+        {
+          "metric": "lateAction",
+          "matches": true
+        },
+        {
+          "metric": "shortageAction",
+          "matches": true
+        },
+        {
+          "metric": "shortageCapacityAllowed",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "name": "instant-sleep-recovery",
+      "config": {
+        "condition": "instant-sleep-recovery"
+      },
+      "controls": {
+        "simplerRecoveryRule": true
+      },
+      "result": {
+        "completedWork": 12,
+        "deliveries": 1,
+        "recoveryServices": 1,
+        "householdStatus": "fulfilled",
+        "delayedAccessibility": 0.7007582236796834,
+        "lateAction": "use-retained-method",
+        "shortageAction": "deliver",
+        "shortageCapacityAllowed": true
+      },
+      "differences": [],
+      "parity": [
+        {
+          "metric": "completedWork",
+          "matches": true
+        },
+        {
+          "metric": "deliveries",
+          "matches": true
+        },
+        {
+          "metric": "recoveryServices",
+          "matches": true
+        },
+        {
+          "metric": "householdStatus",
+          "matches": true
+        },
+        {
+          "metric": "delayedAccessibility",
+          "matches": true
+        },
+        {
+          "metric": "lateAction",
+          "matches": true
+        },
+        {
+          "metric": "shortageAction",
+          "matches": true
+        },
+        {
+          "metric": "shortageCapacityAllowed",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "durationMilliseconds": 2425.17,
+    "stateBytes": 95008
+  },
+  "claims": {
+    "modelSuperiority": false,
+    "empiricalCalibration": false,
+    "causalScope": "authored deterministic interventions and recorded projections"
+  }
+}
