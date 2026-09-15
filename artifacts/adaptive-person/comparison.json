@@ -1,0 +1,1637 @@
+{
+  "scope": "Thirteen authored cases with equally informed direct policies and JSON continuation. No empirical or authoring advantage claimed.",
+  "runs": 39,
+  "comparisons": [
+    {
+      "id": "learned-habit",
+      "candidate": {
+        "habitChoice": "walk",
+        "revisionOffered": true,
+        "revised": true,
+        "nextAction": "desk",
+        "output": 1,
+        "paidMinutes": 73,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 20,
+            "finishedAt": 30,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 30,
+            "finishedAt": 40,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 40,
+            "finishedAt": 50,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 50,
+            "finishedAt": 60,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "review",
+            "startedAt": 60,
+            "finishedAt": 65,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "desk",
+            "startedAt": 65,
+            "finishedAt": 73,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "coordinate"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "direct": {
+        "habitChoice": "walk",
+        "revisionOffered": true,
+        "revised": true,
+        "nextAction": "desk",
+        "output": 1,
+        "paidMinutes": 73,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 20,
+            "finishedAt": 30,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 30,
+            "finishedAt": 40,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 40,
+            "finishedAt": 50,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 50,
+            "finishedAt": 60,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "review",
+            "startedAt": 60,
+            "finishedAt": 65,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "desk",
+            "startedAt": 65,
+            "finishedAt": 73,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "coordinate"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "interleaved-cue",
+      "candidate": {
+        "habitChoice": "walk",
+        "revisionOffered": true,
+        "revised": true,
+        "nextAction": "desk",
+        "output": 1,
+        "paidMinutes": 118,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "cart",
+            "startedAt": 10,
+            "finishedAt": 25,
+            "status": "completed",
+            "cueId": "evening",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 25,
+            "finishedAt": 35,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "cart",
+            "startedAt": 35,
+            "finishedAt": 50,
+            "status": "completed",
+            "cueId": "evening",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 50,
+            "finishedAt": 60,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "cart",
+            "startedAt": 60,
+            "finishedAt": 75,
+            "status": "completed",
+            "cueId": "evening",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 75,
+            "finishedAt": 85,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 85,
+            "finishedAt": 95,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 95,
+            "finishedAt": 105,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "review",
+            "startedAt": 105,
+            "finishedAt": 110,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "desk",
+            "startedAt": 110,
+            "finishedAt": 118,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "coordinate"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "direct": {
+        "habitChoice": "walk",
+        "revisionOffered": true,
+        "revised": true,
+        "nextAction": "desk",
+        "output": 1,
+        "paidMinutes": 118,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "cart",
+            "startedAt": 10,
+            "finishedAt": 25,
+            "status": "completed",
+            "cueId": "evening",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 25,
+            "finishedAt": 35,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "cart",
+            "startedAt": 35,
+            "finishedAt": 50,
+            "status": "completed",
+            "cueId": "evening",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 50,
+            "finishedAt": 60,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "cart",
+            "startedAt": 60,
+            "finishedAt": 75,
+            "status": "completed",
+            "cueId": "evening",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 75,
+            "finishedAt": 85,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 85,
+            "finishedAt": 95,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 95,
+            "finishedAt": 105,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "review",
+            "startedAt": 105,
+            "finishedAt": 110,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "desk",
+            "startedAt": 110,
+            "finishedAt": 118,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "coordinate"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "insufficient-repetition",
+      "candidate": {
+        "habitChoice": "cart",
+        "revisionOffered": true,
+        "revised": true,
+        "nextAction": "desk",
+        "output": 1,
+        "paidMinutes": 68,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "cart",
+            "startedAt": 20,
+            "finishedAt": 35,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 35,
+            "finishedAt": 45,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 45,
+            "finishedAt": 55,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "review",
+            "startedAt": 55,
+            "finishedAt": 60,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "desk",
+            "startedAt": 60,
+            "finishedAt": 68,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "coordinate"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "direct": {
+        "habitChoice": "cart",
+        "revisionOffered": true,
+        "revised": true,
+        "nextAction": "desk",
+        "output": 1,
+        "paidMinutes": 68,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "cart",
+            "startedAt": 20,
+            "finishedAt": 35,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 35,
+            "finishedAt": 45,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 45,
+            "finishedAt": 55,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "review",
+            "startedAt": 55,
+            "finishedAt": 60,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "desk",
+            "startedAt": 60,
+            "finishedAt": 68,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "coordinate"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "different-cue",
+      "candidate": {
+        "habitChoice": "cart",
+        "revisionOffered": true,
+        "revised": true,
+        "nextAction": "desk",
+        "output": 1,
+        "paidMinutes": 78,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 20,
+            "finishedAt": 30,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "cart",
+            "startedAt": 30,
+            "finishedAt": 45,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 45,
+            "finishedAt": 55,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 55,
+            "finishedAt": 65,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "review",
+            "startedAt": 65,
+            "finishedAt": 70,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "desk",
+            "startedAt": 70,
+            "finishedAt": 78,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "coordinate"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "direct": {
+        "habitChoice": "cart",
+        "revisionOffered": true,
+        "revised": true,
+        "nextAction": "desk",
+        "output": 1,
+        "paidMinutes": 78,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 20,
+            "finishedAt": 30,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "cart",
+            "startedAt": 30,
+            "finishedAt": 45,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 45,
+            "finishedAt": 55,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 55,
+            "finishedAt": 65,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "review",
+            "startedAt": 65,
+            "finishedAt": 70,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "desk",
+            "startedAt": 70,
+            "finishedAt": 78,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "coordinate"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "one-failure",
+      "candidate": {
+        "habitChoice": "walk",
+        "revisionOffered": false,
+        "revised": false,
+        "nextAction": "walk",
+        "output": 0,
+        "paidMinutes": 60,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 20,
+            "finishedAt": 30,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 30,
+            "finishedAt": 40,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 40,
+            "finishedAt": 50,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 50,
+            "finishedAt": 60,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "direct": {
+        "habitChoice": "walk",
+        "revisionOffered": false,
+        "revised": false,
+        "nextAction": "walk",
+        "output": 0,
+        "paidMinutes": 60,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 20,
+            "finishedAt": 30,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 30,
+            "finishedAt": 40,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 40,
+            "finishedAt": 50,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 50,
+            "finishedAt": 60,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "no-review",
+      "candidate": {
+        "habitChoice": "walk",
+        "revisionOffered": true,
+        "revised": false,
+        "nextAction": "walk",
+        "output": 0,
+        "paidMinutes": 70,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 20,
+            "finishedAt": 30,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 30,
+            "finishedAt": 40,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 40,
+            "finishedAt": 50,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 50,
+            "finishedAt": 60,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 60,
+            "finishedAt": 70,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "direct": {
+        "habitChoice": "walk",
+        "revisionOffered": true,
+        "revised": false,
+        "nextAction": "walk",
+        "output": 0,
+        "paidMinutes": 70,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 20,
+            "finishedAt": 30,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 30,
+            "finishedAt": 40,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 40,
+            "finishedAt": 50,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 50,
+            "finishedAt": 60,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 60,
+            "finishedAt": 70,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "declined-revision",
+      "candidate": {
+        "habitChoice": "walk",
+        "revisionOffered": true,
+        "revised": false,
+        "nextAction": "walk",
+        "output": 0,
+        "paidMinutes": 75,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 20,
+            "finishedAt": 30,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 30,
+            "finishedAt": 40,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 40,
+            "finishedAt": 50,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 50,
+            "finishedAt": 60,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "review",
+            "startedAt": 60,
+            "finishedAt": 65,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 65,
+            "finishedAt": 75,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "direct": {
+        "habitChoice": "walk",
+        "revisionOffered": true,
+        "revised": false,
+        "nextAction": "walk",
+        "output": 0,
+        "paidMinutes": 75,
+        "trace": [
+          {
+            "actionId": "walk",
+            "startedAt": 0,
+            "finishedAt": 10,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 10,
+            "finishedAt": 20,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 20,
+            "finishedAt": 30,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 30,
+            "finishedAt": 40,
+            "status": "completed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 40,
+            "finishedAt": 50,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 50,
+            "finishedAt": 60,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "review",
+            "startedAt": 60,
+            "finishedAt": 65,
+            "status": "completed",
+            "cueId": null,
+            "purposeId": "deliver"
+          },
+          {
+            "actionId": "walk",
+            "startedAt": 65,
+            "finishedAt": 75,
+            "status": "failed",
+            "cueId": "morning",
+            "purposeId": "deliver"
+          }
+        ],
+        "world": {
+          "routeOpen": false
+        }
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "accommodated-access",
+      "candidate": {
+        "methodId": "accommodated",
+        "allowed": true,
+        "restrictionStillActive": true,
+        "promoted": true,
+        "secondDecision": "queued",
+        "world": {
+          "cartCredits": 0,
+          "deliveries": 1,
+          "workerOutput": 1,
+          "peerOutput": 1
+        },
+        "received": [
+          {
+            "noticeId": "carry-limit",
+            "restrictionId": "carry-limit",
+            "actorId": "worker",
+            "demandId": "carry",
+            "sourceId": "assessor",
+            "at": 0,
+            "reviewAt": 5,
+            "decision": "restrict",
+            "receivedAt": 0
+          }
+        ],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "accommodated",
+            "allowed": true,
+            "paidMinutes": 15,
+            "bodyUnchangedWhenRefused": null
+          },
+          {
+            "kind": "facility",
+            "peerQueues": true,
+            "peerWithdraws": false,
+            "promoted": true,
+            "secondDecision": "queued",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 31
+      },
+      "direct": {
+        "methodId": "accommodated",
+        "allowed": true,
+        "restrictionStillActive": true,
+        "promoted": true,
+        "secondDecision": "queued",
+        "world": {
+          "cartCredits": 0,
+          "deliveries": 1,
+          "workerOutput": 1,
+          "peerOutput": 1
+        },
+        "received": [
+          {
+            "noticeId": "carry-limit",
+            "restrictionId": "carry-limit",
+            "actorId": "worker",
+            "demandId": "carry",
+            "sourceId": "assessor",
+            "at": 0,
+            "reviewAt": 5,
+            "decision": "restrict",
+            "receivedAt": 0
+          }
+        ],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "accommodated",
+            "allowed": true,
+            "paidMinutes": 15,
+            "bodyUnchangedWhenRefused": null
+          },
+          {
+            "kind": "facility",
+            "peerQueues": true,
+            "peerWithdraws": false,
+            "promoted": true,
+            "secondDecision": "queued",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 31
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "undelivered-notice",
+      "candidate": {
+        "methodId": "ordinary",
+        "allowed": false,
+        "restrictionStillActive": true,
+        "promoted": true,
+        "secondDecision": "queued",
+        "world": {
+          "cartCredits": 1,
+          "deliveries": 0,
+          "workerOutput": 1,
+          "peerOutput": 1
+        },
+        "received": [],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "ordinary",
+            "allowed": false,
+            "paidMinutes": 0,
+            "bodyUnchangedWhenRefused": true
+          },
+          {
+            "kind": "facility",
+            "peerQueues": true,
+            "peerWithdraws": false,
+            "promoted": true,
+            "secondDecision": "queued",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 16
+      },
+      "direct": {
+        "methodId": "ordinary",
+        "allowed": false,
+        "restrictionStillActive": true,
+        "promoted": true,
+        "secondDecision": "queued",
+        "world": {
+          "cartCredits": 1,
+          "deliveries": 0,
+          "workerOutput": 1,
+          "peerOutput": 1
+        },
+        "received": [],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "ordinary",
+            "allowed": false,
+            "paidMinutes": 0,
+            "bodyUnchangedWhenRefused": true
+          },
+          {
+            "kind": "facility",
+            "peerQueues": true,
+            "peerWithdraws": false,
+            "promoted": true,
+            "secondDecision": "queued",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 16
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "no-accommodation",
+      "candidate": {
+        "methodId": "ordinary",
+        "allowed": false,
+        "restrictionStillActive": true,
+        "promoted": true,
+        "secondDecision": "queued",
+        "world": {
+          "cartCredits": 1,
+          "deliveries": 0,
+          "workerOutput": 1,
+          "peerOutput": 1
+        },
+        "received": [
+          {
+            "noticeId": "carry-limit",
+            "restrictionId": "carry-limit",
+            "actorId": "worker",
+            "demandId": "carry",
+            "sourceId": "assessor",
+            "at": 0,
+            "reviewAt": 5,
+            "decision": "restrict",
+            "receivedAt": 0
+          }
+        ],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "ordinary",
+            "allowed": false,
+            "paidMinutes": 0,
+            "bodyUnchangedWhenRefused": true
+          },
+          {
+            "kind": "facility",
+            "peerQueues": true,
+            "peerWithdraws": false,
+            "promoted": true,
+            "secondDecision": "queued",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 16
+      },
+      "direct": {
+        "methodId": "ordinary",
+        "allowed": false,
+        "restrictionStillActive": true,
+        "promoted": true,
+        "secondDecision": "queued",
+        "world": {
+          "cartCredits": 1,
+          "deliveries": 0,
+          "workerOutput": 1,
+          "peerOutput": 1
+        },
+        "received": [
+          {
+            "noticeId": "carry-limit",
+            "restrictionId": "carry-limit",
+            "actorId": "worker",
+            "demandId": "carry",
+            "sourceId": "assessor",
+            "at": 0,
+            "reviewAt": 5,
+            "decision": "restrict",
+            "receivedAt": 0
+          }
+        ],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "ordinary",
+            "allowed": false,
+            "paidMinutes": 0,
+            "bodyUnchangedWhenRefused": true
+          },
+          {
+            "kind": "facility",
+            "peerQueues": true,
+            "peerWithdraws": false,
+            "promoted": true,
+            "secondDecision": "queued",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 16
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "no-resource",
+      "candidate": {
+        "methodId": "accommodated",
+        "allowed": false,
+        "restrictionStillActive": true,
+        "promoted": true,
+        "secondDecision": "queued",
+        "world": {
+          "cartCredits": 0,
+          "deliveries": 0,
+          "workerOutput": 1,
+          "peerOutput": 1
+        },
+        "received": [
+          {
+            "noticeId": "carry-limit",
+            "restrictionId": "carry-limit",
+            "actorId": "worker",
+            "demandId": "carry",
+            "sourceId": "assessor",
+            "at": 0,
+            "reviewAt": 5,
+            "decision": "restrict",
+            "receivedAt": 0
+          }
+        ],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "accommodated",
+            "allowed": false,
+            "paidMinutes": 0,
+            "bodyUnchangedWhenRefused": true
+          },
+          {
+            "kind": "facility",
+            "peerQueues": true,
+            "peerWithdraws": false,
+            "promoted": true,
+            "secondDecision": "queued",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 16
+      },
+      "direct": {
+        "methodId": "accommodated",
+        "allowed": false,
+        "restrictionStillActive": true,
+        "promoted": true,
+        "secondDecision": "queued",
+        "world": {
+          "cartCredits": 0,
+          "deliveries": 0,
+          "workerOutput": 1,
+          "peerOutput": 1
+        },
+        "received": [
+          {
+            "noticeId": "carry-limit",
+            "restrictionId": "carry-limit",
+            "actorId": "worker",
+            "demandId": "carry",
+            "sourceId": "assessor",
+            "at": 0,
+            "reviewAt": 5,
+            "decision": "restrict",
+            "receivedAt": 0
+          }
+        ],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "accommodated",
+            "allowed": false,
+            "paidMinutes": 0,
+            "bodyUnchangedWhenRefused": true
+          },
+          {
+            "kind": "facility",
+            "peerQueues": true,
+            "peerWithdraws": false,
+            "promoted": true,
+            "secondDecision": "queued",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 16
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "no-peer-request",
+      "candidate": {
+        "methodId": "accommodated",
+        "allowed": true,
+        "restrictionStillActive": true,
+        "promoted": false,
+        "secondDecision": "reserved",
+        "world": {
+          "cartCredits": 0,
+          "deliveries": 1,
+          "workerOutput": 1,
+          "peerOutput": 0
+        },
+        "received": [
+          {
+            "noticeId": "carry-limit",
+            "restrictionId": "carry-limit",
+            "actorId": "worker",
+            "demandId": "carry",
+            "sourceId": "assessor",
+            "at": 0,
+            "reviewAt": 5,
+            "decision": "restrict",
+            "receivedAt": 0
+          }
+        ],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "accommodated",
+            "allowed": true,
+            "paidMinutes": 15,
+            "bodyUnchangedWhenRefused": null
+          },
+          {
+            "kind": "facility",
+            "peerQueues": false,
+            "peerWithdraws": false,
+            "promoted": false,
+            "secondDecision": "reserved",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 23
+      },
+      "direct": {
+        "methodId": "accommodated",
+        "allowed": true,
+        "restrictionStillActive": true,
+        "promoted": false,
+        "secondDecision": "reserved",
+        "world": {
+          "cartCredits": 0,
+          "deliveries": 1,
+          "workerOutput": 1,
+          "peerOutput": 0
+        },
+        "received": [
+          {
+            "noticeId": "carry-limit",
+            "restrictionId": "carry-limit",
+            "actorId": "worker",
+            "demandId": "carry",
+            "sourceId": "assessor",
+            "at": 0,
+            "reviewAt": 5,
+            "decision": "restrict",
+            "receivedAt": 0
+          }
+        ],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "accommodated",
+            "allowed": true,
+            "paidMinutes": 15,
+            "bodyUnchangedWhenRefused": null
+          },
+          {
+            "kind": "facility",
+            "peerQueues": false,
+            "peerWithdraws": false,
+            "promoted": false,
+            "secondDecision": "reserved",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 23
+      },
+      "directParity": true,
+      "restoreParity": true
+    },
+    {
+      "id": "peer-withdrawal",
+      "candidate": {
+        "methodId": "accommodated",
+        "allowed": true,
+        "restrictionStillActive": true,
+        "promoted": false,
+        "secondDecision": "reserved",
+        "world": {
+          "cartCredits": 0,
+          "deliveries": 1,
+          "workerOutput": 1,
+          "peerOutput": 0
+        },
+        "received": [
+          {
+            "noticeId": "carry-limit",
+            "restrictionId": "carry-limit",
+            "actorId": "worker",
+            "demandId": "carry",
+            "sourceId": "assessor",
+            "at": 0,
+            "reviewAt": 5,
+            "decision": "restrict",
+            "receivedAt": 0
+          }
+        ],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "accommodated",
+            "allowed": true,
+            "paidMinutes": 15,
+            "bodyUnchangedWhenRefused": null
+          },
+          {
+            "kind": "facility",
+            "peerQueues": true,
+            "peerWithdraws": true,
+            "promoted": false,
+            "secondDecision": "reserved",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 23
+      },
+      "direct": {
+        "methodId": "accommodated",
+        "allowed": true,
+        "restrictionStillActive": true,
+        "promoted": false,
+        "secondDecision": "reserved",
+        "world": {
+          "cartCredits": 0,
+          "deliveries": 1,
+          "workerOutput": 1,
+          "peerOutput": 0
+        },
+        "received": [
+          {
+            "noticeId": "carry-limit",
+            "restrictionId": "carry-limit",
+            "actorId": "worker",
+            "demandId": "carry",
+            "sourceId": "assessor",
+            "at": 0,
+            "reviewAt": 5,
+            "decision": "restrict",
+            "receivedAt": 0
+          }
+        ],
+        "trace": [
+          {
+            "kind": "method",
+            "methodId": "accommodated",
+            "allowed": true,
+            "paidMinutes": 15,
+            "bodyUnchangedWhenRefused": null
+          },
+          {
+            "kind": "facility",
+            "peerQueues": true,
+            "peerWithdraws": true,
+            "promoted": false,
+            "secondDecision": "reserved",
+            "reservationWithoutOutput": true
+          }
+        ],
+        "now": 23
+      },
+      "directParity": true,
+      "restoreParity": true
+    }
+  ]
+}

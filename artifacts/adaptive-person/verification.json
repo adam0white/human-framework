@@ -1,0 +1,154 @@
+{
+  "format": "human-framework-adaptive-verification",
+  "checkedAt": "2026-09-15T12:14:53.451Z",
+  "baselineCommit": "4bba9a6a0ec6dc79ec1c205e9a901329736dfa1f",
+  "candidate": "adaptive-person",
+  "version": "0.1.0",
+  "tests": {
+    "passed": 1064,
+    "failed": 0,
+    "added": 37,
+    "durationMs": 17359.391334,
+    "command": "npm test",
+    "node": "v26.8.2"
+  },
+  "comparison": {
+    "cases": 13,
+    "runs": 39,
+    "directPolicyParity": true,
+    "restoreParity": true,
+    "scope": "Authored first-revision and opportunity cases; direct controllers share candidate execution and state. No empirical or authoring benefit claim."
+  },
+  "installedConsumer": {
+    "resumeEqual": true,
+    "habitSuggestion": "carry",
+    "purposeStatuses": [
+      [
+        "repair",
+        "withdrawn"
+      ],
+      [
+        "care",
+        "active"
+      ]
+    ],
+    "paidMinutes": 30,
+    "blocked": false,
+    "missingCart": false,
+    "cartPaidMinutes": 9,
+    "cartRemaining": 0,
+    "deliveries": 1,
+    "reservation": "reserved",
+    "queued": "queued",
+    "benQueue": 1,
+    "promoted": true,
+    "benPaidMinutes": 5,
+    "deskOutput": 1,
+    "offline": true,
+    "repositoryAccessDenied": true,
+    "sourceBytesVerified": true
+  },
+  "sources": [
+    "src/adaptive/index.js",
+    "src/adaptive/person.js",
+    "src/adaptation/habits.js",
+    "src/constraints/functional.js",
+    "src/institution/access.js",
+    "src/developing/index.js",
+    "src/developing/person.js",
+    "src/affect/appraisal.js",
+    "src/social/relationships.js",
+    "src/meaning/duties.js",
+    "src/lifecourse/adult.js",
+    "src/cognition/index.js",
+    "src/cognition/beliefs.js",
+    "src/cognition/planner.js",
+    "src/development/index.js",
+    "src/development/condition.js",
+    "src/development/learning.js",
+    "src/person/index.js",
+    "src/person/commitments.js",
+    "src/human/v0.1.1.js",
+    "src/core/model.js"
+  ],
+  "sourceSha256": {
+    "src/adaptive/index.js": "2ee97d8ea8dace2cb0f9f7103e6a081837b136583794c6e6bc393eb6fa716ddc",
+    "src/adaptive/person.js": "53bd378cc86c9414bc5b4a26166736a7033fb61b4fe15583ab56f499e728f3e8",
+    "src/adaptation/habits.js": "5ef3d28daf81d38976c3db05382ef91fe7b5500a29dd237ae1adb53d92b6b559",
+    "src/constraints/functional.js": "c2b3de536b15fd28b39b84fc6d0d74a79622301a769fb2fb3b8600b6690259e9",
+    "src/institution/access.js": "0e3bd56a55bf5b66c4677d2d42b77b27c71d7dc17e7a34ac7d6e711cc0c50165",
+    "src/developing/index.js": "edf90970c0ecff962532dbd5e14263ab49fc5336ffa5b38c66e4965a6fad9a26",
+    "src/developing/person.js": "f0a0116552fe0df4bf3e1649c916986abe57b121a259273a5c7e45c7eb8cedf2",
+    "src/affect/appraisal.js": "c9cd4178e399aef8f6c172ce5303d312d0f6a6c74c9d12f88aeaacb6032f4637",
+    "src/social/relationships.js": "f5bf74767520ffcd18f1a40619b362b4df072a723b31bcede5a0bf13e681501f",
+    "src/meaning/duties.js": "8689436360df37197d10f1908ebe6f76c7956416e9d511ed14b21b34cbeb5ef1",
+    "src/lifecourse/adult.js": "c830d82230ad45706345b575ce8f7977a3adf806ff159c6b41ad2c2a7cb41c25",
+    "src/cognition/index.js": "3dc64e8bbba58c49ce8cb32001a889059b2e203451c9692df4ba36af8b895ca7",
+    "src/cognition/beliefs.js": "fc9ca63ea969c38138972a6c0555d1734814dfe7e6a3ded5518114f0f9931213",
+    "src/cognition/planner.js": "5a8912bb660582a1ca47ea18c361813f8369dc3e3a756de03378f2be1c3a44d5",
+    "src/development/index.js": "2766b896cc285afac02fafd74233343ce1f2fb2a329a2fa0accf68053a24d4a4",
+    "src/development/condition.js": "e55191436d315d301e036a53d6564e786ad2345d23cb5fad03559185b7c1dc7d",
+    "src/development/learning.js": "a80f2b7821dd46529d5c684f8361aafe7a94b68efaa46b8c1af943669329acf2",
+    "src/person/index.js": "74b04267eeb345e8f72a2fda4b5fe00b9529122e051d20767cbe30635efcdf73",
+    "src/person/commitments.js": "fc826761cc54762a51f7a34164af29ba1cbc2678aeb0fcf22e9fc7b86c248c35",
+    "src/human/v0.1.1.js": "516c5898b7352847f87abfa34b3a010a19d3461d82d81b398bba252bc9598b00",
+    "src/core/model.js": "1bf30267083e8e2617fe9964d4654d8da158cba309909ace7bb50c1e6de29c59"
+  },
+  "testSha256": {
+    "tests/adaptation-habits.test.js": "955d9b8ab067be16e3d7f65a85e939e2adf846183c6b6f6464cfec7c0d47dc89",
+    "tests/adaptive-person.test.js": "67a407cc1dd35aff8d2edba0852417907793c3b7aac681a53aec9a0abb75df72",
+    "tests/adaptive-sequence.test.js": "ee3d4d0bb966712472d9b7a4a96e7c577c7733f1f4a76d41586b967fafb5935a",
+    "tests/adaptive-consumer.test.js": "10d852cdd4a61217bc2262a877b4eb0e67a3bbaf3bdc9975b876b2e438f120af",
+    "tests/constraints-functional.test.js": "e4716ac3390efb735718f80bcdf987218c17989ed5c261af90193c11571a25ce",
+    "tests/institution-access.test.js": "dbe15fd765db90d40abb64d2906b6901d1fe1c316fc0fb662a792406163e3645"
+  },
+  "publicPreservation": {
+    "checkedAt": "2026-09-15T12:13:15.089Z",
+    "frozenBaseline": "4bba9a6a0ec6dc79ec1c205e9a901329736dfa1f",
+    "frozenSourcesUnchanged": true,
+    "publicPayloadUnchanged": true,
+    "build": {
+      "appVersion": "0.15.0",
+      "runtimeVersion": "0.1.1",
+      "clockVersion": "0.1.0",
+      "commit": "4bba9a6a0ec6dc79ec1c205e9a901329736dfa1f",
+      "dirty": true,
+      "assetsSha256": "3138fa05c3a061adb922423932849c0630a14559b05858b7b3ed895143ff15b4"
+    },
+    "live": {
+      "appVersion": "0.15.0",
+      "runtimeVersion": "0.1.1",
+      "clockVersion": "0.1.0",
+      "commit": "de52d9c95e89dc25e163fca773fec2269b8b06a4",
+      "dirty": false,
+      "assetsSha256": "3138fa05c3a061adb922423932849c0630a14559b05858b7b3ed895143ff15b4"
+    },
+    "privatePathChecks": [
+      {
+        "path": "/src/adaptive/person.js",
+        "status": 404
+      },
+      {
+        "path": "/src/adaptation/habits.js",
+        "status": 404
+      },
+      {
+        "path": "/src/constraints/functional.js",
+        "status": 404
+      },
+      {
+        "path": "/src/institution/access.js",
+        "status": 404
+      },
+      {
+        "path": "/docs/adaptive-person.md",
+        "status": 404
+      },
+      {
+        "path": "/artifacts/adaptive-person/verification.json",
+        "status": 404
+      }
+    ]
+  },
+  "runtimePackageVerified": true
+}

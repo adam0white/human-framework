@@ -1,0 +1,1009 @@
+{
+  "adaptation": {
+    "habitChoice": "walk",
+    "revisionOffered": true,
+    "revised": true,
+    "nextAction": "desk",
+    "output": 1,
+    "paidMinutes": 73,
+    "trace": [
+      {
+        "actionId": "walk",
+        "startedAt": 0,
+        "finishedAt": 10,
+        "status": "completed",
+        "cueId": "morning",
+        "purposeId": "deliver"
+      },
+      {
+        "actionId": "walk",
+        "startedAt": 10,
+        "finishedAt": 20,
+        "status": "completed",
+        "cueId": "morning",
+        "purposeId": "deliver"
+      },
+      {
+        "actionId": "walk",
+        "startedAt": 20,
+        "finishedAt": 30,
+        "status": "completed",
+        "cueId": "morning",
+        "purposeId": "deliver"
+      },
+      {
+        "actionId": "walk",
+        "startedAt": 30,
+        "finishedAt": 40,
+        "status": "completed",
+        "cueId": "morning",
+        "purposeId": "deliver"
+      },
+      {
+        "actionId": "walk",
+        "startedAt": 40,
+        "finishedAt": 50,
+        "status": "failed",
+        "cueId": "morning",
+        "purposeId": "deliver"
+      },
+      {
+        "actionId": "walk",
+        "startedAt": 50,
+        "finishedAt": 60,
+        "status": "failed",
+        "cueId": "morning",
+        "purposeId": "deliver"
+      },
+      {
+        "actionId": "review",
+        "startedAt": 60,
+        "finishedAt": 65,
+        "status": "completed",
+        "cueId": null,
+        "purposeId": "deliver"
+      },
+      {
+        "actionId": "desk",
+        "startedAt": 65,
+        "finishedAt": 73,
+        "status": "completed",
+        "cueId": null,
+        "purposeId": "coordinate"
+      }
+    ],
+    "world": {
+      "routeOpen": false
+    },
+    "state": {
+      "format": "human-framework-adaptive-person",
+      "version": 1,
+      "person": {
+        "version": "0.1.0",
+        "id": "worker",
+        "person": {
+          "version": "0.1.0",
+          "id": "worker",
+          "sustained": {
+            "version": "0.1.0",
+            "id": "worker",
+            "situated": {
+              "version": "0.1.0",
+              "id": "worker",
+              "human": {
+                "version": "0.1.1",
+                "id": "worker",
+                "body": {
+                  "fatigue": 0.20950000000000008,
+                  "hunger": 0.246
+                },
+                "skills": {
+                  "handling": 0.41441477741734994
+                },
+                "observationBias": 0,
+                "minutes": 73,
+                "nextAttempt": 9,
+                "pending": null
+              },
+              "now": 73,
+              "purposes": [
+                {
+                  "id": "deliver",
+                  "status": "withdrawn"
+                },
+                {
+                  "id": "coordinate",
+                  "status": "active"
+                }
+              ],
+              "observations": []
+            },
+            "learning": {
+              "version": "0.1.0",
+              "ownerId": "worker",
+              "originAt": 0,
+              "now": 73,
+              "skills": [
+                "handling"
+              ],
+              "config": {
+                "rule": "authored-exponential-retention-v1",
+                "halfLifeMinutes": 43200,
+                "gainPerMinute": {
+                  "instruction": 0.01,
+                  "practice": 0.006,
+                  "retrieval": 0.008
+                },
+                "maxAccessibility": 1,
+                "evidenceHorizonMinutes": 129600,
+                "recentEvidenceLimit": 8,
+                "maxReceipts": 512
+              },
+              "items": [],
+              "receipts": []
+            },
+            "condition": {
+              "version": "0.1.0",
+              "now": 73,
+              "mode": "awake",
+              "awakeMinutes": 73,
+              "sleepMinutes": 0,
+              "rules": {
+                "awakeFatiguePerMinute": 0.0005,
+                "awakeHungerPerMinute": 0.0005,
+                "sleepFatigueRecoveryPerMinute": 0.001,
+                "sleepHungerPerMinute": 0.00025
+              }
+            }
+          },
+          "beliefs": {
+            "version": "beliefs-0.1.0",
+            "ownerId": "worker",
+            "originAt": 0,
+            "now": 73,
+            "propositions": [
+              "routeOpen"
+            ],
+            "sources": [
+              "worker",
+              "peer",
+              "assessor"
+            ],
+            "maxReceipts": 256,
+            "receipts": []
+          },
+          "relationships": {
+            "version": "0.1.0",
+            "ownerId": "worker",
+            "now": 73,
+            "actors": [
+              "worker",
+              "peer",
+              "assessor"
+            ],
+            "contexts": [
+              "work"
+            ],
+            "ties": [],
+            "events": []
+          },
+          "duties": {
+            "version": "0.1.0",
+            "ownerId": "worker",
+            "now": 73,
+            "cases": [],
+            "notices": [],
+            "intentions": [],
+            "outcomes": [],
+            "recipientResponses": []
+          },
+          "course": {
+            "version": "0.1.0",
+            "actorId": "worker",
+            "startDay": 0,
+            "day": 0,
+            "ageAtStartYears": 30,
+            "maxDays": 730,
+            "catalog": {
+              "actors": [
+                "worker",
+                "peer",
+                "assessor"
+              ],
+              "skills": [
+                "handling"
+              ],
+              "qualifications": [],
+              "roles": [],
+              "opportunities": []
+            },
+            "intervals": [],
+            "events": []
+          },
+          "appraisal": {
+            "version": "0.1.0",
+            "ownerId": "worker",
+            "now": 73,
+            "contexts": [
+              {
+                "id": "route",
+                "purposeId": "deliver",
+                "propositionId": "routeOpen",
+                "checkActionId": "walk",
+                "deliberateActionId": "review",
+                "reflectionActionId": "review"
+              }
+            ],
+            "maxConcernMinutes": 30,
+            "minReflectionMinutes": 5,
+            "records": [
+              {
+                "id": "route",
+                "tendency": "none",
+                "startedAt": null,
+                "expiresAt": null,
+                "signature": null,
+                "lastKey": null,
+                "seenSignatures": []
+              }
+            ],
+            "receipts": []
+          },
+          "lastAttempt": {
+            "attemptId": "worker:8",
+            "actionId": "desk",
+            "startedAt": 65,
+            "finishedAt": 73,
+            "elapsedMinutes": 8,
+            "status": "completed"
+          }
+        },
+        "habits": {
+          "version": "0.1.0",
+          "ownerId": "worker",
+          "now": 73,
+          "habits": [
+            {
+              "id": "morning-route",
+              "cueId": "morning",
+              "purposeId": "deliver",
+              "actions": [
+                "walk",
+                "cart"
+              ],
+              "threshold": 3
+            }
+          ],
+          "revisions": [
+            {
+              "id": "change-work",
+              "fromPurposeId": "deliver",
+              "toPurposeId": "coordinate",
+              "cueId": "morning",
+              "failedActionIds": [
+                "walk"
+              ],
+              "reviewActionId": "review",
+              "minFailures": 2,
+              "minReviewMinutes": 5
+            }
+          ],
+          "receipts": [
+            {
+              "ownerId": "worker",
+              "attemptId": "worker:1",
+              "at": 10,
+              "cueId": "morning",
+              "purposeId": "deliver",
+              "actionId": "walk",
+              "status": "completed",
+              "elapsedMinutes": 10,
+              "durationMinutes": 10
+            },
+            {
+              "ownerId": "worker",
+              "attemptId": "worker:2",
+              "at": 20,
+              "cueId": "morning",
+              "purposeId": "deliver",
+              "actionId": "walk",
+              "status": "completed",
+              "elapsedMinutes": 10,
+              "durationMinutes": 10
+            },
+            {
+              "ownerId": "worker",
+              "attemptId": "worker:3",
+              "at": 30,
+              "cueId": "morning",
+              "purposeId": "deliver",
+              "actionId": "walk",
+              "status": "completed",
+              "elapsedMinutes": 10,
+              "durationMinutes": 10
+            },
+            {
+              "ownerId": "worker",
+              "attemptId": "worker:4",
+              "at": 40,
+              "cueId": "morning",
+              "purposeId": "deliver",
+              "actionId": "walk",
+              "status": "completed",
+              "elapsedMinutes": 10,
+              "durationMinutes": 10
+            },
+            {
+              "ownerId": "worker",
+              "attemptId": "worker:5",
+              "at": 50,
+              "cueId": "morning",
+              "purposeId": "deliver",
+              "actionId": "walk",
+              "status": "failed",
+              "elapsedMinutes": 10,
+              "durationMinutes": 10
+            },
+            {
+              "ownerId": "worker",
+              "attemptId": "worker:6",
+              "at": 60,
+              "cueId": "morning",
+              "purposeId": "deliver",
+              "actionId": "walk",
+              "status": "failed",
+              "elapsedMinutes": 10,
+              "durationMinutes": 10
+            },
+            {
+              "ownerId": "worker",
+              "attemptId": "worker:7",
+              "at": 65,
+              "cueId": null,
+              "purposeId": "deliver",
+              "actionId": "review",
+              "status": "completed",
+              "elapsedMinutes": 5,
+              "durationMinutes": 5
+            },
+            {
+              "ownerId": "worker",
+              "attemptId": "worker:8",
+              "at": 73,
+              "cueId": null,
+              "purposeId": "coordinate",
+              "actionId": "desk",
+              "status": "completed",
+              "elapsedMinutes": 8,
+              "durationMinutes": 8
+            }
+          ],
+          "acceptedRevisions": [
+            {
+              "revisionId": "change-work",
+              "reviewAttemptId": "worker:7",
+              "at": 65,
+              "failedAttemptIds": [
+                "worker:5",
+                "worker:6"
+              ]
+            }
+          ]
+        },
+        "pendingContext": null
+      }
+    }
+  },
+  "opportunity": {
+    "methodId": "accommodated",
+    "allowed": true,
+    "restrictionStillActive": true,
+    "promoted": true,
+    "secondDecision": "queued",
+    "world": {
+      "cartCredits": 0,
+      "deliveries": 1,
+      "workerOutput": 1,
+      "peerOutput": 1
+    },
+    "received": [
+      {
+        "noticeId": "carry-limit",
+        "restrictionId": "carry-limit",
+        "actorId": "worker",
+        "demandId": "carry",
+        "sourceId": "assessor",
+        "at": 0,
+        "reviewAt": 5,
+        "decision": "restrict",
+        "receivedAt": 0
+      }
+    ],
+    "trace": [
+      {
+        "kind": "method",
+        "methodId": "accommodated",
+        "allowed": true,
+        "paidMinutes": 15,
+        "bodyUnchangedWhenRefused": null
+      },
+      {
+        "kind": "facility",
+        "peerQueues": true,
+        "peerWithdraws": false,
+        "promoted": true,
+        "secondDecision": "queued",
+        "reservationWithoutOutput": true
+      }
+    ],
+    "now": 31,
+    "state": {
+      "worker": {
+        "format": "human-framework-adaptive-person",
+        "version": 1,
+        "person": {
+          "version": "0.1.0",
+          "id": "worker",
+          "person": {
+            "version": "0.1.0",
+            "id": "worker",
+            "sustained": {
+              "version": "0.1.0",
+              "id": "worker",
+              "situated": {
+                "version": "0.1.0",
+                "id": "worker",
+                "human": {
+                  "version": "0.1.1",
+                  "id": "worker",
+                  "body": {
+                    "fatigue": 0.1385,
+                    "hunger": 0.15000000000000002
+                  },
+                  "skills": {
+                    "handling": 0.2600284587651686
+                  },
+                  "observationBias": 0,
+                  "minutes": 31,
+                  "nextAttempt": 3,
+                  "pending": null
+                },
+                "now": 31,
+                "purposes": [
+                  {
+                    "id": "deliver",
+                    "status": "active"
+                  },
+                  {
+                    "id": "coordinate",
+                    "status": "withdrawn"
+                  }
+                ],
+                "observations": []
+              },
+              "learning": {
+                "version": "0.1.0",
+                "ownerId": "worker",
+                "originAt": 0,
+                "now": 31,
+                "skills": [
+                  "handling"
+                ],
+                "config": {
+                  "rule": "authored-exponential-retention-v1",
+                  "halfLifeMinutes": 43200,
+                  "gainPerMinute": {
+                    "instruction": 0.01,
+                    "practice": 0.006,
+                    "retrieval": 0.008
+                  },
+                  "maxAccessibility": 1,
+                  "evidenceHorizonMinutes": 129600,
+                  "recentEvidenceLimit": 8,
+                  "maxReceipts": 512
+                },
+                "items": [],
+                "receipts": []
+              },
+              "condition": {
+                "version": "0.1.0",
+                "now": 31,
+                "mode": "awake",
+                "awakeMinutes": 31,
+                "sleepMinutes": 0,
+                "rules": {
+                  "awakeFatiguePerMinute": 0.0005,
+                  "awakeHungerPerMinute": 0.0005,
+                  "sleepFatigueRecoveryPerMinute": 0.001,
+                  "sleepHungerPerMinute": 0.00025
+                }
+              }
+            },
+            "beliefs": {
+              "version": "beliefs-0.1.0",
+              "ownerId": "worker",
+              "originAt": 0,
+              "now": 31,
+              "propositions": [
+                "routeOpen"
+              ],
+              "sources": [
+                "worker",
+                "peer",
+                "assessor"
+              ],
+              "maxReceipts": 256,
+              "receipts": []
+            },
+            "relationships": {
+              "version": "0.1.0",
+              "ownerId": "worker",
+              "now": 31,
+              "actors": [
+                "worker",
+                "peer",
+                "assessor"
+              ],
+              "contexts": [
+                "work"
+              ],
+              "ties": [],
+              "events": []
+            },
+            "duties": {
+              "version": "0.1.0",
+              "ownerId": "worker",
+              "now": 31,
+              "cases": [],
+              "notices": [],
+              "intentions": [],
+              "outcomes": [],
+              "recipientResponses": []
+            },
+            "course": {
+              "version": "0.1.0",
+              "actorId": "worker",
+              "startDay": 0,
+              "day": 0,
+              "ageAtStartYears": 30,
+              "maxDays": 730,
+              "catalog": {
+                "actors": [
+                  "worker",
+                  "peer",
+                  "assessor"
+                ],
+                "skills": [
+                  "handling"
+                ],
+                "qualifications": [],
+                "roles": [],
+                "opportunities": []
+              },
+              "intervals": [],
+              "events": []
+            },
+            "appraisal": {
+              "version": "0.1.0",
+              "ownerId": "worker",
+              "now": 31,
+              "contexts": [
+                {
+                  "id": "route",
+                  "purposeId": "deliver",
+                  "propositionId": "routeOpen",
+                  "checkActionId": "walk",
+                  "deliberateActionId": "review",
+                  "reflectionActionId": "review"
+                }
+              ],
+              "maxConcernMinutes": 30,
+              "minReflectionMinutes": 5,
+              "records": [
+                {
+                  "id": "route",
+                  "tendency": "none",
+                  "startedAt": null,
+                  "expiresAt": null,
+                  "signature": null,
+                  "lastKey": null,
+                  "seenSignatures": []
+                }
+              ],
+              "receipts": []
+            },
+            "lastAttempt": {
+              "attemptId": "worker:2",
+              "actionId": "desk",
+              "startedAt": 15,
+              "finishedAt": 23,
+              "elapsedMinutes": 8,
+              "status": "completed"
+            }
+          },
+          "habits": {
+            "version": "0.1.0",
+            "ownerId": "worker",
+            "now": 31,
+            "habits": [
+              {
+                "id": "morning-route",
+                "cueId": "morning",
+                "purposeId": "deliver",
+                "actions": [
+                  "walk",
+                  "cart"
+                ],
+                "threshold": 3
+              }
+            ],
+            "revisions": [
+              {
+                "id": "change-work",
+                "fromPurposeId": "deliver",
+                "toPurposeId": "coordinate",
+                "cueId": "morning",
+                "failedActionIds": [
+                  "walk"
+                ],
+                "reviewActionId": "review",
+                "minFailures": 2,
+                "minReviewMinutes": 5
+              }
+            ],
+            "receipts": [
+              {
+                "ownerId": "worker",
+                "attemptId": "worker:1",
+                "at": 15,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "cart",
+                "status": "completed",
+                "elapsedMinutes": 15,
+                "durationMinutes": 15
+              },
+              {
+                "ownerId": "worker",
+                "attemptId": "worker:2",
+                "at": 23,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "desk",
+                "status": "completed",
+                "elapsedMinutes": 8,
+                "durationMinutes": 8
+              }
+            ],
+            "acceptedRevisions": []
+          },
+          "pendingContext": null
+        }
+      },
+      "peer": {
+        "format": "human-framework-adaptive-person",
+        "version": 1,
+        "person": {
+          "version": "0.1.0",
+          "id": "peer",
+          "person": {
+            "version": "0.1.0",
+            "id": "peer",
+            "sustained": {
+              "version": "0.1.0",
+              "id": "peer",
+              "situated": {
+                "version": "0.1.0",
+                "id": "peer",
+                "human": {
+                  "version": "0.1.1",
+                  "id": "peer",
+                  "body": {
+                    "fatigue": 0.12350000000000001,
+                    "hunger": 0.1275
+                  },
+                  "skills": {
+                    "handling": 0.2
+                  },
+                  "observationBias": 0,
+                  "minutes": 31,
+                  "nextAttempt": 2,
+                  "pending": null
+                },
+                "now": 31,
+                "purposes": [
+                  {
+                    "id": "deliver",
+                    "status": "active"
+                  },
+                  {
+                    "id": "coordinate",
+                    "status": "withdrawn"
+                  }
+                ],
+                "observations": []
+              },
+              "learning": {
+                "version": "0.1.0",
+                "ownerId": "peer",
+                "originAt": 0,
+                "now": 31,
+                "skills": [
+                  "handling"
+                ],
+                "config": {
+                  "rule": "authored-exponential-retention-v1",
+                  "halfLifeMinutes": 43200,
+                  "gainPerMinute": {
+                    "instruction": 0.01,
+                    "practice": 0.006,
+                    "retrieval": 0.008
+                  },
+                  "maxAccessibility": 1,
+                  "evidenceHorizonMinutes": 129600,
+                  "recentEvidenceLimit": 8,
+                  "maxReceipts": 512
+                },
+                "items": [],
+                "receipts": []
+              },
+              "condition": {
+                "version": "0.1.0",
+                "now": 31,
+                "mode": "awake",
+                "awakeMinutes": 31,
+                "sleepMinutes": 0,
+                "rules": {
+                  "awakeFatiguePerMinute": 0.0005,
+                  "awakeHungerPerMinute": 0.0005,
+                  "sleepFatigueRecoveryPerMinute": 0.001,
+                  "sleepHungerPerMinute": 0.00025
+                }
+              }
+            },
+            "beliefs": {
+              "version": "beliefs-0.1.0",
+              "ownerId": "peer",
+              "originAt": 0,
+              "now": 31,
+              "propositions": [
+                "routeOpen"
+              ],
+              "sources": [
+                "worker",
+                "peer",
+                "assessor"
+              ],
+              "maxReceipts": 256,
+              "receipts": []
+            },
+            "relationships": {
+              "version": "0.1.0",
+              "ownerId": "peer",
+              "now": 31,
+              "actors": [
+                "worker",
+                "peer",
+                "assessor"
+              ],
+              "contexts": [
+                "work"
+              ],
+              "ties": [],
+              "events": []
+            },
+            "duties": {
+              "version": "0.1.0",
+              "ownerId": "peer",
+              "now": 31,
+              "cases": [],
+              "notices": [],
+              "intentions": [],
+              "outcomes": [],
+              "recipientResponses": []
+            },
+            "course": {
+              "version": "0.1.0",
+              "actorId": "peer",
+              "startDay": 0,
+              "day": 0,
+              "ageAtStartYears": 30,
+              "maxDays": 730,
+              "catalog": {
+                "actors": [
+                  "worker",
+                  "peer",
+                  "assessor"
+                ],
+                "skills": [
+                  "handling"
+                ],
+                "qualifications": [],
+                "roles": [],
+                "opportunities": []
+              },
+              "intervals": [],
+              "events": []
+            },
+            "appraisal": {
+              "version": "0.1.0",
+              "ownerId": "peer",
+              "now": 31,
+              "contexts": [
+                {
+                  "id": "route",
+                  "purposeId": "deliver",
+                  "propositionId": "routeOpen",
+                  "checkActionId": "walk",
+                  "deliberateActionId": "review",
+                  "reflectionActionId": "review"
+                }
+              ],
+              "maxConcernMinutes": 30,
+              "minReflectionMinutes": 5,
+              "records": [
+                {
+                  "id": "route",
+                  "tendency": "none",
+                  "startedAt": null,
+                  "expiresAt": null,
+                  "signature": null,
+                  "lastKey": null,
+                  "seenSignatures": []
+                }
+              ],
+              "receipts": []
+            },
+            "lastAttempt": {
+              "attemptId": "peer:1",
+              "actionId": "desk",
+              "startedAt": 23,
+              "finishedAt": 31,
+              "elapsedMinutes": 8,
+              "status": "completed"
+            }
+          },
+          "habits": {
+            "version": "0.1.0",
+            "ownerId": "peer",
+            "now": 31,
+            "habits": [
+              {
+                "id": "morning-route",
+                "cueId": "morning",
+                "purposeId": "deliver",
+                "actions": [
+                  "walk",
+                  "cart"
+                ],
+                "threshold": 3
+              }
+            ],
+            "revisions": [
+              {
+                "id": "change-work",
+                "fromPurposeId": "deliver",
+                "toPurposeId": "coordinate",
+                "cueId": "morning",
+                "failedActionIds": [
+                  "walk"
+                ],
+                "reviewActionId": "review",
+                "minFailures": 2,
+                "minReviewMinutes": 5
+              }
+            ],
+            "receipts": [
+              {
+                "ownerId": "peer",
+                "attemptId": "peer:1",
+                "at": 31,
+                "cueId": null,
+                "purposeId": "deliver",
+                "actionId": "desk",
+                "status": "completed",
+                "elapsedMinutes": 8,
+                "durationMinutes": 8
+              }
+            ],
+            "acceptedRevisions": []
+          },
+          "pendingContext": null
+        }
+      },
+      "functional": {
+        "format": "human-framework-functional-context",
+        "version": 1,
+        "context": {
+          "version": "0.1.0",
+          "now": 31,
+          "catalog": {
+            "actors": [
+              "worker",
+              "peer",
+              "assessor"
+            ],
+            "demands": [
+              "carry"
+            ],
+            "methods": [
+              {
+                "id": "ordinary",
+                "actionId": "walk",
+                "durationMinutes": 10,
+                "effort": 0,
+                "exertive": false,
+                "skill": "handling",
+                "demandIds": [
+                  "carry"
+                ],
+                "resourceCosts": []
+              },
+              {
+                "id": "accommodated",
+                "actionId": "cart",
+                "durationMinutes": 15,
+                "effort": 0,
+                "exertive": false,
+                "skill": "handling",
+                "demandIds": [],
+                "resourceCosts": [
+                  {
+                    "resourceId": "cart-credit",
+                    "amount": 1
+                  }
+                ]
+              }
+            ]
+          },
+          "events": [
+            {
+              "kind": "restrict",
+              "id": "carry-limit",
+              "actorId": "worker",
+              "demandId": "carry",
+              "sourceId": "assessor",
+              "at": 0,
+              "reviewAt": 5
+            }
+          ]
+        }
+      },
+      "institution": {
+        "format": "human-framework-institution",
+        "version": 1,
+        "institution": {
+          "version": "0.1.0",
+          "facilityId": "desk",
+          "now": 31,
+          "actors": [
+            "worker",
+            "peer",
+            "assessor"
+          ],
+          "grants": [
+            "worker",
+            "peer"
+          ],
+          "maxHoldMinutes": 30,
+          "maxRequests": 16,
+          "usedRequestIds": [
+            "worker-first",
+            "peer-first",
+            "worker-second"
+          ],
+          "nextReservation": 4,
+          "active": {
+            "actorId": "worker",
+            "requestId": "worker-second",
+            "holdMinutes": 10,
+            "reservationId": "reservation:3",
+            "heldAt": 31,
+            "expiresAt": 41
+          },
+          "queue": []
+        }
+      }
+    }
+  }
+}

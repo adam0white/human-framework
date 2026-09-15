@@ -1,5 +1,7 @@
 # Executable coverage and research boundaries
 
+Latest 2026-09-15 addition: [adaptive-person](adaptive-person.md) implements paid cue-linked habits, voluntarily accepted purpose revision, canonical functional restrictions with accommodation, and granted FIFO facility allocation. Reference interventions and independently installed reuse exercise these bounded engineering rules. General habit/purpose development, clinical recovery, broader institutions and empirical/interpretive validation remain open.
+
 
 2026-09-15 current addition: [developing-person](developing-person.md) implements private contextual relationships/care, sourced unreviewed understood duty/repair, sparse adult role/qualification opportunity changes, and appraisal with voluntary paid regulation. These supersede the older absence statements below only for their documented bounded scope. Biological aging, general emotion/relationships, qualified interpretive review and empirical calibration remain open.
 
