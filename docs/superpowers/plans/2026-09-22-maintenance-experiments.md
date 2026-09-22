@@ -9,4 +9,4 @@
 - [x] Doorstep host with paid help, delivered information and independent relationship response; causal tests.
 - [x] Common browser shell, explicit public source selection, responsive polish, persistence and replay.
 - [x] Cross-review, full tests, browser checks and private/source boundary verification.
-- [ ] Commit/push/deploy; verify live payload and app identity; write durable handoff and evidence.
+- [x] Commit/push/deploy; verify live payload and app identity; write durable handoff and evidence.

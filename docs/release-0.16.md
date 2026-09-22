@@ -1,6 +1,6 @@
 # App 0.16 — Small situations
 
-The user authorized building and polishing three small games after the experienced-person milestone. The public review route is [human.adamwhite.work/situations/](https://human.adamwhite.work/situations/), with Shared workshop, The shared doorstep and Repair dispatch in one accessible browser shell. This record describes the intended 0.16 release; production status must be filled from the deployment checks below.
+The user authorized building and polishing three small games after the experienced-person milestone. The public review route is [human.adamwhite.work/situations/](https://human.adamwhite.work/situations/), with Shared workshop, The shared doorstep and Repair dispatch in one accessible browser shell. Deployed and verified on 2026-09-22.
 
 ## Behavior and source boundary
 
@@ -10,8 +10,10 @@ App **0.16.0** adds `/situations/` and features its three situations from the ch
 
 Maintenance in this release pins Wrangler **4.136.2**, removes the now-unneeded Sharp override because the resolved upstream version is **0.35.4**, and consolidates five private package builders behind a shared helper while preserving their tarball bytes and source/export identities.
 
-## Verification to record before completion
+## Verification
 
-Pre-deployment checks pass: 1,128 repository tests; all nine host/variation save continuations; paid-action clock and terminal guards; 101 selected build files with 68 static modules and 108 imports; `npm run deploy:check`; npm audit reports zero vulnerabilities and npm outdated reports no outdated direct packages. Local desktop (1280px) and mobile (390px) checks cover completed runs, reload, export/import, rejected invalid import, variation changes and no horizontal overflow. Independent host and shared-shell review found and fixed invalid stock correction, premature recipient-state disclosure, late-session dead ends, misleading on-time reply text and corrupt browser-save recovery. Commit and push the reviewed source before `npm run deploy`. Then compare live `/release.json` with the pushed commit and local release manifest; run the complete public-payload and private/retired-path 404 verification. Production deployment, browser behavior and source identity are **pending verification** in this draft; no release success is claimed here.
+Pre-deployment checks pass: 1,128 repository tests; all nine host/variation save continuations; paid-action clock and terminal guards; 101 selected build files with 68 static modules and 108 imports; `npm run deploy:check`; npm audit reports zero vulnerabilities and npm outdated reports no outdated direct packages. Local desktop (1280px) and mobile (390px) checks cover completed runs, reload, export/import, rejected invalid import, variation changes and no horizontal overflow. Independent host and shared-shell review found and fixed invalid stock correction, premature recipient-state disclosure, late-session dead ends, misleading on-time reply text and corrupt browser-save recovery. `npm run deploy` repeated all 1,128 tests successfully, then deployed source `ec945ea18937ea4f96c1c110ef39ba48184d27e4`, already pushed to main. Live verification matched the release manifest, 99 exact public payloads and 92 private/missing 404 paths. Production browser runs completed all three situations and preserved completion after reload, with no observed page errors or horizontal overflow. Workshop was exercised at 1280px; doorstep and dispatch at 390px.
+
+Public payload digest: `7db5bd712314b7e4a0e23280857f66ea3c766971fbdcd97f15a1c73f4aa952e8`. Worker version: `2b1d0ccb-403c-4a18-8bbf-3dd8c7d23f5a`. [Verification record](../artifacts/release-0.16/verification.json) and [exact live payload record](../artifacts/release-0.16/live-verification.json). A later documentation-only commit records these results without redeploying unchanged app bytes.
 
 The tests can support correct software behavior in these bounded scenarios. They do not validate human psychology, theological interpretation, better outcomes than an equally informed direct baseline, or measured authoring savings.

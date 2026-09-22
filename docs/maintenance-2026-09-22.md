@@ -24,4 +24,4 @@ These are authored situations that test whether the existing components compose 
 
 The [roadmap](roadmap.md) still names broader developmental trajectories, positive moral and spiritual practice, general perception and attention, probabilistic inference, long-horizon cognition, and empirical and interpretive validation as unfinished work. Biological aging and childhood each need their own evidence and model; the sparse adult calendar does not close them. A later framework round should select one causal capability and a discriminating comparison before implementation, while keeping the scheduled task paused until the user directs otherwise.
 
-Release test totals, independent review disposition, browser results and production identity belong in [the 0.16 release record](release-0.16.md) after those checks finish.
+Release test totals, independent review disposition, browser results and production identity belong in [the 0.16 release record](release-0.16.md) with completed checks and deployed identity.

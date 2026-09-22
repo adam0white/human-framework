@@ -1,5 +1,7 @@
 # Small game ideas after the experience milestone
 
+**2026-09-22 delivery:** The user subsequently authorized building the ideas. All three now have bounded implementations in [app 0.16](release-0.16.md); the proposal below remains the original design context.
+
 The user asked for several rounds of framework progress, followed by another round of subagents proposing simple games. The idea round began after all **1,102 tests** passed for episode retrieval, paid attention/inference and cross-application integration. Three fresh GPT-5.6-sol agents at low effort read the delivered capabilities. The following proposals are ideas, not implemented games or new framework requirements.
 
 ## Independent proposals

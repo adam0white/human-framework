@@ -59,10 +59,59 @@
     ]
   },
   "brainConsult": "Configured promoted index unavailable; repository ledgers used.",
-  "production": null,
+  "production": {
+    "release": {
+      "appVersion": "0.16.0",
+      "runtimeVersion": "0.1.1",
+      "clockVersion": "0.1.0",
+      "commit": "ec945ea18937ea4f96c1c110ef39ba48184d27e4",
+      "dirty": false,
+      "assetsSha256": "7db5bd712314b7e4a0e23280857f66ea3c766971fbdcd97f15a1c73f4aa952e8"
+    },
+    "verifiedAt": "2026-09-22T15:49:42.733Z",
+    "pushedMainAtDeployment": "ec945ea18937ea4f96c1c110ef39ba48184d27e4",
+    "workerVersion": "2b1d0ccb-403c-4a18-8bbf-3dd8c7d23f5a",
+    "exactPublicPayloads": 99,
+    "private404s": 92,
+    "browser": {
+      "workshopDesktopCompleted": true,
+      "doorstepMobileCompleted": true,
+      "dispatchMobileCompleted": true,
+      "allThreeReloadsPreservedCompletion": true,
+      "horizontalOverflow": false,
+      "uncaughtPageErrors": []
+    }
+  },
   "limits": [
     "No new human calibration or direct-controller advantage established",
     "Framework remains incomplete",
     "Automation remains paused"
-  ]
+  ],
+  "packageTarballParity": {
+    "sustained": {
+      "beforeSha256": "e0656ebb327457878711563d045df5f322dd8ed793404361376bfc3d1f1c87bd",
+      "afterSha256": "e0656ebb327457878711563d045df5f322dd8ed793404361376bfc3d1f1c87bd",
+      "identical": true
+    },
+    "deliberating": {
+      "beforeSha256": "935abb68daea30ee8e9469ca943e534b9b4a462f4d8eac19e816f9ff0648eed0",
+      "afterSha256": "935abb68daea30ee8e9469ca943e534b9b4a462f4d8eac19e816f9ff0648eed0",
+      "identical": true
+    },
+    "developing": {
+      "beforeSha256": "cab52ccbea578b8253bc5a6dd8d32adcc1bc326d99a87c46757db261b23424ed",
+      "afterSha256": "cab52ccbea578b8253bc5a6dd8d32adcc1bc326d99a87c46757db261b23424ed",
+      "identical": true
+    },
+    "adaptive": {
+      "beforeSha256": "2b9891b8e7b71f18fb2d98ec19928697952f1fb89c89f03f54cb28ecaf81096c",
+      "afterSha256": "2b9891b8e7b71f18fb2d98ec19928697952f1fb89c89f03f54cb28ecaf81096c",
+      "identical": true
+    },
+    "experienced": {
+      "beforeSha256": "093f744f01cab59c5272d5efc8a480d3b9428bf2ffc181327b4b0fc64051ffa3",
+      "afterSha256": "093f744f01cab59c5272d5efc8a480d3b9428bf2ffc181327b4b0fc64051ffa3",
+      "identical": true
+    }
+  }
 }

@@ -56,20 +56,21 @@ The new episodic retrieval, selected attention and acyclic inference close bound
 | Developing candidate | developing-person 0.1.0; relationships, duties, adult course and appraisal source/evidence in `artifacts/developing-person/verification.json` |
 | Deliberating candidate | deliberating-person 0.1.0; source and tests in `artifacts/deliberating-person/verification.json` |
 | Existing selected package | Human/runtime 0.1.1; integer clock 0.1.0, unchanged |
-| Public browser app | 0.16.0 prepared; three situations at `/situations/`; live verification recorded below after deployment |
-| Deployed app source | `de52d9c95e89dc25e163fca773fec2269b8b06a4` |
-| Public payload digest | `3138fa05c3a061adb922423932849c0630a14559b05858b7b3ed895143ff15b4` |
+| Public browser app | 0.16.0, three situations at `/situations/` |
+| Deployed app source | `ec945ea18937ea4f96c1c110ef39ba48184d27e4` |
+| Public payload digest | `7db5bd712314b7e4a0e23280857f66ea3c766971fbdcd97f15a1c73f4aa952e8` |
 | Schedule | `advance-human-framework`, paused |
 
-Public review site: [human.adamwhite.work](https://human.adamwhite.work). App 0.15 production verification matched all 76 public payloads and 88 private/missing 404 checks to this app commit. Desktop/mobile interaction and replay passed. Subsequent private evidence commits may be newer than the deployed app commit. Private-source commits do not require redeployment when the allowlisted public payload is unchanged. [Deployment workflow](docs/deployment.md).
+Public review site: [human.adamwhite.work](https://human.adamwhite.work). App 0.16 production verification matched all 99 public payloads and 92 private/missing 404 checks to this app commit. Desktop/mobile interaction and replay passed. Subsequent private evidence commits may be newer than the deployed app commit. Private-source commits do not require redeployment when the allowlisted public payload is unchanged. [Deployment workflow](docs/deployment.md).
 
-The [showcase release evidence](artifacts/release-0.15/verification.json) records 912 passing tests, production verification and browser checks.
+The [current release evidence](artifacts/release-0.16/verification.json) records 1,128 passing tests, production verification, browser checks, dependency audit and five byte-identical package tarball pairs.
 
 ## Reproduce and verify
 
 Use Node >=22. On this machine put `/opt/homebrew/bin` first on PATH.
 
 ```sh
+node --test tests/experiments-*.test.js
 node --test tests/experience-*.test.js tests/experienced-*.test.js
 node scripts/run-experienced-person.js /tmp/experienced-review
 node scripts/package-experienced-person.js /tmp/experienced-package
