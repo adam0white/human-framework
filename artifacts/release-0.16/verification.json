@@ -1,0 +1,68 @@
+{
+  "date": "2026-09-22",
+  "appVersion": "0.16.0",
+  "experimentVersion": "0.1.0",
+  "baselineSource": "3d866110ade5b873a3243f509cc878bf8646ab92",
+  "tests": {
+    "command": "npm test",
+    "passed": 1128,
+    "failed": 0
+  },
+  "dependencies": {
+    "wrangler": "4.136.2",
+    "sharp": "0.35.4",
+    "auditVulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "outdated": {}
+  },
+  "build": {
+    "selectedFiles": 101,
+    "staticModules": 68,
+    "importEdges": 108,
+    "dryRunPassed": true
+  },
+  "frameworkSourceChanges": false,
+  "browserLocal": {
+    "desktopWidth": 1280,
+    "mobileWidth": 390,
+    "checks": [
+      "completed workshop, doorstep, dispatch runs",
+      "paid action retained after reload",
+      "exported dispatch JSON imported with completed outcome",
+      "invalid imported JSON rejected without replacing state",
+      "malformed stored JSON recovered after accepted choice and reload",
+      "all three variation buttons selected variation 2",
+      "all three mobile routes and chooser had no horizontal overflow",
+      "timely doorstep reply confirmed receipt without a repair acknowledgment"
+    ],
+    "uncaughtPageErrorsObserved": 0
+  },
+  "review": {
+    "reviewers": [
+      "doorstep_game",
+      "workshop_dispatch",
+      "deps_simplify"
+    ],
+    "fixed": [
+      "invalid dispatch correction claim",
+      "recipient private stance exposed before reply",
+      "missed promise occurrence time",
+      "late session no remaining feasible action",
+      "misleading timely reply",
+      "malformed browser save prevented future saves"
+    ]
+  },
+  "brainConsult": "Configured promoted index unavailable; repository ledgers used.",
+  "production": null,
+  "limits": [
+    "No new human calibration or direct-controller advantage established",
+    "Framework remains incomplete",
+    "Automation remains paused"
+  ]
+}

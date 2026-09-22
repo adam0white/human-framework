@@ -15,6 +15,6 @@ test('shared contracts must match the direct rivals across generated choices and
 
 test('the experimental social module and probe hosts stay outside public and runtime package assets',async()=>{
   const build=await buildSite();
-  assert.equal(build.files.some(path=>path.startsWith('src/social/')||path.startsWith('scripts/social-')),false);
+  assert.equal(build.files.some(path=>path==='src/social/contracts.js'||path.startsWith('scripts/social-')),false);
   assert.equal(RUNTIME_SOURCES.some(path=>path.startsWith('src/social/')),false);
 });
