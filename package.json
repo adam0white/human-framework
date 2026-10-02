@@ -25,6 +25,6 @@
     "benchmark:commons": "node scripts/commons-benchmark.js"
   },
   "devDependencies": {
-    "wrangler": "4.136.2"
+    "wrangler": "4.147.0"
   }
 }
