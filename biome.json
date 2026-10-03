@@ -10,7 +10,8 @@
       "!**/node_modules",
       "!.wrangler",
       "!.playwright-mcp",
-      "!.claude"
+      "!.claude",
+      "!.worktrees"
     ]
   },
   "formatter": { "indentStyle": "space", "indentWidth": 2, "lineWidth": 110 },

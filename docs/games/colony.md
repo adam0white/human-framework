@@ -208,6 +208,7 @@ Moment times on the shipped seed with the director's orders, against the §7 tar
 
 Host rules chosen while building (all in `human-world.ts`, deviations from the tables above marked):
 - A cooked meal restores 0.8 food and raw grain 0.3 (tables: 0.6/0.25). With 0.6 the morning hunger interrupt broke every long job.
+- The cast pins the body depletion rates the game was tuned on (`COLONY_RATES` in `human-cast.ts`, via `BodyState.rates`). Engine 1.2.0 roughly halved the framework defaults so a dawn-to-dusk fast is keepable; on the defaults the carrier is not hungry at the carry (moment 1) and the house progresses fast enough that the dusk build order completes before Maghrib pressure wins (moment 2). The table above therefore still holds.
 - Felling the cedar costs effort 0.8 (table: 0.9); at 0.9 Idris's mid-morning capacity vetoed it as "spent".
 - The squall fails forest and field work outright, and the storm rolls exposure every 10 minutes outdoors, so outdoor work whose span overlaps either advertises risk 0.9 / 0.5 rather than the table's 0.3 / 0.5. Insisting on Tariq's squall run therefore yields `complied` (moment 5).
 - Building pays 2 timber once per house stage (world-types) rather than per session; gathering interrupted part-way pays pro rata, 1 timber per 30 min worked, rounded.

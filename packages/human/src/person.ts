@@ -8,6 +8,13 @@
  * `activity`, `trace` and `nextDecision`; every other slice is written only through its owning module. It
  * sequences the modules and makes no behavioural claims of its own beyond the engineering defaults listed in
  * `PERSON_DEFAULTS`.
+ *
+ * Integration pass (2026-10-03, engine 1.2.0): several voices per decision (`DecideOptions.suggestions`), standing
+ * advice remembered from `told` percepts, hearsay moving relationships, deaths marking ties, cue-triggered recall on
+ * `begin` and on attended percepts (re-appraisal and grief), the fast's perception context read from the agenda and
+ * the chronicle (`fastingCtx`), abstentions broken by eating, habit extinction on every completed action, exposures
+ * reported by outcomes, purpose revision and the chronicle's day accumulator closed at midnight, and `skip` for
+ * long-horizon runs. Each hook calls the owning module; nothing here writes another module's slice.
  */
 import {
   actionTendencies,
@@ -19,30 +26,60 @@ import {
   release,
   tendencyEmotions,
 } from './affect/index.ts';
-import { advanceAgenda, createAgenda, onFinished, promise, proposeGoals } from './agenda/index.ts';
-import { advanceBeliefs, attend, believe, confirm } from './beliefs/index.ts';
+import {
+  advanceAgenda,
+  createAgenda,
+  onFinished,
+  promise,
+  proposeGoals,
+  revisePurposes,
+} from './agenda/index.ts';
+import { advanceBeliefs, attend, believe, confirm, credence } from './beliefs/index.ts';
 import {
   advanceBody,
+  BODY_DEFAULTS,
+  type BodyPerceptionContext,
   consume,
   createBody,
+  expose,
   injure,
   nextBodyThreshold,
   readBody,
+  sanitizeExposures,
+  sanitizeIllnesses,
+  sanitizeRates,
   sicken,
 } from './body/index.ts';
+import { closeDay, noteCommitments, noteDecision, noteMood, noteOutcome } from './chronicle/index.ts';
 import { decide as cognitionDecide, desperationOf, scoreAll } from './cognition/index.ts';
-import { createConscience, heldNorms, recordDeed, recordRepair, repent } from './conscience/index.ts';
-import { clamp01, clampSigned, createRng, minuteOfDay } from './core/index.ts';
-import { advanceHabits, reinforce } from './habits/index.ts';
+import {
+  createConscience,
+  heldNorms,
+  normVeto,
+  recordDeed,
+  recordRepair,
+  repent,
+} from './conscience/index.ts';
+import { clamp01, clampSigned, createRng, dayOf, minuteOfDay } from './core/index.ts';
+import { advanceHabits, reinforce, withholdCued } from './habits/index.ts';
 import { lifeModifiers } from './lifecourse/index.ts';
-import { advanceMemory, createMemory, learnOutcome, remember } from './memory/index.ts';
+import {
+  advanceMemory,
+  type CueRecall,
+  createMemory,
+  learnOutcome,
+  recallByCue,
+  remember,
+} from './memory/index.ts';
 import { intentionFor, narrateDecision, voiceLine } from './narrate/index.ts';
 import { advanceNeeds, createNeeds, meanSatisfaction, readNeeds, satisfy } from './needs/index.ts';
 import { practise, seedSkills } from './skills/index.ts';
 import {
   advanceSocial,
+  applyReputationBelief,
   closeness,
   judge,
+  markDeceased,
   relationshipWith,
   seedRelationships,
   socialEvent,
@@ -67,10 +104,21 @@ import type {
   Suggestion,
   SuggestionResolution,
   Traits,
+  Unit,
   Values,
 } from './types.ts';
 import { ENGINE_VERSION, PERSON_SCHEMA, PHYSIOLOGICAL_NEEDS, PSYCHOLOGICAL_NEEDS } from './types.ts';
-import { advanceWill, createWill, learnFromVoice, predictResponse } from './will/index.ts';
+import {
+  advanceWill,
+  createWill,
+  creditedVoices,
+  dischargeAdvice,
+  learnFromVoice,
+  predictResponse,
+  rememberAdvice,
+  voicesIn,
+  wakeReviewAt,
+} from './will/index.ts';
 
 export const PERSON_DEFAULTS = {
   /** Body load while idle and awake. */
@@ -188,6 +236,7 @@ export function createPerson(spec: PersonSpec): Person {
     trace: [],
     nextDecision: 0,
   };
+  if (spec.lexicon) p.lexicon = structuredClone(spec.lexicon);
   return p;
 }
 
@@ -201,10 +250,52 @@ export interface PersonReadout {
   desperation: number;
 }
 
+/**
+ * What the person's practice does to interoception (N2b): an open `abstain` commitment covering `eat` means a
+ * fast is in force now, and the consecutive prior days on which such a fast was kept (read from the chronicle's
+ * kept notes, since the agenda prunes closed commitments within days) give the adaptation. Undefined when no
+ * fast is open. Read only.
+ */
+export function fastingCtx(p: Person): BodyPerceptionContext | undefined {
+  const now = p.now;
+  let open: Commitment | undefined;
+  for (const c of p.agenda.commitments) {
+    if (c.kind !== 'abstain' || c.status !== 'pending' || c.exempt !== undefined) continue;
+    if (!(c.violatedBy?.includes('eat') ?? false) || now < c.from || now >= c.until) continue;
+    open = c;
+    break;
+  }
+  if (!open) return undefined;
+  const label = open.label;
+  const today = dayOf(now);
+  const chronicle = p.chronicle ?? [];
+  let days = 0;
+  for (let i = chronicle.length - 1; i >= 0; i--) {
+    const r = chronicle[i];
+    if (!r || r.day !== today - 1 - days) break;
+    if (!r.kept.some((n) => n.kind === 'abstain' && (label === undefined || n.label === label))) break;
+    days += 1;
+  }
+  return { fasting: true, fastingDays: days };
+}
+
+/** `readBody` under the person's current perception context (the fast). Every readout in this file uses it. */
+const readBodyOf = (p: Person): BodyReadout => readBody(p, BODY_DEFAULTS, fastingCtx(p));
+
 export function readPerson(p: Person): PersonReadout {
-  const body = readBody(p);
+  const body = readBodyOf(p);
   const needs = readNeeds(p, body);
   return { body, needs, desperation: desperationOf(needs) };
+}
+
+/**
+ * Apply a cue recall: re-appraise non-loss memories at reduced intensity and feel grief for loss memories.
+ * Returns the recalled episode ids.
+ */
+function applyRecall(p: Person, r: CueRecall): string[] {
+  for (const ev of r.appraisals) appraise(p, ev);
+  for (const g of r.grief) feel(p, 'grief', g.intensity, g.cause, g.at, g.targetId);
+  return r.recalled;
 }
 
 const levelOf = (needs: NeedReading[], id: NeedId): number => needs.find((n) => n.id === id)?.level ?? 1;
@@ -240,7 +331,7 @@ const isNight = (now: Minute): boolean => {
 
 function advanceSegment(p: Person, dt: number, load: BodyLoad, aff: Affordance | undefined): void {
   const mods = lifeModifiers(p);
-  const satisfaction = meanSatisfaction(readNeeds(p, readBody(p)));
+  const satisfaction = meanSatisfaction(readNeeds(p, readBodyOf(p)));
   advanceBody(p, dt, load, mods);
   advanceNeeds(p, dt, {
     withOthers: (aff?.with?.length ?? 0) > 0,
@@ -272,9 +363,11 @@ function feelFromNeeds(p: Person, needs: NeedReading[]): void {
  * Every broken commitment leaves a trace: a `missed` episode, distress scaled by importance, and a small
  * loss of esteem. Commitments with a linked norm are also routed through conscience as a breach.
  */
-function recordMissed(p: Person, broken: Commitment[], now: Minute): void {
+function recordMissed(p: Person, broken: Commitment[], now: Minute, brokenBy?: string): void {
   for (const c of broken) {
-    const action = c.actions[0] ?? c.kind;
+    // An abstention has no fulfilling action; it is broken by the action that violated it.
+    const action =
+      c.actions[0] ?? (c.kind === 'abstain' ? (brokenBy ?? c.violatedBy?.[0]) : undefined) ?? c.kind;
     remember(p, {
       at: now,
       kind: 'missed',
@@ -295,7 +388,7 @@ function recordMissed(p: Person, broken: Commitment[], now: Minute): void {
     if (!c.normId) continue;
     const aff: Affordance = {
       id: `missed:${c.id}`,
-      action: c.actions[0] ?? c.kind,
+      action,
       label: `missed ${c.kind}`,
       duration: 0,
       effort: 0,
@@ -314,6 +407,27 @@ function recordMissed(p: Person, broken: Commitment[], now: Minute): void {
         magnitude: c.importance,
       });
     }
+  }
+}
+
+/**
+ * A kept abstention (the fast held to its end) is the person's own deed: recorded through conscience as a
+ * fulfilment of the linked norm (a felt sense of having kept a duty; nothing is computed about acceptance).
+ */
+function recordKeptAbstentions(p: Person, kept: Commitment[], now: Minute): void {
+  for (const c of kept) {
+    if (c.kind !== 'abstain' || !c.normId) continue;
+    const aff: Affordance = {
+      id: `kept:${c.id}`,
+      action: c.label ?? 'abstain',
+      label: `kept ${c.label ?? c.kind}`,
+      duration: 0,
+      effort: 0,
+      advertises: {},
+      norms: [{ normId: c.normId, relation: 'fulfills' }],
+    };
+    const { appraisal } = recordDeed(p, aff, 'kept', now, true);
+    for (const ev of appraisal) appraise(p, ev);
   }
 }
 
@@ -350,13 +464,57 @@ export function tick(p: Person, now: Minute): void {
     // Discrete bookkeeping runs only on grid boundaries, so it happens at the same minutes whatever the
     // host's call pattern: feelings sampled from needs, missed commitments, spontaneous goals.
     if (end === grid) {
-      const needs = readNeeds(p, readBody(p));
+      const needs = readNeeds(p, readBodyOf(p));
       feelFromNeeds(p, needs);
-      const { broken } = advanceAgenda(p, end);
+      const { broken, kept, released } = advanceAgenda(p, end);
       recordMissed(p, broken, end);
-      proposeGoals(p, readNeeds(p, readBody(p)), end);
+      if (broken.length > 0) noteCommitments(p, 'broken', broken);
+      if (released.length > 0) noteCommitments(p, 'released', released);
+      if (kept.length > 0) {
+        noteCommitments(p, 'kept', kept);
+        recordKeptAbstentions(p, kept, end);
+      }
+      const { episodes } = revisePurposes(p, end);
+      for (const ep of episodes) remember(p, ep);
+      proposeGoals(p, readNeeds(p, readBodyOf(p)), end);
+      // Chronicle: hourly mood sample; at midnight the day closes (notes at exactly midnight still belong to it)
+      // and the new date is itself a recall cue (anniversaries).
+      noteMood(p);
+      if (p.chronicleDay && dayOf(end) > p.chronicleDay.day) {
+        closeDay(p);
+        applyRecall(p, recallByCue(p, { at: end }));
+      }
     }
   }
+}
+
+/**
+ * Jump the clock to `to` without living the interval (long-horizon runs, e.g. forty years of aging). Closed-form
+ * decays run for the gap (memory, beliefs, habits, relationships, voice pressure, mood), the activity is dropped,
+ * past commitment windows are closed without recording them as missed, and the chronicle's open day is closed so
+ * the next event opens the right one. The body is not advanced: a skipped decade neither starves nor rests anyone;
+ * only age (from `life.bornAt`) changes. Hosts that want the interval lived call `tick`.
+ */
+export function skip(p: Person, to: Minute): void {
+  const dt = to - p.now;
+  if (dt <= 0) return;
+  // Close the open day first, so its record diffs the day as lived, not the state decades later.
+  if (p.chronicleDay) {
+    closeDay(p);
+    delete p.chronicleDay;
+  }
+  const satisfaction = meanSatisfaction(readNeeds(p, readBodyOf(p)));
+  advanceAffect(p, dt, satisfaction);
+  advanceMemory(p, dt);
+  advanceBeliefs(p, dt);
+  advanceHabits(p, dt);
+  advanceSocial(p, dt);
+  advanceWill(p, dt);
+  p.activity = null;
+  p.body.since = to;
+  p.now = to;
+  p.affect.lastUpdated = to;
+  advanceAgenda(p, to);
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -378,9 +536,14 @@ function perceiveOne(p: Person, pc: Percept): void {
   // Beliefs: observation confirms, testimony persuades by source trust.
   for (const claim of pc.claims ?? []) {
     const direct = pc.channel === 'saw' || pc.channel === 'felt';
+    const before = credence(p, claim.prop);
     if (direct && claim.confidence >= 0.9) confirm(p, claim.prop, claim.value, at);
     else believe(p, claim.prop, claim.value, claim.confidence, direct ? p.id : (actor ?? 'rumour'), at);
+    // Hearsay about someone's character moves my relationship with them (reputation).
+    applyReputationBelief(p, claim.prop, before, credence(p, claim.prop), at);
   }
+  // Advice carried by testimony keeps pulling after the speaker falls silent (standing advice, N9).
+  if (pc.channel === 'told') rememberAdvice(p, pc);
 
   // Relationships: interactions I took part in.
   const social = socialKindOf(pc.kind);
@@ -423,6 +586,10 @@ function perceiveOne(p: Person, pc: Percept): void {
     if (loss) ev.loss = true;
     appraise(p, ev);
   }
+  // A death I hear of: the tie is kept and marked, so recalling them is a grief cue from now on.
+  if (pc.kind === 'death' && target !== undefined && target !== p.id && !byMe) {
+    if (p.social.relationships.some((r) => r.otherId === target)) markDeceased(p, target, at);
+  }
 
   // Memory.
   const kind = pc.channel === 'told' ? 'told' : aboutMe && actor !== undefined ? 'social' : 'witnessed';
@@ -462,13 +629,22 @@ function judgeDeed(p: Person, actor: string, pc: Percept, at: Minute): number {
  */
 export function perceive(p: Person, percepts: readonly Percept[]): Percept[] {
   if (percepts.length === 0 || !p.body.alive) return [];
-  const body = readBody(p);
+  const body = readBodyOf(p);
   const attended = attend(p, [...percepts], {
     focus: p.activity?.focus ?? 0,
     fatigue: body.perceived.fatigue,
     fear: emotionSum(p, 'fear'),
   });
-  for (const pc of attended) perceiveOne(p, pc);
+  for (const pc of attended) {
+    perceiveOne(p, pc);
+    // What I just noticed may bring a memory back (the cemetery road, her name on the phone).
+    const at = Math.min(Math.max(pc.at, p.affect.lastUpdated), p.now);
+    const cue: Parameters<typeof recallByCue>[1] = { at, action: pc.kind, tags: [pc.kind] };
+    if (pc.placeId !== undefined) cue.placeId = pc.placeId;
+    const who = pc.actorId !== undefined && pc.actorId !== p.id ? pc.actorId : pc.targetId;
+    if (who !== undefined && who !== p.id) cue.personId = who;
+    applyRecall(p, recallByCue(p, cue));
+  }
   return attended;
 }
 
@@ -478,6 +654,10 @@ export function perceive(p: Person, percepts: readonly Percept[]): Percept[] {
 
 export interface DecideOptions {
   suggestion?: Suggestion;
+  /** Several voices in one decision (N1); merged with `suggestion`, one per voice id. */
+  suggestions?: readonly Suggestion[];
+  /** How short of money the person is, 0..1 (N13); the host's ledger decides (e.g. debt relative to income). */
+  scarcity?: Unit;
   /** Advance the person to this minute first. */
   now?: Minute;
   /** Hosts may disable the necessity exception. */
@@ -505,6 +685,8 @@ function decisionInputs(
   if (current && !list.some((a) => a.id === current.id)) list.push(current);
   const { body, needs, desperation } = readPerson(p);
   const habit: { now: Minute; placeId?: string; lastAction?: string } = { now: p.now };
+  if (p.activity && p.now >= p.activity.endsAt && p.activity.affordance.placeId !== undefined)
+    habit.placeId = p.activity.affordance.placeId;
   const last = lastAction(p);
   if (last !== undefined) habit.lastAction = last;
   const ctx: Parameters<typeof cognitionDecide>[2] = {
@@ -520,6 +702,9 @@ function decisionInputs(
     tendencyEmotions: tendencyEmotions(p),
   };
   if (opts.suggestion) ctx.suggestion = opts.suggestion;
+  // Only set when voices were given this way, so single-voice records keep their shape.
+  if (opts.suggestions && opts.suggestions.length > 0) ctx.suggestions = [...opts.suggestions];
+  if (opts.scarcity !== undefined && opts.scarcity > 0) ctx.scarcity = clamp01(opts.scarcity);
   return { list, ctx };
 }
 
@@ -531,16 +716,25 @@ export function predict(
   p: Person,
   affordances: readonly Affordance[],
   suggestion: Suggestion,
-  opts: { necessity?: boolean } = {},
+  opts: { necessity?: boolean; others?: readonly Suggestion[]; scarcity?: Unit } = {},
 ): SuggestionResolution {
+  const others = (opts.others ?? []).filter((s) => s.voiceId !== suggestion.voiceId);
   const decideOpts: DecideOptions = { suggestion };
+  if (others.length > 0) decideOpts.suggestions = others;
   if (opts.necessity !== undefined) decideOpts.necessity = opts.necessity;
+  if (opts.scarcity !== undefined) decideOpts.scarcity = opts.scarcity;
   const { list, ctx } = decisionInputs(p, affordances, 'predict', decideOpts);
   const { considered, willCtx } = scoreAll(p, list, ctx);
-  const res = predictResponse(p, considered, willCtx, suggestion);
+  const res = predictResponse(p, considered, willCtx, suggestion, others);
   res.says = voiceLine(p, res, 'predict');
   return res;
 }
+
+/** Every resolution of a decision record (all voices), oldest API first. */
+export const resolutionsOf = (r: {
+  suggestion?: SuggestionResolution;
+  suggestions?: SuggestionResolution[];
+}) => r.suggestions ?? (r.suggestion ? [r.suggestion] : []);
 
 /**
  * Score offers, resolve the will and record the decision (bounded trace). The current activity is always
@@ -565,26 +759,27 @@ export function decide(
   if (needDeltas.autonomy !== undefined) satisfy(p, { autonomy: needDeltas.autonomy });
   record.intention = intentionFor(p, record);
   record.narration = narrateDecision(p, record);
-  if (record.suggestion) {
-    record.suggestion.says = voiceLine(p, record.suggestion, record.id);
-    const continuing =
-      review &&
-      (record.chosenAffordanceId === null || record.chosenAffordanceId === p.activity?.affordanceId);
-    if (record.suggestion.verdict === 'complied' && !continuing) {
+  const resolutions = resolutionsOf(record);
+  const continuing =
+    review && (record.chosenAffordanceId === null || record.chosenAffordanceId === p.activity?.affordanceId);
+  for (const res of resolutions) {
+    res.says = voiceLine(p, res, record.id);
+    if (res.verdict === 'complied' && !continuing) {
       const chosen = list.find((a) => a.id === record.chosenAffordanceId);
       remember(p, {
         at: p.now,
         kind: 'suggestion',
         action: chosen?.action ?? 'comply',
-        actorId: record.suggestion.voiceId,
+        actorId: res.voiceId,
         targetId: p.id,
         valence: -0.3,
-        summary: `${record.suggestion.voiceId} insisted that I ${chosen?.label ?? 'do as told'}`,
+        summary: `${res.voiceId} insisted that I ${chosen?.label ?? 'do as told'}`,
         tags: ['suggestion', 'insist'],
-        voiceId: record.suggestion.voiceId,
+        voiceId: res.voiceId,
       });
     }
   }
+  noteDecision(p, record, voicesIn(opts.suggestion, opts.suggestions));
   p.trace.push(record);
   if (p.trace.length > PERSON_DEFAULTS.maxTrace) p.trace.splice(0, p.trace.length - PERSON_DEFAULTS.maxTrace);
   return record;
@@ -604,7 +799,15 @@ export interface BeginOptions {
 
 /** Minute a perceived need crosses its interrupt threshold under `load` (cached on the activity), or undefined. */
 function thresholdFor(p: Person, load: BodyLoad, review: number): Minute | undefined {
-  const t = nextBodyThreshold(p, load, lifeModifiers(p), PERSON_DEFAULTS.interruptThresholds, review);
+  const t = nextBodyThreshold(
+    p,
+    load,
+    lifeModifiers(p),
+    PERSON_DEFAULTS.interruptThresholds,
+    review,
+    BODY_DEFAULTS,
+    fastingCtx(p),
+  );
   return Number.isFinite(t) ? p.now + t : undefined;
 }
 
@@ -622,7 +825,7 @@ export function begin(
   const load: BodyLoad = { effort: clamp01(aff.effort), focus: clamp01(aff.focus ?? 0), mode };
   const mods = lifeModifiers(p);
   const needsAtStart: Partial<Record<NeedId, number>> = {};
-  for (const n of readNeeds(p, readBody(p))) needsAtStart[n.id] = n.level;
+  for (const n of readNeeds(p, readBodyOf(p))) needsAtStart[n.id] = n.level;
   const activity: Activity = {
     affordanceId: aff.id,
     action: aff.action,
@@ -638,6 +841,15 @@ export function begin(
     reviewAt: now,
   };
   if (aff.targetId !== undefined) activity.targetId = aff.targetId;
+  // A conscience veto blocks this act without the necessity exception / capacity bound and the exception lifts it
+  // at the current desperation: the act is done under necessity. (A host forcing a vetoed act through `begin`
+  // without that desperation gets no excuse.)
+  if (normVeto(p, aff, 0, { necessity: false, now }) !== undefined) {
+    const { desperation } = readPerson(p);
+    if (normVeto(p, aff, desperation, { necessity: true, now }) === undefined) activity.necessity = true;
+  }
+  const credited = creditedVoices(resolutionsOf(record));
+  if (credited.length > 0) activity.suggestions = credited;
   if (
     record.suggestion &&
     (record.suggestion.verdict === 'assented' || record.suggestion.verdict === 'complied')
@@ -667,6 +879,7 @@ export function begin(
   const thresholdAt = thresholdFor(p, load, review);
   if (thresholdAt !== undefined) activity.thresholdAt = thresholdAt;
   activity.reviewAt = now + Math.max(1, Math.min(review, (thresholdAt ?? Number.POSITIVE_INFINITY) - now));
+  if (load.mode === 'sleep') activity.reviewAt = capForDuty(p, activity.reviewAt);
   if (aff.risk && aff.risk.chance > 0 && aff.risk.severity > 0) {
     appraise(p, {
       at: now,
@@ -675,6 +888,17 @@ export function begin(
       likelihood: clamp01(aff.risk.chance),
       cause: `prospect:${aff.action}${aff.targetId !== undefined ? `@${aff.targetId}` : ''}`,
     });
+  }
+  // Starting here, with these people, may bring a memory back (N11); the record cites it.
+  const cue: Parameters<typeof recallByCue>[1] = { at: now, action: aff.action };
+  if (aff.placeId !== undefined) cue.placeId = aff.placeId;
+  const who = aff.targetId ?? aff.with?.[0];
+  if (who !== undefined && who !== p.id) cue.personId = who;
+  if (aff.tags !== undefined) cue.tags = aff.tags;
+  const recalled = applyRecall(p, recallByCue(p, cue));
+  if (recalled.length > 0) {
+    const c = record.considered.find((x) => x.affordanceId === aff.id);
+    if (c) c.recalled = [...new Set([...(c.recalled ?? []), ...recalled])];
   }
   return activity;
 }
@@ -694,6 +918,13 @@ export function reviewed(p: Person): void {
   if (thresholdAt !== undefined) act.thresholdAt = thresholdAt;
   else delete act.thresholdAt;
   act.reviewAt = p.now + Math.max(1, Math.min(review, (thresholdAt ?? Number.POSITIVE_INFINITY) - p.now));
+  if (load.mode === 'sleep') act.reviewAt = capForDuty(p, act.reviewAt);
+}
+
+/** A sleeper's review no later than the minute a pending duty becomes pressing enough to wake for. */
+function capForDuty(p: Person, reviewAt: Minute): Minute {
+  const at = wakeReviewAt(p, p.now);
+  return at !== undefined && at < reviewAt ? Math.max(p.now + 1, at) : reviewAt;
 }
 
 /**
@@ -738,7 +969,7 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
   const mods = lifeModifiers(p);
   const D = PERSON_DEFAULTS;
 
-  const before = readNeeds(p, readBody(p));
+  const before = readNeeds(p, readBodyOf(p));
   const given = outcome.needs ?? {};
   const bodyDeltas: { food?: number; water?: number; relief?: number } = {};
   if (given.food) bodyDeltas.food = given.food;
@@ -750,10 +981,11 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
   satisfy(p, psych);
   if (outcome.injury) injure(p, outcome.injury);
   if (outcome.illness) sicken(p, outcome.illness);
+  for (const e of outcome.exposures ?? []) expose(p, e.kind, e.amount ?? 1);
 
   // Realized deltas: what the body actually took in for food/water/relief (a drink at full hydration
   // realizes nothing), host values for psychological needs, and measured since the start for sleep/rest.
-  const after = readNeeds(p, readBody(p));
+  const after = readNeeds(p, readBodyOf(p));
   const realized: Partial<Record<NeedId, number>> = {};
   for (const id of [...PHYSIOLOGICAL_NEEDS, ...PSYCHOLOGICAL_NEEDS]) {
     if (given[id] === undefined) continue;
@@ -797,6 +1029,9 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
     if (aff.placeId !== undefined) hctx.placeId = aff.placeId;
     if (prev !== undefined) hctx.lastAction = prev;
     reinforce(p, aff.action, hctx);
+    // Habits for other actions cued here were not acted on: extinction by withholding (N8).
+    withholdCued(p, aff.action, hctx);
+    dischargeAdvice(p, aff.action);
   }
 
   // Memory.
@@ -816,7 +1051,7 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
   remember(p, episode);
 
   // Conscience.
-  const deed = recordDeed(p, aff, act.intention, now, completed);
+  const deed = recordDeed(p, aff, act.intention, now, completed, act.necessity ? { necessity: true } : {});
   for (const ev of deed.appraisal) appraise(p, ev);
   const tags = aff.tags ?? [];
   if (completed && (tags.includes('worship') || tags.includes('repent'))) {
@@ -844,7 +1079,13 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
   const routed: Outcome = { ...outcome };
   if (routed.fulfills === undefined && aff.fulfills !== undefined) routed.fulfills = aff.fulfills;
   if (routed.advances === undefined && aff.advances !== undefined) routed.advances = aff.advances;
-  const { kept } = onFinished(p, routed, act.startedAt);
+  // An abstention excused under necessity closes as released at its window's end (noted then by `tick`).
+  const { kept, broken } = onFinished(p, routed, act.startedAt, act.necessity ? { necessity: true } : {});
+  // A completed violating action inside an open abstention's window broke it (the fast, "no cards after Isha").
+  if (broken.length > 0) {
+    recordMissed(p, broken, now, outcome.action);
+    noteCommitments(p, 'broken', broken);
+  }
   for (const c of kept) {
     if (c.toId && c.toId !== 'self') {
       socialEvent(p, { at: now, kind: 'promise-kept', otherId: c.toId, byMe: true, magnitude: c.importance });
@@ -864,22 +1105,47 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
     }
   }
 
-  // Trust in the voice that suggested it: how it felt, minus bodily harm the host's deltas do not show
-  // (needs that fell during the activity and are now urgent).
-  if (act.suggestion) {
+  // Trust in every voice that pushed this activity: how it felt, minus bodily harm the host's deltas do not
+  // show (needs that fell during the activity and are now urgent).
+  const voices = act.suggestions ?? (act.suggestion ? [act.suggestion] : []);
+  if (voices.length > 0) {
     let harm = 0;
     for (const id of ['food', 'water', 'sleep', 'rest'] as const) {
       if (urgencyOf(after, id) < D.voiceHarmUrgency) continue;
       harm += Math.max(0, (act.needsAtStart[id] ?? levelOf(after, id)) - levelOf(after, id));
     }
-    const reason =
-      harm > 0 ? (act.protest ? 'harm-under-protest' : 'harm') : felt >= 0 ? 'went-well' : 'went-badly';
-    learnFromVoice(p, act.suggestion, clampSigned(felt - D.voiceHarmGain * harm), {
-      at: now,
-      action: aff.action,
-      reason,
-    });
+    // Doing what a voice pushed broke a commitment or the person's own standards: that costs the voice as harm
+    // does (review 2026-10-03: thirty broken fasts under insistence had moved trust only 0.50 -> 0.41). Omissions
+    // the push caused later (a missed prayer during a pushed activity) are not attributed here.
+    let breach = 0;
+    for (const c of broken) breach += D.missedDistress * c.importance;
+    breach += D.missedDistress * 0.5 * deed.breached.length;
+    for (const res of voices) {
+      const protest = res.verdict === 'complied';
+      const reason =
+        breach > 0
+          ? protest
+            ? 'breach-under-protest'
+            : 'breach'
+          : harm > 0
+            ? protest
+              ? 'harm-under-protest'
+              : 'harm'
+            : felt >= 0
+              ? 'went-well'
+              : 'went-badly';
+      learnFromVoice(p, res, clampSigned(felt - D.voiceHarmGain * harm - breach), {
+        at: now,
+        action: aff.action,
+        reason,
+      });
+    }
   }
+
+  // Chronicle, while the activity is still current.
+  const noted: Parameters<typeof noteOutcome>[2] = { kept: kept.map((c) => c.id) };
+  if (act.suggestion) noted.suggestion = act.suggestion;
+  noteOutcome(p, outcome, noted);
 
   p.activity = null;
   // Leave the activity's body mode now (wake up from sleep) so the next decision is not vetoed 'asleep'.
@@ -984,5 +1250,21 @@ export function restore(json: unknown): Person {
   if (!Array.isArray(out.trace)) out.trace = [];
   if (typeof out.nextDecision !== 'number') out.nextDecision = 0;
   if (out.activity === undefined) out.activity = null;
+  // Optional slices added in 1.2.0: absent means empty; a mistyped one is dropped rather than trusted.
+  if (out.chronicle !== undefined && !Array.isArray(out.chronicle)) delete out.chronicle;
+  if (out.chronicleDay !== undefined && !isObject(out.chronicleDay)) delete out.chronicleDay;
+  if (out.lexicon !== undefined && !isObject(out.lexicon)) delete out.lexicon;
+  if (out.body.rates !== undefined) {
+    const rates = sanitizeRates(out.body.rates);
+    if (rates) out.body.rates = rates;
+    else delete out.body.rates;
+  }
+  if (out.body.exposures !== undefined) {
+    const ex = sanitizeExposures(out.body.exposures, out.now);
+    if (ex) out.body.exposures = ex;
+    else delete out.body.exposures;
+  }
+  sanitizeIllnesses(out.body);
+  if (out.will.advice !== undefined && !Array.isArray(out.will.advice)) delete out.will.advice;
   return out;
 }

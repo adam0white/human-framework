@@ -13,6 +13,8 @@ import { clamp, clamp01, clampSigned, decay, lerp, runningMean } from '../core/i
 import type {
   ActionExpectation,
   Affordance,
+  AppraisalEvent,
+  EntityId,
   Episode,
   MemoryState,
   Minute,
@@ -311,4 +313,185 @@ export function learnOutcome(
     if (worst < 0) break;
     list.splice(worst, 1);
   }
+}
+
+// ---------------------------------------------------------------------------------------------
+// Cue-triggered recall (N11)
+// ---------------------------------------------------------------------------------------------
+
+/** The situation that may bring a memory back unbidden. Every field is optional. */
+export interface RecallCue {
+  /** Minute of the cue; defaults to `p.now`. Used for the hour and for anniversaries. */
+  at?: Minute;
+  placeId?: EntityId;
+  action?: string;
+  /** A person present, addressed or mentioned. Matches an episode's actor or target. */
+  personId?: EntityId;
+  /** Hour of day 0..23; defaults to the hour of `at`. Only ever a supporting feature. */
+  hour?: number;
+  tags?: string[];
+  /** At most this many episodes come back (default `CUE_RECALL_DEFAULTS.limit`). */
+  limit?: number;
+}
+
+export interface CueRecall {
+  /** Copies of the recalled episodes, strongest first. */
+  episodes: Episode[];
+  /** Their ids, for `Considered.recalled` / narration. */
+  recalled: string[];
+  /** Re-appraisal events at reduced intensity for non-loss memories; the composite passes each to `affect.appraise`. */
+  appraisals: AppraisalEvent[];
+  /**
+   * Grief for loss memories, intensity already scaled (reduced, trait-scaled like appraisal gain). The composite
+   * passes each to `affect.feel(p, 'grief', intensity, cause, at, targetId)`: `appraise` with `loss` would apply
+   * its grief floor, which is meant for the death itself, not for a remembered one.
+   */
+  grief: { at: Minute; intensity: Unit; cause: string; targetId?: EntityId }[];
+}
+
+export const CUE_RECALL_DEFAULTS = {
+  /** Feature weights; the cue strength is the sum of matched weights, capped at 1. */
+  weights: { place: 0.45, person: 0.45, action: 0.3, tags: 0.25, hour: 0.1, anniversary: 0.6 },
+  /** An episode involving someone the person holds as deceased gets this extra cue strength when any feature matches. */
+  deceasedBoost: 0.25,
+  /** Score = strength × salience must reach this for the memory to intrude. */
+  threshold: 0.2,
+  /**
+   * Only episodes at least this emotional come back unbidden (review 2026-10-03: at 0.3 everyday meals at home,
+   * valence 0.34-0.56, were re-recalled by every meal, kept alive for months and pushed mood up daily).
+   */
+  minValence: 0.5,
+  /** Loss episodes (a death, a funeral, someone now deceased) come back from this lower floor. */
+  minLossValence: 0.3,
+  /** An episode cannot be cue-recalled again within this many minutes. */
+  refractory: 6 * 60,
+  /** Re-appraisal magnitude = |valence| × reappraisal × cue strength (well below the original event). */
+  reappraisal: 0.4,
+  limit: 2,
+  /** Grief intensity = magnitude × (base + slope × emotionality), the same shape as appraisal gain in `affect/`. */
+  griefGainBase: 0.6,
+  griefGainSlope: 0.8,
+  /** Hour match tolerance (±hours, wrapping midnight). */
+  hourTolerance: 1,
+  /** Tags that mark an episode as a loss (in addition to involving a deceased person). */
+  lossTags: ['death', 'loss', 'funeral', 'grave'],
+};
+
+/** Deceased check inlined from `social.isDeceasedTie` (memory reads the social slice; it does not write it). */
+function deceasedSet(p: Person): Set<string> {
+  const out = new Set<string>();
+  for (const r of p.social?.relationships ?? []) {
+    if (r.deceasedAt !== undefined || r.roles.includes('deceased')) out.add(r.otherId);
+  }
+  return out;
+}
+
+const hourOfMinute = (m: Minute): number =>
+  Math.floor((((m % MINUTES_PER_DAY) + MINUTES_PER_DAY) % MINUTES_PER_DAY) / 60);
+
+/**
+ * SCOPE (cue-triggered recall): involuntary autobiographical memory. A situation (place, person, action,
+ * tags, time of day, the date) brings back an emotional episode when the overlap of its retrieval cues with
+ * the episode × the episode's current salience crosses a threshold; the memory is then re-appraised at reduced
+ * intensity. Ordinary memories must be strongly emotional (|valence| ≥ `minValence`) and do not gain salience by
+ * intruding (no self-sustaining loop); loss memories come back from a lower floor and do gain salience. Episodes involving someone the person holds as
+ * deceased, or tagged as a loss, re-appraise as loss (grief), including warm memories of them; the yearly
+ * anniversary of a loss episode is itself a cue. Named shapes: encoding specificity (Tulving & Thomson 1973),
+ * involuntary autobiographical memories triggered by situational cues (Berntsen 1996, 2009), and anniversary
+ * reactions in bereavement. Each episode has a refractory period so one cue does not replay it every minute.
+ * It does NOT model rumination, deliberate reminiscence, mood-congruent retrieval, memory distortion on
+ * re-telling, or the softening of grief over years beyond salience decay; weights are engineering defaults.
+ */
+export function recallByCue(p: Person, cue: RecallCue): CueRecall {
+  const D = CUE_RECALL_DEFAULTS;
+  const W = D.weights;
+  const at = cue.at ?? p.now;
+  const hour = cue.hour ?? hourOfMinute(at);
+  const dead = deceasedSet(p);
+  const scored: { ep: Episode; strength: number; score: number; loss: boolean; who?: string }[] = [];
+  for (const ep of p.memory.episodes) {
+    if (ep.at >= at) continue;
+    if (Math.abs(ep.valence) < D.minLossValence) continue;
+    if (ep.recalledAt !== undefined && at - ep.recalledAt < D.refractory) continue;
+    let strength = 0;
+    let specific = false;
+    if (cue.placeId !== undefined && ep.placeId === cue.placeId) {
+      strength += W.place;
+      specific = true;
+    }
+    if (cue.personId !== undefined && (ep.actorId === cue.personId || ep.targetId === cue.personId)) {
+      strength += W.person;
+      specific = true;
+    }
+    if (cue.action !== undefined && ep.action === cue.action) {
+      strength += W.action;
+      specific = true;
+    }
+    if (cue.tags && cue.tags.length > 0) {
+      let hits = 0;
+      for (const t of cue.tags) if (ep.tags.includes(t)) hits += 1;
+      if (hits > 0) {
+        strength += (W.tags * hits) / cue.tags.length;
+        specific = true;
+      }
+    }
+    const isLossTagged = ep.tags.some((t) => D.lossTags.includes(t)) || ep.action === 'death';
+    const daysSince = Math.floor(at / MINUTES_PER_DAY) - Math.floor(ep.at / MINUTES_PER_DAY);
+    if (isLossTagged && daysSince > 0 && daysSince % 365 === 0) {
+      strength += W.anniversary;
+      specific = true;
+    }
+    // Time of day only supports a cue that already matched something specific.
+    if (!specific) continue;
+    const epHour = hourOfMinute(ep.at);
+    const dh = Math.min(Math.abs(epHour - hour), 24 - Math.abs(epHour - hour));
+    if (dh <= D.hourTolerance) strength += W.hour;
+    let who: string | undefined;
+    if (ep.actorId !== undefined && dead.has(ep.actorId)) who = ep.actorId;
+    else if (ep.targetId !== undefined && dead.has(ep.targetId)) who = ep.targetId;
+    if (who !== undefined) strength += D.deceasedBoost;
+    const loss = who !== undefined || isLossTagged;
+    if (!loss && Math.abs(ep.valence) < D.minValence) continue;
+    strength = Math.min(1, strength);
+    const score = strength * ep.salience;
+    if (score < D.threshold) continue;
+    const entry: { ep: Episode; strength: number; score: number; loss: boolean; who?: string } = {
+      ep,
+      strength,
+      score,
+      loss,
+    };
+    if (who !== undefined) entry.who = who;
+    scored.push(entry);
+  }
+  scored.sort((a, b) => b.score - a.score || byId(a.ep, b.ep));
+  const picked = scored.slice(0, Math.max(0, cue.limit ?? D.limit));
+  const appraisals: AppraisalEvent[] = [];
+  const grief: CueRecall['grief'] = [];
+  const gain = D.griefGainBase + D.griefGainSlope * clamp01(p.traits?.emotionality ?? 0.5);
+  for (const s of picked) {
+    // Only loss memories are strengthened by intruding; an ordinary memory coming back unbidden does not gain
+    // salience, so a daily cue cannot keep a routine episode alive against decay.
+    if (s.loss) s.ep.salience = clamp01(s.ep.salience + MEMORY_DEFAULTS.recallBoost * (1 - s.ep.salience));
+    s.ep.recalledAt = at;
+    const mag = Math.abs(s.ep.valence) * D.reappraisal * s.strength;
+    const cause = `recall:${s.ep.id}`;
+    const target = s.who ?? s.ep.targetId;
+    if (s.loss) {
+      // A warm memory of someone lost is felt as the loss, not as the old joy.
+      const g: CueRecall['grief'][number] = { at, intensity: clamp01(mag * gain), cause };
+      if (target !== undefined && target !== p.id) g.targetId = target;
+      grief.push(g);
+      continue;
+    }
+    const ev: AppraisalEvent = { at, kind: 'event', desirability: Math.sign(s.ep.valence) * mag, cause };
+    if (target !== undefined && target !== p.id) ev.targetId = target;
+    appraisals.push(ev);
+  }
+  return {
+    episodes: picked.map((s) => ({ ...s.ep, tags: [...s.ep.tags] })),
+    recalled: picked.map((s) => s.ep.id),
+    appraisals,
+    grief,
+  };
 }

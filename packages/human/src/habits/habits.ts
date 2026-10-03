@@ -6,7 +6,33 @@
  * changed the curve; cue-dependence follows Wood & Neal's context-cued habit account. Spacing caps gains at
  * roughly one meaningful repetition per day, so rapid repeats do not build a habit in an afternoon.
  * Does NOT claim: a universal number of days to form a habit, that habit strength is moral approval,
- * or a model of habit change strategies beyond cue mismatch and slow decay.
+ * or a model of habit change strategies beyond cue mismatch, withholding and slow decay.
+ *
+ * SCOPE (extinction by withholding, N8): when a habit's cue occurs (match ≥ sameContext) and the person
+ * completes a different action, the habit loses a fraction of its strength (`extinction`, smaller than
+ * `gain`, at most once per cue occasion), so a plateau habit withheld daily falls below half within a month
+ * while one whose cue never recurs keeps its strength and fires again on return to the old context. Shape:
+ * habits survive a move only where the performance context stays the same (habit discontinuity; Wood, Tam &
+ * Guerrero Witt 2005, JPSP 88:918). The extinction rate is an engineering default, not fitted. Known
+ * divergence: Bouton (2004, Learn Mem 11:485) shows extinction is new context-specific learning that leaves
+ * the original intact (renewal, spontaneous recovery); here withholding lowers stored strength, so renewal
+ * after withholding is not modelled, only the return of a habit whose cue was absent. Does not claim a
+ * cessation success rate.
+ *
+ * SCOPE (urges after abstinence): a habit with host-set `craving` > 0 that has been withheld gains a
+ * temporary multiplier on its pull once its usual daily interval has passed without performance: a bump
+ * that peaks ~2.5 days into abstinence and fades over 2-4 weeks, so the pull rises briefly before falling
+ * (with extinction lowering the strength underneath). The time course borrows the shape of tobacco
+ * withdrawal symptoms (peak within the first week, lasting 2-4 weeks; Hughes 2007, Nicotine Tob Res
+ * 9:315), which explicitly does not validate craving itself; applying it to cue-reactive urges is an
+ * assumption. Does not claim: pharmacology, dependence severity or relapse probabilities.
+ *
+ * SCOPE (habit ease, N4): `habitEase` is a multiplier < 1 on the initiation and attentional parts of an
+ * option's effort cost for a cued habitual action. Chosen by the discriminating experiment in
+ * `test/habits.test.ts`: depletion increases habit performance relative to deliberate alternatives (Neal,
+ * Wood & Drolet 2013, JPSP 104:959); an additive habit term cannot produce that (fatigue costs habitual and
+ * deliberate options alike), an ease multiplier can. Physical exertion is not eased (habit does not make a
+ * walk lighter). Does not claim: a measured size of the effect, or that automaticity removes intention.
  */
 import { clamp01, decay, hourOf, minuteOfDay } from '../core/index.ts';
 import {
@@ -40,6 +66,24 @@ export const HABIT_DEFAULTS = {
   hourFalloff: 60,
   /** Minimum cue match for a repetition to count toward an existing habit instead of starting a new one. */
   sameContext: 0.5,
+  /** Fraction of strength lost per fully spaced withheld cue occasion (0.9 -> below 0.5 in ~26 daily withholds). */
+  extinction: 0.023,
+  /** Usual interval (min) between performances before abstinence counts. */
+  urgeInterval: MINUTES_PER_DAY,
+  /** Days into abstinence at which the urge bump peaks. */
+  urgePeakDays: 2.5,
+  /** Urge multiplier at the peak for craving 1. */
+  urgeGain: 0.6,
+  /** Cap on the pull added by urges (pull may reach 1 + urgeMax). */
+  urgeMax: 0.5,
+  /** Fraction of initiation/attentional effort removed by a fully cued plateau habit. */
+  easeMax: 0.5,
+  /**
+   * Minutes after a performance over which the habit's pull ramps back from 0 to full (post-completion
+   * refractory: a cue occasion already answered does not pull again at once; review 2026-10-03 saw ten
+   * cigarettes in a row). Engineering default.
+   */
+  refractory: 4 * 60,
 } as const;
 
 /** Circular distance in minutes between two minute-of-day values. */
@@ -67,11 +111,74 @@ export function cueMatches(h: Habit, ctx: HabitContext): Unit {
   return m;
 }
 
-/** Habitual pull toward an affordance: sum of strength × cue match over habits for its action, capped at 1. */
+/**
+ * 0..1 urge multiplier for a withheld craving habit at `now`: craving × urgeGain × gamma bump of the days
+ * past the usual interval since last performance, (t/peak)·e^{1 - t/peak}. 0 for habits never withheld.
+ */
+export function habitUrge(h: Habit, now: Minute): number {
+  const d = HABIT_DEFAULTS;
+  const c = clamp01(h.craving ?? 0);
+  if (c <= 0 || !((h.withheld ?? 0) > 0)) return 0;
+  const t = Math.max(0, now - h.lastAt - d.urgeInterval) / MINUTES_PER_DAY;
+  if (t <= 0) return 0;
+  const x = t / d.urgePeakDays;
+  return c * d.urgeGain * x * Math.exp(1 - x);
+}
+
+/**
+ * Habitual pull toward an affordance: sum of strength × cue match × refractory ramp over habits for its action,
+ * capped at 1, plus any abstinence urge (strength × match × habitUrge, capped at urgeMax). The ramp is 0 right
+ * after the habit was performed and full `refractory` minutes later (no immediate re-pull from an answered cue).
+ * Without craving habits the result is 0..1 as before.
+ */
 export function habitPull(p: Pick<Person, 'habits'>, aff: Affordance, ctx: HabitContext): number {
   let sum = 0;
+  let urge = 0;
+  for (const h of p.habits) {
+    if (h.action !== aff.action) continue;
+    const since = ctx.now - h.lastAt;
+    const ready = since >= 0 ? clamp01(since / HABIT_DEFAULTS.refractory) : 1;
+    const m = h.strength * cueMatches(h, ctx) * ready;
+    sum += m;
+    if (m > 0) urge += m * habitUrge(h, ctx.now);
+  }
+  return Math.min(1, sum) + Math.min(HABIT_DEFAULTS.urgeMax, urge);
+}
+
+/**
+ * Effort multiplier (1 - easeMax × cued strength, in [1 - easeMax, 1]) for an option's initiation and
+ * attentional cost (cognition's effortBase × effort and focus × sleepiness parts; not the physical
+ * effort × fatigue part). Urges do not ease. See SCOPE (habit ease, N4).
+ */
+export function habitEase(p: Pick<Person, 'habits'>, aff: Affordance, ctx: HabitContext): number {
+  let sum = 0;
   for (const h of p.habits) if (h.action === aff.action) sum += h.strength * cueMatches(h, ctx);
-  return Math.min(1, sum);
+  return 1 - HABIT_DEFAULTS.easeMax * Math.min(1, sum);
+}
+
+/**
+ * A different action (`completedAction`) was completed in this context: every habit for another action
+ * whose cue matched ≥ sameContext loses extinction × match × spacing × strength, at most one full loss per
+ * cue occasion (spacing measured from the later of its last performance and last withholding). Call after
+ * each completed action with the same context passed to `reinforce`. Returns the habits weakened.
+ */
+export function withholdCued(p: Pick<Person, 'habits'>, completedAction: string, ctx: HabitContext): Habit[] {
+  const d = HABIT_DEFAULTS;
+  const out: Habit[] = [];
+  if (!completedAction) return out;
+  for (const h of p.habits) {
+    if (h.action === completedAction || h.strength <= 0) continue;
+    const m = cueMatches(h, ctx);
+    if (m < d.sameContext) continue;
+    const since = ctx.now - Math.max(h.lastAt, h.lastWithheldAt ?? Number.NEGATIVE_INFINITY);
+    const spacing = clamp01(since / d.fullSpacing);
+    if (spacing <= 0) continue;
+    h.strength = clamp01(h.strength * (1 - d.extinction * m * spacing));
+    h.withheld = (h.withheld ?? 0) + 1;
+    h.lastWithheldAt = Math.max(h.lastWithheldAt ?? ctx.now, ctx.now);
+    out.push(h);
+  }
+  return out;
 }
 
 /**
