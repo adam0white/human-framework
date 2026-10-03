@@ -1,7 +1,9 @@
 /**
  * The player's standing suggestion (build plan §6.3). One stands at a time; Confirm replaces it. It ends when the
  * activity he began for it ends (it keeps standing while he does it, so he does not turn back half-way), on a `cannot`/`willNot` refusal, after 3 sim hours, when he falls asleep, or
- * when the player withdraws it. A deferral or a modification keeps it standing. Plain JSON.
+ * when the player withdraws it. A deferral or a modification keeps it standing, and so does its option leaving the
+ * offer set (round 3: the framework holds a standing suggestion back while its target is not offered, so a "later"
+ * is heard when the option returns; the log says so once). Plain JSON.
  */
 import type { Suggestion, SuggestionResolution } from '@human/framework';
 import { type Draft, STRENGTH_VALUE, type StandingView, type Tone } from '../protocol.ts';
@@ -19,7 +21,19 @@ export interface Standing {
   lastKey?: string;
   /** Decision id of the activity he began for it; the suggestion stands until that activity ends. */
   going?: string;
+  /** Its option has left the offer set: the framework holds it back until it returns (said once, plainly). */
+  away?: boolean;
 }
+
+/** Why an option is not open to him now, in the town's terms (for the "your word waits" line). */
+export const WHY_AWAY: Record<string, string> = {
+  'see-doctor': 'the clinic sees people from 09:00 to 17:00, and not again within a week of a visit',
+  'call:selin': 'he calls her in the evening, and not twice within twelve hours',
+  'work-repair': 'the workshop takes him once a day, from 08:00 to 12:00',
+  'work-extra': 'the afternoon shift runs once a day, between Dhuhr and an hour and a half before Asr',
+  'pay-rent': 'he has not got the 300 together, or nothing is owed',
+  'tea:riza': 'the tea house is for the daytime',
+};
 
 const APPEAL_WORDS: Record<string, string> = {
   duty: 'it’s your duty',
@@ -39,8 +53,9 @@ export function draftLabel(d: Draft, optionLabel: string): string {
     .join(' · ');
 }
 
-export function toSuggestion(d: Draft): Suggestion {
+export function toSuggestion(d: Draft, since?: number): Suggestion {
   const s: Suggestion = { voiceId: 'you', affordanceId: d.optionId, strength: STRENGTH_VALUE[d.strength] };
+  if (since !== undefined) s.since = since;
   if (d.insist) s.insist = true;
   if (d.appeal) s.appeal = d.appeal;
   return s;

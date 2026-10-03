@@ -187,6 +187,15 @@ export function narrateChronicle(
   }
   for (const kind of Object.keys(total).sort()) {
     if (kind === 'worship') continue;
+    // One of one reads as "kept the fast", not "kept 1 of 1 abstentions" (game design review 2026-10-03).
+    if (total[kind] === 1) {
+      const one = phraseLine(`kind:${kind}`, {}, lex, phraseLine('kind:default', {}, lex));
+      raw.push({
+        key: (kept[kind] ?? 0) === 1 ? 'chronicle.kept.one' : 'chronicle.broke.one',
+        vars: { kind: one },
+      });
+      continue;
+    }
     const kinds = phraseLine(`kinds:${kind}`, {}, lex, phraseLine('kinds:default', {}, lex));
     raw.push({ key: 'chronicle.kept', vars: { kept: kept[kind] ?? 0, total: total[kind] ?? 0, kinds } });
   }

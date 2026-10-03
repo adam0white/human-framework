@@ -1,6 +1,6 @@
 # Human Framework v1 — architecture
 
-This is the design reference for `packages/human`. The shared data contract lives in [`packages/human/src/types.ts`](../packages/human/src/types.ts). Every module listed here exports pure functions over a `Person` and mutates only the slice of `Person` it owns.
+This is the design reference for `packages/human` (`@human/framework`). For installation, a quick start and the host contract in brief, see the [package README](../packages/human/README.md). The [API reference](api.md) lists every export. The shared data contract lives in [`packages/human/src/types.ts`](../packages/human/src/types.ts). Every module listed here exports pure functions over a `Person` and mutates only the slice of `Person` it owns.
 
 ## The spine: Urge → Assent → Act
 
@@ -47,7 +47,7 @@ Decisions are event-driven: a person decides when idle, when an activity ends, o
 
 | Module | Owns | Key exports |
 |---|---|---|
-| `core/` | `rng` | `createRng(seed)`, `random(rng)`, `randomInt`, `normal`, `pick`; math: `clamp`, `clamp01`, `sigmoid`, `decay(value, dt, halfLife)`, `logit`, `expit`, `minuteOfDay`, `dayOf` |
+| `core/` | `rng` | `createRng(seed)`, `random(rng)`, `normal`, `pick`; math: `clamp`, `clamp01`, `sigmoid`, `decay(value, dt, halfLife)`, `logit`, `expit`, `minuteOfDay`, `dayOf` |
 | `body/` | `body` | `createBody(spec, now)`, `advanceBody(p, dt, load)`, `readBody(p)` (true + perceived), `consume(p, deltas)`, `injure(p, injury)`, `sicken(p, illness)`, `nextBodyThreshold(p, load)` (minutes until a need crosses its interrupt threshold) |
 | `lifecourse/` | `life` | `ageYears(p)`, `lifeStage(p)`, `lifeModifiers(p)` → `{metabolism, recovery, learning, selfControl, maxFitness, mortalityPerYear}` |
 | `needs/` | `needs` | `readNeeds(p)`, `advanceNeeds(p, dt)`, `satisfy(p, deltas)`, `urgency(level, threshold)` |
@@ -60,10 +60,13 @@ Decisions are event-driven: a person decides when idle, when an activity ends, o
 | `conscience/` | `conscience` | `normTerms(p, affordance)`, `normVeto(p, affordance, desperation)`, `recordDeed(p, affordance, intention)`, `repent(p, breachId)` |
 | `agenda/` | `agenda` | `advanceAgenda(p)`, `agendaTerms(p, affordance)`, `onFinished(p, outcome)`, `promise(p, ...)`, `adoptGoal(p, ...)`, `proposeGoals(p)` |
 | `will/` | `will` | `resolveChoice(p, considered, suggestion)`, `predictResponse(p, considered, suggestion)` (pure, no RNG — for UI telegraphing), `learnFromVoice(p, resolution, feltValence)` |
-| `cognition/` | — | `consider(p, affordance)` → `Considered`; `decide(p, affordances, opts)` |
+| `cognition/` | — | `consider(p, affordance)` → `Considered`; `decide(p, affordances, opts)` (exported from the package as `scoreAndResolve`; hosts call the composite `decide` in `person.ts`) |
+| `chronicle/` | `chronicle`, `chronicleDay` | `noteDecision`, `noteOutcome`, `consolidateDay`, `closeDay`, `chronicleBetween`, `narrateChronicle`, `diffChronicle` |
+| `conversation/` | — | `converse(speaker, listener, ctx)`: one turn of testimony and advice between two people, applied through `beliefs/`, `social/` and `will/` |
 | `narrate/` | — | `narrateDecision(p, record)`, `voiceLine(p, resolution)`, `describePerson(p)` |
 | `person.ts` | `activity`, `trace`, `now` | `createPerson(spec)`, `tick(p, now)`, `decide`, `begin(p, aff, record, { promise? })`, `interrupt(p, now, reason)`, `finish`, `perceive`, `predict`, `snapshot`, `restore` |
-| `sim/` | — | `Community` driver over a host `World` adapter: `stepCommunity`, `preview`, `interruptPerson`, joint protocol (`proposeJoint`, `acceptJoint`, `declineJoint`, `mirrorAffordance`), `jointSuccessChance` |
+| `sim/` | `Community` (host-side) | `Community` driver over a host `World` adapter: `createCommunity(people, prior?)`, `communityState`, `stepCommunity`, `runSilent`, `preview`, `interruptPerson`, joint protocol (`proposeJoint`, `acceptJoint`, `declineJoint`, `mirrorAffordance`), `jointSuccessChance` |
+| `scenarios/` | world state (`VillageState`, `TownState`) | reference hosts: `createVillage`, `createTown`, `townPeople`, `villagerSpec` |
 
 ## Utility of an option
 
@@ -131,9 +134,13 @@ Emotion terms are named `emotion:<emotion>:<tag>` (e.g. `emotion:fear:risky`): t
 
 - All randomness comes from `person.rng`, or from host-owned RNG for world events. Given the same seed and inputs, the result is byte-identical when the host's calls fall on the same minutes. Discrete events (decisions, missed commitments, goals) do not depend on how a host chunks `tick` calls; continuous state agrees to floating-point rounding (~1e-9) across different chunkings, and is byte-identical when calls fall on the 60-minute `tick` grid.
 - `Person` is plain JSON. `snapshot(p)` returns a deep clone, and `restore(json)` validates `schema` and fills defaults.
+- A save is the people's snapshots, the community's host-side state (`communityState(c)`) and the world's state. Resume with `createCommunity(people, saved)` and the world's `state` option (`createTown`, `createVillage`). Restoring only the people and calling `createCommunity(people)` diverges: day hooks run twice and queued advice and standing-advice completions are lost.
+- A host with its own norm catalog sets `World.catalog`; `stepCommunity` passes it to `finish`, which reads make-ups owed for a break under necessity from it (default `DEFAULT_NORMS`). A norm missing from the catalog is not excused.
 - Bounded collections: episodes ≤ 200, beliefs ≤ 300, trace ≤ 32, emotions ≤ 12, breaches ≤ 50, intentions ≤ 50, voice history ≤ 5 per voice. Breach, injury and illness ids come from counters (`nextBreach`, `body.nextId`), so they stay unique after eviction.
 - `ENGINE_VERSION` 1.1.0 (2026-10-03) added the rules above and new state fields; `restore` refuses 1.0.0 saves.
+- `ENGINE_VERSION` 1.2.0 (2026-10-03) added several voices per decision, standing advice, abstentions and fasting perception, illness coupled to rest and food, habit ease and extinction, cue recall, the chronicle and the lexicon; `restore` refuses 1.1.0 saves.
 - `ENGINE_VERSION` 1.3.0 (2026-10-03) changes behaviour in every scenario: a commitment whose activity began inside its window stays open (and keeps its pull) until that activity ends; a habit's refractory counts the latest time the action was done by any habit; a voice that keeps pressing a declined suggestion loses a little trust (at most once per 12 h), and repeated good outcomes of the same suggested action earn less trust each time. Voice history entries gain `from`/`count`; finish events carry `decisionId`. `restore` refuses 1.2.0 saves.
+- `ENGINE_VERSION` 1.4.0 (2026-10-03): a standing suggestion whose action keeps a commitment is heard until he does it once, then rests until doing it again would keep the next window (`Suggestion.since`, `Community.standingDone`). `restore` refuses 1.3.0 saves.
 
 ## Scope notes
 

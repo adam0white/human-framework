@@ -152,6 +152,8 @@ export interface HalilView {
   }[];
   money: number;
   owed: number;
+  /** Round 3: illness that excuses the fast, and the doctor's last words, as plain lines (absent when well and unseen). */
+  health?: string[];
   /**
    * How a few things feel to him now, from his learned expectations (fix pass 2): the clinic, calling Selin, the
    * mosque. `trend` compares with the start of Ramadan.

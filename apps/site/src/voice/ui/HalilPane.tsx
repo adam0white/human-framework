@@ -50,6 +50,17 @@ export function HalilPane({ halil }: { halil: HalilView }) {
         </p>
       )}
 
+      {halil.health && halil.health.length > 0 && (
+        <>
+          <h3 className="v-sub">His health</h3>
+          <ul className="v-health">
+            {halil.health.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </>
+      )}
+
       <h3 className="v-sub">On his mind</h3>
       <ul className="v-mind">
         {halil.onMind.length === 0 && <li className="v-muted">Nothing pressing.</li>}

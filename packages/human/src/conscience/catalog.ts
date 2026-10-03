@@ -7,6 +7,7 @@ import type { NormDefinition } from '../types.ts';
  * on 2026-10-03. sunnah.com could not be fetched (HTTP 403), so hadith are cited only where verified in
  * research/islamic-foundations.md.
  * Secular-usable norms whose standing is an engineering choice are marked `assumption`.
+ * Review status of each cited source (most standings are not yet attributed in research/): research/norm-sources.md.
  *
  * Forbidden norms are named after the act (`theft`, `lying`) so that `violates` reads naturally.
  */

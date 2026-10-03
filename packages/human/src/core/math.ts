@@ -19,7 +19,7 @@ export function decay(value: number, dt: number, halfLife: number, target = 0): 
   return target + (value - target) * 0.5 ** (dt / halfLife);
 }
 
-/** Smooth 0..1 step between edges. */
+/** Smooth 0..1 step between edges. @internal */
 export function smoothstep(edge0: number, edge1: number, x: number): number {
   const t = clamp01((x - edge0) / (edge1 - edge0));
   return t * t * (3 - 2 * t);
@@ -36,7 +36,7 @@ export const round = (value: number, places = 4): number => {
   return Math.round(value * f) / f;
 };
 
-/** Running mean update with a minimum learning rate so estimates keep adapting. */
+/** Running mean update with a minimum learning rate so estimates keep adapting. @internal */
 export function runningMean(mean: number, sample: number, n: number, minRate = 0.1): number {
   const rate = Math.max(1 / Math.max(n, 1), minRate);
   return mean + (sample - mean) * rate;

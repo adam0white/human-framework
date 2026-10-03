@@ -268,6 +268,7 @@ export function wakeReviewAt(p: Person, now: Minute): Minute | undefined {
  * Pending commitments protected by the omission rule right now: linked to a held obligatory norm with conviction
  * ≥ `omissionConviction`, in the last (1 - omissionFraction) of the window, with at least one offered option
  * that fulfils it and passes the capacity/conscience vetoes. Empty under desperation ≥ necessity threshold.
+ * @internal
  */
 export function closingDuties(
   p: Person,
@@ -297,6 +298,7 @@ function omissionFor(duties: readonly Commitment[], aff: Affordance, now: Minute
 
 /**
  * The remembered episode that makes this person refuse `voiceId` at `action` (episode distrust rule), if any.
+ * @internal
  */
 export function distrustEpisode(
   p: Person,
@@ -347,12 +349,14 @@ export function vetoFor(
   return undefined;
 }
 
-const targets = (s: Suggestion, aff: Affordance): boolean =>
+/** Whether suggestion `s` names offer `aff` (by affordance id, or by action class when it names no affordance). */
+export const suggestionTargets = (s: Suggestion, aff: Affordance): boolean =>
   s.affordanceId !== undefined
     ? s.affordanceId === aff.id
     : s.action !== undefined && s.action === aff.action;
+const targets = suggestionTargets;
 
-/** NaN-safe utility: a non-finite score never wins. */
+/** NaN-safe utility: a non-finite score never wins. @internal */
 export const safeUtility = (u: number): number => (Number.isNaN(u) ? Number.NEGATIVE_INFINITY : u);
 
 const byUtilityThenId = (a: Considered, b: Considered): number =>

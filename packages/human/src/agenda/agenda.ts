@@ -22,6 +22,7 @@
  * (unsourced in research/, review 2026-10-03). A break under necessity is excused with a make-up owed (see the
  * necessity-break SCOPE below).
  */
+// The bundled catalog is only the default; a host with its own catalog passes it (`World.catalog`).
 import { DEFAULT_NORMS } from '../conscience/catalog.ts';
 import { clamp01, dayOf } from '../core/index.ts';
 import type {
@@ -343,7 +344,8 @@ export function pressureReachedAt(c: Commitment, level: number): Minute | undefi
   return at <= c.until ? at : undefined;
 }
 
-const matchesCommitment = (c: Commitment, action: string, targetId: string | undefined): boolean =>
+/** Whether completing `action` (at `targetId`) would keep commitment `c` by action match (abstentions never match). */
+export const matchesCommitment = (c: Commitment, action: string, targetId: string | undefined): boolean =>
   c.kind !== 'abstain' && c.actions.includes(action) && (c.targetId === undefined || c.targetId === targetId);
 
 /**
@@ -443,9 +445,11 @@ function excuseUnderNecessity(
   catalog: readonly NormDefinition[],
 ): boolean {
   if (c.normId === undefined) return false;
+  // A norm the person's catalog does not hold is not excused: there is no entry to read an excuse from.
   const def = catalog.find((n) => n.id === c.normId);
+  if (!def) return false;
   c.exempt = { reason: 'necessity', at };
-  const makeUp = def?.exemptions?.find((e) => e.when === 'illness')?.makeUp ?? false;
+  const makeUp = def.exemptions?.find((e) => e.when === 'illness')?.makeUp ?? false;
   if (!makeUp) return true;
   const entry: OwedMakeUp = {
     ofId: c.id,

@@ -1,7 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { formatClock } from '../sim/world-types.ts';
 import { type EndSummary, NO_CONCEPT } from './contract.ts';
-import { GoalChip, shortName } from './parts.tsx';
+import { ordersChanged } from './end-report.ts';
+import { CHIP_TEXT, GoalChip, jobPhrase, PLACE_LABEL, shortName } from './parts.tsx';
+
+const STATUS_TEXT: Record<string, string> = {
+  active: 'open at the end',
+  done: 'done',
+  cancelled: 'cancelled',
+  lapsed: 'lapsed',
+};
 
 /** One day's report: goals for Classic, Human and the Solo control, then character outcomes and moments. */
 function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string }) {
@@ -20,6 +28,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
   ];
   return (
     <>
+      <p className="end-changed">{ordersChanged(summary)}</p>
       <table className="end-table">
         <thead>
           <tr>
@@ -57,6 +66,22 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
           ))}
         </tbody>
       </table>
+      {summary.cards.length > 0 && (
+        <>
+          <h3>{summary.day === 3 ? 'Orders given on this day' : 'Your orders'}</h3>
+          <ul className="end-orders">
+            {summary.cards.map((c) => (
+              <li key={c.order.id}>
+                <span className="end-order-time">{formatClock(c.order.issuedAt)}</span>{' '}
+                <b>{shortName(c.order.personId)}</b> → {PLACE_LABEL[c.order.placeId]},{' '}
+                {jobPhrase(c.order.action)} · Classic {CHIP_TEXT[c.classic.state]} · Human{' '}
+                {CHIP_TEXT[c.human.state]}
+                {c.human.label ? ` (“${c.human.label}”)` : ''} · {STATUS_TEXT[c.status] ?? c.status}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
       <h3>Character outcomes</h3>
       <table className="end-table">
         <thead>
@@ -89,7 +114,9 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
         <ul className="moments">
           {summary.moments.map((m) => (
             <li key={`${m.id}-${m.minute}`}>
-              <span className="moment-n">{m.id}</span>
+              <span className="moment-n" title={`Moment ${m.id} of 5`}>
+                #{m.id}
+              </span>
               <div>
                 <b>{shortName(m.personId)}</b> · {formatClock(m.minute)}
                 <p>{m.line}</p>

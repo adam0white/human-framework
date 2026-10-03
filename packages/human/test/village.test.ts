@@ -166,14 +166,17 @@ describe('village simulation', () => {
     expect(r.narration).toContain('Last time, went to the forest at night and got hurt by an animal.');
   });
 
-  test('a standing suggestion is resolved at every decision, logged with its verdict, counted only on new choices', () => {
+  test('a standing suggestion is resolved at every decision where it is heard, logged with its verdict, counted only on new choices', () => {
     const s = setup(['amina', 'bilal']);
     const events = stepCommunity(s.community, s.village, START + MINUTES_PER_DAY, {
       suggestions: { bilal: { voiceId: 'player', action: 'work-field', strength: 0.6 } },
     });
     const decisions = events.filter((e) => e.kind === 'decide' && e.personId === 'bilal');
-    expect(decisions.length).toBeGreaterThan(5);
-    expect(decisions.every((e) => e.verdict !== undefined)).toBe(true);
+    expect(decisions.filter((e) => e.verdict !== undefined).length).toBeGreaterThan(2);
+    // Standing advice (round 3): it is held back while the field is not on offer or once the day's shift is done,
+    // so it is never refused as unavailable.
+    const bilalP = s.people.find((p) => p.id === 'bilal') as Person;
+    expect(bilalP.trace.some((r) => r.suggestion?.reason === 'unavailable')).toBe(false);
     // Reviews that keep the running activity re-weigh the request quietly: counters reflect choices only.
     const continued = new Set(
       events.filter((e) => e.kind === 'continue' && e.personId === 'bilal').map((e) => e.at),

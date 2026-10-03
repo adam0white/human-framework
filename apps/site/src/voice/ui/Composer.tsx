@@ -141,8 +141,7 @@ export function Composer({
     if (!open) return undefined;
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
-      // Enter and Esc: a focused control in a sheet, card or the tabs keeps its own keys. A focused button inside
-      // the composer keeps its own Enter (Enter on an option picks it; it does not also send). Anywhere else
+      // Enter and Esc: a focused control in a sheet, card or the tabs keeps its own keys. Anywhere else
       // (the page, the top bar after a click), Enter says it and Esc says nothing. Letters and digits have no
       // other meaning here.
       const active = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -150,7 +149,16 @@ export function Composer({
       if (active instanceof HTMLTextAreaElement) return;
       const inSheet = active?.closest('.v-why, .v-standing, .v-overlay, .v-tabs');
       if (inSheet && (e.key === 'Enter' || e.key === 'Escape')) return;
-      if (e.key === 'Enter' && active instanceof HTMLButtonElement && active.closest('.v-composer')) return;
+      // Game design review (GD4): after a mouse click the clicked option keeps focus, so Enter used to re-pick it
+      // and never send. A pressed option, a strength, insist or reason button sends on Enter; an option not yet
+      // picked, the peek toggle and the commit buttons keep their own Enter.
+      if (e.key === 'Enter' && active instanceof HTMLButtonElement && active.closest('.v-composer')) {
+        const sends =
+          active.closest('.v-seg, .v-appeals') ||
+          active.classList.contains('v-insist') ||
+          (active.classList.contains('v-option') && active.getAttribute('aria-pressed') === 'true');
+        if (!sends) return;
+      }
       const h = handlers.current;
       const k = e.key;
       if (/^[1-6]$/.test(k)) {

@@ -132,6 +132,15 @@ export const TOWN_DEFAULTS = {
    * whether he calls her first is his to do (fix pass 2026-10-03: her 10:00 call had made every Eid the same).
    */
   selinEidCallFrom: 18 * 60,
+  /**
+   * On Eid Selin waits this long past the hour he usually calls her (the mean of his last calls), up to
+   * `selinEidCallLatest`, so whether he calls first is decided by him and not by her clock (game design review
+   * 2026-10-03: at 18:00 she always beat his 20:30 habit).
+   */
+  selinEidWait: 30,
+  selinEidCallLatest: 21 * 60,
+  /** His last calls remembered for that hour. */
+  halilCallTimesKept: 7,
   /** On Eid, tea with Rıza and the grave from this minute of day. */
   eidMorningFrom: 9 * 60,
 };
@@ -162,6 +171,18 @@ export function townDay(day: number, opts: { ramadanFirstDay?: number; ramadanDa
  */
 export const TOWN_GAME_CREATE = MINUTES_PER_DAY - 120;
 export const TOWN_GAME_START = MINUTES_PER_DAY + 220;
+
+/**
+ * The minute of day from which Selin calls her father on Eid if they have not spoken: past the hour he usually
+ * calls her (the mean of his last calls, `TownState.halilCallTimes`) by `selinEidWait`, between `selinEidCallFrom`
+ * and `selinEidCallLatest`.
+ */
+export function selinEidCallMinute(state: Pick<TownState, 'halilCallTimes'>): number {
+  const T = TOWN_DEFAULTS;
+  const times = state.halilCallTimes ?? [];
+  const usual = times.length > 0 ? times.reduce((a, b) => a + b, 0) / times.length : 0;
+  return Math.min(T.selinEidCallLatest, Math.max(T.selinEidCallFrom, Math.round(usual) + T.selinEidWait));
+}
 
 /** Each person's house (Selin lives in the city). */
 export const homeOf = (id: PersonId): string => (id === 'selin' ? 'city' : `${id}-home`);
@@ -208,6 +229,10 @@ export interface TownState {
   lastCollect?: number;
   /** Minute the last call between Halil and Selin ended, and who placed it. */
   lastCall?: { at: Minute; by: PersonId };
+  /** Minute of day of Halil's last few own calls to Selin (optional; absent in states from before it existed). */
+  halilCallTimes?: number[];
+  /** What the doctor last told each person, and when (optional; absent in states from before it existed). */
+  doctorSaid?: Record<PersonId, { at: Minute; text: string }>;
 }
 
 export interface Town extends World {
@@ -284,6 +309,9 @@ const HALIL_LEXICON: Lexicon = {
     // Meal appointments are kept "for suhoor" and "to break the fast", not "to keep my word" (narrate: label lines).
     'intention.label:suhoor': ['for suhoor'],
     'intention.label:iftar': ['to break the fast'],
+    // His one abstention is the fast (day cards: "He kept the fast", not "1 of 1 abstentions").
+    'kind:abstain': ['the fast'],
+    'kinds:abstain': ['fasts'],
   },
 };
 
@@ -308,7 +336,15 @@ export function townSpecs(opts: TownOptions = {}): Record<TownPersonId, PersonSp
   const player = opts.playerVoice ?? 'you';
   const born = (age: number) => now - age * MINUTES_PER_YEAR;
   const worship = (practice: number): NonNullable<PersonSpec['commitments']> =>
-    practice >= 0.5 ? prayerWindows(day, townCalendar).map((c, i) => ({ ...c, id: `prayer${i}` })) : [];
+    practice >= 0.5
+      ? prayerWindows(day, townCalendar).map((c, i) =>
+          // A window already closed at creation starts tomorrow: it was not missed, it had not begun for him yet
+          // (game design review 2026-10-03: "ashamed (a prayer missed)" on the first screen).
+          c.until <= now
+            ? { ...c, from: c.from + MINUTES_PER_DAY, until: c.until + MINUTES_PER_DAY, id: `prayer${i}` }
+            : { ...c, id: `prayer${i}` },
+        )
+      : [];
   // Tea is drink: the tea house is an evening place in Ramadan.
   const fast = (violatedBy: string[] = ['eat', 'drink', 'tea']): NonNullable<PersonSpec['commitments']> => [
     { ...ramadanFast(first, days, townCalendar, { violatedBy }), id: 'fast' },
@@ -964,10 +1000,17 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
             material: 60,
             tags: ['work'],
           });
-        // She calls when they have not spoken for a day and a half, so some evenings are his to call.
-        const herCalls = eid || day > eidDay ? mod >= T.selinEidCallFrom : calls;
-        if (herCalls && (state.lastCall === undefined || now - state.lastCall.at >= T.selinCallGap))
-          talk('halil', 'city', 'call', 'call father');
+        // She calls when they have not spoken for a day and a half, so some evenings are his to call. On Eid she
+        // calls if they have not spoken that day, after the hour he usually calls has passed.
+        if (eid) {
+          const from = selinEidCallMinute(state);
+          const spokeToday = state.lastCall !== undefined && dayOf(state.lastCall.at) === day;
+          if (mod >= from && !spokeToday) talk('halil', 'city', 'call', 'call father');
+        } else {
+          const herCalls = day > eidDay ? mod >= T.selinEidCallFrom : calls;
+          if (herCalls && (state.lastCall === undefined || now - state.lastCall.at >= T.selinCallGap))
+            talk('halil', 'city', 'call', 'call father');
+        }
         break;
       }
       case 'riza': {
@@ -1174,6 +1217,8 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
             claims: [{ prop: `${p.id}:should:see-doctor`, value: false, confidence: 0.95 }],
             summary: `${p.name} sent a photo of the clinic slip`,
           });
+        state.doctorSaid ??= {};
+        state.doctorSaid[p.id] = { at: now, text: percepts[0]?.summary ?? 'the doctor found nothing new' };
         return done({ ...base, needs: { safety: 0.2 }, percepts, summary: 'saw the doctor' });
       }
       case 'pay-rent': {
@@ -1221,8 +1266,13 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
         if (
           (p.id === 'halil' && aff.with?.includes('selin')) ||
           (p.id === 'selin' && aff.with?.includes('halil'))
-        )
+        ) {
           state.lastCall = { at: now, by: p.id };
+          if (p.id === 'halil') {
+            const kept = [...(state.halilCallTimes ?? []), minuteOfDay(act.startedAt)];
+            state.halilCallTimes = kept.slice(-T.halilCallTimesKept);
+          }
+        }
         return done({ ...base, needs: { belonging: 0.3, leisure: 0.15 }, summary: aff.label });
       case 'tea':
       case 'talk':

@@ -110,7 +110,7 @@ export function TrustMeter({ trust }: { trust: TrustView }) {
         <span style={{ width: `${trust.value * 100}%` }} />
       </div>
       {trust.history.length === 0 ? (
-        <p className="muted small">Nothing has moved it yet.</p>
+        <p className="muted small">Nothing has moved it today.</p>
       ) : (
         <ul className="trust-history">
           {trust.history.slice(0, 3).map((e) => (

@@ -30,11 +30,6 @@ export function random(rng: RngState): number {
   return t / 4294967296;
 }
 
-/** Integer in [min, max] inclusive. */
-export function randomInt(rng: RngState, min: number, max: number): number {
-  return min + Math.floor(random(rng) * (max - min + 1));
-}
-
 export function chance(rng: RngState, p: number): boolean {
   return random(rng) < p;
 }
@@ -62,9 +57,4 @@ export function weightedIndex(rng: RngState, weights: readonly number[]): number
     if (r < 0) return i;
   }
   return weights.length - 1;
-}
-
-/** Derive an independent child stream (e.g. one per person from a world seed). */
-export function forkRng(rng: RngState): RngState {
-  return createRng(Math.floor(random(rng) * 4294967296));
 }

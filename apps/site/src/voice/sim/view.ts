@@ -9,6 +9,7 @@ import {
   type DecisionRecord,
   dayOf,
   type Episode,
+  EXEMPTION_DEFAULTS,
   MINUTES_PER_DAY,
   type Person,
   readAffect,
@@ -245,10 +246,24 @@ export function halilView(h: Person, town: Town, t: number, start?: Record<strin
     .slice(0, 6)
     .map((c) => {
       const label = commitmentLabel(c.label, c.actions[0], c.kind);
-      const due = c.kind === 'abstain' ? `until ${clock(c.until)}` : dueText(c.until, t);
+      // Game design review (GD8): the engine runs each prayer window to the next prayer (agenda/prayer.ts), so
+      // Fajr shows as open until Dhuhr. That is an engineering simplification, labelled as one; when Fajr's time
+      // ends is not sourced in research/ (HANDOFF deferred question), so the label states no end of its own.
+      const simplified = /Fajr/.test(c.label ?? '')
+        ? ' (a simplification: the game holds Fajr open until Dhuhr)'
+        : '';
+      const due = (c.kind === 'abstain' ? `until ${clock(c.until)}` : dueText(c.until, t)) + simplified;
+      if (c.exempt !== undefined)
+        return {
+          id: c.id,
+          label,
+          due: c.exempt.reason === 'illness' ? 'he is unwell' : due,
+          state: 'excused' as const,
+        };
       const closing = c.until - t <= (c.kind === 'promise' ? 360 : 30);
       return { id: c.id, label, due, state: closing ? ('closing' as const) : ('open' as const) };
     });
+  const health = healthLines(h, town, t);
   return {
     doing: act ? { label: act.affordance.label, intention: act.intention, until: clock(act.endsAt) } : null,
     asleep: h.body.asleep,
@@ -258,7 +273,41 @@ export function halilView(h: Person, town: Town, t: number, start?: Record<strin
     money: Math.round(town.state.money.halil ?? 0),
     owed: Math.round(town.state.rentOwed),
     ...(start ? { weighs: weighsView(h, start) } : {}),
+    ...(health.length > 0 ? { health } : {}),
   };
+}
+
+/** His blood pressure in the words the report and the pane share. */
+export function pressureWord(sev: number): string {
+  return sev < 0.15 ? 'close to normal' : sev < 0.3 ? 'mildly high' : sev < 0.5 ? 'moderately high' : 'high';
+}
+
+/** The doctor's last words to him as a sentence, with the day ("The doctor said … (Ramadan 3)."), if he has been. */
+export function doctorLine(town: Town): string | undefined {
+  const d = town.state.doctorSaid?.halil;
+  if (!d) return undefined;
+  return `${d.text.charAt(0).toUpperCase()}${d.text.slice(1)} (${dayLabel(dayOf(d.at))}).`;
+}
+
+/**
+ * Round 3, defect 3: illness that excuses his fast was invisible. When today's fast is excused for illness (or his
+ * pressure is at the exemption line), say so plainly, with the doctor's words if he has seen her.
+ */
+export function healthLines(h: Person, town: Town, t: number): string[] {
+  const out: string[] = [];
+  const sev = h.body.illnesses.find((x) => x.kind === 'hypertension')?.severity ?? 0;
+  const excused = h.agenda.commitments.some(
+    (c) => c.kind === 'abstain' && c.exempt?.reason === 'illness' && c.until > t && c.from - 360 <= t,
+  );
+  if (excused)
+    out.push(
+      `Unwell: his blood pressure is ${pressureWord(sev)}. He counts himself ill and is not fasting today; he owes the day after Eid.`,
+    );
+  else if (sev >= EXEMPTION_DEFAULTS.illnessSeverity)
+    out.push(`Unwell: his blood pressure is ${pressureWord(sev)}.`);
+  const doc = doctorLine(town);
+  if (doc && (out.length > 0 || sev >= 0.15)) out.push(doc);
+  return out;
 }
 
 function dueText(until: number, t: number): string {
@@ -286,14 +335,18 @@ export interface EndsInput {
   trustStart: number;
   /** Minute he last called Selin himself, if ever (the Selin end is his call, not hers). */
   halilCalledAt?: number;
+  /** That last call of his was not on your word. */
+  calledUnasked?: boolean;
 }
 
 /** The day of the month he promised Osman the rent by (the town's opening promise). */
 const RENT_PROMISED_DAY = 15;
 /** What he promised by then. */
 const RENT_PROMISED = 300;
+/** The last day of the fast: Osman wants the rest by then (the game's second money question, round 4). */
+const LAST_FAST = TOWN_EID_DAY - 1;
 
-export function endsView({ h, town, t, trustStart, halilCalledAt }: EndsInput): EndView[] {
+export function endsView({ h, town, t, trustStart, halilCalledAt, calledUnasked }: EndsInput): EndView[] {
   const day = dayOf(t);
   const chron: { kept: { kind: string }[]; released: { kind: string }[] }[] = (h.chronicle ?? []).filter(
     (r) => r.day >= 1 && r.day < TOWN_EID_DAY,
@@ -364,7 +417,9 @@ export function endsView({ h, town, t, trustStart, halilCalledAt }: EndsInput): 
           : date?.status === 'broken'
             ? 'paid up, late'
             : owed > 0
-              ? `${owed} owed`
+              ? day > RENT_PROMISED_DAY && day <= LAST_FAST
+                ? `${owed} owed by Ramadan ${LAST_FAST}`
+                : `${owed} owed`
               : 'paid up',
       // The deadline is named only while it is still ahead and something is owed (playtest: stale detail).
       detail:
@@ -372,7 +427,9 @@ export function endsView({ h, town, t, trustStart, halilCalledAt }: EndsInput): 
           ? `${dateText ? `${dateText} ` : ''}${paid > 0 ? `Paid ${paid}. ` : ''}${
               paid < RENT_PROMISED && day <= RENT_PROMISED_DAY
                 ? `Osman wants ${RENT_PROMISED} by Ramadan ${RENT_PROMISED_DAY}`
-                : `Owed ${owed}`
+                : day <= LAST_FAST
+                  ? `Osman wants the rest, ${owed}, by the end of Ramadan`
+                  : `Owed ${owed}`
             }. He has ${money}.`
           : `${dateText ? `${dateText} ` : ''}Paid ${paid}; nothing owed. He has ${money}.`,
       progress: round(Math.min(1, paid / Math.max(1, paid + owed))),
@@ -389,13 +446,15 @@ export function endsView({ h, town, t, trustStart, halilCalledAt }: EndsInput): 
       id: 'selin',
       label: 'Call Selin himself, not wait for her.',
       status:
-        his === undefined
+        his === undefined || halilCalledAt === undefined
           ? 'he never calls'
           : his === 0
-            ? 'he called today'
+            ? `he called today${calledUnasked ? ', unasked' : ''}`
             : his === 1
-              ? 'he called yesterday'
-              : `he called ${his} days ago`,
+              ? `he called yesterday${calledUnasked ? ', unasked' : ''}`
+              : his <= 6
+                ? `he called ${his} days ago`
+                : `he last called on ${dayLabel(dayOf(halilCalledAt))}`,
       detail: call
         ? `Last call ${when(call.at)}; ${call.by === 'halil' ? 'he called her' : 'Selin called'}.${his === undefined ? ' Since the funeral he waits for her to call.' : ''}`
         : 'No calls yet this Ramadan.',

@@ -7,7 +7,9 @@
     "types": ["node"],
     "noEmit": false,
     "emitDeclarationOnly": true,
-    "declarationDir": ".types"
+    "declarationDir": ".types",
+    "tsBuildInfoFile": ".types/tsconfig.tsbuildinfo",
+    "paths": { "@human/framework": ["./src/index.ts"] }
   },
-  "include": ["src", "test"]
+  "include": ["src", "test", "examples"]
 }

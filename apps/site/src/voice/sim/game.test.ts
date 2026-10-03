@@ -499,3 +499,155 @@ describe('Game 2 sim determinism and budget', () => {
     expect(prefills).toBeGreaterThan(3);
   });
 });
+
+describe('Game 2 round 3 fixes', () => {
+  const digests = (g: VoiceGame): string[][] => {
+    const out: string[][] = [];
+    let seen = '';
+    play(g, {
+      confirm: true,
+      insist: true,
+      whispers: [
+        { choiceId: 'doctor', strength: 'urge', appeal: 'safety' },
+        { choiceId: 'mosque', strength: 'urge', appeal: 'duty' },
+      ],
+      stop: (x) => {
+        const key = x.intro ? `${x.t}:${x.intro.label}` : '';
+        if (x.intro && /days passed/.test(x.intro.label) && key !== seen) {
+          seen = key;
+          out.push(x.intro.lines);
+        }
+        return false;
+      },
+    });
+    return out;
+  };
+  const pushy = new VoiceGame(SHIPPED_SEED);
+  const pushyDigests = digests(pushy);
+  const prefill = new VoiceGame(SHIPPED_SEED);
+  play(prefill, { confirm: true, whispers: WHISPERS });
+
+  test('a standing urge to the mosque is kept once per prayer, not at every decision, on skipped days', () => {
+    const played = new Set([1, 2, 15, 30, 31]);
+    const byDay = new Map<number, number>();
+    for (const c of pushy.cells) {
+      const d = Math.floor(c.from / MIN_DAY);
+      if (c.affordanceId !== 'pray' || played.has(d) || d > 30) continue;
+      byDay.set(d, (byDay.get(d) ?? 0) + 1);
+    }
+    expect(byDay.size).toBeGreaterThan(10);
+    expect(Math.max(...byDay.values())).toBeLessThanOrEqual(6);
+  });
+
+  test('the skip digest never counts more days done than days passed', () => {
+    expect(pushyDigests.length).toBeGreaterThan(0);
+    for (const lines of pushyDigests)
+      for (const m of lines.join(' ').matchAll(/did it on (\d+) of (\d+) days/g))
+        expect(Number(m[1])).toBeLessThanOrEqual(Number(m[2]));
+  });
+
+  test('advice is never refused as not on offer: it waits, and the log says why', () => {
+    for (const g of [prefill, pushy]) {
+      expect(
+        g.halil.trace.some((r) => r.suggestion?.voiceId === 'you' && r.suggestion.reason === 'unavailable'),
+      ).toBe(false);
+      expect(g.log.some((e) => /isn.t on offer/.test(e.text))).toBe(false);
+    }
+  });
+
+  test('copy: no "to drink" on a meal, and no "once … each time" in the report', () => {
+    for (const g of [prefill, pushy]) {
+      expect(g.log.some((e) => e.kind === 'act' && /^I eat.*, to drink\./.test(e.text))).toBe(false);
+      expect(/once[^.]*each time/.test(JSON.stringify(g.report))).toBe(false);
+      expect(/did not pray/.test(JSON.stringify(g.report))).toBe(false);
+    }
+  });
+
+  test('Eid: the first cigarette after the meal and the Selin call each pause', () => {
+    for (const g of [prefill, pushy]) {
+      const eid = g.beats.history.filter((b) => b.at >= at(31, 0) && b.at < at(32, 0));
+      const smoke = eid.find((b) => b.kind === 'craving' && /the cigarette/.test(b.text));
+      expect(smoke?.paused, 'cigarette beat').toBe(true);
+      const call = eid.find((b) => /^(Selin called him|He called Selin) for Eid/.test(b.text));
+      expect(call, 'eid call beat').toBeDefined();
+      expect(call?.paused, call?.text).toBe(true);
+    }
+  });
+
+  test('the report says whether Selin called on Eid, never that he merely waited', () => {
+    for (const g of [prefill, pushy])
+      expect(/He waited for her to call/.test(JSON.stringify(g.report))).toBe(false);
+  });
+
+  test('provoked illness: the onset, the excused fast and the doctor show in the digest, the pane and the report', () => {
+    const g = new VoiceGame(SHIPPED_SEED);
+    let digest: string[] = [];
+    let health: string[] | undefined;
+    let raised = false;
+    play(g, {
+      stop: (x) => {
+        if (!raised && x.t >= at(2, 12)) {
+          const hyp = x.halil.body.illnesses.find((i) => i.kind === 'hypertension');
+          if (hyp) {
+            hyp.severity = 0.45;
+            hyp.baseline = 0.45;
+          }
+          raised = true;
+        }
+        if (x.intro && /days passed/.test(x.intro.label) && digest.length === 0) digest = x.intro.lines;
+        if (digest.length > 0 && !x.intro && x.t >= at(15, 6)) health = x.frame().halil.health;
+        return health !== undefined;
+      },
+    });
+    expect(digest.join(' ')).toMatch(/made him unwell on/);
+    expect(health?.some((l) => /^Unwell/.test(l))).toBe(true);
+    play(g);
+    expect(g.report?.body.some((l) => /made him unwell on \d+ days? of Ramadan \(/.test(l))).toBe(true);
+  });
+
+  test('round 4: a torn line is logged before the act it led to, never after', () => {
+    for (const g of [prefill, pushy]) {
+      for (const [i, e] of g.log.entries()) {
+        if (e.beat !== 'close-call' || !e.decisionId) continue;
+        expect(g.log.slice(0, i).some((x) => x.kind === 'act' && x.decisionId === e.decisionId)).toBe(false);
+      }
+    }
+  });
+
+  test('round 4: Selin calls first on Eid only after his usual hour has passed (never before 18:00)', () => {
+    for (const g of [prefill, pushy])
+      if (g.selinEidCallAt !== undefined) expect(g.selinEidCallAt % MIN_DAY).toBeGreaterThanOrEqual(18 * 60);
+  });
+
+  test('round 4: the skip digest says how he answered your words, or that he acted on his own', () => {
+    for (const lines of pushyDigests)
+      expect(/When he heard it|on his own|You left no word/.test(lines.join(' ')), lines.join(' ')).toBe(
+        true,
+      );
+  });
+
+  test('round 4: no "1 of 1" counts in the log or the report', () => {
+    for (const g of [prefill, pushy]) {
+      expect(/\b1 of 1\b/.test(JSON.stringify(g.report))).toBe(false);
+      expect(g.log.some((e) => /\b1 of 1\b/.test(e.text))).toBe(false);
+    }
+  });
+
+  test('round 4: a played day opens with its open questions, not an empty "begins" card', () => {
+    const intros: { label: string; lines: string[] }[] = [];
+    const g = new VoiceGame(SHIPPED_SEED);
+    play(g, {
+      stop: (x) => {
+        if (x.intro && !intros.some((i) => i.label === x.intro?.label)) intros.push(x.intro);
+        return false;
+      },
+    });
+    const played = intros.filter((i) => !/days passed/.test(i.label) && /^Ramadan (2|15|30)$/.test(i.label));
+    expect(played.length).toBeGreaterThan(0);
+    for (const i of played)
+      expect(
+        i.lines.some((l) => /Osman|clinic|Selin|Eid/.test(l)),
+        i.lines.join(' | '),
+      ).toBe(true);
+  });
+});

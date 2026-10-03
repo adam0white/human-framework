@@ -55,7 +55,6 @@ export interface Illness {
   trendPerDay: number;
   contagious: boolean;
   since: Minute;
-  // --- lane body+needs+habits ---
   /**
    * A long-standing condition (e.g. hypertension): no immune drift toward recovery; severity relaxes
    * toward `baseline` raised by sleep debt and by the exposures named in `aggravatedBy`. Never evicted
@@ -95,7 +94,6 @@ export interface BodyState {
   alive: boolean;
   /** Counter for injury and illness ids (ids stay unique after bounded eviction). */
   nextId: number;
-  // --- lane body+needs+habits ---
   /** Host-driven exposures (e.g. 'smoke'), see `body.expose`. Absent = none. Bounded by BODY_DEFAULTS.maxExposures. */
   exposures?: Record<string, Exposure>;
   /**
@@ -104,8 +102,6 @@ export interface BodyState {
    */
   rates?: BodyRates;
 }
-
-// --- lane body+needs+habits ---
 /** Per-minute depletion rates a host may pin per person; see `BodyState.rates`. */
 export interface BodyRates {
   satietyPerMinute?: number;
@@ -113,8 +109,6 @@ export interface BodyRates {
   hydrationPerMinute?: number;
   hydrationEffortPerMinute?: number;
 }
-
-// --- lane body+needs+habits ---
 /** A repeated exposure: a recent load (days-scale decay) and a cumulative dose (years-scale decay). */
 export interface Exposure {
   /** Recent load 0..1; aggravates chronic conditions. */
@@ -172,7 +166,7 @@ export interface NeedReading {
 }
 
 // ---------------------------------------------------------------------------------------------
-// Personality, values and understood norms — owned by `character/` (traits, values) and `conscience/` (norms)
+// Personality, values and understood norms — owned by `person.ts` (traits, values) and `conscience/` (norms)
 // ---------------------------------------------------------------------------------------------
 
 /** HEXACO, each 0..1 with 0.5 = population mean. */
@@ -215,7 +209,6 @@ export interface NormDefinition {
   standing: NormStanding;
   /** Provenance records: revealed text, transmission, interpretation, or engineering assumption. */
   sources?: { kind: 'revelation' | 'hadith' | 'interpretation' | 'empirical' | 'assumption'; ref: string }[];
-  // --- lane agenda+conscience ---
   /**
    * Catalogued exemptions from an obligation (e.g. the fast for the ill and the traveller, Qur'an 2:184-185),
    * each with its own provenance. Distinct from the forbidden-norm necessity exception (2:173). `makeUp` = the
@@ -223,8 +216,6 @@ export interface NormDefinition {
    */
   exemptions?: NormExemption[];
 }
-
-// --- lane agenda+conscience ---
 /** One catalogued condition under which an obligation is not held for a day. */
 export interface NormExemption {
   when: 'illness' | 'travel';
@@ -329,7 +320,6 @@ export interface Habit {
   strength: Unit;
   repetitions: number;
   lastAt: Minute;
-  // --- lane body+needs+habits ---
   /** Cue occasions on which a different action was completed (extinction by withholding). */
   withheld?: number;
   /** Last minute a withholding counted (spacing: at most one meaningful withholding per cue occasion). */
@@ -364,7 +354,6 @@ export interface Episode {
    * on insisted-compliance episodes). Read by the distrust rule in `will/`.
    */
   voiceId?: EntityId;
-  // --- lane memory+social+conversation ---
   /** Minute this episode was last brought back by `recallByCue` (refractory period; absent = never cue-recalled). */
   recalledAt?: Minute;
 }
@@ -419,7 +408,6 @@ export interface Relationship {
   /** Balance of favours: positive = they owe me. */
   ledger: number;
   lastInteraction: Minute;
-  // --- lane memory+social+conversation ---
   /**
    * Set by `social.markDeceased`: the minute the other person died. The tie also carries the role 'deceased';
    * affection persists, interaction is impossible, and recall of them is a grief cue.
@@ -455,7 +443,6 @@ export interface Commitment {
   recurEvery?: number;
   /** Optional display name, e.g. 'Maghrib'; used in counter-offers ("after I pray Maghrib"). */
   label?: string;
-  // --- lane agenda+conscience ---
   /** For kind 'abstain': action ids whose completion inside the window breaks it. */
   violatedBy?: string[];
   /** For kind 'abstain': catalogued conditions under which the person may not hold it that day. */
@@ -489,7 +476,6 @@ export interface Goal {
   status: 'active' | 'achieved' | 'abandoned';
   adoptedAt: Minute;
   deadline?: Minute;
-  // --- lane agenda+conscience ---
   /** Last minute the goal was advanced (or adopted); neglect is counted from here. */
   lastAdvancedAt?: Minute;
   /** Importance before neglect decay; `revisePurposes` recomputes `importance` from it. */
@@ -502,12 +488,9 @@ export interface AgendaState {
   nextId: number;
   /** Day index of the last spontaneous goal proposal (-1 = never); at most one proposal per day. */
   lastProposalDay: number;
-  // --- lane agenda+conscience ---
   /** Make-ups owed for exempted instances (qada), bounded; `scheduleMakeUp` turns one into a commitment. */
   owed?: OwedMakeUp[];
 }
-
-// --- lane agenda+conscience ---
 /** A missed instance of an obligation, exempted under a catalogued condition, owed later (qada). */
 export interface OwedMakeUp {
   /** Id of the exempted commitment. */
@@ -539,7 +522,6 @@ export interface VoiceRelation {
   refused: number;
   /** The last few events that moved `trust`, oldest first (bounded, `WILL_DEFAULTS.maxVoiceHistory`). */
   history: VoiceTrustEvent[];
-  // --- lane review-fixes ---
   /** Seeded from `PersonSpec.voices` (the player, family): never evicted to make room for a new voice. */
   seeded?: boolean;
   /**
@@ -593,7 +575,6 @@ export interface WillState {
   switchMargin: number;
   /** Softmax temperature. 0 = argmax (default, explainable); >0 adds per-person variability. */
   temperature: number;
-  // --- lane will+cognition ---
   /**
    * Standing advice (N9): suggestions remembered from `told` percepts that named an action. Each entry adds a
    * decaying `suggestion:remembered:<sourceId>` term on later decisions. Bounded (`WILL_DEFAULTS.maxAdvice`),
@@ -660,14 +641,12 @@ export interface Activity {
   jointId?: string;
   /** Set by `interrupt()`: why the next review was brought forward. Cleared when the review is handled. */
   interrupt?: { at: Minute; reason: string };
-  // --- lane review-fixes ---
   /**
    * Set by `begin` when the chosen act was possible only because necessity / the capacity bound lifted a
    * conscience veto (eating forbidden food, or drinking during the fast, in extremity). `finish` then records no
    * breach for it and excuses a broken abstention with a make-up owed.
    */
   necessity?: boolean;
-  // --- lane will+cognition ---
   /**
    * Every assented/complied voice resolution behind this activity (several voices may have pushed the chosen
    * option). `finish` calls `learnFromVoice` once per entry. `suggestion` remains the credited one.
@@ -685,8 +664,14 @@ export const PERSON_SCHEMA = 'human/person@1';
  * 1.2.0 (2026-10-03): several voices per decision, standing advice, abstentions and fasting perception,
  * illness coupled to rest and food, habit ease and extinction, cue recall, chronicle, lexicon. Acute-illness and
  * habit-eased scores differ from 1.1.0 for the same inputs, so saves from earlier engines do not restore.
+ * 1.3.0 (2026-10-03): a commitment begun inside its window stays open until its activity ends, shared habit
+ * refractory, trust worn by pressing a declined suggestion, diminishing trust from repeated good outcomes; voice
+ * history entries gain `from`/`count` (see docs/framework.md).
+ * 1.4.0 (2026-10-03): standing advice that keeps a commitment is heard until done once per occasion
+ * (`Suggestion.since`, `Community.standingDone`). Person saves are unchanged in shape but decisions under standing
+ * advice differ, so 1.3.0 saves do not restore.
  */
-export const ENGINE_VERSION = '1.3.0';
+export const ENGINE_VERSION = '1.4.0';
 
 export interface Person {
   schema: typeof PERSON_SCHEMA;
@@ -714,7 +699,6 @@ export interface Person {
   /** Bounded ring of recent decisions for explanation UI. */
   trace: DecisionRecord[];
   nextDecision: number;
-  // --- lane lifecourse+chronicle+narrate ---
   /** Consolidated day records, oldest first, bounded (`CHRONICLE_DEFAULTS.maxDays`). Owned by `chronicle/`. */
   chronicle?: DayRecord[];
   /** The open day's accumulator (plain JSON, survives saves mid-day). Owned by `chronicle/`. */
@@ -793,7 +777,6 @@ export interface Percept {
    * so a salient one forces re-decision even if it does not target them. false: never interrupts.
    */
   near?: boolean;
-  // --- lane will+cognition ---
   /**
    * Advice carried by testimony (N9): actions the speaker urged ("see the doctor this week"). On an attended
    * `told` percept, `will.rememberAdvice` stores each as standing advice from `actorId`.
@@ -827,7 +810,6 @@ export interface Outcome {
   fulfills?: string[];
   /** Goal ids this outcome advances (defaults to the activity's `Affordance.advances`). */
   advances?: string[];
-  // --- integration (2026-10-03) ---
   /**
    * Host-defined exposures this outcome caused (e.g. one cigarette: `{ kind: 'smoke' }`); `finish` records each
    * through `body.expose`, which aggravates chronic conditions listing the kind and feeds `exposureChance`.
@@ -855,6 +837,12 @@ export interface Suggestion {
   insist?: boolean;
   /** Optional reason the voice gives; recognised keys raise persuasion when they match the person's motives. */
   appeal?: NeedId | ValueId | 'duty';
+  /**
+   * Standing suggestions (`StepOptions.suggestions`): the minute the voice gave it. Only a completion of its action
+   * after this minute satisfies it (see the standing-advice SCOPE in `sim/`), so advice given again is heard afresh.
+   * Unset: any completion counts.
+   */
+  since?: Minute;
 }
 
 /**
@@ -937,7 +925,6 @@ export interface DecisionRecord {
   review?: boolean;
   /** Why this decision was brought forward, when `interrupt()` forced it (e.g. 'percept:injury'). */
   interrupt?: string;
-  // --- lane will+cognition ---
   /**
    * One resolution per voice that suggested something in this decision, in voice-id order (N1). `suggestion` is
    * the credited voice's resolution (same object), or the only one when a single voice spoke.
@@ -967,7 +954,6 @@ export interface PersonSpec {
   commitments?: (Omit<Commitment, 'status' | 'id'> & { id?: string })[];
   goals?: Omit<Goal, 'status' | 'progress' | 'adoptedAt'>[];
   voices?: { voiceId: EntityId; trust?: Unit }[];
-  // --- lane lifecourse+chronicle+narrate ---
   /** Host phrase pack and names for narration; `createPerson` copies it to `Person.lexicon`. */
   lexicon?: Lexicon;
 }
@@ -1047,8 +1033,6 @@ export interface SocialEvent {
   magnitude: Unit;
 }
 
-// --- lane will+cognition ---
-
 /** A suggestion the person still remembers after the voice fell silent (N9). Owned by `will/`. */
 export interface StandingAdvice {
   /** Who said it (a voice id or a person id; trust is read from the voice relation, else source trust). */
@@ -1079,8 +1063,6 @@ export interface VoiceConflict {
     targetUtility?: number;
   }[];
 }
-
-// --- lane lifecourse+chronicle+narrate ---
 
 /**
  * A host phrase pack for narration (N6). Plain JSON, keyed templates, no i18n framework: a locale pack replaces

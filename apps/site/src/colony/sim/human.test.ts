@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { ordersChanged } from '../ui/end-report.ts';
 import { ColonyGame, DEFAULT_SEED, NUDGES } from './game.ts';
 import { createFrameworkHumanSide, type FrameworkHumanSide } from './human.ts';
 import type { MomentId } from './human-side.ts';
@@ -169,5 +170,14 @@ describe('Twice at the Well — Human side on the framework', () => {
         `injuries ${played.injuries} alive ${played.alive} prayers ${played.prayersKept}/${played.prayersDue}`,
     );
     expect(solo.alive).toBeGreaterThan(0);
+  });
+
+  it('the report lists each order with both answers and says what the orders changed (GD2)', () => {
+    const summary = run.game.summary();
+    expect(summary.cards.length).toBeGreaterThan(0);
+    for (const c of summary.cards) expect(c.order.issuedAt).toBeLessThan(END_MINUTE);
+    const line = ordersChanged(summary);
+    console.log(`orders changed: ${line}`);
+    expect(line).toMatch(/^Your \d+ orders? changed/);
   });
 });

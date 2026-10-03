@@ -190,7 +190,7 @@ const RATE_KEYS = [
   'hydrationEffortPerMinute',
 ] as const satisfies readonly (keyof BodyRates)[];
 
-/** Keep only finite, non-negative pinned rates; undefined when nothing usable remains (used by `createBody` and `restore`). */
+/** Keep only finite, non-negative pinned rates; undefined when nothing usable remains (used by `createBody` and `restore`). @internal */
 export function sanitizeRates(input: unknown): BodyRates | undefined {
   if (typeof input !== 'object' || input === null) return undefined;
   const src = input as Record<string, unknown>;
@@ -205,6 +205,7 @@ export function sanitizeRates(input: unknown): BodyRates | undefined {
 /**
  * Keep only well-formed exposures: finite numbers, `recent` clamped to 0..1, `cumulative` non-negative.
  * Undefined when nothing usable remains (used by `createBody` and `restore`).
+ * @internal
  */
 export function sanitizeExposures(input: unknown, now: Minute): Record<string, Exposure> | undefined {
   if (typeof input !== 'object' || input === null || Array.isArray(input)) return undefined;
@@ -231,6 +232,7 @@ export function sanitizeExposures(input: unknown, now: Minute): Record<string, E
  * Repair the optional chronic fields of saved illnesses in place: a non-finite or out-of-range `baseline` is
  * clamped (non-finite falls back to the severity), non-string `aggravatedBy` entries are dropped, and an
  * illness whose core numbers are not finite is removed. Used by `restore`.
+ * @internal
  */
 export function sanitizeIllnesses(b: BodyState): void {
   if (!Array.isArray(b.illnesses)) {

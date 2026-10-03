@@ -113,7 +113,7 @@ export function trustOf(p: Person, sourceId: EntityId): Unit {
   return p.memory.sourceTrust[sourceId] ?? BELIEF_DEFAULTS.defaultTrust;
 }
 
-/** Testimony weight from trust: 0 at or below the floor, never negative, so low trust alone never flips a claim. */
+/** Testimony weight from trust: 0 at or below the floor, never negative, so low trust alone never flips a claim. @internal */
 export function testimonyWeight(trust: Unit): Unit {
   const d = BELIEF_DEFAULTS;
   return clamp01((trust - d.trustFloor) / (1 - d.trustFloor)) ** d.trustExponent;

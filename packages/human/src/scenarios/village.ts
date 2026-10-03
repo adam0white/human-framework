@@ -126,10 +126,11 @@ const isNightAt = (now: Minute): boolean => {
 
 export function createVillage(
   people: readonly Person[],
-  opts: { seed: number; foodStock?: number },
+  opts: { seed: number; foodStock?: number; state?: VillageState },
 ): Village {
   const ids = [...people.map((p) => p.id)].sort();
-  const state: VillageState = {
+  // Resume from a saved state (plain JSON; `seed` and `foodStock` are then ignored), as `createTown` does.
+  const state: VillageState = opts.state ?? {
     now: Math.min(...people.map((p) => p.now)),
     rng: createRng(opts.seed),
     food: opts.foodStock ?? VILLAGE_DEFAULTS.foodStock,

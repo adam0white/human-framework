@@ -485,4 +485,32 @@ describe('a break under necessity is excused, not a breach (review 2026-10-03)',
     expect(p.conscience.breaches.some((b) => b.normId === 'sawm-ramadan')).toBe(true);
     expect(owedMakeUps(p)).toEqual([]);
   });
+
+  test("the host's catalog decides the make-up; a norm missing from it is not excused", () => {
+    const own = DEFAULT_NORMS.map((n) => (n.id === 'sawm-ramadan' ? { ...n, exemptions: [] } : n));
+    const a = faster(0.02);
+    const act = begin(a.p, a.eatAff, a.record);
+    if (!act) throw new Error('dead');
+    tick(a.p, act.endsAt);
+    finish(
+      a.p,
+      { affordanceId: a.eatAff.id, action: 'eat', status: 'completed', at: act.endsAt },
+      { catalog: own },
+    );
+    expect(a.p.agenda.commitments.some((c) => c.exempt?.reason === 'necessity')).toBe(true);
+    expect(owedMakeUps(a.p)).toEqual([]);
+
+    const b = faster(0.02);
+    const act2 = begin(b.p, b.eatAff, b.record);
+    if (!act2) throw new Error('dead');
+    tick(b.p, act2.endsAt);
+    const without = DEFAULT_NORMS.filter((n) => n.id !== 'sawm-ramadan');
+    finish(
+      b.p,
+      { affordanceId: b.eatAff.id, action: 'eat', status: 'completed', at: act2.endsAt },
+      { catalog: without },
+    );
+    expect(b.p.agenda.commitments.some((c) => c.exempt?.reason === 'necessity')).toBe(false);
+    expect(owedMakeUps(b.p)).toEqual([]);
+  });
 });

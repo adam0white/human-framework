@@ -95,6 +95,7 @@ import type {
   Minute,
   NeedId,
   NeedReading,
+  NormDefinition,
   Outcome,
   Percept,
   Person,
@@ -958,7 +959,11 @@ export interface FinishReport {
  * habits, memory (expectation learning and an episode), conscience (deed, breaches, repair), agenda,
  * relationships, trust in the advising voice, injuries and illness. Clears the activity.
  */
-export function finish(p: Person, outcome: Outcome): FinishReport | null {
+export function finish(
+  p: Person,
+  outcome: Outcome,
+  opts: { catalog?: readonly NormDefinition[] } = {},
+): FinishReport | null {
   const act = p.activity;
   if (!act) return null;
   if (outcome.at > p.now) tick(p, outcome.at);
@@ -1080,7 +1085,10 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
   if (routed.fulfills === undefined && aff.fulfills !== undefined) routed.fulfills = aff.fulfills;
   if (routed.advances === undefined && aff.advances !== undefined) routed.advances = aff.advances;
   // An abstention excused under necessity closes as released at its window's end (noted then by `tick`).
-  const { kept, broken } = onFinished(p, routed, act.startedAt, act.necessity ? { necessity: true } : {});
+  const { kept, broken } = onFinished(p, routed, act.startedAt, {
+    ...(act.necessity ? { necessity: true } : {}),
+    ...(opts.catalog ? { catalog: opts.catalog } : {}),
+  });
   // A completed violating action inside an open abstention's window broke it (the fast, "no cards after Isha").
   if (broken.length > 0) {
     recordMissed(p, broken, now, outcome.action);

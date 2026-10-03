@@ -1,7 +1,20 @@
 /** Human Framework v1 public surface. */
-export const FRAMEWORK_VERSION = '1.0.0-dev';
+export const FRAMEWORK_VERSION = '1.0.0';
 
-export * from './affect/index.ts';
+export type { PracticeKind } from './affect/index.ts';
+// `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `effectiveHalfLife` stays internal.
+export {
+  AFFECT_DEFAULTS,
+  actionTendencies,
+  advanceAffect,
+  appraise,
+  createAffect,
+  feel,
+  readAffect,
+  regulate,
+  release as releaseEmotion,
+  tendencyEmotions,
+} from './affect/index.ts';
 export type {
   GoalTemplate,
   PrayerCalendar,

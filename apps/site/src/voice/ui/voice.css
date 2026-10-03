@@ -642,6 +642,18 @@
   padding: 4px 0;
   border-bottom: 1px dashed var(--edge);
 }
+.v-health {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+  font-size: 0.86rem;
+}
+.v-health li {
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--edge);
+}
 .v-mind-label {
   font-family: var(--font-line);
   font-size: 0.95rem;

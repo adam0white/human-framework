@@ -90,7 +90,7 @@ function Home() {
 
       <main>
         <section className="hero">
-          <p className="eyebrow">Human Framework · v{FRAMEWORK_VERSION.replace('-dev', '')}</p>
+          <p className="eyebrow">Human Framework · v{FRAMEWORK_VERSION}</p>
           <h1>
             Simulated people who <em>decide</em>.
           </h1>
@@ -103,6 +103,9 @@ function Home() {
             <a className="button button-primary" href="/colony/">
               Play <em>Twice at the Well</em>
               <span aria-hidden="true">→</span>
+            </a>
+            <a className="button button-ghost" href="/voice/">
+              Play <em>The Day You Say Nothing</em>
             </a>
             <a className="button button-ghost" href="#idea">
               How it works

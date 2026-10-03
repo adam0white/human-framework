@@ -271,6 +271,8 @@ export interface EndSummary {
   soloGoals: GoalSide[];
   /** Human-only character outcomes (not goals; Classic has no such concept). */
   character: CharacterOutcome;
+  /** The orders given in the reported span, with each side's final answer (game design review GD2). */
+  cards: OrderCard[];
 }
 
 export interface Frame {
@@ -868,6 +870,11 @@ export class ColonyGame {
         morale: metrics.morale,
         trust: metrics.trust,
       },
+      cards: this.book.cards
+        .filter((c) =>
+          this.endMinute > END_MINUTE ? c.order.issuedAt >= END_MINUTE : c.order.issuedAt < END_MINUTE,
+        )
+        .map((c) => structuredClone(c)),
     };
   }
 }

@@ -2596,3 +2596,45 @@ kbd {
     display: none;
   }
 }
+
+/* Game design review GD2: what the orders changed, and each order's outcome. */
+.end-changed {
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+.end-orders {
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.end-order-time {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+/* GD7: per-side goal numbers in the collapsed phone strip (hidden elsewhere). */
+.goal-nums {
+  display: none;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+.goal-num {
+  font-weight: 700;
+}
+.goal-num.goal-met {
+  color: var(--v-assent);
+}
+.goal-num.goal-failed {
+  color: var(--v-willnot);
+}
+@media (max-width: 860px) {
+  .goal-strip:not(.is-open) .goal-nums {
+    display: inline-flex;
+  }
+  .goal-strip:not(.is-open) .goal-dots {
+    display: none;
+  }
+}

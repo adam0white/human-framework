@@ -32,9 +32,22 @@
  *   each partner.
  * - Life course (opt in): once per day crossed, `chronicOnsets` and `mortalityEvent` roll on the person's own
  *   stream for the elapsed minutes; a death ends the person through `body.die`.
+ *
+ * SCOPE (standing advice, round 3 of Game 2): a standing suggestion is advice that stands, not a request repeated
+ * at every decision. Two rules, both host-side and decided in `standingHeard`:
+ * - Occasions: when the suggested action is one that keeps a commitment (a prayer window, a job, an appointment),
+ *   completing it (after `Suggestion.since`, by anyone's word) satisfies the suggestion, which then lies dormant
+ *   until doing it now would keep a pending commitment again (the offer's span meets the window, the agenda's own
+ *   rule, `spanMeetsWindow`). Without this, "pray at the mosque" heard at every decision sent a man there
+ *   about 25 times a day. Actions that keep no commitment have no occasion the framework can see: hosts bound
+ *   them through their offers (a cooldown, once a day), and orders that should be re-done keep working.
+ * - Availability: a standing suggestion whose target is not offered at this decision is held back, not refused,
+ *   so advice deferred "until later" is heard again when the option returns. Conversation advice is not held back.
+ * Completions are kept in `Community.standingDone` (plain JSON, the last completion per affordance and per action).
  */
 
 import { appraise } from '../affect/index.ts';
+import { matchesCommitment, spanMeetsWindow } from '../agenda/index.ts';
 import { BODY_DEFAULTS, contagionRoll, die, readBody, sicken } from '../body/index.ts';
 import { chronicleBetween } from '../chronicle/index.ts';
 import { recordDeed } from '../conscience/index.ts';
@@ -68,6 +81,7 @@ import type {
   DayRecord,
   DecisionRecord,
   Minute,
+  NormDefinition,
   Outcome,
   Percept,
   Person,
@@ -78,6 +92,7 @@ import type {
   Unit,
 } from '../types.ts';
 import { MINUTES_PER_DAY } from '../types.ts';
+import { suggestionTargets } from '../will/index.ts';
 
 export const SIM_DEFAULTS = {
   /** Minutes an idle person waits when no option is chosen. */
@@ -117,6 +132,11 @@ export interface World {
     listener: Person,
     activity: Activity,
   ): Partial<ConverseContext> | false | undefined;
+  /**
+   * Optional: the host's norm catalog, read when a finished activity breaks an abstention under necessity (the
+   * make-up owed comes from the norm's catalog entry). Default: the bundled `DEFAULT_NORMS`.
+   */
+  catalog?: readonly NormDefinition[];
 }
 
 export type SimEventKind =
@@ -183,11 +203,58 @@ export interface Community {
     /** Offers a person may not choose again at minute `at` (a partner just declined them). */
     excluded: Record<PersonId, { at: Minute; ids: string[] }>;
   };
-  // --- integration (2026-10-03) ---
   /** Host-side: suggestions heard in conversation, weighed at the next decisions and dropped after a fresh one. */
   queued?: Record<PersonId, Suggestion[]>;
   /** Host-side: the last day each person's `World.onDay` and life-course rolls ran for. */
   dayDone?: Record<PersonId, number>;
+  /**
+   * Host-side (standing advice): the last completion of each commitment-keeping offer, keyed `aff:<id>` and
+   * `act:<action>`, with the target it was done at (see the standing-advice SCOPE and `standingHeard`).
+   */
+  standingDone?: Record<PersonId, Record<string, { at: Minute; action: string; targetId?: string }>>;
+}
+
+/**
+ * Whether standing suggestion `s` is heard by `p` at a decision over `affordances` (standing-advice SCOPE): its target
+ * must be on offer, and if the action keeps commitments and was completed since the suggestion was given, doing it
+ * now must keep a pending commitment again. Read-only.
+ */
+export function standingHeard(
+  c: Community,
+  p: Person,
+  s: Suggestion,
+  affordances: readonly Affordance[],
+  now: Minute = p.now,
+): boolean {
+  const target = affordances.find((a) => suggestionTargets(s, a));
+  if (!target) return false;
+  const done = c.standingDone?.[p.id];
+  if (!done) return true;
+  const last = s.affordanceId !== undefined ? done[`aff:${s.affordanceId}`] : done[`act:${s.action ?? ''}`];
+  if (!last || last.at < (s.since ?? Number.NEGATIVE_INFINITY)) return true;
+  const end = now + Math.max(0, target.duration);
+  return p.agenda.commitments.some(
+    (k) =>
+      k.status === 'pending' &&
+      k.exempt === undefined &&
+      matchesCommitment(k, target.action, target.targetId) &&
+      spanMeetsWindow(k, now, end),
+  );
+}
+
+/** Record a completed activity for `standingHeard`, only when its action keeps some commitment of the person. */
+function noteStandingDone(c: Community, p: Person, act: Activity, at: Minute): void {
+  const targetId = act.affordance.targetId;
+  const keeps = p.agenda.commitments.some(
+    (k) => matchesCommitment(k, act.action, targetId) || (act.affordance.fulfills?.includes(k.id) ?? false),
+  );
+  if (!keeps) return;
+  c.standingDone ??= {};
+  const done = c.standingDone[p.id] ?? {};
+  c.standingDone[p.id] = done;
+  const entry = targetId !== undefined ? { at, action: act.action, targetId } : { at, action: act.action };
+  done[`aff:${act.affordanceId}`] = entry;
+  done[`act:${act.action}`] = entry;
 }
 
 export interface LifecourseOptions {
@@ -223,8 +290,35 @@ export interface StepOptions {
   interruptSalience?: number | false;
 }
 
-export function createCommunity(people: Person[]): Community {
+/**
+ * The host-side part of a community: everything but `people`, as plain JSON. A save is the people's `snapshot`s,
+ * this, and the world's own state; restoring only the people and calling `createCommunity(people)` diverges (the
+ * day hooks run again and pending advice and standing-advice completions are lost).
+ */
+export type CommunityState = Omit<Community, 'people'>;
+
+/** The host-side state of `c` as a detached plain-JSON copy (see `CommunityState`). */
+export function communityState(c: Community): CommunityState {
+  const { people: _people, ...rest } = c;
+  return JSON.parse(JSON.stringify(rest)) as CommunityState;
+}
+
+/**
+ * A community over `people`. With `prior` (from `communityState`, possibly through JSON), the host-side state is
+ * resumed from it, so a run restored from people + community + world state continues exactly as it would have.
+ */
+export function createCommunity(people: Person[], prior?: CommunityState): Community {
   const sorted = [...people].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  if (prior) {
+    const copy = JSON.parse(JSON.stringify(prior)) as CommunityState;
+    for (const p of sorted) {
+      copy.idleUntil[p.id] ??= p.now;
+      copy.perceivedUntil[p.id] ??= p.now;
+    }
+    copy.queued ??= {};
+    copy.dayDone ??= {};
+    return { people: sorted, ...copy };
+  }
   const idleUntil: Record<PersonId, Minute> = {};
   const perceivedUntil: Record<PersonId, Minute> = {};
   for (const p of sorted) {
@@ -450,7 +544,7 @@ export function acceptJoint(
     const act = person.activity;
     if (act) {
       const outcome = world.resolve(person, act, at >= act.endsAt ? 'ended' : 'interrupted');
-      finish(person, outcome);
+      finish(person, outcome, world.catalog ? { catalog: world.catalog } : {});
       log({
         at,
         personId: person.id,
@@ -675,18 +769,18 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
   const contagion = opts.contagion ?? true;
   c.queued ??= {};
   c.dayDone ??= {};
-  const decideOpts = (p: Person, reason: string | undefined) => {
+  const decideOpts = (p: Person, reason: string | undefined, affordances: readonly Affordance[]) => {
     const o: Parameters<typeof decide>[2] = {};
-    // Voices: queued conversation advice first (fresher), then the host's standing suggestions; one per voice.
-    // At reviews they still weigh in, but `decide` resolves them quietly (no counters, pressure or autonomy
-    // cost), so one request is not re-counted as many verdicts.
+    // Voices: queued conversation advice first (fresher), then the host's standing suggestions that are heard now
+    // (standing-advice SCOPE); one per voice. At reviews they still weigh in, but `decide` resolves them quietly
+    // (no counters, pressure or autonomy cost), so one request is not re-counted as many verdicts.
     const standing = opts.suggestions?.[p.id];
     const merged: Suggestion[] = [];
     const seen = new Set<string>();
-    for (const s of [
-      ...(c.queued?.[p.id] ?? []),
-      ...(standing ? (Array.isArray(standing) ? standing : [standing]) : []),
-    ]) {
+    const heard = (standing ? (Array.isArray(standing) ? standing : [standing]) : []).filter((s) =>
+      standingHeard(c, p, s, affordances, p.now),
+    );
+    for (const s of [...(c.queued?.[p.id] ?? []), ...heard]) {
       if (seen.has(s.voiceId)) continue;
       seen.add(s.voiceId);
       merged.push(s);
@@ -782,7 +876,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     perceptReason ??= act?.interrupt?.reason;
     if (act && t >= act.endsAt) {
       const outcome = world.resolve(p, act, 'ended');
-      const report = finish(p, outcome);
+      const report = finish(p, outcome, world.catalog ? { catalog: world.catalog } : {});
       const ev: SimEvent = {
         at: t,
         personId: p.id,
@@ -795,6 +889,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
       if (report) ev.status = report.status;
       log(ev);
       if (outcome.status === 'completed') {
+        noteStandingDone(c, p, act, t);
         if (pairMinute !== t) {
           pairMinute = t;
           pairsDone.clear();
@@ -827,7 +922,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
       if (ex.at === t) affordances = affordances.filter((a) => !ex.ids.includes(a.id));
       else delete c.joint.excluded[p.id];
     }
-    const record = decide(p, affordances, decideOpts(p, perceptReason));
+    const record = decide(p, affordances, decideOpts(p, perceptReason, affordances));
     delete c.interrupts[p.id];
     // Conversation advice is weighed until the next fresh decision, then it has been heard.
     if (!act) delete c.queued[p.id];
@@ -888,7 +983,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     }
     if (act) {
       const outcome = world.resolve(p, act, 'interrupted');
-      finish(p, outcome);
+      finish(p, outcome, world.catalog ? { catalog: world.catalog } : {});
       log({
         at: t,
         personId: p.id,

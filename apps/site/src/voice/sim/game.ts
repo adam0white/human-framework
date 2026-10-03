@@ -35,7 +35,10 @@ import {
   type SimEvent,
   type StepOptions,
   type Suggestion,
+  selinEidCallMinute,
+  standingHeard,
   stepCommunity,
+  TOWN_DEFAULTS,
   TOWN_EID_DAY,
   TOWN_GAME_CREATE,
   TOWN_GAME_START,
@@ -69,18 +72,20 @@ import {
 import { BEAT_COOLDOWN, type BeatState, createBeats, fire, flagOnce, takeCloseCall } from './beats.ts';
 import { closeRival, moneyShort, prefillFor } from './prefill.ts';
 import { buildReport, ledgerKey, type SaidCount } from './report.ts';
-import { answer, createStanding, type Standing, standingView, toSuggestion } from './standing.ts';
+import { answer, createStanding, type Standing, standingView, toSuggestion, WHY_AWAY } from './standing.ts';
 import {
   ACTION_LABEL,
   type Cell,
   clock,
   commitmentLabel,
   dayLabel,
+  doctorLine,
   endsView,
   halilView,
   isVoiceId,
   labelFor,
   nameOfVoice,
+  pressureWord,
   stripFor,
   TRUST_REASON,
   toldLine,
@@ -118,6 +123,9 @@ export const WHISPERS: Record<StandingWhisper['choiceId'], { optionId: string; l
 };
 
 const CRAVING_MIN = 0.3;
+/** Acts that speak for themselves, and the need intentions (lexicon `intention:<need>`) dropped from their line. */
+const BODILY_ACTS = new Set(['eat', 'drink', 'sleep', 'rest']);
+const BODILY_INTENTIONS = /^to (drink|feed myself|sleep|rest)$/;
 const THIRST_RISK = 0.7;
 
 export interface Run {
@@ -183,6 +191,8 @@ export class VoiceGame {
   private resleptAt = new Set<number>();
   /** Times the player insisted, for the report. */
   insisted = 0;
+  /** Days his fast was excused for illness (round 3: surfaced in the log, the skip digest, his pane and the report). */
+  illDays: number[] = [];
   open: Cell | undefined;
   records = new Map<string, DecisionRecord>();
   audit: MutedAudit[] = [];
@@ -194,8 +204,12 @@ export class VoiceGame {
   suggestedAction: string | undefined;
   /** His weighing of the next choice, read once when the composer opens before it (see `lookAhead`). */
   ahead: { forDecision: string; record: DecisionRecord } | undefined;
+  /** When the last close-call pause fired, so a look-ahead pause is not repeated when the real decision lands. */
+  private closeCallAt: number | undefined;
   /** Minute Halil last placed a call to Selin himself (for the prefill and the Selin end). */
   halilCalledAt: number | undefined;
+  /** When Selin first called him on Eid, if she did (the report says so rather than "he waited"). */
+  selinEidCallAt: number | undefined;
   /** What the player said in Ramadan, by option, for the report's ledger (played days and whispers). */
   said: Record<string, SaidCount> = {};
   /** The night sleep whose waking was announced ahead of time (its decision id). */
@@ -404,6 +418,8 @@ export class VoiceGame {
         voiceId: 'you',
         affordanceId: WHISPERS[w.choiceId].optionId,
         strength: STRENGTH_VALUE[w.strength],
+        // Standing advice (framework, round 3): done once per occasion from now, then dormant until it is due again.
+        since: this.t,
       };
       if (w.appeal) s.appeal = w.appeal;
       return s;
@@ -425,6 +441,9 @@ export class VoiceGame {
     let lastCollect = st.lastCollect;
     let paid = st.rentPaid;
     let worn = voiceOf(this.halil, 'you')?.lastWornAt;
+    // His answers to each whisper at fresh decisions (not reviews), so the digest shows a word he can refuse.
+    const answers = new Map<string, { yes: number; off: number; no: number }>();
+    let traceSeen = new Set(this.halil.trace.map((r) => r.id));
     this.quiet = true;
     try {
       let k = 0;
@@ -434,10 +453,23 @@ export class VoiceGame {
         if (list.length > 0) {
           const offers = this.offers();
           const order = list.map((_, i) => list[(k + i) % list.length] as Suggestion);
-          sug = order.find((s) => offers.some((o) => o.id === s.affordanceId)) ?? order[0];
+          sug = order.find((s) => standingHeard(this.run.c, this.halil, s, offers, this.t)) ?? order[0];
         }
         this.stepTo(until, sug ? { halil: sug } : undefined);
         k += 1;
+        if (sug?.affordanceId) {
+          const a = answers.get(sug.affordanceId) ?? { yes: 0, off: 0, no: 0 };
+          answers.set(sug.affordanceId, a);
+          for (const r of this.halil.trace) {
+            if (traceSeen.has(r.id) || r.review) continue;
+            const y = resolutionsOf(r).find((x) => x?.voiceId === 'you');
+            if (!y) continue;
+            if (y.verdict === 'assented' || y.verdict === 'complied' || y.verdict === 'modified') a.yes++;
+            else if (y.verdict === 'deferred') a.off++;
+            else if (y.verdict === 'refused') a.no++;
+          }
+        }
+        traceSeen = new Set(this.halil.trace.map((r) => r.id));
         const call = st.lastCall;
         if (call && call.at !== lastCall) {
           lastCall = call.at;
@@ -470,18 +502,29 @@ export class VoiceGame {
     this.dayTrustStart = voiceOf(this.halil, 'you')?.trust ?? 0.5;
     const lines: string[] = [];
     if (next.skipped > 0) {
-      const cells = this.cells.slice(before.cells).filter((c) => c.from < target);
+      // Only the skipped days: the played day's tail (after 23:30) is not one of them ("13 of 12 days").
+      const cells = this.cells.slice(before.cells).filter((c) => c.from < target && dayOf(c.from) > fromDay);
       const days = next.skipped;
       // What your whispers did, first: how many of the days he did each.
       for (const [i, w] of chosen.entries()) {
         const id = WHISPERS[w.choiceId].optionId;
         const did = new Set(cells.filter((c) => c.affordanceId === id).map((c) => dayOf(c.from))).size;
+        const all = cells.filter((c) => c.affordanceId === id).length;
         const onWord = cells.filter((c) => c.affordanceId === id && c.promptedBy === 'you').length;
+        const own = all - onWord;
         if (!this.free) this.countSaid(id, WHISPERS[w.choiceId].label, 0, days);
+        const a = answers.get(id) ?? { yes: 0, off: 0, no: 0 };
+        const heard = a.yes + a.off + a.no;
+        // Round 4 (game design review): his answers, so a whisper reads as a word he weighed, not a switch.
+        const said =
+          heard === 0
+            ? ' He never had the chance to act on it when he heard it.'
+            : ` When he heard it, he said yes ${times(a.yes)}${a.off > 0 ? `, put you off ${times(a.off)}` : ''}${a.no > 0 ? `, refused ${times(a.no)}` : ''}${a.off + a.no === 0 ? ' and never put you off' : ''}.`;
         lines.push(
-          `“${WHISPERS[w.choiceId].label}” (${w.strength}${i === 0 && chosen.length > 1 ? ', in turn with the other' : ''}): he did it on ${did} of ${days} days${onWord > 0 ? `, ${times(onWord)} on your word` : ''}.`,
+          `“${WHISPERS[w.choiceId].label}” (${w.strength}${i === 0 && chosen.length > 1 ? ', in turn with the other' : ''}): he did it on ${did} of ${days} days${onWord > 0 ? `, ${times(onWord)} on your word` : ''}${own > 0 ? `${onWord > 0 ? ' and' : ','} ${times(own)} on his own` : ''}.${said}`,
         );
       }
+      if (chosen.length === 0) lines.push('You left no word. What follows he did on his own.');
       lines.push(...this.skipFacts(fromDay + 1, next.day - 1, cells, before, tally, calls));
       const after = voiceOf(this.halil, 'you')?.trust ?? 0.5;
       const firstWorn = tally.worn[0];
@@ -491,8 +534,41 @@ export class VoiceGame {
             ? ` By ${dayLabel(dayOf(firstWorn))} he was tired of hearing it: being asked again for what he did not want wore it down ${times(tally.worn.length)}.`
             : ''),
       );
-    } else lines.push(`${dayLabel(next.day)} begins.`);
+    }
+    // What is open today (game design review: a played day needs a question, and "Ramadan 2 begins" said none).
+    const today = this.dayQuestions(next.day);
+    if (today.length > 0)
+      lines.push(...(next.skipped > 0 ? [`Today, ${dayLabel(next.day)}:`] : []), ...today);
+    else if (next.skipped === 0) lines.push(`${dayLabel(next.day)} begins.`);
     this.intro = { label: next.skipped > 0 ? `${next.skipped} days passed` : dayLabel(next.day), lines };
+  }
+
+  /** The open questions of a played day, from his ends: Osman's money, the clinic, Selin, and Eid ahead. */
+  private dayQuestions(day: number): string[] {
+    const st = this.run.town.state;
+    const T = TOWN_DEFAULTS;
+    const out: string[] = [];
+    const owed = Math.round(st.rentOwed);
+    const money = Math.round(st.money.halil ?? 0);
+    const lastFast = TOWN_EID_DAY - 1;
+    if (owed > 0 && st.rentPaid < T.rent && day <= T.rentPromiseDay)
+      out.push(
+        day === T.rentPromiseDay
+          ? `Today is Osman’s date: 300 by 20:00. He has ${money}.`
+          : `Osman wants 300 by Ramadan ${T.rentPromiseDay}. He has ${money}.`,
+      );
+    else if (owed > 0 && day <= lastFast)
+      out.push(
+        day === lastFast
+          ? `Osman wants the rest, ${owed}, by tonight, the end of Ramadan. He has ${money}.`
+          : `Osman wants the rest, ${owed}, by the end of Ramadan. He has ${money}.`,
+      );
+    if ((st.completed.halil?.['see-doctor'] ?? 0) === 0) out.push('He has not had his blood pressure seen.');
+    const since = this.halilCalledAt === undefined ? undefined : day - dayOf(this.halilCalledAt);
+    if (since === undefined) out.push('He has not called Selin himself since the funeral.');
+    else if (since >= 2) out.push(`He has not called Selin himself in ${since} days.`);
+    if (day === lastFast) out.push('Tomorrow is Eid. Then you say nothing, and see what he does.');
+    return out;
   }
 
   /** The plain facts of skipped days: work and money, Osman, calls, the clinic, the fast, his prayers. */
@@ -510,8 +586,16 @@ export class VoiceGame {
       new Set(cells.filter((c) => c.affordanceId === id).map((c) => dayOf(c.from))).size;
     const mornings = daysOf('work-repair');
     const afternoons = daysOf('work-extra');
+    // What he earned, so the money adds up on the card: now − before + rent paid + clinic fees (the only costs).
+    const clinicVisits = cells.filter((c) => c.affordanceId === 'see-doctor').length;
+    const earned = Math.round(
+      (st.money.halil ?? 0) -
+        before.money +
+        (st.rentPaid - before.paid) +
+        clinicVisits * TOWN_DEFAULTS.clinicFee,
+    );
     out.push(
-      `He worked ${mornings} morning${mornings === 1 ? '' : 's'}${afternoons > 0 ? ` and ${afternoons} afternoon shift${afternoons === 1 ? '' : 's'}` : ' and no afternoon shift'}; he has ${Math.round(st.money.halil ?? 0)} (was ${Math.round(before.money)}).`,
+      `He worked ${mornings} morning${mornings === 1 ? '' : 's'}${afternoons > 0 ? ` and ${afternoons} afternoon shift${afternoons === 1 ? '' : 's'}` : ' and no afternoon shift'} and earned ${earned} (a spoiled job pays less than half); he has ${Math.round(st.money.halil ?? 0)} (was ${Math.round(before.money)}).`,
     );
     if (tally.pays.length > 0)
       out.push(tally.pays.map((p) => `He paid Osman ${p.amount} on ${dayLabel(p.day)}.`).join(' '));
@@ -526,24 +610,27 @@ export class VoiceGame {
           ? `He never called Selin; she called ${times(calls.hers)}.`
           : 'He and Selin did not speak.',
     );
-    const clinic = cells.filter((c) => c.affordanceId === 'see-doctor').map((c) => dayLabel(dayOf(c.from)));
-    if (clinic.length > 0) out.push(`He went to the clinic on ${clinic.join(' and ')}.`);
+    const clinic = [
+      ...new Set(cells.filter((c) => c.affordanceId === 'see-doctor').map((c) => dayLabel(dayOf(c.from)))),
+    ];
+    if (clinic.length > 0) out.push(`He went to the clinic on ${listed(clinic)}.`);
     const recs = chronicleBetween(this.halil.chronicle ?? [], from, to);
     const kept = recs.filter((r) => r.kept.some((n) => n.kind === 'abstain')).length;
     const excused = recs.filter((r) => r.released.some((n) => n.kind === 'abstain')).length;
-    const ill = this.halil.agenda.commitments.some(
-      (c) =>
-        c.kind === 'abstain' &&
-        c.exempt?.reason === 'illness' &&
-        dayOf(c.from) >= from &&
-        dayOf(c.from) <= to,
-    );
-    if (recs.some((r) => townDay(r.day).kind === 'ramadan'))
+    const ill = this.illDays.filter((d) => d >= from && d <= to).sort((a, b) => a - b);
+    if (recs.some((r) => townDay(r.day).kind === 'ramadan')) {
       out.push(
         excused > 0
-          ? `He kept ${kept} fasts; ${excused} ${excused === 1 ? 'was' : 'were'} excused${ill ? ' (his blood pressure had him unwell)' : ''}, to be made up after Eid.`
+          ? `He kept ${kept} ${kept === 1 ? 'fast' : 'fasts'}; ${excused} ${excused === 1 ? 'was' : 'were'} excused, to be made up after Eid.`
           : `He kept the fast every day.`,
       );
+      if (ill.length > 0) {
+        const doc = doctorLine(this.run.town);
+        out.push(
+          `His blood pressure made him unwell on ${listed(ill.map((d) => dayLabel(d)))}; he counted himself ill and did not fast ${ill.length === 1 ? 'that day' : 'those days'}.${doc ? ` ${doc}` : ' He had not seen the doctor about it.'}`,
+        );
+      }
+    }
     const prayed = recs.reduce((n, r) => n + r.prayers.kept.length, 0);
     const missed = recs.reduce((n, r) => n + r.prayers.missed.length, 0);
     const mosque = cells.filter((c) => c.affordanceId === 'pray').length;
@@ -678,7 +765,7 @@ export class VoiceGame {
     if (!this.standing || this.muted) return undefined;
     const spentAt = this.spentAt();
     if (spentAt !== undefined && next >= spentAt) return undefined;
-    return { halil: toSuggestion(this.standing.draft) };
+    return { halil: toSuggestion(this.standing.draft, this.standing.since) };
   }
 
   private stepTo(until: number, suggestions?: StepOptions['suggestions']): void {
@@ -725,6 +812,7 @@ export class VoiceGame {
     this.onAdvice();
     this.onCall();
     this.onSleepAndExpiry();
+    this.onIllness();
     this.onDutyRisk();
     this.onShiftOffered();
     this.announceWaking();
@@ -766,12 +854,45 @@ export class VoiceGame {
     this.beat('duty-risk', text, this.t);
   }
 
-  /** Selin's calls reach the log even when she gives no advice (playtest: they showed only in the ends). */
+  /**
+   * Selin's calls reach the log even when she gives no advice (playtest: they showed only in the ends). On Eid the
+   * call is the day's question, so the window opening and whichever call comes first are beats (round 3, defect 5).
+   */
   private onCall(): void {
+    const eid = this.phase === 'eid' && !this.quiet;
+    // The window beat waits out the cooldown (it would otherwise be logged unpaused just after the cigarette).
+    const cooling = this.autoPause && this.t - this.beats.lastPauseAt < BEAT_COOLDOWN;
+    if (
+      eid &&
+      !cooling &&
+      this.offers().some((o) => o.id === 'call:selin') &&
+      flagOnce(this.beats, `eid-call:${this.day}`)
+    ) {
+      const text = `He can call Selin for Eid now. She is leaving the first call to him: she will not call before about ${clock(selinEidCallMinute(this.run.town.state))}.`;
+      this.push({ kind: 'note', who: 'halil', text, beat: 'voice' });
+      this.beat('voice', text, this.t);
+    }
     const call = this.run.town.state.lastCall;
     if (!call || call.at === this.callSeen) return;
     this.callSeen = call.at;
     if (call.by === 'halil') this.halilCalledAt = call.at;
+    else if (dayOf(call.at) === TOWN_EID_DAY) this.selinEidCallAt ??= call.at;
+    const firstOnEid =
+      eid && dayOf(call.at) === TOWN_EID_DAY && flagOnce(this.beats, `eid-called:${TOWN_EID_DAY}`);
+    if (firstOnEid) {
+      const text =
+        call.by === 'halil'
+          ? 'He called Selin for Eid, before she called him.'
+          : 'Selin called him for Eid. He had not called.';
+      this.push(
+        call.by === 'halil'
+          ? { kind: 'note', who: 'halil', text, beat: 'voice' }
+          : { kind: 'voice', who: 'selin', text, beat: 'voice' },
+        call.at,
+      );
+      this.keyBeat('voice', text, call.at);
+      return;
+    }
     if (this.quiet || call.by === 'halil') return;
     const text = 'Selin called.';
     if (this.log.some((x) => x.minute >= call.at - 25 && x.who === 'selin' && x.kind === 'voice')) return;
@@ -805,9 +926,14 @@ export class VoiceGame {
     // An act he stopped part-way: its log line says so, so a later line does not read as a reversal.
     if (e.status === 'interrupted' && e.decisionId && !this.quiet) {
       const entry = [...this.log].reverse().find((x) => x.kind === 'act' && x.decisionId === e.decisionId);
-      if (entry && !entry.text.endsWith('(stopped)')) {
+      if (entry && !entry.text.endsWith('(stopped).') && !entry.text.includes('turned back')) {
         entry.until = clock(e.at);
-        entry.text = `${entry.text.replace(/\.$/, '')} (stopped).`;
+        // The mosque's duration is the walk there and back: left unfinished, he turned back (game design review:
+        // "pray at the mosque (stopped)" then "pray at home" read as a bug at every Dhuhr).
+        entry.text =
+          e.affordanceId === 'pray'
+            ? 'I set out for the mosque, and turned back.'
+            : `${entry.text.replace(/\.$/, '')} (stopped).`;
       }
     }
     // The suggested activity ended: the suggestion is spent (kept standing until then, so reviews on the way
@@ -832,22 +958,56 @@ export class VoiceGame {
     const ghost = this.ghost();
     const offers = this.offers();
     const opts: Parameters<typeof decide>[2] = { scarcity: this.run.town.scarcityFor?.(h) ?? 0 };
-    if (this.standing) opts.suggestion = toSuggestion(this.standing.draft);
+    if (this.standing) {
+      const sug = toSuggestion(this.standing.draft, this.standing.since);
+      if (standingHeard(this.run.c, h, sug, offers, this.t)) opts.suggestion = sug;
+    }
     const record = decide(ghost, offers, opts);
     record.id = `ahead-${act.decisionId}`;
     this.ahead = { forDecision: act.decisionId, record };
     const rival = closeRival(record.considered);
     const top = record.considered.find((c) => !c.vetoed);
+    // A choice between two ways of doing what he is doing now (praying at home or at the mosque while he prays) is
+    // the ghost not yet counting the running act as done; it is not a choice he faces (game design review).
+    const same = (c: { action: string }) => c.action === act.action;
     if (
       !rival ||
       !top ||
       top.affordanceId !== record.chosenAffordanceId ||
+      same(top) ||
+      same(rival) ||
       !takeCloseCall(this.beats, this.t)
     )
       return;
     const text = `He’s torn between ${top.label ?? top.action} and ${rival.label ?? rival.action}.`;
     this.push({ kind: 'note', who: 'halil', text, decisionId: record.id, beat: 'close-call' });
     this.beat('close-call', text, this.t);
+    this.closeCallAt = this.t;
+  }
+
+  /**
+   * A close call the look-ahead could not see (the composer was not open before it, or the look-ahead weighed a
+   * choice that was not the real one): the torn line goes into the log before the act it led to, never after.
+   */
+  private closeCallAfter(r: DecisionRecord): void {
+    if (r.review || this.muted) return;
+    if (this.closeCallAt !== undefined && r.at - this.closeCallAt <= COMPOSER_LEAD + 5) return;
+    const rival = closeRival(r.considered);
+    const top = r.considered.find((c) => !c.vetoed);
+    if (!rival || !top || top.affordanceId !== r.chosenAffordanceId) return;
+    // Two ways of going on with what he was already doing are not a choice he faces (see `lookAhead`).
+    const k = this.cells.findIndex((c) => c.decisionId === r.id);
+    const before = k > 0 ? this.cells[k - 1] : undefined;
+    if (before && before.to >= r.at - 1 && before.action === top.action && before.action === rival.action)
+      return;
+    if (!takeCloseCall(this.beats, r.at)) return;
+    const text = `He’s torn between ${top.label ?? top.action} and ${rival.label ?? rival.action}.`;
+    this.push({ kind: 'note', who: 'halil', text, decisionId: r.id, beat: 'close-call' }, r.at);
+    const note = this.log.pop();
+    const i = this.log.findIndex((e) => e.kind === 'act' && e.decisionId === r.id);
+    if (note) this.log.splice(i < 0 ? this.log.length : i, 0, note);
+    this.closeCallAt = r.at;
+    this.beat('close-call', text, r.at);
   }
 
   private onBegin(e: SimEvent): void {
@@ -881,11 +1041,36 @@ export class VoiceGame {
       else if (this.standing.going) this.endStanding('expired');
     }
     if (this.quiet) return;
+    // Eid (round 3, defect 5): the first cigarette is a beat of its own, after his first daylight meal in a month.
+    if (
+      e.action === 'smoke' &&
+      this.phase === 'eid' &&
+      townDay(dayOf(e.at)).kind !== 'ramadan' &&
+      flagOnce(this.beats, `smoke-free:${dayOf(e.at)}`)
+    ) {
+      const ate = this.cells.some(
+        (c) => c.action === 'eat' && dayOf(c.from) === dayOf(e.at) && c.from < e.at,
+      );
+      const text = ate
+        ? 'His first meal in daylight in a month, and after it the cigarette. Nothing holds it back now; he lights one, as he has for forty years.'
+        : 'Nothing holds the cigarette back now. He lights one, as he has for forty years.';
+      this.push(
+        e.decisionId
+          ? { kind: 'feel', who: 'halil', text, decisionId: e.decisionId, beat: 'craving' }
+          : { kind: 'feel', who: 'halil', text, beat: 'craving' },
+        e.at,
+      );
+      this.keyBeat('craving', text, e.at);
+    }
     const phrase =
       ACTION_LABEL[e.affordanceId ?? ''] && e.affordanceId?.includes(':')
         ? ACTION_LABEL[e.affordanceId ?? '']
         : label;
-    const intention = act?.intention ?? r?.intention;
+    // A bodily need on a bodily act says nothing the act does not ("I drink water, to drink"), and the need a meal
+    // served most can be thirst ("I eat at home, to drink"; playtest round 3): drop it there.
+    const said = act?.intention ?? r?.intention;
+    const intention =
+      said && BODILY_ACTS.has(e.action ?? '') && BODILY_INTENTIONS.test(said) ? undefined : said;
     const last = this.log.at(-1);
     const until = act && act.decisionId === e.decisionId ? clock(act.endsAt) : undefined;
     if (last && last.kind === 'act' && last.text.startsWith(`I ${phrase}`) && last.who === 'halil') {
@@ -930,6 +1115,7 @@ export class VoiceGame {
         this.standing.going ??= h.activity.decisionId;
     }
     if (this.quiet) return;
+    this.closeCallAfter(r);
     if (!r.review) {
       for (const c of r.considered) {
         const habit = c.terms.find((x) => x.source === 'habit')?.value ?? 0;
@@ -942,20 +1128,6 @@ export class VoiceGame {
         )
           continue;
         const text = c.action === 'smoke' ? 'He wants a cigarette.' : `He wants to ${c.label ?? c.action}.`;
-        this.push({ kind: 'feel', who: 'halil', text, decisionId: r.id, beat: 'craving' }, r.at);
-        this.beat('craving', text, r.at);
-      }
-      // Off the fast the craving is no longer held back: on Eid his first habitual cigarette is a beat of its own.
-      const pick = r.considered.find((c) => c.affordanceId === r.chosenAffordanceId);
-      const habit = pick?.terms.find((x) => x.source === 'habit')?.value ?? 0;
-      if (
-        pick &&
-        pick.action === 'smoke' &&
-        habit >= CRAVING_MIN / 2 &&
-        townDay(dayOf(r.at)).kind !== 'ramadan' &&
-        flagOnce(this.beats, `smoke-free:${dayOf(r.at)}`)
-      ) {
-        const text = 'Nothing holds the cigarette back now. He lights one, as he has for forty years.';
         this.push({ kind: 'feel', who: 'halil', text, decisionId: r.id, beat: 'craving' }, r.at);
         this.beat('craving', text, r.at);
       }
@@ -1013,6 +1185,54 @@ export class VoiceGame {
       if (this.standing) this.endStanding('asleep');
     }
     if (this.standing && this.t >= this.standing.expires) this.endStanding('expired');
+    this.onStandingAway();
+  }
+
+  /** A fast newly excused for illness: note the day, and on a played day say so (round 3, defect 3). */
+  private onIllness(): void {
+    const h = this.halil;
+    for (const c of h.agenda.commitments) {
+      if (c.kind !== 'abstain' || c.exempt?.reason !== 'illness') continue;
+      const day = dayOf(c.until);
+      if (this.illDays.includes(day)) continue;
+      this.illDays.push(day);
+      if (this.quiet || this.muted) continue;
+      const sev = h.body.illnesses.find((x) => x.kind === 'hypertension')?.severity ?? 0;
+      const doc = doctorLine(this.run.town);
+      this.push(
+        {
+          kind: 'note',
+          who: 'halil',
+          text: `He feels unwell: his blood pressure is ${pressureWord(sev)}. He counts himself ill and does not fast today; he will owe the day after Eid.${doc ? ` ${doc}` : ' He has not seen the doctor about it.'}`,
+        },
+        this.t,
+      );
+    }
+  }
+
+  /**
+   * Defect 4 (round 3): after a deferral the option could leave the offer set, and the next decision refused it as
+   * "That isn't on offer here now". The framework now holds a standing suggestion back while its option is not
+   * offered; say so once, plainly, and again when it is back.
+   */
+  private onStandingAway(): void {
+    const s = this.standing;
+    if (!s || this.quiet || this.muted || this.halil.body.asleep) return;
+    const id = s.draft.optionId;
+    const offered = this.offers().some((o) => o.id === id);
+    const what = ACTION_LABEL[id] ?? id.replace(/[-:]/g, ' ');
+    if (!offered && !s.away) {
+      s.away = true;
+      const why = WHY_AWAY[id];
+      this.push({
+        kind: 'note',
+        who: 'you',
+        text: `He can’t ${what} just now${why ? ` (${why})` : ''}. Your word waits; he will hear it if he can before ${clock(s.expires)}.`,
+      });
+    } else if (offered && s.away) {
+      s.away = false;
+      this.push({ kind: 'note', who: 'you', text: `He can ${what} now; he hears your word again.` });
+    }
   }
 
   private onDutyRisk(): void {
@@ -1048,6 +1268,12 @@ export class VoiceGame {
       this.push({ kind: 'feel', who: 'halil', text, beat: 'duty-risk' }, t);
       this.beat('duty-risk', text, t);
     }
+  }
+
+  /** Eid's own moments (the first cigarette, the first call) pause even inside another beat's cooldown. */
+  private keyBeat(kind: BeatKind, text: string, at: number): void {
+    if (this.autoPause) this.beats.lastPauseAt = Math.min(this.beats.lastPauseAt, at - BEAT_COOLDOWN);
+    this.beat(kind, text, at);
   }
 
   private beat(kind: BeatKind, text: string, at: number): void {
@@ -1134,7 +1360,7 @@ export class VoiceGame {
       next = nd === undefined ? null : { label: dayLabel(nd), day: nd, skipped: nd - d - 1 };
     }
     const skipped = next?.skipped ?? 0;
-    const cost = `He’ll hear each word at his decisions for ${skipped} days, taking turns with the other. A mention he turns down costs nothing. An urge he keeps turning down wears his trust in you down, about once a day, and the same word going well again earns less each time.`;
+    const cost = `He’ll hear each word for ${skipped} days, taking turns with the other, whenever he could act on it. Once he has done it for its time (a prayer at the mosque for that prayer), the word rests until the next. A mention he turns down costs nothing. An urge he keeps turning down wears his trust in you down, about once a day, and the same word going well again earns less each time.`;
     this.between = {
       closed: `${dayLabel(d)} is over.`,
       lines,
@@ -1161,16 +1387,34 @@ export class VoiceGame {
 
   /** What your words did on a played day, plainly: answers by kind and what came of them. */
   private yourDay(d: number): string[] {
-    const answers = this.log.filter((e) => e.day === d && e.kind === 'answer');
     const said = this.log.filter((e) => e.day === d && e.kind === 'you').length;
-    if (said === 0) return ['You said nothing today.'];
-    const n = (t: string) => answers.filter((a) => a.tone === t).length;
+    // His ends done today without your word (game design review: say "He called Selin without being asked").
+    const unasked = this.cells.filter(
+      (c) => dayOf(c.from) === d && c.promptedBy !== 'you' && UNASKED_LINE[c.affordanceId] !== undefined,
+    );
+    const own = [...new Set(unasked.map((c) => UNASKED_LINE[c.affordanceId] as string))];
+    if (said === 0) return ['You said nothing today.', ...own];
+    // One answer per word: the last thing he said to it (game design review: 8 answers to 4 words read wrong).
+    const last: (string | undefined)[] = [];
+    for (const e of this.log) {
+      if (e.day !== d) continue;
+      if (e.kind === 'you') last.push(undefined);
+      else if (e.kind === 'answer' && last.length > 0) last[last.length - 1] = e.tone;
+    }
+    const n = (...t: string[]) => last.filter((x) => x !== undefined && t.includes(x)).length;
+    const parts = [
+      n('yes') ? `said yes to ${n('yes') === said ? (said === 1 ? 'it' : 'all of them') : n('yes')}` : '',
+      n('protest') ? `gave in under protest to ${n('protest')}` : '',
+      n('notNow') ? `put you off or did something like it on ${n('notNow')}` : '',
+      n('willNot', 'cannot') ? `refused ${n('willNot', 'cannot')}` : '',
+    ].filter(Boolean);
     const out = [
-      `You spoke ${times(said)}. He said yes ${times(n('yes'))}${n('protest') ? `, gave in under protest ${times(n('protest'))}` : ''}${n('notNow') ? `, put you off or did something like it ${times(n('notNow'))}` : ''}${n('willNot') + n('cannot') ? `, refused ${times(n('willNot') + n('cannot'))}` : ''}.`,
+      `You spoke ${times(said)}.${parts.length ? ` In the end he ${listed(parts)}.` : ' He gave no answer.'}`,
     ];
     const dayCells = this.cells.filter((c) => dayOf(c.from) === d && c.promptedBy === 'you');
     const did = [...new Set(dayCells.map((c) => c.label))];
     if (did.length > 0) out.push(`Done on your word: ${did.join('; ')}.`);
+    out.push(...own);
     return out;
   }
 
@@ -1199,6 +1443,13 @@ export class VoiceGame {
 
   private finishEid(): void {
     this.eidNight = { run: cloneRun(this.run), t: this.t };
+    const done = this.run.town.state.completed;
+    const callsAtEid = { his: done.halil?.call ?? 0, hers: done.selin?.call ?? 0 };
+    const callTimes = this.run.town.state.halilCallTimes ?? [];
+    const usualCallMinute =
+      callTimes.length > 0
+        ? Math.round(callTimes.reduce((a, b) => a + b, 0) / callTimes.length / 5) * 5
+        : undefined;
     const epi = cloneRun(this.run);
     const h = epi.ppl.halil;
     // runSilent in half-day chunks so every muted decision can be audited (the trace keeps only 32).
@@ -1246,7 +1497,12 @@ export class VoiceGame {
       said: this.said,
       records: this.records,
       ...(this.halilCalledAt !== undefined ? { halilCalledAt: this.halilCalledAt } : {}),
+      ...(this.selinEidCallAt !== undefined ? { selinEidCallAt: this.selinEidCallAt } : {}),
+      ...(usualCallMinute !== undefined ? { usualCallMinute } : {}),
+      callsAtEid,
       weighs: weighsView(this.halil, this.weighsStart),
+      illDays: this.illDays.filter((d) => d < TOWN_EID_DAY),
+      ...(doctorLine(this.run.town) ? { doctor: doctorLine(this.run.town) } : {}),
     });
     this.phase = 'report';
     this.paused = true;
@@ -1254,12 +1510,14 @@ export class VoiceGame {
   }
 
   ends() {
+    const lastCall = [...this.cells].reverse().find((c) => c.affordanceId === 'call:selin');
     return endsView({
       h: this.halil,
       town: this.run.town,
       t: this.t,
       trustStart: this.trustStart,
       ...(this.halilCalledAt !== undefined ? { halilCalledAt: this.halilCalledAt } : {}),
+      ...(lastCall ? { calledUnasked: lastCall.promptedBy !== 'you' } : {}),
     });
   }
 
@@ -1357,11 +1615,21 @@ export class VoiceGame {
 
 // --- helpers -------------------------------------------------------------------------------------
 
+/** His ends, as the day card says them when he did one without your word. */
+const UNASKED_LINE: Record<string, string> = {
+  'call:selin': 'He called Selin without being asked.',
+  'see-doctor': 'He went to the clinic without being asked.',
+  'pay-rent': 'He paid Osman without being asked.',
+  'work-extra': 'He took the afternoon shift without being asked.',
+};
 const adviceKey = (a: { sourceId: string; action: string; at: number }) =>
   `${a.sourceId}:${a.action}:${a.at}`;
 const voiceWho = (id: string): LogEntry['who'] => (isVoiceId(id) ? (id as VoiceId) : 'halil');
 const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const times = (n: number) => (n === 1 ? 'once' : n === 2 ? 'twice' : `${n} times`);
+/** "a", "a and b", "a, b and c". */
+const listed = (xs: readonly string[]) =>
+  xs.length <= 2 ? xs.join(' and ') : `${xs.slice(0, -1).join(', ')} and ${xs.at(-1)}`;
 const round2 = (x: number) => Math.round(x * 100) / 100;
 
 /** Whisper labels by ledger key, so the report names a thing the same way however it was said. */

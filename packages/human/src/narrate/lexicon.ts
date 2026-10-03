@@ -185,6 +185,9 @@ export const EN_LINES: Readonly<Record<string, readonly string[]>> = {
   'chronicle.action': ['{Subj} {past} on {n} of {days} days.'],
   /** {kept} {total} {kinds} */
   'chronicle.kept': ['{Subj} kept {kept} of {total} {kinds}.'],
+  /** {kind}: the one commitment of its kind that day, kept or not */
+  'chronicle.kept.one': ['{Subj} kept {kind}.'],
+  'chronicle.broke.one': ['{Subj} did not keep {kind}.'],
   /** {who} */
   'chronicle.trust.up': ['{Subj} came to trust {who} more.'],
   'chronicle.trust.down': ['{Subj} trusted {who} less by the end.'],
@@ -239,6 +242,14 @@ export const EN_LINES: Readonly<Record<string, readonly string[]>> = {
   'kinds:job': ['work shifts'],
   'kinds:abstain': ['abstentions'],
   'kinds:default': ['commitments'],
+  // Singular, with an article, for a count of one.
+  'kind:promise': ['a promise'],
+  'kind:duty': ['a duty'],
+  'kind:appointment': ['an appointment'],
+  'kind:worship': ['a prayer'],
+  'kind:job': ['a work shift'],
+  'kind:abstain': ['an abstention'],
+  'kind:default': ['a commitment'],
 };
 
 /** Templates for a key after the lexicon's replacements and extensions; empty when unknown. */
@@ -248,7 +259,7 @@ export function linesFor(key: string, lex?: Lexicon): readonly string[] {
   return more && more.length > 0 ? [...base, ...more] : base;
 }
 
-/** Replace `{slot}` with `vars.slot`; unknown slots are left as written. */
+/** Replace `{slot}` with `vars.slot`; unknown slots are left as written. @internal */
 export function fillTemplate(template: string, vars: Readonly<Record<string, string | number>> = {}): string {
   return template.replace(/\{([A-Za-z]+)\}/g, (m, k: string) => {
     const v = vars[k];
@@ -281,7 +292,9 @@ export const phraseLine = (
   fallback = '',
 ): string => fillTemplate(linesFor(key, lex)[0] ?? fallback, vars);
 
+/** @internal */
 export const capitalize = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
+/** @internal */
 export const lowerFirst = (s: string): string => s.charAt(0).toLowerCase() + s.slice(1);
 
 /** Built-in role nouns, checked in this order when the lexicon maps none of a relationship's roles. */

@@ -18,7 +18,16 @@ import {
 } from '@human/framework';
 import { MODEL_NOTES, type ReportView, type StripRow } from '../protocol.ts';
 import type { Run } from './game.ts';
-import { type Cell, clock, endsView, nameOfVoice, trustWord, VOICE_IDS } from './view.ts';
+import {
+  type Cell,
+  clock,
+  dayLabel,
+  endsView,
+  nameOfVoice,
+  pressureWord,
+  trustWord,
+  VOICE_IDS,
+} from './view.ts';
 
 export interface ReportInput {
   withYou: readonly DayRecord[];
@@ -42,8 +51,17 @@ export interface ReportInput {
   records?: ReadonlyMap<string, DecisionRecord>;
   /** Minute he last called Selin himself before the epilogue, if ever. */
   halilCalledAt?: number;
+  /** When Selin first called him on Eid, if she did. */
+  selinEidCallAt?: number;
+  /** The minute of day he usually called her by Eid (mean of his last calls), if he ever called. */
+  usualCallMinute?: number;
+  /** Completed calls by each of them at Eid night, to count the six days after from `after`. */
+  callsAtEid?: { his: number; hers: number };
   /** How the clinic, calling Selin and the mosque feel to him on Eid night (`weighsView`). */
   weighs?: { label: string; word: string; trend: string }[];
+  /** Ramadan days his fast was excused for illness, and the doctor's last words ("The doctor said … (Ramadan 3)."). */
+  illDays?: readonly number[];
+  doctor?: string;
 }
 
 /** What the player said about one thing in Ramadan: suggestions on played days, and days under a whisper. */
@@ -144,10 +162,18 @@ function summary(i: ReportInput): string[] {
   const eidStart = TOWN_EID_DAY * MINUTES_PER_DAY;
   const eid = i.cells.filter((c) => c.from >= eidStart && c.from < eidStart + MINUTES_PER_DAY);
   const call = eid.find((c) => c.affordanceId === 'call:selin');
+  const usual = i.usualCallMinute !== undefined ? clock(i.usualCallMinute) : undefined;
+  const after = epilogueCalls(i);
   const out: string[] = [
-    call
+    (call
       ? `On Eid he called Selin himself, at ${clock(call.from)}.`
-      : 'On Eid he did not call Selin. He waited for her to call.',
+      : i.selinEidCallAt !== undefined
+        ? usual && (i.callsAtEid?.his ?? 0) >= 3
+          ? `On Eid he did not call Selin. He usually called her around ${usual}; she waited past it and called him at ${clock(i.selinEidCallAt)}.`
+          : (i.callsAtEid?.his ?? 0) > 0
+            ? `On Eid he did not call Selin; he had called her himself only ${times(i.callsAtEid?.his ?? 0)} this month. She called him at ${clock(i.selinEidCallAt)}.`
+            : `On Eid he did not call Selin; he had not called her himself all month. She called him at ${clock(i.selinEidCallAt)}.`
+        : 'On Eid he did not call Selin, and she did not call him.') + (after ? ` ${after}` : ''),
   ];
   const pays = i.cells.filter((c) => c.affordanceId === 'pay-rent' && c.from < eidStart);
   const date = i.after.ppl.halil.agenda.commitments.find((c) => c.id === 'rent' && c.kind === 'promise');
@@ -166,14 +192,14 @@ function summary(i: ReportInput): string[] {
         : `He missed Osman’s date (300 by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}) and paid nothing in Ramadan.`) +
       (extra.length === 0
         ? ' He never took an afternoon shift.'
-        : ` He took an afternoon shift ${times(extra.length)}${extraYours === extra.length ? ', each time on your word' : extraYours > 0 ? `, ${times(extraYours)} on your word` : ''}.`),
+        : ` He took an afternoon shift ${times(extra.length)}${extraYours === extra.length ? (extra.length === 1 ? ', on your word' : ', each time on your word') : extraYours > 0 ? `, ${times(extraYours)} on your word` : ''}.`),
   );
   const clinic = i.cells.filter((c) => c.affordanceId === 'see-doctor' && c.from < eidStart);
   const yours = clinic.filter((c) => c.promptedBy === 'you').length;
   out.push(
     clinic.length === 0
       ? 'He never went to the clinic this month.'
-      : `He went to the clinic ${times(clinic.length)} this month${yours === clinic.length ? `, each time after you spoke` : yours > 0 ? `, ${times(yours)} after you spoke` : ', never on your word'}.`,
+      : `He went to the clinic ${times(clinic.length)} this month${yours === clinic.length ? (clinic.length === 1 ? ', after you spoke' : ', each time after you spoke') : yours > 0 ? `, ${times(yours)} after you spoke` : ', never on your word'}.`,
   );
   const d = i.trustEid - i.trustStart;
   const word = trustWord(i.trustEid, true);
@@ -190,6 +216,20 @@ function summary(i: ReportInput): string[] {
 }
 
 const times = (n: number) => (n === 1 ? 'once' : n === 2 ? 'twice' : `${n} times`);
+
+/** His own calls to Selin in the six days after Eid (from the completed counts), in words; '' without the counts. */
+function epilogueCalls(i: ReportInput): string {
+  if (!i.callsAtEid) return '';
+  const done = i.after.town.state.completed;
+  const his = (done.halil?.call ?? 0) - i.callsAtEid.his;
+  const hers = (done.selin?.call ?? 0) - i.callsAtEid.hers;
+  if (his > 0)
+    return `In the six days after Eid he called her himself ${times(his)}${hers > 0 ? `, and she called ${times(hers)}` : ''}.`;
+  return hers > 0
+    ? `In the six days after Eid he did not call her; she called ${times(hers)}.`
+    : 'In the six days after Eid they did not speak.';
+}
+
 /** Eid lines kept for the report: enough for the evening to show (playtest: 8 cut it off at noon). */
 export const EID_LINES = 24;
 
@@ -229,17 +269,17 @@ export function buildReport(i: ReportInput): ReportView {
   const hyper = h.body.illnesses.find((x) => x.kind === 'hypertension');
   const sev = hyper?.severity ?? 0;
   const body = [
-    `Blood pressure: ${sev < 0.15 ? 'close to normal' : sev < 0.3 ? 'mildly high' : sev < 0.5 ? 'moderately high' : 'high'}.`,
+    `Blood pressure: ${pressureWord(sev)}.`,
     `Sleep: ${h.body.sleepDebt < 60 ? 'enough' : h.body.sleepDebt < 240 ? 'a little short' : 'short; he is running on a debt'}.`,
     `Fed: ${h.body.satiety > 0.6 ? 'well' : h.body.satiety > 0.3 ? 'enough' : 'underfed'}.`,
   ];
-  const excusedIll = h.agenda.commitments.filter(
-    (c) => c.kind === 'abstain' && c.exempt?.reason === 'illness' && dayOf(c.from) < TOWN_EID_DAY,
-  ).length;
-  if (excusedIll > 0)
+  // Round 3: the game records the excused days as they happen (the agenda keeps only the last few closed fasts).
+  const ill = [...(i.illDays ?? [])].sort((a, b) => a - b);
+  if (ill.length > 0)
     body.push(
-      `His blood pressure made him unwell enough on ${excusedIll} day${excusedIll === 1 ? '' : 's'} of Ramadan that the fast was excused, to be made up.`,
+      `His blood pressure made him unwell on ${ill.length === 1 ? '1 day' : `${ill.length} days`} of Ramadan (${ill.map((d) => dayLabel(d)).join(', ')}); he counted himself ill and did not fast, to make ${ill.length === 1 ? 'it' : 'them'} up after Eid.`,
     );
+  if (i.doctor) body.push(i.doctor);
   const owed = Math.round(town.state.rentOwed);
   const makeUps = owedMakeUps(h).length;
   const call = town.state.lastCall;
@@ -256,7 +296,7 @@ export function buildReport(i: ReportInput): ReportView {
       summary: summary(i),
     },
     ledger: ledger(i),
-    own: own.length ? own : ['Nothing you had prompted became something he did on his own.'],
+    own: ownWithCalls(own, i),
     others: told,
     stopped,
     trust,
@@ -266,7 +306,11 @@ export function buildReport(i: ReportInput): ReportView {
       t,
       trustStart: i.trustStart,
       ...(town.state.lastCall?.by === 'halil'
-        ? { halilCalledAt: town.state.lastCall.at }
+        ? {
+            halilCalledAt: town.state.lastCall.at,
+            // After Eid you are silent, so a call of his then was unasked.
+            calledUnasked: town.state.lastCall.at >= TOWN_EID_DAY * MINUTES_PER_DAY,
+          }
         : i.halilCalledAt !== undefined
           ? { halilCalledAt: i.halilCalledAt }
           : {}),
@@ -276,6 +320,15 @@ export function buildReport(i: ReportInput): ReportView {
     rows: i.rows,
     modelNotes: [...MODEL_NOTES],
   };
+}
+
+/** The week's own calls to Selin belong in "what he did on his own" even when the chronicle diff misses them. */
+function ownWithCalls(own: string[], i: ReportInput): string[] {
+  const out = [...own];
+  const line = epilogueCalls(i);
+  if (line.includes('he called her himself') && !out.some((l) => /Selin/.test(l)))
+    out.push(line.replace('In the six days after Eid he called her himself', 'He called Selin himself'));
+  return out.length ? out : ['Nothing you had prompted became something he did on his own.'];
 }
 
 const sinceSelin = (n: number) =>

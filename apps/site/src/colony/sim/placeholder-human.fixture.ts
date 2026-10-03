@@ -1,5 +1,5 @@
 /**
- * Placeholder HumanSide: runs the Classic AI on the Human pane's world and dresses it in the Human view
+ * Test fixture (not used by the game, which runs human.ts). Placeholder HumanSide: runs the Classic AI on the Human pane's world and dresses it in the Human view
  * model, so the UI, worker and scoreboard can be built and tested before the framework adapter exists.
  * It invents nothing the Classic rules do not do: `assent` on accepted orders, `cannot` when the target is
  * down or dead (Classic's grey no-op), `notNow` "after I eat" when an auto-eat interrupt sets the order

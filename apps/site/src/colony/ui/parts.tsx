@@ -314,6 +314,11 @@ export const GoalStrip = memo(function GoalStrip({ goals }: { goals: GoalView[] 
             <i className={`dot goal-${g.classic.status}`} />
             <i className={`dot goal-${g.human.status}`} />
           </span>
+          {/* Game design review (GD7): the collapsed phone strip shows each side's number, not only a dot. */}
+          <span className="goal-nums" aria-hidden="true">
+            <b className={`goal-num goal-${g.classic.status}`}>C{Math.floor(g.classic.value)}</b>
+            <b className={`goal-num goal-${g.human.status}`}>H{Math.floor(g.human.value)}</b>
+          </span>
           <GoalChip goal={g} side="classic" s={g.classic} />
           <GoalChip goal={g} side="human" s={g.human} />
         </div>
@@ -388,7 +393,7 @@ export function PaneStats({ frame, side }: { frame: Frame | null; side: 'classic
 // Order log
 // ---------------------------------------------------------------------------------------------
 
-const CHIP_TEXT: Record<ChipState, string> = {
+export const CHIP_TEXT: Record<ChipState, string> = {
   pending: '…',
   ok: '✓',
   done: '✓',
