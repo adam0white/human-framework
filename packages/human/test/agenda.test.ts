@@ -255,3 +255,41 @@ describe('review fixes (2026-10-03)', () => {
     expect(onFinished(p, done('pray', 870), 860).kept).toEqual([]);
   });
 });
+
+describe('an activity under way at the window close (engine 1.3.0)', () => {
+  const running = (p: Person, aff: Affordance, startedAt: number, endsAt: number) => {
+    (p as unknown as { activity: unknown }).activity = {
+      action: aff.action,
+      affordanceId: aff.id,
+      affordance: aff,
+      startedAt,
+      endsAt,
+      mode: 'awake',
+    };
+  };
+  test('a prayer begun in its window stays open past the close and is kept when it finishes', () => {
+    const p = person();
+    const c = promise(p, { kind: 'worship', actions: ['pray'], from: 900, until: 960, importance: 0.8 });
+    running(p, prayAff, 955, 975);
+    expect(advanceAgenda(p, 965).broken).toEqual([]);
+    expect(c.status).toBe('pending');
+    // Carrying on still pulls, at the window's last-minute pressure; a fresh start would not.
+    expect(agendaTerms(p, prayAff, 965).find((t) => t.source === `commitment:${c.id}`)?.value).toBeCloseTo(
+      0.8,
+    );
+    expect(agendaTerms(p, { ...prayAff, id: 'other-pray' }, 965)).toEqual([]);
+    expect(onFinished(p, done('pray', 975), 955).kept.map((x) => x.id)).toEqual([c.id]);
+  });
+  test('cut short or never under way, it breaks as before', () => {
+    const p = person();
+    const c = promise(p, { kind: 'worship', actions: ['pray'], from: 900, until: 960, importance: 0.8 });
+    running(p, prayAff, 955, 975);
+    advanceAgenda(p, 965);
+    (p as unknown as { activity: unknown }).activity = null;
+    expect(advanceAgenda(p, 966).broken.map((x) => x.id)).toEqual([c.id]);
+    const q = person();
+    const d = promise(q, { kind: 'worship', actions: ['pray'], from: 900, until: 960, importance: 0.8 });
+    running(q, prayAff, 961, 975);
+    expect(advanceAgenda(q, 965).broken.map((x) => x.id)).toEqual([d.id]);
+  });
+});

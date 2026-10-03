@@ -55,16 +55,24 @@ export function createStanding(d: Draft, optionLabel: string, at: number): Stand
   };
 }
 
-/** Fold his answer in; returns whether it is new (first answer or a change) and whether the suggestion ends. */
-export function answer(s: Standing, r: SuggestionResolution): { fresh: boolean; ends: boolean } {
+/**
+ * Fold his answer in. `fresh`: the first answer or a change of tone (this pauses); `changed`: same tone, a new
+ * counter-offer ("after I rest" → "after I sleep"; logged without a pause, fix pass 2: one suggestion used to
+ * pause three times to say he was putting it off). `ends`: a cannot/willNot refusal.
+ */
+export function answer(
+  s: Standing,
+  r: SuggestionResolution,
+): { fresh: boolean; changed: boolean; ends: boolean } {
   const tone = toneOf(r.verdict, r.kind);
   const a: { tone: Tone; says: string; counter?: string } = { tone, says: r.says };
   if (r.counterOffer) a.counter = r.counterOffer.label;
   const key = `${tone}|${a.counter ?? ''}`;
-  const fresh = key !== s.lastKey;
+  const fresh = s.lastAnswer?.tone !== tone;
+  const changed = !fresh && key !== s.lastKey;
   s.lastKey = key;
   s.lastAnswer = a;
-  return { fresh, ends: r.verdict === 'refused' && (r.kind === 'cannot' || r.kind === 'willNot') };
+  return { fresh, changed, ends: r.verdict === 'refused' && (r.kind === 'cannot' || r.kind === 'willNot') };
 }
 
 export function standingView(s: Standing): StandingView {

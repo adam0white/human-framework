@@ -80,9 +80,52 @@ export function toldLine(summary: string, names: Readonly<Record<string, string>
 
 export const isVoiceId = (id: string): id is VoiceId => id in VOICE_META;
 
+/** Trust as words, in bands fine enough that 0.50 and 0.65 read differently (fix pass 2). */
 export function trustWord(t: number, you = false): string {
-  const w = t >= 0.65 ? 'closely' : t >= 0.4 ? 'some' : 'little';
+  const w =
+    t >= 0.8
+      ? 'very closely'
+      : t >= 0.65
+        ? 'closely'
+        : t >= 0.55
+          ? 'fairly well'
+          : t >= 0.45
+            ? 'some'
+            : t >= 0.3
+              ? 'warily'
+              : t >= 0.15
+                ? 'little'
+                : 'hardly at all';
   return you ? `listens to you ${w}` : `listens ${w}`;
+}
+
+/** The learned expectations the player can watch move: what each feels like to him, as words. */
+const WEIGHS: { key: string; label: string }[] = [
+  { key: 'see-doctor', label: 'the clinic' },
+  { key: 'call@selin', label: 'calling Selin' },
+  { key: 'pray@mosque', label: 'the mosque' },
+];
+const weighWord = (v: number) =>
+  v <= -0.6
+    ? 'dreads it'
+    : v <= -0.3
+      ? 'heavy'
+      : v < -0.05
+        ? 'a little heavy'
+        : v < 0.2
+          ? 'all right'
+          : 'good';
+
+export function weighsView(h: Person, start: Record<string, number>): NonNullable<HalilView['weighs']> {
+  const out: NonNullable<HalilView['weighs']> = [];
+  for (const w of WEIGHS) {
+    const x = h.memory.expectations.find((e) => e.key === w.key);
+    if (!x) continue;
+    const s0 = start[w.key] ?? x.valence;
+    const trend = x.valence - s0 >= 0.05 ? 'easier' : s0 - x.valence >= 0.05 ? 'heavier' : 'same';
+    out.push({ label: w.label, word: weighWord(x.valence), trend });
+  }
+  return out;
 }
 
 /** Display label of an affordance id or action, from a decision or the offers. */
@@ -180,7 +223,7 @@ function feelingCause(cause: string, targetId?: string): string | undefined {
   return undefined;
 }
 
-export function halilView(h: Person, town: Town, t: number): HalilView {
+export function halilView(h: Person, town: Town, t: number, start?: Record<string, number>): HalilView {
   const body = readBody(h).perceived;
   const felt: Felt[] = [
     { id: 'hunger', level: round(body.hunger), word: feltWord(body.hunger, 'hungry') },
@@ -214,6 +257,7 @@ export function halilView(h: Person, town: Town, t: number): HalilView {
     onMind,
     money: Math.round(town.state.money.halil ?? 0),
     owed: Math.round(town.state.rentOwed),
+    ...(start ? { weighs: weighsView(h, start) } : {}),
   };
 }
 
@@ -240,6 +284,8 @@ export interface EndsInput {
   t: number;
   /** Trust in `you` when the game began (for "unchanged"). */
   trustStart: number;
+  /** Minute he last called Selin himself, if ever (the Selin end is his call, not hers). */
+  halilCalledAt?: number;
 }
 
 /** The day of the month he promised Osman the rent by (the town's opening promise). */
@@ -247,7 +293,7 @@ const RENT_PROMISED_DAY = 15;
 /** What he promised by then. */
 const RENT_PROMISED = 300;
 
-export function endsView({ h, town, t, trustStart }: EndsInput): EndView[] {
+export function endsView({ h, town, t, trustStart, halilCalledAt }: EndsInput): EndView[] {
   const day = dayOf(t);
   const chron: { kept: { kind: string }[]; released: { kind: string }[] }[] = (h.chronicle ?? []).filter(
     (r) => r.day >= 1 && r.day < TOWN_EID_DAY,
@@ -291,6 +337,15 @@ export function endsView({ h, town, t, trustStart }: EndsInput): EndView[] {
     .at(-1);
   const call = town.state.lastCall;
   const you = voiceOf(h, 'you')?.trust ?? trustStart;
+  // Osman's date, from the promise itself: kept when he paid inside it, broken when it closed unpaid.
+  const date = h.agenda.commitments.find((c) => c.id === 'rent' && c.kind === 'promise');
+  const dateText =
+    date?.status === 'kept'
+      ? `Osman’s date kept.`
+      : date?.status === 'broken'
+        ? `Osman’s date (300 by Ramadan ${RENT_PROMISED_DAY}) missed.`
+        : '';
+  const his = halilCalledAt === undefined ? undefined : Math.max(0, day - dayOf(halilCalledAt));
   const delta = you - trustStart;
   return [
     {
@@ -303,16 +358,23 @@ export function endsView({ h, town, t, trustStart }: EndsInput): EndView[] {
     {
       id: 'rent',
       label: 'Pay Osman what I owe.',
-      status: owed > 0 ? `${owed} owed` : 'paid up',
+      status:
+        date?.status === 'broken' && owed > 0
+          ? `date missed; ${owed} owed`
+          : date?.status === 'broken'
+            ? 'paid up, late'
+            : owed > 0
+              ? `${owed} owed`
+              : 'paid up',
       // The deadline is named only while it is still ahead and something is owed (playtest: stale detail).
       detail:
         owed > 0
-          ? `${paid > 0 ? `Paid ${paid}. ` : ''}${
+          ? `${dateText ? `${dateText} ` : ''}${paid > 0 ? `Paid ${paid}. ` : ''}${
               paid < RENT_PROMISED && day <= RENT_PROMISED_DAY
                 ? `Osman wants ${RENT_PROMISED} by Ramadan ${RENT_PROMISED_DAY}`
                 : `Owed ${owed}`
             }. He has ${money}.`
-          : `Paid ${paid}; nothing owed. He has ${money}.`,
+          : `${dateText ? `${dateText} ` : ''}Paid ${paid}; nothing owed. He has ${money}.`,
       progress: round(Math.min(1, paid / Math.max(1, paid + owed))),
     },
     {
@@ -325,10 +387,17 @@ export function endsView({ h, town, t, trustStart }: EndsInput): EndView[] {
     },
     {
       id: 'selin',
-      label: 'Talk to Selin.',
-      status: call ? sinceText(Math.max(0, day - dayOf(call.at))) : 'no call yet',
+      label: 'Call Selin himself, not wait for her.',
+      status:
+        his === undefined
+          ? 'he never calls'
+          : his === 0
+            ? 'he called today'
+            : his === 1
+              ? 'he called yesterday'
+              : `he called ${his} days ago`,
       detail: call
-        ? `Last call ${when(call.at)}; ${call.by === 'halil' ? 'he called her' : 'Selin called'}.`
+        ? `Last call ${when(call.at)}; ${call.by === 'halil' ? 'he called her' : 'Selin called'}.${his === undefined ? ' Since the funeral he waits for her to call.' : ''}`
         : 'No calls yet this Ramadan.',
     },
     {
@@ -341,13 +410,11 @@ export function endsView({ h, town, t, trustStart }: EndsInput): EndView[] {
   ];
 }
 
-const sinceText = (n: number) =>
-  n === 0 ? 'spoke today' : n === 1 ? 'spoke yesterday' : `${n} days since a call`;
 const stripSaid = (s: string) => s.replace(/^the doctor said /, '');
 
 // --- Voices --------------------------------------------------------------------------------------
 
-const TRUST_REASON: Record<string, string> = {
+export const TRUST_REASON: Record<string, string> = {
   'went-well': 'went well',
   'went-badly': 'went badly',
   harm: 'hurt him',
@@ -355,6 +422,7 @@ const TRUST_REASON: Record<string, string> = {
   breach: 'broke something he holds to',
   'breach-under-protest': 'broke something he holds to, under protest',
   pushed: 'pushed him when he was already pressed',
+  worn: 'asked him again for what he did not want',
 };
 
 export function voicesView(h: Person, t: number, conflict?: string): VoiceView[] {
@@ -407,6 +475,8 @@ export interface Cell {
   affordanceId: string;
   label: string;
   promptedBy?: VoiceId;
+  /** The decision that began it (for the report's reasons). */
+  decisionId?: string;
 }
 
 /** One day's strip from Halil's activity cells (absolute minutes, clipped to the day). */

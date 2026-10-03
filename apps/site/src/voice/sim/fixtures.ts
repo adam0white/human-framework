@@ -213,6 +213,10 @@ export const sampleFrame: Frame = {
       { id: 'tired', level: 0.5, word: 'tired' },
     ],
     feelings: [{ name: 'sadness', word: 'sad', intensity: 0.3 }],
+    weighs: [
+      { label: 'the clinic', word: 'dreads it', trend: 'same' },
+      { label: 'calling Selin', word: 'heavy', trend: 'easier' },
+    ],
     onMind: [
       { id: 'fast', label: 'the fast', due: 'until 18:46', state: 'open' },
       { id: 'prayer1', label: 'Dhuhr', due: 'before 16:00', state: 'open' },
@@ -328,6 +332,18 @@ export const sampleReport: ReportView = {
       'He went to the clinic twice this month, both times after you spoke.',
     ],
   },
+  ledger: [
+    {
+      said: 'Call Selin (whispered through 26 days)',
+      times: 26,
+      eid: 'Once, first at 15:05, for the company.',
+    },
+    {
+      said: 'See the doctor (said once on the days you spoke)',
+      times: 1,
+      eid: 'Not on Eid; the clinic still is something he dreads.',
+    },
+  ],
   own: ['He called Selin on his own.', 'He saw the doctor without being told.'],
   others: ['Osman still had to come about the rent.'],
   stopped: ['He stopped going to the mosque.'],

@@ -50,7 +50,8 @@ export const SHIPPED_SEED = 7;
 export const MODEL_NOTES: readonly string[] = [
   'Halil is a simulation of a person’s needs, duties, habits, memories and trust, built from engineering defaults. It is not a model of any real person or town.',
   'The game represents his understanding of his duties, never a ruling, and never anything about acceptance.',
-  'Engineering assumptions, not sourced in the project’s research notes: smoking breaks the fast; the Fajr window is modelled as ending at Dhuhr, not at sunrise; zakat al-fitr is not represented; the Eid prayer is not offered.',
+  'Engineering assumptions, not sourced in the project’s research notes: smoking breaks the fast; the Fajr window is modelled as ending at Dhuhr, not at sunrise; zakat al-fitr is not represented; the Eid prayer is not offered; the workshop is shut on Eid (a town custom).',
+  'Money: the morning shift alone does not reach Osman’s 300 by Ramadan 15. He does not reckon on the afternoon shift’s pay, so on his own he rarely takes it (an engineering choice that makes the shift your lever).',
   'Illness excuses the fast with a make-up owed (Qur’an 2:184). Treating a break under real necessity the same way is an engineering assumption by analogy with Qur’an 2:173, not yet sourced. The game never records either as a breach of the fast.',
   'How heavy the clinic, the mosque and calling Selin feel to him since Nuran died are engineering defaults, not findings.',
   'He decides from what he feels. His true body is shown only by the doctor and in the report.',
@@ -69,7 +70,7 @@ export interface Draft {
   appeal?: Appeal;
 }
 export interface StandingWhisper {
-  choiceId: 'work' | 'doctor' | 'selin' | 'rent' | 'mosque' | 'rest';
+  choiceId: 'work' | 'extra' | 'doctor' | 'selin' | 'rent' | 'mosque' | 'rest';
   strength: Strength;
   appeal?: Appeal;
 }
@@ -151,6 +152,11 @@ export interface HalilView {
   }[];
   money: number;
   owed: number;
+  /**
+   * How a few things feel to him now, from his learned expectations (fix pass 2): the clinic, calling Selin, the
+   * mosque. `trend` compares with the start of Ramadan.
+   */
+  weighs?: { label: string; word: string; trend: 'easier' | 'heavier' | 'same' }[];
 }
 export interface VoiceView {
   id: VoiceId;
@@ -216,6 +222,8 @@ export interface WhyView {
 export interface BetweenView {
   closed: string;
   lines: string[];
+  /** What your words did today, plainly (fix pass 2): verdicts by kind, calls, money, the clinic. */
+  yours?: string[];
   strip: StripRow;
   ends: EndView[];
   trust: { from: number; to: number; events: string[] };
@@ -225,8 +233,15 @@ export interface BetweenView {
 export interface ReportView {
   /** `summary`: the few plain facts the month and Eid come down to (Selin on Eid, the clinic, you). */
   eid: { strip: StripRow; lines: string[]; summary: string[] };
+  /**
+   * "What you used to say" (fix pass 2): for each thing you suggested in Ramadan, how many times, and what he did
+   * about it on Eid with his reason.
+   */
+  ledger?: { said: string; times: number; eid: string }[];
   own: string[];
+  /** May be empty; the UI hides an empty section. */
   others: string[];
+  /** May be empty; the UI hides an empty section. */
   stopped: string[];
   trust: { id: VoiceId; name: string; endRamadan: string; endWeek: string }[];
   ends: EndView[];

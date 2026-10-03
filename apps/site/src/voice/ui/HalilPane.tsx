@@ -62,6 +62,25 @@ export function HalilPane({ halil }: { halil: HalilView }) {
         ))}
       </ul>
 
+      {halil.weighs && halil.weighs.length > 0 && (
+        <>
+          <h3 className="v-sub">How things weigh on him</h3>
+          <ul className="v-mind v-weighs">
+            {halil.weighs.map((w) => (
+              <li key={w.label}>
+                <span className="v-mind-label">{w.label}</span>
+                <span className="v-mind-due">{w.word}</span>
+                {w.trend !== 'same' && (
+                  <span className="v-mind-state">
+                    {w.trend === 'easier' ? 'easier than at the start' : 'heavier than at the start'}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
       <h3 className="v-sub">Money</h3>
       <p className="v-money">
         <span>

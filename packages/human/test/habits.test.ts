@@ -129,3 +129,24 @@ describe('habits', () => {
     expect(Math.max(...s)).toBeLessThan(1);
   });
 });
+
+describe('action-wide refractory (engine 1.3.0)', () => {
+  test('a habit just answered under another cue holds back every habit for the same action', () => {
+    const mk = (hour: number, lastAt: number): Habit => ({
+      cue: { hour },
+      action: 'smoke',
+      strength: 0.9,
+      repetitions: 50,
+      lastAt,
+    });
+    const now = 10 * DAY + 10 * H;
+    // The 10:00 habit was last done yesterday; a 09:00 habit was answered 20 minutes ago.
+    const fresh: P = { habits: [mk(10, now - DAY)] };
+    const chained: P = { habits: [mk(10, now - DAY), mk(9, now - 20)] };
+    const ctx = { now, placeId: 'home' };
+    expect(habitPull(chained, aff('smoke'), ctx)).toBeLessThan(habitPull(fresh, aff('smoke'), ctx) / 2);
+    // Answered a full refractory ago, the other habit no longer holds it back.
+    const rested: P = { habits: [mk(10, now - DAY), mk(9, now - HABIT_DEFAULTS.refractory)] };
+    expect(habitPull(rested, aff('smoke'), ctx)).toBeGreaterThan(habitPull(chained, aff('smoke'), ctx));
+  });
+});

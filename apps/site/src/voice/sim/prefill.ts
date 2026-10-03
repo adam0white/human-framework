@@ -1,10 +1,12 @@
 /**
  * The composer's prefill (build plan §6.3), deterministic, first rule that applies wins:
  * 1. another voice's standing advice that is offered now and is not his leaning;
- * 2. one of his ends (pay-rent at 300+, see-doctor if never seen, call Selin after iftar after 2+ days, work if
- *    not worked today), offered now and not leaning;
- * 3. a close call: the runner-up;
- * 4. nothing.
+ * 2. one of his ends, offered now and not leaning: pay-rent at 300+; the afternoon shift when the mornings alone
+ *    will not reach what Osman wants in time; see-doctor if never seen; call Selin after iftar when HE has not
+ *    called her for 2+ days; work if not worked today;
+ * 3. nothing. (Fix pass 2: a close call no longer prefills the runner-up, which made an attentive player
+ *    contrarian by default; the torn moment is a beat and the choice is the player's.)
+ * Nothing is prefilled that he is already doing.
  * The first beat of Ramadan 1 (the suhoor wake) is prefilled with `eat`, his leaning, as the tutorial.
  * Every prefill carries the sentence that says why.
  *
@@ -20,6 +22,7 @@ import {
   type Person,
   preview,
   standingAdvice,
+  TOWN_DEFAULTS,
   type Town,
   townCalendar,
 } from '@human/framework';
@@ -45,6 +48,12 @@ export interface PrefillInput {
   offers: readonly Affordance[];
   considered: readonly Considered[];
   leaningId?: string;
+  /** The running activity's affordance: never prefilled (he is already doing it). */
+  currentId?: string;
+  /** Minute Halil last placed a call to Selin himself, if ever. */
+  halilCalledAt?: number;
+  /** The pause was called for this option (the afternoon-shift beat): its own rule goes first when it applies. */
+  prefer?: string;
   tutorial?: boolean;
 }
 
@@ -58,11 +67,11 @@ export function closeRival(considered: readonly Considered[]): Considered | unde
 }
 
 export function prefillFor(i: PrefillInput): Prefill | undefined {
-  const { h, town, t, offers, considered, leaningId } = i;
+  const { h, town, t, offers, leaningId } = i;
   const refusable = new Map<string, boolean>();
   const offered = (id: string) => {
     const o = offers.find((x) => x.id === id);
-    if (!o) return undefined;
+    if (!o || id === i.currentId) return undefined;
     if (!refusable.has(id))
       refusable.set(
         id,
@@ -75,7 +84,6 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
       );
     return refusable.get(id) ? undefined : o;
   };
-  const label = (id: string) => offered(id)?.label ?? ACTION_LABEL[id] ?? id;
   if (i.tutorial && offered('eat')) {
     const cal = townCalendar(dayOf(t));
     const fajr = dayOf(t) * MINUTES_PER_DAY + cal.fajr;
@@ -85,6 +93,18 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
       why: `The fast begins at ${pad(fajr)}. He hasn’t cooked since Nuran died; there’s bread and cheese.`,
       source: 'tutorial',
     };
+  }
+  // 0. The pause was for the afternoon shift: say it first, if he is still short and it is still on offer.
+  if (i.prefer === 'work-extra' && offered('work-extra')) {
+    const short = moneyShort(town, t);
+    if (short)
+      return {
+        optionId: 'work-extra',
+        strength: 'mention',
+        why: `Mornings alone get him to about ${short.projected} by ${short.by}; ${short.wants}. He has ${Math.round(town.state.money.halil ?? 0)}.`,
+        source: 'end',
+        appeal: 'duty',
+      };
   }
   // 1. Another voice's standing advice.
   const advice = standingAdvice(h, t)
@@ -120,33 +140,61 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
       `Osman is owed ${owed}${day <= 15 ? '; he wants 300 by Ramadan 15' : ''}. He has ${money}.`,
       'duty',
     );
+  const short = moneyShort(town, t);
+  if (short && offered('work-extra') && leaningId !== 'work-extra')
+    return end(
+      'work-extra',
+      `Mornings alone get him to about ${short.projected} by ${short.by}; ${short.wants}. He has ${money}.`,
+      'duty',
+    );
   if (
     offered('see-doctor') &&
     leaningId !== 'see-doctor' &&
     (town.state.completed.halil?.['see-doctor'] ?? 0) === 0
   )
     return end('see-doctor', 'Selin wants his pressure seen; he hasn’t gone.', 'safety');
-  const call = town.state.lastCall;
-  const since = call ? day - dayOf(call.at) : day - 1;
+  const since = i.halilCalledAt === undefined ? undefined : day - dayOf(i.halilCalledAt);
   if (
     offered('call:selin') &&
     leaningId !== 'call:selin' &&
     t % MINUTES_PER_DAY >= townCalendar(day).maghrib &&
-    since >= 2
+    (since === undefined || since >= 2)
   )
-    return end('call:selin', `He hasn’t spoken to Selin in ${since} days.`, 'benevolence');
+    return end(
+      'call:selin',
+      since === undefined
+        ? 'He has not called Selin himself since the funeral; she always calls him.'
+        : `He hasn’t called Selin himself in ${since} days.`,
+      'benevolence',
+    );
   if (offered('work-repair') && leaningId !== 'work-repair' && town.state.lastWorked.halil !== day)
     return end('work-repair', `Osman is owed ${Math.round(town.state.rentOwed)}.`);
-  // 3. A close call.
-  const rival = closeRival(considered);
-  if (rival && offered(rival.affordanceId) && rival.affordanceId !== leaningId)
-    return {
-      optionId: rival.affordanceId,
-      strength: 'mention',
-      why: `He’s torn: ${label(rival.affordanceId)} is close behind what he’s leaning toward.`,
-      source: 'close-call',
-    };
   return undefined;
+}
+
+/**
+ * Whether the morning shifts alone will leave him short of what Osman wants next: 300 paid by Ramadan 15, then
+ * the rest by the end of Ramadan. Counts one morning wage for each workday left (today's if not yet worked).
+ */
+export function moneyShort(
+  town: Town,
+  t: number,
+): { projected: number; by: string; wants: string } | undefined {
+  const T = TOWN_DEFAULTS;
+  const day = dayOf(t);
+  const owed = Math.round(town.state.rentOwed);
+  if (owed <= 0) return undefined;
+  const money = Math.round(town.state.money.halil ?? 0);
+  const paid = Math.round(town.state.rentPaid);
+  const lastFast = T.ramadanFirstDay + T.ramadanDays - 1;
+  const [goal, byDay, wants] =
+    paid < T.rent && day <= T.rentPromiseDay
+      ? [T.rent - paid, T.rentPromiseDay, `Osman wants ${T.rent} by Ramadan ${T.rentPromiseDay}`]
+      : [owed, lastFast, `${owed} is owed`];
+  if (day > byDay) return undefined;
+  const mornings = byDay - day + (town.state.lastWorked.halil === day ? 0 : 1);
+  const projected = money + mornings * T.wage;
+  return projected < goal ? { projected, by: `Ramadan ${byDay}`, wants } : undefined;
 }
 
 const pad = (m: number) => {

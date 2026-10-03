@@ -115,11 +115,11 @@ export function cueMatches(h: Habit, ctx: HabitContext): Unit {
  * 0..1 urge multiplier for a withheld craving habit at `now`: craving × urgeGain × gamma bump of the days
  * past the usual interval since last performance, (t/peak)·e^{1 - t/peak}. 0 for habits never withheld.
  */
-export function habitUrge(h: Habit, now: Minute): number {
+export function habitUrge(h: Habit, now: Minute, lastAt: Minute = h.lastAt): number {
   const d = HABIT_DEFAULTS;
   const c = clamp01(h.craving ?? 0);
   if (c <= 0 || !((h.withheld ?? 0) > 0)) return 0;
-  const t = Math.max(0, now - h.lastAt - d.urgeInterval) / MINUTES_PER_DAY;
+  const t = Math.max(0, now - Math.max(h.lastAt, lastAt) - d.urgeInterval) / MINUTES_PER_DAY;
   if (t <= 0) return 0;
   const x = t / d.urgePeakDays;
   return c * d.urgeGain * x * Math.exp(1 - x);
@@ -128,19 +128,24 @@ export function habitUrge(h: Habit, now: Minute): number {
 /**
  * Habitual pull toward an affordance: sum of strength × cue match × refractory ramp over habits for its action,
  * capped at 1, plus any abstinence urge (strength × match × habitUrge, capped at urgeMax). The ramp is 0 right
- * after the habit was performed and full `refractory` minutes later (no immediate re-pull from an answered cue).
- * Without craving habits the result is 0..1 as before.
+ * after the action was last performed and full `refractory` minutes later (no immediate re-pull from an answered cue).
+ * The refractory and the urge run from the last time the ACTION was performed under any of its habits (fix
+ * 2026-10-03: a habit whose cues never matched a performance kept its seed `lastAt`, so its craving grew all month
+ * and he chain-smoked on Eid). Without craving habits the result is 0..1 as before.
  */
 export function habitPull(p: Pick<Person, 'habits'>, aff: Affordance, ctx: HabitContext): number {
   let sum = 0;
   let urge = 0;
+  let last = Number.NEGATIVE_INFINITY;
+  for (const h of p.habits)
+    if (h.action === aff.action && h.lastAt <= ctx.now) last = Math.max(last, h.lastAt);
   for (const h of p.habits) {
     if (h.action !== aff.action) continue;
-    const since = ctx.now - h.lastAt;
+    const since = ctx.now - Math.max(h.lastAt, last);
     const ready = since >= 0 ? clamp01(since / HABIT_DEFAULTS.refractory) : 1;
     const m = h.strength * cueMatches(h, ctx) * ready;
     sum += m;
-    if (m > 0) urge += m * habitUrge(h, ctx.now);
+    if (m > 0) urge += m * habitUrge(h, ctx.now, last);
   }
   return Math.min(1, sum) + Math.min(HABIT_DEFAULTS.urgeMax, urge);
 }

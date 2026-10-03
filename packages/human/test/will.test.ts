@@ -330,3 +330,56 @@ describe('review fixes (2026-10-03)', () => {
     expect(res.likelihood).toBeLessThan(1);
   });
 });
+
+describe('trust economy (engine 1.3.0)', () => {
+  test('asking again for what he declines while pressed wears trust, at most once per wornInterval', () => {
+    const p = villager('a', 31);
+    const v = voiceOf(p, 'player');
+    if (!v) throw new Error('no voice');
+    const t0 = v.trust;
+    const ask1 = () => {
+      v.pressure = 0.9;
+      p.activity = null;
+      return decide(p, offers(p), { suggestion: ask('wait', { strength: 0.3 }) });
+    };
+    const r = ask1();
+    expect(['deferred', 'refused', 'modified']).toContain(r.suggestion?.verdict);
+    expect(r.suggestion?.kind).not.toBe('cannot');
+    const t1 = v.trust;
+    expect(t1).toBeCloseTo(t0 * (1 - WILL_DEFAULTS.trustLossWorn), 9);
+    expect(v.history?.at(-1)?.reason).toBe('worn');
+    ask1();
+    expect(v.trust).toBe(t1);
+    p.now += WILL_DEFAULTS.wornInterval;
+    ask1();
+    expect(v.trust).toBeLessThan(t1);
+  });
+
+  test('repeat good outcomes of the same suggested action earn less each time', () => {
+    const p = villager('a', 32);
+    const ok = { voiceId: 'player', verdict: 'assented' as const, reason: 'x', says: '' };
+    const gains: number[] = [];
+    for (let i = 0; i < 3; i++) {
+      const before = voiceOf(p, 'player')?.trust ?? 0;
+      learnFromVoice(p, ok, 0.6, { at: NOON + i * 60, action: 'tea' });
+      gains.push((voiceOf(p, 'player')?.trust ?? 0) - before);
+    }
+    expect(gains[1] ?? 1).toBeLessThan(gains[0] ?? 0);
+    expect(gains[2] ?? 1).toBeLessThan(gains[1] ?? 0);
+    // A different action is not discounted by the first.
+    const before = voiceOf(p, 'player')?.trust ?? 0;
+    learnFromVoice(p, ok, 0.6, { at: NOON + 300, action: 'pray' });
+    expect((voiceOf(p, 'player')?.trust ?? 0) - before).toBeGreaterThan(gains[2] ?? 1);
+  });
+
+  test('small trust changes fold into one history entry that keeps its span and count', () => {
+    const p = villager('a', 33);
+    const ok = { voiceId: 'player', verdict: 'assented' as const, reason: 'x', says: '' };
+    for (let i = 0; i < 4; i++)
+      learnFromVoice(p, ok, 0.01, { at: NOON + i * 60, action: 'tea', reason: 'felt' });
+    const h = voiceOf(p, 'player')?.history ?? [];
+    const last = h.at(-1);
+    expect(last?.count ?? 1).toBeGreaterThan(1);
+    expect(last?.from).toBeLessThan(last?.at ?? 0);
+  });
+});

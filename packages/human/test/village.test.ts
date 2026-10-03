@@ -198,7 +198,8 @@ describe('village simulation', () => {
     const bilal = s.people.find((p) => p.id === 'bilal') as Person;
     expect(bilal.body.alive).toBe(true);
     expect(events.some((e) => e.kind === 'died')).toBe(false);
-    expect(completed(s.village, 'bilal', 'drink')).toBeGreaterThan(5);
+    // Engine 1.3.0: he finishes a field shift begun inside his job window before drinking, so 5 rather than 6+.
+    expect(completed(s.village, 'bilal', 'drink')).toBeGreaterThanOrEqual(5);
     // Early on bodily needs refuse the insisted wait (cannot); once followed waits have gone badly, the episode
     // distrust rule refuses it outright (willNot: distrust). Either way the request never starves him.
     expect(

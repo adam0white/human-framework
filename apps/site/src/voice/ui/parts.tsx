@@ -17,7 +17,7 @@ export const STRENGTHS: { id: Strength; label: string; key: string; hint: string
 ];
 
 export const INSIST_PRICE =
-  'He may do it under protest. He’ll remember. If it goes well, you get no credit; keep insisting and he stops listening.';
+  'He may do it under protest. He’ll remember. If it goes well, you get no credit; insisting when he is already pressed costs his trust in you.';
 
 export const toneClass = (tone?: Tone) => (tone ? `tone-${tone}` : '');
 

@@ -104,8 +104,9 @@ describe('Game 2 sim on the shipped seed', () => {
   });
 
   test('every planned beat but duty-risk fires (timings logged for the build report)', () => {
-    // duty-risk does not occur on the shipped seed: he keeps every prayer before its closing stretch and his
-    // perceived thirst in the fast peaks at about 0.61 (< 0.7). Its detector is tested below on a provoked case.
+    // The prayer/thirst duty-risk does not occur on the shipped seed: he keeps every prayer before its closing
+    // stretch and his perceived thirst in the fast peaks at about 0.61 (< 0.7). Its detector is tested below on a
+    // provoked case. (The afternoon-shift pause also uses the duty-risk kind; it has its own test.)
     const kinds = new Set(spoken.beats.history.map((b) => b.kind));
     for (const k of ALL_BEATS.filter((x) => x !== 'duty-risk')) expect(kinds, k).toContain(k);
     const quietKinds = new Set(quiet.beats.history.map((b) => b.kind));
@@ -161,24 +162,26 @@ describe('Game 2 sim on the shipped seed', () => {
     // Silent: the clinic stays unvisited and he never calls Selin himself in Ramadan.
     expect(doctor(quiet)).toBe('not yet');
     expect(halilCalls(quiet)).toBe(0);
-    expect(quiet.report?.eid.summary[1]).toMatch(/never went to the clinic/);
+    expect(quiet.report?.eid.summary.some((l) => /never went to the clinic/.test(l))).toBe(true);
+    // Silent: morning wages alone miss Osman's date, and the report says so.
+    expect(quiet.report?.eid.summary.some((l) => /He missed Osman’s date/.test(l))).toBe(true);
+    expect(quiet.cells.some((c) => c.affordanceId === 'work-extra')).toBe(false);
     // Prefill: the doctor is seen, after you spoke, and the report says so.
     expect(doctor(spoken)).toBe('seen');
     expect(spoken.cells.some((c) => c.affordanceId === 'see-doctor' && c.promptedBy === 'you')).toBe(true);
     expect(spoken.report?.eid.summary).not.toEqual(quiet.report?.eid.summary);
-    // Insist: trust falls, a 'pushed' cost is recorded, and he stops listening (a distrust refusal).
+    // Insist: insisting earns nothing, so the month ends no higher than it began and below the prefill month.
+    // Since pauses come only on a fresh answer and the afternoon-shift beat spreads them out (2026-10-03 pass), an
+    // insist-every-prefill player insists about 10 times, hours apart, and his pressure never reaches the 'pushed'
+    // line (0.6): most insists were on things he would have done anyway. The 'pushed' cost and distrust refusals are
+    // pinned in will.test.ts for a voice that insists at every turn.
     const pushy = new VoiceGame(SHIPPED_SEED);
     play(pushy, { confirm: true, insist: true });
     const you = voiceOf(pushy.halil, 'you');
-    expect(you?.trust ?? 1).toBeLessThan(0.25);
-    expect(you?.history?.some((h) => h.reason === 'pushed') ?? false).toBe(true);
-    const refusals = [...pushy.records.values()].filter((r) =>
-      (r.suggestions ?? (r.suggestion ? [r.suggestion] : [])).some(
-        (x) => x.voiceId === 'you' && x.kind === 'willNot' && x.reason === 'distrust',
-      ),
-    );
-    expect(refusals.length).toBeGreaterThan(0);
+    expect(you?.trust ?? 1).toBeLessThanOrEqual(0.5);
     expect(pushy.report?.eid.summary.some((l) => /You insisted/.test(l))).toBe(true);
+    // Pressing ends below listening: the insisting month ends with less trust than the prefill month.
+    expect(you?.trust ?? 1).toBeLessThan(voiceOf(spoken.halil, 'you')?.trust ?? 0);
   });
 
   test('every report section is non-empty, with no input and with prefill confirmations', () => {
@@ -186,9 +189,13 @@ describe('Game 2 sim on the shipped seed', () => {
       const r = g.report;
       expect(r, 'report').toBeDefined();
       if (!r) continue;
+      // `others`, `stopped` and `ledger` may be empty (the UI hides them); a silent month has no ledger.
       for (const [k, v] of Object.entries(r)) {
-        if (Array.isArray(v)) expect(v.length, k).toBeGreaterThan(0);
+        if (Array.isArray(v) && !['others', 'stopped', 'ledger'].includes(k))
+          expect(v.length, k).toBeGreaterThan(0);
       }
+      if (g === spoken) expect(r.ledger?.length ?? 0).toBeGreaterThan(0);
+      else expect(r.ledger ?? []).toEqual([]);
       expect(r.eid.lines.length).toBeGreaterThan(0);
       expect(r.eid.strip.cells.length).toBeGreaterThan(0);
       expect(r.rows.length).toBe(5);
@@ -206,6 +213,78 @@ describe('Game 2 sim on the shipped seed', () => {
     }
     const text = JSON.stringify(spoken.report).toLowerCase();
     for (const w of ['score', 'accepted by', 'reward', 'sin']) expect(text.includes(` ${w} `)).toBe(false);
+  });
+
+  test('whispering the afternoon shift keeps Osman’s date that the silent month misses', () => {
+    const money = new VoiceGame(SHIPPED_SEED);
+    play(money, {
+      confirm: true,
+      whispers: [
+        { choiceId: 'extra', strength: 'mention', appeal: 'duty' },
+        { choiceId: 'selin', strength: 'mention', appeal: 'benevolence' },
+      ],
+    });
+    const deadline = at(15, 20);
+    const firstPay = money.cells.find((c) => c.affordanceId === 'pay-rent');
+    expect(firstPay?.from ?? Number.POSITIVE_INFINITY).toBeLessThanOrEqual(deadline);
+    expect(
+      money.cells.filter((c) => c.affordanceId === 'work-extra' && c.promptedBy === 'you').length,
+    ).toBeGreaterThan(5);
+    expect(money.report?.eid.summary.some((l) => /He kept his date with Osman/.test(l))).toBe(true);
+    const quietPay = quiet.cells.find((c) => c.affordanceId === 'pay-rent');
+    expect(quietPay?.from ?? Number.POSITIVE_INFINITY).toBeGreaterThan(deadline);
+  });
+
+  test('the afternoon shift gets its own pause on Ramadan 1, prefilled, while mornings alone fall short', () => {
+    const b = spoken.beats.history.find((x) => x.kind === 'duty-risk' && /afternoon shift/.test(x.text));
+    expect(b).toBeDefined();
+    expect(Math.floor((b?.at ?? 0) / MIN_DAY)).toBe(1);
+    expect(b?.paused).toBe(true);
+    expect(quiet.beats.history.some((x) => /afternoon shift/.test(x.text) && x.paused)).toBe(true);
+    const g = new VoiceGame(SHIPPED_SEED);
+    play(g, {
+      confirm: true,
+      stop: (x) => x.paused && x.frame().pauseBeat?.text.includes('afternoon shift') === true,
+    });
+    expect(g.frame().prefill?.optionId).toBe('work-extra');
+  });
+
+  test('one suggestion credits at most one activity on the played days', () => {
+    for (const g of [spoken, quiet]) {
+      const said = g.log.filter((e) => e.kind === 'you' && e.minute < at(31, 0)).length;
+      const played = new Set([1, 2, 15, 30]);
+      const credited = g.cells.filter(
+        (c) => c.promptedBy === 'you' && played.has(Math.floor(c.from / MIN_DAY)),
+      ).length;
+      expect(credited).toBeLessThanOrEqual(said);
+    }
+  });
+
+  test('Eid: at most two cigarettes in the hour after his first meal', () => {
+    for (const g of [quiet, spoken]) {
+      const eid = g.cells.filter((c) => c.from >= at(31, 0) && c.from < at(32, 0));
+      const meal = eid.find((c) => c.action === 'eat');
+      expect(meal).toBeDefined();
+      const from = meal?.from ?? 0;
+      const smokes = eid.filter((c) => c.action === 'smoke' && c.from >= from && c.from < from + 60);
+      expect(smokes.length).toBeLessThanOrEqual(2);
+    }
+  });
+
+  test('the skipped-days digest names his work and money, Osman, and Selin', () => {
+    const g = new VoiceGame(SHIPPED_SEED);
+    let digest: string[] = [];
+    play(g, {
+      stop: (x) => {
+        if (x.intro && /days passed/.test(x.intro.label) && digest.length === 0) digest = x.intro.lines;
+        return digest.length > 0;
+      },
+    });
+    const text = digest.join(' ');
+    expect(text).toMatch(/He worked \d+ mornings?/);
+    expect(text).toMatch(/he has \d+/);
+    expect(text).toMatch(/Osman|paid Osman/);
+    expect(text).toMatch(/Selin/);
   });
 
   test('frames stay under 100 KB', () => {
@@ -401,5 +480,22 @@ describe('Game 2 sim determinism and budget', () => {
     expect(f.prefill?.optionId).toBe('eat');
     const tel = g.predict({ optionId: 'smoke', strength: 'urge', insist: false });
     expect(['willNot', 'cannot', 'yes', 'notNow']).toContain(tel.tone);
+  });
+
+  test('every prefill is on the option list, so Say it is never disabled on a prefilled composer', () => {
+    // Seen in the browser on Ramadan 15: the afternoon shift and the call to Selin were prefilled while ranked
+    // below his top six, so the composer read "Prefilled something" with nothing selected.
+    const g = new VoiceGame(SHIPPED_SEED);
+    let prefills = 0;
+    play(g, {
+      confirm: true,
+      onPause: (f) => {
+        if (!f.composer.open || !f.prefill) return;
+        prefills++;
+        expect(f.options.map((o) => o.id)).toContain(f.prefill.optionId);
+        expect(f.options.length).toBeLessThanOrEqual(6);
+      },
+    });
+    expect(prefills).toBeGreaterThan(3);
   });
 });

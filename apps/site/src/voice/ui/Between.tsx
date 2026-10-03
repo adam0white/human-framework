@@ -75,6 +75,16 @@ export function Between({
                 <li key={l}>{l}</li>
               ))}
             </ul>
+            {view.yours && view.yours.length > 0 && (
+              <>
+                <h3 className="v-sub">What your words did</h3>
+                <ul className="v-lines">
+                  {view.yours.map((l) => (
+                    <li key={l}>{l}</li>
+                  ))}
+                </ul>
+              </>
+            )}
             <Strip row={view.strip} showLabel={false} />
             <StripLegend rows={[view.strip]} />
             <div className="v-between-trust">

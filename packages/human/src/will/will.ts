@@ -14,7 +14,10 @@
  * writing anything or consuming RNG. Trust in a voice is learned from how followed advice felt, with harm
  * costing more than benefit earns (trust asymmetry); an insisted suggestion earns no trust when it goes well, and
  * insisting while the voice's pressure is already high costs trust outright ('pushed'), so a voice that insists at
- * every turn ends in distrust refusals (engineering default); pressure from being pushed decays over hours. No
+ * every turn ends in distrust refusals (engineering default); pressure from being pushed decays over hours. Asking
+ * again, without insisting, for something he declines while pressure is high wears trust a little ('worn', at most
+ * once per `wornInterval`), and each repeat good outcome of the same suggested action earns less than the last
+ * (gain / (1 + n), n = decayed count of credited outcomes), so one easy yes cannot be farmed into trust. No
  * willpower reservoir is modelled (rejected in research/empirical-models.md §6): acting against impulse
  * emerges from competing terms, fatigue cost, habits and precommitments. Autonomy loss from compliance is
  * returned as a delta for the composite to apply; this module writes only `p.will`. Several voices may speak in
@@ -106,6 +109,22 @@ export const WILL_DEFAULTS = {
    * default, 2026-10-03 playtest: insisting at every turn raised trust). Eight such pushes take 0.5 below 0.25.
    */
   trustLossPushed: 0.08,
+  /**
+   * Share of trust lost when a voice's suggestion (not insisted) is turned down while its pressure is already at
+   * `distrustPressure` or more: being asked again and again for what he does not want wears on him (engineering
+   * default, playtest 2026-10-03: a standing urge for two weeks raised trust). A mention (strength 0.35) adds
+   * too little pressure to reach it; an urge heard at every decision does.
+   */
+  trustLossWorn: 0.03,
+  /** At most one 'worn' loss per voice in this many minutes (it is a mood about the voice, not a per-decision fee). */
+  wornInterval: 12 * MINUTES_PER_HOUR,
+  /**
+   * Repetition discount on trust gain: a good outcome at an action this voice already got credit for earns
+   * gain / (1 + n), n the credited count halving every `creditHalfLife` minutes (engineering default, same
+   * playtest: the twentieth good mosque visit on the same word taught him as much as the first).
+   */
+  creditHalfLife: MINUTES_PER_DAY,
+  maxCredited: 8,
   /** Share of a tie's inertia bonus that remains when the activity is about to end. */
   inertiaFloor: 0.5,
   /**
@@ -843,6 +862,19 @@ export function resolveChoice(
       const before = v.trust;
       v.trust = clamp01(v.trust * (1 - W.trustLossPushed));
       noteTrust(v, v.trust - before, 'pushed', ctx.now);
+    } else if (
+      res &&
+      !res.insisted &&
+      res.kind !== 'cannot' &&
+      res.reason !== 'distrust' &&
+      (res.verdict === 'deferred' || res.verdict === 'modified' || res.verdict === 'refused') &&
+      v.pressure >= W.distrustPressure &&
+      (v.lastWornAt === undefined || ctx.now - v.lastWornAt >= W.wornInterval)
+    ) {
+      v.lastWornAt = ctx.now;
+      const before = v.trust;
+      v.trust = clamp01(v.trust * (1 - W.trustLossWorn));
+      noteTrust(v, v.trust - before, 'worn', ctx.now);
     }
   }
   const out: ChoiceResolution = {
@@ -919,9 +951,23 @@ export function learnFromVoice(
   const complied = resolution.verdict === 'complied';
   // A coerced or insisted activity that went well earns no trust: the person did not choose to follow the
   // advice freely (insisting on what he would have done anyway takes the credit away too).
-  if (f > 0 && !complied && !resolution.insisted)
-    v.trust = clamp01(v.trust + W.trustGain * f * (1 - v.trust));
-  else if (f < 0) v.trust = clamp01(v.trust + (complied ? W.trustLossComplied : W.trustLoss) * f * v.trust);
+  if (f > 0 && !complied && !resolution.insisted) {
+    const at = event.at ?? p.now;
+    const key = event.action ?? '';
+    v.credited ??= [];
+    const list = v.credited;
+    const prior = list.find((c) => c.action === key);
+    const n = prior ? decay(prior.n, Math.max(0, at - prior.at), W.creditHalfLife) : 0;
+    v.trust = clamp01(v.trust + (W.trustGain * f * (1 - v.trust)) / (1 + n));
+    if (prior) {
+      prior.n = n + 1;
+      prior.at = at;
+    } else list.push({ action: key, n: 1, at });
+    if (list.length > W.maxCredited) {
+      list.sort((a, b) => b.at - a.at);
+      list.length = W.maxCredited;
+    }
+  } else if (f < 0) v.trust = clamp01(v.trust + (complied ? W.trustLossComplied : W.trustLoss) * f * v.trust);
   const delta = v.trust - before;
   const reason = event.reason ?? (delta > 0 ? 'went-well' : complied ? 'harm-under-protest' : 'went-badly');
   noteTrust(v, delta, reason, event.at ?? p.now, event.action);
@@ -936,6 +982,9 @@ function noteTrust(v: VoiceRelation, delta: number, reason: string, at: Minute, 
   // trust meter names events that add up instead of a string of "+0.00" (review 2026-10-03).
   const last = v.history[v.history.length - 1];
   if (Math.abs(delta) < W.historyEpsilon && last && last.reason === reason) {
+    // Keep the span: `from` is the first change folded in, `at` the latest (a UI filtering by day reads both).
+    last.from ??= last.at;
+    last.count = (last.count ?? 1) + 1;
     last.delta += delta;
     last.at = at;
     if (last.action !== action) delete last.action;

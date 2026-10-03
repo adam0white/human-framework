@@ -133,6 +133,7 @@ Emotion terms are named `emotion:<emotion>:<tag>` (e.g. `emotion:fear:risky`): t
 - `Person` is plain JSON. `snapshot(p)` returns a deep clone, and `restore(json)` validates `schema` and fills defaults.
 - Bounded collections: episodes ≤ 200, beliefs ≤ 300, trace ≤ 32, emotions ≤ 12, breaches ≤ 50, intentions ≤ 50, voice history ≤ 5 per voice. Breach, injury and illness ids come from counters (`nextBreach`, `body.nextId`), so they stay unique after eviction.
 - `ENGINE_VERSION` 1.1.0 (2026-10-03) added the rules above and new state fields; `restore` refuses 1.0.0 saves.
+- `ENGINE_VERSION` 1.3.0 (2026-10-03) changes behaviour in every scenario: a commitment whose activity began inside its window stays open (and keeps its pull) until that activity ends; a habit's refractory counts the latest time the action was done by any habit; a voice that keeps pressing a declined suggestion loses a little trust (at most once per 12 h), and repeated good outcomes of the same suggested action earn less trust each time. Voice history entries gain `from`/`count`; finish events carry `decisionId`. `restore` refuses 1.2.0 saves.
 
 ## Scope notes
 

@@ -235,10 +235,23 @@ export function advanceAgenda(
   const recurred: Commitment[] = [];
   const kept: Commitment[] = [];
   const released: Commitment[] = [];
+  const act = p.activity;
+  // A pending commitment whose window closes while an activity that would keep it is under way (begun inside the
+  // window, `spanMeetsWindow`) stays open until that activity ends: `onFinished` then keeps it, or the next pass
+  // closes it if the activity was cut short (fix 2026-10-03: a prayer begun in its window and finished after it
+  // was recorded as missed while the player watched him pray).
+  const underWay = (c: Commitment): boolean =>
+    act !== null &&
+    act !== undefined &&
+    act.mode !== 'sleep' &&
+    c.kind !== 'abstain' &&
+    act.startedAt <= c.until &&
+    act.endsAt >= now &&
+    ((act.affordance.fulfills?.includes(c.id) ?? false) || matchesCommitment(c, act.action, act.targetId));
   for (;;) {
     let next: Commitment | undefined;
     for (const c of state.commitments) {
-      const due = (c.status === 'pending' && c.until < now) || needsSpawn(state, c, now);
+      const due = (c.status === 'pending' && c.until < now && !underWay(c)) || needsSpawn(state, c, now);
       if (due && (next === undefined || c.until < next.until)) next = c;
     }
     if (!next) break;
@@ -388,8 +401,19 @@ export function agendaTerms(p: Person, aff: Affordance, now: Minute): Term[] {
     }
     const explicit = aff.fulfills?.includes(c.id) ?? false;
     if (!explicit && !matchesCommitment(c, aff.action, aff.targetId)) continue;
-    const pressure = commitmentPressure(c, now);
-    if (pressure <= 0 || !spanMeetsWindow(c, now, now + Math.max(0, aff.duration))) continue;
+    // Carrying on with the running activity that is keeping a commitment whose window has just closed (it began
+    // inside it, see `advanceAgenda`) still keeps it, at the pressure of the window's last minute; switching away
+    // would miss it.
+    const act = p.activity;
+    const finishing =
+      act !== null &&
+      act !== undefined &&
+      act.affordanceId === aff.id &&
+      now > c.until &&
+      act.startedAt <= c.until &&
+      act.endsAt > now;
+    const pressure = commitmentPressure(c, finishing ? c.until : now);
+    if (pressure <= 0 || !(finishing || spanMeetsWindow(c, now, now + Math.max(0, aff.duration)))) continue;
     terms.push({ source: `commitment:${c.id}`, value: d.commitmentScale * c.importance * pressure });
   }
   for (const g of p.agenda.goals) {

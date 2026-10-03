@@ -61,7 +61,20 @@ export const TOWN_DEFAULTS = {
   rent: 300,
   rentDueDay: 40,
   rentEvery: 30,
-  wage: 25,
+  /**
+   * What the morning repair block pays. Tuned (fix pass 2, 2026-10-03) so that a month of mornings alone does not
+   * reach Osman's 300 by Ramadan 15 (40 + 16 × 15 = 280): his date needs an afternoon shift or two, which he
+   * rarely takes on his own in the fast. Engineering default.
+   */
+  wage: 16,
+  /**
+   * The optional afternoon shift: offered from `extraFrom` minutes after Dhuhr until `extraLast` minutes before
+   * Asr, once a day, never on Eid. Longer work in the fast's afternoon costs thirst and rest (engineering default).
+   */
+  extraWage: 16,
+  extraMinutes: 90,
+  extraFrom: 15,
+  extraLast: 90,
   /** Halil starts owing this many months (600 at Ramadan 1). */
   monthsOwed: 2,
   /** Osman's date: one payment of `rent` promised from this day 09:00 to `rentPromiseDay` 20:00. */
@@ -187,6 +200,8 @@ export interface TownState {
   lastClinic: Record<PersonId, Minute>;
   /** Day of the last paid work block per person: one block a day in Ramadan (the shop keeps short hours). */
   lastWorked: Record<PersonId, number>;
+  /** Day of Halil's last afternoon shift (optional; absent in states from before it existed). */
+  lastExtra?: Record<PersonId, number>;
   /** Rent Halil has paid Osman in total. */
   rentPaid: number;
   /** Day Osman last called on Halil about the rent. */
@@ -817,7 +832,8 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
     };
     switch (p.id) {
       case 'halil': {
-        if (mod >= 8 * 60 && mod < 12 * 60 && state.lastWorked[p.id] !== dayOf(now))
+        // The workshop is shut on Eid: a town custom (engineering assumption, no norm attached).
+        if (!eid && mod >= 8 * 60 && mod < 12 * 60 && state.lastWorked[p.id] !== dayOf(now))
           out.push({
             id: 'work-repair',
             action: 'work-repair',
@@ -831,6 +847,30 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
             material: T.wage,
             tags: ['work'],
           });
+        // The afternoon shift: optional extra pay between Dhuhr and Asr, once a day, not on Eid.
+        {
+          const cal = townCalendar(day);
+          if (
+            !eid &&
+            mod >= cal.dhuhr + T.extraFrom &&
+            mod <= cal.asr - T.extraLast &&
+            state.lastExtra?.[p.id] !== day
+          )
+            out.push({
+              id: 'work-extra',
+              action: 'work-repair',
+              label: 'take an afternoon shift',
+              placeId: 'workshop',
+              duration: T.extraMinutes,
+              effort: 0.6,
+              focus: 0.4,
+              skill: { id: 'repair', difficulty: 0.35 },
+              // No `material`: he does not reckon on the afternoon pay (he believes the mornings will cover
+              // Osman), so on his own he rarely takes it. The pay is real when he works it (see `resolve`).
+              advertises: { competence: 0.1 },
+              tags: ['work'],
+            });
+        }
         if (!eid || mod >= T.eidMorningFrom) talk('riza', 'teahouse', 'tea', 'tea with Rıza');
         talk('hacer', 'halil-home', 'talk', 'talk with Hacer at the door');
         // One call an evening at most from his side.
@@ -981,7 +1021,10 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
           state.rentOwed > 0 &&
           has('halil') &&
           day >= T.collectFrom &&
-          (state.lastCollect === undefined || day - state.lastCollect >= T.collectEvery)
+          (state.lastCollect === undefined ||
+            day - state.lastCollect >= T.collectEvery ||
+            // On his date with nothing paid, Osman comes whatever the interval.
+            (day === T.rentPromiseDay && state.rentPaid === 0 && state.lastCollect !== day))
         )
           out.push({
             id: 'collect-rent',
@@ -1017,8 +1060,9 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
       const span = Math.max(1, act.endsAt - act.startedAt);
       const progress = Math.max(0, Math.min(1, (now - act.startedAt) / span));
       const out: Outcome = { ...base, status: 'interrupted', summary: `${aff.label}: interrupted` };
-      if (aff.material !== undefined && progress > 0) {
-        out.material = aff.material * progress;
+      const pay = aff.material ?? (act.affordanceId === 'work-extra' ? T.extraWage : undefined);
+      if (pay !== undefined && progress > 0) {
+        out.material = pay * progress;
         state.money[p.id] = (state.money[p.id] ?? 0) + out.material;
       }
       return out;
@@ -1068,9 +1112,12 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
       case 'work':
       case 'work-market': {
         const skillId = aff.skill?.id ?? 'repair';
-        state.lastWorked[p.id] = dayOf(p.now);
+        if (act.affordanceId === 'work-extra') {
+          state.lastExtra ??= {};
+          state.lastExtra[p.id] = dayOf(p.now);
+        } else state.lastWorked[p.id] = dayOf(p.now);
         const ok = chance(state.rng, successChance(p, skillId, aff.skill?.difficulty ?? 0.3, capacity));
-        const pay = aff.material ?? 0;
+        const pay = aff.material ?? (act.affordanceId === 'work-extra' ? T.extraWage : 0);
         const earned = ok ? pay : pay * 0.4;
         state.money[p.id] = (state.money[p.id] ?? 0) + earned;
         if (ok)

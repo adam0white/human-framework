@@ -456,6 +456,7 @@ export function acceptJoint(
         personId: person.id,
         kind: 'finish',
         detail: `${act.action} ${outcome.status}`,
+        decisionId: act.decisionId,
         affordanceId: act.affordanceId,
         action: act.action,
         status: outcome.status,
@@ -787,6 +788,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
         personId: p.id,
         kind: 'finish',
         detail: outcome.summary ?? `${act.action} ${outcome.status}`,
+        decisionId: act.decisionId,
         affordanceId: act.affordanceId,
         action: act.action,
       };
@@ -892,6 +894,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
         personId: p.id,
         kind: 'finish',
         detail: `${act.action} interrupted`,
+        decisionId: act.decisionId,
         affordanceId: act.affordanceId,
         action: act.action,
         status: outcome.status,

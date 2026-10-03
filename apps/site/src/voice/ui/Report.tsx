@@ -42,25 +42,48 @@ export function Report({
           Without you
         </h1>
 
+        {view.eid.summary.length > 0 && (
+          <section className="v-report-summary">
+            <Lines lines={view.eid.summary} empty="" />
+          </section>
+        )}
+
         <section>
           <h2>Eid, without you</h2>
           <Strip row={view.eid.strip} showLabel={false} />
-          <Lines lines={view.eid.lines.slice(0, 8)} empty="A quiet day." />
+          <Lines lines={view.eid.lines} empty="A quiet day." />
         </section>
+
+        {view.ledger && view.ledger.length > 0 && (
+          <section>
+            <h2>What you used to say, and what he did on Eid</h2>
+            <ul className="v-lines v-ledger">
+              {view.ledger.map((l) => (
+                <li key={l.said}>
+                  <strong>{l.said}</strong> → {l.eid}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <div className="v-report-cols">
           <section>
             <h2>What he did on his own</h2>
             <Lines lines={view.own} empty="Nothing new that he did unprompted." />
           </section>
-          <section>
-            <h2>What others still had to tell him</h2>
-            <Lines lines={view.others} empty="No one else had to prompt him." />
-          </section>
-          <section>
-            <h2>What stopped</h2>
-            <Lines lines={view.stopped} empty="Nothing he did with you stopped." />
-          </section>
+          {view.others.length > 0 && (
+            <section>
+              <h2>What others still had to tell him</h2>
+              <Lines lines={view.others} empty="" />
+            </section>
+          )}
+          {view.stopped.length > 0 && (
+            <section>
+              <h2>What stopped</h2>
+              <Lines lines={view.stopped} empty="" />
+            </section>
+          )}
         </div>
 
         <section>

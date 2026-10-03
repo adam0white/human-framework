@@ -542,6 +542,14 @@ export interface VoiceRelation {
   // --- lane review-fixes ---
   /** Seeded from `PersonSpec.voices` (the player, family): never evicted to make room for a new voice. */
   seeded?: boolean;
+  /**
+   * Good outcomes already credited to this voice per action, as a count that halves every
+   * `WILL_DEFAULTS.creditHalfLife` minutes (bounded, `maxCredited`). A repeat of advice that went well at the same
+   * action earns less trust (see `learnFromVoice`).
+   */
+  credited?: { action: string; n: number; at: Minute }[];
+  /** Last minute being asked again wore trust down (`WILL_DEFAULTS.wornInterval` apart at most once). */
+  lastWornAt?: Minute;
 }
 
 /** One change of trust in a voice, for UI trust meters. */
@@ -556,6 +564,9 @@ export interface VoiceTrustEvent {
   reason: string;
   /** The suggested action whose outcome moved trust. */
   action?: string;
+  /** When small same-reason changes were folded into this entry: the minute of the first, and how many. */
+  from?: Minute;
+  count?: number;
 }
 
 /**
@@ -675,7 +686,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * illness coupled to rest and food, habit ease and extinction, cue recall, chronicle, lexicon. Acute-illness and
  * habit-eased scores differ from 1.1.0 for the same inputs, so saves from earlier engines do not restore.
  */
-export const ENGINE_VERSION = '1.2.0';
+export const ENGINE_VERSION = '1.3.0';
 
 export interface Person {
   schema: typeof PERSON_SCHEMA;
