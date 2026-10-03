@@ -1,0 +1,30 @@
+{
+  "name": "human-framework",
+  "version": "0.16.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic components for situated game actors, with playable examples",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "start": "node scripts/serve.js",
+    "simulate": "node scripts/run.js",
+    "benchmark": "node scripts/benchmark.js",
+    "benchmark:workshop": "node scripts/workshop-benchmark.js",
+    "build": "node scripts/build.js",
+    "deploy": "npm test && npm run build && node scripts/check-release.js && wrangler deploy",
+    "deploy:check": "npm run build && wrangler deploy --dry-run",
+    "benchmark:shift": "node scripts/shift-benchmark.js",
+    "benchmark:courier": "node scripts/courier-benchmark.js",
+    "benchmark:courtyard": "node scripts/courtyard-benchmark.js",
+    "probe:learning": "node scripts/learning-probe.js",
+    "verify:live": "node scripts/verify-live.js",
+    "package:runtime": "node scripts/package-runtime.js",
+    "benchmark:commons": "node scripts/commons-benchmark.js"
+  },
+  "devDependencies": {
+    "wrangler": "4.136.2"
+  }
+}

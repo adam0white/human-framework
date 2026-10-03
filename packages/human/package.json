@@ -1,0 +1,21 @@
+{
+  "name": "@human/framework",
+  "version": "1.0.0-dev",
+  "description": "Simulated people: body, needs, affect, memory, beliefs, skills, habits, relationships, values and will — deterministic and explainable",
+  "type": "module",
+  "license": "UNLICENSED",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
+  }
+}
