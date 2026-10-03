@@ -93,6 +93,12 @@ export interface BodyReadout {
   capacity: Unit;
   /** Minute-of-day based alertness 0..1. */
   alertness: Unit;
+  /**
+   * What the person feels, which can differ from the true state (interoception). Chronic sleep restriction
+   * is under-perceived; strong focus and emotion mask hunger and pain. Decisions use `perceived`;
+   * performance and health use the true values.
+   */
+  perceived: { hunger: Unit; thirst: Unit; sleepiness: Unit; fatigue: Unit; pain: Unit };
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -401,10 +407,24 @@ export interface VoiceRelation {
   refused: number;
 }
 
+/**
+ * No single "willpower fuel" is modelled (rejected in research/empirical-models.md §6). Acting against an
+ * impulse emerges from competing terms, real fatigue costs, habits and precommitments.
+ */
 export interface WillState {
-  /** Executive capacity to act against the strongest impulse; reduced by fatigue/pain, trained by practice. */
-  selfControl: Unit;
   voices: VoiceRelation[];
+  /**
+   * Precommitments the person made for themselves (e.g. "no work after Isha", "walk instead of eat when bored"):
+   * a bonus or penalty on matching actions inside a daily window.
+   */
+  precommitments: { id: string; action: string; bias: number; fromMinuteOfDay: number; toMinuteOfDay: number }[];
+  /**
+   * Hysteresis: options must beat the current activity by this utility margin to interrupt it.
+   * Default ≈ 0.15.
+   */
+  switchMargin: number;
+  /** Softmax temperature. 0 = argmax (default, explainable); >0 adds per-person variability. */
+  temperature: number;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -439,14 +459,23 @@ export interface Activity {
   intention: string;
   /** Whether a suggestion was involved and how it resolved. */
   suggestion?: SuggestionResolution;
+  /** True when done under protest after insisting; hosts may reduce quality/speed. */
+  protest?: boolean;
+  /** Re-decide no later than this minute even if the activity continues (interrupt check). */
+  reviewAt: Minute;
 }
 
 // ---------------------------------------------------------------------------------------------
 // The person
 // ---------------------------------------------------------------------------------------------
 
+export const PERSON_SCHEMA = 'human/person@1';
+export const ENGINE_VERSION = '1.0.0';
+
 export interface Person {
-  schema: 'human/person@1';
+  schema: typeof PERSON_SCHEMA;
+  /** Engine version that last wrote this state. */
+  engine: string;
   id: PersonId;
   name: string;
   /** Simulation minute this person's state is current at. */
@@ -562,19 +591,37 @@ export interface Suggestion {
   /** Either a specific affordance or any affordance of an action class. */
   affordanceId?: string;
   action?: string;
-  /** How hard the voice pushes, 0..1. Insisting raises strength and costs autonomy. */
+  /** How hard the voice pushes, 0..1. */
   strength: Unit;
+  /**
+   * Insisting converts a refusable "not now" into compliance under protest: the person does it, but with
+   * reduced quality/speed (host reads `Activity.protest`), an autonomy drop, voice pressure, and a memory.
+   * Insisting never overrides `cannot` or `willNot`.
+   */
+  insist?: boolean;
   /** Optional reason the voice gives; recognised keys raise persuasion when they match the person's motives. */
   appeal?: NeedId | ValueId | 'duty';
 }
 
-export type SuggestionVerdict = 'assented' | 'deferred' | 'modified' | 'refused';
+/**
+ * - assented: does it willingly.
+ * - complied: does it under protest (only after `insist`).
+ * - deferred: not now — does something more pressing first; counter-offer says when.
+ * - modified: does a near alternative serving the same aim (counter-offer is the alternative).
+ * - refused: cannot (capacity) or will not (norm veto / broken trust).
+ */
+export type SuggestionVerdict = 'assented' | 'complied' | 'deferred' | 'modified' | 'refused';
+/** Refusal class for UI: grey = cannot, amber = notNow, red = willNot. */
+export type RefusalKind = 'cannot' | 'notNow' | 'willNot';
 
 export interface SuggestionResolution {
   voiceId: EntityId;
   verdict: SuggestionVerdict;
+  kind?: RefusalKind;
   /** For deferred: what they'll do first. For modified: the alternative they picked. */
   insteadAffordanceId?: string;
+  /** e.g. { affordanceId, label: 'after I eat' } — what the person offers instead. */
+  counterOffer?: { affordanceId?: string; label: string };
   /** Machine-readable dominant reason, e.g. 'need:food', 'norm:theft', 'capacity', 'autonomy', 'distrust'. */
   reason: string;
   /** Human-readable sentence in the person's voice. */
@@ -595,7 +642,12 @@ export interface Considered {
   utility: number;
   terms: Term[];
   /** Hard block (cannot or will not under any push), with reason. */
-  vetoed?: string;
+  vetoed?: { kind: 'cannot' | 'willNot'; reason: string };
+  /** The host's advertised need deltas and the person's believed deltas, for legibility. */
+  advertised?: Partial<Record<NeedId, number>>;
+  believed?: Partial<Record<NeedId, number>>;
+  /** Episode ids that shaped this option (memory made visible in narration). */
+  recalled?: string[];
 }
 
 export interface DecisionRecord {

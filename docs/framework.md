@@ -48,7 +48,7 @@ Decisions are event-driven: a person decides when idle, when an activity ends, o
 | Module | Owns | Key exports |
 |---|---|---|
 | `core/` | `rng` | `createRng(seed)`, `random(rng)`, `randomInt`, `normal`, `pick`; math: `clamp`, `clamp01`, `sigmoid`, `decay(value, dt, halfLife)`, `logit`, `expit`, `minuteOfDay`, `dayOf` |
-| `body/` | `body` | `createBody(spec, now)`, `advanceBody(p, dt, load)`, `readBody(p)`, `consume(p, deltas)`, `injure(p, injury)`, `sicken(p, illness)` |
+| `body/` | `body` | `createBody(spec, now)`, `advanceBody(p, dt, load)`, `readBody(p)` (true + perceived), `consume(p, deltas)`, `injure(p, injury)`, `sicken(p, illness)`, `nextBodyThreshold(p, load)` (minutes until a need crosses its interrupt threshold) |
 | `lifecourse/` | `life` | `ageYears(p)`, `lifeStage(p)`, `lifeModifiers(p)` → `{metabolism, recovery, learning, selfControl, maxFitness, mortalityPerYear}` |
 | `needs/` | `needs` | `readNeeds(p)`, `advanceNeeds(p, dt)`, `satisfy(p, deltas)`, `urgency(level, threshold)` |
 | `affect/` | `affect` | `appraise(p, event)`, `advanceAffect(p, dt)`, `readAffect(p)`, `actionTendencies(p)` |
@@ -59,7 +59,7 @@ Decisions are event-driven: a person decides when idle, when an activity ends, o
 | `social/` | `social` | `relationshipWith(p, otherId)`, `socialEvent(p, event)`, `socialTerms(p, affordance)`, `judge(p, percept)` |
 | `conscience/` | `conscience` | `normTerms(p, affordance)`, `normVeto(p, affordance, desperation)`, `recordDeed(p, affordance, intention)`, `repent(p, breachId)` |
 | `agenda/` | `agenda` | `advanceAgenda(p)`, `agendaTerms(p, affordance)`, `onFinished(p, outcome)`, `promise(p, ...)`, `adoptGoal(p, ...)`, `proposeGoals(p)` |
-| `will/` | `will` | `resolveChoice(p, considered, suggestion)`, `learnFromVoice(p, resolution, feltValence)` |
+| `will/` | `will` | `resolveChoice(p, considered, suggestion)`, `predictResponse(p, considered, suggestion)` (pure, no RNG — for UI telegraphing), `learnFromVoice(p, resolution, feltValence)` |
 | `cognition/` | — | `consider(p, affordance)` → `Considered`; `decide(p, affordances, opts)` |
 | `narrate/` | — | `narrateDecision(p, record)`, `voiceLine(p, resolution)`, `describePerson(p)` |
 | `person.ts` | `activity`, `trace`, `now` | `createPerson(spec)`, `tick(p, now)`, `decide`, `begin`, `finish`, `perceive`, `snapshot`, `restore` |
@@ -84,9 +84,31 @@ Decisions are event-driven: a person decides when idle, when an activity ends, o
 `will.resolveChoice` then decides:
 
 1. **Vetoes.** Capacity (exhausted, asleep, dead) and strongly held forbidden norms veto an option. The forbidden-norm veto lifts under genuine necessity: when the need urgency is extreme, the person's understanding of necessity applies (Qur'an 2:173 is the canonical source). Hosts can turn this off.
-2. **Selection.** Softmax over utilities with temperature from traits and fatigue, sampled from the person's own RNG.
-3. **Suggestion verdict.** Assented if the suggested option won. Deferred if a more urgent need won but the suggestion stays acceptable soon. Modified if a near alternative serving the same aim won. Refused if a veto applied or the gap was too large. Each verdict carries a dominant reason and a first-person line.
+2. **Selection.** Argmax with hysteresis by default: the current activity keeps a decaying inertia bonus, and challengers must beat it by `will.switchMargin`. `will.temperature > 0` opts a person into softmax sampled from their own RNG.
+3. **Suggestion verdict.** The verdict is typed so that a refusal never reads as a bug:
+   - **assented**: the suggested option won.
+   - **deferred** (amber, `notNow`): a more urgent need won. Always carries a counter-offer ("after I eat").
+   - **modified** (amber): a near alternative serving the same aim won.
+   - **refused**: either `cannot` (grey: capacity, skill, asleep) or `willNot` (red: norm veto, broken trust).
+   - **complied**: the voice insisted on a `notNow`. The person does it under protest, at a visible price (autonomy drop, voice pressure, a memory, `activity.protest` for hosts to reduce quality). Insisting never overrides `cannot` or `willNot`.
+
+   Every verdict carries a dominant reason and a first-person line. `predictResponse` gives the same verdict without consuming RNG, so the UI can telegraph it on hover.
 4. **Autonomy and trust.** Pushing against preference raises voice pressure and drains the autonomy need. Outcomes the person liked raise trust in the voice that suggested them.
+
+## Locked decisions (2026-10-02, after [game-design review](reviews/2026-10-02-gamedev-early.md))
+
+- No single willpower fuel. Acting against impulse comes from competing terms, real fatigue cost, habits and precommitments.
+- Decisions read the **perceived** body; performance and health use the true body. Chronic sleep loss is under-perceived.
+- Traits only scale terms (coefficients). They never branch logic.
+- Interrupts: `activity.reviewAt` forces re-decision at least every 30 minutes, and sooner when `nextBodyThreshold` says a need will cross its interrupt threshold.
+- Hosts must offer zero-prerequisite floor affordances (rest in place, wait). Tests check that nobody starves while food is reachable.
+- Learned expectations deviate from advertisements by a clamped step per outcome. The trace shows both.
+- Narration cites recalled episodes when memory changed a choice.
+- Saves: snapshot JSON with `schema` + `engine`, plus input-log replay (seed + suggestions + host events).
+- Games run the simulation in a Web Worker. React renders snapshots only.
+- Determinism: affordances are processed in stable id order; ties break by (utility, id). `Math.random` and `Date.now` are banned in `packages/human`.
+- Benchmark: 20 people for 30 simulated days in under 2 s headless.
+- No theological names for mechanisms.
 
 ## Determinism and saves
 
