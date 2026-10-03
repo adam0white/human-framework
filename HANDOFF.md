@@ -17,13 +17,14 @@ Updated 2026-10-03. Read [AGENTS.md](AGENTS.md) for direction, done-definition a
 | 4 | Framework deepening steered by [Game 2 spec](docs/games/voice.md) §7 (multi-voice, abstention/fasting, chronicle, standing advice, cue recall, habit extinction, conversation/gossip/reputation, illness coupling, economy, life-course trajectories, lexicon) + town scenario | done (engine 1.2.0, 451 tests) |
 | 4b | Game 1 v2 from the user's playtest ([record](docs/games/colony-playtest-2026-10-03.md)): goals, paused start, unified orders, harder balance, another day | done, live (11c67c5) |
 | 5 | Game 2 *The Day You Say Nothing* ([spec](docs/games/voice.md), [build/as shipped](docs/games/voice-build.md)): two build+playtest rounds, engine 1.3.0 | done, live at /voice/ (9ad6fde) |
-| 6 | Game 2 round 3, package installable + README/API/examples, final adversarial + game-design review, fix, final deploy | done, live (7727746) |
+| 6 | Game 2 round 3, package installable + README/API/examples, final adversarial + game-design review, fix, final deploy | done, live (456c794) |
 
 ## Current position
 
-All phases done; awaiting the user's acceptance by playing. Live release **7727746** at https://human.adamwhite.work (/colony/, /voice/), `@human/framework` 1.0.0, engine 1.4.0, 553 tests. Installability proven by `npm pack -w packages/human` + fresh install + strict `tsc` + running the README quick start (see packages/human/README.md). Later documentation-only commits do not change the deployed app.
+All phases done; awaiting the user's acceptance by playing. Live release **456c794** at https://human.adamwhite.work (/colony/, /voice/), `@human/framework` 1.0.0, engine 1.4.0, 556 tests. Installability proven by `npm pack -w packages/human` + fresh install + strict `tsc` + running the README quick start (see packages/human/README.md). Later documentation-only commits do not change the deployed app.
 
 Open, recorded in docs/findings.md and docs/games/voice-build.md §13:
+- Game 2: two between-day whispers (shift with "it's your duty", call Selin) now decide the month (27 shifts, date kept on R11); in-day confirmations barely change the outcome. Winnable and failable, but possibly too decisive; a playtest should judge.
 - Halil naps ~3 times a day: flat daytime utilities; a nap gate broke other behaviour and was reverted. Needs utility recalibration first.
 - Game 2, prefill play: Halil no longer calls Selin himself on Eid (Maghrib wins at his habit's minute); he calls 5 times in the six days after.
 - Game 1: Classic with no orders roofs the house on 3 of 6 seeds; orders cannot starve the Human store; the late-tap moment-1 dependency.
