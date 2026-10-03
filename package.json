@@ -14,13 +14,14 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc -b",
+    "typecheck": "tsc -b && tsc -p tsconfig.scripts.json",
     "lint": "biome check .",
     "format": "biome format --write .",
     "dev": "npm run dev -w apps/site",
     "build": "npm run build -w packages/human && npm run build -w apps/site",
     "check": "npm run lint && npm run typecheck && npm test",
-    "deploy": "node scripts/deploy.ts"
+    "deploy": "node scripts/deploy.ts",
+    "deploy:check": "node scripts/deploy.ts --dry-run"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
