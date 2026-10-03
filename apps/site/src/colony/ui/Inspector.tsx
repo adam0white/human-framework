@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
-import type { Frame } from '../sim/game.ts';
 import type { TermFamily, TrustView, WhyBreakdown, WhyOption } from '../sim/human-side.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
+import { type Frame, NO_CONCEPT } from './contract.ts';
 import { saysIt } from './Pane.tsx';
 import { Portrait, ROLE_LABEL } from './parts.tsx';
 
@@ -128,6 +128,22 @@ export function TrustMeter({ trust }: { trust: TrustView }) {
   );
 }
 
+function Meter({ label, value, max = 100 }: { label: string; value: number; max?: number }) {
+  return (
+    <div className="need">
+      <span>{label}</span>
+      <span className="need-track">
+        <span style={{ width: `${Math.max(0, Math.min(100, (value / max) * 100))}%` }} />
+      </span>
+      <span className="need-n">{Math.round(value)}</span>
+    </div>
+  );
+}
+
+/**
+ * The inspector (item 11): a modal `<dialog>`. The left column is everything a Classic unit has; the right
+ * column is the Human person. For each row the Human has and Classic lacks, the Classic cell says so.
+ */
 export function Inspector(props: {
   personId: VillagerId;
   decisionId?: string;
@@ -143,13 +159,24 @@ export function Inspector(props: {
     (props.decisionId === undefined || props.why.decisionId === props.decisionId)
       ? props.why
       : null;
-  const sheet = useRef<HTMLElement>(null);
-  // Move focus into the sheet and give it back to where it came from on close.
+  const dialog = useRef<HTMLDialogElement>(null);
+  const { onClose } = props;
   useEffect(() => {
+    const d = dialog.current;
+    if (!d) return undefined;
     const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    sheet.current?.focus();
-    return () => opener?.focus?.();
-  }, []);
+    if (!d.open) d.showModal();
+    const onCancel = (e: Event) => {
+      e.preventDefault();
+      onClose();
+    };
+    d.addEventListener('cancel', onCancel);
+    return () => {
+      d.removeEventListener('cancel', onCancel);
+      if (d.open) d.close();
+      opener?.focus?.();
+    };
+  }, [onClose]);
   const scale = Math.max(
     0.5,
     ...(why?.options ?? []).map((o) =>
@@ -161,118 +188,136 @@ export function Inspector(props: {
   );
   const families = [...new Set((why?.options ?? []).flatMap((o) => visible(o).map((t) => t.family)))];
   return (
-    <div className="sheet-backdrop">
-      <button type="button" className="sheet-scrim" aria-label="Close" onClick={props.onClose} />
-      <aside
-        className="sheet"
-        role="dialog"
-        aria-modal="true"
-        aria-label={`Why: ${v?.name ?? ''}`}
-        tabIndex={-1}
-        ref={sheet}
-      >
-        <header className="sheet-head">
-          <Portrait id={props.personId} size={44} />
-          <div>
-            <h2>{v?.name}</h2>
-            <p className="muted">
-              {ROLE_LABEL[v?.role ?? 'cook']}, {v?.age}. {v?.line}
-            </p>
-          </div>
-          <button type="button" className="icon-x" aria-label="Close" onClick={props.onClose}>
-            ×
-          </button>
-        </header>
+    <dialog
+      className="sheet inspector"
+      ref={dialog}
+      aria-label={`Inspect ${v?.name ?? ''}`}
+      onClick={(e) => {
+        // A click on the backdrop lands on the dialog element itself.
+        if (e.target === e.currentTarget) onClose();
+      }}
+      onKeyDown={() => undefined}
+    >
+      <header className="sheet-head">
+        <Portrait id={props.personId} size={44} />
+        <div>
+          <h2>{v?.name}</h2>
+          <p className="muted">
+            {ROLE_LABEL[v?.role ?? 'cook']}, {v?.age}. {v?.line}
+          </p>
+        </div>
+        <button type="button" className="icon-x" aria-label="Close" onClick={onClose}>
+          ×
+        </button>
+      </header>
 
-        <section className="sheet-now">
-          <div>
-            <span className="kicker">Human, now</span>
-            <p>{hv?.label ?? '—'}</p>
-          </div>
-          <div>
-            <span className="kicker">Classic, now</span>
-            <p>{cu ? `${cu.label} · hunger ${cu.hunger} · hp ${cu.hp}` : '—'}</p>
-          </div>
-        </section>
-
-        {hv && (
-          <section className="needs">
-            {hv.needs.map((n) => (
-              <div className={`need ${n.urgent ? 'is-urgent' : ''}`} key={n.id}>
-                <span>{n.label}</span>
-                <span className="need-track">
-                  <span style={{ width: `${Math.round(n.value * 100)}%` }} />
-                </span>
+      <div className="inspector-cols">
+        <section className="inspector-classic" aria-label="Classic unit">
+          <span className="kicker">Classic unit</span>
+          <p className="inspector-now">
+            {cu?.label ?? '–'}
+            {cu?.rush && <span className="flag">rush</span>}
+          </p>
+          {cu && (
+            <div className="needs">
+              <Meter label="Hunger" value={cu.hunger} />
+              <Meter label="HP" value={cu.hp} />
+            </div>
+          )}
+          <p className="inspector-caption">That is all a Classic unit has.</p>
+          <dl className="no-concept-list">
+            {['Needs', 'Emotion', 'Trust in you', 'Why', 'Memories'].map((row) => (
+              <div key={row}>
+                <dt>{row}</dt>
+                <dd>{NO_CONCEPT}</dd>
               </div>
             ))}
-            {hv.emotion && (
-              <p className="emotion">
-                Feels <b>{hv.emotion.label}</b>
-                {hv.emotion.target ? ` about ${hv.emotion.target}` : ''}
-              </p>
-            )}
-          </section>
-        )}
-
-        <section className="why">
-          <h3>Why?</h3>
-          {!why ? (
-            <p className="muted">Reading the decision…</p>
-          ) : (
-            <>
-              {why.verdict && (
-                <p className={`verdict-line verdict-${why.verdict.kind}`}>
-                  <b>{VERDICT_LABEL[why.verdict.kind]}</b> “{why.verdict.says}”
-                  {why.verdict.counterOffer && !saysIt(why.verdict.says, why.verdict.counterOffer) && (
-                    <em> {why.verdict.counterOffer}</em>
-                  )}
-                </p>
-              )}
-              <p className="narration">{why.narration}</p>
-              <ol className="why-options">
-                {why.options.slice(0, 3).map((o) => (
-                  <OptionBar key={o.affordanceId} option={o} scale={scale} />
-                ))}
-              </ol>
-              {families.length > 0 && (
-                <p className="legend">
-                  {families.map((f) => (
-                    <span key={f}>
-                      <i style={{ background: FAMILY_VAR[f] }} />
-                      {FAMILY_LABEL[f]}
-                    </span>
-                  ))}
-                </p>
-              )}
-              {why.deltas.length > 0 && (
-                <table className="deltas">
-                  <thead>
-                    <tr>
-                      <th>Need</th>
-                      <th>Advertised</th>
-                      <th>Believed</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {why.deltas.map((d) => (
-                      <tr key={d.need}>
-                        <td>{d.need}</td>
-                        <td>{d.advertised.toFixed(2)}</td>
-                        <td>{d.believed.toFixed(2)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              )}
-              {why.recalled.map((r) => (
-                <blockquote key={r}>remembers: {r}</blockquote>
-              ))}
-            </>
-          )}
+          </dl>
         </section>
 
-        <section>{hv && <TrustMeter trust={hv.trust} />}</section>
-      </aside>
-    </div>
+        <section className="inspector-human" aria-label="Human person">
+          <span className="kicker">Human person</span>
+          <p className="inspector-now">{hv?.label ?? '–'}</p>
+          {hv && (
+            <div className="needs">
+              {hv.needs.map((n) => (
+                <div className={`need ${n.urgent ? 'is-urgent' : ''}`} key={n.id}>
+                  <span>{n.label}</span>
+                  <span className="need-track">
+                    <span style={{ width: `${Math.round(n.value * 100)}%` }} />
+                  </span>
+                  <span className="need-n">{Math.round(n.value * 100)}</span>
+                </div>
+              ))}
+              <p className="emotion">
+                Feels <b>{hv.emotion?.label ?? 'calm'}</b>
+                {hv.emotion?.target ? ` about ${hv.emotion.target}` : ''}
+              </p>
+            </div>
+          )}
+          {hv && <TrustMeter trust={hv.trust} />}
+
+          <section className="why">
+            <h3>Why</h3>
+            {!why ? (
+              <p className="muted">Reading the decision…</p>
+            ) : (
+              <>
+                {why.verdict && (
+                  <p className={`verdict-line verdict-${why.verdict.kind}`}>
+                    <b>{VERDICT_LABEL[why.verdict.kind]}</b> “{why.verdict.says}”
+                    {why.verdict.counterOffer && !saysIt(why.verdict.says, why.verdict.counterOffer) && (
+                      <em> {why.verdict.counterOffer}</em>
+                    )}
+                  </p>
+                )}
+                <p className="narration">{why.narration}</p>
+                <ol className="why-options">
+                  {why.options.slice(0, 3).map((o) => (
+                    <OptionBar key={o.affordanceId} option={o} scale={scale} />
+                  ))}
+                </ol>
+                {families.length > 0 && (
+                  <p className="legend">
+                    {families.map((f) => (
+                      <span key={f}>
+                        <i style={{ background: FAMILY_VAR[f] }} />
+                        {FAMILY_LABEL[f]}
+                      </span>
+                    ))}
+                  </p>
+                )}
+                {why.deltas.length > 0 && (
+                  <table className="deltas">
+                    <thead>
+                      <tr>
+                        <th>Need</th>
+                        <th>Advertised</th>
+                        <th>Believed</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {why.deltas.map((d) => (
+                        <tr key={d.need}>
+                          <td>{d.need}</td>
+                          <td>{d.advertised.toFixed(2)}</td>
+                          <td>{d.believed.toFixed(2)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+                <h3>Memories</h3>
+                {why.recalled.length === 0 ? (
+                  <p className="muted small">Nothing recalled for this decision.</p>
+                ) : (
+                  why.recalled.map((r) => <blockquote key={r}>remembers: {r}</blockquote>)
+                )}
+              </>
+            )}
+          </section>
+        </section>
+      </div>
+    </dialog>
   );
 }

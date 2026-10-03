@@ -11,6 +11,7 @@ import {
   type Affordance,
   type BeginOptions,
   type Community,
+  consume,
   type DecisionRecord,
   interruptPerson,
   type JointProposal,
@@ -28,16 +29,26 @@ import { findPath, type GameMap, type PlaceId, spotFor, type Tile } from './map.
 import {
   type ActionId,
   BEAM_STAGE,
+  DAWN_MEAL,
+  HOUSE_FAMILY,
   HOUSE_STAGES,
   homeDoor,
+  homeOf,
   isNight,
+  JOBS,
   type Minute,
+  nextStageCost,
   type SideWorld,
   SQUALL_END,
   SQUALL_START,
+  STOREROOM_STAGES,
   STORM_END,
   STORM_START,
+  STORM_SUPPER,
   scenarioRoll,
+  siteOpen,
+  stageKind,
+  stormNoCook,
   VILLAGERS,
   type VillagerId,
   type VillagerSpec,
@@ -67,22 +78,28 @@ export const HOST = {
     'take-grain': 15,
     rest: 15,
   } as Record<string, number>,
-  /** Cooking one pot: grain and water in, one serving per villager out. */
-  cookGrain: 2,
-  cookWater: 1,
-  cookMeals: 6,
+  /** Cooking one pot (shared with Classic, v2 plan §2): 2 grain + 1 water → 4 meals. */
+  cookGrain: JOBS.cook.consumes?.grain ?? 2,
+  cookWater: JOBS.cook.consumes?.water ?? 1,
+  cookMeals: JOBS.cook.yields?.meals ?? 4,
+  /** Cooking is on offer while the store holds fewer meals than this; from the warning, she cooks for the storm. */
+  cookBelow: 6,
+  cookBelowStorm: 12,
   /**
    * Satiety a meal and a handful of raw grain restore. The spec's 0.6 / 0.25 assumed a slower body; the
    * framework burns ~0.17 satiety per hour of heavy work, so a 0.6 meal lasted ~2.5 h of felling.
    */
   mealFood: 0.8,
   rawFood: 0.3,
-  /** Stages of progress per build session: base + gain × building skill (× quality). */
-  buildBase: 0.25,
-  buildGain: 0.5,
-  /** Timber paid once per house stage (world-types: 2 timber per stage), and by the beam. */
-  stageTimber: 2,
+  /**
+   * Stages of progress per 60-minute build session: base + gain × building skill (× quality), by stage kind
+   * (v2 plan §2). These are `STAGE_COST` work at 0.6 + 0.8 × skill work-minutes per minute: 36/W and 48/W.
+   */
+  buildRate: { wall: { base: 0.3, gain: 0.4 }, roof: { base: 0.06, gain: 0.08 } },
+  /** Timber the beam takes (stage timber comes from `nextStageCost`). */
   beamTimber: 2,
+  /** Sleep in the crowded masjid restores less (v2 plan §11, assumed). */
+  crowdedSleep: 0.5,
   /** Carrying a grown man home takes this much strength (host physical fact). */
   carryStrength: 0.6,
   carryMin: 45,
@@ -173,6 +190,10 @@ export interface HostState {
   cedarWork: number;
   /** Roll key of the first ordered cedar session; later sessions on the same notch keep it (Classic fells in one go). */
   cedarKey?: Minute;
+  /** Set once build progress counts toward the Day-3 store-room (the house's leftover fraction is dropped). */
+  storeroom?: boolean;
+  /** House stage when build progress was last written (storm decay can drop the stage under it). */
+  buildStage?: number;
 }
 
 export function createHostState(villagers: readonly VillagerSpec[]): HostState {
@@ -206,6 +227,12 @@ const specOf = (id: string): VillagerSpec => {
   const v = VILLAGERS.find((x) => x.id === id);
   if (!v) throw new Error(`unknown villager ${id}`);
   return v;
+};
+/** What a gathering session brings in: the shared yield, one less under protest. */
+const gathered = (what: 'grain' | 'timber', protest: boolean): number => {
+  const y =
+    (what === 'grain' ? JOBS['gather-grain'].yields?.grain : JOBS['gather-timber'].yields?.timber) ?? 0;
+  return protest ? y - 1 : y;
 };
 const tileKey = (t: Tile): string => `${t.x},${t.y}`;
 const sameTile = (a: Tile, b: Tile): boolean => a.x === b.x && a.y === b.y;
@@ -402,19 +429,25 @@ export class ColonyHostWorld implements World {
       advertises: { rest: 0.1 },
       tags: ['rest'],
     });
+    const homePlace = homeOf(id, w, m);
     if (mod >= HOST.sleepFrom || mod < 5 * 60) {
-      const home = at(v.home);
+      const home = at(homePlace);
       const wake = Math.ceil((t - 5 * 60) / 1440) * 1440 + 5 * 60;
+      const crowded = homePlace === 'masjid';
       if (Number.isFinite(home.travel)) {
         out.push({
           id: 'sleep',
           action: 'sleep',
-          label: 'sleep at home',
-          placeId: v.home,
+          label: crowded
+            ? 'sleep in the crowded masjid'
+            : homePlace === 'site'
+              ? 'sleep in the new house'
+              : 'sleep at home',
+          placeId: homePlace,
           duration: Math.max(30, wake - t),
           effort: 0,
           mode: 'sleep',
-          advertises: { sleep: 0.8 },
+          advertises: { sleep: crowded ? HOST.crowdedSleep : 0.8 },
           tags: ['rest'],
         });
       }
@@ -442,12 +475,19 @@ export class ColonyHostWorld implements World {
     // Weather shelter.
     if (risky || (m >= WARNING_AT && m < STORM_END)) {
       const end = m < SQUALL_END && m >= SQUALL_START ? SQUALL_END : STORM_END;
-      job('shelter', 'shelter', 'shelter in the masjid', 'masjid', {
-        work: Math.max(30, fw(end) - t),
-        effort: 0,
-        advertises: { safety: 0.4 },
-        tags: ['indoors'],
-      });
+      const inHouse = homePlace === 'site';
+      job(
+        'shelter',
+        'shelter',
+        inHouse ? 'shelter in the new house' : 'shelter in the masjid',
+        inHouse ? 'site' : 'masjid',
+        {
+          work: Math.max(30, fw(end) - t),
+          effort: 0,
+          advertises: { safety: 0.4 },
+          tags: ['indoors'],
+        },
+      );
     }
 
     // Casualties: carry the one lying out there, tend the one recovering at home.
@@ -539,9 +579,16 @@ export class ColonyHostWorld implements World {
     const meal = p.agenda.commitments.find(
       (c) => c.status === 'pending' && c.actions.includes('cook') && t >= c.from - 30 && t <= c.until,
     );
-    // A full pot needs no cook, unless a meal is due on the cook's own duty.
-    const potLow = w.resources.meals < HOST.cookMeals || meal !== undefined;
-    if (potLow && w.resources.grain >= HOST.cookGrain && w.resources.water >= HOST.cookWater) {
+    // A full store needs no cook, unless a meal is due on the cook's own duty. From the warning she cooks for the
+    // storm; in the storm the fire is out.
+    const potLow =
+      w.resources.meals < (m >= WARNING_AT ? HOST.cookBelowStorm : HOST.cookBelow) || meal !== undefined;
+    if (
+      !stormNoCook(m) &&
+      potLow &&
+      w.resources.grain >= HOST.cookGrain &&
+      w.resources.water >= HOST.cookWater
+    ) {
       job('cook', 'cook', meal?.label ?? 'cook a pot', 'kitchen', {
         effort: 0.3,
         skill: { id: 'cooking', difficulty: 0.4 },
@@ -552,9 +599,9 @@ export class ColonyHostWorld implements World {
       });
     }
     const stage = w.house.stage;
-    const beamDue = stage === BEAM_STAGE - 1;
-    if (!beamDue && stage < HOUSE_STAGES && (this.s.buildPaid || w.resources.timber >= HOST.stageTimber)) {
-      workJob('build', 'build', 'build at the site', 'site', {
+    const beamDue = w.storeroom === null && stage === BEAM_STAGE - 1;
+    if (!beamDue && siteOpen(w) && (this.s.buildPaid || w.resources.timber >= nextStageCost(w).timber)) {
+      workJob('build', 'build', w.storeroom === null ? 'build the house' : 'build the store-room', 'site', {
         effort: 0.7,
         skill: { id: 'building', difficulty: 0.5 },
         advertises: { competence: 0.15 },
@@ -597,7 +644,19 @@ export class ColonyHostWorld implements World {
         tags: ['work', 'outdoors'],
       });
     }
-    return this.weatherRisk(out, m);
+    this.weatherRisk(out, m);
+    // In the storm the store is eaten where people shelter (v2 plan §2): no walk, no fire.
+    if (m >= STORM_START && m < STORM_END && w.resources.meals > 0) {
+      out.push({
+        id: 'eat-shelter',
+        action: 'eat',
+        label: 'eat from the store',
+        duration: HOST.work.eat ?? 20,
+        effort: 0.1,
+        advertises: { food: HOST.mealFood },
+      });
+    }
+    return out;
   }
 
   /**
@@ -839,27 +898,26 @@ export class ColonyHostWorld implements World {
       const worked = trip ? Math.max(0, t - trip.startedAt - trip.travel) : 0;
       const frac = work > 0 && arrived ? Math.min(1, worked / work) : 0;
       const q = protest ? HOST.protestQuality : 1;
-      if (frac > 0 && act.action === 'build' && this.payStage()) {
-        this.addBuild((HOST.buildBase + HOST.buildGain * skillLevel(p, 'building')) * q * frac);
-      }
+      if (frac > 0 && act.action === 'build' && this.payStage()) this.addBuild(this.buildRate(p) * q * frac);
       if (act.action === 'fell-cedar' && arrived) this.s.cedarWork = Math.min(89, this.s.cedarWork + worked);
       // Gathering pays for the time spent (spec: timber 1 unit per 30 min, to the nearest unit), so a cut-short trip still brings some.
-      if (act.action === 'gather-timber') w.resources.timber += Math.round(frac * (protest ? 1 : 2));
-      if (act.action === 'gather-grain') w.resources.grain += Math.round(frac * (protest ? 2 : 3));
+      if (act.action === 'gather-timber')
+        w.resources.timber += Math.round(frac * gathered('timber', protest));
+      if (act.action === 'gather-grain') w.resources.grain += Math.round(frac * gathered('grain', protest));
       return done({ status: 'interrupted', summary: `${aff.label}: stopped` });
     }
 
     const needs = realizedNeeds(aff);
     switch (action) {
       case 'gather-grain':
-        w.resources.grain += protest ? 2 : 3;
+        w.resources.grain += gathered('grain', protest);
         return done({ needs, summary: 'Gathered grain' });
       case 'gather-timber':
-        w.resources.timber += protest ? 1 : 2;
+        w.resources.timber += gathered('timber', protest);
         return done({ needs, summary: 'Brought timber' });
       case 'fell-cedar': {
         w.cedarFelled = true;
-        w.resources.timber += 3;
+        w.resources.timber += JOBS['fell-cedar'].yields?.timber ?? 3;
         const key = this.s.cedarKey ?? trip?.rollKey ?? gm(act.startedAt);
         const chance = HOST.cedarInjuryChance * (protest ? HOST.protestRisk : 1);
         if (scenarioRoll(this.seed, 'cedar', key, 0) < chance) {
@@ -877,7 +935,7 @@ export class ColonyHostWorld implements World {
         return done({ needs, summary: 'Felled the big cedar' });
       }
       case 'draw-water':
-        w.resources.water += 2;
+        w.resources.water += JOBS['draw-water'].yields?.water ?? 2;
         return done({ needs, summary: 'Drew water' });
       case 'cook': {
         if (w.resources.grain < HOST.cookGrain || w.resources.water < HOST.cookWater)
@@ -899,7 +957,7 @@ export class ColonyHostWorld implements World {
       case 'build': {
         if (!this.payStage()) return done({ status: 'failed', summary: 'No timber to build with' });
         const q = protest ? HOST.protestQuality : 1;
-        this.addBuild((HOST.buildBase + HOST.buildGain * skillLevel(p, 'building')) * q);
+        this.addBuild(this.buildRate(p) * q);
         return done({ needs, summary: 'Laid another course' });
       }
       case 'raise-beam':
@@ -910,6 +968,7 @@ export class ColonyHostWorld implements World {
       case 'eat': {
         if (w.resources.meals > 0) {
           w.resources.meals -= 1;
+          w.eaten += 1;
           return done({ needs: { food: HOST.mealFood }, summary: 'Ate a meal' });
         }
         if (w.resources.grain > 0) {
@@ -954,19 +1013,53 @@ export class ColonyHostWorld implements World {
     }
   }
 
-  /** Add build progress; stages stop below the beam until it is raised. */
+  /** Progress one full build session adds at the stage under way (walls fast, roof slow; v2 plan §2). */
+  private buildRate(p: Person): number {
+    const w = this.world;
+    const kind = w.storeroom !== null ? 'wall' : stageKind(w.house.stage + 1) === 'roof' ? 'roof' : 'wall';
+    const r = HOST.buildRate[kind];
+    return r.base + r.gain * skillLevel(p, 'building');
+  }
+
   /** Put the stage's timber on site if it is not there yet; false when there is none. */
   private payStage(): boolean {
+    this.syncProject();
     if (this.s.buildPaid) return true;
-    if (this.world.resources.timber < HOST.stageTimber) return false;
-    this.world.resources.timber -= HOST.stageTimber;
+    const timber = nextStageCost(this.world).timber;
+    if (this.world.resources.timber < timber) return false;
+    this.world.resources.timber -= timber;
     this.s.buildPaid = true;
     return true;
   }
 
+  /** When the Day-3 store-room opens, the house's leftover progress and paid timber do not carry over. */
+  private syncProject(): void {
+    // The storm took a stage: the fraction and the timber on site belonged to the stage that is gone.
+    if (this.s.buildStage !== undefined && this.world.house.stage < this.s.buildStage) {
+      this.s.build = 0;
+      this.s.buildPaid = false;
+    }
+    this.s.buildStage = this.world.house.stage;
+    if (this.world.storeroom === null || this.s.storeroom) return;
+    this.s.storeroom = true;
+    this.s.build = 0;
+    this.s.buildPaid = false;
+  }
+
+  /** Add build progress; house stages stop below the beam until it is raised. */
   private addBuild(amount: number): void {
     const w = this.world;
     this.s.build += amount;
+    if (w.storeroom !== null) {
+      while (this.s.build >= 1 && w.storeroom < STOREROOM_STAGES) {
+        this.s.build -= 1;
+        w.storeroom += 1;
+        this.s.buildPaid = false;
+      }
+      if (w.storeroom >= STOREROOM_STAGES) this.s.build = 0;
+      w.house.progress = this.s.build;
+      return;
+    }
     const cap = w.house.stage < BEAM_STAGE ? BEAM_STAGE - 1 : HOUSE_STAGES;
     while (this.s.build >= 1 && w.house.stage < cap) {
       this.s.build -= 1;
@@ -974,6 +1067,8 @@ export class ColonyHostWorld implements World {
       this.s.buildPaid = false;
     }
     if (w.house.stage >= cap) this.s.build = Math.min(this.s.build, 0.99);
+    this.s.buildStage = w.house.stage;
+    w.house.progress = w.house.stage >= HOUSE_STAGES ? 0 : this.s.build;
   }
 
   private resolveBeam(
@@ -1125,6 +1220,19 @@ export class ColonyHostWorld implements World {
         summary: 'no meal in the pot',
       });
     }
+    if (m === STORM_SUPPER || m === DAWN_MEAL) this.stormMeal(t);
+    if (m === STORM_START && w.house.stage < HOUSE_STAGES) {
+      // No roof of their own: Idris and Samira shelter and sleep in the crowded masjid (v2 plan §11).
+      const family = HOUSE_FAMILY.filter((id) => this.person(id)?.body.alive);
+      this.queue(family, {
+        at: t,
+        channel: 'felt',
+        kind: 'crowded',
+        valence: -0.4,
+        salience: 0.7,
+        summary: 'No roof of our own tonight.',
+      });
+    }
     if (m === WARNING_AT) {
       for (const o of this.community.people) {
         if (!o.body.alive) continue;
@@ -1167,6 +1275,25 @@ export class ColonyHostWorld implements World {
         w.injuries += 1;
         this.events.injuries.push({ personId: id, kind: 'weather', minute: m });
       }
+    }
+  }
+
+  /** Scripted storm meal (v2 plan §2): each living villager takes one meal from the store, if one is left. */
+  private stormMeal(t: number): void {
+    const w = this.world;
+    for (const o of this.community.people) {
+      if (!o.body.alive || w.resources.meals <= 0) continue;
+      w.resources.meals -= 1;
+      w.eaten += 1;
+      consume(o, { food: HOST.mealFood });
+      this.queue([o.id as VillagerId], {
+        at: t,
+        channel: 'felt',
+        kind: 'meal',
+        valence: 0.3,
+        salience: 0.4,
+        summary: 'a meal from the store, shared in the dark',
+      });
     }
   }
 

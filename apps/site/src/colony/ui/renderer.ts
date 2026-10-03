@@ -476,7 +476,7 @@ const SHORT_LABEL: Partial<Record<PlaceId, string>> = {
   masjid: 'MASJID',
   well: 'WELL',
   kitchen: 'KITCHEN',
-  site: 'SITE',
+  site: 'HOUSE',
   wellhouse: 'WELL-HSE',
   'home-maryam': 'HOME',
   'home-yusuf': 'HOME',
@@ -490,7 +490,7 @@ function drawLabels(ctx: CanvasRenderingContext2D, input: SceneInput) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   for (const p of PLACES) {
-    // Human labels are always drawn (so the building site can be found before the first tap), faint until choosing.
+    // Human labels are always drawn (so the house can be found before the first tap), faint until choosing.
     const strong = classic || input.showPlaceLabels || input.hoverPlace === p.id;
     const r = placeRect(p);
     const label = SHORT_LABEL[p.id] ?? p.label;

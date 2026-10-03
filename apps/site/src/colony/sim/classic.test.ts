@@ -128,6 +128,7 @@ describe('Classic hunger collapse and rescue', () => {
       s.step(m);
     }
     expect(yusuf.task?.orderId).toBe('o1');
-    expect(yusuf.hunger).toBeLessThan(40);
+    // One meal takes CLASSIC.mealRelief (40) off hunger 80; a few minutes of walking and work add a little back.
+    expect(yusuf.hunger).toBeLessThan(80 - CLASSIC.mealRelief + 5);
   });
 });

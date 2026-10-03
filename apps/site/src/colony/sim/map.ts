@@ -176,7 +176,7 @@ export const PLACES: readonly Place[] = [
   },
   {
     id: 'site',
-    label: 'Building site',
+    label: 'House',
     x: 15,
     y: 8,
     w: 3,

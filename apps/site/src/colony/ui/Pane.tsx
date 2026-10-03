@@ -1,9 +1,9 @@
 import { memo, type RefObject, useEffect, useRef, useState } from 'react';
-import type { Frame } from '../sim/game.ts';
 import type { Bubble } from '../sim/human-side.ts';
 import { MAP, PLACES, type PlaceId, placeAt } from '../sim/map.ts';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { BubbleManager, ShownBubble } from './bubbles.ts';
+import type { Frame } from './contract.ts';
 import { shortName } from './parts.tsx';
 import { type DrawPerson, drawScene, headAnchor, LOGICAL_H, LOGICAL_W, type Side } from './renderer.ts';
 import type { FrameStore } from './useColony.ts';
@@ -16,9 +16,13 @@ export interface PaneProps {
   onSelect(id: VillagerId): void;
   onPlace(place: PlaceId): void;
   onHoverPlace(place: PlaceId | null): void;
+  /** Long press on a unit (any pointer): open the inspector. */
+  onInspect(id: VillagerId): void;
   bubbles?: BubbleManager;
   onBubble?(b: Bubble): void;
 }
+
+const LONG_PRESS_MS = 500;
 
 /** Interpolated people for one side. */
 export function interpolate(store: FrameStore, side: Side, now: number): DrawPerson[] {
@@ -213,7 +217,38 @@ export const Pane = memo(function Pane(props: PaneProps) {
     };
   };
 
+  const press = useRef<{ timer: number; x: number; y: number; fired: boolean } | null>(null);
+  const endPress = () => {
+    if (press.current) window.clearTimeout(press.current.timer);
+  };
+  useEffect(
+    () => () => {
+      if (press.current) window.clearTimeout(press.current.timer);
+    },
+    [],
+  );
+
+  const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    endPress();
+    const { lx, ly } = toLogical(e);
+    const who = hitPerson(people.current, lx, ly);
+    if (!who) {
+      press.current = null;
+      return;
+    }
+    const state = { timer: 0, x: e.clientX, y: e.clientY, fired: false };
+    state.timer = window.setTimeout(() => {
+      state.fired = true;
+      live.current.onInspect(who);
+    }, LONG_PRESS_MS);
+    press.current = state;
+  };
+
   const onPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    endPress();
+    const fired = press.current?.fired ?? false;
+    press.current = null;
+    if (fired) return;
     const { lx, ly } = toLogical(e);
     const who = hitPerson(people.current, lx, ly);
     if (who) {
@@ -225,6 +260,11 @@ export const Pane = memo(function Pane(props: PaneProps) {
   };
 
   const onPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const pr = press.current;
+    if (pr && !pr.fired && Math.abs(e.clientX - pr.x) + Math.abs(e.clientY - pr.y) > 10) {
+      endPress();
+      press.current = null;
+    }
     if (e.pointerType === 'touch') return;
     const { lx, ly } = toLogical(e);
     const who = hitPerson(people.current, lx, ly);
@@ -238,7 +278,13 @@ export const Pane = memo(function Pane(props: PaneProps) {
       <canvas
         ref={canvas}
         aria-label={side === 'classic' ? 'Classic village map' : 'Human village map'}
+        onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
+        onPointerCancel={() => {
+          endPress();
+          press.current = null;
+        }}
+        onContextMenu={(e) => e.preventDefault()}
         onPointerMove={onPointerMove}
         onPointerLeave={() => props.hoverPlace && props.onHoverPlace(null)}
       />

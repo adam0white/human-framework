@@ -14,18 +14,27 @@ import {
   addResources,
   BEAM_STAGE,
   canAfford,
+  DAWN_MEAL,
   HOUSE_STAGES,
+  homeOf,
   isSleepTime,
   JOBS,
   type Minute,
   type Role,
   SHUTTER_AVAILABLE,
   type SideWorld,
+  STAGE_COST,
+  STOREROOM_STAGES,
   STORM_END,
+  STORM_SUPPER,
   scenarioRoll,
+  siteOpen,
+  stageKind,
   startTile,
+  stormNoCook,
   type VillagerId,
   type VillagerSpec,
+  WARNING_AT,
   weatherAt,
 } from './world-types.ts';
 
@@ -35,7 +44,7 @@ export const CLASSIC = {
   autoEatHunger: 80,
   idleEatHunger: 60,
   eatBeforeSleepHunger: 40,
-  mealRelief: 60,
+  mealRelief: 40,
   rawRelief: 25,
   collapseHpPerMinute: 0.2,
   rushSpeed: 1.25,
@@ -73,6 +82,8 @@ export interface ClassicTask {
   rollKey: Minute;
   victimId?: VillagerId;
   haul?: boolean;
+  /** Build and beam: the stage this task is building (claimed when work begins). */
+  stage?: number;
 }
 
 export interface ClassicUnit {
@@ -128,7 +139,7 @@ export interface ClassicSnapshot {
 }
 
 /** Stockpile caps for role work (orders ignore them). */
-export const STOCK_CAP = { grain: 12, water: 8, timber: 10, meals: 6 } as const;
+export const STOCK_CAP = { grain: 12, water: 8, timber: 10, meals: 6, stormMeals: 12 } as const;
 
 const clampN = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
 
@@ -225,6 +236,7 @@ export class ClassicSim {
 
   /** Advance one sim minute. The engine has already applied world weather for minute `m`. */
   step(m: Minute): ClassicEvents {
+    if (m === STORM_SUPPER || m === DAWN_MEAL) this.stormMeal();
     for (const u of this.units) this.body(u, m);
     this.assignRescues();
     for (const u of this.units) this.behave(u, m);
@@ -350,7 +362,7 @@ export class ClassicSim {
       this.releaseWell(best);
       best.task = {
         action: 'carry-injured',
-        placeId: v.home,
+        placeId: homeOf(v.id, this.world, this.world.minute),
         source: 'rescue',
         rush: false,
         target: { x: v.x, y: v.y },
@@ -448,16 +460,17 @@ export class ClassicSim {
    */
   roleJob(u: ClassicUnit): ActionId | null {
     const r = this.world.resources;
-    const h = this.world.house;
-    const canCook = canAfford(r, JOBS.cook.consumes);
-    const canBuild = h.stage < HOUSE_STAGES && r.timber >= (JOBS.build.consumes?.timber ?? 1);
-    const buildJob: ActionId = h.stage === BEAM_STAGE - 1 ? 'raise-beam' : 'build';
+    const canCook = canAfford(r, JOBS.cook.consumes) && !stormNoCook(this.world.minute);
+    const claim = this.claimableStage();
+    const canBuild = claim !== null && r.timber >= this.stageCost(claim).timber;
+    const buildJob: ActionId = this.world.storeroom === null && claim === BEAM_STAGE ? 'raise-beam' : 'build';
     const grain = r.grain < STOCK_CAP.grain ? 'gather-grain' : null;
     const water = r.water < STOCK_CAP.water ? 'draw-water' : null;
     const timber = r.timber < STOCK_CAP.timber ? 'gather-timber' : null;
     switch (u.role) {
       case 'cook':
-        if (r.meals < STOCK_CAP.meals && canCook) return 'cook';
+        if (r.meals < (this.world.minute >= WARNING_AT ? STOCK_CAP.stormMeals : STOCK_CAP.meals) && canCook)
+          return 'cook';
         if (r.water < 2) return 'draw-water';
         return grain ?? water;
       case 'builder':
@@ -473,6 +486,38 @@ export class ClassicSim {
     }
   }
 
+  /**
+   * The next stage a builder may claim at the open project, or null: stages already claimed by a started builder
+   * are skipped, and the beam and roof stages wait for the stage below them (no parallel work across the beam).
+   */
+  claimableStage(): number | null {
+    const w = this.world;
+    if (!siteOpen(w)) return null;
+    const house = w.storeroom === null;
+    const cur = w.storeroom ?? w.house.stage;
+    const max = house ? HOUSE_STAGES : STOREROOM_STAGES;
+    const taken = new Set<number>();
+    for (const x of this.units) {
+      const t = x.task;
+      if (t?.started && t.stage !== undefined && (t.action === 'build' || t.action === 'raise-beam'))
+        taken.add(t.stage);
+    }
+    for (let s = cur + 1; s <= max; s++) {
+      if (house && s >= BEAM_STAGE && cur < BEAM_STAGE && s > cur + 1) return null;
+      if (!taken.has(s)) return s;
+    }
+    return null;
+  }
+
+  /** Price of one stage of the open project (the store-room is all walls). */
+  stageCost(stage: number): { timber: number; work: number } {
+    if (this.world.storeroom !== null) return STAGE_COST.wall;
+    const kind = stageKind(stage);
+    return kind === 'beam'
+      ? { timber: STAGE_COST.beam.timber, work: JOBS['raise-beam'].work }
+      : STAGE_COST[kind];
+  }
+
   private makeTask(
     u: ClassicUnit,
     action: ActionId,
@@ -483,7 +528,7 @@ export class ClassicSim {
     orderId?: string,
   ): ClassicTask {
     let place = placeId;
-    if (action === 'sleep' || action === 'rest') place = u.home;
+    if (action === 'sleep' || action === 'rest') place = homeOf(u.id, this.world, this.world.minute);
     const target = spotFor(place, u.index);
     return {
       action,
@@ -592,7 +637,7 @@ export class ClassicSim {
         u.carrying = v.id;
         v.carriedBy = u.id;
         t.haul = true;
-        t.target = spotFor(v.home, v.index);
+        t.target = spotFor(homeOf(v.id, this.world, this.world.minute), v.index);
         this.routeTo(u, t.target);
         if (u.path.length > 0) return;
       }
@@ -633,18 +678,46 @@ export class ClassicSim {
         }
         break;
       case 'build':
-      case 'raise-beam':
-        if (h.stage >= HOUSE_STAGES) {
-          this.finishTask(u, t, false, 'house finished');
+      case 'raise-beam': {
+        // Each stage has its own price (v2 plan §2): walls 2 timber / 120 work, roof 5 / 600, beam 2. A builder
+        // claims one stage and pays for it; a second builder takes the next free stage, never the beam or the roof
+        // before the stage below it is up, and waits when none is free.
+        if (!siteOpen(this.world)) {
+          this.finishTask(
+            u,
+            t,
+            false,
+            this.world.storeroom === null ? 'house finished' : 'store-room finished',
+          );
           return false;
         }
-        if (!canAfford(r, JOBS.build.consumes)) {
+        const stage = this.claimableStage();
+        if (stage === null) {
+          // No free stage: an ordered builder helps the builder whose stage is nearest done (their work counts
+          // toward that stage); a role builder goes and does something else.
+          if (t.source !== 'order') {
+            this.finishTask(u, t, false, 'no free stage');
+            return false;
+          }
+          const lead = this.units
+            .map((x) => x.task)
+            .filter((x): x is ClassicTask => !!x?.started && x.stage !== undefined && x.phase === 'work')
+            .sort((a, b) => a.remaining - b.remaining)[0];
+          if (lead) lead.remaining -= this.speed(u, t);
+          return false;
+        }
+        const cost = this.stageCost(stage);
+        if (r.timber < cost.timber) {
           this.finishTask(u, t, false, 'no timber');
           return false;
         }
-        t.action = h.stage === BEAM_STAGE - 1 ? 'raise-beam' : 'build';
-        t.remaining = JOBS[t.action].work;
-        break;
+        t.action = this.world.storeroom === null && stage === BEAM_STAGE ? 'raise-beam' : 'build';
+        t.stage = stage;
+        t.remaining = cost.work;
+        r.timber -= cost.timber;
+        t.started = true;
+        return true;
+      }
       case 'shutter-house':
         if (m < SHUTTER_AVAILABLE || h.shuttered) {
           this.finishTask(u, t, false, h.shuttered ? 'already shuttered' : 'nothing to shutter yet');
@@ -652,6 +725,10 @@ export class ClassicSim {
         }
         break;
       case 'cook':
+        if (stormNoCook(m)) {
+          this.finishTask(u, t, false, 'no fire in the storm');
+          return false;
+        }
         if (!canAfford(r, JOBS.cook.consumes)) {
           this.finishTask(u, t, false, 'no grain or water');
           return false;
@@ -685,7 +762,10 @@ export class ClassicSim {
         break;
       }
       case 'build':
-        w.house.stage = Math.min(HOUSE_STAGES, w.house.stage + 1);
+        // Claims are distinct stages that never cross the beam, so a completion is one stage up (clamped; a wall
+        // finished after storm decay never stands in for the beam).
+        if (w.storeroom !== null) w.storeroom = Math.min(STOREROOM_STAGES, w.storeroom + 1);
+        else if (w.house.stage + 1 !== BEAM_STAGE) w.house.stage = Math.min(HOUSE_STAGES, w.house.stage + 1);
         break;
       case 'raise-beam':
         if (scenarioRoll(this.seed, 'beam', t.rollKey, 0) < CLASSIC.beamSuccess) {
@@ -709,10 +789,22 @@ export class ClassicSim {
     const r = this.world.resources;
     if (r.meals > 0) {
       r.meals -= 1;
+      this.world.eaten += 1;
       u.hunger = Math.max(0, u.hunger - CLASSIC.mealRelief);
     } else if (r.grain > 0) {
       r.grain -= 1;
       u.hunger = Math.max(0, u.hunger - CLASSIC.rawRelief);
+    }
+  }
+
+  /** Scripted storm meal (v2 plan §2): each living unit takes one meal from the store, if one is left. */
+  private stormMeal(): void {
+    const r = this.world.resources;
+    for (const u of this.units) {
+      if (u.dead || r.meals <= 0) continue;
+      r.meals -= 1;
+      this.world.eaten += 1;
+      u.hunger = Math.max(0, u.hunger - CLASSIC.mealRelief);
     }
   }
 

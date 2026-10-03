@@ -1,32 +1,35 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { MomentRecord, Nudge } from '../sim/game.ts';
+import type { MomentRecord } from '../sim/game.ts';
 import type { Bubble } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
-import type { OrderInput } from '../sim/orders.ts';
+import { inferAction, type OrderInput } from '../sim/orders.ts';
 import type { VillagerId } from '../sim/world-types.ts';
 import { BubbleManager } from './bubbles.ts';
+import type { Nudge } from './contract.ts';
 import { EndScreen } from './EndScreen.tsx';
+import { GoalCard } from './GoalCard.tsx';
 import { Inspector } from './Inspector.tsx';
-import { Hand, IntroCard, type OnboardingStep } from './Onboarding.tsx';
 import { Pane } from './Pane.tsx';
 import {
   Composer,
   type ComposerState,
+  EMPTY_COMPOSER,
+  GoalStrip,
   MomentBanner,
-  NudgeCards,
-  Queue,
-  Roster,
-  Scoreboard,
-  SpeedControls,
+  OrderLog,
+  PaneStats,
+  PauseRibbon,
+  PLACE_LABEL,
+  SuggestionCard,
   shortName,
   TopBar,
 } from './parts.tsx';
 import { useColony } from './useColony.ts';
 
 const ONBOARDED_KEY = 'colony.onboarded';
-const EMPTY_COMPOSER: ComposerState = { rush: false, insist: false, appeal: null };
-/** Real ms a moment's caption stays up (the worker runs slow-mo for 3 s of it). */
+/** Real ms a moment's caption stays up. */
 const MOMENT_MS = 4500;
+const TOAST_MS = 6000;
 
 function readOnboarded(): boolean {
   try {
@@ -40,64 +43,59 @@ function writeOnboarded(): void {
   try {
     localStorage.setItem(ONBOARDED_KEY, '1');
   } catch {
-    // Storage may be blocked; onboarding simply shows again next time.
+    // Storage may be blocked; the toast then shows again next time.
   }
 }
 
-/** The order the composer would issue for a place (the same for the telegraph and the real order). */
-function orderFrom(personId: VillagerId, placeId: PlaceId, c: ComposerState): OrderInput {
+function orderFrom(c: ComposerState): OrderInput | null {
+  if (!c.personId || !c.placeId) return null;
   return {
-    personId,
-    placeId,
+    personId: c.personId,
+    placeId: c.placeId,
     ...(c.rush ? { rush: true } : {}),
     ...(c.insist ? { insist: true } : {}),
     ...(c.appeal ? { appeal: c.appeal } : {}),
   };
 }
 
+/** Focus is in a form control (text, checkbox, radio, select): Space and Enter belong to it. */
+function isEditable(t: EventTarget | null): boolean {
+  return t instanceof HTMLElement && t.closest('input, textarea, select, [contenteditable="true"]') !== null;
+}
+
 export function App() {
   const colony = useColony();
-  const { frame, actions } = colony;
+  const { frame, actions, playback } = colony;
   const bubbles = useMemo(() => new BubbleManager(), []);
-  const [selectedId, setSelectedId] = useState<VillagerId | null>(null);
-  const [hoverPlace, setHoverPlace] = useState<PlaceId | null>(null);
   const [composer, setComposer] = useState<ComposerState>(EMPTY_COMPOSER);
-  const [insistHint, setInsistHint] = useState(false);
+  const [hoverPlace, setHoverPlace] = useState<PlaceId | null>(null);
   const [inspect, setInspect] = useState<{ personId: VillagerId; decisionId?: string } | null>(null);
-  const [step, setStep] = useState<OnboardingStep>(() => (readOnboarded() ? 'done' : 'intro'));
   const [endOpen, setEndOpen] = useState(true);
   const [flash, setFlash] = useState<string | null>(null);
+  const [toast, setToast] = useState(false);
   const [moment, setMoment] = useState<MomentRecord | null>(null);
+  const [drawer, setDrawer] = useState(false);
   const flashTimer = useRef(0);
   const momentTimer = useRef(0);
   const momentsSeen = useRef(0);
   const resultsButton = useRef<HTMLButtonElement>(null);
-  const tutorial = step === 'intro' || step === 'hand';
+  const hasSummary = Boolean(colony.summaries[2] || colony.summaries[3]);
+  const starting = playback.pause?.kind === 'start';
 
-  // Onboarding clock (spec §8): 0 s intro, 3 s hand, toast after the first order (not before 10 s).
+  // The one-time "Tap any bubble" toast, after the first Play.
+  // Depends on whether a frame exists, not on each frame: a per-frame re-run would clear the timer before it fired.
+  const toastShown = useRef(readOnboarded());
+  const hasFrame = frame !== null;
   useEffect(() => {
-    if (step === 'intro') {
-      const t = window.setTimeout(() => setStep('hand'), 3000);
-      return () => window.clearTimeout(t);
-    }
-    if (step === 'hand') {
-      const t = window.setTimeout(() => setStep('toast'), 20000);
-      return () => window.clearTimeout(t);
-    }
-    if (step === 'toast') {
-      writeOnboarded();
-      const t = window.setTimeout(() => setStep('done'), 6000);
-      return () => window.clearTimeout(t);
-    }
-    return undefined;
-  }, [step]);
+    if (starting || toastShown.current || !hasFrame) return undefined;
+    toastShown.current = true;
+    writeOnboarded();
+    setToast(true);
+    const t = window.setTimeout(() => setToast(false), TOAST_MS);
+    return () => window.clearTimeout(t);
+  }, [starting, hasFrame]);
 
-  // The village waits while the intro and the hand are up, so the first card's window does not run out under them.
-  useEffect(() => {
-    actions.setPaused(tutorial);
-  }, [tutorial, actions]);
-
-  // Caption each new moment over the Human pane while the worker slows the clock.
+  // Caption each new moment over the Human pane.
   const moments = frame?.moments;
   useEffect(() => {
     if (!moments) return;
@@ -109,14 +107,36 @@ export function App() {
     momentTimer.current = window.setTimeout(() => setMoment(null), MOMENT_MS);
   }, [moments]);
 
-  // Telegraph before commit: predicted response for the hovered place, with every chip the order would carry.
+  // Telegraph: the Human prediction for the committed place (or the hovered one while choosing).
+  const previewPlace = composer.placeId ?? hoverPlace;
+  const previewInput = useMemo(
+    () => orderFrom({ ...composer, placeId: previewPlace }),
+    [composer, previewPlace],
+  );
   useEffect(() => {
-    actions.predict(selectedId && hoverPlace ? orderFrom(selectedId, hoverPlace, composer) : null);
-  }, [selectedId, hoverPlace, composer, actions]);
+    actions.predict(previewInput);
+  }, [previewInput, actions]);
 
-  // Keep an open "why" sheet current when it follows the person rather than one bubble.
+  // The job the order would infer, read from the Human side's world (as the sim does).
+  const job = useMemo(() => {
+    if (!frame || !composer.placeId) return null;
+    return inferAction(composer.placeId, {
+      minute: frame.minute,
+      house: { stage: frame.humanWorld.houseStage, shuttered: frame.humanWorld.shuttered },
+      cedarFelled: frame.humanWorld.cedarFelled,
+      storeroom: frame.humanWorld.project.kind === 'storeroom' ? frame.humanWorld.project.stage : null,
+    });
+  }, [frame, composer.placeId]);
+
+  // Inspector: opening pauses; closing resumes only if the inspector's pause is still the current one.
   const inspectPerson = inspect?.personId ?? null;
   const inspectDecision = inspect?.decisionId;
+  const inspectOpen = inspect !== null;
+  useEffect(() => {
+    if (!inspectOpen) return undefined;
+    actions.pauseForInspector();
+    return () => actions.resumeFromInspector();
+  }, [inspectOpen, actions]);
   useEffect(() => {
     if (!inspectPerson) {
       actions.clearWhy();
@@ -128,102 +148,166 @@ export function App() {
     return () => window.clearInterval(t);
   }, [inspectPerson, inspectDecision, actions]);
 
-  // Keyboard: Space pauses (unless a control has focus), Escape closes the sheet or deselects.
-  const keys = useRef({ paused: colony.paused, inspect: inspect !== null });
-  keys.current = { paused: colony.paused, inspect: inspect !== null };
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (
-        e.target instanceof HTMLElement &&
-        e.target.closest('input, textarea, select, button, a, [role="button"], [contenteditable="true"]')
-      )
-        return;
-      if (e.key === ' ') {
-        e.preventDefault();
-        actions.setPaused(!keys.current.paused);
-      } else if (e.key === 'Escape') {
-        if (keys.current.inspect) setInspect(null);
-        else setSelectedId(null);
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [actions]);
-
   const showFlash = useCallback((text: string) => {
     setFlash(text);
     window.clearTimeout(flashTimer.current);
     flashTimer.current = window.setTimeout(() => setFlash(null), 2200);
   }, []);
 
-  const select = useCallback((id: VillagerId) => {
-    setSelectedId((cur) => (cur === id ? null : id));
-    setComposer(EMPTY_COMPOSER);
+  const pickWho = useCallback((id: VillagerId) => {
+    // Tapping a villager (again) restarts the composer with that villager.
+    setComposer({ ...EMPTY_COMPOSER, personId: id });
   }, []);
 
-  // `issue` reads the live selection through a ref so the panes keep one callback identity.
-  const live = useRef({ selectedId, composer, step });
-  live.current = { selectedId, composer, step };
-  const issue = useCallback(
-    (placeId: PlaceId) => {
-      const { selectedId: who, composer: c, step: s } = live.current;
-      if (!who) return;
-      actions.order(orderFrom(who, placeId, c));
-      showFlash(`Order given: ${shortName(who)} → ${placeId.startsWith('home') ? 'home' : placeId}`);
-      if ((s === 'hand' || s === 'intro') && who === 'yusuf' && placeId === 'site') setStep('toast');
-      setSelectedId(null);
-      setHoverPlace(null);
-      setComposer(EMPTY_COMPOSER);
-      setInsistHint(false);
-    },
-    [actions, showFlash],
-  );
+  const pickWhere = useCallback((placeId: PlaceId) => {
+    setComposer((c) => (c.personId ? { ...c, placeId } : c));
+  }, []);
 
-  const give = (n: Nudge, insist: boolean) => {
-    actions.order({ ...n.order, ...(insist ? { insist: true } : {}) });
-    showFlash(`Order given: ${shortName(n.order.personId)}${insist ? ' (insisted)' : ''}`);
-    if (tutorial && n.order.personId === 'yusuf' && n.order.placeId === 'site') setStep('toast');
+  const live = useRef({ composer });
+  live.current = { composer };
+  const confirm = useCallback(() => {
+    const c = live.current.composer;
+    const input = orderFrom(c);
+    if (!input) return;
+    actions.order(input, c.nudgeId);
+    showFlash(`Order given: ${shortName(input.personId)} → ${PLACE_LABEL[input.placeId]}`);
+    setComposer(EMPTY_COMPOSER);
+    setHoverPlace(null);
+  }, [actions, showFlash]);
+
+  const applyNudge = (n: Nudge) => {
+    setComposer({
+      ...EMPTY_COMPOSER,
+      personId: n.order.personId,
+      placeId: n.order.placeId,
+      rush: Boolean(n.prefill?.rush ?? n.order.rush),
+      insist: Boolean(n.prefill?.insist ?? n.order.insist),
+      appeal: n.order.appeal ?? null,
+      nudgeId: n.id,
+      ...(n.reason ? { reason: n.reason } : {}),
+    });
+    // Only Confirm is left: move focus there so Enter confirms (focus would otherwise stay on Use).
+    window.setTimeout(() => document.querySelector<HTMLButtonElement>('.composer .btn-confirm')?.focus(), 0);
   };
+
+  const skipNudge = (id: string) => {
+    actions.dismissNudge(id);
+    setComposer((c) => (c.nudgeId === id ? EMPTY_COMPOSER : c));
+  };
+
+  // A suggestion that lapsed or was dismissed elsewhere no longer drives the composer's reason.
+  const visibleNudgeIds = (frame?.nudges ?? []).map((n) => n.id).join(',');
+  useEffect(() => {
+    setComposer((c) =>
+      c.nudgeId && !visibleNudgeIds.split(',').includes(c.nudgeId)
+        ? (({ nudgeId: _n, reason: _r, ...rest }) => rest)(c)
+        : c,
+    );
+  }, [visibleNudgeIds]);
 
   const openBubble = useCallback((b: Bubble) => {
     setInspect(b.decisionId ? { personId: b.personId, decisionId: b.decisionId } : { personId: b.personId });
   }, []);
+  const inspectPersonCb = useCallback((id: VillagerId) => setInspect({ personId: id }), []);
+  const closeInspect = useCallback(() => setInspect(null), []);
+
+  const closeEnd = useCallback(() => {
+    setEndOpen(false);
+    window.setTimeout(() => resultsButton.current?.focus(), 0);
+  }, []);
+
+  // Keys (item 9): Space always toggles pause, in the capture phase, and its keyup is swallowed so a focused
+  // button is not clicked. Enter confirms a ready order. Esc closes the end screen or clears the composer
+  // (the inspector's <dialog> handles its own Esc).
+  const keys = useRef({ paused: playback.paused, inspect: inspectOpen, end: false });
+  keys.current = { paused: playback.paused, inspect: inspectOpen, end: hasSummary && endOpen };
+  useEffect(() => {
+    const onDown = (e: KeyboardEvent) => {
+      if (isEditable(e.target)) return;
+      if (e.key === ' ' || e.code === 'Space') {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!e.repeat) actions.setPaused(!keys.current.paused);
+        return;
+      }
+      if (keys.current.inspect) return;
+      if (e.key === 'Escape') {
+        if (keys.current.end) closeEnd();
+        else setComposer(EMPTY_COMPOSER);
+        return;
+      }
+      // Enter confirms only from the page or the composer: on another button (Skip, ×, Results) it is that button's.
+      const t = e.target;
+      const inComposer = t === document.body || (t instanceof Element && t.closest('.composer') !== null);
+      if (e.key === 'Enter' && inComposer && !keys.current.end && orderFrom(live.current.composer)) {
+        e.preventDefault();
+        e.stopPropagation();
+        confirm();
+      }
+    };
+    const onUp = (e: KeyboardEvent) => {
+      if (isEditable(e.target)) return;
+      if (e.key === ' ' || e.code === 'Space') {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+    window.addEventListener('keydown', onDown, true);
+    window.addEventListener('keyup', onUp, true);
+    return () => {
+      window.removeEventListener('keydown', onDown, true);
+      window.removeEventListener('keyup', onUp, true);
+    };
+  }, [actions, confirm, closeEnd]);
 
   const restart = () => {
     bubbles.reset();
     momentsSeen.current = 0;
     setMoment(null);
-    setSelectedId(null);
     setInspect(null);
     setHoverPlace(null);
     setComposer(EMPTY_COMPOSER);
+    setDrawer(false);
     setEndOpen(true);
     actions.restart();
   };
 
-  const closeEnd = () => {
-    setEndOpen(false);
-    // Return focus to the control that brings the results back.
-    window.setTimeout(() => resultsButton.current?.focus(), 0);
+  const continueDay = () => {
+    actions.continueDay();
+    setEndOpen(true);
   };
 
-  // The coach's first step is this order; its card waits until the coach is done.
-  const nudges = (frame?.nudges ?? []).filter((n) => !(tutorial && n.id === 'dawn-site'));
-  const insistNudge = nudges.find((n) => n.insistHint);
+  const nudges = frame?.nudges ?? [];
+  const nudge = nudges[0];
+  const cards = frame?.cards ?? [];
+  const orderCount = cards.filter((c) => c.status !== 'cancelled').length;
+  const highlightPlace = hoverPlace ?? composer.placeId;
+  // The end screen is open for the latest report until closed; "Another day" closes it by clearing `ended`.
+  const showEnd = hasSummary && endOpen && Boolean(frame?.ended);
+
+  const paneProps = {
+    store: colony.store,
+    selectedId: composer.personId,
+    hoverPlace: highlightPlace,
+    onSelect: pickWho,
+    onPlace: pickWhere,
+    onHoverPlace: setHoverPlace,
+    onInspect: inspectPersonCb,
+  };
 
   return (
-    <div className={`colony ${selectedId ? 'is-choosing' : ''} ${step === 'intro' ? 'is-intro' : ''}`}>
+    <div className={`colony ${composer.personId ? 'is-choosing' : ''}`}>
       <TopBar
         frame={frame}
-        paused={colony.paused}
-        speed={colony.speed}
+        playback={playback}
         onPause={actions.setPaused}
         onSpeed={actions.setSpeed}
-        {...(colony.summary && !endOpen
+        onAutoPause={actions.setAutoPause}
+        {...(hasSummary && !showEnd && frame?.ended
           ? { onResults: () => setEndOpen(true), resultsRef: resultsButton }
           : {})}
       />
-      <Scoreboard sb={frame?.scoreboard ?? null} />
+      <GoalStrip goals={frame?.goals ?? []} />
 
       <main className="stage">
         <section className="pane pane-classic" aria-label="Classic village">
@@ -231,45 +315,64 @@ export function App() {
             <h2>
               Classic <span>they obey</span>
             </h2>
-            <span className="pane-note">generic colony AI</span>
+            <PaneStats frame={frame} side="classic" />
           </header>
-          <Pane
-            side="classic"
-            store={colony.store}
-            selectedId={selectedId}
-            hoverPlace={hoverPlace}
-            onSelect={select}
-            onPlace={issue}
-            onHoverPlace={setHoverPlace}
-          />
+          <div className="pane-body">
+            <Pane side="classic" {...paneProps} />
+          </div>
         </section>
 
         <aside className="center">
-          <Roster selectedId={selectedId} onSelect={select} frame={frame} />
-          <NudgeCards
-            nudges={nudges}
-            onGive={give}
-            onDismiss={(id) => {
-              actions.dismissNudge(id);
-              if (insistNudge?.id === id) setInsistHint(false);
-            }}
-          />
-          {selectedId && (
+          {playback.pause && <PauseRibbon pause={playback.pause} onResume={() => actions.setPaused(false)} />}
+          <div className="composer-tray">
             <Composer
-              personId={selectedId}
               state={composer}
               frame={frame}
+              job={job}
               prediction={colony.prediction?.prediction ?? null}
-              hoverPlace={hoverPlace}
-              insistHint={insistHint || insistNudge?.order.personId === selectedId}
               onChange={setComposer}
-              onPlace={issue}
+              onWho={pickWho}
+              onWhere={pickWhere}
               onHover={setHoverPlace}
-              onWhy={() => setInspect({ personId: selectedId })}
-              onClose={() => setSelectedId(null)}
+              onConfirm={confirm}
+              onInspect={inspectPersonCb}
             />
-          )}
-          <Queue cards={frame?.cards ?? []} onCancel={actions.cancel} />
+            {nudge && frame && (
+              <div
+                className={`nudge-slot ${composer.nudgeId === nudge.id ? 'is-active' : ''}`}
+                role="status"
+                aria-live="polite"
+              >
+                <SuggestionCard
+                  nudge={nudge}
+                  minute={frame.minute}
+                  queued={nudges.length - 1}
+                  active={composer.nudgeId === nudge.id}
+                  onUse={applyNudge}
+                  onSkip={skipNudge}
+                />
+              </div>
+            )}
+          </div>
+          <section className={`queue ${drawer ? 'is-open' : ''}`} aria-label="Order log">
+            <div className="queue-head">
+              <h2 className="col-head">Orders</h2>
+              <button
+                type="button"
+                className="icon-x queue-close"
+                aria-label="Close orders"
+                onClick={() => setDrawer(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="queue-scroll">
+              <OrderLog cards={cards} onCancel={actions.cancel} />
+            </div>
+          </section>
+          <button type="button" className="orders-button" onClick={() => setDrawer(true)}>
+            Orders ({orderCount})
+          </button>
         </aside>
 
         <section className="pane pane-human" aria-label="Human village">
@@ -277,62 +380,18 @@ export function App() {
             <h2>
               Human <span>they decide</span>
             </h2>
-            <span className="pane-note">
-              {frame?.humanKind === 'placeholder' ? 'placeholder: mirrors Classic' : 'Human Framework v1'}
-            </span>
+            <PaneStats frame={frame} side="human" />
           </header>
-          <div className="pane-stack">
-            <Pane
-              side="human"
-              store={colony.store}
-              selectedId={selectedId}
-              hoverPlace={hoverPlace}
-              onSelect={select}
-              onPlace={issue}
-              onHoverPlace={setHoverPlace}
-              bubbles={bubbles}
-              onBubble={openBubble}
-            />
-            {step === 'hand' && <Hand frame={frame} />}
-            {moment && <MomentBanner moment={moment} slowMo={colony.slowMo} />}
+          <div className="pane-body">
+            <Pane side="human" {...paneProps} bubbles={bubbles} onBubble={openBubble} />
+            {moment && <MomentBanner moment={moment} slowMo={playback.slowMo} />}
           </div>
         </section>
       </main>
 
-      <ul className="hints" aria-label="How to play">
-        <li>
-          <b>Tap a villager</b>, then a place. Both villages get the order at the same minute.
-        </li>
-        <li>
-          <b>Tap a bubble</b> to see why they answered that way.
-        </li>
-        <li>
-          <b>Rush</b> and <b>Insist</b> push harder, at a price. Orders lapse after two hours unless the job
-          is under way.
-        </li>
-        <li>
-          <kbd>Space</kbd> pauses.
-        </li>
-      </ul>
-
-      <footer className="bottombar">
-        <SpeedControls
-          paused={colony.paused}
-          speed={colony.speed}
-          onPause={actions.setPaused}
-          onSpeed={actions.setSpeed}
-        />
-      </footer>
-
-      <IntroCard
-        step={step}
-        onSkip={() => {
-          writeOnboarded();
-          setStep('done');
-        }}
-      />
       <div className="flash-region" role="status" aria-live="polite">
         {flash && <div className="flash">{flash}</div>}
+        {toast && !flash && <div className="flash">Tap any bubble to see why.</div>}
       </div>
       {colony.error && (
         <div className="flash flash-error" role="alert">
@@ -340,19 +399,30 @@ export function App() {
         </div>
       )}
 
+      {starting && (
+        <GoalCard
+          frame={frame}
+          text={playback.pause?.text ?? ''}
+          autoPause={playback.autoPause}
+          onAutoPause={actions.setAutoPause}
+          onPlay={() => actions.setPaused(false)}
+        />
+      )}
       {inspect && (
         <Inspector
           personId={inspect.personId}
           {...(inspect.decisionId ? { decisionId: inspect.decisionId } : {})}
           why={colony.why}
           frame={frame}
-          onClose={() => setInspect(null)}
+          onClose={closeInspect}
         />
       )}
-      {colony.summary && endOpen && (
+      {showEnd && (
         <EndScreen
-          summary={colony.summary}
+          summaries={colony.summaries}
           humanKind={frame?.humanKind ?? 'placeholder'}
+          canContinue={frame?.canContinue ?? false}
+          onContinue={continueDay}
           onAgain={restart}
           onClose={closeEnd}
         />

@@ -3,7 +3,7 @@ import { ColonyGame, DEFAULT_SEED } from './game.ts';
 import type { HumanOrder } from './orders.ts';
 import { fanOut, inferAction, OrderBook } from './orders.ts';
 import { createPlaceholderHumanSide, PlaceholderHumanSide } from './placeholder-human.ts';
-import { at, SHUTTER_AVAILABLE, STORM_START } from './world-types.ts';
+import { at, END_MINUTE, SHUTTER_AVAILABLE, SHUTTER_ROOF_FROM, STORM_START } from './world-types.ts';
 
 const ctx = { minute: 60, house: { stage: 4, shuttered: false }, cedarFelled: false };
 
@@ -22,6 +22,25 @@ describe('order inference', () => {
     expect(inferAction('masjid', { ...ctx, minute: STORM_START + 5 })).toBe('shelter');
     expect(inferAction('home-yusuf', ctx)).toBe('eat');
     expect(inferAction('home-yusuf', { ...ctx, minute: at(1, 23, 0) })).toBe('sleep');
+  });
+});
+
+describe('shutter window', () => {
+  it('an unfinished roof still builds until 18:00, then shutters; below the beam it shutters from the warning', () => {
+    const roof = { ...ctx, house: { stage: 9, shuttered: false } };
+    expect(inferAction('site', { ...roof, minute: at(2, 17, 0) })).toBe('build');
+    expect(inferAction('site', { ...roof, minute: SHUTTER_ROOF_FROM })).toBe('shutter-house');
+    expect(inferAction('site', { ...ctx, minute: SHUTTER_AVAILABLE })).toBe('shutter-house');
+    expect(
+      inferAction('site', { ...roof, minute: SHUTTER_ROOF_FROM, house: { stage: 9, shuttered: true } }),
+    ).toBe('build');
+  });
+
+  it('never shutters on Day 3: an order to an open house builds it', () => {
+    expect(inferAction('site', { ...ctx, minute: END_MINUTE + 60 })).toBe('build');
+    expect(
+      inferAction('site', { ...ctx, minute: END_MINUTE + 60, house: { stage: 9, shuttered: false } }),
+    ).toBe('build');
   });
 });
 
