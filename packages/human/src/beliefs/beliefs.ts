@@ -117,11 +117,6 @@ export function testimonyWeight(trust: Unit): Unit {
   return clamp01((trust - d.trustFloor) / (1 - d.trustFloor)) ** d.trustExponent;
 }
 
-// Belief.sources stores direction in the id: 'p2' claimed true, '!p2' claimed false (see final report).
-const encodeSource = (id: EntityId, value: boolean): string => (value ? id : `!${id}`);
-const decodeSource = (s: string): { id: EntityId; value: boolean } =>
-  s.startsWith('!') ? { id: s.slice(1), value: false } : { id: s, value: true };
-
 function findBelief(p: Person, prop: string): Belief | undefined {
   return p.memory.beliefs.find((b) => b.prop === prop);
 }
@@ -170,14 +165,14 @@ export function believe(
 ): Belief {
   const d = BELIEF_DEFAULTS;
   const b = ensureBelief(p, prop, now);
-  const prior = b.sources.map(decodeSource).find((s) => s.id === sourceId);
+  const prior = b.sources.find((s) => s.id === sourceId);
   let w = testimonyWeight(trustOf(p, sourceId));
   if (prior && prior.value === value) w *= d.repeatDiscount;
   const delta = logit(0.5 + (clamp01(confidence) - 0.5) * w);
   b.logOdds = clamp(b.logOdds + (value ? delta : -delta), -d.maxLogOdds, d.maxLogOdds);
   b.updatedAt = now;
-  b.sources = b.sources.filter((s) => decodeSource(s).id !== sourceId);
-  b.sources.push(encodeSource(sourceId, value));
+  b.sources = b.sources.filter((s) => s.id !== sourceId);
+  b.sources.push({ id: sourceId, value });
   if (b.sources.length > d.maxSources) b.sources.splice(0, b.sources.length - d.maxSources);
   return b;
 }
@@ -194,14 +189,13 @@ export function confirm(p: Person, prop: string, truth: boolean, now: Minute): v
   const sign = truth ? 1 : -1;
   const sameSide = Math.sign(b.logOdds) === sign;
   b.logOdds = sign * (sameSide ? Math.max(d.confirmLogOdds, Math.abs(b.logOdds)) : d.confirmLogOdds);
-  for (const raw of b.sources) {
-    const s = decodeSource(raw);
+  for (const s of b.sources) {
     if (s.id === p.id || s.id === 'self') continue;
     const t = trustOf(p, s.id);
     p.memory.sourceTrust[s.id] = clamp01(s.value === truth ? t + d.trustGain * (1 - t) : t - d.trustLoss * t);
   }
   // The belief now rests on observation; earlier claims are settled and are not judged twice.
-  b.sources = [encodeSource(p.id, truth)];
+  b.sources = [{ id: p.id, value: truth }];
   b.updatedAt = now;
 }
 

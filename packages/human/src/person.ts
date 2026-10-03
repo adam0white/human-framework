@@ -17,8 +17,9 @@ import {
   feel,
   regulate,
   release,
+  tendencyEmotions,
 } from './affect/index.ts';
-import { advanceAgenda, createAgenda, onFinished, proposeGoals } from './agenda/index.ts';
+import { advanceAgenda, createAgenda, onFinished, promise, proposeGoals } from './agenda/index.ts';
 import { advanceBeliefs, attend, believe, confirm } from './beliefs/index.ts';
 import {
   advanceBody,
@@ -100,6 +101,12 @@ export const PERSON_DEFAULTS = {
   voiceHarmUrgency: 0.5,
   /** Magnitude of social events implied by taking part together. */
   participationMagnitude: 0.5,
+  /** Outcome quality assumed for work done under protest when the host reports none (`Outcome.quality`). */
+  protestQuality: 0.7,
+  /** Felt valence lost per unit of quality below 1. */
+  qualityPenalty: 0.4,
+  /** Minutes after the activity's planned end during which a `begin` promise can still be kept. */
+  promiseSlack: 30,
   /** Minutes of day treated as night for episode tags. */
   nightFrom: 20 * 60,
   nightTo: 5 * 60,
@@ -475,6 +482,8 @@ export interface DecideOptions {
   now?: Minute;
   /** Hosts may disable the necessity exception. */
   necessity?: boolean;
+  /** Why this decision was forced (recorded on the decision); defaults to the activity's pending interrupt. */
+  interrupt?: string;
 }
 
 /** The current activity as an offer with its remaining duration (so inertia can apply). */
@@ -508,6 +517,7 @@ function decisionInputs(
     desperation,
     habit,
     necessity: opts.necessity ?? true,
+    tendencyEmotions: tendencyEmotions(p),
   };
   if (opts.suggestion) ctx.suggestion = opts.suggestion;
   return { list, ctx };
@@ -550,6 +560,8 @@ export function decide(
   if (review) ctx.quiet = true;
   const { record, needDeltas } = cognitionDecide(p, list, ctx);
   if (review) record.review = true;
+  const interruptReason = opts.interrupt ?? p.activity?.interrupt?.reason;
+  if (interruptReason !== undefined) record.interrupt = interruptReason;
   if (needDeltas.autonomy !== undefined) satisfy(p, { autonomy: needDeltas.autonomy });
   record.intention = intentionFor(p, record);
   record.narration = narrateDecision(p, record);
@@ -569,6 +581,7 @@ export function decide(
         valence: -0.3,
         summary: `${record.suggestion.voiceId} insisted that I ${chosen?.label ?? 'do as told'}`,
         tags: ['suggestion', 'insist'],
+        voiceId: record.suggestion.voiceId,
       });
     }
   }
@@ -577,8 +590,31 @@ export function decide(
   return record;
 }
 
+export interface BeginOptions {
+  /**
+   * Make a commitment at begin (e.g. carrying the injured): a pending commitment for this action and target,
+   * from now until the activity's end plus `PERSON_DEFAULTS.promiseSlack`. While it is pending the running
+   * activity gets a strong 'commitment' term at review, so ordinary need interrupts do not end it; completing
+   * the activity keeps it, abandoning it breaks it (a missed episode, and a breach if `normId` is set).
+   */
+  promise?: { importance: number; toId?: string; normId?: string; kind?: Commitment['kind']; label?: string };
+  /** Joint-activity proposal id (set by `sim/` when both partners begin together). */
+  jointId?: string;
+}
+
+/** Minute a perceived need crosses its interrupt threshold under `load` (cached on the activity), or undefined. */
+function thresholdFor(p: Person, load: BodyLoad, review: number): Minute | undefined {
+  const t = nextBodyThreshold(p, load, lifeModifiers(p), PERSON_DEFAULTS.interruptThresholds, review);
+  return Number.isFinite(t) ? p.now + t : undefined;
+}
+
 /** Start an activity chosen by `record`. Returns null when the person is dead. */
-export function begin(p: Person, aff: Affordance, record: DecisionRecord): Activity | null {
+export function begin(
+  p: Person,
+  aff: Affordance,
+  record: DecisionRecord,
+  opts: BeginOptions = {},
+): Activity | null {
   if (!p.body.alive) return null;
   const now = p.now;
   const duration = Number.isFinite(aff.duration) ? Math.max(1, Math.round(aff.duration)) : 1;
@@ -609,11 +645,28 @@ export function begin(p: Person, aff: Affordance, record: DecisionRecord): Activ
     activity.suggestion = record.suggestion;
     if (record.suggestion.verdict === 'complied') activity.protest = true;
   }
+  if (opts.jointId !== undefined) activity.jointId = opts.jointId;
+  if (opts.promise) {
+    const pr = opts.promise;
+    const c = promise(p, {
+      kind: pr.kind ?? 'promise',
+      actions: [aff.action],
+      from: now,
+      until: activity.endsAt + PERSON_DEFAULTS.promiseSlack,
+      importance: pr.importance,
+      ...(aff.targetId !== undefined ? { targetId: aff.targetId } : {}),
+      ...(pr.toId !== undefined ? { toId: pr.toId } : {}),
+      ...(pr.normId !== undefined ? { normId: pr.normId } : {}),
+      ...(pr.label !== undefined ? { label: pr.label } : {}),
+    });
+    activity.commitmentId = c.id;
+  }
   p.activity = activity;
   advanceBody(p, 0, load, mods); // apply the sleep/wake switch now
   const review = load.mode === 'sleep' ? PERSON_DEFAULTS.sleepReviewInterval : PERSON_DEFAULTS.reviewInterval;
-  const threshold = nextBodyThreshold(p, load, mods, PERSON_DEFAULTS.interruptThresholds, review);
-  activity.reviewAt = now + Math.max(1, Math.min(review, threshold));
+  const thresholdAt = thresholdFor(p, load, review);
+  if (thresholdAt !== undefined) activity.thresholdAt = thresholdAt;
+  activity.reviewAt = now + Math.max(1, Math.min(review, (thresholdAt ?? Number.POSITIVE_INFINITY) - now));
   if (aff.risk && aff.risk.chance > 0 && aff.risk.severity > 0) {
     appraise(p, {
       at: now,
@@ -626,14 +679,35 @@ export function begin(p: Person, aff: Affordance, record: DecisionRecord): Activ
   return activity;
 }
 
-/** Push the review time forward after a decision to continue the current activity. */
+/**
+ * Push the review time forward after a decision to continue the current activity, refresh the cached
+ * `thresholdAt`, and clear a handled interrupt. `nextBodyThreshold` runs only here and in `begin` (once per
+ * activity or review, a bounded simulation of at most `review` minutes), never per tick.
+ */
 export function reviewed(p: Person): void {
   const act = p.activity;
   if (!act) return;
+  delete act.interrupt;
   const load: BodyLoad = { effort: act.effort, focus: act.focus, mode: act.mode };
   const review = load.mode === 'sleep' ? PERSON_DEFAULTS.sleepReviewInterval : PERSON_DEFAULTS.reviewInterval;
-  const threshold = nextBodyThreshold(p, load, lifeModifiers(p), PERSON_DEFAULTS.interruptThresholds, review);
-  act.reviewAt = p.now + Math.max(1, Math.min(review, threshold));
+  const thresholdAt = thresholdFor(p, load, review);
+  if (thresholdAt !== undefined) act.thresholdAt = thresholdAt;
+  else delete act.thresholdAt;
+  act.reviewAt = p.now + Math.max(1, Math.min(review, (thresholdAt ?? Number.POSITIVE_INFINITY) - p.now));
+}
+
+/**
+ * Force re-decision: bring the running activity's review forward to `now` (not earlier than `p.now`) and record
+ * why; the next `decide` carries the reason in `DecisionRecord.interrupt`. Returns false when the person is
+ * idle or dead (an idle person decides at the host's next look anyway; `sim/` handles that case).
+ */
+export function interrupt(p: Person, now: Minute, reason: string): boolean {
+  const act = p.activity;
+  if (!act || !p.body.alive) return false;
+  const at = Math.max(p.now, now);
+  act.reviewAt = Math.min(act.reviewAt, at);
+  act.interrupt = { at, reason };
+  return true;
 }
 
 export interface FinishReport {
@@ -641,6 +715,8 @@ export interface FinishReport {
   /** How it felt, -1..1. */
   felt: number;
   realized: Partial<Record<NeedId, number>>;
+  /** Quality used for felt valence (host value, protest default, or 1). */
+  quality: number;
   fulfilled: string[];
   breached: string[];
   kept: string[];
@@ -701,6 +777,8 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
   if (outcome.injury) felt -= clamp01(outcome.injury.severity);
   if (outcome.illness) felt -= 0.5 * clamp01(outcome.illness.severity);
   if (outcome.material) felt += 0.1 * Math.sign(outcome.material);
+  const quality = clamp01(outcome.quality ?? (act.protest ? D.protestQuality : 1));
+  if (completed) felt -= D.qualityPenalty * (1 - quality);
   felt = clampSigned(felt);
   appraise(p, {
     at: now,
@@ -734,6 +812,7 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
   };
   if (aff.targetId !== undefined) episode.targetId = aff.targetId;
   if (aff.placeId !== undefined) episode.placeId = aff.placeId;
+  if (act.suggestion) episode.voiceId = act.suggestion.voiceId;
   remember(p, episode);
 
   // Conscience.
@@ -762,7 +841,10 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
   }
 
   // Agenda.
-  const { kept } = onFinished(p, outcome, act.startedAt);
+  const routed: Outcome = { ...outcome };
+  if (routed.fulfills === undefined && aff.fulfills !== undefined) routed.fulfills = aff.fulfills;
+  if (routed.advances === undefined && aff.advances !== undefined) routed.advances = aff.advances;
+  const { kept } = onFinished(p, routed, act.startedAt);
   for (const c of kept) {
     if (c.toId && c.toId !== 'self') {
       socialEvent(p, { at: now, kind: 'promise-kept', otherId: c.toId, byMe: true, magnitude: c.importance });
@@ -790,7 +872,13 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
       if (urgencyOf(after, id) < D.voiceHarmUrgency) continue;
       harm += Math.max(0, (act.needsAtStart[id] ?? levelOf(after, id)) - levelOf(after, id));
     }
-    learnFromVoice(p, act.suggestion, clampSigned(felt - D.voiceHarmGain * harm));
+    const reason =
+      harm > 0 ? (act.protest ? 'harm-under-protest' : 'harm') : felt >= 0 ? 'went-well' : 'went-badly';
+    learnFromVoice(p, act.suggestion, clampSigned(felt - D.voiceHarmGain * harm), {
+      at: now,
+      action: aff.action,
+      reason,
+    });
   }
 
   p.activity = null;
@@ -801,6 +889,7 @@ export function finish(p: Person, outcome: Outcome): FinishReport | null {
     status: outcome.status,
     felt,
     realized,
+    quality,
     fulfilled: deed.fulfilled,
     breached: deed.breached,
     kept: kept.map((c) => c.id),

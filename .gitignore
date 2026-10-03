@@ -11,3 +11,4 @@ dist/
 .worktrees/
 *.tsbuildinfo
 __pycache__/
+.claude/

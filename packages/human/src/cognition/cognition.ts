@@ -73,6 +73,24 @@ export const COGNITION_DEFAULTS = {
   appealBonus: 0.6,
   /** Options kept in the decision record. */
   maxConsidered: 8,
+  /**
+   * Reactance (Brehm): a suggested option loses appeal when the voice has been pushing hard. Term 'autonomy' =
+   * -reactanceScale × max(0, pressure - reactanceFrom) / (1 - reactanceFrom) × selfDirection
+   * × (0.5 + autonomy urgency). Insisting adds `reactanceInsist` to the pressure read.
+   */
+  reactanceScale: 0.8,
+  reactanceFrom: 0.3,
+  reactanceInsist: 0.2,
+  /**
+   * Promise inertia: a running activity begun with `begin(..., { promise })` gets a 'commitment' term of
+   * commitmentInertia × importance at review, at full strength below conscience's necessity desperation and
+   * fading to zero `commitmentInertiaFade` above it (a promise survives hunger, not starvation).
+   */
+  commitmentInertia: 0.8,
+  commitmentInertiaFrom: 0.75,
+  commitmentInertiaFade: 0.15,
+  /** Social pull per partner on a joint offer: jointTrust × (relationship trust - 0.5). */
+  jointTrust: 0.6,
 };
 
 export interface ConsiderContext {
@@ -87,6 +105,8 @@ export interface ConsiderContext {
   suggestion?: Suggestion;
   /** Shared social inputs; `decide` fills this once per decision. */
   social?: SocialContext;
+  /** Dominant emotion behind each tendency tag (from `affect.tendencyEmotions`), for term sources. */
+  tendencyEmotions?: Record<string, string>;
 }
 
 const urgencyOf = (needs: NeedReading[], id: NeedId): number => needs.find((n) => n.id === id)?.urgency ?? 0;
@@ -243,12 +263,31 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     if (t === undefined || t === 0) continue;
     // The pull toward company satiates with belonging, like the per-person social pulls below.
     const sat = t > 0 ? (tag === 'social' ? social.satiation : 1) * refractory() : 1;
-    push(`emotion:${tag}`, K.emotionScale * t * sat);
+    const emotion = ctx.tendencyEmotions?.[tag];
+    push(emotion ? `emotion:${emotion}:${tag}` : `emotion:${tag}`, K.emotionScale * t * sat);
   }
 
   // Social pulls. Per-person emotion tendencies enter at the same scale as tag tendencies.
   for (const t of socialTerms(p, aff, social))
     push(t.source, K.socialScale * (t.value > 0 ? social.satiation * refractory() : 1) * t.value);
+  // Joint offers: whether I trust the partners to do their share.
+  if (tags.includes('joint')) {
+    for (const id of [...(aff.with ?? [])].sort()) {
+      if (id === p.id) continue;
+      const trust = p.social.relationships.find((r) => r.otherId === id)?.trust ?? 0.5;
+      push(`joint:${id}`, K.jointTrust * (trust - 0.5));
+    }
+  }
+
+  // Promise inertia for the running activity (begin with { promise }).
+  const act = p.activity;
+  if (act?.commitmentId !== undefined && act.affordanceId === aff.id) {
+    const c = p.agenda.commitments.find((x) => x.id === act.commitmentId);
+    if (c?.status === 'pending') {
+      const fade = clamp01((ctx.desperation - K.commitmentInertiaFrom) / K.commitmentInertiaFade);
+      push('commitment', K.commitmentInertia * c.importance * (1 - fade));
+    }
+  }
 
   // Effort and mental load, read from the perceived body.
   const per = ctx.body.perceived;
@@ -291,6 +330,17 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
       `suggestion:${s.voiceId}`,
       K.suggestionScale * clamp01(s.strength) * voiceTrust(p, s.voiceId) * (1 + K.appealBonus * match),
     );
+    // Reactance: being micromanaged makes the pushed option less appealing.
+    const pressure = clamp01(
+      (p.will.voices.find((v) => v.voiceId === s.voiceId)?.pressure ?? 0) +
+        (s.insist ? K.reactanceInsist : 0),
+    );
+    const excess = Math.max(0, pressure - K.reactanceFrom) / (1 - K.reactanceFrom);
+    if (excess > 0)
+      push(
+        'autonomy',
+        -K.reactanceScale * excess * p.values.selfDirection * (0.5 + urgencyOf(ctx.needs, 'autonomy')),
+      );
   }
 
   let utility = 0;
@@ -298,6 +348,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   const out: Considered = {
     affordanceId: aff.id,
     action: aff.action,
+    label: aff.label,
     utility: round(utility),
     terms,
     advertised: { ...aff.advertises },

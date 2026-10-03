@@ -362,32 +362,90 @@ export function readAffect(p: Person): { valence: Signed; arousal: Unit; dominan
  * 'rest', 'comfort') plus per-target keys 'approach:<id>', 'avoid:<id>', 'confront:<id>', 'repair:<id>'.
  * Values are clamped to -1..1.
  */
-export function actionTendencies(p: Person): Record<string, number> {
+/**
+ * Coefficients of each emotion on each tag tendency. 'love' here is untargeted love only: love toward a
+ * particular person already pulls through `approach:<id>`, so the same feeling is not counted twice
+ * (review 2026-10-03).
+ */
+const TENDENCY_WEIGHTS: Record<string, readonly (readonly [EmotionId, number])[]> = {
+  risky: [
+    ['fear', -1],
+    ['anger', 0.3],
+  ],
+  social: [
+    ['loneliness', 0.8],
+    ['love', 0.5],
+    ['joy', 0.3],
+    ['shame', -0.5],
+    ['grief', -0.2],
+  ],
+  confront: [
+    ['anger', 0.9],
+    ['fear', -0.3],
+  ],
+  repair: [
+    ['guilt', 0.9],
+    ['shame', 0.2],
+  ],
+  worship: [
+    ['guilt', 0.5],
+    ['grief', 0.3],
+    ['gratitude', 0.3],
+    ['awe', 0.4],
+  ],
+  novel: [
+    ['boredom', 0.8],
+    ['joy', 0.2],
+    ['fear', -0.3],
+  ],
+  rest: [
+    ['distress', 0.4],
+    ['grief', 0.6],
+  ],
+  comfort: [
+    ['distress', 0.6],
+    ['grief', 0.5],
+    ['fear', 0.3],
+  ],
+};
+
+/** Clamped summed intensity per emotion, with love counted only when untargeted (see TENDENCY_WEIGHTS). */
+function tendencyInputs(p: Person): (id: EmotionId) => number {
   const sum: Partial<Record<EmotionId, number>> = {};
-  for (const e of p.affect.emotions) sum[e.id] = (sum[e.id] ?? 0) + e.intensity;
-  const g = (id: EmotionId): number => clamp01(sum[id] ?? 0);
+  for (const e of p.affect.emotions) {
+    if (e.id === 'love' && e.targetId !== undefined) continue;
+    sum[e.id] = (sum[e.id] ?? 0) + e.intensity;
+  }
+  return (id) => clamp01(sum[id] ?? 0);
+}
+
+/**
+ * The emotion contributing most (by |coefficient × intensity|) to each non-zero tag tendency, so utility terms
+ * can name it ('emotion:fear:risky'). Ties break by emotion id.
+ */
+export function tendencyEmotions(p: Person): Record<string, EmotionId> {
+  const g = tendencyInputs(p);
+  const out: Record<string, EmotionId> = {};
+  for (const [tag, weights] of Object.entries(TENDENCY_WEIGHTS)) {
+    let best: { id: EmotionId; v: number } | undefined;
+    for (const [id, w] of weights) {
+      const v = Math.abs(w * g(id));
+      if (v > 0 && (!best || v > best.v || (v === best.v && id < best.id))) best = { id, v };
+    }
+    if (best) out[tag] = best.id;
+  }
+  return out;
+}
+
+export function actionTendencies(p: Person): Record<string, number> {
+  const g = tendencyInputs(p);
   const fear = g('fear');
-  const anger = g('anger');
-  // Love toward a particular person already pulls through `approach:<id>` below; only untargeted love feeds
-  // the general social tendency, so the same feeling is not counted twice (review 2026-10-03).
-  let diffuseLove = 0;
-  for (const e of p.affect.emotions)
-    if (e.id === 'love' && e.targetId === undefined) diffuseLove += e.intensity;
-  const out: Record<string, number> = {
-    risky: -fear + 0.3 * anger,
-    social:
-      0.8 * g('loneliness') +
-      0.5 * clamp01(diffuseLove) +
-      0.3 * g('joy') -
-      0.5 * g('shame') -
-      0.2 * g('grief'),
-    confront: 0.9 * anger - 0.3 * fear,
-    repair: 0.9 * g('guilt') + 0.2 * g('shame'),
-    worship: 0.5 * g('guilt') + 0.3 * g('grief') + 0.3 * g('gratitude') + 0.4 * g('awe'),
-    novel: 0.8 * g('boredom') + 0.2 * g('joy') - 0.3 * fear,
-    rest: 0.4 * g('distress') + 0.6 * g('grief'),
-    comfort: 0.6 * g('distress') + 0.5 * g('grief') + 0.3 * fear,
-  };
+  const out: Record<string, number> = {};
+  for (const [tag, weights] of Object.entries(TENDENCY_WEIGHTS)) {
+    let v = 0;
+    for (const [id, w] of weights) v += w * g(id);
+    out[tag] = v;
+  }
   // Share of anger that becomes confrontation rather than avoidance (coefficient, not a branch).
   const confrontShare = clamp01(0.5 + 0.8 * (0.5 - clamp01(p.traits.agreeableness)) - 0.5 * fear);
   const targeted = p.affect.emotions.filter((e) => e.targetId !== undefined);

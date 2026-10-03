@@ -114,7 +114,7 @@ export function createConscience(norms: HeldNorm[]): ConscienceState {
     seen.add(n.normId);
     held.push({ normId: n.normId, standing: n.standing, conviction: clamp01(n.conviction) });
   }
-  return { norms: held, breaches: [], intentions: [] };
+  return { norms: held, breaches: [], intentions: [], nextBreach: 0 };
 }
 
 const heldNorm = (p: Person, normId: string): HeldNorm | undefined =>
@@ -204,11 +204,11 @@ export function normVeto(
   return undefined;
 }
 
+/** `b<minute>-<normId>-<counter>`; the counter lives in `ConscienceState.nextBreach`. */
 function breachId(p: Person, at: Minute, normId: string): string {
-  const prefix = `b${at}-${normId}`;
-  let n = 0;
-  while (p.conscience.breaches.some((b) => b.id === (n === 0 ? prefix : `${prefix}-${n}`))) n++;
-  return n === 0 ? prefix : `${prefix}-${n}`;
+  const n = p.conscience.nextBreach;
+  p.conscience.nextBreach += 1;
+  return `b${at}-${normId}-${n}`;
 }
 
 function boundBreaches(c: ConscienceState): void {
@@ -253,6 +253,7 @@ export function recordDeed(
           praiseworthiness: praise,
           agentId: p.id,
           ...(aff.targetId !== undefined ? { targetId: aff.targetId } : {}),
+          normId: held.normId,
           cause: `deed:fulfil:${held.normId}`,
         });
       }
@@ -282,6 +283,7 @@ export function recordDeed(
       praiseworthiness: -weight,
       agentId: p.id,
       ...(victimId !== undefined ? { targetId: victimId } : {}),
+      normId: held.normId,
       cause: `breach:${held.normId}`,
     });
   }

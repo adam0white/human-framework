@@ -107,6 +107,7 @@ export function createBody(init: PersonSpec['body'] | undefined, now: Minute): B
     ...init,
     injuries: [],
     illnesses: [],
+    nextId: 0,
   };
   b.satiety = clamp01(b.satiety);
   b.hydration = clamp01(b.hydration);
@@ -317,11 +318,11 @@ export function consume(p: Person, deltas: { food?: number; water?: number; reli
   if (deltas.relief) b.pain = clamp01(b.pain - deltas.relief);
 }
 
-function freshId(prefix: string, now: Minute, taken: { id: string }[]): string {
-  for (let k = taken.length; ; k++) {
-    const id = `${prefix}:${now}:${k}`;
-    if (!taken.some((x) => x.id === id)) return id;
-  }
+/** `<prefix>:<minute>:<counter>`; the counter lives in `BodyState.nextId`, so ids stay unique after eviction. */
+function freshId(b: BodyState, prefix: string, now: Minute): string {
+  const id = `${prefix}:${now}:${b.nextId}`;
+  b.nextId += 1;
+  return id;
 }
 
 export function injure(p: Person, injury: Omit<Injury, 'id' | 'since'>): Injury {
@@ -329,7 +330,7 @@ export function injure(p: Person, injury: Omit<Injury, 'id' | 'since'>): Injury 
   const inj: Injury = {
     ...injury,
     severity: clamp01(injury.severity),
-    id: freshId('injury', p.now, b.injuries),
+    id: freshId(b, 'injury', p.now),
     since: p.now,
   };
   b.injuries.push(inj);
@@ -350,7 +351,7 @@ export function sicken(p: Person, illness: Omit<Illness, 'id' | 'since'>): Illne
   const ill: Illness = {
     ...illness,
     severity: clamp01(illness.severity),
-    id: freshId('illness', p.now, b.illnesses),
+    id: freshId(b, 'illness', p.now),
     since: p.now,
   };
   b.illnesses.push(ill);

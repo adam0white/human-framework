@@ -191,3 +191,37 @@ Worker → main: `frame{minute, classic: UnitView[], human: PersonView[], scoreb
 11. **Recurring worship window per person**: Danyal's non-`salah` worship needs `Commitment.kind: 'worship'` without a `normId`; confirm `recurEvery` handles two different schedules in one village.
 12. **Fixed-step world vs event-driven people**: `tick(p, now)` per sim minute for six people is fine, but confirm `nextBodyThreshold` is cheap enough to call every minute or expose it as a cached minute.
 13. **Distrust veto rule.** `types.ts` names "broken trust" as a `willNot` cause and allows `reason: 'distrust'`, but nothing states the rule or threshold on `VoiceRelation.trust` that turns a weak suggestion term into a red veto. Moment 5 promises a red bubble at normal urgency; the host needs a documented rule (proposed: trust below 0.45 **and** a salient negative episode caused by this voice within 24 h vetoes suggestions whose action matches that episode).
+
+## 11. Human side as built (2026-10-03)
+
+Code: `apps/site/src/colony/sim/human.ts` (side), `human-world.ts` (host World), `human-cast.ts` (villagers, norms, duties), `human-view.ts` (bubbles, why panel, trust meter). Acceptance, determinism, solo control and timing: `human.test.ts`.
+
+Moment times on the shipped seed with the director's orders, against the §7 targets:
+
+| # | Fires | Target | Why it differs |
+|---|---|---|---|
+| 1 | ~11:06 | 09:30–10:15 | Idris stops felling at 09:17 to drink and resumes at 09:38, so the cedar falls at ~10:05; Yusuf takes the carry at once and the haul home takes ~60 min. |
+| 2 | ~19:26 | 18:30 | Maghrib is at 18:45 (§2), so the prayer only outweighs work once its window is open and closing. The 18:25 order is assented while he is already building, then deferred "after I pray Maghrib" when that session ends. |
+| 3 | 10:45 | 11:00 | — |
+| 4 | ~15:30 | 14:30 | Stage 7 arrives ~14:10; the first joint attempt is broken off when Yusuf goes to drink. |
+| 5 | Day 2 07:00 | Day 2 07:00 | — |
+
+Host rules chosen while building (all in `human-world.ts`, deviations from the tables above marked):
+- A cooked meal restores 0.8 food and raw grain 0.3 (tables: 0.6/0.25). With 0.6 the morning hunger interrupt broke every long job.
+- Felling the cedar costs effort 0.8 (table: 0.9); at 0.9 Idris's mid-morning capacity vetoed it as "spent".
+- The squall fails forest and field work outright, and the storm rolls exposure every 10 minutes outdoors, so outdoor work whose span overlaps either advertises risk 0.9 / 0.5 rather than the table's 0.3 / 0.5. Insisting on Tariq's squall run therefore yields `complied` (moment 5).
+- Building pays 2 timber once per house stage (world-types) rather than per session; gathering interrupted part-way pays pro rata, 1 timber per 30 min worked, rounded.
+- `aid-injured` is obligatory on this host (was recommended). At recommended, Yusuf kept laying courses for ~50 min while Idris lay pinned.
+- Each villager's standing role goal resets at dawn, since an achieved goal stops pulling.
+- Director: cards added at Day 1 05:30 (Yusuf to the site; moment 2 needs the dawn yes) and Day 2 07:00 (Tariq to the forest; moment 5). Issuing a card's order now settles only the visible card, not later cards for the same person and place.
+- A card's order keys the shared scenario rolls (the cedar) by the card's minute (`Order.rollKey`), and the Human cedar roll keeps the key of the first ordered session across resumed sessions. The order's lifetime still runs from the minute it was actually given (`issuedAt`), so a card tapped late is not lapsed early. Without this, tapping the 08:00 card one minute late changed the seeded roll and moment 1 vanished in live play. Re-measured after the 2026-10-03 review fixes, with every card tapped the same number of minutes late: 0–4 and 6–10 minutes fire all five moments; at 5 minutes the squall run happens not to hurt Tariq (the exposure rolls are keyed by minute), so moment 5 does not fire.
+- A felling stopped within its last 5 minutes still brings the cedar down; the framework's need interrupts do not weigh how little work is left (observed: a hunger interrupt one minute before the tree fell).
+- An order that was answered "yes" or "not now" and then carried out shows a done chip on its card.
+- An order is completed only by a job begun after it was given. Ordering someone to do what they are already doing leaves the card open until their next session of that job or the 120-minute lapse.
+- Lapse (2026-10-03 review): a card whose Human job has begun since the order does not lapse at 120 minutes; it settles when the job finishes, with a hard cap at 240 minutes. A lapse withdraws only the Human side's standing suggestion; Classic received its command once and finishes it (spec §3 describes the re-issue; Classic has none).
+- After a yes (or an insisted compliance), a deferral for a bodily need (a drink, a meal) is a pause: the card keeps its verdict and the pause shows as a thought. A deferral for a prayer stays a visible "not now" verdict, since that is moment 2. A refusal on a bodily need (an insisted order overridden by thirst) is shown amber "not now", not grey "cannot", and the order stays open.
+- Walking through the storm advertises its exposure risk (0.3 per 10 minutes of travel, capped at 0.9), as outdoor work already did. On the shipped seed this brought director-script injuries from 10 to 8 (solo 8, Classic 3).
+- Moments are captioned live over the Human pane, with slow motion at ¼ of the chosen speed for 3 real seconds (§7, §8). The sim is paused while the intro and the coach's hand are up, and the dawn card waits until the coach is done.
+- The player's actions are logged with the minute they were applied (`ColonyGame.log`); `ColonyGame.replay(seed, factory, log)` reproduces the run (tested).
+
+Solo control (same seed, no orders) is logged by `human.test.ts`; on the shipped seed it keeps more meals than the director's script and is kept as a negative finding for the orders, not tuned away. Human injuries (8 on the shipped seed, nearly all storm exposure: Tariq and Idris working timber in the squall and the storm, people walking home to sleep after 22:00) exceed Classic's (3), whose units shelter by rule. Praying at home in the storm was tried and raised the count (more cross-village walks), so it was not kept; an interrupt when the storm breaks did not move Idris off the woodpile either.

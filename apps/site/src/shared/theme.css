@@ -1,0 +1,146 @@
+/*
+  Human Framework design system: one small set of tokens shared by the landing page and the games.
+  Palette from docs/games/colony.md §5 (mudbrick, palm, well-blue, parchment, ink, night indigo, storm
+  slate) plus the four verdict colours. Type: Fraunces (display), Instrument Sans (text), JetBrains Mono.
+*/
+:root {
+  --mudbrick: #c9975b;
+  --mudbrick-deep: #a8733d;
+  --palm: #4f7a4a;
+  --well: #3e7c8a;
+  --parchment: #f3e9d6;
+  --ink: #2b2622;
+  --night: #1b2140;
+  --slate: #5c6672;
+
+  --v-assent: #4f7a4a;
+  --v-cannot: #8a8f98;
+  --v-notnow: #d9932b;
+  --v-willnot: #b3362b;
+
+  --fam-need: #c98a2b;
+  --fam-norm: #3f4a8a;
+  --fam-commitment: #a8552f;
+  --fam-emotion: #7d4a7a;
+  --fam-social: #4f7a4a;
+  --fam-effort: #8a8f98;
+  --fam-suggestion: #3e7c8a;
+  --fam-habit: #9a7b4f;
+
+  --bg: #f6efe2;
+  --bg-deep: #ede2cc;
+  --surface: #fffaf0;
+  --surface-2: #f3e9d6;
+  --text: #2b2622;
+  --text-muted: #6b6158;
+  --line: rgba(43, 38, 34, 0.12);
+  --line-strong: rgba(43, 38, 34, 0.24);
+  --accent: #a8552f;
+  --accent-ink: #fffaf0;
+  --shadow: 0 1px 2px rgba(43, 38, 34, 0.06), 0 8px 24px rgba(43, 38, 34, 0.08);
+  --shadow-lift: 0 2px 4px rgba(43, 38, 34, 0.08), 0 18px 48px rgba(43, 38, 34, 0.16);
+
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-text: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --radius-s: 8px;
+  --radius: 14px;
+  --radius-l: 22px;
+  --gutter: 16px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12152a;
+    --bg-deep: #0d1022;
+    --surface: #1b2038;
+    --surface-2: #232946;
+    --text: #f3e9d6;
+    --text-muted: #b3a998;
+    --line: rgba(243, 233, 214, 0.1);
+    --line-strong: rgba(243, 233, 214, 0.22);
+    --accent: #e0915f;
+    --accent-ink: #12152a;
+    --fam-norm: #8c97e0;
+    --fam-emotion: #c08ac0;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3);
+    --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.4), 0 18px 48px rgba(0, 0, 0, 0.45);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12152a;
+  --bg-deep: #0d1022;
+  --surface: #1b2038;
+  --surface-2: #232946;
+  --text: #f3e9d6;
+  --text-muted: #b3a998;
+  --line: rgba(243, 233, 214, 0.1);
+  --line-strong: rgba(243, 233, 214, 0.22);
+  --accent: #e0915f;
+  --accent-ink: #12152a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

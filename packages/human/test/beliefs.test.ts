@@ -115,7 +115,7 @@ describe('beliefs/credence and trust', () => {
     believe(q, 'y', true, 0.9, 'gossip', 1);
     const two = q.memory.beliefs[0]?.logOdds ?? 0;
     expect(two - one).toBeLessThan(one);
-    expect(q.memory.beliefs[0]?.sources).toEqual(['gossip']);
+    expect(q.memory.beliefs[0]?.sources).toEqual([{ id: 'gossip', value: true }]);
   });
 
   test('a lying source loses trust and later moves credence less than an honest one', () => {

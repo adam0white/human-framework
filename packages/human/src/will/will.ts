@@ -6,7 +6,10 @@
  * person's own RNG. A suggestion from an outside voice resolves to a typed verdict so that a refusal never
  * reads as a bug: assented, complied (only after insisting on a "not now"), deferred with a counter-offer,
  * modified (a near alternative serving the same aim), or refused as cannot / willNot (including distrust
- * of a voice that has pushed hard and earned little trust). Insisting never overrides a pressing bodily need
+ * of a voice that has pushed hard and earned little trust, or whose advice recently hurt the person at the same
+ * action). An omission rule protects a closing obligatory duty: options that would make a firmly convinced
+ * person miss it are blocked while the duty can still be met (obligation follows capacity, Qur'an 2:286, so the
+ * block lifts when no fulfilling option is available or a bodily need is extreme). Insisting never overrides a pressing bodily need
  * (refused/cannot with the need as reason), and `cannot` refusals move no voice counters. `predictResponse` gives the same verdict without
  * writing anything or consuming RNG. Trust in a voice is learned from how followed advice felt, with harm
  * costing more than benefit earns (trust asymmetry); pressure from being pushed decays over hours. No
@@ -16,12 +19,13 @@
  */
 
 import { commitmentPressure } from '../agenda/index.ts';
-import { normVeto } from '../conscience/index.ts';
+import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
 import { clamp01, decay, random } from '../core/index.ts';
 import { skillLevel } from '../skills/index.ts';
 import type {
   Affordance,
   BodyReadout,
+  Commitment,
   Considered,
   EntityId,
   Minute,
@@ -45,11 +49,33 @@ export const WILL_DEFAULTS = {
   effortCapacityRatio: 1.5,
   /** Skill veto when difficulty exceeds the level by more than this. */
   skillGap: 0.5,
+  /** Extra allowed skill gap for an option tagged 'joint' with partners (same as skills' `supportBonus`). */
+  jointSkillSupport: 0.15,
   /** Desperation at which a sleeper wakes for an awake action. */
   wakeDesperation: 0.7,
   /** Distrust refusal: trust below this and pressure above `distrustPressure`. */
   distrustTrust: 0.25,
   distrustPressure: 0.6,
+  /**
+   * Episode distrust (a second, independent rule): trust below this AND a remembered outcome of following this
+   * voice at the same action, within `distrustWindow` minutes, with valence ≤ `distrustValence` and salience ≥
+   * `distrustSalience`. Then every suggested option with that action is refused willNot 'distrust', even when
+   * the person might have chosen it unprompted (they will not do it on this voice's word).
+   */
+  distrustEpisodeTrust: 0.45,
+  distrustWindow: 24 * MINUTES_PER_HOUR,
+  distrustValence: -0.2,
+  distrustSalience: 0.4,
+  /**
+   * Omission rule: a held obligatory norm with conviction ≥ this, linked to a pending commitment that is in the
+   * last (1 - omissionFraction) of its window, blocks options that would run past the window's end. Applies only
+   * while some offered option can still fulfil the commitment and desperation is below conscience's necessity
+   * threshold (capacity bounds obligation).
+   */
+  omissionConviction: 0.7,
+  omissionFraction: 0.75,
+  /** Trust events kept per voice for UI. */
+  maxVoiceHistory: 5,
   /** Autonomy need lost when complying under insistence (scaled by how far the option trailed). */
   complyAutonomyCost: 0.2,
   /** Pressure added when a voice pushes against preference (more when insisting). */
@@ -59,6 +85,11 @@ export const WILL_DEFAULTS = {
   /** Trust learning: gain toward 1 on a good outcome, loss toward 0 on a bad one. */
   trustGain: 0.1,
   trustLoss: 0.25,
+  /**
+   * Loss rate when the harmful activity was done under protest: the person said no, was overruled and was
+   * proved right, so trust falls faster (one bad night: 0.75 → ~0.41 at felt -1). Engineering default.
+   */
+  trustLossComplied: 0.45,
   /** Share of a tie's inertia bonus that remains when the activity is about to end. */
   inertiaFloor: 0.5,
   /**
@@ -103,6 +134,7 @@ export function createWill(voices: { voiceId: EntityId; trust?: number }[] = [])
       pressure: 0,
       accepted: 0,
       refused: 0,
+      history: [],
     })),
     precommitments: [],
     switchMargin: WILL_DEFAULTS.switchMargin,
@@ -123,6 +155,7 @@ function ensureVoice(p: Person, voiceId: EntityId): VoiceRelation {
     pressure: 0,
     accepted: 0,
     refused: 0,
+    history: [],
   };
   if (p.will.voices.length >= WILL_DEFAULTS.maxVoices) {
     // Drop the voice with the fewest interactions.
@@ -149,16 +182,71 @@ function wellFormed(aff: Affordance): boolean {
   return true;
 }
 
+const servesCommitment = (c: Commitment, aff: Affordance): boolean =>
+  (aff.fulfills?.includes(c.id) ?? false) ||
+  (c.actions.includes(aff.action) && (c.targetId === undefined || c.targetId === aff.targetId));
+
 /** Whether `aff` serves a pending commitment whose window is about to close (pressure ≥ wake level). */
 function pressingCommitment(p: Person, aff: Affordance, now: Minute): boolean {
   for (const c of p.agenda.commitments) {
     if (c.status !== 'pending') continue;
-    const matches =
-      (aff.fulfills?.includes(c.id) ?? false) ||
-      (c.actions.includes(aff.action) && (c.targetId === undefined || c.targetId === aff.targetId));
-    if (matches && commitmentPressure(c, now) >= WILL_DEFAULTS.wakeCommitmentPressure) return true;
+    if (servesCommitment(c, aff) && commitmentPressure(c, now) >= WILL_DEFAULTS.wakeCommitmentPressure)
+      return true;
   }
   return false;
+}
+
+/**
+ * Pending commitments protected by the omission rule right now: linked to a held obligatory norm with conviction
+ * ≥ `omissionConviction`, in the last (1 - omissionFraction) of the window, with at least one offered option
+ * that fulfils it and passes the capacity/conscience vetoes. Empty under desperation ≥ necessity threshold.
+ */
+export function closingDuties(
+  p: Person,
+  ctx: Pick<WillContext, 'now' | 'affordances' | 'body' | 'desperation' | 'necessity'>,
+): Commitment[] {
+  const W = WILL_DEFAULTS;
+  if (ctx.desperation >= CONSCIENCE_DEFAULTS.necessityThreshold) return [];
+  const out: Commitment[] = [];
+  for (const c of p.agenda.commitments) {
+    if (c.status !== 'pending' || c.normId === undefined) continue;
+    if (ctx.now > c.until || ctx.now < c.from + W.omissionFraction * (c.until - c.from)) continue;
+    const held = p.conscience.norms.find((n) => n.normId === c.normId);
+    if (held?.standing !== 'obligatory' || held.conviction < W.omissionConviction) continue;
+    const wctx = ctx as WillContext;
+    if (!ctx.affordances.some((a) => servesCommitment(c, a) && vetoFor(p, a, wctx) === undefined)) continue;
+    out.push(c);
+  }
+  return out;
+}
+
+/** The closing duty this option would make the person miss, if any (options serving another duty are exempt). */
+function omissionFor(duties: readonly Commitment[], aff: Affordance, now: Minute): Commitment | undefined {
+  if (duties.length === 0 || duties.some((c) => servesCommitment(c, aff))) return undefined;
+  const end = now + Math.max(0, aff.duration);
+  return duties.find((c) => end > c.until);
+}
+
+/**
+ * The remembered episode that makes this person refuse `voiceId` at `action` (episode distrust rule), if any.
+ */
+export function distrustEpisode(
+  p: Person,
+  voiceId: EntityId,
+  action: string,
+  now: Minute,
+): string | undefined {
+  const W = WILL_DEFAULTS;
+  const trust = voiceOf(p, voiceId)?.trust ?? W.defaultVoiceTrust;
+  if (trust >= W.distrustEpisodeTrust) return undefined;
+  const eps = p.memory.episodes;
+  for (let i = eps.length - 1; i >= 0; i--) {
+    const e = eps[i];
+    if (!e || now - e.at > W.distrustWindow) continue;
+    if (e.kind !== 'outcome' || e.voiceId !== voiceId || e.action !== action) continue;
+    if (e.valence <= W.distrustValence && e.salience >= W.distrustSalience) return e.id;
+  }
+  return undefined;
 }
 
 /** Capacity and conscience vetoes for one option. */
@@ -182,7 +270,9 @@ export function vetoFor(
     return { kind: 'cannot', reason: 'not-sleepy' };
   if (mode === 'awake' && clamp01(aff.effort) > ctx.body.capacity * W.effortCapacityRatio)
     return { kind: 'cannot', reason: 'capacity' };
-  if (aff.skill && clamp01(aff.skill.difficulty) - skillLevel(p, aff.skill.id) > W.skillGap)
+  // A joint activity lends the partner's support, so the skill veto allows a wider gap.
+  const support = aff.tags?.includes('joint') && (aff.with?.length ?? 0) > 0 ? W.jointSkillSupport : 0;
+  if (aff.skill && clamp01(aff.skill.difficulty) - skillLevel(p, aff.skill.id) > W.skillGap + support)
     return { kind: 'cannot', reason: `skill:${aff.skill.id}` };
   const norm = normVeto(p, aff, ctx.desperation, { necessity: ctx.necessity ?? true });
   if (norm) return norm;
@@ -259,11 +349,29 @@ function evaluate(
 ): Evaluation {
   const W = WILL_DEFAULTS;
   const affById = new Map(ctx.affordances.map((a) => [a.id, a]));
+  const duties = closingDuties(p, ctx);
+  const distrustByAction = new Map<string, string | undefined>();
+  let distrustId: string | undefined;
   const considered: Considered[] = input.map((c) => {
     const aff = affById.get(c.affordanceId);
     const out: Considered = { ...c, terms: [...c.terms] };
     delete out.vetoed;
-    const veto = aff ? vetoFor(p, aff, ctx) : { kind: 'cannot' as const, reason: 'unavailable' };
+    let veto: Considered['vetoed'] = aff
+      ? vetoFor(p, aff, ctx)
+      : { kind: 'cannot' as const, reason: 'unavailable' };
+    if (!veto && aff && suggestion && targets(suggestion, aff)) {
+      if (!distrustByAction.has(aff.action))
+        distrustByAction.set(aff.action, distrustEpisode(p, suggestion.voiceId, aff.action, ctx.now));
+      const ep = distrustByAction.get(aff.action);
+      if (ep !== undefined) {
+        veto = { kind: 'willNot', reason: 'distrust' };
+        distrustId ??= ep;
+      }
+    }
+    if (!veto && aff) {
+      const missed = omissionFor(duties, aff, ctx.now);
+      if (missed) veto = { kind: 'willNot', reason: `norm:${missed.normId}`, omission: missed.id };
+    }
     if (veto) out.vetoed = veto;
     return out;
   });
@@ -340,11 +448,40 @@ function evaluate(
   const liveSuggested = suggested.filter((c) => !c.vetoed).sort(byUtilityThenId);
   const bestSuggested = liveSuggested[0];
   if (!bestSuggested) {
-    // Every suggested option is vetoed: report the first veto (willNot outranks cannot).
+    // Every suggested option is vetoed: report the first veto (willNot outranks cannot; a standing refusal
+    // outranks an omission, which is only "not before my duty").
     const vetoes = suggested.map((c) => c.vetoed).filter((v) => v !== undefined);
-    const v = vetoes.find((x) => x.kind === 'willNot') ?? vetoes[0];
+    const v =
+      vetoes.find((x) => x.kind === 'willNot' && x.omission === undefined) ??
+      vetoes.find((x) => x.kind === 'willNot') ??
+      vetoes[0];
+    if (v?.omission !== undefined) {
+      const duty = p.agenda.commitments.find((c) => c.id === v.omission);
+      const winnerAff = winner ? affById.get(winner.affordanceId) : undefined;
+      if (!suggestion.insist) {
+        // Not refused outright: the duty comes first, then the request.
+        side.refused = 1;
+        side.pressure = W.pressurePush * clamp01(suggestion.strength);
+        ev.suggestion = resolution('deferred', v.reason, {
+          kind: 'notNow',
+          commitmentId: v.omission,
+          ...(winnerAff ? { insteadAffordanceId: winnerAff.id } : {}),
+          counterOffer: {
+            affordanceId: suggested[0]?.affordanceId,
+            label: dutyLabel(duty, winnerAff),
+          },
+        });
+        return ev;
+      }
+      side.refused = 1;
+      ev.suggestion = resolution('refused', v.reason, { kind: 'willNot', commitmentId: v.omission });
+      return ev;
+    }
     if (v?.kind === 'willNot') side.refused = 1;
-    ev.suggestion = resolution('refused', v?.reason ?? 'cannot', { kind: v?.kind ?? 'cannot' });
+    ev.suggestion = resolution('refused', v?.reason ?? 'cannot', {
+      kind: v?.kind ?? 'cannot',
+      ...(v?.reason === 'distrust' && distrustId !== undefined ? { episodeId: distrustId } : {}),
+    });
     return ev;
   }
   if (winner && suggested.some((c) => c.affordanceId === winner?.affordanceId)) {
@@ -407,6 +544,13 @@ function evaluate(
   return ev;
 }
 
+/** Counter-offer for a request deferred behind a duty: "after I pray Maghrib", "after I feed the children". */
+function dutyLabel(duty: Commitment | undefined, winner: Affordance | undefined): string {
+  if (duty?.kind === 'worship') return duty.label ? `after I pray ${duty.label}` : 'after I pray';
+  if (duty?.label) return `after I ${duty.label}`;
+  return winner ? `after I ${winner.label}` : 'after my duty';
+}
+
 /**
  * Resolve a choice. Writes voice pressure and counters (will-owned) unless `quiet` (a review that keeps the running
  * activity), and consumes RNG only when `temperature > 0`. The autonomy delta is returned for the composite.
@@ -462,15 +606,32 @@ export function predictResponse(
  * After a suggested activity finished: how it felt updates trust in the voice. Harm from followed advice
  * costs more than benefit earns. Only assented/complied resolutions carry information about the advice.
  */
-export function learnFromVoice(p: Person, resolution: SuggestionResolution, felt: Signed): void {
+export function learnFromVoice(
+  p: Person,
+  resolution: SuggestionResolution,
+  felt: Signed,
+  event: { at?: Minute; action?: string; reason?: string } = {},
+): void {
   if (resolution.verdict !== 'assented' && resolution.verdict !== 'complied') return;
   const W = WILL_DEFAULTS;
   const v = ensureVoice(p, resolution.voiceId);
   const f = Math.max(-1, Math.min(1, felt));
+  const before = v.trust;
+  const complied = resolution.verdict === 'complied';
   // A coerced activity that went well earns no trust: the person did not choose to follow the advice.
-  if (f > 0 && resolution.verdict !== 'complied')
-    v.trust = clamp01(v.trust + W.trustGain * f * (1 - v.trust));
-  else if (f < 0) v.trust = clamp01(v.trust + W.trustLoss * f * v.trust);
+  if (f > 0 && !complied) v.trust = clamp01(v.trust + W.trustGain * f * (1 - v.trust));
+  else if (f < 0) v.trust = clamp01(v.trust + (complied ? W.trustLossComplied : W.trustLoss) * f * v.trust);
+  const delta = v.trust - before;
+  if (Math.abs(delta) < 1e-9) return;
+  v.history ??= [];
+  const entry: VoiceRelation['history'][number] = {
+    at: event.at ?? p.now,
+    delta,
+    reason: event.reason ?? (delta > 0 ? 'went-well' : complied ? 'harm-under-protest' : 'went-badly'),
+  };
+  if (event.action !== undefined) entry.action = event.action;
+  v.history.push(entry);
+  if (v.history.length > W.maxVoiceHistory) v.history.splice(0, v.history.length - W.maxVoiceHistory);
 }
 
 /** Voice pressure decays over hours. Exact for any dt. */

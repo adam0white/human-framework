@@ -82,6 +82,8 @@ export interface BodyState {
   /** Minute the current sleep or wake period began. */
   since: Minute;
   alive: boolean;
+  /** Counter for injury and illness ids (ids stay unique after bounded eviction). */
+  nextId: number;
 }
 
 /** Instantaneous physiological readout the rest of the mind uses. Computed, never stored. */
@@ -204,6 +206,8 @@ export interface ConscienceState {
     weight: Unit;
     repaired: boolean;
   }[];
+  /** Counter for breach ids. */
+  nextBreach: number;
   /** Private intention records: the stated reason a person held when acting (never visible to observers). */
   intentions: { at: Minute; action: string; intention: string }[];
 }
@@ -292,6 +296,11 @@ export interface Episode {
   salience: Unit;
   summary: string;
   tags: string[];
+  /**
+   * The outside voice whose suggestion led to this episode (set on outcomes of assented/complied activities and
+   * on insisted-compliance episodes). Read by the distrust rule in `will/`.
+   */
+  voiceId?: EntityId;
 }
 
 export interface Belief {
@@ -300,8 +309,8 @@ export interface Belief {
   /** Log-odds credence. 0 = 50/50. */
   logOdds: number;
   updatedAt: Minute;
-  /** Source ids that contributed (bounded). */
-  sources: EntityId[];
+  /** Sources that contributed and the direction each claimed (bounded), so `confirm` can recalibrate them. */
+  sources: { id: EntityId; value: boolean }[];
 }
 
 /** Learned expectation of an action's actual result for this person (prediction-error learning). */
@@ -371,6 +380,8 @@ export interface Commitment {
   status: 'pending' | 'kept' | 'broken' | 'released';
   /** Optional recurrence: re-create after it closes (e.g. daily prayer windows). */
   recurEvery?: number;
+  /** Optional display name, e.g. 'Maghrib'; used in counter-offers ("after I pray Maghrib"). */
+  label?: string;
 }
 
 export interface Goal {
@@ -392,6 +403,8 @@ export interface AgendaState {
   commitments: Commitment[];
   goals: Goal[];
   nextId: number;
+  /** Day index of the last spontaneous goal proposal (-1 = never); at most one proposal per day. */
+  lastProposalDay: number;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -407,6 +420,19 @@ export interface VoiceRelation {
   pressure: Unit;
   accepted: number;
   refused: number;
+  /** The last few events that moved `trust`, oldest first (bounded, `WILL_DEFAULTS.maxVoiceHistory`). */
+  history: VoiceTrustEvent[];
+}
+
+/** One change of trust in a voice, for UI trust meters. */
+export interface VoiceTrustEvent {
+  at: Minute;
+  /** Signed change in trust. */
+  delta: number;
+  /** Machine-readable cause: 'went-well', 'went-badly', 'harm', 'harm-under-protest'. */
+  reason: string;
+  /** The suggested action whose outcome moved trust. */
+  action?: string;
 }
 
 /**
@@ -481,6 +507,18 @@ export interface Activity {
   protest?: boolean;
   /** Re-decide no later than this minute even if the activity continues (interrupt check). */
   reviewAt: Minute;
+  /**
+   * Cached result of `nextBodyThreshold` at begin or the last review: the absolute minute at which a perceived
+   * need is predicted to cross its interrupt threshold, or undefined when none does within the horizon. Hosts
+   * that step every minute read this instead of recomputing.
+   */
+  thresholdAt?: Minute;
+  /** Commitment created by `begin(..., { promise })` for this activity; it adds commitment inertia at review. */
+  commitmentId?: string;
+  /** Joint-activity proposal id when this activity was begun through the joint protocol in `sim/`. */
+  jointId?: string;
+  /** Set by `interrupt()`: why the next review was brought forward. Cleared when the review is handled. */
+  interrupt?: { at: Minute; reason: string };
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -488,7 +526,8 @@ export interface Activity {
 // ---------------------------------------------------------------------------------------------
 
 export const PERSON_SCHEMA = 'human/person@1';
-export const ENGINE_VERSION = '1.0.0';
+/** 1.1.0 (2026-10-03): joint activities, omission/distrust rules, reactance, voice history; saves from 1.0.0 do not restore. */
+export const ENGINE_VERSION = '1.1.0';
 
 export interface Person {
   schema: typeof PERSON_SCHEMA;
@@ -556,6 +595,8 @@ export interface Affordance {
   advances?: string[];
   /** Probability of harm and its severity, as advertised. */
   risk?: { chance: Unit; severity: Unit; kind: string };
+  /** Set on a partner's mirror offer by the joint protocol in `sim/` (the proposal id). */
+  jointId?: string;
   /** Material gain/cost in host units (e.g. coins). Valued via security/achievement/power values. */
   material?: number;
 }
@@ -563,8 +604,11 @@ export interface Affordance {
 /** Something a person perceives. Hosts emit percepts; attention decides which are encoded. */
 export interface Percept {
   at: Minute;
-  /** 'saw', 'heard', 'told', 'felt', 'outcome', 'social' */
-  channel: 'saw' | 'heard' | 'told' | 'felt';
+  /**
+   * How it reached the person: seen, heard, told (testimony), felt (bodily), the result of an action
+   * ('outcome', e.g. percepts attached to an `Outcome`), or a direct social interaction ('social').
+   */
+  channel: 'saw' | 'heard' | 'told' | 'felt' | 'outcome' | 'social';
   kind: string; // 'help', 'insult', 'gift', 'theft', 'death', 'weather', 'fact', 'request', 'thanks', ...
   actorId?: EntityId;
   targetId?: EntityId;
@@ -578,6 +622,11 @@ export interface Percept {
   /** Norms the observed act honoured or violated (for judging others). */
   norms?: NormTag[];
   summary: string;
+  /**
+   * Host flag for `sim/` interrupts. true: this percept is near the person (the framework has no spatial model),
+   * so a salient one forces re-decision even if it does not target them. false: never interrupts.
+   */
+  near?: boolean;
 }
 
 /** What actually happened when an activity ended. Hosts own world truth. */
@@ -597,6 +646,15 @@ export interface Outcome {
   /** Extra percepts produced by this outcome (e.g. 'thanks' from the helped person). */
   percepts?: Percept[];
   summary?: string;
+  /**
+   * How well it was done, 0..1 (1 = as advertised). Defaults to `PERSON_DEFAULTS.protestQuality` for work done
+   * under protest and 1 otherwise. Lower quality lowers felt valence and therefore learned expectations.
+   */
+  quality?: Unit;
+  /** Commitment ids this outcome keeps (defaults to the activity's `Affordance.fulfills`). */
+  fulfills?: string[];
+  /** Goal ids this outcome advances (defaults to the activity's `Affordance.advances`). */
+  advances?: string[];
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -649,12 +707,17 @@ export interface SuggestionResolution {
    * so a telegraph can say "probably" instead of a verdict the draw may contradict. Added 2026-10-03.
    */
   likelihood?: Unit;
+  /** For a distrust refusal: the remembered episode that broke trust (quote its summary in UI). */
+  episodeId?: string;
+  /** For an omission refusal or deferral: the closing commitment the person will not miss. */
+  commitmentId?: string;
 }
 
 /** One contribution to an option's utility. */
 export interface Term {
-  /** 'need:food', 'value:benevolence', 'norm:salah', 'commitment:c3', 'goal:g1', 'habit', 'emotion:fear',
-   *  'effort', 'risk', 'suggestion:player', 'social:p2', 'expectation', 'novelty', 'autonomy' */
+  /** 'need:food', 'norm:salah', 'commitment:c3', 'commitment' (promise inertia of the running activity),
+   *  'goal:g1', 'habit', 'emotion:fear:risky' (emotion id, then the tag it acts through), 'effort', 'risk',
+   *  'suggestion:player', 'social:p2', 'expectation', 'autonomy' (reactance to a pushing voice) */
   source: string;
   value: number;
 }
@@ -662,10 +725,15 @@ export interface Term {
 export interface Considered {
   affordanceId: string;
   action: string;
+  /** The affordance's label, copied so UIs need no lookup. */
+  label?: string;
   utility: number;
   terms: Term[];
-  /** Hard block (cannot or will not under any push), with reason. */
-  vetoed?: { kind: 'cannot' | 'willNot'; reason: string };
+  /**
+   * Hard block (cannot or will not under any push), with reason. `omission` names the closing obligatory
+   * commitment this option would make the person miss (see `will/` omission rule).
+   */
+  vetoed?: { kind: 'cannot' | 'willNot'; reason: string; omission?: string };
   /** The host's advertised need deltas and the person's believed deltas, for legibility. */
   advertised?: Partial<Record<NeedId, number>>;
   believed?: Partial<Record<NeedId, number>>;
@@ -687,6 +755,8 @@ export interface DecisionRecord {
   narration: string;
   /** True when made while an activity was running (a review), so UIs can filter routine re-checks. */
   review?: boolean;
+  /** Why this decision was brought forward, when `interrupt()` forced it (e.g. 'percept:injury'). */
+  interrupt?: string;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -704,7 +774,7 @@ export interface PersonSpec {
   values?: Partial<Values>;
   norms?: HeldNorm[];
   skills?: Record<string, Unit>;
-  body?: Partial<Omit<BodyState, 'injuries' | 'illnesses'>>;
+  body?: Partial<Omit<BodyState, 'injuries' | 'illnesses' | 'nextId'>>;
   needs?: Partial<NeedReservoirs>;
   relationships?: (Partial<Relationship> & { otherId: PersonId })[];
   commitments?: Omit<Commitment, 'status'>[];
@@ -755,6 +825,8 @@ export interface AppraisalEvent {
   affectionToAgent?: Signed;
   /** Loss of a loved person or thing (grief). */
   loss?: boolean;
+  /** For deeds judged against a norm: which norm. */
+  normId?: string;
   cause: string;
 }
 

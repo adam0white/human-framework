@@ -101,7 +101,7 @@ export function createAgenda(
   },
   now: Minute,
 ): AgendaState {
-  const state: AgendaState = { commitments: [], goals: [], nextId: 1 };
+  const state: AgendaState = { commitments: [], goals: [], nextId: 1, lastProposalDay: -1 };
   for (const c of spec.commitments ?? []) {
     state.commitments.push({
       ...c,
@@ -150,6 +150,7 @@ const sameChain = (a: Commitment, b: Commitment): boolean =>
   a.targetId === b.targetId &&
   a.toId === b.toId &&
   a.recurEvery === b.recurEvery &&
+  a.label === b.label &&
   a.until - a.from === b.until - b.from &&
   (a.from - b.from) % (a.recurEvery || 1) === 0 &&
   a.actions.join('|') === b.actions.join('|');
@@ -298,7 +299,8 @@ export function agendaTerms(p: Person, aff: Affordance, now: Minute): Term[] {
  * Apply a finished activity. Only completed outcomes count. One completion keeps the earliest-ending
  * matching pending commitment whose window the activity's span [startedAt, outcome.at] overlaps (see
  * `spanMeetsWindow`; `startedAt` defaults to `outcome.at`); goals advance by their listed amount.
- * `Outcome` carries no `fulfills`/`advances`, so matching is by action (and target) only.
+ * Matching is by action (and target), or explicitly by `outcome.fulfills` / `outcome.advances` (the composite
+ * defaults these to the activity's `Affordance.fulfills` / `advances`), mirroring `agendaTerms`.
  */
 export function onFinished(
   p: Person,
@@ -311,7 +313,9 @@ export function onFinished(
   if (outcome.status !== 'completed') return { kept, advanced, achieved };
   let best: Commitment | undefined;
   for (const c of p.agenda.commitments) {
-    if (c.status !== 'pending' || !matchesCommitment(c, outcome.action, outcome.targetId)) continue;
+    if (c.status !== 'pending') continue;
+    const explicit = outcome.fulfills?.includes(c.id) ?? false;
+    if (!explicit && !matchesCommitment(c, outcome.action, outcome.targetId)) continue;
     if (!spanMeetsWindow(c, Math.min(startedAt, outcome.at), outcome.at)) continue;
     if (!best || c.until < best.until) best = c;
   }
@@ -321,9 +325,11 @@ export function onFinished(
   }
   for (const g of p.agenda.goals) {
     if (g.status !== 'active') continue;
-    const step = g.advancedBy.find((a) => a.action === outcome.action);
-    if (!step || step.amount <= 0) continue;
-    g.progress = clamp01(g.progress + step.amount);
+    const own = g.advancedBy.find((a) => a.action === outcome.action)?.amount ?? 0;
+    const amount =
+      own > 0 ? own : outcome.advances?.includes(g.id) ? AGENDA_DEFAULTS.defaultAdvanceAmount : 0;
+    if (amount <= 0) continue;
+    g.progress = clamp01(g.progress + amount);
     advanced.push(g);
     if (g.progress >= 1) {
       g.status = 'achieved';
@@ -367,10 +373,9 @@ export function abandonGoal(p: Person, id: string): boolean {
 export function proposeGoals(p: Person, needs: NeedReading[], now: Minute): Goal[] {
   const d = AGENDA_DEFAULTS;
   const templates = d.goalTemplates;
-  const labels = new Set(Object.values(templates).map((t) => t?.label));
   const today = dayOf(now);
   const goals = p.agenda.goals;
-  if (goals.some((g) => labels.has(g.label) && dayOf(g.adoptedAt) === today)) return [];
+  if (p.agenda.lastProposalDay === today) return [];
   if (goals.filter((g) => g.status === 'active').length >= d.maxActiveGoals) return [];
   const candidates = needs
     .filter((n) => n.urgency > d.proposeUrgency && templates[n.id as PsychologicalNeed] !== undefined)
@@ -380,6 +385,7 @@ export function proposeGoals(p: Person, needs: NeedReading[], now: Minute): Goal
   if (!top) return [];
   const template = templates[top.id as PsychologicalNeed];
   if (!template) return [];
+  p.agenda.lastProposalDay = today;
   return [
     adoptGoal(
       p,

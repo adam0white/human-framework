@@ -62,8 +62,8 @@ Decisions are event-driven: a person decides when idle, when an activity ends, o
 | `will/` | `will` | `resolveChoice(p, considered, suggestion)`, `predictResponse(p, considered, suggestion)` (pure, no RNG — for UI telegraphing), `learnFromVoice(p, resolution, feltValence)` |
 | `cognition/` | — | `consider(p, affordance)` → `Considered`; `decide(p, affordances, opts)` |
 | `narrate/` | — | `narrateDecision(p, record)`, `voiceLine(p, resolution)`, `describePerson(p)` |
-| `person.ts` | `activity`, `trace`, `now` | `createPerson(spec)`, `tick(p, now)`, `decide`, `begin`, `finish`, `perceive`, `snapshot`, `restore` |
-| `sim/` | — | `Community` driver over a host `World` adapter |
+| `person.ts` | `activity`, `trace`, `now` | `createPerson(spec)`, `tick(p, now)`, `decide`, `begin(p, aff, record, { promise? })`, `interrupt(p, now, reason)`, `finish`, `perceive`, `predict`, `snapshot`, `restore` |
+| `sim/` | — | `Community` driver over a host `World` adapter: `stepCommunity`, `preview`, `interruptPerson`, joint protocol (`proposeJoint`, `acceptJoint`, `declineJoint`, `mirrorAffordance`), `jointSuccessChance` |
 
 ## Utility of an option
 
@@ -80,10 +80,17 @@ Decisions are event-driven: a person decides when idle, when an activity ends, o
 - **risk**: chance × severity × (fear + emotionality).
 - **material**: value of gain, scaled by security, achievement, and power.
 - **suggestion:V**: strength × voice trust × appeal match. This is never enough on its own to override a veto.
+- **autonomy** (reactance): on the suggested option only, −scale × pressure above 0.3 × selfDirection × (0.5 + autonomy urgency). People resist being micromanaged; insisting adds to the pressure read.
+- **commitment** (promise inertia): on the running activity when it was begun with `begin(..., { promise })` and the promise is pending. Full strength until desperation reaches the necessity threshold, gone 0.15 above it: a promise survives hunger, not starvation.
+- **joint:P**: on an offer tagged `joint`, trust in each partner (relationship trust − 0.5).
+
+Emotion terms are named `emotion:<emotion>:<tag>` (e.g. `emotion:fear:risky`): the dominant emotion behind the tendency, then the tag it acts through. Each `Considered` carries the offer's `label`.
 
 `will.resolveChoice` then decides:
 
-1. **Vetoes.** Capacity (exhausted, asleep, dead) and strongly held forbidden norms veto an option. The forbidden-norm veto lifts under genuine necessity: when the need urgency is extreme, the person's understanding of necessity applies (Qur'an 2:173 is the canonical source). Hosts can turn this off.
+1. **Vetoes.** Capacity (exhausted, asleep, dead) and strongly held forbidden norms veto an option. The forbidden-norm veto lifts under genuine necessity: when the need urgency is extreme, the person's understanding of necessity applies (Qur'an 2:173 is the canonical source). Hosts can turn this off. Two further rules:
+   - **Omission rule.** A person who holds an *obligatory* norm with conviction ≥ 0.7, and has a pending commitment linked to it that is in the last 25 % of its window, will not take an option that runs past the window's end without fulfilling it. This covers salah (obligatory in the common Sunni understanding the catalog records; a person's own understanding may differ) and any host duty, such as care for dependents or another faith's prayer norm the host defines. Obligation is bounded by capacity (Qur'an 2:286; [Islamic foundations](../research/islamic-foundations.md) §4): the rule applies only while some offered option can still fulfil the commitment, and lifts when desperation reaches the necessity threshold. A plain suggestion that would miss the duty is **deferred** with a counter-offer naming it ("after I pray Maghrib", from `Commitment.label`); an insisted one is **refused/willNot** with reason `norm:<id>`. Insisting cannot override it.
+   - **Episode distrust.** When trust in a voice is below 0.45 *and* the person remembers, within 24 h, a salient bad outcome (valence ≤ −0.2, salience ≥ 0.4) of following that voice at the same action, every suggested option with that action is refused **willNot** `distrust`, with `episodeId` naming the memory. They will not do it on that voice's word, even if they might have chosen it unprompted. The older rule (trust < 0.25 and pressure > 0.6 when the suggestion loses) still applies.
 2. **Selection.** Argmax with hysteresis by default: the current activity keeps a decaying inertia bonus, and challengers must beat it by `will.switchMargin`. `will.temperature > 0` opts a person into softmax sampled from their own RNG.
 3. **Suggestion verdict.** The verdict is typed so that a refusal never reads as a bug:
    - **assented**: the suggested option won.
@@ -93,7 +100,17 @@ Decisions are event-driven: a person decides when idle, when an activity ends, o
    - **complied**: the voice insisted on a `notNow`. The person does it under protest, at a visible price (autonomy drop, voice pressure, a memory, `activity.protest` for hosts to reduce quality). Insisting never overrides `cannot` or `willNot`.
 
    Every verdict carries a dominant reason and a first-person line. `predictResponse` gives the same verdict without consuming RNG, so the UI can telegraph it on hover.
-4. **Autonomy and trust.** Pushing against preference raises voice pressure and drains the autonomy need. Outcomes the person liked raise trust in the voice that suggested them.
+4. **Autonomy and trust.** Pushing against preference raises voice pressure and drains the autonomy need. Outcomes the person liked raise trust in the voice that suggested them; harm lowers it faster, and faster still when the person had been overruled (`trustLossComplied`: one bad night under protest takes trust 0.75 → ~0.41). `VoiceRelation.history` keeps the last five events that moved trust (`{at, delta, reason, action}`) for UI trust meters. Outcome episodes of suggested activities record `voiceId`.
+
+## Host protocols
+
+- **Space and travel** are host responsibilities. The framework has no spatial model; hosts fold travel into `Affordance.duration` and mark nearby percepts with `Percept.near`.
+- **Interrupts.** `interrupt(p, now, reason)` brings the running activity's review forward and the reason reaches `DecisionRecord.interrupt`. `stepCommunity` calls it when a perceived percept has salience ≥ 0.8 and targets the person or is flagged `near` (`near: false` never interrupts; `StepOptions.interruptSalience` changes or disables the threshold). Percepts are pulled at each person's own events, so a host that wants an immediate response calls `interruptPerson(c, p, at, reason)` when it queues the percept (it is safe inside `World` callbacks).
+- **Promises at begin.** `begin(p, aff, record, { promise: { importance, toId?, normId?, kind?, label? } })` creates a pending commitment for that action and target until the activity's end plus 30 minutes and links it as `Activity.commitmentId`. Completing keeps it; abandoning breaks it (a missed episode, and a breach if `normId` is set). Under `stepCommunity`, a host supplies these options through the optional `World.beginOptions(p, offer, record)`, called for every begin (joint begins included); its result is passed to `begin`.
+- **Joint activities.** An offer tagged `joint` whose `with` names community members starts the protocol in `stepCommunity`: the proposer's choice is not begun; each partner is interrupted the same minute and offered a mirror (`mirrorAffordance`, or the host's `World.mirror`), tagged `joint` with `jointId`. The partner's own decision weighs it (social and `joint:` trust terms). If every partner chooses the mirror, all begin the same minute (`acceptJoint`), with `Activity.jointId` shared; if any declines (`declineJoint`), the proposer re-decides that minute without that offer. A skilled joint task's success is the host's roll; `jointSuccessChance(lead, partners, skill, difficulty)` is `successChance` with the partners' skill × capacity as support, and the skill veto allows a 0.15 wider gap on joint offers.
+- **Outcome quality.** `Outcome.quality` (0..1) lowers felt valence and therefore learned expectations; it defaults to 0.7 for work done under protest. `Outcome.fulfills`/`advances` key commitments and goals explicitly and default to the activity's affordance.
+- **Body thresholds.** `nextBodyThreshold` runs once at `begin` and at each review, never per tick; `Activity.thresholdAt` caches the minute a perceived need will cross its interrupt threshold (absent when none does within the review horizon). Hosts that step every minute read it.
+- **Telegraphs.** `preview(p, affordances, suggestion)` in `sim/` (same as `predict`) gives the verdict without changing state.
 
 ## Locked decisions (2026-10-02, after [game-design review](reviews/2026-10-02-gamedev-early.md))
 
@@ -112,9 +129,10 @@ Decisions are event-driven: a person decides when idle, when an activity ends, o
 
 ## Determinism and saves
 
-- All randomness comes from `person.rng`, or from host-owned RNG for world events. Given the same seed and inputs, the result is byte-identical.
+- All randomness comes from `person.rng`, or from host-owned RNG for world events. Given the same seed and inputs, the result is byte-identical when the host's calls fall on the same minutes. Discrete events (decisions, missed commitments, goals) do not depend on how a host chunks `tick` calls; continuous state agrees to floating-point rounding (~1e-9) across different chunkings, and is byte-identical when calls fall on the 60-minute `tick` grid.
 - `Person` is plain JSON. `snapshot(p)` returns a deep clone, and `restore(json)` validates `schema` and fills defaults.
-- Bounded collections: episodes ≤ 200, beliefs ≤ 300, trace ≤ 32, emotions ≤ 12, breaches ≤ 50, intentions ≤ 50.
+- Bounded collections: episodes ≤ 200, beliefs ≤ 300, trace ≤ 32, emotions ≤ 12, breaches ≤ 50, intentions ≤ 50, voice history ≤ 5 per voice. Breach, injury and illness ids come from counters (`nextBreach`, `body.nextId`), so they stay unique after eviction.
+- `ENGINE_VERSION` 1.1.0 (2026-10-03) added the rules above and new state fields; `restore` refuses 1.0.0 saves.
 
 ## Scope notes
 

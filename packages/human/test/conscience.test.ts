@@ -51,7 +51,7 @@ function person(norms: HeldNorm[], over: Partial<Person> = {}): Person {
     habits: [],
     memory: {} as Person['memory'],
     social: { relationships: [] },
-    agenda: { commitments: [], goals: [], nextId: 1 },
+    agenda: { commitments: [], goals: [], nextId: 1, lastProposalDay: -1 },
     will: {} as Person['will'],
     activity: null,
     trace: [],

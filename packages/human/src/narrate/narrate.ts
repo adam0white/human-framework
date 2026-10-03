@@ -6,7 +6,15 @@
  * only: nothing here reads back into the simulation, and no claim is made that the templates reflect how
  * people actually explain themselves.
  */
+import { NORM_SCOPE } from '../conscience/index.ts';
 import type { Considered, DecisionRecord, Episode, Person, SuggestionResolution } from '../types.ts';
+
+/** Devotional intention: 'for Allah' only for norms in the built-in Islamic catalog; other faiths 'for God'. */
+function devotion(p: Person, normId: string | undefined): string {
+  if (p.values.tradition < 0.6) return normId === undefined ? 'to keep my devotion' : 'because it is right';
+  if (normId !== undefined && NORM_SCOPE[normId] === 'religious') return 'for Allah';
+  return 'for God';
+}
 
 /** FNV-1a 32-bit hash for deterministic template selection. */
 export function hashString(s: string): number {
@@ -110,13 +118,19 @@ export function intentionFor(p: Person, record: DecisionRecord): string {
           safety: 'to be safe',
         }[rest] ?? `to meet my need for ${rest}`
       );
-    case 'norm':
-      return p.values.tradition >= 0.6 ? 'for Allah' : 'because it is right';
+    case 'norm': {
+      const tracked = p.agenda.commitments.some((c) => c.normId === rest && c.kind === 'worship');
+      if (NORM_SCOPE[rest] === 'religious' || tracked) return devotion(p, rest);
+      return 'because it is right';
+    }
     case 'conscience':
       return rest === 'repair' ? 'to make amends' : 'to turn back from wrong';
     case 'commitment': {
       const c = p.agenda.commitments.find((x) => x.id === rest);
-      if (c?.kind === 'worship') return p.values.tradition >= 0.6 ? 'for Allah' : 'to keep my devotion';
+      if (c?.kind === 'worship')
+        return c.normId === undefined || p.values.tradition < 0.6
+          ? devotion(p, undefined)
+          : devotion(p, c.normId);
       if (c?.toId && c.toId !== 'self') return `to keep my promise to ${nameOf(p, c.toId)}`;
       return 'to keep my word';
     }
@@ -200,9 +214,11 @@ export function narrateDecision(p: Person, record: DecisionRecord): string {
     parts.push(pickBy(record.id, [`I'd like to see ${nameOf(p, rest)}.`, `Time with ${nameOf(p, rest)}.`]));
   else if (kind === 'suggestion')
     parts.push(pickBy(record.id, ['You asked, so I will.', 'Fine, since you suggest it.']));
-  else if (kind === 'emotion')
-    parts.push(pickBy(record.id, EMOTION_LINES[rest] ?? ['I feel like it.', 'My mood says so.']));
-  else parts.push(pickBy(record.id, SOURCE_LINES[source] ?? SOURCE_LINES.preference ?? ['']));
+  else if (kind === 'emotion') {
+    // 'emotion:<id>:<tag>' (or legacy 'emotion:<tag>'): the lines are keyed by the tag.
+    const tag = source.slice(source.lastIndexOf(':') + 1);
+    parts.push(pickBy(record.id, EMOTION_LINES[tag] ?? ['I feel like it.', 'My mood says so.']));
+  } else parts.push(pickBy(record.id, SOURCE_LINES[source] ?? SOURCE_LINES.preference ?? ['']));
 
   // Mention what was weighed against, if a rival came within a fifth of the chosen utility (not on reviews).
   const rival = record.considered.find((c) => c.affordanceId !== chosen.affordanceId && !c.vetoed);
@@ -253,8 +269,23 @@ export function voiceLine(p: Person, res: SuggestionResolution, key = res.reason
       return pickBy(key, [`I'll ${lower(alt)} instead.`, `Not that — I'll ${lower(alt)}.`]);
     }
     case 'refused': {
-      if (res.reason === 'distrust')
+      if (res.reason === 'distrust') {
+        const ep = res.episodeId ? p.memory.episodes.find((e) => e.id === res.episodeId) : undefined;
+        if (ep) {
+          const what = ep.summary.replace(/\.$/, '');
+          return pickBy(key, [
+            `Last time you sent me: ${lower(what)}. Not again.`,
+            `No. I remember last time: ${lower(what)}.`,
+          ]);
+        }
         return pickBy(key, ['Why would I listen to you?', "You've pushed me enough."]);
+      }
+      if (res.kind === 'willNot' && res.commitmentId !== undefined) {
+        const duty = p.agenda.commitments.find((c) => c.id === res.commitmentId);
+        const what =
+          duty?.kind === 'worship' ? (duty.label ?? 'my prayer') : duty?.label ? duty.label : 'my duty';
+        return pickBy(key, [`I won't miss ${what}, whatever you say.`, `No. Not at the cost of ${what}.`]);
+      }
       if (res.kind === 'willNot') {
         const normId = res.reason.startsWith('norm:') ? res.reason.slice(5) : '';
         const verb = NORM_VERBS[normId] ?? 'do that';

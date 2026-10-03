@@ -27,6 +27,7 @@ export function prayerWindows(
 ): Omit<Commitment, 'id' | 'status'>[] {
   const base = day * MINUTES_PER_DAY;
   const order = [times.fajr, times.dhuhr, times.asr, times.maghrib, times.isha];
+  const names = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
   return order.map((start, i) => {
     const next = order[i + 1] ?? times.fajr + MINUTES_PER_DAY;
     return {
@@ -37,6 +38,7 @@ export function prayerWindows(
       normId: 'salah',
       importance: PRAYER_IMPORTANCE,
       recurEvery: MINUTES_PER_DAY,
+      label: names[i] ?? 'prayer',
     };
   });
 }
