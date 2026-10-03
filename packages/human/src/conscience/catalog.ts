@@ -1,0 +1,151 @@
+import type { NormDefinition } from '../types.ts';
+
+/**
+ * Default norm catalog. Standings record the common Sunni understanding (Hanafi–Maturidi starting point)
+ * as a person might hold it; they are not rulings, and a person's held understanding may differ. Each
+ * entry carries provenance. Qur'an references were checked against quran.com (Khattab translation)
+ * on 2026-10-03. Hadith references (sunnah.com) could not be fetched for verification and are omitted
+ * rather than cited unchecked.
+ * Secular-usable norms whose standing is an engineering choice are marked `assumption`.
+ *
+ * Forbidden norms are named after the act (`theft`, `lying`) so that `violates` reads naturally.
+ */
+export const DEFAULT_NORMS: NormDefinition[] = [
+  {
+    id: 'salah',
+    label: 'Perform the daily prayers',
+    standing: 'obligatory',
+    sources: [
+      { kind: 'revelation', ref: "Qur'an 2:43" },
+      { kind: 'revelation', ref: "Qur'an 4:103 (prayer at prescribed times)" },
+    ],
+  },
+  {
+    id: 'sawm-ramadan',
+    label: 'Fast in Ramadan',
+    standing: 'obligatory',
+    sources: [{ kind: 'revelation', ref: "Qur'an 2:183" }],
+  },
+  {
+    id: 'zakat',
+    label: 'Pay zakat',
+    standing: 'obligatory',
+    sources: [{ kind: 'revelation', ref: "Qur'an 2:43" }],
+  },
+  {
+    id: 'charity',
+    label: 'Give voluntary charity (sadaqah)',
+    standing: 'recommended',
+    sources: [{ kind: 'revelation', ref: "Qur'an 2:261" }],
+  },
+  {
+    id: 'lying',
+    label: 'Lying (truthfulness is required)',
+    standing: 'forbidden',
+    sources: [{ kind: 'revelation', ref: "Qur'an 9:119 (be with the truthful)" }],
+  },
+  {
+    id: 'theft',
+    label: 'Theft',
+    standing: 'forbidden',
+    sources: [{ kind: 'revelation', ref: "Qur'an 5:38" }],
+  },
+  {
+    id: 'keep-promise',
+    label: 'Keep promises and commitments',
+    standing: 'obligatory',
+    sources: [{ kind: 'revelation', ref: "Qur'an 17:34" }],
+  },
+  {
+    id: 'kindness-to-parents',
+    label: 'Kindness to parents',
+    standing: 'obligatory',
+    sources: [{ kind: 'revelation', ref: "Qur'an 17:23" }],
+  },
+  {
+    id: 'backbiting',
+    label: 'Backbiting',
+    standing: 'forbidden',
+    sources: [{ kind: 'revelation', ref: "Qur'an 49:12" }],
+  },
+  {
+    id: 'help-neighbor',
+    label: 'Help and be good to neighbours',
+    standing: 'recommended',
+    sources: [{ kind: 'revelation', ref: "Qur'an 4:36" }],
+  },
+  {
+    id: 'gratitude',
+    label: 'Gratitude',
+    standing: 'recommended',
+    sources: [
+      { kind: 'revelation', ref: "Qur'an 2:152 (thank Me, and never be ungrateful)" },
+      {
+        kind: 'interpretation',
+        ref: 'Standing as recommended for expressed gratitude toward people is an engineering simplification',
+      },
+    ],
+  },
+  {
+    id: 'harm-others',
+    label: 'Harming others without right',
+    standing: 'forbidden',
+    sources: [
+      { kind: 'revelation', ref: "Qur'an 33:58 (abusing believers unjustifiably)" },
+      {
+        kind: 'interpretation',
+        ref: 'General prohibition of unjust harm to any person, extended from specific texts; scope of "without right" left to the host',
+      },
+    ],
+  },
+  {
+    id: 'intoxicants',
+    label: 'Intoxicants',
+    standing: 'forbidden',
+    sources: [{ kind: 'revelation', ref: "Qur'an 5:90" }],
+  },
+  {
+    id: 'forbidden-food',
+    label: 'Eating forbidden food (carrion, blood, swine)',
+    standing: 'forbidden',
+    sources: [{ kind: 'revelation', ref: "Qur'an 2:173 (lifted under necessity without desire or excess)" }],
+  },
+  {
+    id: 'fairness',
+    label: 'Deal fairly (no cheating in trade)',
+    standing: 'obligatory',
+    sources: [
+      { kind: 'revelation', ref: "Qur'an 83:1-3 (woe to the defrauders)" },
+      { kind: 'assumption', ref: 'Generalised to fair dealing for secular hosts' },
+    ],
+  },
+  {
+    id: 'punctuality',
+    label: 'Be on time',
+    standing: 'recommended',
+    sources: [{ kind: 'assumption', ref: 'Secular social norm; engineering default' }],
+  },
+];
+
+/**
+ * Which default norms only religiously practising people hold ('religious') and which ordinary people
+ * across practice levels tend to hold ('shared'); 'core' shared norms get the firmest baseline conviction.
+ */
+export const NORM_SCOPE: Record<string, 'religious' | 'shared' | 'core'> = {
+  salah: 'religious',
+  'sawm-ramadan': 'religious',
+  zakat: 'religious',
+  charity: 'religious',
+  intoxicants: 'religious',
+  'forbidden-food': 'religious',
+  lying: 'core',
+  theft: 'core',
+  'harm-others': 'core',
+  'keep-promise': 'core',
+  'kindness-to-parents': 'shared',
+  backbiting: 'shared',
+  'help-neighbor': 'shared',
+  gratitude: 'shared',
+  fairness: 'shared',
+  punctuality: 'shared',
+};

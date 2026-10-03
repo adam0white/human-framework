@@ -455,6 +455,16 @@ export interface Activity {
   affordanceId: string;
   action: string;
   targetId?: EntityId;
+  /**
+   * Snapshot of the offer being carried out, so `tick` (tags, participants, place) and `finish` (skill, norms,
+   * advertisement) work from saved state alone. Added 2026-10-03 by the integration pass.
+   */
+  affordance: Affordance;
+  /**
+   * Need satisfaction levels when the activity began. `finish` measures the realized sleep/rest change from
+   * these, since the host cannot know the body's delta. Added 2026-10-03 by the integration pass.
+   */
+  needsAtStart: Partial<Record<NeedId, Unit>>;
   startedAt: Minute;
   endsAt: Minute;
   effort: Unit;
@@ -634,6 +644,11 @@ export interface SuggestionResolution {
   reason: string;
   /** Human-readable sentence in the person's voice. */
   says: string;
+  /**
+   * When choice is stochastic (`will.temperature > 0`): the probability that the suggested option is chosen,
+   * so a telegraph can say "probably" instead of a verdict the draw may contradict. Added 2026-10-03.
+   */
+  likelihood?: Unit;
 }
 
 /** One contribution to an option's utility. */
@@ -670,6 +685,8 @@ export interface DecisionRecord {
   intention: string;
   /** Templated first-person narration of the choice. */
   narration: string;
+  /** True when made while an activity was running (a review), so UIs can filter routine re-checks. */
+  review?: boolean;
 }
 
 // ---------------------------------------------------------------------------------------------

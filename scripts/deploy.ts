@@ -8,7 +8,11 @@ import { join } from 'node:path';
 
 const root = join(import.meta.dirname, '..');
 const run = (cmd: string, args: string[], quiet = false): string =>
-  execFileSync(cmd, args, { cwd: root, encoding: 'utf8', stdio: quiet ? ['ignore', 'pipe', 'inherit'] : 'inherit' }) ?? '';
+  execFileSync(cmd, args, {
+    cwd: root,
+    encoding: 'utf8',
+    stdio: quiet ? ['ignore', 'pipe', 'inherit'] : 'inherit',
+  }) ?? '';
 const git = (...args: string[]) => run('git', args, true).trim();
 
 const dryRun = process.argv.includes('--dry-run');
@@ -39,7 +43,9 @@ if (dryRun) {
   run('npx', ['wrangler', 'deploy', '--dry-run']);
 } else {
   run('npx', ['wrangler', 'deploy']);
-  const live = (await (await fetch('https://human.adamwhite.work/release.json', { cache: 'no-store' })).json()) as {
+  const live = (await (
+    await fetch('https://human.adamwhite.work/release.json', { cache: 'no-store' })
+  ).json()) as {
     commit: string;
   };
   if (live.commit !== commit) throw new Error(`Live commit ${live.commit} != ${commit}`);
