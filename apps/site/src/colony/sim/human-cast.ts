@@ -7,6 +7,7 @@
  * time is therefore `fw(m) = m + START_CLOCK`, so `DEFAULT_PRAYER_TIMES` line up with the spec's prayer times.
  */
 import {
+  type BodyRates,
   type Commitment,
   type HeldNorm,
   heldNorms,
@@ -376,6 +377,18 @@ const CAST: Record<VillagerId, CastEntry> = {
   },
 };
 
+/**
+ * Depletion rates the colony was tuned on (framework defaults before engine 1.2.0 halved them for the
+ * day-long fasts of the town). Pinned so the shipped seed's five moments and their timing table in
+ * docs/games/colony.md stay valid; the two-day drama needs hunger and thirst on a scale of hours.
+ */
+export const COLONY_RATES: BodyRates = {
+  satietyPerMinute: 0.0015,
+  satietyEffortPerMinute: 0.0015,
+  hydrationPerMinute: 0.002,
+  hydrationEffortPerMinute: 0.003,
+};
+
 /** Maryam's three daily meals (spec: she cooks at 06:30, 12:00 and 18:00 by habit). Minutes of day. */
 export const MEALS: readonly { label: string; from: number; until: number }[] = [
   { label: 'cook breakfast', from: 6 * 60, until: 7 * 60 + 30 },
@@ -455,7 +468,14 @@ export function villagerPersonSpec(seed: number, v: VillagerSpec): PersonSpec {
     values: c.values,
     norms: heldNorms({ practice: c.practice, extraNorms: c.extraNorms }),
     skills: { ...v.skills },
-    body: { satiety: v.satiety, hydration: 0.75, sleepPressure: 0.1, exertion: 0, asleep: false },
+    body: {
+      satiety: v.satiety,
+      hydration: 0.75,
+      sleepPressure: 0.1,
+      exertion: 0,
+      asleep: false,
+      rates: COLONY_RATES,
+    },
     relationships: c.relationships,
     commitments,
     goals: [

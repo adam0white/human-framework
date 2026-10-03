@@ -6,8 +6,15 @@
  * retention with a floor (Bahrick-style permastore: disuse erodes part of what was gained, not all of it).
  * Stored `level` is learned competence at `lastPracticed`; `skillLevel` applies forgetting since then, and
  * `successChance` applies momentary capacity and outside support without rewriting what was learned.
- * Does NOT claim: transfer between skills (none is modelled), fitted human learning curves, or that one
- * scalar per skill captures a real competence.
+ * Does NOT claim: fitted human learning curves, or that one scalar per skill captures a real competence.
+ *
+ * SCOPE (transfer): sparse, explicit transfer only (research/empirical-models.md §2: related vocabulary
+ * helps, strength training does not help diplomacy). A host-supplied `SkillTransfer` map names, per source
+ * skill, related skills and a 0..1 fraction; practising the source also moves each related skill by that
+ * fraction of the same learning exposure, without consuming the related skill's own practice minutes (so
+ * its later practice is not slowed by the power law). Transfer is written at practice time, so stored
+ * levels are what later practice builds on. Does not claim: measured transfer fractions, negative transfer,
+ * or any default family structure; no map means no transfer.
  */
 import { clamp01, decay, sigmoid } from '../core/index.ts';
 import { MINUTES_PER_DAY, type Minute, type Person, type Skill, type Unit } from '../types.ts';
@@ -42,6 +49,27 @@ export const SKILL_DEFAULTS = {
 } as const;
 
 type SkillHolder = Pick<Person, 'skills' | 'now'>;
+
+/** Source skill id -> related skill id -> fraction (0..1) of the source's learning exposure that transfers. */
+export type SkillTransfer = Record<string, Record<string, Unit>>;
+
+/** Symmetric transfer map from families (every member transfers `fraction` to every other member). */
+export function skillFamilies(families: Record<string, readonly string[]>, fraction: Unit): SkillTransfer {
+  const out: SkillTransfer = {};
+  const f = clamp01(fraction);
+  for (const fam of Object.keys(families).sort()) {
+    const members = families[fam] ?? [];
+    for (const a of members) {
+      for (const b of members) {
+        if (a === b) continue;
+        const row = out[a] ?? {};
+        out[a] = row;
+        row[b] = Math.max(row[b] ?? 0, f);
+      }
+    }
+  }
+  return out;
+}
 
 function retained(s: Skill, now: Minute): Unit {
   const d = SKILL_DEFAULTS;
@@ -92,6 +120,7 @@ function exposure(h0: number, h1: number): number {
 /**
  * Practise for `minutes`. Gain follows dL/dt = learning * k(practice) * challenge * outcome * (1 - L), integrated
  * in closed form so one long session ≈ many short ones. Forgetting since last practice is applied first.
+ * With `transfer`, each related skill r gains L_r <- 1 - (1 - L_r) e^{-fraction × k} (see SCOPE, transfer).
  */
 export function practise(
   p: SkillHolder,
@@ -101,6 +130,7 @@ export function practise(
   succeeded: boolean,
   learning: number,
   now: Minute,
+  transfer?: SkillTransfer,
 ): { before: Unit; after: Unit } {
   const d = SKILL_DEFAULTS;
   const existing = p.skills[id];
@@ -118,6 +148,20 @@ export function practise(
     practice: priorMinutes + mins,
     lastPracticed: Math.max(now, existing?.lastPracticed ?? now),
   };
+  const related = transfer?.[id];
+  if (related && k > 0) {
+    for (const r of Object.keys(related).sort()) {
+      const f = clamp01(related[r] ?? 0);
+      if (r === id || f <= 0) continue;
+      const ex = p.skills[r];
+      const rb = ex ? retained(ex, now) : d.base;
+      p.skills[r] = {
+        level: clamp01(1 - (1 - rb) * Math.exp(-f * k)),
+        practice: ex?.practice ?? 0,
+        lastPracticed: Math.max(now, ex?.lastPracticed ?? now),
+      };
+    }
+  }
   return { before, after };
 }
 

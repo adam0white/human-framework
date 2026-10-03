@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import {
   advanceBody,
+  BODY_DEFAULTS,
   circadianAlertness,
   consume,
   createBody,
@@ -97,15 +98,39 @@ describe('body', () => {
     expect(JSON.parse(JSON.stringify(a.body))).toEqual(a.body);
   });
 
-  test('hungry after ~5-6 h awake, thirsty sooner, effort speeds both', () => {
+  test('hungry after ~9-10 h awake at rest (recalibrated 2026-10-03), effort speeds both', () => {
+    // Measured on the recalibrated linear rates: hunger 0.7 at ~554 min, thirst 0.7 at ~596 min from a fresh body.
+    // The pre-1.2.0 ordering (thirst before hunger at rest) was lost in the recalibration; see docs/findings.md.
     const p = person();
     const tHunger = nextBodyThreshold(p, REST, ADULT, { hunger: 0.7, thirst: 2, sleepiness: 2 }, 1440);
     const tThirst = nextBodyThreshold(p, REST, ADULT, { hunger: 2, thirst: 0.7, sleepiness: 2 }, 1440);
-    expect(tHunger).toBeGreaterThan(4.5 * 60);
-    expect(tHunger).toBeLessThan(6.5 * 60);
-    expect(tThirst).toBeLessThan(tHunger);
+    expect(tHunger).toBeGreaterThan(8.5 * 60);
+    expect(tHunger).toBeLessThan(10.5 * 60);
+    expect(tThirst).toBeGreaterThan(9 * 60);
+    expect(tThirst).toBeLessThan(11 * 60);
     const tWork = nextBodyThreshold(p, WORK, ADULT, { hunger: 0.7, thirst: 2, sleepiness: 2 }, 1440);
     expect(tWork).toBeLessThan(tHunger);
+    const tWorkThirst = nextBodyThreshold(p, WORK, ADULT, { hunger: 2, thirst: 0.7, sleepiness: 2 }, 1440);
+    expect(tWorkThirst).toBeLessThan(tThirst);
+  });
+
+  test('a host may pin a body’s depletion rates: doubled rates reach hunger in about half the time', () => {
+    const slow = person();
+    const fast = person(7 * 60, {
+      rates: {
+        satietyPerMinute: 2 * BODY_DEFAULTS.satietyPerMinute,
+        hydrationPerMinute: 2 * BODY_DEFAULTS.hydrationPerMinute,
+      },
+    });
+    const tSlow = nextBodyThreshold(slow, REST, ADULT, { hunger: 0.7, thirst: 2, sleepiness: 2 }, 1440);
+    const tFast = nextBodyThreshold(fast, REST, ADULT, { hunger: 0.7, thirst: 2, sleepiness: 2 }, 1440);
+    expect(tFast).toBeGreaterThan(tSlow * 0.45);
+    expect(tFast).toBeLessThan(tSlow * 0.55);
+    // Garbage entries are dropped at creation; an all-garbage block leaves no field behind.
+    const junk = person(7 * 60, { rates: { satietyPerMinute: Number.NaN, hydrationPerMinute: -1 } });
+    expect(junk.body.rates).toBeUndefined();
+    const rate = nextBodyThreshold(junk, REST, ADULT, { hunger: 0.7, thirst: 2, sleepiness: 2 }, 1440);
+    expect(rate).toBe(tSlow);
   });
 
   test('two-process sleep: pressure ~0.75 after 16 h awake, restored by 8 h sleep', () => {

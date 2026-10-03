@@ -10,11 +10,25 @@
  * (model-free cached values alongside the host's model-based advertisement). It does NOT claim calibrated
  * weights, rational-choice optimality, or that a weighted sum exhausts human deliberation; every term is
  * kept in the trace so the UI can show why.
+ *
+ * SCOPE (lane will+cognition, 2026-10-03): several voices add one `suggestion:<voiceId>` term each, with
+ * reactance summed into one `autonomy` term; remembered advice adds `suggestion:remembered:<source>` terms
+ * (see `rememberedTerms` and `will.rememberAdvice`). Scarcity (N13): a host-supplied 0..1 shortfall raises the
+ * weight of the material term, shrinks its saturation scale so small sums still count, and raises the
+ * `need:safety` term. Borrowed shapes: diminishing marginal utility of wealth (the same sum weighs more to
+ * someone who has less) and the scarcity account of Mullainathan & Shafir, where a shortfall captures
+ * attention and raises the felt value of the scarce resource. Neither source is catalogued in
+ * research/empirical-models.md yet; the coefficients are engineering defaults. It does not model the claimed
+ * cognitive cost of scarcity ("bandwidth tax"), debt itself (a host ledger plus commitments), or present
+ * bias; and because losses are amplified too, a host must carry the benefit of paying a debt (a commitment,
+ * an advertised `safety` gain) or paying looks only like a loss. The spec's "security need" is read as the
+ * `safety` need: `security` is a value, not a need, and no need is added.
  */
 import { agendaTerms } from '../agenda/index.ts';
+import { trustOf } from '../beliefs/index.ts';
 import { normTerms } from '../conscience/index.ts';
 import { clamp01, minuteOfDay, round } from '../core/index.ts';
-import { type HabitContext, habitPull } from '../habits/index.ts';
+import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
 import { expectedEffect } from '../memory/index.ts';
 import { socialTerms } from '../social/index.ts';
 import type {
@@ -29,10 +43,18 @@ import type {
   Person,
   Suggestion,
   Term,
+  Unit,
   ValueId,
 } from '../types.ts';
 import { PHYSIOLOGICAL_NEEDS } from '../types.ts';
-import { resolveChoice, safeUtility, type WillContext } from '../will/index.ts';
+import {
+  adviceWeight,
+  resolveChoice,
+  safeUtility,
+  standingAdvice,
+  voicesIn,
+  type WillContext,
+} from '../will/index.ts';
 
 export const COGNITION_DEFAULTS = {
   /** Multiplier on urgency × believed gain. */
@@ -91,6 +113,20 @@ export const COGNITION_DEFAULTS = {
   commitmentInertiaFade: 0.15,
   /** Social pull per partner on a joint offer: jointTrust × (relationship trust - 0.5). */
   jointTrust: 0.6,
+  // --- lane will+cognition ---
+  /** Multiplier on standing advice terms relative to a live suggestion of the same strength (N9). */
+  rememberedScale: 1,
+  /**
+   * Scarcity (N13): with host scarcity s in 0..1 the material term's saturation scale shrinks to
+   * materialScale × (1 - scarcityScaleShrink × s), so a small sum stops looking negligible; the term is also
+   * multiplied by 1 + scarcityMaterialGain × s (default 0: review 2026-10-03 measured the two mechanisms together
+   * making money outweigh commitments, norms and every voice, mean 1.20 / max 2.25 over 40 town days, so only the
+   * scale shrink is on and the term stays under its scarcity-free ceiling 2 × materialWeight). The `need:safety`
+   * term is multiplied by 1 + scarcitySafetyGain × s. Engineering defaults.
+   */
+  scarcityMaterialGain: 0,
+  scarcityScaleShrink: 0.5,
+  scarcitySafetyGain: 0.5,
 };
 
 export interface ConsiderContext {
@@ -107,6 +143,14 @@ export interface ConsiderContext {
   social?: SocialContext;
   /** Dominant emotion behind each tendency tag (from `affect.tendencyEmotions`), for term sources. */
   tendencyEmotions?: Record<string, string>;
+  // --- lane will+cognition ---
+  /** Several voices in one decision (N1); merged with `suggestion`, one per voice id, sorted by id. */
+  suggestions?: Suggestion[];
+  /**
+   * How short of money the person is, 0..1, from the host (e.g. debt relative to income) (N13). Absent or 0
+   * leaves the material and safety terms exactly as without it.
+   */
+  scarcity?: Unit;
 }
 
 const urgencyOf = (needs: NeedReading[], id: NeedId): number => needs.find((n) => n.id === id)?.urgency ?? 0;
@@ -169,6 +213,37 @@ export function suggestionTargets(s: Suggestion | undefined, aff: Affordance): b
   return s.action !== undefined && s.action === aff.action;
 }
 
+/**
+ * Standing advice terms for one option: per source, the strongest matching entry's weight × trust in the source
+ * (the voice relation when there is one, else belief source trust) × suggestionScale × rememberedScale.
+ * Sources speaking now about this option are skipped. Sorted by source for stable traces.
+ */
+export function rememberedTerms(
+  p: Person,
+  aff: Affordance,
+  now: Minute,
+  speaking: readonly Suggestion[] = [],
+): Term[] {
+  const K = COGNITION_DEFAULTS;
+  if (!p.will.advice || p.will.advice.length === 0) return [];
+  const best = new Map<string, number>();
+  for (const a of standingAdvice(p, now)) {
+    const hits = a.affordanceId !== undefined ? a.affordanceId === aff.id : a.action === aff.action;
+    if (!hits) continue;
+    if (speaking.some((s) => s.voiceId === a.sourceId && suggestionTargets(s, aff))) continue;
+    const w = adviceWeight(a, now);
+    if (w > (best.get(a.sourceId) ?? 0)) best.set(a.sourceId, w);
+  }
+  const out: Term[] = [];
+  for (const src of [...best.keys()].sort()) {
+    const voice = p.will.voices.find((v) => v.voiceId === src);
+    const trust = voice ? voice.trust : trustOf(p, src);
+    const value = round(K.rememberedScale * K.suggestionScale * trust * (best.get(src) ?? 0));
+    if (value !== 0) out.push({ source: `suggestion:remembered:${src}`, value });
+  }
+  return out;
+}
+
 function appealMatch(p: Person, s: Suggestion, needs: NeedReading[]): number {
   if (!s.appeal) return 0;
   if (s.appeal === 'duty') return clamp01(0.5 * p.values.conformity + 0.5 * p.values.tradition);
@@ -199,6 +274,7 @@ export function socialContext(ctx: ConsiderContext): SocialContext {
 /** Score one option. Pure apart from reads; terms are rounded for stable snapshots. */
 export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Considered {
   const K = COGNITION_DEFAULTS;
+  const scarcity = clamp01(Number.isFinite(ctx.scarcity) ? (ctx.scarcity as number) : 0);
   const terms: Term[] = [];
   const push = (source: string, value: number) => {
     const v = round(value);
@@ -213,7 +289,8 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     if (gain === 0) continue;
     const u = urgencyOf(ctx.needs, id);
     const success = gain > 0 ? expected.successRate : 1;
-    push(`need:${id}`, K.needScale * u * gain * success);
+    const scarce = id === 'safety' ? 1 + K.scarcitySafetyGain * scarcity : 1;
+    push(`need:${id}`, K.needScale * u * gain * success * scarce);
   }
   if (expected.samples > 0) {
     let relevance = 1;
@@ -293,8 +370,14 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   const per = ctx.body.perceived;
   const effort = clamp01(aff.effort);
   const focus = clamp01(aff.focus ?? 0);
+  // A cued habit eases initiation and attention (N4: the depleted fall back on habits), not physical exertion.
+  const ease =
+    p.habits.length === 0
+      ? 1
+      : habitEase(p, aff, { ...ctx.habit, placeId: aff.placeId ?? ctx.habit.placeId });
   const effortCost =
-    effort * (K.effortBase + per.fatigue * (1 - clamp01(p.body.fitness))) + focus * per.sleepiness;
+    (effort * K.effortBase + focus * per.sleepiness) * ease +
+    effort * per.fatigue * (1 - clamp01(p.body.fitness));
   if (effortCost > 0) push('effort', -K.effortScale * effortCost);
 
   // Risk: chance × severity × (fear + emotionality).
@@ -307,8 +390,9 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   if (aff.material) {
     const v = p.values;
     const weight = (v.security + v.achievement + v.power) / 3;
-    const sat = Math.sign(aff.material) * (1 - Math.exp(-Math.abs(aff.material) / K.materialScale));
-    push('material', K.materialWeight * sat * 2 * weight);
+    const scale = K.materialScale * (1 - K.scarcityScaleShrink * scarcity);
+    const sat = Math.sign(aff.material) * (1 - Math.exp(-Math.abs(aff.material) / scale));
+    push('material', K.materialWeight * sat * 2 * weight * (1 + K.scarcityMaterialGain * scarcity));
   }
 
   // Precommitments inside their daily window.
@@ -322,26 +406,31 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     if (inside) push(`precommit:${pc.id}`, pc.bias);
   }
 
-  // Suggestion: strength × voice trust × appeal match. Never bypasses vetoes (will enforces).
-  if (ctx.suggestion && suggestionTargets(ctx.suggestion, aff)) {
-    const s = ctx.suggestion;
+  // Suggestions: strength × voice trust × appeal match, one term per voice. Never bypasses vetoes (will enforces).
+  const voices = voicesIn(ctx.suggestion, ctx.suggestions);
+  let reactance = 0;
+  for (const s of voices) {
+    if (!suggestionTargets(s, aff)) continue;
     const match = appealMatch(p, s, ctx.needs);
     push(
       `suggestion:${s.voiceId}`,
       K.suggestionScale * clamp01(s.strength) * voiceTrust(p, s.voiceId) * (1 + K.appealBonus * match),
     );
-    // Reactance: being micromanaged makes the pushed option less appealing.
+    // Reactance: being micromanaged makes the pushed option less appealing (summed over pushing voices).
     const pressure = clamp01(
       (p.will.voices.find((v) => v.voiceId === s.voiceId)?.pressure ?? 0) +
         (s.insist ? K.reactanceInsist : 0),
     );
     const excess = Math.max(0, pressure - K.reactanceFrom) / (1 - K.reactanceFrom);
     if (excess > 0)
-      push(
-        'autonomy',
-        -K.reactanceScale * excess * p.values.selfDirection * (0.5 + urgencyOf(ctx.needs, 'autonomy')),
-      );
+      reactance +=
+        K.reactanceScale * excess * p.values.selfDirection * (0.5 + urgencyOf(ctx.needs, 'autonomy'));
   }
+  if (reactance > 0) push('autonomy', -reactance);
+
+  // Standing advice (N9): remembered suggestions from told advice, by trust in the source. A source speaking
+  // now about this option is counted once, through its live term above.
+  for (const t of rememberedTerms(p, aff, ctx.now, voices)) push(t.source, t.value);
 
   let utility = 0;
   for (const t of terms) utility += t.value;
@@ -407,7 +496,8 @@ export function scoreAll(
  */
 export function decide(p: Person, affordances: readonly Affordance[], ctx: DecideContext): Decision {
   const { sorted, considered, willCtx } = scoreAll(p, affordances, ctx);
-  const res = resolveChoice(p, considered, willCtx, ctx.suggestion, { quiet: ctx.quiet ?? false });
+  const voices = voicesIn(ctx.suggestion, ctx.suggestions);
+  const res = resolveChoice(p, considered, willCtx, voices, { quiet: ctx.quiet ?? false });
   const chosen = res.chosenAffordanceId === null ? null : sorted.find((a) => a.id === res.chosenAffordanceId);
   // Live options first by utility, then vetoed ones, ties by id.
   const ranked = [...res.considered].sort(
@@ -426,6 +516,8 @@ export function decide(p: Person, affordances: readonly Affordance[], ctx: Decid
     narration: '',
   };
   if (res.suggestion) record.suggestion = res.suggestion;
+  if (res.suggestions && (res.suggestions.length > 1 || ctx.suggestions !== undefined))
+    record.suggestions = res.suggestions;
   const needDeltas: Decision['needDeltas'] = {};
   if (res.autonomyDelta !== 0) needDeltas.autonomy = res.autonomyDelta;
   return { record, needDeltas };

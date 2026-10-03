@@ -7,9 +7,22 @@
  * The necessity exception follows Qur'an 2:173 as commonly understood: compulsion, not desire, and
  * not beyond need. Repentance is modelled as the person's acts (regret, stopping, resolve, and
  * restitution when another person was wronged); the framework records those acts and never computes
- * divine acceptance, reward, forgiveness or worth. Standings are the common Sunni understanding and a
+ * divine acceptance, reward, forgiveness or worth. The composite treats completing a worship or repent act while
+ * holding an open breach without a victim as the person's turning back (the `conscience:repent` term in that
+ * choice stands for the regret); the chronicle narrates it as "turned back from", never as amends or forgiveness
+ * (review 2026-10-03). Standings are the common Sunni understanding and a
  * person's own understanding may differ. Observers have no effect here: reputation belongs to `social/`,
  * and intentions are private.
+ *
+ * SCOPE (abstention veto, lane agenda+conscience): a person who holds an obligatory norm with conviction at or
+ * above `abstainVetoConviction` will not complete an action that breaks a linked, open, non-exempt `abstain`
+ * commitment (e.g. eating during the fast): verdict willNot, reason `duty:<normId>`, which insisting cannot
+ * override. The act's whole span counts, as in `agenda.violatesAbstention`: a meal that would run past dawn is
+ * refused before dawn (integration, 2026-10-03). It lifts only under the capacity bound (Qur'an 2:286: obligation follows capacity) at the same
+ * desperation threshold, and only for acts meeting a bodily need; this is not the fast's own exemption for
+ * illness and travel (2:184-185, applied in the agenda) and not the 2:173 necessity exception for forbidden
+ * food. Below the threshold the abstention acts only as a negative term (agenda), so a weakly convinced person
+ * can be tempted. It does not model the person's later judgment of a broken fast beyond the recorded breach.
  */
 import { clamp01 } from '../core/index.ts';
 import type {
@@ -54,8 +67,14 @@ export const CONSCIENCE_DEFAULTS = {
     'keep-promise',
     'kindness-to-parents',
     'fairness',
+    'care-dependents',
   ],
-  /** Forbidden norms whose veto lifts under necessity (Qur'an 2:173). Never harm or lying. */
+  /**
+   * Forbidden norms whose veto lifts under necessity (Qur'an 2:173). Never harm or lying. 2:173 names forbidden
+   * food; 'theft' (taking food in extremity) is a juristic extension by analogy, an engineering assumption
+   * pending a source in research/ (see its catalog entry). Lifting the fast's abstention for water as well as food
+   * (capacity bound, `abstentionVeto`) is likewise by analogy.
+   */
   necessityEligible: ['theft', 'forbidden-food'],
   /**
    * Desperation at which necessity applies. With the needs module's urgency curve, 0.75 is food or water at
@@ -63,6 +82,8 @@ export const CONSCIENCE_DEFAULTS = {
    * calibration, 2026-10-03).
    */
   necessityThreshold: 0.75,
+  /** Conviction (held, obligatory norm) at which an open abstention vetoes violating acts. Matches will's omission rule. */
+  abstainVetoConviction: 0.7,
   /** Effective conviction at which a forbidden norm vetoes. */
   vetoConviction: 0.6,
   /** Up to this fraction of an eligible norm's penalty is softened by desperation (never removed). */
@@ -143,8 +164,11 @@ export function normTerms(p: Person, aff: Affordance, ctx: { desperation: Unit }
   for (const tag of aff.norms ?? []) {
     const held = heldNorm(p, tag.normId);
     if (!held) continue;
-    const weight =
-      tag.relation === 'fulfills' ? d.fulfilWeight[held.standing] : -d.violateWeight[held.standing];
+    const standing =
+      tag.relation === 'fulfills' && held.standing === 'obligatory' && obligationAnswered(p, tag.normId)
+        ? 'recommended'
+        : held.standing;
+    const weight = tag.relation === 'fulfills' ? d.fulfilWeight[standing] : -d.violateWeight[held.standing];
     if (weight === 0) continue;
     let value = d.termScale * weight * held.conviction * normCoefficient(p, tag.normId);
     if (value < 0 && d.necessityEligible.includes(tag.normId)) {
@@ -175,6 +199,25 @@ export function normTerms(p: Person, aff: Affordance, ctx: { desperation: Unit }
 }
 
 /**
+ * Whether an obligation the person keeps through timed commitments (e.g. salah through prayer windows) has no
+ * instance due now: the person holds commitments linked to `normId`, and none is pending with `p.now` inside its
+ * window (or the hour before it). Repeating the act then pulls only as a voluntary (recommended) act would
+ * (review 2026-10-03: Dhuhr prayed twice back to back on the full obligatory weight). Norms with no linked
+ * commitments are unaffected.
+ */
+function obligationAnswered(p: Person, normId: string): boolean {
+  const list = p.agenda?.commitments;
+  if (!list) return false;
+  let linked = false;
+  for (const c of list) {
+    if (c.normId !== normId || c.kind === 'abstain') continue;
+    linked = true;
+    if (c.status === 'pending' && p.now >= c.from - 60 && p.now <= c.until) return false;
+  }
+  return linked;
+}
+
+/**
  * Will-not veto for a firmly held prohibition. Necessity (Qur'an 2:173): for eligible norms only, at
  * desperation >= threshold, and only when the act itself meets a bodily need (food or water) — the
  * exception covers survival, not desire or excess. The negative norm term is unaffected.
@@ -183,7 +226,7 @@ export function normVeto(
   p: Person,
   aff: Affordance,
   desperation: Unit,
-  opts: { necessity: boolean } = { necessity: true },
+  opts: { necessity: boolean; now?: Minute } = { necessity: true },
 ): { kind: 'willNot'; reason: string } | undefined {
   const d = CONSCIENCE_DEFAULTS;
   const meetsBodilyNeed = (aff.advertises.food ?? 0) > 0 || (aff.advertises.water ?? 0) > 0;
@@ -200,6 +243,36 @@ export function normVeto(
       d.necessityEligible.includes(tag.normId);
     if (necessity) continue;
     return { kind: 'willNot', reason: `norm:${tag.normId}` };
+  }
+  return abstentionVeto(
+    p,
+    aff,
+    opts.now ?? p.now,
+    opts.necessity && desperation >= d.necessityThreshold && meetsBodilyNeed,
+  );
+}
+
+/**
+ * The open abstention a firmly convinced person will not break with `aff` (see the abstention SCOPE paragraph).
+ * Applies when the act's span `[now, now + duration)` overlaps the window `[from, until)`, the same overlap rule
+ * the agenda uses to break it. `capacityLifted` = the capacity bound applies.
+ */
+export function abstentionVeto(
+  p: Person,
+  aff: Affordance,
+  now: Minute,
+  capacityLifted = false,
+): { kind: 'willNot'; reason: string } | undefined {
+  if (capacityLifted) return undefined;
+  const end = now + Math.max(0, aff.duration);
+  for (const c of p.agenda?.commitments ?? []) {
+    if (c.kind !== 'abstain' || c.status !== 'pending' || c.exempt !== undefined || c.normId === undefined)
+      continue;
+    if (!(c.violatedBy?.includes(aff.action) ?? false) || now >= c.until || end <= c.from) continue;
+    const held = heldNorm(p, c.normId);
+    if (held?.standing !== 'obligatory' || held.conviction < CONSCIENCE_DEFAULTS.abstainVetoConviction)
+      continue;
+    return { kind: 'willNot', reason: `duty:${c.normId}` };
   }
   return undefined;
 }
@@ -221,7 +294,9 @@ function boundBreaches(c: ConscienceState): void {
 /**
  * Record a deed the person undertook. The stated intention is stored privately. Fulfilment requires
  * completion; a breach is recorded once the act is undertaken (responsibility attaches to assent and
- * action), at reduced weight if it did not complete. Returns appraisal events about the person's own deed.
+ * action), at reduced weight if it did not complete. With `necessity` (the act was possible only because the
+ * 2:173 exception lifted the veto) no breach is recorded for `necessityEligible` norms. Returns appraisal events
+ * about the person's own deed.
  */
 export function recordDeed(
   p: Person,
@@ -229,6 +304,7 @@ export function recordDeed(
   intention: string,
   now: Minute,
   completed: boolean,
+  opts: { necessity?: boolean } = {},
 ): { fulfilled: string[]; breached: string[]; appraisal: AppraisalEvent[] } {
   const d = CONSCIENCE_DEFAULTS;
   const c = p.conscience;
@@ -260,6 +336,9 @@ export function recordDeed(
       continue;
     }
     if (!d.breachStandings.includes(held.standing)) continue;
+    // Qur'an 2:173: under necessity "they will not be sinful" (quran.com, checked 2026-10-03): no breach for an
+    // eligible norm when the act was possible only because necessity lifted its veto.
+    if (opts.necessity && d.necessityEligible.includes(held.normId)) continue;
     const weight = clamp01(
       d.violateWeight[held.standing] * held.conviction * (completed ? 1 : d.incompleteBreachFactor),
     );

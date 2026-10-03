@@ -4,8 +4,8 @@ import type { NormDefinition } from '../types.ts';
  * Default norm catalog. Standings record the common Sunni understanding (Hanafi–Maturidi starting point)
  * as a person might hold it; they are not rulings, and a person's held understanding may differ. Each
  * entry carries provenance. Qur'an references were checked against quran.com (Khattab translation)
- * on 2026-10-03. Hadith references (sunnah.com) could not be fetched for verification and are omitted
- * rather than cited unchecked.
+ * on 2026-10-03. sunnah.com could not be fetched (HTTP 403), so hadith are cited only where verified in
+ * research/islamic-foundations.md.
  * Secular-usable norms whose standing is an engineering choice are marked `assumption`.
  *
  * Forbidden norms are named after the act (`theft`, `lying`) so that `violates` reads naturally.
@@ -24,7 +24,48 @@ export const DEFAULT_NORMS: NormDefinition[] = [
     id: 'sawm-ramadan',
     label: 'Fast in Ramadan',
     standing: 'obligatory',
-    sources: [{ kind: 'revelation', ref: "Qur'an 2:183" }],
+    sources: [
+      { kind: 'revelation', ref: "Qur'an 2:183" },
+      { kind: 'revelation', ref: "Qur'an 2:185 (the month of Ramadan)" },
+      {
+        kind: 'revelation',
+        ref: "Qur'an 2:187 (eat and drink until dawn, then complete the fast until nightfall)",
+      },
+    ],
+    // Exemptions are their own understanding, separate from the necessity exception of 2:173 (forbidden-food).
+    exemptions: [
+      {
+        when: 'illness',
+        makeUp: true,
+        sources: [
+          {
+            kind: 'revelation',
+            ref: "Qur'an 2:184 (whoever is ill or on a journey: an equal number of days after)",
+          },
+          { kind: 'revelation', ref: "Qur'an 2:185 (repeated; Allah intends ease, not hardship)" },
+          {
+            kind: 'assumption',
+            ref: 'Which illness qualifies is the person’s judgment; the severity threshold is an engineering stand-in',
+          },
+          {
+            kind: 'interpretation',
+            ref: "Qur'an 2:184 continues: 'For those who can only fast with extreme difficulty, compensation can be made by feeding a needy person' (quran.com, checked 2026-10-03). Commonly read as covering chronic illness with no expected recovery (fidya instead of make-up); NOT modelled: every qualifying illness, chronic or acute, owes a make-up, because whether a condition is beyond recovery cannot be derived from body state",
+          },
+        ],
+      },
+      {
+        when: 'travel',
+        makeUp: true,
+        sources: [
+          {
+            kind: 'revelation',
+            ref: "Qur'an 2:184 (whoever is ill or on a journey: an equal number of days after)",
+          },
+          { kind: 'revelation', ref: "Qur'an 2:185" },
+          { kind: 'assumption', ref: 'What counts as a journey is supplied by the host as a traveling flag' },
+        ],
+      },
+    ],
   },
   {
     id: 'zakat',
@@ -42,13 +83,22 @@ export const DEFAULT_NORMS: NormDefinition[] = [
     id: 'lying',
     label: 'Lying (truthfulness is required)',
     standing: 'forbidden',
-    sources: [{ kind: 'revelation', ref: "Qur'an 9:119 (be with the truthful)" }],
+    sources: [
+      { kind: 'revelation', ref: "Qur'an 22:30 (shun words of falsehood; quran.com, checked 2026-10-03)" },
+      { kind: 'revelation', ref: "Qur'an 9:119 (be with the truthful)" },
+    ],
   },
   {
     id: 'theft',
     label: 'Theft',
     standing: 'forbidden',
-    sources: [{ kind: 'revelation', ref: "Qur'an 5:38" }],
+    sources: [
+      { kind: 'revelation', ref: "Qur'an 5:38" },
+      {
+        kind: 'assumption',
+        ref: 'Listed in CONSCIENCE_DEFAULTS.necessityEligible: taking food in extremity is a juristic extension of the 2:173 necessity exception by analogy (2:173 itself names forbidden food); not yet sourced in research/, recorded as an engineering assumption pending a Hanafi source',
+      },
+    ],
   },
   {
     id: 'keep-promise',
@@ -72,7 +122,13 @@ export const DEFAULT_NORMS: NormDefinition[] = [
     id: 'help-neighbor',
     label: 'Help and be good to neighbours',
     standing: 'recommended',
-    sources: [{ kind: 'revelation', ref: "Qur'an 4:36" }],
+    sources: [
+      { kind: 'revelation', ref: "Qur'an 4:36 (be kind to neighbours; a command)" },
+      {
+        kind: 'interpretation',
+        ref: 'Standing recorded as recommended for everyday help beyond basic kindness is an engineering simplification; the verse itself is a command',
+      },
+    ],
   },
   {
     id: 'gratitude',
@@ -108,7 +164,12 @@ export const DEFAULT_NORMS: NormDefinition[] = [
     id: 'forbidden-food',
     label: 'Eating forbidden food (carrion, blood, swine)',
     standing: 'forbidden',
-    sources: [{ kind: 'revelation', ref: "Qur'an 2:173 (lifted under necessity without desire or excess)" }],
+    sources: [
+      {
+        kind: 'revelation',
+        ref: "Qur'an 2:173 ('if someone is compelled by necessity—neither driven by desire nor exceeding immediate need—they will not be sinful'; quran.com, checked 2026-10-03)",
+      },
+    ],
   },
   {
     id: 'fairness',
@@ -117,6 +178,21 @@ export const DEFAULT_NORMS: NormDefinition[] = [
     sources: [
       { kind: 'revelation', ref: "Qur'an 83:1-3 (woe to the defrauders)" },
       { kind: 'assumption', ref: 'Generalised to fair dealing for secular hosts' },
+    ],
+  },
+  {
+    id: 'care-dependents',
+    label: 'Care for those who depend on you',
+    standing: 'obligatory',
+    sources: [
+      {
+        kind: 'interpretation',
+        ref: 'Obligations toward family alongside those toward Allah and oneself (Bukhari 1968, as cited in research/islamic-foundations.md §2); extending it to every dependent’s urgent needs is the host’s reading',
+      },
+      {
+        kind: 'assumption',
+        ref: 'Standing obligatory for secular hosts as a shared caregiving norm; engineering default',
+      },
     ],
   },
   {
@@ -148,4 +224,5 @@ export const NORM_SCOPE: Record<string, 'religious' | 'shared' | 'core'> = {
   gratitude: 'shared',
   fairness: 'shared',
   punctuality: 'shared',
+  'care-dependents': 'shared',
 };

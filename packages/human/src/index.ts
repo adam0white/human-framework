@@ -2,7 +2,13 @@
 export const FRAMEWORK_VERSION = '1.0.0-dev';
 
 export * from './affect/index.ts';
-export type { GoalTemplate, PrayerTimes } from './agenda/index.ts';
+export type {
+  GoalTemplate,
+  PrayerCalendar,
+  PrayerSchedule,
+  PrayerTimes,
+  Retimer,
+} from './agenda/index.ts';
 // `agenda.release` collides with `affect.release`; the agenda one is re-exported under a clearer name.
 export {
   AGENDA_DEFAULTS,
@@ -10,18 +16,40 @@ export {
   adoptGoal,
   advanceAgenda,
   agendaTerms,
+  applyExemptions,
+  CARE_DEFAULTS,
+  calendarRetimer,
+  careDuty,
   commitmentPressure,
   createAgenda,
   DEFAULT_PRAYER_TIMES,
+  EXEMPTION_DEFAULTS,
+  eidPrayer,
+  fastWindow,
+  iftarWindow,
   onFinished,
+  owedMakeUps,
   PRAYER_IMPORTANCE,
+  PURPOSE_DEFAULTS,
   prayerWindows,
+  pressureReachedAt,
   promise,
   proposeGoals,
+  RAMADAN_DEFAULTS,
+  ramadanFast,
+  ramadanMeals,
   release as releaseCommitment,
+  retimeCommitments,
+  revisePurposes,
+  scheduleMakeUp,
+  spanMeetsWindow,
+  suhoorWindow,
+  timesFor,
+  violatesAbstention,
 } from './agenda/index.ts';
 export * from './beliefs/index.ts';
 export * from './body/index.ts';
+export * from './chronicle/index.ts';
 export type { ConsiderContext, DecideContext, Decision, SocialContext } from './cognition/index.ts';
 // `cognition.decide` is the raw scorer; the composite's `decide` (person.ts) is the one hosts call.
 export {
@@ -29,11 +57,13 @@ export {
   consider,
   decide as scoreAndResolve,
   desperationOf,
+  rememberedTerms,
   scoreAll,
   socialContext,
   suggestionTargets,
 } from './cognition/index.ts';
 export * from './conscience/index.ts';
+export * from './conversation/index.ts';
 export * from './core/index.ts';
 export * from './habits/index.ts';
 export * from './lifecourse/index.ts';
