@@ -76,6 +76,8 @@ export interface BodyState {
   fitness: Unit;
   injuries: Injury[];
   illnesses: Illness[];
+  /** Accumulated sleep debt in hours (chronic restriction); under-perceived by the person. */
+  sleepDebt: number;
   asleep: boolean;
   /** Minute the current sleep or wake period began. */
   since: Minute;
@@ -417,7 +419,13 @@ export interface WillState {
    * Precommitments the person made for themselves (e.g. "no work after Isha", "walk instead of eat when bored"):
    * a bonus or penalty on matching actions inside a daily window.
    */
-  precommitments: { id: string; action: string; bias: number; fromMinuteOfDay: number; toMinuteOfDay: number }[];
+  precommitments: {
+    id: string;
+    action: string;
+    bias: number;
+    fromMinuteOfDay: number;
+    toMinuteOfDay: number;
+  }[];
   /**
    * Hysteresis: options must beat the current activity by this utility margin to interrupt it.
    * Default ≈ 0.15.
@@ -685,4 +693,77 @@ export interface PersonSpec {
   commitments?: Omit<Commitment, 'status'>[];
   goals?: Omit<Goal, 'status' | 'progress' | 'adoptedAt'>[];
   voices?: { voiceId: EntityId; trust?: Unit }[];
+}
+
+// ---------------------------------------------------------------------------------------------
+// Cross-module argument types (modules never import each other; the composite passes these)
+// ---------------------------------------------------------------------------------------------
+
+/** What the body is doing over an interval. */
+export interface BodyLoad {
+  effort: Unit;
+  focus: Unit;
+  mode: 'awake' | 'sleep';
+}
+
+/** Age-dependent multipliers from `lifecourse/`, consumed by body, skills, affect and will. 1 = prime adult. */
+export interface LifeModifiers {
+  ageYears: number;
+  stage: LifeStage;
+  metabolism: number;
+  recovery: number;
+  learning: number;
+  /** Developmental maturity of planning/inhibition (child < 1, adult 1). Scales habit/impulse vs long-term terms. */
+  maturity: number;
+  maxFitness: Unit;
+  /** Annual mortality hazard from age alone (hosts may ignore). */
+  mortalityPerYear: number;
+}
+
+/** Input to OCC-lite appraisal. */
+export interface AppraisalEvent {
+  at: Minute;
+  /** 'outcome' (my action's result), 'event' (something happened), 'prospect' (might happen), 'deed' (someone's act judged against norms) */
+  kind: 'outcome' | 'event' | 'prospect' | 'deed';
+  /** Desirability for me, -1..1 (goal/need congruence). */
+  desirability: Signed;
+  /** For prospects: likelihood 0..1. */
+  likelihood?: Unit;
+  /** For deeds: praiseworthiness -1..1 (from norm judgement). */
+  praiseworthiness?: Signed;
+  /** Who acted: own id, another person id, or undefined (no agent, e.g. weather). */
+  agentId?: EntityId;
+  targetId?: EntityId;
+  /** My affection toward the agent (-1..1), so the appraiser can produce gratitude/anger/love. */
+  affectionToAgent?: Signed;
+  /** Loss of a loved person or thing (grief). */
+  loss?: boolean;
+  cause: string;
+}
+
+export type SocialEventKind =
+  | 'help'
+  | 'harm'
+  | 'gift'
+  | 'insult'
+  | 'thanks'
+  | 'apology'
+  | 'forgive'
+  | 'promise-kept'
+  | 'promise-broken'
+  | 'chat'
+  | 'conflict'
+  | 'praise'
+  | 'deceit-discovered'
+  | 'shared-work';
+
+/** A social interaction as experienced by the person whose state is updated. */
+export interface SocialEvent {
+  at: Minute;
+  kind: SocialEventKind;
+  /** The other party (who acted toward me, or whom I acted toward). */
+  otherId: PersonId;
+  /** True when I was the actor. */
+  byMe: boolean;
+  magnitude: Unit;
 }
