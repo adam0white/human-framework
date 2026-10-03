@@ -1,13 +1,15 @@
 /**
  * Owns the simulation worker. Frames land in a ref for the canvas loops (no React churn per animation
- * frame) and in state for the React chrome (cards, scoreboard, inspector), at most once per worker frame.
+ * frame) and in state for the React chrome (cards, goals, inspector), at most once per worker frame.
+ * Everything the worker sends passes through `contract.ts` first, so the rest of the UI reads one shape.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { MainToWorker, Speed, WorkerToMain } from '../protocol.ts';
-import { DEFAULT_SEED, type EndSummary, type Frame, SCENARIO_VERSION } from '../sim/game.ts';
+import type { WorkerToMain } from '../protocol.ts';
+import { DEFAULT_SEED, SCENARIO_VERSION } from '../sim/game.ts';
 import type { Prediction, WhyBreakdown } from '../sim/human-side.ts';
 import type { OrderInput } from '../sim/orders.ts';
 import type { VillagerId } from '../sim/world-types.ts';
+import type { EndSummary, Frame, OutMsg, PlaybackState, Speed } from './contract.ts';
 
 export interface FrameStore {
   prev: Frame | null;
@@ -21,41 +23,71 @@ export interface FrameStore {
 export interface Colony {
   store: React.RefObject<FrameStore>;
   frame: Frame | null;
-  paused: boolean;
-  speed: Speed;
-  /** The worker is running a moment's slow-mo. */
-  slowMo: boolean;
+  playback: PlaybackState;
   why: WhyBreakdown | null;
   prediction: { input: OrderInput; prediction: Prediction } | null;
-  summary: EndSummary | null;
+  /** End-of-day reports, by day (Day 2, then Day 3 after "Another day"). */
+  summaries: Partial<Record<2 | 3, EndSummary>>;
   error: string | null;
   actions: ColonyActions;
 }
 
 /** Stable action functions (same identities for the life of the hook). */
 export interface ColonyActions {
-  order(input: OrderInput): void;
+  order(input: OrderInput, nudgeId?: string): void;
   cancel(orderId: string): void;
   dismissNudge(id: string): void;
   setSpeed(speed: Speed): void;
+  /** Manual pause or resume (Space, the pause button, Play on the goal card). */
   setPaused(paused: boolean): void;
+  /** Pause for the inspector (the worker keeps any pause already in place). */
+  pauseForInspector(): void;
+  /** Resume after the inspector, only if its pause is still the current one. */
+  resumeFromInspector(): void;
+  setAutoPause(on: boolean): void;
+  continueDay(): void;
   requestWhy(personId: VillagerId, decisionId?: string): void;
   clearWhy(): void;
   predict(input: OrderInput | null): void;
   restart(): void;
 }
 
+const AUTO_PAUSE_KEY = 'colony.autoPause';
+
+function readAutoPause(): boolean {
+  try {
+    return localStorage.getItem(AUTO_PAUSE_KEY) !== '0';
+  } catch {
+    return true;
+  }
+}
+
+function writeAutoPause(on: boolean): void {
+  try {
+    localStorage.setItem(AUTO_PAUSE_KEY, on ? '1' : '0');
+  } catch {
+    // Storage may be blocked; the toggle then resets to on next visit.
+  }
+}
+
 const emptyStore = (): FrameStore => ({ prev: null, curr: null, at: 0, interval: 62 });
+
+const START_PLAYBACK = (autoPause: boolean): PlaybackState => ({
+  paused: true,
+  pause: { kind: 'start', text: '', minute: 0 },
+  speed: 1,
+  autoPause,
+  slowMo: false,
+});
 
 export function useColony(seed = DEFAULT_SEED): Colony {
   const worker = useRef<Worker | null>(null);
   const store = useRef<FrameStore>(emptyStore());
   const [frame, setFrame] = useState<Frame | null>(null);
-  const [paused, setPausedState] = useState(false);
-  const [speed, setSpeedState] = useState<Speed>(1);
-  const [slowMo, setSlowMo] = useState(false);
+  const [autoPauseInit] = useState(readAutoPause);
+  const [playback, setPlayback] = useState<PlaybackState>(() => START_PLAYBACK(autoPauseInit));
   const [why, setWhy] = useState<WhyBreakdown | null>(null);
-  const [summary, setSummary] = useState<EndSummary | null>(null);
+  const [summaries, setSummaries] = useState<Colony['summaries']>({});
   const [error, setError] = useState<string | null>(null);
   const [prediction, setPrediction] = useState<Colony['prediction']>(null);
   const predictSeq = useRef(0);
@@ -64,8 +96,27 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   const gen = useRef(0);
   /** The why the page is waiting for; replies for another person or decision are dropped. */
   const whyWant = useRef<{ personId: VillagerId; decisionId?: string } | null>(null);
+  const autoPause = useRef(autoPauseInit);
+  const playbackRef = useRef(playback);
+  playbackRef.current = playback;
 
-  const send = useCallback((msg: MainToWorker) => worker.current?.postMessage(msg), []);
+  const send = useCallback((msg: OutMsg) => worker.current?.postMessage(msg), []);
+
+  const init = useCallback(
+    (w: Worker | null) => {
+      gen.current += 1;
+      setPlayback(START_PLAYBACK(autoPause.current));
+      const msg: OutMsg = {
+        type: 'init',
+        seed,
+        scenarioVersion: SCENARIO_VERSION,
+        gen: gen.current,
+        autoPause: autoPause.current,
+      };
+      w?.postMessage(msg);
+    },
+    [seed],
+  );
 
   useEffect(() => {
     const w = new Worker(new URL('../worker.ts', import.meta.url), { type: 'module' });
@@ -75,9 +126,10 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       if (msg.gen !== gen.current) return;
       switch (msg.type) {
         case 'frame': {
+          const f = msg.frame;
           const s = store.current;
           const now = performance.now();
-          if (s.curr && msg.frame.minute !== s.curr.minute) {
+          if (s.curr && f.minute !== s.curr.minute) {
             const gap = now - s.at;
             s.interval = Math.max(24, Math.min(400, s.interval * 0.8 + gap * 0.2));
             s.prev = s.curr;
@@ -85,11 +137,10 @@ export function useColony(seed = DEFAULT_SEED): Colony {
           } else if (!s.curr) {
             s.at = now;
           }
-          s.curr = msg.frame;
-          setFrame(msg.frame);
-          setPausedState(msg.paused);
-          setSpeedState(msg.speed);
-          setSlowMo(msg.slowMo);
+          s.curr = f;
+          setFrame(f);
+          const pb = msg.playback;
+          setPlayback(pb);
           return;
         }
         case 'why': {
@@ -105,9 +156,11 @@ export function useColony(seed = DEFAULT_SEED): Colony {
             setPrediction({ input, prediction: msg.prediction });
           return;
         }
-        case 'ended':
-          setSummary(msg.summary);
+        case 'ended': {
+          const sum = msg.summary;
+          setSummaries((cur) => ({ ...cur, [sum.day]: sum }));
           return;
+        }
         case 'error':
           setError(msg.message);
           return;
@@ -119,13 +172,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
     w.addEventListener('messageerror', () =>
       setError('The simulation sent a message the page could not read.'),
     );
-    gen.current += 1;
-    w.postMessage({
-      type: 'init',
-      seed,
-      scenarioVersion: SCENARIO_VERSION,
-      gen: gen.current,
-    } satisfies MainToWorker);
+    init(w);
 
     let raf = 0;
     let last = performance.now();
@@ -133,7 +180,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       // The first frame's timestamp can precede `last`; a negative tick would run the clock backwards.
       const dt = Math.max(0, t - last);
       last = t;
-      w.postMessage({ type: 'tick', dtMs: dt } satisfies MainToWorker);
+      w.postMessage({ type: 'tick', dtMs: dt } satisfies OutMsg);
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -143,15 +190,30 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       worker.current = null;
       store.current = emptyStore();
     };
-  }, [seed]);
+  }, [init]);
 
   const actions = useMemo<ColonyActions>(
     () => ({
-      order: (input) => send({ type: 'order', input }),
+      order: (input, nudgeId) => send(nudgeId ? { type: 'order', input, nudgeId } : { type: 'order', input }),
       cancel: (orderId) => send({ type: 'cancel', orderId }),
       dismissNudge: (id) => send({ type: 'dismissNudge', id }),
       setSpeed: (s) => send({ type: 'setSpeed', speed: s }),
-      setPaused: (p) => send({ type: p ? 'pause' : 'resume' }),
+      setPaused: (p) => {
+        send(p ? { type: 'pause', cause: 'manual' } : { type: 'resume' });
+      },
+      // The worker keeps an existing pause when the inspector opens, so closing it cannot resume a manual pause.
+      pauseForInspector: () => send({ type: 'pause', cause: 'inspector' }),
+      resumeFromInspector: () => {
+        const pb = playbackRef.current;
+        if (pb.paused && pb.pause?.kind === 'inspector') send({ type: 'resume' });
+      },
+      setAutoPause: (on) => {
+        autoPause.current = on;
+        writeAutoPause(on);
+        setPlayback((pb) => ({ ...pb, autoPause: on }));
+        send({ type: 'setAutoPause', on });
+      },
+      continueDay: () => send({ type: 'continue' }),
       requestWhy: (personId, decisionId) => {
         const cur = whyWant.current;
         if (cur?.personId !== personId || cur.decisionId !== decisionId) setWhy(null);
@@ -172,19 +234,18 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         send({ type: 'predict', requestId: predictSeq.current, input });
       },
       restart: () => {
-        gen.current += 1;
-        setSummary(null);
+        setSummaries({});
         setWhy(null);
         setPrediction(null);
         setError(null);
         whyWant.current = null;
         predictInputs.current.clear();
         store.current = emptyStore();
-        send({ type: 'init', seed, scenarioVersion: SCENARIO_VERSION, gen: gen.current });
+        init(worker.current);
       },
     }),
-    [send, seed],
+    [send, init],
   );
 
-  return { store, frame, paused, speed, slowMo, why, prediction, summary, error, actions };
+  return { store, frame, playback, why, prediction, summaries, error, actions };
 }

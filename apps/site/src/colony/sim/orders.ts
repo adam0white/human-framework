@@ -13,6 +13,9 @@ import {
   type Minute,
   ORDER_LIFETIME,
   SHUTTER_AVAILABLE,
+  SHUTTER_ROOF_FROM,
+  STOREROOM_STAGES,
+  STORM_END,
   type VillagerId,
   weatherAt,
 } from './world-types.ts';
@@ -56,8 +59,10 @@ export interface Order {
 
 export interface InferContext {
   minute: Minute;
-  house: HouseState;
+  house: Pick<HouseState, 'stage' | 'shuttered'>;
   cedarFelled: boolean;
+  /** Day-3 store-room stages built, when that project is open (v2 plan §12). */
+  storeroom?: number | null;
 }
 
 /** Job inferred from the place (spec §3 table). Inference reads the issuing side's world view. */
@@ -75,7 +80,16 @@ export function inferAction(placeId: PlaceId, ctx: InferContext): ActionId {
     case 'kitchen':
       return 'cook';
     case 'site':
-      if (ctx.minute >= SHUTTER_AVAILABLE && !ctx.house.shuttered && ctx.house.stage < BEAM_STAGE) {
+      if (ctx.storeroom !== undefined && ctx.storeroom !== null && ctx.storeroom < STOREROOM_STAGES)
+        return 'build';
+      // Shutter window: below the beam from the warning; an unfinished roof from 18:00, when a roof stage can no
+      // longer be finished before the storm (earlier, an order to the house still builds the roof). Never after it.
+      if (
+        ctx.minute < STORM_END &&
+        !ctx.house.shuttered &&
+        ctx.house.stage < HOUSE_STAGES &&
+        ctx.minute >= (ctx.house.stage < BEAM_STAGE ? SHUTTER_AVAILABLE : SHUTTER_ROOF_FROM)
+      ) {
         return 'shutter-house';
       }
       if (ctx.house.stage === BEAM_STAGE - 1) return 'raise-beam';

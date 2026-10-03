@@ -12,9 +12,12 @@ export type Minute = number;
 // ---------------------------------------------------------------------------------------------
 
 export const START_CLOCK = 5 * 60;
+/** End of the two-day run (Day 3 05:00). "Another day" raises a game's own `endMinute` to `DAY3_END`. */
 export const END_MINUTE: Minute = 2880;
-/** Default pace: 16 sim minutes per real second at 1×. */
-export const SIM_MINUTES_PER_SECOND = 16;
+/** End of the optional third day (Day 4 05:00, v2 plan §12). */
+export const DAY3_END: Minute = 4320;
+/** Default pace: 8 sim minutes per real second at 1× (v2 plan §5: one day in 3 min, the run in 6). */
+export const SIM_MINUTES_PER_SECOND = 8;
 
 export function clockOf(m: Minute): { day: number; hour: number; minute: number; minuteOfDay: number } {
   const abs = START_CLOCK + m;
@@ -88,6 +91,16 @@ export const STORM_START = at(2, 19, 0);
 export const STORM_END = at(3, 3, 0);
 /** Shuttering becomes available when the sky darkens. */
 export const SHUTTER_AVAILABLE = WARNING_AT;
+/** From here an order to an unfinished roof shutters it: a roof stage can no longer be finished before the storm. */
+export const SHUTTER_ROOF_FROM = STORM_START - 60;
+/** Scripted storm meals (v2 plan §2): each living villager takes one meal from the store, if one is left. */
+export const STORM_SUPPER = at(2, 19, 30);
+export const DAWN_MEAL = at(3, 4, 45);
+
+/** No fire burns in the storm: nobody cooks from 19:00 until 03:00 (both sides). */
+export function stormNoCook(m: Minute): boolean {
+  return m >= STORM_START && m < STORM_END;
+}
 
 export type WeatherKind = 'clear' | 'squall' | 'darkening' | 'storm';
 
@@ -183,8 +196,9 @@ export interface JobSpec {
 export type SkillTag = 'builder' | 'cook' | 'forester';
 
 /**
- * Job table (spec §2 flows and §4 Classic rates). Rates: grain 1 / 20 min, timber 1 / 30 min, the cedar 3
- * in one felling, cooking 1 grain + 1 water → 3 meals in 40 min, one build stage per four hours at base speed (two for a builder) per 2 timber.
+ * Job table (spec §2 flows, §4 Classic rates, v2 plan §2). Yields are shared: the Human host reads the same
+ * numbers. Rates: grain 3 per hour, timber 2 per hour, the cedar 3 in one felling, water 2 per draw, cooking
+ * 2 grain + 1 water → 4 meals in 40 min. Build stages are priced by `STAGE_COST` (walls cheap, roof dear).
  */
 export const JOBS: Record<ActionId, JobSpec> = {
   'gather-grain': {
@@ -231,17 +245,18 @@ export const JOBS: Record<ActionId, JobSpec> = {
     doing: 'cooking',
     place: 'kitchen',
     work: 40,
-    consumes: { grain: 1, water: 1 },
-    yields: { meals: 3 },
+    consumes: { grain: 2, water: 1 },
+    yields: { meals: 4 },
     outdoors: false,
     skillTag: 'cook',
   },
   build: {
     action: 'build',
-    label: 'Build',
-    doing: 'building',
+    label: 'Build the house',
+    doing: 'building the house',
     place: 'site',
-    work: 240,
+    /** The wall price; the stage actually under way is priced by `stageCost`. */
+    work: 120,
     consumes: { timber: 2 },
     outdoors: true,
     skillTag: 'builder',
@@ -298,6 +313,44 @@ export const JOBS: Record<ActionId, JobSpec> = {
 export const HOUSE_STAGES = 10;
 export const BEAM_STAGE = 7;
 export const ORDER_LIFETIME = 120;
+/** The Day-3 store-room (v2 plan §12): six stages priced like walls, no beam. */
+export const STOREROOM_STAGES = 6;
+
+/**
+ * Stage pricing (v2 plan §2). `work` is Classic work-minutes at base speed; the Human host turns the same price
+ * into progress per 60-minute session (`HOST.buildRate`). Walls are cheap, the roof dear, so a village that works
+ * the house all day roofs it just before the storm.
+ */
+export const STAGE_COST = {
+  wall: { timber: 2, work: 120 },
+  beam: { timber: 2 },
+  roof: { timber: 5, work: 600 },
+} as const;
+
+export type StageKind = keyof typeof STAGE_COST;
+
+/** Kind of house stage `nextStage` (the one being built): 3–6 wall, 7 beam, 8–10 roof. */
+export function stageKind(nextStage: number): StageKind {
+  if (nextStage === BEAM_STAGE) return 'beam';
+  return nextStage > BEAM_STAGE ? 'roof' : 'wall';
+}
+
+/** Timber and work for the next stage of whichever project is open at the site (the store-room is all walls). */
+export function nextStageCost(world: Pick<SideWorld, 'house' | 'storeroom'>): {
+  timber: number;
+  work: number;
+} {
+  if (world.storeroom !== null) return STAGE_COST.wall;
+  const kind = stageKind(world.house.stage + 1);
+  return kind === 'beam'
+    ? { timber: STAGE_COST.beam.timber, work: JOBS['raise-beam'].work }
+    : STAGE_COST[kind];
+}
+
+/** Whether the site has a stage left to build (the house, or the Day-3 store-room once the house is done). */
+export function siteOpen(world: Pick<SideWorld, 'house' | 'storeroom'>): boolean {
+  return world.storeroom !== null ? world.storeroom < STOREROOM_STAGES : world.house.stage < HOUSE_STAGES;
+}
 
 // ---------------------------------------------------------------------------------------------
 // Villagers (spec §5 "Six villagers")
@@ -450,6 +503,8 @@ export interface HouseState {
   /** 0..10 completed stages. */
   stage: number;
   shuttered: boolean;
+  /** 0..1 toward the next stage of the open project (render and goal display only). */
+  progress: number;
 }
 
 export interface SideWorld {
@@ -462,6 +517,12 @@ export interface SideWorld {
   deaths: number;
   /** Villager currently drawing water (one at a time), or null. */
   wellUser: VillagerId | null;
+  /** Day-3 store-room stages built, or null while there is no store-room project (v2 plan §12). */
+  storeroom: number | null;
+  /** House stages the storm has taken (at most 4). */
+  decayed: number;
+  /** Meals eaten from the store over the run (balance check: meals are really eaten). */
+  eaten: number;
 }
 
 export const START_RESOURCES: Resources = { grain: 6, water: 2, timber: 6, meals: 0 };
@@ -471,26 +532,51 @@ export function createSideWorld(): SideWorld {
   return {
     minute: 0,
     resources: { ...START_RESOURCES },
-    house: { stage: START_HOUSE_STAGE, shuttered: false },
+    house: { stage: START_HOUSE_STAGE, shuttered: false, progress: 0 },
     cedarFelled: false,
     injuries: 0,
     deaths: 0,
     wellUser: null,
+    storeroom: null,
+    decayed: 0,
+    eaten: 0,
   };
 }
 
+/** Storm decay (v2 plan §2, assumed): one stage per two storm hours, at most this many in all. */
+export const STORM_DECAY_MAX = 4;
+
 /**
  * World-level weather effects the engine applies to both sides each minute (so no side can forget them):
- * during the storm, an unshuttered house below the beam stage loses one stage per hour.
+ * during the storm, an unfinished, unshuttered house loses one stage per two storm hours (at most four).
  */
 export function applyWorldMinute(world: SideWorld, m: Minute): void {
   world.minute = m;
   const w = weatherAt(m);
-  if (w.kind === 'storm' && (m - STORM_START) % 60 === 59) {
-    if (!world.house.shuttered && world.house.stage < BEAM_STAGE && world.house.stage > 0) {
-      world.house.stage -= 1;
+  if (w.kind === 'storm' && (m - STORM_START) % 120 === 119) {
+    const h = world.house;
+    if (!h.shuttered && h.stage > 0 && h.stage < HOUSE_STAGES && world.decayed < STORM_DECAY_MAX) {
+      h.stage -= 1;
+      h.progress = 0;
+      world.decayed += 1;
     }
   }
+}
+
+/** Villagers whose own house is the one being built (v2 plan §11). */
+export const HOUSE_FAMILY: readonly VillagerId[] = ['idris', 'samira'];
+
+/**
+ * Where a villager sleeps and shelters (v2 plan §11). From the storm on, Idris and Samira live in the new house
+ * if it has its roof, else in the crowded masjid. Everyone else keeps their own home.
+ */
+export function homeOf(id: VillagerId, world: Pick<SideWorld, 'house'>, minute: Minute): PlaceId {
+  const v = villagerById(id);
+  if (!v) throw new Error(`unknown villager ${id}`);
+  if (minute < STORM_START || !HOUSE_FAMILY.includes(id)) return v.home;
+  if (world.house.stage >= HOUSE_STAGES) return 'site';
+  // The crowded masjid is storm housing: on "Another day" they go back to their old home until the roof is on.
+  return minute < END_MINUTE ? 'masjid' : v.home;
 }
 
 export function canAfford(r: Resources, cost: Partial<Resources> | undefined): boolean {
