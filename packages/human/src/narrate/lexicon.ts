@@ -177,6 +177,7 @@ export const EN_LINES: Readonly<Record<string, readonly string[]>> = {
   // Chronicle (third/first person via {Subj}/{subj}/{obj}/{poss}/{Poss}). See `chronicle/story.ts`.
   /** {label} {n} {days} */
   'chronicle.prayer.all': ['{Subj} prayed {label} every day.'],
+  'chronicle.prayer.one': ['{Subj} prayed {label}.'],
   'chronicle.prayer': ['{Subj} prayed {label} on {n} of {days} days.'],
   'chronicle.prayer.never': ['{Subj} did not pray {label}.'],
   /** {past} {n} {days} */

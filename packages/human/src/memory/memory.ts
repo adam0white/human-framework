@@ -28,6 +28,8 @@ import { MINUTES_PER_DAY } from '../types.ts';
 
 export const MEMORY_DEFAULTS = {
   maxEpisodes: 200,
+  /** Loss episodes protected from eviction at most (the most salient ones); see `remember`. */
+  maxProtectedLoss: 50,
   maxExpectations: 150,
   /** Salience half-life (minutes) for a neutral episode and for a maximally emotional one. */
   halfLifeNeutral: 3 * MINUTES_PER_DAY,
@@ -106,19 +108,33 @@ export function remember(p: Person, e: Omit<Episode, 'id' | 'salience'> & { sali
   };
   mem.nextEpisode += 1;
   mem.episodes.push(episode);
-  while (mem.episodes.length > MEMORY_DEFAULTS.maxEpisodes) {
-    let worst = 0;
-    let worstScore = Number.POSITIVE_INFINITY;
-    for (let i = 0; i < mem.episodes.length; i++) {
-      const ep = mem.episodes[i] as Episode;
-      const score = ep.salience * recency(p.now, ep.at);
-      // Ties evict the older episode (lower id number) — iteration order is insertion order.
-      if (score < worstScore) {
-        worstScore = score;
-        worst = i;
+  // Loss memories (a death, a funeral, someone now deceased) are evicted only after every ordinary one: on
+  // salience × recency alone a months-old bereavement loses to this morning's meal within days (findings 2026-10-03).
+  // The protection is bounded: only the `maxProtectedLoss` most salient loss episodes keep it, so daily grave visits
+  // in a long run cannot crowd every ordinary episode out (review 2026-10-03).
+  if (mem.episodes.length > MEMORY_DEFAULTS.maxEpisodes) {
+    const dead = deceasedSet(p);
+    const protectedIds = new Set(
+      mem.episodes
+        .filter((ep) => lossEpisode(ep, dead))
+        .sort((a, b) => b.salience - a.salience || byId(b, a))
+        .slice(0, MEMORY_DEFAULTS.maxProtectedLoss)
+        .map((ep) => ep.id),
+    );
+    while (mem.episodes.length > MEMORY_DEFAULTS.maxEpisodes) {
+      let worst = 0;
+      let worstScore = Number.POSITIVE_INFINITY;
+      for (let i = 0; i < mem.episodes.length; i++) {
+        const ep = mem.episodes[i] as Episode;
+        const score = ep.salience * recency(p.now, ep.at) + (protectedIds.has(ep.id) ? 1 : 0);
+        // Ties evict the older episode (lower id number) — iteration order is insertion order.
+        if (score < worstScore) {
+          worstScore = score;
+          worst = i;
+        }
       }
+      mem.episodes.splice(worst, 1);
     }
-    mem.episodes.splice(worst, 1);
   }
   return episode;
 }
@@ -376,6 +392,26 @@ export const CUE_RECALL_DEFAULTS = {
   /** Tags that mark an episode as a loss (in addition to involving a deceased person). */
   lossTags: ['death', 'loss', 'funeral', 'grave'],
 };
+
+/** Whether an episode is a loss: tagged as one, a death, or involving someone the person holds as deceased. */
+export function isLossEpisode(
+  p: Person,
+  ep: Pick<Episode, 'tags' | 'action' | 'actorId' | 'targetId'>,
+): boolean {
+  return lossEpisode(ep, deceasedSet(p));
+}
+
+function lossEpisode(
+  ep: Pick<Episode, 'tags' | 'action' | 'actorId' | 'targetId'>,
+  dead: ReadonlySet<string>,
+): boolean {
+  return (
+    ep.tags.some((t) => CUE_RECALL_DEFAULTS.lossTags.includes(t)) ||
+    ep.action === 'death' ||
+    (ep.actorId !== undefined && dead.has(ep.actorId)) ||
+    (ep.targetId !== undefined && dead.has(ep.targetId))
+  );
+}
 
 /** Deceased check inlined from `social.isDeceasedTie` (memory reads the social slice; it does not write it). */
 function deceasedSet(p: Person): Set<string> {

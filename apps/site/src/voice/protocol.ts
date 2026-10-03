@@ -1,0 +1,246 @@
+/**
+ * Worker protocol for Game 2, *The Day You Say Nothing* (build plan docs/games/voice-build.md §9, frozen). The
+ * main thread sends `tick{dtMs}` every animation frame; the worker turns real time into sim minutes and replies
+ * with at most one `frame` per tick, only when something changed. Every reply carries the run's `gen`. The worker
+ * builds all view models as plain JSON; React never imports `@human/framework`.
+ *
+ * Additive to §9 (no shape changes): `VOICE_SCENARIO_VERSION`, `STRENGTH_VALUE`, `PACE_MINUTES_PER_SECOND`.
+ */
+
+/** The scenario the worker runs; `init.scenarioVersion` must equal it. */
+export const VOICE_SCENARIO_VERSION = 'voice-1';
+
+export type Pace = 'slow' | 'normal' | 'fast';
+export type Phase = 'premise' | 'day' | 'between' | 'eid' | 'report' | 'free';
+export type Strength = 'mention' | 'urge'; // 0.35 | 0.7
+export type Appeal = 'duty' | 'safety' | 'benevolence' | 'belonging' | 'meaning';
+export type Tone = 'yes' | 'notNow' | 'cannot' | 'willNot' | 'protest';
+export type BeatKind =
+  | 'wake'
+  | 'verdict'
+  | 'voice'
+  | 'craving'
+  | 'close-call'
+  | 'duty-risk'
+  | 'recall'
+  | 'day-end'
+  | 'eid';
+export type VoiceId = 'you' | 'selin' | 'riza' | 'hacer' | 'osman' | 'doctor';
+export type Family =
+  | 'worship'
+  | 'work'
+  | 'food'
+  | 'social'
+  | 'phone'
+  | 'rest'
+  | 'sleep'
+  | 'health'
+  | 'money'
+  | 'smoke'
+  | 'grave';
+
+/** The seed the game ships with (Replay keeps it; New town picks another). */
+export const SHIPPED_SEED = 7;
+
+/**
+ * Plan §10, the one copy: the premise card, the report and the mock all read this. Kept out of ordinary play (a
+ * collapsed section). Wording rules: his understanding, never a ruling; nothing about acceptance; anything not
+ * sourced in research/ is named an engineering assumption.
+ */
+export const MODEL_NOTES: readonly string[] = [
+  'Halil is a simulation of a person’s needs, duties, habits, memories and trust, built from engineering defaults. It is not a model of any real person or town.',
+  'The game represents his understanding of his duties, never a ruling, and never anything about acceptance.',
+  'Engineering assumptions, not sourced in the project’s research notes: smoking breaks the fast; the Fajr window is modelled as ending at Dhuhr, not at sunrise; zakat al-fitr is not represented; the Eid prayer is not offered.',
+  'Illness excuses the fast with a make-up owed (Qur’an 2:184). Treating a break under real necessity the same way is an engineering assumption by analogy with Qur’an 2:173, not yet sourced. The game never records either as a breach of the fast.',
+  'How heavy the clinic, the mosque and calling Selin feel to him since Nuran died are engineering defaults, not findings.',
+  'He decides from what he feels. His true body is shown only by the doctor and in the report.',
+  'Two parameters have no empirical citation yet: scarcity (debt pressure) and habit strength.',
+];
+
+/** Suggestion strength sent to the framework for each `Strength`. */
+export const STRENGTH_VALUE: Record<Strength, number> = { mention: 0.35, urge: 0.7 };
+/** Sim minutes per real second at each pace (plan §8); fast-forward runs at 240. */
+export const PACE_MINUTES_PER_SECOND: Record<Pace, number> = { slow: 8, normal: 20, fast: 60 };
+
+export interface Draft {
+  optionId: string;
+  strength: Strength;
+  insist: boolean;
+  appeal?: Appeal;
+}
+export interface StandingWhisper {
+  choiceId: 'work' | 'doctor' | 'selin' | 'rent' | 'mosque' | 'rest';
+  strength: Strength;
+  appeal?: Appeal;
+}
+
+export type MainToWorker =
+  | { type: 'init'; seed: number; gen: number; scenarioVersion: string }
+  | { type: 'tick'; dtMs: number }
+  | { type: 'pause' }
+  | { type: 'resume' }
+  | { type: 'setPace'; pace: Pace }
+  | { type: 'setAutoPause'; on: boolean }
+  | { type: 'begin' } // premise card dismissed
+  | { type: 'predict'; requestId: number; draft: Draft }
+  | { type: 'suggest'; draft: Draft } // Confirm
+  | { type: 'withdraw' }
+  | { type: 'why'; decisionId: string }
+  | { type: 'endDay' }
+  | { type: 'advance'; standing: StandingWhisper[] } // between-days card: next day (skips run here)
+  | { type: 'dismissIntro' }
+  | { type: 'keepListening' };
+
+export interface LogEntry {
+  id: string;
+  day: number;
+  minute: number;
+  clock: string;
+  kind: 'act' | 'you' | 'answer' | 'voice' | 'feel' | 'recall' | 'note';
+  who: 'halil' | VoiceId;
+  text: string;
+  tone?: Tone;
+  until?: string;
+  decisionId?: string;
+  beat?: BeatKind;
+}
+export interface OptionView {
+  id: string;
+  label: string;
+  rank: number;
+  leaning: boolean;
+}
+export interface Prefill {
+  optionId: string;
+  strength: Strength;
+  appeal?: Appeal;
+  why: string;
+  source: 'advice' | 'end' | 'close-call' | 'tutorial';
+  sourceId?: VoiceId;
+}
+export interface Telegraph {
+  tone: Tone;
+  text: string;
+  says: string;
+  counter?: string;
+  reason: string;
+  likelihood?: number;
+}
+export interface StandingView {
+  draft: Draft;
+  label: string;
+  since: string;
+  lastAnswer?: { tone: Tone; says: string; counter?: string };
+  expires: string;
+}
+export interface Felt {
+  id: 'hunger' | 'thirst' | 'tired';
+  level: number;
+  word: string;
+}
+export interface HalilView {
+  doing: { label: string; intention: string; until: string } | null;
+  asleep: boolean;
+  felt: Felt[];
+  feelings: { name: string; word: string; intensity: number }[];
+  onMind: {
+    id: string;
+    label: string;
+    due: string;
+    state: 'open' | 'closing' | 'kept' | 'missed' | 'excused';
+  }[];
+  money: number;
+  owed: number;
+}
+export interface VoiceView {
+  id: VoiceId;
+  name: string;
+  relation: string;
+  colour: string;
+  trust?: number; // 'you' only
+  trustWord: string;
+  history: { delta: number; text: string }[];
+  lastUrged?: { label: string; when: string; standing: boolean; weight: number };
+  conflict?: string;
+}
+export interface EndView {
+  id: 'fast' | 'rent' | 'doctor' | 'selin' | 'trust';
+  label: string;
+  status: string;
+  detail: string;
+  progress?: number;
+}
+export interface StripRow {
+  label: string;
+  cells: { from: number; to: number; family: Family; label: string; promptedBy?: VoiceId }[];
+}
+
+export interface Frame {
+  phase: Phase;
+  day: number;
+  dayLabel: string;
+  minute: number;
+  clock: string;
+  sky: {
+    hour: number;
+    prayers: { name: string; minute: number }[];
+    fast?: { from: number; until: number };
+  };
+  paused: boolean;
+  pace: Pace;
+  autoPause: boolean;
+  fastForward?: string;
+  pauseBeat?: { kind: BeatKind; text: string };
+  intro?: { label: string; lines: string[] };
+  halil: HalilView;
+  composer: { open: boolean; reason?: 'asleep' | 'busy' | 'muted'; until?: string };
+  leaning?: { optionId: string; why: string };
+  options: OptionView[];
+  prefill?: Prefill;
+  standing?: StandingView;
+  log: LogEntry[]; // newest 300, append-only ids
+  ends: EndView[];
+  voices: VoiceView[];
+  muted: boolean;
+}
+export interface WhyView {
+  decisionId: string;
+  clock: string;
+  chosen: string;
+  options: { label: string; total: number; terms: { label: string; value: number }[] }[];
+  recalled?: string;
+  voice?: { says: string; reason: string };
+  /** When what he chose was not the top total: why (he kept to what he was doing, or did as told). */
+  note?: string;
+}
+export interface BetweenView {
+  closed: string;
+  lines: string[];
+  strip: StripRow;
+  ends: EndView[];
+  trust: { from: number; to: number; events: string[] };
+  next: { label: string; day: number; skipped: number } | null; // null → Eid comes next
+  choices: { id: StandingWhisper['choiceId']; label: string; cost: string }[];
+}
+export interface ReportView {
+  /** `summary`: the few plain facts the month and Eid come down to (Selin on Eid, the clinic, you). */
+  eid: { strip: StripRow; lines: string[]; summary: string[] };
+  own: string[];
+  others: string[];
+  stopped: string[];
+  trust: { id: VoiceId; name: string; endRamadan: string; endWeek: string }[];
+  ends: EndView[];
+  body: string[];
+  open: string[];
+  rows: StripRow[];
+  modelNotes: string[];
+}
+
+export type WorkerReply =
+  | { type: 'frame'; frame: Frame }
+  | { type: 'predicted'; requestId: number; telegraph: Telegraph }
+  | { type: 'why'; decisionId: string; why: WhyView | null }
+  | { type: 'between'; view: BetweenView }
+  | { type: 'report'; view: ReportView }
+  | { type: 'error'; message: string };
+export type WorkerToMain = WorkerReply & { gen: number };

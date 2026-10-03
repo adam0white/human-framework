@@ -79,7 +79,9 @@ Reputation is the others' beliefs about him (`p:halil:owes-osman`) moving throug
 
 ## 4. The muted day and the ending
 
-Day 30 is Eid. The tray is gone; the kilim's last row weaves at 1× with the moments shown as always. The day holds only what the month built: zakat al-fitr due before the Eid prayer (an `appointment` with a hard `until`); the prayer itself; the cemetery, Hacer's door, Selin's call, Osman's rent; Rıza at the kıraathane by ten; a cigarette after the first daytime meal in a month, the cue his forty-year habit has waited for. The player can open any why-sheet and say nothing.
+Day 31 is Eid (30 days of Ramadan, then 1 Shawwal; corrected 2026-10-03 per the build plan). The tray is gone; the kilim's last row weaves at 1× with the moments shown as always. The day holds only what the month built: the cemetery, Hacer's door, Selin's call, Osman's rent; Rıza at the kıraathane by ten; a cigarette after the first daytime meal in a month, the cue his forty-year habit has waited for. The player can open any why-sheet and say nothing.
+
+*As shipped (2026-10-03):* zakat al-fitr and the Eid prayer are not in v1. Both need a sourced understanding of their timing in `research/` (the deadline relative to the prayer, the prayer's window), and neither is there yet, so they are deferred rather than represented on an engineering assumption. The Eid prayer exists behind the town's `eidPrayer` flag for tests; the game leaves it off and says so in the model notes.
 
 **The epilogue** runs the `Community` forty more days headless with the player voice absent and every other voice live, then narrates from the chronicle (N3):
 

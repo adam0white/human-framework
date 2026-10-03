@@ -195,3 +195,31 @@ describe('memory/expectations', () => {
     expect(learnedErr).toBeLessThan(advertErr * 0.4);
   });
 });
+
+describe('loss eviction protection is bounded (review 2026-10-03)', () => {
+  test('daily grave visits cannot crowd every ordinary episode out', () => {
+    const p = person();
+    for (let i = 0; i < MEMORY_DEFAULTS.maxEpisodes + 20; i++) {
+      p.now = i * 60;
+      remember(p, {
+        at: p.now,
+        kind: 'outcome',
+        action: 'visit-grave',
+        valence: -0.3,
+        summary: 'grave',
+        tags: ['grave'],
+      });
+    }
+    p.now += 60;
+    const fresh = remember(p, {
+      at: p.now,
+      kind: 'outcome',
+      action: 'eat',
+      valence: 0.2,
+      summary: 'ate',
+      tags: ['completed'],
+    });
+    expect(p.memory.episodes.some((e) => e.id === fresh.id)).toBe(true);
+    expect(p.memory.episodes.length).toBe(MEMORY_DEFAULTS.maxEpisodes);
+  });
+});

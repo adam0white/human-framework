@@ -55,6 +55,24 @@ function WellScene({ variant }: { variant: 'classic' | 'human' }) {
   );
 }
 
+function CrescentPage() {
+  return (
+    <svg className="scene scene-voice" viewBox="0 0 200 120" aria-hidden="true">
+      <rect width="200" height="120" className="voice-sky" />
+      <path d="M108 14a19 19 0 1 0 14 32A16 16 0 0 1 108 14z" className="voice-moon" />
+      <g transform="rotate(-4 100 92)">
+        <rect x="46" y="62" width="108" height="66" rx="3" className="voice-page" />
+        {[76, 86, 96, 106].map((y) => (
+          <line key={y} x1="56" y1={y} x2="144" y2={y} className="voice-rule" />
+        ))}
+        <path d="M58 74c10-3 22-3 34 0" className="voice-ink" />
+        <path d="M58 84c16-2 30-2 50 0" className="voice-ink" />
+        <path d="M58 94c8-2 16-2 26 0" className="voice-ink voice-ink-you" />
+      </g>
+    </svg>
+  );
+}
+
 function Home() {
   return (
     <div className="page">
@@ -175,20 +193,22 @@ function Home() {
                 </span>
               </div>
             </a>
-            <div className="game-card game-soon">
-              <div className="game-art game-art-soon" aria-hidden="true">
-                <span>…</span>
+            <a className="game-card game-live" href="/voice/">
+              <div className="game-art">
+                <CrescentPage />
               </div>
               <div className="game-body">
-                <p className="game-kicker">Game 2 · coming soon</p>
-                <h3>The inner voice</h3>
+                <p className="game-kicker">Game 2 · about fifteen minutes</p>
+                <h3>The Day You Say Nothing</h3>
                 <p>
-                  You are the voice in one person’s head for a season. On the last day the voice goes quiet
-                  and you watch them act alone. Their habits, commitments and trust either hold or they don’t.
+                  You are a voice in Halil’s head for the first Ramadan since his wife died. He hears you, and
+                  he decides. On Eid you go silent and watch what he does on his own.
                 </p>
-                <span className="game-cta muted">In design</span>
+                <span className="game-cta">
+                  Play now <span aria-hidden="true">→</span>
+                </span>
               </div>
-            </div>
+            </a>
           </div>
         </section>
 

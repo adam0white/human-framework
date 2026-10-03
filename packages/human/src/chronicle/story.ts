@@ -163,7 +163,15 @@ export function narrateChronicle(
     for (const l of [...r.prayers.kept, ...r.prayers.missed]) if (!labels.includes(l)) labels.push(l);
   for (const label of labels.slice(0, 5)) {
     const n = stats.done[`prayer:${label}`] ?? 0;
-    const key = n === days ? 'chronicle.prayer.all' : n === 0 ? 'chronicle.prayer.never' : 'chronicle.prayer';
+    // One day is not "every day" (Game 2 playtest).
+    const key =
+      n === 0
+        ? 'chronicle.prayer.never'
+        : n === days
+          ? days === 1
+            ? 'chronicle.prayer.one'
+            : 'chronicle.prayer.all'
+          : 'chronicle.prayer';
     raw.push({ key, vars: { label, n, days } });
   }
 

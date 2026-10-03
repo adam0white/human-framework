@@ -64,6 +64,9 @@ export function intentionFor(p: Person, record: DecisionRecord, lexicon?: Lexico
           : devotion(p, c.normId, lex);
       if (c?.toId && c.toId !== 'self')
         return phraseLine('intention.promiseTo', { who: nameOf(p, c.toId, lex) }, lex);
+      // A host may phrase a labelled commitment its own way ('intention.label:suhoor' → "for suhoor").
+      if (c?.label !== undefined && linesFor(`intention.label:${c.label}`, lex).length > 0)
+        return phraseLine(`intention.label:${c.label}`, {}, lex);
       return phraseLine('intention.word', {}, lex);
     }
     case 'goal': {

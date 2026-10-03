@@ -12,7 +12,9 @@
  * block lifts when no fulfilling option is available or a bodily need is extreme). Insisting never overrides a pressing bodily need
  * (refused/cannot with the need as reason), and `cannot` refusals move no voice counters. `predictResponse` gives the same verdict without
  * writing anything or consuming RNG. Trust in a voice is learned from how followed advice felt, with harm
- * costing more than benefit earns (trust asymmetry); pressure from being pushed decays over hours. No
+ * costing more than benefit earns (trust asymmetry); an insisted suggestion earns no trust when it goes well, and
+ * insisting while the voice's pressure is already high costs trust outright ('pushed'), so a voice that insists at
+ * every turn ends in distrust refusals (engineering default); pressure from being pushed decays over hours. No
  * willpower reservoir is modelled (rejected in research/empirical-models.md §6): acting against impulse
  * emerges from competing terms, fatigue cost, habits and precommitments. Autonomy loss from compliance is
  * returned as a delta for the composite to apply; this module writes only `p.will`. Several voices may speak in
@@ -99,6 +101,11 @@ export const WILL_DEFAULTS = {
    * proved right, so trust falls faster (one bad night: 0.75 → ~0.41 at felt -1). Engineering default.
    */
   trustLossComplied: 0.45,
+  /**
+   * Share of trust lost each time a voice insists while its pressure is at `distrustPressure` or more (engineering
+   * default, 2026-10-03 playtest: insisting at every turn raised trust). Eight such pushes take 0.5 below 0.25.
+   */
+  trustLossPushed: 0.08,
   /** Share of a tie's inertia bonus that remains when the activity is about to end. */
   inertiaFloor: 0.5,
   /**
@@ -558,6 +565,7 @@ function evaluate(
       says: '',
       ...extra,
       ...(likelihood !== undefined ? { likelihood } : {}),
+      ...(s.insist ? { insisted: true } : {}),
     });
     const out = (res: SuggestionResolution, comply?: Judged['comply']): Judged =>
       comply ? { s, res, side, comply, targetIds } : { s, res, side, targetIds };
@@ -608,6 +616,8 @@ function evaluate(
     }
     if (winner && targetIds.has(winner.affordanceId)) {
       side.accepted = 1;
+      // Insisting on what he takes up still pushes him: the pressure lands even when he agrees.
+      if (s.insist) side.pressure = W.pressureInsist;
       return out(resolution('assented', reason));
     }
     // The suggestion lost to the person's own preference (and any other voices' pulls).
@@ -820,11 +830,20 @@ export function resolveChoice(
     ev.voices = [];
     ev.autonomyDelta = 0;
   }
-  for (const side of ev.voices) {
+  const W = WILL_DEFAULTS;
+  for (const [i, side] of ev.voices.entries()) {
     const v = ensureVoice(p, side.id);
     v.pressure = clamp01(v.pressure + side.pressure);
     v.accepted += side.accepted;
     v.refused += side.refused;
+    // Being insisted at while already pressed wears trust down, whatever he then does (engineering default), so
+    // a voice that insists at every turn reaches the distrust refusal.
+    const res = ev.resolutions[i];
+    if (res?.insisted && res.kind !== 'cannot' && v.pressure >= W.distrustPressure) {
+      const before = v.trust;
+      v.trust = clamp01(v.trust * (1 - W.trustLossPushed));
+      noteTrust(v, v.trust - before, 'pushed', ctx.now);
+    }
   }
   const out: ChoiceResolution = {
     chosenAffordanceId: ev.chosenId,
@@ -898,25 +917,32 @@ export function learnFromVoice(
   const f = Math.max(-1, Math.min(1, felt));
   const before = v.trust;
   const complied = resolution.verdict === 'complied';
-  // A coerced activity that went well earns no trust: the person did not choose to follow the advice.
-  if (f > 0 && !complied) v.trust = clamp01(v.trust + W.trustGain * f * (1 - v.trust));
+  // A coerced or insisted activity that went well earns no trust: the person did not choose to follow the
+  // advice freely (insisting on what he would have done anyway takes the credit away too).
+  if (f > 0 && !complied && !resolution.insisted)
+    v.trust = clamp01(v.trust + W.trustGain * f * (1 - v.trust));
   else if (f < 0) v.trust = clamp01(v.trust + (complied ? W.trustLossComplied : W.trustLoss) * f * v.trust);
   const delta = v.trust - before;
+  const reason = event.reason ?? (delta > 0 ? 'went-well' : complied ? 'harm-under-protest' : 'went-badly');
+  noteTrust(v, delta, reason, event.at ?? p.now, event.action);
+}
+
+/** Append a trust change to a voice's history (small changes fold into the latest same-reason entry). */
+function noteTrust(v: VoiceRelation, delta: number, reason: string, at: Minute, action?: string): void {
+  const W = WILL_DEFAULTS;
   if (Math.abs(delta) < 1e-9) return;
   v.history ??= [];
-  const reason = event.reason ?? (delta > 0 ? 'went-well' : complied ? 'harm-under-protest' : 'went-badly');
-  const at = event.at ?? p.now;
   // A change too small to show (|δ| < historyEpsilon) folds into the latest entry with the same reason, so a
   // trust meter names events that add up instead of a string of "+0.00" (review 2026-10-03).
   const last = v.history[v.history.length - 1];
   if (Math.abs(delta) < W.historyEpsilon && last && last.reason === reason) {
     last.delta += delta;
     last.at = at;
-    if (last.action !== event.action) delete last.action;
+    if (last.action !== action) delete last.action;
     return;
   }
   const entry: VoiceRelation['history'][number] = { at, delta, reason };
-  if (event.action !== undefined) entry.action = event.action;
+  if (action !== undefined) entry.action = action;
   v.history.push(entry);
   if (v.history.length > W.maxVoiceHistory) v.history.splice(0, v.history.length - W.maxVoiceHistory);
 }

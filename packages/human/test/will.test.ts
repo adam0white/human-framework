@@ -269,6 +269,30 @@ describe('review fixes (2026-10-03)', () => {
     expect(voiceOf(p, 'player')?.trust ?? 1).toBeLessThan(WILL_DEFAULTS.defaultVoiceTrust);
   });
 
+  test('insisting earns no credit, and insisting at every turn ends in distrust refusals (playtest 2026-10-03)', () => {
+    // An insisted assent that went well earns nothing; the same assent unforced earns trust.
+    const p = villager('a', 25);
+    learnFromVoice(p, { voiceId: 'player', verdict: 'assented', reason: 'x', says: '', insisted: true }, 0.8);
+    expect(voiceOf(p, 'player')?.trust).toBe(WILL_DEFAULTS.defaultVoiceTrust);
+    learnFromVoice(p, { voiceId: 'player', verdict: 'assented', reason: 'x', says: '' }, 0.8);
+    expect(voiceOf(p, 'player')?.trust ?? 0).toBeGreaterThan(WILL_DEFAULTS.defaultVoiceTrust);
+    // A voice that insists on chatting, decision after decision, wears trust down until he will not.
+    const q = villager('a', 26);
+    const verdicts: string[] = [];
+    for (let i = 0; i < 20; i++) {
+      const r = decide(q, offers(q), {
+        suggestion: ask('chat', { strength: 1, insist: true }),
+        now: NOON + i,
+      });
+      verdicts.push(`${r.suggestion?.verdict}/${r.suggestion?.kind ?? ''}`);
+      q.activity = null;
+    }
+    const v = voiceOf(q, 'player');
+    expect(v?.trust ?? 1).toBeLessThan(WILL_DEFAULTS.distrustTrust);
+    expect(v?.history?.some((e) => e.reason === 'pushed')).toBe(true);
+    expect(verdicts).toContain('refused/willNot');
+  });
+
   test('a NaN in a host offer is vetoed as invalid and never chosen', () => {
     const p = villager('a', 24, { body: { hydration: 0.1 } });
     const bad: Affordance = {

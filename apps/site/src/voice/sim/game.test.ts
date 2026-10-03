@@ -1,0 +1,405 @@
+import { voiceOf } from '@human/framework';
+import { describe, expect, test } from 'vitest';
+import type { BeatKind, Draft, Frame, StandingWhisper } from '../protocol.ts';
+import { DAY_END, SHIPPED_SEED, VoiceGame } from './game.ts';
+
+const MIN_DAY = 1440;
+
+interface PlayOpts {
+  /** Confirm every new prefill (the bar's "prefill → Confirm" player). */
+  confirm?: boolean;
+  /** With `confirm`: urge and insist on every prefill instead of taking it as given. */
+  insist?: boolean;
+  whispers?: StandingWhisper[];
+  /** Stop when this returns true (checked at every loop turn). */
+  stop?: (g: VoiceGame) => boolean;
+  onPause?: (f: Frame, g: VoiceGame) => void;
+}
+
+/** Headless player: dismisses cards, optionally confirms prefills, otherwise says nothing. */
+function play(g: VoiceGame, o: PlayOpts = {}): void {
+  if (g.phase === 'premise') g.begin();
+  let lastKey = '';
+  for (let guard = 0; guard < 50_000; guard++) {
+    if (o.stop?.(g) || g.phase === 'report') return;
+    if (g.phase === 'between') {
+      g.advance(g.between?.next?.skipped ? (o.whispers ?? []) : []);
+      continue;
+    }
+    if (g.intro) {
+      g.dismissIntro();
+      g.resume();
+      continue;
+    }
+    if (g.paused) {
+      const f = g.frame();
+      o.onPause?.(f, g);
+      const key = `${f.minute}:${f.prefill?.optionId}`;
+      if (
+        o.confirm &&
+        f.composer.open &&
+        f.prefill &&
+        f.prefill.optionId !== g.standing?.draft.optionId &&
+        key !== lastKey
+      ) {
+        lastKey = key;
+        const d: Draft = o.insist
+          ? { optionId: f.prefill.optionId, strength: 'urge', insist: true }
+          : { optionId: f.prefill.optionId, strength: f.prefill.strength, insist: false };
+        if (f.prefill.appeal) d.appeal = f.prefill.appeal;
+        g.suggest(d);
+        continue;
+      }
+      g.resume();
+    }
+    g.advanceTo(g.t + 60);
+  }
+  throw new Error('play did not finish');
+}
+
+const at = (day: number, hh: number, mm = 0) => day * MIN_DAY + hh * 60 + mm;
+const fmt = (m: number) =>
+  `d${Math.floor(m / MIN_DAY)} ${String(Math.floor((m % MIN_DAY) / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+
+const ALL_BEATS: BeatKind[] = [
+  'wake',
+  'verdict',
+  'voice',
+  'craving',
+  'close-call',
+  'duty-risk',
+  'recall',
+  'day-end',
+  'eid',
+];
+const WHISPERS: StandingWhisper[] = [
+  { choiceId: 'doctor', strength: 'mention', appeal: 'safety' },
+  { choiceId: 'selin', strength: 'mention', appeal: 'benevolence' },
+];
+
+describe('Game 2 sim on the shipped seed', () => {
+  const quiet = new VoiceGame(SHIPPED_SEED);
+  play(quiet);
+  const spoken = new VoiceGame(SHIPPED_SEED);
+  let maxFrame = 0;
+  play(spoken, {
+    confirm: true,
+    whispers: WHISPERS,
+    onPause: (f) => {
+      maxFrame = Math.max(maxFrame, JSON.stringify(f).length);
+    },
+  });
+
+  test('the bar: a prefill-only player meets a non-assented answer and a craving by Ramadan 1 12:00', () => {
+    const g = new VoiceGame(SHIPPED_SEED);
+    play(g, { confirm: true, stop: (x) => x.t >= at(1, 12) });
+    const answers = g.log.filter((e) => e.kind === 'answer' && e.minute < at(1, 12));
+    expect(answers.length).toBeGreaterThan(0);
+    expect(answers.some((e) => e.tone !== 'yes')).toBe(true);
+    expect(g.beats.history.some((b) => b.kind === 'craving' && b.at < at(1, 12))).toBe(true);
+    // The first beat is the suhoor wake, prefilled with eat as the tutorial, and the first answer is a yes.
+    const first = g.beats.history[0];
+    expect(first?.kind).toBe('wake');
+    expect(answers[0]?.tone).toBe('yes');
+  });
+
+  test('every planned beat but duty-risk fires (timings logged for the build report)', () => {
+    // duty-risk does not occur on the shipped seed: he keeps every prayer before its closing stretch and his
+    // perceived thirst in the fast peaks at about 0.61 (< 0.7). Its detector is tested below on a provoked case.
+    const kinds = new Set(spoken.beats.history.map((b) => b.kind));
+    for (const k of ALL_BEATS.filter((x) => x !== 'duty-risk')) expect(kinds, k).toContain(k);
+    const quietKinds = new Set(quiet.beats.history.map((b) => b.kind));
+    for (const k of ALL_BEATS.filter((x) => x !== 'verdict' && x !== 'duty-risk'))
+      expect(quietKinds, `quiet ${k}`).toContain(k);
+    const firsts: Record<string, string[]> = {};
+    for (const b of spoken.beats.history) {
+      const list = firsts[b.kind] ?? [];
+      firsts[b.kind] = list;
+      if (list.length < 4) list.push(`${fmt(b.at)}${b.paused ? '' : ' (logged)'}`);
+    }
+    console.log('beat timings (prefill player):', JSON.stringify(firsts));
+    const perDay: Record<number, number> = {};
+    for (const b of spoken.beats.history)
+      if (b.paused) perDay[Math.floor(b.at / MIN_DAY)] = (perDay[Math.floor(b.at / MIN_DAY)] ?? 0) + 1;
+    console.log('pauses per day (prefill player):', JSON.stringify(perDay));
+  });
+
+  test('a played day ends at 23:30 and close-calls fire at most twice a day', () => {
+    const days = spoken.beats.history.filter((b) => b.kind === 'day-end').map((b) => b.at % MIN_DAY);
+    expect(days.length).toBe(4);
+    for (const m of days) expect(m).toBe(DAY_END);
+    const cc: Record<number, number> = {};
+    for (const b of spoken.beats.history)
+      if (b.kind === 'close-call') cc[Math.floor(b.at / MIN_DAY)] = (cc[Math.floor(b.at / MIN_DAY)] ?? 0) + 1;
+    for (const n of Object.values(cc)) expect(n).toBeLessThanOrEqual(2);
+  });
+
+  test('no Eid or epilogue decision carries a `you` suggestion', () => {
+    for (const g of [quiet, spoken]) {
+      expect(g.audit.length).toBeGreaterThan(100);
+      expect(g.audit.filter((a) => a.voices.includes('you'))).toEqual([]);
+      expect(Math.min(...g.audit.map((a) => a.at))).toBeGreaterThanOrEqual(at(31, 0));
+    }
+  });
+
+  test('the muted days differ from the spoken ones', () => {
+    const r = spoken.report;
+    expect(r).toBeDefined();
+    const eid = r?.eid.strip.cells.map((c) => c.label).join('|');
+    const r30 = r?.rows[3]?.cells.map((c) => c.label).join('|');
+    expect(eid).not.toBe(r30);
+    expect(r?.rows[4]?.cells.some((c) => c.promptedBy === 'you')).toBe(false);
+    expect(r?.rows.slice(0, 4).some((row) => row.cells.some((c) => c.promptedBy === 'you'))).toBe(true);
+    // The spoken and the quiet month leave different reports.
+    expect(JSON.stringify(spoken.report)).not.toBe(JSON.stringify(quiet.report));
+  });
+
+  test('the voice changes the outcome: silent, prefill and insist runs end differently', () => {
+    const doctor = (g: VoiceGame) => g.report?.ends.find((e) => e.id === 'doctor')?.status;
+    const halilCalls = (g: VoiceGame) =>
+      g.cells.filter((c) => c.affordanceId === 'call:selin' && c.from < at(31, 0)).length;
+    // Silent: the clinic stays unvisited and he never calls Selin himself in Ramadan.
+    expect(doctor(quiet)).toBe('not yet');
+    expect(halilCalls(quiet)).toBe(0);
+    expect(quiet.report?.eid.summary[1]).toMatch(/never went to the clinic/);
+    // Prefill: the doctor is seen, after you spoke, and the report says so.
+    expect(doctor(spoken)).toBe('seen');
+    expect(spoken.cells.some((c) => c.affordanceId === 'see-doctor' && c.promptedBy === 'you')).toBe(true);
+    expect(spoken.report?.eid.summary).not.toEqual(quiet.report?.eid.summary);
+    // Insist: trust falls, a 'pushed' cost is recorded, and he stops listening (a distrust refusal).
+    const pushy = new VoiceGame(SHIPPED_SEED);
+    play(pushy, { confirm: true, insist: true });
+    const you = voiceOf(pushy.halil, 'you');
+    expect(you?.trust ?? 1).toBeLessThan(0.25);
+    expect(you?.history?.some((h) => h.reason === 'pushed') ?? false).toBe(true);
+    const refusals = [...pushy.records.values()].filter((r) =>
+      (r.suggestions ?? (r.suggestion ? [r.suggestion] : [])).some(
+        (x) => x.voiceId === 'you' && x.kind === 'willNot' && x.reason === 'distrust',
+      ),
+    );
+    expect(refusals.length).toBeGreaterThan(0);
+    expect(pushy.report?.eid.summary.some((l) => /You insisted/.test(l))).toBe(true);
+  });
+
+  test('every report section is non-empty, with no input and with prefill confirmations', () => {
+    for (const g of [quiet, spoken]) {
+      const r = g.report;
+      expect(r, 'report').toBeDefined();
+      if (!r) continue;
+      for (const [k, v] of Object.entries(r)) {
+        if (Array.isArray(v)) expect(v.length, k).toBeGreaterThan(0);
+      }
+      expect(r.eid.lines.length).toBeGreaterThan(0);
+      expect(r.eid.strip.cells.length).toBeGreaterThan(0);
+      expect(r.rows.length).toBe(5);
+      expect(r.trust.map((t) => t.id)).toEqual(['you', 'selin', 'riza', 'hacer', 'osman']);
+      console.log(
+        `report (${g === quiet ? 'quiet' : 'prefill'}):`,
+        JSON.stringify({
+          own: r.own,
+          others: r.others,
+          stopped: r.stopped,
+          eid: r.eid.lines.slice(0, 4),
+          open: r.open,
+        }),
+      );
+    }
+    const text = JSON.stringify(spoken.report).toLowerCase();
+    for (const w of ['score', 'accepted by', 'reward', 'sin']) expect(text.includes(` ${w} `)).toBe(false);
+  });
+
+  test('frames stay under 100 KB', () => {
+    expect(maxFrame).toBeGreaterThan(0);
+    expect(maxFrame).toBeLessThan(100_000);
+    expect(JSON.stringify(spoken.frame()).length).toBeLessThan(100_000);
+  });
+
+  test('keep listening resumes after Eid night with the voice live', () => {
+    const g = spoken;
+    expect(g.phase).toBe('report');
+    g.keepListening();
+    expect(g.phase).toBe('free');
+    expect(g.day).toBe(32);
+    expect(g.frame().muted).toBe(false);
+    g.dismissIntro();
+    g.resume();
+    // Run until the composer opens, then speak.
+    for (let i = 0; i < 2000 && !(g.composer().open && !g.paused); i++) {
+      if (g.paused) g.resume();
+      g.advanceTo(g.t + 10);
+    }
+    const f = g.frame();
+    expect(f.composer.open).toBe(true);
+    const option = f.options.find((o) => !o.leaning) ?? f.options[0];
+    expect(option).toBeDefined();
+    g.suggest({ optionId: option?.id ?? '', strength: 'urge', insist: false });
+    const answer = g.log.filter((e) => e.kind === 'answer').at(-1);
+    expect(answer && answer.minute >= at(32, 0)).toBe(true);
+    // The epilogue ran on a clone: the free run starts again from Eid night, not from day 38.
+    expect(g.t).toBeLessThan(at(33, 0));
+  });
+});
+
+describe('Game 2 sim beats on provoked cases', () => {
+  test('duty-risk fires when a held commitment enters its closing stretch unfulfilled', () => {
+    const g = new VoiceGame(SHIPPED_SEED);
+    play(g, { stop: (x) => x.t >= at(1, 8, 30) });
+    const h = g.halil;
+    // A promise to Osman, due within the hour, that his workshop block does not fulfil.
+    h.agenda.commitments.push({
+      id: 'test-promise',
+      kind: 'promise',
+      toId: 'osman',
+      actions: ['pay-rent'],
+      from: g.t - 600,
+      until: g.t + 30,
+      importance: 0.8,
+      status: 'pending',
+      label: 'pay Osman',
+    });
+    g.resume();
+    g.advanceTo(g.t + 5);
+    const b = g.beats.history.find((x) => x.kind === 'duty-risk');
+    expect(b?.text).toMatch(/time he gives himself for pay Osman is nearly up/i);
+    expect(g.pauseBeat?.kind).toBe('duty-risk');
+  });
+
+  test('a beat inside the 20-minute cooldown is logged and does not pause; auto-pause off never pauses', () => {
+    const g = new VoiceGame(SHIPPED_SEED);
+    play(g, { stop: (x) => x.t >= at(1, 12) });
+    // Every cooldown beat that paused came at least 20 minutes after the previous pause of any kind.
+    let lastPause = Number.NEGATIVE_INFINITY;
+    for (const b of g.beats.history) {
+      if (!b.paused) continue;
+      if (b.kind !== 'verdict' && b.kind !== 'day-end' && b.kind !== 'eid')
+        expect(b.at - lastPause).toBeGreaterThanOrEqual(20);
+      lastPause = b.at;
+    }
+    // And on the shipped seed at least one beat fell inside a cooldown (the 03:59 recall right after the wake).
+    expect(g.beats.history.some((b) => !b.paused)).toBe(true);
+    const off = new VoiceGame(SHIPPED_SEED);
+    off.setAutoPause(false);
+    off.begin();
+    off.advanceTo(at(1, 12));
+    expect(off.paused).toBe(false);
+    expect(off.beats.history.length).toBeGreaterThan(2);
+    expect(off.beats.history.every((b) => !b.paused)).toBe(true);
+  });
+});
+
+describe('Game 2 sim determinism and budget', () => {
+  test('a 12-day skip under two standing whispers runs in under 1.5 s', () => {
+    const g = new VoiceGame(SHIPPED_SEED);
+    play(g, { stop: (x) => x.phase === 'between' && x.day === 2 });
+    expect(g.between?.next?.skipped).toBe(12);
+    const t0 = performance.now();
+    g.advance(WHISPERS);
+    const ms = performance.now() - t0;
+    console.log(`12-day skip: ${ms.toFixed(0)} ms`);
+    expect(g.day).toBe(15);
+    expect(ms).toBeLessThan(1500);
+    expect(g.intro?.lines.length).toBeGreaterThan(1);
+  });
+
+  test('the same seed and inputs give byte-identical frames on the same tick schedule', () => {
+    const runTicks = () => {
+      const g = new VoiceGame(SHIPPED_SEED);
+      g.setPace('fast');
+      g.begin();
+      const frames: string[] = [];
+      let lastKey = '';
+      for (let i = 0; i < 1500 && g.day <= 2; i++) {
+        if (g.phase === 'between') {
+          if (g.between?.next?.day !== 2) break;
+          g.advance([]);
+        }
+        if (g.intro) {
+          g.dismissIntro();
+          g.resume();
+        }
+        const f = g.frame();
+        if (g.paused) {
+          const key = `${f.minute}:${f.prefill?.optionId}`;
+          if (
+            f.composer.open &&
+            f.prefill &&
+            key !== lastKey &&
+            f.prefill.optionId !== g.standing?.draft.optionId
+          ) {
+            lastKey = key;
+            g.suggest({ optionId: f.prefill.optionId, strength: f.prefill.strength, insist: false });
+          } else g.resume();
+        }
+        g.tick(250);
+        frames.push(JSON.stringify(g.frame()));
+      }
+      return frames;
+    };
+    const a = runTicks();
+    const b = runTicks();
+    expect(a.length).toBeGreaterThan(50);
+    expect(b).toEqual(a);
+  });
+
+  test('whole runs repeat exactly: log, beats and report', () => {
+    const g1 = new VoiceGame(SHIPPED_SEED);
+    const g2 = new VoiceGame(SHIPPED_SEED);
+    play(g1, { confirm: true, whispers: WHISPERS });
+    // g2 also builds a frame at every turn, as the worker does on every tick: frames must not change the run.
+    const frameEveryTurn = (g: VoiceGame): boolean => {
+      g.frame();
+      return false;
+    };
+    play(g2, { confirm: true, whispers: WHISPERS, stop: frameEveryTurn });
+    expect(JSON.stringify(g2.log)).toBe(JSON.stringify(g1.log));
+    expect(JSON.stringify(g2.beats.history)).toBe(JSON.stringify(g1.beats.history));
+    expect(JSON.stringify(g2.report)).toBe(JSON.stringify(g1.report));
+  });
+
+  test('a new seed is a different town; Replay with the same seed is the same one', () => {
+    const run = (seed: number) => {
+      const g = new VoiceGame(seed);
+      play(g, { stop: (x) => x.phase === 'between' && x.day === 15 });
+      return JSON.stringify(g.log);
+    };
+    const a = run(SHIPPED_SEED);
+    expect(run(SHIPPED_SEED)).toBe(a);
+    expect(run(SHIPPED_SEED + 1)).not.toBe(a);
+  });
+
+  test('End the day keeps the standing suggestion live to 23:30', () => {
+    const g = new VoiceGame(SHIPPED_SEED);
+    play(g, { stop: (x) => x.t >= at(1, 19, 8) && x.paused && x.composer().open });
+    // Tea with Rıza while he breaks the fast: "after I eat", so it stands into the evening.
+    g.suggest({ optionId: 'tea:riza', strength: 'mention', insist: false });
+    const since = g.t;
+    const before = g.audit.length;
+    expect(g.standing).toBeDefined();
+    g.endDay();
+    expect(g.phase).toBe('between');
+    expect(g.t % MIN_DAY).toBe(DAY_END);
+    expect(before).toBe(0);
+    const later = [...g.records.values()].filter((r) => r.at > since + 1);
+    const heard = later.some((r) =>
+      (r.suggestions ?? (r.suggestion ? [r.suggestion] : [])).some((x) => x.voiceId === 'you'),
+    );
+    expect(heard).toBe(true);
+  });
+
+  test('the composer is closed while he sleeps and open with a prefill at the suhoor wake', () => {
+    const g = new VoiceGame(SHIPPED_SEED);
+    expect(g.frame().phase).toBe('premise');
+    expect(g.frame().paused).toBe(true);
+    g.begin();
+    expect(g.composer().open).toBe(false);
+    expect(g.composer().reason).toBe('asleep');
+    while (!g.paused) g.tick(250);
+    const f = g.frame();
+    expect(f.pauseBeat?.kind).toBe('wake');
+    expect(f.composer.open).toBe(true);
+    expect(f.prefill?.source).toBe('tutorial');
+    expect(f.prefill?.optionId).toBe('eat');
+    const tel = g.predict({ optionId: 'smoke', strength: 'urge', insist: false });
+    expect(['willNot', 'cannot', 'yes', 'notNow']).toContain(tel.tone);
+  });
+});

@@ -16,6 +16,7 @@ export default defineConfig({
       input: {
         main: resolve(root, 'index.html'),
         colony: resolve(root, 'colony/index.html'),
+        voice: resolve(root, 'voice/index.html'),
       },
     },
   },

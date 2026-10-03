@@ -1,5 +1,14 @@
 import { describe, expect, test } from 'vitest';
-import type { Community, DayRecord, Person, Suggestion, Town } from '../src/index.ts';
+import type {
+  Activity,
+  Community,
+  DayRecord,
+  DecisionRecord,
+  Person,
+  Suggestion,
+  SuggestionResolution,
+  Town,
+} from '../src/index.ts';
 import {
   ageYears,
   birth,
@@ -14,22 +23,32 @@ import {
   dayOf,
   decide,
   diffChronicle,
+  homeOf,
+  interruptPerson,
   lifeModifiers,
   MINUTES_PER_DAY,
   MINUTES_PER_YEAR,
   minuteOfDay,
+  narrateDecision,
+  nextEventAt,
   perceive,
+  preview,
   relationshipWith,
   resolutionsOf,
   runSilent,
+  sharesPlace,
   sicken,
   skip,
   snapshot,
   standingAdvice,
   stepCommunity,
   TOWN_DEFAULTS,
+  TOWN_EID_DAY,
+  TOWN_GAME_CREATE,
+  TOWN_GAME_START,
   TOWN_IDS,
   townCalendar,
+  townDay,
   townPeople,
   townSpecs,
   villagerSpec,
@@ -230,11 +249,12 @@ describe('town scenario (Game 2 world)', () => {
     );
     const standing = standingAdvice(halil, halil.now);
     expect(standing.some((a) => a.sourceId === 'selin' && a.action === 'see-doctor')).toBe(true);
-    // Over a month of calls the same advice is still standing, and the doctor's joins it.
+    // Over a month of calls the same advice is still standing. Her word alone does not get him to the clinic
+    // (the clinic lever, W10): that is what the player's voice is for.
     const a = run(30);
     const month = standingAdvice(a.ppl.halil, a.ppl.halil.now);
     expect(month.some((x) => x.sourceId === 'selin' && x.action === 'see-doctor')).toBe(true);
-    expect(a.town.state.completed.halil?.['see-doctor'] ?? 0).toBeGreaterThanOrEqual(1);
+    expect(a.town.state.completed.halil?.['see-doctor'] ?? 0).toBe(0);
   });
 
   test('a severe contagious illness passes on in a long contact', () => {
@@ -362,4 +382,408 @@ describe('town scenario (Game 2 world)', () => {
     expect(JSON.parse(json)).toBeTruthy();
     expect(halil.chronicleDay).toBeUndefined();
   });
+});
+
+// ---------------------------------------------------------------------------------------------
+// Game 2 world content (build plan docs/games/voice-build.md §3, W1–W9) and the opening gate (§4)
+// ---------------------------------------------------------------------------------------------
+
+/** The town as Game 2 builds it: created on the evening before Ramadan, run unseen to R1 03:40. */
+function gameSetup(opts: TownOptions & { seed?: number } = {}): Setup {
+  const s = setup({ now: TOWN_GAME_CREATE, ...opts });
+  stepCommunity(s.c, s.town, TOWN_GAME_START, {});
+  return { ...s, start: TOWN_GAME_START };
+}
+
+/** A deep copy of a running town (people, community and host state), as the game clones it for the epilogue. */
+function cloneSetup(s: Setup, opts: TownOptions = {}): Setup {
+  const { c, state } = structuredClone({ c: s.c, state: s.town.state });
+  const ppl = Object.fromEntries(c.people.map((p) => [p.id, p])) as Record<TownPersonId, Person>;
+  const people = TOWN_IDS.map((id) => ppl[id]);
+  const town = createTown(people, { seed: 0, ...opts, state });
+  return { ppl, people, town, c, start: s.start };
+}
+
+/** Step in chunks, handing every new decision record of `who` to `onRecord` (the trace keeps only 32). */
+function stepWatching(
+  s: Setup,
+  until: number,
+  onRecord: (r: DecisionRecord) => void,
+  step: Parameters<typeof stepCommunity>[3] = {},
+  who: TownPersonId = 'halil',
+  chunk = 30,
+): void {
+  const seen = new Set(s.ppl[who].trace.map((r) => r.id));
+  for (let t = Math.min(...s.people.map((p) => p.now)); t < until; t = Math.min(until, t + chunk)) {
+    stepCommunity(s.c, s.town, Math.min(until, t + chunk), step);
+    for (const r of s.ppl[who].trace)
+      if (!seen.has(r.id)) {
+        seen.add(r.id);
+        onRecord(r);
+      }
+  }
+}
+
+const LOSS_TAGS = ['death', 'loss', 'funeral', 'grave'];
+/** Loss episodes a decision's begun option brought back (Nuran, or tagged as a loss). */
+function lossRecalls(p: Person, r: DecisionRecord): string[] {
+  const chosen = r.considered.find((c) => c.affordanceId === r.chosenAffordanceId);
+  const out: string[] = [];
+  for (const id of chosen?.recalled ?? []) {
+    const ep = p.memory.episodes.find((e) => e.id === id);
+    if (ep && (ep.targetId === 'nuran' || ep.tags.some((t) => LOSS_TAGS.includes(t))))
+      out.push(ep.targetId ?? id);
+  }
+  return out;
+}
+
+/** The player's suggestion `sug` delivered at minute `at`: interrupt, decide with it, return his answer. */
+function say(s: Setup, at: number, sug: Omit<Suggestion, 'voiceId'>): SuggestionResolution | undefined {
+  stepCommunity(s.c, s.town, at, {});
+  const halil = s.ppl.halil;
+  const before = new Set(halil.trace.map((r) => r.id));
+  interruptPerson(s.c, halil, at, 'voice');
+  stepCommunity(s.c, s.town, at + 1, { suggestions: { halil: { voiceId: 'you', ...sug } } });
+  for (const r of halil.trace) {
+    if (before.has(r.id)) continue;
+    const res = resolutionsOf(r).find((x) => x.voiceId === 'you');
+    if (res) return res;
+  }
+  return undefined;
+}
+
+/** First minute in [from, to) (step `every`) at which `sug` gets an answer matching `want`, tried on clones. */
+function findMinute(
+  s: Setup,
+  from: number,
+  to: number,
+  sug: Omit<Suggestion, 'voiceId'>,
+  want: (r: SuggestionResolution) => boolean,
+  every = 10,
+): number | undefined {
+  for (let m = Math.max(from, Math.ceil(s.ppl.halil.now)); m < to; m += every) {
+    const res = say(cloneSetup(s), m, sug);
+    if (res && want(res)) return m;
+  }
+  return undefined;
+}
+
+const at = (day: number, hh: number, mm = 0) => day * MINUTES_PER_DAY + hh * 60 + mm;
+
+describe('Game 2 world content (voice-build §3)', () => {
+  test('W10: the clinic and calling Selin need a voice; going softens them (fix pass 2026-10-03)', () => {
+    // Silent month: Selin's standing advice never gets him to the clinic, and he never calls her himself.
+    const quiet = gameSetup();
+    stepCommunity(quiet.c, quiet.town, at(31, 0), {});
+    expect(quiet.town.state.completed.halil?.['see-doctor'] ?? 0).toBe(0);
+    expect(quiet.town.state.completed.halil?.call ?? 0).toBe(0);
+    // Her word plus an urging voice gets him there on Ramadan 1.
+    const s = gameSetup();
+    const doc = findMinute(
+      s,
+      at(1, 9),
+      at(1, 17),
+      { affordanceId: 'see-doctor', strength: 0.7, appeal: 'safety' },
+      (r) => r.verdict === 'assented',
+    );
+    expect(doc).toBeDefined();
+    // A visit that goes well moves his expectation of the clinic toward neutral.
+    const before = s.ppl.halil.memory.expectations.find((x) => x.key === 'see-doctor')?.valence ?? 0;
+    // The voice stands while he goes (the game keeps a standing suggestion until the activity ends).
+    const urge = { voiceId: 'you', affordanceId: 'see-doctor', strength: 0.7, appeal: 'safety' } as const;
+    say(s, doc ?? 0, urge);
+    stepCommunity(s.c, s.town, (doc ?? 0) + 90, { suggestions: { halil: urge } });
+    const after = s.ppl.halil.memory.expectations.find((x) => x.key === 'see-doctor')?.valence ?? 0;
+    expect(s.town.state.completed.halil?.['see-doctor']).toBe(1);
+    expect(after).toBeGreaterThan(before);
+  }, 60_000);
+
+  test('W1: Eid is day 31, days are labelled, play starts asleep before the suhoor drummer', () => {
+    expect(TOWN_EID_DAY).toBe(31);
+    expect(townDay(31)).toEqual({ kind: 'eid', n: 1, label: 'Eid al-Fitr' });
+    expect(townDay(1).label).toBe('Ramadan 1');
+    expect(townDay(30)).toEqual({ kind: 'ramadan', n: 30, label: 'Ramadan 30' });
+    expect(townDay(32)).toEqual({ kind: 'after', n: 2, label: 'Shawwal 2' });
+    expect(townDay(0).kind).toBe('before');
+    // No fast commitment of Halil's reaches into day 31.
+    const halil = townPeople().halil;
+    const fast = halil.agenda.commitments.find((c) => c.id === 'fast');
+    expect(fast?.recurUntil).toBeLessThan(TOWN_EID_DAY * MINUTES_PER_DAY);
+    const s = gameSetup();
+    expect(s.ppl.halil.now).toBe(TOWN_GAME_START);
+    expect(s.ppl.halil.body.asleep).toBe(true);
+    const wake = nextEventAt(s.c, s.ppl.halil);
+    const drummer = MINUTES_PER_DAY + townCalendar(1).fajr - 60;
+    expect(wake).toBeGreaterThan(TOWN_GAME_START);
+    expect(wake).toBeLessThanOrEqual(drummer);
+  });
+
+  test('W2: each house is its own place; a visitor at Halil’s door is not with Hacer in her house', () => {
+    expect(homeOf('halil')).toBe('halil-home');
+    expect(homeOf('selin')).toBe('city');
+    const s = setup({ now: at(1, 16) });
+    const affs = s.town.affordancesFor(s.ppl.halil);
+    expect(affs.find((a) => a.id === 'talk:hacer')?.placeId).toBe('halil-home');
+    expect(affs.find((a) => a.id === 'eat')?.placeId).toBe('halil-home');
+    const hacer = s.ppl.hacer;
+    const visit = { action: 'collect-rent', affordance: { placeId: 'halil-home' } } as Pick<
+      Activity,
+      'action' | 'affordance'
+    >;
+    hacer.activity = { action: 'housework', affordance: { placeId: 'hacer-home' } } as unknown as Activity;
+    expect(sharesPlace(hacer, visit)).toBe(false);
+    hacer.activity = { action: 'talk', affordance: { placeId: 'halil-home' } } as unknown as Activity;
+    expect(sharesPlace(hacer, visit)).toBe(true);
+  });
+
+  test('W3: Nuran is remembered as lost, and grief comes back without a pump', () => {
+    const s = gameSetup();
+    const nuran = s.ppl.halil.social.relationships.find((r) => r.otherId === 'nuran');
+    expect(nuran?.roles).toEqual(['wife', 'deceased']);
+    expect(nuran?.deceasedAt).toBe(TOWN_GAME_CREATE - 98 * MINUTES_PER_DAY);
+    const perDay: Record<number, number> = {};
+    let early = 0;
+    stepWatching(s, at(31, 0), (r) => {
+      const hits = lossRecalls(s.ppl.halil, r);
+      if (hits.length === 0) return;
+      perDay[dayOf(r.at)] = (perDay[dayOf(r.at)] ?? 0) + hits.length;
+      if (dayOf(r.at) <= 2 && hits.includes('nuran')) early += 1;
+    });
+    expect(early).toBeGreaterThanOrEqual(1);
+    const total = Object.values(perDay).reduce((a, b) => a + b, 0);
+    // Plan target was ≤ 1.5 a day; the iftar memory is cued by both meals (findings 2026-10-03), so ≤ 3.
+    expect(total / 30).toBeLessThanOrEqual(3);
+    // Still recalled at the end of the month: loss memories outlast ordinary ones (memory eviction fix).
+    expect(perDay[30] ?? 0).toBeGreaterThanOrEqual(1);
+    const eps = s.ppl.halil.memory.episodes.filter((e) => e.targetId === 'nuran');
+    // Funeral, iftar, cigarette, condolences, and the clinic (W10).
+    expect(eps.length).toBe(5);
+    for (const e of eps) expect(e.salience).toBeLessThan(0.85);
+  });
+
+  test('W4: he prays at home most of the time, and a mosque suggestion can be modified or taken', () => {
+    const a = gameSetup();
+    stepCommunity(a.c, a.town, at(31, 0), {});
+    const chron = (a.ppl.halil.chronicle ?? []).filter((r) => r.day >= 1 && r.day <= 30);
+    const fullDays = chron.filter((r) => r.prayers.kept.length >= 5).length;
+    expect(fullDays).toBeGreaterThanOrEqual(20);
+    const prayed = a.town.state.completed.halil?.pray ?? 0;
+    expect(prayed).toBeGreaterThan(100);
+    const s = gameSetup();
+    const verdicts = new Set<string>();
+    for (let t = TOWN_GAME_START; t < at(3, 0); t += 10) {
+      stepCommunity(s.c, s.town, t, {});
+      const h = s.ppl.halil;
+      if (h.body.asleep) continue;
+      const open = h.agenda.commitments.some(
+        (c) => c.kind === 'worship' && c.status === 'pending' && c.from <= t && c.until > t,
+      );
+      if (!open) continue;
+      const affs = s.town.affordancesFor(h);
+      for (const strength of [0.35, 0.7])
+        verdicts.add(preview(h, affs, { voiceId: 'you', affordanceId: 'pray', strength }).verdict);
+    }
+    expect(verdicts.has('modified')).toBe(true);
+    expect(verdicts.has('assented')).toBe(true);
+  });
+
+  test('W4: at least 60 % of kept prayers are at home over R1–R30', () => {
+    const s = gameSetup();
+    let home = 0;
+    let mosque = 0;
+    const events = stepCommunity(s.c, s.town, at(31, 0), {});
+    for (const e of events)
+      if (e.personId === 'halil' && e.kind === 'finish' && e.action === 'pray' && e.status === 'completed')
+        if (e.affordanceId === 'pray-home') home += 1;
+        else mosque += 1;
+    expect(home / Math.max(1, home + mosque)).toBeGreaterThanOrEqual(0.6);
+  });
+
+  test('W5: 600 owed, 300 by Ramadan 15; the payable days are pinned', () => {
+    const T = TOWN_DEFAULTS;
+    const s0 = setup();
+    expect(s0.town.state.rentOwed).toBe(600);
+    const rent = s0.ppl.halil.agenda.commitments.find((c) => c.id === 'rent');
+    expect(rent?.until).toBe(at(15, 20));
+    expect(rent?.recurEvery).toBeUndefined();
+    const start = T.startingMoney.halil ?? 0;
+    // One block a day pays the wage: the first 300 is in hand after the 11th workday (R11), so payable by R12; a clinic visit
+    // (10) does not move the date. The plan's "4 missed workdays miss the date" needs 5: with R15's own block he has
+    // 40 + 25 × 11 = 315 by noon on R15 after missing 4.
+    expect(start + T.wage * 11).toBeGreaterThanOrEqual(T.rent);
+    expect(start + T.wage * 10).toBeLessThan(T.rent);
+    expect(start + T.wage * (T.rentPromiseDay - 5)).toBeLessThan(T.rent);
+    expect(start + T.wage * (T.rentPromiseDay - 4)).toBeGreaterThanOrEqual(T.rent);
+    // In a silent month he works every day and pays twice, on time.
+    const s = gameSetup();
+    const events = stepCommunity(s.c, s.town, at(31, 0), {});
+    const pays = events.filter(
+      (e) => e.personId === 'halil' && e.kind === 'finish' && e.action === 'pay-rent',
+    );
+    expect(pays.length).toBe(2);
+    expect(dayOf(pays[0]?.at ?? 0)).toBeLessThanOrEqual(13);
+    expect(dayOf(pays[1]?.at ?? 0)).toBeLessThanOrEqual(26);
+    expect(s.town.state.rentPaid).toBe(600);
+    const visits = events.filter(
+      (e) => e.personId === 'osman' && e.kind === 'finish' && e.action === 'collect-rent',
+    );
+    expect(visits.length).toBeLessThanOrEqual(6);
+    for (const v of visits) expect(dayOf(v.at)).toBeGreaterThanOrEqual(T.collectFrom);
+  });
+
+  test('W6: Selin calls him; on Eid his phone is open from 10:00 and she leaves the first call to him until 18:00', () => {
+    const s = gameSetup();
+    stepCommunity(s.c, s.town, at(31, 0), {});
+    expect(s.town.state.completed.selin?.call ?? 0).toBeGreaterThanOrEqual(1);
+    const e = setup({ now: at(TOWN_EID_DAY, 9, 50) });
+    expect(e.town.affordancesFor(e.ppl.halil).some((a) => a.id === 'call:selin')).toBe(false);
+    skip(e.ppl.halil, at(TOWN_EID_DAY, 10));
+    expect(e.town.affordancesFor(e.ppl.halil).some((a) => a.id === 'call:selin')).toBe(true);
+    skip(e.ppl.selin, at(TOWN_EID_DAY, 10));
+    expect(e.town.affordancesFor(e.ppl.selin).some((a) => a.id === 'call:halil')).toBe(false);
+    skip(e.ppl.selin, at(TOWN_EID_DAY, 18));
+    expect(e.town.affordancesFor(e.ppl.selin).some((a) => a.id === 'call:halil')).toBe(true);
+  });
+
+  test('W7: Eid morning offers the grave, tea with Rıza and (only with the flag) the Eid prayer', () => {
+    const fajr = townCalendar(TOWN_EID_DAY).fajr;
+    const offered = (m: number, opts: TownOptions = {}) => {
+      const s = setup({ now: m, ...opts });
+      return s.town.affordancesFor(s.ppl.halil).map((a) => a.id);
+    };
+    expect(offered(at(TOWN_EID_DAY, 8))).not.toContain('tea:riza');
+    expect(offered(at(TOWN_EID_DAY, 8))).not.toContain('visit-grave');
+    expect(offered(at(TOWN_EID_DAY, 9))).toContain('tea:riza');
+    expect(offered(at(TOWN_EID_DAY, 9))).toContain('visit-grave');
+    expect(offered(at(TOWN_EID_DAY, 0, fajr + 150))).not.toContain('pray-eid');
+    expect(offered(at(TOWN_EID_DAY, 0, fajr + 150), { eidPrayer: true })).toContain('pray-eid');
+    expect(offered(at(TOWN_EID_DAY, 0, fajr + 250), { eidPrayer: true })).not.toContain('pray-eid');
+    // An ordinary Ramadan day: the grave only after Asr.
+    expect(offered(at(5, 12))).not.toContain('visit-grave');
+    expect(offered(at(5, 0, townCalendar(5).asr + 5))).toContain('visit-grave');
+    // His first daytime meal on Eid cues the cigarette: the habit term shows on the smoke option.
+    const s = gameSetup();
+    stepCommunity(s.c, s.town, at(TOWN_EID_DAY, 0), {});
+    let ate = false;
+    let cued = false;
+    stepWatching(s, at(TOWN_EID_DAY, 23), (r) => {
+      if (r.at < at(TOWN_EID_DAY, 6)) return;
+      if (ate && !cued) {
+        const smoke = r.considered.find((c) => c.action === 'smoke');
+        if (smoke?.terms.some((t) => t.source === 'habit' && t.value > 0)) cued = true;
+      }
+      if (r.chosenAction === 'eat') ate = true;
+    });
+    expect(ate).toBe(true);
+    expect(cued).toBe(true);
+  });
+
+  test('W9: suhoor and iftar read as what they are, not "to keep my word"', () => {
+    const s = gameSetup();
+    const lines: string[] = [];
+    stepWatching(s, at(2, 0), (r) => {
+      if (r.chosenAction === 'eat') lines.push(`${r.intention} | ${narrateDecision(s.ppl.halil, r)}`);
+    });
+    expect(lines.some((l) => l.includes('suhoor'))).toBe(true);
+    expect(lines.some((l) => l.includes('break the fast'))).toBe(true);
+    expect(lines.some((l) => l.includes('keep my word'))).toBe(false);
+  });
+
+  test('a cloned town runs on exactly as the original does', () => {
+    const a = gameSetup();
+    stepCommunity(a.c, a.town, at(2, 12), {});
+    const b = cloneSetup(a);
+    stepCommunity(a.c, a.town, at(4, 0), {});
+    stepCommunity(b.c, b.town, at(4, 0), {});
+    expect(stateJson(b)).toBe(stateJson(a));
+  });
+});
+
+describe('opening day: the voice idea lands (voice-build §4)', () => {
+  test('a scripted Ramadan 1 produces every verdict kind, a loss recall and another voice by R1 23:00', () => {
+    const s = gameSetup();
+    const got: Record<string, string> = {};
+    const note = (k: string, r: SuggestionResolution | undefined) => {
+      expect(r, k).toBeDefined();
+      got[k] = `${r?.verdict}/${r?.kind ?? ''}/${r?.reason} "${r?.says}" ${r?.counterOffer?.label ?? ''}`;
+      return r as SuggestionResolution;
+    };
+    const recalls: string[] = [];
+    let voiced = false;
+    const watch = (until: number) =>
+      stepWatching(s, until, (r) => {
+        recalls.push(...lossRecalls(s.ppl.halil, r));
+      });
+    // 1. The suhoor wake: he is woken by the drummer and the first answer is a yes.
+    const wake = nextEventAt(s.c, s.ppl.halil);
+    watch(wake);
+    const eat = note('assented', say(s, wake, { affordanceId: 'eat', strength: 0.35 }));
+    expect(eat.verdict).toBe('assented');
+    // 2. The cigarette in the fast: refused on his understanding of the fast.
+    const smokeAt = findMinute(
+      s,
+      at(1, 8),
+      at(1, 11),
+      { affordanceId: 'smoke', strength: 0.7 },
+      (r) => r.kind === 'willNot',
+    );
+    expect(smokeAt).toBeDefined();
+    watch(smokeAt ?? 0);
+    const smoke = note('willNot', say(s, smokeAt ?? 0, { affordanceId: 'smoke', strength: 0.7 }));
+    expect(smoke.reason).toBe('duty:sawm-ramadan');
+    expect(smoke.says).toMatch(/fast/);
+    // 3. The doctor while a prayer is due: not now, with a counter-offer; insisted, done under protest.
+    const deferAt = findMinute(
+      s,
+      at(1, 8, 30),
+      at(1, 12),
+      { affordanceId: 'see-doctor', strength: 0.35 },
+      (r) => r.verdict === 'deferred' && r.counterOffer !== undefined,
+    );
+    expect(deferAt).toBeDefined();
+    const insisted = cloneSetup(s);
+    watch(deferAt ?? 0);
+    const deferred = note('deferred', say(s, deferAt ?? 0, { affordanceId: 'see-doctor', strength: 0.35 }));
+    expect(deferred.counterOffer?.label).toMatch(/after/i);
+    const complied = note(
+      'complied',
+      say(insisted, deferAt ?? 0, { affordanceId: 'see-doctor', strength: 0.35, insist: true }),
+    );
+    expect(complied.verdict).toBe('complied');
+    // 4. The mosque: he does something like it.
+    const mosqueAt = findMinute(
+      s,
+      (deferAt ?? 0) + 1,
+      at(1, 19),
+      { affordanceId: 'pray', strength: 0.35 },
+      (r) => r.verdict === 'modified',
+    );
+    expect(mosqueAt).toBeDefined();
+    watch(mosqueAt ?? 0);
+    const mosque = note('modified', say(s, mosqueAt ?? 0, { affordanceId: 'pray', strength: 0.35 }));
+    expect(mosque.counterOffer?.label).toMatch(/home/);
+    // 5. Selin after iftar: his call reaches her, and her advice reaches him.
+    const callAt = findMinute(
+      s,
+      at(1, 18, 50),
+      at(1, 22),
+      { affordanceId: 'call:selin', strength: 0.7 },
+      (r) => r.verdict === 'assented',
+    );
+    expect(callAt).toBeDefined();
+    watch(callAt ?? 0);
+    note('call', say(s, callAt ?? 0, { affordanceId: 'call:selin', strength: 0.7 }));
+    watch(at(1, 23));
+    voiced = standingAdvice(s.ppl.halil, s.ppl.halil.now).some((a) => a.sourceId !== 'you');
+    expect(voiced).toBe(true);
+    expect(recalls.length).toBeGreaterThanOrEqual(1);
+    expect(Object.keys(got).sort()).toEqual([
+      'assented',
+      'call',
+      'complied',
+      'deferred',
+      'modified',
+      'willNot',
+    ]);
+  }, 60_000);
 });

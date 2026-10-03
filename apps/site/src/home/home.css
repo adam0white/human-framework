@@ -552,3 +552,26 @@ body {
     padding: 44px 0;
   }
 }
+
+.scene-voice .voice-sky {
+  fill: #1b2140;
+}
+.scene-voice .voice-moon {
+  fill: #e8a33c;
+}
+.scene-voice .voice-page {
+  fill: #ede6d6;
+}
+.scene-voice .voice-rule {
+  stroke: rgba(27, 33, 64, 0.12);
+  stroke-width: 1;
+}
+.scene-voice .voice-ink {
+  fill: none;
+  stroke: #2b2622;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.scene-voice .voice-ink-you {
+  stroke: #b8860b;
+}

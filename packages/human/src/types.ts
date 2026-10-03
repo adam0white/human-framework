@@ -878,6 +878,8 @@ export interface SuggestionResolution {
   episodeId?: string;
   /** For an omission refusal or deferral: the closing commitment the person will not miss. */
   commitmentId?: string;
+  /** The voice insisted. An insisted suggestion earns no trust when it goes well (2026-10-03). */
+  insisted?: boolean;
 }
 
 /** One contribution to an option's utility. */

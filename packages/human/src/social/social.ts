@@ -224,6 +224,7 @@ export function seedRelationships(
       ledger: clamp(spec.ledger ?? 0, -SOCIAL_DEFAULTS.ledgerLimit, SOCIAL_DEFAULTS.ledgerLimit),
       lastInteraction: spec.lastInteraction ?? now,
     };
+    if (spec.deceasedAt !== undefined) rel.deceasedAt = spec.deceasedAt;
     const dup = relationships.findIndex((r) => r.otherId === rel.otherId);
     if (dup >= 0) relationships.splice(dup, 1);
     insertBounded(relationships, rel);

@@ -287,12 +287,15 @@ export function nextEventAt(c: Community, p: Person): Minute {
   return Math.max(p.now, c.idleUntil[p.id] ?? p.now);
 }
 
-/** How this person would answer `suggestion` now, without changing state (UI telegraph; wraps `predict`). */
+/**
+ * How this person would answer `suggestion` now, without changing state (UI telegraph; wraps `predict`). Pass the
+ * world's `scarcityFor(p)` as `scarcity`, as the step does, or the telegraph can promise what the step refuses.
+ */
 export function preview(
   p: Person,
   affordances: readonly Affordance[],
   suggestion: Suggestion,
-  opts: { necessity?: boolean } = {},
+  opts: { necessity?: boolean; others?: readonly Suggestion[]; scarcity?: number } = {},
 ): SuggestionResolution {
   return predict(p, affordances, suggestion, opts);
 }
