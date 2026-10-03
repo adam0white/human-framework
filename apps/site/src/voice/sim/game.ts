@@ -127,6 +127,10 @@ const CRAVING_MIN = 0.3;
 const BODILY_ACTS = new Set(['eat', 'drink', 'sleep', 'rest']);
 const BODILY_INTENTIONS = /^to (drink|feed myself|sleep|rest)$/;
 const THIRST_RISK = 0.7;
+/** A promise's running-late beat comes at most this many minutes before its deadline. */
+const PROMISE_RISK_LEAD = 180;
+/** While he sleeps, a deadline beat waits until the deadline is this close (he may wake first). */
+const ASLEEP_RISK_LEAD = 60;
 
 export interface Run {
   c: Community;
@@ -1246,6 +1250,10 @@ export class VoiceGame {
       const closing = pressureReachedAt(c, 1);
       if (closing === undefined || t < closing || t >= c.until) continue;
       if (act && (c.actions.includes(act.action) || act.affordance.fulfills?.includes(c.id))) continue;
+      // Not for a sleeping man, and not hours early for a promise (its pressure saturates long before the day):
+      // the flag is left unset so the beat can still fire once he is awake and the deadline is near.
+      if (h.body.asleep && c.until - t > ASLEEP_RISK_LEAD) continue;
+      if (c.kind === 'promise' && c.until - t > PROMISE_RISK_LEAD) continue;
       if (!flagOnce(this.beats, `duty:${c.id}:${c.until}`)) continue;
       const label = commitmentLabel(c.label, c.actions[0], c.kind);
       // His own deadline, not a ruling: the window's end is an engineering assumption (see the model notes).
@@ -1360,6 +1368,7 @@ export class VoiceGame {
       next = nd === undefined ? null : { label: dayLabel(nd), day: nd, skipped: nd - d - 1 };
     }
     const skipped = next?.skipped ?? 0;
+    const short = moneyShort(this.run.town, this.t);
     const cost = `He’ll hear each word for ${skipped} days, taking turns with the other, whenever he could act on it. Once he has done it for its time (a prayer at the mosque for that prayer), the word rests until the next. A mention he turns down costs nothing. An urge he keeps turning down wears his trust in you down, about once a day, and the same word going well again earns less each time.`;
     this.between = {
       closed: `${dayLabel(d)} is over.`,
@@ -1371,11 +1380,12 @@ export class VoiceGame {
       next,
       choices:
         skipped > 0
-          ? (Object.keys(WHISPERS) as StandingWhisper['choiceId'][]).map((id) => ({
-              id,
-              label: WHISPERS[id].label,
-              cost,
-            }))
+          ? (Object.keys(WHISPERS) as StandingWhisper['choiceId'][]).map((id) => {
+              const choice: BetweenView['choices'][number] = { id, label: WHISPERS[id].label, cost };
+              if (id === 'extra' && short)
+                choice.hint = `Mornings alone get him to about ${short.projected} by ${short.by}; ${short.wants}. He doesn’t count on the shift’s pay, so a bare mention won’t move him. Remind him of his word (“it’s your duty”), or urge it.`;
+              return choice;
+            })
           : [],
     };
     this.phase = 'between';

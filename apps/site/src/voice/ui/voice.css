@@ -1486,6 +1486,12 @@ button.v-log-btn:hover {
   flex-wrap: wrap;
   padding: 2px 4px 4px;
 }
+.v-whisper-hint {
+  margin: 0;
+  padding: 0 4px 4px;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
 .v-whisper-how select {
   min-height: 32px;
   border-radius: 8px;

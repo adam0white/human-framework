@@ -8,7 +8,6 @@ import {
   clockOf,
   JOBS,
   type Minute,
-  STOREROOM_STAGES,
   VILLAGERS,
   type VillagerId,
   villagerById,
@@ -25,6 +24,7 @@ import {
   type PlaybackState,
   type Speed,
 } from './contract.ts';
+import { goalValue } from './end-report.ts';
 import { LOOKS } from './renderer.ts';
 
 export const ROLE_LABEL: Record<string, string> = {
@@ -258,13 +258,7 @@ export function TopBar(props: {
 const GOAL_ICON: Record<string, string> = { roof: '⌂', stock: '◒', lives: '♥', project: '⌂' };
 const STATUS_MARK: Record<GoalSide['status'], string> = { open: '…', met: '✓', failed: '✗' };
 
-export function goalValue(g: Pick<GoalView, 'id' | 'target'>, s: GoalSide): string {
-  if (g.id === 'roof') return `${Math.floor(s.value)}/10`;
-  if (g.id === 'stock') return `${s.value} meals`;
-  if (g.id === 'lives') return `${s.value}/6`;
-  // The Day-3 project is the store-room on both sides (a side still finishing the house shows 0).
-  return `${s.value}/${STOREROOM_STAGES}`;
-}
+export { goalValue };
 
 export function GoalChip({
   goal,

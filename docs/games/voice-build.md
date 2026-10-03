@@ -469,14 +469,14 @@ Neither owner edits the other's files. A protocol change goes through the WORLD+
 
 ### Second pass (design critique and playtest list, 2026-10-03)
 
-Engine 1.3.0. `npm run check`: 45 files, 529 tests. Measured on seed 7 with headless players (scratchpad probe, not in the repo):
+Engine 1.3.0. `npm run check`: 45 files, 529 tests. Measured on seed 7 with headless players (scratchpad probe, not in the repo). The whisper rows carry a reason; until the fifth pass the between-days card picked a whisper with no reason, so these rows were not what the card produced by default (see the fifth pass):
 
 | Play style | Osman's date (300 by R15) | Afternoon shifts | Clinic | His own calls to Selin (Eid) | Trust at Eid | Pauses |
 |---|---|---|---|---|---|---|
 | Silent | missed; 300 paid R17 | 0 | never | 0 (none) | 0.50 | 44 |
-| Prefill + whisper doctor/Selin | missed; R16 | 3, on your word | once, on your word | 28 (18:55) | 0.59 | 53 |
+| Prefill + whisper doctor (Mention, “your health”) / Selin (Mention, “for Selin”) | missed; R16 | 3, on your word | once, on your word | 28 (18:55) | 0.59 | 53 |
 | Insist every prefill + Urge doctor/mosque | kept; R15 14:46 | 4 | 5 times | 2 (none) | 0.51 | 51 |
-| Prefill + whisper shift/Selin | kept; R11, second 300 R22 | 25, all on your word | once | 28 (14:55) | 0.62 | 46 |
+| Prefill + whisper shift (Mention, “it’s your duty”) / Selin (Mention, “for Selin”) | kept; R11, second 300 R22 | 25, all on your word | once | 28 (14:55) | 0.62 | 46 |
 
 - **A goal you can fail.** The wage is 16 (was 25): 40 + 16 × 15 = 280 by R15, so morning work alone misses Osman's date. A new `work-extra` affordance (afternoon shift, 90 min, dhuhr+15 to asr−90, not on Eid) pays 16 but carries no `material` term, so he does not reckon on it and almost never takes it alone; a voice can get him there. Osman comes to the door on his own date when nothing is paid. The workshop is shut on Eid (town custom, engineering assumption, no norm attached). When the shift opens and the projection falls short, the game pauses once a day ("The workshop has an afternoon shift. Mornings alone get him to about …", duty-risk kind) with the shift prefilled; the skip card offers it as a whisper. Only the whisper keeps the date reliably: the played-day pauses alone add 3 shifts, which is not enough.
 - **Real decisions at pauses.** A pause comes only when his answer changes tone or on the first answer; a same-tone answer with a new counter-offer is logged, not paused. The suhoor wake is announced a minute ahead on a waking copy of him, so the composer opens before he chooses (the tutorial prefill and the first "yes" survive). The close-call prefill rule is gone; prefills now come from other voices' advice, rent, money, the doctor, and Selin after maghrib when he has not called for two days.
@@ -495,9 +495,9 @@ Engine 1.3.0. `npm run check`: 45 files, 529 tests. Measured on seed 7 with head
 | Play style | Mosque visits on skipped days | Illness-excused fasts | Osman's date | Clinic | Selin on Eid | Trust at Eid | Pauses |
 |---|---|---|---|---|---|---|---|
 | Silent | 24 (1 a day) | 0 | missed; R17 | never | neither called | 0.50 | 45 |
-| Prefill + whisper doctor/Selin | 15 | 0 | missed; R16 | once | he called, 18:55 | 0.59 | 53 |
+| Prefill + whisper doctor (Mention, “your health”) / Selin (Mention, “for Selin”) | 15 | 0 | missed; R16 | once | he called, 18:55 | 0.59 | 53 |
 | Insist every prefill + Urge doctor/mosque | 134 (4–6 a day; was about 25 a day) | 0 (was 25) | kept; R15 14:15 | 4 times | neither called | 0.56 (was 0.51) | 49 |
-| Prefill + whisper shift/Selin | 29 | 0 | kept; R12, second 300 R23 | once | he called, 19:05 | 0.63 | 45 |
+| Prefill + whisper shift (Mention, “it’s your duty”) / Selin (Mention, “for Selin”) | 29 | 0 | kept; R12, second 300 R23 | once | he called, 19:05 | 0.63 | 45 |
 
 - **Standing advice is satisfied once per occasion (framework).** A standing suggestion whose action keeps one of his commitments is heard until he does it, then lies dormant until doing it again would keep the next window. Advice for actions that keep no commitment is heard at every decision, as before. `Suggestion.since` makes advice given afresh count only completions after it. A standing suggestion whose option is not on offer is held back instead of refused. The Urge-mosque month went from about 25 mosque visits a day to about one per prayer (4–6 a day). Its 25 illness-excused fasts went to 0, and trust rose from 0.51 to 0.56. That run is probably the playtest's "broke 11 fasts" defect, which the second pass could not reproduce; this is not confirmed.
 - **No more "That isn't on offer here now" after a deferral.** The word waits, and the log says why: "He can’t call Selin just now (he calls her in the evening, and not twice within twelve hours). Your word waits; he will hear it if he can before 22:19." When the option comes back, the log says so. Skip whispers alternate only between whispers he can hear.
@@ -514,9 +514,9 @@ Engine 1.4.0 (standing advice once per occasion, from the third pass; saves from
 | Play style | Mosque visits on skipped days | Osman's date | Clinic | Selin on Eid | Trust at Eid | Pauses |
 |---|---|---|---|---|---|---|
 | Silent | 13 | missed; R17 | never | she called, 20:19 | 0.50 | 37 |
-| Prefill + whisper doctor/Selin | 1 | missed; R17 | once | she called, 19:54 (he usually called about 19:00) | 0.61 | 48 |
+| Prefill + whisper doctor (Mention, “your health”) / Selin (Mention, “for Selin”) | 1 | missed; R17 | once | she called, 19:54 (he usually called about 19:00) | 0.61 | 48 |
 | Insist every prefill + Urge doctor/mosque | 130 (5 a day) | kept; R15 14:15 | 4 times | she called, 23:19 (he was asleep from 21:36) | 0.56 | 55 |
-| Prefill + whisper shift/Selin | 2 | kept; R11, second 300 R25 | once | he called, 11:25 | 0.66 | 42 |
+| Prefill + whisper shift (Mention, “it’s your duty”) / Selin (Mention, “for Selin”) | 2 | kept; R11, second 300 R25 | once | he called, 11:25 | 0.66 | 42 |
 
 The third-pass table's prefill row ("he called, 18:55") no longer holds: after the day-0 prayer-window fix that style's own Eid call is lost to Maghrib at his habit's cue minute. See `docs/findings.md` (his calls are habit-cued). The epilogue still credits him with 5 of his own calls in the six days after Eid. The same day-0 change also moved mosque visits on skipped days (third-pass table: 24, 15, 134, 29; now 13, 1, 130, 2; same probe and metric). The town's prayer-place tests still pass, but how often he goes to the mosque unprompted depends on the trajectory too.
 
@@ -531,3 +531,19 @@ The third-pass table's prefill row ("he called, 18:55") no longer holds: after t
 - **Game 1.** The end screen opens with what your orders changed, from the Human-minus-Solo difference (for example "Your 10 orders changed: injuries 13 (without you: 5); trust in you 48% (without you: 54%). Everything else came out as it would have without you."), and lists each order with its time and both sides' final answers. The collapsed phone goal strip shows each side's number. Moments are numbered "#4"; the trust meter says "Nothing has moved it today."
 - **Landing.** The hero links both games; the version reads v1.0.0 everywhere.
 - **Not done:** naps (findings); the prefill style's own Eid call (habit-cued, Medium); the doctor's "walk, stop smoking" is not an end; the 390 px Game 1 layout (taller centre column, collapsible maps) beyond the goal numbers; whether the Game 1 orders log drops a deferral once it resolves.
+
+### Fifth pass (final browser check, 2026-10-03)
+
+`npm run check`: 48 files, 556 tests. A browser run that confirmed every prefill and, at both skip cards, picked the shift and Selin whispers without changing anything missed Osman's date. The card picked a whisper as a bare Mention with no reason, and a bare Mention of the shift does not move him, because he does not count on its pay. The earlier tables' "whisper shift/Selin" rows used a Mention with "it's your duty", which the card never produced by default. Measured on seed 7 with the same headless players (scratchpad probe, not in the repo):
+
+| Card whispers (prefills confirmed) | Osman's date | Afternoon shifts | Selin on Eid | Trust at Eid | Pauses |
+|---|---|---|---|---|---|
+| Before: shift + Selin, card defaults (Mention, no reason) | missed; R17 | 1 | she called, 19:59 | 0.61 | 50 |
+| After: shift + Selin, card defaults (Mention, “it’s your duty” / “for Selin”) | kept; R11, second 300 R25 | 27 | he called, 11:25 | 0.66 | 42 |
+| Shift as Urge, no reason | kept; R11 | 27 | he called, 11:10 | 0.65 | 42 |
+| Silent | missed; R17 | 0 | she called, 20:19 | 0.50 | 37 |
+
+- **The card's defaults.** A picked whisper now starts with the reason the in-day prefill gives for the same act (`WHISPER_DEFAULT` in protocol.ts): "it's your duty" for the shift and the rent, "your health" for the clinic, "for Selin" for the call. While mornings alone fall short, the shift choice says so: "He doesn't count on the shift's pay, so a bare mention won't move him. Remind him of his word ("it's your duty"), or urge it." A test plays the card's defaults and keeps the date. Another test clears the reason and misses it, and the silent month still misses it.
+- **Running late.** A deadline beat waits while he sleeps until the deadline is within an hour. A promise's beat comes at most 3 hours before its deadline: the beat for Osman's date used to fire at 01:00 on Ramadan 15 for a 20:00 deadline.
+- **Report.** The Eid list keeps every key line (Selin, Osman, the cigarette, the clinic, the mosque, memories) under the 24-line cap and says how many quieter lines were left out. "Had mostly stopped: calling" is dropped when he called Selin himself after Eid. A month with no word says "The days you watched, and Eid".
+- **Game 1.** The end screen focuses its heading, so it opens at the top. At phone width the goal table drops the chips' C/H/S tags and the Solo subtitle, so it fits the dialog. The "what your orders changed" sentence compares exactly the rows the tables show, in the tables' units (prayers as a percentage, goal values such as storm stock, and morale).

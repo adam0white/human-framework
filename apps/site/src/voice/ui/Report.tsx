@@ -126,7 +126,7 @@ export function Report({
         </div>
 
         <section>
-          <h2>The days you spoke, and Eid</h2>
+          <h2>{view.spoke === false ? 'The days you watched, and Eid' : 'The days you spoke, and Eid'}</h2>
           <div className="v-strips">
             {view.rows.map((r) => (
               <Strip key={r.label} row={r} />

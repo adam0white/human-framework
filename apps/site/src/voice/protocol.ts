@@ -74,6 +74,25 @@ export interface StandingWhisper {
   strength: Strength;
   appeal?: Appeal;
 }
+/**
+ * What a whisper starts as when picked on the between-days card: the reason the in-day prefill would give for the
+ * same act (his word to Osman for the shift and the rent, his health for the clinic, Selin for the call). The
+ * player can change or clear it. A bare mention of the shift does not move him (he does not count on its pay).
+ */
+export const WHISPER_DEFAULT: Record<StandingWhisper['choiceId'], Omit<StandingWhisper, 'choiceId'>> = {
+  work: { strength: 'mention' },
+  extra: { strength: 'mention', appeal: 'duty' },
+  doctor: { strength: 'mention', appeal: 'safety' },
+  selin: { strength: 'mention', appeal: 'benevolence' },
+  rent: { strength: 'mention', appeal: 'duty' },
+  mosque: { strength: 'mention' },
+  rest: { strength: 'mention' },
+};
+/** A whisper as the between-days card makes it when the player picks it and changes nothing. */
+export const defaultWhisper = (choiceId: StandingWhisper['choiceId']): StandingWhisper => ({
+  choiceId,
+  ...WHISPER_DEFAULT[choiceId],
+});
 
 export type MainToWorker =
   | { type: 'init'; seed: number; gen: number; scenarioVersion: string }
@@ -230,7 +249,8 @@ export interface BetweenView {
   ends: EndView[];
   trust: { from: number; to: number; events: string[] };
   next: { label: string; day: number; skipped: number } | null; // null → Eid comes next
-  choices: { id: StandingWhisper['choiceId']; label: string; cost: string }[];
+  /** `hint`: a line shown under the picked whisper (the shift when money is short: what moves him). */
+  choices: { id: StandingWhisper['choiceId']; label: string; cost: string; hint?: string }[];
 }
 export interface ReportView {
   /** `summary`: the few plain facts the month and Eid come down to (Selin on Eid, the clinic, you). */
@@ -250,6 +270,8 @@ export interface ReportView {
   body: string[];
   open: string[];
   rows: StripRow[];
+  /** False when you said nothing all month (the strips heading then says "watched"). */
+  spoke?: boolean;
   modelNotes: string[];
 }
 

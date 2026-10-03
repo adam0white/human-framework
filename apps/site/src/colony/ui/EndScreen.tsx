@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { formatClock } from '../sim/world-types.ts';
 import { type EndSummary, NO_CONCEPT } from './contract.ts';
-import { ordersChanged } from './end-report.ts';
+import { ordersChanged, pct, share } from './end-report.ts';
 import { CHIP_TEXT, GoalChip, jobPhrase, PLACE_LABEL, shortName } from './parts.tsx';
 
 const STATUS_TEXT: Record<string, string> = {
@@ -14,8 +14,6 @@ const STATUS_TEXT: Record<string, string> = {
 /** One day's report: goals for Classic, Human and the Solo control, then character outcomes and moments. */
 function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string }) {
   const { scoreboard: sb, solo, character: ch } = summary;
-  const share = (kept: number, due: number) => (due > 0 ? `${Math.round((100 * kept) / due)}%` : '–');
-  const pct = (v: number) => `${Math.round(v * 100)}%`;
   const village: [string, string, string, string][] = [
     ['Meals stored', String(sb.classic.meals), String(sb.human.meals), String(solo.meals)],
     ['House built', `${sb.classic.housePct}%`, `${sb.human.housePct}%`, `${solo.housePct}%`],
@@ -142,9 +140,10 @@ export function EndScreen(props: {
   const [tab, setTab] = useState<2 | 3>(latest);
   useEffect(() => setTab(latest), [latest]);
   const summary = props.summaries[tab] ?? props.summaries[latest];
-  const main = useRef<HTMLButtonElement>(null);
+  // Focus the heading so the dialog opens at its top (focusing the buttons scrolled the headline away).
+  const head = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
-    main.current?.focus();
+    head.current?.focus();
   }, []);
   if (!summary) return null;
   const offerDay = props.canContinue && latest === 2;
@@ -152,7 +151,9 @@ export function EndScreen(props: {
     <div className="end-backdrop">
       <div className="end" role="dialog" aria-modal="true" aria-labelledby="end-title">
         <p className="eyebrow">Day {tab + 1} · 05:00 · dawn</p>
-        <h2 id="end-title">Same orders. Same seed.</h2>
+        <h2 id="end-title" ref={head} tabIndex={-1}>
+          Same orders. Same seed.
+        </h2>
         {days.length > 1 && (
           <div className="end-tabs" role="tablist">
             {days.map((d) => (
@@ -172,16 +173,11 @@ export function EndScreen(props: {
         <Report summary={summary} humanKind={props.humanKind} />
         <div className="end-actions">
           {offerDay && (
-            <button type="button" className="btn" onClick={props.onContinue} ref={main}>
+            <button type="button" className="btn" onClick={props.onContinue}>
               Another day
             </button>
           )}
-          <button
-            type="button"
-            className={offerDay ? 'btn btn-ghost' : 'btn'}
-            onClick={props.onAgain}
-            ref={offerDay ? undefined : main}
-          >
+          <button type="button" className={offerDay ? 'btn btn-ghost' : 'btn'} onClick={props.onAgain}>
             Play again
           </button>
           <button type="button" className="btn btn-ghost" onClick={props.onClose}>

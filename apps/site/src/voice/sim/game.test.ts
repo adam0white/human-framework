@@ -1,7 +1,8 @@
 import { voiceOf } from '@human/framework';
 import { describe, expect, test } from 'vitest';
-import type { BeatKind, Draft, Frame, StandingWhisper } from '../protocol.ts';
+import { type BeatKind, type Draft, defaultWhisper, type Frame, type StandingWhisper } from '../protocol.ts';
 import { DAY_END, SHIPPED_SEED, VoiceGame } from './game.ts';
+import { EID_LINES, eidLines } from './report.ts';
 
 const MIN_DAY = 1440;
 
@@ -215,15 +216,19 @@ describe('Game 2 sim on the shipped seed', () => {
     for (const w of ['score', 'accepted by', 'reward', 'sin']) expect(text.includes(` ${w} `)).toBe(false);
   });
 
-  test('whispering the afternoon shift keeps Osman’s date that the silent month misses', () => {
+  test('the between-days card’s defaults (shift and Selin picked, nothing changed) keep Osman’s date that the silent month misses', () => {
+    // Exactly what Between.tsx sends when the player toggles the two whispers and touches nothing else.
     const money = new VoiceGame(SHIPPED_SEED);
+    let hint: string | undefined;
     play(money, {
       confirm: true,
-      whispers: [
-        { choiceId: 'extra', strength: 'mention', appeal: 'duty' },
-        { choiceId: 'selin', strength: 'mention', appeal: 'benevolence' },
-      ],
+      whispers: [defaultWhisper('extra'), defaultWhisper('selin')],
+      stop: (g) => {
+        hint ??= g.between?.choices.find((c) => c.id === 'extra')?.hint;
+        return false;
+      },
     });
+    expect(hint).toMatch(/bare mention won’t move him/);
     const deadline = at(15, 20);
     const firstPay = money.cells.find((c) => c.affordanceId === 'pay-rent');
     expect(firstPay?.from ?? Number.POSITIVE_INFINITY).toBeLessThanOrEqual(deadline);
@@ -233,6 +238,48 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(money.report?.eid.summary.some((l) => /He kept his date with Osman/.test(l))).toBe(true);
     const quietPay = quiet.cells.find((c) => c.affordanceId === 'pay-rent');
     expect(quietPay?.from ?? Number.POSITIVE_INFINITY).toBeGreaterThan(deadline);
+  });
+
+  test('a bare mention of the shift (reason cleared) does not move him: the date is missed', () => {
+    const bare = new VoiceGame(SHIPPED_SEED);
+    play(bare, {
+      confirm: true,
+      whispers: [
+        { choiceId: 'extra', strength: 'mention' },
+        { choiceId: 'selin', strength: 'mention' },
+      ],
+    });
+    const firstPay = bare.cells.find((c) => c.affordanceId === 'pay-rent');
+    expect(firstPay?.from ?? Number.POSITIVE_INFINITY).toBeGreaterThan(at(15, 20));
+    expect(bare.cells.filter((c) => c.affordanceId === 'work-extra').length).toBeLessThan(5);
+  });
+
+  test('a running-late beat never fires for a sleeping man hours before the deadline', () => {
+    for (const g of [quiet, spoken])
+      for (const b of g.beats.history)
+        if (/nearly up/.test(b.text) && /asleep/.test(b.text)) {
+          const m = b.text.match(/\((\d\d):(\d\d)\)/);
+          const until = Math.floor(b.at / MIN_DAY) * MIN_DAY + Number(m?.[1]) * 60 + Number(m?.[2]);
+          expect(until - b.at).toBeLessThanOrEqual(60);
+        }
+    const osman = [...quiet.beats.history, ...spoken.beats.history].filter((b) => /Osman: 300/.test(b.text));
+    expect(osman.length).toBeGreaterThan(0);
+    for (const b of osman) expect(b.at % MIN_DAY).toBeGreaterThanOrEqual(17 * 60);
+  });
+
+  test('the report: a silent month says "watched", and the Eid list keeps Selin’s call under the cap', () => {
+    expect(quiet.report?.spoke).toBe(false);
+    expect(spoken.report?.spoke).toBe(true);
+    const many = Array.from(
+      { length: 40 },
+      (_, k) =>
+        `${String(7 + Math.floor(k / 4)).padStart(2, '0')}:${String((k % 4) * 15).padStart(2, '0')} I rest at home.`,
+    );
+    many.push('19:59 Selin called him for Eid. He had not called.');
+    const lines = eidLines(many);
+    expect(lines.length).toBe(EID_LINES);
+    expect(lines.some((l) => /Selin called/.test(l))).toBe(true);
+    expect(lines.at(-1)).toMatch(/quieter lines left out/);
   });
 
   test('the afternoon shift gets its own pause on Ramadan 1, prefilled, while mornings alone fall short', () => {

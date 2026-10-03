@@ -949,6 +949,10 @@ blockquote {
   letter-spacing: -0.02em;
 }
 
+.end h2:focus {
+  outline: none;
+}
+
 .end h3 {
   font-family: var(--font-display);
   margin: 22px 0 8px;
@@ -1037,6 +1041,30 @@ blockquote {
 .end .btn.btn-ghost {
   background: transparent;
   color: var(--ink);
+}
+
+/* A 390 px phone: the goal table fits the dialog (the column headers say C/H/S, so the chips drop their tag). */
+@media (max-width: 480px) {
+  .end {
+    padding: 20px 14px;
+  }
+  .end-table {
+    font-size: 0.8rem;
+  }
+  .end-table th,
+  .end-table td {
+    padding: 5px 3px;
+  }
+  .end-table small,
+  .end-table .goal-chip-side {
+    display: none;
+  }
+  .end-table .goal-chip {
+    gap: 2px;
+    padding: 1px 4px;
+    font-size: 0.62rem;
+    white-space: nowrap;
+  }
 }
 
 /* ---------- Moment caption (spec §7) ---------- */

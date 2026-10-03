@@ -4,7 +4,13 @@
  * the cost before letting the days pass.
  */
 import { useEffect, useRef, useState } from 'react';
-import type { Appeal, BetweenView, StandingWhisper, Strength } from '../protocol.ts';
+import {
+  type Appeal,
+  type BetweenView,
+  defaultWhisper,
+  type StandingWhisper,
+  type Strength,
+} from '../protocol.ts';
 import { EndsList } from './EndsPane.tsx';
 import { APPEALS, STRENGTHS } from './parts.tsx';
 import { Strip, StripLegend } from './Strip.tsx';
@@ -31,7 +37,7 @@ export function Between({
         ? p.filter((w) => w.choiceId !== id)
         : p.length >= MAX_WHISPERS
           ? p
-          : [...p, { choiceId: id, strength: 'mention' }],
+          : [...p, defaultWhisper(id)],
     );
   const patch = (id: StandingWhisper['choiceId'], change: { strength?: Strength; appeal?: Appeal | null }) =>
     setPicked((p) =>
@@ -166,6 +172,7 @@ export function Between({
                           </select>
                         </div>
                       )}
+                      {c.hint && <p className="v-whisper-hint">{c.hint}</p>}
                     </li>
                   );
                 })}

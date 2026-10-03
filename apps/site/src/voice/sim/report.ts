@@ -217,6 +217,12 @@ function summary(i: ReportInput): string[] {
 
 const times = (n: number) => (n === 1 ? 'once' : n === 2 ? 'twice' : `${n} times`);
 
+/** His own calls to Selin in the six days after Eid (0 without the counts). */
+function epilogueHis(i: ReportInput): number {
+  if (!i.callsAtEid) return 0;
+  return (i.after.town.state.completed.halil?.call ?? 0) - i.callsAtEid.his;
+}
+
 /** His own calls to Selin in the six days after Eid (from the completed counts), in words; '' without the counts. */
 function epilogueCalls(i: ReportInput): string {
   if (!i.callsAtEid) return '';
@@ -232,6 +238,26 @@ function epilogueCalls(i: ReportInput): string {
 
 /** Eid lines kept for the report: enough for the evening to show (playtest: 8 cut it off at noon). */
 export const EID_LINES = 24;
+/** Eid lines that carry the day (Selin, Osman, the first cigarette, the clinic, the mosque, a memory). */
+const EID_KEY = /Selin|call|Osman|cigarette|doctor|mosque|remembers/i;
+
+/**
+ * At most `EID_LINES` Eid lines in clock order. When there are more, the key lines all stay (the evening call must
+ * not be cut off), the rest fill in clock order, and a last line says how many quieter ones were left out.
+ */
+export function eidLines(all: readonly string[]): string[] {
+  const sorted = byClock([...all]);
+  if (sorted.length <= EID_LINES) return sorted;
+  const room = EID_LINES - 1;
+  const keep = new Set<number>();
+  sorted.forEach((l, k) => {
+    if (keep.size < room && EID_KEY.test(l)) keep.add(k);
+  });
+  for (let k = 0; k < sorted.length && keep.size < room; k++) keep.add(k);
+  const out = sorted.filter((_, k) => keep.has(k));
+  const left = sorted.length - out.length;
+  return [...out, `(${left} quieter line${left === 1 ? '' : 's'} left out.)`];
+}
 
 export function buildReport(i: ReportInput): ReportView {
   const h = i.after.ppl.halil;
@@ -253,7 +279,13 @@ export function buildReport(i: ReportInput): ReportView {
       .filter((x): x is string => !!x);
   const own = pick(yours, ['unprompted']);
   const told = pick(theirs, ['still-prompted']);
-  const stopped = pick(yours, ['stopped']);
+  // "Had mostly stopped: calling" beside "he called yesterday, unasked" reads as a contradiction: six days against
+  // thirty, one call rates as rare. When he called her himself after Eid, the calls line says it instead.
+  const calledAfter = epilogueHis(i) > 0;
+  const stopped = pick(yours, ['stopped']).filter((_, k, all) => {
+    const line = all[k] ?? '';
+    return !(calledAfter && /\bcall/i.test(line));
+  });
   const t = h.now;
   const trust = VOICE_IDS.map((id) => {
     const before = i.endRamadanTrust[id] ?? 0.5;
@@ -292,7 +324,7 @@ export function buildReport(i: ReportInput): ReportView {
     eid: {
       strip: i.eidStrip,
       // In clock order (a visitor's line is logged when he answers the door, after what he was doing).
-      lines: i.eidLines.length ? byClock(i.eidLines).slice(0, EID_LINES) : ['He kept to himself.'],
+      lines: i.eidLines.length ? eidLines(i.eidLines) : ['He kept to himself.'],
       summary: summary(i),
     },
     ledger: ledger(i),
@@ -318,6 +350,7 @@ export function buildReport(i: ReportInput): ReportView {
     body,
     open,
     rows: i.rows,
+    spoke: Object.keys(i.said ?? {}).length > 0,
     modelNotes: [...MODEL_NOTES],
   };
 }
