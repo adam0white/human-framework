@@ -70,7 +70,7 @@ function freePost(f: Frame, section: SectionId, who: WatcherId): PostId | null {
 }
 
 export function App() {
-  const { frame, speed, error, seed, shelf, saving, actions } = useWatch();
+  const { frame, speed, error, seed, shelf, saving, current, actions } = useWatch();
   const [selected, setSelectedState] = useState<WatcherId | null>(null);
   /** The press picked for the selected watcher before a post is tapped; null follows their current press. */
   const [pressPick, setPressPick] = useState<Press | null>(null);
@@ -159,8 +159,11 @@ export function App() {
             {frame.slowed ? <span className="w-slowed"> · {slowedWords(frame)}</span> : null}
           </p>
         </div>
-        {RUNNING.has(frame.phase) ? (
-          <fieldset className={frame.slowed ? 'w-speeds is-slowed' : 'w-speeds'}>
+        {frame.phase !== 'goal' ? (
+          <fieldset
+            className={`w-speeds${frame.slowed ? ' is-slowed' : ''}${RUNNING.has(frame.phase) ? '' : ' is-idle'}`}
+            title={RUNNING.has(frame.phase) ? undefined : 'The clock stands while you read this page.'}
+          >
             <legend className="sr-only">Speed</legend>
             {SPEEDS.map((s) => (
               <button
@@ -197,6 +200,7 @@ export function App() {
           seed={seed}
           shelf={shelf}
           saving={saving}
+          current={current}
           onClose={() => setMenu(false)}
         />
       ) : null}
@@ -217,7 +221,9 @@ export function App() {
           key={SEASON_PHASES.has(frame.phase) ? 'season' : frame.phase}
           ref={panel}
         >
-          {frame.phase === 'goal' ? <GoalPage frame={frame} actions={actions} shelf={shelf} /> : null}
+          {frame.phase === 'goal' ? (
+            <GoalPage frame={frame} actions={actions} shelf={shelf} current={current} />
+          ) : null}
           {frame.phase === 'dusk' ? (
             <DuskPanel
               frame={frame}
@@ -283,9 +289,19 @@ function whereWords(w: FrameWatcher, phase: Frame['phase']): string {
   return `${posted} · ${stands}`;
 }
 
-function GoalPage({ frame, actions, shelf }: { frame: Frame; actions: WatchActions; shelf: PageInfo[] }) {
-  // The shelf is newest first: the first running page is the chronicle last kept.
-  const saved = shelf.find((p) => p.kind === 'auto') ?? null;
+function GoalPage({
+  frame,
+  actions,
+  shelf,
+  current,
+}: {
+  frame: Frame;
+  actions: WatchActions;
+  shelf: PageInfo[];
+  current: string;
+}) {
+  // The shelf is newest first: the first running page of another chronicle is the one last kept.
+  const saved = shelf.find((p) => p.kind === 'auto' && p.chronicle !== current) ?? null;
   const [note, setNote] = useState('');
   const [busy, setBusy] = useState(false);
   const resume = async () => {
@@ -463,7 +479,7 @@ function DuskPanel({
   );
 }
 
-function MomentCard({ m, actions }: { m: Moment; actions: WatchActions }) {
+function MomentCard({ m, actions, onLet }: { m: Moment; actions: WatchActions; onLet: () => void }) {
   return (
     <section className="w-moment" aria-label="A moment on the wall">
       <p className="w-moment-text">{m.text}</p>
@@ -480,7 +496,9 @@ function MomentCard({ m, actions }: { m: Moment; actions: WatchActions }) {
           </button>
         ))}
       </div>
-      <p className="w-moment-let">…or let it be.</p>
+      <button type="button" className="w-moment-let" onClick={onLet}>
+        …or let it be
+      </button>
     </section>
   );
 }
@@ -488,12 +506,26 @@ function MomentCard({ m, actions }: { m: Moment; actions: WatchActions }) {
 function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) {
   const walking = frame.lit === null;
   const off = frame.watchers.filter((w) => w.post === null);
+  // A card the Keeper let be is put away here; it runs out in the night on its own.
+  const [letBe, setLetBe] = useState<number | null>(null);
+  // The bell answers a pull: the button rings for a moment when the rope wears.
+  const wear = frame.rope.wear;
+  const lastWear = useRef(wear);
+  const [ringing, setRinging] = useState(0);
+  useEffect(() => {
+    if (wear > lastWear.current) setRinging((n) => n + 1);
+    lastWear.current = wear;
+  }, [wear]);
+  const m = frame.moment;
   return (
     <div className="w-night">
-      {frame.moment ? <MomentCard key={frame.moment.id} m={frame.moment} actions={actions} /> : null}
+      {m && m.id !== letBe ? (
+        <MomentCard key={m.id} m={m} actions={actions} onLet={() => setLetBe(m.id)} />
+      ) : null}
       <div className="w-lantern-pick">
         <span>
           <Icon name="lamp" size={16} /> {walking ? 'Walking the lantern to' : 'The lantern is at'}
+          <span className="w-tap-hint"> · or tap the wall</span>
         </span>
         {SECTIONS.map((s, i) => (
           <button
@@ -512,7 +544,7 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
       <div className="w-bell">
         <button
           type="button"
-          className="w-bellbtn"
+          className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
           disabled={frame.rope.snapped}
           onClick={() => actions.input({ k: 'bell' })}
         >
@@ -520,22 +552,20 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
           <span>{frame.roused ? 'Ring again: hold!' : 'Ring: hold your posts!'}</span>
         </button>
         <div className="w-ropebox">
-          {frame.bellRead ? <span className="w-bellread">{frame.bellRead}</span> : null}
+          <span className="w-bellread">{frame.bellRead ?? '\u00a0'}</span>
           <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />
           <span className="w-ropewords">{ropeWords(frame.rope.wear, frame.rope.snapped)}</span>
         </div>
       </div>
-      {off.length > 0 ? (
-        <p className="w-offwall">
-          Off the wall:{' '}
-          {off.map((w, i) => (
-            <span key={w.id}>
-              {i > 0 ? ', ' : ''}
-              {w.name} ({awayWords(w.place, frame.phase)})
-            </span>
-          ))}
-        </p>
-      ) : null}
+      <p className="w-offwall">
+        {off.length > 0 ? 'Off the wall: ' : 'Everyone is on the wall.'}
+        {off.map((w, i) => (
+          <span key={w.id}>
+            {i > 0 ? ', ' : ''}
+            {w.name} ({awayWords(w.place, frame.phase)})
+          </span>
+        ))}
+      </p>
       <div className="w-granary">
         <span>The granary</span>
         <Sacks

@@ -459,9 +459,15 @@
 
 .w-moment-let {
   margin: 6px 0 0;
-  font-size: 0.78rem;
+  min-height: 40px;
+  padding: 0 10px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 0.85rem;
   font-style: italic;
   color: var(--w-muted);
+  text-decoration: underline dotted;
 }
 
 .w-bellread {
@@ -660,7 +666,11 @@
   z-index: 10;
   top: calc(env(safe-area-inset-top) + 58px);
   right: calc(env(safe-area-inset-right) + 10px);
-  width: min(340px, calc(100vw - 20px));
+  width: min(360px, calc(100vw - 20px));
+  /* Never taller than the screen: the menu scrolls inside itself (G3-4, phone review). */
+  max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 70px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--w-surface);
   border: 1px solid var(--w-line);
   border-radius: 14px;
@@ -1350,5 +1360,135 @@
     bottom: calc(8px + env(safe-area-inset-bottom, 0px));
     z-index: 3;
     box-shadow: 0 -6px 14px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* G3-4: the chronicle menu on a phone, its load buttons, and the playtest export. */
+@media (max-width: 600px) {
+  .w-menu {
+    left: calc(env(safe-area-inset-left) + 8px);
+    right: calc(env(safe-area-inset-right) + 8px);
+    width: auto;
+    top: calc(env(safe-area-inset-top) + 52px);
+    max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 60px);
+  }
+}
+.w-load {
+  flex: 0 0 auto;
+  min-height: 44px;
+  min-width: 96px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--w-accent, var(--w-line));
+  background: var(--w-bg);
+  color: var(--w-text);
+  font: inherit;
+  font-weight: 600;
+}
+.w-load:disabled {
+  opacity: 0.55;
+}
+.w-vol-act {
+  display: block;
+  margin-top: 6px;
+}
+.w-pagerow {
+  min-height: 48px;
+}
+.w-lately summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.w-lately summary h3 {
+  display: inline;
+  margin: 0;
+}
+.w-export-box {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0;
+}
+.w-export-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.w-export-btns .w-secondary {
+  flex: 1 1 140px;
+  min-height: 44px;
+}
+
+/* G3-4 phone: the night panel keeps one height, so the lantern and bell rows never move; a card docks over the
+   panel at the bottom, leaving the speeds and the scene in view (the lantern still moves by tapping the wall). */
+.w-bellbtn.is-ring-a {
+  animation: w-ring-a 0.7s ease-out;
+}
+.w-bellbtn.is-ring-b {
+  animation: w-ring-b 0.7s ease-out;
+}
+@keyframes w-ring-a {
+  0% {
+    transform: rotate(0);
+    background: rgba(224, 163, 95, 0.5);
+  }
+  20% {
+    transform: rotate(-4deg);
+  }
+  40% {
+    transform: rotate(4deg);
+  }
+  60% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+@keyframes w-ring-b {
+  0% {
+    transform: rotate(0);
+    background: rgba(224, 163, 95, 0.5);
+  }
+  20% {
+    transform: rotate(-4deg);
+  }
+  40% {
+    transform: rotate(4deg);
+  }
+  60% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+.w-tap-hint {
+  color: var(--w-muted);
+  font-size: 0.8rem;
+}
+.w-speeds.is-idle {
+  opacity: 0.6;
+}
+@media (max-width: 480px) {
+  .phase-night .w-panel {
+    height: min(44dvh, 270px);
+  }
+  .w-moment {
+    top: auto;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 8px);
+    max-height: min(56dvh, 420px);
+  }
+  .w-moment-let {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .w-bellbtn.is-ring-a,
+  .w-bellbtn.is-ring-b {
+    animation: none;
   }
 }

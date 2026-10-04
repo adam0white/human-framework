@@ -40,15 +40,23 @@ export function MapCanvas({
       cv.style.height = `${r.height}px`;
       size = { w: r.width, h: r.height };
     };
-    const ro = new ResizeObserver(resize);
-    ro.observe(el);
-    resize();
-    let raf = 0;
-    const draw = (now: number) => {
+    const paint = (now: number) => {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       // By day the village takes more of the map; the layout follows the phase.
       layout.current = layoutFor(size.w, size.h, isDay(latest.current.frame));
       drawMap(ctx, layout.current, latest.current.frame, ease, { selected: latest.current.selected, now });
+    };
+    // Resizing a canvas clears it: paint again at once, so a resize or a load never shows a blank frame.
+    const ro = new ResizeObserver(() => {
+      resize();
+      paint(performance.now());
+    });
+    ro.observe(el);
+    resize();
+    paint(performance.now());
+    let raf = 0;
+    const draw = (now: number) => {
+      paint(now);
       raf = requestAnimationFrame(draw);
     };
     raf = requestAnimationFrame(draw);

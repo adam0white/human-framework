@@ -85,7 +85,7 @@ export function endState(s: WatchState): EndState {
 }
 
 /** Bump when rules change so an old export is not replayed against new rules. */
-export const WATCH_SCENARIO_VERSION = 4;
+export const WATCH_SCENARIO_VERSION = 5;
 
 export interface LogEntry {
   /** The sim minute the input applied at (before that minute resolved). */
@@ -95,7 +95,7 @@ export interface LogEntry {
 
 export interface PlaytestExport {
   game: 'the-night-watch';
-  phase: 'G3-3';
+  phase: 'G3-4';
   scenario: number;
   seed: number;
   inputs: LogEntry[];
@@ -171,7 +171,7 @@ export class WatchRun {
   export(): PlaytestExport {
     return {
       game: 'the-night-watch',
-      phase: 'G3-3',
+      phase: 'G3-4',
       scenario: WATCH_SCENARIO_VERSION,
       seed: this.seed,
       inputs: this.log.map((e) => ({ m: e.m, i: { ...e.i } })),

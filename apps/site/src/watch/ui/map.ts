@@ -338,8 +338,17 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
       ctx.textAlign = 'center';
       if (!p.watcher) {
         if (p.posted) {
-          drawGhost(ctx, at.x, at.y, lookOf(f.watchers.find((x) => x.id === p.posted)?.look), size);
-          ctx.fillStyle = 'rgba(255, 243, 220, 0.38)';
+          // Given to someone who is not there: an empty ring in the warning colour, their name faint beneath.
+          // No figure, so the post never looks held (G3-4 phone review).
+          const gone = f.phase === 'night';
+          ctx.strokeStyle = gone ? 'rgba(232, 140, 110, 0.75)' : 'rgba(255, 240, 210, 0.45)';
+          ctx.lineWidth = 1.4;
+          ctx.setLineDash([2, 3]);
+          ctx.beginPath();
+          ctx.arc(at.x, at.y, 9, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.fillStyle = gone ? 'rgba(232, 160, 130, 0.55)' : 'rgba(255, 243, 220, 0.38)';
           ctx.fillText(f.watchers.find((x) => x.id === p.posted)?.name ?? '', at.x, labelY);
         } else {
           ctx.strokeStyle = o.selected ? 'rgba(255, 222, 160, 0.9)' : 'rgba(255, 240, 210, 0.35)';
@@ -512,25 +521,6 @@ interface WatcherDraw {
   age?: AgeBand;
   /** A limp for life: a short leg and a stick. */
   limp?: boolean;
-}
-
-/** Someone given this post who is not on it: an outline in their colours. */
-function drawGhost(ctx: CanvasRenderingContext2D, x: number, y: number, look: Look, size = 1): void {
-  ctx.save();
-  ctx.translate(x, y);
-  ctx.scale(size, size);
-  ctx.globalAlpha = 0.7;
-  ctx.fillStyle = 'rgba(20, 22, 36, 0.35)';
-  ctx.fillRect(-4, -8, 8, 12);
-  ctx.strokeStyle = look.scarf;
-  ctx.lineWidth = 1.2;
-  ctx.setLineDash([2, 2]);
-  ctx.strokeRect(-4, -8, 8, 12);
-  ctx.beginPath();
-  ctx.arc(0, -11, 4, 0, Math.PI * 2);
-  ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.restore();
 }
 
 /**

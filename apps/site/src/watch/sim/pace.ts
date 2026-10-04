@@ -83,6 +83,19 @@ export class Pacer {
     return stepped;
   }
 
+  /**
+   * Takes up another run (a loaded page) without a fresh Pacer: the chosen speed and the chronicle's hold stay,
+   * the part-minute is dropped, and where the run stands decides what `follow` does next.
+   */
+  adopt(run: WatchRun): void {
+    const s = run.state;
+    this.acc = 0;
+    this.wasSeason = s.phase === 'goal' ? null : isSeason(s) || s.phase === 'fair';
+    if (s.phase === 'dusk' || s.phase === 'night') {
+      if (this.speed === 'days' || this.speed === 'seasons') this.speed = 'watch';
+    } else if (isSeason(s) && this.speed !== 'seasons') this.speed = 'days';
+  }
+
   /** Sets the speed a season or a winter starts at when the run crosses into it. */
   follow(run: WatchRun): void {
     const s = run.state;

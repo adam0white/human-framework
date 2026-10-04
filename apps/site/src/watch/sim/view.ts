@@ -74,7 +74,6 @@ export interface Motion {
 
 export interface Frame {
   phase: Phase;
-  night: number;
   /** Minute of the day (0..1439), for the sky. */
   clock: number;
   /** 0 at nightfall, 1 at dawn (negative during dusk). */
@@ -366,7 +365,6 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
   const nightLen = nightEnd(s) - s.nightStart;
   return {
     phase: s.phase,
-    night: s.night,
     clock: ((s.minute % DAY) + DAY) % DAY,
     nightProgress: (s.minute - s.nightStart) / nightLen,
     sub,

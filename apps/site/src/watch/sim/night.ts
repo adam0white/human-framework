@@ -539,11 +539,36 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
       text:
         targets.length === 0
           ? 'The bell rings, but nobody is in earshot.'
-          : `The bell rings: ${targets.map((t) => nameOf(s, t)).join(', ')} must hold.`,
+          : `The bell rings: ${targets.map((t) => nameOf(s, t)).join(', ')} must hold. ${bellAnswer(s, targets)}`,
       slowed: false,
     });
   }
   return true;
+}
+
+/**
+ * Who answers the bell (G3-4): the one in earshot who trusts the Keeper least, by their trust and fear. A voice
+ * back from the wall, never a number: "Holding!", a grudging "We heard you.", or silence. Reads state only.
+ */
+function bellAnswer(s: WatchState, targets: WatcherId[]): string {
+  let who: WatcherId | null = null;
+  let low = 2;
+  for (const id of targets) {
+    const t = personOf(s, id)?.will.voices.find((v) => v.voiceId === KEEPER_ID)?.trust ?? 0.5;
+    if (t < low) {
+      low = t;
+      who = id;
+    }
+  }
+  if (who === null) return '';
+  const name = nameOf(s, who);
+  const p = personOf(s, who);
+  const fear = p?.affect.emotions.find((e) => e.id === 'fear')?.intensity ?? 0;
+  if (targets.length > 1 && low >= 0.55) return '“Holding!” they call back.';
+  if (low >= 0.55) return `“Holding!” ${name} calls back.`;
+  if (fear > 0.5) return `${name} answers, voice thin: “I hear it.”`;
+  if (low >= 0.35) return `“We heard you,” ${name} calls, not warmly.`;
+  return `${name} does not answer.`;
 }
 
 /** The Keeper's standing suggestions: the posting, and a one-shot ask from a card while it lasts. */

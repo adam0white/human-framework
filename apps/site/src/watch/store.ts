@@ -1,36 +1,55 @@
 /**
- * The chronicle's saved pages (G3-3), kept in IndexedDB from the worker: one page at the start of each season and
- * one running autosave per chronicle, each the run's seed, input log and whole state (`Snapshot`), gzipped where the
- * browser can. Every storage call is wrapped: without IndexedDB (a private window, blocked site data, a preview) the
- * game plays on and the shelf simply has nothing to load. Saving never touches the run: the snapshot text is taken
+ * The chronicle's saved pages, kept in IndexedDB from the worker (spec §6: the chronicle is the menu, volumes are
+ * the save slots, no rewind within a volume). Each kept page is the run's seed, input log and whole state
+ * (`Snapshot`), gzipped where the browser can.
+ *
+ * G3-4: three kinds of page per chronicle.
+ * - `auto`, the running page: one per chronicle, written often (after inputs, every few real seconds while the
+ *   clock runs, when the chronicle opens and when the tab is hidden), so little is lost on a reload. "Continue"
+ *   always opens this page: there is no going back to an earlier page of the same chronicle.
+ * - `season`, a backup taken as each season opens. Only the last two are kept, and only to open the chronicle if
+ *   its running page cannot be read. They are not offered as load points (that would be a rewind).
+ * - `volume`, kept when a volume closes: the book on the shelf. It is never pruned while its chronicle is kept.
+ *   Taking up a closed volume starts a *new* chronicle from that page; the old chronicle stays as it was.
+ *
+ * Every storage call is wrapped: without IndexedDB (a private window, blocked site data, a preview) the game plays
+ * on and the shelf simply has nothing to load. Saving never touches the run: the snapshot text is taken
  * synchronously between minutes and written in the background, one write at a time.
  */
 import type { Snapshot } from './sim/run.ts';
 
 export interface PageInfo {
-  /** `${chronicle}:auto` for the autosave, `${chronicle}:${year}:${season}` for a season page. */
+  /** `${chronicle}:auto`, `${chronicle}:${year}:${season}` or `${chronicle}:vol:${n}`. */
   id: string;
-  /** Which chronicle (one per new game). */
+  /** Which chronicle (one per new game, and one per volume taken up again). */
   chronicle: string;
-  kind: 'auto' | 'season';
+  kind: 'auto' | 'season' | 'volume';
   seed: number;
   year: number;
   /** The season or page the save was taken in, in words for the shelf. */
   when: string;
   /** Wall-clock time of the save (for ordering only; never part of the run). */
   savedAt: number;
+  /** A closed volume's book: its numeral, title and how its question ended. */
+  volume?: { numeral: string; title: string; end: string | null };
 }
 
 const DB = 'night-watch';
 const INFO = 'info';
 const DATA = 'data';
-/** Season pages kept per chronicle (three years). */
-const KEEP_SEASONS = 12;
+/** Season backups kept per chronicle. */
+const KEEP_SEASONS = 2;
 /** Chronicles kept on the shelf; older ones are dropped whole. */
-const KEEP_CHRONICLES = 3;
+const KEEP_CHRONICLES = 4;
 
 let opening: Promise<IDBDatabase | null> | null = null;
 let queue: Promise<unknown> = Promise.resolve();
+
+/** Forget the open database (tests swap in a fresh IndexedDB). */
+export function resetStore(): void {
+  opening = null;
+  queue = Promise.resolve();
+}
 
 function open(): Promise<IDBDatabase | null> {
   if (opening) return opening;
@@ -68,7 +87,8 @@ function request<T>(req: IDBRequest<T>): Promise<T | null> {
   });
 }
 
-async function pack(text: string): Promise<Blob | string> {
+/** Gzips a page's text where the browser can (else keeps the text). */
+export async function pack(text: string): Promise<Blob | string> {
   try {
     if (typeof CompressionStream === 'undefined') return text;
     const stream = new Blob([text]).stream().pipeThrough(new CompressionStream('gzip'));
@@ -78,7 +98,7 @@ async function pack(text: string): Promise<Blob | string> {
   }
 }
 
-async function unpack(data: Blob | string): Promise<string | null> {
+export async function unpack(data: Blob | string): Promise<string | null> {
   try {
     if (typeof data === 'string') return data;
     const stream = data.stream().pipeThrough(new DecompressionStream('gzip'));
@@ -102,8 +122,7 @@ export async function listPages(): Promise<PageInfo[]> {
   }
 }
 
-/** A saved page's snapshot, or null if it is gone, unreadable or storage is unavailable. */
-export async function loadPage(id: string): Promise<Snapshot | null> {
+async function readPage(id: string): Promise<Snapshot | null> {
   try {
     const db = await open();
     if (!db) return null;
@@ -119,8 +138,25 @@ export async function loadPage(id: string): Promise<Snapshot | null> {
 }
 
 /**
- * Queues a page to be written (the text is the snapshot as JSON, taken now). Season pages beyond the last twelve of
- * a chronicle, and chronicles beyond the last three, are dropped after the write. Resolves false if nothing was kept.
+ * A saved page's snapshot, or null if it is gone, unreadable or storage is unavailable. A chronicle's running page
+ * that cannot be read falls back to its newest season backup.
+ */
+export async function loadPage(id: string): Promise<Snapshot | null> {
+  await queue.catch(() => {});
+  const snap = await readPage(id);
+  if (snap || !id.endsWith(':auto')) return snap;
+  const chronicle = id.slice(0, -':auto'.length);
+  for (const p of await listPages()) {
+    if (p.chronicle !== chronicle || p.kind !== 'season') continue;
+    const backup = await readPage(p.id);
+    if (backup) return backup;
+  }
+  return null;
+}
+
+/**
+ * Queues a page to be written (the text is the snapshot as JSON, taken now). Older season backups and chronicles
+ * beyond the kept number are dropped after the write (`pruneIds`). Resolves false if nothing was kept.
  */
 export function savePage(info: PageInfo, text: string): Promise<boolean> {
   const job = queue.then(async () => {
@@ -132,7 +168,7 @@ export function savePage(info: PageInfo, text: string): Promise<boolean> {
       tx.objectStore(INFO).put(info);
       tx.objectStore(DATA).put(data, info.id);
       if (!(await done(tx))) return false;
-      await prune(db, info.chronicle);
+      if (info.kind !== 'auto') await prune(db, info.chronicle);
       return true;
     } catch {
       return false;
@@ -142,16 +178,25 @@ export function savePage(info: PageInfo, text: string): Promise<boolean> {
   return job;
 }
 
+/**
+ * The pages to drop, given every page newest first and the chronicle being written: season backups beyond the last
+ * two of that chronicle, and every page of chronicles beyond the newest few (the one being written always stays).
+ * Closed volumes of a kept chronicle are never dropped.
+ */
+export function pruneIds(all: PageInfo[], current: string): string[] {
+  const drop: string[] = [];
+  const seasons = all.filter((p) => p.chronicle === current && p.kind === 'season');
+  for (const p of seasons.slice(KEEP_SEASONS)) drop.push(p.id);
+  const chronicles: string[] = [current];
+  for (const p of all) if (!chronicles.includes(p.chronicle)) chronicles.push(p.chronicle);
+  for (const c of chronicles.slice(KEEP_CHRONICLES))
+    for (const p of all) if (p.chronicle === c) drop.push(p.id);
+  return drop;
+}
+
 async function prune(db: IDBDatabase, current: string): Promise<void> {
   try {
-    const all = await listPages();
-    const drop: string[] = [];
-    const seasons = all.filter((p) => p.chronicle === current && p.kind === 'season');
-    for (const p of seasons.slice(KEEP_SEASONS)) drop.push(p.id);
-    const chronicles: string[] = [];
-    for (const p of all) if (!chronicles.includes(p.chronicle)) chronicles.push(p.chronicle);
-    for (const c of chronicles.slice(KEEP_CHRONICLES))
-      for (const p of all) if (p.chronicle === c) drop.push(p.id);
+    const drop = pruneIds(await listPages(), current);
     if (drop.length === 0) return;
     const tx = db.transaction([INFO, DATA], 'readwrite');
     for (const id of drop) {

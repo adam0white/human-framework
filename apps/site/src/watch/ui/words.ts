@@ -1,26 +1,6 @@
 /** Words for things the play UI never shows as numbers: which night, the hour, rope wear. */
 import { ordinal } from '../sim/view.ts';
 
-const ORDINALS = [
-  'First',
-  'Second',
-  'Third',
-  'Fourth',
-  'Fifth',
-  'Sixth',
-  'Seventh',
-  'Eighth',
-  'Ninth',
-  'Tenth',
-  'Eleventh',
-  'Twelfth',
-];
-
-export function nightName(n: number): string {
-  const o = ORDINALS[n - 1];
-  return o ? `${o} night` : 'Another night';
-}
-
 export function hourWords(clock: number, phase: string): string {
   if (phase === 'goal') return 'Before dusk';
   if (phase === 'dusk') return 'Dusk';

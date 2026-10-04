@@ -19,7 +19,7 @@ export interface WatchActions {
   restart(seed: number): void;
   /** Ask the worker for the saved pages again (the shelf refreshes itself on start). */
   refreshShelf(): void;
-  /** Resume a saved page; resolves false if it could not be read (the current run goes on). */
+  /** Open a chronicle's running page or take up a closed volume; resolves false if it could not be read (the current run goes on). */
   load(id: string): Promise<boolean>;
 }
 
@@ -32,6 +32,8 @@ export interface Watch {
   shelf: PageInfo[];
   /** False once a save has failed (storage unavailable or full): the shelf will not grow. */
   saving: boolean;
+  /** The chronicle being played, as the shelf names it. */
+  current: string;
   actions: WatchActions;
 }
 
@@ -55,6 +57,7 @@ export function useWatch(): Watch {
   const [error, setError] = useState<string | null>(null);
   const [shelf, setShelf] = useState<PageInfo[]>([]);
   const [saving, setSaving] = useState(true);
+  const [current, setCurrent] = useState('');
   const loads = useRef(new Map<string, { prev: number; done: (ok: boolean) => void }>());
   const exports = useRef(new Map<number, (d: PlaytestExport) => void>());
   const exportSeq = useRef(0);
@@ -83,6 +86,7 @@ export function useWatch(): Watch {
         case 'shelf':
           setShelf(msg.pages);
           setSaving(msg.saving);
+          setCurrent(msg.current);
           return;
         case 'frame':
           setFrame(msg.frame);
@@ -110,7 +114,16 @@ export function useWatch(): Watch {
       scenarioVersion: WATCH_SCENARIO_VERSION,
     } satisfies MainToWorker);
     const stop = startTickLoop((dtMs) => w.postMessage({ type: 'tick', dtMs } satisfies MainToWorker));
+    // Write the running page when the tab is hidden or closed, so a reload loses next to nothing.
+    const keep = () => {
+      if (document.visibilityState === 'hidden') w.postMessage({ type: 'save' } satisfies MainToWorker);
+    };
+    const leave = () => w.postMessage({ type: 'save' } satisfies MainToWorker);
+    document.addEventListener('visibilitychange', keep);
+    window.addEventListener('pagehide', leave);
     return () => {
+      document.removeEventListener('visibilitychange', keep);
+      window.removeEventListener('pagehide', leave);
       stop();
       w.terminate();
       worker.current = null;
@@ -154,5 +167,5 @@ export function useWatch(): Watch {
     [send],
   );
 
-  return { frame, speed, error, seed, shelf, saving, actions };
+  return { frame, speed, error, seed, shelf, saving, current, actions };
 }

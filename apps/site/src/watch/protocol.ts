@@ -14,10 +14,12 @@ export type MainToWorker =
   | { type: 'input'; input: Input }
   | { type: 'speed'; speed: Speed }
   | { type: 'hold'; on: boolean }
+  /** Write the running page now (the tab is being hidden or closed). */
+  | { type: 'save' }
   | { type: 'export'; requestId: number }
   /** List the saved pages (answered with `shelf`). */
   | { type: 'shelf' }
-  /** Resume a saved page as a new run generation. */
+  /** Open a chronicle at its running page, or take up a closed volume as a new chronicle, as a new run generation. */
   | { type: 'load'; id: string; gen: number };
 
 export type WorkerReply =

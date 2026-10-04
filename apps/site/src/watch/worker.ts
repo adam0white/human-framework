@@ -3,9 +3,11 @@
  * minutes, and inputs apply between minutes and are logged by sim minute, so a seed and the log replay the run.
  * A frame goes out when something changed, at most about 20 times a second while the clock runs.
  *
- * G3-3: the worker keeps the chronicle's saved pages (`store.ts`): a page as each season opens and an autosave at
- * each dawn and page, taken between minutes. `load` resumes a page as a new run generation; storage failing only
- * leaves the shelf empty.
+ * Saves (`store.ts`, spec §6). The running page is written soon after each input, every few real seconds while
+ * the clock runs, when the chronicle is opened and when the tab is hidden; a season backup as each season opens;
+ * a volume's page when it closes. `load` opens a chronicle at its running page (no rewind) or takes up a closed
+ * volume as a new chronicle. Loading keeps the Pacer, so the chosen speed and the chronicle's hold stay. Storage
+ * failing only leaves the shelf empty.
  */
 import { hostWorker } from '../shared/worker-host.ts';
 import { type MainToWorker, WATCH_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
@@ -14,20 +16,31 @@ import { Pacer } from './sim/pace.ts';
 import { WatchRun } from './sim/run.ts';
 import type { WatchState } from './sim/state.ts';
 import { buildFrame, ordinal } from './sim/view.ts';
+import { roman } from './sim/volume.ts';
 import { listPages, loadPage, type PageInfo, savePage } from './store.ts';
 
 let run: WatchRun | null = null;
-let pacer = new Pacer();
+const pacer = new Pacer();
 let lastKey = '';
 let sinceFrame = 0;
 const FRAME_MS = 50;
-/** This chronicle's id on the shelf, and the last season and phase saved. */
+/** Write the running page at most this often after an input, and this often while the clock runs. */
+const INPUT_SAVE_MS = 1500;
+const RUNNING_SAVE_MS = 8000;
+/** This chronicle's id on the shelf, the last season and page phase saved, and what the running page holds. */
 let chronicleId = '';
 let savedSeason = '';
 let savedPhase = '';
+let savedMinute = -1;
+let savedInputs = -1;
+let sinceSave = 0;
 let saving = true;
 
 const PAGE_PHASES = new Set(['dawn', 'thaw', 'fair', 'closed', 'fallen']);
+
+function newChronicleId(): string {
+  return `c${Date.now().toString(36)}${Math.floor(Math.random() * 1296).toString(36)}`;
+}
 
 function seasonMark(s: WatchState): string {
   if (s.phase === 'goal') return '';
@@ -36,6 +49,8 @@ function seasonMark(s: WatchState): string {
 
 function whenWords(s: WatchState): string {
   const season = seasonOfDay(dayOfYear(s));
+  if (s.phase === 'dusk') return `winter, dusk before the ${ordinal(s.winterNight)} night`;
+  if (s.phase === 'night') return `winter, the ${ordinal(s.winterNight)} night`;
   if (s.phase === 'dawn') return `winter, after the ${ordinal(s.winterNight)} night`;
   if (s.phase === 'fair') return 'autumn, the fair';
   if (s.phase === 'thaw') return 'the thaw';
@@ -45,24 +60,43 @@ function whenWords(s: WatchState): string {
 }
 
 function save(kind: PageInfo['kind']): void {
-  if (!run || !saving) return;
+  if (!run || !saving || run.state.phase === 'goal') return;
   const s = run.state;
+  const id =
+    kind === 'auto'
+      ? `${chronicleId}:auto`
+      : kind === 'volume'
+        ? `${chronicleId}:vol:${s.volume.n}`
+        : `${chronicleId}:${s.year}:${seasonOfDay(dayOfYear(s))}`;
   const info: PageInfo = {
-    id: kind === 'auto' ? `${chronicleId}:auto` : `${chronicleId}:${s.year}:${seasonOfDay(dayOfYear(s))}`,
+    id,
     chronicle: chronicleId,
     kind,
     seed: run.seed,
     year: s.year,
     when: whenWords(s),
     savedAt: Date.now(),
+    ...(kind === 'volume'
+      ? { volume: { numeral: roman(s.volume.n), title: s.volume.title, end: s.volume.end ?? null } }
+      : {}),
   };
+  if (kind === 'auto') {
+    savedMinute = s.minute;
+    savedInputs = run.log.length;
+    sinceSave = 0;
+  }
   const text = run.snapshotText();
   void savePage(info, text).then((ok) => {
     if (!ok) saving = false;
   });
 }
 
-/** Saves a season page when a season opens and the autosave at each dawn and page. */
+/** Whether the running page is behind the run. */
+function behind(): boolean {
+  return run !== null && (run.state.minute !== savedMinute || run.log.length !== savedInputs);
+}
+
+/** Saves the pages that are due: a season backup, a closed volume, and the running page (see the file comment). */
 function maybeSave(): void {
   if (!run) return;
   const s = run.state;
@@ -72,18 +106,25 @@ function maybeSave(): void {
     savedSeason = mark;
     save('season');
     save('auto');
-  } else if (phase && phase !== savedPhase) save('auto');
+  } else if (phase && phase !== savedPhase) {
+    if (s.phase === 'closed' || s.phase === 'fallen') save('volume');
+    save('auto');
+  } else if (behind()) {
+    const inputWaiting = run.log.length !== savedInputs;
+    if (sinceSave >= (inputWaiting ? INPUT_SAVE_MS : RUNNING_SAVE_MS)) save('auto');
+  }
   savedPhase = phase;
 }
 
 function begin(r: WatchRun, id: string): void {
   run = r;
-  const held = pacer.held;
-  pacer = new Pacer();
-  pacer.held = held;
+  pacer.adopt(r);
   chronicleId = id;
   savedSeason = seasonMark(r.state);
-  savedPhase = '';
+  savedPhase = PAGE_PHASES.has(r.state.phase) ? `${r.state.phase}:${r.state.minute}` : '';
+  savedMinute = r.state.minute;
+  savedInputs = r.log.length;
+  sinceSave = 0;
   lastKey = '';
   saving = true;
 }
@@ -112,14 +153,17 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         });
         return;
       }
-      begin(new WatchRun(msg.seed), `c${Date.now().toString(36)}`);
+      if (run && behind()) save('auto');
+      begin(new WatchRun(msg.seed), newChronicleId());
       flush(true);
       postShelf();
       return;
     case 'tick': {
       if (!run) return;
-      sinceFrame += Math.max(0, msg.dtMs);
-      pacer.tick(run, msg.dtMs);
+      const dt = Math.max(0, msg.dtMs);
+      sinceFrame += dt;
+      sinceSave += dt;
+      pacer.tick(run, dt);
       maybeSave();
       if (sinceFrame < FRAME_MS) return;
       flush(false);
@@ -138,6 +182,11 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       return;
     case 'hold':
       pacer.held = msg.on;
+      // Opening the chronicle writes the running page, so the shelf shows where the Keeper stands.
+      if (msg.on && behind()) save('auto');
+      return;
+    case 'save':
+      if (behind()) save('auto');
       return;
     case 'export':
       if (run) host.post({ type: 'exported', requestId: msg.requestId, data: run.export() });
@@ -148,6 +197,8 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     case 'load': {
       const gen = msg.gen;
       const id = msg.id;
+      // Keep where this chronicle stands before opening another.
+      if (run && behind()) save('auto');
       void loadPage(id).then((snap) => {
         let next: WatchRun | null = null;
         try {
@@ -160,9 +211,13 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
           return;
         }
         host.gen = gen;
-        begin(next, id.split(':')[0] ?? id);
+        // A closed volume taken up again is a new chronicle; a running page continues its own.
+        const fork = id.includes(':vol:');
+        begin(next, fork ? newChronicleId() : (id.split(':')[0] ?? id));
+        if (fork) save('auto');
         host.post({ type: 'loaded', ok: true, id, seed: next.seed });
         flush(true);
+        postShelf();
       });
       return;
     }
