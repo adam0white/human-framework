@@ -27,6 +27,7 @@ const NUMERIC: (keyof Measured)[] = [
   'sleepAll',
   'restHours',
   'lateNights',
+  'brokenFastDays',
   'prayers',
   'missedPrayers',
   'insisted',
@@ -47,7 +48,8 @@ test.skipIf(!env.VOICE_MEASURE)(
       row.keptDate = runs.filter((r) => r.paidByDate >= 300).length;
       row.eidPrayer = runs.filter((r) => r.eidPrayer).length;
       const answers: Record<string, number> = {};
-      for (const r of runs) for (const [t, n] of Object.entries(r.answers)) answers[t] = (answers[t] ?? 0) + n;
+      for (const r of runs)
+        for (const [t, n] of Object.entries(r.answers)) answers[t] = (answers[t] ?? 0) + n;
       row.answers = answers;
       row.pays = runs.map((r) => r.pays).join(' | ');
       out.push(row);

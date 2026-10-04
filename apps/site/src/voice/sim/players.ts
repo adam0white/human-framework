@@ -14,7 +14,7 @@
  * Faith stays gentle: no style targets prayer either way (it is never picked and never steered around), and none
  * offers food, drink or a cigarette during the fast.
  */
-import { TOWN_EID_DAY, voiceOf } from '@human/framework';
+import { TOWN_EID_DAY, townCalendar, townDay, voiceOf } from '@human/framework';
 import type { Appeal, Draft, Frame, StandingWhisper } from '../protocol.ts';
 import { SHIPPED_SEED, VoiceGame } from './game.ts';
 import { type PlayOpts, play } from './headless.ts';
@@ -60,8 +60,10 @@ const clockOf = (f: Frame): Clock => {
 /** The bad picks for the moment, best first: oversleep at dawn, idle by day, smoke and stay up at night. */
 function badOrder(c: Clock): string[] {
   if (c.m >= c.fajr - 120 && c.m < c.fajr + 180) return ['sleep', 'rest', 'wait'];
-  if (c.m >= c.fajr + 180 && c.m < c.maghrib) return ['rest', 'sleep', 'tea:riza', 'visit-grave', 'talk:hacer', 'wait'];
-  if (c.m >= c.maghrib && c.m < 21 * 60) return ['smoke', 'tea:riza', 'visit-grave', 'talk:hacer', 'rest', 'wait'];
+  if (c.m >= c.fajr + 180 && c.m < c.maghrib)
+    return ['rest', 'sleep', 'tea:riza', 'visit-grave', 'talk:hacer', 'wait'];
+  if (c.m >= c.maghrib && c.m < 21 * 60)
+    return ['smoke', 'tea:riza', 'visit-grave', 'talk:hacer', 'rest', 'wait'];
   return ['smoke', 'tea:riza', 'talk:hacer', 'wait', 'visit-grave'];
 }
 /** What the guardian says instead, when he leans to something idle or bad; nothing when he leans well. */
@@ -111,7 +113,11 @@ export const saboteur = (f: Frame, g: VoiceGame): Draft | undefined => {
   return id ? { optionId: id, strength: 'urge', insist: true } : undefined;
 };
 export const guardian = (f: Frame, g: VoiceGame): Draft | undefined => {
-  if (f.prefill && f.options.some((o) => o.id === f.prefill?.optionId) && f.prefill.optionId !== f.standing?.draft.optionId) {
+  if (
+    f.prefill &&
+    f.options.some((o) => o.id === f.prefill?.optionId) &&
+    f.prefill.optionId !== f.standing?.draft.optionId
+  ) {
     const d: Draft = { optionId: f.prefill.optionId, strength: f.prefill.strength, insist: false };
     if (f.prefill.appeal) d.appeal = f.prefill.appeal;
     return d;
@@ -182,6 +188,8 @@ export interface Measured {
   sleepAll: number;
   restHours: number;
   lateNights: number;
+  /** Ramadan days with food or water in fasting hours (the town excuses them as illness or necessity). */
+  brokenFastDays: number;
   prayers: number;
   missedPrayers: number;
   eidPrayer: boolean;
@@ -229,9 +237,26 @@ export function measure(opts: PlayOpts, seed = SHIPPED_SEED): Measured {
     clinic: count((c) => c.affordanceId === 'see-doctor'),
     suhoors: suhoor.size,
     sleepHours: sleepMin / 60 / TOWN_EID_DAY,
-    sleepAll: ram.filter((c) => c.action === 'sleep').reduce((s, c) => s + c.to - c.from, 0) / 60 / TOWN_EID_DAY,
-    restHours: ram.filter((c) => c.action === 'rest').reduce((s, c) => s + c.to - c.from, 0) / 60 / TOWN_EID_DAY,
+    sleepAll:
+      ram.filter((c) => c.action === 'sleep').reduce((s, c) => s + c.to - c.from, 0) / 60 / TOWN_EID_DAY,
+    restHours:
+      ram.filter((c) => c.action === 'rest').reduce((s, c) => s + c.to - c.from, 0) / 60 / TOWN_EID_DAY,
     lateNights: late,
+    brokenFastDays: new Set(
+      ram
+        .filter((c) => {
+          const d = day(c.from);
+          const cal = townCalendar(d);
+          const m = c.from % MIN_DAY;
+          return (
+            (c.action === 'eat' || c.action === 'drink') &&
+            townDay(d).kind === 'ramadan' &&
+            m >= cal.fajr &&
+            m < cal.maghrib
+          );
+        })
+        .map((c) => day(c.from)),
+    ).size,
     prayers: count((c) => c.action === 'pray'),
     missedPrayers: eid.memory.episodes.filter((e) => e.kind === 'missed' && e.action === 'pray').length,
     eidPrayer: done.some((c) => c.action === 'pray-eid'),

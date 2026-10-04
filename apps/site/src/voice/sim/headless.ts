@@ -81,7 +81,11 @@ export function play(target: VoiceGame | Driver, o: PlayOpts = {}): void {
       const pick = o.choose && f.composer.open ? o.choose(f, g) : undefined;
       if (pick) {
         const k = `${f.minute}:${pick.optionId}`;
-        if (pick.optionId !== g.standing?.draft.optionId && k !== lastKey && f.options.some((x) => x.id === pick.optionId)) {
+        if (
+          pick.optionId !== g.standing?.draft.optionId &&
+          k !== lastKey &&
+          f.options.some((x) => x.id === pick.optionId)
+        ) {
           lastKey = k;
           d.apply({ type: 'suggest', draft: pick });
           continue;
