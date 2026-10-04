@@ -98,6 +98,8 @@ describe('answerNow', () => {
     answerNow(p, [WORK], insist('work'));
     const v = voice(p);
     if (!v) throw new Error('no voice');
+    // An omission refusal adds no pressure (only pushes and insists he takes up do), so set the prior pressure that
+    // earlier words would have left; the `pushed` cost needs it.
     v.pressure = WILL_DEFAULTS.distrustPressure + 0.1;
     const before = v.trust;
     answerNow(p, [WORK], insist('work'));
