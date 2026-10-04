@@ -116,6 +116,8 @@ export interface Frame {
   date: string;
   /** 0 at midwinter's first day, 1 at the year's end: for the land's colour. */
   yearProgress: number;
+  /** A warning in words when the granary is low in winter (null otherwise). */
+  grainWarning: string | null;
   /** This winter as the Keeper knows it (dusk, night, dawn and the thaw page); null in the open seasons. */
   winter: { night: number; nights: number; why: string; question: WinterPlan['question'] } | null;
   /** The chronicle's latest lines, oldest first. */
@@ -525,6 +527,16 @@ function yearFrame(s: WatchState) {
     season: seasonOfDay(d),
     date: dateWords(s),
     yearProgress: d / 365,
+    grainWarning:
+      inWinter && s.phase !== 'thaw'
+        ? s.grain <= 0
+          ? 'The granary is empty. The spring will be hungry.'
+          : s.grain <= 4
+            ? 'The granary is nearly bare: one bad night could empty it.'
+            : s.grain <= 9
+              ? 'The granary is running low.'
+              : null
+        : null,
     winter: inWinter
       ? { night: s.winterNight, nights: s.winter.nights, why: s.winter.why, question: s.winter.question }
       : null,

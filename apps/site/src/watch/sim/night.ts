@@ -70,7 +70,7 @@ import {
 import { advanceDay } from './day.ts';
 import { planDirectedNight } from './director.ts';
 import { takeOffer } from './fair.ts';
-import { chronicle, fillLeaf, maybeLimp } from './life.ts';
+import { fillLeaf, maybeLimp } from './life.ts';
 import { answerMoment, catchLeaving, checkMoments } from './moments.ts';
 import {
   addVillager,
@@ -102,7 +102,7 @@ import {
 } from './state.ts';
 import { canTalk, TALKS_PER_DAY, type Topic, talk } from './talk.ts';
 import { dawnVoices } from './voices.ts';
-import { closeVolume, firstStand, freshLeaves } from './volume.ts';
+import { firstStand, freshLeaves } from './volume.ts';
 
 export type Input =
   | { k: 'start' }
@@ -165,6 +165,9 @@ export function litSection(s: WatchState): SectionId | null {
   if (s.lantern.x !== s.lantern.target) return null;
   return SECTION_IDS[s.lantern.x] ?? null;
 }
+
+/** The authored opening: year 1's first nights take what they take (the gates' nights). */
+const OPENING_NIGHTS = 3;
 
 /** Weight of one seen throw as evidence of aim (the skill cue lasts a year). */
 const SEEN_THROW = 0.05;
@@ -420,12 +423,8 @@ function enterDawn(s: WatchState): void {
   s.commands = {};
   s.moment = null;
   s.asks = {};
-  // Year 1 is the authored winter: an emptied granary ends it. Later an empty granary waits for the thaw.
-  s.phase = s.grain <= 0 && s.year === 1 ? 'fallen' : 'dawn';
-  if (s.phase === 'fallen') {
-    chronicle(s, 'loss', 'The granary was emptied in the winter. The village could not stay.');
-    closeVolume(s, 'The granary was emptied in the winter; the village scattered.');
-  }
+  // An emptied granary does not end the winter: the dawn page tells the night, and the thaw settles the hunger.
+  s.phase = 'dawn';
 }
 
 /** Applies one Keeper input. Returns false (and changes nothing) when it does not apply in this phase. */
@@ -887,11 +886,13 @@ export function stepMinute(s: WatchState): void {
       } else if (t.climb >= def.climb) {
         t.state = 'in';
         t.since = m;
-        // From the second winter a night carries off at most NIGHT_CARRY sacks (what can be hauled over a wall
-        // before the alarm), so one bad night hurts without ending the chronicle; year 1 is the authored winter.
+        // After the first three nights a night carries off at most NIGHT_CARRY sacks (what can be hauled over a
+        // wall before the alarm), so one bad night hurts without ending the chronicle; the first three nights of
+        // year 1 are the authored opening the G3-1 and G3-2 gates measure.
         const carry =
           NIGHT_CARRY + Math.floor(Math.max(0, s.tally.grainAtDusk - START_GRAIN) / NIGHT_CARRY_RICH);
-        const room = s.year > 1 ? Math.max(0, carry - (s.tally.grainAtDusk - s.grain)) : def.takes;
+        const capped = s.year > 1 || s.winterNight > OPENING_NIGHTS;
+        const room = capped ? Math.max(0, carry - (s.tally.grainAtDusk - s.grain)) : def.takes;
         const took = Math.min(s.grain, def.takes, room);
         s.grain -= took;
         const got = s.tally.got[t.section];

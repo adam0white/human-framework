@@ -10,8 +10,8 @@
  * and the next midnight, and between midnight and the winter's first dusk, are lived minute by minute
  * (`stepPeople`); whole days in between by HF `liveCommunity` with this game's routines, natural death and chronic
  * onsets on. Grain is lost only on played nights; the spring's eating is paid at the thaw and the harvest refills it
- * (14 + 1.5 sacks per worker, by the weather, up to a granary of 45). In year 1 an empty granary at the thaw ends
- * the village; from year 2 it is a hungry spring: the households most ready to go leave until the rest can be fed.
+ * (14 + 1.5 sacks per worker, by the weather, up to a granary of 45). An empty granary at the thaw is a hungry
+ * spring: the households most ready to go leave until the rest can be fed.
  * The village ends only when nobody aged fifteen or more is left. Village size is held by crowding (fewer births and
  * young couples leaving above twenty-two) and refugees (below ten).
  *
@@ -166,14 +166,8 @@ function thaw(s: WatchState): void {
   }
   const eat = Math.ceil(living(s).length * EAT_PER_HEAD);
   s.yearGrain.eaten = eat;
-  if (s.grain < eat && s.year === 1) {
-    chronicle(s, 'loss', 'The granary could not reach the harvest. The village could not stay.');
-    closeVolume(s, 'The granary ran out before the harvest; the village scattered.');
-    s.phase = 'fallen';
-    return;
-  }
   if (s.grain < eat) {
-    // From year 2 an empty granary is a hungry spring, not the end: households go until the rest can be fed.
+    // An empty granary is a hungry spring, not the end: households go until the rest can be fed.
     s.yearGrain.hungry = true;
     const before = householdCount(s);
     hungrySpring(s, EAT_PER_HEAD);

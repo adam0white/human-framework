@@ -62,29 +62,105 @@ export function firstStand(s: WatchState, id: string): void {
   v.end = `${nameOf(s, id)}, a child when this volume opened, stood the wall.`;
 }
 
-function fateLine(s: WatchState, id: string): string {
+const FATES: Record<string, readonly [readonly string[], readonly string[]]> = {
+  child: [
+    [
+      '“When I’m big I’ll stand the Gate.”',
+      '“I counted the stars from the wall stair.”',
+      '“I want a sling of my own.”',
+    ],
+    [
+      '“I don’t like the dark.”',
+      '“I hear the wolves when the fire is low.”',
+      '“Why do they always come in winter?”',
+    ],
+  ],
+  keeper: [
+    ['“The Gate is mine now. I hear the old ones on the stair.”', '“The Gate holds. I see to it.”'],
+    ['“I keep the Gate. Someone has to.”', '“The Gate is heavy some nights.”'],
+  ],
+  old: [
+    [
+      '“I’ve seen enough winters. They were good ones, mostly.”',
+      '“I taught the young ones to throw. Now they teach me patience.”',
+      '“The wall knows my hands.”',
+    ],
+    [
+      '“My knees remember every night on that wall.”',
+      '“Too many faces gone. I keep their names.”',
+      '“I am tired, and the winters are not.”',
+    ],
+  ],
+  parent: [
+    [
+      '“The children sleep. That’s what the wall is for.”',
+      '“I watch the wall so they can watch the sky.”',
+      '“My little ones will be braver than me.”',
+    ],
+    [
+      '“I worry for the children, every night.”',
+      '“I don’t want them on that wall. Not yet.”',
+      '“I count the children twice before I go up.”',
+    ],
+  ],
+  married: [
+    [
+      '“We have a house and a fire. It’s enough.”',
+      '“We stand the same stretch when we can.”',
+      '“Home is warm. The wall is not.”',
+    ],
+    [
+      '“We get by.”',
+      '“We argue about the wall, then we go up together.”',
+      '“A hard year. We are still here.”',
+    ],
+  ],
+  single: [
+    [
+      '“I’ll stay. Where else would I go?”',
+      '“The wall is where I’m some use.”',
+      '“Someone has to know every stone.”',
+    ],
+    ['“One more bad winter and I’ll go.”', '“I don’t know why I stay.”', '“The nights are long, alone.”'],
+  ],
+};
+
+function hashId(id: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < id.length; i++) h = Math.imul(h ^ id.charCodeAt(i), 0x01000193);
+  return h >>> 0;
+}
+
+/** One line in this person's voice, by their life and mood; never a line someone earlier in `used` said. */
+function fateLine(s: WatchState, id: string, used: Set<string>): string {
   const p = personOf(s, id);
   if (!p) return '';
   const age = Math.floor(ageOf(p, s.minute));
-  const mood = p.affect.mood.valence;
   const married = spousesOf(p).length > 0;
   const kids = childrenOf(s, p).length;
-  const keeper = s.gateKeeper === id;
-  if (age < 15) return mood >= 0 ? '“When I’m big I’ll stand the Gate.”' : '“I don’t like the dark.”';
-  if (keeper)
-    return mood >= 0
-      ? '“The Gate is mine now. I hear the old ones on the stair.”'
-      : '“I keep the Gate. Someone has to.”';
-  if (age >= RETIRE_AGE)
-    return mood >= 0
-      ? '“I’ve seen enough winters. They were good ones, mostly.”'
-      : '“My knees remember every night on that wall.”';
-  if (kids > 0)
-    return mood >= 0
-      ? '“The children sleep. That’s what the wall is for.”'
-      : '“I worry for the children, every night.”';
-  if (married) return mood >= 0 ? '“We have a house and a fire. It’s enough.”' : '“We get by.”';
-  return mood >= 0 ? '“I’ll stay. Where else would I go?”' : '“One more bad winter and I’ll go.”';
+  const kind =
+    age < 15
+      ? 'child'
+      : s.gateKeeper === id
+        ? 'keeper'
+        : age >= RETIRE_AGE
+          ? 'old'
+          : kids > 0
+            ? 'parent'
+            : married
+              ? 'married'
+              : 'single';
+  const lines = FATES[kind]?.[p.affect.mood.valence >= 0 ? 0 : 1] ?? [];
+  const n = lines.length;
+  const from = hashId(id) % Math.max(1, n);
+  for (let k = 0; k < n; k++) {
+    const line = lines[(from + k) % n];
+    if (line && !used.has(line)) {
+      used.add(line);
+      return line;
+    }
+  }
+  return lines[from] ?? '';
 }
 
 /** Closes the current volume with its epilogue (each living person of 10 and over, in their voice). */
@@ -92,11 +168,12 @@ export function closeVolume(s: WatchState, end?: string): void {
   const v = s.volume;
   if (end) v.end = end;
   v.end ??= 'The chronicle closes here.';
+  const used = new Set<string>();
   v.epilogue = living(s)
     .filter((p) => ageOf(p, s.minute) >= 10)
     .map((p) => ({
       who: p.id,
-      text: `${nameOf(s, p.id)}: ${fateLine(s, p.id)}`,
+      text: fateLine(s, p.id, used),
     }));
   s.volumes.push(structuredClone(v));
 }

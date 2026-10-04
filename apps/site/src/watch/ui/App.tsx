@@ -453,7 +453,7 @@ function DuskPanel({
           </button>
         ))}
       </div>
-      <button type="button" className="w-primary" onClick={() => actions.input({ k: 'begin' })}>
+      <button type="button" className="w-primary w-sticky" onClick={() => actions.input({ k: 'begin' })}>
         <Icon name="moon" size={18} /> Begin the watch
       </button>
       <p className="w-note">The sun is going down; the watch begins at nightfall on its own.</p>
@@ -550,6 +550,7 @@ function WinterNote({ frame }: { frame: Frame }) {
   if (!w) return null;
   return (
     <div className="w-winter">
+      {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
       {w.night <= 1 && w.why ? <p className="w-note">{w.why}</p> : null}
       {w.question ? (
         <p className="w-winter-q">
@@ -629,6 +630,7 @@ function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) 
       <p className="w-kicker">Dawn · {frame.date}</p>
       <h2>{d.grainAfter === d.grainBefore ? 'The wall held.' : 'The wall was crossed.'}</h2>
       {d.scout ? <p className="w-scoutline">{d.scout}</p> : null}
+      {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
       <ul className="w-dawnlines">
         {d.lines.map((l) => (
           <li key={l.section}>{l.text}</li>

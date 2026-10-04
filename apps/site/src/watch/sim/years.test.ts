@@ -47,6 +47,30 @@ describe('Game 3 years (G3-3)', () => {
   }, 300_000);
 });
 
+describe('Game 3 first winter (G3-3 review)', () => {
+  it('a Keeper who never plans still reaches the thaw: an empty granary is told at dawn, not a sudden end', () => {
+    for (const seed of [1, 2, 3]) {
+      const run = new WatchRun(seed);
+      run.input({ k: 'start' });
+      let dawns = 0;
+      for (
+        let guard = 0;
+        guard < 200_000 && run.state.phase !== 'thaw' && run.state.phase !== 'fallen';
+        guard++
+      ) {
+        const ph = run.state.phase;
+        if (ph === 'dusk') run.input({ k: 'begin' });
+        else if (ph === 'dawn') {
+          dawns += 1;
+          run.input({ k: 'toDusk' });
+        } else run.step();
+      }
+      expect(run.state.phase).toBe('thaw');
+      expect(dawns).toBe(run.state.winter.nights);
+    }
+  }, 300_000);
+});
+
 describe('Game 3 pacing in the open seasons (G3-3)', () => {
   it('spring opens at Days, steps whole days, Seasons runs faster, and the next winter opens at Watch', () => {
     const run = playYears(2, 1, undefined, (s) => s.phase === 'thaw');

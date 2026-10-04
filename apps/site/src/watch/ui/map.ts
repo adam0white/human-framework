@@ -50,12 +50,17 @@ export function postXY(l: Layout, section: SectionId, slot: number): { x: number
 export type Hit = { kind: 'post'; post: string } | { kind: 'section'; section: SectionId } | null;
 
 export function hitTest(l: Layout, f: Frame, x: number, y: number): Hit {
+  // The nearest post within reach: a generous target for a finger (posts sit close on a phone).
+  const reach = Math.max(30, l.laneW * 0.3);
+  let best: { post: string; d: number } | null = null;
   for (const sec of f.sections) {
     for (const [slot, p] of sec.posts.entries()) {
       const at = postXY(l, sec.id, slot);
-      if (Math.hypot(at.x - x, at.y - y) < 22) return { kind: 'post', post: p.id };
+      const d = Math.hypot(at.x - x, (at.y - y) * 0.8);
+      if (d < reach && (!best || d < best.d)) best = { post: p.id, d };
     }
   }
+  if (best) return { kind: 'post', post: best.post };
   const i = Math.floor(x / l.laneW);
   const section = SECTION_IDS[Math.max(0, Math.min(SECTION_IDS.length - 1, i))];
   if (!section || y > l.h) return null;
