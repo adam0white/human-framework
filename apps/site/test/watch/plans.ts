@@ -28,9 +28,12 @@ function concentrate(s: WatchState, focus: SectionId): Map<string, PostId> {
   const slots: PostId[] = [`${focus}-1` as PostId, `${focus}-2` as PostId];
   for (const sec of order.slice(1)) slots.push(`${sec}-1` as PostId);
   for (const sec of order.slice(1)) slots.push(`${sec}-2` as PostId);
+  for (const sec of order) slots.push(`${sec}-3` as PostId);
+  // Only posts on the wall this winter (a lost stretch is closed; a raised one has a third).
+  const open = slots.filter((p) => s.openPosts.includes(p));
   const out = new Map<string, PostId>();
   people.forEach((id, i) => {
-    const post = slots[i];
+    const post = open[i];
     if (post) out.set(id, post);
   });
   return out;

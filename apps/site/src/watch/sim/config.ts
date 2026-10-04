@@ -303,6 +303,8 @@ export const WATCHERS: readonly WatcherDef[] = [
 
 /** Age at which a villager comes of age and stands the wall (spec §2: "who comes of age (15)"). */
 export const WATCH_AGE = 15;
+/** Watchers step off the wall at this age ("the stair is beyond her now"). */
+export const RETIRE_AGE = 68;
 /** A child under this age at home pulls a parent or guardian off the wall when a threat is near the house. */
 export const HOME_CHILD_AGE = 12;
 
@@ -327,6 +329,12 @@ export const FOUNDER_KIN: readonly KinDef[] = [
   { id: 'pell', name: 'Pell', sex: 'male', age: 7, home: 'east', parents: ['mara', 'joss'], with: 'mara' },
   { id: 'ada', name: 'Ada', sex: 'female', age: 8, home: 'west', guardian: 'kian', with: 'kian' },
 ];
+
+/** Founders who are married when the chronicle opens (married by HF `marry` the night both have come). */
+export const FOUNDER_MARRIAGES: readonly [WatcherId, WatcherId][] = [['mara', 'joss']];
+
+/** From the second winter, the most sacks one night can carry off. */
+export const NIGHT_CARRY = 3;
 
 /** Hit chance per minute at sling 1, lit, unhurt, rested and calm. */
 export const AIM_SCALE = 0.36;

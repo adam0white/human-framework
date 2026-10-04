@@ -17,7 +17,133 @@ import {
 import type { Moment, MomentKind } from './moments.ts';
 import { createKeeper, createWatchCommunity, type Place } from './people.ts';
 
-export type Phase = 'goal' | 'dusk' | 'night' | 'dawn' | 'fallen';
+/**
+ * The phases of a year. Stopped pages (`goal`, `dawn`, `thaw`, `fair`, `closed`, `fallen`) wait for the Keeper's
+ * input; dusk and night step one minute, and the three open seasons step one day (G3-3).
+ */
+export type Phase =
+  | 'goal'
+  | 'dusk'
+  | 'night'
+  | 'dawn'
+  | 'fallen'
+  | 'thaw'
+  | 'spring'
+  | 'summer'
+  | 'autumn'
+  | 'fair'
+  | 'closed';
+
+export type Season = 'winter' | 'spring' | 'summer' | 'autumn';
+
+/** A line of the permanent chronicle (game data; HF's own chronicle stays capped). */
+export interface ChronicleLine {
+  year: number;
+  season: Season;
+  minute: number;
+  kind:
+    | 'death'
+    | 'birth'
+    | 'marriage'
+    | 'leave'
+    | 'arrive'
+    | 'age'
+    | 'loss'
+    | 'fair'
+    | 'winter'
+    | 'harvest'
+    | 'volume'
+    | 'leaf'
+    | 'courting'
+    | 'talk';
+  text: string;
+  who?: WatcherId;
+}
+
+/** This winter as the director drew it (G3-3; year 1 is authored). */
+export interface WinterPlan {
+  /** Played nights this winter; the rest of the winter is lived by routine. */
+  nights: number;
+  lead: ThreatKind;
+  /** A threat's second appearance carries a twist: wolves learn the dark stretch, thieves have a man inside. */
+  twist: 'dark' | 'inside' | null;
+  /** The winter night with the biggest waves. */
+  peak: number;
+  /** Why the lead came, in words (prosperity, a thin wall). */
+  why: string;
+  /** The winter's question, if any, and how it stands. */
+  question: { text: string; kind: 'gate' | 'first' | 'souls'; who?: WatcherId; met: boolean | null } | null;
+}
+
+/** A card in the open seasons (a proposal the Keeper may speak to); closes on its own when the window passes. */
+export interface SeasonCard {
+  id: number;
+  kind: 'proposal';
+  /** Who proposed, and who answers. */
+  who: WatcherId;
+  other: WatcherId;
+  text: string;
+  /** What each answer is likely, through the Keeper's impression, in words. */
+  read: string;
+  options: { id: string; label: string }[];
+  until: number;
+  choice: string | null;
+}
+
+export interface FairOffer {
+  id: 'outsiders' | 'wall' | 'bell' | 'seed' | 'heir';
+  label: string;
+  /** What it costs and does, in words. */
+  text: string;
+  cost: number;
+  /** For 'wall', the stretch; for 'heir', the person. */
+  target?: string;
+}
+
+/** A finished year in numbers: the sim's own record, never shown as numbers to the player. */
+export interface YearRecord {
+  year: number;
+  /** Sacks lost on the winter's played nights. */
+  lostWinter: number;
+  harvest: number;
+  eaten: number;
+  /** Whether the spring was hungry (the granary could not reach the harvest). */
+  hungry: boolean;
+  /** The granary at the winter's first dusk, after the fair. */
+  grainAtWinter: number;
+  living: number;
+  watchers: number;
+  /** Stretches climbed on played nights (each night a stretch was climbed counts once). */
+  breaches: number;
+}
+
+/** A volume of the chronicle: one generation's question and how it ended (spec §3). */
+export interface Volume {
+  n: number;
+  title: string;
+  question: string;
+  kind: 'gate' | 'child';
+  /** For 'gate', the keeper whose going ends it. */
+  who?: WatcherId;
+  openedYear: number;
+  openedMinute: number;
+  /** Set when the question resolved. */
+  end?: string;
+  epilogue?: { who: WatcherId; text: string }[];
+}
+
+/** A blank leaf at the back of the volume: printed with the condition that fills it. */
+export interface Leaf {
+  id: 'born-stands' | 'married-in' | 'grew-old' | 'left' | 'grandchild';
+  condition: string;
+  filled: string | null;
+}
+
+/** Talks with the Keeper by day (spec §4): a budget of daylight and what was said. */
+export interface TalkState {
+  left: number;
+  said: { who: WatcherId; topic: 'night' | 'body'; text: string }[];
+}
 
 /** How hard the Keeper presses a posting: asked, urged (a stronger suggestion) or insisted on. */
 export type Press = 'ask' | 'urge' | 'insist';
@@ -28,6 +154,8 @@ export interface Spawn {
   section: SectionId;
   kind: ThreatKind;
   count: number;
+  /** Where it starts (default 0, the treeline): a man inside starts near the wall. */
+  pos?: number;
 }
 
 export interface Token {
@@ -142,10 +270,16 @@ export interface Villager {
   bornHere: boolean;
   /** Minute they died or left. */
   until?: number;
+  /** A wound that ended their time on the wall (a limp for life). */
+  limp?: boolean;
+  /** Whether they have stood the wall on a played night. */
+  stood?: boolean;
+  /** Born to, for the chronicle (founders' kin carry their parents too). */
+  parents?: WatcherId[];
 }
 
 export interface WatchState {
-  version: 3;
+  version: 4;
   seed: number;
   /** mulberry32 state. */
   rng: number;
@@ -160,6 +294,48 @@ export interface WatchState {
   year: number;
   /** The night of this winter, 1-based. */
   winterNight: number;
+  /** This winter as drawn. */
+  winter: WinterPlan;
+  /** The lead threat of each winter so far, by year (1-based, index 0 unused). */
+  leads: ThreatKind[];
+  /** The permanent chronicle. */
+  chronicle: ChronicleLine[];
+  /** A card open in the open seasons. */
+  card: SeasonCard | null;
+  nextCardId: number;
+  /** The fair's offers this autumn and what was bought (null outside the fair). */
+  fair: { offers: FairOffer[]; picks: FairOffer['id'][]; max: number } | null;
+  /** Talks left today and what was said (reset each dawn). */
+  talks: TalkState;
+  /** The current volume and the closed ones. */
+  volume: Volume;
+  volumes: Volume[];
+  leaves: Leaf[];
+  /** Who keeps the Gate (the volume's question may hang on them), and the heir named at a fair. */
+  gateKeeper: WatcherId | null;
+  heir: WatcherId | null;
+  /** Irreversible marks: burned houses, extended stretches, a stretch lost for a year, the bigger bell, seed grain. */
+  marks: {
+    ruins: { section: SectionId; year: number; who: WatcherId }[];
+    extended: SectionId[];
+    lost: { section: SectionId; year: number } | null;
+    bigBell: boolean;
+    seed: boolean;
+  };
+  /** Children born and newcomers made, for ids and seeds that continue across a resume. */
+  nextBorn: number;
+  /** Grain lost to thieves and wolves this winter, and the harvest, for the thaw page and director. */
+  yearGrain: {
+    lostWinter: number;
+    harvest: number;
+    eaten: number;
+    breaches: Partial<Record<SectionId, number>>;
+    /** The granary at the winter's first dusk. */
+    atWinter: number;
+    hungry: boolean;
+  };
+  /** One line of numbers per finished year, oldest first (for the chronicle shelf and the long-run checks). */
+  annals: YearRecord[];
   /** Everyone the chronicle knows of, by id: founders, their kin, the born and newcomers, the dead and gone. */
   cast: Record<WatcherId, Villager>;
   /** Cast order: founders first, then by arrival or birth. */
@@ -253,7 +429,7 @@ export function emptyTally(grain: number): NightTally {
 
 export function createState(seed: number): WatchState {
   return {
-    version: 3,
+    version: 4,
     seed,
     rng: seed | 0,
     minute: DUSK_START,
@@ -262,6 +438,30 @@ export function createState(seed: number): WatchState {
     night: 1,
     year: 1,
     winterNight: 1,
+    winter: { nights: 6, lead: 'wolf', twist: null, peak: 6, why: '', question: null },
+    leads: [],
+    chronicle: [],
+    card: null,
+    nextCardId: 1,
+    fair: null,
+    talks: { left: 2, said: [] },
+    volume: {
+      n: 1,
+      title: 'The Gate',
+      question: 'Who keeps the Gate after Tamar?',
+      kind: 'gate',
+      who: 'tamar',
+      openedYear: 1,
+      openedMinute: DUSK_START,
+    },
+    volumes: [],
+    leaves: [],
+    gateKeeper: 'tamar',
+    heir: null,
+    marks: { ruins: [], extended: [], lost: null, bigBell: false, seed: false },
+    nextBorn: 1,
+    yearGrain: { lostWinter: 0, harvest: 0, eaten: 0, breaches: {}, atWinter: START_GRAIN, hungry: false },
+    annals: [],
     cast: {},
     order: [],
     posts: {},

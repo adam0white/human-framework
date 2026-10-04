@@ -103,12 +103,47 @@ export interface PlaytestExport {
   end: EndState;
 }
 
+/**
+ * A saved page of the chronicle: the whole state and the input log up to it (G3-3 saves). Resuming continues the
+ * same run: the log keeps growing from the snapshot, so a later export still replays from the seed.
+ */
+export interface Snapshot {
+  scenario: number;
+  seed: number;
+  log: LogEntry[];
+  state: WatchState;
+}
+
 export class WatchRun {
   readonly state: WatchState;
   readonly log: LogEntry[] = [];
 
-  constructor(readonly seed: number) {
-    this.state = newGame(seed);
+  constructor(
+    readonly seed: number,
+    from?: Snapshot,
+  ) {
+    if (from) {
+      if (from.scenario !== WATCH_SCENARIO_VERSION)
+        throw new Error(`save is scenario ${from.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
+      if (from.seed !== seed) throw new Error('save is from another seed');
+      this.state = structuredClone(from.state);
+      this.log = from.log.map((e) => ({ m: e.m, i: { ...e.i } }));
+    } else this.state = newGame(seed);
+  }
+
+  /** Resumes a saved page (see `Snapshot`). */
+  static resume(snap: Snapshot): WatchRun {
+    return new WatchRun(snap.seed, snap);
+  }
+
+  /** The current page as a snapshot (deep copies: the run goes on unchanged). */
+  snapshot(): Snapshot {
+    return {
+      scenario: WATCH_SCENARIO_VERSION,
+      seed: this.seed,
+      log: this.log.map((e) => ({ m: e.m, i: { ...e.i } })),
+      state: structuredClone(this.state),
+    };
   }
 
   /** Applies and logs an input; inputs that do not apply in this phase are dropped unlogged. */

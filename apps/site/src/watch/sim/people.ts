@@ -34,11 +34,13 @@ import {
   enableGists,
   enableSkillConsolidation,
   enableYearbook,
+  GENERIC_CUSTOM,
   heldNorms,
   inBreak,
   joinGroups,
   MINUTES_PER_DAY,
   MINUTES_PER_YEAR,
+  marry,
   meet,
   type NormDefinition,
   type Outcome,
@@ -47,6 +49,7 @@ import {
   type PersonSpec,
   prayerWindows,
   setReserve,
+  spousesOf,
   type World,
 } from '@human/framework';
 import {
@@ -55,11 +58,13 @@ import {
   DAY,
   DUSK_START,
   FOUNDER_KIN,
+  FOUNDER_MARRIAGES,
   HOME_CHILD_AGE,
   type KinDef,
   MOTION_REACH,
   type PostId,
   postSection,
+  RETIRE_AGE,
   type SectionId,
   WATCH_AGE,
   WATCHERS,
@@ -283,7 +288,8 @@ export function ageAt(p: Person, now: number): number {
 
 /** Of watch age and here: the people who stand the wall, are posted and speak at dawn. */
 export function isWatcher(s: WatchState, p: Person, now: number = s.minute): boolean {
-  return isHere(s, p) && ageAt(p, now) >= WATCH_AGE;
+  const age = ageAt(p, now);
+  return isHere(s, p) && age >= WATCH_AGE && age < RETIRE_AGE && s.cast[p.id]?.limp !== true;
 }
 
 /**
@@ -385,6 +391,12 @@ export function arrive(s: WatchState): WatcherId[] {
       acquaintWith(p, q, familiarity, now);
     }
   }
+  for (const [a, b] of FOUNDER_MARRIAGES) {
+    const pa = personOf(s, a);
+    const pb = personOf(s, b);
+    if (!pa || !pb || (!came.includes(a) && !came.includes(b)) || spousesOf(pa).includes(b)) continue;
+    marry(pa, pb, now, GENERIC_CUSTOM);
+  }
   for (const id of came) {
     const p = personOf(s, id);
     const v = s.cast[id];
@@ -445,7 +457,12 @@ export function atSection(s: WatchState, section: SectionId, except?: string): W
 function occupied(s: WatchState, post: PostId, except: string): boolean {
   for (const p of s.community.people) {
     if (p.id === except) continue;
-    if (s.place[p.id] === post && isHere(s, p)) return true;
+    if (s.place[p.id] !== post || !isHere(s, p)) continue;
+    // At dusk someone standing here but posted elsewhere is about to walk over, so two watchers posted onto each
+    // other's stretches swap instead of each waiting for the other to leave.
+    const posted = s.posts[p.id];
+    if (s.phase === 'dusk' && posted && posted !== post) continue;
+    return true;
   }
   return false;
 }

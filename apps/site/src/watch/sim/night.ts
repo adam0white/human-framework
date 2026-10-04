@@ -51,6 +51,7 @@ import {
   LANTERN_STEP_MIN,
   LIT_REACH,
   MOTION_REACH,
+  NIGHT_CARRY,
   NIGHT_LENGTH,
   type PostId,
   postSection,
@@ -65,6 +66,9 @@ import {
   type WatcherId,
 } from './config.ts';
 import { advanceDay } from './day.ts';
+import { planDirectedNight } from './director.ts';
+import { takeOffer } from './fair.ts';
+import { chronicle, fillLeaf, maybeLimp } from './life.ts';
 import { answerMoment, catchLeaving, checkMoments } from './moments.ts';
 import {
   addVillager,
@@ -80,11 +84,13 @@ import {
   villager,
   WatchWorld,
 } from './people.ts';
+import { closeCard, endWinter, isSeason, leaveClosed, leaveThaw, stepSeason } from './season.ts';
 import {
   type Alert,
   createState,
   type DawnPage,
   emptyTally,
+  type FairOffer,
   type NightNote,
   nextRandom,
   type Press,
@@ -92,10 +98,16 @@ import {
   type Token,
   type WatchState,
 } from './state.ts';
+import { canTalk, TALKS_PER_DAY, type Topic, talk } from './talk.ts';
 import { dawnVoices } from './voices.ts';
+import { closeVolume, firstStand, freshLeaves } from './volume.ts';
 
 export type Input =
   | { k: 'start' }
+  | { k: 'continue' }
+  | { k: 'fair'; pick: FairOffer['id'] }
+  | { k: 'card'; id: number; choice: string }
+  | { k: 'talk'; who: WatcherId; topic: Topic }
   | { k: 'post'; watcher: WatcherId; post: PostId | null; press?: Press }
   | { k: 'begin' }
   | { k: 'lantern'; section: SectionId }
@@ -125,6 +137,7 @@ const NOTE_GAP = 90;
 export function newGame(seed: number): WatchState {
   const s = createState(seed);
   for (const v of foundingCast()) addVillager(s, v);
+  s.leaves = freshLeaves();
   arrive(s);
   for (const id of presentIds(s)) s.posts[id] = villager(s, id).usual;
   planNight(s);
@@ -141,9 +154,9 @@ export function presentIds(s: WatchState): WatcherId[] {
   return out;
 }
 
-/** True while the clock runs (dusk and night). */
+/** True while the clock runs (dusk and night by the minute, the open seasons by the day). */
 export function clockRuns(s: WatchState): boolean {
-  return s.phase === 'dusk' || s.phase === 'night';
+  return s.phase === 'dusk' || s.phase === 'night' || isSeason(s);
 }
 
 export function litSection(s: WatchState): SectionId | null {
@@ -177,7 +190,12 @@ export function theSection(id: SectionId): string {
 
 /** Draws the night at dusk: the lead threat, the scout's line and the waves. */
 export function planNight(s: WatchState): void {
-  const n = s.night;
+  s.warnedAlso = null;
+  if (s.year > 1) {
+    planDirectedNight(s);
+    return;
+  }
+  const n = s.winterNight;
   const previous = s.history.at(-1)?.lead;
   s.lead =
     n === 1 ? 'wolf' : nextRandom(s) < 0.65 ? (previous === 'wolf' ? 'thief' : 'wolf') : (previous ?? 'wolf');
@@ -251,6 +269,14 @@ function reachFor(lit: boolean, sight: number, kind: ThreatKind): number {
 function enterNight(s: WatchState): void {
   s.phase = 'night';
   s.minute = s.nightStart;
+  // A child of the village standing the wall for the first time fills a leaf, and may answer the volume.
+  for (const id of presentIds(s)) {
+    const v = villager(s, id);
+    if (!s.posts[id] || v.stood) continue;
+    v.stood = true;
+    if (v.bornHere) fillLeaf(s, 'born-stands', `${v.name}, born here, stood the wall for the first time.`);
+    firstStand(s, id);
+  }
   s.tally = emptyTally(s.grain);
   s.notes = [];
   s.carried = {};
@@ -367,12 +393,34 @@ function enterDawn(s: WatchState): void {
   // The Keeper hears what they say: testimony moves his impressions (HF `hear`), weaker than seeing.
   for (const t of tells) hear(s.keeper, t.who, t.key, t.value, { at: s.minute, weight: 0.5 });
   s.history.push({ night: s.night, warned: s.warned, lead: s.lead, lost: t.grainAtDusk - s.grain });
+  s.yearGrain.lostWinter += t.grainAtDusk - s.grain;
+  for (const id of SECTION_IDS) {
+    const n = (t.got[id].wolf ?? 0) + (t.got[id].thief ?? 0);
+    if (n > 0) s.yearGrain.breaches[id] = (s.yearGrain.breaches[id] ?? 0) + n;
+  }
+  const q = s.winter.question;
+  if (q && q.met === null) {
+    if (
+      q.kind === 'first' &&
+      s.notes.some((x) => x.who === q.who && (x.kind === 'bitten' || x.kind === 'downed'))
+    )
+      q.met = false;
+    if (q.kind === 'gate' && s.winterNight === s.winter.peak)
+      q.met = (t.got.gate.wolf ?? 0) + (t.got.gate.thief ?? 0) === 0;
+  }
+  for (const p of s.community.people) if (isWatcher(s, p)) maybeLimp(s, p);
+  s.talks = { left: TALKS_PER_DAY, said: [] };
   s.tokens = [];
   s.throws = [];
   s.commands = {};
   s.moment = null;
   s.asks = {};
-  s.phase = s.grain <= 0 ? 'fallen' : 'dawn';
+  // Year 1 is the authored winter: an emptied granary ends it. Later an empty granary waits for the thaw.
+  s.phase = s.grain <= 0 && s.year === 1 ? 'fallen' : 'dawn';
+  if (s.phase === 'fallen') {
+    chronicle(s, 'loss', 'The granary was emptied in the winter. The village could not stay.');
+    closeVolume(s, 'The granary was emptied in the winter; the village scattered.');
+  }
 }
 
 /** Applies one Keeper input. Returns false (and changes nothing) when it does not apply in this phase. */
@@ -420,10 +468,31 @@ export function applyInput(s: WatchState, input: Input): boolean {
       return answerMoment(s, input.id, input.choice);
     case 'toDusk': {
       if (s.phase !== 'dawn') return false;
+      if (s.winterNight >= s.winter.nights) {
+        endWinter(s);
+        return true;
+      }
       advanceDay(s);
       planNight(s);
       return true;
     }
+    case 'continue':
+      if (s.phase === 'thaw') leaveThaw(s);
+      else if (s.phase === 'closed') leaveClosed(s);
+      else if (s.phase === 'fair') {
+        s.fair = null;
+        s.phase = 'autumn';
+      } else return false;
+      return true;
+    case 'fair':
+      return takeOffer(s, input.pick);
+    case 'card':
+      if (!isSeason(s) || !s.card || s.card.id !== input.id) return false;
+      if (!s.card.options.some((o) => o.id === input.choice)) return false;
+      return closeCard(s, input.choice);
+    case 'talk':
+      if (!canTalk(s, input.who)) return false;
+      return talk(s, input.who, input.topic);
   }
 }
 
@@ -443,7 +512,7 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
   });
   if (who !== undefined && targets.length === 0) return false;
   s.tally.bellRung += 1;
-  s.rope.wear += BELL_WEAR_BASE + BELL_WEAR_SPREAD * nextRandom(s);
+  s.rope.wear += (BELL_WEAR_BASE + BELL_WEAR_SPREAD * nextRandom(s)) * (s.marks.bigBell ? 0.5 : 1);
   const at = litSection(s) ?? 'gate';
   for (const id of targets) {
     const pl = s.place[id];
@@ -707,6 +776,10 @@ function burden(p: Person): { fatigue: number; fear: number } {
 
 /** Advances the clock one sim minute. Does nothing unless the clock runs. */
 export function stepMinute(s: WatchState): void {
+  if (isSeason(s)) {
+    stepSeason(s);
+    return;
+  }
   if (s.phase === 'dusk') {
     stepPeople(s, s.minute);
     s.minute += 1;
@@ -735,7 +808,7 @@ export function stepMinute(s: WatchState): void {
       id: s.nextTokenId++,
       kind: sp.kind,
       section: sp.section,
-      pos: 0,
+      pos: sp.pos ?? 0,
       hp: def.hp,
       climb: 0,
       state: 'coming',
@@ -809,7 +882,10 @@ export function stepMinute(s: WatchState): void {
       } else if (t.climb >= def.climb) {
         t.state = 'in';
         t.since = m;
-        const took = Math.min(s.grain, def.takes);
+        // From the second winter a night carries off at most NIGHT_CARRY sacks (what can be hauled over a wall
+        // before the alarm), so one bad night hurts without ending the chronicle; year 1 is the authored winter.
+        const room = s.year > 1 ? Math.max(0, NIGHT_CARRY - (s.tally.grainAtDusk - s.grain)) : def.takes;
+        const took = Math.min(s.grain, def.takes, room);
         s.grain -= took;
         const got = s.tally.got[t.section];
         got[t.kind] = (got[t.kind] ?? 0) + 1;
