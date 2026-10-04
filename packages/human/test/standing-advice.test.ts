@@ -160,4 +160,26 @@ describe('standing advice', () => {
     // Not on offer: never heard.
     expect(standingHeard(c, p, urge({ since: 8 * H }), [REST])).toBe(false);
   });
+
+  test('the running activity counts as on offer once its start window has closed (engine 1.5.0)', () => {
+    const p = person();
+    const c = createCommunity([p]);
+    const SHIFT = aff('shift', { duration: 90, effort: 0.6 });
+    const work: Suggestion = { voiceId: 'you', affordanceId: 'shift', strength: 0.6 };
+    // Not offered and not running: held back.
+    expect(standingHeard(c, p, work, [REST])).toBe(false);
+    // Running (begun before the window closed): still heard at its reviews.
+    p.activity = {
+      affordanceId: 'shift',
+      action: 'shift',
+      affordance: SHIFT,
+      startedAt: p.now - 30,
+      endsAt: p.now + 60,
+      reviewAt: p.now,
+      decisionId: 'd0',
+    } as unknown as Person['activity'];
+    expect(standingHeard(c, p, work, [REST])).toBe(true);
+    // Once it has ended it is not on offer any more.
+    expect(standingHeard(c, p, work, [REST], p.now + 60)).toBe(false);
+  });
 });

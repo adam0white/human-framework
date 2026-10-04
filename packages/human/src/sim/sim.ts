@@ -216,7 +216,7 @@ export interface Community {
 
 /**
  * Whether standing suggestion `s` is heard by `p` at a decision over `affordances` (standing-advice SCOPE): its target
- * must be on offer, and if the action keeps commitments and was completed since the suggestion was given, doing it
+ * must be on offer or be the running activity, and if the action keeps commitments and was completed since the suggestion was given, doing it
  * now must keep a pending commitment again. Read-only.
  */
 export function standingHeard(
@@ -226,7 +226,13 @@ export function standingHeard(
   affordances: readonly Affordance[],
   now: Minute = p.now,
 ): boolean {
-  const target = affordances.find((a) => suggestionTargets(s, a));
+  // The running activity counts as on offer: an offer whose start window has closed (an afternoon shift offered
+  // until 90 minutes before Asr) is still what he is doing, and the advice that started it must still be heard at
+  // its reviews (Game 2 playtest: the shift was dropped part-way the minute its window closed).
+  const running = p.activity && now < p.activity.endsAt ? p.activity.affordance : undefined;
+  const target =
+    affordances.find((a) => suggestionTargets(s, a)) ??
+    (running && suggestionTargets(s, running) ? running : undefined);
   if (!target) return false;
   const done = c.standingDone?.[p.id];
   if (!done) return true;

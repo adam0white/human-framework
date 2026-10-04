@@ -148,7 +148,7 @@ moved. Two scenarios are bundled as reference hosts: `createVillage` and `create
   ```
 - There are three version numbers:
   - The **package version** (`1.0.0`) versions the API.
-  - **`ENGINE_VERSION`** (`1.4.0`) versions simulation behaviour and save compatibility. `restore`
+  - **`ENGINE_VERSION`** (`1.5.0`) versions simulation behaviour and save compatibility. `restore`
     refuses saves from a different engine, so migrate the JSON first.
   - **`FRAMEWORK_VERSION`** is the same string as the package version, compiled into the build (`1.0.0`).
 

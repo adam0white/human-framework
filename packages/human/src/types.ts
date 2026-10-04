@@ -671,7 +671,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * (`Suggestion.since`, `Community.standingDone`). Person saves are unchanged in shape but decisions under standing
  * advice differ, so 1.3.0 saves do not restore.
  */
-export const ENGINE_VERSION = '1.4.0';
+export const ENGINE_VERSION = '1.5.0';
 
 export interface Person {
   schema: typeof PERSON_SCHEMA;

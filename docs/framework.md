@@ -141,6 +141,7 @@ Emotion terms are named `emotion:<emotion>:<tag>` (e.g. `emotion:fear:risky`): t
 - `ENGINE_VERSION` 1.2.0 (2026-10-03) added several voices per decision, standing advice, abstentions and fasting perception, illness coupled to rest and food, habit ease and extinction, cue recall, the chronicle and the lexicon; `restore` refuses 1.1.0 saves.
 - `ENGINE_VERSION` 1.3.0 (2026-10-03) changes behaviour in every scenario: a commitment whose activity began inside its window stays open (and keeps its pull) until that activity ends; a habit's refractory counts the latest time the action was done by any habit; a voice that keeps pressing a declined suggestion loses a little trust (at most once per 12 h), and repeated good outcomes of the same suggested action earn less trust each time. Voice history entries gain `from`/`count`; finish events carry `decisionId`. `restore` refuses 1.2.0 saves.
 - `ENGINE_VERSION` 1.4.0 (2026-10-03): a standing suggestion whose action keeps a commitment is heard until he does it once, then rests until doing it again would keep the next window (`Suggestion.since`, `Community.standingDone`). `restore` refuses 1.3.0 saves.
+- `ENGINE_VERSION` 1.5.0 (2026-10-04): `standingHeard` counts the running activity as on offer, so advice that started an activity is still heard at its reviews after the offer's start window has closed. `restore` refuses 1.4.0 saves.
 
 ## Scope notes
 

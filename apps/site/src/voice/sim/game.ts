@@ -947,15 +947,27 @@ export class VoiceGame {
     }
     // An act he stopped part-way: its log line says so, so a later line does not read as a reversal.
     if (e.status === 'interrupted' && e.decisionId && !this.quiet) {
-      const entry = [...this.log].reverse().find((x) => x.kind === 'act' && x.decisionId === e.decisionId);
-      if (entry && !entry.text.endsWith('(stopped).') && !entry.text.includes('turned back')) {
-        entry.until = clock(e.at);
-        // The mosque's duration is the walk there and back: left unfinished, he turned back (game design review:
-        // "pray at the mosque (stopped)" then "pray at home" read as a bug at every Dhuhr).
-        entry.text =
-          e.affordanceId === 'pray'
-            ? 'I set out for the mosque, and turned back.'
-            : `${entry.text.replace(/\.$/, '')} (stopped).`;
+      const k = this.log.findLastIndex((x) => x.kind === 'act' && x.decisionId === e.decisionId);
+      const entry = k >= 0 ? this.log[k] : undefined;
+      if (entry && !entry.text.includes('(stopped') && !entry.text.includes('turned back')) {
+        const ran = e.at - entry.minute;
+        const asked = this.standing?.going === e.decisionId;
+        if (ran <= 0 && e.affordanceId !== 'pray') {
+          // Begun and given up in the same minute (your word came as he started): it never happened.
+          this.log.splice(k, 1);
+        } else if (e.affordanceId === 'pray') {
+          // The mosque's duration is the walk there and back: left unfinished, he turned back (game design review:
+          // "pray at the mosque (stopped)" then "pray at home" read as a bug at every Dhuhr). Usually what turns him
+          // is the funeral: the mosque brings back the condolences (his expectation of the place, seeded in town.ts).
+          const grief = this.log.some(
+            (x) => x.kind === 'recall' && x.decisionId === e.decisionId && /mosque|funeral/.test(x.text),
+          );
+          entry.until = clock(e.at);
+          entry.text = `I set out for the mosque${asked ? ', as you asked,' : ''} and turned back${grief ? '; the mosque brings back the funeral' : ''}.`;
+        } else {
+          entry.until = clock(e.at);
+          entry.text = `${entry.text.replace(/\.$/, '')} (stopped after ${ran >= 60 && ran % 60 === 0 ? `${ran / 60} h` : `${ran} min`}).`;
+        }
       }
     }
     // The suggested activity ended: the suggestion is spent (kept standing until then, so reviews on the way
@@ -1116,7 +1128,14 @@ export class VoiceGame {
       const { fresh, changed, ends } = answer(this.standing, you);
       if ((fresh || changed) && !this.quiet) {
         const a = this.standing.lastAnswer;
-        const text = `“${you.says}”${a?.counter && !you.says.includes(a.counter) ? ` — ${a.counter}` : ''}`;
+        // A reply that does not follow your words directly names what it answers (playtest: "“Not while I'm keeping
+        // my fast.”" under a prayer line, answering a "drink water" from an hour before).
+        const last = this.log.at(-1);
+        const direct = last?.kind === 'you' || (last?.kind === 'act' && this.log.at(-2)?.kind === 'you');
+        const what =
+          ACTION_LABEL[this.standing.draft.optionId] ?? this.standing.draft.optionId.replace(/[-:]/g, ' ');
+        const asked = direct ? '' : `${capital(what)}? `;
+        const text = `${asked}“${you.says}”${a?.counter && !you.says.includes(a.counter) ? ` — ${a.counter}` : ''}`;
         const entry: Omit<LogEntry, 'id' | 'day' | 'minute' | 'clock'> = {
           kind: 'answer',
           who: 'halil',
@@ -1241,7 +1260,10 @@ export class VoiceGame {
     const s = this.standing;
     if (!s || this.quiet || this.muted || this.halil.body.asleep) return;
     const id = s.draft.optionId;
-    const offered = this.offers().some((o) => o.id === id);
+    // While he is doing it, the option's start window may close (the afternoon shift): that is not "can't".
+    const act = this.halil.activity;
+    const offered =
+      this.offers().some((o) => o.id === id) || (!!act && this.servesStanding(act.affordanceId, act.action));
     const what = ACTION_LABEL[id] ?? id.replace(/[-:]/g, ' ');
     if (!offered && !s.away) {
       s.away = true;

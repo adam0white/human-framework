@@ -129,11 +129,13 @@ function ledger(i: ReportInput): NonNullable<ReportView['ledger']> {
       const rec = first?.decisionId ? i.records?.get(first.decisionId) : undefined;
       const chosen = rec?.considered.find((c) => c.affordanceId === rec.chosenAffordanceId);
       const why = rec ? reasonWords(dominantTerm(chosen)) : '';
-      const where =
-        key === 'pray'
-          ? ` (${done.filter((c) => c.affordanceId === 'pray').length} at the mosque, ${done.filter((c) => c.affordanceId === 'pray-home').length} at home)`
-          : '';
-      what = `${done.length === 1 ? 'Once' : `${times(done.length)}`}${where}, first at ${clock(first?.from ?? eidStart)}${why ? `, ${why}` : ''}.`;
+      // Prayer: the row counts every prayer of his, so the mosque is a part of it, not the whole (playtest:
+      // "Pray at the mosque → 5 times (3 at the mosque, 2 at home)" read as five mosque visits).
+      if (key === 'pray') {
+        const mosque = done.filter((c) => c.affordanceId === 'pray').length;
+        what = `Prayed ${done.length === 1 ? 'once' : times(done.length)}, ${mosque === done.length ? (mosque === 1 ? 'at the mosque' : 'all at the mosque') : mosque === 0 ? 'none at the mosque' : `${mosque} at the mosque`}; first at ${clock(first?.from ?? eidStart)}${why ? `, ${why}` : ''}.`;
+      } else
+        what = `${done.length === 1 ? 'Once' : `${times(done.length)}`}, first at ${clock(first?.from ?? eidStart)}${why ? `, ${why}` : ''}.`;
     }
     const how = [
       said.played > 0 ? `said ${times(said.played)} on the days you spoke` : '',

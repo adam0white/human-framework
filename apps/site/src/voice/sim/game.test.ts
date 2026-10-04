@@ -1,6 +1,13 @@
 import { TOWN_EID_DAY, voiceOf } from '@human/framework';
 import { describe, expect, test } from 'vitest';
-import { type BeatKind, type Draft, defaultWhisper, type Frame, type StandingWhisper } from '../protocol.ts';
+import {
+  type BeatKind,
+  type Draft,
+  defaultWhisper,
+  type Frame,
+  type LogEntry,
+  type StandingWhisper,
+} from '../protocol.ts';
 import { DAY_END, SHIPPED_SEED, VoiceGame } from './game.ts';
 import { EID_LINES, eidLines } from './report.ts';
 
@@ -674,6 +681,38 @@ describe('Game 2 round 3 fixes', () => {
     expect(health?.some((l) => /^Unwell/.test(l))).toBe(true);
     play(g);
     expect(g.report?.body.some((l) => /made him unwell on \d+ days? of Ramadan \(/.test(l))).toBe(true);
+  });
+
+  test('round 5: no "can’t … just now" while he is doing it; a reply away from your words names what it answers', () => {
+    const g = new VoiceGame(SHIPPED_SEED);
+    const all = new Map<string, LogEntry>();
+    const grab = () => {
+      for (const e of g.log) all.set(e.id, { ...e });
+    };
+    play(g, {
+      confirm: true,
+      whispers: [
+        { choiceId: 'extra', strength: 'mention', appeal: 'duty' },
+        { choiceId: 'selin', strength: 'mention', appeal: 'benevolence' },
+      ],
+      onPause: grab,
+    });
+    grab();
+    const log = [...all.values()].sort(
+      (a, b) => a.minute - b.minute || Number(a.id.slice(1)) - Number(b.id.slice(1)),
+    );
+    const away = log.filter((e) => /^He can’t take an afternoon shift just now/.test(e.text));
+    for (const e of away) {
+      const running = g.cells.some(
+        (c) => c.affordanceId === 'work-extra' && c.from <= e.minute && c.to > e.minute,
+      );
+      expect(running, `${e.clock} ${e.text}`).toBe(false);
+    }
+    // No act begun and dropped in the same minute is left in the log.
+    expect(log.some((e) => e.kind === 'act' && e.until === e.clock && /stopped/.test(e.text))).toBe(false);
+    const answers = log.filter((e) => e.kind === 'answer');
+    expect(answers.length).toBeGreaterThan(0);
+    expect(answers.some((e) => /^[A-Z][^“]*\? “/.test(e.text))).toBe(true);
   });
 
   test('round 4: a torn line is logged before the act it led to, never after', () => {

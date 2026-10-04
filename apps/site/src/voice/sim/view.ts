@@ -141,6 +141,8 @@ export const ACTION_LABEL: Record<string, string> = {
   'see-doctor': 'see the doctor',
   'pay-rent': 'pay Osman the rent',
   'work-repair': 'repair in the workshop',
+  'work-extra': 'take an afternoon shift',
+  drink: 'drink water',
   'call:selin': 'call Selin',
   call: 'call Selin',
   pray: 'pray at the mosque',
