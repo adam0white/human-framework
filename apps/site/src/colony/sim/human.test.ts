@@ -133,6 +133,25 @@ describe('Twice at the Well — Human side on the framework', () => {
     expect(solo.alive).toBeGreaterThan(0);
   });
 
+  it('a Solo control stepped alongside play gives the same reports as one built at the end (perf V15)', () => {
+    const paced = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+    const lazy = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+    const playTo = (g: ColonyGame, step: number) => {
+      while (!g.ended) {
+        g.advance(step);
+        if (g === paced) g.advanceSolo(step);
+      }
+    };
+    playTo(paced, 37);
+    lazy.advance(END_MINUTE);
+    expect(JSON.stringify(paced.summary())).toBe(JSON.stringify(lazy.summary()));
+    paced.continueDay();
+    lazy.continueDay();
+    playTo(paced, 53);
+    lazy.advance(lazy.endMinute - lazy.minute);
+    expect(JSON.stringify(paced.summary())).toBe(JSON.stringify(lazy.summary()));
+  });
+
   it('the report lists each order with both answers and says what the orders changed (GD2)', () => {
     const summary = run.game.summary();
     expect(summary.cards.length).toBeGreaterThan(0);

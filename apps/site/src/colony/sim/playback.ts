@@ -224,6 +224,8 @@ export class Playback {
     if (whole <= 0) return [];
     this.carry -= whole;
     this.step(whole);
+    // The Solo control keeps pace with play, so the end report has nothing left to simulate.
+    g.advanceSolo();
     return this.frame();
   }
 
