@@ -444,6 +444,23 @@ The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26
 - Hungry springs still happen at the cap (seed 1: years 17, 19, 20), because a winter now carries off 22–28 sacks.
 - So the cap is not making the autumn meaningless the way G3-3 feared. This phase added sinks (rebuild, a granary-limited fair) and did not retune the cap.
 
+**Wildcard review: a historian of medieval rural life (Sonnet, about 45 minutes, seed 23, two years into the third winter, 1280×800 and 360×660).**
+- Kept, in the reviewer's words: Mara's "Joss keeps the fire in till I'm home" ("That is a person"), the heir line, and the fallen west wall.
+- Also worked: reload mid-night then Continue (twice), and Copy the playtest (28 KB).
+- Acted on:
+  - **Dawn voices repeated verbatim** across nights and between speakers on one dawn. Each case now has three to eight phrasings. No line is said twice on one dawn, and a watcher avoids their own last dawn's words (`lastVoices`). Test: the first winter of seeds 1–3 has no duplicate on any dawn, and under 10 % of voices repeat the speaker's last dawn.
+  - **Nobody aged in the taglines over three years.** Winters on the wall now count from the first winter. An incomer's "newcomer" or "fleeing a raid" gives way to "one winter here", then "one of ours now".
+  - **Continuity: posted east, but spoke of the west wall.** A fear of another stretch is now said from where they stood ("From the east wall I kept looking over at the west wall").
+  - **Births without lead-up.** A conception is now news ("X and Y are expecting a child."), and the child is born 200 days later (`expecting`). Test: every birth in three years was announced first. Courtship already writes "seen walking out together" and opens a proposal card. The reviewer's village had founders married from the start.
+  - **The thaw read the same every year.** The routine-nights line changes by year. A hungry spring names who it showed on: the oldest grows thin, the youngest cries with hunger.
+  - **A card vanished in seconds.** Season cards now stay six days, and the tactical pace is 0.15 days/s (was 0.25), so a card stays about 40 s.
+  - **"Raise gate"** now reads "the wall by the Gate".
+  - **"Lately written"** was a closed fold that looked empty; it now opens by default.
+  - **Phone:** names under the wall are outlined, and on a narrow map neighbours' names stagger. "Begin the watch" sits in an opaque band, so cards scroll under it instead of showing around it.
+- Deferred:
+  - H2: the fair's outsider family repeats the refugees' story; whether a head knock matters after the next day; summer and autumn scenes (sowing, haying, a harvest-home evening); a taller map on phones (about 110 px tall at 360×660 at night).
+  - After Goal 2: deaths, courtship and leavings as cards. The reviewer did not see any of these.
+
 **Deferred, with targets.**
 - H2:
   - Talk topics that change behaviour directly (rest tonight, practise with, mend).

@@ -331,7 +331,10 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
     const isLit = sec.id === f.lit;
     for (const [slot, p] of sec.posts.entries()) {
       const at = postXY(l, sec.id, slot);
-      const labelY = at.y + l.wallH * 0.55 + 10;
+      // On a narrow map neighbours' names would run together: the second post's name sits a line lower
+      // (G3-4 review, 360 px). Names are outlined so they stay readable over the huts.
+      const narrow = laneW < 110;
+      const labelY = at.y + l.wallH * 0.55 + 10 + (narrow && slot % 2 === 1 ? 11 : 0);
       // Figures grow a little on tall maps so posture and signs stay readable.
       const size = Math.max(1, Math.min(1.7, l.wallH / 26));
       ctx.font = '600 11px "Instrument Sans", system-ui, sans-serif';
@@ -349,7 +352,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
           ctx.stroke();
           ctx.setLineDash([]);
           ctx.fillStyle = gone ? 'rgba(232, 160, 130, 0.55)' : 'rgba(255, 243, 220, 0.38)';
-          ctx.fillText(f.watchers.find((x) => x.id === p.posted)?.name ?? '', at.x, labelY);
+          nameLabel(ctx, f.watchers.find((x) => x.id === p.posted)?.name ?? '', at.x, labelY);
         } else {
           ctx.strokeStyle = o.selected ? 'rgba(255, 222, 160, 0.9)' : 'rgba(255, 240, 210, 0.35)';
           ctx.lineWidth = o.selected ? 2 : 1.2;
@@ -401,7 +404,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
       ctx.font = '600 11px "Instrument Sans", system-ui, sans-serif';
       ctx.textAlign = 'center';
       ctx.fillStyle = isLit || f.phase !== 'night' ? '#fff3dc' : 'rgba(255, 243, 220, 0.5)';
-      ctx.fillText(watcher.name, at.x, labelY);
+      nameLabel(ctx, watcher.name, at.x, labelY);
     }
   }
 
@@ -892,4 +895,15 @@ function drawVillagers(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, now: 
       ctx.fillText(v.name, x, y + 16 * size);
     }
   }
+}
+
+/** A name on the map, outlined in the night colour so it reads over huts and wall. Uses the current fill and font. */
+function nameLabel(ctx: CanvasRenderingContext2D, text: string, x: number, y: number): void {
+  ctx.save();
+  ctx.lineJoin = 'round';
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = 'rgba(14, 16, 32, 0.85)';
+  ctx.strokeText(text, x, y);
+  ctx.restore();
+  ctx.fillText(text, x, y);
 }

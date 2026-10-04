@@ -318,6 +318,10 @@ export interface WatchState {
   nextCardId: number;
   /** Sling lessons the Keeper allowed this year (G3-4 practise card): `who` learns from `with` until `until`. */
   pairings: { who: WatcherId; with: WatcherId; until: number }[];
+  /** Each watcher's words at the last dawn, so the next dawn says it differently (G3-4 review). */
+  lastVoices: Record<WatcherId, string>;
+  /** Children on the way: the news is told at once, the birth comes on `due` (G3-4 review). */
+  expecting: { mother: WatcherId; father: WatcherId; due: number }[];
   /** Births not yet brought to the Keeper as a card (born in winter, or while another card was open). */
   newborns: { mother: WatcherId; child: WatcherId; winter: boolean }[];
   /** The fair's offers this autumn and what was bought (null outside the fair). */
@@ -465,6 +469,8 @@ export function createState(seed: number): WatchState {
     card: null,
     nextCardId: 1,
     pairings: [],
+    lastVoices: {},
+    expecting: [],
     newborns: [],
     fair: null,
     talks: { left: 2, said: [], asked: [] },

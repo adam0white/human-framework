@@ -193,9 +193,10 @@ function thaw(s: WatchState): void {
     chronicle(
       s,
       'loss',
-      went === 0
+      (went === 0
         ? 'A hungry spring: the granary could not reach the harvest, and everyone went short until it came.'
-        : `A hungry spring: the granary could not reach the harvest, and ${went === 1 ? 'one household' : `${went} households`} went down the valley.`,
+        : `A hungry spring: the granary could not reach the harvest, and ${went === 1 ? 'one household' : `${went} households`} went down the valley.`) +
+        hungerFaces(s),
     );
     s.yearGrain.eaten = Math.min(s.grain, Math.ceil(living(s).length * EAT_PER_HEAD));
     s.grain -= s.yearGrain.eaten;
@@ -217,6 +218,19 @@ function thaw(s: WatchState): void {
   if (volumeResolved(s)) closeVolume(s);
 }
 
+/** Who the hunger showed on (G3-4 review: a hungry spring needs a face): the oldest and the youngest left. */
+function hungerFaces(s: WatchState): string {
+  const people = living(s).sort((a, b) => a.life.bornAt - b.life.bornAt || (a.id < b.id ? -1 : 1));
+  const old = people[0];
+  const young = people.at(-1);
+  const parts: string[] = [];
+  if (old && ageOf(old, s.minute) >= 50)
+    parts.push(`${nameOf(s, old.id)} gave away half of every bowl and grew thin`);
+  if (young && young !== old && ageOf(young, s.minute) < 6)
+    parts.push(`${nameOf(s, young.id)} cried with hunger at night`);
+  return parts.length === 0 ? '' : ` ${parts.join('; ')}.`;
+}
+
 /**
  * The routine part of the winter, told at the thaw (G3-4): how many nights went by without the Keeper's lantern,
  * who stood the most of them, and a stretch someone feared that quiet nights on it may have eased.
@@ -236,9 +250,22 @@ function routineLine(s: WatchState): void {
     .sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1))
     .slice(0, 2)
     .map(([id]) => nameOf(s, id));
-  let text = `The other ${nights} nights of winter went by routine, the wall stood in turns.`;
-  if (most.length === 2) text += ` ${most[0]} and ${most[1]} stood the most of them.`;
-  else if (most.length === 1) text += ` ${most[0]} stood the most of them.`;
+  // Said differently each year (G3-4 review: the same sentence every thaw read as a form).
+  const openers = [
+    `The other ${nights} nights of winter went by routine, the wall stood in turns.`,
+    `The rest of the winter, ${nights} nights, passed in turns on the wall: cold, dark and uneventful.`,
+    `For ${nights} nights nothing came worth the lantern. The watch changed at midnight and the snow kept falling.`,
+    `${nights} more nights went by without the lantern: frost, the stars and the long hours before dawn.`,
+  ];
+  const stoodWords = [
+    ' stood the most of them.',
+    ' took the most turns.',
+    ' were on the wall more nights than anyone.',
+  ];
+  let text = openers[(s.year - 1) % openers.length] ?? openers[0] ?? '';
+  const sw = stoodWords[(s.year - 1) % stoodWords.length] ?? stoodWords[0] ?? '';
+  if (most.length === 2) text += ` ${most[0]} and ${most[1]}${sw}`;
+  else if (most.length === 1) text += ` ${most[0]}${sw.replace(' were ', ' was ')}`;
   if (eased) {
     const where = eased.sec === 'gate' ? 'the Gate' : `the ${eased.sec} wall`;
     text += ` Quiet nights on ${where} may have eased ${nameOf(s, eased.who)}’s dread of it.`;

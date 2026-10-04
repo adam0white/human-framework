@@ -1359,7 +1359,10 @@
     position: sticky;
     bottom: calc(8px + env(safe-area-inset-bottom, 0px));
     z-index: 3;
-    box-shadow: 0 -6px 14px rgba(0, 0, 0, 0.25);
+    /* An opaque band around it, fading above, so cards scroll under a bar rather than show around a floating button. */
+    box-shadow:
+      0 0 0 10px var(--w-surface),
+      0 -22px 14px var(--w-surface);
   }
 }
 

@@ -18,7 +18,7 @@ export type Speed = 'tactical' | 'watch' | 'fast' | 'days' | 'seasons';
 /** Sim minutes per real second. At `watch` a 12-hour night takes three real minutes. */
 export const RATE: Record<Speed, number> = { tactical: 1, watch: 4, fast: 12, days: 30, seasons: 60 };
 /** Days per real second in the open seasons. At `days` a season of ninety days takes about forty-five seconds. */
-export const DAY_RATE: Record<Speed, number> = { tactical: 0.25, watch: 0.5, fast: 1, days: 2, seasons: 7 };
+export const DAY_RATE: Record<Speed, number> = { tactical: 0.15, watch: 0.5, fast: 1, days: 2, seasons: 7 };
 /** Dusk: 1/16 of `watch`, so the hour of posting lasts about four real minutes unless the Keeper begins. */
 export const DUSK_RATE = 0.25;
 /** Never step more than this many minutes on one tick (a backgrounded tab returns in one piece). */

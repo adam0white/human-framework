@@ -448,22 +448,29 @@ const COUNT = [
 export function tagline(s: WatchState, p: Person): string {
   const v = villager(s, p.id);
   const age = ageOf(p, s.minute);
-  const trade = v.note.split(',')[0]?.trim() ?? v.note;
   const yearOf = (minute: number) => Math.floor(minute / (365 * DAY)) + 1;
   const start = Math.max(v.comes.year, yearOf(p.life.bornAt + 15 * 365 * DAY));
   const stood = isWatcher(s, p) || age >= 15 ? Math.max(0, s.year - start) : 0;
+  // How they came stops being who they are (G3-4 review): an incomer's note gives way after a winter or two.
+  const incomer = v.newcomer || /newcomer|fleeing|burned out/i.test(v.note);
+  const parts = v.note.split(',').map((x) => x.trim());
+  const first = parts[0] ?? null;
+  const trade = incomer ? (first && !/^came/i.test(first) ? first : null) : first;
+  const roots =
+    !incomer || stood === 0 ? null : stood === 1 ? 'one winter here' : stood < 5 ? 'one of ours now' : null;
   const roles: string[] = [];
   if (s.gateKeeper === p.id) roles.push('keeps the Gate');
   if (s.heir === p.id) roles.push('heir to the Gate');
   let years: string | null = null;
-  if (age >= 15) {
+  if (age >= 15 && stood >= 1) {
     const n = COUNT[stood] ?? 'many';
     if (age >= 60) years = stood >= 10 ? `old on the wall, ${n} winters` : 'old now';
     else if (stood >= 10) years = `a veteran of ${n} winters`;
-    else if (stood >= 3) years = `${n} winters on the wall`;
+    else if (stood >= 2) years = `${n} winters on the wall`;
+    else if (!incomer) years = 'one winter on the wall';
   }
-  if (!years && roles.length === 0) return v.note;
-  return [years ? trade : v.note, years, ...roles].filter((x) => x).join(' · ');
+  if (!years && !roots && roles.length === 0) return v.note;
+  return [!years && !roots ? v.note : trade, roots, years, ...roles].filter((x) => x).join(' · ');
 }
 
 export function ordinal(n: number): string {

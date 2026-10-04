@@ -12,7 +12,7 @@ import { WatchRun } from './run.ts';
 const SEEDS = Array.from({ length: 24 }, (_, i) => 1000 + i * 7919);
 
 const FEAR =
-  /(couldn’t stay at|couldn’t move at|came right up under me at|breathing under|to the foot of|had my leg|don’t like the|knocked me flat at)/;
+  /(couldn’t stay at|couldn’t move at|came right up under me at|breathing under|to the foot of|had my leg|don’t like the|knocked me flat at|went down at|hit me at|stood like a post at|At the .* I just|got down off|right under the|I left the|kept looking over at|glad not to be on|Every sound from|again\. I hate that stretch|something about the|Don’t put me on)/;
 const BOND =
   /(was beside me|got me off the wall|had to get \w+ down|I went to|kept one eye on|next to me I could stand it|because \w+ stayed|turn my back with)/;
 

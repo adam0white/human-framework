@@ -642,7 +642,7 @@ function courting(s: WatchState, at: number): void {
           { id: 'bless', label: 'Give your blessing' },
           { id: 'against', label: 'Speak against it' },
         ],
-        until: at + 3 * DAY,
+        until: at + CARD_DAYS * DAY,
         choice: null,
       };
     }
@@ -713,10 +713,28 @@ export function settleProposal(
 // Births by day
 // ---------------------------------------------------------------------------------------------
 
+/** Days from the news of a child to the birth (G3-4 review: births arrived with no lead-up). */
+export const CARRYING_DAYS = 200;
+/** Days a season card stays open (about 40 s at the tactical pace) before they decide alone. */
+export const CARD_DAYS = 6;
+
 function births(s: WatchState, at: number): void {
   const lookup = lookupIn(s);
+  // Children due today are born; a mother or father gone or dead by then loses the place in the queue.
+  for (const e of s.expecting.filter((x) => x.due <= at)) {
+    const mother = personOf(s, e.mother);
+    const father = personOf(s, e.father);
+    if (!mother || !father || !isHere(s, mother) || !mother.body.alive) continue;
+    const child = bear(s, mother, father, at);
+    birthCard(s, mother, child, at);
+    const mv = villager(s, mother.id);
+    if (mv.bornHere)
+      fillLeaf(s, 'grandchild', `${mv.name}, born here, had a child of her own: ${child.name}.`);
+  }
+  s.expecting = s.expecting.filter((x) => x.due > at);
   for (const mother of living(s)) {
     if (mother.life.sex !== 'female') continue;
+    if (s.expecting.some((x) => x.mother === mother.id)) continue;
     const age = ageOf(mother, at);
     if (age < 18 || age > MOTHER_MAX_AGE) continue;
     const father = spousesOf(mother)
@@ -733,11 +751,14 @@ function births(s: WatchState, at: number): void {
     // A lean granary (less than a sack a head) halves the chance: families wait for a better year.
     const lean = s.grain < living(s).length ? 0.5 : 1;
     if (nextRandom(s) >= conceptionChance(mother, father, 1) * lean * crowding(s)) continue;
-    const child = bear(s, mother, father, at);
-    birthCard(s, mother, child, at);
-    const mv = villager(s, mother.id);
-    if (mv.bornHere)
-      fillLeaf(s, 'grandchild', `${mv.name}, born here, had a child of her own: ${child.name}.`);
+    // The news comes first; the child some months later.
+    s.expecting.push({ mother: mother.id, father: father.id, due: at + CARRYING_DAYS * DAY });
+    chronicle(
+      s,
+      'birth',
+      `${nameOf(s, mother.id)} and ${nameOf(s, father.id)} are expecting a child.`,
+      mother.id,
+    );
   }
 }
 
@@ -769,7 +790,7 @@ function birthCard(s: WatchState, mother: Person, child: Person, at: number, win
       { id: 'visit', label: 'Call on them' },
       { id: 'grain', label: 'Send a sack from the granary' },
     ],
-    until: at + 3 * DAY,
+    until: at + CARD_DAYS * DAY,
     choice: null,
   };
 }
@@ -804,7 +825,7 @@ function lessonCard(s: WatchState, at: number): void {
       { id: 'bless', label: 'Let them practise together' },
       { id: 'refuse', label: 'The fields come first' },
     ],
-    until: at + 4 * DAY,
+    until: at + CARD_DAYS * DAY,
     choice: null,
   };
 }

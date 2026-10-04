@@ -191,7 +191,7 @@ export function Chronicle({
       {loadNote ? <p className="w-note w-soft-fail">{loadNote}</p> : null}
 
       <section className="w-menu-sec" aria-label="Recent chronicle">
-        <details className="w-lately">
+        <details className="w-lately" open>
           <summary>
             <h3>Lately written</h3>
           </summary>

@@ -6,7 +6,7 @@
  * say, not what is true. Faith stays out of it.
  */
 import { IMPRESSION_DEFAULTS, type Person, reserveOf, selfReport } from '@human/framework';
-import { SECTION_IDS, type SectionId, type WatcherId } from './config.ts';
+import { postSection, SECTION_IDS, type SectionId, type WatcherId } from './config.ts';
 import { familyWords, isWatcher, nameOf, personOf, villager } from './people.ts';
 import type { NightNote, WatchState } from './state.ts';
 
@@ -36,6 +36,31 @@ function pick(s: WatchState, id: WatcherId, salt: string, lines: string[]): stri
   return lines[(h >>> 0) % lines.length] ?? lines[0] ?? '';
 }
 
+/**
+ * Like `pick`, but avoids a line already spoken this dawn (`used`) and the speaker's own line from the last dawn
+ * (`last`) when another phrasing is free (G3-4 review: lines repeated across speakers and nights).
+ */
+function pickFresh(
+  s: WatchState,
+  id: WatcherId,
+  salt: string,
+  lines: string[],
+  used: Set<string>,
+  last: string,
+): string {
+  const first = pick(s, id, salt, lines);
+  const start = Math.max(0, lines.indexOf(first));
+  for (let k = 0; k < lines.length; k++) {
+    const l = lines[(start + k) % lines.length] ?? first;
+    if (!used.has(l) && !last.includes(l)) return l;
+  }
+  for (let k = 0; k < lines.length; k++) {
+    const l = lines[(start + k) % lines.length] ?? first;
+    if (!used.has(l)) return l;
+  }
+  return first;
+}
+
 function noteOf(notes: NightNote[], who: WatcherId, kinds: NightNote['kind'][]): NightNote | undefined {
   return notes.find((n) => n.who === who && kinds.includes(n.kind));
 }
@@ -56,11 +81,20 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
   const out: { who: WatcherId; text: string }[] = [];
   const tells: Tell[] = [];
   let dozeTold = false;
+  const used = new Set<string>();
   for (const p of s.community.people) {
     if (!isWatcher(s, p)) continue;
     const id = p.id;
     const v = villager(s, id);
     const said: string[] = [];
+    const last = s.lastVoices[id] ?? '';
+    const say = (salt: string, lines: string[]) => {
+      const l = pickFresh(s, id, salt, lines, used, last);
+      used.add(l);
+      said.push(l);
+    };
+    const post = s.posts[id];
+    const stood = post ? postSection(post) : null;
     const told = selfReport(p);
     const bitten = noteOf(s.notes, id, ['bitten']);
     const down = noteOf(s.notes, id, ['downed']);
@@ -84,11 +118,27 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       );
       if (told.pain >= 0.2) tell(`fear@${bitten.section}`, 0.6);
     } else if (down?.section) {
-      said.push(`“They knocked me flat at ${theSec(down.section)}. I don’t remember falling.”`);
+      say('down', [
+        `“They knocked me flat at ${theSec(down.section)}. I don’t remember falling.”`,
+        `“I went down at ${theSec(down.section)}. Next I knew, it was grey light.”`,
+        `“Something hit me at ${theSec(down.section)}. My head still rings.”`,
+      ]);
       tell(`fear@${down.section}`, 0.5);
     } else if (left?.section) {
-      const verb = left.kind === 'froze' ? 'I couldn’t move' : 'I couldn’t stay';
-      said.push(`“${verb} at ${theSec(left.section)}. Not with them that close.”`);
+      const at = theSec(left.section);
+      if (left.kind === 'froze')
+        say('froze', [
+          `“I couldn’t move at ${at}. Not with them that close.”`,
+          `“I stood like a post at ${at}. My legs wouldn’t answer.”`,
+          `“At ${at} I just… stopped. I’m sorry.”`,
+        ]);
+      else
+        say('left', [
+          `“I couldn’t stay at ${at}. Not with them that close.”`,
+          `“I got down off ${at}. I won’t pretend I didn’t.”`,
+          `“They were right under ${at}. I ran. Say what you like.”`,
+          `“I left ${at}. I’d do it again.”`,
+        ]);
       tell(`fear@${left.section}`, 0.75);
     } else if (shaken?.section) {
       const bravado = reserveOf(p, 'fear') * IMPRESSION_DEFAULTS.wordsReserve > 0.5;
@@ -96,17 +146,38 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       said.push(
         bravado
           ? `“Nothing I couldn’t handle at ${theSec(shaken.section)}.”`
-          : pick(s, id, 'shaken', [
-              `“They came right up under me at ${theSec(shaken.section)}. I keep hearing them.”`,
-              `“I could hear them breathing under ${theSec(shaken.section)}.”`,
-              // Only someone still on the wall at dawn can say they watched till dawn.
-              home || refused
-                ? `“Something came to the foot of ${theSec(shaken.section)}. I didn’t stay to see it.”`
-                : `“Something came to the foot of ${theSec(shaken.section)}. I didn’t blink till dawn.”`,
-            ]),
+          : pickFresh(
+              s,
+              id,
+              'shaken',
+              [
+                `“They came right up under me at ${theSec(shaken.section)}. I keep hearing them.”`,
+                `“I could hear them breathing under ${theSec(shaken.section)}.”`,
+                // Only someone still on the wall at dawn can say they watched till dawn.
+                home || refused
+                  ? `“Something came to the foot of ${theSec(shaken.section)}. I didn’t stay to see it.”`
+                  : `“Something came to the foot of ${theSec(shaken.section)}. I didn’t blink till dawn.”`,
+              ],
+              used,
+              last,
+            ),
       );
+      used.add(said.at(-1) ?? '');
     } else if (fear && fear.level > 0.15) {
-      said.push(`“I don’t like ${theSec(fear.section)}. Something’s out there.”`);
+      // Said from where they stood: a fear of another stretch is told as looking over at it.
+      if (stood && stood !== fear.section)
+        say('fear-far', [
+          `“From ${theSec(stood)} I kept looking over at ${theSec(fear.section)}.”`,
+          `“I was glad not to be on ${theSec(fear.section)}.”`,
+          `“Every sound from ${theSec(fear.section)}, I jumped.”`,
+        ]);
+      else
+        say('fear', [
+          `“I don’t like ${theSec(fear.section)}. Something’s out there.”`,
+          `“${capital(theSec(fear.section))} again. I hate that stretch.”`,
+          `“There’s something about ${theSec(fear.section)}. I can’t say what.”`,
+          `“Don’t put me on ${theSec(fear.section)} too often.”`,
+        ]);
       tell(`fear@${fear.section}`, Math.min(0.8, 0.3 + fear.level));
     }
 
@@ -164,30 +235,49 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       said.length === 0 &&
       reserveOf(p, 'fatigue') * IMPRESSION_DEFAULTS.wordsReserve < 0.5
     ) {
-      said.push(`“I kept nodding off at ${theSec(sec)}.”`);
+      say('doze', [
+        `“I kept nodding off at ${theSec(sec)}.”`,
+        `“My head kept dropping at ${theSec(sec)}. I pinched myself awake.”`,
+        `“I’ll own it: I dozed at ${theSec(sec)}, more than once.”`,
+      ]);
       dozeTold = true;
     }
 
     if (said.length === 0) {
       if (told.fatigue > 0.5)
-        said.push(
-          pick(s, id, 'long', ['“Long night.”', '“My eyes ache.”', '“I’d sleep standing if you let me.”']),
-        );
-      else if (v.newcomer) said.push('“Quiet. They watch me more than the dark.”');
+        say('long', [
+          '“Long night.”',
+          '“My eyes ache.”',
+          '“I’d sleep standing if you let me.”',
+          '“I could sleep a week.”',
+          '“The last hour was the longest.”',
+        ]);
+      else if (v.newcomer)
+        say('new', [
+          '“Quiet. They watch me more than the dark.”',
+          '“Nobody spoke to me all night. That’s all right.”',
+          '“Quiet. I’m learning which shadows are trees.”',
+        ]);
       else
-        said.push(
-          pick(s, id, 'quiet', [
-            '“Quiet enough.”',
-            '“Cold, and nothing else.”',
-            '“Nothing came my way.”',
-            '“Just the wind.”',
-            '“I counted the stars. Nothing to tell.”',
-          ]),
-        );
+        say('quiet', [
+          '“Quiet enough.”',
+          '“Cold, and nothing else.”',
+          '“Nothing came my way.”',
+          '“Just the wind.”',
+          '“I counted the stars. Nothing to tell.”',
+          '“An owl, a fox, and the cold. That’s all.”',
+          '“Frost on my sleeve by midnight. Nothing else.”',
+          '“I watched the mist come and go.”',
+        ]);
     }
     out.push({ who: id, text: said.join(' ') });
   }
+  for (const o of out) s.lastVoices[o.who] = o.text;
   return { voices: out, tells };
+}
+
+function capital(t: string): string {
+  return t.charAt(0).toUpperCase() + t.slice(1);
 }
 
 /** For tests and the export: the person behind a voice. */

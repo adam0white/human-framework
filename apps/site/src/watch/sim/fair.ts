@@ -7,7 +7,7 @@
  * Not covered: trade prices, bargaining, selling grain, a choice between buyers.
  */
 import { marry } from '@human/framework';
-import { DAY, type PostId, SECTION_IDS, type SectionId, sectionDef } from './config.ts';
+import { DAY, type PostId, SECTION_IDS, type SectionId } from './config.ts';
 import { ageOf, chronicle, living, newcomer, RETIRE_AGE, WATCH_CUSTOM } from './life.ts';
 import { presentIds } from './night.ts';
 import { isWatcher, KEEPER_ID, nameOf, personOf, villager } from './people.ts';
@@ -48,11 +48,12 @@ export function openFair(s: WatchState): void {
   const wallAt = SECTION_IDS.filter((x) => !s.marks.extended.includes(x) && s.marks.lost?.section !== x).sort(
     (a, b) => (breaches[b] ?? 0) - (breaches[a] ?? 0) || SECTION_IDS.indexOf(a) - SECTION_IDS.indexOf(b),
   )[0];
+  const wallName = (sec: SectionId) => (sec === 'gate' ? 'the wall by the Gate' : `the ${sec} wall`);
   if (wallAt)
     pool.push({
       id: 'wall',
-      label: `Raise ${sectionDef(wallAt).name.toLowerCase()}`,
-      text: `Raise and lengthen ${sectionDef(wallAt).name.toLowerCase()}: a third post there, for good. More wall than people to stand it. It costs a good share of grain in labour.`,
+      label: `Raise ${wallName(wallAt)}`,
+      text: `Raise and lengthen ${wallName(wallAt)}: a third post there, for good. More wall than people to stand it. It costs a good share of grain in labour.`,
       cost: 4,
       target: wallAt,
     });
@@ -143,7 +144,11 @@ export function takeOffer(s: WatchState, id: FairOffer['id']): boolean {
       s.marks.extended.push(sec);
       const post = `${sec}-3` as PostId;
       if (!s.openPosts.includes(post)) s.openPosts.push(post);
-      chronicle(s, 'fair', `${sectionDef(sec).name} was raised and lengthened: a third post there now.`);
+      chronicle(
+        s,
+        'fair',
+        `${sec === 'gate' ? 'The wall by the Gate' : `The ${sec} wall`} was raised and lengthened: a third post there now.`,
+      );
       break;
     }
     case 'bell':

@@ -10,6 +10,7 @@ import { keeperImpressions } from './reads.ts';
 import { endState, replay, WatchRun } from './run.ts';
 import type { WatchState } from './state.ts';
 import { topicsFor } from './talk.ts';
+import { tagline } from './view.ts';
 
 describe('Game 3 years (G3-3)', () => {
   const run = playYears(1, 3);
@@ -60,12 +61,30 @@ describe('Game 3 long-run depth (G3-4)', () => {
 
   it('each thaw writes the routine nights; births and summer lessons come to the Keeper as cards', () => {
     for (const year of [1, 2, 3])
-      expect(s.chronicle.some((l) => l.year === year && l.text.includes('went by routine'))).toBe(true);
+      expect(
+        s.chronicle.some(
+          (l) => l.year === year && /(routine|uneventful|worth the lantern|without the lantern)/.test(l.text),
+        ),
+      ).toBe(true);
     // The headless Keeper sends a sack for every birth and allows every lesson.
     expect(s.chronicle.some((l) => l.text.startsWith('You sent a sack from the granary for'))).toBe(true);
     expect(s.chronicle.some((l) => l.text.includes('took sling lessons from'))).toBe(true);
     const learners = s.pairings.map((x) => x.who);
     expect(new Set(learners).size).toBe(learners.length);
+  }, 300_000);
+
+  it('a child is expected before it is born; incomers stop being "newcomers" after their winters', () => {
+    const births = s.chronicle.filter((l) => l.kind === 'birth' && / had a (son|daughter)/.test(l.text));
+    expect(births.length).toBeGreaterThan(0);
+    for (const b of births) {
+      const parents = b.text.split(' had a ')[0] ?? '';
+      expect(
+        s.chronicle.some((l) => l.minute < b.minute && l.text === `${parents} are expecting a child.`),
+      ).toBe(true);
+    }
+    const notes = s.community.people.filter((p) => isWatcher(s, p)).map((p) => tagline(s, p));
+    expect(notes.some((n) => /winters? (on the wall|here)|one of ours/.test(n))).toBe(true);
+    expect(notes.some((n) => /newcomer|fleeing/.test(n) && !/one of ours|winter here/.test(n))).toBe(false);
   }, 300_000);
 
   it('talk topics differ by what the Keeper reads of each watcher', () => {
@@ -98,6 +117,39 @@ describe('Game 3 long-run depth (G3-4)', () => {
     expect(t.fair?.offers[0]?.id).toBe('rebuild');
     expect(takeOffer(t, 'rebuild')).toBe(true);
     expect(t.marks.lost).toBeNull();
+  }, 300_000);
+});
+
+describe('Game 3 dawn voices (G3-4 review)', () => {
+  it('no two watchers say the same words on one dawn, and few repeat their own last dawn', () => {
+    let repeats = 0;
+    let spoken = 0;
+    for (const seed of [1, 2, 3]) {
+      const run = new WatchRun(seed);
+      run.input({ k: 'start' });
+      let last: Record<string, string> = {};
+      for (
+        let guard = 0;
+        guard < 200_000 && run.state.phase !== 'thaw' && run.state.phase !== 'fallen';
+        guard++
+      ) {
+        const ph = run.state.phase;
+        if (ph === 'dusk') run.input({ k: 'begin' });
+        else if (ph === 'dawn') {
+          const voices = run.state.dawn?.voices ?? [];
+          const texts = voices.map((v) => v.text);
+          expect(new Set(texts).size).toBe(texts.length);
+          for (const v of voices) {
+            spoken += 1;
+            if (last[v.who] === v.text) repeats += 1;
+          }
+          last = Object.fromEntries(voices.map((v) => [v.who, v.text]));
+          run.input({ k: 'toDusk' });
+        } else run.step();
+      }
+    }
+    expect(spoken).toBeGreaterThan(20);
+    expect(repeats / spoken).toBeLessThan(0.1);
   }, 300_000);
 });
 
