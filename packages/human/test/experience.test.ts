@@ -9,6 +9,7 @@ import {
   begin,
   createPerson,
   decide,
+  enableSkillConsolidation,
   finish,
   instructionFrom,
   learningFor,
@@ -18,6 +19,7 @@ import {
   type Outcome,
   type Person,
   perceive,
+  practise,
   SKILL_DEFAULTS,
   skillLevel,
 } from '../src/index.ts';
@@ -158,5 +160,40 @@ describe('observational learning', () => {
     for (let i = 0; i < 20; i++) perceive(a, [watch(0.9)]);
     for (const p of [a, b]) doWork(p, work({ id: 'smithing', difficulty: 0.2 }));
     expect(skillLevel(a, 'smithing')).toBeGreaterThan(skillLevel(b, 'smithing'));
+  });
+});
+
+describe('consolidation: decades of daily practice', () => {
+  const DAY = 24 * 60;
+  /** Seven hours a day for `years`, difficulty kept just above the current level; returns the level each year. */
+  const farmFor = (p: Person, years: number): number[] => {
+    const out: number[] = [];
+    for (let d = 1; d <= years * 365; d++) {
+      p.now += DAY;
+      const lvl = skillLevel(p, 'farming');
+      practise(p, 'farming', 420, Math.min(0.95, lvl + 0.1), true, 1, p.now);
+      if (d % 365 === 0) out.push(skillLevel(p, 'farming'));
+    }
+    return out;
+  };
+
+  test('without it, daily practice plateaus and declines over decades (the recorded negative finding)', () => {
+    const levels = farmFor(at(20, 'plain'), 30);
+    expect(levels.at(-1) ?? 1).toBeLessThan(Math.max(...levels) - 0.05);
+  });
+
+  test('with it, a lifelong farmer keeps improving, and disuse still rusts', () => {
+    const p = at(20, 'farmer');
+    enableSkillConsolidation(p);
+    const levels = farmFor(p, 30);
+    for (let i = 1; i < levels.length; i++)
+      expect(levels[i] ?? 0).toBeGreaterThanOrEqual((levels[i - 1] ?? 0) - 1e-9);
+    expect(levels.at(-1) ?? 0).toBeGreaterThan(0.8);
+    const kept = skillLevel(p, 'farming');
+    p.now += 20 * 365 * DAY;
+    const rusty = skillLevel(p, 'farming');
+    expect(rusty).toBeLessThan(kept);
+    const floor = SKILL_DEFAULTS.base + SKILL_DEFAULTS.retentionFloor * (kept - SKILL_DEFAULTS.base);
+    expect(rusty).toBeGreaterThan(floor - 1e-9);
   });
 });

@@ -722,6 +722,8 @@ export interface CharacterState {
   acc: { days: number; mood: number; kept: number; broken: number; social: number; variety: number };
   /** Minute maturation has been applied up to. */
   agedTo: Minute;
+  /** Each trait's current offset from its maturation path due to experience; it decays toward 0 year by year. */
+  experience: Partial<Record<keyof Traits, number>>;
 }
 
 export interface LifeCourse {
@@ -836,6 +838,8 @@ export interface Person {
   conscience: ConscienceState;
   affect: AffectState;
   skills: Record<string, Skill>;
+  /** Practice consolidation (1.8.0, opt-in via `enableSkillConsolidation`). Owned by `skills/`. */
+  skillRetention?: { consolidationHours: number };
   habits: Habit[];
   memory: MemoryState;
   social: SocialState;

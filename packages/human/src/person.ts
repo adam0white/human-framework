@@ -1522,6 +1522,7 @@ const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
   'chronicle',
   'chronicleDay',
   'chronicleYears',
+  'skillRetention',
   'character',
   'lexicon',
 ]);
@@ -1536,7 +1537,9 @@ function validCharacter(c: unknown): boolean {
     nums(c.baseValues, 10) &&
     nums(c.acc, 6) &&
     isNum(c.year) &&
-    isNum(c.agedTo)
+    isNum(c.agedTo) &&
+    isObject(c.experience) &&
+    Object.values(c.experience).every(isNum)
   );
 }
 
@@ -1681,5 +1684,13 @@ export function restore(input: unknown): Person {
     else out.chronicleYears = years.filter(validYear);
   }
   if (out.character !== undefined && !validCharacter(out.character)) delete out.character;
+  if (
+    out.skillRetention !== undefined &&
+    !(
+      isObject(out.skillRetention) &&
+      isNum((out.skillRetention as { consolidationHours?: unknown }).consolidationHours)
+    )
+  )
+    delete out.skillRetention;
   return out;
 }

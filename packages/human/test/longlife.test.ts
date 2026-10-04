@@ -196,7 +196,7 @@ describe('slow character change (L1)', () => {
     expect(good.traits.emotionality - e0).toBeCloseTo(-CHARACTER_DEFAULTS.maxExperiencePerYear, 9);
   });
 
-  test('a year barely lived moves nothing; drift never leaves the anchor band', () => {
+  test('a year barely lived moves nothing; years alike settle at a set point inside the band', () => {
     const p = adult(70);
     enableCharacterChange(p);
     const e0 = p.traits.emotionality;
@@ -207,7 +207,18 @@ describe('slow character change (L1)', () => {
       for (let d = 0; d < 365; d++) noteCharacterDay(p, { mood: -1 });
       ageCharacter(p, (Math.floor(p.now / YEAR) + y) * YEAR + 1);
     }
-    expect(p.traits.emotionality).toBeCloseTo(Math.min(1, e0 + CHARACTER_DEFAULTS.maxDrift), 9);
+    const K = CHARACTER_DEFAULTS;
+    const setPoint = K.maxExperiencePerYear / K.experienceReversion;
+    expect(setPoint).toBeLessThan(K.maxDrift);
+    expect(p.traits.emotionality - e0).toBeGreaterThan(0.9 * setPoint);
+    expect(p.traits.emotionality - e0).toBeLessThanOrEqual(setPoint + 1e-9);
+    // Good years after bad ones bring it back down.
+    const high = p.traits.emotionality;
+    for (let y = 40; y < 45; y++) {
+      for (let d = 0; d < 365; d++) noteCharacterDay(p, { mood: 0.5 });
+      ageCharacter(p, (Math.floor(p.now / YEAR) + y) * YEAR + 1);
+    }
+    expect(p.traits.emotionality).toBeLessThan(high - 0.03);
   });
 });
 

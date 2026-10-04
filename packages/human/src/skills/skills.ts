@@ -32,6 +32,15 @@
  * Bennett & Davids 2006: larger effects on movement form, d ≈ 0.77, than on outcomes, d ≈ 0.17). Sources:
  * research/long-run-sources.md. Does not claim: calibrated sizes, teaching effects on the teacher, item-level
  * knowledge, or that watching an unskilled model teaches errors.
+ *
+ * SCOPE (consolidation, 1.8.0, opt-in per person with `enableSkillConsolidation`): without it, forgetting runs at one
+ * half-life between any two sessions, so over decades of daily practice the shrinking power-law gains fall below a
+ * day's forgetting and a lifelong farmer plateaus low and then declines (docs/findings.md). With it, the forgetting
+ * half-life grows with accumulated practice hours, so well-practised skills barely rust between daily sessions and
+ * decay slowly in disuse. The direction follows the skill-retention literature (Arthur, Bennett, Stanush & McNelly
+ * 1998, meta-analysis: decay is smaller the more a skill was originally learned and overlearned); the linear form and
+ * `consolidationHours` are engineering assumptions, not a fitted curve. Does not claim: different retention by skill
+ * type (closed versus open, physical versus cognitive), or that spacing of sessions matters.
  */
 import { clamp01, decay, dexp, dlog, sigmoid } from '../core/index.ts';
 import {
@@ -80,9 +89,14 @@ export const SKILL_DEFAULTS = {
   /** Observation learns at this fraction of practice's rate, toward `observeCeiling` × the model's level. */
   observeRate: 0.3,
   observeCeiling: 0.6,
+  /**
+   * Practice hours that double the forgetting half-life when consolidation is on (1.8.0, `enableSkillConsolidation`):
+   * half-life = forgetHalfLife × (1 + hours / consolidationHours). Engineering assumption (see SCOPE).
+   */
+  consolidationHours: 300,
 } as const;
 
-type SkillHolder = Pick<Person, 'skills' | 'now'>;
+type SkillHolder = Pick<Person, 'skills' | 'now' | 'skillRetention'>;
 
 /** Source skill id -> related skill id -> fraction (0..1) of the source's learning exposure that transfers. */
 export type SkillTransfer = Record<string, Record<string, Unit>>;
@@ -105,18 +119,33 @@ export function skillFamilies(families: Record<string, readonly string[]>, fract
   return out;
 }
 
-function retained(s: Skill, now: Minute): Unit {
+/**
+ * Turn on practice consolidation for this person (1.8.0, idempotent; see the SCOPE on consolidation). Without it the
+ * forgetting half-life is the same however long a skill was practised.
+ */
+export function enableSkillConsolidation(p: Pick<Person, 'skillRetention'>): void {
+  p.skillRetention ??= { consolidationHours: SKILL_DEFAULTS.consolidationHours };
+}
+
+/** Forgetting half-life of a skill (minutes): longer the more it was practised, when consolidation is on. */
+function halfLifeOf(s: Skill, retention: Person['skillRetention']): number {
+  const d = SKILL_DEFAULTS;
+  if (!retention) return d.forgetHalfLife;
+  return d.forgetHalfLife * (1 + s.practice / 60 / Math.max(1, retention.consolidationHours));
+}
+
+function retained(s: Skill, now: Minute, retention?: Person['skillRetention']): Unit {
   const d = SKILL_DEFAULTS;
   const gained = Math.max(0, s.level - d.base);
   const floor = d.base + d.retentionFloor * gained;
   const elapsed = Math.max(0, now - s.lastPracticed);
-  return clamp01(decay(s.level, elapsed, d.forgetHalfLife, Math.min(floor, s.level)));
+  return clamp01(decay(s.level, elapsed, halfLifeOf(s, retention), Math.min(floor, s.level)));
 }
 
 /** Learned competence with forgetting applied up to `p.now`. Unknown skill -> base (0.05). */
 export function skillLevel(p: SkillHolder, id: string): Unit {
   const s = p.skills[id];
-  return s ? retained(s, p.now) : SKILL_DEFAULTS.base;
+  return s ? retained(s, p.now, p.skillRetention) : SKILL_DEFAULTS.base;
 }
 
 /**
@@ -198,7 +227,7 @@ export function practise(
 ): { before: Unit; after: Unit } {
   const d = SKILL_DEFAULTS;
   const existing = p.skills[id];
-  const before = existing ? retained(existing, now) : d.base;
+  const before = existing ? retained(existing, now, p.skillRetention) : d.base;
   const priorMinutes = existing?.practice ?? 0;
   const mins = Math.max(0, minutes);
   let k =
@@ -220,7 +249,7 @@ export function practise(
       const f = clamp01(related[r] ?? 0);
       if (r === id || f <= 0) continue;
       const ex = p.skills[r];
-      const rb = ex ? retained(ex, now) : d.base;
+      const rb = ex ? retained(ex, now, p.skillRetention) : d.base;
       p.skills[r] = {
         level: clamp01(1 - (1 - rb) * dexp(-f * k)),
         practice: ex?.practice ?? 0,
@@ -248,7 +277,7 @@ export function observe(
 ): { before: Unit; after: Unit } {
   const d = SKILL_DEFAULTS;
   const existing = p.skills[id];
-  const before = existing ? retained(existing, now) : d.base;
+  const before = existing ? retained(existing, now, p.skillRetention) : d.base;
   const ceiling = d.observeCeiling * clamp01(modelLevel);
   const mins = Math.max(0, minutes);
   if (ceiling <= before || mins <= 0) return { before, after: before };

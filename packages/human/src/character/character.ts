@@ -14,7 +14,10 @@
  *   neuroticism a little and lastingly); a year of commitments kept far more than broken raises Conscientiousness
  *   (social investment: Roberts, Wood & Smith 2005; Lodi-Smith & Roberts 2007, cross-sectional); much time with
  *   others raises Extraversion and little lowers it; a varied year raises Openness and a narrow one lowers it. Each
- *   push is at most `CHARACTER_DEFAULTS.maxExperiencePerYear`. Single events change nothing directly.
+ *   push is at most `CHARACTER_DEFAULTS.maxExperiencePerYear`. Single events change nothing directly. What experience
+ *   adds is an offset from the maturation path that fades by `experienceReversion` a year, so a life that stays the
+ *   same settles at a set point instead of drifting to the bound, and a change in life quality moves traits again
+ *   (set-point and dynamic-equilibrium accounts: Ormel, Riese & Rosmalen 2012; the fade rate is an assumption).
  *
  * Every trait and value stays within `maxDrift` of where it stood when drift was enabled, so rank order mostly holds
  * (high adult rank-order stability, Bleidorn et al. 2022). All rates, thresholds and caps are engineering assumptions
@@ -23,7 +26,7 @@
  * therapy, cohort effects, individual differences in plasticity, or norm conviction (owned by `conscience/`).
  * Traits never branch logic (framework.md, locked decisions): this module only moves the coefficients.
  */
-import { clamp, clamp01 } from '../core/index.ts';
+import { clamp, clamp01, dpow } from '../core/index.ts';
 import type { CharacterState, Minute, Person, Signed, Traits, Values } from '../types.ts';
 import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
 
@@ -58,6 +61,11 @@ export const CHARACTER_DEFAULTS = {
   } as Record<keyof Values, number>,
   /** Largest experience push on one trait in one year. */
   maxExperiencePerYear: 0.01,
+  /**
+   * Fraction of a trait's experience offset that fades each year (set point: a constant life stops moving traits
+   * once the offset reaches push / reversion; only changes in life quality move them further).
+   */
+  experienceReversion: 0.1,
   /** Fewer days than this in a year's record: no experience push (a year barely lived says little). */
   minDays: 60,
   /** Emotionality push per unit of mean mood below 0 (and pull above it). */
@@ -97,6 +105,7 @@ export function enableCharacterChange(p: Person): void {
     year: yearOf(p.now),
     acc: emptyAcc(),
     agedTo: p.now,
+    experience: {},
   };
 }
 
@@ -176,15 +185,25 @@ export function ageCharacter(p: Person, to: Minute): boolean {
     Math.min(K.maturationTo, K.conscientiousnessUntil),
   );
   const push: Partial<Record<keyof Traits, number>> = {};
-  if (yearOf(to) > c.year) {
+  const crossed = Math.max(0, yearOf(to) - c.year);
+  const closed = crossed > 0;
+  if (closed) {
     Object.assign(push, experiencePush(c.acc));
     c.year = yearOf(to);
     c.acc = emptyAcc();
   }
   for (const k of TRAIT_KEYS) {
     const span = k === 'conscientiousness' ? cYears : years;
-    const delta = K.traitPerYear[k] * span + (push[k] ?? 0);
-    if (delta !== 0) p.traits[k] = bounded(p.traits[k] + delta, c.baseTraits[k]);
+    if (span === 0 && !closed) continue;
+    const offset = c.experience[k] ?? 0;
+    // The maturation path (trait without its experience offset) moves with age; the offset fades and takes the push.
+    const path = bounded(p.traits[k] - offset + K.traitPerYear[k] * span, c.baseTraits[k]);
+    const next = closed ? offset * dpow(1 - K.experienceReversion, crossed) + (push[k] ?? 0) : offset;
+    const value = bounded(path + next, c.baseTraits[k]);
+    if (value !== p.traits[k]) p.traits[k] = value;
+    const kept = value - path;
+    if (kept !== 0) c.experience[k] = kept;
+    else delete c.experience[k];
   }
   for (const k of VALUE_KEYS) {
     const delta = K.valuePerYear[k] * years;
