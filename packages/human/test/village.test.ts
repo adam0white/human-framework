@@ -228,33 +228,20 @@ describe('village simulation', () => {
     expect(s.village.state.food).toBeGreaterThan(food);
   });
 
-  test('runs 20 people for 30 days in under two seconds', () => {
+  // Wall-clock budgets for these runs are in village.timing.ts (`npm run bench`); here only the outcome is checked.
+  test('runs 20 people for 30 days to the event cap with at most two deaths', () => {
     const ids = Array.from({ length: 20 }, (_, i) => `p${String(i).padStart(2, '0')}`);
     const s = setup(ids, { devout: ids.filter((_, i) => i % 2 === 0), foodStock: 200 });
-    // Warm the hot paths first so the measurement is steady-state throughput, not JIT compilation.
-    const warm = setup(['w1', 'w2', 'w3'], { devout: ['w1'] });
-    stepCommunity(warm.community, warm.village, START + 2 * MINUTES_PER_DAY);
-    const t0 = performance.now();
     const events = stepCommunity(s.community, s.village, START + 30 * MINUTES_PER_DAY, { maxEvents: 1000 });
-    const elapsed = performance.now() - t0;
     expect(events.length).toBe(1000);
-    // Wall-clock budget: strict on CI; doubled locally, where other processes share the machine (it failed at
-    // 2052 ms once with other agents running and passed alone).
-    expect(elapsed).toBeLessThan(2000 * (process.env.CI ? 1 : 2));
     expect(s.people.filter((p) => p.body.alive).length).toBeGreaterThanOrEqual(18);
   });
 
-  test('runs 50 people for 30 days in under five seconds (engine 1.2.0 hooks included)', () => {
+  test('runs 50 people for 30 days to the event cap with at most five deaths (engine 1.2.0 hooks included)', () => {
     const ids = Array.from({ length: 50 }, (_, i) => `q${String(i).padStart(2, '0')}`);
     const s = setup(ids, { devout: ids.filter((_, i) => i % 2 === 0), foodStock: 500 });
-    const warm = setup(['w1', 'w2', 'w3'], { devout: ['w1'] });
-    stepCommunity(warm.community, warm.village, START + 2 * MINUTES_PER_DAY);
-    const t0 = performance.now();
     const events = stepCommunity(s.community, s.village, START + 30 * MINUTES_PER_DAY, { maxEvents: 1000 });
-    const elapsed = performance.now() - t0;
-    console.log(`50 x 30 days: ${elapsed.toFixed(0)} ms`);
     expect(events.length).toBe(1000);
-    expect(elapsed).toBeLessThan(5000 * (process.env.CI ? 1 : 2));
     expect(s.people.filter((p) => p.body.alive).length).toBeGreaterThanOrEqual(45);
   }, 30_000);
 });

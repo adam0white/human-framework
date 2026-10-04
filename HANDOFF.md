@@ -32,7 +32,7 @@ Open, recorded in docs/findings.md and docs/games/voice-build.md §13:
 - Game 2: a missed date leaves Osman's relationship to Halil unchanged; only his late demand strengthens (findings, seventh pass).
 - Game 1: Classic with no orders roofs the house on 3 of 6 seeds; orders cannot starve the Human store; the late-tap moment-1 dependency.
 - Joint activities are one-sided in the driver; `social.judge` has no habituation outside conversation.
-- Benchmarks pass only with the local ×2 allowance under machine load (no CI). One deploy attempt aborted, cause not captured (suspected benchmark timing); the retry passed every check.
+- Timing budgets moved out of `npm run check` into `npm run bench` (2026-10-04). Measured alone on the Apple Silicon dev machine, 3-run medians: village 20 × 30 days 1555 ms (budget 2000), 50 × 30 days 3693 ms (5000), body threshold 0.6 µs/call, Game 1 director run 276 ms (1500) and balance runs 1203 ms (5000), Game 2 12-day skip 287 ms (1500). The framework bench runs with Vite's module runner off; under the runner the 20-person run takes ~2.4 s (findings, 2026-10-04 item 7). No CI, so budgets are only checked when someone runs the bench.
 - TS 5.x consumers untested.
 
 ## Deferred questions for the user (non-blocking)

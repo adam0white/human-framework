@@ -8,5 +8,5 @@ Human Framework v1 is a deterministic, explainable model of a simulated person w
 - **Package:** [`packages/human`](packages/human) (`@human/framework` 1.0.0). See its [README](packages/human/README.md) and [examples](packages/human/examples).
 - **Docs:** [architecture](docs/framework.md), [API reference](docs/api.md) (regenerate with `npm run api-doc`), [findings](docs/findings.md), [game design notes](docs/games).
 - **Site:** the games are in [`apps/site`](apps/site) (React and Canvas, built with Vite and deployed as a Cloudflare Worker).
-- **Workflow:** `npm run check` runs lint, typecheck and tests. Contributor rules are in [AGENTS.md](AGENTS.md), and current status is in [HANDOFF.md](HANDOFF.md).
+- **Workflow:** `npm run check` runs lint, typecheck and tests, with no wall-clock assertions. `npm run bench` runs the timing budgets (`*.timing.ts`: village 20 and 50 people for 30 days, body-threshold search, Game 1 full run and balance runs, Game 2 12-day skip) one file at a time and prints each measurement; run it alone on a quiet machine. Contributor rules are in [AGENTS.md](AGENTS.md), and current status is in [HANDOFF.md](HANDOFF.md).
 - **Provenance:** the earlier v0 layered-candidate codebase is archived under [`archive/v0/`](archive/v0) (tag `v0.16-final`). It is not built or maintained.

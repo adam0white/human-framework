@@ -25,7 +25,6 @@ import {
   jointSuccessChance,
   learnFromVoice,
   lifeModifiers,
-  nextBodyThreshold,
   onFinished,
   perceive,
   prayerWindows,
@@ -877,13 +876,5 @@ describe('body threshold cache', () => {
     expect(fresh.activity?.thresholdAt).toBeUndefined();
   });
 
-  test('one call over a 30-minute review horizon is cheap (well under a millisecond on average)', () => {
-    const p = person('a', { body: { satiety: 0.5 } });
-    const load = { effort: 0.5, focus: 0.2, mode: 'awake' as const };
-    const mods = lifeModifiers(p);
-    for (let i = 0; i < 200; i++) nextBodyThreshold(p, load, mods, undefined, 30);
-    const t0 = performance.now();
-    for (let i = 0; i < 2000; i++) nextBodyThreshold(p, load, mods, undefined, 30);
-    expect((performance.now() - t0) / 2000).toBeLessThan(0.5);
-  });
+  // Its cost budget (well under a millisecond a call) is in village.timing.ts, run by `npm run bench`.
 });

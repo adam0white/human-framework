@@ -10,13 +10,11 @@ const statuses = (r: RunResult, k: 'classic' | 'human', day: 2 | 3 = 2): Record<
   Object.fromEntries((day === 3 ? (r.day3 ?? []) : r.goals).map((goal) => [goal.id, goal[k].status]));
 
 describe('v2 balance on the shipped seed', () => {
-  const t0 = performance.now();
   const none = play(PATTERNS.none(), DEFAULT_SEED, true);
   const rush = play(PATTERNS.good2rush(), DEFAULT_SEED, true);
   const forest = play(PATTERNS.allForest());
   const insist = play(PATTERNS.good2insist());
   const sugg = play(PATTERNS.suggestions());
-  const ms = performance.now() - t0;
   if (process.env.BALANCE) {
     for (const [name, r] of Object.entries({
       none,
@@ -80,8 +78,5 @@ describe('v2 balance on the shipped seed', () => {
     }
   });
 
-  it('runs the five games (two with Day 3) in under 5 s', () => {
-    console.log(`balance runs: ${ms.toFixed(0)} ms`);
-    expect(ms).toBeLessThan(5000);
-  });
+  // The five runs' wall-clock budget (under 5 s) is in colony.timing.ts, run by `npm run bench`.
 });

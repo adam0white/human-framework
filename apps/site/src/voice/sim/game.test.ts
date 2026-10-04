@@ -1,69 +1,11 @@
 import { TOWN_EID_DAY, voiceOf } from '@human/framework';
 import { describe, expect, test } from 'vitest';
-import {
-  type BeatKind,
-  type Draft,
-  defaultWhisper,
-  type Frame,
-  type LogEntry,
-  type StandingWhisper,
-} from '../protocol.ts';
+import { type BeatKind, defaultWhisper, type LogEntry, type StandingWhisper } from '../protocol.ts';
 import { DAY_END, SHIPPED_SEED, VoiceGame } from './game.ts';
+import { play } from './headless.ts';
 import { EID_LINES, eidLines, smokingLines } from './report.ts';
 
 const MIN_DAY = 1440;
-
-interface PlayOpts {
-  /** Confirm every new prefill (the bar's "prefill → Confirm" player). */
-  confirm?: boolean;
-  /** With `confirm`: urge and insist on every prefill instead of taking it as given. */
-  insist?: boolean;
-  whispers?: StandingWhisper[];
-  /** Stop when this returns true (checked at every loop turn). */
-  stop?: (g: VoiceGame) => boolean;
-  onPause?: (f: Frame, g: VoiceGame) => void;
-}
-
-/** Headless player: dismisses cards, optionally confirms prefills, otherwise says nothing. */
-function play(g: VoiceGame, o: PlayOpts = {}): void {
-  if (g.phase === 'premise') g.begin();
-  let lastKey = '';
-  for (let guard = 0; guard < 50_000; guard++) {
-    if (o.stop?.(g) || g.phase === 'report') return;
-    if (g.phase === 'between') {
-      g.advance(g.between?.next?.skipped ? (o.whispers ?? []) : []);
-      continue;
-    }
-    if (g.intro) {
-      g.dismissIntro();
-      g.resume();
-      continue;
-    }
-    if (g.paused) {
-      const f = g.frame();
-      o.onPause?.(f, g);
-      const key = `${f.minute}:${f.prefill?.optionId}`;
-      if (
-        o.confirm &&
-        f.composer.open &&
-        f.prefill &&
-        f.prefill.optionId !== g.standing?.draft.optionId &&
-        key !== lastKey
-      ) {
-        lastKey = key;
-        const d: Draft = o.insist
-          ? { optionId: f.prefill.optionId, strength: 'urge', insist: true }
-          : { optionId: f.prefill.optionId, strength: f.prefill.strength, insist: false };
-        if (f.prefill.appeal) d.appeal = f.prefill.appeal;
-        g.suggest(d);
-        continue;
-      }
-      g.resume();
-    }
-    g.advanceTo(g.t + 60);
-  }
-  throw new Error('play did not finish');
-}
 
 const at = (day: number, hh: number, mm = 0) => day * MIN_DAY + hh * 60 + mm;
 const dayOfMin = (m: number) => Math.floor(m / MIN_DAY);
@@ -548,16 +490,13 @@ describe('Game 2 sim beats on provoked cases', () => {
 });
 
 describe('Game 2 sim determinism and budget', () => {
-  test('a 12-day skip under two standing whispers runs in under 1.5 s', () => {
+  // Its wall-clock budget (under 1.5 s) is in voice.timing.ts, run by `npm run bench`.
+  test('a 12-day skip under two standing whispers lands on day 15 with an intro', () => {
     const g = new VoiceGame(SHIPPED_SEED);
     play(g, { stop: (x) => x.phase === 'between' && x.day === 2 });
     expect(g.between?.next?.skipped).toBe(12);
-    const t0 = performance.now();
     g.advance(WHISPERS);
-    const ms = performance.now() - t0;
-    console.log(`12-day skip: ${ms.toFixed(0)} ms`);
     expect(g.day).toBe(15);
-    expect(ms).toBeLessThan(1500);
     expect(g.intro?.lines.length).toBeGreaterThan(1);
   });
 
