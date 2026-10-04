@@ -12,7 +12,7 @@ import {
   createRng,
   enableCharacterChange,
   enableGists,
-  enableSkillConsolidation,
+  enableSkillRetention,
   enableYearbook,
   GENERIC_CUSTOM,
   lifeStage,
@@ -131,7 +131,7 @@ const enableLongLife = (p: Person): void => {
   enableGists(p);
   enableYearbook(p);
   enableCharacterChange(p);
-  enableSkillConsolidation(p);
+  enableSkillRetention(p);
 };
 
 /** A deterministic spread of 0.25..0.75 for founder `i`, trait slot `k`. */

@@ -857,7 +857,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * (`missedExcuse`), the Eid prayer norm and window, disliked times. New optional state: `body.lastSleep`,
  * `body.lastDowned`, `agenda.lapse`, `OwedMakeUp.lapseSince`.
  */
-export const ENGINE_VERSION = '1.9.0';
+export const ENGINE_VERSION = '2.0.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -932,7 +932,8 @@ export interface AmbientPercept {
 
 /** The current surroundings. Owned by `environment/`. */
 export interface AmbientState {
-  now: AmbientPercept;
+  /** What the host perceives of the surroundings (2.0.0: renamed from `now`, which elsewhere is a minute). */
+  percept: AmbientPercept;
   /** Minute these surroundings began. */
   since: Minute;
 }
@@ -954,7 +955,7 @@ export interface Person {
   conscience: ConscienceState;
   affect: AffectState;
   skills: Record<string, Skill>;
-  /** Practice consolidation (1.8.0, opt-in via `enableSkillConsolidation`). Owned by `skills/`. */
+  /** Practice consolidation (1.8.0, opt-in via `enableSkillRetention`). Owned by `skills/`. */
   skillRetention?: { consolidationHours: number };
   habits: Habit[];
   memory: MemoryState;
@@ -984,6 +985,24 @@ export interface Person {
   bonds?: BondsState;
   /** Current surroundings (1.8.0). Owned by `environment/`. */
   ambient?: AmbientState;
+  /** Per-person bounds on record slices (2.0.0); absent means the module defaults. Written by `setRetention`. */
+  retention?: Retention;
+}
+
+/**
+ * Per-person bounds on the slices a host may not read (2.0.0). The defaults suit a person lived day by day; a host
+ * that lives people sparsely over decades (a few detailed days a year) can keep saves small and the yearbook timely.
+ * Neither bound changes a decision: the trace is explanation only, and the chronicle's own reader (a fast's streak)
+ * looks back at most a month of consecutive days.
+ */
+export interface Retention {
+  /** Decision records kept in `trace`, 0..`PERSON_DEFAULTS.maxTrace` (default the maximum); 0 keeps none. */
+  trace?: number;
+  /**
+   * Day records more than this many days older than the newest leave the chronicle (and fold into the yearbook when
+   * it is on), as well as those beyond `CHRONICLE_DEFAULTS.maxDays`. At least 31. Absent: the count bound only.
+   */
+  chronicleDays?: number;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -1075,7 +1094,7 @@ export interface Percept {
   advice?: { action: string; affordanceId?: string; strength?: Unit }[];
   /**
    * Observational learning (1.8.0): the person watched someone practise `skill` at `level` for `minutes`. On an
-   * attended percept the watcher learns a little toward the model (`skills.observe`). Absent: nothing is learned.
+   * attended percept the watcher learns a little toward the model (`skills.learnByWatching`). Absent: nothing is learned.
    */
   demonstrates?: { skill: string; level: Unit; minutes: number; domain?: LearningDomain };
 }
@@ -1284,6 +1303,8 @@ export interface PersonSpec {
   lexicon?: Lexicon;
   /** Inherited aptitudes and attachment (1.8.0); `createPerson` copies it to `Person.family`. */
   family?: Pick<FamilyState, 'aptitudes' | 'attachment'>;
+  /** Per-person bounds (2.0.0); `createPerson` applies them with `setRetention`. */
+  retention?: Retention;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -1382,7 +1403,7 @@ export interface VoiceConflict {
   /** The voice credited with the chosen option, or null when the person went their own way. */
   creditedVoiceId: EntityId | null;
   chosenAffordanceId: string | null;
-  /** Dominant term of the chosen option ('need:food', 'suggestion:selin', 'norm:salah', ...). */
+  /** Dominant term of the chosen option ('need:food', 'suggestion:ana', 'norm:salah', ...). */
   reason: string;
   voices: {
     voiceId: EntityId;
@@ -1402,7 +1423,7 @@ export interface VoiceConflict {
 export interface Lexicon {
   /** Informational locale tag, e.g. 'en', 'tr'. */
   locale?: string;
-  /** Display names by entity id: { selin: 'Selin', osman: 'Osman' }. */
+  /** Display names by entity id: { ana: 'Ana', ben: 'Ben' }. */
   names?: Record<EntityId, string>;
   /** Role nouns by relationship role, without a possessive: { child: 'daughter', landlord: 'landlord' }. */
   roles?: Record<string, string>;

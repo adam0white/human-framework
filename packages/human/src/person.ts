@@ -63,7 +63,7 @@ import {
   sicken,
   skipBody,
 } from './body/index.ts';
-import { ageCharacter, noteCharacterDay, noteCharacterSocial } from './character/index.ts';
+import { ageCharacter, noteCharacterDay, noteCharacterSocial, sanitizeCharacter } from './character/index.ts';
 import {
   CHRONICLE_DEFAULTS,
   closeDay,
@@ -73,6 +73,7 @@ import {
   noteDecision,
   noteMood,
   noteOutcome,
+  trimChronicle,
 } from './chronicle/index.ts';
 import { decide as cognitionDecide, desperationOf, scoreAll } from './cognition/index.ts';
 import {
@@ -97,8 +98,8 @@ import { ageYears, learningMultiplier, lifeModifiers } from './lifecourse/index.
 import {
   advanceMemory,
   type CueRecall,
-  consolidate,
   createMemory,
+  foldGists,
   GIST_DEFAULTS,
   learnOutcome,
   MEMORY_DEFAULTS,
@@ -109,7 +110,7 @@ import { migrate } from './migrate.ts';
 import { intentionFor, narrateDecision, voiceLine } from './narrate/index.ts';
 import { advanceNeeds, createNeeds, meanSatisfaction, readNeeds, satisfy } from './needs/index.ts';
 import { sanitizeBonds, widow } from './partnering/index.ts';
-import { observe, practise, type SkillTransfer, seedSkills } from './skills/index.ts';
+import { learnByWatching, practise, type SkillTransfer, seedSkills } from './skills/index.ts';
 import {
   advanceSocial,
   applyReputationBelief,
@@ -144,6 +145,7 @@ import type {
   Person,
   PersonSpec,
   PsychologicalNeed,
+  Retention,
   SocialEventKind,
   Suggestion,
   SuggestionResolution,
@@ -187,6 +189,7 @@ export const PERSON_DEFAULTS = {
   maxSegment: 60,
   /** Perceived readouts at which a body need interrupts the current activity. */
   interruptThresholds: { hunger: 0.7, thirst: 0.7, sleepiness: 0.85 },
+  /** Decision records kept in `trace` (the most `Retention.trace` may ask for). */
   maxTrace: 32,
   /** Belonging/leisure urgency above which loneliness/boredom are felt, and their gain. */
   lonelinessFrom: 0.25,
@@ -293,6 +296,7 @@ export function createPerson(spec: PersonSpec): Person {
     nextDecision: 0,
   };
   if (spec.lexicon) p.lexicon = structuredClone(spec.lexicon);
+  if (spec.retention) setRetention(p, spec.retention);
   const family = createFamily(spec.family);
   if (family) p.family = family;
   return p;
@@ -314,7 +318,7 @@ export interface PersonReadout {
  * kept notes, since the agenda prunes closed commitments within days) give the adaptation. Undefined when no
  * fast is open. Read only.
  */
-export function fastingCtx(p: Person): BodyPerceptionContext | undefined {
+function fastingCtx(p: Person): BodyPerceptionContext | undefined {
   const now = p.now;
   let open: Commitment | undefined;
   for (const c of p.agenda.commitments) {
@@ -563,7 +567,7 @@ export function tick(p: Person, now: Minute): void {
       }
       if (minuteOfDay(end) === 0) {
         // Lasting gists (1.8.0, opt-in): at midnight, episodes past the horizon fold into gists.
-        if (p.memory.gists) consolidate(p, end);
+        if (p.memory.gists) foldGists(p, end);
         // Character change (1.8.0, opt-in): the day joins the year's experience; maturation runs to midnight.
         if (p.character) {
           noteCharacterDay(
@@ -674,7 +678,7 @@ export function skip(p: Person, to: Minute): void {
   skipAffect(p, to);
   advanceAgenda(p, to);
   // Lasting gists (1.8.0, opt-in): episodes now past the horizon fold into gists.
-  if (p.memory.gists) consolidate(p, to);
+  if (p.memory.gists) foldGists(p, to);
   // Character change (1.8.0, opt-in): maturation across the gap; a skipped gap brings no experience.
   if (p.character) ageCharacter(p, to);
 }
@@ -709,7 +713,7 @@ function perceiveOne(p: Person, pc: Percept): void {
   // Watching someone skilled at work teaches a little (1.8.0, observational learning).
   const demo = pc.demonstrates;
   if (demo && !byMe && demo.minutes > 0) {
-    observe(p, demo.skill, demo.minutes, demo.level, learningFor(p, demo.domain), p.now);
+    learnByWatching(p, demo.skill, demo.minutes, demo.level, learningFor(p, demo.domain), p.now);
   }
 
   // Relationships: interactions I took part in.
@@ -1011,8 +1015,9 @@ export function decide(
     }
   }
   noteDecision(p, record, voicesIn(opts.suggestion, opts.suggestions));
-  p.trace.push(record);
-  if (p.trace.length > PERSON_DEFAULTS.maxTrace) p.trace.splice(0, p.trace.length - PERSON_DEFAULTS.maxTrace);
+  const keep = traceLimit(p);
+  if (keep > 0) p.trace.push(record);
+  if (p.trace.length > keep) p.trace.splice(0, p.trace.length - keep);
   return record;
 }
 
@@ -1290,7 +1295,7 @@ export function learningFor(p: Person, domain?: LearningDomain): number {
 
 /**
  * Watch someone practise skill `skill` at `modelLevel` for `minutes` (observational learning, 1.8.0): the
- * composite's side of `skills.observe` at the person's age-and-domain learning rate. A `Percept.demonstrates` on an
+ * composite's side of `skills.learnByWatching` at the person's age-and-domain learning rate. A `Percept.demonstrates` on an
  * attended percept does the same. Returns the level before and after.
  */
 export function observeSkill(
@@ -1300,7 +1305,7 @@ export function observeSkill(
   modelLevel: Unit,
   domain?: LearningDomain,
 ): { before: Unit; after: Unit } {
-  return observe(p, skill, minutes, modelLevel, learningFor(p, domain), p.now);
+  return learnByWatching(p, skill, minutes, modelLevel, learningFor(p, domain), p.now);
 }
 
 export interface FinishOptions {
@@ -1614,36 +1619,42 @@ const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
   'family',
   'bonds',
   'ambient',
+  'retention',
 ]);
-
-/** A well-formed character state (1.8.0) as `restore` accepts it. */
-function validCharacter(c: unknown): boolean {
-  const nums = (o: unknown, n: number) =>
-    isObject(o) && Object.values(o).length >= n && Object.values(o).every(isNum);
-  return (
-    isObject(c) &&
-    nums(c.baseTraits, 6) &&
-    nums(c.baseValues, 10) &&
-    nums(c.acc, 6) &&
-    isNum(c.year) &&
-    isNum(c.agedTo) &&
-    isObject(c.experience) &&
-    Object.values(c.experience).every(isNum)
-  );
-}
 
 const isNum = (x: unknown): x is number => typeof x === 'number' && Number.isFinite(x);
 
-/** A well-formed gist (1.8.0) as `restore` accepts it. */
+/**
+ * A well-formed gist (1.8.0) as `restore` accepts it, in place: every number finite and `weight` ≥ 0 (else the gist
+ * is dropped), `salience` and `peak` clamped to 0..1 and `valence` to −1..1.
+ */
 function validGist(g: unknown): boolean {
-  return (
-    isObject(g) &&
-    typeof g.id === 'string' &&
-    typeof g.kind === 'string' &&
-    typeof g.summary === 'string' &&
-    Array.isArray(g.tags) &&
-    [g.at, g.valence, g.salience, g.count, g.firstAt, g.lastAt, g.weight, g.peak].every(isNum)
-  );
+  if (
+    !(
+      isObject(g) &&
+      typeof g.id === 'string' &&
+      typeof g.kind === 'string' &&
+      typeof g.summary === 'string' &&
+      Array.isArray(g.tags) &&
+      [g.at, g.valence, g.salience, g.count, g.firstAt, g.lastAt, g.weight, g.peak].every(isNum) &&
+      (g.weight as number) >= 0
+    )
+  )
+    return false;
+  for (const k of ['salience', 'peak'] as const)
+    if (g[k] !== clamp01(g[k] as number)) g[k] = clamp01(g[k] as number);
+  if (g.valence !== clampSigned(g.valence as number)) g.valence = clampSigned(g.valence as number);
+  return true;
+}
+
+/** The next free gist number: one past the largest `g<n>` id (0 when none is numbered). */
+function nextGistAfter(gists: readonly { id: string }[]): number {
+  let next = 0;
+  for (const g of gists) {
+    const m = /^g(\d+)$/.exec(g.id);
+    if (m) next = Math.max(next, Number(m[1]) + 1);
+  }
+  return next;
 }
 
 /** A well-formed year record (1.8.0) as `restore` accepts it. */
@@ -1769,14 +1780,23 @@ export function restore(input: unknown): Person {
     if (!Array.isArray(gists)) delete out.memory.gists;
     else out.memory.gists = gists.filter(validGist);
   }
-  if (out.memory.gists && !isNum(out.memory.nextGist)) out.memory.nextGist = out.memory.gists.length;
+  if (out.memory.gists) {
+    // Never reuse a kept gist's id (ids are `g<n>` from a counter that only grows).
+    const free = nextGistAfter(out.memory.gists);
+    const saved = out.memory.nextGist;
+    if (!isNum(saved) || saved < free) out.memory.nextGist = free;
+  }
   if (!out.memory.gists) delete out.memory.nextGist;
   const years = out.chronicleYears as unknown;
   if (years !== undefined) {
     if (!Array.isArray(years)) delete out.chronicleYears;
     else out.chronicleYears = years.filter(validYear);
   }
-  if (out.character !== undefined && !validCharacter(out.character)) delete out.character;
+  if (out.character !== undefined) {
+    const c = sanitizeCharacter(out.character);
+    if (c) out.character = c;
+    else delete out.character;
+  }
   if (
     out.skillRetention !== undefined &&
     !(
@@ -1801,8 +1821,40 @@ export function restore(input: unknown): Person {
     if (a) out.ambient = a;
     else delete out.ambient;
   }
+  if (out.retention !== undefined) {
+    const r = cleanRetention(out.retention);
+    if (r) out.retention = r;
+    else delete out.retention;
+  }
   boundLists(out);
   return out;
+}
+
+/** Decision records this person keeps (`Retention.trace`, else `PERSON_DEFAULTS.maxTrace`). */
+const traceLimit = (p: Person): number => p.retention?.trace ?? PERSON_DEFAULTS.maxTrace;
+
+/** A valid retention (2.0.0) from host or saved JSON; undefined when nothing valid remains. */
+function cleanRetention(x: unknown): Retention | undefined {
+  if (!isObject(x)) return undefined;
+  const out: Retention = {};
+  const t = x.trace;
+  if (typeof t === 'number' && Number.isInteger(t) && t >= 0 && t <= PERSON_DEFAULTS.maxTrace) out.trace = t;
+  const d = x.chronicleDays;
+  if (typeof d === 'number' && Number.isInteger(d) && d >= 31 && d <= MAX_MINUTE) out.chronicleDays = d;
+  return out.trace === undefined && out.chronicleDays === undefined ? undefined : out;
+}
+
+/**
+ * Set this person's bounds on record slices (2.0.0; see `Retention`) and trim the slices to them now. Invalid
+ * entries are ignored; an empty or wholly invalid retention restores the defaults. Changes no decision.
+ */
+export function setRetention(p: Person, retention: Retention): void {
+  const r = cleanRetention(retention);
+  if (r) p.retention = r;
+  else delete p.retention;
+  const keep = traceLimit(p);
+  if (p.trace.length > keep) p.trace.splice(0, p.trace.length - keep);
+  trimChronicle(p);
 }
 
 /** The largest |minute| `restore` accepts: about 1.9 million years, far past any run, far below float trouble. */
@@ -1824,7 +1876,7 @@ function boundLists(p: Person): void {
   if (p.memory.gists) p.memory.gists = top(p.memory.gists, GIST_DEFAULTS.maxGists);
   const newest = <T>(xs: T[], n: number): T[] => (xs.length <= n ? xs : xs.slice(xs.length - n));
   p.memory.expectations = newest(p.memory.expectations, MEMORY_DEFAULTS.maxExpectations);
-  p.trace = newest(p.trace, PERSON_DEFAULTS.maxTrace);
+  p.trace = newest(p.trace, traceLimit(p));
   p.habits = newest(p.habits, HABIT_DEFAULTS.maxHabits);
   if (p.chronicle) p.chronicle = newest(p.chronicle, CHRONICLE_DEFAULTS.maxDays);
   if (p.chronicleYears) p.chronicleYears = newest(p.chronicleYears, CHRONICLE_DEFAULTS.maxYears);

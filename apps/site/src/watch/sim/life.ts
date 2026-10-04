@@ -56,7 +56,17 @@ import {
   WATCH_AGE,
   type WatcherId,
 } from './config.ts';
-import { equip, isHere, KEEPER_ID, nameOf, personOf, personSeed, them, villager } from './people.ts';
+import {
+  careCandidates,
+  equip,
+  isHere,
+  KEEPER_ID,
+  nameOf,
+  personOf,
+  personSeed,
+  them,
+  villager,
+} from './people.ts';
 import {
   type ChronicleLine,
   nextRandom,
@@ -197,19 +207,22 @@ export function chronicle(s: WatchState, kind: ChronicleLine['kind'], text: stri
   s.chronicle.push(line);
 }
 
-const lookupIn = (s: WatchState) => (id: string) => s.community.people.find((q) => q.id === id);
+const lookupIn = (s: WatchState) => (id: string) => personOf(s, id);
 
 /** Living villagers who are here. */
 export function living(s: WatchState): Person[] {
   return s.community.people.filter((p) => isHere(s, p));
 }
 
-/** Children (by the parent's own ties) who are here. */
+/** Children (by the children's own ties to the parent) who are here, in people order. */
 export function childrenOf(s: WatchState, p: Person): Person[] {
-  return living(s).filter((q) =>
-    q.social.relationships.some(
-      (r) => r.otherId === p.id && (r.roles.includes('parent') || r.roles.includes('guardian')),
-    ),
+  // The index narrows who to test (P7); the test itself is the full one, so a lost tie is never counted.
+  return careCandidates(s, p.id).filter(
+    (q) =>
+      isHere(s, q) &&
+      q.social.relationships.some(
+        (r) => r.otherId === p.id && (r.roles.includes('parent') || r.roles.includes('guardian')),
+      ),
   );
 }
 

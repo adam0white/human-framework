@@ -60,7 +60,7 @@ export const CHRONICLE_DEFAULTS = {
 };
 
 /** Stable key for a habit: action plus its cue. */
-export function habitKey(h: Pick<Habit, 'action' | 'cue'>): string {
+function habitKey(h: Pick<Habit, 'action' | 'cue'>): string {
   const cue: string[] = [];
   if (h.cue.hour !== undefined) cue.push(`h${h.cue.hour}`);
   if (h.cue.placeId !== undefined) cue.push(`p:${h.cue.placeId}`);
@@ -379,12 +379,27 @@ export function appendDay(p: Person, record: DayRecord): void {
   const list = p.chronicle ?? [];
   for (const r of list) delete r.state;
   list.push(record);
-  if (list.length > CHRONICLE_DEFAULTS.maxDays) {
-    const dropped = list.splice(0, list.length - CHRONICLE_DEFAULTS.maxDays);
-    // 1.8.0 yearbook (opt-in): a day leaving the chronicle folds into its year's summary.
-    if (p.chronicleYears) for (const r of dropped) foldDay(p, dayFold(r));
-  }
   p.chronicle = list;
+  trimChronicle(p);
+}
+
+/**
+ * Drop the oldest day records beyond `CHRONICLE_DEFAULTS.maxDays`, and (2.0.0) those more than
+ * `Retention.chronicleDays` older than the newest. The newest record always stays. A dropped day folds into its
+ * year's summary when the yearbook is on.
+ */
+export function trimChronicle(p: Person): void {
+  const list = p.chronicle;
+  if (!list || list.length === 0) return;
+  let drop = Math.max(0, list.length - CHRONICLE_DEFAULTS.maxDays);
+  const age = p.retention?.chronicleDays;
+  const newestDay = list[list.length - 1]?.day ?? 0;
+  if (age !== undefined)
+    while (drop < list.length - 1 && newestDay - (list[drop]?.day ?? newestDay) > age) drop += 1;
+  if (drop === 0) return;
+  const dropped = list.splice(0, drop);
+  // 1.8.0 yearbook (opt-in): a day leaving the chronicle folds into its year's summary.
+  if (p.chronicleYears) for (const r of dropped) foldDay(p, dayFold(r));
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -426,7 +441,7 @@ export function enableYearbook(p: Person): void {
 }
 
 /** The fold of a lived day record. */
-export function dayFold(r: DayRecord): DayFold {
+function dayFold(r: DayRecord): DayFold {
   return {
     day: r.day,
     mood: r.mood,

@@ -20,7 +20,7 @@ import { clamp01, round } from './core/index.ts';
 import { predict, previewCommand, readPerson } from './person.ts';
 import {
   acquaint,
-  believed,
+  believedValue,
   estimate,
   glimpse,
   IMPRESSION_DEFAULTS,
@@ -112,7 +112,7 @@ export function imagine(observer: Person, target: Person, now: Minute): Person {
   const m = structuredClone(target);
   const id = target.id;
   for (const name of TRAIT_NAMES)
-    m.traits[name] = round(clamp01(believed(observer, id, `trait:${name}`, now)));
+    m.traits[name] = round(clamp01(believedValue(observer, id, `trait:${name}`, now)));
   m.memory.episodes = [];
   m.memory.expectations = [];
   m.memory.beliefs = [];
@@ -120,12 +120,12 @@ export function imagine(observer: Person, target: Person, now: Minute): Person {
 
   // Emotions: only the fear the observer believes in, in general and toward places.
   const fears: Emotion[] = [];
-  const general = believed(observer, id, 'fear', now);
+  const general = believedValue(observer, id, 'fear', now);
   if (general > 0.01)
     fears.push({ id: 'fear', intensity: round(general), cause: 'impression', since: now, halfLife: 240 });
   for (const c of observer.social.impressions?.find((i) => i.targetId === id)?.cues ?? []) {
     if (!c.key.startsWith('fear@')) continue;
-    const v = believed(observer, id, c.key, now);
+    const v = believedValue(observer, id, c.key, now);
     if (v > 0.01)
       fears.push({
         id: 'fear',
@@ -137,12 +137,12 @@ export function imagine(observer: Person, target: Person, now: Minute): Person {
       });
   }
   m.affect.emotions = fears;
-  m.affect.mood.valence = round(believed(observer, id, 'mood', now));
+  m.affect.mood.valence = round(believedValue(observer, id, 'mood', now));
   delete m.affect.crisis;
 
   // Pain and fatigue: the true sources scaled to the believed level (a pain no one has seen is not imagined).
   const truth = readPerson(target).body.perceived;
-  const pain = believed(observer, id, 'pain', now);
+  const pain = believedValue(observer, id, 'pain', now);
   if (truth.pain > 0.02) {
     const k = Math.min(3, pain / truth.pain);
     for (const inj of m.body.injuries) inj.severity = round(clamp01(inj.severity * k));
@@ -155,7 +155,7 @@ export function imagine(observer: Person, target: Person, now: Minute): Person {
       since: now,
     });
   }
-  const fatigue = believed(observer, id, 'fatigue', now);
+  const fatigue = believedValue(observer, id, 'fatigue', now);
   if (truth.fatigue > 0.02) {
     const k = Math.min(3, fatigue / truth.fatigue);
     m.body.exertion = round(clamp01(m.body.exertion * k));
@@ -164,8 +164,8 @@ export function imagine(observer: Person, target: Person, now: Minute): Person {
 
   // Ties and trust in voices: what the observer believes (an unseen tie reads as the prior).
   for (const r of m.social.relationships)
-    r.affection = round(believed(observer, id, `tie:${r.otherId}`, now));
-  for (const v of m.will.voices) v.trust = round(believed(observer, id, `trust:${v.voiceId}`, now));
+    r.affection = round(believedValue(observer, id, `tie:${r.otherId}`, now));
+  for (const v of m.will.voices) v.trust = round(believedValue(observer, id, `trust:${v.voiceId}`, now));
   return m;
 }
 

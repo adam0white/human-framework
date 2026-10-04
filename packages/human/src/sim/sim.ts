@@ -432,7 +432,7 @@ const pendingProposals = (c: Community): JointProposal[] =>
   c.joint.proposals.filter((x) => x.status === 'pending');
 
 /** Whether this person is waiting on a pending joint proposal (as proposer or as a partner who accepted). */
-export function awaitingJoint(c: Community, id: PersonId): boolean {
+function awaitingJoint(c: Community, id: PersonId): boolean {
   if (c.joint.proposals.length === 0) return false;
   return pendingProposals(c).some((x) => x.proposerId === id || x.accepted.includes(id));
 }
@@ -473,7 +473,7 @@ export function interruptPerson(c: Community, p: Person, at: Minute, reason: str
 }
 
 /** Whether `aff` starts the joint protocol here: tagged 'joint', not a mirror, with community partners. */
-export function isJointOffer(c: Community, p: Person, aff: Affordance): boolean {
+function isJointOffer(c: Community, p: Person, aff: Affordance): boolean {
   if (aff.jointId !== undefined || !(aff.tags?.includes('joint') ?? false)) return false;
   return (aff.with ?? []).some((id) => id !== p.id && c.people.some((q) => q.id === id));
 }
@@ -697,7 +697,7 @@ export function sharesPlace(q: Person, act: Pick<Activity, 'action' | 'affordanc
 }
 
 /** Whether an activity is a conversation under the driver's convention. */
-export function isConversation(act: Pick<Activity, 'action' | 'affordance'>): boolean {
+function isConversation(act: Pick<Activity, 'action' | 'affordance'>): boolean {
   return (
     (act.affordance.tags?.includes('conversation') ?? false) || act.action === 'talk' || act.action === 'call'
   );

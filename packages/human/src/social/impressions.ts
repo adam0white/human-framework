@@ -25,7 +25,7 @@
  * of one's own state, deliberate deception beyond reserve, the target noticing being watched, or gossip about
  * impressions (conversation carries reputation beliefs separately, `social.ts`).
  */
-import { clamp, clamp01, decay, round } from '../core/index.ts';
+import { clamp, clamp01, decay, latestPerId, newestN, round } from '../core/index.ts';
 import type {
   EntityId,
   Impression,
@@ -144,7 +144,7 @@ export interface ObservedAct {
   tags?: readonly string[];
 }
 
-export function cueKind(key: string): CueKind {
+function cueKind(key: string): CueKind {
   if (key.startsWith('trait:')) return 'trait';
   if (key.startsWith('tie:')) return 'tie';
   if (key.startsWith('trust:')) return 'trust';
@@ -153,7 +153,7 @@ export function cueKind(key: string): CueKind {
   return 'state';
 }
 
-export function priorOf(key: string): number {
+function priorOf(key: string): number {
   const P = IMPRESSION_DEFAULTS.prior;
   const kind = cueKind(key);
   if (kind === 'state') return (P as Record<string, number>)[key] ?? 0;
@@ -362,7 +362,7 @@ export function estimate(observer: Person, targetId: PersonId, key: string, now:
 }
 
 /** The estimate pulled toward the prior by its uncertainty: what to act on when unsure. */
-export function believed(observer: Person, targetId: PersonId, key: string, now: Minute): number {
+export function believedValue(observer: Person, targetId: PersonId, key: string, now: Minute): number {
   const e = estimate(observer, targetId, key, now);
   const prior = priorOf(key);
   return prior + (e.value - prior) * e.confidence;
@@ -386,7 +386,7 @@ export function impressionOf(observer: Person, targetId: PersonId, now: Minute):
 }
 
 /** Whether `p` holds any impression of `targetId`. */
-export function hasImpression(p: Person, targetId: PersonId): boolean {
+function hasImpression(p: Person, targetId: PersonId): boolean {
   return p.social.impressions?.some((i) => i.targetId === targetId) ?? false;
 }
 
@@ -405,7 +405,12 @@ export function companionSteadiness(p: Person, otherId: PersonId, now: Minute): 
   return round(clamp((0.25 - shaky) * 2, -1, 1) * conf);
 }
 
-/** Drop malformed impressions or reserve on restore (absent means none). */
+/**
+ * Drop malformed impressions or reserve on restore (absent means none), and hold the rest to the live bounds: every
+ * cue needs a finite mean and minute and a finite weight ≥ 0 (else its impression is dropped); a mean outside its
+ * key's range is clamped; a repeated target or cue key keeps the one seen latest; past `maxImpressions` impressions
+ * or `maxCues` cues the most recently seen are kept, in saved order. A save the engine wrote is already within this.
+ */
 export function sanitizeImpressions(social: Person['social']): void {
   const r = social.reserve as unknown;
   if (r !== undefined) {
@@ -438,9 +443,29 @@ export function sanitizeImpressions(social: Person['social']): void {
           typeof (c as ImpressionCue).key === 'string' &&
           Number.isFinite((c as ImpressionCue).mean) &&
           Number.isFinite((c as ImpressionCue).weight) &&
+          (c as ImpressionCue).weight >= 0 &&
           Number.isFinite((c as ImpressionCue).at),
       ),
   );
-  if (good.length === 0) delete social.impressions;
-  else social.impressions = good;
+  const A = IMPRESSION_DEFAULTS;
+  for (const imp of good) {
+    for (const c of imp.cues) {
+      const [lo, hi] = rangeOf(c.key);
+      if (c.mean < lo || c.mean > hi) c.mean = clamp(c.mean, lo, hi);
+    }
+    const cues = latestPerId(
+      imp.cues,
+      (c) => c.key,
+      (c) => c.at,
+    );
+    imp.cues = newestN(cues, A.maxCues, (c) => c.at);
+  }
+  const one = latestPerId(
+    good,
+    (i) => i.targetId,
+    (i) => i.seenAt,
+  );
+  const kept = newestN(one, A.maxImpressions, (i) => i.seenAt);
+  if (kept.length === 0) delete social.impressions;
+  else social.impressions = kept;
 }

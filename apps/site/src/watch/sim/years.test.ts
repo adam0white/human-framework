@@ -7,13 +7,23 @@ import { seasonNow } from './life.ts';
 import { DAY_RATE, Pacer } from './pace.ts';
 import { isWatcher } from './people.ts';
 import { keeperImpressions } from './reads.ts';
-import { endState, replay, WatchRun } from './run.ts';
+import { endState, replay, type Snapshot, WatchRun } from './run.ts';
 import type { WatchState } from './state.ts';
 import { topicsFor } from './talk.ts';
 import { tagline } from './view.ts';
 
+/**
+ * One three-year run shared by the two describes below (H2 performance review, P9). It stops once, at the first
+ * night minute of year 3, to save a page as the game does between minutes, then goes on unchanged to the end.
+ */
+const { run, page } = ((): { run: WatchRun; page: Snapshot } => {
+  const run = playYears(1, 3, undefined, (st) => st.year === 3 && st.phase === 'night');
+  const page: Snapshot = JSON.parse(JSON.stringify(run.snapshot()));
+  playYears(1, 3, undefined, undefined, run);
+  return { run, page };
+})();
+
 describe('Game 3 years (G3-3)', () => {
-  const run = playYears(1, 3);
   const s = run.state;
 
   it('three whole years pass: seasons, fairs and winters reach the chronicle', () => {
@@ -39,22 +49,14 @@ describe('Game 3 years (G3-3)', () => {
   }, 300_000);
 
   it('a saved page resumes to the same end as the unbroken run', () => {
-    const half = Math.floor(run.log.length / 2);
-    const cut = run.log[half]?.m ?? 0;
-    // Replay to the cut, snapshot, resume and feed the rest: the end must match.
+    // The page saved in year 3 (see `page` above), resumed and fed the rest of the log: the end must match.
     const exp = run.export();
-    const first = new WatchRun(exp.seed);
-    for (const e of run.log) {
-      if (e.m >= cut) break;
-      while (first.state.minute < e.m) first.step();
-      first.input(e.i);
-    }
-    while (first.state.minute < cut) first.step();
-    const resumed = WatchRun.resume(JSON.parse(JSON.stringify(first.snapshot())));
-    for (const e of run.log) {
-      if (e.m < cut) continue;
+    expect(page.state.minute).toBeLessThan(exp.endMinute);
+    expect(page.log.length).toBeLessThan(run.log.length);
+    const resumed = WatchRun.resume(page);
+    for (const e of run.log.slice(page.log.length)) {
       while (resumed.state.minute < e.m) resumed.step();
-      resumed.input(e.i);
+      expect(resumed.input(e.i)).toBe(true);
     }
     while (resumed.state.minute < exp.endMinute) resumed.step();
     expect(endState(resumed.state).fullHash).toBe(exp.end.fullHash);
@@ -63,7 +65,6 @@ describe('Game 3 years (G3-3)', () => {
 });
 
 describe('Game 3 long-run depth (G3-4)', () => {
-  const run = playYears(1, 3);
   const s = run.state;
   const clone = (): WatchState => JSON.parse(JSON.stringify(s));
 

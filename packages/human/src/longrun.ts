@@ -37,10 +37,11 @@ import {
   lifeStage,
   mortalityEvent,
 } from './lifecourse/index.ts';
-import { advanceMemory, consolidate, remember } from './memory/index.ts';
+import { advanceMemory, foldGists, remember } from './memory/index.ts';
 import { meanSatisfaction } from './needs/index.ts';
 import { widowhoodMortality } from './partnering/index.ts';
 import { learningFor, readPerson, skip } from './person.ts';
+import type { LifecourseOptions } from './sim/sim.ts';
 import { practise, type SkillTransfer, successChance } from './skills/index.ts';
 import { advanceSocial, socialEvent } from './social/index.ts';
 import type {
@@ -99,17 +100,8 @@ export interface Routine {
   activities: readonly RoutineActivity[];
 }
 
-/** Life-course rolls on routine days (the same shape as the community driver's). */
-export interface RoutineLifecourse {
-  mortality?: boolean;
-  chronicOnsets?: boolean;
-  multiplier?: number;
-  conditions?: readonly ChronicCondition[];
-  exposures?(p: Person): HealthExposures | undefined;
-}
-
 export interface RoutineOptions {
-  lifecourse?: RoutineLifecourse;
+  lifecourse?: LifecourseOptions;
   transfer?: SkillTransfer;
 }
 
@@ -270,7 +262,7 @@ export function routineDay(p: Person, routine: Routine, opts: RoutineOptions = {
     });
     ageCharacter(p, end);
   }
-  if (p.memory.gists) consolidate(p, end);
+  if (p.memory.gists) foldGists(p, end);
   const stageAfter = lifeStage(p);
   if (stageAfter !== stageBefore) report.stage = stageAfter;
   return report;

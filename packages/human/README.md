@@ -43,8 +43,8 @@ The package is private (`UNLICENSED`) and not on a registry. Build a tarball fro
 that:
 
 ```sh
-npm pack -w packages/human                  # runs the build; writes human-framework-1.2.0.tgz
-npm install /path/to/human-framework-1.2.0.tgz
+npm pack -w packages/human                  # runs the build; writes human-framework-2.0.0.tgz
+npm install /path/to/human-framework-2.0.0.tgz
 ```
 
 It ships ES modules and `.d.ts` files (`exports["."]` with `types`). It requires Node ≥ 24 or a modern
@@ -96,11 +96,12 @@ The framework has no world of its own. The host supplies three things and receiv
   person's learned expectation of an action can drift from its advertisement.
 - **Percepts** (`Percept`) are what the person might notice: `channel` (`saw`, `heard`, `told`, `felt`,
   `outcome`, `social`), `kind`, `salience`, `summary`, and optionally actor, target, valence, claims,
-  norms, advice, and `near` (the framework has no space, so the host marks what is close).
+  norms, advice, `demonstrates` (a skill being shown, which teaches a watcher a little) and `near` (the
+  framework has no space, so the host marks what is close).
   Attention decides what is encoded.
 - **Outcomes** (`Outcome`) are world truth when an activity ends: `status` (`completed`, `failed`,
-  `interrupted`), realized `needs`, `material`, `injury`, `illness`, follow-on `percepts`, `quality`, and
-  `exposures`. The framework computes exertion and sleep itself.
+  `interrupted`), realized `needs`, `material`, `injury`, `illness`, follow-on `percepts`, `quality`,
+  `practice` (practice quality and instruction) and `exposures`. The framework computes exertion and sleep itself.
 - **Decisions** (`DecisionRecord`) come back: the chosen offer, the top `considered` options with every
   utility term, the suggestion verdict(s), a private `intention`, and a `narration`.
 
@@ -114,7 +115,7 @@ interface World {
   affordancesFor(p: Person): Affordance[];
   perceptsFor(p: Person, since: Minute, until: Minute): Percept[];
   resolve(p: Person, activity: Activity, reason: 'ended' | 'interrupted'): Outcome;
-  // optional: mirror, beginOptions, scarcityFor, onDay, converse, catalog
+  // optional: mirror, beginOptions, scarcityFor, onDay, converse, catalog, skillTransfer
 }
 ```
 
@@ -123,7 +124,8 @@ conversation (testimony and advice between members), contagion, and the optional
 `runSilent(c, world, days, { mutedVoiceId })` runs the same driver with one voice's standing suggestions
 dropped. `diffChronicle(a, b)` then reports what changed between two periods of consolidated day records.
 It covers what the person now does unprompted, what they still do only when told, and how trust and mood
-moved. One scenario is bundled as the reference host: `createVillage`. (Game 2's town, `createTown`, was
+moved. `stepCommunity` tells each death to everyone with a tie (`tellDeath`). One scenario is bundled as the
+reference host: `createVillage`. (Game 2's town, `createTown`, was
 bundled until 1.2.0; it now lives in `apps/site/src/voice/sim/town.ts` as an example of a richer host.)
 
 ## Determinism, snapshots, versions
@@ -147,25 +149,52 @@ bundled until 1.2.0; it now lives in `apps/site/src/voice/sim/town.ts` as an exa
   const village2 = createVillage(people, { seed: 0, state: s.world });
   const c2 = createCommunity(people, s.community); // continues exactly as the unsaved run would
   ```
+- Hosts that live people sparsely over decades can shrink what a save carries per person with
+  `setRetention(p, { trace, chronicleDays })` (or `PersonSpec.retention`): fewer decision records, and day records
+  bounded by age as well as count. No decision changes. `restore` also refuses a non-finite or out-of-range `now`
+  and holds every list to its live bound, so a crafted save cannot stall a host.
 - Version numbers are described under [Versions](#versions).
 
 ## Versions
 
 There are two version numbers, and they move independently.
 
-- **The release version** is the package version (`package.json`, now `1.2.0`) and `FRAMEWORK_VERSION`, the same
+- **The release version** is the package version (`package.json`, now `2.0.0`) and `FRAMEWORK_VERSION`, the same
   string compiled into the build; a test keeps them equal. It versions the public API under
   [semver](https://semver.org/): a breaking change to an exported name or signature bumps the major, a new
   faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
   are that version's section of the root [CHANGELOG.md](../../CHANGELOG.md), with the package tarball attached
   (`npm run release`, run on a clean, pushed `main`).
-- **`ENGINE_VERSION`** (now `1.6.0`) versions simulation behaviour and the save format. It changes when the same
-  seed and inputs would give different decisions, or when person state changes shape. `restore` upgrades saves
-  from engine 1.4.0 and later through `migrate` and refuses older ones. Every release's notes name the
+- **`ENGINE_VERSION`** (exported; `2.0.0` at release 2.0.0) versions simulation behaviour and the save format. It
+  changes when the same seed and inputs would give different decisions, or when person state changes shape.
+  `restore` upgrades saves from engine 1.4.0 and later through `migrate` and refuses older ones. Every release's notes name the
   `ENGINE_VERSION` it ships, so a host can tell whether its saves still restore.
 
 The root `package.json` version is the site's version (stamped into the site's `release.json`) and is not part of
 this policy.
+
+## Long runs (2.0)
+
+HF 2.0 adds what a life over decades needs. Each faculty is opt-in or absent until used, so a host that uses none
+of it runs as before.
+
+- **Experience over years.** Skill learning follows a domain's age curve (`Affordance.skill.domain`), related skills
+  move together (`World.skillTransfer`), practice quality and instruction matter (`Outcome.practice`), watching
+  someone skilled teaches the basics (`Percept.demonstrates`, `observeSkill`), practice slows forgetting
+  (`enableSkillRetention`), and traits and values mature and drift slowly with experience (`enableCharacterChange`).
+- **Lasting memory.** `enableGists` folds old episodes into bounded gists that still weigh on choices decades later;
+  `retell` passes a teller's gists to a listener (a child fears a place their parents fear before standing there);
+  `enableYearbook` keeps one summary per year.
+- **Family.** `conceive`, `pregnancyDue`, `deliver`, inherited aptitudes, and `raise` (upbringing: values, the lived
+  example of norms, attachment, trust in the household's voices).
+- **Courtship and marriage.** `court`, `courtshipStage`, `betroth`, `canMarry`, `marry`, `widow`, with customs
+  (`GENERIC_CUSTOM`, `MUSLIM_CUSTOM`); accepting a proposal is an ordinary decision, so a person can refuse.
+- **Surroundings.** `setAmbient` (cold, dark, crowding, beauty, weather, day length) shifts mood, body and needs.
+- **Multi-year stepping.** `liveRoutine` and `liveCommunity` live people by routine a coarse day at a time, with
+  natural death, chronic onsets, deaths told and minors raised.
+- **Impressions of others.** What one person believes about another (`glimpseOf`, `observeAct`, `hear`,
+  `acquaintWith`), with confidence; `predictAs` runs a prediction on the person as the observer pictures them.
+- **Answering between decisions.** `answerNow` books a refusal at once without touching the running activity.
 
 ## Direct control
 
@@ -216,5 +245,6 @@ that place lose appeal until the fear fades. Groups and factions themselves stay
   utility terms, will rules, host protocols, and locked decisions.
 - [docs/api.md](../../docs/api.md): every export, grouped by module, generated from the built declarations.
   Helpers tagged `@internal` are stripped from the shipped declarations and are not part of the API.
-  The affect module's `release` is exported as `releaseEmotion`.
+  The affect module's `release` is exported as `releaseEmotion`, the agenda's as `releaseCommitment`, and the
+  will's scorer as `scoreAndResolve`.
 - [docs/findings.md](../../docs/findings.md): negative findings recorded during development.

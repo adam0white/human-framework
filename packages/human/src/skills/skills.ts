@@ -26,14 +26,14 @@
  * `instructionGapScale` above the learner and fully engaged, and not at all from a teacher no better than the
  * learner; the direction follows the tutoring literature (VanLehn 2011: human tutoring about d = 0.79 over no
  * tutoring, well below Bloom's 1984 two sigma), and the size is an engineering choice (v0 guided practice taught
- * twice as fast), not a conversion of d. *Observation* (`observe`) moves a watcher toward a fraction
+ * twice as fast), not a conversion of d. *Observation* (`learnByWatching`) moves a watcher toward a fraction
  * (`observeCeiling`) of the model's level at `observeRate` of practice's rate, without adding practice minutes, so it
  * teaches the basics and never mastery; the direction follows observational modelling (Bandura 1977; Ashford,
  * Bennett & Davids 2006: larger effects on movement form, d ≈ 0.77, than on outcomes, d ≈ 0.17). Sources:
  * research/long-run-sources.md. Does not claim: calibrated sizes, teaching effects on the teacher, item-level
  * knowledge, or that watching an unskilled model teaches errors.
  *
- * SCOPE (consolidation, 1.8.0, opt-in per person with `enableSkillConsolidation`): without it, forgetting runs at one
+ * SCOPE (consolidation, 1.8.0, opt-in per person with `enableSkillRetention`): without it, forgetting runs at one
  * half-life between any two sessions, so over decades of daily practice the shrinking power-law gains fall below a
  * day's forgetting and a lifelong farmer plateaus low and then declines (docs/findings.md). With it, the forgetting
  * half-life grows with accumulated practice hours, so well-practised skills barely rust between daily sessions and
@@ -90,7 +90,7 @@ export const SKILL_DEFAULTS = {
   observeRate: 0.3,
   observeCeiling: 0.6,
   /**
-   * Practice hours that double the forgetting half-life when consolidation is on (1.8.0, `enableSkillConsolidation`):
+   * Practice hours that double the forgetting half-life when consolidation is on (1.8.0, `enableSkillRetention`):
    * half-life = forgetHalfLife × (1 + hours / consolidationHours). Engineering assumption (see SCOPE).
    */
   consolidationHours: 300,
@@ -123,7 +123,7 @@ export function skillFamilies(families: Record<string, readonly string[]>, fract
  * Turn on practice consolidation for this person (1.8.0, idempotent; see the SCOPE on consolidation). Without it the
  * forgetting half-life is the same however long a skill was practised.
  */
-export function enableSkillConsolidation(p: Pick<Person, 'skillRetention'>): void {
+export function enableSkillRetention(p: Pick<Person, 'skillRetention'>): void {
   p.skillRetention ??= { consolidationHours: SKILL_DEFAULTS.consolidationHours };
 }
 
@@ -181,7 +181,7 @@ function exposure(h0: number, h1: number): number {
 }
 
 /** Learning multiplier for practice quality (1 when absent or 0.5). */
-export function qualityFactor(quality: Unit | undefined): number {
+function qualityFactor(quality: Unit | undefined): number {
   if (quality === undefined) return 1;
   const d = SKILL_DEFAULTS;
   const q = clamp01(quality);
@@ -191,7 +191,7 @@ export function qualityFactor(quality: Unit | undefined): number {
 }
 
 /** Learning multiplier from a teacher's guidance for a learner at `learner` (1 when absent or no better). */
-export function instructionFactor(instruction: PracticeConditions['instruction'], learner: Unit): number {
+function instructionFactor(instruction: PracticeConditions['instruction'], learner: Unit): number {
   if (!instruction) return 1;
   const d = SKILL_DEFAULTS;
   const gap = clamp01((clamp01(instruction.level) - learner) / d.instructionGapScale);
@@ -267,7 +267,7 @@ export function practise(
  * the power law); the stored level is re-anchored at `now` (rust counts from here). Watching someone no better than
  * that ceiling teaches nothing.
  */
-export function observe(
+export function learnByWatching(
   p: SkillHolder,
   id: string,
   minutes: number,

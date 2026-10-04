@@ -42,3 +42,32 @@ export function runningMean(mean: number, sample: number, n: number, minRate = 0
   const rate = Math.max(1 / Math.max(n, 1), minRate);
   return mean + (sample - mean) * rate;
 }
+
+/**
+ * One entry per id: the one with the latest minute (the later in the list on a tie), list order kept. Returns `xs`
+ * itself when nothing repeats. Restore sanitizers use it. @internal
+ */
+export function latestPerId<T>(xs: T[], id: (x: T) => string, at: (x: T) => number): T[] {
+  const best = new Map<string, T>();
+  for (const x of xs) {
+    const b = best.get(id(x));
+    if (b === undefined || at(x) >= at(b)) best.set(id(x), x);
+  }
+  return best.size === xs.length ? xs : xs.filter((x) => best.get(id(x)) === x);
+}
+
+/**
+ * At most `n` entries: the latest by minute (the later in the list on a tie), list order kept. Returns `xs` itself
+ * when it is within `n`. Restore sanitizers use it. @internal
+ */
+export function newestN<T>(xs: T[], n: number, at: (x: T) => number): T[] {
+  if (xs.length <= n) return xs;
+  const keep = new Set(
+    xs
+      .map((x, i) => ({ x, i }))
+      .sort((a, b) => at(b.x) - at(a.x) || b.i - a.i)
+      .slice(0, n)
+      .map((e) => e.x),
+  );
+  return xs.filter((x) => keep.has(x));
+}

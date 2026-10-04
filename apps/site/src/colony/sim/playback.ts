@@ -68,7 +68,11 @@ export class Playback {
   /** Once-per keys already used (`suggestion:id`, `refusal:order:kind`, `moment:id`, `storm:warning`). */
   private seen = new Set<string>();
 
-  constructor(private readonly factory: HumanSideFactory) {}
+  private readonly factory: HumanSideFactory;
+
+  constructor(factory: HumanSideFactory) {
+    this.factory = factory;
+  }
 
   state(): PlaybackState {
     return {

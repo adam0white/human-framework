@@ -424,3 +424,21 @@ These changes answer six items from the 2026-10-03 playtest.
 - **Which roof number.** Each goal row in the report says when it is judged (D2 19:00, or D3 05:00 for lives). The village rows say "Day 3 dawn, after the storm". So 9/10 in the goal row and 90% in the house row are two different moments.
 - **What would have won.** `sim/hindsight.ts` replays the player's log up to a branch minute. It then runs the balance tests' good-order policy (`GOOD2` with Rush, now in `sim/policies.ts`) to the end of Day 2. Branches run latest first: D2 09:00, D2 05:00, D1 12:00, dawn. The report names the first branch that wins all three Human goals. The replay runs in its own worker (`hindsight-worker.ts`), starts only for a Day-2 report with a missed Human goal, and is deterministic (tested). It covers Day 2 only, with one policy; it does not search for the smallest change that would have won.
 - **Near misses.** Day 2, both sides. A roof finished after 19:00 gets its exact minutes late. A roof one or two stages short gets the next stage's percentage. A store short by at most one pot (4 meals) gets a meals line. There is no minutes estimate for an unfinished roof, because no pace model was built.
+
+## 17. Upgrade to HF 2.0 (H2, 2026-10-04)
+
+Game 1 was released on HF 1.2.0 (engine 1.7.0). Main moved to engine 1.8.0 (long-run state, deaths told) and 1.9.0 (two omission-rule seams) before the 2.0.0 release; HF 2.0.0 itself (engine 2.0.0) changes no behaviour for this game. The API renames touched no colony code. The only code change: `playback.ts` and `human-world.ts` declare their fields plainly instead of as constructor parameter properties, so the site bench can run on Node's own loader (performance review P4; Game 1's bench full run 410 → 273 ms, balance runs 1772 → 978 ms).
+
+- **1.9.0 → 2.0.0, measured.** The recorded playtest (`apps/site/test/fixtures/playtest-colony.json`) replays under 2.0.0 to the same state as under 1.9.0 once each person's `engine` stamp is written back as `1.9.0`; the recorded input log is identical. The fixture was re-recorded only for the version stamps (`framework` 2.0.0, `engine` 2.0.0, hash 143eb69ef4f165).
+- **1.7.0 → 1.9.0, measured** with `BALANCE=1` on the shipped seed, the framework at v1.2.0 source against HEAD's (Classic / Human; R S L = roof, stock, lives). `balance.test.ts` passes on both.
+
+| Pattern | Engine 1.7.0 | Engine 1.9.0 |
+|---|---|---|
+| none | C ✗✓✓ 13 meals · H ✗✓✓ 16 meals, house 9.72 | identical |
+| suggestions | C ✓✓✓ 15 · H ✗✓✓ 17, house 8.99 | C identical · H 16, house 8.97 |
+| good2rush | C roofed at minute 1693 · H 18 meals, 6 left at the end, roofed 1852 | C roofed 1464 · H 23 meals, 9 left, roofed 1875 |
+| allForest | C 21 injuries, 6 dead · H 12 meals | C 149 injuries, 6 dead · H 16 meals |
+| good2insist | C ✗✓✓ (house 7) · H ✗✗✓ (11 meals, roofed 2370 after the deadline) | C ✓✓✓ (roofed 2077) · H ✗✓✓ (12 meals, house 9.82, not roofed) |
+
+- The Human side moves where the 1.9.0 omission rule applies (a prayer begun in its window is protected past the end; long activities are reviewed at the closing stretch): a few more meals, small shifts in the roof minute. The Classic side has no HF people, yet it moves under good2rush, allForest and good2insist. Inferred, not verified: those patterns issue orders from `visibleNudges()`, which depend on Human-side state, so a Human change reorders Classic's orders too.
+- **What the upgrade showed.** The game's own tests caught nothing, and that was the right result: the playtest replay pins behaviour exactly, so the only way to tell "no change" from "a change the tests tolerate" was to replay the old recording under the new engine with the version stamp neutralised. The balance tests tolerated the 1.9.0 shift (good2insist's Human stock goal flipped from failed to met and nothing complained), so a release should keep reporting the balance table across engine versions, not just whether the bounds hold. And a two-sided comparison game is not two independent experiments: the Classic control drifts whenever the scripted player reads the Human side.

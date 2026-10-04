@@ -91,6 +91,21 @@ describe('answerNow', () => {
     );
   });
 
+  test('a voice crowded out by maxVoices is not heard, so nothing is booked or tallied (quality review H2 Q25)', () => {
+    const p = devout(STRETCH + 1);
+    const crowd: Suggestion[] = Array.from({ length: WILL_DEFAULTS.maxVoices }, (_, i) => ({
+      voiceId: `a${String(i).padStart(2, '0')}`,
+      action: 'pray',
+      strength: 0.2,
+    }));
+    const zz: Suggestion = { ...insist('work'), voiceId: 'zz' };
+    const will = structuredClone(p.will);
+    const out = answerNow(p, [PRAY, WORK], zz, { others: crowd });
+    expect(out.booked).toBe(false);
+    expect(p.will).toEqual(will);
+    expect(p.chronicleDay?.verdicts ?? []).not.toContainEqual(expect.objectContaining({ voiceId: 'zz' }));
+  });
+
   test('insisting while already pressed costs trust, as at decisions', () => {
     const p = devout(STRETCH);
     begin(p, PRAY, decide(p, [PRAY]));

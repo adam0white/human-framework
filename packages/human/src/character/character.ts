@@ -97,6 +97,57 @@ const emptyAcc = (): CharacterState['acc'] => ({
   variety: 0,
 });
 
+/**
+ * Validate a saved character slice (used by `restore`); undefined when it cannot be trusted. Every trait and value
+ * key must be present with a finite number (else the slice is dropped; unknown keys are removed) and is clamped to
+ * 0..1; `year` and `agedTo` must be finite; `acc` needs all six counters finite, negatives become 0 (mood is a
+ * signed sum and stays as is); `experience` keeps only trait keys with finite numbers, clamped to ±`maxDrift`.
+ * A save the engine wrote is already within all of this. @internal
+ */
+export function sanitizeCharacter(x: unknown): CharacterState | undefined {
+  const isObj = (o: unknown): o is Record<string, unknown> =>
+    typeof o === 'object' && o !== null && !Array.isArray(o);
+  const num = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
+  if (!isObj(x) || !num(x.year) || !num(x.agedTo)) return undefined;
+  const unitRecord = <K extends string>(o: unknown, keys: readonly K[]): Record<K, number> | undefined => {
+    if (!isObj(o) || !keys.every((k) => num(o[k]))) return undefined;
+    const out = {} as Record<K, number>;
+    for (const k of Object.keys(o))
+      if ((keys as readonly string[]).includes(k)) out[k as K] = clamp01(o[k] as number);
+    return out;
+  };
+  const baseTraits = unitRecord(x.baseTraits, TRAIT_KEYS);
+  const baseValues = unitRecord(x.baseValues, VALUE_KEYS);
+  const accKeys = ['days', 'mood', 'kept', 'broken', 'social', 'variety'] as const;
+  const a = x.acc;
+  if (!baseTraits || !baseValues || !isObj(a) || !accKeys.every((k) => num(a[k]))) return undefined;
+  const acc = {} as CharacterState['acc'];
+  for (const k of Object.keys(a)) {
+    if (!(accKeys as readonly string[]).includes(k)) continue;
+    const v = a[k] as number;
+    acc[k as keyof CharacterState['acc']] = k === 'mood' || v >= 0 ? v : 0;
+  }
+  const experience: CharacterState['experience'] = {};
+  const D = CHARACTER_DEFAULTS.maxDrift;
+  if (isObj(x.experience))
+    for (const [k, v] of Object.entries(x.experience))
+      if ((TRAIT_KEYS as readonly string[]).includes(k) && num(v))
+        experience[k as keyof Traits] = clamp(v, -D, D);
+  const fields: Record<keyof CharacterState, unknown> = {
+    baseTraits,
+    baseValues,
+    year: x.year,
+    acc,
+    agedTo: x.agedTo,
+    experience,
+  };
+  // Known fields only, in the saved key order (a save the engine wrote serializes the same).
+  const out: Record<string, unknown> = {};
+  for (const k of Object.keys(x)) if (Object.hasOwn(fields, k)) out[k] = fields[k as keyof CharacterState];
+  for (const k of Object.keys(fields)) if (!(k in out)) out[k] = fields[k as keyof CharacterState];
+  return out as unknown as CharacterState;
+}
+
 /** Turn on slow trait and value change for this person (idempotent); the current values become the anchor. */
 export function enableCharacterChange(p: Person): void {
   if (p.character) return;
@@ -146,7 +197,7 @@ function overlap(fromAge: number, toAge: number, lo: number, hi: number): number
 }
 
 /** The experience pushes a year's accumulator implies, per trait (pure). */
-export function experiencePush(acc: CharacterState['acc']): Partial<Record<keyof Traits, number>> {
+function experiencePush(acc: CharacterState['acc']): Partial<Record<keyof Traits, number>> {
   const K = CHARACTER_DEFAULTS;
   if (acc.days < K.minDays) return {};
   const cap = (x: number) => clamp(x, -K.maxExperiencePerYear, K.maxExperiencePerYear);

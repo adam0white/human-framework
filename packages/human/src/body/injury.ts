@@ -63,7 +63,7 @@ export const DEFAULT_PARTS: Readonly<Record<string, Partial<Record<Capacity, Uni
 };
 
 /** What one injury impairs per unit severity: its own `affects`, else the part table, else nothing. */
-export function injuryAffects(inj: Injury): Partial<Record<Capacity, Unit>> {
+function injuryAffects(inj: Injury): Partial<Record<Capacity, Unit>> {
   return inj.affects ?? DEFAULT_PARTS[inj.part] ?? {};
 }
 

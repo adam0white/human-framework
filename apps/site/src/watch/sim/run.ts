@@ -118,10 +118,10 @@ export class WatchRun {
   readonly state: WatchState;
   readonly log: LogEntry[] = [];
 
-  constructor(
-    readonly seed: number,
-    from?: Snapshot,
-  ) {
+  readonly seed: number;
+
+  constructor(seed: number, from?: Snapshot) {
+    this.seed = seed;
     if (from) {
       if (from.scenario !== WATCH_SCENARIO_VERSION)
         throw new Error(`save is scenario ${from.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);

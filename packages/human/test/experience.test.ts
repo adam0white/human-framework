@@ -9,7 +9,7 @@ import {
   begin,
   createPerson,
   decide,
-  enableSkillConsolidation,
+  enableSkillRetention,
   finish,
   instructionFrom,
   learningFor,
@@ -17,6 +17,7 @@ import {
   lifeModifiers,
   MINUTES_PER_YEAR,
   type Outcome,
+  observeSkill,
   type Person,
   perceive,
   practise,
@@ -184,7 +185,7 @@ describe('consolidation: decades of daily practice', () => {
 
   test('with it, a lifelong farmer keeps improving, and disuse still rusts', () => {
     const p = at(20, 'farmer');
-    enableSkillConsolidation(p);
+    enableSkillRetention(p);
     const levels = farmFor(p, 30);
     for (let i = 1; i < levels.length; i++)
       expect(levels[i] ?? 0).toBeGreaterThanOrEqual((levels[i - 1] ?? 0) - 1e-9);
@@ -195,5 +196,23 @@ describe('consolidation: decades of daily practice', () => {
     expect(rusty).toBeLessThan(kept);
     const floor = SKILL_DEFAULTS.base + SKILL_DEFAULTS.retentionFloor * (kept - SKILL_DEFAULTS.base);
     expect(rusty).toBeGreaterThan(floor - 1e-9);
+  });
+});
+
+describe('L1: observeSkill (quality review H2 Q1)', () => {
+  test('watching a skilled model teaches a child more than an adult, toward the model, without randomness', () => {
+    const child = at(10, 'c');
+    const adultP = at(40, 'd');
+    const rng = structuredClone(child.rng);
+    const c = observeSkill(child, 'sling', 120, 0.8, 'motor');
+    const d = observeSkill(adultP, 'sling', 120, 0.8, 'motor');
+    expect(c.after).toBeGreaterThan(c.before);
+    expect(c.after).toBeGreaterThan(d.after);
+    expect(d.after).toBeGreaterThan(0);
+    expect(c.after).toBeLessThan(0.8);
+    expect(skillLevel(child, 'sling')).toBe(c.after);
+    expect(child.rng).toEqual(rng);
+    // An unknown domain from host JSON learns on the general curve instead of zeroing the skill (Q24).
+    expect(learningMultiplier(30, 'dance' as never)).toBe(learningMultiplier(30, 'general'));
   });
 });

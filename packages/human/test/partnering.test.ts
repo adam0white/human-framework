@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import {
+  betroth,
   canMarry,
   compatibility,
   court,
@@ -295,5 +296,23 @@ describe('partnering: widowhood', () => {
     bad.bonds.courtships.push({ withId: 3 });
     expect(restore(bad).bonds?.courtships).toHaveLength(1);
     expect(adult('x', 'male', 30).bonds).toBeUndefined();
+  });
+});
+
+describe('partnering: engagement (quality review H2 Q1)', () => {
+  test('betroth records the engagement on both sides, courting or not, and it survives a save', () => {
+    const a = adult('amir', 'male', 27, { values: SHARED });
+    const b = adult('bushra', 'female', 25, { values: SHARED });
+    court(a, b, NOW);
+    expect(courtshipStage(a, b.id, NOW)).not.toBe('engaged');
+    betroth(a, b, NOW + 60);
+    expect(courtshipStage(a, b.id, NOW + 60)).toBe('engaged');
+    expect(courtshipStage(b, a.id, NOW + 60)).toBe('engaged');
+    expect(a.bonds?.courtships.find((c) => c.withId === b.id)?.engagedAt).toBe(NOW + 60);
+    const c = adult('cemal', 'male', 30);
+    const d = adult('derya', 'female', 29);
+    betroth(c, d, NOW);
+    expect(courtshipStage(d, c.id, NOW)).toBe('engaged');
+    expect(restore(JSON.parse(JSON.stringify(snapshot(a)))).bonds).toEqual(a.bonds);
   });
 });

@@ -512,20 +512,37 @@ The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26
   - Unconfirmed: a React duplicate-key warning for "joss". It came from another dev server (port 5179), not this build.
 
 **Deferred, with targets.**
-- H2:
+- H2 (seed 11's first winter, the named bell and bounding per-person state growth were done in H2; see "H2 as built"). The rest moved to G3-5, the pass after the user's playtest:
   - Talk topics that change behaviour directly (rest tonight, practise with, mend).
   - Posting pressure once families are admitted (#19).
   - Collapse quiet watchers into one dawn line (#7).
   - Child roster wording (#16).
   - A per-page scenario version, so the shelf can mark old pages before you tap them.
   - Retuning the granary cap if a playtester finds autumns flat.
-  - Bounding per-person state growth (see findings).
 - After Goal 2:
   - Sprites that age (stoop, grey hair).
   - Talks with children and talks in the open seasons.
   - More than one person card per off-season.
 
 **Done for Game 3:** endless play live at /watch/ on desktop and phone, with a playtest export; L1–L6 released in HF 2.0 with tests; `npm run check` passes; the user accepts by playing.
+
+### H2 as built (2026-10-04)
+
+Game 3 moved to HF 2.0 with the release and took two of its G3-4 deferrals. Scenario version 7 (pages from scenario 6 are refused with the usual note).
+
+**Seed 11's first winter.** On seed 11 both waves of opening nights 2 and 3 came at stretches the scout had not named, and the planning Keeper lost 17 of 20 sacks in two nights. Two changes, both limited to the authored opening (year 1, the first three nights):
+- The scout is right about at least one wave a night (night 1 stays right about every wave).
+- One night carries off at most half of what the granary held at dusk (`OPENING_CARRY_SHARE`); after the opening the usual cap of three sacks plus the rich-granary extra applies.
+
+Scripted matched-plan Keeper, sacks left at the thaw, seeds 1, 2, 3, 5, 7, 9, 11, 23: 10, 6, 10, 9, 10, 3, 2, 7 (G3-4: 10, 6, 10, 9, 10, 2, 0, 7). Seed 11 now reaches the thaw with 2, a hungry spring rather than a lost one; the other seeds barely moved. The G3-1/G3-2 opening gates were not re-run.
+
+**The bell rings for one named watcher** (spec §4). Of the watchers in earshot, it rings for the one the Keeper reads as least likely to hold: someone gone to the hall first, then "won't", "might", "can't tell", "grudgingly", "likely", a less certain read before a surer one. A second pull while the first still holds calls the next. The night panel shows whom it would ring for and how they would take it ("Ivo: holds, resents it"); the alert reads "The bell rings for Ivo: hold your post!". A pull with no one in earshot still wears the rope.
+
+**Nights leave memories and children hear winter stories** (spec §3). At dawn, whoever stood a stretch where something got over remembers a bad night there; whoever drove a threat off remembers a night held (ordinary HF episodes placed at the stretch, so they fold into lasting gists and weigh on later postings there). At the thaw each child aged 4 to watch age hears their parents' and guardians' lasting gists of the wall (HF `retell`, scaled by trust), so a child fears the east wall before ever standing there, until their own nights outweigh the story.
+
+**State growth bounded.** Every villager now keeps no decision trace and 40 days of day records (HF 2.0 `setRetention`; days older than that fold into the yearbook at once). Nothing in Game 3 read the trace. Measured on seed 1 (playYears, 50 years): per person 55.0 KB at year 1, 81.9 at year 12, 98.4 at year 25 and 111.6 at year 50 (G3-4: 110 KB at year 1 and 207 at year 12). A page is 0.84 / 1.97 / 2.71 / 1.49 MB raw and 125 / 314 / 419 / 228 KB gzipped, with 15 / 23 / 26 / 11 people. What still grows (about 0.5 KB a person a year) is the yearbook, one record a year. The same seeds with and without retention reach the same state apart from trace, day records and yearbook (seeds 1 and 2, 8 years).
+
+**Faster checks (performance review P4, P7, P9; output unchanged, same hashes on seeds 1–3 at 1, 8 and 25 years).** Lookups of a person, of a household's children and of who is here use maps instead of scanning everyone who ever lived; `years.test.ts` plays its three years once (41 s → 24 s); the site bench runs on Node's own loader (`apps/site/bench-resolve.ts` points `@human/framework` at its source). The 50-year headless check: 258 s → 133 s, measured before the HF retention change.
 
 ## 11. Risks and cuts
 

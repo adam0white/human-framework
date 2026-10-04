@@ -28,7 +28,7 @@
  */
 
 import { breakAllows, inBreak } from '../affect/index.ts';
-import { commitmentPressure, pressureReachedAt, underWay } from '../agenda/index.ts';
+import { commitmentPressure, isUnderWay, pressureReachedAt } from '../agenda/index.ts';
 import { downedAllows, readCapacities } from '../body/index.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
 import { clamp01, decay, dexp, dpow, random } from '../core/index.ts';
@@ -330,12 +330,12 @@ const stretchStart = (c: Commitment): Minute => c.from + WILL_DEFAULTS.omissionF
 
 /**
  * Whether `aff` would keep duty `c` if chosen at `now`. Inside the window: any option serving it. Past the window's
- * end (1.9.0): only continuing the running activity that began inside the window (`agenda.underWay`); a fresh start
+ * end (1.9.0): only continuing the running activity that began inside the window (`agenda.isUnderWay`); a fresh start
  * after `until` would not count, so it does not exempt.
  */
 function keepsDuty(p: Person, c: Commitment, aff: Affordance, now: Minute): boolean {
   if (now <= c.until) return servesCommitment(c, aff);
-  return p.activity?.affordance.id === aff.id && underWay(p, c, now);
+  return p.activity?.affordance.id === aff.id && isUnderWay(p, c, now);
 }
 
 /**
@@ -355,7 +355,7 @@ export function closingDuties(
   const out: Commitment[] = [];
   for (const c of p.agenda.commitments) {
     if (!protectedDuty(p, c) || ctx.now < stretchStart(c)) continue;
-    if (ctx.now > c.until && !underWay(p, c, ctx.now)) continue;
+    if (ctx.now > c.until && !isUnderWay(p, c, ctx.now)) continue;
     const wctx = ctx as WillContext;
     if (!ctx.affordances.some((a) => keepsDuty(p, c, a, ctx.now) && vetoFor(p, a, wctx) === undefined))
       continue;
@@ -1211,7 +1211,8 @@ export function answerSuggestion(
     reason: 'unavailable',
     says: '',
   };
-  if (resolution.verdict !== 'refused') return { resolution, booked: false };
+  // Not heard at all (dropped by `maxVoices`, or the commanding voice): nothing to book (2.0.0).
+  if (i < 0 || resolution.verdict !== 'refused') return { resolution, booked: false };
   const side = ev.voices[i];
   if (side) bookVoices(p, [side], [resolution], ctx.now);
   return { resolution, booked: true };

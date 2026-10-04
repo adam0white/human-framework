@@ -263,13 +263,19 @@ export class ColonyHostWorld implements World {
   /** Set by the side: an ordered job just ended, so its standing suggestion stops at once. */
   onOrderDone: ((personId: VillagerId, action: string, startedAt: number) => void) | null = null;
 
-  constructor(
-    readonly seed: number,
-    readonly map: GameMap,
-    readonly world: SideWorld,
-    public s: HostState,
-    public community: Community,
-  ) {}
+  readonly seed: number;
+  readonly map: GameMap;
+  readonly world: SideWorld;
+  s: HostState;
+  community: Community;
+
+  constructor(seed: number, map: GameMap, world: SideWorld, s: HostState, community: Community) {
+    this.seed = seed;
+    this.map = map;
+    this.world = world;
+    this.s = s;
+    this.community = community;
+  }
 
   now(): number {
     return this.clock;

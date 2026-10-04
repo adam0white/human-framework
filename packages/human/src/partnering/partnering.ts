@@ -38,7 +38,7 @@
  * waiting period, fosterage, and same-sex pairing (custom `pairing` is the host's choice).
  */
 import { feel } from '../affect/index.ts';
-import { clamp01, dpow } from '../core/index.ts';
+import { clamp01, dpow, latestPerId } from '../core/index.ts';
 import { attachmentOf } from '../family/index.ts';
 import { ageYears } from '../lifecourse/index.ts';
 import { remember } from '../memory/index.ts';
@@ -170,12 +170,18 @@ const bondsOf = (p: Person): BondsState => {
 const courtshipWith = (p: Person, id: PersonId): Courtship | undefined =>
   p.bonds?.courtships.find((c) => c.withId === id);
 
-/** Validate a saved bonds slice; undefined when it is not an object (used by `restore`). @internal */
+/**
+ * Validate a saved bonds slice; undefined when it is not an object (used by `restore`). Malformed entries are
+ * dropped; warmth and appeal are clamped to 0..1, meetings and a marriage's `mourningDays` to ≥ 0; one courtship
+ * per person (the latest met) and one marriage per spouse (the latest begun) are kept; past `maxCourtships`, engaged
+ * courtships are kept first, then the most recently met. A waiting period that ends before it starts is dropped.
+ * A save the engine wrote is already within all of this. @internal
+ */
 export function sanitizeBonds(x: unknown): BondsState | undefined {
   if (typeof x !== 'object' || x === null || Array.isArray(x)) return undefined;
   const b = x as Record<string, unknown>;
   const num = (v: unknown) => typeof v === 'number' && Number.isFinite(v);
-  const courtships = (Array.isArray(b.courtships) ? b.courtships : []).filter(
+  const valid = (Array.isArray(b.courtships) ? b.courtships : []).filter(
     (c): c is Courtship =>
       typeof c === 'object' &&
       c !== null &&
@@ -187,7 +193,29 @@ export function sanitizeBonds(x: unknown): BondsState | undefined {
       num(c.lastAt) &&
       (c.engagedAt === undefined || num(c.engagedAt)),
   );
-  const marriages = (Array.isArray(b.marriages) ? b.marriages : []).filter(
+  for (const c of valid) {
+    if (c.warmth !== clamp01(c.warmth)) c.warmth = clamp01(c.warmth);
+    if (c.appeal !== clamp01(c.appeal)) c.appeal = clamp01(c.appeal);
+    if (c.meetings < 0) c.meetings = 0;
+  }
+  let courtships = latestPerId(
+    valid,
+    (c) => c.withId,
+    (c) => c.lastAt,
+  );
+  if (courtships.length > PARTNERING_DEFAULTS.maxCourtships) {
+    const rank = courtships
+      .map((c, i) => ({ c, i }))
+      .sort(
+        (p, q) =>
+          Number(q.c.engagedAt !== undefined) - Number(p.c.engagedAt !== undefined) ||
+          q.c.lastAt - p.c.lastAt ||
+          q.i - p.i,
+      );
+    const keep = new Set(rank.slice(0, PARTNERING_DEFAULTS.maxCourtships).map((e) => e.c));
+    courtships = courtships.filter((c) => keep.has(c));
+  }
+  const married = (Array.isArray(b.marriages) ? b.marriages : []).filter(
     (m): m is Marriage =>
       typeof m === 'object' &&
       m !== null &&
@@ -197,9 +225,22 @@ export function sanitizeBonds(x: unknown): BondsState | undefined {
       (m.end === undefined || m.end === 'widowed') &&
       (m.mourningDays === undefined || num(m.mourningDays)),
   );
+  for (const m of married) if (m.mourningDays !== undefined && m.mourningDays < 0) m.mourningDays = 0;
+  const marriages = latestPerId(
+    married,
+    (m) => m.spouseId,
+    (m) => m.since,
+  );
   const out: BondsState = { courtships, marriages };
   const mo = b.mourning as Record<string, unknown> | undefined;
-  if (mo && typeof mo === 'object' && typeof mo.forId === 'string' && num(mo.since) && num(mo.until))
+  if (
+    mo &&
+    typeof mo === 'object' &&
+    typeof mo.forId === 'string' &&
+    num(mo.since) &&
+    num(mo.until) &&
+    (mo.until as number) >= (mo.since as number)
+  )
     out.mourning = { forId: mo.forId, since: mo.since as number, until: mo.until as number };
   return out;
 }
@@ -283,7 +324,7 @@ export function compatibility(a: Person, b: Person): Unit {
 // ---------------------------------------------------------------------------------------------
 
 /** Warmth of a courtship at `now`, after fading since the last meeting. */
-export function warmthNow(c: Courtship, now: Minute): Unit {
+function warmthNow(c: Courtship, now: Minute): Unit {
   const days = Math.max(0, now - c.lastAt) / MINUTES_PER_DAY;
   return clamp01(c.warmth * dpow(0.5, days / PARTNERING_DEFAULTS.warmthHalfLifeDays));
 }
@@ -350,12 +391,6 @@ export function courtshipStage(p: Person, otherId: PersonId, now: Minute = p.now
     c.meetings >= P.readyMeetings &&
     now - c.since >= P.readyDays * MINUTES_PER_DAY;
   return ready ? 'ready' : 'courting';
-}
-
-/** A copy of p's courtship with `otherId`, if any. */
-export function courtshipOf(p: Person, otherId: PersonId): Courtship | undefined {
-  const c = courtshipWith(p, otherId);
-  return c ? { ...c } : undefined;
 }
 
 /** Record an engagement on both sides (after an accepted proposal, when the host's custom has one). */

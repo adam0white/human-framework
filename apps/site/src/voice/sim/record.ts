@@ -32,7 +32,11 @@ export type VoiceLogEntry = VoiceStep | (VoiceInput & { at: number });
 
 export class RecordedGame {
   readonly log: VoiceLogEntry[] = [];
-  constructor(readonly game: VoiceGame) {}
+  readonly game: VoiceGame;
+
+  constructor(game: VoiceGame) {
+    this.game = game;
+  }
 
   /** A real-time tick: logs the whole minutes it moved. Returns whether time moved. */
   tick(dtMs: number): boolean {

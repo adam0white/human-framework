@@ -12,9 +12,44 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
-Engine: 1.9.0. `restore` upgrades 1.7.0 and 1.8.0 saves by a version stamp. Runs that use none of the new slices are unchanged, except where the omission rule's 1.9.0 changes apply (below).
+## [2.0.0] - 2026-10-04
+
+Engine: 2.0.0. HF 2.0 adds the faculties a life over decades needs: experience over years, upbringing and heredity,
+courtship and marriage, surroundings, multi-year stepping and impressions of others, each opt-in or absent until
+used. Engine 2.0.0 changes no behaviour for a valid save; the engine versions in between (1.8.0, 1.9.0) are listed
+under Changed.
+
+### Upgrading from 1.x
+
+- **Saves.** `restore` upgrades every save from engine 1.4.0 onward: HF 1.0.0 (engine 1.6.0), 1.1.0 (1.6.0), 1.2.0
+  (1.7.0) and pre-release 2.0 builds (1.8.0, 1.9.0). A 1.9.0 save continues exactly as 1.9.0 would; the only shape
+  change is `ambient.now` → `ambient.percept`, which the migration renames. Saves from 1.4.0 to 1.8.0 restore and
+  continue under the current rules (the 1.7.0 prayer rules, the 1.9.0 omission rule), so they do not replay what the
+  old engine would have done next. Saves older than 1.4.0 are refused. `restore` is stricter about crafted saves: a
+  non-finite `now`, or one beyond `MAX_MINUTE`, is refused, and every list and value is held to its live bound and
+  range ([security review](https://github.com/adam0white/human-framework/blob/main/docs/reviews/2026-10-04-h2-security.md)); a save the engine wrote is unchanged.
+- **Renamed.** `consolidate` → `foldGists`; `enableSkillConsolidation` → `enableSkillRetention`; `underWay` →
+  `isUnderWay`; `believed` → `believedValue`; the skills primitive `observe` → `learnByWatching` (the composite
+  `observeSkill` is unchanged); `RoutineLifecourse` → `LifecourseOptions` (it was a copy); `AmbientState.now` →
+  `AmbientState.percept`.
+- **Removed.** `courtshipOf` (use `courtshipStage` or `p.bonds`), the town scenario (below), and exports that only
+  their own module used: `injuryAffects`, `experiencePush`, `habitKey`, `dayFold`, `crowdingExcess`, `exposureRisk`,
+  `qualityFactor`, `instructionFactor`, `cueKind`, `priorOf`, `hasImpression`, `isJointOffer`, `isConversation`,
+  `awaitingJoint`, `warmthNow`, `fastingCtx`.
+- **Behaviour.** Two fixes change runs only where they apply: `answerNow` no longer books (and tallies) a refusal for
+  a voice it did not hear because `maxVoices` crowded it out, and an unknown `Affordance.skill.domain` learns on the
+  general curve instead of resetting the skill to 0. Games 1 and 2 replay their recorded playtests unchanged.
 
 ### Added
+
+- `retell(teller, listener, { at, trust?, limit?, placeIds? })` (memory, L2): a teller's strongest lasting gists
+  become the listener's weaker told gists, scaled by trust, so a child fears a place their parents fear before ever
+  standing there and their own visits later outweigh it. No randomness. With `RETELL_DEFAULTS`.
+- `setRetention(p, { trace?, chronicleDays? })`, `PersonSpec.retention` and the optional `Person.retention`: per-person
+  bounds for hosts that live people sparsely over decades. A shorter trace (0 keeps none) and day records bounded by
+  age as well as count (dropped days fold into the yearbook at once). No decision changes. Game 3 uses it to halve
+  its save pages ([performance review](https://github.com/adam0white/human-framework/blob/main/docs/reviews/2026-10-04-h2-perf.md)).
+- `MAX_MINUTE`, the largest minute `restore` accepts.
 
 - Family (`family/`, HF 2.0 L2): `conceptionChance`, `conceive`, `pregnancyDue`, `deliver` (pregnancy and birth as
   host-driven events; gestation from research), `raise` (ongoing upbringing: warmth-weighted values, the lived
@@ -33,16 +68,16 @@ Engine: 1.9.0. `restore` upgrades 1.7.0 and 1.8.0 saves by a version stamp. Runs
 - Multi-year stepping (L5): `routineDay` and `liveRoutine` live a person by a host `Routine` one coarse day at a time
   (decays, skill practice, companions, remembered events, one appraisal, opt-in chronic onsets and natural death on
   the person's RNG); `liveCommunity` steps a settlement day by day, tells deaths, raises minors with their parents
-  (`upbringingMinutes`) and leaves the bookkeeping `stepCommunity` needs to resume. 25 people for 50 years run in
+  (`LiveCommunityOptions.upbringingMinutes`) and leaves the bookkeeping `stepCommunity` needs to resume. 25 people for 50 years run in
   about 3.5 s (`npm run bench`). New `SimEvent` kinds `onset` and `stage`; `advanceAffect` takes an optional
   substep cap.
-- Lasting memory (L5): `enableGists`, `consolidate`, `gistsFor`. Episodes that are forgotten or older than 180 days
+- Lasting memory (L5): `enableGists`, `foldGists`, `gistsFor`. Episodes that are forgotten or older than 180 days
   fold into bounded gists of what mattered, which still shape choices through a `memory` term (a fear learned at 20
   still counts at 40). Yearbook: `enableYearbook`, `foldDay`, `yearRecord`, one bounded summary per year.
 - Experience over years (L1): `Affordance.skill.domain` picks a learning age curve; `finish` applies a host
   `SkillTransfer` (`FinishOptions.transfer`, `World.skillTransfer`); `Outcome.practice` sets practice quality and
   instruction (`instructionFrom`); `observeSkill` and `Percept.demonstrates` teach by watching;
-  `enableSkillConsolidation` lengthens forgetting with practice hours; `enableCharacterChange` matures traits and
+  `enableSkillRetention` lengthens forgetting with practice hours; `enableCharacterChange` matures traits and
   values with age and moves traits slowly with sustained experience around a set point, within ±0.15 of the
   anchor. Sources and assumptions: [research/long-run-sources.md](https://github.com/adam0white/human-framework/blob/main/research/long-run-sources.md).
 - Impressions (HF 2.0 L6, `social/impressions.ts` and the composite `impression.ts`): what one person believes about another's state (fatigue, pain, fear, mood), fear of places, traits, ties, trust in a voice and seen skill (`skill:<id>` keys, weight halving over a year), each with a confidence, learned only from observations the host reports (`glimpse`/`glimpseOf`, `observeAct`, `hear`, `acquaint`/`acquaintWith`). A person's reserve (`setReserve`, default from emotionality) hides pain and fear from faces and more from words (`selfReport`); a limp always shows. `predictAs` and `previewCommandAs` run `predict`/`previewCommand` on the person as the observer pictures them (`imagine`), so a player's read and a villager's judgement use one function. Cognition adds a `companion:<id>` term on risky offers shared with people one holds impressions of (`companionSteadiness`). New optional state `social.impressions` and `social.reserve`, absent until used; observing draws no randomness, so runs that do not use it replay byte for byte.
@@ -55,12 +90,17 @@ Engine: 1.9.0. `restore` upgrades 1.7.0 and 1.8.0 saves by a version stamp. Runs
 
 ### Changed
 
+- Engine 2.0.0: `AmbientState.now` is renamed `percept` (migrated); `restore` validates impressions, character, bonds
+  and gists by range and bound in their owning modules (`sanitizeCharacter` is new) and holds every list to its live
+  cap; `tick` returns on a minute it cannot step instead of looping. No valid run changes.
+- Engine 1.8.0 adds the optional long-run state above, each piece absent until used; runs that use none of it are
+  unchanged apart from deaths being told (below).
 - Engine 1.9.0, the omission rule (found by Game 2's faith-pushing simulated players, docs/findings.md). A duty stays
   protected past its window's end while an activity that keeps it, begun inside the window, is under way: a prayer
   begun in its time counts ([research/decisions.md](https://github.com/adam0white/human-framework/blob/main/research/decisions.md)), so an insisted option no longer abandons it. An
   activity that would cover a protected duty's whole closing stretch and run past the window's end is reviewed when
   the stretch begins, so a sleep begun just before Fajr's last minutes no longer runs through sunrise unweighed.
-  Capacity and necessity still lift the rule. New exports `agenda.underWay`, `will.dutyReviewAt`. The village
+  Capacity and necessity still lift the rule. New exports `agenda.isUnderWay`, `will.dutyReviewAt`. The village
   continuation hashes are unchanged; the Game 1 playtest run shifts by minutes.
 - `stepCommunity` tells each death to everyone alive with a tie (`StepOptions.tellDeaths`, default true): they
   grieve, keep the tie as a memory, and a spouse is widowed. Runs without deaths are unchanged; no playtest fixture

@@ -20,12 +20,12 @@ import { endDay } from '../chronicle/index.ts';
 import { dayOf } from '../core/index.ts';
 import { raise } from '../family/index.ts';
 import { ageYears } from '../lifecourse/index.ts';
-import { type Routine, type RoutineDay, type RoutineLifecourse, routineDay } from '../longrun.ts';
+import { type Routine, type RoutineDay, routineDay } from '../longrun.ts';
 import { tick } from '../person.ts';
 import type { SkillTransfer } from '../skills/index.ts';
 import type { Minute, Person, PersonId } from '../types.ts';
 import { MINUTES_PER_DAY } from '../types.ts';
-import { type Community, type SimEvent, tellDeath } from './sim.ts';
+import { type Community, type LifecourseOptions, type SimEvent, tellDeath } from './sim.ts';
 
 export const LIVE_COMMUNITY_DEFAULTS = {
   /** Upbringing time a day with the parents (engineering assumption: a few waking hours together). */
@@ -47,7 +47,7 @@ export interface LiveCommunityOptions {
    * `LIVE_COMMUNITY_DEFAULTS.upbringingMinutes`, 0 turns it off).
    */
   upbringingMinutes?: number;
-  lifecourse?: RoutineLifecourse;
+  lifecourse?: LifecourseOptions;
   transfer?: SkillTransfer;
 }
 

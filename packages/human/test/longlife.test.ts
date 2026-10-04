@@ -4,7 +4,6 @@ import {
   CHARACTER_DEFAULTS,
   CHRONICLE_DEFAULTS,
   closeDay,
-  consolidate,
   createPerson,
   decide,
   enableCharacterChange,
@@ -12,6 +11,7 @@ import {
   enableYearbook,
   expectedEffect,
   foldDay,
+  foldGists,
   GIST_DEFAULTS,
   MEMORY_DEFAULTS,
   noteCharacterDay,
@@ -88,7 +88,7 @@ describe('lasting gists (L5)', () => {
         summary: `thing ${i}`,
         tags: [],
       });
-    consolidate(p, p.now + 3000 + GIST_DEFAULTS.horizon + 1);
+    foldGists(p, p.now + 3000 + GIST_DEFAULTS.horizon + 1);
     expect(p.memory.episodes.length).toBe(0);
     expect(p.memory.gists?.length).toBeLessThanOrEqual(GIST_DEFAULTS.maxGists);
     expect(p.memory.gists?.every((g) => Math.abs(g.valence) >= GIST_DEFAULTS.minValence)).toBe(true);

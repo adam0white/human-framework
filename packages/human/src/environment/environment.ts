@@ -90,8 +90,9 @@ function clean(x: AmbientPercept): AmbientPercept {
 export function sanitizeAmbient(x: unknown): AmbientState | undefined {
   if (typeof x !== 'object' || x === null || Array.isArray(x)) return undefined;
   const a = x as Record<string, unknown>;
-  if (typeof a.since !== 'number' || typeof a.now !== 'object' || a.now === null) return undefined;
-  return { now: clean(a.now as AmbientPercept), since: a.since };
+  if (typeof a.since !== 'number' || !Number.isFinite(a.since)) return undefined;
+  if (typeof a.percept !== 'object' || a.percept === null || Array.isArray(a.percept)) return undefined;
+  return { percept: clean(a.percept as AmbientPercept), since: a.since };
 }
 
 /**
@@ -99,13 +100,13 @@ export function sanitizeAmbient(x: unknown): AmbientState | undefined {
  * person moves or the world changes, before the time is ticked. Entering beauty ≥ 0.7 brings awe. Returns a copy.
  */
 export function setAmbient(p: Person, percept: AmbientPercept, at: Minute = p.now): AmbientState {
-  const now = clean(percept);
-  const before = p.ambient?.now.beauty ?? 0;
-  p.ambient = { now, since: at };
+  const seen = clean(percept);
+  const before = p.ambient?.percept.beauty ?? 0;
+  p.ambient = { percept: seen, since: at };
   const E = ENVIRONMENT_DEFAULTS;
-  if ((now.beauty ?? 0) >= E.aweBeauty && before < E.aweBeauty && p.body.alive)
-    feel(p, 'awe', E.aweIntensity * (now.beauty ?? 0), 'event:beauty', at);
-  return { now: { ...now }, since: at };
+  if ((seen.beauty ?? 0) >= E.aweBeauty && before < E.aweBeauty && p.body.alive)
+    feel(p, 'awe', E.aweIntensity * (seen.beauty ?? 0), 'event:beauty', at);
+  return { percept: { ...seen }, since: at };
 }
 
 /** Remove the surroundings (the person is back to no environmental effect). */
@@ -114,7 +115,7 @@ export function clearAmbient(p: Person): void {
 }
 
 /** Crowding beyond the person's tolerance, 0..1. */
-export function crowdingExcess(p: Person, crowding: Unit): Unit {
+function crowdingExcess(p: Person, crowding: Unit): Unit {
   const E = ENVIRONMENT_DEFAULTS;
   const tol = clamp01(E.crowdingTolerance + E.crowdingToleranceExtraversion * p.traits.extraversion);
   return tol >= 1 ? 0 : clamp01((crowding - tol) / (1 - tol));
@@ -122,7 +123,7 @@ export function crowdingExcess(p: Person, crowding: Unit): Unit {
 
 /** The mood-target offset from the surroundings (0 with none). Read only. */
 export function ambientMood(p: Person): Signed {
-  const a = p.ambient?.now;
+  const a = p.ambient?.percept;
   if (!a) return 0;
   const E = ENVIRONMENT_DEFAULTS;
   let v = 0;
@@ -140,14 +141,14 @@ export function ambientMood(p: Person): Signed {
 
 /** Life modifiers adjusted for the surroundings (cold raises metabolism); unchanged with none. */
 export function ambientModifiers(p: Person, mods: LifeModifiers): LifeModifiers {
-  const cold = p.ambient?.now.cold ?? 0;
+  const cold = p.ambient?.percept.cold ?? 0;
   if (cold <= 0) return mods;
   return { ...mods, metabolism: mods.metabolism * (1 + ENVIRONMENT_DEFAULTS.coldMetabolism * cold) };
 }
 
 /** Body parameters adjusted for the surroundings; `base` itself when nothing applies. */
 export function ambientBodyParams(p: Person, base: BodyParams): BodyParams {
-  const a = p.ambient?.now;
+  const a = p.ambient?.percept;
   const cold = a?.cold ?? 0;
   const dark = a?.dark ?? 0;
   if (cold <= 0 && dark <= 0) return base;
@@ -163,7 +164,7 @@ export function ambientBodyParams(p: Person, base: BodyParams): BodyParams {
 
 /** Psychological need changes over `dt` minutes in the surroundings (empty with none). Read only. */
 export function ambientNeeds(p: Person, dt: number): Partial<Record<PsychologicalNeed, number>> {
-  const a = p.ambient?.now;
+  const a = p.ambient?.percept;
   if (!a || !(dt > 0)) return {};
   const E = ENVIRONMENT_DEFAULTS;
   const hours = dt / 60;

@@ -62,7 +62,7 @@ const strip = (people: Person[]) =>
   });
 /**
  * One more day on from each fixture save under engine 1.7.0 (the village saves are identical in both fixtures).
- * Re-checked under 1.8.0 and 1.9.0: unchanged (the 1.9.0 omission-rule changes do not arise in this village day).
+ * Re-checked under 1.8.0, 1.9.0 and 2.0.0: unchanged (the 1.9.0 omission-rule changes do not arise in this village day).
  */
 const CONTINUED_1_7 = {
   village: '3fa3949b49d41dcff7053345b8ca626a48f004bac778372758372f9ff8551f82',
@@ -85,8 +85,8 @@ describe('migrate: saves from earlier engines restore under the current one', ()
     expect(v140.engine).toBe('1.4.0');
     expect(v150.engine).toBe('1.5.0');
     for (const j of v140.village.saved.people) expect((j as { engine: string }).engine).toBe('1.4.0');
-    expect(ENGINE_VERSION).toBe('1.9.0');
-    expect(migratableVersions()).toEqual(['1.4.0', '1.5.0', '1.6.0', '1.7.0', '1.8.0', '1.9.0']);
+    expect(ENGINE_VERSION).toBe('2.0.0');
+    expect(migratableVersions()).toEqual(['1.4.0', '1.5.0', '1.6.0', '1.7.0', '1.8.0', '1.9.0', '2.0.0']);
   });
 
   test('migrate stamps the current version and leaves the input alone', () => {
@@ -125,14 +125,29 @@ describe('migrate: saves from earlier engines restore under the current one', ()
     expect(rt(communityState(a.c))).toEqual(rt(communityState(b.c)));
   });
 
-  test('1.9.0 village with every long-run slice: restores and continues as 1.9.0 did', () => {
+  test('1.9.0 village with every long-run slice: restores and continues as 1.9.0 did (2.0.0 only renames a field)', () => {
     const v190 = load('1.9.0');
     expect(v190.engine).toBe('1.9.0');
     const people = v190.village.saved.people.map((j) => restore(rt(j)));
     expect(people.some((p) => (p.memory.gists?.length ?? 0) > 0)).toBe(true);
     expect(people.some((p) => p.bonds !== undefined && p.social.impressions !== undefined)).toBe(true);
     expect(people.some((p) => p.family !== undefined && p.ambient !== undefined)).toBe(true);
-    expect(continueRun('village', v190.village).digest).toBe(v190.village.continued);
+    expect(people.every((p) => p.ambient === undefined || 'percept' in p.ambient)).toBe(true);
+    // 2.0.0 renamed `ambient.now` to `ambient.percept` and changed no behaviour: written back under the 1.9.0 name,
+    // the day lived from the save is the one 1.9.0 lived.
+    const { c, world } = continueRun('village', v190.village);
+    const as190 = strip(c.people).map((j) => {
+      const a = j.ambient as { percept: unknown; since: number } | undefined;
+      return a ? { ...j, ambient: { now: a.percept, since: a.since } } : j;
+    });
+    expect(hash({ people: as190, state: rt(world.state) })).toBe(v190.village.continued);
+  });
+
+  test('migrate renames the 1.9.0 surroundings field and leaves the input alone', () => {
+    const j = { engine: '1.9.0', ambient: { now: { cold: 0.3 }, since: 5 } };
+    expect(migrate(j)).toEqual({ engine: '2.0.0', ambient: { percept: { cold: 0.3 }, since: 5 } });
+    expect(j.ambient.now).toEqual({ cold: 0.3 });
+    expect(migrate({ engine: '1.9.0' })).toEqual({ engine: '2.0.0' });
   });
 
   test('older and unknown engines are refused with the supported list', () => {

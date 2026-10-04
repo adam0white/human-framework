@@ -11,7 +11,7 @@
  *
  * SCOPE (lasting gists, 1.8.0, opt-in per person with `enableGists`): episodic detail does not last a life, but the
  * gist of what mattered does. An episode that leaves the episode list (evicted beyond the bound, or older than
- * `GIST_DEFAULTS.horizon` at a `consolidate` call, which the composite makes at each day's close) is folded into the
+ * `GIST_DEFAULTS.horizon` at a `foldGists` call, which the composite makes at each day's close) is folded into the
  * gist with the same kind, action, people and place when it was emotional enough (|valence| ≥ `minValence`, or a
  * loss); weaker ones are simply forgotten. A gist keeps the encoding-weighted mean valence, a count and the summary of
  * its strongest episode, and fades with half-lives of years (`halfLifeNeutral`..`halfLifeEmotional` by |valence|).
@@ -81,7 +81,7 @@ export const GIST_DEFAULTS = {
   /** Gists kept; the weakest (salience) go first, loss gists last (at most `maxProtectedLoss` protected). */
   maxGists: 64,
   maxProtectedLoss: 16,
-  /** `consolidate` folds episodes older than this (minutes). */
+  /** `foldGists` folds episodes older than this (minutes). */
   horizon: 180 * MINUTES_PER_DAY,
   /** |valence| an episode needs to leave a gist (loss episodes always do). */
   minValence: 0.3,
@@ -228,7 +228,7 @@ function trimGists(p: Person, dead: ReadonlySet<string>): void {
  * otherwise nothing happens). The composite calls this at each day's close. Returns the number of episodes folded or
  * forgotten.
  */
-export function consolidate(p: Person, now: Minute = p.now): number {
+export function foldGists(p: Person, now: Minute = p.now): number {
   if (!p.memory.gists) return 0;
   const cutoff = now - GIST_DEFAULTS.horizon;
   const eps = p.memory.episodes;
@@ -280,7 +280,7 @@ export const RETELL_DEFAULTS = {
  * teller's valence and summary, and a salience of the teller's × `trust` × `RETELL_DEFAULTS.share`. A listener who
  * already holds a gist about the same thing (kind, action, target and place, whoever was there) from their own
  * experience keeps it unchanged; one told before keeps the
- * stronger telling (retelling the same story does not keep raising it). So a child of parents who fear the east wall
+ * stronger telling (retelling the same story does not keep raising it). So a child of parents who fear a place
  * weighs that fear (cognition's `memory` term, by place at half weight) before ever standing there, and their own
  * later visits outweigh it as they would any gist. No randomness; returns the gists written or strengthened.
  * It does not model distortion in the retelling, the listener doubting the teller beyond `trust`, or retelling on

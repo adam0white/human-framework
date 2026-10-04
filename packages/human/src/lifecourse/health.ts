@@ -69,7 +69,7 @@ export const HEALTH_DEFAULTS = {
 };
 
 /** Relative risk from exposures (1 = none). */
-export function exposureRisk(exposures: HealthExposures = {}, params = HEALTH_DEFAULTS): number {
+function exposureRisk(exposures: HealthExposures = {}, params = HEALTH_DEFAULTS): number {
   const smoking = 1 + (params.smokingRisk - 1) * clamp01(exposures.smoking ?? 0);
   const debt =
     1 + params.sleepDebtRiskPerHour * clamp(exposures.sleepDebtHours ?? 0, 0, params.maxSleepDebtHours);

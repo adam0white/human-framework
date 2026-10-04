@@ -32,7 +32,7 @@ import {
   enableCharacterChange,
   enableDowned,
   enableGists,
-  enableSkillConsolidation,
+  enableSkillRetention,
   enableYearbook,
   GENERIC_CUSTOM,
   heldNorms,
@@ -48,7 +48,9 @@ import {
   type Person,
   type PersonSpec,
   prayerWindows,
+  type Relationship,
   setReserve,
+  setRetention,
   spousesOf,
   type World,
 } from '@human/framework';
@@ -151,14 +153,20 @@ const BREAKS = [
 
 /**
  * The long-run faculties every villager carries (HF L1, G3-3): lasting gists of memorable nights, a yearbook, slow
- * character change and skills that consolidate with practice.
+ * character change and skills that consolidate with practice. Saves carry no decision trace (the game never shows
+ * one) and keep detailed days for about a season (`CHRONICLE_DAYS`), which folds the rest into the yearbook at once
+ * (HF 2.0 retention; the H2 performance review found trace and day records were most of a page).
  */
 export function enableLongLife(p: Person): void {
   enableGists(p);
   enableYearbook(p);
   enableCharacterChange(p);
-  enableSkillConsolidation(p);
+  enableSkillRetention(p);
+  setRetention(p, { trace: 0, chronicleDays: CHRONICLE_DAYS });
 }
+
+/** Days of detailed day records a villager keeps (HF `Retention.chronicleDays`). */
+const CHRONICLE_DAYS = 40;
 
 /** Opt a villager into what the wall asks of them: breaks, downing, reserve, their group, the long run. */
 export function equip(p: Person, opts: { reserve?: WatcherDef['reserve']; newcomer?: boolean } = {}): void {
@@ -328,8 +336,75 @@ export function createKeeper(seed: number, now: number): Person {
   return k;
 }
 
+/**
+ * Lookups over `s.community.people` that do not scan everyone (H2 performance review, P7). Derived, never saved: held
+ * in a WeakMap keyed by the people array, so a resumed page or a cloned state starts its own. The framework's
+ * `addPerson` and Game 3's `prune` both replace the array, so a new array means a changed cast; the length is
+ * checked as well in case anything ever pushes in place.
+ *
+ * `byId` is first-wins, like `find`. `kids` maps a parent's id to the people whose own tie to that parent carries
+ * 'parent' or 'guardian', in people order. Those roles are seeded on the child's side when the child is created,
+ * before it joins the array; a tie can still be lost later (eviction at the relationship cap) or, in principle,
+ * gained, so `kids` is rebuilt when any person's relationship list is replaced, grows or shrinks, or gets a new last
+ * entry (an eviction at the cap is a splice and a push), and `childrenOf` re-tests every candidate on read.
+ */
+interface CastIndex {
+  length: number;
+  byId: Map<string, Person>;
+  kids: Map<string, Person[]> | null;
+  /** Per person, in people order: the relationship list, its length and its last entry when `kids` was built. */
+  ties: (readonly [Relationship[], number, Relationship | undefined])[];
+}
+
+const castIndexes = new WeakMap<Person[], CastIndex>();
+
+function castIndex(s: WatchState): CastIndex {
+  const people = s.community.people;
+  let ix = castIndexes.get(people);
+  if (!ix || ix.length !== people.length) {
+    const byId = new Map<string, Person>();
+    for (const p of people) if (!byId.has(p.id)) byId.set(p.id, p);
+    ix = { length: people.length, byId, kids: null, ties: [] };
+    castIndexes.set(people, ix);
+  }
+  return ix;
+}
+
+const isCareTie = (r: Relationship): boolean => r.roles.includes('parent') || r.roles.includes('guardian');
+
+/**
+ * Everyone (here or not) whose own tie to `parentId` names them a child or ward, in people order. Candidates only:
+ * callers re-test the tie and `isHere` (see `childrenOf` in life.ts).
+ */
+export function careCandidates(s: WatchState, parentId: WatcherId): readonly Person[] {
+  const people = s.community.people;
+  const ix = castIndex(s);
+  let fresh = ix.kids !== null;
+  for (let i = 0; fresh && i < people.length; i++) {
+    const rels = people[i]?.social.relationships;
+    const t = ix.ties[i];
+    if (!rels || !t || t[0] !== rels || t[1] !== rels.length || t[2] !== rels[rels.length - 1]) fresh = false;
+  }
+  if (!fresh || !ix.kids) {
+    const kids = new Map<string, Person[]>();
+    ix.ties = [];
+    for (const q of people) {
+      const rels = q.social.relationships;
+      ix.ties.push([rels, rels.length, rels[rels.length - 1]]);
+      for (const r of rels) {
+        if (!isCareTie(r)) continue;
+        const list = kids.get(r.otherId);
+        if (!list) kids.set(r.otherId, [q]);
+        else if (list[list.length - 1] !== q) list.push(q);
+      }
+    }
+    ix.kids = kids;
+  }
+  return ix.kids.get(parentId) ?? [];
+}
+
 export function personOf(s: WatchState, id: WatcherId): Person | undefined {
-  return s.community.people.find((p) => p.id === id);
+  return castIndex(s).byId.get(id);
 }
 
 export function present(s: WatchState): Person[] {
@@ -499,11 +574,14 @@ export function placeOfActivity(act: Activity): Place | undefined {
 
 export class WatchWorld implements World {
   readonly catalog = [...DEFAULT_NORMS, ...WATCH_NORMS];
-  /** `expect`: offer the warned section as dangerous already (for the Keeper's dusk reads; never stepped). */
-  constructor(
-    private readonly s: WatchState,
-    private readonly expect = false,
-  ) {}
+  private readonly s: WatchState;
+  /** Offer the warned section as dangerous already (for the Keeper's dusk reads; never stepped). */
+  private readonly expect: boolean;
+
+  constructor(s: WatchState, expect = false) {
+    this.s = s;
+    this.expect = expect;
+  }
 
   now(): number {
     return this.s.minute;

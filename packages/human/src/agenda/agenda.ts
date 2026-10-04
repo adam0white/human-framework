@@ -262,7 +262,7 @@ const needsSpawn = (state: AgendaState, c: Commitment, now: Minute): boolean =>
  * was recorded as missed while the player watched him pray). The will's omission rule uses the same test to keep
  * protecting the duty while it runs (1.9.0). Abstentions are never under way.
  */
-export function underWay(p: Person, c: Commitment, now: Minute): boolean {
+export function isUnderWay(p: Person, c: Commitment, now: Minute): boolean {
   const act = p.activity;
   return (
     act !== null &&
@@ -302,7 +302,7 @@ export function advanceAgenda(
     let next: Commitment | undefined;
     for (const c of state.commitments) {
       const due =
-        (c.status === 'pending' && c.until < now && !underWay(p, c, now)) || needsSpawn(state, c, now);
+        (c.status === 'pending' && c.until < now && !isUnderWay(p, c, now)) || needsSpawn(state, c, now);
       if (due && (next === undefined || c.until < next.until)) next = c;
     }
     if (!next) break;

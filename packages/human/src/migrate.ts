@@ -4,7 +4,8 @@
  * step's target version on the JSON. `restore` calls it, so a host can pass an old save straight to `restore`.
  *
  * Covers saves from engine 1.4.0 onward. 1.4.0 through 1.9.0 share the person shape (1.6.0 to 1.8.0 only add
- * optional fields that are absent by default), so those steps only stamp the version; `restore` then fills and sanitizes
+ * optional fields that are absent by default), so those steps only stamp the version; 1.9.0 to 2.0.0 renames one
+ * field of the optional surroundings slice (`ambient.now` → `ambient.percept`) and changes no behaviour; `restore` then fills and sanitizes
  * the slices as for any save. A migrated save continues under the current engine's rules: it restores and runs,
  * but it does not reproduce what the old engine would have done next where the rules changed (1.4.0 to 1.5.0
  * changed how standing advice is heard; 1.8.0 to 1.9.0 changed the omission rule). Saves older than 1.4.0 and unknown versions are refused with an error.
@@ -24,6 +25,14 @@ export interface MigrationStep {
 }
 
 const stamp = (json: Json): Json => ({ ...json });
+
+/** 1.9.0 → 2.0.0: `ambient.now` becomes `ambient.percept` (a copy; the input is not changed). */
+function renameAmbient(json: Json): Json {
+  const a = json.ambient;
+  if (typeof a !== 'object' || a === null || Array.isArray(a) || !('now' in a)) return { ...json };
+  const { now, ...rest } = a as Json;
+  return { ...json, ambient: { ...rest, percept: now } };
+}
 
 /** The chain, keyed by the version each step upgrades from. */
 export const MIGRATIONS: Readonly<Record<string, MigrationStep>> = {
@@ -51,6 +60,11 @@ export const MIGRATIONS: Readonly<Record<string, MigrationStep>> = {
     to: '1.9.0',
     note: 'person shape unchanged; the omission rule now protects a duty while a prayer begun in its window runs past the end, and reviews an activity that would cover a closing stretch',
     apply: stamp,
+  },
+  '1.9.0': {
+    to: '2.0.0',
+    note: 'the surroundings field `ambient.now` is renamed `ambient.percept`; per-person retention is optional and starts absent; behaviour unchanged',
+    apply: renameAmbient,
   },
 };
 

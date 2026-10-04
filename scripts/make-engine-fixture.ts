@@ -34,7 +34,7 @@ for (const p of people) {
   H.enableGists(p);
   H.enableYearbook(p);
   H.enableCharacterChange(p);
-  H.enableSkillConsolidation(p);
+  H.enableSkillRetention(p);
   H.setAmbient(p, { cold: 0.3, dark: 0.2, dayLength: 10 }, 0);
 }
 const [ada, bram, cora] = people as [H.Person, H.Person, H.Person];

@@ -130,7 +130,7 @@ describe('environment: the night watch (control scenario)', () => {
     const back = restore(JSON.parse(JSON.stringify(snapshot(p))));
     expect(back.ambient).toEqual(p.ambient);
     const bad = JSON.parse(JSON.stringify(snapshot(p)));
-    bad.ambient = { now: {} };
+    bad.ambient = { since: 0 };
     expect(restore(bad).ambient).toBeUndefined();
   });
 });
