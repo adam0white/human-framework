@@ -662,3 +662,75 @@ Measured on seed 7 with the headless players (`apps/site/src/voice/sim/measure.t
 | Walk (Urge) + shift | 13 → 13 | 4 → 4 | 0.42 → 0.42 | 28 → 28 | 0 → 0 | kept, R11 and R23 (same) | 0.62 → 0.62 | 166 → 166 | 0 / 0 / 0 | not offered → joined |
 
 - **Only Eid morning moved.** The Ramadan month is identical in every style. Ending Fajr at sunrise does not change when Halil prays, because he already prays it before sunrise. On Eid, the hour at the mosque shifts his morning, and two styles smoke one more cigarette that day. That is still within the 3–5 noise noted in the sixth pass.
+
+### Ninth pass (a naughty player: how far the player's tools move the month, 2026-10-04)
+
+The user asked for a simulated player who pushes Halil the wrong way, to see how far player choice moves the end results in both directions. Engine 1.7.0 with core/libm (origin/main 0876438 merged); nothing was retuned.
+
+- **Scripted players** (`sim/players.ts`). They use only the player's tools. On a played day each one presses pause every 30 minutes, reads the rendered frame, and says one of the composer's six options, with Mention or Urge, a reason, and Insist. It does not repeat the same thing within 120 minutes. Between days it leaves whispers from the card's closed list.
+  - **Tempter.** A Mention with a kind reason. Before dawn it says go back to sleep (so he skips suhoor). By day it says rest, nap, tea with Rıza or the grave instead of work. After iftar and at night it says a cigarette, tea, Hacer or wait instead of sleep. On skipped days it whispers "rest in the afternoon" (Mention, "your health").
+  - **Saboteur.** The same picks, each urged and insisted. Its whisper is rest as an Urge.
+  - **Guardian.** The mirror. It confirms prefills. When he leans to something idle it says work, the clinic, Selin or the walk instead (the walk in place of a cigarette, sleep after 22:00). When he leans well it says nothing. Its whispers are the best pair from earlier passes (walk Urge, then shift Mention).
+  - **Faith stays gentle.** No style picks prayer or steers around it, and none suggests food, drink or a cigarette during the fast.
+- **Measured** with `VOICE_MEASURE=1 npx vitest run apps/site/src/voice/sim/measure.test.ts --silent=false` over seeds 7, 1, 2, 3 and 4. Each cell is the mean, with the range when the seeds differ. "Sleep" is hours a day including naps. "Excused fast breaks" counts Ramadan days with food or water in fasting hours (the town excuses them as illness or necessity, never as a breach). Answers are summed over the five seeds. "His calls" are his own; Selin's calls to him are not counted.
+
+| Player | Smoke days | Eid cigarettes | Mornings / shifts | Rent: date kept, paid by Eid | Trust | His calls to Selin | Clinic | Suhoors | Sleep h/day | Late nights | Excused fast breaks (days) | Prayers | His answers on played days |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Silent | 22 | 4.2 (4–5) | 30 / 0 | 0/5, 300 | 0.50 | 0 | 0 | 30 | 11.1 | 2 | 0 | 175 (173–176) | — |
+| Prefill confirmed + doctor/Selin whispers | 18.8 (18–19) | 3 | 30 / 0.8 | 0/5, 300 | 0.62 | 26.4 (26–28) | 1 | 30 | 9.9 | 13.4 (10–15) | 0 | 170 | yes 39, not now 54 |
+| Shift + Selin whispers | 14.8 (14–17) | 3.6 (2–4) | 30 / 3.4 | 5/5, 540 (300–600) | 0.63 | 26 | 1 | 30 | 10.1 | 9.8 (7–12) | 0 | 157 (155–160) | yes 32, not now 50 |
+| Insist + urge doctor/mosque | 14.6 (14–17) | 3.2 | 30 / 4 | 4/5, 300 | 0.53 | 0.4 | 4 | 30 | 10.3 | 15.4 | 0 | 178 (170–181) | yes 30, protest 20 |
+| Walk (Mention) + Selin | 17 (13–19) | 3.8 (3–6) | 30 / 0 | 0/5, 300 | 0.64 | 26 | 1 | 30 | 10.1 | 6 | 0 | 175 | yes 35, not now 55 |
+| Walk (Urge) + shift | 12.2 (9–13) | 4.2 | 30 / 0.4 | 5/5, 600 | 0.61 | 0 | 1 | 30 | 9.9 | 7 (5–11) | 0 | 166 | yes 25, not now 34 |
+| **Guardian** | **7** | 4.2 | 30 / 1 | 4/5, **600** | 0.62 | 4 | 1 | 30 | 9.9 | 8 | 0 | 156 | yes 71, not now 110 |
+| **Tempter** | 19 | 4.4 (2–5) | 30 / 0 | 0/5, 300 | 0.53 | 0 | 0 | **28** | **4.3** | **12** | **18** | 151 | yes 302, not now 346 |
+| Tempter, no whisper | **29** | 3 | 30 / 0 | 0/5, 300 | 0.51 | 0 | 0 | **28** | 9.9 | **8.4** | 2 | 150 | yes 275, not now 385 |
+| **Saboteur** | 17 | 4.2 (3–5) | **27** / 0 | 5/5, 300 | **0.01** | 0 | 0 | **26** | **8.5** | **8** | **16** | 159 | yes 10, protest 185, won't 206, can't 20 |
+| Saboteur, no whisper | 21.8 (21–24) | 3.2 | **26** / 0 | 5/5, 300 | **0.01** | 0 | 0 | **26** | 10.4 | 5.2 | 2.8 | 184 | yes 15, protest 196, won't 169, can't 30 |
+
+**Assessment.**
+
+- **The range is wide on habits and the body, and narrow on the goals.**
+  - **Good direction.** The guardian smokes 7 days against silence's 22 (after-meal habit 0.29 against 0.60), pays all 600 by Eid against 300, and sees the doctor.
+  - **Bad direction.** It moves sleep, suhoor and late nights a lot. The tempter's four played evenings of "have a cigarette" with a Mention he agrees to raise smoking to 29 days (habit 0.64), because the habit he is told to indulge carries into the skipped days. That carry-over is the strongest evidence of malleability in the table.
+  - **The goals do not move in the bad direction:** rent, the clinic and Selin. Silence is already the floor (no clinic, no calls, Osman's date missed, 300 paid on R17), so no worse is possible.
+- **Where his will resists.**
+  - **Insisting backfires.** Over the five seeds the saboteur is refused, put under protest or told he can't 411 times, against 10 yeses. Trust ends at 0.01, so its word barely weighs.
+  - **His routine holds.** Every bad style still works every skipped-day morning (the saboteur loses only the played mornings it interrupts) and pays Osman before Eid.
+  - **He puts the tempter off more than he obeys.** The tempter is heard more and trusted more (0.53, above silence): it agrees with his own idle leanings and earns trust for it. Even so, he puts it off (346) more often than he takes it (302).
+  - This is the design point working: pushing hard is the least effective way to be bad.
+- **Prayers.** He misses none of the five daily prayers under any style (one missed prayer in one saboteur run, without the whisper). The prayer count differs because prayers beyond the five dailies, at the mosque or at home, rise or fall with the day's shape. The tempter's lower count probably comes from rest and sleep displacing them; this is not confirmed.
+- **Seeds barely matter.** The five seeds give nearly the same month in every style (ranges are 0–3 days). The spread comes from the player, not the seed.
+- **The good direction is fragile to small choices** (seed 7, measured on the way):
+  - The order of the two whispers matters. Walk-then-shift smokes 13 days; shift-then-walk smokes 8.
+  - An earlier guardian said a good thing at every pause, whatever he leaned to. It also suggested meals. It smoked all 30 days (habit 0.68), worse than silence. The walk it urged landed 45 minutes after the cigarette instead of in its place. Mechanism probable, not confirmed.
+  - A good player who nags can make the month worse.
+
+**Defects found (not fixed here; recommendations).**
+
+1. **Interrupted work pays and can be restarted** (framework, `packages/human/src/scenarios/town.ts`, the `interrupted` branch).
+   - An interrupted repair or shift pays its progress fraction. It does not set `lastWorked`/`lastExtra`, so he can start a full one again the same day.
+   - The saboteur's interruptions on Ramadan 1 gave him two part-repairs (+29 against +16). With the same on R15, he keeps Osman's date in 5 of 5 seeds, where silence misses it. The bad voice makes him richer.
+   - It also funds the "Walk (Urge) + shift" style's R11 payment: its shifts are mostly interrupted fragments, so the shift count reads 0–2.
+   - Recommendation: count an interrupted job with progress > 0 as the day's work (set `lastWorked`/`lastExtra`), keeping the pro-rata pay. Then re-measure every style, because the shift styles' money will drop. This needs an engine version bump and re-recorded fixtures, so it belongs in its own change.
+2. **"Rest in the afternoon" is heard at every hour** (game, `advance` in `sim/game.ts`).
+   - A standing whisper for an act that keeps no commitment is heard at every decision. The rest whisper therefore displaces night sleep (11.1 → 4.3 h/day, 13 h of rest a day) and the water at suhoor.
+   - He gets so thirsty that he breaks the fast under necessity on 18 days, mostly from Ramadan 14 on (seed 7). That comes from a whisper the card labels as an afternoon rest.
+   - It is the single largest bad lever, and the player cannot see it coming. It also cuts against "games keep faith gentle".
+   - Recommendation: hear the rest whisper only between Dhuhr and Asr, as its label says. Then re-measure the tempter.
+
+**Recommendations for range (no retune here).**
+
+- **The between-days card offers only constructive whispers** (rest is the one lazy entry). So a bad voice has four played days of leverage, plus one buggy lever.
+  - If the bad direction should reach the goals, the card needs a tempting whisper or two, for example "have tea with Rıza" or "Osman can wait". With those the player can at least make things worse by choice rather than only by neglect.
+  - That is a design choice for the user, and I recommend it only after defect 2 is fixed.
+- **Silence is the floor on rent, the clinic and Selin.** If the user wants bad play to cost more than silence, the silent month would need some of these to go right on his own: for example a chance he calls Selin unasked when she has not called for days. Then a bad voice would have something to undo.
+- **Eid cigarettes stay noise (2–6) in every style**, as in the sixth pass. The month's smoking does not show on Eid. An Eid-morning reading of the habit (already in the report) is the better end metric.
+
+`balance.test.ts` (seeds 7 and 1, about 12 s) holds the range:
+- The tempter (with and without its whisper) and the saboteur each end materially worse than silence on at least two outcomes. Today that is suhoor, sleep and late nights, smoke days for the tempter without the whisper, and mornings and trust for the saboteur.
+- The no-whisper tempter is in the asserted set so that the test survives the fix for defect 2.
+- The guardian ends materially better on smoke days and rent by Eid.
+- The saboteur's insists are refused more than five times as often as obeyed.
+- Both bad styles still work at least 26 mornings and pay Osman by Eid.
+- If defect 1 is fixed, the saboteur's "date kept" will drop to silence's level. The test does not assert on the date.
