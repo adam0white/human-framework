@@ -50,7 +50,7 @@ export const SHIPPED_SEED = 7;
 export const MODEL_NOTES: readonly string[] = [
   'Halil is a simulation of a person’s needs, duties, habits, memories and trust, built from engineering defaults. It is not a model of any real person or town.',
   'The game represents his understanding of his duties, never a ruling, and never anything about acceptance.',
-  'Engineering assumptions, not sourced in the project’s research notes: smoking breaks the fast; the Fajr window is modelled as ending at Dhuhr, not at sunrise; zakat al-fitr is not represented; the Eid prayer is not offered; the workshop is shut on Eid (a town custom).',
+  'From the project’s research notes: smoking breaks the fast as he understands it; Fajr ends at sunrise; the Eid prayer is offered at the mosque on Eid morning, strongly emphasised but not obligatory as the game records it. A prayer he misses stays owed and may be made up quietly another day; sleeping through it or being unconscious is no fault. The prayer times are fictional, not computed. Engineering assumptions: zakat al-fitr is not represented; the workshop is shut on Eid (a town custom).',
   'Money: the morning shift alone does not reach Osman’s 300 by Ramadan 15. He does not reckon on the afternoon shift’s pay, so on his own he rarely takes it (an engineering choice that makes the shift your lever).',
   'Illness excuses the fast with a make-up owed (Qur’an 2:184). Treating a break under real necessity the same way is an engineering assumption by analogy with Qur’an 2:173, not yet sourced. The game never records either as a breach of the fast.',
   'How heavy the clinic, the mosque and calling Selin feel to him since Nuran died are engineering defaults, not findings.',
