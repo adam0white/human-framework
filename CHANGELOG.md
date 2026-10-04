@@ -1,0 +1,68 @@
+# Changelog
+
+Releases of `@human/framework` (Human Framework, HF). The format follows
+[Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/).
+The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y.Z`. Each entry also names the
+`ENGINE_VERSION` (simulation behaviour and save format) it ships; see the version policy in
+[packages/human/README.md](packages/human/README.md#versions). The games in `apps/site` are not covered here.
+
+`npm run release` publishes the section whose heading matches the package version as the GitHub release notes.
+
+## [Unreleased]
+
+## [1.1.0] - 2026-10-04
+
+Engine: 1.6.0. `restore` upgrades person saves from engine 1.4.0 and 1.5.0; older saves are refused.
+
+### Added
+
+- Save migration: `migrate`, `migratableVersions`, `MIGRATIONS` and the `MigrationStep` type. `restore` passes a
+  save from an earlier engine through a chain of steps keyed by the version each upgrades from. The steps only
+  restamp the version: a migrated save continues under 1.6.0 rules and does not replay the old engine where rules
+  changed. Tested against real 1.4.0 and 1.5.0 saves (`test/fixtures`), whose continuations stay byte-identical to
+  the old engine's own. Community and world state are not migrated.
+- Commanded control: `command`, `releaseCommand`, `previewCommand` and `StepOptions.controlled`. A command is a
+  separate input to the will, not a stronger suggestion; it yields the verdict `commanded` and charges autonomy,
+  voice pressure and trust per controlled hour by how much the person would rather have done something else. A
+  pressing need suspends it for a decision; death, a mental break, being downed or an order to break a held norm
+  ends it. Suggestion and `insist` semantics are unchanged.
+- Mental breaks (crisis state in affect): `enableBreaks`, `inBreak`, `checkCrisis`, `breakHazard`,
+  `breakBehaviour`, `breakAllows`, `easeBreak`, `skipCrisis`, `strain`, `CRISIS_DEFAULTS` and the `CrisisEvent`
+  type. Opt-in per person; the host supplies the break behaviours. During a break only the behaviour's offers are
+  open and no voice reaches the person. Off by default, with no state and no RNG draws.
+- Injury depth: per-part capacities read from injuries (`DEFAULT_PARTS` or the injury's own `affects`), an opt-in
+  `Affordance.requires` veto, host-set bleeding with clotting (`bleedRate`, `bleedStep`) and `tend`, and a downed
+  state set by `knockDown` / `standUp` or derived for people with `enableDowned` (`isDowned`). Downed narrows
+  offers to floor, rest and sleep.
+- Insiders, outsiders and threats: `joinGroups`, `meet`, `careFor`; harm to insiders weighs in judgement and
+  appraisal. `Percept.threat` becomes a fear prospect aimed at its source (`threatFrom`), stronger for a wary
+  person facing an outsider, and the person avoids options at a feared place.
+- Town scenario: once the doctor has spoken, Halil is offered a once-a-day 30-minute walk by the river (in Ramadan
+  only after breaking the fast and not during the meal); finishing it right after eating withholds the
+  after-meal smoking habit through habit extinction. New optional state `lastWalk`, `lastAte`.
+
+### Changed
+
+- Engine 1.5.0: standing advice counts the running activity as on offer, so advice that started an activity is
+  still heard at its reviews after the offer's start window has closed.
+- Engine 1.5.0: Halil's cigarette in the town scenario has no place. It had been keyed to the tea house, so the
+  seeded after-meal habit was never reinforced and nothing at home could withhold it.
+- `npm run check` (and `npm test`) no longer asserts wall-clock budgets; they moved to `npm run bench`, which runs
+  the framework with Vite's module runner off.
+
+### Known issues
+
+Recorded in [docs/findings.md](docs/findings.md) (2026-10-04): duties missed during a mental break are booked as
+missed like any other; a downed villager still "rests at home" because the village has no places; threat fear
+fades in hours unless the host keeps sending the threat.
+
+## [1.0.0] - 2026-10-03
+
+Engine: 1.4.0. First release of Human Framework v1: one `Person` actor with body, needs, affect, memory, beliefs,
+skills, habits, relationships, values, an understanding of moral norms and a will that can refuse a suggestion;
+the community driver (`stepCommunity`), `predict`, snapshots and input-log replay; the village and town
+scenarios. Shown live by Games 1 and 2 at https://human.adamwhite.work.
+
+[Unreleased]: https://github.com/adam0white/human-framework/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/adam0white/human-framework/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/adam0white/human-framework/releases/tag/v1.0.0

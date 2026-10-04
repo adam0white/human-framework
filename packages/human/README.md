@@ -43,8 +43,8 @@ The package is private (`UNLICENSED`) and not on a registry. Build a tarball fro
 that:
 
 ```sh
-npm pack -w packages/human                  # runs the build; writes human-framework-1.0.0.tgz
-npm install /path/to/human-framework-1.0.0.tgz
+npm pack -w packages/human                  # runs the build; writes human-framework-1.1.0.tgz
+npm install /path/to/human-framework-1.1.0.tgz
 ```
 
 It ships ES modules and `.d.ts` files (`exports["."]` with `types`). It requires Node ≥ 24 or a modern
@@ -146,11 +146,25 @@ moved. Two scenarios are bundled as reference hosts: `createVillage` and `create
   const town2 = createTown(people, { seed: 0, state: s.world });
   const c2 = createCommunity(people, s.community); // continues exactly as the unsaved run would
   ```
-- There are three version numbers:
-  - The **package version** (`1.0.0`) versions the API.
-  - **`ENGINE_VERSION`** (`1.6.0`) versions simulation behaviour and save compatibility. `restore`
-    upgrades saves from engine 1.4.0 and later through `migrate` and refuses older ones.
-  - **`FRAMEWORK_VERSION`** is the same string as the package version, compiled into the build (`1.0.0`).
+- Version numbers are described under [Versions](#versions).
+
+## Versions
+
+There are two version numbers, and they move independently.
+
+- **The release version** is the package version (`package.json`, now `1.1.0`) and `FRAMEWORK_VERSION`, the same
+  string compiled into the build; a test keeps them equal. It versions the public API under
+  [semver](https://semver.org/): a breaking change to an exported name or signature bumps the major, a new
+  faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
+  are that version's section of the root [CHANGELOG.md](../../CHANGELOG.md), with the package tarball attached
+  (`npm run release`, run on a clean, pushed `main`).
+- **`ENGINE_VERSION`** (now `1.6.0`) versions simulation behaviour and the save format. It changes when the same
+  seed and inputs would give different decisions, or when person state changes shape. `restore` upgrades saves
+  from engine 1.4.0 and later through `migrate` and refuses older ones. Every release's notes name the
+  `ENGINE_VERSION` it ships, so a host can tell whether its saves still restore.
+
+The root `package.json` version is the site's version (stamped into the site's `release.json`) and is not part of
+this policy.
 
 ## Direct control
 
