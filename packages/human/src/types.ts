@@ -670,8 +670,12 @@ export const PERSON_SCHEMA = 'human/person@1';
  * 1.4.0 (2026-10-03): standing advice that keeps a commitment is heard until done once per occasion
  * (`Suggestion.since`, `Community.standingDone`). Person saves are unchanged in shape but decisions under standing
  * advice differ, so 1.3.0 saves do not restore.
+ * 1.5.0 (2026-10-04): standing advice is heard for the running activity. Person shape unchanged.
+ * 1.6.0 (2026-10-04): `restore` migrates 1.4.0 and 1.5.0 saves (`migrate`); commanded control, mental breaks,
+ * per-part capacities with bleeding and a downed state, and insider/outsider ties with threat percepts. All new
+ * person state is optional and absent until used, and none of it changes a run that does not use it.
  */
-export const ENGINE_VERSION = '1.5.0';
+export const ENGINE_VERSION = '1.6.0';
 
 export interface Person {
   schema: typeof PERSON_SCHEMA;

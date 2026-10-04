@@ -81,6 +81,8 @@ export * from './core/index.ts';
 export * from './habits/index.ts';
 export * from './lifecourse/index.ts';
 export * from './memory/index.ts';
+export type { MigrationStep } from './migrate.ts';
+export { MIGRATIONS, migratableVersions, migrate } from './migrate.ts';
 export * from './narrate/index.ts';
 export * from './needs/index.ts';
 export * from './person.ts';

@@ -71,6 +71,7 @@ import {
   recallByCue,
   remember,
 } from './memory/index.ts';
+import { migrate } from './migrate.ts';
 import { intentionFor, narrateDecision, voiceLine } from './narrate/index.ts';
 import { advanceNeeds, createNeeds, meanSatisfaction, readNeeds, satisfy } from './needs/index.ts';
 import { practise, seedSkills } from './skills/index.ts';
@@ -1223,17 +1224,15 @@ function fillFrom(
 
 /**
  * Validate a saved person and fill defaults for missing or mistyped fields, slice by slice and field by
- * field. Throws on a wrong schema, a missing core slice, or a save from a different engine version
- * (incompatible simulation changes are versioned explicitly; migrate the JSON before restoring).
+ * field. A save from an earlier supported engine is upgraded by `migrate` first. Throws on a wrong schema, a
+ * missing core slice, or an engine version `migrate` does not support.
  */
-export function restore(json: unknown): Person {
-  if (!isObject(json)) throw new Error('restore: not an object');
-  if (json.schema !== PERSON_SCHEMA) throw new Error(`restore: unsupported schema ${String(json.schema)}`);
-  if (typeof json.engine !== 'string') throw new Error('restore: missing engine');
-  if (json.engine !== ENGINE_VERSION)
-    throw new Error(
-      `restore: save is from engine ${json.engine}, this is ${ENGINE_VERSION}; migrate it first`,
-    );
+export function restore(input: unknown): Person {
+  if (!isObject(input)) throw new Error('restore: not an object');
+  if (input.schema !== PERSON_SCHEMA) throw new Error(`restore: unsupported schema ${String(input.schema)}`);
+  if (typeof input.engine !== 'string') throw new Error('restore: missing engine');
+  // Saves from earlier engines are upgraded first (see migrate.ts); unsupported versions throw there.
+  const json = input.engine === ENGINE_VERSION ? input : migrate(input);
   if (typeof json.id !== 'string' || typeof json.name !== 'string')
     throw new Error('restore: missing identity');
   if (typeof json.now !== 'number') throw new Error('restore: missing now');
