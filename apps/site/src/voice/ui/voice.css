@@ -468,6 +468,20 @@
   margin: 4px 0 0;
   line-height: 1.4;
 }
+.v-end-after {
+  font-size: 0.8rem;
+  margin: 6px 0 0;
+  padding-top: 6px;
+  border-top: 1px dashed var(--edge);
+  line-height: 1.4;
+}
+.v-end-after span {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
 .v-ends.is-compact {
   gap: 8px;
 }
@@ -744,14 +758,6 @@
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 31px,
-    var(--rule) 31px,
-    var(--rule) 32px
-  );
-  background-attachment: local;
   padding: 12px 0 24px;
 }
 .v-log ol {
@@ -769,6 +775,11 @@
 }
 .v-log-row {
   margin: 0;
+}
+/* A rule between rows, not a ruled-paper background: rows wrap to different heights, and a fixed 32 px ruling ran
+   through the text of wrapped lines (playtest). */
+.v-log-row + .v-log-row {
+  border-top: 1px solid var(--rule);
 }
 .v-log-btn {
   display: grid;

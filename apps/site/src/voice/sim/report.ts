@@ -16,7 +16,7 @@ import {
   TOWN_EID_DAY,
   voiceOf,
 } from '@human/framework';
-import { MODEL_NOTES, type ReportView, type StripRow } from '../protocol.ts';
+import { type EndView, MODEL_NOTES, type ReportView, type StripRow } from '../protocol.ts';
 import type { Run } from './game.ts';
 import {
   type Cell,
@@ -62,6 +62,13 @@ export interface ReportInput {
   /** Ramadan days his fast was excused for illness, and the doctor's last words ("The doctor said … (Ramadan 3)."). */
   illDays?: readonly number[];
   doctor?: string;
+  /**
+   * The town at Eid morning, when the month you spoke in had ended: the ends are read here, and the week after
+   * (`after`) is told apart (playtest: the rent end showed the week after Eid as the month's result).
+   */
+  atEid?: { run: Run; t: number; halilCalledAt?: number; calledUnasked?: boolean };
+  /** Every rent payment with its minute (Ramadan and the week after). */
+  payments?: readonly { at: number; amount: number }[];
 }
 
 /** What the player said about one thing in Ramadan: suggestions on played days, and days under a whisper. */
@@ -332,27 +339,74 @@ export function buildReport(i: ReportInput): ReportView {
     others: told,
     stopped,
     trust,
-    ends: endsView({
-      h,
-      town,
-      t,
-      trustStart: i.trustStart,
-      ...(town.state.lastCall?.by === 'halil'
-        ? {
-            halilCalledAt: town.state.lastCall.at,
-            // After Eid you are silent, so a call of his then was unasked.
-            calledUnasked: town.state.lastCall.at >= TOWN_EID_DAY * MINUTES_PER_DAY,
-          }
-        : i.halilCalledAt !== undefined
-          ? { halilCalledAt: i.halilCalledAt }
-          : {}),
-    }),
+    ends: reportEnds(i),
     body,
     open,
     rows: i.rows,
     spoke: Object.keys(i.said ?? {}).length > 0,
     modelNotes: [...MODEL_NOTES],
   };
+}
+
+/**
+ * His ends as Ramadan ended (Eid morning), each with what came of it without you on Eid and the six days after.
+ * Without an Eid snapshot (older callers), the ends are read at the end of the week and say so.
+ */
+export function reportEnds(i: ReportInput): EndView[] {
+  const h = i.after.ppl.halil;
+  const town = i.after.town;
+  const eidStart = TOWN_EID_DAY * MINUTES_PER_DAY;
+  const at = i.atEid;
+  if (!at) {
+    return endsView({
+      h,
+      town,
+      t: h.now,
+      trustStart: i.trustStart,
+      ...(i.halilCalledAt !== undefined ? { halilCalledAt: i.halilCalledAt } : {}),
+    });
+  }
+  const before = at.run.town.state;
+  const now = town.state;
+  const pays = i.payments ?? [];
+  const ends = endsView({
+    h: at.run.ppl.halil,
+    town: at.run.town,
+    t: at.t,
+    trustStart: i.trustStart,
+    asOfEid: true,
+    payments: pays.filter((p) => p.at < eidStart),
+    ...(at.halilCalledAt !== undefined ? { halilCalledAt: at.halilCalledAt } : {}),
+    ...(at.calledUnasked !== undefined ? { calledUnasked: at.calledUnasked } : {}),
+  });
+  const week = pays.filter((p) => p.at >= eidStart);
+  const owed = Math.round(now.rentOwed);
+  const money = Math.round(now.money.halil ?? 0);
+  const paidWeek = week.reduce((a, p) => a + p.amount, 0);
+  const rentAfter =
+    paidWeek > 0
+      ? `In the week after Eid he paid ${owed === 0 && Math.round(before.rentOwed) > 0 ? `the rest (${Math.round(paidWeek)})` : Math.round(paidWeek)} on ${week.map((p) => dayLabel(dayOf(p.at))).join(' and ')}; ${owed > 0 ? `${owed} still owed` : 'nothing owed now'}. He has ${money}.`
+      : Math.round(before.rentOwed) > 0
+        ? `In the week after Eid he paid nothing; ${owed} still owed. He has ${money}.`
+        : `Nothing owed. A week after Eid he has ${money}.`;
+  const visits = (now.completed.halil?.['see-doctor'] ?? 0) - (before.completed.halil?.['see-doctor'] ?? 0);
+  const makeUps = owedMakeUps(h).length;
+  const trustNow = voiceOf(h, 'you')?.trust ?? i.trustEid;
+  const trustEidMorning = voiceOf(at.run.ppl.halil, 'you')?.trust ?? i.trustEid;
+  const after: Record<EndView['id'], string> = {
+    fast: `The fast ended with Ramadan.${makeUps > 0 ? ` A week after Eid ${makeUps} make-up ${makeUps === 1 ? 'fast is' : 'fasts are'} still owed.` : ''}`,
+    rent: rentAfter,
+    doctor:
+      visits > 0
+        ? `Without you, on Eid and the six days after, he went to the clinic ${times(visits)}.`
+        : 'Without you, on Eid and the six days after, he did not go to the clinic.',
+    selin: summary(i)[0] ?? '',
+    trust:
+      Math.abs(trustNow - trustEidMorning) < 0.005
+        ? 'You were silent from Eid; his trust in you stayed where it was.'
+        : `A week after Eid, trust ${trustNow.toFixed(2)}.`,
+  };
+  return ends.map((e) => ({ ...e, after: after[e.id] }));
 }
 
 /** The week's own calls to Selin belong in "what he did on his own" even when the chronicle diff misses them. */

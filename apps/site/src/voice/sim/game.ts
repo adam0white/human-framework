@@ -204,6 +204,11 @@ export class VoiceGame {
   dayTrustStart: number;
   endRamadanTrust: Record<string, number> = {};
   eidNight: { run: Run; t: number } | undefined;
+  /** The town at Eid morning, when the month you spoke in had ended (the report reads his ends here). */
+  eidMorning: { run: Run; t: number; halilCalledAt?: number; calledUnasked?: boolean } | undefined;
+  /** Rent payments with their minute (the town keeps only the total). */
+  payments: { at: number; amount: number }[] = [];
+  private rentSeen = 0;
   firstSuggestion = false;
   suggestedAction: string | undefined;
   /** His weighing of the next choice, read once when the composer opens before it (see `lookAhead`). */
@@ -649,6 +654,7 @@ export class VoiceGame {
     if (this.phase !== 'report' || !this.eidNight) return;
     this.run = cloneRun(this.eidNight.run);
     this.t = this.eidNight.t;
+    this.rentSeen = this.run.town.state.rentPaid;
     this.muted = false;
     this.free = true;
     this.resetTracking();
@@ -812,6 +818,7 @@ export class VoiceGame {
       if (e.kind === 'begin') this.onBegin(e);
       else if (e.kind === 'finish') this.onFinish(e);
     }
+    this.onPayments(events);
     for (const r of fresh) this.onDecision(r);
     this.onAdvice();
     this.onCall();
@@ -821,6 +828,17 @@ export class VoiceGame {
     this.onShiftOffered();
     this.announceWaking();
     this.lookAhead();
+  }
+
+  /** A rise in the town's paid total is a payment, dated by its finish event when there is one. */
+  private onPayments(events: readonly SimEvent[]): void {
+    const paid = this.run.town.state.rentPaid;
+    if (paid <= this.rentSeen) return;
+    const fin = events.filter(
+      (e) => e.personId === 'halil' && e.kind === 'finish' && e.action === 'pay-rent',
+    );
+    this.payments.push({ at: fin.at(-1)?.at ?? this.t, amount: paid - this.rentSeen });
+    this.rentSeen = paid;
   }
 
   /** One minute before a night sleep ends: the wake line and beat, before he chooses (see `nightSleep`). */
@@ -1436,6 +1454,13 @@ export class VoiceGame {
     } finally {
       this.quiet = false;
     }
+    const lastCall = [...this.cells].reverse().find((c) => c.affordanceId === 'call:selin');
+    this.eidMorning = {
+      run: cloneRun(this.run),
+      t: this.t,
+      ...(this.halilCalledAt !== undefined ? { halilCalledAt: this.halilCalledAt } : {}),
+      ...(lastCall ? { calledUnasked: lastCall.promptedBy !== 'you' } : {}),
+    };
     this.muted = true;
     this.standing = undefined;
     this.between = undefined;
@@ -1476,9 +1501,16 @@ export class VoiceGame {
       seen = new Set(h.trace.map((r) => r.id));
     };
     const end = (TOWN_EID_DAY + EPILOGUE_DAYS + 1) * MINUTES_PER_DAY;
+    // Payments in the week after Eid, dated to the half-day chunk they fell in (the epilogue has no event log).
+    const epiPays: { at: number; amount: number }[] = [];
+    let epiPaid = epi.town.state.rentPaid;
     for (let i = 0; i < 2 * EPILOGUE_DAYS; i++) {
       runSilent(epi.c, epi.town, 0.5, { mutedVoiceId: 'you' });
       harvest();
+      if (epi.town.state.rentPaid > epiPaid) {
+        epiPays.push({ at: h.now, amount: epi.town.state.rentPaid - epiPaid });
+        epiPaid = epi.town.state.rentPaid;
+      }
     }
     // Close day 37 (runSilent counts whole days from 23:30 on Eid).
     if (Math.min(...epi.c.people.map((p) => p.now)) < end) {
@@ -1513,6 +1545,8 @@ export class VoiceGame {
       weighs: weighsView(this.halil, this.weighsStart),
       illDays: this.illDays.filter((d) => d < TOWN_EID_DAY),
       ...(doctorLine(this.run.town) ? { doctor: doctorLine(this.run.town) } : {}),
+      ...(this.eidMorning ? { atEid: this.eidMorning } : {}),
+      payments: [...this.payments, ...epiPays],
     });
     this.phase = 'report';
     this.paused = true;

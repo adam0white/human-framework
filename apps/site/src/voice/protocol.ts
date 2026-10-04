@@ -196,6 +196,8 @@ export interface EndView {
   status: string;
   detail: string;
   progress?: number;
+  /** End report only: what came of this end without you, on Eid and in the six days after (dated apart). */
+  after?: string;
 }
 export interface StripRow {
   label: string;

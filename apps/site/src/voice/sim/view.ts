@@ -337,6 +337,13 @@ export interface EndsInput {
   halilCalledAt?: number;
   /** That last call of his was not on your word. */
   calledUnasked?: boolean;
+  /**
+   * Read as the end of Ramadan (the report's snapshot at Eid morning): every status and detail names that date, so
+   * nothing from the week after Eid reads as the month's result (playtest: "paid it fully" at Shawwal 7).
+   */
+  asOfEid?: boolean;
+  /** Rent payments so far, with the minute each was made (for "300 paid on Ramadan 14"). */
+  payments?: readonly { at: number; amount: number }[];
 }
 
 /** The day of the month he promised Osman the rent by (the town's opening promise). */
@@ -346,7 +353,16 @@ const RENT_PROMISED = 300;
 /** The last day of the fast: Osman wants the rest by then (the game's second money question, round 4). */
 const LAST_FAST = TOWN_EID_DAY - 1;
 
-export function endsView({ h, town, t, trustStart, halilCalledAt, calledUnasked }: EndsInput): EndView[] {
+export function endsView({
+  h,
+  town,
+  t,
+  trustStart,
+  halilCalledAt,
+  calledUnasked,
+  asOfEid = false,
+  payments = [],
+}: EndsInput): EndView[] {
   const day = dayOf(t);
   const chron: { kept: { kind: string }[]; released: { kind: string }[] }[] = (h.chronicle ?? []).filter(
     (r) => r.day >= 1 && r.day < TOWN_EID_DAY,
@@ -369,7 +385,7 @@ export function endsView({ h, town, t, trustStart, halilCalledAt, calledUnasked 
   const cal = townCalendar(day);
   const fastStatus =
     day >= TOWN_EID_DAY
-      ? 'the month is over'
+      ? 'Ramadan is over'
       : fastNow
         ? 'keeping it'
         : t % MINUTES_PER_DAY >= cal.maghrib
@@ -384,14 +400,23 @@ export function endsView({ h, town, t, trustStart, halilCalledAt, calledUnasked 
   const owed = Math.round(town.state.rentOwed);
   const paid = Math.round(town.state.rentPaid);
   const money = Math.round(town.state.money.halil ?? 0);
-  const seen = (town.state.completed.halil?.['see-doctor'] ?? 0) > 0;
+  const visits = town.state.completed.halil?.['see-doctor'] ?? 0;
+  const seen = visits > 0;
+  const lastVisit = town.state.lastClinic.halil;
   const doctorSaid = (h.memory.episodes ?? [])
     .filter((e) => e.actorId === 'doctor' && e.kind === 'told')
     .at(-1);
   const call = town.state.lastCall;
   const you = voiceOf(h, 'you')?.trust ?? trustStart;
   // Osman's date, from the promise itself: kept when he paid inside it, broken when it closed unpaid.
-  const date = h.agenda.commitments.find((c) => c.id === 'rent' && c.kind === 'promise');
+  const promise = h.agenda.commitments.find((c) => c.id === 'rent' && c.kind === 'promise');
+  // By Eid the closed promise may have been pruned from the agenda; the dated payments then decide it.
+  const dateEnd = RENT_PROMISED_DAY * MINUTES_PER_DAY + 20 * 60;
+  const inferred =
+    promise || !asOfEid
+      ? undefined
+      : { status: payments.some((x) => x.at <= dateEnd) ? ('kept' as const) : ('broken' as const) };
+  const date = promise ?? inferred;
   const dateText =
     date?.status === 'kept'
       ? `Osman’s date kept.`
@@ -404,15 +429,22 @@ export function endsView({ h, town, t, trustStart, halilCalledAt, calledUnasked 
     {
       id: 'fast',
       label: 'Keep the fast.',
-      status: fastStatus,
+      status: asOfEid ? `kept ${kept} of ${chron.length} days of Ramadan` : fastStatus,
       detail: fastDetail,
       progress: round(chron.length ? kept / 30 : 0),
     },
     {
       id: 'rent',
       label: 'Pay Osman what I owe.',
-      status:
-        date?.status === 'broken' && owed > 0
+      status: asOfEid
+        ? date?.status === 'broken' && owed > 0
+          ? `date missed; ${owed} owed at Eid`
+          : owed > 0
+            ? `${owed} still owed at Eid`
+            : date?.status === 'broken'
+              ? 'paid up by Eid, late'
+              : 'paid up by Eid'
+        : date?.status === 'broken' && owed > 0
           ? `date missed; ${owed} owed`
           : date?.status === 'broken'
             ? 'paid up, late'
@@ -422,8 +454,13 @@ export function endsView({ h, town, t, trustStart, halilCalledAt, calledUnasked 
                 : `${owed} owed`
               : 'paid up',
       // The deadline is named only while it is still ahead and something is owed (playtest: stale detail).
-      detail:
-        owed > 0
+      detail: asOfEid
+        ? `${dateText ? `${dateText} ` : ''}${
+            payments.length > 0
+              ? `Paid ${payments.map((x) => `${Math.round(x.amount)} on ${dayLabel(dayOf(x.at))}`).join(' and ')}`
+              : 'Paid nothing in Ramadan'
+          }; ${owed > 0 ? `${owed} still owed at Eid` : 'nothing owed at Eid'}. He had ${money}.`
+        : owed > 0
           ? `${dateText ? `${dateText} ` : ''}${paid > 0 ? `Paid ${paid}. ` : ''}${
               paid < RENT_PROMISED && day <= RENT_PROMISED_DAY
                 ? `Osman wants ${RENT_PROMISED} by Ramadan ${RENT_PROMISED_DAY}`
@@ -437,33 +474,45 @@ export function endsView({ h, town, t, trustStart, halilCalledAt, calledUnasked 
     {
       id: 'doctor',
       label: 'Selin wants my blood pressure seen.',
-      status: seen ? 'seen' : 'not yet',
+      status: seen
+        ? asOfEid
+          ? `seen ${visits === 1 ? 'once' : `${visits} times`} in Ramadan`
+          : 'seen'
+        : asOfEid
+          ? 'not seen in Ramadan'
+          : 'not yet',
       detail: seen
-        ? `The doctor: ${doctorSaid ? stripSaid(doctorSaid.summary) : 'rest, walk, stop smoking'}.`
-        : 'He has not been to the clinic.',
+        ? `${lastVisit !== undefined ? `Last seen on ${dayLabel(dayOf(lastVisit))}. ` : ''}The doctor: ${doctorSaid ? stripSaid(doctorSaid.summary) : 'rest, walk, stop smoking'}.`
+        : asOfEid
+          ? 'He did not go to the clinic in Ramadan.'
+          : 'He has not been to the clinic.',
     },
     {
       id: 'selin',
       label: 'Call Selin himself, not wait for her.',
       status:
         his === undefined || halilCalledAt === undefined
-          ? 'he never calls'
-          : his === 0
-            ? `he called today${calledUnasked ? ', unasked' : ''}`
-            : his === 1
-              ? `he called yesterday${calledUnasked ? ', unasked' : ''}`
-              : his <= 6
-                ? `he called ${his} days ago`
-                : `he last called on ${dayLabel(dayOf(halilCalledAt))}`,
+          ? asOfEid
+            ? 'he did not call her in Ramadan'
+            : 'he never calls'
+          : asOfEid
+            ? `he last called on ${dayLabel(dayOf(halilCalledAt))}${calledUnasked ? ', unasked' : ''}`
+            : his === 0
+              ? `he called today${calledUnasked ? ', unasked' : ''}`
+              : his === 1
+                ? `he called yesterday${calledUnasked ? ', unasked' : ''}`
+                : his <= 6
+                  ? `he called ${his} days ago`
+                  : `he last called on ${dayLabel(dayOf(halilCalledAt))}`,
       detail: call
-        ? `Last call ${when(call.at)}; ${call.by === 'halil' ? 'he called her' : 'Selin called'}.${his === undefined ? ' Since the funeral he waits for her to call.' : ''}`
+        ? `${asOfEid ? 'Last call before Eid:' : 'Last call'} ${when(call.at)}; ${call.by === 'halil' ? 'he called her' : 'Selin called'}.${his === undefined ? ' Since the funeral he waits for her to call.' : ''}`
         : 'No calls yet this Ramadan.',
     },
     {
       id: 'trust',
       label: 'Does he still listen to you?',
       status: trustWord(you, true).replace('listens to you ', ''),
-      detail: `Trust ${you.toFixed(2)}, ${Math.abs(delta) < 0.005 ? 'unchanged' : `${delta > 0 ? 'up' : 'down'} ${Math.abs(delta).toFixed(2)}`}.`,
+      detail: `Trust ${you.toFixed(2)}${asOfEid ? ' at Eid' : ''}, ${Math.abs(delta) < 0.005 ? 'unchanged' : `${delta > 0 ? 'up' : 'down'} ${Math.abs(delta).toFixed(2)}`} since Ramadan 1.`,
       progress: round(you),
     },
   ];

@@ -1,4 +1,4 @@
-import { voiceOf } from '@human/framework';
+import { TOWN_EID_DAY, voiceOf } from '@human/framework';
 import { describe, expect, test } from 'vitest';
 import { type BeatKind, type Draft, defaultWhisper, type Frame, type StandingWhisper } from '../protocol.ts';
 import { DAY_END, SHIPPED_SEED, VoiceGame } from './game.ts';
@@ -59,6 +59,7 @@ function play(g: VoiceGame, o: PlayOpts = {}): void {
 }
 
 const at = (day: number, hh: number, mm = 0) => day * MIN_DAY + hh * 60 + mm;
+const dayOfMin = (m: number) => Math.floor(m / MIN_DAY);
 const fmt = (m: number) =>
   `d${Math.floor(m / MIN_DAY)} ${String(Math.floor((m % MIN_DAY) / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
 
@@ -161,14 +162,14 @@ describe('Game 2 sim on the shipped seed', () => {
     const halilCalls = (g: VoiceGame) =>
       g.cells.filter((c) => c.affordanceId === 'call:selin' && c.from < at(31, 0)).length;
     // Silent: the clinic stays unvisited and he never calls Selin himself in Ramadan.
-    expect(doctor(quiet)).toBe('not yet');
+    expect(doctor(quiet)).toBe('not seen in Ramadan');
     expect(halilCalls(quiet)).toBe(0);
     expect(quiet.report?.eid.summary.some((l) => /never went to the clinic/.test(l))).toBe(true);
     // Silent: morning wages alone miss Osman's date, and the report says so.
     expect(quiet.report?.eid.summary.some((l) => /He missed Osman’s date/.test(l))).toBe(true);
     expect(quiet.cells.some((c) => c.affordanceId === 'work-extra')).toBe(false);
     // Prefill: the doctor is seen, after you spoke, and the report says so.
-    expect(doctor(spoken)).toBe('seen');
+    expect(doctor(spoken)).toBe('seen once in Ramadan');
     expect(spoken.cells.some((c) => c.affordanceId === 'see-doctor' && c.promptedBy === 'you')).toBe(true);
     expect(spoken.report?.eid.summary).not.toEqual(quiet.report?.eid.summary);
     // Insist: insisting earns nothing, so the month ends no higher than it began and below the prefill month.
@@ -332,6 +333,29 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(text).toMatch(/he has \d+/);
     expect(text).toMatch(/Osman|paid Osman/);
     expect(text).toMatch(/Selin/);
+  });
+
+  test('the report reads his ends at Eid morning and dates the week after apart (playtest: rent at Shawwal 7)', () => {
+    const r = spoken.report;
+    const eid = spoken.eidMorning;
+    expect(r && eid).toBeTruthy();
+    if (!r || !eid) return;
+    const rent = r.ends.find((e) => e.id === 'rent');
+    const owedAtEid = Math.round(eid.run.town.state.rentOwed);
+    const pays = spoken.payments.filter((p) => p.at < TOWN_EID_DAY * MIN_DAY);
+    expect(pays.reduce((a, p) => a + p.amount, 0)).toBe(Math.round(eid.run.town.state.rentPaid));
+    // The status and detail are the month's result, with each payment's date; the week after has its own line.
+    expect(rent?.status).toContain('at Eid');
+    expect(rent?.detail).toContain(owedAtEid > 0 ? `${owedAtEid} still owed at Eid` : 'nothing owed at Eid');
+    for (const p of pays) expect(rent?.detail).toContain(`on Ramadan ${dayOfMin(p.at)}`);
+    expect(rent?.detail).toContain(`He had ${Math.round(eid.run.town.state.money.halil ?? 0)}.`);
+    expect(rent?.after).toMatch(/week after Eid|A week after Eid/);
+    // On the shipped seed this month leaves 300 owed at Eid, paid in the week after: the case the user saw.
+    expect(owedAtEid).toBe(300);
+    expect(rent?.after).toContain('paid the rest (300)');
+    for (const e of r.ends) expect(e.after, e.id).toBeTruthy();
+    expect(r.ends.find((e) => e.id === 'fast')?.status).toContain('of Ramadan');
+    expect(r.ends.find((e) => e.id === 'doctor')?.status).toMatch(/in Ramadan/);
   });
 
   test('frames stay under 100 KB', () => {

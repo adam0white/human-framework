@@ -109,18 +109,22 @@ export function Report({
         </section>
 
         <section>
-          <h2>His ends</h2>
+          <h2>His ends when Ramadan ended</h2>
+          <p className="v-report-caption">
+            As of Eid morning: what the month you spoke in left him with. Under each, what came of it without
+            you, on Eid and in the six days after.
+          </p>
           <EndsList ends={view.ends} />
         </section>
 
         <div className="v-report-cols">
           <section className="v-report-body">
-            <h2>His body, as the doctor would read it</h2>
+            <h2>His body a week after Eid, as the doctor would read it</h2>
             <p className="v-report-caption">He never feels this directly.</p>
             <Lines lines={view.body} empty="No reading." />
           </section>
           <section>
-            <h2>Still open</h2>
+            <h2>Still open a week after Eid</h2>
             <Lines lines={view.open} empty="Nothing left open." />
           </section>
         </div>

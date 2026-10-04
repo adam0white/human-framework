@@ -11,6 +11,11 @@ export function EndsList({ ends, compact = false }: { ends: EndView[]; compact?:
           <p className="v-end-status">{e.status}</p>
           {e.progress !== undefined && <Meter value={e.progress} label={e.label} />}
           {!compact && <p className="v-end-detail">{e.detail}</p>}
+          {!compact && e.after && (
+            <p className="v-end-after">
+              <span>Without you</span> {e.after}
+            </p>
+          )}
         </li>
       ))}
     </ul>
