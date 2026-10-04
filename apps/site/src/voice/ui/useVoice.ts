@@ -12,6 +12,7 @@ import {
   PLAYTEST_FILE_NAME,
   replayParam,
 } from '../../shared/playtest.ts';
+import { startTickLoop } from '../../shared/tick-loop.ts';
 import type {
   BetweenView,
   Draft,
@@ -90,7 +91,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
 
   useEffect(() => {
     let cancelled = false;
-    let raf = 0;
+    let stopTicks = () => {};
     let opened: Transport | null = null;
     openTransport()
       .then((t) => {
@@ -161,15 +162,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
           gen: gen.current,
           scenarioVersion: VOICE_SCENARIO_VERSION,
         });
-        let last = performance.now();
-        const loop = (now: number) => {
-          // The first timestamp can precede `last`; a negative tick would run the clock backwards.
-          const dt = Math.max(0, now - last);
-          last = now;
-          t.post({ type: 'tick', dtMs: dt });
-          raf = requestAnimationFrame(loop);
-        };
-        raf = requestAnimationFrame(loop);
+        stopTicks = startTickLoop((dtMs) => t.post({ type: 'tick', dtMs }));
         const url = replayParam();
         if (url) {
           setPlaytest({ busy: 'load' });
@@ -184,7 +177,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       .catch((e: unknown) => setError(`The simulation failed to load: ${String(e)}`));
     return () => {
       cancelled = true;
-      cancelAnimationFrame(raf);
+      stopTicks();
       opened?.close();
       transport.current = null;
     };

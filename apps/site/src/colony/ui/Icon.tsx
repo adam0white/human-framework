@@ -17,6 +17,7 @@
  * `RingTimer` is drawn here, not copied.
  */
 import type { ReactElement } from 'react';
+import { makeIcon } from '../../shared/Icon.tsx';
 
 const PATHS = {
   // lucide: zap
@@ -113,47 +114,24 @@ function NoneGlyph(): ReactElement {
   );
 }
 
-export type IconName = keyof typeof PATHS | 'none';
+const GLYPHS = {
+  ...(Object.fromEntries(
+    Object.entries(PATHS).map(([name, paths]) => [
+      name,
+      <>
+        {paths.map((d) => (
+          <path key={d} d={d} />
+        ))}
+      </>,
+    ]),
+  ) as Record<keyof typeof PATHS, ReactElement>),
+  none: <NoneGlyph />,
+};
 
-export function Icon({
-  name,
-  size = 16,
-  label,
-  className,
-}: {
-  name: IconName;
-  size?: number;
-  /** A standalone icon's accessible name; without it the icon is decorative. */
-  label?: string;
-  className?: string;
-}) {
-  const common = {
-    className: `icon icon-${name}${className ? ` ${className}` : ''}`,
-    width: size,
-    height: size,
-    viewBox: '0 0 24 24',
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: 2,
-    strokeLinecap: 'round' as const,
-    strokeLinejoin: 'round' as const,
-    focusable: 'false' as const,
-  };
-  const body = name === 'none' ? <NoneGlyph /> : PATHS[name].map((d) => <path key={d} d={d} />);
-  if (label) {
-    return (
-      <svg {...common} role="img" aria-label={label}>
-        <title>{label}</title>
-        {body}
-      </svg>
-    );
-  }
-  return (
-    <svg {...common} aria-hidden="true">
-      {body}
-    </svg>
-  );
-}
+export type IconName = keyof typeof GLYPHS;
+
+/** Game 1's icon: 16 px by default, `icon icon-<name>` classes, a 2-unit stroke. */
+export const Icon = makeIcon(GLYPHS, { size: 16 });
 
 /**
  * A ring that drains as time runs out (`left` of `span`). Decorative: the time is also given as text beside it.

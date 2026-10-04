@@ -2,44 +2,34 @@
  * Dedicated worker for Game 2 (build plan §9). Real time enters only as `tick{dtMs}`; the game steps whole sim
  * minutes at the pace (8/20/60 per second) or fast-forward (240 per second, with a matching per-tick cap), so the
  * same seed, inputs and tick schedule give the same frames. A frame is posted at most once per message, and only
- * when it changed. Every reply carries the run's `gen`.
+ * when it changed. Every reply carries the run's `gen` (`shared/worker-host.ts`).
  *
  * Every state-changing message goes through `RecordedGame` (sim/record.ts), which keeps the playtest log; a
  * loaded playtest file is replayed here from its seed and log (its snapshot is never loaded as state).
  */
 import { ENGINE_VERSION } from '@human/framework';
 import { makePlaytestFile, PlaytestError, parsePlaytest, replayResult } from '../shared/playtest.ts';
-import {
-  type MainToWorker,
-  VOICE_SCENARIO_VERSION,
-  type WorkerReply,
-  type WorkerToMain,
-} from './protocol.ts';
+import { hostWorker } from '../shared/worker-host.ts';
+import { type MainToWorker, VOICE_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
 import { VoiceGame } from './sim/game.ts';
 import { RecordedGame, replayVoice, validateVoiceLog, voiceHash, voiceSnapshot } from './sim/record.ts';
 
 let rec: RecordedGame | null = null;
-let gen = 0;
 let lastFrame = '';
 /** Real milliseconds since the last frame posted on a tick: running frames go out at most ~15 times a second. */
 let sinceFrame = 0;
 const FRAME_MS = 66;
 
-function post(msg: WorkerReply): void {
-  const out: WorkerToMain = { ...msg, gen };
-  postMessage(out);
-}
-
 function flush(force = false): void {
   const game = rec?.game;
   if (!game) return;
-  for (const m of game.outbox.splice(0)) post(m);
+  for (const m of game.outbox.splice(0)) host.post(m);
   const frame = game.frame();
   const json = JSON.stringify(frame);
   if (!force && json === lastFrame) return;
   lastFrame = json;
   sinceFrame = 0;
-  post({ type: 'frame', frame });
+  host.post({ type: 'frame', frame });
 }
 
 async function exportPlaytest(r: RecordedGame): Promise<void> {
@@ -54,7 +44,7 @@ async function exportPlaytest(r: RecordedGame): Promise<void> {
     engine: ENGINE_VERSION,
     snapshot: voiceSnapshot(g),
   });
-  post({ type: 'playtest', file });
+  host.post({ type: 'playtest', file });
 }
 
 /** Validate and replay a file; only then does it replace the current run (a bad file leaves the run as it was). */
@@ -65,23 +55,26 @@ function loadPlaytest(text: string, nextGen: number): void {
   // Hash first: pausing for the page changes the state.
   const result = replayResult(f, voiceHash(g), ENGINE_VERSION, g.t, driftAt);
   rec = replayed;
-  gen = nextGen;
+  host.gen = nextGen;
   lastFrame = '';
   if (g.live() && !g.paused) replayed.apply({ type: 'pause' });
-  post({ type: 'replayed', result });
+  host.post({ type: 'replayed', result });
   // The replay cleared its outbox: show the card the run stands at.
-  if (g.phase === 'between' && g.between) post({ type: 'between', view: g.between });
-  if (g.phase === 'report' && g.report) post({ type: 'report', view: g.report });
+  if (g.phase === 'between' && g.between) host.post({ type: 'between', view: g.between });
+  if (g.phase === 'report' && g.report) host.post({ type: 'report', view: g.report });
   flush(true);
 }
 
-function handle(msg: MainToWorker): void {
+const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
   if (msg.type === 'init') {
-    gen = msg.gen;
+    host.gen = msg.gen;
     lastFrame = '';
     if (msg.scenarioVersion !== VOICE_SCENARIO_VERSION) {
       rec = null;
-      post({ type: 'error', message: `scenario ${msg.scenarioVersion} is not ${VOICE_SCENARIO_VERSION}` });
+      host.post({
+        type: 'error',
+        message: `scenario ${msg.scenarioVersion} is not ${VOICE_SCENARIO_VERSION}`,
+      });
       return;
     }
     rec = new RecordedGame(new VoiceGame(msg.seed));
@@ -96,7 +89,7 @@ function handle(msg: MainToWorker): void {
         err instanceof PlaytestError
           ? err.message
           : `The playtest file could not be replayed: ${err instanceof Error ? err.message : String(err)}`;
-      postMessage({ type: 'playtestError', message, gen: msg.gen } satisfies WorkerToMain);
+      host.post({ type: 'playtestError', message }, msg.gen);
     }
     return;
   }
@@ -111,26 +104,18 @@ function handle(msg: MainToWorker): void {
       break;
     }
     case 'predict':
-      post({ type: 'predicted', requestId: msg.requestId, telegraph: game.predict(msg.draft) });
+      host.post({ type: 'predicted', requestId: msg.requestId, telegraph: game.predict(msg.draft) });
       return;
     case 'why':
-      post({ type: 'why', decisionId: msg.decisionId, why: game.why(msg.decisionId) });
+      host.post({ type: 'why', decisionId: msg.decisionId, why: game.why(msg.decisionId) });
       return;
     case 'exportPlaytest':
       exportPlaytest(rec).catch((err: unknown) =>
-        post({ type: 'playtestError', message: `The playtest file could not be made: ${String(err)}` }),
+        host.post({ type: 'playtestError', message: `The playtest file could not be made: ${String(err)}` }),
       );
       return;
     default:
       rec.apply(msg);
   }
   flush();
-}
-
-addEventListener('message', (e: MessageEvent<MainToWorker>) => {
-  try {
-    handle(e.data);
-  } catch (err) {
-    post({ type: 'error', message: err instanceof Error ? err.message : String(err) });
-  }
 });
