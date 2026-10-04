@@ -41,6 +41,7 @@ import {
   type SideWorld,
   SQUALL_END,
   SQUALL_START,
+  START_CLOCK,
   STOREROOM_STAGES,
   STORM_END,
   STORM_START,
@@ -52,6 +53,7 @@ import {
   VILLAGERS,
   type VillagerId,
   type VillagerSpec,
+  villagerId,
   WARNING_AT,
   weatherAt,
 } from './world-types.ts';
@@ -322,7 +324,7 @@ export class ColonyHostWorld implements World {
   // --- affordances ------------------------------------------------------------------------------
 
   affordancesFor(p: Person): Affordance[] {
-    const id = p.id as VillagerId;
+    const id = villagerId(p.id);
     const v = specOf(id);
     const t = p.now;
     const m = gm(t);
@@ -430,9 +432,9 @@ export class ColonyHostWorld implements World {
       tags: ['rest'],
     });
     const homePlace = homeOf(id, w, m);
-    if (mod >= HOST.sleepFrom || mod < 5 * 60) {
+    if (mod >= HOST.sleepFrom || mod < START_CLOCK) {
       const home = at(homePlace);
-      const wake = Math.ceil((t - 5 * 60) / 1440) * 1440 + 5 * 60;
+      const wake = Math.ceil((t - START_CLOCK) / 1440) * 1440 + START_CLOCK;
       const crowded = homePlace === 'masjid';
       if (Number.isFinite(home.travel)) {
         out.push({
@@ -704,7 +706,7 @@ export class ColonyHostWorld implements World {
   // --- begin hook -------------------------------------------------------------------------------
 
   beginOptions(p: Person, offer: Affordance, record: DecisionRecord): BeginOptions | undefined {
-    const id = p.id as VillagerId;
+    const id = villagerId(p.id);
     const t = p.now;
     const from = this.posAt(id, t);
     const v = specOf(id);
@@ -761,7 +763,7 @@ export class ColonyHostWorld implements World {
 
   perceptsFor(p: Person, since: number, until: number): Percept[] {
     const out: Percept[] = [];
-    const id = p.id as VillagerId;
+    const id = villagerId(p.id);
     for (const q of this.s.percepts) {
       if (q.pc.at > until || q.pc.at < since || !q.to.includes(id) || q.got.includes(id)) continue;
       q.got.push(id);
@@ -783,7 +785,7 @@ export class ColonyHostWorld implements World {
     for (const o of this.community.people) {
       if (o.id === victim || !o.body.alive) continue;
       const near = dist(this.posAt(o.id, t), tile) <= HOST.seeTiles;
-      this.queue([o.id as VillagerId], {
+      this.queue([villagerId(o.id)], {
         at: t,
         channel: near ? 'saw' : 'heard',
         kind: 'injury',
@@ -801,7 +803,7 @@ export class ColonyHostWorld implements World {
   // --- outcomes ---------------------------------------------------------------------------------
 
   resolve(p: Person, act: Activity, reason: 'ended' | 'interrupted'): Outcome {
-    const id = p.id as VillagerId;
+    const id = villagerId(p.id);
     const t = reason === 'ended' ? act.endsAt : p.now;
     const m = gm(t);
     const trip = this.s.trip[id];
@@ -1078,7 +1080,7 @@ export class ColonyHostWorld implements World {
     needs: Outcome['needs'],
     t: number,
   ): Outcome {
-    const id = p.id as VillagerId;
+    const id = villagerId(p.id);
     const w = this.world;
     const m = gm(t);
     // The partner's mirror reports through the proposer's roll: only the lead (non-mirror) rolls.
@@ -1100,12 +1102,12 @@ export class ColonyHostWorld implements World {
     const chance = jointSuccessChance(p, partners, 'building', difficulty);
     this.s.beamAttempts += 1;
     const ok = scenarioRoll(this.seed, 'beam-human', this.s.beamAttempts, 0) < chance;
-    this.events.beams.push({ lead: id, partners: partners.map((q) => q.id as VillagerId), ok, minute: m });
+    this.events.beams.push({ lead: id, partners: partners.map((q) => villagerId(q.id)), ok, minute: m });
     if (ok) {
       w.resources.timber -= HOST.beamTimber;
       w.house.stage = BEAM_STAGE;
       for (const q of partners) {
-        this.queue([q.id as VillagerId], {
+        this.queue([villagerId(q.id)], {
           at: t,
           channel: 'social',
           kind: 'shared-work',
@@ -1138,7 +1140,7 @@ export class ColonyHostWorld implements World {
     needs: Outcome['needs'],
     t: number,
   ): Outcome {
-    const id = p.id as VillagerId;
+    const id = villagerId(p.id);
     const victim = trip?.carry?.victim;
     if (!victim || !this.s.down[victim]) return done({ status: 'failed', summary: 'No one to carry' });
     this.s.down[victim] = null;
@@ -1159,7 +1161,7 @@ export class ColonyHostWorld implements World {
     for (const o of this.community.people) {
       if (o.id === id || o.id === victim || !o.body.alive) continue;
       if (dist(this.posAt(o.id, t), this.s.loc[victim] ?? { x: 0, y: 0 }) > HOST.seeTiles) continue;
-      this.queue([o.id as VillagerId], {
+      this.queue([villagerId(o.id)], {
         at: t,
         channel: 'saw',
         kind: 'help',
@@ -1236,7 +1238,7 @@ export class ColonyHostWorld implements World {
     if (m === WARNING_AT) {
       for (const o of this.community.people) {
         if (!o.body.alive) continue;
-        this.queue([o.id as VillagerId], {
+        this.queue([villagerId(o.id)], {
           at: t,
           channel: 'saw',
           kind: 'weather-warning',
@@ -1255,7 +1257,7 @@ export class ColonyHostWorld implements World {
     const start = squall ? SQUALL_START : STORM_START;
     for (const o of this.community.people) {
       if (!o.body.alive) continue;
-      const id = o.id as VillagerId;
+      const id = villagerId(o.id);
       if (!this.exposed(id, t, squall)) continue;
       if ((m - start) % 30 === 0) {
         this.queue([id], {
@@ -1286,7 +1288,7 @@ export class ColonyHostWorld implements World {
       w.resources.meals -= 1;
       w.eaten += 1;
       consume(o, { food: HOST.mealFood });
-      this.queue([o.id as VillagerId], {
+      this.queue([villagerId(o.id)], {
         at: t,
         channel: 'felt',
         kind: 'meal',

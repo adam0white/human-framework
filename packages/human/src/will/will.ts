@@ -245,11 +245,13 @@ function ensureVoice(p: Person, voiceId: EntityId): VoiceRelation {
     // seeded voices remain, the fewest-interaction one goes).
     const pool = p.will.voices.some((x) => !x.seeded) ? (x: VoiceRelation) => !x.seeded : () => true;
     let idx = -1;
-    for (let i = 0; i < p.will.voices.length; i++) {
-      const a = p.will.voices[i] as VoiceRelation;
+    let b: VoiceRelation | undefined;
+    for (const [i, a] of p.will.voices.entries()) {
       if (!pool(a)) continue;
-      const b = idx >= 0 ? (p.will.voices[idx] as VoiceRelation) : undefined;
-      if (!b || a.accepted + a.refused < b.accepted + b.refused) idx = i;
+      if (!b || a.accepted + a.refused < b.accepted + b.refused) {
+        idx = i;
+        b = a;
+      }
     }
     if (idx >= 0) p.will.voices.splice(idx, 1);
   }
@@ -1400,10 +1402,11 @@ export function rememberAdvice(p: Person, pc: Percept): StandingAdvice[] {
   }
   while (list.length > W.maxAdvice) {
     let weakest = 0;
-    for (let i = 1; i < list.length; i++) {
-      const a = list[i] as StandingAdvice;
-      const b = list[weakest] as StandingAdvice;
-      if (adviceWeight(a, p.now) < adviceWeight(b, p.now)) weakest = i;
+    let b: StandingAdvice | undefined;
+    for (const [i, a] of list.entries()) {
+      if (b && adviceWeight(a, p.now) >= adviceWeight(b, p.now)) continue;
+      weakest = i;
+      b = a;
     }
     list.splice(weakest, 1);
   }

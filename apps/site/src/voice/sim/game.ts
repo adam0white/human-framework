@@ -1923,7 +1923,7 @@ const UNASKED_LINE: Record<string, string> = {
 };
 const adviceKey = (a: { sourceId: string; action: string; at: number }) =>
   `${a.sourceId}:${a.action}:${a.at}`;
-const voiceWho = (id: string): LogEntry['who'] => (isVoiceId(id) ? (id as VoiceId) : 'halil');
+const voiceWho = (id: string): LogEntry['who'] => (isVoiceId(id) ? id : 'halil');
 const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /** Cigarettes he smoked on a day, from the activity cells (played and skipped days). */

@@ -248,11 +248,13 @@ export function rememberedTerms(
   return out;
 }
 
+const isValueId = (x: string): x is ValueId => (VALUE_IDS as readonly string[]).includes(x);
+
 function appealMatch(p: Person, s: Suggestion, needs: NeedReading[]): number {
   if (!s.appeal) return 0;
   if (s.appeal === 'duty') return clamp01(0.5 * p.values.conformity + 0.5 * p.values.tradition);
-  if ((VALUE_IDS as readonly string[]).includes(s.appeal)) return clamp01(p.values[s.appeal as ValueId]);
-  return urgencyOf(needs, s.appeal as NeedId);
+  if (isValueId(s.appeal)) return clamp01(p.values[s.appeal]);
+  return urgencyOf(needs, s.appeal);
 }
 
 /** Per-decision social inputs shared by every option (`decide` computes them once). */

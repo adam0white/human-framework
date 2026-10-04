@@ -320,11 +320,13 @@ export function learnOutcome(
   const list = p.memory.expectations;
   while (list.length > MEMORY_DEFAULTS.maxExpectations) {
     let worst = -1;
-    for (let i = 0; i < list.length; i++) {
-      const x = list[i] as ActionExpectation;
+    let w: ActionExpectation | undefined;
+    for (const [i, x] of list.entries()) {
       if (touched.has(x.key)) continue;
-      const w = worst < 0 ? undefined : (list[worst] as ActionExpectation);
-      if (!w || x.samples < w.samples || (x.samples === w.samples && x.key < w.key)) worst = i;
+      if (!w || x.samples < w.samples || (x.samples === w.samples && x.key < w.key)) {
+        worst = i;
+        w = x;
+      }
     }
     if (worst < 0) break;
     list.splice(worst, 1);
