@@ -220,6 +220,8 @@ function feelingCause(cause: string, targetId?: string): string | undefined {
           ? (ACTION_LABEL[w] ?? undefined)
           : undefined;
   if (kind === 'breach') return thing(verb) ? `${thing(verb)} missed` : undefined;
+  if (kind === 'missed' && verb === 'promise' && what === 'pay-rent') return 'his word to Osman';
+  if (kind === 'event' && verb === 'demand' && what === 'osman') return 'Osman at the door';
   if (kind === 'deed' && verb === 'fulfil') return thing(what) ? `${thing(what)} kept` : undefined;
   if (kind === 'recall' && targetId)
     return `remembering ${targetId === 'nuran' ? 'Nuran' : nameOfVoice(targetId)}`;
@@ -423,7 +425,7 @@ export function endsView({
     date?.status === 'kept'
       ? `Osman’s date kept.`
       : date?.status === 'broken'
-        ? `Osman’s date (300 by Ramadan ${RENT_PROMISED_DAY}) missed.`
+        ? `Osman’s date (300 by Ramadan ${RENT_PROMISED_DAY}, 20:00) missed; since then he presses harder when he comes.`
         : '';
   const his = halilCalledAt === undefined ? undefined : Math.max(0, day - dayOf(halilCalledAt));
   const delta = you - trustStart;
@@ -464,7 +466,7 @@ export function endsView({
           }; ${owed > 0 ? `${owed} still owed at Eid` : 'nothing owed at Eid'}. He had ${money}.`
         : owed > 0
           ? `${dateText ? `${dateText} ` : ''}${paid > 0 ? `Paid ${paid}. ` : ''}${
-              paid < RENT_PROMISED && day <= RENT_PROMISED_DAY
+              paid < RENT_PROMISED && day <= RENT_PROMISED_DAY && date?.status !== 'broken'
                 ? `Osman wants ${RENT_PROMISED} by Ramadan ${RENT_PROMISED_DAY}`
                 : day <= LAST_FAST
                   ? `Osman wants the rest, ${owed}, by the end of Ramadan`

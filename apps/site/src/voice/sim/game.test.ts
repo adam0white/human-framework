@@ -211,14 +211,25 @@ describe('Game 2 sim on the shipped seed', () => {
     // The card after Osman's date (Ramadan 15, 23:30) no longer projects to Ramadan 15.
     const g = new VoiceGame(SHIPPED_SEED);
     let hint: string | undefined;
+    let lines: readonly string[] = [];
     play(g, {
       stop: (x) => {
-        if (x.phase === 'between' && x.day === 15)
+        if (x.phase === 'between' && x.day === 15) {
           hint = x.between?.choices.find((c) => c.id === 'extra')?.hint;
+          lines = x.between?.lines ?? [];
+        }
         return x.day > 15;
       },
     });
     expect(hint ?? '').not.toMatch(/by Ramadan 15/);
+    // The missed date costs something visible: the day card leads with it, the log says so at 20:00, and Osman's
+    // next knock says he presses harder (his demand's advice strength rises after the date, in town.ts).
+    expect(lines[0]).toMatch(/He missed Osman’s date/);
+    const day15 = g.log.filter((e) => e.day === 15);
+    expect(day15.some((e) => e.clock === '20:00' && /date has gone by/.test(e.text))).toBe(true);
+    expect(day15.some((e) => e.who === 'osman' && /presses harder/.test(e.text))).toBe(true);
+    // The log is in time order.
+    expect(day15.map((e) => e.minute)).toEqual([...day15.map((e) => e.minute)].sort((a, b) => a - b));
   });
 
   test('every report section is non-empty, with no input and with prefill confirmations', () => {
@@ -293,12 +304,14 @@ describe('Game 2 sim on the shipped seed', () => {
   test('a running-late beat never fires for a sleeping man hours before the deadline', () => {
     for (const g of [quiet, spoken])
       for (const b of g.beats.history)
-        if (/nearly up/.test(b.text) && /asleep/.test(b.text)) {
-          const m = b.text.match(/\((\d\d):(\d\d)\)/);
+        if (/nearly up|date is tonight/.test(b.text) && /asleep/.test(b.text)) {
+          const m = b.text.match(/(?:\(|by )(\d\d):(\d\d)/);
           const until = Math.floor(b.at / MIN_DAY) * MIN_DAY + Number(m?.[1]) * 60 + Number(m?.[2]);
           expect(until - b.at).toBeLessThanOrEqual(60);
         }
-    const osman = [...quiet.beats.history, ...spoken.beats.history].filter((b) => /Osman: 300/.test(b.text));
+    const osman = [...quiet.beats.history, ...spoken.beats.history].filter((b) =>
+      /Osman’s date is tonight/.test(b.text),
+    );
     expect(osman.length).toBeGreaterThan(0);
     for (const b of osman) expect(b.at % MIN_DAY).toBeGreaterThanOrEqual(17 * 60);
   });

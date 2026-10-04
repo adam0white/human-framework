@@ -1254,7 +1254,9 @@ export class VoiceGame {
       const text =
         told && a.sourceId === 'doctor'
           ? `${capital(told.summary)}.`
-          : voiceLine(a.sourceId, a.affordanceId ?? a.action, this.introduce(a.sourceId));
+          : a.sourceId === 'osman' && this.dateMissed(a.at)
+            ? `${this.introduce('osman') ? 'Osman, his landlord,' : 'Osman'} at the door, his date gone by with nothing paid. He presses harder now: the rent.`
+            : voiceLine(a.sourceId, a.affordanceId ?? a.action, this.introduce(a.sourceId));
       if (this.log.some((x) => x.minute === a.at && x.text === text)) continue;
       this.push({ kind: 'voice', who: voiceWho(a.sourceId), text, beat: 'voice' }, a.at);
       this.beat('voice', text, a.at);
@@ -1335,6 +1337,13 @@ export class VoiceGame {
     }
   }
 
+  /** Osman's date (Ramadan 15, 20:00) has gone by with nothing paid (the town's own test for a late demand). */
+  private dateMissed(at: number): boolean {
+    return (
+      at >= TOWN_DEFAULTS.rentPromiseDay * MINUTES_PER_DAY + 20 * 60 && this.run.town.state.rentPaid === 0
+    );
+  }
+
   private onDutyRisk(): void {
     if (this.quiet) return;
     const h = this.halil;
@@ -1352,10 +1361,24 @@ export class VoiceGame {
       if (c.kind === 'promise' && c.until - t > PROMISE_RISK_LEAD) continue;
       if (!flagOnce(this.beats, `duty:${c.id}:${c.until}`)) continue;
       const label = commitmentLabel(c.label, c.actions[0], c.kind);
+      const money = Math.round(this.run.town.state.money.halil ?? 0);
+      const want = TOWN_DEFAULTS.rent - Math.round(this.run.town.state.rentPaid);
       // His own deadline, not a ruling: the window's end is an engineering assumption (see the model notes).
-      const text = `The time he gives himself for ${label} is nearly up (${clock(c.until)}), and he hasn’t yet${h.body.asleep ? '; he is asleep' : ''}.`;
+      const text =
+        c.id === 'rent'
+          ? `Osman’s date is tonight: ${want} by ${clock(c.until)}. He has ${money}${money >= want ? ', enough to pay' : `, ${want - money} short`}${h.body.asleep ? '; he is asleep' : ''}.`
+          : `The time he gives himself for ${label} is nearly up (${clock(c.until)}), and he hasn’t yet${h.body.asleep ? '; he is asleep' : ''}.`;
       this.push({ kind: 'note', who: 'halil', text, beat: 'duty-risk' }, t);
       this.beat('duty-risk', text, t);
+    }
+    // The date gone by with nothing paid: said once, at 20:00, in the log and on the day card (seventh pass: the
+    // missed date has to cost something visible; Osman now presses harder, and Halil carries his broken word).
+    const deadline = TOWN_DEFAULTS.rentPromiseDay * MINUTES_PER_DAY + 20 * 60;
+    if (this.dateMissed(t) && t < deadline + 6 * 60 && flagOnce(this.beats, 'date-missed')) {
+      const money = Math.round(this.run.town.state.money.halil ?? 0);
+      const text = `Osman’s date has gone by with nothing paid; he had ${money} of the ${TOWN_DEFAULTS.rent}. From now Osman presses harder when he comes.`;
+      this.push({ kind: 'note', who: 'halil', text, beat: 'duty-risk' }, deadline);
+      this.beat('duty-risk', text, deadline, { canPause: false });
     }
     const fast = h.agenda.commitments.find(
       (c) => c.kind === 'abstain' && c.status === 'pending' && c.from <= t && c.until > t,
@@ -1418,7 +1441,11 @@ export class VoiceGame {
 
   private push(e: Omit<LogEntry, 'id' | 'day' | 'minute' | 'clock'>, at: number = this.t): void {
     this.logSeq += 1;
-    this.log.push({ id: `l${this.logSeq}`, day: dayOf(at), minute: at, clock: clock(at), ...e });
+    const entry = { id: `l${this.logSeq}`, day: dayOf(at), minute: at, clock: clock(at), ...e };
+    // In time order: a line dated earlier than the last (Osman's knock heard on waking) goes in its place.
+    let k = this.log.length;
+    while (k > 0 && (this.log[k - 1]?.minute ?? 0) > at) k -= 1;
+    this.log.splice(k, 0, entry);
     if (this.log.length > LOG_CAP * 4) this.log.splice(0, this.log.length - LOG_CAP * 2);
   }
 
@@ -1473,6 +1500,10 @@ export class VoiceGame {
     const skipped = next?.skipped ?? 0;
     const short = moneyShort(this.run.town, this.t);
     const cost = `He’ll hear each word for ${skipped} days, taking turns with the other, whenever he could act on it. Once he has done it for its time (a prayer at the mosque for that prayer), the word rests until the next. A mention he turns down costs nothing. An urge he keeps turning down wears his trust in you down, about once a day, and the same word going well again earns less each time.`;
+    if (d === TOWN_DEFAULTS.rentPromiseDay && this.dateMissed(this.t))
+      lines.unshift(
+        `He missed Osman’s date: ${TOWN_DEFAULTS.rent} by 20:00, and he paid nothing. Osman presses harder from now.`,
+      );
     this.between = {
       closed: `${dayLabel(d)} is over.`,
       lines,
