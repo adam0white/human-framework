@@ -7,6 +7,11 @@
  * what their face and body show (HF `outwardSigns`, after their reserve), never their true state. What the Keeper
  * believes of each watcher comes as phrases with a sureness (`reads.ts`), and every read of how a posting, a card
  * choice or the bell would go is the Keeper's guess (`moments.ts`).
+ *
+ * G3-3: the year around the winter. The frame carries the date in words, the chronicle's recent lines, the volume
+ * and the closed ones, the blank leaves, the open season card, the fair's offers, the thaw page, the dawn talks and
+ * every living villager with an age band (drawn as posture: a child is small, the old stoop and carry a stick), still
+ * as words and drawn values, never numbers.
  */
 
 import { outwardSigns } from '@human/framework';
@@ -21,11 +26,27 @@ import {
   type ThreatKind,
   type WatcherId,
 } from './config.ts';
+import { ageOf, dayOfYear, living, seasonOfDay } from './life.ts';
 import { bellWords, type Moment, readBell, readPosting, readWords } from './moments.ts';
 import { earshot, litSection, nightEnd, presentIds } from './night.ts';
-import { isPost, type Place, personOf, villager } from './people.ts';
+import { familyWords, isHere, isPost, isWatcher, type Place, personOf, villager } from './people.ts';
 import { type Impression, keeperImpressions } from './reads.ts';
-import type { Alert, DawnPage, DaySummary, Phase, Press, WatchState } from './state.ts';
+import type {
+  Alert,
+  ChronicleLine,
+  DawnPage,
+  DaySummary,
+  FairOffer,
+  Leaf,
+  Phase,
+  Press,
+  Season,
+  SeasonCard,
+  WatchState,
+  WinterPlan,
+} from './state.ts';
+import { canTalk } from './talk.ts';
+import { roman } from './volume.ts';
 
 /** Threats in a lit section are seen from here out. */
 export const LIGHT_EDGE = 0.18;
@@ -88,6 +109,73 @@ export interface Frame {
   slowed: boolean;
   alerts: Alert[];
   dawn: DawnPage | null;
+  // G3-3: the year.
+  year: number;
+  season: Season;
+  /** The date in words ("Late spring of the third year", "The second night of the fourth winter"). */
+  date: string;
+  /** 0 at midwinter's first day, 1 at the year's end: for the land's colour. */
+  yearProgress: number;
+  /** This winter as the Keeper knows it (dusk, night, dawn and the thaw page); null in the open seasons. */
+  winter: { night: number; nights: number; why: string; question: WinterPlan['question'] } | null;
+  /** The chronicle's latest lines, oldest first. */
+  chronicle: ChronicleLine[];
+  volume: FrameVolume;
+  /** Closed volumes, oldest first. */
+  shelf: FrameVolume[];
+  leaves: Leaf[];
+  /** A season card the Keeper may speak to (play slows while it is open). */
+  card: SeasonCard | null;
+  /** The fair page: its offers and how many may still be taken. */
+  fair: {
+    offers: (Omit<FairOffer, 'cost'> & { affordable: boolean; taken: boolean })[];
+    picksLeft: number;
+  } | null;
+  /** The thaw page: this year's lines and the winter in words. */
+  thaw: { lines: string[]; winter: string; hungry: boolean } | null;
+  /** At dawn: talks left, what was said and who can still be asked. */
+  talks: {
+    left: number;
+    said: { who: WatcherId; name: string; topic: 'night' | 'body'; text: string }[];
+    can: WatcherId[];
+  } | null;
+  /** Every living villager, watchers first, then by age. */
+  villagers: FrameVillager[];
+}
+
+export type AgeBand = 'child' | 'young' | 'grown' | 'old';
+
+export interface FrameVolume {
+  n: number;
+  numeral: string;
+  title: string;
+  question: string;
+  /** How the question resolved (null while open). */
+  end: string | null;
+  epilogue: { name: string; text: string }[] | null;
+}
+
+export interface FrameVillager {
+  id: WatcherId;
+  name: string;
+  look: number;
+  home: SectionId;
+  age: AgeBand;
+  /** Their age in words ("a girl of about nine", "old"). */
+  ageWords: string;
+  female: boolean;
+  /** Old enough, well enough and here: stands the wall in winter. */
+  watcher: boolean;
+  limp: boolean;
+  /** Born here, and the generation (1 for founders and newcomers). */
+  bornHere: boolean;
+  gen: number;
+  /** Children at home, in words ("her two children"). */
+  family: string | null;
+  /** Married to (names). */
+  spouse: string | null;
+  note: string;
+  impressions: Impression[];
 }
 
 export type Posture = 'stand' | 'sit' | 'doze' | 'eat' | 'pray' | 'down' | 'frozen' | 'carry' | 'figure';
@@ -119,6 +207,9 @@ export interface FrameWatcher {
   commanded: boolean;
   /** What the Keeper believes of them, surest first. */
   impressions: Impression[];
+  /** Age band for drawing (the old stoop) and a limp for life. */
+  age: AgeBand;
+  limp: boolean;
   /** Only in the lit section: whether they threw this minute and whether it struck. */
   throwing: 'hit' | 'miss' | null;
   target: number | null;
@@ -259,6 +350,8 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
       signs,
       commanded: s.phase === 'night' && s.commands[w.id] !== undefined,
       impressions: keeperImpressions(s, w.id),
+      age: ageBand(ageOf(p, s.minute)),
+      limp: !!w.limp,
       throwing: th ? (th.hit ? ('hit' as const) : ('miss' as const)) : null,
       target: th ? th.token : null,
     });
@@ -290,5 +383,180 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
     postingReads: postingReads(s),
     bellRead: bellRead(s),
     day: s.day,
+    ...yearFrame(s),
+  };
+}
+
+const ORDINAL = [
+  'first',
+  'second',
+  'third',
+  'fourth',
+  'fifth',
+  'sixth',
+  'seventh',
+  'eighth',
+  'ninth',
+  'tenth',
+  'eleventh',
+  'twelfth',
+  'thirteenth',
+  'fourteenth',
+  'fifteenth',
+  'sixteenth',
+  'seventeenth',
+  'eighteenth',
+  'nineteenth',
+];
+const TENS = ['twent', 'thirt', 'fort', 'fift', 'sixt', 'sevent', 'eight', 'ninet'];
+const UNITS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+
+/** 1 → "first", 23 → "twenty-third", in words up to the ninety-ninth. */
+export function ordinal(n: number): string {
+  if (n >= 1 && n <= 19) return ORDINAL[n - 1] ?? String(n);
+  const t = Math.floor(n / 10);
+  const u = n % 10;
+  const tens = TENS[t - 2];
+  if (!tens || n > 99) return `${n}th`;
+  return u === 0 ? `${tens}ieth` : `${tens}y-${ORDINAL[u - 1]}`;
+}
+
+function count(n: number): string {
+  return UNITS[n - 1] ?? String(n);
+}
+
+export function ageBand(age: number): AgeBand {
+  return age < 13 ? 'child' : age < 20 ? 'young' : age < 58 ? 'grown' : 'old';
+}
+
+function ageWords(age: number, female: boolean): string {
+  if (age < 2) return 'a baby';
+  if (age < 13) return `a ${female ? 'girl' : 'boy'} of about ${count(Math.round(age))}`;
+  if (age < 20) return `a young ${female ? 'woman' : 'man'}`;
+  if (age < 35) return 'in the prime of life';
+  if (age < 50) return 'in middle years';
+  if (age < 58) return 'greying';
+  if (age < 70) return 'old';
+  return 'very old';
+}
+
+function dateWords(s: WatchState): string {
+  const d = dayOfYear(s);
+  const season = seasonOfDay(d);
+  if (season === 'winter') {
+    if (s.phase === 'dusk' || s.phase === 'night' || s.phase === 'dawn')
+      return `The ${ordinal(s.winterNight)} night of the ${ordinal(s.year)} winter`;
+    return `The end of the ${ordinal(s.year)} winter`;
+  }
+  const into = (d % 90) / 90;
+  const part = into < 1 / 3 ? 'Early' : into < 2 / 3 ? 'High' : 'Late';
+  return `${part} ${season} of the ${ordinal(s.year)} year`;
+}
+
+function frameVolume(s: WatchState, v: WatchState['volume']): FrameVolume {
+  return {
+    n: v.n,
+    numeral: roman(v.n),
+    title: v.title,
+    question: v.question,
+    end: v.end ?? null,
+    epilogue: v.epilogue
+      ? v.epilogue.map((e) => ({ name: s.cast[e.who]?.name ?? e.who, text: e.text }))
+      : null,
+  };
+}
+
+function winterWords(lost: number, hungry: boolean): string {
+  const winter =
+    lost === 0
+      ? 'Not a sack was lost all winter.'
+      : lost <= 3
+        ? 'A few sacks went this winter.'
+        : lost <= 8
+          ? 'The granary was hit hard this winter.'
+          : 'This winter carried off much of the granary.';
+  return hungry ? `${winter} The spring will be hungry.` : winter;
+}
+
+const YEAR_LINES = 40;
+
+function yearFrame(s: WatchState) {
+  const d = dayOfYear(s);
+  const inWinter = s.phase === 'dusk' || s.phase === 'night' || s.phase === 'dawn' || s.phase === 'thaw';
+  const people = living(s).filter((p) => isHere(s, p));
+  const villagers: FrameVillager[] = people.map((p) => {
+    const v = villager(s, p.id);
+    const age = ageOf(p, s.minute);
+    const female = p.life.sex === 'female';
+    const spouses = p.social.relationships
+      .filter((r) => r.roles.includes('spouse'))
+      .map((r) => s.cast[r.otherId])
+      .filter((x) => x && x.status === 'here')
+      .map((x) => x?.name ?? '');
+    return {
+      id: p.id,
+      name: v.name,
+      look: v.look,
+      home: v.home,
+      age: ageBand(age),
+      ageWords: ageWords(age, female),
+      female,
+      watcher: isWatcher(s, p),
+      limp: !!v.limp,
+      bornHere: v.bornHere,
+      gen: v.gen,
+      family: familyWords(s, p.id),
+      spouse: spouses.length ? spouses.join(' and ') : null,
+      note: v.note,
+      impressions: age >= 13 ? keeperImpressions(s, p.id) : [],
+    };
+  });
+  villagers.sort(
+    (a, b) =>
+      Number(b.watcher) - Number(a.watcher) ||
+      (personOf(s, a.id)?.life.bornAt ?? 0) - (personOf(s, b.id)?.life.bornAt ?? 0),
+  );
+  const fair = s.phase === 'fair' && s.fair ? s.fair : null;
+  const picksLeft = fair ? Math.max(0, fair.max - fair.picks.length) : 0;
+  return {
+    year: s.year,
+    season: seasonOfDay(d),
+    date: dateWords(s),
+    yearProgress: d / 365,
+    winter: inWinter
+      ? { night: s.winterNight, nights: s.winter.nights, why: s.winter.why, question: s.winter.question }
+      : null,
+    chronicle: s.chronicle.slice(-YEAR_LINES),
+    volume: frameVolume(s, s.volume),
+    shelf: s.volumes.map((v) => frameVolume(s, v)),
+    leaves: s.leaves,
+    card: s.card,
+    fair: fair
+      ? {
+          offers: fair.offers.map(({ cost, ...o }) => ({
+            ...o,
+            taken: fair.picks.includes(o.id),
+            affordable: picksLeft > 0 && !fair.picks.includes(o.id) && s.grain >= cost,
+          })),
+          picksLeft,
+        }
+      : null,
+    thaw:
+      s.phase === 'thaw'
+        ? {
+            lines: s.chronicle.filter((l) => l.year === s.year && l.kind !== 'talk').map((l) => l.text),
+            winter: winterWords(s.yearGrain.lostWinter, s.yearGrain.hungry),
+            hungry: s.yearGrain.hungry,
+          }
+        : null,
+    talks:
+      s.phase === 'dawn'
+        ? {
+            left: s.talks.left,
+            said: s.talks.said.map((x) => ({ ...x, name: s.cast[x.who]?.name ?? x.who })),
+            can: presentIds(s).filter((id) => canTalk(s, id)),
+          }
+        : null,
+    villagers,
   };
 }

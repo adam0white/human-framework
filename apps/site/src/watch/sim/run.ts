@@ -136,6 +136,16 @@ export class WatchRun {
     return new WatchRun(snap.seed, snap);
   }
 
+  /** The current page as snapshot JSON, without copying the state first (for saving between minutes). */
+  snapshotText(): string {
+    return JSON.stringify({
+      scenario: WATCH_SCENARIO_VERSION,
+      seed: this.seed,
+      log: this.log,
+      state: this.state,
+    });
+  }
+
   /** The current page as a snapshot (deep copies: the run goes on unchanged). */
   snapshot(): Snapshot {
     return {
