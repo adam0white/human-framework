@@ -27,6 +27,7 @@
 
 import { breakAllows, inBreak } from '../affect/index.ts';
 import { commitmentPressure, pressureReachedAt } from '../agenda/index.ts';
+import { downedAllows, readCapacities } from '../body/index.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
 import { clamp01, decay, random } from '../core/index.ts';
 import { skillLevel } from '../skills/index.ts';
@@ -365,6 +366,8 @@ export function vetoFor(
   // A mental break narrows what he will do to its behaviour; a body at the edge may still eat, drink or sleep.
   if (inBreak(p) && !breakAllows(p, aff) && !(ctx.desperation >= W.survivalDesperation && servesBody(aff)))
     return { kind: 'cannot', reason: 'break' };
+  // Downed (body, 1.6.0): only lying, resting or sleeping where he is.
+  if (p.body.downed && !downedAllows(aff)) return { kind: 'cannot', reason: 'downed' };
   const mode = aff.mode ?? 'awake';
   if (
     p.body.asleep &&
@@ -377,6 +380,11 @@ export function vetoFor(
     return { kind: 'cannot', reason: 'not-sleepy' };
   if (mode === 'awake' && clamp01(aff.effort) > ctx.body.capacity * W.effortCapacityRatio)
     return { kind: 'cannot', reason: 'capacity' };
+  if (aff.requires) {
+    const caps = readCapacities(p);
+    for (const [c, need] of Object.entries(aff.requires) as [keyof typeof caps, number][])
+      if (caps[c] < need) return { kind: 'cannot', reason: `capacity:${c}` };
+  }
   // A joint activity lends the partner's support, so the skill veto allows a wider gap.
   const support = aff.tags?.includes('joint') && (aff.with?.length ?? 0) > 0 ? W.jointSkillSupport : 0;
   if (aff.skill && clamp01(aff.skill.difficulty) - skillLevel(p, aff.skill.id) > W.skillGap + support)
@@ -961,6 +969,7 @@ export const commandTargets = (cmd: Command, aff: Affordance): boolean =>
 /** A state that ends direct control whatever the target: a mental break (affect) or being downed (body). */
 function controlBlock(p: Person): string | undefined {
   if (inBreak(p)) return 'break';
+  if (p.body.downed) return 'downed';
   return undefined;
 }
 

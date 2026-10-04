@@ -137,6 +137,7 @@ export const EN_LINES: Readonly<Record<string, readonly string[]>> = {
   'voice.commanded.reluctant': ["As you say. Not what I'd choose.", "I'll do it. I don't like it."],
   'voice.underOrders': ['I have my orders.', "Can't — I'm under orders."],
   'voice.break': ["Not now. I can't.", 'Leave me alone.'],
+  'voice.downed': ["I can't get up.", "I can't — I'm down."],
   'voice.deferred': ['Not now. {After}.', '{After}, then I will.'],
   'voice.deferred.default': ['later'],
   'voice.modified': ["I'll {alt} instead.", "Not that — I'll {alt}."],

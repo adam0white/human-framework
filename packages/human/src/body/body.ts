@@ -58,6 +58,7 @@ import type {
   Unit,
 } from '../types.ts';
 import { MINUTES_PER_DAY } from '../types.ts';
+import { bleedStep, INJURY_DEFAULTS } from './injury.ts';
 
 export const BODY_DEFAULTS = {
   maxSubStep: 15,
@@ -384,8 +385,11 @@ function subStep(b: BodyState, h: number, load: BodyLoad, mods: LifeModifiers, P
   // Injuries heal; faster asleep and fed, slower when exhausted.
   const healFactor = recovery * (asleep ? 1.5 : 1) * (fed ? 1 : 0.5) * (1 - 0.5 * exhausted);
   for (const inj of b.injuries) {
-    inj.severity = clamp01(inj.severity - (inj.healRatePerDay * healFactor * h) / MINUTES_PER_DAY);
+    const tended = inj.tendedAt !== undefined ? INJURY_DEFAULTS.tendedHeal : 1;
+    inj.severity = clamp01(inj.severity - (inj.healRatePerDay * healFactor * tended * h) / MINUTES_PER_DAY);
   }
+  // Bleeding (1.6.0, host-set): exact drain over the sub-step, measured before healed injuries are dropped.
+  const bled = bleedStep(b, h);
   b.injuries = b.injuries.filter((inj) => inj.severity > 0.001);
 
   // Illnesses: severity follows the trend; the trend drifts toward recovery (immune response), and
@@ -440,6 +444,7 @@ function subStep(b: BodyState, h: number, load: BodyLoad, mods: LifeModifiers, P
     P.chronicHealthPerDay * chronicLoad;
   const gain = fed && illnessLoad < 0.3 ? P.healthRecoveryPerDay * recovery * (asleep ? 1.5 : 1) : 0;
   b.health = clamp01(b.health + ((gain - loss) * h) / MINUTES_PER_DAY);
+  if (bled > 0) b.health = clamp01(b.health - bled);
 
   // Pain relaxes toward its sources (relief from consume() therefore fades over ~1 h).
   b.pain = clamp01(decay(b.pain, h, P.painHalfLife, sourcePain(b)));
@@ -730,7 +735,7 @@ export interface BodyThresholds {
 const cloneBody = (b: BodyState): BodyState => {
   const out: BodyState = {
     ...b,
-    injuries: b.injuries.map((i) => ({ ...i })),
+    injuries: b.injuries.map((i) => (i.affects ? { ...i, affects: { ...i.affects } } : { ...i })),
     illnesses: b.illnesses.map((i) =>
       i.aggravatedBy ? { ...i, aggravatedBy: [...i.aggravatedBy] } : { ...i },
     ),
@@ -741,6 +746,8 @@ const cloneBody = (b: BodyState): BodyState => {
     out.exposures = ex;
   }
   if (b.rates) out.rates = { ...b.rates };
+  if (b.downed) out.downed = { ...b.downed };
+  if (b.downedBelow) out.downedBelow = { ...b.downedBelow };
   return out;
 };
 

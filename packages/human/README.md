@@ -165,6 +165,13 @@ being downed, or an order to break a held norm ends it. Suggestions are unchange
 hourly hazard on the person's own RNG), and for its length only the host's break behaviour is open to them and no
 voice reaches them. Sleep and comfort from someone close shorten it. Off unless enabled.
 
+## Injuries, bleeding and being downed
+
+Injuries impair moving, manipulation and sight by body part (`readCapacities(p)`; a host can pass its own `affects`),
+and an offer can require a capacity (`requires: { moving: 0.5 }`). A host-set `bleeding` rate drains health until it
+clots; `tend(p)` slows it and speeds healing. `knockDown(p)` / `standUp(p)` down a person (only lying, resting or
+sleeping stays open), and `enableDowned(p, { health: 0.3 })` lets the framework down them below a floor.
+
 ## What it does not model
 
 - **Space and travel.** There is no map or pathfinding. Hosts fold travel into `duration` and mark nearby

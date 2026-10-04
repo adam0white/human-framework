@@ -39,12 +39,22 @@ export interface RngState {
 // Body — owned by `body/`
 // ---------------------------------------------------------------------------------------------
 
+/** Bodily capacities an injury can impair (1.6.0; see `body/injury.ts`). */
+export const CAPACITIES = ['moving', 'manipulation', 'sight'] as const;
+export type Capacity = (typeof CAPACITIES)[number];
+
 export interface Injury {
   id: string;
   part: string; // free text: 'hand', 'back', ...
   severity: Unit; // pain/impairment contribution
   healRatePerDay: number; // severity lost per day while resting/healthy
   since: Minute;
+  /** Impairment per unit severity by capacity (1.6.0). Absent = `DEFAULT_PARTS[part]`, else none. */
+  affects?: Partial<Record<Capacity, Unit>>;
+  /** Health lost per day from bleeding right now (1.6.0); clots by itself, faster once tended. Absent = none. */
+  bleeding?: number;
+  /** Minute the injury was tended (1.6.0, `tend`). */
+  tendedAt?: Minute;
 }
 
 export interface Illness {
@@ -101,6 +111,10 @@ export interface BodyState {
    * 2026-10-03): a scenario tuned on another time scale pins the rates it was built on. Absent = defaults.
    */
   rates?: BodyRates;
+  /** Downed (1.6.0): can only lie, rest or sleep where they are. Absent = up. */
+  downed?: { since: Minute; reason: string; until?: Minute };
+  /** Derived downing floor (1.6.0, `enableDowned`): go down below either. Absent = only the host downs. */
+  downedBelow?: { moving?: Unit; health?: Unit };
 }
 /** Per-minute depletion rates a host may pin per person; see `BodyState.rates`. */
 export interface BodyRates {
@@ -815,6 +829,8 @@ export interface Affordance {
   jointId?: string;
   /** Material gain/cost in host units (e.g. coins). Valued via security/achievement/power values. */
   material?: number;
+  /** Minimum bodily capacities needed (1.6.0); below any, the offer is vetoed `cannot`/`capacity:<c>`. */
+  requires?: Partial<Record<Capacity, Unit>>;
 }
 
 /** Something a person perceives. Hosts emit percepts; attention decides which are encoded. */

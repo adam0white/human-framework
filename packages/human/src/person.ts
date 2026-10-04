@@ -44,15 +44,20 @@ import {
   advanceBody,
   BODY_DEFAULTS,
   type BodyPerceptionContext,
+  checkDowned,
+  clearDowned,
   consume,
   createBody,
+  downedAllows,
   expose,
   injure,
   nextBodyThreshold,
   readBody,
   sanitizeExposures,
   sanitizeIllnesses,
+  sanitizeInjuries,
   sanitizeRates,
+  setDowned,
   sicken,
 } from './body/index.ts';
 import { closeDay, noteCommitments, noteDecision, noteMood, noteOutcome } from './chronicle/index.ts';
@@ -496,6 +501,8 @@ export function tick(p: Person, now: Minute): void {
       proposeGoals(p, readNeeds(p, readBodyOf(p)), end);
       // Mental breaks (opt-in, `enableBreaks`): stress, recovery and the onset roll, hourly on the grid.
       if (p.affect.crisis) crisisStep(p, end);
+      // Downing (1.6.0): timed downings end, derived ones (opt-in floor) start and lift, hourly on the grid.
+      if (p.body.downed || p.body.downedBelow) downedStep(p, end);
       // Chronicle: hourly mood sample; at midnight the day closes (notes at exactly midnight still belong to it)
       // and the new date is itself a recall cue (anniversaries).
       noteMood(p);
@@ -522,6 +529,53 @@ function crisisStep(p: Person, at: Minute): void {
     tags: ['break', ev.kind],
   });
   if (ev.kind === 'onset') interrupt(p, at, 'break');
+}
+
+/** The composite's side of the hourly downing check: interrupt and remember going down, remember getting up. */
+function downedStep(p: Person, at: Minute): void {
+  const ev = checkDowned(p, at);
+  if (!ev) return;
+  rememberDowned(p, at, ev.kind, ev.reason);
+  if (ev.kind === 'down') interruptUnlessFloor(p, at);
+}
+
+function rememberDowned(p: Person, at: Minute, kind: 'down' | 'up', reason: string): void {
+  remember(p, {
+    at,
+    kind: 'downed',
+    action: reason,
+    actorId: p.id,
+    valence: kind === 'down' ? -0.5 : 0.3,
+    summary: kind === 'down' ? 'I went down and could not get up' : 'I got back on my feet',
+    tags: ['downed', kind, reason],
+  });
+}
+
+function interruptUnlessFloor(p: Person, at: Minute): void {
+  const act = p.activity;
+  if (act && !downedAllows(act.affordance)) interrupt(p, at, 'downed');
+}
+
+/**
+ * Down a person (1.6.0; see the injury SCOPE in `body/`): from the next decision they can only lie, rest or sleep
+ * where they are, a command in force ends, and a running activity that is not one of those is interrupted. `until`
+ * makes it timed (checked hourly on the tick grid); otherwise it lasts until `standUp`. Remembered. Returns false
+ * when the person is dead.
+ */
+export function knockDown(p: Person, opts: { reason?: string; until?: Minute } = {}): boolean {
+  const reason = opts.reason ?? 'knocked-down';
+  if (!setDowned(p, reason, opts.until)) return false;
+  rememberDowned(p, p.now, 'down', reason);
+  interruptUnlessFloor(p, p.now);
+  return true;
+}
+
+/** Lift a downing now (host: helped up, carried to bed). Returns whether the person was downed. */
+export function standUp(p: Person): boolean {
+  const reason = p.body.downed?.reason;
+  if (!clearDowned(p)) return false;
+  rememberDowned(p, p.now, 'up', reason ?? 'helped');
+  return true;
 }
 
 /**
@@ -1421,6 +1475,7 @@ export function restore(input: unknown): Person {
     else delete out.body.exposures;
   }
   sanitizeIllnesses(out.body);
+  sanitizeInjuries(out.body);
   if (out.will.advice !== undefined && !Array.isArray(out.will.advice)) delete out.will.advice;
   // Optional slices added in 1.6.0: a malformed entry is dropped (absent means none).
   const cmd = out.will.command as unknown;
