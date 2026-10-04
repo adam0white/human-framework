@@ -64,12 +64,14 @@ import {
 import {
   type BeginOptions,
   begin,
+  command,
   createPerson,
   decide,
   finish,
   interrupt,
   perceive,
   predict,
+  releaseCommand,
   reviewed,
   tick,
 } from '../person.ts';
@@ -78,6 +80,7 @@ import { seedTie, socialEvent } from '../social/index.ts';
 import type {
   Activity,
   Affordance,
+  Command,
   DayRecord,
   DecisionRecord,
   Minute,
@@ -152,7 +155,9 @@ export type SimEventKind =
   | 'accept'
   | 'decline'
   | 'converse'
-  | 'contagion';
+  | 'contagion'
+  | 'command'
+  | 'release';
 
 export interface SimEvent {
   at: Minute;
@@ -294,6 +299,13 @@ export interface StepOptions {
    * so a host wanting an immediate response calls `interruptPerson` when it queues the percept.
    */
   interruptSalience?: number | false;
+  /**
+   * Direct control (1.6.0): the command in force for each controlled person. When given, it is authoritative: an
+   * entry is put in force at the start of the step (unless that command, by voice and `since`, already ended), and
+   * a person without an entry who is under a command is released ('released'). Omit it to manage commands
+   * yourself through `command` / `releaseCommand`.
+   */
+  controlled?: Record<PersonId, Command>;
 }
 
 /**
@@ -775,6 +787,28 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
   const contagion = opts.contagion ?? true;
   c.queued ??= {};
   c.dayDone ??= {};
+  if (opts.controlled) {
+    for (const p of c.people) {
+      const cmd = opts.controlled[p.id];
+      if (!cmd) {
+        if (p.will.command && releaseCommand(p))
+          log({ at: p.now, personId: p.id, kind: 'release', detail: 'released' });
+        continue;
+      }
+      const cur = p.will.command;
+      if (cur && cur.voiceId === cmd.voiceId && cur.since === cmd.since) continue;
+      if (command(p, cmd)) {
+        // Bring an idle person's next look forward too (a busy one was interrupted by `command`).
+        if (!p.activity) interruptPerson(c, p, p.now, 'command');
+        log({
+          at: p.now,
+          personId: p.id,
+          kind: 'command',
+          detail: `${cmd.voiceId}: ${cmd.affordanceId ?? cmd.action}`,
+        });
+      }
+    }
+  }
   const decideOpts = (p: Person, reason: string | undefined, affordances: readonly Affordance[]) => {
     const o: Parameters<typeof decide>[2] = {};
     // Voices: queued conversation advice first (fresher), then the host's standing suggestions that are heard now

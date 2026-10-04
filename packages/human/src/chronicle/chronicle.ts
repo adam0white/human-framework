@@ -126,7 +126,7 @@ function pushNote(list: ChronicleCommitmentNote[], n: ChronicleCommitmentNote): 
   list.push(n);
 }
 
-const PROMPTED = new Set(['assented', 'complied']);
+const PROMPTED = new Set(['assented', 'complied', 'commanded']);
 
 /**
  * Tally a decision's suggestion verdicts (all voices: `record.suggestions`, else `record.suggestion`). Reviews

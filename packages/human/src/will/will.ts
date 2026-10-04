@@ -32,6 +32,7 @@ import { skillLevel } from '../skills/index.ts';
 import type {
   Affordance,
   BodyReadout,
+  Command,
   Commitment,
   Considered,
   EntityId,
@@ -147,6 +148,15 @@ export const WILL_DEFAULTS = {
   adviceFloor: 0.02,
   /** Strength assumed for an advice item that names none. */
   adviceStrength: 0.5,
+  // --- commanded control (1.6.0) ---
+  /** Autonomy lost when a command is first obeyed, scaled by clamp01(0.5 + margin) (as `complyAutonomyCost`). */
+  commandAutonomyCost: 0.2,
+  /** Autonomy lost per controlled hour, scaled by clamp01(0.5 + margin). Engineering default. */
+  commandAutonomyPerHour: 0.03,
+  /** Voice pressure added per controlled hour (it decays with `pressureHalfLife` as any pressure does). */
+  commandPressurePerHour: 0.1,
+  /** Share of trust lost per controlled hour, scaled by min(1, margin): being made to do what he did not want. */
+  commandTrustPerHour: 0.02,
 };
 
 export interface WillContext {
@@ -159,6 +169,27 @@ export interface WillContext {
   necessity?: boolean;
   /** Need urgencies (optional; used for the survival check on insisting). */
   needs?: readonly { id: string; urgency: number }[];
+  /** A host command in force (1.6.0); see the command SCOPE on `commandOutcome`. */
+  command?: Command;
+}
+
+/**
+ * How a command fared in one decision. `holds`: the commanded option was chosen. Otherwise `ends` says whether
+ * control is lost (dead, a break, downed, or an act he will not do) or only suspended for this decision (the
+ * target is not on offer, or he cannot right now: asleep, beyond capacity, a pressing bodily need).
+ */
+export interface CommandOutcome {
+  holds: boolean;
+  ends: boolean;
+  reason: string;
+  kind?: RefusalKind;
+  /** How far his own choice out-scored the commanded option (>= 0). */
+  margin: number;
+  /** What he would have chosen without the command. */
+  ownAffordanceId: string | null;
+  targetAffordanceId?: string;
+  /** For an omission end: the closing duty he will not miss. */
+  commitmentId?: string;
 }
 
 export interface ChoiceResolution {
@@ -171,6 +202,8 @@ export interface ChoiceResolution {
   suggestions?: SuggestionResolution[];
   /** Autonomy need delta for the composite to apply (≤ 0). */
   autonomyDelta: number;
+  /** How a command in force fared (absent when none). */
+  command?: CommandOutcome;
 }
 
 export function createWill(voices: { voiceId: EntityId; trust?: number }[] = []): WillState {
@@ -416,6 +449,7 @@ interface Evaluation {
   autonomyDelta: number;
   /** Will-owned side effects to apply on resolve (not on predict), one per voice. */
   voices: VoiceSide[];
+  command?: CommandOutcome;
 }
 
 /**
@@ -467,10 +501,13 @@ function evaluate(
   p: Person,
   input: readonly Considered[],
   ctx: WillContext,
-  suggestions: readonly Suggestion[],
+  given: readonly Suggestion[],
   draw: number | undefined,
 ): Evaluation {
   const W = WILL_DEFAULTS;
+  const cmd = ctx.command;
+  // A commanding voice is not also weighed as a suggestion in the same decision.
+  const suggestions = cmd ? given.filter((s) => s.voiceId !== cmd.voiceId) : given;
   const affById = new Map(ctx.affordances.map((a) => [a.id, a]));
   const duties = closingDuties(p, ctx);
   const servesDuty = (aff: Affordance): boolean => duties.some((c) => servesCommitment(c, aff));
@@ -546,7 +583,42 @@ function evaluate(
     autonomyDelta: 0,
     voices: [],
   };
-  if (suggestions.length === 0) return ev;
+  if (cmd) {
+    const co = commandOutcome(p, considered, ctx, cmd, winner, score, baseVeto, duties);
+    ev.command = co;
+    if (co.holds && co.targetAffordanceId !== undefined) {
+      // Direct control: the commanded option is done; every other voice is set aside (no counters) and a
+      // distrust veto another voice caused does not stand in the way.
+      ev.chosenId = co.targetAffordanceId;
+      for (const c of considered) if (c.vetoed?.reason === 'distrust') delete c.vetoed;
+      const res: SuggestionResolution = {
+        voiceId: cmd.voiceId,
+        verdict: 'commanded',
+        reason: 'command',
+        says: '',
+        margin: co.margin,
+      };
+      if (co.ownAffordanceId !== null && co.ownAffordanceId !== co.targetAffordanceId)
+        res.insteadAffordanceId = co.ownAffordanceId;
+      const all: SuggestionResolution[] = [
+        res,
+        ...suggestions.map(
+          (s): SuggestionResolution => ({
+            voiceId: s.voiceId,
+            verdict: 'refused',
+            kind: 'cannot',
+            reason: 'commanded',
+            says: '',
+          }),
+        ),
+      ].sort((a, b) => (a.voiceId < b.voiceId ? -1 : a.voiceId > b.voiceId ? 1 : 0));
+      ev.resolutions = all;
+      ev.voices = all.map((r) => ({ id: r.voiceId, pressure: 0, accepted: 0, refused: 0 }));
+      ev.suggestion = res;
+      return ev;
+    }
+  }
+  if (suggestions.length === 0) return withCommandRefusal(ev, cmd);
 
   const winnerAff = winner ? affById.get(winner.affordanceId) : undefined;
   const reason = dominantTerm(winner);
@@ -762,7 +834,116 @@ function evaluate(
   ev.suggestion =
     creditedResolution(ev.resolutions, chosen) ??
     (ev.resolutions.length === 1 ? ev.resolutions[0] : undefined);
+  return withCommandRefusal(ev, cmd);
+}
+
+/** Add the commanding voice's refusal (a command that did not hold) to the resolutions, in voice-id order. */
+function withCommandRefusal(ev: Evaluation, cmd: Command | undefined): Evaluation {
+  const co = ev.command;
+  if (!cmd || !co || co.holds) return ev;
+  const res: SuggestionResolution = {
+    voiceId: cmd.voiceId,
+    verdict: 'refused',
+    kind: co.kind ?? 'cannot',
+    reason: co.reason,
+    says: '',
+  };
+  if (co.commitmentId !== undefined) res.commitmentId = co.commitmentId;
+  if (co.ownAffordanceId !== null) res.insteadAffordanceId = co.ownAffordanceId;
+  const at = ev.resolutions.findIndex((r) => r.voiceId > cmd.voiceId);
+  const idx = at < 0 ? ev.resolutions.length : at;
+  ev.resolutions.splice(idx, 0, res);
+  ev.voices.splice(idx, 0, { id: cmd.voiceId, pressure: 0, accepted: 0, refused: 0 });
+  if (ev.suggestion === undefined && ev.resolutions.length === 1) ev.suggestion = res;
   return ev;
+}
+
+/**
+ * SCOPE (commanded control, 1.6.0): a host voice may take direct control of a person (RimWorld's drafting, an
+ * order that is not a request). While a command is in force the person does the commanded offer (the best-scoring
+ * offer it names that passes the vetoes) whatever they would have chosen; other voices are set aside without
+ * counters. The suggestion model is untouched: a command is a separate input (`WillContext.command`), and without
+ * one `evaluate` runs exactly as before. Control is lost (`ends`) when the person dies, is in a mental break, is
+ * downed, or would have to do what he will not: a held prohibition or a closing obligatory duty (the same willNot
+ * vetoes a suggestion meets, so no order makes a firmly convinced person break a norm). It is only suspended for
+ * the decision, and resumes at the next, when the target is not on offer, he cannot (asleep, capacity, skill), or
+ * a pressing bodily need comes first (`survivalReason`, as for insisting). `margin` is how far his own choice
+ * out-scored the commanded option; the composite charges autonomy, voice pressure and trust per controlled hour
+ * from it. Does not cover: obedience as a learned disposition, rank or legitimacy of the commanding voice,
+ * partial obedience (doing it badly on purpose), or orders addressed to several people at once.
+ */
+function commandOutcome(
+  p: Person,
+  considered: readonly Considered[],
+  ctx: WillContext,
+  cmd: Command,
+  winner: Considered | undefined,
+  score: (c: Considered) => number,
+  baseVeto: ReadonlyMap<string, Considered['vetoed']>,
+  duties: readonly Commitment[],
+): CommandOutcome {
+  const own = winner?.affordanceId ?? null;
+  const out = (
+    o: Omit<CommandOutcome, 'ownAffordanceId' | 'margin'> & { margin?: number },
+  ): CommandOutcome => ({
+    margin: 0,
+    ownAffordanceId: own,
+    ...o,
+  });
+  if (!p.body.alive) return out({ holds: false, ends: true, reason: 'dead', kind: 'cannot' });
+  const blocked = controlBlock(p);
+  if (blocked) return out({ holds: false, ends: true, reason: blocked, kind: 'cannot' });
+  const affById = new Map(ctx.affordances.map((a) => [a.id, a]));
+  const named = considered.filter((c) => {
+    const aff = affById.get(c.affordanceId);
+    return aff !== undefined && commandTargets(cmd, aff);
+  });
+  if (named.length === 0) return out({ holds: false, ends: false, reason: 'unavailable', kind: 'cannot' });
+  const vetoOf = (c: Considered): Considered['vetoed'] => {
+    const v = baseVeto.get(c.affordanceId);
+    if (v) return v;
+    const aff = affById.get(c.affordanceId);
+    const missed = aff ? omissionFor(duties, aff, ctx.now) : undefined;
+    return missed ? { kind: 'willNot', reason: `norm:${missed.normId}`, omission: missed.id } : undefined;
+  };
+  const live = named.filter((c) => vetoOf(c) === undefined).sort(byUtilityThenId);
+  const target = live[0];
+  if (!target) {
+    const vetoes = named.map(vetoOf).filter((v) => v !== undefined);
+    const v = vetoes.find((x) => x.kind === 'willNot') ?? vetoes[0];
+    if (v?.kind === 'willNot')
+      return out({
+        holds: false,
+        ends: true,
+        reason: v.reason,
+        kind: 'willNot',
+        ...(v.omission !== undefined ? { commitmentId: v.omission } : {}),
+      });
+    return out({ holds: false, ends: false, reason: v?.reason ?? 'cannot', kind: 'cannot' });
+  }
+  if (winner && winner.affordanceId !== target.affordanceId) {
+    const survival = survivalReason(dominantTerm(winner), ctx);
+    if (survival) return out({ holds: false, ends: false, reason: survival, kind: 'cannot' });
+  }
+  const gap = winner ? score(winner) - score(target) : 0;
+  return out({
+    holds: true,
+    ends: false,
+    reason: 'command',
+    margin: Number.isFinite(gap) ? Math.max(0, gap) : 0,
+    targetAffordanceId: target.affordanceId,
+  });
+}
+
+/** Whether a command names offer `aff` (by affordance id, or by action class when it names no affordance). */
+export const commandTargets = (cmd: Command, aff: Affordance): boolean =>
+  cmd.affordanceId !== undefined
+    ? cmd.affordanceId === aff.id
+    : cmd.action !== undefined && cmd.action === aff.action;
+
+/** A state that ends direct control whatever the target (filled by the break and downed faculties). */
+function controlBlock(_p: Person): string | undefined {
+  return undefined;
 }
 
 /**
@@ -773,6 +954,8 @@ export function creditedResolution(
   resolutions: readonly SuggestionResolution[],
   chosen: Considered | undefined,
 ): SuggestionResolution | undefined {
+  const commanded = resolutions.find((r) => r.verdict === 'commanded');
+  if (commanded) return commanded;
   const complied = resolutions.find((r) => r.verdict === 'complied');
   if (complied) return complied;
   let best: SuggestionResolution | undefined;
@@ -783,9 +966,11 @@ export function creditedResolution(
   return best;
 }
 
-/** Resolutions whose voice should learn from how the chosen activity went (assented or complied). */
+/** Resolutions whose voice should learn from how the chosen activity went (assented, complied or commanded). */
 export function creditedVoices(resolutions: readonly SuggestionResolution[]): SuggestionResolution[] {
-  return resolutions.filter((r) => r.verdict === 'assented' || r.verdict === 'complied');
+  return resolutions.filter(
+    (r) => r.verdict === 'assented' || r.verdict === 'complied' || r.verdict === 'commanded',
+  );
 }
 
 /**
@@ -886,6 +1071,7 @@ export function resolveChoice(
     considered: ev.considered,
     autonomyDelta: ev.autonomyDelta,
   };
+  if (ev.command) out.command = ev.command;
   if (ev.suggestion) out.suggestion = ev.suggestion;
   if (ev.resolutions.length > 0) out.suggestions = ev.resolutions;
   return out;
@@ -937,6 +1123,62 @@ export function predictResponses(
   return evaluate(p, considered, ctx, voicesIn(undefined, suggestions), undefined).resolutions;
 }
 
+/** How a command would fare against these scored options, without writing state or consuming RNG. */
+export function resolveCommand(
+  p: Person,
+  considered: readonly Considered[],
+  ctx: WillContext,
+): CommandOutcome {
+  const ev = evaluate(p, considered, ctx, [], undefined);
+  return ev.command ?? { holds: false, ends: false, reason: 'none', margin: 0, ownAffordanceId: ev.chosenId };
+}
+
+/** Put a command in force (writes `p.will` only; the composite's `command` adds the memory and the interrupt). */
+export function takeCommand(p: Person, cmd: Command, now: Minute): void {
+  ensureVoice(p, cmd.voiceId);
+  const c: NonNullable<WillState['command']> = {
+    voiceId: cmd.voiceId,
+    since: cmd.since,
+    startedAt: now,
+    chargedAt: now,
+    margin: 0,
+  };
+  if (cmd.affordanceId !== undefined) c.affordanceId = cmd.affordanceId;
+  if (cmd.action !== undefined) c.action = cmd.action;
+  if (cmd.repeat) c.repeat = true;
+  p.will.command = c;
+}
+
+/** End the command in force, recording why (`lastCommand`). Charge it first (`chargeCommand`). */
+export function endCommand(p: Person, reason: string, now: Minute): void {
+  const c = p.will.command;
+  if (!c) return;
+  p.will.lastCommand = { voiceId: c.voiceId, since: c.since, endedAt: now, reason };
+  delete p.will.command;
+}
+
+/**
+ * Charge the controlled time since the last charge, if the command was being obeyed: voice pressure per hour and,
+ * scaled by the margin, a trust loss ('commanded'). Returns the autonomy delta (<= 0) for the composite to apply.
+ */
+export function chargeCommand(p: Person, now: Minute): number {
+  const W = WILL_DEFAULTS;
+  const c = p.will.command;
+  if (!c) return 0;
+  const hours = Math.max(0, now - c.chargedAt) / MINUTES_PER_HOUR;
+  c.chargedAt = Math.max(c.chargedAt, now);
+  if (!c.obeyed || hours <= 0) return 0;
+  const v = ensureVoice(p, c.voiceId);
+  v.pressure = clamp01(v.pressure + W.commandPressurePerHour * hours);
+  const loss = clamp01(W.commandTrustPerHour * hours * Math.min(1, c.margin));
+  if (loss > 0) {
+    const before = v.trust;
+    v.trust = clamp01(v.trust * (1 - loss));
+    noteTrust(v, v.trust - before, 'commanded', now);
+  }
+  return -W.commandAutonomyPerHour * hours * clamp01(0.5 + c.margin);
+}
+
 /**
  * After a suggested activity finished: how it felt updates trust in the voice. Harm from followed advice
  * costs more than benefit earns. Only assented/complied resolutions carry information about the advice.
@@ -947,12 +1189,14 @@ export function learnFromVoice(
   felt: Signed,
   event: { at?: Minute; action?: string; reason?: string } = {},
 ): void {
-  if (resolution.verdict !== 'assented' && resolution.verdict !== 'complied') return;
+  const verdict = resolution.verdict;
+  if (verdict !== 'assented' && verdict !== 'complied' && verdict !== 'commanded') return;
   const W = WILL_DEFAULTS;
   const v = ensureVoice(p, resolution.voiceId);
   const f = Math.max(-1, Math.min(1, felt));
   const before = v.trust;
-  const complied = resolution.verdict === 'complied';
+  // A commanded activity is learned from as a complied one: no credit when it goes well, the faster loss when not.
+  const complied = verdict === 'complied' || verdict === 'commanded';
   // A coerced or insisted activity that went well earns no trust: the person did not choose to follow the
   // advice freely (insisting on what he would have done anyway takes the credit away too).
   if (f > 0 && !complied && !resolution.insisted) {

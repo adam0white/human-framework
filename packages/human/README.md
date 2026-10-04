@@ -152,6 +152,13 @@ moved. Two scenarios are bundled as reference hosts: `createVillage` and `create
     upgrades saves from engine 1.4.0 and later through `migrate` and refuses older ones.
   - **`FRAMEWORK_VERSION`** is the same string as the package version, compiled into the build (`1.0.0`).
 
+## Direct control
+
+`command(p, { voiceId, action, since })` (or `StepOptions.controlled`) takes direct control: the person does the
+order whatever they would have chosen, at a price in autonomy, voice pressure and trust that grows with how much
+they would rather have done something else. A pressing need suspends it for a decision; death, a mental break,
+being downed, or an order to break a held norm ends it. Suggestions are unchanged. See docs/framework.md.
+
 ## What it does not model
 
 - **Space and travel.** There is no map or pathfinding. Hosts fold travel into `duration` and mark nearby

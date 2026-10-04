@@ -34,6 +34,7 @@ import { socialTerms } from '../social/index.ts';
 import type {
   Affordance,
   BodyReadout,
+  Command,
   Considered,
   DecisionRecord,
   LifeModifiers,
@@ -49,6 +50,7 @@ import type {
 import { PHYSIOLOGICAL_NEEDS } from '../types.ts';
 import {
   adviceWeight,
+  type CommandOutcome,
   resolveChoice,
   safeUtility,
   standingAdvice,
@@ -454,12 +456,16 @@ export interface DecideContext extends ConsiderContext {
   necessity?: boolean;
   /** A review of a running activity: if it continues, the suggestion verdict moves no voice counters. */
   quiet?: boolean;
+  /** A host command in force (1.6.0); passed to the will. */
+  command?: Command;
 }
 
 export interface Decision {
   record: DecisionRecord;
   /** Need deltas the composite must apply (will does not write `p.needs`). */
   needDeltas: Partial<Record<'autonomy', number>>;
+  /** How a command in force fared (absent when none). */
+  command?: CommandOutcome;
 }
 
 /** Highest physiological urgency: the input to the necessity exception. */
@@ -487,6 +493,7 @@ export function scoreAll(
     necessity: ctx.necessity ?? true,
     needs: ctx.needs,
   };
+  if (ctx.command) willCtx.command = ctx.command;
   return { sorted, considered, willCtx };
 }
 
@@ -520,5 +527,7 @@ export function decide(p: Person, affordances: readonly Affordance[], ctx: Decid
     record.suggestions = res.suggestions;
   const needDeltas: Decision['needDeltas'] = {};
   if (res.autonomyDelta !== 0) needDeltas.autonomy = res.autonomyDelta;
-  return { record, needDeltas };
+  const out: Decision = { record, needDeltas };
+  if (res.command) out.command = res.command;
+  return out;
 }

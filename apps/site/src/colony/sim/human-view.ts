@@ -38,6 +38,7 @@ export function verdictKind(r: SuggestionResolution): VerdictKind {
     case 'assented':
       return 'assent';
     case 'complied':
+    case 'commanded':
       return 'complied';
     case 'deferred':
     case 'modified':

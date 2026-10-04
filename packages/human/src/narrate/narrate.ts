@@ -41,6 +41,7 @@ export function intentionFor(p: Person, record: DecisionRecord, lexicon?: Lexico
   const chosen = record.considered.find((c) => c.affordanceId === record.chosenAffordanceId);
   if (!chosen) return phraseLine('intention.none', {}, lex);
   if (record.suggestion?.verdict === 'complied') return phraseLine('intention.complied', {}, lex);
+  if (record.suggestion?.verdict === 'commanded') return phraseLine('intention.commanded', {}, lex);
   const top = topTerm(chosen);
   if (!top) return phraseLine('intention.default', {}, lex);
   const [kind, rest] = [top.source.split(':')[0] ?? '', top.source.slice(top.source.indexOf(':') + 1)];
@@ -135,6 +136,8 @@ export function narrateDecision(p: Person, record: DecisionRecord, lexicon?: Lex
   const rest = source.slice(source.indexOf(':') + 1);
   // Under insistence the reason is the voice, not the top term (which belongs to what they wanted).
   if (record.suggestion?.verdict === 'complied') parts.push(pickLine('decision.complied', id, {}, lex));
+  else if (record.suggestion?.verdict === 'commanded')
+    parts.push(pickLine('decision.commanded', id, {}, lex));
   else if (kind === 'need')
     parts.push(
       pickLine(source, id, { need: rest }, lex, 0, phraseLine('need:fallback', { need: rest }, lex)),
@@ -200,6 +203,13 @@ export function voiceLine(p: Person, res: SuggestionResolution, key = res.reason
       return pickLine(trust >= 0.6 ? 'voice.assented.trusted' : 'voice.assented', key, {}, lex);
     case 'complied':
       return pickLine('voice.complied', key, {}, lex);
+    case 'commanded':
+      return pickLine(
+        (res.margin ?? 0) > 0.3 ? 'voice.commanded.reluctant' : 'voice.commanded',
+        key,
+        {},
+        lex,
+      );
     case 'deferred': {
       const after = res.counterOffer?.label ?? phraseLine('voice.deferred.default', {}, lex);
       return pickLine('voice.deferred', key, { After: capitalize(after), after }, lex);
@@ -248,6 +258,7 @@ export function voiceLine(p: Person, res: SuggestionResolution, key = res.reason
         return pickLine('voice.willNot', key, { verb }, lex);
       }
       if (res.reason === 'asleep') return phraseLine('voice.asleep', {}, lex);
+      if (res.reason === 'commanded') return pickLine('voice.underOrders', key, {}, lex);
       if (linesFor(`needFirst:${res.reason}`, lex).length > 0)
         return phraseLine(`needFirst:${res.reason}`, {}, lex);
       if (res.reason === 'need:survival') return phraseLine('voice.survival', {}, lex);

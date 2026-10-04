@@ -581,6 +581,39 @@ export interface WillState {
    * one entry per (source, action). Absent on saves from before the lane; treat as empty.
    */
   advice?: StandingAdvice[];
+  /**
+   * Direct control by a host voice (1.6.0, see `Command`). Present while the person is commanded; absent otherwise.
+   * `chargedAt` is the minute the autonomy cost was last charged up to; `margin` the latest utility gap between
+   * what the person would have done and what they were commanded to do.
+   */
+  command?: Command & {
+    startedAt: Minute;
+    chargedAt: Minute;
+    margin: number;
+    /** Whether the latest decision obeyed it (only obeyed time is charged). */
+    obeyed?: boolean;
+    /** The memory of being commanded has been written (once, when first obeyed). */
+    remembered?: boolean;
+  };
+  /** How the last command ended, so a host re-sending the same command (`since`) does not restart it. */
+  lastCommand?: { voiceId: EntityId; since: Minute; endedAt: Minute; reason: string };
+}
+
+/**
+ * A command (1.6.0): a host voice takes direct control of a person. Unlike a `Suggestion` it is not weighed:
+ * while it holds, the person does the commanded offer whatever they would have chosen, at an autonomy cost per
+ * controlled hour that grows with how far their own choice preferred something else. It ends on its own (see
+ * `will/` command SCOPE) at death, a mental break, being downed, or an act the person will not do (a held norm, a
+ * closing duty); a pressing bodily need only suspends it for a decision. Target an affordance id, or an action class.
+ */
+export interface Command {
+  voiceId: EntityId;
+  affordanceId?: string;
+  action?: string;
+  /** The minute the host gave it; it identifies the command (re-sending the same `since` does not restart it). */
+  since: Minute;
+  /** Keep doing it after the commanded activity finishes (default false: control ends 'done' after one activity). */
+  repeat?: boolean;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -855,8 +888,9 @@ export interface Suggestion {
  * - deferred: not now — does something more pressing first; counter-offer says when.
  * - modified: does a near alternative serving the same aim (counter-offer is the alternative).
  * - refused: cannot (capacity) or will not (norm veto / broken trust).
+ * - commanded: does it because a host has direct control (1.6.0, `Command`); not a suggestion's verdict.
  */
-export type SuggestionVerdict = 'assented' | 'complied' | 'deferred' | 'modified' | 'refused';
+export type SuggestionVerdict = 'assented' | 'complied' | 'deferred' | 'modified' | 'refused' | 'commanded';
 /** Refusal class for UI: grey = cannot, amber = notNow, red = willNot. */
 export type RefusalKind = 'cannot' | 'notNow' | 'willNot';
 
@@ -883,6 +917,8 @@ export interface SuggestionResolution {
   commitmentId?: string;
   /** The voice insisted. An insisted suggestion earns no trust when it goes well (2026-10-03). */
   insisted?: boolean;
+  /** For commanded: how far the person's own choice out-scored the commanded option (≥ 0, utility units). */
+  margin?: number;
 }
 
 /** One contribution to an option's utility. */

@@ -91,6 +91,7 @@ import type {
   AppraisalEvent,
   BodyLoad,
   BodyReadout,
+  Command,
   Commitment,
   DecisionRecord,
   Minute,
@@ -112,13 +113,20 @@ import type {
 import { ENGINE_VERSION, PERSON_SCHEMA, PHYSIOLOGICAL_NEEDS, PSYCHOLOGICAL_NEEDS } from './types.ts';
 import {
   advanceWill,
+  type CommandOutcome,
+  chargeCommand,
+  commandTargets,
   createWill,
   creditedVoices,
   dischargeAdvice,
+  endCommand,
   learnFromVoice,
   predictResponse,
   rememberAdvice,
+  resolveCommand,
+  takeCommand,
   voicesIn,
+  WILL_DEFAULTS,
   wakeReviewAt,
 } from './will/index.ts';
 
@@ -666,6 +674,8 @@ export interface DecideOptions {
   necessity?: boolean;
   /** Why this decision was forced (recorded on the decision); defaults to the activity's pending interrupt. */
   interrupt?: string;
+  /** @internal Read a command without it being in force (`previewCommand`). */
+  command?: Command;
 }
 
 /** The current activity as an offer with its remaining duration (so inertia can apply). */
@@ -707,7 +717,18 @@ function decisionInputs(
   // Only set when voices were given this way, so single-voice records keep their shape.
   if (opts.suggestions && opts.suggestions.length > 0) ctx.suggestions = [...opts.suggestions];
   if (opts.scarcity !== undefined && opts.scarcity > 0) ctx.scarcity = clamp01(opts.scarcity);
+  const cmd = opts.command ?? p.will.command;
+  if (cmd) ctx.command = commandOf(cmd);
   return { list, ctx };
+}
+
+/** The `Command` part of a command in force (without the will's bookkeeping). */
+function commandOf(c: Command): Command {
+  const out: Command = { voiceId: c.voiceId, since: c.since };
+  if (c.affordanceId !== undefined) out.affordanceId = c.affordanceId;
+  if (c.action !== undefined) out.action = c.action;
+  if (c.repeat) out.repeat = true;
+  return out;
 }
 
 /**
@@ -754,11 +775,12 @@ export function decide(
   p.nextDecision += 1;
   const review = p.activity !== null;
   if (review) ctx.quiet = true;
-  const { record, needDeltas } = cognitionDecide(p, list, ctx);
+  const { record, needDeltas, command: co } = cognitionDecide(p, list, ctx);
   if (review) record.review = true;
   const interruptReason = opts.interrupt ?? p.activity?.interrupt?.reason;
   if (interruptReason !== undefined) record.interrupt = interruptReason;
   if (needDeltas.autonomy !== undefined) satisfy(p, { autonomy: needDeltas.autonomy });
+  if (co) applyCommandOutcome(p, co, list);
   record.intention = intentionFor(p, record);
   record.narration = narrateDecision(p, record);
   const resolutions = resolutionsOf(record);
@@ -785,6 +807,79 @@ export function decide(
   p.trace.push(record);
   if (p.trace.length > PERSON_DEFAULTS.maxTrace) p.trace.splice(0, p.trace.length - PERSON_DEFAULTS.maxTrace);
   return record;
+}
+
+/**
+ * The composite's side of a command outcome: charge the controlled time so far, then either end control (with
+ * why) or note whether it was obeyed this time. The first time it is obeyed costs autonomy once (as compliance
+ * does) and leaves a memory of being commanded.
+ */
+function applyCommandOutcome(p: Person, co: CommandOutcome, list: readonly Affordance[]): void {
+  const c = p.will.command;
+  if (!c) return;
+  const autonomy = chargeCommand(p, p.now);
+  if (autonomy < 0) satisfy(p, { autonomy });
+  if (co.ends) {
+    endCommand(p, co.reason, p.now);
+    return;
+  }
+  c.obeyed = co.holds;
+  if (!co.holds) return;
+  c.margin = co.margin;
+  if (c.remembered) return;
+  c.remembered = true;
+  satisfy(p, { autonomy: -WILL_DEFAULTS.commandAutonomyCost * clamp01(0.5 + co.margin) });
+  const target = list.find((a) => a.id === co.targetAffordanceId);
+  remember(p, {
+    at: p.now,
+    kind: 'suggestion',
+    action: target?.action ?? 'commanded',
+    actorId: c.voiceId,
+    targetId: p.id,
+    valence: -0.2 - 0.3 * Math.min(1, co.margin),
+    summary: `${c.voiceId} took charge and had me ${target?.label ?? 'do as ordered'}`,
+    tags: ['suggestion', 'command'],
+    voiceId: c.voiceId,
+  });
+}
+
+/**
+ * Put a host command in force (1.6.0; see `Command` and the command SCOPE in `will/`). From the next decision the
+ * person does the commanded offer while the command holds. A running activity that is not the target gets its
+ * review brought forward to now. Re-sending the command already in force, or one that already ended (same voice
+ * and `since`), changes nothing. Returns false when the person is dead or the command was not (re)started.
+ */
+export function command(p: Person, cmd: Command): boolean {
+  if (!p.body.alive) return false;
+  const cur = p.will.command;
+  if (cur && cur.voiceId === cmd.voiceId && cur.since === cmd.since) return true;
+  const last = p.will.lastCommand;
+  if (last && last.voiceId === cmd.voiceId && last.since === cmd.since) return false;
+  if (cur) releaseCommand(p, 'replaced');
+  takeCommand(p, cmd, p.now);
+  const act = p.activity;
+  if (act && !commandTargets(cmd, act.affordance)) interrupt(p, p.now, 'command');
+  return true;
+}
+
+/** End the command in force (host release, default reason 'released'), charging its controlled time first. */
+export function releaseCommand(p: Person, reason = 'released'): boolean {
+  if (!p.will.command) return false;
+  const autonomy = chargeCommand(p, p.now);
+  if (autonomy < 0) satisfy(p, { autonomy });
+  endCommand(p, reason, p.now);
+  return true;
+}
+
+/**
+ * Whether `cmd` would hold right now and at what price, without changing the person or consuming randomness
+ * (a UI showing "he will do it, but he would rather eat" before the player takes control). `margin` is the gap
+ * the hourly autonomy and trust costs scale with.
+ */
+export function previewCommand(p: Person, affordances: readonly Affordance[], cmd: Command): CommandOutcome {
+  const { list, ctx } = decisionInputs(p, affordances, 'preview', { command: cmd });
+  const { considered, willCtx } = scoreAll(p, list, ctx);
+  return resolveCommand(p, considered, willCtx);
 }
 
 export interface BeginOptions {
@@ -854,7 +949,9 @@ export function begin(
   if (credited.length > 0) activity.suggestions = credited;
   if (
     record.suggestion &&
-    (record.suggestion.verdict === 'assented' || record.suggestion.verdict === 'complied')
+    (record.suggestion.verdict === 'assented' ||
+      record.suggestion.verdict === 'complied' ||
+      record.suggestion.verdict === 'commanded')
   ) {
     activity.suggestion = record.suggestion;
     if (record.suggestion.verdict === 'complied') activity.protest = true;
@@ -1130,7 +1227,7 @@ export function finish(
     for (const c of broken) breach += D.missedDistress * c.importance;
     breach += D.missedDistress * 0.5 * deed.breached.length;
     for (const res of voices) {
-      const protest = res.verdict === 'complied';
+      const protest = res.verdict === 'complied' || res.verdict === 'commanded';
       const reason =
         breach > 0
           ? protest
@@ -1157,6 +1254,16 @@ export function finish(
   noteOutcome(p, outcome, noted);
 
   p.activity = null;
+  // A one-job command ends when its activity completes or fails (an interrupted one resumes at the next decision).
+  const cmd = p.will.command;
+  if (
+    cmd &&
+    !cmd.repeat &&
+    act.suggestion?.verdict === 'commanded' &&
+    act.suggestion.voiceId === cmd.voiceId
+  ) {
+    if (outcome.status !== 'interrupted') releaseCommand(p, 'done');
+  }
   // Leave the activity's body mode now (wake up from sleep) so the next decision is not vetoed 'asleep'.
   advanceBody(p, 0, PERSON_DEFAULTS.idleLoad, mods);
   if (outcome.percepts && outcome.percepts.length > 0) perceive(p, outcome.percepts);
@@ -1273,5 +1380,25 @@ export function restore(input: unknown): Person {
   }
   sanitizeIllnesses(out.body);
   if (out.will.advice !== undefined && !Array.isArray(out.will.advice)) delete out.will.advice;
+  // Optional slices added in 1.6.0: a malformed entry is dropped (absent means none).
+  const cmd = out.will.command as unknown;
+  if (
+    cmd !== undefined &&
+    !(
+      isObject(cmd) &&
+      typeof cmd.voiceId === 'string' &&
+      typeof cmd.since === 'number' &&
+      typeof cmd.startedAt === 'number' &&
+      typeof cmd.chargedAt === 'number' &&
+      typeof cmd.margin === 'number'
+    )
+  )
+    delete out.will.command;
+  const last = out.will.lastCommand as unknown;
+  if (
+    last !== undefined &&
+    !(isObject(last) && typeof last.voiceId === 'string' && typeof last.since === 'number')
+  )
+    delete out.will.lastCommand;
   return out;
 }
