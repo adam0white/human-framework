@@ -547,3 +547,41 @@ The third-pass table's prefill row ("he called, 18:55") no longer holds: after t
 - **Running late.** A deadline beat waits while he sleeps until the deadline is within an hour. A promise's beat comes at most 3 hours before its deadline: the beat for Osman's date used to fire at 01:00 on Ramadan 15 for a 20:00 deadline.
 - **Report.** The Eid list keeps every key line (Selin, Osman, the cigarette, the clinic, the mosque, memories) under the 24-line cap and says how many quieter lines were left out. "Had mostly stopped: calling" is dropped when he called Selin himself after Eid. A month with no word says "The days you watched, and Eid".
 - **Game 1.** The end screen focuses its heading, so it opens at the top. At phone width the goal table drops the chips' C/H/S tags and the Solo subtitle, so it fits the dialog. The "what your orders changed" sentence compares exactly the rows the tables show, in the tables' units (prayers as a percentage, goal values such as storm stock, and morale).
+
+### Sixth pass (round 5 playtest, 2026-10-04)
+
+`npm run check`: 48 files, 562 tests. Engine 1.5.0.
+
+- **Game 1 fits a 360×740 phone.** At ≤860 px the order panel has a fixed height, the map stats sit in a side column, Rush and Insist share a row, and the speed buttons hide after Results. Screenshotted at 360×740, 384×832, 390×844, 768×1024, 1280×800 and 1440×900. At 360–390 px the place and appeal rows still scroll sideways.
+- **Ruled lines.** The log's 32 px ruled background ran through wrapped rows. It is now a border between rows.
+- **Who each voice is.** The premise names Selin as his daughter, Rıza as his friend, Hacer as his neighbour and Osman as his landlord. The end labels repeat it, and the first log line from each voice gives the relation.
+- **The ends are read at Eid morning.** The game snapshots the run when Eid starts and records each rent payment with its date. Every end states its date: "Paid 300 on Ramadan 14; 300 still owed at Eid. He had 268." A separate "Without you" line covers the week after: "In the week after Eid he paid the rest (300) on Shawwal 7; nothing owed now." Before this, the panel read the town at Shawwal 7 under a Ramadan heading.
+- **Log.**
+  - **Advice for the running activity is heard (framework, engine 1.5.0).** `standingHeard` now counts the activity he is doing as on offer. Before, the shift's offer window closed at Asr − 90, so his 60-minute review no longer heard the advice. The game had shown the shift "(stopped)" while also printing "He can't work extra just now".
+  - **The shift can still stop for fatigue.** That stop is real: effort weighs more than the advice at the review.
+  - **Detached replies name what they answer**, for example "Drink water? “Not while I'm keeping my fast.”"
+  - **The mosque turn-back is real behaviour.** The funeral memory gives the mosque a negative expectation. It now reads "I set out for the mosque, as you asked, and turned back; the mosque brings back the funeral."
+  - **The ledger** reads "Prayed 5 times, 3 at the mosque".
+- **Smoking can be worn down, slowly.**
+  - **The walk.** Once the doctor has spoken, Halil is offered one 30-minute walk by the river a day. In Ramadan it is offered only after he has broken the fast and not during the meal, so the walk lands where the after-meal cigarette would.
+  - **No new mechanism.** A completed walk right after eating withholds the after-meal smoking habit through the existing habit extinction: one loss per cue occasion, at most about one a day.
+  - **Placeless cigarette.** Smoke has no place now. When it was keyed to the tea house, the seeded after-meal habit was never reinforced and nothing at home could withhold it (findings).
+  - **Game.** A "walk after iftar, not the cigarette" whisper and a once-a-day craving beat. Prefill suggests the walk when he is about to smoke and the walk is on offer.
+  - **The doctor end** reports cigarettes per day on Ramadan 1–2 against 29–30, the walks (and how many were on your word), and the cigarettes on Eid.
+  - **Hard by design.** A Mention usually gets "After I smoke a cigarette, then I will". All parameters are engineering defaults.
+
+Measured on seed 7 with the headless players (scratchpad probe, not in the repo):
+
+| Player | Days he smoked in Ramadan | Cigarettes on Eid | After-meal habit at Eid | Walks | Rent | Trust at Eid |
+|---|---|---|---|---|---|---|
+| Silent | about 22 | 5 | 0.60 | 0 | date missed (R17), 300 owed at Eid | 0.50 |
+| Prefill confirmed + doctor/Selin whispers | 9 | 3 | 0.38 | 2 | date missed (R16); 3 shifts | 0.61 |
+| Shift + Selin whispers | 11 | 5 | 0.41 | 2 | date kept (R14), 300 owed at Eid; 6 shifts | 0.63 |
+| Insist + urge doctor/mosque | 12 | 4 | 0.42 | 4 | date kept (R15) | 0.47 |
+| Walk (Mention) + Selin | 8 | 4 | 0.34 | 30 | date missed (R17) | 0.64 |
+| Walk (Urge) + shift | 5 (none after R12) | 3 | 0.26 | 30 | date kept (R11), rest R27; 13 shifts | 0.60 |
+
+- **Hour-10 habit.** The second smoking habit (hour 10) stays at about 0.28 in every style. The walk does not reach it.
+- **Eid count is noisy.** Cigarettes on Eid vary between 3 and 5 and barely follow the month. Probable cause (not confirmed): on Eid there is no fast, so the hour cue and the refractory set the count more than the after-meal habit does.
+- **The shift style changed.** The fifth-pass table's "27 shifts, date R11" were mostly 30-minute fragments that never set `lastExtra`. With the advice heard for the running activity, the same player works about 6–7 full shifts and keeps the date on R14, with the second 300 paid after Eid.
+- **Not done:** an urge to smoke after abstinence (`craving` is unset for Halil); the walk is not its own end.

@@ -21,10 +21,12 @@ Updated 2026-10-03. Read [AGENTS.md](AGENTS.md) for direction, done-definition a
 
 ## Current position
 
-All phases done; awaiting the user's acceptance by playing. Live release **456c794** at https://human.adamwhite.work (/colony/, /voice/), `@human/framework` 1.0.0, engine 1.4.0, 556 tests. Installability proven by `npm pack -w packages/human` + fresh install + strict `tsc` + running the README quick start (see packages/human/README.md). Later documentation-only commits do not change the deployed app.
+All phases done; awaiting the user's acceptance by playing. Live release **456c794** at https://human.adamwhite.work (/colony/, /voice/), `@human/framework` 1.0.0. Round 5 playtest fixes are committed on `main` and **not yet deployed** (93d1f04, 10d69ef, 1ea0616, 7ec7a09, 14ee287, plus docs): engine 1.5.0, 562 tests. Game 1 fits a 360×740 phone. Game 2: ends read at Eid morning with the week after apart; voices' relations named; log fixes; the doctor's walk can wear down the smoking habit (voice-build §13, sixth pass). Installability proven by `npm pack -w packages/human` + fresh install + strict `tsc` + running the README quick start (see packages/human/README.md).
 
 Open, recorded in docs/findings.md and docs/games/voice-build.md §13:
-- Game 2: two between-day whispers (shift with "it's your duty", call Selin) now decide the month (27 shifts, date kept on R11); in-day confirmations barely change the outcome. Winnable and failable, but possibly too decisive; a playtest should judge.
+- Game 2: with advice heard for the running activity (engine 1.5.0), the shift whisper gives about 6–7 full shifts and the date kept on R14 (was 27 fragments, R11). Whether the between-day whispers are too decisive is for a playtest to judge.
+- Game 2 smoking: walks lower the after-meal habit (0.60 silent to 0.26 with an urged walk), but cigarettes on Eid stay at 3–5 and the hour-10 habit is untouched. Possible, hard, and noisy on Eid by design; a playtest should judge whether it reads as progress.
+- Game 1 at 360–390 px: the place and appeal rows scroll sideways; landscape and large text untested.
 - Halil naps ~3 times a day: flat daytime utilities; a nap gate broke other behaviour and was reverted. Needs utility recalibration first.
 - Game 2, prefill play: Halil no longer calls Selin himself on Eid (Maghrib wins at his habit's minute); he calls 5 times in the six days after.
 - Game 1: Classic with no orders roofs the house on 3 of 6 seeds; orders cannot starve the Human store; the late-tap moment-1 dependency.
