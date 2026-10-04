@@ -15,7 +15,7 @@
  * keeps appraisal and constructed-emotion variants swappable; it does not claim that these sixteen
  * categories or two mood dimensions exhaust emotional experience, nor calibrated intensities or durations.
  */
-import { clamp01, clampSigned, decay } from '../core/index.ts';
+import { clamp01, clampSigned, decay, dexp } from '../core/index.ts';
 import type {
   AffectState,
   AppraisalEvent,
@@ -494,7 +494,7 @@ export function regulate(p: Person, minutes: number, practiceKind: PracticeKind)
   const A = AFFECT_DEFAULTS;
   const a = p.affect;
   const reg = clamp01(a.regulation);
-  const relief = A.soothe[practiceKind] * (1 - Math.exp(-minutes / A.sootheMinutes)) * (0.5 + reg);
+  const relief = A.soothe[practiceKind] * (1 - dexp(-minutes / A.sootheMinutes)) * (0.5 + reg);
   for (const e of a.emotions) {
     if (isNegative(e.id) && !A.regulationExempt.includes(e.id))
       e.intensity = clamp01(e.intensity * (1 - relief));
@@ -502,7 +502,7 @@ export function regulate(p: Person, minutes: number, practiceKind: PracticeKind)
   a.emotions = a.emotions.filter((e) => e.intensity >= A.dropBelow);
   const ceiling = A.regulationCeiling;
   const gap = Math.max(0, ceiling - reg);
-  a.regulation = clamp01(ceiling - gap * Math.exp(-A.regulationRate[practiceKind] * minutes));
+  a.regulation = clamp01(ceiling - gap * dexp(-A.regulationRate[practiceKind] * minutes));
 }
 
 /**

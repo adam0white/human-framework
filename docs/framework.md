@@ -132,13 +132,13 @@ Emotion terms are named `emotion:<emotion>:<tag>` (e.g. `emotion:fear:risky`): t
 - Narration cites recalled episodes when memory changed a choice.
 - Saves: snapshot JSON with `schema` + `engine`, plus input-log replay (seed + suggestions + host events).
 - Games run the simulation in a Web Worker. React renders snapshots only.
-- Determinism: affordances are processed in stable id order; ties break by (utility, id). `Math.random` and `Date.now` are banned in `packages/human`.
+- Determinism: affordances are processed in stable id order; ties break by (utility, id). `Math.random` and `Date.now` are banned in `packages/human`, and so are the platform's transcendental functions (`Math.exp`, `Math.log`, `Math.cos`, `**`, …): engine code uses `dexp`, `dlog`, `dcos` and `dpow` from `core/libm.ts`, which give the same bits on every machine (test/libm.test.ts scans the source and pins golden outputs).
 - Benchmark: 20 people for 30 simulated days in under 2 s headless.
 - No theological names for mechanisms.
 
 ## Determinism and saves
 
-- All randomness comes from `person.rng`, or from host-owned RNG for world events. Given the same seed and inputs, the result is byte-identical when the host's calls fall on the same minutes. Discrete events (decisions, missed commitments, goals) do not depend on how a host chunks `tick` calls; continuous state agrees to floating-point rounding (~1e-9) across different chunkings, and is byte-identical when calls fall on the 60-minute `tick` grid.
+- All randomness comes from `person.rng`, or from host-owned RNG for world events. Given the same seed and inputs, the result is byte-identical when the host's calls fall on the same minutes, on any OS and CPU architecture. Discrete events (decisions, missed commitments, goals) do not depend on how a host chunks `tick` calls; continuous state agrees to floating-point rounding (~1e-9) across different chunkings, and is byte-identical when calls fall on the 60-minute `tick` grid.
 - `Person` is plain JSON. `snapshot(p)` returns a deep clone, and `restore(json)` validates `schema` and fills defaults.
 - A save is the people's snapshots, the community's host-side state (`communityState(c)`) and the world's state. Resume with `createCommunity(people, saved)` and the world's `state` option (`createTown`, `createVillage`). Restoring only the people and calling `createCommunity(people)` diverges: day hooks run twice and queued advice and standing-advice completions are lost.
 - A host with its own norm catalog sets `World.catalog`; `stepCommunity` passes it to `finish`, which reads make-ups owed for a break under necessity from it (default `DEFAULT_NORMS`). A norm missing from the catalog is not excused.
@@ -155,6 +155,7 @@ Emotion terms are named `emotion:<emotion>:<tag>` (e.g. `emotion:fear:risky`): t
   - **State.** New optional state: `body.lastSleep`, `body.lastDowned`, `agenda.lapse`, `OwedMakeUp.lapseSince`. The person shape is otherwise unchanged, so the 1.6.0 → 1.7.0 migration only stamps the version. Saves from 1.4.0 on still restore, but they continue under the new rules, so the fixture continuations are pinned anew (`test/migrate.test.ts`).
   - **Security review (2026-10-04).** `migrate` looks versions up as own properties only (a `"__proto__"` engine matches nothing). `restore` drops unknown top-level keys and malformed 1.7.0 optional state.
   - **Town scenario.** `townCalendar` supplies `sunrise`. The Eid prayer is on by default (`eidPrayer: false` turns it off) and is a commitment for those who keep the daily prayers. Missed prayers are offered as `pray-qada` between Dhuhr + 15 and Asr − 15 the next day, at most `qadaPerDay` (2) a day, at importance `qadaImportance` (0.3).
+  - **Math.** Engine code calls `dexp`, `dlog`, `dcos` and `dpow` (core/libm.ts, exported) instead of the platform's transcendental functions, so a run gives the same bits on every OS, CPU and JavaScript engine. A continued save differs at ulp level from the same save continued under 1.6.0's native math.
 - `ENGINE_VERSION` 1.6.0 (2026-10-04): `restore` no longer refuses older saves outright. It passes them through `migrate` (migrate.ts), a chain of steps keyed by the version each upgrades from; 1.4.0 and 1.5.0 saves restore, older ones are refused. A migrated save continues under the current rules (tested against real 1.4.0 and 1.5.0 saves in `test/fixtures`). Community and world state are not migrated: they have not changed shape, and world state is the host's.
 
 ## Scope notes

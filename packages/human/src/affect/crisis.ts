@@ -21,7 +21,7 @@
  * gives a break every day or two), not calibrated against any clinical data. Does not model: psychiatric conditions,
  * diagnosis, suicidality, trauma memory, contagion of panic between people, or the content of the behaviours.
  */
-import { chance, clamp01, decay, random } from '../core/index.ts';
+import { chance, clamp01, decay, dexp, random } from '../core/index.ts';
 import type { BreakBehaviour, CrisisState, Minute, Person, Unit } from '../types.ts';
 import { MINUTES_PER_DAY, MINUTES_PER_HOUR } from '../types.ts';
 import { readAffect } from './affect.ts';
@@ -142,7 +142,7 @@ export function checkCrisis(p: Person, now: Minute): CrisisEvent | undefined {
   if (c.lastBreakAt !== undefined && now - c.lastBreakAt < K.refractory) return undefined;
   const { perHour } = breakHazard(p);
   if (perHour <= 0 || dt <= 0) return undefined;
-  if (!chance(p.rng, 1 - Math.exp((-perHour * dt) / MINUTES_PER_HOUR))) return undefined;
+  if (!chance(p.rng, 1 - dexp((-perHour * dt) / MINUTES_PER_HOUR))) return undefined;
   let total = 0;
   for (const b of c.behaviours) total += Math.max(0, b.weight ?? 1);
   let r = random(p.rng) * total;
