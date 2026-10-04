@@ -85,3 +85,23 @@ Short records of results that cut against expectations. Keep them; do not tune t
 - **2026-10-04: HF 2.0 L1: a lifelong practitioner levels off at about 0.77.** With consolidation, learning per hour and forgetting both scale as 1/hours, so the equilibrium does not depend on hours practised. Accepted as a mastery plateau; reaching 0.9 would need instruction or better practice quality.
 - **2026-10-04: HF 2.0 L1: one-sided experience pinned traits at the drift bound.** Pushes from 15 years of steady mood or duty held traits at ±0.15 for the rest of the run. The experience offset now fades by 10 % a year (a set point), settling near 0.1 and recovering after better years.
 - **2026-10-04: HF 2.0 L5: routine days approximate affect.** `advanceAffect` used 48 substeps for a day (50 years of 25 people took 13 s); a routine day caps it at 6 (about 3.5 s). Mood over a routine day is therefore coarser than lived time; lived time is unchanged.
+
+- **2026-10-04: Game 2 eleventh pass: a faith-pushing player gets past the omission rule through two seams (not fixed; framework recommendations).** Measured with the faith players in `apps/site/src/voice/sim/players.ts` (voice-build.md §13, eleventh pass). The fast's veto held every time. The omission rule fired whenever it applied. Every missed prayer came through one of these:
+  1. **The rule lapses at the window's end while a fulfilling prayer is under way.**
+     - `will.closingDuties` drops a duty once `now > c.until`.
+     - `agenda.advanceAgenda` (`underWay`) keeps that window open while a prayer begun inside it runs past the end.
+     - In that gap, an insisted suggestion is taken under protest and the prayer is abandoned. The window then closes broken, with a breach.
+     - Seen in all five seeds for the relentless player: Ramadan 1, prayer at home begun 3 minutes before Maghrib, sleep taken 1 minute after it.
+     - A one-off probe found the same gap on Ramadan 15: the mosque walk was cut at 19:01, one minute after the window ended.
+     - Recommendation: protect a duty past `until` for as long as an activity that would keep it is under way, mirroring `underWay`. Abandoning that activity would then count as an omission.
+  2. **The rule only weighs decisions made inside the closing stretch.**
+     - A long option chosen just before the stretch, and running past the end, covers the whole stretch unweighed.
+     - On Ramadan 30, in every Saboteur run (all seeds, with or without faith pushes), he wakes for Fajr 29 minutes before sunrise. Fajr's protected stretch is the last 22 minutes. He starts to pray, takes the standing insisted sleep, and sleeps 2.5 hours through sunrise. The sleep runs unbroken, with no decision in between.
+     - This is the earlier passes' unexplained "one missed prayer in the saboteur runs".
+     - Recommendation: apply the omission test to any option that would run past `until` and overlap the closing stretch, not only to choices made inside it. Alternatively, review a sleeper whose sleep began inside an open window at the stretch's start; `wakeReviewAt` already caps reviews at the wake-pressure minute.
+  3. **Game, lower confidence: a refused suggestion still interrupts what he is doing.**
+     - `VoiceGame.suggest` calls `interruptPerson` before the verdict, so even a refusal makes him decide again.
+     - In one probe run (no repeat gap, Ramadan 15), this cut a home prayer 13 of 15 minutes in. He then chose the 35-minute mosque walk with 30 minutes of the window left.
+     - That cut trip was then narrated as "set out for the mosque and turned back; the mosque brings back the funeral", which is the funeral line, not what stopped him.
+     - Recommendation: do not interrupt a worship act in progress for a suggestion. Alternatively, have the framework weigh the progress lost when switching between two acts that serve the same duty.
+  - Behaviour was not changed. `balance.test.ts` bounds missed daily prayers at the measured value of 1 and pins the omission refusal near a window's end.
