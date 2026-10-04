@@ -23,14 +23,14 @@ const ends: EndView[] = [
   },
   {
     id: 'rent',
-    label: 'Pay Osman what I owe.',
+    label: 'Pay Osman, my landlord, what I owe.',
     status: '600 owed',
     detail: 'Osman wants 300 by Ramadan 15. He has 40.',
     progress: 0.07,
   },
   {
     id: 'doctor',
-    label: 'Selin wants my blood pressure seen.',
+    label: 'Selin, my daughter, wants my blood pressure seen.',
     status: 'not yet',
     detail: 'He has not been to the clinic.',
   },
@@ -178,7 +178,7 @@ const log: LogEntry[] = [
     clock: '19:40',
     kind: 'voice',
     who: 'selin',
-    text: 'Selin on the phone: see the doctor.',
+    text: 'Selin, his daughter, on the phone: see the doctor.',
     beat: 'voice',
   },
 ];

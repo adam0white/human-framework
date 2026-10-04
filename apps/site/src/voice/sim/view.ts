@@ -437,7 +437,7 @@ export function endsView({
     },
     {
       id: 'rent',
-      label: 'Pay Osman what I owe.',
+      label: 'Pay Osman, my landlord, what I owe.',
       status: asOfEid
         ? date?.status === 'broken' && owed > 0
           ? `date missed; ${owed} owed at Eid`
@@ -475,7 +475,7 @@ export function endsView({
     },
     {
       id: 'doctor',
-      label: 'Selin wants my blood pressure seen.',
+      label: 'Selin, my daughter, wants my blood pressure seen.',
       status: seen
         ? asOfEid
           ? `seen ${visits === 1 ? 'once' : `${visits} times`} in Ramadan`
@@ -491,7 +491,7 @@ export function endsView({
     },
     {
       id: 'selin',
-      label: 'Call Selin himself, not wait for her.',
+      label: 'Call Selin, my daughter, myself; not wait for her.',
       status:
         his === undefined || halilCalledAt === undefined
           ? asOfEid

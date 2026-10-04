@@ -21,7 +21,7 @@ export function Premise({ ready, onBegin }: { ready: boolean; onBegin: () => voi
         <h1 id="premise-title">The Day You Say Nothing</h1>
         <p className="v-lede">
           Halil is 61. He repairs kettles and bicycles in a rented shop. His wife Nuran died fourteen weeks
-          ago. Tonight is the first night of Ramadan.
+          ago; their daughter Selin lives in the city. Tonight is the first night of Ramadan.
         </p>
         <p>
           You are a voice in his head that is not his own. He hears you. <strong>He decides.</strong> He may
@@ -35,10 +35,15 @@ export function Premise({ ready, onBegin }: { ready: boolean; onBegin: () => voi
           <h2>What he’s holding on to</h2>
           <ul>
             <li>keep the fast</li>
-            <li>pay Osman (600 owed; 300 by Ramadan 15)</li>
-            <li>Selin wants his blood pressure seen</li>
-            <li>Selin herself</li>
+            <li>pay Osman, his landlord (600 owed; 300 by Ramadan 15)</li>
+            <li>his daughter Selin wants his blood pressure seen</li>
+            <li>Selin herself: calling her, not waiting for her to call</li>
           </ul>
+          <h2>Who else he hears</h2>
+          <p className="v-premise-cast">
+            Selin, his daughter, on the phone. Rıza, his friend, at the tea house. Hacer, the neighbour who
+            talks about people. Osman, his landlord. The doctor at the clinic.
+          </p>
         </div>
         <p className="v-aim">
           <span>Your aim</span>

@@ -1361,6 +1361,13 @@ button.v-log-btn:hover {
   padding-left: 18px;
   font-family: var(--font-line);
 }
+.v-premise-ends ul + h2 {
+  margin-top: 10px;
+}
+.v-premise-cast {
+  margin: 0;
+  font-family: var(--font-line);
+}
 .v-aim {
   font-size: 1.04rem;
   font-weight: 500;

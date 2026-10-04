@@ -209,6 +209,7 @@ export class VoiceGame {
   /** Rent payments with their minute (the town keeps only the total). */
   payments: { at: number; amount: number }[] = [];
   private rentSeen = 0;
+  private introduced = new Set<string>();
   firstSuggestion = false;
   suggestedAction: string | undefined;
   /** His weighing of the next choice, read once when the composer opens before it (see `lookAhead`). */
@@ -253,7 +254,7 @@ export class VoiceGame {
         {
           kind: 'voice',
           who: voiceWho(a.sourceId),
-          text: `Last night — ${voiceLine(a.sourceId, a.affordanceId ?? a.action)}`,
+          text: `Last night — ${voiceLine(a.sourceId, a.affordanceId ?? a.action, this.introduce(a.sourceId))}`,
         },
         a.at,
       );
@@ -262,6 +263,13 @@ export class VoiceGame {
 
   get halil(): Person {
     return this.run.ppl.halil;
+  }
+
+  /** True the first time a voice is named in the log (it then carries who they are to him). */
+  private introduce(id: string): boolean {
+    if (this.introduced.has(id)) return false;
+    this.introduced.add(id);
+    return true;
   }
 
   // --- input ------------------------------------------------------------------------------------
@@ -1199,7 +1207,7 @@ export class VoiceGame {
       const text =
         told && a.sourceId === 'doctor'
           ? `${capital(told.summary)}.`
-          : voiceLine(a.sourceId, a.affordanceId ?? a.action);
+          : voiceLine(a.sourceId, a.affordanceId ?? a.action, this.introduce(a.sourceId));
       if (this.log.some((x) => x.minute === a.at && x.text === text)) continue;
       this.push({ kind: 'voice', who: voiceWho(a.sourceId), text, beat: 'voice' }, a.at);
       this.beat('voice', text, a.at);
@@ -1710,8 +1718,17 @@ const VOICE_CHANNEL: Record<string, string> = {
   osman: 'Osman at the door',
   doctor: 'The doctor',
 };
-function voiceLine(source: string, target: string): string {
-  const who = VOICE_CHANNEL[source] ?? nameOfVoice(source);
+/** The first time each voice is heard, the log says who they are to him (playtest: "Selin isn't mentioned as Halil's daughter"). */
+const VOICE_CHANNEL_FIRST: Record<string, string> = {
+  selin: 'Selin, his daughter, on the phone',
+  riza: 'Rıza, his friend, over tea',
+  hacer: 'Hacer, his neighbour, at the door',
+  osman: 'Osman, his landlord, at the door',
+  doctor: 'The doctor at the clinic',
+};
+function voiceLine(source: string, target: string, first = false): string {
+  const who =
+    (first ? VOICE_CHANNEL_FIRST[source] : undefined) ?? VOICE_CHANNEL[source] ?? nameOfVoice(source);
   const what = ACTION_LABEL[target] ?? target.replace(/[-:]/g, ' ');
   return `${who}: ${what}.`;
 }
