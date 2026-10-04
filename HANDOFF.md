@@ -1,6 +1,6 @@
 # Handoff — Human Framework v1
 
-Updated 2026-10-03. Read [AGENTS.md](AGENTS.md) for direction, done-definition and rules; [docs/framework.md](docs/framework.md) for architecture.
+Updated 2026-10-04. Read [AGENTS.md](AGENTS.md) for direction, done-definition and rules; [docs/framework.md](docs/framework.md) for architecture.
 
 ## Done means
 
@@ -36,6 +36,14 @@ Open, recorded in docs/findings.md and docs/games/voice-build.md §13:
 
 ## Deferred questions for the user (non-blocking)
 
-- Fajr window: the framework ends Fajr at Dhuhr (documented simplification). The common position that Fajr ends at sunrise is not sourced in `research/`; confirm before changing `prayerWindow`.
-- Smoking as breaking the fast is a town-scenario engineering assumption, not sourced in `research/`.
-- Eid prayer and zakat al-fitr are deferred in Game 2 until their timing is sourced in `research/` (the Eid prayer exists behind an off-by-default flag as a town custom).
+Sourced 2026-10-04 in [research/prayer-times-sources.md](research/prayer-times-sources.md), [research/fasting-sources.md](research/fasting-sources.md) and [research/eid-and-mourning-sources.md](research/eid-and-mourning-sources.md) (Diyanet, TDV and Hanafi fatwa sites; classical texts only cited via those pages; no qualified review). Each item is a code recommendation awaiting the user's yes; none is implemented. Per AGENTS.md "Games keep faith gentle", none of these should become a goal or scored mechanic in a game.
+
+1. **Fajr ends at sunrise** (TDV "Vakit"; Hanafi fatwa sites; Diyanet's 7-minute sunrise temkin). `prayerWindow` in `packages/human/src/agenda/prayer.ts` runs Fajr to Dhuhr, which also covers the sunrise kerahat. Recommend: add `sunrise` to `PrayerTimes` (and `DEFAULT_PRAYER_TIMES`), have `townCalendar` in `scenarios/town.ts` supply a per-day sunrise, and end window 0 at sunrise. Treat the 7-minute temkin as a separate, labelled host choice. Isha to the next Fajr already matches the Hanafi validity bound; makruh after midnight stays unmodelled.
+2. **Smoking breaks the fast is now sourced** (Diyanet Kurul fetva, citing al-Hidaya 1/120-121 and Radd al-Muhtar 2/371, 395, 410; Hanafi fatwa sites agree). Recommend: rewrite the comment at `town.ts` ~line 423 ("no source … in research/ yet") to cite `research/fasting-sources.md` §1, and the `agenda/prayer.ts` scope comment likewise; no behaviour change. If consequences are ever modelled: kaza is sourced (press relaying Diyanet); kefaret under Diyanet is unresolved (Hanafi fatwa sites say kaza + kefaret), so do not encode kefaret.
+3. **Eid prayer window: after the sunrise kerahat until zawal; Hanafi wajib, so wajib for Halil** (TDV "Bayram"; Hanafi fatwa site; the blog hanafilegalrulings for "never after midday" and "no individual qada"). Today `eidPrayer` offers it at Fajr+120..Fajr+240 with no standing. Recommend: once sunrise exists (item 1), offer it from sunrise + kerahat (Diyanet's 40-50 min; other sites ~20; pick and label) until the Dhuhr time; day 2 only with an excuse; no individual make-up. Whether to attach the wajib standing (an engine norm with provenance) and whether to turn the flag on in Game 2 are the user's calls; either way it stays a quiet morning option, not a goal.
+4. **Zakat al-fitr: due at Eid dawn, paid before the Eid prayer (recommended), after Eid makruh; Hanafi allows paying its value in cash; 240 TL per person for 2026** (TDV "Fitre"; Diyanet Kurul fetvas; Diyanet 2026 duyuru, which also sets 240 TL as the daily fidye). Owed for oneself and minor children only (Selin is an adult). Diyanet's nisab is net of basic needs *and* a year's debts, so Halil, owing Osman 600, may not be liable at all, making payment voluntary. Recommend: if added, an optional pre-prayer Eid-morning payment in the town ledger, liability computed from the ledger, the 240 TL to game-money mapping labelled as engineering; frame the before/after-prayer distinction as how the payment is classified, not as acceptance.
+5. **Illness and fidya:** Diyanet gives kaza for a temporary or manageable illness and fidye only for permanent inability. Recommend: keep the town's make-up fasts for Halil's hypertension; note that applying this to hypertension is an inference (no Diyanet hypertension page found).
+6. **Eid grave visit and first-bayram mourning are custom** (unattributed fetva.net page; Erzurum folklore; some regions visit on arife instead). No code change; cite `research/eid-and-mourning-sources.md` §3/§5 in the `visit-grave` comment.
+7. **Tarawih**, if ever added: sunnah mu'akkadah, after Isha until dawn (Diyanet, TDV); the 20-rak'ah figure at Diyanet level is unverified.
+
+Still open: which shafaq (red or white) and which Asr (Diyanet's one length or Abu Hanifa's two) a host uses; both are host choices to label. Kefaret for smoking under Diyanet. A qualified Hanafi review of all three notes.
