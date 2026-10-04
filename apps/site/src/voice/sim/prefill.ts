@@ -22,6 +22,7 @@ import {
   MINUTES_PER_DAY,
   type Person,
   preview,
+  selinEidCallMinute,
   standingAdvice,
   TOWN_DEFAULTS,
   type Town,
@@ -107,6 +108,15 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
         appeal: 'duty',
       };
   }
+  // 0a. The last night's beat: the Eid call (seventh pass).
+  if (i.prefer === 'call:selin' && offered('call:selin'))
+    return {
+      optionId: 'call:selin',
+      strength: 'mention',
+      why: `Tomorrow is Eid. Selin will leave the first call to him; she will not call before about ${pad(selinEidCallMinute(town.state))}.`,
+      source: 'end',
+      appeal: 'benevolence',
+    };
   // 0b. He is about to smoke and the doctor's walk is open: offer it instead (round 5: the doctor's "walk, stop
   // smoking" became something the player can act on; each walk where the cigarette is cued wears the habit down).
   if (leaningId === 'smoke' && offered('walk'))
@@ -149,7 +159,7 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
   if (offered('pay-rent') && leaningId !== 'pay-rent' && money >= 300 && owed > 0)
     return end(
       'pay-rent',
-      `Osman is owed ${owed}${day <= 15 ? '; he wants 300 by Ramadan 15' : ''}. He has ${money}.`,
+      `Osman is owed ${owed}${t < T15 ? '; he wants 300 by Ramadan 15, 20:00' : ''}. He has ${money}.`,
       'duty',
     );
   const short = moneyShort(town, t);
@@ -211,6 +221,9 @@ export function moneyShort(
   const projected = money + mornings * T.wage;
   return projected < goal ? { projected, by: `Ramadan ${byDay}`, wants } : undefined;
 }
+
+/** The end of Osman's date: Ramadan 15, 20:00. */
+const T15 = TOWN_DEFAULTS.rentPromiseDay * MINUTES_PER_DAY + 20 * 60;
 
 const pad = (m: number) => {
   const mm = m % MINUTES_PER_DAY;

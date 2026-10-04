@@ -232,6 +232,25 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(day15.map((e) => e.minute)).toEqual([...day15.map((e) => e.minute)].sort((a, b) => a - b));
   });
 
+  test('seventh pass: each played day has its own moment, and skip digests lead with what is new', () => {
+    // Ramadan 30: the night before Eid, with the call to Selin prefilled when it is open.
+    const night = spoken.beats.history.find((b) => /^Tomorrow is Eid\. Selin/.test(b.text));
+    expect(night && Math.floor(night.at / MIN_DAY)).toBe(30);
+    expect(night?.paused).toBe(true);
+    // Ramadan 15: the 17:00 beat is Osman's date (pinned in the running-late test). Digests: firsts, then totals.
+    const g = new VoiceGame(SHIPPED_SEED);
+    const intros: Record<number, string[]> = {};
+    play(g, {
+      stop: (x) => {
+        if (x.intro) intros[x.day] ??= x.intro.lines;
+        return false;
+      },
+    });
+    expect(intros[2]?.some((l) => /Selin often calls after iftar/.test(l))).toBe(true);
+    expect(intros[15]?.[0]).toMatch(/^Nothing new since Ramadan 2/);
+    expect(intros[30]?.[0]).toMatch(/^First time he paid Osman: Ramadan \d+, on his own\./);
+  });
+
   test('every report section is non-empty, with no input and with prefill confirmations', () => {
     for (const g of [quiet, spoken]) {
       const r = g.report;

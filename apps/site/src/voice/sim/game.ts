@@ -231,6 +231,8 @@ export class VoiceGame {
   /** The night sleep whose waking was announced ahead of time (its decision id). */
   private wakeAnnounced: string | undefined;
   private shiftBeatAt: number | undefined;
+  /** The last night's beat (Ramadan 30, after iftar): its prefill is the Eid call. */
+  private lastNightAt: number | undefined;
   /** The last call between Halil and Selin already logged. */
   private callSeen: number | undefined;
   /** What he would now do unasked, from his last decisions without your voice (see unasked.ts). */
@@ -532,7 +534,9 @@ export class VoiceGame {
         .slice(before.cells)
         .filter((c) => happened(c) && c.from < target && dayOf(c.from) > fromDay);
       const days = next.skipped;
-      // What your whispers did, first: how many of the days he did each.
+      // What changed, first (game design review: each digest should lead with "first time he…", not totals).
+      lines.push(...this.firsts(this.cells.slice(0, before.cells).filter(happened), cells, fromDay));
+      // What your whispers did: how many of the days he did each.
       for (const [i, w] of chosen.entries()) {
         const id = WHISPERS[w.choiceId].optionId;
         const did = new Set(cells.filter((c) => c.affordanceId === id).map((c) => dayOf(c.from))).size;
@@ -570,6 +574,22 @@ export class VoiceGame {
     this.intro = { label: next.skipped > 0 ? `${next.skipped} days passed` : dayLabel(next.day), lines };
   }
 
+  /** Acts of his ends done in the skip for the first time this month, with the day and whether on your word. */
+  private firsts(prior: readonly Cell[], cells: readonly Cell[], fromDay: number): string[] {
+    const out: string[] = [];
+    for (const [id, what] of FIRSTS) {
+      if (prior.some((c) => c.affordanceId === id)) continue;
+      const first = cells.find((c) => c.affordanceId === id);
+      if (!first) continue;
+      out.push(
+        `First time ${what}: ${dayLabel(dayOf(first.from))}${first.promptedBy === 'you' ? ', on your word' : ', on his own'}.`,
+      );
+    }
+    return out.length > 0
+      ? out
+      : [`Nothing new since ${dayLabel(fromDay)}: he did nothing of his ends he had not done before.`];
+  }
+
   /** The open questions of a played day, from his ends: Osman's money, the clinic, Selin, and Eid ahead. */
   private dayQuestions(day: number): string[] {
     const st = this.run.town.state;
@@ -594,6 +614,7 @@ export class VoiceGame {
     const since = this.halilCalledAt === undefined ? undefined : day - dayOf(this.halilCalledAt);
     if (since === undefined) out.push('He has not called Selin himself since the funeral.');
     else if (since >= 2) out.push(`He has not called Selin himself in ${since} days.`);
+    if (day === 2) out.push('Selin often calls after iftar. She wants his blood pressure seen.');
     if (day === lastFast) out.push('Tomorrow is Eid. Then you say nothing, and see what he does.');
     return out;
   }
@@ -847,6 +868,7 @@ export class VoiceGame {
     this.onIllness();
     this.onDutyRisk();
     this.onShiftOffered();
+    this.onLastNight();
     this.announceWaking();
     this.lookAhead();
   }
@@ -895,6 +917,26 @@ export class VoiceGame {
     this.shiftBeatAt = this.t;
     this.push({ kind: 'note', who: 'halil', text, beat: 'duty-risk' }, this.t);
     this.beat('duty-risk', text, this.t);
+  }
+
+  /**
+   * The last night of Ramadan (seventh pass: each played day gets its own moment). After iftar, once, while he is
+   * awake and can call: tomorrow Selin leaves the first call to him (the town's own rule, `selinEidCallMinute`).
+   * The beat's prefill is the call. Nothing religious is staged: the night is named only as the night before Eid.
+   */
+  private onLastNight(): void {
+    if (this.quiet || this.muted || this.paused || this.free || !this.live()) return;
+    if (this.day !== TOWN_EID_DAY - 1 || dayOf(this.t) !== this.day) return;
+    if (this.t % MINUTES_PER_DAY < townCalendar(this.day).maghrib + 30) return;
+    if (!this.composer().open) return;
+    if (this.autoPause && this.t - this.beats.lastPauseAt < BEAT_COOLDOWN) return;
+    if (!flagOnce(this.beats, 'last-night')) return;
+    // When they have already spoken tonight the call is not open: the line is logged, with nothing to say to it.
+    const canCall = this.offers().some((o) => o.id === 'call:selin');
+    const text = `Tomorrow is Eid. Selin will leave the first call to him; she will not call before about ${clock(selinEidCallMinute(this.run.town.state))}.`;
+    if (canCall) this.lastNightAt = this.t;
+    this.push({ kind: 'note', who: 'halil', text, beat: 'voice' }, this.t);
+    this.beat('voice', text, this.t, { canPause: canCall });
   }
 
   /**
@@ -1747,6 +1789,7 @@ export class VoiceGame {
       ...(act && !waking ? { currentId: act.affordanceId } : {}),
       ...(this.halilCalledAt !== undefined ? { halilCalledAt: this.halilCalledAt } : {}),
       ...(this.shiftBeatAt !== undefined && t - this.shiftBeatAt <= 30 ? { prefer: 'work-extra' } : {}),
+      ...(this.lastNightAt !== undefined && t - this.lastNightAt <= 30 ? { prefer: 'call:selin' } : {}),
       tutorial:
         this.day === 1 &&
         !this.free &&
@@ -1841,6 +1884,15 @@ const voiceWho = (id: string): LogEntry['who'] => (isVoiceId(id) ? (id as VoiceI
 const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /** Cigarettes he smoked on a day, from the activity cells (played and skipped days). */
+/** Acts of his ends the skip digest names the first time they happen. */
+const FIRSTS: readonly [string, string][] = [
+  ['see-doctor', 'he went to the clinic'],
+  ['call:selin', 'he called Selin himself since the funeral'],
+  ['pay-rent', 'he paid Osman'],
+  ['work-extra', 'he took the afternoon shift'],
+  ['walk', 'he walked instead of the cigarette'],
+];
+
 export function smokesOn(cells: readonly Cell[], day: number): string {
   const n = cells.filter((c) => c.action === 'smoke' && dayOf(c.from) === day).length;
   return n === 0 ? 'none' : n === 1 ? 'one cigarette' : `${n} cigarettes`;
