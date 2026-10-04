@@ -14,7 +14,7 @@
  * as words and drawn values, never numbers.
  */
 
-import { outwardSigns } from '@human/framework';
+import { outwardSigns, type Person } from '@human/framework';
 import {
   DAY,
   MOTION_REACH,
@@ -45,7 +45,7 @@ import type {
   WatchState,
   WinterPlan,
 } from './state.ts';
-import { canTalk } from './talk.ts';
+import { canTalk, type Topic, topicsFor } from './talk.ts';
 import { fearedSection } from './voices.ts';
 import { roman } from './volume.ts';
 
@@ -132,7 +132,13 @@ export interface Frame {
   card: SeasonCard | null;
   /** The fair page: its offers and how many may still be taken. */
   fair: {
-    offers: (Omit<FairOffer, 'cost'> & { affordable: boolean; taken: boolean })[];
+    /** `after`: the granary if it is taken (drawn as sacks, never printed); `named`: an heir is already named. */
+    offers: (Omit<FairOffer, 'cost'> & {
+      affordable: boolean;
+      taken: boolean;
+      after: number;
+      named: boolean;
+    })[];
     picksLeft: number;
   } | null;
   /** The thaw page: this year's lines and the winter in words. */
@@ -140,8 +146,10 @@ export interface Frame {
   /** At dawn: talks left, what was said and who can still be asked. */
   talks: {
     left: number;
-    said: { who: WatcherId; name: string; topic: 'night' | 'body'; text: string }[];
+    said: { who: WatcherId; name: string; topic: Topic; text: string }[];
     can: WatcherId[];
+    /** For each who can still be asked, the topics worth raising, most pressing first. */
+    topics: Record<WatcherId, Topic[]>;
   } | null;
   /** Every living villager, watchers first, then by age. */
   villagers: FrameVillager[];
@@ -342,7 +350,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
     watchers.push({
       id: w.id,
       name: w.name,
-      note: w.note,
+      note: tagline(s, p),
       look: w.look,
       home: w.home,
       newcomer: w.newcomer,
@@ -417,6 +425,47 @@ const TENS = ['twent', 'thirt', 'fort', 'fift', 'sixt', 'sevent', 'eight', 'nine
 const UNITS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
 
 /** 1 → "first", 23 → "twenty-third", in words up to the ninety-ninth. */
+const COUNT = [
+  'no',
+  'one',
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+  'ten',
+  'eleven',
+  'twelve',
+];
+
+/**
+ * A villager's tagline (G3-4): their trade or origin, then what the years have made of them on the wall, then the
+ * Gate (who keeps it, the named heir). The authored adjectives ("Fast, eager") hold only for a first winter or two.
+ */
+export function tagline(s: WatchState, p: Person): string {
+  const v = villager(s, p.id);
+  const age = ageOf(p, s.minute);
+  const trade = v.note.split(',')[0]?.trim() ?? v.note;
+  const yearOf = (minute: number) => Math.floor(minute / (365 * DAY)) + 1;
+  const start = Math.max(v.comes.year, yearOf(p.life.bornAt + 15 * 365 * DAY));
+  const stood = isWatcher(s, p) || age >= 15 ? Math.max(0, s.year - start) : 0;
+  const roles: string[] = [];
+  if (s.gateKeeper === p.id) roles.push('keeps the Gate');
+  if (s.heir === p.id) roles.push('heir to the Gate');
+  let years: string | null = null;
+  if (age >= 15) {
+    const n = COUNT[stood] ?? 'many';
+    if (age >= 60) years = stood >= 10 ? `old on the wall, ${n} winters` : 'old now';
+    else if (stood >= 10) years = `a veteran of ${n} winters`;
+    else if (stood >= 3) years = `${n} winters on the wall`;
+  }
+  if (!years && roles.length === 0) return v.note;
+  return [years ? trade : v.note, years, ...roles].filter((x) => x).join(' · ');
+}
+
 export function ordinal(n: number): string {
   if (n >= 1 && n <= 19) return ORDINAL[n - 1] ?? String(n);
   const t = Math.floor(n / 10);
@@ -528,7 +577,7 @@ function yearFrame(s: WatchState) {
       gen: v.gen,
       family: familyWords(s, p.id),
       spouse: spouses.length ? spouses.join(' and ') : null,
-      note: v.note,
+      note: tagline(s, p),
       impressions: age >= 13 ? keeperImpressions(s, p.id) : [],
     };
   });
@@ -564,11 +613,16 @@ function yearFrame(s: WatchState) {
     card: s.card,
     fair: fair
       ? {
-          offers: fair.offers.map(({ cost, ...o }) => ({
-            ...o,
-            taken: fair.picks.includes(o.id),
-            affordable: picksLeft > 0 && !fair.picks.includes(o.id) && s.grain >= cost,
-          })),
+          offers: fair.offers.map(({ cost, ...o }) => {
+            const named = (o.id === 'heir' || o.id === 'heir2') && s.heir !== null;
+            return {
+              ...o,
+              taken: fair.picks.includes(o.id),
+              affordable: picksLeft > 0 && !fair.picks.includes(o.id) && s.grain >= cost && !named,
+              after: Math.max(0, s.grain - cost),
+              named,
+            };
+          }),
           picksLeft,
         }
       : null,
@@ -589,6 +643,11 @@ function yearFrame(s: WatchState) {
             left: s.talks.left,
             said: s.talks.said.map((x) => ({ ...x, name: s.cast[x.who]?.name ?? x.who })),
             can: presentIds(s).filter((id) => canTalk(s, id)),
+            topics: Object.fromEntries(
+              presentIds(s)
+                .filter((id) => canTalk(s, id))
+                .map((id) => [id, topicsFor(s, id)]),
+            ),
           }
         : null,
     villagers,

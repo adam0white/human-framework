@@ -19,7 +19,7 @@ import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } fr
 import type { Moment } from '../sim/moments.ts';
 import type { Speed } from '../sim/pace.ts';
 import type { Press } from '../sim/state.ts';
-import { TALKS_PER_DAY } from '../sim/talk.ts';
+import { TALKS_PER_DAY, type Topic } from '../sim/talk.ts';
 import type { Frame, FrameWatcher } from '../sim/view.ts';
 import { Chronicle } from './chronicle.tsx';
 import { Icon, type IconName } from './icons.tsx';
@@ -602,6 +602,14 @@ function bodyAsk(w: FrameWatcher | undefined): string {
   return 'How are you holding up?';
 }
 
+/** A talk topic as the Keeper would put it to this person. */
+function askWords(topic: Topic, w: FrameWatcher | undefined): string {
+  if (topic === 'body') return bodyAsk(w);
+  if (topic === 'home') return 'How are things at home?';
+  if (topic === 'gate') return 'Would you keep the Gate one day?';
+  return 'Tell me about last night';
+}
+
 /** Talks at dawn: a little daylight, spent one talk at a time, against the watchers' sleep. */
 function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
   const t = frame.talks;
@@ -631,20 +639,16 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
               <li key={id}>
                 <span className="w-person-name">{w?.name ?? id}</span>
                 <span className="w-ask-btns">
-                  <button
-                    type="button"
-                    className="w-chip"
-                    onClick={() => actions.input({ k: 'talk', who: id, topic: 'night' })}
-                  >
-                    Tell me about last night
-                  </button>
-                  <button
-                    type="button"
-                    className="w-chip"
-                    onClick={() => actions.input({ k: 'talk', who: id, topic: 'body' })}
-                  >
-                    {bodyAsk(w)}
-                  </button>
+                  {(t.topics[id] ?? ['night', 'body']).slice(0, 2).map((topic) => (
+                    <button
+                      key={topic}
+                      type="button"
+                      className="w-chip"
+                      onClick={() => actions.input({ k: 'talk', who: id, topic })}
+                    >
+                      {askWords(topic, w)}
+                    </button>
+                  ))}
                 </span>
               </li>
             );

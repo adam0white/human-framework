@@ -72,14 +72,22 @@ export interface WinterPlan {
   /** Why the lead came, in words (prosperity, a thin wall). */
   why: string;
   /** The winter's question, if any, and how it stands. */
-  question: { text: string; kind: 'gate' | 'first' | 'souls'; who?: WatcherId; met: boolean | null } | null;
+  question: {
+    text: string;
+    kind: 'gate' | 'first' | 'souls' | 'last' | 'parent' | 'newlywed';
+    who?: WatcherId;
+    /** The second of a newly married pair. */
+    who2?: WatcherId;
+    met: boolean | null;
+  } | null;
 }
 
 /** A card in the open seasons (a proposal the Keeper may speak to); closes on its own when the window passes. */
 export interface SeasonCard {
   id: number;
-  kind: 'proposal';
-  /** Who proposed, and who answers. */
+  /** A proposal; a birth (`who` a parent, `other` the child); a young watcher asking to learn (`other` the teacher). */
+  kind: 'proposal' | 'birth' | 'practise';
+  /** Who proposed, and who answers (see `kind`). */
   who: WatcherId;
   other: WatcherId;
   text: string;
@@ -91,12 +99,12 @@ export interface SeasonCard {
 }
 
 export interface FairOffer {
-  id: 'outsiders' | 'wall' | 'bell' | 'seed' | 'heir';
+  id: 'outsiders' | 'wall' | 'bell' | 'seed' | 'heir' | 'heir2' | 'rebuild';
   label: string;
   /** What it costs and does, in words. */
   text: string;
   cost: number;
-  /** For 'wall', the stretch; for 'heir', the person. */
+  /** For 'wall' and 'rebuild', the stretch; for 'heir' and 'heir2', the person. */
   target?: string;
 }
 
@@ -116,6 +124,9 @@ export interface YearRecord {
   /** Stretches climbed on played nights (each night a stretch was climbed counts once). */
   breaches: number;
 }
+
+/** Winter questions met by bringing someone through unhurt (no bite, never downed). */
+export const UNHURT_QUESTIONS: readonly string[] = ['first', 'last', 'parent', 'newlywed'];
 
 /** A volume of the chronicle: one generation's question and how it ended (spec §3). */
 export interface Volume {
@@ -142,7 +153,9 @@ export interface Leaf {
 /** Talks with the Keeper by day (spec §4): a budget of daylight and what was said. */
 export interface TalkState {
   left: number;
-  said: { who: WatcherId; topic: 'night' | 'body'; text: string }[];
+  said: { who: WatcherId; topic: 'night' | 'body' | 'home' | 'gate'; text: string }[];
+  /** `${who}:${topic}` for every talk held so far (a topic not yet raised with someone ranks higher). */
+  asked: string[];
 }
 
 /** How hard the Keeper presses a posting: asked, urged (a stronger suggestion) or insisted on. */
@@ -303,6 +316,10 @@ export interface WatchState {
   /** A card open in the open seasons. */
   card: SeasonCard | null;
   nextCardId: number;
+  /** Sling lessons the Keeper allowed this year (G3-4 practise card): `who` learns from `with` until `until`. */
+  pairings: { who: WatcherId; with: WatcherId; until: number }[];
+  /** Births not yet brought to the Keeper as a card (born in winter, or while another card was open). */
+  newborns: { mother: WatcherId; child: WatcherId; winter: boolean }[];
   /** The fair's offers this autumn and what was bought (null outside the fair). */
   fair: { offers: FairOffer[]; picks: FairOffer['id'][]; max: number } | null;
   /** Talks left today and what was said (reset each dawn). */
@@ -314,6 +331,8 @@ export interface WatchState {
   /** Who keeps the Gate (the volume's question may hang on them), and the heir named at a fair. */
   gateKeeper: WatcherId | null;
   heir: WatcherId | null;
+  /** What each asked has said of keeping the Gate one day (G3-4 talks); a willing one is put forward at the fair. */
+  gateWilling: Record<WatcherId, boolean>;
   /** Irreversible marks: burned houses, extended stretches, a stretch lost for a year, the bigger bell, seed grain. */
   marks: {
     ruins: { section: SectionId; year: number; who: WatcherId }[];
@@ -333,6 +352,8 @@ export interface WatchState {
     /** The granary at the winter's first dusk. */
     atWinter: number;
     hungry: boolean;
+    /** Quiet stints stood in the routine part of the winter, by `${who}@${section}` (G3-4: told at the thaw). */
+    stints: Record<string, number>;
   };
   /** One line of numbers per finished year, oldest first (for the chronicle shelf and the long-run checks). */
   annals: YearRecord[];
@@ -443,8 +464,10 @@ export function createState(seed: number): WatchState {
     chronicle: [],
     card: null,
     nextCardId: 1,
+    pairings: [],
+    newborns: [],
     fair: null,
-    talks: { left: 2, said: [] },
+    talks: { left: 2, said: [], asked: [] },
     volume: {
       n: 1,
       title: 'The Gate',
@@ -458,9 +481,18 @@ export function createState(seed: number): WatchState {
     leaves: [],
     gateKeeper: 'tamar',
     heir: null,
+    gateWilling: {},
     marks: { ruins: [], extended: [], lost: null, bigBell: false, seed: false },
     nextBorn: 1,
-    yearGrain: { lostWinter: 0, harvest: 0, eaten: 0, breaches: {}, atWinter: START_GRAIN, hungry: false },
+    yearGrain: {
+      lostWinter: 0,
+      harvest: 0,
+      eaten: 0,
+      breaches: {},
+      atWinter: START_GRAIN,
+      hungry: false,
+      stints: {},
+    },
     annals: [],
     cast: {},
     order: [],

@@ -65,7 +65,14 @@ export function playYears(
         break;
       default:
         if (!isSeason(s)) throw new Error(`no policy for ${s.phase}`);
-        if (s.card) run.input({ k: 'card', id: s.card.id, choice: 'bless' });
+        if (s.card) {
+          const ids = s.card.options.map((o) => o.id);
+          run.input({
+            k: 'card',
+            id: s.card.id,
+            choice: ids.includes('bless') ? 'bless' : (ids.at(-1) ?? ''),
+          });
+        }
         run.step();
     }
   }

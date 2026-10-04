@@ -13,7 +13,10 @@ import { presentIds } from './night.ts';
 import { isWatcher, KEEPER_ID, nameOf, personOf, villager } from './people.ts';
 import { type FairOffer, nextRandom, type WatchState } from './state.ts';
 
-export const FAIR_PICKS = 2;
+/** The fair no longer caps choices by count (G3-4): the granary is the limit. */
+export const FAIR_PICKS = 4;
+/** Sacks to rebuild a stretch the thaw brought down, before the winter it would stand closed. */
+export const REBUILD_COST = 5;
 
 function homesBy(s: WatchState): Record<SectionId, number> {
   const out: Record<SectionId, number> = { west: 0, gate: 0, mill: 0, east: 0 };
@@ -24,6 +27,17 @@ function homesBy(s: WatchState): Record<SectionId, number> {
 /** Draws the fair's offers and opens the fair page. */
 export function openFair(s: WatchState): void {
   const pool: FairOffer[] = [];
+  // Offered every fair they apply: rebuilding a fallen stretch, and the heir (one or two names).
+  const fixed: FairOffer[] = [];
+  const heirOffers: FairOffer[] = [];
+  if (s.marks.lost && s.marks.lost.year > s.year)
+    fixed.push({
+      id: 'rebuild',
+      label: `Rebuild ${s.marks.lost.section === 'gate' ? 'the wall by the Gate' : `the ${s.marks.lost.section} wall`}`,
+      text: 'Masons from the fair could raise the fallen stretch again before the snow, so it can be stood this winter. It costs a great deal of grain.',
+      cost: REBUILD_COST,
+      target: s.marks.lost.section,
+    });
   pool.push({
     id: 'outsiders',
     label: 'Admit the outsider family',
@@ -57,28 +71,53 @@ export function openFair(s: WatchState): void {
   });
   const keeper = s.gateKeeper ? personOf(s, s.gateKeeper) : undefined;
   if (keeper && !s.heir && ageOf(keeper, s.minute) >= 50) {
-    const heir = presentIds(s)
+    // Two names, so naming is a choice: those who said at dawn they would keep the Gate first, then the surest arm.
+    const rank = (p: NonNullable<ReturnType<typeof personOf>>) =>
+      (s.gateWilling[p.id] === true ? 1 : s.gateWilling[p.id] === false ? -1 : 0) * 10 +
+      (p.skills.sling?.level ?? 0);
+    const names = presentIds(s)
       .map((id) => personOf(s, id))
-      .filter((p) => p !== undefined && p.id !== keeper.id && ageOf(p, s.minute) < 40)
-      .sort((a, b) => (b?.skills.sling?.level ?? 0) - (a?.skills.sling?.level ?? 0))[0];
-    if (heir)
-      pool.push({
+      .filter(
+        (p): p is NonNullable<typeof p> =>
+          p !== undefined && p.id !== keeper.id && ageOf(p, s.minute) >= 17 && ageOf(p, s.minute) < 40,
+      )
+      .sort((a, b) => rank(b) - rank(a) || (a.id < b.id ? -1 : 1))
+      .slice(0, 2);
+    const [first, second] = names;
+    const said = (id: string) =>
+      s.gateWilling[id] === true
+        ? ' They told you at dawn they would.'
+        : s.gateWilling[id] === false
+          ? ' They told you they did not want it.'
+          : '';
+    if (first)
+      heirOffers.push({
         id: 'heir',
-        label: `Name ${heir.name} heir to the Gate`,
-        text: `${heir.name} will take the Gate when ${keeper.name} leaves the stair. ${heir.name} will stand taller for it; ${keeper.name} may not like being told.`,
+        label: `Name ${first.name} heir to the Gate`,
+        text: `${first.name} will take the Gate when ${keeper.name} leaves the stair.${said(first.id)} ${first.name} will stand taller for it; ${keeper.name} may not like being told.${second ? ` You can name only one.` : ''}`,
         cost: 0,
-        target: heir.id,
+        target: first.id,
+      });
+    if (second)
+      heirOffers.push({
+        id: 'heir2',
+        label: `Name ${second.name} heir to the Gate`,
+        text: `Or ${second.name}.${said(second.id)} The one you pass over will remember it.`,
+        cost: 0,
+        target: second.id,
       });
   }
-  // Three offers, drawn from the pool in a seeded order.
-  const offers: FairOffer[] = [];
+  // Three offers drawn from the pool in a seeded order, after the fixed ones; the heir's names come last.
+  const offers: FairOffer[] = [...fixed];
   const left = [...pool];
-  while (offers.length < 3 && left.length > 0) {
+  const drawn: FairOffer[] = [];
+  while (offers.length + drawn.length < 3 && left.length > 0) {
     const i = Math.floor(nextRandom(s) * left.length);
     const [o] = left.splice(i, 1);
-    if (o) offers.push(o);
+    if (o) drawn.push(o);
   }
-  offers.sort((a, b) => pool.indexOf(a) - pool.indexOf(b));
+  drawn.sort((a, b) => pool.indexOf(a) - pool.indexOf(b));
+  offers.push(...drawn, ...heirOffers);
   s.fair = { offers, picks: [], max: FAIR_PICKS };
   s.phase = 'fair';
   chronicle(s, 'fair', 'The autumn fair came to the meadow below the Gate.');
@@ -90,6 +129,7 @@ export function takeOffer(s: WatchState, id: FairOffer['id']): boolean {
   if (s.phase !== 'fair' || !f) return false;
   const o = f.offers.find((x) => x.id === id);
   if (!o || f.picks.includes(id) || f.picks.length >= f.max || s.grain < o.cost) return false;
+  if ((id === 'heir' || id === 'heir2') && s.heir) return false;
   s.grain -= o.cost;
   f.picks.push(id);
   const at = s.minute;
@@ -114,7 +154,18 @@ export function takeOffer(s: WatchState, id: FairOffer['id']): boolean {
       s.marks.seed = true;
       chronicle(s, 'fair', 'Seed grain was bought for next year.');
       break;
-    case 'heir': {
+    case 'rebuild': {
+      const sec = o.target as SectionId;
+      if (s.marks.lost?.section === sec) s.marks.lost = null;
+      chronicle(
+        s,
+        'fair',
+        `Masons from the fair raised ${sec === 'gate' ? 'the wall by the Gate' : `the ${sec} wall`} again before the snow.`,
+      );
+      break;
+    }
+    case 'heir':
+    case 'heir2': {
       const heir = o.target ? personOf(s, o.target) : undefined;
       const keeper = s.gateKeeper ? personOf(s, s.gateKeeper) : undefined;
       if (!heir) break;
@@ -126,6 +177,9 @@ export function takeOffer(s: WatchState, id: FairOffer['id']): boolean {
       };
       lift(heir, 0.1);
       if (keeper) lift(keeper, -0.06);
+      const passed = f.offers.find((x) => (x.id === 'heir' || x.id === 'heir2') && x.target !== heir.id);
+      const other = passed?.target ? personOf(s, passed.target) : undefined;
+      if (other) lift(other, -0.05);
       chronicle(
         s,
         'fair',

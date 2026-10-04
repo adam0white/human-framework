@@ -2,11 +2,14 @@ import { describe, expect, it } from 'vitest';
 import { playYears } from '../../../test/watch/years.ts';
 import { listPages, loadPage, savePage } from '../store.ts';
 import { DAY } from './config.ts';
+import { openFair, takeOffer } from './fair.ts';
 import { seasonNow } from './life.ts';
 import { DAY_RATE, Pacer } from './pace.ts';
 import { isWatcher } from './people.ts';
 import { keeperImpressions } from './reads.ts';
 import { endState, replay, WatchRun } from './run.ts';
+import type { WatchState } from './state.ts';
+import { topicsFor } from './talk.ts';
 
 describe('Game 3 years (G3-3)', () => {
   const run = playYears(1, 3);
@@ -47,6 +50,54 @@ describe('Game 3 years (G3-3)', () => {
     while (resumed.state.minute < exp.endMinute) resumed.step();
     expect(endState(resumed.state).fullHash).toBe(exp.end.fullHash);
     expect(resumed.log.length).toBe(run.log.length);
+  }, 300_000);
+});
+
+describe('Game 3 long-run depth (G3-4)', () => {
+  const run = playYears(1, 3);
+  const s = run.state;
+  const clone = (): WatchState => JSON.parse(JSON.stringify(s));
+
+  it('each thaw writes the routine nights; births and summer lessons come to the Keeper as cards', () => {
+    for (const year of [1, 2, 3])
+      expect(s.chronicle.some((l) => l.year === year && l.text.includes('went by routine'))).toBe(true);
+    // The headless Keeper sends a sack for every birth and allows every lesson.
+    expect(s.chronicle.some((l) => l.text.startsWith('You sent a sack from the granary for'))).toBe(true);
+    expect(s.chronicle.some((l) => l.text.includes('took sling lessons from'))).toBe(true);
+    const learners = s.pairings.map((x) => x.who);
+    expect(new Set(learners).size).toBe(learners.length);
+  }, 300_000);
+
+  it('talk topics differ by what the Keeper reads of each watcher', () => {
+    const lists = s.community.people.filter((p) => isWatcher(s, p)).map((p) => topicsFor(s, p.id).join(','));
+    expect(new Set(lists).size).toBeGreaterThan(1);
+    expect(lists.some((l) => l.includes('home'))).toBe(true);
+  }, 300_000);
+
+  it('an ageing gatekeeper brings two heir names to the fair; naming one closes the other', () => {
+    const t = clone();
+    const keeper = t.community.people.find((p) => p.id === t.gateKeeper);
+    expect(keeper).toBeDefined();
+    if (!keeper) return;
+    keeper.life.bornAt = t.minute - 60 * 365 * DAY;
+    t.heir = null;
+    openFair(t);
+    const heirs = (t.fair?.offers ?? []).filter((o) => o.id === 'heir' || o.id === 'heir2');
+    expect(heirs.length).toBe(2);
+    expect(heirs[0]?.target).not.toBe(heirs[1]?.target);
+    expect(takeOffer(t, 'heir2')).toBe(true);
+    expect(t.heir).toBe(heirs[1]?.target);
+    expect(takeOffer(t, 'heir')).toBe(false);
+  }, 300_000);
+
+  it('a stretch the thaw brought down can be rebuilt at the fair', () => {
+    const t = clone();
+    t.marks.lost = { section: 'west', year: t.year + 1 };
+    t.grain = 30;
+    openFair(t);
+    expect(t.fair?.offers[0]?.id).toBe('rebuild');
+    expect(takeOffer(t, 'rebuild')).toBe(true);
+    expect(t.marks.lost).toBeNull();
   }, 300_000);
 });
 

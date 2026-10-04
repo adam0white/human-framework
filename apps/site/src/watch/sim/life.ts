@@ -30,6 +30,7 @@ import {
   familyVoices,
   GENERIC_CUSTOM,
   heldNorms,
+  instructionFrom,
   learnOutcome,
   type MarriageCustom,
   MINUTES_PER_YEAR,
@@ -299,7 +300,19 @@ export function routineFor(s: WatchState) {
           valence: 0.05,
           keeps: true,
         });
-        if (watcher)
+        const lesson = s.pairings.find((x) => x.who === p.id && now < x.until);
+        const teacher = lesson ? personOf(s, lesson.with) : undefined;
+        if (watcher && teacher?.body.alive)
+          // A lesson the Keeper allowed: more often, taught, and side by side with the teacher.
+          acts.push({
+            action: 'a sling lesson',
+            minutes: 60,
+            chance: 0.6,
+            skill: practise('sling', p, 0.15),
+            practice: { quality: 0.9, instruction: instructionFrom(teacher, 'sling') },
+            with: [teacher.id],
+          });
+        else if (watcher)
           acts.push({
             action: 'sling practice',
             minutes: 60,
@@ -721,9 +734,117 @@ function births(s: WatchState, at: number): void {
     const lean = s.grain < living(s).length ? 0.5 : 1;
     if (nextRandom(s) >= conceptionChance(mother, father, 1) * lean * crowding(s)) continue;
     const child = bear(s, mother, father, at);
+    birthCard(s, mother, child, at);
     const mv = villager(s, mother.id);
     if (mv.bornHere)
       fillLeaf(s, 'grandchild', `${mv.name}, born here, had a child of her own: ${child.name}.`);
+  }
+}
+
+/** Seasons in which a card can open (the Keeper is reading days, not nights). */
+const cardSeason = (s: WatchState): boolean =>
+  s.phase === 'spring' || s.phase === 'summer' || s.phase === 'autumn';
+
+/** A birth as a moment (G3-4): the Keeper may call on the family, or send a sack from the granary. */
+function birthCard(s: WatchState, mother: Person, child: Person, at: number, winter = false): void {
+  if (s.card || !cardSeason(s)) {
+    s.newborns.push({ mother: mother.id, child: child.id, winter: !cardSeason(s) || winter });
+    return;
+  }
+  const father = spousesOf(mother).find((id) => s.cast[id]?.status === 'here');
+  const parents = father ? `${nameOf(s, mother.id)} and ${nameOf(s, father)}` : nameOf(s, mother.id);
+  s.card = {
+    id: s.nextCardId++,
+    kind: 'birth',
+    who: mother.id,
+    other: child.id,
+    text: winter
+      ? `${parents} had a ${child.life.sex === 'female' ? 'daughter' : 'son'} in the winter: ${child.name}. The family is out in the spring sun with ${them(s, child.id)}.`
+      : `${parents} have a ${child.life.sex === 'female' ? 'daughter' : 'son'}: ${child.name}.`,
+    read:
+      s.grain < living(s).length
+        ? 'The granary is thin this year; a sack would be felt.'
+        : 'A sack would not be missed this year.',
+    options: [
+      { id: 'visit', label: 'Call on them' },
+      { id: 'grain', label: 'Send a sack from the granary' },
+    ],
+    until: at + 3 * DAY,
+    choice: null,
+  };
+}
+
+/** Day of the year a young watcher may ask to learn the sling (mid-summer). */
+export const LESSON_DAY = 195;
+
+/**
+ * Mid-summer, a young watcher with a poor arm asks to learn from the surest sling (G3-4 person card). Allowed, they
+ * practise together, taught, until the winter: a better arm and a closer tie. Refused, the young one is let down.
+ */
+function lessonCard(s: WatchState, at: number): void {
+  if (s.card || !cardSeason(s)) return;
+  const watchers = living(s).filter((p) => isHere(s, p) && ageOf(p, at) >= 15 && ageOf(p, at) < RETIRE_AGE);
+  const sling = (p: Person) => skillLevel(p, 'sling');
+  const young = watchers
+    .filter((p) => ageOf(p, at) < 24 && !s.pairings.some((x) => x.who === p.id))
+    .sort((a, b) => sling(a) - sling(b) || (a.id < b.id ? -1 : 1))[0];
+  if (!young) return;
+  const teacher = watchers
+    .filter((p) => p.id !== young.id && ageOf(p, at) >= 25)
+    .sort((a, b) => sling(b) - sling(a) || (a.id < b.id ? -1 : 1))[0];
+  if (!teacher || sling(teacher) <= sling(young) + 0.05) return;
+  s.card = {
+    id: s.nextCardId++,
+    kind: 'practise',
+    who: young.id,
+    other: teacher.id,
+    text: `${nameOf(s, young.id)} asks if ${nameOf(s, teacher.id)} could teach ${them(s, young.id)} the sling this summer, in the evenings after the fields.`,
+    read: `${nameOf(s, teacher.id)} has the surest arm on the wall. The fields would miss them both an hour a day.`,
+    options: [
+      { id: 'bless', label: 'Let them practise together' },
+      { id: 'refuse', label: 'The fields come first' },
+    ],
+    until: at + 4 * DAY,
+    choice: null,
+  };
+}
+
+/** The Keeper's word on a birth or lesson card (`null`: it closed unanswered). */
+export function settleLifeCard(
+  s: WatchState,
+  card: { kind: string; who: string; other: string },
+  choice: string | null,
+): void {
+  const lift = (id: string, d: number) => {
+    const p = personOf(s, id);
+    if (!p) return;
+    p.will.voices = p.will.voices.map((v) =>
+      v.voiceId === KEEPER_ID ? { ...v, trust: Math.max(0, Math.min(1, v.trust + d)) } : v,
+    );
+  };
+  const mother = personOf(s, card.who);
+  const family = mother
+    ? [mother.id, ...spousesOf(mother).filter((id) => s.cast[id]?.status === 'here')]
+    : [];
+  if (card.kind === 'birth') {
+    if (choice === 'visit') for (const id of family) lift(id, 0.03);
+    else if (choice === 'grain' && s.grain >= 1) {
+      s.grain -= 1;
+      for (const id of family) lift(id, 0.06);
+      chronicle(s, 'birth', `You sent a sack from the granary for ${nameOf(s, card.other)}.`, card.other);
+    }
+  } else if (card.kind === 'practise') {
+    if (choice === 'bless') {
+      const until = s.year * 365 * DAY;
+      s.pairings.push({ who: card.who, with: card.other, until });
+      lift(card.who, 0.03);
+      chronicle(
+        s,
+        'courting',
+        `${nameOf(s, card.who)} took sling lessons from ${nameOf(s, card.other)} in the summer evenings.`,
+        card.who,
+      );
+    } else if (choice === 'refuse') lift(card.who, -0.03);
   }
 }
 
@@ -740,6 +861,14 @@ export function dayHook(s: WatchState) {
     births(s, at);
     const d = day - (s.year - 1) * 365;
     if (seasonOfDay(d) === 'winter') calmStints(s, at);
+    if (d === LESSON_DAY) lessonCard(s, at);
+    // A birth not yet brought to the Keeper comes as a card on the next open day.
+    if (!s.card && cardSeason(s)) {
+      const next = s.newborns.shift();
+      const mother = next ? personOf(s, next.mother) : undefined;
+      const child = next ? personOf(s, next.child) : undefined;
+      if (next && mother?.body.alive && child?.body.alive) birthCard(s, mother, child, at, next.winter);
+    }
   };
 }
 
@@ -752,6 +881,8 @@ function calmStints(s: WatchState, at: number): void {
     const post = s.posts[p.id];
     if (!post || nextRandom(s) >= 0.3) continue;
     const sec = postSection(post);
+    const key = `${p.id}@${sec}`;
+    s.yearGrain.stints[key] = (s.yearGrain.stints[key] ?? 0) + 1;
     const aff = {
       id: `post:${sec}`,
       action: 'hold-post',

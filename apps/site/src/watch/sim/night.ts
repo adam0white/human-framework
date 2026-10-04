@@ -98,6 +98,7 @@ import {
   type Press,
   pick,
   type Token,
+  UNHURT_QUESTIONS,
   type WatchState,
 } from './state.ts';
 import { canTalk, TALKS_PER_DAY, type Topic, talk } from './talk.ts';
@@ -409,15 +410,17 @@ function enterDawn(s: WatchState): void {
   const q = s.winter.question;
   if (q && q.met === null) {
     if (
-      q.kind === 'first' &&
-      s.notes.some((x) => x.who === q.who && (x.kind === 'bitten' || x.kind === 'downed'))
+      UNHURT_QUESTIONS.includes(q.kind) &&
+      s.notes.some(
+        (x) => (x.who === q.who || x.who === q.who2) && (x.kind === 'bitten' || x.kind === 'downed'),
+      )
     )
       q.met = false;
     if (q.kind === 'gate' && s.winterNight === s.winter.peak)
       q.met = (t.got.gate.wolf ?? 0) + (t.got.gate.thief ?? 0) === 0;
   }
   for (const p of s.community.people) if (isWatcher(s, p)) maybeLimp(s, p);
-  s.talks = { left: TALKS_PER_DAY, said: [] };
+  s.talks = { left: TALKS_PER_DAY, said: [], asked: s.talks.asked };
   s.tokens = [];
   s.throws = [];
   s.commands = {};

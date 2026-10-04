@@ -116,6 +116,12 @@ export function SeasonPanel({ frame, actions }: { frame: Frame; actions: WatchAc
       <VolumeLine v={frame.volume} />
       <h2 className="w-season-date">{frame.date}</h2>
       <p className="w-note w-question">{frame.volume.question}</p>
+      {frame.year <= 2 ? (
+        <p className="w-note w-speed-hint">
+          The days run on their own. <strong>Days</strong> and <strong>Seasons</strong>, in the top bar, carry
+          the year faster; a matter for you slows it while you read.
+        </p>
+      ) : null}
       <div className="w-granary">
         <span>The granary</span>
         <Sacks have={frame.grain} lost={0} label="The granary, drawn as sacks" />
@@ -137,7 +143,11 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
         Traders and families come up the valley. What you take here is paid from the granary and{' '}
         <strong>cannot be undone</strong>.
       </p>
-      <p className="w-picks">{picksWords(fair.picksLeft)}</p>
+      <p className="w-picks">
+        {fair.picksLeft <= 0
+          ? picksWords(0)
+          : 'Take as many as the granary can spare: the winter still has to be eaten through.'}
+      </p>
       <div className="w-granary">
         <span>The granary</span>
         <Sacks have={frame.grain} lost={0} label="The granary, drawn as sacks" />
@@ -147,6 +157,12 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
           <li key={o.id} className={o.taken ? 'w-offer is-taken' : 'w-offer'}>
             <h3>{o.label}</h3>
             <p>{o.text}</p>
+            {!o.taken && o.affordable && o.after < frame.grain ? (
+              <div className="w-offer-after">
+                <span className="w-note">The granary after it</span>
+                <Sacks have={o.after} lost={frame.grain - o.after} label="The granary if you take it" />
+              </div>
+            ) : null}
             {o.taken ? (
               <p className="w-taken">Taken. It stands.</p>
             ) : (
@@ -161,7 +177,11 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
                 </button>
                 {!o.affordable ? (
                   <p className="w-note">
-                    {fair.picksLeft <= 0 ? 'No more choices this year.' : 'The granary cannot spare it.'}
+                    {o.named
+                      ? 'You have named an heir.'
+                      : fair.picksLeft <= 0
+                        ? 'No more choices this year.'
+                        : 'The granary cannot spare it.'}
                   </p>
                 ) : null}
               </>

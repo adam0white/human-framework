@@ -49,11 +49,13 @@ import {
   readDeaths,
   routineFor,
   SMALL_VILLAGE,
+  settleLifeCard,
   settleProposal,
 } from './life.ts';
 import { planNight, presentIds, stepPeople } from './night.ts';
 import { isWatcher, nameOf, personOf } from './people.ts';
-import { nextRandom, type WatchState } from './state.ts';
+import { nextRandom, UNHURT_QUESTIONS, type WatchState } from './state.ts';
+import { fearedSection } from './voices.ts';
 import { closeVolume, openVolume, volumeResolved } from './volume.ts';
 
 export const SPRING_DAY = 90;
@@ -118,6 +120,10 @@ export function closeCard(s: WatchState, choice: string | null): boolean {
   const asker = personOf(s, c.who);
   const answerer = personOf(s, c.other);
   s.card = null;
+  if (c.kind !== 'proposal') {
+    settleLifeCard(s, c, choice);
+    return true;
+  }
   if (!asker || !answerer || !asker.body.alive || !answerer.body.alive) return true;
   settleProposal(s, asker, answerer, choice === 'bless' ? 1 : choice === 'against' ? -1 : null, s.minute);
   return true;
@@ -142,10 +148,11 @@ function thaw(s: WatchState): void {
       const died = s.chronicle.some((l) => l.year === s.year && l.season === 'winter' && l.kind === 'death');
       // Met only if the granary can also feed everyone into spring: a hungry spring is not "done".
       q.met = !died && s.grain >= Math.ceil(living(s).length * EAT_PER_HEAD);
-    } else if (q.kind === 'first') q.met = true;
+    } else if (UNHURT_QUESTIONS.includes(q.kind)) q.met = true;
     else q.met = false;
   }
   if (q) chronicle(s, 'winter', q.met ? `Done: ${q.text}` : `Not done: ${q.text}`);
+  routineLine(s);
   // Grown old on the wall.
   for (const p of living(s)) {
     if (isWatcher(s, p) && ageOf(p, s.minute) >= 60 && (s.cast[p.id]?.comes.year ?? s.year) <= s.year - 20)
@@ -208,6 +215,35 @@ function thaw(s: WatchState): void {
     return;
   }
   if (volumeResolved(s)) closeVolume(s);
+}
+
+/**
+ * The routine part of the winter, told at the thaw (G3-4): how many nights went by without the Keeper's lantern,
+ * who stood the most of them, and a stretch someone feared that quiet nights on it may have eased.
+ */
+function routineLine(s: WatchState): void {
+  const nights = SPRING_DAY - s.winter.nights;
+  const by = new Map<string, number>();
+  let eased: { who: string; sec: SectionId } | null = null;
+  for (const [key, n] of Object.entries(s.yearGrain.stints)) {
+    const [who, sec] = key.split('@') as [string, SectionId];
+    by.set(who, (by.get(who) ?? 0) + n);
+    const p = personOf(s, who);
+    if (!eased && p && n >= 3 && fearedSection(p)?.section === sec) eased = { who, sec };
+  }
+  const most = [...by.entries()]
+    .filter(([id]) => personOf(s, id)?.body.alive)
+    .sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1))
+    .slice(0, 2)
+    .map(([id]) => nameOf(s, id));
+  let text = `The other ${nights} nights of winter went by routine, the wall stood in turns.`;
+  if (most.length === 2) text += ` ${most[0]} and ${most[1]} stood the most of them.`;
+  else if (most.length === 1) text += ` ${most[0]} stood the most of them.`;
+  if (eased) {
+    const where = eased.sec === 'gate' ? 'the Gate' : `the ${eased.sec} wall`;
+    text += ` Quiet nights on ${where} may have eased ${nameOf(s, eased.who)}’s dread of it.`;
+  }
+  chronicle(s, 'winter', text);
 }
 
 /** Leaves the thaw page: the closed volume's epilogue first, if one closed, then spring. */
@@ -286,6 +322,7 @@ export function startWinter(s: WatchState): void {
     breaches: {},
     atWinter: s.grain,
     hungry: false,
+    stints: {},
   };
   const day = Math.floor(s.minute / DAY);
   // Nobody is still standing last winter's wall: the year was lived by routine, away from the posts.

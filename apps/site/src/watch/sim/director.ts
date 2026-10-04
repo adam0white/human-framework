@@ -60,28 +60,74 @@ export function planWinter(s: WatchState): void {
   s.winter = { nights, lead, twist, peak, why, question: winterQuestion(s) };
 }
 
+/**
+ * The winter's question, drawn from the cast's lives (G3-4): an old Gate keeper on the stair, a first winter on the
+ * wall, someone's last winter before they stand down, a parent of last year's child, a pair married last year.
+ * One is picked among those that apply (seeded), else "every soul to the thaw".
+ */
 function winterQuestion(s: WatchState): WinterPlan['question'] {
+  const out: NonNullable<WinterPlan['question']>[] = [];
   const keeper = s.gateKeeper ? personOf(s, s.gateKeeper) : undefined;
-  if (keeper && isWatcher(s, keeper) && ageOf(keeper, s.minute) >= RETIRE_AGE - 6) {
-    return {
+  if (keeper && isWatcher(s, keeper) && ageOf(keeper, s.minute) >= RETIRE_AGE - 6)
+    out.push({
       kind: 'gate',
       who: keeper.id,
       text: `${nameOf(s, keeper.id)} is slow on the Gate stair now. Keep the Gate whole on the worst night.`,
       met: null,
-    };
-  }
-  const first = living(s).find((p) => {
+    });
+  const watchers = living(s).filter((p) => isWatcher(s, p));
+  const first = watchers.find((p) => {
     const a = ageOf(p, s.minute);
-    return a >= 15 && a < 16 && isWatcher(s, p);
+    return a >= 15 && a < 16;
   });
   if (first)
-    return {
+    out.push({
       kind: 'first',
       who: first.id,
       text: `${nameOf(s, first.id)} stands the wall for the first time. Bring ${nameOf(s, first.id)} to the thaw unhurt.`,
       met: null,
-    };
-  return { kind: 'souls', text: 'Bring every soul and the granary to the thaw.', met: null };
+    });
+  const last = watchers.find((p) => {
+    const a = ageOf(p, s.minute);
+    return a >= RETIRE_AGE - 1 && a < RETIRE_AGE;
+  });
+  if (last)
+    out.push({
+      kind: 'last',
+      who: last.id,
+      text: `This is ${nameOf(s, last.id)}’s last winter on the wall. See ${nameOf(s, last.id)} off it unhurt.`,
+      met: null,
+    });
+  const lastYear = s.chronicle.filter((l) => l.year === s.year - 1);
+  for (const l of lastYear) {
+    if (l.kind !== 'birth' || !l.who) continue;
+    const parent = s.cast[l.who]?.parents?.find((id) => watchers.some((p) => p.id === id));
+    if (!parent) continue;
+    out.push({
+      kind: 'parent',
+      who: parent,
+      text: `${nameOf(s, parent)} has a child not a year old. Bring ${nameOf(s, parent)} home unhurt every dawn.`,
+      met: null,
+    });
+    break;
+  }
+  for (const l of lastYear) {
+    if (l.kind !== 'marriage' || !l.who) continue;
+    const a = watchers.find((p) => p.id === l.who);
+    const spouse = a?.social.relationships.find((r) => r.roles.includes('spouse'))?.otherId;
+    if (!a || !spouse || !watchers.some((p) => p.id === spouse)) continue;
+    out.push({
+      kind: 'newlywed',
+      who: a.id,
+      who2: spouse,
+      text: `${nameOf(s, a.id)} and ${nameOf(s, spouse)} were married last year and both stand the wall. Bring them both through unhurt.`,
+      met: null,
+    });
+    break;
+  }
+  if (out.length === 0)
+    return { kind: 'souls', text: 'Bring every soul and the granary to the thaw.', met: null };
+  return out[Math.floor(nextRandom(s) * out.length)] ?? out[0] ?? null;
 }
 
 /** The night's plan in a directed winter (year ≥ 2); `planNight` delegates here. */
