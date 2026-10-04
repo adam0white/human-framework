@@ -699,6 +699,7 @@ The user asked for a simulated player who pushes Halil the wrong way, to see how
   - **His routine holds.** Every bad style still works every skipped-day morning (the saboteur loses only the played mornings it interrupts) and pays Osman before Eid.
   - **He puts the tempter off more than he obeys.** The tempter is heard more and trusted more (0.53, above silence): it agrees with his own idle leanings and earns trust for it. Even so, he puts it off (346) more often than he takes it (302).
   - This is the design point working: pushing hard is the least effective way to be bad.
+- **Prayers.** He misses none of the five daily prayers under any style (one missed prayer in one saboteur run, without the whisper). The prayer count differs because prayers beyond the five dailies, at the mosque or at home, rise or fall with the day's shape. The tempter's lower count probably comes from rest and sleep displacing them; this is not confirmed.
 - **Seeds barely matter.** The five seeds give nearly the same month in every style (ranges are 0–3 days). The spread comes from the player, not the seed.
 - **The good direction is fragile to small choices** (seed 7, measured on the way):
   - The order of the two whispers matters. Walk-then-shift smokes 13 days; shift-then-walk smokes 8.
@@ -724,10 +725,11 @@ The user asked for a simulated player who pushes Halil the wrong way, to see how
   - If the bad direction should reach the goals, the card needs a tempting whisper or two, for example "have tea with Rıza" or "Osman can wait". With those the player can at least make things worse by choice rather than only by neglect.
   - That is a design choice for the user, and I recommend it only after defect 2 is fixed.
 - **Silence is the floor on rent, the clinic and Selin.** If the user wants bad play to cost more than silence, the silent month would need some of these to go right on his own: for example a chance he calls Selin unasked when she has not called for days. Then a bad voice would have something to undo.
-- **Eid cigarettes stay noise (2–6) in every style**, as in the sixth pass. The month's smoking does not show on Eid. A Eid-morning reading of the habit (already in the report) is the better end metric.
+- **Eid cigarettes stay noise (2–6) in every style**, as in the sixth pass. The month's smoking does not show on Eid. An Eid-morning reading of the habit (already in the report) is the better end metric.
 
 `balance.test.ts` (seeds 7 and 1, about 12 s) holds the range:
-- The tempter and the saboteur each end materially worse than silence on at least two outcomes. Today that is suhoor, sleep and late nights, plus mornings and trust for the saboteur.
+- The tempter (with and without its whisper) and the saboteur each end materially worse than silence on at least two outcomes. Today that is suhoor, sleep and late nights, smoke days for the tempter without the whisper, and mornings and trust for the saboteur.
+- The no-whisper tempter is in the asserted set so that the test survives the fix for defect 2.
 - The guardian ends materially better on smoke days and rent by Eid.
 - The saboteur's insists are refused more than five times as often as obeyed.
 - Both bad styles still work at least 26 mornings and pay Osman by Eid.

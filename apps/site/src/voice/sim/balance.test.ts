@@ -51,12 +51,13 @@ function better(r: Row, base: Row): string[] {
 describe('Game 2 range: how far the player can move the month', () => {
   const rows: Record<string, Row> = {};
   beforeAll(() => {
-    for (const n of ['Silent', 'Tempter', 'Saboteur', 'Guardian']) rows[n] = mean(n);
+    for (const n of ['Silent', 'Tempter', 'Tempter, no whisper', 'Saboteur', 'Guardian']) rows[n] = mean(n);
   }, 300_000);
   const row = (n: string) => rows[n] as Row;
 
   test('a bad voice ends materially worse than silence on at least two outcomes', () => {
-    for (const n of ['Tempter', 'Saboteur']) {
+    // 'Tempter, no whisper' holds without the rest whisper (heard at every hour, a recorded defect).
+    for (const n of ['Tempter', 'Tempter, no whisper', 'Saboteur']) {
       const w = worse(row(n), row('Silent'));
       expect(w.length, `${n}: ${w.join(', ')}`).toBeGreaterThanOrEqual(2);
     }
