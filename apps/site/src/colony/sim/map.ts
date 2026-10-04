@@ -295,10 +295,6 @@ export function inBounds(x: number, y: number): boolean {
   return x >= 0 && y >= 0 && x < MAP_W && y < MAP_H;
 }
 
-export function tileKind(map: GameMap, x: number, y: number): TileKind | undefined {
-  return inBounds(x, y) ? map.kinds[y * map.w + x] : undefined;
-}
-
 export function placeAt(map: GameMap, x: number, y: number): PlaceId | null {
   if (!inBounds(x, y)) return null;
   return map.owner[y * map.w + x] ?? null;

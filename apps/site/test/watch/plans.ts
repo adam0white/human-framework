@@ -3,9 +3,15 @@
  * differently and a bad plan visibly loses sacks"). A plan reads only what the Keeper can read at dusk: the
  * scout's warning. Used by tests; the game never calls it.
  */
-import { type PostId, SECTION_IDS, type SectionId, WATCHERS, type WatcherId } from './config.ts';
-import type { Input } from './night.ts';
-import type { WatchState } from './state.ts';
+import {
+  type PostId,
+  SECTION_IDS,
+  type SectionId,
+  WATCHERS,
+  type WatcherId,
+} from '../../src/watch/sim/config.ts';
+import type { Input } from '../../src/watch/sim/night.ts';
+import type { WatchState } from '../../src/watch/sim/state.ts';
 
 export type PlanName = 'matched' | 'mismatched' | 'usual';
 
