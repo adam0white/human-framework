@@ -45,6 +45,8 @@ Decisions are event-driven: a person decides when idle, when an activity ends, o
 
 ## Modules and owned state
 
+Which human faculties these modules cover, and which they do not yet, is listed in the [faculty inventory](faculty-inventory.md).
+
 | Module | Owns | Key exports |
 |---|---|---|
 | `core/` | `rng` | `createRng(seed)`, `random(rng)`, `normal`, `pick`; math: `clamp`, `clamp01`, `sigmoid`, `decay(value, dt, halfLife)`, `logit`, `expit`, `minuteOfDay`, `dayOf` |
