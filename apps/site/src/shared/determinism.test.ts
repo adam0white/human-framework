@@ -8,7 +8,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { expect, test } from 'vitest';
 
-const SIM_DIRS = ['../colony/sim/', '../voice/sim/'];
+const SIM_DIRS = ['../colony/sim/', '../voice/sim/', '../watch/sim/'];
 const BANNED =
   /Math\.(exp|expm1|log|log2|log10|log1p|pow|sin|cos|tan|asin|acos|atan|atan2|sinh|cosh|tanh|cbrt|hypot)\(|\*\*/;
 
