@@ -92,6 +92,14 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* Android flashes a box on every tap otherwise; buttons keep their own :active states (mobile review B1.13). */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* No pull-to-refresh or scroll chaining out of the page: a stray pull-down would reload a running game (B1.3). */
+html,
+body {
+  overscroll-behavior: none;
 }
 
 body {
@@ -102,6 +110,8 @@ body {
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  /* No double-tap zoom on rapid taps (speed buttons, Play); pinch zoom stays (B1.14). */
+  touch-action: manipulation;
 }
 
 a {
