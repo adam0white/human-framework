@@ -1,7 +1,9 @@
 /**
- * The whole game state of a Night Watch run, as plain JSON: the clock, the wall, the watchers' posts, the
- * tokens on the lanes, grain, the rope and the seeded RNG. Nothing here knows about real time or the UI.
+ * The whole game state of a Night Watch run, as plain JSON: the clock, the wall, the watchers (HF people in a
+ * community, the Keeper's postings and where each one is), the tokens on the lanes, grain, the rope and the
+ * seeded RNG. Nothing here knows about real time or the UI.
  */
+import type { Command, Community, Percept, Person } from '@human/framework';
 import {
   DUSK_START,
   NIGHTFALL,
@@ -9,11 +11,14 @@ import {
   type SectionId,
   START_GRAIN,
   type ThreatKind,
-  WATCHERS,
   type WatcherId,
 } from './config.ts';
+import { createKeeper, createWatchCommunity, type Place } from './people.ts';
 
 export type Phase = 'goal' | 'dusk' | 'night' | 'dawn' | 'fallen';
+
+/** How hard the Keeper presses a posting: asked, urged (a stronger suggestion) or insisted on. */
+export type Press = 'ask' | 'urge' | 'insist';
 
 export interface Spawn {
   /** Absolute minute it leaves the treeline. */
@@ -40,10 +45,12 @@ export interface Token {
 export interface Alert {
   minute: number;
   section: SectionId;
-  kind: 'motion' | 'sighted' | 'foot' | 'in' | 'driven' | 'bell' | 'rope';
+  kind: 'motion' | 'sighted' | 'foot' | 'in' | 'driven' | 'bell' | 'rope' | 'person';
   text: string;
   /** Whether it eased play to the tactical speed. */
   slowed: boolean;
+  /** The watcher it is about, if any. */
+  who?: WatcherId;
 }
 
 export interface NightTally {
@@ -56,6 +63,33 @@ export interface NightTally {
   bellRung: number;
 }
 
+/** Something a watcher did or suffered in the night, for the dawn page (in their voice) and the export. */
+export interface NightNote {
+  minute: number;
+  who: WatcherId;
+  kind:
+    | 'refused'
+    | 'deferred'
+    | 'modified'
+    | 'fled'
+    | 'home'
+    | 'slept'
+    | 'froze'
+    | 'ran'
+    | 'bitten'
+    | 'downed'
+    | 'carried'
+    | 'carrier'
+    | 'commanded'
+    | 'defied'
+    | 'prayed'
+    | 'shaken'
+    | 'together';
+  section?: SectionId;
+  /** The other person involved (who carried, who was carried). */
+  other?: WatcherId;
+}
+
 export interface DawnPage {
   night: number;
   lines: { section: SectionId; text: string }[];
@@ -64,26 +98,56 @@ export interface DawnPage {
   grainBefore: number;
   grainAfter: number;
   ropeSnapped: boolean;
+  /** What the watchers say at dawn, in their own words. */
+  voices: { who: WatcherId; text: string }[];
+}
+
+export interface DaySummary {
+  night: number;
+  /** One line per watcher: what their day was. */
+  lines: { who: WatcherId; text: string }[];
+  ropeBefore: number;
+  ropeAfter: number;
 }
 
 export interface WatchState {
-  version: 1;
+  version: 2;
   seed: number;
   /** mulberry32 state. */
   rng: number;
-  /** Absolute sim minute; day 0 starts at midnight, the game at 17:00 on day 0. */
+  /** Absolute sim minute; day 0 starts at midnight, the game at 17:00 on day 0. Framework time is the same. */
   minute: number;
   /** Absolute minute this night falls (18:00 of the dusk's day). */
   nightStart: number;
   phase: Phase;
   /** 1-based. */
   night: number;
-  /** Standing posts: a watcher's post stays until changed. */
+  /** The Keeper's postings: standing suggestions, kept until changed (null: no posting). */
   posts: Record<WatcherId, PostId | null>;
+  press: Record<WatcherId, Press>;
+  /** Minute each posting was given (the suggestion's `since`). */
+  postedAt: Record<WatcherId, number>;
+  /** Where each watcher is now. */
+  place: Record<WatcherId, Place>;
+  /** The watchers as HF people (plain JSON). */
+  community: Community;
+  /** The Keeper as a Person: holds impressions of the watchers, never stepped. */
+  keeper: Person;
+  /** Bell commands in force, each until a minute. */
+  commands: Partial<Record<WatcherId, { cmd: Command; until: number }>>;
+  /** Percepts queued for each watcher (pulled by the driver, pruned once perceived). */
+  percepts: Partial<Record<WatcherId, Percept[]>>;
+  /** Per section, the last minute a threat was seen there (the families behind it hear of it). */
+  homeThreat: Record<SectionId, number>;
+  /** Downed watchers already carried to the hall tonight. */
+  carried: Partial<Record<WatcherId, boolean>>;
+  /** The night's notes, for the dawn page. */
+  notes: NightNote[];
+  /** The last day, summarised at dusk. */
+  day: DaySummary | null;
   /** The Keeper's position along the wall as a section index; lit only when standing at `target`. */
   lantern: { x: number; target: number };
   rope: { wear: number; snapped: boolean };
-  rousedUntil: number;
   grain: number;
   /** The night's plan, drawn at dusk. */
   lead: ThreatKind;
@@ -132,21 +196,40 @@ export function emptyTally(grain: number): NightTally {
   };
 }
 
-export function createState(seed: number): WatchState {
-  const posts = {} as Record<WatcherId, PostId | null>;
-  for (const w of WATCHERS) posts[w.id] = w.usual;
+export function perWatcher<T>(f: (id: WatcherId) => T): Record<WatcherId, T> {
   return {
-    version: 1,
+    tamar: f('tamar'),
+    kian: f('kian'),
+    mara: f('mara'),
+    joss: f('joss'),
+    yunus: f('yunus'),
+    ruslan: f('ruslan'),
+  };
+}
+
+export function createState(seed: number): WatchState {
+  return {
+    version: 2,
     seed,
     rng: seed | 0,
     minute: DUSK_START,
     nightStart: NIGHTFALL,
     phase: 'goal',
     night: 1,
-    posts,
+    posts: perWatcher(() => null),
+    press: perWatcher(() => 'ask'),
+    postedAt: perWatcher(() => DUSK_START),
+    place: perWatcher(() => 'away'),
+    community: createWatchCommunity(),
+    keeper: createKeeper(seed, DUSK_START),
+    commands: {},
+    percepts: {},
+    homeThreat: { west: -1e9, gate: -1e9, mill: -1e9, east: -1e9 },
+    carried: {},
+    notes: [],
+    day: null,
     lantern: { x: 1, target: 1 },
     rope: { wear: 0, snapped: false },
-    rousedUntil: -1,
     grain: START_GRAIN,
     lead: 'wolf',
     warned: 'gate',

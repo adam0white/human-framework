@@ -15,7 +15,7 @@ function runNight(s: WatchState): void {
   while (s.phase === 'night') stepMinute(s);
 }
 
-describe('Night Watch rules (G3-1)', () => {
+describe('Night Watch rules (G3-1, G3-2)', () => {
   it('opens on the goal page with the clock stopped and a scout warning drawn', () => {
     const s = newGame(7);
     expect(s.phase).toBe('goal');
@@ -93,7 +93,7 @@ describe('Night Watch rules (G3-1)', () => {
     }
   });
 
-  it('each pull wears the rope until it snaps, and dawn mends it partly', () => {
+  it('each pull wears the rope until it snaps; a day of mending makes it whole again', () => {
     const s = toNight(13);
     let pulls = 0;
     expect(applyInput(s, { k: 'bell' })).toBe(true);
@@ -112,28 +112,42 @@ describe('Night Watch rules (G3-1)', () => {
     runNight(s);
     if (s.phase === 'dawn') {
       applyInput(s, { k: 'toDusk' });
-      expect(s.rope.snapped).toBe(false);
-      expect(s.rope.wear).toBeGreaterThan(0.5);
+      expect(s.rope.snapped).toBe(s.rope.wear >= 1);
+      expect(s.day?.ropeAfter ?? 1).toBeLessThan(s.day?.ropeBefore ?? 0);
+      if (s.day?.lines.some((l) => /bell rope/.test(l.text))) expect(s.rope.snapped).toBe(false);
     }
   });
 
-  it('the bell rouses the wall: rung at the first motion it saves grain on average', () => {
-    let quiet = 0;
-    let rung = 0;
-    for (let seed = 100; seed < 120; seed++) {
-      for (const ring of [false, true]) {
+  it('the bell is a command: those in earshot are put under it, and it costs them autonomy', () => {
+    let commanded = 0;
+    let costlier = 0;
+    for (let seed = 100; seed < 110; seed++) {
+      const runs = [false, true].map((ring) => {
         const s = toNight(seed);
+        let rangAt = -1;
+        let heard: string[] = [];
         while (s.phase === 'night') {
           stepMinute(s);
-          if (ring && s.alerts.some((a) => a.kind === 'foot' && a.minute === s.minute - 1))
-            applyInput(s, { k: 'bell' });
+          if (ring && rangAt < 0 && s.alerts.some((a) => a.kind === 'foot')) {
+            expect(applyInput(s, { k: 'bell' })).toBe(true);
+            rangAt = s.minute;
+            heard = Object.keys(s.commands);
+          }
+          if (rangAt >= 0 && s.minute === rangAt + 30)
+            for (const id of heard)
+              if (s.community.people.find((p) => p.id === id)?.will.command) commanded += 1;
         }
-        const lost = START_GRAIN - s.grain;
-        if (ring) rung += lost;
-        else quiet += lost;
+        return { s, heard };
+      });
+      const [quiet, rung] = runs;
+      for (const id of rung?.heard ?? []) {
+        const a = quiet?.s.community.people.find((p) => p.id === id)?.needs.autonomy ?? 0;
+        const b = rung?.s.community.people.find((p) => p.id === id)?.needs.autonomy ?? 0;
+        if (b < a) costlier += 1;
       }
     }
-    expect(rung).toBeLessThan(quiet);
+    expect(commanded).toBeGreaterThan(5);
+    expect(costlier).toBeGreaterThan(3);
   });
 
   it('the lantern alone at an empty stretch slows climbers, and the dawn page names the empty post', () => {

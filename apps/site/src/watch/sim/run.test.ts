@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Input } from './night.ts';
 import { Pacer, type Speed } from './pace.ts';
-import { replay, WatchRun } from './run.ts';
+import { endState, replay, WatchRun } from './run.ts';
 import { nextRandom } from './state.ts';
 
 /**
@@ -48,7 +48,9 @@ describe('Night Watch input log and playtest export', () => {
     expect(exp.inputs.length).toBeGreaterThan(10);
     expect(exp.inputs.every((e, i) => i === 0 || e.m >= (exp.inputs[i - 1]?.m ?? 0))).toBe(true);
     const roundTrip = JSON.parse(JSON.stringify(exp));
-    expect(JSON.stringify(replay(roundTrip))).toBe(JSON.stringify(exp.end));
+    expect(JSON.stringify(endState(replay(roundTrip)))).toBe(JSON.stringify(exp.end));
+    // Short enough to paste into a chat or an issue.
+    expect(JSON.stringify(exp).length).toBeLessThan(120_000);
   });
 
   it('real-time pacing does not leak into the rules: two tick schedules, one log, one end state', () => {

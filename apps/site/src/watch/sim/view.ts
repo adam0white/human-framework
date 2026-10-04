@@ -152,7 +152,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
     grain: s.grain,
     grainAtDusk: s.phase === 'night' ? s.tally.grainAtDusk : s.grain,
     rope: { ...s.rope },
-    roused: s.phase === 'night' && s.minute < s.rousedUntil,
+    roused: s.phase === 'night' && Object.keys(s.commands).length > 0,
     slowed,
     // Only what is still news: alerts from the last hour of the night.
     alerts: s.alerts.filter((a) => s.minute - a.minute < 60).slice(-6),

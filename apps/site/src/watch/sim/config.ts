@@ -1,5 +1,5 @@
 /**
- * The Night Watch, phase G3-1 data: the wall, its posts, the placeholder watchers and the threats. All of it is
+ * The Night Watch data (G3-1, G3-2): the wall, its posts, the cast and the threats. All of it is
  * game-side host data (spec §7, "Game-side only"). Numbers are engineering defaults tuned by the headless gate
  * test (`gate.test.ts`), not measurements of anything.
  */
@@ -61,29 +61,240 @@ export function postSection(id: PostId): SectionId {
   return p.section;
 }
 
-export const WATCHER_IDS = ['tamar', 'kian', 'mara'] as const;
+export const WATCHER_IDS = ['tamar', 'kian', 'mara', 'joss', 'yunus', 'ruslan'] as const;
 export type WatcherId = (typeof WATCHER_IDS)[number];
 
+type TraitName =
+  | 'honesty'
+  | 'emotionality'
+  | 'extraversion'
+  | 'agreeableness'
+  | 'conscientiousness'
+  | 'openness';
+
 /**
- * Placeholder watchers: fixed stats, always obey. G3-2 replaces them with HF people. `aim` is the chance per
- * minute to hit a lit, approaching target; `sight` (0..1) is how far into the dark they see.
+ * The cast (G3-2): host data for HF people (`people.ts`). Traits, skills and ties are the game's engineering
+ * choices. `sling` is aim (the chance per minute to hit a lit, approaching target is `AIM_SCALE × sling`, then
+ * capacities, fatigue and fear); `sight` (0..1) is how far into the dark they see; `craft` mends the rope.
+ * `reserve` is how much they keep from showing (Tamar's pride hides pain). `known` is how well the Keeper knows
+ * them on the night they arrive (0 for the newcomer). Ties are each person's own view of the other.
  */
 export interface WatcherDef {
   id: WatcherId;
   name: string;
-  aim: number;
-  sight: number;
-  /** The post they take when nobody says otherwise (the standing post on the first night). */
+  sex: 'female' | 'male';
+  age: number;
+  /** The night they first stand the wall (1-based). */
+  arrives: number;
+  /** The post they take when nobody says otherwise (the standing post on their first night). */
   usual: PostId;
   /** What they are known for, in words, for the roster. */
   note: string;
+  /** The stretch of wall their household sits behind. */
+  home: SectionId;
+  /** Who waits at home, in words; null when nobody does. */
+  family: string | null;
+  traits: Partial<Record<TraitName, number>>;
+  sling: number;
+  sight: number;
+  craft: number;
+  fitness: number;
+  keeperTrust: number;
+  known: number;
+  /** How firmly they hold that the watch must be kept (conviction in the host norm 'keep-watch'). */
+  duty: number;
+  reserve?: { pain?: number; fear?: number; fatigue?: number };
+  prays?: boolean;
+  newcomer?: boolean;
+  ties: { otherId: WatcherId; roles: string[]; affection: number; trust?: number }[];
 }
 
 export const WATCHERS: readonly WatcherDef[] = [
-  { id: 'tamar', name: 'Tamar', aim: 0.3, sight: 0.25, usual: 'gate-1', note: 'Sling, steady' },
-  { id: 'kian', name: 'Kian', aim: 0.24, sight: 0.45, usual: 'gate-2', note: 'Fast, eager' },
-  { id: 'mara', name: 'Mara', aim: 0.18, sight: 1, usual: 'west-1', note: 'Best sight' },
+  {
+    id: 'tamar',
+    name: 'Tamar',
+    sex: 'female',
+    age: 54,
+    arrives: 1,
+    usual: 'gate-1',
+    note: 'Sling, steady',
+    home: 'gate',
+    family: null,
+    traits: {
+      emotionality: 0.2,
+      conscientiousness: 0.85,
+      agreeableness: 0.45,
+      extraversion: 0.35,
+      honesty: 0.6,
+      openness: 0.4,
+    },
+    sling: 0.85,
+    sight: 0.25,
+    craft: 0.3,
+    fitness: 0.5,
+    keeperTrust: 0.7,
+    known: 0.6,
+    duty: 0.9,
+    reserve: { pain: 0.85, fear: 0.6 },
+    ties: [
+      { otherId: 'kian', roles: ['student'], affection: 0.55, trust: 0.6 },
+      { otherId: 'yunus', roles: ['friend'], affection: 0.5, trust: 0.7 },
+      { otherId: 'ruslan', roles: ['neighbor'], affection: -0.2, trust: 0.35 },
+    ],
+  },
+  {
+    id: 'kian',
+    name: 'Kian',
+    sex: 'male',
+    age: 16,
+    arrives: 1,
+    usual: 'gate-2',
+    note: 'Fast, eager',
+    home: 'west',
+    family: 'his little sister',
+    traits: {
+      emotionality: 0.6,
+      extraversion: 0.75,
+      conscientiousness: 0.4,
+      agreeableness: 0.6,
+      openness: 0.8,
+      honesty: 0.6,
+    },
+    sling: 0.65,
+    sight: 0.45,
+    craft: 0.2,
+    fitness: 0.85,
+    keeperTrust: 0.75,
+    known: 0.4,
+    duty: 0.6,
+    ties: [
+      { otherId: 'tamar', roles: ['mentor'], affection: 0.75, trust: 0.8 },
+      { otherId: 'mara', roles: ['neighbor'], affection: 0.3 },
+    ],
+  },
+  {
+    id: 'mara',
+    name: 'Mara',
+    sex: 'female',
+    age: 34,
+    arrives: 1,
+    usual: 'west-1',
+    note: 'Best sight',
+    home: 'east',
+    family: 'her two children',
+    traits: {
+      emotionality: 0.7,
+      agreeableness: 0.7,
+      conscientiousness: 0.6,
+      extraversion: 0.45,
+      openness: 0.5,
+      honesty: 0.7,
+    },
+    sling: 0.5,
+    sight: 1,
+    craft: 0.3,
+    fitness: 0.6,
+    keeperTrust: 0.6,
+    known: 0.5,
+    duty: 0.6,
+    ties: [
+      { otherId: 'joss', roles: ['spouse'], affection: 0.85, trust: 0.85 },
+      { otherId: 'kian', roles: ['neighbor'], affection: 0.35 },
+    ],
+  },
+  {
+    id: 'joss',
+    name: 'Joss',
+    sex: 'male',
+    age: 38,
+    arrives: 2,
+    usual: 'mill-1',
+    note: 'Smith, strong',
+    home: 'east',
+    family: null,
+    traits: {
+      emotionality: 0.35,
+      agreeableness: 0.3,
+      conscientiousness: 0.65,
+      extraversion: 0.5,
+      openness: 0.35,
+      honesty: 0.6,
+    },
+    sling: 0.5,
+    sight: 0.35,
+    craft: 0.9,
+    fitness: 0.85,
+    keeperTrust: 0.5,
+    known: 0.5,
+    duty: 0.75,
+    ties: [
+      { otherId: 'mara', roles: ['spouse'], affection: 0.8, trust: 0.85 },
+      { otherId: 'ruslan', roles: ['neighbor'], affection: -0.55, trust: 0.2 },
+    ],
+  },
+  {
+    id: 'yunus',
+    name: 'Yunus',
+    sex: 'male',
+    age: 61,
+    arrives: 2,
+    usual: 'mill-2',
+    note: 'Miller, calm',
+    home: 'mill',
+    family: null,
+    traits: {
+      emotionality: 0.2,
+      agreeableness: 0.8,
+      conscientiousness: 0.7,
+      honesty: 0.85,
+      extraversion: 0.4,
+      openness: 0.5,
+    },
+    sling: 0.35,
+    sight: 0.3,
+    craft: 0.5,
+    fitness: 0.3,
+    keeperTrust: 0.65,
+    known: 0.6,
+    duty: 0.7,
+    prays: true,
+    ties: [{ otherId: 'tamar', roles: ['friend'], affection: 0.5, trust: 0.7 }],
+  },
+  {
+    id: 'ruslan',
+    name: 'Ruslan',
+    sex: 'male',
+    age: 45,
+    arrives: 3,
+    usual: 'east-2',
+    note: 'Spear, newcomer',
+    home: 'gate',
+    family: null,
+    traits: {
+      emotionality: 0.75,
+      agreeableness: 0.5,
+      conscientiousness: 0.55,
+      extraversion: 0.3,
+      openness: 0.6,
+      honesty: 0.65,
+    },
+    sling: 0.6,
+    sight: 0.5,
+    craft: 0.4,
+    fitness: 0.7,
+    keeperTrust: 0.4,
+    known: 0,
+    duty: 0.45,
+    newcomer: true,
+    ties: [
+      { otherId: 'joss', roles: ['neighbor'], affection: -0.3, trust: 0.3 },
+      { otherId: 'tamar', roles: ['neighbor'], affection: 0 },
+    ],
+  },
 ];
+
+/** Hit chance per minute at sling 1, lit, unhurt, rested and calm. */
+export const AIM_SCALE = 0.36;
 
 export function watcherDef(id: WatcherId): WatcherDef {
   const w = WATCHERS.find((x) => x.id === id);
@@ -129,19 +340,25 @@ export const DARK_SIGHT_BONUS = 0.2;
 /** Hit chance multipliers. */
 export const DARK_AIM = 0.5;
 export const FOOT_AIM = 1.3;
-export const ROUSED_AIM = 1.25;
+/** Sitting at the post (resting) throws this often. */
+export const SIT_AIM = 0.5;
 /** Motion shows in the dark from this far out. */
 export const MOTION_REACH = 0.3;
 
 /** Minutes for the Keeper to walk the lantern to a neighbouring section. */
 export const LANTERN_STEP_MIN = 5;
 
-/** The bell: how long a ring rouses the wall, how much each pull wears the rope, and dawn mending. */
-export const BELL_ROUSE_MIN = 15;
+/**
+ * The bell is a command (HF `command`): it orders the watchers in earshot of the Keeper (his section and its
+ * neighbours) to hold their posts for this long. Each pull wears the rope; a snapped rope waits for a day's
+ * mending (`day.ts`), which takes this much wear off per hour of work at craft 1.
+ */
+export const BELL_COMMAND_MIN = 90;
 export const BELL_WEAR_BASE = 0.22;
 export const BELL_WEAR_SPREAD = 0.1;
-export const ROPE_DAWN_MEND = 0.3;
-export const ROUSED_SPEED = 0.5;
+export const ROPE_MEND_PER_HOUR = 0.25;
+/** A rope nobody mends still gets a quick knot at dawn: this much wear comes off. */
+export const ROPE_DAWN_MEND = 0.1;
 
 /** The scout is right about each wave this often. */
 export const SCOUT_TRUE = 0.75;

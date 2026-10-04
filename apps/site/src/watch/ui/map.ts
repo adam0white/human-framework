@@ -54,6 +54,9 @@ const LOOK: Record<WatcherId, { body: string; scarf: string }> = {
   tamar: { body: '#7a5c44', scarf: '#d9c9a8' },
   kian: { body: '#4f6a7a', scarf: '#c2703f' },
   mara: { body: '#6b4f6b', scarf: '#8e3b46' },
+  joss: { body: '#5a4a3a', scarf: '#9a8a5a' },
+  yunus: { body: '#8a7a68', scarf: '#e8e2d0' },
+  ruslan: { body: '#3f4a3a', scarf: '#6a7f8f' },
 };
 
 export interface Ease {
