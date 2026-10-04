@@ -37,9 +37,9 @@
  * half-life between any two sessions, so over decades of daily practice the shrinking power-law gains fall below a
  * day's forgetting and a lifelong farmer plateaus low and then declines (docs/findings.md). With it, the forgetting
  * half-life grows with accumulated practice hours, so well-practised skills barely rust between daily sessions and
- * decay slowly in disuse. The direction follows the skill-retention literature (Arthur, Bennett, Stanush & McNelly
- * 1998, meta-analysis: decay is smaller the more a skill was originally learned and overlearned); the linear form and
- * `consolidationHours` are engineering assumptions, not a fitted curve. Does not claim: different retention by skill
+ * decay slowly in disuse. This is an overlearning hypothesis: Arthur, Bennett, Stanush & McNelly 1998 (meta-analysis)
+ * show decay growing with time of nonuse and moderated by task type, with only weak, data-limited evidence on
+ * overlearning. The linear form and `consolidationHours` are engineering assumptions, not a fitted curve. Does not claim: different retention by skill
  * type (closed versus open, physical versus cognitive), or that spacing of sessions matters.
  */
 import { clamp01, decay, dexp, dlog, sigmoid } from '../core/index.ts';

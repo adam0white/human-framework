@@ -16,8 +16,9 @@
  *   others raises Extraversion and little lowers it; a varied year raises Openness and a narrow one lowers it. Each
  *   push is at most `CHARACTER_DEFAULTS.maxExperiencePerYear`. Single events change nothing directly. What experience
  *   adds is an offset from the maturation path that fades by `experienceReversion` a year, so a life that stays the
- *   same settles at a set point instead of drifting to the bound, and a change in life quality moves traits again
- *   (set-point and dynamic-equilibrium accounts: Ormel, Riese & Rosmalen 2012; the fade rate is an assumption).
+ *   same settles instead of drifting to the bound, and a change in life quality moves traits again. Ormel, Riese &
+ *   Rosmalen 2012 favour experience-dependent set points over a fixed one people return to; the fade toward the
+ *   maturation path is an engineering assumption, not their model.
  *
  * Every trait and value stays within `maxDrift` of where it stood when drift was enabled, so rank order mostly holds
  * (high adult rank-order stability, Bleidorn et al. 2022). All rates, thresholds and caps are engineering assumptions
