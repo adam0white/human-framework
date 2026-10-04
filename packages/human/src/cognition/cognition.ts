@@ -24,6 +24,7 @@
  * an advertised `safety` gain) or paying looks only like a loss. The spec's "security need" is read as the
  * `safety` need: `security` is a value, not a need, and no need is added.
  */
+import { inBreak } from '../affect/index.ts';
 import { agendaTerms } from '../agenda/index.ts';
 import { trustOf } from '../beliefs/index.ts';
 import { normTerms } from '../conscience/index.ts';
@@ -409,7 +410,8 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   }
 
   // Suggestions: strength × voice trust × appeal match, one term per voice. Never bypasses vetoes (will enforces).
-  const voices = voicesIn(ctx.suggestion, ctx.suggestions);
+  // During a mental break no voice reaches him (crisis SCOPE): no live or remembered suggestion terms.
+  const voices = inBreak(p) ? [] : voicesIn(ctx.suggestion, ctx.suggestions);
   let reactance = 0;
   for (const s of voices) {
     if (!suggestionTargets(s, aff)) continue;
@@ -432,7 +434,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
 
   // Standing advice (N9): remembered suggestions from told advice, by trust in the source. A source speaking
   // now about this option is counted once, through its live term above.
-  for (const t of rememberedTerms(p, aff, ctx.now, voices)) push(t.source, t.value);
+  if (!inBreak(p)) for (const t of rememberedTerms(p, aff, ctx.now, voices)) push(t.source, t.value);
 
   let utility = 0;
   for (const t of terms) utility += t.value;

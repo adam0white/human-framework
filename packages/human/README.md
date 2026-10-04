@@ -159,6 +159,12 @@ order whatever they would have chosen, at a price in autonomy, voice pressure an
 they would rather have done something else. A pressing need suspends it for a decision; death, a mental break,
 being downed, or an order to break a held norm ends it. Suggestions are unchanged. See docs/framework.md.
 
+## Mental breaks
+
+`enableBreaks(p, behaviours)` opts a person into crises: under a low mood or heavy stress a break can start (an
+hourly hazard on the person's own RNG), and for its length only the host's break behaviour is open to them and no
+voice reaches them. Sleep and comfort from someone close shorten it. Off unless enabled.
+
 ## What it does not model
 
 - **Space and travel.** There is no map or pathfinding. Hosts fold travel into `duration` and mark nearby

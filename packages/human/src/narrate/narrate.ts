@@ -259,6 +259,7 @@ export function voiceLine(p: Person, res: SuggestionResolution, key = res.reason
       }
       if (res.reason === 'asleep') return phraseLine('voice.asleep', {}, lex);
       if (res.reason === 'commanded') return pickLine('voice.underOrders', key, {}, lex);
+      if (res.reason === 'break') return pickLine('voice.break', key, {}, lex);
       if (linesFor(`needFirst:${res.reason}`, lex).length > 0)
         return phraseLine(`needFirst:${res.reason}`, {}, lex);
       if (res.reason === 'need:survival') return phraseLine('voice.survival', {}, lex);

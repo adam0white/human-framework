@@ -25,6 +25,7 @@
  * decaying standing advice (see `rememberAdvice`).
  */
 
+import { breakAllows, inBreak } from '../affect/index.ts';
 import { commitmentPressure, pressureReachedAt } from '../agenda/index.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
 import { clamp01, decay, random } from '../core/index.ts';
@@ -361,6 +362,9 @@ export function vetoFor(
   const W = WILL_DEFAULTS;
   if (!p.body.alive) return { kind: 'cannot', reason: 'dead' };
   if (!wellFormed(aff)) return { kind: 'cannot', reason: 'invalid' };
+  // A mental break narrows what he will do to its behaviour; a body at the edge may still eat, drink or sleep.
+  if (inBreak(p) && !breakAllows(p, aff) && !(ctx.desperation >= W.survivalDesperation && servesBody(aff)))
+    return { kind: 'cannot', reason: 'break' };
   const mode = aff.mode ?? 'awake';
   if (
     p.body.asleep &&
@@ -619,6 +623,19 @@ function evaluate(
     }
   }
   if (suggestions.length === 0) return withCommandRefusal(ev, cmd);
+  if (inBreak(p)) {
+    // During a mental break no voice reaches him; nothing is counted for or against any of them.
+    ev.resolutions = suggestions.map((s) => ({
+      voiceId: s.voiceId,
+      verdict: 'refused' as const,
+      kind: 'cannot' as const,
+      reason: 'break',
+      says: '',
+    }));
+    ev.voices = suggestions.map((s) => ({ id: s.voiceId, pressure: 0, accepted: 0, refused: 0 }));
+    if (ev.resolutions.length === 1) ev.suggestion = ev.resolutions[0];
+    return withCommandRefusal(ev, cmd);
+  }
 
   const winnerAff = winner ? affById.get(winner.affordanceId) : undefined;
   const reason = dominantTerm(winner);
@@ -941,9 +958,16 @@ export const commandTargets = (cmd: Command, aff: Affordance): boolean =>
     ? cmd.affordanceId === aff.id
     : cmd.action !== undefined && cmd.action === aff.action;
 
-/** A state that ends direct control whatever the target (filled by the break and downed faculties). */
-function controlBlock(_p: Person): string | undefined {
+/** A state that ends direct control whatever the target: a mental break (affect) or being downed (body). */
+function controlBlock(p: Person): string | undefined {
+  if (inBreak(p)) return 'break';
   return undefined;
+}
+
+/** Whether an offer serves a bodily need (positive food, water, sleep or rest advertisement). */
+function servesBody(aff: Affordance): boolean {
+  const a = aff.advertises;
+  return (a.food ?? 0) > 0 || (a.water ?? 0) > 0 || (a.sleep ?? 0) > 0 || (a.rest ?? 0) > 0;
 }
 
 /**

@@ -20,10 +20,15 @@ import {
   actionTendencies,
   advanceAffect,
   appraise,
+  CRISIS_DEFAULTS,
+  checkCrisis,
   createAffect,
+  easeBreak,
   feel,
   regulate,
   release,
+  skipCrisis,
+  strain,
   tendencyEmotions,
 } from './affect/index.ts';
 import {
@@ -135,6 +140,8 @@ export const PERSON_DEFAULTS = {
   idleLoad: { effort: 0.05, focus: 0.05, mode: 'awake' } as BodyLoad,
   /** Re-decide at least this often while an activity runs. */
   reviewInterval: 30,
+  /** Closeness at or above which a 'comfort' percept from that person eases a mental break. */
+  comfortCloseness: 0.3,
   /** Review cadence while asleep: a sleeper only wakes for a body need or a strong disturbance. */
   sleepReviewInterval: 120,
   /** Longest interval advanced in one segment, so need-driven feelings are sampled on long idle ticks too. */
@@ -487,6 +494,8 @@ export function tick(p: Person, now: Minute): void {
       const { episodes } = revisePurposes(p, end);
       for (const ep of episodes) remember(p, ep);
       proposeGoals(p, readNeeds(p, readBodyOf(p)), end);
+      // Mental breaks (opt-in, `enableBreaks`): stress, recovery and the onset roll, hourly on the grid.
+      if (p.affect.crisis) crisisStep(p, end);
       // Chronicle: hourly mood sample; at midnight the day closes (notes at exactly midnight still belong to it)
       // and the new date is itself a recall cue (anniversaries).
       noteMood(p);
@@ -496,6 +505,23 @@ export function tick(p: Person, now: Minute): void {
       }
     }
   }
+}
+
+/** The composite's side of the hourly crisis check: interrupt and remember an onset, remember a recovery. */
+function crisisStep(p: Person, at: Minute): void {
+  const ev = checkCrisis(p, at);
+  if (!ev) return;
+  const label = ev.kind === 'onset' ? (ev.behaviour?.label ?? ev.behaviourId) : ev.behaviourId;
+  remember(p, {
+    at,
+    kind: 'break',
+    action: ev.behaviourId,
+    actorId: p.id,
+    valence: ev.kind === 'onset' ? -0.6 : 0.2,
+    summary: ev.kind === 'onset' ? `I broke down (${label})` : 'I came back to myself',
+    tags: ['break', ev.kind],
+  });
+  if (ev.kind === 'onset') interrupt(p, at, 'break');
 }
 
 /**
@@ -520,6 +546,7 @@ export function skip(p: Person, to: Minute): void {
   advanceHabits(p, dt);
   advanceSocial(p, dt);
   advanceWill(p, dt);
+  skipCrisis(p, to);
   p.activity = null;
   p.body.since = to;
   p.now = to;
@@ -565,6 +592,8 @@ function perceiveOne(p: Person, pc: Percept): void {
   if (aboutMe && actor !== undefined && actor !== p.id) {
     if (pc.kind === 'apology') release(p, { id: 'anger', targetId: actor }, 0.5);
     if (pc.kind === 'forgive') release(p, { id: 'guilt', targetId: actor }, 0.5);
+    // Comfort from someone close shortens a break (crisis SCOPE).
+    if (pc.kind === 'comfort' && closeness(p, actor) >= PERSON_DEFAULTS.comfortCloseness) easeBreak(p, at);
   }
 
   // Judgement of another's outward act by my own norms.
@@ -814,11 +843,22 @@ export function decide(
  * why) or note whether it was obeyed this time. The first time it is obeyed costs autonomy once (as compliance
  * does) and leaves a memory of being commanded.
  */
+/** Charge a command's controlled time to now: autonomy (needs), pressure and trust (will), stress (affect). */
+function chargeControlled(p: Person): void {
+  const c = p.will.command;
+  if (!c) return;
+  if (c.obeyed) {
+    const hours = Math.max(0, p.now - c.chargedAt) / 60;
+    strain(p, CRISIS_DEFAULTS.commandStrainPerHour * hours * Math.min(1, c.margin));
+  }
+  const autonomy = chargeCommand(p, p.now);
+  if (autonomy < 0) satisfy(p, { autonomy });
+}
+
 function applyCommandOutcome(p: Person, co: CommandOutcome, list: readonly Affordance[]): void {
   const c = p.will.command;
   if (!c) return;
-  const autonomy = chargeCommand(p, p.now);
-  if (autonomy < 0) satisfy(p, { autonomy });
+  chargeControlled(p);
   if (co.ends) {
     endCommand(p, co.reason, p.now);
     return;
@@ -865,8 +905,7 @@ export function command(p: Person, cmd: Command): boolean {
 /** End the command in force (host release, default reason 'released'), charging its controlled time first. */
 export function releaseCommand(p: Person, reason = 'released'): boolean {
   if (!p.will.command) return false;
-  const autonomy = chargeCommand(p, p.now);
-  if (autonomy < 0) satisfy(p, { autonomy });
+  chargeControlled(p);
   endCommand(p, reason, p.now);
   return true;
 }
@@ -1082,7 +1121,10 @@ export function finish(
   const psych: Partial<Record<PsychologicalNeed, number>> = {};
   for (const id of PSYCHOLOGICAL_NEEDS) if (given[id] !== undefined) psych[id] = given[id];
   satisfy(p, psych);
-  if (outcome.injury) injure(p, outcome.injury);
+  if (outcome.injury) {
+    injure(p, outcome.injury);
+    strain(p, CRISIS_DEFAULTS.injuryStrain * clamp01(outcome.injury.severity));
+  }
   if (outcome.illness) sicken(p, outcome.illness);
   for (const e of outcome.exposures ?? []) expose(p, e.kind, e.amount ?? 1);
 
@@ -1394,6 +1436,22 @@ export function restore(input: unknown): Person {
     )
   )
     delete out.will.command;
+  const crisis = out.affect.crisis as unknown;
+  if (
+    crisis !== undefined &&
+    !(
+      isObject(crisis) &&
+      typeof crisis.stress === 'number' &&
+      typeof crisis.checkedAt === 'number' &&
+      typeof crisis.breaks === 'number' &&
+      Array.isArray(crisis.behaviours) &&
+      (crisis.break === undefined ||
+        (isObject(crisis.break) &&
+          typeof crisis.break.behaviourId === 'string' &&
+          typeof crisis.break.until === 'number'))
+    )
+  )
+    delete out.affect.crisis;
   const last = out.will.lastCommand as unknown;
   if (
     last !== undefined &&

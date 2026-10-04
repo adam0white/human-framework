@@ -300,6 +300,35 @@ export interface AffectState {
   /** Learned emotion-regulation capacity (patience/sabr as a practiced skill), 0..1. */
   regulation: Unit;
   lastUpdated: Minute;
+  /** Mental breaks (1.6.0, `affect/crisis.ts`): present only when the host enabled them with `enableBreaks`. */
+  crisis?: CrisisState;
+}
+
+/**
+ * A break behaviour the host's world can express (1.6.0). During a break of this kind only offers whose action is
+ * in `actions`, that carry one of `tags`, or that are tagged `break:<id>` are open to the person.
+ */
+export interface BreakBehaviour {
+  id: string;
+  label?: string;
+  /** Relative chance of this behaviour at onset (default 1). */
+  weight?: number;
+  actions?: string[];
+  tags?: string[];
+  /** Length range in minutes (default `CRISIS_DEFAULTS.minutes`). */
+  minutes?: [number, number];
+}
+
+export interface CrisisState {
+  /** Accumulated strain, 0..1. */
+  stress: Unit;
+  /** Minute of the last hourly check. */
+  checkedAt: Minute;
+  break?: { behaviourId: string; since: Minute; until: Minute };
+  lastBreakAt?: Minute;
+  /** Breaks so far. */
+  breaks: number;
+  behaviours: BreakBehaviour[];
 }
 
 // ---------------------------------------------------------------------------------------------
