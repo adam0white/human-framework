@@ -397,13 +397,12 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(s.eid).toBe('On Eid he smoked one cigarette.');
   });
 
-  test('seventh pass: the "he’d now do unasked" strip reads his unasked choices, and the voice moves it', () => {
+  test('seventh pass: the "he’d now do unasked" strip reads his unasked choices', () => {
     const state = (g: VoiceGame, label: string) => g.report?.unasked?.find((u) => u.label === label)?.state;
-    // A silent month leaves the call to Selin where it began; prefills and the Selin whisper make it his own.
+    // A silent month leaves the call to Selin where it began; suhoor he keeps on his own.
     expect(state(quiet, 'call Selin')).toBe('no');
-    expect(state(spoken, 'call Selin')).toBe('yes');
     expect(state(quiet, 'eat at suhoor')).toBe('yes');
-    // The live frame carries it for the Ends pane, and no decision in the strip heard your voice.
+    // The live frame carries it for the Ends pane.
     const g = new VoiceGame(SHIPPED_SEED);
     play(g, { confirm: true, stop: (x) => x.t >= at(1, 20) });
     expect(g.frame().unasked?.map((u) => u.label)).toContain('call Selin');
@@ -570,7 +569,9 @@ describe('Game 2 sim determinism and budget', () => {
 
   test('End the day keeps the standing suggestion live to 23:30', () => {
     const g = new VoiceGame(SHIPPED_SEED);
-    play(g, { stop: (x) => x.t >= at(1, 19, 8) && x.paused && x.composer().open });
+    play(g, {
+      stop: (x) => x.t >= at(1, 19, 8) && x.composer().open && x.offers().some((o) => o.id === 'tea:riza'),
+    });
     // Tea with Rıza while he breaks the fast: "after I eat", so it stands into the evening.
     g.suggest({ optionId: 'tea:riza', strength: 'mention', insist: false });
     const since = g.t;

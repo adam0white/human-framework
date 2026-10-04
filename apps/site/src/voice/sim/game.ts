@@ -60,6 +60,7 @@ import {
   PACE_MINUTES_PER_SECOND,
   type Pace,
   type Phase,
+  type Prefill,
   type ReportView,
   SHIPPED_SEED,
   STRENGTH_VALUE,
@@ -1051,7 +1052,13 @@ export class VoiceGame {
       return;
     const text = `He’s torn between ${top.label ?? top.action} and ${rival.label ?? rival.action}.`;
     this.push({ kind: 'note', who: 'halil', text, decisionId: record.id, beat: 'close-call' });
-    this.beat('close-call', text, this.t);
+    // Seventh pass: torn pauses only when the composer has a word to offer; otherwise it is a log row (the reviewer
+    // saw "He's torn" over a composer with nothing prefilled).
+    // Torn between two ways to pray is logged, not paused: prayer stays a quiet part of his day (AGENTS.md).
+    const prayer = (c: { action: string }) => c.action === 'pray';
+    this.beat('close-call', text, this.t, {
+      canPause: !(prayer(top) && prayer(rival)) && this.prefillNow() !== undefined,
+    });
     this.closeCallAt = this.t;
   }
 
@@ -1077,7 +1084,8 @@ export class VoiceGame {
     const i = this.log.findIndex((e) => e.kind === 'act' && e.decisionId === r.id);
     if (note) this.log.splice(i < 0 ? this.log.length : i, 0, note);
     this.closeCallAt = r.at;
-    this.beat('close-call', text, r.at);
+    // After the act there is nothing left to say to it: logged, not paused.
+    this.beat('close-call', text, r.at, { canPause: false });
   }
 
   private onBegin(e: SimEvent): void {
@@ -1181,7 +1189,13 @@ export class VoiceGame {
         };
         if (fresh) entry.beat = 'verdict';
         this.push(entry, r.at);
-        if (fresh) this.beat('verdict', `He answered you: “${you.says}”`, r.at);
+        // Seventh pass: a yes (or giving in under protest) is shown in the log without stopping the clock; a deferral
+        // or a refusal pauses, because the player can answer it (urge, a reason, or let it go).
+        const tone = toneOf(you.verdict, you.kind);
+        if (fresh)
+          this.beat('verdict', `He answered you: “${you.says}”`, r.at, {
+            canPause: tone !== 'yes' && tone !== 'protest',
+          });
       }
       if (ends) this.endStanding('refused');
       else if (
@@ -1216,7 +1230,8 @@ export class VoiceGame {
       if (!flagOnce(this.beats, `recall:${id}:${Math.floor(r.at / 360)}`)) continue;
       const text = `He remembers: ${ep.summary}.`;
       this.push({ kind: 'recall', who: 'halil', text, decisionId: r.id, beat: 'recall' }, r.at);
-      this.beat('recall', text, r.at);
+      // A memory is a log row, never a pause: there is nothing to say to it (seventh pass).
+      this.beat('recall', text, r.at, { canPause: false });
     }
   }
 
@@ -1247,7 +1262,8 @@ export class VoiceGame {
       const text = toldLine(e.summary, this.names());
       if (!text) continue;
       this.push({ kind: 'voice', who: voiceWho(e.actorId), text, beat: 'voice' }, e.at);
-      this.beat('voice', text, e.at);
+      // Talk with no advice in it (Hacer on Rıza) is a log row: nothing in it to answer (seventh pass).
+      this.beat('voice', text, e.at, { canPause: false });
     }
   }
 
@@ -1360,8 +1376,15 @@ export class VoiceGame {
     this.beat(kind, text, at);
   }
 
-  private beat(kind: BeatKind, text: string, at: number): void {
-    if (fire(this.beats, kind, at, text, this.autoPause) && !this.paused) {
+  private beat(
+    kind: BeatKind,
+    text: string,
+    at: number,
+    o: { canPause?: boolean; actionable?: boolean } = {},
+  ): void {
+    // A clock beat that comes with a word to say (a prefill) keeps its pause however often it has paused.
+    const actionable = o.actionable ?? (o.canPause !== false && this.prefillNow() !== undefined);
+    if (fire(this.beats, kind, at, text, this.autoPause, { ...o, actionable }) && !this.paused) {
       this.paused = true;
       this.pauseBeat = { kind, text };
     }
@@ -1646,27 +1669,62 @@ export class VoiceGame {
 
   // --- the frame --------------------------------------------------------------------------------
 
-  frame(): Frame {
+  /** The choice the composer shows: the offers, the decision it reads (the look-ahead when open), and his leaning. */
+  private choice(composer: Frame['composer'] = this.composer()) {
     const h = this.halil;
-    const t = this.t;
-    const day = dayOf(t);
-    const cal = townCalendar(day);
-    const composer = this.composer();
     const liveish = this.phase === 'day' || this.phase === 'eid' || this.phase === 'free';
     const offers = liveish ? this.offers() : [];
     const act = h.activity;
     const last =
       composer.open && act && this.ahead?.forDecision === act.decisionId ? this.ahead.record : h.trace.at(-1);
     const considered = last ? last.considered.filter((c) => offers.some((o) => o.id === c.affordanceId)) : [];
+    const lean =
+      considered.find((c) => c.affordanceId === last?.chosenAffordanceId) ??
+      considered.find((c) => !c.vetoed);
+    return { offers, last, considered, lean };
+  }
+
+  /** The composer's prefill now, if it is open and has one (also tells a beat whether it has a word to offer). */
+  prefillNow(composer: Frame['composer'] = this.composer()): Prefill | undefined {
+    if (!composer.open || this.muted) return undefined;
+    const h = this.halil;
+    const t = this.t;
+    const { offers, considered, lean } = this.choice(composer);
+    const act = h.activity;
+    // At the wake he is still asleep for a minute: the prefill is judged on the waking ghost, like `predict`.
+    const waking = this.waking();
+    return prefillFor({
+      h: waking ? this.ghost() : h,
+      town: this.run.town,
+      t,
+      offers,
+      considered,
+      ...(lean ? { leaningId: lean.affordanceId } : {}),
+      ...(act && !waking ? { currentId: act.affordanceId } : {}),
+      ...(this.halilCalledAt !== undefined ? { halilCalledAt: this.halilCalledAt } : {}),
+      ...(this.shiftBeatAt !== undefined && t - this.shiftBeatAt <= 30 ? { prefer: 'work-extra' } : {}),
+      tutorial:
+        this.day === 1 &&
+        !this.free &&
+        !this.firstSuggestion &&
+        t % MINUTES_PER_DAY < townCalendar(dayOf(t)).fajr,
+    });
+  }
+
+  frame(): Frame {
+    const h = this.halil;
+    const t = this.t;
+    const day = dayOf(t);
+    const cal = townCalendar(day);
+    const composer = this.composer();
+    const { offers, last, considered, lean } = this.choice(composer);
+    const act = h.activity;
     const options = considered.slice(0, 6).map((c, i) => ({
       id: c.affordanceId,
       label: c.label ?? labelFor(c.affordanceId, offers),
       rank: i + 1,
       leaning: false,
     }));
-    const lean =
-      considered.find((c) => c.affordanceId === last?.chosenAffordanceId) ??
-      considered.find((c) => !c.vetoed);
     for (const o of options) o.leaning = o.id === lean?.affordanceId;
     const f: Frame = {
       phase: this.phase,
@@ -1706,20 +1764,7 @@ export class VoiceGame {
     if (this.intro) f.intro = this.intro;
     if (lean && last) f.leaning = { optionId: lean.affordanceId, why: last.intention };
     if (composer.open) {
-      // At the wake he is still asleep for a minute: the prefill is judged on the waking ghost, like `predict`.
-      const waking = this.waking();
-      const p = prefillFor({
-        h: waking ? this.ghost() : h,
-        town: this.run.town,
-        t,
-        offers,
-        considered,
-        ...(lean ? { leaningId: lean.affordanceId } : {}),
-        ...(act && !waking ? { currentId: act.affordanceId } : {}),
-        ...(this.halilCalledAt !== undefined ? { halilCalledAt: this.halilCalledAt } : {}),
-        ...(this.shiftBeatAt !== undefined && t - this.shiftBeatAt <= 30 ? { prefer: 'work-extra' } : {}),
-        tutorial: this.day === 1 && !this.free && !this.firstSuggestion && t % MINUTES_PER_DAY < cal.fajr,
-      });
+      const p = this.prefillNow(composer);
       if (p) {
         f.prefill = p;
         // The prefill is judged over every offer; the options are his top six. A prefill he ranks lower (or did

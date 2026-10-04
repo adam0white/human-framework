@@ -281,7 +281,7 @@ export function Composer({
               {prefill.why}
             </>
           ) : (
-            'He’s settled. You can say nothing.'
+            'Nothing here is prefilled. Pick one, or say nothing.'
           )}
         </p>
 
