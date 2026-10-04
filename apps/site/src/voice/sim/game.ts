@@ -84,6 +84,7 @@ import {
   doctorLine,
   endsView,
   halilView,
+  happened,
   isVoiceId,
   labelFor,
   nameOfVoice,
@@ -527,7 +528,9 @@ export class VoiceGame {
     const lines: string[] = [];
     if (next.skipped > 0) {
       // Only the skipped days: the played day's tail (after 23:30) is not one of them ("13 of 12 days").
-      const cells = this.cells.slice(before.cells).filter((c) => c.from < target && dayOf(c.from) > fromDay);
+      const cells = this.cells
+        .slice(before.cells)
+        .filter((c) => happened(c) && c.from < target && dayOf(c.from) > fromDay);
       const days = next.skipped;
       // What your whispers did, first: how many of the days he did each.
       for (const [i, w] of chosen.entries()) {
@@ -961,6 +964,7 @@ export class VoiceGame {
     }
     if (this.open && this.open.affordanceId === e.affordanceId) {
       this.open.to = e.at;
+      this.open.done = e.status !== 'interrupted';
       this.open = undefined;
     }
     // An act he stopped part-way: its log line says so, so a later line does not read as a reversal.
@@ -1505,7 +1509,11 @@ export class VoiceGame {
     const said = this.log.filter((e) => e.day === d && e.kind === 'you').length;
     // His ends done today without your word (game design review: say "He called Selin without being asked").
     const unasked = this.cells.filter(
-      (c) => dayOf(c.from) === d && c.promptedBy !== 'you' && UNASKED_LINE[c.affordanceId] !== undefined,
+      (c) =>
+        happened(c) &&
+        dayOf(c.from) === d &&
+        c.promptedBy !== 'you' &&
+        UNASKED_LINE[c.affordanceId] !== undefined,
     );
     const own = [...new Set(unasked.map((c) => UNASKED_LINE[c.affordanceId] as string))];
     if (said === 0) return ['You said nothing today.', ...own];
@@ -1526,9 +1534,14 @@ export class VoiceGame {
     const out = [
       `You spoke ${times(said)}.${parts.length ? ` In the end he ${listed(parts)}.` : ' He gave no answer.'}`,
     ];
+    // Saying yes is not going: an act he set out on and stopped is named as that, not as done (game design review).
     const dayCells = this.cells.filter((c) => dayOf(c.from) === d && c.promptedBy === 'you');
-    const did = [...new Set(dayCells.map((c) => c.label))];
+    const did = [...new Set(dayCells.filter(happened).map((c) => c.label))];
+    const stopped = [...new Set(dayCells.filter((c) => !happened(c)).map((c) => c.label))].filter(
+      (l) => !did.includes(l),
+    );
     if (did.length > 0) out.push(`Done on your word: ${did.join('; ')}.`);
+    if (stopped.length > 0) out.push(`Begun on your word and stopped part-way: ${stopped.join('; ')}.`);
     out.push(...own);
     return out;
   }
@@ -1621,7 +1634,7 @@ export class VoiceGame {
         .map((e) => `${e.clock} ${e.text}`),
       rows: [...PLAYED_DAYS.map((d) => stripFor(d, this.cells)), stripFor(TOWN_EID_DAY, this.cells)],
       trustStart: this.trustStart,
-      cells: this.cells,
+      cells: this.cells.filter(happened),
       insisted: this.insisted,
       trustEid: voiceOf(this.halil, 'you')?.trust ?? 0.5,
       said: this.said,

@@ -587,7 +587,12 @@ export interface Cell {
   promptedBy?: VoiceId;
   /** The decision that began it (for the report's reasons). */
   decisionId?: string;
+  /** Set when it ends: false when he stopped part-way (it took his time but did not happen); unset while running. */
+  done?: boolean;
 }
+
+/** Acts that happened: everything but the ones he stopped part-way (counts and "on your word" lines read these). */
+export const happened = (c: Cell): boolean => c.done !== false;
 
 /** One day's strip from Halil's activity cells (absolute minutes, clipped to the day). */
 export function stripFor(day: number, cells: readonly Cell[], label = dayLabel(day)): StripRow {
@@ -652,7 +657,7 @@ export function termLabel(t: Term, h: Person): string {
     case 'commitment': {
       if (!a) return 'keeping at it';
       const c = h.agenda.commitments.find((x) => x.id === a);
-      return c ? commitmentLabel(c.label, c.actions[0], c.kind) : 'a commitment';
+      return c ? commitmentLabel(c.label, c.actions[0], c.kind) : 'something he had set himself to';
     }
     case 'goal':
       return 'a goal';
@@ -678,6 +683,27 @@ export function termLabel(t: Term, h: Person): string {
     default:
       return t.source;
   }
+}
+
+const VETO_WORD: Record<string, string> = {
+  distrust: 'he does not trust you enough for this',
+  asleep: 'he is asleep',
+  'not-sleepy': 'he is not sleepy',
+  capacity: 'he is not up to it',
+  unavailable: 'it is not open to him now',
+  cannot: 'he cannot',
+  invalid: 'he cannot',
+  dead: 'he cannot',
+};
+
+/** A suggestion's reason in words (the Why sheet showed raw ids such as "commitment:meal0"). */
+export function reasonLabel(reason: string, h: Person): string {
+  const word = VETO_WORD[reason];
+  if (word) return word;
+  const [head, a] = reason.split(':');
+  if (head === 'skill') return 'he does not know how';
+  if (head === 'voice') return `he had already said yes to ${nameOfVoice(a ?? '')}`;
+  return termLabel({ source: reason, value: 0 } as Term, h);
 }
 
 export function whyView(
@@ -720,6 +746,6 @@ export function whyView(
     .find((e): e is Episode => !!e);
   if (rec) view.recalled = rec.summary;
   const you = (r.suggestions ?? (r.suggestion ? [r.suggestion] : [])).find((s) => s.voiceId === 'you');
-  if (you) view.voice = { says: you.says, reason: you.reason };
+  if (you) view.voice = { says: you.says, reason: reasonLabel(you.reason, h) };
   return view;
 }

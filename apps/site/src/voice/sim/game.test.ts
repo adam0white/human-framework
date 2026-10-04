@@ -193,6 +193,34 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(you?.trust ?? 1).toBeLessThan(voiceOf(spoken.halil, 'you')?.trust ?? 0);
   });
 
+  test('seventh pass: counts and "on your word" read acts that happened, not ones he stopped part-way', () => {
+    // There are stopped acts in a played month, so the filter matters.
+    expect(spoken.cells.some((c) => c.done === false)).toBe(true);
+    for (const g of [quiet, spoken]) {
+      // The report's clinic line agrees with the town's completed count (the end status reads that).
+      const line = g.report?.eid.summary.find((l) => /clinic/.test(l)) ?? '';
+      const said = /never went/.test(line)
+        ? 0
+        : /went to the clinic once/.test(line)
+          ? 1
+          : /went to the clinic twice/.test(line)
+            ? 2
+            : Number(/went to the clinic (\d+) times/.exec(line)?.[1] ?? Number.NaN);
+      expect(said, line).toBe(g.eidMorning?.run.town.state.completed.halil?.['see-doctor'] ?? 0);
+    }
+    // The card after Osman's date (Ramadan 15, 23:30) no longer projects to Ramadan 15.
+    const g = new VoiceGame(SHIPPED_SEED);
+    let hint: string | undefined;
+    play(g, {
+      stop: (x) => {
+        if (x.phase === 'between' && x.day === 15)
+          hint = x.between?.choices.find((c) => c.id === 'extra')?.hint;
+        return x.day > 15;
+      },
+    });
+    expect(hint ?? '').not.toMatch(/by Ramadan 15/);
+  });
+
   test('every report section is non-empty, with no input and with prefill confirmations', () => {
     for (const g of [quiet, spoken]) {
       const r = g.report;

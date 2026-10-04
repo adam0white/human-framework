@@ -199,8 +199,11 @@ export function moneyShort(
   const money = Math.round(town.state.money.halil ?? 0);
   const paid = Math.round(town.state.rentPaid);
   const lastFast = T.ramadanFirstDay + T.ramadanDays - 1;
+  // The date ends at 20:00 on Ramadan 15, not at midnight: the 23:30 card that night looks to the rest (review:
+  // "Mornings alone get him to about 291 by Ramadan 15" on the card after the date had passed).
+  const dateOpen = t < T.rentPromiseDay * MINUTES_PER_DAY + 20 * 60;
   const [goal, byDay, wants] =
-    paid < T.rent && day <= T.rentPromiseDay
+    paid < T.rent && dateOpen
       ? [T.rent - paid, T.rentPromiseDay, `Osman wants ${T.rent} by Ramadan ${T.rentPromiseDay}`]
       : [owed, lastFast, `${owed} is owed`];
   if (day > byDay) return undefined;
