@@ -5,7 +5,7 @@
 import { useEffect, useRef } from 'react';
 import type { WatcherId } from '../sim/config.ts';
 import type { Frame } from '../sim/view.ts';
-import { drawMap, type Hit, hitTest, type Layout, layoutFor, newEase } from './map.ts';
+import { drawMap, type Hit, hitTest, isDay, type Layout, layoutFor, newEase } from './map.ts';
 
 export function MapCanvas({
   frame,
@@ -30,6 +30,7 @@ export function MapCanvas({
     if (!ctx) return;
     const ease = newEase();
     let dpr = 1;
+    let size = { w: 320, h: 400 };
     const resize = () => {
       const r = el.getBoundingClientRect();
       dpr = Math.min(3, window.devicePixelRatio || 1);
@@ -37,7 +38,7 @@ export function MapCanvas({
       cv.height = Math.max(1, Math.round(r.height * dpr));
       cv.style.width = `${r.width}px`;
       cv.style.height = `${r.height}px`;
-      layout.current = layoutFor(r.width, r.height);
+      size = { w: r.width, h: r.height };
     };
     const ro = new ResizeObserver(resize);
     ro.observe(el);
@@ -45,6 +46,8 @@ export function MapCanvas({
     let raf = 0;
     const draw = (now: number) => {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // By day the village takes more of the map; the layout follows the phase.
+      layout.current = layoutFor(size.w, size.h, isDay(latest.current.frame));
       drawMap(ctx, layout.current, latest.current.frame, ease, { selected: latest.current.selected, now });
       raf = requestAnimationFrame(draw);
     };
@@ -58,7 +61,9 @@ export function MapCanvas({
   const label =
     frame.phase === 'night'
       ? `The wall at night. The lantern is ${frame.lit ? `at the ${frame.sections.find((s) => s.id === frame.lit)?.name}` : 'moving'}. Tap a section to carry it there.`
-      : 'The wall at dusk. Pick a watcher, then tap a post.';
+      : isDay(frame)
+        ? `The village by day, ${frame.season}: the fields above the wall and the villagers below it.`
+        : 'The wall at dusk. Pick a watcher, then tap a post.';
 
   return (
     <div className="w-mapbox" ref={box}>

@@ -443,7 +443,9 @@ function ageWords(age: number, female: boolean): string {
 function dateWords(s: WatchState): string {
   const d = dayOfYear(s);
   const season = seasonOfDay(d);
+  if (s.phase === 'thaw' || s.phase === 'closed') return `The thaw of the ${ordinal(s.year)} year`;
   if (season === 'winter') {
+    if (s.phase === 'goal') return 'Before the first night';
     if (s.phase === 'dusk' || s.phase === 'night' || s.phase === 'dawn')
       return `The ${ordinal(s.winterNight)} night of the ${ordinal(s.year)} winter`;
     return `The end of the ${ordinal(s.year)} winter`;

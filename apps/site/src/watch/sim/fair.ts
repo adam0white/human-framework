@@ -27,7 +27,7 @@ export function openFair(s: WatchState): void {
   pool.push({
     id: 'outsiders',
     label: 'Admit the outsider family',
-    text: 'A couple and their child, burned out down the valley. Two more on the wall, three more mouths. Costs 3 sacks to see them through.',
+    text: 'A couple and their child, burned out down the valley. Two more on the wall, three more mouths. It costs a good share of grain to see them through.',
     cost: 3,
   });
   const breaches = s.yearGrain.breaches;
@@ -38,7 +38,7 @@ export function openFair(s: WatchState): void {
     pool.push({
       id: 'wall',
       label: `Raise ${sectionDef(wallAt).name.toLowerCase()}`,
-      text: `Raise and lengthen ${sectionDef(wallAt).name.toLowerCase()}: a third post there, for good. More wall than people to stand it. Costs 4 sacks of labour.`,
+      text: `Raise and lengthen ${sectionDef(wallAt).name.toLowerCase()}: a third post there, for good. More wall than people to stand it. It costs a good share of grain in labour.`,
       cost: 4,
       target: wallAt,
     });
@@ -46,13 +46,13 @@ export function openFair(s: WatchState): void {
     pool.push({
       id: 'bell',
       label: 'Buy the bigger bell',
-      text: 'A heavier bell from the founder at the fair. The rope frays half as fast. Costs 4 sacks.',
+      text: 'A heavier bell from the founder at the fair. The rope frays half as fast. It costs a good share of grain.',
       cost: 4,
     });
   pool.push({
     id: 'seed',
     label: 'Buy seed grain',
-    text: 'Better seed for next year: a fuller harvest next autumn. Costs 2 sacks now.',
+    text: 'Better seed for next year: a fuller harvest next autumn. It costs a little grain now.',
     cost: 2,
   });
   const keeper = s.gateKeeper ? personOf(s, s.gateKeeper) : undefined;

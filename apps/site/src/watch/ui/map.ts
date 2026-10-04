@@ -3,10 +3,21 @@
  * village sits below. The lantern lights one lane; every other lane is dark and shows only moving grass and
  * sounds at the foot of the wall. No numbers are drawn. The layout flexes to any size; positions ease between
  * sim minutes on the page's own animation clock.
+ *
+ * G3-3: by day (the open seasons and their pages) the land takes the season's colour, the fields above the wall
+ * show shoots, ripe rows or stubble, the wall stands empty and the villagers are drawn in the village below, by
+ * their homes: children small, the old stooped with grey hair and a stick, a limp with a stick and a short leg.
  */
 import { SECTION_IDS, type SectionId, type WatcherId } from '../sim/config.ts';
-import type { Frame, FrameWatcher, Posture } from '../sim/view.ts';
+import type { AgeBand, Frame, FrameWatcher, Posture } from '../sim/view.ts';
 import { LIGHT_EDGE } from '../sim/view.ts';
+
+/** Phases drawn in daylight, with the wall empty and the villagers below it. */
+const DAY_PHASES = new Set(['spring', 'summer', 'autumn', 'thaw', 'fair', 'closed']);
+
+export function isDay(f: Frame): boolean {
+  return DAY_PHASES.has(f.phase);
+}
 
 export interface Layout {
   w: number;
@@ -18,9 +29,10 @@ export interface Layout {
   yVillage: number;
 }
 
-export function layoutFor(w: number, h: number): Layout {
+/** By day the village below the wall gets more room, for the people in it. */
+export function layoutFor(w: number, h: number, day = false): Layout {
   const yTree = Math.round(h * 0.13);
-  const yWall = Math.round(h * 0.7);
+  const yWall = Math.round(h * (day ? 0.5 : 0.7));
   const wallH = Math.max(18, Math.round(h * 0.055));
   return { w, h, laneW: w / SECTION_IDS.length, yTree, yWall, wallH, yVillage: yWall + wallH };
 }
@@ -89,6 +101,7 @@ function hash01(n: number): number {
 
 /** 0 = daylight, 1 = deep night. */
 function darkness(f: Frame): number {
+  if (isDay(f)) return 0;
   if (f.phase === 'goal' || f.phase === 'dusk')
     return 0.35 + 0.35 * Math.max(0, Math.min(1, (f.clock - 17 * 60) / 60));
   if (f.phase === 'dawn' || f.phase === 'fallen') return 0.25;
@@ -107,15 +120,26 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   ease.last = o.now;
   const k = Math.min(1, dt * 6);
   const dark = darkness(f);
+  const day = isDay(f);
+  const winterUI = !day;
 
   // Ground and sky.
   const sky = ctx.createLinearGradient(0, 0, 0, l.yTree);
-  sky.addColorStop(0, f.phase === 'dusk' || f.phase === 'goal' ? '#3a2f4f' : '#0d1022');
-  sky.addColorStop(1, f.phase === 'dusk' || f.phase === 'goal' ? '#c7794a' : '#1b2140');
+  if (day) {
+    sky.addColorStop(0, f.season === 'autumn' ? '#8fa3b8' : '#7fa8cf');
+    sky.addColorStop(1, f.season === 'autumn' ? '#e2c9a2' : '#d8e4ea');
+  } else {
+    sky.addColorStop(0, f.phase === 'dusk' || f.phase === 'goal' ? '#3a2f4f' : '#0d1022');
+    sky.addColorStop(1, f.phase === 'dusk' || f.phase === 'goal' ? '#c7794a' : '#1b2140');
+  }
   ctx.fillStyle = sky;
   ctx.fillRect(0, 0, w, l.yTree);
-  ctx.fillStyle = '#3c4a34';
+  ctx.fillStyle = landColour(f);
   ctx.fillRect(0, l.yTree, w, l.yWall - l.yTree);
+  if (day) {
+    drawSun(ctx, l, f);
+    drawFields(ctx, l, f);
+  }
 
   // Moon along an arc through the night.
   if (f.phase === 'night') {
@@ -129,7 +153,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   }
 
   // Treeline.
-  ctx.fillStyle = '#1f2a1d';
+  ctx.fillStyle = day ? treeColour(f) : '#1f2a1d';
   for (let x = -10; x < w + 20; x += 18) {
     const t = l.yTree - 6 - hash01(Math.floor(x)) * 14;
     ctx.beginPath();
@@ -151,7 +175,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   }
 
   // The scout's tracks on the warned approach.
-  {
+  if (winterUI) {
     const i = SECTION_IDS.indexOf(f.warned);
     const cx = (i + 0.5) * laneW;
     const alpha = f.phase === 'dusk' || f.phase === 'goal' ? 0.85 : 0.35;
@@ -173,7 +197,8 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   const targetX = f.lantern.x;
   ease.lantern = ease.lantern < 0 ? targetX : ease.lantern + (targetX - ease.lantern) * k;
   const lx = (ease.lantern + 0.5) * laneW;
-  if (f.lit) {
+  const lanternOut = f.phase === 'dusk' || f.phase === 'night';
+  if (f.lit && f.phase === 'night') {
     const i = SECTION_IDS.indexOf(f.lit);
     const x0 = i * laneW;
     const yEdge = laneY(l, LIGHT_EDGE);
@@ -184,11 +209,13 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
     ctx.fillStyle = g;
     ctx.fillRect(x0, yEdge, laneW, l.yWall - yEdge);
   }
-  const glow = ctx.createRadialGradient(lx, l.yWall, 2, lx, l.yWall, laneW * 0.8);
-  glow.addColorStop(0, 'rgba(255, 210, 130, 0.55)');
-  glow.addColorStop(1, 'rgba(255, 210, 130, 0)');
-  ctx.fillStyle = glow;
-  ctx.fillRect(lx - laneW, l.yWall - laneW, laneW * 2, laneW * 2);
+  if (lanternOut) {
+    const glow = ctx.createRadialGradient(lx, l.yWall, 2, lx, l.yWall, laneW * 0.8);
+    glow.addColorStop(0, 'rgba(255, 210, 130, 0.55)');
+    glow.addColorStop(1, 'rgba(255, 210, 130, 0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(lx - laneW, l.yWall - laneW, laneW * 2, laneW * 2);
+  }
 
   // Motion in the dark: grass moving, a sound at the foot of the wall.
   for (const m of f.motion) {
@@ -258,7 +285,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   ctx.font = '600 12px "Instrument Sans", system-ui, sans-serif';
   ctx.textAlign = 'center';
   for (const [i, sec] of f.sections.entries()) {
-    const isLit = sec.id === f.lit;
+    const isLit = !day && sec.id === f.lit;
     ctx.fillStyle = isLit ? 'rgba(255, 236, 200, 0.95)' : 'rgba(236, 224, 200, 0.55)';
     ctx.fillText(sec.name, (i + 0.5) * laneW, l.yWall - 12);
   }
@@ -280,8 +307,8 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   }
 
   // Posts and watchers: someone standing; a post someone was given but has left (a faint outline of them);
-  // or an empty post (a dashed ring).
-  for (const sec of f.sections) {
+  // or an empty post (a dashed ring). By day the wall stands empty.
+  for (const sec of winterUI ? f.sections : []) {
     const isLit = sec.id === f.lit;
     for (const [slot, p] of sec.posts.entries()) {
       const at = postXY(l, sec.id, slot);
@@ -321,6 +348,8 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
           signs: watcher.signs,
           throwing: watcher.throwing,
           commanded: watcher.commanded,
+          age: watcher.age,
+          limp: watcher.limp,
         },
         size,
       );
@@ -362,7 +391,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
         hall++;
       } else {
         const home = wt.home;
-        x = (SECTION_IDS.indexOf(home) + 0.5) * laneW + (hash01(wt.id.length * 7) - 0.5) * 20;
+        x = (SECTION_IDS.indexOf(home) + 0.5) * laneW + (hashId(wt.id) - 0.5) * 20;
         y = l.yVillage + (h - l.yVillage) * 0.85;
       }
       ctx.save();
@@ -375,13 +404,17 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
         signs: null,
         throwing: null,
         commanded: false,
+        age: wt.age,
+        limp: wt.limp,
       });
       ctx.restore();
     }
   }
 
+  if (day) drawVillagers(ctx, l, f, o.now);
+
   // The Keeper with the lantern, below the wall.
-  if (f.phase !== 'goal') {
+  if (winterUI && f.phase !== 'goal') {
     const ky = l.yVillage + 14;
     ctx.fillStyle = '#2b2622';
     ctx.beginPath();
@@ -456,6 +489,10 @@ interface WatcherDraw {
   signs: FrameWatcher['signs'];
   throwing: 'hit' | 'miss' | null;
   commanded: boolean;
+  /** Children are drawn small; the old stoop, with grey hair (in the light) and a stick. */
+  age?: AgeBand;
+  /** A limp for life: a short leg and a stick. */
+  limp?: boolean;
 }
 
 /** Someone given this post who is not on it: an outline in their colours. */
@@ -480,7 +517,8 @@ function drawGhost(ctx: CanvasRenderingContext2D, x: number, y: number, look: Lo
 /**
  * A watcher in simple strokes. In the light: posture (stand, sit, doze, eat, pray, down, frozen, carry) and
  * signs (tired slumps the head, afraid hunches and turns toward the steps, hurt adds a bandage and a short leg).
- * In the dark: a dim figure only. Prayer is drawn as a quiet kneel, nothing more.
+ * In the dark: a dim figure only. Prayer is drawn as a quiet kneel, nothing more. A child is drawn small; the
+ * old stoop, lean on a stick and (in the light) show grey hair; a limp for life adds the stick and a short leg.
  */
 function drawWatcher(
   ctx: CanvasRenderingContext2D,
@@ -498,7 +536,9 @@ function drawWatcher(
   ctx.save();
   ctx.translate(x, y);
   ctx.scale(size, size);
+  if (d.age === 'child') ctx.scale(0.68, 0.68);
   ctx.lineCap = 'round';
+  const old = d.age === 'old';
 
   if (d.posture === 'down') {
     // Lying along the wall.
@@ -520,7 +560,8 @@ function drawWatcher(
   const low = d.posture === 'sit' || d.posture === 'doze' || d.posture === 'pray';
   const hunch = seen && (s?.afraid || d.posture === 'frozen') ? 1 : 0;
   const slump = seen && s?.tired ? 1 : 0;
-  const bodyH = low ? 7 : 12 - hunch * 2;
+  const stoop = old && !low ? 1 : 0;
+  const bodyH = low ? 7 : 12 - hunch * 2 - stoop;
   const top = 4 - bodyH;
   // Head: lower when sitting, forward when slumped, tucked when hunched, bowed in prayer.
   let hx = slump * 1.5;
@@ -535,11 +576,16 @@ function drawWatcher(
   }
   // Afraid: turned toward the steps, drawn as the head leaning that way.
   if (seen && s?.afraid) hx -= 1.5;
+  // Stooped with age: head forward and down.
+  if (stoop) {
+    hx += 2.2;
+    hy += 1.5;
+  }
 
   ctx.fillStyle = body;
-  if (slump && !low) {
+  if ((slump || stoop) && !low) {
     ctx.save();
-    ctx.transform(1, 0, 0.12, 1, 0, 0);
+    ctx.transform(1, 0, -0.12 - stoop * 0.12, 1, 0, 0);
     ctx.fillRect(-4, top, 8, bodyH);
     ctx.restore();
   } else {
@@ -558,7 +604,7 @@ function drawWatcher(
       ctx.lineTo(9, 4);
     }
     ctx.stroke();
-  } else if (seen && s?.hurt) {
+  } else if (seen && (s?.hurt || d.limp)) {
     // A limp: one leg short.
     ctx.strokeStyle = body;
     ctx.lineWidth = 2;
@@ -573,6 +619,22 @@ function drawWatcher(
   ctx.beginPath();
   ctx.arc(hx, hy, 4, 0, Math.PI * 2);
   ctx.fill();
+  if (seen && old) {
+    // Grey hair over the crown.
+    ctx.fillStyle = '#d8d4cc';
+    ctx.beginPath();
+    ctx.arc(hx, hy, 4.2, Math.PI * 1.05, Math.PI * 1.95);
+    ctx.fill();
+  }
+  if ((old || d.limp) && !low) {
+    // A stick in the forward hand.
+    ctx.strokeStyle = seen ? '#9a7a4e' : dim;
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.moveTo(6, top + 3);
+    ctx.lineTo(7.5, 4.5);
+    ctx.stroke();
+  }
   if (seen) {
     ctx.fillStyle = look.scarf;
     ctx.fillRect(-4, top, 8, 2.5);
@@ -686,5 +748,139 @@ function drawVillage(ctx: CanvasRenderingContext2D, l: Layout, f: Frame): void {
     ctx.ellipse(sx, sy, sackW / 2, sackW * 0.45, 0, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
+  }
+}
+
+/** A stable 0..1 hash of a string id, for placing people by day. */
+function hashId(id: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < id.length; i++) h = Math.imul(h ^ id.charCodeAt(i), 0x01000193);
+  return hash01(h);
+}
+
+type RGB = [number, number, number];
+/** The land by season: winter as the nights have it, spring green, summer gold, autumn rust. */
+const LAND: Record<Frame['season'], RGB> = {
+  winter: [60, 74, 52],
+  spring: [92, 128, 66],
+  summer: [150, 140, 70],
+  autumn: [140, 92, 50],
+};
+const TREES: Record<Frame['season'], RGB> = {
+  winter: [31, 42, 29],
+  spring: [46, 82, 44],
+  summer: [52, 78, 38],
+  autumn: [120, 62, 34],
+};
+const NEXT: Record<Frame['season'], Frame['season']> = {
+  winter: 'spring',
+  spring: 'summer',
+  summer: 'autumn',
+  autumn: 'winter',
+};
+
+const SEASON_START: Record<Frame['season'], number> = { winter: 0, spring: 90, summer: 180, autumn: 270 };
+
+/** How far into its season the day is, 0..1 (seasons start on days 0, 90, 180 and 270 of 365). */
+function seasonInto(f: Frame): number {
+  const day = f.yearProgress * 365;
+  const len = f.season === 'autumn' ? 95 : 90;
+  return Math.max(0, Math.min(1, (day - SEASON_START[f.season]) / len));
+}
+
+/** The season's colour, turning toward the next one in the last third of the season. */
+function seasonal(table: Record<Frame['season'], RGB>, f: Frame): string {
+  const into = seasonInto(f);
+  const t = Math.max(0, (into - 0.66) / 0.34);
+  const a = table[f.season];
+  const b = table[NEXT[f.season]];
+  const mix = (i: 0 | 1 | 2) => Math.round(a[i] + (b[i] - a[i]) * t);
+  return `rgb(${mix(0)}, ${mix(1)}, ${mix(2)})`;
+}
+
+function landColour(f: Frame): string {
+  return isDay(f) ? seasonal(LAND, f) : '#3c4a34';
+}
+
+function treeColour(f: Frame): string {
+  return seasonal(TREES, f);
+}
+
+function drawSun(ctx: CanvasRenderingContext2D, l: Layout, f: Frame): void {
+  const r = Math.max(6, l.yTree * 0.2);
+  ctx.fillStyle = f.season === 'summer' ? 'rgba(255, 236, 170, 0.95)' : 'rgba(255, 244, 214, 0.85)';
+  ctx.beginPath();
+  ctx.arc(l.w * 0.82, l.yTree * 0.42, r, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+/** The fields between the trees and the wall: shoots in spring, ripe rows in summer, stubble after the harvest. */
+function drawFields(ctx: CanvasRenderingContext2D, l: Layout, f: Frame): void {
+  const top = l.yTree + (l.yWall - l.yTree) * 0.25;
+  const bottom = l.yWall - 18;
+  if (bottom <= top) return;
+  const into = seasonInto(f);
+  let colour = 'rgba(160, 200, 110, 0.55)';
+  let height = 3;
+  if (f.season === 'spring') height = 2 + into * 4;
+  if (f.season === 'summer') {
+    colour = 'rgba(222, 196, 104, 0.8)';
+    height = 6 + into * 3;
+  }
+  if (f.season === 'autumn') {
+    // Cut at the harvest, early in autumn.
+    colour = into < 0.17 ? 'rgba(222, 186, 96, 0.8)' : 'rgba(196, 160, 100, 0.55)';
+    height = into < 0.17 ? 9 : 2;
+  }
+  ctx.strokeStyle = colour;
+  ctx.lineWidth = 1.4;
+  const rows = Math.max(3, Math.floor((bottom - top) / 12));
+  for (let r = 0; r < rows; r++) {
+    const y = top + ((r + 0.5) / rows) * (bottom - top);
+    ctx.beginPath();
+    for (let x = 6 + (r % 2) * 5; x < l.w - 4; x += 10) {
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + 1, y - height);
+    }
+    ctx.stroke();
+  }
+}
+
+/** By day: every villager in the village near their home, wandering a little. Names only on roomy maps. */
+function drawVillagers(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, now: number): void {
+  const top = l.yVillage;
+  const span = l.h - top;
+  if (span < 30) return;
+  const size = Math.max(0.9, Math.min(1.5, span / 150));
+  const crowd = f.villagers.length > 14;
+  for (const v of f.villagers) {
+    const i = SECTION_IDS.indexOf(v.home);
+    const hx = hashId(v.id);
+    const hy = hashId(`${v.id}:y`);
+    const drift = Math.sin(now / 2600 + hx * 40) * Math.min(10, l.laneW * 0.08);
+    const x = Math.max(8, Math.min(l.w - 8, (i + 0.5) * l.laneW + (hx - 0.5) * l.laneW * 0.8 + drift));
+    const y = top + span * (0.3 + hy * 0.6);
+    drawWatcher(
+      ctx,
+      x,
+      y,
+      lookOf(v.look),
+      {
+        seen: true,
+        posture: 'stand',
+        signs: null,
+        throwing: null,
+        commanded: false,
+        age: v.age,
+        limp: v.limp,
+      },
+      size,
+    );
+    if (!crowd && l.w >= 420 && v.age !== 'child') {
+      ctx.font = '600 10px "Instrument Sans", system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(255, 243, 220, 0.85)';
+      ctx.fillText(v.name, x, y + 16 * size);
+    }
   }
 }

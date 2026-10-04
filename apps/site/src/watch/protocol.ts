@@ -24,7 +24,7 @@ export type WorkerReply =
   | { type: 'frame'; frame: Frame; speed: Speed }
   | { type: 'exported'; requestId: number; data: PlaytestExport }
   /** The saved pages, newest first ([] without storage), and whether this run's saves are being kept. */
-  | { type: 'shelf'; pages: PageInfo[]; saving: boolean }
+  | { type: 'shelf'; pages: PageInfo[]; saving: boolean; current: string }
   /** A load finished: `ok` false if the page was gone or unreadable (the old run goes on). */
   | { type: 'loaded'; ok: boolean; id: string; seed?: number }
   | { type: 'error'; message: string };

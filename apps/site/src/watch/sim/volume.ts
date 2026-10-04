@@ -96,7 +96,7 @@ export function closeVolume(s: WatchState, end?: string): void {
     .filter((p) => ageOf(p, s.minute) >= 10)
     .map((p) => ({
       who: p.id,
-      text: `${nameOf(s, p.id)}, ${Math.floor(ageOf(p, s.minute))}: ${fateLine(s, p.id)}`,
+      text: `${nameOf(s, p.id)}: ${fateLine(s, p.id)}`,
     }));
   s.volumes.push(structuredClone(v));
 }

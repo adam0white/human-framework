@@ -6,25 +6,54 @@
  * G3-2: the watchers are people. The roster shows the Keeper's impressions of each (phrases whose sureness is
  * drawn as a soft bar, never printed), postings carry how hard he pressed (ask, urge, insist) with his read of
  * the answer, and the night panel opens a moment card when someone on the lit stretch wavers.
+ *
+ * G3-3: the whole year. One five-step speed control (Slow to Seasons) runs whenever the clock does; the open seasons
+ * get their own panel (date, volume, granary, people, season cards) and the chronicle strip over the map; the fair,
+ * the thaw, a closed volume and a fallen village are pages (`pages.tsx`). Dawn adds talks. The chronicle dialog is
+ * the menu and the saves shelf (`chronicle.tsx`).
  */
-import { type CSSProperties, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
+import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Moment } from '../sim/moments.ts';
 import type { Speed } from '../sim/pace.ts';
 import type { Press } from '../sim/state.ts';
+import { TALKS_PER_DAY } from '../sim/talk.ts';
 import type { Frame, FrameWatcher } from '../sim/view.ts';
+import { Chronicle } from './chronicle.tsx';
 import { Icon, type IconName } from './icons.tsx';
 import { MapCanvas } from './MapCanvas.tsx';
 import type { Hit } from './map.ts';
+import { ChronicleStrip, ClosedPage, FairPage, FallenPage, SeasonPanel, ThawPage } from './pages.tsx';
+import { Impressions, Pips, Rope, Sacks } from './parts.tsx';
 import { useWatch, type WatchActions } from './useWatch.ts';
-import { awayWords, hourWords, nightName, PRESS_WORDS, ropeWords } from './words.ts';
+import { awayWords, daylightWords, hourWords, PRESS_WORDS, ropeWords } from './words.ts';
 
 const SPEEDS: { id: Speed; label: string; icon: IconName }[] = [
   { id: 'tactical', label: 'Slow', icon: 'snail' },
   { id: 'watch', label: 'Watch', icon: 'play' },
   { id: 'fast', label: 'Fast', icon: 'fast-forward' },
+  { id: 'days', label: 'Days', icon: 'sun' },
+  { id: 'seasons', label: 'Seasons', icon: 'calendar-days' },
 ];
+
+const SEASON_PHASES = new Set<Frame['phase']>(['spring', 'summer', 'autumn']);
+/** Phases where the clock runs and the speed control shows. */
+const RUNNING = new Set<Frame['phase']>(['dusk', 'night', 'spring', 'summer', 'autumn']);
+const WINTER_PHASES = new Set<Frame['phase']>(['dusk', 'night', 'dawn']);
+
+/** The top bar's line: the date, and the hour on winter nights. */
+function headerLine(f: Frame): string {
+  if (f.phase === 'goal') return 'Before the first night';
+  if (WINTER_PHASES.has(f.phase)) return `${f.date} · ${hourWords(f.clock, f.phase)}`;
+  return f.date;
+}
+
+function slowedWords(f: Frame): string {
+  if (SEASON_PHASES.has(f.phase)) return 'the days slow';
+  return 'the night slows';
+}
 
 const PRESSES: Press[] = ['ask', 'urge', 'insist'];
 
@@ -41,7 +70,7 @@ function freePost(f: Frame, section: SectionId, who: WatcherId): PostId | null {
 }
 
 export function App() {
-  const { frame, speed, error, seed, actions } = useWatch();
+  const { frame, speed, error, seed, shelf, saving, actions } = useWatch();
   const [selected, setSelectedState] = useState<WatcherId | null>(null);
   /** The press picked for the selected watcher before a post is tapped; null follows their current press. */
   const [pressPick, setPressPick] = useState<Press | null>(null);
@@ -71,8 +100,8 @@ export function App() {
     if (momentId !== undefined && panel.current) panel.current.scrollTop = 0;
   }, [momentId]);
 
-  // Keep the screen awake only while the clock runs: dusk and night, chronicle closed.
-  useWakeLock(frame !== null && (frame.phase === 'dusk' || frame.phase === 'night') && !menu);
+  // Keep the screen awake only while the clock runs (dusk, night, the open seasons), chronicle closed.
+  useWakeLock(frame !== null && RUNNING.has(frame.phase) && !menu);
 
   if (error) {
     return (
@@ -126,12 +155,12 @@ export function App() {
         <div className="w-title">
           <h1>The Night Watch</h1>
           <p>
-            {nightName(frame.night)} · {hourWords(frame.clock, frame.phase)}
-            {frame.slowed ? <span className="w-slowed"> · the night slows</span> : null}
+            {headerLine(frame)}
+            {frame.slowed ? <span className="w-slowed"> · {slowedWords(frame)}</span> : null}
           </p>
         </div>
-        {frame.phase === 'night' ? (
-          <fieldset className="w-speeds">
+        {RUNNING.has(frame.phase) ? (
+          <fieldset className={frame.slowed ? 'w-speeds is-slowed' : 'w-speeds'}>
             <legend className="sr-only">Speed</legend>
             {SPEEDS.map((s) => (
               <button
@@ -161,15 +190,34 @@ export function App() {
         <FullscreenButton className="w-fs" />
       </header>
 
-      {menu ? <Chronicle actions={actions} seed={seed} onClose={() => setMenu(false)} /> : null}
+      {menu ? (
+        <Chronicle
+          frame={frame}
+          actions={actions}
+          seed={seed}
+          shelf={shelf}
+          saving={saving}
+          onClose={() => setMenu(false)}
+        />
+      ) : null}
 
       <main className="w-stage">
         <div className="w-mapwrap">
           <MapCanvas frame={frame} selected={selected} onHit={onHit} />
-          <Ticker frame={frame} />
+          {SEASON_PHASES.has(frame.phase) || frame.phase === 'fair' ? (
+            <ChronicleStrip frame={frame} />
+          ) : (
+            <Ticker frame={frame} />
+          )}
         </div>
-        <section className="w-panel" aria-live="polite" key={frame.phase} ref={panel}>
-          {frame.phase === 'goal' ? <GoalPage frame={frame} actions={actions} /> : null}
+        <section
+          className="w-panel"
+          aria-live={SEASON_PHASES.has(frame.phase) ? 'off' : 'polite'}
+          // One key for the open seasons, so the people list keeps its fold across spring, summer and autumn.
+          key={SEASON_PHASES.has(frame.phase) ? 'season' : frame.phase}
+          ref={panel}
+        >
+          {frame.phase === 'goal' ? <GoalPage frame={frame} actions={actions} shelf={shelf} /> : null}
           {frame.phase === 'dusk' ? (
             <DuskPanel
               frame={frame}
@@ -182,9 +230,12 @@ export function App() {
             />
           ) : null}
           {frame.phase === 'night' ? <NightPanel frame={frame} actions={actions} /> : null}
-          {frame.phase === 'dawn' || frame.phase === 'fallen' ? (
-            <DawnPanel frame={frame} actions={actions} seed={seed} />
-          ) : null}
+          {frame.phase === 'dawn' ? <DawnPanel frame={frame} actions={actions} /> : null}
+          {frame.phase === 'fallen' ? <FallenPage frame={frame} actions={actions} seed={seed} /> : null}
+          {SEASON_PHASES.has(frame.phase) ? <SeasonPanel frame={frame} actions={actions} /> : null}
+          {frame.phase === 'fair' ? <FairPage frame={frame} actions={actions} /> : null}
+          {frame.phase === 'thaw' ? <ThawPage frame={frame} actions={actions} /> : null}
+          {frame.phase === 'closed' ? <ClosedPage frame={frame} actions={actions} /> : null}
         </section>
       </main>
     </div>
@@ -219,81 +270,6 @@ function Ticker({ frame }: { frame: Frame }) {
   );
 }
 
-/** 0..n-1 as plain values, so list keys are the sack's own number rather than a map index. */
-function range(n: number): number[] {
-  const out: number[] = [];
-  for (let i = 0; i < n; i++) out.push(i);
-  return out;
-}
-
-function Sacks({ have, lost, label }: { have: number; lost: number; label: string }) {
-  const total = have + lost;
-  const perRow = 10;
-  const rows = Math.max(1, Math.ceil(total / perRow));
-  return (
-    <svg
-      className="w-sacks"
-      viewBox={`0 0 ${perRow * 18 + 4} ${rows * 16 + 4}`}
-      role="img"
-      aria-label={label}
-    >
-      <title>{label}</title>
-      {range(total).map((n) => {
-        const x = 2 + (n % perRow) * 18 + 8;
-        const y = 2 + Math.floor(n / perRow) * 16 + 8;
-        const gone = n >= have;
-        return (
-          <g key={n} className={gone ? 'sack sack-gone' : 'sack'}>
-            <ellipse cx={x} cy={y + 1} rx={7.5} ry={6.5} />
-            <path d={`M${x - 3} ${y - 5} q3 -3 6 0`} />
-          </g>
-        );
-      })}
-    </svg>
-  );
-}
-
-function Rope({ wear, snapped }: { wear: number; snapped: boolean }) {
-  const strands = 6;
-  const left = snapped ? 0 : Math.max(1, Math.round(strands * (1 - wear)));
-  const label = ropeWords(wear, snapped);
-  return (
-    <svg className="w-rope" viewBox="0 0 120 24" role="img" aria-label={label}>
-      <title>{label}</title>
-      {range(strands).map((i) => {
-        const y = 6 + i * 2.4;
-        const whole = i < left;
-        return whole ? (
-          <path key={i} className="strand" d={`M4 ${y} C40 ${y - 3} 80 ${y + 3} 116 ${y}`} />
-        ) : (
-          <g key={i} className="strand strand-cut">
-            <path d={`M4 ${y} C24 ${y - 2} 44 ${y + 1} ${54 - i * 2} ${y + 3}`} />
-            <path d={`M${66 + i * 2} ${y + 3} C80 ${y + 2} 98 ${y - 1} 116 ${y}`} />
-          </g>
-        );
-      })}
-    </svg>
-  );
-}
-
-/** The Keeper's impressions: each phrase is as solid as he is sure, with a soft bar that fades where he isn't. */
-function Impressions({ w }: { w: FrameWatcher }) {
-  return (
-    // Spans, not a list: this sits inside the roster button.
-    <span className="w-imps">
-      {w.impressions.map((im) => (
-        <span
-          key={im.text}
-          className={im.sure <= 0 ? 'w-imp is-unknown' : 'w-imp'}
-          style={{ '--sure': im.sure } as CSSProperties}
-        >
-          {im.text}
-        </span>
-      ))}
-    </span>
-  );
-}
-
 /** Where a watcher is posted and where they stand, in words. */
 function whereWords(w: FrameWatcher, phase: Frame['phase']): string {
   const posted = w.posted
@@ -307,9 +283,29 @@ function whereWords(w: FrameWatcher, phase: Frame['phase']): string {
   return `${posted} · ${stands}`;
 }
 
-function GoalPage({ frame, actions }: { frame: Frame; actions: WatchActions }) {
+function GoalPage({ frame, actions, shelf }: { frame: Frame; actions: WatchActions; shelf: PageInfo[] }) {
+  // The shelf is newest first: the first running page is the chronicle last kept.
+  const saved = shelf.find((p) => p.kind === 'auto') ?? null;
+  const [note, setNote] = useState('');
+  const [busy, setBusy] = useState(false);
+  const resume = async () => {
+    if (!saved) return;
+    setBusy(true);
+    const ok = await actions.load(saved.id);
+    setBusy(false);
+    if (!ok) setNote('That page could not be read. You can begin anew.');
+  };
   return (
     <div className="w-page">
+      {saved ? (
+        <div className="w-resume">
+          <button type="button" className="w-primary" disabled={busy} onClick={resume}>
+            <Icon name="book-open" size={18} /> {busy ? 'Opening the chronicle…' : 'Continue the chronicle'}
+          </button>
+          {note ? <p className="w-note w-soft-fail">{note}</p> : null}
+          <p className="w-note">Or begin a new chronicle below.</p>
+        </div>
+      ) : null}
       <p className="w-kicker">The chronicle opens</p>
       <h2>Bring every soul and the granary to the thaw.</h2>
       <p>
@@ -323,8 +319,12 @@ function GoalPage({ frame, actions }: { frame: Frame; actions: WatchActions }) {
         goodwill when it goes well.
       </p>
       <Sacks have={frame.grain} lost={0} label="The granary is full" />
-      <button type="button" className="w-primary" onClick={() => actions.input({ k: 'start' })}>
-        Go up to the wall
+      <button
+        type="button"
+        className={saved ? 'w-secondary' : 'w-primary'}
+        onClick={() => actions.input({ k: 'start' })}
+      >
+        {saved ? 'Begin anew: go up to the wall' : 'Go up to the wall'}
       </button>
     </div>
   );
@@ -356,12 +356,13 @@ function DuskPanel({
       <p className="w-warning">
         <Icon name="sunrise" size={18} /> {frame.warning}
       </p>
+      {frame.winter ? <WinterNote frame={frame} /> : null}
       {frame.day && frame.day.lines.length > 0 ? (
         <details className="w-day">
           <summary>Today</summary>
           <ul>
             {frame.day.lines.map((l) => (
-              <li key={l.who}>{l.text}</li>
+              <li key={`${l.who}-${l.text}`}>{l.text}</li>
             ))}
           </ul>
         </details>
@@ -369,7 +370,7 @@ function DuskPanel({
       <p className="w-hint">
         {sel
           ? `Where should ${sel.name} stand? Tap a post on the wall or a stretch below.`
-          : `Tap a watcher, then a post. ${count === 1 ? 'One watcher' : `${count} watchers`}, ${posts} posts: some wall stands empty.`}
+          : `Tap a watcher, then a post. ${count < posts ? 'There are more posts than watchers: some wall stands empty.' : 'Every post can be held.'}`}
       </p>
       {sel ? (
         <div className="w-postcard">
@@ -433,7 +434,7 @@ function DuskPanel({
                 <span className="w-person-note">{w.note}</span>
               </span>
               <span className="w-person-post">{whereWords(w, frame.phase)}</span>
-              <Impressions w={w} />
+              <Impressions impressions={w.impressions} />
             </button>
           </li>
         ))}
@@ -543,20 +544,90 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
   );
 }
 
-function DawnPanel({ frame, actions, seed }: { frame: Frame; actions: WatchActions; seed: number }) {
+/** The winter's reason and its question, briefly, at dusk. */
+function WinterNote({ frame }: { frame: Frame }) {
+  const w = frame.winter;
+  if (!w) return null;
+  return (
+    <div className="w-winter">
+      {w.night <= 1 && w.why ? <p className="w-note">{w.why}</p> : null}
+      {w.question ? (
+        <p className="w-winter-q">
+          <span className="w-kicker">This winter</span> {w.question.text}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+/** The body ask, in the words a Keeper would use for this person. */
+function bodyAsk(w: FrameWatcher | undefined): string {
+  if (w?.limp) return 'How is the leg?';
+  if (w?.age === 'old') return 'How are the knees?';
+  return 'How are you holding up?';
+}
+
+/** Talks at dawn: a little daylight, spent one talk at a time, against the watchers' sleep. */
+function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
+  const t = frame.talks;
+  if (!t) return null;
+  return (
+    <section className="w-talks" aria-label="Talks before they sleep">
+      <div className="w-talks-head">
+        <h3>Before they sleep</h3>
+        <Pips left={t.left} of={Math.max(TALKS_PER_DAY, t.left)} label={daylightWords(t.left)} />
+      </div>
+      <p className="w-note">{daylightWords(t.left)} Each talk costs them a little sleep.</p>
+      {t.said.length > 0 ? (
+        <ul className="w-voices">
+          {t.said.map((x) => (
+            <li key={`${x.who}-${x.topic}`}>
+              <blockquote>{x.text}</blockquote>
+              <span className="w-voice-who">{x.name}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {t.left > 0 && t.can.length > 0 ? (
+        <ul className="w-asks">
+          {t.can.map((id) => {
+            const w = frame.watchers.find((x) => x.id === id);
+            return (
+              <li key={id}>
+                <span className="w-person-name">{w?.name ?? id}</span>
+                <span className="w-ask-btns">
+                  <button
+                    type="button"
+                    className="w-chip"
+                    onClick={() => actions.input({ k: 'talk', who: id, topic: 'night' })}
+                  >
+                    Tell me about last night
+                  </button>
+                  <button
+                    type="button"
+                    className="w-chip"
+                    onClick={() => actions.input({ k: 'talk', who: id, topic: 'body' })}
+                  >
+                    {bodyAsk(w)}
+                  </button>
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+    </section>
+  );
+}
+
+function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) {
   const d = frame.dawn;
   if (!d) return null;
-  const fallen = frame.phase === 'fallen';
+  const last = frame.winter !== null && frame.winter.night >= frame.winter.nights;
   return (
     <div className="w-page w-dawn">
-      <p className="w-kicker">Dawn · {nightName(d.night).toLowerCase()}</p>
-      <h2>
-        {fallen
-          ? 'The granary is empty.'
-          : d.grainAfter === d.grainBefore
-            ? 'The wall held.'
-            : 'The wall was crossed.'}
-      </h2>
+      <p className="w-kicker">Dawn · {frame.date}</p>
+      <h2>{d.grainAfter === d.grainBefore ? 'The wall held.' : 'The wall was crossed.'}</h2>
       {d.scout ? <p className="w-scoutline">{d.scout}</p> : null}
       <ul className="w-dawnlines">
         {d.lines.map((l) => (
@@ -566,7 +637,7 @@ function DawnPanel({ frame, actions, seed }: { frame: Frame; actions: WatchActio
       {d.voices.length > 0 ? (
         <ul className="w-voices">
           {d.voices.map((v) => (
-            <li key={v.who}>
+            <li key={`${v.who}-${v.text}`}>
               <blockquote>{v.text}</blockquote>
               <span className="w-voice-who">{nameIn(frame, v.who)}</span>
             </li>
@@ -581,61 +652,13 @@ function DawnPanel({ frame, actions, seed }: { frame: Frame; actions: WatchActio
       {d.ropeSnapped ? (
         <p className="w-note">Someone will have to splice the bell rope today; it will not be new.</p>
       ) : null}
-      {fallen ? (
-        <>
-          <p>The village cannot reach the thaw. The chronicle closes this volume.</p>
-          <button type="button" className="w-primary" onClick={() => actions.restart(seed + 1)}>
-            Begin a new village
-          </button>
-        </>
-      ) : (
-        <button type="button" className="w-primary" onClick={() => actions.input({ k: 'toDusk' })}>
-          On to dusk
-        </button>
-      )}
-    </div>
-  );
-}
-
-function Chronicle({ actions, seed, onClose }: { actions: WatchActions; seed: number; onClose: () => void }) {
-  const [status, setStatus] = useState('');
-  const [text, setText] = useState('');
-  const copy = async () => {
-    const data = await actions.exportRun();
-    const json = JSON.stringify(data);
-    try {
-      await navigator.clipboard.writeText(json);
-      setStatus('Copied. Paste it into a message to the team.');
-    } catch {
-      setText(json);
-      setStatus('Copy was blocked; select the text below.');
-    }
-  };
-  return (
-    <div className="w-menu" role="dialog" aria-label="The chronicle">
-      <div className="w-menu-head">
-        <h2>The chronicle</h2>
-        <button type="button" className="w-x" onClick={onClose}>
-          <Icon name="x" size={18} label="Close" />
-        </button>
-      </div>
-      <p>The clock stands still while the chronicle is open.</p>
-      <button type="button" className="w-secondary" onClick={copy}>
-        <Icon name="copy" size={16} /> Copy this volume (playtest export)
+      <Talks frame={frame} actions={actions} />
+      <button type="button" className="w-primary" onClick={() => actions.input({ k: 'toDusk' })}>
+        {last ? 'Into the thaw' : 'On to dusk'}
       </button>
-      {status ? <p className="w-note">{status}</p> : null}
-      {text ? <textarea className="w-export" readOnly value={text} rows={4} /> : null}
-      <button
-        type="button"
-        className="w-secondary"
-        onClick={() => {
-          actions.restart((seed * 48271 + 11) % 2147483647);
-          onClose();
-        }}
-      >
-        Begin a new village
-      </button>
-      <FullscreenButton variant="item" className="w-secondary w-fs-item" />
+      {last ? (
+        <p className="w-note">That was the last night watched this winter; the rest goes by routine.</p>
+      ) : null}
     </div>
   );
 }

@@ -4,7 +4,7 @@
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { startTickLoop } from '../../shared/tick-loop.ts';
-import { type MainToWorker, WATCH_SCENARIO_VERSION, type WorkerToMain } from '../protocol.ts';
+import { type MainToWorker, type PageInfo, WATCH_SCENARIO_VERSION, type WorkerToMain } from '../protocol.ts';
 import type { Input } from '../sim/night.ts';
 import type { Speed } from '../sim/pace.ts';
 import type { PlaytestExport } from '../sim/run.ts';
@@ -17,6 +17,10 @@ export interface WatchActions {
   hold(on: boolean): void;
   exportRun(): Promise<PlaytestExport>;
   restart(seed: number): void;
+  /** Ask the worker for the saved pages again (the shelf refreshes itself on start). */
+  refreshShelf(): void;
+  /** Resume a saved page; resolves false if it could not be read (the current run goes on). */
+  load(id: string): Promise<boolean>;
 }
 
 export interface Watch {
@@ -24,6 +28,10 @@ export interface Watch {
   speed: Speed;
   error: string | null;
   seed: number;
+  /** Saved pages, newest first ([] without storage). */
+  shelf: PageInfo[];
+  /** False once a save has failed (storage unavailable or full): the shelf will not grow. */
+  saving: boolean;
   actions: WatchActions;
 }
 
@@ -45,6 +53,9 @@ export function useWatch(): Watch {
   const [frame, setFrame] = useState<Frame | null>(null);
   const [speed, setSpeedState] = useState<Speed>('watch');
   const [error, setError] = useState<string | null>(null);
+  const [shelf, setShelf] = useState<PageInfo[]>([]);
+  const [saving, setSaving] = useState(true);
+  const loads = useRef(new Map<string, { prev: number; done: (ok: boolean) => void }>());
   const exports = useRef(new Map<number, (d: PlaytestExport) => void>());
   const exportSeq = useRef(0);
 
@@ -55,8 +66,24 @@ export function useWatch(): Watch {
     worker.current = w;
     w.addEventListener('message', (e: MessageEvent<WorkerToMain>) => {
       const msg = e.data;
+      if (msg.type === 'loaded') {
+        const wait = loads.current.get(msg.id);
+        loads.current.delete(msg.id);
+        if (!msg.ok && wait && gen.current === msg.gen) gen.current = wait.prev;
+        if (msg.ok && msg.seed !== undefined) {
+          seedRef.current = msg.seed;
+          setSeed(msg.seed);
+          setError(null);
+        }
+        wait?.done(msg.ok);
+        return;
+      }
       if (msg.gen !== gen.current) return;
       switch (msg.type) {
+        case 'shelf':
+          setShelf(msg.pages);
+          setSaving(msg.saving);
+          return;
         case 'frame':
           setFrame(msg.frame);
           setSpeedState(msg.speed);
@@ -112,9 +139,20 @@ export function useWatch(): Watch {
         setError(null);
         send({ type: 'init', seed: next, gen: gen.current, scenarioVersion: WATCH_SCENARIO_VERSION });
       },
+      refreshShelf: () => send({ type: 'shelf' }),
+      load: (id) =>
+        new Promise<boolean>((resolve) => {
+          const prev = gen.current;
+          gen.current += 1;
+          loads.current.set(id, {
+            prev,
+            done: resolve,
+          });
+          send({ type: 'load', id, gen: gen.current });
+        }),
     }),
     [send],
   );
 
-  return { frame, speed, error, seed, actions };
+  return { frame, speed, error, seed, shelf, saving, actions };
 }

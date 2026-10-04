@@ -9,11 +9,14 @@
  * midnight of day 365 and its first dusk is lived to. Fidelity switches only at midnight: the hours between a dawn
  * and the next midnight, and between midnight and the winter's first dusk, are lived minute by minute
  * (`stepPeople`); whole days in between by HF `liveCommunity` with this game's routines, natural death and chronic
- * onsets on. Grain is lost only on played nights; the spring's eating is paid at the thaw (the village falls if the
- * granary cannot reach the harvest) and the harvest refills it.
+ * onsets on. Grain is lost only on played nights; the spring's eating is paid at the thaw and the harvest refills it
+ * (14 + 1.5 sacks per worker, by the weather, up to a granary of 45). In year 1 an empty granary at the thaw ends
+ * the village; from year 2 it is a hungry spring: the households most ready to go leave until the rest can be fed.
+ * The village ends only when nobody aged fifteen or more is left. Village size is held by crowding (fewer births and
+ * young couples leaving above twenty-two) and refugees (below ten).
  *
- * Not covered: weather, the spring repairs, trade, resettlement after a fall (a fallen village ends its volume and
- * the chronicle; a new seed starts a new village).
+ * Not covered: weather beyond the harvest roll, the spring repairs, trade, resettlement after a fall (a fallen
+ * village ends its volume and the chronicle; a new seed starts a new village).
  */
 import { liveCommunity, tend } from '@human/framework';
 import {
@@ -131,6 +134,8 @@ export function endWinter(s: WatchState): void {
 
 function thaw(s: WatchState): void {
   s.phase = 'thaw';
+  // The last dawn page is spent: a fall from here is the thaw's, not a night's.
+  s.dawn = null;
   const q = s.winter.question;
   if (q && q.met === null) {
     if (q.kind === 'souls') {
@@ -236,14 +241,19 @@ function harvest(s: WatchState): void {
   s.marks.seed = false;
   const got = Math.max(0, Math.round((14 + 1.5 * workers) * weather * seed));
   s.yearGrain.harvest = got;
-  const before = s.grain;
   s.grain = Math.min(GRANARY_MAX, s.grain + got);
-  const words = weather > 1.05 ? 'A good harvest' : weather < 0.82 ? 'A thin harvest' : 'An ordinary harvest';
-  chronicle(
-    s,
-    'harvest',
-    `${words}: ${s.grain >= GRANARY_MAX ? 'the granary is full to the door' : s.grain - before > 12 ? 'the granary is well filled' : 'the granary is half empty going into winter'}.`,
-  );
+  const good = weather > 1.05;
+  const thin = weather < 0.82;
+  const words = good ? 'A good harvest' : thin ? 'A thin harvest' : 'An ordinary harvest';
+  const level = s.grain >= GRANARY_MAX ? 2 : s.grain >= 30 ? 1 : 0;
+  const store = [
+    'the granary is half empty going into winter',
+    'the granary is well filled',
+    'the granary is full to the door',
+  ][level];
+  // A thin harvest can still leave a full store (last year's grain), and a good one a half-empty store.
+  const but = (thin && level > 0) || (good && level === 0);
+  chronicle(s, 'harvest', `${words}${but ? ', but' : ':'} ${store}.`);
 }
 
 /** The open posts for a winter: the four stretches' two posts, raised stretches' thirds, a lost stretch closed. */

@@ -13,7 +13,7 @@ import { dayOfYear, seasonOfDay } from './sim/life.ts';
 import { Pacer } from './sim/pace.ts';
 import { WatchRun } from './sim/run.ts';
 import type { WatchState } from './sim/state.ts';
-import { buildFrame } from './sim/view.ts';
+import { buildFrame, ordinal } from './sim/view.ts';
 import { listPages, loadPage, type PageInfo, savePage } from './store.ts';
 
 let run: WatchRun | null = null;
@@ -36,7 +36,7 @@ function seasonMark(s: WatchState): string {
 
 function whenWords(s: WatchState): string {
   const season = seasonOfDay(dayOfYear(s));
-  if (s.phase === 'dawn') return `winter, after night ${s.winterNight}`;
+  if (s.phase === 'dawn') return `winter, after the ${ordinal(s.winterNight)} night`;
   if (s.phase === 'fair') return 'autumn, the fair';
   if (s.phase === 'thaw') return 'the thaw';
   if (s.phase === 'closed') return 'a volume closed';
@@ -78,7 +78,9 @@ function maybeSave(): void {
 
 function begin(r: WatchRun, id: string): void {
   run = r;
+  const held = pacer.held;
   pacer = new Pacer();
+  pacer.held = held;
   chronicleId = id;
   savedSeason = seasonMark(r.state);
   savedPhase = '';
@@ -169,5 +171,5 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
 
 function postShelf(): void {
   const gen = host.gen;
-  void listPages().then((pages) => host.post({ type: 'shelf', pages, saving }, gen));
+  void listPages().then((pages) => host.post({ type: 'shelf', pages, saving, current: chronicleId }, gen));
 }

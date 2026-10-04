@@ -822,3 +822,517 @@
     min-height: 44px;
   }
 }
+
+/* ---- G3-3: the year ---- */
+
+/* Speeds: a soft cue on the chosen speed while a moment or a card slows play (never a pause). */
+.w-speeds.is-slowed .w-speed[aria-pressed="true"] {
+  animation: w-breathe 2.4s ease-in-out infinite;
+}
+@keyframes w-breathe {
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.watch button:disabled {
+  cursor: not-allowed;
+}
+.w-secondary:disabled,
+.w-chip:disabled,
+.watch .w-primary:disabled {
+  opacity: 0.45;
+}
+
+/* The chronicle strip over the map: newest first, each line fading in as it is written. */
+.w-strip {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+}
+.w-strip-line {
+  align-self: flex-start;
+  max-width: min(100%, 560px);
+  font-size: 0.82rem;
+  line-height: 1.3;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background: rgba(13, 16, 34, 0.74);
+  color: var(--w-muted);
+  animation: w-write 0.9s ease-out;
+}
+.w-strip-line:first-child {
+  color: var(--w-text);
+}
+.w-strip-death,
+.w-strip-loss {
+  border-left: 2px solid var(--w-muted);
+}
+.w-strip-birth,
+.w-strip-marriage {
+  border-left: 2px solid var(--w-accent);
+}
+@keyframes w-write {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+/* Season card: the moment card's look, with the Keeper's read under the text. */
+.w-card-read {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--w-muted);
+}
+
+.w-season-date {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin: 2px 0 4px;
+}
+.w-season .w-kicker,
+.w-page .w-kicker {
+  margin: 0 0 4px;
+}
+.w-question {
+  margin: 0 0 8px;
+  font-style: italic;
+}
+
+/* The village's people. */
+.w-people {
+  margin: 8px 0 0;
+}
+.w-people summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+.w-people summary .w-note {
+  font-weight: 400;
+}
+.w-villagers {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+.w-villager {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 6px 10px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface-2);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.w-villager.is-watcher {
+  border-left: 3px solid var(--w-accent);
+}
+.w-badge {
+  font-size: 0.7rem;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--w-line);
+  color: var(--w-muted);
+}
+
+/* The fair. */
+.w-picks {
+  font-weight: 600;
+}
+.w-offers {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+.w-offer {
+  border: 1px solid var(--w-line);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: var(--w-surface-2);
+  min-width: 0;
+}
+.w-offer h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.05rem;
+  margin: 0 0 4px;
+}
+.w-offer p {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+}
+.w-offer .w-secondary {
+  margin-top: 6px;
+}
+.w-offer.is-taken {
+  border-color: var(--w-accent);
+  background: rgba(224, 163, 95, 0.12);
+}
+.w-taken {
+  color: var(--w-accent);
+  font-weight: 600;
+}
+
+/* The thaw. */
+.w-thaw-winter {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+.w-thaw-winter.is-hungry {
+  color: var(--w-warn);
+}
+.w-question-box {
+  border: 1px solid var(--w-line);
+  border-left: 3px solid var(--w-muted);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin: 8px 0 10px;
+}
+.w-question-box.is-met {
+  border-left-color: var(--w-accent);
+}
+.w-question-box.is-unmet {
+  border-left-color: var(--w-warn);
+}
+.w-question-box p {
+  margin: 2px 0;
+}
+.w-met {
+  font-weight: 600;
+}
+.w-sub,
+.w-leaves h3,
+.w-talks h3,
+.w-menu h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 12px 0 6px;
+}
+
+/* Blank leaves: a ruled line waiting, with the condition that will fill it. */
+.w-leaves ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.w-leaf {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.w-leaf-blank {
+  display: block;
+  height: 1.3em;
+  border-bottom: 1px dashed rgba(243, 233, 214, 0.35);
+}
+.w-leaf-text {
+  margin: 0;
+  font-style: italic;
+}
+.w-leaf-cond {
+  font-size: 0.78rem;
+  color: var(--w-muted);
+}
+.w-leaf.is-filled .w-leaf-cond {
+  opacity: 0.7;
+}
+
+/* A closed volume: the last page of a chapter. */
+.w-closed {
+  text-align: center;
+  max-width: 34rem;
+  margin: 0 auto;
+}
+.w-closed h2 {
+  font-size: 1.6rem;
+}
+.w-closed-q {
+  font-style: italic;
+  color: var(--w-muted);
+}
+.w-closed-end {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+.w-page .w-fleuron {
+  font-size: 1.4rem;
+  color: var(--w-accent);
+  margin: 6px 0;
+}
+.w-epilogue {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  text-align: left;
+}
+.w-epilogue li {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border-left: 2px solid var(--w-line);
+  padding-left: 10px;
+}
+.w-epi-name {
+  font-weight: 600;
+}
+.w-epi-text {
+  font-style: italic;
+  line-height: 1.4;
+}
+.w-closed .w-sacks {
+  margin: 4px auto;
+}
+
+/* Dusk: the winter's reason and question. */
+.w-winter {
+  margin: 0 0 6px;
+}
+.w-winter p {
+  margin: 0 0 4px;
+}
+.w-winter-q {
+  font-size: 0.9rem;
+}
+.w-winter-q .w-kicker {
+  margin-right: 4px;
+}
+
+/* Dawn talks. */
+.w-talks {
+  border-top: 1px solid var(--w-line);
+  margin-top: 10px;
+  padding-top: 2px;
+}
+.w-talks-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.w-pips {
+  display: inline-flex;
+  gap: 5px;
+}
+.w-pip {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #ffe2a8, var(--w-accent));
+  box-shadow: 0 0 6px rgba(224, 163, 95, 0.6);
+}
+.w-pip.is-spent {
+  background: transparent;
+  border: 1px solid var(--w-line);
+  box-shadow: none;
+}
+.w-asks {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.w-asks li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.w-ask-btns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+.w-ask-btns .w-chip {
+  font-size: 0.85rem;
+  line-height: 1.2;
+  padding: 4px 8px;
+  overflow-wrap: anywhere;
+}
+
+/* The goal page's resume. */
+.w-resume {
+  margin: 0 0 12px;
+}
+.w-resume .w-primary {
+  margin-top: 0;
+}
+.w-soft-fail {
+  color: var(--w-warn);
+}
+
+/* The chronicle: the menu and the shelf, scrolling within the screen. */
+.watch .w-menu {
+  width: min(420px, calc(100vw - 20px));
+  max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 72px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.w-menu-sec {
+  border-top: 1px solid var(--w-line);
+  margin-top: 8px;
+}
+.w-vols,
+.w-pages ul,
+.w-lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.w-vol {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+.w-vol-spine {
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  background: #5a3f2c;
+  color: #f0dcb8;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  writing-mode: vertical-rl;
+  min-height: 56px;
+}
+.w-vol.is-open .w-vol-spine {
+  background: #7a5a3c;
+  box-shadow: 0 0 0 1px var(--w-accent);
+}
+.w-vol-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.w-vol-title {
+  font-weight: 600;
+}
+.w-vol-end {
+  font-size: 0.85rem;
+  font-style: italic;
+}
+.w-pages {
+  margin-bottom: 8px;
+}
+.w-pagerow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+.w-pagerow .w-chip {
+  flex: 0 0 auto;
+}
+.w-pagerow.is-continue {
+  padding: 4px 0;
+}
+.w-lines {
+  max-height: 40dvh;
+  overflow-y: auto;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+.w-line-when {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--w-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media (min-width: 560px) {
+  .w-offers,
+  .w-villagers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 900px) {
+  .w-villagers {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .w-offers {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Phones: the speeds get their own strip under the title; pages take more of the screen; the chronicle is a sheet. */
+@media (max-width: 480px) {
+  .w-top {
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+  .w-speeds {
+    order: 10;
+    flex: 1 0 100%;
+    gap: 4px;
+    padding-bottom: 2px;
+  }
+  .w-speeds .w-speed {
+    flex: 1 1 0;
+    min-height: 44px;
+    padding: 0;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .w-speeds .w-speed span {
+    display: block;
+    font-size: 0.66rem;
+    line-height: 1;
+  }
+  .w-panel {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .phase-thaw .w-panel,
+  .phase-closed .w-panel,
+  .phase-fair .w-panel,
+  .phase-fallen .w-panel,
+  .phase-goal .w-panel,
+  .phase-dawn .w-panel {
+    max-height: 64dvh;
+  }
+  .watch .w-menu {
+    left: 8px;
+    right: 8px;
+    width: auto;
+    top: calc(env(safe-area-inset-top) + 56px);
+    max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 64px);
+  }
+  .w-strip-line:nth-child(n + 4) {
+    display: none;
+  }
+}
