@@ -8,7 +8,7 @@
 import { prayerWindows } from '../agenda/index.ts';
 import { readBody } from '../body/index.ts';
 import { heldNorms } from '../conscience/index.ts';
-import { chance, createRng, dayOf, minuteOfDay } from '../core/index.ts';
+import { chance, clamp01, createRng, dayOf, minuteOfDay } from '../core/index.ts';
 import type { World } from '../sim/index.ts';
 import { successChance } from '../skills/index.ts';
 import type {
@@ -326,7 +326,7 @@ export function createVillage(
     if (reason === 'interrupted') {
       // Partial work counts: a field shift left early yields and pays pro rata for the time put in.
       const span = Math.max(1, act.endsAt - act.startedAt);
-      const progress = Math.max(0, Math.min(1, (now - act.startedAt) / span));
+      const progress = clamp01((now - act.startedAt) / span);
       const out: Outcome = { ...base, status: 'interrupted', summary: `${aff.label}: interrupted` };
       if (act.action === 'work-field' && progress > 0) {
         state.food += V.fieldYield * progress;
