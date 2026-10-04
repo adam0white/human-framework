@@ -40,7 +40,9 @@ export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impres
     else if (c.key.startsWith('tie:')) {
       const other = c.key.slice(4) as WatcherId;
       const name = WATCHERS.find((w) => w.id === other)?.name;
-      if (name) text = v > 0.4 ? `close to ${name}` : v < -0.3 ? `at odds with ${name}` : null;
+      // A tie to someone not yet among the watchers would name a stranger; it waits until they arrive.
+      if (name && s.community.people.some((q) => q.id === other))
+        text = v > 0.4 ? `close to ${name}` : v < -0.3 ? `at odds with ${name}` : null;
     } else if (c.key === 'trait:emotionality')
       text = v > 0.65 ? 'jumpy by nature' : v < 0.3 ? 'steady by nature' : null;
     else if (c.key === 'trait:conscientiousness') text = v > 0.7 ? 'dutiful' : v < 0.3 ? 'careless' : null;

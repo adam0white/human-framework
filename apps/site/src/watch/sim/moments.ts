@@ -79,7 +79,13 @@ function toRead(res: SuggestionResolution, confidence: number): Read {
 }
 
 /** The Keeper's read of how a watcher would take a posting (dusk card). Pure. */
-export function readPosting(s: WatchState, who: WatcherId, post: PostId, press: Press = 'ask'): Read {
+export function readPosting(
+  s: WatchState,
+  who: WatcherId,
+  post: PostId,
+  press: Press = 'ask',
+  vacating?: WatcherId,
+): Read {
   const p = personOf(s, who);
   if (!p) return { word: "can't tell", confidence: 0 };
   const sug: Suggestion = {
@@ -93,11 +99,17 @@ export function readPosting(s: WatchState, who: WatcherId, post: PostId, press: 
   // places with the watcher already standing there.
   // At dusk the Keeper reads the night ahead: the scout's warned stretch as dangerous already, and a post as free
   // when whoever stands there now is posted elsewhere (they will move at nightfall).
+  // At night, `vacating` is the watcher the Keeper is letting go from that post: read it as free.
   let view = s;
-  if (s.phase === 'dusk') {
+  if (s.phase === 'dusk' || vacating) {
     const place = { ...s.place };
     for (const [id, pl] of Object.entries(place))
-      if (id !== who && pl === post && s.posts[id as WatcherId] !== post) place[id as WatcherId] = 'village';
+      if (
+        id !== who &&
+        pl === post &&
+        (id === vacating || (s.phase === 'dusk' && s.posts[id as WatcherId] !== post))
+      )
+        place[id as WatcherId] = 'village';
     view = { ...s, place };
   }
   const offers = offersFor(view, who, s.phase === 'dusk');
@@ -249,7 +261,7 @@ export function checkMoments(s: WatchState): void {
       });
     if (sub && isPost(pl)) {
       const q = personOf(s, sub);
-      const r = q ? readPosting(s, sub, pl, 'urge') : { word: "can't tell" as const, confidence: 0 };
+      const r = q ? readPosting(s, sub, pl, 'urge', who) : { word: "can't tell" as const, confidence: 0 };
       options.push({
         id: `send:${sub}`,
         label: `Let ${def.sex === 'female' ? 'her' : 'him'} go; send ${watcherDef(sub).name} to the post`,

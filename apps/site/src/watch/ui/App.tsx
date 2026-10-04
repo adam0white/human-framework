@@ -322,11 +322,12 @@ function GoalPage({ frame, actions }: { frame: Frame; actions: WatchActions }) {
       <p>
         You are the Keeper. At dusk the scout tells you what is coming; you post the watchers. At night you
         carry the lantern to one stretch of wall, and only there can you see what comes. Ring the bell when
-        you must; the rope wears with every pull.
+        you must: every pull wears its rope, and a snapped rope leaves the bell silent.
       </p>
       <p className="w-note">
-        The watchers are people. You can ask, urge or insist, but tired, frightened or worried for home, they
-        may not stand where you put them.
+        The watchers are people. Tired, frightened or worried for home, they may not stand where you put them.
+        Ask leaves it to them; urge leans on them; insist can get them there under protest, and wins you no
+        goodwill when it goes well.
       </p>
       <Sacks have={frame.grain} lost={0} label="The granary is full" />
       <button type="button" className="w-primary" onClick={() => actions.input({ k: 'start' })}>
