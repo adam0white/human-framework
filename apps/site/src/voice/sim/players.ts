@@ -18,7 +18,7 @@
  * The other styles keep faith out of it: they never pick prayer or steer around it, and offer no food, drink or
  * cigarette during the fast.
  */
-import { chronicleBetween, type DecisionRecord, resolutionsOf, voiceOf } from '@human/framework';
+import { chronicleBetween, type SuggestionResolution, voiceOf } from '@human/framework';
 import type { Appeal, Draft, Frame, StandingWhisper } from '../protocol.ts';
 import { SHIPPED_SEED, VoiceGame } from './game.ts';
 import { type PlayOpts, play } from './headless.ts';
@@ -333,19 +333,22 @@ export interface Measured {
 export function measure(opts: PlayOpts, seed = SHIPPED_SEED): Measured {
   const g = new VoiceGame(seed);
   // Measurement only: read the reason behind each answer the log shows (the game keeps the reason off screen). This
-  // wraps the game's private decision handler without changing what it does; the players never see it.
+  // wraps the game's private answer handler (decisions and words answered at once) without changing what it does;
+  // the players never see it.
   const verdicts: Record<string, number> = {};
-  const hook = g as unknown as { onDecision(r: DecisionRecord): void; logSeq: number };
-  const onDecision = hook.onDecision.bind(g);
-  hook.onDecision = (r) => {
+  const hook = g as unknown as {
+    heard(you: SuggestionResolution, at: number, decisionId?: string): void;
+    logSeq: number;
+  };
+  const heard = hook.heard.bind(g);
+  hook.heard = (you, at, decisionId) => {
     const seq = hook.logSeq;
-    onDecision(r);
-    const you = resolutionsOf(r).find((x) => x?.voiceId === 'you');
+    heard(you, at, decisionId);
     for (let i = g.log.length - 1; i >= 0; i--) {
       const e = g.log[i];
       if (!e || Number(e.id.slice(1)) <= seq) break;
-      if (e.kind !== 'answer' || e.decisionId !== r.id || !e.tone) continue;
-      const k = `${e.tone} ${you?.reason ?? '?'}`;
+      if (e.kind !== 'answer' || !e.tone) continue;
+      const k = `${e.tone} ${you.reason ?? '?'}`;
       verdicts[k] = (verdicts[k] ?? 0) + 1;
     }
   };

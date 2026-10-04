@@ -122,10 +122,9 @@ describe('Game 2 range: how far the player can move the month', () => {
       // through two seams of the omission rule, both closed (docs/findings.md, 2026-10-04 eleventh and twelfth passes).
       expect(r.prayersMissed, n).toBe(0);
     }
-    // The fast's veto adds no excused break; thirst does. Twelfth pass: a refused word no longer interrupts, so the
-    // plain Saboteur's excused breaks fell from 3 to 1, while Saboteur + faith keeps 2 to 3. Its extra break (seed 7,
-    // Ramadan 15) is thirst after an insisted afternoon shift, which the faith pick pushes as a long option while
-    // Dhuhr is open, not a refusal of water. So the bound allows one break more than the plain Saboteur's.
+    // The fast's veto adds no excused break; thirst does. Twelfth pass: both rows now have one (seeds 7, 1, 2, 3, 4).
+    // The bound keeps one in hand because the delayed-answer variant of this pass measured 2.2 for Saboteur + faith
+    // (seed 7, Ramadan 15: thirst after an insisted afternoon shift pushed while Dhuhr was open, not a refused drink).
     expect(row('Saboteur + faith').fastNecessity).toBeLessThanOrEqual(row('Saboteur').fastNecessity + 1);
   });
 });
@@ -138,7 +137,7 @@ test("insisting against an obligatory prayer near its window's end is refused (t
   const LONG = ['visit-grave', 'tea:riza', 'sleep', 'work-extra'];
   let found: { draft: Draft; until: number } | undefined;
   // Asked every 5 minutes, not 30: under engine 1.9.0 the 30-minute pauses no longer land on such a moment with a long
-  // option he could do (measured; why was not traced), and a refusal no longer pauses at once (twelfth pass).
+  // option he could do (measured; why was not traced).
   play(g, {
     ...opts,
     pauseEvery: 5,

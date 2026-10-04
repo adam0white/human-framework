@@ -12,6 +12,7 @@
  */
 import {
   type Affordance,
+  answerNow,
   type Community,
   chronicleBetween,
   consolidateDay,
@@ -34,6 +35,7 @@ import {
   type SimEvent,
   type StepOptions,
   type Suggestion,
+  type SuggestionResolution,
   standingHeard,
   stepCommunity,
   voiceOf,
@@ -233,6 +235,8 @@ export class VoiceGame {
   logSeq = 0;
   beats: BeatState = createBeats();
   standing: Standing | undefined;
+  /** The standing word whose activity was cut short in the step being read (within `process` only). */
+  private cut: Standing | undefined;
   pauseBeat: { kind: BeatKind; text: string } | undefined;
   intro: { label: string; lines: string[] } | undefined;
   between: BetweenView | undefined;
@@ -445,26 +449,32 @@ export class VoiceGame {
     if (draft.insist) this.insisted++;
     if (!this.free) this.countSaid(draft.optionId, this.standing.label, 1);
     this.push({ kind: 'you', who: 'you', text: `You: ${this.standing.label}` });
-    // At the wake his sleep ends within the minute and the next decision hears you; interrupting would ask a
-    // sleeping man (a 'cannot'). Twelfth pass: a word he will refuse does not interrupt either. Interrupting made him
-    // decide afresh, so a refusal could still cut what he was doing (a home prayer 13 of 15 minutes in). He carries
-    // on, and answers at his next decision (a review within 30 minutes, or the end of the act), where the word is
-    // weighed as usual; the composer already showed the likely "won't".
-    if (!this.waking() && !this.refuses()) interruptPerson(this.run.c, this.halil, this.t, 'voice');
     this.pauseBeat = undefined;
     this.paused = false;
+    // At the wake his sleep ends within the minute and the next decision hears you; interrupting would ask a
+    // sleeping man (a 'cannot'). Twelfth pass: a word he will refuse is answered at once and does not interrupt.
+    // Interrupting made him decide afresh, so a refusal could still cut what he was doing (a home prayer 13 of 15
+    // minutes in); waiting for his next decision instead left the word unanswered for up to 30 minutes, which
+    // breaks "he hears you, he decides, and he always says why". The refusal is booked as said (trust, pressure,
+    // the counters) and he carries on.
+    if (!this.waking() && !this.refusesNow()) interruptPerson(this.run.c, this.halil, this.t, 'voice');
     this.advanceTo(this.t + 1);
   }
 
-  /** Whether he would refuse the standing word now, read without writing state or drawing randomness. */
-  private refuses(): boolean {
+  /**
+   * When he would refuse the standing word while busy, answer it now (a real resolution, booked by the framework)
+   * and show the answer; the activity runs on. False when he is idle, his activity ends now, or he would not refuse.
+   */
+  private refusesNow(): boolean {
     const s = this.standing;
     const act = this.halil.activity;
     if (!s || !act || this.t >= act.endsAt) return false;
-    const r = preview(this.halil, this.offers(), toSuggestion(s.draft, s.since), {
+    const { resolution, booked } = answerNow(this.halil, this.offers(), toSuggestion(s.draft, s.since), {
       scarcity: this.run.town.scarcityFor?.(this.halil) ?? 0,
     });
-    return r.verdict === 'refused';
+    if (!booked) return false;
+    this.heard(resolution, this.t);
+    return true;
   }
 
   /** Count what the player said, by option: suggestions on played days, and days under a whisper. */
@@ -998,6 +1008,10 @@ export class VoiceGame {
     }
     this.onPayments(events);
     for (const r of fresh) this.onDecision(r);
+    if (this.cut) {
+      if (this.standing === this.cut && !this.cut.going) this.endStanding('expired');
+      this.cut = undefined;
+    }
     this.onAdvice();
     this.onCall();
     this.onSleepAndExpiry();
@@ -1174,8 +1188,14 @@ export class VoiceGame {
     // The suggested activity ended: the suggestion is spent (kept standing until then, so reviews on the way
     // still hear it and he does not turn back half-way).
     const s = this.standing;
-    if (s?.going && s.going === e.decisionId)
-      this.endStanding(e.status === 'interrupted' ? 'expired' : 'begun');
+    if (s?.going && s.going === e.decisionId) {
+      // Cut short: the decision that cut it heard the word and may answer it ("not before I pray"), so the word
+      // fades only after this step's decisions, if none answered it (twelfth pass: he always says why).
+      if (e.status === 'interrupted') {
+        s.going = undefined;
+        this.cut = s;
+      } else this.endStanding('begun');
+    }
   }
 
   /**
@@ -1348,46 +1368,51 @@ export class VoiceGame {
     this.push(entry, e.at);
   }
 
+  /** His answer to your standing word, from a decision (`decisionId`) or answered at once (`refusesNow`). */
+  private heard(you: SuggestionResolution, at: number, decisionId?: string): void {
+    const h = this.halil;
+    if (!this.standing || this.muted) return;
+    const { fresh, changed, ends } = answer(this.standing, you);
+    if ((fresh || changed) && !this.quiet) {
+      const a = this.standing.lastAnswer;
+      // A reply that does not follow your words directly names what it answers (playtest: "“Not while I'm keeping
+      // my fast.”" under a prayer line, answering a "drink water" from an hour before).
+      const last = this.log.at(-1);
+      const direct = last?.kind === 'you' || (last?.kind === 'act' && this.log.at(-2)?.kind === 'you');
+      const what =
+        ACTION_LABEL[this.standing.draft.optionId] ?? this.standing.draft.optionId.replace(/[-:]/g, ' ');
+      const asked = direct ? '' : `${capital(what)}? `;
+      const text = `${asked}“${you.says}”${a?.counter && !you.says.includes(a.counter) ? ` — ${a.counter}` : ''}`;
+      const entry: Omit<LogEntry, 'id' | 'day' | 'minute' | 'clock'> = {
+        kind: 'answer',
+        who: 'halil',
+        text,
+        tone: toneOf(you.verdict, you.kind),
+      };
+      if (decisionId) entry.decisionId = decisionId;
+      if (fresh) entry.beat = 'verdict';
+      this.push(entry, at);
+      // Seventh pass: a yes (or giving in under protest) is shown in the log without stopping the clock; a deferral
+      // or a refusal pauses, because the player can answer it (urge, a reason, or let it go).
+      const tone = toneOf(you.verdict, you.kind);
+      if (fresh)
+        this.beat('verdict', `He answered you: “${you.says}”`, at, {
+          canPause: tone !== 'yes' && tone !== 'protest' && this.cut !== this.standing,
+        });
+    }
+    if (ends) this.endStanding('refused');
+    else if (
+      (you.verdict === 'assented' || you.verdict === 'complied' || you.verdict === 'modified') &&
+      h.activity &&
+      this.servesStanding(h.activity.affordanceId, h.activity.action)
+    )
+      this.standing.going ??= h.activity.decisionId;
+  }
+
   private onDecision(r: DecisionRecord): void {
     const h = this.halil;
     const you = resolutionsOf(r).find((x) => x?.voiceId === 'you');
-    if (you && this.standing && !this.muted) {
-      const { fresh, changed, ends } = answer(this.standing, you);
-      if ((fresh || changed) && !this.quiet) {
-        const a = this.standing.lastAnswer;
-        // A reply that does not follow your words directly names what it answers (playtest: "“Not while I'm keeping
-        // my fast.”" under a prayer line, answering a "drink water" from an hour before).
-        const last = this.log.at(-1);
-        const direct = last?.kind === 'you' || (last?.kind === 'act' && this.log.at(-2)?.kind === 'you');
-        const what =
-          ACTION_LABEL[this.standing.draft.optionId] ?? this.standing.draft.optionId.replace(/[-:]/g, ' ');
-        const asked = direct ? '' : `${capital(what)}? `;
-        const text = `${asked}“${you.says}”${a?.counter && !you.says.includes(a.counter) ? ` — ${a.counter}` : ''}`;
-        const entry: Omit<LogEntry, 'id' | 'day' | 'minute' | 'clock'> = {
-          kind: 'answer',
-          who: 'halil',
-          text,
-          tone: toneOf(you.verdict, you.kind),
-          decisionId: r.id,
-        };
-        if (fresh) entry.beat = 'verdict';
-        this.push(entry, r.at);
-        // Seventh pass: a yes (or giving in under protest) is shown in the log without stopping the clock; a deferral
-        // or a refusal pauses, because the player can answer it (urge, a reason, or let it go).
-        const tone = toneOf(you.verdict, you.kind);
-        if (fresh)
-          this.beat('verdict', `He answered you: “${you.says}”`, r.at, {
-            canPause: tone !== 'yes' && tone !== 'protest',
-          });
-      }
-      if (ends) this.endStanding('refused');
-      else if (
-        (you.verdict === 'assented' || you.verdict === 'complied' || you.verdict === 'modified') &&
-        h.activity &&
-        this.servesStanding(h.activity.affordanceId, h.activity.action)
-      )
-        this.standing.going ??= h.activity.decisionId;
-    }
+    if (you) this.heard(you, r.at, r.id);
     if (this.quiet) return;
     this.closeCallAfter(r);
     if (!r.review) {
