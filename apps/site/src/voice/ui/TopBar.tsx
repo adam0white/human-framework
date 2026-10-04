@@ -29,8 +29,13 @@ export function SkyBand({ sky }: { sky: Frame['sky'] }) {
         />
       )}
       {sky.prayers.map((p) => (
-        <span key={p.name} className="v-sky-notch" style={{ left: pct(p.minute) }} title={p.name}>
-          <span>{p.name.slice(0, 1)}</span>
+        <span
+          key={p.name}
+          className={`v-sky-notch ${p.state ? `is-${p.state}` : ''}`}
+          style={{ left: pct(p.minute) }}
+          title={`${p.name}${p.state ? `: ${p.state}${p.mosque ? ', at the mosque' : ''}` : ''}`}
+        >
+          <span className="v-sky-pip">{p.mosque && <span className="v-sky-pip-dot" />}</span>
         </span>
       ))}
       <span className="v-sky-now" style={{ left: `${(sky.hour / 24) * 100}%` }} />
@@ -65,6 +70,12 @@ export function TopBar({ frame, actions }: { frame: Frame; actions: VoiceActions
       </div>
       <div className="v-top-sky">
         <SkyBand sky={frame.sky} />
+        <span className="v-sr">
+          {frame.sky.prayers
+            .filter((p) => p.state)
+            .map((p) => `${p.name} ${p.state}${p.mosque ? ' at the mosque' : ''}`)
+            .join(', ')}
+        </span>
         <div className="v-top-ff" aria-live="polite">
           {frame.fastForward ? `skipping: ${frame.fastForward}` : frame.sky.fast ? 'fasting' : ''}
         </div>

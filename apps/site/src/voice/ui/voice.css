@@ -343,15 +343,32 @@
   width: 1px;
   background: rgba(255, 255, 255, 0.55);
 }
-.v-sky-notch span {
+/* Prayer pips (seventh pass): small and quiet; outlined until kept, filled when kept, hollow red ring when missed,
+   a centre dot for the mosque. */
+.v-sky-pip {
   position: absolute;
   top: 50%;
   left: 3px;
+  width: 7px;
+  height: 7px;
   transform: translateY(-50%);
-  font-family: var(--font-mono);
-  font-size: 0.56rem;
-  color: rgba(27, 33, 64, 0.85);
-  text-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  border: 1px solid rgba(27, 33, 64, 0.6);
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+  display: grid;
+  place-items: center;
+}
+.v-sky-notch.is-kept .v-sky-pip {
+  background: rgba(27, 33, 64, 0.75);
+}
+.v-sky-notch.is-missed .v-sky-pip {
+  border-color: var(--tone-willnot);
+}
+.v-sky-pip-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
 }
 .v-sky-now {
   position: absolute;
@@ -548,7 +565,9 @@
   flex-wrap: wrap;
 }
 .v-voice-dot {
-  display: none;
+  display: inline-flex;
+  align-self: center;
+  color: var(--who);
 }
 .v-voice-name {
   font-weight: 700;
@@ -777,6 +796,9 @@
   animation: v-drop 0.25s ease;
 }
 .v-beat-kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-mono);
   font-size: 0.68rem;
   text-transform: uppercase;
@@ -881,11 +903,10 @@ button.v-log-btn:hover {
   letter-spacing: 0.05em;
 }
 .v-log-beat {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--lantern);
+  display: inline-flex;
+  color: var(--lantern);
   align-self: center;
+  opacity: 0.85;
 }
 .v-log-note .v-log-text {
   color: var(--ink-soft);
@@ -2025,10 +2046,103 @@ fieldset.v-appeals {
   min-width: 0;
 }
 
+/* Icons (seventh pass): inline with their word, never instead of it. */
+.v-icon {
+  flex: none;
+  vertical-align: -0.2em;
+}
+.v-seg button .v-icon,
+.v-insist .v-icon,
+.v-log-who .v-icon,
+.v-money .v-icon {
+  margin-right: 4px;
+}
+.v-verdict-icon,
+.v-log-verdict {
+  margin-right: 4px;
+}
+.tone-icon-yes {
+  color: var(--tone-yes);
+}
+.tone-icon-notNow,
+.tone-icon-protest {
+  color: var(--tone-notnow);
+}
+.tone-icon-willNot {
+  color: var(--tone-willnot);
+}
+.tone-icon-cannot {
+  color: var(--tone-cannot);
+}
+
+/* Composer reasons at phone width (seventh pass): one sideways-scrolling row, so no chip hides behind the footer. */
+@media (max-width: 480px) {
+  .v-appeals {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+  }
+  .v-appeals .v-chip,
+  .v-appeals-label {
+    flex: none;
+    white-space: nowrap;
+  }
+}
+
 .v-report .v-ends {
   grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 12px 24px;
 }
 .v-overlay {
   backdrop-filter: blur(3px);
+}
+
+/* Skip card at phone width (seventh pass): the decision first, the day's recap folded into one line. */
+.v-between-recap {
+  margin-top: 12px;
+  border-top: 1px dashed var(--edge);
+  padding-top: 8px;
+}
+.v-between-recap > summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  min-height: 44px;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+.v-recap-title {
+  font-weight: 700;
+  color: var(--ink);
+  margin-right: 4px;
+}
+.v-recap-mark.is-yes {
+  color: var(--tone-yes);
+}
+.v-recap-mark.is-no {
+  color: var(--tone-willnot);
+}
+.v-recap-trust {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+}
+.v-whisper-picked {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.v-whisper-picked-label {
+  display: block;
+  font-family: var(--font-line);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
 }

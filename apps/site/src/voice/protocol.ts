@@ -223,7 +223,8 @@ export interface Frame {
   clock: string;
   sky: {
     hour: number;
-    prayers: { name: string; minute: number }[];
+    /** Today's five prayers; `state` once its time has come (seventh pass: small pips, kept or missed). */
+    prayers: { name: string; minute: number; state?: 'kept' | 'missed'; mosque?: boolean }[];
     fast?: { from: number; until: number };
   };
   paused: boolean;

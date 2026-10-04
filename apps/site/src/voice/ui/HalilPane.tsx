@@ -1,5 +1,6 @@
 /** What the player sees of him (plan §7): doing now, the felt body, named feelings, what's on his mind, money. */
 import type { HalilView } from '../protocol.ts';
+import { Icon } from './Icon.tsx';
 import { Meter } from './parts.tsx';
 
 const STATE_LABEL: Record<HalilView['onMind'][number]['state'], string> = {
@@ -95,9 +96,11 @@ export function HalilPane({ halil }: { halil: HalilView }) {
       <h3 className="v-sub">Money</h3>
       <p className="v-money">
         <span>
+          <Icon name="coins" />
           <strong>{halil.money}</strong> in hand
         </span>
         <span>
+          <Icon name="circle-minus" />
           <strong>{halil.owed}</strong> owed to Osman
         </span>
       </p>

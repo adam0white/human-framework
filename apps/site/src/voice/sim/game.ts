@@ -614,7 +614,7 @@ export class VoiceGame {
     const since = this.halilCalledAt === undefined ? undefined : day - dayOf(this.halilCalledAt);
     if (since === undefined) out.push('He has not called Selin himself since the funeral.');
     else if (since >= 2) out.push(`He has not called Selin himself in ${since} days.`);
-    if (day === 2) out.push('Selin often calls after iftar. She wants his blood pressure seen.');
+    if (day === 2) out.push('Selin often calls after iftar, and she asks about the clinic.');
     if (day === lastFast) out.push('Tomorrow is Eid. Then you say nothing, and see what he does.');
     return out;
   }
@@ -1798,6 +1798,23 @@ export class VoiceGame {
     });
   }
 
+  /** One prayer of today for the sky band: kept or missed by his agenda, and whether he went to the mosque. */
+  private prayerPip(name: string, minute: number): Frame['sky']['prayers'][number] {
+    const pip: Frame['sky']['prayers'][number] = { name, minute };
+    const day = dayOf(this.t);
+    const c = this.halil.agenda.commitments.find(
+      (x) => x.kind === 'worship' && x.label === name && dayOf(x.from) === day,
+    );
+    if (!c) return pip;
+    if (c.status === 'kept') pip.state = 'kept';
+    else if (c.status === 'broken') pip.state = 'missed';
+    if (
+      this.cells.some((x) => x.affordanceId === 'pray' && happened(x) && x.from >= c.from && x.from < c.until)
+    )
+      pip.mosque = true;
+    return pip;
+  }
+
   frame(): Frame {
     const h = this.halil;
     const t = this.t;
@@ -1821,13 +1838,15 @@ export class VoiceGame {
       clock: clock(t),
       sky: {
         hour: Math.round(((t % MINUTES_PER_DAY) / 60) * 100) / 100,
-        prayers: [
-          { name: 'Fajr', minute: cal.fajr },
-          { name: 'Dhuhr', minute: cal.dhuhr },
-          { name: 'Asr', minute: cal.asr },
-          { name: 'Maghrib', minute: cal.maghrib },
-          { name: 'Isha', minute: cal.isha },
-        ],
+        prayers: (
+          [
+            ['Fajr', cal.fajr],
+            ['Dhuhr', cal.dhuhr],
+            ['Asr', cal.asr],
+            ['Maghrib', cal.maghrib],
+            ['Isha', cal.isha],
+          ] as const
+        ).map(([name, minute]) => this.prayerPip(name, minute)),
       },
       paused: this.paused,
       pace: this.pace,

@@ -1,5 +1,6 @@
 /** Your one standing suggestion (plan §6.3 lifecycle): what you said, his last answer, when it lapses, Withdraw. */
 import type { StandingView } from '../protocol.ts';
+import { Icon, TONE_ICON, TONE_WORD } from './Icon.tsx';
 import { toneClass } from './parts.tsx';
 
 export function StandingCard({ standing, onWithdraw }: { standing: StandingView; onWithdraw: () => void }) {
@@ -12,6 +13,11 @@ export function StandingCard({ standing, onWithdraw }: { standing: StandingView;
         </span>
         {a && (
           <span className="v-standing-answer">
+            <Icon
+              name={TONE_ICON[a.tone]}
+              label={TONE_WORD[a.tone]}
+              className={`v-verdict-icon tone-icon-${a.tone}`}
+            />
             He said: <q>{a.says}</q>
             {a.counter && (
               <>

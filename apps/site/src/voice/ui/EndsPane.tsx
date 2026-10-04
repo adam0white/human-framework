@@ -1,5 +1,6 @@
 /** His ends (plan §1): things he holds, in his words, as his record. Not points; no pass or fail. */
 import type { EndView, UnaskedItem } from '../protocol.ts';
+import { Icon } from './Icon.tsx';
 import { Meter } from './parts.tsx';
 
 const UNASKED_MARK: Record<UnaskedItem['state'], { glyph: string; word: string }> = {
@@ -28,8 +29,14 @@ export function UnaskedStrip({
           <li key={u.label} className={`v-unasked-item is-${u.state}`}>
             <span>{u.label}</span>{' '}
             <span className="v-unasked-mark" title={UNASKED_MARK[u.state].word}>
-              {UNASKED_MARK[u.state].glyph}
-              <span className="v-sr"> {UNASKED_MARK[u.state].word}</span>
+              {u.state === 'unknown' ? (
+                <>
+                  {UNASKED_MARK[u.state].glyph}
+                  <span className="v-sr"> {UNASKED_MARK[u.state].word}</span>
+                </>
+              ) : (
+                <Icon name={u.state === 'yes' ? 'check' : 'x'} label={UNASKED_MARK[u.state].word} />
+              )}
             </span>
             {u.day && <span className="v-unasked-day"> ({u.day})</span>}
           </li>

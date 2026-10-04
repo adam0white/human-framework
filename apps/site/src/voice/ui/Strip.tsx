@@ -1,5 +1,6 @@
 /** One day as a strip (plan §2, replacing the kilim): what he did across 24 hours, coloured by family. */
 import type { Family, StripRow } from '../protocol.ts';
+import { FAMILY_ICON, Icon } from './Icon.tsx';
 import { VOICE_COLOURS, VOICE_NAMES } from './parts.tsx';
 
 export const FAMILY_LABEL: Record<Family, string> = {
@@ -53,6 +54,7 @@ export function StripLegend({ rows }: { rows: StripRow[] }) {
       {fams.map((f) => (
         <li key={f}>
           <span className={`v-strip-key fam-${f}`} />
+          <Icon name={FAMILY_ICON[f]} />
           {FAMILY_LABEL[f]}
         </li>
       ))}

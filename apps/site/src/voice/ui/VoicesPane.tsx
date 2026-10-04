@@ -3,6 +3,7 @@
  * show a trust word, what they last urged, whether it is still on his mind, and any conflict between voices.
  */
 import type { VoiceView } from '../protocol.ts';
+import { Icon, VOICE_ICON } from './Icon.tsx';
 import { Meter } from './parts.tsx';
 
 export function VoicesPane({ voices }: { voices: VoiceView[] }) {
@@ -17,7 +18,9 @@ export function VoicesPane({ voices }: { voices: VoiceView[] }) {
             style={{ '--who': v.colour } as React.CSSProperties}
           >
             <div className="v-voice-head">
-              <span className="v-voice-dot" aria-hidden="true" />
+              <span className="v-voice-dot" aria-hidden="true">
+                <Icon name={VOICE_ICON[v.id]} />
+              </span>
               <span className="v-voice-name">{v.name}</span>
               <span className="v-voice-rel">{v.relation}</span>
             </div>

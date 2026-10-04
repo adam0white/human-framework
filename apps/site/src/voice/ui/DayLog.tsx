@@ -4,6 +4,7 @@
  */
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { BeatKind, LogEntry } from '../protocol.ts';
+import { BEAT_ICON, Icon, TONE_ICON, TONE_WORD, VOICE_ICON } from './Icon.tsx';
 import { toneClass, VOICE_COLOURS, VOICE_NAMES } from './parts.tsx';
 
 interface Row {
@@ -74,7 +75,10 @@ export function DayLog({
     <section className="v-day" aria-label="The day">
       {pauseBeat && paused && (
         <div className={`v-beat v-beat-${pauseBeat.kind}`} role="status">
-          <span className="v-beat-kind">{BEAT_LABEL[pauseBeat.kind]}</span>
+          <span className="v-beat-kind">
+            <Icon name={BEAT_ICON[pauseBeat.kind]} size={18} />
+            {BEAT_LABEL[pauseBeat.kind]}
+          </span>
           <span className="v-beat-text">{pauseBeat.text}</span>
           <kbd>Space</kbd>
         </div>
@@ -89,9 +93,17 @@ export function DayLog({
               <>
                 <span className="v-log-clock">{e.clock}</span>
                 <span className="v-log-text">
+                  {e.kind === 'answer' && e.tone && (
+                    <Icon
+                      name={TONE_ICON[e.tone]}
+                      label={TONE_WORD[e.tone]}
+                      className={`v-log-verdict tone-icon-${e.tone}`}
+                    />
+                  )}
                   {/* The speaker tag, unless the line already opens with the name; ": " is for screen readers. */}
                   {voice && e.kind !== 'you' && !e.text.startsWith(VOICE_NAMES[voice] ?? '\u0000') && (
                     <span className="v-log-who" style={{ color: VOICE_COLOURS[voice] }}>
+                      <Icon name={VOICE_ICON[voice]} />
                       {VOICE_NAMES[voice]}
                       <span className="v-sr">: </span>
                     </span>
@@ -102,7 +114,11 @@ export function DayLog({
                     <span className="v-log-span"> · until {e.until}</span>
                   ) : null}
                 </span>
-                {e.beat && <span className={`v-log-beat v-beat-dot-${e.beat}`} title={BEAT_LABEL[e.beat]} />}
+                {e.beat && (
+                  <span className={`v-log-beat v-beat-dot-${e.beat}`} title={BEAT_LABEL[e.beat]}>
+                    <Icon name={BEAT_ICON[e.beat]} label={BEAT_LABEL[e.beat]} />
+                  </span>
+                )}
               </>
             );
             const cls = `v-log-row v-log-${e.kind} ${toneClass(e.tone)} ${e.beat ? 'is-beat' : ''} ${

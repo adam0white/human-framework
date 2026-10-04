@@ -201,7 +201,7 @@ export const sampleFrame: Frame = {
   sky: {
     hour: 10,
     prayers: [
-      { name: 'Fajr', minute: 299 },
+      { name: 'Fajr', minute: 299, state: 'kept', mosque: true },
       { name: 'Dhuhr', minute: 750 },
       { name: 'Asr', minute: 960 },
       { name: 'Maghrib', minute: 1126 },

@@ -5,6 +5,7 @@
  */
 import { useEffect, useRef, useState } from 'react';
 import type { Appeal, Draft, Frame, Prefill, Strength, Telegraph } from '../protocol.ts';
+import { Icon, STRENGTH_ICON, TONE_ICON, TONE_WORD } from './Icon.tsx';
 import { APPEALS, appealLabel, INSIST_PRICE, STRENGTHS, toneClass } from './parts.tsx';
 
 const fromPrefill = (p: Prefill): Draft => ({
@@ -27,6 +28,13 @@ function TelegraphLine({ telegraph }: { telegraph: Telegraph | null }) {
   if (!telegraph) return <p className="v-telegraph is-empty">Pick something to hear how he’d answer.</p>;
   return (
     <p className={`v-telegraph ${toneClass(telegraph.tone)}`} aria-live="polite">
+      {telegraph.tone && (
+        <Icon
+          name={TONE_ICON[telegraph.tone]}
+          label={TONE_WORD[telegraph.tone]}
+          className={`v-verdict-icon tone-icon-${telegraph.tone}`}
+        />
+      )}
       <span className="v-telegraph-kind">{telegraph.text}</span>
       {/* The kind line usually quotes him already; show the quote and counter-offer only when it doesn't. */}
       {telegraph.says && !telegraph.text.includes(telegraph.says) && (
@@ -295,6 +303,7 @@ export function Composer({
                 onClick={() => setStrength(s.id)}
                 title={s.hint}
               >
+                <Icon name={STRENGTH_ICON[s.id]} />
                 {s.label} <kbd>{s.key}</kbd>
               </button>
             ))}
@@ -305,6 +314,7 @@ export function Composer({
             aria-pressed={draft?.insist ?? false}
             onClick={toggleInsist}
           >
+            <Icon name={STRENGTH_ICON.insist} />
             Insist <kbd>I</kbd>
           </button>
         </div>
