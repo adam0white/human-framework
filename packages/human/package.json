@@ -1,6 +1,6 @@
 {
   "name": "@human/framework",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Deterministic, explainable simulated people: body, needs, affect, memory, beliefs, skills, habits, relationships, values and a will that can refuse a suggestion",
   "keywords": [
     "simulation",

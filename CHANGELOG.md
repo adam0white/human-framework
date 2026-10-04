@@ -12,6 +12,29 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-04
+
+Engine: 1.7.0. `restore` upgrades saves from engine 1.4.0, 1.5.0 and 1.6.0; they continue under 1.7.0 rules.
+
+### Added
+
+- Faith defaults from [research/decisions.md](https://github.com/adam0white/human-framework/blob/main/research/decisions.md) (most common position across schools): `PrayerTimes.sunrise` with Fajr ending at sunrise; `makruhWindows` / `inMakruhTime` for the three disliked times; `eidWindow` and a recommended `eid-prayer` norm linked by default.
+- Make-up debt (qada): a missed obligatory prayer or broken obligatory fast adds an `OwedMakeUp`. Sleep through the whole window and being downed lift the blame but keep the debt; more than five windows lost in one downing drop that stretch's debt; a mental break stays accountable. `missedExcuse`, `owedMakeUps`, `scheduleMakeUp`.
+- Platform-independent math: `dexp`, `dlog`, `dcos`, `dpow` (`core/libm.ts`). The engine uses them everywhere instead of `Math.exp`/`log`/`cos`/`**`, so a run gives the same bits on every OS, CPU and JavaScript engine; a test fails on any platform transcendental in engine code. Hosts with deterministic game code can use them too.
+
+### Changed
+
+- Behaviour wherever prayer windows are used (see the 1.7.0 entry in [docs/framework.md](https://github.com/adam0white/human-framework/blob/main/docs/framework.md)). The town reference scenario supplies sunrise, holds the Eid prayer and offers make-ups between Dhuhr and Asr.
+- About 8% slower simulation from the portable math (village bench, median 1695 ms to 1823 ms).
+
+### Fixed
+
+- Replays were not bit-identical across platforms: native transcendental functions differ in the last bit between macOS arm64 and Linux x64 on the same Node version.
+
+### Security
+
+- `migrate` looks versions up as own properties only; `restore` drops unknown top-level keys and malformed new optional state.
+
 ## [1.1.0] - 2026-10-04
 
 Engine: 1.6.0. `restore` upgrades person saves from engine 1.4.0 and 1.5.0; older saves are refused.
