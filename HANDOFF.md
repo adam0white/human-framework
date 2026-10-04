@@ -13,7 +13,7 @@ Done means (AGENTS.md): HF 2.0 released on GitHub, closing the blocking gaps in 
 | # | Phase | Status |
 |---|---|---|
 | R0 | Releases and CI: tag v1.0.0, release v1.1.0 (engine 1.6.0 gaps) on GitHub; version policy; GitHub Actions running check + bench (hyperfine) | in progress |
-| R1 | Faith decisions in code ([research/decisions.md](research/decisions.md)): Fajr ends at sunrise, majority Asr, red shafaq, Eid prayer on, qada debt with blame lifted for sleep/unconsciousness; Game 2 rebalanced; playtest export (seed + input log + state JSON, replayable) in Games 1–2 | in progress |
+| R1 | Faith decisions in code ([research/decisions.md](research/decisions.md)): Fajr ends at sunrise, majority Asr, red shafaq, Eid prayer on, qada debt with blame lifted for sleep/unconsciousness; Game 2 rebalanced; playtest export (seed + input log + state JSON, replayable) in Games 1–2 | done on branch, not merged or deployed (engine 1.7.0; Game 2 eighth pass in docs/games/voice-build.md §13: no retune needed; export about 39–46 KB for Game 2, 31 KB for Game 1). Open: the Eid-prayer commitment's missed cost (findings) |
 | R2 | Reviews: performance, quality, security, acted on; phone research (Galaxy S26 viewport) and mobile web practice (fullscreen, input capture, safe areas) | in progress |
 | R3 | HF inventory: what HF has vs the full ambition ([docs/hf-status.md](docs/hf-status.md)) | in progress |
 | G3-0 | *The Night Watch* spec revised for endless play (aging, natural death), visual UI and the game direction in AGENTS.md; wildcard and adversarial reviews | in progress |
