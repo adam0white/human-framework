@@ -4,6 +4,14 @@
  * from an earlier run (`gen`) and stale predictions (`requestId`) are dropped.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { PlaytestStatus } from '../../shared/PlaytestMenu.tsx';
+import {
+  downloadJson,
+  fetchBuild,
+  fetchPlaytestText,
+  PLAYTEST_FILE_NAME,
+  replayParam,
+} from '../../shared/playtest.ts';
 import type {
   BetweenView,
   Draft,
@@ -33,6 +41,13 @@ export interface VoiceActions {
   dismissIntro(): void;
   keepListening(): void;
   replay(seed?: number): void;
+  /** Download this run as a playtest file. */
+  exportPlaytest(): void;
+  /** Replay a playtest file's text in the worker; it replaces this run only if it is valid. */
+  loadPlaytest(text: string): void;
+  clearPlaytest(): void;
+  /** Show a playtest problem found on the page (a file too large to read). */
+  playtestError(message: string): void;
 }
 
 export interface Voice {
@@ -46,6 +61,7 @@ export interface Voice {
   whyMissing: boolean;
   error: string | null;
   mock: boolean;
+  playtest: PlaytestStatus;
   actions: VoiceActions;
 }
 
@@ -60,7 +76,11 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   const [whyMissing, setWhyMissing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [mock, setMock] = useState(false);
+  const [playtest, setPlaytest] = useState<PlaytestStatus>(null);
   const gen = useRef(0);
+  /** The run number a playtest load will use; its replies are accepted once the worker says it replayed. */
+  const pendingLoad = useRef(0);
+  const resetRef = useRef<() => void>(() => {});
   const seedRef = useRef(seed);
   const predictSeq = useRef(0);
   const predictDrafts = useRef(new Map<number, Draft>());
@@ -83,8 +103,31 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         setMock(t.kind === 'mock');
         t.onError(setError);
         t.onMessage((msg) => {
+          if (msg.gen === pendingLoad.current && msg.gen !== gen.current) {
+            if (msg.type === 'replayed') {
+              gen.current = msg.gen;
+              resetRef.current();
+              setPlaytest({ result: msg.result });
+            } else if (msg.type === 'playtestError') setPlaytest({ error: msg.message });
+            return;
+          }
           if (msg.gen !== gen.current) return;
           switch (msg.type) {
+            case 'playtest': {
+              const file = msg.file;
+              fetchBuild()
+                .then((build) => {
+                  downloadJson(PLAYTEST_FILE_NAME.voice, { ...file, build });
+                  setPlaytest(null);
+                })
+                .catch((e: unknown) => setPlaytest({ error: `The download failed: ${String(e)}` }));
+              return;
+            }
+            case 'playtestError':
+              setPlaytest({ error: msg.message });
+              return;
+            case 'replayed':
+              return;
             case 'frame':
               setFrame(msg.frame);
               return;
@@ -127,6 +170,16 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
           raf = requestAnimationFrame(loop);
         };
         raf = requestAnimationFrame(loop);
+        const url = replayParam();
+        if (url) {
+          setPlaytest({ busy: 'load' });
+          fetchPlaytestText(url)
+            .then((text) => {
+              pendingLoad.current = gen.current + 1;
+              t.post({ type: 'loadPlaytest', gen: pendingLoad.current, text });
+            })
+            .catch((e: unknown) => setPlaytest({ error: e instanceof Error ? e.message : String(e) }));
+        }
       })
       .catch((e: unknown) => setError(`The simulation failed to load: ${String(e)}`));
     return () => {
@@ -149,6 +202,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       whyWant.current = null;
       predictDrafts.current.clear();
     };
+    resetRef.current = resetRun;
     return {
       begin: () => send({ type: 'begin' }),
       setPaused: (p) => send({ type: p ? 'pause' : 'resume' }),
@@ -188,8 +242,19 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         setReport(null);
         send({ type: 'keepListening' });
       },
+      exportPlaytest: () => {
+        setPlaytest({ busy: 'export' });
+        send({ type: 'exportPlaytest' });
+      },
+      loadPlaytest: (text) => {
+        setPlaytest({ busy: 'load' });
+        pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
+        send({ type: 'loadPlaytest', gen: pendingLoad.current, text });
+      },
+      clearPlaytest: () => setPlaytest(null),
+      playtestError: (message) => setPlaytest({ error: message }),
       replay: (nextSeed) => {
-        gen.current += 1;
+        gen.current = Math.max(gen.current, pendingLoad.current) + 1;
         if (nextSeed !== undefined) seedRef.current = nextSeed;
         resetRun();
         // A new gen and `init`: the worker restarts from the seed and answers on that gen.
@@ -205,5 +270,5 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
     };
   }, [send]);
 
-  return { frame, between, report, telegraph, why, whyOpen, whyMissing, error, mock, actions };
+  return { frame, between, report, telegraph, why, whyOpen, whyMissing, error, mock, playtest, actions };
 }

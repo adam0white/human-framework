@@ -766,16 +766,30 @@ export class VoiceGame {
 
   /** Real time in: advances whole sim minutes at the pace (or fast-forward). Returns whether time moved. */
   tick(dtMs: number): boolean {
-    if (this.paused || !this.live()) return false;
+    return this.tickMinutes(dtMs) > 0;
+  }
+
+  /**
+   * `tick`, returning the whole minutes it asked for (0: time did not move). The playtest log records these, and
+   * a replay re-applies each as `step`, so real time never enters a replay.
+   */
+  tickMinutes(dtMs: number): number {
+    if (this.paused || !this.live()) return 0;
     const dt = Math.max(0, Math.min(dtMs, 250));
     const ff = this.fastForward();
     this.carry += (dt / 1000) * (ff ? FAST_FORWARD : PACE_MINUTES_PER_SECOND[this.pace]);
     const whole = Math.min(ff ? MAX_FF_MINUTES_PER_TICK : MAX_MINUTES_PER_TICK, Math.floor(this.carry));
-    if (whole <= 0) return false;
+    if (whole <= 0) return 0;
     this.carry -= whole;
+    this.step(whole);
+    return whole;
+  }
+
+  /** The clock part of a tick: advance `whole` minutes (stopping at a pause). Replays call this directly. */
+  step(whole: number): void {
+    if (this.paused || !this.live()) return;
     this.advanceTo(this.t + whole);
     if (this.paused) this.carry = 0;
-    return true;
   }
 
   /**

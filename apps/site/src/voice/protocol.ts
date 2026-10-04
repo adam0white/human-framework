@@ -6,6 +6,7 @@
  *
  * Additive to §9 (no shape changes): `VOICE_SCENARIO_VERSION`, `STRENGTH_VALUE`, `PACE_MINUTES_PER_SECOND`.
  */
+import type { PlaytestFile, ReplayResult } from '../shared/playtest.ts';
 
 /** The scenario the worker runs; `init.scenarioVersion` must equal it. */
 export const VOICE_SCENARIO_VERSION = 'voice-1';
@@ -110,7 +111,13 @@ export type MainToWorker =
   | { type: 'endDay' }
   | { type: 'advance'; standing: StandingWhisper[] } // between-days card: next day (skips run here)
   | { type: 'dismissIntro' }
-  | { type: 'keepListening' };
+  | { type: 'keepListening' }
+  /** Playtest file (additive): the worker answers `playtest` with the file (its `build` is filled in by the page). */
+  | { type: 'exportPlaytest' }
+  /** Replay a playtest file's text as a new run numbered `gen`; answers `replayed`, or `playtestError`. */
+  | { type: 'loadPlaytest'; gen: number; text: string };
+
+export type { ReplayResult };
 
 export interface LogEntry {
   id: string;
@@ -301,5 +308,8 @@ export type WorkerReply =
   | { type: 'why'; decisionId: string; why: WhyView | null }
   | { type: 'between'; view: BetweenView }
   | { type: 'report'; view: ReportView }
+  | { type: 'playtest'; file: PlaytestFile }
+  | { type: 'replayed'; result: ReplayResult }
+  | { type: 'playtestError'; message: string }
   | { type: 'error'; message: string };
 export type WorkerToMain = WorkerReply & { gen: number };

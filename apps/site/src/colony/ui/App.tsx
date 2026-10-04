@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { MomentRecord } from '../sim/game.ts';
 import type { Bubble } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -107,6 +108,18 @@ export function App() {
     window.clearTimeout(momentTimer.current);
     momentTimer.current = window.setTimeout(() => setMoment(null), MOMENT_MS);
   }, [moments]);
+
+  // A loaded playtest file is a new run: clear what the page held for the old one.
+  const loaded = colony.playtest && 'result' in colony.playtest ? colony.playtest.result : null;
+  useEffect(() => {
+    if (!loaded) return;
+    bubbles.reset();
+    setInspect(null);
+    setHoverPlace(null);
+    setComposer(EMPTY_COMPOSER);
+    setDrawer(false);
+    setEndOpen(true);
+  }, [loaded, bubbles]);
 
   // Telegraph: the Human prediction for the committed place (or the hovered one while choosing).
   const previewPlace = composer.placeId ?? hoverPlace;
@@ -307,6 +320,14 @@ export function App() {
         {...(hasSummary && !showEnd && frame?.ended
           ? { onResults: () => setEndOpen(true), resultsRef: resultsButton }
           : {})}
+        playtest={
+          <PlaytestMenu
+            className="topbar-playtest"
+            onExport={actions.exportPlaytest}
+            onLoad={actions.loadPlaytest}
+            onError={actions.playtestError}
+          />
+        }
       />
       <GoalStrip goals={frame?.goals ?? []} />
 
@@ -432,8 +453,10 @@ export function App() {
           onContinue={continueDay}
           onAgain={restart}
           onClose={closeEnd}
+          onDownload={actions.exportPlaytest}
         />
       )}
+      <PlaytestNotice status={colony.playtest} onClose={actions.clearPlaytest} />
     </div>
   );
 }

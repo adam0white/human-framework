@@ -1,4 +1,5 @@
 /** Top bar (plan §6.2) with the sky band (§2): the hour's light, prayer notches, the fast, and a "now" mark. */
+import { PlaytestMenu } from '../../shared/PlaytestMenu.tsx';
 import type { Frame, Pace } from '../protocol.ts';
 import type { VoiceActions } from './useVoice.ts';
 
@@ -55,7 +56,15 @@ const nextPace = (p: Pace): Pace => {
   return PACES[(i + 1) % PACES.length]?.id ?? 'slow';
 };
 
-export function TopBar({ frame, actions }: { frame: Frame; actions: VoiceActions }) {
+export function TopBar({
+  frame,
+  actions,
+  onPlaytestError,
+}: {
+  frame: Frame;
+  actions: VoiceActions;
+  onPlaytestError: (message: string) => void;
+}) {
   const live = frame.phase === 'day' || frame.phase === 'eid' || frame.phase === 'free';
   return (
     <header className="v-top">
@@ -137,6 +146,12 @@ export function TopBar({ frame, actions }: { frame: Frame; actions: VoiceActions
             <span className="v-short">End day</span>
           </button>
         )}
+        <PlaytestMenu
+          className="v-playtest pt-compact"
+          onExport={actions.exportPlaytest}
+          onLoad={actions.loadPlaytest}
+          onError={onPlaytestError}
+        />
       </div>
     </header>
   );

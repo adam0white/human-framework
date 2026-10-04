@@ -4,6 +4,7 @@
  * bottom-sheet composer. Space toggles pause from every focus state.
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { Draft } from '../protocol.ts';
 import { Between } from './Between.tsx';
 import { Composer } from './Composer.tsx';
@@ -112,7 +113,7 @@ export function App() {
 
   return (
     <div className={`voice phase-${phase}`} data-tab={tab}>
-      {frame && <TopBar frame={frame} actions={actions} />}
+      {frame && <TopBar frame={frame} actions={actions} onPlaytestError={actions.playtestError} />}
       {frame && (
         <div className="v-main">
           <div className="v-col v-col-left">
@@ -179,6 +180,7 @@ export function App() {
             onKeepListening={actions.keepListening}
             onReplay={() => actions.replay()}
             onNewTown={() => actions.replay(1 + Math.floor(Math.random() * 1_000_000))}
+            onDownload={actions.exportPlaytest}
           />
         ) : (
           <div className="v-overlay v-overlay-eid">
@@ -196,6 +198,7 @@ export function App() {
           </button>
         </div>
       )}
+      <PlaytestNotice status={voice.playtest} onClose={actions.clearPlaytest} />
       {voice.mock && (
         <div className="v-mockflag" title="The page is running on sample data, not the simulation.">
           sample data

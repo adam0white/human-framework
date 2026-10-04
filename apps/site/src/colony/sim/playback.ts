@@ -8,9 +8,17 @@
  * coalesce into one pause; the first in that order names it. Stepping stops at the pausing minute and the rest of
  * the tick is dropped. Auto-pause changes only when the player acts, so it is not logged and replay ignores it.
  */
+import {
+  makePlaytestFile,
+  type PlaytestFile,
+  parsePlaytest,
+  type ReplayResult,
+  replayResult,
+} from '../../shared/playtest.ts';
 import type { MainToWorker, PauseInfo, PauseReason, PlaybackState, Speed, WorkerReply } from '../protocol.ts';
-import { ColonyGame, SCENARIO_VERSION } from './game.ts';
+import { ColonyGame, type LogEntry, SCENARIO_VERSION } from './game.ts';
 import type { HumanSideFactory } from './human-side.ts';
+import { colonyHash, colonySnapshot, replayColony, validateColonyLog } from './playtest.ts';
 import {
   type Minute,
   SIM_MINUTES_PER_SECOND,
@@ -33,6 +41,7 @@ const REFUSALS = new Set(['notNow', 'willNot', 'complied']);
 
 export const START_TEXT =
   'Before the storm at Day 2 19:00: roof the house and store 12 meals. Keep all six alive until dawn on Day 3.';
+export const LOADED_TEXT = 'Playtest file loaded. Play on from here, or look around.';
 export const DAY3_TEXT =
   'Another day: build a store-room beside the house (finish the house first if it is open) and keep 12 meals by 18:00. Keep all six alive.';
 
@@ -92,9 +101,46 @@ export class Playback {
     this.pause = null;
   }
 
+  /** This run as a playtest file (its `build` is filled in by the page). `engine`: the framework's ENGINE_VERSION. */
+  async playtestFile(engine: string): Promise<PlaytestFile<LogEntry>> {
+    const g = this.game;
+    if (!g) throw new Error('No run to save yet.');
+    return makePlaytestFile({
+      game: 'colony',
+      seed: g.seed,
+      scenario: SCENARIO_VERSION,
+      minute: g.minute,
+      log: structuredClone(g.log),
+      hash: colonyHash(g),
+      engine,
+      snapshot: colonySnapshot(g),
+    });
+  }
+
+  /**
+   * Validate a playtest file and replay its seed and log to its minute; only then does it replace the current run
+   * (a bad file throws and leaves the run as it was). Returns the comparison and the replies for the new run.
+   */
+  load(text: string, engine: string): { result: ReplayResult; replies: WorkerReply[] } {
+    const f = parsePlaytest(text, 'colony', SCENARIO_VERSION, validateColonyLog);
+    const g = replayColony(f.seed, this.factory, f.log, f.minute);
+    const result = replayResult(f, colonyHash(g), engine, g.minute);
+    this.game = g;
+    this.carry = 0;
+    this.slowLeft = 0;
+    this.endedSent = false;
+    this.seen = new Set();
+    this.stop('manual', LOADED_TEXT);
+    return { result, replies: this.frame() };
+  }
+
   /** Handle one message from the page; returns the replies (without the run number). */
   handle(msg: MainToWorker): WorkerReply[] {
     switch (msg.type) {
+      case 'exportPlaytest':
+      case 'loadPlaytest':
+        // Handled by the worker (async export; the load changes the run number).
+        return [];
       case 'init':
         if (msg.scenarioVersion !== SCENARIO_VERSION) {
           this.game = null;
