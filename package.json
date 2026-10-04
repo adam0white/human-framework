@@ -23,6 +23,7 @@
     "check": "npm run lint && npm run typecheck && npm test",
     "deploy": "node scripts/deploy.ts",
     "deploy:check": "node scripts/deploy.ts --dry-run",
+    "release": "node scripts/release.ts",
     "api-doc": "npm run build -w packages/human && node scripts/api-doc.ts",
     "examples": "npm run examples -w packages/human"
   },

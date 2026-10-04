@@ -7,6 +7,8 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 [packages/human/README.md](packages/human/README.md#versions). The games in `apps/site` are not covered here.
 
 `npm run release` publishes the section whose heading matches the package version as the GitHub release notes.
+Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
+absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
@@ -52,7 +54,7 @@ Engine: 1.6.0. `restore` upgrades person saves from engine 1.4.0 and 1.5.0; olde
 
 ### Known issues
 
-Recorded in [docs/findings.md](docs/findings.md) (2026-10-04): duties missed during a mental break are booked as
+Recorded in [docs/findings.md](https://github.com/adam0white/human-framework/blob/main/docs/findings.md) (2026-10-04): duties missed during a mental break are booked as
 missed like any other; a downed villager still "rests at home" because the village has no places; threat fear
 fades in hours unless the host keeps sending the threat.
 
