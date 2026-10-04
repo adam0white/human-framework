@@ -188,8 +188,9 @@ export function useColony(seed = DEFAULT_SEED): Colony {
           }
           s.curr = f;
           setFrame(f);
+          // Playback changes only on a pause, speed or toggle: keep the old object so its readers see no change.
           const pb = msg.playback;
-          setPlayback(pb);
+          if (JSON.stringify(pb) !== JSON.stringify(playbackRef.current)) setPlayback(pb);
           return;
         }
         case 'why': {
