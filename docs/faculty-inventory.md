@@ -4,7 +4,7 @@
 
 **Status.** **Done**: exported, wired into the composite (`person.ts`) or driver (`sim/`), tested. **Partial**: exists but unwired, opt-in only, or missing a named piece. **Missing**: nothing in the code. **Excluded**: deliberately not modelled, by an AGENTS.md rule or a research decision (the reason is given). Every Done/Partial row was checked by reading the module, not the docs. Paths are relative to `packages/human/src/`.
 
-**Count: 65 Done, 33 Partial, 38 Missing, 6 Excluded (142 rows).**
+**Count: 71 Done, 30 Partial, 35 Missing, 6 Excluded (142 rows).**
 
 ## 1. Bodily life and regulation
 
@@ -41,8 +41,8 @@
 | Working memory | Partial | beliefs/beliefs.ts `attend` budget (2–6 items) | A percept filter only; nothing is held or manipulated | §3 |
 | Semantic knowledge | Partial | beliefs/beliefs.ts `believe`, `credence` | Propositions with credence; no abstraction from episodes, no item-level knowledge | §3 |
 | Procedural memory | Done | skills/, habits/ (see §10) | — | — |
-| Autobiography | Partial | chronicle/chronicle.ts `closeDay`, `narrateChronicle` | 120 days kept: months, not a life (watch L1) | — |
-| Consolidation into lasting gists | Missing | — | Watch L1: a fear learned at 20 still shapes choices at 40 | — |
+| Autobiography | Partial | chronicle/chronicle.ts `closeDay`, `narrateChronicle`; 1.8.0 yearbook `enableYearbook`, `foldDay`, `yearRecord` | Opt-in; days leaving the 120-day chronicle (and routine days) fold into year records (≤ 150 years), but nothing narrates a year | — |
+| Consolidation into lasting gists | Partial | memory/memory.ts `enableGists`, `consolidate`, `gistsFor`; cognition/ `memory` term | Opt-in; a fear learned at 20 still shapes choices at 40 (test/longlife.test.ts). Gists are not retold in conversation | Brainerd & Reyna (fuzzy trace) |
 | Interference, false memory, reconsolidation | Missing | — | memory.ts scope | — |
 
 ## 4. Reasoning and metacognition
@@ -130,20 +130,20 @@
 |---|---|---|---|---|
 | **Experience as proficiency**: practice minutes per skill, diminishing gains | Done | skills/skills.ts `practise`, called by person.ts `finish` for any offer with `skill` | Uncalibrated | §3; proposal §7 |
 | Desirable difficulty; failure teaches at 0.6 | Done | skills/ `challengeFactor`, `practise` | — | learning-through-work |
-| Rust: forgetting with a retention floor | Done | skills/ `skillLevel` (half-life 180 d, 60 % floor) | — | learning-source-followup Q29 |
+| Rust: forgetting with a retention floor | Done | skills/ `skillLevel` (half-life 180 d, 60 % floor); 1.8.0 opt-in `enableSkillConsolidation` lengthens the half-life with practice hours | Without consolidation, decades of daily practice plateau and decline (findings.md) | learning-source-followup Q29 |
 | Age-dependent learning rate | Done | lifecourse/ `lifeModifiers().learning` → `practise` | — | §7 S19 |
-| Domain-specific age curves (language, motor, knowledge) | Partial | lifecourse/development.ts `learningMultiplier(age, domain)` | No consumer; skills carry no domain | §7 S19 |
-| **Learning within a field** (near transfer between related skills) | Partial | skills/ `SkillTransfer`, `skillFamilies`, `practise(..., transfer)` | `finish` never passes a map and no game supplies one, so no transfer happens today | §3 S8 |
+| Domain-specific age curves (language, motor, knowledge) | Done | lifecourse/development.ts `learningMultiplier(age, domain)`; `Affordance.skill.domain` → person.ts `learningFor` in `finish`, `observeSkill`, longrun | — | §7 S19 |
+| **Learning within a field** (near transfer between related skills) | Done | skills/ `SkillTransfer`, `skillFamilies`; `finish(..., { transfer })`, `World.skillTransfer`, `RoutineOptions.transfer` | No default map (research decision); no game supplies one yet | §3 S8 |
 | **Learning outside a field**: taking up any skill unrelated to one's work | Done | skills/ `practise` on any skill id, from base 0.05 | No role or field restricts what can be learned | §3 |
-| **Far transfer**: gains in one field raising an unrelated one, or global XP | Excluded | — | Research decision: default zero. A host may still declare any link in `SkillTransfer` and it is honoured (none is wired, row above) | §3 S8–S9; proposal §7 |
+| **Far transfer**: gains in one field raising an unrelated one, or global XP | Excluded | — | Research decision: default zero. A host may still declare any link in `SkillTransfer` and it is honoured (row above) | §3 S8–S9; proposal §7 |
 | Negative transfer, interference between skills | Missing | — | skills.ts scope | proposal §7 |
 | Aptitude per skill (talent), passion | Missing | — | Watch L2; rimworld-gap §2 | §7 |
-| Practice quality as a learning input | Partial | skills/skills.ts `practise` (difficulty, success only) | `Outcome.quality` changes felt value, not learning | learning-through-work |
+| Practice quality as a learning input | Done | skills/ `qualityFactor` via `Outcome.practice.quality` / `RoutineActivity.practice` | Size is an assumption (0.5×–1.5×) | Ericsson 1993; Macnamara 2014 |
 | **Experience as expectation** (what an action does) | Done | memory/ `learnOutcome` | — | §6 S15 |
-| **Experience over years** | Partial | memory/, chronicle/ | Episodes ≤ 200, chronicle 120 days (watch L1) | — |
+| **Experience over years** | Partial | memory/ gists, chronicle/ yearbook, character/, skills/ consolidation, longrun.ts | Each piece is opt-in (`enableGists`, `enableYearbook`, `enableCharacterChange`, `enableSkillConsolidation`) | research/long-run-sources.md |
 | Skills aging (slower learning, elder decline) | Partial | lifecourse/lifecourse.ts `lifeModifiers().learning` falls after 30 | development.ts `elderDecline` unwired | §7 S19 |
-| Teaching, instruction | Partial | skills/ `successChance` `support`; sim/ `jointSuccessChance` | Help raises performance, never learning; no teacher role | §3 |
-| Observational learning, imitation | Missing | — | — | — |
+| Teaching, instruction | Done | skills/ `instructionFactor`, `instructionFrom(teacher, skill)` via `Outcome.practice.instruction`; also `successChance` `support` | No effect on the teacher; the host decides who teaches | VanLehn 2011 |
+| Observational learning, imitation | Done | skills/ `observe`; person.ts `observeSkill`, `Percept.demonstrates` | Teaches toward 0.6 × the model's level, never mastery; no imitation of choices | Bandura 1977; Ashford 2006 |
 | Learning from told experience | Partial | conversation/ `converse` → beliefs | Moves beliefs only, not expectations or fear (watch L2) | — |
 | Qualifications, roles, credentials | Missing | — | v0 had qualification records (below) | §8 |
 | Reflection that revises methods or commitments | Partial | agenda/ `revisePurposes` (neglect only) | No revision from evidence of failure | §6 |
@@ -156,7 +156,7 @@
 | HEXACO traits as coefficients | Done | types.ts `Traits`; read across modules | — | §4 |
 | Schwartz values as coefficients | Done | types.ts `Values`; cognition/, conscience/, social/ | — | §4 |
 | Within-person variability | Partial | will/ `temperature` (opt-in softmax) | Traits are not distributions of states | §4 S10 |
-| Trait and value change over life | Missing | — | Read-only after creation | §4 S11 |
+| Trait and value change over life | Partial | character/character.ts `enableCharacterChange`, `ageCharacter`, `noteCharacterDay` | Opt-in; maturation 18–65 plus a yearly experience offset with a set point, within ±0.15 of the anchor. Experience does not move honesty, agreeableness or values | §4 S11; Bleidorn 2022; Roberts 2006 |
 | Identity: group membership | Partial | social/groups.ts `joinGroups` | No identity strength, roles as identity or self-concept | §4 |
 | Self-esteem, self-model | Partial | needs/needs.ts esteem | No model of oneself | — |
 
@@ -194,8 +194,8 @@
 | Upbringing: household values and norms | Partial | lifecourse/birth.ts `ChildSpec.valueTransmission`, `normExposure` | At birth only, not ongoing (watch L2) | §8 |
 | Physical and aptitude inheritance | Missing | — | Watch L2 | §7 |
 | Death | Done | body/ `die` | — | — |
-| Chronic onsets and natural death by age | Partial | lifecourse/health.ts `chronicOnsets`, `mortalityEvent`; sim/ `StepOptions.lifecourse` | Opt-in; never run in a lived multi-year community | — |
-| Multi-year stepping | Partial | person.ts `skip` | One person only; no community skip (watch L5) | — |
+| Chronic onsets and natural death by age | Partial | lifecourse/health.ts `chronicOnsets`, `mortalityEvent`; sim/ `StepOptions.lifecourse`; longrun `RoutineOptions.lifecourse` | Opt-in; run for 50 years in the routine control (test/longrun.test.ts), not in a lived multi-year community | — |
+| Multi-year stepping | Done | longrun.ts `routineDay`, `liveRoutine`; sim/longrun.ts `liveCommunity`; person.ts `skip` | Routine days do not drain needs or decide; the host supplies routines and switches fidelity at midnight | — |
 | Partnering as the front end to birth | Missing | — | Watch L3 | — |
 
 ## 14. Environment, culture and institutions
