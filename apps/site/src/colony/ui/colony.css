@@ -2666,3 +2666,128 @@ kbd {
     display: none;
   }
 }
+
+/* ---------- Small phones (360 × 740 and up): every control on screen without page scroll ----------
+   The order panel keeps a fixed height (pause line, composer, Orders button) and the two maps share
+   what is left. Each pane puts its name and stats in a narrow column beside the map: a letterboxed map
+   leaves that width empty anyway, and a header row above it would take height from the map. */
+@media (max-width: 860px) {
+  .stage {
+    /* 304 px holds a paused composer at 740 px tall; taller phones also fit the suggestion's reason line. */
+    --phone-center-h: clamp(304px, 40dvh, 336px);
+  }
+
+  .pane {
+    flex: 1 1 0;
+    min-height: 0;
+    flex-direction: row;
+  }
+
+  .pane-head {
+    flex: none;
+    width: 104px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    align-content: start;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 4px 6px 10px;
+  }
+
+  .pane-head h2 {
+    font-size: 0.82rem;
+  }
+
+  .pane-classic .pane-head h2 {
+    font-size: 0.7rem;
+  }
+
+  .stats {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1px;
+    font-size: 0.64rem;
+    line-height: 1.25;
+  }
+
+  .stats > div {
+    justify-content: space-between;
+  }
+
+  .stat-bar {
+    width: 18px;
+  }
+
+  .center {
+    flex: 0 0 var(--phone-center-h);
+  }
+
+  /* One line: title, then the reason, cut with an ellipsis. */
+  .pause-ribbon {
+    flex: none;
+    min-height: 40px;
+    padding: 2px 4px 2px 10px;
+  }
+
+  .pause-ribbon > div {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .pause-ribbon strong {
+    flex: none;
+    font-size: 0.78rem;
+  }
+
+  .pause-ribbon p {
+    min-width: 0;
+    font-size: 0.74rem;
+  }
+
+  .pause-ribbon .btn {
+    min-height: 34px;
+  }
+
+  .pause-ribbon kbd {
+    display: none;
+  }
+
+  /* Rush and Insist share a row with the appeals, which scroll sideways. */
+  .composer {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding-top: 4px;
+  }
+
+  .composer > * {
+    grid-column: 1 / -1;
+  }
+
+  .composer > .toggles {
+    grid-column: 1;
+  }
+
+  .composer > .appeals {
+    grid-column: 2;
+  }
+
+  .composer .toggle {
+    padding: 3px 9px;
+  }
+
+  .composer-actions {
+    padding: 2px 0 4px;
+  }
+
+  /* After the run the topbar adds Results; the speed choices give it their room so the clock keeps its width. */
+  .clock {
+    overflow: hidden;
+  }
+
+  .topbar-controls:has(> .btn-small) .speed .speed-btn:not(.speed-play) {
+    display: none;
+  }
+}
