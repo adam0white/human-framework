@@ -115,7 +115,7 @@ export function readBell(
   return { holds: outcome.holds, resent, confidence };
 }
 
-function readWords(r: Read): string {
+export function readWords(r: Read): string {
   const sure = r.confidence > 0.6 ? '' : r.confidence > 0.35 ? ', you think' : ', maybe';
   switch (r.word) {
     case 'likely':
@@ -129,7 +129,7 @@ function readWords(r: Read): string {
   }
 }
 
-function bellWords(b: ReturnType<typeof readBell>): string {
+export function bellWords(b: ReturnType<typeof readBell>): string {
   if (!b.holds) return b.confidence < 0.2 ? "you can't tell if it holds" : 'it may not hold';
   return b.resent === 'much'
     ? 'holds, but they will resent it'

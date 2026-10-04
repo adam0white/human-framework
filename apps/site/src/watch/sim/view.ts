@@ -2,7 +2,14 @@
  * What the Keeper can see, built from the state for the UI. The lit section shows threats, their kind and the
  * watchers' throws; a dark section shows only motion (no kind, a blurred position) and nothing that has fled.
  * Grain and rope wear are carried as values for drawing (sacks and strands); the UI prints no numbers.
+ *
+ * G3-2: a watcher's posture and outward signs (tired, afraid, hurt) are shown only in the lantern's light, from
+ * what their face and body show (HF `outwardSigns`, after their reserve), never their true state. What the Keeper
+ * believes of each watcher comes as phrases with a sureness (`reads.ts`), and every read of how a posting, a card
+ * choice or the bell would go is the Keeper's guess (`moments.ts`).
  */
+
+import { outwardSigns } from '@human/framework';
 import {
   DAY,
   MOTION_REACH,
@@ -15,8 +22,11 @@ import {
   WATCHERS,
   type WatcherId,
 } from './config.ts';
-import { litSection, nightEnd } from './night.ts';
-import type { Alert, DawnPage, Phase, WatchState } from './state.ts';
+import { bellWords, type Moment, readBell, readPosting, readWords } from './moments.ts';
+import { earshot, litSection, nightEnd, presentIds } from './night.ts';
+import { isPost, type Place, personOf } from './people.ts';
+import { type Impression, keeperImpressions } from './reads.ts';
+import type { Alert, DawnPage, DaySummary, Phase, Press, WatchState } from './state.ts';
 
 /** Threats in a lit section are seen from here out. */
 export const LIGHT_EDGE = 0.18;
@@ -54,17 +64,22 @@ export interface Frame {
   warned: SectionId;
   lit: SectionId | null;
   lantern: { x: number; target: number };
-  sections: { id: SectionId; name: string; posts: { id: PostId; watcher: WatcherId | null }[] }[];
-  watchers: {
-    id: WatcherId;
+  /** Per post: who stands there now (`watcher`) and who is posted there (`posted`). */
+  sections: {
+    id: SectionId;
     name: string;
-    note: string;
-    post: PostId | null;
-    section: SectionId | null;
-    /** Only in the lit section: whether they threw this minute and whether it struck. */
-    throwing: 'hit' | 'miss' | null;
-    target: number | null;
+    posts: { id: PostId; watcher: WatcherId | null; posted: WatcherId | null }[];
   }[];
+  /** Watchers who have come to the village (absent ones are left out). */
+  watchers: FrameWatcher[];
+  /** The card open now (night only). */
+  moment: Moment | null;
+  /** At dusk: the Keeper's read of how each watcher would take their posting, by press. */
+  postingReads: Partial<Record<WatcherId, Record<Press, string>>> | null;
+  /** At night: the Keeper's read of the bell on those in earshot, in words (null when it cannot ring). */
+  bellRead: string | null;
+  /** The last day, for the dusk panel. */
+  day: DaySummary | null;
   seen: SeenToken[];
   motion: Motion[];
   grain: number;
@@ -74,6 +89,88 @@ export interface Frame {
   slowed: boolean;
   alerts: Alert[];
   dawn: DawnPage | null;
+}
+
+export type Posture = 'stand' | 'sit' | 'doze' | 'eat' | 'pray' | 'down' | 'frozen' | 'carry' | 'figure';
+
+export interface FrameWatcher {
+  id: WatcherId;
+  name: string;
+  note: string;
+  newcomer: boolean;
+  /** Where they are: a post, the hall, home or the village (by day). */
+  place: Place;
+  /** The post they stand now, if on the wall. */
+  post: PostId | null;
+  section: SectionId | null;
+  /** The Keeper's posting and how hard he pressed it. */
+  posted: PostId | null;
+  press: Press;
+  /** Whether the lantern is on them. */
+  lit: boolean;
+  /** What the light shows them doing; 'figure' in the dark. */
+  posture: Posture;
+  /** What their face and body show in the light (after reserve); null in the dark. */
+  signs: { tired: boolean; afraid: boolean; hurt: boolean } | null;
+  /** Under the bell's command now. */
+  commanded: boolean;
+  /** What the Keeper believes of them, surest first. */
+  impressions: Impression[];
+  /** Only in the lit section: whether they threw this minute and whether it struck. */
+  throwing: 'hit' | 'miss' | null;
+  target: number | null;
+}
+
+const POSTURE: Record<string, Posture> = {
+  'hold-post': 'stand',
+  sit: 'sit',
+  doze: 'doze',
+  eat: 'eat',
+  pray: 'pray',
+  freeze: 'frozen',
+  carry: 'carry',
+};
+
+let readCache: { key: string; reads: Frame['postingReads'] } | null = null;
+let bellCache: { key: string; read: string | null } | null = null;
+
+/** Dusk posting reads, recomputed every ten sim minutes or when a posting changes (they run predictAs). */
+function postingReads(s: WatchState): Frame['postingReads'] {
+  if (s.phase !== 'dusk') return null;
+  const key = `${s.seed}|${s.night}|${Math.floor(s.minute / 10)}|${JSON.stringify(s.posts)}`;
+  if (readCache?.key === key) return readCache.reads;
+  const reads: NonNullable<Frame['postingReads']> = {};
+  for (const id of presentIds(s)) {
+    const post = s.posts[id];
+    if (!post) continue;
+    reads[id] = {
+      ask: readWords(readPosting(s, id, post, 'ask')),
+      urge: readWords(readPosting(s, id, post, 'urge')),
+      insist: readWords(readPosting(s, id, post, 'insist')),
+    };
+  }
+  readCache = { key, reads };
+  return reads;
+}
+
+/** The bell read: the worst of those on the wall in earshot. */
+function bellRead(s: WatchState): string | null {
+  if (s.phase !== 'night' || s.rope.snapped) return null;
+  const hear = earshot(s);
+  const key = `${s.seed}|${s.minute}|${s.lantern.x}`;
+  if (bellCache?.key === key) return bellCache.read;
+  const order = { little: 0, some: 1, much: 2 } as const;
+  let worst: ReturnType<typeof readBell> | null = null;
+  for (const id of presentIds(s)) {
+    const pl = s.place[id];
+    if (!isPost(pl) || !hear.includes(postSection(pl))) continue;
+    const b = readBell(s, id);
+    const rank = (x: ReturnType<typeof readBell>) => (x.holds ? order[x.resent] : 3);
+    if (!worst || rank(b) > rank(worst)) worst = b;
+  }
+  const read = worst ? bellWords(worst) : 'no one in earshot';
+  bellCache = { key, read };
+  return read;
 }
 
 function hash(a: number, b: number): number {
@@ -117,23 +214,45 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
     name: sec.name,
     posts: POSTS.filter((p) => p.section === sec.id).map((p) => ({
       id: p.id,
-      watcher: WATCHERS.find((w) => s.posts[w.id] === p.id)?.id ?? null,
+      watcher: WATCHERS.find((w) => personOf(s, w.id) && s.place[w.id] === p.id)?.id ?? null,
+      posted: WATCHERS.find((w) => personOf(s, w.id) && s.posts[w.id] === p.id)?.id ?? null,
     })),
   }));
-  const watchers = WATCHERS.map((w) => {
-    const post = s.posts[w.id];
+  const watchers: FrameWatcher[] = [];
+  for (const w of WATCHERS) {
+    const p = personOf(s, w.id);
+    if (!p) continue;
+    const place = s.place[w.id];
+    const post = isPost(place) ? place : null;
     const section = post === null ? null : postSection(post);
-    const th = section !== null && section === lit ? s.throws.find((x) => x.watcher === w.id) : undefined;
-    return {
+    const onLit = section !== null && section === lit;
+    const th = onLit ? s.throws.find((x) => x.watcher === w.id) : undefined;
+    let posture: Posture = 'figure';
+    let signs: FrameWatcher['signs'] = null;
+    if (onLit) {
+      posture = p.body.downed ? 'down' : (POSTURE[p.activity?.action ?? ''] ?? 'stand');
+      const o = outwardSigns(p);
+      signs = { tired: o.fatigue > 0.5, afraid: o.fear > 0.35, hurt: o.pain > 0.3 };
+    }
+    watchers.push({
       id: w.id,
       name: w.name,
       note: w.note,
+      newcomer: w.newcomer === true,
+      place,
       post,
       section,
+      posted: s.posts[w.id],
+      press: s.press[w.id],
+      lit: onLit,
+      posture,
+      signs,
+      commanded: s.phase === 'night' && s.commands[w.id] !== undefined,
+      impressions: keeperImpressions(s, w.id),
       throwing: th ? (th.hit ? ('hit' as const) : ('miss' as const)) : null,
       target: th ? th.token : null,
-    };
-  });
+    });
+  }
   const nightLen = nightEnd(s) - s.nightStart;
   return {
     phase: s.phase,
@@ -157,5 +276,9 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
     // Only what is still news: alerts from the last hour of the night.
     alerts: s.alerts.filter((a) => s.minute - a.minute < 60).slice(-6),
     dawn: s.dawn,
+    moment: s.phase === 'night' ? s.moment : null,
+    postingReads: postingReads(s),
+    bellRead: bellRead(s),
+    day: s.day,
   };
 }
