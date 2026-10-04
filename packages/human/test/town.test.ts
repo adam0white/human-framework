@@ -25,6 +25,7 @@ import {
   diffChronicle,
   homeOf,
   interruptPerson,
+  knockDown,
   lifeModifiers,
   MINUTES_PER_DAY,
   MINUTES_PER_YEAR,
@@ -715,8 +716,37 @@ describe('Game 2 world content (voice-build §3)', () => {
     expect(e.town.affordancesFor(e.ppl.selin).some((a) => a.id === 'call:halil')).toBe(true);
   });
 
-  test('W7: Eid morning offers the grave, tea with Rıza and (only with the flag) the Eid prayer', () => {
-    const fajr = townCalendar(TOWN_EID_DAY).fajr;
+  test('control (1.7.0): a prayer missed while downed is excused, owed, offered quietly next day and made up', () => {
+    const s = setup();
+    stepCommunity(s.c, s.town, at(2, 15));
+    knockDown(s.ppl.halil, { reason: 'faint', until: at(2, 19) });
+    const events = stepCommunity(s.c, s.town, at(3, 23));
+    const h = s.ppl.halil;
+    expect(h.conscience.breaches.filter((b) => b.normId === 'salah')).toEqual([]);
+    const owed = (h.agenda.owed ?? []).filter((o) => o.kind === 'worship');
+    expect(owed.map((o) => [o.reason, o.label])).toEqual([['unconscious', 'Asr']]);
+    const makeUp = h.agenda.commitments.find((c) => c.makeUpOf === owed[0]?.ofId);
+    expect(makeUp).toMatchObject({
+      actions: ['pray-qada'],
+      status: 'kept',
+      importance: TOWN_DEFAULTS.qadaImportance,
+    });
+    const t = townCalendar(3);
+    expect(makeUp?.from).toBe(at(3, 0, t.dhuhr + 15));
+    const qada = events.filter(
+      (e) => e.personId === 'halil' && e.kind === 'begin' && e.affordanceId === 'pray-qada',
+    );
+    expect(qada).toHaveLength(1);
+    // Kept only by its own action: ordinary prayers do not loop on the open make-up.
+    const prayers = events.filter(
+      (e) => e.personId === 'halil' && e.kind === 'begin' && e.action === 'pray-home',
+    );
+    expect(prayers.length).toBeLessThan(15);
+  });
+
+  test('W7: Eid morning offers the grave, tea with Rıza and (unless turned off) the Eid prayer', () => {
+    const cal = townCalendar(TOWN_EID_DAY);
+    const sunrise = cal.sunrise ?? cal.fajr;
     const offered = (m: number, opts: TownOptions = {}) => {
       const s = setup({ now: m, ...opts });
       return s.town.affordancesFor(s.ppl.halil).map((a) => a.id);
@@ -725,9 +755,13 @@ describe('Game 2 world content (voice-build §3)', () => {
     expect(offered(at(TOWN_EID_DAY, 8))).not.toContain('visit-grave');
     expect(offered(at(TOWN_EID_DAY, 9))).toContain('tea:riza');
     expect(offered(at(TOWN_EID_DAY, 9))).toContain('visit-grave');
-    expect(offered(at(TOWN_EID_DAY, 0, fajr + 150))).not.toContain('pray-eid');
-    expect(offered(at(TOWN_EID_DAY, 0, fajr + 150), { eidPrayer: true })).toContain('pray-eid');
-    expect(offered(at(TOWN_EID_DAY, 0, fajr + 250), { eidPrayer: true })).not.toContain('pray-eid');
+    // The Eid prayer window (research/decisions.md): from 20 minutes after sunrise until 10 before Dhuhr.
+    expect(offered(at(TOWN_EID_DAY, 0, sunrise + 10))).not.toContain('pray-eid');
+    expect(offered(at(TOWN_EID_DAY, 0, sunrise + 25))).toContain('pray-eid');
+    expect(offered(at(TOWN_EID_DAY, 0, cal.dhuhr - 15))).toContain('pray-eid');
+    expect(offered(at(TOWN_EID_DAY, 0, cal.dhuhr - 5))).not.toContain('pray-eid');
+    expect(offered(at(TOWN_EID_DAY, 0, sunrise + 25), { eidPrayer: false })).not.toContain('pray-eid');
+    expect(offered(at(TOWN_EID_DAY - 1, 0, sunrise + 25))).not.toContain('pray-eid');
     // An ordinary Ramadan day: the grave only after Asr.
     expect(offered(at(5, 12))).not.toContain('visit-grave');
     expect(offered(at(5, 0, townCalendar(5).asr + 5))).toContain('visit-grave');
