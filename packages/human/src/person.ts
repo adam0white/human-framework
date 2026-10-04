@@ -64,7 +64,15 @@ import {
   skipBody,
 } from './body/index.ts';
 import { ageCharacter, noteCharacterDay, noteCharacterSocial } from './character/index.ts';
-import { closeDay, endDay, noteCommitments, noteDecision, noteMood, noteOutcome } from './chronicle/index.ts';
+import {
+  closeDay,
+  endDay,
+  noteAnswer,
+  noteCommitments,
+  noteDecision,
+  noteMood,
+  noteOutcome,
+} from './chronicle/index.ts';
 import { decide as cognitionDecide, desperationOf, scoreAll } from './cognition/index.ts';
 import {
   createConscience,
@@ -143,6 +151,7 @@ import type {
 import { ENGINE_VERSION, PERSON_SCHEMA, PHYSIOLOGICAL_NEEDS, PSYCHOLOGICAL_NEEDS } from './types.ts';
 import {
   advanceWill,
+  answerSuggestion,
   type CommandOutcome,
   chargeCommand,
   commandTargets,
@@ -908,6 +917,39 @@ export function predict(
   const res = predictResponse(p, considered, willCtx, suggestion, others);
   res.says = voiceLine(p, res, 'predict');
   return res;
+}
+
+/**
+ * Answer a suggestion now, between decision points, without touching the running activity. When the answer is
+ * a refusal it is committed as a real resolution: the will books it as a decision would (pressure, refused
+ * counter, `pushed`/`worn` trust costs), the chronicle tallies the verdict, and `booked` is true. Any other
+ * verdict would mean switching activity, so nothing is written (`booked: false`, the result equals `predict`)
+ * and the host should interrupt and let the next decision resolve it. Consumes no RNG and does not advance time
+ * or record a trace entry; a later decision on the same standing suggestion counts again (hosts that answer
+ * now should drop the suggestion once it is refused).
+ */
+export function answerNow(
+  p: Person,
+  affordances: readonly Affordance[],
+  suggestion: Suggestion,
+  opts: { necessity?: boolean; others?: readonly Suggestion[]; scarcity?: Unit } = {},
+): { resolution: SuggestionResolution; booked: boolean } {
+  const others = (opts.others ?? []).filter((s) => s.voiceId !== suggestion.voiceId);
+  const decideOpts: DecideOptions = { suggestion };
+  if (others.length > 0) decideOpts.suggestions = others;
+  if (opts.necessity !== undefined) decideOpts.necessity = opts.necessity;
+  if (opts.scarcity !== undefined) decideOpts.scarcity = opts.scarcity;
+  const { list, ctx } = decisionInputs(p, affordances, 'answer', decideOpts);
+  const { considered, willCtx } = scoreAll(p, list, ctx);
+  const out = answerSuggestion(p, considered, willCtx, suggestion, others);
+  out.resolution.says = voiceLine(p, out.resolution, out.booked ? `a${ctx.now}` : 'predict');
+  if (out.booked) {
+    let action = suggestion.action;
+    if (action === undefined && suggestion.affordanceId !== undefined)
+      action = list.find((a) => a.id === suggestion.affordanceId)?.action;
+    noteAnswer(p, out.resolution, action);
+  }
+  return out;
 }
 
 /** Every resolution of a decision record (all voices), oldest API first. */

@@ -1136,34 +1136,7 @@ export function resolveChoice(
     ev.voices = [];
     ev.autonomyDelta = 0;
   }
-  const W = WILL_DEFAULTS;
-  for (const [i, side] of ev.voices.entries()) {
-    const v = ensureVoice(p, side.id);
-    v.pressure = clamp01(v.pressure + side.pressure);
-    v.accepted += side.accepted;
-    v.refused += side.refused;
-    // Being insisted at while already pressed wears trust down, whatever he then does (engineering default), so
-    // a voice that insists at every turn reaches the distrust refusal.
-    const res = ev.resolutions[i];
-    if (res?.insisted && res.kind !== 'cannot' && v.pressure >= W.distrustPressure) {
-      const before = v.trust;
-      v.trust = clamp01(v.trust * (1 - W.trustLossPushed));
-      noteTrust(v, v.trust - before, 'pushed', ctx.now);
-    } else if (
-      res &&
-      !res.insisted &&
-      res.kind !== 'cannot' &&
-      res.reason !== 'distrust' &&
-      (res.verdict === 'deferred' || res.verdict === 'modified' || res.verdict === 'refused') &&
-      v.pressure >= W.distrustPressure &&
-      (v.lastWornAt === undefined || ctx.now - v.lastWornAt >= W.wornInterval)
-    ) {
-      v.lastWornAt = ctx.now;
-      const before = v.trust;
-      v.trust = clamp01(v.trust * (1 - W.trustLossWorn));
-      noteTrust(v, v.trust - before, 'worn', ctx.now);
-    }
-  }
+  bookVoices(p, ev.voices, ev.resolutions, ctx.now);
   const out: ChoiceResolution = {
     chosenAffordanceId: ev.chosenId,
     considered: ev.considered,
@@ -1173,6 +1146,75 @@ export function resolveChoice(
   if (ev.suggestion) out.suggestion = ev.suggestion;
   if (ev.resolutions.length > 0) out.suggestions = ev.resolutions;
   return out;
+}
+
+/** Write each voice's side of a resolution: pressure, counters, and the `pushed`/`worn` trust costs. */
+function bookVoices(
+  p: Person,
+  voices: Evaluation['voices'],
+  resolutions: readonly SuggestionResolution[],
+  now: Minute,
+): void {
+  const W = WILL_DEFAULTS;
+  for (const [i, side] of voices.entries()) {
+    const v = ensureVoice(p, side.id);
+    v.pressure = clamp01(v.pressure + side.pressure);
+    v.accepted += side.accepted;
+    v.refused += side.refused;
+    // Being insisted at while already pressed wears trust down, whatever he then does (engineering default), so
+    // a voice that insists at every turn reaches the distrust refusal.
+    const res = resolutions[i];
+    if (res?.insisted && res.kind !== 'cannot' && v.pressure >= W.distrustPressure) {
+      const before = v.trust;
+      v.trust = clamp01(v.trust * (1 - W.trustLossPushed));
+      noteTrust(v, v.trust - before, 'pushed', now);
+    } else if (
+      res &&
+      !res.insisted &&
+      res.kind !== 'cannot' &&
+      res.reason !== 'distrust' &&
+      (res.verdict === 'deferred' || res.verdict === 'modified' || res.verdict === 'refused') &&
+      v.pressure >= W.distrustPressure &&
+      (v.lastWornAt === undefined || now - v.lastWornAt >= W.wornInterval)
+    ) {
+      v.lastWornAt = now;
+      const before = v.trust;
+      v.trust = clamp01(v.trust * (1 - W.trustLossWorn));
+      noteTrust(v, v.trust - before, 'worn', now);
+    }
+  }
+}
+
+/**
+ * Answer one voice now, outside a decision point, when the answer leaves the person doing what he is doing: a
+ * refusal is booked as it would be at a decision (pressure, refused counter, `pushed`/`worn` trust costs) and
+ * returned with `booked: true`. Any other verdict would mean switching activity, so nothing is written and the
+ * host should interrupt and let the next decision resolve it. Always uses the argmax outcome (no RNG), so the
+ * verdict equals `predictResponse` on the same input. The composite `answerNow` in person.ts builds the context.
+ */
+export function answerSuggestion(
+  p: Person,
+  considered: readonly Considered[],
+  ctx: WillContext,
+  suggestion: Suggestion,
+  others: readonly Suggestion[] = [],
+): { resolution: SuggestionResolution; booked: boolean } {
+  const list = voicesIn(
+    suggestion,
+    others.filter((s) => s.voiceId !== suggestion.voiceId),
+  );
+  const ev = evaluate(p, considered, ctx, list, undefined);
+  const i = ev.resolutions.findIndex((r) => r.voiceId === suggestion.voiceId);
+  const resolution: SuggestionResolution = ev.resolutions[i] ?? {
+    voiceId: suggestion.voiceId,
+    verdict: 'refused',
+    reason: 'unavailable',
+    says: '',
+  };
+  if (resolution.verdict !== 'refused') return { resolution, booked: false };
+  const side = ev.voices[i];
+  if (side) bookVoices(p, [side], [resolution], ctx.now);
+  return { resolution, booked: true };
 }
 
 const asList = (s: Suggestion | readonly Suggestion[] | undefined): Suggestion[] =>

@@ -47,6 +47,11 @@ Engine: 1.9.0. `restore` upgrades 1.7.0 and 1.8.0 saves by a version stamp. Runs
   anchor. Sources and assumptions: [research/long-run-sources.md](https://github.com/adam0white/human-framework/blob/main/research/long-run-sources.md).
 - Impressions (HF 2.0 L6, `social/impressions.ts` and the composite `impression.ts`): what one person believes about another's state (fatigue, pain, fear, mood), fear of places, traits, ties and trust in a voice, each with a confidence, learned only from observations the host reports (`glimpse`/`glimpseOf`, `observeAct`, `hear`, `acquaint`/`acquaintWith`). A person's reserve (`setReserve`, default from emotionality) hides pain and fear from faces and more from words (`selfReport`); a limp always shows. `predictAs` and `previewCommandAs` run `predict`/`previewCommand` on the person as the observer pictures them (`imagine`), so a player's read and a villager's judgement use one function. Cognition adds a `companion:<id>` term on risky offers shared with people one holds impressions of (`companionSteadiness`). New optional state `social.impressions` and `social.reserve`, absent until used; observing draws no randomness, so runs that do not use it replay byte for byte.
 - `tellDeath(c, dead, at)`: a told `death` percept to everyone with a tie; a spouse is widowed.
+- `answerNow(p, affordances, suggestion, opts)` (person.ts), with `answerSuggestion` (will) and `noteAnswer`
+  (chronicle): answer a suggestion between decision points without touching the running activity. A refusal is booked
+  as a decision books it (pressure, refused counter, `pushed`/`worn` trust costs, chronicle tally) and returned with
+  `booked: true`; any other verdict writes nothing and equals `predict`. No RNG, no trace entry. Game 2 uses it so a
+  refused word is answered at once and does not interrupt him.
 
 ### Changed
 

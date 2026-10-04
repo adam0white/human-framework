@@ -16,6 +16,7 @@ import type {
   ChronicleCommitmentNote,
   ChronicleDay,
   ChronicleState,
+  ChronicleVerdictTally,
   Commitment,
   DayRecord,
   DecisionRecord,
@@ -161,27 +162,43 @@ export function noteDecision(p: Person, record: DecisionRecord, suggested: reado
     if (action === undefined && s?.affordanceId !== undefined)
       action = record.considered.find((c) => c.affordanceId === s.affordanceId)?.action;
     if (action === undefined && PROMPTED.has(res.verdict)) action = record.chosenAction ?? undefined;
-    const same = acc.verdicts.find(
-      (v) =>
-        v.voiceId === res.voiceId &&
-        v.verdict === res.verdict &&
-        v.reason === res.reason &&
-        v.action === action,
-    );
-    if (same) {
-      same.count += 1;
-      continue;
-    }
-    if (acc.verdicts.length >= CHRONICLE_DEFAULTS.maxVerdicts) continue;
-    acc.verdicts.push({
-      voiceId: res.voiceId,
-      verdict: res.verdict,
-      ...(res.kind !== undefined ? { kind: res.kind } : {}),
-      reason: res.reason,
-      ...(action !== undefined ? { action } : {}),
-      count: 1,
-    });
+    tally(acc.verdicts, res, action);
   }
+}
+
+/**
+ * Tally one verdict given outside a decision point (the composite `answerNow`): counted like a decision's
+ * verdict, without counting a decision.
+ */
+export function noteAnswer(p: Person, res: SuggestionResolution, action?: string): void {
+  tally(current(p).verdicts, res, action);
+}
+
+function tally(
+  verdicts: ChronicleVerdictTally[],
+  res: SuggestionResolution,
+  action: string | undefined,
+): void {
+  const same = verdicts.find(
+    (v) =>
+      v.voiceId === res.voiceId &&
+      v.verdict === res.verdict &&
+      v.reason === res.reason &&
+      v.action === action,
+  );
+  if (same) {
+    same.count += 1;
+    return;
+  }
+  if (verdicts.length >= CHRONICLE_DEFAULTS.maxVerdicts) return;
+  verdicts.push({
+    voiceId: res.voiceId,
+    verdict: res.verdict,
+    ...(res.kind !== undefined ? { kind: res.kind } : {}),
+    reason: res.reason,
+    ...(action !== undefined ? { action } : {}),
+    count: 1,
+  });
 }
 
 /**
