@@ -24,7 +24,8 @@ import {
   type PlaybackState,
   type Speed,
 } from './contract.ts';
-import { goalValue } from './end-report.ts';
+import { goalValue, humanQuotes } from './end-report.ts';
+import { Icon, type IconName, RingTimer } from './Icon.tsx';
 import { LOOKS } from './renderer.ts';
 
 export const ROLE_LABEL: Record<string, string> = {
@@ -50,6 +51,24 @@ export const PLACE_LABEL: Record<PlaceId, string> = {
   'home-yusuf': 'Home',
   'home-idris': 'Home',
 };
+
+/** Place chip icons. */
+export const PLACE_ICON: Record<PlaceId, IconName> = {
+  forest: 'forest',
+  cedar: 'cedar',
+  field: 'field',
+  well: 'well',
+  wellhouse: 'well',
+  kitchen: 'kitchen',
+  site: 'house',
+  masjid: 'masjid',
+  'home-maryam': 'home',
+  'home-yusuf': 'home',
+  'home-idris': 'home',
+};
+
+/** Short appeal labels for narrow screens (the full line is the button's accessible name). */
+const APPEAL_SHORT: Record<string, string> = { children: 'children', duty: 'duty', safety: 'safer' };
 
 /** The inferred job as a phrase ("build the house"). Unknown actions fall back to the job table's label. */
 const JOB_PHRASE: Partial<Record<string, string>> = {
@@ -255,7 +274,14 @@ export function TopBar(props: {
 // Goals
 // ---------------------------------------------------------------------------------------------
 
-const GOAL_ICON: Record<string, string> = { roof: '⌂', stock: '◒', lives: '♥', project: '⌂' };
+const GOAL_ICON: Record<string, IconName> = {
+  roof: 'house',
+  stock: 'meals',
+  lives: 'lives',
+  project: 'build',
+};
+/** Short goal names for the phone strip. */
+const GOAL_SHORT: Record<string, string> = { roof: 'Roof', stock: 'Meals', lives: 'Alive', project: 'Store' };
 const STATUS_MARK: Record<GoalSide['status'], string> = { open: '…', met: '✓', failed: '✗' };
 
 export { goalValue };
@@ -298,7 +324,7 @@ export const GoalStrip = memo(function GoalStrip({ goals }: { goals: GoalView[] 
       {goals.map((g) => (
         <div className="goal" key={g.id}>
           <span className="goal-icon" aria-hidden="true">
-            {GOAL_ICON[g.id] ?? '•'}
+            <Icon name={GOAL_ICON[g.id] ?? 'house'} size={16} />
           </span>
           <span className="goal-label">
             {g.label}
@@ -308,11 +334,8 @@ export const GoalStrip = memo(function GoalStrip({ goals }: { goals: GoalView[] 
             <i className={`dot goal-${g.classic.status}`} />
             <i className={`dot goal-${g.human.status}`} />
           </span>
-          {/* Game design review (GD7): the collapsed phone strip shows each side's number, not only a dot. */}
-          <span className="goal-nums" aria-hidden="true">
-            <b className={`goal-num goal-${g.classic.status}`}>C{Math.floor(g.classic.value)}</b>
-            <b className={`goal-num goal-${g.human.status}`}>H{Math.floor(g.human.value)}</b>
-          </span>
+          {/* The collapsed phone strip: a short name and one bar per side with a tick at the target. */}
+          <GoalBars goal={g} />
           <GoalChip goal={g} side="classic" s={g.classic} />
           <GoalChip goal={g} side="human" s={g.human} />
         </div>
@@ -320,6 +343,38 @@ export const GoalStrip = memo(function GoalStrip({ goals }: { goals: GoalView[] 
     </section>
   );
 });
+
+/**
+ * Two mini progress bars (Classic over Human) with a tick at the target, for the collapsed phone strip. The scale
+ * reaches past the target when a value does (17 meals against 12), so the tick stays where the goal is.
+ */
+export function GoalBars({ goal }: { goal: GoalView }) {
+  const target = goal.targetValue;
+  const max = Math.max(target, goal.classic.value, goal.human.value, 1) * (goal.id === 'stock' ? 1.25 : 1);
+  const tick = `${(target / max) * 100}%`;
+  const row = (tag: 'C' | 'H', s: GoalSide) => (
+    <span className={`gbar goal-${s.status}`}>
+      <span className="gbar-tag">{tag}</span>
+      <span className="gbar-track">
+        <span className="gbar-fill" style={{ width: `${Math.min(1, s.value / max) * 100}%` }} />
+        <span className="gbar-tick" style={{ left: tick }} />
+      </span>
+    </span>
+  );
+  return (
+    <span
+      className="goal-bars"
+      role="img"
+      aria-label={`${goal.label}: Classic ${goalValue(goal, goal.classic)} (${goal.classic.status}), Human ${goalValue(goal, goal.human)} (${goal.human.status}); target ${target}`}
+    >
+      <span className="gbar-name">
+        {GOAL_SHORT[goal.id] ?? goal.label} <small>{target}</small>
+      </span>
+      {row('C', goal.classic)}
+      {row('H', goal.human)}
+    </span>
+  );
+}
 
 // ---------------------------------------------------------------------------------------------
 // Pane header stats
@@ -391,7 +446,7 @@ export const CHIP_TEXT: Record<ChipState, string> = {
   pending: '…',
   ok: '✓',
   done: '✓',
-  noop: '—',
+  noop: 'could not',
   assent: 'yes',
   notNow: 'not now',
   complied: 'under protest',
@@ -424,14 +479,27 @@ export function OrderCardView({ card, onCancel }: { card: OrderCard; onCancel(id
       <div className="card-main">
         <div className="card-title">
           <strong>{shortName(o.personId)}</strong> → {PLACE_LABEL[o.placeId]}
-          {o.rush && <span className="flag">rush</span>}
-          {o.insist && <span className="flag flag-insist">insist</span>}
+          {o.rush && (
+            <span className="flag" title="Rush">
+              <Icon name="rush" size={12} label="Rush" />
+            </span>
+          )}
+          {o.insist && (
+            <span className="flag flag-insist" title="Insist">
+              <Icon name="insist" size={12} label="Insist" />
+            </span>
+          )}
         </div>
         <div className="card-sub">
           {jobPhrase(o.action)}
           {card.status === 'lapsed' && ' · lapsed'}
-          {card.human.label && card.human.state !== 'pending' && card.status === 'active' && (
-            <span className={`card-says says-${card.human.state}`}> · “{card.human.label}”</span>
+          {card.human.label &&
+            card.human.state !== 'pending' &&
+            (card.status === 'active' || card.human.state === 'willNot' || card.human.state === 'cannot') && (
+              <span className={`card-says says-${card.human.state}`}> · {humanQuotes(card)}</span>
+            )}
+          {card.classic.state === 'noop' && card.classic.label && (
+            <span className="card-says says-noop"> · Classic: {card.classic.label}</span>
           )}
         </div>
         <div className="card-chips">
@@ -502,9 +570,9 @@ export function SuggestionCard(props: {
       {n.reason && <p className="nudge-reason">{n.reason}</p>}
       <div className="nudge-foot">
         <span className="nudge-timer">
-          lapses {hhmm(n.until)} · in {left} min
-          <span className="nudge-bar" aria-hidden="true">
-            <span style={{ width: `${(left / span) * 100}%` }} />
+          <RingTimer left={left} span={span} />
+          <span>
+            lapses {hhmm(n.until)} · in {left} min
           </span>
         </span>
         <button type="button" className="btn btn-small" onClick={() => props.onUse(n)}>
@@ -571,7 +639,7 @@ export function Composer(props: {
               aria-pressed={who === p.id}
               onClick={() => props.onWho(p.id)}
             >
-              <Portrait id={p.id} size={22} />
+              <Portrait id={p.id} size={20} />
               <span>{shortName(p.id)}</span>
             </button>
           );
@@ -589,7 +657,8 @@ export function Composer(props: {
             onPointerEnter={() => props.onHover(p)}
             onPointerLeave={() => props.onHover(null)}
           >
-            {PLACE_LABEL[p]}
+            <Icon name={PLACE_ICON[p]} size={16} />
+            <span className="place-chip-label">{PLACE_LABEL[p]}</span>
           </button>
         ))}
       </div>
@@ -621,7 +690,8 @@ export function Composer(props: {
           disabled={!who}
           onClick={() => props.onChange({ ...s, rush: !s.rush })}
         >
-          Rush <small>faster, hungrier</small>
+          <Icon name="rush" size={16} />
+          <span className="toggle-label">Rush</span> <small>faster, hungrier</small>
         </button>
         <button
           type="button"
@@ -630,7 +700,8 @@ export function Composer(props: {
           disabled={!who}
           onClick={() => props.onChange({ ...s, insist: !s.insist })}
         >
-          Insist <small>may cost trust</small>
+          <Icon name="insist" size={16} />
+          <span className="toggle-label">Insist</span> <small>may cost trust</small>
         </button>
       </div>
       <div className="composer-row appeals">
@@ -640,10 +711,15 @@ export function Composer(props: {
             type="button"
             className={`appeal ${s.appeal === a.id ? 'is-on' : ''}`}
             aria-pressed={s.appeal === a.id}
+            aria-label={`Appeal: “${a.label}”`}
+            title={`“${a.label}”`}
             disabled={!who}
             onClick={() => props.onChange({ ...s, appeal: s.appeal === a.id ? null : a.id })}
           >
-            “{a.label}”
+            <span className="appeal-full">“{a.label}”</span>
+            <span className="appeal-short" aria-hidden="true">
+              “{APPEAL_SHORT[a.id] ?? a.label}”
+            </span>
           </button>
         ))}
       </div>

@@ -181,6 +181,8 @@ export interface SideChip {
   label?: string;
   /** That side has finished with the card (completed the job). Refusals and no-ops settle implicitly. */
   settled?: boolean;
+  /** The first answer, when a later update replaced it (Human: "after I pray Fajr", then "after I drink"). */
+  first?: { state: ChipState; label?: string };
 }
 
 export type CardStatus = 'active' | 'done' | 'cancelled' | 'lapsed';

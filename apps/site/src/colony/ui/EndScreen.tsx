@@ -1,23 +1,112 @@
 import { useEffect, useRef, useState } from 'react';
+import type { HindsightReply, HindsightRequest } from '../hindsight-worker.ts';
+import type { Hindsight } from '../sim/hindsight.ts';
 import { formatClock } from '../sim/world-types.ts';
-import { type EndSummary, NO_CONCEPT } from './contract.ts';
-import { ordersChanged, pct, share } from './end-report.ts';
-import { CHIP_TEXT, GoalChip, jobPhrase, PLACE_LABEL, shortName } from './parts.tsx';
+import { dayClock, type EndSummary, NO_CONCEPT } from './contract.ts';
+import {
+  cardEnd,
+  classicOutcome,
+  hindsightLine,
+  humanOutcome,
+  humanQuotes,
+  nearMisses,
+  ordersChanged,
+  pct,
+  share,
+} from './end-report.ts';
+import { Icon, NoConcept } from './Icon.tsx';
+import { GoalChip, jobPhrase, PLACE_LABEL, shortName } from './parts.tsx';
 
-const STATUS_TEXT: Record<string, string> = {
-  active: 'open at the end',
-  done: 'done',
-  cancelled: 'cancelled',
-  lapsed: 'lapsed',
-};
+type HindsightState =
+  | { kind: 'idle' }
+  | { kind: 'working' }
+  | { kind: 'done'; result: Hindsight | null }
+  | { kind: 'error' };
+
+/**
+ * The hindsight replay for a Day-2 report with a missed Human goal, in its own worker (started on first show,
+ * stopped when the report goes). Deterministic: the worker replays the seed and the log; nothing else enters it.
+ */
+function useHindsight(summary: EndSummary): HindsightState {
+  const missed = summary.day === 2 && summary.goals.some((g) => g.human.status !== 'met');
+  const [state, setState] = useState<HindsightState>({ kind: 'idle' });
+  useEffect(() => {
+    if (!missed) {
+      setState({ kind: 'idle' });
+      return undefined;
+    }
+    setState({ kind: 'working' });
+    let w: Worker;
+    try {
+      w = new Worker(new URL('../hindsight-worker.ts', import.meta.url), { type: 'module' });
+    } catch {
+      setState({ kind: 'error' });
+      return undefined;
+    }
+    w.addEventListener('message', (e: MessageEvent<HindsightReply>) => {
+      setState(e.data.ok ? { kind: 'done', result: e.data.result } : { kind: 'error' });
+      w.terminate();
+    });
+    w.addEventListener('error', () => setState({ kind: 'error' }));
+    w.postMessage({ seed: summary.seed, log: summary.log } satisfies HindsightRequest);
+    return () => w.terminate();
+  }, [missed, summary]);
+  return state;
+}
+
+function HindsightBlock({ summary }: { summary: EndSummary }) {
+  const h = useHindsight(summary);
+  const misses = nearMisses(summary);
+  if (h.kind === 'idle' && misses.length === 0) return null;
+  return (
+    <section className="end-hindsight" aria-label="What would have won">
+      {misses.length > 0 && (
+        <ul className="end-misses">
+          {misses.map((m) => (
+            <li key={`${m.side}-${m.text}`}>
+              <b>{m.side}</b> {m.text}
+            </li>
+          ))}
+        </ul>
+      )}
+      {h.kind !== 'idle' && (
+        <p className="end-won" aria-live="polite">
+          <b>What would have won (Human):</b>{' '}
+          {h.kind === 'working'
+            ? 'replaying this seed with a simple plan…'
+            : h.kind === 'error'
+              ? 'the replay could not run in this browser.'
+              : h.result
+                ? hindsightLine(h.result)
+                : 'the simple plan (everyone but Maryam rushed to the house) did not win from any point we tried.'}
+        </p>
+      )}
+    </section>
+  );
+}
 
 /** One day's report: goals for Classic, Human and the Solo control, then character outcomes and moments. */
 function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string }) {
   const { scoreboard: sb, solo, character: ch } = summary;
-  const village: [string, string, string, string][] = [
-    ['Meals stored', String(sb.classic.meals), String(sb.human.meals), String(solo.meals)],
-    ['House built', `${sb.classic.housePct}%`, `${sb.human.housePct}%`, `${solo.housePct}%`],
-    ['Injuries', String(sb.classic.injuries), String(sb.human.injuries), String(solo.injuries)],
+  // These rows are read at the end of the run, after the storm; the goal rows above them are judged at their
+  // deadline (the roof at 19:00, before the storm). A house can read 9/10 at the deadline and 100% at dawn.
+  const end = summary.day === 3 ? 'Day 4 dawn' : 'Day 3 dawn';
+  const village: [string, string, string, string, string][] = [
+    ['Meals stored', end, String(sb.classic.meals), String(sb.human.meals), String(solo.meals)],
+    [
+      'House built',
+      `${end}, after the storm`,
+      `${sb.classic.housePct}%`,
+      `${sb.human.housePct}%`,
+      `${solo.housePct}%`,
+    ],
+    [
+      'Injuries',
+      'over the run',
+      String(sb.classic.injuries),
+      String(sb.human.injuries),
+      String(solo.injuries),
+    ],
   ];
   const character: [string, string, string][] = [
     ['Prayers kept', share(ch.prayersKept, ch.prayersDue), share(solo.prayersKept, solo.prayersDue)],
@@ -43,7 +132,10 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
             const solo = summary.soloGoals[i];
             return (
               <tr key={g.id}>
-                <th scope="row">{g.label}</th>
+                <th scope="row">
+                  {g.label}
+                  <span className="end-when">judged {dayClock(g.deadlineMinute)}</span>
+                </th>
                 <td>
                   <GoalChip goal={g} side="classic" s={g.classic} />
                 </td>
@@ -54,9 +146,12 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
               </tr>
             );
           })}
-          {village.map(([label, c, h, s]) => (
+          {village.map(([label, when, c, h, s]) => (
             <tr key={label} className="end-row-minor">
-              <th scope="row">{label}</th>
+              <th scope="row">
+                {label}
+                <span className="end-when">{when}</span>
+              </th>
               <td>{c}</td>
               <td>{h}</td>
               <td className="ghost">{s}</td>
@@ -64,6 +159,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
           ))}
         </tbody>
       </table>
+      <HindsightBlock summary={summary} />
       {summary.cards.length > 0 && (
         <>
           <h3>{summary.day === 3 ? 'Orders given on this day' : 'Your orders'}</h3>
@@ -72,9 +168,10 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
               <li key={c.order.id}>
                 <span className="end-order-time">{formatClock(c.order.issuedAt)}</span>{' '}
                 <b>{shortName(c.order.personId)}</b> → {PLACE_LABEL[c.order.placeId]},{' '}
-                {jobPhrase(c.order.action)} · Classic {CHIP_TEXT[c.classic.state]} · Human{' '}
-                {CHIP_TEXT[c.human.state]}
-                {c.human.label ? ` (“${c.human.label}”)` : ''} · {STATUS_TEXT[c.status] ?? c.status}
+                {jobPhrase(c.order.action)} · Classic {classicOutcome(c)} · Human{' '}
+                <span className={`end-says says-${c.human.state}`}>{humanOutcome(c)}</span>
+                {humanQuotes(c) ? ` (${humanQuotes(c)})` : ''}
+                {cardEnd(c) ? ` · ${cardEnd(c)}` : ''}
               </li>
             ))}
           </ul>
@@ -94,13 +191,21 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
           {character.map(([label, h, s]) => (
             <tr key={label}>
               <th scope="row">{label}</th>
-              <td className="no-concept">{NO_CONCEPT}</td>
+              <td className="no-concept">
+                <NoConcept text={NO_CONCEPT} />
+              </td>
               <td>{h}</td>
               <td className="ghost">{s}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <p className="no-concept-legend">
+        <span className="no-concept-mark">
+          <Icon name="none" />
+        </span>{' '}
+        {NO_CONCEPT}: the point of the comparison.
+      </p>
       <h3>Moments you saw</h3>
       {summary.moments.length === 0 ? (
         <p className="muted">
