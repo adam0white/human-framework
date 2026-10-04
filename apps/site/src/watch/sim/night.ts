@@ -64,6 +64,7 @@ import {
   watcherDef,
 } from './config.ts';
 import { advanceDay } from './day.ts';
+import { answerMoment, checkMoments } from './moments.ts';
 import { arrive, isPost, KEEPER_ID, personOf, placeOfActivity, WatchWorld } from './people.ts';
 import {
   type Alert,
@@ -85,6 +86,7 @@ export type Input =
   | { k: 'begin' }
   | { k: 'lantern'; section: SectionId }
   | { k: 'bell'; who?: WatcherId }
+  | { k: 'answer'; id: number; choice: string }
   | { k: 'toDusk' };
 
 const ALERT_KEEP = 14;
@@ -102,7 +104,7 @@ const STRIKE_CHANCE = 0.4;
 const KEEPER_LOOK = 10;
 const PEER_LOOK = 30;
 /** Suggestion strength by press. */
-const PRESS_STRENGTH: Record<Press, number> = { ask: 0.55, urge: 0.8, insist: 0.8 };
+export const PRESS_STRENGTH: Record<Press, number> = { ask: 0.35, urge: 0.6, insist: 0.6 };
 /** Notes of the same kind for the same person closer together than this are merged. */
 const NOTE_GAP = 90;
 
@@ -232,6 +234,9 @@ function enterNight(s: WatchState): void {
   s.tally = emptyTally(s.grain);
   s.notes = [];
   s.carried = {};
+  s.moment = null;
+  s.momentLog = [];
+  s.asks = {};
 }
 
 function enterDawn(s: WatchState): void {
@@ -288,6 +293,8 @@ function enterDawn(s: WatchState): void {
   s.tokens = [];
   s.throws = [];
   s.commands = {};
+  s.moment = null;
+  s.asks = {};
   s.phase = s.grain <= 0 ? 'fallen' : 'dawn';
 }
 
@@ -332,6 +339,8 @@ export function applyInput(s: WatchState, input: Input): boolean {
     }
     case 'bell':
       return ringBell(s, input.who);
+    case 'answer':
+      return answerMoment(s, input.id, input.choice);
     case 'toDusk': {
       if (s.phase !== 'dawn') return false;
       advanceDay(s);
@@ -345,7 +354,7 @@ export function applyInput(s: WatchState, input: Input): boolean {
  * The bell: a command to hold the post, on the watchers in earshot (or the one named). A pull while the last
  * one still rings (the same minute) does nothing. Each pull wears the rope.
  */
-function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
+export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
   if (s.phase !== 'night' || s.rope.snapped) return false;
   if (Object.values(s.commands).some((c) => c && c.cmd.since === s.minute)) return false;
   const hear = earshot(s);
@@ -387,11 +396,16 @@ function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
   return true;
 }
 
-/** The Keeper's standing suggestions, one per posted watcher. */
-function suggestions(s: WatchState): Record<string, Suggestion> {
-  const out: Record<string, Suggestion> = {};
+/** The Keeper's standing suggestions: the posting, and a one-shot ask from a card while it lasts. */
+function suggestions(s: WatchState): Record<string, Suggestion[]> {
+  const out: Record<string, Suggestion[]> = {};
   for (const id of presentIds(s)) {
+    const list: Suggestion[] = [];
+    const a = s.asks[id];
+    if (a && s.minute < a.until) list.push(a.sug);
+    else if (a) delete s.asks[id];
     const post = s.posts[id];
+    if (list.length > 0) out[id] = list;
     if (post === null) continue;
     const press = s.press[id];
     const sug: Suggestion = {
@@ -402,7 +416,8 @@ function suggestions(s: WatchState): Record<string, Suggestion> {
       since: s.postedAt[id],
     };
     if (press === 'insist') sug.insist = true;
-    out[id] = sug;
+    // One voice, one suggestion: an ask from a card speaks for the Keeper while it lasts.
+    if (list.length === 0) out[id] = [sug];
   }
   return out;
 }
@@ -438,6 +453,7 @@ export function stepPeople(s: WatchState, until: number): SimEvent[] {
     controlled: controlled(s),
     contagion: false,
   });
+  const before = { ...s.place };
   for (const p of s.community.people) {
     const id = p.id as WatcherId;
     if (!p.body.downed && p.activity) {
@@ -445,7 +461,7 @@ export function stepPeople(s: WatchState, until: number): SimEvent[] {
       if (pl !== undefined) s.place[id] = pl;
     }
   }
-  if (s.phase === 'night') readEvents(s, events);
+  if (s.phase === 'night') readEvents(s, events, before);
   // Prune percepts each person has already been handed.
   for (const id of presentIds(s)) {
     const q = s.percepts[id];
@@ -458,14 +474,18 @@ export function stepPeople(s: WatchState, until: number): SimEvent[] {
   return events;
 }
 
-/** The section an event's person was at (their place before or after). */
-function sectionOf(s: WatchState, id: WatcherId): SectionId | undefined {
-  const pl = s.place[id];
+/** The section a person stands at (or stood at, given the places before this step). */
+function sectionOf(
+  s: WatchState,
+  id: WatcherId,
+  places: WatchState['place'] = s.place,
+): SectionId | undefined {
+  const pl = places[id];
   return isPost(pl) ? postSection(pl) : undefined;
 }
 
 /** What the watchers did this minute: notes for dawn, alerts on the lit stretch, the Keeper's impressions. */
-function readEvents(s: WatchState, events: SimEvent[]): void {
+function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place']): void {
   const lit = litSection(s);
   for (const e of events) {
     const id = e.personId as WatcherId;
@@ -480,7 +500,7 @@ function readEvents(s: WatchState, events: SimEvent[]): void {
       const chosen = e.affordanceId ?? '';
       const away = chosen.startsWith('post:')
         ? chosen !== `post:${posted}`
-        : !/^(sit|eat|pray|carry):/.test(chosen) && chosen !== '';
+        : !/^(sit|doze|eat|pray|carry):/.test(chosen) && chosen !== '';
       if (
         (e.verdict === 'refused' || e.verdict === 'deferred' || e.verdict === 'modified') &&
         away &&
@@ -508,7 +528,8 @@ function readEvents(s: WatchState, events: SimEvent[]): void {
     if (e.kind !== 'begin') continue;
     const action = e.action ?? '';
     const from = s.notes.length;
-    const where = sectionOf(s, id);
+    // Where they were when they began it: a person who leaves has already been moved off the wall.
+    const where = sectionOf(s, id, before) ?? sectionOf(s, id);
     const seen = where !== undefined && where === lit;
     const clarity = seen ? 0.9 : 0.35;
     const leaving = action === 'flee' || action === 'run-off' || action === 'sleep' || action === 'go-home';
@@ -524,6 +545,11 @@ function readEvents(s: WatchState, events: SimEvent[]): void {
         tags:
           action === 'flee' || action === 'run-off' ? ['flee'] : action === 'sleep' ? ['refuse'] : ['care'],
       });
+    }
+    if (action === 'doze' && where) {
+      note(s, { who: id, kind: 'dozed', section: where });
+      if (seen)
+        observeAct(s.keeper, id, { at: s.minute, clarity, placeId: where, avoided: 0.1, tags: ['refuse'] });
     }
     if (action === 'freeze' && where) {
       note(s, { who: id, kind: 'froze', section: where });
@@ -748,6 +774,7 @@ export function stepMinute(s: WatchState): void {
     }
 
   if ((m - s.nightStart) % KEEPER_LOOK === 0) feelings(s, lit);
+  checkMoments(s);
 
   // Watchers throw.
   for (const id of presentIds(s)) {
@@ -858,7 +885,7 @@ function homeDuty(s: WatchState, id: WatcherId, section: SectionId): void {
     actions: ['go-home'],
     from: s.minute,
     until: s.minute + 90,
-    importance: 0.3 + 0.5 * p.traits.emotionality,
+    importance: 0.45 + 0.5 * p.traits.emotionality,
     label: `see to ${def.family}`,
   });
 }

@@ -47,6 +47,7 @@ export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
     const home = noteOf(s.notes, id, ['home']);
     const refused = noteOf(s.notes, id, ['refused', 'modified']);
     const shaken = noteOf(s.notes, id, ['shaken']);
+    const dozed = s.notes.filter((n) => n.who === id && n.kind === 'dozed');
     const together = s.notes.filter((n) => n.who === id && n.kind === 'together' && n.other);
     const fear = fearedSection(p);
 
@@ -78,7 +79,9 @@ export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
     } else if (carrier?.other) {
       said.push(`“Somebody had to get ${watcherDef(carrier.other).name} down.”`);
     } else if (home) {
-      said.push(`“I went to ${def.family ?? 'the house'}. I’d go again.”`);
+      said.push(
+        `“I went to ${def.family ? def.family.replace(/^(his|her) /, 'my ') : 'the house'}. I’d go again.”`,
+      );
     } else if (together.length > 0) {
       const t = together.map((n) => ({ n, tie: p.social.relationships.find((r) => r.otherId === n.other) }));
       t.sort((a, b) => Math.abs(b.tie?.affection ?? 0) - Math.abs(a.tie?.affection ?? 0));
@@ -92,6 +95,16 @@ export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
     } else if (refused?.section) {
       said.push(`“I wasn’t going to stand ${theSec(refused.section)}.”`);
     }
+
+    // Nodding off is told only when it happened more than once, and a reserved person keeps it to themselves.
+    const sec = dozed[0]?.section;
+    if (
+      dozed.length >= 2 &&
+      sec &&
+      said.length < 2 &&
+      reserveOf(p, 'fatigue') * IMPRESSION_DEFAULTS.wordsReserve < 0.5
+    )
+      said.push(`“I kept nodding off at ${theSec(sec)}.”`);
 
     if (said.length === 0) {
       if (told.fatigue > 0.5) said.push('“Long night.”');

@@ -30,6 +30,11 @@ export function advanceDay(s: WatchState): void {
   s.alerts = [];
   s.slowUntil = -1;
   s.commands = {};
+  for (const [id, post] of Object.entries(s.letGo)) {
+    const w = id as WatcherId;
+    if (post && s.posts[w] === null && !Object.values(s.posts).includes(post)) s.posts[w] = post;
+  }
+  s.letGo = {};
   s.called = { west: false, gate: false, mill: false, east: false };
   s.rope.wear = Math.max(0, s.rope.wear - ROPE_DAWN_MEND);
   for (const p of s.community.people) tend(p);

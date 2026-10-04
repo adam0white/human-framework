@@ -3,7 +3,7 @@
  * community, the Keeper's postings and where each one is), the tokens on the lanes, grain, the rope and the
  * seeded RNG. Nothing here knows about real time or the UI.
  */
-import type { Command, Community, Percept, Person } from '@human/framework';
+import type { Command, Community, Percept, Person, Suggestion } from '@human/framework';
 import {
   DUSK_START,
   NIGHTFALL,
@@ -13,6 +13,7 @@ import {
   type ThreatKind,
   type WatcherId,
 } from './config.ts';
+import type { Moment, MomentKind } from './moments.ts';
 import { createKeeper, createWatchCommunity, type Place } from './people.ts';
 
 export type Phase = 'goal' | 'dusk' | 'night' | 'dawn' | 'fallen';
@@ -74,6 +75,7 @@ export interface NightNote {
     | 'fled'
     | 'home'
     | 'slept'
+    | 'dozed'
     | 'froze'
     | 'ran'
     | 'bitten'
@@ -145,6 +147,15 @@ export interface WatchState {
   notes: NightNote[];
   /** The last day, summarised at dusk. */
   day: DaySummary | null;
+  /** The card open now, if any. */
+  moment: Moment | null;
+  /** Tonight's cards and what the Keeper chose (null: let it be). */
+  momentLog: { kind: MomentKind; who: WatcherId; minute: number; choice: string | null }[];
+  nextMomentId: number;
+  /** One-shot asks from cards (urge, send, carry), heard alongside the posting until a minute. */
+  asks: Partial<Record<WatcherId, { sug: Suggestion; until: number }>>;
+  /** Postings set aside tonight by "let go", restored at the next dusk. */
+  letGo: Partial<Record<WatcherId, PostId>>;
   /** The Keeper's position along the wall as a section index; lit only when standing at `target`. */
   lantern: { x: number; target: number };
   rope: { wear: number; snapped: boolean };
@@ -228,6 +239,11 @@ export function createState(seed: number): WatchState {
     carried: {},
     notes: [],
     day: null,
+    moment: null,
+    momentLog: [],
+    nextMomentId: 1,
+    asks: {},
+    letGo: {},
     lantern: { x: 1, target: 1 },
     rope: { wear: 0, snapped: false },
     grain: START_GRAIN,

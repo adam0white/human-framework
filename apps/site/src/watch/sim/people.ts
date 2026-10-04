@@ -261,7 +261,15 @@ const LEAVE: { normId: string; relation: 'fulfills' | 'violates' }[] = [
 /** Place an activity puts its person at (undefined: stays where they are). */
 export function placeOfActivity(act: Activity): Place | undefined {
   const [kind, arg] = act.affordanceId.split(':');
-  if ((kind === 'post' || kind === 'sit' || kind === 'eat' || kind === 'pray' || kind === 'freeze') && arg)
+  if (
+    (kind === 'post' ||
+      kind === 'sit' ||
+      kind === 'doze' ||
+      kind === 'eat' ||
+      kind === 'pray' ||
+      kind === 'freeze') &&
+    arg
+  )
     return arg as PostId;
   if (kind === 'flee' || kind === 'run-off') return 'hall';
   if (kind === 'go-home' || kind === 'sleep') return 'home';
@@ -292,8 +300,13 @@ export class WatchWorld implements World {
     const here = s.place[id];
     const out: Affordance[] = [];
     const brk = inBreak(p);
+    // At dusk every free post is open; once night falls a watcher on the wall weighs only staying where they are
+    // against leaving it, unless the Keeper has sent word of another post (the posting or a card's ask).
+    const night = s.phase === 'night' && isPost(here);
+    const asked = s.asks[id]?.sug.affordanceId;
     for (const post of POST_IDS) {
       if (occupied(s, post, p.id) && here !== post) continue;
+      if (night && post !== here && s.posts[id] !== post && asked !== `post:${post}`) continue;
       const section = postSection(post);
       const d = sectionDanger(s, section);
       const others = atSection(s, section, p.id);
@@ -312,10 +325,17 @@ export class WatchWorld implements World {
         requires: { moving: section === 'gate' ? 0.45 : 0.3 },
       };
       if (others.length > 0) a.with = others;
-      if (d.chance > 0) a.risk = { chance: d.chance, severity: d.severity, kind: 'bite' };
+      if (d.chance > 0) {
+        a.risk = { chance: d.chance, severity: d.severity, kind: 'bite' };
+        // Fear pulls away from risky offers (HF emotion tendencies).
+        a.tags = ['watch', 'risky'];
+      }
       out.push(a);
     }
     if (isPost(here)) {
+      // Sitting or eating at a post under threat is as exposed as standing it: fear pulls from all three alike,
+      // so the choice it makes is to leave the wall, not to sit down on it.
+      const exposed = sectionDanger(s, postSection(here)).chance > 0;
       out.push({
         id: `sit:${here}`,
         action: 'sit',
@@ -325,15 +345,32 @@ export class WatchWorld implements World {
         duration: 30,
         effort: 0,
         advertises: { rest: 0.12 },
-        tags: ['rest', 'watch'],
+        tags: exposed ? ['rest', 'watch', 'risky'] : ['rest', 'watch'],
+      });
+      // Nodding off at the post: no norm is broken on purpose, but nothing is watched either; a threat near
+      // them wakes them (the driver interrupts sleep on a near percept).
+      out.push({
+        id: `doze:${here}`,
+        action: 'doze',
+        label: 'nod off at the post',
+        targetId: postSection(here),
+        placeId: postSection(here),
+        duration: 30,
+        effort: 0,
+        mode: 'sleep',
+        advertises: { sleep: 0.25, rest: 0.1 },
+        tags: exposed ? ['rest', 'risky'] : ['rest'],
       });
       out.push({
         id: `eat:${here}`,
         action: 'eat',
         label: 'eat bread at the post',
+        targetId: postSection(here),
+        placeId: postSection(here),
         duration: 15,
         effort: 0,
         advertises: { food: 0.3, water: 0.2 },
+        tags: exposed ? ['watch', 'risky'] : ['watch'],
       });
       if (
         def.prays &&
@@ -381,7 +418,9 @@ export class WatchWorld implements World {
       placeId: 'hall',
       duration: 45,
       effort: 0.2,
-      advertises: { safety: 0.35, rest: 0.1 },
+      advertises: { safety: 0.5, rest: 0.1 },
+      // The hall is lit and full of people: fear and distress pull toward it (HF 'comfort' tendency).
+      tags: ['comfort'],
       norms: LEAVE,
     });
     out.push({
