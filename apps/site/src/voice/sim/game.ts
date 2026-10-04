@@ -446,11 +446,25 @@ export class VoiceGame {
     if (!this.free) this.countSaid(draft.optionId, this.standing.label, 1);
     this.push({ kind: 'you', who: 'you', text: `You: ${this.standing.label}` });
     // At the wake his sleep ends within the minute and the next decision hears you; interrupting would ask a
-    // sleeping man (a 'cannot').
-    if (!this.waking()) interruptPerson(this.run.c, this.halil, this.t, 'voice');
+    // sleeping man (a 'cannot'). Twelfth pass: a word he will refuse does not interrupt either. Interrupting made him
+    // decide afresh, so a refusal could still cut what he was doing (a home prayer 13 of 15 minutes in). He carries
+    // on, and answers at his next decision (a review within 30 minutes, or the end of the act), where the word is
+    // weighed as usual; the composer already showed the likely "won't".
+    if (!this.waking() && !this.refuses()) interruptPerson(this.run.c, this.halil, this.t, 'voice');
     this.pauseBeat = undefined;
     this.paused = false;
     this.advanceTo(this.t + 1);
+  }
+
+  /** Whether he would refuse the standing word now, read without writing state or drawing randomness. */
+  private refuses(): boolean {
+    const s = this.standing;
+    const act = this.halil.activity;
+    if (!s || !act || this.t >= act.endsAt) return false;
+    const r = preview(this.halil, this.offers(), toSuggestion(s.draft, s.since), {
+      scarcity: this.run.town.scarcityFor?.(this.halil) ?? 0,
+    });
+    return r.verdict === 'refused';
   }
 
   /** Count what the player said, by option: suggestions on played days, and days under a whisper. */

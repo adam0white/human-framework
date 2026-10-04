@@ -118,15 +118,15 @@ describe('Game 2 range: how far the player can move the month', () => {
       expect(r.fastBroken, n).toBe(0);
       // Pushed in a prayer's closing stretch, he refused on the prayer's account (the omission rule).
       expect(r.verdicts['willNot norm:salah'] ?? 0, n).toBeGreaterThan(0);
-      // Measured: one daily prayer missed in each Saboteur + faith run (as in the plain Saboteur's), none for faith
-      // only. The misses come through seams of the omission rule (an insisted sleep chosen just before Fajr's closing
-      // stretch; the relentless player also finds the rule lapsing at the window's end while a prayer is under way);
-      // see docs/findings.md, 2026-10-04 eleventh pass. Raise only if a model change explains it.
-      expect(r.prayersMissed, n).toBeLessThanOrEqual(1);
+      // Twelfth pass (engine 1.9.0): no daily prayer is missed. The eleventh pass's one miss per Saboteur run came
+      // through two seams of the omission rule, both closed (docs/findings.md, 2026-10-04 eleventh and twelfth passes).
+      expect(r.prayersMissed, n).toBe(0);
     }
-    // The fast's veto adds no excused break: with the faith pushes, no more than the plain saboteur's (thirst
-    // after the nights it costs him).
-    expect(row('Saboteur + faith').fastNecessity).toBeLessThanOrEqual(row('Saboteur').fastNecessity);
+    // The fast's veto adds no excused break; thirst does. Twelfth pass: a refused word no longer interrupts, so the
+    // plain Saboteur's excused breaks fell from 3 to 1, while Saboteur + faith keeps 2 to 3. Its extra break (seed 7,
+    // Ramadan 15) is thirst after an insisted afternoon shift, which the faith pick pushes as a long option while
+    // Dhuhr is open, not a refusal of water. So the bound allows one break more than the plain Saboteur's.
+    expect(row('Saboteur + faith').fastNecessity).toBeLessThanOrEqual(row('Saboteur').fastNecessity + 1);
   });
 });
 
@@ -138,7 +138,7 @@ test("insisting against an obligatory prayer near its window's end is refused (t
   const LONG = ['visit-grave', 'tea:riza', 'sleep', 'work-extra'];
   let found: { draft: Draft; until: number } | undefined;
   // Asked every 5 minutes, not 30: under engine 1.9.0 the 30-minute pauses no longer land on such a moment with a long
-  // option he could do (measured; why was not traced).
+  // option he could do (measured; why was not traced), and a refusal no longer pauses at once (twelfth pass).
   play(g, {
     ...opts,
     pauseEvery: 5,
