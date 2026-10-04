@@ -367,6 +367,16 @@ export function closeDay(p: Person): DayRecord {
   return record;
 }
 
+/**
+ * Close the open day and leave none open (`skip`): the next event opens the day it falls in, instead of the
+ * day after the closed one.
+ */
+export function endDay(p: Person): void {
+  if (!p.chronicleDay) return;
+  closeDay(p);
+  delete p.chronicleDay;
+}
+
 /** Records with `from <= day <= to` (either bound optional). */
 export function chronicleBetween(
   chronicle: readonly DayRecord[],

@@ -27,6 +27,7 @@ import {
   feel,
   regulate,
   release,
+  skipAffect,
   skipCrisis,
   strain,
   tendencyEmotions,
@@ -59,8 +60,9 @@ import {
   sanitizeRates,
   setDowned,
   sicken,
+  skipBody,
 } from './body/index.ts';
-import { closeDay, noteCommitments, noteDecision, noteMood, noteOutcome } from './chronicle/index.ts';
+import { closeDay, endDay, noteCommitments, noteDecision, noteMood, noteOutcome } from './chronicle/index.ts';
 import { decide as cognitionDecide, desperationOf, scoreAll } from './cognition/index.ts';
 import {
   createConscience,
@@ -134,6 +136,7 @@ import {
   dischargeAdvice,
   endCommand,
   learnFromVoice,
+  noteCommandOutcome,
   predictResponse,
   rememberAdvice,
   resolveCommand,
@@ -592,10 +595,7 @@ export function skip(p: Person, to: Minute): void {
   const dt = to - p.now;
   if (dt <= 0) return;
   // Close the open day first, so its record diffs the day as lived, not the state decades later.
-  if (p.chronicleDay) {
-    closeDay(p);
-    delete p.chronicleDay;
-  }
+  endDay(p);
   const satisfaction = meanSatisfaction(readNeeds(p, readBodyOf(p)));
   advanceAffect(p, dt, satisfaction);
   advanceMemory(p, dt);
@@ -605,9 +605,9 @@ export function skip(p: Person, to: Minute): void {
   advanceWill(p, dt);
   skipCrisis(p, to);
   p.activity = null;
-  p.body.since = to;
+  skipBody(p, to);
   p.now = to;
-  p.affect.lastUpdated = to;
+  skipAffect(p, to);
   advanceAgenda(p, to);
 }
 
@@ -933,11 +933,7 @@ function applyCommandOutcome(p: Person, co: CommandOutcome, list: readonly Affor
     endCommand(p, co.reason, p.now);
     return;
   }
-  c.obeyed = co.holds;
-  if (!co.holds) return;
-  c.margin = co.margin;
-  if (c.remembered) return;
-  c.remembered = true;
+  if (!noteCommandOutcome(p, co.holds, co.margin)) return;
   satisfy(p, { autonomy: -WILL_DEFAULTS.commandAutonomyCost * clamp01(0.5 + co.margin) });
   const target = list.find((a) => a.id === co.targetAffordanceId);
   remember(p, {

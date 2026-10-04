@@ -1183,6 +1183,21 @@ export function takeCommand(p: Person, cmd: Command, now: Minute): void {
 }
 
 /** End the command in force, recording why (`lastCommand`). Charge it first (`chargeCommand`). */
+/**
+ * Note a decision's command outcome while the command stays in force: whether it was obeyed and, if so, by what
+ * margin. Returns true the first time it is obeyed, so the composite can charge autonomy and remember it once.
+ */
+export function noteCommandOutcome(p: Person, holds: boolean, margin: number): boolean {
+  const c = p.will.command;
+  if (!c) return false;
+  c.obeyed = holds;
+  if (!holds) return false;
+  c.margin = margin;
+  if (c.remembered) return false;
+  c.remembered = true;
+  return true;
+}
+
 export function endCommand(p: Person, reason: string, now: Minute): void {
   const c = p.will.command;
   if (!c) return;

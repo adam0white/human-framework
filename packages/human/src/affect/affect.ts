@@ -312,6 +312,11 @@ function emotionArousal(emotions: readonly Emotion[]): Unit {
   return clamp01(num / den);
 }
 
+/** `skip`'s side of affect: after `advanceAffect` over the gap, affect is current as of `to`. */
+export function skipAffect(p: Person, to: Minute): void {
+  p.affect.lastUpdated = to;
+}
+
 /**
  * Advance affect by `dt` minutes. Emotion decay is exact; mood relaxes toward
  * (needSatisfaction - 0.5) * gain + emotion valence over substeps (≤ 30 min, at most 64), so step-size
