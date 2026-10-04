@@ -864,7 +864,7 @@ Measured as in the eleventh pass (seeds 7, 1, 2, 3, 4; means). "Engine only" is 
 
 | Player | Prayers missed (11th → engine only → 12th) | Fasts excused | Smoke days | Trust | Won't miss | Fast refusals | Else that moved |
 |---|---|---|---|---|---|---|---|
-| Silent, Guardian, Tempter (both), Tempter + faith, Faith only (Mention) | 0 → 0 → 0 | unchanged | unchanged | unchanged | 0 | unchanged | nothing |
+| Silent, Guardian, Tempter (both), Tempter + faith, Faith only (Mention) | 0 → 0 → 0 | unchanged | unchanged | unchanged to rounding | 0 | unchanged | nothing |
 | Saboteur | **1 → 0 → 0** | 3 → 3 → 1 | 20.6 → 20.6 → 10.2 | 0.04 → 0.03 → 0.02 | 0 → 0 → 5 | 0 | late nights 5.2 → 8.8, mornings 26 → 26.8 |
 | Saboteur, no whisper | **1 → 0 → 0** | 1 → 1 → 1 | 21 → 21.6 → 24.2 | 0.00 | 0 → 3 → 5 | 0 | late nights 5 → 2 |
 | Saboteur + faith | **1 → 0 → 0** | 3 → 3 → 2.2 | 6.6 → 6.6 → 25.8 | 0.03 → 0.03 → 0.01 | 15 → 15 → 5 | 15 → 20 → 15 | late nights 3.2 → 7 |
@@ -873,7 +873,7 @@ Measured as in the eleventh pass (seeds 7, 1, 2, 3, 4; means). "Engine only" is 
 
 **Assessment.**
 - **No style misses a daily prayer now**, and the fast still holds everywhere (no breach). The engine fixes alone account for this; they move nothing else much.
-- **The game fix changes how the pushing players play.** A refusal used to pause the game at once, because the interrupt produced the answer at once. Now the answer, and its pause, come at his next decision. The pause-driven players therefore say much less: the relentless player meets 21 fast refusals instead of 476. Smoke days move a lot for the insisting players (Saboteur halves, Saboteur + faith quadruples); the mechanism was not traced.
+- **The game fix changes how the pushing players play.** A refusal used to pause the game at once, because the interrupt produced the answer at once. Now the answer, and its pause, come at his next decision. The pause-driven players therefore say less: the relentless player insists 41 times a run instead of 293, and meets 21 fast refusals instead of 476 (over five runs); the Saboteur rows insist 80–93 times instead of 91–108. Most words are still answered: answers per insist are 96–100 % for every insisting row except Saboteur + faith, 90 % (84 of 93; before, 107 of 108). The few unanswered words probably went off offer, or were replaced, before his next decision; not traced. Smoke days move a lot for the insisting players (Saboteur halves, Saboteur + faith quadruples); the mechanism was not traced.
 - **Trade-off for the user.** A player whose word he will refuse now waits for the answer, up to 30 minutes of game time; the composer already shows the likely "won't" before Confirm. Showing the answer at once from the preview is possible, but then a refusal replaced before his next decision would cost no trust. Not done.
 
 `balance.test.ts` now asserts no daily prayer missed for Saboteur + faith and Faith only (Urge, insist), tightened from at most 1. The excused-fast bound allows Saboteur + faith one more than the plain Saboteur: the game fix lowered the Saboteur's count from 3 to 1, and Saboteur + faith's extra break (seed 7, Ramadan 15) is thirst after an insisted afternoon shift that the faith pick pushes while Dhuhr is open, not a refused drink. The closing-stretch test asks the relentless player every 5 minutes instead of 30, and takes a long option he could do (a "not tired" refusal outranks the rule).
