@@ -32,6 +32,21 @@ export function hourWords(clock: number, phase: string): string {
   return 'Before dawn';
 }
 
+/** How hard the Keeper pressed a posting, as the roster says it. */
+export const PRESS_WORDS: Record<'ask' | 'urge' | 'insist', { verb: string; done: string }> = {
+  ask: { verb: 'Ask', done: 'asked' },
+  urge: { verb: 'Urge', done: 'urged' },
+  insist: { verb: 'Insist', done: 'insisted' },
+};
+
+/** Where a watcher is, off a post: never their posture or what they are doing there. */
+export function awayWords(place: string, phase: string): string {
+  if (place === 'hall') return 'gone to the hall';
+  if (place === 'home') return phase === 'night' ? 'gone home' : 'at home';
+  if (place === 'away') return 'away';
+  return 'in the village';
+}
+
 export function ropeWords(wear: number, snapped: boolean): string {
   if (snapped) return 'The rope has snapped';
   if (wear < 0.15) return 'The rope is sound';

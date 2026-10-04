@@ -1,9 +1,13 @@
 /**
- * The Night Watch shell (G3-1): a top bar with the hour and the speeds, the map, and one panel that changes
- * with the phase (goal page, dusk posting, the night's lantern and bell, the dawn page). The chronicle menu
- * holds the playtest export and a new village. Play shows no numbers: sacks, strands and words.
+ * The Night Watch shell: a top bar with the hour and the speeds, the map, and one panel that changes with the
+ * phase (goal page, dusk posting, the night's lantern, cards and bell, the dawn page). The chronicle menu holds
+ * the playtest export and a new village. Play shows no numbers: sacks, strands and words.
+ *
+ * G3-2: the watchers are people. The roster shows the Keeper's impressions of each (phrases whose sureness is
+ * drawn as a soft bar, never printed), postings carry how hard he pressed (ask, urge, insist) with his read of
+ * the answer, and the night panel opens a moment card when someone on the lit stretch wavers.
  */
-import { useEffect, useState } from 'react';
+import { type CSSProperties, useEffect, useRef, useState } from 'react';
 import {
   type PostId,
   postSection,
@@ -12,13 +16,15 @@ import {
   WATCHERS,
   type WatcherId,
 } from '../sim/config.ts';
+import type { Moment } from '../sim/moments.ts';
 import type { Speed } from '../sim/pace.ts';
-import type { Frame } from '../sim/view.ts';
+import type { Press } from '../sim/state.ts';
+import type { Frame, FrameWatcher } from '../sim/view.ts';
 import { Icon, type IconName } from './icons.tsx';
 import { MapCanvas } from './MapCanvas.tsx';
 import type { Hit } from './map.ts';
 import { useWatch, type WatchActions } from './useWatch.ts';
-import { hourWords, nightName, ropeWords } from './words.ts';
+import { awayWords, hourWords, nightName, PRESS_WORDS, ropeWords } from './words.ts';
 
 const SPEEDS: { id: Speed; label: string; icon: IconName }[] = [
   { id: 'tactical', label: 'Slow', icon: 'snail' },
@@ -26,26 +32,50 @@ const SPEEDS: { id: Speed; label: string; icon: IconName }[] = [
   { id: 'fast', label: 'Fast', icon: 'fast-forward' },
 ];
 
+const PRESSES: Press[] = ['ask', 'urge', 'insist'];
+
+const nameOf = (id: WatcherId) => WATCHERS.find((w) => w.id === id)?.name ?? '';
+const sectionName = (id: SectionId) => SECTIONS.find((s) => s.id === id)?.name ?? '';
+
+/** The post `who` is posted to in a section, else the first post there nobody is posted to. */
 function freePost(f: Frame, section: SectionId, who: WatcherId): PostId | null {
   const sec = f.sections.find((s) => s.id === section);
   if (!sec) return null;
-  const mine = sec.posts.find((p) => p.watcher === who);
+  const mine = sec.posts.find((p) => p.posted === who);
   if (mine) return mine.id;
-  return sec.posts.find((p) => p.watcher === null)?.id ?? null;
+  return sec.posts.find((p) => p.posted === null)?.id ?? null;
 }
 
 export function App() {
   const { frame, speed, error, seed, actions } = useWatch();
-  const [selected, setSelected] = useState<WatcherId | null>(null);
+  const [selected, setSelectedState] = useState<WatcherId | null>(null);
+  /** The press picked for the selected watcher before a post is tapped; null follows their current press. */
+  const [pressPick, setPressPick] = useState<Press | null>(null);
   const [menu, setMenu] = useState(false);
+  const panel = useRef<HTMLElement | null>(null);
+
+  const setSelected = (w: WatcherId | null) => {
+    setSelectedState(w);
+    setPressPick(null);
+  };
 
   useEffect(() => {
     actions.hold(menu);
   }, [menu, actions]);
 
+  const phase = frame?.phase;
   useEffect(() => {
-    if (frame && frame.phase !== 'dusk' && frame.phase !== 'goal') setSelected(null);
-  }, [frame]);
+    if (phase !== 'dusk' && phase !== 'goal') {
+      setSelectedState(null);
+      setPressPick(null);
+    }
+  }, [phase]);
+
+  // A new card goes to the top of the panel, where the player will see it even after scrolling.
+  const momentId = frame?.moment?.id;
+  useEffect(() => {
+    if (momentId !== undefined && panel.current) panel.current.scrollTop = 0;
+  }, [momentId]);
 
   if (error) {
     return (
@@ -62,6 +92,13 @@ export function App() {
     );
   }
 
+  const pressFor = (who: WatcherId): Press =>
+    pressPick ?? frame.watchers.find((w) => w.id === who)?.press ?? 'ask';
+  const post = (who: WatcherId, at: PostId | null) => {
+    actions.input({ k: 'post', watcher: who, post: at, press: pressFor(who) });
+    setSelected(null);
+  };
+
   const onHit = (hit: Hit) => {
     if (!hit) return;
     if (frame.phase === 'night') {
@@ -71,21 +108,15 @@ export function App() {
     }
     if (frame.phase !== 'dusk') return;
     if (hit.kind === 'post') {
-      const occupant = frame.sections.flatMap((s) => s.posts).find((p) => p.id === hit.post)?.watcher ?? null;
-      if (selected) {
-        actions.input({ k: 'post', watcher: selected, post: hit.post as PostId });
-        setSelected(null);
-      } else if (occupant) {
-        setSelected(occupant);
-      }
+      const p = frame.sections.flatMap((s) => s.posts).find((x) => x.id === hit.post);
+      const occupant = p?.posted ?? p?.watcher ?? null;
+      if (selected) post(selected, hit.post as PostId);
+      else if (occupant) setSelected(occupant);
       return;
     }
     if (selected) {
-      const post = freePost(frame, hit.section, selected);
-      if (post) {
-        actions.input({ k: 'post', watcher: selected, post });
-        setSelected(null);
-      }
+      const at = freePost(frame, hit.section, selected);
+      if (at) post(selected, at);
     }
   };
 
@@ -139,10 +170,18 @@ export function App() {
           <MapCanvas frame={frame} selected={selected} onHit={onHit} />
           <Ticker frame={frame} />
         </div>
-        <section className="w-panel" aria-live="polite" key={frame.phase}>
+        <section className="w-panel" aria-live="polite" key={frame.phase} ref={panel}>
           {frame.phase === 'goal' ? <GoalPage frame={frame} actions={actions} /> : null}
           {frame.phase === 'dusk' ? (
-            <DuskPanel frame={frame} actions={actions} selected={selected} setSelected={setSelected} />
+            <DuskPanel
+              frame={frame}
+              actions={actions}
+              selected={selected}
+              setSelected={setSelected}
+              press={selected ? pressFor(selected) : 'ask'}
+              setPress={setPressPick}
+              post={post}
+            />
           ) : null}
           {frame.phase === 'night' ? <NightPanel frame={frame} actions={actions} /> : null}
           {frame.phase === 'dawn' || frame.phase === 'fallen' ? (
@@ -239,6 +278,34 @@ function Rope({ wear, snapped }: { wear: number; snapped: boolean }) {
   );
 }
 
+/** The Keeper's impressions: each phrase is as solid as he is sure, with a soft bar that fades where he isn't. */
+function Impressions({ w }: { w: FrameWatcher }) {
+  return (
+    // Spans, not a list: this sits inside the roster button.
+    <span className="w-imps">
+      {w.impressions.map((im) => (
+        <span
+          key={im.text}
+          className={im.sure <= 0 ? 'w-imp is-unknown' : 'w-imp'}
+          style={{ '--sure': im.sure } as CSSProperties}
+        >
+          {im.text}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+/** Where a watcher is posted and where they stand, in words. */
+function whereWords(w: FrameWatcher, phase: Frame['phase']): string {
+  const posted = w.posted
+    ? `${sectionName(postSection(w.posted))}, ${PRESS_WORDS[w.press].done}`
+    : 'not posted';
+  const stands = w.post ? `on the ${sectionName(postSection(w.post))}` : awayWords(w.place, phase);
+  if (w.post && w.post === w.posted) return `${posted} · there now`;
+  return `${posted} · ${stands}`;
+}
+
 function GoalPage({ frame, actions }: { frame: Frame; actions: WatchActions }) {
   return (
     <div className="w-page">
@@ -250,7 +317,8 @@ function GoalPage({ frame, actions }: { frame: Frame; actions: WatchActions }) {
         you must; the rope wears with every pull.
       </p>
       <p className="w-note">
-        Early prototype: the watchers here always obey. In the full game they are people who can say no.
+        The watchers are people. You can ask, urge or insist, but tired, frightened or worried for home, they
+        may not stand where you put them.
       </p>
       <Sacks have={frame.grain} lost={0} label="The granary is full" />
       <button type="button" className="w-primary" onClick={() => actions.input({ k: 'start' })}>
@@ -265,23 +333,90 @@ function DuskPanel({
   actions,
   selected,
   setSelected,
+  press,
+  setPress,
+  post,
 }: {
   frame: Frame;
   actions: WatchActions;
   selected: WatcherId | null;
   setSelected: (w: WatcherId | null) => void;
+  press: Press;
+  setPress: (p: Press) => void;
+  post: (who: WatcherId, at: PostId | null) => void;
 }) {
-  const sectionName = (id: SectionId | null) => (id ? (SECTIONS.find((s) => s.id === id)?.name ?? '') : '');
+  const sel = selected ? frame.watchers.find((w) => w.id === selected) : undefined;
+  const reads = selected ? frame.postingReads?.[selected] : undefined;
+  const posts = frame.sections.reduce((n, s) => n + s.posts.length, 0);
+  const count = frame.watchers.length;
   return (
     <div className="w-dusk">
       <p className="w-warning">
         <Icon name="sunrise" size={18} /> {frame.warning}
       </p>
+      {frame.day && frame.day.lines.length > 0 ? (
+        <details className="w-day">
+          <summary>Today</summary>
+          <ul>
+            {frame.day.lines.map((l) => (
+              <li key={l.who}>{l.text}</li>
+            ))}
+          </ul>
+        </details>
+      ) : null}
       <p className="w-hint">
-        {selected
-          ? `Where should ${WATCHERS.find((w) => w.id === selected)?.name} stand? Tap a post on the wall or a stretch below.`
-          : 'Tap a watcher, then a post. Three watchers, eight posts: some wall stands empty.'}
+        {sel
+          ? `Where should ${sel.name} stand? Tap a post on the wall or a stretch below.`
+          : `Tap a watcher, then a post. ${count === 1 ? 'One watcher' : `${count} watchers`}, ${posts} posts: some wall stands empty.`}
       </p>
+      {sel ? (
+        <div className="w-postcard">
+          <fieldset className="w-presses">
+            <legend>
+              How hard do you press {sel.name}?
+              {reads ? null : <span className="w-note"> Pick a post to read them.</span>}
+            </legend>
+            {PRESSES.map((p) => (
+              <button
+                key={p}
+                type="button"
+                className="w-press"
+                aria-pressed={press === p}
+                onClick={() => {
+                  setPress(p);
+                  if (sel.posted) actions.input({ k: 'post', watcher: sel.id, post: sel.posted, press: p });
+                }}
+              >
+                <span>{PRESS_WORDS[p].verb}</span>
+                {reads ? <small>{reads[p]}</small> : null}
+              </button>
+            ))}
+          </fieldset>
+          <div className="w-places">
+            {SECTIONS.map((s) => {
+              const at = freePost(frame, s.id, sel.id);
+              return (
+                <button
+                  key={s.id}
+                  type="button"
+                  className="w-place"
+                  disabled={!at}
+                  aria-pressed={sel.posted !== null && postSection(sel.posted) === s.id}
+                  onClick={() => {
+                    if (at) post(sel.id, at);
+                  }}
+                >
+                  {s.name}
+                  {s.id === frame.warned ? <span className="w-tracks"> · tracks</span> : null}
+                </button>
+              );
+            })}
+            <button type="button" className="w-place w-place-off" onClick={() => post(sel.id, null)}>
+              Off the wall
+            </button>
+          </div>
+        </div>
+      ) : null}
       <ul className="w-roster">
         {frame.watchers.map((w) => (
           <li key={w.id}>
@@ -291,45 +426,16 @@ function DuskPanel({
               aria-pressed={selected === w.id}
               onClick={() => setSelected(selected === w.id ? null : w.id)}
             >
-              <span className="w-person-name">{w.name}</span>
-              <span className="w-person-note">{w.note}</span>
-              <span className="w-person-post">{w.section ? sectionName(w.section) : 'Off the wall'}</span>
+              <span className="w-person-head">
+                <span className="w-person-name">{w.name}</span>
+                <span className="w-person-note">{w.note}</span>
+              </span>
+              <span className="w-person-post">{whereWords(w, frame.phase)}</span>
+              <Impressions w={w} />
             </button>
           </li>
         ))}
       </ul>
-      {selected ? (
-        <div className="w-places">
-          {SECTIONS.map((s) => {
-            const post = freePost(frame, s.id, selected);
-            return (
-              <button
-                key={s.id}
-                type="button"
-                className="w-place"
-                disabled={!post}
-                onClick={() => {
-                  if (post) actions.input({ k: 'post', watcher: selected, post });
-                  setSelected(null);
-                }}
-              >
-                {s.name}
-                {s.id === frame.warned ? <span className="w-tracks"> · tracks</span> : null}
-              </button>
-            );
-          })}
-          <button
-            type="button"
-            className="w-place w-place-off"
-            onClick={() => {
-              actions.input({ k: 'post', watcher: selected, post: null });
-              setSelected(null);
-            }}
-          >
-            Off the wall
-          </button>
-        </div>
-      ) : null}
       <div className="w-lantern-pick">
         <span>Start the lantern at</span>
         {SECTIONS.map((s) => (
@@ -352,10 +458,34 @@ function DuskPanel({
   );
 }
 
+function MomentCard({ m, actions }: { m: Moment; actions: WatchActions }) {
+  return (
+    <section className="w-moment" aria-label="A moment on the wall">
+      <p className="w-moment-text">{m.text}</p>
+      <div className="w-moment-options">
+        {m.options.map((o) => (
+          <button
+            key={o.id}
+            type="button"
+            className="w-option"
+            onClick={() => actions.input({ k: 'answer', id: m.id, choice: o.id })}
+          >
+            <span>{o.label}</span>
+            {o.read ? <small>{o.read}</small> : null}
+          </button>
+        ))}
+      </div>
+      <p className="w-moment-let">…or let it be.</p>
+    </section>
+  );
+}
+
 function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) {
   const walking = frame.lit === null;
+  const off = frame.watchers.filter((w) => w.post === null);
   return (
     <div className="w-night">
+      {frame.moment ? <MomentCard key={frame.moment.id} m={frame.moment} actions={actions} /> : null}
       <div className="w-lantern-pick">
         <span>
           <Icon name="lamp" size={16} /> {walking ? 'Walking the lantern to' : 'The lantern is at'}
@@ -376,17 +506,29 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
         <button
           type="button"
           className="w-bellbtn"
-          disabled={frame.rope.snapped || frame.roused}
+          disabled={frame.rope.snapped}
           onClick={() => actions.input({ k: 'bell' })}
         >
           <Icon name="bell" size={20} />
-          <span>{frame.roused ? 'Still ringing' : 'Ring the bell'}</span>
+          <span>{frame.roused ? 'Ring again: hold!' : 'Ring: hold your posts!'}</span>
         </button>
         <div className="w-ropebox">
+          {frame.bellRead ? <span className="w-bellread">{frame.bellRead}</span> : null}
           <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />
           <span className="w-ropewords">{ropeWords(frame.rope.wear, frame.rope.snapped)}</span>
         </div>
       </div>
+      {off.length > 0 ? (
+        <p className="w-offwall">
+          Off the wall:{' '}
+          {off.map((w, i) => (
+            <span key={w.id}>
+              {i > 0 ? ', ' : ''}
+              {w.name} ({awayWords(w.place, frame.phase)})
+            </span>
+          ))}
+        </p>
+      ) : null}
       <div className="w-granary">
         <span>The granary</span>
         <Sacks
@@ -419,6 +561,16 @@ function DawnPanel({ frame, actions, seed }: { frame: Frame; actions: WatchActio
           <li key={l.section}>{l.text}</li>
         ))}
       </ul>
+      {d.voices.length > 0 ? (
+        <ul className="w-voices">
+          {d.voices.map((v) => (
+            <li key={v.who}>
+              <blockquote>{v.text}</blockquote>
+              <span className="w-voice-who">{nameOf(v.who)}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
       <Sacks
         have={d.grainAfter}
         lost={d.grainBefore - d.grainAfter}

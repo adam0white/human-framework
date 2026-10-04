@@ -11,6 +11,7 @@
   position: relative;
   height: 100dvh;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto minmax(0, 1fr);
   background: var(--w-bg);
   color: var(--w-text);
@@ -128,6 +129,7 @@
 .w-stage {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   min-height: 0;
 }
 
@@ -258,27 +260,40 @@
   margin: 0 0 8px;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 6px;
+}
+
+.w-roster > li {
+  min-width: 0;
 }
 
 .w-person {
   width: 100%;
-  min-height: 64px;
+  min-height: 48px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 1px;
-  padding: 6px 8px;
+  align-items: stretch;
+  gap: 3px;
+  padding: 6px 10px 8px;
   text-align: left;
   border-radius: 10px;
   border: 1px solid var(--w-line);
   background: var(--w-surface-2);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .w-person[aria-pressed="true"] {
   border-color: var(--w-accent);
   box-shadow: 0 0 0 2px var(--w-accent) inset;
+}
+
+.w-person-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .w-person-name {
@@ -293,6 +308,194 @@
 
 .w-person-post {
   color: var(--w-text);
+}
+
+/* The Keeper's impressions: solid as he is sure; the bar under each phrase fades out where he isn't. */
+.w-imps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+}
+
+.w-imp {
+  --sure: 0.5;
+  position: relative;
+  font-size: 0.8rem;
+  font-style: italic;
+  padding-bottom: 4px;
+  opacity: calc(0.45 + 0.55 * var(--sure));
+}
+
+.w-imp::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--w-accent) 0,
+    var(--w-accent) calc(var(--sure) * 70%),
+    transparent calc(var(--sure) * 100% + 15%)
+  );
+  opacity: 0.7;
+}
+
+.w-imp.is-unknown {
+  color: var(--w-muted);
+}
+
+.w-imp.is-unknown::after {
+  display: none;
+}
+
+.w-postcard {
+  border: 1px solid var(--w-line);
+  border-radius: 12px;
+  padding: 8px;
+  margin: 0 0 8px;
+  background: var(--w-bg);
+}
+
+.w-presses {
+  border: 0;
+  margin: 0 0 8px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.w-presses legend {
+  font-size: 0.85rem;
+  color: var(--w-muted);
+  margin-bottom: 6px;
+  padding: 0;
+}
+
+.w-press,
+.w-option {
+  min-height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 4px 6px;
+  border-radius: 10px;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface-2);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.w-press span,
+.w-option span {
+  font-weight: 600;
+}
+
+.w-press small,
+.w-option small {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--w-muted);
+}
+
+.w-press[aria-pressed="true"] {
+  background: rgba(224, 163, 95, 0.22);
+  border-color: var(--w-accent);
+}
+
+.w-place[aria-pressed="true"] {
+  border-color: var(--w-accent);
+}
+
+.w-day {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  color: var(--w-muted);
+}
+
+.w-day summary {
+  cursor: pointer;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.w-day ul {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.45;
+}
+
+.w-moment {
+  border: 1px solid var(--w-accent);
+  border-radius: 12px;
+  padding: 10px;
+  margin: 0 0 10px;
+  background: rgba(224, 163, 95, 0.1);
+}
+
+.w-moment-text {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin: 0 0 8px;
+}
+
+.w-moment-options {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+
+.w-option {
+  align-items: flex-start;
+  text-align: left;
+  padding: 6px 10px;
+}
+
+.w-moment-let {
+  margin: 6px 0 0;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--w-muted);
+}
+
+.w-bellread {
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.w-offwall {
+  font-size: 0.85rem;
+  color: var(--w-muted);
+  margin: 0 0 8px;
+}
+
+.w-voices {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.w-voices blockquote {
+  margin: 0;
+  padding-left: 10px;
+  border-left: 2px solid var(--w-accent);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.w-voice-who {
+  display: block;
+  padding-left: 12px;
+  font-size: 0.78rem;
+  color: var(--w-muted);
 }
 
 .w-places {
@@ -563,4 +766,11 @@
 
 .w-scoutline {
   color: var(--w-warn);
+}
+
+/* Mid widths: two roster columns. */
+@media (min-width: 560px) and (max-width: 899px) {
+  .w-roster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
