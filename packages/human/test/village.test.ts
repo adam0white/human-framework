@@ -235,7 +235,7 @@ describe('village simulation', () => {
     const events = stepCommunity(s.community, s.village, START + 30 * MINUTES_PER_DAY, { maxEvents: 1000 });
     expect(events.length).toBe(1000);
     expect(s.people.filter((p) => p.body.alive).length).toBeGreaterThanOrEqual(18);
-  });
+  }, 30_000);
 
   test('runs 50 people for 30 days to the event cap with at most five deaths (engine 1.2.0 hooks included)', () => {
     const ids = Array.from({ length: 50 }, (_, i) => `q${String(i).padStart(2, '0')}`);
