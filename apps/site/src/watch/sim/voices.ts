@@ -27,6 +27,15 @@ export function fearedSection(p: Person): { section: SectionId; level: number } 
   return best;
 }
 
+/** A deterministic choice among phrasings, varying by run, night and speaker (no RNG drawn). */
+function pick(s: WatchState, id: WatcherId, salt: string, lines: string[]): string {
+  let h = 0x811c9dc5;
+  for (const c of `${s.seed}|${s.night}|${id}|${salt}`) h = Math.imul(h ^ c.charCodeAt(0), 0x01000193);
+  h = Math.imul(h ^ (h >>> 16), 0x85ebca6b);
+  h ^= h >>> 13;
+  return lines[(h >>> 0) % lines.length] ?? lines[0] ?? '';
+}
+
 function noteOf(notes: NightNote[], who: WatcherId, kinds: NightNote['kind'][]): NightNote | undefined {
   return notes.find((n) => n.who === who && kinds.includes(n.kind));
 }
@@ -66,7 +75,11 @@ export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
       said.push(
         reserveOf(p, 'fear') * IMPRESSION_DEFAULTS.wordsReserve > 0.5
           ? `“Nothing I couldn’t handle at ${theSec(shaken.section)}.”`
-          : `“They came right up under me at ${theSec(shaken.section)}. I keep hearing them.”`,
+          : pick(s, id, 'shaken', [
+              `“They came right up under me at ${theSec(shaken.section)}. I keep hearing them.”`,
+              `“I could hear them breathing under ${theSec(shaken.section)}.”`,
+              `“Something came to the foot of ${theSec(shaken.section)}. I didn’t blink till dawn.”`,
+            ]),
       );
     } else if (fear && fear.level > 0.15) {
       said.push(`“I don’t like ${theSec(fear.section)}. Something’s out there.”`);
@@ -89,8 +102,15 @@ export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
       const other = best?.n.other ? watcherDef(best.n.other).name : 'someone';
       said.push(
         (best?.tie?.affection ?? 0) > 0
-          ? `“${other} was beside me when they came. That helped.”`
-          : `“${other} stood my stretch. I kept one eye on ${other} all night.”`,
+          ? pick(s, id, 'with', [
+              `“${other} was beside me when they came. That helped.”`,
+              `“With ${other} next to me I could stand it.”`,
+              `“I stayed because ${other} stayed.”`,
+            ])
+          : pick(s, id, 'against', [
+              `“${other} stood my stretch. I kept one eye on ${other} all night.”`,
+              `“I don’t turn my back with ${other} on the wall.”`,
+            ]),
       );
     } else if (refused?.section) {
       said.push(`“I wasn’t going to stand ${theSec(refused.section)}.”`);

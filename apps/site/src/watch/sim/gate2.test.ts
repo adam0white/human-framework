@@ -12,8 +12,9 @@ import { WatchRun } from './run.ts';
 const SEEDS = Array.from({ length: 24 }, (_, i) => 1000 + i * 7919);
 
 const FEAR =
-  /(couldn’t stay at|couldn’t move at|came right up under me at|had my leg|don’t like the|knocked me flat at)/;
-const BOND = /(was beside me|got me off the wall|had to get \w+ down|I went to|kept one eye on)/;
+  /(couldn’t stay at|couldn’t move at|came right up under me at|breathing under|to the foot of|had my leg|don’t like the|knocked me flat at)/;
+const BOND =
+  /(was beside me|got me off the wall|had to get \w+ down|I went to|kept one eye on|next to me I could stand it|because \w+ stayed|turn my back with)/;
 
 interface Seen {
   fear: string | null;
