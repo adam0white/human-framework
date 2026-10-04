@@ -1,0 +1,122 @@
+/* Playtest menu and notice (shared/PlaytestMenu.tsx). Kept small and quiet; tokens from theme.css. */
+.pt-menu {
+  position: relative;
+  display: inline-flex;
+}
+.pt-menu-button {
+  font: inherit;
+  font-size: 0.8rem;
+  color: var(--text-muted, #6b6158);
+  background: transparent;
+  border: 1px solid var(--line-strong, rgba(43, 38, 34, 0.24));
+  border-radius: var(--radius-s, 8px);
+  padding: 4px 8px;
+  min-height: 32px;
+  cursor: pointer;
+}
+.pt-menu-button:hover,
+.pt-menu-button[aria-expanded="true"] {
+  color: var(--text, #2b2622);
+  background: var(--surface-2, #f3e9d6);
+}
+.pt-menu-button:focus-visible,
+.pt-menu-list button:focus-visible,
+.pt-notice-close:focus-visible {
+  outline: 2px solid var(--accent, #a8552f);
+  outline-offset: 2px;
+}
+.pt-menu-list {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  max-width: calc(100vw - 32px);
+  padding: 4px;
+  background: var(--surface, #fffaf0);
+  color: var(--text, #2b2622);
+  border: 1px solid var(--line-strong, rgba(43, 38, 34, 0.24));
+  border-radius: var(--radius-s, 8px);
+  box-shadow: var(--shadow-lift, 0 8px 24px rgba(0, 0, 0, 0.16));
+}
+.pt-menu-list button {
+  font: inherit;
+  font-size: 0.875rem;
+  text-align: left;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.pt-menu-list button:hover {
+  background: var(--surface-2, #f3e9d6);
+}
+.pt-notice {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: min(560px, calc(100vw - 32px));
+  padding: 10px 12px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  background: var(--surface, #fffaf0);
+  color: var(--text, #2b2622);
+  border: 1px solid var(--line-strong, rgba(43, 38, 34, 0.24));
+  border-left: 4px solid var(--slate, #5c6672);
+  border-radius: var(--radius-s, 8px);
+  box-shadow: var(--shadow-lift, 0 8px 24px rgba(0, 0, 0, 0.16));
+}
+.pt-notice.is-good {
+  border-left-color: var(--v-assent, #4f7a4a);
+}
+.pt-notice.is-bad {
+  border-left-color: var(--v-willnot, #b3362b);
+}
+.pt-notice > span {
+  flex: 1;
+}
+.pt-notice-close {
+  font: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+.pt-short {
+  display: none;
+}
+@media (max-width: 480px) {
+  .pt-compact .pt-long {
+    display: none;
+  }
+  .pt-compact .pt-short {
+    display: inline;
+  }
+  .pt-compact .pt-menu-button {
+    padding: 4px 6px;
+    min-width: 32px;
+  }
+}
+/* Game 2's top bar is dark: take its text colour. */
+.v-playtest .pt-menu-button {
+  color: inherit;
+  border-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+.v-playtest .pt-menu-button:hover,
+.v-playtest .pt-menu-button[aria-expanded="true"] {
+  color: inherit;
+  background: color-mix(in srgb, currentColor 14%, transparent);
+}

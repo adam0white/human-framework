@@ -168,6 +168,9 @@ export interface MutedAudit {
   voices: string[];
 }
 
+/** The five daily prayers by their agenda labels (the sky band and the end-of-day tally count only these). */
+const DAILY_PRAYERS = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+
 export class VoiceGame {
   seed: number;
   run: Run;
@@ -679,13 +682,18 @@ export class VoiceGame {
         );
       }
     }
-    const prayed = recs.reduce((n, r) => n + r.prayers.kept.length, 0);
-    const missed = recs.reduce((n, r) => n + r.prayers.missed.length, 0);
+    // The five daily prayers only: a make-up (engine 1.7.0) and the Eid prayer are not counted as prayers kept or
+    // missed. A make-up gets no line at all here (it stays a quiet log line); the Eid prayer only when he went.
+    const daily = (names: string[]) => names.filter((n) => DAILY_PRAYERS.includes(n)).length;
+    const prayed = recs.reduce((n, r) => n + daily(r.prayers.kept), 0);
+    const missed = recs.reduce((n, r) => n + daily(r.prayers.missed), 0);
     const mosque = cells.filter((c) => c.affordanceId === 'pray').length;
     if (prayed + missed > 0)
       out.push(
         `He prayed ${missed === 0 ? 'every prayer' : `${prayed} of ${prayed + missed} prayers`}${mosque === 0 ? ', all at home' : `; he went to the mosque ${times(mosque)}`}.`,
       );
+    if (cells.some((c) => c.affordanceId === 'pray-eid' && happened(c)))
+      out.push('On Eid morning he joined the prayer at the mosque.');
     return out;
   }
 
@@ -758,16 +766,30 @@ export class VoiceGame {
 
   /** Real time in: advances whole sim minutes at the pace (or fast-forward). Returns whether time moved. */
   tick(dtMs: number): boolean {
-    if (this.paused || !this.live()) return false;
+    return this.tickMinutes(dtMs) > 0;
+  }
+
+  /**
+   * `tick`, returning the whole minutes it asked for (0: time did not move). The playtest log records these, and
+   * a replay re-applies each as `step`, so real time never enters a replay.
+   */
+  tickMinutes(dtMs: number): number {
+    if (this.paused || !this.live()) return 0;
     const dt = Math.max(0, Math.min(dtMs, 250));
     const ff = this.fastForward();
     this.carry += (dt / 1000) * (ff ? FAST_FORWARD : PACE_MINUTES_PER_SECOND[this.pace]);
     const whole = Math.min(ff ? MAX_FF_MINUTES_PER_TICK : MAX_MINUTES_PER_TICK, Math.floor(this.carry));
-    if (whole <= 0) return false;
+    if (whole <= 0) return 0;
     this.carry -= whole;
+    this.step(whole);
+    return whole;
+  }
+
+  /** The clock part of a tick: advance `whole` minutes (stopping at a pause). Replays call this directly. */
+  step(whole: number): void {
+    if (this.paused || !this.live()) return;
     this.advanceTo(this.t + whole);
     if (this.paused) this.carry = 0;
-    return true;
   }
 
   /**

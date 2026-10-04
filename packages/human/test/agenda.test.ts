@@ -106,11 +106,11 @@ describe('prayer windows', () => {
   test('windows recur after they close, kept or broken', () => {
     const p = person();
     for (const c of prayerWindows(0)) promise(p, c);
-    onFinished(p, done('pray', 400), 400); // fajr kept
+    onFinished(p, done('pray', 350), 350); // fajr kept
     const r = advanceAgenda(p, 760); // past dhuhr start
     expect(r.broken).toEqual([]);
     expect(r.recurred.map((c) => c.from)).toEqual([1440 + DEFAULT_PRAYER_TIMES.fajr]);
-    const r2 = advanceAgenda(p, 1440 + 400);
+    const r2 = advanceAgenda(p, 1440 + 380);
     expect(r2.broken.map((c) => c.from)).toEqual([750, 960, 1125, 1215]);
     expect(r2.recurred).toHaveLength(4);
     const pending = p.agenda.commitments.filter((c) => c.status === 'pending');

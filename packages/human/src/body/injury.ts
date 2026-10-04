@@ -159,8 +159,14 @@ export function setDowned(p: Person, reason: string, until?: Minute): boolean {
 /** Body-level clear. Returns whether the person was downed. */
 export function clearDowned(p: Person): boolean {
   if (!p.body.downed) return false;
-  delete p.body.downed;
+  liftDowned(p.body, p.now);
   return true;
+}
+
+/** Lift the downing and remember its span (`lastDowned`, read by the agenda for missed worship windows). */
+function liftDowned(b: Person['body'], now: Minute): void {
+  if (b.downed) b.lastDowned = { from: b.downed.since, to: now };
+  delete b.downed;
 }
 
 /** Derived downing below the floor, or undefined (no floor set, or above it with `margin`). */
@@ -183,12 +189,12 @@ export function checkDowned(p: Person, now: Minute): { kind: 'down' | 'up'; reas
   if (d) {
     if (d.until !== undefined) {
       if (now < d.until) return undefined;
-      delete b.downed;
+      liftDowned(b, now);
       return { kind: 'up', reason: d.reason };
     }
     if ((d.reason === 'health' || d.reason === 'capacity') && b.downedBelow) {
       if (belowFloor(p, INJURY_DEFAULTS.standMargin) !== undefined) return undefined;
-      delete b.downed;
+      liftDowned(b, now);
       return { kind: 'up', reason: d.reason };
     }
     return undefined;

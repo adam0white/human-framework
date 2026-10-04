@@ -210,7 +210,7 @@ function obligationAnswered(p: Person, normId: string): boolean {
   if (!list) return false;
   let linked = false;
   for (const c of list) {
-    if (c.normId !== normId || c.kind === 'abstain') continue;
+    if (c.normId !== normId || c.kind === 'abstain' || c.makeUpOf !== undefined) continue;
     linked = true;
     if (c.status === 'pending' && p.now >= c.from - 60 && p.now <= c.until) return false;
   }

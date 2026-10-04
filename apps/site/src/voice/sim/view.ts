@@ -147,6 +147,8 @@ export const ACTION_LABEL: Record<string, string> = {
   call: 'call Selin',
   pray: 'pray at the mosque',
   'pray-home': 'pray at home',
+  'pray-qada': 'make up a missed prayer',
+  'pray-eid': 'join the Eid prayer',
   rest: 'rest at home',
   walk: 'walk by the river',
   tea: 'have tea with Rıza',
@@ -157,7 +159,8 @@ export const ACTION_LABEL: Record<string, string> = {
 };
 
 export function familyOf(action: string, affordanceId = ''): Family {
-  if (action === 'pray' || action === 'pray-home' || action === 'pray-eid') return 'worship';
+  if (action === 'pray' || action === 'pray-home' || action === 'pray-eid' || action === 'pray-qada')
+    return 'worship';
   if (action === 'work-repair' || affordanceId.startsWith('work')) return 'work';
   if (action === 'eat' || action === 'drink') return 'food';
   if (action === 'call') return 'phone';

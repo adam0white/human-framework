@@ -1446,6 +1446,9 @@ function fillFrom(
  * field. A save from an earlier supported engine is upgraded by `migrate` first. Throws on a wrong schema, a
  * missing core slice, or an engine version `migrate` does not support.
  */
+/** Optional top-level keys of a person that `createPerson` leaves absent; `restore` keeps them. */
+const OPTIONAL_KEYS: ReadonlySet<string> = new Set(['chronicle', 'chronicleDay', 'lexicon']);
+
 export function restore(input: unknown): Person {
   if (!isObject(input)) throw new Error('restore: not an object');
   if (input.schema !== PERSON_SCHEMA) throw new Error(`restore: unsupported schema ${String(input.schema)}`);
@@ -1468,6 +1471,10 @@ export function restore(input: unknown): Person {
   const saved = structuredClone(json);
   const out = { ...defaults, ...(saved as Partial<Person>) } as Person;
   const slices = out as unknown as Record<string, unknown>;
+  // Unknown top-level keys are dropped, not carried (security review 2026-10-04): only the person's own slices
+  // and its known optional ones survive a restore.
+  for (const k of Object.keys(slices))
+    if (!Object.hasOwn(defaults, k) && !OPTIONAL_KEYS.has(k)) delete slices[k];
   const defs = defaults as unknown as Record<string, unknown>;
   for (const k of REQUIRED_OBJECTS) {
     slices[k] = fillFrom(defs[k] as Record<string, unknown>, saved[k] as Record<string, unknown>);
@@ -1524,6 +1531,16 @@ export function restore(input: unknown): Person {
     )
   )
     delete out.affect.crisis;
+  // Optional state added in 1.7.0: a malformed span or lapse is dropped (absent means none).
+  const span = (x: unknown) => isObject(x) && typeof x.from === 'number' && typeof x.to === 'number';
+  if (out.body.lastSleep !== undefined && !span(out.body.lastSleep)) delete out.body.lastSleep;
+  if (out.body.lastDowned !== undefined && !span(out.body.lastDowned)) delete out.body.lastDowned;
+  const lapse = out.agenda.lapse as unknown;
+  if (
+    lapse !== undefined &&
+    !(isObject(lapse) && typeof lapse.since === 'number' && typeof lapse.missed === 'number')
+  )
+    delete out.agenda.lapse;
   const last = out.will.lastCommand as unknown;
   if (
     last !== undefined &&

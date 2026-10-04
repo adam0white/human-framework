@@ -111,6 +111,10 @@ export interface BodyState {
    * 2026-10-03): a scenario tuned on another time scale pins the rates it was built on. Absent = defaults.
    */
   rates?: BodyRates;
+  /** The last finished sleep (1.7.0), set on waking; the agenda reads it to excuse a window slept through. */
+  lastSleep?: { from: Minute; to: Minute };
+  /** The last finished downing (1.7.0), set when it lifts; the agenda reads it for a window that closed in it. */
+  lastDowned?: { from: Minute; to: Minute };
   /** Downed (1.6.0): can only lie, rest or sleep where they are. Absent = up. */
   downed?: { since: Minute; reason: string; until?: Minute };
   /** Derived downing floor (1.6.0, `enableDowned`): go down below either. Absent = only the host downs. */
@@ -497,8 +501,10 @@ export interface Commitment {
   /**
    * Set when an exemption applied: the commitment is not held and closes as 'released' (its chain still recurs).
    * 'necessity' (review 2026-10-03): broken under the capacity bound / necessity exception, excused, make-up owed.
+   * 'sleep' / 'unconscious' (1.7.0): a worship window passed while the person slept through it or was downed; blame
+   * is lifted and a make-up is owed (see agenda SCOPE, missed duties).
    */
-  exempt?: { reason: 'illness' | 'travel' | 'necessity'; at: Minute };
+  exempt?: { reason: 'illness' | 'travel' | 'necessity' | MissedExcuse; at: Minute };
   /** For a make-up (qada) commitment: the id of the exempted instance it makes up. */
   makeUpOf?: string;
   /**
@@ -535,10 +541,20 @@ export interface AgendaState {
   nextId: number;
   /** Day index of the last spontaneous goal proposal (-1 = never); at most one proposal per day. */
   lastProposalDay: number;
-  /** Make-ups owed for exempted instances (qada), bounded; `scheduleMakeUp` turns one into a commitment. */
+  /** Make-ups owed (qada), bounded; `scheduleMakeUp` turns one into a commitment. */
   owed?: OwedMakeUp[];
+  /**
+   * The current stretch of worship windows missed while downed (1.7.0): `since` is the downing's start, `missed` the
+   * windows closed in it. Once more than `AGENDA_DEFAULTS.lapseWaiver` have closed, that stretch's debt drops.
+   */
+  lapse?: { since: Minute; missed: number };
 }
-/** A missed instance of an obligation, exempted under a catalogued condition, owed later (qada). */
+/** Why a worship window passed unkept without blame (1.7.0): asleep throughout, or downed when it closed. */
+export type MissedExcuse = 'sleep' | 'unconscious';
+/**
+ * An obligation owed later (qada): an exempted instance (illness, travel, necessity), a worship window missed
+ * (excused or not), or an obligatory abstention broken.
+ */
 export interface OwedMakeUp {
   /** Id of the exempted commitment. */
   ofId: string;
@@ -546,8 +562,14 @@ export interface OwedMakeUp {
   kind: Commitment['kind'];
   violatedBy?: string[];
   actions: string[];
-  /** 'necessity' added by review 2026-10-03 (see `Commitment.exempt`). */
-  reason: 'illness' | 'travel' | 'necessity';
+  /**
+   * 'necessity' added by review 2026-10-03 (see `Commitment.exempt`). 1.7.0: 'sleep' and 'unconscious' (missed
+   * without blame), 'missed' (a worship window passed while awake and able, or in a mental break), 'broken' (an
+   * obligatory abstention broken).
+   */
+  reason: 'illness' | 'travel' | 'necessity' | MissedExcuse | 'missed' | 'broken';
+  /** For 'unconscious': the start of the downing it fell in (its stretch may be waived, `AgendaState.lapse`). */
+  lapseSince?: Minute;
   at: Minute;
   label?: string;
   /** Id of the make-up commitment once scheduled. */
@@ -754,8 +776,12 @@ export const PERSON_SCHEMA = 'human/person@1';
  * 1.6.0 (2026-10-04): `restore` migrates 1.4.0 and 1.5.0 saves (`migrate`); commanded control, mental breaks,
  * per-part capacities with bleeding and a downed state, and insider/outsider ties with threat percepts. All new
  * person state is optional and absent until used, and none of it changes a run that does not use it.
+ * 1.7.0: research/decisions.md as defaults: Fajr ends at sunrise (`PrayerTimes.sunrise`), missed obligatory worship
+ * and broken obligatory fasts leave a make-up debt, sleep and unconsciousness lift the blame (`missedExcuse`), the
+ * Eid prayer norm and window, disliked times. New optional state: `body.lastSleep`, `body.lastDowned`,
+ * `agenda.lapse`, `OwedMakeUp.lapseSince`.
  */
-export const ENGINE_VERSION = '1.6.0';
+export const ENGINE_VERSION = '1.7.0';
 
 export interface Person {
   schema: typeof PERSON_SCHEMA;

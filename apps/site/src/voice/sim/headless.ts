@@ -1,6 +1,37 @@
 /** Headless player for Game 2 tests and benchmarks. */
 import type { Draft, Frame, StandingWhisper } from '../protocol.ts';
-import type { VoiceGame } from './game.ts';
+import { VoiceGame } from './game.ts';
+import type { VoiceInput } from './record.ts';
+
+/** What `play` drives: a bare game, or a `RecordedGame` (same inputs, logged). */
+export interface Driver {
+  readonly game: VoiceGame;
+  apply(msg: VoiceInput): void;
+  /** Advance the clock; `step(60)` by default, or a real-time tick when `PlayOpts.tick` is set. */
+  step(minutes: number): void;
+  tick?(dtMs: number): boolean;
+}
+
+const direct = (game: VoiceGame): Driver => ({
+  game,
+  apply: (m) => {
+    switch (m.type) {
+      case 'begin':
+        return game.begin();
+      case 'advance':
+        return game.advance(m.standing);
+      case 'dismissIntro':
+        return game.dismissIntro();
+      case 'resume':
+        return game.resume();
+      case 'suggest':
+        return game.suggest(m.draft);
+      default:
+        throw new Error(`headless: ${m.type} is not used`);
+    }
+  },
+  step: (n) => game.advanceTo(game.t + n),
+});
 
 export interface PlayOpts {
   /** Confirm every new prefill (the bar's "prefill → Confirm" player). */
@@ -11,21 +42,26 @@ export interface PlayOpts {
   /** Stop when this returns true (checked at every loop turn). */
   stop?: (g: VoiceGame) => boolean;
   onPause?: (f: Frame, g: VoiceGame) => void;
+  /** Drive the clock with real-time ticks of these sizes (ms, cycled) instead of 60-minute steps. */
+  tick?: readonly number[];
 }
 
 /** Headless player: dismisses cards, optionally confirms prefills, otherwise says nothing. */
-export function play(g: VoiceGame, o: PlayOpts = {}): void {
-  if (g.phase === 'premise') g.begin();
+export function play(target: VoiceGame | Driver, o: PlayOpts = {}): void {
+  const d = target instanceof VoiceGame ? direct(target) : target;
+  const g = d.game;
+  if (g.phase === 'premise') d.apply({ type: 'begin' });
   let lastKey = '';
-  for (let guard = 0; guard < 50_000; guard++) {
+  let ticks = 0;
+  for (let guard = 0; guard < 2_000_000; guard++) {
     if (o.stop?.(g) || g.phase === 'report') return;
     if (g.phase === 'between') {
-      g.advance(g.between?.next?.skipped ? (o.whispers ?? []) : []);
+      d.apply({ type: 'advance', standing: g.between?.next?.skipped ? (o.whispers ?? []) : [] });
       continue;
     }
     if (g.intro) {
-      g.dismissIntro();
-      g.resume();
+      d.apply({ type: 'dismissIntro' });
+      d.apply({ type: 'resume' });
       continue;
     }
     if (g.paused) {
@@ -40,16 +76,17 @@ export function play(g: VoiceGame, o: PlayOpts = {}): void {
         key !== lastKey
       ) {
         lastKey = key;
-        const d: Draft = o.insist
+        const draft: Draft = o.insist
           ? { optionId: f.prefill.optionId, strength: 'urge', insist: true }
           : { optionId: f.prefill.optionId, strength: f.prefill.strength, insist: false };
-        if (f.prefill.appeal) d.appeal = f.prefill.appeal;
-        g.suggest(d);
+        if (f.prefill.appeal) draft.appeal = f.prefill.appeal;
+        d.apply({ type: 'suggest', draft });
         continue;
       }
-      g.resume();
+      d.apply({ type: 'resume' });
     }
-    g.advanceTo(g.t + 60);
+    if (o.tick && d.tick) d.tick(o.tick[ticks++ % o.tick.length] ?? 16);
+    else d.step(60);
   }
   throw new Error('play did not finish');
 }

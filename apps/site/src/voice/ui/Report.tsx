@@ -24,11 +24,14 @@ export function Report({
   onKeepListening,
   onReplay,
   onNewTown,
+  onDownload,
 }: {
   view: ReportView;
   onKeepListening: () => void;
   onReplay: () => void;
   onNewTown: () => void;
+  /** Download this run as a playtest file. */
+  onDownload?: () => void;
 }) {
   const head = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
@@ -151,6 +154,13 @@ export function Report({
             New town
           </button>
         </div>
+        {onDownload && (
+          <p className="v-report-playtest">
+            <button type="button" className="v-btn v-btn-quiet v-btn-small" onClick={onDownload}>
+              Download playtest file
+            </button>
+          </p>
+        )}
         <ModelNotes notes={view.modelNotes.length > 0 ? view.modelNotes : undefined} />
       </div>
     </div>

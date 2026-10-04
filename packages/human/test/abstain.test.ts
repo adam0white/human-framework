@@ -277,6 +277,7 @@ describe("fast exemptions (Qur'an 2:184-185) and make-ups", () => {
 describe('per-day prayer calendar (N7)', () => {
   const drift: (day: number) => PrayerTimes = (day) => ({
     fajr: 300 - day,
+    sunrise: 390 - day,
     dhuhr: 750,
     asr: 960,
     maghrib: 1125 + day,
@@ -285,7 +286,8 @@ describe('per-day prayer calendar (N7)', () => {
 
   test("prayerWindows takes a calendar; Isha runs to the next day's Fajr", () => {
     const w = prayerWindows(2, drift);
-    expect(w[0]).toMatchObject({ from: 2 * DAY + 298, until: 2 * DAY + 750, chain: 'salah:fajr' });
+    // Fajr ends at sunrise (research/decisions.md).
+    expect(w[0]).toMatchObject({ from: 2 * DAY + 298, until: 2 * DAY + 388, chain: 'salah:fajr' });
     expect(w[4]).toMatchObject({ from: 2 * DAY + 1217, until: 3 * DAY + 297 });
     expect(prayerWindows(0)[0]?.from).toBe(T.fajr);
   });
@@ -331,7 +333,8 @@ describe('per-day prayer calendar (N7)', () => {
     expect(meals.map((m) => m.label)).toEqual(['suhoor', 'iftar']);
     const eid = eidPrayer({ from: 30 * DAY + 420, until: 30 * DAY + 600 });
     expect(eid.recurEvery).toBeUndefined();
-    expect(eid.normId).toBeUndefined();
+    expect(eid.normId).toBe('eid-prayer');
+    expect(eidPrayer({ from: 0, until: 1 }, { normId: null }).normId).toBeUndefined();
     expect(eid.actions).toEqual(['pray-eid']);
     const r = calendarRetimer(drift)({
       ...meals[0],
@@ -478,12 +481,13 @@ describe('a break under necessity is excused, not a breach (review 2026-10-03)',
     expect(owedMakeUps(p).map((o) => o.reason)).toEqual(['necessity']);
   });
 
-  test('without extremity, forcing the same meal through begin is a breach and owes nothing', () => {
+  test('without extremity, forcing the same meal through begin is a breach and owes the day (1.7.0)', () => {
     const { p, eatAff, record } = faster(0.6);
     const act = eatThrough(p, eatAff, record);
     expect(act.necessity).toBeUndefined();
     expect(p.conscience.breaches.some((b) => b.normId === 'sawm-ramadan')).toBe(true);
-    expect(owedMakeUps(p)).toEqual([]);
+    // research/decisions.md, fasting-sources.md §1: a broken fast is made up.
+    expect(owedMakeUps(p).map((o) => o.reason)).toEqual(['broken']);
   });
 
   test("the host's catalog decides the make-up; a norm missing from it is not excused", () => {
@@ -511,6 +515,7 @@ describe('a break under necessity is excused, not a breach (review 2026-10-03)',
       { catalog: without },
     );
     expect(b.p.agenda.commitments.some((c) => c.exempt?.reason === 'necessity')).toBe(false);
-    expect(owedMakeUps(b.p)).toEqual([]);
+    // Not excused: an ordinary break, which owes the day as the person holds the fast obligatory (1.7.0).
+    expect(owedMakeUps(b.p).map((o) => o.reason)).toEqual(['broken']);
   });
 });
