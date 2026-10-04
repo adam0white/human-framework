@@ -223,7 +223,7 @@ export function ThawPage({ frame, actions }: { frame: Frame; actions: WatchActio
           </ul>
         </>
       ) : (
-        <p className="w-note">Nothing changed for good this winter.</p>
+        <p className="w-note">The wall and the houses stand as they did.</p>
       )}
       <Leaves frame={frame} />
       <button type="button" className="w-primary" onClick={() => actions.input({ k: 'continue' })}>

@@ -300,6 +300,20 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   ctx.fillRect(0, l.yWall, w, l.wallH);
   ctx.fillStyle = '#a58b67';
   for (let x = 0; x < w; x += 16) ctx.fillRect(x, l.yWall - 5, 10, 6);
+  // A stretch that came down in the thaw: a gap in the wall top with rubble at its foot.
+  for (const [i, sec] of f.sections.entries()) {
+    if (!sec.fallen) continue;
+    const x0 = i * laneW + laneW * 0.18;
+    const gw = laneW * 0.64;
+    ctx.fillStyle = '#2a2a3a';
+    ctx.fillRect(x0, l.yWall - 6, gw, l.wallH * 0.7 + 6);
+    ctx.fillStyle = '#7a6850';
+    for (let k = 0; k < 9; k++) {
+      const rx = x0 + (((k * 37) % 100) / 100) * gw;
+      const ry = l.yWall + l.wallH * 0.55 + ((k * 13) % 7);
+      ctx.fillRect(rx, ry, 7 + (k % 3) * 3, 5);
+    }
+  }
   if (f.roused) {
     for (let i = 0; i < 9; i++) {
       const x = ((i + 0.5) / 9) * w;

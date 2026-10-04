@@ -2,8 +2,13 @@
  * The Keeper's impressions of a watcher, in words (G3-2, spec §5). Everything here reads the Keeper's estimates
  * (HF `impressionOf`), never the watcher's true state, so a phrase can be wrong and every phrase carries how sure
  * he is. The UI shows the phrase and draws the sureness as a soft bar; it prints no numbers.
+ *
+ * G3-3: what the Keeper learned of someone's nature, ties, trust, aim and fears of a place does not fade through
+ * the months he doesn't watch them on the wall. Those cues are read as they stood a few weeks after he last saw
+ * them, and the read says how old it is ("from last winter"). Passing states (tired, hurt, frightened) still fade
+ * on HF's clock. This is how the frame shows the impression; the Keeper's HF estimates are unchanged.
  */
-import { impressionOf } from '@human/framework';
+import { estimate, impressionOf, MINUTES_PER_DAY } from '@human/framework';
 import { SECTIONS, type SectionId, type WatcherId } from './config.ts';
 import { theSection } from './night.ts';
 import { isHere, KEEPER_ID } from './people.ts';
@@ -19,11 +24,23 @@ export interface Impression {
 /** Below this confidence a cue is not worth saying. */
 const SAY_MIN = 0.12;
 
+/** A lasting cue is read as it stood this long after it was last seen. */
+const HOLD = 30 * MINUTES_PER_DAY;
+
+/** Passing states fade on HF's clock; everything else is held (see the module comment). */
+const passing = (key: string) => key === 'fatigue' || key === 'pain' || key === 'fear';
+
 /** Up to `max` phrases, the surest first. A stranger gets one: "you don't know them yet". */
 export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impression[] {
   const read = impressionOf(s.keeper, id, s.minute);
   const out: Impression[] = [];
-  for (const c of read.cues) {
+  let newest = -1;
+  for (const raw of read.cues) {
+    const at = raw.seenAt;
+    const c =
+      passing(raw.key) || at === undefined || s.minute - at <= HOLD
+        ? raw
+        : { key: raw.key, ...estimate(s.keeper, id, raw.key, at + HOLD) };
     if (c.confidence < SAY_MIN) continue;
     const v = c.value;
     const sure = Math.round(c.confidence * 20) / 20;
@@ -49,9 +66,17 @@ export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impres
     else if (c.key === 'skill:sling')
       text = v > 0.26 ? 'a sure arm' : v < 0.13 ? 'wild with the sling' : null;
     else if (c.key === 'trait:conscientiousness') text = v > 0.7 ? 'dutiful' : v < 0.3 ? 'careless' : null;
-    if (text) out.push({ text, sure });
+    if (text) {
+      out.push({ text, sure });
+      if (!passing(c.key) && at !== undefined) newest = Math.max(newest, at);
+    }
   }
   out.sort((a, b) => b.sure - a.sure || (a.text < b.text ? -1 : 1));
   if (out.length === 0) return [{ text: 'you don’t know them yet', sure: 0 }];
-  return out.slice(0, max);
+  const shown = out.slice(0, max);
+  // How old the read is, when nothing in it is recent.
+  const age = newest < 0 ? 0 : s.minute - newest;
+  if (age > HOLD)
+    shown.push({ text: age < 400 * MINUTES_PER_DAY ? 'from last winter' : 'from winters ago', sure: 0 });
+  return shown;
 }

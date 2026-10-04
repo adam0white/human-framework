@@ -140,7 +140,8 @@ function thaw(s: WatchState): void {
   if (q && q.met === null) {
     if (q.kind === 'souls') {
       const died = s.chronicle.some((l) => l.year === s.year && l.season === 'winter' && l.kind === 'death');
-      q.met = !died && s.grain > 0;
+      // Met only if the granary can also feed everyone into spring: a hungry spring is not "done".
+      q.met = !died && s.grain >= Math.ceil(living(s).length * EAT_PER_HEAD);
     } else if (q.kind === 'first') q.met = true;
     else q.met = false;
   }

@@ -8,7 +8,7 @@
  * Not covered: the spec's ranked topics that change behaviour (rest, practise with, mend things, take the Gate as a
  * promise, teach); talks with children; talks in the open seasons.
  */
-import { hear, selfReport } from '@human/framework';
+import { hear, outwardSigns, selfReport } from '@human/framework';
 import { SECTION_IDS, type SectionId } from './config.ts';
 import { theSection } from './night.ts';
 import { isWatcher, personOf } from './people.ts';
@@ -53,14 +53,28 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     else if (top) text = `“It was all right. I don’t love ${theSection(top[0] as SectionId)}.”`;
     else if (worst?.kind === 'carrier') text = '“I got someone down off the wall. That’s what I remember.”';
     else if (said.fear > 0.35) text = '“I don’t want to talk about it.”';
-    else text = '“Cold. Long. Nothing I couldn’t stand.”';
+    else
+      text =
+        p.traits.emotionality > 0.6
+          ? '“I jumped at every owl. Nothing came, though.”'
+          : p.traits.extraversion > 0.6
+            ? '“Long and cold. I talked to the stones.”'
+            : '“Cold. Long. Nothing I couldn’t stand.”';
   } else {
     hear(s.keeper, who, 'pain', said.pain, { at, weight: TALK_WEIGHT });
     hear(s.keeper, who, 'fatigue', said.fatigue, { at, weight: TALK_WEIGHT });
     if (said.pain > 0.45) text = '“It’s bad. I won’t lie to you.”';
     else if (said.pain > 0.15) text = '“It aches. It’ll hold.”';
     else if (said.fatigue > 0.5) text = '“Tired to the bone, that’s all.”';
-    else text = '“Fine. I’m fine.”';
+    // Pain they won't own to still shows in how they stand: the one "fine" worth noticing.
+    else if (outwardSigns(p).pain > 0.15) text = '“Fine. I’m fine.” (They shift their weight off one leg.)';
+    else
+      text =
+        p.traits.conscientiousness > 0.65
+          ? '“Fit to stand tonight.”'
+          : p.traits.emotionality > 0.6
+            ? '“Well enough. Sleep would help.”'
+            : '“Nothing wrong with me.”';
   }
   p.body.sleepPressure = Math.min(1, p.body.sleepPressure + TALK_SLEEP);
   s.talks.left -= 1;

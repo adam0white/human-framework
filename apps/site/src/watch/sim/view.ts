@@ -28,8 +28,8 @@ import {
 } from './config.ts';
 import { ageOf, dayOfYear, living, seasonOfDay } from './life.ts';
 import { bellWords, type Moment, readBell, readPosting, readWords } from './moments.ts';
-import { earshot, litSection, nightEnd, presentIds } from './night.ts';
-import { familyWords, isHere, isPost, isWatcher, type Place, personOf, villager } from './people.ts';
+import { earshot, litSection, nightEnd, presentIds, theSection } from './night.ts';
+import { familyWords, isHere, isPost, isWatcher, nameOf, type Place, personOf, villager } from './people.ts';
 import { type Impression, keeperImpressions } from './reads.ts';
 import type {
   Alert,
@@ -46,6 +46,7 @@ import type {
   WinterPlan,
 } from './state.ts';
 import { canTalk } from './talk.ts';
+import { fearedSection } from './voices.ts';
 import { roman } from './volume.ts';
 
 /** Threats in a lit section are seen from here out. */
@@ -89,6 +90,8 @@ export interface Frame {
     id: SectionId;
     name: string;
     posts: { id: PostId; watcher: WatcherId | null; posted: WatcherId | null }[];
+    /** The stretch came down in the thaw and cannot be stood this winter. */
+    fallen: boolean;
   }[];
   /** Watchers who have come to the village (absent ones are left out). */
   watchers: FrameWatcher[];
@@ -309,9 +312,11 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
     }
   }
   const ids = presentIds(s);
+  const fallenAt = s.marks.lost && s.marks.lost.year === s.year ? s.marks.lost.section : null;
   const sections = SECTIONS.map((sec) => ({
     id: sec.id,
     name: sec.name,
+    fallen: sec.id === fallenAt,
     posts: POSTS.filter((p) => p.section === sec.id && s.openPosts.includes(p.id)).map((p) => ({
       id: p.id,
       watcher: ids.find((w) => s.place[w] === p.id) ?? null,
@@ -452,7 +457,9 @@ function dateWords(s: WatchState): string {
       return `The ${ordinal(s.winterNight)} night of the ${ordinal(s.year)} winter`;
     return `The end of the ${ordinal(s.year)} winter`;
   }
-  const into = (d % 90) / 90;
+  // Seasons start on days 90, 180 and 270; autumn runs to the year's end (95 days).
+  const start = season === 'spring' ? 90 : season === 'summer' ? 180 : 270;
+  const into = (d - start) / (season === 'autumn' ? 95 : 90);
   const part = into < 1 / 3 ? 'Early' : into < 2 / 3 ? 'High' : 'Late';
   return `${part} ${season} of the ${ordinal(s.year)} year`;
 }
@@ -468,6 +475,18 @@ function frameVolume(s: WatchState, v: WatchState['volume']): FrameVolume {
       ? v.epilogue.map((e) => ({ name: s.cast[e.who]?.name ?? e.who, text: e.text }))
       : null,
   };
+}
+
+/** What the winter left in people, read at the thaw (fears of a stretch they will carry into next winter). */
+function winterMarks(s: WatchState): string[] {
+  const out: string[] = [];
+  for (const p of s.community.people) {
+    if (!isWatcher(s, p)) continue;
+    const f = fearedSection(p);
+    if (f && f.level > 0.15)
+      out.push(`${nameOf(s, p.id)} came out of the winter afraid of ${theSection(f.section)}.`);
+  }
+  return out;
 }
 
 function winterWords(lost: number, hungry: boolean): string {
@@ -558,7 +577,10 @@ function yearFrame(s: WatchState) {
     thaw:
       s.phase === 'thaw'
         ? {
-            lines: s.chronicle.filter((l) => l.year === s.year && l.kind !== 'talk').map((l) => l.text),
+            lines: [
+              ...s.chronicle.filter((l) => l.year === s.year && l.kind !== 'talk').map((l) => l.text),
+              ...winterMarks(s),
+            ],
             winter: winterWords(s.yearGrain.lostWinter, s.yearGrain.hungry),
             hungry: s.yearGrain.hungry,
           }

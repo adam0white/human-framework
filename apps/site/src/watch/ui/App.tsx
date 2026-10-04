@@ -447,9 +447,11 @@ function DuskPanel({
             type="button"
             className="w-chip"
             aria-pressed={frame.lantern.target === SECTIONS.indexOf(s)}
+            disabled={frame.sections.find((x) => x.id === s.id)?.fallen === true}
             onClick={() => actions.input({ k: 'lantern', section: s.id })}
           >
             {s.name}
+            {frame.sections.find((x) => x.id === s.id)?.fallen ? ' · fallen' : ''}
           </button>
         ))}
       </div>
@@ -499,9 +501,11 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
             type="button"
             className="w-chip"
             aria-pressed={frame.lantern.target === i}
+            disabled={frame.sections[i]?.fallen === true}
             onClick={() => actions.input({ k: 'lantern', section: s.id })}
           >
             {s.name}
+            {frame.sections[i]?.fallen ? ' · fallen' : ''}
           </button>
         ))}
       </div>

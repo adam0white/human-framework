@@ -99,7 +99,10 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
           : pick(s, id, 'shaken', [
               `“They came right up under me at ${theSec(shaken.section)}. I keep hearing them.”`,
               `“I could hear them breathing under ${theSec(shaken.section)}.”`,
-              `“Something came to the foot of ${theSec(shaken.section)}. I didn’t blink till dawn.”`,
+              // Only someone still on the wall at dawn can say they watched till dawn.
+              home || refused
+                ? `“Something came to the foot of ${theSec(shaken.section)}. I didn’t stay to see it.”`
+                : `“Something came to the foot of ${theSec(shaken.section)}. I didn’t blink till dawn.”`,
             ]),
       );
     } else if (fear && fear.level > 0.15) {
@@ -166,8 +169,21 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
     }
 
     if (said.length === 0) {
-      if (told.fatigue > 0.5) said.push('“Long night.”');
-      else said.push(v.newcomer ? '“Quiet. They watch me more than the dark.”' : '“Quiet enough.”');
+      if (told.fatigue > 0.5)
+        said.push(
+          pick(s, id, 'long', ['“Long night.”', '“My eyes ache.”', '“I’d sleep standing if you let me.”']),
+        );
+      else if (v.newcomer) said.push('“Quiet. They watch me more than the dark.”');
+      else
+        said.push(
+          pick(s, id, 'quiet', [
+            '“Quiet enough.”',
+            '“Cold, and nothing else.”',
+            '“Nothing came my way.”',
+            '“Just the wind.”',
+            '“I counted the stars. Nothing to tell.”',
+          ]),
+        );
     }
     out.push({ who: id, text: said.join(' ') });
   }

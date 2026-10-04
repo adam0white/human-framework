@@ -2,7 +2,10 @@ import { describe, expect, it } from 'vitest';
 import { playYears } from '../../../test/watch/years.ts';
 import { listPages, loadPage, savePage } from '../store.ts';
 import { DAY } from './config.ts';
+import { seasonNow } from './life.ts';
 import { DAY_RATE, Pacer } from './pace.ts';
+import { isWatcher } from './people.ts';
+import { keeperImpressions } from './reads.ts';
 import { endState, replay, WatchRun } from './run.ts';
 
 describe('Game 3 years (G3-3)', () => {
@@ -113,4 +116,17 @@ describe('Game 3 pacing in the open seasons (G3-3)', () => {
     );
     expect(ok).toBe(false);
   });
+});
+
+describe('Game 3 reads over the year (G3-3 review)', () => {
+  it('what the Keeper learned on the wall is still known in summer, marked as last winter’s', () => {
+    const run = playYears(1, 1, undefined, (st) => seasonNow(st) === 'summer');
+    const s = run.state;
+    const reads = s.community.people
+      .filter((p) => isWatcher(s, p))
+      .map((p) => keeperImpressions(s, p.id).map((r) => r.text));
+    const known = reads.filter((r) => !r.includes('you don’t know them yet'));
+    expect(known.length).toBeGreaterThanOrEqual(3);
+    for (const r of known) expect(r).toContain('from last winter');
+  }, 300_000);
 });
