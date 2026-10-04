@@ -188,7 +188,8 @@ function voiceTrust(p: Person, voiceId: string): number {
 function dutyTracking(p: Person, normId: string, now: Minute): 'open' | 'discharged' | 'untracked' {
   let tracked = false;
   for (const c of p.agenda.commitments) {
-    if (c.normId !== normId) continue;
+    // A make-up (qada) is kept only by its own actions; it does not open the obligation itself (1.7.0).
+    if (c.normId !== normId || c.makeUpOf !== undefined) continue;
     tracked = true;
     if (c.status === 'pending' && now >= c.from && now <= c.until) return 'open';
   }

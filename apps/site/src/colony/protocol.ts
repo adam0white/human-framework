@@ -4,6 +4,7 @@
  * tick. The worker starts paused (`pause.kind 'start'`) and decides auto-pauses itself (v2 plan §6), so every UI
  * pauses at the same minutes. The sim never reads a clock, so a run is reproducible from the seed and the order log.
  */
+import type { PlaytestFile, ReplayResult } from '../shared/playtest.ts';
 import type { EndSummary, Frame } from './sim/game.ts';
 import type { Prediction, WhyBreakdown } from './sim/human-side.ts';
 import type { OrderInput } from './sim/orders.ts';
@@ -26,7 +27,11 @@ export type MainToWorker =
   | { type: 'why'; personId: VillagerId; decisionId?: string }
   | { type: 'predict'; requestId: number; input: OrderInput }
   /** "Another day": only honoured when `frame.canContinue`. */
-  | { type: 'continue' };
+  | { type: 'continue' }
+  /** Playtest file: the worker answers `playtest` (the page fills in `build`). */
+  | { type: 'exportPlaytest' }
+  /** Replay a playtest file's text as run `gen`; answers `replayed` then frames, or `playtestError`. */
+  | { type: 'loadPlaytest'; gen: number; text: string };
 
 export type PauseReason = 'suggestion' | 'refusal' | 'moment' | 'storm';
 
@@ -56,6 +61,9 @@ export type WorkerReply =
   | { type: 'why'; personId: VillagerId; decisionId?: string; why: WhyBreakdown | null }
   | { type: 'predicted'; requestId: number; prediction: Prediction }
   | { type: 'ended'; summary: EndSummary }
+  | { type: 'playtest'; file: PlaytestFile }
+  | { type: 'replayed'; result: ReplayResult }
+  | { type: 'playtestError'; message: string }
   | { type: 'error'; message: string };
 
 export type WorkerToMain = WorkerReply & { gen: number };

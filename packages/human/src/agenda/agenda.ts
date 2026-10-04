@@ -17,10 +17,33 @@
  * partial meal as completed if it should). Exemptions (illness, travel) come from the norm catalog's
  * `exemptions` with their provenance, release that day's instance and record an owed make-up; they are not the
  * necessity exception of Qur'an 2:173. The illness threshold is an engineering stand-in for the person's own
- * judgment that they are ill; the fidya provision of 2:184 and any expiation for deliberate breaking are not
- * modelled, and neither is the make-up (qada) of a deliberately broken fast: no make-up is recorded for a breach
- * (unsourced in research/, review 2026-10-03). A break under necessity is excused with a make-up owed (see the
- * necessity-break SCOPE below).
+ * judgment that they are ill; the fidya provision of 2:184 and any expiation (kaffara) for deliberate breaking are
+ * not modelled (kaffara is disputed: research/fasting-sources.md §1). A deliberately broken obligatory fast is a
+ * breach and also leaves a make-up owed (1.7.0; research/decisions.md, fasting-sources.md §1: the day is made up).
+ * A break under necessity is excused with a make-up owed (see the necessity-break SCOPE below).
+ *
+ * SCOPE (missed duties and make-up debt, engine 1.7.0; research/decisions.md, research/capacity-and-excuse-sources.md):
+ * the sources keep blame (a breach) apart from debt (qada) (capacity-and-excuse-sources.md §0). When a `worship`
+ * window linked to a norm the person holds as obligatory closes unkept, or an obligatory `abstain` is broken, an
+ * `OwedMakeUp` is recorded in `agenda.owed` whatever the cause; what the cause decides is the blame:
+ * - Asleep throughout (§4: sleep lifts blame, not the debt): the window opened while the person was already
+ *   asleep and they woke no earlier than `wakeGrace` minutes before it closed (read from `body.since` and
+ *   `body.lastSleep`). Sleep begun inside the open window is not excused: whether the sleeper expected to wake is
+ *   not represented, so the framework takes the stricter reading.
+ * - Downed when it closed (§2, unconsciousness; `body.downed`, `body.lastDowned`): blame lifted, debt owed, but
+ *   once more than `lapseWaiver` (5) windows have closed within one downing, that stretch's debt drops and no more
+ *   is added (the Hanafi count by prayer times, kept as the default by decisions.md; Maliki and Shafi'i drop it
+ *   sooner, Hanbali never). Downing is involuntary, so going down after the window opened still excuses it.
+ * - Excused instances close `released` with `exempt.reason` 'sleep' or 'unconscious', so the composite books no
+ *   breach, distress or esteem cost; the chain recurs as for any exemption.
+ * - A mental break (`affect/crisis.ts`, reason intact) is not an excuse (§6: the test is retained capacity, and
+ *   motivation is irrelevant): the window closes broken, with its breach, and the debt is owed (reason 'missed').
+ * - Forgetting lifts blame in the sources (§4) but the framework has no state for having forgotten a duty, and no
+ *   state for loss of reason (junun, §1) or intoxication (§3); none of them is detected. Coercion and commands are
+ *   not excuses here (§7).
+ * A make-up commitment (`makeUpOf`, see `scheduleMakeUp`) that closes unkept, or is broken, carries no blame: qada
+ * has no fixed time in the sources, so it closes `released` and its debt is open again for the host to reschedule.
+ * The framework never computes whether a prayer or a make-up is accepted.
  */
 // The bundled catalog is only the default; a host with its own catalog passes it (`World.catalog`).
 import { DEFAULT_NORMS } from '../conscience/catalog.ts';
@@ -32,6 +55,7 @@ import type {
   Episode,
   Goal,
   Minute,
+  MissedExcuse,
   NeedId,
   NeedReading,
   NormDefinition,
@@ -77,6 +101,16 @@ export const AGENDA_DEFAULTS = {
   abstainScale: 1,
   /** Owed make-ups retained (oldest scheduled ones dropped first). */
   maxOwed: 60,
+  /**
+   * Minutes before a window closes within which waking still counts as having slept through it (engineering
+   * default: about the length of one prayer).
+   */
+  wakeGrace: 10,
+  /**
+   * Worship windows that may close within one downing before that stretch's debt drops (more than five prayer
+   * times: research/capacity-and-excuse-sources.md §2, Hanafi; research/decisions.md keeps it as the default).
+   */
+  lapseWaiver: 5,
   proposeUrgency: 0.6,
   goalTemplates: {
     belonging: {
@@ -230,9 +264,16 @@ const needsSpawn = (state: AgendaState, c: Commitment, now: Minute): boolean =>
 export function advanceAgenda(
   p: Person,
   now: Minute,
-): { broken: Commitment[]; recurred: Commitment[]; kept: Commitment[]; released: Commitment[] } {
+): {
+  broken: Commitment[];
+  recurred: Commitment[];
+  kept: Commitment[];
+  released: Commitment[];
+  excused: Commitment[];
+} {
   const state = p.agenda;
   const broken: Commitment[] = [];
+  const excused: Commitment[] = [];
   const recurred: Commitment[] = [];
   const kept: Commitment[] = [];
   const released: Commitment[] = [];
@@ -263,9 +304,21 @@ export function advanceAgenda(
       } else if (next.kind === 'abstain') {
         next.status = 'kept';
         kept.push(next);
+      } else if (next.makeUpOf !== undefined) {
+        reopenMakeUp(state, next);
+        released.push(next);
       } else {
-        next.status = 'broken';
-        broken.push(next);
+        const excuse = next.kind === 'worship' ? missedExcuse(p, next) : undefined;
+        if (excuse !== undefined) {
+          next.exempt = { reason: excuse, at: next.until };
+          next.status = 'released';
+          released.push(next);
+          excused.push(next);
+        } else {
+          next.status = 'broken';
+          broken.push(next);
+        }
+        oweFor(p, next, excuse ?? 'missed', next.until);
       }
       continue;
     }
@@ -286,7 +339,73 @@ export function advanceAgenda(
     recurred.push(successor);
   }
   pruneClosed(state);
-  return { broken, recurred, kept, released };
+  return { broken, recurred, kept, released, excused };
+}
+
+/**
+ * Why a worship window that closed unkept carries no blame, if it does (see the missed-duties SCOPE): the person
+ * was downed when it closed, or asleep from before it opened until at most `wakeGrace` minutes before it closed.
+ */
+export function missedExcuse(p: Person, c: Commitment): MissedExcuse | undefined {
+  // Agenda-only callers (tests, light hosts) may pass a person without a body: nothing is excused then.
+  const b = p.body as Person['body'] | undefined;
+  if (!b) return undefined;
+  const end = c.until;
+  if (b.downed && b.downed.since <= end) return 'unconscious';
+  if (b.lastDowned && b.lastDowned.from <= end && b.lastDowned.to >= end) return 'unconscious';
+  if (b.asleep && b.since <= c.from) return 'sleep';
+  const s = b.lastSleep;
+  if (s && s.from <= c.from && s.to >= end - AGENDA_DEFAULTS.wakeGrace) return 'sleep';
+  return undefined;
+}
+
+/**
+ * Record the make-up owed for `c` (see the missed-duties SCOPE): only a `worship` or `abstain` commitment linked to a
+ * norm the person holds as obligatory, and never for a make-up itself. An 'unconscious' miss counts toward the
+ * downing's stretch, which is waived once more than `lapseWaiver` windows have closed in it.
+ */
+function oweFor(p: Person, c: Commitment, reason: OwedMakeUp['reason'], at: Minute): void {
+  if (c.normId === undefined || c.makeUpOf !== undefined) return;
+  if (c.kind !== 'worship' && c.kind !== 'abstain') return;
+  const held = (p.conscience as Person['conscience'] | undefined)?.norms.find((n) => n.normId === c.normId);
+  if (held?.standing !== 'obligatory') return;
+  const state = p.agenda;
+  let lapseSince: Minute | undefined;
+  if (reason === 'unconscious') {
+    const since = p.body?.downed?.since ?? p.body?.lastDowned?.from ?? at;
+    const lapse = state.lapse?.since === since ? state.lapse : { since, missed: 0 };
+    lapse.missed += 1;
+    state.lapse = lapse;
+    if (lapse.missed > AGENDA_DEFAULTS.lapseWaiver) {
+      if (state.owed)
+        state.owed = state.owed.filter(
+          (o) => !(o.reason === 'unconscious' && o.lapseSince === since && o.scheduledAs === undefined),
+        );
+      return;
+    }
+    lapseSince = since;
+  }
+  const entry: OwedMakeUp = {
+    ofId: c.id,
+    kind: c.kind,
+    actions: [...c.actions],
+    reason,
+    at,
+    normId: c.normId,
+    ...(c.violatedBy !== undefined ? { violatedBy: [...c.violatedBy] } : {}),
+    ...(c.label !== undefined ? { label: c.label } : {}),
+    ...(lapseSince !== undefined ? { lapseSince } : {}),
+  };
+  if (state.owed === undefined) state.owed = [];
+  state.owed.push(entry);
+  boundOwed(state);
+}
+
+/** A make-up that closed unkept or was broken: released without blame, its debt open again. */
+function reopenMakeUp(state: AgendaState, c: Commitment): void {
+  c.status = 'released';
+  const entry = state.owed?.find((o) => o.scheduledAs === c.id);
+  if (entry) delete entry.scheduledAs;
 }
 
 /**
@@ -435,8 +554,7 @@ export function agendaTerms(p: Person, aff: Affordance, now: Minute): Term[] {
  * entry owes a make-up for illness, the same make-up is owed. Treating a break in extremity like the illness
  * exemption of Qur'an 2:184 ("whoever of you is ill ... an equal number of days after", checked on quran.com
  * 2026-10-03) is an interpretation by analogy, recorded as such; it does not model fidya or expiation. A
- * deliberate break without necessity remains a breach, and its make-up (qada) is not modelled (unsourced in
- * research/).
+ * deliberate break without necessity remains a breach and owes a make-up (1.7.0, see the missed-duties SCOPE).
  */
 function excuseUnderNecessity(
   p: Person,
@@ -495,8 +613,13 @@ export function onFinished(
       excused.push(c);
       continue;
     }
+    if (c.makeUpOf !== undefined) {
+      reopenMakeUp(p.agenda, c);
+      continue;
+    }
     c.status = 'broken';
     broken.push(c);
+    oweFor(p, c, 'broken', outcome.at);
   }
   let best: Commitment | undefined;
   for (const c of p.agenda.commitments) {
@@ -710,13 +833,13 @@ export function scheduleMakeUp(
   p: Person,
   ofId: string,
   window: { from: Minute; until: Minute },
-  opts: { importance?: number; exemptWhen?: ('illness' | 'travel')[] } = {},
+  opts: { importance?: number; exemptWhen?: ('illness' | 'travel')[]; actions?: string[] } = {},
 ): Commitment | undefined {
   const entry = (p.agenda.owed ?? []).find((o) => o.ofId === ofId && o.scheduledAs === undefined);
   if (!entry || !(window.until > window.from)) return undefined;
   const made = promise(p, {
     kind: entry.kind,
-    actions: entry.actions,
+    actions: opts.actions ?? entry.actions,
     from: window.from,
     until: window.until,
     importance: opts.importance ?? 0.8,

@@ -19,6 +19,14 @@ export const DEFAULT_NORMS: NormDefinition[] = [
     sources: [
       { kind: 'revelation', ref: "Qur'an 2:43" },
       { kind: 'revelation', ref: "Qur'an 4:103 (prayer at prescribed times)" },
+      {
+        kind: 'interpretation',
+        ref: 'A missed prayer is still owed (qada); sleep, forgetting and unconsciousness lift the blame, not the debt; the debt for a stretch of unconsciousness beyond five prayer times drops (Hanafi count, kept as the default): research/capacity-and-excuse-sources.md §0, §2, §4; research/decisions.md',
+      },
+      {
+        kind: 'assumption',
+        ref: 'Window boundaries (Fajr until sunrise, one-shadow Asr, red-twilight Maghrib) are the most common positions, chosen in research/decisions.md; agenda/prayer.ts',
+      },
     ],
   },
   {
@@ -202,6 +210,21 @@ export const DEFAULT_NORMS: NormDefinition[] = [
     standing: 'recommended',
     sources: [{ kind: 'assumption', ref: 'Secular social norm; engineering default' }],
   },
+  {
+    id: 'eid-prayer',
+    label: 'Pray the Eid prayer in congregation',
+    standing: 'recommended',
+    sources: [
+      {
+        kind: 'interpretation',
+        ref: 'Strongly emphasised in every school: wajib for Hanafis, sunnah mu\'akkada (Maliki), sunnah (Shafi\'i), fard kifaya (Hanbali), per TDV "Bayram" in research/eid-and-mourning-sources.md §1',
+      },
+      {
+        kind: 'assumption',
+        ref: 'Recorded as recommended (the most common standing overall, research/decisions.md), so missing it is no breach; congregational, with no individual make-up (eid-and-mourning-sources.md §1)',
+      },
+    ],
+  },
 ];
 
 /**
@@ -210,6 +233,7 @@ export const DEFAULT_NORMS: NormDefinition[] = [
  */
 export const NORM_SCOPE: Record<string, 'religious' | 'shared' | 'core'> = {
   salah: 'religious',
+  'eid-prayer': 'religious',
   'sawm-ramadan': 'religious',
   zakat: 'religious',
   charity: 'religious',

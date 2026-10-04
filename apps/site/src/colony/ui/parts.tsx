@@ -1,4 +1,4 @@
-import { memo, type RefObject, useState } from 'react';
+import { memo, type ReactNode, type RefObject, useState } from 'react';
 import type { MomentRecord } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -223,6 +223,8 @@ export function TopBar(props: {
   /** After the run, with the end screen closed: bring it back. */
   onResults?: () => void;
   resultsRef?: RefObject<HTMLButtonElement | null>;
+  /** The playtest menu (shared/PlaytestMenu.tsx). */
+  playtest?: ReactNode;
 }) {
   const f = props.frame;
   const [menu, setMenu] = useState(false);
@@ -249,6 +251,7 @@ export function TopBar(props: {
         <span className="topbar-autopause">
           <AutoPauseToggle on={props.playback.autoPause} onChange={props.onAutoPause} />
         </span>
+        {props.playtest}
         <span className="topbar-more">
           <button
             type="button"

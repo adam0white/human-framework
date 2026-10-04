@@ -628,3 +628,37 @@ Pauses per played day (R1 / R2 / R15 / R30, then Eid), seed 7:
 | Prefill confirmed + doctor/Selin whispers | 19 / 16 / 11 / 9, Eid 7 | 10 / 6 / 7 / 6, Eid 5 |
 | Quiet | 10 / 10 / 10 / 9, Eid 8 | 5 / 6 / 4 / 3, Eid 5 |
 | Prefill confirmed + shift/Selin whispers | 19 / 16 / 9 / 7, Eid 8 | 10 / 6 / 3 / 3, Eid 4 |
+
+### Eighth pass (research/decisions.md defaults, engine 1.7.0, 2026-10-04)
+
+`npm run check` passes. Engine 1.7.0. No balance target moved and nothing was retuned. The quiet month still misses Osman's date and pays 300 on R17, and the card defaults keep it (`game.test.ts`).
+
+- **What changed under him.**
+  - Fajr ends at sunrise, not Dhuhr.
+  - The Eid prayer is offered at the mosque from 20 minutes after sunrise until shortly before Dhuhr. It is linked to a recommended norm, and because he keeps the daily prayers he holds it as a quiet commitment.
+  - A prayer he misses stays owed. Sleeping through it or being downed is no fault.
+  - The town offers the make-up (`pray-qada`, at home, 15 minutes) between Dhuhr and Asr, at low importance.
+  - The rule that smoking breaks the fast now cites research/fasting-sources.md §1.
+- **Gentle by construction.**
+  - A make-up appears only as a log line ("make up a missed prayer"). It has no end, no counter and no ledger entry.
+  - The end-of-day tally counts only the five daily prayers, so a make-up or the Eid prayer never changes "He prayed every prayer".
+  - A skip digest that covers Eid morning adds "On Eid morning he joined the prayer at the mosque", and only when he went.
+  - A prayer excused by sleep or unconsciousness gets no ring on the sky band.
+  - The model notes are rewritten to match.
+- **Halil never misses a daily prayer in these six styles, before or after.** So in normal play the make-up never comes up for him.
+  - Osman misses about one prayer a day. He is offered make-ups and does not take them, because he is at the market.
+  - A town test drives the case directly: Halil is downed over Asr on R2, is excused and still owes the prayer, is offered it on R3 between Dhuhr and Asr, and makes it up once.
+- **Fixed on the way.** In cognition, an open make-up used to count as an open prayer window. Ordinary prayers lost their refractory, and Halil prayed at home 13 times in a row inside that window. A make-up no longer opens the obligation it repays.
+
+Measured on seed 7 with the headless players (`apps/site/src/voice/sim/measure.test.ts`, run with `VOICE_MEASURE=1`). Each cell is before (engine 1.6.0, main e9848b8) → after. These style definitions are the probe's own and differ from the sixth-pass probe, so only the silent row compares with that table.
+
+| Player | Days he smoked | Cigarettes on Eid | After-meal habit | Walks | Shifts | Rent | Trust at Eid | Prayers | Missed / owed / made up | Eid prayer |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Silent | 22 → 22 | 5 → 5 | 0.60 → 0.60 | 0 → 0 | 0 → 0 | missed, 300 on R17 (same) | 0.50 → 0.50 | 173 → 173 | 0 / 0 / 0 | not offered → joined |
+| Prefill confirmed + doctor/Selin whispers | 19 → 19 | 2 → 3 | 0.57 → 0.57 | 2 → 2 | 1 → 1 | missed, 300 on R16 (same) | 0.62 → 0.62 | 170 → 170 | 0 / 0 / 0 | not offered → joined |
+| Shift + Selin whispers | 14 → 14 | 3 → 4 | 0.45 → 0.45 | 1 → 1 | 3 → 3 | kept, R14 and R30 (same) | 0.63 → 0.63 | 157 → 157 | 0 / 0 / 0 | not offered → joined |
+| Insist + urge doctor/mosque | 14 → 14 | 3 → 3 | 0.46 → 0.46 | 5 → 5 | 4 → 4 | kept, R15 (same) | 0.52 → 0.52 | 181 → 181 | 0 / 0 / 0 | not offered → joined |
+| Walk (Mention) + Selin | 19 → 19 | 3 → 3 | 0.57 → 0.57 | 28 → 28 | 0 → 0 | missed, 300 on R17 (same) | 0.64 → 0.64 | 177 → 177 | 0 / 0 / 0 | not offered → joined |
+| Walk (Urge) + shift | 13 → 13 | 4 → 4 | 0.42 → 0.42 | 28 → 28 | 0 → 0 | kept, R11 and R23 (same) | 0.62 → 0.62 | 166 → 166 | 0 / 0 / 0 | not offered → joined |
+
+- **Only Eid morning moved.** The Ramadan month is identical in every style. Ending Fajr at sunrise does not change when Halil prays, because he already prays it before sunrise. On Eid, the hour at the mosque shifts his morning, and two styles smoke one more cigarette that day. That is still within the 3–5 noise noted in the sixth pass.

@@ -467,6 +467,7 @@ export function advanceBody(
   if (!b.alive) return;
   const wantAsleep = load.mode === 'sleep';
   if (wantAsleep !== b.asleep) {
+    if (b.asleep) b.lastSleep = { from: b.since, to: p.now };
     b.asleep = wantAsleep;
     b.since = p.now;
   }
@@ -747,6 +748,8 @@ const cloneBody = (b: BodyState): BodyState => {
   }
   if (b.rates) out.rates = { ...b.rates };
   if (b.downed) out.downed = { ...b.downed };
+  if (b.lastSleep) out.lastSleep = { ...b.lastSleep };
+  if (b.lastDowned) out.lastDowned = { ...b.lastDowned };
   if (b.downedBelow) out.downedBelow = { ...b.downedBelow };
   return out;
 };

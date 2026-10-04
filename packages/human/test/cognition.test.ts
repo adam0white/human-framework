@@ -122,8 +122,9 @@ describe('consider', () => {
       norms: [{ normId: 'salah', relation: 'fulfills' }],
       tags: ['worship'],
     };
-    const devout = villager(5, { devout: true });
-    const secular = villager(5, { devout: false });
+    // At 13:00, inside the Dhuhr window (since 1.7.0 Fajr ends at sunrise, so noon falls between windows).
+    const devout = villager(5, { devout: true, now: 13 * 60 });
+    const secular = villager(5, { devout: false, now: 13 * 60 });
     const d =
       consider(devout, pray, contextOf(devout)).terms.find((t) => t.source === 'norm:salah')?.value ?? 0;
     const s =

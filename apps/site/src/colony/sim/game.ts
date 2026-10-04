@@ -527,7 +527,8 @@ export class ColonyGame {
         if (e.kind === 'order') g.issue(e.input, e.nudgeId);
         else if (e.kind === 'cancel') g.cancel(e.orderId);
         else if (e.kind === 'dismiss') g.dismissNudge(e.nudgeId);
-        else g.continueDay();
+        else if (e.kind === 'continue') g.continueDay();
+        else throw new Error(`replay: unknown log entry kind ${String((e as { kind?: unknown }).kind)}`);
       }
       if (g.ended || g.minute >= (until ?? g.endMinute)) break;
       g.advance(1);

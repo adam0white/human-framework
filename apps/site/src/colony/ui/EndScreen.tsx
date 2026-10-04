@@ -239,6 +239,8 @@ export function EndScreen(props: {
   onContinue(): void;
   onAgain(): void;
   onClose(): void;
+  /** Download this run as a playtest file. */
+  onDownload?: () => void;
 }) {
   const days = ([2, 3] as const).filter((d) => props.summaries[d]);
   const latest = days[days.length - 1] ?? 2;
@@ -292,6 +294,13 @@ export function EndScreen(props: {
             Home
           </a>
         </div>
+        {props.onDownload && (
+          <p className="end-playtest">
+            <button type="button" className="btn btn-ghost btn-small" onClick={props.onDownload}>
+              Download playtest file
+            </button>
+          </p>
+        )}
       </div>
     </div>
   );

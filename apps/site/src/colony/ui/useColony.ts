@@ -4,6 +4,14 @@
  * Everything the worker sends passes through `contract.ts` first, so the rest of the UI reads one shape.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { PlaytestStatus } from '../../shared/PlaytestMenu.tsx';
+import {
+  downloadJson,
+  fetchBuild,
+  fetchPlaytestText,
+  PLAYTEST_FILE_NAME,
+  replayParam,
+} from '../../shared/playtest.ts';
 import type { WorkerToMain } from '../protocol.ts';
 import { DEFAULT_SEED, SCENARIO_VERSION } from '../sim/game.ts';
 import type { Prediction, WhyBreakdown } from '../sim/human-side.ts';
@@ -29,6 +37,8 @@ export interface Colony {
   /** End-of-day reports, by day (Day 2, then Day 3 after "Another day"). */
   summaries: Partial<Record<2 | 3, EndSummary>>;
   error: string | null;
+  /** The last playtest export or load. */
+  playtest: PlaytestStatus;
   actions: ColonyActions;
 }
 
@@ -50,6 +60,12 @@ export interface ColonyActions {
   clearWhy(): void;
   predict(input: OrderInput | null): void;
   restart(): void;
+  /** Download this run as a playtest file. */
+  exportPlaytest(): void;
+  /** Replay a playtest file's text in the worker; it replaces this run only if it is valid. */
+  loadPlaytest(text: string): void;
+  clearPlaytest(): void;
+  playtestError(message: string): void;
 }
 
 const AUTO_PAUSE_KEY = 'colony.autoPause';
@@ -90,6 +106,9 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   const [summaries, setSummaries] = useState<Colony['summaries']>({});
   const [error, setError] = useState<string | null>(null);
   const [prediction, setPrediction] = useState<Colony['prediction']>(null);
+  const [playtest, setPlaytest] = useState<PlaytestStatus>(null);
+  /** The run number a playtest load will use; its replies count once the worker says it replayed. */
+  const pendingLoad = useRef(0);
   const predictSeq = useRef(0);
   const predictInputs = useRef(new Map<number, OrderInput>());
   /** Run number: replies from an earlier run (queued before a restart) are dropped. */
@@ -104,7 +123,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
 
   const init = useCallback(
     (w: Worker | null) => {
-      gen.current += 1;
+      gen.current = Math.max(gen.current, pendingLoad.current) + 1;
       setPlayback(START_PLAYBACK(autoPause.current));
       const msg: OutMsg = {
         type: 'init',
@@ -123,8 +142,37 @@ export function useColony(seed = DEFAULT_SEED): Colony {
     worker.current = w;
     w.addEventListener('message', (e: MessageEvent<WorkerToMain>) => {
       const msg = e.data;
+      if (msg.gen === pendingLoad.current && msg.gen !== gen.current) {
+        if (msg.type === 'replayed') {
+          gen.current = msg.gen;
+          setSummaries({});
+          setWhy(null);
+          setPrediction(null);
+          setError(null);
+          whyWant.current = null;
+          predictInputs.current.clear();
+          store.current = emptyStore();
+          setPlaytest({ result: msg.result });
+        } else if (msg.type === 'playtestError') setPlaytest({ error: msg.message });
+        return;
+      }
       if (msg.gen !== gen.current) return;
       switch (msg.type) {
+        case 'playtest': {
+          const file = msg.file;
+          fetchBuild()
+            .then((build) => {
+              downloadJson(PLAYTEST_FILE_NAME.colony, { ...file, build });
+              setPlaytest(null);
+            })
+            .catch((err: unknown) => setPlaytest({ error: `The download failed: ${String(err)}` }));
+          return;
+        }
+        case 'playtestError':
+          setPlaytest({ error: msg.message });
+          return;
+        case 'replayed':
+          return;
         case 'frame': {
           const f = msg.frame;
           const s = store.current;
@@ -173,6 +221,16 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       setError('The simulation sent a message the page could not read.'),
     );
     init(w);
+    const replayUrl = replayParam();
+    if (replayUrl) {
+      setPlaytest({ busy: 'load' });
+      fetchPlaytestText(replayUrl)
+        .then((text) => {
+          pendingLoad.current = gen.current + 1;
+          w.postMessage({ type: 'loadPlaytest', gen: pendingLoad.current, text } satisfies OutMsg);
+        })
+        .catch((err: unknown) => setPlaytest({ error: err instanceof Error ? err.message : String(err) }));
+    }
 
     let raf = 0;
     let last = performance.now();
@@ -243,9 +301,20 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         store.current = emptyStore();
         init(worker.current);
       },
+      exportPlaytest: () => {
+        setPlaytest({ busy: 'export' });
+        send({ type: 'exportPlaytest' });
+      },
+      loadPlaytest: (text) => {
+        setPlaytest({ busy: 'load' });
+        pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
+        send({ type: 'loadPlaytest', gen: pendingLoad.current, text });
+      },
+      clearPlaytest: () => setPlaytest(null),
+      playtestError: (message) => setPlaytest({ error: message }),
     }),
     [send, init],
   );
 
-  return { store, frame, playback, why, prediction, summaries, error, actions };
+  return { store, frame, playback, why, prediction, summaries, error, playtest, actions };
 }

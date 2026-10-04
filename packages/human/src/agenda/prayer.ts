@@ -6,9 +6,31 @@
  * until nightfall"; Khattab translation, quran.com, checked 2026-10-03), with fajr standing for true dawn and
  * maghrib for nightfall as hosts usually tabulate them. The default violating actions are eating and drinking
  * (named in 2:187); anything else a host lists (e.g. smoking) is the host's understanding and should carry its
- * own provenance. Suhoor and iftar lengths are engineering defaults. The Eid prayer's standing differs between
- * schools and is not catalogued, so the helper links no norm unless the host passes one. Nothing here models
- * the end of the Fajr window at sunrise or local moon sighting.
+ * own provenance. Suhoor and iftar lengths are engineering defaults.
+ *
+ * Window boundaries (engine 1.7.0) follow research/decisions.md, which records the framework's default
+ * understanding where schools differ (the most common position overall; engineering choices, not rulings):
+ * - Fajr runs from true dawn until sunrise (agreed across schools; research/prayer-times-sources.md §1). The host
+ *   supplies `sunrise` with the other times.
+ * - Asr begins when a shadow equals its object's length plus the noon shadow (the majority position, and Diyanet's
+ *   calendar; prayer-times-sources.md §1), and Maghrib ends when the red twilight goes (the majority; §2). The
+ *   framework computes no astronomy: a host's `asr` and `isha` times carry these positions, and a host that
+ *   tabulates by another position (Abu Hanifa's two shadow lengths, the white twilight) has chosen differently.
+ *   `DEFAULT_PRAYER_TIMES` and the town calendar are fictional numbers placed where the decided positions put them.
+ * - Isha is valid until true dawn (prayer-times-sources.md §1), so its window runs to the next day's Fajr. Its
+ *   preferred end (midnight, decisions.md) is not distinguished from its valid end: no window here carries a
+ *   preferred part, so delaying Isha past midnight costs nothing extra.
+ * - Disliked (makruh) times: `makruhWindows` gives sunrise until `MAKRUH_DEFAULTS.afterSunrise` minutes after,
+ *   the minutes before Dhuhr (solar zenith) and the last minutes before sunset (prayer-times-sources.md §3;
+ *   decisions.md). The 20 minutes after sunrise is a labelled simplification (Diyanet gives 40-50). Nothing vetoes
+ *   prayer in them; hosts use them to place make-ups and the Eid prayer. The day's own Asr may still be prayed
+ *   before sunset (its window is unchanged).
+ * - The Eid al-Fitr prayer (`eidWindow`, `eidPrayer`): from `afterSunrise` minutes after sunrise until the zenith
+ *   makruh before Dhuhr, congregational, strongly emphasised, no individual make-up
+ *   (research/eid-and-mourning-sources.md §1; decisions.md). It links the catalog's `eid-prayer` norm (recorded
+ *   as recommended: sunnah mu'akkada for most schools, wajib for Hanafis), so missing it is no breach and owes
+ *   nothing.
+ * Nothing here models local moon sighting.
  */
 import type { Commitment, Minute } from '../types.ts';
 import { MINUTES_PER_DAY } from '../types.ts';
@@ -16,12 +38,13 @@ import type { Retimer } from './agenda.ts';
 
 /**
  * A fixed, fictional mid-latitude schedule (minutes of day) used when the host supplies none. Real prayer
- * times depend on location and date; hosts should supply them. Windows here run from each prayer time
- * until the next one (Isha until the next day's Fajr), which simplifies the actual endings (e.g. Fajr
- * ends at sunrise).
+ * times depend on location and date; hosts should supply them. Fajr runs until `sunrise`; every other window
+ * runs until the next prayer time (Isha until the next day's Fajr). `asr` stands for the one-shadow-length time
+ * and `isha` for the end of the red twilight (see SCOPE); the numbers are not computed from any place.
  */
 export const DEFAULT_PRAYER_TIMES = {
   fajr: 300, // 05:00
+  sunrise: 390, // 06:30
   dhuhr: 750, // 12:30
   asr: 960, // 16:00
   maghrib: 1125, // 18:45
@@ -52,14 +75,65 @@ const PRAYER_NAMES = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'] as const;
 export const timesFor = (schedule: PrayerSchedule, day: number): PrayerTimes =>
   typeof schedule === 'function' ? schedule(day) : schedule;
 
-/** Window of prayer `index` (0 = Fajr .. 4 = Isha) on `day`; Isha runs to the next day's Fajr. */
+/**
+ * Window of prayer `index` (0 = Fajr .. 4 = Isha) on `day`. Fajr ends at sunrise (research/decisions.md); Isha
+ * runs to the next day's Fajr; the others run to the next prayer time.
+ */
 function prayerWindow(schedule: PrayerSchedule, day: number, index: number): { from: Minute; until: Minute } {
   const t = timesFor(schedule, day);
   const order = [t.fajr, t.dhuhr, t.asr, t.maghrib, t.isha];
   const base = day * MINUTES_PER_DAY;
   const start = order[index] ?? t.fajr;
-  const next = order[index + 1] ?? timesFor(schedule, day + 1).fajr + MINUTES_PER_DAY;
+  // A plain-JS host from before 1.7.0 may omit sunrise: Fajr then runs to Dhuhr as it used to.
+  const fajrEnd = (t as Partial<PrayerTimes>).sunrise ?? t.dhuhr;
+  const next =
+    index === 0 ? fajrEnd : (order[index + 1] ?? timesFor(schedule, day + 1).fajr + MINUTES_PER_DAY);
   return { from: base + start, until: base + next };
+}
+
+/**
+ * Disliked-time lengths in minutes (research/decisions.md; prayer-times-sources.md §3). `afterSunrise` is the
+ * labelled simplification of decisions.md (about 20 minutes; Diyanet gives 40-50); `beforeDhuhr` follows
+ * Diyanet's "about 10 minutes before Dhuhr enters"; `beforeSunset` stands for "the last minutes before sunset" and
+ * is an engineering default (Diyanet gives 40-50). Sunset is taken as the host's `maghrib`.
+ */
+export const MAKRUH_DEFAULTS = { afterSunrise: 20, beforeDhuhr: 10, beforeSunset: 20 };
+
+/** The three disliked windows of `day` (absolute minutes): after sunrise, before Dhuhr, before sunset. */
+export function makruhWindows(
+  day: number,
+  schedule: PrayerSchedule = DEFAULT_PRAYER_TIMES,
+  lengths: typeof MAKRUH_DEFAULTS = MAKRUH_DEFAULTS,
+): { from: Minute; until: Minute; label: 'sunrise' | 'zenith' | 'sunset' }[] {
+  const t = timesFor(schedule, day);
+  const base = day * MINUTES_PER_DAY;
+  return [
+    { from: base + t.sunrise, until: base + t.sunrise + lengths.afterSunrise, label: 'sunrise' },
+    { from: base + t.dhuhr - lengths.beforeDhuhr, until: base + t.dhuhr, label: 'zenith' },
+    { from: base + t.maghrib - lengths.beforeSunset, until: base + t.maghrib, label: 'sunset' },
+  ];
+}
+
+/** Whether minute `at` falls inside a disliked window of its day. */
+export function inMakruhTime(at: Minute, schedule: PrayerSchedule = DEFAULT_PRAYER_TIMES): boolean {
+  const day = Math.floor(at / MINUTES_PER_DAY);
+  return makruhWindows(day, schedule).some((w) => at >= w.from && at < w.until);
+}
+
+/**
+ * The Eid prayer's window on `day`: from the end of the sunrise makruh until the zenith makruh before Dhuhr
+ * (research/eid-and-mourning-sources.md §1: after sunrise once the kerahat has passed, until zawal).
+ */
+export function eidWindow(
+  day: number,
+  schedule: PrayerSchedule = DEFAULT_PRAYER_TIMES,
+): { from: Minute; until: Minute } {
+  const t = timesFor(schedule, day);
+  const base = day * MINUTES_PER_DAY;
+  return {
+    from: base + t.sunrise + MAKRUH_DEFAULTS.afterSunrise,
+    until: base + t.dhuhr - MAKRUH_DEFAULTS.beforeDhuhr,
+  };
 }
 
 /**
@@ -161,22 +235,28 @@ export function ramadanMeals(
   ];
 }
 
+/** Engineering default importance of the Eid prayer commitment: a quiet pull, below the daily prayers. */
+export const EID_PRAYER_IMPORTANCE = 0.5;
+
 /**
- * A one-off Eid prayer commitment over a host-given window (no recurrence). Its action defaults to 'pray-eid' so
- * the daily prayer windows do not absorb it; no norm is linked unless the host supplies one with provenance.
+ * A one-off Eid prayer commitment over a window (no recurrence; `eidWindow` gives the default one). Its action
+ * defaults to 'pray-eid' so the daily prayer windows do not absorb it. It links the catalog's `eid-prayer` norm
+ * (recommended; research/eid-and-mourning-sources.md §1) unless the host passes another `normId`, or `null` for
+ * none. There is no individual make-up: a recommended norm owes none.
  */
 export function eidPrayer(
   window: { from: Minute; until: Minute },
-  opts: { normId?: string; importance?: number; actions?: string[]; label?: string } = {},
+  opts: { normId?: string | null; importance?: number; actions?: string[]; label?: string } = {},
 ): Omit<Commitment, 'id' | 'status'> {
+  const normId = opts.normId === undefined ? 'eid-prayer' : opts.normId;
   return {
     kind: 'worship',
     actions: [...(opts.actions ?? ['pray-eid'])],
     from: window.from,
     until: window.until,
-    importance: opts.importance ?? PRAYER_IMPORTANCE,
+    importance: opts.importance ?? EID_PRAYER_IMPORTANCE,
     label: opts.label ?? 'Eid prayer',
-    ...(opts.normId !== undefined ? { normId: opts.normId } : {}),
+    ...(normId !== null ? { normId } : {}),
   };
 }
 

@@ -8,6 +8,10 @@
  * engine produced one more day on (people snapshots with `engine` removed, then world state), so the test can tell
  * whether the current engine continues exactly as the old one did. To regenerate: `git archive` the commit's
  * packages/human/src into a scratch dir and run the same steps as `continueRun` below against its index.ts.
+ *
+ * Engine 1.7.0 changed behaviour on purpose (Fajr ends at sunrise, missed obligatory worship owes a make-up), so the
+ * old engines' continuations no longer match: the 1.4.0 to 1.6.0 engines all produced the fixture `continued`
+ * digests (checked through 1.6.0), and `CONTINUED_1_7` pins what 1.7.0 produces from the same saves.
  */
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -53,6 +57,11 @@ const strip = (people: Person[]) =>
     const { engine: _engine, ...rest } = j;
     return rest;
   });
+/** One more day on from each fixture save under engine 1.7.0 (the village saves are identical in both fixtures). */
+const CONTINUED_1_7 = {
+  village: '59e55a0bf9738a27ed6a636d88ca810a69dfd496f4c39cab589ae0143617db5a',
+  town: 'c814fe1a9f8220f1b1a018c0d06e262f225418a88400bf232324a65153c3fc5f',
+};
 const pray: Record<string, Suggestion> = { halil: { voiceId: 'you', action: 'pray', strength: 0.6 } };
 
 function continueRun(kind: 'village' | 'town', run: Run) {
@@ -80,8 +89,8 @@ describe('migrate: saves from earlier engines restore under the current one', ()
     expect(v140.engine).toBe('1.4.0');
     expect(v150.engine).toBe('1.5.0');
     for (const j of v140.village.saved.people) expect((j as { engine: string }).engine).toBe('1.4.0');
-    expect(ENGINE_VERSION).toBe('1.6.0');
-    expect(migratableVersions()).toEqual(['1.4.0', '1.5.0', '1.6.0']);
+    expect(ENGINE_VERSION).toBe('1.7.0');
+    expect(migratableVersions()).toEqual(['1.4.0', '1.5.0', '1.6.0', '1.7.0']);
   });
 
   test('migrate stamps the current version and leaves the input alone', () => {
@@ -95,16 +104,18 @@ describe('migrate: saves from earlier engines restore under the current one', ()
     expect(restOut).toEqual(restIn);
   });
 
-  test('1.4.0 village: restores and continues exactly as the 1.4.0 engine did', () => {
-    // The village never uses standing advice, so the 1.4.0 -> 1.5.0 rule change does not touch it.
-    expect(continueRun('village', v140.village).digest).toBe(v140.village.continued);
+  test('1.4.0 village: restores and continues under the 1.7.0 rules', () => {
+    const d = continueRun('village', v140.village).digest;
+    expect(d).toBe(CONTINUED_1_7.village);
+    // The 1.7.0 prayer rules reach the village (it has devout villagers), so it no longer matches the old engine.
+    expect(d).not.toBe(v140.village.continued);
   });
 
-  test('1.5.0 village and town: restore and continue exactly as the 1.5.0 engine did', () => {
-    expect(continueRun('village', v150.village).digest).toBe(v150.village.continued);
+  test('1.5.0 village and town: restore and continue under the 1.7.0 rules', () => {
+    expect(continueRun('village', v150.village).digest).toBe(CONTINUED_1_7.village);
     const town = v150.town;
     if (!town) throw new Error('fixture lacks town');
-    expect(continueRun('town', town).digest).toBe(town.continued);
+    expect(continueRun('town', town).digest).toBe(CONTINUED_1_7.town);
   });
 
   test('a migrated save round-trips: restore(snapshot(restore(old))) equals restore(old)', () => {
@@ -126,5 +137,28 @@ describe('migrate: saves from earlier engines restore under the current one', ()
     expect(() => restore({ ...j, engine: '1.3.0' })).toThrow(/1\.4\.0, 1\.5\.0, 1\.6\.0/);
     expect(() => restore({ ...j, engine: '9.0.0' })).toThrow(/engine 9\.0\.0/);
     expect(() => migrate({ schema: 'human/person@1' })).toThrow(/missing engine/);
+  });
+
+  test('a version naming a built-in property matches no migration step (security review 2026-10-04)', () => {
+    const j = rt(v140.village.saved.people[0]) as Record<string, unknown>;
+    for (const v of ['__proto__', 'constructor', 'toString', 'hasOwnProperty'])
+      expect(() => migrate({ ...j, engine: v }), v).toThrow(/unsupported|engine/);
+    expect(migratableVersions()).not.toContain('__proto__');
+  });
+
+  test('restore drops unknown top-level keys and malformed 1.7.0 optional state', () => {
+    const j = rt(snapshot(restore(rt(v140.village.saved.people[0])))) as unknown as Record<string, unknown>;
+    const body = j.body as Record<string, unknown>;
+    const p = restore({
+      ...j,
+      injected: { evil: true },
+      __extra: 1,
+      body: { ...body, lastSleep: { from: 'x' }, lastDowned: { from: 1, to: 2 } },
+    });
+    const keys = Object.keys(p);
+    expect(keys).not.toContain('injected');
+    expect(keys).not.toContain('__extra');
+    expect(p.body.lastSleep).toBeUndefined();
+    expect(p.body.lastDowned).toEqual({ from: 1, to: 2 });
   });
 });

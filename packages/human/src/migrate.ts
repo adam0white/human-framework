@@ -3,8 +3,8 @@
  * `migrate` walks a chain of steps keyed by the version they upgrade from, one version at a time, and stamps each
  * step's target version on the JSON. `restore` calls it, so a host can pass an old save straight to `restore`.
  *
- * Covers saves from engine 1.4.0 onward. 1.4.0, 1.5.0 and 1.6.0 share the person shape (1.6.0 only adds optional
- * fields that are absent by default), so those steps only stamp the version; `restore` then fills and sanitizes
+ * Covers saves from engine 1.4.0 onward. 1.4.0 through 1.7.0 share the person shape (1.6.0 and 1.7.0 only add
+ * optional fields that are absent by default), so those steps only stamp the version; `restore` then fills and sanitizes
  * the slices as for any save. A migrated save continues under the current engine's rules: it restores and runs,
  * but it does not reproduce what the old engine would have done next where the rules changed (1.4.0 to 1.5.0
  * changed how standing advice is heard). Saves older than 1.4.0 and unknown versions are refused with an error.
@@ -37,7 +37,16 @@ export const MIGRATIONS: Readonly<Record<string, MigrationStep>> = {
     note: 'person shape unchanged; commanded control, crisis, injury depth and groups are optional and start absent',
     apply: stamp,
   },
+  '1.6.0': {
+    to: '1.7.0',
+    note: 'person shape unchanged; last sleep, last downing and the downed lapse are optional and start absent; missed worship now owes a make-up from here on',
+    apply: stamp,
+  },
 };
+
+/** The step upgrading from `v`, looked up as an own property only (a version of "__proto__" matches nothing). */
+const stepFrom = (v: string): MigrationStep | undefined =>
+  Object.hasOwn(MIGRATIONS, v) ? MIGRATIONS[v] : undefined;
 
 /** Engine versions `migrate` accepts, oldest first (the current version included). */
 export function migratableVersions(): string[] {
@@ -45,7 +54,7 @@ export function migratableVersions(): string[] {
   let v: string | undefined = '1.4.0';
   while (v !== undefined) {
     out.push(v);
-    v = MIGRATIONS[v]?.to;
+    v = stepFrom(v)?.to;
   }
   return out;
 }
@@ -63,7 +72,7 @@ export function migrate(json: unknown): Json {
   let guard = 0;
   while (out.engine !== ENGINE_VERSION) {
     const v = String(out.engine);
-    const step = MIGRATIONS[v];
+    const step = stepFrom(v);
     if (!step || guard++ > 64)
       throw new Error(
         `migrate: save is from engine ${from}; this engine (${ENGINE_VERSION}) migrates ${migratableVersions().join(', ')}`,

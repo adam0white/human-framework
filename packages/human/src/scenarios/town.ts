@@ -15,6 +15,8 @@
 import {
   applyExemptions,
   calendarRetimer,
+  eidPrayer,
+  eidWindow,
   owedMakeUps,
   type PrayerCalendar,
   prayerWindows,
@@ -147,6 +149,9 @@ export const TOWN_DEFAULTS = {
   halilCallTimesKept: 7,
   /** On Eid, tea with Rıza and the grave from this minute of day. */
   eidMorningFrom: 9 * 60,
+  /** Missed prayers offered for make-up per day, and how much that quiet commitment weighs (engineering defaults). */
+  qadaPerDay: 2,
+  qadaImportance: 0.3,
 };
 
 /** The day of Eid al-Fitr: the day after the last fast (day 31 with 30 fasts from day 1). */
@@ -192,11 +197,14 @@ export function selinEidCallMinute(state: Pick<TownState, 'halilCallTimes'>): nu
 export const homeOf = (id: PersonId): string => (id === 'selin' ? 'city' : `${id}-home`);
 
 /**
- * Per-day prayer times for a spring Ramadan in Anatolia: fajr a minute earlier and maghrib/isha a minute later
- * each day from the defaults. The drift is an engineering stand-in for a real calendar, not an astronomical one.
+ * Per-day prayer times for a spring Ramadan in Anatolia: fajr and sunrise a minute earlier and maghrib/isha a minute
+ * later each day from the defaults. The drift is an engineering stand-in for a real calendar, not an astronomical
+ * one. Following research/decisions.md, Fajr ends at `sunrise`; `asr` stands for the one-shadow-length time and
+ * `isha` for the end of the red twilight (90 minutes after sunset). The numbers are fictional, not computed.
  */
 export const townCalendar: PrayerCalendar = (day) => ({
   fajr: 300 - day,
+  sunrise: 390 - day,
   dhuhr: 750,
   asr: 960 + Math.floor(day / 2),
   maghrib: 1125 + day,
@@ -262,8 +270,10 @@ export interface TownOptions {
   /** Player's voice id in Halil's will (default 'you'). */
   playerVoice?: string;
   /**
-   * Offer the Eid prayer at the mosque on Eid morning (default false). Not sourced in research/: when on, it is a
-   * town custom he may join, with no commitment, norm or standing (an engineering assumption).
+   * The Eid prayer at the mosque on Eid morning (default true since engine 1.7.0, research/decisions.md): offered
+   * from `eidWindow` (20 minutes after sunrise until the zenith before Dhuhr), congregational, linked to the
+   * recommended `eid-prayer` norm (research/eid-and-mourning-sources.md §1), and a quiet commitment for those who
+   * keep the daily prayers. No individual make-up. Pass false to leave it out.
    */
   eidPrayer?: boolean;
   /** First day the next month's rent falls due (default `TOWN_DEFAULTS.rentDueDay`). */
@@ -301,6 +311,11 @@ const HALIL_LEXICON: Lexicon = {
     talk: { base: 'talk', past: 'talked', gerund: 'talking' },
     smoke: { base: 'smoke', past: 'smoked', gerund: 'smoking' },
     'pray-home': { base: 'pray at home', past: 'prayed at home', gerund: 'praying at home' },
+    'pray-qada': {
+      base: 'make up a missed prayer',
+      past: 'made up a missed prayer',
+      gerund: 'making up a missed prayer',
+    },
     'pray-eid': {
       base: 'join the Eid prayer',
       past: 'joined the Eid prayer',
@@ -343,15 +358,22 @@ export function townSpecs(opts: TownOptions = {}): Record<TownPersonId, PersonSp
   const days = opts.ramadanDays ?? T.ramadanDays;
   const player = opts.playerVoice ?? 'you';
   const born = (age: number) => now - age * MINUTES_PER_YEAR;
+  const eidDay = first + days;
+  const eidWindowAt = eidWindow(eidDay, townCalendar);
   const worship = (practice: number): NonNullable<PersonSpec['commitments']> =>
     practice >= 0.5
-      ? prayerWindows(day, townCalendar).map((c, i) =>
-          // A window already closed at creation starts tomorrow: it was not missed, it had not begun for him yet
-          // (game design review 2026-10-03: "ashamed (a prayer missed)" on the first screen).
-          c.until <= now
-            ? { ...c, from: c.from + MINUTES_PER_DAY, until: c.until + MINUTES_PER_DAY, id: `prayer${i}` }
-            : { ...c, id: `prayer${i}` },
-        )
+      ? [
+          ...prayerWindows(day, townCalendar).map((c, i) =>
+            // A window already closed at creation starts tomorrow: it was not missed, it had not begun for him yet
+            // (game design review 2026-10-03: "ashamed (a prayer missed)" on the first screen).
+            c.until <= now
+              ? { ...c, from: c.from + MINUTES_PER_DAY, until: c.until + MINUTES_PER_DAY, id: `prayer${i}` }
+              : { ...c, id: `prayer${i}` },
+          ),
+          ...(opts.eidPrayer !== false && eidWindowAt.until > now
+            ? [{ ...eidPrayer(eidWindowAt), id: 'eid-prayer' }]
+            : []),
+        ]
       : [];
   // Tea is drink: the tea house is an evening place in Ramadan.
   const fast = (violatedBy: string[] = ['eat', 'drink', 'tea']): NonNullable<PersonSpec['commitments']> => [
@@ -420,9 +442,9 @@ export function townSpecs(opts: TownOptions = {}): Record<TownPersonId, PersonSp
       ],
       commitments: [
         ...worship(halilPractice),
-        // 'tea' is drinking. 'smoke' breaking the fast is the TOWN'S ENGINEERING ASSUMPTION (agenda/prayer.ts asks
-        // host additions beyond eating and drinking to carry provenance): it follows the widely held contemporary
-        // view as Halil would understand it, but no source for it is recorded in research/ yet (review 2026-10-03).
+        // 'tea' is drinking. 'smoke' breaks the fast as Halil understands it: Diyanet's Board and Hanafi fatwa sites
+        // hold that smoking breaks the fast and the day is made up (research/fasting-sources.md §1; the framework
+        // default per research/decisions.md). Expiation (kaffara) is disputed and not modelled.
         ...fast(['eat', 'drink', 'tea', 'smoke']),
         job('job', 'work-repair', 8 * 60, 12 * 60, 0.7),
         // Osman's date: 300 of the 600 owed by Ramadan 15, 20:00. One payment, no recurrence inside the game.
@@ -710,8 +732,24 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
     // 1990 / Muslim 1137 as cited by review 2026-10-03; sunnah.com returned 403, so not verified here and not
     // recorded in research/ yet). Skipping the day is a scheduling choice, not a ruling the framework applies.
     // Note: docs/games/voice.md calls day 30 Eid; with these defaults (30 fasts from day 1) Eid is day 31.
+    // Missed prayers (qada, research/decisions.md) are offered quietly the same day, between Dhuhr and Asr: a window
+    // with no disliked time in it (agenda/prayer.ts `makruhWindows`), at most `qadaPerDay` a day, at low importance.
+    // A make-up left undone carries no blame and is offered again on a later day (agenda SCOPE, missed duties).
     let k = 0;
+    let qada = 0;
     for (const owed of owedMakeUps(p)) {
+      if (owed.kind === 'worship') {
+        if (qada >= T.qadaPerDay) continue;
+        qada++;
+        const t = townCalendar(day);
+        scheduleMakeUp(
+          p,
+          owed.ofId,
+          { from: day * MINUTES_PER_DAY + t.dhuhr + 15, until: day * MINUTES_PER_DAY + t.asr - 15 },
+          { importance: T.qadaImportance, actions: ['pray-qada'] },
+        );
+        continue;
+      }
       const d = first + days + 1 + k++;
       const t = townCalendar(d);
       scheduleMakeUp(p, owed.ofId, {
@@ -852,6 +890,24 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
         norms: [{ normId: 'salah', relation: 'fulfills' }],
         tags: ['worship'],
       });
+    // A make-up prayer scheduled for now (see `onDay`): quiet, at home, no norm term of its own (the make-up
+    // commitment's low importance is its whole pull).
+    if (
+      p.agenda.commitments.some(
+        (c) => c.status === 'pending' && c.actions.includes('pray-qada') && now >= c.from && now < c.until,
+      )
+    )
+      out.push({
+        id: 'pray-qada',
+        action: 'pray-qada',
+        label: 'make up a missed prayer',
+        placeId: home,
+        duration: 15,
+        effort: 0.1,
+        focus: 0.3,
+        advertises: { meaning: 0.05 },
+        tags: ['worship'],
+      });
     if (!daytime) return out;
     const calls = eid || day > eidDay ? mod >= T.eidCallFrom : mod >= 18 * 60;
     const talk = (other: PersonId, placeId: string, action: 'talk' | 'tea' | 'call', label: string) => {
@@ -925,18 +981,21 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
           if (call?.id === 'call:selin') call.targetId = 'selin';
         }
         // Nuran's grave: after Asr on any day, and from the morning on Eid.
-        // The Eid prayer (only with `eidPrayer`): a town custom he may join, no commitment, norm or standing.
-        if (opts.eidPrayer && eid) {
-          const fajr = townCalendar(day).fajr;
-          if (mod >= fajr + 120 && mod < fajr + 240)
+        // The Eid prayer (on unless `eidPrayer: false`): congregational at the mosque over `eidWindow`, linked to the
+        // recommended 'eid-prayer' norm (research/eid-and-mourning-sources.md §1). A quiet option, not a goal.
+        if (opts.eidPrayer !== false && eid) {
+          const w = eidWindow(day, townCalendar);
+          if (now >= w.from && now < w.until)
             out.push({
               id: 'pray-eid',
               action: 'pray-eid',
               label: 'join the Eid prayer at the mosque',
               placeId: 'mosque',
+              targetId: 'mosque',
               duration: 60,
               effort: 0.15,
               advertises: { meaning: 0.15, belonging: 0.3 },
+              norms: [{ normId: 'eid-prayer', relation: 'fulfills' }],
               tags: ['worship', 'social'],
             });
         }
@@ -1175,6 +1234,8 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
           needs: aff.placeId === 'mosque' ? { meaning: 0.1, belonging: 0.1 } : { meaning: 0.1 },
           summary: aff.placeId === 'mosque' ? 'prayed at the mosque' : 'prayed at home',
         });
+      case 'pray-qada':
+        return done({ ...base, needs: { meaning: 0.05 }, summary: 'made up a missed prayer' });
       case 'pray-eid':
         return done({ ...base, needs: { meaning: 0.15, belonging: 0.3 }, summary: 'joined the Eid prayer' });
       case 'visit-grave':
