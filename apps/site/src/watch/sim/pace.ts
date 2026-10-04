@@ -37,7 +37,7 @@ export class Pacer {
     if (s.phase === 'dusk') return DUSK_RATE;
     if (s.phase !== 'night') return 0;
     // A card is open: 1/16 of the watch speed while the Keeper reads it.
-    if (s.moment) return DUSK_RATE;
+    if (s.moment && s.minute < s.moment.until) return DUSK_RATE;
     const chosen = RATE[this.speed];
     return this.slowed(run) ? Math.min(chosen, RATE.tactical) : chosen;
   }

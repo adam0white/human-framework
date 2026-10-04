@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Input } from './night.ts';
-import { Pacer, type Speed } from './pace.ts';
+import { DUSK_RATE, Pacer, type Speed } from './pace.ts';
 import { endState, replay, WatchRun } from './run.ts';
 import { nextRandom } from './state.ts';
 
@@ -94,7 +94,10 @@ describe('Night Watch input log and playtest export', () => {
       const slowed = pacer.slowed(run);
       if (slowed) {
         sawSlow = true;
-        expect(pacer.rate(run)).toBe(1);
+        // An open card slows play further, to the dusk rate, so there is time to read it.
+        expect(pacer.rate(run)).toBe(
+          run.state.moment && run.state.minute < run.state.moment.until ? DUSK_RATE : 1,
+        );
       } else if (sawSlow) {
         sawFastAfter = true;
         expect(pacer.rate(run)).toBe(12);

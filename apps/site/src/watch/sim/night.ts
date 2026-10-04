@@ -64,7 +64,7 @@ import {
   watcherDef,
 } from './config.ts';
 import { advanceDay } from './day.ts';
-import { answerMoment, checkMoments } from './moments.ts';
+import { answerMoment, catchLeaving, checkMoments } from './moments.ts';
 import { arrive, isPost, KEEPER_ID, personOf, placeOfActivity, WatchWorld } from './people.ts';
 import {
   type Alert,
@@ -251,7 +251,9 @@ function enterDawn(s: WatchState): void {
     const gotKinds = (['wolf', 'thief'] as const).filter((k) => (got[k] ?? 0) > 0);
     const drivenKinds = (['wolf', 'thief'] as const).filter((k) => (driven[k] ?? 0) > 0);
     const parts: string[] = [];
-    if (gotKinds.length > 0 && posted.length === 0) parts.push(`Nobody stood ${the}.`);
+    // `posted` is who stands there at dawn; someone who drove a threat off earlier stood it for a while.
+    if (gotKinds.length > 0 && posted.length === 0)
+      parts.push(heroes.length > 0 ? `Nobody held ${the} to the end.` : `Nobody stood ${the}.`);
     for (const kind of gotKinds) {
       const g = got[kind] ?? 0;
       parts.push(
@@ -534,6 +536,7 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
     const clarity = seen ? 0.9 : 0.35;
     const leaving = action === 'flee' || action === 'run-off' || action === 'sleep' || action === 'go-home';
     if (leaving && where && !p.body.downed) {
+      if (seen) catchLeaving(s, id, action, where);
       const kind: NightNote['kind'] =
         action === 'flee' ? 'fled' : action === 'run-off' ? 'ran' : action === 'sleep' ? 'slept' : 'home';
       note(s, { who: id, kind, section: where });

@@ -20,7 +20,7 @@ import {
   type Suggestion,
   type SuggestionResolution,
 } from '@human/framework';
-import { type PostId, postSection, type SectionId, type WatcherId, watcherDef } from './config.ts';
+import { POSTS, type PostId, postSection, type SectionId, type WatcherId, watcherDef } from './config.ts';
 import { fearAt, litSection, PRESS_STRENGTH, presentIds, ringBell } from './night.ts';
 import { isPost, KEEPER_ID, personOf, WatchWorld } from './people.ts';
 import type { Press, WatchState } from './state.ts';
@@ -49,26 +49,29 @@ export interface Moment {
   until: number;
   text: string;
   options: MomentOption[];
+  /** The post a 'urge' answer asks them back to (set when the card catches them already leaving). */
+  post?: PostId;
 }
 
 export interface Read {
   /** 'likely' | 'unsure' | 'won't' | 'can't tell'. */
-  word: 'likely' | 'unsure' | "won't" | "can't tell";
+  word: 'likely' | 'grudging' | 'unsure' | "won't" | "can't tell";
   /** How sure the Keeper is, 0..1. */
   confidence: number;
   /** A short why in the person's voice, when the read is not 'likely'. */
   why?: string;
 }
 
-function offersFor(s: WatchState, who: WatcherId): Affordance[] {
+function offersFor(s: WatchState, who: WatcherId, expect = false): Affordance[] {
   const p = personOf(s, who);
-  return p ? new WatchWorld(s).affordancesFor(p) : [];
+  return p ? new WatchWorld(s, expect).affordancesFor(p) : [];
 }
 
 function toRead(res: SuggestionResolution, confidence: number): Read {
   if (confidence < 0.2) return { word: "can't tell", confidence };
-  if (res.verdict === 'assented' || res.verdict === 'complied' || res.verdict === 'commanded')
-    return { word: 'likely', confidence };
+  if (res.verdict === 'assented') return { word: 'likely', confidence };
+  // Complied: does it, but would rather not (and it costs them some autonomy).
+  if (res.verdict === 'complied' || res.verdict === 'commanded') return { word: 'grudging', confidence };
   const why = res.says || undefined;
   if (res.verdict === 'deferred' || res.verdict === 'modified')
     return { word: 'unsure', confidence, ...(why ? { why } : {}) };
@@ -88,7 +91,16 @@ export function readPosting(s: WatchState, who: WatcherId, post: PostId, press: 
   if (press === 'insist') sug.insist = true;
   // At dusk the post is offered as it will be at nightfall (free of others), so read against a copy of the
   // places with the watcher already standing there.
-  const offers = offersFor(s, who);
+  // At dusk the Keeper reads the night ahead: the scout's warned stretch as dangerous already, and a post as free
+  // when whoever stands there now is posted elsewhere (they will move at nightfall).
+  let view = s;
+  if (s.phase === 'dusk') {
+    const place = { ...s.place };
+    for (const [id, pl] of Object.entries(place))
+      if (id !== who && pl === post && s.posts[id as WatcherId] !== post) place[id as WatcherId] = 'village';
+    view = { ...s, place };
+  }
+  const offers = offersFor(view, who, s.phase === 'dusk');
   if (!offers.some((a) => a.id === `post:${post}`))
     return { word: "won't", confidence: 1, why: 'Someone stands there.' };
   const { resolution, confidence } = predictAs(s.keeper, p, offers, sug, { now: s.minute });
@@ -120,6 +132,8 @@ export function readWords(r: Read): string {
   switch (r.word) {
     case 'likely':
       return `likely${sure}`;
+    case 'grudging':
+      return `will, grudgingly${sure}`;
     case 'unsure':
       return `might${sure}`;
     case "won't":
@@ -138,12 +152,17 @@ export function bellWords(b: ReturnType<typeof readBell>): string {
       : 'holds';
 }
 
-/** Whether a watcher's true choice right now would take them off the wall (the waver trigger). Pure. */
-function wavering(s: WatchState, who: WatcherId): boolean {
+/** Whether a watcher's true choice right now would take them off the wall, and why (the waver trigger). Pure. */
+function wavering(s: WatchState, who: WatcherId): 'fear' | 'tired' | null {
   const p = personOf(s, who);
   const pl = s.place[who];
-  if (!p || !isPost(pl) || p.body.downed || p.activity?.action !== 'hold-post') return false;
-  if (fearAt(p, postSection(pl)) < 0.25) return false;
+  if (
+    !p ||
+    !isPost(pl) ||
+    p.body.downed ||
+    !['hold-post', 'sit', 'doze', 'eat'].includes(p.activity?.action ?? '')
+  )
+    return null;
   const sug: Suggestion = {
     voiceId: KEEPER_ID,
     affordanceId: `post:${pl}`,
@@ -151,7 +170,9 @@ function wavering(s: WatchState, who: WatcherId): boolean {
   };
   const res = predict(p, offersFor(s, who), sug);
   const away = res.insteadAffordanceId ?? '';
-  return res.verdict === 'refused' || ['flee', 'run-off', 'go-home', 'sleep'].includes(away);
+  if (away === 'sleep') return 'tired';
+  if (fearAt(p, postSection(pl)) < 0.25) return null;
+  return res.verdict === 'refused' || ['flee', 'run-off', 'go-home'].includes(away) ? 'fear' : null;
 }
 
 function carded(s: WatchState, kind: MomentKind, who: WatcherId): boolean {
@@ -229,7 +250,7 @@ export function checkMoments(s: WatchState): void {
       const r = q ? readPosting(s, sub, pl, 'urge') : { word: "can't tell" as const, confidence: 0 };
       options.push({
         id: `send:${sub}`,
-        label: `Let her go; send ${watcherDef(sub).name} to the post`,
+        label: `Let ${def.sex === 'female' ? 'her' : 'him'} go; send ${watcherDef(sub).name} to the post`,
         read: readWords(r),
       });
     }
@@ -245,7 +266,8 @@ export function checkMoments(s: WatchState): void {
     return;
   }
   for (const who of here) {
-    if (carded(s, 'waver', who) || !wavering(s, who)) continue;
+    const why = carded(s, 'waver', who) ? null : wavering(s, who);
+    if (!why) continue;
     const def = watcherDef(who);
     const options: MomentOption[] = [
       { id: 'let', label: `Let ${def.name} go` },
@@ -253,9 +275,46 @@ export function checkMoments(s: WatchState): void {
     ];
     if (!s.rope.snapped)
       options.push({ id: 'bell', label: `Ring for ${def.name} to hold`, read: bellWords(readBell(s, who)) });
-    open(s, { kind: 'waver', who, section: lit, text: `${def.name} looks back at the steps.`, options });
+    open(s, {
+      kind: 'waver',
+      who,
+      section: lit,
+      text:
+        why === 'tired'
+          ? `${def.name} can barely keep ${def.sex === 'female' ? 'her' : 'his'} eyes open.`
+          : `${def.name} looks back at the steps.`,
+      options,
+    });
     return;
   }
+}
+
+/**
+ * A watcher on the lit stretch has just started to leave it (flee, go home, sleep, run): the Keeper sees them go
+ * and gets one card to call them back. Their next decision may not come in time to see it coming, so this catches
+ * the act itself. Counts against the night's cards and the person's one waver card.
+ */
+export function catchLeaving(s: WatchState, who: WatcherId, action: string, section: SectionId): void {
+  if (s.moment || s.momentLog.length >= MOMENTS_PER_NIGHT || carded(s, 'waver', who)) return;
+  const def = watcherDef(who);
+  const post = s.posts[who] ?? POSTS.find((p) => p.section === section)?.id;
+  const where =
+    action === 'sleep' || action === 'go-home'
+      ? 'is going home'
+      : action === 'run-off'
+        ? 'is running from the wall'
+        : 'is heading for the hall';
+  open(s, {
+    kind: 'waver',
+    who,
+    section,
+    text: `${def.name} ${where}.`,
+    options: [
+      { id: 'let', label: `Let ${def.name} go` },
+      { id: 'urge', label: `Call ${def.sex === 'female' ? 'her' : 'him'} back` },
+    ],
+    ...(post ? { post } : {}),
+  });
 }
 
 function sectionGap(a: SectionId, b: SectionId): number {
@@ -278,7 +337,7 @@ export function answerMoment(s: WatchState, id: number, choice: string): boolean
   if (s.phase !== 'night' || !m || m.id !== id || !m.options.some((o) => o.id === choice)) return false;
   const who = m.who;
   const pl = s.place[who];
-  if (choice === 'urge' && isPost(pl)) ask(s, who, `post:${pl}`);
+  if (choice === 'urge' && (isPost(pl) || m.post)) ask(s, who, `post:${isPost(pl) ? pl : m.post}`);
   else if (choice === 'bell') {
     if (!ringBell(s, who)) return false;
   } else if (choice === 'let') {

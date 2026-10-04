@@ -216,7 +216,8 @@ export interface Danger {
 }
 
 /** What a person standing at `section` could know of: tokens close enough to be seen moving, and the scout. */
-export function sectionDanger(s: WatchState, section: SectionId): Danger {
+/** `expect`: read the warned section as it will be at night (the Keeper's dusk reads). */
+export function sectionDanger(s: WatchState, section: SectionId, expect = false): Danger {
   let n = 0;
   let wolf = false;
   for (const t of s.tokens) {
@@ -226,7 +227,7 @@ export function sectionDanger(s: WatchState, section: SectionId): Danger {
     if (t.kind === 'wolf') wolf = true;
   }
   if (n === 0)
-    return section === s.warned && s.phase === 'night'
+    return section === s.warned && (s.phase === 'night' || expect)
       ? { chance: 0.08, severity: 0.3 }
       : { chance: 0, severity: 0 };
   return { chance: Math.min(0.75, 0.2 + 0.12 * n), severity: wolf ? 0.5 : 0.35 };
@@ -283,7 +284,11 @@ export function placeOfActivity(act: Activity): Place | undefined {
 
 export class WatchWorld implements World {
   readonly catalog = [...DEFAULT_NORMS, ...WATCH_NORMS];
-  constructor(private readonly s: WatchState) {}
+  /** `expect`: offer the warned section as dangerous already (for the Keeper's dusk reads; never stepped). */
+  constructor(
+    private readonly s: WatchState,
+    private readonly expect = false,
+  ) {}
 
   now(): number {
     return this.s.minute;
@@ -308,7 +313,7 @@ export class WatchWorld implements World {
       if (occupied(s, post, p.id) && here !== post) continue;
       if (night && post !== here && s.posts[id] !== post && asked !== `post:${post}`) continue;
       const section = postSection(post);
-      const d = sectionDanger(s, section);
+      const d = sectionDanger(s, section, this.expect);
       const others = atSection(s, section, p.id);
       const a: Affordance = {
         id: `post:${post}`,
@@ -335,7 +340,7 @@ export class WatchWorld implements World {
     if (isPost(here)) {
       // Sitting or eating at a post under threat is as exposed as standing it: fear pulls from all three alike,
       // so the choice it makes is to leave the wall, not to sit down on it.
-      const exposed = sectionDanger(s, postSection(here)).chance > 0;
+      const exposed = sectionDanger(s, postSection(here), this.expect).chance > 0;
       out.push({
         id: `sit:${here}`,
         action: 'sit',

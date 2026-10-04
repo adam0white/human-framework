@@ -300,7 +300,10 @@ function Impressions({ w }: { w: FrameWatcher }) {
 function whereWords(w: FrameWatcher, phase: Frame['phase']): string {
   const posted = w.posted
     ? `${sectionName(postSection(w.posted))}, ${PRESS_WORDS[w.press].done}`
-    : 'not posted';
+    : phase === 'dusk'
+      ? 'not posted · will find a spot on the wall'
+      : 'not posted';
+  if (!w.posted && phase === 'dusk' && !w.post) return posted;
   const stands = w.post ? `on the ${sectionName(postSection(w.post))}` : awayWords(w.place, phase);
   if (w.post && w.post === w.posted) return `${posted} · there now`;
   return `${posted} · ${stands}`;

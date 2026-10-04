@@ -143,10 +143,13 @@ function postingReads(s: WatchState): Frame['postingReads'] {
   for (const id of presentIds(s)) {
     const post = s.posts[id];
     if (!post) continue;
+    const ask = readPosting(s, id, post, 'ask');
+    // When the Keeper expects an ask to do, pressing harder only spends their goodwill: say so.
+    const needless = ask.word === 'likely' ? '; pressing may cost goodwill' : '';
     reads[id] = {
-      ask: readWords(readPosting(s, id, post, 'ask')),
-      urge: readWords(readPosting(s, id, post, 'urge')),
-      insist: readWords(readPosting(s, id, post, 'insist')),
+      ask: readWords(ask),
+      urge: readWords(readPosting(s, id, post, 'urge')) + needless,
+      insist: readWords(readPosting(s, id, post, 'insist')) + needless,
     };
   }
   readCache = { key, reads };
