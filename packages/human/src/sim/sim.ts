@@ -171,7 +171,9 @@ export type SimEventKind =
   | 'converse'
   | 'contagion'
   | 'command'
-  | 'release';
+  | 'release'
+  | 'onset'
+  | 'stage';
 
 export interface SimEvent {
   at: Minute;
