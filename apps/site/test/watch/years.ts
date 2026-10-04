@@ -13,13 +13,19 @@ import { planInputs } from './plans.ts';
 /** Called once as each year ends (at the next winter's first dusk) and once if the village falls. */
 export type YearHook = (s: WatchState, year: number) => void;
 
-/** Plays `years` whole years (to the first dusk of year `years + 1`) or until the village falls. */
-export function playYears(seed: number, years: number, onYear?: YearHook): WatchRun {
+/** Plays `years` whole years (to the first dusk of year `years + 1`), until the village falls or until `stop`. */
+export function playYears(
+  seed: number,
+  years: number,
+  onYear?: YearHook,
+  stop?: (s: WatchState) => boolean,
+): WatchRun {
   const run = new WatchRun(seed);
   run.input({ k: 'start' });
   let year = 1;
   for (let guard = 0; guard < 50_000_000; guard++) {
     const s = run.state;
+    if (stop?.(s)) return run;
     if (s.year !== year) {
       onYear?.(s, year);
       year = s.year;

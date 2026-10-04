@@ -52,6 +52,7 @@ import {
   LIT_REACH,
   MOTION_REACH,
   NIGHT_CARRY,
+  NIGHT_CARRY_RICH,
   NIGHT_LENGTH,
   type PostId,
   postSection,
@@ -60,6 +61,7 @@ import {
   type SectionId,
   SIT_AIM,
   SLOW_WINDOW,
+  START_GRAIN,
   sectionDef,
   THREATS,
   type ThreatKind,
@@ -163,6 +165,9 @@ export function litSection(s: WatchState): SectionId | null {
   if (s.lantern.x !== s.lantern.target) return null;
   return SECTION_IDS[s.lantern.x] ?? null;
 }
+
+/** Weight of one seen throw as evidence of aim (the skill cue lasts a year). */
+const SEEN_THROW = 0.05;
 
 /** The sections in earshot of the Keeper: where he stands and its neighbours. */
 export function earshot(s: WatchState): SectionId[] {
@@ -884,7 +889,9 @@ export function stepMinute(s: WatchState): void {
         t.since = m;
         // From the second winter a night carries off at most NIGHT_CARRY sacks (what can be hauled over a wall
         // before the alarm), so one bad night hurts without ending the chronicle; year 1 is the authored winter.
-        const room = s.year > 1 ? Math.max(0, NIGHT_CARRY - (s.tally.grainAtDusk - s.grain)) : def.takes;
+        const carry =
+          NIGHT_CARRY + Math.floor(Math.max(0, s.tally.grainAtDusk - START_GRAIN) / NIGHT_CARRY_RICH);
+        const room = s.year > 1 ? Math.max(0, carry - (s.tally.grainAtDusk - s.grain)) : def.takes;
         const took = Math.min(s.grain, def.takes, room);
         s.grain -= took;
         const got = s.tally.got[t.section];
@@ -965,6 +972,8 @@ export function stepMinute(s: WatchState): void {
       (target.state === 'foot' ? FOOT_AIM : 1);
     const hit = nextRandom(s) < chance;
     s.throws.push({ watcher: id, token: target.id, hit });
+    // The Keeper sees lit throws land or miss: over winters that is what he believes of their aim (G3-3).
+    if (isLit) hear(s.keeper, id, 'skill:sling', hit ? 1 : 0, { at: m, weight: SEEN_THROW });
     if (!hit) continue;
     target.hp -= 1;
     if (target.hp <= 0) {

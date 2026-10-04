@@ -45,6 +45,9 @@ export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impres
         text = v > 0.4 ? `close to ${name}` : v < -0.3 ? `at odds with ${name}` : null;
     } else if (c.key === 'trait:emotionality')
       text = v > 0.65 ? 'jumpy by nature' : v < 0.3 ? 'steady by nature' : null;
+    // Aim as seen: the share of lit throws that landed (a fine arm lands about a third of them).
+    else if (c.key === 'skill:sling')
+      text = v > 0.26 ? 'a sure arm' : v < 0.13 ? 'wild with the sling' : null;
     else if (c.key === 'trait:conscientiousness') text = v > 0.7 ? 'dutiful' : v < 0.3 ? 'careless' : null;
     if (text) out.push({ text, sure });
   }

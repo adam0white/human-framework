@@ -333,8 +333,13 @@ export const FOUNDER_KIN: readonly KinDef[] = [
 /** Founders who are married when the chronicle opens (married by HF `marry` the night both have come). */
 export const FOUNDER_MARRIAGES: readonly [WatcherId, WatcherId][] = [['mara', 'joss']];
 
-/** From the second winter, the most sacks one night can carry off. */
+/**
+ * From the second winter, the most sacks one night can carry off from a granary at START_GRAIN; a fuller granary
+ * gives up one more sack for every NIGHT_CARRY_RICH above it (a full store is easier to raid and draws bolder
+ * raiders), so a run of good harvests does not pin the granary at its cap.
+ */
 export const NIGHT_CARRY = 3;
+export const NIGHT_CARRY_RICH = 8;
 
 /** Hit chance per minute at sling 1, lit, unhurt, rested and calm. */
 export const AIM_SCALE = 0.36;

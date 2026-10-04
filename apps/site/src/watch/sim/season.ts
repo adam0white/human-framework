@@ -65,7 +65,7 @@ export const YEAR_DAYS = 365;
 export const EAT_PER_HEAD = 0.4;
 
 /** The granary never holds more than this. */
-export const GRANARY_MAX = 40;
+export const GRANARY_MAX = 45;
 
 export const isSeason = (s: WatchState): boolean =>
   s.phase === 'spring' || s.phase === 'summer' || s.phase === 'autumn';
@@ -234,7 +234,7 @@ function harvest(s: WatchState): void {
   const weather = 0.7 + 0.5 * nextRandom(s);
   const seed = s.marks.seed ? 1.3 : 1;
   s.marks.seed = false;
-  const got = Math.max(0, Math.round((8 + 2.2 * workers) * weather * seed));
+  const got = Math.max(0, Math.round((14 + 1.5 * workers) * weather * seed));
   s.yearGrain.harvest = got;
   const before = s.grain;
   s.grain = Math.min(GRANARY_MAX, s.grain + got);

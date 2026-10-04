@@ -462,7 +462,7 @@ export function newcomer(
     known: 0,
     comes: { year: s.year, night: 0 },
     status: 'here',
-    gen: s.volume.n + 1,
+    gen: 1,
     bornHere: false,
   };
   s.order.push(id);
@@ -786,9 +786,14 @@ function crowding(s: WatchState): number {
 /**
  * A crowded village sends its young away (at the thaw): a married couple under thirty-five leaves, with their
  * young children, to clear new land down the valley, with chance 0.5 per couple while the village is over full.
- * A loss the chronicle keeps, but not a failure.
+ * Couples who came from outside go first; a couple with one born here only if that is not enough, so the
+ * village's own line can run on through generations. A loss the chronicle keeps, but not a failure.
  */
 export function outgrown(s: WatchState): void {
+  for (const rooted of [false, true]) outgrownPass(s, rooted);
+}
+
+function outgrownPass(s: WatchState, rooted: boolean): void {
   const lookup = lookupIn(s);
   for (const p of living(s)) {
     if (living(s).length <= VILLAGE_FULL) return;
@@ -796,7 +801,9 @@ export function outgrown(s: WatchState): void {
     const spouse = spousesOf(p)
       .map(lookup)
       .find((q) => q !== undefined && isHere(s, q));
-    if (!spouse || ageOf(spouse, s.minute) >= 35 || nextRandom(s) >= 0.5) continue;
+    if (!spouse || ageOf(spouse, s.minute) >= 35) continue;
+    const born = !!s.cast[p.id]?.bornHere || !!s.cast[spouse.id]?.bornHere;
+    if (born !== rooted || nextRandom(s) >= 0.5) continue;
     const kids = childrenOf(s, p).filter((c) => isHere(s, c) && ageOf(c, s.minute) < 15);
     chronicle(
       s,
