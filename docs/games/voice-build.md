@@ -801,7 +801,7 @@ The user allowed Halil's playtest profiles to push on prayer and the fast ("Fait
   - **Tempter + faith** and **Saboteur + faith** make the faith pick first, then the earlier bad picks, with the same strength, insist and whispers as before.
   - **Faith only** (Mention, or Urge with Insist) makes the faith pick and nothing else, with no whispers.
   - **Faith only, relentless** drops the 120-minute repeat gap. A refusal pauses the game, so this player says the next thing at once, sometimes every minute. That is the most a player can do with the real tools.
-- **Measured** with the ninth pass's probe (seeds 7, 1, 2, 3, 4; means, which barely differ by seed). The new counts come from Halil's chronicle: the five daily prayers kept and missed in Ramadan, out of 151 windows; make-ups kept; fasts kept, excused and broken. "Made up / owed" counts make-up prayers kept in Ramadan and those still owed on Eid morning. The refusal columns are his answers to your word on played days, summed over the five seeds and keyed by the framework's reason:
+- **Measured** with the ninth pass's probe (seeds 7, 1, 2, 3, 4; means, which barely differ by seed). The new counts come from Halil's chronicle: the five daily prayers kept and missed in Ramadan, out of 151 windows (30 × 5, plus probably the eve's Isha, still open at the 03:40 start; not checked); make-ups kept; fasts kept, excused and broken. "Made up / owed" counts make-up prayers kept in Ramadan and those still owed on Eid morning. The refusal columns are his answers to your word on played days, summed over the five seeds and keyed by the framework's reason:
   - "won't miss" is the omission rule ("No. Not at the cost of Asr"), tone willNot, reason `norm:salah`;
   - "fast" is the fast's veto ("Not while I'm keeping my fast"), `duty:sawm-ramadan`;
   - "prayer first" is a put-off (Mention) or giving in under protest (Insist) with prayer as his reason;
@@ -825,16 +825,16 @@ No style broke a fast with a breach, and no style had a fast excused for illness
 **Assessment.**
 
 - **The fast holds completely, and the composer gives the player almost nothing to push with.**
-  - Food in fasting hours is never among his top six options, because a vetoed act ranks low. In a seed-7 probe it was never on offer, and a cigarette was not on offer either.
-  - Water reaches the composer only when he is thirsty, and every push for it is refused on the fast's account: 476 refusals for the relentless player, and none taken.
+  - In a seed-7 probe (an insisting faith player), food and a cigarette were never among his top six options in fasting hours, so the composer could not offer them. Why was not checked: water is vetoed too and was on offer 75 times.
+  - Every push for water is refused on the fast's account: 476 refusals for the relentless player, and none taken.
   - Excused breaks come from necessity, and the faith push adds none. Saboteur + faith has 3, the same as the plain Saboteur, from the thirst its nights cause. Tempter + faith has 1 against the Tempter's 2. On a day necessity has already excused, his "yes" to your water is the body's need, not your word (`yes need:water`).
 - **Prayer holds near a window's end, and bends earlier in the window.**
-  - The omission rule fires whenever a long option is pushed in a prayer's last quarter: 10 to 55 refusals per style. The new test pins it (see below).
+  - Against the insisting rows, the omission rule fires when a long option is pushed in a prayer's last quarter: 10 to 55 refusals per style. The new test pins it (see below). The Mention rows meet no refusal there; what they meet is put off (below).
   - Earlier in the window an insisted option is taken under protest, with prayer as his reason (77 to 80 times in the insisting faith rows). So a player can push the prayer to the window's end.
   - A Mention is put off for prayer instead (160 times for Faith only, Mention). He hears a gentle word and prays first.
   - Over 30 days the hardest push costs one prayer in 151, and the make-up rule repays it: the relentless player's missed Asr on Ramadan 1 is made up the next afternoon.
 - **The misses all go through two seams in the omission rule** (docs/findings.md, eleventh pass). A Mention never makes him miss a prayer.
-  - **Fajr on Ramadan 30, in every Saboteur run.** This is the earlier passes' "one missed prayer in the saboteur runs", now explained. His wake for Fajr comes 29 minutes before sunrise, just before the rule's last quarter (the last 22 minutes). The standing insisted "sleep" wins at that moment, and he sleeps 2.5 hours through sunrise with no decision in between.
+  - **Fajr on Ramadan 30, in every Saboteur run.** This is the earlier passes' "one missed prayer in the saboteur runs", now explained. His wake for Fajr comes 29 minutes before sunrise, just before the rule's last quarter (the last 22 minutes). The standing insisted "sleep" wins at that moment, and he sleeps 2.5 hours through sunrise. The sleep runs unbroken; whether a review fell in the closing stretch was not checked.
   - **Asr on Ramadan 1, relentless player only.** He begins a prayer at home three minutes before Maghrib. One minute after the window ends, the rule has lapsed, so he takes an insisted sleep and abandons a prayer that would still have counted (the agenda keeps the window open while a prayer begun inside it is under way).
 - **Insisting against faith burns trust as fast as insisting against anything.** Every insisting faith row ends at trust 0.02–0.06 with distrust refusals. The Mention faith player keeps trust at 0.51: it is mostly put off, never refused on principle, and it earns a little from what he does take.
 - **Side effects nobody pushed for.**

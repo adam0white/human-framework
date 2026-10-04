@@ -96,7 +96,7 @@ Short records of results that cut against expectations. Keep them; do not tune t
      - Recommendation: protect a duty past `until` for as long as an activity that would keep it is under way, mirroring `underWay`. Abandoning that activity would then count as an omission.
   2. **The rule only weighs decisions made inside the closing stretch.**
      - A long option chosen just before the stretch, and running past the end, covers the whole stretch unweighed.
-     - On Ramadan 30, in every Saboteur run (all seeds, with or without faith pushes), he wakes for Fajr 29 minutes before sunrise. Fajr's protected stretch is the last 22 minutes. He starts to pray, takes the standing insisted sleep, and sleeps 2.5 hours through sunrise. The sleep runs unbroken, with no decision in between.
+     - On Ramadan 30, in every Saboteur run (all seeds, with or without faith pushes), he wakes for Fajr 29 minutes before sunrise. Fajr's protected stretch is the last 22 minutes. He starts to pray, takes the standing insisted sleep, and sleeps 2.5 hours through sunrise. The sleep runs unbroken; whether a review fell in the stretch and chose sleep again was not checked.
      - This is the earlier passes' unexplained "one missed prayer in the saboteur runs".
      - Recommendation: apply the omission test to any option that would run past `until` and overlap the closing stretch, not only to choices made inside it. Alternatively, review a sleeper whose sleep began inside an open window at the stretch's start; `wakeReviewAt` already caps reviews at the wake-pressure minute.
   3. **Game, lower confidence: a refused suggestion still interrupts what he is doing.**
