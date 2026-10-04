@@ -1158,7 +1158,7 @@ interface World {
 
 - `CAPACITIES` — Bodily capacities an injury can impair (1.6.0; see `body/injury.ts`).
 - `EMOTIONS` — OCC-lite emotion types.
-- `ENGINE_VERSION` — 1.1.0 (2026-10-03): joint activities, omission/distrust rules, reactance, voice history.
+- `ENGINE_VERSION` — Current: 1.7.0 (2026-10-04), research/decisions.md as defaults: Fajr ends at sunrise (`PrayerTimes.sunrise`), missed obligatory worship and broken obligatory fasts leave a make-up debt, sleep and u...
 - `MINUTES_PER_DAY` — `const MINUTES_PER_DAY = 1440`
 - `MINUTES_PER_HOUR` — `const MINUTES_PER_HOUR = 60`
 - `MINUTES_PER_YEAR` — `const MINUTES_PER_YEAR = 525600`

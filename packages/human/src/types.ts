@@ -762,6 +762,13 @@ export interface Activity {
 
 export const PERSON_SCHEMA = 'human/person@1';
 /**
+ * Current: 1.7.0 (2026-10-04), research/decisions.md as defaults: Fajr ends at sunrise (`PrayerTimes.sunrise`),
+ * missed obligatory worship and broken obligatory fasts leave a make-up debt, sleep and unconsciousness lift the
+ * blame (`missedExcuse`), the Eid prayer norm and window, disliked times. New optional state: `body.lastSleep`,
+ * `body.lastDowned`, `agenda.lapse`, `OwedMakeUp.lapseSince`. Newest first is the rule for this comment: the API
+ * doc shows its first line.
+ *
+ * Earlier engines:
  * 1.1.0 (2026-10-03): joint activities, omission/distrust rules, reactance, voice history.
  * 1.2.0 (2026-10-03): several voices per decision, standing advice, abstentions and fasting perception,
  * illness coupled to rest and food, habit ease and extinction, cue recall, chronicle, lexicon. Acute-illness and
@@ -776,10 +783,6 @@ export const PERSON_SCHEMA = 'human/person@1';
  * 1.6.0 (2026-10-04): `restore` migrates 1.4.0 and 1.5.0 saves (`migrate`); commanded control, mental breaks,
  * per-part capacities with bleeding and a downed state, and insider/outsider ties with threat percepts. All new
  * person state is optional and absent until used, and none of it changes a run that does not use it.
- * 1.7.0: research/decisions.md as defaults: Fajr ends at sunrise (`PrayerTimes.sunrise`), missed obligatory worship
- * and broken obligatory fasts leave a make-up debt, sleep and unconsciousness lift the blame (`missedExcuse`), the
- * Eid prayer norm and window, disliked times. New optional state: `body.lastSleep`, `body.lastDowned`,
- * `agenda.lapse`, `OwedMakeUp.lapseSince`.
  */
 export const ENGINE_VERSION = '1.7.0';
 

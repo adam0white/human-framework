@@ -27,7 +27,7 @@ function setup(ids: string[], devout: string[], foodStock?: number) {
   return { people, village, community: createCommunity(people) };
 }
 
-/** Runs `n` villagers for 30 days (capped at 1000 events) after a short warm-up; returns milliseconds. */
+/** Runs `n` villagers for 30 days (`maxEvents: 1000` caps only the returned event list; all 30 days are simulated) after a short warm-up; returns milliseconds. */
 function villageRun(prefix: string, n: number, foodStock: number): number {
   const ids = Array.from({ length: n }, (_, i) => `${prefix}${String(i).padStart(2, '0')}`);
   const s = setup(
