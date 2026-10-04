@@ -791,3 +791,93 @@ Played-day answers, summed over the five seeds: Guardian yes 72, not now 93; Tem
 - the Guardian is better on smoke days, rent by Eid and Osman's date;
 - the Saboteur's urges are refused more than five times as often as obeyed and its trust ends below 0.1;
 - both bad styles work at least 26 mornings, the Tempter still has some contact (Selin's own calls), and the Saboteur still pays by Eid.
+
+### Eleventh pass (the naughty players push on faith, 2026-10-04)
+
+The user allowed Halil's playtest profiles to push on prayer and the fast ("Faith push is fine on Halil's playtest profiles, including the naughty one"). This is measurement, not game content: no whisper was added and the game did not change. Engine 1.8.0 (origin/main 0f6d001); nothing was retuned.
+
+- **Players** (`sim/players.ts`). They use only what the composer offers, read from the frame the player sees.
+  - **The faith pick.** In fasting hours it says water, food or a cigarette, whichever is on offer. While the sky band shows an open prayer he has not kept, or he leans to a prayer or a make-up, it says the longest idle option on offer: sleep, tea with Rıza, the grave, the afternoon shift, Hacer, rest, wait. Fajr ends at sunrise, shown 90 minutes after Fajr; Isha ends at the next Fajr.
+  - **Tempter + faith** and **Saboteur + faith** make the faith pick first, then the earlier bad picks, with the same strength, insist and whispers as before.
+  - **Faith only** (Mention, or Urge with Insist) makes the faith pick and nothing else, with no whispers.
+  - **Faith only, relentless** drops the 120-minute repeat gap. A refusal pauses the game, so this player says the next thing at once, sometimes every minute. That is the most a player can do with the real tools.
+- **Measured** with the ninth pass's probe (seeds 7, 1, 2, 3, 4; means, which barely differ by seed). The new counts come from Halil's chronicle: the five daily prayers kept and missed in Ramadan, out of 151 windows (30 × 5, plus probably the eve's Isha, still open at the 03:40 start; not checked); make-ups kept; fasts kept, excused and broken. "Made up / owed" counts make-up prayers kept in Ramadan and those still owed on Eid morning. The refusal columns are his answers to your word on played days, summed over the five seeds and keyed by the framework's reason:
+  - "won't miss" is the omission rule ("No. Not at the cost of Asr"), tone willNot, reason `norm:salah`;
+  - "fast" is the fast's veto ("Not while I'm keeping my fast"), `duty:sawm-ramadan`;
+  - "prayer first" is a put-off (Mention) or giving in under protest (Insist) with prayer as his reason;
+  - "distrust" is "Why would I listen to you?".
+  The Silent, Guardian, Tempter and Saboteur rows are re-measured with the same counters for comparison.
+
+| Player | Prayers kept / missed | Made up / owed | Fasts kept / excused / broken | Smoke days | Trust | Won't miss | Fast | Prayer first | Distrust | Else that moves |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Silent | 151 / 0 | 0 / 0 | 30 / 0 / 0 | 22 | 0.50 | 0 | 0 | 0 | 0 | |
+| Guardian | 151 / 0 | 0 / 0 | 30 / 0 / 0 | 7.2 | 0.62 | 0 | 0 | 10 put off | 0 | |
+| Tempter | 151 / 0 | 0 / 0 | 28 / 2 / 0 | 23.6 | 0.48 | 0 | 0 | 87 put off | 0 | contact 5.8 |
+| Saboteur | 150 / **1** | 0 / 1 | 27 / 3 / 0 | 20.6 | 0.04 | 0 | 0 | 30 protest | 260 | |
+| **Tempter + faith** | 151 / 0 | 0 / 0 | 29 / 1 / 0 | 22 | 0.47 | 0 | 10 | 127 put off | 0 | contact 8.8 |
+| **Saboteur + faith** | 150 / **1** | 0 / 1 | 27 / 3 / 0 | **6.6** | 0.03 | **15** | 15 | 16 protest | 284 | after-meal habit 0.32 (Saboteur 0.56), contact 8.2 |
+| **Faith only (Mention)** | 151 / 0 | 0 / 0 | 30 / 0 / 0 | 29 | 0.51 | 0 | 10 | 160 put off | 0 | yes 65 |
+| **Faith only (Urge, insist)** | 151 / 0 | 0 / 0 | 30 / 0 / 0 | 27.8 | 0.06 | **10** | 10 | 77 protest | 48 | Osman's date kept 5/5 (paid R15, not R17) |
+| **Faith only, relentless** | 150 / **1** | **1** / 0 | 30 / 0 / 0 | 17 | 0.02 | **55** | **476** | 80 protest | 737 | 293 insists a run, late nights 22.4 |
+
+No style broke a fast with a breach, and no style had a fast excused for illness. All excused fasts were excused under necessity, from thirst after the suhoors and nights the bad players cost him.
+
+**Assessment.**
+
+- **The fast holds completely, and the composer gives the player almost nothing to push with.**
+  - In a seed-7 probe (an insisting faith player), food and a cigarette were never among his top six options in fasting hours, so the composer could not offer them. Why was not checked: water is vetoed too and was on offer 75 times.
+  - Every push for water is refused on the fast's account: 476 refusals for the relentless player, and none taken.
+  - Excused breaks come from necessity, and the faith push adds none. Saboteur + faith has 3, the same as the plain Saboteur, from the thirst its nights cause. Tempter + faith has 1 against the Tempter's 2. On a day necessity has already excused, his "yes" to your water is the body's need, not your word (`yes need:water`).
+- **Prayer holds near a window's end, and bends earlier in the window.**
+  - Against the insisting rows, the omission rule fires when a long option is pushed in a prayer's last quarter: 10 to 55 refusals per style. The new test pins it (see below). The Mention rows meet no refusal there; what they meet is put off (below).
+  - Earlier in the window an insisted option is taken under protest, with prayer as his reason (77 to 80 times in the insisting faith rows). So a player can push the prayer to the window's end.
+  - A Mention is put off for prayer instead (160 times for Faith only, Mention). He hears a gentle word and prays first.
+  - Over 30 days the hardest push costs one prayer in 151, and the make-up rule repays it: the relentless player's missed Asr on Ramadan 1 is made up the next afternoon.
+- **The misses all go through two seams in the omission rule** (docs/findings.md, eleventh pass). A Mention never makes him miss a prayer.
+  - **Fajr on Ramadan 30, in every Saboteur run.** This is the earlier passes' "one missed prayer in the saboteur runs", now explained. His wake for Fajr comes 29 minutes before sunrise, just before the rule's last quarter (the last 22 minutes). The standing insisted "sleep" wins at that moment, and he sleeps 2.5 hours through sunrise. The sleep runs unbroken; whether a review fell in the closing stretch was not checked.
+  - **Asr on Ramadan 1, relentless player only.** He begins a prayer at home three minutes before Maghrib. One minute after the window ends, the rule has lapsed, so he takes an insisted sleep and abandons a prayer that would still have counted (the agenda keeps the window open while a prayer begun inside it is under way).
+- **Insisting against faith burns trust as fast as insisting against anything.** Every insisting faith row ends at trust 0.02–0.06 with distrust refusals. The Mention faith player keeps trust at 0.51: it is mostly put off, never refused on principle, and it earns a little from what he does take.
+- **Side effects nobody pushed for.**
+  - Saboteur + faith smokes on 6.6 days against the Saboteur's 20.6, and its after-meal habit is 0.32 against 0.56. From Maghrib until he prays Isha a prayer window is open, so in the evening it pushes sleep or tea where the Saboteur pushed the cigarette. This mechanism is probable, not confirmed.
+  - Faith only (Urge, insist) pays Osman on Ramadan 15 instead of 17, so it keeps the date in 5 of 5 seeds where silence keeps it in none. The mechanism was not investigated.
+  - The relentless player keeps him up late on 22 nights.
+- **No change recommended to the game.** The faith players are probes, not game content. The two seams and a related game-level seam are framework or host recommendations in findings.md. The model's answer to "how far can a player push" is: as far as giving in under protest early in a window, never to a broken fast, and to a missed prayer only through those seams.
+- The ninth and tenth passes counted missed prayers from memory episodes. The chronicle count agrees for every style re-measured here (0, and 1 for the Saboteur), so their prayer claims stand.
+
+`balance.test.ts` now also:
+- runs Saboteur + faith and Faith only (Urge, insist), and asserts:
+  - the fast's veto refused water at least once;
+  - no fast was broken with a breach;
+  - the omission rule refused at least once;
+  - at most one daily prayer was missed (the measured value, pointing at the findings entry);
+  - the faith push added no necessity breaks beyond the plain Saboteur's;
+- has a standalone test: the relentless player is stopped at the first moment, with him awake and the composer open, in the last quarter of an open daily prayer (5 to 40 minutes left). There `predict` on a long option, urged and insisted, is `willNot` with reason `norm:salah`.
+
+### Twelfth pass (the omission seams closed, 2026-10-04)
+
+The three seams of the eleventh pass are fixed (docs/findings.md, twelfth pass). Engine 1.9.0:
+- **The rule holds while a prayer begun in its window runs past the end** (framework). Leaving it is an omission; a prayer begun in time counts ([research/decisions.md](../../research/decisions.md), "A prayer begun in its time").
+- **A long option that would cover the closing stretch is reviewed when the stretch begins** (framework, `dutyReviewAt`). The Saboteur's insisted sleep at 05:31 on Ramadan 30 is now weighed again at 05:38; he will not sleep on, and prays Fajr.
+- **A word he will refuse is answered at once and does not interrupt him** (game `VoiceGame.suggest`, framework `answerNow`). The refusal is booked when he says it (trust, pressure, the counters, as at a decision), the answer shows and pauses as before, and he carries on with what he was doing. A first version answered at his next decision instead, up to 30 minutes later; that broke "he hears you, he decides, and he always says why" and was replaced.
+- **A word whose activity was cut short gets its answer** (game). When a closing-stretch review stopped the talk he had begun for your word, the word faded before the decision that stopped it was read, so "I won't miss Maghrib, whatever you say" was booked but never shown. It is shown now, without a pause (the word had been carried out; pausing there changed the Tempter rows' play).
+
+Measured as in the eleventh pass (seeds 7, 1, 2, 3, 4; means). "Engine only" is 1.9.0 with the game's old interrupt, to separate the changes.
+
+| Player | Prayers missed (11th → engine only → 12th) | Fasts excused | Smoke days | Trust | Won't miss | Fast refusals | Else that moved |
+|---|---|---|---|---|---|---|---|
+| Silent, Guardian, Tempter (both), Tempter + faith, Faith only (Mention) | 0 → 0 → 0 | unchanged | unchanged | unchanged to rounding | 0 | unchanged | nothing |
+| Saboteur | **1 → 0 → 0** | 3 → 3 → 1 | 20.6 → 20.6 → 21 | 0.04 → 0.03 → 0.01 | 0 → 0 → 4 | 0 | contact 11 → 13 |
+| Saboteur, no whisper | **1 → 0 → 0** | 1 → 1 → 1 | 21 → 21.6 → 11 | 0.00 | 0 → 3 → 11 | 0 | late nights 5 → 1.6 |
+| Saboteur + faith | **1 → 0 → 0** | 3 → 3 → 1 | 6.6 → 6.6 → 13 | 0.03 → 0.03 → 0.01 | 15 → 15 → 10 | 15 → 20 → 20 | contact 8.2 → 9.6 |
+| Faith only (Urge, insist) | 0 | 0 | 27.8 → 27.2 → 27 | 0.06 → 0.07 → 0.02 | 10 → 10 → 10 | 10 | late nights 1.2 → 0.4 |
+| Faith only, relentless | **1 → 0 → 0** (made up 1 → 0) | 0 | 17 → 17 → 23.8 | 0.02 → 0.03 → 0.05 | 55 → 177 → 27 | 476 → 360 → 15 | late nights 22.4 → 1 → 1.8 |
+
+Words and answers per run (11th → 12th): Saboteur 91 → 81.6 insists, 91 → 87.8 answers; no whisper 90.6 → 84.4, 90.6 → 92.4; Saboteur + faith 107.8 → 100, 107.8 → 106; Faith only (Urge, insist) 40 → 41.4, 40 → 47; relentless 292.8 → 33.2, 292.8 → 37. "Answers" counts his answer lines, which can be more than one per word (a changed counter-offer, a cut word's answer).
+
+**Assessment.**
+- **No style misses a daily prayer now**, and the fast still holds everywhere (no breach). The engine fixes alone account for this.
+- **Every refused word is answered when said.** The insisting players say about as much as in the eleventh pass, except the relentless one: 33 words a run against 293. Its 293 came from the interrupt loop (each word interrupted him, and the fresh decision refused it at once, 476 fast refusals over five runs); why it now stays as low as with the delayed answer (41) was not traced.
+- **Booked refusals cost trust as said.** Trust ends lower for the pushing rows (Saboteur 0.04 → 0.01, Faith only (Urge, insist) 0.06 → 0.02), as intended: a refusal while he carries on now counts, where the old interrupt path's quiet review counted nothing.
+- **Smoke days are not a stable signal for the insisting rows.** They moved by up to 4x between variants of this pass (Saboteur + faith 6.6 → 25.8 delayed → 13 now) without a traced mechanism.
+
+`balance.test.ts` now asserts no daily prayer missed for Saboteur + faith and Faith only (Urge, insist), tightened from at most 1. The excused-fast bound allows Saboteur + faith one more than the plain Saboteur: both have one now, but the delayed-answer variant measured 2.2 (seed 7, Ramadan 15: thirst after an insisted afternoon shift pushed while Dhuhr was open, not a refused drink). The closing-stretch test asks the relentless player every 5 minutes instead of 30, and takes a long option he could do (a "not tired" refusal outranks the rule).

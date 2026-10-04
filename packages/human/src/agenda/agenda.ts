@@ -255,6 +255,27 @@ const needsSpawn = (state: AgendaState, c: Commitment, now: Minute): boolean =>
   !hasSuccessor(state, c);
 
 /**
+ * Whether an activity that would keep `c` is under way at `now`: begun no later than the window's end
+ * (`spanMeetsWindow`), not yet ended, not sleep, and serving `c` (listed in `fulfills` or matching its action and
+ * target). Such a commitment stays open past `until` until the activity ends: `onFinished` then keeps it, or the next
+ * pass closes it if the activity was cut short (fix 2026-10-03: a prayer begun in its window and finished after it
+ * was recorded as missed while the player watched him pray). The will's omission rule uses the same test to keep
+ * protecting the duty while it runs (1.9.0). Abstentions are never under way.
+ */
+export function underWay(p: Person, c: Commitment, now: Minute): boolean {
+  const act = p.activity;
+  return (
+    act !== null &&
+    act !== undefined &&
+    act.mode !== 'sleep' &&
+    c.kind !== 'abstain' &&
+    act.startedAt <= c.until &&
+    act.endsAt >= now &&
+    ((act.affordance.fulfills?.includes(c.id) ?? false) || matchesCommitment(c, act.action, act.targetId))
+  );
+}
+
+/**
  * Close commitments whose window has passed and recur periodic ones. A pending ordinary commitment closes
  * broken; a pending abstention closes kept (nothing violated it); an exempted instance closes released. Events
  * are processed in chronological order of window end, so one long advance yields the same commitments and
@@ -277,23 +298,11 @@ export function advanceAgenda(
   const recurred: Commitment[] = [];
   const kept: Commitment[] = [];
   const released: Commitment[] = [];
-  const act = p.activity;
-  // A pending commitment whose window closes while an activity that would keep it is under way (begun inside the
-  // window, `spanMeetsWindow`) stays open until that activity ends: `onFinished` then keeps it, or the next pass
-  // closes it if the activity was cut short (fix 2026-10-03: a prayer begun in its window and finished after it
-  // was recorded as missed while the player watched him pray).
-  const underWay = (c: Commitment): boolean =>
-    act !== null &&
-    act !== undefined &&
-    act.mode !== 'sleep' &&
-    c.kind !== 'abstain' &&
-    act.startedAt <= c.until &&
-    act.endsAt >= now &&
-    ((act.affordance.fulfills?.includes(c.id) ?? false) || matchesCommitment(c, act.action, act.targetId));
   for (;;) {
     let next: Commitment | undefined;
     for (const c of state.commitments) {
-      const due = (c.status === 'pending' && c.until < now && !underWay(c)) || needsSpawn(state, c, now);
+      const due =
+        (c.status === 'pending' && c.until < now && !underWay(p, c, now)) || needsSpawn(state, c, now);
       if (due && (next === undefined || c.until < next.until)) next = c;
     }
     if (!next) break;

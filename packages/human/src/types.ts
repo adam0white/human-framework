@@ -857,7 +857,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * (`missedExcuse`), the Eid prayer norm and window, disliked times. New optional state: `body.lastSleep`,
  * `body.lastDowned`, `agenda.lapse`, `OwedMakeUp.lapseSince`.
  */
-export const ENGINE_VERSION = '1.8.0';
+export const ENGINE_VERSION = '1.9.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)

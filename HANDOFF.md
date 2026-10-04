@@ -25,7 +25,7 @@ Done means (AGENTS.md): HF 2.0 released on GitHub, closing the blocking gaps in 
 
 ## Current position
 
-Goal 2 started 2026-10-04. Live: f85c825 (HF 1.2.0, engine 1.7.0; Games 1–2 with playtest export; Game 3 prototype at /watch/).
+Goal 2 started 2026-10-04. Live: f442ca6 (HF 1.2.0 package; main engine 1.9.0; Games 1–2 with playtest export; Game 3 G3-2 at /watch/).
 
 Open, recorded in docs/findings.md and docs/games/voice-build.md §13:
 - Game 2: with advice heard for the running activity (engine 1.5.0), the shift whisper gives about 6–7 full shifts and the date kept on R14 (was 27 fragments, R11). Whether the between-day whispers are too decisive is for a playtest to judge.
@@ -39,6 +39,7 @@ Open, recorded in docs/findings.md and docs/games/voice-build.md §13:
 - Timing budgets moved out of `npm run check` into `npm run bench` (2026-10-04). Measured alone on the Apple Silicon dev machine, 3-run medians: village 20 × 30 days 1555 ms (budget 2000), 50 × 30 days 3693 ms (5000), body threshold 0.6 µs/call, Game 1 director run 276 ms (1500) and balance runs 1203 ms (5000), Game 2 12-day skip 287 ms (1500). The framework bench runs with Vite's module runner off; under the runner the 20-person run takes ~2.4 s (findings, 2026-10-04 item 7). CI (from R0) runs the bench at 3× budgets as information, not a gate. hyperfine, `node scripts/bench-village.ts` (20 × 30 days, full run, 59190 events, including Node start-up), M4 under other agents' load (load average ~6–7): 1.914 s ± 0.057 s, range 1.829–1.993 s, 10 runs (2026-10-04).
 - TS 5.x consumers untested.
 - Naughty players (user, 2026-10-04): Tempter, Saboteur and a good Guardian in apps/site/src/voice/sim/players.ts; tenth pass (live at 59be1a5) fixed interrupted work and the afternoon-rest whisper and added tempting between-days whispers ("sleep in after suhoor", "Eid first; Osman can wait", "stay out late with Rıza", "skip the call, she's busy"). Range over 5 seeds: rent paid by Eid 0–600, contact with Selin ~6–28, smoke days 7–29; insisting burns trust (Saboteur 0.04). Open: "sleep in" has no cost (reviewer says cut; kept as the user's example), a silent month that sometimes goes right on its own (one attempt reverted). Fonts stay on Google Fonts; security headers via Cloudflare settings and `_headers`.
+- Game 2 eleventh and twelfth passes (faith-pushing naughty players, user-approved): engine 1.9.0 closes two omission-rule gaps (a prayer begun in its window stays protected after the window ends; long activities are reviewed when the protected stretch starts), and the new HF `answerNow` answers a refused word at once. No simulated style misses a daily prayer or breaks a fast (voice-build.md §13). Open questions for the user: "sleep in" whisper has no cost; skipping the Eid prayer carries the generic missed-commitment cost.
 - [docs/faculty-inventory.md](docs/faculty-inventory.md): 142 faculties from the v0 research proposal, 65 Done / 33 Partial / 38 Missing / 6 Excluded, checked against code; plus 16 v0 approaches worth keeping. For G3-3/L1: wire skill transfer (exists in skills.ts, never passed), `learningMultiplier`, teaching that raises learning, observational learning.
 
 ## Decisions

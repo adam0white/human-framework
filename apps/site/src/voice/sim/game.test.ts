@@ -1,6 +1,12 @@
 import { voiceOf } from '@human/framework';
 import { describe, expect, test } from 'vitest';
-import { type BeatKind, defaultWhisper, type LogEntry, type StandingWhisper } from '../protocol.ts';
+import {
+  type BeatKind,
+  type Draft,
+  defaultWhisper,
+  type LogEntry,
+  type StandingWhisper,
+} from '../protocol.ts';
 import { DAY_END, SHIPPED_SEED, VoiceGame } from './game.ts';
 import { play } from './headless.ts';
 import { EID_LINES, eidLines, smokingLines } from './report.ts';
@@ -805,4 +811,33 @@ describe('Game 2 round 3 fixes', () => {
         i.lines.join(' | '),
       ).toBe(true);
   });
+});
+
+test('twelfth pass: a word he will refuse while busy is answered at once, booked, and does not stop him', () => {
+  const g = new VoiceGame(SHIPPED_SEED);
+  let draft: Draft | undefined;
+  play(g, {
+    pauseEvery: 30,
+    stop: (x) => {
+      const act = x.halil.activity;
+      if (x.phase !== 'day' || !x.paused || !act || x.halil.body.asleep || act.endsAt - x.t < 3) return false;
+      const f = x.frame();
+      if (!f.composer.open) return false;
+      draft = f.options
+        .map((o): Draft => ({ optionId: o.id, strength: 'urge', insist: true }))
+        .find((d) => d.optionId !== act.affordanceId && x.predict(d).tone === 'willNot');
+      return draft !== undefined;
+    },
+  });
+  if (!draft) throw new Error('no busy moment with a refusal on offer');
+  const t = g.t;
+  const decisionId = g.halil.activity?.decisionId;
+  const refused = voiceOf(g.halil, 'you')?.refused ?? 0;
+  g.suggest(draft);
+  expect(g.halil.activity?.decisionId).toBe(decisionId);
+  const answer = g.log.findLast((e) => e.kind === 'answer');
+  expect(answer?.minute).toBe(t);
+  expect(answer?.tone).toBe('willNot');
+  expect(voiceOf(g.halil, 'you')?.refused).toBe(refused + 1);
+  expect(g.standing).toBeUndefined();
 });

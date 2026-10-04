@@ -11,10 +11,14 @@
  * - Guardian: the mirror, for the good direction: confirms prefills; when he leans to something idle, says work,
  *   the clinic, Selin or the walk instead (the walk in place of a cigarette, sleep after 22:00), with the card's
  *   reasons; when he leans well, says nothing.
- * Faith stays gentle: no style targets prayer either way (it is never picked and never steered around), and none
- * offers food, drink or a cigarette during the fast.
+ * - Faith tempter and faith saboteur (eleventh pass; the user allowed Halil's playtest profiles to push on faith,
+ *   2026-10-04): the same players, who first steer him away from an open prayer he has not yet kept (toward the
+ *   longest idle option on offer) and toward water, food or a cigarette in fasting hours, with the same tools.
+ *   "Faith only" variants push on nothing else. They are measurement only, not game content.
+ * The other styles keep faith out of it: they never pick prayer or steer around it, and offer no food, drink or
+ * cigarette during the fast.
  */
-import { voiceOf } from '@human/framework';
+import { chronicleBetween, type SuggestionResolution, voiceOf } from '@human/framework';
 import type { Appeal, Draft, Frame, StandingWhisper } from '../protocol.ts';
 import { SHIPPED_SEED, VoiceGame } from './game.ts';
 import { type PlayOpts, play } from './headless.ts';
@@ -34,6 +38,8 @@ const TEMPT_APPEAL: Record<string, Appeal> = {
   'tea:riza': 'belonging',
   'talk:hacer': 'belonging',
   'visit-grave': 'meaning',
+  drink: 'safety',
+  eat: 'safety',
 };
 const GOOD_APPEAL: Record<string, Appeal> = {
   'work-repair': 'duty',
@@ -79,6 +85,43 @@ function goodOrder(c: Clock, lean: string | undefined): string[] {
 }
 const IDLE = new Set(['rest', 'sleep', 'wait', 'tea:riza', 'talk:hacer', 'visit-grave', 'smoke']);
 
+const PRAYER_IDS = new Set(['pray', 'pray-home', 'pray-qada']);
+/** Fajr's window ends at sunrise, which the sky band shows 90 minutes after Fajr in this town (`townCalendar`). */
+const SUNRISE_AFTER_FAJR = 90;
+/**
+ * The daily prayer whose window is open and that the sky band does not yet show as kept or missed, read from the
+ * frame the player sees: Fajr until sunrise, each other prayer until the next, Isha until tomorrow's Fajr. After
+ * midnight it reads no open prayer (Isha's pip then belongs to the new day; Halil is asleep at that hour anyway).
+ */
+export function openPrayer(f: Frame): { name: string; end: number } | undefined {
+  const m = f.minute % MIN_DAY;
+  const pr = f.sky.prayers;
+  for (let i = 0; i < pr.length; i++) {
+    const p = pr[i];
+    if (!p || p.state || m < p.minute) continue;
+    const end =
+      i === 0
+        ? p.minute + SUNRISE_AFTER_FAJR
+        : i === pr.length - 1
+          ? MIN_DAY + (pr[0]?.minute ?? 0)
+          : (pr[i + 1]?.minute ?? 0);
+    if (m < end) return { name: p.name, end };
+  }
+  return undefined;
+}
+/**
+ * What a faith-pushing player says, best first: water, food or a cigarette in fasting hours; while a prayer is open
+ * and unkept (or he leans to a prayer or a make-up), the longest idle option on offer, so that it would run past the
+ * window's end. Nothing otherwise. Only the composer's options can be said, so most of these are often not on offer.
+ */
+function faithOrder(f: Frame, c: Clock): string[] {
+  const out: string[] = [];
+  if (c.fasting) out.push('drink', 'eat', 'smoke');
+  if (openPrayer(f) || PRAYER_IDS.has(f.leaning?.optionId ?? ''))
+    out.push('sleep', 'tea:riza', 'visit-grave', 'work-extra', 'talk:hacer', 'rest', 'wait');
+  return out;
+}
+
 /**
  * A persistent player, not a robot: the same thing is not said again within this many minutes of saying it (each
  * game keeps its own memory of what was said when).
@@ -86,7 +129,13 @@ const IDLE = new Set(['rest', 'sleep', 'wait', 'tea:riza', 'talk:hacer', 'visit-
 export const REPEAT_GAP = 120;
 const saidAt = new WeakMap<VoiceGame, Map<string, number>>();
 
-function pickFrom(f: Frame, g: VoiceGame, order: readonly string[]): string | undefined {
+function pickFrom(
+  f: Frame,
+  g: VoiceGame,
+  order: readonly string[],
+  fastOk = false,
+  gap = REPEAT_GAP,
+): string | undefined {
   const c = clockOf(f);
   const shown = new Set(f.options.map((o) => o.id));
   const said = saidAt.get(g) ?? new Map<string, number>();
@@ -94,8 +143,8 @@ function pickFrom(f: Frame, g: VoiceGame, order: readonly string[]): string | un
   const id = order.find(
     (x) =>
       shown.has(x) &&
-      !(c.fasting && (x === 'smoke' || x === 'eat' || x === 'drink')) &&
-      f.minute - (said.get(x) ?? Number.NEGATIVE_INFINITY) >= REPEAT_GAP,
+      (fastOk || !(c.fasting && (x === 'smoke' || x === 'eat' || x === 'drink'))) &&
+      f.minute - (said.get(x) ?? Number.NEGATIVE_INFINITY) >= gap,
   );
   if (id && id !== f.standing?.draft.optionId) said.set(id, f.minute);
   return id;
@@ -113,6 +162,34 @@ export const saboteur = (f: Frame, g: VoiceGame): Draft | undefined => {
   const id = pickFrom(f, g, badOrder(clockOf(f)));
   return id ? { optionId: id, strength: 'urge', insist: true } : undefined;
 };
+/**
+ * The faith-pushing players (eleventh pass): faith picks first, then (unless `only`) the tempter's bad picks. A
+ * relentless player drops the repeat gap: a refusal pauses the game, and it says the next thing at once.
+ */
+const faithPick = (f: Frame, g: VoiceGame, only: boolean, relentless = false): string | undefined => {
+  const c = clockOf(f);
+  const order = [...new Set([...faithOrder(f, c), ...(only ? [] : badOrder(c))])];
+  return pickFrom(f, g, order, true, relentless ? 0 : REPEAT_GAP);
+};
+const faithTempt =
+  (only: boolean) =>
+  (f: Frame, g: VoiceGame): Draft | undefined => {
+    const id = faithPick(f, g, only);
+    if (!id) return undefined;
+    const d: Draft = { optionId: id, strength: 'mention', insist: false };
+    const a = TEMPT_APPEAL[id];
+    if (a) d.appeal = a;
+    return d;
+  };
+const faithSabotage =
+  (only: boolean, relentless = false) =>
+  (f: Frame, g: VoiceGame): Draft | undefined => {
+    const id = faithPick(f, g, only, relentless);
+    return id ? { optionId: id, strength: 'urge', insist: true } : undefined;
+  };
+export const faithTempter = faithTempt(false);
+export const faithSaboteur = faithSabotage(false);
+
 export const guardian = (f: Frame, g: VoiceGame): Draft | undefined => {
   if (
     f.prefill &&
@@ -170,6 +247,23 @@ export const STYLES: Record<string, PlayOpts> = {
   'Tempter, no whisper': { choose: tempter, pauseEvery: 30 },
   Saboteur: { choose: saboteur, pauseEvery: 30, whispers: [w('osmanWaits', 'urge'), w('friends', 'urge')] },
   'Saboteur, no whisper': { choose: saboteur, pauseEvery: 30 },
+  // Eleventh pass: the bad players also push on prayer and the fast, with the same tools (measurement only).
+  'Tempter + faith': {
+    choose: faithTempter,
+    pauseEvery: 30,
+    whispers: [w('osmanWaits', 'urge'), w('friends', 'mention', 'belonging')],
+  },
+  'Saboteur + faith': {
+    choose: faithSaboteur,
+    pauseEvery: 30,
+    whispers: [w('osmanWaits', 'urge'), w('friends', 'urge')],
+  },
+  'Faith only (Mention)': { choose: faithTempt(true), pauseEvery: 30 },
+  'Faith only (Urge, insist)': { choose: faithSabotage(true), pauseEvery: 30 },
+  'Faith only, relentless (Urge, insist, no repeat gap)': {
+    choose: faithSabotage(true, true),
+    pauseEvery: 30,
+  },
   // The tempting words alone, with no in-day choices: how far each one moves him.
   'Osman can wait (Urge)': { whispers: [w('osmanWaits', 'urge')] },
   'Osman can wait (Mention, for Selin)': { whispers: [w('osmanWaits', 'mention', 'benevolence')] },
@@ -180,6 +274,8 @@ export const STYLES: Record<string, PlayOpts> = {
       d < 10 ? [w('selin', 'mention', 'benevolence')] : [w('skipCall', 'urge', 'benevolence')],
   },
 };
+
+const DAILY = new Set(['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha']);
 
 export interface Measured {
   smokeDays: number;
@@ -210,7 +306,24 @@ export interface Measured {
   /** Ramadan days with food or water in fasting hours (the town excuses them as illness or necessity). */
   brokenFastDays: number;
   prayers: number;
+  /** Missed-prayer episodes in memory (ninth and tenth passes; superseded by the chronicle counts below). */
   missedPrayers: number;
+  /** The five daily prayers in Ramadan from his chronicle: kept, missed (closed broken), excused (asleep throughout). */
+  prayersKept: number;
+  prayersMissed: number;
+  prayersExcused: number;
+  /** Make-up prayers kept in Ramadan, and prayer make-ups still owed on Eid morning. */
+  madeUp: number;
+  prayerDebt: number;
+  /** Ramadan fasts: kept, excused for illness, excused under necessity, broken (a breach). */
+  fastKept: number;
+  fastIll: number;
+  fastNecessity: number;
+  fastBroken: number;
+  /** Ramadan days with a cigarette in fasting hours. */
+  fastSmokeDays: number;
+  /** His answers to your word (as `answers`), keyed by tone and the framework's reason, e.g. "willNot norm:salah". */
+  verdicts: Record<string, number>;
   eidPrayer: boolean;
   /** His answers to your words on the played days, by tone, and how often you insisted. */
   answers: Record<string, number>;
@@ -219,6 +332,26 @@ export interface Measured {
 
 export function measure(opts: PlayOpts, seed = SHIPPED_SEED): Measured {
   const g = new VoiceGame(seed);
+  // Measurement only: read the reason behind each answer the log shows (the game keeps the reason off screen). This
+  // wraps the game's private answer handler (decisions and words answered at once) without changing what it does;
+  // the players never see it.
+  const verdicts: Record<string, number> = {};
+  const hook = g as unknown as {
+    heard(you: SuggestionResolution, at: number, decisionId?: string): void;
+    logSeq: number;
+  };
+  const heard = hook.heard.bind(g);
+  hook.heard = (you, at, decisionId) => {
+    const seq = hook.logSeq;
+    heard(you, at, decisionId);
+    for (let i = g.log.length - 1; i >= 0; i--) {
+      const e = g.log[i];
+      if (!e || Number(e.id.slice(1)) <= seq) break;
+      if (e.kind !== 'answer' || !e.tone) continue;
+      const k = `${e.tone} ${you.reason ?? '?'}`;
+      verdicts[k] = (verdicts[k] ?? 0) + 1;
+    }
+  };
   play(g, opts);
   const day = (m: number) => Math.floor(m / MIN_DAY);
   const done = g.cells.filter((c) => c.done !== false);
@@ -239,6 +372,17 @@ export function measure(opts: PlayOpts, seed = SHIPPED_SEED): Measured {
       .filter((c) => c.action === 'eat' && c.from % MIN_DAY < 5 * 60 && c.from % MIN_DAY >= 2 * 60)
       .map((c) => day(c.from)),
   );
+  const chron = chronicleBetween(g.halil.chronicle ?? [], 0, TOWN_EID_DAY - 1);
+  const daily = (names: string[]) => names.filter((n) => DAILY.has(n)).length;
+  const notes = (k: 'kept' | 'released' | 'broken', kind: string) =>
+    chron.reduce((n, r) => n + r[k].filter((x) => x.kind === kind).length, 0);
+  const ill = g.illDays.filter((d) => d < TOWN_EID_DAY).length;
+  const inFast = (c: (typeof done)[number]) => {
+    const d = day(c.from);
+    const cal = townCalendar(d);
+    const m = c.from % MIN_DAY;
+    return townDay(d).kind === 'ramadan' && m >= cal.fajr && m < cal.maghrib;
+  };
   const answers: Record<string, number> = {};
   for (const e of g.log) if (e.kind === 'answer' && e.tone) answers[e.tone] = (answers[e.tone] ?? 0) + 1;
   return {
@@ -280,6 +424,22 @@ export function measure(opts: PlayOpts, seed = SHIPPED_SEED): Measured {
     ).size,
     prayers: count((c) => c.action === 'pray'),
     missedPrayers: eid.memory.episodes.filter((e) => e.kind === 'missed' && e.action === 'pray').length,
+    prayersKept: chron.reduce((n, r) => n + daily(r.prayers.kept), 0),
+    prayersMissed: chron.reduce((n, r) => n + daily(r.prayers.missed), 0),
+    prayersExcused: chron.reduce(
+      (n, r) => n + r.released.filter((x) => x.kind === 'worship' && DAILY.has(x.label ?? '')).length,
+      0,
+    ),
+    madeUp: count((c) => c.action === 'pray-qada'),
+    prayerDebt:
+      (eid.agenda.owed ?? []).filter((o) => o.kind === 'worship' && o.scheduledAs === undefined).length +
+      eid.agenda.commitments.filter((c) => c.status === 'pending' && c.actions.includes('pray-qada')).length,
+    fastKept: notes('kept', 'abstain'),
+    fastIll: ill,
+    fastNecessity: Math.max(0, notes('released', 'abstain') - ill),
+    fastBroken: notes('broken', 'abstain'),
+    fastSmokeDays: new Set(ram.filter((c) => c.action === 'smoke' && inFast(c)).map((c) => day(c.from))).size,
+    verdicts,
     eidPrayer: done.some((c) => c.action === 'pray-eid'),
     answers,
     insisted: g.insisted,

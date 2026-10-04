@@ -60,7 +60,10 @@ const strip = (people: Person[]) =>
     const { engine: _engine, ...rest } = j;
     return rest;
   });
-/** One more day on from each fixture save under engine 1.7.0 (the village saves are identical in both fixtures). */
+/**
+ * One more day on from each fixture save under engine 1.7.0 (the village saves are identical in both fixtures).
+ * Re-checked under 1.8.0 and 1.9.0: unchanged (the 1.9.0 omission-rule changes do not arise in this village day).
+ */
 const CONTINUED_1_7 = {
   village: '3fa3949b49d41dcff7053345b8ca626a48f004bac778372758372f9ff8551f82',
 };
@@ -82,8 +85,8 @@ describe('migrate: saves from earlier engines restore under the current one', ()
     expect(v140.engine).toBe('1.4.0');
     expect(v150.engine).toBe('1.5.0');
     for (const j of v140.village.saved.people) expect((j as { engine: string }).engine).toBe('1.4.0');
-    expect(ENGINE_VERSION).toBe('1.8.0');
-    expect(migratableVersions()).toEqual(['1.4.0', '1.5.0', '1.6.0', '1.7.0', '1.8.0']);
+    expect(ENGINE_VERSION).toBe('1.9.0');
+    expect(migratableVersions()).toEqual(['1.4.0', '1.5.0', '1.6.0', '1.7.0', '1.8.0', '1.9.0']);
   });
 
   test('migrate stamps the current version and leaves the input alone', () => {

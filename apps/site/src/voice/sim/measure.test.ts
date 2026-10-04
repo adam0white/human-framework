@@ -32,6 +32,16 @@ const NUMERIC: (keyof Measured)[] = [
   'brokenFastDays',
   'prayers',
   'missedPrayers',
+  'prayersKept',
+  'prayersMissed',
+  'prayersExcused',
+  'madeUp',
+  'prayerDebt',
+  'fastKept',
+  'fastIll',
+  'fastNecessity',
+  'fastBroken',
+  'fastSmokeDays',
   'insisted',
 ];
 
@@ -55,6 +65,10 @@ test.skipIf(!env.VOICE_MEASURE)(
       for (const r of runs)
         for (const [t, n] of Object.entries(r.answers)) answers[t] = (answers[t] ?? 0) + n;
       row.answers = answers;
+      const verdicts: Record<string, number> = {};
+      for (const r of runs)
+        for (const [t, n] of Object.entries(r.verdicts)) verdicts[t] = (verdicts[t] ?? 0) + n;
+      row.verdicts = verdicts;
       row.pays = runs.map((r) => r.pays).join(' | ');
       out.push(row);
     }

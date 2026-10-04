@@ -64,7 +64,15 @@ import {
   skipBody,
 } from './body/index.ts';
 import { ageCharacter, noteCharacterDay, noteCharacterSocial } from './character/index.ts';
-import { closeDay, endDay, noteCommitments, noteDecision, noteMood, noteOutcome } from './chronicle/index.ts';
+import {
+  closeDay,
+  endDay,
+  noteAnswer,
+  noteCommitments,
+  noteDecision,
+  noteMood,
+  noteOutcome,
+} from './chronicle/index.ts';
 import { decide as cognitionDecide, desperationOf, scoreAll } from './cognition/index.ts';
 import {
   createConscience,
@@ -143,12 +151,14 @@ import type {
 import { ENGINE_VERSION, PERSON_SCHEMA, PHYSIOLOGICAL_NEEDS, PSYCHOLOGICAL_NEEDS } from './types.ts';
 import {
   advanceWill,
+  answerSuggestion,
   type CommandOutcome,
   chargeCommand,
   commandTargets,
   createWill,
   creditedVoices,
   dischargeAdvice,
+  dutyReviewAt,
   endCommand,
   learnFromVoice,
   noteCommandOutcome,
@@ -909,6 +919,39 @@ export function predict(
   return res;
 }
 
+/**
+ * Answer a suggestion now, between decision points, without touching the running activity. When the answer is
+ * a refusal it is committed as a real resolution: the will books it as a decision would (pressure, refused
+ * counter, `pushed`/`worn` trust costs), the chronicle tallies the verdict, and `booked` is true. Any other
+ * verdict would mean switching activity, so nothing is written (`booked: false`, the result equals `predict`)
+ * and the host should interrupt and let the next decision resolve it. Consumes no RNG and does not advance time
+ * or record a trace entry; a later decision on the same standing suggestion counts again (hosts that answer
+ * now should drop the suggestion once it is refused).
+ */
+export function answerNow(
+  p: Person,
+  affordances: readonly Affordance[],
+  suggestion: Suggestion,
+  opts: { necessity?: boolean; others?: readonly Suggestion[]; scarcity?: Unit } = {},
+): { resolution: SuggestionResolution; booked: boolean } {
+  const others = (opts.others ?? []).filter((s) => s.voiceId !== suggestion.voiceId);
+  const decideOpts: DecideOptions = { suggestion };
+  if (others.length > 0) decideOpts.suggestions = others;
+  if (opts.necessity !== undefined) decideOpts.necessity = opts.necessity;
+  if (opts.scarcity !== undefined) decideOpts.scarcity = opts.scarcity;
+  const { list, ctx } = decisionInputs(p, affordances, 'answer', decideOpts);
+  const { considered, willCtx } = scoreAll(p, list, ctx);
+  const out = answerSuggestion(p, considered, willCtx, suggestion, others);
+  out.resolution.says = voiceLine(p, out.resolution, out.booked ? `a${ctx.now}` : 'predict');
+  if (out.booked) {
+    let action = suggestion.action;
+    if (action === undefined && suggestion.affordanceId !== undefined)
+      action = list.find((a) => a.id === suggestion.affordanceId)?.action;
+    noteAnswer(p, out.resolution, action);
+  }
+  return out;
+}
+
 /** Every resolution of a decision record (all voices), oldest API first. */
 export const resolutionsOf = (r: {
   suggestion?: SuggestionResolution;
@@ -1140,7 +1183,7 @@ export function begin(
   const thresholdAt = thresholdFor(p, load, review);
   if (thresholdAt !== undefined) activity.thresholdAt = thresholdAt;
   activity.reviewAt = now + Math.max(1, Math.min(review, (thresholdAt ?? Number.POSITIVE_INFINITY) - now));
-  if (load.mode === 'sleep') activity.reviewAt = capForDuty(p, activity.reviewAt);
+  activity.reviewAt = capForDuty(p, activity, activity.reviewAt);
   if (aff.risk && aff.risk.chance > 0 && aff.risk.severity > 0) {
     appraise(p, {
       at: now,
@@ -1179,13 +1222,23 @@ export function reviewed(p: Person): void {
   if (thresholdAt !== undefined) act.thresholdAt = thresholdAt;
   else delete act.thresholdAt;
   act.reviewAt = p.now + Math.max(1, Math.min(review, (thresholdAt ?? Number.POSITIVE_INFINITY) - p.now));
-  if (load.mode === 'sleep') act.reviewAt = capForDuty(p, act.reviewAt);
+  act.reviewAt = capForDuty(p, act, act.reviewAt);
 }
 
-/** A sleeper's review no later than the minute a pending duty becomes pressing enough to wake for. */
-function capForDuty(p: Person, reviewAt: Minute): Minute {
-  const at = wakeReviewAt(p, p.now);
-  return at !== undefined && at < reviewAt ? Math.max(p.now + 1, at) : reviewAt;
+/**
+ * Cap a review for pending duties. A sleeper is reviewed no later than the minute a pending duty becomes pressing
+ * enough to wake for. Any activity that would cover a protected duty's whole closing stretch and run past the
+ * window's end is reviewed when that stretch begins (1.9.0, `will.dutyReviewAt`), so the omission rule weighs it.
+ */
+function capForDuty(p: Person, act: Activity, reviewAt: Minute): Minute {
+  let at = reviewAt;
+  if (act.mode === 'sleep') {
+    const wake = wakeReviewAt(p, p.now);
+    if (wake !== undefined && wake < at) at = Math.max(p.now + 1, wake);
+  }
+  const stretch = dutyReviewAt(p, act.affordance, p.now, act.endsAt);
+  if (stretch !== undefined && stretch < at) at = Math.max(p.now + 1, stretch);
+  return at;
 }
 
 /**
