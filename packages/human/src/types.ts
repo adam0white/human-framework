@@ -762,11 +762,10 @@ export interface Activity {
 
 export const PERSON_SCHEMA = 'human/person@1';
 /**
- * Current: 1.7.0 (2026-10-04), research/decisions.md as defaults: Fajr ends at sunrise (`PrayerTimes.sunrise`),
- * missed obligatory worship and broken obligatory fasts leave a make-up debt, sleep and unconsciousness lift the
- * blame (`missedExcuse`), the Eid prayer norm and window, disliked times. New optional state: `body.lastSleep`,
- * `body.lastDowned`, `agenda.lapse`, `OwedMakeUp.lapseSince`. Newest first is the rule for this comment: the API
- * doc shows its first line.
+ * Current: 1.8.0 (2026-10-04): optional `family` (aptitudes, pregnancy, upbringing, attachment), `bonds`
+ * (courtship, marriage, widowhood) and `ambient` (environment percepts) slices. All absent until a host uses them;
+ * a run that does not use them is unchanged, and 1.7.0 saves restore by a version stamp. Newest first is the rule
+ * for this comment: the API doc shows its first line.
  *
  * Earlier engines:
  * 1.1.0 (2026-10-03): joint activities, omission/distrust rules, reactance, voice history.
@@ -783,8 +782,90 @@ export const PERSON_SCHEMA = 'human/person@1';
  * 1.6.0 (2026-10-04): `restore` migrates 1.4.0 and 1.5.0 saves (`migrate`); commanded control, mental breaks,
  * per-part capacities with bleeding and a downed state, and insider/outsider ties with threat percepts. All new
  * person state is optional and absent until used, and none of it changes a run that does not use it.
+ * 1.7.0 (2026-10-04), research/decisions.md as defaults: Fajr ends at sunrise (`PrayerTimes.sunrise`), missed
+ * obligatory worship and broken obligatory fasts leave a make-up debt, sleep and unconsciousness lift the blame
+ * (`missedExcuse`), the Eid prayer norm and window, disliked times. New optional state: `body.lastSleep`,
+ * `body.lastDowned`, `agenda.lapse`, `OwedMakeUp.lapseSince`.
  */
-export const ENGINE_VERSION = '1.7.0';
+export const ENGINE_VERSION = '1.8.0';
+
+// ---------------------------------------------------------------------------------------------
+// Family, bonds and ambient (1.8.0, optional slices)
+// ---------------------------------------------------------------------------------------------
+
+/** A pregnancy carried by this person (host-driven; see `family/`). */
+export interface Pregnancy {
+  fatherId: PersonId;
+  conceivedAt: Minute;
+  dueAt: Minute;
+  /** Seed for the child's stream (passed to `createChild`). */
+  seed: number;
+}
+
+/** Upbringing and inherited learning tendencies. Owned by `family/`. */
+export interface FamilyState {
+  /** Learning multipliers per skill id (1 = population average), inherited at birth. */
+  aptitudes?: Record<string, number>;
+  pregnancy?: Pregnancy;
+  /** Security of attachment to caregivers, 0..1 (moves most in early childhood). */
+  attachment?: Unit;
+  /** Minutes of upbringing exposure accumulated (readout only). */
+  raisedMinutes?: number;
+}
+
+/** A courtship in progress, seen from this person's side. */
+export interface Courtship {
+  withId: PersonId;
+  since: Minute;
+  /** Mutual warmth built by courting, 0..1 (decays without meetings). */
+  warmth: Unit;
+  /** Appeal of the other as last assessed (`partnering.attraction`), 0..1. */
+  appeal: Unit;
+  meetings: number;
+  lastAt: Minute;
+  engagedAt?: Minute;
+}
+
+export interface Marriage {
+  spouseId: PersonId;
+  since: Minute;
+  endedAt?: Minute;
+  end?: 'widowed';
+  /** Waiting period in days this person observes if widowed, fixed at the wedding from the host's custom. */
+  mourningDays?: number;
+}
+
+/** Courtship, marriage and widowhood. Owned by `partnering/`. */
+export interface BondsState {
+  courtships: Courtship[];
+  marriages: Marriage[];
+  /** A waiting period after a spouse's death, when the person's understanding includes one. */
+  mourning?: { forId: PersonId; since: Minute; until: Minute };
+}
+
+/** What the surroundings are like, as the host perceives them for this person. */
+export interface AmbientPercept {
+  /** Cold stress 0..1 (0 = comfortable). */
+  cold?: Unit;
+  /** Darkness 0..1 (night without light). */
+  dark?: Unit;
+  /** Felt density of people 0..1. */
+  crowding?: Unit;
+  /** Beauty (+1) to squalor (−1). */
+  beauty?: Signed;
+  /** Pleasant (+1) to foul (−1) weather. */
+  weather?: Signed;
+  /** Hours of daylight today (season); omitted = no seasonal effect. */
+  dayLength?: number;
+  outdoors?: boolean;
+}
+
+/** The current surroundings. Owned by `environment/`. */
+export interface AmbientState {
+  now: AmbientPercept;
+  /** Minute these surroundings began. */
+  since: Minute;
+}
 
 export interface Person {
   schema: typeof PERSON_SCHEMA;
@@ -818,6 +899,12 @@ export interface Person {
   chronicleDay?: ChronicleDay;
   /** Host phrase pack and names for narration (N6). Read by `narrate/`; written only by the host. */
   lexicon?: Lexicon;
+  /** Aptitudes, pregnancy, upbringing and attachment (1.8.0). Owned by `family/`. */
+  family?: FamilyState;
+  /** Courtship, marriage and widowhood (1.8.0). Owned by `partnering/`. */
+  bonds?: BondsState;
+  /** Current surroundings (1.8.0). Owned by `environment/`. */
+  ambient?: AmbientState;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -1080,6 +1167,8 @@ export interface PersonSpec {
   voices?: { voiceId: EntityId; trust?: Unit }[];
   /** Host phrase pack and names for narration; `createPerson` copies it to `Person.lexicon`. */
   lexicon?: Lexicon;
+  /** Inherited aptitudes and attachment (1.8.0); `createPerson` copies it to `Person.family`. */
+  family?: Pick<FamilyState, 'aptitudes' | 'attachment'>;
 }
 
 // ---------------------------------------------------------------------------------------------

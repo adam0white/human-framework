@@ -228,6 +228,60 @@ export const DEFAULT_NORMS: NormDefinition[] = [
 ];
 
 /**
+ * Marriage norms (1.8.0), a separate catalog so that `heldNorms` with the default catalog, and every existing run,
+ * is unchanged. A host gives them to the people whose understanding includes them, e.g.
+ * `heldNorms({ practice }, [...DEFAULT_NORMS, ...MARRIAGE_NORMS])` or `understandNorm`. Each records an
+ * understanding with provenance in research/marriage-sources.md and research/decisions.md; none is a ruling. The
+ * necessity exception never lifts them (they meet no bodily need and are not `necessityEligible`).
+ */
+export const MARRIAGE_NORMS: NormDefinition[] = [
+  {
+    id: 'kin-marriage',
+    label: 'Do not marry within the forbidden degrees',
+    standing: 'forbidden',
+    sources: [
+      { kind: 'revelation', ref: "Qur'an 4:22-23 (prohibited degrees by blood, fosterage and marriage)" },
+      { kind: 'revelation', ref: "Qur'an 4:24 (beyond these, lawful; cousins are not listed)" },
+      {
+        kind: 'assumption',
+        ref: 'Fosterage is not modelled; partnering/kinship derives degrees from social roles (research/marriage-sources.md §5)',
+      },
+    ],
+  },
+  {
+    id: 'seclusion',
+    label: 'Do not be alone with an unrelated man or woman',
+    standing: 'forbidden',
+    sources: [
+      { kind: 'hadith', ref: 'Bukhari 5233; Muslim 1341 (no man alone with a woman without a mahram)' },
+      {
+        kind: 'interpretation',
+        ref: 'Consensus that seclusion (khalwa) is forbidden, per Nawawi as cited by islamqa.info 175176; courting is chaperoned (research/marriage-sources.md §6)',
+      },
+    ],
+  },
+  {
+    id: 'marry-without-guardian',
+    label: "Do not marry without the bride's guardian",
+    standing: 'forbidden',
+    sources: [
+      {
+        kind: 'hadith',
+        ref: 'Abu Dawud 2085; Tirmidhi 1101; Ibn Majah 1881 ("no marriage without a guardian")',
+      },
+      {
+        kind: 'interpretation',
+        ref: "Maliki, Shafi'i and Hanbali require a guardian for the bride; the Hanafi school allows an adult woman to contract her own marriage (research/marriage-sources.md §2); the majority position is the default (research/decisions.md)",
+      },
+      {
+        kind: 'revelation',
+        ref: "Qur'an 2:232; Bukhari 5130: a guardian may not block a marriage agreed in kindness, so an unjust refusal is not tagged as this norm",
+      },
+    ],
+  },
+];
+
+/**
  * Which default norms only religiously practising people hold ('religious') and which ordinary people
  * across practice levels tend to hold ('shared'); 'core' shared norms get the firmest baseline conviction.
  */
@@ -250,4 +304,7 @@ export const NORM_SCOPE: Record<string, 'religious' | 'shared' | 'core'> = {
   fairness: 'shared',
   punctuality: 'shared',
   'care-dependents': 'shared',
+  'kin-marriage': 'core',
+  seclusion: 'religious',
+  'marry-without-guardian': 'religious',
 };

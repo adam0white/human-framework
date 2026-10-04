@@ -42,6 +42,11 @@ export const MIGRATIONS: Readonly<Record<string, MigrationStep>> = {
     note: 'person shape unchanged; last sleep, last downing and the downed lapse are optional and start absent; missed worship now owes a make-up from here on',
     apply: stamp,
   },
+  '1.7.0': {
+    to: '1.8.0',
+    note: 'person shape unchanged; family, bonds and ambient are optional and start absent',
+    apply: stamp,
+  },
 };
 
 /** The step upgrading from `v`, looked up as an own property only (a version of "__proto__" matches nothing). */

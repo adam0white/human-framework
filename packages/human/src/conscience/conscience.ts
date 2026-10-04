@@ -141,6 +141,30 @@ export function createConscience(norms: HeldNorm[]): ConscienceState {
 const heldNorm = (p: Person, normId: string): HeldNorm | undefined =>
   p.conscience.norms.find((n) => n.normId === normId);
 
+/**
+ * Set how firmly `p` holds an understanding of a norm (1.8.0): adds it if absent, else replaces standing and
+ * conviction. Used by upbringing (`family.raise`) and by hosts; it records a person's understanding, not a
+ * ruling. An invalid standing is ignored. Returns the held norm.
+ */
+export function understandNorm(
+  p: Person,
+  normId: string,
+  standing: HeldNorm['standing'],
+  conviction: Unit,
+): HeldNorm | undefined {
+  if (!VALID_STANDINGS.includes(standing)) return undefined;
+  const c = clamp01(Number.isFinite(conviction) ? conviction : 0);
+  const held = heldNorm(p, normId);
+  if (held) {
+    held.standing = standing;
+    held.conviction = c;
+    return held;
+  }
+  const n: HeldNorm = { normId, standing, conviction: c };
+  p.conscience.norms.push(n);
+  return n;
+}
+
 /** Value/trait coefficient on a held norm's pull. Traits and values scale; they never branch. */
 function normCoefficient(p: Person, normId: string): number {
   const scope = NORM_SCOPE[normId] ?? 'shared';
