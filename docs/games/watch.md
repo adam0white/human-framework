@@ -170,7 +170,7 @@ Rejected for G3-1:
 
 ### G3-2 as built (2026-10-04)
 
-Watchers are HF `Person`s run by `stepCommunity` (`sim/people.ts`, `sim/night.ts`); no game code went into `packages/human` beyond L6 impressions. ENGINE_VERSION stays 1.7.0.
+Watchers are HF `Person`s run by `stepCommunity` (`sim/people.ts`, `sim/night.ts`); no game code went into `packages/human`; the framework change is L6 impressions, which draw no randomness and leave the engine version alone.
 
 - **Cast.** Tamar, Kian and Mara stand the first night. Joss and Yunus come through the gate on night 2. Ruslan, the newcomer the Keeper doesn't know, comes on night 3. Arrivals, and anyone who turns away from an old grudge, show in the day summary.
 - **Staying or leaving.** A posting is a suggestion with a duty appeal. At night a posted watcher is offered only their own post, so the choice is to stay or to leave: flee, go home to family, sleep, freeze, or doze where they stand (a 30-minute sleep on the wall). Sitting and eating on an exposed stretch carry the risky tag, so fear does not keep people idling on the wall.

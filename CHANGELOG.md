@@ -12,9 +12,47 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+Engine: 1.8.0. `restore` upgrades 1.7.0 saves by a version stamp; runs that use none of the new slices are unchanged.
+
 ### Added
 
-- Impressions (HF 2.0 L6, `social/impressions.ts` and the composite `impression.ts`): what one person believes about another's state (fatigue, pain, fear, mood), fear of places, traits, ties and trust in a voice, each with a confidence, learned only from observations the host reports (`glimpse`/`glimpseOf`, `observeAct`, `hear`, `acquaint`/`acquaintWith`). A person's reserve (`setReserve`, default from emotionality) hides pain and fear from faces and more from words (`selfReport`); a limp always shows. `predictAs` and `previewCommandAs` run `predict`/`previewCommand` on the person as the observer pictures them (`imagine`), so a player's read and a villager's judgement use one function. Cognition adds a `companion:<id>` term on risky offers shared with people one holds impressions of (`companionSteadiness`). New optional state `social.impressions` and `social.reserve`, absent until used; observing draws no randomness, so runs that do not use it replay byte for byte and `ENGINE_VERSION` stays 1.7.0.
+- Family (`family/`, HF 2.0 L2): `conceptionChance`, `conceive`, `pregnancyDue`, `deliver` (pregnancy and birth as
+  host-driven events; gestation from research), `raise` (ongoing upbringing: warmth-weighted values, the lived
+  example of norms, attachment security, trust in the household's voices), `aptitudeOf`, and inherited learning
+  aptitudes through `createChild`'s opt-in `ChildSpec.aptitudes`. New optional `Person.family`, `PersonSpec.family`.
+- Courtship and marriage (`partnering/`, L3): `attraction`, `compatibility`, `court`, `courtshipStage`, `betroth`,
+  `kinship`, `canMarry`, `marry`, `widow`, `widowhoodMortality`; offers `courtingOffer`, `proposeOffer`,
+  `proposalOffers` (accepting is an ordinary decision, so a person can refuse); `familyVoices` (relatives' approval
+  as weighed voices); customs `GENERIC_CUSTOM` and `MUSLIM_CUSTOM`; a separate `MARRIAGE_NORMS` catalog. A spouse's
+  perceived death ends the marriage and starts any waiting period. Divorce is not modelled yet. New optional
+  `Person.bonds`. Sources: [research/marriage-sources.md](https://github.com/adam0white/human-framework/blob/main/research/marriage-sources.md), decisions in [research/decisions.md](https://github.com/adam0white/human-framework/blob/main/research/decisions.md).
+- Surroundings (`environment/`, L4): `setAmbient`, `clearAmbient`, `ambientMood`. Cold, darkness, crowding, beauty
+  or squalor, weather and day length shift mood (small, research-bounded offsets), body (cold metabolism, slower
+  recovery and sleep) and needs. New optional `Person.ambient`. Sources: [research/family-environment-sources.md](https://github.com/adam0white/human-framework/blob/main/research/family-environment-sources.md).
+- `understandNorm` (conscience) and `adoptVoiceTrust` (will); `advanceAffect` takes an optional mood offset.
+- Multi-year stepping (L5): `routineDay` and `liveRoutine` live a person by a host `Routine` one coarse day at a time
+  (decays, skill practice, companions, remembered events, one appraisal, opt-in chronic onsets and natural death on
+  the person's RNG); `liveCommunity` steps a settlement day by day, tells deaths, raises minors with their parents
+  (`upbringingMinutes`) and leaves the bookkeeping `stepCommunity` needs to resume. 25 people for 50 years run in
+  about 3.5 s (`npm run bench`). New `SimEvent` kinds `onset` and `stage`; `advanceAffect` takes an optional
+  substep cap.
+- Lasting memory (L5): `enableGists`, `consolidate`, `gistsFor`. Episodes that are forgotten or older than 180 days
+  fold into bounded gists of what mattered, which still shape choices through a `memory` term (a fear learned at 20
+  still counts at 40). Yearbook: `enableYearbook`, `foldDay`, `yearRecord`, one bounded summary per year.
+- Experience over years (L1): `Affordance.skill.domain` picks a learning age curve; `finish` applies a host
+  `SkillTransfer` (`FinishOptions.transfer`, `World.skillTransfer`); `Outcome.practice` sets practice quality and
+  instruction (`instructionFrom`); `observeSkill` and `Percept.demonstrates` teach by watching;
+  `enableSkillConsolidation` lengthens forgetting with practice hours; `enableCharacterChange` matures traits and
+  values with age and moves traits slowly with sustained experience around a set point, within ±0.15 of the
+  anchor. Sources and assumptions: [research/long-run-sources.md](https://github.com/adam0white/human-framework/blob/main/research/long-run-sources.md).
+- Impressions (HF 2.0 L6, `social/impressions.ts` and the composite `impression.ts`): what one person believes about another's state (fatigue, pain, fear, mood), fear of places, traits, ties and trust in a voice, each with a confidence, learned only from observations the host reports (`glimpse`/`glimpseOf`, `observeAct`, `hear`, `acquaint`/`acquaintWith`). A person's reserve (`setReserve`, default from emotionality) hides pain and fear from faces and more from words (`selfReport`); a limp always shows. `predictAs` and `previewCommandAs` run `predict`/`previewCommand` on the person as the observer pictures them (`imagine`), so a player's read and a villager's judgement use one function. Cognition adds a `companion:<id>` term on risky offers shared with people one holds impressions of (`companionSteadiness`). New optional state `social.impressions` and `social.reserve`, absent until used; observing draws no randomness, so runs that do not use it replay byte for byte.
+- `tellDeath(c, dead, at)`: a told `death` percept to everyone with a tie; a spouse is widowed.
+
+### Changed
+
+- `stepCommunity` tells each death to everyone alive with a tie (`StepOptions.tellDeaths`, default true): they
+  grieve, keep the tie as a memory, and a spouse is widowed. Runs without deaths are unchanged; no playtest fixture
+  changed.
 
 ### Removed
 

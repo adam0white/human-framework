@@ -8,6 +8,21 @@
  * It does NOT model reconsolidation, false memory, interference between similar episodes, sleep-dependent
  * consolidation, semantic abstraction, or model-based planning; parameters are engineering defaults for
  * game time scales, not calibrated estimates.
+ *
+ * SCOPE (lasting gists, 1.8.0, opt-in per person with `enableGists`): episodic detail does not last a life, but the
+ * gist of what mattered does. An episode that leaves the episode list (evicted beyond the bound, or older than
+ * `GIST_DEFAULTS.horizon` at a `consolidate` call, which the composite makes at each day's close) is folded into the
+ * gist with the same kind, action, people and place when it was emotional enough (|valence| ≥ `minValence`, or a
+ * loss); weaker ones are simply forgotten. A gist keeps the encoding-weighted mean valence, a count and the summary of
+ * its strongest episode, and fades with half-lives of years (`halfLifeNeutral`..`halfLifeEmotional` by |valence|).
+ * Gists answer `recall` and `recallByCue` like episodes (so a remembered fear or loss still comes back at its place,
+ * person or anniversary), and `expectedEffect` reports the gists about an option's action or place, which cognition
+ * weighs as a `memory` term that fades as fresh experience of the option accumulates. So a fear learned at 20 still
+ * shapes choices at 40 after its episodes are gone, and enough good later visits outweigh it. Named shapes: the
+ * fading of episodic detail while gist persists (fuzzy-trace theory, Brainerd & Reyna) and the long retention of
+ * emotional autobiographical memories; the horizon, thresholds, half-lives and the bound of 64 are engineering
+ * choices. It does not model reconstruction errors in gists, deliberate rehearsal beyond retelling (`recall`
+ * boosts), or semantic knowledge abstracted from gists.
  */
 import { clamp, clamp01, clampSigned, decay, hourOf, lerp, runningMean } from '../core/index.ts';
 import type {
@@ -16,6 +31,7 @@ import type {
   AppraisalEvent,
   EntityId,
   Episode,
+  Gist,
   MemoryState,
   Minute,
   NeedId,
@@ -24,7 +40,7 @@ import type {
   Signed,
   Unit,
 } from '../types.ts';
-import { MINUTES_PER_DAY } from '../types.ts';
+import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
 
 export const MEMORY_DEFAULTS = {
   maxEpisodes: 200,
@@ -61,6 +77,25 @@ export const MEMORY_DEFAULTS = {
   maxCited: 2,
 };
 
+export const GIST_DEFAULTS = {
+  /** Gists kept; the weakest (salience) go first, loss gists last (at most `maxProtectedLoss` protected). */
+  maxGists: 64,
+  maxProtectedLoss: 16,
+  /** `consolidate` folds episodes older than this (minutes). */
+  horizon: 180 * MINUTES_PER_DAY,
+  /** |valence| an episode needs to leave a gist (loss episodes always do). */
+  minValence: 0.3,
+  /** Gist salience half-life for a neutral and for a maximally emotional gist (minutes). */
+  halfLifeNeutral: 2 * MINUTES_PER_YEAR,
+  halfLifeEmotional: 20 * MINUTES_PER_YEAR,
+  /** Fraction of an episode's encoding strength added to the gist's headroom when it is folded in. */
+  foldGain: 0.5,
+  /** Tags kept per gist (loss tags first). */
+  maxTags: 6,
+  /** Weight of a gist matched by place only, relative to one matched by action. */
+  placeWeight: 0.5,
+};
+
 export interface MemoryQuery {
   action?: string;
   actorId?: string;
@@ -77,10 +112,155 @@ export interface ExpectedEffect {
   samples: number;
   confidence: Unit;
   recalled: string[];
+  /**
+   * Lasting gists about this option (1.8.0, present only with gists on and a match): their salience-weighted valence
+   * and total weight (capped at 1), with the ids, strongest first.
+   */
+  gist?: { valence: Signed; weight: Unit; ids: string[] };
 }
 
 export function createMemory(): MemoryState {
   return { episodes: [], beliefs: [], expectations: [], sourceTrust: {}, nextEpisode: 0 };
+}
+
+/** Turn on lasting gists for this person (idempotent). Without it, forgotten episodes leave nothing. */
+export function enableGists(p: Person): void {
+  p.memory.gists ??= [];
+  p.memory.nextGist ??= 0;
+}
+
+/** Episodes and gists together, for recall (gists only when enabled). */
+function memories(p: Person): readonly Episode[] {
+  const g = p.memory.gists;
+  return g && g.length > 0 ? [...p.memory.episodes, ...g] : p.memory.episodes;
+}
+
+const sameKey = (g: Episode, e: Episode): boolean =>
+  g.kind === e.kind &&
+  g.action === e.action &&
+  g.actorId === e.actorId &&
+  g.targetId === e.targetId &&
+  g.placeId === e.placeId;
+
+/**
+ * Fold an episode leaving the list into its gist (or a new one) when it is emotional enough or a loss; returns the
+ * gist, or undefined when the episode is simply forgotten or gists are off.
+ */
+function foldEpisode(p: Person, ep: Episode, dead: ReadonlySet<string>): Gist | undefined {
+  const mem = p.memory;
+  const list = mem.gists;
+  if (!list) return undefined;
+  const G = GIST_DEFAULTS;
+  if (!lossEpisode(ep, dead) && Math.abs(ep.valence) < G.minValence) return undefined;
+  const fresh = defaultSalience(ep.kind, ep.valence);
+  let g = list.find((x) => sameKey(x, ep));
+  if (!g) {
+    const id = `g${mem.nextGist ?? 0}`;
+    mem.nextGist = (mem.nextGist ?? 0) + 1;
+    g = {
+      id,
+      at: ep.at,
+      kind: ep.kind,
+      valence: ep.valence,
+      salience: clamp01(fresh),
+      summary: ep.summary,
+      tags: [],
+      count: 0,
+      firstAt: ep.at,
+      lastAt: ep.at,
+      weight: 0,
+      peak: fresh,
+    };
+    if (ep.action !== undefined) g.action = ep.action;
+    if (ep.actorId !== undefined) g.actorId = ep.actorId;
+    if (ep.targetId !== undefined) g.targetId = ep.targetId;
+    if (ep.placeId !== undefined) g.placeId = ep.placeId;
+    if (ep.voiceId !== undefined) g.voiceId = ep.voiceId;
+    list.push(g);
+  } else {
+    g.salience = clamp01(g.salience + (1 - g.salience) * G.foldGain * fresh);
+  }
+  g.valence = clampSigned((g.valence * g.weight + ep.valence * fresh) / (g.weight + fresh));
+  g.weight += fresh;
+  g.count += 1;
+  g.firstAt = Math.min(g.firstAt, ep.at);
+  g.lastAt = Math.max(g.lastAt, ep.at);
+  if (fresh > g.peak) {
+    g.peak = fresh;
+    g.at = ep.at;
+    g.summary = ep.summary;
+  }
+  const lossTags = CUE_RECALL_DEFAULTS.lossTags;
+  const tags = [...new Set([...g.tags, ...ep.tags])];
+  tags.sort((a, b) => Number(lossTags.includes(b)) - Number(lossTags.includes(a)));
+  g.tags = tags.slice(0, G.maxTags);
+  trimGists(p, dead);
+  return g;
+}
+
+function trimGists(p: Person, dead: ReadonlySet<string>): void {
+  const list = p.memory.gists;
+  if (!list || list.length <= GIST_DEFAULTS.maxGists) return;
+  const protectedIds = new Set(
+    list
+      .filter((g) => lossEpisode(g, dead))
+      .sort((a, b) => b.salience - a.salience || byId(b, a))
+      .slice(0, GIST_DEFAULTS.maxProtectedLoss)
+      .map((g) => g.id),
+  );
+  while (list.length > GIST_DEFAULTS.maxGists) {
+    let worst = 0;
+    let worstScore = Number.POSITIVE_INFINITY;
+    for (let i = 0; i < list.length; i++) {
+      const g = list[i] as Gist;
+      const score = g.salience + (protectedIds.has(g.id) ? 1 : 0);
+      if (score < worstScore) {
+        worstScore = score;
+        worst = i;
+      }
+    }
+    list.splice(worst, 1);
+  }
+}
+
+/**
+ * Fold every episode older than `GIST_DEFAULTS.horizon` into gists and drop it from the episode list (gists on only;
+ * otherwise nothing happens). The composite calls this at each day's close. Returns the number of episodes folded or
+ * forgotten.
+ */
+export function consolidate(p: Person, now: Minute = p.now): number {
+  if (!p.memory.gists) return 0;
+  const cutoff = now - GIST_DEFAULTS.horizon;
+  const eps = p.memory.episodes;
+  if (!eps.some((e) => e.at < cutoff)) return 0;
+  const dead = deceasedSet(p);
+  const keep: Episode[] = [];
+  let n = 0;
+  for (const ep of eps) {
+    if (ep.at < cutoff) {
+      foldEpisode(p, ep, dead);
+      n += 1;
+    } else keep.push(ep);
+  }
+  p.memory.episodes = keep;
+  return n;
+}
+
+/** The gists about an option: by action (and target when the option has one) or, at half weight, by place. */
+export function gistsFor(
+  p: Person,
+  aff: Pick<Affordance, 'action' | 'targetId' | 'placeId'>,
+): { gist: Gist; weight: number }[] {
+  const list = p.memory.gists;
+  if (!list || list.length === 0) return [];
+  const out: { gist: Gist; weight: number }[] = [];
+  for (const g of list) {
+    let w = 0;
+    if (g.action === aff.action && (aff.targetId === undefined || g.targetId === aff.targetId)) w = 1;
+    else if (aff.placeId !== undefined && g.placeId === aff.placeId) w = GIST_DEFAULTS.placeWeight;
+    if (w > 0) out.push({ gist: g, weight: w * g.salience });
+  }
+  return out;
 }
 
 const idNum = (id: string): number => Number(id.slice(1)) || 0;
@@ -133,7 +313,8 @@ export function remember(p: Person, e: Omit<Episode, 'id' | 'salience'> & { sali
           worst = i;
         }
       }
-      mem.episodes.splice(worst, 1);
+      const [gone] = mem.episodes.splice(worst, 1);
+      if (gone && mem.gists) foldEpisode(p, gone, dead);
     }
   }
   return episode;
@@ -161,7 +342,7 @@ function matchScore(ep: Episode, q: MemoryQuery): number {
 export function recall(p: Person, q: MemoryQuery): Episode[] {
   const limit = q.limit ?? MEMORY_DEFAULTS.defaultRecallLimit;
   const scored: { ep: Episode; score: number }[] = [];
-  for (const ep of p.memory.episodes) {
+  for (const ep of memories(p)) {
     const m = matchScore(ep, q);
     if (m <= 0) continue;
     scored.push({ ep, score: m * ep.salience * recency(p.now, ep.at) });
@@ -182,6 +363,14 @@ export function advanceMemory(p: Person, dt: number): void {
       Math.abs(ep.valence),
     );
     ep.salience = decay(ep.salience, dt, halfLife);
+  }
+  for (const g of p.memory.gists ?? []) {
+    const halfLife = lerp(
+      GIST_DEFAULTS.halfLifeNeutral,
+      GIST_DEFAULTS.halfLifeEmotional,
+      Math.abs(g.valence),
+    );
+    g.salience = decay(g.salience, dt, halfLife);
   }
 }
 
@@ -250,7 +439,7 @@ export function expectedEffect(p: Person, aff: Affordance): ExpectedEffect {
     const lv = learned?.needs[k];
     needs[k] = lv === undefined ? adv : lerp(adv, lv, confidence);
   }
-  return {
+  const out: ExpectedEffect = {
     needs,
     successRate: clamp01(lerp(MEMORY_DEFAULTS.priorSuccess, learned?.successRate ?? 0, confidence)),
     valence: clampSigned(lerp(0, learned?.valence ?? 0, confidence)),
@@ -258,6 +447,20 @@ export function expectedEffect(p: Person, aff: Affordance): ExpectedEffect {
     confidence,
     recalled: citedEpisodes(p, aff),
   };
+  const gists = gistsFor(p, aff);
+  let w = 0;
+  let v = 0;
+  for (const x of gists) {
+    w += x.weight;
+    v += x.weight * x.gist.valence;
+  }
+  if (w > 0) {
+    gists.sort((a, b) => b.weight - a.weight || byId(a.gist, b.gist));
+    out.gist = { valence: clampSigned(v / w), weight: clamp01(w), ids: gists.map((x) => x.gist.id) };
+    if (out.recalled.length === 0 && Math.abs(v / w) > MEMORY_DEFAULTS.citeValence)
+      out.recalled = gists.slice(0, MEMORY_DEFAULTS.maxCited).map((x) => x.gist.id);
+  }
+  return out;
 }
 
 function step(mean: number, sample: number, n: number): number {
@@ -444,7 +647,7 @@ export function recallByCue(p: Person, cue: RecallCue): CueRecall {
   const hour = cue.hour ?? hourOf(at);
   const dead = deceasedSet(p);
   const scored: { ep: Episode; strength: number; score: number; loss: boolean; who?: string }[] = [];
-  for (const ep of p.memory.episodes) {
+  for (const ep of memories(p)) {
     if (ep.at >= at) continue;
     if (Math.abs(ep.valence) < D.minLossValence) continue;
     if (ep.recalledAt !== undefined && at - ep.recalledAt < D.refractory) continue;

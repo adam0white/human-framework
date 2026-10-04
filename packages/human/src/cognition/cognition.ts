@@ -31,6 +31,7 @@ import { normTerms } from '../conscience/index.ts';
 import { clamp01, dexp, minuteOfDay, round } from '../core/index.ts';
 import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
 import { expectedEffect } from '../memory/index.ts';
+import { partneringTerms } from '../partnering/index.ts';
 import { companionSteadiness, socialTerms } from '../social/index.ts';
 import type {
   Affordance,
@@ -314,6 +315,14 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     }
     push('expectation', K.expectationScale * expected.valence * expected.confidence * relevance);
   }
+  // Lasting gists (1.8.0, opt-in): what an old memory says about this option, fading as fresh experience of it
+  // (the learned expectation's confidence) takes over.
+  if (expected.gist) {
+    push(
+      'memory',
+      K.expectationScale * expected.gist.valence * expected.gist.weight * (1 - expected.confidence),
+    );
+  }
 
   // Norms, commitments and goals. Planning terms scale with developmental maturity.
   let refractoryCache: number | undefined;
@@ -373,6 +382,9 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
       push(`joint:${id}`, K.jointTrust * (trust - 0.5));
     }
   }
+
+  // Courtship and proposals (1.8.0, `partnering/`): only offers tagged 'partnering'.
+  if (tags.includes('partnering')) for (const t of partneringTerms(p, aff, ctx.now)) push(t.source, t.value);
 
   // Promise inertia for the running activity (begin with { promise }).
   const act = p.activity;

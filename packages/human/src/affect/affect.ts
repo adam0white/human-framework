@@ -320,15 +320,27 @@ export function skipAffect(p: Person, to: Minute): void {
 /**
  * Advance affect by `dt` minutes. Emotion decay is exact; mood relaxes toward
  * (needSatisfaction - 0.5) * gain + emotion valence over substeps (≤ 30 min, at most 64), so step-size
- * consistency is exact without emotions and approximate with them. Advances `lastUpdated` by `dt`.
+ * consistency is exact without emotions and approximate with them. Advances `lastUpdated` by `dt`. `maxSteps` caps the
+ * substeps below `AFFECT_DEFAULTS.maxSubsteps` (1.8.0: routine days use a few per day, trading the mood path within
+ * the day for speed; the decay of each emotion stays exact).
  */
-export function advanceAffect(p: Person, dt: number, needSatisfaction: Unit): void {
+export function advanceAffect(
+  p: Person,
+  dt: number,
+  needSatisfaction: Unit,
+  moodOffset?: Signed,
+  maxSteps?: number,
+): void {
   if (dt <= 0) return;
   const A = AFFECT_DEFAULTS;
   const a = p.affect;
-  const steps = Math.min(A.maxSubsteps, Math.max(1, Math.ceil(dt / A.substep)));
+  const cap =
+    maxSteps === undefined ? A.maxSubsteps : Math.max(1, Math.min(A.maxSubsteps, Math.floor(maxSteps)));
+  const steps = Math.min(cap, Math.max(1, Math.ceil(dt / A.substep)));
   const h = dt / steps;
-  const needTerm = (clamp01(needSatisfaction) - 0.5) * A.moodNeedGain;
+  let needTerm = (clamp01(needSatisfaction) - 0.5) * A.moodNeedGain;
+  // An outside offset on the mood target (1.8.0: the surroundings, `environment/`); added only when given.
+  if (moodOffset !== undefined && moodOffset !== 0 && Number.isFinite(moodOffset)) needTerm += moodOffset;
   const halfLives = a.emotions.map((e) => effectiveHalfLife(p, e));
   for (let s = 0; s < steps; s++) {
     const before = a.emotions.map((e) => e.intensity);

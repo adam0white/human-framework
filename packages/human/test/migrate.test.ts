@@ -82,8 +82,8 @@ describe('migrate: saves from earlier engines restore under the current one', ()
     expect(v140.engine).toBe('1.4.0');
     expect(v150.engine).toBe('1.5.0');
     for (const j of v140.village.saved.people) expect((j as { engine: string }).engine).toBe('1.4.0');
-    expect(ENGINE_VERSION).toBe('1.7.0');
-    expect(migratableVersions()).toEqual(['1.4.0', '1.5.0', '1.6.0', '1.7.0']);
+    expect(ENGINE_VERSION).toBe('1.8.0');
+    expect(migratableVersions()).toEqual(['1.4.0', '1.5.0', '1.6.0', '1.7.0', '1.8.0']);
   });
 
   test('migrate stamps the current version and leaves the input alone', () => {

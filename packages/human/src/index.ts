@@ -78,6 +78,7 @@ export {
 } from './agenda/index.ts';
 export * from './beliefs/index.ts';
 export * from './body/index.ts';
+export * from './character/index.ts';
 export * from './chronicle/index.ts';
 export type { ConsiderContext, DecideContext, Decision, SocialContext } from './cognition/index.ts';
 // `cognition.decide` is the raw scorer; the composite's `decide` (person.ts) is the one hosts call.
@@ -94,14 +95,18 @@ export {
 export * from './conscience/index.ts';
 export * from './conversation/index.ts';
 export * from './core/index.ts';
+export * from './environment/index.ts';
+export * from './family/index.ts';
 export * from './habits/index.ts';
 export * from './impression.ts';
 export * from './lifecourse/index.ts';
+export * from './longrun.ts';
 export * from './memory/index.ts';
 export type { MigrationStep } from './migrate.ts';
 export { MIGRATIONS, migratableVersions, migrate } from './migrate.ts';
 export * from './narrate/index.ts';
 export * from './needs/index.ts';
+export * from './partnering/index.ts';
 export * from './person.ts';
 export * from './scenarios/index.ts';
 export * from './sim/index.ts';

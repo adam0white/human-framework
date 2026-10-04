@@ -427,6 +427,23 @@ export interface ActionExpectation {
   valence: Signed;
 }
 
+/**
+ * A lasting gist (1.8.0, `memory.enableGists`): several episodes of the same kind, action, people and place folded
+ * into one valenced memory that fades over years, not days. It has an episode's fields so recall reads both alike:
+ * `id` is `g<n>`, `at` is the minute of the strongest episode folded in (its `summary` is kept), `valence` is the
+ * encoding-strength-weighted mean and `salience` decays with `GIST_DEFAULTS` half-lives.
+ */
+export interface Gist extends Episode {
+  /** Episodes folded in. */
+  count: number;
+  firstAt: Minute;
+  lastAt: Minute;
+  /** Sum of the encoding strengths folded in (the weight of `valence`). */
+  weight: number;
+  /** Encoding strength of the episode whose `summary` and `at` are kept. */
+  peak: Unit;
+}
+
 export interface MemoryState {
   episodes: Episode[]; // bounded; low-salience episodes forgotten first
   beliefs: Belief[];
@@ -434,6 +451,9 @@ export interface MemoryState {
   /** Trust in each information source (person or channel), 0..1, default 0.5. */
   sourceTrust: Record<EntityId, Unit>;
   nextEpisode: number;
+  /** Lasting gists (1.8.0, opt-in via `enableGists`; absent = episodes are simply forgotten). Bounded. */
+  gists?: Gist[];
+  nextGist?: number;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -724,6 +744,21 @@ export interface Command {
 
 export type LifeStage = 'infant' | 'child' | 'adolescent' | 'adult' | 'elder';
 
+/** Slow trait and value change (1.8.0) — owned by `character/`. */
+export interface CharacterState {
+  /** Traits and values when change was enabled; drift stays within `CHARACTER_DEFAULTS.maxDrift` of them. */
+  baseTraits: Traits;
+  baseValues: Values;
+  /** Year being accumulated (`floor(day / 365)`). */
+  year: number;
+  /** The year's experience so far: days, summed mood, commitments kept and broken, minutes with others, distinct actions. */
+  acc: { days: number; mood: number; kept: number; broken: number; social: number; variety: number };
+  /** Minute maturation has been applied up to. */
+  agedTo: Minute;
+  /** Each trait's current offset from its maturation path due to experience; it decays toward 0 year by year. */
+  experience: Partial<Record<keyof Traits, number>>;
+}
+
 export interface LifeCourse {
   /** Birth minute relative to host epoch (negative for people born before minute 0). */
   bornAt: Minute;
@@ -795,11 +830,12 @@ export interface Activity {
 
 export const PERSON_SCHEMA = 'human/person@1';
 /**
- * Current: 1.7.0 (2026-10-04), research/decisions.md as defaults: Fajr ends at sunrise (`PrayerTimes.sunrise`),
- * missed obligatory worship and broken obligatory fasts leave a make-up debt, sleep and unconsciousness lift the
- * blame (`missedExcuse`), the Eid prayer norm and window, disliked times. New optional state: `body.lastSleep`,
- * `body.lastDowned`, `agenda.lapse`, `OwedMakeUp.lapseSince`. Newest first is the rule for this comment: the API
- * doc shows its first line.
+ * Current: 1.8.0 (2026-10-04): optional `family` (aptitudes, pregnancy, upbringing, attachment), `bonds`
+ * (courtship, marriage, widowhood) and `ambient` (environment percepts) slices; long-run state: `memory.gists`,
+ * `chronicleYears`, `character` (slow trait and value change) and `skillRetention` (consolidation). All absent until a
+ * host uses them;
+ * a run that does not use them is unchanged, and 1.7.0 saves restore by a version stamp. Newest first is the rule
+ * for this comment: the API doc shows its first line.
  *
  * Earlier engines:
  * 1.1.0 (2026-10-03): joint activities, omission/distrust rules, reactance, voice history.
@@ -816,8 +852,90 @@ export const PERSON_SCHEMA = 'human/person@1';
  * 1.6.0 (2026-10-04): `restore` migrates 1.4.0 and 1.5.0 saves (`migrate`); commanded control, mental breaks,
  * per-part capacities with bleeding and a downed state, and insider/outsider ties with threat percepts. All new
  * person state is optional and absent until used, and none of it changes a run that does not use it.
+ * 1.7.0 (2026-10-04), research/decisions.md as defaults: Fajr ends at sunrise (`PrayerTimes.sunrise`), missed
+ * obligatory worship and broken obligatory fasts leave a make-up debt, sleep and unconsciousness lift the blame
+ * (`missedExcuse`), the Eid prayer norm and window, disliked times. New optional state: `body.lastSleep`,
+ * `body.lastDowned`, `agenda.lapse`, `OwedMakeUp.lapseSince`.
  */
-export const ENGINE_VERSION = '1.7.0';
+export const ENGINE_VERSION = '1.8.0';
+
+// ---------------------------------------------------------------------------------------------
+// Family, bonds and ambient (1.8.0, optional slices)
+// ---------------------------------------------------------------------------------------------
+
+/** A pregnancy carried by this person (host-driven; see `family/`). */
+export interface Pregnancy {
+  fatherId: PersonId;
+  conceivedAt: Minute;
+  dueAt: Minute;
+  /** Seed for the child's stream (passed to `createChild`). */
+  seed: number;
+}
+
+/** Upbringing and inherited learning tendencies. Owned by `family/`. */
+export interface FamilyState {
+  /** Learning multipliers per skill id (1 = population average), inherited at birth. */
+  aptitudes?: Record<string, number>;
+  pregnancy?: Pregnancy;
+  /** Security of attachment to caregivers, 0..1 (moves most in early childhood). */
+  attachment?: Unit;
+  /** Minutes of upbringing exposure accumulated (readout only). */
+  raisedMinutes?: number;
+}
+
+/** A courtship in progress, seen from this person's side. */
+export interface Courtship {
+  withId: PersonId;
+  since: Minute;
+  /** Mutual warmth built by courting, 0..1 (decays without meetings). */
+  warmth: Unit;
+  /** Appeal of the other as last assessed (`partnering.attraction`), 0..1. */
+  appeal: Unit;
+  meetings: number;
+  lastAt: Minute;
+  engagedAt?: Minute;
+}
+
+export interface Marriage {
+  spouseId: PersonId;
+  since: Minute;
+  endedAt?: Minute;
+  end?: 'widowed';
+  /** Waiting period in days this person observes if widowed, fixed at the wedding from the host's custom. */
+  mourningDays?: number;
+}
+
+/** Courtship, marriage and widowhood. Owned by `partnering/`. */
+export interface BondsState {
+  courtships: Courtship[];
+  marriages: Marriage[];
+  /** A waiting period after a spouse's death, when the person's understanding includes one. */
+  mourning?: { forId: PersonId; since: Minute; until: Minute };
+}
+
+/** What the surroundings are like, as the host perceives them for this person. */
+export interface AmbientPercept {
+  /** Cold stress 0..1 (0 = comfortable). */
+  cold?: Unit;
+  /** Darkness 0..1 (night without light). */
+  dark?: Unit;
+  /** Felt density of people 0..1. */
+  crowding?: Unit;
+  /** Beauty (+1) to squalor (−1). */
+  beauty?: Signed;
+  /** Pleasant (+1) to foul (−1) weather. */
+  weather?: Signed;
+  /** Hours of daylight today (season); omitted = no seasonal effect. */
+  dayLength?: number;
+  outdoors?: boolean;
+}
+
+/** The current surroundings. Owned by `environment/`. */
+export interface AmbientState {
+  now: AmbientPercept;
+  /** Minute these surroundings began. */
+  since: Minute;
+}
 
 export interface Person {
   schema: typeof PERSON_SCHEMA;
@@ -836,6 +954,8 @@ export interface Person {
   conscience: ConscienceState;
   affect: AffectState;
   skills: Record<string, Skill>;
+  /** Practice consolidation (1.8.0, opt-in via `enableSkillConsolidation`). Owned by `skills/`. */
+  skillRetention?: { consolidationHours: number };
   habits: Habit[];
   memory: MemoryState;
   social: SocialState;
@@ -849,8 +969,21 @@ export interface Person {
   chronicle?: DayRecord[];
   /** The open day's accumulator (plain JSON, survives saves mid-day). Owned by `chronicle/`. */
   chronicleDay?: ChronicleDay;
+  /** Year summaries, oldest first (1.8.0, opt-in via `enableYearbook`; absent = dropped days leave nothing). */
+  chronicleYears?: YearRecord[];
+  /**
+   * Slow trait and value change (1.8.0, opt-in via `enableCharacterChange`). Owned by `character/`, which is then the
+   * only writer of `traits` and `values` after birth. Absent: they stay as set at birth.
+   */
+  character?: CharacterState;
   /** Host phrase pack and names for narration (N6). Read by `narrate/`; written only by the host. */
   lexicon?: Lexicon;
+  /** Aptitudes, pregnancy, upbringing and attachment (1.8.0). Owned by `family/`. */
+  family?: FamilyState;
+  /** Courtship, marriage and widowhood (1.8.0). Owned by `partnering/`. */
+  bonds?: BondsState;
+  /** Current surroundings (1.8.0). Owned by `environment/`. */
+  ambient?: AmbientState;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -879,7 +1012,11 @@ export interface Affordance {
   focus?: Unit;
   /** 'sleep' makes the body sleep for the duration. */
   mode?: 'awake' | 'sleep';
-  skill?: { id: string; difficulty: Unit };
+  /**
+   * The skill this activity practises. `domain` (1.8.0, optional) picks the age curve for its learning rate
+   * (`lifecourse.learningMultiplier`); absent means the general curve (`LifeModifiers.learning`), as before.
+   */
+  skill?: { id: string; difficulty: Unit; domain?: LearningDomain };
   /** Advertised need deltas over the whole activity (positive = satisfies). */
   advertises: Partial<Record<NeedId, number>>;
   /** Free tags: 'work', 'leisure', 'social', 'worship', 'risky', 'outdoors', ... */
@@ -936,6 +1073,36 @@ export interface Percept {
    * `told` percept, `will.rememberAdvice` stores each as standing advice from `actorId`.
    */
   advice?: { action: string; affordanceId?: string; strength?: Unit }[];
+  /**
+   * Observational learning (1.8.0): the person watched someone practise `skill` at `level` for `minutes`. On an
+   * attended percept the watcher learns a little toward the model (`skills.observe`). Absent: nothing is learned.
+   */
+  demonstrates?: { skill: string; level: Unit; minutes: number; domain?: LearningDomain };
+}
+
+/**
+ * Domains with distinct age curves for learning rate (`lifecourse.learningMultiplier`). 'general' is
+ * `LifeModifiers.learning`; 'language' is grammar and second-language learning; 'motor' is new movement skills;
+ * 'knowledge' is facts and know-how.
+ */
+export type LearningDomain = 'general' | 'language' | 'motor' | 'knowledge';
+
+/**
+ * How a stretch of practice went, as input to learning (1.8.0, host opt-in on `Outcome.practice`). Absent fields
+ * leave learning exactly as without them.
+ */
+export interface PracticeConditions {
+  /**
+   * Deliberate-practice quality 0..1 (focused, with feedback and correction, versus going through the motions).
+   * 0.5 is ordinary practice and changes nothing; see `SKILL_DEFAULTS.qualityLow`/`qualityHigh`.
+   */
+  quality?: Unit;
+  /**
+   * Guidance from someone more skilled while practising: the teacher's level in this skill and how engaged the
+   * guidance was (0..1, default 1). It raises how much this practice teaches, not only how well it goes
+   * (`skills.instructionFactor`). `instructionFrom(teacher, skill)` builds it.
+   */
+  instruction?: { level: Unit; engagement?: Unit; teacherId?: EntityId };
 }
 
 /** What actually happened when an activity ended. Hosts own world truth. */
@@ -969,6 +1136,8 @@ export interface Outcome {
    * through `body.expose`, which aggravates chronic conditions listing the kind and feeds `exposureChance`.
    */
   exposures?: { kind: string; amount?: number }[];
+  /** How the practice went, for learning (1.8.0): quality and instruction. Absent: learning as before. */
+  practice?: PracticeConditions;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -1113,6 +1282,8 @@ export interface PersonSpec {
   voices?: { voiceId: EntityId; trust?: Unit }[];
   /** Host phrase pack and names for narration; `createPerson` copies it to `Person.lexicon`. */
   lexicon?: Lexicon;
+  /** Inherited aptitudes and attachment (1.8.0); `createPerson` copies it to `Person.family`. */
+  family?: Pick<FamilyState, 'aptitudes' | 'attachment'>;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -1258,6 +1429,38 @@ export interface ChronicleCommitmentNote {
 }
 
 /** Completed actions of one kind in a day, and how many of them a voice had suggested. */
+/**
+ * A life-level summary of one year (1.8.0, `chronicle.enableYearbook`): day records that leave the bounded chronicle,
+ * and routine days summarized by `liveRoutine`, fold into the record of their year (`floor(day / 365)`). Bounded:
+ * fixed-size tallies per year and at most `CHRONICLE_DEFAULTS.maxYears` years.
+ */
+export interface YearRecord {
+  year: number;
+  /** Days folded in (lived and summarized). */
+  days: number;
+  /** Of those, days summarized by a routine stretch rather than lived. */
+  routineDays: number;
+  /** Mean, lowest and highest daily mood valence. */
+  mood: Signed;
+  moodLow: Signed;
+  moodHigh: Signed;
+  kept: number;
+  broken: number;
+  released: number;
+  breaches: number;
+  repairs: number;
+  material: number;
+  decisions: number;
+  /** Most frequent actions (days done), most frequent first, at most 4 × `CHRONICLE_DEFAULTS.yearActions`. */
+  actions: { action: string; days: number }[];
+  /** The year's strongest episodes by |valence| × salience, at most `CHRONICLE_DEFAULTS.yearEpisodes`. */
+  episodes: { id: string; day: number; summary: string; valence: Signed; salience: Unit }[];
+  /** Illness onsets (kinds), at most `CHRONICLE_DEFAULTS.yearIllnesses`. */
+  illness: string[];
+  /** Whether the person was alive at the end of the last day folded in. */
+  alive: boolean;
+}
+
 export interface ChronicleActionTally {
   action: string;
   done: number;

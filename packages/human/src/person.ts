@@ -25,6 +25,7 @@ import {
   createAffect,
   easeBreak,
   feel,
+  readAffect,
   regulate,
   release,
   skipAffect,
@@ -62,6 +63,7 @@ import {
   sicken,
   skipBody,
 } from './body/index.ts';
+import { ageCharacter, noteCharacterDay, noteCharacterSocial } from './character/index.ts';
 import { closeDay, endDay, noteCommitments, noteDecision, noteMood, noteOutcome } from './chronicle/index.ts';
 import { decide as cognitionDecide, desperationOf, scoreAll } from './cognition/index.ts';
 import {
@@ -73,11 +75,20 @@ import {
   repent,
 } from './conscience/index.ts';
 import { clamp01, clampSigned, createRng, dayOf, minuteOfDay } from './core/index.ts';
+import {
+  ambientBodyParams,
+  ambientModifiers,
+  ambientMood,
+  ambientNeeds,
+  sanitizeAmbient,
+} from './environment/index.ts';
+import { aptitudeOf, createFamily, pregnancyModifiers, sanitizeFamily } from './family/index.ts';
 import { advanceHabits, reinforce, withholdCued } from './habits/index.ts';
-import { lifeModifiers } from './lifecourse/index.ts';
+import { ageYears, learningMultiplier, lifeModifiers } from './lifecourse/index.ts';
 import {
   advanceMemory,
   type CueRecall,
+  consolidate,
   createMemory,
   learnOutcome,
   recallByCue,
@@ -86,7 +97,8 @@ import {
 import { migrate } from './migrate.ts';
 import { intentionFor, narrateDecision, voiceLine } from './narrate/index.ts';
 import { advanceNeeds, createNeeds, meanSatisfaction, readNeeds, satisfy } from './needs/index.ts';
-import { practise, seedSkills } from './skills/index.ts';
+import { sanitizeBonds, widow } from './partnering/index.ts';
+import { observe, practise, type SkillTransfer, seedSkills } from './skills/index.ts';
 import {
   advanceSocial,
   applyReputationBelief,
@@ -109,7 +121,9 @@ import type {
   BodyReadout,
   Command,
   Commitment,
+  DayRecord,
   DecisionRecord,
+  LearningDomain,
   Minute,
   NeedId,
   NeedReading,
@@ -266,6 +280,8 @@ export function createPerson(spec: PersonSpec): Person {
     nextDecision: 0,
   };
   if (spec.lexicon) p.lexicon = structuredClone(spec.lexicon);
+  const family = createFamily(spec.family);
+  if (family) p.family = family;
   return p;
 }
 
@@ -358,16 +374,25 @@ const isNight = (now: Minute): boolean => {
 // tick
 // ---------------------------------------------------------------------------------------------
 
+/** Life modifiers for time passing: age, then pregnancy and the surroundings when present (1.8.0). */
+function segmentModifiers(p: Person) {
+  let mods = lifeModifiers(p);
+  if (p.family?.pregnancy) mods = pregnancyModifiers(p, mods);
+  if (p.ambient) mods = ambientModifiers(p, mods);
+  return mods;
+}
+
 function advanceSegment(p: Person, dt: number, load: BodyLoad, aff: Affordance | undefined): void {
-  const mods = lifeModifiers(p);
+  const mods = segmentModifiers(p);
   const satisfaction = meanSatisfaction(readNeeds(p, readBodyOf(p)));
-  advanceBody(p, dt, load, mods);
+  advanceBody(p, dt, load, mods, p.ambient ? ambientBodyParams(p, BODY_DEFAULTS) : BODY_DEFAULTS);
   advanceNeeds(p, dt, {
     withOthers: (aff?.with?.length ?? 0) > 0,
     activityTags: aff?.tags ?? [],
     asleep: p.body.asleep,
   });
-  advanceAffect(p, dt, satisfaction);
+  if (p.ambient) satisfy(p, ambientNeeds(p, dt));
+  advanceAffect(p, dt, satisfaction, p.ambient ? ambientMood(p) : undefined);
   advanceMemory(p, dt);
   advanceBeliefs(p, dt);
   advanceHabits(p, dt);
@@ -513,9 +538,29 @@ export function tick(p: Person, now: Minute): void {
       // Chronicle: hourly mood sample; at midnight the day closes (notes at exactly midnight still belong to it)
       // and the new date is itself a recall cue (anniversaries).
       noteMood(p);
+      let closed: DayRecord | undefined;
       if (p.chronicleDay && dayOf(end) > p.chronicleDay.day) {
-        closeDay(p);
+        closed = closeDay(p);
         applyRecall(p, recallByCue(p, { at: end }));
+      }
+      if (minuteOfDay(end) === 0) {
+        // Lasting gists (1.8.0, opt-in): at midnight, episodes past the horizon fold into gists.
+        if (p.memory.gists) consolidate(p, end);
+        // Character change (1.8.0, opt-in): the day joins the year's experience; maturation runs to midnight.
+        if (p.character) {
+          noteCharacterDay(
+            p,
+            closed
+              ? {
+                  mood: closed.mood,
+                  kept: closed.kept.length,
+                  broken: closed.broken.length,
+                  variety: closed.actions.length,
+                }
+              : { mood: readAffect(p).valence },
+          );
+          ageCharacter(p, end);
+        }
       }
     }
   }
@@ -610,6 +655,10 @@ export function skip(p: Person, to: Minute): void {
   p.now = to;
   skipAffect(p, to);
   advanceAgenda(p, to);
+  // Lasting gists (1.8.0, opt-in): episodes now past the horizon fold into gists.
+  if (p.memory.gists) consolidate(p, to);
+  // Character change (1.8.0, opt-in): maturation across the gap; a skipped gap brings no experience.
+  if (p.character) ageCharacter(p, to);
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -639,6 +688,11 @@ function perceiveOne(p: Person, pc: Percept): void {
   }
   // Advice carried by testimony keeps pulling after the speaker falls silent (standing advice, N9).
   if (pc.channel === 'told') rememberAdvice(p, pc);
+  // Watching someone skilled at work teaches a little (1.8.0, observational learning).
+  const demo = pc.demonstrates;
+  if (demo && !byMe && demo.minutes > 0) {
+    observe(p, demo.skill, demo.minutes, demo.level, learningFor(p, demo.domain), p.now);
+  }
 
   // Relationships: interactions I took part in.
   const social = socialKindOf(pc.kind);
@@ -699,6 +753,8 @@ function perceiveOne(p: Person, pc: Percept): void {
   // A death I hear of: the tie is kept and marked, so recalling them is a grief cue from now on.
   if (pc.kind === 'death' && target !== undefined && target !== p.id && !byMe) {
     if (p.social.relationships.some((r) => r.otherId === target)) markDeceased(p, target, at);
+    // A spouse's death ends the marriage and begins any waiting period (1.8.0, `partnering/`).
+    if (p.bonds) widow(p, target, at);
   }
 
   // Memory.
@@ -1005,10 +1061,10 @@ function thresholdFor(p: Person, load: BodyLoad, review: number): Minute | undef
   const t = nextBodyThreshold(
     p,
     load,
-    lifeModifiers(p),
+    segmentModifiers(p),
     PERSON_DEFAULTS.interruptThresholds,
     review,
-    BODY_DEFAULTS,
+    p.ambient ? ambientBodyParams(p, BODY_DEFAULTS) : BODY_DEFAULTS,
     fastingCtx(p),
   );
   return Number.isFinite(t) ? p.now + t : undefined;
@@ -1163,11 +1219,39 @@ export interface FinishReport {
  * habits, memory (expectation learning and an episode), conscience (deed, breaches, repair), agenda,
  * relationships, trust in the advising voice, injuries and illness. Clears the activity.
  */
-export function finish(
+/**
+ * Learning-rate multiplier for a skill domain at the person's age (1.8.0): the domain's curve from
+ * `lifecourse.learningMultiplier`, or the general one (`LifeModifiers.learning`) when no domain is given.
+ */
+export function learningFor(p: Person, domain?: LearningDomain): number {
+  return domain === undefined ? lifeModifiers(p).learning : learningMultiplier(ageYears(p), domain);
+}
+
+/**
+ * Watch someone practise skill `skill` at `modelLevel` for `minutes` (observational learning, 1.8.0): the
+ * composite's side of `skills.observe` at the person's age-and-domain learning rate. A `Percept.demonstrates` on an
+ * attended percept does the same. Returns the level before and after.
+ */
+export function observeSkill(
   p: Person,
-  outcome: Outcome,
-  opts: { catalog?: readonly NormDefinition[] } = {},
-): FinishReport | null {
+  skill: string,
+  minutes: number,
+  modelLevel: Unit,
+  domain?: LearningDomain,
+): { before: Unit; after: Unit } {
+  return observe(p, skill, minutes, modelLevel, learningFor(p, domain), p.now);
+}
+
+export interface FinishOptions {
+  catalog?: readonly NormDefinition[];
+  /**
+   * Related skills (1.8.0): practising a skill also moves the skills this map relates to it (`skills.SkillTransfer`,
+   * `skillFamilies`). Absent: no transfer, as before.
+   */
+  transfer?: SkillTransfer;
+}
+
+export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): FinishReport | null {
   const act = p.activity;
   if (!act) return null;
   if (outcome.at > p.now) tick(p, outcome.at);
@@ -1233,7 +1317,21 @@ export function finish(
 
   // Skills and habits. Time spent practising counts even when the activity was interrupted.
   if (aff.skill && minutes > 0) {
-    practise(p, aff.skill.id, minutes, aff.skill.difficulty, completed, mods.learning, now);
+    // 1.8.0: a declared domain picks its age curve; transfer and practice conditions come from the host.
+    const learning =
+      (aff.skill.domain === undefined ? mods.learning : learningFor(p, aff.skill.domain)) *
+      aptitudeOf(p, aff.skill.id);
+    practise(
+      p,
+      aff.skill.id,
+      minutes,
+      aff.skill.difficulty,
+      completed,
+      learning,
+      now,
+      opts.transfer,
+      outcome.practice,
+    );
   }
   const prev = lastAction(p);
   if (completed) {
@@ -1309,6 +1407,7 @@ export function finish(
 
   // Relationships from taking part together.
   if (completed) {
+    if (p.character && (aff.with ?? []).some((o) => o !== p.id)) noteCharacterSocial(p, minutes);
     const kind: SocialEventKind = tags.includes('work') ? 'shared-work' : 'chat';
     for (const other of aff.with ?? []) {
       if (other === p.id) continue;
@@ -1444,7 +1543,62 @@ function fillFrom(
  * missing core slice, or an engine version `migrate` does not support.
  */
 /** Optional top-level keys of a person that `createPerson` leaves absent; `restore` keeps them. */
-const OPTIONAL_KEYS: ReadonlySet<string> = new Set(['chronicle', 'chronicleDay', 'lexicon']);
+const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
+  'chronicle',
+  'chronicleDay',
+  'chronicleYears',
+  'skillRetention',
+  'character',
+  'lexicon',
+  'family',
+  'bonds',
+  'ambient',
+]);
+
+/** A well-formed character state (1.8.0) as `restore` accepts it. */
+function validCharacter(c: unknown): boolean {
+  const nums = (o: unknown, n: number) =>
+    isObject(o) && Object.values(o).length >= n && Object.values(o).every(isNum);
+  return (
+    isObject(c) &&
+    nums(c.baseTraits, 6) &&
+    nums(c.baseValues, 10) &&
+    nums(c.acc, 6) &&
+    isNum(c.year) &&
+    isNum(c.agedTo) &&
+    isObject(c.experience) &&
+    Object.values(c.experience).every(isNum)
+  );
+}
+
+const isNum = (x: unknown): x is number => typeof x === 'number' && Number.isFinite(x);
+
+/** A well-formed gist (1.8.0) as `restore` accepts it. */
+function validGist(g: unknown): boolean {
+  return (
+    isObject(g) &&
+    typeof g.id === 'string' &&
+    typeof g.kind === 'string' &&
+    typeof g.summary === 'string' &&
+    Array.isArray(g.tags) &&
+    [g.at, g.valence, g.salience, g.count, g.firstAt, g.lastAt, g.weight, g.peak].every(isNum)
+  );
+}
+
+/** A well-formed year record (1.8.0) as `restore` accepts it. */
+function validYear(y: unknown): boolean {
+  return (
+    isObject(y) &&
+    [y.year, y.days, y.routineDays, y.mood, y.moodLow, y.moodHigh, y.kept, y.broken, y.released].every(
+      isNum,
+    ) &&
+    [y.breaches, y.repairs, y.material, y.decisions].every(isNum) &&
+    Array.isArray(y.actions) &&
+    Array.isArray(y.episodes) &&
+    Array.isArray(y.illness) &&
+    typeof y.alive === 'boolean'
+  );
+}
 
 export function restore(input: unknown): Person {
   if (!isObject(input)) throw new Error('restore: not an object');
@@ -1545,5 +1699,43 @@ export function restore(input: unknown): Person {
     !(isObject(last) && typeof last.voiceId === 'string' && typeof last.since === 'number')
   )
     delete out.will.lastCommand;
+  // Optional state added in 1.8.0: malformed entries are dropped (absent means the feature is off).
+  const gists = out.memory.gists as unknown;
+  if (gists !== undefined) {
+    if (!Array.isArray(gists)) delete out.memory.gists;
+    else out.memory.gists = gists.filter(validGist);
+  }
+  if (out.memory.gists && !isNum(out.memory.nextGist)) out.memory.nextGist = out.memory.gists.length;
+  if (!out.memory.gists) delete out.memory.nextGist;
+  const years = out.chronicleYears as unknown;
+  if (years !== undefined) {
+    if (!Array.isArray(years)) delete out.chronicleYears;
+    else out.chronicleYears = years.filter(validYear);
+  }
+  if (out.character !== undefined && !validCharacter(out.character)) delete out.character;
+  if (
+    out.skillRetention !== undefined &&
+    !(
+      isObject(out.skillRetention) &&
+      isNum((out.skillRetention as { consolidationHours?: unknown }).consolidationHours)
+    )
+  )
+    delete out.skillRetention;
+  // Optional slices added in 1.8.0: validated by their owners, dropped when malformed (absent means none).
+  if (out.family !== undefined) {
+    const f = sanitizeFamily(out.family);
+    if (f) out.family = f;
+    else delete out.family;
+  }
+  if (out.bonds !== undefined) {
+    const b = sanitizeBonds(out.bonds);
+    if (b) out.bonds = b;
+    else delete out.bonds;
+  }
+  if (out.ambient !== undefined) {
+    const a = sanitizeAmbient(out.ambient);
+    if (a) out.ambient = a;
+    else delete out.ambient;
+  }
   return out;
 }
