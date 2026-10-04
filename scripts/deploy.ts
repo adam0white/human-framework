@@ -43,11 +43,16 @@ if (dryRun) {
   run('npx', ['wrangler', 'deploy', '--dry-run']);
 } else {
   run('npx', ['wrangler', 'deploy']);
-  const live = (await (
-    await fetch('https://human.adamwhite.work/release.json', { cache: 'no-store' })
-  ).json()) as {
-    commit: string;
-  };
-  if (live.commit !== commit) throw new Error(`Live commit ${live.commit} != ${commit}`);
+  // The edge can serve the previous release for a few seconds after upload: retry before failing.
+  let live = '';
+  for (let attempt = 0; attempt < 10 && live !== commit; attempt++) {
+    if (attempt > 0) await new Promise((r) => setTimeout(r, 3000));
+    live = (
+      (await (await fetch('https://human.adamwhite.work/release.json', { cache: 'no-store' })).json()) as {
+        commit: string;
+      }
+    ).commit;
+  }
+  if (live !== commit) throw new Error(`Live commit ${live} != ${commit}`);
   console.log('Verified live release at', commit);
 }

@@ -13,6 +13,7 @@
 - One owning module per state slice (see docs/framework.md).
 - Build first, prove after. A new faculty lands with tests, one headless control scenario, and a short scope paragraph in its module doc comment saying what it covers and what it doesn't. Do not write per-milestone evidence essays or verification JSON. Record negative findings briefly in `docs/findings.md` when they occur.
 - Moral and spiritual faculty: Islam-guided (Sunni, Hanafi–Maturidi starting point). Keep revealed sources, interpretation, empirical findings and engineering assumptions distinct, with provenance on norm definitions. Never compute divine acceptance, assign quantities to the ruh, or name the RNG or scheduler after divine attributes. Represent a person's *understanding* of a norm, not a ruling. Do not let agents invent rulings; source them from `research/`.
+- **Games keep faith gentle (user, 2026-10-04):** the framework stays Islam-guided, but games do not focus on religion. Prayer, fasting and the like appear as quiet parts of a character's life, never the theme, goal or central mechanic.
 
 ## Delivery
 
