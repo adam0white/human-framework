@@ -85,7 +85,10 @@ export function Chronicle({
     const ok = await actions.load(id);
     setBusy(null);
     if (ok) onClose();
-    else setLoadNote('That page could not be read. The chronicle you have open goes on.');
+    else
+      setLoadNote(
+        'That page could not be read; it may have been written by an older version of the game. The chronicle you have open goes on.',
+      );
   };
 
   const all = groups(shelf);

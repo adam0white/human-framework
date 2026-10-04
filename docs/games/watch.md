@@ -384,6 +384,80 @@ The only framework change is one opt-in cue kind. HF impressions now read `skill
   - The map was blank for a moment after the resize (deferred above).
 - The spring page was missing from the shelf. The page reload happened during the run, and I did not establish the cause.
 
+### G3-4 as built (2026-10-04)
+
+The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26 and on desktop, over many years.
+
+**Saves follow §6 (no rewind).** Decided:
+- A chronicle has one running page (`<chronicle>:auto`). It is kept as you go: 1.5 s after an input, every 8 s while the clock runs, when the clock is held, when the tab is hidden or closed, and before a load or a new village. Reloading loses at most a few seconds.
+- "Continue" is the only way back into a chronicle. There is no list of older pages to rewind to.
+- Each closed or fallen volume is kept as a page on the shelf. "Take up again" on a closed volume starts a **new** chronicle from that page, so the original chronicle is never rewritten.
+- Season pages (the last two) are backups only. The UI does not show them. If the running page cannot be read, the newest backup is used.
+- The shelf keeps four chronicles. Volume pages of a kept chronicle are never pruned.
+- Loading keeps the Pacer (one per worker, `adopt(run)`) and the clock hold. The current chronicle id reaches the UI with the shelf.
+- Pages from an older build (the scenario version is now 6) are refused with a note that says so.
+
+**Playtest export.**
+- Where: the chronicle menu, the closed-volume page and the fallen page.
+- How: copy to clipboard (the size is shown in KB) or save as a file named `night-watch-seed{seed}-year{year}.json`. A text box is the fallback when both are blocked.
+- What: seed, input log, end state and hash.
+- Sizes, seed 1:
+  - Year 3: 432 inputs, 68 KB (8.9 KB gzipped).
+  - Year 12: 2,506 inputs, 280 KB (25.6 KB gzipped).
+  - For comparison, a save page is 2.5 MB at year 3 and 5.8 MB at year 12, 284 KB and 666 KB gzipped.
+- Test (`saves.test.ts`, through the real IndexedDB store via fake-indexeddb):
+  - Play to year 2 summer, save, load, resume, play on to year 4.
+  - The log of the loaded run starts with the saved prefix. Its export replays to the same end hash.
+  - Gzip round-trip, pruning and the backup fallback are tested too.
+
+**Phone.**
+- The night panel has a fixed height at ≤480 px, so the lantern and bell row no longer shifts.
+- The moment card docks at the bottom (safe-area aware), and "…or let it be" closes it for that moment.
+- The chronicle menu scrolls within the screen. Its Load buttons are at least 44 × 96 px.
+- A watcher who left a post is drawn as a dashed empty ring with a faint name.
+- The map paints on mount and resize, so it is not blank for a frame after a load.
+- The speed bar shows in every phase after the goal, dimmed when idle. Days and Seasons are hinted in years 1–2.
+- The bell rings visibly, and someone answers it in the ticker (by trust and fear).
+- The lantern hint says you can tap the wall.
+- `nightName` and `frame.night` are removed.
+- Wake lock, fullscreen and safe areas were read in code, not checked on a device.
+- Galaxy S26 (confirmed from spec sites): 1080×2340, DPR 3, CSS 360×780. Inferred, to be measured on a device: about 640–690 px tall with the browser's bars. Tested at 360×660 and 360×780.
+
+**Long-run depth.**
+- Talks: four topics, ranked per watcher by the Keeper's read (`topicsFor`), and the top two are offered:
+  - the night;
+  - the body;
+  - home, which reveals the spouse tie and warms trust a little;
+  - "Would you keep the Gate?", for watchers aged 17–39 while no heir is named.
+- Winter questions are drawn from the cast's lives: the first winter on the wall, a last winter before retiring, a new parent, newlyweds; otherwise "every soul". The question is chosen from the candidates by seeded draw.
+- Each thaw writes the routine nights ("The other 84 nights of winter went by routine…", who stood most, and a feared stretch that eased).
+- Births come to the Keeper as a card: call on them, or send a sack. Winter births wait for the first open day.
+- Mid-summer, the weakest young watcher asks to learn the sling from the surest arm. Allowed, they practise together, taught (HF `instructionFrom`), until winter. One lesson per young watcher.
+- The heir: the fair offers two names, ranked by what they said at dawn and their sling. Naming one costs the other some trust.
+- The fair previews each offer as the granary after it. The granary, not a count, is the limit.
+- A wall that the thaw brought down can be rebuilt at the fair for 5 sacks.
+- Taglines age with the person: trade, winters on the wall, "old on the wall", "keeps the Gate", "heir to the Gate".
+
+**The granary at its cap.** Annals over 25 years:
+- Seed 1 reaches winter with 39–40 sacks every year from year 10 on.
+- Seed 2 reaches winter with 39–40 sacks from year 21 on.
+- Hungry springs still happen at the cap (seed 1: years 17, 19, 20), because a winter now carries off 22–28 sacks.
+- So the cap is not making the autumn meaningless the way G3-3 feared. This phase added sinks (rebuild, a granary-limited fair) and did not retune the cap.
+
+**Deferred, with targets.**
+- H2:
+  - Talk topics that change behaviour directly (rest tonight, practise with, mend).
+  - Posting pressure once families are admitted (#19).
+  - Collapse quiet watchers into one dawn line (#7).
+  - Child roster wording (#16).
+  - A per-page scenario version, so the shelf can mark old pages before you tap them.
+  - Retuning the granary cap if a playtester finds autumns flat.
+  - Bounding per-person state growth (see findings).
+- After Goal 2:
+  - Sprites that age (stoop, grey hair).
+  - Talks with children and talks in the open seasons.
+  - More than one person card per off-season.
+
 **Done for Game 3:** endless play live at /watch/ on desktop and phone, with a playtest export; L1–L6 released in HF 2.0 with tests; `npm run check` passes; the user accepts by playing.
 
 ## 11. Risks and cuts

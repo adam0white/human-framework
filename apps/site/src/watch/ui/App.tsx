@@ -309,7 +309,10 @@ function GoalPage({
     setBusy(true);
     const ok = await actions.load(saved.id);
     setBusy(false);
-    if (!ok) setNote('That page could not be read. You can begin anew.');
+    if (!ok)
+      setNote(
+        'That page could not be read; it may have been written by an older version of the game. You can begin anew.',
+      );
   };
   return (
     <div className="w-page">
@@ -524,8 +527,8 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
       ) : null}
       <div className="w-lantern-pick">
         <span>
-          <Icon name="lamp" size={16} /> {walking ? 'Walking the lantern to' : 'The lantern is at'}
-          <span className="w-tap-hint"> · or tap the wall</span>
+          <Icon name="lamp" size={16} /> {walking ? 'The lantern is on its way' : 'The lantern'}
+          <span className="w-tap-hint"> · choose a stretch, or tap the wall</span>
         </span>
         {SECTIONS.map((s, i) => (
           <button
