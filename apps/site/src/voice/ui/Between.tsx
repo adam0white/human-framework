@@ -11,7 +11,7 @@ import {
   type StandingWhisper,
   type Strength,
 } from '../protocol.ts';
-import { EndsList } from './EndsPane.tsx';
+import { EndsList, UnaskedStrip } from './EndsPane.tsx';
 import { APPEALS, STRENGTHS } from './parts.tsx';
 import { Strip, StripLegend } from './Strip.tsx';
 
@@ -113,6 +113,7 @@ export function Between({
           </div>
           <div>
             <h3 className="v-sub">His ends</h3>
+            <UnaskedStrip items={view.unasked} />
             <EndsList ends={view.ends} compact />
           </div>
         </div>

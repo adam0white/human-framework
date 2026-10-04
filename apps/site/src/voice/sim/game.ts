@@ -73,6 +73,7 @@ import { BEAT_COOLDOWN, type BeatState, createBeats, fire, flagOnce, takeCloseCa
 import { closeRival, moneyShort, prefillFor } from './prefill.ts';
 import { buildReport, ledgerKey, type SaidCount } from './report.ts';
 import { answer, createStanding, type Standing, standingView, toSuggestion, WHY_AWAY } from './standing.ts';
+import { noteUnasked, type UnaskedState, unaskedView } from './unasked.ts';
 import {
   ACTION_LABEL,
   type Cell,
@@ -206,7 +207,9 @@ export class VoiceGame {
   endRamadanTrust: Record<string, number> = {};
   eidNight: { run: Run; t: number } | undefined;
   /** The town at Eid morning, when the month you spoke in had ended (the report reads his ends here). */
-  eidMorning: { run: Run; t: number; halilCalledAt?: number; calledUnasked?: boolean } | undefined;
+  eidMorning:
+    | { run: Run; t: number; halilCalledAt?: number; calledUnasked?: boolean; unasked?: UnaskedState }
+    | undefined;
   /** Rent payments with their minute (the town keeps only the total). */
   payments: { at: number; amount: number }[] = [];
   private rentSeen = 0;
@@ -228,6 +231,8 @@ export class VoiceGame {
   private shiftBeatAt: number | undefined;
   /** The last call between Halil and Selin already logged. */
   private callSeen: number | undefined;
+  /** What he would now do unasked, from his last decisions without your voice (see unasked.ts). */
+  unasked: UnaskedState = {};
   /** How the clinic, calling Selin and the mosque felt to him at the start (for `weighs` trends). */
   weighsStart: Record<string, number> = {};
   private traceIds = new Set<string>();
@@ -802,7 +807,10 @@ export class VoiceGame {
     const h = this.halil;
     const fresh = h.trace.filter((r) => !this.traceIds.has(r.id));
     this.traceIds = new Set(h.trace.map((r) => r.id));
+    let offeredNow: Set<string> | undefined;
     for (const r of fresh) {
+      if (!r.review && r.at >= this.t - 5) offeredNow ??= new Set(this.offers().map((o) => o.id));
+      noteUnasked(this.unasked, r, r.at >= this.t - 5 ? offeredNow : undefined);
       this.records.set(r.id, r);
       if (this.records.size > 400) {
         const first = this.records.keys().next().value;
@@ -1008,6 +1016,13 @@ export class VoiceGame {
     const record = decide(ghost, offers, opts);
     record.id = `ahead-${act.decisionId}`;
     this.ahead = { forDecision: act.decisionId, record };
+    // Seventh pass: with your word standing, weigh the same choice once more with no word, for "he'd now do unasked".
+    const offered = new Set(offers.map((o) => o.id));
+    noteUnasked(
+      this.unasked,
+      opts.suggestion ? decide(this.ghost(), offers, { scarcity: opts.scarcity ?? 0 }) : record,
+      offered,
+    );
     // Round 5: he is about to smoke and the doctor's walk is open. Pause once a day, before he lights it, with the
     // walk prefilled (prefill rule 0b), so the player can act on the doctor's "stop smoking".
     if (
@@ -1437,6 +1452,7 @@ export class VoiceGame {
       yours: this.yourDay(d),
       strip: stripFor(d, this.cells),
       ends: this.ends(),
+      unasked: this.unaskedNow(),
       trust: { from: round2(this.dayTrustStart), to: round2(you?.trust ?? 0.5), events },
       next,
       choices:
@@ -1508,6 +1524,7 @@ export class VoiceGame {
       t: this.t,
       ...(this.halilCalledAt !== undefined ? { halilCalledAt: this.halilCalledAt } : {}),
       ...(lastCall ? { calledUnasked: lastCall.promptedBy !== 'you' } : {}),
+      unasked: structuredClone(this.unasked),
     };
     this.muted = true;
     this.standing = undefined;
@@ -1596,9 +1613,23 @@ export class VoiceGame {
       ...(this.eidMorning ? { atEid: this.eidMorning } : {}),
       payments: [...this.payments, ...epiPays],
     });
+    if (this.eidMorning?.unasked)
+      this.report.unasked = this.unaskedNow(
+        this.eidMorning.unasked,
+        this.eidMorning.run.town,
+        this.eidMorning.t - 1,
+      );
     this.phase = 'report';
     this.paused = true;
     this.outbox.push({ type: 'report', view: this.report });
+  }
+
+  /** The "he'd now do unasked" strip as of now (or of `s`, read against `town`). */
+  unaskedNow(s: UnaskedState = this.unasked, town: Town = this.run.town, t: number = this.t) {
+    return unaskedView(s, dayOf(t), {
+      walk: town.state.doctorSaid?.halil !== undefined,
+      rent: Math.round(town.state.rentOwed) > 0,
+    });
   }
 
   ends() {
@@ -1661,6 +1692,7 @@ export class VoiceGame {
       options,
       log: this.log.slice(-LOG_CAP),
       ends: this.ends(),
+      unasked: this.unaskedNow(),
       voices: voicesView(h, t),
       muted: this.muted || this.phase === 'eid',
     };

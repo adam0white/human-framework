@@ -397,6 +397,18 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(s.eid).toBe('On Eid he smoked one cigarette.');
   });
 
+  test('seventh pass: the "he’d now do unasked" strip reads his unasked choices, and the voice moves it', () => {
+    const state = (g: VoiceGame, label: string) => g.report?.unasked?.find((u) => u.label === label)?.state;
+    // A silent month leaves the call to Selin where it began; prefills and the Selin whisper make it his own.
+    expect(state(quiet, 'call Selin')).toBe('no');
+    expect(state(spoken, 'call Selin')).toBe('yes');
+    expect(state(quiet, 'eat at suhoor')).toBe('yes');
+    // The live frame carries it for the Ends pane, and no decision in the strip heard your voice.
+    const g = new VoiceGame(SHIPPED_SEED);
+    play(g, { confirm: true, stop: (x) => x.t >= at(1, 20) });
+    expect(g.frame().unasked?.map((u) => u.label)).toContain('call Selin');
+  });
+
   test('frames stay under 100 KB', () => {
     expect(maxFrame).toBeGreaterThan(0);
     expect(maxFrame).toBeLessThan(100_000);

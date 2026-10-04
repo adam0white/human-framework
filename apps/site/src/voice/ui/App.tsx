@@ -116,7 +116,7 @@ export function App() {
       {frame && (
         <div className="v-main">
           <div className="v-col v-col-left">
-            <EndsPane ends={frame.ends} />
+            <EndsPane ends={frame.ends} {...(frame.unasked ? { unasked: frame.unasked } : {})} />
             <VoicesPane voices={frame.voices} />
           </div>
           <div className="v-col v-col-centre">

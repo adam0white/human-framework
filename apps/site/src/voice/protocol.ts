@@ -200,6 +200,16 @@ export interface EndView {
   /** End report only: what came of this end without you, on Eid and in the six days after (dated apart). */
   after?: string;
 }
+/**
+ * Seventh pass: one thing he would now do with no word from you, from his last decision where it was open and your
+ * voice was not in it (a real decision, or a silent copy of the next one when your word stood). `day`: the day
+ * that reading is from, when it is not today. `state` 'unknown': no such chance yet.
+ */
+export interface UnaskedItem {
+  label: string;
+  state: 'yes' | 'no' | 'unknown';
+  day?: string;
+}
 export interface StripRow {
   label: string;
   cells: { from: number; to: number; family: Family; label: string; promptedBy?: VoiceId }[];
@@ -230,6 +240,8 @@ export interface Frame {
   standing?: StandingView;
   log: LogEntry[]; // newest 300, append-only ids
   ends: EndView[];
+  /** Seventh pass: what he would now do unasked (the Ends pane). */
+  unasked?: UnaskedItem[];
   voices: VoiceView[];
   muted: boolean;
 }
@@ -250,6 +262,8 @@ export interface BetweenView {
   yours?: string[];
   strip: StripRow;
   ends: EndView[];
+  /** Seventh pass: what he would now do unasked, as the day closes. */
+  unasked?: UnaskedItem[];
   trust: { from: number; to: number; events: string[] };
   next: { label: string; day: number; skipped: number } | null; // null → Eid comes next
   /** `hint`: a line shown under the picked whisper (the shift when money is short: what moves him). */
@@ -270,6 +284,8 @@ export interface ReportView {
   stopped: string[];
   trust: { id: VoiceId; name: string; endRamadan: string; endWeek: string }[];
   ends: EndView[];
+  /** Seventh pass: what he would do unasked as Ramadan ended (Eid morning), to set beside what he did on Eid. */
+  unasked?: UnaskedItem[];
   body: string[];
   open: string[];
   rows: StripRow[];

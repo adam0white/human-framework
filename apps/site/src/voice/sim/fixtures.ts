@@ -10,6 +10,7 @@ import {
   MODEL_NOTES,
   type ReportView,
   type StripRow,
+  type UnaskedItem,
   type VoiceView,
 } from '../protocol.ts';
 
@@ -183,6 +184,14 @@ const log: LogEntry[] = [
   },
 ];
 
+const unasked: UnaskedItem[] = [
+  { label: 'eat at suhoor', state: 'yes' },
+  { label: 'call Selin', state: 'no', day: 'Ramadan 1' },
+  { label: 'see the doctor', state: 'no' },
+  { label: 'pay Osman', state: 'unknown' },
+  { label: 'take the afternoon shift', state: 'no' },
+];
+
 export const sampleFrame: Frame = {
   phase: 'day',
   day: 1,
@@ -250,6 +259,7 @@ export const sampleFrame: Frame = {
   },
   log,
   ends,
+  unasked,
   voices,
   muted: false,
 };
@@ -280,6 +290,7 @@ export const sampleBetween: BetweenView = {
   ],
   strip,
   ends,
+  unasked,
   trust: { from: 0.5, to: 0.52, events: ['+0.02 the suhoor you suggested went well'] },
   next: { label: 'Ramadan 2', day: 2, skipped: 0 },
   choices: [],
@@ -367,6 +378,7 @@ export const sampleReport: ReportView = {
           }
         : { ...e, after: 'Nothing changed in the week after Eid.' },
   ),
+  unasked: unasked.map((u) => (u.label === 'call Selin' ? { label: u.label, state: 'yes' as const } : u)),
   body: ['Blood pressure: moderately high.', 'Sleep: a little short.', 'Fed: well.'],
   open: ['300 still owed to Osman.', 'No make-up fasts owed.'],
   rows: [strip, { ...strip, label: 'Ramadan 2' }, { ...strip, label: 'Eid al-Fitr' }],

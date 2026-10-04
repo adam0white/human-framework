@@ -4,7 +4,7 @@
  */
 import { useEffect, useRef } from 'react';
 import type { ReportView } from '../protocol.ts';
-import { EndsList } from './EndsPane.tsx';
+import { EndsList, UnaskedStrip } from './EndsPane.tsx';
 import { ModelNotes } from './parts.tsx';
 import { Strip, StripLegend } from './Strip.tsx';
 
@@ -114,6 +114,7 @@ export function Report({
             As of Eid morning: what the month you spoke in left him with. Under each, what came of it without
             you, on Eid and in the six days after.
           </p>
+          <UnaskedStrip items={view.unasked} lead="At Eid morning he would have done unasked:" />
           <EndsList ends={view.ends} />
         </section>
 
