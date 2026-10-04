@@ -58,9 +58,16 @@ export function placeUnder(lx: number, ly: number): PlaceId | null {
   return null;
 }
 
-function hitPerson(people: DrawPerson[], lx: number, ly: number): VillagerId | null {
+/** Hit radius in logical px: 18, widened on touch to at least 22 CSS px however small the map is drawn. */
+function hitRadius(e: React.PointerEvent): number {
+  if (e.pointerType !== 'touch') return 18;
+  const w = (e.currentTarget as HTMLElement).getBoundingClientRect().width;
+  return w > 0 ? Math.max(18, (22 * LOGICAL_W) / w) : 18;
+}
+
+function hitPerson(people: DrawPerson[], lx: number, ly: number, radius = 18): VillagerId | null {
   let best: VillagerId | null = null;
-  let bestD = 18 * 18;
+  let bestD = radius * radius;
   for (const p of people) {
     if (p.state === 'asleep' || p.carriedBy) continue;
     const px = (p.x + 0.5) * 32;
@@ -101,7 +108,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
     const resize = () => {
       const rect = w.getBoundingClientRect();
       cssW = rect.width;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      const dpr = Math.min(window.devicePixelRatio || 1, 3);
       c.width = Math.round(rect.width * dpr);
       c.height = Math.round(rect.height * dpr);
     };
@@ -231,7 +238,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
   const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     endPress();
     const { lx, ly } = toLogical(e);
-    const who = hitPerson(people.current, lx, ly);
+    const who = hitPerson(people.current, lx, ly, hitRadius(e));
     if (!who) {
       press.current = null;
       return;
@@ -250,7 +257,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
     press.current = null;
     if (fired) return;
     const { lx, ly } = toLogical(e);
-    const who = hitPerson(people.current, lx, ly);
+    const who = hitPerson(people.current, lx, ly, hitRadius(e));
     if (who) {
       props.onSelect(who);
       return;
@@ -267,7 +274,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
     }
     if (e.pointerType === 'touch') return;
     const { lx, ly } = toLogical(e);
-    const who = hitPerson(people.current, lx, ly);
+    const who = hitPerson(people.current, lx, ly, hitRadius(e));
     e.currentTarget.style.cursor = who || (props.selectedId && placeUnder(lx, ly)) ? 'pointer' : 'default';
     const pl = props.selectedId ? placeUnder(lx, ly) : null;
     if (pl !== props.hoverPlace) props.onHoverPlace(pl);
