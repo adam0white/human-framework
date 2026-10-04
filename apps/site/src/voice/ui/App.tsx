@@ -113,7 +113,20 @@ export function App() {
 
   return (
     <div className={`voice phase-${phase}`} data-tab={tab}>
-      {frame && <TopBar frame={frame} actions={actions} onPlaytestError={actions.playtestError} />}
+      {frame && (
+        <TopBar
+          phase={frame.phase}
+          dayLabel={frame.dayLabel}
+          clock={frame.clock}
+          sky={frame.sky}
+          fastForward={frame.fastForward}
+          paused={frame.paused}
+          pace={frame.pace}
+          autoPause={frame.autoPause}
+          actions={actions}
+          onPlaytestError={actions.playtestError}
+        />
+      )}
       {frame && (
         <div className="v-main">
           <div className="v-col v-col-left">
@@ -138,7 +151,12 @@ export function App() {
             )}
             {!overlay && (
               <Composer
-                frame={frame}
+                composer={frame.composer}
+                prefill={frame.prefill}
+                options={frame.options}
+                leaning={frame.leaning}
+                muted={frame.muted}
+                doingLabel={frame.halil.doing?.label}
                 telegraph={voice.telegraph}
                 whyOpen={voice.whyOpen}
                 onPredict={actions.predict}

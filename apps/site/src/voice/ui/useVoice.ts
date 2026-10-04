@@ -69,6 +69,8 @@ export interface Voice {
 export function useVoice(seed = SHIPPED_SEED): Voice {
   const transport = useRef<Transport | null>(null);
   const [frame, setFrame] = useState<Frame | null>(null);
+  /** The last frame received on this run: partial frames are filled in from it. */
+  const frameRef = useRef<Frame | null>(null);
   const [between, setBetween] = useState<BetweenView | null>(null);
   const [report, setReport] = useState<ReportView | null>(null);
   const [telegraph, setTelegraph] = useState<Voice['telegraph']>(null);
@@ -129,9 +131,20 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               return;
             case 'replayed':
               return;
-            case 'frame':
-              setFrame(msg.frame);
+            case 'frame': {
+              // Unchanged fields keep their previous objects, so memoized panels and DayLog's collapse skip work.
+              const { frame: part, same } = msg;
+              const prev = frameRef.current;
+              if (same && !prev) {
+                setError('The simulation sent part of a frame before a whole one.');
+                return;
+              }
+              const next = { ...part } as Record<string, unknown>;
+              if (same && prev) for (const k of same) next[k] = prev[k];
+              frameRef.current = next as unknown as Frame;
+              setFrame(frameRef.current);
               return;
+            }
             case 'predicted': {
               const draft = predictDrafts.current.get(msg.requestId);
               predictDrafts.current.delete(msg.requestId);
@@ -185,6 +198,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
 
   const actions = useMemo<VoiceActions>(() => {
     const resetRun = () => {
+      frameRef.current = null;
       setFrame(null);
       setBetween(null);
       setReport(null);

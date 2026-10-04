@@ -10,12 +10,18 @@
 import { ENGINE_VERSION } from '@human/framework';
 import { makePlaytestFile, PlaytestError, parsePlaytest, replayResult } from '../shared/playtest.ts';
 import { hostWorker } from '../shared/worker-host.ts';
-import { type MainToWorker, VOICE_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
+import { type Frame, type MainToWorker, VOICE_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
 import { VoiceGame } from './sim/game.ts';
 import { RecordedGame, replayVoice, validateVoiceLog, voiceHash, voiceSnapshot } from './sim/record.ts';
 
 let rec: RecordedGame | null = null;
-let lastFrame = '';
+/**
+ * Each frame field's JSON as last posted. A frame carries only the fields that changed and names the rest in
+ * `same`, so the page keeps its previous objects for them: the 300-entry log (most of a frame's bytes) is cloned
+ * only when it grows, and memoized panels skip renders while their slice holds still (perf review V16).
+ * Emptied on every new run so its first frame is whole.
+ */
+let lastFields = new Map<string, string | undefined>();
 /** Real milliseconds since the last frame posted on a tick: running frames go out at most ~15 times a second. */
 let sinceFrame = 0;
 const FRAME_MS = 66;
@@ -25,11 +31,20 @@ function flush(force = false): void {
   if (!game) return;
   for (const m of game.outbox.splice(0)) host.post(m);
   const frame = game.frame();
-  const json = JSON.stringify(frame);
-  if (!force && json === lastFrame) return;
-  lastFrame = json;
+  const fields = new Map<string, string | undefined>();
+  const changed: Partial<Record<keyof Frame, unknown>> = {};
+  const same: (keyof Frame)[] = [];
+  for (const k of Object.keys(frame) as (keyof Frame)[]) {
+    const json = JSON.stringify(frame[k]);
+    fields.set(k, json);
+    if (lastFields.has(k) && lastFields.get(k) === json) same.push(k);
+    else changed[k] = frame[k];
+  }
+  const unchanged = same.length === fields.size && fields.size === lastFields.size;
+  if (!force && unchanged) return;
+  lastFields = fields;
   sinceFrame = 0;
-  host.post({ type: 'frame', frame });
+  host.post({ type: 'frame', frame: changed as Partial<Frame>, ...(same.length > 0 ? { same } : {}) });
 }
 
 async function exportPlaytest(r: RecordedGame): Promise<void> {
@@ -56,7 +71,7 @@ function loadPlaytest(text: string, nextGen: number): void {
   const result = replayResult(f, voiceHash(g), ENGINE_VERSION, g.t, driftAt);
   rec = replayed;
   host.gen = nextGen;
-  lastFrame = '';
+  lastFields = new Map();
   if (g.live() && !g.paused) replayed.apply({ type: 'pause' });
   host.post({ type: 'replayed', result });
   // The replay cleared its outbox: show the card the run stands at.
@@ -68,7 +83,7 @@ function loadPlaytest(text: string, nextGen: number): void {
 const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
   if (msg.type === 'init') {
     host.gen = msg.gen;
-    lastFrame = '';
+    lastFields = new Map();
     if (msg.scenarioVersion !== VOICE_SCENARIO_VERSION) {
       rec = null;
       host.post({

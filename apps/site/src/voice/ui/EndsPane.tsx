@@ -1,4 +1,5 @@
 /** His ends (plan §1): things he holds, in his words, as his record. Not points; no pass or fail. */
+import { memo } from 'react';
 import type { EndView, UnaskedItem } from '../protocol.ts';
 import { Icon } from './Icon.tsx';
 import { Meter } from './parts.tsx';
@@ -66,7 +67,13 @@ export function EndsList({ ends, compact = false }: { ends: EndView[]; compact?:
   );
 }
 
-export function EndsPane({ ends, unasked }: { ends: EndView[]; unasked?: UnaskedItem[] }) {
+export const EndsPane = memo(function EndsPane({
+  ends,
+  unasked,
+}: {
+  ends: EndView[];
+  unasked?: UnaskedItem[];
+}) {
   return (
     <section className="v-pane v-ends-pane" aria-label="His ends">
       <h2 className="v-pane-title">His ends</h2>
@@ -75,4 +82,4 @@ export function EndsPane({ ends, unasked }: { ends: EndView[]; unasked?: Unasked
       <EndsList ends={ends} />
     </section>
   );
-}
+});

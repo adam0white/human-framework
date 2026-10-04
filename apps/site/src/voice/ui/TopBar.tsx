@@ -1,4 +1,5 @@
 /** Top bar (plan §6.2) with the sky band (§2): the hour's light, prayer notches, the fast, and a "now" mark. */
+import { memo } from 'react';
 import { PlaytestMenu } from '../../shared/PlaytestMenu.tsx';
 import type { Frame, Pace } from '../protocol.ts';
 import type { VoiceActions } from './useVoice.ts';
@@ -20,7 +21,7 @@ const SKY: [number, string][] = [
 const BAND = `linear-gradient(90deg, ${SKY.map(([h, c]) => `${c} ${((h / 24) * 100).toFixed(2)}%`).join(', ')})`;
 const pct = (minute: number) => `${(((minute % 1440) + 1440) % 1440) / 14.4}%`;
 
-export function SkyBand({ sky }: { sky: Frame['sky'] }) {
+export const SkyBand = memo(function SkyBand({ sky }: { sky: Frame['sky'] }) {
   return (
     <div className="v-sky" style={{ backgroundImage: BAND }} aria-hidden="true">
       {sky.fast && (
@@ -42,7 +43,7 @@ export function SkyBand({ sky }: { sky: Frame['sky'] }) {
       <span className="v-sky-now" style={{ left: `${(sky.hour / 24) * 100}%` }} />
     </div>
   );
-}
+});
 
 const PACES: { id: Pace; label: string }[] = [
   { id: 'slow', label: 'Slow' },
@@ -56,12 +57,19 @@ const nextPace = (p: Pace): Pace => {
   return PACES[(i + 1) % PACES.length]?.id ?? 'slow';
 };
 
-export function TopBar({
-  frame,
+/** The frame fields the top bar shows, passed one by one so `memo` can compare them. */
+export type TopBarFields = Pick<
+  Frame,
+  'phase' | 'dayLabel' | 'clock' | 'sky' | 'paused' | 'pace' | 'autoPause'
+> & {
+  fastForward: string | undefined;
+};
+
+export const TopBar = memo(function TopBar({
   actions,
   onPlaytestError,
-}: {
-  frame: Frame;
+  ...frame
+}: TopBarFields & {
   actions: VoiceActions;
   onPlaytestError: (message: string) => void;
 }) {
@@ -155,4 +163,4 @@ export function TopBar({
       </div>
     </header>
   );
-}
+});
