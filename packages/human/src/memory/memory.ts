@@ -263,6 +263,95 @@ export function gistsFor(
   return out;
 }
 
+/** Retelling (2.0, L2): how much of a teller's gist a listener keeps, before trust. */
+export const RETELL_DEFAULTS = {
+  /** A told gist's salience is the teller's × trust × this: a story weighs less than having been there. */
+  share: 0.6,
+  /** Gists told per call, strongest first. */
+  limit: 3,
+  /** Gists weaker than this (teller's salience) are not worth telling. */
+  minSalience: 0.1,
+};
+
+/**
+ * `teller` tells `listener` the gist of what mattered to them (2.0, L2: stories passed in a household or around a
+ * fire). The listener must have gists on (`enableGists`); otherwise nothing happens. The teller's strongest gists
+ * (up to `limit`, optionally only those about `placeIds`) become the listener's own gists with the tag `told`, the
+ * teller's valence and summary, and a salience of the teller's × `trust` × `RETELL_DEFAULTS.share`. A listener who
+ * already holds a gist about the same thing (kind, action, target and place, whoever was there) from their own
+ * experience keeps it unchanged; one told before keeps the
+ * stronger telling (retelling the same story does not keep raising it). So a child of parents who fear the east wall
+ * weighs that fear (cognition's `memory` term, by place at half weight) before ever standing there, and their own
+ * later visits outweigh it as they would any gist. No randomness; returns the gists written or strengthened.
+ * It does not model distortion in the retelling, the listener doubting the teller beyond `trust`, or retelling on
+ * from the listener to others (a host may call it again with the listener as teller).
+ */
+export function retell(
+  teller: Person,
+  listener: Person,
+  opts: { at: Minute; trust?: Unit; limit?: number; placeIds?: readonly string[] },
+): Gist[] {
+  const told = teller.memory.gists;
+  const list = listener.memory.gists;
+  if (!told || !list || teller.id === listener.id) return [];
+  const R = RETELL_DEFAULTS;
+  const trust = clamp01(opts.trust ?? trustOfSource(listener, teller.id));
+  const picks = told
+    .filter(
+      (g) =>
+        g.salience >= R.minSalience &&
+        (opts.placeIds === undefined || (g.placeId !== undefined && opts.placeIds.includes(g.placeId))),
+    )
+    .sort((a, b) => b.salience - a.salience || byId(a, b))
+    .slice(0, Math.max(0, Math.floor(opts.limit ?? R.limit)));
+  const out: Gist[] = [];
+  for (const src of picks) {
+    const salience = clamp01(src.salience * trust * R.share);
+    if (salience <= 0) continue;
+    const mine = list.find((x) => sameStory(x, src));
+    if (mine && !mine.tags.includes('told')) continue;
+    if (mine) {
+      if (salience > mine.salience) {
+        mine.salience = salience;
+        mine.weight = salience;
+        mine.lastAt = opts.at;
+        out.push(mine);
+      }
+      continue;
+    }
+    const id = `g${listener.memory.nextGist ?? 0}`;
+    listener.memory.nextGist = (listener.memory.nextGist ?? 0) + 1;
+    const g: Gist = {
+      id,
+      at: opts.at,
+      kind: src.kind,
+      valence: src.valence,
+      salience,
+      summary: src.summary,
+      tags: ['told', ...src.tags.filter((t) => t !== 'told')].slice(0, GIST_DEFAULTS.maxTags),
+      count: 0,
+      firstAt: opts.at,
+      lastAt: opts.at,
+      weight: salience,
+      peak: salience,
+    };
+    if (src.action !== undefined) g.action = src.action;
+    if (src.actorId !== undefined) g.actorId = src.actorId;
+    if (src.targetId !== undefined) g.targetId = src.targetId;
+    if (src.placeId !== undefined) g.placeId = src.placeId;
+    list.push(g);
+    out.push(g);
+  }
+  if (out.length > 0) trimGists(listener, deceasedSet(listener));
+  return out.filter((g) => list.includes(g));
+}
+
+/** The same thing happening, whoever it happened to (kind, action, target, place). */
+const sameStory = (g: Episode, e: Episode): boolean =>
+  g.kind === e.kind && g.action === e.action && g.targetId === e.targetId && g.placeId === e.placeId;
+
+const trustOfSource = (p: Person, id: EntityId): Unit => p.memory.sourceTrust[id] ?? 0.5;
+
 const idNum = (id: string): number => Number(id.slice(1)) || 0;
 const byId = (a: Episode, b: Episode): number => idNum(a.id) - idNum(b.id);
 

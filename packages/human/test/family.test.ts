@@ -9,15 +9,20 @@ import {
   createPerson,
   decide,
   deliver,
+  enableGists,
+  expectedEffect,
   finish,
   heldNorms,
   lifeModifiers,
   pregnancyDue,
   pregnancyModifiers,
   raise,
+  remember,
   restore,
+  retell,
   seedTie,
   skillLevel,
+  skip,
   snapshot,
   tick,
 } from '../src/index.ts';
@@ -217,5 +222,100 @@ describe('family: upbringing (control scenario)', () => {
     bad.family = 'nonsense';
     expect(restore(bad).family).toBeUndefined();
     expect(createPerson({ id: 'x', name: 'x', seed: 1, bornAt: 0, sex: 'male' }).family).toBeUndefined();
+  });
+});
+
+describe('family: stories of a place (L2, control scenario)', () => {
+  const wall: Affordance = {
+    id: 'stand-east',
+    action: 'stand-watch',
+    label: 'Stand on the east wall',
+    placeId: 'east-wall',
+    duration: 60,
+    effort: 0.2,
+    advertises: { competence: 0.3 },
+  };
+  const hall: Affordance = {
+    ...wall,
+    id: 'sit-hall',
+    action: 'sit',
+    label: 'Sit in the hall',
+    placeId: 'hall',
+  };
+
+  /** A parent who lived through the night the east wall broke, long enough ago that only the gist remains. */
+  function fearfulParent(): Person {
+    const mum = adult('mum', 'female', 40);
+    enableGists(mum);
+    remember(mum, {
+      at: mum.now,
+      kind: 'outcome',
+      action: 'stand-watch',
+      actorId: 'mum',
+      placeId: 'east-wall',
+      valence: -0.9,
+      summary: 'the night the east wall broke',
+      tags: ['danger'],
+    });
+    skip(mum, mum.now + 2 * MINUTES_PER_YEAR);
+    return mum;
+  }
+  const memoryTerm = (p: Person) =>
+    decide(p, [wall, hall])
+      .considered.find((c) => c.action === 'stand-watch')
+      ?.terms.find((t) => t.source === 'memory');
+
+  test('a child of a fearful parent believes the east wall riskier before ever standing there', () => {
+    const mum = fearfulParent();
+    expect(mum.memory.gists?.some((g) => g.placeId === 'east-wall')).toBe(true);
+    const told = adult('kid', 'male', 10);
+    const control = adult('kid', 'male', 10);
+    enableGists(told);
+    enableGists(control);
+    const written = retell(mum, told, { at: told.now, trust: 0.9 });
+    expect(written).toHaveLength(1);
+    expect(written[0]).toMatchObject({ placeId: 'east-wall', count: 0 });
+    expect(written[0]?.tags[0]).toBe('told');
+    expect(told.memory.episodes.some((e) => e.placeId === 'east-wall')).toBe(false);
+    expect(expectedEffect(told, wall).gist?.valence).toBeLessThan(-0.5);
+    expect(memoryTerm(told)?.value).toBeLessThan(0);
+    expect(memoryTerm(control)).toBeUndefined();
+    // A story weighs less than having been there.
+    const mumGist = mum.memory.gists?.find((g) => g.placeId === 'east-wall');
+    expect(written[0]?.salience ?? 1).toBeLessThan(mumGist?.salience ?? 0);
+  });
+
+  test('retelling is bounded: trust scales it, telling twice does not raise it, own experience is kept', () => {
+    const mum = fearfulParent();
+    const a = adult('kid', 'male', 10);
+    const b = adult('kid', 'male', 10);
+    enableGists(a);
+    enableGists(b);
+    const high = retell(mum, a, { at: a.now, trust: 0.9 })[0]?.salience ?? 0;
+    const low = retell(mum, b, { at: b.now, trust: 0.3 })[0]?.salience ?? 0;
+    expect(low).toBeLessThan(high);
+    expect(retell(mum, a, { at: a.now, trust: 0.9 })).toHaveLength(0);
+    expect(a.memory.gists).toHaveLength(1);
+    // Someone who stood there and came to like it keeps their own gist.
+    const veteran = adult('vet', 'male', 30);
+    enableGists(veteran);
+    remember(veteran, {
+      at: veteran.now,
+      kind: 'outcome',
+      action: 'stand-watch',
+      actorId: 'vet',
+      placeId: 'east-wall',
+      valence: 0.6,
+      summary: 'a quiet night on the east wall',
+      tags: [],
+    });
+    skip(veteran, veteran.now + MINUTES_PER_YEAR);
+    const before = JSON.stringify(veteran.memory.gists);
+    retell(mum, veteran, { at: veteran.now, trust: 1 });
+    expect(JSON.stringify(veteran.memory.gists)).toBe(before);
+    // Without gists on, a listener hears nothing.
+    const plain = adult('kid', 'male', 10);
+    expect(retell(mum, plain, { at: plain.now })).toEqual([]);
+    expect(plain.memory.gists).toBeUndefined();
   });
 });

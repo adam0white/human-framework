@@ -125,6 +125,16 @@ describe('migrate: saves from earlier engines restore under the current one', ()
     expect(rt(communityState(a.c))).toEqual(rt(communityState(b.c)));
   });
 
+  test('1.9.0 village with every long-run slice: restores and continues as 1.9.0 did', () => {
+    const v190 = load('1.9.0');
+    expect(v190.engine).toBe('1.9.0');
+    const people = v190.village.saved.people.map((j) => restore(rt(j)));
+    expect(people.some((p) => (p.memory.gists?.length ?? 0) > 0)).toBe(true);
+    expect(people.some((p) => p.bonds !== undefined && p.social.impressions !== undefined)).toBe(true);
+    expect(people.some((p) => p.family !== undefined && p.ambient !== undefined)).toBe(true);
+    expect(continueRun('village', v190.village).digest).toBe(v190.village.continued);
+  });
+
   test('older and unknown engines are refused with the supported list', () => {
     const j = rt(v140.village.saved.people[0]) as Record<string, unknown>;
     expect(() => restore({ ...j, engine: '1.3.0' })).toThrow(/1\.4\.0, 1\.5\.0, 1\.6\.0/);
