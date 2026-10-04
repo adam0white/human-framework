@@ -351,7 +351,22 @@ export const sampleReport: ReportView = {
     { id: 'you', name: 'You', endRamadan: 'listens to you some', endWeek: 'listens to you some' },
     { id: 'selin', name: 'Selin', endRamadan: 'listens closely', endWeek: 'listens closely ↑' },
   ],
-  ends,
+  ends: ends.map((e) =>
+    e.id === 'rent'
+      ? {
+          ...e,
+          status: '300 still owed at Eid',
+          detail: 'Paid 300 on Ramadan 14; 300 still owed at Eid. He had 268.',
+          after: 'In the week after Eid he paid the rest (300) on Shawwal 7; nothing owed now. He has 7.',
+        }
+      : e.id === 'doctor'
+        ? {
+            ...e,
+            detail: `${e.detail} Cigarettes: 1 a day on Ramadan 1–2, none on Ramadan 29–30. He walked by the river 12 times in Ramadan, each time on your word.`,
+            after: 'Not seen in the week after Eid. On Eid he smoked 3 cigarettes and walked by the river.',
+          }
+        : { ...e, after: 'Nothing changed in the week after Eid.' },
+  ),
   body: ['Blood pressure: moderately high.', 'Sleep: a little short.', 'Fed: well.'],
   open: ['300 still owed to Osman.', 'No make-up fasts owed.'],
   rows: [strip, { ...strip, label: 'Ramadan 2' }, { ...strip, label: 'Eid al-Fitr' }],
