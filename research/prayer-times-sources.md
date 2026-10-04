@@ -71,6 +71,21 @@ Not found: TDV entries "Kerahat Vakitleri", "İşrâk" and "Temkin" (only "Vakit
 - Isha running to the next day's Fajr matches the Hanafi validity bound; the makruh-after-midnight distinction is not modelled.
 - Which kerahat length (Diyanet 40-50 min, or about 20 min elsewhere), which Asr (Diyanet's asr-ı evvel or Abu Hanifa's two lengths) and which shafaq a host uses are host choices to be labelled as such. The town scenario is set in Turkey, which makes Diyanet's conventions the natural default for it; that is an engineering choice, not a finding.
 
+## 6. A prayer begun in its time (added 2026-10-04, Game 2 twelfth pass)
+
+Gathered by a subagent web pass on 2026-10-04 for the omission-rule fix (engine 1.9.0). Same caveat: fetched pages went through a summarising tool, so wording is close paraphrase unless quoted.
+
+| Claim | Tier | Source | Status / notes |
+|---|---|---|---|
+| Whoever catches one rak'ah of Fajr before sunrise, or of Asr before sunset, has caught that prayer (Abu Hurayra) | Transmitted (hadith) | Bukhari 579, Muslim 608, also Abu Dawud 412, Nasa'i 514, Tirmidhi 186, Ibn Majah 699, as listed on [abukhadeejah.com](https://abukhadeejah.com/whoever-catches-one-rakah-of-the-prayer-just-before-the-end-of-its-time/); Muslim 608 on [sounah.com](https://sounah.com/en/hadith/9660/); text on [hadeethenc.com](https://hadeethenc.com/en/browse/hadith/10602) | Fetched. sunnah.com/bukhari:579 seen only as a search result (403 on fetch); dorar.net 403. |
+| One rak'ah inside the time makes it ada' (Maliki, apparent Shafi'i); the opening takbir suffices (Abu Hanifa, a Shafi'i alternative) | Fatwa site, other schools | [islamweb 331408](https://islamweb.net/en/fatwa/331408/catching-time-of-prayer-with-one-rakah) | Fetched. Does not name the Hanbali position. |
+| Hanafi and Hanbali take the opening takbir, Maliki and Shafi'i a rak'ah; a person who finished one rak'ah of Dhuhr in time prayed it in time (ada') | Fatwa site | [islamqa.info 96836](https://islamqa.info/en/answers/96836) | Fetched. Quotes Ibn 'Uthaymeen preferring the one-rak'ah view. |
+| Hanbali: the prayer is caught by the opening takbir made in its time | Fatwa site (Hanbali) | [islamqa.org, Hanbali disciples 154007](https://islamqa.org/hanbali/hanbalidisciples/154007/prayer-just-before-the-time-runs-out/) | Fetched; cites Sharh al-Muntaha. |
+| Hanafi: sunrise during Fajr invalidates it (made up after sunrise); Asr finished after sunset is still valid | Fatwa site (Hanafi) | [SeekersGuidance](https://seekersguidance.org/answers/hanafi-fiqh/is-my-prayer-valid-if-i-finish-praying-outside-its-respective-prayer-time/) | Fetched. Not modelled (minority position on this point). |
+| Delaying on purpose so that part of the prayer falls outside its time is a sin, though the prayer counts; the one-rak'ah rule rescues someone who forgot or overslept | Fatwa sites | islamweb 331408 above; abukhadeejah above | Fetched. Two sources only; treat as the common position among those found, not a confirmed consensus. Not modelled. |
+
+Engineering mapping: the agenda keeps a commitment open while an act that serves it, begun inside the window, is under way (`agenda.underWay`), and the will's omission rule protects it for that time (`will.closingDuties`). "Begun inside the window" stands in for both the takbir and the one-rak'ah positions; the framework does not count rak'ahs.
+
 ## Verification limits
 
 No Qur'an verse, hadith or classical Hanafi text was read in this pass; classical titles are as cited by the secondary pages linked. Diyanet's mekruh-times page was re-fetched on 2026-10-04 through a summarising tool. No qualified Hanafi reviewer has assessed this record.

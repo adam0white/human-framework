@@ -9,7 +9,9 @@
  * of a voice that has pushed hard and earned little trust, or whose advice recently hurt the person at the same
  * action). An omission rule protects a closing obligatory duty: options that would make a firmly convinced
  * person miss it are blocked while the duty can still be met (obligation follows capacity, Qur'an 2:286, so the
- * block lifts when no fulfilling option is available or a bodily need is extreme). Insisting never overrides a pressing bodily need
+ * block lifts when no fulfilling option is available or a bodily need is extreme). The duty stays protected past the window's end
+ * while a prayer begun inside it is under way, and an activity that would cover the closing stretch is reviewed when
+ * it begins (`dutyReviewAt`, 1.9.0). Insisting never overrides a pressing bodily need
  * (refused/cannot with the need as reason), and `cannot` refusals move no voice counters. `predictResponse` gives the same verdict without
  * writing anything or consuming RNG. Trust in a voice is learned from how followed advice felt, with harm
  * costing more than benefit earns (trust asymmetry); an insisted suggestion earns no trust when it goes well, and
@@ -26,7 +28,7 @@
  */
 
 import { breakAllows, inBreak } from '../affect/index.ts';
-import { commitmentPressure, pressureReachedAt } from '../agenda/index.ts';
+import { commitmentPressure, pressureReachedAt, underWay } from '../agenda/index.ts';
 import { downedAllows, readCapacities } from '../body/index.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
 import { clamp01, decay, dexp, dpow, random } from '../core/index.ts';
@@ -84,7 +86,8 @@ export const WILL_DEFAULTS = {
    * Omission rule: a held obligatory norm with conviction ≥ this, linked to a pending commitment that is in the
    * last (1 - omissionFraction) of its window, blocks options that would run past the window's end. Applies only
    * while some offered option can still fulfil the commitment and desperation is below conscience's necessity
-   * threshold (capacity bounds obligation).
+   * threshold (capacity bounds obligation). Past the window's end it holds while a fulfilling activity begun inside
+   * the window is under way (1.9.0).
    */
   omissionConviction: 0.7,
   omissionFraction: 0.75,
@@ -315,36 +318,82 @@ export function wakeReviewAt(p: Person, now: Minute): Minute | undefined {
   return best;
 }
 
+/** A pending commitment linked to a held obligatory norm with conviction >= `omissionConviction` (no time test). */
+function protectedDuty(p: Person, c: Commitment): boolean {
+  if (c.status !== 'pending' || c.normId === undefined) return false;
+  const held = p.conscience.norms.find((n) => n.normId === c.normId);
+  return held?.standing === 'obligatory' && held.conviction >= WILL_DEFAULTS.omissionConviction;
+}
+
+/** The first minute of a commitment's protected closing stretch (the last 1 - omissionFraction of the window). */
+const stretchStart = (c: Commitment): Minute => c.from + WILL_DEFAULTS.omissionFraction * (c.until - c.from);
+
+/**
+ * Whether `aff` would keep duty `c` if chosen at `now`. Inside the window: any option serving it. Past the window's
+ * end (1.9.0): only continuing the running activity that began inside the window (`agenda.underWay`); a fresh start
+ * after `until` would not count, so it does not exempt.
+ */
+function keepsDuty(p: Person, c: Commitment, aff: Affordance, now: Minute): boolean {
+  if (now <= c.until) return servesCommitment(c, aff);
+  return p.activity?.affordance.id === aff.id && underWay(p, c, now);
+}
+
 /**
  * Pending commitments protected by the omission rule right now: linked to a held obligatory norm with conviction
  * ≥ `omissionConviction`, in the last (1 - omissionFraction) of the window, with at least one offered option
- * that fulfils it and passes the capacity/conscience vetoes. Empty under desperation ≥ necessity threshold.
+ * that keeps it and passes the capacity/conscience vetoes. Past the window's end the duty stays protected while an
+ * activity that keeps it, begun inside the window, is under way (1.9.0): a prayer begun in time counts when finished
+ * after it (research/decisions.md, "A prayer begun in its time"), so leaving it is an omission; the running activity
+ * is then the only option that keeps it. Empty under desperation ≥ necessity threshold.
  * @internal
  */
 export function closingDuties(
   p: Person,
   ctx: Pick<WillContext, 'now' | 'affordances' | 'body' | 'desperation' | 'necessity'>,
 ): Commitment[] {
-  const W = WILL_DEFAULTS;
   if (ctx.desperation >= CONSCIENCE_DEFAULTS.necessityThreshold) return [];
   const out: Commitment[] = [];
   for (const c of p.agenda.commitments) {
-    if (c.status !== 'pending' || c.normId === undefined) continue;
-    if (ctx.now > c.until || ctx.now < c.from + W.omissionFraction * (c.until - c.from)) continue;
-    const held = p.conscience.norms.find((n) => n.normId === c.normId);
-    if (held?.standing !== 'obligatory' || held.conviction < W.omissionConviction) continue;
+    if (!protectedDuty(p, c) || ctx.now < stretchStart(c)) continue;
+    if (ctx.now > c.until && !underWay(p, c, ctx.now)) continue;
     const wctx = ctx as WillContext;
-    if (!ctx.affordances.some((a) => servesCommitment(c, a) && vetoFor(p, a, wctx) === undefined)) continue;
+    if (!ctx.affordances.some((a) => keepsDuty(p, c, a, ctx.now) && vetoFor(p, a, wctx) === undefined))
+      continue;
     out.push(c);
   }
   return out;
 }
 
-/** The closing duty this option would make the person miss, if any (options serving another duty are exempt). */
-function omissionFor(duties: readonly Commitment[], aff: Affordance, now: Minute): Commitment | undefined {
-  if (duties.length === 0 || duties.some((c) => servesCommitment(c, aff))) return undefined;
+/** The closing duty this option would make the person miss, if any (options keeping another duty are exempt). */
+function omissionFor(
+  p: Person,
+  duties: readonly Commitment[],
+  aff: Affordance,
+  now: Minute,
+): Commitment | undefined {
+  if (duties.length === 0 || duties.some((c) => keepsDuty(p, c, aff, now))) return undefined;
   const end = now + Math.max(0, aff.duration);
   return duties.find((c) => end > c.until);
+}
+
+/**
+ * The start of the next protected closing stretch that an activity running until `endsAt` would cover entirely
+ * without keeping the duty (1.9.0): a protected duty (see `closingDuties`) whose stretch begins after `now` and whose
+ * window ends before `endsAt`, and which `aff` does not serve. The composite caps the activity's review there, so a
+ * long option begun before the stretch (a sleep 29 minutes before sunrise, with Fajr's stretch the last 22) is weighed
+ * again when the stretch begins, under the omission rule. Capacity and necessity are judged at that review, as for
+ * any decision: a sleeper who cannot yet wake for the duty sleeps on. Undefined when none is ahead.
+ */
+export function dutyReviewAt(p: Person, aff: Affordance, now: Minute, endsAt: Minute): Minute | undefined {
+  let best: Minute | undefined;
+  for (const c of p.agenda.commitments) {
+    if (c.kind === 'abstain' || c.exempt !== undefined || !protectedDuty(p, c)) continue;
+    if (c.until >= endsAt || servesCommitment(c, aff)) continue;
+    const s = Math.ceil(stretchStart(c));
+    if (s <= now || s > c.until) continue;
+    if (best === undefined || s < best) best = s;
+  }
+  return best;
 }
 
 /**
@@ -538,7 +587,7 @@ function evaluate(
   const suggestions = cmd ? given.filter((s) => s.voiceId !== cmd.voiceId) : given;
   const affById = new Map(ctx.affordances.map((a) => [a.id, a]));
   const duties = closingDuties(p, ctx);
-  const servesDuty = (aff: Affordance): boolean => duties.some((c) => servesCommitment(c, aff));
+  const servesDuty = (aff: Affordance): boolean => duties.some((c) => keepsDuty(p, c, aff, ctx.now));
   // Per-voice distrust episode, over the voice's targets that pass the capacity/conscience vetoes.
   const baseVeto = new Map<string, Considered['vetoed']>();
   for (const c of input) {
@@ -572,7 +621,7 @@ function evaluate(
         veto = { kind: 'willNot', reason: 'distrust' };
     }
     if (!veto && aff) {
-      const missed = omissionFor(duties, aff, ctx.now);
+      const missed = omissionFor(p, duties, aff, ctx.now);
       if (missed) veto = { kind: 'willNot', reason: `norm:${missed.normId}`, omission: missed.id };
     }
     if (veto) out.vetoed = veto;
@@ -944,7 +993,7 @@ function commandOutcome(
     const v = baseVeto.get(c.affordanceId);
     if (v) return v;
     const aff = affById.get(c.affordanceId);
-    const missed = aff ? omissionFor(duties, aff, ctx.now) : undefined;
+    const missed = aff ? omissionFor(p, duties, aff, ctx.now) : undefined;
     return missed ? { kind: 'willNot', reason: `norm:${missed.normId}`, omission: missed.id } : undefined;
   };
   const live = named.filter((c) => vetoOf(c) === undefined).sort(byUtilityThenId);

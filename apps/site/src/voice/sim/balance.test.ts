@@ -137,8 +137,11 @@ test("insisting against an obligatory prayer near its window's end is refused (t
   const opts = STYLES['Faith only, relentless (Urge, insist, no repeat gap)'] ?? {};
   const LONG = ['visit-grave', 'tea:riza', 'sleep', 'work-extra'];
   let found: { draft: Draft; until: number } | undefined;
+  // Asked every 5 minutes, not 30: under engine 1.9.0 the 30-minute pauses no longer land on such a moment with a long
+  // option he could do (measured; why was not traced).
   play(g, {
     ...opts,
+    pauseEvery: 5,
     stop: (gg) => {
       if (gg.phase !== 'day' || !gg.paused || gg.halil.body.asleep) return false;
       const f = gg.frame();
@@ -154,9 +157,13 @@ test("insisting against an obligatory prayer near its window's end is refused (t
           c.until - t > 5 &&
           c.until - t < 40,
       );
-      const id = duty && LONG.find((x) => f.options.some((o) => o.id === x));
-      if (!duty || !id) return false;
-      found = { draft: { optionId: id, strength: 'urge', insist: true }, until: duty.until };
+      if (!duty) return false;
+      // A capacity refusal ("I'm not tired") outranks the omission rule, so take a long option he could do.
+      const draft = LONG.filter((x) => f.options.some((o) => o.id === x))
+        .map((x): Draft => ({ optionId: x, strength: 'urge', insist: true }))
+        .find((d) => gg.predict(d).tone !== 'cannot');
+      if (!draft) return false;
+      found = { draft, until: duty.until };
       return true;
     },
   });

@@ -149,6 +149,7 @@ import {
   createWill,
   creditedVoices,
   dischargeAdvice,
+  dutyReviewAt,
   endCommand,
   learnFromVoice,
   noteCommandOutcome,
@@ -1140,7 +1141,7 @@ export function begin(
   const thresholdAt = thresholdFor(p, load, review);
   if (thresholdAt !== undefined) activity.thresholdAt = thresholdAt;
   activity.reviewAt = now + Math.max(1, Math.min(review, (thresholdAt ?? Number.POSITIVE_INFINITY) - now));
-  if (load.mode === 'sleep') activity.reviewAt = capForDuty(p, activity.reviewAt);
+  activity.reviewAt = capForDuty(p, activity, activity.reviewAt);
   if (aff.risk && aff.risk.chance > 0 && aff.risk.severity > 0) {
     appraise(p, {
       at: now,
@@ -1179,13 +1180,23 @@ export function reviewed(p: Person): void {
   if (thresholdAt !== undefined) act.thresholdAt = thresholdAt;
   else delete act.thresholdAt;
   act.reviewAt = p.now + Math.max(1, Math.min(review, (thresholdAt ?? Number.POSITIVE_INFINITY) - p.now));
-  if (load.mode === 'sleep') act.reviewAt = capForDuty(p, act.reviewAt);
+  act.reviewAt = capForDuty(p, act, act.reviewAt);
 }
 
-/** A sleeper's review no later than the minute a pending duty becomes pressing enough to wake for. */
-function capForDuty(p: Person, reviewAt: Minute): Minute {
-  const at = wakeReviewAt(p, p.now);
-  return at !== undefined && at < reviewAt ? Math.max(p.now + 1, at) : reviewAt;
+/**
+ * Cap a review for pending duties. A sleeper is reviewed no later than the minute a pending duty becomes pressing
+ * enough to wake for. Any activity that would cover a protected duty's whole closing stretch and run past the
+ * window's end is reviewed when that stretch begins (1.9.0, `will.dutyReviewAt`), so the omission rule weighs it.
+ */
+function capForDuty(p: Person, act: Activity, reviewAt: Minute): Minute {
+  let at = reviewAt;
+  if (act.mode === 'sleep') {
+    const wake = wakeReviewAt(p, p.now);
+    if (wake !== undefined && wake < at) at = Math.max(p.now + 1, wake);
+  }
+  const stretch = dutyReviewAt(p, act.affordance, p.now, act.endsAt);
+  if (stretch !== undefined && stretch < at) at = Math.max(p.now + 1, stretch);
+  return at;
 }
 
 /**

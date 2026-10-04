@@ -3,11 +3,11 @@
  * `migrate` walks a chain of steps keyed by the version they upgrade from, one version at a time, and stamps each
  * step's target version on the JSON. `restore` calls it, so a host can pass an old save straight to `restore`.
  *
- * Covers saves from engine 1.4.0 onward. 1.4.0 through 1.7.0 share the person shape (1.6.0 and 1.7.0 only add
+ * Covers saves from engine 1.4.0 onward. 1.4.0 through 1.9.0 share the person shape (1.6.0 to 1.8.0 only add
  * optional fields that are absent by default), so those steps only stamp the version; `restore` then fills and sanitizes
  * the slices as for any save. A migrated save continues under the current engine's rules: it restores and runs,
  * but it does not reproduce what the old engine would have done next where the rules changed (1.4.0 to 1.5.0
- * changed how standing advice is heard). Saves older than 1.4.0 and unknown versions are refused with an error.
+ * changed how standing advice is heard; 1.8.0 to 1.9.0 changed the omission rule). Saves older than 1.4.0 and unknown versions are refused with an error.
  *
  * Does not cover community state (`communityState`) or world state (for example `createVillage`'s `state`): those
  * have not changed shape since 1.4.0, and a host owns its own world state's migration.
@@ -45,6 +45,11 @@ export const MIGRATIONS: Readonly<Record<string, MigrationStep>> = {
   '1.7.0': {
     to: '1.8.0',
     note: 'person shape unchanged; family, bonds, ambient, gists, yearbook, character and skill consolidation are optional and start absent',
+    apply: stamp,
+  },
+  '1.8.0': {
+    to: '1.9.0',
+    note: 'person shape unchanged; the omission rule now protects a duty while a prayer begun in its window runs past the end, and reviews an activity that would cover a closing stretch',
     apply: stamp,
   },
 };

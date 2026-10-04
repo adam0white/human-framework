@@ -12,7 +12,7 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
-Engine: 1.8.0. `restore` upgrades 1.7.0 saves by a version stamp; runs that use none of the new slices are unchanged.
+Engine: 1.9.0. `restore` upgrades 1.7.0 and 1.8.0 saves by a version stamp. Runs that use none of the new slices are unchanged, except where the omission rule's 1.9.0 changes apply (below).
 
 ### Added
 
@@ -50,6 +50,13 @@ Engine: 1.8.0. `restore` upgrades 1.7.0 saves by a version stamp; runs that use 
 
 ### Changed
 
+- Engine 1.9.0, the omission rule (found by Game 2's faith-pushing simulated players, docs/findings.md). A duty stays
+  protected past its window's end while an activity that keeps it, begun inside the window, is under way: a prayer
+  begun in its time counts ([research/decisions.md](https://github.com/adam0white/human-framework/blob/main/research/decisions.md)), so an insisted option no longer abandons it. An
+  activity that would cover a protected duty's whole closing stretch and run past the window's end is reviewed when
+  the stretch begins, so a sleep begun just before Fajr's last minutes no longer runs through sunrise unweighed.
+  Capacity and necessity still lift the rule. New exports `agenda.underWay`, `will.dutyReviewAt`. The village
+  continuation hashes are unchanged; the Game 1 playtest run shifts by minutes.
 - `stepCommunity` tells each death to everyone alive with a tie (`StepOptions.tellDeaths`, default true): they
   grieve, keep the tie as a memory, and a spouse is widowed. Runs without deaths are unchanged; no playtest fixture
   changed.

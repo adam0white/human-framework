@@ -74,6 +74,7 @@ export {
   spanMeetsWindow,
   suhoorWindow,
   timesFor,
+  underWay,
   violatesAbstention,
 } from './agenda/index.ts';
 export * from './beliefs/index.ts';
