@@ -585,3 +585,46 @@ Measured on seed 7 with the headless players (scratchpad probe, not in the repo)
 - **Eid count is noisy.** Cigarettes on Eid vary between 3 and 5 and barely follow the month. Probable cause (not confirmed): on Eid there is no fast, so the hour cue and the refractory set the count more than the after-meal habit does.
 - **The shift style changed.** The fifth-pass table's "27 shifts, date R11" were mostly 30-minute fragments that never set `lastExtra`. With the advice heard for the running activity, the same player works about 6–7 full shifts and keeps the date on R14, with the second 300 paid after Eid.
 - **Not done:** an urge to smoke after abstinence (`craving` is unset for Halil); the walk is not its own end.
+
+### Seventh pass (game-design review of the live build, 2026-10-04)
+
+Checks: lint, typecheck and `vitest run --maxWorkers=3`: 49 files, 567 tests. Engine 1.5.0, unchanged. No economy or balance target moved: the quiet month still misses Osman's date and pays 300 on R17, and the card defaults keep it.
+
+- **"He'd now do unasked" strip** (the spec's dawn probe, voice.md §3, which the build plan had cut). For suhoor, calling Selin, the clinic, paying Osman, the shift and the walk, it shows what he chose at his last decision where the act was open and your voice was not weighed. It appears on the Ends pane, the day card, the skip card and the report. Prayer is left out. See `sim/unasked.ts`.
+- **Fewer pauses.**
+  - Wake, craving, duty-risk and close-call beats stop pausing after two in a row are answered with nothing.
+  - A verdict pauses only when he defers, declines or cannot.
+  - Recall and gossip are logged without pausing.
+  - A close call pauses only when there is a prefill, and never for a choice between two ways to pray.
+- **Report and cards agree.** A begun act that was interrupted no longer counts as done on your word. The day card lists it as "Begun on your word and stopped part-way". Clinic counts match the town's completed acts (test). Ends no longer name a passed date as still ahead.
+- **Osman's missed date shows a cost.**
+  - The 17:00 beat on R15 gives the shortfall.
+  - At 20:00 a log line says the date has gone by.
+  - The R15 day card leads with the miss.
+  - From then on, Osman's door lines say he presses harder. This is the existing late demand at strength 0.8.
+  - These are surfaced sim facts only; there was no retune.
+- **A moment for each played day.**
+  - R1 is the first suhoor.
+  - R2 brings Selin's call after iftar.
+  - R15 is Osman's date.
+  - R30's last night says Selin will leave the first Eid call to him and when she would call, with "call Selin" prefilled.
+  - Selin's visit and Deniz are not built: build plan §2 has no new Persons.
+  - Skip digests lead with firsts ("First time he saw the doctor: Ramadan 9, on your word") or "Nothing new since Ramadan N".
+- **360 px.**
+  - The skip card opens on the decision, and the recap folds to one line of glyphs.
+  - Whisper strength and reason controls sit below the list, so a pick no longer moves the next row under the pointer. This was the second-click bug, measured as a 102 px shift.
+  - Composer reasons are one row that scrolls sideways.
+- **Icons.**
+  - Lucide (ISC; licence text kept in `ui/Icon.tsx`), inline SVG, 16 px, 1.5 px stroke, `currentColor`, labelled.
+  - They mark pause kinds, verdicts, voices, strength arcs, money and legend glyphs.
+  - The prayer pips in the sky bar are small: filled when kept, ringed when missed, with a dot for the mosque.
+  - The tea glass and strength waves are drawn here. Lucide's shuffle (modified verdict) is unused, because the sim reports deferred and modified both as "not now".
+  - His lines, reasons and ends stay text.
+
+Pauses per played day (R1 / R2 / R15 / R30, then Eid), seed 7:
+
+| Player | Before | After |
+|---|---|---|
+| Prefill confirmed + doctor/Selin whispers | 19 / 16 / 11 / 9, Eid 7 | 10 / 6 / 7 / 6, Eid 5 |
+| Quiet | 10 / 10 / 10 / 9, Eid 8 | 5 / 6 / 4 / 3, Eid 5 |
+| Prefill confirmed + shift/Selin whispers | 19 / 16 / 9 / 7, Eid 8 | 10 / 6 / 3 / 3, Eid 4 |
