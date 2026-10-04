@@ -110,6 +110,7 @@ export function App() {
                 key={s.id}
                 type="button"
                 className="w-speed"
+                aria-label={s.label}
                 aria-pressed={speed === s.id}
                 onClick={() => actions.setSpeed(s.id)}
               >
@@ -119,7 +120,13 @@ export function App() {
             ))}
           </fieldset>
         ) : null}
-        <button type="button" className="w-chronicle" aria-expanded={menu} onClick={() => setMenu((m) => !m)}>
+        <button
+          type="button"
+          className="w-chronicle"
+          aria-label="Chronicle"
+          aria-expanded={menu}
+          onClick={() => setMenu((m) => !m)}
+        >
           <Icon name="book-open" size={18} />
           <span>Chronicle</span>
         </button>
@@ -132,7 +139,7 @@ export function App() {
           <MapCanvas frame={frame} selected={selected} onHit={onHit} />
           <Ticker frame={frame} />
         </div>
-        <section className="w-panel" aria-live="polite">
+        <section className="w-panel" aria-live="polite" key={frame.phase}>
           {frame.phase === 'goal' ? <GoalPage frame={frame} actions={actions} /> : null}
           {frame.phase === 'dusk' ? (
             <DuskPanel frame={frame} actions={actions} selected={selected} setSelected={setSelected} />
@@ -148,6 +155,13 @@ export function App() {
 }
 
 function Ticker({ frame }: { frame: Frame }) {
+  if (frame.phase === 'dusk') {
+    return (
+      <ol className="w-ticker" aria-hidden="true">
+        <li className="w-alert is-moment">{frame.warning}</li>
+      </ol>
+    );
+  }
   if (frame.phase !== 'night') return null;
   const now = frame.nightProgress;
   const recent = frame.alerts.slice(-3);
@@ -362,11 +376,11 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
         <button
           type="button"
           className="w-bellbtn"
-          disabled={frame.rope.snapped}
+          disabled={frame.rope.snapped || frame.roused}
           onClick={() => actions.input({ k: 'bell' })}
         >
           <Icon name="bell" size={20} />
-          <span>{frame.roused ? 'The bell is ringing' : 'Ring the bell'}</span>
+          <span>{frame.roused ? 'Still ringing' : 'Ring the bell'}</span>
         </button>
         <div className="w-ropebox">
           <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />
@@ -393,8 +407,13 @@ function DawnPanel({ frame, actions, seed }: { frame: Frame; actions: WatchActio
     <div className="w-page w-dawn">
       <p className="w-kicker">Dawn · {nightName(d.night).toLowerCase()}</p>
       <h2>
-        {fallen ? 'The granary is empty.' : d.grainAfter === d.grainBefore ? 'The wall held.' : 'Morning.'}
+        {fallen
+          ? 'The granary is empty.'
+          : d.grainAfter === d.grainBefore
+            ? 'The wall held.'
+            : 'The wall was crossed.'}
       </h2>
+      {d.scout ? <p className="w-scoutline">{d.scout}</p> : null}
       <ul className="w-dawnlines">
         {d.lines.map((l) => (
           <li key={l.section}>{l.text}</li>

@@ -59,6 +59,8 @@ export interface NightTally {
 export interface DawnPage {
   night: number;
   lines: { section: SectionId; text: string }[];
+  /** Said when the lead threat came somewhere the scout did not name. */
+  scout: string | null;
   grainBefore: number;
   grainAfter: number;
   ropeSnapped: boolean;
@@ -87,6 +89,8 @@ export interface WatchState {
   lead: ThreatKind;
   warned: SectionId;
   warning: string;
+  /** Sections the lead threat's waves were drawn on (for the dawn page's word on the scout). */
+  leadCame: SectionId[];
   spawns: Spawn[];
   tokens: Token[];
   nextTokenId: number;
@@ -147,6 +151,7 @@ export function createState(seed: number): WatchState {
     lead: 'wolf',
     warned: 'gate',
     warning: '',
+    leadCame: [],
     spawns: [],
     tokens: [],
     nextTokenId: 1,

@@ -7,7 +7,7 @@ import { applyInput, clockRuns, type Input, newGame, stepMinute } from './night.
 import type { WatchState } from './state.ts';
 
 /** Bump when rules change so an old export is not replayed against new rules. */
-export const WATCH_SCENARIO_VERSION = 1;
+export const WATCH_SCENARIO_VERSION = 2;
 
 export interface LogEntry {
   /** The sim minute the input applied at (before that minute resolved). */

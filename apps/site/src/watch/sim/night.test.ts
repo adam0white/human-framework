@@ -96,9 +96,15 @@ describe('Night Watch rules (G3-1)', () => {
   it('each pull wears the rope until it snaps, and dawn mends it partly', () => {
     const s = toNight(13);
     let pulls = 0;
-    while (applyInput(s, { k: 'bell' })) {
-      pulls += 1;
+    expect(applyInput(s, { k: 'bell' })).toBe(true);
+    pulls += 1;
+    // A pull while it still rings is refused and wears nothing.
+    const wear = s.rope.wear;
+    expect(applyInput(s, { k: 'bell' })).toBe(false);
+    expect(s.rope.wear).toBe(wear);
+    while (!s.rope.snapped && s.phase === 'night') {
       stepMinute(s);
+      if (applyInput(s, { k: 'bell' })) pulls += 1;
     }
     expect(pulls).toBeGreaterThanOrEqual(3);
     expect(pulls).toBeLessThanOrEqual(5);
@@ -128,6 +134,32 @@ describe('Night Watch rules (G3-1)', () => {
       }
     }
     expect(rung).toBeLessThan(quiet);
+  });
+
+  it('the lantern alone at an empty stretch slows climbers, and the dawn page names the empty post', () => {
+    let still = 0;
+    let walked = 0;
+    let named = 0;
+    for (let seed = 200; seed < 220; seed++) {
+      for (const walk of [false, true]) {
+        const s = newGame(seed);
+        applyInput(s, { k: 'start' });
+        for (const w of WATCHER_IDS) applyInput(s, { k: 'post', watcher: w, post: null });
+        applyInput(s, { k: 'begin' });
+        while (s.phase === 'night') {
+          const heard = s.alerts.find(
+            (a) => (a.kind === 'motion' || a.kind === 'foot') && a.minute === s.minute - 1,
+          );
+          if (walk && heard) applyInput(s, { k: 'lantern', section: heard.section });
+          stepMinute(s);
+        }
+        if (walk) walked += START_GRAIN - s.grain;
+        else still += START_GRAIN - s.grain;
+        if (s.dawn?.lines.some((l) => /^Nobody stood .* got over/.test(l.text))) named += 1;
+      }
+    }
+    expect(walked).toBeLessThan(still);
+    expect(named).toBeGreaterThan(20);
   });
 
   it('dusk runs on its own to nightfall', () => {

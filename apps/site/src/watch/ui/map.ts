@@ -190,13 +190,20 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
       continue;
     }
     const y = laneY(l, m.pos);
-    ctx.strokeStyle = 'rgba(200, 214, 170, 0.55)';
-    ctx.lineWidth = 1.4;
-    for (let s = -1; s <= 1; s++) {
-      const sway = Math.sin(o.now / 140 + m.id + s) * 3;
+    // A soft pulse where the grass moves, then the stalks themselves.
+    const pulse = 0.12 + 0.1 * Math.sin(o.now / 260 + m.id);
+    const halo = ctx.createRadialGradient(cx, y, 1, cx, y, laneW * 0.32);
+    halo.addColorStop(0, `rgba(200, 214, 170, ${pulse})`);
+    halo.addColorStop(1, 'rgba(200, 214, 170, 0)');
+    ctx.fillStyle = halo;
+    ctx.fillRect(cx - laneW * 0.32, y - laneW * 0.32, laneW * 0.64, laneW * 0.64);
+    ctx.strokeStyle = 'rgba(214, 226, 186, 0.75)';
+    ctx.lineWidth = 2;
+    for (let s = -2; s <= 2; s++) {
+      const sway = Math.sin(o.now / 140 + m.id + s) * 4;
       ctx.beginPath();
-      ctx.moveTo(cx + s * 5, y + 5);
-      ctx.quadraticCurveTo(cx + s * 5 + sway, y - 2, cx + s * 5 + sway * 1.6, y - 7);
+      ctx.moveTo(cx + s * 6, y + 8);
+      ctx.quadraticCurveTo(cx + s * 6 + sway, y - 2, cx + s * 6 + sway * 1.6, y - 11);
       ctx.stroke();
     }
   }

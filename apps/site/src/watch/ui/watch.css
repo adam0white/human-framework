@@ -85,6 +85,9 @@
 }
 
 .w-title p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0;
   color: var(--w-muted);
   font-size: 0.85rem;
@@ -223,10 +226,10 @@
   font-weight: 600;
 }
 
-.w-primary {
+.watch .w-primary {
   border: 0;
   background: var(--w-accent);
-  color: #1b1408 !important;
+  color: #1b1408;
 }
 
 .w-secondary {
@@ -292,13 +295,23 @@
   color: var(--w-text);
 }
 
-.w-places,
-.w-lantern-pick {
+.w-places {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   align-items: center;
   margin: 0 0 8px;
+}
+
+.w-lantern-pick {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0 0 8px;
+}
+
+.w-lantern-pick > span {
+  grid-column: 1 / -1;
 }
 
 .w-lantern-pick > span {
@@ -482,8 +495,33 @@
   border-radius: 8px;
 }
 
-/* Narrow phones: the speed words go, icons stay. */
+/* Narrow phones: the speed words go, icons stay; the map's granary stands in for the panel's. */
 @media (max-width: 480px) {
+  .w-top {
+    gap: 4px;
+    padding: 4px 8px;
+  }
+  .w-home {
+    min-width: 24px;
+  }
+  .w-speed,
+  .w-chronicle {
+    min-width: 40px;
+  }
+  .w-speeds {
+    gap: 2px;
+  }
+  .w-chip {
+    padding: 0 4px;
+    font-size: 0.85rem;
+  }
+  .w-panel {
+    max-height: 44dvh;
+  }
+  .phase-night .w-granary,
+  .w-dusk .w-warning {
+    display: none;
+  }
   .w-speed span,
   .w-chronicle span {
     display: none;
@@ -521,4 +559,8 @@
     border-top: 0;
     border-left: 1px solid var(--w-line);
   }
+}
+
+.w-scoutline {
+  color: var(--w-warn);
 }

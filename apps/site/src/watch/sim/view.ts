@@ -154,7 +154,8 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
     rope: { ...s.rope },
     roused: s.phase === 'night' && s.minute < s.rousedUntil,
     slowed,
-    alerts: s.alerts.slice(-6),
+    // Only what is still news: alerts from the last hour of the night.
+    alerts: s.alerts.filter((a) => s.minute - a.minute < 60).slice(-6),
     dawn: s.dawn,
   };
 }

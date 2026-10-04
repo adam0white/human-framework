@@ -8,7 +8,7 @@
  * it stands at is lit (watchers there see far and hit more; the Keeper sees what is there). Dark sections are
  * seen late and show the Keeper only motion. The scout's warning at dusk names the lead threat's approach and
  * is right about each wave three times in four (every wave on the first night). The bell (a placeholder until HF `command` in G3-2) rouses the
- * whole wall for a while: threats slow and throws land more often. Each pull wears the rope; a worn rope snaps
+ * whole wall for a while: threats slow and throws land more often. Each pull (not while it still rings) wears the rope; a worn rope snaps
  * and stays snapped until dawn, when it is partly mended.
  *
  * Not covered. Watchers are placeholders: fixed stats, they always obey, never tire, flee, bond or get hurt.
@@ -67,6 +67,10 @@ export type Input =
   | { k: 'toDusk' };
 
 const ALERT_KEEP = 14;
+/** With only the Keeper's lantern at an empty stretch, a climb advances this much per minute. */
+const KEEPER_CLIMB = 0.5;
+/** ... and each minute a climber there may turn back. */
+const KEEPER_SCARE = 0.1;
 /** Fled and breached tokens stay drawn this many minutes. */
 const TOKEN_LINGER = 10;
 
@@ -113,6 +117,7 @@ export function planNight(s: WatchState): void {
       ? `The scout found pack tracks ${def.approach}.`
       : `The scout saw strangers ${def.approach}.`;
   const spawns: WatchState['spawns'] = [];
+  s.leadCame = [];
   const waveSize = (): number =>
     s.lead === 'wolf' ? 3 + Math.floor(n / 3) + (nextRandom(s) < 0.5 ? 1 : 0) : 2 + Math.floor(n / 4);
   const waves: [number, number][] = [
@@ -124,6 +129,7 @@ export function planNight(s: WatchState): void {
     // The first night is gentle (spec §3, year 1 authored): the scout is right about every wave.
     const right = nextRandom(s) < (n === 1 ? 1 : SCOUT_TRUE);
     const section = right ? s.warned : pick(s, others);
+    if (!s.leadCame.includes(section)) s.leadCame.push(section);
     const count = waveSize();
     for (let i = 0; i < count; i++) {
       spawns.push({ at: at + i * (1 + Math.floor(nextRandom(s) * 3)), section, kind: s.lead, count: 1 });
@@ -144,6 +150,7 @@ export function planNight(s: WatchState): void {
 }
 
 function alert(s: WatchState, a: Omit<Alert, 'minute'>): void {
+  if (!a.slowed && s.alerts.some((x) => x.text === a.text && s.minute - x.minute < 20)) return;
   s.alerts.push({ ...a, minute: s.minute });
   if (s.alerts.length > ALERT_KEEP) s.alerts.splice(0, s.alerts.length - ALERT_KEEP);
   if (a.slowed) s.slowUntil = Math.max(s.slowUntil, s.minute + SLOW_WINDOW);
@@ -172,36 +179,47 @@ function enterDawn(s: WatchState): void {
   const lines: DawnPage['lines'] = [];
   for (const id of SECTION_IDS) {
     const name = sectionDef(id).name;
-    const where = id === 'gate' ? 'at the Gate' : `at the ${name.toLowerCase()}`;
+    const the = id === 'gate' ? 'the Gate' : `the ${name.toLowerCase()}`;
     const got = t.got[id];
     const driven = t.driven[id];
     const heroes = [...new Set(t.heroes[id])].map((w) => watcherDef(w).name);
     const posted = postedIn(s, id).map((w) => watcherDef(w).name);
+    const gotKinds = (['wolf', 'thief'] as const).filter((k) => (got[k] ?? 0) > 0);
+    const drivenKinds = (['wolf', 'thief'] as const).filter((k) => (driven[k] ?? 0) > 0);
     const parts: string[] = [];
-    for (const kind of ['wolf', 'thief'] as const) {
+    if (gotKinds.length > 0 && posted.length === 0) parts.push(`Nobody stood ${the}.`);
+    for (const kind of gotKinds) {
       const g = got[kind] ?? 0;
-      if (g > 0)
-        parts.push(
-          kind === 'wolf'
-            ? `${capital(plural(kind, g))} got over the wall ${where} and tore into the store.`
-            : `${capital(plural(kind, g))} got over ${where} and carried sacks off.`,
-        );
+      parts.push(
+        kind === 'wolf'
+          ? `${capital(plural(kind, g))} got over ${the} and tore into the store.`
+          : `${capital(plural(kind, g))} got over ${the} and carried sacks off.`,
+      );
     }
-    for (const kind of ['wolf', 'thief'] as const) {
-      const d = driven[kind] ?? 0;
-      if (d > 0 && heroes.length > 0)
-        parts.push(`${heroes.join(' and ')} drove off ${plural(kind, d)} ${where}.`);
+    if (drivenKinds.length > 0) {
+      const what = drivenKinds.map((k) => plural(k, driven[k] ?? 0)).join(' and ');
+      parts.push(
+        heroes.length > 0
+          ? `${heroes.join(' and ')} drove off ${what} at ${the}.`
+          : `Your lantern turned back ${what} at ${the}.`,
+      );
     }
     if (parts.length === 0) {
-      parts.push(
-        posted.length === 0 ? `Nobody stood ${where.replace('at ', '')}. Nothing came.` : `Quiet ${where}.`,
-      );
+      parts.push(posted.length === 0 ? `Nobody stood ${the}. Nothing came.` : `Quiet at ${the}.`);
     }
     lines.push({ section: id, text: parts.join(' ') });
   }
+  const missed = s.leadCame.filter((x) => x !== s.warned);
+  const scout =
+    missed.length === 0
+      ? null
+      : s.leadCame.includes(s.warned)
+        ? `The scout was half right: some came ${sectionDef(missed[0] ?? s.warned).approach} instead.`
+        : `The scout's tracks were ${sectionDef(s.warned).approach}, but they came ${sectionDef(missed[0] ?? s.warned).approach}.`;
   s.dawn = {
     night: s.night,
     lines,
+    scout,
     grainBefore: t.grainAtDusk,
     grainAfter: s.grain,
     ropeSnapped: s.rope.snapped,
@@ -246,7 +264,8 @@ export function applyInput(s: WatchState, input: Input): boolean {
       return true;
     }
     case 'bell': {
-      if (s.phase !== 'night' || s.rope.snapped) return false;
+      // A pull while the bell still rings does nothing: no wear for a double tap.
+      if (s.phase !== 'night' || s.rope.snapped || s.minute < s.rousedUntil) return false;
       s.rousedUntil = s.minute + BELL_ROUSE_MIN;
       s.tally.bellRung += 1;
       s.rope.wear += BELL_WEAR_BASE + BELL_WEAR_SPREAD * nextRandom(s);
@@ -363,8 +382,21 @@ export function stepMinute(s: WatchState): void {
         }
       }
     } else if (t.state === 'foot') {
-      t.climb += 1;
-      if (t.climb >= def.climb) {
+      // The Keeper's lantern at the foot of an unwatched stretch: the climb is slow and loud, and some turn back.
+      const keeperOnly = t.section === lit && postedIn(s, t.section).length === 0;
+      t.climb += keeperOnly ? KEEPER_CLIMB : 1;
+      if (keeperOnly && nextRandom(s) < KEEPER_SCARE) {
+        t.state = 'fled';
+        t.since = m;
+        const d = s.tally.driven[t.section];
+        d[t.kind] = (d[t.kind] ?? 0) + 1;
+        alert(s, {
+          section: t.section,
+          kind: 'driven',
+          text: `Your lantern turned ${plural(t.kind, 1)} back at the ${sectionDef(t.section).name.toLowerCase()}.`,
+          slowed: false,
+        });
+      } else if (t.climb >= def.climb) {
         t.state = 'in';
         t.since = m;
         const took = Math.min(s.grain, def.takes);
