@@ -456,10 +456,14 @@ export interface Relationship {
    * affection persists, interaction is impossible, and recall of them is a grief cue.
    */
   deceasedAt?: Minute;
+  /** Groups I believe they are in (1.6.0, `meet`). Absent = unknown. */
+  groups?: string[];
 }
 
 export interface SocialState {
   relationships: Relationship[];
+  /** Groups I count myself in and my stance toward outsiders (1.6.0, `joinGroups`). Absent = none. */
+  groups?: { memberOf: string[]; outsiderStance?: Signed };
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -853,6 +857,12 @@ export interface Percept {
   claims?: { prop: string; value: boolean; confidence: Unit }[];
   /** Norms the observed act honoured or violated (for judging others). */
   norms?: NormTag[];
+  /**
+   * A threat (1.6.0): harm of `severity` that may come (`chance`, default 0.7) from `sourceId` (default the actor;
+   * a person or a place) to `aboutId` (default the perceiver). Becomes fear by how much `aboutId` matters to the
+   * perceiver, aimed at the source (see the social/groups SCOPE).
+   */
+  threat?: { severity: Unit; chance?: Unit; sourceId?: EntityId; aboutId?: PersonId };
   summary: string;
   /**
    * Host flag for `sim/` interrupts. true: this percept is near the person (the framework has no spatial model),
@@ -1089,6 +1099,8 @@ export interface AppraisalEvent {
   /** For deeds judged against a norm: which norm. */
   normId?: string;
   cause: string;
+  /** For prospects (1.6.0): the source of a threat; the fear is aimed at it (an `avoid:<id>` tendency). */
+  threatFrom?: EntityId;
 }
 
 export type SocialEventKind =

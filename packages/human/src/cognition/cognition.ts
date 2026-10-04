@@ -347,6 +347,12 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     push(emotion ? `emotion:${emotion}:${tag}` : `emotion:${tag}`, K.emotionScale * t * sat);
   }
 
+  // A place I fear (a threat aimed at it, 1.6.0): options there are avoided at the emotion scale.
+  if (aff.placeId !== undefined) {
+    const avoid = ctx.tendencies[`avoid:${aff.placeId}`];
+    if (avoid !== undefined && avoid > 0) push(`avoid:${aff.placeId}`, -K.emotionScale * avoid);
+  }
+
   // Social pulls. Per-person emotion tendencies enter at the same scale as tag tendencies.
   for (const t of socialTerms(p, aff, social))
     push(t.source, K.socialScale * (t.value > 0 ? social.satiation * refractory() : 1) * t.value);

@@ -7,8 +7,8 @@
  * diminishing returns, HEXACO agreeableness as tolerance of provocation and honesty-humility as sensitivity
  * to deceit (Ashton & Lee), Schwartz benevolence as care for close others. Observers judge only the outward
  * act and never see intentions. It does NOT model the other person's view of me (each person holds their
- * own one-sided record), attachment styles, or group identity (gossip, reputation and bereavement are in the
- * SCOPE paragraphs further down); the
+ * own one-sided record) or attachment styles (gossip, reputation and bereavement are in the SCOPE paragraphs
+ * further down; insiders, outsiders and threats in `groups.ts`); the
  * coefficients are engineering defaults, not calibrated estimates.
  */
 import { clamp, clamp01, clampSigned, decay, expit, round } from '../core/index.ts';
@@ -29,6 +29,7 @@ import type {
   Unit,
 } from '../types.ts';
 import { MINUTES_PER_DAY } from '../types.ts';
+import { careFor } from './groups.ts';
 
 const WEEK = 7 * MINUTES_PER_DAY;
 
@@ -430,7 +431,7 @@ export function judge(
   const bias = SOCIAL_DEFAULTS.negativityBias;
   const harmToClose =
     observed.targetId !== undefined && observed.targetId !== observed.actorId && (observed.valence ?? 0) < 0
-      ? clampSigned(observed.valence ?? 0) * closeness(p, observed.targetId)
+      ? clampSigned(observed.valence ?? 0) * careFor(p, observed.targetId)
       : 0;
   if (praiseworthiness === 0 && harmToClose === 0) return { praiseworthiness };
 

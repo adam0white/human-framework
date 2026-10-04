@@ -172,6 +172,13 @@ and an offer can require a capacity (`requires: { moving: 0.5 }`). A host-set `b
 clots; `tend(p)` slows it and speeds healing. `knockDown(p)` / `standUp(p)` down a person (only lying, resting or
 sleeping stays open), and `enableDowned(p, { health: 0.3 })` lets the framework down them below a floor.
 
+## Insiders, outsiders and threats
+
+`joinGroups(p, ['village'])` and `meet(p, 'stranger', ['caravan'])` give new ties insider or outsider defaults (by the
+person's stance toward outsiders), and harm to an insider matters to them. A percept with
+`threat: { severity, sourceId }` becomes fear aimed at the source: risky options and options with that person or at
+that place lose appeal until the fear fades. Groups and factions themselves stay with the host.
+
 ## What it does not model
 
 - **Space and travel.** There is no map or pathfinding. Hosts fold travel into `duration` and mark nearby

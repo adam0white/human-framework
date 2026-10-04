@@ -241,7 +241,7 @@ export function appraise(p: Person, ev: AppraisalEvent): Emotion[] {
   if (ev.kind === 'prospect') {
     const likelihood = clamp01(ev.likelihood ?? 0.5);
     if (des > 0) add('hope', mag * likelihood * gain);
-    else if (des < 0) add('fear', mag * likelihood * fearGain);
+    else if (des < 0) add('fear', mag * likelihood * fearGain, ev.threatFrom);
   } else if (ev.kind === 'deed') {
     const pw = clampSigned(ev.praiseworthiness ?? 0);
     const strength = Math.max(Math.abs(pw), mag);

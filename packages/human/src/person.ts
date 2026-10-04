@@ -88,12 +88,15 @@ import { practise, seedSkills } from './skills/index.ts';
 import {
   advanceSocial,
   applyReputationBelief,
+  careFor,
   closeness,
   judge,
   markDeceased,
   relationshipWith,
+  sanitizeGroups,
   seedRelationships,
   socialEvent,
+  threatAppraisal,
 } from './social/index.ts';
 import type {
   Activity,
@@ -660,7 +663,7 @@ function perceiveOne(p: Person, pc: Percept): void {
   let desirability = 0;
   const valence = clampSigned(pc.valence ?? 0);
   if (aboutMe) desirability = valence;
-  else if (target !== undefined && target !== actor) desirability = valence * closeness(p, target);
+  else if (target !== undefined && target !== actor) desirability = valence * careFor(p, target);
   else if (target === undefined) desirability = 0.3 * valence;
   const loss = pc.kind === 'death' && target !== undefined && target !== p.id && closeness(p, target) > 0.3;
   if (!byMe && (desirability !== 0 || praiseworthiness !== 0 || loss)) {
@@ -679,6 +682,19 @@ function perceiveOne(p: Person, pc: Percept): void {
     if (loss) ev.loss = true;
     appraise(p, ev);
   }
+  // A threat (1.6.0): fear by how much the threatened party matters, aimed at its source (social/groups SCOPE).
+  const threat = pc.threat && !byMe ? threatAppraisal(p, pc.threat, actor) : undefined;
+  if (threat) {
+    const tev: AppraisalEvent = {
+      at,
+      kind: 'prospect',
+      desirability: threat.desirability,
+      likelihood: threat.likelihood,
+      cause: threat.cause,
+    };
+    if (threat.sourceId !== undefined) tev.threatFrom = threat.sourceId;
+    appraise(p, tev);
+  }
   // A death I hear of: the tie is kept and marked, so recalling them is a grief cue from now on.
   if (pc.kind === 'death' && target !== undefined && target !== p.id && !byMe) {
     if (p.social.relationships.some((r) => r.otherId === target)) markDeceased(p, target, at);
@@ -692,7 +708,7 @@ function perceiveOne(p: Person, pc: Percept): void {
     action: pc.kind,
     valence: byMe ? valence : desirability,
     summary: pc.summary,
-    tags: [pc.kind, pc.channel, ...(isNight(at) ? ['night'] : [])],
+    tags: [pc.kind, pc.channel, ...(isNight(at) ? ['night'] : []), ...(threat ? ['threat'] : [])],
   };
   if (actor !== undefined) episode.actorId = actor;
   if (target !== undefined) episode.targetId = target;
@@ -1476,6 +1492,7 @@ export function restore(input: unknown): Person {
   }
   sanitizeIllnesses(out.body);
   sanitizeInjuries(out.body);
+  sanitizeGroups(out.social);
   if (out.will.advice !== undefined && !Array.isArray(out.will.advice)) delete out.will.advice;
   // Optional slices added in 1.6.0: a malformed entry is dropped (absent means none).
   const cmd = out.will.command as unknown;
