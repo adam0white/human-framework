@@ -49,6 +49,20 @@ function hurt(p: Person, severity = 0.6): void {
 }
 
 describe('impressions (HF 2.0 L6)', () => {
+  test('a seen skill (skill:<id>) is believed for seasons, while a state cue fades within the day', () => {
+    const w = person('w', 6);
+    for (let k = 0; k < 8; k++) {
+      hear(w, 't', 'skill:sling', 0.8, { at: NOON + k, weight: 0.5 });
+      hear(w, 't', 'fatigue', 0.8, { at: NOON + k, weight: 0.5 });
+    }
+    expect(estimate(w, 't', 'skill:archery', NOON).value).toBe(0.3);
+    const later = NOON + 120 * 24 * 60;
+    const skill = estimate(w, 't', 'skill:sling', later);
+    expect(skill.value).toBeCloseTo(0.8, 5);
+    expect(skill.confidence).toBeGreaterThan(0.5);
+    expect(estimate(w, 't', 'fatigue', later).confidence).toBeLessThan(0.01);
+  });
+
   test('an estimate narrows with shared time: confidence rises and the error shrinks', () => {
     const watcher = person('w', 1);
     const target = person('t', 2, { traits: { emotionality: 0.8 } });

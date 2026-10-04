@@ -9,7 +9,8 @@
  * known each other). Nothing reads the target's true state here: the composite (`impression.ts`) turns a target into
  * outward signs, applying the target's reserve — how much they keep from showing (a proud person hides pain; the
  * default rises as emotionality falls) — and words hide more than faces. Weight decays by kind: state within hours,
- * place fears over weeks, ties and trust over months; traits do not decay. Observation error is a deterministic hash
+ * place fears over weeks, ties and trust over months, a seen skill (`skill:<id>`, opt-in by key) over a year; traits
+ * do not decay. Observation error is a deterministic hash
  * of (observer, target, key, minute), scaled by 1 − clarity: no person's RNG is drawn. Shapes borrowed qualitatively:
  * Brunswik's lens model (judgements from cues of varying validity), Funder's realistic accuracy model (accuracy needs
  * relevant, available, detected and used cues; acquaintance raises it), display rules (Ekman & Friesen: people mask
@@ -39,7 +40,7 @@ import type {
 } from '../types.ts';
 import { MINUTES_PER_DAY } from '../types.ts';
 
-export type CueKind = 'state' | 'place' | 'trait' | 'tie' | 'trust';
+export type CueKind = 'state' | 'place' | 'trait' | 'tie' | 'trust' | 'skill';
 
 export const STATE_CUES: readonly StateCue[] = ['fatigue', 'pain', 'fear', 'mood'];
 export const TRAIT_NAMES: readonly (keyof Traits)[] = [
@@ -59,6 +60,8 @@ export const IMPRESSION_DEFAULTS = {
     trait: 0,
     tie: 90 * MINUTES_PER_DAY,
     trust: 30 * MINUTES_PER_DAY,
+    /** `skill:<id>`: how good someone is at a craft changes over seasons, and what was seen of it lasts. */
+    skill: 365 * MINUTES_PER_DAY,
   } as Record<CueKind, number>,
   /** confidence = weight / (weight + priorWeight). */
   priorWeight: 1.5,
@@ -74,6 +77,7 @@ export const IMPRESSION_DEFAULTS = {
     trait: 0.5,
     tie: 0,
     trust: 0.5,
+    skill: 0.3,
   },
   /** Default reserve: base + emotionalityCoef × (1 − emotionality) for pain and fear; fatigue and mood a little. */
   reserve: { base: 0.1, emotionalityCoef: 0.4, fatigue: 0.1, mood: 0.2 },
@@ -145,6 +149,7 @@ export function cueKind(key: string): CueKind {
   if (key.startsWith('tie:')) return 'tie';
   if (key.startsWith('trust:')) return 'trust';
   if (key.startsWith('fear@')) return 'place';
+  if (key.startsWith('skill:')) return 'skill';
   return 'state';
 }
 

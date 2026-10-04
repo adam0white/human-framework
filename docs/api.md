@@ -1378,7 +1378,7 @@ interface World {
 
 ### Types
 
-- `CueKind` — `'state' | 'place' | 'trait' | 'tie' | 'trust'`
+- `CueKind` — `'state' | 'place' | 'trait' | 'tie' | 'trust' | 'skill'`
 
 ## will/
 
