@@ -1,5 +1,5 @@
 /** Human Framework v1 public surface. */
-export const FRAMEWORK_VERSION = '1.0.0';
+export const FRAMEWORK_VERSION = '1.1.0';
 
 // `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `effectiveHalfLife` stays internal.
 export type { CrisisEvent, PracticeKind } from './affect/index.ts';

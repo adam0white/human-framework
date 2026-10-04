@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: check and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+
+  # Timing is informational on CI. The budgets in *.timing.ts were set on a quiet Apple Silicon dev machine;
+  # shared GitHub runners are slower and noisy, so the budgets run at 3x (BENCH_SCALE) and a miss marks the step
+  # failed without failing the job. The hyperfine table in the job summary is the number to compare across runs.
+  # A crash or a broken bench script still fails the job.
+  bench:
+    name: bench (informational)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: npm
+      - run: npm ci
+      - name: Timing budgets (npm run bench, BENCH_SCALE=3)
+        continue-on-error: true
+        env:
+          BENCH_SCALE: '3'
+        run: |
+          set -o pipefail
+          npm run bench 2>&1 | tee "$RUNNER_TEMP/bench.log"
+      - name: Bench measurements to summary
+        if: always()
+        run: |
+          {
+            echo '### npm run bench (budgets x3)'
+            echo
+            echo '```'
+            grep -E '[0-9] (ms|us per call)$' "$RUNNER_TEMP/bench.log" || echo 'no measurements (see the step log)'
+            grep -E 'Tests ' "$RUNNER_TEMP/bench.log" || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Install hyperfine
+        run: sudo apt-get update -q && sudo apt-get install -y -q hyperfine
+      - name: hyperfine, village 20 people x 30 days (headless CLI)
+        run: |
+          node scripts/bench-village.ts | tee "$RUNNER_TEMP/village.txt"
+          npm run bench:hyperfine -- --export-markdown "$RUNNER_TEMP/hyperfine.md"
+          {
+            echo '### hyperfine: node scripts/bench-village.ts'
+            echo
+            echo "Runner: $(nproc) CPUs, Node $(node --version). Includes Node start-up and type stripping."
+            echo
+            cat "$RUNNER_TEMP/hyperfine.md"
+            echo
+            echo "One run: $(cat "$RUNNER_TEMP/village.txt")"
+          } >> "$GITHUB_STEP_SUMMARY"
