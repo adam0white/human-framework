@@ -43,7 +43,7 @@ Each blocking gap in [docs/rimworld-gap.md](docs/rimworld-gap.md) §1 and each l
 
 ## Current position
 
-Goal 2 started 2026-10-04. Live: d48d8f6 (HF 2.0.0, engine 2.0.0; Games 1–3 on HF 2.0). GitHub release v2.0.0 published. What remains for Goal 2: the user's playtest of Game 3 at /watch/ (the acceptance step). Unverified: a real Galaxy S26 (wake lock, fullscreen, safe areas), the "Save it as a file" download, bench timings on a quiet machine, 50-year save sizes on seeds other than 1. Next work after acceptance: HF 2.1 deferrals and G3-5 (docs/reviews/2026-10-04-h2-summary.md, watch.md).
+Goal 2 started 2026-10-04. Live: d48d8f6 (HF 2.0.0, engine 2.0.0; Games 1–3 on HF 2.0). GitHub release v2.0.0 published. What remains for Goal 2: the user's playtest of Game 3 at /watch/ (the acceptance step). Checked live at d48d8f6 (2026-10-04): Game 3 Copy the playtest (10 KB) and Save it as a file (blob named night-watch-seed…-year1.json; the download itself intercepted), no console errors; Games 1–2 start a run with no console errors. Unverified: a real Galaxy S26 (wake lock, fullscreen, safe areas), bench timings on a quiet machine, 50-year save sizes on seeds other than 1. Next work after acceptance: HF 2.1 deferrals and G3-5 (docs/reviews/2026-10-04-h2-summary.md, watch.md).
 
 Open, recorded in docs/findings.md and docs/games/voice-build.md §13:
 - Game 2: with advice heard for the running activity (engine 1.5.0), the shift whisper gives about 6–7 full shifts and the date kept on R14 (was 27 fragments, R11). Whether the between-day whispers are too decisive is for a playtest to judge.
