@@ -2146,3 +2146,82 @@ fieldset.v-appeals {
   font-size: 0.95rem;
   margin-bottom: 4px;
 }
+
+/* ---------- Mobile review 2026-10-04 (docs/reviews/2026-10-04-mobile.md, Part B) ---------- */
+
+/* Full screen: an icon in the top bar on wide screens, an item in the playtest menu on phones. */
+.v-top .fs-btn {
+  border-color: rgba(237, 230, 214, 0.3);
+}
+.v-top .fs-icon {
+  width: 34px;
+  height: 34px;
+}
+.v-fs-item {
+  display: none;
+}
+
+/* Safe areas left and right (landscape notch or island); env() is 0 on desktop, so the gutters are unchanged (B1.7). */
+.v-top {
+  padding-left: max(var(--gutter), env(safe-area-inset-left));
+  padding-right: max(var(--gutter), env(safe-area-inset-right));
+}
+.v-main,
+.v-tabs {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* 768 to 1023 wide (tablets, landscape phones): short button labels, so the controls leave the sky band its room
+   instead of the grid overflowing onto the day and hour. */
+@media (max-width: 1023px) {
+  .v-long {
+    display: none;
+  }
+  .v-short {
+    display: inline;
+  }
+  .v-top {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .v-fs {
+    display: none;
+  }
+  .v-fs-item {
+    display: inline-flex;
+  }
+
+  /* The day label no longer runs under Play at 360 to 384 wide (B1.4): it shrinks and clips inside its column. */
+  .v-top-id,
+  .v-top-when {
+    overflow: hidden;
+  }
+  .v-top-day {
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+  .v-top-controls {
+    gap: 4px;
+  }
+  .v-top-controls .v-btn-play {
+    width: 40px;
+  }
+}
+
+/* 440 px and below: the day and hour beside the sky band, the controls on a row of their own, so the day label
+   is never clipped to a few letters (B1.4, the review's cleaner layout). */
+@media (max-width: 440px) {
+  .v-top {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "id sky"
+      "controls controls";
+  }
+  .v-top-controls {
+    justify-content: flex-end;
+  }
+}

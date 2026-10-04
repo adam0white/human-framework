@@ -3,7 +3,9 @@
  * with the phase (goal page, dusk posting, the night's lantern and bell, the dawn page). The chronicle menu
  * holds the playtest export and a new village. Play shows no numbers: sacks, strands and words.
  */
+
 import { useEffect, useState } from 'react';
+import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import {
   type PostId,
   postSection,
@@ -46,6 +48,9 @@ export function App() {
   useEffect(() => {
     if (frame && frame.phase !== 'dusk' && frame.phase !== 'goal') setSelected(null);
   }, [frame]);
+
+  // Keep the screen awake only while the clock runs: dusk and night, chronicle closed.
+  useWakeLock(frame !== null && (frame.phase === 'dusk' || frame.phase === 'night') && !menu);
 
   if (error) {
     return (
@@ -130,6 +135,7 @@ export function App() {
           <Icon name="book-open" size={18} />
           <span>Chronicle</span>
         </button>
+        <FullscreenButton className="w-fs" />
       </header>
 
       {menu ? <Chronicle actions={actions} seed={seed} onClose={() => setMenu(false)} /> : null}
@@ -481,6 +487,7 @@ function Chronicle({ actions, seed, onClose }: { actions: WatchActions; seed: nu
       >
         Begin a new village
       </button>
+      <FullscreenButton variant="item" className="w-secondary w-fs-item" />
     </div>
   );
 }

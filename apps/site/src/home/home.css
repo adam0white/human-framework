@@ -54,6 +54,9 @@ body {
 }
 
 .nav nav a {
+  /* 45 px tall touch targets instead of 21 (mobile review B1.17). */
+  display: inline-block;
+  padding-block: 12px;
   text-decoration: none;
   color: var(--text-muted);
 }

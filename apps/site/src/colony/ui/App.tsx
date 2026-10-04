@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { MomentRecord } from '../sim/game.ts';
 import type { Bubble } from '../sim/human-side.ts';
@@ -77,6 +78,8 @@ export function App() {
   const [toast, setToast] = useState(false);
   const [moment, setMoment] = useState<MomentRecord | null>(null);
   const [drawer, setDrawer] = useState(false);
+  /** Landscape phones show one map at a time (colony.css); this picks which. Other layouts show both. */
+  const [mapSide, setMapSide] = useState<'classic' | 'human'>('human');
   const flashTimer = useRef(0);
   const momentTimer = useRef(0);
   const momentsSeen = useRef(0);
@@ -298,6 +301,8 @@ export function App() {
   const highlightPlace = hoverPlace ?? composer.placeId;
   // The end screen is open for the latest report until closed; "Another day" closes it by clearing `ended`.
   const showEnd = hasSummary && endOpen && Boolean(frame?.ended);
+  // Keep the screen awake only while the clock runs.
+  useWakeLock(frame !== null && !playback.paused && !frame.ended);
 
   const paneProps = {
     store: colony.store,
@@ -322,7 +327,7 @@ export function App() {
           : {})}
         playtest={
           <PlaytestMenu
-            className="topbar-playtest"
+            className="topbar-playtest pt-compact"
             onExport={actions.exportPlaytest}
             onLoad={actions.loadPlaytest}
             onError={actions.playtestError}
@@ -331,7 +336,16 @@ export function App() {
       />
       <GoalStrip goals={frame?.goals ?? []} />
 
-      <main className="stage">
+      <main className={`stage show-${mapSide}`}>
+        <fieldset className="map-toggle">
+          <legend className="visually-hidden">Map shown</legend>
+          <button type="button" aria-pressed={mapSide === 'classic'} onClick={() => setMapSide('classic')}>
+            Classic
+          </button>
+          <button type="button" aria-pressed={mapSide === 'human'} onClick={() => setMapSide('human')}>
+            Human
+          </button>
+        </fieldset>
         <section className="pane pane-classic" aria-label="Classic village">
           <header className="pane-head">
             <h2>

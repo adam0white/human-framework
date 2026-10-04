@@ -1304,6 +1304,7 @@ body {
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
+  -webkit-user-select: none;
   user-select: none;
   white-space: nowrap;
 }
@@ -1608,8 +1609,10 @@ body {
   position: relative;
   width: min(100cqw, calc(100cqh * 640 / 448));
   aspect-ratio: 640 / 448;
-  touch-action: manipulation;
+  /* The map neither pans nor zooms: the browser must not claim a long-press that drifts (mobile review B1.12). */
+  touch-action: none;
   -webkit-touch-callout: none;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -3208,4 +3211,230 @@ kbd {
 
 .prow-head:hover {
   background: transparent;
+}
+
+/* ---------- Mobile review 2026-10-04 (docs/reviews/2026-10-04-mobile.md, Part B) ---------- */
+
+/* The one-map toggle exists only in the landscape-phone layout below. */
+.map-toggle {
+  display: none;
+}
+
+/* Phones: the notch or island and a Home Screen status bar must not cover the top bar or the sides (B1.7). */
+@media (max-width: 860px) {
+  .colony {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+      env(safe-area-inset-left);
+  }
+
+  /* The topbar carries the full-screen item in its "More" menu instead. */
+  .topbar-fs {
+    display: none;
+  }
+
+  .more-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Tiny type (B1.11): the status line ellipsizes instead of clipping against the clock box. */
+  .clock-status {
+    font-size: 0.66rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .stats {
+    font-size: 0.68rem;
+  }
+}
+
+/* Touch: bubbles are tap targets ("Tap any bubble to see why"); widen the hit area without moving them (B1.10). */
+@media (pointer: coarse) {
+  .bubble::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+  }
+}
+
+/* ---------- Landscape phones (780 × 360 up to the 891 × 412 Ultra and the 932-wide Pro Max) ----------
+   The stage's own box steps aside (display: contents) so the panes and the order panel sit in the page grid:
+   the goal strip and the map toggle share a row, then ONE map beside the order panel. Two maps side by side
+   would each be smaller than a portrait map (B1.1, B1.8). */
+@media (max-width: 1180px) and (max-height: 500px) and (orientation: landscape) {
+  .colony {
+    --center-w: 280px;
+    padding: 0 max(8px, env(safe-area-inset-right)) env(safe-area-inset-bottom)
+      max(8px, env(safe-area-inset-left));
+    gap: 4px 8px;
+    grid-template-columns: minmax(0, 1fr) var(--center-w);
+    grid-template-rows: 44px 36px minmax(0, 1fr);
+  }
+
+  .topbar {
+    grid-column: 1 / -1;
+    padding: 0;
+    gap: 8px;
+  }
+
+  .back,
+  .title,
+  .topbar-autopause,
+  .tl-label,
+  .timeline,
+  .topbar-fs {
+    display: none;
+  }
+
+  .topbar-more {
+    display: block;
+  }
+
+  .more-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .clock {
+    flex: 1;
+    min-width: 0;
+    padding: 2px 8px;
+  }
+
+  .speed-btn {
+    min-width: 40px;
+    height: 40px;
+  }
+
+  .stage {
+    display: contents;
+  }
+
+  .goal-strip {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .goal-strip.is-open {
+    overflow: visible;
+  }
+
+  /* 861 px and up keep the wide strip: the icons stand in for the labels. */
+  .goal-label {
+    display: none;
+  }
+
+  .goal {
+    gap: 4px;
+  }
+
+  .goal + .goal {
+    padding-left: 6px;
+  }
+
+  .map-toggle {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    margin: 0;
+    padding: 2px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-s);
+    background: var(--surface);
+    min-width: 0;
+  }
+
+  .map-toggle button {
+    flex: 1;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: transparent;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .map-toggle button[aria-pressed="true"] {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+
+  .pane {
+    grid-column: 1;
+    grid-row: 3;
+    flex: none;
+    flex-direction: row;
+    min-height: 0;
+    border-radius: var(--radius-s);
+  }
+
+  .stage.show-human .pane-classic,
+  .stage.show-classic .pane-human {
+    display: none;
+  }
+
+  .pane-head {
+    flex: none;
+    width: 104px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    align-content: start;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 4px 6px 10px;
+  }
+
+  .pane-head h2 {
+    font-size: 0.82rem;
+  }
+
+  .pane-head h2 span {
+    display: none;
+  }
+
+  .stats {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1px;
+    font-size: 0.68rem;
+    line-height: 1.25;
+  }
+
+  .stats > div {
+    justify-content: space-between;
+  }
+
+  .stats > .stat-no-concept {
+    display: none;
+  }
+
+  .center {
+    grid-column: 2;
+    grid-row: 3;
+    flex: none;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  /* The panel's parts keep their natural height and the panel scrolls, rather than squeezing the composer. */
+  .center > * {
+    flex: none;
+  }
+
+  .composer-tray {
+    overflow: visible;
+  }
+
+  .queue {
+    min-height: 0;
+  }
 }
