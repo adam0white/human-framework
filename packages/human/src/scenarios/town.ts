@@ -100,6 +100,10 @@ export const TOWN_DEFAULTS = {
   smokeHabit: { hour: 10, strength: 0.7, craving: 0.6 },
   /** His cigarette after a meal (forty years of it): strength and craving. In Ramadan iftar is its only cue. */
   mealSmokeHabit: { strength: 0.55, craving: 0.5 },
+  /** The doctor's walk: minutes, and the minutes of day it is offered (in Ramadan from Maghrib). */
+  walkMinutes: 30,
+  walkFrom: 8 * 60,
+  walkTo: 22 * 60 + 30,
   /** Nuran died this many days before the game's start. */
   nuranDiedDaysBefore: 98,
   /** Minutes: the walk to the mosque and back plus the prayer, and a prayer at home. */
@@ -233,6 +237,10 @@ export interface TownState {
   halilCallTimes?: number[];
   /** What the doctor last told each person, and when (optional; absent in states from before it existed). */
   doctorSaid?: Record<PersonId, { at: Minute; text: string }>;
+  /** Day of each person's last completed walk (optional; absent in states from before it existed). */
+  lastWalk?: Record<PersonId, number>;
+  /** Minute each person last finished a meal (optional; absent in states from before it existed). */
+  lastAte?: Record<PersonId, Minute>;
 }
 
 export interface Town extends World {
@@ -948,12 +956,41 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
           id: 'smoke',
           action: 'smoke',
           label: 'smoke a cigarette',
-          placeId: 'teahouse',
+          // No place: he smokes where he is. With a place, every cigarette after a meal at home built a habit keyed
+          // to the tea house, which never pulls at home, and the seeded after-meal habit was never reinforced, so
+          // neither a cigarette nor a walk instead could move it (round 5 finding).
           duration: 10,
           effort: 0.02,
           advertises: { rest: 0.1, leisure: 0.1 },
           tags: ['leisure'],
         });
+        // The doctor's walk (Game 2 round 5): once she has told him to walk, a walk by the river is his to take, once
+        // a day, in Ramadan after iftar and in the daytime after it. Before the clinic it is not
+        // something he does. Engineering default. A walk completed where a cigarette is cued (after a meal, at its
+        // hour) withholds that habit (habits SCOPE: extinction by withholding), so it is how a voice can wear the
+        // forty-year habit down, slowly; nothing else about smoking changes.
+        if (state.doctorSaid?.[p.id] && state.lastWalk?.[p.id] !== day) {
+          const ramadanDay = townDay(day).kind === 'ramadan';
+          const maghrib = townCalendar(day).maghrib;
+          // In Ramadan, once he has broken the fast and not in the middle of a meal (a voice must not walk him out of
+          // his iftar): the walk then comes where the after-meal cigarette would.
+          const open = ramadanDay
+            ? mod >= maghrib &&
+              (state.lastAte?.[p.id] ?? Number.NEGATIVE_INFINITY) >= day * MINUTES_PER_DAY + maghrib &&
+              p.activity?.action !== 'eat'
+            : mod >= T.walkFrom;
+          if (open && mod < T.walkTo)
+            out.push({
+              id: 'walk',
+              action: 'walk',
+              label: 'walk by the river',
+              placeId: 'market',
+              duration: T.walkMinutes,
+              effort: 0.3,
+              advertises: { leisure: 0.15, safety: 0.05 },
+              tags: ['leisure', 'outdoors', 'health'],
+            });
+        }
         if (
           mod >= 9 * 60 &&
           mod < 17 * 60 &&
@@ -1117,6 +1154,8 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
     const capacity = readBody(p).capacity;
     switch (act.action) {
       case 'eat': {
+        state.lastAte ??= {};
+        state.lastAte[p.id] = now;
         // Suhoor and iftar are large meals meant to carry the fast; an ordinary meal is not.
         const meal = mealWindow(act.startedAt) ?? mealWindow(now);
         if (meal) return done({ ...base, needs: { food: 0.9, water: 0.5 }, summary: `ate ${meal}` });
@@ -1141,6 +1180,8 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
       case 'visit-grave':
         return done({ ...base, needs: { meaning: 0.15 }, summary: "visited Nuran's grave" });
       case 'walk':
+        state.lastWalk ??= {};
+        state.lastWalk[p.id] = dayOf(now);
         return done({ ...base, needs: { leisure: 0.2 }, summary: 'walked by the river' });
       case 'housework':
         return done({ ...base, needs: { competence: 0.08 }, summary: 'did the housework' });

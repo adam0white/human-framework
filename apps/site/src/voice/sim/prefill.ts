@@ -4,6 +4,7 @@
  * 2. one of his ends, offered now and not leaning: pay-rent at 300+; the afternoon shift when the mornings alone
  *    will not reach what Osman wants in time; see-doctor if never seen; call Selin after iftar when HE has not
  *    called her for 2+ days; work if not worked today;
+ * 2b. (round 5) the doctor's walk when he is about to smoke and has seen her;
  * 3. nothing. (Fix pass 2: a close call no longer prefills the runner-up, which made an attentive player
  *    contrarian by default; the torn moment is a beat and the choice is the player's.)
  * Nothing is prefilled that he is already doing.
@@ -106,6 +107,16 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
         appeal: 'duty',
       };
   }
+  // 0b. He is about to smoke and the doctor's walk is open: offer it instead (round 5: the doctor's "walk, stop
+  // smoking" became something the player can act on; each walk where the cigarette is cued wears the habit down).
+  if (leaningId === 'smoke' && offered('walk'))
+    return {
+      optionId: 'walk',
+      strength: 'mention',
+      why: 'He is reaching for a cigarette. The doctor told him to walk, and to stop smoking.',
+      source: 'end',
+      appeal: 'safety',
+    };
   // 1. Another voice's standing advice.
   const advice = standingAdvice(h, t)
     .filter((a) => a.sourceId !== 'you')
@@ -113,7 +124,8 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
   for (const a of advice) {
     const found = offers.find((o) => (a.affordanceId ? o.id === a.affordanceId : o.action === a.action));
     const target = found ? offered(found.id) : undefined;
-    if (!target || target.id === leaningId) continue;
+    // The doctor's walk is prefilled only against the cigarette (rule 0b), not at every evening composer.
+    if (!target || target.id === leaningId || target.id === 'walk') continue;
     const p: Prefill = {
       optionId: target.id,
       strength: adviceWeight(a, t) >= 0.5 ? 'urge' : 'mention',

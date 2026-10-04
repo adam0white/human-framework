@@ -9,7 +9,7 @@ import {
   type StandingWhisper,
 } from '../protocol.ts';
 import { DAY_END, SHIPPED_SEED, VoiceGame } from './game.ts';
-import { EID_LINES, eidLines } from './report.ts';
+import { EID_LINES, eidLines, smokingLines } from './report.ts';
 
 const MIN_DAY = 1440;
 
@@ -363,6 +363,38 @@ describe('Game 2 sim on the shipped seed', () => {
     for (const e of r.ends) expect(e.after, e.id).toBeTruthy();
     expect(r.ends.find((e) => e.id === 'fast')?.status).toContain('of Ramadan');
     expect(r.ends.find((e) => e.id === 'doctor')?.status).toMatch(/in Ramadan/);
+    // Round 5: the doctor end counts his cigarettes at the start and end of Ramadan, and on Eid.
+    expect(r.ends.find((e) => e.id === 'doctor')?.detail).toMatch(
+      /Cigarettes: .* on Ramadan 1–2, .* on Ramadan 29–30\./,
+    );
+    expect(r.ends.find((e) => e.id === 'doctor')?.after).toMatch(/On Eid he smoked/);
+  });
+
+  test('smokingLines counts cigarettes per day at the start and end of Ramadan, on Eid, and the walks', () => {
+    const cell = (day: number, hour: number, action: string, promptedBy?: 'you') => ({
+      from: day * MIN_DAY + hour * 60,
+      to: day * MIN_DAY + hour * 60 + 10,
+      action,
+      affordanceId: action,
+      label: action,
+      ...(promptedBy ? { promptedBy } : {}),
+    });
+    const last = TOWN_EID_DAY - 1;
+    const cells = [
+      cell(1, 20, 'smoke'),
+      cell(1, 23, 'smoke'),
+      cell(2, 20, 'smoke'),
+      cell(2, 21, 'smoke'),
+      cell(last - 1, 20, 'walk', 'you'),
+      cell(last, 20, 'walk'),
+      cell(last, 21, 'smoke'),
+      cell(TOWN_EID_DAY, 14, 'smoke'),
+    ];
+    const s = smokingLines({ cells });
+    expect(s.month).toBe(
+      `Cigarettes: 2 a day on Ramadan 1–2, 1 in two days on Ramadan ${last - 1}–${last}. He walked by the river twice in Ramadan, once on your word.`,
+    );
+    expect(s.eid).toBe('On Eid he smoked one cigarette.');
   });
 
   test('frames stay under 100 KB', () => {

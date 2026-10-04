@@ -70,7 +70,7 @@ export interface Draft {
   appeal?: Appeal;
 }
 export interface StandingWhisper {
-  choiceId: 'work' | 'extra' | 'doctor' | 'selin' | 'rent' | 'mosque' | 'rest';
+  choiceId: 'work' | 'extra' | 'doctor' | 'selin' | 'rent' | 'mosque' | 'rest' | 'walk';
   strength: Strength;
   appeal?: Appeal;
 }
@@ -87,6 +87,7 @@ export const WHISPER_DEFAULT: Record<StandingWhisper['choiceId'], Omit<StandingW
   rent: { strength: 'mention', appeal: 'duty' },
   mosque: { strength: 'mention' },
   rest: { strength: 'mention' },
+  walk: { strength: 'mention', appeal: 'safety' },
 };
 /** A whisper as the between-days card makes it when the player picks it and changes nothing. */
 export const defaultWhisper = (choiceId: StandingWhisper['choiceId']): StandingWhisper => ({

@@ -408,7 +408,34 @@ export function reportEnds(i: ReportInput): EndView[] {
         ? 'You were silent from Eid; his trust in you stayed where it was.'
         : `A week after Eid, trust ${trustNow.toFixed(2)}.`,
   };
-  return ends.map((e) => ({ ...e, after: after[e.id] }));
+  const smoke = smokingLines(i);
+  return ends.map((e) =>
+    e.id === 'doctor'
+      ? { ...e, detail: `${e.detail} ${smoke.month}`, after: `${after.doctor} ${smoke.eid}` }
+      : { ...e, after: after[e.id] },
+  );
+}
+
+/** Cigarettes at the start and end of Ramadan, and on Eid; and the doctor's walks (round 5). */
+export function smokingLines(i: Pick<ReportInput, 'cells'>): { month: string; eid: string } {
+  const per = (d: number) => i.cells.filter((c) => c.action === 'smoke' && dayOf(c.from) === d).length;
+  const last = TOWN_EID_DAY - 1;
+  const first = TOWN_DEFAULTS.ramadanFirstDay;
+  const pair = (a: number) => per(a) + per(a + 1);
+  const rate = (n: number) => (n === 0 ? 'none' : n % 2 === 0 ? `${n / 2} a day` : `${n} in two days`);
+  const eidStart = TOWN_EID_DAY * MINUTES_PER_DAY;
+  const walks = i.cells.filter((c) => c.action === 'walk' && c.from < eidStart);
+  const yours = walks.filter((c) => c.promptedBy === 'you').length;
+  const eid = per(TOWN_EID_DAY);
+  const eidWalk = i.cells.some((c) => c.action === 'walk' && dayOf(c.from) === TOWN_EID_DAY);
+  return {
+    month: `Cigarettes: ${rate(pair(first))} on Ramadan ${first}–${first + 1}, ${rate(pair(last - 1))} on Ramadan ${last - 1}–${last}.${
+      walks.length > 0
+        ? ` He walked by the river ${times(walks.length)} in Ramadan${yours === walks.length ? (walks.length === 1 ? ', on your word' : ', each time on your word') : yours > 0 ? `, ${times(yours)} on your word` : ''}.`
+        : ''
+    }`,
+    eid: `On Eid he smoked ${eid === 0 ? 'no cigarettes' : eid === 1 ? 'one cigarette' : `${eid} cigarettes`}${eidWalk ? ' and walked by the river' : ''}.`,
+  };
 }
 
 /** The week's own calls to Selin belong in "what he did on his own" even when the chronicle diff misses them. */

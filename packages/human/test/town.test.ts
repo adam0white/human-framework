@@ -186,6 +186,47 @@ describe('town scenario (Game 2 world)', () => {
     expect(habit?.strength ?? 1).toBeLessThan(0.35);
   });
 
+  test('the doctor’s walk is offered only after the clinic, in Ramadan after iftar and not during the meal', () => {
+    const s = gameSetup();
+    const halil = s.ppl.halil;
+    const day = dayOf(s.start) + 1;
+    const maghrib = townCalendar(day).maghrib;
+    const at = day * MINUTES_PER_DAY + maghrib + 30;
+    skip(halil, at);
+    const offered = () => s.town.affordancesFor(halil).some((x) => x.action === 'walk');
+    s.town.state.lastAte = { halil: day * MINUTES_PER_DAY + maghrib + 5 };
+    // Before the doctor has said anything, the walk is not something he does.
+    expect(offered()).toBe(false);
+    s.town.state.doctorSaid = { halil: { at: at - MINUTES_PER_DAY, text: 'walk' } };
+    expect(offered()).toBe(true);
+    // Not before he has broken the fast today.
+    s.town.state.lastAte = { halil: day * MINUTES_PER_DAY - 600 };
+    expect(offered()).toBe(false);
+    // Not in the middle of the meal.
+    s.town.state.lastAte = { halil: day * MINUTES_PER_DAY + maghrib + 5 };
+    halil.activity = { ...(halil.activity as Activity), action: 'eat' };
+    expect(offered()).toBe(false);
+    halil.activity = null;
+    // Once a day.
+    s.town.state.lastWalk = { halil: day };
+    expect(offered()).toBe(false);
+  });
+
+  test('walks after iftar wear the after-meal smoking habit down; no walks leave it standing', () => {
+    const month = (walk: boolean) => {
+      const s = gameSetup();
+      s.town.state.doctorSaid = { halil: { at: s.start, text: 'walk and stop smoking' } };
+      const step = walk ? { suggestions: { halil: { voiceId: 'you', action: 'walk', strength: 0.9 } } } : {};
+      stepCommunity(s.c, s.town, s.start + 20 * MINUTES_PER_DAY, step);
+      const h = s.ppl.halil.habits.find((x) => x.action === 'smoke' && x.cue.after === 'eat');
+      return { strength: h?.strength ?? 0, walks: s.town.state.lastWalk?.halil };
+    };
+    const quiet = month(false);
+    const walked = month(true);
+    expect(walked.walks).toBeDefined();
+    expect(walked.strength).toBeLessThan(quiet.strength - 0.1);
+  });
+
   test('several voices in one decision get their own verdicts and a named conflict', () => {
     const s = setup();
     const halil = s.ppl.halil;

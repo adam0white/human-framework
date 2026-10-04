@@ -120,6 +120,7 @@ export const WHISPERS: Record<StandingWhisper['choiceId'], { optionId: string; l
   rent: { optionId: 'pay-rent', label: 'pay Osman when you can' },
   mosque: { optionId: 'pray', label: 'pray at the mosque' },
   rest: { optionId: 'rest', label: 'rest in the afternoon' },
+  walk: { optionId: 'walk', label: 'walk after iftar, not the cigarette' },
 };
 
 const CRAVING_MIN = 0.3;
@@ -1007,6 +1008,18 @@ export class VoiceGame {
     const record = decide(ghost, offers, opts);
     record.id = `ahead-${act.decisionId}`;
     this.ahead = { forDecision: act.decisionId, record };
+    // Round 5: he is about to smoke and the doctor's walk is open. Pause once a day, before he lights it, with the
+    // walk prefilled (prefill rule 0b), so the player can act on the doctor's "stop smoking".
+    if (
+      record.chosenAffordanceId === 'smoke' &&
+      offers.some((o) => o.id === 'walk') &&
+      flagOnce(this.beats, `smoke-walk:${dayOf(this.t)}`)
+    ) {
+      const text = 'He is about to light a cigarette. The doctor told him to walk, and to stop smoking.';
+      this.push({ kind: 'feel', who: 'halil', text, decisionId: record.id, beat: 'craving' });
+      this.beat('craving', text, this.t);
+      return;
+    }
     const rival = closeRival(record.considered);
     const top = record.considered.find((c) => !c.vetoed);
     // A choice between two ways of doing what he is doing now (praying at home or at the mosque while he prays) is
@@ -1428,12 +1441,17 @@ export class VoiceGame {
       next,
       choices:
         skipped > 0
-          ? (Object.keys(WHISPERS) as StandingWhisper['choiceId'][]).map((id) => {
-              const choice: BetweenView['choices'][number] = { id, label: WHISPERS[id].label, cost };
-              if (id === 'extra' && short)
-                choice.hint = `Mornings alone get him to about ${short.projected} by ${short.by}; ${short.wants}. He doesn’t count on the shift’s pay, so a bare mention won’t move him. Remind him of his word (“it’s your duty”), or urge it.`;
-              return choice;
-            })
+          ? (Object.keys(WHISPERS) as StandingWhisper['choiceId'][])
+              // The doctor's walk is a choice once she has told him to walk (round 5).
+              .filter((id) => id !== 'walk' || this.run.town.state.doctorSaid?.halil !== undefined)
+              .map((id) => {
+                const choice: BetweenView['choices'][number] = { id, label: WHISPERS[id].label, cost };
+                if (id === 'extra' && short)
+                  choice.hint = `Mornings alone get him to about ${short.projected} by ${short.by}; ${short.wants}. He doesn’t count on the shift’s pay, so a bare mention won’t move him. Remind him of his word (“it’s your duty”), or urge it.`;
+                if (id === 'walk')
+                  choice.hint = `The doctor told him to walk and stop smoking. A walk where the cigarette would come (after iftar) wears a forty-year habit down a little; he smoked ${smokesOn(this.cells, d)} on ${dayLabel(d)}.`;
+                return choice;
+              })
           : [],
     };
     this.phase = 'between';
@@ -1700,6 +1718,12 @@ const adviceKey = (a: { sourceId: string; action: string; at: number }) =>
   `${a.sourceId}:${a.action}:${a.at}`;
 const voiceWho = (id: string): LogEntry['who'] => (isVoiceId(id) ? (id as VoiceId) : 'halil');
 const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+/** Cigarettes he smoked on a day, from the activity cells (played and skipped days). */
+export function smokesOn(cells: readonly Cell[], day: number): string {
+  const n = cells.filter((c) => c.action === 'smoke' && dayOf(c.from) === day).length;
+  return n === 0 ? 'none' : n === 1 ? 'one cigarette' : `${n} cigarettes`;
+}
 const times = (n: number) => (n === 1 ? 'once' : n === 2 ? 'twice' : `${n} times`);
 /** "a", "a and b", "a, b and c". */
 const listed = (xs: readonly string[]) =>
