@@ -878,6 +878,25 @@ export class ColonyGame {
     return this.human.predict(rest);
   }
 
+  /**
+   * Bring the Solo control up to this game's minute (at most `max` minutes), by the same steps `solo()` takes: to
+   * the Day-2 end, "Another day" only once this game has taken it, then on. The worker calls it each tick so the
+   * end report does not re-simulate the whole control at once (perf review V15); the control has no inputs and
+   * stepping a minute at a time is stepping all at once, so the report is the same either way.
+   */
+  advanceSolo(max = Number.POSITIVE_INFINITY): void {
+    if (!this.soloGame) this.soloGame = new ColonyGame(this.seed, this.factory);
+    const s = this.soloGame;
+    let left = Math.min(max, this.minute - s.minute);
+    while (left > 0) {
+      if (s.ended && !(this.endMinute > END_MINUTE && s.endMinute === END_MINUTE && s.continueDay())) return;
+      const before = s.minute;
+      s.advance(left);
+      if (s.minute === before) return;
+      left -= s.minute - before;
+    }
+  }
+
   /** The Solo control (same seed, no orders), advanced to this game's end and continued with it. */
   solo(): ColonyGame {
     if (!this.soloGame) this.soloGame = new ColonyGame(this.seed, this.factory);

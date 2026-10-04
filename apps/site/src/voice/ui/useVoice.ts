@@ -12,6 +12,7 @@ import {
   PLAYTEST_FILE_NAME,
   replayParam,
 } from '../../shared/playtest.ts';
+import { startTickLoop } from '../../shared/tick-loop.ts';
 import type {
   BetweenView,
   Draft,
@@ -68,6 +69,8 @@ export interface Voice {
 export function useVoice(seed = SHIPPED_SEED): Voice {
   const transport = useRef<Transport | null>(null);
   const [frame, setFrame] = useState<Frame | null>(null);
+  /** The last frame received on this run: partial frames are filled in from it. */
+  const frameRef = useRef<Frame | null>(null);
   const [between, setBetween] = useState<BetweenView | null>(null);
   const [report, setReport] = useState<ReportView | null>(null);
   const [telegraph, setTelegraph] = useState<Voice['telegraph']>(null);
@@ -90,7 +93,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
 
   useEffect(() => {
     let cancelled = false;
-    let raf = 0;
+    let stopTicks = () => {};
     let opened: Transport | null = null;
     openTransport()
       .then((t) => {
@@ -128,9 +131,20 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               return;
             case 'replayed':
               return;
-            case 'frame':
-              setFrame(msg.frame);
+            case 'frame': {
+              // Unchanged fields keep their previous objects, so memoized panels and DayLog's collapse skip work.
+              const { frame: part, same } = msg;
+              const prev = frameRef.current;
+              if (same && !prev) {
+                setError('The simulation sent part of a frame before a whole one.');
+                return;
+              }
+              const next = { ...part } as Record<string, unknown>;
+              if (same && prev) for (const k of same) next[k] = prev[k];
+              frameRef.current = next as unknown as Frame;
+              setFrame(frameRef.current);
               return;
+            }
             case 'predicted': {
               const draft = predictDrafts.current.get(msg.requestId);
               predictDrafts.current.delete(msg.requestId);
@@ -161,15 +175,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
           gen: gen.current,
           scenarioVersion: VOICE_SCENARIO_VERSION,
         });
-        let last = performance.now();
-        const loop = (now: number) => {
-          // The first timestamp can precede `last`; a negative tick would run the clock backwards.
-          const dt = Math.max(0, now - last);
-          last = now;
-          t.post({ type: 'tick', dtMs: dt });
-          raf = requestAnimationFrame(loop);
-        };
-        raf = requestAnimationFrame(loop);
+        stopTicks = startTickLoop((dtMs) => t.post({ type: 'tick', dtMs }));
         const url = replayParam();
         if (url) {
           setPlaytest({ busy: 'load' });
@@ -184,7 +190,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       .catch((e: unknown) => setError(`The simulation failed to load: ${String(e)}`));
     return () => {
       cancelled = true;
-      cancelAnimationFrame(raf);
+      stopTicks();
       opened?.close();
       transport.current = null;
     };
@@ -192,6 +198,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
 
   const actions = useMemo<VoiceActions>(() => {
     const resetRun = () => {
+      frameRef.current = null;
       setFrame(null);
       setBetween(null);
       setReport(null);

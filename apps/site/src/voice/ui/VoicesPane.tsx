@@ -2,11 +2,12 @@
  * The voices he hears (plan §7). Yours carries the trust thread (a bar and the last three events); the others
  * show a trust word, what they last urged, whether it is still on his mind, and any conflict between voices.
  */
+import { memo } from 'react';
 import type { VoiceView } from '../protocol.ts';
 import { Icon, VOICE_ICON } from './Icon.tsx';
 import { Meter } from './parts.tsx';
 
-export function VoicesPane({ voices }: { voices: VoiceView[] }) {
+export const VoicesPane = memo(function VoicesPane({ voices }: { voices: VoiceView[] }) {
   return (
     <section className="v-pane v-voices" aria-label="Voices">
       <h2 className="v-pane-title">Voices he hears</h2>
@@ -63,4 +64,4 @@ export function VoicesPane({ voices }: { voices: VoiceView[] }) {
       </ul>
     </section>
   );
-}
+});

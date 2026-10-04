@@ -1,4 +1,5 @@
 /** What the player sees of him (plan §7): doing now, the felt body, named feelings, what's on his mind, money. */
+import { memo } from 'react';
 import type { HalilView } from '../protocol.ts';
 import { Icon } from './Icon.tsx';
 import { Meter } from './parts.tsx';
@@ -11,7 +12,7 @@ const STATE_LABEL: Record<HalilView['onMind'][number]['state'], string> = {
   excused: 'excused',
 };
 
-export function HalilPane({ halil }: { halil: HalilView }) {
+export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }) {
   return (
     <section className="v-pane v-halil" aria-label="Halil">
       <h2 className="v-pane-title">Halil</h2>
@@ -106,4 +107,4 @@ export function HalilPane({ halil }: { halil: HalilView }) {
       </p>
     </section>
   );
-}
+});

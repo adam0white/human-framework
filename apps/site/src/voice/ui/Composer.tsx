@@ -3,7 +3,7 @@
  * with its price, one optional reason, a live telegraph of his answer, then Say it or Say nothing.
  * Keyboard: 1–6 pick an option, M / U strength, I insist, D H S A T reasons, Enter says it, Esc says nothing.
  */
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import type { Appeal, Draft, Frame, Prefill, Strength, Telegraph } from '../protocol.ts';
 import { Icon, STRENGTH_ICON, TONE_ICON, TONE_WORD } from './Icon.tsx';
 import { APPEALS, appealLabel, INSIST_PRICE, STRENGTHS, toneClass } from './parts.tsx';
@@ -47,23 +47,34 @@ function TelegraphLine({ telegraph }: { telegraph: Telegraph | null }) {
   );
 }
 
-export function Composer({
-  frame,
+/** The frame fields the composer reads, passed one by one so `memo` can compare them. */
+export type ComposerFields = Pick<Frame, 'composer' | 'options' | 'muted'> & {
+  prefill: Frame['prefill'];
+  leaning: Frame['leaning'];
+  /** What he is doing, for the closed line while he is busy. */
+  doingLabel: string | undefined;
+};
+
+export const Composer = memo(function Composer({
+  composer,
+  prefill,
+  options,
+  leaning,
+  muted,
+  doingLabel,
   telegraph,
   whyOpen,
   onPredict,
   onSuggest,
   onSayNothing,
-}: {
-  frame: Frame;
+}: ComposerFields & {
   telegraph: { draft: Draft; telegraph: Telegraph } | null;
   whyOpen: boolean;
   onPredict: (d: Draft | null) => void;
   onSuggest: (d: Draft) => void;
   onSayNothing: () => void;
 }) {
-  const { composer, prefill, options, leaning } = frame;
-  const open = composer.open && !frame.muted;
+  const open = composer.open && !muted;
   const [draft, setDraft] = useState<Draft | null>(null);
   const [touched, setTouched] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -200,7 +211,7 @@ export function Composer({
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
 
-  if (frame.muted) {
+  if (muted) {
     return (
       <div className="v-composer is-muted" role="status">
         <p className="v-muted-line">You are silent today. Watch.</p>
@@ -213,9 +224,7 @@ export function Composer({
       composer.reason === 'asleep'
         ? `Asleep${composer.until ? ` until about ${composer.until}` : ''}`
         : composer.reason === 'busy'
-          ? `${frame.halil.doing?.label ? capital(frame.halil.doing.label) : 'Busy'}${
-              composer.until ? ` until ${composer.until}` : ''
-            }`
+          ? `${doingLabel ? capital(doingLabel) : 'Busy'}${composer.until ? ` until ${composer.until}` : ''}`
           : 'He isn’t at a decision right now.';
     return (
       <div className="v-composer is-closed" role="status">
@@ -350,6 +359,6 @@ export function Composer({
       </div>
     </section>
   );
-}
+});
 
 const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);

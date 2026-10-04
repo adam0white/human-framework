@@ -106,34 +106,72 @@ export const Pane = memo(function Pane(props: PaneProps) {
       c.height = Math.round(rect.height * dpr);
     };
     resize();
-    const ro = new ResizeObserver(resize);
+    // Resizing clears the canvas; a font arriving changes the labels. Either needs a fresh draw.
+    let dirty = true;
+    const ro = new ResizeObserver(() => {
+      resize();
+      dirty = true;
+    });
     ro.observe(w);
+    document.fonts?.ready.then(() => {
+      dirty = true;
+    });
 
     let raf = 0;
     let lastFrame: Frame | null = null;
     let lastVersion = -1;
+    /** What the canvas last showed; a still scene with the same inputs is not drawn again (perf review V18). */
+    let drawn: {
+      f: Frame;
+      selectedId: VillagerId | null;
+      hoverPlace: PlaceId | null;
+      moving: boolean;
+    } | null = null;
     const draw = (now: number) => {
       raf = requestAnimationFrame(draw);
       const s = store.current;
       const f = s.curr;
       if (!f) return;
       const p = live.current;
-      const world = side === 'classic' ? f.classicWorld : f.humanWorld;
-      people.current = interpolate(s, side, now);
-      ctx.setTransform(c.width / LOGICAL_W, 0, 0, c.height / LOGICAL_H, 0, 0);
-      drawScene(ctx, {
-        side,
-        minute: f.minute,
-        darkness: f.darkness,
-        weather: f.weather,
-        world,
-        people: people.current,
-        selectedId: p.selectedId,
-        hoverPlace: p.hoverPlace,
-        showPlaceLabels: p.selectedId !== null,
-        realTime: now,
-        cooking: cookingNow(f, side),
-      });
+      const cooking = cookingNow(f, side);
+      // Moving people (interpolation), the hover outline, kitchen smoke, sleepers' z, lantern flicker and rain
+      // animate on real time; anything else only changes with a new frame, a selection, a hover or a resize.
+      const moving = s.prev !== null && now - s.at < s.interval;
+      const animated =
+        moving ||
+        p.hoverPlace !== null ||
+        (side === 'human' && (cooking || f.darkness > 0)) ||
+        f.weather.kind === 'storm' ||
+        f.weather.kind === 'squall' ||
+        (side === 'classic' ? f.classic : f.human).some((u) => u.state === 'asleep');
+      const still =
+        !dirty &&
+        !animated &&
+        drawn !== null &&
+        !drawn.moving && // one more draw once people settle, at their final spots
+        drawn.f === f &&
+        drawn.selectedId === p.selectedId &&
+        drawn.hoverPlace === p.hoverPlace;
+      if (!still) {
+        dirty = false;
+        drawn = { f, selectedId: p.selectedId, hoverPlace: p.hoverPlace, moving };
+        const world = side === 'classic' ? f.classicWorld : f.humanWorld;
+        people.current = interpolate(s, side, now);
+        ctx.setTransform(c.width / LOGICAL_W, 0, 0, c.height / LOGICAL_H, 0, 0);
+        drawScene(ctx, {
+          side,
+          minute: f.minute,
+          darkness: f.darkness,
+          weather: f.weather,
+          world,
+          people: people.current,
+          selectedId: p.selectedId,
+          hoverPlace: p.hoverPlace,
+          showPlaceLabels: p.selectedId !== null,
+          realTime: now,
+          cooking,
+        });
+      }
 
       if (bubbles) {
         if (f !== lastFrame) {

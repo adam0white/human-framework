@@ -2,7 +2,7 @@
  * The day, in his narration (plan §6.2). Scrolls inside its own panel and sticks to the bottom unless the player
  * has scrolled up. Consecutive entries of the same action collapse into one line with a time span.
  */
-import { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { memo, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { BeatKind, LogEntry } from '../protocol.ts';
 import { BEAT_ICON, Icon, TONE_ICON, TONE_WORD, VOICE_ICON } from './Icon.tsx';
 import { toneClass, VOICE_COLOURS, VOICE_NAMES } from './parts.tsx';
@@ -41,7 +41,7 @@ const BEAT_LABEL: Record<BeatKind, string> = {
   eid: 'Eid',
 };
 
-export function DayLog({
+export const DayLog = memo(function DayLog({
   log,
   pauseBeat,
   paused,
@@ -160,4 +160,4 @@ export function DayLog({
       )}
     </section>
   );
-}
+});

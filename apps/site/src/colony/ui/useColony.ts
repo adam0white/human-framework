@@ -12,6 +12,7 @@ import {
   PLAYTEST_FILE_NAME,
   replayParam,
 } from '../../shared/playtest.ts';
+import { startTickLoop } from '../../shared/tick-loop.ts';
 import type { WorkerToMain } from '../protocol.ts';
 import { DEFAULT_SEED, SCENARIO_VERSION } from '../sim/game.ts';
 import type { Prediction, WhyBreakdown } from '../sim/human-side.ts';
@@ -187,8 +188,9 @@ export function useColony(seed = DEFAULT_SEED): Colony {
           }
           s.curr = f;
           setFrame(f);
+          // Playback changes only on a pause, speed or toggle: keep the old object so its readers see no change.
           const pb = msg.playback;
-          setPlayback(pb);
+          if (JSON.stringify(pb) !== JSON.stringify(playbackRef.current)) setPlayback(pb);
           return;
         }
         case 'why': {
@@ -232,18 +234,9 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         .catch((err: unknown) => setPlaytest({ error: err instanceof Error ? err.message : String(err) }));
     }
 
-    let raf = 0;
-    let last = performance.now();
-    const loop = (t: number) => {
-      // The first frame's timestamp can precede `last`; a negative tick would run the clock backwards.
-      const dt = Math.max(0, t - last);
-      last = t;
-      w.postMessage({ type: 'tick', dtMs: dt } satisfies OutMsg);
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
+    const stopTicks = startTickLoop((dtMs) => w.postMessage({ type: 'tick', dtMs } satisfies OutMsg));
     return () => {
-      cancelAnimationFrame(raf);
+      stopTicks();
       w.terminate();
       worker.current = null;
       store.current = emptyStore();

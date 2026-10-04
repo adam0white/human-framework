@@ -48,6 +48,7 @@
  * SOFTWARE.
  */
 import type { ReactNode } from 'react';
+import { makeIcon } from '../../shared/Icon.tsx';
 import type { BeatKind, Family, Strength, Tone, VoiceId } from '../protocol.ts';
 
 const GLYPHS = {
@@ -255,44 +256,14 @@ const GLYPHS = {
 export type IconName = keyof typeof GLYPHS;
 
 /**
- * One icon, `size` px square with a 1.5 px stroke in currentColor. With `label` it is an image with that name;
- * without, it is decorative (aria-hidden) and the caller prints the same word beside it.
+ * One icon, `size` px square (16 by default) with a 1.5 px stroke in currentColor at any size. With `label` it is
+ * an image with that name; without, it is decorative (aria-hidden) and the caller prints the same word beside it.
  */
-export function Icon({
-  name,
-  label,
-  size = 16,
-  className,
-}: {
-  name: IconName;
-  label?: string;
-  size?: number;
-  className?: string;
-}) {
-  const props = {
-    className: `v-icon ${className ?? ''}`,
-    viewBox: '0 0 24 24',
-    width: size,
-    height: size,
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: (1.5 * 24) / size,
-    strokeLinecap: 'round' as const,
-    strokeLinejoin: 'round' as const,
-  };
-  if (!label)
-    return (
-      <svg {...props} aria-hidden="true">
-        {GLYPHS[name]}
-      </svg>
-    );
-  return (
-    <svg {...props} role="img" aria-label={label}>
-      <title>{label}</title>
-      {GLYPHS[name]}
-    </svg>
-  );
-}
+export const Icon = makeIcon(GLYPHS, {
+  size: 16,
+  classFor: (_name, extra) => `v-icon ${extra ?? ''}`,
+  strokeFor: (size) => (1.5 * 24) / size,
+});
 
 export const BEAT_ICON: Record<BeatKind, IconName> = {
   wake: 'sunrise',

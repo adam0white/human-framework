@@ -1,8 +1,7 @@
 /**
  * The real-time pulse every game shell sends its simulation: one `onTick(dtMs)` per animation frame. Real time
  * only paces the simulation; the sim steps whole sim minutes, so the tick schedule never changes outcomes.
- * Extracted for Game 3 from the copies in `colony/ui/useColony.ts` and `voice/ui/useVoice.ts` (quality review,
- * 2026-10-04 §4); Games 1–2 still carry their own copies.
+ * Shared by all three games' shells since the quality review (2026-10-04 §4).
  */
 export function startTickLoop(onTick: (dtMs: number) => void): () => void {
   let raf = 0;

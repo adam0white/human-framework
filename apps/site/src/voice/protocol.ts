@@ -303,7 +303,11 @@ export interface ReportView {
 }
 
 export type WorkerReply =
-  | { type: 'frame'; frame: Frame }
+  /**
+   * A frame: the fields that changed since the last one posted on this run, with the unchanged ones named in
+   * `same` (the page reuses its previous values). Without `same` the frame is whole.
+   */
+  | { type: 'frame'; frame: Partial<Frame>; same?: (keyof Frame)[] }
   | { type: 'predicted'; requestId: number; telegraph: Telegraph }
   | { type: 'why'; decisionId: string; why: WhyView | null }
   | { type: 'between'; view: BetweenView }
