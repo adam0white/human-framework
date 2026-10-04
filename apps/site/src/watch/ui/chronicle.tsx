@@ -73,6 +73,7 @@ export function Chronicle({
   onClose: () => void;
 }) {
   const [loadNote, setLoadNote] = useState('');
+  const [confirmNew, setConfirmNew] = useState(false);
   const [busy, setBusy] = useState<string | null>(null);
 
   useEffect(() => {
@@ -158,7 +159,7 @@ export function Chronicle({
                 {g.auto ? (
                   <li className="w-pagerow is-continue">
                     <span>
-                      <strong>Continue</strong>
+                      <strong>The village of seed {g.auto.seed}</strong>
                       <span className="w-note">
                         {' '}
                         · {yearWords(g.auto.year)}, {pageWhen(g.auto.when)}
@@ -212,16 +213,33 @@ export function Chronicle({
       <section className="w-menu-sec" aria-label="Playtest and new village">
         <h3>Playtest</h3>
         <ExportButtons actions={actions} />
-        <button
-          type="button"
-          className="w-secondary"
-          onClick={() => {
-            actions.restart((seed * 48271 + 11) % 2147483647);
-            onClose();
-          }}
-        >
-          Begin a new village
-        </button>
+        {/* Two steps, so a slip under the export never ends a chronicle (G3-4 designer review). */}
+        {confirmNew ? (
+          <fieldset className="w-confirm" aria-label="Begin a new village?">
+            <p className="w-note">
+              Begin a new village? This chronicle stays on the shelf under “Other chronicles”, and you can
+              continue it later.
+            </p>
+            <button
+              type="button"
+              className="w-secondary"
+              onClick={() => {
+                setConfirmNew(false);
+                actions.restart((seed * 48271 + 11) % 2147483647);
+                onClose();
+              }}
+            >
+              Yes, begin a new village
+            </button>
+            <button type="button" className="w-secondary" onClick={() => setConfirmNew(false)}>
+              No, stay with this one
+            </button>
+          </fieldset>
+        ) : (
+          <button type="button" className="w-secondary w-new-village" onClick={() => setConfirmNew(true)}>
+            Begin a new village…
+          </button>
+        )}
         <FullscreenButton variant="item" className="w-secondary w-fs-item" />
       </section>
     </div>

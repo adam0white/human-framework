@@ -251,7 +251,10 @@ export function checkMoments(s: WatchState): void {
     const pl = s.place[who];
     const options: MomentOption[] = [{ id: 'let', label: `Let ${name} go to ${family}` }];
     const sub =
-      presentIds(s).find((id) => id !== who && !isPost(s.place[id]) && !personOf(s, id)?.body.downed) ??
+      // Someone not posted tonight and still in the village, never one who has just left the wall.
+      presentIds(s).find(
+        (id) => id !== who && s.place[id] === 'village' && !s.posts[id] && !personOf(s, id)?.body.downed,
+      ) ??
       presentIds(s).find((id) => {
         const q = s.place[id];
         return id !== who && isPost(q) && postSection(q) !== lit;
@@ -309,12 +312,14 @@ export function catchLeaving(s: WatchState, who: WatcherId, action: string, sect
   if (s.moment || s.momentLog.length >= MOMENTS_PER_NIGHT || carded(s, 'waver', who)) return;
   const name = nameOf(s, who);
   const post = s.posts[who] ?? s.openPosts.find((p) => postSection(p) === section);
+  // The act is under way when the card opens: say so, so the card does not read as a warning that came late.
+  const from = section === 'gate' ? 'the Gate' : `the ${section} wall`;
   const where =
     action === 'sleep' || action === 'go-home'
-      ? 'is going home'
+      ? `is climbing down from ${from}, going home`
       : action === 'run-off'
-        ? 'is running from the wall'
-        : 'is heading for the hall';
+        ? `has broken from ${from} and is running`
+        : `is climbing down from ${from}, heading for the hall`;
   open(s, {
     kind: 'waver',
     who,
@@ -322,7 +327,7 @@ export function catchLeaving(s: WatchState, who: WatcherId, action: string, sect
     text: `${name} ${where}.`,
     options: [
       { id: 'let', label: `Let ${name} go` },
-      { id: 'urge', label: `Call ${them(s, who)} back` },
+      { id: 'urge', label: `Call ${them(s, who)} back to the wall` },
     ],
     ...(post ? { post } : {}),
   });

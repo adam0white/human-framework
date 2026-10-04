@@ -27,6 +27,7 @@ import {
   knockDown,
   learnOutcome,
   observeAct,
+  outwardSigns,
   type Percept,
   type Person,
   promise,
@@ -394,6 +395,7 @@ function enterDawn(s: WatchState): void {
     grainBefore: t.grainAtDusk,
     grainAfter: s.grain,
     ropeSnapped: s.rope.snapped,
+    crossed: SECTION_IDS.some((id) => (t.got[id].wolf ?? 0) + (t.got[id].thief ?? 0) > 0),
     voices: [],
   };
   rememberTheNight(s);
@@ -772,17 +774,40 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
 
 /** A ticker line for a watcher's act seen under the lantern. */
 function personLine(s: WatchState, n: NightNote): string {
+  const line = personLineBare(s, n);
+  // Leaving while the bell holds them: said, with whose voice they did not heed (G3-4 designer review).
+  const c = s.commands[n.who];
+  const leaving = n.kind === 'fled' || n.kind === 'ran' || n.kind === 'slept' || n.kind === 'home';
+  return leaving && c && s.minute < c.until ? `The bell rang for them, but ${lower(line)}` : line;
+}
+
+function lower(t: string): string {
+  return t.charAt(0).toLowerCase() + t.slice(1);
+}
+
+/** Why someone is leaving, as the Keeper can see it under the lantern (outward signs, not the truth). */
+function leavingWhy(s: WatchState, who: WatcherId): string {
+  const p = personOf(s, who);
+  if (!p) return '';
+  const o = outwardSigns(p);
+  if (o.fear > 0.4 && o.fear >= o.fatigue) return ', white-faced';
+  if (o.fatigue > 0.5) return ', stumbling with tiredness';
+  if (o.pain > 0.3) return ', favouring a leg';
+  return '';
+}
+
+function personLineBare(s: WatchState, n: NightNote): string {
   const name = nameOf(s, n.who);
   const at = n.section ? theSection(n.section) : 'the wall';
   switch (n.kind) {
     case 'fled':
-      return `${name} leaves ${at} for the hall.`;
+      return `${name} leaves ${at} for the hall${leavingWhy(s, n.who)}.`;
     case 'ran':
-      return `${name} breaks and runs from ${at}.`;
+      return `${name} breaks and runs from ${at}${leavingWhy(s, n.who)}.`;
     case 'slept':
-      return `${name} goes home to sleep.`;
+      return `${name} goes home to sleep, eyes closing on their feet.`;
     case 'home':
-      return `${name} runs home to ${familyWords(s, n.who) ?? 'the house'}.`;
+      return `${name} runs home to ${familyWords(s, n.who) ?? 'the house'}: they heard something near it.`;
     case 'froze':
       return `${name} stands frozen at ${at}.`;
     case 'carrier':

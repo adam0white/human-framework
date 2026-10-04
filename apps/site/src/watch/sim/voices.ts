@@ -109,6 +109,8 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
     const commanded = noteOf(s.notes, id, ['commanded']);
     const tell = (key: string, value: number) => tells.push({ who: id, key, value });
     const fear = fearedSection(p);
+    const drove = SECTION_IDS.find((sec) => s.tally.heroes[sec].includes(id)) ?? null;
+    const slept = noteOf(s.notes, id, ['slept']);
 
     if (bitten?.section) {
       said.push(
@@ -126,6 +128,15 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       tell(`fear@${down.section}`, 0.5);
     } else if (left?.section) {
       const at = theSec(left.section);
+      // The cause in their words: what they will own to (selfReport), so pride may still call it the cold.
+      const why =
+        told.fear >= told.fatigue && told.fear > 0.3
+          ? ' Not with them that close.'
+          : told.fatigue > 0.4
+            ? ' I was asleep on my feet.'
+            : told.pain > 0.3
+              ? ' My leg wouldn’t hold me.'
+              : ' The cold got into me.';
       if (left.kind === 'froze')
         say('froze', [
           `“I couldn’t move at ${at}. Not with them that close.”`,
@@ -135,9 +146,9 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       else
         say('left', [
           `“I couldn’t stay at ${at}. Not with them that close.”`,
-          `“I got down off ${at}. I won’t pretend I didn’t.”`,
+          `“I got down off ${at}.${why}”`,
           `“They were right under ${at}. I ran. Say what you like.”`,
-          `“I left ${at}. I’d do it again.”`,
+          `“I left ${at}.${why}”`,
         ]);
       tell(`fear@${left.section}`, 0.75);
     } else if (shaken?.section) {
@@ -163,6 +174,12 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
             ),
       );
       used.add(said.at(-1) ?? '');
+    } else if (drove) {
+      say('drove', [
+        `“They came at ${theSec(drove)}. We sent them off.”`,
+        `“Something tried ${theSec(drove)}. It didn’t try twice.”`,
+        `“I had a stone in the sling all night at ${theSec(drove)}. Glad I did.”`,
+      ]);
     } else if (fear && fear.level > 0.15) {
       // Said from where they stood: a fear of another stretch is told as looking over at it.
       if (stood && stood !== fear.section)
@@ -216,13 +233,20 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
     if (commanded) {
       // The bell's cost, in their words: bitter in proportion to how much they value their own say.
       const autonomy = p.needs.autonomy ?? 0.5;
-      said.push(
-        autonomy < 0.45
-          ? '“You rang me down like a dog.”'
-          : autonomy < 0.6
-            ? '“I heard the bell. I held. I didn’t like it.”'
-            : '“I heard the bell. I held.”',
-      );
+      if (autonomy < 0.45)
+        say('bell-bitter', [
+          '“You rang me down like a dog.”',
+          '“Ring at me like that again and see.”',
+          '“I’m not a cow to be called with a bell.”',
+        ]);
+      else if (autonomy < 0.6)
+        say('bell-grudge', [
+          '“I heard the bell. I held. I didn’t like it.”',
+          '“I held for the bell. Don’t make a habit of it.”',
+          '“The bell kept me there. My own sense wouldn’t have.”',
+        ]);
+      else
+        say('bell', ['“I heard the bell. I held.”', '“The bell rang; I stayed.”', '“I held when you rang.”']);
     }
 
     // Nodding off: told by one watcher a night at most, only when it happened more than once, not by someone who
@@ -243,6 +267,11 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       dozeTold = true;
     }
 
+    if (said.length === 0 && slept?.section)
+      say('slept', [
+        `“I went home to sleep. I’d have fallen off ${theSec(slept.section)} otherwise.”`,
+        `“I couldn’t keep my eyes open. I went to my bed.”`,
+      ]);
     if (said.length === 0) {
       if (told.fatigue > 0.5)
         say('long', [
@@ -270,7 +299,11 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
           '“I watched the mist come and go.”',
         ]);
     }
-    out.push({ who: id, text: said.join(' ') });
+    let text = said.join(' ');
+    // Two people never say the very same words on one dawn: a second speaker adds a word of their own.
+    if (out.some((o) => o.text === text))
+      text += ` ${pickFresh(s, id, 'tail', ['“That’s all.”', '“Cold, though.”', '“Long night.”', '“I’m tired.”', '“Ask the others.”'], used, last)}`;
+    out.push({ who: id, text });
   }
   for (const o of out) s.lastVoices[o.who] = o.text;
   return { voices: out, tells };

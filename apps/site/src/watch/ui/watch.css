@@ -1495,3 +1495,18 @@
     animation: none;
   }
 }
+
+/* G3-4 designer review: on a phone the strip shows only the newest line, so it does not cover the map. */
+@media (max-width: 480px) {
+  .w-strip-line:nth-child(n + 2) {
+    display: none;
+  }
+}
+.w-confirm {
+  display: grid;
+  gap: 8px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}

@@ -461,6 +461,56 @@ The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26
   - H2: the fair's outsider family repeats the refugees' story; whether a head knock matters after the next day; summer and autumn scenes (sowing, haying, a harvest-home evening); a taller map on phones (about 110 px tall at 360×660 at night).
   - After Goal 2: deaths, courtship and leavings as cards. The reviewer did not see any of these.
 
+**Designer review (Opus, rerun on f3f35f8, seed 11, about 35 minutes, mostly at 360×660, played passively; the first designer run stalled when the dev server dropped).**
+- Kept, as the reviewer listed them:
+  - The thaw's hunger line.
+  - Joss's fire line.
+  - The sling card's trade-off.
+  - The heir card with two names.
+  - The bell answer.
+  - The docked card at 360 px.
+  - Reload, then Continue.
+  - Copy the playtest (33 KB).
+- Acted on:
+  - **Desertions without a cause.**
+    - The ticker now says why someone leaves, from outward signs: white-faced, stumbling with tiredness, favouring a leg, going home to sleep, or having heard something near home.
+    - Leaving while the bell holds them is said as "The bell rang for them, but …".
+    - Their dawn words give a cause they will own to: fear, sleep, a leg, or the cold.
+    - The night talk with someone who left starts from that, not "Long and cold".
+  - **Reports against voices.**
+    - Someone named as driving a threat off says so ("They came at the Gate. We sent them off."), not "Cold, and nothing else".
+    - "The wall held" now needs nothing to have got over, not just an unchanged granary (`DawnPage.crossed`).
+    - A watcher who went home to sleep says so.
+    - No two watchers say the same words on one dawn. Bell lines now vary too.
+  - **Moment cards.**
+    - The family card no longer offers to send someone who has just left the wall. Only unposted villagers, then watchers on other stretches, are offered.
+    - The leaving card says the act is under way ("is climbing down from the mill wall, heading for the hall"). Decided: this card catches the act itself, by design (G3-2), because the person's next decision may come too late to warn about.
+    - "…or let it be" now reads "…or say nothing: they decide alone", distinct from "Let X go", which releases them from the post.
+  - **One tap ended a chronicle.**
+    - "Begin a new village…" now asks first and says the current chronicle stays on the shelf.
+    - Other chronicles are named "The village of seed N", with year and season.
+    - The title's Continue says which village and when.
+  - **The ticker on phones.** At ≤480 px only the newest line shows. Lines now come from the current season only, so spring news no longer hangs over the fair.
+- First-winter grain, scripted, seeds 1, 2, 3, 5, 7, 9, 11 and 23, no balance change:
+  - The matched-plan Keeper reached the thaw with 2–10 sacks on seven seeds and with 0 on seed 11.
+  - A Keeper who never plans emptied the granary by night 3–6 on every seed.
+  - Passive play is meant to struggle in the first winter (G3-3: an empty granary is a hungry spring). Seed 11 is hard even with planning.
+- Deferred:
+  - H2:
+    - Seed 11's first winter.
+    - The bell commanding one named watcher, as the spec says, instead of everyone in earshot.
+    - The bell holding people for a set span.
+    - A fair offer's "good share" wording against small costs, and a winter's need marked on the granary.
+    - A newcomer posting that reads "likely" where the spec says "you can't tell".
+    - The volume question staying after the heir is named.
+    - Rope wear per pull.
+    - Collapsing quiet dawn lines (#7, raised in priority).
+    - The phone header truncating.
+    - Name labels for third posts.
+    - Two chronicles of the same seed reading alike on the shelf.
+  - After Goal 2: the empty space on desktop at 1280×800.
+  - Unconfirmed: a React duplicate-key warning for "joss". It came from another dev server (port 5179), not this build.
+
 **Deferred, with targets.**
 - H2:
   - Talk topics that change behaviour directly (rest tonight, practise with, mend).

@@ -98,8 +98,18 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     for (const [k, v] of fears) hear(s.keeper, who, `fear@${k}`, v, { at, weight: TALK_WEIGHT });
     hear(s.keeper, who, 'fear', said.fear, { at, weight: TALK_WEIGHT });
     const worst = s.notes.filter((n) => n.who === who).at(-1);
+    const left = s.notes.find(
+      (n) => n.who === who && (n.kind === 'fled' || n.kind === 'ran' || n.kind === 'slept'),
+    );
     const top = fears[0];
-    if (top && top[1] > 0.45)
+    if (left?.section)
+      text =
+        left.kind === 'slept'
+          ? `“I went home to sleep. I’m sorry. I couldn’t stand up straight at ${theSection(left.section)}.”`
+          : said.fear > 0.3
+            ? `“I left ${theSection(left.section)}. I couldn’t stand it up there.”`
+            : `“I left ${theSection(left.section)}. I was frozen through. It won’t happen again.”`;
+    else if (top && top[1] > 0.45)
       text = `“${capital(theSection(top[0] as SectionId))}. I keep seeing it when I shut my eyes.”`;
     else if (top) text = `“It was all right. I don’t love ${theSection(top[0] as SectionId)}.”`;
     else if (worst?.kind === 'carrier') text = '“I got someone down off the wall. That’s what I remember.”';

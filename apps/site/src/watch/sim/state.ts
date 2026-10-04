@@ -242,6 +242,8 @@ export interface DawnPage {
   grainBefore: number;
   grainAfter: number;
   ropeSnapped: boolean;
+  /** Something got over the wall tonight (even if it found no grain to take). */
+  crossed: boolean;
   /** What the watchers say at dawn, in their own words. */
   voices: { who: WatcherId; text: string }[];
 }

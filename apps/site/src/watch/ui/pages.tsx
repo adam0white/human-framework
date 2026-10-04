@@ -21,7 +21,11 @@ const SEASON_WORDS: Record<Frame['season'], string> = {
 
 /** The latest chronicle lines over the map, newest first; each fades in as it is written. */
 export function ChronicleStrip({ frame }: { frame: Frame }) {
-  const lines = frame.chronicle.slice(-5).reverse();
+  // Only this season's news: spring's arrivals do not hang over the autumn fair (G3-4 designer review).
+  const lines = frame.chronicle
+    .filter((l) => l.year === frame.year && l.season === frame.season)
+    .slice(-5)
+    .reverse();
   if (lines.length === 0) return null;
   return (
     <ol className="w-strip" aria-label="The chronicle, newest first" aria-live="off">

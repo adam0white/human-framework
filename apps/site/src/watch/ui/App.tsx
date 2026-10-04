@@ -25,10 +25,18 @@ import { Chronicle } from './chronicle.tsx';
 import { Icon, type IconName } from './icons.tsx';
 import { MapCanvas } from './MapCanvas.tsx';
 import type { Hit } from './map.ts';
-import { ChronicleStrip, ClosedPage, FairPage, FallenPage, SeasonPanel, ThawPage } from './pages.tsx';
+import {
+  ChronicleStrip,
+  ClosedPage,
+  FairPage,
+  FallenPage,
+  SeasonPanel,
+  ThawPage,
+  yearWords,
+} from './pages.tsx';
 import { Impressions, Pips, Rope, Sacks } from './parts.tsx';
 import { useWatch, type WatchActions } from './useWatch.ts';
-import { awayWords, daylightWords, hourWords, PRESS_WORDS, ropeWords } from './words.ts';
+import { awayWords, daylightWords, hourWords, PRESS_WORDS, pageWhen, ropeWords } from './words.ts';
 
 const SPEEDS: { id: Speed; label: string; icon: IconName }[] = [
   { id: 'tactical', label: 'Slow', icon: 'snail' },
@@ -321,6 +329,9 @@ function GoalPage({
           <button type="button" className="w-primary" disabled={busy} onClick={resume}>
             <Icon name="book-open" size={18} /> {busy ? 'Opening the chronicle…' : 'Continue the chronicle'}
           </button>
+          <p className="w-note">
+            The village of seed {saved.seed}, {yearWords(saved.year)}, {pageWhen(saved.when)}.
+          </p>
           {note ? <p className="w-note w-soft-fail">{note}</p> : null}
           <p className="w-note">Or begin a new chronicle below.</p>
         </div>
@@ -500,7 +511,7 @@ function MomentCard({ m, actions, onLet }: { m: Moment; actions: WatchActions; o
         ))}
       </div>
       <button type="button" className="w-moment-let" onClick={onLet}>
-        …or let it be
+        …or say nothing: they decide alone
       </button>
     </section>
   );
@@ -669,7 +680,7 @@ function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) 
   return (
     <div className="w-page w-dawn">
       <p className="w-kicker">Dawn · {frame.date}</p>
-      <h2>{d.grainAfter === d.grainBefore ? 'The wall held.' : 'The wall was crossed.'}</h2>
+      <h2>{d.grainAfter === d.grainBefore && !d.crossed ? 'The wall held.' : 'The wall was crossed.'}</h2>
       {d.scout ? <p className="w-scoutline">{d.scout}</p> : null}
       {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
       <ul className="w-dawnlines">
