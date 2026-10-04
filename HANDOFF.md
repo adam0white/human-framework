@@ -12,9 +12,9 @@ Done means (AGENTS.md): HF 2.0 released on GitHub, closing the blocking gaps in 
 
 | # | Phase | Status |
 |---|---|---|
-| R0 | Releases and CI: tag v1.0.0, release v1.1.0 (engine 1.6.0 gaps) on GitHub; version policy; GitHub Actions running check + bench (hyperfine) | merged and pushed: version policy (packages/human/README.md "Versions"), CHANGELOG.md, package and `FRAMEWORK_VERSION` 1.1.0, `npm run release` (dry run passed), `.github/workflows/ci.yml` (check/build gate; bench informational at `BENCH_SCALE=3` plus hyperfine), `npm run bench:hyperfine`. First CI run (37193611420) failed: the two migrate fixture-replay tests hash differently on Linux than on macOS; fix in progress. Remaining: green CI, `npm run release` for v1.1.0, v1.0.0 release page, deploy so the site shows v1.1.0 |
+| R0 | Releases and CI: tag v1.0.0, release v1.1.0 (engine 1.6.0 gaps) on GitHub; version policy; GitHub Actions running check + bench (hyperfine) | done: GitHub releases v1.0.0, v1.1.0 (33f9e89, engine 1.6.0; known issue: replays differ across platforms) and v1.2.0 (f85c825, engine 1.7.0: faith defaults, make-up debt, portable math in core/libm). CI green on main (run 37195428751). Live site at f85c825 shows framework 1.2.0 and the /watch/ prototype |
 | R1 | Faith decisions in code ([research/decisions.md](research/decisions.md)): Fajr ends at sunrise, majority Asr, red shafaq, Eid prayer on, qada debt with blame lifted for sleep/unconsciousness; Game 2 rebalanced; playtest export (seed + input log + state JSON, replayable) in Games 1–2 | merged, not deployed (engine 1.7.0; Game 2 eighth pass in docs/games/voice-build.md §13: no retune needed; export about 39–46 KB for Game 2, 31 KB for Game 1). Open: the Eid-prayer commitment's missed cost (findings) |
-| R2 | Reviews: performance, quality, security, acted on; phone research (Galaxy S26 viewport) and mobile web practice (fullscreen, input capture, safe areas) | in progress |
+| R2 | Reviews: performance, quality, security, acted on; phone research (Galaxy S26 viewport) and mobile web practice (fullscreen, input capture, safe areas) | reviews written (docs/reviews/2026-10-04-*.md); Cloudflare HSTS + TLS 1.2 applied; fix pass in progress (town.ts out of the framework, headers, phone fullscreen/wake lock/safe areas, perf, quality) |
 | R3 | HF inventory: what HF has vs the full ambition ([docs/hf-status.md](docs/hf-status.md), [docs/faculty-inventory.md](docs/faculty-inventory.md)) | done |
 | G3-0 | *The Night Watch* spec revised for endless play (aging, natural death), visual UI and the game direction in AGENTS.md; wildcard and adversarial reviews | in progress |
 | G3-1 | Plain tower defense, no HF; gate: dusk planning against the warning matters | merged, prototype at /watch/: gate passes (24 seeds × 3 nights, mean sacks lost of 20: matched plan 5.7, no plan 14.4, mismatched 16.4); design review applied (docs/games/watch.md "G3-1 as built"). Open: dusk at 1/16 starts the night on its own vs holding at dusk; rope mends by a fixed amount until G3-2; two-section warnings (G3-2 or G3-3); `sim/plans.ts` test-only code in src |
@@ -25,7 +25,7 @@ Done means (AGENTS.md): HF 2.0 released on GitHub, closing the blocking gaps in 
 
 ## Current position
 
-Goal 2 started 2026-10-04. Live: abde83c (Games 1–2 after playtest rounds 5–7). `main` at engine 1.6.0, 610 tests; `npm run check` has no timing assertions; budgets in `npm run bench`.
+Goal 2 started 2026-10-04. Live: f85c825 (HF 1.2.0, engine 1.7.0; Games 1–2 with playtest export; Game 3 prototype at /watch/).
 
 Open, recorded in docs/findings.md and docs/games/voice-build.md §13:
 - Game 2: with advice heard for the running activity (engine 1.5.0), the shift whisper gives about 6–7 full shifts and the date kept on R14 (was 27 fragments, R11). Whether the between-day whispers are too decisive is for a playtest to judge.
