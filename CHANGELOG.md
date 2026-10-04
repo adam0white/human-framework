@@ -30,6 +30,28 @@ Engine: 1.8.0. `restore` upgrades 1.7.0 saves by a version stamp; runs that use 
   or squalor, weather and day length shift mood (small, research-bounded offsets), body (cold metabolism, slower
   recovery and sleep) and needs. New optional `Person.ambient`. Sources: [research/family-environment-sources.md](https://github.com/adam0white/human-framework/blob/main/research/family-environment-sources.md).
 - `understandNorm` (conscience) and `adoptVoiceTrust` (will); `advanceAffect` takes an optional mood offset.
+- Multi-year stepping (L5): `routineDay` and `liveRoutine` live a person by a host `Routine` one coarse day at a time
+  (decays, skill practice, companions, remembered events, one appraisal, opt-in chronic onsets and natural death on
+  the person's RNG); `liveCommunity` steps a settlement day by day, tells deaths, raises minors with their parents
+  (`upbringingMinutes`) and leaves the bookkeeping `stepCommunity` needs to resume. 25 people for 50 years run in
+  about 3.5 s (`npm run bench`). New `SimEvent` kinds `onset` and `stage`; `advanceAffect` takes an optional
+  substep cap.
+- Lasting memory (L5): `enableGists`, `consolidate`, `gistsFor`. Episodes that are forgotten or older than 180 days
+  fold into bounded gists of what mattered, which still shape choices through a `memory` term (a fear learned at 20
+  still counts at 40). Yearbook: `enableYearbook`, `foldDay`, `yearRecord`, one bounded summary per year.
+- Experience over years (L1): `Affordance.skill.domain` picks a learning age curve; `finish` applies a host
+  `SkillTransfer` (`FinishOptions.transfer`, `World.skillTransfer`); `Outcome.practice` sets practice quality and
+  instruction (`instructionFrom`); `observeSkill` and `Percept.demonstrates` teach by watching;
+  `enableSkillConsolidation` lengthens forgetting with practice hours; `enableCharacterChange` matures traits and
+  values with age and moves traits slowly with sustained experience around a set point, within ±0.15 of the
+  anchor. Sources and assumptions: [research/long-run-sources.md](https://github.com/adam0white/human-framework/blob/main/research/long-run-sources.md).
+- `tellDeath(c, dead, at)`: a told `death` percept to everyone with a tie; a spouse is widowed.
+
+### Changed
+
+- `stepCommunity` tells each death to everyone alive with a tie (`StepOptions.tellDeaths`, default true): they
+  grieve, keep the tie as a memory, and a spouse is widowed. Runs without deaths are unchanged; no playtest fixture
+  changed.
 
 ### Removed
 
