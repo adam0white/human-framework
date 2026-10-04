@@ -1,4 +1,3 @@
-import { describe, expect, test } from 'vitest';
 import type {
   Activity,
   Community,
@@ -7,8 +6,7 @@ import type {
   Person,
   Suggestion,
   SuggestionResolution,
-  Town,
-} from '../src/index.ts';
+} from '@human/framework';
 import {
   ageYears,
   birth,
@@ -18,12 +16,10 @@ import {
   converse,
   createCommunity,
   createPerson,
-  createTown,
   createVillage,
   dayOf,
   decide,
   diffChronicle,
-  homeOf,
   interruptPerson,
   knockDown,
   lifeModifiers,
@@ -43,18 +39,24 @@ import {
   snapshot,
   standingAdvice,
   stepCommunity,
+  villagerSpec,
+} from '@human/framework';
+import { describe, expect, test } from 'vitest';
+import type { TownOptions, TownPersonId } from './town.ts';
+import {
+  createTown,
+  homeOf,
   TOWN_DEFAULTS,
   TOWN_EID_DAY,
   TOWN_GAME_CREATE,
   TOWN_GAME_START,
   TOWN_IDS,
+  type Town,
   townCalendar,
   townDay,
   townPeople,
   townSpecs,
-  villagerSpec,
-} from '../src/index.ts';
-import type { TownOptions, TownPersonId } from '../src/scenarios/town.ts';
+} from './town.ts';
 
 interface Setup {
   ppl: Record<TownPersonId, Person>;

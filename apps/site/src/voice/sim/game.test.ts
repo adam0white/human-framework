@@ -1,9 +1,10 @@
-import { TOWN_EID_DAY, voiceOf } from '@human/framework';
+import { voiceOf } from '@human/framework';
 import { describe, expect, test } from 'vitest';
 import { type BeatKind, defaultWhisper, type LogEntry, type StandingWhisper } from '../protocol.ts';
 import { DAY_END, SHIPPED_SEED, VoiceGame } from './game.ts';
 import { play } from './headless.ts';
 import { EID_LINES, eidLines, smokingLines } from './report.ts';
+import { TOWN_EID_DAY } from './town.ts';
 
 const MIN_DAY = 1440;
 

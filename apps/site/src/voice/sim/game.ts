@@ -16,7 +16,6 @@ import {
   chronicleBetween,
   consolidateDay,
   createCommunity,
-  createTown,
   type DayRecord,
   type DecisionRecord,
   dayOf,
@@ -35,20 +34,8 @@ import {
   type SimEvent,
   type StepOptions,
   type Suggestion,
-  selinEidCallMinute,
   standingHeard,
   stepCommunity,
-  TOWN_DEFAULTS,
-  TOWN_EID_DAY,
-  TOWN_GAME_CREATE,
-  TOWN_GAME_START,
-  TOWN_IDS,
-  type Town,
-  type TownOptions,
-  type TownPersonId,
-  townCalendar,
-  townDay,
-  townPeople,
   voiceOf,
 } from '@human/framework';
 import {
@@ -74,6 +61,21 @@ import { BEAT_COOLDOWN, type BeatState, createBeats, fire, flagOnce, takeCloseCa
 import { closeRival, moneyShort, prefillFor } from './prefill.ts';
 import { buildReport, ledgerKey, type SaidCount } from './report.ts';
 import { answer, createStanding, type Standing, standingView, toSuggestion, WHY_AWAY } from './standing.ts';
+import {
+  createTown,
+  selinEidCallMinute,
+  TOWN_DEFAULTS,
+  TOWN_EID_DAY,
+  TOWN_GAME_CREATE,
+  TOWN_GAME_START,
+  TOWN_IDS,
+  type Town,
+  type TownOptions,
+  type TownPersonId,
+  townCalendar,
+  townDay,
+  townPeople,
+} from './town.ts';
 import { noteUnasked, type UnaskedState, unaskedView } from './unasked.ts';
 import {
   ACTION_LABEL,

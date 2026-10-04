@@ -2,11 +2,12 @@
  * The six-player balance table of docs/games/voice-build.md §13, as a probe. Skipped in `npm test`; run with
  * `VOICE_MEASURE=1 npx vitest run apps/site/src/voice/sim/measure.test.ts --silent=false` to print the table.
  */
-import { TOWN_EID_DAY, voiceOf } from '@human/framework';
+import { voiceOf } from '@human/framework';
 import { test } from 'vitest';
 import type { StandingWhisper } from '../protocol.ts';
 import { SHIPPED_SEED, VoiceGame } from './game.ts';
 import { type PlayOpts, play } from './headless.ts';
+import { TOWN_EID_DAY } from './town.ts';
 
 const MIN_DAY = 1440;
 const env = (globalThis as { process?: { env: Record<string, string | undefined> } }).process?.env ?? {};

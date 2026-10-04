@@ -129,7 +129,7 @@ export function createVillage(
   opts: { seed: number; foodStock?: number; state?: VillageState },
 ): Village {
   const ids = [...people.map((p) => p.id)].sort();
-  // Resume from a saved state (plain JSON; `seed` and `foodStock` are then ignored), as `createTown` does.
+  // Resume from a saved state (plain JSON; `seed` and `foodStock` are then ignored), as Game 2's town (apps/site/src/voice/sim/town.ts) does.
   const state: VillageState = opts.state ?? {
     now: Math.min(...people.map((p) => p.now)),
     rng: createRng(opts.seed),

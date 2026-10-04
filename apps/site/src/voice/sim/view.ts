@@ -16,10 +16,6 @@ import {
   readBody,
   standingAdvice,
   type Term,
-  TOWN_EID_DAY,
-  type Town,
-  townCalendar,
-  townDay,
   voiceOf,
 } from '@human/framework';
 import type {
@@ -33,6 +29,7 @@ import type {
   VoiceView,
   WhyView,
 } from '../protocol.ts';
+import { TOWN_EID_DAY, type Town, townCalendar, townDay } from './town.ts';
 
 export const VOICE_IDS: readonly VoiceId[] = ['you', 'selin', 'riza', 'hacer', 'osman'];
 

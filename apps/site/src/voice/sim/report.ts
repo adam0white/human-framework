@@ -12,12 +12,11 @@ import {
   dominantTerm,
   MINUTES_PER_DAY,
   owedMakeUps,
-  TOWN_DEFAULTS,
-  TOWN_EID_DAY,
   voiceOf,
 } from '@human/framework';
 import { type EndView, MODEL_NOTES, type ReportView, type StripRow } from '../protocol.ts';
 import type { Run } from './game.ts';
+import { TOWN_DEFAULTS, TOWN_EID_DAY } from './town.ts';
 import {
   type Cell,
   clock,

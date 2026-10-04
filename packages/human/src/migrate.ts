@@ -9,7 +9,7 @@
  * but it does not reproduce what the old engine would have done next where the rules changed (1.4.0 to 1.5.0
  * changed how standing advice is heard). Saves older than 1.4.0 and unknown versions are refused with an error.
  *
- * Does not cover community state (`communityState`) or world state (`createTown`/`createVillage` `state`): those
+ * Does not cover community state (`communityState`) or world state (for example `createVillage`'s `state`): those
  * have not changed shape since 1.4.0, and a host owns its own world state's migration.
  */
 import { ENGINE_VERSION } from './types.ts';

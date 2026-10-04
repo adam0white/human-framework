@@ -10,15 +10,9 @@
  * time the act was not open (a reading is only taken where it was offered), and acts he never considered among his
  * top eight options at a skipped decision (no reading, rather than a guess).
  */
-import {
-  type DecisionRecord,
-  dayOf,
-  MINUTES_PER_DAY,
-  resolutionsOf,
-  townCalendar,
-  townDay,
-} from '@human/framework';
+import { type DecisionRecord, dayOf, MINUTES_PER_DAY, resolutionsOf } from '@human/framework';
 import type { UnaskedItem } from '../protocol.ts';
+import { townCalendar, townDay } from './town.ts';
 import { dayLabel } from './view.ts';
 
 export const UNASKED: readonly { key: string; optionId: string; label: string }[] = [

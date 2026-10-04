@@ -7,48 +7,53 @@
  * dawn hooks (exemptions, prayer-time retiming, make-up scheduling), a money ledger that feeds scarcity, and
  * conversations through the driver's convention (testimony, gossip, standing advice). Outcomes use the town's
  * own seeded RNG. Travel is not modelled: every option is offered to whoever may take it, with duration standing
- * in for distance. This is a fixture for exercising the framework end to end, not a model of any town.
+ * in for distance. This is a fixture for exercising the framework end to end, not a model of any town. It lived in
+ * packages/human/src/scenarios until the 2026-10-04 review moved it here: it is game content, and it uses only the
+ * framework's public API.
  *
  * Selin's own day happens off the map (place 'city'); she is in the community so that calls run `converse` both
  * ways and her advice reaches Halil as a standing voice.
  */
 import {
+  type Activity,
+  type Affordance,
   applyExemptions,
+  believe,
+  type ConverseContext,
   calendarRetimer,
+  chance,
+  createPerson,
+  createRng,
+  dayOf,
   eidPrayer,
   eidWindow,
+  heldNorms,
+  type Lexicon,
+  MINUTES_PER_DAY,
+  MINUTES_PER_YEAR,
+  type Minute,
+  minuteOfDay,
+  type Outcome,
   owedMakeUps,
+  type Percept,
+  type Person,
+  type PersonId,
+  type PersonSpec,
   type PrayerCalendar,
   prayerWindows,
   RAMADAN_DEFAULTS,
+  type RngState,
   ramadanFast,
   ramadanMeals,
+  readBody,
+  remember,
   retimeCommitments,
   scheduleMakeUp,
-} from '../agenda/index.ts';
-import { believe } from '../beliefs/index.ts';
-import { readBody, sicken } from '../body/index.ts';
-import { heldNorms } from '../conscience/index.ts';
-import type { ConverseContext } from '../conversation/index.ts';
-import { chance, createRng, dayOf, minuteOfDay } from '../core/index.ts';
-import { remember } from '../memory/index.ts';
-import { createPerson } from '../person.ts';
-import type { World } from '../sim/index.ts';
-import { successChance } from '../skills/index.ts';
-import type {
-  Activity,
-  Affordance,
-  Lexicon,
-  Minute,
-  Outcome,
-  Percept,
-  Person,
-  PersonId,
-  PersonSpec,
-  RngState,
-  Unit,
-} from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
+  sicken,
+  successChance,
+  type Unit,
+  type World,
+} from '@human/framework';
 
 export const TOWN_DEFAULTS = {
   /** Clock at creation (minute of day 0). */

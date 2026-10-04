@@ -12,6 +12,15 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+### Removed
+
+- **Breaking:** the town scenario (`createTown`, `townPeople`, `townSpecs`, `townCalendar`, `townDay`, `homeOf`,
+  `selinEidCallMinute`, `TOWN_IDS`, `TOWN_DEFAULTS`, `TOWN_EID_DAY`, `TOWN_GAME_CREATE`, `TOWN_GAME_START` and the
+  `Town`, `TownState`, `TownOptions`, `TownDay`, `TownPersonId` types). It was Game 2's world, not a reference
+  host, so it moved to the game (`apps/site/src/voice/sim/town.ts`). `createVillage` stays as the framework's
+  reference host. Hosts that used the town should copy that file; it only uses the public API. Town edits no
+  longer change `ENGINE_VERSION`.
+
 ## [1.2.0] - 2026-10-04
 
 Engine: 1.7.0. `restore` upgrades saves from engine 1.4.0, 1.5.0 and 1.6.0; they continue under 1.7.0 rules.

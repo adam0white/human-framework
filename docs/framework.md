@@ -68,7 +68,7 @@ Which human faculties these modules cover, and which they do not yet, is listed 
 | `narrate/` | — | `narrateDecision(p, record)`, `voiceLine(p, resolution)`, `describePerson(p)` |
 | `person.ts` | `activity`, `trace`, `now` | `createPerson(spec)`, `tick(p, now)`, `decide`, `begin(p, aff, record, { promise? })`, `interrupt(p, now, reason)`, `finish`, `perceive`, `predict`, `snapshot`, `restore` |
 | `sim/` | `Community` (host-side) | `Community` driver over a host `World` adapter: `createCommunity(people, prior?)`, `communityState`, `stepCommunity`, `runSilent`, `preview`, `interruptPerson`, joint protocol (`proposeJoint`, `acceptJoint`, `declineJoint`, `mirrorAffordance`), `jointSuccessChance` |
-| `scenarios/` | world state (`VillageState`, `TownState`) | reference hosts: `createVillage`, `createTown`, `townPeople`, `villagerSpec` |
+| `scenarios/` | world state (`VillageState`) | reference host: `createVillage`, `villagerSpec`. Game worlds live in their games (Game 2's town: `apps/site/src/voice/sim/town.ts`, moved out in the 2026-10-04 review) |
 
 ## Utility of an option
 
@@ -140,7 +140,7 @@ Emotion terms are named `emotion:<emotion>:<tag>` (e.g. `emotion:fear:risky`): t
 
 - All randomness comes from `person.rng`, or from host-owned RNG for world events. Given the same seed and inputs, the result is byte-identical when the host's calls fall on the same minutes, on any OS and CPU architecture. Discrete events (decisions, missed commitments, goals) do not depend on how a host chunks `tick` calls; continuous state agrees to floating-point rounding (~1e-9) across different chunkings, and is byte-identical when calls fall on the 60-minute `tick` grid.
 - `Person` is plain JSON. `snapshot(p)` returns a deep clone, and `restore(json)` validates `schema` and fills defaults.
-- A save is the people's snapshots, the community's host-side state (`communityState(c)`) and the world's state. Resume with `createCommunity(people, saved)` and the world's `state` option (`createTown`, `createVillage`). Restoring only the people and calling `createCommunity(people)` diverges: day hooks run twice and queued advice and standing-advice completions are lost.
+- A save is the people's snapshots, the community's host-side state (`communityState(c)`) and the world's state. Resume with `createCommunity(people, saved)` and the world's `state` option (`createVillage`; Game 2's `createTown` takes the same option). Restoring only the people and calling `createCommunity(people)` diverges: day hooks run twice and queued advice and standing-advice completions are lost.
 - A host with its own norm catalog sets `World.catalog`; `stepCommunity` passes it to `finish`, which reads make-ups owed for a break under necessity from it (default `DEFAULT_NORMS`). A norm missing from the catalog is not excused.
 - Bounded collections: episodes ≤ 200, beliefs ≤ 300, trace ≤ 32, emotions ≤ 12, breaches ≤ 50, intentions ≤ 50, voice history ≤ 5 per voice. Breach, injury and illness ids come from counters (`nextBreach`, `body.nextId`), so they stay unique after eviction.
 - Versions: the HF release version is the package version and `FRAMEWORK_VERSION` (semver, tagged `vX.Y.Z`, notes in the root CHANGELOG.md). `ENGINE_VERSION` versions behaviour and the save format separately and is named in each release's notes. Policy: packages/human/README.md, "Versions". Engine history:
