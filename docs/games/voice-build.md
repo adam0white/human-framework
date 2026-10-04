@@ -734,3 +734,60 @@ The user asked for a simulated player who pushes Halil the wrong way, to see how
 - The saboteur's insists are refused more than five times as often as obeyed.
 - Both bad styles still work at least 26 mornings and pay Osman by Eid.
 - If defect 1 is fixed, the saboteur's "date kept" will drop to silence's level. The test does not assert on the date.
+
+### Tenth pass (tempting whispers, and the ninth pass's two defects fixed, 2026-10-04)
+
+The user asked for an adversarial player who can push Halil the wrong way, and for the game to allow wide variation from player choices. Game changes only (`apps/site/src/voice/sim/`); the engine is unchanged.
+
+- **Defect 1 fixed** (`town.ts`, `resolve`, the `interrupted` branch). A repair or shift broken off part-way pays for the part done and counts as the day's job (`lastWorked`/`lastExtra`), so the full one is not offered again that day. Only pay is pro rata: an interrupted act that costs money costs nothing.
+- **Defect 2 fixed** (`game.ts`, `WHISPERS[...].window`). "Rest in the afternoon" is heard only between Dhuhr and Asr. A whisper with hours is not carried past their edges.
+- **Tempting whispers on the between-days card.** They sit among the others in the order of the day, not in a group of their own, with neutral labels and no warning text. None concerns prayer or the fast.
+  - **"sleep in after suhoor"** (sunrise to 10:00, against the workshop's morning): sleep, appeal to his health.
+  - **"Eid first; Osman can wait"** (default reason "for Selin": gifts for her and the children): a new act, the Eid market (from Ramadan 10, 10:00–18:00, once a day, 25 a trip, while he has 25). He reckons a trip as a small cost (`shopFelt` 1, "a little here and there: he does not add it up"); priced honestly at −25 the debt's scarcity makes the will refuse it every time.
+  - **"stay out late with Rıza"** (from an hour after iftar): tea with Rıza.
+  - **"skip the call, she's busy"**: a word *against* calling Selin. Suggestions in HF can only be *for* an option, so it is carried as rest and heard only while the call is on offer or under way; the skip digest says how often he called anyway.
+- **World rules that give the words something to act on.** He does not hear the phone at the tea house: Selin's call there goes unanswered and she tries again two hours later (from Ramadan 1). In Ramadan she calls an hour after Maghrib, once her own iftar is over, instead of from 18:00.
+- **The card shows a word only when it has something to act on** (design review): "Eid first" once the coming skip reaches Ramadan 10, "skip the call" once he has called Selin in the last two days. The card has 9 to 12 rows, depending on the day.
+- **Players.** The Tempter keeps its in-day picks and leaves "Osman can wait" (Urge) and "stay out late" (Mention). The Saboteur urges both. Five single-whisper rows show each word alone.
+- **Measured** as in the ninth pass (seeds 7, 1, 2, 3, 4; mean, range when the seeds differ). New columns: "Contact" counts calls with Selin that connected in Ramadan, his and hers; "Shops" counts Eid-market days. Rent is "date kept (of 5), paid by Eid".
+
+| Player | Smoke days | Mornings / shifts | Rent | Contact | Shops | Trust | Clinic | Suhoors | Sleep h/day | Late nights | Excused fast breaks |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Silent | 22 | 30 / 0 | 0/5, 300 | 15 | 0 | 0.50 | 0 | 30 | 11.1 | 2 | 0 |
+| Prefill confirmed + doctor/Selin whispers | 19.2 (18–20) | 30 / 0.8 | 0/5, 300 | 28.2 | 0 | 0.62 | 1 | 30 | 10.0 | 11 | 0 |
+| Shift + Selin whispers | 13 (12–17) | 30 / 3.4 | 5/5, 540 (300–600) | 28 | 0 | 0.63 | 1 | 30 | 10.2 | 12.2 | 0 |
+| Insist + urge doctor/mosque | 14.6 (14–17) | 30 / 4 | 4/5, 300 | 15.2 | 0 | 0.54 | 4 | 30 | 10.3 | 15.4 | 0 |
+| Walk (Mention) + Selin | 17.4 (14–19) | 30 / 0 | 0/5, 300 | 28 | 0 | 0.64 | 1 | 30 | 10.1 | 6.8 | 0 |
+| Walk (Urge) + shift | 12.2 (9–13) | 30 / 0.4 | 5/5, 600 | 16 | 0 | 0.62 | 1 | 30 | 9.9 | 7 | 0 |
+| **Guardian** | **7.2** | 30 / 1 | 4/5, **600** | 17 | 0 | 0.62 | 1 | 30 | 10.0 | 8 | 0 |
+| **Tempter** | 23.6 | 30 / 0 | 0/5, **0** | **5.8** | **19** | 0.48 | 0 | 28 | 9.5 | 0 | 2 |
+| Tempter, no whisper | **29** | 30 / 0 | 0/5, 300 | 15 | 0 | 0.52 | 0 | 28 | 10.2 | 8.4 | 2 |
+| **Saboteur** | 20.6 | **26** / 0 | 0/5, 300 | 11 | 0 | **0.04** | 0 | 26 | 9.7 | 5.2 | 3 |
+| Saboteur, no whisper | 21 (18–25) | **26** / 0 | 0/5, 300 | 15 | 0 | **0.00** | 0 | 26 | 10.1 | 5 | 1 |
+| Osman can wait (Urge) | 20.6 | 30 / 0 | 0/5, **0** | 15 | **19** | 0.37 | 0 | 30 | 10.8 | 1 | 0 |
+| Eid first; Osman can wait (Mention, "for Selin": the card's default) | 22.6 (21–23) | 30 / 0 | 0/5, 240 (0–300), paid R21–22 | 15 | 9 (6–19) | 0.44 | 0 | 30 | 11.0 | 1.8 | 0 |
+| Stay out late (Mention) | **10** | 30 / 0 | 0/5, 300 | **7.4** | 0 | 0.61 | 0 | 30 | 9.5 | 2 | 0 |
+| Sleep in after suhoor (Urge) | 14 | 30 / 0 | 0/5, 300 | 15 | 0 | 0.59 | 0 | 30 | 11.4 | 1 | 0 |
+| Selin, then skip the call | 20 | 30 / 0 | 0/5, 300 | 25 (his calls 23, not 27) | 0 | 0.56 | 0 | 30 | 11.0 | 2 | 0 |
+
+Played-day answers, summed over the five seeds: Guardian yes 72, not now 93; Tempter yes 267, not now 432; Saboteur yes 20, protest 165, won't 260, can't 10.
+
+**Assessment.**
+
+- **The bad direction now reaches the goals.** With the Tempter, Osman gets nothing by Eid (silence pays 300 on R17; the Guardian pays 600) and Halil speaks with his daughter on about 6 evenings against 15. The range on rent by Eid is now 0 to 600, and on family contact about 6 to 28. Before this pass silence was the floor on both.
+- **The strength and the reason set how far a tempting word goes.** "Osman can wait" urged spends the rent money on 19 market days and nothing reaches Osman by Eid. Mentioned with the card's default reason ("for Selin") he shops on about 9 days and pays four days late (R21 instead of R17; on one seed in five, not by Eid). Mentioned with no reason he shopped about 3 times and paid as usual (measured before the default reason was added). "Stay out late" works as a Mention.
+- **Where his will resists.**
+  - **"Sleep in" does nothing bad**, at 07:00–12:00 or narrowed to sunrise–10:00. He is not sleepy after a night's sleep and refuses; the morning's wage outweighs the rest. The design reviewer recommended cutting it if it still had no cost. It stays: the user named it as an example, and the refusal shows his will. Smoking falls (13 days), since sleep fills the hours the cigarette used to.
+  - **"Skip the call" moves him little.** Once the player has built the evening call (Selin whisper for nine days), he calls on 23 of the remaining evenings against 27, and keeps the habit on his own when the player says nothing (27 calls). A built habit outlasts a word against it. The digest reports how often he called anyway.
+  - **Insisting burns the trust the words ride on.** The Saboteur urges the same two words and gets almost nothing: trust ends at 0.04, he never shops, and he pays Osman as silence does. Its harm comes from its played days (four lost mornings, three excused fast breaks), not from its whispers.
+  - **His routine holds.** Every style works every skipped-day morning and keeps every daily prayer (one missed prayer in the saboteur runs, as before).
+- **Not every bad word is all bad.** Out late with Rıza he smokes 10 days, not 22: he is in company, not alone after iftar. The Tempter's own in-day cigarettes keep its count at 23.6. A player who wants him to drift from his daughter makes him healthier on the way; that is a side effect of the habit model and the town, not a tuning choice.
+- **The Guardian's 600 is back.** Defect 1 suggested the Guardian's second payment depended on interrupted shifts. It did not: the first version of this pass dropped it to 300 because the Eid market and the tea-house rule also changed Ramadan 1 (no clinic visit, a shift instead). With the market from Ramadan 10 and the tea-house rule from Ramadan 1, the opening day is as before and the Guardian pays 600.
+- **Item 4 (a silent month that sometimes goes right on its own) was not done.** Giving Selin the advice "Halil should call" made silence call 30 times and smoke 30 days, and pushed her rest advice out (two advice slots). No version that left the good direction intact was found.
+
+`balance.test.ts` (seeds 7 and 1) now asserts:
+- the Tempter, the no-whisper Tempter and the Saboteur end materially worse than silence on at least two outcomes;
+- the Tempter is worse on rent by Eid and family contact;
+- the Guardian is better on smoke days, rent by Eid and Osman's date;
+- the Saboteur's urges are refused more than five times as often as obeyed and its trust ends below 0.1;
+- both bad styles work at least 26 mornings, the Tempter still has some contact (Selin's own calls), and the Saboteur still pays by Eid.
