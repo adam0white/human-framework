@@ -131,6 +131,43 @@ React 19 shell; Canvas 2D; simulation in a Web Worker; React renders snapshots. 
 | G3-3 | L1–L5 in HF; seasons, director, decade decisions, permanent losses, volumes, blank leaves, fall and resettlement, season snapshots | Headless: 3 seeds × 50 years; population and mood must swing by decade (flat lines fail) and years 10 and 20 must differ across seeds. Played: a tester plays three years and retells one cross-year story unprompted |
 | G3-4 | Phone fit, playtest export and replay, deploy `/watch/`, framework.md, api.md, README | The user plays; his words go in `watch-playtest-*.md` |
 
+### G3-1 as built (2026-10-04)
+
+At `/watch/`, linked from the landing page as an early prototype. Code: `apps/site/src/watch/` (rules in `sim/night.ts`, with a scope paragraph). No HF. Four wall sections are lanes, each with two posts: eight posts for three placeholder watchers with fixed aim and sight, who always obey. Wolves and thieves are tokens that walk to the foot of the wall, climb, and take sacks. Each sim minute resolves as seeded rolls.
+
+- **Lantern.** It is the Keeper's position. Walking it costs five sim-minutes per section, and nothing is lit on the way. The lit lane shows kinds and throws; dark lanes show only moving grass and sounds at the foot of the wall. At a stretch nobody stands, the lantern alone slows a climb and turns some climbers back.
+- **Scout.** He names the lead threat's approach. He is right about each wave three times in four, and about every wave on the first night.
+- **Dusk.** Posting happens at 1/16 speed. The watch begins on a button or at nightfall.
+- **Night.** It runs at Slow, Watch or Fast. A moment eases play to Slow for three sim-minutes; there are no modal pauses. The chronicle menu holds the clock.
+- **Bell.** A placeholder: it rouses the whole wall for 15 minutes. Each pull frays the rope, drawn as strands, until it snaps; pulls while it still rings are refused.
+- **No numbers in play.** Grain shows as sacks, the hour and rope wear as words.
+- **Records.** Inputs are logged by sim minute. The chronicle menu copies the playtest export (seed, log, end state); `sim/run.test.ts` replays it to the same state, also under a different real-time tick schedule.
+
+**Gate, headless** (`sim/gate.test.ts`). 24 seeds × 3 nights, with one plan at every dusk and no night inputs. The table shows mean sacks lost of 20:
+
+| Plan | Lantern at Gate | Lantern at the plan's focus | Granary emptied (focus lantern) |
+|---|---|---|---|
+| Matched: two watchers where the scout said | 5.7 | 5.1 | 0/24 |
+| Usual: the standing posts | 14.4 | 14.4 | 4/24 |
+| Mismatched: two watchers at the far end | 16.4 | 17.9 | 15/24 |
+
+The first night alone loses 0.5, 4.0 and 6.3 sacks. The matched plan beats the mismatched one on at least 18 of 24 seeds, and the test asserts this.
+
+**Played (desktop 1280×800, phone 360×690).** A matched first night lost nothing. Standing posts against an east warning lost sacks at the empty east wall, and the dawn page said "Nobody stood the east wall."
+
+**Review (game designer, Opus).** Accepted:
+- The dawn page names an empty section and says where the scout was wrong.
+- The Keeper's lantern counts at an empty stretch.
+- No rope wear while the bell still rings.
+- Repeated and stale ticker lines are dropped.
+- Dark motion is easier to see.
+- The phone hides the panel copy of the warning, since the map shows it.
+- A clearer dawn heading.
+
+Rejected for G3-1:
+- A vaguer warning spanning two sections, to make posting a real split. It is a director question for G3-3; G3-2's people add choice of their own.
+- A gentler first night. The first night is already one threat with an honest scout. Losing a third of the granary by ignoring him is what the gate asks for.
+
 **Done for Game 3:** endless play live at /watch/ on desktop and phone, with a playtest export; L1–L6 released in HF 2.0 with tests; `npm run check` passes; the user accepts by playing.
 
 ## 11. Risks and cuts
