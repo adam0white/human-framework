@@ -95,6 +95,7 @@ export * from './conscience/index.ts';
 export * from './conversation/index.ts';
 export * from './core/index.ts';
 export * from './habits/index.ts';
+export * from './impression.ts';
 export * from './lifecourse/index.ts';
 export * from './memory/index.ts';
 export type { MigrationStep } from './migrate.ts';

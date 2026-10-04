@@ -94,6 +94,7 @@ import {
   markDeceased,
   relationshipWith,
   sanitizeGroups,
+  sanitizeImpressions,
   seedRelationships,
   socialEvent,
   threatAppraisal,
@@ -1500,6 +1501,7 @@ export function restore(input: unknown): Person {
   sanitizeIllnesses(out.body);
   sanitizeInjuries(out.body);
   sanitizeGroups(out.social);
+  sanitizeImpressions(out.social);
   if (out.will.advice !== undefined && !Array.isArray(out.will.advice)) delete out.will.advice;
   // Optional slices added in 1.6.0: a malformed entry is dropped (absent means none).
   const cmd = out.will.command as unknown;

@@ -12,6 +12,10 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+### Added
+
+- Impressions (HF 2.0 L6, `social/impressions.ts` and the composite `impression.ts`): what one person believes about another's state (fatigue, pain, fear, mood), fear of places, traits, ties and trust in a voice, each with a confidence, learned only from observations the host reports (`glimpse`/`glimpseOf`, `observeAct`, `hear`, `acquaint`/`acquaintWith`). A person's reserve (`setReserve`, default from emotionality) hides pain and fear from faces and more from words (`selfReport`); a limp always shows. `predictAs` and `previewCommandAs` run `predict`/`previewCommand` on the person as the observer pictures them (`imagine`), so a player's read and a villager's judgement use one function. Cognition adds a `companion:<id>` term on risky offers shared with people one holds impressions of (`companionSteadiness`). New optional state `social.impressions` and `social.reserve`, absent until used; observing draws no randomness, so runs that do not use it replay byte for byte and `ENGINE_VERSION` stays 1.7.0.
+
 ## [1.2.0] - 2026-10-04
 
 Engine: 1.7.0. `restore` upgrades saves from engine 1.4.0, 1.5.0 and 1.6.0; they continue under 1.7.0 rules.

@@ -31,7 +31,7 @@ import { normTerms } from '../conscience/index.ts';
 import { clamp01, dexp, minuteOfDay, round } from '../core/index.ts';
 import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
 import { expectedEffect } from '../memory/index.ts';
-import { socialTerms } from '../social/index.ts';
+import { companionSteadiness, socialTerms } from '../social/index.ts';
 import type {
   Affordance,
   BodyReadout,
@@ -90,6 +90,12 @@ export const COGNITION_DEFAULTS = {
   /** Effort always costs a little, even when fresh. */
   effortBase: 0.1,
   riskScale: 1.5,
+  /**
+   * Companions in danger (HF 2.0 L6, opt-in through impressions): on a risky offer shared with people the person holds
+   * impressions of, each adds 'companion:<id>' = companionScale × chance × severity × believed steadiness (−1..1,
+   * `companionSteadiness`): a steady neighbour makes the danger easier to face, a frightened or hurt one harder.
+   */
+  companionScale: 1,
   /** Host material units at which the saturating value term reaches 63%. */
   materialScale: 10,
   materialWeight: 1,
@@ -394,6 +400,13 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   if (aff.risk && aff.risk.chance > 0 && aff.risk.severity > 0) {
     const fear = emotionSum(p, 'fear');
     push('risk', -K.riskScale * aff.risk.chance * aff.risk.severity * (fear + p.traits.emotionality));
+    if (p.social.impressions && aff.with) {
+      for (const id of [...aff.with].sort()) {
+        const steady = companionSteadiness(p, id, p.now);
+        if (steady !== 0)
+          push(`companion:${id}`, K.companionScale * aff.risk.chance * aff.risk.severity * steady);
+      }
+    }
   }
 
   // Material: saturating value of host units, scaled by security/achievement/power.

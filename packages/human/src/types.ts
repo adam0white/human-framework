@@ -468,6 +468,39 @@ export interface SocialState {
   relationships: Relationship[];
   /** Groups I count myself in and my stance toward outsiders (1.6.0, `joinGroups`). Absent = none. */
   groups?: { memberOf: string[]; outsiderStance?: Signed };
+  /**
+   * Impressions (HF 2.0 L6, `social/impressions.ts`): what I believe about other people's state, traits, ties and
+   * trust, each with how much I have seen. Absent until the host makes the person observe someone.
+   */
+  impressions?: Impression[];
+  /**
+   * How much I keep from showing (HF 2.0 L6), 0..1 per state cue: a proud person hides pain. Absent = the default
+   * from emotionality (`IMPRESSION_DEFAULTS.reserve`).
+   */
+  reserve?: Partial<Record<StateCue, Unit>>;
+}
+
+/** The state cues an observer can read off a person (HF 2.0 L6). */
+export type StateCue = 'fatigue' | 'pain' | 'fear' | 'mood';
+
+/**
+ * One belief about another person (HF 2.0 L6). Keys: a state cue ('fatigue', 'pain', 'fear', 'mood'), fear of a
+ * place ('fear@<placeId>'), a HEXACO trait ('trait:<name>'), a tie ('tie:<otherId>', closeness -1..1) or trust in a
+ * voice ('trust:<voiceId>'). `mean` is the running estimate, `weight` how much has been seen (decays by key kind),
+ * `at` the last observation.
+ */
+export interface ImpressionCue {
+  key: string;
+  mean: number;
+  weight: number;
+  at: Minute;
+}
+
+export interface Impression {
+  targetId: PersonId;
+  cues: ImpressionCue[];
+  /** Minute of the last observation of any cue. */
+  seenAt: Minute;
 }
 
 // ---------------------------------------------------------------------------------------------
