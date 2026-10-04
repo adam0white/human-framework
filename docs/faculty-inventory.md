@@ -4,7 +4,7 @@
 
 **Status.** **Done**: exported, wired into the composite (`person.ts`) or driver (`sim/`), tested. **Partial**: exists but unwired, opt-in only, or missing a named piece. **Missing**: nothing in the code. **Excluded**: deliberately not modelled, by an AGENTS.md rule or a research decision (the reason is given). Every Done/Partial row was checked by reading the module, not the docs. Paths are relative to `packages/human/src/`.
 
-**Count: 65 Done, 33 Partial, 38 Missing, 6 Excluded (142 rows).**
+**Count: 69 Done, 36 Partial, 31 Missing, 6 Excluded (142 rows).**
 
 ## 1. Bodily life and regulation
 
@@ -17,7 +17,7 @@
 | Illness: acute, chronic, contagion | Done | body/body.ts `sicken`, `expose`, `contagionRoll` | Uncalibrated | §1 |
 | Body cost of stress (allostatic load) | Partial | affect/crisis.ts stress (opt-in) | Stress only drives breaks; no bodily cost | §1 S2 |
 | Temperature, bladder, specific nutrients | Missing | — | Listed "not modelled" in body.ts | §1 |
-| Sexuality, pregnancy | Missing | — | `createChild` has no pregnancy; games stay PG (watch L3) | proposal §4 |
+| Sexuality, pregnancy | Partial | family/ `conceptionChance`, `conceive`, `pregnancyDue`, `deliver`, `pregnancyModifiers` (1.8.0) | Pregnancy only: sexuality is not modelled (games stay PG); no miscarriage, twins or complications | proposal §4; research/family-environment-sources.md F13, F14 |
 
 ## 2. Perception and attention
 
@@ -173,11 +173,11 @@
 | Insiders, outsiders, threat | Done | social/groups.ts `joinGroups`, `meet`, `careFor` | Factions host-owned | §8 |
 | Language | Partial | narrate/ templates, `EN_LINES` | No generated language (LLMs kept out of the loop by rule) | — |
 | Joint activities | Partial | sim/ `proposeJoint`, `acceptJoint`, `jointSuccessChance` | Older paths one-sided (findings.md) | — |
-| Kinship and household | Partial | relationship roles; lifecourse/ `createChild` parents | No household unit | §8 |
+| Kinship and household | Partial | relationship roles; lifecourse/ `createChild` parents; partnering/ `kinship` (degrees from roles, 1.8.0) | No household unit (`family.raise` takes a caregiver list) | §8 |
 | Impressions of others (theory of mind) | Missing | — | Watch L6 | — |
 | The other's view of me | Missing | — | social.ts scope | — |
-| Attachment | Missing | — | social.ts scope | — |
-| Attraction, courtship, marriage | Missing | — | Watch L3 | — |
+| Attachment | Partial | family/ `FamilyState.attachment`, moved by `raise` (1.8.0) | Read only by courtship warmth; no adult attachment styles or attachment-driven behaviour | F10–F12 |
+| Attraction, courtship, marriage | Done | partnering/ (1.8.0): `attraction`, `court`, `proposalOffers`, `canMarry`, `marry`, `widow`, `familyVoices`, `MARRIAGE_NORMS` | Divorce and polygyny not modelled | F15–F21; research/marriage-sources.md |
 | A missed promise costs standing with the promisee | Missing | — | findings.md | — |
 | Power, coercion, conflict resolution | Missing | — | `command` is a host voice, not a social relation | proposal §4 |
 
@@ -189,14 +189,14 @@
 | Maturity of planning and inhibition by age | Done | `lifeModifiers().maturity` → cognition/ (agenda terms up, habit pull down) | — | §7 |
 | Life stages | Partial | lifecourse/ `lifeStage` | Nothing gates on stage; infants decide like adults | §7 |
 | Developmental curves: reward seeking, speed vs knowledge | Partial | lifecourse/development.ts `developmentForAge` | No consumer | §7 S19 |
-| Childhood: dependence, maturation, schooling | Missing | — | A child is an adult with age modifiers | §7, §8 S20 |
+| Childhood: dependence, maturation, schooling | Partial | family/ `raise` (upbringing, 1.8.0) | Upbringing only; otherwise a child is an adult with age modifiers (no dependence or schooling) | §7, §8 S20 |
 | Heredity of temperament | Done | lifecourse/birth.ts `createChild`; sim/ `birth` | — | §7 S18 |
-| Upbringing: household values and norms | Partial | lifecourse/birth.ts `ChildSpec.valueTransmission`, `normExposure` | At birth only, not ongoing (watch L2) | §8 |
-| Physical and aptitude inheritance | Missing | — | Watch L2 | §7 |
+| Upbringing: household values and norms | Done | lifecourse/birth.ts `ChildSpec.valueTransmission`, `normExposure`; family/ `raise` (ongoing, 1.8.0) | Siblings, peers and schooling not modelled | §8; F7–F9 |
+| Physical and aptitude inheritance | Partial | lifecourse/birth.ts `ChildSpec.aptitudes`; family/ `aptitudeOf` (learning multiplier, 1.8.0) | Physical inheritance (build, height, health) not modelled | §7; F1 |
 | Death | Done | body/ `die` | — | — |
 | Chronic onsets and natural death by age | Partial | lifecourse/health.ts `chronicOnsets`, `mortalityEvent`; sim/ `StepOptions.lifecourse` | Opt-in; never run in a lived multi-year community | — |
 | Multi-year stepping | Partial | person.ts `skip` | One person only; no community skip (watch L5) | — |
-| Partnering as the front end to birth | Missing | — | Watch L3 | — |
+| Partnering as the front end to birth | Done | partnering/ `marry`; family/ `conceive`, `deliver`; sim/ `birth` (1.8.0) | — | F14 |
 
 ## 14. Environment, culture and institutions
 
@@ -207,7 +207,7 @@
 | Material gain and scarcity | Done | cognition/ material term | Money and inventory host-owned | — |
 | Reference worlds | Done | scenarios/ `createVillage`, `createTown` | Fixtures, not models | — |
 | Tools and equipment | Partial | skills/ `successChance` `support` | No tool model; one support scalar | proposal §4 |
-| Ambient environment: cold, dark, comfort | Missing | — | Watch L4 | §1 |
+| Ambient environment: cold, dark, comfort | Done | environment/ `setAmbient` (mood, body, needs; 1.8.0) | Heat, noise, climate adaptation not modelled | §1; F22–F31 |
 | Culture as learned, shared practices | Missing | — | Norms come from a host catalog | §8 |
 | Norm diffusion, social consensus | Missing | — | — | §8 |
 | Institutions and access (facilities, offices) | Missing | — | v0 had facility access (below) | §8 |

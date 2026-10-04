@@ -12,6 +12,25 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+Engine: 1.8.0. `restore` upgrades 1.7.0 saves by a version stamp; runs that use none of the new slices are unchanged.
+
+### Added
+
+- Family (`family/`, HF 2.0 L2): `conceptionChance`, `conceive`, `pregnancyDue`, `deliver` (pregnancy and birth as
+  host-driven events; gestation from research), `raise` (ongoing upbringing: warmth-weighted values, the lived
+  example of norms, attachment security, trust in the household's voices), `aptitudeOf`, and inherited learning
+  aptitudes through `createChild`'s opt-in `ChildSpec.aptitudes`. New optional `Person.family`, `PersonSpec.family`.
+- Courtship and marriage (`partnering/`, L3): `attraction`, `compatibility`, `court`, `courtshipStage`, `betroth`,
+  `kinship`, `canMarry`, `marry`, `widow`, `widowhoodMortality`; offers `courtingOffer`, `proposeOffer`,
+  `proposalOffers` (accepting is an ordinary decision, so a person can refuse); `familyVoices` (relatives' approval
+  as weighed voices); customs `GENERIC_CUSTOM` and `MUSLIM_CUSTOM`; a separate `MARRIAGE_NORMS` catalog. A spouse's
+  perceived death ends the marriage and starts any waiting period. Divorce is not modelled yet. New optional
+  `Person.bonds`. Sources: [research/marriage-sources.md](https://github.com/adam0white/human-framework/blob/main/research/marriage-sources.md), decisions in [research/decisions.md](https://github.com/adam0white/human-framework/blob/main/research/decisions.md).
+- Surroundings (`environment/`, L4): `setAmbient`, `clearAmbient`, `ambientMood`. Cold, darkness, crowding, beauty
+  or squalor, weather and day length shift mood (small, research-bounded offsets), body (cold metabolism, slower
+  recovery and sleep) and needs. New optional `Person.ambient`. Sources: [research/family-environment-sources.md](https://github.com/adam0white/human-framework/blob/main/research/family-environment-sources.md).
+- `understandNorm` (conscience) and `adoptVoiceTrust` (will); `advanceAffect` takes an optional mood offset.
+
 ### Removed
 
 - **Breaking:** the town scenario (`createTown`, `townPeople`, `townSpecs`, `townCalendar`, `townDay`, `homeOf`,
