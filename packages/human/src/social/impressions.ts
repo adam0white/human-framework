@@ -123,7 +123,11 @@ export interface ObservedAct {
   at: Minute;
   /** 0..1, default 1. */
   clarity?: Unit;
-  /** Avoided (+1) or approached (−1) `placeId` (under threat): moves the 'fear@<placeId>' estimate. */
+  /**
+   * Avoided (+1) or approached (−1) `placeId` (under threat): moves the 'fear@<placeId>' estimate toward
+   * 0.5 + 0.5 × avoided. 0 is evidence of middling fear, not "no evidence": omit `avoided` when the act says
+   * nothing about fear of the place.
+   */
   placeId?: EntityId;
   avoided?: Signed;
   /** Closeness shown toward `withId` (−1 turned away .. +1 went to them): moves 'tie:<withId>'. */
