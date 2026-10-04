@@ -17,7 +17,7 @@ Done means (AGENTS.md): HF 2.0 released on GitHub, closing the blocking gaps in 
 | R2 | Reviews: performance, quality, security, acted on; phone research (Galaxy S26 viewport) and mobile web practice (fullscreen, input capture, safe areas) | in progress |
 | R3 | HF inventory: what HF has vs the full ambition ([docs/hf-status.md](docs/hf-status.md), [docs/faculty-inventory.md](docs/faculty-inventory.md)) | done |
 | G3-0 | *The Night Watch* spec revised for endless play (aging, natural death), visual UI and the game direction in AGENTS.md; wildcard and adversarial reviews | in progress |
-| G3-1 | Plain tower defense, no HF; gate: dusk planning against the warning matters | |
+| G3-1 | Plain tower defense, no HF; gate: dusk planning against the warning matters | merged, prototype at /watch/: gate passes (24 seeds × 3 nights, mean sacks lost of 20: matched plan 5.7, no plan 14.4, mismatched 16.4); design review applied (docs/games/watch.md "G3-1 as built"). Open: dusk at 1/16 starts the night on its own vs holding at dusk; rope mends by a fixed amount until G3-2; two-section warnings (G3-2 or G3-3); `sim/plans.ts` test-only code in src |
 | G3-2 | People on HF (commanded bell, breaks, injuries, outsiders); gate: a tester names one watcher's fear and one bond within three nights | |
 | G3-3 | Season and endless play over years; long-run faculties in HF (aging/experience, heredity, social effects) | |
 | G3-4 | Phone, playtest export, deploy /watch/; user playtest | |

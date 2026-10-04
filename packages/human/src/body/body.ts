@@ -42,7 +42,7 @@
  * knob, not a physiological trait and not a life-course effect (`LifeModifiers.metabolism` is that), and
  * `readBody` thresholds ignore it.
  */
-import { chance, clamp, clamp01, decay, minuteOfDay, smoothstep } from '../core/index.ts';
+import { chance, clamp, clamp01, dcos, decay, dexp, dlog, minuteOfDay, smoothstep } from '../core/index.ts';
 import type {
   BodyLoad,
   BodyRates,
@@ -317,14 +317,14 @@ function sourcePain(b: BodyState): number {
 /** Minutes within [0,h] that awake S(t) = 1 - (1 - s0) e^{-t/tau} spends above th. */
 function awakeAbove(s0: number, h: number, tau: number, th: number): number {
   if (s0 >= th) return h;
-  const tc = tau * Math.log((1 - s0) / (1 - th));
+  const tc = tau * dlog((1 - s0) / (1 - th));
   return Math.max(0, h - tc);
 }
 
 /** Minutes within [0,h] that asleep S(t) = s0 e^{-t/tau} spends below th. */
 function asleepBelow(s0: number, h: number, tau: number, th: number): number {
   if (s0 <= th) return h;
-  const tc = tau * Math.log(s0 / th);
+  const tc = tau * dlog(s0 / th);
   return Math.max(0, h - tc);
 }
 
@@ -357,11 +357,11 @@ function subStep(b: BodyState, h: number, load: BodyLoad, mods: LifeModifiers, P
   if (asleep) {
     const below = asleepBelow(s0, h, P.sleepTau, P.repayThreshold);
     b.sleepDebt = Math.max(0, b.sleepDebt - (P.debtRepayPerHour * below) / 60);
-    b.sleepPressure = clamp01(s0 * Math.exp(-h / P.sleepTau));
+    b.sleepPressure = clamp01(s0 * dexp(-h / P.sleepTau));
   } else {
     const above = awakeAbove(s0, h, P.wakeTau, P.debtThreshold);
     b.sleepDebt = Math.min(P.maxSleepDebt, b.sleepDebt + (P.debtPerHourAbove * above) / 60);
-    b.sleepPressure = clamp01(1 - (1 - s0) * Math.exp(-h / P.wakeTau));
+    b.sleepPressure = clamp01(1 - (1 - s0) * dexp(-h / P.wakeTau));
   }
 
   // Exertion relaxes toward an effort-dependent target.
@@ -380,7 +380,7 @@ function subStep(b: BodyState, h: number, load: BodyLoad, mods: LifeModifiers, P
     effortUsed > P.trainingEffort ? (kd * P.trainingRatio * (effortUsed - P.trainingEffort)) / 0.6 : 0;
   const floor = Math.min(P.fitnessFloor, maxFit);
   const fStar = (kd * floor + kt * maxFit) / (kd + kt);
-  b.fitness = clamp(fStar + (b.fitness - fStar) * Math.exp(-(kd + kt) * h), 0, maxFit);
+  b.fitness = clamp(fStar + (b.fitness - fStar) * dexp(-(kd + kt) * h), 0, maxFit);
 
   // Injuries heal; faster asleep and fed, slower when exhausted.
   const healFactor = recovery * (asleep ? 1.5 : 1) * (fed ? 1 : 0.5) * (1 - 0.5 * exhausted);
@@ -480,11 +480,11 @@ export function advanceBody(
 /** Circadian alertness 0..1 (Process C): cosine peaking at `circadianPeak`, trough 12 h earlier, post-lunch dip. */
 export function circadianAlertness(now: Minute, circadianPeak: number): number {
   const delta = minuteOfDay(now) - circadianPeak;
-  const base = 0.5 + 0.5 * Math.cos((2 * Math.PI * delta) / MINUTES_PER_DAY);
+  const base = 0.5 + 0.5 * dcos((2 * Math.PI * delta) / MINUTES_PER_DAY);
   // Post-lunch dip centred ~2 h before the peak (14:00 for a 16:00 peak).
   let d = minuteOfDay(now - (circadianPeak - 120));
   if (d > MINUTES_PER_DAY / 2) d -= MINUTES_PER_DAY;
-  const dip = 0.12 * Math.exp(-(d * d) / (2 * 60 * 60));
+  const dip = 0.12 * dexp(-(d * d) / (2 * 60 * 60));
   return clamp01(base - dip);
 }
 
@@ -501,8 +501,7 @@ export function fastingDamping(
   if (!ctx?.fasting) return { hunger: 0, thirst: 0 };
   const days = Math.max(0, Number.isFinite(ctx.fastingDays) ? ctx.fastingDays : 0);
   const adapt =
-    params.fastingOnsetShare +
-    (1 - params.fastingOnsetShare) * (1 - Math.exp(-days / params.fastingAdaptDays));
+    params.fastingOnsetShare + (1 - params.fastingOnsetShare) * (1 - dexp(-days / params.fastingAdaptDays));
   const [lo, hi] = params.fastingBreakthrough;
   return {
     hunger: clamp01(params.fastingHungerDamp * adapt * smoothstep(lo, hi, b.satiety)),
@@ -521,7 +520,7 @@ export function readBody(
 ): BodyReadout {
   const b = p.body;
   const alertness = circadianAlertness(p.now, b.circadianPeak);
-  const debtTerm = params.sleepinessDebtWeight * (1 - Math.exp(-b.sleepDebt / 8));
+  const debtTerm = params.sleepinessDebtWeight * (1 - dexp(-b.sleepDebt / 8));
   const sleepiness = clamp01(
     params.sleepinessPressureWeight * b.sleepPressure +
       params.sleepinessCircadianWeight * (1 - alertness) +
@@ -533,7 +532,7 @@ export function readBody(
   const thirst = clamp01(1 - b.hydration);
   const pain = b.pain;
   // Objective impairment from chronic debt is not felt (see perceived.sleepiness).
-  const debtImpair = 1 - 0.3 * (1 - Math.exp(-b.sleepDebt / 16));
+  const debtImpair = 1 - 0.3 * (1 - dexp(-b.sleepDebt / 16));
   const capacity = b.alive
     ? clamp01(
         (1 - 0.5 * fatigue) *
@@ -690,7 +689,7 @@ export function exposureChance(
 ): Unit {
   const cum = b.exposures?.[kind]?.cumulative ?? 0;
   if (!(cum > 0) || !(days > 0) || !(hazardPerUnitDay > 0)) return 0;
-  return clamp01(1 - Math.exp(-hazardPerUnitDay * cum * days));
+  return clamp01(1 - dexp(-hazardPerUnitDay * cum * days));
 }
 
 /** Transmission chance for `contactMinutes` of contact with someone carrying `source` (0 if not contagious). */
@@ -700,7 +699,7 @@ export function transmissionChance(
   params: BodyParams = BODY_DEFAULTS,
 ): Unit {
   if (!source.contagious || !(contactMinutes > 0) || !(source.severity > 0)) return 0;
-  return clamp01(1 - Math.exp(-params.transmissionPerMinute * clamp01(source.severity) * contactMinutes));
+  return clamp01(1 - dexp(-params.transmissionPerMinute * clamp01(source.severity) * contactMinutes));
 }
 
 /**

@@ -29,7 +29,7 @@ import { breakAllows, inBreak } from '../affect/index.ts';
 import { commitmentPressure, pressureReachedAt } from '../agenda/index.ts';
 import { downedAllows, readCapacities } from '../body/index.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
-import { clamp01, decay, random } from '../core/index.ts';
+import { clamp01, decay, dexp, dpow, random } from '../core/index.ts';
 import { skillLevel } from '../skills/index.ts';
 import type {
   Affordance,
@@ -576,7 +576,7 @@ function evaluate(
   let winner = ranked[0];
   if (winner && p.will.temperature > 0 && draw !== undefined && ranked.length > 1) {
     const top = score(winner);
-    const weights = ranked.map((c) => Math.exp((score(c) - top) / p.will.temperature));
+    const weights = ranked.map((c) => dexp((score(c) - top) / p.will.temperature));
     let total = 0;
     for (const w of weights) total += w;
     let r = draw * total;
@@ -667,7 +667,7 @@ function evaluate(
       let total = 0;
       let hit = 0;
       for (const c of ranked) {
-        const wgt = Math.exp((score(c) - top) / p.will.temperature);
+        const wgt = dexp((score(c) - top) / p.will.temperature);
         total += wgt;
         if (targetIds.has(c.affordanceId)) hit += wgt;
       }
@@ -1340,7 +1340,7 @@ export function advanceWill(p: Person, dt: number): void {
  */
 export function adviceWeight(a: StandingAdvice, now: Minute): number {
   const dt = Math.max(0, now - a.at);
-  return clamp01(a.strength) * clamp01(a.salience) * 0.5 ** (dt / WILL_DEFAULTS.adviceHalfLife);
+  return clamp01(a.strength) * clamp01(a.salience) * dpow(0.5, dt / WILL_DEFAULTS.adviceHalfLife);
 }
 
 /** Standing advice still above the floor at `now` (read only; stable stored order). */

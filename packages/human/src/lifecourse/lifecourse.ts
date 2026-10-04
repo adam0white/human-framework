@@ -8,7 +8,7 @@
  * individual variation are not modelled. There is deliberately no universal age penalty: each multiplier
  * has its own trajectory, and consumers decide which ones apply.
  */
-import { clamp, smoothstep } from '../core/index.ts';
+import { clamp, dexp, dpow, smoothstep } from '../core/index.ts';
 import type { LifeModifiers, LifeStage, Person } from '../types.ts';
 import { MINUTES_PER_YEAR } from '../types.ts';
 
@@ -44,13 +44,13 @@ export function lifeStage(p: Person): LifeStage {
 /** Modifiers for a given age in years. 1 = prime adult for each multiplier. */
 export function modifiersForAge(age: number, params = LIFE_DEFAULTS): LifeModifiers {
   const a = Math.max(0, age);
-  const metabolism = 1 + 0.5 * Math.exp(-a / 6) - 0.15 * smoothstep(50, 80, a);
+  const metabolism = 1 + 0.5 * dexp(-a / 6) - 0.15 * smoothstep(50, 80, a);
   const recovery = clamp(
     1.1 - 0.1 * smoothstep(15, 30, a) - params.recoveryDeclinePerYear * Math.max(0, a - 30),
     0.4,
     1.2,
   );
-  const learning = clamp(0.9 + 0.5 * Math.exp(-a / 10) - 0.003 * Math.max(0, a - 30), 0.5, 1.5);
+  const learning = clamp(0.9 + 0.5 * dexp(-a / 10) - 0.003 * Math.max(0, a - 30), 0.5, 1.5);
   const maturity = 0.1 + 0.9 * smoothstep(2, 25, a);
   const maxFitness = clamp(
     a < 20
@@ -61,7 +61,7 @@ export function modifiersForAge(age: number, params = LIFE_DEFAULTS): LifeModifi
   );
   const mortalityPerYear = Math.min(
     1,
-    params.gompertzBase * 2 ** ((a - params.gompertzRefAge) / params.gompertzDoublingYears),
+    params.gompertzBase * dpow(2, (a - params.gompertzRefAge) / params.gompertzDoublingYears),
   );
   return {
     ageYears: age,

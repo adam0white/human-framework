@@ -212,6 +212,23 @@ function Home() {
                 </span>
               </div>
             </a>
+            <a className="game-card game-live game-soon" href="/watch/">
+              <div className="game-art game-art-soon" aria-hidden="true">
+                ☾
+              </div>
+              <div className="game-body">
+                <p className="game-kicker">Game 3 · early prototype</p>
+                <h3>The Night Watch</h3>
+                <p>
+                  Keep the watch of a small walled village. Post the watchers at dusk against the scout’s
+                  warning, carry the lantern at night. In this first cut the watchers always obey; people come
+                  next.
+                </p>
+                <span className="game-cta">
+                  Try the prototype <span aria-hidden="true">→</span>
+                </span>
+              </div>
+            </a>
           </div>
         </section>
 

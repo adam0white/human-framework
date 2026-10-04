@@ -11,7 +11,7 @@
  * further down; insiders, outsiders and threats in `groups.ts`); the
  * coefficients are engineering defaults, not calibrated estimates.
  */
-import { clamp, clamp01, clampSigned, decay, expit, round } from '../core/index.ts';
+import { clamp, clamp01, clampSigned, decay, dlog, expit, round } from '../core/index.ts';
 import type {
   Affordance,
   HeldNorm,
@@ -65,7 +65,7 @@ export const SOCIAL_DEFAULTS = {
   /** Non-family familiarity half-life without contact (minutes). */
   familiarityHalfLife: 2 * 365 * MINUTES_PER_DAY,
   /** Non-role affection drifts toward 0 by 1% per week. */
-  affectionHalfLife: (Math.LN2 / -Math.log(0.99)) * WEEK,
+  affectionHalfLife: (Math.LN2 / -dlog(0.99)) * WEEK,
   /** Fraction of the gap to the role baseline restored by a full-magnitude act of forgiveness. */
   forgiveRestore: 0.5,
   ledgerLimit: 10,

@@ -34,7 +34,7 @@
  * deliberate options alike), an ease multiplier can. Physical exertion is not eased (habit does not make a
  * walk lighter). Does not claim: a measured size of the effect, or that automaticity removes intention.
  */
-import { clamp01, decay, hourOf, minuteOfDay } from '../core/index.ts';
+import { clamp01, decay, dexp, hourOf, minuteOfDay } from '../core/index.ts';
 import {
   type Affordance,
   type Habit,
@@ -122,7 +122,7 @@ export function habitUrge(h: Habit, now: Minute, lastAt: Minute = h.lastAt): num
   const t = Math.max(0, now - Math.max(h.lastAt, lastAt) - d.urgeInterval) / MINUTES_PER_DAY;
   if (t <= 0) return 0;
   const x = t / d.urgePeakDays;
-  return c * d.urgeGain * x * Math.exp(1 - x);
+  return c * d.urgeGain * x * dexp(1 - x);
 }
 
 /**

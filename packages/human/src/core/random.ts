@@ -3,6 +3,7 @@
  * and is advanced in place, so identical seeds and call sequences give identical results.
  */
 import type { RngState } from '../types.ts';
+import { dcos, dlog } from './libm.ts';
 
 export function createRng(seed: number): RngState {
   // splitmix32 to spread a small integer seed across four words.
@@ -38,7 +39,7 @@ export function chance(rng: RngState, p: number): boolean {
 export function normal(rng: RngState, mean = 0, sd = 1): number {
   const u = Math.max(random(rng), 1e-12);
   const v = random(rng);
-  return mean + sd * Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  return mean + sd * Math.sqrt(-2 * dlog(u)) * dcos(2 * Math.PI * v);
 }
 
 export function pick<T>(rng: RngState, items: readonly T[]): T {

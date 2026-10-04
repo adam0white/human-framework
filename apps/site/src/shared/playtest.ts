@@ -131,16 +131,14 @@ export function cyrb53(str: string, seed = 0): string {
   return n.toString(16).padStart(14, '0');
 }
 
-/** Hash of a state: cyrb53 of its stable stringify. */
 /**
- * Significant digits numbers keep in the hash. Browsers and Node can differ in the last bits of `Math.log`/`exp`
- * results (seen: a belief's log-odds 0.1566459601557215 in Chromium, 0.15664596015572152 in Node 24, same run),
- * so the hash rounds non-integers to this many digits. A real divergence moves far more than the 11th digit.
+ * Hash of a state: cyrb53 of its stable stringify, exact to the bit. Browsers and Node used to differ in the last
+ * bits of `Math.log`/`exp` (a belief's log-odds 0.1566459601557215 in Chromium, 0.15664596015572152 in Node 24), so
+ * this once rounded to 10 significant digits. The framework now uses core/libm and the game sims call no platform
+ * transcendental (test/libm.test.ts scans both), so every engine gives the same bits and a mismatch is a real
+ * divergence.
  */
-export const HASH_DIGITS = 10;
-
-/** Hash of a state: cyrb53 of its stable stringify, with non-integers rounded to `HASH_DIGITS`. */
-export const hashState = (state: unknown): string => cyrb53(stableStringify(state, HASH_DIGITS));
+export const hashState = (state: unknown): string => cyrb53(stableStringify(state));
 
 /** Run-length encode consecutive equal steps into `[minutes, count]` pairs (helper for step logs). */
 export function pushRun(log: unknown[], minutes: number): void {
