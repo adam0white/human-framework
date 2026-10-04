@@ -41,6 +41,7 @@ import {
   proposeOffer,
   type Routine,
   type RoutineActivity,
+  retell,
   skillLevel,
   spousesOf,
 } from '@human/framework';
@@ -52,6 +53,7 @@ import {
   SECTION_IDS,
   type SectionId,
   START_GRAIN,
+  WATCH_AGE,
   type WatcherId,
 } from './config.ts';
 import { equip, isHere, KEEPER_ID, nameOf, personOf, personSeed, them, villager } from './people.ts';
@@ -1127,5 +1129,27 @@ export function postEveryone(s: WatchState, ids: readonly WatcherId[]): void {
     }
     s.press[id] ??= 'ask';
     s.postedAt[id] = s.minute;
+  }
+}
+
+/** Children this young hear no winter stories yet. */
+const STORY_AGE = 4;
+
+/**
+ * Winter stories (H2, spec §3: a child who hears how the east wall broke fears it before standing there). At the
+ * thaw each child too young for the wall hears their parents' and guardians' lasting gists of the wall's stretches
+ * (HF `retell`), weighed by the child's trust in them. A told fear becomes the child's own, weaker gist, which
+ * weighs on their postings once they come of age, until their own nights outweigh it. Writes no chronicle line.
+ */
+export function winterStories(s: WatchState): void {
+  for (const child of living(s)) {
+    const age = ageOf(child, s.minute);
+    if (age < STORY_AGE || age >= WATCH_AGE) continue;
+    for (const r of child.social.relationships) {
+      if (!r.roles.includes('parent') && !r.roles.includes('guardian')) continue;
+      const teller = personOf(s, r.otherId);
+      if (!teller || !isHere(s, teller)) continue;
+      retell(teller, child, { at: s.minute, trust: r.trust, placeIds: SECTION_IDS, limit: 2 });
+    }
   }
 }

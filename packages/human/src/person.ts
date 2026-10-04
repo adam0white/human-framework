@@ -65,6 +65,7 @@ import {
 } from './body/index.ts';
 import { ageCharacter, noteCharacterDay, noteCharacterSocial } from './character/index.ts';
 import {
+  CHRONICLE_DEFAULTS,
   closeDay,
   endDay,
   noteAnswer,
@@ -91,14 +92,16 @@ import {
   sanitizeAmbient,
 } from './environment/index.ts';
 import { aptitudeOf, createFamily, pregnancyModifiers, sanitizeFamily } from './family/index.ts';
-import { advanceHabits, reinforce, withholdCued } from './habits/index.ts';
+import { advanceHabits, HABIT_DEFAULTS, reinforce, withholdCued } from './habits/index.ts';
 import { ageYears, learningMultiplier, lifeModifiers } from './lifecourse/index.ts';
 import {
   advanceMemory,
   type CueRecall,
   consolidate,
   createMemory,
+  GIST_DEFAULTS,
   learnOutcome,
+  MEMORY_DEFAULTS,
   recallByCue,
   remember,
 } from './memory/index.ts';
@@ -518,6 +521,11 @@ export function tick(p: Person, now: Minute): void {
     const end = Math.min(active ? Math.min(now, act.endsAt) : now, grid);
     const load: BodyLoad =
       active && act ? { effort: act.effort, focus: act.focus, mode: act.mode } : PERSON_DEFAULTS.idleLoad;
+    // A minute so large that the grid step rounds away cannot advance (security review H2): stop, never spin.
+    if (!(end > p.now)) {
+      p.now = now;
+      return;
+    }
     advanceSegment(p, end - p.now, load, active && act ? act.affordance : undefined);
     p.now = end;
     if (!p.body.alive) {
@@ -1661,7 +1669,9 @@ export function restore(input: unknown): Person {
   const json = input.engine === ENGINE_VERSION ? input : migrate(input);
   if (typeof json.id !== 'string' || typeof json.name !== 'string')
     throw new Error('restore: missing identity');
-  if (typeof json.now !== 'number') throw new Error('restore: missing now');
+  // A minute must be finite and within ±MAX_MINUTE (security review H2: 1e999 parses to Infinity, and past
+  // about 5e17 a step rounds back to the same minute).
+  if (!isMinute(json.now)) throw new Error('restore: missing or out-of-range now');
   for (const k of REQUIRED_OBJECTS) if (!isObject(json[k])) throw new Error(`restore: missing ${k}`);
   const life = json.life as Record<string, unknown>;
   const defaults = createPerson({
@@ -1669,7 +1679,7 @@ export function restore(input: unknown): Person {
     name: json.name,
     seed: 0,
     now: json.now,
-    bornAt: typeof life.bornAt === 'number' ? life.bornAt : 0,
+    bornAt: isMinute(life.bornAt) ? life.bornAt : 0,
     sex: life.sex === 'female' ? 'female' : 'male',
   });
   const saved = structuredClone(json);
@@ -1685,6 +1695,7 @@ export function restore(input: unknown): Person {
   }
   if (!Array.isArray(out.habits)) out.habits = [];
   if (!Array.isArray(out.trace)) out.trace = [];
+  if (!isMinute(out.life.bornAt)) out.life.bornAt = defaults.life.bornAt;
   if (typeof out.nextDecision !== 'number') out.nextDecision = 0;
   if (out.activity === undefined) out.activity = null;
   // Optional slices added in 1.2.0: absent means empty; a mistyped one is dropped rather than trusted.
@@ -1790,5 +1801,31 @@ export function restore(input: unknown): Person {
     if (a) out.ambient = a;
     else delete out.ambient;
   }
+  boundLists(out);
   return out;
+}
+
+/** The largest |minute| `restore` accepts: about 1.9 million years, far past any run, far below float trouble. */
+export const MAX_MINUTE = 1e12;
+const isMinute = (x: unknown): x is number => isNum(x) && Math.abs(x) <= MAX_MINUTE;
+
+/**
+ * Hold a restored person's lists to the bounds the live code keeps (security review H2: a crafted save with
+ * 200,000 gists restored whole and made every later day slow). A save the engine wrote is already within them,
+ * so this changes nothing for it. Episodes and gists keep the most salient; dated lists keep the newest.
+ */
+function boundLists(p: Person): void {
+  const top = <T extends { salience: number }>(xs: T[], n: number): T[] => {
+    if (xs.length <= n) return xs;
+    const keep = new Set([...xs].sort((a, b) => b.salience - a.salience).slice(0, n));
+    return xs.filter((x) => keep.has(x));
+  };
+  p.memory.episodes = top(p.memory.episodes, MEMORY_DEFAULTS.maxEpisodes);
+  if (p.memory.gists) p.memory.gists = top(p.memory.gists, GIST_DEFAULTS.maxGists);
+  const newest = <T>(xs: T[], n: number): T[] => (xs.length <= n ? xs : xs.slice(xs.length - n));
+  p.memory.expectations = newest(p.memory.expectations, MEMORY_DEFAULTS.maxExpectations);
+  p.trace = newest(p.trace, PERSON_DEFAULTS.maxTrace);
+  p.habits = newest(p.habits, HABIT_DEFAULTS.maxHabits);
+  if (p.chronicle) p.chronicle = newest(p.chronicle, CHRONICLE_DEFAULTS.maxDays);
+  if (p.chronicleYears) p.chronicleYears = newest(p.chronicleYears, CHRONICLE_DEFAULTS.maxYears);
 }

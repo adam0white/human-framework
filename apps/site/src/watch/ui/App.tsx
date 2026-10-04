@@ -563,7 +563,7 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
           onClick={() => actions.input({ k: 'bell' })}
         >
           <Icon name="bell" size={20} />
-          <span>{frame.roused ? 'Ring again: hold!' : 'Ring: hold your posts!'}</span>
+          <span>{frame.bellFor ? `Ring for ${frame.bellFor} to hold` : 'Ring the bell'}</span>
         </button>
         <div className="w-ropebox">
           <span className="w-bellread">{frame.bellRead ?? '\u00a0'}</span>

@@ -33,6 +33,7 @@ import {
   promise,
   readCapacities,
   readPerson,
+  remember,
   type SimEvent,
   type Suggestion,
   skillLevel,
@@ -55,6 +56,7 @@ import {
   NIGHT_CARRY,
   NIGHT_CARRY_RICH,
   NIGHT_LENGTH,
+  OPENING_CARRY_SHARE,
   type PostId,
   postSection,
   SCOUT_TRUE,
@@ -72,7 +74,7 @@ import { advanceDay } from './day.ts';
 import { planDirectedNight } from './director.ts';
 import { takeOffer } from './fair.ts';
 import { fillLeaf, maybeLimp } from './life.ts';
-import { answerMoment, catchLeaving, checkMoments } from './moments.ts';
+import { answerMoment, bellTarget, catchLeaving, checkMoments } from './moments.ts';
 import {
   addVillager,
   arrive,
@@ -224,10 +226,15 @@ export function planNight(s: WatchState): void {
     [80, 220],
     [300, 540],
   ];
-  for (const [lo, hi] of waves) {
+  let anyRight = false;
+  for (const [w, [lo, hi]] of waves.entries()) {
     const at = s.nightStart + lo + Math.floor(nextRandom(s) * (hi - lo));
-    // The first night is gentle (spec §3, year 1 authored): the scout is right about every wave.
-    const right = nextRandom(s) < (n === 1 ? 1 : SCOUT_TRUE);
+    // The first night is gentle (spec §3, year 1 authored): the scout is right about every wave. In the rest of the
+    // opening the scout is right about at least one wave a night (H2: on seed 11 both waves of nights 2 and 3 came
+    // elsewhere, and a planning Keeper lost the granary by the fourth night).
+    const lastChance: boolean = w === waves.length - 1 && !anyRight && n <= OPENING_NIGHTS;
+    const right: boolean = nextRandom(s) < (n === 1 ? 1 : SCOUT_TRUE) || lastChance;
+    anyRight ||= right;
     const section = right ? s.warned : pick(s, others);
     if (!s.leadCame.includes(section)) s.leadCame.push(section);
     const count = waveSize();
@@ -345,6 +352,49 @@ function rememberTheNight(s: WatchState): void {
   }
 }
 
+/**
+ * What a night leaves in memory (H2, spec §3: memorable nights become lasting gists people retell). At dawn,
+ * whoever stood a stretch where something got over remembers it as a bad night there; whoever drove a threat off
+ * remembers a night held. These are ordinary HF episodes with the stretch as their place, so they fold into lasting
+ * gists over the years, weigh on later postings there (HF `memory` term) and are what parents tell their children
+ * (`winterStories`). Quiet nights leave nothing beyond what the framework already keeps.
+ */
+function nightMemories(s: WatchState): void {
+  const t = s.tally;
+  for (const sec of SECTION_IDS) {
+    const got = (t.got[sec].wolf ?? 0) + (t.got[sec].thief ?? 0);
+    const heroes = new Set(t.heroes[sec]);
+    const there = new Set([...postedIn(s, sec), ...heroes]);
+    for (const id of there) {
+      const p = personOf(s, id);
+      if (!p?.body.alive) continue;
+      const the = theSection(sec);
+      if (got > 0)
+        remember(p, {
+          at: s.minute,
+          kind: 'outcome',
+          action: 'night-watch',
+          actorId: id,
+          placeId: sec,
+          valence: -Math.min(0.9, 0.5 + 0.1 * got),
+          summary: `the night they came over ${the}`,
+          tags: ['night', 'wall', 'danger'],
+        });
+      else if (heroes.has(id))
+        remember(p, {
+          at: s.minute,
+          kind: 'outcome',
+          action: 'night-watch',
+          actorId: id,
+          placeId: sec,
+          valence: 0.5,
+          summary: `the night we held ${the}`,
+          tags: ['night', 'wall'],
+        });
+    }
+  }
+}
+
 function enterDawn(s: WatchState): void {
   const t = s.tally;
   const lines: DawnPage['lines'] = [];
@@ -381,6 +431,7 @@ function enterDawn(s: WatchState): void {
     }
     lines.push({ section: id, text: parts.join(' ') });
   }
+  nightMemories(s);
   const missed = s.leadCame.filter((x) => x !== s.warned);
   const scout =
     missed.length === 0
@@ -506,19 +557,21 @@ export function applyInput(s: WatchState, input: Input): boolean {
 }
 
 /**
- * The bell: a command to hold the post, on the watchers in earshot (or the one named). A pull while the last
- * one still rings (the same minute) does nothing. Each pull wears the rope.
+ * The bell: a command to hold the post on one watcher in earshot, the one named, or by default the one the Keeper
+ * reads as least likely to hold (`bellTarget`; spec §4, H2). A pull while the last one still rings (the same
+ * minute) does nothing. Each pull wears the rope, even when no one is in earshot to hear it.
  */
 export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
   if (s.phase !== 'night' || s.rope.snapped) return false;
   if (Object.values(s.commands).some((c) => c && c.cmd.since === s.minute)) return false;
   const hear = earshot(s);
-  const targets = presentIds(s).filter((id) => {
-    if (who !== undefined && id !== who) return false;
+  const inEarshot = (id: WatcherId): boolean => {
     const pl = s.place[id];
     if (isPost(pl)) return hear.includes(postSection(pl));
     return pl === 'hall' && hear.includes('gate');
-  });
+  };
+  const named = who ?? bellTarget(s);
+  const targets = named !== null && presentIds(s).includes(named) && inEarshot(named) ? [named] : [];
   if (who !== undefined && targets.length === 0) return false;
   s.tally.bellRung += 1;
   s.rope.wear += (BELL_WEAR_BASE + BELL_WEAR_SPREAD * nextRandom(s)) * (s.marks.bigBell ? 0.5 : 1);
@@ -544,7 +597,7 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
       text:
         targets.length === 0
           ? 'The bell rings, but nobody is in earshot.'
-          : `The bell rings: ${targets.map((t) => nameOf(s, t)).join(', ')} must hold. ${bellAnswer(s, targets)}`,
+          : `The bell rings for ${targets.map((t) => nameOf(s, t)).join(', ')}: hold your post! ${bellAnswer(s, targets)}`,
       slowed: false,
     });
   }
@@ -941,11 +994,13 @@ export function stepMinute(s: WatchState): void {
         t.since = m;
         // After the first three nights a night carries off at most NIGHT_CARRY sacks (what can be hauled over a
         // wall before the alarm), so one bad night hurts without ending the chronicle; the first three nights of
-        // year 1 are the authored opening the G3-1 and G3-2 gates measure.
-        const carry =
-          NIGHT_CARRY + Math.floor(Math.max(0, s.tally.grainAtDusk - START_GRAIN) / NIGHT_CARRY_RICH);
+        // year 1 are the authored opening the G3-1 and G3-2 gates measure, where a night carries off at most half
+        // of what the granary held at dusk (H2: seed 11 lost 17 of 20 in two opening nights even with a plan).
         const capped = s.year > 1 || s.winterNight > OPENING_NIGHTS;
-        const room = capped ? Math.max(0, carry - (s.tally.grainAtDusk - s.grain)) : def.takes;
+        const carry = capped
+          ? NIGHT_CARRY + Math.floor(Math.max(0, s.tally.grainAtDusk - START_GRAIN) / NIGHT_CARRY_RICH)
+          : Math.ceil(s.tally.grainAtDusk * OPENING_CARRY_SHARE);
+        const room = Math.max(0, carry - (s.tally.grainAtDusk - s.grain));
         const took = Math.min(s.grain, def.takes, room);
         s.grain -= took;
         const got = s.tally.got[t.section];

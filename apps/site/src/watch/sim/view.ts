@@ -27,7 +27,7 @@ import {
   type WatcherId,
 } from './config.ts';
 import { ageOf, dayOfYear, living, seasonOfDay } from './life.ts';
-import { bellWords, type Moment, readBell, readPosting, readWords } from './moments.ts';
+import { bellTarget, bellWords, type Moment, readBell, readPosting, readWords } from './moments.ts';
 import { earshot, litSection, nightEnd, presentIds, theSection } from './night.ts';
 import { familyWords, isHere, isPost, isWatcher, nameOf, type Place, personOf, villager } from './people.ts';
 import { type Impression, keeperImpressions } from './reads.ts';
@@ -98,8 +98,10 @@ export interface Frame {
   moment: Moment | null;
   /** At dusk: the Keeper's read of how each watcher would take their posting, by press. */
   postingReads: Partial<Record<WatcherId, Record<Press, string>>> | null;
-  /** At night: the Keeper's read of the bell on those in earshot, in words (null when it cannot ring). */
+  /** At night: whom the bell would ring for and the Keeper's read of how they'd take it (null when it cannot ring). */
   bellRead: string | null;
+  /** At night: the name the bell would ring for (null when no one is in earshot or it cannot ring). */
+  bellFor: string | null;
   /** The last day, for the dusk panel. */
   day: DaySummary | null;
   seen: SeenToken[];
@@ -238,7 +240,7 @@ const POSTURE: Record<string, Posture> = {
 };
 
 let readCache: { key: string; reads: Frame['postingReads'] } | null = null;
-let bellCache: { key: string; read: string | null } | null = null;
+let bellCache: { key: string; read: { read: string; who: string | null } } | null = null;
 
 /** Dusk posting reads, recomputed every ten sim minutes or when a posting changes (they run predictAs). */
 function postingReads(s: WatchState): Frame['postingReads'] {
@@ -262,22 +264,15 @@ function postingReads(s: WatchState): Frame['postingReads'] {
   return reads;
 }
 
-/** The bell read: the worst of those on the wall in earshot. */
-function bellRead(s: WatchState): string | null {
+/** The bell read (H2): whom it would ring for, and how they would take it, in words. */
+function bellRead(s: WatchState): { read: string; who: string | null } | null {
   if (s.phase !== 'night' || s.rope.snapped) return null;
-  const hear = earshot(s);
   const key = `${s.seed}|${s.minute}|${s.lantern.x}`;
   if (bellCache?.key === key) return bellCache.read;
-  const order = { little: 0, some: 1, much: 2 } as const;
-  let worst: ReturnType<typeof readBell> | null = null;
-  for (const id of presentIds(s)) {
-    const pl = s.place[id];
-    if (!isPost(pl) || !hear.includes(postSection(pl))) continue;
-    const b = readBell(s, id);
-    const rank = (x: ReturnType<typeof readBell>) => (x.holds ? order[x.resent] : 3);
-    if (!worst || rank(b) > rank(worst)) worst = b;
-  }
-  const read = worst ? bellWords(worst) : 'no one in earshot';
+  const who = bellTarget(s);
+  const read = who
+    ? { read: `${nameOf(s, who)}: ${bellWords(readBell(s, who))}`, who: nameOf(s, who) }
+    : { read: 'no one in earshot', who: null };
   bellCache = { key, read };
   return read;
 }
@@ -371,6 +366,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
     });
   }
   const nightLen = nightEnd(s) - s.nightStart;
+  const bell = bellRead(s);
   return {
     phase: s.phase,
     clock: ((s.minute % DAY) + DAY) % DAY,
@@ -394,7 +390,8 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
     dawn: s.dawn,
     moment: s.phase === 'night' ? s.moment : null,
     postingReads: postingReads(s),
-    bellRead: bellRead(s),
+    bellRead: bell?.read ?? null,
+    bellFor: bell?.who ?? null,
     day: s.day,
     ...yearFrame(s),
   };

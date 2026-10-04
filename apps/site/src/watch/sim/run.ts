@@ -85,7 +85,7 @@ export function endState(s: WatchState): EndState {
 }
 
 /** Bump when rules change so an old export is not replayed against new rules. */
-export const WATCH_SCENARIO_VERSION = 6;
+export const WATCH_SCENARIO_VERSION = 7;
 
 export interface LogEntry {
   /** The sim minute the input applied at (before that minute resolved). */

@@ -203,6 +203,9 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         let next: WatchRun | null = null;
         try {
           next = snap ? WatchRun.resume(snap) : null;
+          // A page that parses but has the wrong shape fails here, before it replaces the running game
+          // (security review H2, S4), not on the next tick.
+          if (next) buildFrame(next.state, 0, false);
         } catch {
           next = null;
         }

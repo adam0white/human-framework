@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { LANTERN_STEP_MIN, NIGHT_LENGTH, START_GRAIN, WATCHER_IDS } from './config.ts';
-import { applyInput, litSection, newGame, stepMinute } from './night.ts';
+import { bellTarget } from './moments.ts';
+import { applyInput, earshot, litSection, newGame, stepMinute } from './night.ts';
+import { isPost } from './people.ts';
 import type { WatchState } from './state.ts';
 import { buildFrame } from './view.ts';
 
@@ -148,6 +150,32 @@ describe('Night Watch rules (G3-1, G3-2)', () => {
     }
     expect(commanded).toBeGreaterThan(5);
     expect(costlier).toBeGreaterThan(3);
+  });
+
+  it('the bell rings for one named watcher, the one read least likely to hold; a second pull calls the next', () => {
+    let named = 0;
+    let next = 0;
+    for (let seed = 100; seed < 110; seed++) {
+      const s = toNight(seed);
+      while (s.phase === 'night' && !s.alerts.some((a) => a.kind === 'foot')) stepMinute(s);
+      if (s.phase !== 'night') continue;
+      const who = bellTarget(s);
+      if (who === null) continue;
+      const pl = s.place[who];
+      expect(pl === 'hall' || (isPost(pl) && earshot(s).length > 0)).toBe(true);
+      expect(applyInput(s, { k: 'bell' })).toBe(true);
+      expect(Object.keys(s.commands)).toEqual([who]);
+      expect(s.alerts.at(-1)?.text).toContain('rings for');
+      named += 1;
+      stepMinute(s);
+      const second = bellTarget(s);
+      if (second !== null && second !== who && applyInput(s, { k: 'bell' })) {
+        expect(Object.keys(s.commands).sort()).toEqual([who, second].sort());
+        next += 1;
+      }
+    }
+    expect(named).toBeGreaterThan(5);
+    expect(next).toBeGreaterThan(0);
   });
 
   it('the lantern alone at an empty stretch slows climbers, and the dawn page names the empty post', () => {

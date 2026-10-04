@@ -25,6 +25,14 @@ describe('Game 3 years (G3-3)', () => {
     for (const a of s.annals) expect(a.harvest).toBeGreaterThan(0);
   }, 300_000);
 
+  it('children hear winter stories: a told gist of a stretch of wall (H2)', () => {
+    const told = s.community.people.flatMap((p) =>
+      (p.memory.gists ?? []).filter((g) => g.tags.includes('told') && g.placeId !== undefined),
+    );
+    expect(told.length).toBeGreaterThan(0);
+    expect(told.every((g) => ['west', 'gate', 'mill', 'east'].includes(g.placeId ?? ''))).toBe(true);
+  }, 300_000);
+
   it('the multi-year playtest export replays to the same end', () => {
     const exp = JSON.parse(JSON.stringify(run.export()));
     expect(JSON.stringify(endState(replay(exp)))).toBe(JSON.stringify(exp.end));

@@ -51,6 +51,7 @@ import {
   SMALL_VILLAGE,
   settleLifeCard,
   settleProposal,
+  winterStories,
 } from './life.ts';
 import { planNight, presentIds, stepPeople } from './night.ts';
 import { isWatcher, nameOf, personOf } from './people.ts';
@@ -153,6 +154,7 @@ function thaw(s: WatchState): void {
   }
   if (q) chronicle(s, 'winter', q.met ? `Done: ${q.text}` : `Not done: ${q.text}`);
   routineLine(s);
+  winterStories(s);
   // Grown old on the wall.
   for (const p of living(s)) {
     if (isWatcher(s, p) && ageOf(p, s.minute) >= 60 && (s.cast[p.id]?.comes.year ?? s.year) <= s.year - 20)

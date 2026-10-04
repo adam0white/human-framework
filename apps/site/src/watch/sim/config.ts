@@ -340,6 +340,8 @@ export const FOUNDER_MARRIAGES: readonly [WatcherId, WatcherId][] = [['mara', 'j
  */
 export const NIGHT_CARRY = 3;
 export const NIGHT_CARRY_RICH = 8;
+/** In year 1's opening nights (uncapped by NIGHT_CARRY), the share of the granary at dusk one night can carry off. */
+export const OPENING_CARRY_SHARE = 0.5;
 
 /** Hit chance per minute at sling 1, lit, unhurt, rested and calm. */
 export const AIM_SCALE = 0.36;
