@@ -9,6 +9,6 @@
     "declarationDir": ".types",
     "paths": { "@human/framework": ["../../packages/human/src/index.ts"] }
   },
-  "include": ["src", "vite.config.ts"],
+  "include": ["src", "test", "vite.config.ts"],
   "references": [{ "path": "../../packages/human" }]
 }

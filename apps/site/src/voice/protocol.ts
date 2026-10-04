@@ -71,7 +71,20 @@ export interface Draft {
   appeal?: Appeal;
 }
 export interface StandingWhisper {
-  choiceId: 'work' | 'extra' | 'doctor' | 'selin' | 'rent' | 'mosque' | 'rest' | 'walk';
+  choiceId:
+    | 'work'
+    | 'extra'
+    | 'doctor'
+    | 'selin'
+    | 'rent'
+    | 'mosque'
+    | 'rest'
+    | 'walk'
+    // Tempting words (tenth pass): the player's own choice, framed as plainly as the others.
+    | 'sleepIn'
+    | 'friends'
+    | 'osmanWaits'
+    | 'skipCall';
   strength: Strength;
   appeal?: Appeal;
 }
@@ -89,6 +102,10 @@ export const WHISPER_DEFAULT: Record<StandingWhisper['choiceId'], Omit<StandingW
   mosque: { strength: 'mention' },
   rest: { strength: 'mention' },
   walk: { strength: 'mention', appeal: 'safety' },
+  sleepIn: { strength: 'mention', appeal: 'safety' },
+  friends: { strength: 'mention', appeal: 'belonging' },
+  osmanWaits: { strength: 'mention', appeal: 'benevolence' },
+  skipCall: { strength: 'mention', appeal: 'benevolence' },
 };
 /** A whisper as the between-days card makes it when the player picks it and changes nothing. */
 export const defaultWhisper = (choiceId: StandingWhisper['choiceId']): StandingWhisper => ({
@@ -303,7 +320,11 @@ export interface ReportView {
 }
 
 export type WorkerReply =
-  | { type: 'frame'; frame: Frame }
+  /**
+   * A frame: the fields that changed since the last one posted on this run, with the unchanged ones named in
+   * `same` (the page reuses its previous values). Without `same` the frame is whole.
+   */
+  | { type: 'frame'; frame: Partial<Frame>; same?: (keyof Frame)[] }
   | { type: 'predicted'; requestId: number; telegraph: Telegraph }
   | { type: 'why'; decisionId: string; why: WhyView | null }
   | { type: 'between'; view: BetweenView }

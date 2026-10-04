@@ -123,7 +123,8 @@ conversation (testimony and advice between members), contagion, and the optional
 `runSilent(c, world, days, { mutedVoiceId })` runs the same driver with one voice's standing suggestions
 dropped. `diffChronicle(a, b)` then reports what changed between two periods of consolidated day records.
 It covers what the person now does unprompted, what they still do only when told, and how trust and mood
-moved. Two scenarios are bundled as reference hosts: `createVillage` and `createTown`.
+moved. One scenario is bundled as the reference host: `createVillage`. (Game 2's town, `createTown`, was
+bundled until 1.2.0; it now lives in `apps/site/src/voice/sim/town.ts` as an example of a richer host.)
 
 ## Determinism, snapshots, versions
 
@@ -137,13 +138,13 @@ moved. Two scenarios are bundled as reference hosts: `createVillage` and `create
   (`communityState(c)`), and the world's own state. Restoring only the people and calling
   `createCommunity(people)` diverges: the day hooks run again, and queued advice and standing-advice
   completions are lost. Resume with `createCommunity(people, savedCommunityState)` and the world's resume
-  option (`createTown(people, { seed, state })`, `createVillage(people, { seed, state })`):
+  option (for the village, `createVillage(people, { seed, state })`):
 
   ```ts
-  const save = JSON.stringify({ people: c.people.map(snapshot), community: communityState(c), world: town.state });
+  const save = JSON.stringify({ people: c.people.map(snapshot), community: communityState(c), world: village.state });
   const s = JSON.parse(save);
   const people = s.people.map(restore);
-  const town2 = createTown(people, { seed: 0, state: s.world });
+  const village2 = createVillage(people, { seed: 0, state: s.world });
   const c2 = createCommunity(people, s.community); // continues exactly as the unsaved run would
   ```
 - Version numbers are described under [Versions](#versions).

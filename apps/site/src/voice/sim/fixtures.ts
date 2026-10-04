@@ -296,41 +296,26 @@ export const sampleBetween: BetweenView = {
   choices: [],
 };
 
+const SKIP_COST = 'He’ll hear this at every decision for 12 days. If he doesn’t want it, it wears on him.';
+
 export const sampleBetweenSkip: BetweenView = {
   ...sampleBetween,
   closed: 'Ramadan 2 is over.',
   next: { label: 'Ramadan 15', day: 15, skipped: 12 },
+  // The real card's list and order (tenth pass), every row shown, the longest the card gets.
   choices: [
-    {
-      id: 'work',
-      label: 'work in the morning',
-      cost: 'He’ll hear this at every decision for 12 days. If he doesn’t want it, it wears on him.',
-    },
-    {
-      id: 'doctor',
-      label: 'see the doctor',
-      cost: 'He’ll hear this at every decision for 12 days. If he doesn’t want it, it wears on him.',
-    },
-    {
-      id: 'selin',
-      label: 'call Selin',
-      cost: 'He’ll hear this at every decision for 12 days. If he doesn’t want it, it wears on him.',
-    },
-    {
-      id: 'rent',
-      label: 'pay Osman when you can',
-      cost: 'He’ll hear this at every decision for 12 days. If he doesn’t want it, it wears on him.',
-    },
-    {
-      id: 'mosque',
-      label: 'pray at the mosque',
-      cost: 'He’ll hear this at every decision for 12 days. If he doesn’t want it, it wears on him.',
-    },
-    {
-      id: 'rest',
-      label: 'rest in the afternoon',
-      cost: 'He’ll hear this at every decision for 12 days. If he doesn’t want it, it wears on him.',
-    },
+    { id: 'work', label: 'work in the morning', cost: SKIP_COST },
+    { id: 'sleepIn', label: 'sleep in after suhoor', cost: SKIP_COST },
+    { id: 'doctor', label: 'see the doctor', cost: SKIP_COST },
+    { id: 'rent', label: 'pay Osman when you can', cost: SKIP_COST },
+    { id: 'osmanWaits', label: 'Eid first; Osman can wait', cost: SKIP_COST },
+    { id: 'extra', label: 'take the afternoon shift', cost: SKIP_COST },
+    { id: 'rest', label: 'rest in the afternoon', cost: SKIP_COST },
+    { id: 'mosque', label: 'pray at the mosque', cost: SKIP_COST },
+    { id: 'walk', label: 'walk after iftar, not the cigarette', cost: SKIP_COST },
+    { id: 'friends', label: 'stay out late with Rıza', cost: SKIP_COST },
+    { id: 'selin', label: 'call Selin', cost: SKIP_COST },
+    { id: 'skipCall', label: 'skip the call, she’s busy', cost: SKIP_COST },
   ],
 };
 

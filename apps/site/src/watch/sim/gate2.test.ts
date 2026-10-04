@@ -6,7 +6,7 @@
  * (`matched`), one who leaves the standing posts (`usual`). Cards are left unanswered: people decide alone.
  */
 import { describe, expect, it } from 'vitest';
-import { type PlanName, planInputs } from './plans.ts';
+import { type PlanName, planInputs } from '../../../test/watch/plans.ts';
 import { WatchRun } from './run.ts';
 
 const SEEDS = Array.from({ length: 24 }, (_, i) => 1000 + i * 7919);

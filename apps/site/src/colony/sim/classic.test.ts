@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import { createPlaceholderHumanSide } from '../../../test/colony/placeholder-human.fixture.ts';
 import { CLASSIC, ClassicSim } from './classic.ts';
 import { ColonyGame, DEFAULT_SEED } from './game.ts';
-import { createPlaceholderHumanSide } from './placeholder-human.fixture.ts';
 import { applyWorldMinute, createSideWorld, END_MINUTE, VILLAGERS } from './world-types.ts';
 
 function run(seed: number, orders: [number, Parameters<ColonyGame['issue']>[0]][], until: number) {

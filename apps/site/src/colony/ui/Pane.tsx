@@ -58,9 +58,16 @@ export function placeUnder(lx: number, ly: number): PlaceId | null {
   return null;
 }
 
-function hitPerson(people: DrawPerson[], lx: number, ly: number): VillagerId | null {
+/** Hit radius in logical px: 18, widened on touch to at least 22 CSS px however small the map is drawn. */
+function hitRadius(e: React.PointerEvent): number {
+  if (e.pointerType !== 'touch') return 18;
+  const w = (e.currentTarget as HTMLElement).getBoundingClientRect().width;
+  return w > 0 ? Math.max(18, (22 * LOGICAL_W) / w) : 18;
+}
+
+function hitPerson(people: DrawPerson[], lx: number, ly: number, radius = 18): VillagerId | null {
   let best: VillagerId | null = null;
-  let bestD = 18 * 18;
+  let bestD = radius * radius;
   for (const p of people) {
     if (p.state === 'asleep' || p.carriedBy) continue;
     const px = (p.x + 0.5) * 32;
@@ -101,39 +108,77 @@ export const Pane = memo(function Pane(props: PaneProps) {
     const resize = () => {
       const rect = w.getBoundingClientRect();
       cssW = rect.width;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      const dpr = Math.min(window.devicePixelRatio || 1, 3);
       c.width = Math.round(rect.width * dpr);
       c.height = Math.round(rect.height * dpr);
     };
     resize();
-    const ro = new ResizeObserver(resize);
+    // Resizing clears the canvas; a font arriving changes the labels. Either needs a fresh draw.
+    let dirty = true;
+    const ro = new ResizeObserver(() => {
+      resize();
+      dirty = true;
+    });
     ro.observe(w);
+    document.fonts?.ready.then(() => {
+      dirty = true;
+    });
 
     let raf = 0;
     let lastFrame: Frame | null = null;
     let lastVersion = -1;
+    /** What the canvas last showed; a still scene with the same inputs is not drawn again (perf review V18). */
+    let drawn: {
+      f: Frame;
+      selectedId: VillagerId | null;
+      hoverPlace: PlaceId | null;
+      moving: boolean;
+    } | null = null;
     const draw = (now: number) => {
       raf = requestAnimationFrame(draw);
       const s = store.current;
       const f = s.curr;
       if (!f) return;
       const p = live.current;
-      const world = side === 'classic' ? f.classicWorld : f.humanWorld;
-      people.current = interpolate(s, side, now);
-      ctx.setTransform(c.width / LOGICAL_W, 0, 0, c.height / LOGICAL_H, 0, 0);
-      drawScene(ctx, {
-        side,
-        minute: f.minute,
-        darkness: f.darkness,
-        weather: f.weather,
-        world,
-        people: people.current,
-        selectedId: p.selectedId,
-        hoverPlace: p.hoverPlace,
-        showPlaceLabels: p.selectedId !== null,
-        realTime: now,
-        cooking: cookingNow(f, side),
-      });
+      const cooking = cookingNow(f, side);
+      // Moving people (interpolation), the hover outline, kitchen smoke, sleepers' z, lantern flicker and rain
+      // animate on real time; anything else only changes with a new frame, a selection, a hover or a resize.
+      const moving = s.prev !== null && now - s.at < s.interval;
+      const animated =
+        moving ||
+        p.hoverPlace !== null ||
+        (side === 'human' && (cooking || f.darkness > 0)) ||
+        f.weather.kind === 'storm' ||
+        f.weather.kind === 'squall' ||
+        (side === 'classic' ? f.classic : f.human).some((u) => u.state === 'asleep');
+      const still =
+        !dirty &&
+        !animated &&
+        drawn !== null &&
+        !drawn.moving && // one more draw once people settle, at their final spots
+        drawn.f === f &&
+        drawn.selectedId === p.selectedId &&
+        drawn.hoverPlace === p.hoverPlace;
+      if (!still) {
+        dirty = false;
+        drawn = { f, selectedId: p.selectedId, hoverPlace: p.hoverPlace, moving };
+        const world = side === 'classic' ? f.classicWorld : f.humanWorld;
+        people.current = interpolate(s, side, now);
+        ctx.setTransform(c.width / LOGICAL_W, 0, 0, c.height / LOGICAL_H, 0, 0);
+        drawScene(ctx, {
+          side,
+          minute: f.minute,
+          darkness: f.darkness,
+          weather: f.weather,
+          world,
+          people: people.current,
+          selectedId: p.selectedId,
+          hoverPlace: p.hoverPlace,
+          showPlaceLabels: p.selectedId !== null,
+          realTime: now,
+          cooking,
+        });
+      }
 
       if (bubbles) {
         if (f !== lastFrame) {
@@ -231,7 +276,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
   const onPointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     endPress();
     const { lx, ly } = toLogical(e);
-    const who = hitPerson(people.current, lx, ly);
+    const who = hitPerson(people.current, lx, ly, hitRadius(e));
     if (!who) {
       press.current = null;
       return;
@@ -250,7 +295,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
     press.current = null;
     if (fired) return;
     const { lx, ly } = toLogical(e);
-    const who = hitPerson(people.current, lx, ly);
+    const who = hitPerson(people.current, lx, ly, hitRadius(e));
     if (who) {
       props.onSelect(who);
       return;
@@ -267,7 +312,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
     }
     if (e.pointerType === 'touch') return;
     const { lx, ly } = toLogical(e);
-    const who = hitPerson(people.current, lx, ly);
+    const who = hitPerson(people.current, lx, ly, hitRadius(e));
     e.currentTarget.style.cursor = who || (props.selectedId && placeUnder(lx, ly)) ? 'pointer' : 'default';
     const pl = props.selectedId ? placeUnder(lx, ly) : null;
     if (pl !== props.hoverPlace) props.onHoverPlace(pl);

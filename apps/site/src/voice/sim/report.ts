@@ -12,12 +12,11 @@ import {
   dominantTerm,
   MINUTES_PER_DAY,
   owedMakeUps,
-  TOWN_DEFAULTS,
-  TOWN_EID_DAY,
   voiceOf,
 } from '@human/framework';
 import { type EndView, MODEL_NOTES, type ReportView, type StripRow } from '../protocol.ts';
 import type { Run } from './game.ts';
+import { TOWN_DEFAULTS, TOWN_EID_DAY } from './town.ts';
 import {
   type Cell,
   clock,
@@ -107,8 +106,10 @@ function ledger(i: ReportInput): NonNullable<ReportView['ledger']> {
     (a, b) => b[1].played + b[1].days - (a[1].played + a[1].days) || (a[0] < b[0] ? -1 : 1),
   );
   for (const [key, said] of entries) {
-    if (key === 'sleep' || key === 'rest' || key === 'wait') continue;
-    const done = eid.filter((c) => ledgerKey(c.affordanceId) === key);
+    // Words against an act (tenth pass) have no Eid act of their own to show.
+    if (['sleep', 'rest', 'wait', 'osman-waits', 'skip-call'].includes(key)) continue;
+    const act = key === 'friends' ? 'tea:riza' : key;
+    const done = eid.filter((c) => ledgerKey(c.affordanceId) === act);
     let what: string;
     if (done.length === 0) {
       const heavy = i.weighs?.find(

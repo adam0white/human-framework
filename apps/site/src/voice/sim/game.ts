@@ -16,7 +16,6 @@ import {
   chronicleBetween,
   consolidateDay,
   createCommunity,
-  createTown,
   type DayRecord,
   type DecisionRecord,
   dayOf,
@@ -35,20 +34,8 @@ import {
   type SimEvent,
   type StepOptions,
   type Suggestion,
-  selinEidCallMinute,
   standingHeard,
   stepCommunity,
-  TOWN_DEFAULTS,
-  TOWN_EID_DAY,
-  TOWN_GAME_CREATE,
-  TOWN_GAME_START,
-  TOWN_IDS,
-  type Town,
-  type TownOptions,
-  type TownPersonId,
-  townCalendar,
-  townDay,
-  townPeople,
   voiceOf,
 } from '@human/framework';
 import {
@@ -74,6 +61,21 @@ import { BEAT_COOLDOWN, type BeatState, createBeats, fire, flagOnce, takeCloseCa
 import { closeRival, moneyShort, prefillFor } from './prefill.ts';
 import { buildReport, ledgerKey, type SaidCount } from './report.ts';
 import { answer, createStanding, type Standing, standingView, toSuggestion, WHY_AWAY } from './standing.ts';
+import {
+  createTown,
+  selinEidCallMinute,
+  TOWN_DEFAULTS,
+  TOWN_EID_DAY,
+  TOWN_GAME_CREATE,
+  TOWN_GAME_START,
+  TOWN_IDS,
+  type Town,
+  type TownOptions,
+  type TownPersonId,
+  townCalendar,
+  townDay,
+  townPeople,
+} from './town.ts';
 import { noteUnasked, type UnaskedState, unaskedView } from './unasked.ts';
 import {
   ACTION_LABEL,
@@ -114,17 +116,58 @@ export const EPILOGUE_DAYS = 6;
 const NAP_LONGEST = 120;
 /** Length of one whisper's turn during a skip (see the deviation note above). */
 const SKIP_CHUNK = 60;
+/** The turn while a word against an act is standing: it is heard only while that act is on offer, so look often. */
+const AGAINST_CHUNK = 15;
+/** The acts a word can be against, in the past tense, for the skip digest. */
+const AGAINST_PAST: Record<string, string> = { 'call:selin': 'called Selin' };
 
-export const WHISPERS: Record<StandingWhisper['choiceId'], { optionId: string; label: string }> = {
-  extra: { optionId: 'work-extra', label: 'take the afternoon shift' },
+/**
+ * The between-days card's closed list, in the order of the day it acts in (tenth pass: the tempting words sit among
+ * the others, not in a group of their own). Each is a standing suggestion for one of his options.
+ * - `window`: heard only between these minutes of the day (Dhuhr to Asr for the afternoon rest; ninth pass, defect
+ *   2: heard at every hour, the rest pushed out his night's sleep and the water at suhoor).
+ * - `against`: a word against an act. The framework hears suggestions only *for* an option, so the word is for
+ *   `optionId` and is heard only while `against` is on offer or under way. (A preview-gated version, heard only
+ *   while he leaned to the act, never fired: he chose the call between the checks; docs/findings.md.)
+ * - `key`: the report's ledger row, when the option alone would name it wrongly.
+ */
+export interface WhisperDef {
+  optionId: string;
+  label: string;
+  window?: (day: number) => readonly [number, number];
+  against?: string;
+  key?: string;
+}
+export const WHISPERS: Record<StandingWhisper['choiceId'], WhisperDef> = {
   work: { optionId: 'work-repair', label: 'work in the morning' },
+  // From sunrise (the dawn prayer's time is over) to 10:00, against the workshop's morning (design review).
+  sleepIn: {
+    optionId: 'sleep',
+    label: 'sleep in after suhoor',
+    window: (day) => [townCalendar(day).sunrise, 10 * 60],
+  },
   doctor: { optionId: 'see-doctor', label: 'see the doctor' },
-  selin: { optionId: 'call:selin', label: 'call Selin' },
   rent: { optionId: 'pay-rent', label: 'pay Osman when you can' },
+  osmanWaits: { optionId: 'shop', label: 'Eid first; Osman can wait' },
+  extra: { optionId: 'work-extra', label: 'take the afternoon shift' },
+  rest: {
+    optionId: 'rest',
+    label: 'rest in the afternoon',
+    window: (day) => [townCalendar(day).dhuhr, townCalendar(day).asr],
+  },
   mosque: { optionId: 'pray', label: 'pray at the mosque' },
-  rest: { optionId: 'rest', label: 'rest in the afternoon' },
   walk: { optionId: 'walk', label: 'walk after iftar, not the cigarette' },
+  friends: {
+    optionId: 'tea:riza',
+    label: 'stay out late with Rıza',
+    window: (day) => [townCalendar(day).maghrib + 60, TOWN_DEFAULTS.dayTo],
+    key: 'friends',
+  },
+  selin: { optionId: 'call:selin', label: 'call Selin' },
+  skipCall: { optionId: 'rest', label: 'skip the call, she’s busy', against: 'call:selin', key: 'skip-call' },
 };
+/** A whisper's ledger key (see `WhisperDef.key`). */
+const whisperKey = (d: WhisperDef): string => d.key ?? ledgerKey(d.optionId);
 
 const CRAVING_MIN = 0.3;
 /** Acts that speak for themselves, and the need intentions (lexicon `intention:<need>`) dropped from their line. */
@@ -217,6 +260,8 @@ export class VoiceGame {
     | undefined;
   /** Rent payments with their minute (the town keeps only the total). */
   payments: { at: number; amount: number }[] = [];
+  /** Every call between Halil and Selin that connected, and who made it (family contact, for the balance probe). */
+  calls: { at: number; by: string }[] = [];
   private rentSeen = 0;
   private introduced = new Set<string>();
   firstSuggestion = false;
@@ -331,6 +376,23 @@ export class VoiceGame {
     return this.run.town.affordancesFor(this.halil);
   }
 
+  /** Whether a standing whisper is in force now: within its hours, and (a word against an act) while he leans to it. */
+  private whisperLive(def: WhisperDef, offers: readonly Affordance[]): boolean {
+    const d = dayOf(this.t);
+    if (def.window) {
+      const [from, to] = def.window(d);
+      const m = this.t - d * MINUTES_PER_DAY;
+      if (m < from || m >= to) return false;
+    }
+    if (def.against) {
+      // On his way to do it: the word is heard at the activity's reviews, and may turn him back.
+      const act = this.halil.activity;
+      if (act && act.affordanceId === def.against && this.t < act.endsAt) return true;
+      return offers.some((o) => o.id === def.against);
+    }
+    return true;
+  }
+
   predict(draft: Draft): Telegraph {
     const h = this.waking() ? this.ghost() : this.halil;
     const r = preview(h, this.offers(), toSuggestion(draft), {
@@ -392,8 +454,13 @@ export class VoiceGame {
   }
 
   /** Count what the player said, by option: suggestions on played days, and days under a whisper. */
-  private countSaid(optionId: string, label: string, played: number, days = 0): void {
-    const key = ledgerKey(optionId);
+  private countSaid(
+    optionId: string,
+    label: string,
+    played: number,
+    days = 0,
+    key = ledgerKey(optionId),
+  ): void {
     const plain =
       WHISPER_LABEL[key] ??
       label.split(' · ').find((x) => x !== 'mention' && x !== 'urge' && !x.endsWith('insist')) ??
@@ -477,19 +544,33 @@ export class VoiceGame {
     this.quiet = true;
     try {
       let k = 0;
+      const items = chosen.map((w, i) => ({ w, def: WHISPERS[w.choiceId], s: list[i] as Suggestion }));
+      // A word against an act is checked more often: it is heard only while he leans to that act.
+      const chunk = items.some((x) => x.def.against) ? AGAINST_CHUNK : SKIP_CHUNK;
       while (this.t < target) {
-        const until = Math.min(target, this.t + SKIP_CHUNK);
-        let sug: Suggestion | undefined;
-        if (list.length > 0) {
-          const offers = this.offers();
-          const order = list.map((_, i) => list[(k + i) % list.length] as Suggestion);
-          sug = order.find((s) => standingHeard(this.run.c, this.halil, s, offers, this.t)) ?? order[0];
+        let until = Math.min(target, this.t + chunk);
+        // A word with hours is not carried past the edge of its hours.
+        for (const x of items) {
+          if (!x.def.window) continue;
+          const d = dayOf(this.t);
+          for (const edge of x.def.window(d)) {
+            const at = d * MINUTES_PER_DAY + edge;
+            if (at > this.t && at < until) until = at;
+          }
         }
+        let pick: (typeof items)[number] | undefined;
+        if (items.length > 0) {
+          const offers = this.offers();
+          const order = items.map((_, i) => items[(k + i) % items.length] as (typeof items)[number]);
+          const live = order.filter((x) => this.whisperLive(x.def, offers));
+          pick = live.find((x) => standingHeard(this.run.c, this.halil, x.s, offers, this.t)) ?? live[0];
+        }
+        const sug = pick?.s;
         this.stepTo(until, sug ? { halil: sug } : undefined);
         k += 1;
-        if (sug?.affordanceId) {
-          const a = answers.get(sug.affordanceId) ?? { yes: 0, off: 0, no: 0 };
-          answers.set(sug.affordanceId, a);
+        if (pick) {
+          const a = answers.get(pick.w.choiceId) ?? { yes: 0, off: 0, no: 0 };
+          answers.set(pick.w.choiceId, a);
           for (const r of this.halil.trace) {
             if (traceSeen.has(r.id) || r.review) continue;
             const y = resolutionsOf(r).find((x) => x?.voiceId === 'you');
@@ -541,13 +622,25 @@ export class VoiceGame {
       lines.push(...this.firsts(this.cells.slice(0, before.cells).filter(happened), cells, fromDay));
       // What your whispers did: how many of the days he did each.
       for (const [i, w] of chosen.entries()) {
-        const id = WHISPERS[w.choiceId].optionId;
+        const def = WHISPERS[w.choiceId];
+        const id = def.optionId;
         const did = new Set(cells.filter((c) => c.affordanceId === id).map((c) => dayOf(c.from))).size;
         const all = cells.filter((c) => c.affordanceId === id).length;
         const onWord = cells.filter((c) => c.affordanceId === id && c.promptedBy === 'you').length;
         const own = all - onWord;
-        if (!this.free) this.countSaid(id, WHISPERS[w.choiceId].label, 0, days);
-        const a = answers.get(id) ?? { yes: 0, off: 0, no: 0 };
+        if (!this.free) this.countSaid(id, def.label, 0, days, whisperKey(def));
+        const a = answers.get(w.choiceId) ?? { yes: 0, off: 0, no: 0 };
+        if (def.against) {
+          // A word against an act: what he did of that act anyway, and how often he let it go when he heard you.
+          const against = def.against;
+          const anyway = new Set(cells.filter((c) => c.affordanceId === against).map((c) => dayOf(c.from)))
+            .size;
+          const heardIt = a.yes + a.off + a.no;
+          lines.push(
+            `“${def.label}” (${w.strength}${i === 0 && chosen.length > 1 ? ', in turn with the other' : ''}): ${anyway === 0 ? `he ${AGAINST_PAST[against] ?? against} on none of the ${days} days` : `he ${AGAINST_PAST[against] ?? against} on ${anyway} of ${days} days anyway`}.${heardIt === 0 ? ' He never leaned to it while you were saying it.' : ` When he leaned to it and heard you, he let it go ${times(a.yes)}${a.off + a.no > 0 ? ` and went ahead ${times(a.off + a.no)}` : ''}.`}`,
+          );
+          continue;
+        }
         const heard = a.yes + a.off + a.no;
         // Round 4 (game design review): his answers, so a whisper reads as a word he weighed, not a switch.
         const said =
@@ -637,17 +730,24 @@ export class VoiceGame {
       new Set(cells.filter((c) => c.affordanceId === id).map((c) => dayOf(c.from))).size;
     const mornings = daysOf('work-repair');
     const afternoons = daysOf('work-extra');
-    // What he earned, so the money adds up on the card: now − before + rent paid + clinic fees (the only costs).
+    // What he earned, so the money adds up on the card: now − before + rent paid + clinic fees + Eid shopping (the only costs).
     const clinicVisits = cells.filter((c) => c.affordanceId === 'see-doctor').length;
+    const shopped = cells.filter((c) => c.affordanceId === 'shop').length;
+    const spent = shopped * TOWN_DEFAULTS.shopCost;
     const earned = Math.round(
       (st.money.halil ?? 0) -
         before.money +
         (st.rentPaid - before.paid) +
-        clinicVisits * TOWN_DEFAULTS.clinicFee,
+        clinicVisits * TOWN_DEFAULTS.clinicFee +
+        spent,
     );
     out.push(
       `He worked ${mornings} morning${mornings === 1 ? '' : 's'}${afternoons > 0 ? ` and ${afternoons} afternoon shift${afternoons === 1 ? '' : 's'}` : ' and no afternoon shift'} and earned ${earned} (a spoiled job pays less than half); he has ${Math.round(st.money.halil ?? 0)} (was ${Math.round(before.money)}).`,
     );
+    if (shopped > 0)
+      out.push(
+        `He shopped for Eid on ${daysOf('shop')} day${daysOf('shop') === 1 ? '' : 's'} and spent ${spent}.`,
+      );
     if (tally.pays.length > 0)
       out.push(tally.pays.map((p) => `He paid Osman ${p.amount} on ${dayLabel(p.day)}.`).join(' '));
     else if (tally.collects.length > 0)
@@ -982,6 +1082,7 @@ export class VoiceGame {
     const call = this.run.town.state.lastCall;
     if (!call || call.at === this.callSeen) return;
     this.callSeen = call.at;
+    this.calls.push({ at: call.at, by: call.by });
     if (call.by === 'halil') this.halilCalledAt = call.at;
     else if (dayOf(call.at) === TOWN_EID_DAY) this.selinEidCallAt ??= call.at;
     const firstOnEid =
@@ -1582,6 +1683,18 @@ export class VoiceGame {
           ? (Object.keys(WHISPERS) as StandingWhisper['choiceId'][])
               // The doctor's walk is a choice once she has told him to walk (round 5).
               .filter((id) => id !== 'walk' || this.run.town.state.doctorSaid?.halil !== undefined)
+              // A word is on the card only when it has something to act on in the coming days (design review,
+              // tenth pass): the Eid market once the skip reaches it, and a word against the call once he calls.
+              .filter(
+                (id) =>
+                  id !== 'osmanWaits' ||
+                  d + skipped >= TOWN_DEFAULTS.ramadanFirstDay + TOWN_DEFAULTS.shopFirstDay - 1,
+              )
+              .filter(
+                (id) =>
+                  id !== 'skipCall' ||
+                  this.calls.some((c) => c.by === 'halil' && c.at >= (d - 1) * MINUTES_PER_DAY),
+              )
               .map((id) => {
                 const choice: BetweenView['choices'][number] = { id, label: WHISPERS[id].label, cost };
                 if (id === 'extra' && short)
@@ -1921,7 +2034,7 @@ const UNASKED_LINE: Record<string, string> = {
 };
 const adviceKey = (a: { sourceId: string; action: string; at: number }) =>
   `${a.sourceId}:${a.action}:${a.at}`;
-const voiceWho = (id: string): LogEntry['who'] => (isVoiceId(id) ? (id as VoiceId) : 'halil');
+const voiceWho = (id: string): LogEntry['who'] => (isVoiceId(id) ? id : 'halil');
 const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /** Cigarettes he smoked on a day, from the activity cells (played and skipped days). */
@@ -1946,7 +2059,10 @@ const round2 = (x: number) => Math.round(x * 100) / 100;
 
 /** Whisper labels by ledger key, so the report names a thing the same way however it was said. */
 const WHISPER_LABEL: Record<string, string> = Object.fromEntries(
-  Object.values(WHISPERS).map((w) => [ledgerKey(w.optionId), w.label]),
+  Object.values(WHISPERS)
+    // A word against an act is not a name for the option it is carried by ('rest').
+    .filter((w) => !w.against)
+    .map((w) => [whisperKey(w), w.label]),
 );
 
 const VOICE_CHANNEL: Record<string, string> = {

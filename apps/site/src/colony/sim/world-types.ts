@@ -3,6 +3,7 @@
  * roster, per-side world state and the scenario roll. Both the Classic side and any HumanSide read these,
  * so "same seed, same schedule" holds by construction. Pure TS; no DOM, no wall clock, no Math.random.
  */
+import { DEFAULT_PRAYER_TIMES } from '@human/framework';
 import { type PlaceId, spotFor, type Tile } from './map.ts';
 
 export type Minute = number;
@@ -42,13 +43,16 @@ export function formatClock(m: Minute): string {
 
 export type PrayerId = 'fajr' | 'dhuhr' | 'asr' | 'maghrib' | 'isha';
 
-/** Fixed prayer times as minute of day (spec §2). */
+/**
+ * Fixed prayer times as minute of day (spec §2): the framework's `DEFAULT_PRAYER_TIMES`, so the adhan and the
+ * villagers' prayer windows cannot drift apart (quality review 2026-10-04 §4). Only the labels are the game's.
+ */
 export const PRAYER_TIMES: readonly { id: PrayerId; label: string; minuteOfDay: number }[] = [
-  { id: 'fajr', label: 'Fajr', minuteOfDay: 5 * 60 },
-  { id: 'dhuhr', label: 'Dhuhr', minuteOfDay: 12 * 60 + 30 },
-  { id: 'asr', label: 'Asr', minuteOfDay: 16 * 60 },
-  { id: 'maghrib', label: 'Maghrib', minuteOfDay: 18 * 60 + 45 },
-  { id: 'isha', label: 'Isha', minuteOfDay: 20 * 60 + 15 },
+  { id: 'fajr', label: 'Fajr', minuteOfDay: DEFAULT_PRAYER_TIMES.fajr },
+  { id: 'dhuhr', label: 'Dhuhr', minuteOfDay: DEFAULT_PRAYER_TIMES.dhuhr },
+  { id: 'asr', label: 'Asr', minuteOfDay: DEFAULT_PRAYER_TIMES.asr },
+  { id: 'maghrib', label: 'Maghrib', minuteOfDay: DEFAULT_PRAYER_TIMES.maghrib },
+  { id: 'isha', label: 'Isha', minuteOfDay: DEFAULT_PRAYER_TIMES.isha },
 ];
 
 /** The adhan that sounds exactly at minute `m`, if any. */
@@ -357,6 +361,14 @@ export function siteOpen(world: Pick<SideWorld, 'house' | 'storeroom'>): boolean
 // ---------------------------------------------------------------------------------------------
 
 export type VillagerId = 'maryam' | 'yusuf' | 'tariq' | 'idris' | 'samira' | 'danyal';
+const VILLAGER_IDS: ReadonlySet<string> = new Set(['maryam', 'yusuf', 'tariq', 'idris', 'samira', 'danyal']);
+
+/** Narrow a framework person id to a villager id at the adapter boundary; anything else is a bug. */
+export function villagerId(id: string): VillagerId {
+  if (!VILLAGER_IDS.has(id)) throw new Error(`not a villager: '${id}'`);
+  return id as VillagerId;
+}
+
 export type Role = 'cook' | 'builder' | 'apprentice' | 'forester' | 'gatherer' | 'well-keeper';
 export type Look = 'headscarf' | 'cap' | 'bare';
 

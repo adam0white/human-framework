@@ -52,6 +52,7 @@ import {
   ORDER_LIFETIME,
   PRAYER_TIMES,
   type SideWorld,
+  START_CLOCK,
   type VillagerId,
   type VillagerSpec,
 } from './world-types.ts';
@@ -230,7 +231,7 @@ export class FrameworkHumanSide implements HumanSide {
     }
 
     // The role goal is a standing vocation, not a task that ends: the host renews it each dawn.
-    if (m > 0 && (fw(m) - 5 * 60) % 1440 === 0) {
+    if (m > 0 && (fw(m) - START_CLOCK) % 1440 === 0) {
       for (const p of this.community.people) {
         for (const g of p.agenda.goals) {
           if (g.id !== 'role') continue;

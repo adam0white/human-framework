@@ -7,48 +7,53 @@
  * dawn hooks (exemptions, prayer-time retiming, make-up scheduling), a money ledger that feeds scarcity, and
  * conversations through the driver's convention (testimony, gossip, standing advice). Outcomes use the town's
  * own seeded RNG. Travel is not modelled: every option is offered to whoever may take it, with duration standing
- * in for distance. This is a fixture for exercising the framework end to end, not a model of any town.
+ * in for distance. This is a fixture for exercising the framework end to end, not a model of any town. It lived in
+ * packages/human/src/scenarios until the 2026-10-04 review moved it here: it is game content, and it uses only the
+ * framework's public API.
  *
  * Selin's own day happens off the map (place 'city'); she is in the community so that calls run `converse` both
  * ways and her advice reaches Halil as a standing voice.
  */
 import {
+  type Activity,
+  type Affordance,
   applyExemptions,
+  believe,
+  type ConverseContext,
   calendarRetimer,
+  chance,
+  createPerson,
+  createRng,
+  dayOf,
   eidPrayer,
   eidWindow,
+  heldNorms,
+  type Lexicon,
+  MINUTES_PER_DAY,
+  MINUTES_PER_YEAR,
+  type Minute,
+  minuteOfDay,
+  type Outcome,
   owedMakeUps,
+  type Percept,
+  type Person,
+  type PersonId,
+  type PersonSpec,
   type PrayerCalendar,
   prayerWindows,
   RAMADAN_DEFAULTS,
+  type RngState,
   ramadanFast,
   ramadanMeals,
+  readBody,
+  remember,
   retimeCommitments,
   scheduleMakeUp,
-} from '../agenda/index.ts';
-import { believe } from '../beliefs/index.ts';
-import { readBody, sicken } from '../body/index.ts';
-import { heldNorms } from '../conscience/index.ts';
-import type { ConverseContext } from '../conversation/index.ts';
-import { chance, createRng, dayOf, minuteOfDay } from '../core/index.ts';
-import { remember } from '../memory/index.ts';
-import { createPerson } from '../person.ts';
-import type { World } from '../sim/index.ts';
-import { successChance } from '../skills/index.ts';
-import type {
-  Activity,
-  Affordance,
-  Lexicon,
-  Minute,
-  Outcome,
-  Percept,
-  Person,
-  PersonId,
-  PersonSpec,
-  RngState,
-  Unit,
-} from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
+  sicken,
+  successChance,
+  type Unit,
+  type World,
+} from '@human/framework';
 
 export const TOWN_DEFAULTS = {
   /** Clock at creation (minute of day 0). */
@@ -91,6 +96,17 @@ export const TOWN_DEFAULTS = {
   /** What a clinic visit costs, and how many days pass before the clinic is worth another visit. */
   clinicFee: 10,
   clinicCooldownDays: 7,
+  /**
+   * Shopping for Eid at the market (tenth pass): sweets for the children who come round, a shirt for the morning.
+   * What one trip costs, what he reckons it costs when he weighs it (a little here and there: he does not add it
+   * up), the Ramadan day the Eid market opens (its last three weeks; also keeps Ramadan 1, the opening day, as it
+   * was), and the hours it is open (minute of day). Engineering defaults.
+   */
+  shopCost: 25,
+  shopFirstDay: 10,
+  shopFelt: 1,
+  shopFrom: 10 * 60,
+  shopTo: 18 * 60,
   /** Longest sleep offered in the daytime (a nap). */
   napMinutes: 90,
   /** Hours (minute of day) when the town is up and about. */
@@ -129,6 +145,10 @@ export const TOWN_DEFAULTS = {
   selinCallExpectation: { samples: 4, valence: -0.6 },
   /** Selin calls her father only when they have not spoken for this many minutes. */
   selinCallGap: 30 * 60,
+  /** When he does not answer (out at the tea house, tenth pass), she tries again after this many minutes. */
+  selinRetry: 120,
+  /** In Ramadan she calls from this many minutes after Maghrib, once her own iftar is over (tenth pass). */
+  selinAfterIftar: 60,
   /** Halil places at most one call an evening: none within this many minutes of the last. */
   halilCallGap: 12 * 60,
   /** On Eid and after, his calls open at this minute of day (in Ramadan, after 18:00). */
@@ -249,6 +269,10 @@ export interface TownState {
   lastWalk?: Record<PersonId, number>;
   /** Minute each person last finished a meal (optional; absent in states from before it existed). */
   lastAte?: Record<PersonId, Minute>;
+  /** Day each person last shopped for Eid (optional; absent in states from before it existed). */
+  lastShop?: Record<PersonId, number>;
+  /** Minute Selin last called and he did not answer (optional; absent in states from before it existed). */
+  selinMissedAt?: Minute;
 }
 
 export interface Town extends World {
@@ -306,6 +330,7 @@ const HALIL_LEXICON: Lexicon = {
     'work-repair': { base: 'repair', past: 'repaired', gerund: 'repairing' },
     'see-doctor': { base: 'see the doctor', past: 'saw the doctor', gerund: 'seeing the doctor' },
     'pay-rent': { base: 'pay the rent', past: 'paid the rent', gerund: 'paying the rent' },
+    shop: { base: 'shop for Eid', past: 'shopped for Eid', gerund: 'shopping for Eid' },
     tea: { base: 'drink tea', past: 'drank tea', gerund: 'drinking tea' },
     call: { base: 'call', past: 'called', gerund: 'calling' },
     talk: { base: 'talk', past: 'talked', gerund: 'talking' },
@@ -687,6 +712,12 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
   const days = opts.ramadanDays ?? T.ramadanDays;
   const ids = new Set(people.map((p) => p.id));
   const has = (id: string) => ids.has(id);
+  // Whether Halil is out at the tea house at minute `at` (he does not hear the phone there; tenth pass).
+  const halilP = people.find((x) => x.id === 'halil');
+  const outAtTea = (at: Minute): boolean => {
+    const a = halilP?.activity;
+    return !!a && a.affordance.placeId === 'teahouse' && a.startedAt <= at && at < a.endsAt;
+  };
   const state: TownState = opts.state ?? {
     now: Math.min(...people.map((p) => p.now)),
     rng: createRng(opts.seed),
@@ -1066,6 +1097,28 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
             advertises: { safety: 0.2 },
             tags: ['health'],
           });
+        // Eid shopping (tenth pass): once a day from Ramadan 10, at the market, while he has the money. It costs what
+        // Osman is owed, and the will weighs that cost against his security and the debt (scarcity), so on his own
+        // he rarely goes; a voice saying "Osman can wait" is what makes it a pull.
+        if (
+          townDay(day).kind === 'ramadan' &&
+          day >= T.ramadanFirstDay + T.shopFirstDay - 1 &&
+          mod >= T.shopFrom &&
+          mod < T.shopTo &&
+          (state.money[p.id] ?? 0) >= T.shopCost &&
+          state.lastShop?.[p.id] !== day
+        )
+          out.push({
+            id: 'shop',
+            action: 'shop',
+            label: 'buy things for Eid at the market',
+            placeId: 'market',
+            duration: 45,
+            effort: 0.15,
+            advertises: { esteem: 0.25, meaning: 0.1, belonging: 0.1, leisure: 0.1 },
+            material: -T.shopFelt,
+            tags: ['money', 'leisure'],
+          });
         if (state.rentOwed > 0 && (state.money[p.id] ?? 0) >= T.rent)
           out.push({
             id: 'pay-rent',
@@ -1098,13 +1151,25 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
           });
         // She calls when they have not spoken for a day and a half, so some evenings are his to call. On Eid she
         // calls if they have not spoken that day, after the hour he usually calls has passed.
+        // After a call he did not answer, she leaves it a while before trying again.
+        const retry = state.selinMissedAt === undefined || now - state.selinMissedAt >= T.selinRetry;
         if (eid) {
           const from = selinEidCallMinute(state);
           const spokeToday = state.lastCall !== undefined && dayOf(state.lastCall.at) === day;
-          if (mod >= from && !spokeToday) talk('halil', 'city', 'call', 'call father');
+          if (mod >= from && !spokeToday && retry) talk('halil', 'city', 'call', 'call father');
         } else {
-          const herCalls = day > eidDay ? mod >= T.selinEidCallFrom : calls;
-          if (herCalls && (state.lastCall === undefined || now - state.lastCall.at >= T.selinCallGap))
+          // In Ramadan she calls after her own iftar (tenth pass); before it, from the evening.
+          const herCalls =
+            day > eidDay
+              ? mod >= T.selinEidCallFrom
+              : townDay(day).kind === 'ramadan'
+                ? mod >= townCalendar(day).maghrib + T.selinAfterIftar
+                : calls;
+          if (
+            herCalls &&
+            retry &&
+            (state.lastCall === undefined || now - state.lastCall.at >= T.selinCallGap)
+          )
             talk('halil', 'city', 'call', 'call father');
         }
         break;
@@ -1200,9 +1265,18 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
       const progress = Math.max(0, Math.min(1, (now - act.startedAt) / span));
       const out: Outcome = { ...base, status: 'interrupted', summary: `${aff.label}: interrupted` };
       const pay = aff.material ?? (act.affordanceId === 'work-extra' ? T.extraWage : undefined);
-      if (pay !== undefined && progress > 0) {
+      // Only pay is pro rata: a trip to the market broken off costs nothing.
+      if (pay !== undefined && pay > 0 && progress > 0) {
         out.material = pay * progress;
         state.money[p.id] = (state.money[p.id] ?? 0) + out.material;
+        // A job broken off part-way is still the day's job (ninth pass, defect 1): it pays for the part done, and
+        // the full one is not offered again that day.
+        if (act.action === 'work-repair') {
+          if (act.affordanceId === 'work-extra') {
+            state.lastExtra ??= {};
+            state.lastExtra[p.id] = dayOf(now);
+          } else state.lastWorked[p.id] = dayOf(now);
+        }
       }
       return out;
     }
@@ -1323,6 +1397,18 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
         state.doctorSaid[p.id] = { at: now, text: percepts[0]?.summary ?? 'the doctor found nothing new' };
         return done({ ...base, needs: { safety: 0.2 }, percepts, summary: 'saw the doctor' });
       }
+      case 'shop': {
+        const spent = Math.min(T.shopCost, state.money[p.id] ?? 0);
+        state.money[p.id] = (state.money[p.id] ?? 0) - spent;
+        state.lastShop ??= {};
+        state.lastShop[p.id] = dayOf(now);
+        return done({
+          ...base,
+          needs: { esteem: 0.08, belonging: 0.05 },
+          material: -spent,
+          summary: 'shopped for Eid',
+        });
+      }
       case 'pay-rent': {
         const paid = Math.min(T.rent, state.rentOwed, state.money[p.id] ?? 0);
         state.money[p.id] = (state.money[p.id] ?? 0) - paid;
@@ -1366,6 +1452,17 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
       }
       case 'call':
         if (
+          p.id === 'selin' &&
+          aff.with?.includes('halil') &&
+          dayOf(now) >= T.ramadanFirstDay &&
+          outAtTea(now)
+        ) {
+          // He is out at the tea house and does not hear the phone: no call, and she tries again later (from Ramadan 1;
+          // the eve stays as it was, so the opening day does too).
+          state.selinMissedAt = now;
+          return { ...base, status: 'failed', summary: `${aff.label}: no answer` };
+        }
+        if (
           (p.id === 'halil' && aff.with?.includes('selin')) ||
           (p.id === 'selin' && aff.with?.includes('halil'))
         ) {
@@ -1398,7 +1495,16 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
     speaker: Person,
     listener: Person,
     act: Activity,
-  ): Partial<ConverseContext> | undefined => {
+  ): Partial<ConverseContext> | false | undefined => {
+    // A call he did not answer (see `resolve`) is no conversation.
+    if (
+      act.action === 'call' &&
+      act.affordance.with?.includes('halil') &&
+      (speaker.id === 'selin' || listener.id === 'selin') &&
+      state.selinMissedAt !== undefined &&
+      state.selinMissedAt >= act.startedAt
+    )
+      return false;
     const placeId = act.affordance.placeId;
     const ctx: Partial<ConverseContext> = {};
     if (placeId !== undefined) ctx.placeId = placeId;

@@ -9,7 +9,7 @@
  * consolidation, semantic abstraction, or model-based planning; parameters are engineering defaults for
  * game time scales, not calibrated estimates.
  */
-import { clamp, clamp01, clampSigned, decay, lerp, runningMean } from '../core/index.ts';
+import { clamp, clamp01, clampSigned, decay, hourOf, lerp, runningMean } from '../core/index.ts';
 import type {
   ActionExpectation,
   Affordance,
@@ -320,11 +320,13 @@ export function learnOutcome(
   const list = p.memory.expectations;
   while (list.length > MEMORY_DEFAULTS.maxExpectations) {
     let worst = -1;
-    for (let i = 0; i < list.length; i++) {
-      const x = list[i] as ActionExpectation;
+    let w: ActionExpectation | undefined;
+    for (const [i, x] of list.entries()) {
       if (touched.has(x.key)) continue;
-      const w = worst < 0 ? undefined : (list[worst] as ActionExpectation);
-      if (!w || x.samples < w.samples || (x.samples === w.samples && x.key < w.key)) worst = i;
+      if (!w || x.samples < w.samples || (x.samples === w.samples && x.key < w.key)) {
+        worst = i;
+        w = x;
+      }
     }
     if (worst < 0) break;
     list.splice(worst, 1);
@@ -422,9 +424,6 @@ function deceasedSet(p: Person): Set<string> {
   return out;
 }
 
-const hourOfMinute = (m: Minute): number =>
-  Math.floor((((m % MINUTES_PER_DAY) + MINUTES_PER_DAY) % MINUTES_PER_DAY) / 60);
-
 /**
  * SCOPE (cue-triggered recall): involuntary autobiographical memory. A situation (place, person, action,
  * tags, time of day, the date) brings back an emotional episode when the overlap of its retrieval cues with
@@ -442,7 +441,7 @@ export function recallByCue(p: Person, cue: RecallCue): CueRecall {
   const D = CUE_RECALL_DEFAULTS;
   const W = D.weights;
   const at = cue.at ?? p.now;
-  const hour = cue.hour ?? hourOfMinute(at);
+  const hour = cue.hour ?? hourOf(at);
   const dead = deceasedSet(p);
   const scored: { ep: Episode; strength: number; score: number; loss: boolean; who?: string }[] = [];
   for (const ep of p.memory.episodes) {
@@ -479,7 +478,7 @@ export function recallByCue(p: Person, cue: RecallCue): CueRecall {
     }
     // Time of day only supports a cue that already matched something specific.
     if (!specific) continue;
-    const epHour = hourOfMinute(ep.at);
+    const epHour = hourOf(ep.at);
     const dh = Math.min(Math.abs(epHour - hour), 24 - Math.abs(epHour - hour));
     if (dh <= D.hourTolerance) strength += W.hour;
     let who: string | undefined;

@@ -16,10 +16,6 @@ import {
   readBody,
   standingAdvice,
   type Term,
-  TOWN_EID_DAY,
-  type Town,
-  townCalendar,
-  townDay,
   voiceOf,
 } from '@human/framework';
 import type {
@@ -33,6 +29,7 @@ import type {
   VoiceView,
   WhyView,
 } from '../protocol.ts';
+import { TOWN_EID_DAY, type Town, townCalendar, townDay } from './town.ts';
 
 export const VOICE_IDS: readonly VoiceId[] = ['you', 'selin', 'riza', 'hacer', 'osman'];
 
@@ -79,7 +76,7 @@ export function toldLine(summary: string, names: Readonly<Record<string, string>
   return `${advice.charAt(0).toUpperCase()}${advice.slice(1)}.`;
 }
 
-export const isVoiceId = (id: string): id is VoiceId => id in VOICE_META;
+export const isVoiceId = (id: string): id is VoiceId => Object.hasOwn(VOICE_META, id);
 
 /** Trust as words, in bands fine enough that 0.50 and 0.65 read differently (fix pass 2). */
 export function trustWord(t: number, you = false): string {

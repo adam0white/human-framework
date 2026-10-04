@@ -105,7 +105,11 @@ function h01(a: number, b: number, c = 0): number {
 
 const T = TILE_PX;
 const placeRect = (p: Place) => ({ x: p.x * T, y: p.y * T, w: p.w * T, h: p.h * T });
-const place = (id: PlaceId) => PLACES.find((p) => p.id === id) as Place;
+const place = (id: PlaceId): Place => {
+  const found = PLACES.find((p) => p.id === id);
+  if (!found) throw new Error(`renderer: no place '${id}'`);
+  return found;
+};
 
 // ---------------------------------------------------------------------------------------------
 // Shadows
@@ -130,17 +134,20 @@ type Pt = [number, number];
 function hull(points: Pt[]): Pt[] {
   const pts = [...points].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
   const cross = (o: Pt, a: Pt, b: Pt) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  /** The last two hull points and `p` turn clockwise (or are collinear), so the last point is not on the hull. */
+  const notConvex = (h: Pt[], p: Pt) => {
+    const o = h[h.length - 2];
+    const a = h[h.length - 1];
+    return o !== undefined && a !== undefined && cross(o, a, p) <= 0;
+  };
   const lower: Pt[] = [];
   for (const p of pts) {
-    while (lower.length >= 2 && cross(lower[lower.length - 2] as Pt, lower[lower.length - 1] as Pt, p) <= 0)
-      lower.pop();
+    while (notConvex(lower, p)) lower.pop();
     lower.push(p);
   }
   const upper: Pt[] = [];
-  for (let i = pts.length - 1; i >= 0; i--) {
-    const p = pts[i] as Pt;
-    while (upper.length >= 2 && cross(upper[upper.length - 2] as Pt, upper[upper.length - 1] as Pt, p) <= 0)
-      upper.pop();
+  for (const p of [...pts].reverse()) {
+    while (notConvex(upper, p)) upper.pop();
     upper.push(p);
   }
   return lower.slice(0, -1).concat(upper.slice(0, -1));

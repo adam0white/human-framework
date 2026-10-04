@@ -1,8 +1,7 @@
 /**
  * The worker side of a game's message seam: every reply carries the run's `gen` so the page can drop replies
- * from an earlier run, and a throwing handler becomes an `error` reply instead of a dead worker. Extracted for
- * Game 3 from `colony/worker.ts` and `voice/worker.ts` (quality review, 2026-10-04 §4); Games 1–2 still carry
- * their own copies.
+ * from an earlier run, and a throwing handler becomes an `error` reply instead of a dead worker. Shared by all
+ * three games' workers since the quality review (2026-10-04 §4).
  */
 export interface ErrorReply {
   type: 'error';
@@ -12,7 +11,8 @@ export interface ErrorReply {
 export interface WorkerHost<Reply extends { type: string }> {
   /** The run generation echoed on every reply; set it on `init`. */
   gen: number;
-  post(msg: Reply | ErrorReply): void;
+  /** Post a reply on `host.gen`, or on `gen` when given (a failed playtest load answers on the run it asked for). */
+  post(msg: Reply | ErrorReply, gen?: number): void;
 }
 
 export function hostWorker<In, Reply extends { type: string }>(
@@ -20,8 +20,8 @@ export function hostWorker<In, Reply extends { type: string }>(
 ): WorkerHost<Reply> {
   const host: WorkerHost<Reply> = {
     gen: 0,
-    post(msg) {
-      postMessage({ ...msg, gen: host.gen });
+    post(msg, gen = host.gen) {
+      postMessage({ ...msg, gen });
     },
   };
   addEventListener('message', (e: MessageEvent<In>) => {

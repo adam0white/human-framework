@@ -1,6 +1,6 @@
 /**
- * An in-page stand-in for the worker, for building and checking the UI (`?mock=1`, or before `../worker.ts`
- * exists). It replays `sim/fixtures.ts`, advances the clock, answers suggestions with canned verdicts and walks
+ * An in-page stand-in for the worker, for building and checking the UI (`?mock=1`, development only:
+ * `transport.ts` never loads it in a build). It replays `sim/fixtures.ts`, advances the clock, answers suggestions with canned verdicts and walks
  * the phases premise → day → between → day → between (skip) → Eid → report. It is for reachability, not realism.
  */
 import type {

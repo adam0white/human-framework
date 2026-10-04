@@ -22,13 +22,10 @@ import {
   MINUTES_PER_DAY,
   type Person,
   preview,
-  selinEidCallMinute,
   standingAdvice,
-  TOWN_DEFAULTS,
-  type Town,
-  townCalendar,
 } from '@human/framework';
-import type { Appeal, Prefill, VoiceId } from '../protocol.ts';
+import type { Appeal, Prefill } from '../protocol.ts';
+import { selinEidCallMinute, TOWN_DEFAULTS, type Town, townCalendar } from './town.ts';
 import { ACTION_LABEL, isVoiceId, nameOfVoice, relWhen } from './view.ts';
 
 const APPEAL_BY_ACTION: Record<string, Appeal> = {
@@ -144,7 +141,7 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
     };
     const appeal = APPEAL_BY_ACTION[target.action];
     if (appeal) p.appeal = appeal;
-    if (isVoiceId(a.sourceId)) p.sourceId = a.sourceId as VoiceId;
+    if (isVoiceId(a.sourceId)) p.sourceId = a.sourceId;
     return p;
   }
   // 2. One of his ends.

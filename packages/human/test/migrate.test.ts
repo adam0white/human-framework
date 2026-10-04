@@ -4,7 +4,8 @@
  * The fixtures were generated (2026-10-04) by running the framework source of the named commit unchanged:
  * `engine-1.4.0.json` from 1ea0616^ (engine 1.4.0), `engine-1.5.0.json` from 39afede (engine 1.5.0). Each holds a
  * village run (3 villagers, seed 3, saved at day 1.25) and, for 1.5.0, the town (seed 7, Halil advised to pray,
- * saved at day 1.5): every person's `snapshot`, `communityState` and the world state, plus a sha256 of what the old
+ * saved at day 1.5; the town half now lives in apps/site/test/fixtures/town-engine-1.5.0.json and is tested in
+ * apps/site/src/voice/sim/town-save.test.ts, since the town moved out of the framework): every person's `snapshot`, `communityState` and the world state, plus a sha256 of what the old
  * engine produced one more day on (people snapshots with `engine` removed, then world state), so the test can tell
  * whether the current engine continues exactly as the old one did.
  *
@@ -26,7 +27,6 @@ import {
   type CommunityState,
   communityState,
   createCommunity,
-  createTown,
   createVillage,
   ENGINE_VERSION,
   MINUTES_PER_DAY,
@@ -34,11 +34,9 @@ import {
   migrate,
   type Person,
   restore,
-  type Suggestion,
   snapshot,
   stepCommunity,
 } from '../src/index.ts';
-import type { TownState } from '../src/scenarios/town.ts';
 import type { VillageState } from '../src/scenarios/village.ts';
 
 interface Run {
@@ -51,7 +49,6 @@ interface Run {
 interface Fixture {
   engine: string;
   village: Run;
-  town?: Run;
 }
 
 const load = (v: string): Fixture =>
@@ -66,24 +63,14 @@ const strip = (people: Person[]) =>
 /** One more day on from each fixture save under engine 1.7.0 (the village saves are identical in both fixtures). */
 const CONTINUED_1_7 = {
   village: '3fa3949b49d41dcff7053345b8ca626a48f004bac778372758372f9ff8551f82',
-  town: '794b12d125a0df280ab7550dcf895bf4c828ec59d78cf0229ac1fe2eb3c73a8f',
 };
-const pray: Record<string, Suggestion> = { halil: { voiceId: 'you', action: 'pray', strength: 0.6 } };
 
-function continueRun(kind: 'village' | 'town', run: Run) {
+function continueRun(_kind: 'village', run: Run) {
   const saved = rt(run.saved);
   const people = saved.people.map((j) => restore(j));
-  const world =
-    kind === 'village'
-      ? createVillage(people, { seed: 0, state: saved.state as VillageState })
-      : createTown(people, { seed: 0, state: saved.state as TownState });
+  const world = createVillage(people, { seed: 0, state: saved.state as VillageState });
   const c = createCommunity(people, saved.c);
-  stepCommunity(
-    c,
-    world,
-    run.start + run.endAt * MINUTES_PER_DAY,
-    kind === 'town' ? { suggestions: pray } : {},
-  );
+  stepCommunity(c, world, run.start + run.endAt * MINUTES_PER_DAY, {});
   return { c, world, digest: hash({ people: strip(c.people), state: rt(world.state) }) };
 }
 
@@ -117,15 +104,12 @@ describe('migrate: saves from earlier engines restore under the current one', ()
     expect(d).not.toBe(v140.village.continued);
   });
 
-  test('1.5.0 village and town: restore and continue under the 1.7.0 rules', () => {
+  test('1.5.0 village: restores and continues under the 1.7.0 rules', () => {
     expect(continueRun('village', v150.village).digest).toBe(CONTINUED_1_7.village);
-    const town = v150.town;
-    if (!town) throw new Error('fixture lacks town');
-    expect(continueRun('town', town).digest).toBe(CONTINUED_1_7.town);
   });
 
   test('a migrated save round-trips: restore(snapshot(restore(old))) equals restore(old)', () => {
-    for (const j of [...v140.village.saved.people, ...(v150.town?.saved.people ?? [])]) {
+    for (const j of [...v140.village.saved.people, ...v150.village.saved.people]) {
       const once = restore(rt(j));
       expect(rt(restore(rt(snapshot(once))))).toEqual(rt(once));
     }

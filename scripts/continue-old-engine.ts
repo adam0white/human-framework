@@ -8,7 +8,9 @@
  * (docs/findings.md, 2026-10-04). So by default the old source is first rewritten in place to call core/libm, which
  * makes its continuation the same on every machine; pass `--native` to skip that and reproduce the original digest
  * (the fixture's `continuedNativeMathDarwinArm64`, on macOS arm64 only). The steps match `continueRun` in
- * packages/human/test/migrate.test.ts.
+ * packages/human/test/migrate.test.ts. The 1.5.0 town half was split out to apps/site/test/fixtures/town-engine-1.5.0.json
+ * when the town moved to Game 2 (its test is apps/site/src/voice/sim/town-save.test.ts); the old engines still
+ * export `createTown`, so pass that file to regenerate its digest.
  */
 import { createHash } from 'node:crypto';
 import { copyFileSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';

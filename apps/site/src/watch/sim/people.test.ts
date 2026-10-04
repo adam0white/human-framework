@@ -4,10 +4,10 @@
  */
 import { impressionOf } from '@human/framework';
 import { describe, expect, it } from 'vitest';
+import { type PlanName, planInputs } from '../../../test/watch/plans.ts';
 import { postSection, type WatcherId, watcherDef } from './config.ts';
 import { litSection } from './night.ts';
 import { isPost, KEEPER_ID, personOf } from './people.ts';
-import { type PlanName, planInputs } from './plans.ts';
 import { WatchRun } from './run.ts';
 import type { NightNote } from './state.ts';
 

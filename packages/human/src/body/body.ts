@@ -584,6 +584,14 @@ function freshId(b: BodyState, prefix: string, now: Minute): string {
 }
 
 /**
+ * `skip`'s side of the body: the body is not advanced over a skipped interval, so its current state simply
+ * holds from `to` on.
+ */
+export function skipBody(p: Person, to: Minute): void {
+  p.body.since = to;
+}
+
+/**
  * The body-owned death setter for host-rolled deaths (`lifecourse.mortalityEvent`): health 0, not alive, awake.
  * Idempotent. The composite clears the activity on its next tick.
  */

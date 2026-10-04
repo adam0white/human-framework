@@ -3,8 +3,8 @@
  * nights with one plan applied at every dusk and no night inputs; outcomes are sacks lost.
  */
 import { describe, expect, it } from 'vitest';
+import { type PlanName, planInputs } from '../../../test/watch/plans.ts';
 import { START_GRAIN } from './config.ts';
-import { type PlanName, planInputs } from './plans.ts';
 import { WatchRun } from './run.ts';
 
 const SEEDS = Array.from({ length: 24 }, (_, i) => 1000 + i * 7919);

@@ -5,7 +5,13 @@
  * down or dead (Classic's grey no-op), `notNow` "after I eat" when an auto-eat interrupt sets the order
  * aside. Trust never moves and nobody prays here; the scoreboard shows that honestly.
  */
-import { CLASSIC, ClassicSim, type ClassicSnapshot, classicLabel, unitState } from './classic.ts';
+import {
+  CLASSIC,
+  ClassicSim,
+  type ClassicSnapshot,
+  classicLabel,
+  unitState,
+} from '../../src/colony/sim/classic.ts';
 import {
   type Bubble,
   emptyHumanEvents,
@@ -16,9 +22,9 @@ import {
   type VillagerView,
   type WhyBreakdown,
   type WhyOption,
-} from './human-side.ts';
-import type { GameMap } from './map.ts';
-import type { HumanOrder } from './orders.ts';
+} from '../../src/colony/sim/human-side.ts';
+import type { GameMap } from '../../src/colony/sim/map.ts';
+import type { HumanOrder } from '../../src/colony/sim/orders.ts';
 import {
   type ActionId,
   adhanAt,
@@ -27,7 +33,7 @@ import {
   type SideWorld,
   type VillagerId,
   type VillagerSpec,
-} from './world-types.ts';
+} from '../../src/colony/sim/world-types.ts';
 
 /** How long a bubble stays in the view, in sim minutes (the UI adds real-time minimums). */
 const BUBBLE_MINUTES = 40;

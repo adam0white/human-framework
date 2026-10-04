@@ -5,7 +5,7 @@
  * `scenarioRoll` (world-types.ts) and writes results into the `SideWorld` it was given. The engine reads
  * that world for the scoreboard and applies world-level weather to it each minute (`applyWorldMinute`).
  *
- * The game runs the framework adapter (human.ts). `PlaceholderHumanSide` (placeholder-human.fixture.ts) mirrors
+ * The game runs the framework adapter (human.ts). `PlaceholderHumanSide` (apps/site/test/colony/placeholder-human.fixture.ts) mirrors
  * Classic and is kept only as a test fixture for the order book and the Classic engine. Keep @human/framework
  * imports inside the adapter so the engine stays framework-free.
  */

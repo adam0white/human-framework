@@ -127,10 +127,9 @@ function evictBeliefs(p: Person, keep: string): void {
   const list = p.memory.beliefs;
   while (list.length > BELIEF_DEFAULTS.maxBeliefs) {
     let worst = -1;
-    for (let i = 0; i < list.length; i++) {
-      const b = list[i] as Belief;
+    let w: Belief | undefined;
+    for (const [i, b] of list.entries()) {
       if (b.prop === keep) continue;
-      const w = worst < 0 ? undefined : (list[worst] as Belief);
       const strength = Math.abs(b.logOdds);
       if (
         !w ||
@@ -139,6 +138,7 @@ function evictBeliefs(p: Person, keep: string): void {
           (b.updatedAt < w.updatedAt || (b.updatedAt === w.updatedAt && b.prop < w.prop)))
       ) {
         worst = i;
+        w = b;
       }
     }
     if (worst < 0) break;

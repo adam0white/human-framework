@@ -1,8 +1,11 @@
 import { describe, expect, it } from 'vitest';
+import {
+  createPlaceholderHumanSide,
+  PlaceholderHumanSide,
+} from '../../../test/colony/placeholder-human.fixture.ts';
 import { ColonyGame, DEFAULT_SEED } from './game.ts';
 import type { HumanOrder } from './orders.ts';
 import { fanOut, inferAction, OrderBook } from './orders.ts';
-import { createPlaceholderHumanSide, PlaceholderHumanSide } from './placeholder-human.fixture.ts';
 import { at, END_MINUTE, SHUTTER_AVAILABLE, SHUTTER_ROOF_FROM, STORM_START } from './world-types.ts';
 
 const ctx = { minute: 60, house: { stage: 4, shuttered: false }, cedarFelled: false };

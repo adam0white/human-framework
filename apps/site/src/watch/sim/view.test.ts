@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { planInputs } from './plans.ts';
+import { planInputs } from '../../../test/watch/plans.ts';
 import { WatchRun } from './run.ts';
 import { buildFrame } from './view.ts';
 

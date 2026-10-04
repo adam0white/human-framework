@@ -16,6 +16,15 @@ absolute links in sections, since they are copied into the release page.
 
 - Impressions (HF 2.0 L6, `social/impressions.ts` and the composite `impression.ts`): what one person believes about another's state (fatigue, pain, fear, mood), fear of places, traits, ties and trust in a voice, each with a confidence, learned only from observations the host reports (`glimpse`/`glimpseOf`, `observeAct`, `hear`, `acquaint`/`acquaintWith`). A person's reserve (`setReserve`, default from emotionality) hides pain and fear from faces and more from words (`selfReport`); a limp always shows. `predictAs` and `previewCommandAs` run `predict`/`previewCommand` on the person as the observer pictures them (`imagine`), so a player's read and a villager's judgement use one function. Cognition adds a `companion:<id>` term on risky offers shared with people one holds impressions of (`companionSteadiness`). New optional state `social.impressions` and `social.reserve`, absent until used; observing draws no randomness, so runs that do not use it replay byte for byte and `ENGINE_VERSION` stays 1.7.0.
 
+### Removed
+
+- **Breaking:** the town scenario (`createTown`, `townPeople`, `townSpecs`, `townCalendar`, `townDay`, `homeOf`,
+  `selinEidCallMinute`, `TOWN_IDS`, `TOWN_DEFAULTS`, `TOWN_EID_DAY`, `TOWN_GAME_CREATE`, `TOWN_GAME_START` and the
+  `Town`, `TownState`, `TownOptions`, `TownDay`, `TownPersonId` types). It was Game 2's world, not a reference
+  host, so it moved to the game (`apps/site/src/voice/sim/town.ts`). `createVillage` stays as the framework's
+  reference host. Hosts that used the town should copy that file; it only uses the public API. Town edits no
+  longer change `ENGINE_VERSION`.
+
 ## [1.2.0] - 2026-10-04
 
 Engine: 1.7.0. `restore` upgrades saves from engine 1.4.0, 1.5.0 and 1.6.0; they continue under 1.7.0 rules.

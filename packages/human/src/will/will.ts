@@ -245,11 +245,13 @@ function ensureVoice(p: Person, voiceId: EntityId): VoiceRelation {
     // seeded voices remain, the fewest-interaction one goes).
     const pool = p.will.voices.some((x) => !x.seeded) ? (x: VoiceRelation) => !x.seeded : () => true;
     let idx = -1;
-    for (let i = 0; i < p.will.voices.length; i++) {
-      const a = p.will.voices[i] as VoiceRelation;
+    let b: VoiceRelation | undefined;
+    for (const [i, a] of p.will.voices.entries()) {
       if (!pool(a)) continue;
-      const b = idx >= 0 ? (p.will.voices[idx] as VoiceRelation) : undefined;
-      if (!b || a.accepted + a.refused < b.accepted + b.refused) idx = i;
+      if (!b || a.accepted + a.refused < b.accepted + b.refused) {
+        idx = i;
+        b = a;
+      }
     }
     if (idx >= 0) p.will.voices.splice(idx, 1);
   }
@@ -1183,6 +1185,21 @@ export function takeCommand(p: Person, cmd: Command, now: Minute): void {
 }
 
 /** End the command in force, recording why (`lastCommand`). Charge it first (`chargeCommand`). */
+/**
+ * Note a decision's command outcome while the command stays in force: whether it was obeyed and, if so, by what
+ * margin. Returns true the first time it is obeyed, so the composite can charge autonomy and remember it once.
+ */
+export function noteCommandOutcome(p: Person, holds: boolean, margin: number): boolean {
+  const c = p.will.command;
+  if (!c) return false;
+  c.obeyed = holds;
+  if (!holds) return false;
+  c.margin = margin;
+  if (c.remembered) return false;
+  c.remembered = true;
+  return true;
+}
+
 export function endCommand(p: Person, reason: string, now: Minute): void {
   const c = p.will.command;
   if (!c) return;
@@ -1385,10 +1402,11 @@ export function rememberAdvice(p: Person, pc: Percept): StandingAdvice[] {
   }
   while (list.length > W.maxAdvice) {
     let weakest = 0;
-    for (let i = 1; i < list.length; i++) {
-      const a = list[i] as StandingAdvice;
-      const b = list[weakest] as StandingAdvice;
-      if (adviceWeight(a, p.now) < adviceWeight(b, p.now)) weakest = i;
+    let b: StandingAdvice | undefined;
+    for (const [i, a] of list.entries()) {
+      if (b && adviceWeight(a, p.now) >= adviceWeight(b, p.now)) continue;
+      weakest = i;
+      b = a;
     }
     list.splice(weakest, 1);
   }
