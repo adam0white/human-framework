@@ -4,8 +4,8 @@
  * sounds at the foot of the wall. No numbers are drawn. The layout flexes to any size; positions ease between
  * sim minutes on the page's own animation clock.
  */
-import { SECTION_IDS, type SectionId, type WatcherId } from '../sim/config.ts';
-import type { Frame } from '../sim/view.ts';
+import { SECTION_IDS, type SectionId, WATCHERS, type WatcherId } from '../sim/config.ts';
+import type { Frame, FrameWatcher, Posture } from '../sim/view.ts';
 import { LIGHT_EDGE } from '../sim/view.ts';
 
 export interface Layout {
@@ -50,7 +50,7 @@ export function hitTest(l: Layout, f: Frame, x: number, y: number): Hit {
   return { kind: 'section', section };
 }
 
-const LOOK: Record<WatcherId, { body: string; scarf: string }> = {
+const LOOK: Record<WatcherId, Look> = {
   tamar: { body: '#7a5c44', scarf: '#d9c9a8' },
   kian: { body: '#4f6a7a', scarf: '#c2703f' },
   mara: { body: '#6b4f6b', scarf: '#8e3b46' },
@@ -267,24 +267,52 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
     }
   }
 
-  // Posts and watchers.
+  // Posts and watchers: someone standing; a post someone was given but has left (a faint outline of them);
+  // or an empty post (a dashed ring).
   for (const sec of f.sections) {
     const isLit = sec.id === f.lit;
     for (const [slot, p] of sec.posts.entries()) {
       const at = postXY(l, sec.id, slot);
+      const labelY = at.y + l.wallH * 0.55 + 10;
+      // Figures grow a little on tall maps so posture and signs stay readable.
+      const size = Math.max(1, Math.min(1.7, l.wallH / 26));
+      ctx.font = '600 11px "Instrument Sans", system-ui, sans-serif';
+      ctx.textAlign = 'center';
       if (!p.watcher) {
-        ctx.strokeStyle = o.selected ? 'rgba(255, 222, 160, 0.9)' : 'rgba(255, 240, 210, 0.35)';
-        ctx.lineWidth = o.selected ? 2 : 1.2;
-        ctx.setLineDash([3, 3]);
-        ctx.beginPath();
-        ctx.arc(at.x, at.y, 9, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.setLineDash([]);
+        if (p.posted) {
+          drawGhost(ctx, at.x, at.y, LOOK[p.posted], size);
+          ctx.fillStyle = 'rgba(255, 243, 220, 0.38)';
+          ctx.fillText(f.watchers.find((x) => x.id === p.posted)?.name ?? '', at.x, labelY);
+        } else {
+          ctx.strokeStyle = o.selected ? 'rgba(255, 222, 160, 0.9)' : 'rgba(255, 240, 210, 0.35)';
+          ctx.lineWidth = o.selected ? 2 : 1.2;
+          ctx.setLineDash([3, 3]);
+          ctx.beginPath();
+          ctx.arc(at.x, at.y, 9, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
         continue;
       }
       const watcher = f.watchers.find((x) => x.id === p.watcher);
-      drawWatcher(ctx, at.x, at.y, p.watcher, isLit || f.phase !== 'night', watcher?.throwing ?? null);
-      if (watcher?.throwing && watcher.target !== null) {
+      if (!watcher) continue;
+      const seen = f.phase !== 'night' || watcher.lit;
+      drawWatcher(
+        ctx,
+        at.x,
+        at.y,
+        LOOK[watcher.id],
+        {
+          seen,
+          // Off the night the light is not the limit: a figure is simply standing.
+          posture: watcher.posture === 'figure' && seen ? 'stand' : watcher.posture,
+          signs: watcher.signs,
+          throwing: watcher.throwing,
+          commanded: watcher.commanded,
+        },
+        size,
+      );
+      if (watcher.throwing && watcher.target !== null) {
         const tPos = ease.pos.get(watcher.target);
         if (tPos !== undefined) {
           const i = SECTION_IDS.indexOf(sec.id);
@@ -304,7 +332,39 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
       ctx.font = '600 11px "Instrument Sans", system-ui, sans-serif';
       ctx.textAlign = 'center';
       ctx.fillStyle = isLit || f.phase !== 'night' ? '#fff3dc' : 'rgba(255, 243, 220, 0.5)';
-      ctx.fillText(watcher?.name ?? '', at.x, at.y + l.wallH * 0.55 + 10);
+      ctx.fillText(watcher.name, at.x, labelY);
+    }
+  }
+
+  // Watchers who left the wall at night: small dim figures by the hall (left of the granary) or by their homes.
+  if (f.phase === 'night') {
+    const gw = Math.max(80, Math.min(140, w * 0.24));
+    let hall = 0;
+    for (const wt of f.watchers) {
+      if (wt.place !== 'hall' && wt.place !== 'home') continue;
+      let x: number;
+      let y: number;
+      if (wt.place === 'hall') {
+        x = w / 2 - gw / 2 - 14 - hall * 16;
+        y = l.yVillage + (h - l.yVillage) * 0.4;
+        hall++;
+      } else {
+        const home = WATCHERS.find((d) => d.id === wt.id)?.home ?? 'gate';
+        x = (SECTION_IDS.indexOf(home) + 0.5) * laneW + (hash01(wt.id.length * 7) - 0.5) * 20;
+        y = l.yVillage + (h - l.yVillage) * 0.85;
+      }
+      ctx.save();
+      ctx.globalAlpha = 0.6;
+      ctx.translate(x, y);
+      ctx.scale(0.7, 0.7);
+      drawWatcher(ctx, 0, 0, LOOK[wt.id], {
+        seen: false,
+        posture: 'figure',
+        signs: null,
+        throwing: null,
+        commanded: false,
+      });
+      ctx.restore();
     }
   }
 
@@ -373,36 +433,198 @@ function drawThief(ctx: CanvasRenderingContext2D, x: number, y: number, laneW: n
   ctx.restore();
 }
 
+interface Look {
+  body: string;
+  scarf: string;
+}
+
+interface WatcherDraw {
+  seen: boolean;
+  posture: Posture;
+  signs: FrameWatcher['signs'];
+  throwing: 'hit' | 'miss' | null;
+  commanded: boolean;
+}
+
+/** Someone given this post who is not on it: an outline in their colours. */
+function drawGhost(ctx: CanvasRenderingContext2D, x: number, y: number, look: Look, size = 1): void {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(size, size);
+  ctx.globalAlpha = 0.7;
+  ctx.fillStyle = 'rgba(20, 22, 36, 0.35)';
+  ctx.fillRect(-4, -8, 8, 12);
+  ctx.strokeStyle = look.scarf;
+  ctx.lineWidth = 1.2;
+  ctx.setLineDash([2, 2]);
+  ctx.strokeRect(-4, -8, 8, 12);
+  ctx.beginPath();
+  ctx.arc(0, -11, 4, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.restore();
+}
+
+/**
+ * A watcher in simple strokes. In the light: posture (stand, sit, doze, eat, pray, down, frozen, carry) and
+ * signs (tired slumps the head, afraid hunches and turns toward the steps, hurt adds a bandage and a short leg).
+ * In the dark: a dim figure only. Prayer is drawn as a quiet kneel, nothing more.
+ */
 function drawWatcher(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
-  id: WatcherId,
-  seen: boolean,
-  throwing: 'hit' | 'miss' | null,
+  look: Look,
+  d: WatcherDraw,
+  size = 1,
 ): void {
-  const look = LOOK[id];
+  const seen = d.seen && d.posture !== 'figure';
+  const dim = '#2a2c3a';
+  const body = seen ? look.body : dim;
+  const skin = seen ? '#b07c5a' : dim;
+  const s = d.signs;
   ctx.save();
   ctx.translate(x, y);
-  ctx.fillStyle = seen ? look.body : '#2a2c3a';
-  ctx.fillRect(-4, -8, 8, 12);
-  ctx.fillStyle = seen ? '#b07c5a' : '#2a2c3a';
+  ctx.scale(size, size);
+  ctx.lineCap = 'round';
+
+  if (d.posture === 'down') {
+    // Lying along the wall.
+    ctx.fillStyle = body;
+    ctx.fillRect(-8, -1, 13, 5);
+    ctx.fillStyle = skin;
+    ctx.beginPath();
+    ctx.arc(8, 1.5, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+    if (seen) {
+      ctx.fillStyle = look.scarf;
+      ctx.fillRect(3, -1, 2.5, 5);
+    }
+    if (seen && s?.hurt) drawBandage(ctx, 8, 1.5);
+    ctx.restore();
+    return;
+  }
+
+  const low = d.posture === 'sit' || d.posture === 'doze' || d.posture === 'pray';
+  const hunch = seen && (s?.afraid || d.posture === 'frozen') ? 1 : 0;
+  const slump = seen && s?.tired ? 1 : 0;
+  const bodyH = low ? 7 : 12 - hunch * 2;
+  const top = 4 - bodyH;
+  // Head: lower when sitting, forward when slumped, tucked when hunched, bowed in prayer.
+  let hx = slump * 1.5;
+  let hy = top - 3 + slump * 2 + hunch * 1.5;
+  if (d.posture === 'pray') {
+    hx += 2;
+    hy += 1.5;
+  }
+  if (d.posture === 'doze') {
+    hx += 2.5;
+    hy += 2;
+  }
+  // Afraid: turned toward the steps, drawn as the head leaning that way.
+  if (seen && s?.afraid) hx -= 1.5;
+
+  ctx.fillStyle = body;
+  if (slump && !low) {
+    ctx.save();
+    ctx.transform(1, 0, 0.12, 1, 0, 0);
+    ctx.fillRect(-4, top, 8, bodyH);
+    ctx.restore();
+  } else {
+    ctx.fillRect(-4, top, 8, bodyH);
+  }
+  if (low) {
+    // Legs out along the walk, or folded under for prayer.
+    ctx.strokeStyle = body;
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    if (d.posture === 'pray') {
+      ctx.moveTo(-3, 4);
+      ctx.lineTo(4, 4);
+    } else {
+      ctx.moveTo(2, 4);
+      ctx.lineTo(9, 4);
+    }
+    ctx.stroke();
+  } else if (seen && s?.hurt) {
+    // A limp: one leg short.
+    ctx.strokeStyle = body;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(-2, 4);
+    ctx.lineTo(-2, 7);
+    ctx.moveTo(2, 4);
+    ctx.lineTo(3, 5.5);
+    ctx.stroke();
+  }
+  ctx.fillStyle = skin;
   ctx.beginPath();
-  ctx.arc(0, -11, 4, 0, Math.PI * 2);
+  ctx.arc(hx, hy, 4, 0, Math.PI * 2);
   ctx.fill();
   if (seen) {
     ctx.fillStyle = look.scarf;
-    ctx.fillRect(-4, -8, 8, 2.5);
+    ctx.fillRect(-4, top, 8, 2.5);
   }
-  if (throwing) {
-    ctx.strokeStyle = seen ? look.body : '#2a2c3a';
+  if (seen && s?.afraid) {
+    // Arms drawn in close.
+    ctx.strokeStyle = body;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.moveTo(-4, top + 3);
+    ctx.lineTo(-1, top + 6);
+    ctx.moveTo(4, top + 3);
+    ctx.lineTo(1, top + 6);
+    ctx.stroke();
+  }
+  if (seen && d.posture === 'frozen') {
+    // Arms rigid at the sides.
+    ctx.strokeStyle = body;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.moveTo(-5.5, top + 1);
+    ctx.lineTo(-5.5, top + bodyH);
+    ctx.moveTo(5.5, top + 1);
+    ctx.lineTo(5.5, top + bodyH);
+    ctx.stroke();
+  }
+  if (seen && d.posture === 'eat') {
+    ctx.fillStyle = '#d9c9a8';
+    ctx.beginPath();
+    ctx.ellipse(0, top + 5, 3.5, 1.6, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  if (seen && d.posture === 'carry') {
+    // Someone across the shoulders.
+    ctx.fillStyle = '#6a5a4a';
+    ctx.fillRect(-8, top - 2, 16, 3.5);
+  }
+  if (seen && s?.hurt) drawBandage(ctx, hx, hy);
+  if (d.throwing) {
+    ctx.strokeStyle = body;
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(3, -6);
-    ctx.lineTo(8, -15);
+    ctx.moveTo(3, top + 2);
+    ctx.lineTo(8, top - 7);
+    ctx.stroke();
+  }
+  if (d.commanded) {
+    // Under the bell's order: a short bright stroke over the head.
+    ctx.strokeStyle = seen ? 'rgba(255, 196, 110, 0.9)' : 'rgba(255, 196, 110, 0.45)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(hx, hy, 7, Math.PI * 1.2, Math.PI * 1.8);
     ctx.stroke();
   }
   ctx.restore();
+}
+
+function drawBandage(ctx: CanvasRenderingContext2D, x: number, y: number): void {
+  ctx.strokeStyle = '#f2ece0';
+  ctx.lineWidth = 1.4;
+  ctx.beginPath();
+  ctx.moveTo(x - 4, y - 1.5);
+  ctx.lineTo(x + 4, y - 0.5);
+  ctx.stroke();
 }
 
 function drawVillage(ctx: CanvasRenderingContext2D, l: Layout, f: Frame): void {
