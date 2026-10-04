@@ -10,6 +10,7 @@ import { EndScreen } from './EndScreen.tsx';
 import { GoalCard } from './GoalCard.tsx';
 import { Inspector } from './Inspector.tsx';
 import { Pane } from './Pane.tsx';
+import { PaneBody, PeopleRows } from './PeopleRows.tsx';
 import {
   Composer,
   type ComposerState,
@@ -317,9 +318,13 @@ export function App() {
             </h2>
             <PaneStats frame={frame} side="classic" />
           </header>
-          <div className="pane-body">
+          <PaneBody
+            rows={
+              <PeopleRows frame={frame} side="classic" selectedId={composer.personId} onSelect={pickWho} />
+            }
+          >
             <Pane side="classic" {...paneProps} />
-          </div>
+          </PaneBody>
         </section>
 
         <aside className="center">
@@ -382,10 +387,12 @@ export function App() {
             </h2>
             <PaneStats frame={frame} side="human" />
           </header>
-          <div className="pane-body">
+          <PaneBody
+            rows={<PeopleRows frame={frame} side="human" selectedId={composer.personId} onSelect={pickWho} />}
+          >
             <Pane side="human" {...paneProps} bubbles={bubbles} onBubble={openBubble} />
             {moment && <MomentBanner moment={moment} slowMo={playback.slowMo} />}
-          </div>
+          </PaneBody>
         </section>
       </main>
 

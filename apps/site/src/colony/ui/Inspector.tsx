@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import type { TermFamily, TrustView, WhyBreakdown, WhyOption } from '../sim/human-side.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { type Frame, NO_CONCEPT } from './contract.ts';
+import { Icon, NoConcept } from './Icon.tsx';
 import { saysIt } from './Pane.tsx';
 import { Portrait, ROLE_LABEL } from './parts.tsx';
 
@@ -224,12 +225,20 @@ export function Inspector(props: {
               <Meter label="HP" value={cu.hp} />
             </div>
           )}
-          <p className="inspector-caption">That is all a Classic unit has.</p>
+          <p className="inspector-caption">
+            That is all a Classic unit has.{' '}
+            <span className="no-concept-mark">
+              <Icon name="none" />
+            </span>{' '}
+            = {NO_CONCEPT.toLowerCase()}.
+          </p>
           <dl className="no-concept-list">
             {['Needs', 'Emotion', 'Trust in you', 'Why', 'Memories'].map((row) => (
               <div key={row}>
                 <dt>{row}</dt>
-                <dd>{NO_CONCEPT}</dd>
+                <dd>
+                  <NoConcept text={NO_CONCEPT} />
+                </dd>
               </div>
             ))}
           </dl>
