@@ -308,6 +308,14 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     }
     push('expectation', K.expectationScale * expected.valence * expected.confidence * relevance);
   }
+  // Lasting gists (1.8.0, opt-in): what an old memory says about this option, fading as fresh experience of it
+  // (the learned expectation's confidence) takes over.
+  if (expected.gist) {
+    push(
+      'memory',
+      K.expectationScale * expected.gist.valence * expected.gist.weight * (1 - expected.confidence),
+    );
+  }
 
   // Norms, commitments and goals. Planning terms scale with developmental maturity.
   let refractoryCache: number | undefined;

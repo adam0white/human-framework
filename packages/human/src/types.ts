@@ -427,6 +427,23 @@ export interface ActionExpectation {
   valence: Signed;
 }
 
+/**
+ * A lasting gist (1.8.0, `memory.enableGists`): several episodes of the same kind, action, people and place folded
+ * into one valenced memory that fades over years, not days. It has an episode's fields so recall reads both alike:
+ * `id` is `g<n>`, `at` is the minute of the strongest episode folded in (its `summary` is kept), `valence` is the
+ * encoding-strength-weighted mean and `salience` decays with `GIST_DEFAULTS` half-lives.
+ */
+export interface Gist extends Episode {
+  /** Episodes folded in. */
+  count: number;
+  firstAt: Minute;
+  lastAt: Minute;
+  /** Sum of the encoding strengths folded in (the weight of `valence`). */
+  weight: number;
+  /** Encoding strength of the episode whose `summary` and `at` are kept. */
+  peak: Unit;
+}
+
 export interface MemoryState {
   episodes: Episode[]; // bounded; low-salience episodes forgotten first
   beliefs: Belief[];
@@ -434,6 +451,9 @@ export interface MemoryState {
   /** Trust in each information source (person or channel), 0..1, default 0.5. */
   sourceTrust: Record<EntityId, Unit>;
   nextEpisode: number;
+  /** Lasting gists (1.8.0, opt-in via `enableGists`; absent = episodes are simply forgotten). Bounded. */
+  gists?: Gist[];
+  nextGist?: number;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -691,6 +711,19 @@ export interface Command {
 
 export type LifeStage = 'infant' | 'child' | 'adolescent' | 'adult' | 'elder';
 
+/** Slow trait and value change (1.8.0) — owned by `character/`. */
+export interface CharacterState {
+  /** Traits and values when change was enabled; drift stays within `CHARACTER_DEFAULTS.maxDrift` of them. */
+  baseTraits: Traits;
+  baseValues: Values;
+  /** Year being accumulated (`floor(day / 365)`). */
+  year: number;
+  /** The year's experience so far: days, summed mood, commitments kept and broken, minutes with others, distinct actions. */
+  acc: { days: number; mood: number; kept: number; broken: number; social: number; variety: number };
+  /** Minute maturation has been applied up to. */
+  agedTo: Minute;
+}
+
 export interface LifeCourse {
   /** Birth minute relative to host epoch (negative for people born before minute 0). */
   bornAt: Minute;
@@ -816,6 +849,13 @@ export interface Person {
   chronicle?: DayRecord[];
   /** The open day's accumulator (plain JSON, survives saves mid-day). Owned by `chronicle/`. */
   chronicleDay?: ChronicleDay;
+  /** Year summaries, oldest first (1.8.0, opt-in via `enableYearbook`; absent = dropped days leave nothing). */
+  chronicleYears?: YearRecord[];
+  /**
+   * Slow trait and value change (1.8.0, opt-in via `enableCharacterChange`). Owned by `character/`, which is then the
+   * only writer of `traits` and `values` after birth. Absent: they stay as set at birth.
+   */
+  character?: CharacterState;
   /** Host phrase pack and names for narration (N6). Read by `narrate/`; written only by the host. */
   lexicon?: Lexicon;
 }
@@ -1261,6 +1301,38 @@ export interface ChronicleCommitmentNote {
 }
 
 /** Completed actions of one kind in a day, and how many of them a voice had suggested. */
+/**
+ * A life-level summary of one year (1.8.0, `chronicle.enableYearbook`): day records that leave the bounded chronicle,
+ * and routine days summarized by `liveRoutine`, fold into the record of their year (`floor(day / 365)`). Bounded:
+ * fixed-size tallies per year and at most `CHRONICLE_DEFAULTS.maxYears` years.
+ */
+export interface YearRecord {
+  year: number;
+  /** Days folded in (lived and summarized). */
+  days: number;
+  /** Of those, days summarized by a routine stretch rather than lived. */
+  routineDays: number;
+  /** Mean, lowest and highest daily mood valence. */
+  mood: Signed;
+  moodLow: Signed;
+  moodHigh: Signed;
+  kept: number;
+  broken: number;
+  released: number;
+  breaches: number;
+  repairs: number;
+  material: number;
+  decisions: number;
+  /** Most frequent actions (days done), most frequent first, at most 4 × `CHRONICLE_DEFAULTS.yearActions`. */
+  actions: { action: string; days: number }[];
+  /** The year's strongest episodes by |valence| × salience, at most `CHRONICLE_DEFAULTS.yearEpisodes`. */
+  episodes: { id: string; day: number; summary: string; valence: Signed; salience: Unit }[];
+  /** Illness onsets (kinds), at most `CHRONICLE_DEFAULTS.yearIllnesses`. */
+  illness: string[];
+  /** Whether the person was alive at the end of the last day folded in. */
+  alive: boolean;
+}
+
 export interface ChronicleActionTally {
   action: string;
   done: number;

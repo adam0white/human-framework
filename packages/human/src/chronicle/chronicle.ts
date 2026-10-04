@@ -22,8 +22,11 @@ import type {
   Habit,
   Outcome,
   Person,
+  Signed,
   Suggestion,
   SuggestionResolution,
+  Unit,
+  YearRecord,
 } from '../types.ts';
 import { MINUTES_PER_DAY } from '../types.ts';
 
@@ -44,6 +47,15 @@ export const CHRONICLE_DEFAULTS = {
   trustEpsilon: 0.01,
   /** Smallest illness severity change recorded as worse/better. */
   illnessEpsilon: 0.05,
+  /** Year records kept (1.8.0 yearbook); the oldest are dropped first. */
+  maxYears: 150,
+  /**
+   * Actions, episodes and illness onsets kept per year record. The open year keeps up to four times `yearActions`
+   * candidates so a later-frequent action can climb; earlier years are trimmed to the bound when a later one opens.
+   */
+  yearActions: 8,
+  yearEpisodes: 4,
+  yearIllnesses: 6,
 };
 
 /** Stable key for a habit: action plus its cue. */
@@ -350,8 +362,139 @@ export function appendDay(p: Person, record: DayRecord): void {
   const list = p.chronicle ?? [];
   for (const r of list) delete r.state;
   list.push(record);
-  if (list.length > CHRONICLE_DEFAULTS.maxDays) list.splice(0, list.length - CHRONICLE_DEFAULTS.maxDays);
+  if (list.length > CHRONICLE_DEFAULTS.maxDays) {
+    const dropped = list.splice(0, list.length - CHRONICLE_DEFAULTS.maxDays);
+    // 1.8.0 yearbook (opt-in): a day leaving the chronicle folds into its year's summary.
+    if (p.chronicleYears) for (const r of dropped) foldDay(p, dayFold(r));
+  }
   p.chronicle = list;
+}
+
+// ---------------------------------------------------------------------------------------------
+// Yearbook (1.8.0): life-level summaries
+// ---------------------------------------------------------------------------------------------
+
+/**
+ * SCOPE (yearbook, 1.8.0, opt-in per person with `enableYearbook`): the day chronicle holds months; a life needs
+ * years. Each day record that leaves the bounded chronicle, and each routine day a long-run stretch summarizes
+ * (`foldDay` from the composite's `liveRoutine`), folds into one `YearRecord` per year: day counts, mean and range of
+ * mood, commitment tallies, breaches and repairs, material, the most frequent actions, the strongest episodes and
+ * illness onsets, all bounded. It is a descriptive summary for narration and hosts (a volume of a life), not a model
+ * of what people recall about a year; the bounds are engineering choices.
+ */
+
+/** What one day contributes to its year record. */
+export interface DayFold {
+  day: number;
+  mood: Signed;
+  kept?: number;
+  broken?: number;
+  released?: number;
+  breaches?: number;
+  repairs?: number;
+  material?: number;
+  decisions?: number;
+  /** Actions done that day (each counts once per day). */
+  actions?: readonly string[];
+  episodes?: readonly { id: string; summary: string; valence: Signed; salience: Unit }[];
+  illness?: readonly string[];
+  alive?: boolean;
+  /** A summarized, not lived, day. */
+  routine?: boolean;
+}
+
+/** Turn on year summaries for this person (idempotent). */
+export function enableYearbook(p: Person): void {
+  p.chronicleYears ??= [];
+}
+
+/** The fold of a lived day record. */
+export function dayFold(r: DayRecord): DayFold {
+  return {
+    day: r.day,
+    mood: r.mood,
+    kept: r.kept.length,
+    broken: r.broken.length,
+    released: r.released.length,
+    breaches: r.breaches.length,
+    repairs: r.repairs.length,
+    material: r.material,
+    decisions: r.decisions,
+    actions: r.actions.map((a) => a.action),
+    episodes: r.episodes,
+    illness: r.illness.onset,
+    alive: r.alive,
+  };
+}
+
+/** Fold one day into its year record (yearbook on only; otherwise nothing happens). Returns the record. */
+export function foldDay(p: Person, d: DayFold): YearRecord | undefined {
+  const years = p.chronicleYears;
+  if (!years) return undefined;
+  const C = CHRONICLE_DEFAULTS;
+  const year = Math.floor(d.day / 365);
+  let y = years.find((x) => x.year === year);
+  if (!y) {
+    y = {
+      year,
+      days: 0,
+      routineDays: 0,
+      mood: 0,
+      moodLow: d.mood,
+      moodHigh: d.mood,
+      kept: 0,
+      broken: 0,
+      released: 0,
+      breaches: 0,
+      repairs: 0,
+      material: 0,
+      decisions: 0,
+      actions: [],
+      episodes: [],
+      illness: [],
+      alive: true,
+    };
+    for (const old of years)
+      if (old.year < year && old.actions.length > C.yearActions) old.actions.length = C.yearActions;
+    years.push(y);
+    years.sort((a, b) => a.year - b.year);
+    if (years.length > C.maxYears) years.splice(0, years.length - C.maxYears);
+  }
+  y.mood = (y.mood * y.days + d.mood) / (y.days + 1);
+  y.days += 1;
+  if (d.routine) y.routineDays += 1;
+  y.moodLow = Math.min(y.moodLow, d.mood);
+  y.moodHigh = Math.max(y.moodHigh, d.mood);
+  y.kept += d.kept ?? 0;
+  y.broken += d.broken ?? 0;
+  y.released += d.released ?? 0;
+  y.breaches += d.breaches ?? 0;
+  y.repairs += d.repairs ?? 0;
+  y.material += d.material ?? 0;
+  y.decisions += d.decisions ?? 0;
+  if (d.alive !== undefined) y.alive = d.alive;
+  for (const action of new Set(d.actions ?? [])) {
+    const t = y.actions.find((a) => a.action === action);
+    if (t) t.days += 1;
+    else y.actions.push({ action, days: 1 });
+  }
+  y.actions.sort((a, b) => b.days - a.days || (a.action < b.action ? -1 : a.action > b.action ? 1 : 0));
+  // Keep a few more than shown so a later-frequent action can climb; trimmed to the bound.
+  if (y.actions.length > 4 * C.yearActions) y.actions.length = 4 * C.yearActions;
+  for (const e of d.episodes ?? []) {
+    if (y.episodes.some((x) => x.id === e.id)) continue;
+    y.episodes.push({ id: e.id, day: d.day, summary: e.summary, valence: e.valence, salience: e.salience });
+  }
+  const strength = (e: { valence: Signed; salience: Unit }) => Math.abs(e.valence) * e.salience;
+  y.episodes.sort((a, b) => strength(b) - strength(a) || a.day - b.day);
+  if (y.episodes.length > C.yearEpisodes) y.episodes.length = C.yearEpisodes;
+  for (const kind of d.illness ?? []) if (y.illness.length < C.yearIllnesses) y.illness.push(kind);
+  return y;
+}
+
+/** The year record for `year`, if any. */
+export function yearRecord(p: Person, year: number): YearRecord | undefined {
+  return p.chronicleYears?.find((y) => y.year === year);
 }
 
 /**

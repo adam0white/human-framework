@@ -78,6 +78,7 @@ export {
 } from './agenda/index.ts';
 export * from './beliefs/index.ts';
 export * from './body/index.ts';
+export * from './character/index.ts';
 export * from './chronicle/index.ts';
 export type { ConsiderContext, DecideContext, Decision, SocialContext } from './cognition/index.ts';
 // `cognition.decide` is the raw scorer; the composite's `decide` (person.ts) is the one hosts call.

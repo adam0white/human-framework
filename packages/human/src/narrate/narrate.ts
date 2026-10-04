@@ -108,7 +108,8 @@ function citeEpisode(
   lex: Lexicon | undefined,
 ): string | undefined {
   if (!ids || ids.length === 0) return undefined;
-  const ep: Episode | undefined = p.memory.episodes.find((e) => e.id === ids[0]);
+  const ep: Episode | undefined =
+    p.memory.episodes.find((e) => e.id === ids[0]) ?? p.memory.gists?.find((g) => g.id === ids[0]);
   if (!ep) return undefined;
   const summary = ep.summary.endsWith('.') ? ep.summary : `${ep.summary}.`;
   return pickLine(ep.valence < 0 ? 'cite.bad' : 'cite.good', key, { summary: lowerFirst(summary) }, lex);

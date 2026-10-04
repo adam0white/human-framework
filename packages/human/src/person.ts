@@ -25,6 +25,7 @@ import {
   createAffect,
   easeBreak,
   feel,
+  readAffect,
   regulate,
   release,
   skipAffect,
@@ -62,6 +63,7 @@ import {
   sicken,
   skipBody,
 } from './body/index.ts';
+import { ageCharacter, noteCharacterDay, noteCharacterSocial } from './character/index.ts';
 import { closeDay, endDay, noteCommitments, noteDecision, noteMood, noteOutcome } from './chronicle/index.ts';
 import { decide as cognitionDecide, desperationOf, scoreAll } from './cognition/index.ts';
 import {
@@ -78,6 +80,7 @@ import { ageYears, learningMultiplier, lifeModifiers } from './lifecourse/index.
 import {
   advanceMemory,
   type CueRecall,
+  consolidate,
   createMemory,
   learnOutcome,
   recallByCue,
@@ -108,6 +111,7 @@ import type {
   BodyReadout,
   Command,
   Commitment,
+  DayRecord,
   DecisionRecord,
   LearningDomain,
   Minute,
@@ -513,9 +517,29 @@ export function tick(p: Person, now: Minute): void {
       // Chronicle: hourly mood sample; at midnight the day closes (notes at exactly midnight still belong to it)
       // and the new date is itself a recall cue (anniversaries).
       noteMood(p);
+      let closed: DayRecord | undefined;
       if (p.chronicleDay && dayOf(end) > p.chronicleDay.day) {
-        closeDay(p);
+        closed = closeDay(p);
         applyRecall(p, recallByCue(p, { at: end }));
+      }
+      if (minuteOfDay(end) === 0) {
+        // Lasting gists (1.8.0, opt-in): at midnight, episodes past the horizon fold into gists.
+        if (p.memory.gists) consolidate(p, end);
+        // Character change (1.8.0, opt-in): the day joins the year's experience; maturation runs to midnight.
+        if (p.character) {
+          noteCharacterDay(
+            p,
+            closed
+              ? {
+                  mood: closed.mood,
+                  kept: closed.kept.length,
+                  broken: closed.broken.length,
+                  variety: closed.actions.length,
+                }
+              : { mood: readAffect(p).valence },
+          );
+          ageCharacter(p, end);
+        }
       }
     }
   }
@@ -610,6 +634,10 @@ export function skip(p: Person, to: Minute): void {
   p.now = to;
   skipAffect(p, to);
   advanceAgenda(p, to);
+  // Lasting gists (1.8.0, opt-in): episodes now past the horizon fold into gists.
+  if (p.memory.gists) consolidate(p, to);
+  // Character change (1.8.0, opt-in): maturation across the gap; a skipped gap brings no experience.
+  if (p.character) ageCharacter(p, to);
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -1354,6 +1382,7 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
 
   // Relationships from taking part together.
   if (completed) {
+    if (p.character && (aff.with ?? []).some((o) => o !== p.id)) noteCharacterSocial(p, minutes);
     const kind: SocialEventKind = tags.includes('work') ? 'shared-work' : 'chat';
     for (const other of aff.with ?? []) {
       if (other === p.id) continue;
@@ -1489,7 +1518,56 @@ function fillFrom(
  * missing core slice, or an engine version `migrate` does not support.
  */
 /** Optional top-level keys of a person that `createPerson` leaves absent; `restore` keeps them. */
-const OPTIONAL_KEYS: ReadonlySet<string> = new Set(['chronicle', 'chronicleDay', 'lexicon']);
+const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
+  'chronicle',
+  'chronicleDay',
+  'chronicleYears',
+  'character',
+  'lexicon',
+]);
+
+/** A well-formed character state (1.8.0) as `restore` accepts it. */
+function validCharacter(c: unknown): boolean {
+  const nums = (o: unknown, n: number) =>
+    isObject(o) && Object.values(o).length >= n && Object.values(o).every(isNum);
+  return (
+    isObject(c) &&
+    nums(c.baseTraits, 6) &&
+    nums(c.baseValues, 10) &&
+    nums(c.acc, 6) &&
+    isNum(c.year) &&
+    isNum(c.agedTo)
+  );
+}
+
+const isNum = (x: unknown): x is number => typeof x === 'number' && Number.isFinite(x);
+
+/** A well-formed gist (1.8.0) as `restore` accepts it. */
+function validGist(g: unknown): boolean {
+  return (
+    isObject(g) &&
+    typeof g.id === 'string' &&
+    typeof g.kind === 'string' &&
+    typeof g.summary === 'string' &&
+    Array.isArray(g.tags) &&
+    [g.at, g.valence, g.salience, g.count, g.firstAt, g.lastAt, g.weight, g.peak].every(isNum)
+  );
+}
+
+/** A well-formed year record (1.8.0) as `restore` accepts it. */
+function validYear(y: unknown): boolean {
+  return (
+    isObject(y) &&
+    [y.year, y.days, y.routineDays, y.mood, y.moodLow, y.moodHigh, y.kept, y.broken, y.released].every(
+      isNum,
+    ) &&
+    [y.breaches, y.repairs, y.material, y.decisions].every(isNum) &&
+    Array.isArray(y.actions) &&
+    Array.isArray(y.episodes) &&
+    Array.isArray(y.illness) &&
+    typeof y.alive === 'boolean'
+  );
+}
 
 export function restore(input: unknown): Person {
   if (!isObject(input)) throw new Error('restore: not an object');
@@ -1589,5 +1667,19 @@ export function restore(input: unknown): Person {
     !(isObject(last) && typeof last.voiceId === 'string' && typeof last.since === 'number')
   )
     delete out.will.lastCommand;
+  // Optional state added in 1.8.0: malformed entries are dropped (absent means the feature is off).
+  const gists = out.memory.gists as unknown;
+  if (gists !== undefined) {
+    if (!Array.isArray(gists)) delete out.memory.gists;
+    else out.memory.gists = gists.filter(validGist);
+  }
+  if (out.memory.gists && !isNum(out.memory.nextGist)) out.memory.nextGist = out.memory.gists.length;
+  if (!out.memory.gists) delete out.memory.nextGist;
+  const years = out.chronicleYears as unknown;
+  if (years !== undefined) {
+    if (!Array.isArray(years)) delete out.chronicleYears;
+    else out.chronicleYears = years.filter(validYear);
+  }
+  if (out.character !== undefined && !validCharacter(out.character)) delete out.character;
   return out;
 }
