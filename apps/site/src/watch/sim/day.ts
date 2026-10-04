@@ -7,7 +7,7 @@
  * `ROPE_DAWN_MEND` off whatever happens. Wounds are dressed in the village (tended once). Newcomers arrive at dusk.
  * Not covered: the fair, trade, seasons and years (G3-3).
  */
-import { tend } from '@human/framework';
+import { observeAct, tend } from '@human/framework';
 import {
   DAY,
   DUSK_START,
@@ -85,5 +85,15 @@ export function advanceDay(s: WatchState): void {
     const taken = Object.values(s.posts).includes(usual);
     s.posts[id] = taken ? null : usual;
     s.postedAt[id] = s.minute;
+    lines.push({ who: id, text: `${watcherDef(id).name} came through the gate today.` });
+    // An old grudge shows the moment they meet: someone turns away, and the Keeper sees it.
+    for (const p of s.community.people) {
+      if (p.id === id) continue;
+      const tie = p.social.relationships.find((r) => r.otherId === id);
+      if (!tie || tie.affection > -0.4) continue;
+      const w = p.id as WatcherId;
+      lines.push({ who: w, text: `${watcherDef(w).name} turned away when ${watcherDef(id).name} came in.` });
+      observeAct(s.keeper, w, { at: s.minute, clarity: 0.8, withId: id, toward: -1 });
+    }
   }
 }

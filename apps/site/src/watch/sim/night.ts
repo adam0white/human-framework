@@ -18,11 +18,14 @@
  * Not covered. Seasons, ageing, talks, the fair, two-section warnings (G3-3).
  */
 import {
+  type Affordance,
   type Command,
   glimpseOf,
+  hear,
   injure,
   interruptPerson,
   knockDown,
+  learnOutcome,
   observeAct,
   type Percept,
   type Person,
@@ -239,6 +242,56 @@ function enterNight(s: WatchState): void {
   s.asks = {};
 }
 
+/** How bad a night's events at a stretch felt, for the person's expectation of standing it again. */
+const BAD_NIGHT: Partial<Record<NightNote['kind'], number>> = {
+  shaken: -0.35,
+  bitten: -0.6,
+  downed: -0.6,
+  fled: -0.5,
+  ran: -0.5,
+  froze: -0.5,
+};
+
+/**
+ * Fear that lasts: each watcher who was shaken, hurt or driven off a stretch tonight learns a bad expectation of
+ * standing it (HF `learnOutcome` on 'hold-post@<section>'), so tomorrow's choice, and their dawn words, carry it.
+ */
+/** How many ordinary stints one fright on a stretch counts as, in what the watcher expects of it. */
+const FRIGHT_WEIGHT = 5;
+
+function rememberTheNight(s: WatchState): void {
+  for (const p of s.community.people) {
+    const id = p.id as WatcherId;
+    const worst: Partial<Record<SectionId, number>> = {};
+    for (const n of s.notes) {
+      const felt = BAD_NIGHT[n.kind];
+      if (n.who !== id || felt === undefined || !n.section) continue;
+      worst[n.section] = Math.min(worst[n.section] ?? 0, felt);
+    }
+    for (const [sec, felt] of Object.entries(worst) as [SectionId, number][]) {
+      const aff: Affordance = {
+        id: `post:${sec}`,
+        action: 'hold-post',
+        label: 'stand the wall',
+        targetId: sec,
+        duration: 60,
+        effort: 0.15,
+        advertises: {},
+      };
+      // Every finished stint on the wall is also an outcome, so one plain sample would be averaged away by the
+      // night's ordinary stints. A fright weighs as several: it outlasts a night of standing, then fades.
+      const outcome = {
+        affordanceId: aff.id,
+        action: aff.action,
+        targetId: sec,
+        status: 'completed' as const,
+        at: s.minute,
+      };
+      for (let i = 0; i < FRIGHT_WEIGHT; i++) learnOutcome(p, aff, outcome, {}, felt);
+    }
+  }
+}
+
 function enterDawn(s: WatchState): void {
   const t = s.tally;
   const lines: DawnPage['lines'] = [];
@@ -289,8 +342,13 @@ function enterDawn(s: WatchState): void {
     grainBefore: t.grainAtDusk,
     grainAfter: s.grain,
     ropeSnapped: s.rope.snapped,
-    voices: dawnVoices(s),
+    voices: [],
   };
+  rememberTheNight(s);
+  const { voices, tells } = dawnVoices(s);
+  s.dawn.voices = voices;
+  // The Keeper hears what they say: testimony moves his impressions (HF `hear`), weaker than seeing.
+  for (const t of tells) hear(s.keeper, t.who, t.key, t.value, { at: s.minute, weight: 0.5 });
   s.history.push({ night: s.night, warned: s.warned, lead: s.lead, lost: t.grainAtDusk - s.grain });
   s.tokens = [];
   s.throws = [];
@@ -551,8 +609,6 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
     }
     if (action === 'doze' && where) {
       note(s, { who: id, kind: 'dozed', section: where });
-      if (seen)
-        observeAct(s.keeper, id, { at: s.minute, clarity, placeId: where, avoided: 0.1, tags: ['refuse'] });
     }
     if (action === 'freeze' && where) {
       note(s, { who: id, kind: 'froze', section: where });

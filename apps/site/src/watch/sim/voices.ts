@@ -40,9 +40,22 @@ function noteOf(notes: NightNote[], who: WatcherId, kinds: NightNote['kind'][]):
   return notes.find((n) => n.who === who && kinds.includes(n.kind));
 }
 
-/** One or two lines per watcher present. */
-export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
+/** What a watcher's own words tell the Keeper (an impression key and value), heard at dawn. */
+export interface Tell {
+  who: WatcherId;
+  key: string;
+  value: number;
+}
+
+/**
+ * One or two lines per watcher present, and what those words tell the Keeper (`tells`: a spoken fear of a stretch,
+ * a spoken bond). Nodding off is told by at most one watcher a night, and not by one who already speaks of a fear
+ * or a bond. A watcher the bell held says how it felt, more bitterly the more they value their own say.
+ */
+export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: string }[]; tells: Tell[] } {
   const out: { who: WatcherId; text: string }[] = [];
+  const tells: Tell[] = [];
+  let dozeTold = false;
   for (const p of s.community.people) {
     const id = p.id as WatcherId;
     const def = watcherDef(id);
@@ -58,6 +71,8 @@ export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
     const shaken = noteOf(s.notes, id, ['shaken']);
     const dozed = s.notes.filter((n) => n.who === id && n.kind === 'dozed');
     const together = s.notes.filter((n) => n.who === id && n.kind === 'together' && n.other);
+    const commanded = noteOf(s.notes, id, ['commanded']);
+    const tell = (key: string, value: number) => tells.push({ who: id, key, value });
     const fear = fearedSection(p);
 
     if (bitten?.section) {
@@ -66,14 +81,19 @@ export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
           ? `“It’s a scratch.” (the wolf at ${theSec(bitten.section)})`
           : `“That wolf at ${theSec(bitten.section)} had my leg. I can still feel its teeth.”`,
       );
+      if (told.pain >= 0.2) tell(`fear@${bitten.section}`, 0.6);
     } else if (down?.section) {
       said.push(`“They knocked me flat at ${theSec(down.section)}. I don’t remember falling.”`);
+      tell(`fear@${down.section}`, 0.5);
     } else if (left?.section) {
       const verb = left.kind === 'froze' ? 'I couldn’t move' : 'I couldn’t stay';
       said.push(`“${verb} at ${theSec(left.section)}. Not with them that close.”`);
+      tell(`fear@${left.section}`, 0.75);
     } else if (shaken?.section) {
+      const bravado = reserveOf(p, 'fear') * IMPRESSION_DEFAULTS.wordsReserve > 0.5;
+      if (!bravado) tell(`fear@${shaken.section}`, 0.55);
       said.push(
-        reserveOf(p, 'fear') * IMPRESSION_DEFAULTS.wordsReserve > 0.5
+        bravado
           ? `“Nothing I couldn’t handle at ${theSec(shaken.section)}.”`
           : pick(s, id, 'shaken', [
               `“They came right up under me at ${theSec(shaken.section)}. I keep hearing them.”`,
@@ -83,12 +103,14 @@ export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
       );
     } else if (fear && fear.level > 0.15) {
       said.push(`“I don’t like ${theSec(fear.section)}. Something’s out there.”`);
+      tell(`fear@${fear.section}`, Math.min(0.8, 0.3 + fear.level));
     }
 
     if (carried?.other) {
       said.push(
         `“${watcherDef(carried.other).name} got me off the wall. I owe ${watcherDef(carried.other).sex === 'female' ? 'her' : 'him'}.”`,
       );
+      tell(`tie:${carried.other}`, 0.7);
     } else if (carrier?.other) {
       said.push(`“Somebody had to get ${watcherDef(carrier.other).name} down.”`);
     } else if (home) {
@@ -100,6 +122,7 @@ export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
       t.sort((a, b) => Math.abs(b.tie?.affection ?? 0) - Math.abs(a.tie?.affection ?? 0));
       const best = t[0];
       const other = best?.n.other ? watcherDef(best.n.other).name : 'someone';
+      if (best?.n.other) tell(`tie:${best.n.other}`, (best.tie?.affection ?? 0) > 0 ? 0.6 : -0.5);
       said.push(
         (best?.tie?.affection ?? 0) > 0
           ? pick(s, id, 'with', [
@@ -116,15 +139,31 @@ export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
       said.push(`“I wasn’t going to stand ${theSec(refused.section)}.”`);
     }
 
-    // Nodding off is told only when it happened more than once, and a reserved person keeps it to themselves.
+    if (commanded) {
+      // The bell's cost, in their words: bitter in proportion to how much they value their own say.
+      const autonomy = p.needs.autonomy ?? 0.5;
+      said.push(
+        autonomy < 0.45
+          ? '“You rang me down like a dog.”'
+          : autonomy < 0.6
+            ? '“I heard the bell. I held. I didn’t like it.”'
+            : '“I heard the bell. I held.”',
+      );
+    }
+
+    // Nodding off: told by one watcher a night at most, only when it happened more than once, not by someone who
+    // has already spoken of a fear or a bond, and a reserved person keeps it to themselves.
     const sec = dozed[0]?.section;
     if (
+      !dozeTold &&
       dozed.length >= 2 &&
       sec &&
-      said.length < 2 &&
+      said.length === 0 &&
       reserveOf(p, 'fatigue') * IMPRESSION_DEFAULTS.wordsReserve < 0.5
-    )
+    ) {
       said.push(`“I kept nodding off at ${theSec(sec)}.”`);
+      dozeTold = true;
+    }
 
     if (said.length === 0) {
       if (told.fatigue > 0.5) said.push('“Long night.”');
@@ -132,7 +171,7 @@ export function dawnVoices(s: WatchState): { who: WatcherId; text: string }[] {
     }
     out.push({ who: id, text: said.join(' ') });
   }
-  return out;
+  return { voices: out, tells };
 }
 
 /** For tests and the export: the person behind a voice. */

@@ -585,7 +585,7 @@ function DawnPanel({ frame, actions, seed }: { frame: Frame; actions: WatchActio
         label={d.grainAfter === d.grainBefore ? 'No sacks lost' : 'Sacks lost in the night, drawn faded'}
       />
       {d.ropeSnapped ? (
-        <p className="w-note">Joss will splice the bell rope today; it will not be new.</p>
+        <p className="w-note">Someone will have to splice the bell rope today; it will not be new.</p>
       ) : null}
       {fallen ? (
         <>

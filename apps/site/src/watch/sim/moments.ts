@@ -102,7 +102,7 @@ export function readPosting(s: WatchState, who: WatcherId, post: PostId, press: 
   }
   const offers = offersFor(view, who, s.phase === 'dusk');
   if (!offers.some((a) => a.id === `post:${post}`))
-    return { word: "won't", confidence: 1, why: 'Someone stands there.' };
+    return { word: 'unsure', confidence: 1, why: 'someone else stands there now' };
   const { resolution, confidence } = predictAs(s.keeper, p, offers, sug, { now: s.minute });
   return toRead(resolution, confidence);
 }
@@ -129,15 +129,17 @@ export function readBell(
 
 export function readWords(r: Read): string {
   const sure = r.confidence > 0.6 ? '' : r.confidence > 0.35 ? ', you think' : ', maybe';
+  // The reason, when the Keeper can picture one: their own words as he imagines them.
+  const why = r.why ? ` (${r.why.replace(/^[“"]|[”"]$/g, '')})` : '';
   switch (r.word) {
     case 'likely':
       return `likely${sure}`;
     case 'grudging':
       return `will, grudgingly${sure}`;
     case 'unsure':
-      return `might${sure}`;
+      return `might${sure}${why}`;
     case "won't":
-      return `won't${sure}`;
+      return `won't${sure}${why}`;
     default:
       return "you can't tell";
   }
