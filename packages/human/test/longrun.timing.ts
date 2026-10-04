@@ -5,7 +5,7 @@
  */
 import { describe, expect, test } from 'vitest';
 import { liveCommunity, type Person, snapshot } from '../src/index.ts';
-import { births, routineFor, settlement, YEAR } from './longrun-fixture.ts';
+import { families, routineFor, settlement, YEAR } from './longrun-fixture.ts';
 
 /** Budget multiplier: 1 on the quiet dev machine the budgets were set on; CI sets `BENCH_SCALE` (see ci.yml). */
 const SCALE = Number(process.env.BENCH_SCALE ?? 1);
@@ -16,7 +16,7 @@ describe('long run throughput', () => {
   test('25 people for 50 years by routine in under ten seconds', () => {
     // Warm the hot paths first so the measurement is steady-state throughput, not JIT compilation.
     const warm = settlement(5, 9);
-    liveCommunity(warm, YEAR, { routineFor, onDay: births(5), lifecourse: { mortality: true } });
+    liveCommunity(warm, YEAR, { routineFor, onDay: families(5), lifecourse: { mortality: true } });
 
     const c = settlement(25, 1);
     const founders = c.people.map((p) => ({ ...p.traits }));
@@ -26,7 +26,7 @@ describe('long run throughput', () => {
     for (let y = 1; y <= 50; y++) {
       const r = liveCommunity(c, y * YEAR, {
         routineFor,
-        onDay: births(25),
+        onDay: families(25),
         lifecourse: { mortality: true, chronicOnsets: true },
       });
       deaths += r.events.filter((e) => e.kind === 'died').length;

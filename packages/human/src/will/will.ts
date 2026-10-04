@@ -47,6 +47,7 @@ import type {
   Suggestion,
   SuggestionResolution,
   SuggestionVerdict,
+  Unit,
   VoiceConflict,
   VoiceRelation,
   WillState,
@@ -256,6 +257,19 @@ function ensureVoice(p: Person, voiceId: EntityId): VoiceRelation {
     if (idx >= 0) p.will.voices.splice(idx, 1);
   }
   p.will.voices.push(v);
+  return v;
+}
+
+/**
+ * Move `p`'s trust in a voice a fraction `rate` (0..1) of the way toward `target` (1.8.0), adding the voice if
+ * absent (bounded like any new voice). Used by upbringing: a child comes to trust whom the household trusts. It
+ * records no history event and no credit, since no suggestion of that voice was weighed.
+ */
+export function adoptVoiceTrust(p: Person, voiceId: EntityId, target: Unit, rate: Unit): VoiceRelation {
+  const v = ensureVoice(p, voiceId);
+  const r = clamp01(Number.isFinite(rate) ? rate : 0);
+  const t = clamp01(Number.isFinite(target) ? target : v.trust);
+  v.trust = clamp01(v.trust + r * (t - v.trust));
   return v;
 }
 

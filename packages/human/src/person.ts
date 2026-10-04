@@ -75,6 +75,14 @@ import {
   repent,
 } from './conscience/index.ts';
 import { clamp01, clampSigned, createRng, dayOf, minuteOfDay } from './core/index.ts';
+import {
+  ambientBodyParams,
+  ambientModifiers,
+  ambientMood,
+  ambientNeeds,
+  sanitizeAmbient,
+} from './environment/index.ts';
+import { aptitudeOf, createFamily, pregnancyModifiers, sanitizeFamily } from './family/index.ts';
 import { advanceHabits, reinforce, withholdCued } from './habits/index.ts';
 import { ageYears, learningMultiplier, lifeModifiers } from './lifecourse/index.ts';
 import {
@@ -89,6 +97,7 @@ import {
 import { migrate } from './migrate.ts';
 import { intentionFor, narrateDecision, voiceLine } from './narrate/index.ts';
 import { advanceNeeds, createNeeds, meanSatisfaction, readNeeds, satisfy } from './needs/index.ts';
+import { sanitizeBonds, widow } from './partnering/index.ts';
 import { observe, practise, type SkillTransfer, seedSkills } from './skills/index.ts';
 import {
   advanceSocial,
@@ -270,6 +279,8 @@ export function createPerson(spec: PersonSpec): Person {
     nextDecision: 0,
   };
   if (spec.lexicon) p.lexicon = structuredClone(spec.lexicon);
+  const family = createFamily(spec.family);
+  if (family) p.family = family;
   return p;
 }
 
@@ -362,16 +373,25 @@ const isNight = (now: Minute): boolean => {
 // tick
 // ---------------------------------------------------------------------------------------------
 
+/** Life modifiers for time passing: age, then pregnancy and the surroundings when present (1.8.0). */
+function segmentModifiers(p: Person) {
+  let mods = lifeModifiers(p);
+  if (p.family?.pregnancy) mods = pregnancyModifiers(p, mods);
+  if (p.ambient) mods = ambientModifiers(p, mods);
+  return mods;
+}
+
 function advanceSegment(p: Person, dt: number, load: BodyLoad, aff: Affordance | undefined): void {
-  const mods = lifeModifiers(p);
+  const mods = segmentModifiers(p);
   const satisfaction = meanSatisfaction(readNeeds(p, readBodyOf(p)));
-  advanceBody(p, dt, load, mods);
+  advanceBody(p, dt, load, mods, p.ambient ? ambientBodyParams(p, BODY_DEFAULTS) : BODY_DEFAULTS);
   advanceNeeds(p, dt, {
     withOthers: (aff?.with?.length ?? 0) > 0,
     activityTags: aff?.tags ?? [],
     asleep: p.body.asleep,
   });
-  advanceAffect(p, dt, satisfaction);
+  if (p.ambient) satisfy(p, ambientNeeds(p, dt));
+  advanceAffect(p, dt, satisfaction, p.ambient ? ambientMood(p) : undefined);
   advanceMemory(p, dt);
   advanceBeliefs(p, dt);
   advanceHabits(p, dt);
@@ -732,6 +752,8 @@ function perceiveOne(p: Person, pc: Percept): void {
   // A death I hear of: the tie is kept and marked, so recalling them is a grief cue from now on.
   if (pc.kind === 'death' && target !== undefined && target !== p.id && !byMe) {
     if (p.social.relationships.some((r) => r.otherId === target)) markDeceased(p, target, at);
+    // A spouse's death ends the marriage and begins any waiting period (1.8.0, `partnering/`).
+    if (p.bonds) widow(p, target, at);
   }
 
   // Memory.
@@ -1038,10 +1060,10 @@ function thresholdFor(p: Person, load: BodyLoad, review: number): Minute | undef
   const t = nextBodyThreshold(
     p,
     load,
-    lifeModifiers(p),
+    segmentModifiers(p),
     PERSON_DEFAULTS.interruptThresholds,
     review,
-    BODY_DEFAULTS,
+    p.ambient ? ambientBodyParams(p, BODY_DEFAULTS) : BODY_DEFAULTS,
     fastingCtx(p),
   );
   return Number.isFinite(t) ? p.now + t : undefined;
@@ -1295,7 +1317,9 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
   // Skills and habits. Time spent practising counts even when the activity was interrupted.
   if (aff.skill && minutes > 0) {
     // 1.8.0: a declared domain picks its age curve; transfer and practice conditions come from the host.
-    const learning = aff.skill.domain === undefined ? mods.learning : learningFor(p, aff.skill.domain);
+    const learning =
+      (aff.skill.domain === undefined ? mods.learning : learningFor(p, aff.skill.domain)) *
+      aptitudeOf(p, aff.skill.id);
     practise(
       p,
       aff.skill.id,
@@ -1525,6 +1549,9 @@ const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
   'skillRetention',
   'character',
   'lexicon',
+  'family',
+  'bonds',
+  'ambient',
 ]);
 
 /** A well-formed character state (1.8.0) as `restore` accepts it. */
@@ -1692,5 +1719,21 @@ export function restore(input: unknown): Person {
     )
   )
     delete out.skillRetention;
+  // Optional slices added in 1.8.0: validated by their owners, dropped when malformed (absent means none).
+  if (out.family !== undefined) {
+    const f = sanitizeFamily(out.family);
+    if (f) out.family = f;
+    else delete out.family;
+  }
+  if (out.bonds !== undefined) {
+    const b = sanitizeBonds(out.bonds);
+    if (b) out.bonds = b;
+    else delete out.bonds;
+  }
+  if (out.ambient !== undefined) {
+    const a = sanitizeAmbient(out.ambient);
+    if (a) out.ambient = a;
+    else delete out.ambient;
+  }
   return out;
 }

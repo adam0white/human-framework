@@ -19,6 +19,7 @@
  * The illness term (a day under chronic illness feels worse by `LONGRUN_DEFAULTS.illnessFelt` × summed severity) and
  * the companion event magnitude are engineering assumptions.
  */
+
 import { advanceAffect, appraise, readAffect, skipAffect, skipCrisis } from './affect/index.ts';
 import { advanceAgenda } from './agenda/index.ts';
 import { advanceBeliefs } from './beliefs/index.ts';
@@ -26,6 +27,8 @@ import { die, sicken, skipBody } from './body/index.ts';
 import { ageCharacter, noteCharacterDay } from './character/index.ts';
 import { endDay, foldDay } from './chronicle/index.ts';
 import { chance, clampSigned, dayOf } from './core/index.ts';
+import { ambientMood } from './environment/index.ts';
+import { aptitudeOf } from './family/index.ts';
 import { advanceHabits } from './habits/index.ts';
 import {
   type ChronicCondition,
@@ -36,6 +39,7 @@ import {
 } from './lifecourse/index.ts';
 import { advanceMemory, consolidate, remember } from './memory/index.ts';
 import { meanSatisfaction } from './needs/index.ts';
+import { widowhoodMortality } from './partnering/index.ts';
 import { learningFor, readPerson, skip } from './person.ts';
 import { practise, type SkillTransfer, successChance } from './skills/index.ts';
 import { advanceSocial, socialEvent } from './social/index.ts';
@@ -146,7 +150,7 @@ export function routineDay(p: Person, routine: Routine, opts: RoutineOptions = {
 
   // Closed-form decays over the day, as in `skip`.
   const satisfaction = meanSatisfaction(readPerson(p).needs);
-  advanceAffect(p, MINUTES_PER_DAY, satisfaction, D.affectSteps);
+  advanceAffect(p, MINUTES_PER_DAY, satisfaction, p.ambient ? ambientMood(p) : undefined, D.affectSteps);
   advanceMemory(p, MINUTES_PER_DAY);
   advanceBeliefs(p, MINUTES_PER_DAY);
   advanceHabits(p, MINUTES_PER_DAY);
@@ -178,7 +182,7 @@ export function routineDay(p: Person, routine: Routine, opts: RoutineOptions = {
         minutes,
         a.skill.difficulty,
         succeeded,
-        learningFor(p, a.skill.domain),
+        learningFor(p, a.skill.domain) * aptitudeOf(p, a.skill.id),
         end,
         opts.transfer,
         a.practice,
@@ -225,11 +229,14 @@ export function routineDay(p: Person, routine: Routine, opts: RoutineOptions = {
     }
   }
   if (lc?.mortality) {
+    // Widowhood raises the hazard for a while (`partnering.widowhoodMortality`; 1 for anyone never widowed).
+    const widowed = p.bonds ? widowhoodMortality(p, end) : 1;
+    const multiplier = (lc.multiplier ?? 1) * widowed;
     const roll = mortalityEvent(
       p,
       MINUTES_PER_DAY,
       p.rng,
-      lc.multiplier !== undefined ? { multiplier: lc.multiplier } : {},
+      lc.multiplier !== undefined || widowed !== 1 ? { multiplier } : {},
     );
     if (roll.died) {
       die(p);

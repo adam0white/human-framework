@@ -61,6 +61,7 @@ import {
   type HealthExposures,
   mortalityEvent,
 } from '../lifecourse/index.ts';
+import { widow } from '../partnering/index.ts';
 import {
   type BeginOptions,
   begin,
@@ -303,6 +304,11 @@ export interface StepOptions {
   contagion?: boolean;
   /** Life-course rolls (mortality, chronic onsets); default off. */
   lifecourse?: LifecourseOptions;
+  /**
+   * Tell each death to everyone alive who had a tie to the dead person, as a `death` percept at the minute it is
+   * noticed (1.8.0, default true): they grieve, keep the tie as a memory, and a spouse is widowed (`partnering/`).
+   */
+  tellDeaths?: boolean;
   /** Hosts may disable the necessity exception. */
   necessity?: boolean;
   /** Minutes an idle person waits when no option is chosen. */
@@ -392,6 +398,31 @@ export function birth(c: Community, a: Person, b: Person, spec: ChildSpec): Pers
   }
   addPerson(c, child);
   return child;
+}
+
+/**
+ * Tell `dead`'s death at `at` to everyone alive in the community who has a tie to them (1.8.0): a told `death`
+ * percept through `perceive`, so they grieve, the tie is kept and marked, and a spouse is widowed. Each listener's
+ * clock must be at or before `at`; the drivers call it when they notice the death.
+ */
+export function tellDeath(c: Community, dead: Person, at: Minute): void {
+  for (const q of c.people) {
+    if (q === dead || !q.body.alive) continue;
+    if (!q.social.relationships.some((r) => r.otherId === dead.id)) continue;
+    perceive(q, [
+      {
+        at: Math.max(at, q.now),
+        channel: 'told',
+        kind: 'death',
+        targetId: dead.id,
+        valence: -0.8,
+        salience: 0.9,
+        summary: `${dead.name} died`,
+      },
+    ]);
+    // A spouse is widowed even if the news went unattended.
+    if (q.bonds) widow(q, dead.id, Math.max(at, q.now));
+  }
 }
 
 /** Settled proposals kept for inspection. */
@@ -899,6 +930,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     }
     if (!p.body.alive) {
       log({ at: t, personId: p.id, kind: 'died', detail: `${p.name} died` });
+      if (opts.tellDeaths ?? true) tellDeath(c, p, t);
       for (const x of pendingProposals(c))
         if (x.proposerId === p.id) settle(c, x, 'declined');
         else if (x.partnerIds.includes(p.id)) declineJoint(c, x);

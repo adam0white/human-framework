@@ -20,7 +20,7 @@ import {
   restore,
   snapshot,
 } from '../src/index.ts';
-import { births, DAY, routineFor, settlement, YEAR } from './longrun-fixture.ts';
+import { DAY, families, routineFor, settlement, YEAR } from './longrun-fixture.ts';
 
 const rt = <T>(x: T): T => JSON.parse(JSON.stringify(x)) as T;
 const lifecourse = { mortality: true, chronicOnsets: true };
@@ -70,7 +70,7 @@ describe('liveRoutine (one person)', () => {
 
 describe('fifty years of a settlement (L5 control)', () => {
   test('people age and die, the dead are grieved, and traits, skills, ties and mood keep moving', () => {
-    const c = settlement(10, 2, 30, 70);
+    const c = settlement(12, 2, 18, 70);
     type Sample = {
       traits: Person['traits'];
       skills: number;
@@ -97,7 +97,7 @@ describe('fifty years of a settlement (L5 control)', () => {
     let deaths = 0;
     let stages = 0;
     for (let d = 1; d <= 5; d++) {
-      const r = liveCommunity(c, d * 10 * YEAR, { routineFor, onDay: births(12), lifecourse });
+      const r = liveCommunity(c, d * 10 * YEAR, { routineFor, onDay: families(18), lifecourse });
       deaths += r.events.filter((e) => e.kind === 'died').length;
       stages += r.events.filter((e) => e.kind === 'stage').length;
       decades.push(sample());
@@ -110,6 +110,20 @@ describe('fifty years of a settlement (L5 control)', () => {
     expect(c.people.some((p) => p.id.startsWith('k'))).toBe(true);
     const grieved = c.people.filter((p) => p.body.alive && p.social.relationships.some(isDeceasedTie));
     expect(grieved.length).toBeGreaterThan(0);
+    // Generations: marriages, widowhood, children raised by their parents, and grandchildren of the founders.
+    const marriages = c.people.flatMap((p) => p.bonds?.marriages ?? []);
+    const widowed = marriages.filter((m) => m.end === 'widowed').length;
+    const parentsOf = (p: Person) =>
+      p.social.relationships.filter((r) => r.roles.includes('parent')).map((r) => r.otherId);
+    const grandchildren = c.people.filter((p) => parentsOf(p).some((id) => id.startsWith('k')));
+    const raised = c.people.filter((p) => (p.family?.raisedMinutes ?? 0) > 0);
+    console.log(
+      `50 years: people ${c.people.length}, deaths ${deaths}, marriages ${marriages.length / 2}, widowed ${widowed}, raised ${raised.length}, grandchildren ${grandchildren.length}`,
+    );
+    expect(marriages.length).toBeGreaterThan(0);
+    expect(widowed).toBeGreaterThan(0);
+    expect(raised.length).toBeGreaterThan(0);
+    expect(grandchildren.length).toBeGreaterThan(0);
 
     // No flat lines: each decade, among people alive at both ends, something moved.
     for (let d = 1; d <= 5; d++) {
@@ -141,7 +155,7 @@ describe('fifty years of a settlement (L5 control)', () => {
   });
 
   test('a run saved and restored mid-way continues bit for bit', () => {
-    const opts = { routineFor, onDay: births(6), lifecourse: { ...lifecourse, multiplier: 5 } };
+    const opts = { routineFor, onDay: families(6), lifecourse: { ...lifecourse, multiplier: 5 } };
     const a = settlement(6, 3, 20, 60);
     liveCommunity(a, 4 * YEAR, opts);
     const b = settlement(6, 3, 20, 60);

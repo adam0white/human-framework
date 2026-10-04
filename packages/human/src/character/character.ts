@@ -205,6 +205,9 @@ export function ageCharacter(p: Person, to: Minute): boolean {
     if (kept !== 0) c.experience[k] = kept;
     else delete c.experience[k];
   }
+  // Values are the household's to shape until adulthood (`family.raise`); the anchor is taken again at 18 so the
+  // drift band starts from the values upbringing left.
+  if (fromAge < K.maturationFrom && toAge >= K.maturationFrom) c.baseValues = { ...p.values };
   for (const k of VALUE_KEYS) {
     const delta = K.valuePerYear[k] * years;
     if (delta !== 0) p.values[k] = bounded(p.values[k] + delta, c.baseValues[k]);

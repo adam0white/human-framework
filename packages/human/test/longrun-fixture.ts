@@ -1,21 +1,27 @@
 /**
  * A small settlement lived by routine for decades (L5 control scenario), shared by longrun.test.ts (correctness) and
  * longrun.timing.ts (run time). Ages are spread so natural death happens at the real hazard; the host keeps the
- * population up with births; routines vary by season and age, with occasional help and quarrels.
+ * population up with marriages and births; routines vary by season and age, with occasional help and quarrels.
  */
 import {
   birth,
   type Community,
+  conceptionChance,
   createCommunity,
   createPerson,
+  createRng,
   enableCharacterChange,
   enableGists,
   enableSkillConsolidation,
   enableYearbook,
+  GENERIC_CUSTOM,
   lifeStage,
+  marry,
   type Person,
   type Routine,
   type RoutineActivity,
+  random,
+  spousesOf,
 } from '../src/index.ts';
 import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../src/types.ts';
 
@@ -82,7 +88,12 @@ export function routineFor(p: Person, day: number, c: Community): Routine {
           domain: 'motor',
         },
       });
-    acts.push({ action: 'supper', minutes: 90, with: friends.slice(1, 3), valence: 0.1 });
+    acts.push({
+      action: 'supper',
+      minutes: 90,
+      with: [...spousesOf(p), ...friends.slice(1, 2)],
+      valence: 0.1,
+    });
   }
   acts.push({ action: 'pray', minutes: 30, valence: 0.05 });
   if (one) {
@@ -157,23 +168,32 @@ export function settlement(n = 25, seed = 1, minAge = 0, maxAge = 70): Community
 const ageOf = (p: Person, at: number) => (at - p.life.bornAt) / MINUTES_PER_YEAR;
 
 /**
- * Dawn hook: on the first day of each year, while fewer than `target` live, up to three couples aged 20..40 have a
- * child. Ids and seeds come from the number of children already in the community, so a resumed run continues them.
+ * Dawn hook, first day of each year: unmarried adults 18..40 marry in id order (one woman, one man, not close kin,
+ * `marry` with the generic custom), then each married couple conceives within the year with `conceptionChance` (a
+ * host-side roll from the day's own stream) while fewer than `target` live. Ids and seeds come from the number of
+ * children already in the community, so a resumed run continues them.
  */
-export function births(target = 25) {
+export function families(target = 25) {
   return (c: Community, day: number, at: number) => {
     if (day % 365 !== 0) return;
     const alive = c.people.filter((q) => q.body.alive);
-    let room = Math.min(3, target - alive.length);
-    const fertile = alive.filter((q) => ageOf(q, at) >= 20 && ageOf(q, at) <= 40);
-    const mothers = fertile.filter((q) => q.life.sex === 'female');
-    const fathers = fertile.filter((q) => q.life.sex === 'male');
-    for (let k = 0; room > 0 && k < Math.min(mothers.length, fathers.length); k++, room--) {
-      const a = mothers[(k + day) % mothers.length];
-      const b = fathers[(k + day) % fathers.length];
-      if (!a || !b) break;
+    const lookup = (id: string) => c.people.find((q) => q.id === id);
+    const single = alive.filter((q) => ageOf(q, at) >= 18 && ageOf(q, at) <= 40 && spousesOf(q).length === 0);
+    const men = single.filter((q) => q.life.sex === 'male');
+    for (const woman of single.filter((q) => q.life.sex === 'female')) {
+      const k = men.findIndex((m) => marry(woman, m, at, GENERIC_CUSTOM, { lookup }).ok);
+      if (k >= 0) men.splice(k, 1);
+    }
+    const rng = createRng(90_000 + day);
+    let living = alive.length;
+    for (const mother of alive) {
+      if (mother.life.sex !== 'female' || living >= target) continue;
+      const father = spousesOf(mother)
+        .map(lookup)
+        .find((q) => q?.body.alive);
+      if (!father || random(rng) >= conceptionChance(mother, father, 365)) continue;
       const n = c.people.filter((q) => q.id.startsWith('k')).length + 1;
-      const child = birth(c, a, b, {
+      const child = birth(c, mother, father, {
         id: `k${String(n).padStart(3, '0')}`,
         name: `K${n}`,
         seed: 50_000 + n,
@@ -181,6 +201,7 @@ export function births(target = 25) {
         now: at,
       });
       enableLongLife(child);
+      living += 1;
     }
   };
 }
