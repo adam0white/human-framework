@@ -145,6 +145,14 @@ describe('fifty years of a settlement (L5 control)', () => {
       (p.chronicleYears ?? []).filter((y) => y.days > 300).map((y) => y.mood),
     );
     expect(Math.max(...moods) - Math.min(...moods)).toBeGreaterThan(0.05);
+    // Within one life too: the widest year-to-year mood span of any one person.
+    const ownSpan = Math.max(
+      ...c.people.map((p) => {
+        const m = (p.chronicleYears ?? []).filter((y) => y.days > 300).map((y) => y.mood);
+        return m.length > 1 ? Math.max(...m) - Math.min(...m) : 0;
+      }),
+    );
+    expect(ownSpan).toBeGreaterThan(0.05);
     expect(
       c.people.every((p) =>
         (p.chronicleYears ?? []).every((y) => y.moodLow <= y.mood && y.mood <= y.moodHigh),
