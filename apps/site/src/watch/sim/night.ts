@@ -598,11 +598,14 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
       const kind: NightNote['kind'] =
         action === 'flee' ? 'fled' : action === 'run-off' ? 'ran' : action === 'sleep' ? 'slept' : 'home';
       note(s, { who: id, kind, section: where });
+      // Walking home, to family or to bed, is not fear of the place (HF reads avoided 0 as an even 0.5, so it is
+      // left out); only running from it is.
+      const ran = action === 'flee' || action === 'run-off';
       observeAct(s.keeper, id, {
         at: s.minute,
         clarity,
         placeId: where,
-        avoided: action === 'sleep' ? 0.2 : 1,
+        ...(ran ? { avoided: 1 } : {}),
         tags:
           action === 'flee' || action === 'run-off' ? ['flee'] : action === 'sleep' ? ['refuse'] : ['care'],
       });
