@@ -223,6 +223,167 @@ Deferred to G3-3/G3-4: saving a night in progress across reloads.
 
 UI left as is: postures sit a few pixels apart at small sizes, and the Keeper's sprite can overlap names.
 
+### G3-3 as built (2026-10-04)
+
+This phase adds the year around the winter and play across generations.
+
+Code:
+- `sim/season.ts`: the year.
+- `sim/director.ts`: winters from year 2.
+- `sim/life.ts`: aging, courtship, births, leaving, newcomers.
+- `sim/fair.ts`, `sim/volume.ts`, `sim/talk.ts`.
+- `store.ts`: saves.
+- New UI pages: `ui/pages.tsx`, `ui/chronicle.tsx`.
+
+The only framework change is one opt-in cue kind. HF impressions now read `skill:<id>` keys with a half-life of a year. The Keeper learns someone's aim from their lit throws, and that read lasts across winters.
+
+- **The year.**
+  - Winter is the first 6–8 nights, played back to back from the first dusk. The rest of the winter passes by routine.
+  - The thaw page follows the last dawn.
+  - Spring, summer and autumn advance a day per step with HF `liveCommunity`, with natural death and chronic onsets on.
+  - The harvest comes in mid-autumn and the fair two weeks later. The next winter opens at midnight of day 365.
+- **Speeds.**
+  - Five speeds: Slow, Watch, Fast, Days, Seasons. In the seasons they run a quarter of a day to seven days per second. At night they run 1 to 60 minutes per second.
+  - A season opens at Days unless Seasons was chosen. The first dusk of a winter sets Watch.
+  - A season card slows play to the slow pace. Nothing pauses. Opening the chronicle still stops the clock.
+- **Director (from year 2).**
+  - Each winter has a lead threat with a reason in words and a peak night.
+  - On its second appearance a threat gets a twist: wolves learn the dark stretch, thieves have a man inside.
+  - 35 % of winters give a two-section warning.
+  - Some winters set a question: keep everyone alive, the first stand of someone born here, or the Gate.
+  - Waves grow with the size of the watch.
+  - A stretch of wall that was climbed all winter may come down in the thaw and stay closed for a year.
+- **Grain.**
+  - From night 4 of the first winter, a night carries off at most three sacks, plus one for every eight sacks above the starting twenty. The first three nights are the authored opening the G3-1 and G3-2 gates measure, and they take what they take.
+  - Grain is lost only on played nights.
+  - The thaw eats 0.4 sacks a head.
+  - An empty granary does not end the winter. The dawn page still tells that night. At the thaw an empty granary means a hungry spring: the households most ready to leave go until the rest can be fed. This holds from the first year.
+  - The village ends only when nobody aged fifteen or more is left.
+  - Harvest is 14 sacks plus 1.5 per worker, scaled by the weather and the seed. The granary holds 45.
+- **People over years.**
+  - Courtship and marriage use HF `court`, `proposeOffer` and `familyVoices`. A proposal arrives as a season card: the Keeper may bless it, oppose it or leave it.
+  - Births use `conceptionChance`, lowered when grain is short and when the village is above twenty-two people.
+  - Above twenty-two, young couples from outside leave first, so the village's own families continue.
+  - Below ten, refugees may come.
+  - Households with low trust, low mood and a hard winter leave at the thaw.
+  - Watchers stand from fifteen to sixty-seven. A wound can end someone's time on the wall for life.
+- **The fair.** The Keeper takes up to two of three offers. Each is irreversible and paid in grain:
+  - let in a burned-out family;
+  - raise a third post on a stretch;
+  - a heavier bell;
+  - better seed;
+  - name an heir to the Gate.
+- **Volumes and leaves.**
+  - There is one volume per generation, with a question that ends it: the Gate keeper's going, or a child of the village standing the wall.
+  - A closed volume shows an epilogue page, not a game over. Each person in the epilogue speaks a line chosen by their life and mood, and no line repeats within one epilogue.
+  - Blank leaves at the back fill in when their condition happens.
+- **Talks (§4, minimal).**
+  - Two talks a day at dawn: "tell me about last night" and a question about the body.
+  - The Keeper hears what is said at a lower weight than what he sees.
+  - A talk costs the watcher a little sleep.
+- **Show, don't count.**
+  - The frame gives the date, ages and fair costs in words, grain as sacks, and impressions drawn with how sure the Keeper is.
+  - Winter pages warn in words when the granary runs low: "running low", then "nearly bare", then "empty".
+  - Old watchers stoop and carry a stick. A limp shows.
+- **Phone.**
+  - The Begin button stays in reach under 600 px.
+  - A tap picks the nearest post within a wider radius.
+- **Saves.**
+  - The worker keeps a page per season, and an autosave at each dawn and page, in IndexedDB. Pages are gzipped where the browser supports it.
+  - Every storage call is wrapped. Without storage the game plays on and the shelf stays empty.
+  - A page holds the seed, the input log and the whole state.
+  - Resuming a page reaches the same end state as the unbroken run (`sim/years.test.ts`), and an export made after resuming still replays from the seed.
+
+**Checks, headless.**
+- `sim/years.test.ts`:
+  - Three years on one seed: harvest, fair and winter lines, and annals.
+  - The three-year export replays to the same full hash.
+  - A snapshot taken halfway and resumed ends on the same hash.
+  - Pacing in the seasons: Days on entering spring, whole days per step, the card slowdown, Watch at the next dusk.
+  - With storage absent, the shelf comes back empty without throwing.
+  - The first winter: on seeds 1–3, an unplanned winter reaches the thaw with a dawn for every night.
+- `sim/years.timing.ts` (`npm run bench`) runs 50 years on seed 1 and fails on flat lines.
+  - Run time: 326 s under Vitest on the dev machine, with other agents running.
+  - Population: 177 people lived; 15 at the start, 24–31 later.
+  - Life events: 21 births, 5 deaths, 11 marriages, 52 leavings, 51 arrivals; top generation 3; 7 volumes.
+  - Grain: winter losses 6–28 sacks; harvests 25–61; granary at winter 20–40; 7 hungry springs.
+  - Mean mood by decade: 0.32, 0.28, 0.35, 0.35, 0.32.
+- Three seeds × 50 years, run in node before the first-winter change at about 2.5 minutes a seed:
+  - All three reached year 51.
+  - Living 10–31; hungry springs 7, 12 and 16; marriages 11–14; births 21–47.
+  - Seeds 2 and 3 vary the granary at winter between 22 and 40 through the run.
+  - Seed 1 sits at the granary's cap for about twenty years. That is a weak spot, recorded here, not fixed.
+- The G3-1 and G3-2 gates still pass. They measure the first three nights, which are unchanged.
+
+**Decisions.**
+- Played nights run back to back from the first dusk.
+- Failing a winter question costs only a chronicle line.
+- Resettlement is cut: a village that falls ends its volume.
+- "Three nights nobody comes" is not built.
+
+**Review (wildcard: a phone player on 360×690, Sonnet).**
+- *What they said:* the player lost the first winter twice, on nights 4 and 5, when the granary ran out. They got no dawn for the last night and no warning beforehand. "a village that scatters after four or five nights is too harsh for a first winter."
+- *What mattered most to them:* dawn quotes that name a person and a place ("Joss got me off the wall. I owe him.").
+- Accepted and done:
+  - The first winter cannot end the village. The losing night gets its dawn.
+  - Words warn of a low granary at dusk and dawn.
+  - Begin stays in reach on a phone, and post taps have a wider hit area.
+  - Epilogue lines no longer repeat.
+- Deferred to G3-4:
+  - Generic dawn lines repeat across people ("Fine. I'm fine.", "Quiet enough.").
+  - The lantern and bell row shifts as messages come and go.
+  - The moment card covers the scene and the speed bar on a phone.
+  - The chronicle menu is taller than a phone, and its Load buttons are small and unlabeled.
+  - A watcher stays drawn at a post after leaving it.
+  - The map is blank for a frame after a load.
+  - The speed bar is hidden at dawn, and there is no hint about Days and Seasons.
+  - The bell gives no feedback after it is rung.
+  - The two talk questions get similar answers.
+  - There is no tap-to-move for the lantern.
+  - The `frame.night` and `nightName` leftovers (coordinator review item 7).
+
+**Review (game designer, Opus, 1280×800).** The reviewer played two years. Part of the play came before the first-winter change, so their run 1 fell on night 4.
+- *Their verdict:* the second year produced the first real long-run story: a wall came down where it was climbed, a hungry spring, refugees, a birth, aging in words, bonds from shared nights.
+- Accepted and done:
+  - The Keeper's read of people no longer fades to "you don't know them yet" over the summer. Lasting cues hold and are marked "from last winter" (`sim/reads.ts`, tested in `sim/years.test.ts`).
+  - A watcher who went home no longer says "I didn't blink till dawn".
+  - Quiet, tired and "fine" lines vary by person. A hidden hurt shows as a tell ("They shift their weight off one leg").
+  - "Bring every soul…" counts as done only if spring is fed. A hungry spring is not "It was done".
+  - The thaw names the fears the winter left. Its empty line no longer says "Nothing changed for good".
+  - Season labels no longer go from "Late autumn" back to "Early autumn".
+  - A fallen stretch is drawn as a gap, and its lantern chip reads "· fallen" and is disabled.
+  - The year-1 fall and warning (#5, #23) are covered by the first-winter change.
+- Rejected:
+  - The empty "Today" heading (#17): it is a collapsed list that has lines.
+  - Hiding speeds by season (#15): the brief asks for speeds up to Seasons. Nights at Days and Seasons still raise cards.
+- Deferred to G3-4:
+  - The heir choice leaves no trace on cards and offers a single name (#3, #4).
+  - Collapse quiet watchers into one dawn line (#7).
+  - Write routine nights into the thaw (#9).
+  - The fair: the "two more" cap in place of grain as the limit (#10), previewing what a choice costs on the granary drawing (#11), options that are not real decisions, and rebuilding a fallen wall (#12).
+  - One person-centred card per off-season, and the birth as a moment (#13).
+  - Child roster wording (#16).
+  - Saves: progress since the last page is lost on reload; loading an older page rewinds, against spec §6 "no rewind"; a closed volume should stay on the shelf (#18).
+  - Posting pressure once families are admitted (#19).
+  - Winter questions drawn from the cast's life stages (#20).
+  - Sprites aging and taglines moving with experience (#21).
+  - Ranked talk topics (#22). After the read fix, this is the largest long-run gap.
+
+**Played (Claude Browser pane, 2026-10-04).**
+- Desktop 1024×768:
+  - The first winter of a new chronicle with no planning reached the thaw. The granary emptied on night 4, and each later dawn said "The granary is empty. The spring will be hungry."
+  - The thaw page brought the west wall down, then came a hungry spring and refugees.
+  - Spring and summer ran at Seasons.
+  - A page reload in autumn was followed by Continue, which restored the fair.
+  - I bought the bigger bell, left the fair, and autumn ran to the second winter's dusk.
+  - At that dusk the reads showed "from last winter" and the west wall was drawn as a gap.
+- Phone 360×690, the same chronicle:
+  - The Begin button stays on screen.
+  - The chronicle shelf listed the saved pages. Load on "the first year, summer" returned to early summer.
+  - Seasons ran summer on to autumn.
+  - The map was blank for a moment after the resize (deferred above).
+- The spring page was missing from the shelf. The page reload happened during the run, and I did not establish the cause.
+
 **Done for Game 3:** endless play live at /watch/ on desktop and phone, with a playtest export; L1–L6 released in HF 2.0 with tests; `npm run check` passes; the user accepts by playing.
 
 ## 11. Risks and cuts
