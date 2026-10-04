@@ -168,6 +168,61 @@ Rejected for G3-1:
 - A vaguer warning spanning two sections, to make posting a real split. It is a director question for G3-3; G3-2's people add choice of their own.
 - A gentler first night. The first night is already one threat with an honest scout. Losing a third of the granary by ignoring him is what the gate asks for.
 
+### G3-2 as built (2026-10-04)
+
+Watchers are HF `Person`s run by `stepCommunity` (`sim/people.ts`, `sim/night.ts`); no game code went into `packages/human` beyond L6 impressions. ENGINE_VERSION stays 1.7.0.
+
+- **Cast.** Tamar, Kian and Mara stand the first night. Joss and Yunus come through the gate on night 2. Ruslan, the newcomer the Keeper doesn't know, comes on night 3. Arrivals, and anyone who turns away from an old grudge, show in the day summary.
+- **Staying or leaving.** A posting is a suggestion with a duty appeal. At night a posted watcher is offered only their own post, so the choice is to stay or to leave: flee, go home to family, sleep, freeze, or doze where they stand (a 30-minute sleep on the wall). Sitting and eating on an exposed stretch carry the risky tag, so fear does not keep people idling on the wall.
+- **Moments.** At most three cards a night, only on the lit stretch. A card opens as a watcher wavers from fear or tiredness, when one starts to leave (`catchLeaving`: let them go or call them back), when family is threatened (let go, send someone else, or ring), or when someone is downed. While a card is open, play runs at the dusk rate.
+- **Bell.** A command on the watchers within earshot for 90 minutes. It costs trust and autonomy, and every pull wears the rope until it snaps. The dawn line scales with resentment, from "I heard the bell. I held." to "You rang me down like a dog."
+- **Impressions.** The roster shows the Keeper's words for each watcher (HF `impressionOf`), drawn with how sure he is. Dusk reads by press (ask, urge, insist) use `predictAs` on the Keeper's imagined person, read the warned stretch as dangerous already, and carry their reason ("might (…)", "won't (…)"). A post someone else holds reads "might", not "won't".
+- **Dawn.** Each watcher speaks one or two lines. What they say is also told to the Keeper (HF `hear`, weight 0.5). A fright on a stretch (shaken, bitten, downed, fled, ran, froze) is learned with `learnOutcome` as a bad `hold-post@<section>`, weighted as five stints so the night's ordinary stints don't average it away. It lasts into the next dusk and then fades (`sim/fear.test.ts`: 13 of 13 cases still feared at the next dusk; the Keeper reads 8 of 13 as "might" or "won't").
+- **Export.** The compact export holds the seed, the input log, an end-state summary and a full hash; `sim/run.test.ts` replays it.
+
+**Gates, headless.** 24 seeds × 3 nights. G3-1 (`sim/gate.test.ts`), now with people, mean sacks lost of 20:
+
+| Plan | Lantern at Gate | Lantern at focus | Granary emptied (focus) |
+|---|---|---|---|
+| Matched | 12.1 | 7.3 | 0/24 |
+| Usual | 16.5 | 16.5 | 9/24 |
+| Mismatched | 18.3 | 19.3 | 17/24 |
+
+G3-2 (`sim/gate2.test.ts`) approximates "a tester names one fear and one bond within three nights" by matching dawn lines against fear and bond phrasings: matched plan 24/24 seeds both, usual 19/24; cards 3.9–4.3 per run. This is a templated-text check, not a tester.
+
+**Played (desktop 1280×800, phone 360×690, two nights each).** A tired Kian walked home before dawn and the card offered to call him back. On the phone the card overlays the top of the map.
+
+**Review (game designer, Opus).** Accepted and done:
+- Dozing no longer reads as fear.
+- Fear lasts across nights.
+- Reads show their reason.
+- One dozing line a night at most.
+- The bell has a dawn cost.
+- Arrivals and grudges show in the day summary.
+- The splice line no longer names a watcher.
+
+Not done:
+- Talks (spec §4) are deferred to G3-3.
+- Mara and Joss sharing a night, and spreading cards across the cast, are left to tuning.
+- Urge and insist share strength 0.6 by design: insist differs by HF's flag (compliance under protest, no trust earned).
+- Day sleep is unchanged. Drowsiness by 02:00–04:00 comes from the framework's sleep-pressure calibration.
+
+**Review (wildcard: a charge nurse, Sonnet, played on a phone).** Accepted:
+- Say what ask, urge and insist do, and what the rope is.
+- Hide ties to people who haven't arrived ("close to Joss" on night 1).
+
+Found while acting on the reviews:
+- A family card read the substitute against a post still held by the leaver.
+- Walking home was read as fear of the place.
+
+Rejected:
+- Cards that hold until answered. Slowdown rather than pause is the game direction.
+- Dawn advice ("put someone on the east wall"). The dawn page already says "Nobody stood the east wall."
+
+Deferred to G3-3/G3-4: saving a night in progress across reloads.
+
+UI left as is: postures sit a few pixels apart at small sizes, and the Keeper's sprite can overlap names.
+
 **Done for Game 3:** endless play live at /watch/ on desktop and phone, with a playtest export; L1–L6 released in HF 2.0 with tests; `npm run check` passes; the user accepts by playing.
 
 ## 11. Risks and cuts
