@@ -28,7 +28,7 @@ import { inBreak } from '../affect/index.ts';
 import { agendaTerms } from '../agenda/index.ts';
 import { trustOf } from '../beliefs/index.ts';
 import { normTerms } from '../conscience/index.ts';
-import { clamp01, minuteOfDay, round } from '../core/index.ts';
+import { clamp01, dexp, minuteOfDay, round } from '../core/index.ts';
 import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
 import { expectedEffect } from '../memory/index.ts';
 import { socialTerms } from '../social/index.ts';
@@ -400,7 +400,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     const v = p.values;
     const weight = (v.security + v.achievement + v.power) / 3;
     const scale = K.materialScale * (1 - K.scarcityScaleShrink * scarcity);
-    const sat = Math.sign(aff.material) * (1 - Math.exp(-Math.abs(aff.material) / scale));
+    const sat = Math.sign(aff.material) * (1 - dexp(-Math.abs(aff.material) / scale));
     push('material', K.materialWeight * sat * 2 * weight * (1 + K.scarcityMaterialGain * scarcity));
   }
 

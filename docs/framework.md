@@ -130,13 +130,13 @@ Emotion terms are named `emotion:<emotion>:<tag>` (e.g. `emotion:fear:risky`): t
 - Narration cites recalled episodes when memory changed a choice.
 - Saves: snapshot JSON with `schema` + `engine`, plus input-log replay (seed + suggestions + host events).
 - Games run the simulation in a Web Worker. React renders snapshots only.
-- Determinism: affordances are processed in stable id order; ties break by (utility, id). `Math.random` and `Date.now` are banned in `packages/human`.
+- Determinism: affordances are processed in stable id order; ties break by (utility, id). `Math.random` and `Date.now` are banned in `packages/human`, and so are the platform's transcendental functions (`Math.exp`, `Math.log`, `Math.cos`, `**`, …): engine code uses `dexp`, `dlog`, `dcos` and `dpow` from `core/libm.ts`, which give the same bits on every machine (test/libm.test.ts scans the source and pins golden outputs).
 - Benchmark: 20 people for 30 simulated days in under 2 s headless.
 - No theological names for mechanisms.
 
 ## Determinism and saves
 
-- All randomness comes from `person.rng`, or from host-owned RNG for world events. Given the same seed and inputs, the result is byte-identical when the host's calls fall on the same minutes. Discrete events (decisions, missed commitments, goals) do not depend on how a host chunks `tick` calls; continuous state agrees to floating-point rounding (~1e-9) across different chunkings, and is byte-identical when calls fall on the 60-minute `tick` grid.
+- All randomness comes from `person.rng`, or from host-owned RNG for world events. Given the same seed and inputs, the result is byte-identical when the host's calls fall on the same minutes, on any OS and CPU architecture. Discrete events (decisions, missed commitments, goals) do not depend on how a host chunks `tick` calls; continuous state agrees to floating-point rounding (~1e-9) across different chunkings, and is byte-identical when calls fall on the 60-minute `tick` grid.
 - `Person` is plain JSON. `snapshot(p)` returns a deep clone, and `restore(json)` validates `schema` and fills defaults.
 - A save is the people's snapshots, the community's host-side state (`communityState(c)`) and the world's state. Resume with `createCommunity(people, saved)` and the world's `state` option (`createTown`, `createVillage`). Restoring only the people and calling `createCommunity(people)` diverges: day hooks run twice and queued advice and standing-advice completions are lost.
 - A host with its own norm catalog sets `World.catalog`; `stepCommunity` passes it to `finish`, which reads make-ups owed for a break under necessity from it (default `DEFAULT_NORMS`). A norm missing from the catalog is not excused.

@@ -10,7 +10,7 @@
  * never write the body: they return proposed illnesses or a death the composite applies, and they draw only from
  * the RNG the caller passes, so a host that does not call them keeps an unchanged random stream.
  */
-import { chance, clamp, clamp01 } from '../core/index.ts';
+import { chance, clamp, clamp01, dexp, dpow } from '../core/index.ts';
 import type { Illness, NormDefinition, Person, RngState, Unit } from '../types.ts';
 import { MINUTES_PER_YEAR } from '../types.ts';
 import { ageYears, modifiersForAge } from './lifecourse.ts';
@@ -83,7 +83,7 @@ export function chronicHazard(
   condition: ChronicCondition,
   exposures: HealthExposures = {},
 ): number {
-  const h = condition.baseHazard * 2 ** ((age - condition.refAge) / condition.doublingYears);
+  const h = condition.baseHazard * dpow(2, (age - condition.refAge) / condition.doublingYears);
   return Math.min(1, h * exposureRisk(exposures));
 }
 
@@ -120,7 +120,7 @@ export function chronicOnsets(
   const out: Omit<Illness, 'id' | 'since'>[] = [];
   for (const c of opts.conditions ?? CHRONIC_CONDITIONS) {
     if (p.body.illnesses.some((i) => i.kind === c.kind)) continue;
-    const prob = 1 - Math.exp(-chronicHazard(age, c, exposures) * years);
+    const prob = 1 - dexp(-chronicHazard(age, c, exposures) * years);
     if (chance(rng, prob))
       out.push({
         kind: c.kind,
@@ -169,7 +169,7 @@ export function mortalityEvent(
   opts: { multiplier?: number } = {},
 ): MortalityRoll {
   const { hazardPerYear, ageShare } = mortalityHazard(p, opts);
-  const probability = dtMinutes > 0 ? 1 - Math.exp(-hazardPerYear * (dtMinutes / MINUTES_PER_YEAR)) : 0;
+  const probability = dtMinutes > 0 ? 1 - dexp(-hazardPerYear * (dtMinutes / MINUTES_PER_YEAR)) : 0;
   const died = p.body.alive && probability > 0 && chance(rng, probability);
   return { died, probability, hazardPerYear, cause: ageShare >= 0.5 ? 'age' : 'illness' };
 }

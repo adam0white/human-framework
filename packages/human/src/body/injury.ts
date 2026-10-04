@@ -22,7 +22,7 @@
  * anatomy beyond the part name, infection, scars, permanent loss, prosthetics, blood volume, shock, or a doctor's
  * skill (the host folds that into `quality`).
  */
-import { clamp01 } from '../core/index.ts';
+import { clamp01, dexp } from '../core/index.ts';
 import type { BodyState, Capacity, Injury, Minute, Person, Unit } from '../types.ts';
 import { CAPACITIES, MINUTES_PER_DAY } from '../types.ts';
 
@@ -91,7 +91,7 @@ export function bleedStep(b: BodyState, h: number, K = INJURY_DEFAULTS): number 
     const r0 = inj.bleeding;
     if (r0 === undefined) continue;
     const k = Math.LN2 / (inj.tendedAt !== undefined ? K.tendedClotHalfLife : K.clotHalfLife);
-    const e = Math.exp(-k * h);
+    const e = dexp(-k * h);
     loss += (r0 * (1 - e)) / k / MINUTES_PER_DAY;
     const r = r0 * e;
     if (r < K.bleedStops) delete inj.bleeding;

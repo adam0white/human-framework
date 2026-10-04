@@ -9,7 +9,7 @@
  * inference between propositions, source memory errors, or social consensus effects; parameters are
  * engineering defaults for game time scales.
  */
-import { clamp, clamp01, decay, expit, logit } from '../core/index.ts';
+import { clamp, clamp01, decay, dpow, expit, logit } from '../core/index.ts';
 import type { Belief, EntityId, Minute, Percept, Person, Unit } from '../types.ts';
 import { MINUTES_PER_DAY } from '../types.ts';
 
@@ -116,7 +116,7 @@ export function trustOf(p: Person, sourceId: EntityId): Unit {
 /** Testimony weight from trust: 0 at or below the floor, never negative, so low trust alone never flips a claim. @internal */
 export function testimonyWeight(trust: Unit): Unit {
   const d = BELIEF_DEFAULTS;
-  return clamp01((trust - d.trustFloor) / (1 - d.trustFloor)) ** d.trustExponent;
+  return dpow(clamp01((trust - d.trustFloor) / (1 - d.trustFloor)), d.trustExponent);
 }
 
 function findBelief(p: Person, prop: string): Belief | undefined {

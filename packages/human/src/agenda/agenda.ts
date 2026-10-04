@@ -24,7 +24,7 @@
  */
 // The bundled catalog is only the default; a host with its own catalog passes it (`World.catalog`).
 import { DEFAULT_NORMS } from '../conscience/catalog.ts';
-import { clamp01, dayOf } from '../core/index.ts';
+import { clamp01, dayOf, dpow } from '../core/index.ts';
 import type {
   Affordance,
   AgendaState,
@@ -766,7 +766,7 @@ export function revisePurposes(
     g.baseImportance ??= g.importance;
     const since = g.lastAdvancedAt ?? g.adoptedAt;
     const neglected = Math.max(0, Math.floor((now - since) / MINUTES_PER_DAY) - d.graceDays);
-    g.importance = clamp01(g.baseImportance * d.decayPerDay ** neglected);
+    g.importance = clamp01(g.baseImportance * dpow(d.decayPerDay, neglected));
     if (g.importance >= d.abandonBelow) continue;
     g.status = 'abandoned';
     abandoned.push(g);

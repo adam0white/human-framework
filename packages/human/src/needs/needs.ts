@@ -11,7 +11,7 @@
  * body's fatigue already folds it in). Parameters are engineering defaults for game time scales; this does
  * not claim an exhaustive need list, calibrated rates, or a universal weighting between needs.
  */
-import { clamp, clamp01, decay } from '../core/index.ts';
+import { clamp, clamp01, decay, dpow } from '../core/index.ts';
 import type {
   BodyReadout,
   NeedId,
@@ -120,7 +120,7 @@ export function urgency(level: Unit, threshold = 0.5, steepness = NEEDS_DEFAULTS
   const t = clamp(threshold, 0.05, 0.95);
   const deficit = clamp01((t - l) / t);
   const tail = NEEDS_DEFAULTS.urgencyTail;
-  return clamp01((1 - tail) * deficit ** steepness + tail * (1 - l) ** 2);
+  return clamp01((1 - tail) * dpow(deficit, steepness) + tail * dpow(1 - l, 2));
 }
 
 /** Per-person comfort threshold for a need: base plus trait/value coefficients. */

@@ -6,8 +6,14 @@
  * village run (3 villagers, seed 3, saved at day 1.25) and, for 1.5.0, the town (seed 7, Halil advised to pray,
  * saved at day 1.5): every person's `snapshot`, `communityState` and the world state, plus a sha256 of what the old
  * engine produced one more day on (people snapshots with `engine` removed, then world state), so the test can tell
- * whether the current engine continues exactly as the old one did. To regenerate: `git archive` the commit's
- * packages/human/src into a scratch dir and run the same steps as `continueRun` below against its index.ts.
+ * whether the current engine continues exactly as the old one did.
+ *
+ * Those engines used the platform's Math.exp/log/cos and `**`, which differ in the last bit between macOS arm64 and
+ * Linux x64, so their original digests (kept as `continuedNativeMathDarwinArm64`) only reproduce on macOS arm64.
+ * `continued` is the old engine's own source with those calls rewritten to core/libm, continued from the same save:
+ * the same old rules, on math that is identical everywhere. `scripts/continue-old-engine.ts` regenerates both (see
+ * its header); with `--native` on macOS arm64 it reproduces the original digests, which the pre-libm engine also
+ * matched (checked 2026-10-04 before the switch).
  */
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';

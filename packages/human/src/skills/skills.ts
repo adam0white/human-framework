@@ -16,7 +16,7 @@
  * levels are what later practice builds on. Does not claim: measured transfer fractions, negative transfer,
  * or any default family structure; no map means no transfer.
  */
-import { clamp01, decay, sigmoid } from '../core/index.ts';
+import { clamp01, decay, dexp, dlog, sigmoid } from '../core/index.ts';
 import { MINUTES_PER_DAY, type Minute, type Person, type Skill, type Unit } from '../types.ts';
 
 export const SKILL_DEFAULTS = {
@@ -108,13 +108,13 @@ export function successChance(
 export function challengeFactor(level: Unit, difficulty: Unit): Unit {
   const d = SKILL_DEFAULTS;
   const z = (difficulty - level - d.challengeOptimum) / d.challengeWidth;
-  return d.challengeFloor + (1 - d.challengeFloor) * Math.exp(-0.5 * z * z);
+  return d.challengeFloor + (1 - d.challengeFloor) * dexp(-0.5 * z * z);
 }
 
 /** Integrated learning exposure for practice from h0 to h1 hours (power-law rate k0 / (1 + h/scale)). */
 function exposure(h0: number, h1: number): number {
   const d = SKILL_DEFAULTS;
-  return d.rate0 * d.rateScaleHours * Math.log((1 + h1 / d.rateScaleHours) / (1 + h0 / d.rateScaleHours));
+  return d.rate0 * d.rateScaleHours * dlog((1 + h1 / d.rateScaleHours) / (1 + h0 / d.rateScaleHours));
 }
 
 /**
@@ -142,7 +142,7 @@ export function practise(
     challengeFactor(before, clamp01(difficulty)) *
     (succeeded ? 1 : d.failureLearning) *
     exposure(priorMinutes / 60, (priorMinutes + mins) / 60);
-  const after = clamp01(1 - (1 - before) * Math.exp(-k));
+  const after = clamp01(1 - (1 - before) * dexp(-k));
   p.skills[id] = {
     level: after,
     practice: priorMinutes + mins,
@@ -156,7 +156,7 @@ export function practise(
       const ex = p.skills[r];
       const rb = ex ? retained(ex, now) : d.base;
       p.skills[r] = {
-        level: clamp01(1 - (1 - rb) * Math.exp(-f * k)),
+        level: clamp01(1 - (1 - rb) * dexp(-f * k)),
         practice: ex?.practice ?? 0,
         lastPracticed: Math.max(now, ex?.lastPracticed ?? now),
       };
@@ -169,8 +169,8 @@ export function practise(
 function practiceFor(level: Unit): number {
   const d = SKILL_DEFAULTS;
   if (level <= d.base) return 0;
-  const need = Math.log((1 - d.base) / Math.max(1e-6, 1 - level));
-  return Math.min(1e9, d.rateScaleHours * (Math.exp(need / (d.rate0 * d.rateScaleHours)) - 1) * 60);
+  const need = dlog((1 - d.base) / Math.max(1e-6, 1 - level));
+  return Math.min(1e9, d.rateScaleHours * (dexp(need / (d.rate0 * d.rateScaleHours)) - 1) * 60);
 }
 
 /** Build a skills record from initial levels; practice minutes are back-filled so returns keep diminishing. */

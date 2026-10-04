@@ -11,7 +11,7 @@
  * with cohort effects. Nothing here is a destiny: hosts and experience (schooling, practice, health) remain the
  * main drivers, and individual variation is not modelled.
  */
-import { clamp, smoothstep } from '../core/index.ts';
+import { clamp, dexp, dpow, smoothstep } from '../core/index.ts';
 import type { LifeStage, Person } from '../types.ts';
 import { ageYears, modifiersForAge, stageForAge } from './lifecourse.ts';
 
@@ -35,7 +35,7 @@ export function developmentForAge(age: number): DevelopmentProfile {
   const a = Math.max(0, age);
   const sensationSeeking = clamp(
     1 +
-      0.35 * Math.exp(-(((a - 17) / 4.5) ** 2)) -
+      0.35 * dexp(-dpow((a - 17) / 4.5, 2)) -
       0.15 * smoothstep(30, 70, a) -
       0.1 * (1 - smoothstep(4, 10, a)),
     0.6,
@@ -76,7 +76,7 @@ export function learningMultiplier(age: number, domain: LearningDomain = 'genera
     case 'language':
       return clamp(1.4 - 0.8 * smoothstep(17, 40, a), 0.5, 1.4);
     case 'motor':
-      return clamp(1 + 0.3 * Math.exp(-a / 12) - 0.006 * Math.max(0, a - 30), 0.5, 1.3);
+      return clamp(1 + 0.3 * dexp(-a / 12) - 0.006 * Math.max(0, a - 30), 0.5, 1.3);
     case 'knowledge':
       return clamp(0.75 + 0.25 * smoothstep(3, 16, a) - 0.002 * Math.max(0, a - 60), 0.6, 1);
   }
