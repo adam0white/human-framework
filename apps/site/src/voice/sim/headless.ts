@@ -40,7 +40,8 @@ export interface PlayOpts {
   confirm?: boolean;
   /** With `confirm`: urge and insist on every prefill instead of taking it as given. */
   insist?: boolean;
-  whispers?: StandingWhisper[];
+  /** The whispers left on each skip card: one list for every skip, or by the day the skip leaves from. */
+  whispers?: StandingWhisper[] | ((fromDay: number) => StandingWhisper[]);
   /** Stop when this returns true (checked at every loop turn). */
   stop?: (g: VoiceGame) => boolean;
   onPause?: (f: Frame, g: VoiceGame) => void;
@@ -67,7 +68,14 @@ export function play(target: VoiceGame | Driver, o: PlayOpts = {}): void {
   for (let guard = 0; guard < 2_000_000; guard++) {
     if (o.stop?.(g) || g.phase === 'report') return;
     if (g.phase === 'between') {
-      d.apply({ type: 'advance', standing: g.between?.next?.skipped ? (o.whispers ?? []) : [] });
+      d.apply({
+        type: 'advance',
+        standing: g.between?.next?.skipped
+          ? typeof o.whispers === 'function'
+            ? o.whispers(g.day)
+            : (o.whispers ?? [])
+          : [],
+      });
       continue;
     }
     if (g.intro) {

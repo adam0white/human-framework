@@ -32,7 +32,8 @@ export const WHY_AWAY: Record<string, string> = {
   'work-repair': 'the workshop takes him once a day, from 08:00 to 12:00',
   'work-extra': 'the afternoon shift runs once a day, between Dhuhr and an hour and a half before Asr',
   'pay-rent': 'he has not got the 300 together, or nothing is owed',
-  'tea:riza': 'the tea house is for the daytime',
+  shop: 'the market sells for Eid from 10:00 to 18:00 from Ramadan 10, once a day, while he has 25 to spend',
+  'tea:riza': 'the tea house is open from 06:00 to 23:00',
 };
 
 const APPEAL_WORDS: Record<string, string> = {

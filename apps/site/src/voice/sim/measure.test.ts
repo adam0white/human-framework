@@ -21,6 +21,8 @@ const NUMERIC: (keyof Measured)[] = [
   'paidByEid',
   'trust',
   'calls',
+  'contact',
+  'shops',
   'clinic',
   'suhoors',
   'sleepHours',
@@ -37,7 +39,9 @@ test.skipIf(!env.VOICE_MEASURE)(
   'Game 2 balance table (probe)',
   () => {
     const out: Record<string, unknown>[] = [];
-    for (const [name, o] of Object.entries(STYLES)) {
+    for (const [name, o] of Object.entries(STYLES).filter(
+      ([n]) => !env.VOICE_ONLY || env.VOICE_ONLY.split('|').some((x) => n.includes(x)),
+    )) {
       const runs = SEEDS.map((s) => measure(o, s));
       const row: Record<string, unknown> = { name };
       for (const k of NUMERIC) {

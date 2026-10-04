@@ -161,10 +161,24 @@ export const STYLES: Record<string, PlayOpts> = {
     // The best whisper pair of the earlier passes (Walk (Urge) + shift); the order matters, see §13.
     whispers: [w('walk', 'urge', 'safety'), w('extra', 'mention', 'duty')],
   },
-  Tempter: { choose: tempter, pauseEvery: 30, whispers: [w('rest', 'mention', 'safety')] },
+  // Tenth pass: the bad players use the tempting words (Osman can wait, stay out late with Rıza).
+  Tempter: {
+    choose: tempter,
+    pauseEvery: 30,
+    whispers: [w('osmanWaits', 'urge'), w('friends', 'mention', 'belonging')],
+  },
   'Tempter, no whisper': { choose: tempter, pauseEvery: 30 },
-  Saboteur: { choose: saboteur, pauseEvery: 30, whispers: [w('rest', 'urge')] },
+  Saboteur: { choose: saboteur, pauseEvery: 30, whispers: [w('osmanWaits', 'urge'), w('friends', 'urge')] },
   'Saboteur, no whisper': { choose: saboteur, pauseEvery: 30 },
+  // The tempting words alone, with no in-day choices: how far each one moves him.
+  'Osman can wait (Urge)': { whispers: [w('osmanWaits', 'urge')] },
+  'Osman can wait (Mention, for Selin)': { whispers: [w('osmanWaits', 'mention', 'benevolence')] },
+  'Stay out late (Mention)': { whispers: [w('friends', 'mention', 'belonging')] },
+  'Sleep in (Urge)': { whispers: [w('sleepIn', 'urge', 'safety')] },
+  'Selin, then skip the call': {
+    whispers: (d) =>
+      d < 10 ? [w('selin', 'mention', 'benevolence')] : [w('skipCall', 'urge', 'benevolence')],
+  },
 };
 
 export interface Measured {
@@ -181,6 +195,10 @@ export interface Measured {
   trust: number;
   /** His own calls to Selin in Ramadan (her calls to him are not counted). */
   calls: number;
+  /** Calls between them in Ramadan that connected, his and hers (family contact). */
+  contact: number;
+  /** Days he shopped for Eid in Ramadan. */
+  shops: number;
   clinic: number;
   /** Ramadan days with a suhoor meal. */
   suhoors: number;
@@ -235,6 +253,8 @@ export function measure(opts: PlayOpts, seed = SHIPPED_SEED): Measured {
     pays: g.payments.map((p) => `${p.amount}@R${day(p.at)}`).join(' '),
     trust: voiceOf(eid, 'you')?.trust ?? 0,
     calls: count((c) => c.affordanceId === 'call:selin'),
+    contact: g.calls.filter((c) => day(c.at) < TOWN_EID_DAY).length,
+    shops: count((c) => c.affordanceId === 'shop'),
     clinic: count((c) => c.affordanceId === 'see-doctor'),
     suhoors: suhoor.size,
     sleepHours: sleepMin / 60 / TOWN_EID_DAY,

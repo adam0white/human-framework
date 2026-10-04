@@ -71,7 +71,20 @@ export interface Draft {
   appeal?: Appeal;
 }
 export interface StandingWhisper {
-  choiceId: 'work' | 'extra' | 'doctor' | 'selin' | 'rent' | 'mosque' | 'rest' | 'walk';
+  choiceId:
+    | 'work'
+    | 'extra'
+    | 'doctor'
+    | 'selin'
+    | 'rent'
+    | 'mosque'
+    | 'rest'
+    | 'walk'
+    // Tempting words (tenth pass): the player's own choice, framed as plainly as the others.
+    | 'sleepIn'
+    | 'friends'
+    | 'osmanWaits'
+    | 'skipCall';
   strength: Strength;
   appeal?: Appeal;
 }
@@ -89,6 +102,10 @@ export const WHISPER_DEFAULT: Record<StandingWhisper['choiceId'], Omit<StandingW
   mosque: { strength: 'mention' },
   rest: { strength: 'mention' },
   walk: { strength: 'mention', appeal: 'safety' },
+  sleepIn: { strength: 'mention', appeal: 'safety' },
+  friends: { strength: 'mention', appeal: 'belonging' },
+  osmanWaits: { strength: 'mention', appeal: 'benevolence' },
+  skipCall: { strength: 'mention', appeal: 'benevolence' },
 };
 /** A whisper as the between-days card makes it when the player picks it and changes nothing. */
 export const defaultWhisper = (choiceId: StandingWhisper['choiceId']): StandingWhisper => ({

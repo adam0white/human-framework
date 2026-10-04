@@ -1,7 +1,7 @@
 /**
- * The range of Game 2 (voice-build.md §13, ninth pass): with only the player's tools, a bad voice ends the month
- * materially worse than silence and a good one materially better, while his own will keeps some things out of the
- * player's reach. Thresholds sit well inside the measured gaps (seeds 7, 1, 2, 3, 4 barely differ).
+ * The range of Game 2 (voice-build.md §13, tenth pass): with only the player's tools, a bad voice ends the month
+ * materially worse than silence (rent by Eid, family contact) and a good one materially better (smoke, Osman's
+ * date), while his own will keeps some things out of the player's reach. Thresholds sit well inside the measured gaps (seeds 7, 1, 2, 3, 4 barely differ).
  */
 import { beforeAll, describe, expect, test } from 'vitest';
 import { SHIPPED_SEED } from './game.ts';
@@ -33,7 +33,8 @@ function worse(r: Row, base: Row): string[] {
   if (r.lateNights >= base.lateNights + 3) out.push('late nights');
   if (r.mornings <= base.mornings - 2) out.push('mornings worked');
   if (r.paidByEid <= base.paidByEid - 100) out.push('rent by Eid');
-  if (r.calls <= base.calls - 3) out.push('calls to Selin');
+  if (r.paidByDate <= base.paidByDate - 100) out.push("Osman's date");
+  if (r.contact <= base.contact - 5) out.push('family contact');
   if (r.trust <= base.trust - 0.2) out.push('trust');
   return out;
 }
@@ -43,7 +44,7 @@ function better(r: Row, base: Row): string[] {
   if (r.paidByEid >= base.paidByEid + 200) out.push('rent by Eid');
   if (r.paidByDate >= base.paidByDate + 200) out.push("Osman's date");
   if (r.clinic >= base.clinic + 1) out.push('clinic');
-  if (r.calls >= base.calls + 3) out.push('calls to Selin');
+  if (r.contact >= base.contact + 5) out.push('family contact');
   if (r.trust >= base.trust + 0.08) out.push('trust');
   return out;
 }
@@ -56,11 +57,16 @@ describe('Game 2 range: how far the player can move the month', () => {
   const row = (n: string) => rows[n] as Row;
 
   test('a bad voice ends materially worse than silence on at least two outcomes', () => {
-    // 'Tempter, no whisper' holds without the rest whisper (heard at every hour, a recorded defect).
     for (const n of ['Tempter', 'Tempter, no whisper', 'Saboteur']) {
       const w = worse(row(n), row('Silent'));
       expect(w.length, `${n}: ${w.join(', ')}`).toBeGreaterThanOrEqual(2);
     }
+  });
+
+  test('the tempting words reach what matters: rent by Eid and family contact', () => {
+    const w = worse(row('Tempter'), row('Silent'));
+    expect(w).toContain('rent by Eid');
+    expect(w).toContain('family contact');
   });
 
   test('a good voice ends materially better than silence on at least two outcomes', () => {
@@ -68,6 +74,7 @@ describe('Game 2 range: how far the player can move the month', () => {
     expect(b.length, b.join(', ')).toBeGreaterThanOrEqual(2);
     expect(b).toContain('smoke days');
     expect(b).toContain('rent by Eid');
+    expect(b).toContain("Osman's date");
   });
 
   test('his will resists: insisting on bad things is mostly refused and burns trust; he still works and pays', () => {
@@ -79,10 +86,10 @@ describe('Game 2 range: how far the player can move the month', () => {
     const t = row('Tempter');
     expect(t.answers.yes ?? 0).toBeGreaterThan(s.answers.yes ?? 0);
     expect(t.answers.notNow ?? 0).toBeGreaterThan(0);
-    // Out of the bad voice's reach: the mornings of skipped days and paying Osman before Eid.
-    for (const n of ['Tempter', 'Saboteur']) {
-      expect(row(n).mornings).toBeGreaterThanOrEqual(26);
-      expect(row(n).paidByEid).toBeGreaterThanOrEqual(300);
-    }
+    // Out of the bad voice's reach: the mornings of skipped days, and some talk with Selin (her own calls).
+    for (const n of ['Tempter', 'Saboteur']) expect(row(n).mornings).toBeGreaterThanOrEqual(26);
+    expect(row('Tempter').contact).toBeGreaterThan(0);
+    // Insisting burns the trust the words ride on: the Saboteur's urges no longer move the rent.
+    expect(s.paidByEid).toBeGreaterThanOrEqual(300);
   });
 });
