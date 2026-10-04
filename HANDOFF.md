@@ -12,7 +12,7 @@ Done means (AGENTS.md): HF 2.0 released on GitHub, closing the blocking gaps in 
 
 | # | Phase | Status |
 |---|---|---|
-| R0 | Releases and CI: tag v1.0.0, release v1.1.0 (engine 1.6.0 gaps) on GitHub; version policy; GitHub Actions running check + bench (hyperfine) | in progress |
+| R0 | Releases and CI: tag v1.0.0, release v1.1.0 (engine 1.6.0 gaps) on GitHub; version policy; GitHub Actions running check + bench (hyperfine) | on branch, awaiting merge: version policy (packages/human/README.md "Versions"), CHANGELOG.md, package and `FRAMEWORK_VERSION` 1.1.0, `npm run release` (dry run passed), `.github/workflows/ci.yml` (check/build gate; bench informational at `BENCH_SCALE=3` plus hyperfine), `npm run bench:hyperfine`. Remaining: merge and push `main`, `npm run release` for v1.1.0, confirm the first CI run, deploy so the site shows v1.1.0 |
 | R1 | Faith decisions in code ([research/decisions.md](research/decisions.md)): Fajr ends at sunrise, majority Asr, red shafaq, Eid prayer on, qada debt with blame lifted for sleep/unconsciousness; Game 2 rebalanced; playtest export (seed + input log + state JSON, replayable) in Games 1–2 | in progress |
 | R2 | Reviews: performance, quality, security, acted on; phone research (Galaxy S26 viewport) and mobile web practice (fullscreen, input capture, safe areas) | in progress |
 | R3 | HF inventory: what HF has vs the full ambition ([docs/hf-status.md](docs/hf-status.md)) | in progress |
@@ -36,7 +36,7 @@ Open, recorded in docs/findings.md and docs/games/voice-build.md §13:
 - Game 2: a missed date leaves Osman's relationship to Halil unchanged; only his late demand strengthens (findings, seventh pass).
 - Game 1: Classic with no orders roofs the house on 3 of 6 seeds; orders cannot starve the Human store; the late-tap moment-1 dependency.
 - Joint activities are one-sided in the driver; `social.judge` has no habituation outside conversation.
-- Timing budgets moved out of `npm run check` into `npm run bench` (2026-10-04). Measured alone on the Apple Silicon dev machine, 3-run medians: village 20 × 30 days 1555 ms (budget 2000), 50 × 30 days 3693 ms (5000), body threshold 0.6 µs/call, Game 1 director run 276 ms (1500) and balance runs 1203 ms (5000), Game 2 12-day skip 287 ms (1500). The framework bench runs with Vite's module runner off; under the runner the 20-person run takes ~2.4 s (findings, 2026-10-04 item 7). No CI, so budgets are only checked when someone runs the bench.
+- Timing budgets moved out of `npm run check` into `npm run bench` (2026-10-04). Measured alone on the Apple Silicon dev machine, 3-run medians: village 20 × 30 days 1555 ms (budget 2000), 50 × 30 days 3693 ms (5000), body threshold 0.6 µs/call, Game 1 director run 276 ms (1500) and balance runs 1203 ms (5000), Game 2 12-day skip 287 ms (1500). The framework bench runs with Vite's module runner off; under the runner the 20-person run takes ~2.4 s (findings, 2026-10-04 item 7). CI (from R0) runs the bench at 3× budgets as information, not a gate. hyperfine, `node scripts/bench-village.ts` (20 × 30 days, full run, 59190 events, including Node start-up), M4 under other agents' load (load average ~6–7): 1.914 s ± 0.057 s, range 1.829–1.993 s, 10 runs (2026-10-04).
 - TS 5.x consumers untested.
 
 ## Decisions

@@ -15,6 +15,8 @@ import {
   villagerSpec,
 } from '../src/index.ts';
 
+/** Budget multiplier: 1 on the quiet dev machine the budgets were set on; CI sets `BENCH_SCALE` (see ci.yml). */
+const SCALE = Number(process.env.BENCH_SCALE ?? 1);
 const START = 7 * 60;
 
 function setup(ids: string[], devout: string[], foodStock?: number) {
@@ -47,13 +49,13 @@ describe('village throughput', () => {
   test('20 people for 30 days in under two seconds', () => {
     const ms = villageRun('p', 20, 200);
     console.log(`village 20 x 30 days: ${ms.toFixed(0)} ms`);
-    expect(ms).toBeLessThan(2000);
+    expect(ms).toBeLessThan(2000 * SCALE);
   });
 
   test('50 people for 30 days in under five seconds', () => {
     const ms = villageRun('q', 50, 500);
     console.log(`village 50 x 30 days: ${ms.toFixed(0)} ms`);
-    expect(ms).toBeLessThan(5000);
+    expect(ms).toBeLessThan(5000 * SCALE);
   }, 30_000);
 });
 
@@ -76,6 +78,6 @@ describe('body thresholds', () => {
     for (let i = 0; i < 2000; i++) nextBodyThreshold(p, load, mods, undefined, 30);
     const perCall = (performance.now() - t0) / 2000;
     console.log(`nextBodyThreshold, 30-minute horizon: ${(perCall * 1000).toFixed(1)} us per call`);
-    expect(perCall).toBeLessThan(0.5);
+    expect(perCall).toBeLessThan(0.5 * SCALE);
   });
 });
