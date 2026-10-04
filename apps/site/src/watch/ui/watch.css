@@ -564,3 +564,29 @@
 .w-scoutline {
   color: var(--w-warn);
 }
+
+/* Full screen (shared/fullscreen.tsx): an icon beside the chronicle; on narrow phones, an item in the chronicle. */
+.watch .w-fs {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface);
+}
+.watch .w-fs-item {
+  display: none;
+}
+@media (max-width: 480px) {
+  .watch .w-fs {
+    display: none;
+  }
+  .watch .w-fs-item {
+    display: inline-flex;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 10px;
+    border: 1px solid var(--w-line);
+    border-radius: 12px;
+    font-size: inherit;
+  }
+}

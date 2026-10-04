@@ -1,4 +1,5 @@
 /** Top bar (plan §6.2) with the sky band (§2): the hour's light, prayer notches, the fast, and a "now" mark. */
+import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import { PlaytestMenu } from '../../shared/PlaytestMenu.tsx';
 import type { Frame, Pace } from '../protocol.ts';
 import type { VoiceActions } from './useVoice.ts';
@@ -151,7 +152,9 @@ export function TopBar({
           onExport={actions.exportPlaytest}
           onLoad={actions.loadPlaytest}
           onError={onPlaytestError}
+          extra={<FullscreenButton variant="item" className="v-fs-item" />}
         />
+        <FullscreenButton className="v-fs" />
       </div>
     </header>
   );

@@ -4,6 +4,7 @@
  * bottom-sheet composer. Space toggles pause from every focus state.
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { Draft } from '../protocol.ts';
 import { Between } from './Between.tsx';
@@ -45,6 +46,9 @@ export function App() {
           : frame.intro
             ? 'intro'
             : null;
+
+  // Keep the screen awake only while the day's clock runs (not paused, not on a card or the report).
+  useWakeLock(live && overlay === null && frame !== null && !frame.paused);
 
   // Space: continue on the premise, intro and between-days cards; toggle pause in play, whatever has focus (a
   // focused control is never activated by it). Typing fields keep their Space. On the report, Space keeps its

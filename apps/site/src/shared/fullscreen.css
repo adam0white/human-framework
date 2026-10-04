@@ -1,0 +1,42 @@
+/* Full-screen toggle (shared/fullscreen.tsx). Quiet, inherits each game's colours; tokens from theme.css. */
+.fs-btn {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--line-strong, rgba(43, 38, 34, 0.24));
+  border-radius: var(--radius-s, 8px);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.fs-btn svg {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fs-icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+.fs-item {
+  justify-content: flex-start;
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  min-height: 40px;
+  font-size: 0.875rem;
+  text-align: left;
+}
+.fs-btn:hover {
+  background: var(--surface-2, rgba(127, 127, 127, 0.12));
+}
+.fs-btn:focus-visible {
+  outline: 2px solid var(--accent, #a8552f);
+  outline-offset: 2px;
+}

@@ -18,11 +18,14 @@ export function PlaytestMenu({
   onLoad,
   onError,
   className = '',
+  extra,
 }: {
   onExport: () => void;
   onLoad: (text: string) => void;
   onError: (message: string) => void;
   className?: string;
+  /** More items at the end of the list (a game's phone-only items, such as full screen). */
+  extra?: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const id = useId();
@@ -94,6 +97,7 @@ export function PlaytestMenu({
           <button type="button" onClick={load}>
             Load playtest file
           </button>
+          {extra}
         </div>
       )}
     </div>

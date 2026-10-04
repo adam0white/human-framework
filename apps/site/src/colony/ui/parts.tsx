@@ -1,4 +1,5 @@
 import { memo, type ReactNode, type RefObject, useState } from 'react';
+import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import type { MomentRecord } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -252,6 +253,7 @@ export function TopBar(props: {
           <AutoPauseToggle on={props.playback.autoPause} onChange={props.onAutoPause} />
         </span>
         {props.playtest}
+        <FullscreenButton className="topbar-fs" />
         <span className="topbar-more">
           <button
             type="button"
@@ -265,6 +267,7 @@ export function TopBar(props: {
           {menu && (
             <span className="more-menu">
               <AutoPauseToggle on={props.playback.autoPause} onChange={props.onAutoPause} />
+              <FullscreenButton variant="item" />
             </span>
           )}
         </span>
