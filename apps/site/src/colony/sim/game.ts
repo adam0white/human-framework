@@ -112,6 +112,8 @@ export interface GoalView {
   label: string;
   target: string;
   deadlineMinute: Minute;
+  /** The target as a number (house 10, meals 12, alive 6, store-room 6), for progress bars. */
+  targetValue: number;
   classic: GoalSide;
   human: GoalSide;
 }
@@ -273,6 +275,20 @@ export interface EndSummary {
   character: CharacterOutcome;
   /** The orders given in the reported span, with each side's final answer (game design review GD2). */
   cards: OrderCard[];
+  /** How close each side came at the Day-2 deadline (near-miss lines on the end screen). */
+  deadline: { classic: SideDeadline; human: SideDeadline; solo: SideDeadline };
+  /** The player's log for the whole run: with the seed, the hindsight replay starts from it. */
+  log: LogEntry[];
+  seed: number;
+}
+
+/** A side at the Day-2 deadline (D2 19:00). */
+export interface SideDeadline {
+  /** First minute the house reached 10 (may be after 19:00), or null. */
+  roofAt: Minute | null;
+  /** House stage plus progress on the next stage at 19:00 (e.g. 9.78), or null before 19:00. */
+  houseAtStorm: number | null;
+  stockAtStorm: number | null;
 }
 
 export interface Frame {
@@ -323,6 +339,8 @@ const VERDICT_CHIP: Record<Exclude<BubbleKind, 'thought'>, ChipState> = {
 interface SideRecord {
   roofAt: Minute | null;
   houseAtStorm: number | null;
+  /** Progress on the next stage at 19:00 (0..1). */
+  progressAtStorm: number | null;
   stockAtStorm: number | null;
   firstDeath: Minute | null;
   projectAt: Minute | null;
@@ -333,6 +351,7 @@ interface SideRecord {
 const newRecord = (): SideRecord => ({
   roofAt: null,
   houseAtStorm: null,
+  progressAtStorm: null,
   stockAtStorm: null,
   firstDeath: null,
   projectAt: null,
@@ -558,9 +577,13 @@ export class ColonyGame {
       const state = VERDICT_CHIP[v.kind];
       if (card.human.state !== state)
         step.verdicts.push({ orderId: v.orderId, personId: v.personId, kind: v.kind, says: v.says });
+      const label = v.counterOffer ?? v.says;
       this.book.setChip(v.orderId, 'human', {
         state,
-        label: v.counterOffer ?? v.says,
+        label,
+        // The first answer is kept: a later update (another "not now") replaces `label`, and the log and the
+        // report would otherwise quote different lines for the same order.
+        first: card.human.first ?? { state, label },
         ...(card.human.settled ? { settled: true } : {}),
       });
     }
@@ -598,6 +621,12 @@ export class ColonyGame {
       if (this.minute === GOAL_JUDGE) {
         r.stockAtStorm = w.resources.meals;
         r.houseAtStorm = w.house.stage;
+        r.progressAtStorm =
+          w.house.stage >= HOUSE_STAGES
+            ? 0
+            : w === this.classicWorld
+              ? this.classicProgress()
+              : w.house.progress;
       }
       if (r.firstDeath === null && w.deaths > 0) r.firstDeath = this.minute;
       if (this.endMinute > END_MINUTE) {
@@ -655,6 +684,7 @@ export class ColonyGame {
         label: 'Roof before the storm',
         target: `house ${HOUSE_STAGES}/${HOUSE_STAGES}`,
         deadlineMinute: GOAL_JUDGE,
+        targetValue: HOUSE_STAGES,
         classic: c.roof,
         human: h.roof,
       },
@@ -663,6 +693,7 @@ export class ColonyGame {
         label: 'Storm stock',
         target: `≥ ${STOCK_GOAL} meals in store`,
         deadlineMinute: GOAL_JUDGE,
+        targetValue: STOCK_GOAL,
         classic: c.stock,
         human: h.stock,
       },
@@ -671,6 +702,7 @@ export class ColonyGame {
         label: 'Everyone lives',
         target: `${VILLAGERS.length} alive`,
         deadlineMinute: END_MINUTE,
+        targetValue: VILLAGERS.length,
         classic: c.lives,
         human: h.lives,
       },
@@ -709,6 +741,7 @@ export class ColonyGame {
         label: 'Build the store-room',
         target: `store-room ${STOREROOM_STAGES}/${STOREROOM_STAGES} (an unfinished house first)`,
         deadlineMinute: DAY3_JUDGE,
+        targetValue: STOREROOM_STAGES,
         classic: c.project,
         human: h.project,
       },
@@ -717,6 +750,7 @@ export class ColonyGame {
         label: 'Meals at nightfall',
         target: `≥ ${DAY3_STOCK_GOAL} meals in store`,
         deadlineMinute: DAY3_JUDGE,
+        targetValue: DAY3_STOCK_GOAL,
         classic: c.stock,
         human: h.stock,
       },
@@ -725,6 +759,7 @@ export class ColonyGame {
         label: 'Everyone lives',
         target: `${VILLAGERS.length} alive`,
         deadlineMinute: DAY3_END,
+        targetValue: VILLAGERS.length,
         classic: c.lives,
         human: h.lives,
       },
@@ -875,6 +910,23 @@ export class ColonyGame {
           this.endMinute > END_MINUTE ? c.order.issuedAt >= END_MINUTE : c.order.issuedAt < END_MINUTE,
         )
         .map((c) => structuredClone(c)),
+      deadline: {
+        classic: this.deadlineOf('classic'),
+        human: this.deadlineOf('human'),
+        solo: solo.deadlineOf('human'),
+      },
+      log: structuredClone(this.log),
+      seed: this.seed,
+    };
+  }
+
+  /** A side at the Day-2 deadline, from the goal records. */
+  deadlineOf(k: 'classic' | 'human'): SideDeadline {
+    const r = this.rec[k];
+    return {
+      roofAt: r.roofAt,
+      houseAtStorm: r.houseAtStorm === null ? null : r.houseAtStorm + (r.progressAtStorm ?? 0),
+      stockAtStorm: r.stockAtStorm,
     };
   }
 }
