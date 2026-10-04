@@ -43,8 +43,8 @@ The package is private (`UNLICENSED`) and not on a registry. Build a tarball fro
 that:
 
 ```sh
-npm pack -w packages/human                  # runs the build; writes human-framework-1.1.0.tgz
-npm install /path/to/human-framework-1.1.0.tgz
+npm pack -w packages/human                  # runs the build; writes human-framework-1.2.0.tgz
+npm install /path/to/human-framework-1.2.0.tgz
 ```
 
 It ships ES modules and `.d.ts` files (`exports["."]` with `types`). It requires Node ≥ 24 or a modern
@@ -152,7 +152,7 @@ moved. Two scenarios are bundled as reference hosts: `createVillage` and `create
 
 There are two version numbers, and they move independently.
 
-- **The release version** is the package version (`package.json`, now `1.1.0`) and `FRAMEWORK_VERSION`, the same
+- **The release version** is the package version (`package.json`, now `1.2.0`) and `FRAMEWORK_VERSION`, the same
   string compiled into the build; a test keeps them equal. It versions the public API under
   [semver](https://semver.org/): a breaking change to an exported name or signature bumps the major, a new
   faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
