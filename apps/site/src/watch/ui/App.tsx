@@ -9,14 +9,7 @@
  */
 import { type CSSProperties, useEffect, useRef, useState } from 'react';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
-import {
-  type PostId,
-  postSection,
-  SECTIONS,
-  type SectionId,
-  WATCHERS,
-  type WatcherId,
-} from '../sim/config.ts';
+import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Moment } from '../sim/moments.ts';
 import type { Speed } from '../sim/pace.ts';
 import type { Press } from '../sim/state.ts';
@@ -35,7 +28,7 @@ const SPEEDS: { id: Speed; label: string; icon: IconName }[] = [
 
 const PRESSES: Press[] = ['ask', 'urge', 'insist'];
 
-const nameOf = (id: WatcherId) => WATCHERS.find((w) => w.id === id)?.name ?? '';
+const nameIn = (f: Frame, id: WatcherId) => f.watchers.find((w) => w.id === id)?.name ?? '';
 const sectionName = (id: SectionId) => SECTIONS.find((s) => s.id === id)?.name ?? '';
 
 /** The post `who` is posted to in a section, else the first post there nobody is posted to. */
@@ -575,7 +568,7 @@ function DawnPanel({ frame, actions, seed }: { frame: Frame; actions: WatchActio
           {d.voices.map((v) => (
             <li key={v.who}>
               <blockquote>{v.text}</blockquote>
-              <span className="w-voice-who">{nameOf(v.who)}</span>
+              <span className="w-voice-who">{nameIn(frame, v.who)}</span>
             </li>
           ))}
         </ul>

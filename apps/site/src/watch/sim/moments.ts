@@ -20,9 +20,9 @@ import {
   type Suggestion,
   type SuggestionResolution,
 } from '@human/framework';
-import { POSTS, type PostId, postSection, type SectionId, type WatcherId, watcherDef } from './config.ts';
+import { type PostId, postSection, type SectionId, type WatcherId } from './config.ts';
 import { fearAt, litSection, PRESS_STRENGTH, presentIds, ringBell } from './night.ts';
-import { isPost, KEEPER_ID, personOf, WatchWorld } from './people.ts';
+import { familyWords, isPost, KEEPER_ID, nameOf, personOf, them, villager, WatchWorld } from './people.ts';
 import type { Press, WatchState } from './state.ts';
 
 /** Sim minutes a card stays open. */
@@ -104,12 +104,8 @@ export function readPosting(
   if (s.phase === 'dusk' || vacating) {
     const place = { ...s.place };
     for (const [id, pl] of Object.entries(place))
-      if (
-        id !== who &&
-        pl === post &&
-        (id === vacating || (s.phase === 'dusk' && s.posts[id as WatcherId] !== post))
-      )
-        place[id as WatcherId] = 'village';
+      if (id !== who && pl === post && (id === vacating || (s.phase === 'dusk' && s.posts[id] !== post)))
+        place[id] = 'village';
     view = { ...s, place };
   }
   const offers = offersFor(view, who, s.phase === 'dusk');
@@ -127,7 +123,7 @@ export function readBell(
   const p = personOf(s, who);
   if (!p) return { holds: false, resent: 'little', confidence: 0 };
   const pl = s.place[who];
-  const post = isPost(pl) ? pl : (s.posts[who] ?? watcherDef(who).usual);
+  const post = isPost(pl) ? pl : (s.posts[who] ?? villager(s, who).usual);
   const { outcome, confidence } = previewCommandAs(
     s.keeper,
     p,
@@ -180,7 +176,7 @@ function wavering(s: WatchState, who: WatcherId): 'fear' | 'tired' | null {
   const sug: Suggestion = {
     voiceId: KEEPER_ID,
     affordanceId: `post:${pl}`,
-    strength: PRESS_STRENGTH[s.press[who]],
+    strength: PRESS_STRENGTH[s.press[who] ?? 'ask'],
   };
   const res = predict(p, offersFor(s, who), sug);
   const away = res.insteadAffordanceId ?? '';
@@ -214,7 +210,7 @@ export function checkMoments(s: WatchState): void {
   for (const who of here) {
     const p = personOf(s, who);
     if (!p?.body.downed || s.carried[who] || carded(s, 'downed', who)) continue;
-    const name = watcherDef(who).name;
+    const name = nameOf(s, who);
     const options: MomentOption[] = [];
     const helpers = presentIds(s).filter((id) => {
       const q = personOf(s, id);
@@ -235,7 +231,7 @@ export function checkMoments(s: WatchState): void {
       );
       options.push({
         id: `carry:${id}`,
-        label: `${watcherDef(id).name}, carry ${name}`,
+        label: `${nameOf(s, id)}, carry ${name}`,
         read: readWords(toRead(resolution, confidence)),
       });
     }
@@ -245,14 +241,15 @@ export function checkMoments(s: WatchState): void {
   }
   for (const who of here) {
     const p = personOf(s, who);
-    const def = watcherDef(who);
-    if (!p || def.family === null || carded(s, 'family', who)) continue;
+    const family = familyWords(s, who);
+    const name = nameOf(s, who);
+    if (!p || family === null || carded(s, 'family', who)) continue;
     const duty = p.agenda.commitments.some(
       (c) => c.status === 'pending' && c.actions.includes('go-home') && c.until > s.minute,
     );
     if (!duty) continue;
     const pl = s.place[who];
-    const options: MomentOption[] = [{ id: 'let', label: `Let ${def.name} go to ${def.family}` }];
+    const options: MomentOption[] = [{ id: 'let', label: `Let ${name} go to ${family}` }];
     const sub =
       presentIds(s).find((id) => id !== who && !isPost(s.place[id]) && !personOf(s, id)?.body.downed) ??
       presentIds(s).find((id) => {
@@ -264,17 +261,17 @@ export function checkMoments(s: WatchState): void {
       const r = q ? readPosting(s, sub, pl, 'urge', who) : { word: "can't tell" as const, confidence: 0 };
       options.push({
         id: `send:${sub}`,
-        label: `Let ${def.sex === 'female' ? 'her' : 'him'} go; send ${watcherDef(sub).name} to the post`,
+        label: `Let ${them(s, who)} go; send ${nameOf(s, sub)} to the post`,
         read: readWords(r),
       });
     }
     if (!s.rope.snapped)
-      options.push({ id: 'bell', label: `Ring for ${def.name} to hold`, read: bellWords(readBell(s, who)) });
+      options.push({ id: 'bell', label: `Ring for ${name} to hold`, read: bellWords(readBell(s, who)) });
     open(s, {
       kind: 'family',
       who,
       section: lit,
-      text: `${def.name} hears them near ${def.family}.`,
+      text: `${name} hears them near ${family}.`,
       options,
     });
     return;
@@ -282,21 +279,21 @@ export function checkMoments(s: WatchState): void {
   for (const who of here) {
     const why = carded(s, 'waver', who) ? null : wavering(s, who);
     if (!why) continue;
-    const def = watcherDef(who);
+    const name = nameOf(s, who);
     const options: MomentOption[] = [
-      { id: 'let', label: `Let ${def.name} go` },
-      { id: 'urge', label: `Urge ${def.name} to hold` },
+      { id: 'let', label: `Let ${name} go` },
+      { id: 'urge', label: `Urge ${name} to hold` },
     ];
     if (!s.rope.snapped)
-      options.push({ id: 'bell', label: `Ring for ${def.name} to hold`, read: bellWords(readBell(s, who)) });
+      options.push({ id: 'bell', label: `Ring for ${name} to hold`, read: bellWords(readBell(s, who)) });
     open(s, {
       kind: 'waver',
       who,
       section: lit,
       text:
         why === 'tired'
-          ? `${def.name} can barely keep ${def.sex === 'female' ? 'her' : 'his'} eyes open.`
-          : `${def.name} looks back at the steps.`,
+          ? `${name} can barely keep ${villager(s, who).sex === 'female' ? 'her' : 'his'} eyes open.`
+          : `${name} looks back at the steps.`,
       options,
     });
     return;
@@ -310,8 +307,8 @@ export function checkMoments(s: WatchState): void {
  */
 export function catchLeaving(s: WatchState, who: WatcherId, action: string, section: SectionId): void {
   if (s.moment || s.momentLog.length >= MOMENTS_PER_NIGHT || carded(s, 'waver', who)) return;
-  const def = watcherDef(who);
-  const post = s.posts[who] ?? POSTS.find((p) => p.section === section)?.id;
+  const name = nameOf(s, who);
+  const post = s.posts[who] ?? s.openPosts.find((p) => postSection(p) === section);
   const where =
     action === 'sleep' || action === 'go-home'
       ? 'is going home'
@@ -322,10 +319,10 @@ export function catchLeaving(s: WatchState, who: WatcherId, action: string, sect
     kind: 'waver',
     who,
     section,
-    text: `${def.name} ${where}.`,
+    text: `${name} ${where}.`,
     options: [
-      { id: 'let', label: `Let ${def.name} go` },
-      { id: 'urge', label: `Call ${def.sex === 'female' ? 'her' : 'him'} back` },
+      { id: 'let', label: `Let ${name} go` },
+      { id: 'urge', label: `Call ${them(s, who)} back` },
     ],
     ...(post ? { post } : {}),
   });
@@ -359,13 +356,13 @@ export function answerMoment(s: WatchState, id: number, choice: string): boolean
     if (post) s.letGo[who] = post;
     s.posts[who] = null;
   } else if (choice.startsWith('send:') && isPost(pl)) {
-    const sub = choice.slice(5) as WatcherId;
+    const sub = choice.slice(5);
     const post = s.posts[who];
     if (post) s.letGo[who] = post;
     s.posts[who] = null;
     ask(s, sub, `post:${pl}`);
   } else if (choice.startsWith('carry:')) {
-    ask(s, choice.slice(6) as WatcherId, `carry:${who}`);
+    ask(s, choice.slice(6), `carry:${who}`);
   }
   const log = s.momentLog.at(-1);
   if (log) log.choice = choice;

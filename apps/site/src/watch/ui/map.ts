@@ -4,7 +4,7 @@
  * sounds at the foot of the wall. No numbers are drawn. The layout flexes to any size; positions ease between
  * sim minutes on the page's own animation clock.
  */
-import { SECTION_IDS, type SectionId, WATCHERS, type WatcherId } from '../sim/config.ts';
+import { SECTION_IDS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Frame, FrameWatcher, Posture } from '../sim/view.ts';
 import { LIGHT_EDGE } from '../sim/view.ts';
 
@@ -50,14 +50,26 @@ export function hitTest(l: Layout, f: Frame, x: number, y: number): Hit {
   return { kind: 'section', section };
 }
 
-const LOOK: Record<WatcherId, Look> = {
-  tamar: { body: '#7a5c44', scarf: '#d9c9a8' },
-  kian: { body: '#4f6a7a', scarf: '#c2703f' },
-  mara: { body: '#6b4f6b', scarf: '#8e3b46' },
-  joss: { body: '#5a4a3a', scarf: '#9a8a5a' },
-  yunus: { body: '#8a7a68', scarf: '#e8e2d0' },
-  ruslan: { body: '#3f4a3a', scarf: '#6a7f8f' },
-};
+/** Figure palette, indexed by a villager's `look`; it wraps for large casts. */
+const LOOKS: readonly Look[] = [
+  { body: '#7a5c44', scarf: '#d9c9a8' },
+  { body: '#4f6a7a', scarf: '#c2703f' },
+  { body: '#6b4f6b', scarf: '#8e3b46' },
+  { body: '#5a4a3a', scarf: '#9a8a5a' },
+  { body: '#8a7a68', scarf: '#e8e2d0' },
+  { body: '#3f4a3a', scarf: '#6a7f8f' },
+  { body: '#6e5a3c', scarf: '#b8574a' },
+  { body: '#4a5a6e', scarf: '#d6b56a' },
+  { body: '#5e4652', scarf: '#9fb0a0' },
+  { body: '#73664e', scarf: '#5f7a9a' },
+  { body: '#47524a', scarf: '#c99a7a' },
+  { body: '#665046', scarf: '#a8a4c8' },
+];
+
+function lookOf(look: number | undefined): Look {
+  const n = LOOKS.length;
+  return LOOKS[(((look ?? 0) % n) + n) % n] as Look;
+}
 
 export interface Ease {
   pos: Map<number, number>;
@@ -280,7 +292,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
       ctx.textAlign = 'center';
       if (!p.watcher) {
         if (p.posted) {
-          drawGhost(ctx, at.x, at.y, LOOK[p.posted], size);
+          drawGhost(ctx, at.x, at.y, lookOf(f.watchers.find((x) => x.id === p.posted)?.look), size);
           ctx.fillStyle = 'rgba(255, 243, 220, 0.38)';
           ctx.fillText(f.watchers.find((x) => x.id === p.posted)?.name ?? '', at.x, labelY);
         } else {
@@ -301,7 +313,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
         ctx,
         at.x,
         at.y,
-        LOOK[watcher.id],
+        lookOf(watcher.look),
         {
           seen,
           // Off the night the light is not the limit: a figure is simply standing.
@@ -349,7 +361,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
         y = l.yVillage + (h - l.yVillage) * 0.4;
         hall++;
       } else {
-        const home = WATCHERS.find((d) => d.id === wt.id)?.home ?? 'gate';
+        const home = wt.home;
         x = (SECTION_IDS.indexOf(home) + 0.5) * laneW + (hash01(wt.id.length * 7) - 0.5) * 20;
         y = l.yVillage + (h - l.yVillage) * 0.85;
       }
@@ -357,7 +369,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
       ctx.globalAlpha = 0.6;
       ctx.translate(x, y);
       ctx.scale(0.7, 0.7);
-      drawWatcher(ctx, 0, 0, LOOK[wt.id], {
+      drawWatcher(ctx, 0, 0, lookOf(wt.look), {
         seen: false,
         posture: 'figure',
         signs: null,

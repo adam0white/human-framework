@@ -42,17 +42,23 @@ export const POST_IDS = [
   'east-1',
   'east-2',
 ] as const;
-export type PostId = (typeof POST_IDS)[number];
+/** A third post per section, opened when the fair extends the wall (G3-3). */
+export const EXTRA_POST_IDS = ['west-3', 'gate-3', 'mill-3', 'east-3'] as const;
+export type PostId = (typeof POST_IDS)[number] | (typeof EXTRA_POST_IDS)[number];
+export const ALL_POST_IDS: readonly PostId[] = [...POST_IDS, ...EXTRA_POST_IDS];
 
 export interface PostDef {
   id: PostId;
   section: SectionId;
+  /** 0-based slot along the section. */
+  slot: number;
 }
 
 /** Eight posts, two per section, for three watchers: there are always more posts than people (spec §4). */
-export const POSTS: readonly PostDef[] = POST_IDS.map((id) => ({
+export const POSTS: readonly PostDef[] = ALL_POST_IDS.map((id) => ({
   id,
   section: id.split('-')[0] as SectionId,
+  slot: Number(id.split('-')[1]) - 1,
 }));
 
 export function postSection(id: PostId): SectionId {
@@ -61,8 +67,10 @@ export function postSection(id: PostId): SectionId {
   return p.section;
 }
 
+/** The year-1 watchers, in cast order. Later villagers (children, newcomers) get ids at runtime. */
 export const WATCHER_IDS = ['tamar', 'kian', 'mara', 'joss', 'yunus', 'ruslan'] as const;
-export type WatcherId = (typeof WATCHER_IDS)[number];
+/** A villager's id: a founder's name, or one given at birth or arrival (G3-3). */
+export type WatcherId = string;
 
 type TraitName =
   | 'honesty'
@@ -92,7 +100,7 @@ export interface WatcherDef {
   note: string;
   /** The stretch of wall their household sits behind. */
   home: SectionId;
-  /** Who waits at home, in words; null when nobody does. */
+  /** Who waits at home, in words, as the spec's cast sheet has it (the game reads the real household, `people.ts`). */
   family: string | null;
   traits: Partial<Record<TraitName, number>>;
   sling: number;
@@ -291,6 +299,33 @@ export const WATCHERS: readonly WatcherDef[] = [
       { otherId: 'tamar', roles: ['neighbor'], affection: 0 },
     ],
   },
+];
+
+/** Age at which a villager comes of age and stands the wall (spec §2: "who comes of age (15)"). */
+export const WATCH_AGE = 15;
+/** A child under this age at home pulls a parent or guardian off the wall when a threat is near the house. */
+export const HOME_CHILD_AGE = 12;
+
+/**
+ * The founders' kin who do not stand the wall yet (G3-3): children who will come of age within the first volume.
+ * `parents` are their parents among the founders; `guardian` raises a child whose parents are gone (Kian's sister).
+ */
+export interface KinDef {
+  id: WatcherId;
+  name: string;
+  sex: 'female' | 'male';
+  age: number;
+  home: SectionId;
+  parents?: WatcherId[];
+  guardian?: WatcherId;
+  /** The founder they come to the wall with, on that founder's night. */
+  with: WatcherId;
+}
+
+export const FOUNDER_KIN: readonly KinDef[] = [
+  { id: 'lena', name: 'Lena', sex: 'female', age: 10, home: 'east', parents: ['mara', 'joss'], with: 'mara' },
+  { id: 'pell', name: 'Pell', sex: 'male', age: 7, home: 'east', parents: ['mara', 'joss'], with: 'mara' },
+  { id: 'ada', name: 'Ada', sex: 'female', age: 8, home: 'west', guardian: 'kian', with: 'kian' },
 ];
 
 /** Hit chance per minute at sling 1, lit, unhurt, rested and calm. */

@@ -34,6 +34,7 @@ import {
   readPerson,
   type SimEvent,
   type Suggestion,
+  skillLevel,
   stepCommunity,
   strain,
   tend,
@@ -51,7 +52,6 @@ import {
   LIT_REACH,
   MOTION_REACH,
   NIGHT_LENGTH,
-  POST_IDS,
   type PostId,
   postSection,
   SCOUT_TRUE,
@@ -62,13 +62,24 @@ import {
   sectionDef,
   THREATS,
   type ThreatKind,
-  WATCHERS,
   type WatcherId,
-  watcherDef,
 } from './config.ts';
 import { advanceDay } from './day.ts';
 import { answerMoment, catchLeaving, checkMoments } from './moments.ts';
-import { arrive, isPost, KEEPER_ID, personOf, placeOfActivity, WatchWorld } from './people.ts';
+import {
+  addVillager,
+  arrive,
+  familyWords,
+  foundingCast,
+  isPost,
+  isWatcher,
+  KEEPER_ID,
+  nameOf,
+  personOf,
+  placeOfActivity,
+  villager,
+  WatchWorld,
+} from './people.ts';
 import {
   type Alert,
   createState,
@@ -113,15 +124,21 @@ const NOTE_GAP = 90;
 
 export function newGame(seed: number): WatchState {
   const s = createState(seed);
+  for (const v of foundingCast()) addVillager(s, v);
   arrive(s);
-  for (const id of presentIds(s)) s.posts[id] = watcherDef(id).usual;
+  for (const id of presentIds(s)) s.posts[id] = villager(s, id).usual;
   planNight(s);
   return s;
 }
 
-/** Ids of the watchers who have come, in cast order. */
+/** Ids of the watchers (of watch age, alive and here), in cast order. */
 export function presentIds(s: WatchState): WatcherId[] {
-  return WATCHERS.filter((w) => personOf(s, w.id)).map((w) => w.id);
+  const out: WatcherId[] = [];
+  for (const id of s.order) {
+    const p = personOf(s, id);
+    if (p && isWatcher(s, p)) out.push(id);
+  }
+  return out;
 }
 
 /** True while the clock runs (dusk and night). */
@@ -299,8 +316,8 @@ function enterDawn(s: WatchState): void {
     const the = theSection(id);
     const got = t.got[id];
     const driven = t.driven[id];
-    const heroes = [...new Set(t.heroes[id])].map((w) => watcherDef(w).name);
-    const posted = postedIn(s, id).map((w) => watcherDef(w).name);
+    const heroes = [...new Set(t.heroes[id])].map((w) => nameOf(s, w));
+    const posted = postedIn(s, id).map((w) => nameOf(s, w));
     const gotKinds = (['wolf', 'thief'] as const).filter((k) => (got[k] ?? 0) > 0);
     const drivenKinds = (['wolf', 'thief'] as const).filter((k) => (driven[k] ?? 0) > 0);
     const parts: string[] = [];
@@ -370,7 +387,7 @@ export function applyInput(s: WatchState, input: Input): boolean {
       if (!personOf(s, input.watcher)) return false;
       if (input.press !== undefined && !['ask', 'urge', 'insist'].includes(input.press)) return false;
       if (input.post !== null) {
-        if (!POST_IDS.includes(input.post)) return false;
+        if (!s.openPosts.includes(input.post)) return false;
         // A post holds one watcher: whoever was posted there loses the posting.
         for (const w of presentIds(s))
           if (w !== input.watcher && s.posts[w] === input.post) s.posts[w] = null;
@@ -430,7 +447,7 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
   const at = litSection(s) ?? 'gate';
   for (const id of targets) {
     const pl = s.place[id];
-    const post = isPost(pl) ? pl : (s.posts[id] ?? watcherDef(id).usual);
+    const post = isPost(pl) ? pl : (s.posts[id] ?? villager(s, id).usual);
     const cmd: Command = { voiceId: KEEPER_ID, affordanceId: `post:${post}`, since: s.minute, repeat: true };
     s.commands[id] = { cmd, until: s.minute + BELL_COMMAND_MIN };
   }
@@ -449,7 +466,7 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
       text:
         targets.length === 0
           ? 'The bell rings, but nobody is in earshot.'
-          : `The bell rings: ${targets.map((t) => watcherDef(t).name).join(', ')} must hold.`,
+          : `The bell rings: ${targets.map((t) => nameOf(s, t)).join(', ')} must hold.`,
       slowed: false,
     });
   }
@@ -467,7 +484,7 @@ function suggestions(s: WatchState): Record<string, Suggestion[]> {
     const post = s.posts[id];
     if (list.length > 0) out[id] = list;
     if (post === null) continue;
-    const press = s.press[id];
+    const press = s.press[id] ?? 'ask';
     const sug: Suggestion = {
       voiceId: KEEPER_ID,
       affordanceId: `post:${post}`,
@@ -551,7 +568,7 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
     const id = e.personId as WatcherId;
     const p = personOf(s, id);
     if (!p) continue;
-    const name = watcherDef(id).name;
+    const name = nameOf(s, id);
     if (e.kind === 'decide' && e.verdict && !e.review) {
       const posted = s.posts[id];
       const sec = posted ? postSection(posted) : undefined;
@@ -647,14 +664,14 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
     if (seen && s.notes.length > from) {
       const n = s.notes.at(-1);
       if (n && n.kind !== 'carried')
-        alert(s, { section: where, kind: 'person', who: id, text: personLine(n), slowed: false });
+        alert(s, { section: where, kind: 'person', who: id, text: personLine(s, n), slowed: false });
     }
   }
 }
 
 /** A ticker line for a watcher's act seen under the lantern. */
-function personLine(n: NightNote): string {
-  const name = watcherDef(n.who).name;
+function personLine(s: WatchState, n: NightNote): string {
+  const name = nameOf(s, n.who);
   const at = n.section ? theSection(n.section) : 'the wall';
   switch (n.kind) {
     case 'fled':
@@ -664,11 +681,11 @@ function personLine(n: NightNote): string {
     case 'slept':
       return `${name} goes home to sleep.`;
     case 'home':
-      return `${name} runs home to ${watcherDef(n.who).family ?? 'the house'}.`;
+      return `${name} runs home to ${familyWords(s, n.who) ?? 'the house'}.`;
     case 'froze':
       return `${name} stands frozen at ${at}.`;
     case 'carrier':
-      return `${name} carries ${n.other ? watcherDef(n.other).name : 'someone'} off ${at}.`;
+      return `${name} carries ${n.other ? nameOf(s, n.other) : 'someone'} off ${at}.`;
     case 'refused':
       return `${name} won't take the post you gave.`;
     case 'deferred':
@@ -846,11 +863,11 @@ export function stepMinute(s: WatchState): void {
     const action = p.activity.action;
     const rate = action === 'hold-post' ? 1 : action === 'sit' || action === 'eat' ? SIT_AIM : 0;
     if (rate === 0) continue;
-    const def = watcherDef(id);
     const section = postSection(post);
     const isLit = section === lit;
     const caps = readCapacities(p);
-    const sight = def.sight * caps.sight;
+    const sling = skillLevel(p, 'sling');
+    const sight = skillLevel(p, 'sight') * caps.sight;
     let target: Token | null = null;
     for (const t of s.tokens) {
       if (t.section !== section || (t.state !== 'coming' && t.state !== 'foot')) continue;
@@ -862,7 +879,7 @@ export function stepMinute(s: WatchState): void {
     const protest = p.activity.protest ? 0.8 : 1;
     const chance =
       AIM_SCALE *
-      def.sling *
+      sling *
       rate *
       caps.manipulation *
       (1 - 0.35 * b.fatigue) *
@@ -885,7 +902,7 @@ export function stepMinute(s: WatchState): void {
           section,
           kind: 'driven',
           who: id,
-          text: `${def.name} drove ${plural(target.kind, 1)} off ${section === 'gate' ? 'the gate road' : `the ${sectionDef(section).name.toLowerCase()}`}.`,
+          text: `${nameOf(s, id)} drove ${plural(target.kind, 1)} off ${section === 'gate' ? 'the gate road' : `the ${sectionDef(section).name.toLowerCase()}`}.`,
           slowed: false,
         });
     }
@@ -933,8 +950,8 @@ function feelings(s: WatchState, lit: SectionId | null): void {
 /** A threat at home: a watcher with family behind that stretch takes on the duty of going to them. */
 function homeDuty(s: WatchState, id: WatcherId, section: SectionId): void {
   const p = personOf(s, id);
-  const def = watcherDef(id);
-  if (!p || def.family === null || def.home !== section) return;
+  const family = familyWords(s, id);
+  if (!p || family === null || villager(s, id).home !== section) return;
   if (
     p.agenda.commitments.some(
       (c) => c.status === 'pending' && c.actions.includes('go-home') && c.until > s.minute,
@@ -948,7 +965,7 @@ function homeDuty(s: WatchState, id: WatcherId, section: SectionId): void {
     from: s.minute,
     until: s.minute + 90,
     importance: 0.45 + 0.5 * p.traits.emotionality,
-    label: `see to ${def.family}`,
+    label: `see to ${family}`,
   });
 }
 
@@ -961,11 +978,10 @@ function warnWatchers(s: WatchState, t: Token, severity: number): void {
   s.homeThreat[t.section] = s.minute;
   for (const id of presentIds(s)) {
     const pl = s.place[id];
-    const def = watcherDef(id);
     const atSec = isPost(pl) ? postSection(pl) : undefined;
     const here = atSec === t.section;
     const near = atSec !== undefined && Math.abs(SECTION_IDS.indexOf(atSec) - idx) === 1;
-    const home = def.family !== null && def.home === t.section && atSec !== undefined;
+    const home = atSec !== undefined && villager(s, id).home === t.section && familyWords(s, id) !== null;
     if (!here && !near && !home) continue;
     if (home && severity >= 0.6) homeDuty(s, id, t.section);
     const what = t.kind === 'wolf' ? 'wolves' : 'strangers';
@@ -1019,7 +1035,7 @@ function bite(s: WatchState, id: WatcherId, t: Token): void {
       section: t.section,
       kind: 'person',
       who: id,
-      text: `A wolf has ${watcherDef(id).name} by the leg.`,
+      text: `A wolf has ${nameOf(s, id)} by the leg.`,
       slowed: true,
     });
     glimpseOf(s.keeper, p, { at: s.minute, clarity: 0.9 });
@@ -1055,7 +1071,7 @@ function downed(s: WatchState, id: WatcherId, section: SectionId): void {
     who: id,
     text:
       litSection(s) === section
-        ? `${watcherDef(id).name} is down at ${theSection(section)}.`
+        ? `${nameOf(s, id)} is down at ${theSection(section)}.`
         : `A cry from ${theSection(section)}: someone is down.`,
     slowed: true,
   });
@@ -1072,7 +1088,7 @@ function downed(s: WatchState, id: WatcherId, section: SectionId): void {
         placeId: section,
         salience: 0.8,
         valence: -0.5,
-        summary: `${watcherDef(id).name} is down at ${theSection(section)}`,
+        summary: `${nameOf(s, id)} is down at ${theSection(section)}`,
         near: sectionOf(s, other) === section,
       },
       sectionOf(s, other) === section,

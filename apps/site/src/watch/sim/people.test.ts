@@ -5,9 +5,9 @@
 import { impressionOf } from '@human/framework';
 import { describe, expect, it } from 'vitest';
 import { type PlanName, planInputs } from '../../../test/watch/plans.ts';
-import { postSection, type WatcherId, watcherDef } from './config.ts';
-import { litSection } from './night.ts';
-import { isPost, KEEPER_ID, personOf } from './people.ts';
+import { postSection, type WatcherId } from './config.ts';
+import { litSection, presentIds } from './night.ts';
+import { familyWords, isPost, KEEPER_ID, personOf } from './people.ts';
 import { WatchRun } from './run.ts';
 import type { NightNote } from './state.ts';
 
@@ -23,6 +23,8 @@ interface Seen {
   prayed: number;
   prayerAlerts: number;
   ruslanAtArrival: number | null;
+  /** Watchers who had family at home on some night. */
+  withFamily: Set<string>;
 }
 
 function meanConfidence(run: WatchRun, id: WatcherId): number {
@@ -43,11 +45,13 @@ function watch(seed: number, plan: PlanName, nights = 3): Seen {
     prayed: 0,
     prayerAlerts: 0,
     ruslanAtArrival: null,
+    withFamily: new Set(),
   };
   for (let n = 1; n <= nights; n++) {
     if (run.state.night === 3 && personOf(run.state, 'ruslan'))
       seen.ruslanAtArrival = meanConfidence(run, 'ruslan');
     for (const i of planInputs(run.state, plan, true)) run.input(i);
+    for (const id of presentIds(run.state)) if (familyWords(run.state, id)) seen.withFamily.add(id);
     run.input({ k: 'begin' });
     const lit: Partial<Record<WatcherId, number>> = {};
     let opened = -1;
@@ -97,7 +101,7 @@ describe('watchers are people', () => {
   it('only a watcher with family at home goes home to them', () => {
     const home = notes.filter((n) => n.kind === 'home');
     expect(home.length).toBeGreaterThan(0);
-    for (const n of home) expect(watcherDef(n.who).family).not.toBeNull();
+    for (const n of home) expect(runs.some((r) => r.withFamily.has(n.who))).toBe(true);
   });
 
   it('the Keeper is surer of the watchers he lit than of those he did not', () => {

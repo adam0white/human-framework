@@ -4,9 +4,9 @@
  * he is. The UI shows the phrase and draws the sureness as a soft bar; it prints no numbers.
  */
 import { impressionOf } from '@human/framework';
-import { SECTIONS, type SectionId, WATCHERS, type WatcherId } from './config.ts';
+import { SECTIONS, type SectionId, type WatcherId } from './config.ts';
 import { theSection } from './night.ts';
-import { KEEPER_ID } from './people.ts';
+import { isHere, KEEPER_ID } from './people.ts';
 import type { WatchState } from './state.ts';
 
 export interface Impression {
@@ -38,10 +38,10 @@ export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impres
     } else if (c.key === `trust:${KEEPER_ID}`)
       text = v > 0.65 ? 'heeds you' : v < 0.35 ? 'doesn’t heed you' : null;
     else if (c.key.startsWith('tie:')) {
-      const other = c.key.slice(4) as WatcherId;
-      const name = WATCHERS.find((w) => w.id === other)?.name;
-      // A tie to someone not yet among the watchers would name a stranger; it waits until they arrive.
-      if (name && s.community.people.some((q) => q.id === other))
+      const other = c.key.slice(4);
+      const name = s.cast[other]?.name;
+      // A tie to someone not yet come, or gone, would name a stranger; it waits until they are here.
+      if (name && s.community.people.some((q) => q.id === other && isHere(s, q)))
         text = v > 0.4 ? `close to ${name}` : v < -0.3 ? `at odds with ${name}` : null;
     } else if (c.key === 'trait:emotionality')
       text = v > 0.65 ? 'jumpy by nature' : v < 0.3 ? 'steady by nature' : null;

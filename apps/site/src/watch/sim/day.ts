@@ -7,18 +7,10 @@
  * `ROPE_DAWN_MEND` off whatever happens. Wounds are dressed in the village (tended once). Newcomers arrive at dusk.
  * Not covered: the fair, trade, seasons and years (G3-3).
  */
-import { observeAct, tend } from '@human/framework';
-import {
-  DAY,
-  DUSK_START,
-  NIGHTFALL,
-  ROPE_DAWN_MEND,
-  ROPE_MEND_PER_HOUR,
-  type WatcherId,
-  watcherDef,
-} from './config.ts';
-import { stepPeople } from './night.ts';
-import { arrive, personOf } from './people.ts';
+import { observeAct, skillLevel, tend } from '@human/framework';
+import { DAY, DUSK_START, NIGHTFALL, ROPE_DAWN_MEND, ROPE_MEND_PER_HOUR, type WatcherId } from './config.ts';
+import { presentIds, stepPeople } from './night.ts';
+import { arrive, isWatcher, nameOf, personOf, villager } from './people.ts';
 import type { DaySummary, WatchState } from './state.ts';
 
 /** Lives the day and opens the next dusk. Called by the 'toDusk' input. */
@@ -52,7 +44,7 @@ export function advanceDay(s: WatchState): void {
         worked[id] = (worked[id] ?? 0) + 2;
       if (e.kind === 'finish' && e.action === 'mend' && e.status === 'completed') {
         const p = personOf(s, id);
-        const craft = p?.skills.craft?.level ?? watcherDef(id).craft;
+        const craft = p ? skillLevel(p, 'craft') : 0.3;
         s.rope.wear = Math.max(0, s.rope.wear - ROPE_MEND_PER_HOUR * 2 * craft);
         mended[id] = (mended[id] ?? 0) + 2;
       }
@@ -64,8 +56,9 @@ export function advanceDay(s: WatchState): void {
 
   const lines: DaySummary['lines'] = [];
   for (const p of s.community.people) {
-    const id = p.id as WatcherId;
-    const name = watcherDef(id).name;
+    if (!isWatcher(s, p)) continue;
+    const id = p.id;
+    const name = nameOf(s, id);
     const parts: string[] = [];
     if ((mended[id] ?? 0) > 0) parts.push(`spent ${mended[id]} hours on the bell rope`);
     else if ((worked[id] ?? 0) >= 4) parts.push('worked most of the day');
@@ -76,23 +69,27 @@ export function advanceDay(s: WatchState): void {
     });
   }
   s.night += 1;
+  s.winterNight += 1;
   s.minute = dusk;
   s.nightStart = day * DAY + NIGHTFALL;
   s.phase = 'dusk';
   s.day = { night: s.night, lines, ropeBefore, ropeAfter: s.rope.snapped ? 1 : s.rope.wear };
+  const watchers = new Set(presentIds(s));
   for (const id of arrive(s)) {
-    const usual = watcherDef(id).usual;
-    const taken = Object.values(s.posts).includes(usual);
+    if (!presentIds(s).includes(id) || watchers.has(id)) continue;
+    const usual = villager(s, id).usual;
+    const taken = Object.values(s.posts).includes(usual) || !s.openPosts.includes(usual);
     s.posts[id] = taken ? null : usual;
     s.postedAt[id] = s.minute;
-    lines.push({ who: id, text: `${watcherDef(id).name} came through the gate today.` });
+    lines.push({ who: id, text: `${nameOf(s, id)} came through the gate today.` });
     // An old grudge shows the moment they meet: someone turns away, and the Keeper sees it.
     for (const p of s.community.people) {
       if (p.id === id) continue;
       const tie = p.social.relationships.find((r) => r.otherId === id);
       if (!tie || tie.affection > -0.4) continue;
-      const w = p.id as WatcherId;
-      lines.push({ who: w, text: `${watcherDef(w).name} turned away when ${watcherDef(id).name} came in.` });
+      const w = p.id;
+      if (!isWatcher(s, p)) continue;
+      lines.push({ who: w, text: `${nameOf(s, w)} turned away when ${nameOf(s, id)} came in.` });
       observeAct(s.keeper, w, { at: s.minute, clarity: 0.8, withId: id, toward: -1 });
     }
   }

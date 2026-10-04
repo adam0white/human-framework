@@ -19,12 +19,11 @@ import {
   SECTIONS,
   type SectionId,
   type ThreatKind,
-  WATCHERS,
   type WatcherId,
 } from './config.ts';
 import { bellWords, type Moment, readBell, readPosting, readWords } from './moments.ts';
 import { earshot, litSection, nightEnd, presentIds } from './night.ts';
-import { isPost, type Place, personOf } from './people.ts';
+import { isPost, type Place, personOf, villager } from './people.ts';
 import { type Impression, keeperImpressions } from './reads.ts';
 import type { Alert, DawnPage, DaySummary, Phase, Press, WatchState } from './state.ts';
 
@@ -96,6 +95,10 @@ export type Posture = 'stand' | 'sit' | 'doze' | 'eat' | 'pray' | 'down' | 'froz
 export interface FrameWatcher {
   id: WatcherId;
   name: string;
+  /** Which figure the map draws. */
+  look: number;
+  /** Where their household sits. */
+  home: SectionId;
   note: string;
   newcomer: boolean;
   /** Where they are: a post, the hall, home or the village (by day). */
@@ -212,20 +215,22 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
       motion.push({ id: t.id, section: t.section, pos: 1, foot: true });
     }
   }
+  const ids = presentIds(s);
   const sections = SECTIONS.map((sec) => ({
     id: sec.id,
     name: sec.name,
-    posts: POSTS.filter((p) => p.section === sec.id).map((p) => ({
+    posts: POSTS.filter((p) => p.section === sec.id && s.openPosts.includes(p.id)).map((p) => ({
       id: p.id,
-      watcher: WATCHERS.find((w) => personOf(s, w.id) && s.place[w.id] === p.id)?.id ?? null,
-      posted: WATCHERS.find((w) => personOf(s, w.id) && s.posts[w.id] === p.id)?.id ?? null,
+      watcher: ids.find((w) => s.place[w] === p.id) ?? null,
+      posted: ids.find((w) => s.posts[w] === p.id) ?? null,
     })),
   }));
   const watchers: FrameWatcher[] = [];
-  for (const w of WATCHERS) {
-    const p = personOf(s, w.id);
+  for (const id of ids) {
+    const p = personOf(s, id);
     if (!p) continue;
-    const place = s.place[w.id];
+    const w = villager(s, id);
+    const place = s.place[id] ?? 'village';
     const post = isPost(place) ? place : null;
     const section = post === null ? null : postSection(post);
     const onLit = section !== null && section === lit;
@@ -241,12 +246,14 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
       id: w.id,
       name: w.name,
       note: w.note,
-      newcomer: w.newcomer === true,
+      look: w.look,
+      home: w.home,
+      newcomer: w.newcomer,
       place,
       post,
       section,
-      posted: s.posts[w.id],
-      press: s.press[w.id],
+      posted: s.posts[w.id] ?? null,
+      press: s.press[w.id] ?? 'ask',
       lit: onLit,
       posture,
       signs,

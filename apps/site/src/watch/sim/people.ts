@@ -1,19 +1,23 @@
 /**
- * The watchers as HF people (G3-2) and the `World` adapter the community driver steps them in.
+ * The villagers as HF people (G3-2, G3-3) and the `World` adapter the community driver steps them in.
  *
- * Scope. Each watcher is a framework `Person` built from `WATCHERS` (traits, skills, ties, trust in the Keeper's
- * voice, a held host norm 'keep-watch' at their own conviction), opted into mental breaks (freeze, run), derived
- * downing and impressions of the others. The Keeper is a `Person` too, never stepped: he only holds impressions.
- * Framework time is the game's absolute minute (day 0 starts at midnight), so `prayerWindows` line up.
+ * Scope. Each founder is a framework `Person` built from `WATCHERS` (traits, skills, ties, trust in the Keeper's
+ * voice, a held host norm 'keep-watch' at their own conviction); their kin (`FOUNDER_KIN`), the children born in
+ * the village and newcomers are people too. All are opted into mental breaks (freeze, run), derived downing,
+ * impressions of the others and the long-run faculties (gists, yearbook, character change, skill consolidation).
+ * The Keeper is a `Person` too, never stepped: he only holds impressions. Framework time is the game's absolute
+ * minute (day 0 starts at midnight), so `prayerWindows` line up. The chronicle's record of each villager (name,
+ * home, status) is game state (`Villager`), apart from the person.
  *
- * The world offers, at watch time (dusk and night): each free post (`post:<id>`, hold the post; its risk is the
- * danger the person can know of there, and it fulfils 'keep-watch'), sitting or eating at one's post, praying at
- * one's post in a prayer window (Yunus), running to the hall, going home to the family when a threat is at home
- * (a duty the person takes on), going to sleep, carrying a downed watcher to the hall, and the break behaviours
- * (freeze, run off) while in a break. By day (06:00 to 17:00, stepped in one go at the dusk transition): sleep,
- * eat, work, rest and mend the bell rope. Leaving the wall violates 'keep-watch'.
+ * The world offers a watcher (of age, here), at watch time (dusk and night): each free post (`post:<id>`, hold the
+ * post; its risk is the danger the person can know of there, and it fulfils 'keep-watch'), sitting or eating at
+ * one's post, praying at one's post in a prayer window, running to the hall, going home to the children when a
+ * threat is near the house (a duty the person takes on), going to sleep, carrying a downed watcher to the hall, and
+ * the break behaviours (freeze, run off) while in a break. A child is offered only home: sleep and rest. By day
+ * (06:00 to 17:00, stepped in one go at the dusk transition): sleep, eat, work, rest and mend the bell rope.
+ * Leaving the wall violates 'keep-watch'.
  *
- * Not covered: walking time between posts, private conversation, the fair, seasons and ageing (G3-3).
+ * Not covered: walking time between posts, private conversation. Seasons are lived by routine (`year.ts`).
  */
 import {
   type Activity,
@@ -25,7 +29,11 @@ import {
   createPerson,
   DEFAULT_NORMS,
   enableBreaks,
+  enableCharacterChange,
   enableDowned,
+  enableGists,
+  enableSkillConsolidation,
+  enableYearbook,
   heldNorms,
   inBreak,
   joinGroups,
@@ -42,20 +50,23 @@ import {
   type World,
 } from '@human/framework';
 import {
+  ALL_POST_IDS,
   DAWN,
   DAY,
   DUSK_START,
+  FOUNDER_KIN,
+  HOME_CHILD_AGE,
+  type KinDef,
   MOTION_REACH,
-  POST_IDS,
   type PostId,
   postSection,
   type SectionId,
+  WATCH_AGE,
   WATCHERS,
   type WatcherDef,
   type WatcherId,
-  watcherDef,
 } from './config.ts';
-import type { WatchState } from './state.ts';
+import type { Villager, WatchState } from './state.ts';
 
 export const KEEPER_ID = 'keeper';
 
@@ -69,11 +80,11 @@ export const WATCH_NORMS: NormDefinition[] = [
   },
 ];
 
-/** Where a watcher is: a post, the hall behind the gate, home, the village (by day) or not yet come. */
+/** Where a villager is: a post, the hall behind the gate, home, the village (by day) or not yet come. */
 export type Place = PostId | 'hall' | 'home' | 'village' | 'away';
 
-export function isPost(x: Place | undefined): x is PostId {
-  return x !== undefined && (POST_IDS as readonly string[]).includes(x);
+export function isPost(x: Place | undefined | null): x is PostId {
+  return x !== undefined && x !== null && (ALL_POST_IDS as readonly string[]).includes(x);
 }
 
 /** Watch time: dusk and night (17:00 to 06:00). */
@@ -82,7 +93,7 @@ export function isWatchTime(minute: number): boolean {
   return m >= DUSK_START || m < DAWN;
 }
 
-function personSeed(seed: number, index: number): number {
+export function personSeed(seed: number, index: number): number {
   let h = (seed ^ Math.imul(index + 1, 0x9e3779b1)) >>> 0;
   h = Math.imul(h ^ (h >>> 15), 0x85ebca6b) >>> 0;
   return (h ^ (h >>> 13)) >>> 0;
@@ -133,14 +144,168 @@ const BREAKS = [
   { id: 'run', label: 'ran', actions: ['run-off'], weight: 1, minutes: [60, 180] as [number, number] },
 ];
 
+/**
+ * The long-run faculties every villager carries (HF L1, G3-3): lasting gists of memorable nights, a yearbook, slow
+ * character change and skills that consolidate with practice.
+ */
+export function enableLongLife(p: Person): void {
+  enableGists(p);
+  enableYearbook(p);
+  enableCharacterChange(p);
+  enableSkillConsolidation(p);
+}
+
+/** Opt a villager into what the wall asks of them: breaks, downing, reserve, their group, the long run. */
+export function equip(p: Person, opts: { reserve?: WatcherDef['reserve']; newcomer?: boolean } = {}): void {
+  enableBreaks(p, BREAKS);
+  enableDowned(p, { moving: 0.3, health: 0.35 });
+  if (opts.reserve) setReserve(p, opts.reserve);
+  joinGroups(p, [opts.newcomer ? 'incomers' : 'village']);
+  enableLongLife(p);
+}
+
 /** A watcher as a Person, opted into breaks, downing and impressions. */
 export function castPerson(seed: number, def: WatcherDef, now: number): Person {
   const p = createPerson(watcherSpec(seed, def, now));
-  enableBreaks(p, BREAKS);
-  enableDowned(p, { moving: 0.3, health: 0.35 });
-  if (def.reserve) setReserve(p, def.reserve);
-  joinGroups(p, [def.newcomer ? 'incomers' : 'village']);
+  equip(p, { ...(def.reserve ? { reserve: def.reserve } : {}), newcomer: def.newcomer === true });
   return p;
+}
+
+/** A founder's child or ward as a Person (G3-3): at home, raised by the household, years from the wall. */
+export function kinPerson(seed: number, kin: KinDef, index: number, now: number): Person {
+  const relationships: NonNullable<PersonSpec['relationships']> = [];
+  for (const parent of kin.parents ?? [])
+    relationships.push({
+      otherId: parent,
+      roles: ['parent'],
+      affection: 0.75,
+      trust: 0.75,
+      familiarity: 0.9,
+    });
+  if (kin.guardian)
+    relationships.push({
+      otherId: kin.guardian,
+      roles: ['guardian', 'sibling'],
+      affection: 0.8,
+      trust: 0.75,
+      familiarity: 0.9,
+    });
+  const p = createPerson({
+    id: kin.id,
+    name: kin.name,
+    seed: personSeed(seed, 20 + index),
+    now,
+    bornAt: now - kin.age * MINUTES_PER_YEAR - index * 9_973,
+    sex: kin.sex,
+    relationships,
+    skills: { sling: 0.1, sight: 0.3, craft: 0.1 },
+    voices: [{ voiceId: KEEPER_ID, trust: 0.6 }],
+  });
+  equip(p);
+  return p;
+}
+
+/** The founders and their kin as the chronicle's first cast, all still to come. */
+export function foundingCast(): Villager[] {
+  const out: Villager[] = WATCHERS.map((def, i) => ({
+    id: def.id,
+    name: def.name,
+    sex: def.sex,
+    home: def.home,
+    usual: def.usual,
+    note: def.note,
+    look: i,
+    prays: def.prays === true,
+    newcomer: def.newcomer === true,
+    known: def.known,
+    comes: { year: 1, night: def.arrives },
+    status: 'coming' as const,
+    gen: 1,
+    bornHere: false,
+  }));
+  FOUNDER_KIN.forEach((kin, i) => {
+    const w = WATCHERS.find((d) => d.id === kin.with);
+    out.push({
+      id: kin.id,
+      name: kin.name,
+      sex: kin.sex,
+      home: kin.home,
+      usual: w?.usual ?? 'gate-1',
+      note: 'Grew up under the wall',
+      look: WATCHERS.length + i,
+      prays: false,
+      newcomer: false,
+      known: 0.5,
+      comes: { year: 1, night: w?.arrives ?? 1 },
+      status: 'coming',
+      gen: 2,
+      bornHere: false,
+    });
+  });
+  return out;
+}
+
+export function addVillager(s: WatchState, v: Villager): void {
+  if (s.cast[v.id]) return;
+  s.cast[v.id] = v;
+  s.order.push(v.id);
+}
+
+/** The chronicle's record of a villager. Throws for an unknown id (a bug, not a game state). */
+export function villager(s: WatchState, id: WatcherId): Villager {
+  const v = s.cast[id];
+  if (!v) throw new Error(`unknown villager ${id}`);
+  return v;
+}
+
+export function nameOf(s: WatchState, id: WatcherId): string {
+  return s.cast[id]?.name ?? 'someone';
+}
+
+/** "her" or "his". */
+export function their(s: WatchState, id: WatcherId): string {
+  return s.cast[id]?.sex === 'female' ? 'her' : 'his';
+}
+
+/** "her" or "him". */
+export function them(s: WatchState, id: WatcherId): string {
+  return s.cast[id]?.sex === 'female' ? 'her' : 'him';
+}
+
+/** Living and here: in the community, alive, not gone. */
+export function isHere(s: WatchState, p: Person): boolean {
+  return p.body.alive && s.cast[p.id]?.status === 'here';
+}
+
+export function ageAt(p: Person, now: number): number {
+  return (now - p.life.bornAt) / MINUTES_PER_YEAR;
+}
+
+/** Of watch age and here: the people who stand the wall, are posted and speak at dawn. */
+export function isWatcher(s: WatchState, p: Person, now: number = s.minute): boolean {
+  return isHere(s, p) && ageAt(p, now) >= WATCH_AGE;
+}
+
+/**
+ * The children at home a watcher would run to when a threat is near the house: their own children, or a ward,
+ * under `HOME_CHILD_AGE`, alive and here. In words ("her two children", "his little sister"), or null.
+ */
+export function familyWords(s: WatchState, id: WatcherId): string | null {
+  const kids: { sibling: boolean; female: boolean }[] = [];
+  for (const q of s.community.people) {
+    if (q.id === id || !isHere(s, q) || ageAt(q, s.minute) >= HOME_CHILD_AGE) continue;
+    const tie = q.social.relationships.find((r) => r.otherId === id);
+    if (!tie) continue;
+    const female = q.life.sex === 'female';
+    if (tie.roles.includes('parent')) kids.push({ sibling: false, female });
+    else if (tie.roles.includes('guardian')) kids.push({ sibling: tie.roles.includes('sibling'), female });
+  }
+  const my = their(s, id);
+  const k = kids[0];
+  if (!k) return null;
+  if (kids.length > 1) return `${my} ${['two', 'three', 'four', 'five'][kids.length - 2] ?? 'many'} children`;
+  if (k.sibling) return `${my} little ${k.female ? 'sister' : 'brother'}`;
+  return `${my} ${k.female ? 'daughter' : 'son'}`;
 }
 
 /** The Keeper: holds impressions; never stepped. */
@@ -162,42 +327,70 @@ export function personOf(s: WatchState, id: WatcherId): Person | undefined {
 }
 
 export function present(s: WatchState): Person[] {
-  return s.community.people;
+  return s.community.people.filter((p) => isHere(s, p));
 }
 
 /**
- * Watchers who arrive on night `s.night` join: each meets the others (insiders or the newcomer), and they come to
- * know each other as far as their ties go; the Keeper knows them by `known`.
+ * Villagers who come on this night of this year join: founders as watchers, their kin at home. Each meets the others
+ * (insiders or the newcomer) and they come to know each other as far as their ties go; the Keeper knows them by
+ * `known`. Returns the ids who came.
  */
 export function arrive(s: WatchState): WatcherId[] {
   const now = s.minute;
   const came: WatcherId[] = [];
-  for (const def of WATCHERS) {
-    if (def.arrives !== s.night || personOf(s, def.id)) continue;
-    const p = castPerson(s.seed, def, now);
+  for (const id of s.order) {
+    const v = s.cast[id];
+    if (v?.status !== 'coming' || v.comes.year !== s.year || v.comes.night !== s.winterNight) continue;
+    if (personOf(s, id)) continue;
+    const def = WATCHERS.find((d) => d.id === id);
+    const ki = FOUNDER_KIN.findIndex((k) => k.id === id);
+    const kin = FOUNDER_KIN[ki];
+    let p: Person;
+    if (def) p = castPerson(s.seed, def, now);
+    else if (kin) p = kinPerson(s.seed, kin, ki, now);
+    else continue;
     addPerson(s.community, p);
-    s.place[def.id] = 'village';
-    came.push(def.id);
+    v.status = 'here';
+    s.place[id] = 'village';
+    s.posts[id] = null;
+    s.press[id] = 'ask';
+    s.postedAt[id] = now;
+    came.push(id);
   }
   if (came.length === 0) return came;
   const people = s.community.people;
   for (const p of people) {
-    const def = watcherDef(p.id as WatcherId);
+    const v = s.cast[p.id];
+    if (!v || !isHere(s, p)) continue;
     for (const q of people) {
-      if (q.id === p.id) continue;
-      const qd = watcherDef(q.id as WatcherId);
-      if (!came.includes(p.id as WatcherId) && !came.includes(q.id as WatcherId)) continue;
-      meet(p, q.id, [qd.newcomer ? 'incomers' : 'village']);
+      if (q.id === p.id || !isHere(s, q)) continue;
+      const qv = s.cast[q.id];
+      if (!qv) continue;
+      if (!came.includes(p.id) && !came.includes(q.id)) continue;
+      meet(p, q.id, [qv.newcomer ? 'incomers' : 'village']);
+      // A parent or guardian who comes after the children knows them as their own.
+      const kin = FOUNDER_KIN.find((k) => k.id === q.id);
+      if (kin && (kin.parents?.includes(p.id) || kin.guardian === p.id)) {
+        const r = p.social.relationships.find((x) => x.otherId === q.id);
+        const role = kin.guardian === p.id ? 'ward' : 'child';
+        if (r && !r.roles.includes(role)) {
+          r.roles = [...r.roles, role];
+          r.affection = Math.max(r.affection, 0.8);
+          r.trust = Math.max(r.trust, 0.7);
+          r.familiarity = Math.max(r.familiarity, 0.9);
+        }
+      }
       const tie = p.social.relationships.find((r) => r.otherId === q.id);
-      const familiarity = def.newcomer || qd.newcomer ? 0.15 : Math.max(0.35, tie?.familiarity ?? 0.35);
+      const familiarity = v.newcomer || qv.newcomer ? 0.15 : Math.max(0.35, tie?.familiarity ?? 0.35);
       acquaintWith(p, q, familiarity, now);
     }
   }
   for (const id of came) {
     const p = personOf(s, id);
-    const def = watcherDef(id);
-    if (p && def.known > 0) acquaintWith(s.keeper, p, def.known, now);
-    else if (p) s.keeper.social.impressions ??= [];
+    const v = s.cast[id];
+    if (!p || !v || !isWatcher(s, p)) continue;
+    if (v.known > 0) acquaintWith(s.keeper, p, v.known, now);
+    else s.keeper.social.impressions ??= [];
   }
   return came;
 }
@@ -227,19 +420,24 @@ export function sectionDanger(s: WatchState, section: SectionId, expect = false)
     if (t.kind === 'wolf') wolf = true;
   }
   if (n === 0)
-    return section === s.warned && (s.phase === 'night' || expect)
+    return isWarned(s, section) && (s.phase === 'night' || expect)
       ? { chance: 0.08, severity: 0.3 }
       : { chance: 0, severity: 0 };
   return { chance: Math.min(0.75, 0.2 + 0.12 * n), severity: wolf ? 0.5 : 0.35 };
+}
+
+/** Whether the scout named this stretch tonight (one stretch, or either of two). */
+export function isWarned(s: WatchState, section: SectionId): boolean {
+  return section === s.warned || s.warnedAlso === section;
 }
 
 /** Who is at a post in `section` (standing, sitting, frozen or down). */
 export function atSection(s: WatchState, section: SectionId, except?: string): WatcherId[] {
   const out: WatcherId[] = [];
   for (const p of s.community.people) {
-    if (p.id === except) continue;
-    const pl = s.place[p.id as WatcherId];
-    if (isPost(pl) && postSection(pl) === section) out.push(p.id as WatcherId);
+    if (p.id === except || !isHere(s, p)) continue;
+    const pl = s.place[p.id];
+    if (isPost(pl) && postSection(pl) === section) out.push(p.id);
   }
   return out;
 }
@@ -247,7 +445,7 @@ export function atSection(s: WatchState, section: SectionId, except?: string): W
 function occupied(s: WatchState, post: PostId, except: string): boolean {
   for (const p of s.community.people) {
     if (p.id === except) continue;
-    if (s.place[p.id as WatcherId] === post && p.body.alive) return true;
+    if (s.place[p.id] === post && isHere(s, p)) return true;
   }
   return false;
 }
@@ -273,7 +471,7 @@ export function placeOfActivity(act: Activity): Place | undefined {
   )
     return arg as PostId;
   if (kind === 'flee' || kind === 'run-off') return 'hall';
-  if (kind === 'go-home' || kind === 'sleep') return 'home';
+  if (kind === 'go-home' || kind === 'sleep' || kind === 'home') return 'home';
   if (kind === 'day') return 'village';
   return undefined;
 }
@@ -295,13 +493,51 @@ export class WatchWorld implements World {
   }
 
   affordancesFor(p: Person): Affordance[] {
+    if (!isWatcher(this.s, p, p.now)) return this.homeOffers(p);
     return isWatchTime(p.now) ? this.watchOffers(p) : this.dayOffers(p);
+  }
+
+  /** A child, or anyone not of the watch: home, sleep and rest; by day eating too. */
+  private homeOffers(p: Person): Affordance[] {
+    const tod = ((p.now % DAY) + DAY) % DAY;
+    const night = isWatchTime(p.now);
+    const out: Affordance[] = [
+      {
+        id: 'sleep',
+        action: 'sleep',
+        label: 'sleep',
+        placeId: 'home',
+        duration: night ? 240 : Math.max(30, Math.min(240, DUSK_START - 30 - tod)),
+        effort: 0,
+        mode: 'sleep',
+        advertises: { sleep: 0.9, rest: 0.5 },
+      },
+      {
+        id: 'home:rest',
+        action: 'rest',
+        label: 'stay at home',
+        placeId: 'home',
+        duration: 60,
+        effort: 0,
+        advertises: { rest: 0.3, leisure: 0.15, belonging: 0.05 },
+        tags: ['rest'],
+      },
+      {
+        id: 'home:eat',
+        action: 'eat',
+        label: 'eat',
+        duration: 30,
+        effort: 0,
+        advertises: { food: 0.6, water: 0.5 },
+      },
+    ];
+    return out;
   }
 
   private watchOffers(p: Person): Affordance[] {
     const s = this.s;
-    const id = p.id as WatcherId;
-    const def = watcherDef(id);
+    const id = p.id;
+    const v = villager(s, id);
     const here = s.place[id];
     const out: Affordance[] = [];
     const brk = inBreak(p);
@@ -309,7 +545,7 @@ export class WatchWorld implements World {
     // against leaving it, unless the Keeper has sent word of another post (the posting or a card's ask).
     const night = s.phase === 'night' && isPost(here);
     const asked = s.asks[id]?.sug.affordanceId;
-    for (const post of POST_IDS) {
+    for (const post of s.openPosts) {
       if (occupied(s, post, p.id) && here !== post) continue;
       if (night && post !== here && s.posts[id] !== post && asked !== `post:${post}`) continue;
       const section = postSection(post);
@@ -378,7 +614,7 @@ export class WatchWorld implements World {
         tags: exposed ? ['watch', 'risky'] : ['watch'],
       });
       if (
-        def.prays &&
+        v.prays &&
         p.agenda.commitments.some(
           (c) => c.status === 'pending' && c.kind === 'worship' && c.from <= p.now && p.now < c.until,
         )
@@ -439,13 +675,14 @@ export class WatchWorld implements World {
       advertises: { sleep: 0.8, rest: 0.4 },
       norms: LEAVE,
     });
-    const homeThreat = def.family !== null && s.homeThreat[def.home] > p.now - 60;
+    const family = familyWords(s, id);
+    const homeThreat = family !== null && (s.homeThreat[v.home] ?? -1e9) > p.now - 60;
     if (homeThreat)
       out.push({
         id: 'go-home',
         action: 'go-home',
-        label: `go home to ${def.family}`,
-        targetId: `home:${def.home}`,
+        label: `go home to ${family}`,
+        targetId: `home:${v.home}`,
         placeId: 'home',
         duration: 60,
         effort: 0.3,
@@ -453,8 +690,8 @@ export class WatchWorld implements World {
         norms: LEAVE,
       });
     for (const q of s.community.people) {
-      if (q.id === p.id || !q.body.downed || s.carried[q.id as WatcherId]) continue;
-      const qp = s.place[q.id as WatcherId];
+      if (q.id === p.id || !q.body.downed || s.carried[q.id] || !isHere(s, q)) continue;
+      const qp = s.place[q.id];
       if (!isPost(qp)) continue;
       out.push({
         id: `carry:${q.id}`,
@@ -529,7 +766,7 @@ export class WatchWorld implements World {
         tags: ['work'],
       });
     if (
-      watcherDef(p.id as WatcherId).prays &&
+      s.cast[p.id]?.prays &&
       p.agenda.commitments.some(
         (c) => c.status === 'pending' && c.kind === 'worship' && c.from <= p.now && p.now < c.until,
       )
@@ -547,7 +784,7 @@ export class WatchWorld implements World {
   }
 
   perceptsFor(p: Person, since: number, until: number): Percept[] {
-    const q = this.s.percepts[p.id as WatcherId] ?? [];
+    const q = this.s.percepts[p.id] ?? [];
     return q.filter((x) => x.at > since && x.at <= until);
   }
 

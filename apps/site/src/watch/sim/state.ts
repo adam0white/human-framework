@@ -7,6 +7,7 @@ import type { Command, Community, Percept, Person, Suggestion } from '@human/fra
 import {
   DUSK_START,
   NIGHTFALL,
+  POST_IDS,
   type PostId,
   type SectionId,
   START_GRAIN,
@@ -112,8 +113,39 @@ export interface DaySummary {
   ropeAfter: number;
 }
 
+/**
+ * A villager as the chronicle keeps them (G3-3): who they are to the game, apart from the HF person. Founders come
+ * from `WATCHERS` and `FOUNDER_KIN`; children are born into the cast and newcomers arrive. The dead and the gone
+ * stay here for the chronicle after their person leaves the community.
+ */
+export interface Villager {
+  id: WatcherId;
+  name: string;
+  sex: 'female' | 'male';
+  /** The stretch of wall their household sits behind. */
+  home: SectionId;
+  /** The post they take when nobody says otherwise. */
+  usual: PostId;
+  /** What they are known for, in words, when they come. */
+  note: string;
+  /** Which figure the map draws for them. */
+  look: number;
+  prays: boolean;
+  newcomer: boolean;
+  /** How well the Keeper knows them when they come (0: a stranger). */
+  known: number;
+  /** The year and the night of that winter they come (founders and their kin in year 1). */
+  comes: { year: number; night: number };
+  status: 'coming' | 'here' | 'dead' | 'left';
+  /** 1 for the founders and their kin, a parent's + 1 for the born, 1 for newcomers. */
+  gen: number;
+  bornHere: boolean;
+  /** Minute they died or left. */
+  until?: number;
+}
+
 export interface WatchState {
-  version: 2;
+  version: 3;
   seed: number;
   /** mulberry32 state. */
   rng: number;
@@ -122,8 +154,16 @@ export interface WatchState {
   /** Absolute minute this night falls (18:00 of the dusk's day). */
   nightStart: number;
   phase: Phase;
-  /** 1-based. */
+  /** Nights played since the chronicle opened, 1-based. */
   night: number;
+  /** The year of the chronicle, 1-based (G3-3). */
+  year: number;
+  /** The night of this winter, 1-based. */
+  winterNight: number;
+  /** Everyone the chronicle knows of, by id: founders, their kin, the born and newcomers, the dead and gone. */
+  cast: Record<WatcherId, Villager>;
+  /** Cast order: founders first, then by arrival or birth. */
+  order: WatcherId[];
   /** The Keeper's postings: standing suggestions, kept until changed (null: no posting). */
   posts: Record<WatcherId, PostId | null>;
   press: Record<WatcherId, Press>;
@@ -163,6 +203,10 @@ export interface WatchState {
   /** The night's plan, drawn at dusk. */
   lead: ThreatKind;
   warned: SectionId;
+  /** A second stretch the scout could not rule out (two-section warnings, G3-3), or null. */
+  warnedAlso: SectionId | null;
+  /** The posts on the wall this winter (a lost section closes its posts; the fair can add a third). */
+  openPosts: PostId[];
   warning: string;
   /** Sections the lead threat's waves were drawn on (for the dawn page's word on the scout). */
   leadCame: SectionId[];
@@ -207,30 +251,23 @@ export function emptyTally(grain: number): NightTally {
   };
 }
 
-export function perWatcher<T>(f: (id: WatcherId) => T): Record<WatcherId, T> {
-  return {
-    tamar: f('tamar'),
-    kian: f('kian'),
-    mara: f('mara'),
-    joss: f('joss'),
-    yunus: f('yunus'),
-    ruslan: f('ruslan'),
-  };
-}
-
 export function createState(seed: number): WatchState {
   return {
-    version: 2,
+    version: 3,
     seed,
     rng: seed | 0,
     minute: DUSK_START,
     nightStart: NIGHTFALL,
     phase: 'goal',
     night: 1,
-    posts: perWatcher(() => null),
-    press: perWatcher(() => 'ask'),
-    postedAt: perWatcher(() => DUSK_START),
-    place: perWatcher(() => 'away'),
+    year: 1,
+    winterNight: 1,
+    cast: {},
+    order: [],
+    posts: {},
+    press: {},
+    postedAt: {},
+    place: {},
     community: createWatchCommunity(),
     keeper: createKeeper(seed, DUSK_START),
     commands: {},
@@ -249,6 +286,8 @@ export function createState(seed: number): WatchState {
     grain: START_GRAIN,
     lead: 'wolf',
     warned: 'gate',
+    warnedAlso: null,
+    openPosts: [...POST_IDS],
     warning: '',
     leadCame: [],
     spawns: [],

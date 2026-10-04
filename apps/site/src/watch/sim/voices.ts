@@ -6,8 +6,8 @@
  * say, not what is true. Faith stays out of it.
  */
 import { IMPRESSION_DEFAULTS, type Person, reserveOf, selfReport } from '@human/framework';
-import { SECTION_IDS, type SectionId, type WatcherId, watcherDef } from './config.ts';
-import { personOf } from './people.ts';
+import { SECTION_IDS, type SectionId, type WatcherId } from './config.ts';
+import { familyWords, isWatcher, nameOf, personOf, villager } from './people.ts';
 import type { NightNote, WatchState } from './state.ts';
 
 function theSec(id: SectionId): string {
@@ -57,8 +57,9 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
   const tells: Tell[] = [];
   let dozeTold = false;
   for (const p of s.community.people) {
-    const id = p.id as WatcherId;
-    const def = watcherDef(id);
+    if (!isWatcher(s, p)) continue;
+    const id = p.id;
+    const v = villager(s, id);
     const said: string[] = [];
     const told = selfReport(p);
     const bitten = noteOf(s.notes, id, ['bitten']);
@@ -108,20 +109,19 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
 
     if (carried?.other) {
       said.push(
-        `“${watcherDef(carried.other).name} got me off the wall. I owe ${watcherDef(carried.other).sex === 'female' ? 'her' : 'him'}.”`,
+        `“${nameOf(s, carried.other)} got me off the wall. I owe ${villager(s, carried.other).sex === 'female' ? 'her' : 'him'}.”`,
       );
       tell(`tie:${carried.other}`, 0.7);
     } else if (carrier?.other) {
-      said.push(`“Somebody had to get ${watcherDef(carrier.other).name} down.”`);
+      said.push(`“Somebody had to get ${nameOf(s, carrier.other)} down.”`);
     } else if (home) {
-      said.push(
-        `“I went to ${def.family ? def.family.replace(/^(his|her) /, 'my ') : 'the house'}. I’d go again.”`,
-      );
+      const family = familyWords(s, id);
+      said.push(`“I went to ${family ? family.replace(/^(his|her) /, 'my ') : 'the house'}. I’d go again.”`);
     } else if (together.length > 0) {
       const t = together.map((n) => ({ n, tie: p.social.relationships.find((r) => r.otherId === n.other) }));
       t.sort((a, b) => Math.abs(b.tie?.affection ?? 0) - Math.abs(a.tie?.affection ?? 0));
       const best = t[0];
-      const other = best?.n.other ? watcherDef(best.n.other).name : 'someone';
+      const other = best?.n.other ? nameOf(s, best.n.other) : 'someone';
       if (best?.n.other) tell(`tie:${best.n.other}`, (best.tie?.affection ?? 0) > 0 ? 0.6 : -0.5);
       said.push(
         (best?.tie?.affection ?? 0) > 0
@@ -167,7 +167,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
 
     if (said.length === 0) {
       if (told.fatigue > 0.5) said.push('“Long night.”');
-      else said.push(def.newcomer ? '“Quiet. They watch me more than the dark.”' : '“Quiet enough.”');
+      else said.push(v.newcomer ? '“Quiet. They watch me more than the dark.”' : '“Quiet enough.”');
     }
     out.push({ who: id, text: said.join(' ') });
   }
