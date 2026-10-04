@@ -1,0 +1,28 @@
+# Long-run sources: learning conditions and slow character change
+
+2026-10-04, for HF 2.0 L1 (experience over years) and L5 (multi-year stepping). Citations were checked against abstracts (Europe PMC, Crossref, publisher records) by a research pass on 2026-10-04; the confidence column says how. Every number the engine uses on these topics is an **engineering assumption** chosen for the direction these sources support; none is a conversion of an effect size. The engine code names this file in its scope comments (`skills/skills.ts`, `character/character.ts`).
+
+## Learning conditions (skills/)
+
+| Topic | Source | Finding used (direction only) | Confidence |
+|---|---|---|---|
+| Deliberate practice | Ericsson, Krampe & Tesch-Römer (1993), *Psychological Review* 100(3), 363–406 | Focused, effortful practice with feedback distinguishes skill levels | Citation verified; finding from an abstract summary |
+| Deliberate practice, size | Macnamara, Hambrick & Oswald (2014), *Psychological Science* 25(8), 1608–1618, [doi:10.1177/0956797614535810](https://doi.org/10.1177/0956797614535810) | Practice explains 26 % of performance variance in games, 21 % music, 18 % sports, 4 % education, < 1 % professions: it matters, less than claimed, and by domain | Verified from abstract |
+| Tutoring | VanLehn (2011), *Educational Psychologist* 46(4), 197–221, [doi:10.1080/00461520.2011.611369](https://doi.org/10.1080/00461520.2011.611369) | Human tutoring about d = 0.79 over no tutoring, well below Bloom's (1984) two sigma | From a search rendering of the abstract |
+| Observational learning | Ashford, Bennett & Davids (2006), *Journal of Motor Behavior* 38(3), 185–205, [doi:10.3200/JMBR.38.3.185-205](https://doi.org/10.3200/JMBR.38.3.185-205) | Demonstration helps movement form (d ≈ 0.77) much more than movement outcome (d ≈ 0.17) over practice alone: watching teaches the basics, not mastery | Verified from abstract |
+| Social learning | Bandura (1977), *Social learning theory*, Prentice-Hall | General reference for learning by watching a model | Citation only |
+
+Engine choices (assumptions): quality multiplies learning from 0.5× to 1.5× with ordinary practice at 1×; instruction adds up to 1× (twice the learning) from a fully engaged teacher 0.3 above the learner, as v0's guided practice did; observation learns at 0.3 of practice's rate toward 0.6 of the model's level.
+
+## Slow trait and value change (character/)
+
+| Topic | Source | Finding used (direction only) | Confidence |
+|---|---|---|---|
+| Continuity and change | Bleidorn et al. (2022), *Psychological Bulletin* 148(7–8), 588–619, [doi:10.1037/bul0000365](https://doi.org/10.1037/bul0000365) (research/empirical-models.md S11) | Rank-order stability plateaus by about 25; cumulative mean-level changes are small; emotional stability rises consistently | Verified from abstract |
+| Big Five mean-level change | Roberts, Walton & Viechtbauer (2006), *Psychological Bulletin* 132(1), 1–25, [doi:10.1037/0033-2909.132.1.1](https://doi.org/10.1037/0033-2909.132.1.1) | Social dominance, conscientiousness and emotional stability rise, especially from 20 to 40 | Verified from abstract |
+| HEXACO age trends | Ashton & Lee (2016), *Journal of Research in Personality* 64, 102–111, [doi:10.1016/j.jrp.2016.08.008](https://doi.org/10.1016/j.jrp.2016.08.008) | Cross-sectional, N ≈ 100,000, ages 14–74: Honesty-Humility rises most from the late teens to about 60; Emotionality trends down; Extraversion trends up; Conscientiousness and Openness rise in the teens, then differ by facet; Agreeableness shows only weak trends | Medium-high: two independent abstract paraphrases agree on direction |
+| Roles and traits | Roberts, Wood & Smith (2005), *Journal of Research in Personality* 39(1), 166–184; Lodi-Smith & Roberts (2007), *PSPR* 11(1), 68–86, [doi:10.1177/1088868306294590](https://doi.org/10.1177/1088868306294590) | Social investment: committed investment in adult roles goes with higher conscientiousness, agreeableness and emotional stability. Lodi-Smith & Roberts is cross-sectional, so the engine treats roles as a slow push, not a proven cause | Verified from abstracts |
+| Experience and neuroticism | Jeronimus et al. (2014), *JPSP* 107(4), 751–764, [PMID 25111305](https://pubmed.ncbi.nlm.nih.gov/25111305) | Long-term difficulties and worse life quality raise neuroticism a little and lastingly; better life quality lowers it; discrete life events had no lasting effect | Verified from abstract |
+| Values across adulthood | Milfont, Milojev & Sibley (2016), *PSPB* 42(5), 572–588, [doi:10.1177/0146167216639245](https://doi.org/10.1177/0146167216639245) | Value priorities largely stable over 3 years (ages 25–75); older adults emphasise others' welfare and tradition, younger ones status, power and independent thought (cross-sectional) | Design and stability verified; direction of change from the abstract's age pattern and a secondary source (PLOS ONE 2023, [doi:10.1371/journal.pone.0289487](https://doi.org/10.1371/journal.pone.0289487)) |
+
+Engine choices (assumptions): HEXACO emotionality maps to the opposite of emotional stability; the HEXACO directions above are applied from age 18 at rates of 0.001–0.003 per year (a few hundredths over a lifetime on a 0..1 scale) and stop at 65; a year's lived experience (mean mood, commitments kept against broken, time with others, variety of activity) pushes the matching trait by at most 0.01 per year; each trait and value stays within 0.15 of its value when drift was enabled. Values follow the age pattern only (benevolence and tradition up, power, achievement, stimulation and self-direction down), at 0.001–0.002 per year. The cap keeps rank order mostly intact, consistent with high adult rank-order stability.

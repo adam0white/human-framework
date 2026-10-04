@@ -846,7 +846,11 @@ export interface Affordance {
   focus?: Unit;
   /** 'sleep' makes the body sleep for the duration. */
   mode?: 'awake' | 'sleep';
-  skill?: { id: string; difficulty: Unit };
+  /**
+   * The skill this activity practises. `domain` (1.8.0, optional) picks the age curve for its learning rate
+   * (`lifecourse.learningMultiplier`); absent means the general curve (`LifeModifiers.learning`), as before.
+   */
+  skill?: { id: string; difficulty: Unit; domain?: LearningDomain };
   /** Advertised need deltas over the whole activity (positive = satisfies). */
   advertises: Partial<Record<NeedId, number>>;
   /** Free tags: 'work', 'leisure', 'social', 'worship', 'risky', 'outdoors', ... */
@@ -903,6 +907,36 @@ export interface Percept {
    * `told` percept, `will.rememberAdvice` stores each as standing advice from `actorId`.
    */
   advice?: { action: string; affordanceId?: string; strength?: Unit }[];
+  /**
+   * Observational learning (1.8.0): the person watched someone practise `skill` at `level` for `minutes`. On an
+   * attended percept the watcher learns a little toward the model (`skills.observe`). Absent: nothing is learned.
+   */
+  demonstrates?: { skill: string; level: Unit; minutes: number; domain?: LearningDomain };
+}
+
+/**
+ * Domains with distinct age curves for learning rate (`lifecourse.learningMultiplier`). 'general' is
+ * `LifeModifiers.learning`; 'language' is grammar and second-language learning; 'motor' is new movement skills;
+ * 'knowledge' is facts and know-how.
+ */
+export type LearningDomain = 'general' | 'language' | 'motor' | 'knowledge';
+
+/**
+ * How a stretch of practice went, as input to learning (1.8.0, host opt-in on `Outcome.practice`). Absent fields
+ * leave learning exactly as without them.
+ */
+export interface PracticeConditions {
+  /**
+   * Deliberate-practice quality 0..1 (focused, with feedback and correction, versus going through the motions).
+   * 0.5 is ordinary practice and changes nothing; see `SKILL_DEFAULTS.qualityLow`/`qualityHigh`.
+   */
+  quality?: Unit;
+  /**
+   * Guidance from someone more skilled while practising: the teacher's level in this skill and how engaged the
+   * guidance was (0..1, default 1). It raises how much this practice teaches, not only how well it goes
+   * (`skills.instructionFactor`). `instructionFrom(teacher, skill)` builds it.
+   */
+  instruction?: { level: Unit; engagement?: Unit; teacherId?: EntityId };
 }
 
 /** What actually happened when an activity ended. Hosts own world truth. */
@@ -936,6 +970,8 @@ export interface Outcome {
    * through `body.expose`, which aggravates chronic conditions listing the kind and feeds `exposureChance`.
    */
   exposures?: { kind: string; amount?: number }[];
+  /** How the practice went, for learning (1.8.0): quality and instruction. Absent: learning as before. */
+  practice?: PracticeConditions;
 }
 
 // ---------------------------------------------------------------------------------------------

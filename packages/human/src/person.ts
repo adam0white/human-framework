@@ -74,7 +74,7 @@ import {
 } from './conscience/index.ts';
 import { clamp01, clampSigned, createRng, dayOf, minuteOfDay } from './core/index.ts';
 import { advanceHabits, reinforce, withholdCued } from './habits/index.ts';
-import { lifeModifiers } from './lifecourse/index.ts';
+import { ageYears, learningMultiplier, lifeModifiers } from './lifecourse/index.ts';
 import {
   advanceMemory,
   type CueRecall,
@@ -86,7 +86,7 @@ import {
 import { migrate } from './migrate.ts';
 import { intentionFor, narrateDecision, voiceLine } from './narrate/index.ts';
 import { advanceNeeds, createNeeds, meanSatisfaction, readNeeds, satisfy } from './needs/index.ts';
-import { practise, seedSkills } from './skills/index.ts';
+import { observe, practise, type SkillTransfer, seedSkills } from './skills/index.ts';
 import {
   advanceSocial,
   applyReputationBelief,
@@ -109,6 +109,7 @@ import type {
   Command,
   Commitment,
   DecisionRecord,
+  LearningDomain,
   Minute,
   NeedId,
   NeedReading,
@@ -638,6 +639,11 @@ function perceiveOne(p: Person, pc: Percept): void {
   }
   // Advice carried by testimony keeps pulling after the speaker falls silent (standing advice, N9).
   if (pc.channel === 'told') rememberAdvice(p, pc);
+  // Watching someone skilled at work teaches a little (1.8.0, observational learning).
+  const demo = pc.demonstrates;
+  if (demo && !byMe && demo.minutes > 0) {
+    observe(p, demo.skill, demo.minutes, demo.level, learningFor(p, demo.domain), p.now);
+  }
 
   // Relationships: interactions I took part in.
   const social = socialKindOf(pc.kind);
@@ -1162,11 +1168,39 @@ export interface FinishReport {
  * habits, memory (expectation learning and an episode), conscience (deed, breaches, repair), agenda,
  * relationships, trust in the advising voice, injuries and illness. Clears the activity.
  */
-export function finish(
+/**
+ * Learning-rate multiplier for a skill domain at the person's age (1.8.0): the domain's curve from
+ * `lifecourse.learningMultiplier`, or the general one (`LifeModifiers.learning`) when no domain is given.
+ */
+export function learningFor(p: Person, domain?: LearningDomain): number {
+  return domain === undefined ? lifeModifiers(p).learning : learningMultiplier(ageYears(p), domain);
+}
+
+/**
+ * Watch someone practise skill `skill` at `modelLevel` for `minutes` (observational learning, 1.8.0): the
+ * composite's side of `skills.observe` at the person's age-and-domain learning rate. A `Percept.demonstrates` on an
+ * attended percept does the same. Returns the level before and after.
+ */
+export function observeSkill(
   p: Person,
-  outcome: Outcome,
-  opts: { catalog?: readonly NormDefinition[] } = {},
-): FinishReport | null {
+  skill: string,
+  minutes: number,
+  modelLevel: Unit,
+  domain?: LearningDomain,
+): { before: Unit; after: Unit } {
+  return observe(p, skill, minutes, modelLevel, learningFor(p, domain), p.now);
+}
+
+export interface FinishOptions {
+  catalog?: readonly NormDefinition[];
+  /**
+   * Related skills (1.8.0): practising a skill also moves the skills this map relates to it (`skills.SkillTransfer`,
+   * `skillFamilies`). Absent: no transfer, as before.
+   */
+  transfer?: SkillTransfer;
+}
+
+export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): FinishReport | null {
   const act = p.activity;
   if (!act) return null;
   if (outcome.at > p.now) tick(p, outcome.at);
@@ -1232,7 +1266,19 @@ export function finish(
 
   // Skills and habits. Time spent practising counts even when the activity was interrupted.
   if (aff.skill && minutes > 0) {
-    practise(p, aff.skill.id, minutes, aff.skill.difficulty, completed, mods.learning, now);
+    // 1.8.0: a declared domain picks its age curve; transfer and practice conditions come from the host.
+    const learning = aff.skill.domain === undefined ? mods.learning : learningFor(p, aff.skill.domain);
+    practise(
+      p,
+      aff.skill.id,
+      minutes,
+      aff.skill.difficulty,
+      completed,
+      learning,
+      now,
+      opts.transfer,
+      outcome.practice,
+    );
   }
   const prev = lastAction(p);
   if (completed) {

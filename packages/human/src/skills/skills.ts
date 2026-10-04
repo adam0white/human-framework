@@ -14,10 +14,35 @@
  * fraction of the same learning exposure, without consuming the related skill's own practice minutes (so
  * its later practice is not slowed by the power law). Transfer is written at practice time, so stored
  * levels are what later practice builds on. Does not claim: measured transfer fractions, negative transfer,
- * or any default family structure; no map means no transfer.
+ * or any default family structure; no map means no transfer. The composite applies a map the host passes to
+ * `finish` (`opts.transfer`) or declares on its `World` (`World.skillTransfer`, 1.8.0).
+ *
+ * SCOPE (how practice is done, 1.8.0, all host opt-in through `PracticeConditions`): practice *quality* scales the
+ * learning exposure from `qualityLow` (going through the motions) to `qualityHigh` (focused, with feedback), with
+ * ordinary practice (0.5) unchanged; the direction follows deliberate practice (Ericsson, Krampe & Tesch-Römer
+ * 1993), whose share of performance differences is real but domain-dependent and modest (Macnamara, Hambrick &
+ * Oswald 2014: 26 % games, 21 % music, 18 % sports, 4 % education, < 1 % professions). *Instruction* from someone
+ * more skilled raises how much practice teaches, by up to `instructionGain` when the teacher is at least
+ * `instructionGapScale` above the learner and fully engaged, and not at all from a teacher no better than the
+ * learner; the direction follows the tutoring literature (VanLehn 2011: human tutoring about d = 0.79 over no
+ * tutoring, well below Bloom's 1984 two sigma), and the size is an engineering choice (v0 guided practice taught
+ * twice as fast), not a conversion of d. *Observation* (`observe`) moves a watcher toward a fraction
+ * (`observeCeiling`) of the model's level at `observeRate` of practice's rate, without adding practice minutes, so it
+ * teaches the basics and never mastery; the direction follows observational modelling (Bandura 1977; Ashford,
+ * Bennett & Davids 2006: larger effects on movement form, d ≈ 0.77, than on outcomes, d ≈ 0.17). Sources:
+ * research/long-run-sources.md. Does not claim: calibrated sizes, teaching effects on the teacher, item-level
+ * knowledge, or that watching an unskilled model teaches errors.
  */
 import { clamp01, decay, dexp, dlog, sigmoid } from '../core/index.ts';
-import { MINUTES_PER_DAY, type Minute, type Person, type Skill, type Unit } from '../types.ts';
+import {
+  type EntityId,
+  MINUTES_PER_DAY,
+  type Minute,
+  type Person,
+  type PracticeConditions,
+  type Skill,
+  type Unit,
+} from '../types.ts';
 
 export const SKILL_DEFAULTS = {
   /** Level of an unknown/untrained skill. */
@@ -46,6 +71,15 @@ export const SKILL_DEFAULTS = {
   capacityFloor: 0.5,
   /** Effective skill added by full support (tools, help, instruction). */
   supportBonus: 0.15,
+  /** Learning multiplier at practice quality 0 and 1 (0.5 → 1). Engineering assumption (see SCOPE). */
+  qualityLow: 0.5,
+  qualityHigh: 1.5,
+  /** Extra learning from a fully engaged teacher at least `instructionGapScale` above the learner (1 = twice). */
+  instructionGain: 1,
+  instructionGapScale: 0.3,
+  /** Observation learns at this fraction of practice's rate, toward `observeCeiling` × the model's level. */
+  observeRate: 0.3,
+  observeCeiling: 0.6,
 } as const;
 
 type SkillHolder = Pick<Person, 'skills' | 'now'>;
@@ -117,6 +151,35 @@ function exposure(h0: number, h1: number): number {
   return d.rate0 * d.rateScaleHours * dlog((1 + h1 / d.rateScaleHours) / (1 + h0 / d.rateScaleHours));
 }
 
+/** Learning multiplier for practice quality (1 when absent or 0.5). */
+export function qualityFactor(quality: Unit | undefined): number {
+  if (quality === undefined) return 1;
+  const d = SKILL_DEFAULTS;
+  const q = clamp01(quality);
+  return q <= 0.5
+    ? d.qualityLow + (1 - d.qualityLow) * (q / 0.5)
+    : 1 + (d.qualityHigh - 1) * ((q - 0.5) / 0.5);
+}
+
+/** Learning multiplier from a teacher's guidance for a learner at `learner` (1 when absent or no better). */
+export function instructionFactor(instruction: PracticeConditions['instruction'], learner: Unit): number {
+  if (!instruction) return 1;
+  const d = SKILL_DEFAULTS;
+  const gap = clamp01((clamp01(instruction.level) - learner) / d.instructionGapScale);
+  return 1 + d.instructionGain * clamp01(instruction.engagement ?? 1) * gap;
+}
+
+/** Instruction from `teacher` in skill `id` (their current level, with rust), for `Outcome.practice.instruction`. */
+export function instructionFrom(
+  teacher: SkillHolder & { id?: EntityId },
+  id: string,
+  engagement: Unit = 1,
+): NonNullable<PracticeConditions['instruction']> {
+  const out: NonNullable<PracticeConditions['instruction']> = { level: skillLevel(teacher, id), engagement };
+  if (teacher.id !== undefined) out.teacherId = teacher.id;
+  return out;
+}
+
 /**
  * Practise for `minutes`. Gain follows dL/dt = learning * k(practice) * challenge * outcome * (1 - L), integrated
  * in closed form so one long session ≈ many short ones. Forgetting since last practice is applied first.
@@ -131,17 +194,20 @@ export function practise(
   learning: number,
   now: Minute,
   transfer?: SkillTransfer,
+  conditions?: PracticeConditions,
 ): { before: Unit; after: Unit } {
   const d = SKILL_DEFAULTS;
   const existing = p.skills[id];
   const before = existing ? retained(existing, now) : d.base;
   const priorMinutes = existing?.practice ?? 0;
   const mins = Math.max(0, minutes);
-  const k =
+  let k =
     Math.max(0, learning) *
     challengeFactor(before, clamp01(difficulty)) *
     (succeeded ? 1 : d.failureLearning) *
     exposure(priorMinutes / 60, (priorMinutes + mins) / 60);
+  // Only multiply when conditions are given, so a run without them keeps its exact bits.
+  if (conditions) k *= qualityFactor(conditions.quality) * instructionFactor(conditions.instruction, before);
   const after = clamp01(1 - (1 - before) * dexp(-k));
   p.skills[id] = {
     level: after,
@@ -162,6 +228,38 @@ export function practise(
       };
     }
   }
+  return { before, after };
+}
+
+/**
+ * Learn by watching someone practise skill `id` at `modelLevel` for `minutes` (observational learning; see SCOPE).
+ * The watcher moves toward `observeCeiling × modelLevel` at `observeRate` of what the same minutes of their own
+ * practice would teach at ideal challenge. Practice minutes are not added (so their later practice is not slowed by
+ * the power law); the stored level is re-anchored at `now` (rust counts from here). Watching someone no better than
+ * that ceiling teaches nothing.
+ */
+export function observe(
+  p: SkillHolder,
+  id: string,
+  minutes: number,
+  modelLevel: Unit,
+  learning: number,
+  now: Minute,
+): { before: Unit; after: Unit } {
+  const d = SKILL_DEFAULTS;
+  const existing = p.skills[id];
+  const before = existing ? retained(existing, now) : d.base;
+  const ceiling = d.observeCeiling * clamp01(modelLevel);
+  const mins = Math.max(0, minutes);
+  if (ceiling <= before || mins <= 0) return { before, after: before };
+  const prior = existing?.practice ?? 0;
+  const k = Math.max(0, learning) * d.observeRate * exposure(prior / 60, (prior + mins) / 60);
+  const after = clamp01(before + (ceiling - before) * (1 - dexp(-k)));
+  p.skills[id] = {
+    level: after,
+    practice: prior,
+    lastPracticed: Math.max(now, existing?.lastPracticed ?? now),
+  };
   return { before, after };
 }
 

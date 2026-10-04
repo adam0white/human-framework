@@ -67,6 +67,7 @@ import {
   command,
   createPerson,
   decide,
+  type FinishOptions,
   finish,
   interrupt,
   perceive,
@@ -75,7 +76,7 @@ import {
   reviewed,
   tick,
 } from '../person.ts';
-import { skillLevel, successChance } from '../skills/index.ts';
+import { type SkillTransfer, skillLevel, successChance } from '../skills/index.ts';
 import { seedTie, socialEvent } from '../social/index.ts';
 import type {
   Activity,
@@ -140,6 +141,19 @@ export interface World {
    * make-up owed comes from the norm's catalog entry). Default: the bundled `DEFAULT_NORMS`.
    */
   catalog?: readonly NormDefinition[];
+  /**
+   * Optional (1.8.0): related skills for practice transfer, passed to every `finish` (`FinishOptions.transfer`).
+   * Absent: no transfer.
+   */
+  skillTransfer?: SkillTransfer;
+}
+
+/** The `finish` options a world supplies (its norm catalog and skill transfer map). */
+function finishOpts(world: World): FinishOptions {
+  const o: FinishOptions = {};
+  if (world.catalog) o.catalog = world.catalog;
+  if (world.skillTransfer) o.transfer = world.skillTransfer;
+  return o;
 }
 
 export type SimEventKind =
@@ -562,7 +576,7 @@ export function acceptJoint(
     const act = person.activity;
     if (act) {
       const outcome = world.resolve(person, act, at >= act.endsAt ? 'ended' : 'interrupted');
-      finish(person, outcome, world.catalog ? { catalog: world.catalog } : {});
+      finish(person, outcome, finishOpts(world));
       log({
         at,
         personId: person.id,
@@ -916,7 +930,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     perceptReason ??= act?.interrupt?.reason;
     if (act && t >= act.endsAt) {
       const outcome = world.resolve(p, act, 'ended');
-      const report = finish(p, outcome, world.catalog ? { catalog: world.catalog } : {});
+      const report = finish(p, outcome, finishOpts(world));
       const ev: SimEvent = {
         at: t,
         personId: p.id,
@@ -1023,7 +1037,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     }
     if (act) {
       const outcome = world.resolve(p, act, 'interrupted');
-      finish(p, outcome, world.catalog ? { catalog: world.catalog } : {});
+      finish(p, outcome, finishOpts(world));
       log({
         at: t,
         personId: p.id,

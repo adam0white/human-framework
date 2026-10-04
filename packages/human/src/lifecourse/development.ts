@@ -12,7 +12,7 @@
  * main drivers, and individual variation is not modelled.
  */
 import { clamp, dexp, dpow, smoothstep } from '../core/index.ts';
-import type { LifeStage, Person } from '../types.ts';
+import type { LearningDomain, LifeStage, Person } from '../types.ts';
 import { ageYears, modifiersForAge, stageForAge } from './lifecourse.ts';
 
 export interface DevelopmentProfile {
@@ -61,11 +61,12 @@ export function development(p: Person): DevelopmentProfile {
 }
 
 /**
- * Domains with distinct age curves for learning rate. 'general' is `LifeModifiers.learning`; 'language' is
- * grammar/second-language learning (high until about 17, then declining); 'motor' is new movement skills
- * (fast in childhood, gentle decline from 30); 'knowledge' is facts and know-how (near-flat through adulthood).
+ * Domains with distinct age curves for learning rate (the type lives in types.ts). 'general' is
+ * `LifeModifiers.learning`; 'language' is grammar/second-language learning (high until about 17, then declining);
+ * 'motor' is new movement skills (fast in childhood, gentle decline from 30); 'knowledge' is facts and know-how
+ * (near-flat through adulthood).
  */
-export type LearningDomain = 'general' | 'language' | 'motor' | 'knowledge';
+export type { LearningDomain };
 
 /** Learning-rate multiplier for a domain at an age (1 = prime adult general learning). */
 export function learningMultiplier(age: number, domain: LearningDomain = 'general'): number {
