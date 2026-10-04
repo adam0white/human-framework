@@ -1,139 +1,157 @@
 # Game 3 — *The Night Watch*
 
-Draft, 2026-10-04, awaiting the user's go-ahead.
+Approved 2026-10-04; revised for endless play.
 
-Owner's brief: "a known, deceptively small game type like tower defense, or base building, or idle strategy, within which player connects with each character and develops them." This spec answers with a tower defense whose towers are people. House style follows [voice.md](voice.md) and [colony-v2.md](colony-v2.md); framework gaps cite [rimworld-gap.md](../rimworld-gap.md) §1. AGENTS.md "Games keep faith gentle" applies throughout. Numbers marked *assumed* are unmeasured.
+Owner's brief: a known, deceptively small genre "within which player connects with each character and develops them". On approval he added: "potentially infinite play (until the characters die of natural causes? I dunno). We could see longer time effects of our framework. Though it should have more UI than just text, and showcase some stuff happening, yet similarly deeply integrate the human framework". AGENTS.md "Game direction" applies (approximate, subjective readouts; show rather than count; tactical slowdown, not pauses; continuous speed; limits from capabilities; saves and menus in the fiction), as does "Games keep faith gentle". Numbers marked *assumed* are unmeasured.
 
 ## 1. Promise and fit
 
-**Promise:** you hold a small walled village through one winter, and every tower on the wall is a person who can say no, learn courage, break, or run home to their children.
+**Promise:** you keep the watch of a small walled village, winter after winter. Every tower on the wall is a person who can say no, learn courage, break, marry, grow old, and hand the Gate to a grandchild.
 
-**Why the genre fits.** Tower defense is placement plus attrition, readable in seconds. The framework replaces a tower's three properties: it stands where put (the will), improves only by upgrade (skills by doing, expectations), and ignores its neighbours (social). The framework already decides "fight, flee or comply on each interrupt" (rimworld-gap §1); TD supplies those interrupts a few times a night, not hundreds.
+**Why tower defense.** TD is placement plus attrition, readable in seconds. HF replaces a tower's three properties: it stands where put (the will), improves only by upgrade (skills), and ignores its neighbours (social). The night's decisions are about people: *Mara is wavering, her house is on the east side; do I let her go?* Years add the decisions only time can ask: *who takes the Gate when Tamar's knees go?*
 
-**The design problem, stated.** TD assumes absolute placement; the framework's signature is that the player is a suggestion. So posting is a Game 2 suggestion with the normal verdicts. The dusk decision is spatial and predictive (more posts than people, a telegraphed threat); the night's decisions are about people: *Mara is wavering, her house is on the east side; do I let her go?*
+**The player is the Keeper:** the office that writes the village chronicle, carries the lantern and rings the bell. It outlives any one person, so the same voice carries across generations. Villagers hold trust in the Keeper like any voice (HF `trust`); children learn it from their parents' stories.
 
-## 2. Core loop
+**The story it should produce** (player-advocate review): "My old Gate keeper hid her bad knees for two winters. When she died, her apprentice's daughter took the Gate and refused the east wall, because of a story her father told her." A system that does not serve a story across years is cut first.
 
-**Season.** 15 nights, first frost to thaw. A night is 12 sim hours in about 3 real minutes at 1×; a day phase about 2 minutes; a season about 75 minutes, saved at every dawn. No rewind.
+## 2. Time
 
-| Nights | What comes | Game AI |
+**One continuous clock.** Speeds: 1/16× (card open), ¼× (tactical), 1× (a night of 12 sim-hours in about 3 real minutes), 3×, *Days* (a day in about 10 s) and *Seasons* (a week in about 10 s). Only the chronicle (the menu) stops the clock.
+
+**Tactical slowdown.** A moment (§4) eases play to ¼×; while its card is open, 1/16×. Moments queue and show one card at a time. The decision window is counted in sim time (about 2 sim-minutes, *assumed*), and inputs are logged by sim-minute, so replays are deterministic. Doing nothing is always legal: the person decides alone. A flyleaf setting chooses which moments slow play. *Days* and *Seasons* drop to 1× when something person-changing begins (a fight, a birth, a quarrel at the well).
+
+**The year, about 15 minutes at default** (*assumed*):
+
+| Season | What happens | Default |
 |---|---|---|
-| 1–4 | Wolves | A pack probes the darkest wall section; a wolf hit twice flees. Bites injure; nobody is eaten. |
-| 5–10 | Grain thieves | Bands go for the granary, carry sacks out, run from two defenders. They knock people down, never kill. |
-| 4, 8, 11 | Storm embers | Embers land on roofs; fire spreads tile by tile until a bucket post reaches it. |
-| 12–15 | Hard nights | Thieves in a storm with wolves; night 15 is the longest. |
+| **Winter: the Watch** | 6–8 nights, one sharp peak. Nights where no moment fires run on standing posts and appear only as dawn-page lines. | 1× nights with moments; routine nights summarized |
+| **Spring: the thaw** | The thaw page (§3); repairs, weddings, births, who leaves. | *Days* |
+| **Summer** | Fields, practice, building; some years an event (a house fire, a sick well). | *Seasons* |
+| **Autumn: the reckoning** | Harvest fills the granary; the fair; 2–3 decade decisions (§4); who comes of age (15); next winter's tracks. | *Days* |
 
-**Staggered cast.** Night 1: Tamar and Kian on three posts. Night 2: Joss and Mara join (the family pull). Night 4: Yunus, with the first storm. Night 5: Ruslan arrives with the thieves, a newcomer to the player as to the village.
+At 15 minutes a year, Mara's children come of age around evening 3: the inheritance is reachable.
 
-**Dusk: posting.** A scout line telegraphs the night ("pack tracks by the west wall; smoke to the east"). The map has nine posts for at most six watchers: Gate, East wall, West wall, North wall, Watchfire (spotter: lights the dark), Well (bucket line), Granary, Hall door, Lane. Which posts to leave empty is the core spatial decision. Drag a portrait to a post; before release the slot shows `predict()`: *likely*, *later: after I eat*, *won't: that's next to Joss*, *can't: her leg*.
+## 3. Endless structure
 
-| Gesture | Effect |
-|---|---|
-| Drop | suggest (`strength 0.35`) |
-| Drop and hold | urge (`strength 0.7`), appeal chip once unlocked |
-| Swipe up | insist: a `notNow` becomes `complied`, with the Game 2 price |
-| Ring the bell (one charge per night) | **command** one watcher (F1): they hold through fear and refusal, never through `cannot`, a held norm or a break. The card prints the price before release: autonomy and trust drain per hour, break hazard rises, no trust earned if it goes well. |
+**What ages and changes (all HF, §7):** bodies (recovery and fitness by age, chronic illness, scars), skills (practised on posts, rusting, slower to learn late), fears (believed risk of each post moves toward what was met), bonds and grudges, marriages, children (temperament drawn loosely from both parents), and natural death (age hazard raised by poor health). Combat never kills: wolves bite, thieves knock people down. Death comes from age and illness, offstage: a funeral line, an empty place at the wall, grief in those close.
 
-One suggestion per watcher per dusk and per moment; a re-post after a refusal costs trust every time. The verdict is seeded per (night, watcher, post), so a retry gives the same answer.
+**Permanent losses short of death** (so the long run never settles into a safe equilibrium): whole households leave after a bad winter (HF decides from mood, ties and trust); some wounds end a person's time on the wall (a limp for life); a house burns; a wall section is lost for a year. Growth costs too: more grain draws more thieves, a longer wall has more posts than people. These are irreversible map and chronicle changes, never undone within a volume.
 
-**Night: watching.** Posted watchers throw, strike, spot and carry water; the game rolls (§5). The player has one movable resource, **the lantern**: place it on a wall section to light it (enemies there are seen and hit earlier). The framework decides only on interrupts: hold, flee, go home, help a downed neighbour, step off to pray near dawn.
+**What carries across generations:**
+- **Stories.** Memorable nights become lasting gists people retell (HF L1, conversation); a child who hears how the east wall broke fears it before standing there.
+- **The Keeper's reputation:** a newborn's trust starts from the household's stories.
+- **Habits and values** by upbringing exposure (L2), **temperament** by loose heredity (`createChild`; a tendency with wide noise, never a destiny).
+- **Grudges and debts** carried by children (Joss's grudge in his son).
+- **Places** named in the chronicle ("Tamar's stone" at the Gate).
 
-At most three moments a night pause play (*assumed* cap, tuned in W2); each has two or three priced cards from `predict()`:
+**Volumes.** A volume of the chronicle is one generation with a named question and a visible end that is not failure, for example "the Gate is handed on" or "the last of the founders dies". When it resolves, the volume closes with an epilogue (each living person's fate, in their voice), however the village stands, and the next volume opens with a new question drawn from the living cast. **Blank leaves** at the back of the current volume each print the condition that will fill them ("when a child born here first stands the wall"; "when an outsider is married in"), so the player sees that more exists and roughly what opens it.
 
-| Moment | Trigger | Cards and prices |
+**What makes year 3 different from year 1.** Year 1 is authored and gentle (§4). From year 2 a game-side director generates each winter from the village: prosperity draws thieves, a dark thin wall draws wolves, a bad harvest brings desperate outsiders, a dry summer brings fire. No two consecutive winters share a lead threat; a threat's second appearance carries a twist (wolves learn the dark section; thieves come with a man inside). Each winter states one question from the cast's life stages, as a goal that can fail with a visible cost ("Tamar can no longer climb the Gate stair: name who holds it, or the Gate stands empty on the peak night").
+
+**The village falls** when at a thaw dawn the granary cannot reach the harvest, or when for three nights nobody comes to the wall. The volume ends early with its epilogue; survivors and their children resettle a ruin nearby in a new volume, carrying temperaments, stories, scars and their trust in the Keeper, which may now be low. If every line dies out, the chronicle closes and a fresh village starts from a new seed. The director brings newcomers (refugees, a fair-day marriage) so a small founding cast does not run out of partners.
+
+## 4. Play
+
+**The opening.** The chronicle opens with the clock stopped on a page that states the goal: *bring every soul and the granary to the thaw.* Night 1 is one wall section, two watchers (Tamar and Kian) and one wolf pack. The cast arrives over the first nights (Joss and Mara, then Yunus, then Ruslan with the thieves).
+
+**Dusk: posting.** A scout line telegraphs the night ("pack tracks by the west wall"). There are always more posts than people. Tap a portrait, tap a post; a card offers *suggest*, *urge* or *insist* in words, with the person's likely answer **seen through the Keeper's impression** (L6): a well-known watcher reads "likely" or "won't: next to Joss"; a newcomer reads "you can't tell"; a hidden trait can make the preview wrong. The dawn page shows what actually happened, so the player checks their reads. Posts stay as standing suggestions. Posting is closed at night.
+
+**Night: watching.** The night is abstract. Each wall section is a lane; enemies are tokens that advance along it; each sim-minute resolves as rolls from skill × capacity. No projectiles, no pathing, no fire spread. The Keeper's night actions are the lantern, the bell and moment cards:
+
+- **The lantern is the Keeper's position.** It lights one section: enemies there are seen and hit earlier, and the Keeper sees the people there. A waver on an unlit section raises no card: the player sees only a figure moving in the dark.
+- **The bell (HF `command`)** commands one named watcher within earshot to hold. It costs that watcher autonomy and trust and raises their break hazard, scaled by how much they wanted otherwise; the card says so in words ("Joss will resent this"). No charges: overuse is limited by what it does to people, and by the rope, which frays visibly and must be mended by someone's day.
+
+| Moment (lit section only) | Trigger | Cards |
 |---|---|---|
-| Waver | `hold-post` within the close-call margin of `flee` or `go-home` | starts as 0.25× slow-motion; tap to pause. *let him go* (post empties) · *urge: hold* (pressure shown) · *bell* |
-| Family | a threat percept targets a watcher's home | *let her go* · *send Kian to her house* (his post empties) · *bell* |
-| Downed | a watcher is down in the open | *Ruslan, carry her in* (`predict()` shows if he will; his post empties) · *leave her*: severity rises each hour, enemies are drawn to her, she misses tomorrow night |
+| Waver | `hold-post` within the close-call margin of `flee` or `go-home` | let go · urge hold · bell |
+| Family | a threat percept targets a watcher's home | let her go · send someone else (their post empties) · bell |
+| Downed | a watcher is down in the open | name a carrier (preview through the impression) · leave her |
 
-Breaks and downed-with-nobody-near show as banners without pausing. A setting chooses which moments pause.
+At most three moments a night (*assumed*). Yunus may step off for Fajr near dawn: shown as a figure leaving, with no card and no slowdown.
 
-**Day: talking.** The dawn report leads with one line per watcher in their voice and, for each departure or refusal, a one-line why with a jump to that moment. Then each watcher lives the day through `stepCommunity` (sleep, family, work, practise) on a ribbon. The player has **three talks**; a talk opens a watcher's card and a tray of topics ranked by their inclination, answered with suggest, urge or insist:
+**Day: talking.** The dawn page gives one line per watcher in their voice and a why for each refusal or departure. Talks cost the Keeper's daylight (about an hour each) and the person's sleep after a night on the wall, so influence trades against their rest. A talk is also how the Keeper learns: *tell me about last night* (cue recall), *how is the knee?* Topics are ranked by the person's inclination: *rest* · *practise with Tamar* · *mend things with Joss* · *take the Gate tonight* (a promise) · *teach Kian's daughter the sling*.
 
-*rest today* · *practise the sling with Tamar* (joint practise) · *mend things with Joss* · *forage* (brings sacks back; costs that watcher's rest before the night) · *tell me about last night* (cue recall, re-appraised) · *take the Gate tonight* (a promise at `begin`) · *move the children to the hall* (only after a Family moment; lasts three nights; costs Joss's comfort and the children's mood, which Mara voices).
+**Autumn: decade decisions.** The fair is the drafting phase: 2–3 choices that cannot be undone and draw on the same grain and labour. Admit the outsider family or keep the grain; extend the wall (a new post, more posts than people); buy a bigger bell (the rope lasts longer, the bell carries further) or seed grain; name the Gate heir (pride and trust move on both sides).
 
-**Win and lose.** The granary starts at 80 sacks; foraging adds a few a day. The village needs **50 at thaw**; falling below 50 at any dawn with no way back on the forage rate ends the season early (*assumed* numbers). The second loss is human: a **watch-cohesion meter** (the share of watchers whose `predict()` at dusk is *likely* on some post) warns two dusks ahead; at zero, nobody comes to the wall. Character outcomes are shown, not scored.
+**The thaw page** closes each year: the chronicle writes what changed permanently (who left, who died, who married, what burned) and shows it before spring begins.
 
-**Arc.** Wolves teach posts and the first refusals; thieves bring Ruslan and the outsider question; storms split the watch between wall and fire; the hard nights test what the season built.
+## 5. Show, don't count
 
-## 3. Cast
+**Three managed limits:** **grain** (sacks drawn in the granary: harvest, theft, the fair), **the Keeper's time** (daylight and one place at a time; lantern position at night), and **the bell rope** (fraying, mended by someone's day; a bigger bell from the fair). Stones and lamp oil are ambient: children gather stones and oil comes with the harvest; a dwindling pile or a guttering flame shows a bad year, but the player does not manage them. Stamina and the size of the watch are people, read through them.
 
-Each watcher is a full `Person` in one `Community`. Families are host entities with seeded relationships, not Persons.
+**Show.** Sprites slump, then sit, as fatigue rises; a bandage and a limp; a torch gutters; a dog barks before a threat is lit; voices in short bubbles ("not the east wall again"); grey hair and a stick. No HP, fatigue or ammo numbers in play.
 
-| Watcher | Strength | Flaw (as terms) | End they move toward | Ties |
-|---|---|---|---|---|
-| **Tamar**, 54 | Sling 0.7, steady | Pride: under-perceives pain, refuses rest (her card shows felt pain beside the true injury) | Hands the Gate to someone, or wears her body out | Kian's mentor; an old grudge with Ruslan |
-| **Kian**, 16 | Fast, eager | Low fear, high achievement: takes the risky post, freezes once hurt | Real courage, or one bad night turns him from the wall | His sister lives by the west wall |
-| **Mara**, 34 | Best sight (spotter) | Home on the east edge; family affection outweighs most posts | Trusts the wall enough to stay | Married to Joss; two children |
-| **Joss**, 38, smith | Strength, the Gate's anchor | Anger tendency; resents Ruslan over a debt | Puts the grudge down, or it costs a night | Mara's husband |
-| **Ruslan**, 45 | Spear 0.8 | Newcomer: low default ties; high emotionality, bad sleep, likeliest to break | Becomes one of them, or leaves at thaw | Suspected when grain goes missing (gossip; the game never confirms it) |
-| **Yunus**, 61, miller | Calm, runs the bucket line | Frail, poor sight | Keeps the fire line through the storms | Prays; posted at dawn he asks to step off for Fajr (existing omission rule). Texture only: no goal, score or outcome reads it. |
+**Subjective readouts.** A card shows the Keeper's impression, not true state: phrases with a confidence ("afraid of the east wall, *you think*") and soft bars whose width is uncertainty. It sharpens with nights watched under the lantern, talks, and what others say. Only what has actually changed goes stale, shown as "last seen at harvest" rather than a blur. The roster shows people of watch age. Hidden traits are a gap the Keeper can learn: Tamar's words say "fine", her limp says otherwise. A wrong read costs: post Tamar on "fine" and she cannot climb the stair, and the Gate stands empty. There is no truth toggle in play; HF's terms appear only in the playtest export.
 
-**Courage made visible.** Each card has a per-post fear bar with last night's change ("East wall: less afraid ▼"), read from the learned expectation of `hold-post@<post>`.
+## 6. Saves and menus in the fiction
 
-## 4. Framework
+- **The chronicle is the menu.** Opening it stops the clock. Each volume is a book on a shelf (the save slots); pages are the record; the flyleaf holds settings (speeds, which moments slow play, text size). No rewind within a volume.
+- **Storage:** a full snapshot at each season boundary plus the sim-minute input log since, compressed in IndexedDB; loading restores the season snapshot and replays the log. No server. The permanent chronicle text is game data; HF's own chronicle stays capped.
+- **Playtest export:** "copy this volume" writes seed, input log and state JSON (with HF terms); a replay test pins that it reaches the same state.
+- **Upgrades:** pages carry the engine version; HF `migrate` upgrades old volumes.
 
-**Exercised as built:** `decide`/`predict` and typed verdicts; insist; trust and pressure; `practise` and `successChance` per post skill; `learnOutcome` on `hold-post` (courage: believed risk moves toward the risk met; no fear habituation is added to affect/); `appraise` and `actionTendencies`; `socialEvent` and `judge` (bonds from shared nights, grudges from a watched desertion); `converse` (gossip about Ruslan); cue recall; `begin(..., {promise})`; joint practise and `jointSuccessChance`; `interruptPerson`; the chronicle; save/restore.
+## 7. Framework and game
 
-**Built for Game 3** (rimworld-gap §1 blockers; general, each with tests and a headless control scenario; engine 1.6.0):
+**HF faculties shown, as built (1.6.0):** `decide`/`predict` and verdicts; insist, trust, pressure; standing suggestions; `command`; breaks; capacities, `tend`, downed; outsiders and threat percepts; `practise`; `learnOutcome` (courage); `appraise`; `socialEvent`, `judge`, `converse`; cue recall; promises; bereavement; lifecourse, chronic illness, `mortalityEvent`; `createChild`; snapshot, `migrate`; `skip`.
+
+**New for HF 2.0** (general, no Night Watch names; each with tests, a headless control scenario and a scope paragraph):
 
 | # | Deliverable | Scope | Test sentence |
 |---|---|---|---|
-| F1 | **Commanded mode** | `'commanded'` added to `SuggestionVerdict`; `StepOptions.controlled: Record<PersonId, {affordanceId, voiceId, since}>`: the driver ticks, perceives and finishes but does not decide. Each controlled hour costs autonomy and voice pressure and adds stress equal to the utility margin the person's own choice lost by; a "commanded by X" episode is recorded. Ends on `cannot`, a held-norm veto, a break, downed, or release. | A commanded person holds a post they would flee; autonomy falls and break hazard rises with the margin; a break or downing releases them. |
-| F2 | **Mental breaks** | A crisis state in affect/: per-hour hazard while mood stays below a threshold, scaled by stress and emotionality; during a break every voice gets `refused`/`cannot`, reason `break`. Host supplies the catalog (here *freeze*, *run home*, *shout at the one they resent*). Clears with time, sleep, or comfort from a bonded person. Exposes the current hazard for UI. | Sustained low mood breaks at the specified rate; a break vetoes all voices; comfort shortens it. |
-| F3 | **Capacities and downed** (trimmed) | `Injury.part` keyed to a host part catalog mapping to `moving` and `sight`; `readBody(p).capacities`; `downed` when `moving` falls below a threshold or the host knocks a person down: only floor affordances remain, voices get `cannot`. Manipulation, bleeding, tending, infection stay out. | A leg injury lowers `moving`, not `sight`; downed offers only the floor; healing restores capacity. |
-| F4 | **Out-group ties** (trimmed) | `social.groups` and a default tie for people outside them, so a newcomer starts low and grows with shared events, and an act against one's own group is judged harder. Threats use existing `felt`/`saw` percepts with valence plus affordance risk, documented as the convention; a dedicated threat field waits for a second host. | A newcomer's ties start below a neighbour's and rise with shared nights; a threat percept to a person's home raises fear and the pull of `go-home`. |
-| F5 | **Save migration** (scoped) | A `migrate(json)` chain scaffold and one 1.5.0→1.6.0 step; `restore` runs it instead of refusing. Needed because Game 2 is live with dawn saves that 1.6.0 would strand. | A 1.5.0 Game 2 dawn save restores under 1.6.0 and resumes deterministically. |
+| L1 | **Experience over years** | Episodes past a horizon consolidate into a few lasting, valenced gists that keep recall, fear and retelling alive; skills age (slower learning, rust); state stays bounded. | A fear learned at 20 still shapes choices at 40 after its episodes are gone; a 50-year snapshot stays under a stated size. |
+| L2 | **Upbringing and heredity** | Per-skill aptitudes, loosely inherited; childhood exposure to household habits and values; parents' gists and voice trust passed by conversation. | A child of fearful parents believes a place riskier before going there; a child's trust in a voice starts from household stories. |
+| L3 | **Attraction and partnering** | Attraction from familiarity, shared events and trait fit; slow courtship; a proposal resolved by a host-supplied custom (consent, age); kin prohibition; household formation. PG. | Two people with many good shared events partner under a custom requiring family consent; a forbidding custom or kinship prevents it. |
+| L4 | **Ambient context** | A host `ambient` input on `tick` (cold, dark, crowding, comfort) feeding mood, sleep and fatigue. | Cold dark nights lower mood and raise fatigue; a warm hall restores them. |
+| L5 | **Long-run community driver** | Mixed fidelity: full stepping, or a coarse community `skip` with social events summarized. The switch happens only at dawn, by host request; coming of age and life transitions are events; a budget. | 25 people run 50 years headless, deterministically, within the bench budget; resume from a season snapshot plus log is byte-equal. |
+| L6 | **Impressions** | One person's estimate of another's state and likely answer, with uncertainty, from familiarity and observations; hidden pain and pride bias it. The Keeper's readout and the preview use the same function as villagers' judgements of each other. | An estimate narrows with shared time and errs where the target hides pain. |
 
-## 5. In the game, not the framework
+**Game-side only:** lanes, tokens and rolls; the seasons calendar and threat director; grain, the fair and decade decisions; the bell's earshot and rope; marriage customs and coming-of-age age as host data; the break catalog; talk ranking; the permanent chronicle and storage. HF sees only affordances (`hold-post@gate`, `flee`, `go-home`, `carry@mara`, `court@kian`), outcomes, percepts, ambient input and what the Keeper observed.
 
-The 24×24 tile map, walls and nine posts; pathing (a flow field to the granary); enemy AI (wolves probe darkness and flee when hurt; thieves seek sacks and flee from two defenders); hit, work and fire-spread rolls from skill × capacity; the lantern and Watchfire light radii; the grain ledger and foraging yield; family entities and homes; the scout line; posting, moments and the bell; the break catalog. The framework sees only affordances (`hold-post@gate`, `flee`, `go-home`, `carry@mara`, `pray`), outcomes and percepts.
+## 8. Cast, year 1
 
-## 6. Classic vs Human
+| Watcher | Strength | Flaw | Long arc | Ties |
+|---|---|---|---|---|
+| **Tamar**, 54 | Sling, steady | Pride: under-reports pain | Hands the Gate on, or wears herself out | Kian's mentor; grudge with Ruslan |
+| **Kian**, 16 | Fast, eager | Takes the risky post; freezes once hurt | Courage, or turns from the wall; may raise a watcher | Sister by the west wall |
+| **Mara**, 34 | Best sight | Home on the east edge | Trusts the wall enough to stay | Married to Joss; two children |
+| **Joss**, 38, smith | Strength | Anger; resents Ruslan over a debt | Puts the grudge down, or passes it to his son | Mends the bell rope |
+| **Ruslan**, 45 | Spear | Newcomer; high emotionality, bad sleep | Becomes one of them, or leaves at thaw | Suspected over missing grain (never confirmed) |
+| **Yunus**, 61, miller | Calm | Frail, poor sight | Likely the first natural death | Prays; texture only |
 
-Not in Game 3: Classic towers never refuse, so a per-dawn comparison would mostly say people are worse than turrets. Game 1 carries the before-and-after showcase; the shared night engine keeps a later Classic run cheap.
+## 9. UI scope
 
-## 7. UI
+React 19 shell; Canvas 2D; simulation in a Web Worker; React renders snapshots. A village map with lanes along the wall, simple sprites and shapes (stand, walk, throw, slump, sit, down), light as radial gradients, weather as a tint. No WebGL, no engine, no projectiles, no pathing. Lucide icons. Phone portrait (research real viewports such as the Galaxy S26 first): map top, roster strip, cards as a bottom sheet with tap-only input and 44 px targets; fullscreen and wake lock at night. **Guardrail:** UI work stays under a third of G3 effort; anything beyond sprite frames, gradients and tweened positions is cut.
 
-React 19 shell, Canvas 2D map, simulation in a Web Worker, React renders snapshots only. Graphics follow Game 1 (tile art, sprites, night lighting); choices follow Game 2 (telegraphed cards, verdict colours, why-sheet). Lucide icons.
-
-- **Map.** Top-down village at night: torch, Watchfire and lantern light radii; enemies hidden until lit or spotted. Each watcher sprite has a ring: green holding, amber wavering, red broken, grey downed.
-- **Icons over text.** Chips show portrait plus up to three state icons: fear, fatigue, injured part on a body silhouette, bond and grudge links, home under threat, break hazard. Words on tap.
-- **Desktop.** Map centre; roster right; moment cards bottom-centre; dawn report and talks as a side sheet.
-- **Phone 360×740, portrait.** Map top (24 tiles × 15 px); roster strip of six 56 px chips; moment cards as a bottom sheet, 44 px targets; talks full-screen. No page or sideways scroll (Game 1's known 360 px failure).
-
-## 8. Build plan
+## 10. Build plan
 
 | Phase | Work | Playtest gate |
 |---|---|---|
-| W1 | Night engine with plain obedient towers (no framework): map, pathing, enemies, rolls, fire, grain, scout line, lantern, dusk posting | Against a telegraphed threat, different testers post differently, and a bad plan visibly loses sacks |
-| W2 | F2, F3; Human watchers on posts; moments; a three-line dawn report and one talk | Within three nights a fresh tester names one watcher's fear and one bond unprompted |
-| W3 | F5, F1 and the bell, F4; full day talks, cohesion meter, staggered cast, season arc, end screen | The user plays a full season; two seeds give at least two different character outcomes |
-| W4 | Phone fit, icons, polish, deploy at `/watch/`, framework.md, api.md, README | The user's playtest round, as Game 1 v2 |
+| G3-1 | Abstract lane night without HF (obedient tokens): lanes, rolls, grain, scout line, lantern, dusk posting, continuous clock with speeds and slowdown. Small by design. | Against a telegraphed threat, testers post differently and a bad plan visibly loses sacks |
+| G3-2 | People on HF: verdicts, impressions (L6) on cards and previews, bell (`command`), breaks, injuries and downed, outsiders, moments, dawn page, talks, sprites; the year-1 winter | A fresh tester names one watcher's fear and one bond, unprompted, within three nights |
+| G3-3 | L1–L5 in HF; seasons, director, decade decisions, permanent losses, volumes, blank leaves, fall and resettlement, season snapshots | Headless: 3 seeds × 50 years; population and mood must swing by decade (flat lines fail) and years 10 and 20 must differ across seeds. Played: a tester plays three years and retells one cross-year story unprompted |
+| G3-4 | Phone fit, playtest export and replay, deploy `/watch/`, framework.md, api.md, README | The user plays; his words go in `watch-playtest-*.md` |
 
-F5 lands before the first deploy that carries 1.6.0.
+**Done for Game 3:** endless play live at /watch/ on desktop and phone, with a playtest export; L1–L6 released in HF 2.0 with tests; `npm run check` passes; the user accepts by playing.
 
-**Done for Game 3:** a full season playable at https://human.adamwhite.work/watch/ on desktop and a 360×740 phone; F1–F5 in `@human/framework` with tests, documented in framework.md and api.md; `npm run check` passes; the user accepts by playing. This extends AGENTS.md "Done means" from two games to three; record it there on the go-ahead.
-
-## 9. Risks and cuts
+## 11. Risks and cuts
 
 | Risk | Mitigation |
 |---|---|
-| The night is a slideshow | Empty-post choice, scout line, lantern; W1 gate tests planning, not watching. |
-| Dominant card answers | Every card prints its price; leaving someone downed costs severity, a target and tomorrow night. |
-| Lost season played out | Foraging; one threshold; early end when it cannot be met. |
-| Breaks feel random | Hazard icon first; the cause is named. |
-| PG slip | No death; bites and knocks; thieves flee. |
-| Faith becomes a mechanic | Yunus's prayer is one existing rule, shown as one line. |
+| A dead equilibrium | Permanent losses, growth costs, decade-swing gate |
+| Years feel the same | Generated winters, twists, life-stage questions |
+| Saves bloat | L1 bounded state; season snapshots plus log |
+| Mixed fidelity breaks determinism | Switch only at dawn; byte-equal resume tested |
+| UI eats the schedule | Abstract lanes; tap-only input; §9 guardrail |
+| Faith becomes a mechanic | Prayer, weddings, funerals are quiet events; no card, score or slowdown reads them |
 
-**Cut first, in order:** storms; *mend things*; gossip about Ruslan; appeal chips; the break catalog down to *freeze*; the bell (F1 stays in the framework, tested headless).
+**Cut first, in order:** summer events; resettlement (a fallen village just ends its volume); blank leaves; the bigger bell; *mend things*.
 
-## Review notes
+## Review notes (round 2)
 
-Adversarial review, 2026-10-04 (senior systemic-game designer, one pass).
+Three reviews of the endless-play draft, 2026-10-04.
 
-**Accepted:** more posts than watchers, scout line, lantern; three-pause cap, slow-motion waver; a price on every card; one suggestion per moment, seeded verdicts; foraging, one threshold, cohesion meter; staggered cast; fear bars and dawn whys; *move the children* temporary and gated; Classic cut; W1 builds the TD without the framework; F3, F4, F5 trimmed.
+**(a) Adversarial systemic designer (Opus).** *Top:* the long run settles into a dead equilibrium. **Accepted:** permanent non-death losses and growth costs; decade-swing gate; ~15-minute years with routine nights summarized; decade decisions at autumn; preview through the impression, L6 made core and kept in HF; queued cards, 1/16× while open, sim-time windows, sim-minute input log, no night posting; season snapshots plus log; permanent chronicle game-side; L3 kin prohibition and director-supplied partners; fidelity switch at dawn only; abstract lane night with no fire spread; Yunus without a card. **Rejected:** merging G3-1 into G3-2 (G3-1 stays, abstract and small, because its gate tests planning before people); talks made scarce by sleeping watchers is kept, but children's stone-gathering competing with chores and oil competing at the fair are dropped for (c)'s fewer components.
 
-**Partly accepted:** season shortened from 18 to 15 nights, not to 12 (the brief asked for ~15–20). Command made scarce (one bell charge per night) instead of cut.
+**(b) Player advocate (Opus, owner's quotes only).** *Top:* no stated goal and nothing that can really go wrong. **Accepted:** stopped-clock goal page; gentle night 1 (one wall, two watchers); each winter's question as a failable goal with a visible cost; 6–8-night winters with routine nights as dawn lines; staleness only for what changed, "last seen at harvest"; watch-age roster; generations as volumes with inherited stakes; tap-only posting with suggest/urge/insist in words; prices in words; a setting for which moments slow play; replay jumps cut. **Rejected:** none.
 
-**Rejected:** cutting F1: the brief requires commanded mode, and as the rimworld-gap blocker that runs against the framework's design it is worth building generally even if the bell is cut. A per-night urge budget: Game 2's pressure already prices urging.
+**(c) Wildcard: legacy board-game designer (Fable).** *Top:* a volume needs an end that is not failure. **Accepted:** volumes with a named question and end; blank leaves with printed conditions; irreversible map changes; the lantern as the Keeper's position, so unlit wavers raise no card; wrong reads cost; no truth toggle in play (export only); three managed limits, stones and oil ambient; the thaw page as cleanup; the fair as drafting. **Rejected:** none.
