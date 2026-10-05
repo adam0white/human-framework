@@ -1,4 +1,4 @@
-/** Top bar (plan §6.2) with the sky band (§2): the hour's light, prayer notches, the fast, and a "now" mark. */
+/** Top bar (voice.md §7.2) with the sky band (§4): the hour's light, prayer notches, the fast, and a "now" mark. */
 import { memo } from 'react';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import { PlaytestMenu } from '../../shared/PlaytestMenu.tsx';

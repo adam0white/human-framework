@@ -1,4 +1,4 @@
-/** What the player sees of him (plan §7): doing now, the felt body, named feelings, what's on his mind, money. */
+/** What the player sees of him (voice.md §8): doing now, the felt body, named feelings, what's on his mind, money. */
 import { memo } from 'react';
 import type { HalilView } from '../protocol.ts';
 import { Icon } from './Icon.tsx';

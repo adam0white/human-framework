@@ -80,7 +80,7 @@ describe('the town as a save', () => {
     const c = createCommunity(people, saved.c);
     stepCommunity(c, world, fx.town.start + fx.town.endAt * MINUTES_PER_DAY, { suggestions: pray });
     // First pinned in packages/human/test/migrate.test.ts (CONTINUED_1_7.town) before the town moved out of the
-    // framework. Re-pinned 2026-10-04 (voice-build §13, tenth pass): the town's rules changed (the Eid market,
+    // framework. Re-pinned 2026-10-04 (voice.md §15, tenth pass): the town's rules changed (the Eid market,
     // unanswered calls at the tea house, Selin calling after her iftar, an interrupted job counting as the day's).
     expect(hash({ people: strip(c.people), state: rt(world.state) })).toBe(
       '51557764b82eb099bee4f9f9e9019c254fd64e0342ecafdd14a9a5ca58482cb6',

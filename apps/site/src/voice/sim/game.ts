@@ -1,5 +1,5 @@
 /**
- * Headless game state for *The Day You Say Nothing* (build plan §5, §6, §8). One `VoiceGame` holds the whole
+ * Headless game state for *The Day You Say Nothing* (voice.md §5, §6, §9). One `VoiceGame` holds the whole
  * town and the player's side: phases (premise → day → between → … → eid → report → free), the day plan (played
  * Ramadan 1, 2, 15, 30 with skips, a muted Eid on day 31, then a 6-day muted epilogue on a clone of the whole run),
  * the standing suggestion, beats, the log, and the clock (pace, fast-forward, carry). The worker only forwards
@@ -104,7 +104,7 @@ import {
 
 export { SHIPPED_SEED };
 export const PLAYED_DAYS = [1, 2, 15, 30] as const;
-/** A played day ends at this minute of the day (plan §5). */
+/** A played day ends at this minute of the day (voice.md §5). */
 export const DAY_END = 23 * 60 + 30;
 export const FAST_FORWARD = 240;
 /** Per-tick minute caps (the worker clamps dt to 250 ms): normal play, and fast-forward. */
@@ -196,7 +196,7 @@ export function newRun(seed: number, opts: TownOptions = {}): Run {
   return { c: createCommunity(people), town, ppl, opts };
 }
 
-/** A deep copy of the whole run: every person, the community's host fields and the town state (plan §5). */
+/** A deep copy of the whole run: every person, the community's host fields and the town state (voice.md §5). */
 export function cloneRun(r: Run): Run {
   const { c, state } = structuredClone({ c: r.c, state: r.town.state });
   const ppl = Object.fromEntries(c.people.map((p) => [p.id, p])) as Record<TownPersonId, Person>;
@@ -359,7 +359,7 @@ export class VoiceGame {
     this.intro = undefined;
   }
 
-  /** Composer state (plan §6.3): open only when he is awake and idle or nearly done. */
+  /** Composer state (voice.md §6): open only when he is awake and idle or nearly done. */
   composer(): Frame['composer'] {
     if (this.muted || this.phase === 'eid' || this.phase === 'report')
       return { open: false, reason: 'muted' };

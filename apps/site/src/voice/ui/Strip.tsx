@@ -1,4 +1,4 @@
-/** One day as a strip (plan §2, replacing the kilim): what he did across 24 hours, coloured by family. */
+/** One day as a strip (voice.md §4, replacing the kilim): what he did across 24 hours, coloured by family. */
 import type { Family, StripRow } from '../protocol.ts';
 import { FAMILY_ICON, Icon } from './Icon.tsx';
 import { VOICE_COLOURS, VOICE_NAMES } from './parts.tsx';

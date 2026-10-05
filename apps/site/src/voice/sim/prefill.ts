@@ -1,5 +1,5 @@
 /**
- * The composer's prefill (build plan §6.3), deterministic, first rule that applies wins:
+ * The composer's prefill (voice.md §6), deterministic, first rule that applies wins:
  * 1. another voice's standing advice that is offered now and is not his leaning;
  * 2. one of his ends, offered now and not leaning: pay-rent at 300+; the afternoon shift when the mornings alone
  *    will not reach what Osman wants in time; see-doctor if never seen; call Selin after iftar when HE has not

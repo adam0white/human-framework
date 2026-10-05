@@ -1,4 +1,4 @@
-/** The intro card that opens a played day or Eid (plan §6.4–6.5); play starts paused after Continue. */
+/** The intro card that opens a played day or Eid (voice.md §7.3–7.4); play starts paused after Continue. */
 import { useEffect, useRef } from 'react';
 
 export function Intro({

@@ -1,5 +1,5 @@
 /**
- * The voices he hears (plan §7). Yours carries the trust thread (a bar and the last three events); the others
+ * The voices he hears (voice.md §8). Yours carries the trust thread (a bar and the last three events); the others
  * show a trust word, what they last urged, whether it is still on his mind, and any conflict between voices.
  */
 import { memo } from 'react';

@@ -131,7 +131,7 @@ describe('habitEase', () => {
 });
 
 /**
- * N4 calibration experiment (docs/games/voice.md §7). Question: should a plateau habit only add utility
+ * N4 calibration experiment (docs/games/voice.md §13). Question: should a plateau habit only add utility
  * (current `habitScale` term), add utility scaled by the action's cost, or lower the cost of the habitual
  * action (habitEase)? Discriminating finding: Neal, Wood & Drolet (2013, JPSP 104:959): when self-control is
  * depleted, people fall back on their habits; habit performance rises relative to deliberate alternatives.

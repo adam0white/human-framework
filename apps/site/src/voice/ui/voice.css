@@ -1,5 +1,5 @@
 /*
-  Game 2: paper, sky and thread (spec docs/games/voice.md §5). Cream paper with faint rules for his day, a night
+  Game 2: paper, sky and thread (docs/games/voice.md §7). Cream paper with faint rules for his day, a night
   indigo frame, lantern amber for your voice, madder for refusals. Fonts come from the shared theme, plus Spectral
   for his own lines. Everything fits one viewport; panels scroll inside themselves.
 */
@@ -2147,7 +2147,7 @@ fieldset.v-appeals {
   margin-bottom: 4px;
 }
 
-/* ---------- Mobile review 2026-10-04 (docs/reviews/2026-10-04-mobile.md, Part B) ---------- */
+/* ---------- Mobile review 2026-10-04 (docs/reviews/2026-10-04-summary.md, Mobile) ---------- */
 
 /* Full screen: an icon in the top bar on wide screens, an item in the playtest menu on phones. */
 .v-top .fs-btn {

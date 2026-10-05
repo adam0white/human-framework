@@ -1,8 +1,8 @@
 /**
- * The end report (build plan §6.6): Eid without you, then `diffChronicle(with you = Ramadan 1–30, without you =
+ * The end report (voice.md §7.5): Eid without you, then `diffChronicle(with you = Ramadan 1–30, without you =
  * Eid and the six days after)` split into what he did on his own, what others still had to tell him and what
  * stopped; trust per voice as words; his ends; his true body as the doctor would read it; what is still open;
- * the day strips; and the model notes (§10). No score, no words about worth, faith or acceptance.
+ * the day strips; and the model notes (voice.md §10). No score, no words about worth, faith or acceptance.
  */
 import {
   type DayRecord,
@@ -273,7 +273,7 @@ export function buildReport(i: ReportInput): ReportView {
   const h = i.after.ppl.halil;
   const town = i.after.town;
   // What you prompted that he now does unprompted, and what other voices still had to prompt: two diffs, each
-  // scoped to its voices. Prayer is shown in his day but never tracked as a goal (plan §1), so prayer items are
+  // scoped to its voices. Prayer is shown in his day but never tracked as a goal (voice.md §3), so prayer items are
   // left out; eating and drinking start trivially when the fast ends and say nothing about a voice.
   const others = VOICE_IDS.filter((v) => v !== 'you');
   const yours = diffChronicle(i.withYou, i.withoutYou, { person: h, maxLines: 100, voices: ['you'] });

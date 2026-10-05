@@ -1,4 +1,4 @@
-/** Plan §6.1: the start state. The game is paused behind this card until Begin. */
+/** voice.md §7.1: the start state. The game is paused behind this card until Begin. */
 import { useEffect, useRef } from 'react';
 import { ModelNotes } from './parts.tsx';
 

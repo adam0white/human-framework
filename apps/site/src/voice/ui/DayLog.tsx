@@ -1,5 +1,5 @@
 /**
- * The day, in his narration (plan §6.2). Scrolls inside its own panel and sticks to the bottom unless the player
+ * The day, in his narration (voice.md §7.2). Scrolls inside its own panel and sticks to the bottom unless the player
  * has scrolled up. Consecutive entries of the same action collapse into one line with a time span.
  */
 import { memo, useLayoutEffect, useMemo, useRef, useState } from 'react';

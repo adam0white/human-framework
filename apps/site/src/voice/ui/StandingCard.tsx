@@ -1,4 +1,4 @@
-/** Your one standing suggestion (plan §6.3 lifecycle): what you said, his last answer, when it lapses, Withdraw. */
+/** Your one standing suggestion (voice.md §6 lifecycle): what you said, his last answer, when it lapses, Withdraw. */
 import type { StandingView } from '../protocol.ts';
 import { Icon, TONE_ICON, TONE_WORD } from './Icon.tsx';
 import { toneClass } from './parts.tsx';

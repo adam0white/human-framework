@@ -442,7 +442,7 @@ describe('town scenario (Game 2 world)', () => {
 });
 
 // ---------------------------------------------------------------------------------------------
-// Game 2 world content (build plan docs/games/voice-build.md §3, W1–W9) and the opening gate (§4)
+// Game 2 world content (docs/games/voice.md §12, W1–W9) and the opening gate
 // ---------------------------------------------------------------------------------------------
 
 /** The town as Game 2 builds it: created on the evening before Ramadan, run unseen to R1 03:40. */
@@ -527,7 +527,7 @@ function findMinute(
 
 const at = (day: number, hh: number, mm = 0) => day * MINUTES_PER_DAY + hh * 60 + mm;
 
-describe('Game 2 world content (voice-build §3)', () => {
+describe('Game 2 world content (voice.md §12)', () => {
   test('W10: the clinic and calling Selin need a voice; going softens them (fix pass 2026-10-03)', () => {
     // Silent month: Selin's standing advice never gets him to the clinic, and he never calls her himself.
     const quiet = gameSetup();
@@ -805,7 +805,7 @@ describe('Game 2 world content (voice-build §3)', () => {
   });
 });
 
-describe('opening day: the voice idea lands (voice-build §4)', () => {
+describe('opening day: the voice idea lands (voice.md §12)', () => {
   test('a scripted Ramadan 1 produces every verdict kind, a loss recall and another voice by R1 23:00', () => {
     const s = gameSetup();
     const got: Record<string, string> = {};

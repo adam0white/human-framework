@@ -1,10 +1,10 @@
 /**
- * Worker protocol for Game 2, *The Day You Say Nothing* (build plan docs/games/voice-build.md §9, frozen). The
+ * Worker protocol for Game 2, *The Day You Say Nothing* (docs/games/voice.md §10). The
  * main thread sends `tick{dtMs}` every animation frame; the worker turns real time into sim minutes and replies
  * with at most one `frame` per tick, only when something changed. Every reply carries the run's `gen`. The worker
  * builds all view models as plain JSON; React never imports `@human/framework`.
  *
- * Additive to §9 (no shape changes): `VOICE_SCENARIO_VERSION`, `STRENGTH_VALUE`, `PACE_MINUTES_PER_SECOND`.
+ * Additive to the original contract (no shape changes): `VOICE_SCENARIO_VERSION`, `STRENGTH_VALUE`, `PACE_MINUTES_PER_SECOND`.
  */
 import type { PlaytestFile, ReplayResult } from '../shared/playtest.ts';
 
@@ -44,7 +44,7 @@ export type Family =
 export const SHIPPED_SEED = 7;
 
 /**
- * Plan §10, the one copy: the premise card, the report and the mock all read this. Kept out of ordinary play (a
+ * Model notes (voice.md §10), the one copy: the premise card, the report and the mock all read this. Kept out of ordinary play (a
  * collapsed section). Wording rules: his understanding, never a ruling; nothing about acceptance; anything not
  * sourced in research/ is named an engineering assumption.
  */
@@ -61,7 +61,7 @@ export const MODEL_NOTES: readonly string[] = [
 
 /** Suggestion strength sent to the framework for each `Strength`. */
 export const STRENGTH_VALUE: Record<Strength, number> = { mention: 0.35, urge: 0.7 };
-/** Sim minutes per real second at each pace (plan §8); fast-forward runs at 240. */
+/** Sim minutes per real second at each pace (voice.md §9); fast-forward runs at 240. */
 export const PACE_MINUTES_PER_SECOND: Record<Pace, number> = { slow: 8, normal: 20, fast: 60 };
 
 export interface Draft {

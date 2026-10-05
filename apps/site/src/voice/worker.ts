@@ -1,5 +1,5 @@
 /**
- * Dedicated worker for Game 2 (build plan §9). Real time enters only as `tick{dtMs}`; the game steps whole sim
+ * Dedicated worker for Game 2 (docs/games/voice.md §10). Real time enters only as `tick{dtMs}`; the game steps whole sim
  * minutes at the pace (8/20/60 per second) or fast-forward (240 per second, with a matching per-tick cap), so the
  * same seed, inputs and tick schedule give the same frames. A frame is posted at most once per message, and only
  * when it changed. Every reply carries the run's `gen` (`shared/worker-host.ts`).

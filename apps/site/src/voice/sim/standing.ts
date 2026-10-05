@@ -1,5 +1,5 @@
 /**
- * The player's standing suggestion (build plan §6.3). One stands at a time; Confirm replaces it. It ends when the
+ * The player's standing suggestion (voice.md §6). One stands at a time; Confirm replaces it. It ends when the
  * activity he began for it ends (it keeps standing while he does it, so he does not turn back half-way), on a `cannot`/`willNot` refusal, after 3 sim hours, when he falls asleep, or
  * when the player withdraws it. A deferral or a modification keeps it standing, and so does its option leaving the
  * offer set (round 3: the framework holds a standing suggestion back while its target is not offered, so a "later"
