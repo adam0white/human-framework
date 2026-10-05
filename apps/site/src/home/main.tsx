@@ -325,8 +325,8 @@ function Home() {
             <div>
               <dt>Replayable</dt>
               <dd>
-                A save is a snapshot plus an input log. Each example game exports a playtest file (seed, input
-                log, state) that replays the player’s run exactly.
+                HF saves a person as a JSON snapshot. Each example game adds the seed and the player’s input
+                log, so its playtest file replays the run exactly.
               </dd>
             </div>
             <div>
