@@ -360,8 +360,10 @@ export function startWinter(s: WatchState): void {
   s.winterNight = 1;
   s.night += 1;
   s.openPosts = wallFor(s);
+  // A posting on a closed stretch lapses, and so does one held by someone no longer of watch age or lamed.
+  const watchers = new Set(presentIds(s));
   for (const [id, post] of Object.entries(s.posts))
-    if (post && !s.openPosts.includes(post)) s.posts[id] = null;
+    if (post && (!s.openPosts.includes(post) || !watchers.has(id))) s.posts[id] = null;
   refreshGateKeeper(s);
   planWinter(s);
   s.annals.push({

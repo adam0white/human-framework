@@ -26,6 +26,20 @@ export function freshLeaves(): Leaf[] {
   ];
 }
 
+/**
+ * Who keeps the Gate as of now, for the volume pages: the keeper while still on the wall, else the named heir if on
+ * the wall. The handover itself is written at the next winter (`refreshGateKeeper`), but a volume closes and the next
+ * opens at the thaw before it (owner's year-4 export: lamed Tamar's volume closed, and Volume II asked "Who keeps
+ * the Gate after Tamar?" again, with her epilogue line still the keeper's).
+ */
+function gateKeeperNow(s: WatchState): string | null {
+  for (const id of [s.gateKeeper, s.heir]) {
+    const p = id ? personOf(s, id) : undefined;
+    if (p && isWatcher(s, p)) return p.id;
+  }
+  return null;
+}
+
 /** Whether the current volume's question has resolved (checked at the thaw); sets its end text. */
 export function volumeResolved(s: WatchState): boolean {
   const v = s.volume;
@@ -43,8 +57,8 @@ export function volumeResolved(s: WatchState): boolean {
             : cast?.limp
               ? `${name}’s leg will not take the stair`
               : `${name} is too old for the stair`;
-      const next =
-        s.gateKeeper && s.gateKeeper !== v.who ? `; ${nameOf(s, s.gateKeeper)} keeps the Gate` : '';
+      const keeper = gateKeeperNow(s);
+      const next = keeper && keeper !== v.who ? `; ${nameOf(s, keeper)} keeps the Gate` : '';
       v.end = `${how}${next}.`;
       return true;
     }
@@ -141,7 +155,7 @@ function fateLine(s: WatchState, id: string, used: Set<string>): string {
   const kind =
     age < 15
       ? 'child'
-      : s.gateKeeper === id
+      : gateKeeperNow(s) === id
         ? 'keeper'
         : age >= RETIRE_AGE
           ? 'old'
@@ -150,14 +164,19 @@ function fateLine(s: WatchState, id: string, used: Set<string>): string {
             : married
               ? 'married'
               : 'single';
-  const lines = FATES[kind]?.[p.affect.mood.valence >= 0 ? 0 : 1] ?? [];
-  const n = lines.length;
-  const from = hashId(id) % Math.max(1, n);
-  for (let k = 0; k < n; k++) {
-    const line = lines[(from + k) % n];
-    if (line && !used.has(line)) {
-      used.add(line);
-      return line;
+  const mood = p.affect.mood.valence >= 0 ? 0 : 1;
+  const lines = FATES[kind]?.[mood] ?? [];
+  const from = hashId(id) % Math.max(1, lines.length);
+  // Their mood's lines first, then the other mood's, before any line is said twice (owner's year-4 export: six
+  // parents shared three lines, so two of them were said three times in one epilogue).
+  for (const row of [lines, FATES[kind]?.[1 - mood] ?? []]) {
+    const n = row.length;
+    for (let k = 0; k < n; k++) {
+      const line = row[(from + k) % n];
+      if (line && !used.has(line)) {
+        used.add(line);
+        return line;
+      }
     }
   }
   return lines[from] ?? '';
@@ -181,7 +200,8 @@ export function closeVolume(s: WatchState, end?: string): void {
 /** Opens the next volume with a question drawn from the living cast. */
 export function openVolume(s: WatchState): void {
   const n = s.volume.n + 1;
-  const keeper = s.gateKeeper ? personOf(s, s.gateKeeper) : undefined;
+  const now = gateKeeperNow(s);
+  const keeper = now ? personOf(s, now) : undefined;
   let v: Volume;
   if (keeper && ageOf(keeper, s.minute) >= 45)
     v = {

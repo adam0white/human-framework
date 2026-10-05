@@ -1115,6 +1115,9 @@ export function maybeLimp(s: WatchState, p: Person): void {
   const worst = Math.max(0, ...p.body.injuries.map((i) => i.severity));
   if (worst < 0.55 || nextRandom(s) >= 0.3) return;
   v.limp = true;
+  // Off the wall for good, so no standing posting either (owner's year-4 export: lamed Tamar kept gate-1 for a
+  // year, and a second watcher was posted on top of her).
+  s.posts[p.id] = null;
   chronicle(
     s,
     'loss',

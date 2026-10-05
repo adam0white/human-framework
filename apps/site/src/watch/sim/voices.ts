@@ -82,12 +82,15 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
   const tells: Tell[] = [];
   let dozeTold = false;
   const used = new Set<string>();
+  // Only this dawn's speakers keep a last line: a lamed, retired or absent watcher's old words do not linger.
+  const lastVoices = s.lastVoices;
+  s.lastVoices = {};
   for (const p of s.community.people) {
     if (!isWatcher(s, p)) continue;
     const id = p.id;
     const v = villager(s, id);
     const said: string[] = [];
-    const last = s.lastVoices[id] ?? '';
+    const last = lastVoices[id] ?? '';
     const say = (salt: string, lines: string[]) => {
       const l = pickFresh(s, id, salt, lines, used, last);
       used.add(l);
@@ -164,8 +167,9 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
               [
                 `“They came right up under me at ${theSec(shaken.section)}. I keep hearing them.”`,
                 `“I could hear them breathing under ${theSec(shaken.section)}.”`,
-                // Only someone still on the wall at dawn can say they watched till dawn.
-                home || refused
+                // Only someone still on the wall at dawn can say they watched till dawn (owner's year-4 export:
+                // Mara went home to sleep and still said she "didn't blink till dawn").
+                home || refused || slept
                   ? `“Something came to the foot of ${theSec(shaken.section)}. I didn’t stay to see it.”`
                   : `“Something came to the foot of ${theSec(shaken.section)}. I didn’t blink till dawn.”`,
               ],
@@ -281,7 +285,9 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
           '“I could sleep a week.”',
           '“The last hour was the longest.”',
         ]);
-      else if (v.newcomer)
+      // "They watch me more than the dark" is a first winter's line (owner's year-4 export: Ruslan, in his fourth
+      // winter, still said it). Someone who came between winters (night 0) has their first winter the next year.
+      else if (v.newcomer && s.year <= v.comes.year + (v.comes.night > 0 ? 0 : 1))
         say('new', [
           '“Quiet. They watch me more than the dark.”',
           '“Nobody spoke to me all night. That’s all right.”',
