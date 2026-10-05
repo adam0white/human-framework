@@ -2,7 +2,7 @@
 
 2026-09-07. Scoped research and design recommendation for a longer, single-person pump-repair shift. This note adds no runtime mechanism or religious mapping. Scientific findings, implemented arithmetic, and authored gameplay choices are separate below.
 
-**Later empirical check, 2026-09-08:** the [completed learning pilot](../docs/learning-pilot-results.md) adds a source-frozen 55-person chronological comparison. Exponential has no clear forecast advantage over the recent-ten performance mean, and individual/aggregate ordering differs. This narrows the curve claim without identifying latent repair skill or calibrating a minute-based rule. The following 2026-09-07 software probe remains its original synthetic evidence; the subsequent [practice-incentive study](../docs/practice-incentive-results.md) is complete with productive controls and no mechanical repair. App 0.14.1 explains the existing practice/light-work rules; the subsequent [Camp reconsideration comparison](../docs/camp-reconsideration-results.md) is also complete and unpromoted, preserving earlier frames, delayed roofs and retained practice. The user has paused scheduled progression for joint review.
+**Later empirical check, 2026-09-08:** the [completed learning pilot](../archive/v0/docs/learning-pilot-results.md) adds a source-frozen 55-person chronological comparison. Exponential has no clear forecast advantage over the recent-ten performance mean, and individual/aggregate ordering differs. This narrows the curve claim without identifying latent repair skill or calibrating a minute-based rule. The following 2026-09-07 software probe remains its original synthetic evidence; the subsequent [practice-incentive study](../archive/v0/docs/practice-incentive-results.md) is complete with productive controls and no mechanical repair. App 0.14.1 explains the existing practice/light-work rules; the subsequent [Camp reconsideration comparison](../archive/v0/docs/camp-reconsideration-results.md) is also complete and unpromoted, preserving earlier frames, delayed roofs and retained practice. The user has paused scheduled progression for joint review.
 
 ## Recommendation
 
@@ -14,7 +14,7 @@ The immediate implementation can retain the current practice equation. Add infor
 
 ## What the present component does
 
-Inspected baseline: commit `b3dcad6459b47bb8cf124beab62685c97c55175b`, human component `0.1.0`. [Model reference](../docs/model-reference.md), [public human boundary](../src/human/index.js), and [roadmap](../docs/roadmap.md) are the relevant local contracts.
+Inspected baseline: commit `b3dcad6459b47bb8cf124beab62685c97c55175b`, human component `0.1.0`. [Model reference](../archive/v0/docs/model-reference.md), [public human boundary](../archive/v0/src/human/index.js), and [roadmap](../docs/roadmap.md) are the relevant local contracts.
 
 ```text
 skillAfter = skillBefore + (1 − skillBefore) × (1 − exp(−0.008 × 0.65 × permittedPracticeMinutes))
@@ -52,7 +52,7 @@ Executed against the baseline on 2026-09-07:
 | Frozen skill; earlier attempts failed | 0.55 | 0 / 0.45 | 81.608% | 817 |
 | Frozen skill; earlier attempts completed | 0.55 | 0 / 0.45 | 81.608% | 817 |
 
-The [reproducible runner](../scripts/learning-probe.js) and [source-identified artifact](../artifacts/learning-probe.json) independently reproduce these rows with `node scripts/learning-probe.js`. The artifact retains all retest quantiles and successful seed IDs; assertions verify equal body/time and the outcome-label null.
+The [reproducible runner](../archive/v0/scripts/learning-probe.js) and [source-identified artifact](../archive/v0/artifacts/learning-probe.json) independently reproduce these rows with `node scripts/learning-probe.js`. The artifact retains all retest quantiles and successful seed IDs; assertions verify equal body/time and the outcome-label null.
 
 The probability difference is **8.834 percentage points**. Shared draws changed 85 outcomes from failure to success and none in the other direction. Reproduction of the retest draws: for integer seeds 1–1000, SHA-256 the UTF-8 string `learning-probe-retest-v1:${seed}`; interpret the first four bytes as an unsigned big-endian integer; divide by `4294967296`; success is `u < probability`. Each row uses the same quantiles. Practice exposure uses the lifecycle and defaults above; the retest does not advance time or consume another attempt.
 

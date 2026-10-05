@@ -1,6 +1,6 @@
 # What a reusable cooperation component should mean
 
-Research update: 2026-09-07. This targeted pass supports the [MVP evidence lanes](../docs/superpowers/plans/2026-09-07-mvp-evidence-lanes.md). It is a comparison of candidate abstractions and selected evidence, not a systematic review or a calibrated social model. Existing live courtyard and Common Ground rules remain unchanged.
+Research update: 2026-09-07. This targeted pass supports the [MVP evidence lanes](../archive/v0/docs/superpowers/plans/2026-09-07-mvp-evidence-lanes.md). It is a comparison of candidate abstractions and selected evidence, not a systematic review or a calibrated social model. Existing live courtyard and Common Ground rules remain unchanged.
 
 ## The distinction that matters
 
