@@ -235,7 +235,7 @@ export const STYLES: Record<string, PlayOpts> = {
   Guardian: {
     choose: guardian,
     pauseEvery: 30,
-    // The best whisper pair of the earlier passes (Walk (Urge) + shift); the order matters, see §13.
+    // The best whisper pair of the earlier passes (Walk (Urge) + shift); the order matters, see voice.md §14.
     whispers: [w('walk', 'urge', 'safety'), w('extra', 'mention', 'duty')],
   },
   // Tenth pass: the bad players use the tempting words (Osman can wait, stay out late with Rıza).

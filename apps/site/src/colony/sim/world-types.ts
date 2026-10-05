@@ -15,9 +15,9 @@ export type Minute = number;
 export const START_CLOCK = 5 * 60;
 /** End of the two-day run (Day 3 05:00). "Another day" raises a game's own `endMinute` to `DAY3_END`. */
 export const END_MINUTE: Minute = 2880;
-/** End of the optional third day (Day 4 05:00, v2 plan §12). */
+/** End of the optional third day (Day 4 05:00, colony.md §6). */
 export const DAY3_END: Minute = 4320;
-/** Default pace: 8 sim minutes per real second at 1× (v2 plan §5: one day in 3 min, the run in 6). */
+/** Default pace: 8 sim minutes per real second at 1× (colony.md §2: one day in 3 min, the run in 6). */
 export const SIM_MINUTES_PER_SECOND = 8;
 
 export function clockOf(m: Minute): { day: number; hour: number; minute: number; minuteOfDay: number } {
@@ -97,7 +97,7 @@ export const STORM_END = at(3, 3, 0);
 export const SHUTTER_AVAILABLE = WARNING_AT;
 /** From here an order to an unfinished roof shutters it: a roof stage can no longer be finished before the storm. */
 export const SHUTTER_ROOF_FROM = STORM_START - 60;
-/** Scripted storm meals (v2 plan §2): each living villager takes one meal from the store, if one is left. */
+/** Scripted storm meals (colony.md §2): each living villager takes one meal from the store, if one is left. */
 export const STORM_SUPPER = at(2, 19, 30);
 export const DAWN_MEAL = at(3, 4, 45);
 
@@ -200,7 +200,7 @@ export interface JobSpec {
 export type SkillTag = 'builder' | 'cook' | 'forester';
 
 /**
- * Job table (spec §2 flows, §4 Classic rates, v2 plan §2). Yields are shared: the Human host reads the same
+ * Job table (colony.md §2 flows, §4 Classic, §10 numbers). Yields are shared: the Human host reads the same
  * numbers. Rates: grain 3 per hour, timber 2 per hour, the cedar 3 in one felling, water 2 per draw, cooking
  * 2 grain + 1 water → 4 meals in 40 min. Build stages are priced by `STAGE_COST` (walls cheap, roof dear).
  */
@@ -317,11 +317,11 @@ export const JOBS: Record<ActionId, JobSpec> = {
 export const HOUSE_STAGES = 10;
 export const BEAM_STAGE = 7;
 export const ORDER_LIFETIME = 120;
-/** The Day-3 store-room (v2 plan §12): six stages priced like walls, no beam. */
+/** The Day-3 store-room (colony.md §6): six stages priced like walls, no beam. */
 export const STOREROOM_STAGES = 6;
 
 /**
- * Stage pricing (v2 plan §2). `work` is Classic work-minutes at base speed; the Human host turns the same price
+ * Stage pricing (colony.md §10). `work` is Classic work-minutes at base speed; the Human host turns the same price
  * into progress per 60-minute session (`HOST.buildRate`). Walls are cheap, the roof dear, so a village that works
  * the house all day roofs it just before the storm.
  */
@@ -529,7 +529,7 @@ export interface SideWorld {
   deaths: number;
   /** Villager currently drawing water (one at a time), or null. */
   wellUser: VillagerId | null;
-  /** Day-3 store-room stages built, or null while there is no store-room project (v2 plan §12). */
+  /** Day-3 store-room stages built, or null while there is no store-room project (colony.md §6). */
   storeroom: number | null;
   /** House stages the storm has taken (at most 4). */
   decayed: number;
@@ -555,7 +555,7 @@ export function createSideWorld(): SideWorld {
   };
 }
 
-/** Storm decay (v2 plan §2, assumed): one stage per two storm hours, at most this many in all. */
+/** Storm decay (colony.md §2, assumed): one stage per two storm hours, at most this many in all. */
 export const STORM_DECAY_MAX = 4;
 
 /**
@@ -575,11 +575,11 @@ export function applyWorldMinute(world: SideWorld, m: Minute): void {
   }
 }
 
-/** Villagers whose own house is the one being built (v2 plan §11). */
+/** Villagers whose own house is the one being built (colony.md §2). */
 export const HOUSE_FAMILY: readonly VillagerId[] = ['idris', 'samira'];
 
 /**
- * Where a villager sleeps and shelters (v2 plan §11). From the storm on, Idris and Samira live in the new house
+ * Where a villager sleeps and shelters (colony.md §2). From the storm on, Idris and Samira live in the new house
  * if it has its roof, else in the crowded masjid. Everyone else keeps their own home.
  */
 export function homeOf(id: VillagerId, world: Pick<SideWorld, 'house'>, minute: Minute): PlaceId {

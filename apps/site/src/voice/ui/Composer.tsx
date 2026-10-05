@@ -1,5 +1,5 @@
 /**
- * The composer (plan §6.3): leaning, options ranked by his own utility, the prefill line, Mention / Urge, Insist
+ * The composer (voice.md §6): leaning, options ranked by his own utility, the prefill line, Mention / Urge, Insist
  * with its price, one optional reason, a live telegraph of his answer, then Say it or Say nothing.
  * Keyboard: 1–6 pick an option, M / U strength, I insist, D H S A T reasons, Enter says it, Esc says nothing.
  */

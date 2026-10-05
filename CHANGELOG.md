@@ -63,7 +63,7 @@ under Changed.
   continue under the current rules (the 1.7.0 prayer rules, the 1.9.0 omission rule), so they do not replay what the
   old engine would have done next. Saves older than 1.4.0 are refused. `restore` is stricter about crafted saves: a
   non-finite `now`, or one beyond `MAX_MINUTE`, is refused, and every list and value is held to its live bound and
-  range ([security review](https://github.com/adam0white/human-framework/blob/main/docs/reviews/2026-10-04-h2-security.md)); a save the engine wrote is unchanged.
+  range ([security review](https://github.com/adam0white/human-framework/blob/main/docs/reviews/2026-10-04-h2-summary.md#security)); a save the engine wrote is unchanged.
 - **Renamed.** `consolidate` → `foldGists`; `enableSkillConsolidation` → `enableSkillRetention`; `underWay` →
   `isUnderWay`; `believed` → `believedValue`; the skills primitive `observe` → `learnByWatching` (the composite
   `observeSkill` is unchanged); `RoutineLifecourse` → `LifecourseOptions` (it was a copy); `AmbientState.now` →
@@ -84,7 +84,7 @@ under Changed.
 - `setRetention(p, { trace?, chronicleDays? })`, `PersonSpec.retention` and the optional `Person.retention`: per-person
   bounds for hosts that live people sparsely over decades. A shorter trace (0 keeps none) and day records bounded by
   age as well as count (dropped days fold into the yearbook at once). No decision changes. Game 3 uses it to halve
-  its save pages ([performance review](https://github.com/adam0white/human-framework/blob/main/docs/reviews/2026-10-04-h2-perf.md)).
+  its save pages ([performance review](https://github.com/adam0white/human-framework/blob/main/docs/reviews/2026-10-04-h2-summary.md#performance)).
 - `MAX_MINUTE`, the largest minute `restore` accepts.
 
 - Family (`family/`, HF 2.0 L2): `conceptionChance`, `conceive`, `pregnancyDue`, `deliver` (pregnancy and birth as

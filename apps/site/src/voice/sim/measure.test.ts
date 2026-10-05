@@ -1,5 +1,5 @@
 /**
- * The balance table of docs/games/voice-build.md §13, as a probe. Skipped in `npm test`; run with
+ * The balance tables of docs/games/voice.md §14, as a probe. Skipped in `npm test`; run with
  * `VOICE_MEASURE=1 npx vitest run apps/site/src/voice/sim/measure.test.ts --silent=false` to print it.
  * `VOICE_SEEDS=7,1,2` picks the seeds (default: the shipped seed and four more).
  */

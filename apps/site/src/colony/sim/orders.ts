@@ -61,7 +61,7 @@ export interface InferContext {
   minute: Minute;
   house: Pick<HouseState, 'stage' | 'shuttered'>;
   cedarFelled: boolean;
-  /** Day-3 store-room stages built, when that project is open (v2 plan §12). */
+  /** Day-3 store-room stages built, when that project is open (colony.md §6). */
   storeroom?: number | null;
 }
 

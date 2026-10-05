@@ -80,7 +80,7 @@ export const HOST = {
     'take-grain': 15,
     rest: 15,
   } as Record<string, number>,
-  /** Cooking one pot (shared with Classic, v2 plan §2): 2 grain + 1 water → 4 meals. */
+  /** Cooking one pot (shared with Classic, colony.md §10): 2 grain + 1 water → 4 meals. */
   cookGrain: JOBS.cook.consumes?.grain ?? 2,
   cookWater: JOBS.cook.consumes?.water ?? 1,
   cookMeals: JOBS.cook.yields?.meals ?? 4,
@@ -95,12 +95,12 @@ export const HOST = {
   rawFood: 0.3,
   /**
    * Stages of progress per 60-minute build session: base + gain × building skill (× quality), by stage kind
-   * (v2 plan §2). These are `STAGE_COST` work at 0.6 + 0.8 × skill work-minutes per minute: 36/W and 48/W.
+   * (colony.md §5). These are `STAGE_COST` work at 0.6 + 0.8 × skill work-minutes per minute: 36/W and 48/W.
    */
   buildRate: { wall: { base: 0.3, gain: 0.4 }, roof: { base: 0.06, gain: 0.08 } },
   /** Timber the beam takes (stage timber comes from `nextStageCost`). */
   beamTimber: 2,
-  /** Sleep in the crowded masjid restores less (v2 plan §11, assumed). */
+  /** Sleep in the crowded masjid restores less (colony.md §2, assumed). */
   crowdedSleep: 0.5,
   /** Carrying a grown man home takes this much strength (host physical fact). */
   carryStrength: 0.6,
@@ -653,7 +653,7 @@ export class ColonyHostWorld implements World {
       });
     }
     this.weatherRisk(out, m);
-    // In the storm the store is eaten where people shelter (v2 plan §2): no walk, no fire.
+    // In the storm the store is eaten where people shelter (colony.md §2): no walk, no fire.
     if (m >= STORM_START && m < STORM_END && w.resources.meals > 0) {
       out.push({
         id: 'eat-shelter',
@@ -1021,7 +1021,7 @@ export class ColonyHostWorld implements World {
     }
   }
 
-  /** Progress one full build session adds at the stage under way (walls fast, roof slow; v2 plan §2). */
+  /** Progress one full build session adds at the stage under way (walls fast, roof slow; colony.md §5). */
   private buildRate(p: Person): number {
     const w = this.world;
     const kind = w.storeroom !== null ? 'wall' : stageKind(w.house.stage + 1) === 'roof' ? 'roof' : 'wall';
@@ -1230,7 +1230,7 @@ export class ColonyHostWorld implements World {
     }
     if (m === STORM_SUPPER || m === DAWN_MEAL) this.stormMeal(t);
     if (m === STORM_START && w.house.stage < HOUSE_STAGES) {
-      // No roof of their own: Idris and Samira shelter and sleep in the crowded masjid (v2 plan §11).
+      // No roof of their own: Idris and Samira shelter and sleep in the crowded masjid (colony.md §2).
       const family = HOUSE_FAMILY.filter((id) => this.person(id)?.body.alive);
       this.queue(family, {
         at: t,
@@ -1286,7 +1286,7 @@ export class ColonyHostWorld implements World {
     }
   }
 
-  /** Scripted storm meal (v2 plan §2): each living villager takes one meal from the store, if one is left. */
+  /** Scripted storm meal (colony.md §2): each living villager takes one meal from the store, if one is left. */
   private stormMeal(t: number): void {
     const w = this.world;
     for (const o of this.community.people) {

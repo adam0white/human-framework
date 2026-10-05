@@ -2,7 +2,7 @@
 
 Prepared 2026-09-06 (America/Chicago). This is a scoped research and design synthesis, not a systematic review of every relevant discipline, an implemented engine, or an empirically calibrated model.
 
-**2026-09-07 update:** the initial-access account below is preserved as dated history. The user subsequently supplied both full historical reports as local Markdown; both were read, their 63 bibliography entries extracted, and high-consequence claims checked. See the [historical source audit](historical-source-audit.md) and [machine-readable inventory](historical-sources.json). A working uncalibrated MVP now exists; see the [current README](../README.md). Neither the new source access nor software execution upgrades the claims into a validated human model.
+**2026-09-07 update:** the initial-access account below is preserved as dated history. The user subsequently supplied both full historical reports as local Markdown; both were read, their 63 bibliography entries extracted, and high-consequence claims checked. See the [historical source audit](historical-source-audit.md) and [machine-readable inventory](historical-sources.json). A working uncalibrated MVP now exists; see the [v0 README](../archive/v0/README.md). Neither the new source access nor software execution upgrades the claims into a validated human model.
 
 ## Authority and provenance
 

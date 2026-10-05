@@ -1,10 +1,10 @@
 # Faculty inventory
 
-2026-10-04, against `packages/human/src` at engine 1.6.0 / HF 1.1.0. This is the single list of the human faculties HF aims to model, with each one's status in the code. Sections follow the twelve coverage responsibilities of the original research proposal ([archive/v0/docs/framework-proposal.md](../archive/v0/docs/framework-proposal.md) §4–5), with the evidence screen in [research/empirical-models.md](../research/empirical-models.md) (§n, source S-numbers) and the faith constraints in [research/islamic-foundations.md](../research/islamic-foundations.md). Engineering, narration and release status are in [hf-status.md](hf-status.md); the Goal 2 targets L1–L6 are in [games/watch.md](games/watch.md).
+2026-10-05, against `packages/human/src` at engine 2.0.0 / HF 2.x (2.0.0 released, 2.1.0 unreleased). This is the single list of the human faculties HF aims to model, with each one's status in the code. Sections follow the twelve coverage responsibilities of the original research proposal ([archive/v0/docs/framework-proposal.md](../archive/v0/docs/framework-proposal.md) §4–5), with the evidence screen in [research/empirical-models.md](../research/empirical-models.md) (§n, source S-numbers) and the faith constraints in [research/islamic-foundations.md](../research/islamic-foundations.md). What is next, including the missing and partial faculties summarised, is in [roadmap.md](roadmap.md); engineering is in [framework.md](framework.md); the Goal 2 targets L1–L6 are in [games/watch.md](games/watch.md).
 
-**Status.** **Done**: exported, wired into the composite (`person.ts`) or driver (`sim/`), tested. **Partial**: exists but unwired, opt-in only, or missing a named piece. **Missing**: nothing in the code. **Excluded**: deliberately not modelled, by an AGENTS.md rule or a research decision (the reason is given). Every Done/Partial row was checked by reading the module, not the docs. Paths are relative to `packages/human/src/`.
+**Status.** **Done**: exported, wired into the composite (`person.ts`) or driver (`sim/`), tested. **Partial**: exists but unwired, opt-in only, or missing a named piece. An opt-in faculty the driver runs once a host enables it for a person (mental breaks, downing) counts as Done when that per-person switch is the intended use; an opt-in faculty off by default for every host, waiting for long runs (gists, yearbook, character change, chronic onsets), stays Partial. **Missing**: nothing in the code. **Excluded**: deliberately not modelled, by an AGENTS.md rule or a research decision (the reason is given). Every Done/Partial row was checked by reading the module, not the docs. Paths are relative to `packages/human/src/`.
 
-**Count: 75 Done, 33 Partial, 28 Missing, 6 Excluded (142 rows).**
+**Count: 79 Done, 34 Partial, 23 Missing, 6 Excluded (142 rows).**
 
 ## 1. Bodily life and regulation
 
@@ -42,7 +42,7 @@
 | Semantic knowledge | Partial | beliefs/beliefs.ts `believe`, `credence` | Propositions with credence; no abstraction from episodes, no item-level knowledge | §3 |
 | Procedural memory | Done | skills/, habits/ (see §10) | — | — |
 | Autobiography | Partial | chronicle/chronicle.ts `closeDay`, `narrateChronicle`; 1.8.0 yearbook `enableYearbook`, `foldDay`, `yearRecord` | Opt-in; days leaving the 120-day chronicle (and routine days) fold into year records (≤ 150 years), but nothing narrates a year | — |
-| Consolidation into lasting gists | Partial | memory/memory.ts `enableGists`, `consolidate`, `gistsFor`; cognition/ `memory` term | Opt-in; a fear learned at 20 still shapes choices at 40 (test/longlife.test.ts). Gists are not retold in conversation | Brainerd & Reyna (fuzzy trace) |
+| Consolidation into lasting gists | Partial | memory/memory.ts `enableGists`, `foldGists`, `gistsFor`, `retell`; cognition/ `memory` term | Opt-in (`enableGists`, or `PersonSpec.enable.gists` in 2.1); a fear learned at 20 still shapes choices at 40 (test/longlife.test.ts). Gists pass to others only through the host-called `retell`, not in conversation; no distortion in retelling | Brainerd & Reyna (fuzzy trace) |
 | Interference, false memory, reconsolidation | Missing | — | memory.ts scope | — |
 
 ## 4. Reasoning and metacognition
@@ -71,7 +71,7 @@
 | Regulation as a practised capacity | Done | affect/affect.ts `regulate` (worship, reflection, rest) | — | §5 |
 | Mental breaks | Done | affect/crisis.ts `enableBreaks`, `breakHazard` (opt-in) | Host supplies behaviours | — |
 | Fear habituation | Missing | — | Courage comes only from learned expectations | — |
-| Expression, concealment, emotional contagion | Missing | — | — | §5 |
+| Expression, concealment, emotional contagion | Partial | impression.ts `outwardSigns`, `selfReport`; social/impressions.ts `setReserve`, `reserveOf` (2.0) | Outward signs of fatigue, pain, fear and mood, reduced by a reserve, reach only observers' impressions; no emotional contagion, no deliberate display | §5 |
 
 ## 6. Needs and desires
 
@@ -105,10 +105,10 @@
 | Intention recorded apart from the act | Done | conscience/ `recordDeed` | — | Bukhari 1 |
 | Breach, guilt, repentance, repair | Done | conscience/ `repent`, `recordRepair`; affect/ `release` | No acceptance computed (by rule) | islamic-foundations |
 | Judging others' acts | Partial | social/social.ts `judge` | No habituation (findings.md) | — |
-| Worship: prayer windows, Ramadan fast, Eid | Partial | agenda/prayer.ts `prayerWindows`, `ramadanFast`, `eidPrayer` | Fajr ends at Dhuhr, not sunrise (R1) | prayer-times-sources |
-| Make-ups (qada) | Partial | agenda/ `owedMakeUps`, `scheduleMakeUp` | Fasts only; prayer debt is R1 | fasting-sources |
-| Blame lifted for a duty missed asleep or in a break | Missing | — | Decided in research/decisions.md, not coded | decisions.md |
-| Conviction and character changing over a life (moral development) | Missing | — | Set at creation (conscience.ts, birth.ts) | proposal §5 |
+| Worship: prayer windows, Ramadan fast, Eid | Done | agenda/prayer.ts `prayerWindows` (Fajr ends at sunrise, 1.2.0), `ramadanFast`, `eidPrayer`, `eidWindow`, `makruhWindows` | The host supplies the prayer times | prayer-times-sources |
+| Make-ups (qada) | Done | agenda/ `owedMakeUps`, `scheduleMakeUp` (missed obligatory prayers and broken obligatory fasts, 1.2.0) | Fidya and kaffara not modelled | fasting-sources |
+| Blame lifted for a duty missed asleep or in a break | Done | agenda/ `missedExcuse` (asleep throughout or downed: blame lifted, debt kept; 1.2.0) | A mental break stays accountable, as decided | decisions.md |
+| Conviction and character changing over a life (moral development) | Partial | family/ `raise` → conscience/ `understandNorm` (a minor's norm understanding and values follow the household's lived example); character/ `enableCharacterChange` (traits and values, opt-in) | An adult's norm understanding and conviction do not change from experience | proposal §5 |
 | Divine acceptance, worth, ruh quantities; RNG named qadar | Excluded | — | AGENTS.md rule | islamic-foundations |
 | Qalb, nafs, fitrah, ʿaql as state variables | Excluded | — | Research decision: no scalar; shown through conviction, regulation, repentance | proposal §5 |
 
@@ -119,7 +119,7 @@
 | Assent: vetoes, hysteresis, optional softmax | Done | will/will.ts `resolveChoice` | — | — |
 | Outside voices: typed verdicts, insist, counter-offers | Done | will/ `resolveChoice`, `predictResponse` | — | — |
 | Trust and pressure per voice; standing advice | Done | will/ `learnFromVoice`, `rememberAdvice` | — | — |
-| Direct command | Done | person.ts `command`, `releaseCommand`, `previewCommand` | No game uses it yet | — |
+| Direct command | Done | person.ts `command`, `releaseCommand`, `previewCommand` | — | — |
 | Self-control without a willpower fuel | Done | will/will.ts, habits/habits.ts, cognition/ effort term | — | §6 S17 |
 | Task performance vs learned competence | Done | skills/ `successChance` (capacity, support) | — | §3 |
 | A single willpower reservoir | Excluded | — | Research decision (ego depletion) | §6 S17 |
@@ -130,21 +130,21 @@
 |---|---|---|---|---|
 | **Experience as proficiency**: practice minutes per skill, diminishing gains | Done | skills/skills.ts `practise`, called by person.ts `finish` for any offer with `skill` | Uncalibrated | §3; proposal §7 |
 | Desirable difficulty; failure teaches at 0.6 | Done | skills/ `challengeFactor`, `practise` | — | learning-through-work |
-| Rust: forgetting with a retention floor | Done | skills/ `skillLevel` (half-life 180 d, 60 % floor); 1.8.0 opt-in `enableSkillConsolidation` lengthens the half-life with practice hours | Without consolidation, decades of daily practice plateau and decline (findings.md) | learning-source-followup Q29 |
+| Rust: forgetting with a retention floor | Done | skills/ `skillLevel` (half-life 180 d, 60 % floor); 1.8.0 opt-in `enableSkillRetention` lengthens the half-life with practice hours | Without retention on, decades of daily practice plateau and decline (findings.md) | learning-source-followup Q29 |
 | Age-dependent learning rate | Done | lifecourse/ `lifeModifiers().learning` → `practise` | — | §7 S19 |
 | Domain-specific age curves (language, motor, knowledge) | Done | lifecourse/development.ts `learningMultiplier(age, domain)`; `Affordance.skill.domain` → person.ts `learningFor` in `finish`, `observeSkill`, longrun | — | §7 S19 |
 | **Learning within a field** (near transfer between related skills) | Done | skills/ `SkillTransfer`, `skillFamilies`; `finish(..., { transfer })`, `World.skillTransfer`, `RoutineOptions.transfer` | No default map (research decision); no game supplies one yet | §3 S8 |
 | **Learning outside a field**: taking up any skill unrelated to one's work | Done | skills/ `practise` on any skill id, from base 0.05 | No role or field restricts what can be learned | §3 |
 | **Far transfer**: gains in one field raising an unrelated one, or global XP | Excluded | — | Research decision: default zero. A host may still declare any link in `SkillTransfer` and it is honoured (row above) | §3 S8–S9; proposal §7 |
 | Negative transfer, interference between skills | Missing | — | skills.ts scope | proposal §7 |
-| Aptitude per skill (talent), passion | Missing | — | Watch L2; rimworld-gap §2 | §7 |
-| Practice quality as a learning input | Done | skills/ `qualityFactor` via `Outcome.practice.quality` / `RoutineActivity.practice` | Size is an assumption (0.5×–1.5×) | Ericsson 1993; Macnamara 2014 |
+| Aptitude per skill (talent), passion | Partial | family/ `aptitudeOf` (per-skill learning multiplier, read by person.ts `finish`, `observeSkill` and longrun); inherited through lifecourse/birth.ts `ChildSpec.aptitudes`; founders through `PersonSpec.family.aptitudes` | No passion or interest per skill; aptitude only scales learning speed | §7; F1 |
+| Practice quality as a learning input | Done | skills/ `practise` conditions, from `Outcome.practice.quality` / `RoutineActivity.practice` | Size is an assumption (0.5×–1.5×) | Ericsson 1993; Macnamara 2014 |
 | **Experience as expectation** (what an action does) | Done | memory/ `learnOutcome` | — | §6 S15 |
-| **Experience over years** | Partial | memory/ gists, chronicle/ yearbook, character/, skills/ consolidation, longrun.ts | Each piece is opt-in (`enableGists`, `enableYearbook`, `enableCharacterChange`, `enableSkillConsolidation`) | research/long-run-sources.md |
-| Skills aging (slower learning, elder decline) | Partial | lifecourse/lifecourse.ts `lifeModifiers().learning` falls after 30 | development.ts `elderDecline` unwired | §7 S19 |
-| Teaching, instruction | Done | skills/ `instructionFactor`, `instructionFrom(teacher, skill)` via `Outcome.practice.instruction`; also `successChance` `support` | No effect on the teacher; the host decides who teaches | VanLehn 2011 |
-| Observational learning, imitation | Done | skills/ `observe`; person.ts `observeSkill`, `Percept.demonstrates` | Teaches toward 0.6 × the model's level, never mastery; no imitation of choices | Bandura 1977; Ashford 2006 |
-| Learning from told experience | Partial | conversation/ `converse` → beliefs | Moves beliefs only, not expectations or fear (watch L2) | — |
+| **Experience over years** | Partial | memory/ gists, chronicle/ yearbook, character/, skills/ retention, longrun.ts | Each piece is opt-in (`enableGists`, `enableYearbook`, `enableCharacterChange`, `enableSkillRetention`, or `PersonSpec.enable` in 2.1) | research/long-run-sources.md |
+| Skills aging (slower learning, elder decline) | Partial | lifecourse/lifecourse.ts `lifeModifiers().learning` falls after 30; development.ts `learningMultiplier` per domain | development.ts `elderDecline` unwired; skill levels do not decline with old age, only with disuse | §7 S19 |
+| Teaching, instruction | Done | skills/ `instructionFrom(teacher, skill)` via `Outcome.practice.instruction` into `practise`; also `successChance` `support` | No effect on the teacher; the host decides who teaches | VanLehn 2011 |
+| Observational learning, imitation | Done | skills/ `learnByWatching`; person.ts `observeSkill`, `Percept.demonstrates` | Teaches toward 0.6 × the model's level, never mastery; no imitation of choices | Bandura 1977; Ashford 2006 |
+| Learning from told experience | Partial | conversation/ `converse` → beliefs; memory/ `retell` (told gists, 2.0) | `retell` passes lasting fears and losses but is host-called, not part of conversation; learned action expectations are never told | — |
 | Qualifications, roles, credentials | Missing | — | v0 had qualification records (below) | §8 |
 | Reflection that revises methods or commitments | Partial | agenda/ `revisePurposes` (neglect only) | No revision from evidence of failure | §6 |
 | Cue habits: formation, extinction, craving, ease | Done | habits/habits.ts `habitPull`, `withholdCued`, `habitEase` | No renewal after extinction | §6 S16 |
@@ -174,8 +174,8 @@
 | Language | Partial | narrate/ templates, `EN_LINES` | No generated language (LLMs kept out of the loop by rule) | — |
 | Joint activities | Partial | sim/ `proposeJoint`, `acceptJoint`, `jointSuccessChance` | Older paths one-sided (findings.md) | — |
 | Kinship and household | Partial | relationship roles; lifecourse/ `createChild` parents; partnering/ `kinship` (degrees from roles, 1.8.0) | No household unit (`family.raise` takes a caregiver list) | §8 |
-| Impressions of others (theory of mind) | Missing | — | Watch L6 | — |
-| The other's view of me | Missing | — | social.ts scope | — |
+| Impressions of others (theory of mind) | Done | social/impressions.ts `glimpse`, `observeAct`, `hear`, `acquaint`, `impressionOf`, `believedValue`; impression.ts `glimpseOf`, `acquaintWith`, `imagine`, `predictAs`, `previewCommandAs`; social/impressions.ts `companionSteadiness`, read by cognition/ as a `companion:<id>` term (2.0) | No inference between traits, stereotypes, projection of one's own state, or gossip about impressions | Brunswik lens; Funder RAM |
+| The other's view of me | Missing | — | Impressions run one way: nobody notices being watched or estimates what others believe of them (social/impressions.ts scope) | — |
 | Attachment | Partial | family/ `FamilyState.attachment`, moved by `raise` (1.8.0) | Read only by courtship warmth; no adult attachment styles or attachment-driven behaviour | F10–F12 |
 | Attraction, courtship, marriage | Done | partnering/ (1.8.0): `attraction`, `court`, `proposalOffers`, `canMarry`, `marry`, `widow` (sim/ `tellDeath` widows the spouse when a death is noticed), `familyVoices`, `MARRIAGE_NORMS` | Divorce and polygyny not modelled | F15–F21; research/marriage-sources.md |
 | A missed promise costs standing with the promisee | Missing | — | findings.md | — |
@@ -194,7 +194,7 @@
 | Upbringing: household values and norms | Done | lifecourse/birth.ts `ChildSpec.valueTransmission`, `normExposure`; family/ `raise` (ongoing, 1.8.0), called daily for minors by sim/ `liveCommunity` | Lived time (`stepCommunity`) does not call it; siblings, peers and schooling not modelled | §8; F7–F9 |
 | Physical and aptitude inheritance | Partial | lifecourse/birth.ts `ChildSpec.aptitudes`; family/ `aptitudeOf` (learning multiplier, 1.8.0) | Physical inheritance (build, height, health) not modelled | §7; F1 |
 | Death | Done | body/ `die` | — | — |
-| Chronic onsets and natural death by age | Partial | lifecourse/health.ts `chronicOnsets`, `mortalityEvent`; sim/ `StepOptions.lifecourse`; longrun `RoutineOptions.lifecourse` | Opt-in; run for 50 years in the routine control (test/longrun.test.ts), not in a lived multi-year community | — |
+| Chronic onsets and natural death by age | Partial | lifecourse/health.ts `chronicOnsets`, `mortalityEvent`; sim/ `StepOptions.lifecourse`, `LiveCommunityOptions.lifecourse`; longrun `RoutineOptions.lifecourse` | Opt-in; a settlement runs 50 years with both on (test/longrun.test.ts) | — |
 | Multi-year stepping | Done | longrun.ts `routineDay`, `liveRoutine`; sim/longrun.ts `liveCommunity`; person.ts `skip` | Routine days do not drain needs or decide; the host supplies routines and switches fidelity at midnight | — |
 | Partnering as the front end to birth | Done | partnering/ `marry`; family/ `conceive`, `deliver`; sim/ `birth` (1.8.0) | — | F14 |
 

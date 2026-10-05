@@ -1,4 +1,4 @@
-/** His ends (plan §1): things he holds, in his words, as his record. Not points; no pass or fail. */
+/** His ends (voice.md §3): things he holds, in his words, as his record. Not points; no pass or fail. */
 import { memo } from 'react';
 import type { EndView, UnaskedItem } from '../protocol.ts';
 import { Icon } from './Icon.tsx';

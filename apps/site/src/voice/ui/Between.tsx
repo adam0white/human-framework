@@ -1,5 +1,5 @@
 /**
- * Between days (plan §6.4): the day's chronicle, its strip, his ends, your trust, then the next step. Before a
+ * Between days (voice.md §7.3): the day's chronicle, its strip, his ends, your trust, then the next step. Before a
  * skip the player may leave up to two standing whispers, each with a strength and an optional reason, and sees
  * the cost before letting the days pass.
  */

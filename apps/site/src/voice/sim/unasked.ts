@@ -1,5 +1,5 @@
 /**
- * "He'd now do unasked" (seventh pass; the spec's dawn probe, voice.md §3, which the build plan had cut). For a
+ * "He'd now do unasked" (seventh pass; the spec's dawn probe, which the build had cut; voice.md §8). For a
  * few acts tied to his ends, the game keeps what he chose at his last decision where the act was open to him and
  * your voice was not part of the weighing: a real decision with no `you` suggestion in it, or a silent copy of the
  * next decision (the look-ahead's ghost, decided again with no suggestion) when your word stood. Any unasked choice

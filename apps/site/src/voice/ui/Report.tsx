@@ -1,5 +1,5 @@
 /**
- * The end report (plan §6.6), one panel that scrolls inside the viewport. No score, stars, or words about worth,
+ * The end report (voice.md §7.5), one panel that scrolls inside the viewport. No score, stars, or words about worth,
  * faith or acceptance. Keep listening resumes from Eid night; Replay restarts the seed; New town picks a new one.
  */
 import { useEffect, useRef } from 'react';

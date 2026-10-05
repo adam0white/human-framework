@@ -1,5 +1,5 @@
 /**
- * Why (plan §7): stacked term bars for the top three options of one decision, labelled as estimates, plus the
+ * Why (voice.md §8): stacked term bars for the top three options of one decision, labelled as estimates, plus the
  * memory it recalled and how a voice was answered. A drawer on desktop, a bottom sheet on phones.
  */
 import { useEffect, useRef } from 'react';

@@ -1,5 +1,5 @@
 /**
- * Game 2, *The Day You Say Nothing* (build plan docs/games/voice-build.md §6). One viewport, panels that scroll
+ * Game 2, *The Day You Say Nothing* (docs/games/voice.md §7). One viewport, panels that scroll
  * inside themselves. Desktop: ends and voices | the day with the composer docked | Halil. Phones: tabs plus a
  * bottom-sheet composer. Space toggles pause from every focus state.
  */

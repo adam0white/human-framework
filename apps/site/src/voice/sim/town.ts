@@ -762,7 +762,7 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
     // following the last fast, `first + days`): fasting on the day of Eid is widely held to be prohibited (Bukhari
     // 1990 / Muslim 1137 as cited by review 2026-10-03; sunnah.com returned 403, so not verified here and not
     // recorded in research/ yet). Skipping the day is a scheduling choice, not a ruling the framework applies.
-    // Note: docs/games/voice.md calls day 30 Eid; with these defaults (30 fasts from day 1) Eid is day 31.
+    // With these defaults (30 fasts from day 1) Eid is day 31 (docs/games/voice.md §5).
     // Missed prayers (qada, research/decisions.md) are offered quietly the same day, between Dhuhr and Asr: a window
     // with no disliked time in it (agenda/prayer.ts `makruhWindows`), at most `qadaPerDay` a day, at low importance.
     // A make-up left undone carries no blame and is offered again on a later day (agenda SCOPE, missed duties).

@@ -1,5 +1,5 @@
 /**
- * The range of Game 2 (voice-build.md §13, tenth pass): with only the player's tools, a bad voice ends the month
+ * The range of Game 2 (voice.md §14; tenth pass in §15): with only the player's tools, a bad voice ends the month
  * materially worse than silence (rent by Eid, family contact) and a good one materially better (smoke, Osman's
  * date), while his own will keeps some things out of the player's reach. Thresholds sit well inside the measured gaps (seeds 7, 1, 2, 3, 4 barely differ).
  * Eleventh pass: a player who also pushes against his prayer and fast meets the fast's veto and the omission rule.
@@ -109,7 +109,7 @@ describe('Game 2 range: how far the player can move the month', () => {
     expect(s.paidByEid).toBeGreaterThanOrEqual(300);
   });
 
-  // Eleventh pass (voice-build.md §13): the player's tools against his prayer and fast.
+  // Eleventh pass (voice.md §14, faith push): the player's tools against his prayer and fast.
   test('his faith practice holds against a faith-pushing player: the fast is never broken, the omission rule fires', () => {
     for (const n of ['Saboteur + faith', 'Faith only (Urge, insist)']) {
       const r = row(n);

@@ -1,5 +1,5 @@
 /**
- * Auto-pause beats (build plan §8), a closed list. `day-end` and `eid` are screens and always pause. With
+ * Auto-pause beats (voice.md §9), a closed list. `day-end` and `eid` are screens and always pause. With
  * Auto-pause on, `verdict` always pauses and the rest pause only outside a 20 sim-minute cooldown since the last
  * pause; inside it (or with Auto-pause off) they are logged and do not pause. `close-call` fires at most twice a day.
  *

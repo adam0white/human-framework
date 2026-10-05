@@ -1,5 +1,5 @@
 /**
- * Plain-JSON view models for Game 2 (build plan §7, §9): Halil's felt state, his ends, the voices, day strips and
+ * Plain-JSON view models for Game 2 (voice.md §8, §10): Halil's felt state, his ends, the voices, day strips and
  * the Why sheet. Everything here reads framework state and writes nothing. Words, not numbers, wherever the plan
  * hides a number from the player (other voices' trust, mood, importance).
  */

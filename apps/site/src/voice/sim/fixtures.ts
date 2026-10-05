@@ -1,5 +1,5 @@
 /**
- * Sample view models for the UI to build against before the worker is wired (build plan §12). Hand-written to
+ * Sample view models for the UI to build against before the worker is wired (voice.md §10). Hand-written to
  * match what the worker produces on the shipped seed; they are not read by the game itself.
  */
 import {
