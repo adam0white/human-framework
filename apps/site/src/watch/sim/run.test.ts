@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Input } from './night.ts';
 import { DUSK_RATE, Pacer, type Speed } from './pace.ts';
-import { endState, replay, WatchRun } from './run.ts';
+import { endState, replay, ruleHash, WatchRun } from './run.ts';
 import { nextRandom } from './state.ts';
 
 /**
@@ -77,9 +77,68 @@ describe('Night Watch input log and playtest export', () => {
     expect(JSON.stringify(b.state)).toBe(JSON.stringify(a.state));
   });
 
+  it('the rule hash ignores what is only told in words, and a change of rules moves it', () => {
+    const run = playScripted(2026, 1, 1);
+    const exp = run.export();
+    expect(exp.build).toBe('dev');
+    expect(typeof exp.framework).toBe('string');
+    const s = structuredClone(run.state);
+    expect(ruleHash(s)).toBe(exp.end.ruleHash);
+    // Words: the chronicle, an alert, the scout's line, a dawn voice, the pacing.
+    const line = s.chronicle[0];
+    if (line) line.text = `${line.text} (reworded)`;
+    s.alerts.push({ section: 'gate', kind: 'bell', text: 'A new line.', slowed: false, minute: s.minute });
+    s.warning = 'The scout says it differently now.';
+    s.slowUntil += 30;
+    s.pairings = s.pairings.map((p) => ({ ...p, told: true as const }));
+    expect(ruleHash(s)).toBe(exp.end.ruleHash);
+    expect(endState(s).fullHash).not.toBe(exp.end.fullHash);
+    // Rules: a sack, a draw from either stream, the rope's wear.
+    for (const change of [
+      (x: typeof s) => {
+        x.grain -= 1;
+      },
+      (x: typeof s) => {
+        x.rng += 1;
+      },
+      (x: typeof s) => {
+        x.world.rng += 1;
+      },
+      (x: typeof s) => {
+        x.rope.wear += 0.01;
+      },
+    ]) {
+      const t = structuredClone(s);
+      change(t);
+      expect(ruleHash(t)).not.toBe(exp.end.ruleHash);
+    }
+  });
+
   it('refuses an export from another rules version', () => {
     const exp = new WatchRun(1).export();
     expect(() => replay({ ...exp, scenario: exp.scenario + 1 })).toThrow(/scenario/);
+  });
+
+  it('loads a page saved by scenario 7: the new fields start fresh, and its export is marked as no longer replaying', () => {
+    const run = new WatchRun(5);
+    run.input({ k: 'start' });
+    run.input({ k: 'begin' });
+    for (let i = 0; i < 30; i++) run.step();
+    const page = run.snapshot();
+    const { bell: _b, ...older } = page.state;
+    const old = { ...page, scenario: 7, state: older as unknown as typeof page.state };
+    const resumed = WatchRun.resume(JSON.parse(JSON.stringify(old)));
+    expect(resumed.state.bell.rungAt).toBeLessThan(0);
+    expect(resumed.origin).toEqual({ scenario: 7, minute: page.state.minute });
+    expect(resumed.input({ k: 'bell' })).toBe(true);
+    for (let i = 0; i < 10; i++) resumed.step();
+    // Saved again and reopened, it keeps where it came from.
+    expect(WatchRun.resume(resumed.snapshot()).origin).toEqual(resumed.origin);
+    const exp = resumed.export();
+    expect(exp.origin?.scenario).toBe(7);
+    expect(() => replay(exp)).toThrow(/scenario 7 page/);
+    // Older pages than 7 are still refused.
+    expect(() => WatchRun.resume({ ...old, scenario: 6 })).toThrow(/scenario 6/);
   });
 
   it('a moment eases play to the tactical speed and then hands the chosen speed back', () => {

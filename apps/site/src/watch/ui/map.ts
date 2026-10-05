@@ -452,6 +452,17 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
     ctx.quadraticCurveTo(bx - r - 3, by - r * 1.6, bx - r - 3 + r, by + r * 0.6);
     ctx.closePath();
     ctx.fill();
+    // Its rope runs along the wall-walk, so the Keeper can pull it from any stretch.
+    if (winterUI && !f.rope.snapped) {
+      ctx.strokeStyle = 'rgba(160, 130, 90, 0.55)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([5, 3]);
+      ctx.beginPath();
+      ctx.moveTo(4, l.yWall - 3);
+      ctx.lineTo(w - 4, l.yWall - 3);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
   }
 
   // A stretch that came down in the thaw: a gap in the wall top with rubble at its foot.
@@ -491,7 +502,10 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   if (f.roused) {
     for (let i = 0; i < 9; i++) {
       const x = ((i + 0.5) / 9) * w;
-      const flick = 0.6 + 0.4 * Math.sin(o.now / 70 + i * 2);
+      // Brighter where the bell is louder: the Gate, and less each stretch away.
+      const sec = SECTION_IDS[Math.min(SECTION_IDS.length - 1, Math.floor((x / w) * SECTION_IDS.length))];
+      const loud = sec ? (f.bellCarry[sec] ?? 1) : 1;
+      const flick = (0.6 + 0.4 * Math.sin(o.now / 70 + i * 2)) * loud;
       ctx.fillStyle = `rgba(255, 170, 70, ${flick})`;
       ctx.beginPath();
       ctx.arc(x, l.yWall - 8, 3, 0, Math.PI * 2);

@@ -3,11 +3,15 @@
  * same seed and log give the same run whatever the real-time pacing was. The playtest export is the seed, the
  * log and the end state; `replay` rebuilds the end state from seed and log and is pinned by `run.test.ts`.
  * The full state holds every person's memory and is too long to paste, so the export's `end` is the game state
- * with each person summarised (`EndState`) plus a hash of the full state, which a replay must match exactly.
+ * with each person summarised (`EndState`) plus two hashes. `ruleHash` covers the rule state only (`ruleState`: what
+ * the rules decide, without the words they are told in), and a replay on a later build of the same scenario must
+ * match it. `fullHash` covers the whole state, words included; it matches only on the build that made the export,
+ * so a wording change does not break older exports (watch.md, Export provenance and hash policy).
  */
 import { impressionOf, readCapacities } from '@adam0white/human-framework';
+import { FRAMEWORK_PACKAGE_VERSION } from '../../shared/playtest.ts';
 import { applyInput, clockRuns, type Input, newGame, stepMinute } from './night.ts';
-import type { WatchState } from './state.ts';
+import { emptyBell, mixSeed, type WatchState } from './state.ts';
 
 /** A person as the export shows them: enough to read a run, not to resume it. */
 export interface PersonSummary {
@@ -30,8 +34,95 @@ export interface EndState extends Omit<WatchState, 'community' | 'keeper' | 'per
   people: PersonSummary[];
   /** What the Keeper believes of each watcher (cue, value, confidence). */
   keeperImpressions: ReturnType<typeof impressionOf>[];
-  /** FNV-1a of the full state JSON: a replay must reproduce it exactly. */
+  /** FNV-1a of `ruleState`: a replay of the same scenario must reproduce it, on any build. */
+  ruleHash: string;
+  /** FNV-1a of the full state JSON, words included: equal only on the build that made the export (advisory). */
   fullHash: string;
+}
+
+/**
+ * The rule state: what the rules decided, with nothing that is only told in words, so a change of wording leaves it
+ * alone and a change of rules does not (watch.md, Export provenance and hash policy). Kept: the clock and phase; the three RNG streams; grain and the
+ * year's grain; the winter's plan without its words (length, lead, twist, peak, the question's kind and people and
+ * whether it was met); the night's plan (lead, warned stretches, waves, spawns) and threats on the wall; postings,
+ * presses and places; the lantern, rope and bell; commands and asks by target and end; the village's people (ids,
+ * homes, usual posts, status, limp, parents), marks, Gate keeper and heir, pairings by who, with whom and until when,
+ * expecting mothers and newborns; the night history; moments by kind, person, minute and choice; each person's
+ * summary (`PersonSummary`) and the Keeper's impressions. Left out: the chronicle, alerts, dawn and day pages, the
+ * scout's words, notes, last voices, cards and the fair's offers (their texts), talks, volumes and leaves, and the
+ * pacing (`slowUntil`).
+ */
+export function ruleState(s: WatchState, people = summarise(s)): unknown {
+  const w = s.winter;
+  return {
+    minute: s.minute,
+    phase: s.phase,
+    night: s.night,
+    year: s.year,
+    winterNight: s.winterNight,
+    nightStart: s.nightStart,
+    rng: s.rng,
+    world: s.world.rng,
+    grain: s.grain,
+    yearGrain: s.yearGrain,
+    winter: {
+      nights: w.nights,
+      lead: w.lead,
+      twist: w.twist,
+      peak: w.peak,
+      question: w.question
+        ? { kind: w.question.kind, who: w.question.who, who2: w.question.who2, met: w.question.met }
+        : null,
+    },
+    leads: s.leads,
+    lead: s.lead,
+    warned: s.warned,
+    warnedAlso: s.warnedAlso,
+    leadCame: s.leadCame,
+    spawns: s.spawns,
+    tokens: s.tokens,
+    nextTokenId: s.nextTokenId,
+    called: s.called,
+    openPosts: s.openPosts,
+    posts: s.posts,
+    press: s.press,
+    postedAt: s.postedAt,
+    place: s.place,
+    letGo: s.letGo,
+    carried: s.carried,
+    homeThreat: s.homeThreat,
+    lantern: s.lantern,
+    rope: s.rope,
+    bell: s.bell,
+    commands: Object.fromEntries(
+      Object.entries(s.commands).map(([id, c]) => [id, c ? [c.cmd.affordanceId, c.until] : null]),
+    ),
+    asks: Object.fromEntries(
+      Object.entries(s.asks).map(([id, a]) => [
+        id,
+        a ? [a.sug.affordanceId ?? a.sug.action ?? null, a.until] : null,
+      ]),
+    ),
+    order: s.order,
+    cast: Object.fromEntries(
+      Object.entries(s.cast).map(([id, v]) => [
+        id,
+        [v.home, v.usual, v.status, v.limp ?? false, v.until ?? null, v.parents ?? []],
+      ]),
+    ),
+    marks: s.marks,
+    gateKeeper: s.gateKeeper,
+    heir: s.heir,
+    gateWilling: s.gateWilling,
+    pairings: s.pairings.map((p) => [p.who, p.with, p.until]),
+    expecting: s.expecting,
+    newborns: s.newborns,
+    nextBorn: s.nextBorn,
+    history: s.history,
+    moments: s.momentLog,
+    people,
+    keeperImpressions: s.community.people.map((p) => impressionOf(s.keeper, p.id, s.minute)),
+  };
 }
 
 function fnv(text: string): string {
@@ -45,10 +136,9 @@ function fnv(text: string): string {
 
 const r3 = (x: number): number => Math.round(x * 1000) / 1000;
 
-/** The export's view of a state (see the file comment). */
-export function endState(s: WatchState): EndState {
-  const { community, keeper, percepts: _p, ...rest } = s;
-  const people: PersonSummary[] = community.people.map((p) => ({
+/** Each person as the export shows them (`PersonSummary`). */
+function summarise(s: WatchState): PersonSummary[] {
+  return s.community.people.map((p) => ({
     id: p.id,
     now: p.now,
     activity: p.activity?.affordanceId ?? null,
@@ -76,16 +166,43 @@ export function endState(s: WatchState): EndState {
       trust: r3(r.trust),
     })),
   }));
+}
+
+/** The rule-state hash of a state (see `ruleState`). */
+export function ruleHash(s: WatchState): string {
+  return fnv(JSON.stringify(ruleState(s)));
+}
+
+/** The export's view of a state (see the file comment). */
+export function endState(s: WatchState): EndState {
+  const { community, keeper, percepts: _p, ...rest } = s;
+  const people = summarise(s);
   return {
     ...structuredClone(rest),
     people,
     keeperImpressions: community.people.map((p) => impressionOf(keeper, p.id, s.minute)),
+    ruleHash: fnv(JSON.stringify(ruleState(s, people))),
     fullHash: fnv(JSON.stringify(s)),
   };
 }
 
-/** Bump when rules change so an old export is not replayed against new rules. */
-export const WATCH_SCENARIO_VERSION = 7;
+/**
+ * Bump when rules change so an old export is not replayed against new rules. 8: the bell rings from the Gate for
+ * everyone in range, and world draws have their own streams (2026-10-05).
+ */
+export const WATCH_SCENARIO_VERSION = 8;
+
+/** The oldest scenario whose saved pages still load (`migrateSnapshot`). */
+export const OLDEST_LOADABLE_SCENARIO = 7;
+
+/**
+ * Where a run's log stops replaying from its seed: it was resumed from a page saved under an older scenario at this
+ * sim minute. The rules before that minute were the old ones, so the export is a record, not a replay.
+ */
+export interface Origin {
+  scenario: number;
+  minute: number;
+}
 
 export interface LogEntry {
   /** The sim minute the input applied at (before that minute resolved). */
@@ -97,10 +214,16 @@ export interface PlaytestExport {
   game: 'the-night-watch';
   phase: 'G3-4';
   scenario: number;
+  /** Commit of the deployed build (`/release.json`, filled in by the page), or 'dev'. */
+  build: string;
+  /** `@adam0white/human-framework` package version. */
+  framework: string;
   seed: number;
   inputs: LogEntry[];
   endMinute: number;
   end: EndState;
+  /** Set when the run was resumed from an older scenario's page: `replay` refuses such an export. */
+  origin?: Origin;
 }
 
 /**
@@ -112,6 +235,28 @@ export interface Snapshot {
   seed: number;
   log: LogEntry[];
   state: WatchState;
+  origin?: Origin;
+}
+
+/**
+ * Brings a page saved by an older scenario up to this one by shape only: the fields added since get their starting
+ * values, and the page is stamped with where it came from (`Origin`). The rules it was played under are not
+ * replayed. 7 → 8 adds the bell's state and the world stream. Older pages than `OLDEST_LOADABLE_SCENARIO` are refused. Pure.
+ */
+export function migrateSnapshot(snap: Snapshot): Snapshot {
+  if (snap.scenario === WATCH_SCENARIO_VERSION) return snap;
+  if (snap.scenario < OLDEST_LOADABLE_SCENARIO || snap.scenario > WATCH_SCENARIO_VERSION)
+    throw new Error(`save is scenario ${snap.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
+  const state = structuredClone(snap.state) as WatchState & Partial<Pick<WatchState, 'bell' | 'world'>>;
+  if (!state.bell) state.bell = emptyBell();
+  if (!state.world) state.world = { rng: mixSeed(state.seed) };
+  return {
+    scenario: WATCH_SCENARIO_VERSION,
+    seed: snap.seed,
+    log: snap.log,
+    state,
+    origin: snap.origin ?? { scenario: snap.scenario, minute: snap.state.minute },
+  };
 }
 
 export class WatchRun {
@@ -119,15 +264,17 @@ export class WatchRun {
   readonly log: LogEntry[] = [];
 
   readonly seed: number;
+  /** Set when this run was resumed from an older scenario's page (see `Origin`). */
+  readonly origin: Origin | undefined;
 
-  constructor(seed: number, from?: Snapshot) {
+  constructor(seed: number, saved?: Snapshot) {
     this.seed = seed;
-    if (from) {
-      if (from.scenario !== WATCH_SCENARIO_VERSION)
-        throw new Error(`save is scenario ${from.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
+    if (saved) {
+      const from = migrateSnapshot(saved);
       if (from.seed !== seed) throw new Error('save is from another seed');
       this.state = structuredClone(from.state);
       this.log = from.log.map((e) => ({ m: e.m, i: { ...e.i } }));
+      this.origin = from.origin;
     } else this.state = newGame(seed);
   }
 
@@ -143,6 +290,7 @@ export class WatchRun {
       seed: this.seed,
       log: this.log,
       state: this.state,
+      ...(this.origin ? { origin: this.origin } : {}),
     });
   }
 
@@ -153,6 +301,7 @@ export class WatchRun {
       seed: this.seed,
       log: this.log.map((e) => ({ m: e.m, i: { ...e.i } })),
       state: structuredClone(this.state),
+      ...(this.origin ? { origin: { ...this.origin } } : {}),
     };
   }
 
@@ -173,18 +322,27 @@ export class WatchRun {
       game: 'the-night-watch',
       phase: 'G3-4',
       scenario: WATCH_SCENARIO_VERSION,
+      build: 'dev',
+      framework: FRAMEWORK_PACKAGE_VERSION,
       seed: this.seed,
       inputs: this.log.map((e) => ({ m: e.m, i: { ...e.i } })),
       endMinute: this.state.minute,
       end: endState(this.state),
+      ...(this.origin ? { origin: { ...this.origin } } : {}),
     };
   }
 }
 
 /** Rebuilds a run's end state from its seed and input log. Throws if the log does not fit the rules. */
-export function replay(exp: Pick<PlaytestExport, 'scenario' | 'seed' | 'inputs' | 'endMinute'>): WatchState {
+export function replay(
+  exp: Pick<PlaytestExport, 'scenario' | 'seed' | 'inputs' | 'endMinute' | 'origin'>,
+): WatchState {
   if (exp.scenario !== WATCH_SCENARIO_VERSION)
     throw new Error(`export is scenario ${exp.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
+  if (exp.origin)
+    throw new Error(
+      `export was resumed from a scenario ${exp.origin.scenario} page; it does not replay from its seed`,
+    );
   const run = new WatchRun(exp.seed);
   const s = run.state;
   let idx = 0;

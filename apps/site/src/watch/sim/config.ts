@@ -399,11 +399,34 @@ export const MOTION_REACH = 0.3;
 export const LANTERN_STEP_MIN = 5;
 
 /**
- * The bell is a command (HF `command`): it orders the watchers in earshot of the Keeper (his section and its
- * neighbours) to hold their posts for this long. Each pull wears the rope; a snapped rope waits for a day's
- * mending (`day.ts`), which takes this much wear off per hour of work at craft 1.
+ * The bell hangs over the Gate; its rope runs along the wall-walk, so the Keeper pulls it wherever he stands
+ * (`ringBell` in night.ts has the rules). Each pull wears the rope; a snapped rope waits for a day's mending
+ * (`day.ts`), which takes `ROPE_MEND_PER_HOUR` wear off per hour of work at craft 1.
+ *
+ * Calling a watcher by name with the bell (a card's choice) is a command (HF `command`) to hold for
+ * `BELL_COMMAND_MIN` minutes.
  */
 export const BELL_COMMAND_MIN = 90;
+/** Loudness lost per stretch away from the Gate (the Gate itself is 1); the bigger bell loses less. */
+export const BELL_FALLOFF = 0.2;
+export const BIG_BELL_FALLOFF = 0.1;
+/** A watcher at home hears this share of their stretch's loudness, and wakes at `BELL_WAKE` or more. */
+export const BELL_HOME_SHARE = 0.5;
+export const BELL_WAKE = 0.35;
+/** After a pull the bell swings this long: another pull is refused until it stops. */
+export const BELL_SWING_MIN = 5;
+/** The call (the Keeper's posting spoken louder to everyone who heard) lasts this long. */
+export const BELL_CALL_MIN = 45;
+/** Its strength at loudness L: `BELL_CALL_BASE + BELL_CALL_LOUD × L`, lowered by false alarms. */
+export const BELL_CALL_BASE = 0.35;
+export const BELL_CALL_LOUD = 0.5;
+/** Nobody nods off under the bell for `BELL_ROUSE_BASE + BELL_ROUSE_LOUD × L` minutes. */
+export const BELL_ROUSE_BASE = 10;
+export const BELL_ROUSE_LOUD = 25;
+/** A pull with no threat known within this many minutes of it is a false alarm. */
+export const BELL_CRY_MIN = 30;
+/** Each false alarm divides the call by (1 + this × count); the count halves at each dusk. */
+export const BELL_CRY_WEIGHT = 0.5;
 export const BELL_WEAR_BASE = 0.22;
 export const BELL_WEAR_SPREAD = 0.1;
 export const ROPE_MEND_PER_HOUR = 0.25;

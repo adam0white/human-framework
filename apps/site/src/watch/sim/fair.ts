@@ -1,8 +1,8 @@
 /**
  * The autumn fair (G3-3, spec §4): the drafting phase. Three offers are drawn from what the village could use; the
  * Keeper takes at most two, each paid in sacks and none undone. Admitting an outsider family brings three people
- * (and mouths); extending the wall opens a third post on a stretch (more posts than people); the bigger bell halves
- * the rope's wear; seed grain lifts next autumn's harvest; naming the Gate heir moves pride and trust on both sides.
+ * (and mouths); extending the wall opens a third post on a stretch (more posts than people); the bigger bell carries
+ * further along the wall and halves the rope's wear; seed grain lifts next autumn's harvest; naming the Gate heir moves pride and trust on both sides.
  *
  * Not covered: trade prices, bargaining, selling grain, a choice between buyers.
  */
@@ -11,7 +11,7 @@ import { DAY, type PostId, SECTION_IDS, type SectionId } from './config.ts';
 import { ageOf, chronicle, living, newcomer, RETIRE_AGE, WATCH_CUSTOM } from './life.ts';
 import { presentIds } from './night.ts';
 import { isWatcher, KEEPER_ID, nameOf, personOf, villager } from './people.ts';
-import { type FairOffer, nextRandom, type WatchState } from './state.ts';
+import { type FairOffer, nextRandom, type WatchState, worldRng } from './state.ts';
 
 /** The fair no longer caps choices by count (G3-4): the granary is the limit. */
 export const FAIR_PICKS = 4;
@@ -61,7 +61,7 @@ export function openFair(s: WatchState): void {
     pool.push({
       id: 'bell',
       label: 'Buy the bigger bell',
-      text: 'A heavier bell from the founder at the fair. The rope frays half as fast. It costs a good share of grain.',
+      text: 'A heavier bell from the founder at the fair, hung on a wheel: it carries further along the wall, takes half the pull, and its rope frays half as fast. It costs a good share of grain.',
       cost: 4,
     });
   pool.push({
@@ -112,8 +112,9 @@ export function openFair(s: WatchState): void {
   const offers: FairOffer[] = [...fixed];
   const left = [...pool];
   const drawn: FairOffer[] = [];
+  const r = worldRng(s, 'fair');
   while (offers.length + drawn.length < 3 && left.length > 0) {
-    const i = Math.floor(nextRandom(s) * left.length);
+    const i = Math.floor(nextRandom(r) * left.length);
     const [o] = left.splice(i, 1);
     if (o) drawn.push(o);
   }

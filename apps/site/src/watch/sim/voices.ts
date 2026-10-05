@@ -81,6 +81,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
   const out: { who: WatcherId; text: string }[] = [];
   const tells: Tell[] = [];
   let dozeTold = false;
+  let cryTold = false;
   const used = new Set<string>();
   // Only this dawn's speakers keep a last line: a lamed, retired or absent watcher's old words do not linger.
   const lastVoices = s.lastVoices;
@@ -114,6 +115,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
     const fear = fearedSection(p);
     const drove = SECTION_IDS.find((sec) => s.tally.heroes[sec].includes(id)) ?? null;
     const slept = noteOf(s.notes, id, ['slept']);
+    const woken = noteOf(s.notes, id, ['woken']);
 
     if (bitten?.section) {
       said.push(
@@ -239,18 +241,22 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       const autonomy = p.needs.autonomy ?? 0.5;
       if (autonomy < 0.45)
         say('bell-bitter', [
-          '“You rang me down like a dog.”',
-          '“Ring at me like that again and see.”',
+          '“You called me down like a dog.”',
+          '“Shout my name over the bell like that again and see.”',
           '“I’m not a cow to be called with a bell.”',
         ]);
       else if (autonomy < 0.6)
         say('bell-grudge', [
-          '“I heard the bell. I held. I didn’t like it.”',
-          '“I held for the bell. Don’t make a habit of it.”',
-          '“The bell kept me there. My own sense wouldn’t have.”',
+          '“I heard my name over the bell. I held. I didn’t like it.”',
+          '“I held when you called me. Don’t make a habit of it.”',
+          '“Your call kept me there. My own sense wouldn’t have.”',
         ]);
       else
-        say('bell', ['“I heard the bell. I held.”', '“The bell rang; I stayed.”', '“I held when you rang.”']);
+        say('bell', [
+          '“I heard you call. I held.”',
+          '“You called my name; I stayed.”',
+          '“I held when you called.”',
+        ]);
     }
 
     // Nodding off: told by one watcher a night at most, only when it happened more than once, not by someone who
@@ -270,6 +276,25 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       ]);
       dozeTold = true;
     }
+
+    // Pulls with nothing out there: one voice a dawn says so.
+    if (said.length === 0 && !cryTold && s.bell.cry >= 1 && s.tally.bellRung > 0) {
+      say('cry', ['“You rang us up for shadows.”', '“If you ring at nothing, we stop listening.”']);
+      cryTold = true;
+    }
+    // Broken sleep: the bell pulled them out of a doze or out of bed (more than once, it was a long night).
+    if (said.length === 0 && woken)
+      say(
+        'woken',
+        s.place[id] === 'home' || slept
+          ? ['“The bell had me out of my bed.”', '“I was asleep when the bell went. My heart’s still going.”']
+          : woken.section
+            ? [
+                `“The bell jolted me awake at ${theSec(woken.section)}.”`,
+                '“I’d nodded off. The bell saw to that.”',
+              ]
+            : ['“The bell woke me.”'],
+      );
 
     if (said.length === 0 && slept?.section)
       say('slept', [

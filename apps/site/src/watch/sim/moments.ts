@@ -21,7 +21,7 @@ import {
   type SuggestionResolution,
 } from '@adam0white/human-framework';
 import { type PostId, postSection, type SectionId, type WatcherId } from './config.ts';
-import { earshot, fearAt, litSection, PRESS_STRENGTH, presentIds, ringBell } from './night.ts';
+import { fearAt, litSection, PRESS_STRENGTH, presentIds, ringBell } from './night.ts';
 import { familyWords, isPost, KEEPER_ID, nameOf, personOf, them, villager, WatchWorld } from './people.ts';
 import type { Press, WatchState } from './state.ts';
 
@@ -115,7 +115,7 @@ export function readPosting(
   return toRead(resolution, confidence);
 }
 
-/** The Keeper's read of the bell on one watcher: whether it holds and how much they'd resent it. Pure. */
+/** The Keeper's read of calling one watcher by name over the bell: whether it holds and how much they'd resent it. Pure. */
 export function readBell(
   s: WatchState,
   who: WatcherId,
@@ -133,42 +133,6 @@ export function readBell(
   );
   const resent = outcome.margin > 0.4 ? 'much' : outcome.margin > 0.1 ? 'some' : 'little';
   return { holds: outcome.holds, resent, confidence };
-}
-
-/**
- * Who the bell rings for (H2; spec §4: the bell commands one named watcher within earshot). Of the watchers in
- * earshot (on a post on the lit stretch or its neighbours, or in the hall by the Gate), the one the Keeper reads as
- * least likely to hold their post unbidden: one who has gone to the hall first, then "won't", "might", "can't
- * tell", "grudgingly", "likely"; a less certain read before a surer one; wall order after that. Someone already under
- * the bell comes last, so a second pull calls the next one. Null when no one is in earshot. Pure.
- */
-export function bellTarget(s: WatchState): WatcherId | null {
-  const hear = earshot(s);
-  const rank: Record<Read['word'], number> = {
-    "won't": 4,
-    unsure: 3,
-    "can't tell": 2,
-    grudging: 1,
-    likely: 0,
-  };
-  let best: WatcherId | null = null;
-  let bestScore = Number.NEGATIVE_INFINITY;
-  for (const id of presentIds(s)) {
-    const pl = s.place[id];
-    let score: number;
-    if (isPost(pl) && hear.includes(postSection(pl))) {
-      const r = readPosting(s, id, pl, s.press[id] ?? 'ask');
-      score = rank[r.word] + (1 - r.confidence) * 0.5;
-    } else if (pl === 'hall' && hear.includes('gate')) score = 5;
-    else continue;
-    const held = s.commands[id];
-    if (held && s.minute < held.until) score -= 10;
-    if (score > bestScore) {
-      bestScore = score;
-      best = id;
-    }
-  }
-  return best;
 }
 
 export function readWords(r: Read): string {
@@ -305,7 +269,7 @@ export function checkMoments(s: WatchState): void {
       });
     }
     if (!s.rope.snapped)
-      options.push({ id: 'bell', label: `Ring for ${name} to hold`, read: bellWords(readBell(s, who)) });
+      options.push({ id: 'bell', label: `Ring and call ${name} by name`, read: bellWords(readBell(s, who)) });
     open(s, {
       kind: 'family',
       who,
@@ -324,7 +288,7 @@ export function checkMoments(s: WatchState): void {
       { id: 'urge', label: `Urge ${name} to hold` },
     ];
     if (!s.rope.snapped)
-      options.push({ id: 'bell', label: `Ring for ${name} to hold`, read: bellWords(readBell(s, who)) });
+      options.push({ id: 'bell', label: `Ring and call ${name} by name`, read: bellWords(readBell(s, who)) });
     open(s, {
       kind: 'waver',
       who,

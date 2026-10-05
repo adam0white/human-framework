@@ -5,7 +5,7 @@
  * and a bond with a named person or family. Two Keepers: one who plans against the warning with the lantern
  * (`matched`), one who leaves the standing posts (`usual`). Cards are left unanswered: people decide alone.
  */
-import { describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import { type PlanName, planInputs } from '../../../test/watch/plans.ts';
 import { WatchRun } from './run.ts';
 
@@ -52,7 +52,7 @@ export function watchThree(seed: number, plan: PlanName): Seen {
 }
 
 describe('G3-2 gate: a fear and a bond in the watchers’ own words within three nights', () => {
-  const rows = (['matched', 'usual'] as const).map((plan) => {
+  const summarise = (plan: PlanName) => {
     const runs = SEEDS.map((seed) => watchThree(seed, plan));
     return {
       plan,
@@ -62,7 +62,12 @@ describe('G3-2 gate: a fear and a bond in the watchers’ own words within three
       both: runs.filter((r) => r.fear && r.bond).length,
       moments: runs.reduce((a, r) => a + r.moments, 0) / runs.length,
     };
-  });
+  };
+  let rows: ReturnType<typeof summarise>[] = [];
+  // The runs are made once, before the tests, not while collecting them.
+  beforeAll(() => {
+    rows = (['matched', 'usual'] as const).map(summarise);
+  }, 300_000);
 
   it('prints the table and examples', () => {
     for (const r of rows) {

@@ -230,7 +230,8 @@ export interface NightNote {
     | 'defied'
     | 'prayed'
     | 'shaken'
-    | 'together';
+    | 'together'
+    | 'woken';
   section?: SectionId;
   /** The other person involved (who carried, who was carried). */
   other?: WatcherId;
@@ -295,11 +296,36 @@ export interface Villager {
   parents?: WatcherId[];
 }
 
+/**
+ * The bell tonight (spec §4): when it was last pulled, who heard that pull and how loud, and the false alarms that
+ * weaken its call. `heard` is by watcher, loudness 0..1 (absent: did not hear it).
+ */
+export interface BellState {
+  /** Minute of the last pull (it swings `BELL_SWING_MIN` minutes). */
+  rungAt: number;
+  /** The call lasts until this minute. */
+  until: number;
+  heard: Partial<Record<WatcherId, number>>;
+  /** False alarms, weighed down by half at each dusk. */
+  cry: number;
+  /** A pull made with no threat known: a false alarm unless one is known within `BELL_CRY_MIN`. */
+  pendingCry: number | null;
+}
+
 export interface WatchState {
   version: 4;
   seed: number;
-  /** mulberry32 state. */
+  /**
+   * mulberry32 state: draws whose count follows from what the Keeper and the people do (combat, the rope, births,
+   * courting, names). World draws do not use it (`world`).
+   */
   rng: number;
+  /**
+   * The world's stream (§12 T1): the director, the threat plans, the weather, the fair's offers and the thaw. It is
+   * reseeded from the seed and the date before each draw (`worldRng`), so what the Keeper did cannot move it.
+   */
+  world: { rng: number };
+  bell: BellState;
   /** Absolute sim minute; day 0 starts at midnight, the game at 17:00 on day 0. Framework time is the same. */
   minute: number;
   /** Absolute minute this night falls (18:00 of the dusk's day). */
@@ -434,6 +460,36 @@ export interface WatchState {
   history: { night: number; warned: SectionId; lead: ThreatKind; lost: number }[];
 }
 
+/** A 32-bit mix of integers (murmur3's finaliser over each), for seeding a stream from a seed and a date. */
+export function mixSeed(...xs: number[]): number {
+  let h = 0x9e3779b9;
+  for (const x of xs) {
+    h = Math.imul(h ^ (x | 0), 0x85ebca6b);
+    h ^= h >>> 13;
+    h = Math.imul(h, 0xc2b2ae35);
+    h ^= h >>> 16;
+  }
+  return h | 0;
+}
+
+/** What a world draw is for: each gets its own stream per year (and per winter night, for the night's plan). */
+export const WORLD_DRAW = { night: 1, winter: 2, weather: 3, fair: 4, collapse: 5, refugees: 6 } as const;
+
+/**
+ * The world stream for one purpose at the current date, reseeded from the seed (§12 T1). The returned object is
+ * `s.world`, held in state, so draws within one purpose continue from each other.
+ */
+export function worldRng(s: WatchState, what: keyof typeof WORLD_DRAW): { rng: number } {
+  const night = what === 'night' ? s.winterNight : 0;
+  s.world.rng = mixSeed(s.seed, WORLD_DRAW[what], s.year, night);
+  return s.world;
+}
+
+/** A uniform draw in [0, 1) from integers alone: no stream, so nothing the player does can move it. */
+export function hashUnit(...xs: number[]): number {
+  return (mixSeed(...xs) >>> 0) / 4294967296;
+}
+
 /** mulberry32: a small seeded generator whose whole state is one 32-bit integer held in game state. */
 export function nextRandom(s: { rng: number }): number {
   s.rng = (s.rng + 0x6d2b79f5) | 0;
@@ -441,6 +497,10 @@ export function nextRandom(s: { rng: number }): number {
   t = Math.imul(t ^ (t >>> 15), t | 1);
   t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+}
+
+export function emptyBell(): BellState {
+  return { rungAt: -1e9, until: -1e9, heard: {}, cry: 0, pendingCry: null };
 }
 
 export function pick<T>(s: { rng: number }, items: readonly T[]): T {
@@ -465,6 +525,8 @@ export function createState(seed: number): WatchState {
     version: 4,
     seed,
     rng: seed | 0,
+    world: { rng: mixSeed(seed) },
+    bell: emptyBell(),
     minute: DUSK_START,
     nightStart: NIGHTFALL,
     phase: 'goal',

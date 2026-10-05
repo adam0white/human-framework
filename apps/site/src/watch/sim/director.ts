@@ -19,13 +19,14 @@ import {
 import { ageOf, living, RETIRE_AGE } from './life.ts';
 import { presentIds } from './night.ts';
 import { isWatcher, nameOf, personOf } from './people.ts';
-import { nextRandom, pick, type Spawn, type WatchState, type WinterPlan } from './state.ts';
+import { nextRandom, pick, type Spawn, type WatchState, type WinterPlan, worldRng } from './state.ts';
 
 const other = (k: ThreatKind): ThreatKind => (k === 'wolf' ? 'thief' : 'wolf');
 
 /** Draws this winter (year ≥ 2). */
 export function planWinter(s: WatchState): void {
-  const nights = 6 + Math.floor(nextRandom(s) * 3);
+  const r = worldRng(s, 'winter');
+  const nights = 6 + Math.floor(nextRandom(r) * 3);
   const last = s.leads[s.year - 1];
   const watchers = presentIds(s).length;
   const thin = watchers / Math.max(1, s.openPosts.length) < 0.75;
@@ -41,7 +42,7 @@ export function planWinter(s: WatchState): void {
     lead = 'wolf';
     why = 'Too few on the wall: the packs have found the dark stretches.';
   } else {
-    lead = nextRandom(s) < 0.5 ? 'wolf' : 'thief';
+    lead = nextRandom(r) < 0.5 ? 'wolf' : 'thief';
     why =
       lead === 'wolf'
         ? 'A hard frost has driven the packs down early.'
@@ -55,9 +56,9 @@ export function planWinter(s: WatchState): void {
         : 'The packs have gone north; men have taken their place.';
   }
   const twist: WinterPlan['twist'] = s.leads.includes(lead) ? (lead === 'wolf' ? 'dark' : 'inside') : null;
-  const peak = 3 + Math.floor(nextRandom(s) * (nights - 2));
+  const peak = 3 + Math.floor(nextRandom(r) * (nights - 2));
   s.leads[s.year] = lead;
-  s.winter = { nights, lead, twist, peak, why, question: winterQuestion(s) };
+  s.winter = { nights, lead, twist, peak, why, question: winterQuestion(s, r) };
 }
 
 /**
@@ -65,7 +66,7 @@ export function planWinter(s: WatchState): void {
  * wall, someone's last winter before they stand down, a parent of last year's child, a pair married last year.
  * One is picked among those that apply (seeded), else "every soul to the thaw".
  */
-function winterQuestion(s: WatchState): WinterPlan['question'] {
+function winterQuestion(s: WatchState, r: { rng: number }): WinterPlan['question'] {
   const out: NonNullable<WinterPlan['question']>[] = [];
   const keeper = s.gateKeeper ? personOf(s, s.gateKeeper) : undefined;
   if (keeper && isWatcher(s, keeper) && ageOf(keeper, s.minute) >= RETIRE_AGE - 6)
@@ -127,7 +128,7 @@ function winterQuestion(s: WatchState): WinterPlan['question'] {
   }
   if (out.length === 0)
     return { kind: 'souls', text: 'Bring every soul and the granary to the thaw.', met: null };
-  return out[Math.floor(nextRandom(s) * out.length)] ?? out[0] ?? null;
+  return out[Math.floor(nextRandom(r) * out.length)] ?? out[0] ?? null;
 }
 
 /** The night's plan in a directed winter (year ≥ 2); `planNight` delegates here. */
@@ -135,12 +136,13 @@ export function planDirectedNight(s: WatchState): void {
   const w = s.winter;
   const n = s.winterNight;
   const peak = n === w.peak;
-  s.lead = nextRandom(s) < 0.75 ? w.lead : other(w.lead);
+  const r = worldRng(s, 'night');
+  s.lead = nextRandom(r) < 0.75 ? w.lead : other(w.lead);
   const lost = s.marks.lost && s.marks.lost.year === s.year ? s.marks.lost.section : null;
   const walls = SECTION_IDS.filter((id) => id !== lost);
-  s.warned = pick(s, walls);
+  s.warned = pick(r, walls);
   const rest = walls.filter((id) => id !== s.warned);
-  s.warnedAlso = nextRandom(s) < 0.35 ? pick(s, rest) : null;
+  s.warnedAlso = nextRandom(r) < 0.35 ? pick(r, rest) : null;
   const named = s.warnedAlso ? [s.warned, s.warnedAlso] : [s.warned];
   const elsewhere = walls.filter((id) => !named.includes(id));
   const def = sectionDef(s.warned);
@@ -155,7 +157,7 @@ export function planDirectedNight(s: WatchState): void {
   const rich = s.grain >= 24 ? 1 : 0;
   const waveSize = (): number =>
     s.lead === 'wolf'
-      ? 1 + Math.floor(n / 3) + (nextRandom(s) < 0.5 ? 1 : 0) + crowd + (peak ? 1 : 0)
+      ? 1 + Math.floor(n / 3) + (nextRandom(r) < 0.5 ? 1 : 0) + crowd + (peak ? 1 : 0)
       : 1 + Math.floor(n / 5) + rich + crowd + (peak ? 1 : 0);
   // A big night is a third wave of the pack; thieves come in two bands, only more of them.
   const waves: [number, number][] =
@@ -174,30 +176,30 @@ export function planDirectedNight(s: WatchState): void {
   // Wolves who learned the dark come once to the stretch with the fewest posted on it.
   const dark = darkest(s);
   waves.forEach(([lo, hi], i) => {
-    const at = s.nightStart + lo + Math.floor(nextRandom(s) * (hi - lo));
-    const right = nextRandom(s) < SCOUT_TRUE;
-    let section: SectionId = right ? pick(s, named) : pick(s, elsewhere.length > 0 ? elsewhere : rest);
+    const at = s.nightStart + lo + Math.floor(nextRandom(r) * (hi - lo));
+    const right = nextRandom(r) < SCOUT_TRUE;
+    let section: SectionId = right ? pick(r, named) : pick(r, elsewhere.length > 0 ? elsewhere : rest);
     if (w.twist === 'dark' && s.lead === 'wolf' && i === waves.length - 1) section = dark;
     if (!s.leadCame.includes(section)) s.leadCame.push(section);
     const count = waveSize();
     for (let k = 0; k < count; k++)
-      spawns.push({ at: at + k * (1 + Math.floor(nextRandom(s) * 3)), section, kind: s.lead, count: 1 });
+      spawns.push({ at: at + k * (1 + Math.floor(nextRandom(r) * 3)), section, kind: s.lead, count: 1 });
   });
   // A man inside: one thief is already at the foot of a wall when the night falls.
-  if (w.twist === 'inside' && s.lead === 'thief' && nextRandom(s) < 0.6) {
+  if (w.twist === 'inside' && s.lead === 'thief' && nextRandom(r) < 0.6) {
     spawns.push({
-      at: s.nightStart + 30 + Math.floor(nextRandom(s) * 200),
-      section: pick(s, SECTION_IDS),
+      at: s.nightStart + 30 + Math.floor(nextRandom(r) * 200),
+      section: pick(r, SECTION_IDS),
       kind: 'thief',
       count: 1,
       pos: 0.85,
     });
   }
-  if (nextRandom(s) < 0.5) {
+  if (nextRandom(r) < 0.5) {
     spawns.push({
-      at: s.nightStart + 60 + Math.floor(nextRandom(s) * 560),
-      section: pick(s, SECTION_IDS),
-      kind: nextRandom(s) < 0.5 ? 'wolf' : 'thief',
+      at: s.nightStart + 60 + Math.floor(nextRandom(r) * 560),
+      section: pick(r, SECTION_IDS),
+      kind: nextRandom(r) < 0.5 ? 'wolf' : 'thief',
       count: 1,
     });
   }
