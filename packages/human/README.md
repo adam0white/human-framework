@@ -31,6 +31,7 @@ verdict (`SuggestionResolution`):
 | `modified` | a near alternative with the same action or aim won; the `counterOffer` names it | `notNow` |
 | `refused` | cannot (asleep, exhausted, skill far too low, a pressing bodily need) or will not (a firmly held norm, broken trust) | `cannot` / `willNot` |
 | `complied` | the voice insisted on a "not now"; done under protest (`activity.protest`), at a cost to autonomy and trust | `notNow` |
+| `commanded` | the host took direct control (see [Direct control](#direct-control)); the person does the order whatever they would have chosen | none |
 
 Insisting (`insist: true`) turns only a `notNow` into compliance, and not when a bodily need is pressing. It
 never overrides `cannot` or `willNot`.
@@ -60,7 +61,7 @@ import {
 
 const ids = ['ada', 'bora'];
 const people = ids.map((id, i) => createPerson(villagerSpec(id, id, 1 + i, { now: 6 * 60, others: ids })));
-const world = createVillage(people, { seed: 7 });      // a bundled World: well, field, pantry, neighbours
+const world = createVillage(people, { seed: 7 });      // a bundled World: home, field, well, kitchen, mosque, forest
 const community = createCommunity(people);
 const ada = community.people[0]!;
 
@@ -125,8 +126,7 @@ conversation (testimony and advice between members), contagion, and the optional
 dropped. `diffChronicle(a, b)` then reports what changed between two periods of consolidated day records.
 It covers what the person now does unprompted, what they still do only when told, and how trust and mood
 moved. `stepCommunity` tells each death to everyone with a tie (`tellDeath`). One scenario is bundled as the
-reference host: `createVillage`. (Game 2's town, `createTown`, was
-bundled until 1.2.0; it now lives in `apps/site/src/voice/sim/town.ts` as an example of a richer host.)
+reference host: `createVillage`.
 
 ## Determinism, snapshots, versions
 
@@ -149,6 +149,7 @@ bundled until 1.2.0; it now lives in `apps/site/src/voice/sim/town.ts` as an exa
   const village2 = createVillage(people, { seed: 0, state: s.world });
   const c2 = createCommunity(people, s.community); // continues exactly as the unsaved run would
   ```
+- **Time arguments.** A host event takes `at` as its last required argument, with optional knobs after it (`glimpseOf(observer, target, at, clarity?)`, `retell(teller, listener, at, opts?)`); a query evaluated at a time takes `now`. The 2.0 options-object forms still work and are deprecated until 3.0. See docs/framework.md, "Argument order".
 - Hosts that live people sparsely over decades can shrink what a save carries per person with
   `setRetention(p, { trace, chronicleDays })` (or `PersonSpec.retention`): fewer decision records, and day records
   bounded by age as well as count. No decision changes. `restore` also refuses a non-finite or out-of-range `now`
@@ -183,17 +184,18 @@ of it runs as before.
   someone skilled teaches the basics (`Percept.demonstrates`, `observeSkill`), practice slows forgetting
   (`enableSkillRetention`), and traits and values mature and drift slowly with experience (`enableCharacterChange`).
 - **Lasting memory.** `enableGists` folds old episodes into bounded gists that still weigh on choices decades later;
-  `retell` passes a teller's gists to a listener (a child fears a place their parents fear before standing there);
+  `retell(teller, listener, at)` passes a teller's gists to a listener (a child fears a place their parents fear before standing there);
   `enableYearbook` keeps one summary per year.
-- **Family.** `conceive`, `pregnancyDue`, `deliver`, inherited aptitudes, and `raise` (upbringing: values, the lived
+- **Family.** `conceive(mother, father, seed, at)`, `pregnancyDue`, `deliver`, inherited aptitudes, and `raise` (upbringing: values, the lived
   example of norms, attachment, trust in the household's voices).
 - **Courtship and marriage.** `court`, `courtshipStage`, `betroth`, `canMarry`, `marry`, `widow`, with customs
   (`GENERIC_CUSTOM`, `MUSLIM_CUSTOM`); accepting a proposal is an ordinary decision, so a person can refuse.
 - **Surroundings.** `setAmbient` (cold, dark, crowding, beauty, weather, day length) shifts mood, body and needs.
 - **Multi-year stepping.** `liveRoutine` and `liveCommunity` live people by routine a coarse day at a time, with
   natural death, chronic onsets, deaths told and minors raised.
-- **Impressions of others.** What one person believes about another (`glimpseOf`, `observeAct`, `hear`,
+- **Impressions of others.** What one person believes about another (`glimpseOf(observer, target, at, clarity?)`, `observeAct`, `hear(observer, targetId, key, value, at, weight?)`,
   `acquaintWith`), with confidence; `predictAs` runs a prediction on the person as the observer pictures them.
+- **Switching on at creation.** `PersonSpec.enable: { gists, yearbook, character, skillRetention }` turns the long-run faculties above on when the person is created.
 - **Answering between decisions.** `answerNow` books a refusal at once without touching the running activity.
 
 ## Direct control
