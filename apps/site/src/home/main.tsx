@@ -3,9 +3,10 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../shared/theme.css';
 import './home.css';
-import { SpineDiagram } from './Diagram.tsx';
+import { SpineDiagram, SpineStack } from './Diagram.tsx';
 // The code sample is shown from its own source file, which `sample.test.ts` runs against the real API.
 import sampleSource from './sample.ts?raw';
+import { SAMPLE_OUTPUT } from './sampleOutput.ts';
 
 const GRID_X = [0, 25, 50, 75, 100, 125, 150, 175, 200];
 const GRID_Y = [0, 25, 50, 75, 100];
@@ -110,7 +111,11 @@ function WatchScene() {
 
 /** Comments in the sample read muted; everything else stays plain text. The sample has no `//` inside strings. */
 function CodeSample({ source }: { source: string }) {
-  const lines = source.trimEnd().split('\n');
+  // The first line is a formatter directive, not part of the example.
+  const lines = source
+    .trimEnd()
+    .split('\n')
+    .filter((line) => !line.startsWith('// biome-ignore'));
   return (
     <pre className="code">
       <code>
@@ -180,7 +185,10 @@ function Home() {
       <header className="nav">
         <a className="wordmark" href="/">
           <span className="wordmark-mark" aria-hidden="true" />
-          Human Framework
+          <span className="wordmark-long">Human Framework</span>
+          <abbr className="wordmark-short" title="Human Framework">
+            HF
+          </abbr>
         </a>
         <nav aria-label="Sections">
           <a href="#models">Models</a>
@@ -202,7 +210,7 @@ function Home() {
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#use">
-              See the API <span aria-hidden="true">→</span>
+              See it in code <span aria-hidden="true">→</span>
             </a>
             <a className="button button-ghost" href="#examples">
               Play the three examples
@@ -233,6 +241,7 @@ function Home() {
           </div>
           <div className="diagram-card">
             <SpineDiagram />
+            <SpineStack />
           </div>
 
           <div className="principles">
@@ -294,6 +303,10 @@ function Home() {
             calibrated predictions of human behaviour. Space, travel, inventory and economy belong to the host
             game.
           </p>
+          <p className="fine">
+            Not modelled yet: planning several steps ahead, inference between beliefs, culture and norms
+            spreading through a community, divorce.
+          </p>
         </section>
 
         <section className="props" id="properties">
@@ -327,7 +340,7 @@ function Home() {
               <dt>Lives over decades</dt>
               <dd>
                 People age, court, marry, raise children and die of natural causes. A settlement of 25 people
-                runs 50 years in about 3.5 seconds on the benchmark machine.
+                runs 50 years in about 3.5 seconds in the project’s benchmark.
               </dd>
             </div>
           </dl>
@@ -339,36 +352,76 @@ function Home() {
             <h2>The host offers, the person decides</h2>
             <p>
               Your game describes what a person can do right now as affordances. HF chooses, or answers a
-              suggestion; your game resolves what happened and reports it back. <code>stepCommunity</code>{' '}
-              runs that loop for a whole village. HF has no UI and no LLM in the loop.
+              suggestion; your game resolves what happened and reports it back. HF has no UI and no LLM in the
+              loop.
             </p>
           </div>
           <div className="use-grid">
-            <CodeSample source={sampleSource} />
-            <ol className="steps">
-              <li>
-                <strong>
-                  <code>createPerson</code>
-                </strong>{' '}
-                from a spec: seed, body, traits, values, norms, relationships, the voices they hear.
-              </li>
-              <li>
-                <strong>Offer affordances</strong>: actions with a duration, an effort and advertised effects,
-                tagged with the norms they touch.
-              </li>
-              <li>
-                <strong>
-                  <code>predict</code>
-                </strong>{' '}
-                to preview an answer, <code>decide</code> to make and record a choice, then <code>begin</code>
-                , <code>tick</code> and <code>finish</code> with your outcome.
-              </li>
-            </ol>
+            <div className="use-code">
+              <CodeSample source={sampleSource} />
+              <div className="code-output">
+                <p className="code-output-head">Returns</p>
+                <p>
+                  <code>answer</code>: {SAMPLE_OUTPUT.verdict} / {SAMPLE_OUTPUT.kind} ({SAMPLE_OUTPUT.reason}
+                  ), “{SAMPLE_OUTPUT.says}”
+                </p>
+                <p>
+                  <code>record</code>: she waits. Stealing scored highest ({SAMPLE_OUTPUT.stealScore}:{' '}
+                  {SAMPLE_OUTPUT.stealTerms.map(([source, value]) => `${source} ${value}`).join(', ')}), and
+                  her own norm vetoed it.
+                </p>
+              </div>
+            </div>
+            <div>
+              <ol className="steps">
+                <li>
+                  <strong>
+                    <code>createPerson</code>
+                  </strong>{' '}
+                  from a spec: seed, birth, body, traits, values, norms, relationships, the voices they hear.
+                </li>
+                <li>
+                  <strong>Offer affordances</strong>: actions with a duration, an effort and advertised
+                  effects, tagged with the norms they touch.
+                </li>
+                <li>
+                  <strong>
+                    <code>predict</code>
+                  </strong>{' '}
+                  previews an answer; <code>decide</code> makes and records a choice with every scored term.
+                </li>
+                <li>
+                  <strong>Run the activity</strong>: <code>begin</code> it, <code>tick</code> the clock, and{' '}
+                  <code>finish</code> with the outcome your world resolved. Body, memory, skills and trust
+                  update.
+                </li>
+                <li>
+                  <strong>
+                    <code>stepCommunity</code>
+                  </strong>{' '}
+                  runs that loop for a whole village against your <code>World</code>;{' '}
+                  <code>liveCommunity</code> steps decades a day at a time.
+                </li>
+              </ol>
+              <dl className="facts">
+                <div>
+                  <dt>Runtime</dt>
+                  <dd>Plain ES modules, no runtime dependencies; Node 24+ or a modern browser.</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>
+                    {FRAMEWORK_VERSION}, used by the three games below. The source is private for now, with no
+                    license granted yet, so it is not on npm.
+                  </dd>
+                </div>
+              </dl>
+            </div>
           </div>
           <p className="fine">
-            The example above is the page’s own source file, type-checked and run against{' '}
-            <code>@human/framework</code> {FRAMEWORK_VERSION} by the test suite. The package and its
-            documentation live in a private repository for now; it is not published to npm.
+            The example is the page’s own source file, type-checked and run against{' '}
+            <code>@human/framework</code> {FRAMEWORK_VERSION} by the test suite, which also checks the output
+            printed under it.
           </p>
         </section>
 

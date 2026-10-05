@@ -123,11 +123,6 @@ body {
     box-shadow 0.15s ease;
 }
 
-.button em {
-  font-family: var(--font-display);
-  font-weight: 500;
-}
-
 .button-primary {
   background: var(--text);
   color: var(--bg);
@@ -464,6 +459,101 @@ body {
   color: var(--accent);
 }
 
+.wordmark-short {
+  display: none;
+  text-decoration: none;
+}
+
+/* The core idea, stacked for phones (Diagram.tsx SpineStack). */
+.spine-stack {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.spine-stack p {
+  margin: 0;
+}
+
+.spine-stack-head {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.spine-stack-urges {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.spine-stack-urges li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1.5px solid;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.spine-stack-urges li span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.spine-stack-urges .spine-you {
+  font-weight: 700;
+  border-style: dashed;
+}
+
+.spine-stack-arrow {
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.spine-stack-weigh,
+.spine-stack-act {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1.5px solid var(--text);
+}
+
+.spine-stack-act {
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 14px;
+}
+
+.spine-stack-word {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+}
+
+.spine-stack small {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+.spine-stack-loop {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
 /* What HF models: a dense grid of small cards. */
 .area-grid {
   display: grid;
@@ -572,6 +662,59 @@ code {
   color: var(--text);
 }
 
+.use-code {
+  min-width: 0;
+}
+
+.code-output {
+  margin-top: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.code-output p {
+  margin: 0 0 6px;
+}
+
+.code-output p:last-child {
+  margin: 0;
+}
+
+.code-output-head {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.code-output code {
+  color: var(--text);
+}
+
+.facts {
+  margin: 22px 0 0;
+  display: grid;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.facts dt {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.facts dd {
+  margin: 0;
+  color: var(--text-muted);
+}
+
 .game-shows {
   font-size: 0.93rem;
 }
@@ -643,8 +786,17 @@ code {
     gap: 14px;
     font-size: 0.85rem;
   }
-  .nav nav a[href="#models"] {
+  .wordmark-long {
     display: none;
+  }
+  .wordmark-short {
+    display: inline;
+  }
+  .spine {
+    display: none;
+  }
+  .spine-stack {
+    display: flex;
   }
   .hero {
     padding-top: 28px;
@@ -657,11 +809,7 @@ code {
     border-radius: var(--radius);
   }
   .diagram-card {
-    padding: 10px;
-    overflow-x: auto;
-  }
-  .spine {
-    min-width: 560px;
+    padding: 18px 16px;
   }
   .idea,
   .models,
@@ -680,8 +828,8 @@ code {
     padding: 14px 16px;
   }
   .code {
-    padding: 14px;
-    font-size: 0.74rem;
+    padding: 12px 14px;
+    font-size: 0.72rem;
   }
 }
 

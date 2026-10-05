@@ -1,6 +1,13 @@
-import { type Affordance, createPerson, MINUTES_PER_YEAR, predict } from '@human/framework';
+// biome-ignore-all format: kept under 46 columns so it reads on a phone; the page strips this line.
+import {
+  type Affordance,
+  createPerson,
+  decide,
+  MINUTES_PER_YEAR,
+  predict,
+} from '@human/framework';
 
-// A hungry person who holds theft forbidden.
+// Hungry, and holds theft forbidden.
 const aylin = createPerson({
   id: 'aylin',
   name: 'Aylin',
@@ -9,30 +16,50 @@ const aylin = createPerson({
   bornAt: -28 * MINUTES_PER_YEAR,
   sex: 'female',
   body: { satiety: 0.2 },
-  norms: [{ normId: 'theft', standing: 'forbidden', conviction: 0.9 }],
-  voices: [{ voiceId: 'player', trust: 0.6 }],
+  norms: [{
+    normId: 'theft',
+    standing: 'forbidden',
+    conviction: 0.9,
+  }],
+  voices: [
+    { voiceId: 'player', trust: 0.6 },
+  ],
 });
 
-// The host offers what the world allows.
+// The host offers what its world allows.
 const offers: Affordance[] = [
-  { id: 'wait', action: 'wait', label: 'wait', duration: 15, effort: 0, advertises: {} },
   {
-    id: 'steal',
-    action: 'steal',
+    id: 'wait', action: 'wait',
+    label: 'wait',
+    duration: 15, effort: 0,
+    advertises: {},
+  },
+  {
+    id: 'steal', action: 'steal',
     label: 'take bread from the cart',
-    duration: 10,
-    effort: 0.1,
+    duration: 10, effort: 0.1,
     advertises: { food: 0.5 },
-    norms: [{ normId: 'theft', relation: 'violates' }],
+    norms: [
+      {
+        normId: 'theft',
+        relation: 'violates',
+      },
+    ],
   },
 ];
 
-// The player's word is one urge among many.
-export const answer = predict(aylin, offers, {
+// The player's word: one urge of many.
+const suggestion = {
   voiceId: 'player',
   action: 'steal',
   strength: 1,
   insist: true,
-});
-// answer.verdict: 'refused', answer.kind: 'willNot'
-// answer.says: a line in her own words
+};
+
+// Preview: pure, draws no randomness.
+export const answer =
+  predict(aylin, offers, suggestion);
+
+// Decide: chosen, recorded, explained.
+export const record =
+  decide(aylin, offers, { suggestion });
