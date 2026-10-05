@@ -2,7 +2,7 @@
  * The G3-1 gate, headless: dusk planning against the scout's warning visibly matters. Each seed plays three
  * nights with one plan applied at every dusk and no night inputs; outcomes are sacks lost.
  */
-import { describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import { type PlanName, planInputs } from '../../../test/watch/plans.ts';
 import { START_GRAIN } from './config.ts';
 import { WatchRun } from './run.ts';
@@ -27,8 +27,10 @@ export function playPlan(seed: number, plan: PlanName, lantern: boolean, nights 
 }
 
 function summarise(plan: PlanName, lantern: boolean) {
-  const totals = SEEDS.map((seed) => playPlan(seed, plan, lantern).reduce((a, b) => a + b, 0));
-  const firstNight = SEEDS.map((seed) => playPlan(seed, plan, lantern, 1)[0] ?? 0);
+  // One run per seed: night 1 of the three-night run is the first-night figure (a one-night run is its prefix).
+  const runs = SEEDS.map((seed) => playPlan(seed, plan, lantern));
+  const totals = runs.map((lost) => lost.reduce((a, b) => a + b, 0));
+  const firstNight = runs.map((lost) => lost[0] ?? 0);
   const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
   const sorted = [...totals].sort((a, b) => a - b);
   return {
@@ -43,10 +45,14 @@ function summarise(plan: PlanName, lantern: boolean) {
 }
 
 describe('G3-1 gate: dusk planning against the warning', () => {
-  const rows = (['matched', 'usual', 'mismatched'] as const).flatMap((plan) => [
-    summarise(plan, false),
-    summarise(plan, true),
-  ]);
+  let rows: ReturnType<typeof summarise>[] = [];
+  // The runs are made once, before the tests, not while collecting them.
+  beforeAll(() => {
+    rows = (['matched', 'usual', 'mismatched'] as const).flatMap((plan) => [
+      summarise(plan, false),
+      summarise(plan, true),
+    ]);
+  }, 300_000);
   const row = (plan: PlanName, lantern: boolean) => {
     const r = rows.find((x) => x.plan === plan && x.lantern === lantern);
     if (!r) throw new Error('missing row');

@@ -7,7 +7,7 @@ import { ROPE_DAWN_MEND, ROPE_MEND_PER_HOUR } from './config.ts';
 import { maybeLimp } from './life.ts';
 import { applyInput, presentIds } from './night.ts';
 import { isWatcher, personOf } from './people.ts';
-import { type LogEntry, WatchRun } from './run.ts';
+import { type LogEntry, type Snapshot, WatchRun } from './run.ts';
 import type { WatchState } from './state.ts';
 import { dawnVoices } from './voices.ts';
 import { closeVolume, openVolume, volumeResolved } from './volume.ts';
@@ -67,9 +67,14 @@ describe("the owner's run, replayed (2026-10-05 export)", () => {
   }, 300_000);
 });
 
-/** A headless run stopped in year 1's autumn, after the fair: Tamar keeps the Gate, the volume asks after her. */
+/**
+ * A headless run stopped in year 1's autumn, after the fair: Tamar keeps the Gate, the volume asks after her. It is
+ * played once and each test gets its own copy (a resumed snapshot), since the tests change the state.
+ */
+let autumnPage: Snapshot | null = null;
 function autumn(): { run: WatchRun; s: WatchState } {
-  const run = playYears(1, 1, undefined, (st) => st.phase === 'autumn' && st.fair === null);
+  autumnPage ??= playYears(1, 1, undefined, (st) => st.phase === 'autumn' && st.fair === null).snapshot();
+  const run = WatchRun.resume(autumnPage);
   return { run, s: run.state };
 }
 
