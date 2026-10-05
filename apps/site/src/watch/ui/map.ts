@@ -46,10 +46,16 @@ export function laneY(l: Layout, pos: number): number {
   return l.yTree + (l.yWall - l.yTree) * pos;
 }
 
-export function postXY(l: Layout, section: SectionId, slot: number): { x: number; y: number } {
+/**
+ * Where post `slot` of `count` on a stretch stands: spread evenly about the lane's middle (owner's playtest: a
+ * raised stretch's third post was drawn on top of the second).
+ */
+export function postXY(l: Layout, section: SectionId, slot: number, count = 2): { x: number; y: number } {
   const i = SECTION_IDS.indexOf(section);
   const cx = (i + 0.5) * l.laneW;
-  return { x: cx + (slot === 0 ? -1 : 1) * Math.min(28, l.laneW * 0.22), y: l.yWall + l.wallH * 0.45 };
+  const gap = count >= 3 ? Math.min(46, l.laneW * 0.27) : Math.min(28, l.laneW * 0.22);
+  const offset = count <= 1 ? 0 : count === 2 ? (slot === 0 ? -1 : 1) : slot - (count - 1) / 2;
+  return { x: cx + offset * gap, y: l.yWall + l.wallH * 0.45 };
 }
 
 export type Hit = { kind: 'post'; post: string } | { kind: 'section'; section: SectionId } | null;
@@ -60,7 +66,7 @@ export function hitTest(l: Layout, f: Frame, x: number, y: number): Hit {
   let best: { post: string; d: number } | null = null;
   for (const sec of f.sections) {
     for (const [slot, p] of sec.posts.entries()) {
-      const at = postXY(l, sec.id, slot);
+      const at = postXY(l, sec.id, slot, sec.posts.length);
       const d = Math.hypot(at.x - x, (at.y - y) * 0.8);
       if (d < reach && (!best || d < best.d)) best = { post: p.id, d };
     }
@@ -393,7 +399,8 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   for (const [i, sec] of f.sections.entries()) {
     const isLit = !day && sec.id === f.lit;
     ctx.fillStyle = isLit ? 'rgba(255, 236, 200, 0.95)' : 'rgba(236, 224, 200, 0.55)';
-    ctx.fillText(sec.name, (i + 0.5) * laneW, l.yWall - 12);
+    // A raised stretch's name sits above its higher top.
+    ctx.fillText(sec.name, (i + 0.5) * laneW, l.yWall - (sec.raised && !sec.fallen ? 22 : 12));
   }
 
   // The wall.
@@ -401,6 +408,45 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   ctx.fillRect(0, l.yWall, w, l.wallH);
   ctx.fillStyle = '#a58b67';
   for (let x = 0; x < w; x += 16) ctx.fillRect(x, l.yWall - 5, 10, 6);
+  // A stretch raised at a fair: a timber walk and higher merlons along it, so the upgrade shows.
+  for (const [i, sec] of f.sections.entries()) {
+    if (!sec.raised || sec.fallen) continue;
+    const x0 = i * laneW + 4;
+    const rw = laneW - 8;
+    ctx.fillStyle = '#6b5236';
+    ctx.fillRect(x0, l.yWall - 10, rw, 6);
+    ctx.fillStyle = '#b89a70';
+    for (let x = x0; x < x0 + rw - 6; x += 12) ctx.fillRect(x, l.yWall - 17, 8, 8);
+    ctx.strokeStyle = '#4e3b26';
+    ctx.lineWidth = 1.5;
+    for (let x = x0 + 10; x < x0 + rw; x += Math.max(24, rw / 4)) {
+      ctx.beginPath();
+      ctx.moveTo(x, l.yWall - 4);
+      ctx.lineTo(x, l.yWall + l.wallH);
+      ctx.stroke();
+    }
+  }
+  // The bell on its post by the Gate: the bigger bell, once bought, is drawn bigger.
+  if (winterUI || f.bigBell) {
+    const gi = SECTION_IDS.indexOf('gate');
+    const bx = gi * laneW + laneW * 0.92;
+    const by = l.yWall - 26;
+    const r = f.bigBell ? 7 : 4.5;
+    ctx.strokeStyle = '#4e3b26';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(bx, l.yWall);
+    ctx.lineTo(bx, by - r - 4);
+    ctx.lineTo(bx - r - 3, by - r - 4);
+    ctx.stroke();
+    ctx.fillStyle = f.rope.snapped ? '#6e6252' : '#c9a24a';
+    ctx.beginPath();
+    ctx.moveTo(bx - r - 3 - r, by + r * 0.6);
+    ctx.quadraticCurveTo(bx - r - 3, by - r * 1.6, bx - r - 3 + r, by + r * 0.6);
+    ctx.closePath();
+    ctx.fill();
+  }
+
   // A stretch that came down in the thaw: a gap in the wall top with rubble at its foot.
   for (const [i, sec] of f.sections.entries()) {
     if (!sec.fallen) continue;
@@ -431,11 +477,11 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   for (const sec of winterUI ? f.sections : []) {
     const isLit = sec.id === f.lit;
     for (const [slot, p] of sec.posts.entries()) {
-      const at = postXY(l, sec.id, slot);
-      // On a narrow map neighbours' names would run together: the second post's name sits a line lower
-      // (G3-4 review, 360 px). Names are outlined so they stay readable over the huts.
-      const narrow = laneW < 110;
-      const labelY = at.y + l.wallH * 0.55 + 10 + (narrow && slot % 2 === 1 ? 11 : 0);
+      const at = postXY(l, sec.id, slot, sec.posts.length);
+      // On a narrow map, or with three posts, neighbours' names would run together: the middle post's name sits
+      // a line lower (G3-4 review, 360 px). Names are outlined so they stay readable over the huts.
+      const stagger = laneW < 110 || sec.posts.length >= 3;
+      const labelY = at.y + l.wallH * 0.55 + 10 + (stagger && slot % 2 === 1 ? 11 : 0);
       // Figures grow a little on tall maps so posture and signs stay readable.
       const size = Math.max(1, Math.min(1.7, l.wallH / 26));
       ctx.font = '600 11px "Instrument Sans", system-ui, sans-serif';
@@ -998,9 +1044,11 @@ function drawFields(ctx: CanvasRenderingContext2D, l: Layout, f: Frame): void {
     colour = into < 0.17 ? 'rgba(222, 186, 96, 0.8)' : 'rgba(196, 160, 100, 0.55)';
     height = into < 0.17 ? 9 : 2;
   }
+  // Better seed from the fair shows as taller, closer rows until the harvest takes it in.
+  if (f.seed && f.season !== 'autumn') height += 2;
   ctx.strokeStyle = colour;
-  ctx.lineWidth = 1.4;
-  const rows = Math.max(3, Math.floor((bottom - top) / 12));
+  ctx.lineWidth = f.seed ? 1.8 : 1.4;
+  const rows = Math.max(3, Math.floor((bottom - top) / (f.seed ? 9 : 12)));
   for (let r = 0; r < rows; r++) {
     const y = top + ((r + 0.5) / rows) * (bottom - top);
     ctx.beginPath();

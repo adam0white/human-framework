@@ -95,7 +95,12 @@ export interface Frame {
     posts: { id: PostId; watcher: WatcherId | null; posted: WatcherId | null }[];
     /** The stretch came down in the thaw and cannot be stood this winter. */
     fallen: boolean;
+    /** The stretch was raised at a fair (a third post, for good): drawn higher, with a timber walk. */
+    raised: boolean;
   }[];
+  /** What the fair bought, drawn on the map: the bigger bell at the Gate, better seed in the fields. */
+  bigBell: boolean;
+  seed: boolean;
   /** Watchers who have come to the village (absent ones are left out). */
   watchers: FrameWatcher[];
   /** The card open now (night only). */
@@ -106,6 +111,8 @@ export interface Frame {
   bellRead: string | null;
   /** At night: the name the bell would ring for (null when no one is in earshot or it cannot ring). */
   bellFor: string | null;
+  /** Their id: the bell button rings for exactly the one it names. */
+  bellForId: WatcherId | null;
   /** The last day, for the dusk panel. */
   day: DaySummary | null;
   seen: SeenToken[];
@@ -244,7 +251,23 @@ const POSTURE: Record<string, Posture> = {
 };
 
 let readCache: { key: string; reads: Frame['postingReads'] } | null = null;
-let bellCache: { key: string; read: { read: string; who: string | null } } | null = null;
+let bellCache: { key: string; read: { read: string; who: string | null; id: WatcherId | null } } | null =
+  null;
+/** Whom the bell button names, and since when (owner's playtest: the name "keeps changing between people"). */
+let bellHold: { night: string; who: WatcherId; since: number } | null = null;
+/** The bell keeps naming the same watcher this many sim minutes while they still need it more than a little. */
+export const BELL_HOLD_MIN = 15;
+
+/** Whether `who` can still be rung for: here, in earshot, not already under the bell. */
+function bellCanReach(s: WatchState, who: WatcherId): boolean {
+  if (!presentIds(s).includes(who)) return false;
+  const held = s.commands[who];
+  if (held && s.minute < held.until) return false;
+  const hear = earshot(s);
+  const pl = s.place[who];
+  if (isPost(pl)) return hear.includes(postSection(pl));
+  return pl === 'hall' && hear.includes('gate');
+}
 
 /** Dusk posting reads, recomputed every ten sim minutes or when a posting changes (they run predictAs). */
 function postingReads(s: WatchState): Frame['postingReads'] {
@@ -268,15 +291,34 @@ function postingReads(s: WatchState): Frame['postingReads'] {
   return reads;
 }
 
-/** The bell read (H2): whom it would ring for, and how they would take it, in words. */
-function bellRead(s: WatchState): { read: string; who: string | null } | null {
+/**
+ * The bell read (H2): whom it would ring for, and how they would take it, in words. The name holds for
+ * `BELL_HOLD_MIN` sim minutes while that watcher can still be reached, unless the first choice has left the wall
+ * for the hall (2026-10-05: the per-minute reads flipped between near-equal watchers). This is the page's choice
+ * only: the button sends the name with the pull, so the input log says whom it rang for.
+ */
+function bellRead(s: WatchState): { read: string; who: string | null; id: WatcherId | null } | null {
   if (s.phase !== 'night' || s.rope.snapped) return null;
-  const key = `${s.seed}|${s.minute}|${s.lantern.x}`;
+  const key = `${s.seed}|${s.year}|${s.night}|${s.minute}|${s.lantern.x}`;
   if (bellCache?.key === key) return bellCache.read;
-  const who = bellTarget(s);
+  const night = `${s.seed}|${s.year}|${s.night}`;
+  const best = bellTarget(s);
+  let who = best;
+  const hold = bellHold?.night === night ? bellHold : null;
+  if (
+    hold &&
+    best !== null &&
+    best !== hold.who &&
+    s.minute - hold.since < BELL_HOLD_MIN &&
+    s.place[best] !== 'hall' &&
+    bellCanReach(s, hold.who)
+  )
+    who = hold.who;
+  if (who === null) bellHold = null;
+  else if (!hold || hold.who !== who) bellHold = { night, who, since: s.minute };
   const read = who
-    ? { read: `${nameOf(s, who)}: ${bellWords(readBell(s, who))}`, who: nameOf(s, who) }
-    : { read: 'no one in earshot', who: null };
+    ? { read: `${nameOf(s, who)}: ${bellWords(readBell(s, who))}`, who: nameOf(s, who), id: who }
+    : { read: 'no one in earshot', who: null, id: null };
   bellCache = { key, read };
   return read;
 }
@@ -323,6 +365,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
     id: sec.id,
     name: sec.name,
     fallen: sec.id === fallenAt,
+    raised: s.marks.extended.includes(sec.id),
     posts: POSTS.filter((p) => p.section === sec.id && s.openPosts.includes(p.id)).map((p) => ({
       id: p.id,
       watcher: ids.find((w) => s.place[w] === p.id) ?? null,
@@ -389,6 +432,8 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
     grain: s.grain,
     grainAtDusk: s.phase === 'night' ? s.tally.grainAtDusk : s.grain,
     rope: { ...s.rope },
+    bigBell: s.marks.bigBell,
+    seed: s.marks.seed,
     roused: s.phase === 'night' && Object.keys(s.commands).length > 0,
     slowed,
     // Only what is still news: alerts from the last hour of the night.
@@ -398,6 +443,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
     postingReads: postingReads(s),
     bellRead: bell?.read ?? null,
     bellFor: bell?.who ?? null,
+    bellForId: bell?.id ?? null,
     day: s.day,
     ...yearFrame(s),
   };

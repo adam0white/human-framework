@@ -579,7 +579,7 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
           type="button"
           className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
           disabled={frame.rope.snapped}
-          onClick={() => actions.input({ k: 'bell' })}
+          onClick={() => actions.input(frame.bellForId ? { k: 'bell', who: frame.bellForId } : { k: 'bell' })}
         >
           <Icon name="bell" size={20} />
           <span>{frame.bellFor ? `Ring for ${frame.bellFor} to hold` : 'Ring the bell'}</span>
