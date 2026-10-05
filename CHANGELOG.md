@@ -14,7 +14,7 @@ absolute links in sections, since they are copied into the release page.
 
 ## [2.1.0] - 2026-10-05
 
-Engine: 2.0.0 (unchanged). A polish release: no simulation behaviour changes; playtest replays, engine fixtures and
+Engine: 2.0.0. Unchanged from 2.0.0. A polish release: no simulation behaviour changes; playtest replays, engine fixtures and
 state hashes are byte-identical to 2.0.0. Deprecated forms listed below are removed in 3.0.
 
 ### Added
