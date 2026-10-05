@@ -20,6 +20,7 @@
  */
 import { clamp, createRng, dexp, dlog, normal, random } from '../core/index.ts';
 import type { HeldNorm, Person, PersonSpec, Relationship, Traits, Values } from '../types.ts';
+import { TRAIT_KEYS, VALUE_KEYS } from '../types.ts';
 
 export interface ChildSpec {
   id: string;
@@ -56,27 +57,6 @@ export interface ChildBirth {
   parentLinks: { parentId: string; relationship: Partial<Relationship> & { otherId: string } }[];
 }
 
-const TRAITS: (keyof Traits)[] = [
-  'honesty',
-  'emotionality',
-  'extraversion',
-  'agreeableness',
-  'conscientiousness',
-  'openness',
-];
-const VALUES: (keyof Values)[] = [
-  'benevolence',
-  'universalism',
-  'tradition',
-  'conformity',
-  'security',
-  'achievement',
-  'power',
-  'hedonism',
-  'stimulation',
-  'selfDirection',
-];
-
 /** Creation spec for a child of `a` and `b`. Pure apart from the child's own seeded stream. */
 export function createChild(a: Person, b: Person, spec: ChildSpec): ChildBirth {
   const rng = createRng(spec.seed);
@@ -87,14 +67,14 @@ export function createChild(a: Person, b: Person, spec: ChildSpec): ChildBirth {
   const bornAt = spec.bornAt ?? a.now;
 
   const traits: Partial<Traits> = {};
-  for (const k of TRAITS) {
+  for (const k of TRAIT_KEYS) {
     const mid = (a.traits[k] + b.traits[k]) / 2;
     traits[k] = clamp(0.5 + h * (mid - 0.5) + normal(rng, 0, residual), 0.02, 0.98);
   }
   const vt = clamp(spec.valueTransmission ?? 0, 0, 1);
   const values: Partial<Values> = {};
   if (vt > 0) {
-    for (const k of VALUES) {
+    for (const k of VALUE_KEYS) {
       const mid = (a.values[k] + b.values[k]) / 2;
       values[k] = clamp(0.5 + vt * (mid - 0.5) + normal(rng, 0, sd), 0.02, 0.98);
     }

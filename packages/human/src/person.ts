@@ -24,6 +24,7 @@ import {
   checkCrisis,
   createAffect,
   easeBreak,
+  emotionLevel,
   feel,
   readAffect,
   regulate,
@@ -108,7 +109,15 @@ import {
 } from './memory/index.ts';
 import { migrate } from './migrate.ts';
 import { intentionFor, narrateDecision, voiceLine } from './narrate/index.ts';
-import { advanceNeeds, createNeeds, meanSatisfaction, readNeeds, satisfy } from './needs/index.ts';
+import {
+  advanceNeeds,
+  createNeeds,
+  levelOf,
+  meanSatisfaction,
+  readNeeds,
+  satisfy,
+  urgencyOf,
+} from './needs/index.ts';
 import { sanitizeBonds, widow } from './partnering/index.ts';
 import { learnByWatching, practise, type SkillTransfer, seedSkills } from './skills/index.ts';
 import {
@@ -153,7 +162,14 @@ import type {
   Unit,
   Values,
 } from './types.ts';
-import { ENGINE_VERSION, PERSON_SCHEMA, PHYSIOLOGICAL_NEEDS, PSYCHOLOGICAL_NEEDS } from './types.ts';
+import {
+  ENGINE_VERSION,
+  PERSON_SCHEMA,
+  PHYSIOLOGICAL_NEEDS,
+  PSYCHOLOGICAL_NEEDS,
+  TRAIT_KEYS,
+  VALUE_KEYS,
+} from './types.ts';
 import {
   advanceWill,
   answerSuggestion,
@@ -219,26 +235,6 @@ export const PERSON_DEFAULTS = {
   nightTo: 5 * 60,
 };
 
-const TRAIT_KEYS: (keyof Traits)[] = [
-  'honesty',
-  'emotionality',
-  'extraversion',
-  'agreeableness',
-  'conscientiousness',
-  'openness',
-];
-const VALUE_KEYS: (keyof Values)[] = [
-  'benevolence',
-  'universalism',
-  'tradition',
-  'conformity',
-  'security',
-  'achievement',
-  'power',
-  'hedonism',
-  'stimulation',
-  'selfDirection',
-];
 const SOCIAL_KINDS: readonly SocialEventKind[] = [
   'help',
   'harm',
@@ -257,7 +253,7 @@ const SOCIAL_KINDS: readonly SocialEventKind[] = [
 ];
 const SOCIAL_ALIASES: Record<string, SocialEventKind> = { theft: 'harm', attack: 'harm', steal: 'harm' };
 
-function fill<T extends object>(keys: (keyof T)[], given: Partial<T> | undefined, def: number): T {
+function fill<T extends object>(keys: readonly (keyof T)[], given: Partial<T> | undefined, def: number): T {
   const out = {} as T;
   for (const k of keys) {
     const v = given?.[k];
@@ -360,15 +356,6 @@ function applyRecall(p: Person, r: CueRecall): string[] {
   return r.recalled;
 }
 
-const levelOf = (needs: NeedReading[], id: NeedId): number => needs.find((n) => n.id === id)?.level ?? 1;
-const urgencyOf = (needs: NeedReading[], id: NeedId): number => needs.find((n) => n.id === id)?.urgency ?? 0;
-
-const emotionSum = (p: Person, id: string): number => {
-  let s = 0;
-  for (const e of p.affect.emotions) if (e.id === id) s += e.intensity;
-  return clamp01(s);
-};
-
 /**
  * The last completed activity's action (habit cue), from the newest completed outcome episode. The
  * intention log is not used: it also records missed, interrupted and failed deeds.
@@ -423,7 +410,7 @@ function feelFromNeeds(p: Person, needs: NeedReading[]): void {
   const inject = (id: 'loneliness' | 'boredom', urgency: number, from: number, cause: string) => {
     if (urgency <= from) return;
     const target = clamp01((urgency - from) / (1 - from));
-    const current = emotionSum(p, id);
+    const current = emotionLevel(p, id);
     if (target > current + 0.05) feel(p, id, target, cause, p.now);
   };
   inject('loneliness', urgencyOf(needs, 'belonging'), D.lonelinessFrom, 'need:belonging');
@@ -821,7 +808,7 @@ export function perceive(p: Person, percepts: readonly Percept[]): Percept[] {
   const attended = attend(p, [...percepts], {
     focus: p.activity?.focus ?? 0,
     fatigue: body.perceived.fatigue,
-    fear: emotionSum(p, 'fear'),
+    fear: emotionLevel(p, 'fear'),
   });
   for (const pc of attended) {
     perceiveOne(p, pc);

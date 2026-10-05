@@ -24,13 +24,14 @@
  * an advertised `safety` gain) or paying looks only like a loss. The spec's "security need" is read as the
  * `safety` need: `security` is a value, not a need, and no need is added.
  */
-import { inBreak } from '../affect/index.ts';
+import { emotionLevel, inBreak } from '../affect/index.ts';
 import { agendaTerms } from '../agenda/index.ts';
 import { trustOf } from '../beliefs/index.ts';
 import { normTerms } from '../conscience/index.ts';
 import { clamp01, dexp, minuteOfDay, round } from '../core/index.ts';
 import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
 import { expectedEffect } from '../memory/index.ts';
+import { urgencyOf } from '../needs/index.ts';
 import { partneringTerms } from '../partnering/index.ts';
 import { companionSteadiness, socialTerms } from '../social/index.ts';
 import type {
@@ -49,7 +50,7 @@ import type {
   Unit,
   ValueId,
 } from '../types.ts';
-import { PHYSIOLOGICAL_NEEDS } from '../types.ts';
+import { PHYSIOLOGICAL_NEEDS, VALUE_KEYS } from '../types.ts';
 import {
   adviceWeight,
   type CommandOutcome,
@@ -163,27 +164,6 @@ export interface ConsiderContext {
   scarcity?: Unit;
 }
 
-const urgencyOf = (needs: NeedReading[], id: NeedId): number => needs.find((n) => n.id === id)?.urgency ?? 0;
-
-const emotionSum = (p: Person, id: string): number => {
-  let s = 0;
-  for (const e of p.affect.emotions) if (e.id === id) s += e.intensity;
-  return clamp01(s);
-};
-
-const VALUE_IDS: readonly ValueId[] = [
-  'benevolence',
-  'universalism',
-  'tradition',
-  'conformity',
-  'security',
-  'achievement',
-  'power',
-  'hedonism',
-  'stimulation',
-  'selfDirection',
-];
-
 function voiceTrust(p: Person, voiceId: string): number {
   return p.will.voices.find((v) => v.voiceId === voiceId)?.trust ?? 0.5;
 }
@@ -255,7 +235,7 @@ export function rememberedTerms(
   return out;
 }
 
-const isValueId = (x: string): x is ValueId => (VALUE_IDS as readonly string[]).includes(x);
+const isValueId = (x: string): x is ValueId => (VALUE_KEYS as readonly string[]).includes(x);
 
 function appealMatch(p: Person, s: Suggestion, needs: NeedReading[]): number {
   if (!s.appeal) return 0;
@@ -412,7 +392,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
 
   // Risk: chance × severity × (fear + emotionality).
   if (aff.risk && aff.risk.chance > 0 && aff.risk.severity > 0) {
-    const fear = emotionSum(p, 'fear');
+    const fear = emotionLevel(p, 'fear');
     push('risk', -K.riskScale * aff.risk.chance * aff.risk.severity * (fear + p.traits.emotionality));
     if (p.social.impressions && aff.with) {
       for (const id of [...aff.with].sort()) {

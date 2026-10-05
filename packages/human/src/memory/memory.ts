@@ -40,7 +40,7 @@ import type {
   Signed,
   Unit,
 } from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
+import { DAYS_PER_YEAR, MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
 
 export const MEMORY_DEFAULTS = {
   maxEpisodes: 200,
@@ -764,7 +764,7 @@ export function recallByCue(p: Person, cue: RecallCue): CueRecall {
     }
     const isLossTagged = ep.tags.some((t) => D.lossTags.includes(t)) || ep.action === 'death';
     const daysSince = Math.floor(at / MINUTES_PER_DAY) - Math.floor(ep.at / MINUTES_PER_DAY);
-    if (isLossTagged && daysSince > 0 && daysSince % 365 === 0) {
+    if (isLossTagged && daysSince > 0 && daysSince % DAYS_PER_YEAR === 0) {
       strength += W.anniversary;
       specific = true;
     }

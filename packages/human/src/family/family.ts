@@ -41,17 +41,8 @@ import { clamp, clamp01, createRng, dpow, normal } from '../core/index.ts';
 import { ageYears } from '../lifecourse/index.ts';
 import { remember } from '../memory/index.ts';
 import { relationshipWith } from '../social/index.ts';
-import type {
-  FamilyState,
-  LifeModifiers,
-  Minute,
-  Person,
-  PersonId,
-  Pregnancy,
-  Unit,
-  Values,
-} from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
+import type { FamilyState, LifeModifiers, Minute, Person, PersonId, Pregnancy, Unit } from '../types.ts';
+import { MINUTES_PER_DAY, MINUTES_PER_YEAR, VALUE_KEYS } from '../types.ts';
 import { adoptVoiceTrust } from '../will/index.ts';
 
 export const FAMILY_DEFAULTS = {
@@ -76,19 +67,6 @@ export const FAMILY_DEFAULTS = {
   /** Voice-trust relaxation per year at full plasticity (assumption). */
   voiceRatePerYear: 0.3,
 };
-
-const VALUE_KEYS: (keyof Values)[] = [
-  'benevolence',
-  'universalism',
-  'tradition',
-  'conformity',
-  'security',
-  'achievement',
-  'power',
-  'hedonism',
-  'stimulation',
-  'selfDirection',
-];
 
 /** A fresh family slice from a creation spec (`createPerson`); undefined when the spec gives nothing. @internal */
 export function createFamily(

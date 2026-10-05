@@ -55,11 +55,9 @@ import type {
   Signed,
   Suggestion,
   Term,
-  Traits,
   Unit,
-  Values,
 } from '../types.ts';
-import { MINUTES_PER_DAY } from '../types.ts';
+import { MINUTES_PER_DAY, TRAIT_KEYS, VALUE_KEYS } from '../types.ts';
 
 export const PARTNERING_DEFAULTS = {
   /** Warmth gained per meeting at appeal 1, quality 1 (saturating). */
@@ -260,28 +258,7 @@ export function inMourning(p: Person, now: Minute = p.now): boolean {
 // Attraction and compatibility
 // ---------------------------------------------------------------------------------------------
 
-const VALUE_KEYS: (keyof Values)[] = [
-  'benevolence',
-  'universalism',
-  'tradition',
-  'conformity',
-  'security',
-  'achievement',
-  'power',
-  'hedonism',
-  'stimulation',
-  'selfDirection',
-];
-const TRAIT_KEYS: (keyof Traits)[] = [
-  'honesty',
-  'emotionality',
-  'extraversion',
-  'agreeableness',
-  'conscientiousness',
-  'openness',
-];
-
-function similarity<T extends object>(a: T, b: T, keys: (keyof T)[]): Unit {
+function similarity<T extends object>(a: T, b: T, keys: readonly (keyof T)[]): Unit {
   let d = 0;
   for (const k of keys) d += Math.abs((a[k] as number) - (b[k] as number));
   return clamp01(1 - (2 * d) / keys.length);

@@ -26,6 +26,7 @@ export type Signed = number;
 export const MINUTES_PER_HOUR = 60;
 export const MINUTES_PER_DAY = 1440;
 export const MINUTES_PER_YEAR = 525_600;
+export const DAYS_PER_YEAR = 365;
 
 /** Serializable PRNG state (sfc32 or similar 4×uint32). Owned by `core/random`. */
 export interface RngState {
@@ -211,6 +212,30 @@ export interface Values {
   selfDirection: Unit;
 }
 export type ValueId = keyof Values;
+
+/** The six trait keys in canonical order (the order every loop over traits uses, and the save's key order). */
+export const TRAIT_KEYS: readonly (keyof Traits)[] = [
+  'honesty',
+  'emotionality',
+  'extraversion',
+  'agreeableness',
+  'conscientiousness',
+  'openness',
+];
+
+/** The ten value keys in canonical order (the order every loop over values uses, and the save's key order). */
+export const VALUE_KEYS: readonly ValueId[] = [
+  'benevolence',
+  'universalism',
+  'tradition',
+  'conformity',
+  'security',
+  'achievement',
+  'power',
+  'hedonism',
+  'stimulation',
+  'selfDirection',
+];
 
 /**
  * How the person understands a norm's standing. These are the person's understanding, not a ruling.

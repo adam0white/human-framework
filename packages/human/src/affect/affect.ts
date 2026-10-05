@@ -286,7 +286,7 @@ export function appraise(p: Person, ev: AppraisalEvent): Emotion[] {
 }
 
 /** Effective half-life of an emotion under the person's current regulation. */
-export function effectiveHalfLife(p: Person, e: Emotion): number {
+function effectiveHalfLife(p: Person, e: Emotion): number {
   const A = AFFECT_DEFAULTS;
   const shorten =
     isNegative(e.id) && !A.regulationExempt.includes(e.id)
@@ -357,6 +357,17 @@ export function advanceAffect(
   a.emotions = a.emotions.filter((e) => e.intensity >= A.dropBelow);
   sortEmotions(a.emotions);
   a.lastUpdated += dt;
+}
+
+/**
+ * How strongly one emotion is felt now, 0..1: the summed intensity of its instances (only those toward `targetId`,
+ * when given), clamped. Read only.
+ */
+export function emotionLevel(p: Pick<Person, 'affect'>, id: EmotionId, targetId?: EntityId): Unit {
+  let s = 0;
+  for (const e of p.affect.emotions)
+    if (e.id === id && (targetId === undefined || e.targetId === targetId)) s += e.intensity;
+  return clamp01(s);
 }
 
 /** Felt state: mood shifted by current emotions, plus the three strongest emotions (copies). */

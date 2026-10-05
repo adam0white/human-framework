@@ -28,7 +28,7 @@ import type {
   Term,
   Unit,
 } from '../types.ts';
-import { MINUTES_PER_DAY } from '../types.ts';
+import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
 import { careFor } from './groups.ts';
 
 const WEEK = 7 * MINUTES_PER_DAY;
@@ -63,7 +63,7 @@ export const SOCIAL_DEFAULTS = {
   /** Familiarity gain per interaction at magnitude 1: f += gain * (1 - f). */
   familiarityGain: 0.06,
   /** Non-family familiarity half-life without contact (minutes). */
-  familiarityHalfLife: 2 * 365 * MINUTES_PER_DAY,
+  familiarityHalfLife: 2 * MINUTES_PER_YEAR,
   /** Non-role affection drifts toward 0 by 1% per week. */
   affectionHalfLife: (Math.LN2 / -dlog(0.99)) * WEEK,
   /** Fraction of the gap to the role baseline restored by a full-magnitude act of forgiveness. */

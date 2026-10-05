@@ -38,19 +38,13 @@ import type {
   Traits,
   Unit,
 } from '../types.ts';
-import { MINUTES_PER_DAY } from '../types.ts';
+import { MINUTES_PER_DAY, MINUTES_PER_YEAR, TRAIT_KEYS } from '../types.ts';
 
 export type CueKind = 'state' | 'place' | 'trait' | 'tie' | 'trust' | 'skill';
 
 export const STATE_CUES: readonly StateCue[] = ['fatigue', 'pain', 'fear', 'mood'];
-export const TRAIT_NAMES: readonly (keyof Traits)[] = [
-  'honesty',
-  'emotionality',
-  'extraversion',
-  'agreeableness',
-  'conscientiousness',
-  'openness',
-];
+/** @deprecated since 2.1: use `TRAIT_KEYS` (types.ts), the same list. Removed in 3.0. */
+export const TRAIT_NAMES: readonly (keyof Traits)[] = TRAIT_KEYS;
 
 export const IMPRESSION_DEFAULTS = {
   /** Weight half-life by kind, minutes (0 = no decay). */
@@ -61,7 +55,7 @@ export const IMPRESSION_DEFAULTS = {
     tie: 90 * MINUTES_PER_DAY,
     trust: 30 * MINUTES_PER_DAY,
     /** `skill:<id>`: how good someone is at a craft changes over seasons, and what was seen of it lasts. */
-    skill: 365 * MINUTES_PER_DAY,
+    skill: MINUTES_PER_YEAR,
   } as Record<CueKind, number>,
   /** confidence = weight / (weight + priorWeight). */
   priorWeight: 1.5,
@@ -301,7 +295,7 @@ export function observeAct(
   for (const tag of [...new Set(act.tags ?? [])].sort()) {
     const traits = table[tag];
     if (!traits) continue;
-    for (const t of TRAIT_NAMES) {
+    for (const t of TRAIT_KEYS) {
       const v = traits[t];
       if (v !== undefined) put(`trait:${t}`, v, clarity * IMPRESSION_DEFAULTS.actTraitWeight);
     }
@@ -340,7 +334,7 @@ export function acquaint(
   if (f <= 0) return;
   const A = IMPRESSION_DEFAULTS;
   const imp = impressionFor(observer, targetId, true, at) as Impression;
-  for (const t of TRAIT_NAMES) {
+  for (const t of TRAIT_KEYS) {
     const key = `trait:${t}`;
     const e = (hash01(`${observer.id}|${targetId}|${key}|acquaint`) - 0.5) * A.acquaintNoise * (1 - f);
     sample(imp, key, facts.traits[t] + e, A.acquaintWeight * f, at);

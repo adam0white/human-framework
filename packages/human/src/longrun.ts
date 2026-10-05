@@ -30,13 +30,7 @@ import { chance, clampSigned, dayOf } from './core/index.ts';
 import { ambientMood } from './environment/index.ts';
 import { aptitudeOf } from './family/index.ts';
 import { advanceHabits } from './habits/index.ts';
-import {
-  type ChronicCondition,
-  chronicOnsets,
-  type HealthExposures,
-  lifeStage,
-  mortalityEvent,
-} from './lifecourse/index.ts';
+import { chronicOnsets, lifeStage, mortalityEvent } from './lifecourse/index.ts';
 import { advanceMemory, foldGists, remember } from './memory/index.ts';
 import { meanSatisfaction } from './needs/index.ts';
 import { widowhoodMortality } from './partnering/index.ts';

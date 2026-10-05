@@ -29,7 +29,7 @@ import type {
   Unit,
   YearRecord,
 } from '../types.ts';
-import { MINUTES_PER_DAY } from '../types.ts';
+import { DAYS_PER_YEAR, MINUTES_PER_DAY } from '../types.ts';
 
 export const CHRONICLE_DEFAULTS = {
   /** Day records kept; the oldest are dropped first. */
@@ -464,7 +464,7 @@ export function foldDay(p: Person, d: DayFold): YearRecord | undefined {
   const years = p.chronicleYears;
   if (!years) return undefined;
   const C = CHRONICLE_DEFAULTS;
-  const year = Math.floor(d.day / 365);
+  const year = Math.floor(d.day / DAYS_PER_YEAR);
   let y = years.find((x) => x.year === year);
   if (!y) {
     y = {

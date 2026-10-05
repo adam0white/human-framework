@@ -57,7 +57,7 @@ import type {
   PersonSpec,
   Unit,
 } from '../types.ts';
-import { MINUTES_PER_DAY } from '../types.ts';
+import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
 import { bleedStep, INJURY_DEFAULTS } from './injury.ts';
 
 export const BODY_DEFAULTS = {
@@ -166,7 +166,7 @@ export const BODY_DEFAULTS = {
   exposureRecentGain: 0.1,
   exposureRecentHalfLife: 3 * MINUTES_PER_DAY,
   /** Cumulative dose decays very slowly (risk declines over years after cessation). */
-  exposureCumulativeHalfLife: 5 * 365 * MINUTES_PER_DAY,
+  exposureCumulativeHalfLife: 5 * MINUTES_PER_YEAR,
   // --- contagion ---
   /** Transmission rate per contact minute at source severity 1 (60 min at severity 0.5 ≈ 11%). */
   transmissionPerMinute: 0.004,

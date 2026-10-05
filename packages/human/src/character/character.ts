@@ -27,9 +27,9 @@
  * therapy, cohort effects, individual differences in plasticity, or norm conviction (owned by `conscience/`).
  * Traits never branch logic (framework.md, locked decisions): this module only moves the coefficients.
  */
-import { clamp, clamp01, dpow } from '../core/index.ts';
+import { clamp, clamp01, dayOf, dpow } from '../core/index.ts';
 import type { CharacterState, Minute, Person, Signed, Traits, Values } from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
+import { DAYS_PER_YEAR, MINUTES_PER_YEAR, TRAIT_KEYS, VALUE_KEYS } from '../types.ts';
 
 export const CHARACTER_DEFAULTS = {
   /** Largest distance any trait or value may drift from its value when drift was enabled. */
@@ -84,10 +84,7 @@ export const CHARACTER_DEFAULTS = {
   varietyBaseline: 5,
 };
 
-const TRAIT_KEYS = Object.keys(CHARACTER_DEFAULTS.traitPerYear) as (keyof Traits)[];
-const VALUE_KEYS = Object.keys(CHARACTER_DEFAULTS.valuePerYear) as (keyof Values)[];
-
-const yearOf = (now: Minute): number => Math.floor(Math.floor(now / MINUTES_PER_DAY) / 365);
+const yearOf = (now: Minute): number => Math.floor(dayOf(now) / DAYS_PER_YEAR);
 const emptyAcc = (): CharacterState['acc'] => ({
   days: 0,
   mood: 0,

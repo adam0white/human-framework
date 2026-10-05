@@ -177,6 +177,13 @@ function physiologicalLevel(id: PhysiologicalNeed, body: BodyReadout): Unit {
   }
 }
 
+/** A need's level in a reading (1 when absent). @internal */
+export const levelOf = (needs: readonly NeedReading[], id: NeedId): number =>
+  needs.find((n) => n.id === id)?.level ?? 1;
+/** A need's urgency in a reading (0 when absent). @internal */
+export const urgencyOf = (needs: readonly NeedReading[], id: NeedId): number =>
+  needs.find((n) => n.id === id)?.urgency ?? 0;
+
 /** All needs in stable order: physiological (types.ts order) then psychological. */
 export function readNeeds(p: Person, body: BodyReadout): NeedReading[] {
   const out: NeedReading[] = [];

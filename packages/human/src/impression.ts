@@ -26,7 +26,6 @@ import {
   IMPRESSION_DEFAULTS,
   type OutwardSigns,
   reserveOf,
-  TRAIT_NAMES,
 } from './social/index.ts';
 import type {
   Affordance,
@@ -39,6 +38,7 @@ import type {
   SuggestionResolution,
   Unit,
 } from './types.ts';
+import { TRAIT_KEYS } from './types.ts';
 import type { CommandOutcome } from './will/index.ts';
 
 /** Family roles everyone around knows about (acquaintance passes these ties on). */
@@ -98,11 +98,11 @@ export function acquaintWith(observer: Person, target: Person, familiarity: Unit
 /** How sure the observer is of the things that drive an answer: traits and the state cues, 0..1. */
 export function impressionConfidence(observer: Person, targetId: PersonId, now: Minute): Unit {
   let t = 0;
-  for (const name of TRAIT_NAMES) t += estimate(observer, targetId, `trait:${name}`, now).confidence;
+  for (const name of TRAIT_KEYS) t += estimate(observer, targetId, `trait:${name}`, now).confidence;
   let s = 0;
   for (const cue of ['fatigue', 'pain', 'fear'] as const)
     s += estimate(observer, targetId, cue, now).confidence;
-  return round(0.5 * (t / TRAIT_NAMES.length) + 0.5 * (s / 3));
+  return round(0.5 * (t / TRAIT_KEYS.length) + 0.5 * (s / 3));
 }
 
 /**
@@ -111,7 +111,7 @@ export function impressionConfidence(observer: Person, targetId: PersonId, now: 
 export function imagine(observer: Person, target: Person, now: Minute): Person {
   const m = structuredClone(target);
   const id = target.id;
-  for (const name of TRAIT_NAMES)
+  for (const name of TRAIT_KEYS)
     m.traits[name] = round(clamp01(believedValue(observer, id, `trait:${name}`, now)));
   m.memory.episodes = [];
   m.memory.expectations = [];
