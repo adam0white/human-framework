@@ -257,14 +257,30 @@ export function glimpse(
   observer: Person,
   targetId: PersonId,
   signs: OutwardSigns,
+  at: Minute,
+  clarity?: Unit,
+): void;
+/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
+export function glimpse(
+  observer: Person,
+  targetId: PersonId,
+  signs: OutwardSigns,
   opts: { at: Minute; clarity?: Unit },
+): void;
+export function glimpse(
+  observer: Person,
+  targetId: PersonId,
+  signs: OutwardSigns,
+  when: Minute | { at: Minute; clarity?: Unit },
+  clearness?: Unit,
 ): void {
   if (targetId === observer.id) return;
-  const clarity = clamp01(opts.clarity ?? 1);
+  const at = typeof when === 'number' ? when : when.at;
+  const clarity = clamp01((typeof when === 'number' ? clearness : when.clarity) ?? 1);
   if (clarity <= 0) return;
-  const imp = impressionFor(observer, targetId, true, opts.at) as Impression;
+  const imp = impressionFor(observer, targetId, true, at) as Impression;
   const put = (key: string, v: number) =>
-    sample(imp, key, erred(observer, targetId, key, opts.at, v, clarity), clarity, opts.at);
+    sample(imp, key, erred(observer, targetId, key, at, v, clarity), clarity, at);
   put('fatigue', signs.fatigue);
   put('pain', signs.pain);
   put('fear', signs.fear);
@@ -308,13 +324,31 @@ export function hear(
   targetId: PersonId,
   key: string,
   value: number,
+  at: Minute,
+  weight?: Unit,
+): void;
+/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
+export function hear(
+  observer: Person,
+  targetId: PersonId,
+  key: string,
+  value: number,
   opts: { at: Minute; weight?: Unit },
+): void;
+export function hear(
+  observer: Person,
+  targetId: PersonId,
+  key: string,
+  value: number,
+  when: Minute | { at: Minute; weight?: Unit },
+  weight?: Unit,
 ): void {
   if (targetId === observer.id) return;
-  const w = clamp01(opts.weight ?? 0.5);
+  const at = typeof when === 'number' ? when : when.at;
+  const w = clamp01((typeof when === 'number' ? weight : when.weight) ?? 0.5);
   if (w <= 0) return;
-  const imp = impressionFor(observer, targetId, true, opts.at) as Impression;
-  sample(imp, key, value, w, opts.at);
+  const imp = impressionFor(observer, targetId, true, at) as Impression;
+  sample(imp, key, value, w, at);
 }
 
 /**

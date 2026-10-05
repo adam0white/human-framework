@@ -169,8 +169,22 @@ export function conceptionChance(mother: Person, father: Person, days: number): 
 export function conceive(
   mother: Person,
   father: Person | PersonId,
+  seed: number,
+  at: Minute,
+): Pregnancy | undefined;
+/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
+export function conceive(
+  mother: Person,
+  father: Person | PersonId,
   opts: { at: Minute; seed: number },
+): Pregnancy | undefined;
+export function conceive(
+  mother: Person,
+  father: Person | PersonId,
+  seedOrOpts: number | { at: Minute; seed: number },
+  when?: Minute,
 ): Pregnancy | undefined {
+  const opts = typeof seedOrOpts === 'number' ? { seed: seedOrOpts, at: when as Minute } : seedOrOpts;
   const fam = familyOf(mother);
   if (fam.pregnancy) return undefined;
   const rng = createRng((opts.seed ^ 0x9e3779b9) >>> 0);

@@ -4,7 +4,7 @@
  * - `outwardSigns(target)`: perceived fatigue, pain and fear and the felt mood, each reduced by the target's reserve;
  *   a limp (lost moving capacity) shows through any reserve. `selfReport(target)` is the same in words, which hide
  *   more (`IMPRESSION_DEFAULTS.wordsReserve`): "I'm fine".
- * - `glimpseOf(observer, target, opts)` = `glimpse` of the target's outward signs; `acquaintWith` hands the target's
+ * - `glimpseOf(observer, target, at, clarity?)` = `glimpse` of the target's outward signs; `acquaintWith` hands the target's
  *   traits and family ties (public roles) to `acquaint`.
  * - `imagine(observer, target, now)`: the target as the observer pictures them — a copy whose traits, fear, pain,
  *   fatigue, mood, ties and trust in voices are the observer's beliefs (each pulled to the prior by its uncertainty)
@@ -82,9 +82,18 @@ export function selfReport(target: Person): OutwardSigns {
   return s;
 }
 
-/** `observer` looks at `target` (clarity 0..1: lit and near, or a figure in the dark). */
-export function glimpseOf(observer: Person, target: Person, opts: { at: Minute; clarity?: Unit }): void {
-  glimpse(observer, target.id, outwardSigns(target), opts);
+/** `observer` looks at `target` at `at` (clarity 0..1: a clear look near by, or a distant figure; default 1). */
+export function glimpseOf(observer: Person, target: Person, at: Minute, clarity?: Unit): void;
+/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
+export function glimpseOf(observer: Person, target: Person, opts: { at: Minute; clarity?: Unit }): void;
+export function glimpseOf(
+  observer: Person,
+  target: Person,
+  when: Minute | { at: Minute; clarity?: Unit },
+  clarity?: Unit,
+): void {
+  if (typeof when === 'number') glimpse(observer, target.id, outwardSigns(target), when, clarity);
+  else glimpse(observer, target.id, outwardSigns(target), when.at, when.clarity);
 }
 
 /** `observer` has known `target` for a long time (familiarity 0..1): traits and family ties, condensed. */

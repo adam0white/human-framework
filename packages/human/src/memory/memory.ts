@@ -335,8 +335,15 @@ export const RETELL_DEFAULTS = {
   minSalience: 0.1,
 };
 
+/** Optional knobs of `retell`: trust in the teller (default the listener's trust in them), how many gists, which places. */
+export interface RetellOptions {
+  trust?: Unit;
+  limit?: number;
+  placeIds?: readonly string[];
+}
+
 /**
- * `teller` tells `listener` the gist of what mattered to them (2.0, L2: stories passed in a household or around a
+ * `teller` tells `listener` at `at` the gist of what mattered to them (2.0, L2: stories passed in a household or around a
  * fire). The listener must have gists on (`enableGists`); otherwise nothing happens. The teller's strongest gists
  * (up to `limit`, optionally only those about `placeIds`) become the listener's own gists with the tag `told`, the
  * teller's valence and summary, and a salience of the teller's × `trust` × `RETELL_DEFAULTS.share`. A listener who
@@ -348,11 +355,16 @@ export const RETELL_DEFAULTS = {
  * It does not model distortion in the retelling, the listener doubting the teller beyond `trust`, or retelling on
  * from the listener to others (a host may call it again with the listener as teller).
  */
+export function retell(teller: Person, listener: Person, at: Minute, opts?: RetellOptions): Gist[];
+/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
+export function retell(teller: Person, listener: Person, opts: RetellOptions & { at: Minute }): Gist[];
 export function retell(
   teller: Person,
   listener: Person,
-  opts: { at: Minute; trust?: Unit; limit?: number; placeIds?: readonly string[] },
+  when: Minute | (RetellOptions & { at: Minute }),
+  knobs: RetellOptions = {},
 ): Gist[] {
+  const opts = typeof when === 'number' ? { ...knobs, at: when } : when;
   const told = teller.memory.gists;
   const list = listener.memory.gists;
   if (!told || !list || teller.id === listener.id) return [];
