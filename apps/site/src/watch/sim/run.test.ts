@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Input } from './night.ts';
 import { DUSK_RATE, Pacer, type Speed } from './pace.ts';
-import { endState, replay, WatchRun } from './run.ts';
+import { endState, replay, ruleHash, WatchRun } from './run.ts';
 import { nextRandom } from './state.ts';
 
 /**
@@ -75,6 +75,43 @@ describe('Night Watch input log and playtest export', () => {
       if (b.state.minute === before && room <= 0) throw new Error('stuck');
     }
     expect(JSON.stringify(b.state)).toBe(JSON.stringify(a.state));
+  });
+
+  it('the rule hash ignores what is only told in words, and a change of rules moves it', () => {
+    const run = playScripted(2026, 1, 1);
+    const exp = run.export();
+    expect(exp.build).toBe('dev');
+    expect(typeof exp.framework).toBe('string');
+    const s = structuredClone(run.state);
+    expect(ruleHash(s)).toBe(exp.end.ruleHash);
+    // Words: the chronicle, an alert, the scout's line, a dawn voice, the pacing.
+    const line = s.chronicle[0];
+    if (line) line.text = `${line.text} (reworded)`;
+    s.alerts.push({ section: 'gate', kind: 'bell', text: 'A new line.', slowed: false, minute: s.minute });
+    s.warning = 'The scout says it differently now.';
+    s.slowUntil += 30;
+    s.pairings = s.pairings.map((p) => ({ ...p, told: true as const }));
+    expect(ruleHash(s)).toBe(exp.end.ruleHash);
+    expect(endState(s).fullHash).not.toBe(exp.end.fullHash);
+    // Rules: a sack, a draw from either stream, the rope's wear.
+    for (const change of [
+      (x: typeof s) => {
+        x.grain -= 1;
+      },
+      (x: typeof s) => {
+        x.rng += 1;
+      },
+      (x: typeof s) => {
+        x.world.rng += 1;
+      },
+      (x: typeof s) => {
+        x.rope.wear += 0.01;
+      },
+    ]) {
+      const t = structuredClone(s);
+      change(t);
+      expect(ruleHash(t)).not.toBe(exp.end.ruleHash);
+    }
   });
 
   it('refuses an export from another rules version', () => {

@@ -59,6 +59,7 @@ describe('Game 3 years (G3-3)', () => {
       expect(resumed.input(e.i)).toBe(true);
     }
     while (resumed.state.minute < exp.endMinute) resumed.step();
+    expect(endState(resumed.state).ruleHash).toBe(exp.end.ruleHash);
     expect(endState(resumed.state).fullHash).toBe(exp.end.fullHash);
     expect(resumed.log.length).toBe(run.log.length);
   }, 300_000);

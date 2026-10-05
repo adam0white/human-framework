@@ -3,6 +3,7 @@
  * playtest export. Replies from an earlier run (`gen`) are dropped.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { fetchBuild } from '../../shared/playtest.ts';
 import { startTickLoop } from '../../shared/tick-loop.ts';
 import { type MainToWorker, type PageInfo, WATCH_SCENARIO_VERSION, type WorkerToMain } from '../protocol.ts';
 import type { Input } from '../sim/night.ts';
@@ -138,12 +139,18 @@ export function useWatch(): Watch {
         send({ type: 'speed', speed: s });
       },
       hold: (on) => send({ type: 'hold', on }),
-      exportRun: () =>
-        new Promise<PlaytestExport>((resolve) => {
-          exportSeq.current += 1;
-          exports.current.set(exportSeq.current, resolve);
-          send({ type: 'export', requestId: exportSeq.current });
-        }),
+      // The page stamps the deployed commit (`/release.json`, as Games 1 and 2 do); the worker cannot know it.
+      exportRun: async () => {
+        const [data, build] = await Promise.all([
+          new Promise<PlaytestExport>((resolve) => {
+            exportSeq.current += 1;
+            exports.current.set(exportSeq.current, resolve);
+            send({ type: 'export', requestId: exportSeq.current });
+          }),
+          fetchBuild(),
+        ]);
+        return { ...data, build };
+      },
       restart: (next) => {
         gen.current += 1;
         seedRef.current = next;

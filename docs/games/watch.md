@@ -178,7 +178,7 @@ Watchers are HF `Person`s run by `stepCommunity` (`sim/people.ts`, `sim/night.ts
 - **Bell.** A command on the watchers within earshot for 90 minutes. It costs trust and autonomy, and every pull wears the rope until it snaps. The dawn line scales with resentment, from "I heard the bell. I held." to "You rang me down like a dog."
 - **Impressions.** The roster shows the Keeper's words for each watcher (HF `impressionOf`), drawn with how sure he is. Dusk reads by press (ask, urge, insist) use `predictAs` on the Keeper's imagined person, read the warned stretch as dangerous already, and carry their reason ("might (…)", "won't (…)"). A post someone else holds reads "might", not "won't".
 - **Dawn.** Each watcher speaks one or two lines. What they say is also told to the Keeper (HF `hear`, weight 0.5). A fright on a stretch (shaken, bitten, downed, fled, ran, froze) is learned with `learnOutcome` as a bad `hold-post@<section>`, weighted as five stints so the night's ordinary stints don't average it away. It lasts into the next dusk and then fades (`sim/fear.test.ts`: 13 of 13 cases still feared at the next dusk; the Keeper reads 8 of 13 as "might" or "won't").
-- **Export.** The compact export holds the seed, the input log, an end-state summary and a full hash; `sim/run.test.ts` replays it.
+- **Export.** The compact export holds the seed, the input log, an end-state summary and a full hash; `sim/run.test.ts` replays it. (2026-10-05: it also names its build and carries a rule-state hash; see Export provenance and hash policy.)
 
 **Gates, headless.** 24 seeds × 3 nights. G3-1 (`sim/gate.test.ts`), now with people, mean sacks lost of 20:
 
@@ -536,6 +536,17 @@ The owner asked: "if it stays at the gate how do we ring it when we're watching 
   - Caveat: the log was made under scenario 7, so only 182–212 of its inputs still apply in these replays; "as played" is not his game, and that no input lost the fewest is a finding about this seed under a partial log, not a verdict on his play (docs/findings.md).
 - **The G3-1 gate moved.** Seeds and plans as before; mean sacks lost over three nights, before → after: matched 11.33 → 11.54 (lantern 5.92 → 4.79), usual 14.71 → 15.33, mismatched 16.13 → 15.67 (lantern 16.79 → 16.92). A wrong plan without the lantern now loses only 0.33 more than the usual one (1.42 before): every plan meets the same threats, and the usual posting already loses 17–18 of 20 on half the seeds. The gate's no-lantern margin is 0.2 (was 0.5), with the reason in `gate.test.ts`.
 
+### Export provenance and hash policy (2026-10-05)
+
+§12 T1, exports name their build, and the hash covers rules, not wording.
+
+- **Provenance.** The export now carries `build` (the deployed commit from `/release.json`, stamped by the page when the player copies or saves it, `'dev'` otherwise) and `framework` (the HF package version), the same mechanism Games 1 and 2 use (`shared/playtest.ts`, `fetchBuild`). A page resumed from a scenario-7 save also carries `origin` (see The bell from the Gate as built).
+- **Hash policy: hash the rule state, not the words.** Chosen over bumping the scenario on every text change, because a text-only change is common (the 2026-10-05 fixes changed four kinds of state text in a day) and a bump would refuse every earlier export and page each time. The export's end state has two hashes:
+  - `ruleHash`, FNV-1a of `ruleState`: the clock and phase; the shared and world RNG streams; grain and the year's grain; the winter's plan without its words (nights, lead, twist, peak, the question's kind, people and whether it was met); the night's plan (lead, warned stretches, waves, spawns) and the threats; postings, presses, places, who was let go and carried; the lantern, the rope and the bell; commands and asks by target and end; the people (id, home, usual post, status, limp, parents), the marks, the Gate keeper, the heir and who is willing; pairings by who, with whom and until when; expecting mothers and newborns; the night history; moments by kind, person, minute and choice; every person's summary (needs, health, injuries, capacities, fear, stress, break, downed, trust in the Keeper, ties) and the Keeper's impressions. A replay of the same scenario must match it on any build.
+  - `fullHash`, FNV-1a of the whole state with every word: advisory, equal only on the build that made the export. A mismatch with an equal `ruleHash` means the wording changed and the rules did not.
+  - Left out of the rule state: the chronicle, alerts, the dawn and day pages, the scout's words, night notes, last voices, the season card and the fair's offers (their texts), talks, volumes and leaves, and `slowUntil` (pacing).
+  - Rule: a change that moves `ruleHash` for the same seed and log is a rule change and bumps the scenario version; a change that moves only `fullHash` does not. A field added to state that rules read must be added to `ruleState`. `run.test.ts` pins that wording, alerts, the scout's line, pacing and pairing flags leave `ruleHash` alone and that grain, either stream and the rope move it.
+
 ## 11. Risks and cuts
 
 | Risk | Mitigation |
@@ -586,8 +597,7 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 - T3, **performance on a real phone.** Occasional 50–100 ms frame gaps remain at 360 px and DPR 3 in headless Firefox. Not measured on a device or with a CPU throttle.
 
 **From the owner's exported run (2026-10-05, seed 20261004, years 1 to 4).** Bugs found there are fixed (findings.md, same date); these remain.
-- T1, **exports name their build.** Game 3's playtest export carries no build commit, unlike Games 1–2, so a replay must guess which commit made it.
-- T1, **the export hash covers rules, not wording.** Hash the state without chronicle text and alerts, or bump the scenario on any change to state text. Today a wording change breaks every older export's replay.
+- Done 2026-10-05, **exports name their build** and **the export hash covers rules, not wording**: see [Export provenance and hash policy](#export-provenance-and-hash-policy-2026-10-05).
 - Done 2026-10-05, **separate RNG streams**: see [World streams as built](#world-streams-as-built-2026-10-05).
 - T1, **expecting mothers on the wall.** Sena was posted at the Gate while expecting. The spec is silent; decide whether that is allowed or whether she should be offered as off-duty.
 - T3, **routine openers and winter goals repeat.** Thaw routine-line openers cycle every four years (repeats from year 5); the goal "Bring every soul and the granary to the thaw" came back in years 2 and 4.

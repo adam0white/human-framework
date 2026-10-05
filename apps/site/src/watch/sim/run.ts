@@ -3,9 +3,13 @@
  * same seed and log give the same run whatever the real-time pacing was. The playtest export is the seed, the
  * log and the end state; `replay` rebuilds the end state from seed and log and is pinned by `run.test.ts`.
  * The full state holds every person's memory and is too long to paste, so the export's `end` is the game state
- * with each person summarised (`EndState`) plus a hash of the full state, which a replay must match exactly.
+ * with each person summarised (`EndState`) plus two hashes. `ruleHash` covers the rule state only (`ruleState`: what
+ * the rules decide, without the words they are told in), and a replay on a later build of the same scenario must
+ * match it. `fullHash` covers the whole state, words included; it matches only on the build that made the export,
+ * so a wording change does not break older exports (watch.md, Export provenance and hash policy).
  */
 import { impressionOf, readCapacities } from '@adam0white/human-framework';
+import { FRAMEWORK_PACKAGE_VERSION } from '../../shared/playtest.ts';
 import { applyInput, clockRuns, type Input, newGame, stepMinute } from './night.ts';
 import { emptyBell, mixSeed, type WatchState } from './state.ts';
 
@@ -30,8 +34,95 @@ export interface EndState extends Omit<WatchState, 'community' | 'keeper' | 'per
   people: PersonSummary[];
   /** What the Keeper believes of each watcher (cue, value, confidence). */
   keeperImpressions: ReturnType<typeof impressionOf>[];
-  /** FNV-1a of the full state JSON: a replay must reproduce it exactly. */
+  /** FNV-1a of `ruleState`: a replay of the same scenario must reproduce it, on any build. */
+  ruleHash: string;
+  /** FNV-1a of the full state JSON, words included: equal only on the build that made the export (advisory). */
   fullHash: string;
+}
+
+/**
+ * The rule state: what the rules decided, with nothing that is only told in words, so a change of wording leaves it
+ * alone and a change of rules does not (watch.md, Export provenance and hash policy). Kept: the clock and phase; the three RNG streams; grain and the
+ * year's grain; the winter's plan without its words (length, lead, twist, peak, the question's kind and people and
+ * whether it was met); the night's plan (lead, warned stretches, waves, spawns) and threats on the wall; postings,
+ * presses and places; the lantern, rope and bell; commands and asks by target and end; the village's people (ids,
+ * homes, usual posts, status, limp, parents), marks, Gate keeper and heir, pairings by who, with whom and until when,
+ * expecting mothers and newborns; the night history; moments by kind, person, minute and choice; each person's
+ * summary (`PersonSummary`) and the Keeper's impressions. Left out: the chronicle, alerts, dawn and day pages, the
+ * scout's words, notes, last voices, cards and the fair's offers (their texts), talks, volumes and leaves, and the
+ * pacing (`slowUntil`).
+ */
+export function ruleState(s: WatchState, people = summarise(s)): unknown {
+  const w = s.winter;
+  return {
+    minute: s.minute,
+    phase: s.phase,
+    night: s.night,
+    year: s.year,
+    winterNight: s.winterNight,
+    nightStart: s.nightStart,
+    rng: s.rng,
+    world: s.world.rng,
+    grain: s.grain,
+    yearGrain: s.yearGrain,
+    winter: {
+      nights: w.nights,
+      lead: w.lead,
+      twist: w.twist,
+      peak: w.peak,
+      question: w.question
+        ? { kind: w.question.kind, who: w.question.who, who2: w.question.who2, met: w.question.met }
+        : null,
+    },
+    leads: s.leads,
+    lead: s.lead,
+    warned: s.warned,
+    warnedAlso: s.warnedAlso,
+    leadCame: s.leadCame,
+    spawns: s.spawns,
+    tokens: s.tokens,
+    nextTokenId: s.nextTokenId,
+    called: s.called,
+    openPosts: s.openPosts,
+    posts: s.posts,
+    press: s.press,
+    postedAt: s.postedAt,
+    place: s.place,
+    letGo: s.letGo,
+    carried: s.carried,
+    homeThreat: s.homeThreat,
+    lantern: s.lantern,
+    rope: s.rope,
+    bell: s.bell,
+    commands: Object.fromEntries(
+      Object.entries(s.commands).map(([id, c]) => [id, c ? [c.cmd.affordanceId, c.until] : null]),
+    ),
+    asks: Object.fromEntries(
+      Object.entries(s.asks).map(([id, a]) => [
+        id,
+        a ? [a.sug.affordanceId ?? a.sug.action ?? null, a.until] : null,
+      ]),
+    ),
+    order: s.order,
+    cast: Object.fromEntries(
+      Object.entries(s.cast).map(([id, v]) => [
+        id,
+        [v.home, v.usual, v.status, v.limp ?? false, v.until ?? null, v.parents ?? []],
+      ]),
+    ),
+    marks: s.marks,
+    gateKeeper: s.gateKeeper,
+    heir: s.heir,
+    gateWilling: s.gateWilling,
+    pairings: s.pairings.map((p) => [p.who, p.with, p.until]),
+    expecting: s.expecting,
+    newborns: s.newborns,
+    nextBorn: s.nextBorn,
+    history: s.history,
+    moments: s.momentLog,
+    people,
+    keeperImpressions: s.community.people.map((p) => impressionOf(s.keeper, p.id, s.minute)),
+  };
 }
 
 function fnv(text: string): string {
@@ -45,10 +136,9 @@ function fnv(text: string): string {
 
 const r3 = (x: number): number => Math.round(x * 1000) / 1000;
 
-/** The export's view of a state (see the file comment). */
-export function endState(s: WatchState): EndState {
-  const { community, keeper, percepts: _p, ...rest } = s;
-  const people: PersonSummary[] = community.people.map((p) => ({
+/** Each person as the export shows them (`PersonSummary`). */
+function summarise(s: WatchState): PersonSummary[] {
+  return s.community.people.map((p) => ({
     id: p.id,
     now: p.now,
     activity: p.activity?.affordanceId ?? null,
@@ -76,10 +166,22 @@ export function endState(s: WatchState): EndState {
       trust: r3(r.trust),
     })),
   }));
+}
+
+/** The rule-state hash of a state (see `ruleState`). */
+export function ruleHash(s: WatchState): string {
+  return fnv(JSON.stringify(ruleState(s)));
+}
+
+/** The export's view of a state (see the file comment). */
+export function endState(s: WatchState): EndState {
+  const { community, keeper, percepts: _p, ...rest } = s;
+  const people = summarise(s);
   return {
     ...structuredClone(rest),
     people,
     keeperImpressions: community.people.map((p) => impressionOf(keeper, p.id, s.minute)),
+    ruleHash: fnv(JSON.stringify(ruleState(s, people))),
     fullHash: fnv(JSON.stringify(s)),
   };
 }
@@ -112,6 +214,10 @@ export interface PlaytestExport {
   game: 'the-night-watch';
   phase: 'G3-4';
   scenario: number;
+  /** Commit of the deployed build (`/release.json`, filled in by the page), or 'dev'. */
+  build: string;
+  /** `@adam0white/human-framework` package version. */
+  framework: string;
   seed: number;
   inputs: LogEntry[];
   endMinute: number;
@@ -216,6 +322,8 @@ export class WatchRun {
       game: 'the-night-watch',
       phase: 'G3-4',
       scenario: WATCH_SCENARIO_VERSION,
+      build: 'dev',
+      framework: FRAMEWORK_PACKAGE_VERSION,
       seed: this.seed,
       inputs: this.log.map((e) => ({ m: e.m, i: { ...e.i } })),
       endMinute: this.state.minute,
