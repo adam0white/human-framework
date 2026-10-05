@@ -80,6 +80,17 @@ function run(days: number, opts: TownOptions & { seed?: number } = {}, step = {}
   return { ...s, events };
 }
 
+/** The month runs several tests read, built once per file. Tests only read them. */
+function once<T>(make: () => T): () => T {
+  let v: T | undefined;
+  return () => {
+    v ??= make();
+    return v;
+  };
+}
+const month = once(() => run(30));
+const coldMonth = once(() => run(30, { cold: 'riza' }));
+
 const stateJson = (s: Setup) =>
   JSON.stringify({
     people: s.people.map((p) => ({ ...snapshot(p), chronicle: undefined })),
@@ -112,7 +123,7 @@ describe('town scenario (Game 2 world)', () => {
   });
 
   test('30 days are deterministic, bounded and nobody dies', () => {
-    const a = run(30, { cold: 'riza' });
+    const a = coldMonth();
     const b = run(30, { cold: 'riza' });
     const three = run(3, { cold: 'riza' });
     expect(stateJson(a)).toBe(stateJson(b));
@@ -142,7 +153,7 @@ describe('town scenario (Game 2 world)', () => {
   });
 
   test('Halil keeps the fast: nothing eaten, drunk or smoked in the window, kept every Ramadan day', () => {
-    const a = run(30, { cold: 'riza' });
+    const a = coldMonth();
     const breaks = a.events.filter(
       (e) =>
         e.personId === 'halil' &&
@@ -182,7 +193,7 @@ describe('town scenario (Game 2 world)', () => {
   });
 
   test('the smoking habit withers when its cue passes unanswered: below half strength within 30 days', () => {
-    const a = run(30);
+    const a = month();
     const habit = a.ppl.halil.habits.find((h) => h.action === 'smoke');
     expect(habit).toBeDefined();
     expect(habit?.withheld ?? 0).toBeGreaterThan(10);
@@ -308,9 +319,9 @@ describe('town scenario (Game 2 world)', () => {
     expect(standing.some((a) => a.sourceId === 'selin' && a.action === 'see-doctor')).toBe(true);
     // Over a month of calls the same advice is still standing. Her word alone does not get him to the clinic
     // (the clinic lever, W10): that is what the player's voice is for.
-    const a = run(30);
-    const month = standingAdvice(a.ppl.halil, a.ppl.halil.now);
-    expect(month.some((x) => x.sourceId === 'selin' && x.action === 'see-doctor')).toBe(true);
+    const a = month();
+    const later = standingAdvice(a.ppl.halil, a.ppl.halil.now);
+    expect(later.some((x) => x.sourceId === 'selin' && x.action === 'see-doctor')).toBe(true);
     expect(a.town.state.completed.halil?.['see-doctor'] ?? 0).toBe(0);
   });
 
@@ -326,14 +337,14 @@ describe('town scenario (Game 2 world)', () => {
 
   test('a napper wakes for a duty whose closing stretch is shorter than the sleep review (review 2026-10-03)', () => {
     // Before: reviewed every 120 min while asleep, Halil slept through Asr on 20 of 30 days.
-    const s = run(30);
+    const s = month();
     let asr = 0;
     for (const r of s.ppl.halil.chronicle ?? []) if (r.prayers.kept.includes('Asr')) asr++;
     expect(asr).toBeGreaterThanOrEqual(25);
   });
 
   test('a conversation both partners finish in the same minute runs once (review 2026-10-03)', () => {
-    const { events } = run(10);
+    const { events } = month();
     const keys = events.filter((e) => e.kind === 'converse').map((e) => `${e.at}|${e.personId}|${e.withId}`);
     expect(keys.length).toBeGreaterThan(0);
     expect(new Set(keys).size).toBe(keys.length);
@@ -376,7 +387,8 @@ describe('town scenario (Game 2 world)', () => {
     );
     const village = createVillage(people, { seed: 3, foodStock: 500 });
     const c = createCommunity(people);
-    const events = stepCommunity(c, village, START + 60 * MINUTES_PER_DAY, {
+    // 30 days, not 60: at this multiplier the first deaths come on days 3, 4 and 22 (measured 2026-10-05).
+    const events = stepCommunity(c, village, START + 30 * MINUTES_PER_DAY, {
       lifecourse: { mortality: true, multiplier: 50 },
       maxEvents: 200_000,
     });
@@ -391,7 +403,7 @@ describe('town scenario (Game 2 world)', () => {
       );
       expect(after).toEqual([]);
     }
-    // Without the option nobody dies in the same world.
+    // Without the option nobody dies in the same world (ten days: with it, two have died by day 4).
     const calm = ids.map((id, i) =>
       createPerson(
         villagerSpec(id, id, 100 + i, { now: START, ageYears: 95, others: ids, devout: i % 2 === 0 }),
@@ -400,7 +412,7 @@ describe('town scenario (Game 2 world)', () => {
     stepCommunity(
       createCommunity(calm),
       createVillage(calm, { seed: 3, foodStock: 500 }),
-      START + 20 * MINUTES_PER_DAY,
+      START + 10 * MINUTES_PER_DAY,
       {
         maxEvents: 1,
       },
@@ -527,13 +539,32 @@ function findMinute(
 
 const at = (day: number, hh: number, mm = 0) => day * MINUTES_PER_DAY + hh * 60 + mm;
 
+/**
+ * The silent game month (no voice) to Eid 00:00, built once: W10, W4, W5 and W6 read it. What they read at Eid
+ * 00:00 is copied out, because W5 runs the same town on to Shawwal 2 (stepping in two calls gives the same bits).
+ */
+const silentMonth = once(() => {
+  const s = gameSetup();
+  const events = stepCommunity(s.c, s.town, at(31, 0), {});
+  return {
+    s,
+    events,
+    completed: structuredClone(s.town.state.completed),
+    chronicle: structuredClone(s.ppl.halil.chronicle ?? []),
+  };
+});
+const silentToShawwal2 = once(() => {
+  const m = silentMonth();
+  const events = [...m.events, ...stepCommunity(m.s.c, m.s.town, at(32, 0), {})];
+  return { s: m.s, events };
+});
+
 describe('Game 2 world content (voice.md §12)', () => {
   test('W10: the clinic and calling Selin need a voice; going softens them (fix pass 2026-10-03)', () => {
     // Silent month: Selin's standing advice never gets him to the clinic, and he never calls her himself.
-    const quiet = gameSetup();
-    stepCommunity(quiet.c, quiet.town, at(31, 0), {});
-    expect(quiet.town.state.completed.halil?.['see-doctor'] ?? 0).toBe(0);
-    expect(quiet.town.state.completed.halil?.call ?? 0).toBe(0);
+    const quiet = silentMonth().completed;
+    expect(quiet.halil?.['see-doctor'] ?? 0).toBe(0);
+    expect(quiet.halil?.call ?? 0).toBe(0);
     // Her word plus an urging voice gets him there on Ramadan 1.
     const s = gameSetup();
     const doc = findMinute(
@@ -620,12 +651,11 @@ describe('Game 2 world content (voice.md §12)', () => {
   });
 
   test('W4: he prays at home most of the time, and a mosque suggestion can be modified or taken', () => {
-    const a = gameSetup();
-    stepCommunity(a.c, a.town, at(31, 0), {});
-    const chron = (a.ppl.halil.chronicle ?? []).filter((r) => r.day >= 1 && r.day <= 30);
+    const a = silentMonth();
+    const chron = a.chronicle.filter((r) => r.day >= 1 && r.day <= 30);
     const fullDays = chron.filter((r) => r.prayers.kept.length >= 5).length;
     expect(fullDays).toBeGreaterThanOrEqual(20);
-    const prayed = a.town.state.completed.halil?.pray ?? 0;
+    const prayed = a.completed.halil?.pray ?? 0;
     expect(prayed).toBeGreaterThan(100);
     const s = gameSetup();
     const verdicts = new Set<string>();
@@ -646,11 +676,9 @@ describe('Game 2 world content (voice.md §12)', () => {
   });
 
   test('W4: at least 60 % of kept prayers are at home over R1–R30', () => {
-    const s = gameSetup();
     let home = 0;
     let mosque = 0;
-    const events = stepCommunity(s.c, s.town, at(31, 0), {});
-    for (const e of events)
+    for (const e of silentMonth().events)
       if (e.personId === 'halil' && e.kind === 'finish' && e.action === 'pray' && e.status === 'completed')
         if (e.affordanceId === 'pray-home') home += 1;
         else mosque += 1;
@@ -670,8 +698,7 @@ describe('Game 2 world content (voice.md §12)', () => {
     expect(start + T.wage * T.rentPromiseDay).toBeLessThan(T.rent);
     expect(start + T.wage * T.rentPromiseDay + 2 * T.extraWage).toBeGreaterThanOrEqual(T.rent);
     // In a silent month (through Eid) he works every morning, misses the date, and pays 300 once, after R15.
-    const s = gameSetup();
-    const events = stepCommunity(s.c, s.town, at(32, 0), {});
+    const { s, events } = silentToShawwal2();
     const pays = events.filter(
       (e) => e.personId === 'halil' && e.kind === 'finish' && e.action === 'pay-rent',
     );
@@ -705,9 +732,7 @@ describe('Game 2 world content (voice.md §12)', () => {
   });
 
   test('W6: Selin calls him; on Eid his phone is open from 10:00 and she leaves the first call to him until 18:00', () => {
-    const s = gameSetup();
-    stepCommunity(s.c, s.town, at(31, 0), {});
-    expect(s.town.state.completed.selin?.call ?? 0).toBeGreaterThanOrEqual(1);
+    expect(silentMonth().completed.selin?.call ?? 0).toBeGreaterThanOrEqual(1);
     const e = setup({ now: at(TOWN_EID_DAY, 9, 50) });
     expect(e.town.affordancesFor(e.ppl.halil).some((a) => a.id === 'call:selin')).toBe(false);
     skip(e.ppl.halil, at(TOWN_EID_DAY, 10));

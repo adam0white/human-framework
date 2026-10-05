@@ -34,8 +34,15 @@ const without = (p: H.Person) => {
 };
 
 describe('retention (2.0.0)', () => {
+  // Forty days without retention, lived once: the first test reads it, the last (save and restore) changes it.
+  let forty: H.Person[] | undefined;
+  const fortyDays = () => {
+    forty ??= live(40);
+    return forty;
+  };
+
   test('absent retention leaves the person as before: full trace, count-bounded chronicle, no retention key', () => {
-    const [ada] = live(40) as [H.Person];
+    const [ada] = fortyDays() as [H.Person];
     expect(ada.retention).toBeUndefined();
     expect('retention' in H.snapshot(ada)).toBe(false);
     expect(ada.trace.length).toBe(H.PERSON_DEFAULTS.maxTrace);
@@ -65,7 +72,7 @@ describe('retention (2.0.0)', () => {
   });
 
   test('retention survives save and restore; invalid values are ignored; setRetention trims at once', () => {
-    const [ada] = live(40) as [H.Person];
+    const [ada] = fortyDays() as [H.Person];
     H.setRetention(ada, { trace: 2, chronicleDays: 5 });
     expect(ada.retention).toEqual({ trace: 2 });
     expect(ada.trace).toHaveLength(2);

@@ -199,15 +199,8 @@ describe('village simulation', () => {
     expect(s.village.state.food).toBeGreaterThan(food);
   });
 
-  // Wall-clock budgets for these runs are in village.timing.ts (`npm run bench`); here only the outcome is checked.
-  test('runs 20 people for 30 days to the event cap with at most two deaths', () => {
-    const ids = Array.from({ length: 20 }, (_, i) => `p${String(i).padStart(2, '0')}`);
-    const s = setupVillage(ids, { devout: ids.filter((_, i) => i % 2 === 0), foodStock: 200 });
-    const events = stepCommunity(s.community, s.village, START + 30 * MINUTES_PER_DAY, { maxEvents: 1000 });
-    expect(events.length).toBe(1000);
-    expect(s.people.filter((p) => p.body.alive).length).toBeGreaterThanOrEqual(18);
-  }, 30_000); // about 3 s alone; over 5 s when the whole suite runs in parallel on a loaded machine
-
+  // Wall-clock budgets for the 20- and 50-person runs are in village.timing.ts (`npm run bench`); here only the
+  // outcome is checked, at the larger size (a 20-person copy of this test was dropped 2026-10-05 as redundant).
   test('runs 50 people for 30 days to the event cap with at most five deaths (engine 1.2.0 hooks included)', () => {
     const ids = Array.from({ length: 50 }, (_, i) => `q${String(i).padStart(2, '0')}`);
     const s = setupVillage(ids, { devout: ids.filter((_, i) => i % 2 === 0), foodStock: 500 });
