@@ -219,9 +219,7 @@ Rejected:
 - Cards that hold until answered. Slowdown rather than pause is the game direction.
 - Dawn advice ("put someone on the east wall"). The dawn page already says "Nobody stood the east wall."
 
-Deferred to G3-3/G3-4: saving a night in progress across reloads.
-
-UI left as is: postures sit a few pixels apart at small sizes, and the Keeper's sprite can overlap names.
+Deferred: saving a night in progress (done in G3-4) and two small UI overlaps (still open; see [§12](#12-after-graduation-deferred-features)).
 
 ### G3-3 as built (2026-10-04)
 
@@ -329,18 +327,7 @@ The only framework change is one opt-in cue kind. HF impressions now read `skill
   - Words warn of a low granary at dusk and dawn.
   - Begin stays in reach on a phone, and post taps have a wider hit area.
   - Epilogue lines no longer repeat.
-- Deferred to G3-4:
-  - Generic dawn lines repeat across people ("Fine. I'm fine.", "Quiet enough.").
-  - The lantern and bell row shifts as messages come and go.
-  - The moment card covers the scene and the speed bar on a phone.
-  - The chronicle menu is taller than a phone, and its Load buttons are small and unlabeled.
-  - A watcher stays drawn at a post after leaving it.
-  - The map is blank for a frame after a load.
-  - The speed bar is hidden at dawn, and there is no hint about Days and Seasons.
-  - The bell gives no feedback after it is rung.
-  - The two talk questions get similar answers.
-  - There is no tap-to-move for the lantern.
-  - The `frame.night` and `nightName` leftovers (coordinator review item 7).
+- Deferred to G3-4: eleven phone and feedback items (repeated dawn lines, the shifting lantern row, the card over the scene, the chronicle menu, the stale watcher at a post, the blank map, the hidden speed bar, bell feedback, similar talk answers, tap-to-move, leftovers). All were done in G3-4.
 
 **Review (game designer, Opus, 1280×800).** The reviewer played two years. Part of the play came before the first-winter change, so their run 1 fell on night 4.
 - *Their verdict:* the second year produced the first real long-run story: a wall came down where it was climbed, a hungry spring, refugees, a birth, aging in words, bonds from shared nights.
@@ -356,18 +343,7 @@ The only framework change is one opt-in cue kind. HF impressions now read `skill
 - Rejected:
   - The empty "Today" heading (#17): it is a collapsed list that has lines.
   - Hiding speeds by season (#15): the brief asks for speeds up to Seasons. Nights at Days and Seasons still raise cards.
-- Deferred to G3-4:
-  - The heir choice leaves no trace on cards and offers a single name (#3, #4).
-  - Collapse quiet watchers into one dawn line (#7).
-  - Write routine nights into the thaw (#9).
-  - The fair: the "two more" cap in place of grain as the limit (#10), previewing what a choice costs on the granary drawing (#11), options that are not real decisions, and rebuilding a fallen wall (#12).
-  - One person-centred card per off-season, and the birth as a moment (#13).
-  - Child roster wording (#16).
-  - Saves: progress since the last page is lost on reload; loading an older page rewinds, against spec §6 "no rewind"; a closed volume should stay on the shelf (#18).
-  - Posting pressure once families are admitted (#19).
-  - Winter questions drawn from the cast's life stages (#20).
-  - Sprites aging and taglines moving with experience (#21).
-  - Ranked talk topics (#22). After the read fix, this is the largest long-run gap.
+- Deferred to G3-4: #3–#22. G3-4 did the heir, routine nights, the fair, the birth card, saves, winter questions, taglines and ranked talks. Still open: #7, #13 (more person cards), #16, #19 and #21 (sprites); see [§12](#12-after-graduation-deferred-features).
 
 **Played (Claude Browser pane, 2026-10-04).**
 - Desktop 1024×768:
@@ -457,9 +433,7 @@ The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26
   - **"Raise gate"** now reads "the wall by the Gate".
   - **"Lately written"** was a closed fold that looked empty; it now opens by default.
   - **Phone:** names under the wall are outlined, and on a narrow map neighbours' names stagger. "Begin the watch" sits in an opaque band, so cards scroll under it instead of showing around it.
-- Deferred:
-  - H2: the fair's outsider family repeats the refugees' story; whether a head knock matters after the next day; summer and autumn scenes (sowing, haying, a harvest-home evening); a taller map on phones (about 110 px tall at 360×660 at night).
-  - After Goal 2: deaths, courtship and leavings as cards. The reviewer did not see any of these.
+- Deferred: the outsider family's story, head knocks, summer and autumn scenes, a taller phone map, deaths and leavings as cards; see [§12](#12-after-graduation-deferred-features).
 
 **Designer review (Opus, rerun on f3f35f8, seed 11, about 35 minutes, mostly at 360×660, played passively; the first designer run stalled when the dev server dropped).**
 - Kept, as the reviewer listed them:
@@ -495,34 +469,9 @@ The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26
   - The matched-plan Keeper reached the thaw with 2–10 sacks on seven seeds and with 0 on seed 11.
   - A Keeper who never plans emptied the granary by night 3–6 on every seed.
   - Passive play is meant to struggle in the first winter (G3-3: an empty granary is a hungry spring). Seed 11 is hard even with planning.
-- Deferred:
-  - H2:
-    - Seed 11's first winter.
-    - The bell commanding one named watcher, as the spec says, instead of everyone in earshot.
-    - The bell holding people for a set span.
-    - A fair offer's "good share" wording against small costs, and a winter's need marked on the granary.
-    - A newcomer posting that reads "likely" where the spec says "you can't tell".
-    - The volume question staying after the heir is named.
-    - Rope wear per pull.
-    - Collapsing quiet dawn lines (#7, raised in priority).
-    - The phone header truncating.
-    - Name labels for third posts.
-    - Two chronicles of the same seed reading alike on the shelf.
-  - After Goal 2: the empty space on desktop at 1280×800.
-  - Unconfirmed: a React duplicate-key warning for "joss". It came from another dev server (port 5179), not this build.
+- Deferred: thirteen items. H2 did seed 11 and the named bell; the bell's set span (`BELL_COMMAND_MIN`) and wear per pull are in the code; the granary's need mark and third-post labels were done in the 2026-10-05 playtest fixes. The rest are open; see [§12](#12-after-graduation-deferred-features). A React duplicate-key warning for "joss" came from another dev server, not this build.
 
-**Deferred, with targets.**
-- H2 (seed 11's first winter, the named bell and bounding per-person state growth were done in H2; see "H2 as built"). The rest moved to G3-5, the pass after the user's playtest:
-  - Talk topics that change behaviour directly (rest tonight, practise with, mend).
-  - Posting pressure once families are admitted (#19).
-  - Collapse quiet watchers into one dawn line (#7).
-  - Child roster wording (#16).
-  - A per-page scenario version, so the shelf can mark old pages before you tap them.
-  - Retuning the granary cap if a playtester finds autumns flat.
-- After Goal 2:
-  - Sprites that age (stoop, grey hair).
-  - Talks with children and talks in the open seasons.
-  - More than one person card per off-season.
+**Deferred, with targets.** H2 did seed 11's first winter, the named bell and bounded state. The G3-5 and "after Goal 2" items are now in see [§12](#12-after-graduation-deferred-features).
 
 **Done for Game 3:** endless play live at /watch/ on desktop and phone, with a playtest export; L1–L6 released in HF 2.0 with tests; `npm run check` passes; the user accepts by playing.
 
@@ -544,6 +493,19 @@ Scripted matched-plan Keeper, sacks left at the thaw, seeds 1, 2, 3, 5, 7, 9, 11
 
 **Faster checks (performance review P4, P7, P9; output unchanged, same hashes on seeds 1–3 at 1, 8 and 25 years).** Lookups of a person, of a household's children and of who is here use maps instead of scanning everyone who ever lived; `years.test.ts` plays its three years once (41 s → 24 s); the site bench runs on Node's own loader (`apps/site/bench-resolve.ts` points `@human/framework` at its source). The 50-year headless check: 258 s → 133 s, measured before the HF retention change.
 
+### Playtest fixes as built (2026-10-05)
+
+After the owner's playtest ([his words](watch-playtest-2026-10-05.md)), bugs and confusion were fixed with small changes; feature ideas went to §12. Scenario version stays 7: new state fields are optional and RNG draws are unchanged.
+
+- **Choppy and freezing (Firefox).** Measured in headless Firefox Nightly on Apple Silicon. No long worker tasks were found. The "freeze" was the designed slowdown (tactical, then a card at 1/16) with nothing moving, then a snap back. Fixes: sprites tween between sim minutes at every speed; a slowdown eases back over 1.5 s; frames post only when something changed (1,766 → 408 frames in 90 s at Watch); villagers are cached per sim hour; the running save waits 30 s during a night; the frame step is clamped at 250 ms.
+- **Seasons pace.** Spring opens at Seasons and runs on its own. It eases to Days for five days after news and to the tactical pace for a card. Winter and the seasons show the eased pace the same way, on the speed bar.
+- **The bell's name** holds for 15 sim minutes unless that watcher drops out of reach or someone leaves for the hall. The pull sends the name shown.
+- **Empty posts** carry one word under the name: afraid, asleep, went home, hurt, refused, not yet or moved when seen or told; otherwise only where they are now. A ring widens for half an hour. The night panel says that posts are set at dusk.
+- **Threats** are drawn climbing the wall face and going into the village, a thief with or without a sack. Each one over the lit stretch is told with what it took, including "away with nothing".
+- **Upgrades on the map:** a raised stretch has a timber walk and three spread posts; the bell hangs by the Gate, bigger once bought; better seed shows as fuller rows.
+- **Understanding.** The granary marks what the village eats from the thaw to the harvest. "Twelve souls in five homes" appears, and the map has one hut per household plus recent ruins. Arrivals open the dusk's "Today", and the first dusk says more hands will come.
+- **Delayed feedback.** The thaw after a blessed sling lesson compares the pupil's arm with the day it was blessed.
+
 ## 11. Risks and cuts
 
 | Risk | Mitigation |
@@ -556,6 +518,54 @@ Scripted matched-plan Keeper, sacks left at the thaw, seeds 1, 2, 3, 5, 7, 9, 11
 | Faith becomes a mechanic | Prayer, weddings, funerals are quiet events; no card, score or slowdown reads them |
 
 **Cut first, in order:** summer events; resettlement (a fallen village just ends its volume); blank leaves; the bigger bell; *mend things*.
+
+## 12. After graduation: deferred features
+
+The owner graduated Game 3 at the 2026-10-05 playtest. This is the one list of deferred game work; earlier sections point here. Targets:
+- **T1:** the first pass if Game 3 is picked up again.
+- **T2:** needs a framework (HF) release first.
+- **T3:** polish, whenever convenient.
+
+Review this list by 2026-11-05; the owner decides which T1 items to schedule and which to drop.
+
+**From the owner's playtest (2026-10-05).**
+- T1, **more to do in winter and the other seasons.** "we just need to nourish it with more things to do, and variety". Night tools beyond the lantern, the bell and cards, and season actions beyond answering cards.
+- T1, **investigating events.** For example, why someone left despite an urge. A follow-up the Keeper can open from the ticker or the dawn: asking, looking, asking others.
+- T1, **more and pricier upgrades.** "I've been buying all possible improvements". A deeper fair with costly, lasting works.
+- T1, **granary protections.** "when will we have better protections at the granary?" Locks, a watch on the store, a second store.
+- T1, **delayed feedback on other decisions.** Only the sling lesson reports back today. Heir, urge or insist, the fair and the family card should get later lines too.
+- T1, **re-posting at night.** Moving someone from another wall. Posts are set at dusk by design (§4); this would be a costly night action, not free re-posting.
+- T2, **feeling connected to a larger cast, and repetition.** "I got more people now but I'm less connected to everyone, and it's starting to feel repetitive." Fewer, deeper focal people a year; varied event families.
+- T3, **graphics and moving parts.** "representative graphics and actually moving parts". Within §9's guardrail unless the owner lifts it.
+- T3, **performance on a real phone.** Occasional 50–100 ms frame gaps remain at 360 px and DPR 3 in headless Firefox. Not measured on a device or with a CPU throttle.
+
+**Carried from G3-2 to G3-4 and H2.**
+- T1, **posting pressure once families are admitted** (#19).
+- T1, **talk topics that change behaviour directly**: rest tonight, practise with, mend.
+- T1, **more than one person card per off-season** (#13), and deaths and leavings as cards.
+- T1, **collapse quiet watchers into one dawn line** (#7).
+- T2, **talks with children and in the open seasons.**
+- T3, **sprites that age** (#21): stoop, grey hair.
+- T3, **summer and autumn scenes**: sowing, haying, a harvest-home evening.
+- T3, **the outsider family's story**: it repeats the refugees'.
+- T3, **whether a head knock matters** after the next day.
+- T3, **a newcomer's posting read**: it says "likely" where the spec says "you can't tell".
+- T3, **the volume question** stays after the heir is named.
+- T3, **the fair's "good share" wording** against small costs.
+- T3, **child roster wording** (#16).
+- T3, **a per-page scenario version**, so the shelf marks old pages before you tap them.
+- T3, **two chronicles of the same seed** read alike on the shelf.
+- T3, **retuning the granary cap** if a playtester finds autumns flat.
+- T3, **phone layout**: the header truncates; the map is short (about 110 px at 360×660 at night); the dusk panel grows long on the first two nights.
+- T3, **desktop layout**: empty space at 1280×800.
+- T3, **small overlaps**: postures sit a few pixels apart at small sizes, and the Keeper's sprite can overlap names.
+
+**Carried from the H2 reviews** ([summary](../reviews/2026-10-04-h2-summary.md); targeted "G3-5" there).
+- T1, **saves**: P8, the save cadence while the clock runs (night saves now wait 30 s; seasons still save every 8 s), and S7, storage that stops saving silently.
+- T2, **Q50**: the game writes framework slices directly. Add the two HF gaps first (an additive trust gesture, host-caused tiredness), then move the game.
+- T3, **Q49**: pregnancy through HF `conceive`/`deliver`. This changes every run (gestation 268 days, not 200), so it needs a scenario bump.
+- T3, **Q51**: households leave by a game formula, not through `decide` over leave and stay offers.
+- T3, **P10**: the yearbook grows by one record a person a year and is never shown. Either show it or drop it.
 
 ## Review notes (round 2)
 
