@@ -73,7 +73,11 @@ describe('G3-1 gate: dusk planning against the warning', () => {
       const u = row('usual', lantern).meanLost3;
       const x = row('mismatched', lantern).meanLost3;
       expect(u - m).toBeGreaterThan(1.5);
-      expect(x - u).toBeGreaterThan(0.5);
+      // Without the lantern the margin is smaller (2026-10-05, world streams): every plan now meets the same threats,
+      // and the usual posting already loses 17–18 of 20 on half the seeds (the opening's carry cap), so a wrong one
+      // has little left to lose: paired by seed it loses more on 5, fewer on 2, the same on 17 (mean +0.33). The
+      // old 0.5 margin (1.42 measured) also held the noise of each plan meeting a different schedule.
+      expect(x - u).toBeGreaterThan(lantern ? 0.5 : 0.2);
     }
   });
 

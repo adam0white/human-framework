@@ -7,6 +7,7 @@ import {
   START_GRAIN,
   WATCHER_IDS,
 } from './config.ts';
+import { planWinter } from './director.ts';
 import {
   applyInput,
   bellCall,
@@ -15,6 +16,8 @@ import {
   inVoice,
   litSection,
   newGame,
+  nightEnd,
+  planNight,
   presentIds,
   stepMinute,
   suggestions,
@@ -320,9 +323,29 @@ describe('Night Watch rules (G3-1, G3-2)', () => {
     expect(bellCall(s, 1)).toBeLessThan(call);
     // The next night forgives half of it.
     while (s.phase === 'night') stepMinute(s);
-    applyInput(s, { k: 'toDusk' });
-    applyInput(s, { k: 'begin' });
-    if ((s.phase as string) === 'night') expect(s.bell.cry).toBe(0.5);
+    expect(applyInput(s, { k: 'toDusk' })).toBe(true);
+    expect(applyInput(s, { k: 'begin' })).toBe(true);
+    expect(s.bell.cry).toBe(0.5);
+  });
+
+  it('pulling again does not restart a false alarm, and a pull still unanswered at dawn counts as one', () => {
+    // Review 2026-10-05: each pull used to restart the 30 minutes, so a pull every few minutes never counted.
+    const s = toNight(102);
+    s.tokens = [];
+    s.spawns = [];
+    expect(applyInput(s, { k: 'bell' })).toBe(true);
+    for (let i = 0; i < 10; i++) stepMinute(s);
+    expect(applyInput(s, { k: 'bell' })).toBe(true);
+    for (let i = 0; i < 21; i++) stepMinute(s);
+    expect(s.bell.cry).toBe(1);
+    // A last pull near dawn with nothing out there.
+    while (s.minute < nightEnd(s) - 10) stepMinute(s);
+    s.tokens = [];
+    s.spawns = [];
+    const before = s.bell.cry;
+    expect(applyInput(s, { k: 'bell' })).toBe(true);
+    while (s.phase === 'night') stepMinute(s);
+    expect(s.bell.cry).toBe(before + 1);
   });
 
   it('the lantern alone at an empty stretch slows climbers, and the dawn page names the empty post', () => {
@@ -356,5 +379,50 @@ describe('Night Watch rules (G3-1, G3-2)', () => {
     applyInput(s, { k: 'start' });
     for (let i = 0; i < 60; i++) stepMinute(s);
     expect(s.phase).toBe('night');
+  });
+});
+
+describe('world draws have their own streams (§12 T1)', () => {
+  it('the night plan, the winter and the weather do not move with the shared stream', () => {
+    const a = toNight(31);
+    const b = toNight(31);
+    b.rng = (b.rng ^ 0x5bd1e995) | 0;
+    for (const s of [a, b]) {
+      s.year = 2;
+      s.winterNight = 3;
+      planWinter(s);
+      planNight(s);
+    }
+    expect(b.winter).toEqual(a.winter);
+    expect([b.lead, b.warned, b.warnedAlso, b.spawns]).toEqual([a.lead, a.warned, a.warnedAlso, a.spawns]);
+    // Another night draws another plan.
+    b.winterNight = 4;
+    planNight(b);
+    expect(b.spawns).not.toEqual(a.spawns);
+  });
+
+  it('what the Keeper does on the first nights leaves the next dusks’ threats as they were', () => {
+    const plans = (act: boolean) => {
+      const s = toNight(41);
+      const out: string[] = [];
+      for (let night = 0; night < 3; night++) {
+        while (s.phase === 'night') {
+          if (act && s.minute % 50 === 0) {
+            applyInput(s, { k: 'lantern', section: SECTION_IDS[(s.minute / 50) % 4] ?? 'gate' });
+            applyInput(s, { k: 'bell' });
+          }
+          stepMinute(s);
+        }
+        applyInput(s, { k: 'toDusk' });
+        out.push(JSON.stringify([s.lead, s.warned, s.spawns]));
+        applyInput(s, { k: 'begin' });
+      }
+      return { out, rng: s.rng };
+    };
+    const quiet = plans(false);
+    const busy = plans(true);
+    // The shared stream did move (the rope, combat), and the threats did not.
+    expect(busy.rng).not.toBe(quiet.rng);
+    expect(busy.out).toEqual(quiet.out);
   });
 });

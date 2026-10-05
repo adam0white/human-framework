@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { planInputs } from '../../../test/watch/plans.ts';
-import { SECTION_IDS } from './config.ts';
 import { WatchRun } from './run.ts';
 import { buildFrame } from './view.ts';
 

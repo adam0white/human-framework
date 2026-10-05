@@ -7,7 +7,7 @@
  */
 import { impressionOf, readCapacities } from '@adam0white/human-framework';
 import { applyInput, clockRuns, type Input, newGame, stepMinute } from './night.ts';
-import { emptyBell, type WatchState } from './state.ts';
+import { emptyBell, mixSeed, type WatchState } from './state.ts';
 
 /** A person as the export shows them: enough to read a run, not to resume it. */
 export interface PersonSummary {
@@ -86,7 +86,7 @@ export function endState(s: WatchState): EndState {
 
 /**
  * Bump when rules change so an old export is not replayed against new rules. 8: the bell rings from the Gate for
- * everyone in range (2026-10-05).
+ * everyone in range, and world draws have their own streams (2026-10-05).
  */
 export const WATCH_SCENARIO_VERSION = 8;
 
@@ -135,14 +135,15 @@ export interface Snapshot {
 /**
  * Brings a page saved by an older scenario up to this one by shape only: the fields added since get their starting
  * values, and the page is stamped with where it came from (`Origin`). The rules it was played under are not
- * replayed. 7 → 8 adds the bell's state. Older pages than `OLDEST_LOADABLE_SCENARIO` are refused. Pure.
+ * replayed. 7 → 8 adds the bell's state and the world stream. Older pages than `OLDEST_LOADABLE_SCENARIO` are refused. Pure.
  */
 export function migrateSnapshot(snap: Snapshot): Snapshot {
   if (snap.scenario === WATCH_SCENARIO_VERSION) return snap;
   if (snap.scenario < OLDEST_LOADABLE_SCENARIO || snap.scenario > WATCH_SCENARIO_VERSION)
     throw new Error(`save is scenario ${snap.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
-  const state = structuredClone(snap.state) as WatchState & Partial<Pick<WatchState, 'bell'>>;
+  const state = structuredClone(snap.state) as WatchState & Partial<Pick<WatchState, 'bell' | 'world'>>;
   if (!state.bell) state.bell = emptyBell();
+  if (!state.world) state.world = { rng: mixSeed(state.seed) };
   return {
     scenario: WATCH_SCENARIO_VERSION,
     seed: snap.seed,

@@ -110,6 +110,7 @@ import {
   emptyBell,
   emptyTally,
   type FairOffer,
+  hashUnit,
   type NightNote,
   nextRandom,
   type Press,
@@ -117,6 +118,7 @@ import {
   type Token,
   UNHURT_QUESTIONS,
   type WatchState,
+  worldRng,
 } from './state.ts';
 import { canTalk, TALKS_PER_DAY, type Topic, talk } from './talk.ts';
 import { dawnVoices } from './voices.ts';
@@ -271,10 +273,11 @@ export function planNight(s: WatchState): void {
     return;
   }
   const n = s.winterNight;
+  const r = worldRng(s, 'night');
   const previous = s.history.at(-1)?.lead;
   s.lead =
-    n === 1 ? 'wolf' : nextRandom(s) < 0.65 ? (previous === 'wolf' ? 'thief' : 'wolf') : (previous ?? 'wolf');
-  s.warned = pick(s, SECTION_IDS);
+    n === 1 ? 'wolf' : nextRandom(r) < 0.65 ? (previous === 'wolf' ? 'thief' : 'wolf') : (previous ?? 'wolf');
+  s.warned = pick(r, SECTION_IDS);
   const others = SECTION_IDS.filter((id) => id !== s.warned);
   const def = sectionDef(s.warned);
   s.warning =
@@ -284,33 +287,33 @@ export function planNight(s: WatchState): void {
   const spawns: WatchState['spawns'] = [];
   s.leadCame = [];
   const waveSize = (): number =>
-    s.lead === 'wolf' ? 3 + Math.floor(n / 3) + (nextRandom(s) < 0.5 ? 1 : 0) : 2 + Math.floor(n / 4);
+    s.lead === 'wolf' ? 3 + Math.floor(n / 3) + (nextRandom(r) < 0.5 ? 1 : 0) : 2 + Math.floor(n / 4);
   const waves: [number, number][] = [
     [80, 220],
     [300, 540],
   ];
   let anyRight = false;
   for (const [w, [lo, hi]] of waves.entries()) {
-    const at = s.nightStart + lo + Math.floor(nextRandom(s) * (hi - lo));
+    const at = s.nightStart + lo + Math.floor(nextRandom(r) * (hi - lo));
     // The first night is gentle (spec §3, year 1 authored): the scout is right about every wave. In the rest of the
     // opening the scout is right about at least one wave a night (H2: on seed 11 both waves of nights 2 and 3 came
     // elsewhere, and a planning Keeper lost the granary by the fourth night).
     const lastChance: boolean = w === waves.length - 1 && !anyRight && n <= OPENING_NIGHTS;
-    const right: boolean = nextRandom(s) < (n === 1 ? 1 : SCOUT_TRUE) || lastChance;
+    const right: boolean = nextRandom(r) < (n === 1 ? 1 : SCOUT_TRUE) || lastChance;
     anyRight ||= right;
-    const section = right ? s.warned : pick(s, others);
+    const section = right ? s.warned : pick(r, others);
     if (!s.leadCame.includes(section)) s.leadCame.push(section);
     const count = waveSize();
     for (let i = 0; i < count; i++) {
-      spawns.push({ at: at + i * (1 + Math.floor(nextRandom(s) * 3)), section, kind: s.lead, count: 1 });
+      spawns.push({ at: at + i * (1 + Math.floor(nextRandom(r) * 3)), section, kind: s.lead, count: 1 });
     }
   }
   // A stray, anywhere: the warning is never the whole night.
-  if (nextRandom(s) < 0.5) {
-    const kind: ThreatKind = nextRandom(s) < 0.5 ? 'wolf' : 'thief';
+  if (nextRandom(r) < 0.5) {
+    const kind: ThreatKind = nextRandom(r) < 0.5 ? 'wolf' : 'thief';
     spawns.push({
-      at: s.nightStart + 60 + Math.floor(nextRandom(s) * 560),
-      section: pick(s, SECTION_IDS),
+      at: s.nightStart + 60 + Math.floor(nextRandom(r) * 560),
+      section: pick(r, SECTION_IDS),
       kind,
       count: 1,
     });
@@ -460,6 +463,11 @@ function nightMemories(s: WatchState): void {
 }
 
 function enterDawn(s: WatchState): void {
+  // A pull still waiting to be borne out when the night ends was a false alarm (review 2026-10-05).
+  if (s.bell.pendingCry !== null) {
+    s.bell.pendingCry = null;
+    s.bell.cry += 1;
+  }
   const t = s.tally;
   const lines: DawnPage['lines'] = [];
   for (const id of SECTION_IDS) {
@@ -667,7 +675,8 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
   b.rungAt = s.minute;
   b.until = s.minute + BELL_CALL_MIN;
   b.heard = {};
-  b.pendingCry = knownDanger(s) ? null : s.minute;
+  // The earliest pull not yet borne out stands: pulling again does not restart its clock.
+  b.pendingCry = knownDanger(s) ? null : (b.pendingCry ?? s.minute);
   const woke: WatcherId[] = [];
   for (const id of presentIds(s)) {
     const loud = bellLoudness(s, id);
@@ -707,7 +716,7 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
     alert(s, {
       section: at,
       kind: 'rope',
-      text: 'The bell rings out once more, and its rope snaps. No more bell tonight.',
+      text: `The bell rings out once more, and its rope snaps.${who ? ` You call ${nameOf(s, who)} by name: hold your post!` : ''} No more bell tonight.`,
       slowed: true,
     });
     return true;
@@ -1089,7 +1098,7 @@ export function stepMinute(s: WatchState): void {
     const def = THREATS[t.kind];
     if (t.state === 'coming') {
       const before = t.pos;
-      t.pos = Math.min(1, t.pos + def.speed * (0.8 + 0.4 * nextRandom(s)));
+      t.pos = Math.min(1, t.pos + def.speed * (0.8 + 0.4 * hashUnit(s.seed, t.id, m)));
       if (before < MOTION_REACH && t.pos >= MOTION_REACH) {
         warnWatchers(s, t, 0.45);
         if (!s.called[t.section]) {

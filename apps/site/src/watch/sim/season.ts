@@ -55,7 +55,7 @@ import {
 } from './life.ts';
 import { planNight, presentIds, stepPeople } from './night.ts';
 import { isWatcher, nameOf, personOf } from './people.ts';
-import { nextRandom, UNHURT_QUESTIONS, type WatchState } from './state.ts';
+import { nextRandom, UNHURT_QUESTIONS, type WatchState, worldRng } from './state.ts';
 import { fearedSection } from './voices.ts';
 import { closeVolume, openVolume, volumeResolved } from './volume.ts';
 
@@ -167,7 +167,7 @@ function thaw(s: WatchState): void {
     (a, b) => ((s.yearGrain.breaches[b] ?? 0) > (a ? (s.yearGrain.breaches[a] ?? 0) : 0) ? b : a),
     null,
   );
-  if (worst && (s.yearGrain.breaches[worst] ?? 0) >= 4 && nextRandom(s) < 0.35) {
+  if (worst && (s.yearGrain.breaches[worst] ?? 0) >= 4 && nextRandom(worldRng(s, 'collapse')) < 0.35) {
     s.marks.lost = { section: worst, year: s.year + 1 };
     chronicle(
       s,
@@ -210,7 +210,7 @@ function thaw(s: WatchState): void {
   prune(s);
   maybePartner(s);
   // The director keeps a small village going: refugees come up the valley.
-  if (living(s).length < SMALL_VILLAGE && living(s).length > 0 && nextRandom(s) < 0.5)
+  if (living(s).length < SMALL_VILLAGE && living(s).length > 0 && nextRandom(worldRng(s, 'refugees')) < 0.5)
     familyComes(s, s.minute, 'refugees');
   if (!living(s).some((p) => ageOf(p, s.minute) >= 15)) {
     chronicle(s, 'loss', 'Nobody was left who could stand the wall. The village is empty.');
@@ -327,7 +327,7 @@ function harvest(s: WatchState): void {
     const a = ageOf(p, s.minute);
     return a >= 15 && a < 66 && !s.cast[p.id]?.limp;
   }).length;
-  const weather = 0.7 + 0.5 * nextRandom(s);
+  const weather = 0.7 + 0.5 * nextRandom(worldRng(s, 'weather'));
   const seed = s.marks.seed ? 1.3 : 1;
   s.marks.seed = false;
   const got = Math.max(0, Math.round((14 + 1.5 * workers) * weather * seed));

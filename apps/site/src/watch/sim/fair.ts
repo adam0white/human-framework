@@ -11,7 +11,7 @@ import { DAY, type PostId, SECTION_IDS, type SectionId } from './config.ts';
 import { ageOf, chronicle, living, newcomer, RETIRE_AGE, WATCH_CUSTOM } from './life.ts';
 import { presentIds } from './night.ts';
 import { isWatcher, KEEPER_ID, nameOf, personOf, villager } from './people.ts';
-import { type FairOffer, nextRandom, type WatchState } from './state.ts';
+import { type FairOffer, nextRandom, type WatchState, worldRng } from './state.ts';
 
 /** The fair no longer caps choices by count (G3-4): the granary is the limit. */
 export const FAIR_PICKS = 4;
@@ -112,8 +112,9 @@ export function openFair(s: WatchState): void {
   const offers: FairOffer[] = [...fixed];
   const left = [...pool];
   const drawn: FairOffer[] = [];
+  const r = worldRng(s, 'fair');
   while (offers.length + drawn.length < 3 && left.length > 0) {
-    const i = Math.floor(nextRandom(s) * left.length);
+    const i = Math.floor(nextRandom(r) * left.length);
     const [o] = left.splice(i, 1);
     if (o) drawn.push(o);
   }
