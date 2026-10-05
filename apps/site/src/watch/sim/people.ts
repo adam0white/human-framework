@@ -51,6 +51,7 @@ import {
   type Relationship,
   setReserve,
   setRetention,
+  skillLevel,
   spousesOf,
   type World,
 } from '@human/framework';
@@ -67,6 +68,7 @@ import {
   type PostId,
   postSection,
   RETIRE_AGE,
+  ROPE_MEND_PER_HOUR,
   type SectionId,
   WATCH_AGE,
   WATCHERS,
@@ -847,7 +849,14 @@ export class WatchWorld implements World {
         tags: ['rest'],
       },
     ];
-    if (s.rope.wear > 0.02)
+    // Only as many hands on the rope as its wear needs (owner's year-4 export: after a single pull, seven watchers
+    // each spent two hours of their day mending 0.12 of wear instead of sleeping before the night). Those already
+    // mending will take off ROPE_MEND_PER_HOUR × 2 × craft each when they finish (day.ts).
+    let mending = 0;
+    for (const q of s.community.people)
+      if (q.id !== p.id && q.activity?.affordanceId === 'day:mend')
+        mending += ROPE_MEND_PER_HOUR * 2 * skillLevel(q, 'craft');
+    if (s.rope.wear - mending > 0.02)
       out.push({
         id: 'day:mend',
         action: 'mend',

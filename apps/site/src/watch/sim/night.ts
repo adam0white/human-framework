@@ -492,7 +492,11 @@ export function applyInput(s: WatchState, input: Input): boolean {
       return true;
     case 'post': {
       if (s.phase !== 'dusk' && s.phase !== 'goal') return false;
-      if (!personOf(s, input.watcher)) return false;
+      const who = personOf(s, input.watcher);
+      if (!who) return false;
+      // Only someone of watch age, here and not lamed, can be given a post (a log replayed against another run
+      // could otherwise post a child); taking a posting away is always allowed.
+      if (input.post !== null && !isWatcher(s, who)) return false;
       if (input.press !== undefined && !['ask', 'urge', 'insist'].includes(input.press)) return false;
       if (input.post !== null) {
         if (!s.openPosts.includes(input.post)) return false;
