@@ -27,7 +27,7 @@
  * therapy, cohort effects, individual differences in plasticity, or norm conviction (owned by `conscience/`).
  * Traits never branch logic (framework.md, locked decisions): this module only moves the coefficients.
  */
-import { clamp, clamp01, dayOf, dpow } from '../core/index.ts';
+import { clamp, clamp01, dayOf, dpow, isNum, isObj } from '../core/index.ts';
 import type { CharacterState, Minute, Person, Signed, Traits, Values } from '../types.ts';
 import { DAYS_PER_YEAR, MINUTES_PER_YEAR, TRAIT_KEYS, VALUE_KEYS } from '../types.ts';
 
@@ -102,12 +102,9 @@ const emptyAcc = (): CharacterState['acc'] => ({
  * A save the engine wrote is already within all of this. @internal
  */
 export function sanitizeCharacter(x: unknown): CharacterState | undefined {
-  const isObj = (o: unknown): o is Record<string, unknown> =>
-    typeof o === 'object' && o !== null && !Array.isArray(o);
-  const num = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
-  if (!isObj(x) || !num(x.year) || !num(x.agedTo)) return undefined;
+  if (!isObj(x) || !isNum(x.year) || !isNum(x.agedTo)) return undefined;
   const unitRecord = <K extends string>(o: unknown, keys: readonly K[]): Record<K, number> | undefined => {
-    if (!isObj(o) || !keys.every((k) => num(o[k]))) return undefined;
+    if (!isObj(o) || !keys.every((k) => isNum(o[k]))) return undefined;
     const out = {} as Record<K, number>;
     for (const k of Object.keys(o))
       if ((keys as readonly string[]).includes(k)) out[k as K] = clamp01(o[k] as number);
@@ -117,7 +114,7 @@ export function sanitizeCharacter(x: unknown): CharacterState | undefined {
   const baseValues = unitRecord(x.baseValues, VALUE_KEYS);
   const accKeys = ['days', 'mood', 'kept', 'broken', 'social', 'variety'] as const;
   const a = x.acc;
-  if (!baseTraits || !baseValues || !isObj(a) || !accKeys.every((k) => num(a[k]))) return undefined;
+  if (!baseTraits || !baseValues || !isObj(a) || !accKeys.every((k) => isNum(a[k]))) return undefined;
   const acc = {} as CharacterState['acc'];
   for (const k of Object.keys(a)) {
     if (!(accKeys as readonly string[]).includes(k)) continue;
@@ -128,7 +125,7 @@ export function sanitizeCharacter(x: unknown): CharacterState | undefined {
   const D = CHARACTER_DEFAULTS.maxDrift;
   if (isObj(x.experience))
     for (const [k, v] of Object.entries(x.experience))
-      if ((TRAIT_KEYS as readonly string[]).includes(k) && num(v))
+      if ((TRAIT_KEYS as readonly string[]).includes(k) && isNum(v))
         experience[k as keyof Traits] = clamp(v, -D, D);
   const fields: Record<keyof CharacterState, unknown> = {
     baseTraits,

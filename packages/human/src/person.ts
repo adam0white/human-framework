@@ -56,17 +56,12 @@ import {
   injure,
   nextBodyThreshold,
   readBody,
-  sanitizeExposures,
-  sanitizeIllnesses,
-  sanitizeInjuries,
-  sanitizeRates,
   setDowned,
   sicken,
   skipBody,
 } from './body/index.ts';
-import { ageCharacter, noteCharacterDay, noteCharacterSocial, sanitizeCharacter } from './character/index.ts';
+import { ageCharacter, noteCharacterDay, noteCharacterSocial } from './character/index.ts';
 import {
-  CHRONICLE_DEFAULTS,
   closeDay,
   endDay,
   noteAnswer,
@@ -85,29 +80,20 @@ import {
   recordRepair,
   repent,
 } from './conscience/index.ts';
-import { clamp01, clampSigned, createRng, dayOf, minuteOfDay } from './core/index.ts';
-import {
-  ambientBodyParams,
-  ambientModifiers,
-  ambientMood,
-  ambientNeeds,
-  sanitizeAmbient,
-} from './environment/index.ts';
-import { aptitudeOf, createFamily, pregnancyModifiers, sanitizeFamily } from './family/index.ts';
-import { advanceHabits, HABIT_DEFAULTS, reinforce, withholdCued } from './habits/index.ts';
+import { clamp01, clampSigned, createRng, dayOf, isObj, minuteOfDay } from './core/index.ts';
+import { ambientBodyParams, ambientModifiers, ambientMood, ambientNeeds } from './environment/index.ts';
+import { aptitudeOf, createFamily, pregnancyModifiers } from './family/index.ts';
+import { advanceHabits, reinforce, withholdCued } from './habits/index.ts';
 import { ageYears, learningMultiplier, lifeModifiers } from './lifecourse/index.ts';
 import {
   advanceMemory,
   type CueRecall,
   createMemory,
   foldGists,
-  GIST_DEFAULTS,
   learnOutcome,
-  MEMORY_DEFAULTS,
   recallByCue,
   remember,
 } from './memory/index.ts';
-import { migrate } from './migrate.ts';
 import { intentionFor, narrateDecision, voiceLine } from './narrate/index.ts';
 import {
   advanceNeeds,
@@ -118,7 +104,7 @@ import {
   satisfy,
   urgencyOf,
 } from './needs/index.ts';
-import { sanitizeBonds, widow } from './partnering/index.ts';
+import { widow } from './partnering/index.ts';
 import { learnByWatching, practise, type SkillTransfer, seedSkills } from './skills/index.ts';
 import {
   advanceSocial,
@@ -128,8 +114,6 @@ import {
   judge,
   markDeceased,
   relationshipWith,
-  sanitizeGroups,
-  sanitizeImpressions,
   seedRelationships,
   socialEvent,
   threatAppraisal,
@@ -164,6 +148,7 @@ import type {
 } from './types.ts';
 import {
   ENGINE_VERSION,
+  MAX_MINUTE,
   PERSON_SCHEMA,
   PHYSIOLOGICAL_NEEDS,
   PSYCHOLOGICAL_NEEDS,
@@ -1540,289 +1525,15 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
 }
 
 // ---------------------------------------------------------------------------------------------
-// snapshot / restore
+// Retention (snapshot and restore live in restore.ts)
 // ---------------------------------------------------------------------------------------------
 
-export function snapshot(p: Person): Person {
-  return structuredClone(p);
-}
+/** Decision records this person keeps (`Retention.trace`, else `PERSON_DEFAULTS.maxTrace`). @internal */
+export const traceLimit = (p: Person): number => p.retention?.trace ?? PERSON_DEFAULTS.maxTrace;
 
-const isObject = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null;
-
-const REQUIRED_OBJECTS: (keyof Person)[] = [
-  'rng',
-  'life',
-  'body',
-  'needs',
-  'traits',
-  'values',
-  'conscience',
-  'affect',
-  'skills',
-  'memory',
-  'social',
-  'agenda',
-  'will',
-];
-
-/** Kind of a JSON value for the per-field type check in `restore`. */
-const kindOf = (x: unknown): string => (Array.isArray(x) ? 'array' : x === null ? 'null' : typeof x);
-
-/**
- * Fill `saved` from `defaults`, recursively for plain objects: a field that is missing, non-finite, or of a
- * different JSON kind than the default takes the default. Fields absent from the defaults (optional ones)
- * are kept as saved. Arrays are taken whole.
- */
-function fillFrom(
-  defaults: Record<string, unknown>,
-  saved: Record<string, unknown>,
-): Record<string, unknown> {
-  const out: Record<string, unknown> = { ...saved };
-  for (const [k, def] of Object.entries(defaults)) {
-    const v = saved[k];
-    const dk = kindOf(def);
-    if (v === undefined || kindOf(v) !== dk || (dk === 'number' && !Number.isFinite(v as number))) {
-      out[k] = structuredClone(def);
-    } else if (dk === 'object') {
-      out[k] = fillFrom(def as Record<string, unknown>, v as Record<string, unknown>);
-    }
-  }
-  return out;
-}
-
-/**
- * Validate a saved person and fill defaults for missing or mistyped fields, slice by slice and field by
- * field. A save from an earlier supported engine is upgraded by `migrate` first. Throws on a wrong schema, a
- * missing core slice, or an engine version `migrate` does not support.
- */
-/** Optional top-level keys of a person that `createPerson` leaves absent; `restore` keeps them. */
-const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
-  'chronicle',
-  'chronicleDay',
-  'chronicleYears',
-  'skillRetention',
-  'character',
-  'lexicon',
-  'family',
-  'bonds',
-  'ambient',
-  'retention',
-]);
-
-const isNum = (x: unknown): x is number => typeof x === 'number' && Number.isFinite(x);
-
-/**
- * A well-formed gist (1.8.0) as `restore` accepts it, in place: every number finite and `weight` ≥ 0 (else the gist
- * is dropped), `salience` and `peak` clamped to 0..1 and `valence` to −1..1.
- */
-function validGist(g: unknown): boolean {
-  if (
-    !(
-      isObject(g) &&
-      typeof g.id === 'string' &&
-      typeof g.kind === 'string' &&
-      typeof g.summary === 'string' &&
-      Array.isArray(g.tags) &&
-      [g.at, g.valence, g.salience, g.count, g.firstAt, g.lastAt, g.weight, g.peak].every(isNum) &&
-      (g.weight as number) >= 0
-    )
-  )
-    return false;
-  for (const k of ['salience', 'peak'] as const)
-    if (g[k] !== clamp01(g[k] as number)) g[k] = clamp01(g[k] as number);
-  if (g.valence !== clampSigned(g.valence as number)) g.valence = clampSigned(g.valence as number);
-  return true;
-}
-
-/** The next free gist number: one past the largest `g<n>` id (0 when none is numbered). */
-function nextGistAfter(gists: readonly { id: string }[]): number {
-  let next = 0;
-  for (const g of gists) {
-    const m = /^g(\d+)$/.exec(g.id);
-    if (m) next = Math.max(next, Number(m[1]) + 1);
-  }
-  return next;
-}
-
-/** A well-formed year record (1.8.0) as `restore` accepts it. */
-function validYear(y: unknown): boolean {
-  return (
-    isObject(y) &&
-    [y.year, y.days, y.routineDays, y.mood, y.moodLow, y.moodHigh, y.kept, y.broken, y.released].every(
-      isNum,
-    ) &&
-    [y.breaches, y.repairs, y.material, y.decisions].every(isNum) &&
-    Array.isArray(y.actions) &&
-    Array.isArray(y.episodes) &&
-    Array.isArray(y.illness) &&
-    typeof y.alive === 'boolean'
-  );
-}
-
-export function restore(input: unknown): Person {
-  if (!isObject(input)) throw new Error('restore: not an object');
-  if (input.schema !== PERSON_SCHEMA) throw new Error(`restore: unsupported schema ${String(input.schema)}`);
-  if (typeof input.engine !== 'string') throw new Error('restore: missing engine');
-  // Saves from earlier engines are upgraded first (see migrate.ts); unsupported versions throw there.
-  const json = input.engine === ENGINE_VERSION ? input : migrate(input);
-  if (typeof json.id !== 'string' || typeof json.name !== 'string')
-    throw new Error('restore: missing identity');
-  // A minute must be finite and within ±MAX_MINUTE (security review H2: 1e999 parses to Infinity, and past
-  // about 5e17 a step rounds back to the same minute).
-  if (!isMinute(json.now)) throw new Error('restore: missing or out-of-range now');
-  for (const k of REQUIRED_OBJECTS) if (!isObject(json[k])) throw new Error(`restore: missing ${k}`);
-  const life = json.life as Record<string, unknown>;
-  const defaults = createPerson({
-    id: json.id,
-    name: json.name,
-    seed: 0,
-    now: json.now,
-    bornAt: isMinute(life.bornAt) ? life.bornAt : 0,
-    sex: life.sex === 'female' ? 'female' : 'male',
-  });
-  const saved = structuredClone(json);
-  const out = { ...defaults, ...(saved as Partial<Person>) } as Person;
-  const slices = out as unknown as Record<string, unknown>;
-  // Unknown top-level keys are dropped, not carried (security review 2026-10-04): only the person's own slices
-  // and its known optional ones survive a restore.
-  for (const k of Object.keys(slices))
-    if (!Object.hasOwn(defaults, k) && !OPTIONAL_KEYS.has(k)) delete slices[k];
-  const defs = defaults as unknown as Record<string, unknown>;
-  for (const k of REQUIRED_OBJECTS) {
-    slices[k] = fillFrom(defs[k] as Record<string, unknown>, saved[k] as Record<string, unknown>);
-  }
-  if (!Array.isArray(out.habits)) out.habits = [];
-  if (!Array.isArray(out.trace)) out.trace = [];
-  if (!isMinute(out.life.bornAt)) out.life.bornAt = defaults.life.bornAt;
-  if (typeof out.nextDecision !== 'number') out.nextDecision = 0;
-  if (out.activity === undefined) out.activity = null;
-  // Optional slices added in 1.2.0: absent means empty; a mistyped one is dropped rather than trusted.
-  if (out.chronicle !== undefined && !Array.isArray(out.chronicle)) delete out.chronicle;
-  if (out.chronicleDay !== undefined && !isObject(out.chronicleDay)) delete out.chronicleDay;
-  if (out.lexicon !== undefined && !isObject(out.lexicon)) delete out.lexicon;
-  if (out.body.rates !== undefined) {
-    const rates = sanitizeRates(out.body.rates);
-    if (rates) out.body.rates = rates;
-    else delete out.body.rates;
-  }
-  if (out.body.exposures !== undefined) {
-    const ex = sanitizeExposures(out.body.exposures, out.now);
-    if (ex) out.body.exposures = ex;
-    else delete out.body.exposures;
-  }
-  sanitizeIllnesses(out.body);
-  sanitizeInjuries(out.body);
-  sanitizeGroups(out.social);
-  sanitizeImpressions(out.social);
-  if (out.will.advice !== undefined && !Array.isArray(out.will.advice)) delete out.will.advice;
-  // Optional slices added in 1.6.0: a malformed entry is dropped (absent means none).
-  const cmd = out.will.command as unknown;
-  if (
-    cmd !== undefined &&
-    !(
-      isObject(cmd) &&
-      typeof cmd.voiceId === 'string' &&
-      typeof cmd.since === 'number' &&
-      typeof cmd.startedAt === 'number' &&
-      typeof cmd.chargedAt === 'number' &&
-      typeof cmd.margin === 'number'
-    )
-  )
-    delete out.will.command;
-  const crisis = out.affect.crisis as unknown;
-  if (
-    crisis !== undefined &&
-    !(
-      isObject(crisis) &&
-      typeof crisis.stress === 'number' &&
-      typeof crisis.checkedAt === 'number' &&
-      typeof crisis.breaks === 'number' &&
-      Array.isArray(crisis.behaviours) &&
-      (crisis.break === undefined ||
-        (isObject(crisis.break) &&
-          typeof crisis.break.behaviourId === 'string' &&
-          typeof crisis.break.until === 'number'))
-    )
-  )
-    delete out.affect.crisis;
-  // Optional state added in 1.7.0: a malformed span or lapse is dropped (absent means none).
-  const span = (x: unknown) => isObject(x) && typeof x.from === 'number' && typeof x.to === 'number';
-  if (out.body.lastSleep !== undefined && !span(out.body.lastSleep)) delete out.body.lastSleep;
-  if (out.body.lastDowned !== undefined && !span(out.body.lastDowned)) delete out.body.lastDowned;
-  const lapse = out.agenda.lapse as unknown;
-  if (
-    lapse !== undefined &&
-    !(isObject(lapse) && typeof lapse.since === 'number' && typeof lapse.missed === 'number')
-  )
-    delete out.agenda.lapse;
-  const last = out.will.lastCommand as unknown;
-  if (
-    last !== undefined &&
-    !(isObject(last) && typeof last.voiceId === 'string' && typeof last.since === 'number')
-  )
-    delete out.will.lastCommand;
-  // Optional state added in 1.8.0: malformed entries are dropped (absent means the feature is off).
-  const gists = out.memory.gists as unknown;
-  if (gists !== undefined) {
-    if (!Array.isArray(gists)) delete out.memory.gists;
-    else out.memory.gists = gists.filter(validGist);
-  }
-  if (out.memory.gists) {
-    // Never reuse a kept gist's id (ids are `g<n>` from a counter that only grows).
-    const free = nextGistAfter(out.memory.gists);
-    const saved = out.memory.nextGist;
-    if (!isNum(saved) || saved < free) out.memory.nextGist = free;
-  }
-  if (!out.memory.gists) delete out.memory.nextGist;
-  const years = out.chronicleYears as unknown;
-  if (years !== undefined) {
-    if (!Array.isArray(years)) delete out.chronicleYears;
-    else out.chronicleYears = years.filter(validYear);
-  }
-  if (out.character !== undefined) {
-    const c = sanitizeCharacter(out.character);
-    if (c) out.character = c;
-    else delete out.character;
-  }
-  if (
-    out.skillRetention !== undefined &&
-    !(
-      isObject(out.skillRetention) &&
-      isNum((out.skillRetention as { consolidationHours?: unknown }).consolidationHours)
-    )
-  )
-    delete out.skillRetention;
-  // Optional slices added in 1.8.0: validated by their owners, dropped when malformed (absent means none).
-  if (out.family !== undefined) {
-    const f = sanitizeFamily(out.family);
-    if (f) out.family = f;
-    else delete out.family;
-  }
-  if (out.bonds !== undefined) {
-    const b = sanitizeBonds(out.bonds);
-    if (b) out.bonds = b;
-    else delete out.bonds;
-  }
-  if (out.ambient !== undefined) {
-    const a = sanitizeAmbient(out.ambient);
-    if (a) out.ambient = a;
-    else delete out.ambient;
-  }
-  if (out.retention !== undefined) {
-    const r = cleanRetention(out.retention);
-    if (r) out.retention = r;
-    else delete out.retention;
-  }
-  boundLists(out);
-  return out;
-}
-
-/** Decision records this person keeps (`Retention.trace`, else `PERSON_DEFAULTS.maxTrace`). */
-const traceLimit = (p: Person): number => p.retention?.trace ?? PERSON_DEFAULTS.maxTrace;
-
-/** A valid retention (2.0.0) from host or saved JSON; undefined when nothing valid remains. */
-function cleanRetention(x: unknown): Retention | undefined {
-  if (!isObject(x)) return undefined;
+/** A valid retention (2.0.0) from host or saved JSON; undefined when nothing valid remains. @internal */
+export function cleanRetention(x: unknown): Retention | undefined {
+  if (!isObj(x)) return undefined;
   const out: Retention = {};
   const t = x.trace;
   if (typeof t === 'number' && Number.isInteger(t) && t >= 0 && t <= PERSON_DEFAULTS.maxTrace) out.trace = t;
@@ -1842,29 +1553,4 @@ export function setRetention(p: Person, retention: Retention): void {
   const keep = traceLimit(p);
   if (p.trace.length > keep) p.trace.splice(0, p.trace.length - keep);
   trimChronicle(p);
-}
-
-/** The largest |minute| `restore` accepts: about 1.9 million years, far past any run, far below float trouble. */
-export const MAX_MINUTE = 1e12;
-const isMinute = (x: unknown): x is number => isNum(x) && Math.abs(x) <= MAX_MINUTE;
-
-/**
- * Hold a restored person's lists to the bounds the live code keeps (security review H2: a crafted save with
- * 200,000 gists restored whole and made every later day slow). A save the engine wrote is already within them,
- * so this changes nothing for it. Episodes and gists keep the most salient; dated lists keep the newest.
- */
-function boundLists(p: Person): void {
-  const top = <T extends { salience: number }>(xs: T[], n: number): T[] => {
-    if (xs.length <= n) return xs;
-    const keep = new Set([...xs].sort((a, b) => b.salience - a.salience).slice(0, n));
-    return xs.filter((x) => keep.has(x));
-  };
-  p.memory.episodes = top(p.memory.episodes, MEMORY_DEFAULTS.maxEpisodes);
-  if (p.memory.gists) p.memory.gists = top(p.memory.gists, GIST_DEFAULTS.maxGists);
-  const newest = <T>(xs: T[], n: number): T[] => (xs.length <= n ? xs : xs.slice(xs.length - n));
-  p.memory.expectations = newest(p.memory.expectations, MEMORY_DEFAULTS.maxExpectations);
-  p.trace = newest(p.trace, traceLimit(p));
-  p.habits = newest(p.habits, HABIT_DEFAULTS.maxHabits);
-  if (p.chronicle) p.chronicle = newest(p.chronicle, CHRONICLE_DEFAULTS.maxDays);
-  if (p.chronicleYears) p.chronicleYears = newest(p.chronicleYears, CHRONICLE_DEFAULTS.maxYears);
 }

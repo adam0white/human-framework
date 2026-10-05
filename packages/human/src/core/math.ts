@@ -6,6 +6,11 @@ export const clamp = (value: number, min: number, max: number): number =>
   Number.isNaN(value) ? min : value < min ? min : value > max ? max : value;
 export const clamp01 = (value: number): number => clamp(value, 0, 1);
 export const clampSigned = (value: number): number => clamp(value, -1, 1);
+/** A finite number. Restore sanitizers use it. @internal */
+export const isNum = (x: unknown): x is number => typeof x === 'number' && Number.isFinite(x);
+/** A plain JSON object: not null, not an array. Restore sanitizers use it. @internal */
+export const isObj = (x: unknown): x is Record<string, unknown> =>
+  typeof x === 'object' && x !== null && !Array.isArray(x);
 export const lerp = (a: number, b: number, t: number): number => a + (b - a) * t;
 export const sigmoid = (x: number): number => 1 / (1 + dexp(-x));
 export const logit = (p: number): number => {

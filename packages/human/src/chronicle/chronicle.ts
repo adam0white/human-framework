@@ -11,7 +11,7 @@
  * consolidation or of what people actually remember. The record describes behaviour; it scores no worth,
  * piety or acceptance, and a kept worship commitment is recorded as a kept commitment, nothing more.
  */
-import { dayOf } from '../core/index.ts';
+import { dayOf, isNum, isObj } from '../core/index.ts';
 import type {
   ChronicleCommitmentNote,
   ChronicleDay,
@@ -433,6 +433,30 @@ export interface DayFold {
   alive?: boolean;
   /** A summarized, not lived, day. */
   routine?: boolean;
+}
+
+/** A well-formed year record (1.8.0) as `restore` accepts it. */
+function validYear(y: unknown): boolean {
+  return (
+    isObj(y) &&
+    [y.year, y.days, y.routineDays, y.mood, y.moodLow, y.moodHigh, y.kept, y.broken, y.released].every(
+      isNum,
+    ) &&
+    [y.breaches, y.repairs, y.material, y.decisions].every(isNum) &&
+    Array.isArray(y.actions) &&
+    Array.isArray(y.episodes) &&
+    Array.isArray(y.illness) &&
+    typeof y.alive === 'boolean'
+  );
+}
+
+/**
+ * Restore-time check of a saved yearbook (1.8.0): malformed year records are dropped; undefined when the yearbook
+ * is not a list (it is then off). The count bound is applied by `restore`. A save the engine wrote is unchanged.
+ * @internal
+ */
+export function sanitizeYears(x: unknown): YearRecord[] | undefined {
+  return Array.isArray(x) ? x.filter(validYear) : undefined;
 }
 
 /** Turn on year summaries for this person (idempotent). */

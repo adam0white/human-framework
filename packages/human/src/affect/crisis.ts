@@ -21,8 +21,8 @@
  * gives a break every day or two), not calibrated against any clinical data. Does not model: psychiatric conditions,
  * diagnosis, suicidality, trauma memory, contagion of panic between people, or the content of the behaviours.
  */
-import { chance, clamp01, decay, dexp, random } from '../core/index.ts';
-import type { BreakBehaviour, CrisisState, Minute, Person, Unit } from '../types.ts';
+import { chance, clamp01, decay, dexp, isObj, random } from '../core/index.ts';
+import type { AffectState, BreakBehaviour, CrisisState, Minute, Person, Unit } from '../types.ts';
 import { MINUTES_PER_DAY, MINUTES_PER_HOUR } from '../types.ts';
 import { readAffect } from './affect.ts';
 
@@ -65,6 +65,26 @@ export function enableBreaks(p: Person, behaviours: readonly BreakBehaviour[]): 
 }
 
 /** The break in progress, if any. */
+/** Restore-time check of `affect.crisis` (1.6.0), in place: a malformed one is dropped (absent means none). @internal */
+export function sanitizeCrisis(a: AffectState): void {
+  const crisis = a.crisis as unknown;
+  if (
+    crisis !== undefined &&
+    !(
+      isObj(crisis) &&
+      typeof crisis.stress === 'number' &&
+      typeof crisis.checkedAt === 'number' &&
+      typeof crisis.breaks === 'number' &&
+      Array.isArray(crisis.behaviours) &&
+      (crisis.break === undefined ||
+        (isObj(crisis.break) &&
+          typeof crisis.break.behaviourId === 'string' &&
+          typeof crisis.break.until === 'number'))
+    )
+  )
+    delete a.crisis;
+}
+
 export function inBreak(p: Person): CrisisState['break'] {
   return p.affect.crisis?.break;
 }

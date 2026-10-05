@@ -27,6 +27,8 @@ export const MINUTES_PER_HOUR = 60;
 export const MINUTES_PER_DAY = 1440;
 export const MINUTES_PER_YEAR = 525_600;
 export const DAYS_PER_YEAR = 365;
+/** The largest |minute| `restore` accepts: about 1.9 million years, far past any run, far below float trouble. */
+export const MAX_MINUTE = 1e12;
 
 /** Serializable PRNG state (sfc32 or similar 4×uint32). Owned by `core/random`. */
 export interface RngState {

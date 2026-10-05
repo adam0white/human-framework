@@ -47,7 +47,7 @@
  */
 // The bundled catalog is only the default; a host with its own catalog passes it (`World.catalog`).
 import { DEFAULT_NORMS } from '../conscience/catalog.ts';
-import { clamp01, dayOf, dpow } from '../core/index.ts';
+import { clamp01, dayOf, dpow, isObj } from '../core/index.ts';
 import type {
   Affordance,
   AgendaState,
@@ -168,6 +168,16 @@ function copyArrays<T extends Pick<Commitment, 'actions' | 'violatedBy' | 'exemp
  * Spec commitments keep a given id; entries without one get a free `c<n>` id after all given ids are placed, so
  * `prayerWindows()` output can be passed straight into `PersonSpec.commitments`.
  */
+/** Restore-time check of `agenda.lapse` (1.7.0), in place: a malformed one is dropped (absent means none). @internal */
+export function sanitizeAgenda(a: AgendaState): void {
+  const lapse = a.lapse as unknown;
+  if (
+    lapse !== undefined &&
+    !(isObj(lapse) && typeof lapse.since === 'number' && typeof lapse.missed === 'number')
+  )
+    delete a.lapse;
+}
+
 export function createAgenda(
   spec: {
     commitments?: (Omit<Commitment, 'status' | 'id'> & { id?: string })[];

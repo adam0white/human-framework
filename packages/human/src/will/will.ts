@@ -31,7 +31,7 @@ import { breakAllows, inBreak } from '../affect/index.ts';
 import { commitmentPressure, isUnderWay, pressureReachedAt } from '../agenda/index.ts';
 import { downedAllows, readCapacities } from '../body/index.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
-import { clamp01, decay, dexp, dpow, random } from '../core/index.ts';
+import { clamp01, decay, dexp, dpow, isObj, random } from '../core/index.ts';
 import { skillLevel } from '../skills/index.ts';
 import type {
   Affordance,
@@ -210,6 +210,33 @@ export interface ChoiceResolution {
   autonomyDelta: number;
   /** How a command in force fared (absent when none). */
   command?: CommandOutcome;
+}
+
+/**
+ * Restore-time check of the will's optional fields, in place: a non-list `advice` (1.2.0), and a malformed `command`
+ * or `lastCommand` (1.6.0, 1.7.0) are dropped (absent means none). A save the engine wrote is unchanged. @internal
+ */
+export function sanitizeWill(w: WillState): void {
+  if (w.advice !== undefined && !Array.isArray(w.advice)) delete w.advice;
+  const cmd = w.command as unknown;
+  if (
+    cmd !== undefined &&
+    !(
+      isObj(cmd) &&
+      typeof cmd.voiceId === 'string' &&
+      typeof cmd.since === 'number' &&
+      typeof cmd.startedAt === 'number' &&
+      typeof cmd.chargedAt === 'number' &&
+      typeof cmd.margin === 'number'
+    )
+  )
+    delete w.command;
+  const last = w.lastCommand as unknown;
+  if (
+    last !== undefined &&
+    !(isObj(last) && typeof last.voiceId === 'string' && typeof last.since === 'number')
+  )
+    delete w.lastCommand;
 }
 
 export function createWill(voices: { voiceId: EntityId; trust?: number }[] = []): WillState {

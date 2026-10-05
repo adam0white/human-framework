@@ -42,7 +42,18 @@
  * knob, not a physiological trait and not a life-course effect (`LifeModifiers.metabolism` is that), and
  * `readBody` thresholds ignore it.
  */
-import { chance, clamp, clamp01, dcos, decay, dexp, dlog, minuteOfDay, smoothstep } from '../core/index.ts';
+import {
+  chance,
+  clamp,
+  clamp01,
+  dcos,
+  decay,
+  dexp,
+  dlog,
+  isObj,
+  minuteOfDay,
+  smoothstep,
+} from '../core/index.ts';
 import type {
   BodyLoad,
   BodyRates,
@@ -227,6 +238,28 @@ export function sanitizeExposures(input: unknown, now: Minute): Record<string, E
     n++;
   }
   return n > 0 ? out : undefined;
+}
+
+/**
+ * Restore-time check of the body's optional fields, in place: pinned rates and exposures (1.2.0), illnesses' chronic
+ * fields, and the last sleep and downing spans (1.7.0). Malformed ones are dropped, never filled; injuries and
+ * downing are checked by `sanitizeInjuries`. A save the engine wrote is unchanged. @internal
+ */
+export function sanitizeBody(b: BodyState, now: Minute): void {
+  if (b.rates !== undefined) {
+    const rates = sanitizeRates(b.rates);
+    if (rates) b.rates = rates;
+    else delete b.rates;
+  }
+  if (b.exposures !== undefined) {
+    const ex = sanitizeExposures(b.exposures, now);
+    if (ex) b.exposures = ex;
+    else delete b.exposures;
+  }
+  sanitizeIllnesses(b);
+  const span = (x: unknown) => isObj(x) && typeof x.from === 'number' && typeof x.to === 'number';
+  if (b.lastSleep !== undefined && !span(b.lastSleep)) delete b.lastSleep;
+  if (b.lastDowned !== undefined && !span(b.lastDowned)) delete b.lastDowned;
 }
 
 /**

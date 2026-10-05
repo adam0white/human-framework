@@ -110,6 +110,7 @@ export * from './narrate/index.ts';
 export * from './needs/index.ts';
 export * from './partnering/index.ts';
 export * from './person.ts';
+export * from './restore.ts';
 export * from './scenarios/index.ts';
 export * from './sim/index.ts';
 export * from './skills/index.ts';
