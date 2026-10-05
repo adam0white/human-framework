@@ -321,7 +321,11 @@ export interface WatchState {
   card: SeasonCard | null;
   nextCardId: number;
   /** Sling lessons the Keeper allowed this year (G3-4 practise card): `who` learns from `with` until `until`. */
-  pairings: { who: WatcherId; with: WatcherId; until: number }[];
+  /**
+   * Lessons the Keeper blessed. `from` is the pupil's sling skill at the blessing, so the next thaw can say what came
+   * of it (`told` once it has); both are absent on pairings from older saves.
+   */
+  pairings: { who: WatcherId; with: WatcherId; until: number; from?: number; told?: true }[];
   /** Each watcher's words at the last dawn, so the next dawn says it differently (G3-4 review). */
   lastVoices: Record<WatcherId, string>;
   /** Children on the way: the news is told at once, the birth comes on `due` (G3-4 review). */

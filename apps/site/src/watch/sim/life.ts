@@ -872,7 +872,13 @@ export function settleLifeCard(
   } else if (card.kind === 'practise') {
     if (choice === 'bless') {
       const until = s.year * 365 * DAY;
-      s.pairings.push({ who: card.who, with: card.other, until });
+      const pupil = personOf(s, card.who);
+      s.pairings.push({
+        who: card.who,
+        with: card.other,
+        until,
+        ...(pupil ? { from: skillLevel(pupil, 'sling') } : {}),
+      });
       lift(card.who, 0.03);
       chronicle(
         s,

@@ -18,7 +18,7 @@
  * Not covered: weather beyond the harvest roll, the spring repairs, trade, resettlement after a fall (a fallen
  * village ends its volume and the chronicle; a new seed starts a new village).
  */
-import { liveCommunity, tend } from '@human/framework';
+import { liveCommunity, skillLevel, tend } from '@human/framework';
 import {
   DAY,
   DUSK_START,
@@ -155,6 +155,7 @@ function thaw(s: WatchState): void {
   if (q) chronicle(s, 'winter', q.met ? `Done: ${q.text}` : `Not done: ${q.text}`);
   routineLine(s);
   winterStories(s);
+  lessonLines(s);
   // Grown old on the wall.
   for (const p of living(s)) {
     if (isWatcher(s, p) && ageOf(p, s.minute) >= 60 && (s.cast[p.id]?.comes.year ?? s.year) <= s.year - 20)
@@ -237,6 +238,36 @@ function hungerFaces(s: WatchState): string {
  * The routine part of the winter, told at the thaw (G3-4): how many nights went by without the Keeper's lantern,
  * who stood the most of them, and a stretch someone feared that quiet nights on it may have eased.
  */
+/** How much surer the pupil's sling must have grown since the blessing for the thaw to say it showed. */
+const LESSON_SHOWED = 0.06;
+const LESSON_LITTLE = 0.02;
+
+/**
+ * The thaw after a blessed lesson says what came of it (owner's playtest, 2026-10-05: "Training was mentioned in
+ * the game but I don't know if it worked or not"): the pupil's sling now against the day the Keeper blessed it.
+ */
+function lessonLines(s: WatchState): void {
+  for (const x of s.pairings) {
+    if (x.from === undefined || x.told || s.minute < x.until) continue;
+    x.told = true;
+    const p = personOf(s, x.who);
+    if (!p?.body.alive) continue;
+    const grew = skillLevel(p, 'sling') - x.from;
+    const who = nameOf(s, x.who);
+    const teacher = nameOf(s, x.with);
+    chronicle(
+      s,
+      'winter',
+      grew >= LESSON_SHOWED
+        ? `The summer of sling lessons with ${teacher} showed this winter: ${who} threw a surer stone than before.`
+        : grew >= LESSON_LITTLE
+          ? `${who}'s sling lessons with ${teacher} showed a little this winter: a steadier throw, not yet a sure one.`
+          : `${who}'s sling lessons with ${teacher} have not shown on the wall yet.`,
+      x.who,
+    );
+  }
+}
+
 function routineLine(s: WatchState): void {
   const nights = SPRING_DAY - s.winter.nights;
   const by = new Map<string, number>();
