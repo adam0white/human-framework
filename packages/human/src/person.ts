@@ -2,17 +2,20 @@
  * SCOPE: the composite. `createPerson` wires every faculty's constructor; `tick` advances all faculties in
  * closed form from `p.now` to a later minute under the current activity's body load (idle awake otherwise),
  * splitting at the activity's end; `perceive` runs attention, then beliefs, relationships, judgement of
- * others' acts, memory and appraisal; `decide` scores offers and resolves the will; `begin` and `finish`
- * bracket an activity and route the outcome into body, needs, skills, habits, memory, conscience, agenda,
- * relationships and trust in advising voices; `snapshot`/`restore` serialise. This file owns `now`,
- * `activity`, `trace` and `nextDecision`; every other slice is written only through its owning module. It
- * sequences the modules and makes no behavioural claims of its own beyond the engineering defaults listed in
- * `PERSON_DEFAULTS`.
+ * others' acts, memory and appraisal; `decide` scores offers and resolves the will (`answerNow` answers a
+ * suggestion immediately); `begin` and `finish` bracket an activity and route the outcome into body, needs,
+ * skills, habits, memory, conscience, agenda, relationships and trust in advising voices. Direct control is
+ * `command`, `releaseCommand` and `previewCommand`; `knockDown` and `standUp` move a person in and out of the
+ * downed state; `observeSkill` is observational learning; `setRetention` sets the per-person retention
+ * bounds; `readPerson` is the read-only summary. Snapshot and restore live in `restore.ts`. This file owns
+ * `now`, `activity`, `trace`, `nextDecision` and `retention`; every other slice is written only through its
+ * owning module. It sequences the modules and makes no behavioural claims of its own beyond the engineering
+ * defaults listed in `PERSON_DEFAULTS`.
  *
  * Integration pass (2026-10-03, engine 1.2.0): several voices per decision (`DecideOptions.suggestions`), standing
  * advice remembered from `told` percepts, hearsay moving relationships, deaths marking ties, cue-triggered recall on
- * `begin` and on attended percepts (re-appraisal and grief), the fast's perception context read from the agenda and
- * the chronicle (`fastingCtx`), abstentions broken by eating, habit extinction on every completed action, exposures
+ * `begin` and on attended percepts (re-appraisal and grief), the body's perception context read from the agenda and
+ * the chronicle, abstentions broken by eating, habit extinction on every completed action, exposures
  * reported by outcomes, purpose revision and the chronicle's day accumulator closed at midnight, and `skip` for
  * long-horizon runs. Each hook calls the owning module; nothing here writes another module's slice.
  */
@@ -1011,11 +1014,6 @@ export function decide(
   return record;
 }
 
-/**
- * The composite's side of a command outcome: charge the controlled time so far, then either end control (with
- * why) or note whether it was obeyed this time. The first time it is obeyed costs autonomy once (as compliance
- * does) and leaves a memory of being commanded.
- */
 /** Charge a command's controlled time to now: autonomy (needs), pressure and trust (will), stress (affect). */
 function chargeControlled(p: Person): void {
   const c = p.will.command;
@@ -1028,6 +1026,11 @@ function chargeControlled(p: Person): void {
   if (autonomy < 0) satisfy(p, { autonomy });
 }
 
+/**
+ * The composite's side of a command outcome: charge the controlled time so far, then either end control (with
+ * why) or note whether it was obeyed this time. The first time it is obeyed costs autonomy once (as compliance
+ * does) and leaves a memory of being commanded.
+ */
 function applyCommandOutcome(p: Person, co: CommandOutcome, list: readonly Affordance[]): void {
   const c = p.will.command;
   if (!c) return;
@@ -1081,7 +1084,7 @@ export function releaseCommand(p: Person, reason = 'released'): boolean {
 
 /**
  * Whether `cmd` would hold right now and at what price, without changing the person or consuming randomness
- * (a UI showing "he will do it, but he would rather eat" before the player takes control). `margin` is the gap
+ * (a UI showing "they will do it, but would rather eat" before the host takes control). `margin` is the gap
  * the hourly autonomy and trust costs scale with.
  */
 export function previewCommand(p: Person, affordances: readonly Affordance[], cmd: Command): CommandOutcome {
@@ -1271,11 +1274,6 @@ export interface FinishReport {
 }
 
 /**
- * Apply what happened. Physiological deltas go to the body, psychological ones to the needs, then skills,
- * habits, memory (expectation learning and an episode), conscience (deed, breaches, repair), agenda,
- * relationships, trust in the advising voice, injuries and illness. Clears the activity.
- */
-/**
  * Learning-rate multiplier for a skill domain at the person's age (1.8.0): the domain's curve from
  * `lifecourse.learningMultiplier`, or the general one (`LifeModifiers.learning`) when no domain is given.
  */
@@ -1307,6 +1305,11 @@ export interface FinishOptions {
   transfer?: SkillTransfer;
 }
 
+/**
+ * Apply what happened. Physiological deltas go to the body, psychological ones to the needs, then skills,
+ * habits, memory (expectation learning and an episode), conscience (deed, breaches, repair), agenda,
+ * relationships, trust in the advising voice, injuries and illness. Clears the activity.
+ */
 export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): FinishReport | null {
   const act = p.activity;
   if (!act) return null;
@@ -1450,7 +1453,7 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
     ...(act.necessity ? { necessity: true } : {}),
     ...(opts.catalog ? { catalog: opts.catalog } : {}),
   });
-  // A completed violating action inside an open abstention's window broke it (the fast, "no cards after Isha").
+  // A completed violating action inside an open abstention's window broke it (the fast, e.g. "no work after the evening prayer").
   if (broken.length > 0) {
     recordMissed(p, broken, now, outcome.action);
     noteCommitments(p, 'broken', broken);

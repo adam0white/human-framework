@@ -2,7 +2,7 @@
  * SCOPE: courtship, marriage and widowhood (HF 2.0 L3). Owns the optional `Person.bonds` slice; a person a host never
  * courts or marries has none, so existing runs are unchanged.
  *
- * Attraction (`attraction(p, other)`) is p's appeal for the other: age fit × (0.35 affection + 0.2 familiarity +
+ * Attraction (`attraction(p, other)`) is how attractive `other` is to `p`: age fit × (0.35 affection + 0.2 familiarity +
  * 0.25 values similarity + 0.1 trait similarity + 0.1 the other's honesty and agreeableness). Familiarity and
  * interaction raise attraction (mere exposure r ≈ .26, F16; getting acquainted raises liking, F15, both in
  * research/family-environment-sources.md); spouses resemble each other in values and religiousness far more than in
@@ -269,7 +269,8 @@ export function valuesSimilarity(a: Person, b: Person): Unit {
   return similarity(a.values, b.values, VALUE_KEYS);
 }
 
-/** Age fit 0..1: 0 if either is under 16; full within 5 years, falling to 0.1 at 20 years apart. */
+/** Age fit 0..1: 0 if either is under 16; full within 5 years, falling linearly to 0 at 20 years apart but floored at 0.1,
+ * which is reached at about 18.5 years apart. */
 export function ageFit(a: Person, b: Person): Unit {
   const x = ageYears(a);
   const y = ageYears(b);
@@ -277,7 +278,7 @@ export function ageFit(a: Person, b: Person): Unit {
   return Math.max(0.1, 1 - Math.max(0, Math.abs(x - y) - 5) / 15);
 }
 
-/** p's appeal for `other`, 0..1 (see SCOPE). Read only. */
+/** How attractive `other` is to `p`, 0..1 (see SCOPE). Read only. */
 export function attraction(p: Person, other: Person): Unit {
   const rel = relationshipWith(p, other.id);
   const appeal = (other.traits.honesty + other.traits.agreeableness) / 2;
@@ -477,8 +478,8 @@ export function canMarry(
 
 /**
  * Marry `a` and `b` at `at` if `canMarry` allows: records the marriage on both (with the waiting period each would
- * observe if widowed, from the custom), adds the spouse role, ends their courtships of others when the custom allows
- * one spouse, and leaves a joyful memory and love. Returns the `canMarry` verdict.
+ * observe if widowed, from the custom), adds the spouse role, clears all of their courtships (including with each other) when the custom
+ * allows one spouse (`maxSpouses <= 1`; otherwise only the courtship between the two ends), and leaves a joyful memory and love. Returns the `canMarry` verdict.
  */
 export function marry(
   a: Person,

@@ -19,7 +19,8 @@
  *
  * Upbringing. `raise(child, household, minutes)` is called by the host for time a child spends in a household. Each
  * caregiver's influence is weighted by their warmth toward the child (their affection, floored at 0). Values relax
- * toward the warmth-weighted household values at 5% per year at full plasticity (value transmission runs through
+ * toward the warmth-weighted household values at 5% per year at full plasticity, scaled by the caregivers' mean
+ * warmth (value transmission runs through
  * family climate and is more accurate with warmth, F7, F8; the rate is an engineering assumption chosen so that a
  * childhood moves values part of the way, never a copy). Plasticity of values is 1 to age 12 and falls to 0 at 25.
  * Understanding of a norm relaxes toward the household's exemplar, conviction × (1 − breach share), where the breach
@@ -28,8 +29,9 @@
  * security starts at 0.6 (58% of nonclinical mothers are secure-autonomous, F12) and moves toward the caregivers'
  * responsiveness (warmth and mood) at 50% per year, most in the first three years, with a floor of 0.1 of that
  * plasticity by age 12 (responsiveness and intergenerational correspondence, F10, F11; rates assumed). Optionally a
- * child comes to trust the voices the household trusts (`adoptVoiceTrust`). This file writes `values` for minors: the
- * one documented exception to values being fixed at creation (docs/framework.md). It does not model siblings'
+ * child comes to trust the voices the household trusts (`adoptVoiceTrust`). This file writes `values` for minors: one of the
+ * documented exceptions to values being fixed at creation (docs/framework.md); the opt-in `character/` drift is
+ * the other. It does not model siblings'
  * influence, peers, schooling, abuse, divorce or temperament-by-parenting interactions, and it never assigns a
  * religious obligation by age: a child holds only the understanding the household lived.
  *
@@ -164,7 +166,8 @@ export function conceptionChance(mother: Person, father: Person, days: number): 
 
 /**
  * Record that `mother` has conceived by `father` at `at`. The due date is drawn from a stream derived from `seed`;
- * `seed` also becomes the child's seed at delivery. Returns the pregnancy, or undefined if one is already open.
+ * `seed` also becomes the child's seed at delivery. The drawn length is clamped to 4 sd below and 3 sd above the
+ * median (an engineering bound against extreme draws). Returns the pregnancy, or undefined if one is already open.
  */
 export function conceive(
   mother: Person,
@@ -204,7 +207,11 @@ export function conceive(
   return { ...pregnancy };
 }
 
-/** Weeks since conception (0 when not pregnant). */
+/**
+ * Weeks since conception (0 when not pregnant). Counted from conception, not from the last menstrual period, which
+ * is where obstetric weeks and trimesters are conventionally counted from (about two weeks earlier). The second
+ * trimester here therefore begins at 13 weeks after conception.
+ */
 export function pregnancyWeeks(p: Person, now: Minute = p.now): number {
   const pg = p.family?.pregnancy;
   return pg ? Math.max(0, (now - pg.conceivedAt) / (7 * MINUTES_PER_DAY)) : 0;
@@ -350,7 +357,7 @@ export function raise(child: Person, household: Household, minutes: number, opts
   const att = fam.attachment ?? F.attachmentStart;
   fam.attachment = clamp01(att + ka * (responsiveness - att));
 
-  // Trust in the household's voices (an elder, a teacher, the player): not the caregivers themselves.
+  // Trust in the household's voices (an elder, a teacher, a host's voice): not the caregivers themselves.
   if ((opts.voices ?? true) && vp > 0) {
     const kv = relax(F.voiceRatePerYear * meanWarmth, years * vp);
     const ids = [...new Set(carers.flatMap((c) => c.will.voices.map((v) => v.voiceId)))]

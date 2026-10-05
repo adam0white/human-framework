@@ -11,8 +11,11 @@
  *   and whose private memory (episodes, expectations, beliefs) is unknown and dropped. Agenda, norms, values, skills
  *   and needs are kept as known: hidden values are out of scope.
  * - `predictAs` / `previewCommandAs`: the framework's own `predict` / `previewCommand` run on that picture, with a
- *   confidence, so the player's read of a person and one villager's read of another use the same function. Pure:
+ *   confidence, so a host's read of a person and one person's read of another use the same function. Pure:
  *   neither person changes and no randomness is drawn.
+ *
+ * Does not cover: keeping estimates over time (that is `social/impressions.ts`), detecting deception, or any
+ * sign beyond the reserve-reduced outward ones.
  */
 import { readAffect } from './affect/index.ts';
 import { readCapacities } from './body/index.ts';

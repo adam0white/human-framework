@@ -8,7 +8,7 @@
  * through conscience; the agenda itself does not judge. It does not plan multi-step routes, model
  * implementation intentions, or claim calibrated procrastination curves.
  *
- * SCOPE (abstention, lane agenda+conscience): an `abstain` commitment (a fast, "no cards after Isha") is kept by
+ * SCOPE (abstention, lane agenda+conscience): an `abstain` commitment (a fast, e.g. "no work after the evening prayer") is kept by
  * not completing any `violatedBy` action whose span overlaps the window, and broken by the first one that does.
  * While open it pushes against violating options with a constant negative term (importance x held conviction);
  * it does not rise with deadline pressure, because the cost of breaking does not grow toward the end. Shape:
@@ -269,7 +269,7 @@ const needsSpawn = (state: AgendaState, c: Commitment, now: Minute): boolean =>
  * (`spanMeetsWindow`), not yet ended, not sleep, and serving `c` (listed in `fulfills` or matching its action and
  * target). Such a commitment stays open past `until` until the activity ends: `onFinished` then keeps it, or the next
  * pass closes it if the activity was cut short (fix 2026-10-03: a prayer begun in its window and finished after it
- * was recorded as missed while the player watched him pray). The will's omission rule uses the same test to keep
+ * was recorded as missed while the person was seen praying). The will's omission rule uses the same test to keep
  * protecting the duty while it runs (1.9.0). Abstentions are never under way.
  */
 export function isUnderWay(p: Person, c: Commitment, now: Minute): boolean {
@@ -701,7 +701,7 @@ export function abandonGoal(p: Person, id: string): boolean {
 
 /**
  * Spontaneous purposes: when an unserved psychological need is urgent, adopt a generic goal for the most
- * urgent one. At most one per day (derived from template-labelled goals adopted today) and at most
+ * urgent one. At most one per day (tracked by `agenda.lastProposalDay`) and at most
  * `maxActiveGoals` active goals.
  */
 export function proposeGoals(p: Person, needs: NeedReading[], now: Minute): Goal[] {

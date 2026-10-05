@@ -386,11 +386,6 @@ export function readAffect(p: Person): { valence: Signed; arousal: Unit; dominan
 }
 
 /**
- * Action tendencies keyed by affordance tag ('risky', 'social', 'confront', 'repair', 'worship', 'novel',
- * 'rest', 'comfort') plus per-target keys 'approach:<id>', 'avoid:<id>', 'confront:<id>', 'repair:<id>'.
- * Values are clamped to -1..1.
- */
-/**
  * Coefficients of each emotion on each tag tendency. 'love' here is untargeted love only: love toward a
  * particular person already pulls through `approach:<id>`, so the same feeling is not counted twice
  * (review 2026-10-03).
@@ -465,6 +460,11 @@ export function tendencyEmotions(p: Person): Record<string, EmotionId> {
   return out;
 }
 
+/**
+ * Action tendencies keyed by affordance tag ('risky', 'social', 'confront', 'repair', 'worship', 'novel',
+ * 'rest', 'comfort') plus per-target keys 'approach:<id>', 'avoid:<id>', 'confront:<id>', 'repair:<id>'.
+ * Values are clamped to -1..1.
+ */
 export function actionTendencies(p: Person): Record<string, number> {
   const g = tendencyInputs(p);
   const fear = g('fear');

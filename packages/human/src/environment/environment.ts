@@ -16,8 +16,9 @@
  * mistrust and nature reduces rumination (F30).
  *
  * Body. Cold raises metabolism by up to 15% (more food and water used), slows recovery from exertion (half-life up
- * to doubled) and makes sleep less restorative (sleep pressure falls up to 30% slower). Darkness while awake lets
- * sleep pressure build up to 15% faster, the inverse of light raising alertness (F27). All four factors are
+ * to doubled) and makes sleep less restorative (the sleep time constant lengthened by up to 30%, so pressure falls
+ * more slowly). Darkness while awake lets sleep pressure build faster (the wake time constant shortened by up to
+ * 15%), the inverse of light raising alertness (F27). All four factors are
  * engineering assumptions; thermal-comfort effect sizes were not found (research/family-environment-sources.md).
  *
  * Needs, per hour: crowding beyond tolerance drains autonomy (0.02 × excess), squalor drains safety (0.02 ×

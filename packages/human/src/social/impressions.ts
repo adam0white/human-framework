@@ -2,8 +2,8 @@
  * SCOPE (impressions, HF 2.0 L6): what one person believes about another — their state (fatigue, pain, fear,
  * mood), their fear of particular places, their HEXACO traits, their ties to third people and their trust in a voice
  * — each held as a running estimate with a weight of evidence, so every readout carries a confidence. Estimates move
- * only through observations the host reports: a glimpse of outward signs (`glimpse`, with a clarity: a lantern-lit
- * face or a figure in the dark), an observed act (`observeAct`: avoiding or approaching a place, staying by someone,
+ * only through observations the host reports: a glimpse of outward signs (`glimpse`, with a clarity: a clear look
+ * or a distant figure), an observed act (`observeAct`: avoiding or approaching a place, staying by someone,
  * heeding or refusing a voice, acts tagged with trait evidence), testimony (`hear`, e.g. a person's own "I'm fine")
  * and acquaintance (`acquaint`: years of history condensed into a few samples, called by the host when people have
  * known each other). Nothing reads the target's true state here: the composite (`impression.ts`) turns a target into
@@ -19,8 +19,8 @@
  *
  * Read by: cognition (opt-in, a risky offer shared with people I hold impressions of weighs their believed fear and
  * pain: `companionSteadiness`), and the composite's `imagine` / `predictAs` / `previewCommandAs`, which predict a
- * person's answer from the observer's estimates instead of the truth, so a UI (the player's read) and a villager's
- * judgement of a neighbour use the same function. Without an observation call nothing is written and no decision
+ * person's answer from the observer's estimates instead of the truth, so a UI (a host's read of a person) and one person's
+ * judgement of another use the same function. Without an observation call nothing is written and no decision
  * changes, so existing runs replay byte for byte. Does not model: inference between traits, stereotypes, projection
  * of one's own state, deliberate deception beyond reserve, the target noticing being watched, or gossip about
  * impressions (conversation carries reputation beliefs separately, `social.ts`).

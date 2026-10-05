@@ -131,7 +131,7 @@ export const COGNITION_DEFAULTS = {
    * Scarcity (N13): with host scarcity s in 0..1 the material term's saturation scale shrinks to
    * materialScale × (1 - scarcityScaleShrink × s), so a small sum stops looking negligible; the term is also
    * multiplied by 1 + scarcityMaterialGain × s (default 0: review 2026-10-03 measured the two mechanisms together
-   * making money outweigh commitments, norms and every voice, mean 1.20 / max 2.25 over 40 town days, so only the
+   * making money outweigh commitments, norms and every voice, mean 1.20 / max 2.25 over 40 simulated days, so only the
    * scale shrink is on and the term stays under its scarcity-free ceiling 2 × materialWeight). The `need:safety`
    * term is multiplied by 1 + scarcitySafetyGain × s. Engineering defaults.
    */
@@ -424,7 +424,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   }
 
   // Suggestions: strength × voice trust × appeal match, one term per voice. Never bypasses vetoes (will enforces).
-  // During a mental break no voice reaches him (crisis SCOPE): no live or remembered suggestion terms.
+  // During a mental break no voice reaches them (crisis SCOPE): no live or remembered suggestion terms.
   const voices = inBreak(p) ? [] : voicesIn(ctx.suggestion, ctx.suggestions);
   let reactance = 0;
   for (const s of voices) {

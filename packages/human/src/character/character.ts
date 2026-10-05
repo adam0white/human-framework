@@ -20,7 +20,8 @@
  *   Rosmalen 2012 favour experience-dependent set points over a fixed one people return to; the fade toward the
  *   maturation path is an engineering assumption, not their model.
  *
- * Every trait and value stays within `maxDrift` of where it stood when drift was enabled, so rank order mostly holds
+ * Every trait and value stays within `maxDrift` of where it stood when drift was enabled (the value anchor is
+ * re-set when age crosses 18, where maturation begins), so rank order mostly holds
  * (high adult rank-order stability, Bleidorn et al. 2022). All rates, thresholds and caps are engineering assumptions
  * chosen for these directions (research/long-run-sources.md); none converts a published effect size. It does not
  * model childhood or adolescent personality development, change in honesty or agreeableness from experience,

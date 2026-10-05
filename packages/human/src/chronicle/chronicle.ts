@@ -7,7 +7,7 @@
  * accumulator (`p.chronicleDay`) through `note*` calls and closes it at the day boundary; `consolidateDay` is
  * pure. The named shape is the distinction between episodic traces and a consolidated, schematic
  * autobiographical record (a life story is built from day-level summaries, not from every event); the
- * thresholds, the two-episode limit and the 120-day bound are engineering choices, not a model of sleep
+ * thresholds, the two-episode limit and the day bound (`maxDays`, default 120, and `Retention.chronicleDays`) are engineering choices, not a model of sleep
  * consolidation or of what people actually remember. The record describes behaviour; it scores no worth,
  * piety or acceptance, and a kept worship commitment is recorded as a kept commitment, nothing more.
  */

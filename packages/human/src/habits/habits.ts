@@ -81,7 +81,7 @@ export const HABIT_DEFAULTS = {
   /**
    * Minutes after a performance over which the habit's pull ramps back from 0 to full (post-completion
    * refractory: a cue occasion already answered does not pull again at once; review 2026-10-03 saw ten
-   * cigarettes in a row). Engineering default.
+   * performances in a row). Engineering default.
    */
   refractory: 4 * 60,
 } as const;
@@ -131,7 +131,7 @@ export function habitUrge(h: Habit, now: Minute, lastAt: Minute = h.lastAt): num
  * after the action was last performed and full `refractory` minutes later (no immediate re-pull from an answered cue).
  * The refractory and the urge run from the last time the ACTION was performed under any of its habits (fix
  * 2026-10-03: a habit whose cues never matched a performance kept its seed `lastAt`, so its craving grew all month
- * and he chain-smoked on Eid). Without craving habits the result is 0..1 as before.
+ * and it was craved on a day it should not have been). Without craving habits the result is 0..1 as before.
  */
 export function habitPull(p: Pick<Person, 'habits'>, aff: Affordance, ctx: HabitContext): number {
   let sum = 0;

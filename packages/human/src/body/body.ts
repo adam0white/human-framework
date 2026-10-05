@@ -37,7 +37,7 @@
  * response curves for any real exposure, or epidemiological transmission rates.
  *
  * SCOPE (pinned rates, integration 2026-10-03): `BodyState.rates` lets a host replace the four depletion
- * rates for one body, so a scenario tuned on a different time scale (the colony game's two days) keeps the
+ * rates for one body, so a scenario tuned on a different time scale (a scenario whose whole life spans two days) keeps the
  * cadence it was built on after the defaults were recalibrated (see docs/findings.md). It is a scenario
  * knob, not a physiological trait and not a life-course effect (`LifeModifiers.metabolism` is that), and
  * `readBody` thresholds ignore it.
@@ -686,7 +686,7 @@ export function sicken(p: Person, illness: Omit<Illness, 'id' | 'since'>): Illne
 }
 
 /**
- * Record `amount` units of a host-defined exposure (e.g. one cigarette). Raises the saturating recent load
+ * Record `amount` units of a host-defined exposure (e.g. one dose of a substance). Raises the saturating recent load
  * (aggravates chronic conditions listed in their `aggravatedBy`) and the cumulative dose (read by
  * `exposureChance`). Bounded: beyond `maxExposures` kinds the smallest cumulative dose is dropped.
  */
