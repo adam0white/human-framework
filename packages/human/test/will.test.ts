@@ -13,9 +13,8 @@ import {
   voiceOf,
   WILL_DEFAULTS,
 } from '../src/index.ts';
-import type { Affordance, Person, Suggestion } from '../src/types.ts';
-
-const NOON = 12 * 60;
+import type { Affordance, Person } from '../src/types.ts';
+import { ask, NOON } from './support.ts';
 
 function villager(id: string, seed: number, opts: Parameters<typeof villagerSpec>[3] = {}): Person {
   return createPerson(villagerSpec(id, id, seed, { now: NOON, others: ['a', 'b', 'c'], ...opts }));
@@ -25,13 +24,6 @@ function offers(p: Person, foodStock = 30): Affordance[] {
   const others = ['a', 'b', 'c'].filter((id) => id !== p.id).map((id) => villager(id, 99));
   return createVillage([p, ...others], { seed: 1, foodStock }).affordancesFor(p);
 }
-
-const ask = (action: string, extra: Partial<Suggestion> = {}): Suggestion => ({
-  voiceId: 'player',
-  action,
-  strength: 0.6,
-  ...extra,
-});
 
 describe('suggestion verdicts', () => {
   test('assents when the suggestion matches what they would do anyway', () => {

@@ -3,7 +3,10 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../shared/theme.css';
 import './home.css';
-import { SpineDiagram } from './Diagram.tsx';
+import { SpineDiagram, SpineStack } from './Diagram.tsx';
+// The code sample is shown from its own source file, which `sample.test.ts` runs against the real API.
+import sampleSource from './sample.ts?raw';
+import { SAMPLE_OUTPUT } from './sampleOutput.ts';
 
 const GRID_X = [0, 25, 50, 75, 100, 125, 150, 175, 200];
 const GRID_Y = [0, 25, 50, 75, 100];
@@ -47,7 +50,7 @@ function WellScene({ variant }: { variant: 'classic' | 'human' }) {
           <rect x="116" y="2" width="80" height="20" rx="6" />
           <rect x="116" y="2" width="3" height="20" rx="1.5" className="scene-rule" />
           <text x="123" y="15.5">
-            after Maghrib
+            after I eat
           </text>
         </g>
       )}
@@ -73,69 +76,172 @@ function CrescentPage() {
   );
 }
 
+/** Game 3: a stretch of village wall at night, one tower with a watcher, the Keeper's lantern below. */
+function WatchScene() {
+  return (
+    <svg className="scene scene-watch" viewBox="0 0 200 120" aria-hidden="true">
+      <rect width="200" height="120" className="watch-sky" />
+      {[
+        [22, 18],
+        [58, 10],
+        [150, 14],
+        [182, 30],
+        [96, 22],
+      ].map(([x = 0, y = 0]) => (
+        <circle key={`${x}-${y}`} cx={x} cy={y} r="0.9" className="watch-star" />
+      ))}
+      <path d="M0 74h200v46H0z" className="watch-wall" />
+      {[0, 20, 40, 60, 80, 120, 140, 160, 180].map((x) => (
+        <rect key={x} x={x + 4} y="68" width="12" height="8" className="watch-wall" />
+      ))}
+      <rect x="86" y="40" width="28" height="80" className="watch-tower" />
+      <rect x="83" y="36" width="34" height="6" className="watch-tower" />
+      <g transform="translate(100 30)" className="watch-person">
+        <rect x="-4" y="-2" width="8" height="10" rx="3.5" />
+        <circle cx="0" cy="-6" r="3.6" />
+      </g>
+      <circle cx="44" cy="100" r="22" className="watch-glow" />
+      <g transform="translate(44 100)" className="watch-lantern">
+        <rect x="-3.5" y="-5" width="7" height="9" rx="1.5" />
+        <path d="M-2 -5a2 2 0 0 1 4 0" fill="none" />
+      </g>
+    </svg>
+  );
+}
+
+/** Comments in the sample read muted; everything else stays plain text. The sample has no `//` inside strings. */
+function CodeSample({ source }: { source: string }) {
+  // The first line is a formatter directive, not part of the example.
+  const lines = source
+    .trimEnd()
+    .split('\n')
+    .filter((line) => !line.startsWith('// biome-ignore'));
+  return (
+    <pre className="code">
+      <code>
+        {lines.map((line, i) => {
+          const at = line.indexOf('//');
+          const key = `${i}:${line}`;
+          if (at < 0) return <span key={key}>{`${line}\n`}</span>;
+          return (
+            <span key={key}>
+              {line.slice(0, at)}
+              <span className="code-comment">{line.slice(at)}</span>
+              {'\n'}
+            </span>
+          );
+        })}
+      </code>
+    </pre>
+  );
+}
+
+const AREAS: { name: string; body: string }[] = [
+  {
+    name: 'Body',
+    body: 'Hunger, thirst, sleep pressure and the daily rhythm, fatigue and fitness, injury, illness. Choices read the body as the person feels it; health follows the true body.',
+  },
+  {
+    name: 'Needs and feelings',
+    body: 'Bodily and psychological needs pull at once: safety, belonging, esteem, autonomy, competence, rest, meaning. Emotions come from appraising events, and mood colours what follows.',
+  },
+  {
+    name: 'Memory and belief',
+    body: 'Episodes that fade, attention with a limited budget, beliefs held with credence and a source. Over years, episodes fold into lasting gists, so a fear learned at 20 still counts at 40.',
+  },
+  {
+    name: 'Commitments',
+    body: 'Promises, appointments, jobs, goals and abstentions. A duty about to close is protected; purposes left untended fade and are let go.',
+  },
+  {
+    name: 'Conscience',
+    body: 'A person holds an understanding of each norm, with its source, not a ruling. Some acts are vetoed, intention is kept apart from the deed, and a breach can bring guilt and repair. Prayer and fasting are quiet parts of life for those who hold them.',
+  },
+  {
+    name: 'Will',
+    body: 'Assent with a typed answer for every suggestion, counter-offers, trust and pressure per voice, and direct command when a host needs it. Self-control comes from habits, values and effort, not a willpower fuel.',
+  },
+  {
+    name: 'Skills, habits, character',
+    body: 'Practice with diminishing gains, rust, teaching and learning by watching. Habits form on cues and fade without them. HEXACO traits and Schwartz values weight choices and shift slowly with age.',
+  },
+  {
+    name: 'Relationships',
+    body: 'Affection, trust and respect between two people, favours owed, gossip and lies, grief. Impressions of how others feel, which can be wrong. Courtship, marriage and widowhood.',
+  },
+  {
+    name: 'A whole life',
+    body: 'Aging, heredity of temperament, upbringing, pregnancy and birth, chronic illness and natural death. Years run a day at a time, and parents’ stories reach their children.',
+  },
+  {
+    name: 'Surroundings',
+    body: 'Cold, darkness, crowding, weather and day length shift mood, body and needs by small, bounded amounts.',
+  },
+];
+
 function Home() {
   return (
     <div className="page">
       <header className="nav">
         <a className="wordmark" href="/">
           <span className="wordmark-mark" aria-hidden="true" />
-          Human Framework
+          <span className="wordmark-long">Human Framework</span>
+          <abbr className="wordmark-short" title="Human Framework">
+            HF
+          </abbr>
         </a>
         <nav aria-label="Sections">
-          <a href="#idea">The idea</a>
-          <a href="#games">Games</a>
-          <a href="#notes">Model notes</a>
+          <a href="#models">Models</a>
+          <a href="#use">Use</a>
+          <a href="#examples">Examples</a>
         </nav>
       </header>
 
       <main>
         <section className="hero">
-          <p className="eyebrow">Human Framework · v{FRAMEWORK_VERSION}</p>
+          <p className="eyebrow">HF · Human Framework · v{FRAMEWORK_VERSION}</p>
           <h1>
             Simulated people who <em>decide</em>.
           </h1>
           <p className="lede">
-            A deterministic, explainable framework for people in simulations. Hunger, duty, habit, fear,
-            friendship and memory all pull at once. Your voice is one more pull, never a command. Each person
-            weighs those pulls, then says yes, not now, or no, and can tell you why.
+            HF is a deterministic TypeScript framework for simulating people. Each person weighs what they are
+            told against their own needs, habits, duties and trust, then says yes, not now, or no, and can
+            tell you why.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="/colony/">
-              Play <em>Twice at the Well</em>
-              <span aria-hidden="true">→</span>
+            <a className="button button-primary" href="#use">
+              See it in code <span aria-hidden="true">→</span>
             </a>
-            <a className="button button-ghost" href="/voice/">
-              Play <em>The Day You Say Nothing</em>
-            </a>
-            <a className="button button-ghost" href="#idea">
-              How it works
+            <a className="button button-ghost" href="#examples">
+              Play the three examples
             </a>
           </div>
           <div className="hero-scenes" aria-hidden="true">
             <figure>
               <WellScene variant="classic" />
-              <figcaption>Classic: they obey</figcaption>
+              <figcaption>Classic units: they obey</figcaption>
             </figure>
             <figure>
               <WellScene variant="human" />
-              <figcaption>Human: they decide</figcaption>
+              <figcaption>HF people: they decide</figcaption>
             </figure>
           </div>
         </section>
 
         <section className="idea" id="idea">
           <div className="section-head">
-            <p className="eyebrow">The spine</p>
+            <p className="eyebrow">The core idea</p>
             <h2>Urge → Assent → Act</h2>
             <p>
-              At each decision, every pull becomes a scored term. The person assents to one course of action,
-              or turns down what was suggested, and acts. The world resolves what actually happens, and the
-              outcome feeds back into their body, memory, skills, relationships and trust in whoever advised
-              them.
+              At each decision, every pull on a person becomes a scored term. They assent to one course of
+              action, or turn down what was suggested, and act. The host world resolves what actually happens,
+              and the outcome feeds back into their body, memory, skills, relationships and trust in whoever
+              advised them.
             </p>
           </div>
           <div className="diagram-card">
             <SpineDiagram />
+            <SpineStack />
           </div>
 
           <div className="principles">
@@ -146,14 +252,14 @@ function Home() {
                 <Verdict kind="assent">yes</Verdict>
                 <Verdict kind="notnow">not now: after I eat</Verdict>
                 <Verdict kind="cannot">cannot: hurt</Verdict>
-                <Verdict kind="willnot">will not: everyone goes hungry</Verdict>
+                <Verdict kind="willnot">will not: it is theft</Verdict>
               </p>
             </article>
             <article>
               <h3>Every choice explains itself</h3>
               <p>
                 Each decision keeps its top options and the terms that scored them: needs, duties, promises,
-                emotions, friends, effort, risk, and your suggestion. Tap any bubble to see the breakdown.
+                emotions, friends, effort, risk, and the suggestion. A game can show that breakdown as it is.
               </p>
               <div className="mini-bars" aria-hidden="true">
                 <span style={{ width: '34%', background: 'var(--fam-norm)' }} />
@@ -163,20 +269,167 @@ function Home() {
               </div>
             </article>
             <article>
-              <h3>Same seed, same life</h3>
+              <h3>Ask before you act</h3>
               <p>
-                All randomness comes from seeded streams. A save is a snapshot plus the input log, so any run
-                can be replayed exactly and any surprising choice can be inspected.
+                <code>predict</code> answers “what would they say?” without changing the person or drawing
+                randomness, so a game can hint at an answer before the player commits.
               </p>
             </article>
           </div>
         </section>
 
-        <section className="games" id="games">
+        <section className="models" id="models">
           <div className="section-head">
-            <p className="eyebrow">Games</p>
-            <h2>Experiments that show the framework</h2>
-            <p>Short, disposable games built to test one claim each.</p>
+            <p className="eyebrow">What HF models</p>
+            <h2>One person, many faculties</h2>
+            <p>
+              Each area is a module that owns its slice of the person’s state. Some faculties are complete and
+              others partial or opt-in; HF keeps a faculty-by-faculty inventory of what is done, partial and
+              missing.
+            </p>
+          </div>
+          <div className="area-grid">
+            {AREAS.map((a) => (
+              <article key={a.name}>
+                <h3>{a.name}</h3>
+                <p>{a.body}</p>
+              </article>
+            ))}
+          </div>
+          <p className="fine">
+            Parameters are engineering defaults chosen for plausible behaviour at game time scales. Where a
+            published finding informs a shape (the two-process sleep model, the power-law practice curve,
+            exponential forgetting, OCC appraisal, HEXACO, Schwartz values), the module names it. They are not
+            calibrated predictions of human behaviour. Space, travel, inventory and economy belong to the host
+            game.
+          </p>
+          <p className="fine">
+            Not modelled yet: planning several steps ahead, inference between beliefs, culture and norms
+            spreading through a community, divorce.
+          </p>
+        </section>
+
+        <section className="props" id="properties">
+          <div className="section-head">
+            <p className="eyebrow">Properties</p>
+            <h2>Built to be replayed and inspected</h2>
+          </div>
+          <dl className="prop-grid">
+            <div>
+              <dt>Deterministic</dt>
+              <dd>
+                All randomness comes from seeded streams held in the person’s state. Same seed and same
+                inputs, same life.
+              </dd>
+            </div>
+            <div>
+              <dt>Replayable</dt>
+              <dd>
+                HF saves a person as a JSON snapshot. Each example game adds the seed and the player’s input
+                log, so its playtest file replays the run exactly.
+              </dd>
+            </div>
+            <div>
+              <dt>Plain JSON</dt>
+              <dd>
+                A person is plain data: no classes, no closures. <code>restore</code> checks every value
+                against its bounds and upgrades saves from older engine versions.
+              </dd>
+            </div>
+            <div>
+              <dt>Lives over decades</dt>
+              <dd>
+                People age, court, marry, raise children and die of natural causes. A settlement of 25 people
+                runs 50 years in about 3.5 seconds in the project’s benchmark.
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <section className="use" id="use">
+          <div className="section-head">
+            <p className="eyebrow">How you use it</p>
+            <h2>The host offers, the person decides</h2>
+            <p>
+              Your game describes what a person can do right now as affordances. HF chooses, or answers a
+              suggestion; your game resolves what happened and reports it back. HF has no UI and no LLM in the
+              loop.
+            </p>
+          </div>
+          <div className="use-grid">
+            <div className="use-code">
+              <CodeSample source={sampleSource} />
+              <div className="code-output">
+                <p className="code-output-head">Returns</p>
+                <p>
+                  <code>answer</code>: {SAMPLE_OUTPUT.verdict} / {SAMPLE_OUTPUT.kind} ({SAMPLE_OUTPUT.reason}
+                  ), “{SAMPLE_OUTPUT.says}”
+                </p>
+                <p>
+                  <code>record</code>: she waits. Stealing scored highest ({SAMPLE_OUTPUT.stealScore}:{' '}
+                  {SAMPLE_OUTPUT.stealTerms.map(([source, value]) => `${source} ${value}`).join(', ')}), and
+                  her own norm vetoed it.
+                </p>
+              </div>
+            </div>
+            <div>
+              <ol className="steps">
+                <li>
+                  <strong>
+                    <code>createPerson</code>
+                  </strong>{' '}
+                  from a spec: seed, birth, body, traits, values, norms, relationships, the voices they hear.
+                </li>
+                <li>
+                  <strong>Offer affordances</strong>: actions with a duration, an effort and advertised
+                  effects, tagged with the norms they touch.
+                </li>
+                <li>
+                  <strong>
+                    <code>predict</code>
+                  </strong>{' '}
+                  previews an answer; <code>decide</code> makes and records a choice with every scored term.
+                </li>
+                <li>
+                  <strong>Run the activity</strong>: <code>begin</code> it, <code>tick</code> the clock, and{' '}
+                  <code>finish</code> with the outcome your world resolved. Body, memory, skills and trust
+                  update.
+                </li>
+                <li>
+                  <strong>
+                    <code>stepCommunity</code>
+                  </strong>{' '}
+                  runs that loop for a whole village against your <code>World</code>;{' '}
+                  <code>liveCommunity</code> steps decades a day at a time.
+                </li>
+              </ol>
+              <dl className="facts">
+                <div>
+                  <dt>Runtime</dt>
+                  <dd>Plain ES modules, no runtime dependencies; Node 24+ or a modern browser.</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>
+                    {FRAMEWORK_VERSION}, used by the three games below. The source is private for now, with no
+                    license granted yet, so it is not on npm.
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+          <p className="fine">
+            The example is the page’s own source file, type-checked and run against{' '}
+            <code>@human/framework</code> {FRAMEWORK_VERSION} by the test suite, which also checks the output
+            printed under it.
+          </p>
+        </section>
+
+        <section className="games" id="examples">
+          <div className="section-head">
+            <p className="eyebrow">Three examples</p>
+            <h2>Games built on HF</h2>
+            <p>Each one is built to show a different part of the framework. All three run in the browser.</p>
           </div>
           <div className="game-grid">
             <a className="game-card game-live" href="/colony/">
@@ -187,12 +440,15 @@ function Home() {
                 <p className="game-kicker">Game 1 · about three minutes</p>
                 <h3>Twice at the Well</h3>
                 <p>
-                  Six villagers, two days, one well, one storm. You give the same orders to the same village
-                  twice, side by side. On the left they obey like colony-sim units. On the right they are
-                  people.
+                  Six villagers, two days, one well, one storm, played twice side by side with the same
+                  orders.
+                </p>
+                <p className="game-shows">
+                  <strong>Shows the will:</strong> on the left, colony-sim units obey; on the right, the same
+                  village weighs each order against hunger, fear and friends.
                 </p>
                 <span className="game-cta">
-                  Play now <span aria-hidden="true">→</span>
+                  Play <span aria-hidden="true">→</span>
                 </span>
               </div>
             </a>
@@ -205,64 +461,43 @@ function Home() {
                 <h3>The Day You Say Nothing</h3>
                 <p>
                   You are a voice in Halil’s head for the first Ramadan since his wife died. He hears you, and
-                  he decides. On Eid you go silent and watch what he does on his own.
+                  he decides.
+                </p>
+                <p className="game-shows">
+                  <strong>Shows habits and trust:</strong> routines that lost their cue, grief in memory, and
+                  how far he trusts you. On the last day you go silent and see what stayed.
                 </p>
                 <span className="game-cta">
-                  Play now <span aria-hidden="true">→</span>
+                  Play <span aria-hidden="true">→</span>
                 </span>
               </div>
             </a>
-            <a className="game-card game-live game-soon" href="/watch/">
-              <div className="game-art game-art-soon" aria-hidden="true">
-                ☾
+            <a className="game-card game-live" href="/watch/">
+              <div className="game-art">
+                <WatchScene />
               </div>
               <div className="game-body">
-                <p className="game-kicker">Game 3 · early prototype</p>
+                <p className="game-kicker">Game 3 · endless, winter after winter</p>
                 <h3>The Night Watch</h3>
-                <p>
-                  Keep the watch of a small walled village. Post the watchers at dusk against the scout’s
-                  warning, carry the lantern at night. In this first cut the watchers always obey; people come
-                  next.
+                <p>Keep the watch of a small walled village across generations.</p>
+                <p className="game-shows">
+                  <strong>Shows a whole life:</strong> watchers refuse posts, learn courage, marry, raise
+                  children who inherit their stories, grow old and die.
                 </p>
                 <span className="game-cta">
-                  Try the prototype <span aria-hidden="true">→</span>
+                  Play <span aria-hidden="true">→</span>
                 </span>
               </div>
             </a>
           </div>
         </section>
-
-        <section className="notes" id="notes">
-          <details>
-            <summary>Model notes and limitations</summary>
-            <div className="notes-body">
-              <p>
-                Parameters are engineering defaults chosen for plausible behaviour at game time scales. Where
-                a published finding informs a shape, the module names it: the two-process sleep model, the
-                power-law practice curve, exponential forgetting, OCC appraisal, HEXACO, Schwartz values. The
-                parameters are not calibrated predictions of human behaviour.
-              </p>
-              <p>
-                The structure follows a distinction in the project’s Islamic foundations: an internal
-                suggestion is not yet a deed, responsibility attaches to deliberate assent and is bounded by
-                capacity, and intention is recorded separately from the outward act. The software does not
-                compute divine acceptance or give theological names to mechanisms. Norms come from a host
-                catalogue with provenance; a person holds an understanding of each norm, and that
-                understanding is not a ruling.
-              </p>
-              <p>
-                Decisions read the perceived body; performance and health use the true body. Traits scale
-                terms and never branch logic. Trust is a relation to a voice, never a measure of a person’s
-                worth.
-              </p>
-            </div>
-          </details>
-        </section>
       </main>
 
       <footer className="footer">
-        <span>Human Framework v{FRAMEWORK_VERSION}</span>
-        <span>Deterministic · explainable · UI- and LLM-independent</span>
+        <span>
+          HF (Human Framework) v{FRAMEWORK_VERSION} · <code>@human/framework</code>
+        </span>
+        <span>Deterministic · explainable · no UI or LLM in the loop</span>
       </footer>
     </div>
   );

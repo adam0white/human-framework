@@ -23,33 +23,13 @@ import {
   WILL_DEFAULTS,
 } from '../src/index.ts';
 import type { Affordance, Person, PersonSpec, Suggestion } from '../src/types.ts';
-import { MINUTES_PER_DAY } from '../src/types.ts';
-
-const ADULT = -30 * 365 * MINUTES_PER_DAY;
+import { ADULT, aff, PRAY, REST, WORK } from './support.ts';
 
 function person(id: string, over: Partial<PersonSpec> = {}): Person {
   return createPerson({ id, name: id, seed: 11, bornAt: ADULT, sex: 'male', now: 600, ...over });
 }
 
-const aff = (id: string, over: Partial<Affordance> = {}): Affordance => ({
-  id,
-  action: id,
-  label: id,
-  duration: 60,
-  effort: 0.2,
-  advertises: {},
-  ...over,
-});
-
-const REST = aff('rest', { advertises: { rest: 0.2 }, effort: 0, tags: ['rest'] });
-const WORK = aff('work', { advertises: { esteem: 0.15, competence: 0.1 }, duration: 120, tags: ['work'] });
 const CHAT = aff('chat', { advertises: { belonging: 0.1 }, duration: 30, tags: ['social'] });
-const PRAY = aff('pray', {
-  duration: 15,
-  effort: 0.05,
-  tags: ['worship'],
-  norms: [{ normId: 'salah', relation: 'fulfills' }],
-});
 
 const say = (voiceId: string, action: string, extra: Partial<Suggestion> = {}): Suggestion => ({
   voiceId,

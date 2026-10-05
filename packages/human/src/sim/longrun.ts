@@ -8,7 +8,7 @@
  * `upbringingMinutes` a day (`family.raise`: values, norm understanding and attachment move with the parents' warmth). Anyone behind the community's clock is first ticked up to it (lived time), and the bookkeeping the
  * fine-grained driver reads (`idleUntil`, `perceivedUntil`, `dayDone`) is moved to the end, so the host can switch
  * back to `stepCommunity` at the stretch's end: a common pattern is routine for the years nobody watches, lived
- * minutes for the days the player does. Switching fidelity is the host's decision and happens on a day boundary.
+ * minutes for the days someone is watching. Switching fidelity is the host's decision and happens on a day boundary.
  *
  * It does not run decisions, conversation, joint activities, contagion or the world's percepts and affordances: those
  * belong to lived time. Companions are listed by the host on both sides (each person's routine names the other),

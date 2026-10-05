@@ -115,3 +115,35 @@ export function SpineDiagram() {
     </svg>
   );
 }
+
+/** The same picture stacked top to bottom, for phones, where the wide SVG would need sideways scrolling. */
+export function SpineStack() {
+  return (
+    <div className="spine-stack">
+      <p className="spine-stack-head">Urge</p>
+      <ul className="spine-stack-urges">
+        {URGES.map((u) => (
+          <li key={u.label} className={u.you ? 'spine-you' : undefined} style={{ borderColor: u.color }}>
+            <span aria-hidden="true" style={{ background: u.color }} />
+            {u.label}
+          </li>
+        ))}
+      </ul>
+      <p className="spine-stack-arrow" aria-hidden="true">
+        ↓
+      </p>
+      <p className="spine-stack-weigh">
+        <em className="spine-stack-word">weighs</em>
+        <small>yes · later · no</small>
+      </p>
+      <p className="spine-stack-arrow" aria-hidden="true">
+        ↓
+      </p>
+      <p className="spine-stack-act">
+        <em className="spine-stack-word">acts</em>
+        <small>the world resolves it</small>
+      </p>
+      <p className="spine-stack-loop">↺ the outcome feeds back into body, memory, habits, trust</p>
+    </div>
+  );
+}

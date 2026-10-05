@@ -24,7 +24,17 @@
  * choices. It does not model reconstruction errors in gists, deliberate rehearsal beyond retelling (`recall`
  * boosts), or semantic knowledge abstracted from gists.
  */
-import { clamp, clamp01, clampSigned, decay, hourOf, lerp, runningMean } from '../core/index.ts';
+import {
+  clamp,
+  clamp01,
+  clampSigned,
+  decay,
+  hourOf,
+  isNum,
+  isObj,
+  lerp,
+  runningMean,
+} from '../core/index.ts';
 import type {
   ActionExpectation,
   Affordance,
@@ -40,7 +50,7 @@ import type {
   Signed,
   Unit,
 } from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
+import { DAYS_PER_YEAR, MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
 
 export const MEMORY_DEFAULTS = {
   maxEpisodes: 200,
@@ -121,6 +131,58 @@ export interface ExpectedEffect {
 
 export function createMemory(): MemoryState {
   return { episodes: [], beliefs: [], expectations: [], sourceTrust: {}, nextEpisode: 0 };
+}
+
+/**
+ * A well-formed gist (1.8.0) as `restore` accepts it, in place: every number finite and `weight` ≥ 0 (else the gist
+ * is dropped), `salience` and `peak` clamped to 0..1 and `valence` to −1..1.
+ */
+function validGist(g: unknown): boolean {
+  if (
+    !(
+      isObj(g) &&
+      typeof g.id === 'string' &&
+      typeof g.kind === 'string' &&
+      typeof g.summary === 'string' &&
+      Array.isArray(g.tags) &&
+      [g.at, g.valence, g.salience, g.count, g.firstAt, g.lastAt, g.weight, g.peak].every(isNum) &&
+      (g.weight as number) >= 0
+    )
+  )
+    return false;
+  for (const k of ['salience', 'peak'] as const)
+    if (g[k] !== clamp01(g[k] as number)) g[k] = clamp01(g[k] as number);
+  if (g.valence !== clampSigned(g.valence as number)) g.valence = clampSigned(g.valence as number);
+  return true;
+}
+
+/** The next free gist number: one past the largest `g<n>` id (0 when none is numbered). */
+function nextGistAfter(gists: readonly { id: string }[]): number {
+  let next = 0;
+  for (const g of gists) {
+    const m = /^g(\d+)$/.exec(g.id);
+    if (m) next = Math.max(next, Number(m[1]) + 1);
+  }
+  return next;
+}
+
+/**
+ * Restore-time check of the 1.8.0 gists, in place: malformed gists are dropped (a non-array list turns gists off),
+ * and `nextGist` never reuses a kept gist's id (ids are `g<n>` from a counter that only grows). The count bound is
+ * applied by `restore`. A save the engine wrote is unchanged. @internal
+ */
+export function sanitizeGists(m: MemoryState): void {
+  const gists = m.gists as unknown;
+  if (gists !== undefined) {
+    if (!Array.isArray(gists)) delete m.gists;
+    else m.gists = gists.filter(validGist);
+  }
+  if (m.gists) {
+    const free = nextGistAfter(m.gists);
+    const saved = m.nextGist;
+    if (!isNum(saved) || saved < free) m.nextGist = free;
+  }
+  if (!m.gists) delete m.nextGist;
 }
 
 /** Turn on lasting gists for this person (idempotent). Without it, forgotten episodes leave nothing. */
@@ -273,8 +335,15 @@ export const RETELL_DEFAULTS = {
   minSalience: 0.1,
 };
 
+/** Optional knobs of `retell`: trust in the teller (default the listener's trust in them), how many gists, which places. */
+export interface RetellOptions {
+  trust?: Unit;
+  limit?: number;
+  placeIds?: readonly string[];
+}
+
 /**
- * `teller` tells `listener` the gist of what mattered to them (2.0, L2: stories passed in a household or around a
+ * `teller` tells `listener` at `at` the gist of what mattered to them (2.0, L2: stories passed in a household or around a
  * fire). The listener must have gists on (`enableGists`); otherwise nothing happens. The teller's strongest gists
  * (up to `limit`, optionally only those about `placeIds`) become the listener's own gists with the tag `told`, the
  * teller's valence and summary, and a salience of the teller's × `trust` × `RETELL_DEFAULTS.share`. A listener who
@@ -286,11 +355,16 @@ export const RETELL_DEFAULTS = {
  * It does not model distortion in the retelling, the listener doubting the teller beyond `trust`, or retelling on
  * from the listener to others (a host may call it again with the listener as teller).
  */
+export function retell(teller: Person, listener: Person, at: Minute, opts?: RetellOptions): Gist[];
+/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
+export function retell(teller: Person, listener: Person, opts: RetellOptions & { at: Minute }): Gist[];
 export function retell(
   teller: Person,
   listener: Person,
-  opts: { at: Minute; trust?: Unit; limit?: number; placeIds?: readonly string[] },
+  when: Minute | (RetellOptions & { at: Minute }),
+  knobs: RetellOptions = {},
 ): Gist[] {
+  const opts = typeof when === 'number' ? { ...knobs, at: when } : when;
   const told = teller.memory.gists;
   const list = listener.memory.gists;
   if (!told || !list || teller.id === listener.id) return [];
@@ -764,7 +838,7 @@ export function recallByCue(p: Person, cue: RecallCue): CueRecall {
     }
     const isLossTagged = ep.tags.some((t) => D.lossTags.includes(t)) || ep.action === 'death';
     const daysSince = Math.floor(at / MINUTES_PER_DAY) - Math.floor(ep.at / MINUTES_PER_DAY);
-    if (isLossTagged && daysSince > 0 && daysSince % 365 === 0) {
+    if (isLossTagged && daysSince > 0 && daysSince % DAYS_PER_YEAR === 0) {
       strength += W.anniversary;
       specific = true;
     }

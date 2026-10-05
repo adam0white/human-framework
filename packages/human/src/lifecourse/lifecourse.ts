@@ -9,7 +9,7 @@
  * has its own trajectory, and consumers decide which ones apply.
  */
 import { clamp, dexp, dpow, smoothstep } from '../core/index.ts';
-import type { LifeModifiers, LifeStage, Person } from '../types.ts';
+import type { LifeModifiers, LifeStage, Minute, Person } from '../types.ts';
 import { MINUTES_PER_YEAR } from '../types.ts';
 
 export const LIFE_DEFAULTS = {
@@ -25,10 +25,17 @@ export const LIFE_DEFAULTS = {
   recoveryDeclinePerYear: 0.008,
 };
 
+/** Age in years at the person's own clock (`p.now`). */
 export function ageYears(p: Person): number {
-  return (p.now - p.life.bornAt) / MINUTES_PER_YEAR;
+  return ageAt(p, p.now);
 }
 
+/** Age in years at minute `at` (2.1). */
+export function ageAt(p: Pick<Person, 'life'>, at: Minute): number {
+  return (at - p.life.bornAt) / MINUTES_PER_YEAR;
+}
+
+/** Life stage at an age in years: infant under 2, child under 12, adolescent under 18, adult under 65, then elder. */
 export function stageForAge(age: number): LifeStage {
   if (age < 2) return 'infant';
   if (age < 12) return 'child';
@@ -37,6 +44,7 @@ export function stageForAge(age: number): LifeStage {
   return 'elder';
 }
 
+/** The person's life stage at their own clock (`p.now`). */
 export function lifeStage(p: Person): LifeStage {
   return stageForAge(ageYears(p));
 }
@@ -75,6 +83,7 @@ export function modifiersForAge(age: number, params = LIFE_DEFAULTS): LifeModifi
   };
 }
 
+/** Life modifiers (`modifiersForAge`) for the person's age at their own clock (`p.now`). */
 export function lifeModifiers(p: Person): LifeModifiers {
   return modifiersForAge(ageYears(p));
 }

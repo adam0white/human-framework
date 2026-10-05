@@ -2,8 +2,8 @@
  * SCOPE (impressions, HF 2.0 L6): what one person believes about another — their state (fatigue, pain, fear,
  * mood), their fear of particular places, their HEXACO traits, their ties to third people and their trust in a voice
  * — each held as a running estimate with a weight of evidence, so every readout carries a confidence. Estimates move
- * only through observations the host reports: a glimpse of outward signs (`glimpse`, with a clarity: a lantern-lit
- * face or a figure in the dark), an observed act (`observeAct`: avoiding or approaching a place, staying by someone,
+ * only through observations the host reports: a glimpse of outward signs (`glimpse`, with a clarity: a clear look
+ * or a distant figure), an observed act (`observeAct`: avoiding or approaching a place, staying by someone,
  * heeding or refusing a voice, acts tagged with trait evidence), testimony (`hear`, e.g. a person's own "I'm fine")
  * and acquaintance (`acquaint`: years of history condensed into a few samples, called by the host when people have
  * known each other). Nothing reads the target's true state here: the composite (`impression.ts`) turns a target into
@@ -19,13 +19,13 @@
  *
  * Read by: cognition (opt-in, a risky offer shared with people I hold impressions of weighs their believed fear and
  * pain: `companionSteadiness`), and the composite's `imagine` / `predictAs` / `previewCommandAs`, which predict a
- * person's answer from the observer's estimates instead of the truth, so a UI (the player's read) and a villager's
- * judgement of a neighbour use the same function. Without an observation call nothing is written and no decision
+ * person's answer from the observer's estimates instead of the truth, so a UI (a host's read of a person) and one person's
+ * judgement of another use the same function. Without an observation call nothing is written and no decision
  * changes, so existing runs replay byte for byte. Does not model: inference between traits, stereotypes, projection
  * of one's own state, deliberate deception beyond reserve, the target noticing being watched, or gossip about
  * impressions (conversation carries reputation beliefs separately, `social.ts`).
  */
-import { clamp, clamp01, decay, latestPerId, newestN, round } from '../core/index.ts';
+import { clamp, clamp01, cmpStr, decay, latestPerId, newestN, round } from '../core/index.ts';
 import type {
   EntityId,
   Impression,
@@ -38,19 +38,13 @@ import type {
   Traits,
   Unit,
 } from '../types.ts';
-import { MINUTES_PER_DAY } from '../types.ts';
+import { MINUTES_PER_DAY, MINUTES_PER_YEAR, TRAIT_KEYS } from '../types.ts';
 
 export type CueKind = 'state' | 'place' | 'trait' | 'tie' | 'trust' | 'skill';
 
 export const STATE_CUES: readonly StateCue[] = ['fatigue', 'pain', 'fear', 'mood'];
-export const TRAIT_NAMES: readonly (keyof Traits)[] = [
-  'honesty',
-  'emotionality',
-  'extraversion',
-  'agreeableness',
-  'conscientiousness',
-  'openness',
-];
+/** @deprecated since 2.1: use `TRAIT_KEYS` (types.ts), the same list. Removed in 3.0. */
+export const TRAIT_NAMES: readonly (keyof Traits)[] = TRAIT_KEYS;
 
 export const IMPRESSION_DEFAULTS = {
   /** Weight half-life by kind, minutes (0 = no decay). */
@@ -61,7 +55,7 @@ export const IMPRESSION_DEFAULTS = {
     tie: 90 * MINUTES_PER_DAY,
     trust: 30 * MINUTES_PER_DAY,
     /** `skill:<id>`: how good someone is at a craft changes over seasons, and what was seen of it lasts. */
-    skill: 365 * MINUTES_PER_DAY,
+    skill: MINUTES_PER_YEAR,
   } as Record<CueKind, number>,
   /** confidence = weight / (weight + priorWeight). */
   priorWeight: 1.5,
@@ -263,14 +257,30 @@ export function glimpse(
   observer: Person,
   targetId: PersonId,
   signs: OutwardSigns,
+  at: Minute,
+  clarity?: Unit,
+): void;
+/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
+export function glimpse(
+  observer: Person,
+  targetId: PersonId,
+  signs: OutwardSigns,
   opts: { at: Minute; clarity?: Unit },
+): void;
+export function glimpse(
+  observer: Person,
+  targetId: PersonId,
+  signs: OutwardSigns,
+  when: Minute | { at: Minute; clarity?: Unit },
+  clarity?: Unit,
 ): void {
   if (targetId === observer.id) return;
-  const clarity = clamp01(opts.clarity ?? 1);
-  if (clarity <= 0) return;
-  const imp = impressionFor(observer, targetId, true, opts.at) as Impression;
+  const at = typeof when === 'number' ? when : when.at;
+  const clear = clamp01((typeof when === 'number' ? clarity : when.clarity) ?? 1);
+  if (clear <= 0) return;
+  const imp = impressionFor(observer, targetId, true, at) as Impression;
   const put = (key: string, v: number) =>
-    sample(imp, key, erred(observer, targetId, key, opts.at, v, clarity), clarity, opts.at);
+    sample(imp, key, erred(observer, targetId, key, at, v, clear), clear, at);
   put('fatigue', signs.fatigue);
   put('pain', signs.pain);
   put('fear', signs.fear);
@@ -301,7 +311,7 @@ export function observeAct(
   for (const tag of [...new Set(act.tags ?? [])].sort()) {
     const traits = table[tag];
     if (!traits) continue;
-    for (const t of TRAIT_NAMES) {
+    for (const t of TRAIT_KEYS) {
       const v = traits[t];
       if (v !== undefined) put(`trait:${t}`, v, clarity * IMPRESSION_DEFAULTS.actTraitWeight);
     }
@@ -314,13 +324,31 @@ export function hear(
   targetId: PersonId,
   key: string,
   value: number,
+  at: Minute,
+  weight?: Unit,
+): void;
+/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
+export function hear(
+  observer: Person,
+  targetId: PersonId,
+  key: string,
+  value: number,
   opts: { at: Minute; weight?: Unit },
+): void;
+export function hear(
+  observer: Person,
+  targetId: PersonId,
+  key: string,
+  value: number,
+  when: Minute | { at: Minute; weight?: Unit },
+  weight?: Unit,
 ): void {
   if (targetId === observer.id) return;
-  const w = clamp01(opts.weight ?? 0.5);
+  const at = typeof when === 'number' ? when : when.at;
+  const w = clamp01((typeof when === 'number' ? weight : when.weight) ?? 0.5);
   if (w <= 0) return;
-  const imp = impressionFor(observer, targetId, true, opts.at) as Impression;
-  sample(imp, key, value, w, opts.at);
+  const imp = impressionFor(observer, targetId, true, at) as Impression;
+  sample(imp, key, value, w, at);
 }
 
 /**
@@ -340,7 +368,7 @@ export function acquaint(
   if (f <= 0) return;
   const A = IMPRESSION_DEFAULTS;
   const imp = impressionFor(observer, targetId, true, at) as Impression;
-  for (const t of TRAIT_NAMES) {
+  for (const t of TRAIT_KEYS) {
     const key = `trait:${t}`;
     const e = (hash01(`${observer.id}|${targetId}|${key}|acquaint`) - 0.5) * A.acquaintNoise * (1 - f);
     sample(imp, key, facts.traits[t] + e, A.acquaintWeight * f, at);
@@ -380,7 +408,7 @@ export function impressionOf(observer: Person, targetId: PersonId, now: Minute):
   const imp = observer.social.impressions?.find((i) => i.targetId === targetId);
   if (!imp) return { targetId, cues: [] };
   const cues = [...imp.cues]
-    .sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))
+    .sort((a, b) => cmpStr(a.key, b.key))
     .map((c) => ({ key: c.key, ...estimate(observer, targetId, c.key, now) }));
   return { targetId, seenAt: imp.seenAt, cues };
 }
@@ -410,6 +438,7 @@ export function companionSteadiness(p: Person, otherId: PersonId, now: Minute): 
  * cue needs a finite mean and minute and a finite weight ≥ 0 (else its impression is dropped); a mean outside its
  * key's range is clamped; a repeated target or cue key keeps the one seen latest; past `maxImpressions` impressions
  * or `maxCues` cues the most recently seen are kept, in saved order. A save the engine wrote is already within this.
+ * @internal
  */
 export function sanitizeImpressions(social: Person['social']): void {
   const r = social.reserve as unknown;

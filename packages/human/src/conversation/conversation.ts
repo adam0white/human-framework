@@ -26,7 +26,8 @@
  * being found out. Coefficients are engineering defaults, not calibrated estimates. Nothing here judges the
  * worth of either person; norms are the people's own understandings with catalog provenance.
  * Repetition (integration, 2026-10-03): a claim the listener already holds at the told confidence produces no
- * percept (it is in `claims`, not `told`). The speaker keeps no memory of what was said to whom; the listener's
+ * percept (it is in `claims`, not `told`). A claim this listener already heard from this speaker, in the same
+ * direction, is dropped before the speaker chooses, so it is not even a deed. The speaker keeps no memory of what was said to whom; the listener's
  * belief stands in for it.
  */
 import { clamp01, expit, round } from '../core/index.ts';

@@ -5,6 +5,10 @@ import {
   createVillage,
   decide,
   ENGINE_VERSION,
+  enableCharacterChange,
+  enableGists,
+  enableSkillRetention,
+  enableYearbook,
   finish,
   MINUTES_PER_DAY,
   predict,
@@ -47,6 +51,24 @@ describe('createPerson', () => {
     });
     expect(p.traits.extraversion).toBe(0.9);
     expect(p.will.voices.find((v) => v.voiceId === 'player')?.trust).toBe(0.8);
+  });
+  test('spec.enable turns on the long-run faculties, as the enable calls after creation do', () => {
+    const spec = villagerSpec('e', 'e', 5, { now: DAY7, traits: { openness: 0.7 } });
+    const viaSpec = createPerson({
+      ...spec,
+      enable: { gists: true, yearbook: true, character: true, skillRetention: true },
+    });
+    const viaCalls = createPerson(spec);
+    enableGists(viaCalls);
+    enableYearbook(viaCalls);
+    enableCharacterChange(viaCalls);
+    enableSkillRetention(viaCalls);
+    expect(JSON.stringify(viaSpec)).toBe(JSON.stringify(viaCalls));
+    const off = createPerson({ ...spec, enable: {} });
+    expect(off.memory.gists).toBeUndefined();
+    expect(off.chronicleYears).toBeUndefined();
+    expect(off.character).toBeUndefined();
+    expect(off.skillRetention).toBeUndefined();
   });
 });
 

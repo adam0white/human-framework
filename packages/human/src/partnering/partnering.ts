@@ -2,7 +2,7 @@
  * SCOPE: courtship, marriage and widowhood (HF 2.0 L3). Owns the optional `Person.bonds` slice; a person a host never
  * courts or marries has none, so existing runs are unchanged.
  *
- * Attraction (`attraction(p, other)`) is p's appeal for the other: age fit × (0.35 affection + 0.2 familiarity +
+ * Attraction (`attraction(p, other)`) is how attractive `other` is to `p`: age fit × (0.35 affection + 0.2 familiarity +
  * 0.25 values similarity + 0.1 trait similarity + 0.1 the other's honesty and agreeableness). Familiarity and
  * interaction raise attraction (mere exposure r ≈ .26, F16; getting acquainted raises liking, F15, both in
  * research/family-environment-sources.md); spouses resemble each other in values and religiousness far more than in
@@ -38,7 +38,7 @@
  * waiting period, fosterage, and same-sex pairing (custom `pairing` is the host's choice).
  */
 import { feel } from '../affect/index.ts';
-import { clamp01, dpow, latestPerId } from '../core/index.ts';
+import { clamp01, dpow, isNum, isObj, latestPerId } from '../core/index.ts';
 import { attachmentOf } from '../family/index.ts';
 import { ageYears } from '../lifecourse/index.ts';
 import { remember } from '../memory/index.ts';
@@ -55,11 +55,9 @@ import type {
   Signed,
   Suggestion,
   Term,
-  Traits,
   Unit,
-  Values,
 } from '../types.ts';
-import { MINUTES_PER_DAY } from '../types.ts';
+import { MINUTES_PER_DAY, TRAIT_KEYS, VALUE_KEYS } from '../types.ts';
 
 export const PARTNERING_DEFAULTS = {
   /** Warmth gained per meeting at appeal 1, quality 1 (saturating). */
@@ -178,20 +176,19 @@ const courtshipWith = (p: Person, id: PersonId): Courtship | undefined =>
  * A save the engine wrote is already within all of this. @internal
  */
 export function sanitizeBonds(x: unknown): BondsState | undefined {
-  if (typeof x !== 'object' || x === null || Array.isArray(x)) return undefined;
+  if (!isObj(x)) return undefined;
   const b = x as Record<string, unknown>;
-  const num = (v: unknown) => typeof v === 'number' && Number.isFinite(v);
   const valid = (Array.isArray(b.courtships) ? b.courtships : []).filter(
     (c): c is Courtship =>
       typeof c === 'object' &&
       c !== null &&
       typeof c.withId === 'string' &&
-      num(c.since) &&
-      num(c.warmth) &&
-      num(c.appeal) &&
-      num(c.meetings) &&
-      num(c.lastAt) &&
-      (c.engagedAt === undefined || num(c.engagedAt)),
+      isNum(c.since) &&
+      isNum(c.warmth) &&
+      isNum(c.appeal) &&
+      isNum(c.meetings) &&
+      isNum(c.lastAt) &&
+      (c.engagedAt === undefined || isNum(c.engagedAt)),
   );
   for (const c of valid) {
     if (c.warmth !== clamp01(c.warmth)) c.warmth = clamp01(c.warmth);
@@ -220,10 +217,10 @@ export function sanitizeBonds(x: unknown): BondsState | undefined {
       typeof m === 'object' &&
       m !== null &&
       typeof m.spouseId === 'string' &&
-      num(m.since) &&
-      (m.endedAt === undefined || num(m.endedAt)) &&
+      isNum(m.since) &&
+      (m.endedAt === undefined || isNum(m.endedAt)) &&
       (m.end === undefined || m.end === 'widowed') &&
-      (m.mourningDays === undefined || num(m.mourningDays)),
+      (m.mourningDays === undefined || isNum(m.mourningDays)),
   );
   for (const m of married) if (m.mourningDays !== undefined && m.mourningDays < 0) m.mourningDays = 0;
   const marriages = latestPerId(
@@ -237,8 +234,8 @@ export function sanitizeBonds(x: unknown): BondsState | undefined {
     mo &&
     typeof mo === 'object' &&
     typeof mo.forId === 'string' &&
-    num(mo.since) &&
-    num(mo.until) &&
+    isNum(mo.since) &&
+    isNum(mo.until) &&
     (mo.until as number) >= (mo.since as number)
   )
     out.mourning = { forId: mo.forId, since: mo.since as number, until: mo.until as number };
@@ -260,28 +257,7 @@ export function inMourning(p: Person, now: Minute = p.now): boolean {
 // Attraction and compatibility
 // ---------------------------------------------------------------------------------------------
 
-const VALUE_KEYS: (keyof Values)[] = [
-  'benevolence',
-  'universalism',
-  'tradition',
-  'conformity',
-  'security',
-  'achievement',
-  'power',
-  'hedonism',
-  'stimulation',
-  'selfDirection',
-];
-const TRAIT_KEYS: (keyof Traits)[] = [
-  'honesty',
-  'emotionality',
-  'extraversion',
-  'agreeableness',
-  'conscientiousness',
-  'openness',
-];
-
-function similarity<T extends object>(a: T, b: T, keys: (keyof T)[]): Unit {
+function similarity<T extends object>(a: T, b: T, keys: readonly (keyof T)[]): Unit {
   let d = 0;
   for (const k of keys) d += Math.abs((a[k] as number) - (b[k] as number));
   return clamp01(1 - (2 * d) / keys.length);
@@ -292,7 +268,8 @@ export function valuesSimilarity(a: Person, b: Person): Unit {
   return similarity(a.values, b.values, VALUE_KEYS);
 }
 
-/** Age fit 0..1: 0 if either is under 16; full within 5 years, falling to 0.1 at 20 years apart. */
+/** Age fit 0..1: 0 if either is under 16; full within 5 years, falling linearly to 0 at 20 years apart but floored at 0.1,
+ * which is reached at about 18.5 years apart. */
 export function ageFit(a: Person, b: Person): Unit {
   const x = ageYears(a);
   const y = ageYears(b);
@@ -300,7 +277,7 @@ export function ageFit(a: Person, b: Person): Unit {
   return Math.max(0.1, 1 - Math.max(0, Math.abs(x - y) - 5) / 15);
 }
 
-/** p's appeal for `other`, 0..1 (see SCOPE). Read only. */
+/** How attractive `other` is to `p`, 0..1 (see SCOPE). Read only. */
 export function attraction(p: Person, other: Person): Unit {
   const rel = relationshipWith(p, other.id);
   const appeal = (other.traits.honesty + other.traits.agreeableness) / 2;
@@ -500,8 +477,8 @@ export function canMarry(
 
 /**
  * Marry `a` and `b` at `at` if `canMarry` allows: records the marriage on both (with the waiting period each would
- * observe if widowed, from the custom), adds the spouse role, ends their courtships of others when the custom allows
- * one spouse, and leaves a joyful memory and love. Returns the `canMarry` verdict.
+ * observe if widowed, from the custom), adds the spouse role, clears all of their courtships (including with each other) when the custom
+ * allows one spouse (`maxSpouses <= 1`; otherwise only the courtship between the two ends), and leaves a joyful memory and love. Returns the `canMarry` verdict.
  */
 export function marry(
   a: Person,

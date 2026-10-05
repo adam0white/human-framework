@@ -26,6 +26,9 @@ export type Signed = number;
 export const MINUTES_PER_HOUR = 60;
 export const MINUTES_PER_DAY = 1440;
 export const MINUTES_PER_YEAR = 525_600;
+export const DAYS_PER_YEAR = 365;
+/** The largest |minute| `restore` accepts: about 1.9 million years, far past any run, far below float trouble. */
+export const MAX_MINUTE = 1e12;
 
 /** Serializable PRNG state (sfc32 or similar 4×uint32). Owned by `core/random`. */
 export interface RngState {
@@ -211,6 +214,30 @@ export interface Values {
   selfDirection: Unit;
 }
 export type ValueId = keyof Values;
+
+/** The six trait keys in canonical order (the order every loop over traits uses, and the save's key order). */
+export const TRAIT_KEYS: readonly (keyof Traits)[] = [
+  'honesty',
+  'emotionality',
+  'extraversion',
+  'agreeableness',
+  'conscientiousness',
+  'openness',
+];
+
+/** The ten value keys in canonical order (the order every loop over values uses, and the save's key order). */
+export const VALUE_KEYS: readonly ValueId[] = [
+  'benevolence',
+  'universalism',
+  'tradition',
+  'conformity',
+  'security',
+  'achievement',
+  'power',
+  'hedonism',
+  'stimulation',
+  'selfDirection',
+];
 
 /**
  * How the person understands a norm's standing. These are the person's understanding, not a ruling.
@@ -633,7 +660,7 @@ export interface OwedMakeUp {
 // Will — owned by `will/`
 // ---------------------------------------------------------------------------------------------
 
-/** The person's relationship to an external suggesting voice (the player, a manager, a parent). */
+/** The person's relationship to an external suggesting voice (a host's voice, a manager, a parent). */
 export interface VoiceRelation {
   voiceId: EntityId;
   /** Learned trust that this voice's suggestions serve me, 0..1. */
@@ -644,7 +671,7 @@ export interface VoiceRelation {
   refused: number;
   /** The last few events that moved `trust`, oldest first (bounded, `WILL_DEFAULTS.maxVoiceHistory`). */
   history: VoiceTrustEvent[];
-  /** Seeded from `PersonSpec.voices` (the player, family): never evicted to make room for a new voice. */
+  /** Seeded from `PersonSpec.voices` (a host's voice, family): never evicted to make room for a new voice. */
   seeded?: boolean;
   /**
    * Good outcomes already credited to this voice per action, as a count that halves every
@@ -830,14 +857,11 @@ export interface Activity {
 
 export const PERSON_SCHEMA = 'human/person@1';
 /**
- * Current: 1.8.0 (2026-10-04): optional `family` (aptitudes, pregnancy, upbringing, attachment), `bonds`
- * (courtship, marriage, widowhood) and `ambient` (environment percepts) slices; long-run state: `memory.gists`,
- * `chronicleYears`, `character` (slow trait and value change) and `skillRetention` (consolidation). All absent until a
- * host uses them;
- * a run that does not use them is unchanged, and 1.7.0 saves restore by a version stamp. Newest first is the rule
- * for this comment: the API doc shows its first line.
+ * Current: 2.0.0 (2026-10-04): `AmbientState.now` renamed `percept` (migrated); per-person `retention` (optional,
+ * absent until set); `restore` validates every slice by range and bound and refuses minutes it cannot step. No valid
+ * run changes. The current version comes first, then earlier engines oldest first; the API doc shows this first line.
  *
- * Earlier engines:
+ * Earlier engines (oldest first):
  * 1.1.0 (2026-10-03): joint activities, omission/distrust rules, reactance, voice history.
  * 1.2.0 (2026-10-03): several voices per decision, standing advice, abstentions and fasting perception,
  * illness coupled to rest and food, habit ease and extinction, cue recall, chronicle, lexicon. Acute-illness and
@@ -856,6 +880,13 @@ export const PERSON_SCHEMA = 'human/person@1';
  * obligatory worship and broken obligatory fasts leave a make-up debt, sleep and unconsciousness lift the blame
  * (`missedExcuse`), the Eid prayer norm and window, disliked times. New optional state: `body.lastSleep`,
  * `body.lastDowned`, `agenda.lapse`, `OwedMakeUp.lapseSince`.
+ * 1.8.0 (2026-10-04): optional `family` (aptitudes, pregnancy, upbringing, attachment), `bonds` (courtship, marriage,
+ * widowhood) and `ambient` (environment percepts) slices; long-run state: `memory.gists`, `chronicleYears`,
+ * `character` (slow trait and value change) and `skillRetention` (consolidation). All absent until a host uses them;
+ * a run that does not use them is unchanged, and 1.7.0 saves restore by a version stamp.
+ * 1.9.0 (2026-10-04): the omission rule protects a duty while an activity begun inside its window runs past the end,
+ * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
+ * `dutyReviewAt`). Person shape unchanged.
  */
 export const ENGINE_VERSION = '2.0.0';
 
@@ -1119,7 +1150,7 @@ export interface PracticeConditions {
   /**
    * Guidance from someone more skilled while practising: the teacher's level in this skill and how engaged the
    * guidance was (0..1, default 1). It raises how much this practice teaches, not only how well it goes
-   * (`skills.instructionFactor`). `instructionFrom(teacher, skill)` builds it.
+   * (`skills.PracticeConditions`). `instructionFrom(teacher, skill)` builds it.
    */
   instruction?: { level: Unit; engagement?: Unit; teacherId?: EntityId };
 }
@@ -1151,7 +1182,7 @@ export interface Outcome {
   /** Goal ids this outcome advances (defaults to the activity's `Affordance.advances`). */
   advances?: string[];
   /**
-   * Host-defined exposures this outcome caused (e.g. one cigarette: `{ kind: 'smoke' }`); `finish` records each
+   * Host-defined exposures this outcome caused (e.g. one dose of a substance: `{ kind: 'smoke' }`); `finish` records each
    * through `body.expose`, which aggravates chronic conditions listing the kind and feeds `exposureChance`.
    */
   exposures?: { kind: string; amount?: number }[];
@@ -1305,6 +1336,11 @@ export interface PersonSpec {
   family?: Pick<FamilyState, 'aptitudes' | 'attachment'>;
   /** Per-person bounds (2.0.0); `createPerson` applies them with `setRetention`. */
   retention?: Retention;
+  /**
+   * Long-run faculties to turn on at creation (2.1): the same as calling `enableGists`, `enableYearbook`,
+   * `enableCharacterChange` and `enableSkillRetention` right after `createPerson`. Each is off when absent.
+   */
+  enable?: { gists?: boolean; yearbook?: boolean; character?: boolean; skillRetention?: boolean };
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -1427,7 +1463,7 @@ export interface Lexicon {
   names?: Record<EntityId, string>;
   /** Role nouns by relationship role, without a possessive: { child: 'daughter', landlord: 'landlord' }. */
   roles?: Record<string, string>;
-  /** 'name' (default) says "Selin" when a name is known; 'role' says "my daughter" when a role is known. */
+  /** 'name' (default) says "Aylin" when a name is known; 'role' says "my daughter" when a role is known. */
   prefer?: 'name' | 'role';
   /** Replace the template list for a key. */
   lines?: Record<string, string[]>;
@@ -1560,7 +1596,7 @@ export interface DayRecord {
   alive: boolean;
   /**
    * End-of-day state the next record diffs against. Kept on the newest record only (`appendDay` strips it from
-   * older ones, review 2026-10-03: a full snapshot per day grew a town's saves to megabytes).
+   * older ones, review 2026-10-03: a full snapshot per day grew a community's saves to megabytes).
    */
   state?: ChronicleState;
 }

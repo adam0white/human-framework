@@ -42,7 +42,7 @@
  * overlearning. The linear form and `consolidationHours` are engineering assumptions, not a fitted curve. Does not claim: different retention by skill
  * type (closed versus open, physical versus cognitive), or that spacing of sessions matters.
  */
-import { clamp01, decay, dexp, dlog, sigmoid } from '../core/index.ts';
+import { clamp01, decay, dexp, dlog, isNum, isObj, sigmoid } from '../core/index.ts';
 import {
   type EntityId,
   MINUTES_PER_DAY,
@@ -125,6 +125,11 @@ export function skillFamilies(families: Record<string, readonly string[]>, fract
  */
 export function enableSkillRetention(p: Pick<Person, 'skillRetention'>): void {
   p.skillRetention ??= { consolidationHours: SKILL_DEFAULTS.consolidationHours };
+}
+
+/** Restore-time check of `skillRetention` (1.8.0): undefined (off) unless `consolidationHours` is finite. @internal */
+export function sanitizeSkillRetention(x: unknown): Person['skillRetention'] {
+  return isObj(x) && isNum(x.consolidationHours) ? (x as Person['skillRetention']) : undefined;
 }
 
 /** Forgetting half-life of a skill (minutes): longer the more it was practised, when consolidation is on. */

@@ -1,7 +1,7 @@
 /**
  * SCOPE: a tiny headless reference world for tests: six places (home, field, well, kitchen, mosque,
  * forest), a shared food stock and a small set of actions (eat, drink, sleep, rest, wait, work-field,
- * forage, cook, pray, chat, help, steal-bread). Travel is not modelled; every option is offered to everyone.
+ * forage, cook, pray, chat, help, apologize, steal-bread). Travel is not modelled; every option is offered to everyone.
  * Night foraging is risky. Outcomes use the world's own seeded RNG (never `Math.random`), so a run is
  * reproducible from the seeds. This is a fixture for exercising the framework, not a model of any village.
  */

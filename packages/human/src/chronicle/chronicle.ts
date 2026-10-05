@@ -7,11 +7,11 @@
  * accumulator (`p.chronicleDay`) through `note*` calls and closes it at the day boundary; `consolidateDay` is
  * pure. The named shape is the distinction between episodic traces and a consolidated, schematic
  * autobiographical record (a life story is built from day-level summaries, not from every event); the
- * thresholds, the two-episode limit and the 120-day bound are engineering choices, not a model of sleep
+ * thresholds, the two-episode limit and the day bound (`maxDays`, default 120, and `Retention.chronicleDays`) are engineering choices, not a model of sleep
  * consolidation or of what people actually remember. The record describes behaviour; it scores no worth,
  * piety or acceptance, and a kept worship commitment is recorded as a kept commitment, nothing more.
  */
-import { dayOf } from '../core/index.ts';
+import { cmpStr, dayOf, isNum, isObj } from '../core/index.ts';
 import type {
   ChronicleCommitmentNote,
   ChronicleDay,
@@ -29,7 +29,7 @@ import type {
   Unit,
   YearRecord,
 } from '../types.ts';
-import { MINUTES_PER_DAY } from '../types.ts';
+import { DAYS_PER_YEAR, MINUTES_PER_DAY } from '../types.ts';
 
 export const CHRONICLE_DEFAULTS = {
   /** Day records kept; the oldest are dropped first. */
@@ -353,9 +353,7 @@ export function consolidateDay(p: Person, day: number, acc: ChronicleDay): DayRe
     keptByKind: countBy(kept),
     brokenByKind: countBy(broken),
     prayers,
-    actions: acc.actions
-      .map((a) => ({ ...a, by: { ...a.by } }))
-      .sort((a, b) => (a.action < b.action ? -1 : a.action > b.action ? 1 : 0)),
+    actions: acc.actions.map((a) => ({ ...a, by: { ...a.by } })).sort((a, b) => cmpStr(a.action, b.action)),
     habits,
     trust,
     episodes,
@@ -435,6 +433,50 @@ export interface DayFold {
   routine?: boolean;
 }
 
+/** A well-formed year record (1.8.0) as `restore` accepts it. */
+function validYear(y: unknown): boolean {
+  return (
+    isObj(y) &&
+    [y.year, y.days, y.routineDays, y.mood, y.moodLow, y.moodHigh, y.kept, y.broken, y.released].every(
+      isNum,
+    ) &&
+    [y.breaches, y.repairs, y.material, y.decisions].every(isNum) &&
+    Array.isArray(y.actions) &&
+    Array.isArray(y.episodes) &&
+    Array.isArray(y.illness) &&
+    typeof y.alive === 'boolean'
+  );
+}
+
+/**
+ * Restore-time check of a saved yearbook (1.8.0): malformed year records and malformed entries inside them are
+ * dropped, each record's lists held to their live bounds, and one record kept per year (the later), in year order.
+ * Undefined when the yearbook is not a list (it is then off). The count bound is applied by `restore`. A save the
+ * engine wrote is unchanged. @internal
+ */
+export function sanitizeYears(x: unknown): YearRecord[] | undefined {
+  if (!Array.isArray(x)) return undefined;
+  const C = CHRONICLE_DEFAULTS;
+  const byYear = new Map<number, YearRecord>();
+  for (const y of x.filter(validYear) as YearRecord[]) {
+    y.actions = y.actions
+      .filter((a) => isObj(a) && typeof a.action === 'string' && isNum(a.days))
+      .slice(0, 4 * C.yearActions);
+    y.episodes = y.episodes
+      .filter(
+        (e) =>
+          isObj(e) &&
+          typeof e.id === 'string' &&
+          typeof e.summary === 'string' &&
+          [e.day, e.valence, e.salience].every(isNum),
+      )
+      .slice(0, C.yearEpisodes);
+    y.illness = y.illness.filter((k) => typeof k === 'string').slice(0, C.yearIllnesses);
+    byYear.set(y.year, y);
+  }
+  return [...byYear.values()].sort((a, b) => a.year - b.year);
+}
+
 /** Turn on year summaries for this person (idempotent). */
 export function enableYearbook(p: Person): void {
   p.chronicleYears ??= [];
@@ -464,7 +506,7 @@ export function foldDay(p: Person, d: DayFold): YearRecord | undefined {
   const years = p.chronicleYears;
   if (!years) return undefined;
   const C = CHRONICLE_DEFAULTS;
-  const year = Math.floor(d.day / 365);
+  const year = Math.floor(d.day / DAYS_PER_YEAR);
   let y = years.find((x) => x.year === year);
   if (!y) {
     y = {
@@ -510,7 +552,7 @@ export function foldDay(p: Person, d: DayFold): YearRecord | undefined {
     if (t) t.days += 1;
     else y.actions.push({ action, days: 1 });
   }
-  y.actions.sort((a, b) => b.days - a.days || (a.action < b.action ? -1 : a.action > b.action ? 1 : 0));
+  y.actions.sort((a, b) => b.days - a.days || cmpStr(a.action, b.action));
   // Keep a few more than shown so a later-frequent action can climb; trimmed to the bound.
   if (y.actions.length > 4 * C.yearActions) y.actions.length = 4 * C.yearActions;
   for (const e of d.episodes ?? []) {
