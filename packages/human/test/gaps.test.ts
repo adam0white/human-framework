@@ -46,10 +46,9 @@ import {
   WILL_DEFAULTS,
   type World,
 } from '../src/index.ts';
-import type { Activity, Affordance, Outcome, Percept, Person, PersonSpec, Suggestion } from '../src/types.ts';
+import type { Activity, Affordance, Outcome, Percept, Person, PersonSpec } from '../src/types.ts';
 import { MINUTES_PER_DAY } from '../src/types.ts';
-
-const ADULT = -30 * 365 * MINUTES_PER_DAY;
+import { ADULT, aff, ask, PRAY, REST, WORK } from './support.ts';
 
 function person(id: string, over: Partial<PersonSpec> = {}): Person {
   return createPerson({
@@ -62,31 +61,6 @@ function person(id: string, over: Partial<PersonSpec> = {}): Person {
     ...over,
   });
 }
-
-const aff = (id: string, over: Partial<Affordance> = {}): Affordance => ({
-  id,
-  action: id,
-  label: id,
-  duration: 60,
-  effort: 0.2,
-  advertises: {},
-  ...over,
-});
-
-const REST = aff('rest', { advertises: { rest: 0.2 }, effort: 0, tags: ['rest'] });
-const WORK = aff('work', { advertises: { esteem: 0.15, competence: 0.1 }, duration: 120, tags: ['work'] });
-const PRAY = aff('pray', {
-  duration: 15,
-  effort: 0.05,
-  tags: ['worship'],
-  norms: [{ normId: 'salah', relation: 'fulfills' }],
-});
-const ask = (action: string, extra: Partial<Suggestion> = {}): Suggestion => ({
-  voiceId: 'player',
-  action,
-  strength: 0.6,
-  ...extra,
-});
 
 /** A tiny world: fixed offers per person, queued percepts, outcomes completed unless overridden. */
 function tinyWorld(

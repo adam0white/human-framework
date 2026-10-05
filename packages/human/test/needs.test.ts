@@ -10,82 +10,9 @@ import {
   satisfy,
   urgency,
 } from '../src/needs/index.ts';
-import type { BodyReadout, NeedReading, NeedReservoirs, Person, Traits, Values } from '../src/types.ts';
-import { ENGINE_VERSION, PERSON_SCHEMA, PHYSIOLOGICAL_NEEDS, PSYCHOLOGICAL_NEEDS } from '../src/types.ts';
-
-function makePerson(
-  over: { traits?: Partial<Traits>; values?: Partial<Values>; needs?: Partial<NeedReservoirs> } = {},
-): Person {
-  return {
-    schema: PERSON_SCHEMA,
-    engine: ENGINE_VERSION,
-    id: 'p1',
-    name: 'Test',
-    now: 0,
-    rng: createRng(1),
-    life: { bornAt: -30 * 525_600, sex: 'female' },
-    body: {
-      satiety: 1,
-      hydration: 1,
-      sleepPressure: 0,
-      exertion: 0,
-      circadianPeak: 900,
-      pain: 0,
-      health: 1,
-      fitness: 0.5,
-      injuries: [],
-      illnesses: [],
-      sleepDebt: 0,
-      asleep: false,
-      since: 0,
-      alive: true,
-      nextId: 0,
-    },
-    needs: {
-      safety: 0.8,
-      belonging: 0.7,
-      esteem: 0.6,
-      autonomy: 0.7,
-      competence: 0.6,
-      leisure: 0.6,
-      meaning: 0.6,
-      ...over.needs,
-    },
-    traits: {
-      honesty: 0.5,
-      emotionality: 0.5,
-      extraversion: 0.5,
-      agreeableness: 0.5,
-      conscientiousness: 0.5,
-      openness: 0.5,
-      ...over.traits,
-    },
-    values: {
-      benevolence: 0.5,
-      universalism: 0.5,
-      tradition: 0.5,
-      conformity: 0.5,
-      security: 0.5,
-      achievement: 0.5,
-      power: 0.5,
-      hedonism: 0.5,
-      stimulation: 0.5,
-      selfDirection: 0.5,
-      ...over.values,
-    },
-    conscience: { norms: [], breaches: [], intentions: [], nextBreach: 0 },
-    affect: { mood: { valence: 0, arousal: 0.3 }, emotions: [], regulation: 0.3, lastUpdated: 0 },
-    skills: {},
-    habits: [],
-    memory: { episodes: [], beliefs: [], expectations: [], sourceTrust: {}, nextEpisode: 0 },
-    social: { relationships: [] },
-    agenda: { commitments: [], goals: [], nextId: 0, lastProposalDay: -1 },
-    will: { voices: [], precommitments: [], switchMargin: 0.15, temperature: 0 },
-    activity: null,
-    trace: [],
-    nextDecision: 0,
-  };
-}
+import type { BodyReadout, NeedReading, NeedReservoirs, Person } from '../src/types.ts';
+import { PHYSIOLOGICAL_NEEDS, PSYCHOLOGICAL_NEEDS } from '../src/types.ts';
+import { fullPerson } from './support.ts';
 
 function body(perceived: Partial<BodyReadout['perceived']> = {}): BodyReadout {
   const pr = { hunger: 0, thirst: 0, sleepiness: 0, fatigue: 0, pain: 0, ...perceived };
@@ -116,20 +43,20 @@ describe('needs/urgency', () => {
 
 describe('needs/readNeeds', () => {
   test('stable order and physiological mapping from perceived body', () => {
-    const p = makePerson();
+    const p = fullPerson();
     const r = readNeeds(p, body({ hunger: 0.7, pain: 0.2 }));
     expect(r.map((x) => x.id)).toEqual([...PHYSIOLOGICAL_NEEDS, ...PSYCHOLOGICAL_NEEDS]);
     expect(r[0]?.level).toBeCloseTo(0.3);
     expect(r.find((x) => x.id === 'relief')?.level).toBeCloseTo(0.8);
   });
   test('reads perceived, not true, body values', () => {
-    const p = makePerson();
+    const p = fullPerson();
     const b = body({ sleepiness: 0.2 });
     b.sleepiness = 0.9;
     expect(readNeeds(p, b).find((x) => x.id === 'sleep')?.level).toBeCloseTo(0.8);
   });
   test('rest does not double-count sleepiness', () => {
-    const p = makePerson();
+    const p = fullPerson();
     const sleepyOnly = readNeeds(p, body({ sleepiness: 0.8, fatigue: 0.4 }));
     const exerted = readNeeds(p, body({ sleepiness: 0, fatigue: 0.8 }));
     const rest = (r: NeedReading[]) => r.find((x) => x.id === 'rest')?.level ?? 0;
@@ -137,31 +64,31 @@ describe('needs/readNeeds', () => {
     expect(rest(exerted)).toBeCloseTo(0.2);
   });
   test('traits raise thresholds as coefficients', () => {
-    const intro = makePerson({ traits: { extraversion: 0.1 } });
-    const extro = makePerson({ traits: { extraversion: 0.9 }, needs: {} });
+    const intro = fullPerson({ traits: { extraversion: 0.1 } });
+    const extro = fullPerson({ traits: { extraversion: 0.9 }, needs: {} });
     intro.needs.belonging = 0.35;
     extro.needs.belonging = 0.35;
     const u = (p: Person) => readNeeds(p, body()).find((x) => x.id === 'belonging')?.urgency ?? 0;
     expect(u(extro)).toBeGreaterThan(u(intro));
-    expect(needThreshold(makePerson({ traits: { emotionality: 0.9 } }), 'safety')).toBeGreaterThan(
-      needThreshold(makePerson(), 'safety'),
+    expect(needThreshold(fullPerson({ traits: { emotionality: 0.9 } }), 'safety')).toBeGreaterThan(
+      needThreshold(fullPerson(), 'safety'),
     );
-    expect(needThreshold(makePerson({ values: { tradition: 0.9 } }), 'meaning')).toBeGreaterThan(
-      needThreshold(makePerson(), 'meaning'),
+    expect(needThreshold(fullPerson({ values: { tradition: 0.9 } }), 'meaning')).toBeGreaterThan(
+      needThreshold(fullPerson(), 'meaning'),
     );
-    expect(needThreshold(makePerson({ traits: { openness: 0.9 } }), 'leisure')).toBeGreaterThan(
-      needThreshold(makePerson(), 'leisure'),
+    expect(needThreshold(fullPerson({ traits: { openness: 0.9 } }), 'leisure')).toBeGreaterThan(
+      needThreshold(fullPerson(), 'leisure'),
     );
-    expect(needThreshold(makePerson({ traits: { conscientiousness: 0.9 } }), 'competence')).toBeGreaterThan(
-      needThreshold(makePerson(), 'competence'),
+    expect(needThreshold(fullPerson({ traits: { conscientiousness: 0.9 } }), 'competence')).toBeGreaterThan(
+      needThreshold(fullPerson(), 'competence'),
     );
   });
 });
 
 describe('needs/advanceNeeds', () => {
   test('belonging falls alone (faster for extraverts) and recovers with others', () => {
-    const intro = makePerson({ traits: { extraversion: 0.1 } });
-    const extro = makePerson({ traits: { extraversion: 0.9 } });
+    const intro = fullPerson({ traits: { extraversion: 0.1 } });
+    const extro = fullPerson({ traits: { extraversion: 0.9 } });
     advanceNeeds(intro, 12 * 60, alone);
     advanceNeeds(extro, 12 * 60, alone);
     expect(intro.needs.belonging).toBeLessThan(0.7);
@@ -171,13 +98,13 @@ describe('needs/advanceNeeds', () => {
     expect(extro.needs.belonging).toBeGreaterThan(before + 0.2);
   });
   test('a full day alone brings an average person near the belonging threshold', () => {
-    const p = makePerson();
+    const p = fullPerson();
     advanceNeeds(p, 24 * 60, alone);
     expect(p.needs.belonging).toBeGreaterThan(0.3);
     expect(p.needs.belonging).toBeLessThan(0.55);
   });
   test('work drains leisure, leisure restores it, worship restores meaning', () => {
-    const p = makePerson();
+    const p = fullPerson();
     advanceNeeds(p, 8 * 60, { withOthers: false, activityTags: ['work'], asleep: false });
     expect(p.needs.leisure).toBeLessThan(0.4);
     advanceNeeds(p, 90, { withOthers: false, activityTags: ['leisure'], asleep: false });
@@ -187,7 +114,7 @@ describe('needs/advanceNeeds', () => {
     expect(p.needs.meaning).toBeGreaterThan(0.4);
   });
   test('drifts toward set points', () => {
-    const p = makePerson({ needs: { autonomy: 0.1, safety: 0.2, competence: 0.9, esteem: 0.1 } });
+    const p = fullPerson({ needs: { autonomy: 0.1, safety: 0.2, competence: 0.9, esteem: 0.1 } });
     advanceNeeds(p, 10 * 24 * 60, { withOthers: true, activityTags: [], asleep: false });
     expect(p.needs.autonomy).toBeCloseTo(0.7, 2);
     expect(p.needs.safety).toBeCloseTo(0.8, 2);
@@ -195,23 +122,23 @@ describe('needs/advanceNeeds', () => {
     expect(p.needs.esteem).toBeCloseTo(0.5, 1);
   });
   test('little changes while asleep', () => {
-    const awake = makePerson();
-    const asleep = makePerson();
+    const awake = fullPerson();
+    const asleep = fullPerson();
     advanceNeeds(awake, 480, alone);
     advanceNeeds(asleep, 480, { ...alone, asleep: true });
     expect(0.7 - asleep.needs.belonging).toBeLessThan(0.25 * (0.7 - awake.needs.belonging));
   });
   test('closed form: 1 x 600 min equals 600 x 1 min', () => {
-    const a = makePerson({ needs: { autonomy: 0.2, meaning: 0.9 } });
-    const b = makePerson({ needs: { autonomy: 0.2, meaning: 0.9 } });
+    const a = fullPerson({ needs: { autonomy: 0.2, meaning: 0.9 } });
+    const b = fullPerson({ needs: { autonomy: 0.2, meaning: 0.9 } });
     const ctx: NeedsContext = { withOthers: false, activityTags: ['work'], asleep: false };
     advanceNeeds(a, 600, ctx);
     for (let i = 0; i < 600; i++) advanceNeeds(b, 1, ctx);
     for (const id of PSYCHOLOGICAL_NEEDS) expect(a.needs[id]).toBeCloseTo(b.needs[id], 9);
   });
   test('deterministic and bounded', () => {
-    const a = makePerson();
-    const b = makePerson();
+    const a = fullPerson();
+    const b = fullPerson();
     for (const p of [a, b]) {
       advanceNeeds(p, 1e7, alone);
       satisfy(p, { belonging: 5, meaning: -5, leisure: Number.NaN });
@@ -241,7 +168,7 @@ describe('needs/createNeeds and meanSatisfaction', () => {
     expect(meanSatisfaction([])).toBe(1);
   });
   test('headless control: one near-empty need dominates, unlike a plain linear mean', () => {
-    const p = makePerson({
+    const p = fullPerson({
       needs: {
         safety: 0.9,
         belonging: 0.9,

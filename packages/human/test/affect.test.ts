@@ -10,82 +10,8 @@ import {
   release,
 } from '../src/affect/index.ts';
 import { createRng } from '../src/core/index.ts';
-import type { AppraisalEvent, NeedReservoirs, Person, Traits, Values } from '../src/types.ts';
-import { ENGINE_VERSION, PERSON_SCHEMA } from '../src/types.ts';
-
-function makePerson(
-  over: { traits?: Partial<Traits>; values?: Partial<Values>; needs?: Partial<NeedReservoirs> } = {},
-): Person {
-  return {
-    schema: PERSON_SCHEMA,
-    engine: ENGINE_VERSION,
-    id: 'p1',
-    name: 'Test',
-    now: 0,
-    rng: createRng(1),
-    life: { bornAt: -30 * 525_600, sex: 'female' },
-    body: {
-      satiety: 1,
-      hydration: 1,
-      sleepPressure: 0,
-      exertion: 0,
-      circadianPeak: 900,
-      pain: 0,
-      health: 1,
-      fitness: 0.5,
-      injuries: [],
-      illnesses: [],
-      sleepDebt: 0,
-      asleep: false,
-      since: 0,
-      alive: true,
-      nextId: 0,
-    },
-    needs: {
-      safety: 0.8,
-      belonging: 0.7,
-      esteem: 0.6,
-      autonomy: 0.7,
-      competence: 0.6,
-      leisure: 0.6,
-      meaning: 0.6,
-      ...over.needs,
-    },
-    traits: {
-      honesty: 0.5,
-      emotionality: 0.5,
-      extraversion: 0.5,
-      agreeableness: 0.5,
-      conscientiousness: 0.5,
-      openness: 0.5,
-      ...over.traits,
-    },
-    values: {
-      benevolence: 0.5,
-      universalism: 0.5,
-      tradition: 0.5,
-      conformity: 0.5,
-      security: 0.5,
-      achievement: 0.5,
-      power: 0.5,
-      hedonism: 0.5,
-      stimulation: 0.5,
-      selfDirection: 0.5,
-      ...over.values,
-    },
-    conscience: { norms: [], breaches: [], intentions: [], nextBreach: 0 },
-    affect: { mood: { valence: 0, arousal: 0.3 }, emotions: [], regulation: 0.3, lastUpdated: 0 },
-    skills: {},
-    habits: [],
-    memory: { episodes: [], beliefs: [], expectations: [], sourceTrust: {}, nextEpisode: 0 },
-    social: { relationships: [] },
-    agenda: { commitments: [], goals: [], nextId: 0, lastProposalDay: -1 },
-    will: { voices: [], precommitments: [], switchMargin: 0.15, temperature: 0 },
-    activity: null,
-    trace: [],
-    nextDecision: 0,
-  };
-}
+import type { AppraisalEvent, Person } from '../src/types.ts';
+import { fullPerson } from './support.ts';
 
 const ev = (e: Partial<AppraisalEvent>): AppraisalEvent => ({
   at: 0,
@@ -109,20 +35,20 @@ describe('affect/createAffect', () => {
 
 describe('affect/appraise', () => {
   test('desirability gives joy or distress, scaled by emotionality', () => {
-    const calm = makePerson({ traits: { emotionality: 0.1 } });
-    const sensitive = makePerson({ traits: { emotionality: 0.9 } });
+    const calm = fullPerson({ traits: { emotionality: 0.1 } });
+    const sensitive = fullPerson({ traits: { emotionality: 0.9 } });
     appraise(calm, ev({ kind: 'outcome', desirability: -0.6, cause: 'outcome:fail:farm' }));
     appraise(sensitive, ev({ kind: 'outcome', desirability: -0.6, cause: 'outcome:fail:farm' }));
     expect(ids(calm)).toEqual(['distress']);
     expect(get(sensitive, 'distress')?.intensity).toBeGreaterThan(get(calm, 'distress')?.intensity ?? 1);
-    const p = makePerson();
+    const p = fullPerson();
     appraise(p, ev({ desirability: 0.5 }));
     expect(ids(p)).toEqual(['joy']);
   });
   test('prospects give hope/fear scaled by likelihood, confirmations give relief/disappointment', () => {
-    const p = makePerson();
+    const p = fullPerson();
     const [lo] = appraise(
-      makePerson(),
+      fullPerson(),
       ev({ kind: 'prospect', desirability: -0.8, likelihood: 0.2, cause: 'prospect:raid' }),
     );
     const [hi] = appraise(
@@ -135,7 +61,7 @@ describe('affect/appraise', () => {
     expect(get(p, 'fear')).toBeUndefined();
     expect(get(p, 'relief')).toBeDefined();
 
-    const q = makePerson();
+    const q = fullPerson();
     appraise(q, ev({ kind: 'prospect', desirability: 0.7, likelihood: 0.8, cause: 'prospect:harvest' }));
     expect(get(q, 'hope')).toBeDefined();
     appraise(q, ev({ kind: 'outcome', desirability: -0.4, cause: 'outcome:harvest:fail' }));
@@ -144,28 +70,28 @@ describe('affect/appraise', () => {
     expect(get(q, 'distress')).toBeDefined();
   });
   test('unrelated outcome does not consume a prospect', () => {
-    const p = makePerson();
+    const p = fullPerson();
     appraise(p, ev({ kind: 'prospect', desirability: 0.7, likelihood: 0.8, cause: 'prospect:harvest' }));
     appraise(p, ev({ desirability: -0.4, cause: 'event:rain' }));
     expect(get(p, 'hope')).toBeDefined();
   });
   test('own deeds: pride, guilt when norm-related, shame otherwise; honesty raises guilt', () => {
-    const p = makePerson();
+    const p = fullPerson();
     appraise(p, ev({ kind: 'deed', agentId: 'p1', praiseworthiness: 0.6, cause: 'deed:help' }));
     expect(get(p, 'pride')).toBeDefined();
-    const g = makePerson({ traits: { honesty: 0.9 } });
-    const g0 = makePerson({ traits: { honesty: 0.1 } });
+    const g = fullPerson({ traits: { honesty: 0.9 } });
+    const g0 = fullPerson({ traits: { honesty: 0.1 } });
     for (const x of [g, g0])
       appraise(x, ev({ kind: 'deed', agentId: 'p1', praiseworthiness: -0.6, cause: 'deed:norm:theft' }));
     expect(ids(g)).toEqual(['guilt']);
     expect(get(g, 'guilt')?.intensity).toBeGreaterThan(get(g0, 'guilt')?.intensity ?? 1);
-    const s = makePerson();
+    const s = fullPerson();
     appraise(s, ev({ kind: 'deed', agentId: 'p1', praiseworthiness: -0.5, cause: 'deed:clumsy' }));
     expect(ids(s)).toEqual(['shame']);
   });
   test("others' deeds: anger at harmful agent (lower when agreeable), gratitude and love toward helpers", () => {
-    const harsh = makePerson({ traits: { agreeableness: 0.1 } });
-    const mild = makePerson({ traits: { agreeableness: 0.9 } });
+    const harsh = fullPerson({ traits: { agreeableness: 0.1 } });
+    const mild = fullPerson({ traits: { agreeableness: 0.9 } });
     for (const x of [harsh, mild])
       appraise(
         x,
@@ -179,7 +105,7 @@ describe('affect/appraise', () => {
       );
     expect(get(harsh, 'anger', 'p2')).toBeDefined();
     expect(get(harsh, 'anger')?.intensity).toBeGreaterThan(get(mild, 'anger')?.intensity ?? 1);
-    const p = makePerson();
+    const p = fullPerson();
     appraise(
       p,
       ev({
@@ -193,7 +119,7 @@ describe('affect/appraise', () => {
     );
     expect(get(p, 'gratitude', 'p3')).toBeDefined();
     expect(get(p, 'love', 'p3')).toBeDefined();
-    const q = makePerson();
+    const q = fullPerson();
     appraise(
       q,
       ev({
@@ -208,7 +134,7 @@ describe('affect/appraise', () => {
     expect(get(q, 'love')).toBeUndefined();
   });
   test('loss gives long-lived grief; anger lasts hours, joy shorter', () => {
-    const p = makePerson();
+    const p = fullPerson();
     appraise(p, ev({ desirability: -0.9, loss: true, targetId: 'p9', cause: 'event:death:p9' }));
     const grief = get(p, 'grief');
     expect(grief?.targetId).toBe('p9');
@@ -231,7 +157,7 @@ describe('affect/appraise', () => {
     expect(get(p, 'guilt')).toBeUndefined();
   });
   test('merge is max-ish, not a sum; bounded at 12 dropping the weakest', () => {
-    const p = makePerson();
+    const p = fullPerson();
     appraise(p, ev({ desirability: 0.5 }));
     const once = get(p, 'joy')?.intensity ?? 0;
     for (let i = 0; i < 10; i++) appraise(p, ev({ desirability: 0.5 }));
@@ -257,7 +183,7 @@ describe('affect/appraise', () => {
 
 describe('affect/advanceAffect', () => {
   test('emotions decay by half-life and drop below 0.02', () => {
-    const p = makePerson();
+    const p = fullPerson();
     feel(p, 'joy', 0.8, 'event:x', 0);
     advanceAffect(p, 90, 0.5);
     expect(get(p, 'joy')?.intensity).toBeCloseTo(0.4, 6);
@@ -266,8 +192,8 @@ describe('affect/advanceAffect', () => {
     expect(p.affect.lastUpdated).toBe(90 + 24 * 60);
   });
   test('regulation shortens negative half-lives but not guilt', () => {
-    const lo = makePerson();
-    const hi = makePerson();
+    const lo = fullPerson();
+    const hi = fullPerson();
     hi.affect.regulation = 0.9;
     lo.affect.regulation = 0;
     for (const x of [lo, hi]) {
@@ -279,7 +205,7 @@ describe('affect/advanceAffect', () => {
     expect(get(hi, 'guilt')?.intensity).toBeCloseTo(get(lo, 'guilt')?.intensity ?? 0, 9);
   });
   test('mood follows need satisfaction slowly (hours, not minutes)', () => {
-    const p = makePerson();
+    const p = fullPerson();
     advanceAffect(p, 30, 1);
     expect(p.affect.mood.valence).toBeGreaterThan(0);
     expect(p.affect.mood.valence).toBeLessThan(0.1);
@@ -289,21 +215,21 @@ describe('affect/advanceAffect', () => {
     expect(p.affect.mood.valence).toBeCloseTo(-0.6, 2);
   });
   test('negative emotions pull mood down and fear raises arousal', () => {
-    const p = makePerson();
+    const p = fullPerson();
     feel(p, 'fear', 0.9, 'event:x', 0);
     advanceAffect(p, 60, 0.5);
     expect(p.affect.mood.valence).toBeLessThan(0);
     expect(p.affect.mood.arousal).toBeGreaterThan(0.3);
   });
   test('closed form: exact without emotions, close with emotions', () => {
-    const a = makePerson();
-    const b = makePerson();
+    const a = fullPerson();
+    const b = fullPerson();
     advanceAffect(a, 600, 0.9);
     for (let i = 0; i < 600; i++) advanceAffect(b, 1, 0.9);
     expect(a.affect.mood.valence).toBeCloseTo(b.affect.mood.valence, 9);
 
-    const c = makePerson();
-    const d = makePerson();
+    const c = fullPerson();
+    const d = fullPerson();
     for (const x of [c, d]) {
       feel(x, 'grief', 0.8, 'event:loss', 0, 'p9');
       feel(x, 'anger', 0.7, 'event:insult', 0, 'p2');
@@ -316,7 +242,7 @@ describe('affect/advanceAffect', () => {
   });
   test('deterministic, bounded, and does not consume rng', () => {
     const run = () => {
-      const p = makePerson();
+      const p = fullPerson();
       appraise(p, ev({ desirability: -1, loss: true, targetId: 'x', cause: 'event:loss' }));
       appraise(
         p,
@@ -334,7 +260,7 @@ describe('affect/advanceAffect', () => {
 
 describe('affect/readAffect and actionTendencies', () => {
   test('readAffect returns top 3 strongest', () => {
-    const p = makePerson();
+    const p = fullPerson();
     feel(p, 'joy', 0.2, 'a');
     feel(p, 'fear', 0.9, 'b');
     feel(p, 'anger', 0.5, 'c', 0, 'p2');
@@ -344,7 +270,7 @@ describe('affect/readAffect and actionTendencies', () => {
     expect(r.valence).toBeLessThan(0);
   });
   test('tendencies follow emotions', () => {
-    const p = makePerson();
+    const p = fullPerson();
     feel(p, 'fear', 0.8, 'a');
     feel(p, 'loneliness', 0.6, 'b');
     feel(p, 'guilt', 0.7, 'c', 0, 'p3');
@@ -364,8 +290,8 @@ describe('affect/readAffect and actionTendencies', () => {
     for (const v of Object.values(t)) expect(Math.abs(v)).toBeLessThanOrEqual(1);
   });
   test('anger splits into confront vs avoid by agreeableness', () => {
-    const harsh = makePerson({ traits: { agreeableness: 0.1 } });
-    const mild = makePerson({ traits: { agreeableness: 0.9 } });
+    const harsh = fullPerson({ traits: { agreeableness: 0.1 } });
+    const mild = fullPerson({ traits: { agreeableness: 0.9 } });
     for (const x of [harsh, mild]) feel(x, 'anger', 0.8, 'deed:insult', 0, 'p2');
     const th = actionTendencies(harsh);
     const tm = actionTendencies(mild);
@@ -374,14 +300,14 @@ describe('affect/readAffect and actionTendencies', () => {
     expect(tm['avoid:p2'] ?? 0).toBeGreaterThan(th['avoid:p2'] ?? 0);
   });
   test('headless control: a calm person has near-zero tendencies', () => {
-    const t = actionTendencies(makePerson());
+    const t = actionTendencies(fullPerson());
     for (const v of Object.values(t)) expect(v).toBe(0);
   });
 });
 
 describe('affect/regulate and release', () => {
   test('regulation trains asymptotically and soothes negatives (not guilt)', () => {
-    const p = makePerson();
+    const p = fullPerson();
     feel(p, 'anger', 0.8, 'a', 0, 'p2');
     feel(p, 'guilt', 0.8, 'deed:norm:x', 0, 'p3');
     feel(p, 'joy', 0.5, 'c');
@@ -396,7 +322,7 @@ describe('affect/regulate and release', () => {
     expect(p.affect.regulation).toBeLessThanOrEqual(0.95);
     expect(p.affect.regulation).toBeGreaterThan(0.9);
     // Diminishing returns.
-    const q = makePerson();
+    const q = fullPerson();
     regulate(q, 600, 'rest');
     const g1 = q.affect.regulation - 0.3;
     regulate(q, 600, 'rest');
@@ -404,7 +330,7 @@ describe('affect/regulate and release', () => {
     expect(g2).toBeLessThan(g1);
   });
   test('release clears guilt toward a repaired victim', () => {
-    const p = makePerson();
+    const p = fullPerson();
     appraise(
       p,
       ev({ kind: 'deed', agentId: 'p1', praiseworthiness: -0.8, targetId: 'p3', cause: 'deed:norm:theft' }),
@@ -418,12 +344,12 @@ describe('affect/regulate and release', () => {
 
 describe('review fixes (2026-10-03)', () => {
   test('love toward a person pulls through approach:<id> only, not also through the general social tendency', () => {
-    const p = makePerson();
+    const p = fullPerson();
     feel(p, 'love', 0.8, 'event:chat:p2', 0, 'p2');
     const t = actionTendencies(p);
     expect(t['approach:p2']).toBeGreaterThan(0.5);
     expect(t.social ?? 0).toBeCloseTo(0, 5);
-    const q = makePerson();
+    const q = fullPerson();
     feel(q, 'love', 0.8, 'event:wedding', 0);
     expect(actionTendencies(q).social).toBeGreaterThan(0.3);
   });
