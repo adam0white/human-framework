@@ -37,6 +37,8 @@ changes: playtest replays, engine fixtures and state hashes are byte-identical t
   dropped, each list is held to its live bound, and one record per year is kept, in year order. A save the engine
   wrote is unchanged.
 - `MAX_MINUTE` is defined in `types.ts` (still exported from the package root).
+- `sanitizeInjuries`, `sanitizeGroups` and `sanitizeImpressions` are marked `@internal` like the other restore
+  sanitizers, so they leave docs/api.md; they are still exported at runtime.
 - Doc comments, docs/framework.md and the package README match the code; game-specific wording is out of the
   framework source.
 
