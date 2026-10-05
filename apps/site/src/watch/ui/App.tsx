@@ -598,6 +598,13 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
             {w.name} ({awayWords(w.place, frame.phase)})
           </span>
         ))}
+        {off.length > 0 && (
+          // Owner's playtest: no way to pull someone over from another wall. Posts are set at dusk by design;
+          // say so where the gap shows, and name what the night does offer.
+          <span className="w-offwall-why">
+            Posts are set at dusk. Tonight you have the lantern, the bell, and what comes to you.
+          </span>
+        )}
       </p>
       <div className="w-granary">
         <span>The granary</span>

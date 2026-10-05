@@ -1003,20 +1003,31 @@ export function stepMinute(s: WatchState): void {
         const room = Math.max(0, carry - (s.tally.grainAtDusk - s.grain));
         const took = Math.min(s.grain, def.takes, room);
         s.grain -= took;
+        t.took = took;
         const got = s.tally.got[t.section];
         got[t.kind] = (got[t.kind] ?? 0) + 1;
         if (t.kind === 'thief' && standing.length > 0 && nextRandom(s) < STRIKE_CHANCE)
           strike(s, pick(s, standing), t.section);
         const name = sectionDef(t.section).name.toLowerCase();
-        const told = s.alerts.some((a) => a.kind === 'in' && a.section === t.section && m - a.minute < 15);
+        // Each one over the lit stretch is told, with what it got away with (owner's playtest, 2026-10-05: of two
+        // thieves, one "still can't steal" with no word why); in the dark, one line per stretch a quarter hour.
+        const seen = t.section === lit;
+        const told =
+          !seen && s.alerts.some((a) => a.kind === 'in' && a.section === t.section && m - a.minute < 15);
+        const why = s.grain === 0 ? 'found the store bare' : 'the alarm was up';
         if (!told)
           alert(s, {
             section: t.section,
             kind: 'in',
-            text:
-              t.section === lit
-                ? `${capital(plural(t.kind, 1))} got over the ${name}. Grain is gone.`
-                : `Grain is gone: something got over the ${name}.`,
+            text: seen
+              ? took > 0
+                ? t.kind === 'thief'
+                  ? `A thief got over the ${name} and away with grain.`
+                  : `A wolf got over the ${name} and tore into the store.`
+                : `${capital(plural(t.kind, 1))} got over the ${name}, but ${why}: away with nothing.`
+              : took > 0
+                ? `Grain is gone: something got over the ${name}.`
+                : `Something got over the ${name} in the dark and away with nothing.`,
             slowed: true,
           });
       }

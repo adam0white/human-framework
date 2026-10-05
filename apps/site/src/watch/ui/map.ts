@@ -363,6 +363,9 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
 
   // Seen threats in the lit lane.
   const seenIds = new Set<number>();
+  // At the foot and once in, they are drawn after the wall: climbing its face, then over into the village with
+  // or without a sack (owner's playtest, 2026-10-05: a thief got in and "still can't steal" with nothing shown).
+  const climbing: { t: (typeof f.seen)[number]; cx: number; y: number; alpha: number }[] = [];
   for (const t of f.seen) {
     seenIds.add(t.id);
     const i = SECTION_IDS.indexOf(t.section);
@@ -381,6 +384,10 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
     ease.pos.set(t.id, shown);
     const cx = (i + 0.5) * laneW + (hash01(t.id) - 0.5) * laneW * 0.55;
     const y = shown > 1 ? l.yWall + (shown - 1) * (l.h - l.yWall) * 3 : laneY(l, shown);
+    if (t.state === 'foot' || t.state === 'in') {
+      climbing.push({ t, cx, y, alpha });
+      continue;
+    }
     ctx.globalAlpha = alpha;
     if (t.kind === 'wolf') drawWolf(ctx, cx, y, laneW, t.state === 'fled');
     else drawThief(ctx, cx, y, laneW, t.hurt);
@@ -461,6 +468,26 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
       ctx.fillRect(rx, ry, 7 + (k % 3) * 3, 5);
     }
   }
+  // Climbers on the wall face: a thief's rope from the top, the figure higher the further it has got.
+  for (const { t, cx, y: inY, alpha } of climbing) {
+    if (t.state === 'in') {
+      ctx.globalAlpha = alpha;
+      if (t.kind === 'wolf') drawWolf(ctx, cx, inY, laneW, false);
+      else drawThief(ctx, cx, inY, laneW, t.hurt, t.took);
+      ctx.globalAlpha = 1;
+      continue;
+    }
+    const y = l.yWall + (1 - t.climb) * l.wallH * 0.7;
+    if (t.kind === 'thief') {
+      ctx.strokeStyle = 'rgba(200, 180, 140, 0.8)';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(cx + 3, l.yWall - 4);
+      ctx.lineTo(cx + 3, y);
+      ctx.stroke();
+      drawThief(ctx, cx, y, laneW, t.hurt, false);
+    } else drawWolf(ctx, cx, y, laneW, false);
+  }
   if (f.roused) {
     for (let i = 0; i < 9; i++) {
       const x = ((i + 0.5) / 9) * w;
@@ -500,6 +527,24 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
           ctx.setLineDash([]);
           ctx.fillStyle = gone ? 'rgba(232, 160, 130, 0.55)' : 'rgba(255, 243, 220, 0.38)';
           nameLabel(ctx, f.watchers.find((x) => x.id === p.posted)?.name ?? '', at.x, labelY);
+          if (p.empty) {
+            // Why the post stands empty, in one word, under the name (owner's playtest, 2026-10-05); for the
+            // first sim half hour after they left, a ring widens from the post so the moment is caught.
+            ctx.font = 'italic 600 10px "Instrument Sans", system-ui, sans-serif';
+            ctx.fillStyle = 'rgba(240, 170, 140, 0.9)';
+            const half = ctx.measureText(p.empty.why).width / 2 + 3;
+            nameLabel(ctx, p.empty.why, Math.min(w - half, Math.max(half, at.x)), labelY + 12);
+            ctx.font = '600 11px "Instrument Sans", system-ui, sans-serif';
+            const age = f.minute - p.empty.since;
+            if (age >= 0 && age < 30) {
+              const k = (o.now % 1200) / 1200;
+              ctx.strokeStyle = `rgba(240, 150, 110, ${(0.7 * (1 - k)).toFixed(3)})`;
+              ctx.lineWidth = 1.6;
+              ctx.beginPath();
+              ctx.arc(at.x, at.y, 9 + 12 * k, 0, Math.PI * 2);
+              ctx.stroke();
+            }
+          }
         } else {
           ctx.strokeStyle = o.selected ? 'rgba(255, 222, 160, 0.9)' : 'rgba(255, 240, 210, 0.35)';
           ctx.lineWidth = o.selected ? 2 : 1.2;
@@ -651,7 +696,14 @@ function drawWolf(
   ctx.restore();
 }
 
-function drawThief(ctx: CanvasRenderingContext2D, x: number, y: number, laneW: number, hurt: boolean): void {
+function drawThief(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  laneW: number,
+  hurt: boolean,
+  sack = true,
+): void {
   const s = Math.max(0.8, Math.min(1.3, laneW / 90));
   ctx.save();
   ctx.translate(x, y);
@@ -667,10 +719,12 @@ function drawThief(ctx: CanvasRenderingContext2D, x: number, y: number, laneW: n
   ctx.beginPath();
   ctx.arc(0, -7, 4.5, 0, Math.PI * 2);
   ctx.fill();
-  ctx.fillStyle = '#b39b74';
-  ctx.beginPath();
-  ctx.ellipse(7, 2, 4, 5, 0.3, 0, Math.PI * 2);
-  ctx.fill();
+  if (sack) {
+    ctx.fillStyle = '#b39b74';
+    ctx.beginPath();
+    ctx.ellipse(7, 2, 4, 5, 0.3, 0, Math.PI * 2);
+    ctx.fill();
+  }
   ctx.restore();
 }
 

@@ -23,6 +23,7 @@ import {
   postSection,
   SECTIONS,
   type SectionId,
+  THREATS,
   type ThreatKind,
   type WatcherId,
 } from './config.ts';
@@ -38,6 +39,7 @@ import type {
   DaySummary,
   FairOffer,
   Leaf,
+  NightNote,
   Phase,
   Press,
   Season,
@@ -61,6 +63,10 @@ export interface SeenToken {
   /** Minutes since the state changed, for fades. */
   age: number;
   hurt: boolean;
+  /** At the foot: how far up the wall it has got (0..1). */
+  climb: number;
+  /** Once in: whether it got away with grain (a thief is drawn with or without a sack). */
+  took: boolean;
 }
 
 export interface Motion {
@@ -92,7 +98,13 @@ export interface Frame {
   sections: {
     id: SectionId;
     name: string;
-    posts: { id: PostId; watcher: WatcherId | null; posted: WatcherId | null }[];
+    posts: {
+      id: PostId;
+      watcher: WatcherId | null;
+      posted: WatcherId | null;
+      /** At night, a posted watcher not at the post: one word for why, as the Keeper knows it, and since when. */
+      empty: { why: string; since: number } | null;
+    }[];
     /** The stretch came down in the thaw and cannot be stood this winter. */
     fallen: boolean;
     /** The stretch was raised at a fair (a third post, for good): drawn higher, with a timber walk. */
@@ -291,6 +303,48 @@ function postingReads(s: WatchState): Frame['postingReads'] {
   return reads;
 }
 
+/** One word for why a posted watcher left the post, by what they last did (owner's playtest: empty posts). */
+const EMPTY_WORDS: Partial<Record<NightNote['kind'], string>> = {
+  fled: 'afraid',
+  ran: 'afraid',
+  slept: 'asleep',
+  home: 'went home',
+  downed: 'hurt',
+  bitten: 'hurt',
+  carried: 'hurt',
+  refused: 'refused',
+  deferred: 'not yet',
+  modified: 'moved',
+};
+/** Words already shown this night, so an alert falling off the ticker does not turn "afraid" back into "gone". */
+let emptySeen: { night: string; words: Map<string, string> } | null = null;
+
+/**
+ * Why a posted watcher is not at the post, in one word. The Keeper knows the reason only if it happened under the
+ * lantern (it made a ticker line) or was said to them (refused, not yet); otherwise only where they are now.
+ * Null when there is nothing to say yet (no leaving noted: still on the way up).
+ */
+function emptyWhy(s: WatchState, who: WatcherId): { why: string; since: number } | null {
+  const night = `${s.seed}|${s.year}|${s.night}`;
+  if (emptySeen?.night !== night) emptySeen = { night, words: new Map() };
+  let last: NightNote | undefined;
+  for (const n of s.notes) if (n.who === who && EMPTY_WORDS[n.kind]) last = n;
+  if (!last) return null;
+  const at = last.minute;
+  const key = `${who}|${at}|${last.kind}`;
+  let why = emptySeen.words.get(key);
+  if (!why) {
+    const told = last.kind === 'refused' || last.kind === 'deferred' || last.kind === 'modified';
+    const seen = told || s.alerts.some((a) => a.who === who && a.minute === at);
+    // Unseen, the Keeper still knows where they are now (the panel says so too), but not why.
+    const now = s.place[who];
+    const where = now === 'home' ? 'home' : now === 'hall' ? 'in the hall' : 'gone';
+    why = seen ? (EMPTY_WORDS[last.kind] ?? where) : where;
+    if (seen) emptySeen.words.set(key, why);
+  }
+  return { why, since: at };
+}
+
 /**
  * The bell read (H2): whom it would ring for, and how they would take it, in words. The name holds for
  * `BELL_HOLD_MIN` sim minutes while that watcher can still be reached, unless the first choice has left the wall
@@ -345,6 +399,8 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
         state: t.state,
         age: s.minute - t.since,
         hurt: t.hp < (t.kind === 'thief' ? 2 : 1),
+        climb: t.state === 'foot' ? Math.min(1, t.climb / THREATS[t.kind].climb) : 0,
+        took: (t.took ?? 0) > 0,
       });
     } else if (t.state === 'coming' && t.pos >= MOTION_REACH) {
       // Blur: a band of about a tenth of the lane, shifting every few minutes.
@@ -370,8 +426,12 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
       id: p.id,
       watcher: ids.find((w) => s.place[w] === p.id) ?? null,
       posted: ids.find((w) => s.posts[w] === p.id) ?? null,
+      empty: null as { why: string; since: number } | null,
     })),
   }));
+  if (s.phase === 'night')
+    for (const sec of sections)
+      for (const p of sec.posts) if (p.posted && !p.watcher) p.empty = emptyWhy(s, p.posted);
   const watchers: FrameWatcher[] = [];
   for (const id of ids) {
     const p = personOf(s, id);

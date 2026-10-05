@@ -183,6 +183,8 @@ export interface Token {
   state: 'coming' | 'foot' | 'fled' | 'in';
   /** Absolute minute of the last change of `state`, for the UI's fade-outs. */
   since: number;
+  /** Once in: the sacks it carried off (0 when the night's haul was already taken or the store was empty). */
+  took?: number;
 }
 
 export interface Alert {
