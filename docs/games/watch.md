@@ -495,7 +495,7 @@ Scripted matched-plan Keeper, sacks left at the thaw, seeds 1, 2, 3, 5, 7, 9, 11
 
 ### Playtest fixes as built (2026-10-05)
 
-After the owner's playtest ([his words](watch-playtest-2026-10-05.md)), bugs and confusion were fixed with small changes; feature ideas went to §12. Scenario version stays 7: new state fields are optional and RNG draws are unchanged.
+After the owner's playtest ([his words](watch-playtest-2026-10-05.md)), bugs and confusion were fixed with small changes; feature ideas went to §12. Scenario version stays 7: new state fields are optional and RNG draws are unchanged. Correction (2026-10-05, owner's exports): saves still load, but exports made on d48d8f6 no longer replay to their `fullHash`. The thaw lesson line and `pairings.from`/`told` (a177d72) and the per-climber alerts (d241b54) change state text, and the hash covers the whole state. Rules and RNG did not change: grain, people, postings and the RNG state match at every checkpoint. See §12 for the fix.
 
 - **Choppy and freezing (Firefox).** Measured in headless Firefox Nightly on Apple Silicon. No long worker tasks were found. The "freeze" was the designed slowdown (tactical, then a card at 1/16) with nothing moving, then a snap back. Fixes: sprites tween between sim minutes at every speed; a slowdown eases back over 1.5 s; frames post only when something changed (1,766 → 408 frames in 90 s at Watch); villagers are cached per sim hour; the running save waits 30 s during a night; the frame step is clamped at 250 ms.
 - **Seasons pace.** Spring opens at Seasons and runs on its own. It eases to Days for five days after news and to the tactical pace for a card. Winter and the seasons show the eased pace the same way, on the speed bar.
@@ -548,6 +548,16 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 - T2, **feeling connected to a larger cast, and repetition.** "I got more people now but I'm less connected to everyone, and it's starting to feel repetitive." Fewer, deeper focal people a year; varied event families.
 - T3, **graphics and moving parts.** "representative graphics and actually moving parts". Within §9's guardrail unless the owner lifts it.
 - T3, **performance on a real phone.** Occasional 50–100 ms frame gaps remain at 360 px and DPR 3 in headless Firefox. Not measured on a device or with a CPU throttle.
+
+**From the owner's exported run (2026-10-05, seed 20261004, years 1 to 4).** Bugs found there are fixed (findings.md, same date); these remain.
+- T1, **exports name their build.** Game 3's playtest export carries no build commit, unlike Games 1–2, so a replay must guess which commit made it.
+- T1, **the export hash covers rules, not wording.** Hash the state without chronicle text and alerts, or bump the scenario on any change to state text. Today a wording change breaks every older export's replay.
+- T1, **separate RNG streams** (for example, director spawns drawn per night from their own stream). One input more or less reshuffles every later spawn: dropping one of his 272 inputs moved the grain lost from 28 to between 28 and 51 sacks, so a single run reads as random to the player.
+- T1, **expecting mothers on the wall.** Sena was posted at the Gate while expecting. The spec is silent; decide whether that is allowed or whether she should be offered as off-duty.
+- T3, **routine openers and winter goals repeat.** Thaw routine-line openers cycle every four years (repeats from year 5); the goal "Bring every soul and the granary to the thaw" came back in years 2 and 4.
+- T3, **fair picks per year are unbounded** while grain lasts (four picks in his year 1). Decide whether that is intended.
+- T3, **a press tap re-sends `post`** for a watcher already posted (App.tsx, the press handler), so the log has same-minute duplicates. Harmless; dedupe if the log is tidied.
+- T3, **`talks.asked` is never pruned** (26 entries by year 4). It only feeds a score bonus.
 
 **Carried from G3-2 to G3-4 and H2.**
 - T1, **posting pressure once families are admitted** (#19).
