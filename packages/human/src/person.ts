@@ -60,9 +60,15 @@ import {
   sicken,
   skipBody,
 } from './body/index.ts';
-import { ageCharacter, noteCharacterDay, noteCharacterSocial } from './character/index.ts';
+import {
+  ageCharacter,
+  enableCharacterChange,
+  noteCharacterDay,
+  noteCharacterSocial,
+} from './character/index.ts';
 import {
   closeDay,
+  enableYearbook,
   endDay,
   noteAnswer,
   noteCommitments,
@@ -89,6 +95,7 @@ import {
   advanceMemory,
   type CueRecall,
   createMemory,
+  enableGists,
   foldGists,
   learnOutcome,
   recallByCue,
@@ -105,7 +112,13 @@ import {
   urgencyOf,
 } from './needs/index.ts';
 import { widow } from './partnering/index.ts';
-import { learnByWatching, practise, type SkillTransfer, seedSkills } from './skills/index.ts';
+import {
+  enableSkillRetention,
+  learnByWatching,
+  practise,
+  type SkillTransfer,
+  seedSkills,
+} from './skills/index.ts';
 import {
   advanceSocial,
   applyReputationBelief,
@@ -280,6 +293,11 @@ export function createPerson(spec: PersonSpec): Person {
   if (spec.retention) setRetention(p, spec.retention);
   const family = createFamily(spec.family);
   if (family) p.family = family;
+  const on = spec.enable;
+  if (on?.gists) enableGists(p);
+  if (on?.yearbook) enableYearbook(p);
+  if (on?.character) enableCharacterChange(p);
+  if (on?.skillRetention) enableSkillRetention(p);
   return p;
 }
 

@@ -1332,6 +1332,11 @@ export interface PersonSpec {
   family?: Pick<FamilyState, 'aptitudes' | 'attachment'>;
   /** Per-person bounds (2.0.0); `createPerson` applies them with `setRetention`. */
   retention?: Retention;
+  /**
+   * Long-run faculties to turn on at creation (2.1): the same as calling `enableGists`, `enableYearbook`,
+   * `enableCharacterChange` and `enableSkillRetention` right after `createPerson`. Each is off when absent.
+   */
+  enable?: { gists?: boolean; yearbook?: boolean; character?: boolean; skillRetention?: boolean };
 }
 
 // ---------------------------------------------------------------------------------------------

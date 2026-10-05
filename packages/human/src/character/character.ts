@@ -28,8 +28,9 @@
  * Traits never branch logic (framework.md, locked decisions): this module only moves the coefficients.
  */
 import { clamp, clamp01, dayOf, dpow, isNum, isObj } from '../core/index.ts';
+import { ageAt } from '../lifecourse/index.ts';
 import type { CharacterState, Minute, Person, Signed, Traits, Values } from '../types.ts';
-import { DAYS_PER_YEAR, MINUTES_PER_YEAR, TRAIT_KEYS, VALUE_KEYS } from '../types.ts';
+import { DAYS_PER_YEAR, TRAIT_KEYS, VALUE_KEYS } from '../types.ts';
 
 export const CHARACTER_DEFAULTS = {
   /** Largest distance any trait or value may drift from its value when drift was enabled. */
@@ -221,8 +222,8 @@ export function ageCharacter(p: Person, to: Minute): boolean {
   const c = p.character;
   if (!c || to <= c.agedTo) return false;
   const K = CHARACTER_DEFAULTS;
-  const fromAge = (c.agedTo - p.life.bornAt) / MINUTES_PER_YEAR;
-  const toAge = (to - p.life.bornAt) / MINUTES_PER_YEAR;
+  const fromAge = ageAt(p, c.agedTo);
+  const toAge = ageAt(p, to);
   const years = overlap(fromAge, toAge, K.maturationFrom, K.maturationTo);
   const cYears = overlap(
     fromAge,

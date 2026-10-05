@@ -9,7 +9,7 @@
  * has its own trajectory, and consumers decide which ones apply.
  */
 import { clamp, dexp, dpow, smoothstep } from '../core/index.ts';
-import type { LifeModifiers, LifeStage, Person } from '../types.ts';
+import type { LifeModifiers, LifeStage, Minute, Person } from '../types.ts';
 import { MINUTES_PER_YEAR } from '../types.ts';
 
 export const LIFE_DEFAULTS = {
@@ -25,8 +25,14 @@ export const LIFE_DEFAULTS = {
   recoveryDeclinePerYear: 0.008,
 };
 
+/** Age in years at the person's own clock (`p.now`). */
 export function ageYears(p: Person): number {
-  return (p.now - p.life.bornAt) / MINUTES_PER_YEAR;
+  return ageAt(p, p.now);
+}
+
+/** Age in years at minute `at` (2.1). */
+export function ageAt(p: Pick<Person, 'life'>, at: Minute): number {
+  return (at - p.life.bornAt) / MINUTES_PER_YEAR;
 }
 
 export function stageForAge(age: number): LifeStage {
