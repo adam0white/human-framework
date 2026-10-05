@@ -1,81 +1,77 @@
 name: CI
 
+# The same pieces as `npm run check` plus `npm run build`, run in parallel: one short job for lint, typecheck and
+# build, and the test suite split across shards. The `ci` job at the end is the one stable check name to require
+# in branch protection; it passes only when every other job passed, whatever the shard count.
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 # Runners stay on ubuntu-latest through its move to Ubuntu 26 (from 2026-10-19), deliberately unpinned: Node comes
-# from setup-node, nothing is compiled natively, and the only OS package is hyperfine in the informational bench job.
-# Pinning ubuntu-24.04 would only postpone the same move to that image's retirement.
+# from setup-node (.nvmrc), nothing is compiled natively and no OS package is installed here.
 jobs:
-  check:
-    name: check and build
+  static:
+    name: lint, typecheck, build
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 26
+          node-version-file: .nvmrc
           cache: npm
-      - run: npm ci
-      - run: npm run check
+      - run: npm ci --no-audit --no-fund
+      - run: npm run lint
+      - run: npm run typecheck
       - run: npm run build
 
-  # Timing is informational on CI. The budgets in *.timing.ts were set on a quiet Apple Silicon dev machine;
-  # shared GitHub runners are slower and noisy, so the budgets run at 3x (BENCH_SCALE) and a miss marks the step
-  # failed without failing the job. The hyperfine table in the job summary is the number to compare across runs.
-  # A crash or a broken bench script still fails the job.
-  bench:
-    name: bench (informational)
+  # Vitest shards by a hash of the file path, not by duration, so shards are uneven. Measured 2026-10-05 on the
+  # 2-CPU private-repo runner: 4 shards take 95-220 s against ~375-510 s for one job; the slowest shard is bound by
+  # apps/site/src/watch/sim/gate.test.ts (~150 s of work in its describe body). Vitest's default of one worker per
+  # 2 CPUs is kept: two workers pushed a 30 s-budget village test past its timeout.
+  test:
+    name: test (shard ${{ matrix.shard }}/4)
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: 26
+          node-version-file: .nvmrc
           cache: npm
-      - run: npm ci
-      - name: Timing budgets (npm run bench, BENCH_SCALE=3)
-        continue-on-error: true
+      - run: npm ci --no-audit --no-fund
+      - name: Runner
+        run: echo "$(nproc) CPUs, Node $(node --version)"
+      - run: npx vitest run --shard=${{ matrix.shard }}/4
+
+  ci:
+    name: ci
+    if: always()
+    needs: [static, test]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: All jobs passed
         env:
-          BENCH_SCALE: '3'
+          RESULTS: ${{ join(needs.*.result, ' ') }}
         run: |
-          set -o pipefail
-          npm run bench 2>&1 | tee "$RUNNER_TEMP/bench.log"
-      - name: Bench measurements to summary
-        if: always()
-        run: |
-          {
-            echo '### npm run bench (budgets x3)'
-            echo
-            echo '```'
-            grep -E '[0-9] (ms|us per call)$' "$RUNNER_TEMP/bench.log" || echo 'no measurements (see the step log)'
-            grep -E 'Tests ' "$RUNNER_TEMP/bench.log" || true
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
-      - name: Install hyperfine
-        run: sudo apt-get update -q && sudo apt-get install -y -q hyperfine
-      - name: hyperfine, village 20 people x 30 days (headless CLI)
-        run: |
-          node scripts/bench-village.ts | tee "$RUNNER_TEMP/village.txt"
-          npm run bench:hyperfine -- --export-markdown "$RUNNER_TEMP/hyperfine.md"
-          {
-            echo '### hyperfine: node scripts/bench-village.ts'
-            echo
-            echo "Runner: $(nproc) CPUs, Node $(node --version). Includes Node start-up and type stripping."
-            echo
-            cat "$RUNNER_TEMP/hyperfine.md"
-            echo
-            echo "One run: $(cat "$RUNNER_TEMP/village.txt")"
-          } >> "$GITHUB_STEP_SUMMARY"
+          echo "needs: $RESULTS"
+          for r in $RESULTS; do [ "$r" = success ] || exit 1; done
