@@ -1168,7 +1168,7 @@ export function winterStories(s: WatchState): void {
       if (!r.roles.includes('parent') && !r.roles.includes('guardian')) continue;
       const teller = personOf(s, r.otherId);
       if (!teller || !isHere(s, teller)) continue;
-      retell(teller, child, { at: s.minute, trust: r.trust, placeIds: SECTION_IDS, limit: 2 });
+      retell(teller, child, s.minute, { trust: r.trust, placeIds: SECTION_IDS, limit: 2 });
     }
   }
 }

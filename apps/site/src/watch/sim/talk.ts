@@ -95,8 +95,8 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     const fears = Object.entries(said.fearOf ?? {})
       .filter(([k, v]) => SECTION_IDS.includes(k as SectionId) && v > 0.25)
       .sort((a, b) => b[1] - a[1]);
-    for (const [k, v] of fears) hear(s.keeper, who, `fear@${k}`, v, { at, weight: TALK_WEIGHT });
-    hear(s.keeper, who, 'fear', said.fear, { at, weight: TALK_WEIGHT });
+    for (const [k, v] of fears) hear(s.keeper, who, `fear@${k}`, v, at, TALK_WEIGHT);
+    hear(s.keeper, who, 'fear', said.fear, at, TALK_WEIGHT);
     const worst = s.notes.filter((n) => n.who === who).at(-1);
     const left = s.notes.find(
       (n) => n.who === who && (n.kind === 'fled' || n.kind === 'ran' || n.kind === 'slept'),
@@ -122,8 +122,8 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
             ? '“Long and cold. I talked to the stones.”'
             : '“Cold. Long. Nothing I couldn’t stand.”';
   } else if (topic === 'body') {
-    hear(s.keeper, who, 'pain', said.pain, { at, weight: TALK_WEIGHT });
-    hear(s.keeper, who, 'fatigue', said.fatigue, { at, weight: TALK_WEIGHT });
+    hear(s.keeper, who, 'pain', said.pain, at, TALK_WEIGHT);
+    hear(s.keeper, who, 'fatigue', said.fatigue, at, TALK_WEIGHT);
     if (said.pain > 0.45) text = '“It’s bad. I won’t lie to you.”';
     else if (said.pain > 0.15) text = '“It aches. It’ll hold.”';
     else if (said.fatigue > 0.5) text = '“Tired to the bone, that’s all.”';
@@ -139,13 +139,13 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
   } else if (topic === 'home') {
     text = homeWords(s, who);
     const spouse = spouseOf(s, who);
-    if (spouse) hear(s.keeper, who, `tie:${spouse.q.id}`, spouse.affection, { at, weight: TALK_WEIGHT });
+    if (spouse) hear(s.keeper, who, `tie:${spouse.q.id}`, spouse.affection, at, TALK_WEIGHT);
     p.will.voices = p.will.voices.map((v) =>
       v.voiceId === KEEPER_ID ? { ...v, trust: Math.min(1, v.trust + HOME_WARMTH) } : v,
     );
   } else {
     const c = p.traits.conscientiousness;
-    hear(s.keeper, who, 'trait:conscientiousness', c, { at, weight: TALK_WEIGHT });
+    hear(s.keeper, who, 'trait:conscientiousness', c, at, TALK_WEIGHT);
     const willing = c > 0.5 || (c > 0.35 && p.traits.extraversion > 0.6);
     s.gateWilling[who] = willing;
     text = willing
