@@ -489,12 +489,15 @@ export function vetoFor(
   return undefined;
 }
 
-/** Whether suggestion `s` names offer `aff` (by affordance id, or by action class when it names no affordance). */
-export const suggestionTargets = (s: Suggestion, aff: Affordance): boolean =>
-  s.affordanceId !== undefined
-    ? s.affordanceId === aff.id
-    : s.action !== undefined && s.action === aff.action;
-const targets = suggestionTargets;
+/**
+ * Whether suggestion `s` names offer `aff` (by affordance id, or by action class when it names no affordance); false
+ * when there is no suggestion.
+ */
+export function suggestionTargets(s: Suggestion | undefined, aff: Affordance): boolean {
+  if (!s) return false;
+  if (s.affordanceId !== undefined) return s.affordanceId === aff.id;
+  return s.action !== undefined && s.action === aff.action;
+}
 
 /** NaN-safe utility: a non-finite score never wins. @internal */
 export const safeUtility = (u: number): number => (Number.isNaN(u) ? Number.NEGATIVE_INFINITY : u);
@@ -633,7 +636,8 @@ function evaluate(
     const tried = new Set<string>();
     for (const c of input) {
       const aff = affById.get(c.affordanceId);
-      if (!aff || !targets(s, aff) || baseVeto.get(c.affordanceId) || tried.has(aff.action)) continue;
+      if (!aff || !suggestionTargets(s, aff) || baseVeto.get(c.affordanceId) || tried.has(aff.action))
+        continue;
       tried.add(aff.action);
       ep = distrustEpisode(p, s.voiceId, aff.action, ctx.now);
       if (ep !== undefined) break;
@@ -646,7 +650,7 @@ function evaluate(
     delete out.vetoed;
     let veto = baseVeto.get(c.affordanceId);
     if (!veto && aff && !servesDuty(aff)) {
-      const by = suggestions.filter((s) => targets(s, aff));
+      const by = suggestions.filter((s) => suggestionTargets(s, aff));
       if (by.length > 0 && by.every((s) => distrustOf.get(s.voiceId) !== undefined))
         veto = { kind: 'willNot', reason: 'distrust' };
     }
@@ -753,7 +757,7 @@ function evaluate(
   const judged: Judged[] = suggestions.map((s) => {
     const suggested = considered.filter((c) => {
       const aff = affById.get(c.affordanceId);
-      return aff !== undefined && targets(s, aff);
+      return aff !== undefined && suggestionTargets(s, aff);
     });
     const targetIds = new Set(suggested.map((c) => c.affordanceId));
     let likelihood: number | undefined;

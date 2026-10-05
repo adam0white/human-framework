@@ -894,7 +894,6 @@ interface World {
 - `scoreAll` — Score every affordance in stable id order without resolving; pure apart from reads.
 - `scoreAndResolve` (re-export of `decide`) — Score every affordance (stable id order), resolve vetoes, selection and the suggestion verdict through `will`.
 - `socialContext` — `(ctx: ConsiderContext): SocialContext`
-- `suggestionTargets` — Whether a suggestion points at this option.
 
 ### Constants
 
@@ -1389,6 +1388,7 @@ interface World {
 - `resolveChoice` — Resolve a choice.
 - `resolveCommand` — How a command would fare against these scored options, without writing state or consuming RNG.
 - `standingAdvice` — Standing advice still above the floor at `now` (read only; stable stored order).
+- `suggestionTargets` — Whether suggestion `s` names offer `aff` (by affordance id, or by action class when it names no affordance); false when there is no suggestion.
 - `takeCommand` — Put a command in force (writes `p.will` only; the composite's `command` adds the memory and the interrupt).
 - `vetoFor` — Capacity and conscience vetoes for one option.
 - `voiceOf` — `(p: Person, voiceId: EntityId): VoiceRelation | undefined`

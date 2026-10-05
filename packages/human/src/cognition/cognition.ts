@@ -57,6 +57,7 @@ import {
   resolveChoice,
   safeUtility,
   standingAdvice,
+  suggestionTargets,
   voicesIn,
   type WillContext,
 } from '../will/index.ts';
@@ -195,13 +196,6 @@ function sinceFactor(p: Person, action: string, now: Minute): number {
     return K.normRefractoryFloor + (1 - K.normRefractoryFloor) * clamp01(since / K.normRefractoryMinutes);
   }
   return 1;
-}
-
-/** Whether a suggestion points at this option. */
-export function suggestionTargets(s: Suggestion | undefined, aff: Affordance): boolean {
-  if (!s) return false;
-  if (s.affordanceId !== undefined) return s.affordanceId === aff.id;
-  return s.action !== undefined && s.action === aff.action;
 }
 
 /**

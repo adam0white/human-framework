@@ -92,7 +92,6 @@ export {
   rememberedTerms,
   scoreAll,
   socialContext,
-  suggestionTargets,
 } from './cognition/index.ts';
 export * from './conscience/index.ts';
 export * from './conversation/index.ts';
