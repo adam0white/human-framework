@@ -122,13 +122,22 @@ export function SeasonPanel({ frame, actions }: { frame: Frame; actions: WatchAc
       <p className="w-note w-question">{frame.volume.question}</p>
       {frame.year <= 2 ? (
         <p className="w-note w-speed-hint">
-          The days run on their own. <strong>Days</strong> and <strong>Seasons</strong>, in the top bar, carry
-          the year faster; a matter for you slows it while you read.
+          The days run on their own at <strong>Seasons</strong> pace, slowing for news and for a matter for
+          you. Choose a slower speed in the top bar to watch the village go about its days.
         </p>
       ) : null}
+      <p className="w-note w-souls">{frame.souls}.</p>
       <div className="w-granary">
-        <span>The granary</span>
-        <Sacks have={frame.grain} lost={0} label="The granary, drawn as sacks" />
+        <span>
+          The granary{' '}
+          <span className="w-granary-mark">· up to the mark, what the next thaw takes to feed everyone</span>
+        </span>
+        <Sacks
+          have={frame.grain}
+          lost={0}
+          need={frame.need}
+          label="The granary, drawn as sacks; the mark is what the next thaw will take to feed everyone"
+        />
       </div>
       <People frame={frame} />
     </div>

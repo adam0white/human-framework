@@ -407,7 +407,8 @@ function DuskPanel({
       </p>
       {frame.winter ? <WinterNote frame={frame} /> : null}
       {frame.day && frame.day.lines.length > 0 ? (
-        <details className="w-day">
+        // Opened when someone arrived, so a new name on the roster is explained as it appears (owner's playtest).
+        <details className="w-day" open={frame.day.lines.some((l) => l.came)}>
           <summary>Today</summary>
           <ul>
             {frame.day.lines.map((l) => (
@@ -611,7 +612,8 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
         <Sacks
           have={frame.grain}
           lost={Math.max(0, frame.grainAtDusk - frame.grain)}
-          label={frame.grain < frame.grainAtDusk ? 'Sacks have been taken tonight' : 'No sacks taken tonight'}
+          need={frame.need}
+          label={`${frame.grain < frame.grainAtDusk ? 'Sacks have been taken tonight' : 'No sacks taken tonight'}; the mark is what the village eats until the harvest`}
         />
       </div>
     </div>
@@ -626,6 +628,25 @@ function WinterNote({ frame }: { frame: Frame }) {
     <div className="w-winter">
       {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
       {w.night <= 1 && w.why ? <p className="w-note">{w.why}</p> : null}
+      {frame.year === 1 && w.night === 1 ? (
+        <p className="w-note">More hands will come up to the wall over the first nights.</p>
+      ) : null}
+      {w.night <= 2 ? (
+        // Owner's playtest: "why do we fight for each one?"
+        <p className="w-note">
+          The granary must feed {frame.souls.charAt(0).toLowerCase() + frame.souls.slice(1)} from the thaw to
+          the harvest. Short of the mark, the spring is hungry and households leave; sacks past it are spare
+          for the fair.
+        </p>
+      ) : null}
+      {w.night <= 2 ? (
+        <Sacks
+          have={frame.grain}
+          lost={0}
+          need={frame.need}
+          label="The granary, and the mark of what it must feed"
+        />
+      ) : null}
       {w.question ? (
         <p className="w-winter-q">
           <span className="w-kicker">This winter</span> {w.question.text}
@@ -727,7 +748,8 @@ function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) 
       <Sacks
         have={d.grainAfter}
         lost={d.grainBefore - d.grainAfter}
-        label={d.grainAfter === d.grainBefore ? 'No sacks lost' : 'Sacks lost in the night, drawn faded'}
+        need={frame.need}
+        label={`${d.grainAfter === d.grainBefore ? 'No sacks lost' : 'Sacks lost in the night, drawn faded'}; the mark is what the village eats until the harvest`}
       />
       {d.ropeSnapped ? (
         <p className="w-note">Someone will have to splice the bell rope today; it will not be new.</p>

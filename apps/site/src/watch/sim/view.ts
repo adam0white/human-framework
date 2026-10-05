@@ -27,11 +27,12 @@ import {
   type ThreatKind,
   type WatcherId,
 } from './config.ts';
-import { ageOf, dayOfYear, living, seasonOfDay } from './life.ts';
+import { ageOf, dayOfYear, householdCount, living, seasonOfDay } from './life.ts';
 import { bellTarget, bellWords, type Moment, readBell, readPosting, readWords } from './moments.ts';
 import { earshot, litSection, nightEnd, presentIds, theSection } from './night.ts';
 import { familyWords, isHere, isPost, isWatcher, nameOf, type Place, personOf, villager } from './people.ts';
 import { type Impression, keeperImpressions } from './reads.ts';
+import { EAT_PER_HEAD } from './season.ts';
 import type {
   Alert,
   ChronicleLine,
@@ -145,6 +146,13 @@ export interface Frame {
   yearProgress: number;
   /** A warning in words when the granary is low in winter (null otherwise). */
   grainWarning: string | null;
+  /** What the village eats from the thaw to the harvest, in sacks: drawn as a mark on the granary. */
+  need: number;
+  /** Who lives here and in how many homes, in words ("eleven souls in five homes"); the map draws the homes. */
+  souls: string;
+  homes: number;
+  /** Homes burned out in the last few years, drawn as ruins. */
+  ruins: number;
   /** This winter as the Keeper knows it (dusk, night, dawn and the thaw page); null in the open seasons. */
   winter: { night: number; nights: number; why: string; question: WinterPlan['question'] } | null;
   /** The chronicle's latest lines, oldest first. */
@@ -591,6 +599,37 @@ export function ordinal(n: number): string {
   return u === 0 ? `${tens}ieth` : `${tens}y-${ORDINAL[u - 1]}`;
 }
 
+const TEENS = ['thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+
+/** 11 → "eleven", 23 → "twenty-three": a count in words, up to ninety-nine. */
+export function countWords(n: number): string {
+  if (n >= 0 && n <= 12) return COUNT[n] ?? String(n);
+  if (n < 20) return TEENS[n - 13] ?? String(n);
+  const tens = TENS[Math.floor(n / 10) - 2];
+  if (!tens || n > 99) return String(n);
+  const u = n % 10;
+  return u === 0 ? `${tens}y` : `${tens}y-${UNITS[u - 1]}`;
+}
+
+let folkCache: { key: string; v: { need: number; souls: string; homes: number } } | null = null;
+/** Need, souls and homes, counted once a sim day (and again when someone is born, dies or leaves). */
+function folk(s: WatchState): { need: number; souls: string; homes: number } {
+  const n = living(s).length;
+  const key = `${s.seed}|${Math.floor(s.minute / DAY)}|${n}`;
+  if (folkCache?.key === key) return folkCache.v;
+  const homes = householdCount(s);
+  const v = { need: Math.ceil(n * EAT_PER_HEAD), souls: soulsWords(n, homes), homes };
+  folkCache = { key, v };
+  return v;
+}
+
+/** "Eleven souls in five homes" (owner's playtest, 2026-10-05: "Can I count the current population?"). */
+export function soulsWords(souls: number, homes: number): string {
+  const a = countWords(souls);
+  const b = countWords(homes);
+  return `${a.charAt(0).toUpperCase()}${a.slice(1)} ${souls === 1 ? 'soul' : 'souls'} in ${b} ${homes === 1 ? 'home' : 'homes'}`;
+}
+
 function count(n: number): string {
   return UNITS[n - 1] ?? String(n);
 }
@@ -728,6 +767,8 @@ function yearFrame(s: WatchState) {
     season: seasonOfDay(d),
     date: dateWords(s),
     yearProgress: d / 365,
+    ...folk(s),
+    ruins: s.marks.ruins.filter((r) => r.year >= s.year - 3).length,
     grainWarning:
       inWinter && s.phase !== 'thaw'
         ? s.grain <= 0

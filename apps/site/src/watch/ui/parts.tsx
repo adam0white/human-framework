@@ -10,10 +10,25 @@ export function range(n: number): number[] {
   return out;
 }
 
-export function Sacks({ have, lost, label }: { have: number; lost: number; label: string }) {
-  const total = Math.max(0, have) + Math.max(0, lost);
+/**
+ * The granary as sacks. With `need`, a mark stands after the sack that, with those before it, feeds everyone from
+ * the thaw to the harvest (owner's playtest, 2026-10-05: why each sack matters).
+ */
+export function Sacks({
+  have,
+  lost,
+  label,
+  need,
+}: {
+  have: number;
+  lost: number;
+  label: string;
+  need?: number;
+}) {
+  const total = Math.max(0, have) + Math.max(0, lost, (need ?? 0) - Math.max(0, have));
   const perRow = 10;
   const rows = Math.max(1, Math.ceil(total / perRow));
+  const mark = need && need > 0 ? { col: (need - 1) % perRow, row: Math.floor((need - 1) / perRow) } : null;
   return (
     <svg
       className="w-sacks"
@@ -33,6 +48,15 @@ export function Sacks({ have, lost, label }: { have: number; lost: number; label
           </g>
         );
       })}
+      {mark ? (
+        <line
+          className="sack-need"
+          x1={2 + mark.col * 18 + 17}
+          x2={2 + mark.col * 18 + 17}
+          y1={2 + mark.row * 16}
+          y2={2 + mark.row * 16 + 16}
+        />
+      ) : null}
     </svg>
   );
 }

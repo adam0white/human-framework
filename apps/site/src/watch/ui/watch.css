@@ -657,6 +657,13 @@
   stroke: rgba(212, 190, 150, 0.35);
 }
 
+/* What the village eats from the thaw to the harvest: sacks up to this mark. */
+.w-sacks .sack-need {
+  stroke: var(--w-accent);
+  stroke-width: 2;
+  stroke-dasharray: 3 2;
+}
+
 .w-dawnlines {
   margin: 0 0 8px;
   padding-left: 18px;
@@ -1520,4 +1527,10 @@
   margin: 0;
   padding: 0;
   min-width: 0;
+}
+
+/* The granary's need mark, in words, beside the heading. */
+.w-granary-mark {
+  font-size: 0.78rem;
+  color: var(--w-muted);
 }

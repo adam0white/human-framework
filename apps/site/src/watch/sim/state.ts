@@ -252,8 +252,8 @@ export interface DawnPage {
 
 export interface DaySummary {
   night: number;
-  /** One line per watcher: what their day was. */
-  lines: { who: WatcherId; text: string }[];
+  /** One line per watcher: what their day was. `came` marks an arrival, so the dusk page can open on it. */
+  lines: { who: WatcherId; text: string; came?: true }[];
   ropeBefore: number;
   ropeAfter: number;
 }

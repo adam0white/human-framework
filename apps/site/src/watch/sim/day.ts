@@ -81,7 +81,11 @@ export function advanceDay(s: WatchState): void {
     const taken = Object.values(s.posts).includes(usual) || !s.openPosts.includes(usual);
     s.posts[id] = taken ? null : usual;
     s.postedAt[id] = s.minute;
-    lines.push({ who: id, text: `${nameOf(s, id)} came through the gate today.` });
+    lines.push({
+      who: id,
+      text: `${nameOf(s, id)} came through the gate today to stand the wall with you.`,
+      came: true,
+    });
     // An old grudge shows the moment they meet: someone turns away, and the Keeper sees it.
     for (const p of s.community.people) {
       if (p.id === id) continue;

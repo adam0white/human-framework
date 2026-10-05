@@ -972,19 +972,48 @@ function drawVillage(ctx: CanvasRenderingContext2D, l: Layout, f: Frame): void {
   const top = l.yVillage;
   ctx.fillStyle = '#5a4a36';
   ctx.fillRect(0, top, w, h - top);
-  // Houses.
-  const houses = Math.max(4, Math.floor(w / 70));
-  for (let i = 0; i < houses; i++) {
-    const x = ((i + 0.5) / houses) * w;
-    if (Math.abs(x - w / 2) < Math.max(50, w * 0.12)) continue;
-    const y = top + (h - top) * 0.62;
+  // One hut per household, then the burned-out ones (owner's playtest, 2026-10-05: "Can I count ... the home
+  // quantity?"). Huts fill the ground either side of the granary, in a second row when the first is full.
+  const homes = Math.max(1, f.homes);
+  const huts = homes + f.ruins;
+  const band = Math.max(50, w * 0.12) + 14;
+  const side = w / 2 - band;
+  const perRow = Math.max(2, 2 * Math.floor(side / 40));
+  const rows = huts > perRow ? 2 : 1;
+  for (let n = 0; n < huts; n++) {
+    const row = rows === 2 && n >= Math.ceil(huts / 2) ? 1 : 0;
+    const inRow = rows === 2 ? (row === 0 ? Math.ceil(huts / 2) : huts - Math.ceil(huts / 2)) : huts;
+    const k = row === 0 ? n : n - Math.ceil(huts / 2);
+    // Alternate left and right of the granary, outward from it.
+    const left = k % 2 === 0;
+    const perSide = Math.ceil(inRow / 2);
+    const j = Math.floor(k / 2);
+    const step = side / Math.max(1, perSide);
+    const off = band + step * (j + 0.5) + (row === 1 ? step * 0.25 : 0);
+    const x = left ? w / 2 - off : w / 2 + off;
+    const y = top + (h - top) * (rows === 1 ? 0.62 : row === 0 ? 0.48 : 0.86);
+    const sc = Math.min(1, step / 36);
+    if (n >= homes) {
+      // Burned out: a charred frame, no roof.
+      ctx.fillStyle = '#3b3029';
+      ctx.fillRect(x - 12 * sc, y - 4 * sc, 24 * sc, 12 * sc);
+      ctx.strokeStyle = '#2a211c';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x - 11 * sc, y - 4 * sc);
+      ctx.lineTo(x - 6 * sc, y - 14 * sc);
+      ctx.moveTo(x + 11 * sc, y - 4 * sc);
+      ctx.lineTo(x + 8 * sc, y - 11 * sc);
+      ctx.stroke();
+      continue;
+    }
     ctx.fillStyle = '#c9975b';
-    ctx.fillRect(x - 12, y - 8, 24, 16);
+    ctx.fillRect(x - 12 * sc, y - 8 * sc, 24 * sc, 16 * sc);
     ctx.fillStyle = '#a8733d';
     ctx.beginPath();
-    ctx.moveTo(x - 15, y - 8);
-    ctx.lineTo(x, y - 18);
-    ctx.lineTo(x + 15, y - 8);
+    ctx.moveTo(x - 15 * sc, y - 8 * sc);
+    ctx.lineTo(x, y - 18 * sc);
+    ctx.lineTo(x + 15 * sc, y - 8 * sc);
     ctx.fill();
   }
   // The granary, its sacks drawn.
