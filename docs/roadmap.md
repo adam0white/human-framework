@@ -3,12 +3,12 @@
 The single list of what is next for HF and its example games, 2026-10-05. Goals 1 and 2 are done and accepted ([HANDOFF](../HANDOFF.md)); the next goal is not set, and this page is the menu it will be chosen from. Nothing here is committed work.
 
 **Targets.** Each item has one:
-- **2.1**: behaviour-neutral, can still land before the unreleased 2.1.0 is cut (CHANGELOG [Unreleased]: no replay, fixture or hash changes).
+- **2.x**: behaviour-neutral (no replay, fixture or hash changes); fits any minor release after 2.1.0.
 - **2.2**: needs an `ENGINE_VERSION` bump because it moves replays or changes decisions; batch these into one engine release, re-record the Games 1–2 playtest fixtures and bump the Game 3 scenario.
 - **3.0**: breaking API change (removal or rename).
 - **unscheduled**: worth doing, no release chosen.
 
-The H2 summary marked many of these "deferred, 2.1". The 2.1 that was then built is a behaviour-neutral polish release, so items that move replays are relabelled 2.2 here; this page is the current target.
+The H2 summary marked many of these "deferred, 2.1". 2.1.0 (released 2026-10-05) is a behaviour-neutral polish release, so items that move replays are relabelled 2.2 here; behaviour-neutral leftovers are 2.x. This page is the current target.
 
 Item ids (P, Q, S) are the rows of the [H2 review summary](reviews/2026-10-04-h2-summary.md); R2 ids (V, S, 1b, 3a, B1.3, …) are rows of the [R2 review summary](reviews/2026-10-04-summary.md). Review this page when the next goal is set.
 
@@ -38,11 +38,11 @@ These change what a run does, so each needs the engine bump and a recorded reaso
 
 | Item | What | Target |
 |---|---|---|
-| Q36 (rest) | `sanitizeFamily` accepts non-finite pregnancy fields (`conceivedAt`, `dueAt`, `seed`). A save the engine wrote is unaffected. | 2.1 |
-| Q52 (rest) | `PersonSpec.habits` and `PersonSpec.expectations` (hosts write these slices by hand today). Additive. | 2.1 |
-| Q50 | Two HF gaps Game 3 works around by writing framework slices directly: an additive trust gesture and host-caused tiredness. Add them, then move the game ([watch.md §12](games/watch.md#12-after-graduation-deferred-features) T2). | 2.1 (additive) |
-| Split long functions | `finish`, `evaluate` and `stepCommunity` are each long enough to hide bugs; split them without changing results (hash tests pin this). | 2.1 |
-| Test dedup | Tests repeat setup that `test/support.ts` now provides; fold the copies into it. | 2.1 |
+| Q36 (rest) | `sanitizeFamily` accepts non-finite pregnancy fields (`conceivedAt`, `dueAt`, `seed`). A save the engine wrote is unaffected. | 2.x |
+| Q52 (rest) | `PersonSpec.habits` and `PersonSpec.expectations` (hosts write these slices by hand today). Additive. | 2.x |
+| Q50 | Two HF gaps Game 3 works around by writing framework slices directly: an additive trust gesture and host-caused tiredness. Add them, then move the game ([watch.md §12](games/watch.md#12-after-graduation-deferred-features) T2). | 2.x (additive) |
+| Split long functions | `finish`, `evaluate` and `stepCommunity` are each long enough to hide bugs; split them without changing results (hash tests pin this). | 2.x |
+| Test dedup | Tests repeat setup that `test/support.ts` now provides; fold the copies into it. | 2.x |
 | Unused `_now` parameters | `repent(p, id, _now)` and `recordRepair(p, victimId, _now)` in `conscience/` take a time they never read. Make it optional in 2.x; remove it in 3.0. | 3.0 |
 | Deprecated forms | Remove the 2.0 options-object forms of `glimpse`, `glimpseOf`, `hear`, `conceive` and `retell`, and `TRAIT_NAMES` (CHANGELOG [Unreleased], Deprecated). | 3.0 |
 | R2 3c | `expit` is an alias of `sigmoid`; deprecate, then drop. | 3.0 |

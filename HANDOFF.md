@@ -5,8 +5,8 @@ Updated 2026-10-05. Read [AGENTS.md](AGENTS.md) for rules, [docs/framework.md](d
 ## Current state
 
 - **No goal is set.** Goals 1 and 2 are done and accepted. The owner chooses the next goal; the [roadmap](docs/roadmap.md) is the menu, each item with a target (2.1, 2.2, 3.0 or unscheduled).
-- **Released:** HF 2.0.0 (GitHub release v2.0.0 at d48d8f6, tarball attached; engine 2.0.0). Live site: https://human.adamwhite.work with Games 1–3 on HF 2.0; `/release.json` showed commit 2b7acc5, framework 2.0.0 on 2026-10-05 (the 2.1 polish source is deployed inside the games, but the package version is still 2.0.0).
-- **Unreleased on `main`:** the 2.1 polish (CHANGELOG [Unreleased]): `PersonSpec.enable`, `emotionLevel`, `ageAt`, positional `at` for host events, `restore.ts`, stricter year-record checks, doc and test cleanup. No behaviour change; engine stays 2.0.0. Releasing it means bumping the package version and `FRAMEWORK_VERSION` and the tests that pin `'2.0.0'` (smoke.test.ts, migrate.test.ts), then `npm run release`.
+- **Released:** HF 2.1.0 (GitHub release v2.1.0 at a66700a, Latest, tarball attached; engine 2.0.0, behaviour identical to 2.0.0). Earlier: v2.0.0 (d48d8f6), v1.2.0, v1.1.0, v1.0.0. Live site: https://human.adamwhite.work, framework 2.1.0 at a66700a, with a framework homepage and Games 1–3. CI green (run 37321995064). Repo description and topics set 2026-10-05; v2.0.0 release-note links repointed to the v2.0.0 tag after the docs consolidation.
+- **Unreleased on `main`:** nothing (CHANGELOG [Unreleased] is empty). Deprecated option forms go in 3.0 (roadmap).
 - **Games:** graduated with HF. Each game doc ends with its deferred list ([colony](docs/games/colony.md#deferred), [voice](docs/games/voice.md#deferred), [watch §12](docs/games/watch.md#12-after-graduation-deferred-features), review watch §12 by 2026-11-05).
 - **Docs** were consolidated on 2026-10-05: per-dimension review files, `hf-status.md` and `rimworld-gap.md` were folded into the roadmap, framework.md and the two review summaries, then deleted; v0-era research planning docs moved to `archive/research/`.
 
