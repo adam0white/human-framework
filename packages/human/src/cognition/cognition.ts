@@ -28,7 +28,7 @@ import { emotionLevel, inBreak } from '../affect/index.ts';
 import { agendaTerms } from '../agenda/index.ts';
 import { trustOf } from '../beliefs/index.ts';
 import { normTerms } from '../conscience/index.ts';
-import { clamp01, dexp, minuteOfDay, round } from '../core/index.ts';
+import { clamp01, cmpStr, dexp, minuteOfDay, round } from '../core/index.ts';
 import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
 import { expectedEffect } from '../memory/index.ts';
 import { urgencyOf } from '../needs/index.ts';
@@ -492,7 +492,7 @@ export function scoreAll(
   affordances: readonly Affordance[],
   ctx: DecideContext,
 ): { sorted: Affordance[]; considered: Considered[]; willCtx: WillContext } {
-  const sorted = [...affordances].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  const sorted = [...affordances].sort((a, b) => cmpStr(a.id, b.id));
   const shared: DecideContext = { ...ctx, social: ctx.social ?? socialContext(ctx) };
   const considered = sorted.map((aff) => consider(p, aff, shared));
   const willCtx: WillContext = {

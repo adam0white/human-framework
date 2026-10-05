@@ -161,7 +161,7 @@ export function threatAppraisal(
 
 const isStrList = (x: unknown): x is string[] => Array.isArray(x) && x.every((g) => typeof g === 'string');
 
-/** Restore-time check of the 1.6.0 group fields: malformed ones are dropped, never filled. */
+/** Restore-time check of the 1.6.0 group fields: malformed ones are dropped, never filled. @internal */
 export function sanitizeGroups(social: Person['social']): void {
   const g = social.groups as unknown;
   if (g !== undefined) {

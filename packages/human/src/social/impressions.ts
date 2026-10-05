@@ -25,7 +25,7 @@
  * of one's own state, deliberate deception beyond reserve, the target noticing being watched, or gossip about
  * impressions (conversation carries reputation beliefs separately, `social.ts`).
  */
-import { clamp, clamp01, decay, latestPerId, newestN, round } from '../core/index.ts';
+import { clamp, clamp01, cmpStr, decay, latestPerId, newestN, round } from '../core/index.ts';
 import type {
   EntityId,
   Impression,
@@ -272,15 +272,15 @@ export function glimpse(
   targetId: PersonId,
   signs: OutwardSigns,
   when: Minute | { at: Minute; clarity?: Unit },
-  clearness?: Unit,
+  clarity?: Unit,
 ): void {
   if (targetId === observer.id) return;
   const at = typeof when === 'number' ? when : when.at;
-  const clarity = clamp01((typeof when === 'number' ? clearness : when.clarity) ?? 1);
-  if (clarity <= 0) return;
+  const clear = clamp01((typeof when === 'number' ? clarity : when.clarity) ?? 1);
+  if (clear <= 0) return;
   const imp = impressionFor(observer, targetId, true, at) as Impression;
   const put = (key: string, v: number) =>
-    sample(imp, key, erred(observer, targetId, key, at, v, clarity), clarity, at);
+    sample(imp, key, erred(observer, targetId, key, at, v, clear), clear, at);
   put('fatigue', signs.fatigue);
   put('pain', signs.pain);
   put('fear', signs.fear);
@@ -408,7 +408,7 @@ export function impressionOf(observer: Person, targetId: PersonId, now: Minute):
   const imp = observer.social.impressions?.find((i) => i.targetId === targetId);
   if (!imp) return { targetId, cues: [] };
   const cues = [...imp.cues]
-    .sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))
+    .sort((a, b) => cmpStr(a.key, b.key))
     .map((c) => ({ key: c.key, ...estimate(observer, targetId, c.key, now) }));
   return { targetId, seenAt: imp.seenAt, cues };
 }
@@ -438,6 +438,7 @@ export function companionSteadiness(p: Person, otherId: PersonId, now: Minute): 
  * cue needs a finite mean and minute and a finite weight ≥ 0 (else its impression is dropped); a mean outside its
  * key's range is clamped; a repeated target or cue key keeps the one seen latest; past `maxImpressions` impressions
  * or `maxCues` cues the most recently seen are kept, in saved order. A save the engine wrote is already within this.
+ * @internal
  */
 export function sanitizeImpressions(social: Person['social']): void {
   const r = social.reserve as unknown;

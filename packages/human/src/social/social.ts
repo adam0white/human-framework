@@ -11,7 +11,7 @@
  * further down; insiders, outsiders and threats in `groups.ts`); the
  * coefficients are engineering defaults, not calibrated estimates.
  */
-import { clamp, clamp01, clampSigned, decay, dlog, expit, round } from '../core/index.ts';
+import { clamp, clamp01, clampSigned, cmpStr, decay, dlog, expit, round } from '../core/index.ts';
 import type {
   Affordance,
   HeldNorm,
@@ -619,7 +619,7 @@ export function reputation(
   let respect = 0;
   let knownBy = 0;
   const traitSum: Record<string, { sum: number; n: number }> = {};
-  for (const q of [...people].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))) {
+  for (const q of [...people].sort((a, b) => cmpStr(a.id, b.id))) {
     if (q.id === targetId) continue;
     let knows = false;
     const rel = q.social.relationships.find((r) => r.otherId === targetId);

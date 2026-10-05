@@ -55,7 +55,7 @@ import { BODY_DEFAULTS, contagionRoll, die, readBody, sicken } from '../body/ind
 import { chronicleBetween } from '../chronicle/index.ts';
 import { recordDeed } from '../conscience/index.ts';
 import { type ConverseContext, converse } from '../conversation/index.ts';
-import { clamp01, dayOf } from '../core/index.ts';
+import { clamp01, cmpStr, dayOf } from '../core/index.ts';
 import {
   type ChildSpec,
   type ChronicCondition,
@@ -351,7 +351,7 @@ export function communityState(c: Community): CommunityState {
  * resumed from it, so a run restored from people + community + world state continues exactly as it would have.
  */
 export function createCommunity(people: Person[], prior?: CommunityState): Community {
-  const sorted = [...people].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  const sorted = [...people].sort((a, b) => cmpStr(a.id, b.id));
   if (prior) {
     const copy = JSON.parse(JSON.stringify(prior)) as CommunityState;
     for (const p of sorted) {
@@ -382,7 +382,7 @@ export function createCommunity(people: Person[], prior?: CommunityState): Commu
 /** Add a person to a community (a newborn, an arrival); keeps the id order the driver relies on. */
 export function addPerson(c: Community, p: Person): void {
   if (c.people.some((q) => q.id === p.id)) return;
-  c.people = [...c.people, p].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  c.people = [...c.people, p].sort((a, b) => cmpStr(a.id, b.id));
   c.idleUntil[p.id] = p.now;
   c.perceivedUntil[p.id] = p.now;
 }

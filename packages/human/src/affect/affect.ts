@@ -15,7 +15,7 @@
  * keeps appraisal and constructed-emotion variants swappable; it does not claim that these sixteen
  * categories or two mood dimensions exhaust emotional experience, nor calibrated intensities or durations.
  */
-import { clamp01, clampSigned, decay, dexp } from '../core/index.ts';
+import { clamp01, clampSigned, cmpStr, decay, dexp } from '../core/index.ts';
 import type {
   AffectState,
   AppraisalEvent,
@@ -160,10 +160,7 @@ const isNegative = (id: EmotionId): boolean => AFFECT_DEFAULTS.negative.includes
 
 function sortEmotions(list: Emotion[]): void {
   list.sort(
-    (a, b) =>
-      b.intensity - a.intensity ||
-      (a.id < b.id ? -1 : a.id > b.id ? 1 : 0) ||
-      ((a.targetId ?? '') < (b.targetId ?? '') ? -1 : (a.targetId ?? '') > (b.targetId ?? '') ? 1 : 0),
+    (a, b) => b.intensity - a.intensity || cmpStr(a.id, b.id) || cmpStr(a.targetId ?? '', b.targetId ?? ''),
   );
 }
 

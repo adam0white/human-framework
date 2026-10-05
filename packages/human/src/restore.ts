@@ -1,7 +1,8 @@
 /**
  * SCOPE: saving and loading a person. `snapshot` copies a person as plain JSON; `restore` validates a saved person,
  * upgrades a save from an earlier supported engine (`migrate`), fills defaults for missing or mistyped core fields,
- * hands every optional slice to its owning module's sanitizer, and holds every list to the bound the live code keeps.
+ * hands every optional slice to its owning module's sanitizer (the chronicle, its day accumulator and the lexicon
+ * need only a type check, done here), and holds every list to the bound the live code keeps.
  * A save the engine wrote restores to exactly what was saved. It does not repair a save's meaning (a plausible but
  * wrong value stays), merge two saves, or read any format but the person JSON.
  */
@@ -29,6 +30,7 @@ export function snapshot(p: Person): Person {
   return structuredClone(p);
 }
 
+// Unlike core `isObj`, arrays pass: a required slice saved as an array is filled from defaults, not refused.
 const isObject = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null;
 const isMinute = (x: unknown): x is number => isNum(x) && Math.abs(x) <= MAX_MINUTE;
 

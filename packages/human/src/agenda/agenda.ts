@@ -47,7 +47,7 @@
  */
 // The bundled catalog is only the default; a host with its own catalog passes it (`World.catalog`).
 import { DEFAULT_NORMS } from '../conscience/catalog.ts';
-import { clamp01, dayOf, dpow, isObj } from '../core/index.ts';
+import { clamp01, dayOf, dpow, hasNumbers, isObj } from '../core/index.ts';
 import type {
   Affordance,
   AgendaState,
@@ -171,11 +171,7 @@ function copyArrays<T extends Pick<Commitment, 'actions' | 'violatedBy' | 'exemp
 /** Restore-time check of `agenda.lapse` (1.7.0), in place: a malformed one is dropped (absent means none). @internal */
 export function sanitizeAgenda(a: AgendaState): void {
   const lapse = a.lapse as unknown;
-  if (
-    lapse !== undefined &&
-    !(isObj(lapse) && typeof lapse.since === 'number' && typeof lapse.missed === 'number')
-  )
-    delete a.lapse;
+  if (lapse !== undefined && !(isObj(lapse) && hasNumbers(lapse, 'since', 'missed'))) delete a.lapse;
 }
 
 export function createAgenda(

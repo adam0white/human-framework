@@ -39,7 +39,7 @@
  * `createChild` (`ChildSpec.aptitudes`).
  */
 import { understandNorm } from '../conscience/index.ts';
-import { clamp, clamp01, createRng, dpow, normal } from '../core/index.ts';
+import { clamp, clamp01, createRng, dpow, isNum, isObj, normal } from '../core/index.ts';
 import { ageYears } from '../lifecourse/index.ts';
 import { remember } from '../memory/index.ts';
 import { relationshipWith } from '../social/index.ts';
@@ -78,22 +78,20 @@ export function createFamily(
   const out: FamilyState = {};
   const apt = sanitizeAptitudes(init.aptitudes);
   if (apt) out.aptitudes = apt;
-  if (typeof init.attachment === 'number' && Number.isFinite(init.attachment))
-    out.attachment = clamp01(init.attachment);
+  if (isNum(init.attachment)) out.attachment = clamp01(init.attachment);
   return Object.keys(out).length > 0 ? out : undefined;
 }
 
 function sanitizeAptitudes(x: unknown): Record<string, number> | undefined {
-  if (typeof x !== 'object' || x === null || Array.isArray(x)) return undefined;
+  if (!isObj(x)) return undefined;
   const out: Record<string, number> = {};
-  for (const [k, v] of Object.entries(x))
-    if (typeof v === 'number' && Number.isFinite(v) && v > 0) out[k] = clamp(v, 0.25, 4);
+  for (const [k, v] of Object.entries(x)) if (isNum(v) && v > 0) out[k] = clamp(v, 0.25, 4);
   return Object.keys(out).length > 0 ? out : undefined;
 }
 
 /** Validate a saved family slice; undefined when nothing usable remains (used by `restore`). @internal */
 export function sanitizeFamily(x: unknown): FamilyState | undefined {
-  if (typeof x !== 'object' || x === null || Array.isArray(x)) return undefined;
+  if (!isObj(x)) return undefined;
   const f = x as Record<string, unknown>;
   const out: FamilyState = {};
   const apt = sanitizeAptitudes(f.aptitudes);
@@ -108,10 +106,8 @@ export function sanitizeFamily(x: unknown): FamilyState | undefined {
     typeof pg.seed === 'number'
   )
     out.pregnancy = { fatherId: pg.fatherId, conceivedAt: pg.conceivedAt, dueAt: pg.dueAt, seed: pg.seed };
-  if (typeof f.attachment === 'number' && Number.isFinite(f.attachment))
-    out.attachment = clamp01(f.attachment);
-  if (typeof f.raisedMinutes === 'number' && Number.isFinite(f.raisedMinutes) && f.raisedMinutes >= 0)
-    out.raisedMinutes = f.raisedMinutes;
+  if (isNum(f.attachment)) out.attachment = clamp01(f.attachment);
+  if (isNum(f.raisedMinutes) && f.raisedMinutes >= 0) out.raisedMinutes = f.raisedMinutes;
   return Object.keys(out).length > 0 ? out : undefined;
 }
 
@@ -123,7 +119,7 @@ const familyOf = (p: Person): FamilyState => {
 /** Learning multiplier for a skill (1 = average, or no family slice). */
 export function aptitudeOf(p: Person, skillId: string): number {
   const v = p.family?.aptitudes?.[skillId];
-  return typeof v === 'number' && Number.isFinite(v) && v > 0 ? v : 1;
+  return isNum(v) && v > 0 ? v : 1;
 }
 
 /** Attachment security 0..1 (the starting 0.6 when never raised). */

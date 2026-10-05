@@ -18,7 +18,7 @@
  * Parents without a recorded aptitude count as average. The draws come after every other draw, so a child spec
  * without `aptitudes` is unchanged. Physical inheritance (height, build, health) is not modelled.
  */
-import { clamp, createRng, dexp, dlog, normal, random } from '../core/index.ts';
+import { clamp, createRng, dexp, dlog, isNum, normal, random } from '../core/index.ts';
 import type { HeldNorm, Person, PersonSpec, Relationship, Traits, Values } from '../types.ts';
 import { TRAIT_KEYS, VALUE_KEYS } from '../types.ts';
 
@@ -103,7 +103,7 @@ export function createChild(a: Person, b: Person, spec: ChildSpec): ChildBirth {
     const res = sda * Math.sqrt(Math.max(0, 1 - (ha * ha) / 2));
     const logOf = (p: Person, id: string) => {
       const v = p.family?.aptitudes?.[id];
-      return typeof v === 'number' && v > 0 && Number.isFinite(v) ? dlog(v) : 0;
+      return isNum(v) && v > 0 ? dlog(v) : 0;
     };
     aptitudes = {};
     for (const id of [...new Set(spec.aptitudes)].sort()) {

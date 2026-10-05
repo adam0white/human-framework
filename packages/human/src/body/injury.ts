@@ -212,7 +212,7 @@ export function downedAllows(aff: { tags?: readonly string[]; mode?: string }): 
   return tags.includes('floor') || tags.includes('rest');
 }
 
-/** Restore-time check of the 1.6.0 injury and downing fields: malformed ones are dropped, never filled. */
+/** Restore-time check of the 1.6.0 injury and downing fields: malformed ones are dropped, never filled. @internal */
 export function sanitizeInjuries(b: BodyState): void {
   if (!Array.isArray(b.injuries)) {
     b.injuries = [];

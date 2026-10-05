@@ -34,7 +34,7 @@ import { breakAllows, inBreak } from '../affect/index.ts';
 import { commitmentPressure, isUnderWay, pressureReachedAt } from '../agenda/index.ts';
 import { downedAllows, readCapacities } from '../body/index.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
-import { clamp01, decay, dexp, dpow, isObj, random } from '../core/index.ts';
+import { clamp01, cmpStr, decay, dexp, dpow, hasNumbers, isObj, random } from '../core/index.ts';
 import { skillLevel } from '../skills/index.ts';
 import type {
   Affordance,
@@ -227,18 +227,12 @@ export function sanitizeWill(w: WillState): void {
     !(
       isObj(cmd) &&
       typeof cmd.voiceId === 'string' &&
-      typeof cmd.since === 'number' &&
-      typeof cmd.startedAt === 'number' &&
-      typeof cmd.chargedAt === 'number' &&
-      typeof cmd.margin === 'number'
+      hasNumbers(cmd, 'since', 'startedAt', 'chargedAt', 'margin')
     )
   )
     delete w.command;
   const last = w.lastCommand as unknown;
-  if (
-    last !== undefined &&
-    !(isObj(last) && typeof last.voiceId === 'string' && typeof last.since === 'number')
-  )
+  if (last !== undefined && !(isObj(last) && typeof last.voiceId === 'string' && hasNumbers(last, 'since')))
     delete w.lastCommand;
 }
 
@@ -503,8 +497,7 @@ export function suggestionTargets(s: Suggestion | undefined, aff: Affordance): b
 export const safeUtility = (u: number): number => (Number.isNaN(u) ? Number.NEGATIVE_INFINITY : u);
 
 const byUtilityThenId = (a: Considered, b: Considered): number =>
-  safeUtility(b.utility) - safeUtility(a.utility) ||
-  (a.affordanceId < b.affordanceId ? -1 : a.affordanceId > b.affordanceId ? 1 : 0);
+  safeUtility(b.utility) - safeUtility(a.utility) || cmpStr(a.affordanceId, b.affordanceId);
 
 /** Dominant positive term of an option, or 'preference'. */
 export function dominantTerm(c: Considered | undefined): string {
@@ -577,7 +570,7 @@ export function voicesIn(
     seen.add(s.voiceId);
     out.push(s);
   }
-  out.sort((a, b) => (a.voiceId < b.voiceId ? -1 : a.voiceId > b.voiceId ? 1 : 0));
+  out.sort((a, b) => cmpStr(a.voiceId, b.voiceId));
   return out.slice(0, WILL_DEFAULTS.maxVoices);
 }
 
@@ -722,7 +715,7 @@ function evaluate(
             says: '',
           }),
         ),
-      ].sort((a, b) => (a.voiceId < b.voiceId ? -1 : a.voiceId > b.voiceId ? 1 : 0));
+      ].sort((a, b) => cmpStr(a.voiceId, b.voiceId));
       ev.resolutions = all;
       ev.voices = all.map((r) => ({ id: r.voiceId, pressure: 0, accepted: 0, refused: 0 }));
       ev.suggestion = res;

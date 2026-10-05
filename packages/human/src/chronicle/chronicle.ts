@@ -11,7 +11,7 @@
  * consolidation or of what people actually remember. The record describes behaviour; it scores no worth,
  * piety or acceptance, and a kept worship commitment is recorded as a kept commitment, nothing more.
  */
-import { dayOf, isNum, isObj } from '../core/index.ts';
+import { cmpStr, dayOf, isNum, isObj } from '../core/index.ts';
 import type {
   ChronicleCommitmentNote,
   ChronicleDay,
@@ -353,9 +353,7 @@ export function consolidateDay(p: Person, day: number, acc: ChronicleDay): DayRe
     keptByKind: countBy(kept),
     brokenByKind: countBy(broken),
     prayers,
-    actions: acc.actions
-      .map((a) => ({ ...a, by: { ...a.by } }))
-      .sort((a, b) => (a.action < b.action ? -1 : a.action > b.action ? 1 : 0)),
+    actions: acc.actions.map((a) => ({ ...a, by: { ...a.by } })).sort((a, b) => cmpStr(a.action, b.action)),
     habits,
     trust,
     episodes,
@@ -554,7 +552,7 @@ export function foldDay(p: Person, d: DayFold): YearRecord | undefined {
     if (t) t.days += 1;
     else y.actions.push({ action, days: 1 });
   }
-  y.actions.sort((a, b) => b.days - a.days || (a.action < b.action ? -1 : a.action > b.action ? 1 : 0));
+  y.actions.sort((a, b) => b.days - a.days || cmpStr(a.action, b.action));
   // Keep a few more than shown so a later-frequent action can climb; trimmed to the bound.
   if (y.actions.length > 4 * C.yearActions) y.actions.length = 4 * C.yearActions;
   for (const e of d.episodes ?? []) {

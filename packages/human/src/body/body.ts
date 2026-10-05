@@ -50,6 +50,8 @@ import {
   decay,
   dexp,
   dlog,
+  hasNumbers,
+  isNum,
   isObj,
   minuteOfDay,
   smoothstep,
@@ -209,7 +211,7 @@ export function sanitizeRates(input: unknown): BodyRates | undefined {
   const rates: BodyRates = {};
   for (const k of RATE_KEYS) {
     const v = src[k];
-    if (typeof v === 'number' && Number.isFinite(v) && v >= 0) rates[k] = v;
+    if (isNum(v) && v >= 0) rates[k] = v;
   }
   return Object.keys(rates).length > 0 ? rates : undefined;
 }
@@ -220,20 +222,17 @@ export function sanitizeRates(input: unknown): BodyRates | undefined {
  * @internal
  */
 export function sanitizeExposures(input: unknown, now: Minute): Record<string, Exposure> | undefined {
-  if (typeof input !== 'object' || input === null || Array.isArray(input)) return undefined;
+  if (!isObj(input)) return undefined;
   const out: Record<string, Exposure> = {};
   let n = 0;
   for (const [k, raw] of Object.entries(input as Record<string, unknown>)) {
     if (n >= BODY_DEFAULTS.maxExposures) break;
     if (typeof raw !== 'object' || raw === null) continue;
     const e = raw as Record<string, unknown>;
-    const recent = typeof e.recent === 'number' && Number.isFinite(e.recent) ? clamp01(e.recent) : undefined;
-    const cumulative =
-      typeof e.cumulative === 'number' && Number.isFinite(e.cumulative)
-        ? Math.max(0, e.cumulative)
-        : undefined;
+    const recent = isNum(e.recent) ? clamp01(e.recent) : undefined;
+    const cumulative = isNum(e.cumulative) ? Math.max(0, e.cumulative) : undefined;
     if (recent === undefined || cumulative === undefined) continue;
-    const lastAt = typeof e.lastAt === 'number' && Number.isFinite(e.lastAt) ? e.lastAt : now;
+    const lastAt = isNum(e.lastAt) ? e.lastAt : now;
     out[k] = { recent, cumulative, lastAt };
     n++;
   }
@@ -257,7 +256,7 @@ export function sanitizeBody(b: BodyState, now: Minute): void {
     else delete b.exposures;
   }
   sanitizeIllnesses(b);
-  const span = (x: unknown) => isObj(x) && typeof x.from === 'number' && typeof x.to === 'number';
+  const span = (x: unknown) => isObj(x) && hasNumbers(x, 'from', 'to');
   if (b.lastSleep !== undefined && !span(b.lastSleep)) delete b.lastSleep;
   if (b.lastDowned !== undefined && !span(b.lastDowned)) delete b.lastDowned;
 }
@@ -284,9 +283,7 @@ export function sanitizeIllnesses(b: BodyState): void {
   );
   for (const i of b.illnesses) {
     i.severity = clamp01(i.severity);
-    if (i.baseline !== undefined)
-      i.baseline =
-        typeof i.baseline === 'number' && Number.isFinite(i.baseline) ? clamp01(i.baseline) : i.severity;
+    if (i.baseline !== undefined) i.baseline = isNum(i.baseline) ? clamp01(i.baseline) : i.severity;
     if (i.aggravatedBy !== undefined) {
       if (!Array.isArray(i.aggravatedBy)) delete i.aggravatedBy;
       else i.aggravatedBy = i.aggravatedBy.filter((k): k is string => typeof k === 'string');
