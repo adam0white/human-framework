@@ -15,7 +15,7 @@ export default defineConfig({
   // The framework package version, for playtest files (src/shared/playtest.ts).
   define: { __HF_PACKAGE_VERSION__: JSON.stringify(frameworkPackage.version) },
   resolve: {
-    alias: { '@human/framework': resolve(root, '../../packages/human/src/index.ts') },
+    alias: { '@adam0white/human-framework': resolve(root, '../../packages/human/src/index.ts') },
   },
   build: {
     outDir: 'dist',

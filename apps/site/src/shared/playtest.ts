@@ -22,7 +22,7 @@ export interface PlaytestFile<L = unknown> {
   game: GameId;
   /** Commit of the deployed build (`/release.json`), or 'dev'. */
   build: string;
-  /** `@human/framework` package version. */
+  /** `@adam0white/human-framework` package version. */
   framework: string;
   /** `ENGINE_VERSION` of the framework (the saved-person schema version). */
   engine: string;

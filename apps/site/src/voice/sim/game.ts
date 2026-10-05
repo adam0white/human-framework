@@ -39,7 +39,7 @@ import {
   standingHeard,
   stepCommunity,
   voiceOf,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import {
   type BeatKind,
   type BetweenView,

@@ -1,4 +1,4 @@
-import type { DecisionRecord } from '@human/framework';
+import type { DecisionRecord } from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
 import { noteUnasked, type UnaskedState, unaskedView } from './unasked.ts';
 

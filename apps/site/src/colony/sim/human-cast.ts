@@ -16,7 +16,7 @@ import {
   type NormDefinition,
   type PersonSpec,
   prayerWindows,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import { type Minute, START_CLOCK, type VillagerId, type VillagerSpec } from './world-types.ts';
 
 /** Framework minute of a game minute. */

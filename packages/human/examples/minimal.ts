@@ -20,7 +20,7 @@ import {
   predict,
   stepCommunity,
   type World,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 
 const START = 7 * 60; // 07:00 on day 0
 

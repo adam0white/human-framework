@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@human/framework": "*",
+    "@adam0white/human-framework": "*",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

@@ -2,7 +2,7 @@
  * The shared order queue (spec §3). The player is one voice; each order becomes one card that fans out to
  * both sides at the same sim minute: Classic receives a command, the Human side a Suggestion. Pure TS.
  */
-import type { Suggestion } from '@human/framework';
+import type { Suggestion } from '@adam0white/human-framework';
 import type { PlaceId } from './map.ts';
 import {
   type ActionId,

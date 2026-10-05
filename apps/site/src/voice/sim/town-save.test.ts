@@ -19,7 +19,7 @@ import {
   type Suggestion,
   snapshot,
   stepCommunity,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
 import { createTown, TOWN_IDS, type TownState, townPeople } from './town.ts';
 

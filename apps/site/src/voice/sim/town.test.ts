@@ -6,7 +6,7 @@ import type {
   Person,
   Suggestion,
   SuggestionResolution,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import {
   ageYears,
   birth,
@@ -40,7 +40,7 @@ import {
   standingAdvice,
   stepCommunity,
   villagerSpec,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
 import type { TownOptions, TownPersonId } from './town.ts';
 import {

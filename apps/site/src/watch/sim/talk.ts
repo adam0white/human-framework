@@ -15,7 +15,7 @@
  * Not covered: the spec's topics that change behaviour directly (rest tonight, practise with, mend things); talks
  * with children; talks in the open seasons.
  */
-import { hear, outwardSigns, selfReport } from '@human/framework';
+import { hear, outwardSigns, selfReport } from '@adam0white/human-framework';
 import { SECTION_IDS, type SectionId } from './config.ts';
 import { ageOf, childrenOf } from './life.ts';
 import { theSection } from './night.ts';

@@ -12,6 +12,8 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+- The package is renamed from `@human/framework` to `@adam0white/human-framework` (the `@human` npm scope is not ours). Imports change; the API does not.
+
 ## [2.1.0] - 2026-10-05
 
 Engine: 2.0.0. Unchanged from 2.0.0. A polish release: no simulation behaviour changes; playtest replays, engine fixtures and

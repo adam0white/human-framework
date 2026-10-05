@@ -11,7 +11,7 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { ENGINE_VERSION } from '@human/framework';
+import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
 import {
   decodeSnapshot,

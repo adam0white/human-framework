@@ -17,7 +17,7 @@ import {
   standingAdvice,
   type Term,
   voiceOf,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import type {
   EndView,
   Family,

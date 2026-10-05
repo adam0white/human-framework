@@ -3,7 +3,7 @@
  * community, the Keeper's postings and where each one is), the tokens on the lanes, grain, the rope and the
  * seeded RNG. Nothing here knows about real time or the UI.
  */
-import type { Command, Community, Percept, Person, Suggestion } from '@human/framework';
+import type { Command, Community, Percept, Person, Suggestion } from '@adam0white/human-framework';
 import {
   DUSK_START,
   NIGHTFALL,

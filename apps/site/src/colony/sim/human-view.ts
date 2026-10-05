@@ -11,7 +11,7 @@ import {
   type SuggestionResolution,
   type Term,
   voiceOf,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import { gm, NORM_LABELS } from './human-cast.ts';
 import type {
   BubbleKind,

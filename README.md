@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/adam0white/human-framework/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/adam0white/human-framework/actions/workflows/ci.yml)
 
-HF is a deterministic, explainable model of a simulated person, written in TypeScript (`@human/framework`). A person has a body, needs, emotions, memory, beliefs, habits, relationships, values, a conscience and a will, and lives for decades: they learn, age, marry, raise children and die. At each decision they weigh many urges, including suggestions from outside voices such as a player, and choose an action. Every choice can be explained, and a person may refuse a suggestion.
+HF is a deterministic, explainable model of a simulated person, written in TypeScript (`@adam0white/human-framework`). A person has a body, needs, emotions, memory, beliefs, habits, relationships, values, a conscience and a will, and lives for decades: they learn, age, marry, raise children and die. At each decision they weigh many urges, including suggestions from outside voices such as a player, and choose an action. Every choice can be explained, and a person may refuse a suggestion.
 
 ## Status
 
@@ -21,7 +21,7 @@ npm install ./human-framework-2.1.0.tgz
 ```
 
 ```ts
-import { createCommunity, createPerson, createVillage, predict, stepCommunity, villagerSpec } from '@human/framework';
+import { createCommunity, createPerson, createVillage, predict, stepCommunity, villagerSpec } from '@adam0white/human-framework';
 
 const ids = ['ada', 'bora'];
 const people = ids.map((id, i) => createPerson(villagerSpec(id, id, 1 + i, { now: 6 * 60, others: ids })));
@@ -52,7 +52,7 @@ The [package README](packages/human/README.md) covers the host contract (your `W
 
 | Path | What |
 |---|---|
-| `packages/human` | the framework (`@human/framework`): `src/`, `test/`, `examples/` |
+| `packages/human` | the framework (`@adam0white/human-framework`): `src/`, `test/`, `examples/` |
 | `apps/site` | the games and the home page (React 19 shells, Canvas 2D maps, Vite; deployed as a Cloudflare Worker with static assets) |
 | `scripts` | release, deploy, API doc and bench scripts |
 | `docs`, `research` | documentation and sources |

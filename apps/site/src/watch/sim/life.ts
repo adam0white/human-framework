@@ -44,7 +44,7 @@ import {
   retell,
   skillLevel,
   spousesOf,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import {
   DAY,
   type PostId,

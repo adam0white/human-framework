@@ -18,7 +18,7 @@
  * The other styles keep faith out of it: they never pick prayer or steer around it, and offer no food, drink or
  * cigarette during the fast.
  */
-import { chronicleBetween, type SuggestionResolution, voiceOf } from '@human/framework';
+import { chronicleBetween, type SuggestionResolution, voiceOf } from '@adam0white/human-framework';
 import type { Appeal, Draft, Frame, StandingWhisper } from '../protocol.ts';
 import { SHIPPED_SEED, VoiceGame } from './game.ts';
 import { type PlayOpts, play } from './headless.ts';

@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { skillLevel } from '@human/framework';
+import { skillLevel } from '@adam0white/human-framework';
 import { describe, expect, it } from 'vitest';
 import { replayTolerant } from '../../../test/watch/tolerant.ts';
 import { playYears } from '../../../test/watch/years.ts';

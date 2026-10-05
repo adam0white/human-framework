@@ -1,4 +1,4 @@
-import { FRAMEWORK_VERSION } from '@human/framework';
+import { FRAMEWORK_VERSION } from '@adam0white/human-framework';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../shared/theme.css';
@@ -420,8 +420,8 @@ function Home() {
           </div>
           <p className="fine">
             The example is the page’s own source file, type-checked and run against{' '}
-            <code>@human/framework</code> {FRAMEWORK_VERSION} by the test suite, which also checks the output
-            printed under it.
+            <code>@adam0white/human-framework</code> {FRAMEWORK_VERSION} by the test suite, which also checks
+            the output printed under it.
           </p>
         </section>
 
@@ -495,7 +495,7 @@ function Home() {
 
       <footer className="footer">
         <span>
-          HF (Human Framework) v{FRAMEWORK_VERSION} · <code>@human/framework</code>
+          HF (Human Framework) v{FRAMEWORK_VERSION} · <code>@adam0white/human-framework</code>
         </span>
         <span>Deterministic · explainable · no UI or LLM in the loop</span>
       </footer>

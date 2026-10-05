@@ -3,7 +3,7 @@
  * roster, per-side world state and the scenario roll. Both the Classic side and any HumanSide read these,
  * so "same seed, same schedule" holds by construction. Pure TS; no DOM, no wall clock, no Math.random.
  */
-import { DEFAULT_PRAYER_TIMES } from '@human/framework';
+import { DEFAULT_PRAYER_TIMES } from '@adam0white/human-framework';
 import { type PlaceId, spotFor, type Tile } from './map.ts';
 
 export type Minute = number;

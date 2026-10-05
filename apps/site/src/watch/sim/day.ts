@@ -7,7 +7,7 @@
  * `ROPE_DAWN_MEND` off whatever happens. Wounds are dressed in the village (tended once). Newcomers arrive at dusk.
  * Not covered: the fair, trade, seasons and years (G3-3).
  */
-import { observeAct, skillLevel, tend } from '@human/framework';
+import { observeAct, skillLevel, tend } from '@adam0white/human-framework';
 import { DAY, DUSK_START, NIGHTFALL, ROPE_DAWN_MEND, ROPE_MEND_PER_HOUR, type WatcherId } from './config.ts';
 import { presentIds, stepPeople } from './night.ts';
 import { arrive, isWatcher, nameOf, personOf, villager } from './people.ts';

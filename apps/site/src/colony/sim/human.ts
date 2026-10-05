@@ -1,5 +1,5 @@
 /**
- * The Human side on @human/framework (spec §5, §7): six people who decide for themselves inside a host world.
+ * The Human side on @adam0white/human-framework (spec §5, §7): six people who decide for themselves inside a host world.
  * The player's orders become standing suggestions (strength, insist, appeal) re-weighed at each of that
  * person's decisions until the job is done, refused, cancelled or lapsed. Verdicts, thoughts, the why panel,
  * the trust meter and the telegraph all read framework records; nothing here decides for a person.
@@ -16,7 +16,7 @@ import {
   type Suggestion,
   snapshot as snapshotPerson,
   stepCommunity,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import { fw, HOST_NORMS, villagerPersonSpec } from './human-cast.ts';
 import {
   type Bubble,

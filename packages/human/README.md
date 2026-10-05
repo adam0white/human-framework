@@ -1,4 +1,4 @@
-# @human/framework
+# @adam0white/human-framework
 
 Simulated people for games and headless simulations. A `Person` has a body, needs, emotions, memory,
 beliefs, skills, habits, relationships, values, an understanding of moral norms, and a will. The host
@@ -57,7 +57,7 @@ browser. The library needs `structuredClone` and nothing else from the host.
 import {
   createCommunity, createPerson, createVillage, MINUTES_PER_DAY, predict, stepCommunity,
   type Suggestion, villagerSpec,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 
 const ids = ['ada', 'bora'];
 const people = ids.map((id, i) => createPerson(villagerSpec(id, id, 1 + i, { now: 6 * 60, others: ids })));

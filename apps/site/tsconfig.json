@@ -7,7 +7,7 @@
     "types": ["vite/client"],
     "emitDeclarationOnly": true,
     "declarationDir": ".types",
-    "paths": { "@human/framework": ["../../packages/human/src/index.ts"] }
+    "paths": { "@adam0white/human-framework": ["../../packages/human/src/index.ts"] }
   },
   "include": ["src", "test", "vite.config.ts"],
   "references": [{ "path": "../../packages/human" }]

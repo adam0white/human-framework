@@ -5,7 +5,7 @@ import {
   decide,
   MINUTES_PER_YEAR,
   predict,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 
 // Hungry, and holds theft forbidden.
 const aylin = createPerson({

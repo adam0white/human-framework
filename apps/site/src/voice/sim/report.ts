@@ -13,7 +13,7 @@ import {
   MINUTES_PER_DAY,
   owedMakeUps,
   voiceOf,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import { type EndView, MODEL_NOTES, type ReportView, type StripRow } from '../protocol.ts';
 import type { Run } from './game.ts';
 import { TOWN_DEFAULTS, TOWN_EID_DAY } from './town.ts';

@@ -6,7 +6,7 @@
  *
  * Not covered: trade prices, bargaining, selling grain, a choice between buyers.
  */
-import { marry } from '@human/framework';
+import { marry } from '@adam0white/human-framework';
 import { DAY, type PostId, SECTION_IDS, type SectionId } from './config.ts';
 import { ageOf, chronicle, living, newcomer, RETIRE_AGE, WATCH_CUSTOM } from './life.ts';
 import { presentIds } from './night.ts';

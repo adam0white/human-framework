@@ -40,7 +40,7 @@ import {
   stepCommunity,
   strain,
   tend,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import {
   AIM_SCALE,
   BELL_COMMAND_MIN,

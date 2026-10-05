@@ -4,7 +4,7 @@
  * pause, auto-pause, "Another day") lives in `sim/playback.ts` so it can be tested headless. Playtest files are
  * made and replayed here (a loaded file is replayed from its seed and log; its snapshot is never loaded).
  */
-import { ENGINE_VERSION } from '@human/framework';
+import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { PlaytestError } from '../shared/playtest.ts';
 import { hostWorker } from '../shared/worker-host.ts';
 import type { MainToWorker, WorkerReply } from './protocol.ts';

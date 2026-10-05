@@ -2,7 +2,7 @@
  * Worker protocol for Game 2, *The Day You Say Nothing* (docs/games/voice.md §10). The
  * main thread sends `tick{dtMs}` every animation frame; the worker turns real time into sim minutes and replies
  * with at most one `frame` per tick, only when something changed. Every reply carries the run's `gen`. The worker
- * builds all view models as plain JSON; React never imports `@human/framework`.
+ * builds all view models as plain JSON; React never imports `@adam0white/human-framework`.
  *
  * Additive to the original contract (no shape changes): `VOICE_SCENARIO_VERSION`, `STRENGTH_VALUE`, `PACE_MINUTES_PER_SECOND`.
  */

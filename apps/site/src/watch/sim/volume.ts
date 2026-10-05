@@ -8,7 +8,7 @@
  * night). A fallen village also closes its volume, with the same epilogue. Questions are checked at the thaw only,
  * so a volume always closes on a page between winter and spring.
  */
-import { spousesOf } from '@human/framework';
+import { spousesOf } from '@adam0white/human-framework';
 import { ageOf, childrenOf, living, RETIRE_AGE } from './life.ts';
 import { isWatcher, nameOf, personOf } from './people.ts';
 import type { Leaf, Volume, WatchState } from './state.ts';

@@ -1,6 +1,6 @@
 # HF (Human Framework) — architecture
 
-This is the design reference for `packages/human` (`@human/framework`). For installation, a quick start and the host contract in brief, see the [package README](../packages/human/README.md). The [API reference](api.md) lists every export. The shared data contract lives in [`packages/human/src/types.ts`](../packages/human/src/types.ts). Every module listed here exports pure functions over a `Person` and mutates only the slice of `Person` it owns.
+This is the design reference for `packages/human` (`@adam0white/human-framework`). For installation, a quick start and the host contract in brief, see the [package README](../packages/human/README.md). The [API reference](api.md) lists every export. The shared data contract lives in [`packages/human/src/types.ts`](../packages/human/src/types.ts). Every module listed here exports pure functions over a `Person` and mutates only the slice of `Person` it owns.
 
 ## The spine: Urge → Assent → Act
 

@@ -23,7 +23,7 @@ import {
   readPerson,
   skillLevel,
   type World,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import { fw, gm, STRENGTH } from './human-cast.ts';
 import { findPath, type GameMap, type PlaceId, spotFor, type Tile } from './map.ts';
 import {

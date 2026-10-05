@@ -1,4 +1,4 @@
-import { voiceOf } from '@human/framework';
+import { voiceOf } from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
 import {
   type BeatKind,

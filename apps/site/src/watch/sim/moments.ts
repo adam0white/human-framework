@@ -19,7 +19,7 @@ import {
   previewCommandAs,
   type Suggestion,
   type SuggestionResolution,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import { type PostId, postSection, type SectionId, type WatcherId } from './config.ts';
 import { earshot, fearAt, litSection, PRESS_STRENGTH, presentIds, ringBell } from './night.ts';
 import { familyWords, isPost, KEEPER_ID, nameOf, personOf, them, villager, WatchWorld } from './people.ts';

@@ -23,7 +23,7 @@ import {
   type Person,
   preview,
   standingAdvice,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import type { Appeal, Prefill } from '../protocol.ts';
 import { selinEidCallMinute, TOWN_DEFAULTS, type Town, townCalendar } from './town.ts';
 import { ACTION_LABEL, isVoiceId, nameOfVoice, relWhen } from './view.ts';

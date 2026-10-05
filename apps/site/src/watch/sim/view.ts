@@ -14,7 +14,7 @@
  * as words and drawn values, never numbers.
  */
 
-import { outwardSigns, type Person } from '@human/framework';
+import { outwardSigns, type Person } from '@adam0white/human-framework';
 import {
   DAY,
   MOTION_REACH,

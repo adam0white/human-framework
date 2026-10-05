@@ -7,7 +7,7 @@
  * Every state-changing message goes through `RecordedGame` (sim/record.ts), which keeps the playtest log; a
  * loaded playtest file is replayed here from its seed and log (its snapshot is never loaded as state).
  */
-import { ENGINE_VERSION } from '@human/framework';
+import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { makePlaytestFile, PlaytestError, parsePlaytest, replayResult } from '../shared/playtest.ts';
 import { hostWorker } from '../shared/worker-host.ts';
 import { type Frame, type MainToWorker, VOICE_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';

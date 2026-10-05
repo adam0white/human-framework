@@ -2,7 +2,7 @@
  * G3-2: the watchers are HF people. Fear and family take them off the wall, the Keeper's reads come from what
  * he has seen, cards stay rare and on the lit stretch, and prayer stays quiet.
  */
-import { impressionOf } from '@human/framework';
+import { impressionOf } from '@adam0white/human-framework';
 import { describe, expect, it } from 'vitest';
 import { type PlanName, planInputs } from '../../../test/watch/plans.ts';
 import { postSection, type WatcherId } from './config.ts';

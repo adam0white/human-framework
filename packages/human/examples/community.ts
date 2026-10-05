@@ -18,7 +18,7 @@ import {
   type Suggestion,
   stepCommunity,
   villagerSpec,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 
 export const DAYS = 4;
 

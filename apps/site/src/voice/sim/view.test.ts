@@ -1,4 +1,4 @@
-import type { Person } from '@human/framework';
+import type { Person } from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
 import { reasonLabel, toldLine } from './view.ts';
 

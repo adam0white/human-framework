@@ -5,7 +5,7 @@
  * with). Words go through `selfReport`, so a proud watcher says "a scratch" about a bite: the page shows what they
  * say, not what is true. Faith stays out of it.
  */
-import { IMPRESSION_DEFAULTS, type Person, reserveOf, selfReport } from '@human/framework';
+import { IMPRESSION_DEFAULTS, type Person, reserveOf, selfReport } from '@adam0white/human-framework';
 import { postSection, SECTION_IDS, type SectionId, type WatcherId } from './config.ts';
 import { familyWords, isWatcher, nameOf, personOf, villager } from './people.ts';
 import type { NightNote, WatchState } from './state.ts';

@@ -8,7 +8,7 @@
  * them, and the read says how old it is ("from last winter"). Passing states (tired, hurt, frightened) still fade
  * on HF's clock. This is how the frame shows the impression; the Keeper's HF estimates are unchanged.
  */
-import { estimate, impressionOf, MINUTES_PER_DAY } from '@human/framework';
+import { estimate, impressionOf, MINUTES_PER_DAY } from '@adam0white/human-framework';
 import { SECTIONS, type SectionId, type WatcherId } from './config.ts';
 import { theSection } from './night.ts';
 import { isHere, KEEPER_ID } from './people.ts';

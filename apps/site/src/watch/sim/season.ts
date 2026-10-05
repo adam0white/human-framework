@@ -18,7 +18,7 @@
  * Not covered: weather beyond the harvest roll, the spring repairs, trade, resettlement after a fall (a fallen
  * village ends its volume and the chronicle; a new seed starts a new village).
  */
-import { liveCommunity, skillLevel, tend } from '@human/framework';
+import { liveCommunity, skillLevel, tend } from '@adam0white/human-framework';
 import {
   DAY,
   DUSK_START,

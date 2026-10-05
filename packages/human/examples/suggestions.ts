@@ -18,7 +18,7 @@ import {
   type Suggestion,
   type SuggestionResolution,
   tick,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 
 const NOON = 12 * 60;
 

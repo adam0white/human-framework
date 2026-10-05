@@ -5,7 +5,7 @@
  * offer set (round 3: the framework holds a standing suggestion back while its target is not offered, so a "later"
  * is heard when the option returns; the log says so once). Plain JSON.
  */
-import type { Suggestion, SuggestionResolution } from '@human/framework';
+import type { Suggestion, SuggestionResolution } from '@adam0white/human-framework';
 import { type Draft, STRENGTH_VALUE, type StandingView, type Tone } from '../protocol.ts';
 import { ACTION_LABEL, clock, toneOf } from './view.ts';
 

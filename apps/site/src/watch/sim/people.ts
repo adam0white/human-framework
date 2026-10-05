@@ -54,7 +54,7 @@ import {
   skillLevel,
   spousesOf,
   type World,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 import {
   ALL_POST_IDS,
   DAWN,

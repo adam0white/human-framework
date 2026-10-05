@@ -53,7 +53,7 @@ import {
   successChance,
   type Unit,
   type World,
-} from '@human/framework';
+} from '@adam0white/human-framework';
 
 export const TOWN_DEFAULTS = {
   /** Clock at creation (minute of day 0). */

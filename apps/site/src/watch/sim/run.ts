@@ -5,7 +5,7 @@
  * The full state holds every person's memory and is too long to paste, so the export's `end` is the game state
  * with each person summarised (`EndState`) plus a hash of the full state, which a replay must match exactly.
  */
-import { impressionOf, readCapacities } from '@human/framework';
+import { impressionOf, readCapacities } from '@adam0white/human-framework';
 import { applyInput, clockRuns, type Input, newGame, stepMinute } from './night.ts';
 import type { WatchState } from './state.ts';
 
