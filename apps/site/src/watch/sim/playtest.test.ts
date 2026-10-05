@@ -28,7 +28,7 @@ describe("the owner's run, replayed (2026-10-05 export)", () => {
   it('no stale or shared postings, no false "till dawn", and the rope gets only the hands it needs', () => {
     const problems: string[] = [];
     let days = 0;
-    replayTolerant(owner.seed, owner.inputs, owner.endMinute, {
+    const { applied, skipped } = replayTolerant(owner.seed, owner.inputs, owner.endMinute, {
       dawn: (s) => {
         const held = Object.entries(s.posts).filter(([, p]) => p);
         for (const [id, post] of held) {
@@ -59,6 +59,9 @@ describe("the owner's run, replayed (2026-10-05 export)", () => {
           );
       },
     });
+    // The fixed build honours 226 of his 272 inputs (46 fail or fall behind once the run diverges in year 1).
+    expect(applied).toBeGreaterThan(200);
+    expect(applied + skipped).toBe(owner.inputs.length);
     expect(days).toBeGreaterThan(15);
     expect(problems).toEqual([]);
   }, 300_000);
