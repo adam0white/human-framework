@@ -1,8 +1,8 @@
 /**
- * Playback: the worker's state machine without `postMessage` (v2 plan §5, §6), so it runs and tests headless.
+ * Playback: the worker's state machine without `postMessage` (colony.md §8), so it runs and tests headless.
  * It owns the game, the speed, pause and auto-pause, and turns real time (`tick{dtMs}`) into whole sim minutes.
  *
- * Auto-pause rules (v2 plan §6, as shipped): pause after the minute that caused it, for a suggestion becoming visible
+ * Auto-pause rules (colony.md §8): pause after the minute that caused it, for a suggestion becoming visible
  * (once per nudge), the first Human verdict on a player card that is notNow, willNot or complied (once per card;
  * `cannot` does not pause), a moment (once per moment) and the storm warning and start (once each). Reasons in the same minute
  * coalesce into one pause; the first in that order names it. Stepping stops at the pausing minute and the rest of
@@ -287,7 +287,7 @@ export class Playback {
 }
 
 /**
- * One pause from the reasons of one minute (v2 plan §6): candidates come in table order (suggestion, refusal,
+ * One pause from the reasons of one minute (colony.md §8): candidates come in table order (suggestion, refusal,
  * moment, storm); the first names the pause and the others follow it in the text.
  */
 export function coalesce(found: readonly Candidate[], minute: Minute): PauseInfo | null {

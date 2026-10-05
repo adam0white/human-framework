@@ -679,7 +679,7 @@ export class ClassicSim {
         break;
       case 'build':
       case 'raise-beam': {
-        // Each stage has its own price (v2 plan §2): walls 2 timber / 120 work, roof 5 / 600, beam 2. A builder
+        // Each stage has its own price (colony.md §10): walls 2 timber / 120 work, roof 5 / 600, beam 2. A builder
         // claims one stage and pays for it; a second builder takes the next free stage, never the beam or the roof
         // before the stage below it is up, and waits when none is free.
         if (!siteOpen(this.world)) {
@@ -797,7 +797,7 @@ export class ClassicSim {
     }
   }
 
-  /** Scripted storm meal (v2 plan §2): each living unit takes one meal from the store, if one is left. */
+  /** Scripted storm meal (colony.md §2): each living unit takes one meal from the store, if one is left. */
   private stormMeal(): void {
     const r = this.world.resources;
     for (const u of this.units) {

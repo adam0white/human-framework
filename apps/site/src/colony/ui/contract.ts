@@ -1,5 +1,5 @@
 /**
- * The v2 worker contract as the UI reads it (docs/games/colony-v2.md §13). SIM owns `protocol.ts` and
+ * The v2 worker contract as the UI reads it (docs/games/colony.md §10). SIM owns `protocol.ts` and
  * `sim/game.ts`; the UI imports those types through this file, plus a few display helpers.
  */
 import { clockOf, type Minute } from '../sim/world-types.ts';

@@ -98,7 +98,7 @@ export interface Scoreboard {
 }
 
 // ---------------------------------------------------------------------------------------------
-// Goals (v2 plan §1, §12)
+// Goals (colony.md §6)
 // ---------------------------------------------------------------------------------------------
 
 export type GoalId = 'roof' | 'stock' | 'lives' | 'project';
@@ -122,7 +122,7 @@ export interface GoalView {
 export const GOAL_JUDGE = STORM_START;
 /** Meals in store at the storm for the `stock` goal: supper plus breakfast for six. */
 export const STOCK_GOAL = 12;
-/** Day-3 goals (v2 plan §12): the project and 6 meals by 19:30, all alive at Day 4 05:00. */
+/** Day-3 goals (colony.md §6): the project and 12 meals by D3 18:00, all alive at Day 4 05:00. */
 export const DAY3_JUDGE = at(3, 18, 0);
 export const DAY3_STOCK_GOAL = 12;
 
@@ -133,7 +133,7 @@ export interface TimelineMarker {
   until?: Minute;
 }
 
-/** Director nudges (spec §7, v2 plan §7): suggested orders on the clock, each with the risk it carries. */
+/** Director nudges (colony.md §7): suggested orders on the clock, each with the risk it carries. */
 export interface Nudge {
   id: string;
   minute: Minute;
@@ -217,7 +217,7 @@ export const NUDGES: readonly Nudge[] = [
     prefill: { rush: true },
   },
   {
-    // Plan §7 had 15:00–16:00, but before the warning the Human cook is only offered below `cookBelow`, so a village
+    // v2 planned 15:00–16:00, but before the warning the Human cook is only offered below `cookBelow`, so a village
     // on track answered "not on offer". From the warning she cooks for the storm, so the card follows it, half an
     // hour after the warning pause so the two do not stack.
     id: 'storm-pot',
@@ -318,7 +318,7 @@ export interface Frame {
   canContinue: boolean;
 }
 
-/** What one stepped minute produced, for the worker's auto-pause rules (v2 plan §6). */
+/** What one stepped minute produced, for the worker's auto-pause rules (colony.md §8). */
 export interface StepEvents {
   /** The minute that was stepped. */
   minute: Minute;
@@ -432,7 +432,7 @@ export class ColonyGame {
   }
 
   /**
-   * "Another day" (v2 plan §12, as shipped): clear weather, no moments or nudges, and one goal on both sides, the
+   * "Another day" (colony.md §6): clear weather, no moments or nudges, and one goal on both sides, the
    * store-room at the site. A side whose house is below 10 finishes the house first; its store-room opens the
    * minute the roof is on.
    */
@@ -648,7 +648,7 @@ export class ColonyGame {
   }
 
   /**
-   * Goals with live values and status (v2 plan §1; Day 3: §12). By default the current day's; `day: 2` after
+   * Goals with live values and status (colony.md §6). By default the current day's; `day: 2` after
    * "Another day" returns the Day-2 goals as they stood at the Day-2 end.
    */
   goals(day: 2 | 3 = this.endMinute > END_MINUTE ? 3 : 2): GoalView[] {

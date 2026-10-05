@@ -73,7 +73,7 @@ export function nameList(ids: readonly VillagerId[]): string {
 }
 
 const NUMBER = ['no', 'One', 'Two', 'Three', 'Four'];
-/** A pot gives this many meals (both sides, v2 plan §2). */
+/** A pot gives this many meals (both sides, colony.md §10). */
 const POT_MEALS = 4;
 
 /**

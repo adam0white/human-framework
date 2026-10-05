@@ -1,5 +1,5 @@
 /**
- * Headless balance targets on the shipped seed (v2 plan §1, §14). The locked numbers live in code; nothing here
+ * Headless balance targets on the shipped seed (colony.md §6, §11). The locked numbers live in code; nothing here
  * mutates a table. The player patterns live in `policies.ts` (shared with the end screen's hindsight replay).
  */
 import { describe, expect, it } from 'vitest';

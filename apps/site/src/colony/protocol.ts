@@ -1,7 +1,7 @@
 /**
- * Worker protocol (spec §10, v2 plan §13): the main thread sends `tick{dtMs}` once per animation frame; the worker
+ * Worker protocol (colony.md §10): the main thread sends `tick{dtMs}` once per animation frame; the worker
  * converts real time to sim minutes (`SIM_MINUTES_PER_SECOND` × speed) and replies with at most one `frame` per
- * tick. The worker starts paused (`pause.kind 'start'`) and decides auto-pauses itself (v2 plan §6), so every UI
+ * tick. The worker starts paused (`pause.kind 'start'`) and decides auto-pauses itself (colony.md §8), so every UI
  * pauses at the same minutes. The sim never reads a clock, so a run is reproducible from the seed and the order log.
  */
 import type { PlaytestFile, ReplayResult } from '../shared/playtest.ts';
