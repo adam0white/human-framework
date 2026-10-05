@@ -32,7 +32,7 @@ const topTerm = (c: Considered | undefined): { source: string; value: number } |
   return best;
 };
 
-/** Voices the narration addresses as "you" (the player); other voices are named when a lexicon names them. */
+/** Voices the narration addresses as "you" (the host's own voice); other voices are named when a lexicon names them. */
 const PLAYER_VOICES = new Set(['player', 'you']);
 
 /** Intention string for a decision: 'for Allah', 'to feed myself', 'to keep my promise to X', ... */

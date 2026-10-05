@@ -16,8 +16,9 @@
  * mistrust and nature reduces rumination (F30).
  *
  * Body. Cold raises metabolism by up to 15% (more food and water used), slows recovery from exertion (half-life up
- * to doubled) and makes sleep less restorative (sleep pressure falls up to 30% slower). Darkness while awake lets
- * sleep pressure build up to 15% faster, the inverse of light raising alertness (F27). All four factors are
+ * to doubled) and makes sleep less restorative (the sleep time constant lengthened by up to 30%, so pressure falls
+ * more slowly). Darkness while awake lets sleep pressure build faster (the wake time constant shortened by up to
+ * 15%), the inverse of light raising alertness (F27). All four factors are
  * engineering assumptions; thermal-comfort effect sizes were not found (research/family-environment-sources.md).
  *
  * Needs, per hour: crowding beyond tolerance drains autonomy (0.02 × excess), squalor drains safety (0.02 ×
@@ -30,7 +31,7 @@
  */
 import { feel } from '../affect/index.ts';
 import type { BodyParams } from '../body/index.ts';
-import { clamp, clamp01, clampSigned } from '../core/index.ts';
+import { clamp, clamp01, clampSigned, isNum, isObj } from '../core/index.ts';
 import type {
   AmbientPercept,
   AmbientState,
@@ -68,8 +69,8 @@ export const ENVIRONMENT_DEFAULTS = {
 
 function clean(x: AmbientPercept): AmbientPercept {
   const out: AmbientPercept = {};
-  const unit = (v: unknown) => (typeof v === 'number' && Number.isFinite(v) ? clamp01(v) : undefined);
-  const signed = (v: unknown) => (typeof v === 'number' && Number.isFinite(v) ? clampSigned(v) : undefined);
+  const unit = (v: unknown) => (isNum(v) ? clamp01(v) : undefined);
+  const signed = (v: unknown) => (isNum(v) ? clampSigned(v) : undefined);
   const cold = unit(x.cold);
   if (cold !== undefined) out.cold = cold;
   const dark = unit(x.dark);
@@ -80,18 +81,17 @@ function clean(x: AmbientPercept): AmbientPercept {
   if (beauty !== undefined) out.beauty = beauty;
   const weather = signed(x.weather);
   if (weather !== undefined) out.weather = weather;
-  if (typeof x.dayLength === 'number' && Number.isFinite(x.dayLength))
-    out.dayLength = clamp(x.dayLength, 0, 24);
+  if (isNum(x.dayLength)) out.dayLength = clamp(x.dayLength, 0, 24);
   if (typeof x.outdoors === 'boolean') out.outdoors = x.outdoors;
   return out;
 }
 
 /** Validate a saved ambient slice; undefined when malformed (used by `restore`). @internal */
 export function sanitizeAmbient(x: unknown): AmbientState | undefined {
-  if (typeof x !== 'object' || x === null || Array.isArray(x)) return undefined;
+  if (!isObj(x)) return undefined;
   const a = x as Record<string, unknown>;
   if (typeof a.since !== 'number' || !Number.isFinite(a.since)) return undefined;
-  if (typeof a.percept !== 'object' || a.percept === null || Array.isArray(a.percept)) return undefined;
+  if (!isObj(a.percept)) return undefined;
   return { percept: clean(a.percept as AmbientPercept), since: a.since };
 }
 

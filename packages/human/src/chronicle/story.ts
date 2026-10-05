@@ -1,7 +1,7 @@
 /**
  * SCOPE: narration over consolidated day records (N3 with N6 phrase packs): `narrateChronicle` summarises a
  * period as a short life account in first or third person, and `diffChronicle` compares two periods ("By the end
- * he prayed Fajr without being told"). Both are deterministic, template-driven and read only `DayRecord`s plus an
+ * they prayed the dawn prayer without being told"). Both are deterministic, template-driven and read only `DayRecord`s plus an
  * optional person for names and pronouns. The comparison is a descriptive contrast of rates (share of days an
  * action was done, done unprompted, or done only after a voice suggested it), with fixed engineering thresholds;
  * it is not a statistical test, and "without being told" means only that no listed voice had suggested that
@@ -163,7 +163,7 @@ export function narrateChronicle(
     for (const l of [...r.prayers.kept, ...r.prayers.missed]) if (!labels.includes(l)) labels.push(l);
   for (const label of labels.slice(0, 5)) {
     const n = stats.done[`prayer:${label}`] ?? 0;
-    // One day is not "every day" (Game 2 playtest).
+    // One day is not "every day" (found in playtesting).
     const key =
       n === 0
         ? 'chronicle.prayer.never'

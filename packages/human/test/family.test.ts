@@ -54,19 +54,21 @@ describe('family: conception, pregnancy and birth', () => {
     expect(conceptionChance(older, dad, 29.5)).toBeLessThan(0.5 * conceptionChance(young, dad, 29.5) + 1e-9);
     expect(conceptionChance(adult('m3', 'female', 52), dad, 365)).toBe(0);
     expect(conceptionChance(dad, young, 365)).toBe(0);
-    conceive(young, dad, { at: NOW, seed: 11 });
+    conceive(young, dad, 11, NOW);
     expect(conceptionChance(young, dad, 365)).toBe(0);
   });
 
   test('a pregnancy is due about 268 days on, raises metabolism later, and delivery yields a child spec', () => {
     const mum = adult('m', 'female', 28);
     const dad = adult('d', 'male', 31);
-    const pg = conceive(mum, dad, { at: NOW, seed: 42 });
+    const pg = conceive(mum, dad, 42, NOW);
     expect(pg).toBeDefined();
     const days = ((pg?.dueAt ?? 0) - NOW) / MINUTES_PER_DAY;
     expect(days).toBeGreaterThan(230);
     expect(days).toBeLessThan(300);
-    expect(conceive(mum, dad, { at: NOW, seed: 43 })).toBeUndefined();
+    expect(conceive(mum, dad, 43, NOW)).toBeUndefined();
+    const twin = adult('m', 'female', 28);
+    expect(conceive(twin, dad, { at: NOW, seed: 42 })).toEqual(pg); // deprecated 2.0 form, removed in 3.0
     expect(mum.rng).toEqual(adult('m', 'female', 28).rng); // no person's stream consumed
     expect(pregnancyModifiers(mum, lifeModifiers(mum)).metabolism).toBe(lifeModifiers(mum).metabolism);
     tick(mum, NOW + 20 * 7 * MINUTES_PER_DAY);
@@ -272,7 +274,7 @@ describe('family: stories of a place (L2, control scenario)', () => {
     const control = adult('kid', 'male', 10);
     enableGists(told);
     enableGists(control);
-    const written = retell(mum, told, { at: told.now, trust: 0.9 });
+    const written = retell(mum, told, told.now, { trust: 0.9 });
     expect(written).toHaveLength(1);
     expect(written[0]).toMatchObject({ placeId: 'east-wall', count: 0 });
     expect(written[0]?.tags[0]).toBe('told');
@@ -291,10 +293,13 @@ describe('family: stories of a place (L2, control scenario)', () => {
     const b = adult('kid', 'male', 10);
     enableGists(a);
     enableGists(b);
-    const high = retell(mum, a, { at: a.now, trust: 0.9 })[0]?.salience ?? 0;
-    const low = retell(mum, b, { at: b.now, trust: 0.3 })[0]?.salience ?? 0;
+    const high = retell(mum, a, a.now, { trust: 0.9 })[0]?.salience ?? 0;
+    const low = retell(mum, b, b.now, { trust: 0.3 })[0]?.salience ?? 0;
     expect(low).toBeLessThan(high);
-    expect(retell(mum, a, { at: a.now, trust: 0.9 })).toHaveLength(0);
+    expect(retell(mum, a, a.now, { trust: 0.9 })).toHaveLength(0);
+    const c = adult('kid', 'male', 10);
+    enableGists(c);
+    expect(retell(mum, c, { at: c.now, trust: 0.9 })[0]?.salience).toBe(high); // deprecated 2.0 form
     expect(a.memory.gists).toHaveLength(1);
     // Someone who stood there and came to like it keeps their own gist.
     const veteran = adult('vet', 'male', 30);
@@ -311,11 +316,11 @@ describe('family: stories of a place (L2, control scenario)', () => {
     });
     skip(veteran, veteran.now + MINUTES_PER_YEAR);
     const before = JSON.stringify(veteran.memory.gists);
-    retell(mum, veteran, { at: veteran.now, trust: 1 });
+    retell(mum, veteran, veteran.now, { trust: 1 });
     expect(JSON.stringify(veteran.memory.gists)).toBe(before);
     // Without gists on, a listener hears nothing.
     const plain = adult('kid', 'male', 10);
-    expect(retell(mum, plain, { at: plain.now })).toEqual([]);
+    expect(retell(mum, plain, plain.now)).toEqual([]);
     expect(plain.memory.gists).toBeUndefined();
   });
 });

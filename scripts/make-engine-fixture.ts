@@ -51,7 +51,7 @@ const endAt = 201.25;
 for (let d = 0; d < 200; d++) {
   H.stepCommunity(c, world, start + (d + 0.5) * DAY, {});
   if (d % 5 === 0) H.court(ada, bram, start + (d + 0.5) * DAY);
-  H.glimpseOf(ada, cora, { at: start + (d + 0.5) * DAY });
+  H.glimpseOf(ada, cora, start + (d + 0.5) * DAY);
   H.stepCommunity(c, world, start + (d + 1) * DAY, {});
 }
 H.stepCommunity(c, world, start + saveAt * DAY, {});

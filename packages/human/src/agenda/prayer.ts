@@ -16,7 +16,7 @@
  *   calendar; prayer-times-sources.md §1), and Maghrib ends when the red twilight goes (the majority; §2). The
  *   framework computes no astronomy: a host's `asr` and `isha` times carry these positions, and a host that
  *   tabulates by another position (Abu Hanifa's two shadow lengths, the white twilight) has chosen differently.
- *   `DEFAULT_PRAYER_TIMES` and the town calendar are fictional numbers placed where the decided positions put them.
+ *   `DEFAULT_PRAYER_TIMES` is a set of fictional numbers placed where the decided positions put them.
  * - Isha is valid until true dawn (prayer-times-sources.md §1), so its window runs to the next day's Fajr. Its
  *   preferred end (midnight, decisions.md) is not distinguished from its valid end: no window here carries a
  *   preferred part, so delaying Isha past midnight costs nothing extra.

@@ -20,16 +20,18 @@
  *   Rosmalen 2012 favour experience-dependent set points over a fixed one people return to; the fade toward the
  *   maturation path is an engineering assumption, not their model.
  *
- * Every trait and value stays within `maxDrift` of where it stood when drift was enabled, so rank order mostly holds
+ * Every trait and value stays within `maxDrift` of where it stood when drift was enabled (the value anchor is
+ * re-set when age crosses 18, where maturation begins), so rank order mostly holds
  * (high adult rank-order stability, Bleidorn et al. 2022). All rates, thresholds and caps are engineering assumptions
  * chosen for these directions (research/long-run-sources.md); none converts a published effect size. It does not
  * model childhood or adolescent personality development, change in honesty or agreeableness from experience,
  * therapy, cohort effects, individual differences in plasticity, or norm conviction (owned by `conscience/`).
  * Traits never branch logic (framework.md, locked decisions): this module only moves the coefficients.
  */
-import { clamp, clamp01, dpow } from '../core/index.ts';
+import { clamp, clamp01, dayOf, dpow, isNum, isObj } from '../core/index.ts';
+import { ageAt } from '../lifecourse/index.ts';
 import type { CharacterState, Minute, Person, Signed, Traits, Values } from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
+import { DAYS_PER_YEAR, TRAIT_KEYS, VALUE_KEYS } from '../types.ts';
 
 export const CHARACTER_DEFAULTS = {
   /** Largest distance any trait or value may drift from its value when drift was enabled. */
@@ -84,10 +86,7 @@ export const CHARACTER_DEFAULTS = {
   varietyBaseline: 5,
 };
 
-const TRAIT_KEYS = Object.keys(CHARACTER_DEFAULTS.traitPerYear) as (keyof Traits)[];
-const VALUE_KEYS = Object.keys(CHARACTER_DEFAULTS.valuePerYear) as (keyof Values)[];
-
-const yearOf = (now: Minute): number => Math.floor(Math.floor(now / MINUTES_PER_DAY) / 365);
+const yearOf = (now: Minute): number => Math.floor(dayOf(now) / DAYS_PER_YEAR);
 const emptyAcc = (): CharacterState['acc'] => ({
   days: 0,
   mood: 0,
@@ -105,12 +104,9 @@ const emptyAcc = (): CharacterState['acc'] => ({
  * A save the engine wrote is already within all of this. @internal
  */
 export function sanitizeCharacter(x: unknown): CharacterState | undefined {
-  const isObj = (o: unknown): o is Record<string, unknown> =>
-    typeof o === 'object' && o !== null && !Array.isArray(o);
-  const num = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
-  if (!isObj(x) || !num(x.year) || !num(x.agedTo)) return undefined;
+  if (!isObj(x) || !isNum(x.year) || !isNum(x.agedTo)) return undefined;
   const unitRecord = <K extends string>(o: unknown, keys: readonly K[]): Record<K, number> | undefined => {
-    if (!isObj(o) || !keys.every((k) => num(o[k]))) return undefined;
+    if (!isObj(o) || !keys.every((k) => isNum(o[k]))) return undefined;
     const out = {} as Record<K, number>;
     for (const k of Object.keys(o))
       if ((keys as readonly string[]).includes(k)) out[k as K] = clamp01(o[k] as number);
@@ -120,7 +116,7 @@ export function sanitizeCharacter(x: unknown): CharacterState | undefined {
   const baseValues = unitRecord(x.baseValues, VALUE_KEYS);
   const accKeys = ['days', 'mood', 'kept', 'broken', 'social', 'variety'] as const;
   const a = x.acc;
-  if (!baseTraits || !baseValues || !isObj(a) || !accKeys.every((k) => num(a[k]))) return undefined;
+  if (!baseTraits || !baseValues || !isObj(a) || !accKeys.every((k) => isNum(a[k]))) return undefined;
   const acc = {} as CharacterState['acc'];
   for (const k of Object.keys(a)) {
     if (!(accKeys as readonly string[]).includes(k)) continue;
@@ -131,7 +127,7 @@ export function sanitizeCharacter(x: unknown): CharacterState | undefined {
   const D = CHARACTER_DEFAULTS.maxDrift;
   if (isObj(x.experience))
     for (const [k, v] of Object.entries(x.experience))
-      if ((TRAIT_KEYS as readonly string[]).includes(k) && num(v))
+      if ((TRAIT_KEYS as readonly string[]).includes(k) && isNum(v))
         experience[k as keyof Traits] = clamp(v, -D, D);
   const fields: Record<keyof CharacterState, unknown> = {
     baseTraits,
@@ -227,8 +223,8 @@ export function ageCharacter(p: Person, to: Minute): boolean {
   const c = p.character;
   if (!c || to <= c.agedTo) return false;
   const K = CHARACTER_DEFAULTS;
-  const fromAge = (c.agedTo - p.life.bornAt) / MINUTES_PER_YEAR;
-  const toAge = (to - p.life.bornAt) / MINUTES_PER_YEAR;
+  const fromAge = ageAt(p, c.agedTo);
+  const toAge = ageAt(p, to);
   const years = overlap(fromAge, toAge, K.maturationFrom, K.maturationTo);
   const cYears = overlap(
     fromAge,

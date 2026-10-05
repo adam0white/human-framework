@@ -5,27 +5,20 @@
  */
 import { describe, expect, test } from 'vitest';
 import {
-  createCommunity,
   createPerson,
-  createVillage,
   lifeModifiers,
   MINUTES_PER_DAY,
   nextBodyThreshold,
   stepCommunity,
-  villagerSpec,
 } from '../src/index.ts';
+import { setupVillage } from './support.ts';
 
 /** Budget multiplier: 1 on the quiet dev machine the budgets were set on; CI sets `BENCH_SCALE` (see ci.yml). */
 const SCALE = Number(process.env.BENCH_SCALE ?? 1);
 const START = 7 * 60;
 
-function setup(ids: string[], devout: string[], foodStock?: number) {
-  const people = ids.map((id, i) =>
-    createPerson(villagerSpec(id, id, 100 + i, { devout: devout.includes(id), others: ids, now: START })),
-  );
-  const village = createVillage(people, { seed: 7, ...(foodStock !== undefined ? { foodStock } : {}) });
-  return { people, village, community: createCommunity(people) };
-}
+const setup = (ids: string[], devout: string[], foodStock?: number) =>
+  setupVillage(ids, { devout, ...(foodStock !== undefined ? { foodStock } : {}) });
 
 /** Runs `n` villagers for 30 days (`maxEvents: 1000` caps only the returned event list; all 30 days are simulated) after a short warm-up; returns milliseconds. */
 function villageRun(prefix: string, n: number, foodStock: number): number {

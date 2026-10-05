@@ -37,12 +37,25 @@
  * response curves for any real exposure, or epidemiological transmission rates.
  *
  * SCOPE (pinned rates, integration 2026-10-03): `BodyState.rates` lets a host replace the four depletion
- * rates for one body, so a scenario tuned on a different time scale (the colony game's two days) keeps the
+ * rates for one body, so a scenario tuned on a different time scale (a scenario whose whole life spans two days) keeps the
  * cadence it was built on after the defaults were recalibrated (see docs/findings.md). It is a scenario
  * knob, not a physiological trait and not a life-course effect (`LifeModifiers.metabolism` is that), and
  * `readBody` thresholds ignore it.
  */
-import { chance, clamp, clamp01, dcos, decay, dexp, dlog, minuteOfDay, smoothstep } from '../core/index.ts';
+import {
+  chance,
+  clamp,
+  clamp01,
+  dcos,
+  decay,
+  dexp,
+  dlog,
+  hasNumbers,
+  isNum,
+  isObj,
+  minuteOfDay,
+  smoothstep,
+} from '../core/index.ts';
 import type {
   BodyLoad,
   BodyRates,
@@ -57,7 +70,7 @@ import type {
   PersonSpec,
   Unit,
 } from '../types.ts';
-import { MINUTES_PER_DAY } from '../types.ts';
+import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
 import { bleedStep, INJURY_DEFAULTS } from './injury.ts';
 
 export const BODY_DEFAULTS = {
@@ -166,7 +179,7 @@ export const BODY_DEFAULTS = {
   exposureRecentGain: 0.1,
   exposureRecentHalfLife: 3 * MINUTES_PER_DAY,
   /** Cumulative dose decays very slowly (risk declines over years after cessation). */
-  exposureCumulativeHalfLife: 5 * 365 * MINUTES_PER_DAY,
+  exposureCumulativeHalfLife: 5 * MINUTES_PER_YEAR,
   // --- contagion ---
   /** Transmission rate per contact minute at source severity 1 (60 min at severity 0.5 ≈ 11%). */
   transmissionPerMinute: 0.004,
@@ -198,7 +211,7 @@ export function sanitizeRates(input: unknown): BodyRates | undefined {
   const rates: BodyRates = {};
   for (const k of RATE_KEYS) {
     const v = src[k];
-    if (typeof v === 'number' && Number.isFinite(v) && v >= 0) rates[k] = v;
+    if (isNum(v) && v >= 0) rates[k] = v;
   }
   return Object.keys(rates).length > 0 ? rates : undefined;
 }
@@ -209,24 +222,43 @@ export function sanitizeRates(input: unknown): BodyRates | undefined {
  * @internal
  */
 export function sanitizeExposures(input: unknown, now: Minute): Record<string, Exposure> | undefined {
-  if (typeof input !== 'object' || input === null || Array.isArray(input)) return undefined;
+  if (!isObj(input)) return undefined;
   const out: Record<string, Exposure> = {};
   let n = 0;
   for (const [k, raw] of Object.entries(input as Record<string, unknown>)) {
     if (n >= BODY_DEFAULTS.maxExposures) break;
     if (typeof raw !== 'object' || raw === null) continue;
     const e = raw as Record<string, unknown>;
-    const recent = typeof e.recent === 'number' && Number.isFinite(e.recent) ? clamp01(e.recent) : undefined;
-    const cumulative =
-      typeof e.cumulative === 'number' && Number.isFinite(e.cumulative)
-        ? Math.max(0, e.cumulative)
-        : undefined;
+    const recent = isNum(e.recent) ? clamp01(e.recent) : undefined;
+    const cumulative = isNum(e.cumulative) ? Math.max(0, e.cumulative) : undefined;
     if (recent === undefined || cumulative === undefined) continue;
-    const lastAt = typeof e.lastAt === 'number' && Number.isFinite(e.lastAt) ? e.lastAt : now;
+    const lastAt = isNum(e.lastAt) ? e.lastAt : now;
     out[k] = { recent, cumulative, lastAt };
     n++;
   }
   return n > 0 ? out : undefined;
+}
+
+/**
+ * Restore-time check of the body's optional fields, in place: pinned rates and exposures (1.2.0), illnesses' chronic
+ * fields, and the last sleep and downing spans (1.7.0). Malformed ones are dropped, never filled; injuries and
+ * downing are checked by `sanitizeInjuries`. A save the engine wrote is unchanged. @internal
+ */
+export function sanitizeBody(b: BodyState, now: Minute): void {
+  if (b.rates !== undefined) {
+    const rates = sanitizeRates(b.rates);
+    if (rates) b.rates = rates;
+    else delete b.rates;
+  }
+  if (b.exposures !== undefined) {
+    const ex = sanitizeExposures(b.exposures, now);
+    if (ex) b.exposures = ex;
+    else delete b.exposures;
+  }
+  sanitizeIllnesses(b);
+  const span = (x: unknown) => isObj(x) && hasNumbers(x, 'from', 'to');
+  if (b.lastSleep !== undefined && !span(b.lastSleep)) delete b.lastSleep;
+  if (b.lastDowned !== undefined && !span(b.lastDowned)) delete b.lastDowned;
 }
 
 /**
@@ -251,9 +283,7 @@ export function sanitizeIllnesses(b: BodyState): void {
   );
   for (const i of b.illnesses) {
     i.severity = clamp01(i.severity);
-    if (i.baseline !== undefined)
-      i.baseline =
-        typeof i.baseline === 'number' && Number.isFinite(i.baseline) ? clamp01(i.baseline) : i.severity;
+    if (i.baseline !== undefined) i.baseline = isNum(i.baseline) ? clamp01(i.baseline) : i.severity;
     if (i.aggravatedBy !== undefined) {
       if (!Array.isArray(i.aggravatedBy)) delete i.aggravatedBy;
       else i.aggravatedBy = i.aggravatedBy.filter((k): k is string => typeof k === 'string');
@@ -653,7 +683,7 @@ export function sicken(p: Person, illness: Omit<Illness, 'id' | 'since'>): Illne
 }
 
 /**
- * Record `amount` units of a host-defined exposure (e.g. one cigarette). Raises the saturating recent load
+ * Record `amount` units of a host-defined exposure (e.g. one dose of a substance). Raises the saturating recent load
  * (aggravates chronic conditions listed in their `aggravatedBy`) and the cumulative dose (read by
  * `exposureChance`). Bounded: beyond `maxExposures` kinds the smallest cumulative dose is dropped.
  */

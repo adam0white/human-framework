@@ -73,6 +73,11 @@ describe('skill domains pick their age curve', () => {
     expect(learningFor(adult)).toBe(lifeModifiers(adult).learning);
     for (const p of [child, adult]) doWork(p, work({ id: 'turkish', difficulty: 0.15, domain: 'language' }));
     expect(skillLevel(child, 'turkish')).toBeGreaterThan(skillLevel(adult, 'turkish'));
+    // The domain reaches finish: at 40 the language curve (0.6) is below the general one (about 0.88), so the same
+    // adult learns less of a language-domain skill than of one without a domain.
+    const plain = at(40, 'p');
+    doWork(plain, work({ id: 'turkish', difficulty: 0.15 }));
+    expect(skillLevel(adult, 'turkish')).toBeLessThan(skillLevel(plain, 'turkish'));
     // 'general' and no domain give identical bits.
     const g = at(40, 'g');
     const n = at(40, 'n');

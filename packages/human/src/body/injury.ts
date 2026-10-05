@@ -22,7 +22,7 @@
  * anatomy beyond the part name, infection, scars, permanent loss, prosthetics, blood volume, shock, or a doctor's
  * skill (the host folds that into `quality`).
  */
-import { clamp01, dexp } from '../core/index.ts';
+import { clamp01, dexp, isNum, isObj } from '../core/index.ts';
 import type { BodyState, Capacity, Injury, Minute, Person, Unit } from '../types.ts';
 import { CAPACITIES, MINUTES_PER_DAY } from '../types.ts';
 
@@ -212,11 +212,7 @@ export function downedAllows(aff: { tags?: readonly string[]; mode?: string }): 
   return tags.includes('floor') || tags.includes('rest');
 }
 
-const isNum = (x: unknown): x is number => typeof x === 'number' && Number.isFinite(x);
-const isObj = (x: unknown): x is Record<string, unknown> =>
-  typeof x === 'object' && x !== null && !Array.isArray(x);
-
-/** Restore-time check of the 1.6.0 injury and downing fields: malformed ones are dropped, never filled. */
+/** Restore-time check of the 1.6.0 injury and downing fields: malformed ones are dropped, never filled. @internal */
 export function sanitizeInjuries(b: BodyState): void {
   if (!Array.isArray(b.injuries)) {
     b.injuries = [];

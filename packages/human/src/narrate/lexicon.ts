@@ -1,7 +1,7 @@
 /**
  * SCOPE: keyed narration templates, host phrase packs and name/role lookup (N6). Every English sentence the
  * framework narrates lives in `EN_LINES` under a stable key; a host `Lexicon` replaces (`lines`) or extends
- * (`extend`) any key, names entities ("Selin") and maps relationship roles to nouns ("daughter") so narration
+ * (`extend`) any key, names entities ("Ada") and maps relationship roles to nouns ("daughter") so narration
  * can say "my daughter" or "his daughter". Selection stays deterministic: a template is picked by an FNV hash of
  * a caller key (a decision id, a day index), never by the person's RNG. This is presentation only. It is
  * locale-ready in the narrow sense that every string is keyed and slot-filled; grammar (plural, case, verb
@@ -315,7 +315,7 @@ export interface NameOptions {
 }
 
 /**
- * How `p` refers to `id` in narration: a lexicon name ("Selin"), a role phrase ("my daughter", from a lexicon
+ * How `p` refers to `id` in narration: a lexicon name ("Ada"), a role phrase ("my daughter", from a lexicon
  * role noun for one of the relationship's roles, else the built-in spouse/parent/child), or the raw id.
  * `lexicon.prefer: 'role'` puts the role first. Without a lexicon this is the pre-N6 behaviour.
  */

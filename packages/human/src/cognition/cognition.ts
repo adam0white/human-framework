@@ -24,13 +24,14 @@
  * an advertised `safety` gain) or paying looks only like a loss. The spec's "security need" is read as the
  * `safety` need: `security` is a value, not a need, and no need is added.
  */
-import { inBreak } from '../affect/index.ts';
+import { emotionLevel, inBreak } from '../affect/index.ts';
 import { agendaTerms } from '../agenda/index.ts';
 import { trustOf } from '../beliefs/index.ts';
 import { normTerms } from '../conscience/index.ts';
-import { clamp01, dexp, minuteOfDay, round } from '../core/index.ts';
+import { clamp01, cmpStr, dexp, minuteOfDay, round } from '../core/index.ts';
 import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
 import { expectedEffect } from '../memory/index.ts';
+import { urgencyOf } from '../needs/index.ts';
 import { partneringTerms } from '../partnering/index.ts';
 import { companionSteadiness, socialTerms } from '../social/index.ts';
 import type {
@@ -49,13 +50,14 @@ import type {
   Unit,
   ValueId,
 } from '../types.ts';
-import { PHYSIOLOGICAL_NEEDS } from '../types.ts';
+import { PHYSIOLOGICAL_NEEDS, VALUE_KEYS } from '../types.ts';
 import {
   adviceWeight,
   type CommandOutcome,
   resolveChoice,
   safeUtility,
   standingAdvice,
+  suggestionTargets,
   voicesIn,
   type WillContext,
 } from '../will/index.ts';
@@ -130,7 +132,7 @@ export const COGNITION_DEFAULTS = {
    * Scarcity (N13): with host scarcity s in 0..1 the material term's saturation scale shrinks to
    * materialScale × (1 - scarcityScaleShrink × s), so a small sum stops looking negligible; the term is also
    * multiplied by 1 + scarcityMaterialGain × s (default 0: review 2026-10-03 measured the two mechanisms together
-   * making money outweigh commitments, norms and every voice, mean 1.20 / max 2.25 over 40 town days, so only the
+   * making money outweigh commitments, norms and every voice, mean 1.20 / max 2.25 over 40 simulated days, so only the
    * scale shrink is on and the term stays under its scarcity-free ceiling 2 × materialWeight). The `need:safety`
    * term is multiplied by 1 + scarcitySafetyGain × s. Engineering defaults.
    */
@@ -162,27 +164,6 @@ export interface ConsiderContext {
    */
   scarcity?: Unit;
 }
-
-const urgencyOf = (needs: NeedReading[], id: NeedId): number => needs.find((n) => n.id === id)?.urgency ?? 0;
-
-const emotionSum = (p: Person, id: string): number => {
-  let s = 0;
-  for (const e of p.affect.emotions) if (e.id === id) s += e.intensity;
-  return clamp01(s);
-};
-
-const VALUE_IDS: readonly ValueId[] = [
-  'benevolence',
-  'universalism',
-  'tradition',
-  'conformity',
-  'security',
-  'achievement',
-  'power',
-  'hedonism',
-  'stimulation',
-  'selfDirection',
-];
 
 function voiceTrust(p: Person, voiceId: string): number {
   return p.will.voices.find((v) => v.voiceId === voiceId)?.trust ?? 0.5;
@@ -217,13 +198,6 @@ function sinceFactor(p: Person, action: string, now: Minute): number {
   return 1;
 }
 
-/** Whether a suggestion points at this option. */
-export function suggestionTargets(s: Suggestion | undefined, aff: Affordance): boolean {
-  if (!s) return false;
-  if (s.affordanceId !== undefined) return s.affordanceId === aff.id;
-  return s.action !== undefined && s.action === aff.action;
-}
-
 /**
  * Standing advice terms for one option: per source, the strongest matching entry's weight × trust in the source
  * (the voice relation when there is one, else belief source trust) × suggestionScale × rememberedScale.
@@ -255,7 +229,7 @@ export function rememberedTerms(
   return out;
 }
 
-const isValueId = (x: string): x is ValueId => (VALUE_IDS as readonly string[]).includes(x);
+const isValueId = (x: string): x is ValueId => (VALUE_KEYS as readonly string[]).includes(x);
 
 function appealMatch(p: Person, s: Suggestion, needs: NeedReading[]): number {
   if (!s.appeal) return 0;
@@ -412,7 +386,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
 
   // Risk: chance × severity × (fear + emotionality).
   if (aff.risk && aff.risk.chance > 0 && aff.risk.severity > 0) {
-    const fear = emotionSum(p, 'fear');
+    const fear = emotionLevel(p, 'fear');
     push('risk', -K.riskScale * aff.risk.chance * aff.risk.severity * (fear + p.traits.emotionality));
     if (p.social.impressions && aff.with) {
       for (const id of [...aff.with].sort()) {
@@ -444,7 +418,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   }
 
   // Suggestions: strength × voice trust × appeal match, one term per voice. Never bypasses vetoes (will enforces).
-  // During a mental break no voice reaches him (crisis SCOPE): no live or remembered suggestion terms.
+  // During a mental break no voice reaches them (crisis SCOPE): no live or remembered suggestion terms.
   const voices = inBreak(p) ? [] : voicesIn(ctx.suggestion, ctx.suggestions);
   let reactance = 0;
   for (const s of voices) {
@@ -518,7 +492,7 @@ export function scoreAll(
   affordances: readonly Affordance[],
   ctx: DecideContext,
 ): { sorted: Affordance[]; considered: Considered[]; willCtx: WillContext } {
-  const sorted = [...affordances].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  const sorted = [...affordances].sort((a, b) => cmpStr(a.id, b.id));
   const shared: DecideContext = { ...ctx, social: ctx.social ?? socialContext(ctx) };
   const considered = sorted.map((aff) => consider(p, aff, shared));
   const willCtx: WillContext = {

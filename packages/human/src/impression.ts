@@ -4,15 +4,18 @@
  * - `outwardSigns(target)`: perceived fatigue, pain and fear and the felt mood, each reduced by the target's reserve;
  *   a limp (lost moving capacity) shows through any reserve. `selfReport(target)` is the same in words, which hide
  *   more (`IMPRESSION_DEFAULTS.wordsReserve`): "I'm fine".
- * - `glimpseOf(observer, target, opts)` = `glimpse` of the target's outward signs; `acquaintWith` hands the target's
+ * - `glimpseOf(observer, target, at, clarity?)` = `glimpse` of the target's outward signs; `acquaintWith` hands the target's
  *   traits and family ties (public roles) to `acquaint`.
  * - `imagine(observer, target, now)`: the target as the observer pictures them — a copy whose traits, fear, pain,
  *   fatigue, mood, ties and trust in voices are the observer's beliefs (each pulled to the prior by its uncertainty)
  *   and whose private memory (episodes, expectations, beliefs) is unknown and dropped. Agenda, norms, values, skills
  *   and needs are kept as known: hidden values are out of scope.
  * - `predictAs` / `previewCommandAs`: the framework's own `predict` / `previewCommand` run on that picture, with a
- *   confidence, so the player's read of a person and one villager's read of another use the same function. Pure:
+ *   confidence, so a host's read of a person and one person's read of another use the same function. Pure:
  *   neither person changes and no randomness is drawn.
+ *
+ * Does not cover: keeping estimates over time (that is `social/impressions.ts`), detecting deception, or any
+ * sign beyond the reserve-reduced outward ones.
  */
 import { readAffect } from './affect/index.ts';
 import { readCapacities } from './body/index.ts';
@@ -26,7 +29,6 @@ import {
   IMPRESSION_DEFAULTS,
   type OutwardSigns,
   reserveOf,
-  TRAIT_NAMES,
 } from './social/index.ts';
 import type {
   Affordance,
@@ -39,6 +41,7 @@ import type {
   SuggestionResolution,
   Unit,
 } from './types.ts';
+import { TRAIT_KEYS } from './types.ts';
 import type { CommandOutcome } from './will/index.ts';
 
 /** Family roles everyone around knows about (acquaintance passes these ties on). */
@@ -82,9 +85,18 @@ export function selfReport(target: Person): OutwardSigns {
   return s;
 }
 
-/** `observer` looks at `target` (clarity 0..1: lit and near, or a figure in the dark). */
-export function glimpseOf(observer: Person, target: Person, opts: { at: Minute; clarity?: Unit }): void {
-  glimpse(observer, target.id, outwardSigns(target), opts);
+/** `observer` looks at `target` at `at` (clarity 0..1: a clear look near by, or a distant figure; default 1). */
+export function glimpseOf(observer: Person, target: Person, at: Minute, clarity?: Unit): void;
+/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
+export function glimpseOf(observer: Person, target: Person, opts: { at: Minute; clarity?: Unit }): void;
+export function glimpseOf(
+  observer: Person,
+  target: Person,
+  when: Minute | { at: Minute; clarity?: Unit },
+  clarity?: Unit,
+): void {
+  if (typeof when === 'number') glimpse(observer, target.id, outwardSigns(target), when, clarity);
+  else glimpse(observer, target.id, outwardSigns(target), when.at, when.clarity);
 }
 
 /** `observer` has known `target` for a long time (familiarity 0..1): traits and family ties, condensed. */
@@ -98,11 +110,11 @@ export function acquaintWith(observer: Person, target: Person, familiarity: Unit
 /** How sure the observer is of the things that drive an answer: traits and the state cues, 0..1. */
 export function impressionConfidence(observer: Person, targetId: PersonId, now: Minute): Unit {
   let t = 0;
-  for (const name of TRAIT_NAMES) t += estimate(observer, targetId, `trait:${name}`, now).confidence;
+  for (const name of TRAIT_KEYS) t += estimate(observer, targetId, `trait:${name}`, now).confidence;
   let s = 0;
   for (const cue of ['fatigue', 'pain', 'fear'] as const)
     s += estimate(observer, targetId, cue, now).confidence;
-  return round(0.5 * (t / TRAIT_NAMES.length) + 0.5 * (s / 3));
+  return round(0.5 * (t / TRAIT_KEYS.length) + 0.5 * (s / 3));
 }
 
 /**
@@ -111,7 +123,7 @@ export function impressionConfidence(observer: Person, targetId: PersonId, now: 
 export function imagine(observer: Person, target: Person, now: Minute): Person {
   const m = structuredClone(target);
   const id = target.id;
-  for (const name of TRAIT_NAMES)
+  for (const name of TRAIT_KEYS)
     m.traits[name] = round(clamp01(believedValue(observer, id, `trait:${name}`, now)));
   m.memory.episodes = [];
   m.memory.expectations = [];

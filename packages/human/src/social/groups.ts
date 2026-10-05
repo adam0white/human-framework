@@ -1,10 +1,10 @@
 /**
  * SCOPE (insiders and outsiders, 1.6.0): a person's own sense of which groups they belong to and how they meet
- * those outside them. The host names the groups ('colony', 'village', 'household', 'caravan') and decides who is in
+ * those outside them. The host names the groups ('household', 'village', 'workplace') and decides who is in
  * which; factions, diplomacy and group-level state stay with the host. Here: `joinGroups(p, groups, opts)` sets the
  * groups a person counts themself in and, optionally, their stance toward outsiders (-1 wary .. +1 welcoming;
  * default from openness and agreeableness). `meet(p, otherId, groups)` creates the tie to someone new with insider
- * or outsider defaults (`SOCIAL_DEFAULTS.groups`) shifted by the stance, and records which groups the person
+ * or outsider defaults (`GROUP_DEFAULTS`) shifted by the stance, and records which groups the person
  * believes the other is in (`Relationship.groups`). Existing ties are not reset by meeting again; only the groups
  * are updated.
  *
@@ -161,7 +161,7 @@ export function threatAppraisal(
 
 const isStrList = (x: unknown): x is string[] => Array.isArray(x) && x.every((g) => typeof g === 'string');
 
-/** Restore-time check of the 1.6.0 group fields: malformed ones are dropped, never filled. */
+/** Restore-time check of the 1.6.0 group fields: malformed ones are dropped, never filled. @internal */
 export function sanitizeGroups(social: Person['social']): void {
   const g = social.groups as unknown;
   if (g !== undefined) {

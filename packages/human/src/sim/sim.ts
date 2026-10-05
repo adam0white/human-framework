@@ -32,13 +32,16 @@
  *   each partner.
  * - Life course (opt in): once per day crossed, `chronicOnsets` and `mortalityEvent` roll on the person's own
  *   stream for the elapsed minutes; a death ends the person through `body.die`.
+ * - Later additions: `addPerson` and `birth` add people to a community; `StepOptions.controlled` puts commands in
+ *   force (events `command` and `release`); `World.skillTransfer` relates skills; the `onset` and `stage` events
+ *   come from multi-year stepping (`longrun.ts`).
  *
- * SCOPE (standing advice, round 3 of Game 2): a standing suggestion is advice that stands, not a request repeated
+ * SCOPE (standing advice): a standing suggestion is advice that stands, not a request repeated
  * at every decision. Two rules, both host-side and decided in `standingHeard`:
  * - Occasions: when the suggested action is one that keeps a commitment (a prayer window, a job, an appointment),
  *   completing it (after `Suggestion.since`, by anyone's word) satisfies the suggestion, which then lies dormant
  *   until doing it now would keep a pending commitment again (the offer's span meets the window, the agenda's own
- *   rule, `spanMeetsWindow`). Without this, "pray at the mosque" heard at every decision sent a man there
+ *   rule, `spanMeetsWindow`). Without this, "pray" heard at every decision sent a person to pray
  *   about 25 times a day. Actions that keep no commitment have no occasion the framework can see: hosts bound
  *   them through their offers (a cooldown, once a day), and orders that should be re-done keep working.
  * - Availability: a standing suggestion whose target is not offered at this decision is held back, not refused,
@@ -52,7 +55,7 @@ import { BODY_DEFAULTS, contagionRoll, die, readBody, sicken } from '../body/ind
 import { chronicleBetween } from '../chronicle/index.ts';
 import { recordDeed } from '../conscience/index.ts';
 import { type ConverseContext, converse } from '../conversation/index.ts';
-import { clamp01, dayOf } from '../core/index.ts';
+import { clamp01, cmpStr, dayOf } from '../core/index.ts';
 import {
   type ChildSpec,
   type ChronicCondition,
@@ -249,8 +252,8 @@ export function standingHeard(
   now: Minute = p.now,
 ): boolean {
   // The running activity counts as on offer: an offer whose start window has closed (an afternoon shift offered
-  // until 90 minutes before Asr) is still what he is doing, and the advice that started it must still be heard at
-  // its reviews (Game 2 playtest: the shift was dropped part-way the minute its window closed).
+  // until 90 minutes before the afternoon prayer window) is still what they are doing, and the advice that started it must still be heard at
+  // its reviews (the shift was once dropped part-way the minute its window closed).
   const running = p.activity && now < p.activity.endsAt ? p.activity.affordance : undefined;
   const target =
     affordances.find((a) => suggestionTargets(s, a)) ??
@@ -348,7 +351,7 @@ export function communityState(c: Community): CommunityState {
  * resumed from it, so a run restored from people + community + world state continues exactly as it would have.
  */
 export function createCommunity(people: Person[], prior?: CommunityState): Community {
-  const sorted = [...people].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  const sorted = [...people].sort((a, b) => cmpStr(a.id, b.id));
   if (prior) {
     const copy = JSON.parse(JSON.stringify(prior)) as CommunityState;
     for (const p of sorted) {
@@ -379,7 +382,7 @@ export function createCommunity(people: Person[], prior?: CommunityState): Commu
 /** Add a person to a community (a newborn, an arrival); keeps the id order the driver relies on. */
 export function addPerson(c: Community, p: Person): void {
   if (c.people.some((q) => q.id === p.id)) return;
-  c.people = [...c.people, p].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  c.people = [...c.people, p].sort((a, b) => cmpStr(a.id, b.id));
   c.idleUntil[p.id] = p.now;
   c.perceivedUntil[p.id] = p.now;
 }
@@ -1120,7 +1123,7 @@ export interface SilentRun {
  * Headless epilogue (N16): run the community `days` days with one voice muted, i.e. its standing suggestions
  * dropped, so a chronicle of the muted period can be diffed against the played one (`diffChronicle`). Everything
  * else about the run is the ordinary driver. Suggestions heard in conversation are not muted: those voices are
- * other people, not the player.
+ * other people, not the host's own voice.
  */
 export function runSilent(
   c: Community,

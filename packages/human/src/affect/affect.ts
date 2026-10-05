@@ -15,7 +15,7 @@
  * keeps appraisal and constructed-emotion variants swappable; it does not claim that these sixteen
  * categories or two mood dimensions exhaust emotional experience, nor calibrated intensities or durations.
  */
-import { clamp01, clampSigned, decay, dexp } from '../core/index.ts';
+import { clamp01, clampSigned, cmpStr, decay, dexp } from '../core/index.ts';
 import type {
   AffectState,
   AppraisalEvent,
@@ -160,10 +160,7 @@ const isNegative = (id: EmotionId): boolean => AFFECT_DEFAULTS.negative.includes
 
 function sortEmotions(list: Emotion[]): void {
   list.sort(
-    (a, b) =>
-      b.intensity - a.intensity ||
-      (a.id < b.id ? -1 : a.id > b.id ? 1 : 0) ||
-      ((a.targetId ?? '') < (b.targetId ?? '') ? -1 : (a.targetId ?? '') > (b.targetId ?? '') ? 1 : 0),
+    (a, b) => b.intensity - a.intensity || cmpStr(a.id, b.id) || cmpStr(a.targetId ?? '', b.targetId ?? ''),
   );
 }
 
@@ -286,7 +283,7 @@ export function appraise(p: Person, ev: AppraisalEvent): Emotion[] {
 }
 
 /** Effective half-life of an emotion under the person's current regulation. */
-export function effectiveHalfLife(p: Person, e: Emotion): number {
+function effectiveHalfLife(p: Person, e: Emotion): number {
   const A = AFFECT_DEFAULTS;
   const shorten =
     isNegative(e.id) && !A.regulationExempt.includes(e.id)
@@ -359,6 +356,17 @@ export function advanceAffect(
   a.lastUpdated += dt;
 }
 
+/**
+ * How strongly one emotion is felt now, 0..1: the summed intensity of its instances (only those toward `targetId`,
+ * when given), clamped. Read only.
+ */
+export function emotionLevel(p: Pick<Person, 'affect'>, id: EmotionId, targetId?: EntityId): Unit {
+  let s = 0;
+  for (const e of p.affect.emotions)
+    if (e.id === id && (targetId === undefined || e.targetId === targetId)) s += e.intensity;
+  return clamp01(s);
+}
+
 /** Felt state: mood shifted by current emotions, plus the three strongest emotions (copies). */
 export function readAffect(p: Person): { valence: Signed; arousal: Unit; dominant: Emotion[] } {
   const A = AFFECT_DEFAULTS;
@@ -374,11 +382,6 @@ export function readAffect(p: Person): { valence: Signed; arousal: Unit; dominan
   };
 }
 
-/**
- * Action tendencies keyed by affordance tag ('risky', 'social', 'confront', 'repair', 'worship', 'novel',
- * 'rest', 'comfort') plus per-target keys 'approach:<id>', 'avoid:<id>', 'confront:<id>', 'repair:<id>'.
- * Values are clamped to -1..1.
- */
 /**
  * Coefficients of each emotion on each tag tendency. 'love' here is untargeted love only: love toward a
  * particular person already pulls through `approach:<id>`, so the same feeling is not counted twice
@@ -454,6 +457,11 @@ export function tendencyEmotions(p: Person): Record<string, EmotionId> {
   return out;
 }
 
+/**
+ * Action tendencies keyed by affordance tag ('risky', 'social', 'confront', 'repair', 'worship', 'novel',
+ * 'rest', 'comfort') plus per-target keys 'approach:<id>', 'avoid:<id>', 'confront:<id>', 'repair:<id>'.
+ * Values are clamped to -1..1.
+ */
 export function actionTendencies(p: Person): Record<string, number> {
   const g = tendencyInputs(p);
   const fear = g('fear');

@@ -5,7 +5,8 @@
  *
  * Covers saves from engine 1.4.0 onward. 1.4.0 through 1.9.0 share the person shape (1.6.0 to 1.8.0 only add
  * optional fields that are absent by default), so those steps only stamp the version; 1.9.0 to 2.0.0 renames one
- * field of the optional surroundings slice (`ambient.now` → `ambient.percept`) and changes no behaviour; `restore` then fills and sanitizes
+ * field of the optional surroundings slice (`ambient.now` → `ambient.percept`) and changes no behaviour (the optional `social.impressions` and `social.reserve`, like `retention`, are optional and start
+ * absent in a migrated save); `restore` then fills and sanitizes
  * the slices as for any save. A migrated save continues under the current engine's rules: it restores and runs,
  * but it does not reproduce what the old engine would have done next where the rules changed (1.4.0 to 1.5.0
  * changed how standing advice is heard; 1.8.0 to 1.9.0 changed the omission rule). Saves older than 1.4.0 and unknown versions are refused with an error.
@@ -13,6 +14,7 @@
  * Does not cover community state (`communityState`) or world state (for example `createVillage`'s `state`): those
  * have not changed shape since 1.4.0, and a host owns its own world state's migration.
  */
+import { isObj } from './core/index.ts';
 import { ENGINE_VERSION } from './types.ts';
 
 type Json = Record<string, unknown>;
@@ -29,7 +31,7 @@ const stamp = (json: Json): Json => ({ ...json });
 /** 1.9.0 → 2.0.0: `ambient.now` becomes `ambient.percept` (a copy; the input is not changed). */
 function renameAmbient(json: Json): Json {
   const a = json.ambient;
-  if (typeof a !== 'object' || a === null || Array.isArray(a) || !('now' in a)) return { ...json };
+  if (!isObj(a) || !('now' in a)) return { ...json };
   const { now, ...rest } = a as Json;
   return { ...json, ambient: { ...rest, percept: now } };
 }
@@ -88,8 +90,7 @@ export function migratableVersions(): string[] {
  * the current version is returned as a shallow copy. Throws on a missing or unsupported engine version.
  */
 export function migrate(json: unknown): Json {
-  if (typeof json !== 'object' || json === null || Array.isArray(json))
-    throw new Error('migrate: not an object');
+  if (!isObj(json)) throw new Error('migrate: not an object');
   let out = { ...(json as Json) };
   const from = out.engine;
   if (typeof from !== 'string') throw new Error('migrate: missing engine');

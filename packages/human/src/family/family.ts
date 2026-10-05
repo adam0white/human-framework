@@ -19,7 +19,8 @@
  *
  * Upbringing. `raise(child, household, minutes)` is called by the host for time a child spends in a household. Each
  * caregiver's influence is weighted by their warmth toward the child (their affection, floored at 0). Values relax
- * toward the warmth-weighted household values at 5% per year at full plasticity (value transmission runs through
+ * toward the warmth-weighted household values at 5% per year at full plasticity, scaled by the caregivers' mean
+ * warmth (value transmission runs through
  * family climate and is more accurate with warmth, F7, F8; the rate is an engineering assumption chosen so that a
  * childhood moves values part of the way, never a copy). Plasticity of values is 1 to age 12 and falls to 0 at 25.
  * Understanding of a norm relaxes toward the household's exemplar, conviction × (1 − breach share), where the breach
@@ -28,8 +29,9 @@
  * security starts at 0.6 (58% of nonclinical mothers are secure-autonomous, F12) and moves toward the caregivers'
  * responsiveness (warmth and mood) at 50% per year, most in the first three years, with a floor of 0.1 of that
  * plasticity by age 12 (responsiveness and intergenerational correspondence, F10, F11; rates assumed). Optionally a
- * child comes to trust the voices the household trusts (`adoptVoiceTrust`). This file writes `values` for minors: the
- * one documented exception to values being fixed at creation (docs/framework.md). It does not model siblings'
+ * child comes to trust the voices the household trusts (`adoptVoiceTrust`). This file writes `values` for minors: one of the
+ * documented exceptions to values being fixed at creation (docs/framework.md); the opt-in `character/` drift is
+ * the other. It does not model siblings'
  * influence, peers, schooling, abuse, divorce or temperament-by-parenting interactions, and it never assigns a
  * religious obligation by age: a child holds only the understanding the household lived.
  *
@@ -37,21 +39,12 @@
  * `createChild` (`ChildSpec.aptitudes`).
  */
 import { understandNorm } from '../conscience/index.ts';
-import { clamp, clamp01, createRng, dpow, normal } from '../core/index.ts';
+import { clamp, clamp01, createRng, dpow, isNum, isObj, normal } from '../core/index.ts';
 import { ageYears } from '../lifecourse/index.ts';
 import { remember } from '../memory/index.ts';
 import { relationshipWith } from '../social/index.ts';
-import type {
-  FamilyState,
-  LifeModifiers,
-  Minute,
-  Person,
-  PersonId,
-  Pregnancy,
-  Unit,
-  Values,
-} from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
+import type { FamilyState, LifeModifiers, Minute, Person, PersonId, Pregnancy, Unit } from '../types.ts';
+import { MINUTES_PER_DAY, MINUTES_PER_YEAR, VALUE_KEYS } from '../types.ts';
 import { adoptVoiceTrust } from '../will/index.ts';
 
 export const FAMILY_DEFAULTS = {
@@ -77,19 +70,6 @@ export const FAMILY_DEFAULTS = {
   voiceRatePerYear: 0.3,
 };
 
-const VALUE_KEYS: (keyof Values)[] = [
-  'benevolence',
-  'universalism',
-  'tradition',
-  'conformity',
-  'security',
-  'achievement',
-  'power',
-  'hedonism',
-  'stimulation',
-  'selfDirection',
-];
-
 /** A fresh family slice from a creation spec (`createPerson`); undefined when the spec gives nothing. @internal */
 export function createFamily(
   init: Pick<FamilyState, 'aptitudes' | 'attachment'> | undefined,
@@ -98,22 +78,20 @@ export function createFamily(
   const out: FamilyState = {};
   const apt = sanitizeAptitudes(init.aptitudes);
   if (apt) out.aptitudes = apt;
-  if (typeof init.attachment === 'number' && Number.isFinite(init.attachment))
-    out.attachment = clamp01(init.attachment);
+  if (isNum(init.attachment)) out.attachment = clamp01(init.attachment);
   return Object.keys(out).length > 0 ? out : undefined;
 }
 
 function sanitizeAptitudes(x: unknown): Record<string, number> | undefined {
-  if (typeof x !== 'object' || x === null || Array.isArray(x)) return undefined;
+  if (!isObj(x)) return undefined;
   const out: Record<string, number> = {};
-  for (const [k, v] of Object.entries(x))
-    if (typeof v === 'number' && Number.isFinite(v) && v > 0) out[k] = clamp(v, 0.25, 4);
+  for (const [k, v] of Object.entries(x)) if (isNum(v) && v > 0) out[k] = clamp(v, 0.25, 4);
   return Object.keys(out).length > 0 ? out : undefined;
 }
 
 /** Validate a saved family slice; undefined when nothing usable remains (used by `restore`). @internal */
 export function sanitizeFamily(x: unknown): FamilyState | undefined {
-  if (typeof x !== 'object' || x === null || Array.isArray(x)) return undefined;
+  if (!isObj(x)) return undefined;
   const f = x as Record<string, unknown>;
   const out: FamilyState = {};
   const apt = sanitizeAptitudes(f.aptitudes);
@@ -128,10 +106,8 @@ export function sanitizeFamily(x: unknown): FamilyState | undefined {
     typeof pg.seed === 'number'
   )
     out.pregnancy = { fatherId: pg.fatherId, conceivedAt: pg.conceivedAt, dueAt: pg.dueAt, seed: pg.seed };
-  if (typeof f.attachment === 'number' && Number.isFinite(f.attachment))
-    out.attachment = clamp01(f.attachment);
-  if (typeof f.raisedMinutes === 'number' && Number.isFinite(f.raisedMinutes) && f.raisedMinutes >= 0)
-    out.raisedMinutes = f.raisedMinutes;
+  if (isNum(f.attachment)) out.attachment = clamp01(f.attachment);
+  if (isNum(f.raisedMinutes) && f.raisedMinutes >= 0) out.raisedMinutes = f.raisedMinutes;
   return Object.keys(out).length > 0 ? out : undefined;
 }
 
@@ -143,7 +119,7 @@ const familyOf = (p: Person): FamilyState => {
 /** Learning multiplier for a skill (1 = average, or no family slice). */
 export function aptitudeOf(p: Person, skillId: string): number {
   const v = p.family?.aptitudes?.[skillId];
-  return typeof v === 'number' && Number.isFinite(v) && v > 0 ? v : 1;
+  return isNum(v) && v > 0 ? v : 1;
 }
 
 /** Attachment security 0..1 (the starting 0.6 when never raised). */
@@ -186,13 +162,28 @@ export function conceptionChance(mother: Person, father: Person, days: number): 
 
 /**
  * Record that `mother` has conceived by `father` at `at`. The due date is drawn from a stream derived from `seed`;
- * `seed` also becomes the child's seed at delivery. Returns the pregnancy, or undefined if one is already open.
+ * `seed` also becomes the child's seed at delivery. The drawn length is clamped to 4 sd below and 3 sd above the
+ * median (an engineering bound against extreme draws). Returns the pregnancy, or undefined if one is already open.
  */
 export function conceive(
   mother: Person,
   father: Person | PersonId,
+  seed: number,
+  at: Minute,
+): Pregnancy | undefined;
+/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
+export function conceive(
+  mother: Person,
+  father: Person | PersonId,
   opts: { at: Minute; seed: number },
+): Pregnancy | undefined;
+export function conceive(
+  mother: Person,
+  father: Person | PersonId,
+  seedOrOpts: number | { at: Minute; seed: number },
+  when?: Minute,
 ): Pregnancy | undefined {
+  const opts = typeof seedOrOpts === 'number' ? { seed: seedOrOpts, at: when as Minute } : seedOrOpts;
   const fam = familyOf(mother);
   if (fam.pregnancy) return undefined;
   const rng = createRng((opts.seed ^ 0x9e3779b9) >>> 0);
@@ -212,7 +203,11 @@ export function conceive(
   return { ...pregnancy };
 }
 
-/** Weeks since conception (0 when not pregnant). */
+/**
+ * Weeks since conception (0 when not pregnant). Counted from conception, not from the last menstrual period, which
+ * is where obstetric weeks and trimesters are conventionally counted from (about two weeks earlier). The second
+ * trimester here therefore begins at 13 weeks after conception.
+ */
 export function pregnancyWeeks(p: Person, now: Minute = p.now): number {
   const pg = p.family?.pregnancy;
   return pg ? Math.max(0, (now - pg.conceivedAt) / (7 * MINUTES_PER_DAY)) : 0;
@@ -358,7 +353,7 @@ export function raise(child: Person, household: Household, minutes: number, opts
   const att = fam.attachment ?? F.attachmentStart;
   fam.attachment = clamp01(att + ka * (responsiveness - att));
 
-  // Trust in the household's voices (an elder, a teacher, the player): not the caregivers themselves.
+  // Trust in the household's voices (an elder, a teacher, a host's voice): not the caregivers themselves.
   if ((opts.voices ?? true) && vp > 0) {
     const kv = relax(F.voiceRatePerYear * meanWarmth, years * vp);
     const ids = [...new Set(carers.flatMap((c) => c.will.voices.map((v) => v.voiceId)))]

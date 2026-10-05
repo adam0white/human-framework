@@ -17,21 +17,24 @@
  * costing more than benefit earns (trust asymmetry); an insisted suggestion earns no trust when it goes well, and
  * insisting while the voice's pressure is already high costs trust outright ('pushed'), so a voice that insists at
  * every turn ends in distrust refusals (engineering default); pressure from being pushed decays over hours. Asking
- * again, without insisting, for something he declines while pressure is high wears trust a little ('worn', at most
+ * again, without insisting, for something they decline while pressure is high wears trust a little ('worn', at most
  * once per `wornInterval`), and each repeat good outcome of the same suggested action earns less than the last
  * (gain / (1 + n), n = decayed count of credited outcomes), so one easy yes cannot be farmed into trust. No
  * willpower reservoir is modelled (rejected in research/empirical-models.md §6): acting against impulse
  * emerges from competing terms, fatigue cost, habits and precommitments. Autonomy loss from compliance is
  * returned as a delta for the composite to apply; this module writes only `p.will`. Several voices may speak in
  * one decision (each gets its own verdict, counters and pressure; see `evaluate`), and told advice is kept as
- * decaying standing advice (see `rememberAdvice`).
+ * decaying standing advice (see `rememberAdvice`). `answerSuggestion` answers one voice outside a decision point
+ * when the answer leaves the person doing what they are doing. A host command is a separate input that yields the
+ * `commanded` verdict (see the commanded-control SCOPE on `commandOutcome`); `learnFromVoice` learns from assented,
+ * complied and commanded activities, and `adoptVoiceTrust` moves trust toward a target without a suggestion.
  */
 
 import { breakAllows, inBreak } from '../affect/index.ts';
 import { commitmentPressure, isUnderWay, pressureReachedAt } from '../agenda/index.ts';
 import { downedAllows, readCapacities } from '../body/index.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
-import { clamp01, decay, dexp, dpow, random } from '../core/index.ts';
+import { clamp01, cmpStr, decay, dexp, dpow, hasNumbers, isObj, random } from '../core/index.ts';
 import { skillLevel } from '../skills/index.ts';
 import type {
   Affordance,
@@ -113,13 +116,13 @@ export const WILL_DEFAULTS = {
   trustLossComplied: 0.45,
   /**
    * Share of trust lost each time a voice insists while its pressure is at `distrustPressure` or more (engineering
-   * default, 2026-10-03 playtest: insisting at every turn raised trust). Eight such pushes take 0.5 below 0.25.
+   * default, 2026-10-03 testing: insisting at every turn raised trust). Eight such pushes take 0.5 below 0.25.
    */
   trustLossPushed: 0.08,
   /**
    * Share of trust lost when a voice's suggestion (not insisted) is turned down while its pressure is already at
-   * `distrustPressure` or more: being asked again and again for what he does not want wears on him (engineering
-   * default, playtest 2026-10-03: a standing urge for two weeks raised trust). A mention (strength 0.35) adds
+   * `distrustPressure` or more: being asked again and again for what they do not want wears on them (engineering
+   * default, testing 2026-10-03: a standing urge for two weeks raised trust). A mention (strength 0.35) adds
    * too little pressure to reach it; an urge heard at every decision does.
    */
   trustLossWorn: 0.03,
@@ -128,7 +131,7 @@ export const WILL_DEFAULTS = {
   /**
    * Repetition discount on trust gain: a good outcome at an action this voice already got credit for earns
    * gain / (1 + n), n the credited count halving every `creditHalfLife` minutes (engineering default, same
-   * playtest: the twentieth good mosque visit on the same word taught him as much as the first).
+   * testing: the twentieth good outcome from the same word taught as much as the first).
    */
   creditHalfLife: MINUTES_PER_DAY,
   maxCredited: 8,
@@ -161,7 +164,7 @@ export const WILL_DEFAULTS = {
   commandAutonomyPerHour: 0.03,
   /** Voice pressure added per controlled hour (it decays with `pressureHalfLife` as any pressure does). */
   commandPressurePerHour: 0.1,
-  /** Share of trust lost per controlled hour, scaled by min(1, margin): being made to do what he did not want. */
+  /** Share of trust lost per controlled hour, scaled by min(1, margin): being made to do what they did not want. */
   commandTrustPerHour: 0.02,
 };
 
@@ -181,20 +184,20 @@ export interface WillContext {
 
 /**
  * How a command fared in one decision. `holds`: the commanded option was chosen. Otherwise `ends` says whether
- * control is lost (dead, a break, downed, or an act he will not do) or only suspended for this decision (the
- * target is not on offer, or he cannot right now: asleep, beyond capacity, a pressing bodily need).
+ * control is lost (dead, a break, downed, or an act they will not do) or only suspended for this decision (the
+ * target is not on offer, or they cannot right now: asleep, beyond capacity, a pressing bodily need).
  */
 export interface CommandOutcome {
   holds: boolean;
   ends: boolean;
   reason: string;
   kind?: RefusalKind;
-  /** How far his own choice out-scored the commanded option (>= 0). */
+  /** How far their own choice out-scored the commanded option (>= 0). */
   margin: number;
-  /** What he would have chosen without the command. */
+  /** What they would have chosen without the command. */
   ownAffordanceId: string | null;
   targetAffordanceId?: string;
-  /** For an omission end: the closing duty he will not miss. */
+  /** For an omission end: the closing duty they will not miss. */
   commitmentId?: string;
 }
 
@@ -210,6 +213,27 @@ export interface ChoiceResolution {
   autonomyDelta: number;
   /** How a command in force fared (absent when none). */
   command?: CommandOutcome;
+}
+
+/**
+ * Restore-time check of the will's optional fields, in place: a non-list `advice` (1.2.0), and a malformed `command`
+ * or `lastCommand` (1.6.0, 1.7.0) are dropped (absent means none). A save the engine wrote is unchanged. @internal
+ */
+export function sanitizeWill(w: WillState): void {
+  if (w.advice !== undefined && !Array.isArray(w.advice)) delete w.advice;
+  const cmd = w.command as unknown;
+  if (
+    cmd !== undefined &&
+    !(
+      isObj(cmd) &&
+      typeof cmd.voiceId === 'string' &&
+      hasNumbers(cmd, 'since', 'startedAt', 'chargedAt', 'margin')
+    )
+  )
+    delete w.command;
+  const last = w.lastCommand as unknown;
+  if (last !== undefined && !(isObj(last) && typeof last.voiceId === 'string' && hasNumbers(last, 'since')))
+    delete w.lastCommand;
 }
 
 export function createWill(voices: { voiceId: EntityId; trust?: number }[] = []): WillState {
@@ -245,7 +269,7 @@ function ensureVoice(p: Person, voiceId: EntityId): VoiceRelation {
     history: [],
   };
   if (p.will.voices.length >= WILL_DEFAULTS.maxVoices) {
-    // Drop the unseeded voice with the fewest interactions (seeded voices, e.g. the player, are kept; when only
+    // Drop the unseeded voice with the fewest interactions (seeded voices, e.g. a host's own voice, are kept; when only
     // seeded voices remain, the fewest-interaction one goes).
     const pool = p.will.voices.some((x) => !x.seeded) ? (x: VoiceRelation) => !x.seeded : () => true;
     let idx = -1;
@@ -304,8 +328,8 @@ function pressingCommitment(p: Person, aff: Affordance, now: Minute): boolean {
 /**
  * The next minute after `now` at which a pending commitment reaches `wakeCommitmentPressure`, the level at which a
  * sleeper may wake to serve it (the asleep veto lifts). The composite caps a sleeper's review there so a duty whose
- * closing stretch is shorter than the sleep review interval is not slept through (review 2026-10-03: Asr missed
- * 22 of 30 days by a napper reviewed every 120 minutes). Undefined when none is ahead.
+ * closing stretch is shorter than the sleep review interval is not slept through (review 2026-10-03: a person who
+ * naps through an afternoon prayer window most days, reviewed every 120 minutes). Undefined when none is ahead.
  */
 export function wakeReviewAt(p: Person, now: Minute): Minute | undefined {
   let best: Minute | undefined;
@@ -380,7 +404,7 @@ function omissionFor(
  * The start of the next protected closing stretch that an activity running until `endsAt` would cover entirely
  * without keeping the duty (1.9.0): a protected duty (see `closingDuties`) whose stretch begins after `now` and whose
  * window ends before `endsAt`, and which `aff` does not serve. The composite caps the activity's review there, so a
- * long option begun before the stretch (a sleep 29 minutes before sunrise, with Fajr's stretch the last 22) is weighed
+ * long option begun before the stretch (a sleep that starts 29 minutes before the dawn prayer's window closes, when its protected stretch is the last 22) is weighed
  * again when the stretch begins, under the omission rule. Capacity and necessity are judged at that review, as for
  * any decision: a sleeper who cannot yet wake for the duty sleeps on. Undefined when none is ahead.
  */
@@ -428,10 +452,10 @@ export function vetoFor(
   const W = WILL_DEFAULTS;
   if (!p.body.alive) return { kind: 'cannot', reason: 'dead' };
   if (!wellFormed(aff)) return { kind: 'cannot', reason: 'invalid' };
-  // A mental break narrows what he will do to its behaviour; a body at the edge may still eat, drink or sleep.
+  // A mental break narrows what they will do to its behaviour; a body at the edge may still eat, drink or sleep.
   if (inBreak(p) && !breakAllows(p, aff) && !(ctx.desperation >= W.survivalDesperation && servesBody(aff)))
     return { kind: 'cannot', reason: 'break' };
-  // Downed (body, 1.6.0): only lying, resting or sleeping where he is.
+  // Downed (body, 1.6.0): only lying, resting or sleeping where they are.
   if (p.body.downed && !downedAllows(aff)) return { kind: 'cannot', reason: 'downed' };
   const mode = aff.mode ?? 'awake';
   if (
@@ -459,19 +483,21 @@ export function vetoFor(
   return undefined;
 }
 
-/** Whether suggestion `s` names offer `aff` (by affordance id, or by action class when it names no affordance). */
-export const suggestionTargets = (s: Suggestion, aff: Affordance): boolean =>
-  s.affordanceId !== undefined
-    ? s.affordanceId === aff.id
-    : s.action !== undefined && s.action === aff.action;
-const targets = suggestionTargets;
+/**
+ * Whether suggestion `s` names offer `aff` (by affordance id, or by action class when it names no affordance); false
+ * when there is no suggestion.
+ */
+export function suggestionTargets(s: Suggestion | undefined, aff: Affordance): boolean {
+  if (!s) return false;
+  if (s.affordanceId !== undefined) return s.affordanceId === aff.id;
+  return s.action !== undefined && s.action === aff.action;
+}
 
 /** NaN-safe utility: a non-finite score never wins. @internal */
 export const safeUtility = (u: number): number => (Number.isNaN(u) ? Number.NEGATIVE_INFINITY : u);
 
 const byUtilityThenId = (a: Considered, b: Considered): number =>
-  safeUtility(b.utility) - safeUtility(a.utility) ||
-  (a.affordanceId < b.affordanceId ? -1 : a.affordanceId > b.affordanceId ? 1 : 0);
+  safeUtility(b.utility) - safeUtility(a.utility) || cmpStr(a.affordanceId, b.affordanceId);
 
 /** Dominant positive term of an option, or 'preference'. */
 export function dominantTerm(c: Considered | undefined): string {
@@ -544,7 +570,7 @@ export function voicesIn(
     seen.add(s.voiceId);
     out.push(s);
   }
-  out.sort((a, b) => (a.voiceId < b.voiceId ? -1 : a.voiceId > b.voiceId ? 1 : 0));
+  out.sort((a, b) => cmpStr(a.voiceId, b.voiceId));
   return out.slice(0, WILL_DEFAULTS.maxVoices);
 }
 
@@ -571,8 +597,8 @@ const voiceTerm = (c: Considered | undefined, voiceId: EntityId): number =>
  * option would leave nothing to choose and the duty missed. The omission rule itself is per option, so no
  * number of voices, pushing or insisting, adds up to pulling a firmly convinced person off a closing duty.
  * Known seam: a distrusted voice's own `suggestion:<voiceId>` term (added by cognition) still counts in the
- * utility of an option that stays live; only its verdict says "not on your word". It borrows group-advice findings only in shape (advice is weighed by trust in each adviser, not by headcount);
- * it does not model conformity to a majority, persuasion between the voices, or the person asking for advice.
+ * utility of an option that stays live; only its verdict says "not on your word". Multi-voice resolution borrows
+ * group-advice findings only in shape (advice is weighed by trust in each adviser, not by headcount); it does not model conformity to a majority, persuasion between the voices, or the person asking for advice.
  */
 function evaluate(
   p: Person,
@@ -603,7 +629,8 @@ function evaluate(
     const tried = new Set<string>();
     for (const c of input) {
       const aff = affById.get(c.affordanceId);
-      if (!aff || !targets(s, aff) || baseVeto.get(c.affordanceId) || tried.has(aff.action)) continue;
+      if (!aff || !suggestionTargets(s, aff) || baseVeto.get(c.affordanceId) || tried.has(aff.action))
+        continue;
       tried.add(aff.action);
       ep = distrustEpisode(p, s.voiceId, aff.action, ctx.now);
       if (ep !== undefined) break;
@@ -616,7 +643,7 @@ function evaluate(
     delete out.vetoed;
     let veto = baseVeto.get(c.affordanceId);
     if (!veto && aff && !servesDuty(aff)) {
-      const by = suggestions.filter((s) => targets(s, aff));
+      const by = suggestions.filter((s) => suggestionTargets(s, aff));
       if (by.length > 0 && by.every((s) => distrustOf.get(s.voiceId) !== undefined))
         veto = { kind: 'willNot', reason: 'distrust' };
     }
@@ -688,7 +715,7 @@ function evaluate(
             says: '',
           }),
         ),
-      ].sort((a, b) => (a.voiceId < b.voiceId ? -1 : a.voiceId > b.voiceId ? 1 : 0));
+      ].sort((a, b) => cmpStr(a.voiceId, b.voiceId));
       ev.resolutions = all;
       ev.voices = all.map((r) => ({ id: r.voiceId, pressure: 0, accepted: 0, refused: 0 }));
       ev.suggestion = res;
@@ -697,7 +724,7 @@ function evaluate(
   }
   if (suggestions.length === 0) return withCommandRefusal(ev, cmd);
   if (inBreak(p)) {
-    // During a mental break no voice reaches him; nothing is counted for or against any of them.
+    // During a mental break no voice reaches them; nothing is counted for or against any of them.
     ev.resolutions = suggestions.map((s) => ({
       voiceId: s.voiceId,
       verdict: 'refused' as const,
@@ -723,7 +750,7 @@ function evaluate(
   const judged: Judged[] = suggestions.map((s) => {
     const suggested = considered.filter((c) => {
       const aff = affById.get(c.affordanceId);
-      return aff !== undefined && targets(s, aff);
+      return aff !== undefined && suggestionTargets(s, aff);
     });
     const targetIds = new Set(suggested.map((c) => c.affordanceId));
     let likelihood: number | undefined;
@@ -801,7 +828,7 @@ function evaluate(
     }
     if (winner && targetIds.has(winner.affordanceId)) {
       side.accepted = 1;
-      // Insisting on what he takes up still pushes him: the pressure lands even when he agrees.
+      // Insisting on what they take up still pushes them: the pressure lands even when they agree.
       if (s.insist) side.pressure = W.pressureInsist;
       return out(resolution('assented', reason));
     }
@@ -949,15 +976,15 @@ function withCommandRefusal(ev: Evaluation, cmd: Command | undefined): Evaluatio
 }
 
 /**
- * SCOPE (commanded control, 1.6.0): a host voice may take direct control of a person (RimWorld's drafting, an
- * order that is not a request). While a command is in force the person does the commanded offer (the best-scoring
+ * SCOPE (commanded control, 1.6.0): a host voice may take direct control of a person (an order that is not a request,
+ * as in drafting a unit). While a command is in force the person does the commanded offer (the best-scoring
  * offer it names that passes the vetoes) whatever they would have chosen; other voices are set aside without
  * counters. The suggestion model is untouched: a command is a separate input (`WillContext.command`), and without
  * one `evaluate` runs exactly as before. Control is lost (`ends`) when the person dies, is in a mental break, is
- * downed, or would have to do what he will not: a held prohibition or a closing obligatory duty (the same willNot
+ * downed, or would have to do what they will not: a held prohibition or a closing obligatory duty (the same willNot
  * vetoes a suggestion meets, so no order makes a firmly convinced person break a norm). It is only suspended for
- * the decision, and resumes at the next, when the target is not on offer, he cannot (asleep, capacity, skill), or
- * a pressing bodily need comes first (`survivalReason`, as for insisting). `margin` is how far his own choice
+ * the decision, and resumes at the next, when the target is not on offer, they cannot (asleep, capacity, skill), or
+ * a pressing bodily need comes first (`survivalReason`, as for insisting). `margin` is how far their own choice
  * out-scored the commanded option; the composite charges autonomy, voice pressure and trust per controlled hour
  * from it. Does not cover: obedience as a learned disposition, rank or legitimacy of the commanding voice,
  * partial obedience (doing it badly on purpose), or orders addressed to several people at once.
@@ -1072,7 +1099,7 @@ export function creditedVoices(resolutions: readonly SuggestionResolution[]): Su
 }
 
 /**
- * Which voice prevailed and why, for narration ("I went with Rıza; Selin can wait"). Pure and cheap: reads
+ * Which voice prevailed and why, for narration ("I went with my sister; my friend can wait"). Pure and cheap: reads
  * only the decision's considered list and resolutions. Undefined when no voice spoke.
  */
 export function conflictBetweenVoices(
@@ -1107,7 +1134,7 @@ export function conflictBetweenVoices(
   };
 }
 
-/** Counter-offer for a request deferred behind a duty: "after I pray Maghrib", "after I feed the children". */
+/** Counter-offer for a request deferred behind a duty: "after I pray", "after I feed the children". */
 function dutyLabel(duty: Commitment | undefined, winner: Affordance | undefined): string {
   if (duty?.kind === 'worship') return duty.label ? `after I pray ${duty.label}` : 'after I pray';
   if (duty?.label) return `after I ${duty.label}`;
@@ -1161,7 +1188,7 @@ function bookVoices(
     v.pressure = clamp01(v.pressure + side.pressure);
     v.accepted += side.accepted;
     v.refused += side.refused;
-    // Being insisted at while already pressed wears trust down, whatever he then does (engineering default), so
+    // Being insisted at while already pressed wears trust down, whatever they then do (engineering default), so
     // a voice that insists at every turn reaches the distrust refusal.
     const res = resolutions[i];
     if (res?.insisted && res.kind !== 'cannot' && v.pressure >= W.distrustPressure) {
@@ -1186,7 +1213,7 @@ function bookVoices(
 }
 
 /**
- * Answer one voice now, outside a decision point, when the answer leaves the person doing what he is doing: a
+ * Answer one voice now, outside a decision point, when the answer leaves the person doing what they are doing: a
  * refusal is booked as it would be at a decision (pressure, refused counter, `pushed`/`worn` trust costs) and
  * returned with `booked: true`. Any other verdict would mean switching activity, so nothing is written and the
  * host should interrupt and let the next decision resolve it. Always uses the argmax outcome (no RNG), so the
@@ -1290,7 +1317,6 @@ export function takeCommand(p: Person, cmd: Command, now: Minute): void {
   p.will.command = c;
 }
 
-/** End the command in force, recording why (`lastCommand`). Charge it first (`chargeCommand`). */
 /**
  * Note a decision's command outcome while the command stays in force: whether it was obeyed and, if so, by what
  * margin. Returns true the first time it is obeyed, so the composite can charge autonomy and remember it once.
@@ -1306,6 +1332,7 @@ export function noteCommandOutcome(p: Person, holds: boolean, margin: number): b
   return true;
 }
 
+/** End the command in force, recording why (`lastCommand`). Charge it first (`chargeCommand`). */
 export function endCommand(p: Person, reason: string, now: Minute): void {
   const c = p.will.command;
   if (!c) return;
@@ -1337,7 +1364,7 @@ export function chargeCommand(p: Person, now: Minute): number {
 
 /**
  * After a suggested activity finished: how it felt updates trust in the voice. Harm from followed advice
- * costs more than benefit earns. Only assented/complied resolutions carry information about the advice.
+ * costs more than benefit earns. Only assented, complied or commanded resolutions carry information about the advice.
  */
 export function learnFromVoice(
   p: Person,
@@ -1354,7 +1381,7 @@ export function learnFromVoice(
   // A commanded activity is learned from as a complied one: no credit when it goes well, the faster loss when not.
   const complied = verdict === 'complied' || verdict === 'commanded';
   // A coerced or insisted activity that went well earns no trust: the person did not choose to follow the
-  // advice freely (insisting on what he would have done anyway takes the credit away too).
+  // advice freely (insisting on what they would have done anyway takes the credit away too).
   if (f > 0 && !complied && !resolution.insisted) {
     const at = event.at ?? p.now;
     const key = event.action ?? '';
@@ -1401,11 +1428,11 @@ function noteTrust(v: VoiceRelation, delta: number, reason: string, at: Minute, 
 }
 
 /**
- * SCOPE (precommitment, owner API): the person binds their own future choice ("no cards after Isha", "walk instead
- * of a cigarette after lunch"): a `precommit:<id>` term of `bias` (negative = against, positive = toward) on the
+ * SCOPE (precommitment, owner API): the person binds their own future choice ("no work after the evening prayer",
+ * "walk instead of eating when bored"): a `precommit:<id>` term of `bias` (negative = against, positive = toward) on the
  * action inside a daily window of minutes-of-day (`from` > `to` wraps midnight). Shape: self-imposed
  * restraint as a standing cost on the tempting option (Ariely & Wertenbroch 2002, qualitative effect only); the
- * bias is the host's or player's number, not fitted. It never vetoes, so need and duty still win when strong.
+ * bias is the host's number, not fitted. It never vetoes, so need and duty still win when strong.
  * A precommitment with the same action and window replaces the earlier one; at most `maxPrecommitments` are
  * held (oldest dropped). Does not model forgetting, renegotiation or lapse-then-abandon dynamics.
  */
