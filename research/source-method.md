@@ -10,8 +10,8 @@ The current user's request is the governing brief. The user subsequently selecte
 
 Sources read:
 
-- [Historical handoff](/Users/abdul/code/pkm/03-projects/human-trait-framework/README.md).
-- [Selected original passages](/Users/abdul/code/pkm/05-archive/gemini-uhtf-selected-evidence-2026-09-06.md), particularly G1-A–F and G2-A–F.
+- Historical handoff (owner's local notes, not in repo).
+- Selected original passages (owner's local notes, not in repo), particularly G1-A–F and G2-A–F.
 
 The two linked historical UHTF Google Docs were not obtained in this run: opening their supplied URLs through the web tool returned non-retryable access errors. Their contents are **not** treated as read or evaluated. No critique below attributes an unobserved formula to those full documents. The recovery packet itself records partial prior access; that is provenance about the recovery, not present access to the documents.
 
