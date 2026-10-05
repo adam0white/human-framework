@@ -9,7 +9,16 @@
     "utility-ai",
     "deterministic"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adam0white/human-framework.git",
+    "directory": "packages/human"
+  },
+  "homepage": "https://github.com/adam0white/human-framework/tree/main/packages/human#readme",
+  "bugs": {
+    "url": "https://github.com/adam0white/human-framework/issues"
+  },
   "private": true,
   "type": "module",
   "sideEffects": false,

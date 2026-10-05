@@ -1,4 +1,4 @@
-# Lolli-toss Experiment 1a: private access evidence
+# Lolli-toss Experiment 1a: access evidence
 
 Source: Xiuyuan Zhang, Samuel D. McDougle and Julia A. Leonard (2025), *People accurately predict the shape but not the parameters of skill learning curves*, [Cognition 258, 106083](https://doi.org/10.1016/j.cognition.2025.106083), [OSF xzm5c](https://osf.io/xzm5c/).
 
@@ -16,4 +16,4 @@ Run from the repository root:
 python3 artifacts/learning-pilot/data-access/check-schema.py
 ```
 
-The data contain 55 released participants with 50 actual tosses each. Keep originals private and use task-only projections for eventual analysis. No fitted learning-rate files, published model-output tables, other experiments or clinical records were acquired. No models were run, and no learning-based eligibility rule was applied. Freeze the pilot's specification before fitting.
+The data contain 55 released participants with 50 actual tosses each. The originals mirror the public CC0 OSF dataset xzm5c and are published with this repository (owner, 2026-10-05); keep them unchanged and use task-only projections for eventual analysis. No fitted learning-rate files, published model-output tables, other experiments or clinical records were acquired. No models were run, and no learning-based eligibility rule was applied. Freeze the pilot's specification before fitting.

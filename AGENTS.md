@@ -21,7 +21,7 @@
 
 ## Delivery
 
-- Repository: `adam0white/human-framework` (private). Public review site: https://human.adamwhite.work (Cloudflare Worker static assets; see `wrangler.jsonc`).
+- Repository: `adam0white/human-framework`, private until the owner makes it public; the steps are in HANDOFF.md, "Going public". Licenses: MIT for code, CC BY 4.0 for `docs/` and `research/`. Public review site: https://human.adamwhite.work (Cloudflare Worker static assets; see `wrangler.jsonc`).
 - For app changes, the user authorized this workflow (2026-09-07, renewed 2026-10-02): implement and test, commit, push `main`, then run `npm run deploy`. Verify the live site and `/release.json` against the commit. Deploy at phase boundaries.
 - Cloudflare (user, 2026-10-04): apply zone settings for `adamwhite.work` directly, shared settings included; security posture comes from deliberately tuned Cloudflare settings plus `apps/site/public/_headers`. Record each change in HANDOFF.md. Applied 2026-10-04: HSTS max-age 6 months (no subdomains, no preload) with nosniff; minimum TLS 1.2.
 - Never put credentials in source, logs or build output. Publish only the Vite build output of `apps/site`.

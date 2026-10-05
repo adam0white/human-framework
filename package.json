@@ -4,6 +4,11 @@
   "private": true,
   "type": "module",
   "description": "A deterministic, explainable framework for simulated people, with games that showcase it",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adam0white/human-framework.git"
+  },
   "engines": {
     "node": ">=24"
   },

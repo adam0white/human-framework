@@ -1,0 +1,46 @@
+name: Bug report
+description: Something in the framework or a game does not work as described.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. For a security problem, use private vulnerability reporting instead (see SECURITY.md).
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where
+      options:
+        - Framework package (@adam0white/human-framework)
+        - Twice at the Well (colony)
+        - The Day You Say Nothing (voice)
+        - The Night Watch (watch)
+        - Home page or site
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Package version or release tag, or for the site the commit in https://human.adamwhite.work/release.json.
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what you expected
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce
+      description: Steps or a minimal code sample. For a game, attach the playtest export (seed, input log and state JSON) if you can; it replays your run.
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: Browser and device, or Node version and OS.

@@ -40,13 +40,18 @@ Every resolution also carries a machine-readable `reason` (`need:food`, `norm:th
 
 ## Install
 
-The package is private (`UNLICENSED`) and not on a registry. Build a tarball from the repository and install
-that:
+The source is public on [GitHub](https://github.com/adam0white/human-framework) under the MIT license. The
+package is not published to npm yet (it stays `"private": true` until npm publishing is set up). Install the
+tarball attached to a [GitHub release](https://github.com/adam0white/human-framework/releases), or build one
+from a checkout:
 
 ```sh
-npm pack -w packages/human                  # runs the build; writes human-framework-2.0.0.tgz
-npm install /path/to/human-framework-2.0.0.tgz
+npm pack -w packages/human     # runs the build; writes adam0white-human-framework-<version>.tgz
+npm install /path/to/adam0white-human-framework-<version>.tgz
 ```
+
+The v2.1.0 release tarball (`human-framework-2.1.0.tgz`) predates the rename and installs as
+`@human/framework`.
 
 It ships ES modules and `.d.ts` files (`exports["."]` with `types`). It requires Node ≥ 24 or a modern
 browser. The library needs `structuredClone` and nothing else from the host.
@@ -239,7 +244,9 @@ that place lose appeal until the fear fades. Groups and factions themselves stay
   [research/norm-sources.md](../../research/norm-sources.md)). A host with its own catalog passes it as
   `World.catalog`, so necessity excuses and exemptions read that catalog; a norm not in it is not excused.
   A person holds an *understanding* of a norm, with a standing and a conviction. That understanding is
-  not a ruling. The library never computes divine acceptance.
+  not a ruling. The library never computes divine acceptance. Where schools of thought differ, the
+  position the bundled catalog takes, and why, is recorded in
+  [research/decisions.md](../../research/decisions.md).
 
 ## Further reading
 
@@ -250,3 +257,8 @@ that place lose appeal until the fear fades. Groups and factions themselves stay
   The affect module's `release` is exported as `releaseEmotion`, the agenda's as `releaseCommitment`, and the
   will's scorer as `scoreAndResolve`.
 - [docs/findings.md](../../docs/findings.md): negative findings recorded during development.
+
+## License
+
+MIT; see [LICENSE](LICENSE). The repository's `docs/` and `research/`, which this README links to, are
+CC BY 4.0.

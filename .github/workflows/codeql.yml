@@ -2,14 +2,18 @@ name: CodeQL
 
 # Code scanning is free on public repositories; on a private one it needs GitHub Advanced Security and the upload
 # fails. The job therefore runs only while the repository is public and is skipped (not failed) while it is private.
-# A weekly schedule can be added once the repository is public (a scheduled event carries no repository visibility
-# to gate on). Do not also enable CodeQL "default setup" in the repository settings: GitHub rejects uploads from an
-# advanced-setup workflow like this one while default setup is on. Use one or the other.
+# A scheduled event carries no repository visibility to gate on (`github.event.repository` is absent, and
+# `null == false` is true in expressions), so the weekly run is gated separately on the repository variable
+# CODEQL_SCHEDULE, which scripts/after-public.sh sets to `true` once the repository is public. Do not also enable
+# CodeQL "default setup" in the repository settings: GitHub rejects uploads from an advanced-setup workflow like
+# this one while default setup is on. Use one or the other.
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: '23 7 * * 1' # Mondays 07:23 UTC
   workflow_dispatch:
 
 permissions:
@@ -22,7 +26,7 @@ concurrency:
 jobs:
   analyze:
     name: analyze (${{ matrix.language }})
-    if: ${{ github.event.repository.private == false }}
+    if: ${{ github.event_name == 'schedule' && vars.CODEQL_SCHEDULE == 'true' || github.event_name != 'schedule' && github.event.repository.private == false }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:

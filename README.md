@@ -14,11 +14,14 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
 
 ## Quick start
 
-The package is private and not on a registry. Download `human-framework-2.1.0.tgz` from the [v2.1.0 release](https://github.com/adam0white/human-framework/releases/tag/v2.1.0) (or build it with `npm pack -w packages/human`) and install it:
+The source is public on GitHub under the MIT license. The package is not published to npm yet (`packages/human` stays `"private": true` until npm publishing is set up); install it from the tarball attached to each [GitHub release](https://github.com/adam0white/human-framework/releases), or build one from a checkout with `npm pack -w packages/human`:
 
 ```sh
-npm install ./human-framework-2.1.0.tgz
+npm pack -w packages/human   # writes adam0white-human-framework-<version>.tgz
+npm install ./adam0white-human-framework-<version>.tgz
 ```
+
+The v2.1.0 release tarball (`human-framework-2.1.0.tgz`) predates the rename and installs as `@human/framework`; releases after it carry the `@adam0white/human-framework` name used below.
 
 ```ts
 import { createCommunity, createPerson, createVillage, predict, stepCommunity, villagerSpec } from '@adam0white/human-framework';
@@ -36,6 +39,10 @@ console.log(ada.trace.at(-1)?.narration); // why she did what she did
 ```
 
 The [package README](packages/human/README.md) covers the host contract (your `World` offers actions, HF chooses, your world resolves outcomes), saves, versions and runnable [examples](packages/human/examples).
+
+## Norms and faith
+
+A person's conscience weighs norms from a catalog the host supplies. The bundled catalog (`DEFAULT_NORMS`) is Islam-guided, and a host can replace it with its own. HF models a person's *understanding* of a norm, held with some conviction, not a ruling, and it never computes divine acceptance. The sources behind each norm and the decisions taken where schools differ are recorded in [research/](research), notably [norm-sources.md](research/norm-sources.md) and [decisions.md](research/decisions.md). In the games, prayer and fasting appear as quiet parts of a character's life, not as the theme.
 
 ## Docs
 
@@ -69,3 +76,13 @@ Node ≥ 24 with `/opt/homebrew/bin` first on `PATH`.
 - `npm run release`: on a clean, pushed `main`, checks versions and the changelog, runs `npm run check`, tags `vX.Y.Z` and creates the GitHub release with the tarball (`-- --dry-run` stops after packing). Versions follow [the version policy](packages/human/README.md#versions).
 
 CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs the pieces of check and build in parallel (lint, typecheck and build in one job, the tests in shards) as the gate on pushes and pull requests to `main`; its `ci` job is the single check that passes when all of them pass. [bench.yml](.github/workflows/bench.yml) runs the bench at 3× budgets and hyperfine as information, skipped for prose-only changes. CI uses the Node version in `.nvmrc`.
+
+## Contributing and security
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Report vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
+
+## License
+
+- **Code** (everything outside `docs/` and `research/`, including `packages/human`, `apps/site`, `scripts` and `archive/`): [MIT](LICENSE).
+- **Documentation and research** (`docs/` and `research/`): [CC BY 4.0](docs/LICENSE). Quotations from third-party sources keep their own terms.
+- **Third-party data**: the archived learning-pilot dataset under `archive/v0/artifacts/learning-pilot/data-access/` mirrors [OSF project xzm5c](https://osf.io/xzm5c/), which its authors released under [CC0 1.0](archive/v0/artifacts/learning-pilot/data-access/LICENSE-OSF-CC0.txt); credit Zhang, McDougle and Leonard (2025).

@@ -1,6 +1,6 @@
 # Empirical learning pilot evidence
 
-This directory holds private research evidence, not game assets or runtime dependencies. Raw CC0 research files include more fields than the analysis uses; preserve the originals and use only the restricted performance projection. Do not publish participant profiles or copy these assets into the public build.
+This directory holds research evidence, not game assets or runtime dependencies. It was kept private while the repository was private; the raw files mirror the public CC0 OSF dataset xzm5c, and the directory is published with the repository (owner, 2026-10-05). Earlier "private" wording in the pilot's docs describes that period. Raw CC0 research files include more fields than the analysis uses; preserve the originals and use only the restricted performance projection. Do not publish participant profiles or copy these assets into the public build.
 
 - [Frozen protocol](../../docs/learning-pilot-protocol.md), first committed at `de2fc86527ec073a89ddba5ea884cc32887c620d` before real-data fits or performance trends.
 - [Selected data qualification](../../docs/learning-data-access.md) and [exact source files, license and administrative checks](data-access/README.md).

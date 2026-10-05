@@ -13,6 +13,7 @@ absolute links in sections, since they are copied into the release page.
 ## [Unreleased]
 
 - The package is renamed from `@human/framework` to `@adam0white/human-framework` (the `@human` npm scope is not ours). Imports change; the API does not.
+- The package is licensed under MIT (was `UNLICENSED`); the tarball includes `LICENSE`. The repository's `docs/` and `research/` are CC BY 4.0.
 
 ## [2.1.0] - 2026-10-05
 

@@ -6,9 +6,22 @@ Updated 2026-10-05. Read [AGENTS.md](AGENTS.md) for rules, [docs/framework.md](d
 
 - **No goal is set.** Goals 1 and 2 are done and accepted. The owner chooses the next goal; the [roadmap](docs/roadmap.md) is the menu, each item with a target (2.1, 2.2, 3.0 or unscheduled).
 - **Released:** HF 2.1.0 (GitHub release v2.1.0 at a66700a, Latest, tarball attached; engine 2.0.0, behaviour identical to 2.0.0). Earlier: v2.0.0 (d48d8f6), v1.2.0, v1.1.0, v1.0.0. Live site: https://human.adamwhite.work, framework 2.1.0 at a66700a, with a framework homepage and Games 1–3. CI green (run 37321995064). Repo description and topics set 2026-10-05; v2.0.0 release-note links repointed to the v2.0.0 tag after the docs consolidation.
-- **Unreleased on `main`:** nothing (CHANGELOG [Unreleased] is empty). Deprecated option forms go in 3.0 (roadmap).
+- **Unreleased on `main`:** the package rename to `@adam0white/human-framework` and the MIT / CC BY 4.0 license (CHANGELOG [Unreleased]). Deprecated option forms go in 3.0 (roadmap).
 - **Games:** graduated with HF. Each game doc ends with its deferred list ([colony](docs/games/colony.md#deferred), [voice](docs/games/voice.md#deferred), [watch §12](docs/games/watch.md#12-after-graduation-deferred-features), review watch §12 by 2026-11-05).
 - **Docs** were consolidated on 2026-10-05: per-dimension review files, `hf-status.md` and `rimworld-gap.md` were folded into the roadmap, framework.md and the two review summaries, then deleted; v0-era research planning docs moved to `archive/research/`.
+
+## Going public
+
+The repository is private until the owner makes it public (owner's decisions, 2026-10-05: MIT for code, CC BY 4.0 for `docs/` and `research/`, history kept, archived OSF data published). Everything else is prepared. The owner runs:
+
+```sh
+gh repo edit adam0white/human-framework --visibility public --accept-visibility-change-consequences
+bash scripts/after-public.sh
+```
+
+The script refuses to run unless the repository is public, then enables secret scanning with push protection and private vulnerability reporting, creates or updates the `main` ruleset from [.github/rulesets/main.json](.github/rulesets/main.json) (no deletion, no force-push, required check `ci`; repository admins bypass), sets the Actions settings (SHA-pinned actions, approval for fork PRs from all outside contributors) and turns on the weekly CodeQL run (repository variable `CODEQL_SCHEDULE`). It is safe to re-run. CodeQL stays on the workflow; do not enable CodeQL default setup. After that, an agent deploys the homepage (`npm run deploy`), whose Status line now links the GitHub repository.
+
+Applied live while private (2026-10-05): Actions `sha_pinning_required=true` (every workflow already pins actions by SHA). Dependabot alerts were already on. GitHub refused the rest while private on the free plan: rulesets (403), private vulnerability reporting (404), fork-PR approval (422), secret scanning (422).
 
 ## Goals
 

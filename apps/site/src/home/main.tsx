@@ -411,8 +411,9 @@ function Home() {
                 <div>
                   <dt>Status</dt>
                   <dd>
-                    {FRAMEWORK_VERSION}, used by the three games below. The source is private for now, with no
-                    license granted yet, so it is not on npm.
+                    {FRAMEWORK_VERSION}, used by the three games below. The source is on{' '}
+                    <a href="https://github.com/adam0white/human-framework">GitHub</a> under the MIT license;
+                    install it from a release tarball (it is not on npm yet).
                   </dd>
                 </div>
               </dl>
