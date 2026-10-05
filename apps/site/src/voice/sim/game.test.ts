@@ -4,6 +4,7 @@ import {
   type BeatKind,
   type Draft,
   defaultWhisper,
+  type Frame,
   type LogEntry,
   type StandingWhisper,
 } from '../protocol.ts';
@@ -35,19 +36,66 @@ const WHISPERS: StandingWhisper[] = [
   { choiceId: 'selin', strength: 'mention', appeal: 'benevolence' },
 ];
 
-describe('Game 2 sim on the shipped seed', () => {
-  const quiet = new VoiceGame(SHIPPED_SEED);
-  play(quiet);
-  const spoken = new VoiceGame(SHIPPED_SEED);
-  let maxFrame = 0;
-  play(spoken, {
-    confirm: true,
-    whispers: WHISPERS,
-    onPause: (f) => {
-      maxFrame = Math.max(maxFrame, JSON.stringify(f).length);
-    },
-  });
+/**
+ * The two shipped-seed months most tests read, played once per file: `quiet` (no input) and `spoken` (every prefill
+ * confirmed, two standing whispers). The observers only read the game (`stop` always returns false), so they leave
+ * the runs as they would be without them. Tests must not change these games; the one test that plays `spoken` on
+ * (keep listening) is the last in the file.
+ */
 
+/** Every prefill seen at a pause that is not on the composer's option list, or with more than six options. */
+const prefillsOffList: string[] = [];
+let prefillsSeen = 0;
+const checkPrefill = (f: Frame) => {
+  if (!f.composer.open || !f.prefill) return;
+  prefillsSeen++;
+  if (!f.options.some((o) => o.id === f.prefill?.optionId) || f.options.length > 6)
+    prefillsOffList.push(`${fmt(f.minute)} ${f.prefill.optionId} of ${f.options.map((o) => o.id).join(',')}`);
+};
+/** What the quiet run showed along the way. */
+const seen = {
+  /** The first intro card's lines of each day. */
+  introByDay: {} as Record<number, string[]>,
+  /** Each intro card once, by label. */
+  intros: [] as { label: string; lines: string[] }[],
+  /** The first skipped-days digest. */
+  firstDigest: [] as string[],
+  /** The between-days card after Ramadan 15: the afternoon shift's hint and the card's lines. */
+  day15Hint: undefined as string | undefined,
+  day15Lines: [] as readonly string[],
+  /** The log of Ramadan 15, as it stands when Ramadan 16 begins (the log is capped). */
+  day15Log: undefined as LogEntry[] | undefined,
+};
+const quiet = new VoiceGame(SHIPPED_SEED);
+play(quiet, {
+  onPause: checkPrefill,
+  stop: (x) => {
+    if (x.intro) {
+      seen.introByDay[x.day] ??= x.intro.lines;
+      if (!seen.intros.some((i) => i.label === x.intro?.label)) seen.intros.push(x.intro);
+      if (/days passed/.test(x.intro.label) && seen.firstDigest.length === 0)
+        seen.firstDigest = x.intro.lines;
+    }
+    if (x.phase === 'between' && x.day === 15) {
+      seen.day15Hint = x.between?.choices.find((c) => c.id === 'extra')?.hint;
+      seen.day15Lines = x.between?.lines ?? [];
+    }
+    if (x.day > 15 && seen.day15Log === undefined) seen.day15Log = x.log.filter((e) => e.day === 15);
+    return false;
+  },
+});
+const spoken = new VoiceGame(SHIPPED_SEED);
+let maxFrame = 0;
+play(spoken, {
+  confirm: true,
+  whispers: WHISPERS,
+  onPause: (f) => {
+    maxFrame = Math.max(maxFrame, JSON.stringify(f).length);
+    checkPrefill(f);
+  },
+});
+
+describe('Game 2 sim on the shipped seed', () => {
   test('the bar: a prefill-only player meets a non-assented answer and a craving by Ramadan 1 12:00', () => {
     const g = new VoiceGame(SHIPPED_SEED);
     play(g, { confirm: true, stop: (x) => x.t >= at(1, 12) });
@@ -157,24 +205,14 @@ describe('Game 2 sim on the shipped seed', () => {
             : Number(/went to the clinic (\d+) times/.exec(line)?.[1] ?? Number.NaN);
       expect(said, line).toBe(g.eidMorning?.run.town.state.completed.halil?.['see-doctor'] ?? 0);
     }
-    // The card after Osman's date (Ramadan 15, 23:30) no longer projects to Ramadan 15.
-    const g = new VoiceGame(SHIPPED_SEED);
-    let hint: string | undefined;
-    let lines: readonly string[] = [];
-    play(g, {
-      stop: (x) => {
-        if (x.phase === 'between' && x.day === 15) {
-          hint = x.between?.choices.find((c) => c.id === 'extra')?.hint;
-          lines = x.between?.lines ?? [];
-        }
-        return x.day > 15;
-      },
-    });
+    // The card after Osman's date (Ramadan 15, 23:30) no longer projects to Ramadan 15 (seen in the quiet run).
+    const { day15Hint: hint, day15Lines: lines } = seen;
     expect(hint ?? '').not.toMatch(/by Ramadan 15/);
     // The missed date costs something visible: the day card leads with it, the log says so at 20:00, and Osman's
     // next knock says he presses harder (his demand's advice strength rises after the date, in town.ts).
     expect(lines[0]).toMatch(/He missed Osman’s date/);
-    const day15 = g.log.filter((e) => e.day === 15);
+    const day15 = seen.day15Log ?? [];
+    expect(day15.length).toBeGreaterThan(0);
     expect(day15.some((e) => e.clock === '20:00' && /date has gone by/.test(e.text))).toBe(true);
     expect(day15.some((e) => e.who === 'osman' && /presses harder/.test(e.text))).toBe(true);
     // The log is in time order.
@@ -187,14 +225,7 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(night && Math.floor(night.at / MIN_DAY)).toBe(30);
     expect(night?.paused).toBe(true);
     // Ramadan 15: the 17:00 beat is Osman's date (pinned in the running-late test). Digests: firsts, then totals.
-    const g = new VoiceGame(SHIPPED_SEED);
-    const intros: Record<number, string[]> = {};
-    play(g, {
-      stop: (x) => {
-        if (x.intro) intros[x.day] ??= x.intro.lines;
-        return false;
-      },
-    });
+    const intros = seen.introByDay;
     expect(intros[2]?.some((l) => /Selin often calls after iftar/.test(l))).toBe(true);
     expect(intros[15]?.[0]).toMatch(/^Nothing new since Ramadan 2/);
     expect(intros[30]?.[0]).toMatch(/^First time he paid Osman: Ramadan \d+, on his own\./);
@@ -336,15 +367,7 @@ describe('Game 2 sim on the shipped seed', () => {
   });
 
   test('the skipped-days digest names his work and money, Osman, and Selin', () => {
-    const g = new VoiceGame(SHIPPED_SEED);
-    let digest: string[] = [];
-    play(g, {
-      stop: (x) => {
-        if (x.intro && /days passed/.test(x.intro.label) && digest.length === 0) digest = x.intro.lines;
-        return digest.length > 0;
-      },
-    });
-    const text = digest.join(' ');
+    const text = seen.firstDigest.join(' ');
     expect(text).toMatch(/He worked \d+ mornings?/);
     expect(text).toMatch(/he has \d+/);
     expect(text).toMatch(/Osman|paid Osman/);
@@ -421,31 +444,6 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(maxFrame).toBeGreaterThan(0);
     expect(maxFrame).toBeLessThan(100_000);
     expect(JSON.stringify(spoken.frame()).length).toBeLessThan(100_000);
-  });
-
-  test('keep listening resumes after Eid night with the voice live', () => {
-    const g = spoken;
-    expect(g.phase).toBe('report');
-    g.keepListening();
-    expect(g.phase).toBe('free');
-    expect(g.day).toBe(32);
-    expect(g.frame().muted).toBe(false);
-    g.dismissIntro();
-    g.resume();
-    // Run until the composer opens, then speak.
-    for (let i = 0; i < 2000 && !(g.composer().open && !g.paused); i++) {
-      if (g.paused) g.resume();
-      g.advanceTo(g.t + 10);
-    }
-    const f = g.frame();
-    expect(f.composer.open).toBe(true);
-    const option = f.options.find((o) => !o.leaning) ?? f.options[0];
-    expect(option).toBeDefined();
-    g.suggest({ optionId: option?.id ?? '', strength: 'urge', insist: false });
-    const answer = g.log.filter((e) => e.kind === 'answer').at(-1);
-    expect(answer && answer.minute >= at(32, 0)).toBe(true);
-    // The epilogue ran on a clone: the free run starts again from Eid night, not from day 38.
-    expect(g.t).toBeLessThan(at(33, 0));
   });
 });
 
@@ -548,9 +546,9 @@ describe('Game 2 sim determinism and budget', () => {
   });
 
   test('whole runs repeat exactly: log, beats and report', () => {
-    const g1 = new VoiceGame(SHIPPED_SEED);
+    // g1 is `spoken`: the same seed and inputs.
+    const g1 = spoken;
     const g2 = new VoiceGame(SHIPPED_SEED);
-    play(g1, { confirm: true, whispers: WHISPERS });
     // g2 also builds a frame at every turn, as the worker does on every tick: frames must not change the run.
     const frameEveryTurn = (g: VoiceGame): boolean => {
       g.frame();
@@ -613,19 +611,10 @@ describe('Game 2 sim determinism and budget', () => {
 
   test('every prefill is on the option list, so Say it is never disabled on a prefilled composer', () => {
     // Seen in the browser on Ramadan 15: the afternoon shift and the call to Selin were prefilled while ranked
-    // below his top six, so the composer read "Prefilled something" with nothing selected.
-    const g = new VoiceGame(SHIPPED_SEED);
-    let prefills = 0;
-    play(g, {
-      confirm: true,
-      onPause: (f) => {
-        if (!f.composer.open || !f.prefill) return;
-        prefills++;
-        expect(f.options.map((o) => o.id)).toContain(f.prefill.optionId);
-        expect(f.options.length).toBeLessThanOrEqual(6);
-      },
-    });
-    expect(prefills).toBeGreaterThan(3);
+    // below his top six, so the composer read "Prefilled something" with nothing selected. Checked at every pause of
+    // the quiet and the spoken month.
+    expect(prefillsOffList).toEqual([]);
+    expect(prefillsSeen).toBeGreaterThan(3);
   });
 });
 
@@ -653,8 +642,8 @@ describe('Game 2 round 3 fixes', () => {
   };
   const pushy = new VoiceGame(SHIPPED_SEED);
   const pushyDigests = digests(pushy);
-  const prefill = new VoiceGame(SHIPPED_SEED);
-  play(prefill, { confirm: true, whispers: WHISPERS });
+  // The prefill player with two standing whispers is `spoken`.
+  const prefill = spoken;
 
   test('a standing urge to the mosque is kept once per prayer, not at every decision, on skipped days', () => {
     const played = new Set([1, 2, 15, 30, 31]);
@@ -795,15 +784,9 @@ describe('Game 2 round 3 fixes', () => {
   });
 
   test('round 4: a played day opens with its open questions, not an empty "begins" card', () => {
-    const intros: { label: string; lines: string[] }[] = [];
-    const g = new VoiceGame(SHIPPED_SEED);
-    play(g, {
-      stop: (x) => {
-        if (x.intro && !intros.some((i) => i.label === x.intro?.label)) intros.push(x.intro);
-        return false;
-      },
-    });
-    const played = intros.filter((i) => !/days passed/.test(i.label) && /^Ramadan (2|15|30)$/.test(i.label));
+    const played = seen.intros.filter(
+      (i) => !/days passed/.test(i.label) && /^Ramadan (2|15|30)$/.test(i.label),
+    );
     expect(played.length).toBeGreaterThan(0);
     for (const i of played)
       expect(
@@ -840,4 +823,32 @@ test('twelfth pass: a word he will refuse while busy is answered at once, booked
   expect(answer?.tone).toBe('willNot');
   expect(voiceOf(g.halil, 'you')?.refused).toBe(refused + 1);
   expect(g.standing).toBeUndefined();
+});
+
+// Last, because it plays `spoken` on past its report.
+describe('Game 2 after the report', () => {
+  test('keep listening resumes after Eid night with the voice live', () => {
+    const g = spoken;
+    expect(g.phase).toBe('report');
+    g.keepListening();
+    expect(g.phase).toBe('free');
+    expect(g.day).toBe(32);
+    expect(g.frame().muted).toBe(false);
+    g.dismissIntro();
+    g.resume();
+    // Run until the composer opens, then speak.
+    for (let i = 0; i < 2000 && !(g.composer().open && !g.paused); i++) {
+      if (g.paused) g.resume();
+      g.advanceTo(g.t + 10);
+    }
+    const f = g.frame();
+    expect(f.composer.open).toBe(true);
+    const option = f.options.find((o) => !o.leaning) ?? f.options[0];
+    expect(option).toBeDefined();
+    g.suggest({ optionId: option?.id ?? '', strength: 'urge', insist: false });
+    const answer = g.log.filter((e) => e.kind === 'answer').at(-1);
+    expect(answer && answer.minute >= at(32, 0)).toBe(true);
+    // The epilogue ran on a clone: the free run starts again from Eid night, not from day 38.
+    expect(g.t).toBeLessThan(at(33, 0));
+  });
 });
