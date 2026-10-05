@@ -217,4 +217,51 @@ describe('restore: malformed values are held to their ranges (quality review H2 
     mem.nextGist = 1;
     expect(H.restore(j).memory.nextGist).toBe(8);
   });
+
+  test('yearbook: malformed entries drop, lists hold their bounds, one record per year in year order', () => {
+    const j = base();
+    const year = (y: number, extra: Record<string, unknown> = {}) => ({
+      year: y,
+      days: 1,
+      routineDays: 0,
+      mood: 0,
+      moodLow: 0,
+      moodHigh: 0,
+      kept: 0,
+      broken: 0,
+      released: 0,
+      breaches: 0,
+      repairs: 0,
+      material: 0,
+      decisions: 0,
+      actions: [],
+      episodes: [],
+      illness: [],
+      alive: true,
+      ...extra,
+    });
+    j.chronicleYears = [
+      year(31, { days: 5 }),
+      year(30, {
+        actions: [
+          { action: 'work', days: 3 },
+          { action: 7, days: 1 },
+          ...Array(40).fill({ action: 'x', days: 1 }),
+        ],
+        episodes: [{ id: 'e1', day: 1, summary: 's', valence: 0.2, salience: 0.5 }, { id: 'e2' }],
+        illness: ['flu', 3],
+      }),
+      year(31, { days: 9 }),
+      { year: 'x' },
+    ];
+    const ys = H.restore(j).chronicleYears ?? [];
+    expect(ys.map((y) => [y.year, y.days])).toEqual([
+      [30, 1],
+      [31, 9],
+    ]);
+    expect(ys[0]?.actions).toHaveLength(4 * H.CHRONICLE_DEFAULTS.yearActions);
+    expect(ys[0]?.actions[0]).toEqual({ action: 'work', days: 3 });
+    expect(ys[0]?.episodes.map((e) => e.id)).toEqual(['e1']);
+    expect(ys[0]?.illness).toEqual(['flu']);
+  });
 });
