@@ -12,6 +12,40 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+Engine: 2.0.0 (unchanged). A polish release, to be versioned 2.1.0 at release (bump the package version and
+`FRAMEWORK_VERSION` then, and the tests that pin `'2.0.0'`: smoke.test.ts, migrate.test.ts). No simulation behaviour
+changes: playtest replays, engine fixtures and state hashes are byte-identical to 2.0.0.
+
+### Added
+
+- `PersonSpec.enable: { gists, yearbook, character, skillRetention }` turns those long-run faculties on at creation,
+  the same as calling `enableGists`, `enableYearbook`, `enableCharacterChange` and `enableSkillRetention` after it.
+- `emotionLevel(p, id, targetId?)`: the summed intensity of one emotion (optionally toward one target).
+- `ageAt(p, at)`: age in years at a given minute (`ageYears(p)` is `ageAt(p, p.now)`).
+- `TRAIT_KEYS`, `VALUE_KEYS` (the canonical key order) and `DAYS_PER_YEAR`.
+- Positional forms for host events, which take `at` as the last required argument:
+  `glimpse(observer, targetId, signs, at, clarity?)`, `glimpseOf(observer, target, at, clarity?)`,
+  `hear(observer, targetId, key, value, at, weight?)`, `conceive(mother, father, seed, at)`,
+  `retell(teller, listener, at, opts?)` with the new `RetellOptions` type. The rule is in
+  [docs/framework.md](https://github.com/adam0white/human-framework/blob/main/docs/framework.md#argument-order).
+
+### Changed
+
+- `snapshot` and `restore` moved to their own module (`restore.ts`); each optional slice is now checked by its
+  owning module. Same exports, same results.
+- `restore` checks the entries of saved year records too: malformed actions, episodes and illness entries are
+  dropped, each list is held to its live bound, and one record per year is kept, in year order. A save the engine
+  wrote is unchanged.
+- `MAX_MINUTE` is defined in `types.ts` (still exported from the package root).
+- Doc comments, docs/framework.md and the package README match the code; game-specific wording is out of the
+  framework source.
+
+### Deprecated (removed in 3.0)
+
+- The 2.0 options-object forms `glimpse(…, { at, clarity })`, `glimpseOf(…, { at, clarity })`,
+  `hear(…, { at, weight })`, `conceive(…, { seed, at })` and `retell(…, { at, … })`: pass `at` positionally.
+- `TRAIT_NAMES`: use `TRAIT_KEYS`.
+
 ## [2.0.0] - 2026-10-04
 
 Engine: 2.0.0. HF 2.0 adds the faculties a life over decades needs: experience over years, upbringing and heredity,
