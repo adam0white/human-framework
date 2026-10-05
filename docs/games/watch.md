@@ -519,6 +519,16 @@ After the owner's playtest ([his words](watch-playtest-2026-10-05.md)), bugs and
 
 **Cut first, in order:** summer events; resettlement (a fallen village just ends its volume); blank leaves; the bigger bell; *mend things*.
 
+## Review notes (round 2)
+
+Three reviews of the endless-play draft, 2026-10-04.
+
+**(a) Adversarial systemic designer (Opus).** *Top:* the long run settles into a dead equilibrium. **Accepted:** permanent non-death losses and growth costs; decade-swing gate; ~15-minute years with routine nights summarized; decade decisions at autumn; preview through the impression, L6 made core and kept in HF; queued cards, 1/16× while open, sim-time windows, sim-minute input log, no night posting; season snapshots plus log; permanent chronicle game-side; L3 kin prohibition and director-supplied partners; fidelity switch at dawn only; abstract lane night with no fire spread; Yunus without a card. **Rejected:** merging G3-1 into G3-2 (G3-1 stays, abstract and small, because its gate tests planning before people); talks made scarce by sleeping watchers is kept, but children's stone-gathering competing with chores and oil competing at the fair are dropped for (c)'s fewer components.
+
+**(b) Player advocate (Opus, owner's quotes only).** *Top:* no stated goal and nothing that can really go wrong. **Accepted:** stopped-clock goal page; gentle night 1 (one wall, two watchers); each winter's question as a failable goal with a visible cost; 6–8-night winters with routine nights as dawn lines; staleness only for what changed, "last seen at harvest"; watch-age roster; generations as volumes with inherited stakes; tap-only posting with suggest/urge/insist in words; prices in words; a setting for which moments slow play; replay jumps cut. **Rejected:** none.
+
+**(c) Wildcard: legacy board-game designer (Fable).** *Top:* a volume needs an end that is not failure. **Accepted:** volumes with a named question and end; blank leaves with printed conditions; irreversible map changes; the lantern as the Keeper's position, so unlit wavers raise no card; wrong reads cost; no truth toggle in play (export only); three managed limits, stones and oil ambient; the thaw page as cleanup; the fair as drafting. **Rejected:** none.
+
 ## 12. After graduation: deferred features
 
 The owner graduated Game 3 at the 2026-10-05 playtest. This is the one list of deferred game work; earlier sections point here. Targets:
@@ -566,13 +576,3 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 - T3, **Q49**: pregnancy through HF `conceive`/`deliver`. This changes every run (gestation 268 days, not 200), so it needs a scenario bump.
 - T3, **Q51**: households leave by a game formula, not through `decide` over leave and stay offers.
 - T3, **P10**: the yearbook grows by one record a person a year and is never shown. Either show it or drop it.
-
-## Review notes (round 2)
-
-Three reviews of the endless-play draft, 2026-10-04.
-
-**(a) Adversarial systemic designer (Opus).** *Top:* the long run settles into a dead equilibrium. **Accepted:** permanent non-death losses and growth costs; decade-swing gate; ~15-minute years with routine nights summarized; decade decisions at autumn; preview through the impression, L6 made core and kept in HF; queued cards, 1/16× while open, sim-time windows, sim-minute input log, no night posting; season snapshots plus log; permanent chronicle game-side; L3 kin prohibition and director-supplied partners; fidelity switch at dawn only; abstract lane night with no fire spread; Yunus without a card. **Rejected:** merging G3-1 into G3-2 (G3-1 stays, abstract and small, because its gate tests planning before people); talks made scarce by sleeping watchers is kept, but children's stone-gathering competing with chores and oil competing at the fair are dropped for (c)'s fewer components.
-
-**(b) Player advocate (Opus, owner's quotes only).** *Top:* no stated goal and nothing that can really go wrong. **Accepted:** stopped-clock goal page; gentle night 1 (one wall, two watchers); each winter's question as a failable goal with a visible cost; 6–8-night winters with routine nights as dawn lines; staleness only for what changed, "last seen at harvest"; watch-age roster; generations as volumes with inherited stakes; tap-only posting with suggest/urge/insist in words; prices in words; a setting for which moments slow play; replay jumps cut. **Rejected:** none.
-
-**(c) Wildcard: legacy board-game designer (Fable).** *Top:* a volume needs an end that is not failure. **Accepted:** volumes with a named question and end; blank leaves with printed conditions; irreversible map changes; the lantern as the Keeper's position, so unlit wavers raise no card; wrong reads cost; no truth toggle in play (export only); three managed limits, stones and oil ambient; the thaw page as cleanup; the fair as drafting. **Rejected:** none.

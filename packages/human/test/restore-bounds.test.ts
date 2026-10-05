@@ -1,4 +1,4 @@
-/** Security review H2 (docs/reviews/2026-10-04-h2-security.md S1–S3): restore holds crafted saves to sane minutes and bounds. */
+/** Security review H2 (docs/reviews/2026-10-04-h2-summary.md, Security, S1–S3): restore holds crafted saves to sane minutes and bounds. */
 import { describe, expect, test } from 'vitest';
 import * as H from '../src/index.ts';
 
