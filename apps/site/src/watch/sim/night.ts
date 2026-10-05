@@ -4,8 +4,10 @@
  * Scope. Each wall section is a lane; threats are tokens that walk from the treeline to the foot of the wall,
  * wait there while they climb, and take grain if nobody drives them off. The watchers are HF people
  * (`people.ts`) stepped minute by minute in a community: the Keeper's postings are standing suggestions they
- * may take, put off or refuse from need, fear or a bond, and the bell is a command (HF `command`) on the
- * watchers in earshot, which costs trust and autonomy as the engine prices it. Each sim minute resolves as
+ * may take, put off or refuse from need, fear or a bond. The bell hangs over the Gate and its rope runs along the
+ * wall-walk: a pull is heard by every watcher in range, louder nearer the Gate, and rouses and calls them back to
+ * their posts (`ringBell`); calling one by name with it is a command (HF `command`), which costs trust and autonomy
+ * as the engine prices it. Each sim minute resolves as
  * seeded rolls: every watcher standing a post throws at the nearest token they can see, with a chance from their
  * sling skill, their hands, fatigue and fear, and the light. The lantern is the Keeper's position: walking it
  * costs minutes, and only the section it stands at is lit (watchers there see far and hit more; the Keeper sees
@@ -20,6 +22,7 @@
 import {
   type Affordance,
   type Command,
+  finish,
   glimpseOf,
   hear,
   injure,
@@ -43,9 +46,19 @@ import {
 } from '@adam0white/human-framework';
 import {
   AIM_SCALE,
+  BELL_CALL_BASE,
+  BELL_CALL_LOUD,
+  BELL_CALL_MIN,
   BELL_COMMAND_MIN,
+  BELL_CRY_MIN,
+  BELL_CRY_WEIGHT,
+  BELL_FALLOFF,
+  BELL_HOME_SHARE,
+  BELL_SWING_MIN,
+  BELL_WAKE,
   BELL_WEAR_BASE,
   BELL_WEAR_SPREAD,
+  BIG_BELL_FALLOFF,
   DARK_AIM,
   DARK_REACH,
   DARK_SIGHT_BONUS,
@@ -74,7 +87,7 @@ import { advanceDay } from './day.ts';
 import { planDirectedNight } from './director.ts';
 import { takeOffer } from './fair.ts';
 import { fillLeaf, maybeLimp } from './life.ts';
-import { answerMoment, bellTarget, catchLeaving, checkMoments } from './moments.ts';
+import { answerMoment, catchLeaving, checkMoments } from './moments.ts';
 import {
   addVillager,
   arrive,
@@ -94,6 +107,7 @@ import {
   type Alert,
   createState,
   type DawnPage,
+  emptyBell,
   emptyTally,
   type FairOffer,
   type NightNote,
@@ -176,10 +190,59 @@ const OPENING_NIGHTS = 3;
 /** Weight of one seen throw as evidence of aim (the skill cue lasts a year). */
 const SEEN_THROW = 0.05;
 
-/** The sections in earshot of the Keeper: where he stands and its neighbours. */
-export function earshot(s: WatchState): SectionId[] {
+/** The sections the Keeper's own voice reaches: where he stands with the lantern and its neighbours. */
+export function voiceReach(s: WatchState): SectionId[] {
   const at = Math.round(s.lantern.x);
   return SECTION_IDS.filter((_, i) => Math.abs(i - at) <= 1);
+}
+
+/** Whether the Keeper's voice reaches `id` (on a post within reach, or in the hall when the Gate is). */
+export function inVoice(s: WatchState, id: WatcherId): boolean {
+  const reach = voiceReach(s);
+  const pl = s.place[id];
+  if (isPost(pl)) return reach.includes(postSection(pl));
+  return pl === 'hall' && reach.includes('gate');
+}
+
+/** How loud the Gate's bell is at a stretch: 1 at the Gate, less each stretch away; the bigger bell carries further. */
+export function bellCarry(s: WatchState, section: SectionId): number {
+  const fall = s.marks.bigBell ? BIG_BELL_FALLOFF : BELL_FALLOFF;
+  const d = Math.abs(SECTION_IDS.indexOf(section) - SECTION_IDS.indexOf('gate'));
+  return Math.max(0, 1 - fall * d);
+}
+
+/**
+ * How loud the bell is where a watcher is now (0: they do not hear it): their stretch on the wall, full in the hall
+ * by the Gate, out in the village as on the wall above their house, and at home a share of that, heard only when it
+ * is loud enough to wake a sleeper. Away from the village, nothing.
+ */
+export function bellLoudness(s: WatchState, id: WatcherId): number {
+  const pl = s.place[id];
+  if (isPost(pl)) return bellCarry(s, postSection(pl));
+  if (pl === 'hall') return 1;
+  // Awake and out of doors in the village below their stretch: as loud as on the wall there.
+  if (pl === 'village') return bellCarry(s, villager(s, id).home);
+  if (pl === 'home') {
+    const l = bellCarry(s, villager(s, id).home) * BELL_HOME_SHARE;
+    return l >= BELL_WAKE - 1e-9 ? l : 0;
+  }
+  return 0;
+}
+
+/** The call's strength on a watcher who heard the bell at loudness `loud`, after tonight's false alarms. */
+export function bellCall(s: WatchState, loud: number): number {
+  if (loud <= 0) return 0;
+  return (BELL_CALL_BASE + BELL_CALL_LOUD * loud) / (1 + BELL_CRY_WEIGHT * s.bell.cry);
+}
+
+/** Whether the bell still swings from the last pull (another pull waits). */
+export function bellSwinging(s: WatchState): boolean {
+  return s.phase === 'night' && s.minute < s.bell.rungAt + BELL_SWING_MIN;
+}
+
+/** A threat the wall knows of: motion seen out in the dark, or something at the foot. */
+function knownDanger(s: WatchState): boolean {
+  return s.tokens.some((t) => t.state === 'foot' || (t.state === 'coming' && t.pos >= MOTION_REACH));
 }
 
 export function nightEnd(s: WatchState): number {
@@ -295,6 +358,7 @@ function enterNight(s: WatchState): void {
     firstStand(s, id);
   }
   s.tally = emptyTally(s.grain);
+  s.bell = { ...emptyBell(), cry: s.bell.cry / 2 };
   s.notes = [];
   s.carried = {};
   s.moment = null;
@@ -477,6 +541,7 @@ function enterDawn(s: WatchState): void {
   s.tokens = [];
   s.throws = [];
   s.commands = {};
+  s.bell = { ...emptyBell(), cry: s.bell.cry };
   s.moment = null;
   s.asks = {};
   // An emptied granary does not end the winter: the dawn page tells the night, and the thaw settles the hunger.
@@ -561,58 +626,134 @@ export function applyInput(s: WatchState, input: Input): boolean {
 }
 
 /**
- * The bell: a command to hold the post on one watcher in earshot, the one named, or by default the one the Keeper
- * reads as least likely to hold (`bellTarget`; spec §4, H2). A pull while the last one still rings (the same
- * minute) does nothing. Each pull wears the rope, even when no one is in earshot to hear it.
+ * The bell (spec §4). It hangs over the Gate; its rope runs along the wall-walk, so the Keeper pulls it from wherever
+ * he stands. A pull is heard by every watcher in range (`bellLoudness`: the Gate loudest, less each stretch away, the
+ * hall by the Gate fully, a house only when loud enough to wake a sleeper), and on each it:
+ * - rouses: a heard percept that interrupts what they are doing, so a doze or a sleep ends and they decide afresh,
+ *   and nobody who heard it nods off at the post for a while (`WatchWorld` leaves the doze out);
+ * - calls: for `BELL_CALL_MIN` the Keeper's posting is spoken to them louder (or, with no posting, a call to any
+ *   post), stronger the louder they heard it and weaker after false alarms (`bellCall`). HF prices the call as it
+ *   prices any suggestion: it weighs by their trust in the Keeper, and those who would rather do otherwise feel the
+ *   pressure, so the cost is small and spread over everyone who would have declined.
+ * Naming a watcher (`who`, a card's choice) adds the strong form: the Keeper calls their name over the bell, an HF
+ * `command` to hold for `BELL_COMMAND_MIN`; his voice must reach them (`inVoice`). While the bell still swings
+ * (`BELL_SWING_MIN`) a plain pull is refused; a named call then goes out without a new pull. Each pull wears the
+ * rope. A pull with no threat known within `BELL_CRY_MIN` minutes is a false alarm (`stepMinute`).
  */
 export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
   if (s.phase !== 'night' || s.rope.snapped) return false;
-  if (Object.values(s.commands).some((c) => c && c.cmd.since === s.minute)) return false;
-  const hear = earshot(s);
-  const inEarshot = (id: WatcherId): boolean => {
-    const pl = s.place[id];
-    if (isPost(pl)) return hear.includes(postSection(pl));
-    return pl === 'hall' && hear.includes('gate');
-  };
-  const named = who ?? bellTarget(s);
-  const targets = named !== null && presentIds(s).includes(named) && inEarshot(named) ? [named] : [];
-  if (who !== undefined && targets.length === 0) return false;
+  if (who !== undefined && !(presentIds(s).includes(who) && inVoice(s, who))) return false;
+  const swinging = bellSwinging(s);
+  if (swinging && who === undefined) return false;
+  const at = litSection(s) ?? 'gate';
+  if (who !== undefined) {
+    const pl = s.place[who];
+    const post = isPost(pl) ? pl : (s.posts[who] ?? villager(s, who).usual);
+    const cmd: Command = { voiceId: KEEPER_ID, affordanceId: `post:${post}`, since: s.minute, repeat: true };
+    s.commands[who] = { cmd, until: s.minute + BELL_COMMAND_MIN };
+    if (swinging) {
+      alert(s, {
+        section: at,
+        kind: 'bell',
+        text: `Over the bell you call ${nameOf(s, who)} by name: hold your post! ${bellAnswer(s, [who], true)}`.trim(),
+        slowed: false,
+      });
+      return true;
+    }
+  }
   s.tally.bellRung += 1;
   s.rope.wear += (BELL_WEAR_BASE + BELL_WEAR_SPREAD * nextRandom(s)) * (s.marks.bigBell ? 0.5 : 1);
-  const at = litSection(s) ?? 'gate';
-  for (const id of targets) {
-    const pl = s.place[id];
-    const post = isPost(pl) ? pl : (s.posts[id] ?? villager(s, id).usual);
-    const cmd: Command = { voiceId: KEEPER_ID, affordanceId: `post:${post}`, since: s.minute, repeat: true };
-    s.commands[id] = { cmd, until: s.minute + BELL_COMMAND_MIN };
+  const b = s.bell;
+  b.rungAt = s.minute;
+  b.until = s.minute + BELL_CALL_MIN;
+  b.heard = {};
+  b.pendingCry = knownDanger(s) ? null : s.minute;
+  const woke: WatcherId[] = [];
+  for (const id of presentIds(s)) {
+    const loud = bellLoudness(s, id);
+    if (loud <= 0) continue;
+    b.heard[id] = loud;
+    const p = personOf(s, id);
+    if (p?.body.asleep && !p.body.downed) {
+      woke.push(id);
+      const pl = s.place[id];
+      note(s, { who: id, kind: 'woken', ...(isPost(pl) ? { section: postSection(pl) } : {}) });
+      // Woken: the sleep ends here. An HF interrupt alone only brings the review forward, and a sleeper's review
+      // keeps the sleep (the asleep veto), so the game ends the activity as interrupted (docs/findings.md).
+      if (p.activity) {
+        const world = new WatchWorld(s);
+        finish(p, world.resolve(p, p.activity, 'interrupted'), { catalog: world.catalog });
+      }
+    }
+    tell(
+      s,
+      id,
+      {
+        at: s.minute,
+        channel: 'heard',
+        kind: 'bell',
+        actorId: KEEPER_ID,
+        placeId: 'gate',
+        salience: loud,
+        valence: -0.1,
+        summary: 'the bell rang from the Gate',
+        near: true,
+      },
+      true,
+    );
   }
   if (s.rope.wear >= 1) {
     s.rope = { wear: 1, snapped: true };
     alert(s, {
       section: at,
       kind: 'rope',
-      text: 'The bell rope snapped. No more bell tonight.',
+      text: 'The bell rings out once more, and its rope snaps. No more bell tonight.',
       slowed: true,
     });
-  } else {
-    alert(s, {
-      section: at,
-      kind: 'bell',
-      text:
-        targets.length === 0
-          ? 'The bell rings, but nobody is in earshot.'
-          : `The bell rings for ${targets.map((t) => nameOf(s, t)).join(', ')}: hold your post! ${bellAnswer(s, targets)}`,
-      slowed: false,
-    });
+    return true;
   }
+  const lit = litSection(s);
+  // Under the lantern the Keeper sees whom it woke; the rest he can only guess.
+  const seenWoken = woke.filter((id) => {
+    const pl = s.place[id];
+    return lit !== null && isPost(pl) && postSection(pl) === lit;
+  });
+  const wokeWords =
+    seenWoken.length === 0 || lit === null
+      ? ''
+      : ` It wakes ${seenWoken.map((id) => nameOf(s, id)).join(' and ')}, nodding at ${theSection(lit)}.`;
+  const called = who ? ` You call ${nameOf(s, who)} by name: hold your post!` : '';
+  const hearers = who
+    ? [who]
+    : lit === null
+      ? []
+      : postedIn(s, lit).filter((id) => (b.heard[id] ?? 0) > 0 && !personOf(s, id)?.body.downed);
+  const answer = lit === null && !who ? '' : bellAnswer(s, hearers, who !== undefined);
+  alert(s, {
+    section: at,
+    kind: 'bell',
+    text: `${bellCarryWords(s)}${wokeWords}${called} ${answer}`.trim(),
+    slowed: false,
+  });
   return true;
 }
 
+/** Where the bell carries, in words: "The bell rings out from the Gate; the east wall hears it faintly." */
+export function bellCarryWords(s: WatchState): string {
+  const lost = s.marks.lost && s.marks.lost.year === s.year ? s.marks.lost.section : null;
+  const faint = SECTION_IDS.filter((id) => id !== lost && bellCarry(s, id) < 0.7);
+  if (faint.length === 0) return 'The bell rings out from the Gate and carries the length of the wall.';
+  const names = faint.map((id) => theSection(id));
+  return `The bell rings out from the Gate; ${names.join(' and ')} ${faint.length === 1 ? 'hears' : 'hear'} it faintly.`;
+}
+
 /**
- * Who answers the bell (G3-4): the one in earshot who trusts the Keeper least, by their trust and fear. A voice
- * back from the wall, never a number: "Holding!", a grudging "We heard you.", or silence. Reads state only.
+ * Who answers the bell (G3-4), from the stretch under the lantern: of those who heard it there, the one who trusts
+ * the Keeper least, by their trust and fear. A voice back from the wall, never a number: "Holding!", a grudging
+ * "We heard you.", "Again?" after a false alarm, or silence; "No answer from the mill wall." when nobody stands
+ * there. A name called answers for itself. Reads state only.
  */
-function bellAnswer(s: WatchState, targets: WatcherId[]): string {
+function bellAnswer(s: WatchState, targets: WatcherId[], named: boolean): string {
   let who: WatcherId | null = null;
   let low = 2;
   for (const id of targets) {
@@ -622,10 +763,12 @@ function bellAnswer(s: WatchState, targets: WatcherId[]): string {
       who = id;
     }
   }
-  if (who === null) return '';
+  const lit = litSection(s);
+  if (who === null) return !named && lit ? `No answer from ${theSection(lit)}.` : '';
   const name = nameOf(s, who);
   const p = personOf(s, who);
   const fear = p?.affect.emotions.find((e) => e.id === 'fear')?.intensity ?? 0;
+  if (!named && s.bell.cry >= 1 && low < 0.7) return `“Again?” ${name} calls.`;
   if (targets.length > 1 && low >= 0.55) return '“Holding!” they call back.';
   if (low >= 0.55) return `“Holding!” ${name} calls back.`;
   if (fear > 0.5) return `${name} answers, voice thin: “I hear it.”`;
@@ -634,7 +777,7 @@ function bellAnswer(s: WatchState, targets: WatcherId[]): string {
 }
 
 /** The Keeper's standing suggestions: the posting, and a one-shot ask from a card while it lasts. */
-function suggestions(s: WatchState): Record<string, Suggestion[]> {
+export function suggestions(s: WatchState): Record<string, Suggestion[]> {
   const out: Record<string, Suggestion[]> = {};
   for (const id of presentIds(s)) {
     const list: Suggestion[] = [];
@@ -643,14 +786,22 @@ function suggestions(s: WatchState): Record<string, Suggestion[]> {
     else if (a) delete s.asks[id];
     const post = s.posts[id];
     if (list.length > 0) out[id] = list;
-    if (post === null) continue;
+    // The bell's call: the posting spoken louder to whoever heard it, or with no posting a call to any post.
+    const call = s.minute < s.bell.until ? bellCall(s, s.bell.heard[id] ?? 0) : 0;
+    if (post === null) {
+      if (call > 0 && list.length === 0)
+        out[id] = [
+          { voiceId: KEEPER_ID, action: 'hold-post', strength: call, appeal: 'duty', since: s.bell.rungAt },
+        ];
+      continue;
+    }
     const press = s.press[id] ?? 'ask';
     const sug: Suggestion = {
       voiceId: KEEPER_ID,
       affordanceId: `post:${post}`,
-      strength: PRESS_STRENGTH[press],
+      strength: Math.max(PRESS_STRENGTH[press], call),
       appeal: 'duty',
-      since: s.postedAt[id],
+      since: call > PRESS_STRENGTH[press] ? s.bell.rungAt : s.postedAt[id],
     };
     if (press === 'insist') sug.insist = true;
     // One voice, one suggestion: an ask from a card speaks for the Keeper while it lasts.
@@ -835,7 +986,10 @@ function personLine(s: WatchState, n: NightNote): string {
   // Leaving while the bell holds them: said, with whose voice they did not heed (G3-4 designer review).
   const c = s.commands[n.who];
   const leaving = n.kind === 'fled' || n.kind === 'ran' || n.kind === 'slept' || n.kind === 'home';
-  return leaving && c && s.minute < c.until ? `The bell rang for them, but ${lower(line)}` : line;
+  if (leaving && c && s.minute < c.until) return `You called them by name, but ${lower(line)}`;
+  if (leaving && s.minute < s.bell.until && (s.bell.heard[n.who] ?? 0) > 0)
+    return `The bell rang, but ${lower(line)}`;
+  return line;
 }
 
 function lower(t: string): string {
@@ -1035,6 +1189,16 @@ export function stepMinute(s: WatchState): void {
             slowed: true,
           });
       }
+    }
+  }
+
+  // A pull with nothing to show for it: a false alarm once BELL_CRY_MIN passes with no threat known.
+  const cry = s.bell.pendingCry;
+  if (cry !== null) {
+    if (knownDanger(s)) s.bell.pendingCry = null;
+    else if (m >= cry + BELL_CRY_MIN) {
+      s.bell.pendingCry = null;
+      s.bell.cry += 1;
     }
   }
 

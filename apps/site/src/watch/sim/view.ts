@@ -21,6 +21,7 @@ import {
   POSTS,
   type PostId,
   postSection,
+  SECTION_IDS,
   SECTIONS,
   type SectionId,
   THREATS,
@@ -28,8 +29,8 @@ import {
   type WatcherId,
 } from './config.ts';
 import { ageOf, dayOfYear, householdCount, living, seasonOfDay } from './life.ts';
-import { bellTarget, bellWords, type Moment, readBell, readPosting, readWords } from './moments.ts';
-import { earshot, litSection, nightEnd, presentIds, theSection } from './night.ts';
+import { type Moment, readPosting, readWords } from './moments.ts';
+import { bellCarry, bellSwinging, litSection, nightEnd, presentIds, theSection } from './night.ts';
 import { familyWords, isHere, isPost, isWatcher, nameOf, type Place, personOf, villager } from './people.ts';
 import { type Impression, keeperImpressions } from './reads.ts';
 import { EAT_PER_HEAD } from './season.ts';
@@ -120,12 +121,12 @@ export interface Frame {
   moment: Moment | null;
   /** At dusk: the Keeper's read of how each watcher would take their posting, by press. */
   postingReads: Partial<Record<WatcherId, Record<Press, string>>> | null;
-  /** At night: whom the bell would ring for and the Keeper's read of how they'd take it (null when it cannot ring). */
+  /** At night: where the bell carries, in words (null when it cannot ring). */
   bellRead: string | null;
-  /** At night: the name the bell would ring for (null when no one is in earshot or it cannot ring). */
-  bellFor: string | null;
-  /** Their id: the bell button rings for exactly the one it names. */
-  bellForId: WatcherId | null;
+  /** At night: the bell still swings from the last pull, so another pull waits. */
+  bellSwinging: boolean;
+  /** How loud the bell is on each stretch (1 at the Gate), for the map. */
+  bellCarry: Record<SectionId, number>;
   /** The last day, for the dusk panel. */
   day: DaySummary | null;
   seen: SeenToken[];
@@ -271,24 +272,6 @@ const POSTURE: Record<string, Posture> = {
 };
 
 let readCache: { key: string; reads: Frame['postingReads'] } | null = null;
-let bellCache: { key: string; read: { read: string; who: string | null; id: WatcherId | null } } | null =
-  null;
-/** Whom the bell button names, and since when (owner's playtest: the name "keeps changing between people"). */
-let bellHold: { night: string; who: WatcherId; since: number } | null = null;
-/** The bell keeps naming the same watcher this many sim minutes while they still need it more than a little. */
-export const BELL_HOLD_MIN = 15;
-
-/** Whether `who` can still be rung for: here, in earshot, not already under the bell. */
-function bellCanReach(s: WatchState, who: WatcherId): boolean {
-  if (!presentIds(s).includes(who)) return false;
-  const held = s.commands[who];
-  if (held && s.minute < held.until) return false;
-  const hear = earshot(s);
-  const pl = s.place[who];
-  if (isPost(pl)) return hear.includes(postSection(pl));
-  return pl === 'hall' && hear.includes('gate');
-}
-
 /** Dusk posting reads, recomputed every ten sim minutes or when a posting changes (they run predictAs). */
 function postingReads(s: WatchState): Frame['postingReads'] {
   if (s.phase !== 'dusk') return null;
@@ -353,36 +336,14 @@ function emptyWhy(s: WatchState, who: WatcherId): { why: string; since: number }
   return { why, since: at };
 }
 
-/**
- * The bell read (H2): whom it would ring for, and how they would take it, in words. The name holds for
- * `BELL_HOLD_MIN` sim minutes while that watcher can still be reached, unless the first choice has left the wall
- * for the hall (2026-10-05: the per-minute reads flipped between near-equal watchers). This is the page's choice
- * only: the button sends the name with the pull, so the input log says whom it rang for.
- */
-function bellRead(s: WatchState): { read: string; who: string | null; id: WatcherId | null } | null {
+/** The bell read: where it carries from the Gate, in words. Null when it cannot ring. */
+function bellRead(s: WatchState): string | null {
   if (s.phase !== 'night' || s.rope.snapped) return null;
-  const key = `${s.seed}|${s.year}|${s.night}|${s.minute}|${s.lantern.x}`;
-  if (bellCache?.key === key) return bellCache.read;
-  const night = `${s.seed}|${s.year}|${s.night}`;
-  const best = bellTarget(s);
-  let who = best;
-  const hold = bellHold?.night === night ? bellHold : null;
-  if (
-    hold &&
-    best !== null &&
-    best !== hold.who &&
-    s.minute - hold.since < BELL_HOLD_MIN &&
-    s.place[best] !== 'hall' &&
-    bellCanReach(s, hold.who)
-  )
-    who = hold.who;
-  if (who === null) bellHold = null;
-  else if (!hold || hold.who !== who) bellHold = { night, who, since: s.minute };
-  const read = who
-    ? { read: `${nameOf(s, who)}: ${bellWords(readBell(s, who))}`, who: nameOf(s, who), id: who }
-    : { read: 'no one in earshot', who: null, id: null };
-  bellCache = { key, read };
-  return read;
+  const lost = s.marks.lost && s.marks.lost.year === s.year ? s.marks.lost.section : null;
+  const faint = SECTION_IDS.filter((id) => id !== lost && bellCarry(s, id) < 0.7);
+  return faint.length === 0
+    ? 'heard the length of the wall'
+    : `loud at the Gate, faint at ${faint.map((id) => theSection(id)).join(' and ')}`;
 }
 
 function hash(a: number, b: number): number {
@@ -502,16 +463,19 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
     rope: { ...s.rope },
     bigBell: s.marks.bigBell,
     seed: s.marks.seed,
-    roused: s.phase === 'night' && Object.keys(s.commands).length > 0,
+    roused: s.phase === 'night' && s.minute < s.bell.until,
     slowed,
     // Only what is still news: alerts from the last hour of the night.
     alerts: s.alerts.filter((a) => s.minute - a.minute < 60).slice(-6),
     dawn: s.dawn,
     moment: s.phase === 'night' ? s.moment : null,
     postingReads: postingReads(s),
-    bellRead: bell?.read ?? null,
-    bellFor: bell?.who ?? null,
-    bellForId: bell?.id ?? null,
+    bellRead: bell,
+    bellSwinging: bellSwinging(s),
+    bellCarry: Object.fromEntries(SECTION_IDS.map((id) => [id, bellCarry(s, id)])) as Record<
+      SectionId,
+      number
+    >,
     day: s.day,
     ...yearFrame(s),
   };

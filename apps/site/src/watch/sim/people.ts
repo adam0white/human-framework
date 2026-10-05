@@ -57,6 +57,8 @@ import {
 } from '@adam0white/human-framework';
 import {
   ALL_POST_IDS,
+  BELL_ROUSE_BASE,
+  BELL_ROUSE_LOUD,
   DAWN,
   DAY,
   DUSK_START,
@@ -685,20 +687,25 @@ export class WatchWorld implements World {
         advertises: { rest: 0.12 },
         tags: exposed ? ['rest', 'watch', 'risky'] : ['rest', 'watch'],
       });
-      // Nodding off at the post: no norm is broken on purpose, but nothing is watched either; a threat near
-      // them wakes them (the driver interrupts sleep on a near percept).
-      out.push({
-        id: `doze:${here}`,
-        action: 'doze',
-        label: 'nod off at the post',
-        targetId: postSection(here),
-        placeId: postSection(here),
-        duration: 30,
-        effort: 0,
-        mode: 'sleep',
-        advertises: { sleep: 0.25, rest: 0.1 },
-        tags: exposed ? ['rest', 'risky'] : ['rest'],
-      });
+      // Nodding off at the post: no norm is broken on purpose, but nothing is watched either. A threat near them
+      // brings their review forward (the driver interrupts on a near percept), but the review keeps the sleep unless
+      // need is desperate; the bell wakes them outright (`ringBell`). Nobody who just heard the bell nods off:
+      // for BELL_ROUSE_BASE + BELL_ROUSE_LOUD × loudness minutes after the pull the doze is not on offer.
+      const heard = s.bell.heard[id] ?? 0;
+      const roused = heard > 0 && s.minute < s.bell.rungAt + BELL_ROUSE_BASE + BELL_ROUSE_LOUD * heard;
+      if (!roused)
+        out.push({
+          id: `doze:${here}`,
+          action: 'doze',
+          label: 'nod off at the post',
+          targetId: postSection(here),
+          placeId: postSection(here),
+          duration: 30,
+          effort: 0,
+          mode: 'sleep',
+          advertises: { sleep: 0.25, rest: 0.1 },
+          tags: exposed ? ['rest', 'risky'] : ['rest'],
+        });
       out.push({
         id: `eat:${here}`,
         action: 'eat',

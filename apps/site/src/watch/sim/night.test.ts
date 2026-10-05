@@ -1,8 +1,25 @@
 import { describe, expect, it } from 'vitest';
-import { LANTERN_STEP_MIN, NIGHT_LENGTH, START_GRAIN, WATCHER_IDS } from './config.ts';
-import { bellTarget } from './moments.ts';
-import { applyInput, earshot, litSection, newGame, stepMinute } from './night.ts';
-import { isPost } from './people.ts';
+import {
+  LANTERN_STEP_MIN,
+  NIGHT_LENGTH,
+  postSection,
+  SECTION_IDS,
+  START_GRAIN,
+  WATCHER_IDS,
+} from './config.ts';
+import {
+  applyInput,
+  bellCall,
+  bellCarry,
+  bellLoudness,
+  inVoice,
+  litSection,
+  newGame,
+  presentIds,
+  stepMinute,
+  suggestions,
+} from './night.ts';
+import { isPost, personOf, villager, WatchWorld } from './people.ts';
 import type { WatchState } from './state.ts';
 import { buildFrame } from './view.ts';
 
@@ -120,62 +137,192 @@ describe('Night Watch rules (G3-1, G3-2)', () => {
     }
   });
 
-  it('the bell is a command: those in earshot are put under it, and it costs them autonomy', () => {
+  it('the bell is loudest at the Gate and fainter each stretch away; the bigger bell carries further', () => {
+    const s = toNight(100);
+    expect(SECTION_IDS.map((id) => bellCarry(s, id))).toEqual([0.8, 1, 0.8, 0.6]);
+    s.marks.bigBell = true;
+    expect(SECTION_IDS.map((id) => bellCarry(s, id))).toEqual([0.9, 1, 0.9, 0.8]);
+    s.marks.bigBell = false;
+    // At home it wakes a sleeper only near the Gate; the bigger bell reaches the east houses too.
+    const gateHome = WATCHER_IDS.find((id) => villager(s, id).home === 'gate');
+    const eastHome = WATCHER_IDS.find((id) => villager(s, id).home === 'east');
+    if (!gateHome || !eastHome) throw new Error('no houses at the Gate or the east wall');
+    s.place[gateHome] = 'home';
+    s.place[eastHome] = 'home';
+    expect(bellLoudness(s, gateHome)).toBeCloseTo(0.5);
+    expect(bellLoudness(s, eastHome)).toBe(0);
+    s.marks.bigBell = true;
+    expect(bellLoudness(s, eastHome)).toBeCloseTo(0.4);
+    s.place[eastHome] = 'hall';
+    expect(bellLoudness(s, eastHome)).toBe(1);
+  });
+
+  it('a pull is heard by everyone in range: it wakes sleepers, keeps them from nodding off, and calls them louder', () => {
+    let woken = 0;
+    let boosted = 0;
+    let rang = 0;
+    for (let seed = 100; seed < 110; seed++) {
+      const s = toNight(seed);
+      // Wait until someone on the wall has nodded off, or the night is half gone.
+      const asleep = () =>
+        presentIds(s).filter(
+          (id) => isPost(s.place[id]) && personOf(s, id)?.body.asleep && !personOf(s, id)?.body.downed,
+        );
+      while (s.phase === 'night' && asleep().length === 0 && s.minute < s.nightStart + NIGHT_LENGTH / 2)
+        stepMinute(s);
+      if (s.phase !== 'night') continue;
+      const sleepers = asleep();
+      const before = suggestions(s);
+      expect(applyInput(s, { k: 'bell' })).toBe(true);
+      rang += 1;
+      // A plain pull names nobody: no one is put under a command.
+      expect(Object.keys(s.commands)).toEqual([]);
+      expect(s.alerts.at(-1)?.text).toMatch(/The bell rings out from the Gate|rope snaps/);
+      for (const id of presentIds(s)) {
+        const pl = s.place[id];
+        if (isPost(pl)) expect(s.bell.heard[id]).toBeCloseTo(bellCarry(s, postSection(pl)));
+      }
+      for (const id of sleepers) expect(s.notes.some((n) => n.who === id && n.kind === 'woken')).toBe(true);
+      const after = suggestions(s);
+      for (const id of presentIds(s)) {
+        const a = before[id]?.find((x) => x.affordanceId?.startsWith('post:'))?.strength ?? 0;
+        const b = after[id]?.find((x) => x.affordanceId?.startsWith('post:'))?.strength ?? 0;
+        if (b > a) boosted += 1;
+      }
+      stepMinute(s);
+      for (const id of sleepers) {
+        if (!personOf(s, id)?.body.asleep) woken += 1;
+        // Not even offered the doze while the bell's rousing lasts.
+        const p = personOf(s, id);
+        if (p && isPost(s.place[id]))
+          expect(new WatchWorld(s).affordancesFor(p).some((a) => a.id.startsWith('doze:'))).toBe(false);
+      }
+    }
+    expect(rang).toBeGreaterThan(5);
+    expect(woken).toBeGreaterThan(0);
+    expect(boosted).toBeGreaterThan(5);
+  });
+
+  it('a pull keeps more of the wall awake at its posts for the hour after, across seeds', () => {
+    // Measured 2026-10-05, seeds 100–129, night 1, one pull when someone first nods off at a post: more awake
+    // watcher-minutes on the posts in the next hour in 30 of 30 seeds, 4184 → 5175 (+24%).
+    const awake = (s: WatchState) =>
+      presentIds(s).filter(
+        (id) => isPost(s.place[id]) && !personOf(s, id)?.body.asleep && !personOf(s, id)?.body.downed,
+      ).length;
+    let quiet = 0;
+    let rung = 0;
+    let better = 0;
+    for (let seed = 100; seed < 110; seed++) {
+      const night = (ringAt: number | null) => {
+        const s = toNight(seed);
+        let t = -1;
+        let acc = 0;
+        while (s.phase === 'night') {
+          stepMinute(s);
+          if (
+            ringAt === null &&
+            t < 0 &&
+            presentIds(s).some((id) => isPost(s.place[id]) && personOf(s, id)?.body.asleep)
+          )
+            t = s.minute;
+          if (ringAt !== null && s.minute === ringAt) {
+            applyInput(s, { k: 'bell' });
+            t = ringAt;
+          }
+          if (t >= 0 && s.minute > t && s.minute <= t + 60) acc += awake(s);
+        }
+        return { t, acc };
+      };
+      const q = night(null);
+      if (q.t < 0) continue;
+      const r = night(q.t);
+      quiet += q.acc;
+      rung += r.acc;
+      if (r.acc > q.acc) better += 1;
+    }
+    expect(better).toBeGreaterThanOrEqual(8);
+    expect(rung).toBeGreaterThan(quiet * 1.1);
+  });
+
+  it('a named call over the bell commands that watcher only, within reach of the Keeper’s voice', () => {
     let commanded = 0;
     let costlier = 0;
     for (let seed = 100; seed < 110; seed++) {
       const runs = [false, true].map((ring) => {
         const s = toNight(seed);
         let rangAt = -1;
-        let heard: string[] = [];
+        let who: string | null = null;
         while (s.phase === 'night') {
           stepMinute(s);
           if (ring && rangAt < 0 && s.alerts.some((a) => a.kind === 'foot')) {
-            expect(applyInput(s, { k: 'bell' })).toBe(true);
+            const far = presentIds(s).find((id) => isPost(s.place[id]) && !inVoice(s, id));
+            if (far) expect(applyInput(s, { k: 'bell', who: far })).toBe(false);
+            const near = presentIds(s).find((id) => isPost(s.place[id]) && inVoice(s, id));
+            if (!near) continue;
+            expect(applyInput(s, { k: 'bell', who: near })).toBe(true);
+            expect(Object.keys(s.commands)).toEqual([near]);
+            expect(s.alerts.at(-1)?.text).toContain('by name');
             rangAt = s.minute;
-            heard = Object.keys(s.commands);
+            who = near;
           }
-          if (rangAt >= 0 && s.minute === rangAt + 30)
-            for (const id of heard)
-              if (s.community.people.find((p) => p.id === id)?.will.command) commanded += 1;
+          if (who && s.minute === rangAt + 30 && personOf(s, who)?.will.command) commanded += 1;
         }
-        return { s, heard };
+        return { s, who };
       });
       const [quiet, rung] = runs;
-      for (const id of rung?.heard ?? []) {
-        const a = quiet?.s.community.people.find((p) => p.id === id)?.needs.autonomy ?? 0;
-        const b = rung?.s.community.people.find((p) => p.id === id)?.needs.autonomy ?? 0;
-        if (b < a) costlier += 1;
-      }
+      const id = rung?.who;
+      if (!id) continue;
+      const a = quiet?.s.community.people.find((p) => p.id === id)?.needs.autonomy ?? 0;
+      const b = rung?.s.community.people.find((p) => p.id === id)?.needs.autonomy ?? 0;
+      if (b < a) costlier += 1;
     }
     expect(commanded).toBeGreaterThan(5);
     expect(costlier).toBeGreaterThan(3);
+    // From the west wall the Keeper's voice does not reach the east wall: a name called there is refused.
+    const s = toNight(100);
+    s.lantern.x = 0;
+    const id = presentIds(s)[0];
+    if (!id) throw new Error('nobody here');
+    s.place[id] = 'east-1';
+    expect(inVoice(s, id)).toBe(false);
+    expect(applyInput(s, { k: 'bell', who: id })).toBe(false);
+    s.place[id] = 'west-1';
+    expect(applyInput(s, { k: 'bell', who: id })).toBe(true);
   });
 
-  it('the bell rings for one named watcher, the one read least likely to hold; a second pull calls the next', () => {
-    let named = 0;
-    let next = 0;
-    for (let seed = 100; seed < 110; seed++) {
-      const s = toNight(seed);
-      while (s.phase === 'night' && !s.alerts.some((a) => a.kind === 'foot')) stepMinute(s);
-      if (s.phase !== 'night') continue;
-      const who = bellTarget(s);
-      if (who === null) continue;
-      const pl = s.place[who];
-      expect(pl === 'hall' || (isPost(pl) && earshot(s).length > 0)).toBe(true);
-      expect(applyInput(s, { k: 'bell' })).toBe(true);
-      expect(Object.keys(s.commands)).toEqual([who]);
-      expect(s.alerts.at(-1)?.text).toContain('rings for');
-      named += 1;
-      stepMinute(s);
-      const second = bellTarget(s);
-      if (second !== null && second !== who && applyInput(s, { k: 'bell' })) {
-        expect(Object.keys(s.commands).sort()).toEqual([who, second].sort());
-        next += 1;
-      }
+  it('while the bell swings another pull waits, but a name can still be called over it', () => {
+    const s = toNight(101);
+    expect(applyInput(s, { k: 'bell' })).toBe(true);
+    const wear = s.rope.wear;
+    expect(applyInput(s, { k: 'bell' })).toBe(false);
+    expect(buildFrame(s, 0, false).bellSwinging).toBe(true);
+    const near = presentIds(s).find((id) => inVoice(s, id));
+    if (near) {
+      expect(applyInput(s, { k: 'bell', who: near })).toBe(true);
+      expect(s.rope.wear).toBe(wear);
+      expect(s.commands[near]).toBeTruthy();
+      expect(s.alerts.at(-1)?.text).toMatch(/^Over the bell you call/);
     }
-    expect(named).toBeGreaterThan(5);
-    expect(next).toBeGreaterThan(0);
+    for (let i = 0; i < 5; i++) stepMinute(s);
+    expect(buildFrame(s, 0, false).bellSwinging).toBe(false);
+    expect(applyInput(s, { k: 'bell' })).toBe(true);
+  });
+
+  it('a pull with nothing out there is a false alarm: the next call is weaker', () => {
+    const s = toNight(102);
+    s.tokens = [];
+    s.spawns = [];
+    const call = bellCall(s, 1);
+    expect(applyInput(s, { k: 'bell' })).toBe(true);
+    for (let i = 0; i < 31; i++) stepMinute(s);
+    expect(s.bell.cry).toBe(1);
+    expect(bellCall(s, 1)).toBeLessThan(call);
+    // The next night forgives half of it.
+    while (s.phase === 'night') stepMinute(s);
+    applyInput(s, { k: 'toDusk' });
+    applyInput(s, { k: 'begin' });
+    if ((s.phase as string) === 'night') expect(s.bell.cry).toBe(0.5);
   });
 
   it('the lantern alone at an empty stretch slows climbers, and the dawn page names the empty post', () => {

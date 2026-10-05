@@ -7,7 +7,7 @@
  */
 import { impressionOf, readCapacities } from '@adam0white/human-framework';
 import { applyInput, clockRuns, type Input, newGame, stepMinute } from './night.ts';
-import type { WatchState } from './state.ts';
+import { emptyBell, type WatchState } from './state.ts';
 
 /** A person as the export shows them: enough to read a run, not to resume it. */
 export interface PersonSummary {
@@ -84,8 +84,23 @@ export function endState(s: WatchState): EndState {
   };
 }
 
-/** Bump when rules change so an old export is not replayed against new rules. */
-export const WATCH_SCENARIO_VERSION = 7;
+/**
+ * Bump when rules change so an old export is not replayed against new rules. 8: the bell rings from the Gate for
+ * everyone in range (2026-10-05).
+ */
+export const WATCH_SCENARIO_VERSION = 8;
+
+/** The oldest scenario whose saved pages still load (`migrateSnapshot`). */
+export const OLDEST_LOADABLE_SCENARIO = 7;
+
+/**
+ * Where a run's log stops replaying from its seed: it was resumed from a page saved under an older scenario at this
+ * sim minute. The rules before that minute were the old ones, so the export is a record, not a replay.
+ */
+export interface Origin {
+  scenario: number;
+  minute: number;
+}
 
 export interface LogEntry {
   /** The sim minute the input applied at (before that minute resolved). */
@@ -101,6 +116,8 @@ export interface PlaytestExport {
   inputs: LogEntry[];
   endMinute: number;
   end: EndState;
+  /** Set when the run was resumed from an older scenario's page: `replay` refuses such an export. */
+  origin?: Origin;
 }
 
 /**
@@ -112,6 +129,27 @@ export interface Snapshot {
   seed: number;
   log: LogEntry[];
   state: WatchState;
+  origin?: Origin;
+}
+
+/**
+ * Brings a page saved by an older scenario up to this one by shape only: the fields added since get their starting
+ * values, and the page is stamped with where it came from (`Origin`). The rules it was played under are not
+ * replayed. 7 → 8 adds the bell's state. Older pages than `OLDEST_LOADABLE_SCENARIO` are refused. Pure.
+ */
+export function migrateSnapshot(snap: Snapshot): Snapshot {
+  if (snap.scenario === WATCH_SCENARIO_VERSION) return snap;
+  if (snap.scenario < OLDEST_LOADABLE_SCENARIO || snap.scenario > WATCH_SCENARIO_VERSION)
+    throw new Error(`save is scenario ${snap.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
+  const state = structuredClone(snap.state) as WatchState & Partial<Pick<WatchState, 'bell'>>;
+  if (!state.bell) state.bell = emptyBell();
+  return {
+    scenario: WATCH_SCENARIO_VERSION,
+    seed: snap.seed,
+    log: snap.log,
+    state,
+    origin: snap.origin ?? { scenario: snap.scenario, minute: snap.state.minute },
+  };
 }
 
 export class WatchRun {
@@ -119,15 +157,17 @@ export class WatchRun {
   readonly log: LogEntry[] = [];
 
   readonly seed: number;
+  /** Set when this run was resumed from an older scenario's page (see `Origin`). */
+  readonly origin: Origin | undefined;
 
-  constructor(seed: number, from?: Snapshot) {
+  constructor(seed: number, saved?: Snapshot) {
     this.seed = seed;
-    if (from) {
-      if (from.scenario !== WATCH_SCENARIO_VERSION)
-        throw new Error(`save is scenario ${from.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
+    if (saved) {
+      const from = migrateSnapshot(saved);
       if (from.seed !== seed) throw new Error('save is from another seed');
       this.state = structuredClone(from.state);
       this.log = from.log.map((e) => ({ m: e.m, i: { ...e.i } }));
+      this.origin = from.origin;
     } else this.state = newGame(seed);
   }
 
@@ -143,6 +183,7 @@ export class WatchRun {
       seed: this.seed,
       log: this.log,
       state: this.state,
+      ...(this.origin ? { origin: this.origin } : {}),
     });
   }
 
@@ -153,6 +194,7 @@ export class WatchRun {
       seed: this.seed,
       log: this.log.map((e) => ({ m: e.m, i: { ...e.i } })),
       state: structuredClone(this.state),
+      ...(this.origin ? { origin: { ...this.origin } } : {}),
     };
   }
 
@@ -177,14 +219,21 @@ export class WatchRun {
       inputs: this.log.map((e) => ({ m: e.m, i: { ...e.i } })),
       endMinute: this.state.minute,
       end: endState(this.state),
+      ...(this.origin ? { origin: { ...this.origin } } : {}),
     };
   }
 }
 
 /** Rebuilds a run's end state from its seed and input log. Throws if the log does not fit the rules. */
-export function replay(exp: Pick<PlaytestExport, 'scenario' | 'seed' | 'inputs' | 'endMinute'>): WatchState {
+export function replay(
+  exp: Pick<PlaytestExport, 'scenario' | 'seed' | 'inputs' | 'endMinute' | 'origin'>,
+): WatchState {
   if (exp.scenario !== WATCH_SCENARIO_VERSION)
     throw new Error(`export is scenario ${exp.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
+  if (exp.origin)
+    throw new Error(
+      `export was resumed from a scenario ${exp.origin.scenario} page; it does not replay from its seed`,
+    );
   const run = new WatchRun(exp.seed);
   const s = run.state;
   let idx = 0;

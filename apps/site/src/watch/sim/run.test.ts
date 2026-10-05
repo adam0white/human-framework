@@ -82,6 +82,28 @@ describe('Night Watch input log and playtest export', () => {
     expect(() => replay({ ...exp, scenario: exp.scenario + 1 })).toThrow(/scenario/);
   });
 
+  it('loads a page saved by scenario 7: the new fields start fresh, and its export is marked as no longer replaying', () => {
+    const run = new WatchRun(5);
+    run.input({ k: 'start' });
+    run.input({ k: 'begin' });
+    for (let i = 0; i < 30; i++) run.step();
+    const page = run.snapshot();
+    const { bell: _b, ...older } = page.state;
+    const old = { ...page, scenario: 7, state: older as unknown as typeof page.state };
+    const resumed = WatchRun.resume(JSON.parse(JSON.stringify(old)));
+    expect(resumed.state.bell.rungAt).toBeLessThan(0);
+    expect(resumed.origin).toEqual({ scenario: 7, minute: page.state.minute });
+    expect(resumed.input({ k: 'bell' })).toBe(true);
+    for (let i = 0; i < 10; i++) resumed.step();
+    // Saved again and reopened, it keeps where it came from.
+    expect(WatchRun.resume(resumed.snapshot()).origin).toEqual(resumed.origin);
+    const exp = resumed.export();
+    expect(exp.origin?.scenario).toBe(7);
+    expect(() => replay(exp)).toThrow(/scenario 7 page/);
+    // Older pages than 7 are still refused.
+    expect(() => WatchRun.resume({ ...old, scenario: 6 })).toThrow(/scenario 6/);
+  });
+
   it('a moment eases play to the tactical speed and then hands the chosen speed back', () => {
     const run = new WatchRun(5);
     const pacer = new Pacer();

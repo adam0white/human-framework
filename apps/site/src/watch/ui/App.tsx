@@ -359,8 +359,10 @@ function GoalPage({
       <h2>Bring every soul and the granary to the thaw.</h2>
       <p>
         You are the Keeper. At dusk the scout tells you what is coming; you post the watchers. At night you
-        carry the lantern to one stretch of wall, and only there can you see what comes. Ring the bell when
-        you must: every pull wears its rope, and a snapped rope leaves the bell silent.
+        carry the lantern to one stretch of wall, and only there can you see what comes. The bell hangs over
+        the Gate and its rope runs the length of the wall-walk, so you can pull it from anywhere: it wakes and
+        calls back everyone who hears it, loudest near the Gate. Your own voice carries only from your lantern
+        to the next stretch. Every pull wears the rope, and a snapped rope leaves the bell silent.
       </p>
       <p className="w-note">
         The watchers are people. Tired, frightened or worried for home, they may not stand where you put them.
@@ -579,11 +581,11 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
         <button
           type="button"
           className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
-          disabled={frame.rope.snapped}
-          onClick={() => actions.input(frame.bellForId ? { k: 'bell', who: frame.bellForId } : { k: 'bell' })}
+          disabled={frame.rope.snapped || frame.bellSwinging}
+          onClick={() => actions.input({ k: 'bell' })}
         >
           <Icon name="bell" size={20} />
-          <span>{frame.bellFor ? `Ring for ${frame.bellFor} to hold` : 'Ring the bell'}</span>
+          <span>{frame.bellSwinging ? 'The bell is still swinging' : 'Ring the bell'}</span>
         </button>
         <div className="w-ropebox">
           <span className="w-bellread">{frame.bellRead ?? '\u00a0'}</span>

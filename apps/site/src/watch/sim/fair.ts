@@ -1,8 +1,8 @@
 /**
  * The autumn fair (G3-3, spec §4): the drafting phase. Three offers are drawn from what the village could use; the
  * Keeper takes at most two, each paid in sacks and none undone. Admitting an outsider family brings three people
- * (and mouths); extending the wall opens a third post on a stretch (more posts than people); the bigger bell halves
- * the rope's wear; seed grain lifts next autumn's harvest; naming the Gate heir moves pride and trust on both sides.
+ * (and mouths); extending the wall opens a third post on a stretch (more posts than people); the bigger bell carries
+ * further along the wall and halves the rope's wear; seed grain lifts next autumn's harvest; naming the Gate heir moves pride and trust on both sides.
  *
  * Not covered: trade prices, bargaining, selling grain, a choice between buyers.
  */
@@ -61,7 +61,7 @@ export function openFair(s: WatchState): void {
     pool.push({
       id: 'bell',
       label: 'Buy the bigger bell',
-      text: 'A heavier bell from the founder at the fair. The rope frays half as fast. It costs a good share of grain.',
+      text: 'A heavier bell from the founder at the fair, hung on a wheel: it carries further along the wall, takes half the pull, and its rope frays half as fast. It costs a good share of grain.',
       cost: 4,
     });
   pool.push({
