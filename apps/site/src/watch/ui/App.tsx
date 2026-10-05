@@ -17,7 +17,7 @@ import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Moment } from '../sim/moments.ts';
-import type { Speed } from '../sim/pace.ts';
+import { DAY_RATE, RATE, type Speed } from '../sim/pace.ts';
 import type { Press } from '../sim/state.ts';
 import { TALKS_PER_DAY, type Topic } from '../sim/talk.ts';
 import type { Frame, FrameWatcher } from '../sim/view.ts';
@@ -59,8 +59,23 @@ function headerLine(f: Frame): string {
 }
 
 function slowedWords(f: Frame): string {
-  if (SEASON_PHASES.has(f.phase)) return 'the days slow';
-  return 'the night slows';
+  if (SEASON_PHASES.has(f.phase))
+    return f.card ? 'the days slow for you to answer' : 'the days slow for the news';
+  return f.moment ? 'the night waits on you' : 'the night slows';
+}
+
+/**
+ * The speed the clock actually runs at while it is eased (a moment, a card, news), so the bar shows it the same way
+ * in winter and in the seasons (owner's playtest, 2026-10-05): the slowest speed at or above the pace. Null when
+ * the chosen speed holds.
+ */
+function easedTo(f: Frame, chosen: Speed): Speed | null {
+  if (!f.slowed || f.rate <= 0) return null;
+  const season = SEASON_PHASES.has(f.phase);
+  const table = season ? DAY_RATE : RATE;
+  const pace = season ? f.rate / 1440 : f.rate;
+  const at = SPEEDS.find((s) => table[s.id] >= pace - 1e-9)?.id ?? 'tactical';
+  return at === chosen ? null : at;
 }
 
 const PRESSES: Press[] = ['ask', 'urge', 'insist'];
@@ -126,6 +141,7 @@ export function App() {
     );
   }
 
+  const eased = easedTo(frame, speed);
   const pressFor = (who: WatcherId): Press =>
     pressPick ?? frame.watchers.find((w) => w.id === who)?.press ?? 'ask';
   const post = (who: WatcherId, at: PostId | null) => {
@@ -177,9 +193,12 @@ export function App() {
               <button
                 key={s.id}
                 type="button"
-                className="w-speed"
+                className={`w-speed${eased === s.id ? ' is-now' : ''}`}
                 aria-label={s.label}
                 aria-pressed={speed === s.id}
+                title={
+                  eased === s.id ? 'Running at this pace for now; your speed comes back after.' : undefined
+                }
                 onClick={() => actions.setSpeed(s.id)}
               >
                 <Icon name={s.icon} size={16} />

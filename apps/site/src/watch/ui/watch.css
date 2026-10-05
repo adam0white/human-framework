@@ -839,6 +839,11 @@
 .w-speeds.is-slowed .w-speed[aria-pressed="true"] {
   animation: w-breathe 2.4s ease-in-out infinite;
 }
+/* The pace the clock runs at while a moment, a card or news eases it (the chosen speed still breathes). */
+.w-speed.is-now {
+  border-color: var(--w-accent);
+  box-shadow: inset 0 0 0 1px var(--w-accent);
+}
 @keyframes w-breathe {
   50% {
     opacity: 0.6;

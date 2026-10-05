@@ -1,8 +1,13 @@
 /**
  * Canvas 2D drawing of the wall at night. Lanes run from the treeline (top) to the wall (bottom third), the
  * village sits below. The lantern lights one lane; every other lane is dark and shows only moving grass and
- * sounds at the foot of the wall. No numbers are drawn. The layout flexes to any size; positions ease between
- * sim minutes on the page's own animation clock.
+ * sounds at the foot of the wall. No numbers are drawn. The layout flexes to any size.
+ *
+ * Motion between sim minutes (owner's playtest, 2026-10-05: people "jump after some time when moving"): each frame
+ * carries the pace (sim minutes per real second), so a threat's advance, the lantern and the dark motion glide from
+ * where they were drawn to where they are over the real time that step takes at that pace, at every speed. A watcher
+ * who changes place (to a post, off the wall to the hall or home) walks there over a couple of sim minutes. By day
+ * the villagers' wandering runs on sim time, so Seasons visibly runs faster than Days.
  *
  * G3-3: by day (the open seasons and their pages) the land takes the season's colour, the fields above the wall
  * show shoots, ripe rows or stubble, the wall stands empty and the villagers are drawn in the village below, by
@@ -88,14 +93,108 @@ function lookOf(look: number | undefined): Look {
   return LOOKS[(((look ?? 0) % n) + n) % n] as Look;
 }
 
+/** A value moving from where it was drawn to its new target, over `dur` real milliseconds from `t0`. */
+interface Tween {
+  fx: number;
+  fy: number;
+  tx: number;
+  ty: number;
+  t0: number;
+  dur: number;
+}
+
 export interface Ease {
+  /** Threat positions as drawn (lane units), for the throw lines. */
   pos: Map<number, number>;
-  lantern: number;
-  last: number;
+  /** The last frame drawn, when it arrived, and the real time its step is drawn over. */
+  frame: Frame | null;
+  at: number;
+  span: number;
+  /** The sim minute of the frame before, for sim time between frames. */
+  prevMinute: number;
+  tweens: Map<string, Tween>;
 }
 
 export function newEase(): Ease {
-  return { pos: new Map(), lantern: -1, last: 0 };
+  return { pos: new Map(), frame: null, at: 0, span: 0, prevMinute: 0, tweens: new Map() };
+}
+
+/** A sim step is drawn over at most this long (a card's 1/16 pace); a jump (a load, a page) at once. */
+const MAX_SPAN_MS = 4000;
+/** A watcher's walk to a new place takes about this many sim minutes, drawn over 0.35 to 2.5 real seconds. */
+const WALK_MIN = 2;
+
+/** Notes a new frame: how long its step should take to draw at its pace. */
+function noteFrame(ease: Ease, f: Frame, now: number): void {
+  if (ease.frame === f) return;
+  const prev = ease.frame;
+  const step = prev ? f.minute - prev.minute : 0;
+  ease.prevMinute = prev ? prev.minute : f.minute;
+  ease.span = step <= 0 || f.rate <= 0 ? 200 : Math.min(MAX_SPAN_MS, (step / f.rate) * 1000);
+  // A long jump (a load, a page between seasons) is not drawn as motion.
+  if (prev && (step < 0 || step > 4 * 1440)) ease.span = 0;
+  ease.frame = f;
+  ease.at = now;
+}
+
+/** How far through the current frame's step the drawing is (0..1). */
+function stepProgress(ease: Ease, now: number): number {
+  return ease.span <= 0 ? 1 : Math.max(0, Math.min(1, (now - ease.at) / ease.span));
+}
+
+/** The sim minute as drawn now: between the last two frames, continuous at every speed. */
+function drawnMinute(ease: Ease, f: Frame, now: number): number {
+  return ease.prevMinute + (f.minute - ease.prevMinute) * stepProgress(ease, now);
+}
+
+/**
+ * Moves `key` toward (x, y): a new key starts there; a changed target starts from where it is drawn now.
+ * Returns where to draw it.
+ */
+function tweenTo(
+  ease: Ease,
+  key: string,
+  x: number,
+  y: number,
+  now: number,
+  dur: number,
+): { x: number; y: number } {
+  const t = ease.tweens.get(key);
+  if (!t) {
+    ease.tweens.set(key, { fx: x, fy: y, tx: x, ty: y, t0: now, dur: 0 });
+    return { x, y };
+  }
+  if (t.tx !== x || t.ty !== y) {
+    const cur = tweenAt(t, now);
+    t.fx = cur.x;
+    t.fy = cur.y;
+    t.tx = x;
+    t.ty = y;
+    t.t0 = now;
+    t.dur = dur;
+  }
+  return tweenAt(t, now);
+}
+
+function tweenAt(t: Tween, now: number): { x: number; y: number; done: boolean } {
+  const k = t.dur <= 0 ? 1 : Math.max(0, Math.min(1, (now - t.t0) / t.dur));
+  return { x: t.fx + (t.tx - t.fx) * k, y: t.fy + (t.ty - t.fy) * k, done: k >= 1 };
+}
+
+/** Whether `key` is still on its way to its target. */
+function moving(ease: Ease, key: string, now: number): boolean {
+  const t = ease.tweens.get(key);
+  return t !== undefined && !tweenAt(t, now).done;
+}
+
+/** Drops tweens this frame's drawing did not touch (threats gone, people gone). */
+function sweep(ease: Ease, keep: Set<string>): void {
+  for (const k of ease.tweens.keys()) if (!keep.has(k)) ease.tweens.delete(k);
+}
+
+function walkMs(f: Frame): number {
+  if (f.rate <= 0) return 600;
+  return Math.max(350, Math.min(2500, (WALK_MIN / f.rate) * 1000));
 }
 
 function hash01(n: number): number {
@@ -121,9 +220,9 @@ export interface DrawOpts {
 
 export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease: Ease, o: DrawOpts): void {
   const { w, h, laneW } = l;
-  const dt = ease.last ? Math.min(0.1, (o.now - ease.last) / 1000) : 0;
-  ease.last = o.now;
-  const k = Math.min(1, dt * 6);
+  noteFrame(ease, f, o.now);
+  const span = ease.span;
+  const touched = new Set<string>();
   const dark = darkness(f);
   const day = isDay(f);
   const winterUI = !day;
@@ -199,9 +298,8 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   ctx.fillRect(0, l.yTree, w, l.yWall - l.yTree);
 
   // The lantern's light up the lit lane.
-  const targetX = f.lantern.x;
-  ease.lantern = ease.lantern < 0 ? targetX : ease.lantern + (targetX - ease.lantern) * k;
-  const lx = (ease.lantern + 0.5) * laneW;
+  touched.add('lantern');
+  const lx = (tweenTo(ease, 'lantern', f.lantern.x, 0, o.now, span).x + 0.5) * laneW;
   const lanternOut = f.phase === 'dusk' || f.phase === 'night';
   if (f.lit && f.phase === 'night') {
     const i = SECTION_IDS.indexOf(f.lit);
@@ -236,7 +334,9 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
       ctx.stroke();
       continue;
     }
-    const y = laneY(l, m.pos);
+    const key = `m${m.id}`;
+    touched.add(key);
+    const y = laneY(l, tweenTo(ease, key, 0, m.pos, o.now, span).y);
     // A soft pulse where the grass moves, then the stalks themselves.
     const pulse = 0.12 + 0.1 * Math.sin(o.now / 260 + m.id);
     const halo = ctx.createRadialGradient(cx, y, 1, cx, y, laneW * 0.32);
@@ -269,8 +369,9 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
       target = 1.12 + t.age * 0.02;
       alpha = Math.max(0, 1 - t.age / 6);
     }
-    const prev = ease.pos.get(t.id) ?? target;
-    const shown = prev + (target - prev) * k;
+    const key = `t${t.id}`;
+    touched.add(key);
+    const shown = tweenTo(ease, key, 0, target, o.now, span).y;
     ease.pos.set(t.id, shown);
     const cx = (i + 0.5) * laneW + (hash01(t.id) - 0.5) * laneW * 0.55;
     const y = shown > 1 ? l.yWall + (shown - 1) * (l.h - l.yWall) * 3 : laneY(l, shown);
@@ -367,6 +468,14 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
       const watcher = f.watchers.find((x) => x.id === p.watcher);
       if (!watcher) continue;
       const seen = f.phase !== 'night' || watcher.lit;
+      // Walking up to the post: drawn on the way until they stand there.
+      const key = `w${watcher.id}`;
+      touched.add(key);
+      const way = tweenTo(ease, key, at.x / w, at.y / h, o.now, walkMs(f));
+      if (moving(ease, key, o.now)) {
+        drawWalker(ctx, way.x * w, way.y * h, lookOf(watcher.look), watcher.age, watcher.limp, o.now);
+        continue;
+      }
       drawWatcher(
         ctx,
         at.x,
@@ -408,12 +517,13 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
     }
   }
 
-  // Watchers who left the wall at night: small dim figures by the hall (left of the granary) or by their homes.
-  if (f.phase === 'night') {
+  // Watchers off the wall at night: small dim figures by the hall (left of the granary) or by their homes, who
+  // walk there from wherever they were drawn.
+  if (f.phase === 'night' || f.phase === 'dusk') {
     const gw = Math.max(80, Math.min(140, w * 0.24));
     let hall = 0;
     for (const wt of f.watchers) {
-      if (wt.place !== 'hall' && wt.place !== 'home') continue;
+      if (wt.post !== null) continue;
       let x: number;
       let y: number;
       if (wt.place === 'hall') {
@@ -425,6 +535,14 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
         x = (SECTION_IDS.indexOf(home) + 0.5) * laneW + (hashId(wt.id) - 0.5) * 20;
         y = l.yVillage + (h - l.yVillage) * 0.85;
       }
+      const key = `w${wt.id}`;
+      touched.add(key);
+      const way = tweenTo(ease, key, x / w, y / h, o.now, walkMs(f));
+      if (moving(ease, key, o.now)) {
+        drawWalker(ctx, way.x * w, way.y * h, lookOf(wt.look), wt.age, wt.limp, o.now);
+        continue;
+      }
+      if (f.phase !== 'night' || (wt.place !== 'hall' && wt.place !== 'home')) continue;
       ctx.save();
       ctx.globalAlpha = 0.6;
       ctx.translate(x, y);
@@ -442,7 +560,8 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
     }
   }
 
-  if (day) drawVillagers(ctx, l, f, o.now);
+  if (day) drawVillagers(ctx, l, f, drawnMinute(ease, f, o.now) / 1440);
+  sweep(ease, touched);
 
   // The Keeper with the lantern, below the wall.
   if (winterUI && f.phase !== 'goal') {
@@ -704,6 +823,41 @@ function drawWatcher(
   ctx.restore();
 }
 
+/** Someone walking between places: a dim figure with a stride, read only as a shape in the dark. */
+function drawWalker(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  look: Look,
+  age: AgeBand,
+  limp: boolean,
+  now: number,
+): void {
+  const stride = Math.sin(now / 110) * 2.2;
+  ctx.save();
+  ctx.globalAlpha = 0.8;
+  ctx.translate(x, y);
+  ctx.scale(0.8, 0.8);
+  drawWatcher(ctx, 0, 0, look, {
+    seen: false,
+    posture: 'figure',
+    signs: null,
+    throwing: null,
+    commanded: false,
+    age,
+    limp,
+  });
+  ctx.strokeStyle = '#2a2c3a';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(-1.5, 4);
+  ctx.lineTo(-1.5 - stride, 8);
+  ctx.moveTo(1.5, 4);
+  ctx.lineTo(1.5 + stride, 8);
+  ctx.stroke();
+  ctx.restore();
+}
+
 function drawBandage(ctx: CanvasRenderingContext2D, x: number, y: number): void {
   ctx.strokeStyle = '#f2ece0';
   ctx.lineWidth = 1.4;
@@ -858,8 +1012,11 @@ function drawFields(ctx: CanvasRenderingContext2D, l: Layout, f: Frame): void {
   }
 }
 
-/** By day: every villager in the village near their home, wandering a little. Names only on roomy maps. */
-function drawVillagers(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, now: number): void {
+/**
+ * By day: every villager in the village near their home, wandering a little on sim time (`days`, continuous between
+ * frames), so their pace shows the speed: a slow amble at Slow, a bustle at Seasons. Names only on roomy maps.
+ */
+function drawVillagers(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, days: number): void {
   const top = l.yVillage;
   const span = l.h - top;
   if (span < 30) return;
@@ -869,7 +1026,8 @@ function drawVillagers(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, now: 
     const i = SECTION_IDS.indexOf(v.home);
     const hx = hashId(v.id);
     const hy = hashId(`${v.id}:y`);
-    const drift = Math.sin(now / 2600 + hx * 40) * Math.min(10, l.laneW * 0.08);
+    // About one stroll to and fro every eight days, each villager at their own phase.
+    const drift = Math.sin(days * ((2 * Math.PI) / 8) + hx * 40) * Math.min(14, l.laneW * 0.1);
     const x = Math.max(8, Math.min(l.w - 8, (i + 0.5) * l.laneW + (hx - 0.5) * l.laneW * 0.8 + drift));
     const y = top + span * (0.3 + hy * 0.6);
     drawWatcher(

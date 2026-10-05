@@ -187,7 +187,7 @@ describe('Game 3 first winter (G3-3 review)', () => {
 });
 
 describe('Game 3 pacing in the open seasons (G3-3)', () => {
-  it('spring opens at Days, steps whole days, Seasons runs faster, and the next winter opens at Watch', () => {
+  it('spring opens at Seasons (2026-10-05, was Days), steps whole days, news eases it to Days, and the next winter opens at Watch', () => {
     const run = playYears(2, 1, undefined, (s) => s.phase === 'thaw');
     expect(run.state.phase).toBe('thaw');
     const pacer = new Pacer();
@@ -197,13 +197,28 @@ describe('Game 3 pacing in the open seasons (G3-3)', () => {
     if (run.state.phase === 'closed') run.input({ k: 'continue' });
     expect(run.state.phase).toBe('spring');
     pacer.tick(run, 0);
-    expect(pacer.speed).toBe('days');
+    // The open seasons run themselves (owner's playtest: "I'd speed up automatically unless there's a reason").
+    expect(pacer.speed).toBe('seasons');
+    pacer.speed = 'days';
     const before = run.state.minute;
     const stepped = pacer.tick(run, 1000);
     expect(stepped).toBe(DAY_RATE.days);
     expect(run.state.minute - before).toBe(DAY_RATE.days * DAY);
     pacer.speed = 'seasons';
     expect(pacer.tick(run, 1000)).toBe(DAY_RATE.seasons);
+    // News written into the chronicle eases Seasons to Days for a few days, without a card.
+    let eased = false;
+    for (let guard = 0; guard < 400 && run.state.phase !== 'fair' && !eased; guard++) {
+      const lines = run.state.chronicle.length;
+      const c = run.state.card;
+      if (c) run.input({ k: 'card', id: c.id, choice: c.options[0]?.id ?? '' });
+      pacer.tick(run, 100);
+      if (run.state.chronicle.length > lines && !run.state.card) {
+        pacer.tick(run, 0);
+        eased = pacer.slowed(run) && pacer.rate(run) === DAY_RATE.days;
+      }
+    }
+    expect(eased).toBe(true);
     // Through to the next winter's first dusk: the watch speed comes back on its own.
     for (let guard = 0; guard < 5000 && run.state.phase !== 'dusk'; guard++) {
       const s = run.state;

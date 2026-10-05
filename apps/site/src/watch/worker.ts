@@ -1,19 +1,25 @@
 /**
  * Dedicated worker for The Night Watch. Real time enters only as `tick{dtMs}`; the pacer steps whole sim
  * minutes, and inputs apply between minutes and are logged by sim minute, so a seed and the log replay the run.
- * A frame goes out when something changed, at most about 20 times a second while the clock runs.
+ * A frame goes out when something changed (a sim minute stepped, an input, the speed or pace), at most about 20
+ * times a second; it carries the pace so the page can draw motion between minutes on its own clock (2026-10-05:
+ * the old 20-a-second frames at night rebuilt and compared the whole frame each time). A tick is capped at 250 ms
+ * of real time, so a stalled page loses a moment rather than lurching the clock forward when it wakes.
  *
  * Saves (`store.ts`, spec §6). The running page is written soon after each input, every few real seconds while
- * the clock runs, when the chronicle is opened and when the tab is hidden; a season backup as each season opens;
- * a volume's page when it closes. `load` opens a chronicle at its running page (no rewind) or takes up a closed
+ * the clock runs (every half minute during a night), when the chronicle is opened and when the tab is hidden; a
+ * season backup as each season opens; a volume's page when it closes. `load` opens a chronicle at its running page (no rewind) or takes up a closed
  * volume as a new chronicle. Loading keeps the Pacer, so the chosen speed and the chronicle's hold stay. Storage
  * failing only leaves the shelf empty.
  */
 import { hostWorker } from '../shared/worker-host.ts';
 import { type MainToWorker, WATCH_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
+import { DAY } from './sim/config.ts';
 import { dayOfYear, seasonOfDay } from './sim/life.ts';
+import { clockRuns } from './sim/night.ts';
 import { Pacer } from './sim/pace.ts';
 import { WatchRun } from './sim/run.ts';
+import { isSeason } from './sim/season.ts';
 import type { WatchState } from './sim/state.ts';
 import { buildFrame, ordinal } from './sim/view.ts';
 import { roman } from './sim/volume.ts';
@@ -24,9 +30,16 @@ const pacer = new Pacer();
 let lastKey = '';
 let sinceFrame = 0;
 const FRAME_MS = 50;
-/** Write the running page at most this often after an input, and this often while the clock runs. */
+/** The most real time one tick may carry (a stalled tab or a long GC pause). */
+const MAX_TICK_MS = 250;
+/**
+ * Write the running page at most this often after an input, and this often while the clock runs. During a night
+ * both wait `NIGHT_SAVE_MS`: writing the page stops the clock for a moment (the snapshot is taken between minutes),
+ * the Keeper's lantern moves are inputs, and hiding or closing the tab still writes it at once.
+ */
 const INPUT_SAVE_MS = 1500;
 const RUNNING_SAVE_MS = 8000;
+const NIGHT_SAVE_MS = 30000;
 /** This chronicle's id on the shelf, the last season and page phase saved, and what the running page holds. */
 let chronicleId = '';
 let savedSeason = '';
@@ -111,7 +124,8 @@ function maybeSave(): void {
     save('auto');
   } else if (behind()) {
     const inputWaiting = run.log.length !== savedInputs;
-    if (sinceSave >= (inputWaiting ? INPUT_SAVE_MS : RUNNING_SAVE_MS)) save('auto');
+    const wait = s.phase === 'night' ? NIGHT_SAVE_MS : inputWaiting ? INPUT_SAVE_MS : RUNNING_SAVE_MS;
+    if (sinceSave >= wait) save('auto');
   }
   savedPhase = phase;
 }
@@ -132,12 +146,14 @@ function begin(r: WatchRun, id: string): void {
 const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
   const flush = (force: boolean) => {
     if (!run) return;
-    const frame = buildFrame(run.state, pacer.progress, pacer.slowed(run));
-    // `sub` changes every tick; compare without it so an idle page sends nothing.
-    const key = JSON.stringify({ ...frame, sub: 0, speed: pacer.speed });
-    if (!force && key === lastKey && run.state.phase !== 'night') return;
+    const s = run.state;
+    const rate = pacer.held || !clockRuns(s) ? 0 : pacer.paced(run);
+    // Only what can change the frame: the minute, an input, the phase, the speed and the pace.
+    const key = `${s.minute}|${run.log.length}|${s.phase}|${pacer.speed}|${rate.toFixed(3)}|${pacer.slowed(run)}`;
+    if (!force && key === lastKey) return;
     lastKey = key;
     sinceFrame = 0;
+    const frame = buildFrame(s, pacer.progress, pacer.slowed(run), isSeason(s) ? rate * DAY : rate);
     host.post({ type: 'frame', frame, speed: pacer.speed });
   };
 
@@ -160,7 +176,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       return;
     case 'tick': {
       if (!run) return;
-      const dt = Math.max(0, msg.dtMs);
+      const dt = Math.min(MAX_TICK_MS, Math.max(0, msg.dtMs));
       sinceFrame += dt;
       sinceSave += dt;
       pacer.tick(run, dt);

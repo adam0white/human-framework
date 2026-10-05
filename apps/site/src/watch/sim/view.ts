@@ -80,6 +80,10 @@ export interface Frame {
   nightProgress: number;
   /** Fraction of the current minute already elapsed in real time, for smooth drawing. */
   sub: number;
+  /** The sim minute (absolute), and how many sim minutes pass per real second at the current pace (0 when the
+   * clock stands): the map draws motion between frames from these. */
+  minute: number;
+  rate: number;
   warning: string;
   warned: SectionId;
   lit: SectionId | null;
@@ -284,7 +288,7 @@ function hash(a: number, b: number): number {
   return ((h ^ (h >>> 15)) >>> 0) / 4294967296;
 }
 
-export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
+export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0): Frame {
   const lit = litSection(s);
   const seen: SeenToken[] = [];
   const motion: Motion[] = [];
@@ -372,6 +376,8 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean): Frame {
     clock: ((s.minute % DAY) + DAY) % DAY,
     nightProgress: (s.minute - s.nightStart) / nightLen,
     sub,
+    minute: s.minute,
+    rate,
     warning: s.warning,
     warned: s.warned,
     lit,
@@ -554,9 +560,21 @@ function winterWords(lost: number, hungry: boolean): string {
 
 const YEAR_LINES = 40;
 
-function yearFrame(s: WatchState) {
-  const d = dayOfYear(s);
-  const inWinter = s.phase === 'dusk' || s.phase === 'night' || s.phase === 'dawn' || s.phase === 'thaw';
+let villagerCache: { key: string; list: FrameVillager[] } | null = null;
+
+/**
+ * Every living villager for the frame. At night the list is not shown and the frame is built several times a
+ * second, so it is rebuilt once a sim hour there (2026-10-05 performance pass); elsewhere every frame.
+ */
+function villagersOf(s: WatchState): FrameVillager[] {
+  const key = s.phase === 'night' ? `${s.seed}|${s.year}|${s.night}|${Math.floor(s.minute / 60)}` : null;
+  if (key !== null && villagerCache?.key === key) return villagerCache.list;
+  const list = buildVillagers(s);
+  villagerCache = key === null ? null : { key, list };
+  return list;
+}
+
+function buildVillagers(s: WatchState): FrameVillager[] {
   const people = living(s).filter((p) => isHere(s, p));
   const villagers: FrameVillager[] = people.map((p) => {
     const v = villager(s, p.id);
@@ -590,6 +608,13 @@ function yearFrame(s: WatchState) {
       Number(b.watcher) - Number(a.watcher) ||
       (personOf(s, a.id)?.life.bornAt ?? 0) - (personOf(s, b.id)?.life.bornAt ?? 0),
   );
+  return villagers;
+}
+
+function yearFrame(s: WatchState) {
+  const d = dayOfYear(s);
+  const inWinter = s.phase === 'dusk' || s.phase === 'night' || s.phase === 'dawn' || s.phase === 'thaw';
+  const villagers = villagersOf(s);
   const fair = s.phase === 'fair' && s.fair ? s.fair : null;
   const picksLeft = fair ? Math.max(0, fair.max - fair.picks.length) : 0;
   return {
