@@ -1,0 +1,32 @@
+version: 2
+
+# Weekly, grouped, with a cooldown so a freshly published (possibly compromised) release is not proposed on day one.
+# Note: package.json `allowScripts` pins esbuild and workerd by exact version; a bump of either needs its entry
+# updated (`npm install-scripts approve <pkg>`), or npm skips its install script and warns.
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    groups:
+      npm-dev:
+        dependency-type: development
+        update-types: [minor, patch]
+      npm-prod:
+        dependency-type: production
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 7
+    groups:
+      actions:
+        patterns: ['*']

@@ -68,4 +68,4 @@ Node ≥ 24 with `/opt/homebrew/bin` first on `PATH`.
 - `npm run deploy`: deploys the site build to https://human.adamwhite.work (see AGENTS.md, Delivery); verify the live `/release.json` against the commit.
 - `npm run release`: on a clean, pushed `main`, checks versions and the changelog, runs `npm run check`, tags `vX.Y.Z` and creates the GitHub release with the tarball (`-- --dry-run` stops after packing). Versions follow [the version policy](packages/human/README.md#versions).
 
-CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs check and build as the gate on pushes and pull requests to `main`, and the bench at 3× budgets as information.
+CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs the pieces of check and build in parallel (lint, typecheck and build in one job, the tests in shards) as the gate on pushes and pull requests to `main`; its `ci` job is the single check that passes when all of them pass. [bench.yml](.github/workflows/bench.yml) runs the bench at 3× budgets and hyperfine as information, skipped for prose-only changes. CI uses the Node version in `.nvmrc`.
