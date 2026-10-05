@@ -12,9 +12,10 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
-Engine: 2.0.0 (unchanged). A polish release, to be versioned 2.1.0 at release (bump the package version and
-`FRAMEWORK_VERSION` then, and the tests that pin `'2.0.0'`: smoke.test.ts, migrate.test.ts). No simulation behaviour
-changes: playtest replays, engine fixtures and state hashes are byte-identical to 2.0.0.
+## [2.1.0] - 2026-10-05
+
+Engine: 2.0.0 (unchanged). A polish release: no simulation behaviour changes; playtest replays, engine fixtures and
+state hashes are byte-identical to 2.0.0. Deprecated forms listed below are removed in 3.0.
 
 ### Added
 
