@@ -22,7 +22,7 @@ bash scripts/after-public.sh
 
 The script refuses to run unless the repository is public, then enables secret scanning with push protection and private vulnerability reporting, creates or updates the `main` ruleset from [.github/rulesets/main.json](.github/rulesets/main.json) (no deletion, no force-push, required check `ci`; repository admins bypass), sets the Actions settings (SHA-pinned actions, approval for fork PRs from all outside contributors) and turns on the weekly CodeQL run (repository variable `CODEQL_SCHEDULE`). It is safe to re-run. CodeQL stays on the workflow; do not enable CodeQL default setup. After that, an agent deploys the homepage (`npm run deploy`), whose Status line now links the GitHub repository.
 
-Applied live while private (2026-10-05): Actions `sha_pinning_required=true` (every workflow already pins actions by SHA). Dependabot alerts were already on. GitHub refused the rest while private on the free plan: rulesets (403), private vulnerability reporting (404), fork-PR approval (422), secret scanning (422).
+Applied live while private (2026-10-05): Actions `sha_pinning_required=true` (every workflow already pins actions by SHA). Dependabot alerts were already on. `package.json` `overrides` pins `sharp` to 0.35.5 (2026-10-06, high alert CVE-2026-96889; dev-only, via wrangler → miniflare, which pins 0.35.4); drop the override once miniflare ships 0.35.5 or later. GitHub refused the rest while private on the free plan: rulesets (403), private vulnerability reporting (404), fork-PR approval (422), secret scanning (422).
 
 ## Goals
 

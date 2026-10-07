@@ -44,5 +44,8 @@
     "esbuild@0.28.1": true,
     "workerd@1.20261001.1": true,
     "fsevents": false
+  },
+  "overrides": {
+    "sharp": "0.35.5"
   }
 }
