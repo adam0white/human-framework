@@ -119,6 +119,21 @@ describe('Night Watch input log and playtest export', () => {
     expect(() => replay({ ...exp, scenario: exp.scenario + 1 })).toThrow(/scenario/);
   });
 
+  it('loads a page saved by scenario 8 as it is, stamped with its origin, and its export does not replay', () => {
+    const run = new WatchRun(5);
+    run.input({ k: 'start' });
+    run.input({ k: 'begin' });
+    for (let i = 0; i < 30; i++) run.step();
+    const page = run.snapshot();
+    const old = { ...page, scenario: 8 };
+    const resumed = WatchRun.resume(JSON.parse(JSON.stringify(old)));
+    expect(resumed.origin).toEqual({ scenario: 8, minute: page.state.minute });
+    expect(resumed.state).toEqual(page.state);
+    for (let i = 0; i < 10; i++) resumed.step();
+    expect(WatchRun.resume(resumed.snapshot()).origin).toEqual(resumed.origin);
+    expect(() => replay(resumed.export())).toThrow(/scenario 8 page/);
+  });
+
   it('loads a page saved by scenario 7: the new fields start fresh, and its export is marked as no longer replaying', () => {
     const run = new WatchRun(5);
     run.input({ k: 'start' });
