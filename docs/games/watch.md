@@ -596,6 +596,9 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 - T3, **graphics and moving parts.** "representative graphics and actually moving parts". Within §9's guardrail unless the owner lifts it.
 - T3, **performance on a real phone.** Occasional 50–100 ms frame gaps remain at 360 px and DPR 3 in headless Firefox. Not measured on a device or with a CPU throttle.
 
+**Found 2026-10-06.**
+- T1, **almost nobody dies over fifty years.** `npm run bench` (`watch/sim/years.timing.ts`, seed 1): 195 villagers ever lived and 0 died in 50 years on bdd1c43; 176 lived and 1 died at a371afd and 29c7b09, so it predates the bell and stream changes. The test also failed there, on generations (2, needs 3). Mortality is rolled only in `liveDays` (open-season days, `lifecourse.mortality`); winter is stepped by `liveHours` without it, and old villagers may leave before old age. Not yet traced. The bench run is informational on CI, which is why this went unnoticed. Find and fix by 2026-10-20.
+
 **From the owner's exported run (2026-10-05, seed 20261004, years 1 to 4).** Bugs found there are fixed (findings.md, same date); these remain.
 - Done 2026-10-05, **exports name their build** and **the export hash covers rules, not wording**: see [Export provenance and hash policy](#export-provenance-and-hash-policy-2026-10-05).
 - Done 2026-10-05, **separate RNG streams**: see [World streams as built](#world-streams-as-built-2026-10-05).
