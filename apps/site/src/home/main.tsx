@@ -8,6 +8,9 @@ import { SpineDiagram, SpineStack } from './Diagram.tsx';
 import sampleSource from './sample.ts?raw';
 import { SAMPLE_OUTPUT } from './sampleOutput.ts';
 
+/** The release tarball for this framework version; it installs by URL until the package is on npm. */
+const TARBALL = `https://github.com/adam0white/human-framework/releases/download/v${FRAMEWORK_VERSION}/adam0white-human-framework-${FRAMEWORK_VERSION}.tgz`;
+
 const GRID_X = [0, 25, 50, 75, 100, 125, 150, 175, 200];
 const GRID_Y = [0, 25, 50, 75, 100];
 
@@ -411,9 +414,16 @@ function Home() {
                 <div>
                   <dt>Status</dt>
                   <dd>
-                    {FRAMEWORK_VERSION}, used by the three games below. The source is on{' '}
-                    <a href="https://github.com/adam0white/human-framework">GitHub</a> under the MIT license;
-                    install it from a release tarball (it is not on npm yet).
+                    {FRAMEWORK_VERSION}, used by the three games below. Open source on{' '}
+                    <a href="https://github.com/adam0white/human-framework">GitHub</a>: code under MIT, docs
+                    and research under CC BY 4.0. Not on npm yet; install the{' '}
+                    <a
+                      href={`https://github.com/adam0white/human-framework/releases/tag/v${FRAMEWORK_VERSION}`}
+                    >
+                      release
+                    </a>{' '}
+                    tarball:
+                    <code className="install">npm install {TARBALL}</code>
                   </dd>
                 </div>
               </dl>
@@ -496,7 +506,8 @@ function Home() {
 
       <footer className="footer">
         <span>
-          HF (Human Framework) v{FRAMEWORK_VERSION} · <code>@adam0white/human-framework</code>
+          HF (Human Framework) v{FRAMEWORK_VERSION} · <code>@adam0white/human-framework</code> ·{' '}
+          <a href="https://github.com/adam0white/human-framework">GitHub</a>
         </span>
         <span>Deterministic · explainable · no UI or LLM in the loop</span>
       </footer>

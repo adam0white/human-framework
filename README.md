@@ -14,7 +14,13 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
 
 ## Quick start
 
-The source is public on GitHub under the MIT license. The package is not published to npm yet (`packages/human` stays `"private": true` until npm publishing is set up); install it from the tarball attached to each [GitHub release](https://github.com/adam0white/human-framework/releases), or build one from a checkout with `npm pack -w packages/human`:
+The source is public on GitHub (code MIT, docs CC BY 4.0). The package is not published to npm yet (`packages/human` stays `"private": true` until npm publishing is set up); install the tarball attached to each [GitHub release](https://github.com/adam0white/human-framework/releases) by URL:
+
+```sh
+npm install https://github.com/adam0white/human-framework/releases/download/v2.1.1/adam0white-human-framework-2.1.1.tgz
+```
+
+Or build one from a checkout:
 
 ```sh
 npm pack -w packages/human   # writes adam0white-human-framework-<version>.tgz
@@ -83,6 +89,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Report vulnerabilities privately as desc
 
 ## License
 
-- **Code** (everything outside `docs/` and `research/`, including `packages/human`, `apps/site`, `scripts` and `archive/`): [MIT](LICENSE).
-- **Documentation and research** (`docs/` and `research/`): [CC BY 4.0](docs/LICENSE). Quotations from third-party sources keep their own terms.
+- **Code** (everything outside the documentation directories, including `packages/human`, `apps/site`, `scripts` and the archived v0 code): [MIT](LICENSE).
+- **Documentation and research** (`docs/`, `research/`, and the archived prose in `archive/research/` and `archive/v0/docs/`): [CC BY 4.0](docs/LICENSE). Quotations from third-party sources keep their own terms.
 - **Third-party data**: the archived learning-pilot dataset under `archive/v0/artifacts/learning-pilot/data-access/` mirrors [OSF project xzm5c](https://osf.io/xzm5c/), which its authors released under [CC0 1.0](archive/v0/artifacts/learning-pilot/data-access/LICENSE-OSF-CC0.txt); credit Zhang, McDougle and Leonard (2025).

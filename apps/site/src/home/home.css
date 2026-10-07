@@ -715,6 +715,18 @@ code {
   color: var(--text-muted);
 }
 
+/* The install line wraps anywhere: the tarball URL is longer than a phone is wide. */
+.facts .install {
+  display: block;
+  margin-top: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
 .game-shows {
   font-size: 0.93rem;
 }
