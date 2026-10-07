@@ -369,8 +369,7 @@ export const sampleReport: ReportView = {
   open: ['300 still owed to Osman.', 'No make-up fasts owed.'],
   rows: [strip, { ...strip, label: 'Ramadan 2' }, { ...strip, label: 'Eid al-Fitr' }],
   silent: {
-    intro:
-      'The same town from the same start, run again with no word from you: no suggestion on the days you played and no whisper between them.',
+    intro: 'The same town from the same start, run again without a word from you.',
     rows: [
       {
         topic: 'Osman',
@@ -385,11 +384,12 @@ export const sampleReport: ReportView = {
       { topic: 'The clinic', spoke: 'He went once, on Ramadan 1.', silent: 'He never went.' },
       {
         topic: 'Cigarettes',
-        spoke: 'He smoked on some days of Ramadan; on Eid, a few.',
-        silent: 'He smoked on most days of Ramadan; on Eid, several.',
+        spoke: 'He smoked on some days of Ramadan.',
+        silent: 'He smoked on most days of Ramadan.',
       },
     ],
-    same: 'The same in both: the fast, Selin on Eid and Osman after Eid.',
+    same: 'The same in both: Selin on Eid and Osman after Eid.',
+    smaller: 'Smaller differences: walks by the river.',
     caption: SILENT_CAPTION,
   },
   modelNotes: [...MODEL_NOTES],

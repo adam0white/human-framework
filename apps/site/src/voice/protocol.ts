@@ -326,12 +326,14 @@ export interface ReportView {
 }
 /** The same town from the same seed with no word from you, compared with the month as played (voice.md §7.5). */
 export interface SilentMonthView {
-  /** One line on what the silent month is. */
+  /** One line on what the silent month is; when you never spoke, the whole section (no rows). */
   intro: string;
   /** Facts that came out differently, in words: as played, and in the month you never spoke. */
   rows: { topic: string; spoke: string; silent: string }[];
   /** Topics that came out the same in both months, in words (one line, or empty). */
   same: string;
+  /** Differing topics beyond the rows shown, named in one line ("Smaller differences: …"), or empty. */
+  smaller: string;
   /** Always `SILENT_CAPTION`. */
   caption: string;
 }

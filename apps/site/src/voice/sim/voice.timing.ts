@@ -1,7 +1,7 @@
 /** Game 2 wall-clock budget. Run with `npm run bench`; the outcome is asserted in game.test.ts. */
 import { expect, test } from 'vitest';
 import type { StandingWhisper } from '../protocol.ts';
-import { finishSilentMonth, startSilentMonth } from './counterfactual.ts';
+import { advanceSilentMonth, finishSilentMonth, startSilentMonth } from './counterfactual.ts';
 import { SHIPPED_SEED, VoiceGame } from './game.ts';
 import { play } from './headless.ts';
 
@@ -34,4 +34,14 @@ test('the month you never spoke (a whole silent run, Stretch S1) runs in under 8
   console.log(`voice silent month: ${ms.toFixed(0)} ms`);
   expect(g.phase).toBe('report');
   expect(ms).toBeLessThan(8000 * SCALE);
+  // The worker's 6 ms slices: the longest single one (a whole skip runs inside one headless turn), reported.
+  const s = startSilentMonth(SHIPPED_SEED);
+  let worst = 0;
+  let slices = 0;
+  for (let done = false; !done; slices++) {
+    const a = performance.now();
+    done = advanceSilentMonth(s, 6);
+    worst = Math.max(worst, performance.now() - a);
+  }
+  console.log(`voice silent month in 6 ms slices: ${slices} slices, worst ${worst.toFixed(0)} ms`);
 }, 60_000);

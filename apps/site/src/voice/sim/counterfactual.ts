@@ -4,15 +4,16 @@
  * six-day epilogue, exactly as a player who never spoke would see it. A few plain facts of that month are set
  * beside the month as played, in words, with the caption `SILENT_CAPTION`.
  *
- * Scope: it reads only fields both games keep (activity cells, payments, calls, the chronicle's fasts, the
- * report's open lines), so the two sides are read the same way. It leaves prayer out, as the report's diff does
- * (voice.md §3, §11: prayer is shown in his day, never tracked as a goal), and says nothing about worth, faith or
- * acceptance, nor which month is better. It does not say why a fact differs: some differences come from your
- * words, some from small changes compounding (hence the caption).
+ * Scope: it reads only fields both games keep (activity cells, payments, calls, the report's open lines), so the
+ * two sides are read the same way. It leaves prayer and the fast out (voice.md §11: no report line measures
+ * worship), and says nothing about worth, faith or acceptance, nor which month is better. It does not say why a
+ * fact differs: some differences come from your words, some from small changes compounding (hence the caption).
+ * When you never spoke there is nothing to set beside the month, and the section is one line.
  *
- * The silent game is its own `VoiceGame`, held outside the played game (the worker keeps it; tests hold it), so the
- * played run's state, hash and report are untouched. It is a function of the seed alone, so it may be stepped in
- * slices (`advanceSilentMonth`) and still come out the same. Cost: a whole silent run, about 1.1 s on the bench (`npm run bench`).
+ * The silent game is its own `VoiceGame`, held outside the played game (the worker keeps it until its facts are
+ * read, then keeps only the facts; tests hold it), so the played run's state, hash and report are untouched. It is
+ * a function of the seed alone, so it may be stepped in slices (`advanceSilentMonth`) and still come out the same.
+ * Cost: a whole silent run, about 1.1 s on the bench (`npm run bench`).
  */
 import { dayOf, MINUTES_PER_DAY } from '@adam0white/human-framework';
 import { SILENT_CAPTION, type SilentMonthView } from '../protocol.ts';
@@ -31,7 +32,10 @@ export function startSilentMonth(seed: number): SilentMonth {
   return { seed, game: new VoiceGame(seed) };
 }
 
-/** Step the silent game for about `budgetMs` of wall time. Returns true once it has reached its report. */
+/**
+ * Step the silent game for about `budgetMs` of wall time. Returns true once it has reached its report. The budget
+ * is checked between the headless player's turns, so one turn that is a whole multi-day skip runs over it.
+ */
 export function advanceSilentMonth(s: SilentMonth, budgetMs: number): boolean {
   if (!reported(s.game)) {
     const until = performance.now() + budgetMs;
@@ -50,8 +54,6 @@ const reported = (g: VoiceGame): boolean => g.phase === 'report';
 
 /** The facts compared, read the same way from either game once it has reached its report. */
 export interface MonthFacts {
-  /** Ramadan days whose fast he kept (the others were excused). */
-  fastsKept: number;
   /** Osman's date (300 by Ramadan 15, 20:00) kept. */
   dateKept: boolean;
   /** Ramadan day and amount of the first payment, if any before Eid. */
@@ -70,9 +72,8 @@ export interface MonthFacts {
   /** Afternoon shifts and river walks in Ramadan. */
   shifts: number;
   walks: number;
-  /** Ramadan days he smoked, and cigarettes on Eid. */
+  /** Ramadan days he smoked (Eid's cigarettes are noise in every style, voice.md §14, so they are left out). */
   smokeDays: number;
-  eidCigarettes: number;
   /** The report's first "still open" line a week after Eid (Osman). */
   owedAfter: string;
 }
@@ -82,25 +83,14 @@ const RAMADAN_DAYS = TOWN_EID_DAY - TOWN_DEFAULTS.ramadanFirstDay;
 const ramadanDay = (at: number) => dayOf(at) - TOWN_DEFAULTS.ramadanFirstDay + 1;
 
 export function monthFacts(g: VoiceGame): MonthFacts {
-  const cells = g.cells.filter(happened);
-  const before = cells.filter((c) => c.from < EID_START);
-  const onEid = cells.filter((c) => dayOf(c.from) === TOWN_EID_DAY);
-  const fastsKept = (g.halil.chronicle ?? []).filter(
-    (d) =>
-      d.day >= TOWN_DEFAULTS.ramadanFirstDay &&
-      d.day < TOWN_EID_DAY &&
-      d.kept.some((k) => k.kind === 'abstain' && k.label === 'fast'),
-  ).length;
-  const pays = g.payments.filter((p) => p.at < EID_START);
-  const first = pays[0];
+  const before = g.cells.filter((c) => happened(c) && c.from < EID_START);
+  const first = g.payments.find((p) => p.at < EID_START);
   const dateKept =
     first !== undefined && first.at <= TOWN_DEFAULTS.rentPromiseDay * MINUTES_PER_DAY + 20 * 60;
   const calls = g.calls.filter((c) => c.at < EID_START);
   const eid = g.calls.find((c) => dayOf(c.at) === TOWN_EID_DAY);
   const clinic = before.filter((c) => c.affordanceId === 'see-doctor');
-  const smokeDays = new Set(before.filter((c) => c.action === 'smoke').map((c) => dayOf(c.from))).size;
   return {
-    fastsKept,
     dateKept,
     ...(first ? { firstPayDay: ramadanDay(first.at), firstPay: Math.round(first.amount) } : {}),
     paidByEid: Math.round(g.eidMorning?.run.town.state.rentPaid ?? 0),
@@ -111,8 +101,7 @@ export function monthFacts(g: VoiceGame): MonthFacts {
     ...(clinic[0] ? { firstClinicDay: ramadanDay(clinic[0].from) } : {}),
     shifts: before.filter((c) => c.affordanceId === 'work-extra').length,
     walks: before.filter((c) => c.action === 'walk').length,
-    smokeDays,
-    eidCigarettes: onEid.filter((c) => c.action === 'smoke').length,
+    smokeDays: new Set(before.filter((c) => c.action === 'smoke').map((c) => dayOf(c.from))).size,
     owedAfter: g.report?.open[0] ?? '',
   };
 }
@@ -145,16 +134,6 @@ function daysOf(n: number): string {
 /** Each fact as words, by topic, in report order. Topics whose words match on both sides are "the same". */
 function facts(f: MonthFacts, other: MonthFacts): { topic: string; words: string }[] {
   const out: { topic: string; words: string }[] = [];
-  const missed = RAMADAN_DAYS - f.fastsKept;
-  out.push({
-    topic: 'The fast',
-    words:
-      missed === 0
-        ? 'He kept every fast.'
-        : missed === 1
-          ? 'He kept every fast but one, which was excused.'
-          : `He kept ${f.fastsKept} of the ${RAMADAN_DAYS} fasts; ${missed} were excused.`,
-  });
   out.push({
     topic: 'Osman',
     words: `${
@@ -195,15 +174,8 @@ function facts(f: MonthFacts, other: MonthFacts): { topic: string; words: string
   });
   out.push({
     topic: 'Cigarettes',
-    words: `${f.smokeDays === 0 ? 'He did not smoke in Ramadan' : `He smoked on ${daysOf(f.smokeDays)} of Ramadan`}; on Eid, ${
-      f.eidCigarettes === 0
-        ? 'none'
-        : f.eidCigarettes === 1
-          ? 'one cigarette'
-          : f.eidCigarettes <= 3
-            ? 'a few'
-            : 'several'
-    }.`,
+    words:
+      f.smokeDays === 0 ? 'He did not smoke in Ramadan.' : `He smoked on ${daysOf(f.smokeDays)} of Ramadan.`,
   });
   if (f.walks > 0 || other.walks > 0)
     out.push({
@@ -214,30 +186,50 @@ function facts(f: MonthFacts, other: MonthFacts): { topic: string; words: string
   return out;
 }
 
+/** Most differing rows shown in full; the rest are named in one line ("Smaller differences: …"). */
+export const SILENT_ROWS = 6;
+/** Which differing rows fold first when there are more than `SILENT_ROWS`: the smallest levers. */
+const FOLD_FIRST = ['Walks by the river', 'The afternoon shift', 'Osman after Eid', 'Selin on Eid'];
+
 /** "a", "a and b", "a, b and c". */
 const listed = (xs: readonly string[]) =>
   xs.length <= 2 ? xs.join(' and ') : `${xs.slice(0, -1).join(', ')} and ${xs.at(-1)}`;
 const lower = (s: string) =>
   s.startsWith('Osman') || s.startsWith('Selin') ? s : s.charAt(0).toLowerCase() + s.slice(1);
 
-/** The report section: the month as played beside the month you never spoke. */
-export function silentMonthView(played: VoiceGame, silent: VoiceGame): SilentMonthView {
-  const a = monthFacts(played);
-  const b = monthFacts(silent);
-  const mine = facts(a, b);
-  const theirs = new Map(facts(b, a).map((x) => [x.topic, x.words]));
-  const rows: SilentMonthView['rows'] = [];
+/** The one line shown when you never spoke: there is no other month to set beside it. */
+export const NEVER_SPOKE = 'You said nothing; this was the month you never spoke.';
+export const SILENT_INTRO = 'The same town from the same start, run again without a word from you.';
+
+/**
+ * The report section: the month as played beside the month you never spoke (`silent`, the silent game's facts).
+ * When you never spoke, `silent` is not needed and the section is one line.
+ */
+export function silentMonthView(played: VoiceGame, silent?: MonthFacts): SilentMonthView {
+  if (played.report?.spoke === false || !silent)
+    return { intro: NEVER_SPOKE, rows: [], same: '', smaller: '', caption: SILENT_CAPTION };
+  return compareMonths(monthFacts(played), silent);
+}
+
+/** The comparison itself: differing facts as rows (at most `SILENT_ROWS`), the rest in one line each. */
+export function compareMonths(mine: MonthFacts, silent: MonthFacts): SilentMonthView {
+  const theirs = new Map(facts(silent, mine).map((x) => [x.topic, x.words]));
+  const all: SilentMonthView['rows'] = [];
   const same: string[] = [];
-  for (const { topic, words } of mine) {
+  for (const { topic, words } of facts(mine, silent)) {
     const other = theirs.get(topic) ?? '';
     if (other === words) same.push(lower(topic));
-    else rows.push({ topic, spoke: words, silent: other });
+    else all.push({ topic, spoke: words, silent: other });
   }
-  const spoke = played.report?.spoke !== false;
+  const folded = new Set<string>();
+  for (const t of FOLD_FIRST) {
+    if (all.length - folded.size <= SILENT_ROWS) break;
+    if (all.some((r) => r.topic === t)) folded.add(t);
+  }
+  const rows = all.filter((r) => !folded.has(r.topic));
+  const smaller = all.filter((r) => folded.has(r.topic)).map((r) => lower(r.topic));
   return {
-    intro: spoke
-      ? 'The same town from the same start, run again with no word from you: no suggestion on the days you played and no whisper between them.'
-      : 'You said nothing all month. The same town from the same start, run again with no word from you:',
+    intro: SILENT_INTRO,
     rows,
     same:
       same.length === 0
@@ -245,6 +237,7 @@ export function silentMonthView(played: VoiceGame, silent: VoiceGame): SilentMon
         : rows.length === 0
           ? `Both months came out the same: ${listed(same)}.`
           : `The same in both: ${listed(same)}.`,
+    smaller: smaller.length > 0 ? `Smaller differences: ${listed(smaller)}.` : '',
     caption: SILENT_CAPTION,
   };
 }
