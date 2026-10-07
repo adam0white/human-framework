@@ -316,8 +316,27 @@ export interface ReportView {
   rows: StripRow[];
   /** False when you said nothing all month (the strips heading then says "watched"). */
   spoke?: boolean;
+  /**
+   * Stretch S1, "the month you never spoke": the same seed run again with no input from you, set beside this run as
+   * a few plain facts. Added by the worker (sim/counterfactual.ts) after the report is built, so it is not part of
+   * the run's state or hash. Absent until computed.
+   */
+  silent?: SilentMonthView;
   modelNotes: string[];
 }
+/** The same town from the same seed with no word from you, compared with the month as played (voice.md §7.5). */
+export interface SilentMonthView {
+  /** One line on what the silent month is. */
+  intro: string;
+  /** Facts that came out differently, in words: as played, and in the month you never spoke. */
+  rows: { topic: string; spoke: string; silent: string }[];
+  /** Topics that came out the same in both months, in words (one line, or empty). */
+  same: string;
+  /** Always `SILENT_CAPTION`. */
+  caption: string;
+}
+/** The caption the silent-month comparison must carry, verbatim (voice.md Stretch S1). */
+export const SILENT_CAPTION = 'Small differences compound; not every difference is your doing.';
 
 export type WorkerReply =
   /**

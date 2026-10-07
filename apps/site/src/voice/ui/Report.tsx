@@ -121,6 +121,30 @@ export function Report({
           <EndsList ends={view.ends} />
         </section>
 
+        {view.silent && (
+          <section className="v-report-silent">
+            <h2>The month you never spoke</h2>
+            <p className="v-report-caption">{view.silent.intro}</p>
+            {view.silent.rows.length > 0 && (
+              <ul className="v-lines v-silent-rows">
+                {view.silent.rows.map((r) => (
+                  <li key={r.topic}>
+                    <strong>{r.topic}</strong>
+                    <span>
+                      <span className="v-silent-label">As played</span> {r.spoke}
+                    </span>
+                    <span>
+                      <span className="v-silent-label">Never spoken to</span> {r.silent}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {view.silent.same && <p className="v-silent-same">{view.silent.same}</p>}
+            <p className="v-silent-caption">{view.silent.caption}</p>
+          </section>
+        )}
+
         <div className="v-report-cols">
           <section className="v-report-body">
             <h2>His body a week after Eid, as the doctor would read it</h2>

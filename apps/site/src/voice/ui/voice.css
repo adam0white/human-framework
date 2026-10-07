@@ -1725,6 +1725,28 @@ button.v-log-btn:hover {
   font-style: italic;
   color: var(--ink-soft);
 }
+.v-silent-rows li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.v-silent-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-right: 4px;
+}
+.v-silent-same {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+}
+.v-silent-caption {
+  margin: 8px 0 0;
+  font-family: var(--font-line);
+  font-style: italic;
+}
 .v-report-trust {
   width: 100%;
   border-collapse: collapse;

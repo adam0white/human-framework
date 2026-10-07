@@ -6,15 +6,49 @@
  *
  * Every state-changing message goes through `RecordedGame` (sim/record.ts), which keeps the playtest log; a
  * loaded playtest file is replayed here from its seed and log (its snapshot is never loaded as state).
+ *
+ * The month you never spoke (sim/counterfactual.ts) is a second game from the same seed with no input. It is held
+ * here, outside the played game, stepped a few milliseconds per tick once play begins, finished when the report
+ * is posted, and attached to the posted report only (the game's own report and hash do not carry it).
  */
 import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { makePlaytestFile, PlaytestError, parsePlaytest, replayResult } from '../shared/playtest.ts';
 import { hostWorker } from '../shared/worker-host.ts';
-import { type Frame, type MainToWorker, VOICE_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
+import {
+  type Frame,
+  type MainToWorker,
+  type ReportView,
+  VOICE_SCENARIO_VERSION,
+  type WorkerReply,
+} from './protocol.ts';
+import {
+  advanceSilentMonth,
+  finishSilentMonth,
+  type SilentMonth,
+  silentMonthView,
+  startSilentMonth,
+} from './sim/counterfactual.ts';
 import { VoiceGame } from './sim/game.ts';
 import { RecordedGame, replayVoice, validateVoiceLog, voiceHash, voiceSnapshot } from './sim/record.ts';
 
 let rec: RecordedGame | null = null;
+/** The month you never spoke for the current run's seed; started once play begins (see `stepSilent`). */
+let silent: SilentMonth | null = null;
+/** Wall time given to the silent month per tick (a whole silent run is about 1.1 s on the bench (`npm run bench`)). */
+const SILENT_SLICE_MS = 6;
+
+/** Step the silent month a little while the played run is under way, so it is ready by the report. */
+function stepSilent(game: VoiceGame): void {
+  if (game.phase === 'premise' || game.phase === 'report' || game.phase === 'free') return;
+  if (silent?.seed !== game.seed) silent = startSilentMonth(game.seed);
+  advanceSilentMonth(silent, SILENT_SLICE_MS);
+}
+
+/** The report as posted: the game's own view plus the month you never spoke (finished now if it is not yet). */
+function withSilent(game: VoiceGame, view: ReportView): ReportView {
+  if (silent?.seed !== game.seed) silent = startSilentMonth(game.seed);
+  return { ...view, silent: silentMonthView(game, finishSilentMonth(silent)) };
+}
 /**
  * Each frame field's JSON as last posted. A frame carries only the fields that changed and names the rest in
  * `same`, so the page keeps its previous objects for them: the 300-entry log (most of a frame's bytes) is cloned
@@ -29,7 +63,8 @@ const FRAME_MS = 66;
 function flush(force = false): void {
   const game = rec?.game;
   if (!game) return;
-  for (const m of game.outbox.splice(0)) host.post(m);
+  for (const m of game.outbox.splice(0))
+    host.post(m.type === 'report' ? { ...m, view: withSilent(game, m.view) } : m);
   const frame = game.frame();
   const fields = new Map<string, string | undefined>();
   const changed: Partial<Record<keyof Frame, unknown>> = {};
@@ -76,7 +111,7 @@ function loadPlaytest(text: string, nextGen: number): void {
   host.post({ type: 'replayed', result });
   // The replay cleared its outbox: show the card the run stands at.
   if (g.phase === 'between' && g.between) host.post({ type: 'between', view: g.between });
-  if (g.phase === 'report' && g.report) host.post({ type: 'report', view: g.report });
+  if (g.phase === 'report' && g.report) host.post({ type: 'report', view: withSilent(g, g.report) });
   flush(true);
 }
 
@@ -113,6 +148,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
   switch (msg.type) {
     case 'tick': {
       sinceFrame += Math.max(0, msg.dtMs);
+      stepSilent(game);
       const moved = rec.tick(msg.dtMs);
       // A pause (a beat, the day's end) goes out at once; a running clock at most every FRAME_MS.
       if (!moved || (!game.paused && game.outbox.length === 0 && sinceFrame < FRAME_MS)) return;
