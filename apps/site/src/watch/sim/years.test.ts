@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { playYears } from '../../../test/watch/years.ts';
 import { listPages, loadPage, savePage } from '../store.ts';
-import { DAY } from './config.ts';
+import { DAY, RETIRE_AGE } from './config.ts';
 import { openFair, takeOffer } from './fair.ts';
-import { seasonNow } from './life.ts';
+import { hungrySpring, leaving, living, seasonNow } from './life.ts';
 import { DAY_RATE, Pacer } from './pace.ts';
-import { isWatcher } from './people.ts';
+import { isWatcher, KEEPER_ID } from './people.ts';
 import { keeperImpressions } from './reads.ts';
 import { endState, replay, type Snapshot, WatchRun } from './run.ts';
 import type { WatchState } from './state.ts';
@@ -117,6 +117,23 @@ describe('Game 3 long-run depth (G3-4)', () => {
     expect(takeOffer(t, 'heir2')).toBe(true);
     expect(t.heir).toBe(heirs[1]?.target);
     expect(takeOffer(t, 'heir')).toBe(false);
+  }, 300_000);
+
+  it('households of the old do not leave at the thaw; the same village, younger, does (2026-10-07)', () => {
+    const unhappy = (t: WatchState) => {
+      t.year = Math.max(t.year, 2);
+      for (const p of living(t)) {
+        p.affect.mood.valence = -1;
+        p.will.voices = p.will.voices.map((v) => (v.voiceId === KEEPER_ID ? { ...v, trust: 0 } : v));
+      }
+      return t;
+    };
+    expect(leaving(unhappy(clone())).length).toBeGreaterThan(0);
+    const old = unhappy(clone());
+    for (const p of living(old))
+      p.life.bornAt = Math.min(p.life.bornAt, old.minute - (RETIRE_AGE + 1) * 365 * DAY);
+    expect(leaving(old)).toEqual([]);
+    expect(hungrySpring(old, 99)).toBe(0);
   }, 300_000);
 
   it('a stretch the thaw brought down can be rebuilt at the fair', () => {

@@ -305,6 +305,15 @@ export const WATCHERS: readonly WatcherDef[] = [
 export const WATCH_AGE = 15;
 /** Watchers step off the wall at this age ("the stair is beyond her now"). */
 export const RETIRE_AGE = 68;
+/**
+ * Natural death in the village (2026-10-07): HF's age hazard (`lifecourse.multiplier`) times this. HF's Gompertz
+ * curve is an uncalibrated modern baseline (about 0.0005 a year at 30, 0.016 at 70); a walled village without
+ * medicine, through hard winters, should die sooner. 4 is a tuning choice, not a sourced rate: it gives a handful of
+ * deaths in fifty years for a village of about 25 (seeds 1–3 under the headless Keeper: 8, 8, 5) and a yearly risk
+ * of about 0.06 at 70 and 0.15 at 80, which is in the rough range of pre-industrial adult mortality as remembered,
+ * not checked against a life table. At 1, seed 1 expected about two deaths in fifty years (docs/findings.md).
+ */
+export const MORTALITY_MULTIPLIER = 4;
 /** A child under this age at home pulls a parent or guardian off the wall when a threat is near the house. */
 export const HOME_CHILD_AGE = 12;
 
