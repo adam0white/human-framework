@@ -19,6 +19,8 @@ Bugs (confirmed in code)
 3. **Cards lapse grey when the Human side did the job** (o4, o5, o9): the lapse needs both sides settled, and Classic was still on it.
 4. **tariq-again claims a memory Tariq does not have** ("He remembers last night") when squall-tariq was skipped and Tariq slept.
 
+**Fixed 2026-10-07 (colony-scenario@3, [colony.md](colony.md) §12).** 1: the roofed house is indoors for Classic too. 2: an order whose job is not on offer gets "not now" with a counter-offer and keeps standing (shuttering a roofed house: "cannot"). The 16:00 miss was a second cause: the order carried no `since`, so the framework took Maryam's noon pot as already satisfying it and never weighed it; orders now carry the minute they were given. 3: a card whose Human side finished is done at the lapse. 4: tariq-again's reason depends on whether squall-tariq was taken. This export is from colony-scenario@2 and is now refused on load with both versions named; its log replayed under the new rules (headless, bypassing the version check) gives Classic 2 injuries instead of 10, o10 and o27 answer "not now: when the store runs low", and o4, o5 and o9 end done. Found while tracing 2 and deferred (2026-10-28): a new order to the same person replaces the old one without settling its card (o27 said "Fine." and began cooking, then storm-pot's o33 replaced it and o27 greyed).
+
 Design
 5. **Appeals cost nothing.** "For the children" adds persuasion from benevolence with no wear-off, so it became a default suffix; "you'll be safer" reads a mostly low safety need and does little.
 6. **storm-shutter said the roof would not be on before the storm**; Idris roofed at 18:39 (the house was at 9.91 at 18:00).

@@ -28,7 +28,7 @@ Flows: field → grain → kitchen → meals → people. Well → water → kitc
 
 **Shuttering.** An order to the House infers `shutter-house` below the beam from the warning, and for an unfinished roof from 18:00 (`SHUTTER_ROOF_FROM`), when a roof stage can no longer be finished. Never after the storm ends, so Day-3 orders build.
 
-**A finished house matters.** From the storm on, Idris and Samira live in the new house if it is at 10 (`homeOf`, shared by both sides). Below 10 they shelter in the crowded masjid: Human sleep there advertises 0.5 instead of 0.8, and at 19:00 each gets a felt `crowded` percept (valence −0.4, salience 0.7: "No roof of our own tonight."). Classic is only relocated. On Day 3 an unroofed family goes back to its old home.
+**A finished house matters.** From the storm on, Idris and Samira live in the new house if it is at 10 (`homeOf`, shared by both sides). Below 10 they shelter in the crowded masjid: Human sleep there advertises 0.5 instead of 0.8, and at 19:00 each gets a felt `crowded` percept (valence −0.4, salience 0.7: "No roof of our own tonight."). Classic is only relocated. The roofed house is indoors on both sides (`indoorsAt`), so resting or sleeping in it rolls no storm exposure; before 2026-10-07 Classic took indoors from the map's `site` (outdoors) and its family was hurt resting at home. On Day 3 an unroofed family goes back to its old home.
 
 **Speed.** `SIM_MINUTES_PER_SECOND = 8`; `MAX_MINUTES_PER_TICK` 8.
 
@@ -56,7 +56,7 @@ The player is one voice (`voiceId: 'player'`). Every order is applied to both si
 
 **Keys.** Space always toggles pause (a capture-phase `keydown` on window plus `preventDefault` on `keyup`, so a focused button is not clicked), except in `input`, `textarea`, `select` or `[contenteditable]`. Enter confirms; Esc clears or closes the inspector.
 
-**Order lifetime.** A card persists: the host re-issues the Human suggestion at each of that person's decisions until it is assented-and-completed, cancelled, or 120 sim minutes old (the card greys "lapsed"). A card whose Human job has begun does not lapse at 120; it settles when the job finishes, with a hard cap at 240. A lapse withdraws only the Human standing suggestion; Classic received its command once and finishes it. An order is completed only by a job begun after it was given. A deferral is never a silent drop: the card shows the counter-offer.
+**Order lifetime.** A card persists: the host re-issues the Human suggestion at each of that person's decisions until it is assented-and-completed, cancelled, or 120 sim minutes old (the card greys "lapsed"). A card whose Human job has begun does not lapse at 120; it settles when the job finishes, with a hard cap at 240. A lapse withdraws only the Human standing suggestion; Classic received its command once and finishes it. A card whose Human side has finished is done at the lapse, not greyed, even while Classic is still on it (its Classic chip turns to done when the unit finishes). An order is completed only by a job begun after it was given. A deferral is never a silent drop: the card shows the counter-offer. The framework does not hear a standing suggestion whose job is not on offer (cooking with the store full, praying outside a prayer time), so the host answers it: "not now" with a counter-offer ("when the store runs low", "at prayer time", "at bedtime", "when there’s work there"), and the order keeps standing until it is heard or lapses; an order to a roofed house infers shuttering, which never comes back, so it is "cannot" ("The house is done; there’s nothing to shutter."). The composer predicts the same reason ("Can’t: food enough in store"). Each order carries the minute it was given (`Suggestion.since`), so an earlier completion of the same job (the noon pot) does not count as already doing it.
 
 **Order words.** Classic's chip is a tick, or "could not (reason)" for a no-op, e.g. "could not (no free stage)". The Human chip shows its first reply (`SideChip.first`) and its last reply. A refusal settles the card and reads "refused". An order answered "yes" or "not now" and then carried out shows a done chip.
 
@@ -194,7 +194,7 @@ Fire times were measured at v1, except moment 4 (v2). Acceptance (`human.test.ts
 | cook-forest | D1 10:45 → 11:45 | Timber is short. Maryam is free until noon. | Timber now, but the pot sits cold while she is gone. | maryam → forest |
 | dusk-site | D1 18:25 → 19:25 | Light's going. Send Yusuf back to the house? | One more wall before dark, if he is not spent. | yusuf → House |
 | squall-tariq | D1 21:35 → 22:35 | Timber is short; Tariq is awake. | It is night and a squall is blowing. Forcing him may cost his trust. | tariq → forest, Insist |
-| tariq-again | D2 07:00 → 08:00 | Morning. Timber is still short. Send Tariq to the forest? | He remembers last night. | tariq → forest |
+| tariq-again | D2 07:00 → 08:00 | Morning. Timber is still short. Send Tariq to the forest? | He remembers last night. (If squall-tariq was not taken: `TARIQ_AGAIN_FRESH`, "He slept through the squall; by day the forest is safe.") | tariq → forest |
 | roof-hands-1 | D2 09:00 → 10:00 | The roof needs hands. Rush Samira to the house? | Roof stages are slow; a rushed helper speeds them up. | samira → House, Rush |
 | roof-hands-2 | D2 09:30 → 10:30 | And Danyal? | The well can wait an hour. | danyal → House, Rush |
 | storm-pot | D2 16:30 → 17:30 | The storm will put the fire out. Maryam, cook a pot to keep? | Nobody can cook from 19:00 until 03:00. | maryam → kitchen |
@@ -234,7 +234,7 @@ Each pane has a header (meals · house n/10 with a progress bar · injuries · a
 
 **Worker contract.** `apps/site/src/colony/protocol.ts` is the source (the UI reads it through `ui/contract.ts`). The main thread sends `tick{dtMs}` once per animation frame plus control messages (`init`, `setSpeed`, `pause`, `resume`, `setAutoPause`, `order`, `cancel`, `dismissNudge`, `why`, `predict`, `continue`, `exportPlaytest`, `loadPlaytest`); the worker replies with `frame` (frame plus `PlaybackState`), `why`, `predicted`, `ended`, `playtest`, `replayed` and errors. Frames carry `goals`, `timeline`, `day`, `endMinute` and `canContinue`.
 
-**Determinism.** Three RNG streams from one seed: `scenario` (weather, cedar and beam rolls, applied identically to both sides), `classic`, and each `Person.rng`. No `Math.random` or `Date.now` in the sim. Orders are stamped in sim minutes and applied at the next boundary on both sides. Identical by construction: start state, weather, order log, the roll for a given risky order at a given minute. Divergent by design: who does what and when. `SCENARIO_VERSION` is `colony-scenario@2`.
+**Determinism.** Three RNG streams from one seed: `scenario` (weather, cedar and beam rolls, applied identically to both sides), `classic`, and each `Person.rng`. No `Math.random` or `Date.now` in the sim. Orders are stamped in sim minutes and applied at the next boundary on both sides. Identical by construction: start state, weather, order log, the roll for a given risky order at a given minute. Divergent by design: who does what and when. `SCENARIO_VERSION` is `colony-scenario@3` (2026-10-07). Policy: a change to the game's rules or wording that moves the recorded playtest's hash for the same seed and log bumps the scenario version and re-records the fixture (a re-record for engine stamps alone does not), and files from an older version are refused on load with both versions named ("…(colony-scenario@2; this build plays colony-scenario@3), so it cannot be replayed here."). Older rules are not kept in the build.
 
 **Replay and playtest export.** The player's actions are logged with the minute they were applied (`ColonyGame.log`, including `continue`); `ColonyGame.replay(seed, factory, log)` reproduces the run (tested). The playtest file (seed + input log + state) replaces the v1 save blob; `apps/site/test/fixtures/playtest-colony.json` is the recorded regression run.
 
@@ -273,15 +273,15 @@ Each pane has a header (meals · house n/10 with a progress bar · injuries · a
 
 `sim/balance.test.ts` runs on the shipped seed with the locked numbers in code and asserts: Solo fails `roof` only, with storm stock within 6 of the goal; Classic with no orders fails `roof` only; `good2rush` (rush all but Maryam to the House; Maryam to the kitchen D2 13–18) wins all three on both sides and every Day-3 goal on the Human side; `allForest` (everyone to the forest, re-issued) loses at least one goal on each side and leaves the Human roof more than a stage below Solo's; `good2insist` costs the Human roof; following only the suggestions fails the Human roof (stock and lives met) and wins all three on Classic; on Day 3 Solo misses the store-room deadline; each side eats at least 35 meals. It runs in under 5 s.
 
-Current measured outcomes, engine 1.9.0 (identical under 2.0.0; §12). R S L = roof, stock, lives; values at D2 19:00.
+Current measured outcomes, engine 2.0.0, colony-scenario@3 (§12, 2026-10-07). R S L = roof, stock, lives; values at D2 19:00.
 
 | Pattern | Classic | Human |
 |---|---|---|
 | none (Classic alone / Solo) | ✗✓✓ · 13 meals | ✗✓✓ · 16 meals · house 9.72 |
-| suggestions only (every card, squall insisted) | ✓✓✓ · 15 | ✗✓✓ · 16 · house 8.97 |
-| good2rush | roofed at minute 1464 | 23 meals, 9 left at the end, roofed 1875 |
+| suggestions only (every card, squall insisted) | ✓✓✓ · 15 · 3 injuries | ✗✓✓ · 16 · house 8.97 · 11 injuries |
+| good2rush | roofed at minute 1464 | 19 meals, 5 left at the end, roofed 1875 |
 | allForest | 149 injuries, 6 dead | 16 meals |
-| good2insist | ✓✓✓, roofed 2077 | ✗✓✓ · 12 meals · house 9.82, not roofed |
+| good2insist | ✓✓✓, roofed 2077 · 19 meals | ✗✓✓ · 12 meals · house 9.82, not roofed |
 
 Day 3, measured on the shipped seed at v2: with no orders, Classic meets all three and Solo misses the store-room by 18 minutes (done 18:18); good2rush meets all three on the Human side (store-room done 14:04).
 
@@ -301,6 +301,17 @@ Other seeds (1–5, probe, not pinned, at v2): Solo fails the roof only on 6/6; 
 | good2rush | C roofed 1693 · H 18 meals, 6 left, roofed 1852 | C roofed 1464 · H 23 meals, 9 left, roofed 1875 |
 | allForest | C 21 injuries, 6 dead · H 12 meals | C 149 injuries, 6 dead · H 16 meals |
 | good2insist | C ✗✓✓ (house 7) · H ✗✗✓ (11 meals, roofed 2370, after the deadline) | C ✓✓✓ (roofed 2077) · H ✗✓✓ (12 meals, house 9.82) |
+- **Export fixes, 2026-10-07** (colony-scenario@3). Four bugs from the owner's export ([playtest](colony-playtest-2026-10-07.md)): Classic resting in the roofed house took storm exposure (§2); orders whose job was not on offer got no Human reply, and a new order was not heard when the person had done that job earlier for a commitment (§3); cards greyed at the lapse after the Human side finished (§3); tariq-again's reason claimed a memory Tariq did not have (§7). The owner's log replayed under the new rules: Classic injuries 10 → 2; o10 and o27 answer "not now: when the store runs low" (o27 then "Fine." at 16:00, when cooking came on offer); o4, o5 and o9 end done; o42 still cooks. No goal status changed in the balance table; the moves:
+
+| Pattern | Before (scenario@2) | After (scenario@3) |
+|---|---|---|
+| none | C 7 injuries | C 6 injuries; otherwise identical |
+| suggestions | C 10 injuries | C 3 injuries; Human identical |
+| good2rush | C 14 meals, 20 injuries · H 23 meals, 9 left, 8 injuries | C 13 meals, 7 injuries · H 19 meals, 5 left, 9 injuries; roof minutes unchanged (1464, 1875) |
+| allForest | — | identical |
+| good2insist | C 15 meals, 24 injuries | C 19 meals, 25 injuries; Human identical |
+
+  Human good2rush moved because of the not-on-offer reply, not `since` or the Classic fix (each reverted alone): after the roof, GOOD2 keeps ordering builders to the house, which infers shuttering; those cards now settle "cannot" at once instead of hanging for 120 minutes, so the policy re-orders sooner and every order interrupts the person. Classic moves under good2rush and good2insist through the same re-issue timing (the Deferred note on Classic drift).
 
 ## Deferred
 
@@ -317,8 +328,8 @@ Other seeds (1–5, probe, not pinned, at v2): Solo fails the roof only on 6/6; 
 | Classic drifting under engine changes is inferred, not verified: those patterns issue orders from `visibleNudges()`, which read Human-side state, so a Human change reorders Classic's orders. | unscheduled |
 | Classic with no orders roofs the house on 3 of 6 seeds; whether that weakens the contrast on other seeds is undecided (HANDOFF open item, 2026-10-04). | unscheduled |
 | Orders cannot starve the Human store, and moment 1 depends on a late tap (HANDOFF open items, 2026-10-04). | unscheduled |
-| Human villagers are injured more than Classic's (8 vs 3 on the shipped seed; the owner's 2026-10-07 run had 5 vs 10, mostly from the Classic bug below): they keep working timber in the storm. Risk perception of storm work is weak against commitment and role-goal pull ([findings](../findings.md), 2026-10-03). | unscheduled |
+| Human villagers are injured more than Classic's (suggestions pattern 11 vs 3 on the shipped seed; the owner's 2026-10-07 run had 5 vs 10 before the Classic resting fix and 5 vs 2 replayed after it): they keep working timber in the storm. Risk perception of storm work is weak against commitment and role-goal pull ([findings](../findings.md), 2026-10-03). | unscheduled |
 | The hindsight branch from dawn roofs at D2 11:52 with 18 meals, not the pinned good2rush 12:01 with 17; cause not investigated ([findings](../findings.md), 2026-10-04). | unscheduled |
 | Landscape phones and large text are untested on a device. | unscheduled |
-| Owner's export 2026-10-07 ([playtest](colony-playtest-2026-10-07.md)), bugs: Classic villagers roll storm exposure resting in the finished house (`site` is not indoors); cook orders made while cooking is not on offer get no Human reply; cards lapse when only the Human side finished; tariq-again's line assumes squall-tariq was taken. | 2026-10-21 |
+| A new order to the same person replaces the old one on both sides, but the old card is not told: in the owner's run o27 said "Fine." and began cooking, o33 (storm-pot) replaced it 30 minutes later and o27 greyed; Classic chips of replaced orders read "on it" forever (o5, o8, o9). Settle a replaced card as "replaced" on each side. | 2026-10-28 |
 | Same export, design: appeals cost nothing ("for the children" became a default); storm-shutter's "roof will not be on" claim was wrong that run; Human storm injuries move no health bar. | 2026-10-28 |
