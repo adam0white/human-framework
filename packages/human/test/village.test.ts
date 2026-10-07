@@ -201,11 +201,12 @@ describe('village simulation', () => {
 
   // Wall-clock budgets for the 20- and 50-person runs are in village.timing.ts (`npm run bench`); here only the
   // outcome is checked, at the larger size (a 20-person copy of this test was dropped 2026-10-05 as redundant).
+  // About 6 s locally but up to 39 s on a slow CI runner (2026-10-06), so the limit only guards against a hang.
   test('runs 50 people for 30 days to the event cap with at most five deaths (engine 1.2.0 hooks included)', () => {
     const ids = Array.from({ length: 50 }, (_, i) => `q${String(i).padStart(2, '0')}`);
     const s = setupVillage(ids, { devout: ids.filter((_, i) => i % 2 === 0), foodStock: 500 });
     const events = stepCommunity(s.community, s.village, START + 30 * MINUTES_PER_DAY, { maxEvents: 1000 });
     expect(events.length).toBe(1000);
     expect(s.people.filter((p) => p.body.alive).length).toBeGreaterThanOrEqual(45);
-  }, 30_000);
+  }, 120_000);
 });
