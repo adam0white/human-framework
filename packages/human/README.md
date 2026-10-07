@@ -40,12 +40,19 @@ Every resolution also carries a machine-readable `reason` (`need:food`, `norm:th
 
 ## Install
 
-The source is public on [GitHub](https://github.com/adam0white/human-framework) under the MIT license. The
-package is not published to npm yet (it stays `"private": true` until npm publishing is set up). Install the
-tarball attached to a [GitHub release](https://github.com/adam0white/human-framework/releases) by URL:
+The source is public on [GitHub](https://github.com/adam0white/human-framework) under the MIT license. Install
+it from npm (published from 2.1.3; later versions are built by the release workflow and carry an npm provenance
+attestation):
 
 ```sh
-npm install https://github.com/adam0white/human-framework/releases/download/v2.1.2/adam0white-human-framework-2.1.2.tgz
+npm install @adam0white/human-framework
+```
+
+Each [GitHub release](https://github.com/adam0white/human-framework/releases) also has the tarball attached, which
+installs by URL:
+
+```sh
+npm install https://github.com/adam0white/human-framework/releases/download/v2.1.3/adam0white-human-framework-2.1.3.tgz
 ```
 
 or build one from a checkout:

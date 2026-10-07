@@ -17,6 +17,18 @@ Made public by the owner on 2026-10-06 (owner's decisions, 2026-10-05: MIT for c
 
 Dependabot alerts are on. `package.json` `overrides` pins `sharp` to 0.35.5 (2026-10-06, high alert CVE-2026-96889; dev-only, via wrangler → miniflare, which pins 0.35.4); drop the override once miniflare ships 0.35.5 or later.
 
+## npm
+
+Set up 2026-10-07 (owner's request: "do npm publishing properly"). The package `@adam0white/human-framework` publishes from `packages/human` (`publishConfig.access: public`; the root package stays private). Releases stay `npm run release` (tag, GitHub release, tarball); publishing the GitHub release starts [.github/workflows/publish.yml](.github/workflows/publish.yml), which checks the tag against the package version, runs typecheck and the framework tests, and runs `npm stage publish` with trusted publishing (OIDC: no npm token exists in the repository or in Actions secrets; npm attaches provenance automatically). The trusted publisher allows staging only, so a version goes live only when the owner approves it with 2FA on npmjs.com (Staged Packages) or with `npm stage approve <id>`. A version npm already has is skipped. Rehearse with Actions, "Publish to npm", Run workflow, a tag and dry run on (`npm publish --dry-run`, no credentials).
+
+Owner steps, once (only the owner can do these: account, login and 2FA):
+1. An npm account named `adam0white` (the scope must match the user or an npm org of that name), with 2FA on (a security key or passkey).
+2. First version by hand, since npm can only attach a trusted publisher to a package that exists: on a clean, pushed `main` at 2.1.3, `npm login`, then `npm publish -w packages/human` (prepack builds it; npm asks for 2FA). Then `npm run release` creates tag v2.1.3 and the GitHub release; the workflow sees 2.1.3 on npm and skips.
+3. When the next release is ready (a new trusted publisher expires unless it publishes within 2 days): npmjs.com, the package, Settings, Trusted publishing, GitHub Actions: user `adam0white`, repository `human-framework`, workflow `publish.yml`, no environment, allowed actions: stage only (the default). Then Settings, Publishing access: "Require two-factor authentication and disallow tokens".
+4. Proposed, not applied: a tag ruleset so only admins can create or delete `v*` tags.
+
+Not done until step 2: the root README and the homepage still say "Not on npm yet" and install by tarball URL; switch them to `npm install @adam0white/human-framework` once 2.1.3 is live, and deploy. The package README (shown on npm) already says npm.
+
 ## Goals
 
 - **Goal 1, HF 1.0: done, accepted 2026-10-04** ("Congrats team on HF v1.0"). Package installable, documented and consolidated; Game 1 *Twice at the Well* and Game 2 *The Day You Say Nothing* live. Tag `v1.0.0` (456c794).

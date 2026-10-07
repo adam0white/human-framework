@@ -12,6 +12,15 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.1.3] - 2026-10-07
+
+Engine: 2.0.0. Unchanged. A packaging release: no API or simulation behaviour changes; replays, fixtures and state
+hashes are byte-identical to 2.1.2.
+
+- The package is published to npm as `@adam0white/human-framework` (`npm install @adam0white/human-framework`). This
+  version is published by hand; from the next one, a release workflow publishes each version with trusted publishing
+  (OIDC, no stored token) and an npm provenance attestation, staged for the maintainer's 2FA approval.
+
 ## [2.1.2] - 2026-10-06
 
 Engine: 2.0.0. Unchanged. A security fix; replays, fixtures and state hashes are byte-identical to 2.1.1.

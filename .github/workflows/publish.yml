@@ -1,0 +1,87 @@
+name: Publish to npm
+
+# Stages @adam0white/human-framework on npm when a GitHub release is published (`npm run release` creates it).
+# Trusted publishing (OIDC): there is no npm token anywhere, and npm adds a provenance attestation by itself
+# (public repository, public package). The trusted publisher on npmjs.com allows `npm stage publish` only, so
+# nothing goes live until the owner approves the staged version with 2FA (npmjs.com, Staged Packages, or
+# `npm stage approve <id>`). The workflow filename is part of the trusted publisher: rename it there too.
+# Setup, first publish and the approval step: HANDOFF.md, "npm".
+#
+# Run it by hand (Actions, Run workflow) with a release tag to rehearse: dry run packs and runs
+# `npm publish --dry-run`, which needs no credentials and publishes nothing.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to publish (vX.Y.Z)
+        required: true
+      dry_run:
+        description: Pack and check only; publish nothing
+        type: boolean
+        default: true
+
+permissions: {}
+
+concurrency:
+  group: publish-npm
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: stage on npm
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write # the OIDC token npm exchanges for a short-lived publish credential
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ env.TAG }}
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false # no caches in release builds
+      # Pinned rather than whatever the Node release bundles: OIDC needs npm >= 11.5.1, `npm stage` >= 11.15.0.
+      - name: npm 11.20.0
+        run: |
+          npm install -g npm@11.20.0
+          echo "Node $(node --version), npm $(npm --version)"
+      - name: Tag matches the package version
+        run: |
+          version=$(node -p "require('./packages/human/package.json').version")
+          [ "$TAG" = "v$version" ] || { echo "::error::tag $TAG is not v$version (packages/human/package.json)"; exit 1; }
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+      # The first version was published by hand (npm cannot attach a trusted publisher to a package that does
+      # not exist yet), so a release of a version npm already has is a no-op, not a failure.
+      - name: Skip a version npm already has
+        id: seen
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://registry.npmjs.org/@adam0white%2fhuman-framework/$VERSION")
+          if [ "$code" = 200 ]; then
+            echo "::notice::@adam0white/human-framework@$VERSION is already on npm; nothing to stage"
+            echo "already=true" >> "$GITHUB_OUTPUT"
+          fi
+      # Install scripts are off in the job that holds the OIDC token; the build is tsc (prepack), which needs none.
+      - if: steps.seen.outputs.already != 'true'
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - if: steps.seen.outputs.already != 'true'
+        name: Typecheck and framework tests
+        run: |
+          npm run typecheck
+          npx vitest run packages/human
+      - if: steps.seen.outputs.already != 'true' && env.DRY_RUN == 'true'
+        name: Dry run
+        working-directory: packages/human
+        run: npm publish --dry-run
+      - if: steps.seen.outputs.already != 'true' && env.DRY_RUN != 'true'
+        name: Stage on npm (approve with 2FA on npmjs.com)
+        working-directory: packages/human
+        run: npm stage publish
