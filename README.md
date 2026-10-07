@@ -17,7 +17,7 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
 The source is public on GitHub (code MIT, docs CC BY 4.0). The package is not published to npm yet (`packages/human` stays `"private": true` until npm publishing is set up); install the tarball attached to each [GitHub release](https://github.com/adam0white/human-framework/releases) by URL:
 
 ```sh
-npm install https://github.com/adam0white/human-framework/releases/download/v2.1.1/adam0white-human-framework-2.1.1.tgz
+npm install https://github.com/adam0white/human-framework/releases/download/v2.1.2/adam0white-human-framework-2.1.2.tgz
 ```
 
 Or build one from a checkout:

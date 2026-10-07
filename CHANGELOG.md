@@ -12,6 +12,10 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.1.2] - 2026-10-06
+
+Engine: 2.0.0. Unchanged. A security fix; replays, fixtures and state hashes are byte-identical to 2.1.1.
+
 ### Fixed
 
 - A host id of `__proto__`, `constructor` or `prototype` (a person, action or skill) is refused with an error. Before, it could write through to `Object.prototype` when `stepCommunity`, the village scenario or `skillFamilies` filed per-id records (found by CodeQL once the repository went public). No other ids change behaviour; replays and hashes are unchanged.
@@ -240,7 +244,8 @@ skills, habits, relationships, values, an understanding of moral norms and a wil
 the community driver (`stepCommunity`), `predict`, snapshots and input-log replay; the village and town
 scenarios. Shown live by Games 1 and 2 at https://human.adamwhite.work.
 
-[Unreleased]: https://github.com/adam0white/human-framework/compare/v2.1.1...HEAD
+[Unreleased]: https://github.com/adam0white/human-framework/compare/v2.1.2...HEAD
+[2.1.2]: https://github.com/adam0white/human-framework/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/adam0white/human-framework/compare/v2.1.0...v2.1.1
 [1.1.0]: https://github.com/adam0white/human-framework/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/adam0white/human-framework/releases/tag/v1.0.0

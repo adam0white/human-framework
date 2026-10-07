@@ -45,7 +45,7 @@ package is not published to npm yet (it stays `"private": true` until npm publis
 tarball attached to a [GitHub release](https://github.com/adam0white/human-framework/releases) by URL:
 
 ```sh
-npm install https://github.com/adam0white/human-framework/releases/download/v2.1.1/adam0white-human-framework-2.1.1.tgz
+npm install https://github.com/adam0white/human-framework/releases/download/v2.1.2/adam0white-human-framework-2.1.2.tgz
 ```
 
 or build one from a checkout:
