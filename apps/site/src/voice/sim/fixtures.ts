@@ -9,6 +9,7 @@ import {
   type LogEntry,
   MODEL_NOTES,
   type ReportView,
+  SILENT_CAPTION,
   type StripRow,
   type UnaskedItem,
   type VoiceView,
@@ -367,5 +368,29 @@ export const sampleReport: ReportView = {
   body: ['Blood pressure: moderately high.', 'Sleep: a little short.', 'Fed: well.'],
   open: ['300 still owed to Osman.', 'No make-up fasts owed.'],
   rows: [strip, { ...strip, label: 'Ramadan 2' }, { ...strip, label: 'Eid al-Fitr' }],
+  silent: {
+    intro: 'The same town from the same start, run again without a word from you.',
+    rows: [
+      {
+        topic: 'Osman',
+        spoke: 'He kept his date: 300 paid on Ramadan 15. All of it paid by Eid.',
+        silent: 'He missed his date; the first 300 came on Ramadan 17.',
+      },
+      {
+        topic: 'Selin in Ramadan',
+        spoke: 'He called her a few times; she called him often.',
+        silent: 'He never called her; she called him often.',
+      },
+      { topic: 'The clinic', spoke: 'He went once, on Ramadan 1.', silent: 'He never went.' },
+      {
+        topic: 'Cigarettes',
+        spoke: 'He smoked on some days of Ramadan.',
+        silent: 'He smoked on most days of Ramadan.',
+      },
+    ],
+    same: 'The same in both: Selin on Eid and Osman after Eid.',
+    smaller: 'Smaller differences: walks by the river.',
+    caption: SILENT_CAPTION,
+  },
   modelNotes: [...MODEL_NOTES],
 };

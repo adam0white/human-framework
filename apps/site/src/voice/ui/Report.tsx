@@ -133,6 +133,36 @@ export function Report({
           </section>
         </div>
 
+        {view.silent && (
+          <section className="v-report-silent">
+            <h2>The month you never spoke</h2>
+            <p className={view.silent.rows.length > 0 ? 'v-report-caption' : 'v-silent-same'}>
+              {view.silent.intro}
+            </p>
+            {view.silent.rows.length > 0 && (
+              <ul className="v-lines v-silent-rows">
+                {view.silent.rows.map((r) => (
+                  <li key={r.topic}>
+                    <strong>{r.topic}</strong>
+                    <span>
+                      <span className="v-silent-label">As played</span> {r.spoke}
+                    </span>
+                    <span>
+                      <span className="v-silent-label">Had you said nothing</span> {r.silent}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {view.silent.same && <p className="v-silent-same">{view.silent.same}</p>}
+            {view.silent.smaller && <p className="v-silent-same">{view.silent.smaller}</p>}
+            {/* When you never spoke the section is its one line; the caption goes with a comparison. */}
+            {(view.silent.rows.length > 0 || view.silent.same) && (
+              <p className="v-silent-caption">{view.silent.caption}</p>
+            )}
+          </section>
+        )}
+
         <section>
           <h2>{view.spoke === false ? 'The days you watched, and Eid' : 'The days you spoke, and Eid'}</h2>
           <div className="v-strips">
