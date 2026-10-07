@@ -1,6 +1,6 @@
 # Changelog
 
-Releases of `@human/framework` (Human Framework, HF). The format follows
+Releases of Human Framework (HF), packaged as `@adam0white/human-framework` (`@human/framework` up to 2.1.0). The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/).
 The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y.Z`. Each entry also names the
 `ENGINE_VERSION` (simulation behaviour and save format) it ships; see the version policy in
@@ -11,6 +11,11 @@ Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the
 absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
+
+## [2.1.1] - 2026-10-06
+
+Engine: 2.0.0. Unchanged. A packaging release: no API or simulation behaviour changes; replays, fixtures and state hashes
+are byte-identical to 2.1.0.
 
 - The package is renamed from `@human/framework` to `@adam0white/human-framework` (the `@human` npm scope is not ours). Imports change; the API does not.
 - The package is licensed under MIT (was `UNLICENSED`); the tarball includes `LICENSE`. The repository's `docs/` and `research/` are CC BY 4.0.
@@ -231,6 +236,7 @@ skills, habits, relationships, values, an understanding of moral norms and a wil
 the community driver (`stepCommunity`), `predict`, snapshots and input-log replay; the village and town
 scenarios. Shown live by Games 1 and 2 at https://human.adamwhite.work.
 
-[Unreleased]: https://github.com/adam0white/human-framework/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/adam0white/human-framework/compare/v2.1.1...HEAD
+[2.1.1]: https://github.com/adam0white/human-framework/compare/v2.1.0...v2.1.1
 [1.1.0]: https://github.com/adam0white/human-framework/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/adam0white/human-framework/releases/tag/v1.0.0

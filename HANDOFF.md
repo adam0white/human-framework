@@ -1,12 +1,13 @@
 # Handoff — HF (Human Framework)
 
-Updated 2026-10-05. Read [AGENTS.md](AGENTS.md) for rules, [docs/framework.md](docs/framework.md) for the architecture, and [docs/roadmap.md](docs/roadmap.md) for what could come next.
+Updated 2026-10-06. Read [AGENTS.md](AGENTS.md) for rules, [docs/framework.md](docs/framework.md) for the architecture, and [docs/roadmap.md](docs/roadmap.md) for what could come next.
 
 ## Current state
 
 - **No goal is set.** Goals 1 and 2 are done and accepted. The owner chooses the next goal; the [roadmap](docs/roadmap.md) is the menu, each item with a target (2.1, 2.2, 3.0 or unscheduled).
-- **Released:** HF 2.1.0 (GitHub release v2.1.0 at a66700a, Latest, tarball attached; engine 2.0.0, behaviour identical to 2.0.0). Earlier: v2.0.0 (d48d8f6), v1.2.0, v1.1.0, v1.0.0. Live site: https://human.adamwhite.work, framework 2.1.0 at a66700a, with a framework homepage and Games 1–3. CI green (run 37321995064). Repo description and topics set 2026-10-05; v2.0.0 release-note links repointed to the v2.0.0 tag after the docs consolidation.
-- **Unreleased on `main`:** the package rename to `@adam0white/human-framework` and the MIT / CC BY 4.0 license (CHANGELOG [Unreleased]). Deprecated option forms go in 3.0 (roadmap).
+- **Released:** HF 2.1.1 (GitHub release v2.1.1, 2026-10-06; engine 2.0.0, behaviour identical to 2.0.0): the package rename to `@adam0white/human-framework` and the MIT license. Earlier: v2.1.0 (a66700a, the last under `@human/framework`), v2.0.0 (d48d8f6), v1.2.0, v1.1.0, v1.0.0. Live site: https://human.adamwhite.work with a framework homepage and Games 1–3; check `/release.json` for the deployed commit. Deprecated option forms go in 3.0 (roadmap).
+- **Game 3 since graduation (2026-10-05/06):** eight fixes from the owner's year-4 export ([playtest](docs/games/watch-playtest-2026-10-05.md)); the bell redesigned (it hangs at the Gate, the Keeper rings it by a rope from anywhere on the wall, everyone in range hears it, a named call is a separate command); world draws (night plans, winter, weather, fair, thaw, refugees) on their own seeded streams; exports carry `build` and `framework`, and `ruleHash` covers rule state only. Scenario version 8; scenario-7 saves load with their provenance marked. Policy: if `ruleHash` changes for the same seed and log, bump the scenario version.
+- **Proposed, awaiting the owner:** Game 2 Stretch S1, the "month you never spoke" counterfactual ([voice.md Deferred](docs/games/voice.md#deferred)).
 - **Games:** graduated with HF. Each game doc ends with its deferred list ([colony](docs/games/colony.md#deferred), [voice](docs/games/voice.md#deferred), [watch §12](docs/games/watch.md#12-after-graduation-deferred-features), review watch §12 by 2026-11-05).
 - **Docs** were consolidated on 2026-10-05: per-dimension review files, `hf-status.md` and `rimworld-gap.md` were folded into the roadmap, framework.md and the two review summaries, then deleted; v0-era research planning docs moved to `archive/research/`.
 
