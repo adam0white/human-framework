@@ -54,8 +54,9 @@ export interface MonthFacts {
   fastsKept: number;
   /** Osman's date (300 by Ramadan 15, 20:00) kept. */
   dateKept: boolean;
-  /** Ramadan day of the first payment, if any before Eid. */
+  /** Ramadan day and amount of the first payment, if any before Eid. */
   firstPayDay?: number;
+  firstPay?: number;
   /** Paid to Osman by Eid morning. */
   paidByEid: number;
   /** Connected calls in Ramadan, by who made them. */
@@ -101,7 +102,7 @@ export function monthFacts(g: VoiceGame): MonthFacts {
   return {
     fastsKept,
     dateKept,
-    ...(first ? { firstPayDay: ramadanDay(first.at) } : {}),
+    ...(first ? { firstPayDay: ramadanDay(first.at), firstPay: Math.round(first.amount) } : {}),
     paidByEid: Math.round(g.eidMorning?.run.town.state.rentPaid ?? 0),
     hisCalls: calls.filter((c) => c.by === 'halil').length,
     herCalls: calls.filter((c) => c.by !== 'halil').length,
@@ -158,9 +159,9 @@ function facts(f: MonthFacts, other: MonthFacts): { topic: string; words: string
     topic: 'Osman',
     words: `${
       f.dateKept
-        ? `He kept his date: 300 paid on Ramadan ${f.firstPayDay}.`
+        ? `He kept his date: ${f.firstPay} paid on Ramadan ${f.firstPayDay}.`
         : f.firstPayDay !== undefined
-          ? `He missed his date; the first 300 came on Ramadan ${f.firstPayDay}.`
+          ? `He missed his date; the first ${f.firstPay} came on Ramadan ${f.firstPayDay}.`
           : 'He missed his date and paid nothing in Ramadan.'
     }${f.paidByEid >= 600 ? ' All of it paid by Eid.' : ''}`,
   });
@@ -209,7 +210,7 @@ function facts(f: MonthFacts, other: MonthFacts): { topic: string; words: string
       topic: 'Walks by the river',
       words: f.walks === 0 ? 'He did not walk.' : `He walked ${often(f.walks)}.`,
     });
-  if (f.owedAfter) out.push({ topic: 'Osman, a week after Eid', words: f.owedAfter });
+  if (f.owedAfter) out.push({ topic: 'Osman after Eid', words: f.owedAfter });
   return out;
 }
 

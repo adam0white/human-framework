@@ -389,7 +389,7 @@ export const sampleReport: ReportView = {
         silent: 'He smoked on most days of Ramadan; on Eid, several.',
       },
     ],
-    same: 'The same in both: the fast, Selin on Eid and Osman, a week after Eid.',
+    same: 'The same in both: the fast, Selin on Eid and Osman after Eid.',
     caption: SILENT_CAPTION,
   },
   modelNotes: [...MODEL_NOTES],
