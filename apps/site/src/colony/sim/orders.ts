@@ -252,6 +252,12 @@ export class OrderBook {
     const lapsed: string[] = [];
     for (const c of this.cards) {
       if (c.status === 'active' && minute - c.order.issuedAt >= ORDER_LIFETIME && !exempt?.(c)) {
+        // The Human side already did the job and only Classic is still on it: the card is done, not lapsed (its
+        // Classic chip still moves to done when the unit finishes).
+        if (isSettled(c.human)) {
+          c.status = 'done';
+          continue;
+        }
         c.status = 'lapsed';
         lapsed.push(c.order.id);
       }

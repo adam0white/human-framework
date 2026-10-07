@@ -227,8 +227,13 @@ export function parsePlaytest<L>(
   if (p.game !== 'colony' && p.game !== 'voice')
     throw new PlaytestError('That playtest file names no known game.');
   if (p.game !== game) throw new PlaytestError('That playtest file is for the other game.');
-  if (p.scenario !== scenario)
-    throw new PlaytestError('That playtest file is from another version of this game’s scenario.');
+  if (p.scenario !== scenario) {
+    // The file's version is shown as plain text, cut short (the file is untrusted).
+    const theirs = typeof p.scenario === 'string' ? p.scenario.slice(0, 40) : 'an unknown version';
+    throw new PlaytestError(
+      `That playtest file is from another version of this game’s scenario (${theirs}; this build plays ${scenario}), so it cannot be replayed here.`,
+    );
+  }
   if (!isInt(p.seed) || Math.abs(p.seed) > 2 ** 32)
     throw new PlaytestError('That playtest file has no valid seed.');
   if (!isInt(p.minute) || p.minute < 0) throw new PlaytestError('That playtest file has no valid minute.');

@@ -35,6 +35,7 @@ import {
   capital,
   emotionOf,
   needsOf,
+  notOnOffer,
   sayLine,
   thoughtText,
   trustOf,
@@ -243,7 +244,13 @@ export class FrameworkHumanSide implements HumanSide {
 
     for (const o of orders) {
       const p = this.person(o.personId);
-      this.s.orders[o.personId] = { order: o, since: t, lastKind: null };
+      // `since` marks the advice as new: without it the framework counts an earlier completion of the same action
+      // (her noon pot) as already satisfying it and never weighs it (the 2026-10-07 export, D2 16:00).
+      this.s.orders[o.personId] = {
+        order: { ...o, suggestion: { ...o.suggestion, since: t } },
+        since: t,
+        lastKind: null,
+      };
       world.s.orderKey[o.personId] = o.rollKey;
       interruptPerson(this.community, p, t, `order:${o.orderId}`);
     }
@@ -337,6 +344,38 @@ export class FrameworkHumanSide implements HumanSide {
         );
         this.judgeVerdict(id, open.order, kind, r.reason, verdict, ev);
         if (kind === 'cannot' || kind === 'willNot') this.drop(id);
+        if (record.chosenAction) this.s.lastAction[id] = record.chosenAction;
+        continue;
+      }
+      if (open && !r && open.lastKind === null && record.at >= open.since) {
+        // The job is not on offer to them now, so the framework does not hear the order: answer it here (Classic's
+        // "could not (reason)") instead of leaving the card silent until it lapses. A "not now" keeps the order
+        // standing, so it is heard and weighed once the job is on offer again.
+        const no = notOnOffer(open.order.action);
+        const verdict: HumanVerdict = {
+          orderId: open.order.orderId,
+          personId: id,
+          kind: no.kind,
+          says: no.says,
+          reason: 'unavailable',
+          decisionId: record.id,
+          ...(no.counterOffer ? { counterOffer: no.counterOffer } : {}),
+        };
+        ev.verdicts.push(verdict);
+        open.lastKind = no.kind;
+        if (no.counterOffer) open.lastCounter = no.counterOffer;
+        this.bubble(
+          {
+            personId: id,
+            kind: no.kind,
+            text: no.says,
+            orderId: open.order.orderId,
+            decisionId: record.id,
+            ...(no.counterOffer ? { counterOffer: no.counterOffer } : {}),
+          },
+          ev,
+        );
+        if (no.kind === 'cannot') this.drop(id);
         if (record.chosenAction) this.s.lastAction[id] = record.chosenAction;
         continue;
       }
@@ -546,7 +585,7 @@ export class FrameworkHumanSide implements HumanSide {
           : kind === 'notNow'
             ? `Later: ${r.counterOffer?.label ?? reason}`
             : kind === 'cannot'
-              ? `Can’t: ${reason}`
+              ? `Can’t: ${r.reason === 'unavailable' ? notOnOffer(order.action).short : reason}`
               : `Will refuse: ${reason}`;
     return { ...base, kind, text, ...(r.likelihood !== undefined ? { likelihood: r.likelihood } : {}) };
   }

@@ -53,6 +53,57 @@ const HOST_REFUSALS: Record<string, string> = {
   'norm:abandon-dependents': 'And leave the pot cold at noon? No. They eat from my hands.',
 };
 
+/**
+ * An order whose job is not on offer to the person right now (cooking with the store full, praying outside a prayer
+ * time): the framework does not hear such a standing suggestion at all, so the host answers it (colony.md §3, "a
+ * deferral is never a silent drop"). Most such jobs come back (the store runs low, the adhan is called), so the
+ * answer is "not now" and the order keeps standing until its card lapses; an order to a roofed house infers shuttering,
+ * which never comes back, so it is "cannot" (Classic: "could not (house finished)"). `short` is the composer's prediction.
+ */
+export interface NotOnOffer {
+  kind: 'notNow' | 'cannot';
+  says: string;
+  counterOffer?: string;
+  short: string;
+}
+
+const NOT_ON_OFFER: Record<string, NotOnOffer> = {
+  cook: {
+    kind: 'notNow',
+    says: 'There’s food enough in store. I’ll cook when it runs low.',
+    counterOffer: 'when the store runs low',
+    short: 'food enough in store',
+  },
+  pray: {
+    kind: 'notNow',
+    says: 'It isn’t time to pray yet.',
+    counterOffer: 'at prayer time',
+    short: 'not a prayer time',
+  },
+  sleep: {
+    kind: 'notNow',
+    says: 'It isn’t time to sleep.',
+    counterOffer: 'at bedtime',
+    short: 'not bedtime',
+  },
+  'shutter-house': {
+    kind: 'cannot',
+    says: 'The house is done; there’s nothing to shutter.',
+    short: 'house finished',
+  },
+};
+
+export function notOnOffer(action: string): NotOnOffer {
+  return (
+    NOT_ON_OFFER[action] ?? {
+      kind: 'notNow',
+      says: 'Not now. There’s nothing for me to do there yet.',
+      counterOffer: 'when there’s work there',
+      short: 'nothing to do there yet',
+    }
+  );
+}
+
 /** The person's line, with this host's wording where the framework has none. */
 export function sayLine(r: SuggestionResolution): string {
   if (r.verdict === 'refused' && r.kind === 'willNot') {

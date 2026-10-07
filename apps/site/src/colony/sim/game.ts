@@ -52,7 +52,7 @@ import {
   weatherAt,
 } from './world-types.ts';
 
-export const SCENARIO_VERSION = 'colony-scenario@2';
+export const SCENARIO_VERSION = 'colony-scenario@3';
 export const DEFAULT_SEED = 20261003;
 
 export interface UnitView {
@@ -146,6 +146,9 @@ export interface Nudge {
   prefill?: { rush?: boolean; insist?: boolean };
 }
 
+/** tariq-again's reason when the squall card was not taken: he has no night in the forest to remember. */
+export const TARIQ_AGAIN_FRESH = 'He slept through the squall; by day the forest is safe.';
+
 export const NUDGES: readonly Nudge[] = [
   {
     // Moment 2 needs the dawn yes to compare with the dusk answer.
@@ -195,6 +198,7 @@ export const NUDGES: readonly Nudge[] = [
     minute: at(2, 7, 0),
     until: at(2, 8, 0),
     text: 'Morning. Timber is still short. Send Tariq to the forest?',
+    // Only when squall-tariq was taken; otherwise `visibleNudges` gives TARIQ_AGAIN_FRESH.
     reason: 'He remembers last night.',
     order: { personId: 'tariq', placeId: 'forest' },
   },
@@ -407,6 +411,8 @@ export class ColonyGame {
   /** Suggestion ids the last `issue` settled (the playback resumes when one of them caused the pause). */
   lastSettled: string[] = [];
   private dismissed = new Set<string>();
+  /** Suggestion ids whose order was issued (a subset of `dismissed`, which also holds skips). */
+  private taken = new Set<string>();
   private readonly factory: HumanSideFactory;
   private readonly rec = { classic: newRecord(), human: newRecord() };
   /** Goals frozen at the Day-2 end (kept for the Day-2 report after "Another day"). */
@@ -490,6 +496,7 @@ export class ColonyGame {
       : visible.filter((n) => n.order.personId === input.personId && n.order.placeId === input.placeId);
     for (const n of settle) {
       this.dismissed.add(n.id);
+      this.taken.add(n.id);
       rollKey = n.minute;
     }
     this.lastSettled = settle.map((n) => n.id);
@@ -804,6 +811,8 @@ export class ColonyGame {
         this.minute >= n.minute &&
         this.minute < n.until &&
         !(n.id === 'storm-shutter' && roofed),
+    ).map((n) =>
+      n.id === 'tariq-again' && !this.taken.has('squall-tariq') ? { ...n, reason: TARIQ_AGAIN_FRESH } : n,
     );
   }
 

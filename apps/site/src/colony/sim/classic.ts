@@ -17,6 +17,7 @@ import {
   DAWN_MEAL,
   HOUSE_STAGES,
   homeOf,
+  indoorsAt,
   isSleepTime,
   JOBS,
   type Minute,
@@ -662,7 +663,7 @@ export class ClassicSim {
       return;
     }
     t.phase = 'work';
-    u.indoors = !JOBS[t.action].outdoors && placeById(t.placeId).indoors;
+    u.indoors = !JOBS[t.action].outdoors && indoorsAt(t.placeId, this.world);
   }
 
   /** Begin work: check prerequisites and consume inputs. Returns false when the task ended. */

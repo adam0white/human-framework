@@ -4,7 +4,7 @@
  * so "same seed, same schedule" holds by construction. Pure TS; no DOM, no wall clock, no Math.random.
  */
 import { DEFAULT_PRAYER_TIMES } from '@adam0white/human-framework';
-import { type PlaceId, spotFor, type Tile } from './map.ts';
+import { type PlaceId, placeById, spotFor, type Tile } from './map.ts';
 
 export type Minute = number;
 
@@ -589,6 +589,11 @@ export function homeOf(id: VillagerId, world: Pick<SideWorld, 'house'>, minute: 
   if (world.house.stage >= HOUSE_STAGES) return 'site';
   // The crowded masjid is storm housing: on "Another day" they go back to their old home until the roof is on.
   return minute < END_MINUTE ? 'masjid' : v.home;
+}
+
+/** A place that keeps the weather out: the map's indoor places, and the House once its roof is on (colony.md §2). */
+export function indoorsAt(placeId: PlaceId, world: Pick<SideWorld, 'house'>): boolean {
+  return placeById(placeId).indoors || (placeId === 'site' && world.house.stage >= HOUSE_STAGES);
 }
 
 export function canAfford(r: Resources, cost: Partial<Resources> | undefined): boolean {
