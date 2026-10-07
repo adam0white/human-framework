@@ -1007,7 +1007,11 @@ export function householdCount(s: WatchState): number {
   return n;
 }
 
-/** Each household's pull to leave: low trust in the Keeper, low mood and few ties outside it, plus a hard winter. */
+/**
+ * Each household's pull to leave: low trust in the Keeper, low mood and few ties outside it, plus a hard winter.
+ * A household whose adults are all past `RETIRE_AGE` is not counted: the old do not take the valley road alone, they
+ * stay and are buried here (2026-10-07; before, the two oldest of seed 1's fifty years left at 69 and 79).
+ */
 function householdPulls(s: WatchState): HouseholdPull[] {
   const hard = s.yearGrain.lostWinter / START_GRAIN;
   const seen = new Set<string>();
@@ -1017,6 +1021,7 @@ function householdPulls(s: WatchState): HouseholdPull[] {
     const house = householdOf(s, p);
     for (const q of house) seen.add(q.id);
     const adults = house.filter((q) => ageOf(q, s.minute) >= 18);
+    if (adults.every((a) => ageOf(a, s.minute) >= RETIRE_AGE)) continue;
     const ids = new Set(house.map((q) => q.id));
     let pull = 0;
     for (const a of adults) {

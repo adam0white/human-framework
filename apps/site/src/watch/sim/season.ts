@@ -22,6 +22,7 @@ import { liveCommunity, skillLevel, tend } from '@adam0white/human-framework';
 import {
   DAY,
   DUSK_START,
+  MORTALITY_MULTIPLIER,
   NIGHTFALL,
   POST_IDS,
   type PostId,
@@ -84,7 +85,7 @@ export function liveDays(s: WatchState, until: number): void {
   const res = liveCommunity(s.community, until, {
     routineFor: routineFor(s),
     onDay: dayHook(s),
-    lifecourse: { mortality: true, chronicOnsets: true },
+    lifecourse: { mortality: true, chronicOnsets: true, multiplier: MORTALITY_MULTIPLIER },
   });
   s.minute = until;
   s.keeper.now = until;

@@ -188,9 +188,10 @@ export function endState(s: WatchState): EndState {
 
 /**
  * Bump when rules change so an old export is not replayed against new rules. 8: the bell rings from the Gate for
- * everyone in range, and world draws have their own streams (2026-10-05).
+ * everyone in range, and world draws have their own streams (2026-10-05). 9: old age kills (natural death at
+ * `MORTALITY_MULTIPLIER` times HF's hazard) and households of the old no longer leave (2026-10-07).
  */
-export const WATCH_SCENARIO_VERSION = 8;
+export const WATCH_SCENARIO_VERSION = 9;
 
 /** The oldest scenario whose saved pages still load (`migrateSnapshot`). */
 export const OLDEST_LOADABLE_SCENARIO = 7;
@@ -241,7 +242,7 @@ export interface Snapshot {
 /**
  * Brings a page saved by an older scenario up to this one by shape only: the fields added since get their starting
  * values, and the page is stamped with where it came from (`Origin`). The rules it was played under are not
- * replayed. 7 → 8 adds the bell's state and the world stream. Older pages than `OLDEST_LOADABLE_SCENARIO` are refused. Pure.
+ * replayed. 7 → 8 adds the bell's state and the world stream; 8 → 9 adds no state. Older pages than `OLDEST_LOADABLE_SCENARIO` are refused. Pure.
  */
 export function migrateSnapshot(snap: Snapshot): Snapshot {
   if (snap.scenario === WATCH_SCENARIO_VERSION) return snap;
