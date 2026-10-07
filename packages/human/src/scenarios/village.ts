@@ -8,7 +8,7 @@
 import { prayerWindows } from '../agenda/index.ts';
 import { readBody } from '../body/index.ts';
 import { heldNorms } from '../conscience/index.ts';
-import { chance, clamp01, createRng, dayOf, minuteOfDay } from '../core/index.ts';
+import { chance, clamp01, createRng, dayOf, minuteOfDay, rowOf } from '../core/index.ts';
 import type { World } from '../sim/index.ts';
 import { successChance } from '../skills/index.ts';
 import type {
@@ -140,8 +140,7 @@ export function createVillage(
   const V = VILLAGE_DEFAULTS;
   const neighboursOf = (id: PersonId): PersonId[] => ids.filter((o) => o !== id).slice(0, V.neighbours);
   const count = (pid: PersonId, action: string) => {
-    const row = state.completed[pid] ?? {};
-    state.completed[pid] = row;
+    const row = rowOf(state.completed, pid);
     row[action] = (row[action] ?? 0) + 1;
   };
   const queue = (personId: PersonId, percept: Percept) => {

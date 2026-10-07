@@ -16,6 +16,23 @@ export const hasNumbers = (o: Record<string, unknown>, ...keys: string[]): boole
   keys.every((k) => typeof o[k] === 'number');
 /** Three-way string comparison by code unit (the order `.sort()` uses), for stable sorts by id. @internal */
 export const cmpStr = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
+/**
+ * The nested record `table[key]`, created when absent. Keys are host ids (people, actions, skills), so the lookup
+ * is own-property only and a key naming an `Object.prototype` member is refused: writing through
+ * `table['__proto__']` would change every object in the process. @internal
+ */
+export function rowOf<T>(table: Record<string, Record<string, T>>, key: string): Record<string, T> {
+  if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+    throw new Error(`human: "${key}" cannot be used as an id`);
+  }
+  if (Object.hasOwn(table, key)) {
+    const row = table[key];
+    if (row) return row;
+  }
+  const row: Record<string, T> = {};
+  table[key] = row;
+  return row;
+}
 export const lerp = (a: number, b: number, t: number): number => a + (b - a) * t;
 export const sigmoid = (x: number): number => 1 / (1 + dexp(-x));
 export const logit = (p: number): number => {

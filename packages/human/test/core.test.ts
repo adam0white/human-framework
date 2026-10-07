@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import { createRng, decay, normal, random, weightedIndex } from '../src/core/index.ts';
+import { createRng, decay, normal, random, rowOf, weightedIndex } from '../src/core/index.ts';
+import { skillFamilies } from '../src/skills/skills.ts';
 
 describe('core/random', () => {
   test('is deterministic and serializable', () => {
@@ -27,5 +28,22 @@ describe('core/math', () => {
   test('decay halves at the half-life', () => {
     expect(decay(1, 60, 60)).toBeCloseTo(0.5);
     expect(decay(1, 60, 60, 0.4)).toBeCloseTo(0.7);
+  });
+});
+
+describe('core/rowOf', () => {
+  test('creates and reuses own rows', () => {
+    const t: Record<string, Record<string, number>> = {};
+    rowOf(t, 'ada').x = 1;
+    rowOf(t, 'ada').y = 2;
+    expect(t).toEqual({ ada: { x: 1, y: 2 } });
+    expect(rowOf(t, 'toString')).toEqual({});
+  });
+
+  test('refuses prototype keys instead of writing through them', () => {
+    for (const k of ['__proto__', 'constructor', 'prototype'])
+      expect(() => rowOf({}, k)).toThrow(/cannot be used/);
+    expect(() => skillFamilies({ f: ['__proto__', 'polluted'] }, 0.5)).toThrow();
+    expect(({} as Record<string, unknown>).polluted).toBeUndefined();
   });
 });

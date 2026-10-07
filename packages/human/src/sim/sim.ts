@@ -55,7 +55,7 @@ import { BODY_DEFAULTS, contagionRoll, die, readBody, sicken } from '../body/ind
 import { chronicleBetween } from '../chronicle/index.ts';
 import { recordDeed } from '../conscience/index.ts';
 import { type ConverseContext, converse } from '../conversation/index.ts';
-import { clamp01, cmpStr, dayOf } from '../core/index.ts';
+import { clamp01, cmpStr, dayOf, rowOf } from '../core/index.ts';
 import {
   type ChildSpec,
   type ChronicCondition,
@@ -281,8 +281,7 @@ function noteStandingDone(c: Community, p: Person, act: Activity, at: Minute): v
   );
   if (!keeps) return;
   c.standingDone ??= {};
-  const done = c.standingDone[p.id] ?? {};
-  c.standingDone[p.id] = done;
+  const done = rowOf(c.standingDone, p.id);
   const entry = targetId !== undefined ? { at, action: act.action, targetId } : { at, action: act.action };
   done[`aff:${act.affordanceId}`] = entry;
   done[`act:${act.action}`] = entry;

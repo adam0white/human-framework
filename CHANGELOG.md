@@ -12,6 +12,10 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+### Fixed
+
+- A host id of `__proto__`, `constructor` or `prototype` (a person, action or skill) is refused with an error. Before, it could write through to `Object.prototype` when `stepCommunity`, the village scenario or `skillFamilies` filed per-id records (found by CodeQL once the repository went public). No other ids change behaviour; replays and hashes are unchanged.
+
 ## [2.1.1] - 2026-10-06
 
 Engine: 2.0.0. Unchanged. A packaging release: no API or simulation behaviour changes; replays, fixtures and state hashes

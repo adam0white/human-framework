@@ -42,7 +42,7 @@
  * overlearning. The linear form and `consolidationHours` are engineering assumptions, not a fitted curve. Does not claim: different retention by skill
  * type (closed versus open, physical versus cognitive), or that spacing of sessions matters.
  */
-import { clamp01, decay, dexp, dlog, isNum, isObj, sigmoid } from '../core/index.ts';
+import { clamp01, decay, dexp, dlog, isNum, isObj, rowOf, sigmoid } from '../core/index.ts';
 import {
   type EntityId,
   MINUTES_PER_DAY,
@@ -110,8 +110,7 @@ export function skillFamilies(families: Record<string, readonly string[]>, fract
     for (const a of members) {
       for (const b of members) {
         if (a === b) continue;
-        const row = out[a] ?? {};
-        out[a] = row;
+        const row = rowOf(out, a);
         row[b] = Math.max(row[b] ?? 0, f);
       }
     }
