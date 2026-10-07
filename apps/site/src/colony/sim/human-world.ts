@@ -25,6 +25,7 @@ import {
   type World,
 } from '@adam0white/human-framework';
 import { fw, gm, STRENGTH } from './human-cast.ts';
+import type { NotOnOffer } from './human-view.ts';
 import { findPath, type GameMap, type PlaceId, spotFor, type Tile } from './map.ts';
 import {
   type ActionId,
@@ -328,6 +329,62 @@ export class ColonyHostWorld implements World {
   }
 
   // --- affordances ------------------------------------------------------------------------------
+
+  /**
+   * Why `action` is not on offer to `id` now, as the person says it (colony.md §3). Mirrors the offer conditions in
+   * `affordancesFor`; a job that comes back (the store runs low, timber arrives, he heals) is "not now", one that
+   * does not (a finished house, a beam beyond her skill) is "cannot".
+   */
+  notOffered(p: Person, action: ActionId): NotOnOffer {
+    const id = villagerId(p.id);
+    const t = p.now;
+    const m = gm(t);
+    const w = this.world;
+    const no = (says: string, counterOffer: string, short: string): NotOnOffer => ({
+      kind: 'notNow',
+      says,
+      counterOffer,
+      short,
+    });
+    const cannot = (says: string, short: string): NotOnOffer => ({ kind: 'cannot', says, short });
+    if (this.s.down[id] || (this.s.recovering[id] ?? 0) > t)
+      return no('I’m hurt. I can’t work yet.', 'when I’ve healed', 'hurt');
+    switch (action) {
+      case 'cook':
+        if (stormNoCook(m))
+          return no('The fire won’t keep in this wind.', 'when the storm passes', 'no fire in the storm');
+        if (w.resources.grain < HOST.cookGrain)
+          return no('There’s no grain for a pot.', 'when there’s grain', 'no grain');
+        if (w.resources.water < HOST.cookWater)
+          return no('There’s no water for a pot.', 'when there’s water', 'no water');
+        return no(
+          'We’ve food enough put by. I’ll cook when it runs low.',
+          'when the store runs low',
+          'food enough put by',
+        );
+      case 'build':
+      case 'raise-beam':
+      case 'shutter-house': {
+        const finished =
+          w.storeroom === null ? w.house.stage >= HOUSE_STAGES : w.storeroom >= STOREROOM_STAGES;
+        if (finished || (action === 'shutter-house' && w.house.stage >= HOUSE_STAGES))
+          return cannot('The house is finished. There’s nothing left to do there.', 'house finished');
+        if (action === 'raise-beam' && skillLevel(p, 'building') < 0.5)
+          return cannot('I can’t raise the beam; that needs a builder.', 'needs a builder');
+        return no('There’s no timber to build with.', 'when there’s timber', 'no timber');
+      }
+      case 'pray':
+        return no('It isn’t prayer time.', 'at the next prayer', 'not prayer time');
+      case 'sleep':
+        return no('It isn’t time to sleep.', 'at bedtime', 'not bedtime');
+      default:
+        return no(
+          'Not now. There’s nothing for me to do there yet.',
+          'when there’s work there',
+          'nothing to do there yet',
+        );
+    }
+  }
 
   affordancesFor(p: Person): Affordance[] {
     const id = villagerId(p.id);
@@ -644,7 +701,7 @@ export class ColonyHostWorld implements World {
         }
       }
     }
-    if (m >= WARNING_AT && !w.house.shuttered) {
+    if (m >= WARNING_AT && !w.house.shuttered && w.house.stage < HOUSE_STAGES) {
       workJob('shutter-house', 'shutter-house', 'shutter the house', 'site', {
         effort: 0.6,
         skill: { id: 'building', difficulty: 0.3 },

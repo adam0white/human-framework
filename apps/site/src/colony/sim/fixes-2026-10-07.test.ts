@@ -48,12 +48,24 @@ describe('2026-10-07 export fixes', () => {
     g.advance(at(1, 18, 11));
     expect(g.humanWorld.resources.meals).toBeGreaterThanOrEqual(HOST.cookBelow);
     const o = g.issue({ personId: 'maryam', placeId: 'kitchen' });
-    g.advance(3);
+    const reasons: string[] = [];
+    for (let i = 0; i < 3; i++) {
+      g.advance(1);
+      reasons.push(...g.lastStep.verdicts.map((v) => v.reason));
+    }
+    // The host's answer carries 'unavailable', which the playback does not auto-pause on.
+    expect(reasons).toEqual(['unavailable']);
     const card = g.book.card(o?.id ?? '');
     expect(card?.human.state).toBe('notNow');
     expect(card?.human.label).toBe('when the store runs low');
     expect(card?.status).toBe('active');
-    expect(g.predict({ personId: 'maryam', placeId: 'kitchen' }).text).toBe('Can’t: food enough in store');
+    expect(g.predict({ personId: 'maryam', placeId: 'kitchen' }).text).toBe('Later: food enough put by');
+  });
+
+  it('the not-on-offer answer names the cause: in the storm the fire is out', () => {
+    const g = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);
+    g.advance(STORM_START + 30);
+    expect(g.predict({ personId: 'maryam', placeId: 'kitchen' }).text).toBe('Later: no fire in the storm');
   });
 
   it('an order given before cooking comes on offer is heard once it does (the warning, D2 16:00)', () => {
@@ -77,7 +89,7 @@ describe('2026-10-07 export fixes', () => {
     expect(book.card(a.id)?.classic.label).toBe('done');
   });
 
-  it('tariq-again says "He remembers last night" only when the squall card was taken', () => {
+  it('tariq-again says "He remembers last night" only when Tariq was ordered into the squall', () => {
     const reason = (take: boolean): string | undefined => {
       const g = new ColonyGame(DEFAULT_SEED, createPlaceholderHumanSide);
       const squall = NUDGES.find((n) => n.id === 'squall-tariq');
@@ -88,7 +100,7 @@ describe('2026-10-07 export fixes', () => {
       g.advance(at(2, 7, 0) - g.minute);
       return g.visibleNudges().find((n) => n.id === 'tariq-again')?.reason;
     };
-    expect(reason(true)).toBe('He remembers last night.');
+    expect(reason(true)).toMatch(/^He remembers last night/);
     expect(reason(false)).toBe(TARIQ_AGAIN_FRESH);
   });
 

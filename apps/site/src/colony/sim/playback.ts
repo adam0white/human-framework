@@ -268,7 +268,7 @@ export class Playback {
       out.push({ reason: 'suggestion', text: n.text, nudgeId: n.id, personId: n.order.personId });
     }
     for (const v of g.lastStep.verdicts) {
-      if (!REFUSALS.has(v.kind) || !once(`refusal:${v.orderId}`)) continue;
+      if (!REFUSALS.has(v.kind) || v.reason === 'unavailable' || !once(`refusal:${v.orderId}`)) continue;
       out.push({
         reason: 'refusal',
         text: `${firstName(v.personId)}: ${v.says}`,

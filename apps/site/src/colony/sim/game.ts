@@ -146,8 +146,9 @@ export interface Nudge {
   prefill?: { rush?: boolean; insist?: boolean };
 }
 
-/** tariq-again's reason when the squall card was not taken: he has no night in the forest to remember. */
-export const TARIQ_AGAIN_FRESH = 'He slept through the squall; by day the forest is safe.';
+/** tariq-again's reason when nobody ordered Tariq into the squall: he has no night in the forest to remember. */
+export const TARIQ_AGAIN_FRESH =
+  'He is rested. By day the forest carries only the usual small risk of a slip.';
 
 export const NUDGES: readonly Nudge[] = [
   {
@@ -198,8 +199,8 @@ export const NUDGES: readonly Nudge[] = [
     minute: at(2, 7, 0),
     until: at(2, 8, 0),
     text: 'Morning. Timber is still short. Send Tariq to the forest?',
-    // Only when squall-tariq was taken; otherwise `visibleNudges` gives TARIQ_AGAIN_FRESH.
-    reason: 'He remembers last night.',
+    // Only when Tariq was ordered into the squall; otherwise `visibleNudges` gives TARIQ_AGAIN_FRESH.
+    reason: 'He remembers last night in the squall. He may refuse, and pushing him costs more trust.',
     order: { personId: 'tariq', placeId: 'forest' },
   },
   {
@@ -327,7 +328,14 @@ export interface StepEvents {
   /** The minute that was stepped. */
   minute: Minute;
   /** Human verdict chips on player cards that changed this minute. */
-  verdicts: { orderId: string; personId: VillagerId; kind: Exclude<BubbleKind, 'thought'>; says: string }[];
+  verdicts: {
+    orderId: string;
+    personId: VillagerId;
+    kind: Exclude<BubbleKind, 'thought'>;
+    says: string;
+    /** 'unavailable': the host's answer for a job not on offer (no auto-pause; the composer already said so). */
+    reason: string;
+  }[];
   moments: MomentRecord[];
 }
 
@@ -411,8 +419,6 @@ export class ColonyGame {
   /** Suggestion ids the last `issue` settled (the playback resumes when one of them caused the pause). */
   lastSettled: string[] = [];
   private dismissed = new Set<string>();
-  /** Suggestion ids whose order was issued (a subset of `dismissed`, which also holds skips). */
-  private taken = new Set<string>();
   private readonly factory: HumanSideFactory;
   private readonly rec = { classic: newRecord(), human: newRecord() };
   /** Goals frozen at the Day-2 end (kept for the Day-2 report after "Another day"). */
@@ -496,7 +502,6 @@ export class ColonyGame {
       : visible.filter((n) => n.order.personId === input.personId && n.order.placeId === input.placeId);
     for (const n of settle) {
       this.dismissed.add(n.id);
-      this.taken.add(n.id);
       rollKey = n.minute;
     }
     this.lastSettled = settle.map((n) => n.id);
@@ -584,7 +589,13 @@ export class ColonyGame {
       if (!card) continue;
       const state = VERDICT_CHIP[v.kind];
       if (card.human.state !== state)
-        step.verdicts.push({ orderId: v.orderId, personId: v.personId, kind: v.kind, says: v.says });
+        step.verdicts.push({
+          orderId: v.orderId,
+          personId: v.personId,
+          kind: v.kind,
+          says: v.says,
+          reason: v.reason,
+        });
       const label = v.counterOffer ?? v.says;
       this.book.setChip(v.orderId, 'human', {
         state,
@@ -802,6 +813,18 @@ export class ColonyGame {
     };
   }
 
+  /** Tariq was ordered to the forest or the cedar during the squall (from the card or the composer). */
+  private tariqInSquall(): boolean {
+    return this.log.some(
+      (e) =>
+        e.kind === 'order' &&
+        e.input.personId === 'tariq' &&
+        (e.input.placeId === 'forest' || e.input.placeId === 'cedar') &&
+        e.minute >= SQUALL_START &&
+        e.minute < SQUALL_END,
+    );
+  }
+
   visibleNudges(): Nudge[] {
     const done = (w: SideWorld) => w.house.stage >= HOUSE_STAGES || w.house.shuttered;
     const roofed = done(this.classicWorld) && done(this.humanWorld);
@@ -811,9 +834,7 @@ export class ColonyGame {
         this.minute >= n.minute &&
         this.minute < n.until &&
         !(n.id === 'storm-shutter' && roofed),
-    ).map((n) =>
-      n.id === 'tariq-again' && !this.taken.has('squall-tariq') ? { ...n, reason: TARIQ_AGAIN_FRESH } : n,
-    );
+    ).map((n) => (n.id === 'tariq-again' && !this.tariqInSquall() ? { ...n, reason: TARIQ_AGAIN_FRESH } : n));
   }
 
   /** Classic progress toward the next stage: the furthest-along builder's job (Classic builds whole stages). */

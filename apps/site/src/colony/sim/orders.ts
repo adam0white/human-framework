@@ -253,8 +253,8 @@ export class OrderBook {
     for (const c of this.cards) {
       if (c.status === 'active' && minute - c.order.issuedAt >= ORDER_LIFETIME && !exempt?.(c)) {
         // The Human side already did the job and only Classic is still on it: the card is done, not lapsed (its
-        // Classic chip still moves to done when the unit finishes).
-        if (isSettled(c.human)) {
+        // Classic chip still moves to done when the unit finishes). A refusal keeps lapsing as before.
+        if (c.human.settled === true) {
           c.status = 'done';
           continue;
         }

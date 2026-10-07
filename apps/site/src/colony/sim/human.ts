@@ -35,7 +35,6 @@ import {
   capital,
   emotionOf,
   needsOf,
-  notOnOffer,
   sayLine,
   thoughtText,
   trustOf,
@@ -294,7 +293,11 @@ export class FrameworkHumanSide implements HumanSide {
       const record = p.trace.find((r) => r.id === e.decisionId);
       if (!record) continue;
       const open = this.s.orders[id];
-      const r = record.suggestion;
+      // The player's resolution: the credited one, or among the voices when a villager's advice was also weighed.
+      const r =
+        record.suggestion?.voiceId === 'player'
+          ? record.suggestion
+          : record.suggestions?.find((x) => x.voiceId === 'player');
       if (open && r && r.voiceId === 'player' && record.at >= open.since) {
         const kind = verdictKind(r);
         const counter = r.counterOffer?.label ?? (kind === 'notNow' ? r.says : undefined);
@@ -351,7 +354,7 @@ export class FrameworkHumanSide implements HumanSide {
         // The job is not on offer to them now, so the framework does not hear the order: answer it here (Classic's
         // "could not (reason)") instead of leaving the card silent until it lapses. A "not now" keeps the order
         // standing, so it is heard and weighed once the job is on offer again.
-        const no = notOnOffer(open.order.action);
+        const no = this.world.notOffered(p, open.order.action);
         const verdict: HumanVerdict = {
           orderId: open.order.orderId,
           personId: id,
@@ -575,8 +578,9 @@ export class FrameworkHumanSide implements HumanSide {
     if (!p.body.alive) return { ...base, kind: 'cannot', text: 'Can’t: dead' };
     const affs = this.world.affordancesFor(p);
     const r = preview(p, affs, order.suggestion);
-    const kind = verdictKind(r);
-    const reason = readableReason(r.reason);
+    const no = r.reason === 'unavailable' ? this.world.notOffered(p, order.action) : null;
+    const kind = no?.kind ?? verdictKind(r);
+    const reason = no?.short ?? readableReason(r.reason);
     const text =
       kind === 'assent'
         ? 'Likely yes'
@@ -585,7 +589,7 @@ export class FrameworkHumanSide implements HumanSide {
           : kind === 'notNow'
             ? `Later: ${r.counterOffer?.label ?? reason}`
             : kind === 'cannot'
-              ? `Can’t: ${r.reason === 'unavailable' ? notOnOffer(order.action).short : reason}`
+              ? `Can’t: ${reason}`
               : `Will refuse: ${reason}`;
     return { ...base, kind, text, ...(r.likelihood !== undefined ? { likelihood: r.likelihood } : {}) };
   }
