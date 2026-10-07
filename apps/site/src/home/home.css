@@ -66,6 +66,19 @@ body {
   color: var(--text);
 }
 
+.nav nav .nav-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* On phones the mark alone; the link keeps its accessible name. */
+@media (max-width: 420px) {
+  .nav-github-label {
+    display: none;
+  }
+}
+
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;
