@@ -11,18 +11,11 @@ Updated 2026-10-06. Read [AGENTS.md](AGENTS.md) for rules, [docs/framework.md](d
 - **Games:** graduated with HF. Each game doc ends with its deferred list ([colony](docs/games/colony.md#deferred), [voice](docs/games/voice.md#deferred), [watch §12](docs/games/watch.md#12-after-graduation-deferred-features), review watch §12 by 2026-11-05).
 - **Docs** were consolidated on 2026-10-05: per-dimension review files, `hf-status.md` and `rimworld-gap.md` were folded into the roadmap, framework.md and the two review summaries, then deleted; v0-era research planning docs moved to `archive/research/`.
 
-## Going public
+## Public repository
 
-The repository is private until the owner makes it public (owner's decisions, 2026-10-05: MIT for code, CC BY 4.0 for `docs/` and `research/`, history kept, archived OSF data published). Everything else is prepared. The owner runs:
+Made public by the owner on 2026-10-06 (owner's decisions, 2026-10-05: MIT for code, CC BY 4.0 for `docs/` and `research/`, history kept, archived OSF data published). `bash scripts/after-public.sh` ran the same day: secret scanning with push protection and private vulnerability reporting on; ruleset `main` (id 24627807, from [.github/rulesets/main.json](.github/rulesets/main.json): no deletion, no force-push, required check `ci`; repository admins bypass); Actions require SHA-pinned actions and approval for fork PRs from all outside contributors; weekly CodeQL on (repository variable `CODEQL_SCHEDULE=true`; clear it if the repository ever goes private). CodeQL stays on the workflow; do not enable CodeQL default setup. The script is safe to re-run.
 
-```sh
-gh repo edit adam0white/human-framework --visibility public --accept-visibility-change-consequences
-bash scripts/after-public.sh
-```
-
-The script refuses to run unless the repository is public, then enables secret scanning with push protection and private vulnerability reporting, creates or updates the `main` ruleset from [.github/rulesets/main.json](.github/rulesets/main.json) (no deletion, no force-push, required check `ci`; repository admins bypass), sets the Actions settings (SHA-pinned actions, approval for fork PRs from all outside contributors) and turns on the weekly CodeQL run (repository variable `CODEQL_SCHEDULE`). It is safe to re-run. CodeQL stays on the workflow; do not enable CodeQL default setup. The homepage, whose Status line links the GitHub repository, is already deployed (2026-10-06); the link works once the repository is public.
-
-Applied live while private (2026-10-05): Actions `sha_pinning_required=true` (every workflow already pins actions by SHA). Dependabot alerts were already on. `package.json` `overrides` pins `sharp` to 0.35.5 (2026-10-06, high alert CVE-2026-96889; dev-only, via wrangler → miniflare, which pins 0.35.4); drop the override once miniflare ships 0.35.5 or later. GitHub refused the rest while private on the free plan: rulesets (403), private vulnerability reporting (404), fork-PR approval (422), secret scanning (422).
+Dependabot alerts are on. `package.json` `overrides` pins `sharp` to 0.35.5 (2026-10-06, high alert CVE-2026-96889; dev-only, via wrangler → miniflare, which pins 0.35.4); drop the override once miniflare ships 0.35.5 or later.
 
 ## Goals
 
