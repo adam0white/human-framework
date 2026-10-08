@@ -1,11 +1,10 @@
 name: Publish to npm
 
-# Stages @adam0white/human-framework on npm when a GitHub release is published (`npm run release` creates it).
-# Trusted publishing (OIDC): there is no npm token anywhere, and npm adds a provenance attestation by itself
-# (public repository, public package). The trusted publisher on npmjs.com allows `npm stage publish` only, so
-# nothing goes live until the owner approves the staged version with 2FA (npmjs.com, Staged Packages, or
-# `npm stage approve <id>`). The workflow filename is part of the trusted publisher: rename it there too.
-# Setup, first publish and the approval step: HANDOFF.md, "npm".
+# Publishes @adam0white/human-framework to npm when a GitHub release is published (`npm run release` creates it).
+# Trusted publishing (OIDC): the job needs no npm token, and npm adds a provenance attestation by itself (public
+# repository, public package). The trusted publisher on npmjs.com allows direct `npm publish` (owner, 2026-10-07:
+# no staging step). The workflow filename is part of the trusted publisher: rename it there too.
+# Setup and the first publish: HANDOFF.md, "npm".
 #
 # Run it by hand (Actions, Run workflow) with a release tag to rehearse: dry run packs and runs
 # `npm publish --dry-run`, which needs no credentials and publishes nothing.
@@ -30,7 +29,7 @@ concurrency:
 
 jobs:
   publish:
-    name: stage on npm
+    name: publish to npm
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -49,7 +48,7 @@ jobs:
           node-version-file: .nvmrc
           registry-url: https://registry.npmjs.org
           package-manager-cache: false # no caches in release builds
-      # Pinned rather than whatever the Node release bundles: OIDC needs npm >= 11.5.1, `npm stage` >= 11.15.0.
+      # Pinned rather than whatever the Node release bundles: OIDC needs npm >= 11.5.1.
       - name: npm 11.20.0
         run: |
           npm install -g npm@11.20.0
@@ -66,7 +65,7 @@ jobs:
         run: |
           code=$(curl -s -o /dev/null -w '%{http_code}' "https://registry.npmjs.org/@adam0white%2fhuman-framework/$VERSION")
           if [ "$code" = 200 ]; then
-            echo "::notice::@adam0white/human-framework@$VERSION is already on npm; nothing to stage"
+            echo "::notice::@adam0white/human-framework@$VERSION is already on npm; nothing to publish"
             echo "already=true" >> "$GITHUB_OUTPUT"
           fi
       # Install scripts are off in the job that holds the OIDC token; the build is tsc (prepack), which needs none.
@@ -82,6 +81,6 @@ jobs:
         working-directory: packages/human
         run: npm publish --dry-run
       - if: steps.seen.outputs.already != 'true' && env.DRY_RUN != 'true'
-        name: Stage on npm (approve with 2FA on npmjs.com)
+        name: Publish to npm
         working-directory: packages/human
-        run: npm stage publish
+        run: npm publish

@@ -3,7 +3,7 @@
  * `FRAMEWORK_VERSION` and a CHANGELOG.md section agree and that the tag is new, runs `npm run check`, packs
  * `packages/human`, then creates and pushes the tag `vX.Y.Z` and a GitHub release whose notes are the CHANGELOG
  * section, which must open with the ENGINE_VERSION it ships (`Engine: X.Y.Z.`), with the tarball attached. The
- * release starts .github/workflows/publish.yml, which stages the version on npm for the owner's approval.
+ * release starts .github/workflows/publish.yml, which publishes the version to npm.
  *
  * `npm run release -- --dry-run` skips the branch, clean and pushed checks and stops after packing: it prints
  * the notes and the tarball path and creates no tag or release.
@@ -97,5 +97,5 @@ if (dryRun) {
     notesFile,
   ]);
   console.log(`Released ${tag} with ${tarball}`);
-  console.log('publish.yml now stages it on npm; approve it with 2FA on npmjs.com (HANDOFF.md, "npm").');
+  console.log('publish.yml now publishes it to npm (HANDOFF.md, "npm").');
 }
