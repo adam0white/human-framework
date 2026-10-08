@@ -8,9 +8,6 @@ import { SpineDiagram, SpineStack } from './Diagram.tsx';
 import sampleSource from './sample.ts?raw';
 import { SAMPLE_OUTPUT } from './sampleOutput.ts';
 
-/** The release tarball for this framework version; it installs by URL until the package is on npm. */
-const TARBALL = `https://github.com/adam0white/human-framework/releases/download/v${FRAMEWORK_VERSION}/adam0white-human-framework-${FRAMEWORK_VERSION}.tgz`;
-
 /** The GitHub mark (Octicons `mark-github`, MIT). */
 function GitHubMark() {
   return (
@@ -429,14 +426,9 @@ function Home() {
                   <dd>
                     {FRAMEWORK_VERSION}, used by the three games below. Open source on{' '}
                     <a href="https://github.com/adam0white/human-framework">GitHub</a>: code under MIT, docs
-                    and research under CC BY 4.0. Not on npm yet; install the{' '}
-                    <a
-                      href={`https://github.com/adam0white/human-framework/releases/tag/v${FRAMEWORK_VERSION}`}
-                    >
-                      release
-                    </a>{' '}
-                    tarball:
-                    <code className="install">npm install {TARBALL}</code>
+                    and research under CC BY 4.0. On{' '}
+                    <a href="https://www.npmjs.com/package/@adam0white/human-framework">npm</a>:
+                    <code className="install">npm install @adam0white/human-framework</code>
                   </dd>
                 </div>
               </dl>

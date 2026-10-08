@@ -12,6 +12,14 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.1.4] - 2026-10-07
+
+Engine: 2.0.0. Unchanged. A packaging release: no API or simulation behaviour changes; replays, fixtures and state
+hashes are byte-identical to 2.1.3.
+
+- The first version published to npm by the release workflow (trusted publishing), with an npm provenance
+  attestation linking the package to this repository and commit. 2.1.3 was published by hand and has none.
+
 ## [2.1.3] - 2026-10-07
 
 Engine: 2.0.0. Unchanged. A packaging release: no API or simulation behaviour changes; replays, fixtures and state

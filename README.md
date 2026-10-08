@@ -14,11 +14,13 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
 
 ## Quick start
 
-The source is public on GitHub (code MIT, docs CC BY 4.0). The package is not on npm yet (2.1.3 will be the first version; see HANDOFF.md, "npm"); install the tarball attached to each [GitHub release](https://github.com/adam0white/human-framework/releases) by URL:
+The source is public on GitHub (code MIT, docs CC BY 4.0). Install from [npm](https://www.npmjs.com/package/@adam0white/human-framework):
 
 ```sh
-npm install https://github.com/adam0white/human-framework/releases/download/v2.1.2/adam0white-human-framework-2.1.2.tgz
+npm install @adam0white/human-framework
 ```
+
+Each [GitHub release](https://github.com/adam0white/human-framework/releases) also has the tarball attached, which installs by URL.
 
 Or build one from a checkout:
 

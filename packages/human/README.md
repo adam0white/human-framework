@@ -52,7 +52,7 @@ Each [GitHub release](https://github.com/adam0white/human-framework/releases) al
 installs by URL:
 
 ```sh
-npm install https://github.com/adam0white/human-framework/releases/download/v2.1.3/adam0white-human-framework-2.1.3.tgz
+npm install https://github.com/adam0white/human-framework/releases/download/v2.1.4/adam0white-human-framework-2.1.4.tgz
 ```
 
 or build one from a checkout:
