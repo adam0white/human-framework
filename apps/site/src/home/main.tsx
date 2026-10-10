@@ -118,6 +118,27 @@ function WatchScene() {
   );
 }
 
+function RepairScene() {
+  return (
+    <svg className="scene scene-repair" viewBox="0 0 200 120" aria-hidden="true">
+      <rect width="200" height="120" fill="#292b26" />
+      <rect x="12" y="88" width="176" height="10" rx="2" fill="#9d7954" />
+      <path d="M28 98v22M172 98v22" stroke="#745b43" strokeWidth="8" />
+      <ellipse cx="80" cy="84" rx="26" ry="4" fill="#d1c399" opacity="0.25" />
+      <path
+        d="M64 84h32M80 83l-7-32 23-19"
+        fill="none"
+        stroke="#a2b19a"
+        strokeWidth="5"
+        strokeLinecap="round"
+      />
+      <path d="M93 24l17 6 10 23-34 7-4-20z" fill="#c4d0b3" />
+      <rect x="135" y="64" width="34" height="23" rx="2" fill="#e4d7bd" />
+      <path d="M142 70h20M142 76h16M142 82h18" stroke="#9d7954" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
 /** Comments in the sample read muted; everything else stays plain text. The sample has no `//` inside strings. */
 function CodeSample({ source }: { source: string }) {
   // The first line is a formatter directive, not part of the example.
@@ -506,6 +527,23 @@ function Home() {
               </div>
             </a>
           </div>
+          <a className="game-card game-live repair-preview" href="https://repair.adamwhite.work">
+            <div className="game-art">
+              <RepairScene />
+            </div>
+            <div className="game-body">
+              <p className="game-kicker">External preview · in development</p>
+              <h3>The repair game</h3>
+              <p>Learn at the family workbench, repair neighbours’ belongings, and teach an apprentice.</p>
+              <p className="game-shows">
+                A separate game consuming the published HF package, exploring demonstrated methods and
+                independent repairs.
+              </p>
+              <span className="game-cta">
+                Try the preview <span aria-hidden="true">↗</span>
+              </span>
+            </div>
+          </a>
         </section>
       </main>
 

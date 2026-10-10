@@ -880,3 +880,17 @@ code {
 .scene-voice .voice-ink-you {
   stroke: #b8860b;
 }
+
+/* The external prototype stays separate from the three graduated examples. */
+.repair-preview {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.7fr) minmax(0, 2fr);
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .repair-preview {
+    grid-template-columns: 1fr;
+  }
+}
