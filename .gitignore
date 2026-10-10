@@ -12,3 +12,5 @@ dist/
 *.tsbuildinfo
 __pycache__/
 .claude/
+
+.review/

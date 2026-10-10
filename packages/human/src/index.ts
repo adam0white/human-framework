@@ -1,5 +1,5 @@
 /** Human Framework v1 public surface. */
-export const FRAMEWORK_VERSION = '2.1.4';
+export const FRAMEWORK_VERSION = '2.2.0';
 
 // `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `skipAffect` stays internal.
 export type { CrisisEvent, PracticeKind } from './affect/index.ts';
@@ -103,6 +103,14 @@ export * from './impression.ts';
 export * from './lifecourse/index.ts';
 export * from './longrun.ts';
 export * from './memory/index.ts';
+export type { MethodDemonstration, MethodEvidence } from './methods/index.ts';
+export {
+  clearMethodContext,
+  demonstrateMethod,
+  METHOD_DEFAULTS,
+  methodEvidence,
+  receiveMethodCues,
+} from './methods/index.ts';
 export type { MigrationStep } from './migrate.ts';
 export { MIGRATIONS, migratableVersions, migrate } from './migrate.ts';
 export * from './narrate/index.ts';

@@ -52,7 +52,7 @@ Each [GitHub release](https://github.com/adam0white/human-framework/releases) al
 installs by URL:
 
 ```sh
-npm install https://github.com/adam0white/human-framework/releases/download/v2.1.4/adam0white-human-framework-2.1.4.tgz
+npm install https://github.com/adam0white/human-framework/releases/download/v2.2.0/adam0white-human-framework-2.2.0.tgz
 ```
 
 or build one from a checkout:
@@ -177,13 +177,13 @@ reference host: `createVillage`.
 
 There are two version numbers, and they move independently.
 
-- **The release version** is the package version (`package.json`, now `2.0.0`) and `FRAMEWORK_VERSION`, the same
+- **The release version** is the package version (`package.json`, now `2.2.0`) and `FRAMEWORK_VERSION`, the same
   string compiled into the build; a test keeps them equal. It versions the public API under
   [semver](https://semver.org/): a breaking change to an exported name or signature bumps the major, a new
   faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
   are that version's section of the root [CHANGELOG.md](../../CHANGELOG.md), with the package tarball attached
   (`npm run release`, run on a clean, pushed `main`).
-- **`ENGINE_VERSION`** (exported; `2.0.0` at release 2.0.0) versions simulation behaviour and the save format. It
+- **`ENGINE_VERSION`** (exported; `2.1.0` at release 2.2.0) versions simulation behaviour and the save format. It
   changes when the same seed and inputs would give different decisions, or when person state changes shape.
   `restore` upgrades saves from engine 1.4.0 and later through `migrate` and refuses older ones. Every release's notes name the
   `ENGINE_VERSION` it ships, so a host can tell whether its saves still restore.
@@ -274,3 +274,31 @@ that place lose appeal until the fear fades. Groups and factions themselves stay
 
 MIT; see [LICENSE](LICENSE). The repository's `docs/` and `research/`, which this README links to, are
 CC BY 4.0.
+
+## Learning a demonstrated conditional step
+
+Use observations the person actually received; the host owns what those observations mean. Matching is on categorical cue strings, not hidden world state or a per-object correct-action table.
+
+```ts
+receiveMethodCues(learner, {
+  contextId: 'observed-example',
+  cues: [{ cue: 'route', value: 'north' }, { cue: 'signal', value: 'clear' }],
+});
+demonstrateMethod(learner, {
+  id: 'routing-north', demonstrationId: 'example-1',
+  contextId: 'observed-example', sourceId: 'instructor',
+  conditions: [{ cue: 'route', value: 'north' }, { cue: 'signal', value: 'clear' }],
+  action: 'send-north', outcome: 'success',
+});
+// A new parcel can share the learned observation structure.
+receiveMethodCues(learner, {
+  contextId: 'new-parcel',
+  cues: [{ cue: 'route', value: 'north' }, { cue: 'signal', value: 'clear' }],
+});
+const evidence = methodEvidence(learner, 'send-north', 'new-parcel');
+// Offers for that parcel carry methodContext: 'new-parcel'.
+// Ordinary decide() includes the acquired method term alongside other motives.
+clearMethodContext(learner); // when leaving or switching the task
+```
+
+Import these functions from the package. Rules/evidence live in optional `Person.methods` and survive snapshots. Current cues expire after 120 minutes. A stable demonstration id avoids counting the same example twice within the retained 256-example history, even after its rule or evidence is evicted. Once an id has left both that history and retained rule evidence, it can be admitted again. Missing observations cannot satisfy a condition; conflicting examples reduce confidence. A successful lecture does not certify reliable execution. [The headless control](examples/method-control.ts) demonstrates changed teaching, withheld teaching, a scalar-skill control and acquired-state ablation with two methods and an exception.

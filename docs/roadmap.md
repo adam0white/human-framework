@@ -96,3 +96,7 @@ Site-wide, from the R2 reviews (all unscheduled):
 - R2 B1.3: pull-to-refresh is blocked, but Games 1–2 lose the run if the page is reloaded; save the run to `sessionStorage` on hide (Game 3 already autosaves).
 - H2 S5, S6: before Game 3 imports pages or replays files from playtesters, cap decompression, validate, and route people through `restore`.
 - Real devices: a real Galaxy S26 (wake lock, fullscreen, safe areas), iOS, the file download, and Game 1 in landscape with large text are unverified.
+
+## Demonstrated conditional methods (authorized 2026-10-10)
+
+Bounded conditional action acquisition supports the standalone repair-game apprenticeship probe. Implemented faculty and domain-neutral control: `methods/`, `examples/method-control.ts`. Release/consumer integration remains part of technical done in [learning-probe.md](learning-probe.md). General planning, inferred cue extraction, multi-step procedure synthesis and calibrated real-world learning rates remain **unscheduled**; this increment does not activate them.

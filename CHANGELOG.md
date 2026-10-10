@@ -12,6 +12,15 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-10-10
+
+Engine: 2.1.0. Adds optional demonstrated conditional methods. Existing hosts without method state retain their previous decisions; engine 2.0.0 saves migrate by a version stamp.
+
+- Acquired categorical cue conjunctions and attended success/failure examples live in `Person.methods`, independently of scalar skills. `receiveMethodCues`, `clearMethodContext`, `demonstrateMethod` and `methodEvidence` expose the bounded faculty. Ordinary cognition includes source-labelled method evidence for offers carrying a matching received context.
+- Missing cues remain unknown; conflicting examples reduce support. Attention, source trust, disuse and failed practice grade evidence. Conditions/actions are canonicalized independently of arbitrary method labels. Restore validates bounds and safe ids, and retains a 256-example deduplication horizon across evidence/rule eviction.
+- Existing Game 1/2 playtest packets retain their original full-state hashes. Their replay behavior is verified by normalizing only the person-engine stamp; runtime exports honestly retain the current stamp, so loading an older packet reports an engine-metadata hash difference.
+- A domain-neutral headless control keeps two methods and one exception, with identical offers across trained, valid-alternative teaching, withheld, scalar-skill-only and acquired-state-ablation arms. The exception's ordinary safe fallback is not claimed as learned exception recognition. This is bounded explicit conditional acquisition, not a universal planner or calibrated human-learning model.
+
 ## [2.1.4] - 2026-10-07
 
 Engine: 2.0.0. Unchanged. A packaging release: no API or simulation behaviour changes; replays, fixtures and state

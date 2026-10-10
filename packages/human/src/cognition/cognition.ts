@@ -31,6 +31,7 @@ import { normTerms } from '../conscience/index.ts';
 import { clamp01, cmpStr, dexp, minuteOfDay, round } from '../core/index.ts';
 import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
 import { expectedEffect } from '../memory/index.ts';
+import { methodEvidence } from '../methods/index.ts';
 import { urgencyOf } from '../needs/index.ts';
 import { partneringTerms } from '../partnering/index.ts';
 import { companionSteadiness, socialTerms } from '../social/index.ts';
@@ -297,6 +298,10 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
       K.expectationScale * expected.gist.valence * expected.gist.weight * (1 - expected.confidence),
     );
   }
+
+  // Acquired cue-conditioned methods remain one pull among ordinary motives.
+  if (aff.methodContext !== undefined)
+    for (const t of methodEvidence(p, aff.action, aff.methodContext).terms) push(t.source, t.value);
 
   // Norms, commitments and goals. Planning terms scale with developmental maturity.
   let refractoryCache: number | undefined;

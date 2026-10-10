@@ -13,9 +13,11 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
+import { withHistoricPersonEngine } from '../../../test/support/engine-stamp.ts';
 import {
   decodeSnapshot,
   encodeSnapshot,
+  hashState,
   makePlaytestFile,
   PlaytestError,
   type PlaytestFile,
@@ -31,6 +33,7 @@ import {
   validateVoiceLog,
   voiceHash,
   voiceSnapshot,
+  voiceState,
 } from './record.ts';
 
 const FIXTURE = resolve(import.meta.dirname, '../../../test/fixtures/playtest-voice.json');
@@ -115,7 +118,8 @@ describe('Game 2 playtest files', () => {
       expect(driftAt).toBe(-1);
       expect(rec.game.phase).toBe('report');
       expect(rec.game.t).toBe(f.minute);
-      expect(voiceHash(rec.game)).toBe(f.hash);
+      // Preserve the full old state control; normalize only person-engine metadata.
+      expect(hashState(withHistoricPersonEngine(voiceState(rec.game), f.engine))).toBe(f.hash);
     },
     60_000,
   );

@@ -16,6 +16,7 @@ import { sanitizeAmbient } from './environment/index.ts';
 import { sanitizeFamily } from './family/index.ts';
 import { HABIT_DEFAULTS } from './habits/index.ts';
 import { GIST_DEFAULTS, MEMORY_DEFAULTS, sanitizeGists } from './memory/index.ts';
+import { sanitizeMethods } from './methods/index.ts';
 import { migrate } from './migrate.ts';
 import { sanitizeBonds } from './partnering/index.ts';
 import { cleanRetention, createPerson, traceLimit } from './person.ts';
@@ -62,6 +63,7 @@ const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
   'bonds',
   'ambient',
   'retention',
+  'methods',
 ]);
 
 /** Kind of a JSON value for the per-field type check in `restore`. */
@@ -165,6 +167,7 @@ export function restore(input: unknown): Person {
   keepValid(out, 'bonds', sanitizeBonds);
   keepValid(out, 'ambient', sanitizeAmbient);
   keepValid(out, 'retention', cleanRetention);
+  keepValid(out, 'methods', sanitizeMethods);
   boundLists(out);
   return out;
 }

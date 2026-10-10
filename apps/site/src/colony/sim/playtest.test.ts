@@ -14,8 +14,10 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
+import { withHistoricPersonEngine } from '../../../test/support/engine-stamp.ts';
 import {
   encodeSnapshot,
+  hashState,
   makePlaytestFile,
   PlaytestError,
   type PlaytestFile,
@@ -24,7 +26,7 @@ import {
 import { ColonyGame, DEFAULT_SEED, type LogEntry, SCENARIO_VERSION } from './game.ts';
 import { createFrameworkHumanSide } from './human.ts';
 import { Playback } from './playback.ts';
-import { colonyHash, colonySnapshot, replayColony, validateColonyLog } from './playtest.ts';
+import { colonyHash, colonySnapshot, colonyState, replayColony, validateColonyLog } from './playtest.ts';
 
 const FIXTURE = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony.json');
 const REGEN = Boolean(process.env.PLAYTEST_REGEN);
@@ -113,7 +115,9 @@ describe('Game 1 playtest files', () => {
       const f = parse(readFileSync(FIXTURE, 'utf8'));
       const g = replayColony(f.seed, createFrameworkHumanSide, f.log, f.minute);
       expect(g.minute).toBe(f.minute);
-      expect(colonyHash(g)).toBe(f.hash);
+      // Engine2.1 adds an unused optional faculty. Pin all historical behavior
+      // and state while normalizing only the person-engine metadata stamp.
+      expect(hashState(withHistoricPersonEngine(colonyState(g), f.engine))).toBe(f.hash);
     },
     60_000,
   );

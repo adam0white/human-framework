@@ -7,7 +7,8 @@
  * optional fields that are absent by default), so those steps only stamp the version; 1.9.0 to 2.0.0 renames one
  * field of the optional surroundings slice (`ambient.now` → `ambient.percept`) and changes no behaviour (the optional `social.impressions` and `social.reserve`, like `retention`, are optional and start
  * absent in a migrated save); `restore` then fills and sanitizes
- * the slices as for any save. A migrated save continues under the current engine's rules: it restores and runs,
+ * the slices as for any save. 2.0.0 to 2.1.0 adds optional conditional method state, absent
+ * until explicitly used, so existing hosts retain their previous behavior; that step stamps the version. A migrated save continues under the current engine's rules: it restores and runs,
  * but it does not reproduce what the old engine would have done next where the rules changed (1.4.0 to 1.5.0
  * changed how standing advice is heard; 1.8.0 to 1.9.0 changed the omission rule). Saves older than 1.4.0 and unknown versions are refused with an error.
  *
@@ -67,6 +68,11 @@ export const MIGRATIONS: Readonly<Record<string, MigrationStep>> = {
     to: '2.0.0',
     note: 'the surroundings field `ambient.now` is renamed `ambient.percept`; per-person retention is optional and starts absent; behaviour unchanged',
     apply: renameAmbient,
+  },
+  '2.0.0': {
+    to: '2.1.0',
+    note: 'conditional method state and received cues are optional and start absent; existing host decisions unchanged',
+    apply: stamp,
   },
 };
 

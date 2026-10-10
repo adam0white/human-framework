@@ -857,9 +857,9 @@ export interface Activity {
 
 export const PERSON_SCHEMA = 'human/person@1';
 /**
- * Current: 2.0.0 (2026-10-04): `AmbientState.now` renamed `percept` (migrated); per-person `retention` (optional,
- * absent until set); `restore` validates every slice by range and bound and refuses minutes it cannot step. No valid
- * run changes. The current version comes first, then earlier engines oldest first; the API doc shows this first line.
+ * Current: 2.1.0 (2026-10-10): optional acquired conditional methods and explicit received cue contexts.
+ * Normal cognition reads learned method evidence only on offers carrying the matching context.
+ * Existing hosts with no method state keep their previous decisions; 2.0.0 saves migrate by stamping the version.
  *
  * Earlier engines (oldest first):
  * 1.1.0 (2026-10-03): joint activities, omission/distrust rules, reactance, voice history.
@@ -888,7 +888,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.0.0';
+export const ENGINE_VERSION = '2.1.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -969,6 +969,33 @@ export interface AmbientState {
   since: Minute;
 }
 
+/** A received categorical observation; missing values never stand for a negative observation. */
+export interface MethodCue {
+  cue: string;
+  value: string;
+}
+
+export interface MethodRule {
+  id: string;
+  action: string;
+  conditions: MethodCue[];
+  evidence: {
+    id: string;
+    sourceId: string;
+    at: Minute;
+    attention: Unit;
+    outcome: 'success' | 'failure';
+  }[];
+}
+
+/** Optional conditional action learning. Owned by methods/, not a host answer table. */
+export interface MethodsState {
+  rules: MethodRule[];
+  /** Last 256 acquired example ids, independent of rule/evidence eviction. */
+  recentDemonstrations: string[];
+  context?: { id: string; at: Minute; cues: MethodCue[] };
+}
+
 export interface Person {
   schema: typeof PERSON_SCHEMA;
   /** Engine version that last wrote this state. */
@@ -986,6 +1013,8 @@ export interface Person {
   conscience: ConscienceState;
   affect: AffectState;
   skills: Record<string, Skill>;
+  /** Acquired conditional method evidence and current received cues; absent until used. */
+  methods?: MethodsState;
   /** Practice consolidation (1.8.0, opt-in via `enableSkillRetention`). Owned by `skills/`. */
   skillRetention?: { consolidationHours: number };
   habits: Habit[];
@@ -1050,6 +1079,8 @@ export interface Affordance {
   /** Verb/action class shared across offers: 'eat', 'sleep', 'farm', 'talk', 'pray', 'steal', ... */
   action: string;
   label: string;
+  /** Received method context this offer belongs to; absent = no method term. */
+  methodContext?: string;
   targetId?: EntityId;
   placeId?: EntityId;
   /** Other people taking part. */
