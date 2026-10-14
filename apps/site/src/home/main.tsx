@@ -533,11 +533,14 @@ function Home() {
             </div>
             <div className="game-body">
               <p className="game-kicker">External preview · in development</p>
-              <h3>The repair game</h3>
-              <p>Learn at the family workbench, repair neighbours’ belongings, and teach an apprentice.</p>
+              <h3>Small Works</h3>
+              <p>
+                Diagnose workshop repairs by comparing circuit and drive readings. Share scarce time and parts
+                between neighbours’ work and a personal project you keep.
+              </p>
               <p className="game-shows">
-                A separate game consuming the published HF package, exploring demonstrated methods and
-                independent repairs.
+                A separate workshop episode using published HF: people observe demonstrations, give or
+                withhold consent, and help with repairs and community work. Still in development.
               </p>
               <span className="game-cta">
                 Try the preview <span aria-hidden="true">↗</span>
