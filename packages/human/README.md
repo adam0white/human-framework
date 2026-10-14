@@ -177,13 +177,13 @@ reference host: `createVillage`.
 
 There are two version numbers, and they move independently.
 
-- **The release version** is the package version (`package.json`, now `2.2.0`) and `FRAMEWORK_VERSION`, the same
+- **The release version** is the package version (`package.json`, now `2.2.1`) and `FRAMEWORK_VERSION`, the same
   string compiled into the build; a test keeps them equal. It versions the public API under
   [semver](https://semver.org/): a breaking change to an exported name or signature bumps the major, a new
   faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
   are that version's section of the root [CHANGELOG.md](../../CHANGELOG.md), with the package tarball attached
   (`npm run release`, run on a clean, pushed `main`).
-- **`ENGINE_VERSION`** (exported; `2.1.0` at release 2.2.0) versions simulation behaviour and the save format. It
+- **`ENGINE_VERSION`** (exported; `2.2.0` at release 2.2.1) versions simulation behaviour and the save format. It
   changes when the same seed and inputs would give different decisions, or when person state changes shape.
   `restore` upgrades saves from engine 1.4.0 and later through `migrate` and refuses older ones. Every release's notes name the
   `ENGINE_VERSION` it ships, so a host can tell whether its saves still restore.
@@ -301,4 +301,4 @@ const evidence = methodEvidence(learner, 'send-north', 'new-parcel');
 clearMethodContext(learner); // when leaving or switching the task
 ```
 
-Import these functions from the package. Rules/evidence live in optional `Person.methods` and survive snapshots. Current cues expire after 120 minutes. A stable demonstration id avoids counting the same example twice within the retained 256-example history, even after its rule or evidence is evicted. Once an id has left both that history and retained rule evidence, it can be admitted again. Missing observations cannot satisfy a condition; conflicting examples reduce confidence. A successful lecture does not certify reliable execution. [The headless control](examples/method-control.ts) demonstrates changed teaching, withheld teaching, a scalar-skill control and acquired-state ablation with two methods and an exception.
+Import these functions from the package. Rules/evidence live in optional `Person.methods` and survive snapshots. Current cues expire after 120 minutes. A stable demonstration id avoids counting the same example twice within the retained 256-example history, even after its rule or evidence is evicted. Once an id has left both that history and retained rule evidence, it can be admitted again. Missing observations cannot satisfy a condition. Failed demonstrations reduce support for that action. Successful alternatives retain their own support; ordinary cognition weighs the supported offers alongside other motives. A successful lecture does not certify reliable execution. [The routing control](examples/method-control.ts) demonstrates changed teaching, withheld teaching, a scalar-skill control and acquired-state ablation with two methods and an exception. [The alternatives control](examples/method-alternatives-control.ts) demonstrates two independently successful procedures under the same observations, failed practice, hunger and exact restore.

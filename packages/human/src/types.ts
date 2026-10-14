@@ -857,7 +857,11 @@ export interface Activity {
 
 export const PERSON_SCHEMA = 'human/person@1';
 /**
- * Current: 2.1.0 (2026-10-10): optional acquired conditional methods and explicit received cue contexts.
+ * Current: 2.2.0 (2026-10-14): method evidence grades each action independently.
+ * Successful alternatives no longer count as failures of another action. Person state shape is unchanged.
+ * 2.1.0 saves migrate by stamping the version.
+ *
+ * 2.1.0 (2026-10-10): optional acquired conditional methods and explicit received cue contexts.
  * Normal cognition reads learned method evidence only on offers carrying the matching context.
  * Existing hosts with no method state keep their previous decisions; 2.0.0 saves migrate by stamping the version.
  *
@@ -888,7 +892,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.1.0';
+export const ENGINE_VERSION = '2.2.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)

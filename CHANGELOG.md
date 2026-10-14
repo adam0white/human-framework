@@ -12,6 +12,14 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.2.1] - 2026-10-14
+
+Engine: 2.2.0. Corrects acquired method evidence. The person state shape is unchanged; engine 2.1.0 saves migrate by a version stamp that preserves optional method records.
+
+- Modeling-assumption correction: independently successful actions do not prove exclusivity. Evidence grades each action independently, so another successful procedure no longer counts as its failure. Same-action failure, attention, source trust, decay and restore bounds remain unchanged.
+- A domain-neutral control covers two independently successful procedures, withheld teaching, skill-only support, same-action failure, ordinary need-driven choice and snapshot restore. Existing game replay controls still pin behavior after normalizing only engine metadata.
+- Missing or mismatching required cues do not match a method. An unobserved hidden exception can still match received cues; hidden exception detection remains unsupported.
+
 ## [2.2.0] - 2026-10-10
 
 Engine: 2.1.0. Adds optional demonstrated conditional methods. Existing hosts without method state retain their previous decisions; engine 2.0.0 saves migrate by a version stamp.

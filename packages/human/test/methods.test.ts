@@ -19,6 +19,20 @@ const lesson = {
 };
 
 describe('demonstrated conditional methods', () => {
+  test('engine 2.1 saves retain optional method records through migration and restore', () => {
+    const p = person();
+    hf.receiveMethodCues(p, { contextId: 'example', cues });
+    hf.demonstrateMethod(p, lesson);
+    hf.demonstrateMethod(p, { ...lesson, demonstrationId: 'alternative', action: 'send-south' });
+    const old = { ...hf.snapshot(p), engine: '2.1.0' };
+    const before = JSON.stringify(old);
+    const migrated = hf.migrate(old);
+    expect(migrated.engine).toBe('2.2.0');
+    expect(migrated.methods).toEqual(old.methods);
+    expect(JSON.stringify(old)).toBe(before);
+    expect(hf.snapshot(hf.restore(old)).methods).toEqual(old.methods);
+  });
+
   test('received examples guide an ordinary decision on a new target with matching cues', () => {
     expect(typeof hf.receiveMethodCues).toBe('function');
     const p = person();
@@ -52,15 +66,37 @@ describe('bounded evidence and ordinary agency', () => {
     expect(hf.demonstrateMethod(p, lesson)).toBe(false);
   });
 
-  test('conflicting examples retain uncertainty instead of picking a hidden correct action', () => {
+  test('successful alternatives retain support without picking a hidden correct action', () => {
     const p = person();
     hf.receiveMethodCues(p, { contextId: 'example', cues });
     hf.demonstrateMethod(p, lesson);
     hf.demonstrateMethod(p, { ...lesson, demonstrationId: 'alternative', action: 'send-south' });
     const evidence = hf.methodEvidence(p, 'send-north', 'example');
-    expect(evidence.support).toBe(0);
+    expect(evidence.support).toBeGreaterThan(0);
     expect(evidence.matched.map((x) => x.action)).toEqual(['send-north', 'send-south']);
-    expect(hf.methodEvidence(p, 'send-south', 'example').support).toBe(0);
+    expect(hf.methodEvidence(p, 'send-south', 'example').support).toBe(evidence.support);
+  });
+
+  test('strong evidence for another action does not normalize away own evidence', () => {
+    const p = person();
+    hf.receiveMethodCues(p, { contextId: 'example', cues });
+    hf.demonstrateMethod(p, lesson);
+    const own = hf.methodEvidence(p, 'send-north', 'example').support;
+    for (let i = 0; i < 12; i++)
+      hf.demonstrateMethod(p, {
+        ...lesson,
+        demonstrationId: `other-source-${i}`,
+        action: 'send-via-relay',
+        sourceId: `source-${i}`,
+      });
+    expect(hf.methodEvidence(p, 'send-via-relay', 'example').support).toBe(1);
+    expect(hf.methodEvidence(p, 'send-north', 'example').support).toBe(own);
+    for (const action of ['send-north', 'send-via-relay']) {
+      const evidence = hf.methodEvidence(p, action, 'example');
+      expect(evidence.terms.reduce((sum, term) => sum + term.value, 0)).toBeCloseTo(
+        hf.METHOD_DEFAULTS.utilityScale * evidence.support,
+      );
+    }
   });
 
   test('one example cannot be replayed to inflate confidence and failed practice weakens evidence', () => {

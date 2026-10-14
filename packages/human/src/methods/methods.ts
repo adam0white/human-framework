@@ -4,8 +4,9 @@
  * Successful and unsuccessful demonstrations become person-owned evidence; the
  * same reader supplies host queries and ordinary cognition terms. Unknown cues
  * do not mean false. Context identity prevents one task's observations being used
- * for another task. Contradictory examples weaken support without choosing a
- * privileged correct answer. Attention, source trust and recency grade evidence.
+ * for another task. Failed examples weaken that action without choosing a hidden
+ * correct answer. Successful alternatives retain their own support. Attention,
+ * source trust and recency grade evidence.
  * These are explicit engineering choices, not fitted human learning parameters.
  * This module does not infer cues, invent actions, plan sequences, certify skill,
  * access host truth, compute religious worth, or guarantee that a person obeys.
@@ -45,7 +46,7 @@ export interface MethodDemonstration {
 }
 
 export interface MethodEvidence {
-  /** Net matching evidence for this action, -1..1; conflicts reduce it. */
+  /** Net matching evidence for this action, -1..1; its failures reduce it. */
   support: number;
   terms: Term[];
   matched: { id: string; action: string; sourceId: string; support: number }[];
@@ -187,15 +188,13 @@ export function methodEvidence(p: Person, action: string, contextId: string): Me
       result.matched.push({ id: rule.id, action: rule.action, sourceId, support });
     }
   }
-  // Comparable alternative actions reduce confidence; they never become a hidden answer override.
+  // A successful alternative is not evidence that this action failed. Each action
+  // retains its own signed support; ordinary cognition weighs all legal offers.
   const strengths = new Map<string, number>();
   for (const match of result.matched)
     strengths.set(match.action, (strengths.get(match.action) ?? 0) + match.support);
   const own = strengths.get(action) ?? 0;
-  const rival = Math.max(0, ...[...strengths].filter(([a]) => a !== action).map(([, v]) => v));
-  const total = Math.max(1, ...[...strengths.values()].map((v) => Math.abs(v)));
-  const net = own > 0 ? Math.max(0, own - rival) : own;
-  result.support = Math.max(-1, Math.min(1, net / total));
+  result.support = own / Math.max(1, Math.abs(own));
   const scale = own === 0 ? 0 : result.support / own;
   for (const match of result.matched) {
     if (match.action !== action || match.support === 0) continue;

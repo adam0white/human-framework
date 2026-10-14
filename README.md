@@ -6,7 +6,7 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
 
 ## Status
 
-- **HF 2.1.0** is released ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v2.1.0), engine 2.0.0; [CHANGELOG](CHANGELOG.md)). HF 2.x is released and graduated: Goal 1 (HF 1.0) and Goal 2 (HF 2.0 and Game 3) are done and accepted by the owner. What is next is in the [roadmap](docs/roadmap.md).
+- **HF 2.2.1** is prepared for release (engine 2.2.0; [CHANGELOG](CHANGELOG.md)). HF 2.x is released and graduated: Goal 1 (HF 1.0) and Goal 2 (HF 2.0 and Game 3) are done and accepted by the owner. What is next is in the [roadmap](docs/roadmap.md).
 - **Three example games**, live at [human.adamwhite.work](https://human.adamwhite.work):
   - [Twice at the Well](https://human.adamwhite.work/colony/): a colony sim played side by side without and with HF.
   - [The Day You Say Nothing](https://human.adamwhite.work/voice/): you are a voice in one man's head; he may refuse you.
