@@ -147,6 +147,24 @@ The current behavior is defined in [`Affordance` and `Outcome`](src/types.ts) an
 [actual material in day records](test/chronicle.test.ts), and [relationship-aware social terms](test/social.test.ts).
 These boundaries require correct host reports; they do not imply a framework behavior change.
 
+### Scheduled activity reviews
+
+A custom host must process `activity.reviewAt`, including during sleep. `tick` advances the person;
+it does not dispatch a decision or automatically end the host's job. An `activity.interrupt` is also
+a request to review, not an instruction to cancel every activity.
+
+At a due review, call `decide` with physically feasible alternatives. It includes the current activity
+with its remaining duration. If that activity is chosen again, call `reviewed(p)` and keep its original
+job, arrival time and reservations. If another activity wins, reconcile the old physical job, call
+`finish` with an interrupted outcome, then `begin` the chosen activity with its decision record.
+Do not restart a continued activity or refund its resources. Hard capacity vetoes still apply.
+
+Sleep reviews can move earlier for ordinary pending appointments. The appointment's time pressure
+can permit waking; an obligatory norm is not required. A host that ignores the scheduled review can
+make someone miss an obligation HF was ready to reconsider. This does not imply advance planning
+for unavailable future actions. See [`reviewed` and the decision lifecycle](src/person.ts) and
+[`wakeReviewAt` and commitment-based waking](src/will/will.ts).
+
 You can drive a person by hand: `decide(p, offers, { suggestion })` → `begin(p, offer, record)` →
 `tick(p, now)` → `finish(p, outcome)`, with `perceive(p, percepts)` and `interrupt(p, now, reason)` between.
 Or implement `World` and let `stepCommunity` sequence everyone in deterministic (time, id) order:

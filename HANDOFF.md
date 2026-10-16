@@ -4,6 +4,8 @@ Updated 2026-10-16. Read [AGENTS.md](AGENTS.md) for rules, [docs/framework.md](d
 
 ## Current state
 
+- **Scheduled reviews (2026-10-16):** custom-host guidance now explains `activity.reviewAt`, `decide`, `reviewed` and physical interruption reconciliation. An external town host ignored existing ordinary-appointment wake reviews; this was an integration defect, not evidence of a missing HF faculty. Package behavior and the published 2.2.1 version stay unchanged. This complements the offer/outcome guidance below. Independently reviewed against installed 2.2.1 source; full local check passed 869 tests with 3 skipped and relative documentation targets were checked.
+
 - **Integration guidance (2026-10-16):** clarified expected offers versus observed outcomes in the package README, reviewed against current body/finish/context/chronicle behavior. External-host errors copied advertised sleep, omitted actual payment and declared social contact without participants. HF behavior was correct. This is documentation only; the published package stays 2.2.1. Full local check passed 869 tests with 3 skipped; relative documentation links were verified.
 
 - **Current bounded increment (2026-10-14):** correct the demonstrated-method exclusivity assumption reported in [issue #5](https://github.com/adam0white/human-framework/issues/5). Independently successful actions retain independent support; same-action failure, trust, decay and restore bounds remain unchanged. This is a modeling-assumption correction within the existing faculty. Missing or mismatching required cues yield no match; an unobserved hidden exception can still match received cues. Adam accepts game feel separately.

@@ -159,7 +159,7 @@ For concrete offer/outcome boundaries, see [expected benefits and observed outco
 - No single willpower fuel. Acting against impulse comes from competing terms, real fatigue cost, habits and precommitments.
 - Decisions read the **perceived** body; performance and health use the true body. Chronic sleep loss is under-perceived.
 - Traits only scale terms (coefficients). They never branch logic.
-- Interrupts: `activity.reviewAt` forces re-decision at least every 30 minutes, and sooner when `nextBodyThreshold` says a need will cross its interrupt threshold.
+- Interrupts: the host processes `activity.reviewAt` by calling `decide`, then `reviewed` for continuation or reconciling an interruption before beginning another activity. Awake reviews are normally at most 30 minutes apart; sleep has a longer cadence, capped by body thresholds and pending-commitment wake reviews. `tick` alone does not dispatch the host's decision loop. See [scheduled activity reviews](../packages/human/README.md#scheduled-activity-reviews).
 - Hosts must offer zero-prerequisite floor affordances (rest in place, wait). Tests check that nobody starves while food is reachable.
 - Learned expectations deviate from advertisements by a clamped step per outcome. The trace shows both.
 - Narration cites recalled episodes when memory changed a choice.
