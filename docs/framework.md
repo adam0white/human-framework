@@ -152,6 +152,8 @@ Since 2.1 the functions that take a time follow one rule.
 
 HF models the person. The host owns everything else, by design rather than as a gap: space, maps, pathfinding and travel (folded into `Affordance.duration`); inventory, money and jobs; job reservation and contention between people claiming the same work; work priorities (expressible as goals or standing suggestions); factions and who belongs to which group (`joinGroups` takes the host's names); combat resolution, weapons and hit rolls (HF decides fight, flee or comply at each interrupt and owns injuries, bleeding and downing); world events and their RNG. A RimWorld-like colony was the test case for this boundary (gap analysis, 2026-10-04): its five blocking gaps (direct control, mental breaks, injury depth, insiders and outsiders, save migration) were closed in engine 1.6.0 and are covered above. Cost at that scale: HF does nothing between a person's events, `decide` grows linearly with the number of offers (about 26 µs at 14 offers, 455 µs at 300, measured 2026-10-04), and the host's `affordancesFor` (pathfinding per offer) is expected to dominate. Current timings are in `npm run bench`.
 
+For concrete offer/outcome boundaries, see [expected benefits and observed outcomes](../packages/human/README.md#expected-benefits-and-observed-outcomes). Advertised recovery, promised payment and possible company are not evidence that those effects occurred.
+
 ## Locked decisions (2026-10-02, after the early game-design review)
 
 - No single willpower fuel. Acting against impulse comes from competing terms, real fatigue cost, habits and precommitments.

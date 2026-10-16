@@ -123,6 +123,30 @@ The framework has no world of its own. The host supplies three things and receiv
 - **Decisions** (`DecisionRecord`) come back: the chosen offer, the top `considered` options with every
   utility term, the suggestion verdict(s), a private `intention`, and a `narration`.
 
+### Expected benefits and observed outcomes
+
+An offer describes expected effects. An outcome reports what happened. The host resolves space,
+contact, inventory and payment; HF uses the reported outcome to update the person. Do not copy
+`Affordance.advertises` into `Outcome.needs` as a general completion rule.
+
+| Host situation | Offer | Completion report |
+|---|---|---|
+| A person sleeps for part of the planned night. | Advertise typical sleep/rest benefits and set `mode: 'sleep'`. | Leave `sleep` and `rest` absent from `Outcome.needs`. `finish` advances the body to the actual end time and measures their change since the activity began. Explicit values replace that measurement; copying the advertisement can overstate the realized recovery reported to learning. |
+| A task promises four coins but actually pays two. | Set expected `Affordance.material` to four host units. | Update the host ledger by two and report `Outcome.material: 2`. A completed task does not imply the promised payment arrived. Report zero for no payment and a negative value for an actual cost. HF does not maintain the host's money ledger. |
+| A person can talk with someone who is present. | Tag the offer `social` when it really involves social contact; put participants in `with`. | Resolve actual participation. An empty room, a sleeping neighbour or someone who arrives after the conversation ends is not a completed encounter. Do not award contact or belonging merely because the activity uses a shared place. |
+
+For in-person activities, the host must establish co-presence and overlapping participation. HF has
+no map and does not discover companions. `with` names people taking part, not everyone assigned to a
+place. A `social` tag is also a claim about the offered activity, not a request to find someone. If
+contact becomes impossible, interrupt or replan the activity instead of completing the declared
+encounter. Report only the need effects that the actual interaction supports.
+
+The current behavior is defined in [`Affordance` and `Outcome`](src/types.ts) and
+[`finish`](src/person.ts). Existing controls cover [body advancement and waking after sleep](test/person.test.ts),
+[body recovery](test/body.test.ts), [material valuation under scarcity](test/cognition-scarcity.test.ts),
+[actual material in day records](test/chronicle.test.ts), and [relationship-aware social terms](test/social.test.ts).
+These boundaries require correct host reports; they do not imply a framework behavior change.
+
 You can drive a person by hand: `decide(p, offers, { suggestion })` → `begin(p, offer, record)` →
 `tick(p, now)` → `finish(p, outcome)`, with `perceive(p, percepts)` and `interrupt(p, now, reason)` between.
 Or implement `World` and let `stepCommunity` sequence everyone in deterministic (time, id) order:
