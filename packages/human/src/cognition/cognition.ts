@@ -34,6 +34,7 @@ import { expectedEffect } from '../memory/index.ts';
 import { methodEvidence } from '../methods/index.ts';
 import { urgencyOf } from '../needs/index.ts';
 import { partneringTerms } from '../partnering/index.ts';
+import { type PromptingSeen, promptIn, promptingTerms } from '../promptings/index.ts';
 import { receivedGoalRoute } from '../prospection/index.ts';
 import { companionSteadiness, socialTerms } from '../social/index.ts';
 import type {
@@ -472,6 +473,11 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   // now about this option is counted once, through its live term above.
   if (!inBreak(p)) for (const t of rememberedTerms(p, aff, ctx.now, voices)) push(t.source, t.value);
 
+  // Promptings (2.4.0, opt-in): a recurrence pull under `fault` and a practised turning-away from a noticed prompt.
+  if (p.promptings)
+    for (const t of promptingTerms(p, aff.action, terms, aff.tags, ctx.now, ctx.desperation))
+      push(t.source, t.value);
+
   let utility = 0;
   for (const t of terms) utility += t.value;
   const out: Considered = {
@@ -504,6 +510,8 @@ export interface Decision {
   needDeltas: Partial<Record<'autonomy', number>>;
   /** How a command in force fared (absent when none). */
   command?: CommandOutcome;
+  /** Prompts noticed at this decision point (only with `p.promptings`); the composite records them. */
+  prompts?: PromptingSeen[];
 }
 
 /** Highest physiological urgency: the input to the necessity exception. */
@@ -567,5 +575,21 @@ export function decide(p: Person, affordances: readonly Affordance[], ctx: Decid
   if (res.autonomyDelta !== 0) needDeltas.autonomy = res.autonomyDelta;
   const out: Decision = { record, needDeltas };
   if (res.command) out.command = res.command;
+  if (p.promptings) {
+    const prompts: PromptingSeen[] = [];
+    const tagsOf = new Map(sorted.map((a) => [a.id, a.tags]));
+    for (const c of res.considered) {
+      const seen = promptIn(c.terms, tagsOf.get(c.affordanceId));
+      if (seen)
+        prompts.push({
+          affordanceId: c.affordanceId,
+          action: c.action,
+          ...seen,
+          // A vetoed option was not turned from: the will blocked it, so the response earns no practice.
+          turnApplied: c.vetoed === undefined && c.terms.some((t) => t.source === 'promptings:turn'),
+        });
+    }
+    if (prompts.length > 0) out.prompts = prompts;
+  }
   return out;
 }

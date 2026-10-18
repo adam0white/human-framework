@@ -80,6 +80,23 @@ The full list, with module names and research references, is [faculty-inventory.
 - Affect and self: body cost of stress, expression and concealment (no emotional contagion), curiosity, status and power, within-person variability, identity through group membership, self-esteem and self-model.
 - Social: judging others' acts (no habituation), language (templates only; LLMs stay out of the loop by rule), joint activities (§1, one-sided), courage under threat, tools and equipment, sensory impairment.
 
+## 3b. Next slices after 2.4.0 (2026-10-18)
+
+Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md)): HF should become a one-stop shop for future games; the no-quantification rule stands (nothing about the ruh is computed), and science directions and capabilities HF lacks are in scope. Ordered by value to games. "Engine 2.5" means the next engine bump; each item ships opt-in with tests, a headless control and exact legacy continuation. Review this list by 2026-11-01.
+
+| Item | What | Target |
+|---|---|---|
+| Future bodily state in prospection | A game reported that a person cannot anticipate "I'll be too tired on the descent". Extend `prospection/` route valuation with a pure forecast of fatigue, hunger and sleep pressure at the successor's start (reusing `body/` readers and `nextBodyThreshold`), so a route that ends in exhaustion costs what it will cost. No general planner | Engine 2.5 |
+| Muhasaba (reconciliation §7) | Evening review that revises a method, commitment or response after failure; fills "reflection that revises" | Engine 2.5 |
+| Multi-step planning (bounded) | Chains of two or three received or known routes with waiting cost; the most requested missing faculty | Engine 2.6 |
+| Sabr and shukr as appraisal styles | Reappraisal and gratitude in `affect/`, attentional and regulatory effects only | Engine 2.6 |
+| Present bias and temporal discounting | Person-level discount style over the 2.3.0 temporal goals | Engine 2.6 |
+| The other's view of me | Impressions both ways; a missed promise costs standing with the promisee | Engine 2.6 |
+| Qalb lens | Read-only narration lens over attention, conviction, mood and trust (no scalar) | 2.x (behaviour-neutral) |
+| Promptings follow-ups | Chronicle lines in the reading's vocabulary; prompts against open abstention windows (they veto today and carry no term); upbringing setting the reading | 2.x / engine 2.5 |
+| Held fitra and purpose | Life purpose and vocation as a held self-understanding (reconciliation §7) | unscheduled, review 2026-11-15 |
+| Culture as learned practices | Norm diffusion and consensus between people | unscheduled, review 2026-11-15 |
+
 ## 4. Example games
 
 Each game doc ends with its deferred list; the games are graduated and none is scheduled.

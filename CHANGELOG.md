@@ -12,6 +12,17 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.4.0] - 2026-10-18
+
+Engine: 2.4.0. Adds opt-in promptings and turning away, the first slice reconciling the Islamic understanding of the human with current science as interpretations people hold. Engine 2.3.0 saves migrate by a version stamp; persons without the slice continue exactly (full-state digests match npm 2.3.0 with only the engine stamp normalized).
+
+- New module `promptings/` owning optional `Person.promptings`: `enablePromptings(p, spec)` or `PersonSpec.enable.promptings`. A prompt is a noticed pull (habit, emotion, need, host `temptation` tag) toward an option a held norm or goal opposes. It is recorded as `assented`, `turned` or `passed` and is never a breach or an intention; only an assented, finished act reaches the conscience record.
+- Practised responses (`refuge`, `redirect`, `leave`) add a bounded `promptings:turn` term, absent at survival desperation. Practice grows with use and halves over 60 days of disuse. No RNG is drawn.
+- Held readings per person (`whisper`, `inclination`, `intrusion`, `fault`, `none`) with provenance. The first three and `none` give identical decisions and differ in vocabulary only. `fault` (scrupulous) adds guilt at the prompt; an optional `echoRate` recurrence term is a labelled assumption, off by default.
+- Read-only lenses: `promptingsReading(p)`, `promptingLine`, and `nafsReading(p)` (the three Qurʾanic descriptions with evidence, never a level).
+- Headless control `packages/human/examples/promptings-control.ts`: no response, practised redirect, `fault`, and a fixed penalty at two strengths over 60 days.
+- Scope excludes: the source of any thought, a measure of faith, spiritual rank, reward for resisting, clinical OCD, abstention-window prompts and chronicle lines (roadmap).
+
 ## [2.3.0] - 2026-10-17
 
 Engine: 2.3.0. Adds opt-in expected completion valuation and bounded received consequences. Engine 2.2.0 saves migrate by a version stamp; old optional method records remain intact.

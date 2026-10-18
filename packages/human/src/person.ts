@@ -83,6 +83,7 @@ import {
 import { decide as cognitionDecide, desperationOf, scoreAll } from './cognition/index.ts';
 import {
   createConscience,
+  guiltLoad,
   heldNorms,
   normVeto,
   recordDeed,
@@ -115,6 +116,7 @@ import {
   urgencyOf,
 } from './needs/index.ts';
 import { widow } from './partnering/index.ts';
+import { enablePromptings, type NafsPattern, nafsPatterns, notePromptings } from './promptings/index.ts';
 import { consumeConsequences, pruneConsequences, receiveConsequences } from './prospection/index.ts';
 import {
   enableSkillRetention,
@@ -302,6 +304,7 @@ export function createPerson(spec: PersonSpec): Person {
   if (on?.yearbook) enableYearbook(p);
   if (on?.character) enableCharacterChange(p);
   if (on?.skillRetention) enableSkillRetention(p);
+  if (on?.promptings) enablePromptings(p, on.promptings);
   return p;
 }
 
@@ -986,7 +989,7 @@ export function decide(
   p.nextDecision += 1;
   const review = p.activity !== null;
   if (review) ctx.quiet = true;
-  const { record, needDeltas, command: co } = cognitionDecide(p, list, ctx);
+  const { record, needDeltas, command: co, prompts } = cognitionDecide(p, list, ctx);
   if (review) record.review = true;
   const interruptReason = opts.interrupt ?? p.activity?.interrupt?.reason;
   if (interruptReason !== undefined) record.interrupt = interruptReason;
@@ -997,6 +1000,11 @@ export function decide(
   const resolutions = resolutionsOf(record);
   const continuing =
     review && (record.chosenAffordanceId === null || record.chosenAffordanceId === p.activity?.affordanceId);
+  // Promptings (opt-in): a review that keeps the running activity is not a new decision point for a prompt.
+  if (prompts && !continuing) {
+    const noted = notePromptings(p, prompts, record.chosenAffordanceId, p.now);
+    if (noted.guilt > 0) feel(p, 'guilt', noted.guilt, 'prompting', p.now);
+  }
   for (const res of resolutions) {
     res.says = voiceLine(p, res, record.id);
     if (res.verdict === 'complied' && !continuing) {
@@ -1582,4 +1590,15 @@ export function setRetention(p: Person, retention: Retention): void {
   const keep = traceLimit(p);
   if (p.trace.length > keep) p.trace.splice(0, p.trace.length - keep);
   trimChronicle(p);
+}
+
+/**
+ * The nafs lens (2.4.0, read-only; see `promptings/` SCOPE): the three Qur'anic descriptions of one self (12:53,
+ * 75:2, 89:27), each with the matching evidence in existing state. Descriptions, never a level or a rank.
+ */
+export function nafsReading(p: Person): NafsPattern[] {
+  let guilt = 0;
+  for (const e of p.affect.emotions)
+    if (e.id === 'guilt' && e.cause !== 'prompting') guilt = Math.max(guilt, e.intensity);
+  return nafsPatterns(p, { guiltLoad: guiltLoad(p), guilt });
 }

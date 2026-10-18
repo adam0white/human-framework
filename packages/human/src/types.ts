@@ -895,7 +895,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.3.0';
+export const ENGINE_VERSION = '2.4.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -1072,6 +1072,8 @@ export interface Person {
   methods?: MethodsState;
   /** Received future consequences, absent until attended testimony supplies them. */
   prospection?: ProspectionState;
+  /** Noticed promptings and practised turnings-away (2.4.0, opt-in via `enablePromptings`). Owned by `promptings/`. */
+  promptings?: PromptingsState;
   /** Practice consolidation (1.8.0, opt-in via `enableSkillRetention`). Owned by `skills/`. */
   skillRetention?: { consolidationHours: number };
   habits: Habit[];
@@ -1352,7 +1354,8 @@ export interface SuggestionResolution {
 export interface Term {
   /** 'need:food', 'norm:salah', 'commitment:c3', 'commitment' (promise inertia of the running activity),
    *  'goal:g1', 'habit', 'emotion:fear:risky' (emotion id, then the tag it acts through), 'effort', 'risk',
-   *  'suggestion:player', 'social:p2', 'expectation', 'autonomy' (reactance to a pushing voice) */
+   *  'suggestion:player', 'social:p2', 'expectation', 'autonomy' (reactance to a pushing voice),
+   *  'promptings:turn' (a practised turning-away), 'promptings:echo' (recurrence under the `fault` reading) */
   source: string;
   value: number;
 }
@@ -1431,7 +1434,70 @@ export interface PersonSpec {
    * Long-run faculties to turn on at creation (2.1): the same as calling `enableGists`, `enableYearbook`,
    * `enableCharacterChange` and `enableSkillRetention` right after `createPerson`. Each is off when absent.
    */
-  enable?: { gists?: boolean; yearbook?: boolean; character?: boolean; skillRetention?: boolean };
+  enable?: {
+    gists?: boolean;
+    yearbook?: boolean;
+    character?: boolean;
+    skillRetention?: boolean;
+    /** Promptings and turning away (2.4.0): the same as `enablePromptings(p, spec)` after creation. */
+    promptings?: PromptingsSpec;
+  };
+}
+
+// ---------------------------------------------------------------------------------------------
+// Promptings (2.4.0, `promptings/`)
+// ---------------------------------------------------------------------------------------------
+
+/**
+ * How a person understands their own unwanted inner pulls (a held reading, set by the host, with provenance).
+ * `whisper`, `inclination` and `intrusion` share mechanics and differ only in vocabulary; `fault` (the scrupulous
+ * reading) adds guilt at the prompt itself; `none` is neutral vocabulary. See research/reconciliation.md §5.
+ */
+export type PromptingReading = 'whisper' | 'inclination' | 'intrusion' | 'fault' | 'none';
+
+/** A practised turning-away: seeking refuge, redirecting attention, or simply leaving the thought. */
+export type PromptingResponseKind = 'refuge' | 'redirect' | 'leave';
+
+export interface PromptingResponse {
+  id: string;
+  kind: PromptingResponseKind;
+  /** Skill-like practice 0..1 as of `lastUsedAt`; it decays slowly with disuse. */
+  practice: Unit;
+  lastUsedAt: Minute;
+}
+
+export interface PromptingRecord {
+  at: Minute;
+  action: string;
+  affordanceId: string;
+  /** The strongest pull: 'habit', 'emotion:*', 'need:*', 'promptings:echo' or 'host' (a `temptation` tag). */
+  source: string;
+  /** The opposing term: 'norm:x' or 'goal:g'. */
+  opposedBy: string;
+  outcome: 'passed' | 'turned' | 'assented';
+  /** The response that was practised at this prompt, if any. */
+  responseId?: string;
+}
+
+export interface PromptingsState {
+  reading: PromptingReading;
+  /** Provenance of the reading (upbringing, a teacher, a book id), as for held norms. */
+  readingSource?: string;
+  responses: PromptingResponse[];
+  /** Recent prompts, oldest first, bounded (`PROMPTINGS_DEFAULTS.maxRecent`). */
+  recent: PromptingRecord[];
+  /** Recurrence per action under the `fault` reading (an off-by-default assumption; see `echoRate`). */
+  echo: Record<string, { level: Unit; at: Minute }>;
+  /** Echo gained per prompt under `fault`. Default 0: the recurrence term is a host-set assumption (P3 contested). */
+  echoRate: number;
+}
+
+/** What a host hands `enablePromptings`. */
+export interface PromptingsSpec {
+  reading?: PromptingReading;
+  readingSource?: string;
+  responses?: { id: string; kind: PromptingResponseKind; practice?: Unit }[];
+  echoRate?: number;
 }
 
 // ---------------------------------------------------------------------------------------------
