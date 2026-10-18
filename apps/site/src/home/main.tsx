@@ -564,6 +564,23 @@ function Home() {
               </span>
             </div>
           </a>
+          <nav className="notebooks" aria-label="Other games built on HF">
+            <h3>Other notebooks</h3>
+            <ul>
+              <li>
+                <a href="https://rope.adamwhite.work">The Rope</a> <span className="notebook-new">new</span>
+                <span className="notebook-note">a climb where the body has to last the descent</span>
+              </li>
+              <li>
+                <a href="https://neighbours.adamwhite.work">Neighbours</a>
+                <span className="notebook-note">a town of 208 HF people</span>
+              </li>
+              <li>
+                <a href="https://repair.adamwhite.work">Small Works</a>
+                <span className="notebook-note">a repair workshop episode</span>
+              </li>
+            </ul>
+          </nav>
         </section>
       </main>
 

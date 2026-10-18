@@ -898,3 +898,53 @@ code {
 .neighbours-preview {
   margin-top: 24px;
 }
+
+/* Sibling sites, after docs/design-language.md ("other notebooks"): ink on paper, one accent. */
+.notebooks {
+  --nb-paper: #f3ecdd;
+  --nb-ink: #23201b;
+  --nb-ink-soft: #6e665a;
+  --nb-rope: #c2412d;
+  margin-top: 32px;
+  padding: 16px 20px;
+  background: var(--nb-paper);
+  color: var(--nb-ink);
+  border: 1.5px solid var(--nb-ink);
+  border-radius: 3px;
+  font-family: Literata, Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  .notebooks {
+    --nb-paper: #1e1b16;
+    --nb-ink: #e8dfcc;
+    --nb-ink-soft: #9a9080;
+    --nb-rope: #e2614a;
+  }
+}
+.notebooks h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+.notebooks ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.notebooks a {
+  color: var(--nb-ink);
+  font-weight: 600;
+  text-decoration-color: var(--nb-rope);
+  text-underline-offset: 3px;
+}
+.notebook-new {
+  color: var(--nb-rope);
+  font-size: 0.85em;
+  margin-left: 4px;
+}
+.notebook-note {
+  display: block;
+  color: var(--nb-ink-soft);
+  font-size: 0.9em;
+}
