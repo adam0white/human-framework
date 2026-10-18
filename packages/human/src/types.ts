@@ -609,6 +609,8 @@ export interface Goal {
   status: 'active' | 'achieved' | 'abandoned';
   adoptedAt: Minute;
   deadline?: Minute;
+  /** Opt-in expected completion valuation; deadline remains urgency, never a cutoff. */
+  temporal?: { halfLifeMinutes: number };
   /** Last minute the goal was advanced (or adopted); neglect is counted from here. */
   lastAdvancedAt?: Minute;
   /** Importance before neglect decay; `revisePurposes` recomputes `importance` from it. */
@@ -857,7 +859,8 @@ export interface Activity {
 
 export const PERSON_SCHEMA = 'human/person@1';
 /**
- * Current: 2.2.0 (2026-10-14): method evidence grades each action independently.
+ * Current: 2.3.0 (2026-10-17): optional temporal goals and received consequences.
+ * 2.2.0 (2026-10-14): method evidence grades each action independently.
  * Successful alternatives no longer count as failures of another action. Person state shape is unchanged.
  * 2.1.0 saves migrate by stamping the version.
  *
@@ -892,7 +895,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.2.0';
+export const ENGINE_VERSION = '2.3.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -1000,6 +1003,54 @@ export interface MethodsState {
   context?: { id: string; at: Minute; cues: MethodCue[] };
 }
 
+/** Exact current-action identity; omitted target/place match only omitted values. */
+export interface ConsequenceAction {
+  action: string;
+  targetId?: EntityId;
+  placeId?: EntityId;
+}
+
+/** A received conditional opportunity, never another person's consent or an actual outcome. */
+export interface ReceivedConsequence {
+  id: string;
+  revision: number;
+  trigger: ConsequenceAction;
+  successor: ConsequenceAction & {
+    duration: number;
+    effort: Unit;
+    focus?: Unit;
+    materialCost?: number;
+  };
+  availableFrom: Minute;
+  /** Latest permitted successor completion, inclusive. */
+  availableUntil: Minute;
+  expiresAt: Minute;
+  /** P(access | trigger completes successfully), not consent. */
+  chance: Unit;
+  confidence: Unit;
+}
+
+export interface ConsequenceRevision {
+  sourceId: EntityId;
+  id: string;
+  revision: number;
+  receivedAt: Minute;
+}
+
+export interface RetainedConsequence extends ReceivedConsequence {
+  sourceId: EntityId;
+  channel: 'told';
+  receivedAt: Minute;
+  /** Own completed trigger; does not establish access or goal progress. */
+  triggeredAt?: Minute;
+}
+
+/** Optional person-owned received knowledge. Deduplication lasts only within bounded revision memory. */
+export interface ProspectionState {
+  entries: RetainedConsequence[];
+  revisions: ConsequenceRevision[];
+}
+
 export interface Person {
   schema: typeof PERSON_SCHEMA;
   /** Engine version that last wrote this state. */
@@ -1019,6 +1070,8 @@ export interface Person {
   skills: Record<string, Skill>;
   /** Acquired conditional method evidence and current received cues; absent until used. */
   methods?: MethodsState;
+  /** Received future consequences, absent until attended testimony supplies them. */
+  prospection?: ProspectionState;
   /** Practice consolidation (1.8.0, opt-in via `enableSkillRetention`). Owned by `skills/`. */
   skillRetention?: { consolidationHours: number };
   habits: Habit[];
@@ -1163,6 +1216,9 @@ export interface Percept {
    * attended percept the watcher learns a little toward the model (`skills.learnByWatching`). Absent: nothing is learned.
    */
   demonstrates?: { skill: string; level: Unit; minutes: number; domain?: LearningDomain };
+  /** At most four additions/withdrawals combined, acquired atomically only in attended testimony. */
+  consequences?: readonly ReceivedConsequence[];
+  withdrawConsequences?: readonly { id: string; revision: number }[];
 }
 
 /**

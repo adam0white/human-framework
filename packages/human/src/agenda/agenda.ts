@@ -48,6 +48,7 @@
 // The bundled catalog is only the default; a host with its own catalog passes it (`World.catalog`).
 import { DEFAULT_NORMS } from '../conscience/catalog.ts';
 import { clamp01, dayOf, dpow, hasNumbers, isObj } from '../core/index.ts';
+import { expectedEffect } from '../memory/index.ts';
 import type {
   Affordance,
   AgendaState,
@@ -168,8 +169,25 @@ function copyArrays<T extends Pick<Commitment, 'actions' | 'violatedBy' | 'exemp
  * Spec commitments keep a given id; entries without one get a free `c<n>` id after all given ids are placed, so
  * `prayerWindows()` output can be passed straight into `PersonSpec.commitments`.
  */
+/** Copy valid temporal settings and drop invalid ones at every agenda entry point. */
+function sanitizeGoalTemporal(g: Goal): void {
+  const t = g.temporal as unknown;
+  if (
+    t !== undefined &&
+    !(
+      isObj(t) &&
+      typeof t.halfLifeMinutes === 'number' &&
+      Number.isFinite(t.halfLifeMinutes) &&
+      t.halfLifeMinutes > 0
+    )
+  )
+    delete g.temporal;
+  else if (g.temporal) g.temporal = { halfLifeMinutes: g.temporal.halfLifeMinutes };
+}
+
 /** Restore-time check of `agenda.lapse` (1.7.0), in place: a malformed one is dropped (absent means none). @internal */
 export function sanitizeAgenda(a: AgendaState): void {
+  for (const g of a.goals) if (isObj(g)) sanitizeGoalTemporal(g);
   const lapse = a.lapse as unknown;
   if (lapse !== undefined && !(isObj(lapse) && hasNumbers(lapse, 'since', 'missed'))) delete a.lapse;
 }
@@ -208,6 +226,7 @@ export function createAgenda(
       lastAdvancedAt: now,
     });
   }
+  sanitizeAgenda(state);
   return state;
 }
 
@@ -524,7 +543,41 @@ function deadlinePressure(g: Goal, now: Minute): number {
   return 1 + AGENDA_DEFAULTS.goalDeadlineBoost * clamp01((now - g.adoptedAt) / span);
 }
 
+/** Shared existing amount and urgency reader; no future knowledge is consulted here. @internal */
+export function goalValue(g: Goal, aff: Affordance, now: Minute): number {
+  const amount = goalAmount(g, aff);
+  return amount > 0
+    ? g.importance * clamp01(amount * AGENDA_DEFAULTS.goalAmountGain) * deadlinePressure(g, now)
+    : 0;
+}
+
+/** Opt-in completion-time and success estimate, shared by direct and received routes. @internal */
+export function temporalGoalValue(
+  p: Person,
+  g: Goal,
+  aff: Affordance,
+  now: Minute,
+  completion: Minute,
+): number {
+  const base = goalValue(g, aff, now);
+  return g.temporal
+    ? base *
+        expectedEffect(p, aff).successRate *
+        dpow(0.5, Math.max(0, completion - now) / g.temporal.halfLifeMinutes)
+    : base;
+}
+
 export function agendaTerms(p: Person, aff: Affordance, now: Minute): Term[] {
+  return agendaTermsWithGoalEstimates(p, aff, now);
+}
+
+/** Internal route integration; hosts cannot provide goal overrides through the public API. @internal */
+export function agendaTermsWithGoalEstimates(
+  p: Person,
+  aff: Affordance,
+  now: Minute,
+  goalOverrides?: ReadonlyMap<string, number>,
+): Term[] {
   const d = AGENDA_DEFAULTS;
   const terms: Term[] = [];
   for (const c of p.agenda.commitments) {
@@ -554,6 +607,12 @@ export function agendaTerms(p: Person, aff: Affordance, now: Minute): Term[] {
   }
   for (const g of p.agenda.goals) {
     if (g.status !== 'active') continue;
+    const override = goalOverrides?.get(g.id);
+    if (override !== undefined || g.temporal) {
+      const value = override ?? temporalGoalValue(p, g, aff, now, now + Math.max(0, aff.duration));
+      if (value > 0) terms.push({ source: `goal:${g.id}`, value });
+      continue;
+    }
     const amount = goalAmount(g, aff);
     if (amount <= 0) continue;
     const value = g.importance * clamp01(amount * d.goalAmountGain) * deadlinePressure(g, now);
@@ -684,6 +743,7 @@ export function adoptGoal(
     adoptedAt: now,
     lastAdvancedAt: now,
   };
+  sanitizeGoalTemporal(goal);
   p.agenda.goals.push(goal);
   return goal;
 }

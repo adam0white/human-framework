@@ -344,3 +344,60 @@ clearMethodContext(learner); // when leaving or switching the task
 ```
 
 Import these functions from the package. Rules/evidence live in optional `Person.methods` and survive snapshots. Current cues expire after 120 minutes. A stable demonstration id avoids counting the same example twice within the retained 256-example history, even after its rule or evidence is evicted. Once an id has left both that history and retained rule evidence, it can be admitted again. Missing observations cannot satisfy a condition. Failed demonstrations reduce support for that action. Successful alternatives retain their own support; ordinary cognition weighs the supported offers alongside other motives. A successful lecture does not certify reliable execution. [The routing control](examples/method-control.ts) demonstrates changed teaching, withheld teaching, a scalar-skill control and acquired-state ablation with two methods and an exception. [The alternatives control](examples/method-alternatives-control.ts) demonstrates two independently successful procedures under the same observations, failed practice, hunger and exact restore.
+
+
+## Receiving a possible future route
+
+The pending 2.3.0 increment lets an attended explanation connect one current action to one possible successor. The host supplies the explanation the person received, not a private success bonus.
+
+```ts
+import {
+  type Affordance, type ReceivedConsequence,
+  consequenceEvidence, createPerson, decide, perceive,
+} from '@adam0white/human-framework';
+
+const person = createPerson({
+  id: 'courier', name: 'Courier', seed: 19, now: 600,
+  bornAt: -30 * 365 * 1440, sex: 'female',
+  goals: [{
+    id: 'delivery', label: 'Deliver the parcel', serves: ['achievement'],
+    advancedBy: [{ action: 'deliver', amount: 1 }], importance: 0.8,
+    temporal: { halfLifeMinutes: 30 },
+  }],
+});
+const route: ReceivedConsequence = {
+  id: 'access-window', revision: 0,
+  trigger: { action: 'ask-access', targetId: 'keeper' },
+  successor: { action: 'deliver', duration: 20, effort: 0.1 },
+  availableFrom: 620, availableUntil: 680, expiresAt: 800,
+  chance: 0.8, confidence: 0.9,
+};
+perceive(person, [{
+  at: 600, channel: 'told', kind: 'explanation', actorId: 'keeper',
+  targetId: person.id, salience: 1,
+  summary: 'If your request succeeds, this route may become available.',
+  consequences: [route],
+}]);
+const request: Affordance = {
+  id: 'ask', action: 'ask-access', label: 'Request access', targetId: 'keeper',
+  duration: 10, effort: 0.1, advertises: {},
+};
+const offers: Affordance[] = [request,
+  { id: 'direct', action: 'deliver', label: 'Deliver directly',
+    duration: 180, effort: 0.1, advertises: {} },
+];
+const decision = decide(person, offers);
+const evidence = consequenceEvidence(person, request); // pure; no RNG consumed
+```
+
+`consequences` and `withdrawConsequences: [{ id, revision }]` are accepted only on attended `told` percepts with an explicit `actorId`. Trigger action, target and place match exactly; an omitted target/place matches only an omitted value. `availableUntil` is the latest successor **completion**, inclusive. The whole successor must fit after the current action and `availableFrom`.
+
+`Goal.temporal.halfLifeMinutes` must be finite and positive. It enables expected completion valuation for direct actions **as well as** received successors: existing goal value × estimated action success × time discount. Existing `deadline` remains urgency, never a hard cutoff. Keep the same temporal goal in knowledge-intact, withheld and removed-knowledge controls; compare temporal-off separately. Legacy goals retain their prior formula.
+
+The received access estimate is current-action success × `chance` × `confidence` × current source trust. `chance` means access conditional on successful asking; it does not establish consent. One coherent route may contribute to goals. Expected successor effort and material costs use the same readers as direct actions, are charged once, and remain undiscounted and unscaled by maturity. A favorable explanation need not win against other motives.
+
+Only actual terminal outcomes advance terminal goals. Finishing one's own request consumes matching received opportunities even if a refusal has not been heard. It grants no access and executes no successor. The host still decides physical availability, reports the other person's actual response, and filters repeated or impossible requests. Do not mark asking as `advances` merely to make the route attractive.
+
+Knowledge lives in optional `Person.prospection` and survives snapshot/restore. A percept admits at most four additions/withdrawals combined, atomically. Invalid entries or duplicate source/id identities reject the entire batch. Equal/lower revisions do not reinforce or refresh; a higher revision replaces. There are at most 16 entries and 64 revision records. Oldest entries can be evicted while their revision records remain; a batch requiring more still-valid revision records is rejected. Entries and revision memory expire within seven days. Deduplication is bounded, not a durable audit. The pure query exposes retained entries, present feasibility and retained revisions.
+
+[The frozen control](examples/received-consequences.ts) publishes useful, late, costly, uncertain, withheld, removed-knowledge, removed-goal, temporal-off and refused arms in two renamed domains. This faculty does not search action graphs, predict future body state, price all waiting opportunities or guarantee consent or success. Its numerical bounds and control parameters are engineering assumptions.

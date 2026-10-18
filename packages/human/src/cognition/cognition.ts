@@ -25,7 +25,7 @@
  * `safety` need: `security` is a value, not a need, and no need is added.
  */
 import { emotionLevel, inBreak } from '../affect/index.ts';
-import { agendaTerms } from '../agenda/index.ts';
+import { agendaTermsWithGoalEstimates } from '../agenda/index.ts';
 import { trustOf } from '../beliefs/index.ts';
 import { normTerms } from '../conscience/index.ts';
 import { clamp01, cmpStr, dexp, minuteOfDay, round } from '../core/index.ts';
@@ -34,6 +34,7 @@ import { expectedEffect } from '../memory/index.ts';
 import { methodEvidence } from '../methods/index.ts';
 import { urgencyOf } from '../needs/index.ts';
 import { partneringTerms } from '../partnering/index.ts';
+import { receivedGoalRoute } from '../prospection/index.ts';
 import { companionSteadiness, socialTerms } from '../social/index.ts';
 import type {
   Affordance,
@@ -259,6 +260,33 @@ export function socialContext(ctx: ConsiderContext): SocialContext {
   };
 }
 
+/** Same perceived-body effort estimate for actual offers and received successors. @internal */
+export function effortValue(p: Person, aff: Affordance, ctx: ConsiderContext): number {
+  const K = COGNITION_DEFAULTS;
+  const per = ctx.body.perceived;
+  const effort = clamp01(aff.effort);
+  const focus = clamp01(aff.focus ?? 0);
+  // A cued habit eases initiation and attention (N4: the depleted fall back on habits), not physical exertion.
+  const ease =
+    p.habits.length === 0
+      ? 1
+      : habitEase(p, aff, { ...ctx.habit, placeId: aff.placeId ?? ctx.habit.placeId });
+  const effortCost =
+    (effort * K.effortBase + focus * per.sleepiness) * ease +
+    effort * per.fatigue * (1 - clamp01(p.body.fitness));
+  return -K.effortScale * effortCost;
+}
+
+/** Same material valuation for actual offers and received successor costs. @internal */
+export function materialValue(p: Person, material: number, scarcity: number): number {
+  const K = COGNITION_DEFAULTS;
+  const v = p.values;
+  const weight = (v.security + v.achievement + v.power) / 3;
+  const scale = K.materialScale * (1 - K.scarcityScaleShrink * scarcity);
+  const sat = Math.sign(material) * (1 - dexp(-Math.abs(material) / scale));
+  return K.materialWeight * sat * 2 * weight * (1 + K.scarcityMaterialGain * scarcity);
+}
+
 /** Score one option. Pure apart from reads; terms are rounded for stable snapshots. */
 export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Considered {
   const K = COGNITION_DEFAULTS;
@@ -323,7 +351,19 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     }
   }
   const maturity = clamp01(ctx.mods.maturity);
-  for (const t of agendaTerms(p, aff, ctx.now)) push(t.source, t.value * (0.5 + 0.5 * maturity));
+  const maturityScale = 0.5 + 0.5 * maturity;
+  const received = receivedGoalRoute(
+    p,
+    aff,
+    ctx.now,
+    maturityScale,
+    (successor) =>
+      effortValue(p, successor, ctx) +
+      (successor.material ? materialValue(p, successor.material, scarcity) : 0),
+  );
+  for (const t of agendaTermsWithGoalEstimates(p, aff, ctx.now, received?.goals))
+    push(t.source, t.value * maturityScale);
+  if (received) push(received.cost.source, received.cost.value);
 
   // Habit: cue-matched automaticity (cued by the option's own place), stronger before planning matures.
   const habit =
@@ -376,19 +416,8 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   }
 
   // Effort and mental load, read from the perceived body.
-  const per = ctx.body.perceived;
-  const effort = clamp01(aff.effort);
-  const focus = clamp01(aff.focus ?? 0);
-  // A cued habit eases initiation and attention (N4: the depleted fall back on habits), not physical exertion.
-  const ease =
-    p.habits.length === 0
-      ? 1
-      : habitEase(p, aff, { ...ctx.habit, placeId: aff.placeId ?? ctx.habit.placeId });
-  const effortCost =
-    (effort * K.effortBase + focus * per.sleepiness) * ease +
-    effort * per.fatigue * (1 - clamp01(p.body.fitness));
-  if (effortCost > 0) push('effort', -K.effortScale * effortCost);
-
+  const effort = effortValue(p, aff, ctx);
+  if (effort < 0) push('effort', effort);
   // Risk: chance × severity × (fear + emotionality).
   if (aff.risk && aff.risk.chance > 0 && aff.risk.severity > 0) {
     const fear = emotionLevel(p, 'fear');
@@ -403,13 +432,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   }
 
   // Material: saturating value of host units, scaled by security/achievement/power.
-  if (aff.material) {
-    const v = p.values;
-    const weight = (v.security + v.achievement + v.power) / 3;
-    const scale = K.materialScale * (1 - K.scarcityScaleShrink * scarcity);
-    const sat = Math.sign(aff.material) * (1 - dexp(-Math.abs(aff.material) / scale));
-    push('material', K.materialWeight * sat * 2 * weight * (1 + K.scarcityMaterialGain * scarcity));
-  }
+  if (aff.material) push('material', materialValue(p, aff.material, scarcity));
 
   // Precommitments inside their daily window.
   const mod = minuteOfDay(ctx.now);

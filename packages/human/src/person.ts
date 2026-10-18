@@ -115,6 +115,7 @@ import {
   urgencyOf,
 } from './needs/index.ts';
 import { widow } from './partnering/index.ts';
+import { consumeConsequences, pruneConsequences, receiveConsequences } from './prospection/index.ts';
 import {
   enableSkillRetention,
   learnByWatching,
@@ -507,6 +508,7 @@ export function tick(p: Person, now: Minute): void {
   if (now <= p.now) return;
   if (!p.body.alive) {
     p.now = now;
+    pruneConsequences(p);
     return;
   }
   const seg = PERSON_DEFAULTS.maxSegment;
@@ -521,13 +523,16 @@ export function tick(p: Person, now: Minute): void {
     // A minute so large that the grid step rounds away cannot advance (security review H2): stop, never spin.
     if (!(end > p.now)) {
       p.now = now;
+      pruneConsequences(p);
       return;
     }
     advanceSegment(p, end - p.now, load, active && act ? act.affordance : undefined);
     p.now = end;
+    pruneConsequences(p);
     if (!p.body.alive) {
       p.activity = null;
       p.now = now;
+      pruneConsequences(p);
       return;
     }
     // Discrete bookkeeping runs only on grid boundaries, so it happens at the same minutes whatever the
@@ -668,6 +673,7 @@ export function skip(p: Person, to: Minute): void {
   p.activity = null;
   skipBody(p, to);
   p.now = to;
+  pruneConsequences(p);
   skipAffect(p, to);
   advanceAgenda(p, to);
   // Lasting gists (1.8.0, opt-in): episodes now past the horizon fold into gists.
@@ -686,6 +692,7 @@ function socialKindOf(kind: string): SocialEventKind | undefined {
 }
 
 function perceiveOne(p: Person, pc: Percept): void {
+  receiveConsequences(p, pc);
   const at = Math.min(Math.max(pc.at, p.affect.lastUpdated), p.now);
   const actor = pc.actorId;
   const target = pc.targetId;
@@ -1394,6 +1401,7 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
   }
   const prev = lastAction(p);
   if (completed) {
+    consumeConsequences(p, aff);
     const hctx: { now: Minute; placeId?: string; lastAction?: string } = { now };
     if (aff.placeId !== undefined) hctx.placeId = aff.placeId;
     if (prev !== undefined) hctx.lastAction = prev;

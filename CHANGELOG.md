@@ -12,6 +12,17 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.3.0] - 2026-10-17
+
+Engine: 2.3.0. Adds opt-in expected completion valuation and bounded received consequences. Engine 2.2.0 saves migrate by a version stamp; old optional method records remain intact.
+
+- An attended `told` percept can carry `consequences` or `withdrawConsequences`. Source-labelled knowledge lives in optional `Person.prospection`, with exact action/target/place matching, completion windows, revisions, expiry, consumption and conservative restore. There is no inferred consent or automatic execution.
+- `Goal.temporal.halfLifeMinutes` explicitly enables time **and action-success** valuation for direct actions as well as one described successor. Existing `deadline` remains urgency, not a cutoff. Without temporal opt-in, existing goal formulas and decisions remain unchanged.
+- One coherent received route can contribute to active goals. Expected successor effort and material cost use the same readers as actual offers, remain undiscounted and are charged once without maturity scaling. Routes compete in the rounded units emitted in ordinary decisions. Own completed requests consume their opportunity without advancing terminal goals.
+- State retains at most 16 opportunities and 64 source/id revision records. A batch that would exceed still-valid revision capacity is rejected atomically. Deduplication is bounded to seven days; the query is current retained evidence, not a durable audit.
+- A frozen domain-neutral control covers useful, late, costly, uncertain, withheld, removed-knowledge, removed-goal, temporal-off and refused arms in two renamed domains. Legacy continuation digests compare full person state against npm 2.2.1 with only the engine stamp normalized.
+- Scope excludes graph search, waiting opportunity cost, future body prediction, goal synthesis and guarantees of consent or outcome. Favorable control parameters are explicit engineering premises, not calibrated human estimates.
+
 ## [2.2.1] - 2026-10-14
 
 Engine: 2.2.0. Corrects acquired method evidence. The person state shape is unchanged; engine 2.1.0 saves migrate by a version stamp that preserves optional method records.
