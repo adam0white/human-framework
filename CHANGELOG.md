@@ -12,6 +12,17 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.6.0] - 2026-10-18
+
+Engine: 2.6.0. Adds an opt-in slow fatigue store and applies an open fast's hunger damping in the bodily forecast. The store is optional state (`body.depletion`) that starts absent; engine 2.5.0 saves migrate by a version stamp. Offers without `followedBy` decide exactly as before, and so does any person without the store who is not fasting; a fasting person's `followedBy` offers now see damped hunger.
+
+- `body.depletion` (opt-in via `enableFatigueStore(p)` or `enable: { fatigueStore: true }`): accumulated exertion that fills while effort stays above `depletionFloor`, more slowly for fit people, and recovers with rest and faster with sleep (scaled by `recovery`). It raises perceived fatigue and so lowers capacity. Five new required `BodyParams` keys: hosts that build `BodyParams` by hand must spread `BODY_DEFAULTS`.
+- The bodily forecast carries the store forward, so hours of climbing now make a declared descent weigh.
+- The forecast reads the body as the person perceives it under an open fast: hunger is damped, thirst is not (N2b).
+- Control arms `store-morning` and `store-undeclared` in both domains.
+- Replay review: the three site games do not enable the store and declare no `followedBy`; their regression tests pass unchanged, so no behaviour-version migration is needed.
+- Scope excludes injury, route search, planned rests and separate muscle/glycogen compartments.
+
 ## [2.5.0] - 2026-10-18
 
 Engine: 2.5.0. Adds a bodily forecast over known follow-on exertion. The person state shape is unchanged; engine 2.4.0 saves migrate by a version stamp. Offers without the new field decide exactly as before.

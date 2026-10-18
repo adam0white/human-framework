@@ -56,6 +56,7 @@ import {
   consume,
   createBody,
   downedAllows,
+  enableFatigueStore,
   expose,
   injure,
   nextBodyThreshold,
@@ -311,6 +312,7 @@ export function createPerson(spec: PersonSpec): Person {
   if (on?.yearbook) enableYearbook(p);
   if (on?.character) enableCharacterChange(p);
   if (on?.skillRetention) enableSkillRetention(p);
+  if (on?.fatigueStore) enableFatigueStore(p);
   if (on?.promptings) enablePromptings(p, on.promptings);
   return p;
 }
@@ -901,6 +903,8 @@ function decisionInputs(
     necessity: opts.necessity ?? true,
     tendencyEmotions: tendencyEmotions(p),
   };
+  const perception = fastingCtx(p);
+  if (perception) ctx.perception = perception;
   if (opts.suggestion) ctx.suggestion = opts.suggestion;
   // Only set when voices were given this way, so single-voice records keep their shape.
   if (opts.suggestions && opts.suggestions.length > 0) ctx.suggestions = [...opts.suggestions];
@@ -1615,6 +1619,6 @@ export function nafsReading(p: Person): NafsPattern[] {
  * first-person line ("I can do it, but I'll be spent for the descent."). Empty spans without `followedBy`.
  */
 export function bodyForecast(p: Person, aff: Affordance): { spans: BodyForecastSpan[]; line: string } {
-  const spans = bodyForecastFor(p, aff, lifeModifiers(p));
+  const spans = bodyForecastFor(p, aff, lifeModifiers(p), fastingCtx(p));
   return { spans, line: forecastLine(spans) };
 }

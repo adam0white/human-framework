@@ -5,7 +5,8 @@
  * One adult chooses between a far point (180 min at effort .8, material 8, then a 180-min return at effort .7)
  * and a near point (60 min at effort .5, material 1, then a 60-min return at effort .5). Arms vary only the
  * body at the start and whether the offers declare the return (`followedBy`): rested in the morning, low on food
- * and water in the morning, the same without the declared return (ablation), and fed at 20:00. The second domain
+ * and water in the morning, the same without the declared return (ablation), fed at 20:00, and (2.6.0) rested
+ * in the morning with the opt-in fatigue store, with and without the declared return. The second domain
  * is a structural rename. Every number is an engineering premise, not an estimate of people.
  */
 import {
@@ -19,7 +20,14 @@ import {
 
 const DAY = 1440;
 type Domain = 'climb' | 'haul';
-const ARMS = ['rested-morning', 'depleted-morning', 'depleted-undeclared', 'fed-evening'] as const;
+const ARMS = [
+  'rested-morning',
+  'depleted-morning',
+  'depleted-undeclared',
+  'fed-evening',
+  'store-morning',
+  'store-undeclared',
+] as const;
 
 function offers(domain: Domain, declared: boolean): [Affordance, Affordance] {
   const n =
@@ -60,12 +68,13 @@ export function runBodyForecastControl(domain: Domain = 'climb') {
       now: 6 * 60,
       bornAt: -30 * 365 * DAY,
       sex: 'female',
+      enable: { fatigueStore: arm.startsWith('store') },
     });
     tick(p, arm === 'fed-evening' ? 20 * 60 : 9 * 60);
     const depleted = arm.startsWith('depleted');
     p.body.satiety = depleted ? 0.35 : 0.9;
     p.body.hydration = depleted ? 0.35 : 0.9;
-    const [far, near] = offers(domain, arm !== 'depleted-undeclared');
+    const [far, near] = offers(domain, !arm.endsWith('undeclared'));
     const forecast = bodyForecast(p, far);
     const record = decide(p, [far, near]);
     return {

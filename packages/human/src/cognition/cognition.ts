@@ -27,6 +27,7 @@
 import { emotionLevel, inBreak } from '../affect/index.ts';
 import { agendaTermsWithGoalEstimates } from '../agenda/index.ts';
 import { trustOf } from '../beliefs/index.ts';
+import type { BodyPerceptionContext } from '../body/index.ts';
 import { normTerms } from '../conscience/index.ts';
 import { clamp01, cmpStr, dexp, minuteOfDay, round } from '../core/index.ts';
 import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
@@ -166,6 +167,8 @@ export interface ConsiderContext {
    * leaves the material and safety terms exactly as without it.
    */
   scarcity?: Unit;
+  /** The body's perception context now (an open fast), for the bodily forecast (2.6.0). */
+  perception?: BodyPerceptionContext;
 }
 
 function voiceTrust(p: Person, voiceId: string): number {
@@ -421,7 +424,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   if (effort < 0) push('effort', effort);
   // Bodily forecast (2.5.0): only offers that declare known follow-on exertion.
   if (aff.followedBy?.length) {
-    const t = bodyForecastTerm(p, aff, ctx.mods);
+    const t = bodyForecastTerm(p, aff, ctx.mods, ctx.perception);
     if (t) push(t.source, t.value);
   }
   // Risk: chance × severity × (fear + emotionality).

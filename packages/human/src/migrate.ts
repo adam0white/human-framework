@@ -8,7 +8,7 @@
  * field of the optional surroundings slice (`ambient.now` → `ambient.percept`) and changes no behaviour (the optional `social.impressions` and `social.reserve`, like `retention`, are optional and start
  * absent in a migrated save); `restore` then fills and sanitizes
  * the slices as for any save. 2.0.0 to 2.1.0 adds optional conditional method state, absent
- * until explicitly used, so existing hosts retain their previous behavior; that step stamps the version. 2.1.0 to 2.2.0 preserves optional method records and stamps the version; successful alternatives now retain independent support. 2.2.0 to 2.3.0 stamps the version; received consequences and temporal goals remain absent unless explicitly supplied. 2.3.0 to 2.4.0 stamps the version; promptings remain absent unless enabled. 2.4.0 to 2.5.0 stamps the version; the bodily forecast reads only offers that declare `followedBy`. A migrated save continues under the current engine's rules: it restores and runs,
+ * until explicitly used, so existing hosts retain their previous behavior; that step stamps the version. 2.1.0 to 2.2.0 preserves optional method records and stamps the version; successful alternatives now retain independent support. 2.2.0 to 2.3.0 stamps the version; received consequences and temporal goals remain absent unless explicitly supplied. 2.3.0 to 2.4.0 stamps the version; promptings remain absent unless enabled. 2.4.0 to 2.5.0 stamps the version; the bodily forecast reads only offers that declare `followedBy`. 2.5.0 to 2.6.0 stamps the version; the fatigue store stays absent unless enabled. A migrated save continues under the current engine's rules: it restores and runs,
  * but it does not reproduce what the old engine would have done next where the rules changed (1.4.0 to 1.5.0
  * changed how standing advice is heard; 1.8.0 to 1.9.0 changed the omission rule). Saves older than 1.4.0 and unknown versions are refused with an error.
  *
@@ -68,6 +68,11 @@ export const MIGRATIONS: Readonly<Record<string, MigrationStep>> = {
     to: '2.0.0',
     note: 'the surroundings field `ambient.now` is renamed `ambient.percept`; per-person retention is optional and starts absent; behaviour unchanged',
     apply: renameAmbient,
+  },
+  '2.5.0': {
+    to: '2.6.0',
+    note: "the fatigue store (body.depletion) is optional and starts absent; the bodily forecast now applies an open fast's hunger damping, which changes only offers that declare followedBy",
+    apply: stamp,
   },
   '2.4.0': {
     to: '2.5.0',

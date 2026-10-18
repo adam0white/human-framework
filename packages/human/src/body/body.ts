@@ -104,6 +104,15 @@ export const BODY_DEFAULTS = {
   exertionRiseHalfLife: 40,
   exertionRecoverHalfLife: 45,
   exertionRecoverHalfLifeAsleep: 25,
+  /** Fatigue store (2.6.0, opt-in): depletion per hour at full effort (× (1 - 0.5 fitness) × (1 - depletion)). */
+  depletionPerHour: 0.3,
+  /** Effort below which the store does not fill and recovers while awake. */
+  depletionFloor: 0.3,
+  /** Half-life of depletion at rest awake and asleep (minutes, divided by the life-course recovery factor). */
+  depletionRestHalfLife: 8 * 60,
+  depletionSleepHalfLife: 3 * 60,
+  /** How much a full store adds to felt fatigue: fatigue = 1 - (1 - exertion)(1 - 0.5 s)(1 - weight × depletion). */
+  depletionFatigueWeight: 1,
   /** Effort above which fitness trains. */
   trainingEffort: 0.4,
   /** Detraining half-life (min) toward fitnessFloor. */
@@ -259,6 +268,13 @@ export function sanitizeBody(b: BodyState, now: Minute): void {
   const span = (x: unknown) => isObj(x) && hasNumbers(x, 'from', 'to');
   if (b.lastSleep !== undefined && !span(b.lastSleep)) delete b.lastSleep;
   if (b.lastDowned !== undefined && !span(b.lastDowned)) delete b.lastDowned;
+  if (b.depletion !== undefined)
+    b.depletion = typeof b.depletion === 'number' && Number.isFinite(b.depletion) ? clamp01(b.depletion) : 0;
+}
+
+/** Turn on the fatigue store (2.6.0): accumulated exertion that recovers with rest and sleep. Idempotent. */
+export function enableFatigueStore(p: Person): void {
+  if (p.body.depletion === undefined) p.body.depletion = 0;
 }
 
 /**
@@ -402,6 +418,18 @@ function subStep(b: BodyState, h: number, load: BodyLoad, mods: LifeModifiers, P
       ? P.exertionRiseHalfLife
       : (asleep ? P.exertionRecoverHalfLifeAsleep : P.exertionRecoverHalfLife) / recovery;
   b.exertion = clamp01(decay(b.exertion, h, hl, target));
+
+  // Fatigue store (2.6.0, opt-in): fills with sustained effort above the floor, empties with rest and sleep.
+  if (b.depletion !== undefined) {
+    const d = clamp01(Number.isFinite(b.depletion) ? b.depletion : 0);
+    if (effortUsed > P.depletionFloor) {
+      const rate = (P.depletionPerHour * (effortUsed - P.depletionFloor)) / (1 - P.depletionFloor);
+      b.depletion = clamp01(d + (rate * (1 - 0.5 * b.fitness) * (1 - d) * h) / 60);
+    } else {
+      const half = (asleep ? P.depletionSleepHalfLife : P.depletionRestHalfLife) / recovery;
+      b.depletion = clamp01(decay(d, h, half, 0));
+    }
+  }
 
   // Fitness: dF/dt = -kd (F - floor) + kt (max - F), exact for constant load.
   const maxFit = clamp01(mods.maxFitness);
@@ -556,7 +584,8 @@ export function readBody(
       params.sleepinessCircadianWeight * (1 - alertness) +
       debtTerm,
   );
-  const fatigueOf = (s: number) => clamp01(1 - (1 - b.exertion) * (1 - 0.5 * s));
+  const store = b.depletion === undefined ? 1 : 1 - params.depletionFatigueWeight * clamp01(b.depletion);
+  const fatigueOf = (s: number) => clamp01(1 - (1 - b.exertion) * (1 - 0.5 * s) * store);
   const fatigue = fatigueOf(sleepiness);
   const hunger = clamp01(1 - b.satiety);
   const thirst = clamp01(1 - b.hydration);
@@ -859,6 +888,7 @@ export function forecastBody(
   mods: LifeModifiers,
   params: BodyParams = BODY_DEFAULTS,
   step = 30,
+  perception?: BodyPerceptionContext,
 ): BodyForecastSpan[] {
   const out: BodyForecastSpan[] = [];
   const sim: Person = { ...p, body: cloneBody(p.body) };
@@ -867,7 +897,7 @@ export function forecastBody(
     // Hard internal cap (a week) so a hostile span cannot stall a decision.
     let left = Math.min(7 * MINUTES_PER_DAY, Math.max(0, Number.isFinite(s.duration) ? s.duration : 0));
     advanceBody(sim, 0, s.load, mods, params);
-    const r0 = readBody(sim, params).perceived;
+    const r0 = readBody(sim, params, perception).perceived;
     for (const k of ['fatigue', 'sleepiness', 'hunger', 'thirst'] as const)
       if (r0[k] > span.worst) {
         span.worst = r0[k];
@@ -878,7 +908,7 @@ export function forecastBody(
       advanceBody(sim, dt, s.load, mods, params);
       sim.now += dt;
       left -= dt;
-      const r = readBody(sim, params).perceived;
+      const r = readBody(sim, params, perception).perceived;
       for (const k of ['fatigue', 'sleepiness', 'hunger', 'thirst'] as const)
         if (r[k] > span.worst) {
           span.worst = r[k];

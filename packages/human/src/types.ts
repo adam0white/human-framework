@@ -101,6 +101,11 @@ export interface BodyState {
   illnesses: Illness[];
   /** Accumulated sleep debt in hours (chronic restriction); under-perceived by the person. */
   sleepDebt: number;
+  /**
+   * Accumulated exertion (2.6.0, opt-in via `enableFatigueStore`): 0..1, rising slowly with sustained effort and
+   * recovering with rest and faster with sleep. Raises felt fatigue and lowers capacity. Absent = no store.
+   */
+  depletion?: Unit;
   asleep: boolean;
   /** Minute the current sleep or wake period began. */
   since: Minute;
@@ -895,7 +900,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.5.0';
+export const ENGINE_VERSION = '2.6.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -1446,6 +1451,8 @@ export interface PersonSpec {
     yearbook?: boolean;
     character?: boolean;
     skillRetention?: boolean;
+    /** Accumulated exertion (2.6.0): the same as `enableFatigueStore(p)` after creation. */
+    fatigueStore?: boolean;
     /** Promptings and turning away (2.4.0): the same as `enablePromptings(p, spec)` after creation. */
     promptings?: PromptingsSpec;
   };

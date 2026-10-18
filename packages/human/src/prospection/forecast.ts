@@ -7,18 +7,23 @@
  * spentAt, worst), joins the offer's utility; it is pure and draws no randomness. Offers without `followedBy`
  * get no forecast, so existing hosts continue exactly.
  *
- * The forecast inherits the body model's limits and the person's misperceptions: HF exertion relaxes toward the
- * current effort (no cumulative glycogen or muscle-damage store), so a long climb does not by itself leave a
- * person more spent for the descent unless sleepiness, hunger, thirst or the descent's own effort do; unfelt
- * sleep debt stays unfelt in the forecast; a fast's damped hunger and thirst are not applied (so a fasting
- * person forecasts them undamped); host surroundings are not applied (the person's own body rates and life
+ * The forecast inherits the body model's limits and the person's misperceptions. Exertion relaxes toward the
+ * current effort; only a person with the opt-in fatigue store (2.6.0, `enableFatigueStore`) carries accumulated
+ * exertion, so only then does a long climb by itself leave them more spent for the descent; unfelt
+ * sleep debt stays unfelt in the forecast; an open fast's damping of hunger and thirst applies (2.6.0) as it is
+ * now, held for the whole forecast even if the fast would end during it; host surroundings are not applied (the person's own body rates and life
  * modifiers are, but not `ambient` parameters). Existing bleeding, illness and healing run in the copy, so an
  * open wound can read as being spent, and death in the forecast reads as fully spent. The term is absolute
  * (see `bodyForecastTerm`). It does not plan, search routes, schedule rests on the way or
  * predict injuries, and it is not a calibrated estimate of human anticipation. Every number is an engineering
  * default.
  */
-import { type BodyForecastSpan, forecastBody } from '../body/index.ts';
+import {
+  BODY_DEFAULTS,
+  type BodyForecastSpan,
+  type BodyPerceptionContext,
+  forecastBody,
+} from '../body/index.ts';
 import { clamp01, round } from '../core/index.ts';
 import type { Affordance, LifeModifiers, Person, Term } from '../types.ts';
 
@@ -40,7 +45,12 @@ const smooth = (a: number, b: number, x: number) => {
 };
 
 /** The person's forecast for an offer: the act, then its follow-on spans. Empty without `followedBy`. Pure. */
-export function bodyForecastFor(p: Person, aff: Affordance, mods: LifeModifiers): BodyForecastSpan[] {
+export function bodyForecastFor(
+  p: Person,
+  aff: Affordance,
+  mods: LifeModifiers,
+  perception?: BodyPerceptionContext,
+): BodyForecastSpan[] {
   const follow = aff.followedBy;
   if (!Array.isArray(follow) || follow.length === 0 || !p.body.alive) return [];
   const D = FORECAST_DEFAULTS;
@@ -68,7 +78,7 @@ export function bodyForecastFor(p: Person, aff: Affordance, mods: LifeModifiers)
       load: { effort: clamp01(f.effort), focus: clamp01(f.focus ?? 0), mode: 'awake' },
     });
   }
-  return forecastBody(p, spans, mods);
+  return forecastBody(p, spans, mods, BODY_DEFAULTS, 30, perception);
 }
 
 /**
@@ -78,8 +88,13 @@ export function bodyForecastFor(p: Person, aff: Affordance, mods: LifeModifiers)
  * costs more than staying home). A resting baseline was tried and rejected: thirst and sleepiness rise at rest
  * too, which cancelled the very case the forecast exists for. Pure.
  */
-export function bodyForecastTerm(p: Person, aff: Affordance, mods: LifeModifiers): Term | undefined {
-  const spans = bodyForecastFor(p, aff, mods).slice(1);
+export function bodyForecastTerm(
+  p: Person,
+  aff: Affordance,
+  mods: LifeModifiers,
+  perception?: BodyPerceptionContext,
+): Term | undefined {
+  const spans = bodyForecastFor(p, aff, mods, perception).slice(1);
   if (spans.length === 0) return undefined;
   const D = FORECAST_DEFAULTS;
   const worst = Math.max(...spans.map((s) => s.worst));
