@@ -30,5 +30,5 @@ export default defineConfig({
     },
   },
   // Long scenario tests must not fail on a slow or loaded machine (CI runners): timing budgets live in *.timing.ts.
-  test: { name: 'site', include: ['src/**/*.test.ts'], environment: 'node', testTimeout: 30_000 },
+  test: { name: 'site', include: ['src/**/*.test.ts'], environment: 'node', testTimeout: 120_000 },
 });
