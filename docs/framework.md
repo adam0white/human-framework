@@ -222,7 +222,7 @@ Limits: 24 rules, 8 conditions each, 16 retained examples per rule, 256 recent e
 - `ENGINE_VERSION` 2.2.0 (2026-10-14, release 2.2.1) grades each acquired action independently. Success of another action no longer counts as a failure. The 2.1.0 → 2.2.0 migration stamps the version and preserves optional method records. Same-action failure, source trust, decay and restore bounds remain unchanged.
 
 
-### Received consequences (pending 2.3.0)
+### Received consequences (2.3.0)
 
 `prospection/` owns optional `Person.prospection`; its entries retain source, `told` channel, received time and any own completed-trigger time. `Percept.consequences` carries typed `ReceivedConsequence` entries; `withdrawConsequences` carries source-local id/revision withdrawals. Both are acquired only after attention from an external `actorId`, addressed to this person or broadcast with no target. Self testimony and testimony explicitly addressed to another recipient are rejected. Invalid or conflicting combined batches mutate no prospection state. No direct observation channel, free-standing reception shortcut, host utility value or invented goal progress is admitted.
 

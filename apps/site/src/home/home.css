@@ -894,3 +894,7 @@ code {
     grid-template-columns: 1fr;
   }
 }
+
+.neighbours-preview {
+  margin-top: 24px;
+}

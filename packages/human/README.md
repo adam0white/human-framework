@@ -348,7 +348,7 @@ Import these functions from the package. Rules/evidence live in optional `Person
 
 ## Receiving a possible future route
 
-The pending 2.3.0 increment lets an attended explanation connect one current action to one possible successor. The host supplies the explanation the person received, not a private success bonus.
+HF 2.3.0 lets an attended explanation connect one current action to one possible successor. The host supplies the explanation the person received, not a private success bonus.
 
 ```ts
 import {

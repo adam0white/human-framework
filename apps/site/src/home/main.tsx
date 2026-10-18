@@ -547,6 +547,23 @@ function Home() {
               </span>
             </div>
           </a>
+          <a className="game-card game-live neighbours-preview" href="https://neighbours.adamwhite.work">
+            <div className="game-body">
+              <p className="game-kicker">External preview · in development</p>
+              <h3>Neighbours</h3>
+              <p>
+                Watch 208 HF people share a town in a public Concordia fork. Follow a neighbour, change a
+                circumstance, and compare two hypothetical futures from the same checkpoint.
+              </p>
+              <p className="game-shows">
+                Python Concordia runs the town; released HF supplies people’s decisions. Comparison controls
+                and recorded studies expose what was measured. A separate simulation still in development.
+              </p>
+              <span className="game-cta">
+                Visit the town <span aria-hidden="true">↗</span>
+              </span>
+            </div>
+          </a>
         </section>
       </main>
 
