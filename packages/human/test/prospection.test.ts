@@ -81,7 +81,7 @@ const prospective = (p: Person, a = ask) =>
   score(p, a).terms.filter((t) => t.source.startsWith('prospection:') || t.source.startsWith('goal:'));
 
 describe('attended received consequences', () => {
-  test('useful knowledge changes ordinary choice; late and removed knowledge do not', () => {
+  test('useful knowledge changes ordinary choice; impossible and removed knowledge do not', () => {
     const p = person();
     receive(p);
     expect(p.prospection?.entries).toHaveLength(1);
@@ -437,4 +437,102 @@ describe('review regressions: adoption and long skips', () => {
     hf.skip(legacy, now + 7 * 1440 + 1);
     expect(legacy.prospection).toBeUndefined();
   });
+});
+
+describe('Opus review regressions: source, recipient and serialized continuation', () => {
+  test('testimony addressed to another recipient cannot supply or withdraw own opportunities', () => {
+    const p = person();
+    receive(p, premise(), { targetId: 'someone-else' });
+    expect(p.prospection).toBeUndefined();
+    receive(p);
+    const before = structuredClone(p.prospection);
+    receive(p, premise({ revision: 1 }), {
+      targetId: 'someone-else',
+      consequences: [],
+      withdrawConsequences: [{ id: 'window', revision: 1 }],
+    });
+    expect(p.prospection).toEqual(before);
+  });
+  test('self testimony cannot acquire trusted future knowledge; external broadcasts can', () => {
+    const p = person();
+    receive(p, premise(), { actorId: p.id });
+    expect(p.prospection).toBeUndefined();
+    receive(p, premise(), { targetId: undefined });
+    expect(p.prospection?.entries).toHaveLength(1);
+  });
+  test('snapshot restore is byte-exact JSON for received and consumed entries plus withdrawals', () => {
+    const p = person();
+    receive(p);
+    hf.begin(p, ask, hf.decide(p, [ask]));
+    hf.finish(p, { at: now + 1, action: ask.action, affordanceId: ask.id, status: 'completed' });
+    receive(p, premise({ id: 'other' }));
+    receive(p, premise(), { consequences: [], withdrawConsequences: [{ id: 'unseen', revision: 3 }] });
+    const before = JSON.stringify(hf.snapshot(p));
+    expect(JSON.stringify(hf.snapshot(hf.restore(JSON.parse(before))))).toBe(before);
+  });
+  test('restore cannot create own-source testimony that acquisition refuses', () => {
+    const p = person();
+    receive(p);
+    const saved = hf.snapshot(p);
+    must(must(saved.prospection).entries[0]).sourceId = p.id;
+    must(must(saved.prospection).revisions[0]).sourceId = p.id;
+    expect(hf.restore(saved).prospection).toBeUndefined();
+  });
+  test('consumed opportunities leave the bounded entry set before an older usable one', () => {
+    const p = person();
+    receive(p, premise({ id: 'a-old-live' }));
+    hf.tick(p, now + 1);
+    receive(p, premise({ id: 'z-consumed', trigger: { action: 'ask-other' } }));
+    const other = { ...ask, id: 'other', action: 'ask-other', targetId: undefined, duration: 1 };
+    hf.begin(p, other, hf.decide(p, [other]));
+    hf.finish(p, { at: p.now + 1, action: other.action, affordanceId: other.id, status: 'completed' });
+    for (let i = 0; i < 14; i++) receive(p, premise({ id: `filler-${i}` }));
+    expect(p.prospection?.entries).toHaveLength(16);
+    receive(p, premise({ id: 'new' }));
+    expect(p.prospection?.entries.some((e) => e.id === 'z-consumed')).toBe(false);
+    expect(p.prospection?.entries.some((e) => e.id === 'a-old-live')).toBe(true);
+    expect(p.prospection?.revisions.some((r) => r.id === 'z-consumed')).toBe(true);
+  });
+  test('successor goals require advancedBy and do not copy the direct offers advances hint', () => {
+    const p = person();
+    must(p.agenda.goals[0]).advancedBy = [];
+    receive(p);
+    const offers = [ask, { ...direct, advances: ['deliver'] }];
+    const decision = hf.decide(p, offers);
+    expect(
+      decision.considered
+        .find((a) => a.affordanceId === ask.id)
+        ?.terms.some((t) => t.source.startsWith('goal:')),
+    ).toBe(false);
+    expect(
+      decision.considered
+        .find((a) => a.affordanceId === direct.id)
+        ?.terms.some((t) => t.source.startsWith('goal:')),
+    ).toBe(true);
+  });
+  test('a trigger finishing after expiry cannot have a feasible nonnegative successor', () => {
+    const p = person();
+    receive(
+      p,
+      premise({
+        availableFrom: now,
+        availableUntil: now + 20,
+        expiresAt: now + 20,
+        successor: { action: 'deliver', duration: 0, effort: 0 },
+      }),
+    );
+    expect(hf.consequenceEvidence(p, { ...ask, duration: 21 }).entries[0]?.feasible).toBe(false);
+  });
+});
+
+test('the recorded late arm is feasible but loses to direct work under the same temporal goal', async () => {
+  const { runReceivedConsequenceControl } = await import('../examples/received-consequences.ts');
+  const matrix = runReceivedConsequenceControl();
+  const late = must(matrix.results.find((row) => row.arm === 'late'));
+  const p = person();
+  p.prospection = structuredClone(must(late.received ?? undefined));
+  const evidence = must(hf.consequenceEvidence(p, must(matrix.parameters.offers[0])).entries[0]);
+  expect(evidence.feasible).toBe(true);
+  expect(evidence.successorEndsAt).toBe(780);
+  expect(late.chosen).toBe('direct');
 });

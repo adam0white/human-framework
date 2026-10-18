@@ -69,7 +69,7 @@ export function runReceivedConsequenceControl(domain: 'parcel' | 'sample' = 'par
     trigger: { action: names.trigger, targetId: names.source },
     successor: { action: names.terminal, duration: 20, effort: 0.1 },
     availableFrom: 620,
-    availableUntil: 680,
+    availableUntil: 800,
     expiresAt: 800,
     chance: 1,
     confidence: 1,
@@ -88,7 +88,8 @@ export function runReceivedConsequenceControl(domain: 'parcel' | 'sample' = 'par
   const results = arms.map((arm) => {
     const p = snapshot(base);
     const received = structuredClone(premise);
-    if (arm === 'late') received.availableFrom = 675;
+    // Late access still fits: completion at 780, equal to the direct route's end.
+    if (arm === 'late') received.availableFrom = 760;
     if (arm === 'costly') received.successor.materialCost = 1_000_000;
     if (arm === 'uncertain') received.confidence = 0.001;
     if (arm !== 'withheld')

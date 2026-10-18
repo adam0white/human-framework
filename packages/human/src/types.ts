@@ -1216,7 +1216,7 @@ export interface Percept {
    * attended percept the watcher learns a little toward the model (`skills.learnByWatching`). Absent: nothing is learned.
    */
   demonstrates?: { skill: string; level: Unit; minutes: number; domain?: LearningDomain };
-  /** At most four additions/withdrawals combined, acquired atomically only in attended testimony. */
+  /** At most four additions/withdrawals combined; attended external testimony to this person or a broadcast. */
   consequences?: readonly ReceivedConsequence[];
   withdrawConsequences?: readonly { id: string; revision: number }[];
 }

@@ -1,6 +1,6 @@
 /**
  * SCOPE: one received current-action → successor consequence, acquired only through
- * attended testimony. Knowledge is person-owned, source-labelled, bounded and saved.
+ * attended external testimony for this person or an untargeted broadcast. Knowledge is person-owned, source-labelled, bounded and saved.
  * Temporal goals value expected completion using time, success and source reliability.
  * One coherent route may contribute; it never executes actions, grants consent or
  * advances a goal. Own completed triggers consume their received opportunity.
@@ -148,7 +148,13 @@ export function pruneConsequences(p: Person, now: Minute = p.now): void {
 /** Called only for an attended percept. Invalid combined batches mutate no prospection state. @internal */
 export function receiveConsequences(p: Person, pc: Percept): boolean {
   if (pc.consequences === undefined && pc.withdrawConsequences === undefined) return false;
-  if (pc.channel !== 'told' || !id(pc.actorId)) return false;
+  if (
+    pc.channel !== 'told' ||
+    !id(pc.actorId) ||
+    pc.actorId === p.id ||
+    (pc.targetId !== undefined && pc.targetId !== p.id)
+  )
+    return false;
   const adds: unknown = pc.consequences ?? [];
   const removes: unknown = pc.withdrawConsequences ?? [];
   if (
@@ -185,11 +191,13 @@ export function receiveConsequences(p: Person, pc: Percept): boolean {
     state.revisions = state.revisions.filter((r) => !(r.sourceId === sourceId && r.id === b.id));
     const addition = additions.find((a) => a?.id === b.id);
     if (addition) state.entries.push({ ...addition, sourceId, channel: 'told', receivedAt: p.now });
-    state.revisions.push({ id: b.id as string, sourceId, revision: b.revision as number, receivedAt: p.now });
+    state.revisions.push({ sourceId, id: b.id as string, revision: b.revision as number, receivedAt: p.now });
   }
   if (state.entries.length > PROSPECTION_DEFAULTS.maxEntries) {
     const oldest = [...state.entries]
-      .sort(order)
+      .sort(
+        (a, b) => Number(b.triggeredAt !== undefined) - Number(a.triggeredAt !== undefined) || order(a, b),
+      )
       .slice(0, state.entries.length - PROSPECTION_DEFAULTS.maxEntries);
     state.entries = state.entries.filter((e) => !oldest.includes(e));
   }
@@ -294,7 +302,11 @@ export function receivedGoalRoute(
   return best;
 }
 /** Conservative optional-slice restore; ambiguous identities drop the slice. @internal */
-export function sanitizeProspection(input: unknown, now: Minute): ProspectionState | undefined {
+export function sanitizeProspection(
+  input: unknown,
+  now: Minute,
+  personId: string,
+): ProspectionState | undefined {
   if (
     !isObj(input) ||
     !Array.isArray(input.entries) ||
@@ -303,12 +315,13 @@ export function sanitizeProspection(input: unknown, now: Minute): ProspectionSta
     input.revisions.length > PROSPECTION_DEFAULTS.maxRevisions
   )
     return undefined;
-  const entries = input.entries.map((x) => retained(x, now));
+  const entries = input.entries.map((x) => retained(x, now)).filter((e) => e?.sourceId !== personId);
   const revisions: ConsequenceRevision[] = [];
   for (const r of input.revisions) {
     if (
       !isObj(r) ||
       !id(r.sourceId) ||
+      r.sourceId === personId ||
       !id(r.id) ||
       !revision(r.revision) ||
       !minute(r.receivedAt) ||

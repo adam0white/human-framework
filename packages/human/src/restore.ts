@@ -170,7 +170,7 @@ export function restore(input: unknown): Person {
   keepValid(out, 'ambient', sanitizeAmbient);
   keepValid(out, 'retention', cleanRetention);
   keepValid(out, 'methods', sanitizeMethods);
-  keepValid(out, 'prospection', (x) => sanitizeProspection(x, out.now));
+  keepValid(out, 'prospection', (x) => sanitizeProspection(x, out.now, out.id));
   boundLists(out);
   return out;
 }
