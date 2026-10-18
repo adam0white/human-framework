@@ -126,6 +126,7 @@ import {
   pruneConsequences,
   receiveConsequences,
 } from './prospection/index.ts';
+import { enableReview, reviewIfDue } from './review/index.ts';
 import {
   enableSkillRetention,
   learnByWatching,
@@ -314,6 +315,7 @@ export function createPerson(spec: PersonSpec): Person {
   if (on?.skillRetention) enableSkillRetention(p);
   if (on?.fatigueStore) enableFatigueStore(p);
   if (on?.promptings) enablePromptings(p, on.promptings);
+  if (on?.review) enableReview(p, on.review);
   return p;
 }
 
@@ -574,6 +576,11 @@ export function tick(p: Person, now: Minute): void {
       if (p.chronicleDay && dayOf(end) > p.chronicleDay.day) {
         closed = closeDay(p);
         applyRecall(p, recallByCue(p, { at: end }));
+      }
+      // Evening review (2.7.0, opt-in): from its hour, or at the close of a day that passed without one.
+      if (p.review) {
+        const done = reviewIfDue(p, end, (p.chronicle ?? []).slice(-2), closed);
+        if (done && done.distress > 0) feel(p, 'distress', done.distress, 'review', end);
       }
       if (minuteOfDay(end) === 0) {
         // Lasting gists (1.8.0, opt-in): at midnight, episodes past the horizon fold into gists.

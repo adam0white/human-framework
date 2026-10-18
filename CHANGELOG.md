@@ -12,6 +12,15 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.7.0] - 2026-10-18
+
+Engine: 2.7.0. Adds the evening self-review (muhasaba), the second slice of research/reconciliation.md. The review is optional state (`review`) that starts absent; engine 2.6.0 saves migrate by a version stamp. Persons without the review decide exactly as before.
+
+- `review/`: `enableReview(p, spec)` (or `enable: { review }`), `reviewIfDue`, `reviewTerms`, `reviewLine`, `resolveKey`, `REVIEW_DEFAULTS`, `sanitizeReview`. From 21:00 (or at the day's close) the person reviews the commitments kept and broken since their last review; a broken one forms a resolve, an if–then intention that leans on that commitment's own term (`review:resolve`, bounded) at its next occasion. Released and excused commitments form none.
+- Held review styles: `accounting`, `ruminating` (weaker resolves, some distress), `none`. Sources in reconciliation.md §8 (Q 59:18; ʿUmar's athar after Tirmidhi 2459; Gollwitzer & Sheeran 2006; Breines & Chen 2012; Watkins 2008).
+- Headless control `packages/human/examples/review-control.ts`: no review, accounting, ruminating, and a person who never lapses.
+- Scope excludes revising methods or prompting responses, tawba conditions, divine reckoning and sleep effects.
+
 ## [2.6.0] - 2026-10-18
 
 Engine: 2.6.0. Adds an opt-in slow fatigue store and applies an open fast's hunger damping in the bodily forecast. The store is optional state (`body.depletion`) that starts absent; engine 2.5.0 saves migrate by a version stamp. Offers without `followedBy` decide exactly as before, and so does any person without the store who is not fasting; a fasting person's `followedBy` offers now see damped hunger.

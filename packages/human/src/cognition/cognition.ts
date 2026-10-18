@@ -37,6 +37,7 @@ import { urgencyOf } from '../needs/index.ts';
 import { partneringTerms } from '../partnering/index.ts';
 import { type PromptingSeen, promptIn, promptingTerms } from '../promptings/index.ts';
 import { bodyForecastTerm, receivedGoalRoute } from '../prospection/index.ts';
+import { reviewTerms } from '../review/index.ts';
 import { companionSteadiness, socialTerms } from '../social/index.ts';
 import type {
   Affordance,
@@ -485,6 +486,9 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   if (p.promptings)
     for (const t of promptingTerms(p, aff.action, terms, aff.tags, ctx.now, ctx.desperation))
       push(t.source, t.value);
+
+  // Evening review (2.7.0, opt-in): a resolve formed after a lapse leans on that commitment's own term.
+  if (p.review) for (const t of reviewTerms(p, terms)) push(t.source, t.value);
 
   let utility = 0;
   for (const t of terms) utility += t.value;

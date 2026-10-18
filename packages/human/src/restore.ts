@@ -22,6 +22,7 @@ import { sanitizeBonds } from './partnering/index.ts';
 import { cleanRetention, createPerson, traceLimit } from './person.ts';
 import { sanitizePromptings } from './promptings/index.ts';
 import { sanitizeProspection } from './prospection/index.ts';
+import { sanitizeReview } from './review/index.ts';
 import { sanitizeSkillRetention } from './skills/index.ts';
 import { sanitizeGroups, sanitizeImpressions } from './social/index.ts';
 import type { Person } from './types.ts';
@@ -68,6 +69,7 @@ const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
   'methods',
   'prospection',
   'promptings',
+  'review',
 ]);
 
 /** Kind of a JSON value for the per-field type check in `restore`. */
@@ -174,6 +176,7 @@ export function restore(input: unknown): Person {
   keepValid(out, 'methods', sanitizeMethods);
   keepValid(out, 'prospection', (x) => sanitizeProspection(x, out.now, out.id));
   keepValid(out, 'promptings', (x) => sanitizePromptings(x, out.now));
+  keepValid(out, 'review', (x) => sanitizeReview(x, out.now));
   boundLists(out);
   return out;
 }

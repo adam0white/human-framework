@@ -142,7 +142,7 @@ A character pauses before the forbidden thing, and the line reads "she let it pa
 
 | Slice | Fills | Sources |
 |---|---|---|
-| Muhasaba: evening review that revises a method or commitment after failure | Inventory §10 "reflection that revises" (v0 revision-from-failure) | K2, K3; P5 |
+| Muhasaba: evening review that revises a method or commitment after failure (**released 2.7.0** for commitments) | Inventory §10 "reflection that revises" (v0 revision-from-failure) | K2, K3; P5 |
 | Sabr and shukr as appraisal styles (reappraisal, gratitude) in `affect/` | Regulation strategies beyond practice kinds | H11, Q12, Q14; P9, P12 |
 | Qalb lens over attention, conviction and mood, for narration | Self-model row in §11 | Q7, H9 |
 | Held self-understanding of fitra and purpose | Life purpose row in §7 | Q5, H8; P16 |
@@ -225,3 +225,17 @@ Access: **fetched** = page opened this pass; **abstract** = abstract or catalog 
 | P15 | Abramowitz et al. (2002) BRT 40:825 ([PubMed](https://pubmed.ncbi.nlm.nih.gov/12074376/)); Besiroglu, Karaca & Keskin, J Relig Health, doi:10.1007/s10943-012-9588-7 | Scrupulosity measurable, higher in the devout; a cognitive reading of scrupulosity in Islamic sources | abstract; record only. Treatment (ERP) evidence not verified |
 | P16 | Haidt (2001) Psych Rev 108:814; Greene et al. (2001) Science 293:2105 | Intuitive moral judgement; dual process | citation; abstract (contested) |
 | P17 | Levin, Hildebrandt, Lillis & Hayes (2012) Behav Ther 43:741 | Defusion helps against inactive controls | abstract; brief analogue studies, proponent authors |
+
+**Muhasaba slice (2.7.0), verification pass 2026-10-18**
+
+| Id | Locator | Use | Access |
+|---|---|---|---|
+| Q20 | [59:18](https://quran.com/59/18) | Let every soul look to what it has sent forth for tomorrow. Most exegetes read "tomorrow" as the hereafter; daily review is an inference | fetched |
+| H13 | Tirmidhi 2459 (Shaddad ibn Aws) | The wise one takes account of himself. Graded daʿif by the graders listed (Shakir, Albani, Zubair Ali Zai); supporting only | fetched (CDN) |
+| R1 | Tirmidhi, comment after 2459 | ʿUmar: "Reckon with yourselves before you are reckoned with"; an athar, not prophetic; Maymun ibn Mihran on reckoning like a partner | fetched (CDN) |
+| K2, K3 | al-Muhasibi, *Riʿaya*; Ibn al-Qayyim, *Madarij*, manzil of muhasaba | Self-accounting central (K2); muhasaba before and after an act (K3, secondary snippet only, **not verified** in the text) | snippet |
+| E1 | Gollwitzer & Sheeran 2006, Adv Exp Soc Psych 38:69 | If–then plans, d ≈ 0.65 (94 tests) | snippet |
+| E2 | Harkin et al. 2016, Psych Bull 142:198 | Prompting progress monitoring raises goal attainment modestly (d+ = 0.40); monitoring is not evening reflection | abstract |
+| E3 | Breines & Chen 2012, PSPB 38:1133 | Self-compassion after failure raised motivation to improve (four lab experiments) | abstract |
+| E4 | Watkins 2008, Psych Bull 134:163 | Repetitive thought is constructive or unconstructive by tone and abstract vs concrete processing | abstract |
+| E6 | Harvey 2002, BRT 40:869 | Cognitive model of insomnia (pre-sleep worry); a model, not evidence; **not used** | snippet |

@@ -900,7 +900,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.6.0';
+export const ENGINE_VERSION = '2.7.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -1079,6 +1079,8 @@ export interface Person {
   prospection?: ProspectionState;
   /** Noticed promptings and practised turnings-away (2.4.0, opt-in via `enablePromptings`). Owned by `promptings/`. */
   promptings?: PromptingsState;
+  /** Evening self-review and its resolves (2.7.0, opt-in via `enableReview`). Owned by `review/`. */
+  review?: ReviewState;
   /** Practice consolidation (1.8.0, opt-in via `enableSkillRetention`). Owned by `skills/`. */
   skillRetention?: { consolidationHours: number };
   habits: Habit[];
@@ -1455,6 +1457,8 @@ export interface PersonSpec {
     fatigueStore?: boolean;
     /** Promptings and turning away (2.4.0): the same as `enablePromptings(p, spec)` after creation. */
     promptings?: PromptingsSpec;
+    /** Evening self-review (2.7.0): the same as `enableReview(p, spec)` after creation. */
+    review?: ReviewSpec;
   };
 }
 
@@ -1513,6 +1517,52 @@ export interface PromptingsState {
   echo: Record<string, { level: Unit; at: Minute }>;
   /** Echo gained per prompt under `fault`. Default 0: the recurrence term is a host-set assumption (P3 contested). */
   echoRate: number;
+}
+
+/**
+ * How a person reviews a day (2.7.0, a held reading): `accounting` (muhasaba: name the lapse and resolve for its
+ * next occasion), `ruminating` (go over it abstractly: weaker resolve, some distress) or `none` (no review).
+ */
+export type ReviewStyle = 'accounting' | 'ruminating' | 'none';
+
+/** A resolve formed in review: an if-then intention for the next occasion of a missed commitment. */
+export interface Resolve {
+  /** The commitment's label, else its first action, else its kind. */
+  key: string;
+  label?: string;
+  kind: string;
+  strength: Unit;
+  /** Day the resolve was formed or last renewed. */
+  day: number;
+}
+
+/** What the person concluded in their latest review. */
+export interface ReviewRecord {
+  day: number;
+  missed: string[];
+  kept: string[];
+  resolved: string[];
+}
+
+/** Owned by `review/`. */
+export interface ReviewState {
+  style: ReviewStyle;
+  styleSource?: string;
+  /** Minute of the day from which the evening review can run (default 21:00). */
+  at: number;
+  /** Last day reviewed. */
+  lastDay?: number;
+  resolves: Resolve[];
+  last?: ReviewRecord;
+  /** Commitment ids already reviewed (bounded). */
+  seen?: string[];
+}
+
+/** What a host hands `enableReview`. */
+export interface ReviewSpec {
+  style?: ReviewStyle;
+  styleSource?: string;
+  at?: number;
 }
 
 /** What a host hands `enablePromptings`. */

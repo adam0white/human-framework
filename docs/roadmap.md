@@ -88,7 +88,7 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 |---|---|---|
 | Future bodily state in prospection | Done in 2.5.0 for offers that declare `followedBy` ([framework.md](framework.md#bodily-forecast-250)). Left: forecast a received successor's span; apply host surroundings (fasting perception done in 2.6.0) | Engine 2.8 |
 | Cumulative exertion in the body | Exertion relaxes toward current effort, so hours of climbing leave no extra fatigue for the descent. A slow glycogen/muscle-fatigue store would make the 2.5.0 forecast bite on long efforts; opt-in, so the three games replay unchanged | Done, engine 2.6.0 (`body.depletion`) |
-| Muhasaba (reconciliation §7) | Evening review that revises a method, commitment or response after failure; fills "reflection that revises" | Engine 2.5 |
+| Muhasaba (reconciliation §7) | Done in 2.7.0 for commitments (`review/`). Left: revise a method or a prompting response in review | Engine 2.9 |
 | Multi-step planning (bounded) | Chains of two or three received or known routes with waiting cost; the most requested missing faculty | Engine 2.6 |
 | Sabr and shukr as appraisal styles | Reappraisal and gratitude in `affect/`, attentional and regulatory effects only | Engine 2.6 |
 | Present bias and temporal discounting | Person-level discount style over the 2.3.0 temporal goals | Engine 2.6 |
