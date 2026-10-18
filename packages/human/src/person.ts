@@ -49,6 +49,7 @@ import { advanceBeliefs, attend, believe, confirm, credence } from './beliefs/in
 import {
   advanceBody,
   BODY_DEFAULTS,
+  type BodyForecastSpan,
   type BodyPerceptionContext,
   checkDowned,
   clearDowned,
@@ -117,7 +118,13 @@ import {
 } from './needs/index.ts';
 import { widow } from './partnering/index.ts';
 import { enablePromptings, type NafsPattern, nafsPatterns, notePromptings } from './promptings/index.ts';
-import { consumeConsequences, pruneConsequences, receiveConsequences } from './prospection/index.ts';
+import {
+  bodyForecastFor,
+  consumeConsequences,
+  forecastLine,
+  pruneConsequences,
+  receiveConsequences,
+} from './prospection/index.ts';
 import {
   enableSkillRetention,
   learnByWatching,
@@ -1601,4 +1608,13 @@ export function nafsReading(p: Person): NafsPattern[] {
   for (const e of p.affect.emotions)
     if (e.id === 'guilt' && e.cause !== 'prompting') guilt = Math.max(guilt, e.intensity);
   return nafsPatterns(p, { guiltLoad: guiltLoad(p), guilt });
+}
+
+/**
+ * The person's own forecast of their body through an offer and its `followedBy` spans (2.5.0, read-only), with a
+ * first-person line ("I can do it, but I'll be spent for the descent."). Empty spans without `followedBy`.
+ */
+export function bodyForecast(p: Person, aff: Affordance): { spans: BodyForecastSpan[]; line: string } {
+  const spans = bodyForecastFor(p, aff, lifeModifiers(p));
+  return { spans, line: forecastLine(spans) };
 }

@@ -86,7 +86,8 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 
 | Item | What | Target |
 |---|---|---|
-| Future bodily state in prospection | A game reported that a person cannot anticipate "I'll be too tired on the descent". Extend `prospection/` route valuation with a pure forecast of fatigue, hunger and sleep pressure at the successor's start (reusing `body/` readers and `nextBodyThreshold`), so a route that ends in exhaustion costs what it will cost. No general planner | Engine 2.5 |
+| Future bodily state in prospection | Done in 2.5.0 for offers that declare `followedBy` ([framework.md](framework.md#bodily-forecast-250)). Left: forecast a received successor's span; apply surroundings and fasting perception | Engine 2.6 |
+| Cumulative exertion in the body | Exertion relaxes toward current effort, so hours of climbing leave no extra fatigue for the descent. A slow glycogen/muscle-fatigue store would make the 2.5.0 forecast bite on long efforts; it changes every effortful run, so it needs a replay review of the three games | Engine 2.6 |
 | Muhasaba (reconciliation §7) | Evening review that revises a method, commitment or response after failure; fills "reflection that revises" | Engine 2.5 |
 | Multi-step planning (bounded) | Chains of two or three received or known routes with waiting cost; the most requested missing faculty | Engine 2.6 |
 | Sabr and shukr as appraisal styles | Reappraisal and gratitude in `affect/`, attentional and regulatory effects only | Engine 2.6 |

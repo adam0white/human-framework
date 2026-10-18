@@ -12,6 +12,16 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.5.0] - 2026-10-18
+
+Engine: 2.5.0. Adds a bodily forecast over known follow-on exertion. The person state shape is unchanged; engine 2.4.0 saves migrate by a version stamp. Offers without the new field decide exactly as before.
+
+- `Affordance.followedBy: FollowOn[]` declares exertion the person knows must follow an act (the way back, carrying the load home). The person forecasts their own body through the act and those spans with the ordinary body model, as they perceive it.
+- One bounded term, `forecast:body`, weighs the worst perceived fatigue, sleepiness, hunger or thirst during the follow-on. It is pure and draws no randomness.
+- `body/ forecastBody`, `bodyForecastFor`, `bodyForecastTerm`, `forecastLine`, `FORECAST_DEFAULTS` and the composite's `bodyForecast(p, aff)`, which returns the spans and a line such as "I can do it, but I'll be spent for the descent."
+- Headless control `packages/human/examples/body-forecast-control.ts`: rested, depleted, depleted without the declared return (ablation) and evening arms in two renamed domains.
+- Scope excludes cumulative exertion (the body model has none), route search, planned rests, injury prediction, fasting perception and host surroundings in the forecast.
+
 ## [2.4.0] - 2026-10-18
 
 Engine: 2.4.0. Adds opt-in promptings and turning away, the first slice reconciling the Islamic understanding of the human with current science as interpretations people hold. Engine 2.3.0 saves migrate by a version stamp; persons without the slice continue exactly (full-state digests match npm 2.3.0 with only the engine stamp normalized).

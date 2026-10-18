@@ -1,5 +1,5 @@
 /** Human Framework v1 public surface. */
-export const FRAMEWORK_VERSION = '2.4.0';
+export const FRAMEWORK_VERSION = '2.5.0';
 
 // `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `skipAffect` stays internal.
 export type { CrisisEvent, PracticeKind } from './affect/index.ts';
@@ -119,7 +119,14 @@ export * from './partnering/index.ts';
 export * from './person.ts';
 export * from './promptings/index.ts';
 export type { ConsequenceEvidence } from './prospection/index.ts';
-export { consequenceEvidence, PROSPECTION_DEFAULTS } from './prospection/index.ts';
+export {
+  bodyForecastFor,
+  bodyForecastTerm,
+  consequenceEvidence,
+  FORECAST_DEFAULTS,
+  forecastLine,
+  PROSPECTION_DEFAULTS,
+} from './prospection/index.ts';
 export * from './restore.ts';
 export * from './scenarios/index.ts';
 export * from './sim/index.ts';

@@ -839,3 +839,55 @@ export function nextBodyThreshold(
   }
   return Number.POSITIVE_INFINITY;
 }
+
+/** One forecast span: where it ends and the worst perceived readout during it. */
+export interface BodyForecastSpan {
+  label: string;
+  endsAt: Minute;
+  /** Worst perceived fatigue, sleepiness, hunger or thirst during the span (0..1), and which. */
+  worst: Unit;
+  worstOf: 'fatigue' | 'sleepiness' | 'hunger' | 'thirst';
+}
+
+/**
+ * The person's own forecast of their body through consecutive spans of known exertion, read as they perceive it
+ * (2.5.0). Simulates a cloned body in steps of at most `step` minutes; pure (does not mutate `p`).
+ */
+export function forecastBody(
+  p: Person,
+  spans: readonly { label: string; duration: number; load: BodyLoad }[],
+  mods: LifeModifiers,
+  params: BodyParams = BODY_DEFAULTS,
+  step = 30,
+): BodyForecastSpan[] {
+  const out: BodyForecastSpan[] = [];
+  const sim: Person = { ...p, body: cloneBody(p.body) };
+  for (const s of spans) {
+    const span: BodyForecastSpan = { label: s.label, endsAt: sim.now, worst: 0, worstOf: 'fatigue' };
+    // Hard internal cap (a week) so a hostile span cannot stall a decision.
+    let left = Math.min(7 * MINUTES_PER_DAY, Math.max(0, Number.isFinite(s.duration) ? s.duration : 0));
+    advanceBody(sim, 0, s.load, mods, params);
+    const r0 = readBody(sim, params).perceived;
+    for (const k of ['fatigue', 'sleepiness', 'hunger', 'thirst'] as const)
+      if (r0[k] > span.worst) {
+        span.worst = r0[k];
+        span.worstOf = k;
+      }
+    while (left > 0 && sim.body.alive) {
+      const dt = Math.min(step, left);
+      advanceBody(sim, dt, s.load, mods, params);
+      sim.now += dt;
+      left -= dt;
+      const r = readBody(sim, params).perceived;
+      for (const k of ['fatigue', 'sleepiness', 'hunger', 'thirst'] as const)
+        if (r[k] > span.worst) {
+          span.worst = r[k];
+          span.worstOf = k;
+        }
+    }
+    if (!sim.body.alive) span.worst = 1;
+    span.endsAt = sim.now;
+    out.push(span);
+  }
+  return out;
+}

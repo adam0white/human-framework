@@ -35,7 +35,7 @@ import { methodEvidence } from '../methods/index.ts';
 import { urgencyOf } from '../needs/index.ts';
 import { partneringTerms } from '../partnering/index.ts';
 import { type PromptingSeen, promptIn, promptingTerms } from '../promptings/index.ts';
-import { receivedGoalRoute } from '../prospection/index.ts';
+import { bodyForecastTerm, receivedGoalRoute } from '../prospection/index.ts';
 import { companionSteadiness, socialTerms } from '../social/index.ts';
 import type {
   Affordance,
@@ -419,6 +419,11 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   // Effort and mental load, read from the perceived body.
   const effort = effortValue(p, aff, ctx);
   if (effort < 0) push('effort', effort);
+  // Bodily forecast (2.5.0): only offers that declare known follow-on exertion.
+  if (aff.followedBy?.length) {
+    const t = bodyForecastTerm(p, aff, ctx.mods);
+    if (t) push(t.source, t.value);
+  }
   // Risk: chance × severity × (fear + emotionality).
   if (aff.risk && aff.risk.chance > 0 && aff.risk.severity > 0) {
     const fear = emotionLevel(p, 'fear');

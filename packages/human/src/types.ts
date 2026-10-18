@@ -895,7 +895,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.4.0';
+export const ENGINE_VERSION = '2.5.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -1168,6 +1168,12 @@ export interface Affordance {
   advances?: string[];
   /** Probability of harm and its severity, as advertised. */
   risk?: { chance: Unit; severity: Unit; kind: string };
+  /**
+   * Exertion the person knows must follow this act (2.5.0): the way back down, carrying the load home. The
+   * person forecasts their own body through the act and these spans (`prospection/` forecast) and weighs being
+   * spent during them. Absent = no forecast, exactly as before.
+   */
+  followedBy?: FollowOn[];
   /** Set on a partner's mirror offer by the joint protocol in `sim/` (the proposal id). */
   jointId?: string;
   /** Material gain/cost in host units (e.g. coins). Valued via security/achievement/power values. */
@@ -1355,7 +1361,8 @@ export interface Term {
   /** 'need:food', 'norm:salah', 'commitment:c3', 'commitment' (promise inertia of the running activity),
    *  'goal:g1', 'habit', 'emotion:fear:risky' (emotion id, then the tag it acts through), 'effort', 'risk',
    *  'suggestion:player', 'social:p2', 'expectation', 'autonomy' (reactance to a pushing voice),
-   *  'promptings:turn' (a practised turning-away), 'promptings:echo' (recurrence under the `fault` reading) */
+   *  'promptings:turn' (a practised turning-away), 'forecast:body' (expected
+   *  bodily state during `followedBy` spans), 'promptings:echo' (recurrence under the `fault` reading) */
   source: string;
   value: number;
 }
@@ -1442,6 +1449,15 @@ export interface PersonSpec {
     /** Promptings and turning away (2.4.0): the same as `enablePromptings(p, spec)` after creation. */
     promptings?: PromptingsSpec;
   };
+}
+
+/** A known span of exertion after an act (see `Affordance.followedBy`). */
+export interface FollowOn {
+  label?: string;
+  /** Minutes. */
+  duration: number;
+  effort: Unit;
+  focus?: Unit;
 }
 
 // ---------------------------------------------------------------------------------------------
