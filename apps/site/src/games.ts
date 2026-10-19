@@ -101,6 +101,13 @@ export const GAMES: Game[] = [
     line: 'A week as the new kapıcı of a seven-flat block in Istanbul: bread, bins, stairs, and everything the residents tell you, which you may pass on.',
     faculties: ['Memory and belief', 'Relationships', 'Conscience'],
   },
+  {
+    id: 'warren',
+    name: 'The Warren',
+    href: 'https://warren.adamwhite.work',
+    line: 'An early build: a village cuts a refuge into soft stone. You chalk the walls and ring the bell; they dig, carry and decide, and the worn path leads.',
+    faculties: ['Will', 'Habits and character', 'Body'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);

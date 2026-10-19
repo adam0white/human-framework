@@ -161,3 +161,13 @@ Source: `docs/hf-requests.md` in `adam0white/stairwell`, a seven-flat block wher
 - **Stairwell 6, a relay threshold per person.** `converse` relays at credence ≥0.7 or ≤0.3 for everyone. Proposal: derive it from extraversion and honesty, or accept it per call.
 - **Stairwell 7, a public `seedBelief`.** The host pushes belief records directly for starting knowledge.
 - **Note, not a request: residents die without meals.** A week-long host must feed people or the Sunday vote finds everyone dead. One line in the docs would help the next game.
+
+## The Warren (2026-10-19, against HF 2.8.0)
+
+Source: `docs/hf-requests.md` in `adam0white/warren`, a village digging a refuge into soft stone in cross-section, where chalk, lamps and rooms are offers and the bell is the only voice. Items 1, 2 and 4 were confirmed in the 2.8.0 source or a test; 3 is measured; 5 is a noted limitation. None blocks the game.
+
+- **Warren 1, need terms too small to drive work.** With advertised deltas of 0.1 to 0.6 on safety, competence, esteem or meaning, the `need:*` utility terms came out near 0.001 against effort costs of −0.14 to −0.36; nobody dug until the host added `material`, a `refuge` goal and a threat percept. Proposal: document the expected scale of need terms against effort, or one documented non-money knob for "this work matters to this person".
+- **Warren 2, effort cost does not depend on duration.** A 150-minute dig costs the same as a 30-minute one, so hosts that lengthen acts to save decisions make work cheaper per hour. Proposal: a duration-aware option, or a note in the affordance docs.
+- **Warren 3, cost per decision limits population at speed.** About 4 to 10 ms per person per sim-day at 30-minute quanta; 60 people at a 1.25-second sim-day take about half a core on an M-series Mac (phones assumed 2 to 3 times slower). Proposal: a profiling note on what dominates a decision, or a cheaper path for repeated identical offer sets.
+- **Warren 4, the community cache footgun.** `createCommunity(people, prior)` holds state that must be written back with `communityState` before the host switches state objects; otherwise the saved `community` is stale and a replay differs (a test caught it). Proposal: say so in the doc comment, or keep the prior in sync in `stepCommunity`.
+- **Warren 5, no notion of place or reach.** `alongside` names companions but HF has no space; the host computes paths and who can see a mark. Noted for a future spatial helper (who perceives what within N steps).
