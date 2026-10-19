@@ -106,7 +106,12 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | Fullness (alliesthesia) | Opt-in `body.fullness`: drinking or eating past comfort costs a little, so idle loops stop | Done, engine 2.8.0 |
 | A voice's own promise; seeding a voice | `noteVoicePromise`, `seedVoice` | Done, engine 2.8.0 |
 | Forecast thresholds per offer | `Affordance.forecastAt` (The Glance) | Done, engine 2.8.0 |
-| HF-character playtesters | `packages/playtester` (private): a persona plays any game through a four-call adapter; The Pass example | Done 2026-10-19; publish as its own package when a second game uses it, review 2026-11-15 |
+| HF-character playtesters | `packages/playtester` (private): a persona plays any game through a four-call adapter | Done 2026-10-19 |
+| Playtester edges and cohorts | Edge-pushers, a returner, an edge report (fun to keep or close), cohorts and build comparison; canonical adapters for The Pass, The Glance and The Two Voices | Done 2026-10-19 |
+| Publish the playtester | Three games now have adapters, which meets the earlier "second game" trigger. Decide whether to publish `packages/playtester` as its own npm package | Decide by 2026-11-15 |
+| Comparisons that can tell builds apart | At 3 seeds a persona, build-to-build changes stay within one session; add more seeds or a noise estimate per line | 2026-11-15 |
+| The Glance adapter's gate policy | Base personas lose every full run; check whether the inherited gate rule or the game causes it | 2026-11-01 |
+| An HF designer | Experiment done: no value over a plain LLM reviewer (findings, 2026-10-19). Not pursued | Closed 2026-10-19 |
 | Narration variety | Per-person variants for deferral and assent sentences (Rope rank 4, Glance 4); a plain third-person `promptingLine` (Pass 2); chronicle verbs that avoid inflecting nouns (Pass 3). One batch, since each moves narration fixtures | Engine 2.10 (was 2.9; not in 2.9.0) |
 | Why a suggestion failed | `SuggestionResolution.decidedBy` (inertia or the separating term, with margin) so lines can say "not straight off my break" (Pass 1) | Engine 2.10 (was 2.9; not in 2.9.0) |
 | A firm self-rule | Opt-in `Commitment.firm` on a self abstention: `refused/willNot`, reason `rule:<label>` (Pass 4) | Engine 2.10 (was 2.9; not in 2.9.0) |
