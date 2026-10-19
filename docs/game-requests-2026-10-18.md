@@ -134,3 +134,16 @@ Source: `docs/hf-requests.md` in `adam0white/murmur`. Items 1, 2 and 5 were chec
 - **Voices 3, `reviewLine` needs noun-phrase labels.** "I didn't keep calling Mum" reads badly, so labels are written as "my call to Mum". The Pass reported the same. Proposal: document this, or add an optional `reviewLabel`.
 - **Voices 4, goals cannot weigh against a temptation.** Goal terms are never negative. Assumed intended; a line in docs/api.md would settle it.
 - **Voices 5, host-set practice half-life.** The practice half-life is fixed at 60 days, and `enablePromptings` keeps existing practice. A one-week game has no public way to make a phrase fade, so the host scales `practice` nightly, writing into HF-owned state. Proposal: `practiceHalfLifeDays` in `enablePromptings`, or per response.
+
+## The Stairwell (2026-10-19, against HF 2.8.0)
+
+Source: `docs/hf-requests.md` in `adam0white/stairwell`, a seven-flat block where the player is the kapıcı and residents' beliefs spread on the stairs. Items 1, 3, 5 and 6 were checked in the 2.8.0 source; the rest are host workarounds. None blocks the game.
+
+- **Stairwell 1, a public setter for source trust, and docs on the three trust stores.** The host writes `memory.sourceTrust` directly to seed first impressions. Relationship trust, voice trust and source trust are separate and undocumented as a set. Proposal: `seedSourceTrust(p, id, t)` and one docs paragraph.
+- **Stairwell 2, contradiction lowers source trust.** Two listeners comparing notes and finding opposite stories from one source has no HF path; `confirm` needs a revealed truth. Workaround: the host adds a `<source>:dishonest` belief and scales source trust by 0.75. Proposal: `contradicted(p, sourceId, prop, at)`.
+- **Stairwell 3, reputation with a host trait table.** `perceive` applies reputation only for default traits; a host trait (`nosy`) needs a manual `applyReputationBelief`. Proposal: a trait table per person or per `perceive` call.
+- **Stairwell 4, provenance on beliefs.** `belief.sources` keeps the last value per source, so "who first said this" is a host ledger. Proposal: an optional `origin` on a claim that `converse` carries.
+- **Stairwell 5, word gets back to the subject.** `converse` skips claims about the listener. The host models a loyal friend warning the subject. Proposal: an opt-in `converse` mode for unfavourable claims about a listener the speaker is fond of.
+- **Stairwell 6, a relay threshold per person.** `converse` relays at credence ≥0.7 or ≤0.3 for everyone. Proposal: derive it from extraversion and honesty, or accept it per call.
+- **Stairwell 7, a public `seedBelief`.** The host pushes belief records directly for starting knowledge.
+- **Note, not a request: residents die without meals.** A week-long host must feed people or the Sunday vote finds everyone dead. One line in the docs would help the next game.

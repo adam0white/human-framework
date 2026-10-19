@@ -94,6 +94,13 @@ export const GAMES: Game[] = [
     line: 'First furrow, an early build being played in now: three years keeping an absent agha’s seal over two hamlets of named households who remember what you did.',
     faculties: ['Will', 'Memory and belief', 'A whole life'],
   },
+  {
+    id: 'stairwell',
+    name: 'The Stairwell',
+    href: 'https://stairwell.adamwhite.work',
+    line: 'A week as the new kapıcı of a seven-flat block in Istanbul: bread, bins, stairs, and everything the residents tell you, which you may pass on.',
+    faculties: ['Memory and belief', 'Relationships', 'Conscience'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);
