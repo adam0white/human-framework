@@ -1,5 +1,20 @@
 /** Words for things the play UI never shows as numbers: which night, the hour, rope wear. */
-import { ordinal } from '../sim/view.ts';
+import { type Frame, ordinal } from '../sim/view.ts';
+
+/** Why the clock is eased, in the header's words. */
+export function slowedWords(f: Frame): string {
+  if (f.phase === 'spring' || f.phase === 'summer' || f.phase === 'autumn') {
+    if (f.card) return 'the days slow for you to answer';
+    // Grave news eases the days furthest (pace.ts, GRAVE_DAYS): say which (2026-10-19 level-up).
+    const last = f.chronicle.at(-1);
+    if (last && f.minute - last.minute < 2 * 1440) {
+      if (last.kind === 'death') return 'the days slow: a death in the village';
+      if (last.kind === 'leave') return 'the days slow: someone is leaving';
+    }
+    return 'the days slow for the news';
+  }
+  return f.moment ? 'the night waits on you' : 'the night slows';
+}
 
 export function hourWords(clock: number, phase: string): string {
   if (phase === 'goal') return 'Before dusk';

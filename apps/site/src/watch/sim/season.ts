@@ -157,6 +157,7 @@ function thaw(s: WatchState): void {
   routineLine(s);
   winterStories(s);
   lessonLines(s);
+  fairLines(s);
   // Grown old on the wall.
   for (const p of living(s)) {
     if (isWatcher(s, p) && ageOf(p, s.minute) >= 60 && (s.cast[p.id]?.comes.year ?? s.year) <= s.year - 20)
@@ -265,6 +266,49 @@ function lessonLines(s: WatchState): void {
           ? `${who}'s sling lessons with ${teacher} showed a little this winter: a steadier throw, not yet a sure one.`
           : `${who}'s sling lessons with ${teacher} have not shown on the wall yet.`,
       x.who,
+    );
+  }
+}
+
+/**
+ * The first thaw after a fair says what came of what was bought there (deferred T1, "delayed feedback on other
+ * decisions"; 2026-10-19 level-up): a raised wall against how often it was climbed this winter, and a named heir
+ * against how many routine nights they stood the Gate. Read from the chronicle and this winter's tallies; words
+ * only (the chronicle is not rule state).
+ */
+function fairLines(s: WatchState): void {
+  const bought = s.chronicle.filter((l) => l.kind === 'fair' && l.year === s.year - 1);
+  for (const sec of SECTION_IDS) {
+    const wall = sec === 'gate' ? 'the wall by the Gate' : `the ${sec} wall`;
+    // The texts fair.ts writes: "The west wall was raised and lengthened", "Masons … raised the west wall again".
+    const raised = bought.some((l) => l.text.toLowerCase().startsWith(`${wall} was raised`));
+    const rebuilt = bought.some((l) => l.text.includes(`raised ${wall} again`));
+    if (!raised && !rebuilt) continue;
+    const n = s.yearGrain.breaches[sec] ?? 0;
+    const what = raised ? 'Raised at the fair' : 'Rebuilt by the masons';
+    chronicle(
+      s,
+      'winter',
+      n === 0
+        ? `${what}, ${wall} stood the winter: nothing came over it.`
+        : `${what}, ${wall} was still climbed ${n === 1 ? 'once' : `${n} times`} this winter.`,
+    );
+  }
+  for (const l of bought) {
+    if (!l.who || !l.text.startsWith('You named')) continue;
+    const heir = personOf(s, l.who);
+    if (!heir?.body.alive) continue;
+    const nights = s.yearGrain.stints[`${l.who}@gate`] ?? 0;
+    const who = nameOf(s, l.who);
+    chronicle(
+      s,
+      'winter',
+      nights >= 3
+        ? `${who}, named heir at the fair, stood the Gate ${nights} quiet nights this winter and is learning it.`
+        : nights > 0
+          ? `${who}, named heir at the fair, stood the Gate only ${nights === 1 ? 'one quiet night' : `${nights} quiet nights`} this winter.`
+          : `${who}, named heir at the fair, never stood the Gate this winter. The Gate is learned on the Gate.`,
+      l.who,
     );
   }
 }

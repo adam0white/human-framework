@@ -39,6 +39,7 @@ import {
   remember,
   type SimEvent,
   type Suggestion,
+  selfReport,
   skillLevel,
   stepCommunity,
   strain,
@@ -903,7 +904,16 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
         away &&
         !p.body.downed
       ) {
-        if (sec) note(s, { who: id, kind: e.verdict, section: sec });
+        // Said to the Keeper (a refusal is told, not guessed), with their own reason, as it happens (owner's
+        // playtest, 2026-10-05: refusals explained in the moment, not only after the night). Words only.
+        if (sec && note(s, { who: id, kind: e.verdict, section: sec }))
+          alert(s, {
+            section: sec,
+            kind: 'person',
+            who: id,
+            text: refusalLine(s, id, e.verdict, sec, chosen),
+            slowed: true,
+          });
         observeAct(s.keeper, id, {
           at: s.minute,
           clarity: sec === lit ? 0.8 : 0.4,
@@ -934,7 +944,7 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
       if (seen) catchLeaving(s, id, action, where);
       const kind: NightNote['kind'] =
         action === 'flee' ? 'fled' : action === 'run-off' ? 'ran' : action === 'sleep' ? 'slept' : 'home';
-      note(s, { who: id, kind, section: where });
+      if (note(s, { who: id, kind, section: where }) && !seen) neighbourCall(s, id, kind, where);
       // Walking home, to family or to bed, is not fear of the place (HF reads avoided 0 as an even 0.5, so it is
       // left out); only running from it is.
       const ran = action === 'flee' || action === 'run-off';
@@ -1038,9 +1048,107 @@ function personLineBare(s: WatchState, n: NightNote): string {
       return `${name} says: not yet.`;
     case 'modified':
       return `${name} stands somewhere else.`;
+    case 'dozed':
+      return `${name} nods off at ${at}.`;
+    case 'woken':
+      return `${name} jerks awake at ${at}.`;
+    case 'commanded':
+      return `${name} answers the bell at ${at}.`;
+    case 'shaken':
+      return `${name} starts at every sound on ${at}.`;
+    case 'together':
+      return `${name} keeps close to ${n.other ? nameOf(s, n.other) : 'a friend'} on ${at}.`;
+    case 'prayed':
+      return `${name} stands a while at ${at}, head bowed.`;
+    case 'bitten':
+      return `${name} is bitten at ${at}.`;
+    case 'downed':
+      return `${name} goes down at ${at}.`;
+    case 'carried':
+      return `${name} is carried off ${at}.`;
     default:
-      return `${name} at ${at}.`;
+      return `${name} keeps ${at}.`;
   }
+}
+
+/**
+ * A watcher's own reason for turning the Keeper down, in their voice: what they will own to (`selfReport`, so pride
+ * may hide pain or fear behind the cold) and where they are going instead. Words only.
+ */
+function ownReason(s: WatchState, id: WatcherId, chosen: string, posted: SectionId): string {
+  const p = personOf(s, id);
+  if (!p) return '';
+  const told = selfReport(p);
+  if (chosen.startsWith('post:')) {
+    const there = postSection(chosen.slice('post:'.length) as PostId);
+    return told.fear > 0.3
+      ? `Not ${theSection(posted)}. I’ll take ${theSection(there)}.`
+      : `I can see more from ${theSection(there)}.`;
+  }
+  if (chosen === 'go-home' || chosen.startsWith('home:'))
+    return familyWords(s, id) ? 'I’m needed at home tonight.' : 'I’m going home. I’ve nothing left tonight.';
+  if (told.fear > 0.3 && told.fear >= told.fatigue)
+    return `Not ${theSection(posted)}. Not with what’s out there.`;
+  if (told.fatigue > 0.4 || chosen === 'sleep') return 'I can’t keep my eyes open.';
+  if (told.pain > 0.3) return 'My leg won’t take the steps tonight.';
+  return 'The cold’s in my bones. Find someone else.';
+}
+
+/** A refusal (or a "not yet", or another post) as it is said to the Keeper, with the watcher's reason. */
+function refusalLine(
+  s: WatchState,
+  id: WatcherId,
+  verdict: 'refused' | 'deferred' | 'modified',
+  posted: SectionId,
+  chosen: string,
+): string {
+  const name = nameOf(s, id);
+  const why = ownReason(s, id, chosen, posted);
+  const quote = why ? ` “${why}”` : '';
+  if (verdict === 'deferred') return `${name} says ${theSection(posted)} will have to wait.${quote}`;
+  if (verdict === 'modified') return `${name} won’t stand where you posted them.${quote}`;
+  return `${name} won’t take ${theSection(posted)} tonight.${quote}`;
+}
+
+/**
+ * Someone leaves a stretch in the dark: a watcher still standing on it calls it along the wall, with what they saw
+ * of them (outward signs, near by). No one else there, no word: the post just stands empty. Words only.
+ */
+function neighbourCall(s: WatchState, id: WatcherId, kind: NightNote['kind'], where: SectionId): void {
+  const p = personOf(s, id);
+  if (!p) return;
+  const caller = presentIds(s).find((q) => {
+    if (q === id) return false;
+    const pl = s.place[q];
+    const qp = personOf(s, q);
+    return isPost(pl) && postSection(pl) === where && !!qp && !qp.body.downed && !qp.body.asleep;
+  });
+  if (!caller) return;
+  const name = nameOf(s, id);
+  const o = outwardSigns(p);
+  const looked =
+    o.fear > 0.4 && o.fear >= o.fatigue
+      ? ', white as milk'
+      : o.fatigue > 0.5
+        ? ', half asleep'
+        : o.pain > 0.3
+          ? ', limping'
+          : '';
+  const went =
+    kind === 'ran'
+      ? `${name}’s run off${looked}!`
+      : kind === 'fled'
+        ? `${name}’s gone down to the hall${looked}.`
+        : kind === 'slept'
+          ? `${name}’s gone home to bed${looked}.`
+          : `${name}’s run home: something near the house.`;
+  alert(s, {
+    section: where,
+    kind: 'person',
+    who: id,
+    text: `${nameOf(s, caller)} calls from ${theSection(where)}: “${went}”`,
+    slowed: true,
+  });
 }
 
 /** Fatigue and fear as they weigh on a throw (0..1 each). */

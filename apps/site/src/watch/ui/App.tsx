@@ -36,7 +36,15 @@ import {
 } from './pages.tsx';
 import { Impressions, Pips, Rope, Sacks } from './parts.tsx';
 import { useWatch, type WatchActions } from './useWatch.ts';
-import { awayWords, daylightWords, hourWords, PRESS_WORDS, pageWhen, ropeWords } from './words.ts';
+import {
+  awayWords,
+  daylightWords,
+  hourWords,
+  PRESS_WORDS,
+  pageWhen,
+  ropeWords,
+  slowedWords,
+} from './words.ts';
 
 const SPEEDS: { id: Speed; label: string; icon: IconName }[] = [
   { id: 'tactical', label: 'Slow', icon: 'snail' },
@@ -56,12 +64,6 @@ function headerLine(f: Frame): string {
   if (f.phase === 'goal') return 'Before the first night';
   if (WINTER_PHASES.has(f.phase)) return `${f.date} · ${hourWords(f.clock, f.phase)}`;
   return f.date;
-}
-
-function slowedWords(f: Frame): string {
-  if (SEASON_PHASES.has(f.phase))
-    return f.card ? 'the days slow for you to answer' : 'the days slow for the news';
-  return f.moment ? 'the night waits on you' : 'the night slows';
 }
 
 /**

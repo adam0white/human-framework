@@ -283,9 +283,16 @@ export function checkMoments(s: WatchState): void {
     const why = carded(s, 'waver', who) ? null : wavering(s, who);
     if (!why) continue;
     const name = nameOf(s, who);
+    // Urging is a word, not the bell: read it like a posting pressed harder, so it shows a read as the bell does
+    // (2026-10-19 level-up: every option that asks something of a person says how it would likely go).
+    const stand = s.place[who];
     const options: MomentOption[] = [
       { id: 'let', label: `Let ${name} go` },
-      { id: 'urge', label: `Urge ${name} to hold` },
+      {
+        id: 'urge',
+        label: `Urge ${name} to hold`,
+        ...(isPost(stand) ? { read: readWords(readPosting(s, who, stand, 'urge')) } : {}),
+      },
     ];
     if (!s.rope.snapped)
       options.push({ id: 'bell', label: `Ring and call ${name} by name`, read: bellWords(readBell(s, who)) });
@@ -327,7 +334,11 @@ export function catchLeaving(s: WatchState, who: WatcherId, action: string, sect
     text: `${name} ${where}.`,
     options: [
       { id: 'let', label: `Let ${name} go` },
-      { id: 'urge', label: `Call ${them(s, who)} back to the wall` },
+      {
+        id: 'urge',
+        label: `Call ${them(s, who)} back to the wall`,
+        ...(post ? { read: readWords(readPosting(s, who, post, 'urge')) } : {}),
+      },
     ],
     ...(post ? { post } : {}),
   });
