@@ -11,6 +11,8 @@
  * After the owner's playtest (2026-10-05):
  * - The open seasons run themselves: entering them sets `seasons`, a card slows play as before, and news written
  *   into the chronicle (a birth, an arrival, the harvest) eases play to `days` for a few days so it can be read.
+ * - 2026-10-19 level-up: grave news (a death, a household leaving) eases play further, to `tactical` for
+ *   `GRAVE_DAYS`, about thirteen real seconds: the owner's year-1 founder died in an autumn that ran by unseen.
  * - A slowdown hands the chosen speed back over about a second and a half instead of at once, so the end of a
  *   moment no longer reads as the clock jumping.
  */
@@ -32,6 +34,8 @@ const MAX_STEPS_PER_TICK = 20;
 export const RAMP_MS = 1500;
 /** Sim days the open seasons run at `days` after news is written into the chronicle. */
 export const NEWS_DAYS = 5;
+/** Sim days the open seasons run at `tactical` after a death or a leaving is written into the chronicle. */
+export const GRAVE_DAYS = 2;
 const DAY_MINUTES = 1440;
 
 export class Pacer {
@@ -49,6 +53,7 @@ export class Pacer {
   /** The chronicle's length last seen, and the sim minute news eases the seasons until. */
   private lines = -1;
   private newsUntil = -1;
+  private graveUntil = -1;
 
   /** How far into the next minute real time has carried (0..1), for drawing between minutes. */
   get progress(): number {
@@ -58,7 +63,7 @@ export class Pacer {
   /** Whether a moment (or, in the seasons, a card or fresh news) is easing play right now. */
   slowed(run: WatchRun): boolean {
     const s = run.state;
-    if (isSeason(s)) return s.card !== null || this.news(run);
+    if (isSeason(s)) return s.card !== null || this.news(run) || this.grave(run);
     return s.phase === 'night' && s.minute < s.slowUntil;
   }
 
@@ -67,12 +72,17 @@ export class Pacer {
     return run.state.minute < this.newsUntil && DAY_RATE[this.speed] > DAY_RATE.days;
   }
 
+  /** Fresh grave news (a death, a leaving) in the open seasons, while the Keeper runs them faster than `tactical`. */
+  private grave(run: WatchRun): boolean {
+    return run.state.minute < this.graveUntil && DAY_RATE[this.speed] > DAY_RATE.tactical;
+  }
+
   /** The rate the clock should run at now (sim minutes, or in the seasons days, per real second). */
   rate(run: WatchRun): number {
     const s = run.state;
     if (s.phase === 'dusk') return DUSK_RATE;
     if (isSeason(s)) {
-      if (s.card) return DAY_RATE.tactical;
+      if (s.card || this.grave(run)) return DAY_RATE.tactical;
       return this.news(run) ? DAY_RATE.days : DAY_RATE[this.speed];
     }
     if (s.phase !== 'night') return 0;
@@ -108,7 +118,11 @@ export class Pacer {
     }
     this.wasSlowed = slowed;
     const n = s.chronicle.length;
-    if (this.lines >= 0 && n > this.lines && isSeason(s)) this.newsUntil = s.minute + NEWS_DAYS * DAY_MINUTES;
+    if (this.lines >= 0 && n > this.lines && isSeason(s)) {
+      this.newsUntil = s.minute + NEWS_DAYS * DAY_MINUTES;
+      if (s.chronicle.slice(this.lines).some((l) => l.kind === 'death' || l.kind === 'leave'))
+        this.graveUntil = s.minute + GRAVE_DAYS * DAY_MINUTES;
+    }
     this.lines = n;
   }
 
@@ -152,6 +166,7 @@ export class Pacer {
     this.wasSlowed = false;
     this.lines = -1;
     this.newsUntil = -1;
+    this.graveUntil = -1;
     this.wasSeason = s.phase === 'goal' ? null : isSeason(s) || s.phase === 'fair';
     if (s.phase === 'dusk' || s.phase === 'night') {
       if (this.speed === 'days' || this.speed === 'seasons') this.speed = 'watch';

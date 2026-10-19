@@ -13,8 +13,8 @@
  * stateless caller can play one command at a time. The screen prints after the last command (`quiet` stops that).
  *
  * Time is continuous, as on the page: `wait <seconds>` lets real seconds pass at the current speed. It stops early
- * when something asks for you (a card on the wall, a matter in the seasons, a page that waits); `wait! <seconds>`
- * does not stop early. The page itself would also not stop: an unanswered card runs out and the person decides
+ * when something asks for you (a card on the wall, a matter in the seasons, a page that waits) or a death or a
+ * leaving slows the seasons; `wait! <seconds>` does not stop early. The page itself would also not stop: an unanswered card runs out and the person decides
  * alone.
  *
  * Commands (the `help` command prints this list):
@@ -106,6 +106,16 @@ const SPEEDS: { id: Speed; label: string }[] = [
   { id: 'seasons', label: 'Seasons' },
 ];
 const SEASON_PHASES = new Set(['spring', 'summer', 'autumn']);
+/** What the map's sprite shows a lit watcher doing, in words. */
+const POSTURE_WORDS: Record<string, string> = {
+  sit: 'sitting',
+  doze: 'dozing',
+  eat: 'eating',
+  pray: 'head bowed',
+  down: 'down',
+  frozen: 'frozen still',
+  carry: 'carrying someone',
+};
 const RUNNING = new Set(['dusk', 'night', 'spring', 'summer', 'autumn']);
 const WINTER_PHASES = new Set(['dusk', 'night', 'dawn']);
 
@@ -191,12 +201,20 @@ export class Harness {
   /** What changes when something asks for the Keeper: a card, a matter, the phase. */
   private marker(): string {
     const s = this.run.state;
-    return `${s.phase}|${s.moment?.id ?? ''}|${s.card?.id ?? ''}`;
+    const grave = s.chronicle.filter((l) => l.kind === 'death' || l.kind === 'leave').length;
+    return `${s.phase}|${s.moment?.id ?? ''}|${s.card?.id ?? ''}|${grave}`;
   }
 
+  /** Something waits on the Keeper, or (in the seasons) grave news is easing the days. */
   private asks(): boolean {
     const s = this.run.state;
-    return s.moment !== null || s.card !== null || !clockRuns(s) || s.phase === 'dusk';
+    return (
+      s.moment !== null ||
+      s.card !== null ||
+      !clockRuns(s) ||
+      s.phase === 'dusk' ||
+      (isSeason(s) && this.pacer.slowed(this.run))
+    );
   }
 
   exec(line: string): void {
@@ -488,11 +506,7 @@ function headerLine(f: Frame): string {
   return f.date;
 }
 
-function slowedWords(f: Frame): string {
-  if (SEASON_PHASES.has(f.phase))
-    return f.card ? 'the days slow for you to answer' : 'the days slow for the news';
-  return f.moment ? 'the night waits on you' : 'the night slows';
-}
+const slowedWords = W.slowedWords;
 
 function easedTo(f: Frame, chosen: Speed): Speed | null {
   if (!f.slowed || f.rate <= 0) return null;
@@ -524,12 +538,15 @@ function pips(left: number, of: number): string {
   return `${'◆'.repeat(Math.max(0, left))}${'◇'.repeat(Math.max(0, of - left))}`;
 }
 
-/** Impressions are drawn as solid as the Keeper is sure: (faint) and (unsure) mark the weaker ones. */
+/**
+ * Impressions are drawn as solid as the Keeper is sure: (faint) and (unsure) mark the weaker ones. A greyed note
+ * with no sureness ("from last winter") says how old the reads are; it prints in brackets.
+ */
 function impressions(list: { text: string; sure: number }[]): string {
   return list
     .map((im) =>
       im.sure <= 0
-        ? `${im.text} (unknown)`
+        ? `[${im.text}]`
         : im.sure < 0.35
           ? `${im.text} (faint)`
           : im.sure < 0.65
@@ -585,7 +602,8 @@ function mapLines(f: Frame): string[] {
       const seen = f.phase !== 'night' || w.lit;
       if (!seen) return `${w.name}: a figure${w.commanded ? ', ringed by the bell' : ''}`;
       const bits: string[] = [];
-      if (f.phase === 'night' && w.posture !== 'stand' && w.posture !== 'figure') bits.push(w.posture);
+      if (f.phase === 'night' && w.posture !== 'stand' && w.posture !== 'figure')
+        bits.push(POSTURE_WORDS[w.posture] ?? w.posture);
       if (w.signs?.tired) bits.push('slumped');
       if (w.signs?.afraid) bits.push('hunched, looking to the steps');
       if (w.signs?.hurt) bits.push('bandaged');

@@ -6,7 +6,7 @@
  * say, not what is true. Faith stays out of it.
  */
 import { IMPRESSION_DEFAULTS, type Person, reserveOf, selfReport } from '@adam0white/human-framework';
-import { postSection, SECTION_IDS, type SectionId, type WatcherId } from './config.ts';
+import { DAY, postSection, SECTION_IDS, type SectionId, type WatcherId } from './config.ts';
 import { familyWords, isWatcher, nameOf, personOf, villager } from './people.ts';
 import type { NightNote, WatchState } from './state.ts';
 
@@ -328,6 +328,37 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
           '“An owl, a fox, and the cold. That’s all.”',
           '“Frost on my sleeve by midnight. Nothing else.”',
           '“I watched the mist come and go.”',
+        ]);
+    }
+    // A posting pressed for tonight (urge or insist) is answered at dawn: whether they held it (2026-10-19
+    // level-up, delayed feedback on pressing). Said after every other line, so it changes none of them.
+    const press = s.press[id];
+    const set = s.postedAt[id];
+    const hurt = bitten || down || carried;
+    if (
+      post &&
+      !hurt &&
+      (press === 'urge' || press === 'insist') &&
+      set !== undefined &&
+      s.minute - set < DAY
+    ) {
+      const at = theSec(postSection(post));
+      if (left || home || refused || slept)
+        say('pressed-left', ['“I know you pressed me.”', '“You asked hard. I still went.”']);
+      else if (press === 'urge')
+        say('pressed-held', [
+          `“You pressed me for ${at}. I held it.”`,
+          `“I stood ${at} because you asked it twice.”`,
+        ]);
+      else if ((p.needs.autonomy ?? 0.5) < 0.45)
+        say('insisted-bitter', [
+          `“You insisted on ${at}. I stood it, and I won’t forget it.”`,
+          `“I stood ${at} because you gave me no say.”`,
+        ]);
+      else
+        say('insisted-held', [
+          `“You insisted. I stood ${at}.”`,
+          `“${capital(at)}, as you insisted. It held.”`,
         ]);
     }
     let text = said.join(' ');

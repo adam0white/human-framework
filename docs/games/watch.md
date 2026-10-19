@@ -547,6 +547,60 @@ The owner asked: "if it stays at the gate how do we ring it when we're watching 
   - Left out of the rule state: the chronicle, alerts, the dawn and day pages, the scout's words, night notes, last voices, the season card and the fair's offers (their texts), talks, volumes and leaves, and `slowUntil` (pacing).
   - Rule: a change that moves `ruleHash` for the same seed and log is a rule change and bumps the scenario version; a change that moves only `fullHash` does not. A field added to state that rules read must be added to `ruleState`. `run.test.ts` pins that wording, alerts, the scout's line, pacing and pairing flags leave `ruleHash` alone and that grain, either stream and the rope move it.
 
+### 2026-10-19 level-up
+
+Owner, 2026-10-19: bring the earlier games to the latest HF and apply what the other games taught. **Save version: none changed.** Every change is words or pacing, so scenario 9 stands, every scenario 9 export still replays, and the owner's scenario 7 fixture replays tolerantly as before. A scenario 9 export pinned today (`apps/site/test/fixtures/watch-scenario9-2026-10-19.json`, harness policy, seed 1, two years) must replay to its `ruleHash`, so a later rule change has to bump the scenario.
+
+**Tools.** Both run from the repository root with Node 24 and need no build.
+- `apps/site/scripts/play-watch.ts` is a text harness over the game's own sim. It prints what the page shows: sacks, rope strands and pips as glyphs, and reads in words. It never prints needs, trust or dice. The run lives in a state file passed by `--state`. `help` lists the commands, and `export` writes the page's playtest export.
+- `apps/site/scripts/hf-watch-adapter.ts` and `hf-watch-session.ts` let the playtester's HF personas play the Keeper through that harness.
+
+**Audit, played through the harness before any change** (seeds 7 and 11, year 1, plus an auto-policy year):
+- The first choice that matters (the first card) came about 47 real seconds after Begin. The first dusk already asks where the warned stretch is held.
+- **Refusals were not said in the moment.** A refused posting printed "X won't take the post you gave" with no reason, and only under the lantern. A leaving in the dark showed one word on the empty post, and the reason waited for dawn. This was the owner's first ask.
+- **The seasons were a dead stretch.** In seed 7, Tamar (the founder, the Gate keeper, the volume's subject) died in late autumn of year 1. At Seasons pace her death passed in about 2.5 real seconds of a "news" ease, so a player waiting through the autumn never saw it.
+- **Delayed feedback** existed only for the sling lesson.
+- **Hints:** "Urge X to hold" and "Call X back" carried no read, though the bell option beside them did.
+- **Bland lines:** under the lantern, a doze, a bell answered, a waking or a prayer fell back to "Joss at the mill wall."
+
+**Built.**
+1. **Refusals said as they happen, with the watcher's reason** (`night.ts`, `refusalLine`, `ownReason`).
+   - A refused posting, a "not yet" or another post is a slowing ticker line in the watcher's own voice. Example: "Mara says the east wall will have to wait. 'The cold's in my bones. Find someone else.'"
+   - The reason comes from `selfReport`, so a proud or reserved person may blame the cold for fear. That is the existing design for dawn voices, now said in the moment.
+2. **A leaving in the dark is called along the wall by a neighbour** (`neighbourCall`). Example: "Tamar calls from the Gate: 'Kian's gone home to bed.'"
+   - The neighbour adds what they saw (white as milk, half asleep, limping), so the reading has a source.
+   - With nobody else on the stretch there is no call: the post just stands empty. This gives a reason to watch the ticker, not only to wait for dawn.
+3. **Every option that asks something of a person shows a read.** "Urge X to hold" and "Call X back to the wall" now carry the Keeper's read of an urged posting (`readPosting`, a pure read), as the bell option and the substitute already did.
+4. **Plain ticker lines** for every act seen under the lantern: nods off, jerks awake, answers the bell, starts at every sound, keeps close to a friend, stands a while with head bowed, is bitten, goes down, is carried off. Prayer stays a quiet posture with no named faith.
+5. **Delayed feedback on decisions** (part of §12 T1):
+   - On the dawn after a posting was urged or insisted, the watcher answers it: "You pressed me for the east wall. I held it." or "I know you pressed me." Insisting on someone who values their say is remembered bitterly.
+   - At the first thaw after a fair, the chronicle says what came of a raised or rebuilt wall (climbed how often this winter) and of a named heir (how many routine nights they stood the Gate). An heir who never stood the Gate gets "The Gate is learned on the Gate."
+6. **Grave news slows the seasons** (`pace.ts`, `GRAVE_DAYS`). A death or a household leaving eases the open seasons to the slowest pace for two sim days, about 13 real seconds, and the header says "the days slow: a death in the village". The harness's `wait` stops there too.
+
+**HF 2.4–2.8 features considered, not adopted.** Each would move decisions and need a scenario bump.
+- **Fatigue store (2.6):** standing a post costs effort 0.15–0.2, below the store's 0.3 floor, and watchers sleep by day, so the store would barely move. The night's tiredness is already HF sleep pressure (negative finding).
+- **`forecastAt`/`followedBy` (2.5/2.8):** a posting is one leg with no declared follow-on.
+- **`reconsider` (2.8):** a re-ask at night is already a card plus `interruptPerson`.
+- **Promptings and muhasaba (2.4/2.7):** not used. Dawn voices already serve as the evening's reflection, and the faith rule keeps the game away from them.
+
+**HF playtester personas** (`node apps/site/scripts/hf-watch-session.ts seeds=2`, after the change):
+
+| persona | seed | ended | min | reached | engagement | longest lull |
+|---|---|---|---|---|---|---|
+| commuter | 1 | quit | 4 | year 1, night | 0.80 | 0 s |
+| commuter | 2 | quit | 3 | year 1, night | 0.81 | 0 s |
+| unwinder | 1 | quit | 20 | year 2, night | 0.85 | 0 s |
+| unwinder | 2 | quit | 14 | year 2, night | 0.85 | 0 s |
+| completionist | 1 | quit | 16 | year 2, night | 0.86 | 0 s |
+| completionist | 2 | quit | 14 | year 2, night | 0.87 | 0 s |
+| restless | 1 | quit | 12 | year 2, night | 0.74 | 3 s at dusk |
+| restless | 2 | quit | 12 | year 2, night | 0.76 | 0 s |
+
+How to read it:
+- No persona got bored. Every one quit on distress (HF `distress:rest`) during a winter night, after wolves over the wall and watchers going home.
+- The table before the change was the same within a minute. That is expected: this pass changed words and pacing, and the adapter weighs losses, not reasons.
+- Signal for the next pass: a wolf in the store feels like a loss with nothing to do about it. That points at §12 T1 granary protections and night tools, not at more words.
+
 ## 11. Risks and cuts
 
 | Risk | Mitigation |
@@ -584,7 +638,8 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 - T1, **investigating events.** For example, why someone left despite an urge. A follow-up the Keeper can open from the ticker or the dawn: asking, looking, asking others.
 - T1, **more and pricier upgrades.** "I've been buying all possible improvements". A deeper fair with costly, lasting works.
 - T1, **granary protections.** "when will we have better protections at the granary?" Locks, a watch on the store, a second store.
-- T1, **delayed feedback on other decisions.** Only the sling lesson reports back today. Heir, urge or insist, the fair and the family card should get later lines too.
+- Done in part 2026-10-19, **delayed feedback on other decisions** ([level-up](#2026-10-19-level-up)): urge and insist are answered at the next dawn, and a raised or rebuilt wall and a named heir are reported at the first thaw. Still T1: the fair's other picks, the family card, and heir feedback beyond routine Gate nights.
+- Done 2026-10-19, **refusals and leavings explained in the moment** (the owner's first ask): said as they happen in the watcher's voice, or called along the wall by a neighbour ([level-up](#2026-10-19-level-up)).
 - T1, **re-posting at night.** Moving someone from another wall. Posts are set at dusk by design (§4); this would be a costly night action, not free re-posting.
 - Unscheduled, **sticky posts are a design decision, kept as a deferred discussion.** The owner: "Yeah sticky posts is a design decision, don't reopen those just because I complain about it, keeping as a deferred discussion is fine." Post behaviour stays as built (standing postings, set at dusk, people who hold their own spot). Reopen only when the owner raises it as a decision, not on a complaint.
 - T3, **thieves as humans.** The owner: "Probably defer, but it would be interesting to model the thieves as humans, too." Today a thief is a token with hit points, a speed and a climb (`THREATS` in `config.ts`). What it would take:
@@ -611,7 +666,7 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 **Carried from G3-2 to G3-4 and H2.**
 - T1, **posting pressure once families are admitted** (#19).
 - T1, **talk topics that change behaviour directly**: rest tonight, practise with, mend.
-- T1, **more than one person card per off-season** (#13), and deaths and leavings as cards.
+- T1, **more than one person card per off-season** (#13), and deaths and leavings as cards. In part 2026-10-19: grave news now slows the open seasons for two days so it is seen; cards with choices remain.
 - T1, **collapse quiet watchers into one dawn line** (#7).
 - T2, **talks with children and in the open seasons.**
 - T3, **sprites that age** (#21): stoop, grey hair.
