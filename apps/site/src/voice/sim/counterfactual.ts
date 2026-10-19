@@ -16,7 +16,7 @@
  * Cost: a whole silent run, about 1.1 s on the bench (`npm run bench`).
  */
 import { dayOf, MINUTES_PER_DAY } from '@adam0white/human-framework';
-import { SILENT_CAPTION, type SilentMonthView } from '../protocol.ts';
+import { SILENT_CAPTION, type SilentMonthView, type VoiceRules } from '../protocol.ts';
 import { VoiceGame } from './game.ts';
 import { play } from './headless.ts';
 import { TOWN_DEFAULTS, TOWN_EID_DAY } from './town.ts';
@@ -28,8 +28,9 @@ export interface SilentMonth {
   readonly game: VoiceGame;
 }
 
-export function startSilentMonth(seed: number): SilentMonth {
-  return { seed, game: new VoiceGame(seed) };
+/** The silent month under the played game's rules (protocol `VOICE_RULES`; default the current rules). */
+export function startSilentMonth(seed: number, rules: VoiceRules = 2): SilentMonth {
+  return { seed, game: new VoiceGame(seed, rules) };
 }
 
 /**
