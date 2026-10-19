@@ -272,4 +272,19 @@ export interface HumanSide {
   restore(snapshot: unknown): void;
 }
 
-export type HumanSideFactory = () => HumanSide;
+/**
+ * Rules version of the scenario (colony.md, "2026-10-19 level-up"). 3: the rules of the 2026-10-07 build, kept so @3
+ * saves and the pinned fixture replay exactly. 4 (current): refusals name their reason, a "you'll be safer" appeal is
+ * a promise the person holds you to, and a new order to the same person settles the old card as replaced.
+ */
+export type ColonyRules = 3 | 4;
+export const CURRENT_RULES: ColonyRules = 4;
+export const RULES: readonly ColonyRules[] = [3, 4];
+export const scenarioOf = (rules: ColonyRules): string => `colony-scenario@${rules}`;
+/** The rules a scenario string names, if this build still plays them. */
+export function rulesOf(scenario: unknown): ColonyRules | null {
+  return RULES.find((r) => scenarioOf(r) === scenario) ?? null;
+}
+
+/** Builds a Human side under the given rules (a factory may ignore them, as the test placeholder does). */
+export type HumanSideFactory = (rules: ColonyRules) => HumanSide;

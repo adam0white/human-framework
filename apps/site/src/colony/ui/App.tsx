@@ -18,6 +18,7 @@ import {
   type ComposerState,
   EMPTY_COMPOSER,
   GoalStrip,
+  HurtLine,
   MomentBanner,
   OrderLog,
   PaneStats,
@@ -364,6 +365,7 @@ export function App() {
 
         <aside className="center">
           {playback.pause && <PauseRibbon pause={playback.pause} onResume={() => actions.setPaused(false)} />}
+          <HurtLine news={frame?.news ?? []} />
           <div className="composer-tray">
             <Composer
               state={composer}

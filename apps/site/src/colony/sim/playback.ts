@@ -11,14 +11,13 @@
 import {
   makePlaytestFile,
   type PlaytestFile,
-  parsePlaytest,
   type ReplayResult,
   replayResult,
 } from '../../shared/playtest.ts';
 import type { MainToWorker, PauseInfo, PauseReason, PlaybackState, Speed, WorkerReply } from '../protocol.ts';
 import { ColonyGame, type LogEntry, SCENARIO_VERSION } from './game.ts';
 import type { HumanSideFactory } from './human-side.ts';
-import { colonyHash, colonySnapshot, replayColony, validateColonyLog } from './playtest.ts';
+import { colonyHash, colonySnapshot, parseColonyPlaytest, replayColony } from './playtest.ts';
 import {
   type Minute,
   SIM_MINUTES_PER_SECOND,
@@ -112,7 +111,7 @@ export class Playback {
     return makePlaytestFile({
       game: 'colony',
       seed: g.seed,
-      scenario: SCENARIO_VERSION,
+      scenario: g.scenarioVersion,
       minute: g.minute,
       log: structuredClone(g.log),
       hash: colonyHash(g),
@@ -126,15 +125,21 @@ export class Playback {
    * (a bad file throws and leaves the run as it was). Returns the comparison and the replies for the new run.
    */
   load(text: string, engine: string): { result: ReplayResult; replies: WorkerReply[] } {
-    const f = parsePlaytest(text, 'colony', SCENARIO_VERSION, validateColonyLog);
-    const g = replayColony(f.seed, this.factory, f.log, f.minute);
+    // An older save replays under the rules it was played with (colony.md, "2026-10-19 level-up").
+    const { file: f, rules } = parseColonyPlaytest(text);
+    const g = replayColony(f.seed, this.factory, f.log, f.minute, rules);
     const result = replayResult(f, colonyHash(g), engine, g.minute);
     this.game = g;
     this.carry = 0;
     this.slowLeft = 0;
     this.endedSent = false;
     this.seen = new Set();
-    this.stop('manual', LOADED_TEXT);
+    this.stop(
+      'manual',
+      g.scenarioVersion === SCENARIO_VERSION
+        ? LOADED_TEXT
+        : `${LOADED_TEXT} It was saved under the older rules (${g.scenarioVersion}) and plays on under them.`,
+    );
     return { result, replies: this.frame() };
   }
 

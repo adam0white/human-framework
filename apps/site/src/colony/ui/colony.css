@@ -518,11 +518,13 @@
 }
 
 .card-lapsed,
+.card-replaced,
 .card-done {
   opacity: 0.62;
 }
 
-.card-lapsed .card-title {
+.card-lapsed .card-title,
+.card-replaced .card-title {
   text-decoration: line-through;
 }
 
@@ -1712,6 +1714,19 @@ body {
   background: var(--parchment);
   color: var(--ink);
   border-color: var(--parchment);
+}
+
+/* Injuries said as they happen (2026-10-19 level-up). */
+.hurt-line {
+  margin: 0;
+  padding: 4px 10px;
+  border-left: 3px solid var(--v-willnot);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.hurt-line strong {
+  margin-right: 4px;
 }
 
 kbd {

@@ -1,12 +1,13 @@
 import { memo, type ReactNode, type RefObject, useState } from 'react';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
-import type { MomentRecord } from '../sim/game.ts';
+import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type AppealChip, type ChipState, type OrderCard } from '../sim/orders.ts';
 import {
   type ActionId,
   clockOf,
+  formatClock,
   JOBS,
   type Minute,
   VILLAGERS,
@@ -499,6 +500,7 @@ export function OrderCardView({ card, onCancel }: { card: OrderCard; onCancel(id
         <div className="card-sub">
           {jobPhrase(o.action)}
           {card.status === 'lapsed' && ' · lapsed'}
+          {card.status === 'replaced' && ` · replaced by ${card.replacedBy ?? 'a newer order'}`}
           {card.human.label &&
             card.human.state !== 'pending' &&
             (card.status === 'active' || card.human.state === 'willNot' || card.human.state === 'cannot') && (
@@ -729,6 +731,9 @@ export function Composer(props: {
           </button>
         ))}
       </div>
+      {s.appeal === 'safety' && (
+        <p className="composer-reason">A promise: hurt on this job, they will hold you to it.</p>
+      )}
       <div className="composer-actions">
         {who && (
           <button type="button" className="btn btn-small btn-ghost" onClick={() => props.onInspect(who)}>
@@ -789,6 +794,23 @@ export function PauseRibbon({ pause, onResume }: { pause: PauseInfo; onResume():
       </button>
     </div>
   );
+}
+
+/** Injuries said as they happen, newest first (the storm night used to move only the Injuries number). */
+export function HurtLine({ news }: { news: readonly HurtNews[] }) {
+  if (news.length === 0) return null;
+  const items = [...news].reverse().map((n) => hurtText(n));
+  return (
+    <p className="hurt-line" role="status">
+      <strong>Hurt</strong> {items.join(' · ')}
+    </p>
+  );
+}
+
+/** "D2 21:10 Tariq (Classic), hurt in the storm, out in the open". */
+export function hurtText(n: HurtNews): string {
+  const name = (VILLAGERS.find((v) => v.id === n.personId)?.name ?? n.personId).replace(/^Hajja /, '');
+  return `${formatClock(n.minute)} ${name} (${n.side === 'classic' ? 'Classic' : 'Human'}), ${n.how}`;
 }
 
 const MOMENT_TITLE: Record<number, string> = {

@@ -121,7 +121,7 @@ describe('2026-10-07 export fixes', () => {
       snapshot: null,
     });
     expect(() => parsePlaytest(text, 'colony', SCENARIO_VERSION, validateColonyLog)).toThrow(
-      /colony-scenario@2; this build plays colony-scenario@3/,
+      new RegExp(`colony-scenario@2; this build plays ${SCENARIO_VERSION}`),
     );
   });
 });

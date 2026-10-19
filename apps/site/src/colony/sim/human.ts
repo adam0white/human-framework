@@ -9,6 +9,7 @@ import {
   createCommunity,
   createPerson,
   interruptPerson,
+  noteVoicePromise,
   type Person,
   preview,
   restore as restorePerson,
@@ -17,9 +18,11 @@ import {
   snapshot as snapshotPerson,
   stepCommunity,
 } from '@adam0white/human-framework';
-import { fw, HOST_NORMS, villagerPersonSpec } from './human-cast.ts';
+import { fw, gm, HOST_NORMS, villagerPersonSpec } from './human-cast.ts';
 import {
   type Bubble,
+  type ColonyRules,
+  CURRENT_RULES,
   emptyHumanEvents,
   type HumanMetrics,
   type HumanSide,
@@ -44,7 +47,7 @@ import {
 } from './human-view.ts';
 import { ColonyHostWorld, createHostState, type HostState } from './human-world.ts';
 import { type GameMap, placeById } from './map.ts';
-import type { HumanOrder } from './orders.ts';
+import { type HumanOrder, PLAYER_VOICE } from './orders.ts';
 import {
   adhanAt,
   JOBS,
@@ -55,6 +58,7 @@ import {
   START_CLOCK,
   type VillagerId,
   type VillagerSpec,
+  weatherAt,
 } from './world-types.ts';
 
 /** How long a bubble stays in the view, in sim minutes (the UI adds real-time minimums). */
@@ -65,6 +69,8 @@ const THOUGHT_GAP = 90;
 const HUNGRY = 0.35;
 /** Moment 2 compares two answers to the same job at least this many minutes apart (dawn and dusk). */
 const MOMENT2_GAP = 6 * 60;
+/** Jobs that carry their own risk in any weather (a kept "you'll be safer" counts on them). */
+const RISKY_JOBS: ReadonlySet<string> = new Set(['fell-cedar', 'raise-beam']);
 
 interface OpenOrder {
   order: HumanOrder;
@@ -92,6 +98,8 @@ interface SideState {
   prayersDue: number;
   prayersKept: number;
   dead: string[];
+  /** Rules 4 only (absent under 3, so @3 state is unchanged): each "you'll be safer" order, once graded. */
+  promises?: Record<string, 'kept' | 'broken'>;
 }
 
 interface SideSnapshot {
@@ -139,6 +147,12 @@ const DOING: Record<string, string> = {
 
 export class FrameworkHumanSide implements HumanSide {
   readonly kind = 'framework';
+  /** Rules version (human-side.ts `ColonyRules`): 3 replays @3 saves exactly. */
+  readonly rules: ColonyRules;
+
+  constructor(rules: ColonyRules = CURRENT_RULES) {
+    this.rules = rules;
+  }
   private seed = 0;
   private specs: readonly VillagerSpec[] = [];
   private host: ColonyHostWorld | null = null;
@@ -307,7 +321,10 @@ export class FrameworkHumanSide implements HumanSide {
           // keeps its verdict (no flip to "not now" and back to "yes"); the pause shows as a thought.
           if (this.s.minute - (this.s.lastThought[id] ?? -THOUGHT_GAP) >= 30) {
             this.s.lastThought[id] = this.s.minute;
-            this.bubble({ personId: id, kind: 'thought', text: sayLine(r), decisionId: record.id }, ev);
+            this.bubble(
+              { personId: id, kind: 'thought', text: sayLine(r, this.rules), decisionId: record.id },
+              ev,
+            );
           }
           if (record.chosenAction) this.s.lastAction[id] = record.chosenAction;
           continue;
@@ -318,7 +335,7 @@ export class FrameworkHumanSide implements HumanSide {
           this.drop(id);
           continue;
         }
-        const says = sayLine(r);
+        const says = sayLine(r, this.rules);
         const verdict: HumanVerdict = {
           orderId: open.order.orderId,
           personId: id,
@@ -451,12 +468,57 @@ export class FrameworkHumanSide implements HumanSide {
         );
       }
     }
+    if (this.rules >= 4) this.gradeSafetyPromises(ev);
     for (const f of he.finished) {
       if (f.status === 'interrupted') continue;
       const open = this.s.orders[f.personId];
       if (!open || open.order.action !== f.action || f.startedAt < open.since) continue;
       ev.completed.push({ orderId: open.order.orderId, personId: f.personId });
       this.drop(f.personId);
+    }
+  }
+
+  /**
+   * Rules 4: "you'll be safer" is a claim about the job, so the person holds the player to it (HF 2.8
+   * `noteVoicePromise`). Hurt on the ordered job: the promise is broken, trust falls and the person says so at once.
+   * A risky job (the cedar, the beam, any job in the squall or storm) done unhurt: kept (the framework discounts a
+   * string of kept promises on the same job); a safe job grades nothing, so the line cannot farm trust. "For the
+   * children" and "it's your duty" claim nothing about the outcome, so nothing grades them (colony.md Deferred).
+   */
+  private gradeSafetyPromises(ev: HumanSideEvents): void {
+    const he = this.world.events;
+    this.s.promises ??= {};
+    const promises = this.s.promises;
+    const safety = (id: string): OpenOrder | null => {
+      const open = this.s.orders[id];
+      return open?.order.suggestion.appeal === 'safety' && !promises[open.order.orderId] ? open : null;
+    };
+    for (const inj of he.injuries) {
+      const open = safety(inj.personId);
+      const p = this.person(inj.personId);
+      const onJob =
+        open &&
+        (p.activity?.action === open.order.action ||
+          he.finished.some((f) => f.personId === inj.personId && f.action === open.order.action));
+      if (!open || !onJob) continue;
+      promises[open.order.orderId] = 'broken';
+      noteVoicePromise(p, PLAYER_VOICE, { kept: false, at: fw(this.s.minute), action: open.order.action });
+      this.bubble({ personId: inj.personId, kind: 'thought', text: 'You said I would be safer.' }, ev);
+    }
+    for (const f of he.finished) {
+      if (f.status !== 'completed') continue;
+      const open = safety(f.personId);
+      if (!open || open.order.action !== f.action || f.startedAt < open.since) continue;
+      // Kept counts only where there was a risk to keep them from: a safe job proves nothing about your word.
+      const risky =
+        RISKY_JOBS.has(f.action) || weatherAt(this.s.minute).risky || weatherAt(gm(f.startedAt)).risky;
+      if (!risky) continue;
+      promises[open.order.orderId] = 'kept';
+      noteVoicePromise(this.person(f.personId), PLAYER_VOICE, {
+        kept: true,
+        at: fw(this.s.minute),
+        action: f.action,
+      });
     }
   }
 
@@ -569,7 +631,7 @@ export class FrameworkHumanSide implements HumanSide {
       ? p.trace.find((r) => r.id === decisionId)
       : ([...p.trace].reverse().find((r) => !r.review || r.suggestion) ?? p.trace[p.trace.length - 1]);
     if (!record) return null;
-    return whyOf(p, record, trustOf(p));
+    return whyOf(p, record, trustOf(p), this.rules);
   }
 
   predict(order: Omit<HumanOrder, 'orderId'>): Prediction {
@@ -635,7 +697,18 @@ export class FrameworkHumanSide implements HumanSide {
   }
 }
 
+/** Composer wording for a framework reason id (audit 2026-10-19: "will refuse: abandon dependents", "can’t: capacity"). */
+const REASON_WORDS: Record<string, string> = {
+  'norm:abandon-dependents': 'the others would go unfed',
+  'norm:aid-injured': 'someone is hurt',
+  capacity: 'too weak for it now',
+  'goal:role': 'busy with own work',
+  unavailable: 'nothing to do there now',
+};
+
 function readableReason(reason: string): string {
+  const words = REASON_WORDS[reason];
+  if (words) return words;
   if (reason.startsWith('need:'))
     return (
       { food: 'hungry', water: 'thirsty', sleep: 'tired', rest: 'worn out' }[reason.slice(5)] ??
@@ -648,4 +721,5 @@ function readableReason(reason: string): string {
   return reason.replace(/-/g, ' ');
 }
 
-export const createFrameworkHumanSide = (): HumanSide => new FrameworkHumanSide();
+export const createFrameworkHumanSide = (rules: ColonyRules = CURRENT_RULES): HumanSide =>
+  new FrameworkHumanSide(rules);

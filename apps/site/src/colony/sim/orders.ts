@@ -185,13 +185,16 @@ export interface SideChip {
   first?: { state: ChipState; label?: string };
 }
 
-export type CardStatus = 'active' | 'done' | 'cancelled' | 'lapsed';
+/** `replaced` (rules 4): a newer order to the same person took its place on both sides. */
+export type CardStatus = 'active' | 'done' | 'cancelled' | 'lapsed' | 'replaced';
 
 export interface OrderCard {
   order: Order;
   status: CardStatus;
   classic: SideChip;
   human: SideChip;
+  /** The order that replaced this one (status `replaced`). */
+  replacedBy?: string;
 }
 
 /** The order book shared by both sides. Deterministic ids: o1, o2, ... */
@@ -235,6 +238,19 @@ export class OrderBook {
     c.status = 'cancelled';
     this.pending = this.pending.filter((o) => o.id !== orderId);
     return true;
+  }
+
+  /**
+   * Settle the active cards to the same person that were issued before `by`, because `by` replaced them on both sides
+   * (a later card in the same minute is not touched: it replaces `by` when its own turn comes).
+   */
+  replaceOlder(by: Order): void {
+    for (const c of this.cards) {
+      if (c.order.id === by.id) return;
+      if (c.status !== 'active' || c.order.personId !== by.personId) continue;
+      c.status = 'replaced';
+      c.replacedBy = by.id;
+    }
   }
 
   setChip(orderId: string, side: 'classic' | 'human', chip: SideChip): void {
