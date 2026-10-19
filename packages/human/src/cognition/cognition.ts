@@ -327,10 +327,11 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   const K = COGNITION_DEFAULTS;
   const scarcity = clamp01(Number.isFinite(ctx.scarcity) ? (ctx.scarcity as number) : 0);
   const terms: Term[] = [];
-  const push = (source: string, value: number) => {
+  const push = (source: string, value: number, ref?: string) => {
     const v = round(value);
     // A non-finite term (bad host number) is dropped; the will vetoes the offer as invalid.
-    if (v !== 0 && Number.isFinite(v)) terms.push({ source, value: v });
+    if (v !== 0 && Number.isFinite(v))
+      terms.push(ref === undefined ? { source, value: v } : { source, value: v, ref });
   };
 
   // Needs: urgency × believed gain × believed success.
@@ -537,7 +538,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
       push(t.source, t.value);
 
   // Evening review (2.7.0, opt-in): a resolve formed after a lapse leans on that commitment's own term.
-  if (p.review) for (const t of reviewTerms(p, terms)) push(t.source, t.value);
+  if (p.review) for (const t of reviewTerms(p, terms)) push(t.source, t.value, t.ref);
 
   let utility = 0;
   for (const t of terms) utility += t.value;
@@ -644,12 +645,14 @@ export function decide(p: Person, affordances: readonly Affordance[], ctx: Decid
     const prompts: PromptingSeen[] = [];
     const tagsOf = new Map(sorted.map((a) => [a.id, a.tags]));
     for (const c of res.considered) {
-      const seen = promptIn(c.terms, tagsOf.get(c.affordanceId));
+      const tags = tagsOf.get(c.affordanceId);
+      const seen = promptIn(c.terms, tags);
       if (seen)
         prompts.push({
           affordanceId: c.affordanceId,
           action: c.action,
           ...seen,
+          ...(tags !== undefined ? { tags } : {}),
           // A vetoed option was not turned from: the will blocked it, so the response earns no practice.
           turnApplied: c.vetoed === undefined && c.terms.some((t) => t.source === 'promptings:turn'),
         });

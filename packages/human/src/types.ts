@@ -582,7 +582,10 @@ export interface Commitment {
   status: 'pending' | 'kept' | 'broken' | 'released';
   /** Optional recurrence: re-create after it closes (e.g. daily prayer windows). */
   recurEvery?: number;
-  /** Optional display name, e.g. 'Maghrib'; used in counter-offers ("after I pray Maghrib"). */
+  /**
+   * Optional display name, e.g. 'Maghrib'; used in counter-offers ("after I pray Maghrib") and in `reviewLine`
+   * ("I didn't keep my call to Mum"), so write it as a noun phrase.
+   */
   label?: string;
   /** For kind 'abstain': action ids whose completion inside the window breaks it. */
   violatedBy?: string[];
@@ -905,7 +908,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.8.0';
+export const ENGINE_VERSION = '2.9.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -1180,7 +1183,10 @@ export interface Affordance {
   /** Free tags: 'work', 'leisure', 'social', 'worship', 'risky', 'outdoors', ... */
   tags?: string[];
   norms?: NormTag[];
-  /** Commitment ids this would fulfil if completed. */
+  /**
+   * Commitment ids this would fulfil if completed. Listing two or more keeps every listed one that is pending and
+   * in window, and no other (2.9.0); listing one keeps the earliest-ending match, explicit or by action, as before.
+   */
   fulfills?: string[];
   /** Goal ids this advances. */
   advances?: string[];
@@ -1301,7 +1307,11 @@ export interface Outcome {
    * under protest and 1 otherwise. Lower quality lowers felt valence and therefore learned expectations.
    */
   quality?: Unit;
-  /** Commitment ids this outcome keeps (defaults to the activity's `Affordance.fulfills`). */
+  /**
+   * Commitment ids this outcome keeps (defaults to the activity's `Affordance.fulfills`). With two or more listed,
+   * every listed one pending and in window is kept, and no other (2.9.0); with one, one completion keeps the
+   * earliest-ending match.
+   */
   fulfills?: string[];
   /** Goal ids this outcome advances (defaults to the activity's `Affordance.advances`). */
   advances?: string[];
@@ -1387,9 +1397,16 @@ export interface Term {
    *  'goal:g1', 'habit', 'emotion:fear:risky' (emotion id, then the tag it acts through), 'effort', 'risk',
    *  'suggestion:player', 'social:p2', 'expectation', 'autonomy' (reactance to a pushing voice),
    *  'promptings:turn' (a practised turning-away), 'forecast:body' (expected
-   *  bodily state during `followedBy` spans), 'promptings:echo' (recurrence under the `fault` reading) */
+   *  bodily state during `followedBy` spans), 'promptings:echo' (recurrence under the `fault` reading),
+   *  'review:resolve' (a resolve from the evening review) */
   source: string;
   value: number;
+  /**
+   * What a generic source refers to (2.9.0), so `source` stays stable for hosts that match it exactly. Set on
+   * `review:resolve` to the resolve's key (`Resolve.key`) when exactly one resolve weighed in; absent when several
+   * did. Absent on every other term.
+   */
+  ref?: string;
 }
 
 export interface Considered {
@@ -1513,6 +1530,12 @@ export interface PromptingResponse {
   /** Skill-like practice 0..1 as of `lastUsedAt`; it decays slowly with disuse. */
   practice: Unit;
   lastUsedAt: Minute;
+  /**
+   * What this response was learned for (2.9.0): an action, an offer tag, or the opposing norm or goal (`n1`,
+   * `norm:n1` or `goal:g1`). A cued response serves only prompts it matches; a response without a cue serves every
+   * prompt that no cued response matches.
+   */
+  cue?: string;
 }
 
 export interface PromptingRecord {
@@ -1539,6 +1562,8 @@ export interface PromptingsState {
   echo: Record<string, { level: Unit; at: Minute }>;
   /** Echo gained per prompt under `fault`. Default 0: the recurrence term is a host-set assumption (P3 contested). */
   echoRate: number;
+  /** Days over which disused practice halves (2.9.0, host-set); absent = `PROMPTINGS_DEFAULTS.practiceHalfLifeDays`. */
+  practiceHalfLifeDays?: number;
 }
 
 /**
@@ -1591,8 +1616,14 @@ export interface ReviewSpec {
 export interface PromptingsSpec {
   reading?: PromptingReading;
   readingSource?: string;
-  responses?: { id: string; kind: PromptingResponseKind; practice?: Unit }[];
+  /** `cue` (2.9.0): what the response was learned for; see `PromptingResponse.cue`. */
+  responses?: { id: string; kind: PromptingResponseKind; practice?: Unit; cue?: string }[];
   echoRate?: number;
+  /**
+   * Days over which disused practice halves (2.9.0), for hosts whose time runs short (a one-week game). Applies to
+   * every response of the person, including disuse since a response's last use. Absent = 60 days, as before.
+   */
+  practiceHalfLifeDays?: number;
 }
 
 // ---------------------------------------------------------------------------------------------

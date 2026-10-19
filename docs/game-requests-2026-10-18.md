@@ -107,6 +107,20 @@ Released as HF 2.8.0 / engine 2.8.0 ([CHANGELOG](../CHANGELOG.md), [framework.md
 | Glance 3, reading a quantity | Deferred, engine 2.10 | New faculty |
 | Glance 4, assent repetition | Deferred, engine 2.9 | Same as rank 4 |
 
+## Outcome, HF 2.9.0 (2026-10-19)
+
+Framework part of HF 2.9.0 / engine 2.9.0 ([CHANGELOG](../CHANGELOG.md), [framework.md](framework.md#game-requests-several-commitments-cued-responses-a-resolves-name-290)). The Valley's requests are not triaged here; they are targeted in [roadmap.md](roadmap.md) §3b. The items the 2.8.0 table deferred to engine 2.9 (narration batch, Pass 1, 4, 5) are not in 2.9.0 and move to engine 2.10.
+
+| Item | Outcome | Reason |
+|---|---|---|
+| Voices 1, several commitments by one act | Done: with two or more listed in `fulfills`, every eligible listed one is kept | With one listed, the earliest-ending rule stays (exact for every current host); an act listing several keeps exactly those, no implicit match besides |
+| Voices 2, one response serves every prompt | Done: `PromptingResponse.cue` | Fallback is the most practised *uncued* response, not the global best: the global best would still let the alarm phrase serve gossip |
+| Voices 3, noun-phrase review labels | Documented (`Commitment.label`, review SCOPE) | `reviewLabel` would thread through commitment, chronicle note, resolve and record for a wording need; deferred, review 2026-11-15 |
+| Voices 4, goals never weigh against a temptation | Documented as intended (`agendaTerms`) | A goal is an attractor; opposition comes from a held norm, an abstention or a commitment |
+| Voices 5, host-set practice half-life | Done: `enablePromptings({ practiceHalfLifeDays })` | Per person, not per response: the need is the host's time scale, and no source gives phrases different decay |
+| Pass 8, a resolve term that names its resolve | Done: `Term.ref` on `review:resolve` | A `review:resolve:<key>` source would break hosts that match the source exactly; `ref` is set only when one resolve weighed in |
+| Pass note, unlived days count as lapses | Documented (review SCOPE) | Host behaviour, as The Pass found |
+
 ## The Pass, polish round (2026-10-19, against HF 2.8.0)
 
 Filed by The Pass after four source-unread playtests and the HF-character playtester. None blocks the game; the workaround is in the game.

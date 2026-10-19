@@ -69,6 +69,11 @@ export const MIGRATIONS: Readonly<Record<string, MigrationStep>> = {
     note: 'the surroundings field `ambient.now` is renamed `ambient.percept`; per-person retention is optional and starts absent; behaviour unchanged',
     apply: renameAmbient,
   },
+  '2.8.0': {
+    to: '2.9.0',
+    note: 'prompting responses may carry a cue and the slice a practice half-life (both optional, absent as before); review terms may carry a ref; an outcome naming two or more commitments in fulfills now keeps each of them, where 2.8.0 kept the earliest-ending one',
+    apply: stamp,
+  },
   '2.7.0': {
     to: '2.8.0',
     note: 'fullness (body.fullness) is optional and starts absent; offers may name alongside partners and decisions may reconsider; existing hosts retain exact behavior',
