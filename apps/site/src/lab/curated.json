@@ -1497,6 +1497,151 @@
     "calibration:C9"
    ],
    "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-108",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "colony-sim veteran (Opus)",
+   "words": "From outside I mostly can't tell whether the people decide or just run need-timers, and nothing I built changed how a raid ended in a way I could read.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L1",
+    "lesson:L13",
+    "fix:warren the why on the card and causes after a raid (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r2.md"
+  },
+  {
+   "id": "F-109",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "colony-sim veteran (Opus)",
+   "words": "Goals check what I did, not what happened.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L3",
+    "fix:warren raid goal reworded (done)",
+    "fix:warren goals judged on outcomes (open)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r2.md"
+  },
+  {
+   "id": "F-110",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "colony-sim veteran (Opus)",
+   "words": "Water was struck while I was on gallop; the game slows for smoke but not for its biggest discovery.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L6",
+    "lesson:L13",
+    "fix:warren slow for big finds (open)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r2.md"
+  },
+  {
+   "id": "F-111",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "colony-sim veteran (Opus)",
+   "words": "My marks sat as dotted red rings for weeks. ... Nothing told me a lamp needs a free person to make it.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4",
+    "fix:warren lamp marks say they wait for a maker (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r2.md"
+  },
+  {
+   "id": "F-112",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "idle commuter (Sonnet)",
+   "words": "My second shaft was an accidental chalk drag that opened the hill to the surface, and nothing warned me.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L4",
+    "fix:warren shafts are entrances, with a note (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r2.md"
+  },
+  {
+   "id": "F-113",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "idle commuter (Sonnet)",
+   "words": "The numbers don't grow while I'm away, and after year 3 there was nothing to check back for.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L7",
+    "fix:warren while-you-were-away record (open)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r2.md"
+  },
+  {
+   "id": "F-114",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "12-year-old wildcard (Haiku)",
+   "words": "The four X's I drew in open dirt in the first half-hour were still not dug on the 22nd, and the game just says 'Wait for someone to take up a pick.'",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L4",
+    "lesson:L1",
+    "fix:warren unreachable chalk says why (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r2.md"
+  },
+  {
+   "id": "F-115",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "12-year-old wildcard (Haiku)",
+   "words": "The door note was a wall of words ... I skimmed it and didn't get it.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L9",
+    "fix:warren shorter tool notes (open)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r2.md"
+  },
+  {
+   "id": "F-116",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "frustrated 2/2 ... 'Hasan was caught above ground and struck.'",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L15",
+    "lesson:L13",
+    "fix:warren raids say why (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r2.md"
+  },
+  {
+   "id": "F-117",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "edge mischief-answered bell [fun to keep]: the game answers it: provocation is already part of play",
+   "verdict": "-",
+   "routes": [
+    "lesson:L11",
+    "fix:warren false bell answered (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r2.md"
   }
  ],
  "lessons": [
@@ -1959,8 +2104,8 @@
   }
  ],
  "routes": {
-  "fix": 60,
-  "lesson": 114,
+  "fix": 71,
+  "lesson": 128,
   "hf": 11,
   "calibration": 28,
   "none": 0
