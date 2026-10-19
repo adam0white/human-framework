@@ -9,6 +9,6 @@
     "tsBuildInfoFile": ".types/tsconfig.tsbuildinfo",
     "paths": { "@adam0white/human-framework": ["../human/src/index.ts"] }
   },
-  "include": ["src", "test"],
+  "include": ["src", "test", "adapters", "examples/cohort.ts"],
   "references": [{ "path": "../human" }]
 }

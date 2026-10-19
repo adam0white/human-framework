@@ -27,7 +27,12 @@
  * real players.
  *
  * It does not model reading speed, motor skill, the player learning the rules (inputs carry no learned
- * expectation), social play, or monetisation. It reads only what the adapter shows; it cannot see a game's truth.
+ * expectation, except the edge-pushers' session-side record in `style.ts`), social play, or monetisation. It reads
+ * only what the adapter shows; it cannot see a game's truth.
+ *
+ * Each beat records the events shown (kind, valence, whether it answered an input) and the input's kind, so the
+ * cohort tools can find edges from the trace alone. A session can continue an existing player on a later day
+ * (`opts.player`, `opts.at`), which is how the returner plays its second evening.
  */
 import {
   type Affordance,
@@ -47,10 +52,19 @@ import {
   perceive,
   readPerson,
   scoreAll,
+  skip,
   tendencyEmotions,
 } from '@adam0white/human-framework';
-import type { GameAdapter, Observation, PlayEvent } from './adapter.ts';
-import { makePlayer, type Persona } from './persona.ts';
+import {
+  answerOf,
+  type GameAdapter,
+  type Observation,
+  type PlayAction,
+  type PlayEvent,
+  type ShownEvent,
+} from './adapter.ts';
+import { bookSession, makePlayer, type Persona } from './persona.ts';
+import { STYLE_DEFAULTS, StyleMind } from './style.ts';
 
 export const SESSION_DEFAULTS = {
   /** Engagement half-life in seconds: base + span × agreeableness (patience). */
@@ -108,12 +122,31 @@ export interface Beat {
   /** Events seen this beat, and how many shown but missed. */
   noticed: string[];
   missed: number;
+  /** Where in the game (the observation's `chapter`, else its phase). */
+  chapter: string;
+  /** The input's action kind ('wait' when none), whether it was an edge action, and whether it was mischief. */
+  kind: string;
+  edge?: true;
+  mischief?: true;
+  /** Inputs on offer this beat (besides waiting). */
+  offered: number;
+  /** Every event shown this beat (seen or not): kind, valence, and what it answered (1 = any input). */
+  shown: ShownEvent[];
 }
 
 export interface Moment {
   t: number;
   clock: string;
-  kind: 'bored' | 'frustrated' | 'rewarded' | 'looked-away' | 'stopped' | 'finished' | 'time-limit';
+  kind:
+    | 'bored'
+    | 'frustrated'
+    | 'rewarded'
+    | 'looked-away'
+    | 'stopped'
+    | 'finished'
+    | 'time-limit'
+    | 'answered'
+    | 'ignored';
   text: string;
 }
 
@@ -124,11 +157,16 @@ export interface SessionTrace {
   beats: Beat[];
   moments: Moment[];
   ended: { t: number; clock: string; reason: 'quit' | 'agenda' | 'game-over' | 'time-limit'; why: string };
+  /** What the last screen showed: where, how it ended (if it did), and what it left unfinished. */
+  final: { chapter: string; outcome?: 'win' | 'loss' | 'mixed'; openLoop: number; loops: string[] };
+  /** HF minute the session started. */
+  startedAt: number;
   /** The HF person after the session (for inspection). */
   player: Person;
 }
 
 const round = (x: number) => Math.round(x * 1000) / 1000;
+const STYLE = STYLE_DEFAULTS;
 const clampU = (x: number) => Math.max(0, Math.min(1, x));
 
 /** Play one session of `adapter` as `persona`. Deterministic for a given game state, persona and seed. */
@@ -138,6 +176,10 @@ export function playSession(
   seed: number,
   opts: {
     maxMinutes?: number;
+    /** Continue this player (a later day) instead of making a new one; booked for the session at `at`. */
+    player?: Person;
+    /** HF minute the session starts (default `persona.startsAt`, or the player's `now`). */
+    at?: number;
     /** Debug hook: each minute's HF decision record, or each input's scored options. */
     onDecide?: (
       level: 'minute' | 'input',
@@ -147,11 +189,19 @@ export function playSession(
   } = {},
 ): SessionTrace {
   const S = SESSION_DEFAULTS;
-  const p = makePlayer(persona, seed);
+  let p: Person;
+  if (opts.player) {
+    p = opts.player;
+    const at = opts.at ?? p.now;
+    if (at > p.now) skip(p, at);
+    bookSession(p, persona, p.now);
+  } else p = makePlayer(persona, seed);
+  const start = opts.player ? p.now : persona.startsAt;
+  const mind = new StyleMind(persona.style);
   const beatS = persona.beatSeconds;
   const perMinute = Math.max(1, Math.round(60 / beatS));
   const halfLife = S.engagementHalfLifeBase + S.engagementHalfLifeSpan * p.traits.agreeableness;
-  const habit = S.habituationBase + S.habituationSpan * p.traits.openness;
+  const habit = (S.habituationBase + S.habituationSpan * p.traits.openness) * mind.habituation;
   const boredGain = S.boredGainBase + S.boredGainSpan * (1 - p.traits.agreeableness);
   const maxS = (opts.maxMinutes ?? S.maxMinutes) * 60;
   const rng = mulberry32((seed ^ 0x9e3779b9) >>> 0);
@@ -179,13 +229,13 @@ export function playSession(
   const moment = (kind: Moment['kind'], text: string) => moments.push({ t, clock: obs.clock, kind, text });
 
   for (;;) {
-    const now = persona.startsAt + Math.floor(t / 60);
+    const now = start + Math.floor(t / 60);
     // 1. What reaches the player: HF attention over what is visible.
     const visible =
       stance === 'look-away' ? obs.events.filter((e) => e.salience >= S.lookAwaySalience) : obs.events;
     const attended = perceive(
       p,
-      visible.map((e) => toPercept(p, e, now, S.appraisalScale)),
+      visible.map((e) => toPercept(p, e, now, S.appraisalScale * mind.appraisal)),
     );
     // Match attended percepts back to events one for one (two events may share a summary).
     const left = attended.map((a) => a.summary);
@@ -202,10 +252,29 @@ export function playSession(
       seen.set(e.kind, { n: n + 1, t });
       const novelty = 1 / (1 + habit * n);
       stim += e.salience * (0.4 + 0.6 * Math.abs(e.valence)) * novelty;
-      if (e.valence > 0) acc.reward += e.valence * e.salience;
-      else acc.setback -= e.valence * e.salience;
-      if (e.valence >= S.rewardedAt) moment('rewarded', e.summary);
+      const v = e.valence * mind.appraisal;
+      if (v > 0) acc.reward += v * e.salience;
+      else acc.setback -= v * e.salience;
+      if (v >= S.rewardedAt) moment('rewarded', e.summary);
     }
+    // The style's record: answers and payoffs credited to recent inputs (see style.ts).
+    const styled = mind.credit(beat, obs.events);
+    if (mind.style === 'mischief') {
+      for (const a of styled.answered) {
+        stim += STYLE.mischiefRelish * a.by.salience;
+        acc.reward += STYLE.mischiefRelish * a.by.salience;
+        moment('answered', `they rose to it: ${a.by.summary}`);
+      }
+      for (const g of styled.ignored)
+        if (g.mischief) {
+          feel(p, 'boredom', STYLE.mischiefIgnoredBoredom, 'game:ignored', now);
+          moment('ignored', `nothing came of ${g.id}`);
+        }
+    } else if (mind.style === 'rules')
+      for (const g of styled.ignored) {
+        feel(p, 'distress', STYLE.rulesSilentDistress, 'game:silent', now);
+        moment('ignored', `no answer to ${g.id}`);
+      }
     engagement = engagement * 2 ** (-beatS / halfLife);
     engagement += (1 - engagement) * Math.min(1, stim);
     acc.e += engagement;
@@ -293,9 +362,17 @@ export function playSession(
 
     // 3. Moment to moment, while playing: one input or none, chosen by HF over the game's actions.
     let choice = 'wait';
+    let choiceKind = 'wait';
+    let choiceEdge = false;
     let why = stanceWhy;
+    let picked: PlayAction | undefined;
+    let offered = 0;
     if (stance === 'play') {
-      const game = adapter.actions();
+      const plain = adapter.actions();
+      const edges = mind.style && adapter.edgeActions ? adapter.edgeActions() : [];
+      const edgeIds = new Set(edges.map((a) => a.id));
+      const game = mind.shape([...plain, ...edges.filter((a) => !plain.some((x) => x.id === a.id))]);
+      offered = game.length;
       if (game.length > 0) {
         const offers: Affordance[] = game.map((a) => {
           const aff: Affordance = {
@@ -323,6 +400,11 @@ export function playSession(
         const pick = pickSoftmax(scored, persona.temperature, rng);
         choice = pick?.affordanceId ?? 'wait';
         why = dominantTerm(pick);
+        picked = game.find((a) => a.id === choice);
+        if (picked) {
+          choiceKind = picked.kind;
+          choiceEdge = edgeIds.has(picked.id);
+        }
       }
     }
 
@@ -343,6 +425,21 @@ export function playSession(
       sleepiness: round(readPerson(p).body.perceived.sleepiness),
       noticed: noticed.map((e) => e.summary),
       missed: obs.events.length - noticed.length,
+      chapter: obs.chapter ?? obs.phase,
+      offered,
+      kind: choiceKind,
+      ...(choiceEdge ? { edge: true as const } : {}),
+      // Mischief in the trace: an input the adapter marks as mischief, or a confrontation chosen by the
+      // mischief-maker. Another player's plain insisting is play, not provocation.
+      ...(picked && (picked.mischief || (mind.style === 'mischief' && picked.tags?.includes('confront')))
+        ? { mischief: true as const }
+        : {}),
+      shown: obs.events.map((e) => {
+        const ev: ShownEvent = { k: e.kind, v: round(e.valence) };
+        const a = answerOf(e);
+        if (a) ev.a = a;
+        return ev;
+      }),
     });
     const bored = boredom >= S.boredAt;
     if (bored && !last.bored)
@@ -354,6 +451,7 @@ export function playSession(
     }
     last = { bored, frustrated };
 
+    if (picked) mind.applied(beat, picked);
     if (choice !== 'wait') adapter.apply(choice);
     adapter.advance(beatS);
     t += beatS;
@@ -369,6 +467,13 @@ export function playSession(
       beats,
       moments,
       ended: { t, clock: obs.clock, reason, why },
+      final: {
+        chapter: obs.chapter ?? obs.phase,
+        ...(obs.outcome ? { outcome: obs.outcome } : {}),
+        openLoop: clampU(obs.features.openLoop ?? 0),
+        loops: [...(obs.loops ?? [])],
+      },
+      startedAt: start,
       player: p,
     };
   }
