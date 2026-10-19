@@ -88,7 +88,7 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 |---|---|---|
 | Future bodily state in prospection | Done in 2.5.0 for offers that declare `followedBy` ([framework.md](framework.md#bodily-forecast-250)). Left: forecast a received successor's span; apply host surroundings (fasting perception done in 2.6.0) | Engine 2.8 |
 | Cumulative exertion in the body | Exertion relaxes toward current effort, so hours of climbing leave no extra fatigue for the descent. A slow glycogen/muscle-fatigue store would make the 2.5.0 forecast bite on long efforts; opt-in, so the three games replay unchanged | Done, engine 2.6.0 (`body.depletion`) |
-| Muhasaba (reconciliation §7) | Done in 2.7.0 for commitments (`review/`). Left: revise a method or a prompting response in review | Engine 2.9 |
+| Muhasaba (reconciliation §7) | Done in 2.7.0 for commitments (`review/`). Left: revise a method or a prompting response in review | Engine 2.10 (was 2.9; not in 2.9.0) |
 | Multi-step planning (bounded) | Chains of two or three received or known routes with waiting cost; the most requested missing faculty | Engine 2.10 (was 2.6; not started) |
 | Sabr and shukr as appraisal styles | Reappraisal and gratitude in `affect/`, attentional and regulatory effects only | Engine 2.10 (was 2.6; not started) |
 | Present bias and temporal discounting | Person-level discount style over the 2.3.0 temporal goals | Engine 2.10 (was 2.6; not started) |
@@ -107,16 +107,21 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | A voice's own promise; seeding a voice | `noteVoicePromise`, `seedVoice` | Done, engine 2.8.0 |
 | Forecast thresholds per offer | `Affordance.forecastAt` (The Glance) | Done, engine 2.8.0 |
 | HF-character playtesters | `packages/playtester` (private): a persona plays any game through a four-call adapter; The Pass example | Done 2026-10-19; publish as its own package when a second game uses it, review 2026-11-15 |
-| Narration variety | Per-person variants for deferral and assent sentences (Rope rank 4, Glance 4); a plain third-person `promptingLine` (Pass 2); chronicle verbs that avoid inflecting nouns (Pass 3). One batch, since each moves narration fixtures | Engine 2.9 |
-| Why a suggestion failed | `SuggestionResolution.decidedBy` (inertia or the separating term, with margin) so lines can say "not straight off my break" (Pass 1) | Engine 2.9 |
-| A firm self-rule | Opt-in `Commitment.firm` on a self abstention: `refused/willNot`, reason `rule:<label>` (Pass 4) | Engine 2.9 |
-| A voice answering the person's request | `noteRequestAnswered(p, voiceId, { granted, importance, at })`, the mirror of `noteVoicePromise` (Pass 5); needs a sourced effect size first | Engine 2.9 |
+| Narration variety | Per-person variants for deferral and assent sentences (Rope rank 4, Glance 4); a plain third-person `promptingLine` (Pass 2); chronicle verbs that avoid inflecting nouns (Pass 3). One batch, since each moves narration fixtures | Engine 2.10 (was 2.9; not in 2.9.0) |
+| Why a suggestion failed | `SuggestionResolution.decidedBy` (inertia or the separating term, with margin) so lines can say "not straight off my break" (Pass 1) | Engine 2.10 (was 2.9; not in 2.9.0) |
+| A firm self-rule | Opt-in `Commitment.firm` on a self abstention: `refused/willNot`, reason `rule:<label>` (Pass 4) | Engine 2.10 (was 2.9; not in 2.9.0) |
+| A voice answering the person's request | `noteRequestAnswered(p, voiceId, { granted, importance, at })`, the mirror of `noteVoicePromise` (Pass 5); needs a sourced effect size first | Engine 2.10 (was 2.9; not in 2.9.0) |
 | Involuntary sleep onset | Opt-in doze hazard from true sleepiness, posture and stimulation, ended by a salient percept (Glance 2) | Engine 2.10 |
 | Reading a quantity | `estimate(p, { truth, difficulty })` returning value and confidence from body state (Glance 3) | Engine 2.10 |
 | Bladder | A real voiding need, so hosts stop advertising pain `relief` for the toilet (Rope Kestrel) | unscheduled, review 2026-11-15 |
 | A duty held by a group | Shared commitment met by any member (Pass 6) | unscheduled, review 2026-11-15 |
 | Engagement and boredom on a seconds scale | The playtester's fast `engagement` store, if a second user needs it inside HF | unscheduled, review 2026-11-15 |
 | Neighbours: residents repair once | Not reproduced; may be the town running out of repairs | Review 2026-11-01 |
+| Several named commitments kept by one act | `Outcome.fulfills` naming two or more keeps each (Voices 1) | Done, engine 2.9.0 |
+| Cued turning-away responses; host practice half-life | `PromptingResponse.cue`; `enablePromptings({ practiceHalfLifeDays })` (Voices 2, 5) | Done, engine 2.9.0 |
+| A resolve term that names its resolve | `Term.ref` on `review:resolve` (Pass 8) | Done, engine 2.9.0 |
+| A separate review label | `reviewLabel` on commitments, if noun-phrase labels prove too limiting (Voices 3; documented instead) | unscheduled, review 2026-11-15 |
+| Valley requests (trust from a voice's acts, goods between households, second-person recall, `tellDeath` past the listener, `fingerprint`, a memory bound) | Filed 2026-10-19 against 2.8.0, not triaged in 2.9.0; second-person recall joins the narration batch | Triage by 2026-11-01 |
 
 ## 4. Example games
 

@@ -567,6 +567,13 @@ export function temporalGoalValue(
     : base;
 }
 
+/**
+ * The agenda's utility terms for one offer: `commitment:<id>` toward a pending commitment it serves,
+ * `abstain:<id>` against an act that would break an open abstention, and `goal:<id>` toward an active goal it
+ * advances. Goal terms are never negative, by design: a goal draws a person toward what advances it and is silent
+ * about everything else, so it cannot weigh against a temptation. A host that wants an act opposed links it to a
+ * held norm (`norms: violates`), an `abstain` commitment, or a commitment kept by the alternative.
+ */
 export function agendaTerms(p: Person, aff: Affordance, now: Minute): Term[] {
   return agendaTermsWithGoalEstimates(p, aff, now);
 }
@@ -664,7 +671,8 @@ function excuseUnderNecessity(
  * abstention whose window its span overlaps (returned as `broken`; the composite routes them like missed
  * commitments, with a breach when a norm is linked). One completion keeps the earliest-ending
  * matching pending commitment whose window the activity's span [startedAt, outcome.at] overlaps (see
- * `spanMeetsWindow`; `startedAt` defaults to `outcome.at`); goals advance by their listed amount.
+ * `spanMeetsWindow`; `startedAt` defaults to `outcome.at`), except that when `outcome.fulfills` lists two or more
+ * ids, every listed commitment that qualifies is kept and no other (2.9.0); goals advance by their listed amount.
  * Matching is by action (and target), or explicitly by `outcome.fulfills` / `outcome.advances` (the composite
  * defaults these to the activity's `Affordance.fulfills` / `advances`), mirroring `agendaTerms`.
  */
@@ -695,17 +703,31 @@ export function onFinished(
     broken.push(c);
     oweFor(p, c, 'broken', outcome.at);
   }
-  let best: Commitment | undefined;
-  for (const c of p.agenda.commitments) {
-    if (c.status !== 'pending' || c.kind === 'abstain') continue;
-    const explicit = outcome.fulfills?.includes(c.id) ?? false;
-    if (!explicit && !matchesCommitment(c, outcome.action, outcome.targetId)) continue;
-    if (!spanMeetsWindow(c, Math.min(startedAt, outcome.at), outcome.at)) continue;
-    if (!best || c.until < best.until) best = c;
-  }
-  if (best) {
-    best.status = 'kept';
-    kept.push(best);
+  // Commitments named explicitly (2.9.0): when `fulfills` lists two or more ids, every listed commitment that is
+  // eligible is kept and no other (one dinner keeps a word to a friend and the daily call). With one id listed, or
+  // none of several eligible, one completion keeps the earliest-ending match, explicit or by action, as before.
+  const eligible = (c: Commitment): boolean =>
+    c.status === 'pending' && c.kind !== 'abstain' && spanMeetsWindow(c, start, outcome.at);
+  const named = outcome.fulfills
+    ? p.agenda.commitments.filter((c) => (outcome.fulfills?.includes(c.id) ?? false) && eligible(c))
+    : [];
+  if (new Set(outcome.fulfills ?? []).size > 1 && named.length > 0) {
+    for (const c of named) {
+      c.status = 'kept';
+      kept.push(c);
+    }
+  } else {
+    let best: Commitment | undefined;
+    for (const c of p.agenda.commitments) {
+      if (!eligible(c)) continue;
+      const explicit = outcome.fulfills?.includes(c.id) ?? false;
+      if (!explicit && !matchesCommitment(c, outcome.action, outcome.targetId)) continue;
+      if (!best || c.until < best.until) best = c;
+    }
+    if (best) {
+      best.status = 'kept';
+      kept.push(best);
+    }
   }
   for (const g of p.agenda.goals) {
     if (g.status !== 'active') continue;

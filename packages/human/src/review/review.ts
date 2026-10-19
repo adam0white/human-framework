@@ -3,7 +3,8 @@
  * the commitments the chronicle recorded as kept or broken since their last review, and for each one they broke
  * forms or renews a *resolve*: an if–then intention for that commitment's next occasion (Gollwitzer & Sheeran
  * 2006, research/reconciliation.md E1). While a matching commitment is pending, the resolve adds one bounded term,
- * `review:resolve` (each resolve counted once per option, the sum clamped to ±`resolveScale`), with the sign of the commitment's own term (toward a duty, away from an abstention's breaking
+ * `review:resolve` (each resolve counted once per option, the sum clamped to ±`resolveScale`; 2.9.0: the term's
+ * `ref` is the resolve's key when exactly one resolve weighed in), with the sign of the commitment's own term (toward a duty, away from an abstention's breaking
  * act), scaled by its strength. Strength grows with diminishing gains at each further lapse, relaxes once the
  * commitment is kept, and fades over `halfLifeDays` of disuse. Released and excused commitments (exemptions,
  * sleep, necessity) form no resolve: what was beyond capacity is not held against the person (2:286). The review
@@ -23,6 +24,11 @@
  * piety, repentance as a ruling (tawba conditions are not modelled), effects on sleep onset (Harvey's model, E6, is
  * not evidence enough), or that review improves outcomes beyond the borrowed if–then shape. It draws no randomness;
  * without `enableReview` nothing here runs and existing runs replay byte for byte.
+ *
+ * Host notes (2.9.0, docs only). `reviewLine` sets commitment labels into "I didn't keep …" and "Today I kept …",
+ * so a label should be a noun phrase ("my call to Mum", "the evening prayer"), not a verb phrase ("calling Mum").
+ * A recurring commitment lapses on any day its window passes unlived: a host that skips a day (no service, a
+ * fast-forward) should still live, or release, that day's occasions, or the review counts each one as missed.
  */
 import { clamp01, dexp, isObj, minuteOfDay, round } from '../core/index.ts';
 import type {
@@ -91,6 +97,7 @@ export function reviewTerms(p: Person, terms: readonly Term[]): Term[] {
   if (!st || st.resolves.length === 0) return [];
   let value = 0;
   const used = new Set<string>();
+  let only: string | undefined;
   for (const t of terms) {
     const m = /^(commitment|abstain):(.+)$/.exec(t.source);
     if (!m || t.value === 0) continue;
@@ -99,11 +106,16 @@ export function reviewTerms(p: Person, terms: readonly Term[]): Term[] {
     const r = st.resolves.find((x) => x.key === resolveKey(c));
     if (!r || used.has(r.key)) continue;
     used.add(r.key);
+    only = r.key;
     value += Math.sign(t.value) * REVIEW_DEFAULTS.resolveScale * r.strength;
   }
   const max = REVIEW_DEFAULTS.resolveScale;
   value = Math.max(-max, Math.min(max, value));
-  return value === 0 ? [] : [{ source: 'review:resolve', value: round(value) }];
+  if (value === 0) return [];
+  const term: Term = { source: 'review:resolve', value: round(value) };
+  // Name the resolve when exactly one weighed in (2.9.0, The Pass): "he turned from the jar, as he said he would".
+  if (used.size === 1 && only !== undefined) term.ref = only;
+  return [term];
 }
 
 const fade = (s: number, days: number): number =>

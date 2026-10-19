@@ -8,13 +8,24 @@
  *
  * Detection reads an option's traced terms and changes none of them: the pull is the sum of positive `habit`,
  * `emotion:*`, `need:*` and `promptings:echo` terms (every positive term on an offer tagged `temptation`); it is a
- * prompt when the pull reaches `noticeAt` while a `norm:*` or `goal:*` term on the same option is negative.
+ * prompt when the pull reaches `noticeAt` while a `norm:*` or `goal:*` term on the same option is negative (goal
+ * terms are never negative, see `agendaTerms`, so in practice the opposition is a held norm).
  * Abstention windows are not detected (they veto, and carry no term). A person with a response gets one extra
  * term, `promptings:turn` = -turnMax × practice, on that option; it is bounded and absent at survival desperation,
  * so a desperate bodily need still wins (2:286). Each prompt is recorded once per decision point (a review that
  * keeps the running activity records nothing) as `assented` (chosen), `turned` (not chosen, a response practised)
  * or `passed` (not chosen, no response). Practice grows with diminishing gains once per decision point where the
  * response was used (more when it held; a vetoed option earns none, since the will blocked it), and halves over `practiceHalfLifeDays` of disuse.
+ *
+ * Cued responses and host time (2.9.0, both opt-in): a response may carry a `cue` (an action, an offer tag, or the
+ * opposing norm or goal), for a phrase learned at one pull. At a prompt the person uses the most practised response
+ * whose cue matches it; when none matches, the most practised response without a cue. A cued response never serves
+ * a prompt it does not match, so a phrase learned at the alarm does not also turn the person from gossip (the
+ * literal "global best" fallback would bring that back). Each response used at a decision point gains once. Without
+ * cues every response is uncued and this is the 2.4.0 rule exactly. `practiceHalfLifeDays` in `enablePromptings`
+ * replaces the 60-day half-life for the whole person (a one-week game can let a phrase fade); it is one setting per
+ * person, not per response, because the need is the host's time scale and no source gives phrases different decay.
+ * Practice is decayed lazily from `lastUsedAt`, so a new half-life also applies to disuse already elapsed.
  *
  * Held readings (reconciliation.md §5): `whisper`, `inclination`, `intrusion` and `none` give identical decisions
  * and differ only in the vocabulary of `promptingLine`. `fault` (the scrupulous reading, which both the tradition
@@ -86,9 +97,13 @@ export function enablePromptings(p: Person, spec: PromptingsSpec = {}): Promptin
       continue;
     const held = prev?.responses.find((x) => x.id === r.id);
     const seed = Number.isFinite(r.practice) ? clamp01(r.practice as number) : 0.1;
-    responses.push(
-      held ? { ...held, kind: r.kind } : { id: r.id, kind: r.kind, practice: seed, lastUsedAt: p.now },
-    );
+    const next: PromptingResponse = held
+      ? { ...held, kind: r.kind }
+      : { id: r.id, kind: r.kind, practice: seed, lastUsedAt: p.now };
+    // The spec's cue wins; a response re-enabled without one loses its old cue.
+    delete next.cue;
+    if (cueOk(r.cue)) next.cue = r.cue;
+    responses.push(next);
   }
   const state: PromptingsState = {
     reading: spec.reading && READINGS.includes(spec.reading) ? spec.reading : 'none',
@@ -98,24 +113,62 @@ export function enablePromptings(p: Person, spec: PromptingsSpec = {}): Promptin
     echoRate: Number.isFinite(spec.echoRate) ? clamp01(spec.echoRate as number) : 0,
   };
   if (spec.readingSource !== undefined) state.readingSource = spec.readingSource;
+  if (halfLifeOk(spec.practiceHalfLifeDays)) state.practiceHalfLifeDays = spec.practiceHalfLifeDays;
   p.promptings = state;
   return state;
 }
 
-/** Practice of a response at `now`, after disuse decay. Pure. */
-export function practiceAt(r: PromptingResponse, now: Minute): Unit {
-  return clamp01(halve(r.practice, now - r.lastUsedAt, PROMPTINGS_DEFAULTS.practiceHalfLifeDays));
+const cueOk = (x: unknown): x is string => typeof x === 'string' && x !== '' && x.length <= 200;
+const halfLifeOk = (x: unknown): x is number =>
+  typeof x === 'number' && Number.isFinite(x) && x > 0 && x <= 36500;
+const halfLifeOf = (s: PromptingsState): number =>
+  s.practiceHalfLifeDays ?? PROMPTINGS_DEFAULTS.practiceHalfLifeDays;
+
+/** Practice of a response at `now`, after disuse decay (`halfLifeDays` defaults to 60, as before 2.9.0). Pure. */
+export function practiceAt(
+  r: PromptingResponse,
+  now: Minute,
+  halfLifeDays: number = PROMPTINGS_DEFAULTS.practiceHalfLifeDays,
+): Unit {
+  return clamp01(halve(r.practice, now - r.lastUsedAt, halfLifeDays));
 }
 
-/** The response a person would use now: highest practice, ties by id. */
-function bestResponse(s: PromptingsState, now: Minute): { r: PromptingResponse; practice: Unit } | undefined {
-  let best: { r: PromptingResponse; practice: Unit } | undefined;
+/** What a prompt offers a cue to match (2.9.0). */
+export interface PromptContext {
+  action: string;
+  tags?: readonly string[] | undefined;
+  /** The opposing term's source: 'norm:x' or 'goal:g'. */
+  opposedBy: string;
+}
+
+/** Whether a response's cue matches a prompt: its action, one of its tags, or the opposing norm or goal. Pure. */
+export function responseCueMatches(cue: string, at: PromptContext): boolean {
+  if (cue === at.action || cue === at.opposedBy || (at.tags?.includes(cue) ?? false)) return true;
+  const colon = at.opposedBy.indexOf(':');
+  return colon >= 0 && cue === at.opposedBy.slice(colon + 1);
+}
+
+/**
+ * The response a person would use now at prompt `at`: the most practised whose cue matches, else the most
+ * practised without a cue; ties by id. Without cues this is the most practised response (2.4.0).
+ */
+function bestResponse(
+  s: PromptingsState,
+  now: Minute,
+  at: PromptContext,
+): { r: PromptingResponse; practice: Unit } | undefined {
+  let cued: { r: PromptingResponse; practice: Unit } | undefined;
+  let plain: { r: PromptingResponse; practice: Unit } | undefined;
+  const better = (b: { r: PromptingResponse; practice: Unit } | undefined, r: PromptingResponse, x: Unit) =>
+    !b || x > b.practice || (x === b.practice && r.id < b.r.id);
+  const half = halfLifeOf(s);
   for (const r of s.responses) {
-    const practice = practiceAt(r, now);
-    if (!best || practice > best.practice || (practice === best.practice && r.id < best.r.id))
-      best = { r, practice };
+    const practice = practiceAt(r, now, half);
+    if (r.cue === undefined) {
+      if (better(plain, r, practice)) plain = { r, practice };
+    } else if (responseCueMatches(r.cue, at) && better(cued, r, practice)) cued = { r, practice };
   }
-  return best;
+  return cued ?? plain;
 }
 
 const isPull = (source: string, tagged: boolean): boolean =>
@@ -172,9 +225,11 @@ export function promptingTerms(
     if (v > 0) out.push({ source: 'promptings:echo', value: v });
   }
   if (desperation >= PROMPTINGS_DEFAULTS.survivalDesperation) return out;
-  const best = bestResponse(s, now);
+  if (s.responses.length === 0) return out;
+  const seen = promptIn([...terms, ...out], tags);
+  if (!seen) return out;
+  const best = bestResponse(s, now, { action, tags, opposedBy: seen.opposedBy });
   if (!best || best.practice <= 0) return out;
-  if (!promptIn([...terms, ...out], tags)) return out;
   const v = round(-PROMPTINGS_DEFAULTS.turnMax * best.practice);
   if (v < 0) out.push({ source: 'promptings:turn', value: v });
   return out;
@@ -188,6 +243,8 @@ export interface PromptingSeen {
   opposedBy: string;
   /** Whether a turning-away term was applied. */
   turnApplied: boolean;
+  /** The offer's tags (2.9.0), for matching a response's cue. */
+  tags?: readonly string[] | undefined;
 }
 
 /** What `notePromptings` did, for the composite (the `fault` guilt goes through affect). */
@@ -211,11 +268,12 @@ export function notePromptings(
   const noted: PromptingsNoted = { records: [], guilt: 0 };
   if (!s || seen.length === 0) return noted;
   const D = PROMPTINGS_DEFAULTS;
-  const best = bestResponse(s, now);
-  // One practice gain per decision point, however many options carried a prompt: the larger one if any held.
-  let gain = 0;
+  // One practice gain per response per decision point, however many options it served: the larger one if any held.
+  // Responses are chosen before any practice moves, as `promptingTerms` chose them.
+  const gains = new Map<PromptingResponse, number>();
   for (const x of seen) {
     const assented = x.affordanceId === chosenId;
+    const best = bestResponse(s, now, x);
     const used = x.turnApplied && best !== undefined;
     const rec: PromptingRecord = {
       at: now,
@@ -227,7 +285,7 @@ export function notePromptings(
     };
     if (used && best) {
       rec.responseId = best.r.id;
-      gain = Math.max(gain, assented ? D.gainAttempt : D.gainTurned);
+      gains.set(best.r, Math.max(gains.get(best.r) ?? 0, assented ? D.gainAttempt : D.gainTurned));
     }
     s.recent.push(rec);
     noted.records.push(rec);
@@ -240,10 +298,11 @@ export function notePromptings(
       }
     }
   }
-  if (best && gain > 0) {
-    const practice = practiceAt(best.r, now);
-    best.r.practice = round(clamp01(practice + gain * (1 - practice)));
-    best.r.lastUsedAt = now;
+  for (const [r, gain] of gains) {
+    if (gain <= 0) continue;
+    const practice = practiceAt(r, now, halfLifeOf(s));
+    r.practice = round(clamp01(practice + gain * (1 - practice)));
+    r.lastUsedAt = now;
   }
   if (s.recent.length > D.maxRecent) s.recent.splice(0, s.recent.length - D.maxRecent);
   const keys = Object.keys(s.echo);
@@ -296,7 +355,8 @@ export interface PromptingsReadingView {
   turned: number;
   passed: number;
   assented: number;
-  responses: { id: string; kind: PromptingResponseKind; practice: Unit }[];
+  /** `cue` only when the response has one (2.9.0). */
+  responses: { id: string; kind: PromptingResponseKind; practice: Unit; cue?: string }[];
   /** Vocabulary for the last few prompts, newest last. */
   lines: string[];
 }
@@ -312,7 +372,12 @@ export function promptingsReading(p: Person, now: Minute = p.now): PromptingsRea
     turned: count('turned'),
     passed: count('passed'),
     assented: count('assented'),
-    responses: s.responses.map((r) => ({ id: r.id, kind: r.kind, practice: round(practiceAt(r, now)) })),
+    responses: s.responses.map((r) => ({
+      id: r.id,
+      kind: r.kind,
+      practice: round(practiceAt(r, now, halfLifeOf(s))),
+      ...(r.cue !== undefined ? { cue: r.cue } : {}),
+    })),
     lines: s.recent.slice(-5).map((r) => promptingLine(s.reading, r.outcome, kindOf(r.responseId))),
   };
   if (s.readingSource !== undefined) view.readingSource = s.readingSource;
@@ -380,12 +445,14 @@ export function sanitizePromptings(input: unknown, now: Minute): PromptingsState
     if (!isObj(r) || !str(r.id) || !KINDS.includes(r.kind as PromptingResponseKind) || !unit(r.practice))
       continue;
     if (!minute(r.lastUsedAt) || r.lastUsedAt > now || responses.some((x) => x.id === r.id)) continue;
-    responses.push({
+    const kept: PromptingResponse = {
       id: r.id,
       kind: r.kind as PromptingResponseKind,
       practice: r.practice,
       lastUsedAt: r.lastUsedAt,
-    });
+    };
+    if (cueOk(r.cue)) kept.cue = r.cue;
+    responses.push(kept);
   }
   const recent: PromptingRecord[] = [];
   for (const r of input.recent.slice(-D.maxRecent)) {
@@ -419,5 +486,6 @@ export function sanitizePromptings(input: unknown, now: Minute): PromptingsState
     echoRate: typeof rate === 'number' && Number.isFinite(rate) && rate >= 0 ? Math.min(1, rate) : 0,
   };
   if (str(input.readingSource)) out.readingSource = input.readingSource;
+  if (halfLifeOk(input.practiceHalfLifeDays)) out.practiceHalfLifeDays = input.practiceHalfLifeDays;
   return out;
 }

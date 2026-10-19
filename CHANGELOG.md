@@ -12,6 +12,17 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.9.0] - 2026-10-19
+
+Engine: 2.9.0. Takes the games' polish requests filed against 2.8.0 (The Two Voices 1, 2 and 5; The Pass 8), each opt-in or additive, plus doc notes (Voices 3 and 4). New state is optional and starts absent; engine 2.8.0 saves migrate by a version stamp. Persons that use no opt-in slice continue exactly (full-state digests match npm 2.3.0 with the engine stamp normalized); persons on the promptings and review slices without 2.9.0 options continue exactly as 2.8.0 (digests measured against the 2.8.0 release source, with the engine stamp and the new review-term `ref` normalized).
+
+- Several named commitments: when `Outcome.fulfills` (or the activity's `Affordance.fulfills`) lists two or more ids, `finish`/`onFinished` keeps every listed commitment that is pending and in window, and no other. With one listed (or none of several eligible), one completion keeps the earliest-ending match, explicit or by action, as before. This is the one behaviour change for existing options: a host that named several commitments in 2.8.0 had one kept; no game in this repository names more than one.
+- Cued turning-away responses: `PromptingResponse.cue` (and in `PromptingsSpec.responses`) names what a response was learned for: an action, an offer tag, or the opposing norm or goal (`n1`, `norm:n1`, `goal:g1`). At a prompt the person uses the most practised response whose cue matches, else the most practised uncued response; a cued response never serves a prompt it does not match. Each response used at a decision point gains practice once. New `responseCueMatches`, `PromptContext`; `promptingsReading` shows cues.
+- Host-set practice half-life: `enablePromptings(p, { practiceHalfLifeDays })` (state `PromptingsState.practiceHalfLifeDays`), one value per person, default 60 days unchanged; `practiceAt(r, now, halfLifeDays?)`.
+- A resolve term names its resolve: `Term.ref` (new optional field) carries the resolve's key on `review:resolve` when exactly one resolve weighed in; `source` is unchanged so hosts matching `review:resolve` exactly keep working.
+- Docs: commitment labels should be noun phrases for `reviewLine` (`Commitment.label`, review SCOPE); a recurring commitment lapses on any unlived day (review SCOPE); goal terms are never negative, by design (`agendaTerms`).
+- Headless control `packages/human/examples/game-requests-29-control.ts`: one or two named commitments (1 kept, then 2), uncued and cued responses, a week of disuse at 60 and 7 days (0.74, 0.40), and the resolve `ref`.
+
 ## [2.8.0] - 2026-10-19
 
 Engine: 2.8.0. Takes the games' requests (docs/game-requests-2026-10-18.md) and adds an HF-character playtester beside the framework. All new state is optional and starts absent; engine 2.7.0 saves migrate by a version stamp. Persons and hosts that use none of it continue exactly (full-state digests match npm 2.3.0 with only the engine stamp normalized).
