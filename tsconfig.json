@@ -1,4 +1,14 @@
 {
   "files": [],
-  "references": [{ "path": "packages/human" }, { "path": "apps/site" }]
+  "references": [
+    {
+      "path": "packages/human"
+    },
+    {
+      "path": "packages/playtester"
+    },
+    {
+      "path": "apps/site"
+    }
+  ]
 }

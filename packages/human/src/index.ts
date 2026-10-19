@@ -1,5 +1,5 @@
 /** Human Framework v1 public surface. */
-export const FRAMEWORK_VERSION = '2.7.0';
+export const FRAMEWORK_VERSION = '2.8.0';
 
 // `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `skipAffect` stays internal.
 export type { CrisisEvent, PracticeKind } from './affect/index.ts';
@@ -125,6 +125,7 @@ export {
   consequenceEvidence,
   FORECAST_DEFAULTS,
   forecastLine,
+  forecastThresholds,
   PROSPECTION_DEFAULTS,
 } from './prospection/index.ts';
 export * from './restore.ts';

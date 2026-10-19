@@ -12,6 +12,19 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.8.0] - 2026-10-19
+
+Engine: 2.8.0. Takes the games' requests (docs/game-requests-2026-10-18.md) and adds an HF-character playtester beside the framework. All new state is optional and starts absent; engine 2.7.0 saves migrate by a version stamp. Persons and hosts that use none of it continue exactly (full-state digests match npm 2.3.0 with only the engine stamp normalized).
+
+- Going along: `Affordance.alongside: PersonId[]` names people going this way; each known, living tie adds `together:<id>` = 0.12 × closeness. `decide(p, offers, { reconsider: true })` drops the running activity's inertia bonus for that decision (promise inertia stays) and is recorded as `DecisionRecord.reconsider`. The Rope's tug case.
+- Fullness (opt-in, `enableFullness(p)` or `enable: { fullness: true }`): an offer advertising food, water or relief to a need past comfort gets `full:<need>` = −0.03 × gain × over², so idle choice stops looping on drinks. The Rope's Kestrel loop.
+- A voice's word: `seedVoice(p, voiceId, trust, { replace })` sets an authored trust on an existing person; `noteVoicePromise(p, voiceId, { kept, at, action })` moves trust by whether the voice kept its own promise (kept +0.1 of headroom, diminishing per action; broken −0.25 of trust). New `WILL_DEFAULTS.promiseKeptGain`, `promiseBrokenLoss`.
+- Forecast thresholds per offer: `Affordance.forecastAt: { comfortAt, spentAt }` and `forecastThresholds(aff)`; invalid pairs fall back to the defaults. The Glance's night keepers.
+- Headless control `packages/human/examples/game-requests-control.ts`: partner leaving (N, C, T, CT arms: only CT goes on, 12 of 12), fullness off and on (120 sips to 2), kept and broken promises.
+- New private workspace package `packages/playtester` (not published): an HF person plays a game through a four-call adapter (observe, actions, apply, advance) and the session traces where it got bored, frustrated, rewarded or stopped. Four personas; toy-game controls; an example adapter for The Pass (https://github.com/adam0white/pass), read-only against that repository.
+- Rejected or deferred requests, with reasons, are in the triage table; the shape and source references of the new defaults are in research/empirical-models.md §6b (unaudited citations).
+- Scope excludes a bladder, partner handshakes, promise excuses or size, and narration variety (engine 2.9).
+
 ## [2.7.0] - 2026-10-18
 
 Engine: 2.7.0. Adds the evening self-review (muhasaba), the second slice of research/reconciliation.md. The review is optional state (`review`) that starts absent; engine 2.6.0 saves migrate by a version stamp. Persons without the review decide exactly as before.

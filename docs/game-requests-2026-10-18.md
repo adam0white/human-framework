@@ -55,3 +55,54 @@ Ranked by how much each would improve the games. "Confirmed" means read in the c
 ## 5. Future bodily state (done)
 
 Shipped in 2.5.0 and 2.6.0. The Rope has opted into the fatigue store and retuned its leg efforts.
+
+## The Rope, owner Kestrel playtest (2026-10-19)
+
+Source: docs/playtests/owner-2026-10-19.md in the rope repo (export seed 334144833). Both items are confirmed from the export, causes unconfirmed.
+
+1. **Idle drink and relieve loop at full hydration.** One person, with nothing asked of them, alternated `drink` and `relieve` every four minutes for hours at hydration 0.98 to 1.00 (about 90 drinks in a day). Proposal: saturate the drink value as hydration nears full, and gate `relieve` on a bladder state, so idle choice falls through to rest or wait.
+2. **Deferral sentence about the current path.** Three minutes into a climb a person answered five asks with "Not till I go down the tarn path. I'll still have enough for the descent", where the goal's target is the leg they are already on. Proposal: use "turn back" wording when the target is the current leg, and make the reason for an early goal inspectable.
+
+## The Pass, owner playtest (2026-10-19)
+
+Source: `/Users/abdul/code/pass/docs/playtests/owner-2026-10-19.md` and `docs/hf-requests.md` in that repo. Items 1 and 2 are confirmed headlessly on the live build (HF 2.7.0). The proposed causes are read from the decision terms and not reproduced inside HF.
+
+1. **A deferral names the counter-offer, not what decided it (owner-reported).** The owner wrote: "someone is taking a break and they wouldn't accept a task, but they accept other tasks, after which they accept the original task anyway, like a workaround." Seed 1, Monday 19:24: a cook one minute into a self-chosen break defers the grill ("Not now. After I take ten out back."): grill 0.093, including `forecast:body` -0.149, against the break's 0.029 plus inertia. He assents to the cold side (0.224, no forecast cost). Two minutes later, from the cold side (a voice-chosen activity), he assents to the grill (0.105). Every verdict follows the will's rules, but the sentence implies the break blocks everything. Proposal: `SuggestionResolution.decidedBy?: { kind: 'inertia' | 'term'; source?: string; margin: number }`, the gap the suggestion failed to close and the largest term separating the suggested option from the winner. `voiceLine` could then say "not the grill, not straight off my break" instead of "after X". Generic: any running activity that protects against heavy asks but not light ones. Target 2.8.0 (the coordinator's call). The Pass phrases this in the host meanwhile.
+2. **`promptingLine` lens vocabulary is not caption-ready.** "The self pulled; held back." was shown to players three times in one night and read as jargon. Proposal: an optional third-person, plain-language variant (`promptingLine(..., { person: 'third', name })`), e.g. "Rafi looked at the jar, then back at the sink." The Pass composes its own meanwhile.
+3. **`diffChronicle` and `narrateChronicle` derive verbs from action ids that are nouns.** The output reads "They colded every day." and "By the end I dished without being told." `ChronicleNarrationOptions.lexicon` exists, but the fallback could at least avoid inflecting non-verbs (e.g. "did cold every day"). Low priority.
+4. **A personal rule without a norm cannot be a will-not.** `abstentionVeto` needs a linked obligatory norm, so a self-rule such as "I don't wash plates during the rush" can only add a commitment term. The answer is then "not now" or "rather", never "no, that's my rule". Proposal: an opt-in `Commitment.firm?: true` on a self abstention, giving `refused/willNot` with reason `rule:<label>` that insisting cannot override. Engineering default off.
+5. **A voice granting or refusing the person's own request.** When a cook asks the chef for something ("can I ring my mother?") and the chef says yes or no, there is no HF event for it. Hosts use `adoptVoiceTrust` with an invented rate. This is the mirror of rank 2 (`noteVoicePromise`): `noteRequestAnswered(p, voiceId, { granted, importance, at })`.
+6. **A duty held by a group.** "Somebody stays on the line" is met if any one member keeps it. HF commitments are per person, so The Pass enforces it as a host rule (a cook will not leave the line when no one else is on it). Proposal, deferred: a shared commitment that releases each member's instance while another member is keeping it.
+
+## The Glance (2026-10-19)
+
+Source: `/Users/abdul/code/glance/docs/hf-requests.md` (HF 2.7.0). A night-desk game: dam keepers report gauge figures through their own fatigue. Each item has a host workaround.
+
+1. **Forecast thresholds are not host-tunable** (confirmed by reading `prospection/forecast.js`). `comfortAt 0.8` and `spentAt 0.97` sit above where night keepers live (sleepiness 0.6 to 0.85 in the trough), so the forecast is silent and then "spent". Proposal: optional `{ comfortAt, spentAt }` per person or per call, defaults unchanged.
+2. **No involuntary sleep onset** (confirmed: no faculty). HF sleeps only by decision. Proposal: an opt-in doze hazard from true sleepiness, posture and stimulation, from the person's seeded RNG, ended by a salient percept. The Glance rolls it in the host.
+3. **No faculty for reading a quantity** (confirmed: no API). Proposal: `estimate(p, { truth, difficulty })` returning `{ value, confidence }`: error from true body state, confidence from perceived state, bias left to the host. The Glance's version is engineering assumptions in `src/sim/reading.ts`.
+4. **Generic assent words repeat** ("Aye." 57 times in three measured weeks). Same as the Rope's rank 4. The Glance keys per-keeper pools by seed and minute.
+
+## Outcome, HF 2.8.0 (2026-10-19)
+
+Released as HF 2.8.0 / engine 2.8.0 ([CHANGELOG](../CHANGELOG.md), [framework.md](framework.md#game-requests-going-along-fullness-a-voices-word-280)). Deferred items have targets in [roadmap.md](roadmap.md) §3b.
+
+| Item | Outcome | Reason |
+|---|---|---|
+| Rope rank 1, resting partner | Done, with a changed API: `Affordance.alongside` and `reconsider: true` | `Affordance.with` already exists as `PersonId[]` ("other people taking part"); the requested `{ partnerId, leaving }` shape would break 2.x. `leaving` was dropped: the host names who is going on the offer that goes. Reproduced: `reconsider` alone suffices once the partner's move is visible; see findings for the possible host-ordering cause |
+| Rank 2, `noteVoicePromise` | Done | `promisedAt` not taken: no sourced effect for promise age |
+| Rank 3, `seedVoice` | Done | |
+| Rank 4, deferral template repetition | Deferred, engine 2.9 | Moves narration fixtures in every game; batched with the other narration items |
+| Rope Kestrel 1, drink/relieve loop | Done as opt-in fullness | No bladder in HF (inventory Missing); Rope uses `relief` for the toilet, which HF reads as pain relief. Rope should enable `fullness` and stop advertising `relief` for stepping aside |
+| Rope Kestrel 2, "Not till I go down the tarn path" | Rejected as an HF change | Reproduced: the host-adopted goal `g1` chose the descent (`res.reason` and the record terms already show it). The sentence is Rope's template; Rope can say "turn back" when the counter-offer reverses the running leg |
+| Neighbours 4, residents repair once | Deferred, review 2026-11-01 | Not a request in its own doc and not reproduced; the town finishes all twelve hall repairs by day 2, so the work may simply run out |
+| Pass 1, why a suggestion failed (`decidedBy`) | Deferred, engine 2.9 | Generic and wanted, but it adds a field to recorded resolutions and needs voice-line design |
+| Pass 2, third-person `promptingLine` | Deferred, engine 2.9 | Narration batch |
+| Pass 3, chronicle verbs from nouns | Deferred, engine 2.9 | Narration batch |
+| Pass 4, a firm self-rule | Deferred, engine 2.9 | A new will veto; needs its own control |
+| Pass 5, `noteRequestAnswered` | Deferred, engine 2.9 | Needs a sourced effect size before an API |
+| Pass 6, a duty held by a group | Unscheduled, review 2026-11-15 | Proposed as deferred by The Pass |
+| Glance 1, forecast thresholds | Done: `Affordance.forecastAt` | Per offer, defaults unchanged |
+| Glance 2, involuntary sleep onset | Deferred, engine 2.10 | New faculty |
+| Glance 3, reading a quantity | Deferred, engine 2.10 | New faculty |
+| Glance 4, assent repetition | Deferred, engine 2.9 | Same as rank 4 |

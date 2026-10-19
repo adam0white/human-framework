@@ -28,6 +28,9 @@
  * when the answer leaves the person doing what they are doing. A host command is a separate input that yields the
  * `commanded` verdict (see the commanded-control SCOPE on `commandOutcome`); `learnFromVoice` learns from assented,
  * complied and commanded activities, and `adoptVoiceTrust` moves trust toward a target without a suggestion.
+ * 2.8.0: `seedVoice` sets an authored starting trust after creation; `noteVoicePromise` learns from whether the
+ * voice kept its own promise; a decision with `reconsider` (WillContext) gives the running activity no inertia
+ * bonus, for a review the host forces because something changed (promise inertia, a cognition term, stays).
  */
 
 import { breakAllows, inBreak } from '../affect/index.ts';
@@ -138,6 +141,14 @@ export const WILL_DEFAULTS = {
   /** Share of a tie's inertia bonus that remains when the activity is about to end. */
   inertiaFloor: 0.5,
   /**
+   * A voice's own promise (2.8.0, `noteVoicePromise`): a kept promise moves trust this share of the way toward 1, a
+   * broken one this share toward 0. Broken weighs more than kept (trust asymmetry, unaudited citations in research/empirical-models.md §6b: Slovic 1993; broken promises
+   * damage trust and kept ones restore it only gradually, Schweitzer, Hershey and Bradlow 2006: research/
+   * empirical-models.md §6b). Shape only; the numbers are engineering defaults equal to `trustGain`/`trustLoss`.
+   */
+  promiseKeptGain: 0.1,
+  promiseBrokenLoss: 0.25,
+  /**
    * Insisting cannot override survival: at this desperation (same scale as conscience's necessity threshold),
    * or when the person's own choice is driven by a bodily need at `survivalNeedUrgency`, the verdict is
    * `refused/cannot` with the need as reason ("I have to drink first").
@@ -180,6 +191,8 @@ export interface WillContext {
   needs?: readonly { id: string; urgency: number }[];
   /** A host command in force (1.6.0); see the command SCOPE on `commandOutcome`. */
   command?: Command;
+  /** No inertia bonus for the running activity in this decision (2.8.0, `DecideOptions.reconsider`). */
+  reconsider?: boolean;
 }
 
 /**
@@ -297,6 +310,67 @@ export function adoptVoiceTrust(p: Person, voiceId: EntityId, target: Unit, rate
   const r = clamp01(Number.isFinite(rate) ? rate : 0);
   const t = clamp01(Number.isFinite(target) ? target : v.trust);
   v.trust = clamp01(v.trust + r * (t - v.trust));
+  return v;
+}
+
+/**
+ * Give `p` an authored starting trust in a voice after creation (2.8.0), marked `seeded` as `PersonSpec.voices`
+ * would (a seeded voice is never evicted to make room). A no-op returning the existing relation when the voice is
+ * already known, unless `replace` is set; replacing keeps counters and history and marks the voice seeded. Records
+ * no history event: no suggestion was weighed. A non-finite trust falls back to `defaultVoiceTrust`.
+ */
+export function seedVoice(
+  p: Person,
+  voiceId: EntityId,
+  trust: Unit,
+  opts: { replace?: boolean } = {},
+): VoiceRelation {
+  const existing = voiceOf(p, voiceId);
+  if (existing && !opts.replace) return existing;
+  const v = existing ?? ensureVoice(p, voiceId);
+  v.trust = clamp01(Number.isFinite(trust) ? trust : WILL_DEFAULTS.defaultVoiceTrust);
+  v.seeded = true;
+  return v;
+}
+
+/**
+ * SCOPE (a voice's own promise, 2.8.0): the voice said it would do something ("I will carry food up by 18:00") and
+ * the host reports whether it did. This is evidence about the voice's word, separate from how following its advice
+ * felt (`learnFromVoice`), so it needs no suggestion resolution and works for a request that was only deferred.
+ * Kept moves trust `promiseKeptGain` of the way toward 1, divided by 1 + n where n is the decayed count of kept
+ * promises already credited for the same action (key `promise:<action>` in `credited`), so a string of trivial
+ * promises cannot farm trust (these keys share `credited` and its `maxCredited` bound with advice credits, so a
+ * host with many promise actions can evict older entries of either kind, which only shortens a discount);
+ * broken moves it `promiseBrokenLoss` toward 0, undiscounted. History reasons are
+ * `promise-kept` and `promise-broken`. The voice is added if absent (bounded like any new voice). Does not model
+ * excuses, partial keeping, apology, or the size of what was promised; the host judges kept or broken.
+ */
+export function noteVoicePromise(
+  p: Person,
+  voiceId: EntityId,
+  event: { kept: boolean; at?: Minute; action?: string },
+): VoiceRelation {
+  const W = WILL_DEFAULTS;
+  const v = ensureVoice(p, voiceId);
+  const at = event.at !== undefined && Number.isFinite(event.at) ? event.at : p.now;
+  const before = v.trust;
+  if (event.kept) {
+    const key = `promise:${event.action ?? ''}`;
+    v.credited ??= [];
+    const list = v.credited;
+    const prior = list.find((c) => c.action === key);
+    const n = prior ? decay(prior.n, Math.max(0, at - prior.at), W.creditHalfLife) : 0;
+    v.trust = clamp01(v.trust + (W.promiseKeptGain * (1 - v.trust)) / (1 + n));
+    if (prior) {
+      prior.n = n + 1;
+      prior.at = at;
+    } else list.push({ action: key, n: 1, at });
+    if (list.length > W.maxCredited) {
+      list.sort((a, b) => b.at - a.at);
+      list.length = W.maxCredited;
+    }
+  } else v.trust = clamp01(v.trust - W.promiseBrokenLoss * v.trust);
+  noteTrust(v, v.trust - before, event.kept ? 'promise-kept' : 'promise-broken', at, event.action);
   return v;
 }
 
@@ -659,7 +733,7 @@ function evaluate(
   const live = considered.filter((c) => !c.vetoed);
   const current = p.activity;
   const score = (c: Considered): number => {
-    if (!current || c.affordanceId !== current.affordanceId) return safeUtility(c.utility);
+    if (!current || c.affordanceId !== current.affordanceId || ctx.reconsider) return safeUtility(c.utility);
     const span = Math.max(1, current.endsAt - current.startedAt);
     const remaining = clamp01((current.endsAt - ctx.now) / span);
     return c.utility + p.will.switchMargin * (W.inertiaFloor + (1 - W.inertiaFloor) * remaining);

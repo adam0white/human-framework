@@ -16,7 +16,8 @@
  * open wound can read as being spent, and death in the forecast reads as fully spent. The term is absolute
  * (see `bodyForecastTerm`). It does not plan, search routes, schedule rests on the way or
  * predict injuries, and it is not a calibrated estimate of human anticipation. Every number is an engineering
- * default.
+ * default. 2.8.0: an offer may carry its own thresholds (`Affordance.forecastAt`, from The Glance's night
+ * keepers); offers without it read exactly as before.
  */
 import {
   BODY_DEFAULTS,
@@ -38,6 +39,24 @@ export const FORECAST_DEFAULTS = {
   maxSpans: 4,
   maxMinutes: 24 * 60,
 } as const;
+
+/**
+ * The forecast thresholds for an offer (2.8.0): its `forecastAt` when it forms a valid pair, else the defaults.
+ * Pure.
+ */
+export function forecastThresholds(aff: Pick<Affordance, 'forecastAt'>): {
+  comfortAt: number;
+  spentAt: number;
+} {
+  const D = FORECAST_DEFAULTS;
+  const at = aff.forecastAt;
+  if (!at || typeof at !== 'object') return { comfortAt: D.comfortAt, spentAt: D.spentAt };
+  const c = Number.isFinite(at.comfortAt) ? (at.comfortAt as number) : D.comfortAt;
+  const s = Number.isFinite(at.spentAt) ? (at.spentAt as number) : D.spentAt;
+  return c >= 0 && c < s && s <= 1
+    ? { comfortAt: c, spentAt: s }
+    : { comfortAt: D.comfortAt, spentAt: D.spentAt };
+}
 
 const smooth = (a: number, b: number, x: number) => {
   const t = clamp01((x - a) / (b - a));
@@ -97,13 +116,17 @@ export function bodyForecastTerm(
   const spans = bodyForecastFor(p, aff, mods, perception).slice(1);
   if (spans.length === 0) return undefined;
   const D = FORECAST_DEFAULTS;
+  const at = forecastThresholds(aff);
   const worst = Math.max(...spans.map((s) => s.worst));
-  const v = round(-D.forecastScale * smooth(D.comfortAt, D.spentAt, worst));
+  const v = round(-D.forecastScale * smooth(at.comfortAt, at.spentAt, worst));
   return v < 0 ? { source: 'forecast:body', value: v } : undefined;
 }
 
-/** A first-person line for the forecast (narration only). */
-export function forecastLine(spans: readonly BodyForecastSpan[]): string {
+/** A first-person line for the forecast (narration only); `at` is the offer's thresholds (2.8.0, default as before). */
+export function forecastLine(
+  spans: readonly BodyForecastSpan[],
+  at: { comfortAt: number; spentAt: number } = FORECAST_DEFAULTS,
+): string {
   const after = spans.slice(1);
   if (after.length === 0) return '';
   let w = after[0] as BodyForecastSpan;
@@ -111,7 +134,7 @@ export function forecastLine(spans: readonly BodyForecastSpan[]): string {
   const what = { fatigue: 'spent', sleepiness: 'too sleepy', hunger: 'too hungry', thirst: 'too thirsty' }[
     w.worstOf
   ];
-  if (w.worst >= FORECAST_DEFAULTS.spentAt) return `I can do it, but I'll be ${what} for ${w.label}.`;
-  if (w.worst >= FORECAST_DEFAULTS.comfortAt) return `I can do it, though ${w.label} will be hard.`;
+  if (w.worst >= at.spentAt) return `I can do it, but I'll be ${what} for ${w.label}.`;
+  if (w.worst >= at.comfortAt) return `I can do it, though ${w.label} will be hard.`;
   return `I'll still have enough for ${w.label}.`;
 }

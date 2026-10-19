@@ -106,6 +106,11 @@ export interface BodyState {
    * recovering with rest and faster with sleep. Raises felt fatigue and lowers capacity. Absent = no store.
    */
   depletion?: Unit;
+  /**
+   * Fullness (2.8.0, opt-in via `enableFullness`): when true, eating, drinking or taking relief for a need already
+   * past its comfort level costs a little (`full:<need>` term) instead of being free. Absent = no term.
+   */
+  fullness?: boolean;
   asleep: boolean;
   /** Minute the current sleep or wake period began. */
   since: Minute;
@@ -900,7 +905,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.7.0';
+export const ENGINE_VERSION = '2.8.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -1151,6 +1156,12 @@ export interface Affordance {
   placeId?: EntityId;
   /** Other people taking part. */
   with?: PersonId[];
+  /**
+   * People already taking this course (2.8.0): a partner moving on, a companion leaving for home. Choosing it keeps
+   * the person with them, a `together:<id>` term from closeness (`cognition` SCOPE). Unlike `with`, it says who is
+   * going this way, not who would take part. Absent = no term, exactly as before.
+   */
+  alongside?: PersonId[];
   /** Minutes the activity occupies (including travel if the host folds it in). */
   duration: number;
   /** Physical exertion 0..1. */
@@ -1181,6 +1192,13 @@ export interface Affordance {
    * spent during them. Absent = no forecast, exactly as before.
    */
   followedBy?: FollowOn[];
+  /**
+   * Readout thresholds for this offer's forecast (2.8.0), for hosts whose people live higher on a readout (a
+   * night keeper at sleepiness 0.7). `comfortAt` is where the forecast starts to weigh and `spentAt` where it
+   * weighs fully; either absent, or a pair that is not 0 ≤ comfortAt < spentAt ≤ 1, falls back to
+   * `FORECAST_DEFAULTS`. Ignored without `followedBy`.
+   */
+  forecastAt?: { comfortAt?: Unit; spentAt?: Unit };
   /** Set on a partner's mirror offer by the joint protocol in `sim/` (the proposal id). */
   jointId?: string;
   /** Material gain/cost in host units (e.g. coins). Valued via security/achievement/power values. */
@@ -1409,6 +1427,8 @@ export interface DecisionRecord {
   review?: boolean;
   /** Why this decision was brought forward, when `interrupt()` forced it (e.g. 'percept:injury'). */
   interrupt?: string;
+  /** Made with `DecideOptions.reconsider` (2.8.0): the running activity had no inertia bonus. */
+  reconsider?: true;
   /**
    * One resolution per voice that suggested something in this decision, in voice-id order (N1). `suggestion` is
    * the credited voice's resolution (same object), or the only one when a single voice spoke.
@@ -1455,6 +1475,8 @@ export interface PersonSpec {
     skillRetention?: boolean;
     /** Accumulated exertion (2.6.0): the same as `enableFatigueStore(p)` after creation. */
     fatigueStore?: boolean;
+    /** Fullness (2.8.0): the same as `enableFullness(p)` after creation. */
+    fullness?: boolean;
     /** Promptings and turning away (2.4.0): the same as `enablePromptings(p, spec)` after creation. */
     promptings?: PromptingsSpec;
     /** Evening self-review (2.7.0): the same as `enableReview(p, spec)` after creation. */

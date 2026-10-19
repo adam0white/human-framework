@@ -80,7 +80,7 @@ The full list, with module names and research references, is [faculty-inventory.
 - Affect and self: body cost of stress, expression and concealment (no emotional contagion), curiosity, status and power, within-person variability, identity through group membership, self-esteem and self-model.
 - Social: judging others' acts (no habituation), language (templates only; LLMs stay out of the loop by rule), joint activities (§1, one-sided), courage under threat, tools and equipment, sensory impairment.
 
-## 3b. Next slices after 2.4.0 (2026-10-18)
+## 3b. Next slices after 2.4.0 (2026-10-18, updated 2026-10-19)
 
 Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md)): HF should become a one-stop shop for future games; the no-quantification rule stands (nothing about the ruh is computed), and science directions and capabilities HF lacks are in scope. Ordered by value to games. "Engine 2.5" means the next engine bump; each item ships opt-in with tests, a headless control and exact legacy continuation. Review this list by 2026-11-01.
 
@@ -89,14 +89,34 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | Future bodily state in prospection | Done in 2.5.0 for offers that declare `followedBy` ([framework.md](framework.md#bodily-forecast-250)). Left: forecast a received successor's span; apply host surroundings (fasting perception done in 2.6.0) | Engine 2.8 |
 | Cumulative exertion in the body | Exertion relaxes toward current effort, so hours of climbing leave no extra fatigue for the descent. A slow glycogen/muscle-fatigue store would make the 2.5.0 forecast bite on long efforts; opt-in, so the three games replay unchanged | Done, engine 2.6.0 (`body.depletion`) |
 | Muhasaba (reconciliation §7) | Done in 2.7.0 for commitments (`review/`). Left: revise a method or a prompting response in review | Engine 2.9 |
-| Multi-step planning (bounded) | Chains of two or three received or known routes with waiting cost; the most requested missing faculty | Engine 2.6 |
-| Sabr and shukr as appraisal styles | Reappraisal and gratitude in `affect/`, attentional and regulatory effects only | Engine 2.6 |
-| Present bias and temporal discounting | Person-level discount style over the 2.3.0 temporal goals | Engine 2.6 |
-| The other's view of me | Impressions both ways; a missed promise costs standing with the promisee | Engine 2.6 |
+| Multi-step planning (bounded) | Chains of two or three received or known routes with waiting cost; the most requested missing faculty | Engine 2.10 (was 2.6; not started) |
+| Sabr and shukr as appraisal styles | Reappraisal and gratitude in `affect/`, attentional and regulatory effects only | Engine 2.10 (was 2.6; not started) |
+| Present bias and temporal discounting | Person-level discount style over the 2.3.0 temporal goals | Engine 2.10 (was 2.6; not started) |
+| The other's view of me | Impressions both ways; a missed promise costs standing with the promisee | Engine 2.10 (was 2.6; not started) |
 | Qalb lens | Read-only narration lens over attention, conviction, mood and trust (no scalar) | 2.x (behaviour-neutral) |
 | Promptings follow-ups | Chronicle lines in the reading's vocabulary; prompts against open abstention windows (they veto today and carry no term); upbringing setting the reading | 2.x / engine 2.5 |
 | Held fitra and purpose | Life purpose and vocation as a held self-understanding (reconciliation §7) | unscheduled, review 2026-11-15 |
 | Culture as learned practices | Norm diffusion and consensus between people | unscheduled, review 2026-11-15 |
+
+**Game requests and playtesters (2026-10-19, owner-directed increment; triage in [game-requests-2026-10-18.md](game-requests-2026-10-18.md)).**
+
+| Item | What | Target |
+|---|---|---|
+| Going along and reconsidering | `Affordance.alongside` + `together:<id>`; `decide(..., { reconsider: true })` | Done, engine 2.8.0 |
+| Fullness (alliesthesia) | Opt-in `body.fullness`: drinking or eating past comfort costs a little, so idle loops stop | Done, engine 2.8.0 |
+| A voice's own promise; seeding a voice | `noteVoicePromise`, `seedVoice` | Done, engine 2.8.0 |
+| Forecast thresholds per offer | `Affordance.forecastAt` (The Glance) | Done, engine 2.8.0 |
+| HF-character playtesters | `packages/playtester` (private): a persona plays any game through a four-call adapter; The Pass example | Done 2026-10-19; publish as its own package when a second game uses it, review 2026-11-15 |
+| Narration variety | Per-person variants for deferral and assent sentences (Rope rank 4, Glance 4); a plain third-person `promptingLine` (Pass 2); chronicle verbs that avoid inflecting nouns (Pass 3). One batch, since each moves narration fixtures | Engine 2.9 |
+| Why a suggestion failed | `SuggestionResolution.decidedBy` (inertia or the separating term, with margin) so lines can say "not straight off my break" (Pass 1) | Engine 2.9 |
+| A firm self-rule | Opt-in `Commitment.firm` on a self abstention: `refused/willNot`, reason `rule:<label>` (Pass 4) | Engine 2.9 |
+| A voice answering the person's request | `noteRequestAnswered(p, voiceId, { granted, importance, at })`, the mirror of `noteVoicePromise` (Pass 5); needs a sourced effect size first | Engine 2.9 |
+| Involuntary sleep onset | Opt-in doze hazard from true sleepiness, posture and stimulation, ended by a salient percept (Glance 2) | Engine 2.10 |
+| Reading a quantity | `estimate(p, { truth, difficulty })` returning value and confidence from body state (Glance 3) | Engine 2.10 |
+| Bladder | A real voiding need, so hosts stop advertising pain `relief` for the toilet (Rope Kestrel) | unscheduled, review 2026-11-15 |
+| A duty held by a group | Shared commitment met by any member (Pass 6) | unscheduled, review 2026-11-15 |
+| Engagement and boredom on a seconds scale | The playtester's fast `engagement` store, if a second user needs it inside HF | unscheduled, review 2026-11-15 |
+| Neighbours: residents repair once | Not reproduced; may be the town running out of repairs | Review 2026-11-01 |
 
 ## 4. Example games
 

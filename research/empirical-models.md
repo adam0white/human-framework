@@ -58,6 +58,14 @@ The resource-depletion metaphor requires stronger restraint. A preregistered 36-
 
 **Model implication:** distinguish cue-linked automaticity, expected consequences, attentional effort, fatigue, temptation, motivation, and commitment. Permit strategies such as changing cues, seeking assistance, precommitment, and reflective reevaluation. Model competing actions rather than converting every difficulty into a lower self-control stat. Rewards can reinforce harmful or helpful habits; the learning signal is not moral approval.
 
+### 6b. Shape references for HF 2.8.0 (2026-10-19)
+
+These are cited from the agent's knowledge as shape references for engineering defaults. They were not retrieved or audited for this entry, and they are not in the verified ledger below.
+
+- **A voice's own promise (`noteVoicePromise`).** Negative trust events weigh more than positive ones (the trust-asymmetry principle, Slovic 1993, "Perceived risk, trust, and democracy", *Risk Analysis* 13). Broken promises damage trust, and later kept behaviour restores it only gradually (Schweitzer, Hershey and Bradlow 2006, "Promises and lies: restoring violated trust", *OBHDP* 101). HF takes the direction only: a broken promise moves trust 0.25 of the way to 0, a kept one 0.1 of the way to 1, with repeats discounted. The numbers are engineering defaults.
+- **Staying with a partner who goes (`Affordance.alongside`).** Acting together creates a felt commitment to the partner that is not the same as a need for company (Gilbert 1990, "Walking together", *Midwest Studies in Philosophy* 15; Michael and Pacherie 2015, "On commitments and other uncertainty reduction tools in joint action", *Journal of Social Ontology* 1). HF takes the shape only: a closeness-scaled pull toward the course the partner is taking, which does not satiate with belonging.
+- **Fullness (`enableFullness`).** The pleasantness of food or water depends on the internal state. The same stimulus becomes unpleasant when the need is met (negative alliesthesia, Cabanac 1971, "Physiological role of pleasure", *Science* 173). HF takes the direction only: a small cost on consuming for a need already past comfort.
+
 ### 7. Development, heredity, and aging — accept trajectories, reject fixed inheritance percentages
 
 Heritability is a population variance statistic under particular environments and measurements. It does not say that a specified percentage of an individual is genetic, that a trait cannot change, or that a difference between populations is genetically caused. Genetic contribution and malleability are compatible. [S18](https://medlineplus.gov/genetics/understanding/inheritance/heritability/)

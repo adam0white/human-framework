@@ -57,6 +57,7 @@ import {
   createBody,
   downedAllows,
   enableFatigueStore,
+  enableFullness,
   expose,
   injure,
   nextBodyThreshold,
@@ -123,6 +124,7 @@ import {
   bodyForecastFor,
   consumeConsequences,
   forecastLine,
+  forecastThresholds,
   pruneConsequences,
   receiveConsequences,
 } from './prospection/index.ts';
@@ -314,6 +316,7 @@ export function createPerson(spec: PersonSpec): Person {
   if (on?.character) enableCharacterChange(p);
   if (on?.skillRetention) enableSkillRetention(p);
   if (on?.fatigueStore) enableFatigueStore(p);
+  if (on?.fullness) enableFullness(p);
   if (on?.promptings) enablePromptings(p, on.promptings);
   if (on?.review) enableReview(p, on.review);
   return p;
@@ -871,6 +874,12 @@ export interface DecideOptions {
   necessity?: boolean;
   /** Why this decision was forced (recorded on the decision); defaults to the activity's pending interrupt. */
   interrupt?: string;
+  /**
+   * Reconsider on the merits (2.8.0): the running activity gets no inertia bonus in this decision, for a review the
+   * host forces because something changed (a partner leaving, a call). Promise inertia (`begin` with a promise) and
+   * every other term stay. Absent = the usual hysteresis.
+   */
+  reconsider?: boolean;
   /** @internal Read a command without it being in force (`previewCommand`). */
   command?: Command;
 }
@@ -918,6 +927,7 @@ function decisionInputs(
   if (opts.scarcity !== undefined && opts.scarcity > 0) ctx.scarcity = clamp01(opts.scarcity);
   const cmd = opts.command ?? p.will.command;
   if (cmd) ctx.command = commandOf(cmd);
+  if (opts.reconsider) ctx.reconsider = true;
   return { list, ctx };
 }
 
@@ -1627,5 +1637,5 @@ export function nafsReading(p: Person): NafsPattern[] {
  */
 export function bodyForecast(p: Person, aff: Affordance): { spans: BodyForecastSpan[]; line: string } {
   const spans = bodyForecastFor(p, aff, lifeModifiers(p), fastingCtx(p));
-  return { spans, line: forecastLine(spans) };
+  return { spans, line: forecastLine(spans, forecastThresholds(aff)) };
 }

@@ -268,8 +268,17 @@ export function sanitizeBody(b: BodyState, now: Minute): void {
   const span = (x: unknown) => isObj(x) && hasNumbers(x, 'from', 'to');
   if (b.lastSleep !== undefined && !span(b.lastSleep)) delete b.lastSleep;
   if (b.lastDowned !== undefined && !span(b.lastDowned)) delete b.lastDowned;
+  if (b.fullness !== undefined && b.fullness !== true) delete b.fullness;
   if (b.depletion !== undefined)
     b.depletion = typeof b.depletion === 'number' && Number.isFinite(b.depletion) ? clamp01(b.depletion) : 0;
+}
+
+/**
+ * Turn on fullness (2.8.0): consumption for a need already past its comfort level carries a small cost in choice
+ * (see the fullness SCOPE in `cognition/`). Idempotent; off by default so existing hosts replay exactly.
+ */
+export function enableFullness(p: Person): void {
+  p.body.fullness = true;
 }
 
 /** Turn on the fatigue store (2.6.0): accumulated exertion that recovers with rest and sleep. Idempotent. */

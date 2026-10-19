@@ -1,0 +1,15 @@
+{
+  "name": "@adam0white/hf-playtester",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HF people as playtesters: a player persona that plays a game through HF's own decision loop and reports where it got bored, frustrated, rewarded or quit",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "main": "./src/index.ts",
+  "dependencies": {
+    "@adam0white/human-framework": "*"
+  }
+}

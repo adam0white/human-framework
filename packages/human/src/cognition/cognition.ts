@@ -23,6 +23,17 @@
  * bias; and because losses are amplified too, a host must carry the benefit of paying a debt (a commitment,
  * an advertised `safety` gain) or paying looks only like a loss. The spec's "security need" is read as the
  * `safety` need: `security` is a value, not a need, and no need is added.
+ *
+ * SCOPE (2.8.0, both additive): an offer naming `alongside` partners (people already taking that course) gets one
+ * `together:<id>` term per known, living partner, `togetherScale` × closeness, without belonging satiation: the
+ * pull is not to be left behind, which stays when the pair is together and belonging is full (The Rope's resting
+ * partner, 2026-10-18 reproduction: belonging terms near 0.01 against inertia of 0.07-0.15). Shape only, after
+ * joint commitment and the sense of commitment in joint action (Gilbert 1990; Michael and Pacherie 2015; cited unaudited, research/empirical-models.md §6b); it does
+ * not model who leads, negotiation, or obligations between the partners. With opt-in `body.fullness`, an offer
+ * that advertises food, water or relief while that need is past its comfort threshold gets `full:<need>` =
+ * -fullnessScale × gain × over²: eating or drinking when full is mildly unpleasant (negative alliesthesia, unaudited citation, Cabanac
+ * 1971), so idle choice stops cycling short consumption at full hydration (The Rope, owner Kestrel export
+ * 2026-10-19). It models no bladder, sensory-specific satiety by food, or overeating for comfort.
  */
 import { emotionLevel, inBreak } from '../affect/index.ts';
 import { agendaTermsWithGoalEstimates } from '../agenda/index.ts';
@@ -33,12 +44,18 @@ import { clamp01, cmpStr, dexp, minuteOfDay, round } from '../core/index.ts';
 import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
 import { expectedEffect } from '../memory/index.ts';
 import { methodEvidence } from '../methods/index.ts';
-import { urgencyOf } from '../needs/index.ts';
+import { levelOf, needThreshold, urgencyOf } from '../needs/index.ts';
 import { partneringTerms } from '../partnering/index.ts';
 import { type PromptingSeen, promptIn, promptingTerms } from '../promptings/index.ts';
 import { bodyForecastTerm, receivedGoalRoute } from '../prospection/index.ts';
 import { reviewTerms } from '../review/index.ts';
-import { companionSteadiness, socialTerms } from '../social/index.ts';
+import {
+  closeness,
+  companionSteadiness,
+  isDeceasedTie,
+  relationshipWith,
+  socialTerms,
+} from '../social/index.ts';
 import type {
   Affordance,
   BodyReadout,
@@ -130,6 +147,16 @@ export const COGNITION_DEFAULTS = {
   commitmentInertiaFade: 0.15,
   /** Social pull per partner on a joint offer: jointTrust × (relationship trust - 0.5). */
   jointTrust: 0.6,
+  /**
+   * Staying with a partner who is going (2.8.0, `Affordance.alongside`): 'together:<id>' = togetherScale ×
+   * closeness. It does not satiate with belonging: being together now does not remove the pull of not being left.
+   */
+  togetherScale: 0.12,
+  /**
+   * Fullness (2.8.0, opt-in `body.fullness`): 'full:<need>' = -fullnessScale × gain × over², over = how far the
+   * need's level is past its comfort threshold toward 1, for food, water and relief.
+   */
+  fullnessScale: 0.03,
   // --- lane will+cognition ---
   /** Multiplier on standing advice terms relative to a live suggestion of the same strength (N9). */
   rememberedScale: 1,
@@ -292,6 +319,9 @@ export function materialValue(p: Person, material: number, scarcity: number): nu
   return K.materialWeight * sat * 2 * weight * (1 + K.scarcityMaterialGain * scarcity);
 }
 
+/** Needs whose consumption can overfill (2.8.0 fullness): what `body.consume` feeds. */
+const FULL_NEEDS = ['food', 'water', 'relief'] as const;
+
 /** Score one option. Pure apart from reads; terms are rounded for stable snapshots. */
 export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Considered {
   const K = COGNITION_DEFAULTS;
@@ -312,6 +342,17 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     const success = gain > 0 ? expected.successRate : 1;
     const scarce = id === 'safety' ? 1 + K.scarcitySafetyGain * scarcity : 1;
     push(`need:${id}`, K.needScale * u * gain * success * scarce);
+  }
+  // Fullness (2.8.0, opt-in): consuming for a need already past comfort is mildly unpleasant (alliesthesia).
+  if (p.body.fullness) {
+    for (const id of FULL_NEEDS) {
+      const gain = aff.advertises[id] ?? 0;
+      if (!(gain > 0)) continue;
+      const level = levelOf(ctx.needs, id);
+      const comfort = needThreshold(p, id);
+      const over = clamp01((level - comfort) / Math.max(1e-6, 1 - comfort));
+      if (over > 0) push(`full:${id}`, -K.fullnessScale * Math.min(1, gain) * over * over);
+    }
   }
   if (expected.samples > 0) {
     let relevance = 1;
@@ -398,6 +439,14 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   // Social pulls. Per-person emotion tendencies enter at the same scale as tag tendencies.
   for (const t of socialTerms(p, aff, social))
     push(t.source, K.socialScale * (t.value > 0 ? social.satiation * refractory() : 1) * t.value);
+  // Going with partners who are already taking this course (2.8.0).
+  if (aff.alongside) {
+    for (const id of [...new Set(aff.alongside)].sort()) {
+      if (id === p.id || !p.social.relationships.some((r) => r.otherId === id)) continue;
+      if (isDeceasedTie(relationshipWith(p, id))) continue;
+      push(`together:${id}`, K.togetherScale * closeness(p, id));
+    }
+  }
   // Joint offers: whether I trust the partners to do their share.
   if (tags.includes('joint')) {
     for (const id of [...(aff.with ?? [])].sort()) {
@@ -514,6 +563,8 @@ export interface DecideContext extends ConsiderContext {
   quiet?: boolean;
   /** A host command in force (1.6.0); passed to the will. */
   command?: Command;
+  /** Drop the running activity's inertia bonus (2.8.0); passed to the will. */
+  reconsider?: boolean;
 }
 
 export interface Decision {
@@ -552,6 +603,7 @@ export function scoreAll(
     needs: ctx.needs,
   };
   if (ctx.command) willCtx.command = ctx.command;
+  if (ctx.reconsider) willCtx.reconsider = true;
   return { sorted, considered, willCtx };
 }
 
@@ -581,6 +633,7 @@ export function decide(p: Person, affordances: readonly Affordance[], ctx: Decid
     narration: '',
   };
   if (res.suggestion) record.suggestion = res.suggestion;
+  if (ctx.reconsider) record.reconsider = true;
   if (res.suggestions && (res.suggestions.length > 1 || ctx.suggestions !== undefined))
     record.suggestions = res.suggestions;
   const needDeltas: Decision['needDeltas'] = {};
