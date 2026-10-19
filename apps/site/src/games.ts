@@ -73,6 +73,13 @@ export const GAMES: Game[] = [
     line: 'Six nights running a small kitchen with three cooks who can say no.',
     faculties: ['Will', 'Memory and belief', 'Relationships'],
   },
+  {
+    id: 'glance',
+    name: 'The Glance',
+    href: 'https://glance.adamwhite.work',
+    line: 'A storm week on the night desk of a dam, where every gauge is read by a tired keeper.',
+    faculties: ['Body', 'Forecast', 'Relationships'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);
