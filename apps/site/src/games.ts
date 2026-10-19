@@ -80,6 +80,13 @@ export const GAMES: Game[] = [
     line: 'A storm week on the night desk of a dam, where every gauge is read by a tired keeper.',
     faculties: ['Body', 'Forecast', 'Relationships'],
   },
+  {
+    id: 'murmur',
+    name: 'The Two Voices',
+    href: 'https://murmur.adamwhite.work',
+    line: 'One ordinary week as the voice in Dilan’s head, against the other one. Every evening she looks back.',
+    faculties: ['Inner life', 'Will', 'Forecast'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);
