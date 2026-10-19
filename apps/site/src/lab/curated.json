@@ -1337,6 +1337,166 @@
     "fix:murmur menu button on long day names (open)"
    ],
    "source": "murmur/docs/playtests/wildcard-busdriver-2026-10-19.md"
+  },
+  {
+   "id": "F-097",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "literary reader (Opus)",
+   "words": "The best sentences in The Valley are as good as anything in 80 Days. But around them the same few lines repeat, and the births and weddings have no scenes.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L2",
+    "lesson:L13",
+    "fix:valley larger pools, scene openers, knocks at their own hour (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-098",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "literary reader (Opus)",
+   "words": "I accepted two wedding invitations. Each time I arrived, nobody spoke, and I walked back.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L4",
+    "lesson:L13",
+    "fix:valley knock shows from its own hour, wedding voice (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-099",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "literary reader (Opus)",
+   "words": "The last one smiled like that too, and then he took the ox.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L3"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-100",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "edge-pusher (Fable)",
+   "words": "Give the whole granary away … no cooldown, no cap, no Osman, no gossip, no elder mentioned it",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L11",
+    "fix:valley giveaway word, run on the granary, pass-on, own ending (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-101",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "edge-pusher (Fable)",
+   "words": "Never call the barley; run at full speed … Answered. Rewarding, the best part of the game",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L11",
+    "lesson:L15"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-102",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "edge-pusher (Fable)",
+   "words": "wedding invitations have one button, 'Go'. There is no 'don't go'. I ignored two and the drum was heard without me; nobody remarked.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4",
+    "fix:valley regrets button, unanswered wedding heard (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-103",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "grand-strategy fan (Sonnet)",
+   "words": "Everyone had paid, I had no lever left, and nothing visible followed from it. I felt cheated more than challenged.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L5",
+    "fix:valley Osman's forecast and loan (done)",
+    "fix:valley forecast lever besides the loan (open)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-104",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "grand-strategy fan (Sonnet)",
+   "words": "Two years of play felt like waiting for events, and nothing I did visibly compounded.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L7",
+    "fix:valley mill in first winter (done)",
+    "fix:valley winter decisions (open)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-105",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "train commuter (Haiku)",
+   "words": "I quit mentally when the ledger stayed at 30 kile after the storm and after 'Many have come.'",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L5",
+    "lesson:L4",
+    "fix:valley main line describes the field in harvest (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-106",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "train commuter (Haiku)",
+   "words": "Shorten the feed: show the last five entries, put the rest behind one 'history' button, and collapse repeated 'put off' lines into one count.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L9",
+    "fix:valley put-offs on one line (done)",
+    "fix:valley shorter notebook on phones (open)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-107",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "\"X came because you pressed, then would not\" (five lines in a row at year one, day 3)",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L2",
+    "fix:valley one line per ask for pressed refusals (done)",
+    "calibration:C9"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
   }
  ],
  "lessons": [
@@ -1799,10 +1959,10 @@
   }
  ],
  "routes": {
-  "fix": 48,
-  "lesson": 99,
+  "fix": 60,
+  "lesson": 114,
   "hf": 11,
-  "calibration": 27,
+  "calibration": 28,
   "none": 0
  }
 }

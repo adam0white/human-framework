@@ -91,7 +91,7 @@ export const GAMES: Game[] = [
     id: 'valley',
     name: 'The Valley',
     href: 'https://valley.adamwhite.work',
-    line: 'First furrow, an early build being played in now: three years keeping an absent agha’s seal over two hamlets of named households who remember what you did.',
+    line: 'First furrow, an early build two playtest rounds in: three years keeping an absent agha’s seal over two hamlets of named households who answer in their own words and remember what you did.',
     faculties: ['Will', 'Memory and belief', 'A whole life'],
   },
   {
