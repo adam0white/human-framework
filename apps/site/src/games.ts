@@ -87,6 +87,13 @@ export const GAMES: Game[] = [
     line: 'One ordinary week as the voice in Dilan’s head, against the other one. Every evening she looks back.',
     faculties: ['Inner life', 'Will', 'Forecast'],
   },
+  {
+    id: 'valley',
+    name: 'The Valley',
+    href: 'https://valley.adamwhite.work',
+    line: 'Three years keeping an absent agha’s seal over two hamlets of named households who remember what you did.',
+    faculties: ['Will', 'Memory and belief', 'A whole life'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);
