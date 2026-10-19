@@ -213,3 +213,35 @@ export class Idle extends Toy {
 export class SlowGarden extends EdgyGarden {
   protected override every = 28;
 }
+
+/** Busy but empty: a tick, a tock or a chime every beat, nothing at stake, one button that does nothing. */
+export class Ticker extends Lull {
+  override name = 'ticker';
+  protected override tick(from: number, to: number): void {
+    for (let s = Math.ceil(from / 3) * 3; s < to; s += 3) {
+      const k = ['tick', 'tock', 'chime'][(s / 3) % 3] ?? 'tick';
+      this.pending.push({ kind: k, summary: `${k} at ${s}s`, valence: 0, salience: 0.5 });
+    }
+  }
+}
+
+/** A garden with one hard night: two heavy blows six minutes in, then the garden as before. */
+export class HardNight extends Garden {
+  override name = 'hard-night';
+  protected override tick(from: number, to: number): void {
+    super.tick(from, to);
+    if (from < 360 && to >= 360)
+      this.pending.push({ kind: 'blow', summary: 'the fence came down', valence: -0.9, salience: 1 });
+    if (from < 380 && to >= 380)
+      this.pending.push({ kind: 'blow2', summary: 'the beds were trampled', valence: -0.8, salience: 1 });
+  }
+}
+
+/** A keeper who turns down every ask mildly ("not now"): small refusals, a stream of them. */
+export class Nag extends Wall {
+  override name = 'nag';
+  override apply(id: string): void {
+    super.apply(id);
+    for (const e of this.pending) if (e.kind === 'refusal') e.valence = -0.15;
+  }
+}

@@ -85,5 +85,10 @@ Each game keeps its own scratch copy if it wants one. The copies here are canoni
 - **The persona is hard to please on purpose.** Boredom, frustration and quitting come from HF's own appraisal and
   needs. A finished stretch of play gives HF leisure and some competence, and the mischief-maker relishes an answered
   provocation; nothing else is credited.
+- **Boredom, loss and frustration are kept apart (2026-10-19).** An event with no stakes holds little attention, so
+  a busy screen with nothing at stake bores. One hard blow is a `setback` moment, not a reason to stop. Stopping
+  favours rest only after a clearly losing stream: 3 hard minutes in the last 5, with setbacks at least 1.5× the
+  rewards (events under |valence| 0.2 count half). So "quit from distress" means the adapter's events lost several minutes running. Check the adapter's
+  valences before blaming the game (`CALIBRATION-NOTES.md`, C2 and C6).
 - **Read quit chapters together with minutes.** A persona's appetite for play sets how long it plays, so a chapter
   where many sessions stop may be where that much play lands rather than a problem in the chapter.

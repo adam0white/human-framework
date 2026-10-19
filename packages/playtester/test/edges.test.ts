@@ -12,7 +12,19 @@ import {
   playSession,
   runCohort,
 } from '../src/index.ts';
-import { Cliffhanger, EdgyGarden, Garden, Idle, Lull, Slot, SlowGarden, Wall } from './toys.ts';
+import {
+  Cliffhanger,
+  EdgyGarden,
+  Garden,
+  HardNight,
+  Idle,
+  Lull,
+  Nag,
+  Slot,
+  SlowGarden,
+  Ticker,
+  Wall,
+} from './toys.ts';
 
 const cap = { maxMinutes: 40 };
 const edgy = EDGE_PERSONAS.map((id) => PERSONAS[id] as Persona);
@@ -22,8 +34,8 @@ const kindsOf = (beats: { choice: string }[]) => {
   return n;
 };
 
-describe('the 2.8.0 personas are unchanged', () => {
-  it('play the toys exactly as before the edge-pushers were added', () => {
+describe('the base personas are pinned', () => {
+  it('play the toys exactly as at the 2026-10-19 calibration', () => {
     const h = createHash('sha256');
     for (const G of [Lull, Garden, Wall])
       for (const id of BASE_PERSONAS)
@@ -47,8 +59,44 @@ describe('the 2.8.0 personas are unchanged', () => {
           }));
           h.update(JSON.stringify({ beats, moments: tr.moments, ended: tr.ended }));
         }
-    // Digest of the same fields at the 2.8.0 playtester (commit e32850e), before styles, chapters and shown events.
-    expect(h.digest('hex')).toBe('c7d264b0126dc6fc4494a7191ec9d722f666c95af94d1b2a6b4b92696cd0fc5c');
+    // Re-pinned deliberately at the 2026-10-19 calibration (neutral events hold little attention; one hard blow is a
+    // loss, a stream of them frustrates; docs/findings.md). Before it, the digest of the 2.8.0 playtester (commit
+    // e32850e) held through the edge-pushers: c7d264b0126dc6fc4494a7191ec9d722f666c95af94d1b2a6b4b92696cd0fc5c.
+    expect(h.digest('hex')).toBe('8ca3afff3509d3b3c66e9c87727252de82a31e857e4c5a1f9c8cf14be5b66a13');
+  });
+});
+
+describe('boredom, loss and frustration are told apart (2026-10-19 calibration)', () => {
+  const base = BASE_PERSONAS.map((id) => PERSONAS[id] as Persona);
+  const play = (G: new () => import('../src/index.ts').GameAdapter) =>
+    base.flatMap((persona) => [1, 2, 3].map((s) => playSession(new G(), persona, s, cap)));
+
+  it('a busy screen with nothing at stake bores: neutral events do not hold attention', () => {
+    const runs = play(Ticker);
+    const bored = runs.filter((tr) => tr.ended.why.startsWith('emotion:boredom'));
+    expect(bored.length).toBeGreaterThanOrEqual(runs.length / 2);
+    for (const tr of runs) expect(tr.moments.some((m) => m.kind === 'frustrated')).toBe(false);
+  });
+
+  it('one hard night is a loss, not a reason to quit: felt, marked, and played through', () => {
+    for (const tr of play(HardNight)) {
+      expect(
+        tr.moments.some((m) => m.kind === 'setback'),
+        tr.persona,
+      ).toBe(true);
+      expect(
+        tr.moments.some((m) => m.kind === 'frustrated'),
+        tr.persona,
+      ).toBe(false);
+      expect(tr.ended.why, tr.persona).not.toMatch(/distress/);
+    }
+  });
+
+  it('a stream of refusals still frustrates and drives players off, even mild ones', () => {
+    for (const tr of [...play(Wall), ...play(Nag)]) {
+      expect(tr.ended.why, tr.persona).toMatch(/distress:rest/);
+      expect(tr.moments.some((m) => m.kind === 'frustrated')).toBe(true);
+    }
   });
 });
 
@@ -152,7 +200,9 @@ describe('returner', () => {
   });
 
   it('lives the day between: the second session starts the next evening on the same game', () => {
-    const d = playDays(new Garden(6 * 3600), PERSONAS.returner, 1);
+    // A loop on screen, so the return does not hang on a near tie: since the 2026-10-19 calibration a plain garden
+    // with nothing left open is about even for the returner (play-on 0.064 against elsewhere 0.066, seed 1).
+    const d = playDays(new Cliffhanger(), PERSONAS.returner, 1);
     const [a, b] = d.sessions;
     expect(b).toBeDefined();
     expect((b?.startedAt ?? 0) - (a?.startedAt ?? 0)).toBe(24 * 60);

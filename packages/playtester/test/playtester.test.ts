@@ -36,7 +36,13 @@ describe('playtester on toy games', () => {
   });
 
   it('a keeper who always refuses frustrates, draws insisting, and drives players off', () => {
-    for (const persona of ALL) {
+    // The mischief-maker is the exception: every refusal answers a poke, and an answered provocation is what it
+    // plays for, so the window is never lost on balance (2026-10-19 calibration).
+    const pest = playSession(new Wall(), PERSONAS.mischief, 1, cap);
+    expect(pest.ended.why).not.toMatch(/distress/);
+    expect(pest.moments.some((m) => m.kind === 'frustrated')).toBe(false);
+    expect(pest.moments.filter((m) => m.kind === 'answered').length).toBeGreaterThan(50);
+    for (const persona of ALL.filter((x) => x.id !== 'mischief')) {
       const tr = playSession(new Wall(), persona, 1, cap);
       const frustrated = tr.moments.find((m) => m.kind === 'frustrated');
       expect(frustrated, persona.id).toBeDefined();

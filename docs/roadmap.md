@@ -109,6 +109,7 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | HF-character playtesters | `packages/playtester` (private): a persona plays any game through a four-call adapter | Done 2026-10-19 |
 | Playtester edges and cohorts | Edge-pushers, a returner, an edge report (fun to keep or close), cohorts and build comparison; canonical adapters for The Pass, The Glance and The Two Voices | Done 2026-10-19 |
 | Publish the playtester | Three games now have adapters, which meets the earlier "second game" trigger. Decide whether to publish `packages/playtester` as its own npm package | Decide by 2026-11-15 |
+| Session-scale affect for the playtester | Game events enter HF's life-scale joy and distress (hours), so a long session of mixed nights saturates both; the 2026-10-19 calibration weighs a 5-minute window in the session instead (docs/findings.md). Try a session-side affect store or propose an HF appraisal channel for fiction; check on The Night Watch and the toys | 2026-11-15 |
 | Comparisons that can tell builds apart | At 3 seeds a persona, build-to-build changes stay within one session; add more seeds or a noise estimate per line | 2026-11-15 |
 | The Glance adapter's gate policy | Base personas lose every full run; check whether the inherited gate rule or the game causes it | 2026-11-01 |
 | An HF designer | Experiment done: no value over a plain LLM reviewer (findings, 2026-10-19). Not pursued | Closed 2026-10-19 |

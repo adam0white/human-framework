@@ -6,6 +6,7 @@ These are notes for the owner of `packages/playtester`. They are not code. Each 
 In Pass, Murmur and Glance every HF persona stopped for its agenda or tiredness, quit from distress, or finished, with engagement 0.5 to 0.87 and no boredom stop (one Glance session put it down on a joy-novel stop in a quiet stretch). In the same builds the owner reported easy early nights and LLM testers reported dead air, silence and "waiting, not playing". Confirmed: the harness reported no boredom stop in these runs. Assumed: the harness's boredom is too forgiving.
 Evidence: F-035, F-066
 Suggested calibration: Make boredom rise with time since the last event that answered an input or changed the scene, not with any event. Run the Pass owner export (seed 1984246569) as a check: the harness should flag Tuesday's first 134 quiet minutes.
+Status (2026-10-19): partly addressed. An event without stakes now adds 0.12 × salience to engagement (it was 0.4), so a busy screen can bore. The Glance now puts 8 of 24 sessions down bored; The Pass and The Two Voices still bore almost nobody. The rule proposed here was not tried, and the owner export check was not run (docs/findings.md, 2026-10-19 calibration).
 
 ### C2 — Reward events depend on how the adapter scores events.
 Glance's HF runs show `rewarded 0x` in every session. The adapter author thinks its event valences never reach the harness threshold (0.15 for a report). Valley's first run also had zero rewards until the host added progress notes, so the signal there depends on adapter valences too (its report says the numbers are a relative signal between builds, not independent evidence). Assumed, not confirmed in Glance.
@@ -46,6 +47,7 @@ Suggested calibration: Give personas attention lapses (looking away in the middl
 All four HF personas quit in 3 to 8 minutes from distress before progress notes were added, with no reward. The casual Haiku tester quit after about 50 taps; the veteran finished three years; the story-seeker quit in winter. So the HF quit rate matched the weakest LLM tester and not the median. After the progress notes some sessions ended on joy.
 Evidence: F-069, F-081
 Suggested calibration: Check that distress comes from refusals with no progress, as intended, by running the casual and veteran personas against the same build. Treat a cohort that all quits as a signal about the build, not a ranking.
+Status (2026-10-19): the harness part is addressed. One hard event is now a `setback` moment, not a reason to quit. Stopping favours rest only after 3 hard minutes in 5 and a window lost by 1.5× or more. On The Night Watch the distress quits moved from 3–20 min to 5–35 min, and the remaining quits come from windows the adapter scores as clearly lost (docs/findings.md).
 
 ### C10 — Agreement: Murmur's harder Thursday.
 After the polish round, two HF personas (commuter seed 1, restless seed 1) quit on Thursday from distress. The Haiku first-timer called Thursday hard and unfair in the same build. This is one case where simulated and LLM play agree. Real players are unknown: the owner's Thursday has not been played.
@@ -61,6 +63,7 @@ Suggested calibration: Check that the cohort flags each of these four on the rec
 Every HF run reports `looked away 0x`, and Murmur's longest lull is 0 seconds. The owner played Pass Tuesday for 134 minutes with no input and still fed 20 of 20; LLM testers left Murmur alone for 30 seconds to two minutes and missed a dinner.
 Evidence: F-017, F-066
 Suggested calibration: Let personas look away by persona trait and by what is on screen, and report what they missed while away.
+Status (2026-10-19): not addressed directly. After the engagement change, personas look away sometimes (The Night Watch: 5 of 16 sessions, was 0).
 
 ### C13 — Use the owner's exports as the first sim-versus-human calibration set.
 The owner's exports exist with seeds: Pass 1984246569 (six nights), Rope 334144833 (two climbs). The owner asked for opt-in telemetry with notes. The lab ideas list proposes comparing runs on the same seed.

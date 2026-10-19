@@ -4,7 +4,8 @@
  * - Once a real minute (HF lives on minutes) the player makes an HF `decide` among `play-on`, `look-away` and
  *   `stop-playing`. Playing on is a 20-minute HF activity, so between checks HF's own inertia keeps it unless
  *   something pulls harder: boredom (HF's emotion, favouring `novel`-tagged options; stopping counts as novel only
- *   once the game has gone stale), distress (favouring `rest`, which stopping carries), the agenda (a bus stop or a
+ *   once the game has gone stale), distress (favouring `rest`, which stopping carries only once setbacks have kept coming: one hard blow is a
+ *   loss the player plays through, a stream of them is frustration), the agenda (a bus stop or a
  *   bedtime is a commitment `stop-playing` keeps; a wish to see the game through is a goal `play-on` advances),
  *   sleepiness and the leisure need. Joy pulls toward looking away a little (HF's 'novel' weight), which is
  *   the brief glance a pleased player takes.
@@ -17,7 +18,7 @@
  *
  * The session holds one fast store HF does not have: `engagement`, 0..1, how much the screen is holding attention.
  * HF's leisure need moves over hours; play-session boredom moves over seconds, so this store bridges the two.
- * Attended events refill it by salience, weight and novelty (each event kind habituates, halving after a minute,
+ * Attended events refill it by salience, stakes (|valence|; an event with none adds little) and novelty (each event kind habituates, halving after a minute,
  * faster for open people); on-screen pressure adds a little; it fades with a half-life set by patience
  * (agreeableness). A minute under `boredLine` is felt as HF boredom, more strongly for impatient people. A stretch
  * of play gives HF realized leisure (engagement × rate) and competence (rewards minus setbacks) when it ends, so
@@ -76,6 +77,11 @@ export const SESSION_DEFAULTS = {
   habituationHalfLife: 60,
   /** Share of on-screen pressure that holds attention by itself. */
   pressureHold: 0.15,
+  /**
+   * What an event without stakes (valence 0) adds to engagement, per unit salience; stakes add the rest up to 1.
+   * Low on purpose (2026-10-19): a steady drip of neutral log lines held every persona at 0.7–0.9, and nobody bored.
+   */
+  neutralStim: 0.12,
   /** Share of an event's valence HF appraises: a game setback weighs less than one in the player's own life. */
   appraisalScale: 0.5,
   /** Leisure per minute of play at full engagement (advertised and realized alike, so HF's learning agrees). */
@@ -87,6 +93,23 @@ export const SESSION_DEFAULTS = {
   /** What the alternatives give: a minute with eyes off the screen, or per minute of something else instead. */
   lookAway: { leisure: 0.003, rest: 0.003 },
   stop: { leisure: 0.006, rest: 0.008 },
+  /**
+   * Loss and frustration are told apart (2026-10-19). A minute is hard when its setbacks outweigh its rewards and
+   * reach `hardMinute`; stopping carries HF's `rest` tag (which distress favours) only after `hardMinutes` hard
+   * minutes in the last `hardWindow` (so never in the first `hardWindow` minutes), with the window's setbacks `lostBy` times its rewards or more. HF holds joy and
+   * distress apart for hours, so a session of mixed nights raises both; the window is where they are weighed. One hard blow is felt (HF distress, a 'setback' moment) but is a loss, not
+   * a reason to quit: HF distress lasts hours, a game's bad night does not.
+   */
+  hardMinute: 0.15,
+  hardWindow: 5,
+  hardMinutes: 3,
+  /** The window is lost when its setbacks exceed its rewards by this factor: clearly losing, not a close night. */
+  lostBy: 1.5,
+  /** Events below this |valence| (as appraised) count at `smallStakes` weight as reward or setback. */
+  stakesAt: 0.2,
+  smallStakes: 0.5,
+  /** An event this bad (appraised valence) is a setback moment by itself. */
+  setbackAt: -0.4,
   /** Engagement below which the minute bores; boredom felt = gain × shortfall, gain from impatience. */
   boredLine: 0.35,
   boredGainBase: 0.25,
@@ -140,6 +163,7 @@ export interface Moment {
   kind:
     | 'bored'
     | 'frustrated'
+    | 'setback'
     | 'rewarded'
     | 'looked-away'
     | 'stopped'
@@ -214,9 +238,23 @@ export function playSession(
   let t = 0;
   let beat = 0;
   let obs: Observation = adapter.observe();
-  let last = { bored: false, frustrated: false };
+  const last = { bored: false, frustrated: false };
+  // The last `hardWindow` minutes' rewards and setbacks. A stream means several hard minutes and a window clearly
+  // lost: one blow is not one, and neither are a defence game's mixed nights.
+  const hard: { reward: number; setback: number }[] = [];
+  const streak = () =>
+    hard.length >= S.hardWindow &&
+    hard.filter((m) => m.setback >= S.hardMinute && m.setback > m.reward).length >= S.hardMinutes &&
+    hard.reduce((n, m) => n + m.setback - S.lostBy * m.reward, 0) > 0;
+  // Frustration is distress or anger while setbacks keep coming; checked each beat and before each minute's choice.
+  const frustratedNow = (bad: string[]) => {
+    const on =
+      Math.min(1, emotionLevel(p, 'anger') + emotionLevel(p, 'distress')) >= S.frustratedAt && streak();
+    if (on && !last.frustrated) moment('frustrated', bad.length ? bad.join('; ') : 'things keep going wrong');
+    last.frustrated = on;
+  };
   // The minute so far, and the running stretch of play: what HF is told when the activity ends.
-  let acc = { e: 0, reward: 0, setback: 0, beats: 0 };
+  let acc = { e: 0, reward: 0, setback: 0, beats: 0, bad: [] as string[] };
   let stretch = { leisure: 0, competence: 0 };
   const endActivity = (at: number, status: 'completed' | 'interrupted') => {
     const act = p.activity;
@@ -251,11 +289,18 @@ export function playSession(
       const n = prior ? prior.n * 2 ** (-(t - prior.t) / S.habituationHalfLife) : 0;
       seen.set(e.kind, { n: n + 1, t });
       const novelty = 1 / (1 + habit * n);
-      stim += e.salience * (0.4 + 0.6 * Math.abs(e.valence)) * novelty;
+      stim += e.salience * (S.neutralStim + (1 - S.neutralStim) * Math.abs(e.valence)) * novelty;
       const v = e.valence * mind.appraisal;
-      if (v > 0) acc.reward += v * e.salience;
-      else acc.setback -= v * e.salience;
+      // Small news (a character walking off, a line of chatter) weighs less than a win or a blow, but a drip of
+      // small refusals still adds up.
+      const w = Math.abs(v) < S.stakesAt ? S.smallStakes : 1;
+      if (v > 0) acc.reward += w * v * e.salience;
+      else if (v < 0) {
+        acc.setback -= w * v * e.salience;
+        if (!acc.bad.includes(e.summary)) acc.bad.push(e.summary);
+      }
       if (v >= S.rewardedAt) moment('rewarded', e.summary);
+      if (v <= S.setbackAt) moment('setback', e.summary);
     }
     // The style's record: answers and payoffs credited to recent inputs (see style.ts).
     const styled = mind.credit(beat, obs.events);
@@ -306,6 +351,11 @@ export function playSession(
       }
       if (p.activity && (p.activity.action !== 'play-on' || now >= p.activity.endsAt))
         endActivity(now, 'completed');
+      if (beat > 0) {
+        hard.push({ reward: acc.reward, setback: acc.setback });
+        if (hard.length > S.hardWindow) hard.shift();
+        frustratedNow(acc.bad);
+      }
       if (beat > 0 && mean < S.boredLine)
         feel(p, 'boredom', clampU(boredGain * (1 - mean / S.boredLine)), 'game:dull', now);
       const playOn: Affordance = {
@@ -336,8 +386,9 @@ export function playSession(
           duration: S.stretchMinutes,
           effort: 0,
           advertises: scale(S.stop, S.stretchMinutes),
-          // Something else is the new thing only once the game has gone stale.
-          tags: mean < S.boredLine ? ['novel', 'rest'] : ['rest'],
+          // Something else is the new thing only once the game has gone stale; a rest from it only once setbacks
+          // have kept coming.
+          tags: [...(mean < S.boredLine ? ['novel'] : []), ...(streak() ? ['rest'] : [])],
         },
       ];
       const rec = decide(p, offers, { now });
@@ -357,7 +408,7 @@ export function playSession(
       if (chosen.id === 'look-away' && stance !== 'look-away') moment('looked-away', `looked away (${why})`);
       stance = chosen.id === 'look-away' ? 'look-away' : 'play';
       stanceWhy = why;
-      acc = { e: 0, reward: 0, setback: 0, beats: 0 };
+      acc = { e: 0, reward: 0, setback: 0, beats: 0, bad: [] };
     }
 
     // 3. Moment to moment, while playing: one input or none, chosen by HF over the game's actions.
@@ -444,12 +495,8 @@ export function playSession(
     const bored = boredom >= S.boredAt;
     if (bored && !last.bored)
       moment('bored', `nothing has held me for a while (engagement ${engagement.toFixed(2)}, ${obs.phase})`);
-    const frustrated = frustration >= S.frustratedAt;
-    if (frustrated && !last.frustrated) {
-      const bad = noticed.filter((e) => e.valence < 0).map((e) => e.summary);
-      moment('frustrated', bad.length ? bad.join('; ') : 'things keep going wrong');
-    }
-    last = { bored, frustrated };
+    frustratedNow(noticed.filter((e) => e.valence < 0).map((e) => e.summary));
+    last.bored = bored;
 
     if (picked) mind.applied(beat, picked);
     if (choice !== 'wait') adapter.apply(choice);
