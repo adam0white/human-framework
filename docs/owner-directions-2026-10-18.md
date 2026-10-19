@@ -20,3 +20,12 @@ These apply to all HF games and to the framework. They add to the game direction
 
 ## Difficulty
 - "Naturally difficult games are fun, too, and we can always relax it later. The other way around is more troublesome as it feels like adding artificial difficulty." Start hard where the difficulty is natural, and tune it down later.
+
+## 2026-10-19 (Adam, near-verbatim)
+- Playtesters: "happy we found auto play testers that aren't easily satisfied." Keep them hard to please.
+- Edges: "we should keep those edges a bit fun and slightly in our calculations." When playtesters push a game to unintended edges, make the edge playable and a little rewarding rather than only closing it; design and measure for it.
+- Next games start from player psychology: "what players crave and what keeps them coming back for more, from the start." Open to "an unintended implied naughty edge in a normally innocent game". "With HF, we should be able to afford more open play."
+- Wanted: a game that "ticks off all the checkbox of why ant colony simulation ones are irresistible."
+- Recursive improvement: expand HF playtesters; open question whether HF designers or developers, or characters for the dev team, are "too much ouroboros".
+- Revisit earlier experiments and games: bring them to the latest HF and apply what we learned to level them up.
+- Natural difficulty first is confirmed.
