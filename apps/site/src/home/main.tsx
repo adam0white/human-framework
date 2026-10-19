@@ -125,6 +125,14 @@ const GAMES: Game[] = [
     shows: 'learning by watching',
     external: true,
   },
+  {
+    id: 'pass',
+    name: 'The Pass',
+    href: 'https://pass.adamwhite.work',
+    line: 'Six nights running a small kitchen with three cooks who can say no.',
+    shows: 'asking, refusing and remembering',
+    external: true,
+  },
 ];
 
 const FACULTIES: [string, string][] = [
