@@ -50,11 +50,11 @@ To test against a local lab Worker (`npx wrangler dev --port 8799` in this repos
 - `lab.openSendDialog({ getRun, title?, who?, onSent? })`.
 - Helpers: `privacySignal`, `viewportClass`, `runEnvelope`, `gzip`.
 
-Error messages are captured by default (message text only, query strings cut, at most 5 per session, 80 characters each). Pass `captureErrors: false` to turn that off.
+Uncaught errors are counted by default as their type and place only (for example `TypeError at app.js:12:5`), never the message text, at most 5 per session. Pass `captureErrors: false` to turn that off.
 
 ## Which games use it
 
-Integrated on 2026-10-19: The Pass (`pass`), The Glance (`glance`), The Two Voices (`murmur`). Left for their builders, with the steps above: The Rope, Small Works, Neighbours, The Valley, and the in-site games (Twice at the Well, The Day You Say Nothing, The Night Watch), which were being changed by other agents at the time. In-site games are on the same origin as the endpoint, so they need no CSP change and can pass `endpoint: '/lab/api'`.
+Integrated and deployed on 2026-10-19: The Pass (`pass`, commit 0454ee8), The Glance (`glance`, d0776a0), The Two Voices (`murmur`, 2624f34). Left for their builders, with the steps above: The Rope, Small Works, Neighbours, The Valley, and the in-site games (Twice at the Well, The Day You Say Nothing, The Night Watch), which were being changed by other agents at the time. In-site games are on the same origin as the endpoint, so they need no CSP change and can pass `endpoint: '/lab/api'`.
 
 ## Publishing
 
