@@ -9,6 +9,7 @@ import { ColonyGame, DEFAULT_SEED, NUDGES } from './game.ts';
 import { createFrameworkHumanSide, type FrameworkHumanSide } from './human.ts';
 import type { ColonyRules } from './human-side.ts';
 import { sayLine } from './human-view.ts';
+import { passesByItself } from './playback.ts';
 import { at } from './world-types.ts';
 
 const modified = {
@@ -82,6 +83,14 @@ describe('2026-10-19 level-up (colony-scenario@4)', () => {
     ).toBe(true);
     expect(g.frame().news.length).toBeLessThanOrEqual(4);
   }, 30_000);
+
+  it('a bodily or prayer "not now" passes by itself; a "not now" for other work and a "will not" still pause', () => {
+    expect(passesByItself({ kind: 'notNow', reason: 'need:water' })).toBe(true);
+    expect(passesByItself({ kind: 'notNow', reason: 'commitment:salah-fajr' })).toBe(true);
+    expect(passesByItself({ kind: 'notNow', reason: 'norm:salah' })).toBe(true);
+    expect(passesByItself({ kind: 'notNow', reason: 'goal:role' })).toBe(false);
+    expect(passesByItself({ kind: 'willNot', reason: 'need:safety' })).toBe(false);
+  });
 
   it('the why panel says "already at it" when the running job was kept over a higher-scored rival', () => {
     const g = new ColonyGame(DEFAULT_SEED, createFrameworkHumanSide);

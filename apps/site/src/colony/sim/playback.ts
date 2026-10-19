@@ -4,7 +4,7 @@
  *
  * Auto-pause rules (colony.md §8): pause after the minute that caused it, for a suggestion becoming visible
  * (once per nudge), the first Human verdict on a player card that is notNow, willNot or complied (once per card;
- * `cannot` does not pause), a moment (once per moment) and the storm warning and start (once each). Reasons in the same minute
+ * `cannot` and a "not now" that passes by itself do not pause, see `passesByItself`), a moment (once per moment) and the storm warning and start (once each). Reasons in the same minute
  * coalesce into one pause; the first in that order names it. Stepping stops at the pausing minute and the rest of
  * the tick is dropped. Auto-pause changes only when the player acts, so it is not logged and replay ignores it.
  */
@@ -37,6 +37,16 @@ const MAX_DT_MS = 250;
 
 /** Verdicts that pause, once per card (the first one). `cannot` ("I'm asleep") shows on the card but does not stop play. */
 const REFUSALS = new Set(['notNow', 'willNot', 'complied']);
+
+/**
+ * A "not now" for a drink, a meal, sleep or a due prayer passes by itself and the order stands: it shows on the card
+ * and over the map but does not stop play (2026-10-19 level-up: at dawn these were five stops in forty minutes with
+ * nothing to decide, and a prayer deferral should stay a quiet part of the day, not a stop). A "not now" for other
+ * work ("that is my work") still pauses: that one is a choice the player may want to answer.
+ */
+export const passesByItself = (v: { kind: string; reason: string }): boolean =>
+  v.kind === 'notNow' &&
+  (v.reason.startsWith('need:') || v.reason.startsWith('commitment:salah') || v.reason === 'norm:salah');
 
 export const START_TEXT =
   'Before the storm at Day 2 19:00: roof the house and store 12 meals. Keep all six alive until dawn on Day 3.';
@@ -273,7 +283,8 @@ export class Playback {
       out.push({ reason: 'suggestion', text: n.text, nudgeId: n.id, personId: n.order.personId });
     }
     for (const v of g.lastStep.verdicts) {
-      if (!REFUSALS.has(v.kind) || v.reason === 'unavailable' || !once(`refusal:${v.orderId}`)) continue;
+      if (!REFUSALS.has(v.kind) || v.reason === 'unavailable' || passesByItself(v)) continue;
+      if (!once(`refusal:${v.orderId}`)) continue;
       out.push({
         reason: 'refusal',
         text: `${firstName(v.personId)}: ${v.says}`,
