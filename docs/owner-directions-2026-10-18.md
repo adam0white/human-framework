@@ -29,3 +29,13 @@ These apply to all HF games and to the framework. They add to the game direction
 - Recursive improvement: expand HF playtesters; open question whether HF designers or developers, or characters for the dev team, are "too much ouroboros".
 - Revisit earlier experiments and games: bring them to the latest HF and apply what we learned to level them up.
 - Natural difficulty first is confirmed.
+
+## 2026-10-19, later (Adam, verbatim)
+
+"Definitely the opt in extra telemetry (compressed) , with optional notes. And more regular telemetry. I like the idea of a lab dashboard, not as a facade UI toy but as something that helps you, play testers, me, or human visitors. I think we should find ways to benefit the entire lab from almost each specific feedback. I'll share my feedback as I play."
+
+How this is read:
+- This lifts the no-server-infrastructure rule for lab telemetry only: a Worker endpoint and R2 storage. It does not lift it for games themselves.
+- Regular telemetry is anonymous and minimal. It sends no personal data and sets no cookies, and it honours Do Not Track and Global Privacy Control. Each data point is documented on a privacy note.
+- Opt-in runs are compressed replays, optionally with a note. They are stored privately. They are not public.
+- Each piece of feedback is triaged once and routed to every place it helps: a game fix, a lab-wide lesson, an HF request, or a calibration of the simulated playtesters.
