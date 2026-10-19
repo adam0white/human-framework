@@ -1185,7 +1185,8 @@ export interface Affordance {
   norms?: NormTag[];
   /**
    * Commitment ids this would fulfil if completed. Listing two or more keeps every listed one that is pending and
-   * in window, and no other (2.9.0); listing one keeps the earliest-ending match, explicit or by action, as before.
+   * in window, and no other (2.9.0), not even an earlier-ending match by action; listing one keeps the
+   * earliest-ending match, explicit or by action, as before.
    */
   fulfills?: string[];
   /** Goal ids this advances. */
@@ -1533,7 +1534,8 @@ export interface PromptingResponse {
   /**
    * What this response was learned for (2.9.0): an action, an offer tag, or the opposing norm or goal (`n1`,
    * `norm:n1` or `goal:g1`). A cued response serves only prompts it matches; a response without a cue serves every
-   * prompt that no cued response matches.
+   * prompt that no cued response matches. A norm or goal cue matches only the prompt's strongest opposing term.
+   * Cues longer than 200 characters are ignored.
    */
   cue?: string;
 }
@@ -1622,6 +1624,8 @@ export interface PromptingsSpec {
   /**
    * Days over which disused practice halves (2.9.0), for hosts whose time runs short (a one-week game). Applies to
    * every response of the person, including disuse since a response's last use. Absent = 60 days, as before.
+   * Read on every `enablePromptings` call: re-enabling without it returns the person to the default. Values outside
+   * (0, 36500] are ignored.
    */
   practiceHalfLifeDays?: number;
 }
