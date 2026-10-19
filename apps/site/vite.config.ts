@@ -26,6 +26,7 @@ export default defineConfig({
         colony: resolve(root, 'colony/index.html'),
         voice: resolve(root, 'voice/index.html'),
         watch: resolve(root, 'watch/index.html'),
+        games: resolve(root, 'games/index.html'),
       },
     },
   },

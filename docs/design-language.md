@@ -30,7 +30,7 @@ Only `--rope` calls for attention. Never add a second loud color.
 ## Layout
 - Phones come first: Galaxy S26 is 360×780 CSS px with about 690px visible. Keep thumb actions in the bottom 40%. Respect safe areas.
 - The scene comes first. One drawer or sheet at a time, with progressive disclosure.
-- A shared top-left mark, "◇ human framework", links to the hub. A footer "other notebooks" row links the sibling sites.
+- A shared top-left mark, "◇ human framework", links to the hub. The footer is a single "◇ all notebooks" link to https://human.adamwhite.work/games/, the collection page (data: apps/site/src/games.ts).
 
 ## Voice
 - Short sentences in plain words. People speak in first person in Caveat. The narrator speaks in Literata, in past tense, like a journal entry.
