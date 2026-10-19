@@ -106,3 +106,10 @@ Released as HF 2.8.0 / engine 2.8.0 ([CHANGELOG](../CHANGELOG.md), [framework.md
 | Glance 2, involuntary sleep onset | Deferred, engine 2.10 | New faculty |
 | Glance 3, reading a quantity | Deferred, engine 2.10 | New faculty |
 | Glance 4, assent repetition | Deferred, engine 2.9 | Same as rank 4 |
+
+## The Pass, polish round (2026-10-19, against HF 2.8.0)
+
+Filed by The Pass after four source-unread playtests and the HF-character playtester. None blocks the game; the workaround is in the game.
+
+- **Pass 8, a resolve term that names its resolve.** `reviewTerms` returns one `review:resolve` term with no key, so a host cannot say which resolve weighed in a choice ("Rafi turned from the jar, as he said he would"). Proposal: carry the resolve key on the term (`review:resolve:<key>` or a `ref` field). Workaround: the host infers it from the chosen act and `p.review.resolves`.
+- **Note, not a request: days a host does not live count as lapses.** On days without service the game did not live Selim's evening, so the review counted a recurring maghrib commitment as missed, and his close line said so every week. This was the host's fault: it now lives the prayer on days off. It may still deserve a line in the review docs: a recurring commitment lapses on any day the host skips.
