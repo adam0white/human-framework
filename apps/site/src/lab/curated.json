@@ -1,57 +1,5 @@
 {
  "generated": "2026-10-19",
- "games": [
-  {
-   "id": "well",
-   "name": "Twice at the Well",
-   "href": "/colony/"
-  },
-  {
-   "id": "voice",
-   "name": "The Day You Say Nothing",
-   "href": "/voice/"
-  },
-  {
-   "id": "watch",
-   "name": "The Night Watch",
-   "href": "/watch/"
-  },
-  {
-   "id": "repair",
-   "name": "Small Works",
-   "href": "https://repair.adamwhite.work"
-  },
-  {
-   "id": "neighbours",
-   "name": "Neighbours",
-   "href": "https://neighbours.adamwhite.work"
-  },
-  {
-   "id": "rope",
-   "name": "The Rope",
-   "href": "https://rope.adamwhite.work"
-  },
-  {
-   "id": "pass",
-   "name": "The Pass",
-   "href": "https://pass.adamwhite.work"
-  },
-  {
-   "id": "glance",
-   "name": "The Glance",
-   "href": "https://glance.adamwhite.work"
-  },
-  {
-   "id": "murmur",
-   "name": "The Two Voices",
-   "href": "https://murmur.adamwhite.work"
-  },
-  {
-   "id": "valley",
-   "name": "The Valley",
-   "href": "https://valley.adamwhite.work"
-  }
- ],
  "ledger": [
   {
    "id": "F-001",

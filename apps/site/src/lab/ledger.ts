@@ -23,7 +23,6 @@ export type Ask = { game: string; ask: string; why: string; source: string };
 export type CuratedGame = { id: string; name: string; href: string };
 export type Curated = {
   generated: string;
-  games: CuratedGame[];
   ledger: LedgerRow[];
   lessons: Lesson[];
   asks: Ask[];
@@ -131,12 +130,10 @@ export function parseAsks(md: string): Ask[] {
   }));
 }
 
-export function buildCurated(input: {
-  ledger: string;
-  lessons: string;
-  asks: string;
-  games: CuratedGame[];
-}): { curated: Curated; problems: string[] } {
+export function buildCurated(input: { ledger: string; lessons: string; asks: string }): {
+  curated: Curated;
+  problems: string[];
+} {
   const { rows, problems } = parseLedger(input.ledger);
   const lessons = parseLessons(input.lessons);
   const asks = parseAsks(input.asks);
@@ -171,7 +168,6 @@ export function buildCurated(input: {
   return {
     curated: {
       generated,
-      games: input.games,
       ledger: rows,
       lessons,
       asks,

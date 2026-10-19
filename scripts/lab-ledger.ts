@@ -6,7 +6,6 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { GAMES } from '../apps/site/src/games.ts';
 import { buildCurated } from '../apps/site/src/lab/ledger.ts';
 
 const root = join(import.meta.dirname, '..');
@@ -18,7 +17,6 @@ export function curatedFromRepo() {
     ledger: read('docs/lab/feedback-ledger.md'),
     lessons: read('docs/lab/lessons.md'),
     asks: read('docs/lab/testing-asks.md'),
-    games: GAMES.map(({ id, name, href }) => ({ id, name, href })),
   });
 }
 

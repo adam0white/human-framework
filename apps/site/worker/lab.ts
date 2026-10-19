@@ -29,6 +29,7 @@ import {
   top,
 } from '../src/lab/core.ts';
 import curated from '../src/lab/curated.json' with { type: 'json' };
+import { LAB_GAMES } from '../src/lab/games.ts';
 
 // Minimal platform types (the subset this Worker uses), so the site needs no extra type package.
 type R2Object = {
@@ -353,8 +354,8 @@ async function buildData(env: Env): Promise<string> {
       if (game) runsByGame[game] = (runsByGame[game] ?? 0) + 1;
     }
   }
-  const lives = await Promise.all(curated.games.map((g) => liveRelease(env, g.href)));
-  const games = curated.games.map((g, i) => {
+  const lives = await Promise.all(LAB_GAMES.map((g) => liveRelease(env, g.href)));
+  const games = LAB_GAMES.map((g, i) => {
     const e = events[g.id];
     return {
       ...g,

@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client';
 import '../home/home.css';
 import './lab.css';
 import curatedFallback from './curated.json' with { type: 'json' };
-import type { Curated, LedgerRow } from './ledger.ts';
+import { LAB_GAMES } from './games.ts';
+import type { Curated, CuratedGame, LedgerRow } from './ledger.ts';
 
 /**
  * The lab dashboard at /lab/. Reads /lab/data.json (the lab Worker: curated feedback plus live builds and
@@ -23,8 +24,8 @@ type Telemetry = {
   builds: [string, number][];
 };
 type Live = { commit?: string; framework?: string; app?: string; dirty?: boolean } | null;
-type GameData = Curated['games'][number] & { live: Live; telemetry: Telemetry | null; runs: number };
-type LabData = Omit<Curated, 'games' | 'routes'> & {
+type GameData = CuratedGame & { live: Live; telemetry: Telemetry | null; runs: number };
+type LabData = Omit<Curated, 'routes'> & {
   generated: string;
   curatedAt: string;
   window: { days: number; from: string; to: string; sampled: boolean };
@@ -41,7 +42,7 @@ function fallback(): LabData {
     ...c,
     curatedAt: c.generated,
     window: { days: 7, from: '', to: '', sampled: false },
-    games: c.games.map((g) => ({ ...g, live: null, telemetry: null, runs: 0 })),
+    games: LAB_GAMES.map((g) => ({ ...g, live: null, telemetry: null, runs: 0 })),
     totals: { sessions: 0, runs: 0, feedback: c.ledger.length },
   };
 }

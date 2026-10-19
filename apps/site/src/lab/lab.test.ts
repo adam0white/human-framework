@@ -3,7 +3,6 @@ import { resolve } from 'node:path';
 import { gzipSync } from 'node:zlib';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import worker, { cleanup, type Env } from '../../worker/lab.ts';
-import { GAMES } from '../games.ts';
 import {
   aggregateDay,
   allowedOrigin,
@@ -428,7 +427,6 @@ describe('lab ledger', () => {
       ledger: read('docs/lab/feedback-ledger.md'),
       lessons: read('docs/lab/lessons.md'),
       asks: read('docs/lab/testing-asks.md'),
-      games: GAMES.map(({ id, name, href }) => ({ id, name, href })),
     });
     expect(problems).toEqual([]);
     expect(read('apps/site/src/lab/curated.json')).toBe(`${JSON.stringify(curated, null, 1)}\n`);
@@ -436,7 +434,7 @@ describe('lab ledger', () => {
 
   it('flags untriaged rows, unknown routes and missing lessons', () => {
     const md = `## Ledger\n\n| id | date | game | kind | who | words | verdict | routes | source |\n|---|---|---|---|---|---|---|---|---|\n| F-001 | 2026-10-19 | pass | owner | owner | "x" | keep |  | a |\n| F-002 | 2026-10-19 | pass | owner | owner | "y" | keep | lesson:L9; maybe | a |\n`;
-    const { problems, curated } = buildCurated({ ledger: md, lessons: '', asks: '', games: [] });
+    const { problems, curated } = buildCurated({ ledger: md, lessons: '', asks: '' });
     expect(problems).toEqual([
       'F-001: not triaged (no routes)',
       'F-002: unknown route "maybe"',
