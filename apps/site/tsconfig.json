@@ -4,11 +4,12 @@
     "composite": true,
     "lib": ["ES2024", "DOM", "DOM.Iterable"],
     "jsx": "react-jsx",
+    "resolveJsonModule": true,
     "types": ["vite/client"],
     "emitDeclarationOnly": true,
     "declarationDir": ".types",
     "paths": { "@adam0white/human-framework": ["../../packages/human/src/index.ts"] }
   },
-  "include": ["src", "test", "vite.config.ts"],
+  "include": ["src", "test", "worker", "vite.config.ts"],
   "references": [{ "path": "../../packages/human" }]
 }

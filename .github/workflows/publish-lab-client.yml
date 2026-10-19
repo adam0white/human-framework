@@ -1,0 +1,80 @@
+name: Publish lab-client to npm
+
+# Publishes @adam0white/lab-client (packages/lab-client) when a GitHub release tagged lab-client-vX.Y.Z is
+# published. Trusted publishing (OIDC) with provenance, like publish.yml. npm cannot attach a trusted publisher
+# to a package that does not exist yet, so the first version is published by hand by the owner
+# (`npm publish -w packages/lab-client`), then this workflow is added as the trusted publisher on npmjs.com.
+# Until then the job only reports that the package is missing. Games can install the release tarball by URL.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to publish (lab-client-vX.Y.Z)
+        required: true
+      dry_run:
+        description: Pack and check only; publish nothing
+        type: boolean
+        default: true
+
+permissions: {}
+
+concurrency:
+  group: publish-npm-lab-client
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: publish lab-client to npm
+    if: startsWith(github.event.release.tag_name || inputs.tag, 'lab-client-v')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ env.TAG }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - name: npm 11.20.0
+        run: npm install -g npm@11.20.0
+      - name: Tag matches the package version
+        run: |
+          version=$(node -p "require('./packages/lab-client/package.json').version")
+          [ "$TAG" = "lab-client-v$version" ] || { echo "::error::tag $TAG is not lab-client-v$version"; exit 1; }
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+      - name: Package state on npm
+        id: seen
+        run: |
+          pkg=$(curl -s -o /dev/null -w '%{http_code}' "https://registry.npmjs.org/@adam0white%2flab-client")
+          ver=$(curl -s -o /dev/null -w '%{http_code}' "https://registry.npmjs.org/@adam0white%2flab-client/$VERSION")
+          if [ "$pkg" != 200 ]; then
+            echo "::notice::@adam0white/lab-client is not on npm yet: the owner publishes the first version by hand"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          elif [ "$ver" = 200 ]; then
+            echo "::notice::@adam0white/lab-client@$VERSION is already on npm"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.seen.outputs.skip != 'true'
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - if: steps.seen.outputs.skip != 'true'
+        name: Typecheck and client tests
+        run: |
+          npm run typecheck
+          npx vitest run packages/lab-client
+      - if: steps.seen.outputs.skip != 'true' && env.DRY_RUN == 'true'
+        working-directory: packages/lab-client
+        run: npm publish --dry-run
+      - if: steps.seen.outputs.skip != 'true' && env.DRY_RUN != 'true'
+        working-directory: packages/lab-client
+        run: npm publish

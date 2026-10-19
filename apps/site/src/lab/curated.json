@@ -1,0 +1,1860 @@
+{
+ "generated": "2026-10-19",
+ "games": [
+  {
+   "id": "well",
+   "name": "Twice at the Well",
+   "href": "/colony/"
+  },
+  {
+   "id": "voice",
+   "name": "The Day You Say Nothing",
+   "href": "/voice/"
+  },
+  {
+   "id": "watch",
+   "name": "The Night Watch",
+   "href": "/watch/"
+  },
+  {
+   "id": "repair",
+   "name": "Small Works",
+   "href": "https://repair.adamwhite.work"
+  },
+  {
+   "id": "neighbours",
+   "name": "Neighbours",
+   "href": "https://neighbours.adamwhite.work"
+  },
+  {
+   "id": "rope",
+   "name": "The Rope",
+   "href": "https://rope.adamwhite.work"
+  },
+  {
+   "id": "pass",
+   "name": "The Pass",
+   "href": "https://pass.adamwhite.work"
+  },
+  {
+   "id": "glance",
+   "name": "The Glance",
+   "href": "https://glance.adamwhite.work"
+  },
+  {
+   "id": "murmur",
+   "name": "The Two Voices",
+   "href": "https://murmur.adamwhite.work"
+  },
+  {
+   "id": "valley",
+   "name": "The Valley",
+   "href": "https://valley.adamwhite.work"
+  }
+ ],
+ "ledger": [
+  {
+   "id": "F-001",
+   "date": "2026-10-18",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Naturally difficult games are fun, too, and we can always relax it later. The other way around is more troublesome as it feels like adding artificial difficulty.",
+   "verdict": "-",
+   "routes": [
+    "lesson:L15"
+   ],
+   "source": "docs/owner-directions-2026-10-18.md"
+  },
+  {
+   "id": "F-002",
+   "date": "2026-10-19",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "happy we found auto play testers that aren't easily satisfied.",
+   "verdict": "-",
+   "routes": [
+    "lesson:L16",
+    "calibration:C4"
+   ],
+   "source": "docs/owner-directions-2026-10-18.md"
+  },
+  {
+   "id": "F-003",
+   "date": "2026-10-19",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "we should keep those edges a bit fun and slightly in our calculations.",
+   "verdict": "-",
+   "routes": [
+    "lesson:L11",
+    "calibration:C11"
+   ],
+   "source": "docs/owner-directions-2026-10-18.md"
+  },
+  {
+   "id": "F-004",
+   "date": "2026-10-19",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "what players crave and what keeps them coming back for more, from the start.",
+   "verdict": "-",
+   "routes": [
+    "lesson:L14"
+   ],
+   "source": "docs/owner-directions-2026-10-18.md"
+  },
+  {
+   "id": "F-005",
+   "date": "2026-10-19",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Definitely the opt in extra telemetry (compressed) , with optional notes. And more regular telemetry.",
+   "verdict": "-",
+   "routes": [
+    "calibration:C13"
+   ],
+   "source": "docs/owner-directions-2026-10-18.md"
+  },
+  {
+   "id": "F-006",
+   "date": "2026-10-05",
+   "game": "watch",
+   "kind": "owner",
+   "who": "owner",
+   "words": "delayed feedback to the player on their decisions",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "docs/game-taste-2026-10-19.md"
+  },
+  {
+   "id": "F-007",
+   "date": "2026-10-18",
+   "game": "rope",
+   "kind": "owner",
+   "who": "owner",
+   "words": "It's my fault, but rope was not that fun. Maybe not my type. Keep it though.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L7",
+    "fix:rope hut choice and first-hour hook (done)"
+   ],
+   "source": "rope/docs/playtests/owner-2026-10-18.md"
+  },
+  {
+   "id": "F-008",
+   "date": "2026-10-18",
+   "game": "rope",
+   "kind": "owner",
+   "who": "owner export, replayed",
+   "words": "104 game minutes, about two real minutes of story lines with nothing to decide.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L7"
+   ],
+   "source": "rope/docs/playtests/owner-2026-10-18.md"
+  },
+  {
+   "id": "F-009",
+   "date": "2026-10-18",
+   "game": "rope",
+   "kind": "owner",
+   "who": "owner export, replayed",
+   "words": "The player kept climbing, so nothing in the game made the hurt person urgent.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L13",
+    "fix:rope falls call the leader (done)"
+   ],
+   "source": "rope/docs/playtests/owner-2026-10-18.md"
+  },
+  {
+   "id": "F-010",
+   "date": "2026-10-19",
+   "game": "rope",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Okay the rope is still not for me though I'm glad the issues are fixed. I had another funny take at it if you want to investigate.",
+   "verdict": "quit",
+   "routes": [
+    "fix:rope false rope line (done)"
+   ],
+   "source": "rope/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "id": "F-011",
+   "date": "2026-10-19",
+   "game": "rope",
+   "kind": "owner",
+   "who": "owner",
+   "words": "the middle mountain climb was someone offering to go down a few minutes into it and I took everyone down; so we basically waited at the beginning for the day to pass lol.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4",
+    "fix:rope sending far-off escorts (open)"
+   ],
+   "source": "rope/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "id": "F-012",
+   "date": "2026-10-19",
+   "game": "rope",
+   "kind": "owner",
+   "who": "owner export, replayed",
+   "words": "About 90 drink actions in the day, on full water.",
+   "verdict": "mixed",
+   "routes": [
+    "hf:game-requests-2026-10-18#Rope Kestrel 1",
+    "lesson:L18"
+   ],
+   "source": "rope/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "id": "F-013",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "owner",
+   "who": "owner",
+   "words": "The pass is interesting, definitely. I see great potential in it. Time management, a classic with a twist of better simulated human beings. ... Improve pass, too, including extending it coz I need more!",
+   "verdict": "keep",
+   "routes": [
+    "fix:pass four-week campaign (done)"
+   ],
+   "source": "pass/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "id": "F-014",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "owner",
+   "who": "owner",
+   "words": "someone is taking a break and they wouldn't accept a task, but they accept other tasks, after which they accept the original task anyway, like a workaround.",
+   "verdict": "mixed",
+   "routes": [
+    "hf:game-requests-2026-10-18#The Pass 1 decidedBy",
+    "fix:pass break refusal stays coherent (done)",
+    "lesson:L1"
+   ],
+   "source": "pass/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "id": "F-015",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "owner",
+   "who": "owner export, replayed",
+   "words": "Of 92 asks, 88 were answered \"Fine.\" (44) or \"Alright, I'll do it.\" (43).",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L1",
+    "lesson:L10"
+   ],
+   "source": "pass/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "id": "F-016",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "owner",
+   "who": "owner export, replayed",
+   "words": "All three insists went to a cook whose button already said \"yes\". Trust ended where it started",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L10",
+    "fix:pass insist pressure visible (done)"
+   ],
+   "source": "pass/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "id": "F-017",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "owner",
+   "who": "owner export, replayed",
+   "words": "On Tuesday the owner made no input for the first 134 minutes and still fed 20 of 20.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L15",
+    "calibration:C12"
+   ],
+   "source": "pass/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "id": "F-018",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "owner",
+   "who": "owner run, Dilek",
+   "words": "You let me go to her. I won't forget it.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "pass/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "id": "F-019",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "owner",
+   "who": "owner export, replayed",
+   "words": "HF's generic deferral and assent lines, which are wrong for a woman whose mother is on the floor.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L3",
+    "hf:game-requests-2026-10-18#Deferral template repetition",
+    "fix:pass call answers (done)"
+   ],
+   "source": "pass/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "id": "F-020",
+   "date": "2026-10-18",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Mehmet",
+   "words": "Show me the money math. ₺40 a table, ~20 tables, ₺5,200 by Saturday: I was dead on Monday night and nobody told me.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L5",
+    "fix:pass evening pace line (done)"
+   ],
+   "source": "pass/docs/playtests/mehmet-2026-10-18.md"
+  },
+  {
+   "id": "F-021",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "speedrunner",
+   "words": "A \"five minutes\" that lasts 150 is a lie, or a hidden mechanic.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L3",
+    "fix:pass call offered once (done)"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-speedrunner.md"
+  },
+  {
+   "id": "F-022",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "speedrunner",
+   "words": "The after-close lines remembered specifics: \"You took my no at 20:36\"",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13",
+    "calibration:C15"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-speedrunner.md"
+  },
+  {
+   "id": "F-023",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "speedrunner",
+   "words": "Re-ask cooks the moment they go idle. \"Fine.\" works as a yes, and \"Not now. After I catch my breath.\" resolves in about 4 minutes without insisting.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L10",
+    "lesson:L11",
+    "calibration:C11"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-speedrunner.md"
+  },
+  {
+   "id": "F-024",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "speedrunner",
+   "words": "The first ask after every \"open\" fails with \"No such cook here.\"",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L17",
+    "calibration:C14"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-speedrunner.md"
+  },
+  {
+   "id": "F-025",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "veteran (Haiku)",
+   "words": "No tickets from 17:34 to 20:18, almost three game hours of dead air.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L7",
+    "fix:pass empty clock runs faster (done)"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-veteran.md"
+  },
+  {
+   "id": "F-026",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "veteran (Haiku)",
+   "words": "I cannot tell whether this is a bug, a cook's rule, or a mistake of mine.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L1",
+    "fix:pass journal names every cook move (done)"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-veteran.md"
+  },
+  {
+   "id": "F-027",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "veteran (Haiku)",
+   "words": "The harness prints what the page shows, but it leaves out the page's one-line tips.",
+   "verdict": "-",
+   "routes": [
+    "lesson:L17",
+    "calibration:C14"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-veteran.md"
+  },
+  {
+   "id": "F-028",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Mira (cozy, Opus)",
+   "words": "The ledger landed right on top of that guilt. It was a real punch. I forgave her tab.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-cozy.md"
+  },
+  {
+   "id": "F-029",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Mira (cozy, Opus)",
+   "words": "That's the stress-timer feeling I play cozy games to avoid. I don't think it was hard choices that wore me out. It was the cooks wandering.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L18",
+    "fix:pass cooks go where work waits (done)"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-cozy.md"
+  },
+  {
+   "id": "F-030",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Mira (cozy, Opus)",
+   "words": "That generic line, right after a heartfelt moment, sounded like a vending machine.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L2",
+    "lesson:L3",
+    "hf:game-requests-2026-10-18#Deferral template repetition",
+    "fix:pass no stock line after a request (done)"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-cozy.md"
+  },
+  {
+   "id": "F-031",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Mira (cozy, Opus)",
+   "words": "Quoting the exact minute sounds like a log file, not a person.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L2",
+    "calibration:C15",
+    "fix:pass two lines no longer quote the minute (done)"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-cozy.md"
+  },
+  {
+   "id": "F-032",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "rule-breaker (Fable)",
+   "words": "At 19:09 I said not now and you didn’t hear me.\" At 19:09 he said \"Fine. Since you insist.\"",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L3",
+    "fix:pass close lines true to what happened (done)"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-rule-breaker.md"
+  },
+  {
+   "id": "F-033",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "rule-breaker (Fable)",
+   "words": "He will not leave the line for a break but will leave it for the night. Reads as a seam, not a person.",
+   "verdict": "mixed",
+   "routes": [
+    "hf:game-requests-2026-10-18#Pass 6 group duty",
+    "fix:pass crew rule covers going home (done)"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-rule-breaker.md"
+  },
+  {
+   "id": "F-034",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "rule-breaker (Fable)",
+   "words": "I didn’t keep my shift / my rule about the jar / maghrib. Next time I’ll be ready when it comes.\" on all three cooks",
+   "verdict": "mixed",
+   "routes": [
+    "hf:game-requests-2026-10-19#N2",
+    "lesson:L2"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-rule-breaker.md"
+  },
+  {
+   "id": "F-035",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "No persona was bored.",
+   "verdict": "keep",
+   "routes": [
+    "calibration:C1",
+    "calibration:C5",
+    "lesson:L16"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-hf-personas.md"
+  },
+  {
+   "id": "F-036",
+   "date": "2026-10-19",
+   "game": "pass",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "Both language-model testers missed the same bill, by ₺200 (speedrunner) and ₺320 (veteran).",
+   "verdict": "mixed",
+   "routes": [
+    "calibration:C8",
+    "lesson:L15"
+   ],
+   "source": "pass/docs/playtests/polish-2026-10-19-hf-personas.md"
+  },
+  {
+   "id": "F-037",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Gwen (Fable)",
+   "words": "The pencilled note in the margin, \"Dai reads low after three. —M.\", is the best thing in the game",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L12"
+   ],
+   "source": "glance/docs/playtests/gwen-2026-10-19.md"
+  },
+  {
+   "id": "F-038",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Gwen (Fable)",
+   "words": "Half a metre low every time is not tiredness, it is a bent staff or a man who has stopped looking.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance bias should not be uniform (open)"
+   ],
+   "source": "glance/docs/playtests/gwen-2026-10-19.md"
+  },
+  {
+   "id": "F-039",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Gwen (Fable)",
+   "words": "He never turned it, and nothing on the board told me so. I sat watching the clock and the dam went over.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L4",
+    "fix:glance deferral no longer overwrites gate order (done)"
+   ],
+   "source": "glance/docs/playtests/gwen-2026-10-19.md"
+  },
+  {
+   "id": "F-040",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Gwen (Fable)",
+   "words": "The clock moves when the page is shut. Tuesday I closed it at about 03:58, reopened twenty-four seconds later and it read 04:52. A save should hold still.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L8",
+    "fix:glance save every sim minute, slow resume (done)"
+   ],
+   "source": "glance/docs/playtests/gwen-2026-10-19.md"
+  },
+  {
+   "id": "F-041",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Gwen (Fable)",
+   "words": "Arms gone from what? Reading a staff gauge does not take your arms.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L1",
+    "calibration:C6",
+    "fix:glance arms-gone wording replaced (done)"
+   ],
+   "source": "glance/docs/playtests/gwen-2026-10-19.md"
+  },
+  {
+   "id": "F-042",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Gwen (Fable)",
+   "words": "\"You caught none of them\" three dawns running, and I was never shown how I could have.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L12",
+    "fix:glance dawn states the rule (done)",
+    "fix:glance flag a doubted reading (open)"
+   ],
+   "source": "glance/docs/playtests/gwen-2026-10-19.md"
+  },
+  {
+   "id": "F-043",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Jade (Haiku)",
+   "words": "at the fastest speed the game moves faster than I can react, so I mostly watched it happen. 5/10.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L6",
+    "fix:glance fast speed slower, open sheet slows clock (done)"
+   ],
+   "source": "glance/docs/playtests/jade-2026-10-19.md"
+  },
+  {
+   "id": "F-044",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Priya (Sonnet)",
+   "words": "Show the cost of each action before I commit. Say how long a read or a gate change will take.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L5",
+    "fix:glance cost in minutes on buttons (done)"
+   ],
+   "source": "glance/docs/playtests/priya-2026-10-19.md"
+  },
+  {
+   "id": "F-045",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Priya (Sonnet)",
+   "words": "I didn't keep my watch. Next time I'll be ready when it comes.\" appeared in every debrief, even on a night when the dam went over.",
+   "verdict": "mixed",
+   "routes": [
+    "hf:game-requests-2026-10-19#N2",
+    "lesson:L2",
+    "lesson:L3"
+   ],
+   "source": "glance/docs/playtests/priya-2026-10-19.md"
+  },
+  {
+   "id": "F-046",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Tomás (Opus)",
+   "words": "Fix the \"after I open the gate\" loop. It's the one thing that made me feel I was fighting the code, not the men.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L18",
+    "fix:glance gate offer only when an order is pending (done)"
+   ],
+   "source": "glance/docs/playtests/tomas-2026-10-19.md"
+  },
+  {
+   "id": "F-047",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Tomás (Opus)",
+   "words": "I made the right call for the wrong night and paid for it two nights later. That's the game I want to play.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "glance/docs/playtests/tomas-2026-10-19.md"
+  },
+  {
+   "id": "F-048",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "harness",
+   "who": "HF personas (unwinder, completionist)",
+   "words": "Players who trust the board lose the dam on Tuesday or Wednesday.",
+   "verdict": "mixed",
+   "routes": [
+    "calibration:C7"
+   ],
+   "source": "glance/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "id": "F-049",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "Frustration comes from refusals in the small hours (\"Not yet. I’ve nothing left in me. Twenty minutes.\", \"I… I can’t, sir. Sorry. I need a minute.\"). The players read these as obstacles, not as information.",
+   "verdict": "mixed",
+   "routes": [
+    "calibration:C6"
+   ],
+   "source": "glance/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "id": "F-050",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "`rewarded 0x` in every run. My adapter's events probably do not reach the harness's reward threshold",
+   "verdict": "-",
+   "routes": [
+    "calibration:C2"
+   ],
+   "source": "glance/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "id": "F-051",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "harness",
+   "who": "restless seed 2",
+   "words": "quit after 9 min at N2 02:35 (emotion:joy:novel)",
+   "verdict": "quit",
+   "routes": [
+    "calibration:C5",
+    "lesson:L7"
+   ],
+   "source": "glance/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "id": "F-052",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "first-timer (Haiku)",
+   "words": "a tap on a \"later, maybe\" option just produced \"Later, she said.\" and the pencil's line happened. Nothing told me that \"later\" meant the game would choose for me.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L12",
+    "fix:murmur honest hints (done)"
+   ],
+   "source": "murmur/docs/playtests/haiku-first-timer-2026-10-19.md"
+  },
+  {
+   "id": "F-053",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "first-timer (Haiku)",
+   "words": "It felt fair that the cost was real. It felt unfair that the refusal gave no reason beyond \"Don't push me.\"",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L1"
+   ],
+   "source": "murmur/docs/playtests/haiku-first-timer-2026-10-19.md"
+  },
+  {
+   "id": "F-054",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "first-timer (Haiku)",
+   "words": "Yes, it felt hard, and most of the bad outcomes felt unfair to me",
+   "verdict": "mixed",
+   "routes": [
+    "calibration:C10",
+    "lesson:L15"
+   ],
+   "source": "murmur/docs/playtests/haiku-first-timer-2026-10-19.md"
+  },
+  {
+   "id": "F-055",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "min-maxer (Sonnet)",
+   "words": "Hold is a free override. I held 40-plus times and it never failed.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L10",
+    "fix:murmur gated holds (done)",
+    "calibration:C11"
+   ],
+   "source": "murmur/docs/playtests/minmaxer-2026-10-19.md"
+  },
+  {
+   "id": "F-056",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "min-maxer (Sonnet)",
+   "words": "By Wednesday I was waiting for scripted scenes to finish, not choosing.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L10",
+    "lesson:L11",
+    "fix:murmur fading phrases (done)",
+    "calibration:C11"
+   ],
+   "source": "murmur/docs/playtests/minmaxer-2026-10-19.md"
+  },
+  {
+   "id": "F-057",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "skeptic (Sonnet)",
+   "words": "Lying on Thursday got overridden, and the honesty cost nothing, which is the preachy outcome.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L11",
+    "fix:murmur let the bad voice win a social moment (open)"
+   ],
+   "source": "murmur/docs/playtests/skeptic-2026-10-19.md"
+  },
+  {
+   "id": "F-058",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "skeptic (Sonnet)",
+   "words": "Saying nothing is undiscoverable. I found it by accident: waiting about 30 seconds, or tapping \"on with the day\".",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4",
+    "fix:murmur say-nothing action (done)"
+   ],
+   "source": "murmur/docs/playtests/skeptic-2026-10-19.md"
+  },
+  {
+   "id": "F-059",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "story-seeker (Opus)",
+   "words": "Wednesday's birthday dinner is the emotional centre of the week, and I got no scene at all.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "murmur/docs/playtests/story-seeker-2026-10-19.md"
+  },
+  {
+   "id": "F-060",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "story-seeker (Opus)",
+   "words": "As it is, the beach photo is a hook with no catch.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L14"
+   ],
+   "source": "murmur/docs/playtests/story-seeker-2026-10-19.md"
+  },
+  {
+   "id": "F-061",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "story-seeker (Opus)",
+   "words": "At 18:11 she was on the bus home. The shadowing never happened, and the notebook didn't count it as kept or broken.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L14",
+    "hf:murmur/hf-requests.md#1 one completion keeps one commitment"
+   ],
+   "source": "murmur/docs/playtests/story-seeker-2026-10-19.md"
+  },
+  {
+   "id": "F-062",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "story-seeker (Opus)",
+   "words": "I briefly read her as having a drinking problem. Nothing else supported that, so the lines read as glitches.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L3",
+    "fix:murmur thirst lines (open)"
+   ],
+   "source": "murmur/docs/playtests/story-seeker-2026-10-19.md"
+  },
+  {
+   "id": "F-063",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "bus driver (Opus)",
+   "words": "When I put the phone down, she lived on her own. One evening she rang Mum herself.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "murmur/docs/playtests/wildcard-busdriver-2026-10-19.md"
+  },
+  {
+   "id": "F-064",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "bus driver (Opus)",
+   "words": "I left it 30 seconds on Monday and came back to \"She left it on read and watched four videos.\" Left what on read? I never saw a message.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L13",
+    "fix:murmur while-you-were-away line (open)"
+   ],
+   "source": "murmur/docs/playtests/wildcard-busdriver-2026-10-19.md"
+  },
+  {
+   "id": "F-065",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "bus driver (Opus)",
+   "words": "I didn't say that. Same with \"Just say it plainly\" after I tapped \"That was me.\" I suppose it's the gist, but it felt like being misquoted.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L3",
+    "fix:murmur margin shows only tapped words (open)"
+   ],
+   "source": "murmur/docs/playtests/wildcard-busdriver-2026-10-19.md"
+  },
+  {
+   "id": "F-066",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "No persona was bored or looked away (longest lull 0 s). Engagement was 0.75 to 0.87.",
+   "verdict": "keep",
+   "routes": [
+    "calibration:C1",
+    "calibration:C12",
+    "calibration:C4",
+    "lesson:L16"
+   ],
+   "source": "murmur/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "id": "F-067",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "Assumed or unknown: the personas answer each card within a 3-second beat, faster than a person reading the scene.",
+   "verdict": "-",
+   "routes": [
+    "calibration:C3"
+   ],
+   "source": "murmur/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "id": "F-068",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "harness",
+   "who": "commuter seed 1, restless seed 1",
+   "words": "Commuter seed 1 and restless seed 1 quit on Thursday from distress",
+   "verdict": "quit",
+   "routes": [
+    "calibration:C10"
+   ],
+   "source": "murmur/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "id": "F-069",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "casual phone (Haiku)",
+   "words": "I'd put it down around 6 Ağustos, after about 50 taps, and I'd probably not come back.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L5",
+    "lesson:L7",
+    "calibration:C9"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-070",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "casual phone (Haiku)",
+   "words": "Explain the numbers in one plain sentence, on the main screen. For example: \"You need 484 kile by 15 Eylül. You have 54.\"",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L5",
+    "fix:valley progress notes and plain due (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-071",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "casual phone (Haiku)",
+   "words": "The first time I closed the ledger I landed on the title page.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L8",
+    "fix:valley ledger exit wording (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-072",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "story-seeker (Sonnet)",
+   "words": "The houses are written like people. The people are not. I wanted to know them and the game never let me talk to anyone. Score: 4/10.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L4",
+    "lesson:L2",
+    "fix:valley named replies to visits (done)",
+    "fix:valley hearth conversation (open)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-073",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "story-seeker (Sonnet)",
+   "words": "From 17 Ekim to 2 Mayıs the notebook read \"The notebook is empty. Tap a house on the map.\" I quit there",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L7",
+    "fix:valley winter lane life (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-074",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "EU/CK veteran (Opus)",
+   "words": "I was mostly holding \"fast\" and reading excuses, and the one crisis that mattered happened while I wasn't watching.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L6",
+    "lesson:L13",
+    "fix:valley hunger knock slows the clock (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-075",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "EU/CK veteran (Opus)",
+   "words": "If that was hunger, it's on me, but the game let me sleep through it. That is the opaque randomness I hate.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L1",
+    "fix:valley hungry death says so (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-076",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "EU/CK veteran (Opus)",
+   "words": "Every line matched what I had actually done",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-077",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "mischief wildcard (Fable)",
+   "words": "my own verbs are mute.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4",
+    "fix:valley named replies to visits, gifts, seizures (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-078",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "mischief wildcard (Fable)",
+   "words": "Year one pays itself. I bullied for three days, vanished for a month, called shares once: due met with 43 spare, zero planning.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L15",
+    "lesson:L11"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-079",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "mischief wildcard (Fable)",
+   "words": "Emergent, believable, unprompted.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L11",
+    "hf:game-requests-2026-10-18#Valley 2"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-080",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "mischief wildcard (Fable)",
+   "words": "Pressing is free and always \"works\" (\"came, slowly, because you pressed\") even when the person later refuses",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L10",
+    "lesson:L1"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-081",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "Every persona quit from distress and none was ever rewarded: the screen showed refusals and no progress.",
+   "verdict": "quit",
+   "routes": [
+    "calibration:C9",
+    "lesson:L5",
+    "lesson:L16"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "id": "F-082",
+   "date": "2026-10-18",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "late casual (Opus)",
+   "words": "A cozy, sad little hiking story where your friends actually ignore you. I liked it, but I lost control of my group fast.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4"
+   ],
+   "source": "rope/docs/playtests/latecasual-2026-10-18.md"
+  },
+  {
+   "id": "F-083",
+   "date": "2026-10-18",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "late casual (Opus)",
+   "words": "make the turn-back promise enforceable and readable. When my promised hour arrives, pause the game softly, show clearly who heard me and who didn't",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L6",
+    "fix:rope promised-hour bar (done)"
+   ],
+   "source": "rope/docs/playtests/latecasual-2026-10-18.md"
+  },
+  {
+   "id": "F-084",
+   "date": "2026-10-18",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Fable",
+   "words": "The fiction holds: the journal and the night-at-the-hut lines are worth the whole thing. The simulation under it is doing real work … What is broken is the player's seat.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4"
+   ],
+   "source": "rope/docs/playtests/fable-2026-10-18.md"
+  },
+  {
+   "id": "F-085",
+   "date": "2026-10-18",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "game-design expert",
+   "words": "The bones are good. Right now the game undermines its own two best ideas: that I am the one asking, and that the day gets read back to me truthfully.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L3",
+    "lesson:L4"
+   ],
+   "source": "rope/docs/playtests/designer-2026-10-18.md"
+  },
+  {
+   "id": "F-086",
+   "date": "2026-10-18",
+   "game": "rope",
+   "kind": "harness",
+   "who": "scripted measure",
+   "words": "With an attentive script (turn at 12:00, repeat the call to anyone in earshot), 12 days: asking gives 30 non-assents in 150 answers",
+   "verdict": "-",
+   "routes": [
+    "lesson:L1",
+    "lesson:L15"
+   ],
+   "source": "rope/docs/findings.md"
+  },
+  {
+   "id": "F-087",
+   "date": "2026-10-18",
+   "game": "rope",
+   "kind": "harness",
+   "who": "scripted measure",
+   "words": "Ask, urge and insist gave identical outcomes in those scripted runs, because people already wanted what was asked.",
+   "verdict": "-",
+   "routes": [
+    "lesson:L10"
+   ],
+   "source": "rope/docs/findings.md"
+  },
+  {
+   "id": "F-088",
+   "date": "2026-10-18",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "designer visitor",
+   "words": "every reply is shown before you ask, so asking has no tension. Urge works on everyone and costs nothing.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L10",
+    "fix:neighbours hide predicted reply, price urge (done in overhaul)"
+   ],
+   "source": "concordia@neighbours:docs/neighbours/visitor-2026-10-18-overhaul.md"
+  },
+  {
+   "id": "F-089",
+   "date": "2026-10-18",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "designer visitor",
+   "words": "The town finished all 12 repairs by Day 2 without me",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L15",
+    "hf:game-requests-2026-10-18#Neighbours 4"
+   ],
+   "source": "concordia@neighbours:docs/neighbours/visitor-2026-10-18-overhaul.md"
+  },
+  {
+   "id": "F-090",
+   "date": "2026-10-18",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "designer visitor",
+   "words": "Sam walked home twice in a few hours just to drink water.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L18",
+    "hf:game-requests-2026-10-19#N1"
+   ],
+   "source": "concordia@neighbours:docs/neighbours/visitor-2026-10-18-overhaul.md"
+  },
+  {
+   "id": "F-091",
+   "date": "2026-10-18",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "designer visitor",
+   "words": "A story auto-paused the game: Lea taught Ada how to judge flood-damaged timber. This was the best moment of the session.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L6"
+   ],
+   "source": "concordia@neighbours:docs/neighbours/visitor-2026-10-18-overhaul.md"
+  },
+  {
+   "id": "F-092",
+   "date": "2026-10-18",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "meaningful entertainment visitor",
+   "words": "Did not sustain entertainment. Person-following skipped the result that mattered.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L13",
+    "fix:neighbours follow stops at kept promise (done)"
+   ],
+   "source": "concordia@neighbours:docs/neighbours/visitor-2026-10-18-received-plans.md"
+  },
+  {
+   "id": "F-093",
+   "date": "2026-10-19",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Priya (Sonnet)",
+   "words": "With Dai and Callum both present (Wednesday onward), the Gate panel's number buttons were at y=775 to 857 on a 780 px screen. They were unreachable without scrolling.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L9",
+    "fix:glance panel height at 360x780 (open)"
+   ],
+   "source": "glance/docs/playtests/priya-2026-10-19.md"
+  },
+  {
+   "id": "F-094",
+   "date": "2026-10-18",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Mehmet",
+   "words": "The kitchen drawing eats half the screen; the cook buttons and log sit below the fold once a card opens.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L9",
+    "fix:pass crew row stays in cook sheet (done)"
+   ],
+   "source": "pass/docs/playtests/mehmet-2026-10-18.md"
+  },
+  {
+   "id": "F-095",
+   "date": "2026-10-18",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "first-time (Darkest Dungeon fan)",
+   "words": "Main verbs fell below the fold at 780 tall; the layout shifted when someone was picked.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L9"
+   ],
+   "source": "rope/docs/playtests/firsttime-2026-10-18.md"
+  },
+  {
+   "id": "F-096",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "bus driver (Opus)",
+   "words": "Menu button clipped. On a \"Wednesday\" screen the ≡ button is pushed past the right edge.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L9",
+    "fix:murmur menu button on long day names (open)"
+   ],
+   "source": "murmur/docs/playtests/wildcard-busdriver-2026-10-19.md"
+  }
+ ],
+ "lessons": [
+  {
+   "id": "L1",
+   "title": "A refusal says why, in the person's voice.",
+   "text": "A no, a deferral, or a yes that follows a no should name what decided it, in the speaker's words. Without a reason, players read the answer as dice or as a bug. With a reason, they trade against it and believe the person.",
+   "evidence": [
+    "F-014",
+    "F-015",
+    "F-026",
+    "F-041",
+    "F-053",
+    "F-075",
+    "F-080",
+    "F-086"
+   ]
+  },
+  {
+   "id": "L2",
+   "title": "No stock line repeats within a night.",
+   "text": "Give each person their own pool of lines and rest a line after it is used. HF's own stock words (assent, deferral, the evening lapse line) repeat across people, so a host should vary them or ask HF to.",
+   "evidence": [
+    "F-030",
+    "F-031",
+    "F-034",
+    "F-045",
+    "F-072"
+   ]
+  },
+  {
+   "id": "L3",
+   "title": "Every remembered line must be true to what happened.",
+   "text": "Check each memory line against a replay. Do not say \"you let it go\" after the player insisted, do not thank someone who already left, and do not put words in the margin the player did not choose.",
+   "evidence": [
+    "F-019",
+    "F-021",
+    "F-030",
+    "F-032",
+    "F-045",
+    "F-062",
+    "F-065",
+    "F-085"
+   ]
+  },
+  {
+   "id": "L4",
+   "title": "Every player verb gets a visible answer.",
+   "text": "A tap with no answer reads as a bug. A verb that only logs a line makes the player feel mute. Show a reply, even \"nobody heard you\", and show an order while it is carried out.",
+   "evidence": [
+    "F-011",
+    "F-039",
+    "F-058",
+    "F-072",
+    "F-077",
+    "F-082",
+    "F-084",
+    "F-085"
+   ]
+  },
+  {
+   "id": "L5",
+   "title": "Show the numbers a decision needs, in plain words, before the player commits.",
+   "text": "Say what a choice costs in time, what is due, and how near the goal is, in a sentence. This keeps \"show, don't count\" for inner states and still lets the player plan. Do not use bars for a person's inner state.",
+   "evidence": [
+    "F-020",
+    "F-044",
+    "F-069",
+    "F-070",
+    "F-081"
+   ]
+  },
+  {
+   "id": "L6",
+   "title": "Slow the clock when a choice is waiting.",
+   "text": "Fast speed must drop to slow for a knock at the door, a fall, a hunger call, a promised hour, or an open sheet. Players lose the moment that mattered when the clock runs on.",
+   "evidence": [
+    "F-043",
+    "F-074",
+    "F-083",
+    "F-091"
+   ]
+  },
+  {
+   "id": "L7",
+   "title": "Fill the first hour and the quiet stretches.",
+   "text": "Put a decision, a refusal or a small event inside the first minutes. When nothing is on screen, fast-forward or add small life. Long empty stretches (a winter, the small hours, an empty rail) are where players quit.",
+   "evidence": [
+    "F-007",
+    "F-008",
+    "F-025",
+    "F-051",
+    "F-069",
+    "F-073"
+   ]
+  },
+  {
+   "id": "L8",
+   "title": "A save holds still, and resuming is obvious.",
+   "text": "Nothing moves while the page is shut. The title page offers one clear way back to the game. Closing a panel must not look like quitting.",
+   "evidence": [
+    "F-040",
+    "F-071"
+   ]
+  },
+  {
+   "id": "L9",
+   "title": "Phones first: the actions stay above the fold at 360x780.",
+   "text": "Test every panel with two or more people present and with a long label. Buttons below the fold, a clipped menu or a shifting layout cost players real taps.",
+   "evidence": [
+    "F-093",
+    "F-094",
+    "F-095",
+    "F-096"
+   ]
+  },
+  {
+   "id": "L10",
+   "title": "A free override becomes the strategy, so pushing needs a visible price.",
+   "text": "If insisting, pressing or urging always works and costs nothing visible, players stop choosing. Show the cost where the player can see it (a mood, a remembered line, a later refusal) and let it grow with use.",
+   "evidence": [
+    "F-015",
+    "F-016",
+    "F-023",
+    "F-055",
+    "F-056",
+    "F-080",
+    "F-087",
+    "F-088"
+   ]
+  },
+  {
+   "id": "L11",
+   "title": "Make a found edge playable and slightly rewarding, then measure it.",
+   "text": "The owner asks that edges stay a bit fun and enter the game's own calculations rather than only be closed. When a tester finds a cheap or cruel path, give it an answer in the fiction and check that it does not win outright.",
+   "evidence": [
+    "F-003",
+    "F-023",
+    "F-056",
+    "F-057",
+    "F-078",
+    "F-079"
+   ]
+  },
+  {
+   "id": "L12",
+   "title": "Hints are honest odds, and the player can learn the information gap.",
+   "text": "A tag that looks like a chance must behave like one. A game that says \"you caught none of them\" must show how to catch something.",
+   "evidence": [
+    "F-037",
+    "F-042",
+    "F-052"
+   ]
+  },
+  {
+   "id": "L13",
+   "title": "Tie big beats to the player's own acts, and let the player be there.",
+   "text": "The moments players praised came from something they did earlier and came back (a kept promise, a let-go, a warning that was not believed). The moments they resented happened offscreen as one log line.",
+   "evidence": [
+    "F-006",
+    "F-009",
+    "F-018",
+    "F-022",
+    "F-028",
+    "F-047",
+    "F-059",
+    "F-063",
+    "F-064",
+    "F-074",
+    "F-076",
+    "F-092"
+   ]
+  },
+  {
+   "id": "L14",
+   "title": "Close the threads the game opens, and end on one open question.",
+   "text": "A hook that never pays off (a photo, a promise, a visit) reads as a dropped thread. End a session on one named question the player wants answered. This follows the owner's request to start from what brings players back.",
+   "evidence": [
+    "F-004",
+    "F-060",
+    "F-061"
+   ]
+  },
+  {
+   "id": "L15",
+   "title": "Start with natural difficulty, and check that week one bites.",
+   "text": "The owner prefers hard-where-natural, relaxed later. Check with attentive and inattentive play that the first stretch has stakes. Several games paid off in the first week without any input.",
+   "evidence": [
+    "F-001",
+    "F-017",
+    "F-036",
+    "F-054",
+    "F-078",
+    "F-086",
+    "F-089"
+   ]
+  },
+  {
+   "id": "L16",
+   "title": "Read simulated testers as a different signal from people.",
+   "text": "HF-character testers are good at finding loops, cliffs and fatigue. They were never bored in these games. Hard-to-please LLM testers and the owner were. Use all three, and trust the owner's play most.",
+   "evidence": [
+    "F-002",
+    "F-035",
+    "F-066",
+    "F-081"
+   ]
+  },
+  {
+   "id": "L17",
+   "title": "Check a tester's report against a replay before changing the game.",
+   "text": "Several reports were harness artefacts: a first ask that failed after \"open\", and tips the text harness left out. Replay the export, then fix what replays.",
+   "evidence": [
+    "F-024",
+    "F-027"
+   ]
+  },
+  {
+   "id": "L18",
+   "title": "Run idle choice headlessly for loops and wandering before release.",
+   "text": "People left alone drank and relieved every four minutes, stood three at the dish pit, walked home to drink, answered every ask with the same chore, or flipped yes and no for nine days. Each came from a scoring detail, not a story reason.",
+   "evidence": [
+    "F-012",
+    "F-029",
+    "F-046",
+    "F-090"
+   ]
+  }
+ ],
+ "asks": [
+  {
+   "game": "pass",
+   "ask": "Play weeks 2 to 4: the Sunday pages (hiring, quits, ledger, regulars), the oven, and Thursday's match night.",
+   "why": "The HF-character bots stopped at week 1 or early week 2, and the LLM testers stopped by week 3. Weeks 3 and 4 are measured only headlessly.",
+   "source": "pass/docs/playtests/polish-2026-10-19-hf-personas.md"
+  },
+  {
+   "game": "pass",
+   "ask": "Push a cook with repeated insists, then check whether his no, his quit and the close lines read as true to what happened.",
+   "why": "The rule-breaker found false-memory lines; they were fixed on the host side and need a fresh player.",
+   "source": "pass/docs/playtests/polish-2026-10-19-rule-breaker.md"
+  },
+  {
+   "game": "pass",
+   "ask": "Play week 1 with attention lapses (look away during the 19:00 to 21:00 rush) and see whether the bank can still be paid.",
+   "why": "Both LLM testers missed the bill; the HF bots and the owner paid it. Is difficulty attention or luck?",
+   "source": "pass/docs/playtests/polish-2026-10-19-hf-personas.md"
+  },
+  {
+   "game": "pass",
+   "ask": "Talk to a cook outside the scripted moments, and meet a hire in service.",
+   "why": "Deferred in the design: a hire speaks only stock answers until the Sunday page.",
+   "source": "pass/docs/design.md"
+  },
+  {
+   "game": "glance",
+   "ask": "Try to catch a wrong reading: compare Dai with Callum, Nerys's river steps, and the lightning.",
+   "why": "Three testers said \"You caught none of them\" taught nothing; the dawn now states the rule, and no tester has used it yet.",
+   "source": "glance/docs/playtests/tomas-2026-10-19.md"
+  },
+  {
+   "game": "glance",
+   "ask": "Play at the fast speed on a phone and report what you miss.",
+   "why": "Jade almost left at the fast speed; the speed was lowered and the sheet slows the clock. Unchecked by a person.",
+   "source": "glance/docs/playtests/jade-2026-10-19.md"
+  },
+  {
+   "game": "glance",
+   "ask": "Close the page mid-night, wait, reopen. Report what the clock says.",
+   "why": "Gwen saw time jump forward 54 minutes and back 3 to 5 minutes; the cause is assumed, not confirmed.",
+   "source": "glance/docs/playtests/gwen-2026-10-19.md"
+  },
+  {
+   "game": "glance",
+   "ask": "Judge Dai's low reading before and after three o'clock: tiredness or a bent staff?",
+   "why": "Gwen thought a uniform low error was not tiredness. The design doc leaves this to the owner's first playtest.",
+   "source": "glance/docs/design.md"
+  },
+  {
+   "game": "murmur",
+   "ask": "Play Thursday on purpose, with a mix of taps, holds and silence. Say whether it feels hard or unfair.",
+   "why": "HF personas quit on Thursday from distress and the Haiku tester found it unfair; no person has judged it since the holds were gated.",
+   "source": "murmur/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "game": "murmur",
+   "ask": "Try \"install, then say nothing\" and report when it stops paying.",
+   "why": "The min-maxer found it nearly free; phrases now fade with disuse. Is the middle of the week still empty?",
+   "source": "murmur/docs/playtests/minmaxer-2026-10-19.md"
+  },
+  {
+   "game": "murmur",
+   "ask": "Leave the phone alone for a few minutes, then return. Say whether you know what you missed.",
+   "why": "Two testers lost scenes or a dinner while away and could not tell what was asked.",
+   "source": "murmur/docs/playtests/wildcard-busdriver-2026-10-19.md"
+  },
+  {
+   "game": "murmur",
+   "ask": "Play the whole week and say what you think happened before the game (March, the beach photo, the thirst lines).",
+   "why": "The story-seeker read a back story from teasers and a drinking problem from the thirst lines. Is the implied story landing as intended?",
+   "source": "murmur/docs/playtests/story-seeker-2026-10-19.md"
+  },
+  {
+   "game": "rope",
+   "ask": "A first-time player with no source: play the hut choice and the first hour, and say whether anything pulled you on.",
+   "why": "The owner found it \"not that fun\" twice; the first-hour hook is a fix with no new human check.",
+   "source": "rope/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "game": "rope",
+   "ask": "Play with the rules-2 build (HF 2.8.0, fullness on) and leave one person alone at a lake.",
+   "why": "Kestrel's drink and relieve loop was fixed by opting into `fullness`; no one has replayed an idle person for hours on a live build.",
+   "source": "rope/docs/findings.md"
+  },
+  {
+   "game": "rope",
+   "ask": "Send a far-off person to escort someone down, and read the journal.",
+   "why": "Sending far-off escorts is still accepted; the journal is honest now, the design is not settled.",
+   "source": "rope/docs/playtests/owner-2026-10-19.md"
+  },
+  {
+   "game": "valley",
+   "ask": "Round 2: visit, give, press and send the reeve's men, and say whether the named replies feel like presence.",
+   "why": "Round 1's four testers all said the kahya's own acts were mute; iteration 1 added named replies.",
+   "source": "valley/docs/playtests/2026-10-19-round1.md"
+  },
+  {
+   "game": "valley",
+   "ask": "Play year one at fast speed on a phone and say what you see in winter.",
+   "why": "The casual and story-seeker testers quit in a silent winter; winter lane life and hunger slow-downs are new.",
+   "source": "valley/docs/design.md"
+  },
+  {
+   "game": "valley",
+   "ask": "Play as the open hand (give, ease shares) and as the iron fist, and read both endings.",
+   "why": "Both edges now have their own endings; the open hand's payoff in the fiction is deferred to after round 2.",
+   "source": "valley/docs/design.md"
+  },
+  {
+   "game": "neighbours",
+   "ask": "Follow one person for five days and say whether the stops show what mattered.",
+   "why": "The entertainment visitor lost interest; the stop on a kept promise was added. Bead `nbh-01z.37` (due 20 October) holds the next step.",
+   "source": "concordia@neighbours:docs/neighbours/visitor-2026-10-18-received-plans.md"
+  },
+  {
+   "game": "neighbours",
+   "ask": "Play the first ten minutes and say whether the opening feels automatic.",
+   "why": "The speedrunner said \"Opening felt automatic\" and the broad opening criticism remains open.",
+   "source": "concordia@neighbours:docs/neighbours/visitor-2026-10-18-received-plans.md"
+  },
+  {
+   "game": "neighbours",
+   "ask": "Break a promise to a resident and watch the next day.",
+   "why": "The designer visitor saw no effect from a broken promise; HF request 2 (`noteVoicePromise`, released in 2.8.0) is meant to fix this.",
+   "source": "concordia@neighbours:docs/neighbours/visitor-2026-10-18-overhaul.md"
+  },
+  {
+   "game": "stairwell",
+   "ask": "Play the first week (six days and the Sunday meeting) and say whether carrying beliefs from door to door feels like the verb.",
+   "why": "The design picked this concept because belief spreading is the player's verb; no human has played it.",
+   "source": "stairwell/docs/design.md"
+  },
+  {
+   "game": "stairwell",
+   "ask": "Spread a made-up trait (stingy, nosy, kind) and check what it costs by Sunday.",
+   "why": "The measure says the edge pays a little more short-term and costs by Sunday. Do players find that fair and fun?",
+   "source": "stairwell/docs/design.md"
+  },
+  {
+   "game": "stairwell",
+   "ask": "Stop at the end of a night page and say whether the open question makes you want to continue.",
+   "why": "The design uses an open question to bring players back; the effect is a hypothesis.",
+   "source": "stairwell/docs/design.md"
+  }
+ ],
+ "hfRequests": [
+  {
+   "ref": "game-requests-2026-10-18#Deferral template repetition",
+   "from": [
+    "F-019",
+    "F-030"
+   ],
+   "games": [
+    "pass"
+   ]
+  },
+  {
+   "ref": "game-requests-2026-10-19#N2",
+   "from": [
+    "F-034",
+    "F-045"
+   ],
+   "games": [
+    "pass",
+    "glance"
+   ]
+  },
+  {
+   "ref": "game-requests-2026-10-18#Neighbours 4",
+   "from": [
+    "F-089"
+   ],
+   "games": [
+    "neighbours"
+   ]
+  },
+  {
+   "ref": "game-requests-2026-10-18#Pass 6 group duty",
+   "from": [
+    "F-033"
+   ],
+   "games": [
+    "pass"
+   ]
+  },
+  {
+   "ref": "game-requests-2026-10-18#Rope Kestrel 1",
+   "from": [
+    "F-012"
+   ],
+   "games": [
+    "rope"
+   ]
+  },
+  {
+   "ref": "game-requests-2026-10-18#The Pass 1 decidedBy",
+   "from": [
+    "F-014"
+   ],
+   "games": [
+    "pass"
+   ]
+  },
+  {
+   "ref": "game-requests-2026-10-18#Valley 2",
+   "from": [
+    "F-079"
+   ],
+   "games": [
+    "valley"
+   ]
+  },
+  {
+   "ref": "game-requests-2026-10-19#N1",
+   "from": [
+    "F-090"
+   ],
+   "games": [
+    "neighbours"
+   ]
+  },
+  {
+   "ref": "murmur/hf-requests.md#1 one completion keeps one commitment",
+   "from": [
+    "F-061"
+   ],
+   "games": [
+    "murmur"
+   ]
+  }
+ ],
+ "routes": {
+  "fix": 48,
+  "lesson": 99,
+  "hf": 11,
+  "calibration": 27,
+  "none": 0
+ }
+}

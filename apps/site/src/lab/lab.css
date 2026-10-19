@@ -1,0 +1,130 @@
+/* The lab dashboard and privacy page, on top of the homepage's Field Notebook tokens (home.css). */
+.lab section {
+  margin: 2.2rem 0;
+}
+.lab h2 {
+  font-size: 1.35rem;
+  margin: 0 0 0.5rem;
+}
+.lab h3 {
+  font-size: 1.08rem;
+  margin: 1.4rem 0 0.4rem;
+}
+.lab h4 {
+  font-size: 1rem;
+  margin: 0.8rem 0 0.2rem;
+}
+.lab p,
+.lab li {
+  max-width: 60ch;
+}
+.lab .soft {
+  color: var(--ink-soft);
+}
+.lab code {
+  font:
+    0.88em ui-monospace,
+    Menlo,
+    monospace;
+  overflow-wrap: anywhere;
+}
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin-top: 0.6rem;
+}
+.lessons li {
+  margin: 0.5rem 0;
+}
+.quote {
+  margin: 0.8rem 0;
+  padding-left: 0.9rem;
+  border-left: 1.5px solid var(--ink-soft);
+}
+.quote blockquote {
+  margin: 0;
+  font: 500 1.3rem / 1.25 var(--hand);
+}
+.quote figcaption {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+.verdict.v-quit {
+  color: var(--rope);
+}
+.verdict.v-keep {
+  color: var(--moss);
+}
+.lab-game {
+  border-top: 1.5px solid var(--ink);
+  padding: 0.6rem 0 1rem;
+}
+.lab-game h3 {
+  margin-top: 0.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.6rem;
+  align-items: baseline;
+}
+.lab-game .soft,
+.lab-game .build {
+  font-size: 0.92rem;
+}
+.lab-game .build {
+  margin: 0.2rem 0;
+}
+.numbers {
+  margin: 0.4rem 0;
+}
+.numbers div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+}
+.numbers dt {
+  color: var(--ink-soft);
+}
+.numbers dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.numbers .errs {
+  color: var(--rope);
+}
+.try ul {
+  margin-top: 0.2rem;
+}
+.lab .foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.privacy table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95rem;
+}
+.privacy th,
+.privacy td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.4rem 0.5rem 0.4rem 0;
+  border-bottom: 1px solid var(--ink-soft);
+}
+@media (max-width: 420px) {
+  .numbers div {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 0.3rem;
+  }
+}
+.lessons summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.lessons details[open] {
+  margin-bottom: 0.6rem;
+}

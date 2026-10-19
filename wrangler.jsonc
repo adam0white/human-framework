@@ -6,8 +6,26 @@
   "workers_dev": false,
   "preview_urls": false,
   "routes": [{ "pattern": "human.adamwhite.work", "custom_domain": true }],
+  // The lab Worker (owner, 2026-10-19: server infrastructure for lab telemetry only). It runs only for the
+  // paths in run_worker_first; everything else is static assets. Privacy: apps/site/lab/privacy/index.html.
+  "main": "./apps/site/worker/lab.ts",
   "assets": {
     "directory": "./apps/site/dist",
-    "not_found_handling": "none"
-  }
+    "binding": "ASSETS",
+    "not_found_handling": "none",
+    "run_worker_first": ["/lab/api/*", "/lab/data.json"]
+  },
+  // Private bucket: event batches, daily aggregates, opt-in runs and the private run index. No public access.
+  "r2_buckets": [{ "binding": "LAB", "bucket_name": "hf-lab" }],
+  // Per client address, in memory at the edge only (never stored). Period must be 10 or 60 seconds.
+  "ratelimits": [
+    { "name": "EVENTS_LIMIT", "namespace_id": "4101", "simple": { "limit": 30, "period": 60 } },
+    { "name": "RUNS_LIMIT", "namespace_id": "4102", "simple": { "limit": 3, "period": 60 } },
+    // One shared key: a ceiling on all event batches together, per Cloudflare location (limits are not global). Runs also have a daily ceiling in the code.
+    { "name": "EVENTS_ALL", "namespace_id": "4103", "simple": { "limit": 600, "period": 60 } }
+  ],
+  // Daily: store yesterday's aggregates, delete raw event batches older than two days, rebuild the run index.
+  "triggers": { "crons": ["17 4 * * *"] },
+  // No request logs: the lab must not keep addresses or headers.
+  "observability": { "enabled": false }
 }

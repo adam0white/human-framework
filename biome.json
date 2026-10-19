@@ -12,6 +12,8 @@
       "!.playwright-mcp",
       "!.claude",
       "!.worktrees",
+      "!.lab-inbox",
+      "!apps/site/src/lab/curated.json",
       "!**/test/fixtures/*.json"
     ]
   },

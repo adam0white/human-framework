@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="What the Human Framework game lab collects from players, what it never collects, and how to turn it off." />
+    <meta name="theme-color" content="#F3ECDD" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1E1B16" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <title>Lab privacy · Human Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500..700&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400&display=swap"
+    />
+    <link rel="stylesheet" href="/src/home/home.css" />
+    <link rel="stylesheet" href="/src/lab/lab.css" />
+  </head>
+  <body>
+    <div class="page lab privacy">
+      <header class="top">
+        <a class="mark" href="/"><span aria-hidden="true">◇</span> human framework</a>
+        <a class="top-link" href="/lab/">the lab</a>
+      </header>
+      <main>
+        <section class="hero">
+          <h1>How the lab handles what you send</h1>
+          <p class="lede">
+            The games on adamwhite.work send two kinds of things to the lab. Both go to one endpoint on
+            human.adamwhite.work and are stored in a private storage bucket. Updated 2026-10-19.
+          </p>
+        </section>
+
+        <section>
+          <h2>1. Anonymous play events</h2>
+          <p>Small, batched, and sent in the background while you play. Each batch holds only these fields:</p>
+          <table>
+            <thead>
+              <tr><th>Field</th><th>Example</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>game</td><td>pass</td><td>which game</td></tr>
+              <tr>
+                <td>session id</td>
+                <td>16 random letters and digits</td>
+                <td>
+                  to join the events of one visit. It is made at random, kept only in this tab’s sessionStorage,
+                  and gone when you close the tab. It is not a cookie and is not derived from your device.
+                </td>
+              </tr>
+              <tr><td>events</td><td>start; “service 3 done”; screen “night 2”; end. Names are fixed by the game; the server drops any name with an address or link in it.</td><td>where people stop, what they reach</td></tr>
+              <tr><td>time</td><td>milliseconds since the session started</td><td>how long a visit lasts</td></tr>
+              <tr><td>error</td><td>the type and place of an uncaught error, such as “TypeError at index-3f2a.js:12:345”, never its message; at most 5 per visit</td><td>to find broken builds</td></tr>
+              <tr><td>build</td><td>commit 01601bc, HF 2.8.0, game 0.1.0</td><td>which build you played</td></tr>
+              <tr><td>viewport class</td><td>phone, tablet or desktop (from the window width only)</td><td>to know if phones work</td></tr>
+            </tbody>
+          </table>
+          <p>The server adds one thing: the hour it was received (for example 2026-10-19T14). Nothing finer.</p>
+          <p>
+            <strong>Never collected:</strong> your name, email or account; cookies; IP address; user agent;
+            location or country; screen size in pixels, fonts or any other fingerprint; what you type.
+          </p>
+          <p>
+            <strong>Turned off</strong> when your browser sends Do Not Track or Global Privacy Control (checked in
+            the browser and again on the server), when you untick “anonymous play events” in a game’s send dialog
+            (remembered in that game’s localStorage), and on localhost.
+          </p>
+          <p>
+            <strong>Kept:</strong> raw batches are kept about two days. They are then folded into daily counts per
+            game (sessions, durations in five bands, milestone counts, last-screen counts, error counts, viewport
+            classes, builds) and deleted. Session ids do not survive that step. The daily counts are public on
+            <a href="/lab/">the lab page</a> and in <a href="/lab/data.json">/lab/data.json</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. A run you choose to send</h2>
+          <p>
+            Some games have “Send this run to the notebook”. Nothing is sent until you press Send. The dialog shows
+            the exact text first. It holds:
+          </p>
+          <ul>
+            <li>the game’s own playtest export: the seed, every input you made with its game time, and the game’s state, which is what the game’s “download run” button already saves;</li>
+            <li>an optional note, in your words;</li>
+            <li>an optional “who you are” label, such as “owner” or “a friend of Adam” (the dialog does not remember it);</li>
+            <li>the build, as above.</li>
+          </ul>
+          <p>
+            It is compressed in your browser (gzip) and stored privately. Runs and notes are never published, on
+            the lab page or anywhere else. The people building the games read them, replay them and quote short
+            lines from notes in the lab’s feedback ledger only when the line is about the game and has no personal
+            detail. The note is free text, so please do not put personal details in it.
+          </p>
+          <p>
+            After sending you get a reference like <code>r-abc123defg</code>. Nothing else ties a run to you, so
+            quote that reference (or the time and the label you used) to have a run removed: open an issue at
+            <a href="https://github.com/adam0white/human-framework/issues">github.com/adam0white/human-framework</a>
+            or tell Adam. Runs are kept until then or until the lab no longer needs them.
+          </p>
+          <p>A run can be at most 2 MB compressed (8 MB uncompressed). A few runs a minute are accepted from one place, and at most 200 a day in all.</p>
+        </section>
+
+        <section>
+          <h2>What else touches your visit</h2>
+          <ul>
+            <li>
+              Cloudflare serves these sites. To answer any request it sees your IP address, as every web host
+              does. The lab code uses the address only, in memory, to limit how often one place can send; it does
+              not store or log it, and Worker request logs are off.
+            </li>
+            <li>
+              human.adamwhite.work (and possibly the game sites) load Cloudflare Web Analytics, a separate cookieless
+              page-view counter. That is not part of the lab and is not described above.
+            </li>
+            <li>Fonts come from Google Fonts.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>The code</h2>
+          <p>
+            All of this is open source: the
+            <a href="https://github.com/adam0white/human-framework/tree/main/packages/lab-client">client</a>
+            and the
+            <a href="https://github.com/adam0white/human-framework/blob/main/apps/site/worker/lab.ts">endpoint</a>.
+          </p>
+        </section>
+      </main>
+      <footer class="foot">
+        <a href="/lab/">the lab</a>
+        <a href="/games/"><span aria-hidden="true">◇</span> all notebooks</a>
+      </footer>
+    </div>
+  </body>
+</html>

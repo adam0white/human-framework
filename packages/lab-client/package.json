@@ -1,0 +1,41 @@
+{
+  "name": "@adam0white/lab-client",
+  "version": "0.1.0",
+  "description": "The Human Framework game lab's client: anonymous play events and an opt-in \"send this run to the notebook\" dialog",
+  "keywords": [
+    "playtest",
+    "telemetry",
+    "privacy",
+    "games"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adam0white/human-framework.git",
+    "directory": "packages/lab-client"
+  },
+  "homepage": "https://github.com/adam0white/human-framework/tree/main/packages/lab-client#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "prepack": "npm run build"
+  }
+}

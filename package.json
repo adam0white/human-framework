@@ -31,7 +31,9 @@
     "deploy:check": "node scripts/deploy.ts --dry-run",
     "release": "node scripts/release.ts",
     "api-doc": "npm run build -w packages/human && node scripts/api-doc.ts",
-    "examples": "npm run examples -w packages/human"
+    "examples": "npm run examples -w packages/human",
+    "lab:ledger": "node scripts/lab-ledger.ts",
+    "lab:inbox": "node scripts/lab-inbox.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",

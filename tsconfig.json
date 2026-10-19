@@ -8,6 +8,9 @@
       "path": "packages/playtester"
     },
     {
+      "path": "packages/lab-client"
+    },
+    {
       "path": "apps/site"
     }
   ]

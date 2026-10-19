@@ -27,6 +27,8 @@ export default defineConfig({
         voice: resolve(root, 'voice/index.html'),
         watch: resolve(root, 'watch/index.html'),
         games: resolve(root, 'games/index.html'),
+        lab: resolve(root, 'lab/index.html'),
+        labPrivacy: resolve(root, 'lab/privacy/index.html'),
       },
     },
   },
