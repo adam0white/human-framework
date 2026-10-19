@@ -171,7 +171,7 @@ One panel that scrolls inside the viewport, in this order: a plain Eid summary (
 
 ## 9. Pacing and auto-pause beats
 
-Pace: Slow (default) 8 sim-min/s, Normal 20, Fast 60. While he sleeps, or during an activity with more than 30 minutes left and no beat due, time fast-forwards at 240 sim-min/s ("skipping: he sleeps until 08:00"). A played day takes about 2–4 real minutes. **Space toggles pause everywhere** (a global handler; it skips typing fields, advances the between-days card and keeps its native meaning on the report).
+Pace: Slow (default) 8 sim-min/s, Normal 20, Fast 60. While he sleeps, or during an activity with more than 30 minutes left and no beat due, time fast-forwards at 240 sim-min/s ("skipping: he sleeps until 08:00"). A played day takes about 2–4 real minutes with reading at the pauses; its running clock is about 45 seconds at Slow when he is mostly quiet (harness measure, 2026-10-19). **Space toggles pause everywhere** (a global handler; it skips typing fields, advances the between-days card and keeps its native meaning on the report).
 
 The closed list of beats (`sim/beats.ts`). With Auto-pause off a beat is logged with a highlight. Subject to a 20-sim-minute cooldown except where noted:
 
@@ -307,6 +307,36 @@ What the table shows:
 - **Thirteenth pass (HF 2.0, H2, 2026-10-04).** The recorded playtest (`apps/site/test/fixtures/playtest-voice.json`, seed 7, 1129 log entries) replays under 2.0.0 to the 1.9.0 state once the `engine` stamp is written back; re-recorded only for the stamps. The 2.0.0 `answerNow` fix for voices crowded out by `maxVoices` never fires here. `record.ts` drops constructor parameter properties for Node's loader (12-day skip bench 434 → 306 ms). Lesson: change the engine with the game frozen, measure, then change the game.
 - **Fourteenth pass (Stretch S1, 2026-10-06).** The month you never spoke in the report (§7.5): a silent replay of the seed beside the month as played, with its caption. The recorded playtest's hash is unchanged. Seed 7, Guardian against silence: Osman's date kept on Ramadan 15 and all paid by Eid against missed and paid Ramadan 17; he called Selin a few times against never; the clinic once against never; cigarettes on some days against most days; Selin's Eid call the same.
 
+## 16. 2026-10-19 level-up
+
+Owner direction (2026-10-19): bring the earlier games to the latest HF and apply the day's lessons. The game was audited by playing it through a text harness and by HF-character playtesters before anything changed.
+
+**Tools.** `apps/site/scripts/play-voice.ts` is a text harness that drives the sim directly and prints what the page shows (top bar, log, beat banner, composer with its telegraph, panes, between-days card, report with the month you never spoke); `help` lists the commands, and `export`/`load` read and write the page's playtest file. `apps/site/scripts/hf-voice-adapter.ts` and `hf-voice-session.ts` let the playtester package's personas play it (`node apps/site/scripts/hf-voice-session.ts seeds=2`).
+
+**Audit (seed 7, own play and the personas).**
+- The first choice comes at once: the suhoor prefill pauses about 0 s into play; a whole played day takes about 45 s of real play at Slow when quiet (the running clock only; §9 now says so). Every persona's frustration moment was a "Not now, after I rest/eat" deferral; no persona hit a long lull.
+- Dishonest hint: at the 07:59 wake the composer said "He's leaning toward rest at home" and offered no workshop; at 08:00 he went to the workshop. The leaning came from last night's decision, and the offers were those of 07:59 (the job opens at 08:00).
+- Free override: an urge that wins costs nothing and earns full trust, and insisting costs trust only when he is already pressed. On seed 7, insisting on every prefill kept Osman's date (300 on Ramadan 15) with the same end trust as confirming them, which missed it.
+- A dead pause: "He wants a cigarette" at 10:00 on a fasting day, after he had already turned it down, with nothing to say (already on Deferred).
+- A deadline with no moment: on Ramadan 30 the day card said Osman wants the rest "by tonight"; the night passed with no line and he paid on Shawwal 4.
+- A raw id: "On his mind: work-repair before 12:00".
+- Stale line: the Ramadan 2 card said Selin "asks about the clinic" after he had been on Ramadan 1.
+- Not changed, recorded: "Selin called." while he was at the mosque reads ambiguously (the call did connect); headless seeds 7 and 1002 produced the same month (the seed may matter little to the town; not traced); words left on the between-days card are very decisive and their habits do not carry past them (12/12 calls with the whisper, then 0 in 14 days).
+- HF 2.4–2.8: the fast is already declared to HF (an `abstain` commitment, N2b perception), so 2.6's fasting perception in the forecast does not apply and nothing was added. Promptings, muhasaba, fullness, the forecast and the fatigue store would add mechanics this game does not need; `decide(…, { reconsider })` for a re-asked word is the one that fits (deferred below).
+
+**Changed (rules 2, scenario `voice-2`).**
+1. *The wake is honest.* While he is waking, the composer offers what he can do at the minute he wakes, and the look-ahead, leaning, prefill and telegraph read that minute. Seed 7, quiet days 1–2: under rules 1 both 07:59 wake leanings were wrong (the suhoor ones were right); under rules 2 every wake leaning matched his next decision (`levelup.test.ts`); the workshop is now on offer at the 07:59 wake.
+2. *Insisting is not free.* Work done under protest (HF's `Activity.protest`, whose quality HF leaves to the host) has 0.6 of his usual chance of a good day (`PROTEST_WORK`, an engineering default); a bad day pays 40%. The telegraph says so when an insist on work would be done under protest: "Work done under protest tends to go worse, and pays less." Seed 7, insisting on every prefill: Osman's date kept on Ramadan 15 → paid on Ramadan 16. Urging and taking his yes is now the way to make the date by insisting less.
+3. *A craving he has already turned down pauses only when there is a word to say* (Deferred item "the 10:00 craving beat can fire after his decision"): it is logged without stopping the clock. The Eid first cigarette keeps its beat.
+4. *The end of Ramadan says what is still owed:* the Ramadan 30 card opens with "Ramadan ended with N still owed to Osman, short of the rest he wanted by tonight. Osman will keep calling on him about it."
+5. *The Ramadan 2 card* drops "she asks about the clinic" once he has been.
+6. *View only (all rules):* the morning job shows as "repair in the workshop" on his mind.
+7. *A view-safety fix:* under rules 2, asking the town what he can do never moves the town's bookkeeping clock, so a frame drawn while he sleeps cannot change the state (it could under rules 1; the timing of the pinned fixture never hit it).
+
+Faith: unchanged. No line about fasting was added; the debt and craving lines name no practice.
+
+**Saves.** New games are rules 2 and export `scenario: "voice-2"`. A `voice-1` file (from before this pass) still loads: the worker, the harness and the tests read the file's scenario first and replay it under rules 1, so it reaches its recorded hash (`rules` is left out of the hash for rules 1). The pinned fixture `apps/site/test/fixtures/playtest-voice.json` is a voice-1 file, still replays to its hash, and `PLAYTEST_REGEN` now regenerates it under rules 1. `levelup.test.ts` holds the five changes against rules 1 and a voice-1 file loading. Any other scenario is refused with the shared message.
+
 ## Deferred
 
 Open, unbuilt or unconfirmed items from the design, the build plan and its fourteen passes. Target is "unscheduled" unless stated.
@@ -318,7 +348,7 @@ Open, unbuilt or unconfirmed items from the design, the build plan and its fourt
 - "Sleep in after suhoor" has no cost: he refuses it. The design reviewer recommended cutting it; it stays because the user named it as an example and the refusal shows his will. Unscheduled.
 - Whether the between-days whispers are too decisive (the shift whisper alone keeps Osman's date). For a playtest to judge. Unscheduled.
 - Whether the smoking arc reads as progress: walks lower the after-meal habit, but the hour-10 habit is untouched and Eid cigarettes stay noise (2–6) in every style. For a playtest to judge. Unscheduled.
-- Whether insisting on something he would do anyway should cost anything. Unscheduled.
+- Whether insisting on something he would do anyway should cost anything. Partly answered 2026-10-19: work under protest now goes worse (§16); an urge he says yes to still costs nothing (an HF question, proposed for HF 2.9). Unscheduled.
 - Whether a missed promise should cost Osman's standing toward Halil (today only his demand strengthens). A framework change with a balance pass to follow. Unscheduled.
 
 **Game and town**
@@ -331,7 +361,8 @@ Open, unbuilt or unconfirmed items from the design, the build plan and its fourt
 - A voice proposing a resolve via `precommit`. Unscheduled.
 - Selin's visit, Deniz and Deniz's Eid gift (no new Persons). Unscheduled.
 - `visit-grave` never wins. Unscheduled.
-- The 10:00 craving beat can fire after his decision. Unscheduled.
+- Re-asking after a "Not now" (every HF persona's frustration moment, 2026-10-19): use HF's `decide(…, { reconsider: true })` when the player repeats a deferred word, so he weighs it afresh without the running activity's inertia. Needs a rules version. Target: the next voice pass.
+- "Selin called." does not say they spoke when he was at the mosque or out (2026-10-19 audit). Needs a rules version (log text is state). Target: the next voice pass.
 - Day-0 windows already passed at creation (ashamed/proud at 03:40): the fourth pass removed the "a prayer missed" case; the rest is unconfirmed. Unscheduled.
 - Zakat al-fitr: not represented until `research/` sources its amount and deadline. Unscheduled.
 - Low-priority: toolbar height and a favicon 404 (second pass). Unscheduled.

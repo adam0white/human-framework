@@ -56,6 +56,7 @@ import {
   type StandingWhisper,
   type Telegraph,
   type VoiceId,
+  type VoiceRules,
   type WhyView,
   type WorkerReply,
 } from '../protocol.ts';
@@ -106,6 +107,12 @@ export { SHIPPED_SEED };
 export const PLAYED_DAYS = [1, 2, 15, 30] as const;
 /** A played day ends at this minute of the day (voice.md §5). */
 export const DAY_END = 23 * 60 + 30;
+/**
+ * Rules 2: the share of his usual chance of a good day's work left when he works under protest (an engineering
+ * default; HF's `Activity.protest` leaves quality and speed to the host). A bad day pays 40%, so insisting on a shift
+ * he would refuse brings in less on average than the same shift taken willingly.
+ */
+export const PROTEST_WORK = 0.6;
 export const FAST_FORWARD = 240;
 /** Per-tick minute caps (the worker clamps dt to 250 ms): normal play, and fast-forward. */
 export const MAX_MINUTES_PER_TICK = 15;
@@ -218,6 +225,11 @@ const DAILY_PRAYERS = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
 
 export class VoiceGame {
   seed: number;
+  /**
+   * The rules this run plays by (protocol `VOICE_RULES`): 1 is the game as released before the 2026-10-19 level-up,
+   * kept so voice-1 playtest files replay exactly; 2 is the level-up. Not hashed when 1 (record.ts).
+   */
+  rules: VoiceRules;
   run: Run;
   phase: Phase = 'premise';
   paused = true;
@@ -297,9 +309,11 @@ export class VoiceGame {
   private quiet = false;
   private muted = false;
 
-  constructor(seed: number = SHIPPED_SEED) {
+  constructor(seed: number = SHIPPED_SEED, rules: VoiceRules = 2) {
     this.seed = seed;
-    this.run = newRun(seed);
+    this.rules = rules;
+    // Rules 2: work he does under protest goes worse (HF leaves an act's quality under protest to the host).
+    this.run = newRun(seed, rules >= 2 ? { protestWork: PROTEST_WORK } : {});
     stepCommunity(this.run.c, this.run.town, TOWN_GAME_START, {});
     const h = this.halil;
     this.trustStart = voiceOf(h, 'you')?.trust ?? 0.5;
@@ -377,7 +391,23 @@ export class VoiceGame {
   }
 
   offers(): Affordance[] {
-    return this.run.town.affordancesFor(this.halil);
+    // Rules 2 (level-up 2026-10-19): at the wake the composer offers what he can do at the minute he wakes, not the
+    // minute before (playtest: at 07:59 the workshop, which opens at 08:00, was missing and the leaning was stale).
+    if (this.rules < 2) return this.run.town.affordancesFor(this.halil);
+    // Rules 2: asking what he can do writes nothing. The town's offers move its bookkeeping clock to the asker's
+    // minute, so a view (a frame while he sleeps) could move it ahead of the sim; it is put back.
+    const st = this.run.town.state;
+    const was = st.now;
+    const act = this.halil.activity;
+    let who = this.halil;
+    if (act && this.waking()) {
+      // The town's offers read the person's clock: ask with a copy standing at the waking minute.
+      who = this.ghost();
+      who.now = act.endsAt;
+    }
+    const out = this.run.town.affordancesFor(who);
+    st.now = was;
+    return out;
   }
 
   /** Whether a standing whisper is in force now: within its hours, and (a word against an act) while he leans to it. */
@@ -417,9 +447,18 @@ export class VoiceGame {
               : r.verdict === 'modified'
                 ? `He’d do something like it: ${counter ?? r.says}`
                 : `Not now — ${counter ?? r.says}`;
+    // Rules 2: say the cost of work under protest where the player decides on it.
+    const work = this.offers().find((o) => o.id === draft.optionId)?.action === 'work-repair';
+    const worse =
+      this.rules >= 2 && tone === 'protest' && work
+        ? ' Work done under protest tends to go worse, and pays less.'
+        : '';
     const out: Telegraph = {
       tone,
-      text: draft.insist && tone === 'yes' ? `${text} You insisted, so it earns you no trust.` : text,
+      text:
+        draft.insist && tone === 'yes'
+          ? `${text} You insisted, so it earns you no trust.`
+          : `${text}${worse}`,
       says: r.says,
       reason: r.reason,
     };
@@ -734,7 +773,13 @@ export class VoiceGame {
     const since = this.halilCalledAt === undefined ? undefined : day - dayOf(this.halilCalledAt);
     if (since === undefined) out.push('He has not called Selin himself since the funeral.');
     else if (since >= 2) out.push(`He has not called Selin himself in ${since} days.`);
-    if (day === 2) out.push('Selin often calls after iftar, and she asks about the clinic.');
+    // Rules 2: she asks about the clinic only while he has not been (the line was stale after a visit on day 1).
+    if (day === 2)
+      out.push(
+        this.rules >= 2 && (st.completed.halil?.['see-doctor'] ?? 0) > 0
+          ? 'Selin often calls after iftar.'
+          : 'Selin often calls after iftar, and she asks about the clinic.',
+      );
     if (day === lastFast) out.push('Tomorrow is Eid. Then you say nothing, and see what he does.');
     return out;
   }
@@ -1428,7 +1473,14 @@ export class VoiceGame {
           continue;
         const text = c.action === 'smoke' ? 'He wants a cigarette.' : `He wants to ${c.label ?? c.action}.`;
         this.push({ kind: 'feel', who: 'halil', text, decisionId: r.id, beat: 'craving' }, r.at);
-        this.beat('craving', text, r.at);
+        // Rules 2: a craving he has already turned down stops the clock only when there is a word to say to it
+        // (voice.md Deferred: the 10:00 craving beat paused after his decision with nothing to act on).
+        this.beat(
+          'craving',
+          text,
+          r.at,
+          this.rules >= 2 ? { canPause: this.prefillNow() !== undefined } : {},
+        );
       }
     }
     const chosen = r.considered.find((c) => c.affordanceId === r.chosenAffordanceId);
@@ -1707,6 +1759,13 @@ export class VoiceGame {
     if (d === TOWN_DEFAULTS.rentPromiseDay && this.dateMissed(this.t))
       lines.unshift(
         `He missed Osman’s date: ${TOWN_DEFAULTS.rent} by 20:00, and he paid nothing. Osman presses harder from now.`,
+      );
+    // Rules 2: the end of Ramadan was Osman's second date ("the rest by tonight"); when it passes short, say so on
+    // the day it passes, with what follows (he keeps calling about it), instead of letting it lapse unseen.
+    const owedNow = Math.round(this.run.town.state.rentOwed);
+    if (this.rules >= 2 && d === TOWN_EID_DAY - 1 && owedNow > 0)
+      lines.unshift(
+        `Ramadan ended with ${owedNow} still owed to Osman, short of the rest he wanted by tonight. Osman will keep calling on him about it.`,
       );
     this.between = {
       closed: `${dayLabel(d)} is over.`,

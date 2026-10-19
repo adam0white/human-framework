@@ -13,7 +13,7 @@
  * not logged: the replay test checks that calling them leaves the hash unchanged. Does not cover: the worker's
  * frame throttling (a view concern) or `carry` (the fraction of a minute real time left over).
  */
-import { check, hashState, pushRun } from '../../shared/playtest.ts';
+import { check, hashState, type PlaytestFile, parsePlaytest, pushRun } from '../../shared/playtest.ts';
 import {
   type Appeal,
   type Draft,
@@ -21,6 +21,9 @@ import {
   type Pace,
   type StandingWhisper,
   type Strength,
+  scenarioIn,
+  VOICE_RULES,
+  type VoiceRules,
   WHISPER_DEFAULT,
 } from '../protocol.ts';
 import { MAX_FF_MINUTES_PER_TICK, type Run, VoiceGame } from './game.ts';
@@ -101,9 +104,22 @@ export interface VoiceReplay {
   driftAt: number;
 }
 
-/** Replay a seed and a log from the start. */
-export function replayVoice(seed: number, log: readonly VoiceLogEntry[]): VoiceReplay {
-  const rec = new RecordedGame(new VoiceGame(seed));
+/**
+ * Parse a voice playtest file against its own scenario (voice-1 or voice-2), with the rules it replays under. A file
+ * of any other scenario is refused with the shared message.
+ */
+export function parseVoicePlaytest(
+  text: string,
+  maxBytes?: number,
+): { file: PlaytestFile<VoiceLogEntry>; rules: VoiceRules } {
+  const scenario = scenarioIn(text);
+  const file = parsePlaytest(text, 'voice', scenario, validateVoiceLog, maxBytes);
+  return { file, rules: VOICE_RULES[scenario] };
+}
+
+/** Replay a seed and a log from the start, under the rules the log was recorded with (default the current rules). */
+export function replayVoice(seed: number, log: readonly VoiceLogEntry[], rules: VoiceRules = 2): VoiceReplay {
+  const rec = new RecordedGame(new VoiceGame(seed, rules));
   let driftAt = -1;
   log.forEach((e, i) => {
     if (Array.isArray(e)) {
@@ -128,6 +144,8 @@ export function voiceState(g: VoiceGame): Record<string, unknown> {
   const out: Record<string, unknown> = {};
   for (const [k, v] of Object.entries(g)) {
     if (k === 'carry' || k === 'outbox') continue;
+    // Rules 1 runs hash as they did before the field existed, so voice-1 files keep their recorded hash.
+    if (k === 'rules' && v === 1) continue;
     if (k === 'run') out[k] = runState(v as Run);
     else if ((k === 'eidNight' || k === 'eidMorning') && v) {
       const { run, ...rest } = v as { run: Run };

@@ -8,8 +8,28 @@
  */
 import type { PlaytestFile, ReplayResult } from '../shared/playtest.ts';
 
-/** The scenario the worker runs; `init.scenarioVersion` must equal it. */
-export const VOICE_SCENARIO_VERSION = 'voice-1';
+/**
+ * The scenario the worker runs for a new game; `init.scenarioVersion` must equal it. Level-up 2026-10-19 (voice.md):
+ * 'voice-2' changes the rules (the waking choice, work under protest, the fast-hour craving, the end of Ramadan's
+ * debt line); a playtest file of either scenario still loads and replays under its own rules.
+ */
+export const VOICE_SCENARIO_VERSION = 'voice-2';
+/** The rules each scenario a playtest file may carry is replayed under. */
+export const VOICE_RULES = { 'voice-1': 1, 'voice-2': 2 } as const;
+export type VoiceRules = (typeof VOICE_RULES)[keyof typeof VOICE_RULES];
+/** The scenario a game of these rules writes in its playtest file. */
+export const scenarioOf = (rules: VoiceRules): keyof typeof VOICE_RULES =>
+  rules === 1 ? 'voice-1' : 'voice-2';
+/** A playtest file's scenario, read before validation so the file is checked against its own scenario. */
+export function scenarioIn(text: string): keyof typeof VOICE_RULES {
+  try {
+    const s = (JSON.parse(text) as { scenario?: unknown }).scenario;
+    if (typeof s === 'string' && s in VOICE_RULES) return s as keyof typeof VOICE_RULES;
+  } catch {
+    // Not JSON: the validator says so.
+  }
+  return VOICE_SCENARIO_VERSION;
+}
 
 export type Pace = 'slow' | 'normal' | 'fast';
 export type Phase = 'premise' | 'day' | 'between' | 'eid' | 'report' | 'free';

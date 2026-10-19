@@ -14,13 +14,15 @@
  * kept, by seed; the game is dropped.
  */
 import { ENGINE_VERSION } from '@adam0white/human-framework';
-import { makePlaytestFile, PlaytestError, parsePlaytest, replayResult } from '../shared/playtest.ts';
+import { makePlaytestFile, PlaytestError, replayResult } from '../shared/playtest.ts';
 import { hostWorker } from '../shared/worker-host.ts';
 import {
   type Frame,
   type MainToWorker,
   type ReportView,
+  scenarioOf,
   VOICE_SCENARIO_VERSION,
+  type VoiceRules,
   type WorkerReply,
 } from './protocol.ts';
 import {
@@ -33,20 +35,22 @@ import {
   startSilentMonth,
 } from './sim/counterfactual.ts';
 import { VoiceGame } from './sim/game.ts';
-import { RecordedGame, replayVoice, validateVoiceLog, voiceHash, voiceSnapshot } from './sim/record.ts';
+import { parseVoicePlaytest, RecordedGame, replayVoice, voiceHash, voiceSnapshot } from './sim/record.ts';
 
 let rec: RecordedGame | null = null;
 /** The silent game being stepped for the current run's seed (dropped once its facts are read, or on a new seed). */
 let shadow: SilentMonth | null = null;
 /** The finished silent month's facts, by seed (a Replay of the same seed reuses them). */
-let silentFacts: { seed: number; facts: MonthFacts } | null = null;
+let silentFacts: { seed: number; rules: VoiceRules; facts: MonthFacts } | null = null;
 /** Wall time asked of the silent game per tick; one headless turn (a whole skip) can run past it (voice.md §7.5). */
 const SILENT_SLICE_MS = 6;
 
-/** Drop a silent game that belongs to another seed. */
-function dropStale(seed: number): void {
-  if (shadow && shadow.seed !== seed) shadow = null;
+/** Drop a silent game that belongs to another seed or other rules (a replayed voice-1 file). */
+function dropStale(seed: number, rules: VoiceRules): void {
+  if (shadow && (shadow.seed !== seed || shadow.game.rules !== rules)) shadow = null;
 }
+const factsHeld = (seed: number, rules: VoiceRules) =>
+  silentFacts?.seed === seed && silentFacts.rules === rules;
 
 /**
  * Step the silent game a little while the player is reading (the clock is stopped: a pause, a card, an intro), so a
@@ -54,22 +58,22 @@ function dropStale(seed: number): void {
  */
 function stepSilent(game: VoiceGame): void {
   if (game.phase === 'premise' || game.phase === 'report' || game.phase === 'free') return;
-  if (silentFacts?.seed === game.seed) return;
+  if (factsHeld(game.seed, game.rules)) return;
   if (!(game.paused || game.intro || game.phase === 'between')) return;
-  dropStale(game.seed);
-  shadow ??= startSilentMonth(game.seed);
+  dropStale(game.seed, game.rules);
+  shadow ??= startSilentMonth(game.seed, game.rules);
   if (advanceSilentMonth(shadow, SILENT_SLICE_MS)) {
-    silentFacts = { seed: game.seed, facts: monthFacts(shadow.game) };
+    silentFacts = { seed: game.seed, rules: game.rules, facts: monthFacts(shadow.game) };
     shadow = null;
   }
 }
 
 /** The silent month's facts for `seed`, running whatever the slices left synchronously (about 1.1 s whole). */
-function factsFor(seed: number): MonthFacts {
-  if (silentFacts?.seed === seed) return silentFacts.facts;
-  dropStale(seed);
-  const facts = monthFacts(finishSilentMonth(shadow ?? startSilentMonth(seed)));
-  silentFacts = { seed, facts };
+function factsFor(seed: number, rules: VoiceRules): MonthFacts {
+  if (silentFacts && factsHeld(seed, rules)) return silentFacts.facts;
+  dropStale(seed, rules);
+  const facts = monthFacts(finishSilentMonth(shadow ?? startSilentMonth(seed, rules)));
+  silentFacts = { seed, rules, facts };
   shadow = null;
   return facts;
 }
@@ -78,7 +82,7 @@ function factsFor(seed: number): MonthFacts {
 function withSilent(game: VoiceGame, view: ReportView): ReportView {
   return {
     ...view,
-    silent: silentMonthView(game, view.spoke === false ? undefined : factsFor(game.seed)),
+    silent: silentMonthView(game, view.spoke === false ? undefined : factsFor(game.seed, game.rules)),
   };
 }
 /**
@@ -119,7 +123,7 @@ async function exportPlaytest(r: RecordedGame): Promise<void> {
   const file = await makePlaytestFile({
     game: 'voice',
     seed: g.seed,
-    scenario: VOICE_SCENARIO_VERSION,
+    scenario: scenarioOf(g.rules),
     minute: g.t,
     log: structuredClone(r.log),
     hash: voiceHash(g),
@@ -131,9 +135,10 @@ async function exportPlaytest(r: RecordedGame): Promise<void> {
 
 /** Validate and replay a file; only then does it replace the current run (a bad file leaves the run as it was). */
 function loadPlaytest(text: string, nextGen: number): void {
-  const f = parsePlaytest(text, 'voice', VOICE_SCENARIO_VERSION, validateVoiceLog);
-  dropStale(f.seed);
-  const { rec: replayed, driftAt } = replayVoice(f.seed, f.log);
+  // A file replays under its own scenario's rules (voice-1 files from before the 2026-10-19 level-up included).
+  const { file: f, rules } = parseVoicePlaytest(text);
+  dropStale(f.seed, rules);
+  const { rec: replayed, driftAt } = replayVoice(f.seed, f.log, rules);
   const g = replayed.game;
   // Hash first: pausing for the page changes the state.
   const result = replayResult(f, voiceHash(g), ENGINE_VERSION, g.t, driftAt);
@@ -154,7 +159,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
   if (msg.type === 'init') {
     host.gen = msg.gen;
     lastFields = new Map();
-    dropStale(msg.seed);
+    dropStale(msg.seed, 2);
     if (msg.scenarioVersion !== VOICE_SCENARIO_VERSION) {
       rec = null;
       host.post({

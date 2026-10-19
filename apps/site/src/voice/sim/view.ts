@@ -249,7 +249,11 @@ export function halilView(h: Person, town: Town, t: number, start?: Record<strin
     .sort((a, b) => a.until - b.until)
     .slice(0, 6)
     .map((c) => {
-      const label = commitmentLabel(c.label, c.actions[0], c.kind);
+      // Level-up 2026-10-19: the morning job's label is its action id ('work-repair'); show its words.
+      const label =
+        c.kind === 'job'
+          ? (ACTION_LABEL[c.label ?? ''] ?? commitmentLabel(c.label, c.actions[0], c.kind))
+          : commitmentLabel(c.label, c.actions[0], c.kind);
       // Game design review (GD8): the engine runs each prayer window to the next prayer (agenda/prayer.ts), so
       // Fajr shows as open until Dhuhr. That is an engineering simplification, labelled as one; when Fajr's time
       // ends is not sourced in research/ (HANDOFF deferred question), so the label states no end of its own.

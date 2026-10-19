@@ -8,6 +8,9 @@
  *   PLAYTEST_REGEN=1 npx vitest run apps/site/src/voice/sim/playtest.test.ts apps/site/src/colony/sim/playtest.test.ts
  *
  * (fish: `env PLAYTEST_REGEN=1 npx vitest run ...`). Then run the same command without the variable.
+ *
+ * Level-up 2026-10-19: the fixture is a voice-1 file and stays one. It replays under rules 1 (its own scenario);
+ * regenerating it records rules 1 too, so the pinned file never silently becomes a voice-2 run.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -23,10 +26,11 @@ import {
   type PlaytestFile,
   parsePlaytest,
 } from '../../shared/playtest.ts';
-import { defaultWhisper, VOICE_SCENARIO_VERSION } from '../protocol.ts';
+import { defaultWhisper, scenarioOf, VOICE_SCENARIO_VERSION, type VoiceRules } from '../protocol.ts';
 import { SHIPPED_SEED, VoiceGame } from './game.ts';
 import { type Driver, play } from './headless.ts';
 import {
+  parseVoicePlaytest,
   RecordedGame,
   replayVoice,
   type VoiceLogEntry,
@@ -46,8 +50,8 @@ const TICKS = [16, 17, 250, 33, 8, 120, 16, 1000, 0, 49];
  * A full run driven like the worker: real-time ticks, with `frame`, `predict` and `why` called as the page would
  * (they are not logged, so they must not change the state).
  */
-function recordRun(views = true): RecordedGame {
-  const rec = new RecordedGame(new VoiceGame(SHIPPED_SEED));
+function recordRun(views = true, rules: VoiceRules = 2): RecordedGame {
+  const rec = new RecordedGame(new VoiceGame(SHIPPED_SEED, rules));
   let n = 0;
   const driver: Driver = {
     game: rec.game,
@@ -86,7 +90,7 @@ const fixtureFile = (rec: RecordedGame) =>
   makePlaytestFile<VoiceLogEntry>({
     game: 'voice',
     seed: rec.game.seed,
-    scenario: VOICE_SCENARIO_VERSION,
+    scenario: scenarioOf(rec.game.rules),
     minute: rec.game.t,
     log: rec.log,
     hash: voiceHash(rec.game),
@@ -98,7 +102,7 @@ describe('Game 2 playtest files', () => {
   test.skipIf(!REGEN)(
     'regenerate the fixture (PLAYTEST_REGEN=1)',
     async () => {
-      const rec = recordRun();
+      const rec = recordRun(true, 1);
       expect(rec.game.phase).toBe('report');
       writeFileSync(FIXTURE, `${JSON.stringify(await fixtureFile(rec))}\n`);
     },
@@ -108,13 +112,10 @@ describe('Game 2 playtest files', () => {
   test.skipIf(REGEN)(
     'the committed fixture replays to its hash',
     () => {
-      const f = parsePlaytest(
-        readFileSync(FIXTURE, 'utf8'),
-        'voice',
-        VOICE_SCENARIO_VERSION,
-        validateVoiceLog,
-      );
-      const { rec, driftAt } = replayVoice(f.seed, f.log);
+      const { file: f, rules } = parseVoicePlaytest(readFileSync(FIXTURE, 'utf8'));
+      expect(f.scenario).toBe('voice-1');
+      expect(rules).toBe(1);
+      const { rec, driftAt } = replayVoice(f.seed, f.log, rules);
       expect(driftAt).toBe(-1);
       expect(rec.game.phase).toBe('report');
       expect(rec.game.t).toBe(f.minute);

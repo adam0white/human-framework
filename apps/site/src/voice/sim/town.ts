@@ -304,6 +304,11 @@ export interface TownOptions {
   rentDueDay?: number;
   /** Resume over this existing state (a deep clone of another town's `state`); `seed` is then ignored. */
   state?: TownState;
+  /**
+   * Work done under protest (`Activity.protest`, after the player insisted): its chance of a good day is multiplied
+   * by this (Game 2 rules 2, `PROTEST_WORK`). Absent: protest does not change the work (rules 1, and the town save).
+   */
+  protestWork?: number;
 }
 
 const HALIL_LEXICON: Lexicon = {
@@ -1335,7 +1340,11 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
           state.lastExtra ??= {};
           state.lastExtra[p.id] = dayOf(p.now);
         } else state.lastWorked[p.id] = dayOf(p.now);
-        const ok = chance(state.rng, successChance(p, skillId, aff.skill?.difficulty ?? 0.3, capacity));
+        const willing = act.protest && opts.protestWork !== undefined ? opts.protestWork : 1;
+        const ok = chance(
+          state.rng,
+          willing * successChance(p, skillId, aff.skill?.difficulty ?? 0.3, capacity),
+        );
         const pay = aff.material ?? (act.affordanceId === 'work-extra' ? T.extraWage : 0);
         const earned = ok ? pay : pay * 0.4;
         state.money[p.id] = (state.money[p.id] ?? 0) + earned;
