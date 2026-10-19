@@ -124,3 +124,13 @@ Filed by The Valley ([valley](https://github.com/adam0white/valley), `docs/hf-re
 - **Valley 4, `tellDeath` with listeners past the death.** In a mixed full and routine community some listeners have already lived past the death minute; `tellDeath` throws for them. Workaround: catch, and those people do not hear. Proposal: a tolerant mode that delivers at the listener's `now`.
 - **Valley 5, a canonical form for saved persons.** `restore(snapshot(p))` reorders keys and drops an empty `family`, so a plain JSON fingerprint changes across a save. Workaround: sorted keys and a dropped empty `family` before hashing. Proposal: document the canonical form or export `fingerprint(person)`.
 - **Valley 6, memory bounded per person.** About 90 to 100 KB of JSON per person after a month, of which memory is about 42 KB and is not bounded by `Retention`; a 60-person valley saves at several megabytes. Workaround: IndexedDB with gzip. Proposal: an episode bound in `Retention` (per actor, or by salience).
+
+## The Two Voices (2026-10-19, against HF 2.8.0)
+
+Source: `docs/hf-requests.md` in `adam0white/murmur`. Items 1, 2 and 5 were checked against the 2.8.0 dist. The game works around each one in the host.
+
+- **Voices 1, one completion keeps one commitment, even with `fulfills`.** `onFinished` keeps only the earliest-ending match, even when `outcome.fulfills` lists several. A dinner should keep "my word to Aylin" and also the daily "my call to Mum"; the host stages a second five-minute act. Proposal: keep every commitment listed explicitly in `fulfills`, and apply the earliest-ending rule only to action matching.
+- **Voices 2, one turning-away response serves every prompt.** `bestResponse` uses the most practised response whatever the cue, so a phrase learned at the alarm also turns her away from gossip. Proposal: an optional `cue` on `PromptingResponse` (action, tag or norm), preferred when it matches, with the global best as fallback.
+- **Voices 3, `reviewLine` needs noun-phrase labels.** "I didn't keep calling Mum" reads badly, so labels are written as "my call to Mum". The Pass reported the same. Proposal: document this, or add an optional `reviewLabel`.
+- **Voices 4, goals cannot weigh against a temptation.** Goal terms are never negative. Assumed intended; a line in docs/api.md would settle it.
+- **Voices 5, host-set practice half-life.** The practice half-life is fixed at 60 days, and `enablePromptings` keeps existing practice. A one-week game has no public way to make a phrase fade, so the host scales `practice` nightly, writing into HF-owned state. Proposal: `practiceHalfLifeDays` in `enablePromptings`, or per response.
