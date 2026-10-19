@@ -7,9 +7,9 @@
  * `snapshot()`), its hash, a slim snapshot, and `replayColony` (replay to the file's minute). Does not cover: the
  * Solo control (built lazily by `summary()`; it is a second game from the same seed with no orders).
  */
-import { check, hashState } from '../../shared/playtest.ts';
+import { check, hashState, type PlaytestFile, parsePlaytest } from '../../shared/playtest.ts';
 import { ColonyGame, type LogEntry } from './game.ts';
-import type { HumanSideFactory } from './human-side.ts';
+import { type ColonyRules, CURRENT_RULES, type HumanSideFactory, rulesOf, scenarioOf } from './human-side.ts';
 import { PLACES, type PlaceId } from './map.ts';
 import { APPEALS, type AppealChip, type OrderInput } from './orders.ts';
 import { DAY3_END, VILLAGERS, type VillagerId } from './world-types.ts';
@@ -17,7 +17,8 @@ import { DAY3_END, VILLAGERS, type VillagerId } from './world-types.ts';
 export function colonyState(g: ColonyGame): Record<string, unknown> {
   const out: Record<string, unknown> = {};
   for (const [k, v] of Object.entries(g)) {
-    if (k === 'factory' || k === 'soloGame') continue;
+    // `rules` is named by the file's scenario string; `news` is the page's recent-injury line, derived from the steps.
+    if (k === 'factory' || k === 'soloGame' || k === 'rules' || k === 'news') continue;
     out[k] = k === 'human' ? g.human.snapshot() : v;
   }
   return out;
@@ -43,8 +44,24 @@ export function replayColony(
   factory: HumanSideFactory,
   log: readonly LogEntry[],
   minute: number,
+  rules: ColonyRules = CURRENT_RULES,
 ): ColonyGame {
-  return ColonyGame.replay(seed, factory, log, minute);
+  return ColonyGame.replay(seed, factory, log, minute, rules);
+}
+
+/**
+ * Parse a playtest file under the rules it names: this build replays every scenario in `RULES` (an @3 save replays
+ * under the @3 rules it was played with). Any other version is refused by `parsePlaytest` with both names.
+ */
+export function parseColonyPlaytest(text: string): { file: PlaytestFile<LogEntry>; rules: ColonyRules } {
+  let named: unknown;
+  try {
+    named = (JSON.parse(text) as { scenario?: unknown } | null)?.scenario;
+  } catch {
+    named = undefined;
+  }
+  const rules = rulesOf(named) ?? CURRENT_RULES;
+  return { file: parsePlaytest(text, 'colony', scenarioOf(rules), validateColonyLog), rules };
 }
 
 const PLACE_IDS = PLACES.map((p) => p.id) as PlaceId[];

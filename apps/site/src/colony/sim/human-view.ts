@@ -15,6 +15,7 @@ import {
 import { gm, NORM_LABELS } from './human-cast.ts';
 import type {
   BubbleKind,
+  ColonyRules,
   EmotionView,
   NeedBar,
   TermFamily,
@@ -66,11 +67,29 @@ export interface NotOnOffer {
   short: string;
 }
 
-/** The person's line, with this host's wording where the framework has none. */
-export function sayLine(r: SuggestionResolution): string {
+/**
+ * Rules 4: the reason a "something else instead" answer gives, from the resolution's own `reason` (the term that won
+ * the decision), so the line says why in the moment. The framework's "Not that — I'll draw water." names only
+ * the alternative; on a map that reads as a whim (audit 2026-10-19: Danyal, Samira and Idris, on every seed).
+ */
+const MODIFIED_BECAUSE: Record<string, string> = {
+  'goal:role': 'that is my work',
+  'need:water': 'I am thirsty',
+  'need:food': 'I am hungry',
+  'need:rest': 'I am worn out',
+  'need:sleep': 'I can hardly stand',
+  'need:safety': 'it is not safe out there',
+};
+
+/** The person's line, with this host's wording where the framework has none. `rules` 3 keeps the @3 lines. */
+export function sayLine(r: SuggestionResolution, rules: ColonyRules = 3): string {
   if (r.verdict === 'refused' && r.kind === 'willNot') {
     const own = HOST_REFUSALS[r.reason];
     if (own) return own;
+  }
+  if (rules >= 4 && r.verdict === 'modified' && r.counterOffer) {
+    const because = MODIFIED_BECAUSE[r.reason];
+    if (because) return `Not that — I'll ${r.counterOffer.label}; ${because}.`;
   }
   return r.says;
 }
@@ -276,8 +295,25 @@ export function thoughtText(p: Person, record: DecisionRecord): string {
   return text;
 }
 
+/**
+ * The why panel's line when the running job was kept although a rival scored higher: the framework keeps the current
+ * activity unless a change beats it by `switchMargin`, which is not a listed term, so without this line the panel
+ * shows the lower number winning (audit 2026-10-19: "Draw water 0.35" chosen over "Gather grain 0.40").
+ */
+function keptAtIt(record: DecisionRecord, chosen: Considered | undefined): string | null {
+  if (!chosen || !record.review) return null;
+  const best = Math.max(...record.considered.map((c) => (c.vetoed ? -Infinity : c.utility)));
+  if (best <= chosen.utility) return null;
+  return `${capital(chosen.label ?? chosen.action)}: already at it, and a change has to be clearly better.`;
+}
+
 /** The why panel for one decision. */
-export function whyOf(p: Person, record: DecisionRecord, trust: TrustView): WhyBreakdown {
+export function whyOf(
+  p: Person,
+  record: DecisionRecord,
+  trust: TrustView,
+  rules: ColonyRules = 3,
+): WhyBreakdown {
   const label = commitmentLabeler(p);
   const chosen = record.considered.find((c) => c.affordanceId === record.chosenAffordanceId);
   const others = record.considered.filter((c) => c !== chosen);
@@ -305,7 +341,7 @@ export function whyOf(p: Person, record: DecisionRecord, trust: TrustView): WhyB
     personId: p.id as VillagerId,
     decisionId: record.id,
     minute: gm(record.at),
-    narration: thoughtText(p, record),
+    narration: keptAtIt(record, chosen) ?? thoughtText(p, record),
     intention: record.intention,
     options,
     deltas,
@@ -316,7 +352,7 @@ export function whyOf(p: Person, record: DecisionRecord, trust: TrustView): WhyB
   if (r) {
     out.verdict = {
       kind: verdictKind(r),
-      says: sayLine(r),
+      says: sayLine(r, rules),
       reason: r.reason,
       ...(r.counterOffer ? { counterOffer: r.counterOffer.label } : {}),
     };
@@ -331,6 +367,8 @@ const TRUST_LABELS: Record<string, (action: string) => string> = {
   'went-badly': (a) => `Went badly: ${a}`,
   harm: (a) => `Hurt by your order: ${a}`,
   'harm-under-protest': (a) => `Made to ${a} against his word`,
+  'promise-broken': (a) => `You said ${a} would be safer`,
+  'promise-kept': (a) => `Safe, as you said: ${a}`,
 };
 
 const ACTION_WORDS: Record<string, string> = {

@@ -4,15 +4,18 @@
  * HumanSide, and settles cards. No DOM and no wall clock: the worker decides how many minutes to advance.
  */
 import { ClassicSim, classicLabel, unitState } from './classic.ts';
-import type {
-  BubbleKind,
-  HumanSide,
-  HumanSideFactory,
-  MomentId,
-  Prediction,
-  VillagerState,
-  VillagerView,
-  WhyBreakdown,
+import {
+  type BubbleKind,
+  type ColonyRules,
+  CURRENT_RULES,
+  type HumanSide,
+  type HumanSideFactory,
+  type MomentId,
+  type Prediction,
+  scenarioOf,
+  type VillagerState,
+  type VillagerView,
+  type WhyBreakdown,
 } from './human-side.ts';
 import { MAP } from './map.ts';
 import {
@@ -52,7 +55,8 @@ import {
   weatherAt,
 } from './world-types.ts';
 
-export const SCENARIO_VERSION = 'colony-scenario@3';
+/** The scenario new runs are saved under (`scenarioOf(CURRENT_RULES)`); older files load by `rulesOf`. */
+export const SCENARIO_VERSION = scenarioOf(CURRENT_RULES);
 export const DEFAULT_SEED = 20261003;
 
 export interface UnitView {
@@ -321,6 +325,8 @@ export interface Frame {
   goals: GoalView[];
   /** The run has ended after Day 2 and "Another day" is on offer. */
   canContinue: boolean;
+  /** Recent injuries on either side, newest last (said as they happen; the storm night is no longer silent). */
+  news: HurtNews[];
 }
 
 /** What one stepped minute produced, for the worker's auto-pause rules (colony.md §8). */
@@ -337,6 +343,25 @@ export interface StepEvents {
     reason: string;
   }[];
   moments: MomentRecord[];
+}
+
+/** One person hurt in a stepped minute, for the page's news line (said when it happens, not only counted). */
+export interface HurtNews {
+  side: 'classic' | 'human';
+  personId: VillagerId;
+  minute: Minute;
+  /** How, in a few words: "in the storm, out in the open", "at work", "collapsed from hunger". */
+  how: string;
+}
+
+/** The news line keeps injuries this many sim minutes old at most, and this many at once. */
+const NEWS_MINUTES = 90;
+const NEWS_MAX = 4;
+
+function hurtHow(kind: 'collapse' | 'injury' | 'weather', minute: Minute): string {
+  if (kind === 'collapse') return 'collapsed from hunger';
+  if (kind === 'injury') return 'hurt at work';
+  return minute < STORM_START ? 'hurt in the squall' : 'hurt in the storm, out in the open';
 }
 
 const VERDICT_CHIP: Record<Exclude<BubbleKind, 'thought'>, ChipState> = {
@@ -426,11 +451,20 @@ export class ColonyGame {
   /** The Solo control, built on first use and continued with this game. */
   private soloGame: ColonyGame | null = null;
 
-  constructor(seed: number, factory: HumanSideFactory) {
+  /** Rules version (human-side.ts `ColonyRules`). Not hashed: the file's scenario string records it. */
+  readonly rules: ColonyRules;
+  get scenarioVersion(): string {
+    return scenarioOf(this.rules);
+  }
+  /** Who was hurt lately, on which side and how (the page's news line). Derived from the steps; not hashed. */
+  news: HurtNews[] = [];
+
+  constructor(seed: number, factory: HumanSideFactory, rules: ColonyRules = CURRENT_RULES) {
     this.seed = seed;
     this.factory = factory;
+    this.rules = rules;
     this.classic = new ClassicSim(seed, VILLAGERS, this.classicWorld);
-    this.human = factory();
+    this.human = factory(rules);
     this.human.init(seed, VILLAGERS, this.humanWorld, MAP);
   }
 
@@ -528,8 +562,9 @@ export class ColonyGame {
     factory: HumanSideFactory,
     log: readonly LogEntry[],
     until?: Minute,
+    rules: ColonyRules = CURRENT_RULES,
   ): ColonyGame {
-    const g = new ColonyGame(seed, factory);
+    const g = new ColonyGame(seed, factory, rules);
     let i = 0;
     for (;;) {
       // Entries first: a `continue` is stamped at the Day-2 end, when the game has already ended.
@@ -563,6 +598,8 @@ export class ColonyGame {
     const due = this.book.takeDue();
     const humanOrders = [];
     for (const o of due) {
+      // Rules 4: a new order to the same person replaces the old one on both sides, and the old card says so.
+      if (this.rules >= 4) this.book.replaceOlder(o);
       const { classic, human } = fanOut(o);
       const noop = this.classic.noopReason(o.personId);
       this.classic.apply(classic);
@@ -627,6 +664,15 @@ export class ColonyGame {
       this.human.cancel(id);
     this.record();
     this.lastStep = step;
+    const news = (side: HurtNews['side']) => (x: (typeof ce.injuries)[number]) => ({
+      side,
+      personId: x.personId,
+      minute: x.minute,
+      how: hurtHow(x.kind, x.minute),
+    });
+    this.news = [...this.news, ...ce.injuries.map(news('classic')), ...he.injuries.map(news('human'))]
+      .filter((n) => this.minute - n.minute <= NEWS_MINUTES)
+      .slice(-NEWS_MAX);
   }
 
   /** Update the goal records after a step (first minute a target is reached, values at the judging minutes). */
@@ -884,6 +930,7 @@ export class ColonyGame {
       timeline: this.timeline(),
       goals: this.goals(),
       canContinue: this.canContinue,
+      news: [...this.news],
     };
   }
 
@@ -915,7 +962,7 @@ export class ColonyGame {
    * stepping a minute at a time is stepping all at once, so the report is the same either way.
    */
   advanceSolo(max = Number.POSITIVE_INFINITY): void {
-    if (!this.soloGame) this.soloGame = new ColonyGame(this.seed, this.factory);
+    if (!this.soloGame) this.soloGame = new ColonyGame(this.seed, this.factory, this.rules);
     const s = this.soloGame;
     let left = Math.min(max, this.minute - s.minute);
     while (left > 0) {
@@ -929,7 +976,7 @@ export class ColonyGame {
 
   /** The Solo control (same seed, no orders), advanced to this game's end and continued with it. */
   solo(): ColonyGame {
-    if (!this.soloGame) this.soloGame = new ColonyGame(this.seed, this.factory);
+    if (!this.soloGame) this.soloGame = new ColonyGame(this.seed, this.factory, this.rules);
     const s = this.soloGame;
     s.advance(END_MINUTE - s.minute);
     if (this.endMinute > END_MINUTE && s.endMinute === END_MINUTE) s.continueDay();

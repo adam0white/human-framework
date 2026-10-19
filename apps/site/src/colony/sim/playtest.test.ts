@@ -2,9 +2,11 @@
  * Game 1 playtest files: record through the worker's state machine, replay, compare hashes; and the import's
  * rejection paths.
  *
- * The fixture (apps/site/test/fixtures/playtest-colony.json) is a full run (Day 1 dawn through "Another day")
- * recorded through `Playback` with irregular real-time ticks. Any change to the framework or the game's behaviour
- * changes its hash; re-record both games' fixtures with one command from the repo root:
+ * Two pinned fixtures, each a full run (Day 1 dawn through "Another day") recorded through `Playback` with
+ * irregular real-time ticks: apps/site/test/fixtures/playtest-colony.json under colony-scenario@3 (recorded
+ * 2026-10-07, never re-recorded: it proves @3 saves still replay under the @3 rules) and
+ * playtest-colony-v4.json under the current rules. A change to the current rules changes only the v4 hash;
+ * re-record it (the @3 fixture is never written) from the repo root:
  *
  *   PLAYTEST_REGEN=1 npx vitest run apps/site/src/voice/sim/playtest.test.ts apps/site/src/colony/sim/playtest.test.ts
  *
@@ -26,9 +28,19 @@ import {
 import { ColonyGame, DEFAULT_SEED, type LogEntry, SCENARIO_VERSION } from './game.ts';
 import { createFrameworkHumanSide } from './human.ts';
 import { Playback } from './playback.ts';
-import { colonyHash, colonySnapshot, colonyState, replayColony, validateColonyLog } from './playtest.ts';
+import {
+  colonyHash,
+  colonySnapshot,
+  colonyState,
+  parseColonyPlaytest,
+  replayColony,
+  validateColonyLog,
+} from './playtest.ts';
 
-const FIXTURE = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony.json');
+/** colony-scenario@3, pinned; read only. */
+const FIXTURE_V3 = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony.json');
+/** The current rules (colony-scenario@4); the only fixture REGEN writes. */
+const FIXTURE = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v4.json');
 const REGEN = Boolean(process.env.PLAYTEST_REGEN);
 const TICKS = [16, 17, 250, 33, 8, 120, 16, 1000, 0, 49];
 
@@ -110,10 +122,12 @@ describe('Game 1 playtest files', () => {
   );
 
   test.skipIf(REGEN)(
-    'the committed fixture replays to its hash',
+    'the committed @3 fixture replays to its hash under the @3 rules',
     () => {
-      const f = parse(readFileSync(FIXTURE, 'utf8'));
-      const g = replayColony(f.seed, createFrameworkHumanSide, f.log, f.minute);
+      const { file: f, rules } = parseColonyPlaytest(readFileSync(FIXTURE_V3, 'utf8'));
+      expect(f.scenario).toBe('colony-scenario@3');
+      expect(rules).toBe(3);
+      const g = replayColony(f.seed, createFrameworkHumanSide, f.log, f.minute, rules);
       expect(g.minute).toBe(f.minute);
       // Engine2.1 adds an unused optional faculty. Pin all historical behavior
       // and state while normalizing only the person-engine metadata stamp.
@@ -121,6 +135,42 @@ describe('Game 1 playtest files', () => {
     },
     60_000,
   );
+
+  test.skipIf(REGEN)(
+    'an old @3 save loads through Playback, keeps its rules and plays on',
+    () => {
+      const text = readFileSync(FIXTURE_V3, 'utf8');
+      const f = JSON.parse(text) as { minute: number; hash: string; engine: string };
+      const pb = new Playback(createFrameworkHumanSide);
+      pb.load(text, ENGINE_VERSION);
+      const g = gameOf(pb);
+      expect(g.rules).toBe(3);
+      expect(g.minute).toBe(f.minute);
+      expect(hashState(withHistoricPersonEngine(colonyState(g), f.engine))).toBe(f.hash);
+      // Provenance is said on load, and a save of it stays an @3 file.
+      expect(pb.pause?.text).toMatch(/older rules \(colony-scenario@3\)/);
+    },
+    60_000,
+  );
+
+  test.skipIf(REGEN)(
+    'the committed current-rules fixture replays to its hash',
+    () => {
+      const f = parse(readFileSync(FIXTURE, 'utf8'));
+      const g = replayColony(f.seed, createFrameworkHumanSide, f.log, f.minute);
+      expect(g.minute).toBe(f.minute);
+      expect(hashState(withHistoricPersonEngine(colonyState(g), f.engine))).toBe(f.hash);
+    },
+    60_000,
+  );
+
+  test('the @3 rules and the current rules differ on the same run', () => {
+    const text = readFileSync(FIXTURE_V3, 'utf8');
+    const { file: f } = parseColonyPlaytest(text);
+    const now = replayColony(f.seed, createFrameworkHumanSide, f.log, f.minute);
+    expect(now.rules).toBe(4);
+    expect(colonyHash(now)).not.toBe(f.hash);
+  }, 60_000);
 
   test('a run through Playback with irregular ticks, whys and predicts replays to the same hash', () => {
     const g = fullRun();
