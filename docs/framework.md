@@ -1,6 +1,6 @@
 # HF (Human Framework) — architecture
 
-This is the design reference for `packages/human` (`@adam0white/human-framework`). For installation, a quick start and the host contract in brief, see the [package README](../packages/human/README.md). The [API reference](api.md) lists every export. The shared data contract lives in [`packages/human/src/types.ts`](../packages/human/src/types.ts). Every module listed here exports pure functions over a `Person` and mutates only the slice of `Person` it owns.
+This is the design reference for `packages/human` (`@adam0white/human-framework`). For installation, a quick start and the host contract in brief, see the [package README](../packages/human/README.md). The [API reference](api.md) lists every export. The shared data contract lives in [`packages/human/src/types.ts`](../packages/human/src/types.ts). Modules expose deterministic readers and mutators over a `Person`. Faculty modules mutate only their owned slices; composites coordinate calls across faculties.
 
 ## The spine: Urge → Assent → Act
 
@@ -41,7 +41,7 @@ host world ──affordances──▶ decide(person, affordances, {suggestion})
                percepts ────── perceive(person, percepts) → attention → beliefs, social, affect
 ```
 
-Decisions are event-driven: a person decides when idle, when an activity ends, or when the host interrupts them. Between decisions, `tick` advances state in closed form, so a two-minute step and an eight-hour sleep both cost O(1).
+Decisions are event-driven: a person decides when idle, when an activity ends, or when the host interrupts them. Between decisions, `tick` advances continuous state in closed form within each segment. It splits elapsed time at activity ends and on the absolute `PERSON_DEFAULTS.maxSegment` grid (60 minutes by default). Its cost is O(elapsed segments), with per-segment work depending on the stored records and enabled faculties.
 
 ## Modules and owned state
 

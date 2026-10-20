@@ -1,6 +1,6 @@
 # Roadmap
 
-The single list of what is next for HF and its example games, 2026-10-05. Goals 1 and 2 are done and accepted ([HANDOFF](../HANDOFF.md)); the next goal is not set, and this page is the menu it will be chosen from. Nothing here is committed work.
+The single list of deferred work and targets for HF and its example games, updated 2026-10-20. Goals 1 and 2 are done and accepted ([HANDOFF](../HANDOFF.md)). The current owner-approved increment is the behaviour-neutral Host kit and maintenance sweep, then HF 2.10.0 / engine 2.10.0, Word and witness; [AGENTS.md](../AGENTS.md) defines its scope and completion. Other items on this page remain proposals unless included in that increment.
 
 **Targets.** Each item has one:
 - **2.x**: behaviour-neutral (no replay, fixture or hash changes); fits any minor release after 2.1.0.
@@ -40,23 +40,23 @@ These change what a run does, so each needs the engine bump and a recorded reaso
 
 | Item | What | Target |
 |---|---|---|
-| Q36 (rest) | `sanitizeFamily` accepts non-finite pregnancy fields (`conceivedAt`, `dueAt`, `seed`). A save the engine wrote is unaffected. | 2.x |
+| Q36 (rest), M11 | `sanitizeFamily` accepts non-finite pregnancy fields (`conceivedAt`, `dueAt`, `seed`). A save the engine wrote is unaffected. | 2.x, by 2026-11-01 |
 | Q52 (rest) | `PersonSpec.habits` and `PersonSpec.expectations` (hosts write these slices by hand today). Additive. | 2.x |
 | Q50 | Two HF gaps Game 3 works around by writing framework slices directly: an additive trust gesture and host-caused tiredness. Add them, then move the game ([watch.md §12](games/watch.md#12-after-graduation-deferred-features) T2). | 2.x (additive) |
 | Split long functions | `finish`, `evaluate` and `stepCommunity` are each long enough to hide bugs; split them without changing results (hash tests pin this). | 2.x |
 | Test dedup | Tests repeat setup that `test/support.ts` now provides; fold the copies into it. | 2.x |
-| Unused `_now` parameters | `repent(p, id, _now)` and `recordRepair(p, victimId, _now)` in `conscience/` take a time they never read. Make it optional in 2.x; remove it in 3.0. | 3.0 |
+| Unused `_now` parameters | `repent(p, id, _now)` and `recordRepair(p, victimId, _now)` in `conscience/` take a time they never read. Retain optional time arguments in 2.x. | optional 2.9.1, removed 3.0 |
 | Deprecated forms | Remove the 2.0 options-object forms of `glimpse`, `glimpseOf`, `hear`, `conceive` and `retell`, and `TRAIT_NAMES` (CHANGELOG [Unreleased], Deprecated). | 3.0 |
-| R2 3c | `expit` is an alias of `sigmoid`; deprecate, then drop. | 3.0 |
+| R2 3c | `expit` is an alias of `sigmoid`; retain the deprecated alias in 2.x. | deprecated 2.9.1, removed 3.0 |
 | Q5 | Mutable defaults objects are public; `Object.freeze` would break hosts that tune by assignment. Decide a tuning API first. | 3.0 |
 | Q13 | Composite and primitive names do not follow one suffix rule (`glimpseOf`, `acquaintWith`). Rename, with 2.x aliases. | 3.0 |
 | Q16 | Two shapes for routine sources. Unify, deprecating the other in 2.x. | 3.0 |
 | Q15 | `skip` → `skipTo` was rejected in H2 (41 call sites in the games, clear in context). Reconsider only if 3.0 batches renames. | 3.0 or drop |
 | Q38 | `retell` and `foldEpisode` match stories differently, by design for now: a told gist stays apart from one's own until one's own experience outweighs it. Revisit with the next gist pass. | unscheduled |
 | R2 3a, H2 Q3 | Export hygiene: knip found exports used only in their own file; most were un-exported in 2.0. Re-run knip with `ignoreExportsUsedInFile`. | unscheduled |
-| R2 6f | `Object.keys(x) as NeedId[]` casts (8 in src); a `keysOf` helper in `core/`. | unscheduled |
+| R2 6f, M9 | `Object.keys(x) as NeedId[]` casts (8 in src); a `keysOf` helper in `core/`. Preserve saved key order. | 2.x, by 2026-11-01 |
 | R2 V11 | `stepCommunity` allocates per event. Invisible at 200 people; revisit if a host runs more than ~500. | unscheduled |
-| R2 1c, 7c | CI does not install the packed tarball and run an example, and does not check that docs/api.md is current (`api-doc --check`). | unscheduled |
+| R2 1c, 7c | CI installs the packed tarball outside the workspace and runs the minimal host example; it checks docs/api.md freshness with read-only `api-doc --check`. | done 2.9.1 |
 | TS 5.x | Consumers on TypeScript 5.x are untested (the repo builds with TypeScript 7). | unscheduled |
 | Community and world migration | `migrate` upgrades person snapshots only; community state (`communityState`) and world state have no migration steps. None has been needed (their shape has not changed; world state is the host's), but the first shape change needs one. | community: engine 2.15 (§3b, "Memory bound and declared fidelity"); world: a host recipe, not HF |
 | Bench evidence | Bench timings on a quiet machine; 50-year save sizes on seeds other than 1; per-person growth is still about 0.5 KB a year at year 50, almost all the yearbook (P10). | unscheduled |
