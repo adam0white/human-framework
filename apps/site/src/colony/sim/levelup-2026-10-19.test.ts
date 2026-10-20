@@ -5,6 +5,7 @@
  */
 import { type SuggestionResolution, voiceOf } from '@adam0white/human-framework';
 import { describe, expect, it } from 'vitest';
+import { hindsightLine } from '../ui/end-report.ts';
 import { ColonyGame, DEFAULT_SEED, NUDGES } from './game.ts';
 import { createFrameworkHumanSide, type FrameworkHumanSide } from './human.ts';
 import type { ColonyRules } from './human-side.ts';
@@ -90,6 +91,19 @@ describe('2026-10-19 level-up (colony-scenario@4)', () => {
     expect(passesByItself({ kind: 'notNow', reason: 'norm:salah' })).toBe(true);
     expect(passesByItself({ kind: 'notNow', reason: 'goal:role' })).toBe(false);
     expect(passesByItself({ kind: 'willNot', reason: 'need:safety' })).toBe(false);
+  });
+
+  it('the hindsight line says the plan re-orders, as the policy does (a single dawn order does not reproduce it)', () => {
+    const line = hindsightLine({
+      from: 0,
+      builders: ['yusuf', 'tariq'],
+      cook: true,
+      roofAt: at(2, 12, 3),
+      stock: 13,
+      wins: true,
+    });
+    expect(line).toMatch(/re-ordering Yusuf and Tariq to the house with Rush each time an order ended/);
+    expect(line).toMatch(/One order at dawn is not enough/);
   });
 
   it('the why panel says "already at it" when the running job was kept over a higher-scored rival', () => {
