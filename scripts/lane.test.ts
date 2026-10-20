@@ -9,6 +9,22 @@ const cases: [string, Lane][] = [
   ['packages/lab-client/src/index.ts', 'gated'],
   ['packages/lab-kit/README.md', 'gated'],
   ['apps/site/worker/index.ts', 'gated'],
+  ['apps/site/src/lab/core.ts', 'gated'],
+  ['apps/site/src/lab/games.ts', 'gated'],
+  ['apps/site/src/games.ts', 'gated'],
+  ['apps/site/src/lab/curated.json', 'gated'],
+  ['apps/site/src/lab/ledger.ts', 'gated'],
+  ['.nvmrc', 'gated'],
+  ['packages/new/package.json', 'gated'],
+  ['packages/playtester/package.json', 'gated'],
+  ['apps/site/src/deep/tsconfig.worker.json', 'gated'],
+  ['apps/site/src/deep/vitest.bench.config.ts', 'gated'],
+  ['apps/site/src/deep/vitest.config.ts', 'gated'],
+  ['.github/dependabot.yml', 'gated'],
+  ['scripts/agent-worktree.sh', 'gated'],
+  ['AGENTS.md', 'gated'],
+  ['CLAUDE.md', 'gated'],
+  ['apps/site/AGENTS.md', 'gated'],
   ['package-lock.json', 'gated'],
   ['package.json', 'gated'],
   ['apps/site/package.json', 'gated'],
@@ -30,6 +46,7 @@ const cases: [string, Lane][] = [
   ['apps/site/about.html', 'delivery'],
   ['apps/site/src/game/index.html', 'delivery'],
   ['apps/site/vite.config.ts', 'delivery'],
+  ['packages/new/vite.config.ts', 'delivery'],
   ['apps/site/src/sw.ts', 'delivery'],
   ['sw.ts', 'delivery'],
   ['apps/site/src/service-worker.ts', 'delivery'],
@@ -39,6 +56,9 @@ const cases: [string, Lane][] = [
   ['packages/playtester/src/index.ts', 'fast'],
   ['packages/playtester/README.md', 'fast'],
   ['scripts/lane.test.ts', 'fast'],
+  ['scripts/helper.ts', 'fast'],
+  ['scripts/nested/helper.ts', 'gated'],
+  ['scripts/helper.js', 'gated'],
   ['docs/lab/feedback-ledger.md', 'fast'],
   ['docs/lab/lessons.md', 'fast'],
   ['docs/lab/testing-asks.md', 'fast'],
@@ -49,9 +69,9 @@ const cases: [string, Lane][] = [
   ['README.md', 'prose'],
   ['nested/notes.md', 'prose'],
   ['LICENSE', 'prose'],
-  ['other/LICENSE', 'fast'],
-  ['unexpected/file.bin', 'fast'],
-  ['packages/new/src/index.ts', 'fast'],
+  ['other/LICENSE', 'gated'],
+  ['unexpected/file.bin', 'gated'],
+  ['packages/new/src/index.ts', 'gated'],
 ];
 
 describe('classify', () => {
@@ -60,7 +80,7 @@ describe('classify', () => {
   });
 
   it.each([
-    [['README.md', 'unknown.json'], 'fast'],
+    [['README.md', 'unknown.json'], 'gated'],
     [['scripts/helper.ts', 'apps/site/index.html'], 'delivery'],
     [['apps/site/public/icon.svg', 'packages/human/index.ts'], 'gated'],
     [['packages/human/index.ts', 'README.md'], 'gated'],
@@ -81,7 +101,7 @@ describe('classify', () => {
   });
 
   it('does not treat rule names embedded in unrelated paths as matches', () => {
-    expect(classify(['other/apps/site/public/image.png']).lane).toBe('fast');
+    expect(classify(['other/apps/site/public/image.png']).lane).toBe('gated');
     expect(classify(['apps/site/src/package.json']).lane).toBe('gated');
   });
 });

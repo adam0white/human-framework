@@ -16,25 +16,32 @@ const curatedDocs = new Set([
 
 function fileLane(path: string): Lane {
   if (
-    /^(packages\/(human|lab-client|lab-kit)\/|apps\/site\/worker\/|\.github\/workflows\/)/.test(path) ||
-    /^(package-lock\.json|package\.json|scripts\/(deploy|release|suite-lock|lane)\.ts|wrangler\.jsonc|apps\/site\/public\/_headers|tsconfig[^/]*\.json|biome\.json|vitest[^/]*\.config\.ts)$/.test(
+    // Worker source dependencies: lab/{core,games,curated} and lab/games -> src/games.ts.
+    // The import audit in lane-contract.test.ts guards additions outside this directory.
+    /^(packages\/(human|lab-client|lab-kit)\/|apps\/site\/(worker|src\/lab)\/|\.github\/)/.test(path) ||
+    /^(package-lock\.json|\.nvmrc|scripts\/(deploy|release|suite-lock|lane)\.ts|wrangler\.jsonc|apps\/site\/(public\/_headers|src\/games\.ts)|biome\.json)$/.test(
       path,
     ) ||
-    /\/(package\.json|vitest\.config\.ts)$/.test(path)
+    /(?:^|\/)(package\.json|tsconfig[^/]*\.json|vitest[^/]*\.config\.ts|AGENTS\.md|CLAUDE\.md)$/.test(path) ||
+    /^scripts\/[^/]+\.sh$/.test(path)
   )
     return 'gated';
   if (
     /^apps\/site\/public\//.test(path) ||
     /^apps\/site\/[^/]+\.html$/.test(path) ||
     /^apps\/site\/(?:.*\/)?index\.html$/.test(path) ||
-    path === 'apps/site/vite.config.ts' ||
+    /(?:^|\/)vite\.config\.ts$/.test(path) ||
     /(?:^|\/)(sw\.ts|service-worker[^/]*)$/.test(path)
   )
     return 'delivery';
-  if (/^(apps\/site\/src\/|packages\/playtester\/|scripts\/)/.test(path) || curatedDocs.has(path))
+  if (
+    /^(apps\/site\/src\/|packages\/playtester\/)/.test(path) ||
+    /^scripts\/[^/]+\.ts$/.test(path) ||
+    curatedDocs.has(path)
+  )
     return 'fast';
   if (/^(docs\/|research\/|archive\/)/.test(path) || path === 'LICENSE' || /\.md$/.test(path)) return 'prose';
-  return 'fast';
+  return 'gated';
 }
 
 /** Paths are repository-relative. Higher-risk lanes win across files. */
@@ -49,13 +56,9 @@ export function classify(paths: readonly string[]): { lane: Lane; byFile: Record
   return { lane, byFile };
 }
 
-function main(): void {
-  const root = resolve(import.meta.dirname, '..');
+/** --no-renames reports both the removed and added path; deletions also stay in the union. */
+export function changedPaths(root: string, baseRef: string): string[] {
   const git = (...args: string[]): string => execFileSync('git', args, { cwd: root, encoding: 'utf8' });
-  const args = process.argv.slice(2);
-  const baseIndex = args.indexOf('--base');
-  const baseRef = baseIndex < 0 ? 'origin/main' : args[baseIndex + 1];
-  if (!baseRef || baseRef.startsWith('-')) throw new Error('--base requires a ref');
   const base = git('merge-base', 'HEAD', baseRef).trim();
   const paths = [
     git('diff', '--name-only', '--no-renames', '-z', base, 'HEAD', '--'),
@@ -63,12 +66,10 @@ function main(): void {
     git('diff', '--name-only', '--no-renames', '-z', '--'),
     git('ls-files', '--others', '--exclude-standard', '-z'),
   ];
-  const changed = [...new Set(paths.flatMap((output) => output.split('\0').filter(Boolean)))].sort();
-  const { lane, byFile } = classify(changed);
-  for (const path of changed) console.log(`${byFile[path]}\t${path}`);
-  const deciding = changed.find((path) => byFile[path] === lane);
-  console.log(`Lane: ${lane}; deciding file: ${deciding ?? '(no changed files)'}`);
+  return [...new Set(paths.flatMap((output) => output.split('\0').filter(Boolean)))].sort();
+}
 
+export function laneCommands(changed: readonly string[], lane: Lane): string[][] {
   const commands: string[][] = [['npm', 'run', 'lint']];
   if (lane === 'gated') commands.splice(0, 1, ['npm', 'run', 'check']);
   else if (lane !== 'prose') {
@@ -77,11 +78,26 @@ function main(): void {
     if (sources.length)
       commands.push(['npm', 'exec', '--', 'vitest', 'related', '--run', '--passWithNoTests', ...sources]);
   }
-  // Markdown is not in Vitest's import graph. This contract still needs its explicit test.
+  // Markdown is read at runtime, outside Vitest's import graph.
   if (lane !== 'gated' && changed.some((path) => curatedDocs.has(path)))
     commands.push(['npm', 'exec', '--', 'vitest', 'run', 'apps/site/src/lab/lab.test.ts']);
-  if (lane === 'delivery') commands.push(['npm', 'run', 'build']);
-  for (const command of commands) {
+  if (lane === 'delivery') commands.push(['npm', 'run', 'build'], ['node', 'scripts/site-smoke.ts']);
+  return commands;
+}
+
+function main(): void {
+  const root = resolve(import.meta.dirname, '..');
+  const args = process.argv.slice(2);
+  const baseIndex = args.indexOf('--base');
+  const baseRef = baseIndex < 0 ? 'origin/main' : args[baseIndex + 1];
+  if (!baseRef || baseRef.startsWith('-')) throw new Error('--base requires a ref');
+  const changed = changedPaths(root, baseRef);
+  const { lane, byFile } = classify(changed);
+  for (const path of changed) console.log(`${byFile[path]}\t${path}`);
+  const deciding = changed.find((path) => byFile[path] === lane);
+  console.log(`Lane: ${lane}; deciding file: ${deciding ?? '(no changed files)'}`);
+
+  for (const command of laneCommands(changed, lane)) {
     const [executable, ...args] = command;
     if (!executable) continue;
     console.log(`> ${command.map((part) => JSON.stringify(part)).join(' ')}`);
