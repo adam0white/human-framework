@@ -57,6 +57,20 @@ export const EVENT_LABELS: Readonly<Record<string, { scr: readonly string[]; ms:
       'fortnight ended',
     ],
   },
+  goodhands: {
+    scr: ['title', 'office', 'city', 'scene', 'review', 'menu'],
+    ms: [
+      'run started',
+      'first interview',
+      'first placement',
+      'first trial verdict',
+      'first confidence',
+      'week 1 done',
+      'week 2 done',
+      'week 3 done',
+      'month ended',
+    ],
+  },
   warren: {
     scr: ['title', 'play', 'raid', 'notebook'],
     ms: [

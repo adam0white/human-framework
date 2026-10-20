@@ -115,6 +115,13 @@ export const GAMES: Game[] = [
     line: 'New: a fortnight keeping the tea garden by the fountain. You hear everything; what you pass on travels door to door, bends at each mouth, and comes home.',
     faculties: ['Memory and belief', 'Relationships', 'Conscience'],
   },
+  {
+    id: 'goodhands',
+    name: 'Good Hands',
+    href: 'https://goodhands.adamwhite.work',
+    line: 'New: a November running a small placement agency in Izmir. Nobody is quite who they say at interview; you vouch for them, and your word goes through the door with them.',
+    faculties: ['Memory and belief', 'Relationships', 'Habits and character'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);
