@@ -80,6 +80,11 @@ a:focus-visible {
   text-decoration: none;
   letter-spacing: 0.01em;
 }
+.top a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 .top-link {
   color: var(--ink-soft);
   font-size: 0.9rem;
@@ -159,8 +164,8 @@ p {
   gap: 12px;
 }
 .game {
-  display: grid;
-  grid-template-columns: 96px 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 14px;
   align-items: center;
   padding: 12px;
@@ -173,10 +178,8 @@ p {
   color: inherit;
   border-color: var(--rope);
 }
-.game:hover .game-name {
-  color: var(--rope);
-}
 .game-art {
+  flex: 0 0 72px;
   color: var(--ink);
 }
 .sketch {
@@ -193,12 +196,37 @@ p {
   stroke: var(--rope);
 }
 .game-text {
+  flex: 1 1 12rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
   display: grid;
   gap: 2px;
 }
 .game-name {
   font-weight: 600;
   font-size: 1.05rem;
+}
+.game:hover .game-name {
+  color: var(--rope);
+}
+.game-rank {
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+.game-frozen {
+  background: var(--paper);
+  border-style: dashed;
+}
+.game-status {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+.ranking-link,
+.ctas > a:not(.cta),
+.foot > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 .game-away {
   color: var(--ink-soft);
@@ -271,10 +299,12 @@ p {
 
 @media (min-width: 720px) {
   .games {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .game {
-    grid-template-columns: 1fr;
+    display: grid;
+    height: 100%;
+    grid-template-columns: minmax(0, 1fr);
     align-content: start;
   }
   .game-art {

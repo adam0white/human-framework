@@ -64,7 +64,7 @@ function Quote({ row }: { row: LedgerRow }) {
   );
 }
 
-function GameCard({ g, ledger }: { g: GameData; ledger: LedgerRow[] }) {
+function GameCard({ g, ledger }: { g: GameData & (typeof LAB_GAMES)[number]; ledger: LedgerRow[] }) {
   const quotes = ledger.filter((r) => r.game === g.id && r.kind !== 'owner').sort(latestFirst);
   const owner = ledger.filter((r) => r.game === g.id && r.kind === 'owner').sort(latestFirst);
   const t = g.telemetry;
@@ -72,7 +72,8 @@ function GameCard({ g, ledger }: { g: GameData; ledger: LedgerRow[] }) {
   return (
     <article className="lab-game" id={`game-${g.id}`}>
       <h3>
-        <a href={g.href}>{g.name}</a> <span className="soft">{external ? new URL(g.href).host : g.href}</span>
+        <a href={g.href}>{g.name}</a> {g.status === 'frozen' && <span className="soft">· frozen </span>}
+        <span className="soft">{external ? new URL(g.href).host : g.href}</span>
       </h3>
       <p className="build">
         {g.live ? (
@@ -153,7 +154,15 @@ function Lab() {
   const ownerWords = recent.filter((r) => r.kind === 'owner').slice(0, 3);
   const playerWords = recent.filter((r) => r.kind !== 'owner' && r.verdict !== '-').slice(0, 4);
   const asksBy = (id: string) => data.asks.filter((a) => a.game === id);
-  const gamesWithAsks = data.games.filter((g) => asksBy(g.id).length);
+  // Use the current ranking and status even while data.json is cached from an older build.
+  const games = LAB_GAMES.map((g) => ({
+    live: null,
+    telemetry: null,
+    runs: 0,
+    ...data.games.find((d) => d.id === g.id),
+    ...g,
+  }));
+  const gamesWithAsks = games.filter((g) => asksBy(g.id).length);
 
   return (
     <div className="page lab">
@@ -162,7 +171,7 @@ function Lab() {
           <span aria-hidden="true">◇</span> human framework
         </a>
         <a className="top-link" href="/games/">
-          all notebooks
+          All games
         </a>
       </header>
       <main>
@@ -254,7 +263,7 @@ function Lab() {
 
         <section id="games" aria-labelledby="games-title">
           <h2 id="games-title">Games</h2>
-          {data.games.map((g) => (
+          {games.map((g) => (
             <GameCard key={g.id} g={g} ledger={ledger} />
           ))}
         </section>
@@ -310,7 +319,7 @@ function Lab() {
       <footer className="foot">
         <a href="/lab/privacy/">how the lab handles data</a>
         <a href="/games/">
-          <span aria-hidden="true">◇</span> all notebooks
+          <span aria-hidden="true">◇</span> All games
         </a>
       </footer>
     </div>

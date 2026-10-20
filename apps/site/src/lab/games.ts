@@ -1,8 +1,9 @@
-import { GAMES } from '../games.ts';
-import type { CuratedGame } from './ledger.ts';
+import { GAMES, type Game } from '../games.ts';
 
-/** The games the lab tracks: the site's one games list (read here, never edited), reduced to id, name, link. */
-export const LAB_GAMES: CuratedGame[] = GAMES.map(({ id, name, href }) => ({ id, name, href }));
+/** The lab reads the site's ranking and status; it never maintains another list. */
+export const LAB_GAMES: Pick<Game, 'id' | 'name' | 'href' | 'rank' | 'status'>[] = GAMES.map(
+  ({ id, name, href, rank, status }) => ({ id, name, href, rank, status }),
+);
 
 /** Reviewed event identifiers. Exact matches only: input text never becomes a public label. */
 const numbered = (count: number, render: (n: number) => string): string[] =>

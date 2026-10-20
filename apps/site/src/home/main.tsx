@@ -50,16 +50,17 @@ function Home() {
             <a className="cta" href="/colony/">
               Play Twice at the Well →
             </a>
-            <a href="#play">all games ↓</a>
+            <a href="/games/">All games</a>
           </p>
         </section>
 
         <section id="play" aria-labelledby="play-title">
           <h2 id="play-title">See it in play</h2>
-          <GameList games={GAMES} />
+          <GameList games={GAMES.filter((g) => g.status === 'active').slice(0, 3)} />
           <p className="note">
-            The first three run here. The others are separate sites built on the same package.{' '}
-            <a href="/games/">All notebooks →</a>
+            <a className="ranking-link" href="/games/">
+              All games, ranked →
+            </a>
           </p>
         </section>
 

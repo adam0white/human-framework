@@ -4,6 +4,7 @@ import { gzipSync } from 'node:zlib';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { checkRun, RUN_LIMITS } from '../../../../packages/lab-client/src/index.ts';
 import worker, { cleanup, type Env } from '../../worker/lab.ts';
+import { GAMES } from '../games.ts';
 import {
   aggregateDay,
   allowedOrigin,
@@ -728,11 +729,16 @@ describe('lab worker', () => {
     const data = JSON.parse(text) as {
       games: {
         id: string;
+        rank: number;
+        status: string;
         runs: number;
         telemetry: { sessions: number; quits: [string, number][] } | null;
         live: unknown;
       }[];
     };
+    expect(data.games.map(({ id, rank, status }) => ({ id, rank, status }))).toEqual(
+      GAMES.map(({ id, rank, status }) => ({ id, rank, status })),
+    );
     const pass = data.games.find((g) => g.id === 'pass');
     expect(pass?.runs).toBe(1);
     expect(pass?.telemetry?.sessions).toBe(1);

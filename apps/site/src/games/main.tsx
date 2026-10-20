@@ -16,12 +16,22 @@ function Collection() {
       </header>
       <main>
         <section className="hero" aria-labelledby="games-title">
-          <h1 id="games-title">All notebooks</h1>
+          <h1 id="games-title">All games</h1>
           <p className="lede">
-            Each game is its own site built on the same package. Under each name are the HF faculties it
-            shows.
+            Ranked by the owner’s play first, then playtests, depth and how well each shows HF.
+          </p>
+          <p>
+            <a
+              className="ranking-link"
+              href="https://github.com/adam0white/human-framework/blob/main/docs/lab/ranking-2026-10-20.md"
+            >
+              Why this order
+            </a>
           </p>
           <GameList games={GAMES} />
+          <p className="note">
+            Frozen experiments stay playable; no further work is planned unless the owner unfreezes them.
+          </p>
         </section>
       </main>
       <footer className="foot">
