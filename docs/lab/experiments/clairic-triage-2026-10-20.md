@@ -94,7 +94,7 @@ In Cloudflare's own framing, Clairic extracts typed values, Clef decides among l
 - **Clairic: not for triage.** Its useful part here was the problem-phrase span, and that needs a longer input than a 40-word quote to be worth anything. A later, separate test could try it on whole playtest transcripts, pulling out quit times and quote spans with offsets. That would be extraction, which is what Clairic is built for.
 - **Small LLMs: no.** Qwen3 30B-A3B is the cheapest reasonable fallback if Clef is withdrawn. On this task it scored below Clef, changed some answers on a rerun at temperature 0, and its answer sometimes arrived in the `reasoning` field instead of `content`, a parser quirk the scorer had to handle.
 
-**Target.** If the owner agrees, the `--suggest` flag lands in the fast lane by 2026-10-27. It is lab tooling, not HF work.
+**Outcome (2026-10-20).** On the coordinator's direction the check on real inbox notes was run the same day, and Clef held up ([trial](clef-inbox-2026-10-20.md)). `npm run lab:inbox -- --suggest` is now an opt-in flag that uses the whole-note form.
 
 ## Spend record
 
