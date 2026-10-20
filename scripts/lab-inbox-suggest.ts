@@ -1,6 +1,6 @@
 /** Clef's validated inbox definitions and local suggestions. No run payload is sent. */
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 export const ACCOUNT = 'a20259cba74e506296745f9c67c1f3bc';
@@ -82,6 +82,7 @@ export interface Suggestion {
   verdict: string;
   confidence: number;
   severity: string;
+  blockerProbability: number;
   categories: { category: string; probability: number }[];
   inputTokens: number;
   usd: number;
@@ -95,6 +96,13 @@ function number(value: unknown, min: number, max = Infinity): number {
     throw new Error('Invalid Clef number');
   return value;
 }
+/** Read billable usage independently: invalid answers and failed cache writes still cost money. */
+export function suggestionUsage(value: unknown): { inputTokens: number; usd: number } {
+  const usage = object(object(value).usage);
+  const inputTokens = number(usage.input_tokens ?? usage.prompt_tokens, 0);
+  if (!Number.isInteger(inputTokens)) throw new Error('Invalid Clef token count');
+  return { inputTokens, usd: (inputTokens * PRICE_IN) / 1e6 };
+}
 export function parseSuggestion(value: unknown): Suggestion {
   const result = object(value);
   const answers = object(result.answers);
@@ -102,30 +110,29 @@ export function parseSuggestion(value: unknown): Suggestion {
   if (typeof verdict.choice !== 'string' || !Object.hasOwn(VERDICTS, verdict.choice))
     throw new Error('Invalid Clef verdict');
   const confidence = number(verdict.confidence, 0, 1);
-  const level = Math.round(number(object(answers.severity).score, 0, SEVERITY.length - 1));
+  const severity = object(answers.severity);
+  const level = Math.round(number(severity.score, 0, SEVERITY.length - 1));
+  const blockerProbability = number(object(severity.probabilities)[SEVERITY.length - 1], 0, 1);
   const categories = Object.keys(CATEGORIES)
     .map((category) => ({
       category,
       probability: number(object(answers[`has_${category}`]).noul, 0, 1),
     }))
     .filter(({ probability }) => probability >= 0.5);
-  const usage = object(result.usage);
-  const inputTokens = number(usage.input_tokens ?? usage.prompt_tokens, 0);
-  if (!Number.isInteger(inputTokens)) throw new Error('Invalid Clef token count');
   return {
     verdict: verdict.choice,
     confidence,
     severity: SEVERITY[level] ?? '',
+    blockerProbability,
     categories,
-    inputTokens,
-    usd: (inputTokens * PRICE_IN) / 1e6,
+    ...suggestionUsage(result),
   };
 }
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 export function renderSuggestion(s: Suggestion): string {
   const categories =
     s.categories.map((c) => `${c.category} ${c.probability.toFixed(2)}`).join(', ') || 'none';
-  return `<p class="soft">Suggested by Clef (check it): ${esc(s.verdict)} · ${esc(s.severity)} · categories: ${esc(categories)} · verdict confidence ${esc(s.confidence.toFixed(2))}${s.confidence < 0.5 ? ' · <strong>low confidence</strong>' : ''}</p>`;
+  return `<p class="soft">Suggested by Clef (check it): ${esc(s.verdict)} · ${esc(s.severity)} ${s.blockerProbability >= 0.25 ? `· <strong>possible blocker</strong> (Made the player quit or blocks play: ${s.blockerProbability.toFixed(2)}) ` : ''}· categories: ${esc(categories)} · verdict confidence ${esc(s.confidence.toFixed(2))}${s.confidence < 0.5 ? ' · <strong>low confidence</strong>' : ''}</p>`;
 }
 function cachePath(dir: string, id: string): string {
   if (!/^[a-zA-Z0-9_-]+$/.test(id)) throw new Error('Invalid suggestion run id');
@@ -133,11 +140,20 @@ function cachePath(dir: string, id: string): string {
 }
 export function readSuggestion(dir: string, id: string): Suggestion | null {
   const file = cachePath(dir, id);
-  return existsSync(file) ? parseSuggestion(JSON.parse(readFileSync(file, 'utf8'))) : null;
+  if (!existsSync(file)) return null;
+  const raw = readFileSync(file, 'utf8');
+  try {
+    return parseSuggestion(JSON.parse(raw));
+  } catch {
+    // Only malformed content is quarantined; read/rename errors reach the per-note boundary.
+    renameSync(file, join(dir, 'suggest', `${id}.invalid.json`));
+    return null;
+  }
 }
 export function writeSuggestion(dir: string, id: string, result: unknown): void {
+  parseSuggestion(result);
   const file = cachePath(dir, id);
   mkdirSync(join(dir, 'suggest'), { recursive: true });
-  // Keep the raw answer even if parsing later fails: never pay again for the same id.
+  // Preserve validated raw answers without replacing a good cache entry.
   writeFileSync(file, `${JSON.stringify(result, null, 2)}\n`, { flag: 'wx' });
 }
