@@ -3409,7 +3409,6 @@
    "routes": [
     "fix:pass DL-22 cook controls and the selected cook stay put while a request is answered (open, target 2026-11-03)",
     "fix:pass DL-5 say what a station request commits the cook to, and match the willingness line (open, target 2026-11-03)",
-    "fix:pass DL-1 more direct kitchen work during a quiet stretch (open, target 2026-11-03)",
     "fix:pass design question for owner: cooks' autonomy versus coverage, a standing rota or arrangement (open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/pass.md"
@@ -3602,7 +3601,7 @@
    "words": "grill is still empty, Rafi is still on dishes, and I do not want to keep pulling people back into place on my break. I would not start another service now.",
    "verdict": "quit",
    "routes": [
-    "fix:pass DL-4 keep coverage running while cooks take breaks and say who is leaving (open, target 2026-11-03)",
+    "fix:pass DL-9 say who is leaving and which station needs cover (open, target 2026-11-03)",
     "fix:pass DL-5 say whether after I wash plates is a promise or a request to solve another way (open, target 2026-11-03)",
     "fix:pass DL-3 keep current service separate from old departure messages (open, target 2026-11-03)",
     "fix:pass design question for owner: cooks' autonomy versus coverage, a standing rota or arrangement (open, target 2026-11-03)"
@@ -3668,6 +3667,55 @@
     "fix:neighbours DL-5 say the hour is queued for Play, and separate expected finish from the promise deadline (open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/neighbours-round4.md"
+  },
+  {
+   "id": "F-261",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review",
+   "words": "Not consistently fun yet. The premise interests me more than the play sustains me.\" … \"conversations become a form before they become relationships.",
+   "verdict": "quit",
+   "routes": [
+    "fix:goodhands day-two worker/family disagreement with concrete acts (done)",
+    "fix:goodhands interviews and references as conversations (done)",
+    "fix:goodhands city figures and talk visible as it happens (done)",
+    "lesson:L19"
+   ],
+   "source": "goodhands/docs/playtests/2026-10-20-fun-review.md"
+  },
+  {
+   "id": "F-262",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Marta (Codex source-unread persona, round 1)",
+   "words": "Yes, I can challenge the reference. That is the first moment this feels like my job rather than a questionnaire.\" … \"I'm not going to wrestle with the controls to get there.",
+   "verdict": "quit",
+   "routes": [
+    "fix:goodhands vouch toggles tappable by label (open)",
+    "fix:goodhands answering the phone holds the interview (open)",
+    "fix:goodhands no repeated referee anecdotes (open)",
+    "lesson:L20"
+   ],
+   "source": "goodhands/docs/playtests/2026-10-20-r1-tester-a.md"
+  },
+  {
+   "id": "F-263",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Kerem (Codex source-unread persona, round 1)",
+   "words": "I've filled the one job and got enough for rent. I'm curious what happens to Gül, but I don't know how to settle Sevda's warning. I'm starting to poke around instead of doing something.",
+   "verdict": "quit",
+   "routes": [
+    "fix:goodhands second and third requests on day one (open)",
+    "fix:goodhands deposit not half fee, so week one bites (open)",
+    "fix:goodhands departure warning clears once her number is on the books (open)",
+    "lesson:L7",
+    "lesson:L15"
+   ],
+   "source": "goodhands/docs/playtests/2026-10-20-r1-tester-b.md"
   }
  ],
  "lessons": [
@@ -4233,8 +4281,8 @@
   }
  ],
  "routes": {
-  "fix": 261,
-  "lesson": 233,
+  "fix": 269,
+  "lesson": 237,
   "hf": 11,
   "calibration": 42,
   "none": 1
