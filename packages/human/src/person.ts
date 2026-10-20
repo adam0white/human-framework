@@ -47,12 +47,13 @@ import {
 } from './agenda/index.ts';
 import {
   advanceBeliefs,
+  applyContradiction,
   attend,
   believe,
   confirm,
-  contradicted,
   credence,
   noteProvenance,
+  trustOf,
 } from './beliefs/index.ts';
 import {
   advanceBody,
@@ -745,7 +746,10 @@ function perceiveOne(p: Person, pc: Percept): void {
   }
   // Another source's account, reported by the teller (2.10.0): one source telling two people opposite things.
   if (pc.channel === 'told' && actor !== undefined && pc.reports) {
-    for (const r of pc.reports.slice(0, 4)) contradicted(p, { ...r, reporterId: actor, at });
+    // One trust basis for the whole percept: a report that lowers the reporter's own trust must not reweigh the rest.
+    const reporterTrust = trustOf(p, actor);
+    for (const r of pc.reports.slice(0, 4))
+      applyContradiction(p, { ...r, reporterId: actor, at }, reporterTrust);
   }
   // My own act, seen by others (2.10.0): what I believe they now think of me.
   if (byMe && pc.witnesses) {

@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'vitest';
+import { describe, expect, it, test } from 'vitest';
 import {
   BELIEF_DEFAULTS,
   believe,
@@ -9,6 +9,7 @@ import {
   MINUTES_PER_DAY,
   perceive,
   restore,
+  seedBelief,
   seedSourceTrust,
   snapshot,
   testimonyWeight,
@@ -251,5 +252,63 @@ describe('contradiction of one source', () => {
     const restored = restore(snapshot(p));
     expect(restored.memory.contradictions).toEqual(valid.slice(-32));
     expect(restore(snapshot(restored))).toEqual(restored);
+  });
+});
+
+describe('contradiction review fixes (2.10.0)', () => {
+  const fresh = () =>
+    createPerson({
+      id: 'p',
+      name: 'P',
+      seed: 17,
+      now: 10,
+      bornAt: -30 * 365 * 1440,
+      sex: 'female',
+      norms: [],
+    });
+
+  it('reports in one percept share one reporter-trust basis, whatever their order', () => {
+    const run = (reverse: boolean) => {
+      const p = fresh();
+      for (const [source, prop] of [
+        ['a', 'qa'],
+        ['b', 'qb'],
+      ] as const) {
+        seedSourceTrust(p, source, 0.8);
+        seedBelief(p, prop, { value: true, credence: 0.9, source });
+      }
+      const reports = [
+        { sourceId: 'a', prop: 'qa', value: false },
+        { sourceId: 'b', prop: 'qb', value: false },
+      ];
+      if (reverse) reports.reverse();
+      perceive(p, [
+        {
+          at: 10,
+          channel: 'told',
+          actorId: 'a',
+          kind: 'fact',
+          salience: 1,
+          summary: 'Both accounts',
+          reports,
+        },
+      ]);
+      return { ...p.memory.sourceTrust };
+    };
+    expect(run(true)).toEqual(run(false));
+  });
+
+  it.each(['constructor', 'toString', '__proto__'])('treats %s as an ordinary unseeded id', (id) => {
+    const p = fresh();
+    seedBelief(p, 'q', { value: true, credence: 0.9, source: id });
+    const r = contradicted(p, { sourceId: id, prop: 'q', value: false });
+    expect(r).toMatchObject({ applied: true, before: 0.5, after: 0.375 });
+    const q = fresh();
+    seedBelief(q, 'q', { value: true, credence: 0.9, source: 's' });
+    const ordinary = fresh();
+    seedBelief(ordinary, 'q', { value: true, credence: 0.9, source: 's' });
+    expect(contradicted(q, { sourceId: 's', prop: 'q', value: false, reporterId: id }).after).toBe(
+      contradicted(ordinary, { sourceId: 's', prop: 'q', value: false, reporterId: 'ordinary' }).after,
+    );
   });
 });

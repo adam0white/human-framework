@@ -424,7 +424,10 @@ export function retell(
 const sameStory = (g: Episode, e: Episode): boolean =>
   g.kind === e.kind && g.action === e.action && g.targetId === e.targetId && g.placeId === e.placeId;
 
-const trustOfSource = (p: Person, id: EntityId): Unit => p.memory.sourceTrust[id] ?? 0.5;
+const trustOfSource = (p: Person, id: EntityId): Unit => {
+  const own = Object.hasOwn(p.memory.sourceTrust, id) ? p.memory.sourceTrust[id] : undefined;
+  return typeof own === 'number' ? own : 0.5;
+};
 
 const idNum = (id: string): number => Number(id.slice(1)) || 0;
 const byId = (a: Episode, b: Episode): number => idNum(a.id) - idNum(b.id);

@@ -139,7 +139,9 @@ export function attend(p: Person, percepts: Percept[], ctx: AttendContext): Perc
 /** Information-source trust, independent of relationship trust and advising-voice trust. */
 export function trustOf(p: Person, sourceId: EntityId): Unit {
   if (sourceId === p.id || sourceId === 'self') return BELIEF_DEFAULTS.selfTrust;
-  return p.memory.sourceTrust[sourceId] ?? BELIEF_DEFAULTS.defaultTrust;
+  // Own entries only: an id such as `constructor` or `__proto__` must not read an inherited property.
+  const own = Object.hasOwn(p.memory.sourceTrust, sourceId) ? p.memory.sourceTrust[sourceId] : undefined;
+  return typeof own === 'number' ? own : BELIEF_DEFAULTS.defaultTrust;
 }
 
 /**
@@ -280,7 +282,13 @@ export function confirm(p: Person, prop: string, truth: boolean, now: Minute): E
   for (const s of b.sources) {
     if (s.id === p.id || s.id === 'self') continue;
     const t = trustOf(p, s.id);
-    p.memory.sourceTrust[s.id] = clamp01(s.value === truth ? t + d.trustGain * (1 - t) : t - d.trustLoss * t);
+    // An own data property even for ids such as `__proto__` (plain assignment would set the prototype).
+    Object.defineProperty(p.memory.sourceTrust, s.id, {
+      value: clamp01(s.value === truth ? t + d.trustGain * (1 - t) : t - d.trustLoss * t),
+      writable: true,
+      enumerable: true,
+      configurable: true,
+    });
     if (s.value !== truth) misled.push(s.id);
   }
   // The belief now rests on observation; earlier claims are settled and are not judged twice.
@@ -368,6 +376,18 @@ export function contradicted(
   p: Person,
   ev: { sourceId: EntityId; prop: string; value: boolean; reporterId?: EntityId; at?: Minute },
 ): ContradictionResult {
+  return applyContradiction(p, ev, ev.reporterId === undefined ? undefined : trustOf(p, ev.reporterId));
+}
+
+/**
+ * `contradicted` with the reporter's trust given, so that several reports delivered together share one trust basis
+ * (`perceive` reads it once per percept, before any report applies). @internal
+ */
+export function applyContradiction(
+  p: Person,
+  ev: { sourceId: EntityId; prop: string; value: boolean; reporterId?: EntityId; at?: Minute },
+  reporterTrust: Unit | undefined,
+): ContradictionResult {
   const t = trustOf(p, ev.sourceId);
   const refused = (reason: ContradictionResult['reason']): ContradictionResult => ({
     applied: false,
@@ -383,7 +403,7 @@ export function contradicted(
   if (account.value === ev.value) return refused('same-account');
   const at = ev.at ?? p.now;
   if (!validMinute(at)) throw new Error('human: contradiction time must be a finite supported minute');
-  const weight = ev.reporterId === undefined ? 1 : testimonyWeight(trustOf(p, ev.reporterId));
+  const weight = reporterTrust === undefined ? 1 : testimonyWeight(reporterTrust);
   const after = seedSourceTrust(p, ev.sourceId, t - BELIEF_DEFAULTS.contradictionLoss * weight * t);
   const noted = p.memory.contradictions ?? [];
   noted.push({ sourceId: ev.sourceId, prop: ev.prop, at });

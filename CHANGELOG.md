@@ -23,6 +23,10 @@ Engine: 2.10.0. *Word and witness* ([roadmap](https://github.com/adam0white/huma
 - Believed regard: the impression a person holds of another gains an opt-in `regard` cue (how I believe they see me, −1 to 1, half-life 60 days), fed only by the person's own evidence that the other knows: own-act percepts listing `witnesses`, or `noteKnownBy(p, { otherId, act, via: 'told', sourceId })` weighted by trust in the teller. A witness the person did not see changes nothing. `regardOf(p, otherId, now)` reads it. `socialTerms` adds `regard:<id>` (at most 0.3) to repair offers towards someone believed to think badly of the person. The architecture documents how a broken promise reaches the breaker, the promisee and the witnesses.
 - Headless control [`word-and-witness-control.ts`](https://github.com/adam0white/human-framework/blob/main/packages/human/examples/word-and-witness-control.ts): four people over 20 days in two renamed domains, with full, no-regard, no-contradiction, no-provenance and secret-witness arms giving the same verdicts in both domains.
 
+### Fixed
+
+- Source trust reads and writes use own properties only, so an id such as `constructor` or `__proto__` behaves like any unseeded source (trust 0.5) instead of reading an inherited value or throwing; `confirm` no longer writes such an id by plain assignment. Ordinary ids are unaffected.
+
 ## [2.9.1] - 2026-10-20
 
 Engine: 2.9.0. The *Host kit* ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.2) and the owner's maintenance sweep. Behaviour-neutral: the engine stamp is unchanged, and every replay, fixture, hash and full-state legacy digest is unchanged. Patch number, not minor, because 2.10.0 is the approved name of *Word and witness*; nothing is removed.
