@@ -5,12 +5,65 @@
  *   runs/<id>.json        the envelope as sent: game, note, who, build, run
  *   replay/<id>.json      the game's own export, to load with the game's "Replay a run file"
  *   index.html            every run with its note, newest first; open it in a browser
- * Options: --days=N (default 30) limits which runs are downloaded.
+ * Options: --days=N (default 30) limits which runs are downloaded. --suggest opts into Clef suggestions.
+ * With --suggest, only the first word of envelope `who` and notes of at least three words go to
+ * Cloudflare Workers AI @cf/cloudflare/clef (never the run, build, game or full identity). Answers stay in
+ * suggest/<id>.json; each id is called once. Nothing goes to the ledger or back to R2.
+ * Cost: about 0.0003 USD a note, at 0.24 USD per million input tokens (output free). Stop new calls once
+ * response usage reaches 0.05 USD per invocation; cached answers cost nothing. The page reports a stop.
  */
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
+
+import {
+  ACCOUNT,
+  buildNoteRequest,
+  canSuggest,
+  clefAuth,
+  MODEL,
+  parseSuggestion,
+  readSuggestion,
+  renderSuggestion,
+  writeSuggestion,
+} from './lab-inbox-suggest.ts';
+
+const suggest = process.argv.includes('--suggest');
+let calls = 0;
+let cached = 0;
+let spent = 0;
+let spendStopped = false;
+const spendStop = 'Clef spend stop: reached 0.05 USD at list price; no more calls this invocation.';
+
+async function suggestionLine(id: string, env: Envelope): Promise<string> {
+  const request = buildNoteRequest(env.who, env.note);
+  if (!request) return '';
+  const saved = readSuggestion(dir, id);
+  if (saved) {
+    cached++;
+    return renderSuggestion(saved);
+  }
+  if (!canSuggest(spent)) {
+    spendStopped = true;
+    return '';
+  }
+  // No retries: one request per uncached run. The token stays in process memory.
+  const res = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/run/${MODEL}`, {
+    method: 'POST',
+    headers: { authorization: `Bearer ${clefAuth()}`, 'content-type': 'application/json' },
+    body: JSON.stringify(request),
+  });
+  calls++;
+  if (!res.ok) throw new Error(`Clef request failed: HTTP ${res.status}`);
+  const json = (await res.json()) as { success?: boolean; result?: unknown };
+  if (json.success === false) throw new Error('Clef request failed');
+  writeSuggestion(dir, id, json.result);
+  const answer = parseSuggestion(json.result);
+  spent += answer.usd;
+  if (!canSuggest(spent)) spendStopped = true;
+  return renderSuggestion(answer);
+}
 
 const root = join(import.meta.dirname, '..');
 const dir = join(root, '.lab-inbox');
@@ -59,9 +112,10 @@ for (const e of entries) {
     fetched++;
   }
   const env = JSON.parse(readFileSync(envFile, 'utf8')) as Envelope;
+  const suggestion = suggest ? await suggestionLine(e.id, env) : '';
   rows.push(`<article>
   <h2>${esc(e.game)} <small>${esc(e.hour.replace('T', ' '))}:00 UTC · ${esc(e.id)}${env.who ? ` · ${esc(env.who)}` : ''}</small></h2>
-  ${env.note ? `<blockquote>${esc(env.note).replace(/\n/g, '<br>')}</blockquote>` : '<p class="soft">No note.</p>'}
+  ${env.note ? `<blockquote>${esc(env.note).replace(/\n/g, '<br>')}</blockquote>` : '<p class="soft">No note.</p>'}${suggestion ? `\n  ${suggestion}` : ''}
   <p class="soft">build ${esc(env.build?.c ?? '?')} · HF ${esc(env.build?.hf ?? '?')} · game ${esc(env.build?.a ?? '?')} ·
   <a href="replay/${esc(e.id)}.json" download>replay file</a> (load it in <a href="https://${esc(e.game)}.adamwhite.work">the game</a> with “Replay a run file”) ·
   <a href="runs/${esc(e.id)}.json">everything sent</a></p>
@@ -76,8 +130,13 @@ writeFileSync(
 h2{font-size:1.1rem;margin:1.4rem 0 .2rem}small,.soft{color:#6E665A;font-weight:400}blockquote{margin:.3rem 0;padding-left:.8rem;border-left:2px solid #C2412D}
 @media (prefers-color-scheme:dark){body{background:#1E1B16;color:#E8DFCC}small,.soft{color:#9A9080}}</style>
 <h1>Lab inbox</h1><p class="soft">Private, on this machine only. ${entries.length} runs in the last ${days} days. Made ${new Date().toISOString().slice(0, 16)} by npm run lab:inbox.</p>
-${rows.join('\n') || '<p>No runs yet.</p>'}
+${spendStopped ? `<p><strong>${esc(spendStop)}</strong></p>\n` : ''}${rows.join('\n') || '<p>No runs yet.</p>'}
 </html>
 `,
 );
 console.log(`lab inbox: ${entries.length} runs (${fetched} new). Open ${join(dir, 'index.html')}`);
+
+if (suggest) {
+  console.log(`Clef suggestions: ${calls} calls, ${cached} cached; ${spent.toFixed(8)} USD at list price.`);
+  if (spendStopped) console.log(spendStop);
+}
