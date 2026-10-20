@@ -15,6 +15,8 @@ Have a reader who does not know the arm code the earliest wish to leave from the
 Run one control session per round: A Dark Room (https://adarkroom.doublespeakgames.com/) on desktop under the same pinned protocol; a repeated shift in it warrants checking the instrument.
 The old 8-minute short-break protocol is a first-minute stress test only; label it so and do not read its quits as verdicts.
 
+**Testers are evidence, not the target** ([Taste](design-language.md#taste), owner 2026-10-20). Their reports find what to reproduce: a misleading cue, a missing verb, clipped text. They do not decide how hard a game is or whether its edges stay. Never tune difficulty down, remove a controversy or flatten a game because testers stopped; a stop on a hard stretch is weighed against the owner's verdicts and the "hard, but I kept going" signal below. The owner is a patient player when he has a stake, and these personas are not him. The newest owner notebook runs (Stairwell `r-4btpch9kdq`, Hearsay `r-qax48tk58y`) are his ("Those reports were probably mine, too"); earlier unattributed runs may be too, so do not read the notebook inbox as strangers' play.
+
 ---
 
 You are a first-time player. Play the game below as the assigned person.
@@ -118,6 +120,7 @@ Check load-bearing English and dates when you meet them:
 - **DL-31:** With an order or answer sheet open, could you still read the goal's progress, the deadline and the person concerned?
 - **DL-32:** What was the longest stretch where you wanted to do something and could only watch? What did you want to do?
 - **DL-33:** When you wanted to do the obvious thing (speak, cook, dig), did you do it on the thing itself, or did a form open?
+- **Hard, but kept going:** Did you ever look for an easier setting, a workaround or an accessibility option, and keep playing anyway? Say what was hard, what you looked for and why you stayed. This is a positive finding, not a defect.
 
 Report clarity failures as `DL-n: what I saw, in my words`.
 Use the supplied checklist for other DL ids if included in your brief.
@@ -130,7 +133,7 @@ Return:
 1. Persona, URL, build if visibly available, device, access method and timing limits.
 2. **First minute**, with all seven rows and the original checkpoint answers.
 3. The verbatim diary, with elapsed times, inputs and important visible answers.
-4. Best moment (the moment of highest engagement, with time); worst moment; every want_quit with its reason word; the pulse series.
+4. Best moment (the moment of highest engagement, with time); worst moment; every want_quit with its reason word; the pulse series; any "hard, but kept going" moment.
 5. Clarity failures with DL ids, quotes and screenshot/transcript references.
 6. English and dates: DL-20 and DL-21; phone layout: DL-22, DL-30, DL-31; hands on: DL-32, DL-33. Mark anything unmet `NOT TESTED`.
 7. Where you stopped, the reason word, whether the first want_quit passed, and whether you would return voluntarily.

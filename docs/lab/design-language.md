@@ -8,6 +8,16 @@ Adopted 2026-10-20 for every lab game (owner: "Opus taste, a consistent design l
 
 **What it is not.** Not a demand for tutorials, a task manager or a single best move. Discovery, mystery, natural difficulty and uncertain outcomes stay. Clarity means the player can read the situation and their responses, not that the game plays itself.
 
+## Taste
+
+This section governs every item below (owner, 2026-10-20: "Don't become bland and objective neutral just to satisfy everyone", [owner directions](../owner-directions-2026-10-18.md)).
+
+- **Testers are evidence, not the target.** A tester's report says what to reproduce and fix: a misleading cue, a missing verb, a clipped line. It never sets how hard the game is, which edges stay, or whether a game should please everyone. A stop is not a fun score ([calibration](playtester-calibration-2026-10-20.md#what-early-stops-mean-and-dont)).
+- **Keep the edges, the difficulty and a slight controversy.** A game that some players find too hard, too slow or a little wrong, and others cannot put down, is doing its job. Natural difficulty stays; relax it later if needed, never first ([owner directions](../owner-directions-2026-10-18.md), Difficulty).
+- **"Can't stop, even though it's hard" outranks smoothness.** The owner's strongest enjoyment comes when he looks for a setting, a workaround or an accessibility toggle to make a game easier, and keeps playing. Treat that search as a positive signal: offer the setting or toggle (an easier start, a slower clock, a reading aid) as an option, and keep the default hard. It is never a reason to flatten the default.
+- **The owner is a patient player when he has a stake.** He played The Pass for six nights, The Night Watch for four winters and Hearsay to day 6 while listing its problems. The 3-5 minute tester stop measures a stranger's first minutes, not him.
+- **When they conflict, the owner's verdict governs.** If testers stop where the owner says "can't stop", fix the clarity defects they found and keep the game's shape. Clarity (sections 1-8) removes confusion; it does not remove challenge.
+
 ## How to use it
 
 - Each item gets one status per tested build: `pass`, `fail`, `not tested` or `exception` (the game's design doc says why). Record the screen, the inputs and the build. A filed fix stays `fail` until retested.
