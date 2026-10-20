@@ -257,6 +257,15 @@ export const Composer = memo(function Composer({
   const selected = options.find((o) => o.id === draft?.optionId);
   const shownTelegraph = telegraph && sameDraft(telegraph.draft, draft) ? telegraph.telegraph : null;
 
+  const leaningWords = leaningOpt ? (
+    <>
+      He’s leaning toward <em>{explainTerms(leaningOpt.label)}</em>.{' '}
+      <span>{leaning?.why ? `His reason: ${explainTerms(leaning.why)}` : 'His reason is not known.'}</span>
+    </>
+  ) : (
+    'He has not settled on an action.'
+  );
+
   return (
     <section className={`v-composer is-open ${expanded ? 'is-expanded' : ''}`} aria-label="Say something">
       <button
@@ -265,25 +274,13 @@ export const Composer = memo(function Composer({
         onClick={() => setExpanded((x) => !x)}
         aria-expanded={expanded}
       >
-        <span className="v-peek-lean">
-          Leaning: <em>{explainTerms(leaningOpt?.label ?? '—')}</em>
-        </span>
+        <span className="v-peek-lean">{leaningWords}</span>
         <span className="v-peek-cta">{expanded ? 'Close' : 'Say something'}</span>
       </button>
 
       <div className="v-composer-body">
         <div className="v-composer-scroll">
-          {leaningOpt && (
-            <p className="v-leaning">
-              He’s leaning toward <em>{explainTerms(leaningOpt.label)}</em>
-              {leaning?.why ? (
-                <>
-                  {' '}
-                  — <span>{explainTerms(leaning.why)}</span>
-                </>
-              ) : null}
-            </p>
-          )}
+          <p className="v-leaning">{leaningWords}</p>
 
           <fieldset className="v-options" aria-label="What to suggest">
             {options.slice(0, 6).map((o, i) => (

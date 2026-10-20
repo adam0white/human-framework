@@ -9,7 +9,10 @@
  *   `at`, the game clock when it was applied. A replay checks `at` and reports the first entry where it differs.
  *
  * Covers: the inputs that change state (begin, pause, resume, setPace, setAutoPause, suggest, withdraw, endDay,
- * advance, dismissIntro, keepListening) and the comparable state that is hashed. `predict`, `why` and `frame` are
+ * advance, dismissIntro, keepListening), plus presentation-only sceneWord/quick suggestion wording.
+ * Authored scene text is recomputed by this UI version, like the existing authored conversations; the sidecar
+ * is not part of the simulated state hash. These inputs neither change rules nor require a new edition.
+ * Covers the comparable state that is hashed. `predict`, `why` and `frame` are
  * not logged: the replay test checks that calling them leaves the hash unchanged. Does not cover: the worker's
  * frame throttling (a view concern) or `carry` (the fraction of a minute real time left over).
  */
@@ -19,6 +22,7 @@ import {
   type Draft,
   type MainToWorker,
   type Pace,
+  type SceneWords,
   type StandingWhisper,
   type Strength,
   scenarioIn,
@@ -26,9 +30,10 @@ import {
   type VoiceRules,
   WHISPER_DEFAULT,
 } from '../protocol.ts';
+import { sceneBeat, sceneWord } from '../ui/scene-words.ts';
 import { MAX_FF_MINUTES_PER_TICK, type Run, VoiceGame } from './game.ts';
 
-/** A logged input: a worker message that changes state. */
+/** A logged input: a worker message that changes simulation or recorded scene presentation. */
 export type VoiceInput = Exclude<MainToWorker, { type: 'init' | 'tick' | 'predict' | 'why' }>;
 export type VoiceStep = [minutes: number, count: number];
 export type VoiceLogEntry = VoiceStep | (VoiceInput & { at: number });
@@ -36,6 +41,8 @@ export type VoiceLogEntry = VoiceStep | (VoiceInput & { at: number });
 export class RecordedGame {
   readonly log: VoiceLogEntry[] = [];
   readonly game: VoiceGame;
+  /** Presentation sidecar. Deliberately outside voiceState and the person loop. */
+  readonly sceneWords: SceneWords[] = [];
 
   constructor(game: VoiceGame) {
     this.game = game;
@@ -56,7 +63,55 @@ export class RecordedGame {
 
   apply(msg: VoiceInput): void {
     this.log.push({ at: this.game.t, ...structuredClone(msg) } as VoiceInput & { at: number });
+    if (msg.type === 'sceneWord') {
+      const continuation = sceneWord(this.frame(), msg.kind, msg.beat, msg.words);
+      if (continuation) this.sceneWords.push(continuation);
+      else if (msg.words) {
+        const frame = this.frame();
+        this.sceneWords.push({
+          beat: sceneBeat(frame),
+          kind: msg.kind,
+          day: frame.day,
+          minute: frame.minute,
+          clock: frame.clock,
+          words: msg.words,
+          answer: 'Those words are no longer available. Nothing was said.',
+          said: false,
+        });
+      }
+      return;
+    }
+    if (msg.type === 'suggest' && msg.sceneLine) {
+      const frame = this.frame();
+      const available =
+        frame.composer.open &&
+        !frame.muted &&
+        frame.options.some((option) => option.id === msg.draft.optionId);
+      this.sceneWords.push({
+        beat: sceneBeat(frame),
+        kind: 'suggestion',
+        day: frame.day,
+        minute: frame.minute,
+        clock: frame.clock,
+        words: msg.sceneLine,
+        answer: available
+          ? ''
+          : frame.muted
+            ? 'You are silent today. Those words were not said.'
+            : frame.halil.asleep
+              ? 'He is asleep. Those words were not said.'
+              : frame.composer.open
+                ? 'That is no longer one of his choices. Nothing was said.'
+                : 'He is occupied. Wait until he is choosing.',
+        ...(!available ? { said: false as const } : {}),
+      });
+      if (!available) return;
+    }
     applyInput(this.game, msg);
+  }
+  /** Same simulation frame, with recorded scene continuations for display and repeat bounds. */
+  frame() {
+    return { ...this.game.frame(), sceneWords: this.sceneWords };
   }
 }
 
@@ -237,6 +292,7 @@ export function validateVoiceLog(log: readonly unknown[]): VoiceLogEntry[] {
         'setPace',
         'setAutoPause',
         'suggest',
+        'sceneWord',
         'withdraw',
         'endDay',
         'advance',
@@ -246,15 +302,27 @@ export function validateVoiceLog(log: readonly unknown[]): VoiceLogEntry[] {
       `${what}.type`,
     );
     switch (type) {
+      case 'sceneWord':
+        check.keys(o, ['at', 'type', 'beat', 'kind', 'words'], what);
+        return {
+          at,
+          type,
+          beat: check.str(o.beat, `${what}.beat`, 160),
+          ...(o.words !== undefined ? { words: check.str(o.words, `${what}.words`, 240) } : {}),
+          kind: check.oneOf(o.kind, ['care', 'question'] as const, `${what}.kind`),
+        };
       case 'setPace':
         check.keys(o, ['at', 'type', 'pace'], what);
         return { at, type, pace: check.oneOf(o.pace, PACES, `${what}.pace`) };
       case 'setAutoPause':
         check.keys(o, ['at', 'type', 'on'], what);
         return { at, type, on: check.bool(o.on, `${what}.on`) };
-      case 'suggest':
-        check.keys(o, ['at', 'type', 'draft'], what);
-        return { at, type, draft: draftOf(o.draft, `${what}.draft`) };
+      case 'suggest': {
+        check.keys(o, ['at', 'type', 'draft', 'sceneLine'], what);
+        const input: VoiceInput & { at: number } = { at, type, draft: draftOf(o.draft, `${what}.draft`) };
+        if (o.sceneLine !== undefined) input.sceneLine = check.str(o.sceneLine, `${what}.sceneLine`, 240);
+        return input;
+      }
       case 'advance': {
         check.keys(o, ['at', 'type', 'standing'], what);
         if (!Array.isArray(o.standing) || o.standing.length > CHOICES.length)

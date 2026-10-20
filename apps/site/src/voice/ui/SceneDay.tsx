@@ -1,12 +1,12 @@
-import { type RefObject, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Draft, Frame, Telegraph } from '../protocol.ts';
 import { Composer } from './Composer.tsx';
 import { spokenLogText } from './conversations.ts';
 import { DayLog } from './DayLog.tsx';
 import { storyDates } from './dates.ts';
-import { obstacleWords } from './obstacle.ts';
 import { consequentialOffer, speakingOpportunity } from './pause-policy.ts';
 import { currentReply, sceneResponse } from './scene-response.ts';
+import { sceneBeat, sceneWordChoices } from './scene-words.ts';
 import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
 import { explainTerms } from './terms.tsx';
 export interface SceneDayProps {
@@ -17,10 +17,12 @@ export interface SceneDayProps {
   onWhy: (id: string) => void;
   onRetainWhy: (id: string) => void;
   onPredict: (draft: Draft | null) => void;
-  onSuggest: (draft: Draft) => void;
+  onSuggest: (draft: Draft, sceneLine?: string) => void;
+  onSceneWord?: (kind: 'care' | 'question', beat: string, words: string) => void;
   onSayNothing: () => void;
   onWithdraw: () => void;
   onPause?: () => void;
+  onReading?: (reading: boolean) => void;
 }
 /** Scenes are presentation only. Inputs still use the existing suggestion protocol. */
 export function SceneDay(props: SceneDayProps) {
@@ -31,6 +33,17 @@ export function SceneDay(props: SceneDayProps) {
   if (derived && cache.current?.id !== derived.id) cache.current = { id: derived.id, scene: derived };
   const scene = derived?.current ? cache.current?.scene : null;
   const [editor, setEditor] = useState(false);
+  const [speaking, setSpeaking] = useState<string | null>(null);
+  const [moreFor, setMoreFor] = useState<string | null>(null);
+  const [sentBeat, setSentBeat] = useState<string | null>(null);
+  const [answerHold, setAnswerHold] = useState(false);
+  const answerTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(
+    () => () => {
+      if (answerTimer.current) clearTimeout(answerTimer.current);
+    },
+    [],
+  );
   const more = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const restoreFocus = useRef(false);
@@ -46,6 +59,52 @@ export function SceneDay(props: SceneDayProps) {
     setEditor(false);
   };
   const available = frame.composer.open && !frame.muted;
+  const beat = sceneBeat(frame);
+  const wordChoices = sceneWordChoices(frame);
+  const lastRequest = frame.log.findLast((entry) => entry.kind === 'you');
+  const spoken =
+    frame.sceneWords
+      ?.filter(
+        (line) =>
+          line.beat === beat ||
+          (answerHold && line === frame.sceneWords?.at(-1) && line.kind !== 'suggestion') ||
+          (line.kind === 'suggestion' &&
+            line.day === frame.day &&
+            line.minute === lastRequest?.minute &&
+            !!currentReply(frame, scene ?? null)),
+      )
+      .slice(-2) ?? [];
+  const receipt = `${beat}:${lastRequest?.id ?? ''}:${frame.sceneWords?.length ?? 0}`;
+  const sending = useRef<string | null>(null);
+  const resolvedOpportunity = useRef<string | null>(null);
+  const canSpeak = available || wordChoices.length > 0;
+  const moreWords = moreFor === beat;
+  const opportunity = speakingOpportunity(frame);
+  useEffect(() => {
+    if (frame.paused && opportunity !== null && opportunity !== resolvedOpportunity.current)
+      setSpeaking(beat);
+  }, [frame.paused, opportunity, beat]);
+  const expanded =
+    speaking === beat ||
+    (frame.paused && opportunity !== null && opportunity !== resolvedOpportunity.current);
+  const reading = (expanded && canSpeak) || editor || answerHold;
+  const onReading = props.onReading;
+  useEffect(() => {
+    onReading?.(reading);
+    return () => onReading?.(false);
+  }, [reading, onReading]);
+  const sent = sentBeat === beat;
+  const speakWord = (kind: 'care' | 'question') => {
+    if (sent || !wordChoices.some((line) => line.kind === kind)) return;
+    setSentBeat(beat);
+    setAnswerHold(true);
+    if (answerTimer.current) clearTimeout(answerTimer.current);
+    answerTimer.current = setTimeout(() => setAnswerHold(false), 6000);
+    setSpeaking(null);
+    setMoreFor(null);
+    const words = wordChoices.find((line) => line.kind === kind)?.words;
+    if (words) props.onSceneWord?.(kind, beat, words);
+  };
   const answer = currentReply(frame, scene ?? null);
   const responseKey = `${scene?.id ?? ''}:${answer?.id ?? ''}`;
   const responseCache = useRef<{ key: string; value: ReturnType<typeof sceneResponse> } | null>(null);
@@ -59,12 +118,13 @@ export function SceneDay(props: SceneDayProps) {
   const visibleLines = progressed
     ? [...response.lines, ...(page >= 2 ? response.more : [])]
     : (scene?.lines ?? []);
+  const condensed = moreWords && visibleLines.length > 2;
+  const presentedLines = condensed ? visibleLines.slice(-1) : visibleLines;
   const canListen = !!response && !refused && page < 2;
   const latestAction = frame.log.findLast((e) => e.kind === 'act');
   const offer = consequentialOffer(frame);
   const choices = sceneChoices(scene ?? null, frame.options, offer);
   const encounter = nextEncounter(frame);
-  const opportunity = speakingOpportunity(frame);
   const replyText =
     answer &&
     spokenLogText(answer.text).replace(
@@ -125,7 +185,7 @@ export function SceneDay(props: SceneDayProps) {
             </p>
             <h1>{scene.names.join(' and ')}</h1>
             {scene.kind === 'memory' && <p className="v-scene-memory">He remembers Nuran.</p>}
-            {progressed && (
+            {(progressed || condensed) && (
               <details className="v-conversation-earlier">
                 <summary>Earlier in this conversation</summary>
                 {scene.lines.map((line) => (
@@ -136,13 +196,13 @@ export function SceneDay(props: SceneDayProps) {
               </details>
             )}
             <div className="v-exchange" aria-live="polite">
-              {visibleLines.map((line) => (
+              {presentedLines.map((line) => (
                 <p className="v-exchange-line" key={`${line.speaker}:${line.words}`}>
                   <strong>{line.speaker}:</strong> “{line.words}”
                 </p>
               ))}
             </div>
-            {canListen && (
+            {canListen && !condensed && (
               <button
                 type="button"
                 className="v-conversation-listen v-btn v-btn-quiet"
@@ -159,13 +219,35 @@ export function SceneDay(props: SceneDayProps) {
           </div>
         )}
         {frame.pauseBeat && !scene && <p className="v-scene-notice">{explainTerms(frame.pauseBeat.text)}</p>}
+        {spoken.length > 0 && (
+          <div className="v-spoken-lines" aria-live="polite">
+            {spoken.map((line) => (
+              <div key={`${line.beat}:${line.kind}:${line.minute}:${line.words}`}>
+                <small>Your words · {line.clock}</small>
+                <p>
+                  <strong>{line.said === false ? 'Unsaid' : 'You'}:</strong> “{line.words}”
+                </p>
+                {line.answer && (
+                  <p>
+                    <strong>
+                      {line.said === false || line.answer.startsWith('He keeps') ? 'Scene' : 'Halil'}:
+                    </strong>{' '}
+                    {line.said === false || line.answer.startsWith('He keeps')
+                      ? line.answer
+                      : `“${line.answer}”`}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
         {reply}
       </div>
       {editor ? (
         <dialog
           ref={dialog}
           className="v-scene-editor"
-          aria-label="Say something else"
+          aria-label="Plan something specific"
           onKeyDownCapture={(e) => {
             if (e.key === 'Escape') {
               e.preventDefault();
@@ -203,24 +285,101 @@ export function SceneDay(props: SceneDayProps) {
         </dialog>
       ) : (
         <div className="v-scene-participate v-scene-participate-secondary">
-          {available ? (
-            <SceneSuggestions
-              key={`${opportunity ?? 'routine'}:${offer?.optionId ?? ''}`}
-              offer={offer ? explainTerms(storyDates(offer.why)) : null}
-              expand={frame.paused && opportunity !== null}
-              paused={frame.paused}
-              onPause={props.onPause}
-              choices={choices}
-              telegraph={props.telegraph}
-              onPredict={onPredict}
-              onSuggest={onSuggest}
-              onSayNothing={onSayNothing}
-              moreRef={more}
-              onMore={() => {
-                onPredict(null);
-                setEditor(true);
-              }}
-            />
+          {canSpeak ? (
+            !expanded ? (
+              <div className="v-scene-compact">
+                <button type="button" className="v-scene-speak v-btn" onClick={() => setSpeaking(beat)}>
+                  Speak
+                </button>
+                {frame.paused ? (
+                  <button type="button" className="v-btn v-btn-quiet" onClick={onSayNothing}>
+                    Let time pass
+                  </button>
+                ) : (
+                  <span className="v-scene-wait">Listening. Silence needs no tap.</span>
+                )}
+              </div>
+            ) : (
+              <>
+                {offer && <p className="v-scene-offer">{explainTerms(storyDates(offer.why))}</p>}
+                {available && (
+                  <div className="v-scene-choices">
+                    {choices.map((choice) => (
+                      <button
+                        type="button"
+                        className="v-scene-choice"
+                        key={choice.draft.optionId}
+                        onClick={() => {
+                          if (sending.current === receipt) return;
+                          sending.current = receipt;
+                          resolvedOpportunity.current = opportunity;
+                          setAnswerHold(true);
+                          if (answerTimer.current) clearTimeout(answerTimer.current);
+                          answerTimer.current = setTimeout(() => setAnswerHold(false), 6000);
+                          onSuggest(choice.draft, choice.label);
+                          setSpeaking(null);
+                          setMoreFor(null);
+                          onPredict(null);
+                        }}
+                      >
+                        {choice.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {(!available || moreWords) && wordChoices.length > 0 && !sent && (
+                  <fieldset className="v-scene-words" aria-label="Your words">
+                    {wordChoices.map((line) => (
+                      <button
+                        type="button"
+                        className="v-scene-word"
+                        key={line.kind}
+                        onClick={() => speakWord(line.kind)}
+                      >
+                        {line.words}
+                      </button>
+                    ))}
+                  </fieldset>
+                )}
+                {!available && (
+                  <p className="v-scene-wait">He is occupied. Suggestions wait until he is choosing.</p>
+                )}
+                <div className="v-scene-choice-tools">
+                  <button
+                    type="button"
+                    className="v-scene-silence"
+                    onClick={() => {
+                      resolvedOpportunity.current = opportunity;
+                      setSpeaking(null);
+                      setMoreFor(null);
+                      onPredict(null);
+                      setAnswerHold(false);
+                      onSayNothing();
+                    }}
+                  >
+                    Say nothing
+                  </button>
+                  {available && !moreWords && (
+                    <button type="button" className="v-scene-more" onClick={() => setMoreFor(beat)}>
+                      Say something else…
+                    </button>
+                  )}
+                </div>
+                {available && moreWords && (
+                  <button
+                    type="button"
+                    ref={more}
+                    className="v-scene-plan"
+                    onClick={() => {
+                      onPredict(null);
+                      setEditor(true);
+                    }}
+                  >
+                    Plan something specific…
+                  </button>
+                )}
+              </>
+            )
           ) : (
             <div className="v-scene-compact">
               <p className="v-scene-wait">
@@ -228,7 +387,9 @@ export function SceneDay(props: SceneDayProps) {
                   ? 'You are silent today. Watch.'
                   : frame.halil.asleep
                     ? 'You can speak when he wakes.'
-                    : 'He is busy. You can speak when he is choosing.'}
+                    : spoken.length
+                      ? 'You have spoken. Give him a little room.'
+                      : 'He is occupied. You can speak when he is choosing.'}
               </p>
               {frame.paused && !frame.muted && (
                 <button type="button" className="v-scene-listen v-btn" onClick={onSayNothing}>
@@ -240,134 +401,5 @@ export function SceneDay(props: SceneDayProps) {
         </div>
       )}
     </section>
-  );
-}
-function SceneSuggestions({
-  choices,
-  telegraph,
-  onPredict,
-  onSuggest,
-  onSayNothing,
-  onMore,
-  moreRef,
-  expand,
-  paused,
-  onPause,
-  offer,
-}: Pick<SceneDayProps, 'telegraph' | 'onPredict' | 'onSuggest' | 'onSayNothing'> & {
-  offer: string | null;
-  expand: boolean;
-  paused: boolean;
-  onPause?: (() => void) | undefined;
-  choices: ReturnType<typeof sceneChoices>;
-  onMore: () => void;
-  moreRef: RefObject<HTMLButtonElement | null>;
-}) {
-  const [opened, setOpened] = useState<boolean | null>(null);
-  const expanded = opened ?? expand;
-  const [draft, setDraft] = useState<Draft | null>(null);
-  const selected = draft && choices.some((c) => c.draft.optionId === draft.optionId) ? draft : null;
-  const id = selected?.optionId;
-  // Re-predict when the offered choices change, even if a selected action survives.
-  const ids = choices.map((c) => c.draft.optionId).join('|');
-  // biome-ignore lint/correctness/useExhaustiveDependencies: changed offers invalidate the prediction context.
-  useEffect(() => {
-    onPredict(id ? { optionId: id, strength: 'mention', insist: false } : null);
-  }, [id, ids, onPredict]);
-  const prediction =
-    selected &&
-    telegraph?.draft.optionId === selected.optionId &&
-    telegraph.draft.strength === 'mention' &&
-    !telegraph.draft.insist &&
-    !telegraph.draft.appeal
-      ? telegraph.telegraph
-      : null;
-  const silence = () => {
-    setDraft(null);
-    setOpened(false);
-    onPredict(null);
-    onSayNothing();
-  };
-  if (!expanded)
-    return (
-      <div className="v-scene-compact">
-        <button
-          type="button"
-          className="v-scene-speak v-btn"
-          aria-expanded={false}
-          onClick={() => {
-            onPause?.();
-            setOpened(true);
-          }}
-        >
-          Speak
-        </button>
-        {paused ? (
-          <button type="button" className="v-scene-listen v-btn v-btn-quiet" onClick={silence}>
-            Let time pass
-          </button>
-        ) : (
-          <span className="v-scene-wait">Listening. Silence needs no tap.</span>
-        )}
-      </div>
-    );
-  return (
-    <>
-      {offer && <p className="v-scene-offer">{offer}</p>}
-      {selected ? (
-        <>
-          <p className="v-selected-words">
-            {choices.find((choice) => choice.draft.optionId === selected.optionId)?.label}
-          </p>
-          <div className="v-scene-preview">
-            <p className="v-scene-likely" aria-live="polite">
-              {prediction
-                ? `Likely: “${explainTerms(obstacleWords(prediction) ?? prediction.says)}”`
-                : 'Reading his likely reply…'}
-            </p>
-            <button
-              type="button"
-              className="v-scene-send v-btn"
-              disabled={!prediction}
-              onClick={() => {
-                onSuggest(selected);
-                setDraft(null);
-                setOpened(false);
-                onPredict(null);
-              }}
-            >
-              Say it
-            </button>
-          </div>
-        </>
-      ) : (
-        <div className="v-scene-choices">
-          {choices.map((choice) => (
-            <button
-              type="button"
-              className="v-scene-choice"
-              key={choice.draft.optionId}
-              onClick={() => setDraft(choice.draft)}
-            >
-              {choice.label}
-            </button>
-          ))}
-        </div>
-      )}
-      <div className="v-scene-choice-tools">
-        <button type="button" className="v-scene-silence" onClick={silence}>
-          Say nothing
-        </button>
-        {selected ? (
-          <button type="button" className="v-scene-more" onClick={() => setDraft(null)}>
-            Change words
-          </button>
-        ) : (
-          <button ref={moreRef} type="button" className="v-scene-more" onClick={onMore}>
-            Say something else…
-          </button>
-        )}
-      </div>
-    </>
   );
 }

@@ -106,7 +106,7 @@ export function App() {
   }, [actions]);
 
   // The game resumes itself on Confirm (and stays paused if the option went away), so no setPaused here.
-  const suggest = useCallback((d: Draft) => actions.suggest(d), [actions]);
+  const suggest = useCallback((d: Draft, line?: string) => actions.suggest(d, line), [actions]);
   const sayNothing = useCallback(() => actions.setPaused(false), [actions]);
 
   // A new run closes any open why sheet.
@@ -124,6 +124,7 @@ export function App() {
           clock={frame.clock}
           sky={frame.sky}
           fastForward={frame.fastForward}
+          reading={voice.reading}
           paused={frame.paused}
           pace={frame.pace}
           autoPause={frame.autoPause}
@@ -139,7 +140,7 @@ export function App() {
           </div>
           <div className="v-col v-col-centre">
             <SceneDay
-              key={frame.day}
+              key={`${voice.runId}:${frame.day}`}
               frame={frame}
               telegraph={voice.telegraph}
               whyOpen={voice.whyOpen}
@@ -148,6 +149,8 @@ export function App() {
               onRetainWhy={actions.retainWhy}
               onPredict={actions.predict}
               onSuggest={suggest}
+              onSceneWord={actions.sceneWord}
+              onReading={actions.setReading}
               onSayNothing={sayNothing}
               onWithdraw={actions.withdraw}
               onPause={() => actions.setPaused(true)}

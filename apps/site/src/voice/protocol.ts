@@ -135,14 +135,15 @@ export const defaultWhisper = (choiceId: StandingWhisper['choiceId']): StandingW
 
 export type MainToWorker =
   | { type: 'init'; seed: number; gen: number; scenarioVersion: string }
-  | { type: 'tick'; dtMs: number }
+  | { type: 'tick'; dtMs: number; wallDtMs?: number }
   | { type: 'pause' }
   | { type: 'resume' }
   | { type: 'setPace'; pace: Pace }
   | { type: 'setAutoPause'; on: boolean }
   | { type: 'begin' } // premise card dismissed
   | { type: 'predict'; requestId: number; draft: Draft }
-  | { type: 'suggest'; draft: Draft } // Confirm
+  | { type: 'suggest'; draft: Draft; sceneLine?: string } // Confirm or quick spoken suggestion
+  | { type: 'sceneWord'; beat: string; kind: 'care' | 'question'; words?: string }
   | { type: 'withdraw' }
   | { type: 'why'; decisionId: string }
   | { type: 'endDay' }
@@ -259,7 +260,20 @@ export interface StripRow {
   cells: { from: number; to: number; family: Family; label: string; promptedBy?: VoiceId }[];
 }
 
+/** Authored scene continuation only. No simulated person state changes. */
+export interface SceneWords {
+  beat: string;
+  kind: 'care' | 'question' | 'suggestion';
+  day: number;
+  minute: number;
+  clock: string;
+  words: string;
+  answer: string;
+  /** A stale quick option was never spoken or sent to the person. */
+  said?: false;
+}
 export interface Frame {
+  sceneWords?: SceneWords[];
   phase: Phase;
   day: number;
   dayLabel: string;

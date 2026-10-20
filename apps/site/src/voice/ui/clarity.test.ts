@@ -185,6 +185,6 @@ it('names what Auto does without substituting an unexplained phone abbreviation'
     }),
   );
   const auto = query(el, '.v-autopause');
-  expect(auto.textContent).toContain('Auto-pause at scenes');
+  expect(auto.textContent).toContain('Slow at scenes');
   expect(auto.querySelector('.v-short')).toBeNull();
 });
