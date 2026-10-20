@@ -3031,6 +3031,64 @@
     "fix:well DL-17 describe mood, trust and need instead of exact values (open)"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-218",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Codex source-unread persona Deniz (round 2)",
+   "words": "It's the next morning, and I'm hearing the same descriptions again. … I liked the flour dilemma, but I wouldn't keep playing tonight.",
+   "verdict": "quit",
+   "routes": [
+    "fix:hearsay daily incidents and day card (done)",
+    "lesson:L7"
+   ],
+   "source": "hearsay/docs/playtests/2026-10-20-r2-tester-a.md"
+  },
+  {
+   "id": "F-219",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Codex source-unread persona Murat (round 2)",
+   "words": "I know how to spread a story, but I still don't know whether I'm getting the wedding any closer. There are too many names between me and the answer. I wouldn't come back on my own.",
+   "verdict": "quit",
+   "routes": [
+    "fix:hearsay Rıza's lean on screen (done)",
+    "fix:hearsay wedding road with named doubts (open)",
+    "lesson:L13"
+   ],
+   "source": "hearsay/docs/playtests/2026-10-20-r2-tester-b.md"
+  },
+  {
+   "id": "F-220",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Codex source-unread persona Selin (round 3)",
+   "words": "The neighbours take their cups away because I answered the person missing her cart. That feels unfair in a way that isn't interesting to me. … I wouldn't open it tomorrow on my own.",
+   "verdict": "quit",
+   "routes": [
+    "fix:hearsay DL-19 telling the concerned person is not backbiting (open)",
+    "fix:hearsay DL-15 a listener stays while the talk panel is open (open)"
+   ],
+   "source": "hearsay/docs/playtests/2026-10-20-r3-tester-c.md"
+  },
+  {
+   "id": "F-221",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Codex source-unread persona Hakan (round 3)",
+   "words": "The wedding is progressing, but I don't feel that I'm directing it. … I would come back for a clear plan I could try, and a visible sign that my particular choice helped or hurt it.",
+   "verdict": "quit",
+   "routes": [
+    "fix:hearsay wedding road with named doubts and causes (open)",
+    "lesson:L13",
+    "lesson:L14"
+   ],
+   "source": "hearsay/docs/playtests/2026-10-20-r3-tester-d.md"
   }
  ],
  "lessons": [
@@ -3596,8 +3654,8 @@
   }
  ],
  "routes": {
-  "fix": 153,
-  "lesson": 220,
+  "fix": 159,
+  "lesson": 224,
   "hf": 11,
   "calibration": 42,
   "none": 1
