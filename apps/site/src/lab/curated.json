@@ -3409,7 +3409,7 @@
    "routes": [
     "fix:pass DL-22 cook controls and the selected cook stay put while a request is answered (open, target 2026-11-03)",
     "fix:pass DL-5 say what a station request commits the cook to, and match the willingness line (open, target 2026-11-03)",
-    "fix:pass design question for owner: cooks' autonomy versus coverage, a standing rota or arrangement (open, target 2026-11-03)"
+    "fix:pass design question for owner: cooks' autonomy versus coverage, a standing rota or arrangement (done, design round 2026-10-20: rota board the cooks agree to, edition pass@5, pass 87f5701, owner may veto in the Pass design doc)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/pass.md"
   },
@@ -3496,8 +3496,8 @@
    "words": "I was frustrated more than bored.\" … \"I would not return voluntarily on this phone layout today.",
    "verdict": "quit",
    "routes": [
-    "fix:well DL-22 selected order, its reason and options readable together on the phone (open, target 2026-11-03)",
-    "fix:well DL-23 a labelled way to pick worker and destination without tiny moving figures (open, target 2026-11-03)",
+    "fix:well DL-22 selected order, its reason and options readable together on the phone (done, design round 2026-10-20: map-first phone layout, HF c5406d0 and 8d157de)",
+    "fix:well DL-23 a labelled way to pick worker and destination without tiny moving figures (done, design round 2026-10-20: worker and place chips, HF c5406d0)",
     "fix:well DL-15 ordinary moments stop the clock less often (open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/well.md"
@@ -3526,7 +3526,7 @@
    "words": "I do not yet want to spend an evening choosing combinations of action, pressure and reason to reach the next human exchange.",
    "verdict": "quit",
    "routes": [
-    "fix:voice DL-15 stay with exchanges like Hacer's longer before the compliance messages (open, target 2026-11-03)",
+    "fix:voice DL-15 stay with exchanges like Hacer's longer before the compliance messages (done, design round 2026-10-20: scene-first view, staying delivers the conversation, HF 2a263e0 and 9061692)",
     "fix:voice DL-22 immediate choice and its reason together, clear of the Latest control (open, target 2026-11-03)",
     "fix:voice DL-19 make the predicted obstacle understandable when I speak (open, target 2026-11-03)"
    ],
@@ -3556,9 +3556,9 @@
    "words": "I wanted influence through suggestions, and I had not felt that influence yet. I would not return voluntarily on this evidence.",
    "verdict": "quit",
    "routes": [
-    "fix:murmur DL-7 a gentle suggestion draws a noticeable response early, even when refused (open, target 2026-11-03)",
+    "fix:murmur DL-7 a gentle suggestion draws a noticeable response early, even when refused (done, design round 2026-10-20: against-leaning suggestions sometimes land, edition 0.3.0, murmur 052ad26)",
     "fix:murmur DL-15 remaining response time readable, and no mis-selection when a situation expires under my finger (open, target 2026-11-03)",
-    "fix:murmur DL-19 show whether an unforced suggestion stayed with her (open, target 2026-11-03)"
+    "fix:murmur DL-19 show whether an unforced suggestion stayed with her (done, design round 2026-10-20: refusals can resurface as I thought about it, murmur 052ad26)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/murmur-round4.md"
   },
@@ -3604,7 +3604,7 @@
     "fix:pass DL-9 say who is leaving and which station needs cover (open, target 2026-11-03)",
     "fix:pass DL-5 say whether after I wash plates is a promise or a request to solve another way (open, target 2026-11-03)",
     "fix:pass DL-3 keep current service separate from old departure messages (open, target 2026-11-03)",
-    "fix:pass design question for owner: cooks' autonomy versus coverage, a standing rota or arrangement (open, target 2026-11-03)"
+    "fix:pass design question for owner: cooks' autonomy versus coverage, a standing rota or arrangement (done, design round 2026-10-20: rota board, pass 87f5701)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/pass-round4.md"
   },
@@ -3617,7 +3617,7 @@
    "words": "I would not voluntarily return tonight. I would be interested in another scene involving Selin or Nuran, but the repeated instruction sheets did not give me the company I came for.",
    "verdict": "quit",
    "routes": [
-    "fix:voice DL-5 more of an actual exchange between Halil and another person, around the clinic or Selin (open, target 2026-11-03)",
+    "fix:voice DL-5 more of an actual exchange between Halil and another person, around the clinic or Selin (done, design round 2026-10-20: scene-first view and named speakers, HF 2a263e0 and 262a295)",
     "fix:voice DL-5 Why? beside the cigarette answer is about the cigarette, or says it opens the reason for his current action (open, target 2026-11-03)",
     "fix:voice DL-22 phone action choices show more than the top of the first row (open, target 2026-11-03)"
    ],
@@ -3632,7 +3632,7 @@
    "words": "At 235.5s I wanted to leave and stopped.\" … \"I would not return voluntarily on this phone layout. The differences in people's replies interest me, but I want to see the people act.",
    "verdict": "quit",
    "routes": [
-    "fix:well DL-22 workers and the selected job visible while giving an order on the phone (open, target 2026-11-03)",
+    "fix:well DL-22 workers and the selected job visible while giving an order on the phone (done, design round 2026-10-20: map-first layout and follow the worker, HF c5406d0)",
     "fix:well DL-5 a suggested worker's availability agrees with the forecast, or says the suggestion may no longer fit (open, target 2026-11-03)",
     "fix:well DL-13 keep the place selected when switching from a refusing worker to another (open, target 2026-11-03)"
    ],
@@ -3647,8 +3647,8 @@
    "words": "I do not know how to make this shelter safe enough before I call them in. I would not spend the rest of my break repeating the bell.",
    "verdict": "quit",
    "routes": [
-    "fix:warren DL-4 inspect a marked sleeping space and the danger that still reaches it before calling people in (open, target 2026-11-03)",
-    "fix:warren DL-5 say whether the current bell call is still acted on, ended or needs renewing (open, target 2026-11-03)",
+    "fix:warren DL-4 inspect a marked sleeping space and the danger that still reaches it before calling people in (done, design round 2026-10-20: room safety reading and exposure wash, warren f8df124 and 96e84ba)",
+    "fix:warren DL-5 say whether the current bell call is still acted on, ended or needs renewing (done, design round 2026-10-20: a call stays active until the all-clear, edition 0.4.0, warren a9abf2e)",
     "fix:warren DL-5 show who can shut the stone door and what they are doing instead (open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/warren-round5.md"
@@ -3778,6 +3778,212 @@
     "fix:goodhands no title flash on Open the office (open)"
    ],
    "source": "goodhands/docs/playtests/2026-10-20-r3-tester-f.md"
+  },
+  {
+   "id": "F-268",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Priya (Codex source-unread persona, design round 1, murmur 052ad26)",
+   "words": "I would return voluntarily for a short session, especially to see whether the Ece suggestions changed a later interaction.",
+   "verdict": "keep",
+   "routes": [
+    "fix:murmur round-1 asks folded into follow-up b, murmur 60a10ec (done)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/murmur.md"
+  },
+  {
+   "id": "F-269",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Tomás (Codex source-unread persona, design round 2, murmur 60a10ec)",
+   "words": "I would return voluntarily for a short session to hear another phrase become hers.",
+   "verdict": "keep",
+   "routes": [
+    "fix:murmur DL-5 more distinct replies, fewer repeated acceptances and reused social explanations (open, target 2026-11-03)",
+    "fix:murmur DL-20 speaker and quotation wording, e.g. 'eat at her desk' (open, target 2026-11-03)",
+    "fix:murmur DL-13 more lines from a conversation the player helped cause (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/murmur-round2.md"
+  },
+  {
+   "id": "F-270",
+   "date": "2026-10-20",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Leila (Codex source-unread persona, design round 1, HF site 222e472)",
+   "words": "I would try another evening once for the characters, but would not commit to playing the whole month on this evidence.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice round-1 asks folded into follow-ups c and d, HF bcc5aa4 and 9061692 (done)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/voice.md"
+  },
+  {
+   "id": "F-271",
+   "date": "2026-10-20",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Marguerite (Codex source-unread persona, design round 2, HF site 210b2e1)",
+   "words": "I would not return voluntarily tonight. I would be interested in Halil and Nuran, but I would hesitate if talking continued to require choosing an instruction and confirming it.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice DL-16 respond with simple care or a question after a difficult conversation, not an instruction form (open, target 2026-11-03)",
+    "fix:voice DL-7 an ordinary short suggestion is one act, not a preview then Say it (open, target 2026-11-03)",
+    "fix:voice DL-22 the phone sheet says what he is leaning toward and why, as on desktop (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/voice-round2.md"
+  },
+  {
+   "id": "F-272",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Hana (Codex source-unread persona, design round 1, HF site 222e472)",
+   "words": "Picking people and places took too much fiddling for a lunch break\" … \"I would return if selecting orders on the phone felt easier; I would not start another run during this lunch break.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well round-1 asks folded into follow-ups c and d, HF 8d157de and 543ad99 (done)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/well.md"
+  },
+  {
+   "id": "F-273",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Omar (Codex source-unread persona, design round 2, HF site 210b2e1)",
+   "words": "That made her feel like a person with work she cared about.\" … \"I would not return voluntarily for another phone session in this form.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well DL-22 roof progress, stored meals and the storm deadline readable on the phone (open, target 2026-11-03)",
+    "fix:well DL-5 a suggestion reflects a refusal just watched, or says it is old (open, target 2026-11-03)",
+    "fix:well DL-22 more of the village visible while choosing an order (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/well-round2.md"
+  },
+  {
+   "id": "F-274",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Kofi (Codex source-unread persona, design round 1, warren 96e84ba)",
+   "words": "I would return for a longer seated session because the physical digging and people working interested me. I would not resume this run during another short tea break",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren round-1 asks folded into follow-ups c and d, warren f9550e8 and a9abf2e (done)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/warren.md"
+  },
+  {
+   "id": "F-275",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Ines (Codex source-unread persona, design round 2, warren a9abf2e)",
+   "words": "I would not return voluntarily on this phone during a short break. The digging and the promise of shelter interested me, but I wanted to recognise people and read the safety response without working through a clipped panel.",
+   "verdict": "quit",
+   "routes": [
+    "fix:warren DL-22 the safety response for a bed or the stone door fits the phone panel without clipping (open, target 2026-11-03)",
+    "fix:warren DL-23 select a person on the phone and see whether they need help (open, target 2026-11-03)",
+    "fix:warren DL-13 acknowledge a storage designation (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/warren-round2.md"
+  },
+  {
+   "id": "F-276",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Tomasz (Codex source-unread persona, design round 1, pass 7116cfc)",
+   "words": "I liked staff following the plan, but I came for running a busy room and mostly watched it run.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass round-1 asks folded into follow-up d, pass@6 edition, pass 19419a9 (done)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/pass.md"
+  },
+  {
+   "id": "F-277",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Adaeze (Codex source-unread persona, design round 2, pass 19419a9)",
+   "words": "I left because the work felt like choosing a short commitment and watching the cooks handle service.\" … \"I would not voluntarily return as Adaeze on this break. I wanted more hands-on service work.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass DL-16 something to do while making a portion, not only choosing a timer (open, target 2026-11-03)",
+    "fix:pass DL-13 say whether a tap on a just-finished portion started work or was too late (open, target 2026-11-03)",
+    "fix:pass DL-23 a table's tap target stays put long enough to choose with one thumb (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/pass-round2.md"
+  },
+  {
+   "id": "F-278",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review (design round, murmur 052ad26)",
+   "words": "Keep 0.3.0, but do not call quitting fixed: gentle influence now works; the full run still repeats too many decisions.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:murmur recs 1 and 3 in follow-up b, murmur 60a10ec (done)",
+    "fix:murmur rec 2 replace a repeated Friday coffee card (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/fun-review-murmur.md"
+  },
+  {
+   "id": "F-279",
+   "date": "2026-10-20",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review (design round, HF site 222e472)",
+   "words": "Keep the scene-first view, but the change does not remove the main quit reason: it offers company, then asks for another instruction instead of developing the conversation.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice recs in follow-up d, HF 9061692 (done)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/fun-review-voice.md"
+  },
+  {
+   "id": "F-280",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review (design round, HF site 222e472)",
+   "words": "Keep the change: it makes the people worth watching on a phone, but it does not make repeated orders interesting enough for the whole run.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well recs in follow-up d, HF 543ad99 (done)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/fun-review-well.md"
+  },
+  {
+   "id": "F-281",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review (design round, warren f9550e8)",
+   "words": "Keep the room-safety cues; do not accept 0.3.0 as the quit fix: it explains danger better, postpones harm, and leaves the repeated-bell loop intact.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren recs in follow-up d, edition 0.4.0, warren a9abf2e (done)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/fun-review-warren.md"
+  },
+  {
+   "id": "F-282",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review (design round, pass 87f5701)",
+   "words": "Keep the rota: it removes repeated staffing requests, but the first five minutes offer too few consequential decisions, and Friday adds a needless second cover prompt.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass recs in follow-up d, pass@6 edition, pass 19419a9 (done)"
+   ],
+   "source": "docs/lab/reviews/design-round-2026-10-20/fun-review-pass.md"
   }
  ],
  "lessons": [
@@ -4343,7 +4549,7 @@
   }
  ],
  "routes": {
-  "fix": 279,
+  "fix": 305,
   "lesson": 241,
   "hf": 11,
   "calibration": 42,

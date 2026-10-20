@@ -1,0 +1,106 @@
+Screenshots and other evidence files stayed in the driver's scratch folder and are not kept; absolute local paths were replaced by relative names or "(driver scratch)". No other wording was changed.
+
+# The Pass — source-unread playtest
+
+Tomasz, 37: night-shift nurse, former hotel-kitchen worker. Plays Overcooked, Diner Dash and Two Point Hospital. Likes running a busy room; dislikes babysitting staff. Ten-minute staff-room break, using a phone one-handed.
+
+URL: https://pass.adamwhite.work. No game build number visibly identified. Footer: “People by the Human Framework 2.8.0.” That identifies the framework, not necessarily this game build.
+
+Playwright Chromium, headless, one persistent browser context and page controlled through a long-lived local Node process. 360×690 CSS px, mobile/touch emulation, light mode, default text size. Only visible page text, screenshots and normal controls used. One 1280×800 screenshot after stopping. No source, tests, other docs, prior reports, hidden state or network payloads inspected. Only the two assigned instruction files were read. No run sent, telemetry submission made or consent changed. No export downloaded.
+
+Eight real minutes was the ceiling. I stopped voluntarily at **189.225 seconds (3:09.2)**, after Monday's close. Time kept moving during observation and writing. The first help attempt incurred a 30-second Playwright timeout; this was an automation delay, not a reported game freeze. No scripted clock changes, batched decisions or skipped waits. I used the visible speed buttons twice.
+
+## First minute
+
+**Checkpoint recorded at 82.192 real seconds**, 22.192 seconds late. A changing Help target caused the browser command to wait. I then recorded the checkpoint. No further gameplay input occurred between that attempt and this checkpoint. The preserved screen is 11-first-minute.png (driver scratch), captured at 57.378 seconds. The game continued while I wrote. These are the original checkpoint answers; later observations do not change them.
+
+| Item | Status and original checkpoint answer |
+|---|---|
+| DL-1 | PASS — Earn ₺5,200 by Saturday; the title and till say so. |
+| DL-2 | PASS — Open the doors, Change, break and cover buttons, cook cards, speed buttons and Help look tappable. Cold side selection has a double outline. No inert target tried. |
+| DL-3 | PASS — Red Open the doors drew me first; during service the ticket and Waiting for cooking draw me. Selected cook and speed have outlines. No urgent ticket encountered yet. |
+| DL-4 | PASS — Open the doors became unavailable after the rota change; Changes not answered and Ask them about the changes showed how to proceed. Selim says after I work the grill for rest, food and leaving; his holding-until-18:10 line supplies context. I have not tried insisting. |
+| DL-5 | PASS — Waiting for cooking and Help table 2: grill one portion · 5 min tell me what is happening and one response. |
+| DL-6 | PASS — Rota choice available at 4.4 s, Change tapped at 8.0 s, break selection at 16.4 s. First input was Open the doors at 4.4 s. Opening story was short. |
+| DL-7 | PASS for two interactions reached — changing a break required their answer and then reopened the doors; tapping Selim showed his commitment and jobs. One attempted Help action has no accepted result. Insisting, completed help and further interactions NOT TESTED. |
+
+The checkpoint's timing figures describe the observed screens/inputs to the nearest tenth of a second. Opening the title screen was not itself a meaningful kitchen decision. The board offered one at 4.4 seconds; the first input into that choice was Change at 8.0 seconds.
+
+## Verbatim diary
+
+The timestamped original input/reaction record is wall-clock.jsonl (driver scratch). Below, quoted reactions retain their original wording. Elapsed figures refer to the corresponding command/screenshot, rounded; observations in the last column are separate from those reactions. A screenshot reference is the filename within `pass-shots/`.
+
+| Elapsed | Input and original reaction | Important visible answer / evidence |
+|---|---|---|
+| 0.0 s | Open The Pass. “First look.” | Title, debt of ₺5,200 by Saturday close, Open the doors. `01-opening.png`. |
+| 4.4 s | Tap Open the doors. “Debt by Saturday. Fine, let me get a service going. Open the doors is the obvious button; Load a playtest run and More about the kitchen also look usable.” | Monday board: Selim 18:10 break, Dilek 18:35 break, both agreed. `02-doors.png`. |
+| 8.0 s | Tap Dilek's Change. “A break during the rush sounds like trouble. I want to move Dilek before it.” | Inline station, break and cover choices expanded. Lower choices below viewport. `03-change.png`. |
+| 12.0 s | Scroll down 365 px. “The break choices run off the bottom. I have to scroll to make the change.” | Four break options; Cold side, 18:35 and Leave it visibly selected. No cover means cold side waits. `04-breaks.png`. |
+| 16.4 s | Tap 21:00 after the rush. “Both at 18:10 would leave both sides waiting. I will give her the late break instead.” | Summary updates to 21:00; “Changes not answered. Previous answer.” Doors grey; Ask them about the changes appears. `05-late-break.png`. |
+| 20.7 s | Tap Ask them about the changes. “Doors are grey now and it says changes not answered. I need their agreement. That is clear, though Selim did not change.” | Both agreed; Dilek's quote now says 21:00; doors available. `06-answers.png`. |
+| 24.8 s | Tap Open the doors. “They agreed. Good. Now I want the kitchen, not more planning.” | 17:25, Steady · 1.5 min/s, “Waiting for the next ticket.” Cook cards. `07-service.png`. |
+| 31.2 s | Tap Selim on grill. “The two cook cards and speed buttons look tappable. I will look at Selim; I assume orders arrive on their own.” | 17:34, table 2, “Waiting for cooking.” Selim holding grill until 18:10; jobs and “Tap a job to ask. Hold it to insist.” `08-selim.png`. |
+| 36.6 s | Close Selim panel. “He is holding the grill until his break. I do not need to nag him. I will watch the ticket.” | 17:42, till ₺40, Help table 5: grill one portion · 5 min. `09-watch.png`. |
+| Between 36.6 and 57.4 s | Attempt tap Help table 5. “A help button appeared. That is more like it; I will do a portion myself.” | Exact visible-label target was no longer found. Command ultimately returned `TimeoutError: locator.tap: Timeout 30000ms exceeded`, waiting for that button. No screenshot 10 was produced. This does not establish that an input reached the game. |
+| 57.4 s | Observe without gameplay input. | 18:40, till ₺160, Help table 2. Log says Selim's break returns him at 18:30. `11-first-minute.png`. |
+| 82.2 s | Record First minute. “First minute: I am trying to earn the Saturday payment by getting dinner out. I can change the rota and inspect cooks, but my first chance to help slipped away before my tap landed. I have not seen myself cook yet.” | Checkpoint table above. |
+| 88.8 s | Observe. | 19:52, till ₺360, “Waiting for the next ticket.” `12-back-to-service.png`. |
+| 93.7 s | Tap single-arrow speed. “The till climbed while I was reading. This is moving quickly for a break-time phone game. I will use the single-arrow speed so I can catch a ticket.” | Slow · 0.5 min/s. `13-slower.png`. |
+| 97.8 s | Tap Dilek on cold. “Nothing is waiting. I will see whether Dilek is happy with that late break.” | “I’m holding the cold side until 21:00.” Eat says “after I work the cold side.” `14-dilek.png`. |
+| 104.0 s | Tap Eat. “Four hours without food is a stretch. I will offer Eat now and see if she wants it.” | “Waiting for Dilek’s answer.” Controls greyed; “They heard you.” `15-eat-answer.png`. |
+| 110.0 s | Observe. | “Dilek at 20:04: ‘After I work the cold side, then I will.’” Panel: “No cover is promised. Arrange another cook, or ask again later.” `16-refusal.png`. |
+| 116.7 s | Close Dilek panel. “She says after the cold side, and now I am told no cover is promised. Fair enough. I can leave her to the agreement.” | Help table 8: grill one portion · 5 min. `17-ticket.png`. |
+| 124.8 s | Tap where Help was shown. “Here is another help chance. I will take it now.” | 20:15, till ₺440, “Waiting for the next ticket.” No Help control or visible working acknowledgment in resulting screenshot. `18-help-result.png`. |
+| 130.6 s | Observe/note. “It has already gone again. I cannot tell whether I helped or whether the cook finished first; I did not see a working message. So far I am mainly watching two staff do their jobs.” | “20:15; till ₺440; Waiting for the next ticket; Help control no longer present.” |
+| 138.9 s | Tap double-arrow speed. “Slow is mostly waiting now. I will return to Steady and see whether the late break causes trouble.” | Steady · 1.5 min/s. `19-steady-again.png`. |
+| 160.5 s | Observe after a real wait. | 21:01, till ₺600; “Steady · 6 min/s / Rail clear.” “The rail is clear; waiting for closing.” Dilek out back, returns 21:20. `20-late-break.png`. |
+| 164.5 s | Note. “The rail is clear and she has gone out back for her break. Good, they kept the plan without me chasing them. It says Steady but now 6 min/s because the rail is clear. I will wait for close.” | “21:01; till ₺600; The rail is clear; waiting for closing. Dilek: My board break. Back on the cold side at 21:20.” |
+| 181.2 s | Observe after a real wait. | Monday after close. 15/15 tables fed, ₺600; about ₺920/night for five nights left. Selim mentions missed sunset prayer and knees. Dilek acknowledges accepted refusal. Open on Tuesday; Rafi on dish pit. `21-close.png`. |
+| **189.2 s** | **STOP — do not open Tuesday.** “I am stopping after Monday. All fifteen tables got fed, but I barely ran the room. The break agreement working by itself was good; chasing a disappearing help button was not. The dish pit tomorrow sounds more interesting, but I would put the phone down now rather than start another shift.” | “Monday, week 1, after close. 15 of 15 tables fed. ₺600 tonight; about ₺920 a night for 5 nights left. Open on Tuesday. Rafi is back on the dish pit.” |
+| 189.3 s | Resize after stopping. “One desktop look after stopping.” | Same close screen at 1280×800. All close-screen text and both save/send controls visible. No gameplay resumed. `22-desktop-after-stop.png`. |
+
+## What it felt like
+
+**Best moment:** the schedule actually held. Dilek went out back at the agreed time without another instruction. I dislike babysitting staff, and this let me leave them alone. Her “You took my no tonight. I’ll take your yes another night” also made my earlier request feel remembered.
+
+**Worst moment:** twice I saw a chance to help and did not get a clear experience of doing it. The first attempt was definitely a browser targeting timeout. The second might have arrived after the ticket was finished. I cannot claim either was an ignored accepted input. The experience was still frustrating: I wanted to work a portion and kept arriving too late.
+
+I began feeling passive around 130.6 seconds: “So far I am mainly watching two staff do their jobs.” At 138.9 seconds, Slow felt like waiting. Monday's close gave me a natural stopping point. All tables being fed was clear, but it did not feel like I had managed a busy room.
+
+## Clarity findings
+
+**DL-26 — FAIL in the screens reached:** I could not find a labelled **Game menu** on the board or service screen. At close I found “Save a playtest file” and “Send this run to the notebook” as separate controls below the next-day action. On the phone, the send control was below the viewport. The links say “all notebooks.” There was no consistently labelled place I could use during service to find save/run controls. Evidence: 07-service.png (driver scratch), 17-ticket.png (driver scratch), 21-close.png (driver scratch), 22-desktop-after-stop.png (driver scratch). This describes discoverability in my session; I did not establish that no other route exists.
+
+**DL-13 — PASS for the accepted request tested:** Eat immediately produced “Waiting for Dilek’s answer” and “They heard you.” The later refusal carried her name and request time. Evidence: 15-eat-answer.png (driver scratch), 16-refusal.png (driver scratch). **Help acknowledgment NOT TESTED:** neither attempt establishes an accepted help input. I could not tell what happened on the second attempt; that is uncertainty, not proof of a broken response.
+
+**DL-12 — PASS for the day boundary:** “Monday, week 1, after close,” the table/till result and “Open on Tuesday” made the end of this service clear. I did not test the four-week ending.
+
+**DL-15 — partial evidence, full fast-choice test NOT TESTED:** the clock, speed text and selection were visible. I chose Slow at 93.7 s and Steady at 138.9 s. Rail-clear acceleration was labelled. I did not encounter and answer a consequential live choice from the fastest speed, so I cannot establish that slowdown behavior.
+
+**DL-7 after the checkpoint:** one additional interaction tested: asking Eat, seeing a pending answer, then reading a refusal and cover explanation. Completed help, insisting and later-day interactions remain NOT TESTED. That does not revise the original checkpoint.
+
+The scrolling needed to edit Dilek's break was friction for my one-handed use. The long expanded control list had clear labels and a pinned doors/ask area. I do not call that alone a DL-22 failure: the checklist permits long sheets to scroll. Evidence: 03-change.png (driver scratch), 04-breaks.png (driver scratch).
+
+## English, dates and phone layout
+
+| Item | Result |
+|---|---|
+| DL-20 | **PASS for language reached.** I could act in English. Turkish lira was explained with the debt. “maghrib (sunset prayer)” had an immediate English meaning. “lokanta” was not defined on the title, but I could understand the kitchen/debt situation without using that term to act. No necessary unexplained local term stopped me. |
+| DL-21 | **PASS for the deadline comparison reached.** Monday, week 1 and Saturday were readable together. At close the game explicitly said “5 nights left this week.” Break times used the same 24-hour clock as the service clock. Across-month/year deadlines and a return after a break were **NOT TESTED**. |
+| DL-22 | **PASS for the service and response screens reached.** Ticket/status, cook cards and Help fit without scrolling. Dilek's pending answer, refusal and available jobs fit together on the phone. The close screen showed the result and Open on Tuesday without scrolling. Long board editing required scrolling as noted above. Keyboard, long alternate replies and later multi-person situations were **NOT TESTED**. |
+
+DL-23 target measurements, DL-25 320 px/200% text/both-theme tests, DL-27 reload/resume, DL-28 sending and DL-29 replay are **NOT TESTED**. No send was attempted. Other checklist items not supported by the interactions above remain untested; none is inferred from source or export. The desktop look establishes only that the final screen was readable at 1280×800.
+
+## Stop and return
+
+Stopped voluntarily at Monday's close, 3:09.2 after the first actionable screen. The budget did not end the session. I did not open Tuesday or resume after stopping.
+
+I would **not return voluntarily on the strength of this first service**. I liked staff following the plan, but I came for running a busy room and mostly watched it run. The dish-pit sentence gave me some curiosity about tomorrow, not enough to start another shift on this break.
+
+Up to three changes I would want, ranked as this player:
+
+1. Give me a reliable chance to do a portion myself. The Help opportunity disappeared before I could use it twice.
+2. Give me something worth managing earlier in the service. Fifteen tables were fed while my only accepted service request was an unnecessary early meal offer.
+3. Put a labelled Game menu within reach during service so I can find save/run controls when my break ends.
+
+These are player wants, not implementation prescriptions. The Help observations include the browser delay described above and need a human-tap check before being treated as a game defect.

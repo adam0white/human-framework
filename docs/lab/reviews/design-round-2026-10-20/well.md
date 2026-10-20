@@ -1,0 +1,107 @@
+Screenshots and other evidence files stayed in the driver's scratch folder and are not kept; absolute local paths were replaced by relative names or "(driver scratch)". No other wording was changed.
+
+# Twice at the Well — Hana
+
+Hana, 34, warehouse logistics planner. Plays Mini Motorways, Kingdom Two Crowns and Townscaper on her phone. Likes quick orders and watching people carry them out. Lunch break, one hand.
+
+URL: https://human.adamwhite.work/colony/. No build number seen. Chromium through Playwright in one persistent local Node process. Phone: 360×690 CSS px, touch emulation, light mode, default text size. Eight real minutes maximum. Time starts at the first opening screen with Play available. Observation and tool calls consume real time; no clock acceleration by script.
+
+## First minute
+
+Checkpoint at **61.9 real seconds**, before further input. Original checkpoint answers:
+
+| Item | Status | Answer and visible evidence |
+|---|---|---|
+| DL-1 A reason to act | PASS | I need to roof the house, store 12 meals and keep everyone alive before the storm. The opening says this. |
+| DL-2 What can I touch | FAIL | Play, More about the village, Slow for choices, Worker and Place look tappable. People and labelled places on the map look tappable too. My tap on Samira at 20.0 s did not select her. Worker worked. Kitchen at my remembered location selected House after the map moved. |
+| DL-3 Urgency and selection | PASS | Food draws me first: “Cook a pot: keep everyone fed.” Roof, meals and alive compete at the top. Maryam is selected by name and a marker; House has a dashed outline. I know which order I am composing. |
+| DL-4 Why the limit | FAIL | “Will refuse: the others would go unfed” explains Maryam refusing House. I do not know what would make her agree. Confirm remains available; this is a forecast refusal, not a disabled button. No disabled action was otherwise reached. |
+| DL-5 Readable situation | PASS | I can close Place and choose Kitchen on the map. The composer says “Maryam → House · build the house”; the worker was visibly “Walking to Masjid.” I have not sent an order. |
+| DL-6 A choice soon | PASS | Worker/place choices were available by 12.5 s after Play dismissed. First attempted worker choice: Samira at 20.0 s. First successful worker choice: Maryam at 29.4 s. Play inputs were 7.0 and 12.5 s. The opening required 23 instruction/goal words before Play, plus its title and date. |
+| DL-7 Learn by doing | PASS, limited | Selecting Maryam taught me the worker-then-place sequence through “Maryam: now pick a place.” Selecting House exposed the proposed work and predicted refusal. Two interaction types reached: worker and place selection. Order execution, options, suggestion details and order history: NOT TESTED at this checkpoint (four unmet interaction types). |
+
+Checkpoint reaction: “First minute: I know the goals, but have not sent an order. Maryam is selected and House is outlined. Will refuse: the others would go unfed tells me why this order will fail; I do not know what would make her agree. I can close Place and choose Kitchen on the map.”
+
+## Verbatim diary
+
+These are the original first-person entries. Times are real elapsed seconds. The JSONL also records timestamps, each input, captured page text and screenshot paths. Screenshot numbers below refer to files in `well-shots/`.
+
+| Seconds | Input / screenshot | Original reaction |
+|---|---|---|
+| 0.1 | Open / 01 | I want to see the map and give someone an order. |
+| 7.0 | Tap Play / 02 | Roof, food, alive: clear enough. Play, More about the village and Slow for choices look tappable. I will go straight in. |
+| 12.5 | Tap Play again / 03 | The title is still here. I am tapping Play again; maybe the first tap was too early. |
+| 20.0 | Tap Samira on map / 04 | The map is up. People and place labels look tappable, and Worker and Place are buttons. Cook a pot is the immediate suggestion. I pick Samira. |
+| 22.6 | Tap Worker / 05 | Tapping Samira did not visibly select her. I will use the Worker button. |
+| 29.4 | Tap Maryam / 06 | The worker list opens over the orders area. Maryam is visible and already by the kitchen; I choose her for cooking. |
+| 33.8 | Tap remembered kitchen location / 07 | Maryam: now pick a place confirms the selection. Kitchen looks like the place for meals. |
+| 40.2 | Tap Place / 08 | That selected House. The map shifted since I looked. I will use Place instead so I can be sure. |
+| 51.7 | Wheel down 281 / 09 | Only House, Forest and Cedar fit in the place list. I need the lower row for Kitchen. |
+| 61.9 | Checkpoint, no input / 10 | First minute: I know the goals, but have not sent an order. Maryam is selected and House is outlined. Will refuse: the others would go unfed tells me why this order will fail; I do not know what would make her agree. I can close Place and choose Kitchen on the map. |
+| 85.5 | Close Place / 11 | I want to get an order out now. I close the list. |
+| 90.1 | Tap kitchen building / 12 | I tap the kitchen building in its new position. People are getting thirsty while I work this out. |
+| 94.0 | Confirm / 13 | Kitchen now says cook a pot, so I confirm. I expect Maryam to go and cook. |
+| 100.2 | Watch / 14 | Order given appeared, but she is walking to the well. Thirsty. Water first explains that. The map is blank right after Confirm; I am waiting to see where she goes. |
+| 107.3 | Tap Orders / 15 | She says there is enough food and she will cook when it runs low. That is a useful answer. I want to see whether my order is waiting or refused. |
+| 111.0 | Observe Orders / 16 | I am checking the order answer before choosing someone for the roof. |
+| 119.6 | Close Orders / 17 | C agreed; H not now. I understand the comparison now, although I still want to get the roof moving. |
+| 126.7 | Give an order / 18 | I tap Give an order to choose a builder. |
+| 130.6 | Worker / 19 | The map is back behind the small order panel. Worker is reliable, so I use that. |
+| 133.9 | Yusuf / 20 | I choose Yusuf. I do not know his job yet; I expect the next screen to tell me if building is sensible. |
+| 138.6 | Place / 21 | I choose the place through the list rather than chase the moving map. |
+| 141.4 | House / 22 | House is in the first row, so I tap it. This should contribute to the roof goal. |
+| 144.9 | Wait for forecast / 23 | I wait for Checking current answer before I send him. |
+| 148.0 | Confirm / 24 | Later: after I drink at the well is fine. I confirm and want to watch the work happen. |
+| 168.2 | Watch, including 10 s explicit wait / 25 | I have left the speed at 1x. I am waiting for Yusuf to build; that is the part I came for. |
+| 176.1 | Suggestion / 26 | There he is building, and the roof mark has moved. That feels good. The game slowed for a suggestion again; I tap Suggestion to see what needs me. |
+| 183.5 | Observe / 27 | Timber is short, Maryam is free until noon, but the pot sits cold. Lapses 11:45, in 40 min, is readable against D1 11:05. I like that I can use a suggested order without hunting for a place. |
+| 211.9 | Use / 28 | On the actual screen I can see Use and the availability warning, but the suggestion itself is below the bottom edge. I tap Use to see the proposed order. |
+| 216.7 | Observe forecast / 29 | I am checking the current answer for the timber order. |
+| 220.8 | Confirm / 30 | Maryam to Forest, gather timber. Later: after I eat a meal. That is clear and I can see Confirm beside it. I send it. |
+| 239.5 | Watch, including 10 s explicit wait / 31 | She was walking to Masjid instead of the forest when I sent it. I am watching a little longer to see whether the order takes effect. |
+| 245.2 | Stop / 32 | I am stopping here. Maryam is gathering timber and Yusuf was building, so I have seen the orders turn into work. I like that part. Picking people and places took too much fiddling for a lunch break, and I do not want to manage another order right now. I would try it again if ordering on the map felt easier. |
+| 253.5 | Resize to 1280×800; no gameplay input / 33 | Gameplay has stopped. This is the requested desktop layout look only; I am not giving more orders. |
+
+Important visible answers: Maryam's order showed “Order given: Maryam → Kitchen” (13), then “We’ve food enough put by. I’ll cook when it runs low. when the store runs low” (14). Orders showed C “agreed” and H “not now” (16). Yusuf's forecast was “Later: after I drink at the well” (23), followed by “Watching Yusuf · Building” (25). The timber forecast was “Later: after I eat a meal” (29), followed later by “Watching Maryam · Gathering timber” (31). At the actual stop snapshot she had changed to “Resting” (32); the stop reaction refers to the gathering I had just watched.
+
+## Best, worst and stopping
+
+Best: seeing Yusuf at the house with “Building,” then seeing Maryam gather timber. Orders eventually became visible work. Maryam's explanation about stored food gave her refusal a reason I understood.
+
+Worst: trying to choose Kitchen. I missed Samira, selected House at the kitchen's old location, then found only the first row of places on screen. By 51.7 s I was frustrated with selecting rather than planning. I was not bored during the short stretches watching people work.
+
+I stopped voluntarily at **245.2 seconds (4:05.2)**, during Day 1 at 15:44. I had sent three orders. I did not reach the storm or an ending. The eight-minute ceiling did not end the session. I would return if selecting orders on the phone felt easier; I would not start another run during this lunch break.
+
+## Clarity findings
+
+- **DL-2 — phone selection was unreliable for me.** “Pick a villager here or on either map” invited map selection. My Samira tap did not visibly select her (04–06). I cannot establish whether I missed her as she moved or hit an inert target. The map changed position after selecting Maryam; tapping where Kitchen had been selected House (06–07). The selected worker, outlined destination and composer did make the mistake discoverable.
+- **DL-4 — original checkpoint failure is limited to an unexplained way to change a forecast refusal.** “Will refuse: the others would go unfed” gave a reason, but I could not name how to free Maryam for building (08). Confirm was available. This does not establish a disabled-control defect or an arbitrary limit. Later forecasts did explain their release conditions: “after I drink at the well,” “after I eat a meal,” and “when the store runs low.” The checkpoint answer remains unchanged.
+- **DL-22 — FAIL for the expanded place and suggestion panels.** Only House, Forest and Cedar fit in the place list at 360×690 (08); Kitchen was not on screen. The suggestion panel showed its heading, Use and the availability warning while its actual proposal and tradeoff were below the bottom edge (27). The ordinary composer passed this check: worker, destination, forecast and Confirm were all on screen (29). I did not establish whether a finger swipe within either panel would expose more content. My wheel attempt did not establish a scroll defect.
+- **DL-13 — accepted orders were acknowledged.** “Order given” and the watching state appeared after Confirm; Orders retained distinct C/H answers. I repeated Play because the first attempt left the title visible. I did not repeat an order or observe a duplicate. Several immediate post-input screenshots caught blank map/layout frames; later screenshots restored the map. Their duration was not measured, so I do not call them a lasting rendering defect.
+- **DL-15 — partial observation only.** The clock explicitly showed “Running · 8 min/s” or “Slow · 1 min/s · suggestion pending.” I left 1× selected throughout and changed no speed or slowdown setting. The timber suggestion remained available while I read, and Use filled an order. I did not test a live choice from 2× speed; that full test is NOT TESTED.
+
+## English, dates and phone layout
+
+**DL-20: PASS for the actions reached.** Worker, Place, Kitchen, House, Forest, cook a pot, build the house and gather timber were English. I did not need a translation to place the orders. Masjid was a place name; I did not issue an order there or need it to understand my task.
+
+**DL-21: NOT TESTED for a deadline comparison from phone-visible text.** The opening said “before the storm,” and the phone clock said D1 plus a time. The diary entry at 183.5 s quoted the suggestion deadline from the text capture, but the screenshot shows that text below the visible panel. It cannot establish a phone-visible date pass. After stopping, the single desktop look visibly showed “Day 1 of 2 · storm in 26 h,” “by D2 19:00” and “by D3 05:00.” Those relative days were understandable. I did not return after a break or encounter a month/year boundary.
+
+**DL-22: FAIL in the two expanded panels; PASS in the ordinary order composer**, as described above. Frequent Give an order, Suggestion and Orders controls stayed at the bottom. Orders used a full-height sheet that hid the map (16); it had a visible close control.
+
+## Desktop look after stopping
+
+At 1280×800, both villages, exact goal progress, dates and all worker/place choices were visible together (33). I could compare House 8/10 versus 7/10 and Meals 8 versus 10. The latest timber order showed “done” in both villages. This was a single layout look, not continued play. The simulation continued between the phone stop and this screenshot; I did not pause or issue any further gameplay input.
+
+## Changes I would want, ranked
+
+1. Let me select a person and place on the phone without the map moving away during the selection.
+2. Put the suggestion's actual proposal and tradeoff beside Use on the phone.
+3. Keep the full place choice reachable without searching below the visible first row.
+
+## Evidence and limits
+
+Screenshots: `well-shots/01-opening.png` through `well-shots/33-desktop-after-stop.png`. Wall-clock log: `well-shots/wall-clock.jsonl`.
+
+Instrumentation caveat: the initial body-text capture included rendered text clipped below panels. I noticed this when comparing suggestion text with screenshot 27. The diary preserves what I originally read; layout and date claims above distinguish screenshot-visible evidence from that capture. This limits the cold-read evidence for that suggestion. No hidden game state, source, bundles, network payloads or debug APIs were inspected. No help beyond player-facing prompts was used.
+
+No run was sent, no telemetry was submitted through a player control, and no consent setting was changed. No export was downloaded. Game menu, reload/resume, ending, replay/import, alternate text size, alternate theme and 320 px reflow were not tested. Builder checks, including export replay and limit implementation, are NOT TESTED. Browser closed after the desktop screenshot.
