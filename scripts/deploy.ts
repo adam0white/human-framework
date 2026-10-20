@@ -1,5 +1,5 @@
 /**
- * Release workflow: require a clean, pushed `main`, run all checks, build, stamp release.json,
+ * Release workflow: require a clean, pushed `main`, check locally (or --trust-ci), build, stamp release.json,
  * deploy with Wrangler, then verify the live manifest matches this commit.
  */
 import { execFileSync } from 'node:child_process';
@@ -7,15 +7,17 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = join(import.meta.dirname, '..');
-const run = (cmd: string, args: string[], quiet = false): string =>
+const run = (cmd: string, args: string[], quiet = false, timeout?: number): string =>
   execFileSync(cmd, args, {
     cwd: root,
     encoding: 'utf8',
     stdio: quiet ? ['ignore', 'pipe', 'inherit'] : 'inherit',
+    timeout,
   }) ?? '';
 const git = (...args: string[]) => run('git', args, true).trim();
 
 const dryRun = process.argv.includes('--dry-run');
+const trustCi = process.argv.includes('--trust-ci');
 const branch = git('rev-parse', '--abbrev-ref', 'HEAD');
 const dirty = git('status', '--porcelain');
 const commit = git('rev-parse', 'HEAD');
@@ -29,7 +31,42 @@ if (!dryRun) {
 // Worktree preparation can leave workspace links pointing at another checkout. Reinstall from the lockfile
 // before checking or bundling so a locally green build uses this checkout's released client.
 run('npm', ['ci', '--no-audit', '--no-fund']);
-run('npm', ['run', 'check']);
+let trustedCiUrl: string | undefined;
+if (trustCi && !dirty) {
+  try {
+    const pages: unknown = JSON.parse(
+      run(
+        'gh',
+        [
+          'api',
+          '--paginate',
+          '--slurp',
+          `repos/adam0white/human-framework/commits/${commit}/check-runs?filter=all&per_page=100`,
+        ],
+        true,
+        30_000,
+      ),
+    );
+    if (!Array.isArray(pages)) throw new Error('Unexpected check-runs response');
+    const checks = pages.flatMap((page: { check_runs?: unknown }) => {
+      if (!Array.isArray(page.check_runs)) throw new Error('Unexpected check-runs page');
+      return page.check_runs as {
+        id: number;
+        name: string;
+        conclusion: string | null;
+        html_url: string;
+      }[];
+    });
+    const latestCi = checks.filter((check) => check.name === 'ci').sort((a, b) => b.id - a.id)[0];
+    if (latestCi?.conclusion === 'success' && typeof latestCi.html_url === 'string') {
+      trustedCiUrl = latestCi.html_url;
+    }
+  } catch (error) {
+    console.warn('Could not verify CI; running local checks.', error);
+  }
+}
+if (trustedCiUrl) console.log(`Trusting successful CI: ${trustedCiUrl}`);
+else run('npm', ['run', 'check']);
 run('npm', ['run', 'build']);
 
 const pkg = (path: string) => JSON.parse(readFileSync(join(root, path), 'utf8')) as { version: string };
