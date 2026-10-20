@@ -20,6 +20,7 @@ import {
   shortName,
   suggestionNeedsReview,
 } from './parts.tsx';
+import { suggestionChoice } from './suggestion-choice.ts';
 
 /** Phone presentation only. Orders still pass through the same callbacks and simulation. */
 export function VillageStrip({ frame, side }: { frame: Frame | null; side: 'human' | 'classic' }) {
@@ -100,6 +101,7 @@ export function PhoneSheet(props: {
   frame: Frame | null;
   state: ComposerState;
   prediction: Prediction | null;
+  suggestionPrediction?: Prediction | null;
   ordering: boolean;
   onOrdering(open: boolean): void;
   onChange(state: ComposerState): void;
@@ -122,6 +124,9 @@ export function PhoneSheet(props: {
   latest.current = props;
   const s = props.state;
   const nudge = props.frame?.nudges[0];
+  const choice = nudge
+    ? suggestionChoice(nudge, props.frame, props.frame?.cards, props.suggestionPrediction)
+    : null;
   const cards = props.frame?.cards ?? [];
   const personOrder = latestPersonOrder(cards, s.personId);
   const ready = Boolean(s.personId && s.placeId);
@@ -353,9 +358,6 @@ export function PhoneSheet(props: {
                 </p>
               )}
               {s.reason && <p>{s.reason}</p>}
-              <button type="button" id="well-order-options" onClick={(e) => show('options', e.currentTarget)}>
-                Order options
-              </button>
             </>
           )}
           {view === 'worker' && (
@@ -458,6 +460,7 @@ export function PhoneSheet(props: {
           {view === 'suggestion' && nudge && props.frame && (
             <SuggestionCard
               nudge={nudge}
+              prediction={props.suggestionPrediction}
               frame={props.frame}
               minute={props.frame.minute}
               cards={cards}
@@ -499,8 +502,12 @@ export function PhoneSheet(props: {
             {view === 'suggestion' ? 'Keep watching' : 'Watch village'}
           </button>
           {view === 'suggestion' && nudge && (
-            <button type="button" onClick={() => prepareSuggestion(nudge)}>
-              {suggestionNeedsReview(nudge, props.frame) ? 'Review order' : 'Send order'}
+            <button type="button" onClick={() => prepareSuggestion(choice?.nudge ?? nudge)}>
+              {choice?.refusal
+                ? 'Insist · may cost trust'
+                : suggestionNeedsReview(nudge, props.frame)
+                  ? 'Review order'
+                  : 'Send order'}
             </button>
           )}
           {view !== 'suggestion' && view !== 'person' && (

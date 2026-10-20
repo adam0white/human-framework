@@ -137,3 +137,51 @@ it('wraps a person order in its scene tag, including an unselected person', () =
     180 * (input.labelScale ?? 1) + 14 * (input.labelScale ?? 1) * 0.7,
   );
 });
+
+it.each(['House: later, after I pray Fajr', 'House: won’t — “that is my work”'])(
+  'keeps the full tag inside a cropped scene: %s',
+  (status) => {
+    const { ctx, calls } = canvasRecorder();
+    const bounds = { x: 140, y: 130, w: 230, h: 160 };
+    const labels = drawScene(ctx, {
+      ...input,
+      visibleBounds: bounds,
+      people: input.people.map((p) => ({ ...p, x: 10.8, y: 7.9, orderStatus: status })),
+    });
+    const tag = labels[0];
+    expect(tag).toBeDefined();
+    if (!tag) throw new Error('Missing selected tag');
+    expect(tag.x).toBeGreaterThanOrEqual(bounds.x);
+    expect(tag.y).toBeGreaterThanOrEqual(bounds.y);
+    expect(tag.x + tag.w).toBeLessThanOrEqual(bounds.x + bounds.w);
+    expect(tag.y + tag.h).toBeLessThanOrEqual(bounds.y + bounds.h);
+    const lines = calls.filter((c) => c.method === 'fillText').map((c) => String(c.args[0]));
+    expect(lines.join(' ')).toContain(status);
+  },
+);
+
+it('gives the selected person the preview scene instead of surrounding status tags', () => {
+  const { ctx } = canvasRecorder();
+  const person = input.people[0];
+  if (!person) throw new Error('Missing person');
+  const labels = drawScene(ctx, {
+    ...input,
+    focusLabels: true,
+    people: [...input.people, { ...person, id: 'idris', name: 'Idris', x: 7, orderStatus: 'House: done' }],
+  });
+  expect(labels.map((label) => label.id)).toEqual(['yusuf']);
+});
+
+it('keeps the selected destination name within the visible preview', () => {
+  const { ctx, calls } = canvasRecorder();
+  drawScene(ctx, {
+    ...input,
+    focusLabels: true,
+    hoverPlace: 'site',
+    visibleBounds: { x: 520, y: 260, w: 160, h: 150 },
+  });
+  const house = calls.find((c) => c.method === 'fillText' && c.args[0] === 'HOUSE');
+  expect(house).toBeDefined();
+  expect(Number(house?.args[1]) - 45 / 2).toBeGreaterThanOrEqual(520);
+  expect(Number(house?.args[1]) + 45 / 2).toBeLessThanOrEqual(680);
+});

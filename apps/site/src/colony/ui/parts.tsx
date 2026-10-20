@@ -31,6 +31,7 @@ import { goalValue, humanQuotes } from './end-report.ts';
 import { Icon, type IconName, RingTimer } from './Icon.tsx';
 import { PLACE_LABEL, personOrderStatus } from './order-status.ts';
 import { LOOKS } from './renderer.ts';
+import { suggestionChoice } from './suggestion-choice.ts';
 
 export const ROLE_LABEL: Record<string, string> = {
   cook: 'Cook',
@@ -648,6 +649,7 @@ export function suggestionNeedsReview(n: Nudge, frame?: Frame | null): boolean {
 
 export function SuggestionCard(props: {
   nudge: Nudge;
+  prediction?: Prediction | null;
   cards?: OrderCard[];
   frame?: Frame;
   minute: Minute;
@@ -658,6 +660,7 @@ export function SuggestionCard(props: {
   onKeepWatching?(): void;
 }) {
   const n = props.nudge;
+  const choice = suggestionChoice(n, props.frame, props.cards, props.prediction);
   const review = suggestionNeedsReview(n, props.frame);
   const refusal = [...(props.cards ?? [])]
     .reverse()
@@ -678,14 +681,21 @@ export function SuggestionCard(props: {
     <div className={`nudge ${props.active ? 'is-active' : ''}`}>
       <div className="nudge-head">
         <div className="nudge-proposal">
+          {choice.refusal && <p className="nudge-refusal">{choice.refusal}</p>}
           <p className="nudge-order">
             {shortName(n.order.personId)} → {PLACE_LABEL[n.order.placeId]}
           </p>
-          <p className="nudge-text">{history ?? n.text}</p>
-          {n.reason && <p className="nudge-reason">{n.reason}</p>}
+          {!choice.refusal && <p className="nudge-text">{history ?? n.text}</p>}
+          {!choice.refusal && n.reason && <p className="nudge-reason">{n.reason}</p>}
         </div>
-        <button type="button" className="btn btn-small nudge-use" onClick={() => props.onUse(n)}>
-          {props.active ? 'In composer' : review ? 'Review order' : 'Send order'}
+        <button type="button" className="btn btn-small nudge-use" onClick={() => props.onUse(choice.nudge)}>
+          {choice.refusal
+            ? 'Insist · may cost trust'
+            : props.active
+              ? 'In composer'
+              : review
+                ? 'Review order'
+                : 'Send order'}
         </button>
         <button
           type="button"
@@ -702,6 +712,12 @@ export function SuggestionCard(props: {
           Keep watching
         </button>
       )}
+      {choice.refusal && (
+        <p className="nudge-warning">
+          Insisting may cost trust. {shortName(n.order.personId)} can still refuse. Review the warning before
+          Confirm.
+        </p>
+      )}
       <p className="nudge-availability">
         Availability may have changed. The person can still refuse or wait.
       </p>
@@ -715,8 +731,12 @@ export function SuggestionCard(props: {
         </span>
       </div>
       <p className="nudge-help">
-        {review ? 'Review the order, then Confirm sends it.' : 'Send order sends it to both villages.'} You
-        can skip or choose your own.
+        {choice.refusal
+          ? 'Choose Insist to review the order, or keep watching.'
+          : review
+            ? 'Review the order, then Confirm sends it.'
+            : 'Send order sends it to both villages.'}{' '}
+        You can skip or choose your own.
       </p>
     </div>
   );

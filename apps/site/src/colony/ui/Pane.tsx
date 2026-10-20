@@ -290,6 +290,8 @@ export const Pane = memo(function Pane(props: PaneProps) {
             realTime: now,
             cooking,
             labelScale: box.width / cssW,
+            visibleBounds: { x: box.x, y: box.y, w: box.width, h: box.height },
+            focusLabels: Boolean(p.destination),
           }) ?? [];
       }
 
@@ -671,9 +673,9 @@ export const Pane = memo(function Pane(props: PaneProps) {
           </div>
         )}
       </div>
-      {props.selectedId && overflowPlaces.length > 0 && props.onMorePlaces && (
+      {props.selectedId && (props.scenePlaces?.length ?? 0) > 0 && props.onMorePlaces && (
         <button type="button" className="scene-more-places" onClick={props.onMorePlaces}>
-          More places ({overflowPlaces.length})
+          {overflowPlaces.length > 0 ? `More places (${overflowPlaces.length})` : 'Choose place'}
         </button>
       )}
       {props.selectedId && overflowPlaces.length > 0 && !props.onMorePlaces && (

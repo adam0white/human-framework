@@ -37,6 +37,7 @@ export interface Colony {
   playback: PlaybackState;
   why: WhyBreakdown | null;
   prediction: { input: OrderInput; prediction: Prediction } | null;
+  suggestionPrediction?: { input: OrderInput; prediction: Prediction } | null;
   scenePredictions?: Partial<Record<PlaceId, { input: OrderInput; prediction: Prediction }>>;
   /** End-of-day reports, by day (Day 2, then Day 3 after "Another day"). */
   summaries: Partial<Record<2 | 3, EndSummary>>;
@@ -64,6 +65,7 @@ export interface ColonyActions {
   clearWhy(): void;
   predict(input: OrderInput | null): void;
   predictPlaces?(inputs: OrderInput[]): void;
+  predictSuggestion?(input: OrderInput | null): void;
   restart(): void;
   /** Download this run as a playtest file. */
   exportPlaytest(): void;
@@ -113,6 +115,8 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   const [error, setError] = useState<string | null>(null);
   const [prediction, setPrediction] = useState<Colony['prediction']>(null);
   const [scenePredictions, setScenePredictions] = useState<NonNullable<Colony['scenePredictions']>>({});
+  const [suggestionPrediction, setSuggestionPrediction] = useState<Colony['suggestionPrediction']>(null);
+  const suggestionRequest = useRef<{ id: number; input: OrderInput } | null>(null);
   const sceneRequests = useRef(new Map<number, { input: OrderInput; batch: number }>());
   const sceneBatch = useRef(0);
   const sceneRequestId = useRef(0);
@@ -160,6 +164,8 @@ export function useColony(seed = DEFAULT_SEED): Colony {
           setSummaries({});
           setWhy(null);
           setPrediction(null);
+          setSuggestionPrediction(null);
+          suggestionRequest.current = null;
           setError(null);
           whyWant.current = null;
           predictInputs.current.clear();
@@ -222,6 +228,11 @@ export function useColony(seed = DEFAULT_SEED): Colony {
           return;
         }
         case 'predicted': {
+          const suggestion = suggestionRequest.current;
+          if (suggestion?.id === msg.requestId) {
+            setSuggestionPrediction({ input: suggestion.input, prediction: msg.prediction });
+            return;
+          }
           const scene = sceneRequests.current.get(msg.requestId);
           if (scene) {
             sceneRequests.current.delete(msg.requestId);
@@ -316,6 +327,19 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         predictInputs.current.set(predictSeq.current, input);
         send({ type: 'predict', requestId: predictSeq.current, input });
       },
+      predictSuggestion: (input) => {
+        if (!input) {
+          suggestionRequest.current = null;
+          setSuggestionPrediction(null);
+          return;
+        }
+        if (JSON.stringify(suggestionRequest.current?.input) !== JSON.stringify(input))
+          setSuggestionPrediction(null);
+        // Share the negative id allocator with scene forecasts, keeping both separate from the composer.
+        sceneRequestId.current -= 1;
+        suggestionRequest.current = { id: sceneRequestId.current, input };
+        send({ type: 'predict', requestId: sceneRequestId.current, input });
+      },
       predictPlaces: (inputs) => {
         sceneBatch.current += 1;
         sceneRequests.current.clear();
@@ -332,6 +356,8 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         setSummaries({});
         setWhy(null);
         setPrediction(null);
+        setSuggestionPrediction(null);
+        suggestionRequest.current = null;
         setError(null);
         whyWant.current = null;
         predictInputs.current.clear();
@@ -365,5 +391,17 @@ export function useColony(seed = DEFAULT_SEED): Colony {
     [send, init],
   );
 
-  return { store, frame, playback, why, prediction, scenePredictions, summaries, error, playtest, actions };
+  return {
+    store,
+    frame,
+    playback,
+    why,
+    prediction,
+    scenePredictions,
+    suggestionPrediction,
+    summaries,
+    error,
+    playtest,
+    actions,
+  };
 }

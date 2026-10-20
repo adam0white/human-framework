@@ -441,3 +441,13 @@ it('hides a reply that cannot fit without covering the selected person', async (
   const bubble = required(container.querySelector<HTMLButtonElement>('.bubble'));
   expect(bubble.style.visibility).toBe('hidden');
 });
+
+it('keeps the place-picker row when every scene action fits, so fit cannot resize its own scene', async () => {
+  const { container } = await setup({
+    scenePlaces: [{ placeId: 'site', label: 'House', answer: 'Likely yes' }],
+    onMorePlaces: vi.fn(),
+  });
+  const picker = container.querySelector<HTMLButtonElement>('.scene-more-places');
+  expect(picker).not.toBeNull();
+  expect(picker?.textContent).toBe('Choose place');
+});

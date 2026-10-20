@@ -215,3 +215,57 @@ it('Watch village keeps a draft available but prevents hidden keyboard confirmat
   expect(colony.actions.order).not.toHaveBeenCalled();
   expect(container.querySelector('.composer-line')?.textContent).toContain('Idris → Cedar');
 });
+
+it('reopens the selected person’s latest order from the labelled status line', async () => {
+  if (!colony.frame) throw new Error('Missing frame');
+  colony.frame.cards = [
+    {
+      order: {
+        id: 'o1',
+        personId: 'idris',
+        placeId: 'site',
+        action: 'build',
+        issuedAt: 300,
+        rollKey: 0,
+        rush: false,
+        insist: false,
+      },
+      human: { state: 'notNow', label: 'after I pray Fajr' },
+      classic: { state: 'ok' },
+      status: 'active',
+    },
+  ];
+  await act(() => root.render(createElement(App)));
+  await click('Scene select human');
+  const status = container.querySelector<HTMLButtonElement>('button.well-selected-person');
+  expect(status?.getAttribute('aria-label')).toContain('Open Idris’s latest order');
+  expect(status?.textContent).toContain('House: later, after I pray Fajr');
+  await act(() => status?.click());
+  expect(container.querySelector('.person-order')?.textContent).toContain('after I pray Fajr');
+  expect(colony.actions.order).not.toHaveBeenCalled();
+});
+
+it('reviews a predicted refusal as insist before Confirm sends the suggestion', async () => {
+  const nudge = NUDGES.find((n) => n.id === 'roof-hands-1');
+  if (!nudge || !colony.frame) throw new Error('Missing roof suggestion');
+  colony.frame.nudges = [nudge];
+  colony.suggestionPrediction = {
+    input: { ...nudge.order, rush: true, insist: false },
+    prediction: {
+      personId: 'samira',
+      action: 'build',
+      kind: 'willNot',
+      text: 'Will refuse: busy with own work',
+    },
+  };
+  await act(() => root.render(createElement(App)));
+  await act(() => container.querySelector<HTMLButtonElement>('.nudge-use')?.click());
+  expect(colony.actions.order).not.toHaveBeenCalled();
+  expect(container.querySelector('.composer-line')?.textContent).toContain('Samira → House');
+  expect(container.querySelector('.composer')?.textContent).toContain('Insist: may cost trust');
+  await act(() => container.querySelector<HTMLButtonElement>('.composer .btn-confirm')?.click());
+  expect(colony.actions.order).toHaveBeenCalledExactlyOnceWith(
+    { personId: 'samira', placeId: 'site', rush: true, insist: true },
+    'roof-hands-1',
+  );
+});

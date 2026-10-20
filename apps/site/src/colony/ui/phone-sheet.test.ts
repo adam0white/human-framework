@@ -130,8 +130,9 @@ describe('Well shared sheet transitions', () => {
     expect(host.querySelector('.lk-sheet')?.hasAttribute('hidden')).toBe(true);
     expect(onOrdering).toHaveBeenLastCalledWith(false);
   });
-  it('keeps the options origin while opening About and offers all four labelled snap heights', async () => {
+  it('keeps the options origin through More while opening About and offers all four labelled snap heights', async () => {
     const { onInspect } = await mount();
+    await click('More');
     await click('Order options');
     await click('About Maryam');
     expect(onInspect).toHaveBeenCalledWith('maryam');

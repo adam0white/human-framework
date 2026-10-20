@@ -49,6 +49,10 @@ export interface SceneInput {
   cooking: boolean;
   /** Logical pixels per CSS pixel, so map labels remain readable on a phone. */
   labelScale?: number;
+  /** Camera bounds in logical pixels; labels must fit the visible scene, not the full map. */
+  visibleBounds?: LabelRect;
+  /** During a preview, reserve labels for the selected person and destination. */
+  focusLabels?: boolean;
 }
 
 interface Look {
@@ -502,6 +506,30 @@ const SHORT_LABEL: Partial<Record<PlaceId, string>> = {
   cedar: 'CEDAR',
 };
 
+function placeNameRect(
+  ctx: CanvasRenderingContext2D,
+  p: Place,
+  size: number,
+  bounds?: LabelRect,
+): LabelRect | null {
+  const r = placeRect(p);
+  if (
+    bounds &&
+    (r.x + r.w < bounds.x || r.x > bounds.x + bounds.w || r.y + r.h < bounds.y || r.y > bounds.y + bounds.h)
+  )
+    return null;
+  const w = ctx.measureText(SHORT_LABEL[p.id] ?? p.label).width + 10;
+  const h = size + 6;
+  const x = r.x + r.w / 2 - w / 2;
+  const y = (p.id === 'cedar' ? r.y + r.h + size : p.id === 'well' ? r.y - size : r.y + size / 2 + 4) - h / 2;
+  return {
+    x: bounds ? Math.max(bounds.x + 3, Math.min(bounds.x + bounds.w - w - 3, x)) : x,
+    y: bounds ? Math.max(bounds.y + 3, Math.min(bounds.y + bounds.h - h - 3, y)) : y,
+    w,
+    h,
+  };
+}
+
 function drawLabels(ctx: CanvasRenderingContext2D, input: SceneInput) {
   const classic = input.side === 'classic';
   const size = mapTypeSize(input.labelScale, 14);
@@ -509,25 +537,23 @@ function drawLabels(ctx: CanvasRenderingContext2D, input: SceneInput) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   for (const p of PLACES) {
-    // Avoid redundant tiny building labels on phones; Home stays in the destination picker.
-    if (size > 16 && (p.id.startsWith('home-') || p.id === 'wellhouse')) continue;
-    // Human labels are always drawn (so the house can be found before the first tap), faint until choosing.
+    if (input.focusLabels && p.id !== input.hoverPlace) continue;
+    // The selected destination stays named even when it is Home.
+    if (!input.focusLabels && size > 16 && (p.id.startsWith('home-') || p.id === 'wellhouse')) continue;
     const strong = size > 16 || classic || input.showPlaceLabels || input.hoverPlace === p.id;
-    const r = placeRect(p);
+    const r = placeNameRect(ctx, p, size, input.visibleBounds);
+    if (!r) continue;
     const label = SHORT_LABEL[p.id] ?? p.label;
-    const x = r.x + r.w / 2;
-    const y = p.id === 'cedar' ? r.y + r.h + size : p.id === 'well' ? r.y - size : r.y + size / 2 + 4;
     if (classic) {
       ctx.fillStyle = BLUE.label;
-      ctx.fillText(label, x, y);
+      ctx.fillText(label, r.x + r.w / 2, r.y + r.h / 2);
     } else {
-      const wdt = ctx.measureText(label).width + 10;
       ctx.globalAlpha = strong ? 1 : 0.45;
       ctx.fillStyle = input.hoverPlace === p.id ? HUMAN.ink : 'rgba(43, 38, 34, 0.72)';
-      roundRect(ctx, x - wdt / 2, y - size / 2 - 3, wdt, size + 6, 7);
+      roundRect(ctx, r.x, r.y, r.w, r.h, 7);
       ctx.fill();
       ctx.fillStyle = '#f3e9d6';
-      ctx.fillText(label, x, y + 0.5);
+      ctx.fillText(label, r.x + r.w / 2, r.y + r.h / 2 + 0.5);
       ctx.globalAlpha = 1;
     }
   }
@@ -836,6 +862,7 @@ export function personLabelRect(
   w: number,
   h: number,
   occupied: readonly LabelRect[],
+  bounds: LabelRect = { x: 0, y: 0, w: LOGICAL_W, h: LOGICAL_H },
 ): LabelRect {
   const candidates = [
     { x: anchor.x - w / 2, y: anchor.y + 14 },
@@ -844,8 +871,8 @@ export function personLabelRect(
     { x: anchor.x - w - 18, y: anchor.y - h / 2 },
     { x: anchor.x - w / 2, y: anchor.y + 14 + h + 4 },
   ].map((r) => ({
-    x: Math.max(3, Math.min(LOGICAL_W - w - 3, r.x)),
-    y: Math.max(3, Math.min(LOGICAL_H - h - 3, r.y)),
+    x: Math.max(bounds.x + 3, Math.min(bounds.x + bounds.w - w - 3, r.x)),
+    y: Math.max(bounds.y + 3, Math.min(bounds.y + bounds.h - h - 3, r.y)),
     w,
     h,
   }));
@@ -896,6 +923,7 @@ function drawSelection(ctx: CanvasRenderingContext2D, input: SceneInput) {
 function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput): PersonLabel[] {
   const labels: PersonLabel[] = [];
   const size = mapTypeSize(input.labelScale);
+  const bounds = input.visibleBounds ?? { x: 0, y: 0, w: LOGICAL_W, h: LOGICAL_H };
   const occupied: LabelRect[] = input.people.map((p) => ({
     x: (p.x + 0.5) * T - size,
     y: (p.y + 0.5) * T - size * 1.7,
@@ -904,14 +932,25 @@ function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput): PersonLabe
   }));
   ctx.font = `600 ${size}px "JetBrains Mono", ui-monospace, monospace`;
   for (const p of PLACES) {
-    if (size > 16 && (p.id.startsWith('home-') || p.id === 'wellhouse')) continue;
-    const r = placeRect(p);
-    const w = ctx.measureText(SHORT_LABEL[p.id] ?? p.label).width + 10;
-    const y = p.id === 'cedar' ? r.y + r.h + size : p.id === 'well' ? r.y - size : r.y + size / 2 + 4;
-    occupied.push({ x: r.x + r.w / 2 - w / 2, y: y - size / 2 - 3, w, h: size + 6 });
+    if (input.focusLabels && p.id !== input.hoverPlace) continue;
+    if (!input.focusLabels && size > 16 && (p.id.startsWith('home-') || p.id === 'wellhouse')) continue;
+    const r = placeNameRect(ctx, p, size, input.visibleBounds);
+    if (r) occupied.push(r);
   }
   const people = [...input.people]
-    .filter((p) => p.carriedBy === null && (p.state !== 'asleep' || p.id === input.selectedId))
+    .filter((p) => {
+      const x = (p.x + 0.5) * T;
+      const y = (p.y + 0.5) * T;
+      return (
+        p.carriedBy === null &&
+        (p.state !== 'asleep' || p.id === input.selectedId) &&
+        (!input.focusLabels || p.id === input.selectedId) &&
+        x >= bounds.x &&
+        x <= bounds.x + bounds.w &&
+        y >= bounds.y &&
+        y <= bounds.y + bounds.h
+      );
+    })
     .sort((a, b) => Number(b.id === input.selectedId) - Number(a.id === input.selectedId));
   for (const p of people) {
     const name = p.name?.replace('Hajja ', '').split(' ')[0] ?? p.id.charAt(0).toUpperCase() + p.id.slice(1);
@@ -920,7 +959,7 @@ function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput): PersonLabe
     const nameWidth = ctx.measureText(name).width;
     ctx.font = `500 ${size * 0.8}px system-ui, sans-serif`;
     const lines: string[] = [];
-    const maxWidth = Math.min(LOGICAL_W - size, (size / 14) * 180);
+    const maxWidth = Math.max(1, Math.min(bounds.w - 6 - size * 0.7, (size / 14) * 180));
     for (const word of detail?.split(' ') ?? []) {
       const previous = lines.at(-1);
       if (previous && ctx.measureText(`${previous} ${word}`).width <= maxWidth) {
@@ -930,7 +969,7 @@ function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput): PersonLabe
     const w = Math.max(nameWidth, ...lines.map((line) => ctx.measureText(line).width)) + size * 0.7;
     const h = size * (1.35 + lines.length * 1.05);
     const anchor = { x: (p.x + 0.5) * T, y: (p.y + 0.5) * T };
-    const r = personLabelRect(anchor, w, h, occupied);
+    const r = personLabelRect(anchor, w, h, occupied, bounds);
     occupied.push(r);
     labels.push({ ...r, id: p.id });
     ctx.strokeStyle = input.side === 'classic' ? '#b8c6d4' : '#6d5b47';

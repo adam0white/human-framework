@@ -5280,3 +5280,34 @@ kbd {
     padding: 0;
   }
 }
+
+/* The selected status is a stable route when a moving person is hard to tap. */
+@media (max-width: 899px) {
+  button.well-selected-person {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    padding: 4px 6px;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    text-align: left;
+    font: inherit;
+    color: var(--text);
+    background: var(--surface);
+    white-space: normal;
+  }
+  /* Keep a useful scene above the preview; longer options remain in the sheet body. */
+  .colony .stage.lk-stage[data-sheet="half"] {
+    grid-template-rows: auto minmax(200px, 1fr) auto minmax(0, 45%);
+  }
+  .colony .stage.lk-stage[data-sheet="half"] > .well-phone-sheet {
+    max-height: 100%;
+    max-block-size: 100%;
+  }
+}
+
+@media (max-width: 899px) {
+  .well-phone-sheet .nudge-proposal {
+    grid-column: 1;
+  }
+}

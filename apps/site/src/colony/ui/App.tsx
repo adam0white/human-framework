@@ -36,6 +36,7 @@ import {
   suggestionNeedsReview,
   TopBar,
 } from './parts.tsx';
+import { suggestionChoice, suggestionInput } from './suggestion-choice.ts';
 import { useColony } from './useColony.ts';
 
 const ONBOARDED_KEY = 'colony.onboarded';
@@ -474,6 +475,17 @@ export function App() {
 
   const nudges = frame?.nudges ?? [];
   const nudge = nudges[0];
+  const suggestedInput = useMemo(() => (nudge ? suggestionInput(nudge) : null), [nudge]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: A forecast is time-dependent.
+  useEffect(() => {
+    actions.predictSuggestion?.(suggestedInput);
+  }, [suggestedInput, actions, frame?.minute]);
+  const suggestionPrediction =
+    colony.suggestionPrediction &&
+    suggestedInput &&
+    JSON.stringify(colony.suggestionPrediction.input) === JSON.stringify(suggestedInput)
+      ? colony.suggestionPrediction.prediction
+      : null;
   const cards = frame?.cards ?? [];
   const selectedOrder = latestPersonOrder(cards, scenePerson);
   const askAgain = (card: OrderCard) => sendOrder(repeatPersonOrder(card));
@@ -579,15 +591,23 @@ export function App() {
           <div className="well-phone-status" role="status">
             {!scopeExplained && <p className="well-first-order">Each order goes to both villages.</p>}
             {flash && <p>{flash}</p>}
-            {scenePerson && (
-              <p className="well-selected-person">
-                {shortName(scenePerson)} ·{' '}
-                {selectedOrder
-                  ? personOrderStatus(selectedOrder, mapSide)
-                  : ((mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === scenePerson)
-                      ?.label ?? 'waiting')}
-              </p>
-            )}
+            {scenePerson &&
+              (selectedOrder ? (
+                <button
+                  type="button"
+                  className="well-selected-person"
+                  aria-label={`Open ${shortName(scenePerson)}’s latest order: ${personOrderStatus(selectedOrder, mapSide)}`}
+                  onClick={() => selectScenePerson(scenePerson)}
+                >
+                  {shortName(scenePerson)} · {personOrderStatus(selectedOrder, mapSide)} · Latest order
+                </button>
+              ) : (
+                <p className="well-selected-person">
+                  {shortName(scenePerson)} ·{' '}
+                  {(mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === scenePerson)
+                    ?.label ?? 'waiting'}
+                </p>
+              ))}
             <HurtLine
               news={frame?.news.slice(-1) ?? []}
               shownSide={mapSide}
@@ -750,10 +770,15 @@ export function App() {
                   <summary>
                     Suggestion<span className="nudge-who"> · {shortName(nudge.order.personId)}</span>
                     <small>
-                      {suggestionNeedsReview(nudge, frame) ? 'Review, then Confirm.' : 'Send in one tap.'}
+                      {suggestionChoice(nudge, frame, cards, suggestionPrediction).refusal
+                        ? 'Insist may cost trust; review first.'
+                        : suggestionNeedsReview(nudge, frame)
+                          ? 'Review, then Confirm.'
+                          : 'Send in one tap.'}
                     </small>
                   </summary>
                   <SuggestionCard
+                    prediction={suggestionPrediction}
                     nudge={nudge}
                     frame={frame}
                     cards={cards}
@@ -798,6 +823,7 @@ export function App() {
           </section>
         </div>
         <PhoneSheet
+          suggestionPrediction={suggestionPrediction}
           frame={frame}
           state={composer}
           ordering={ordering}
