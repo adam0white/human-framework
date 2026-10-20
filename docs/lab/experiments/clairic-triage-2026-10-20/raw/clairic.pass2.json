@@ -1,0 +1,3152 @@
+[
+  {
+    "id": "F-015",
+    "ms": 6518.292875,
+    "inTok": 2067,
+    "outTok": 0,
+    "usd": 0.0002067,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.015068324282765388,
+          "span": [60, 64],
+          "guess": "Fine",
+          "confidence": 0.33917587995529175,
+          "value": "Fine"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.01554842758923769,
+          "span": [725, 732],
+          "guess": "delight",
+          "confidence": 0.26529595255851746,
+          "value": "delight"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.11111429333686829,
+          "span": [952, 958],
+          "guess": "murmur",
+          "confidence": 0.8772048354148865,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.0035789436660706997,
+          "span": [1093, 1098],
+          "guess": "mixed",
+          "confidence": 0.3227822482585907,
+          "value": "mixed"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.798320245353906,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000008047413757594768,
+          "p_above": 0.000013813237274007406
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 270,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2067,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-024",
+    "ms": 294.0602920000001,
+    "inTok": 1997,
+    "outTok": 0,
+    "usd": 0.00019970000000000003,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.013340923935174942,
+          "span": [80, 99],
+          "guess": "No such cook here.\"",
+          "confidence": 0.4457685947418213,
+          "value": "No such cook here.\""
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.0062608858570456505,
+          "span": [114, 117],
+          "guess": "bug",
+          "confidence": 0.7372899651527405,
+          "value": "bug"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.034008242189884186,
+          "span": [948, 954],
+          "guess": "murmur",
+          "confidence": 0.9627568125724792,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004337305203080177,
+          "span": [1083, 1087],
+          "guess": "quit",
+          "confidence": 0.41465458273887634,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.1657143093292965,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000004227458248351468,
+          "p_above": 0.000007816302968421951
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 256,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1997,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-026",
+    "ms": 412.83279200000015,
+    "inTok": 2017,
+    "outTok": 0,
+    "usd": 0.00020170000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.02984459511935711,
+          "span": [67, 70],
+          "guess": "bug",
+          "confidence": 0.21914057433605194,
+          "value": "bug"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.007597452029585838,
+          "span": [222, 229],
+          "guess": "unclear",
+          "confidence": 0.593360185623169,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.05402912572026253,
+          "span": [957, 963],
+          "guess": "murmur",
+          "confidence": 0.7405630946159363,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004215291701257229,
+          "span": [1092, 1096],
+          "guess": "quit",
+          "confidence": 0.35006165504455566,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.7695706851616476,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000011197070307389367,
+          "p_above": 0.000017263058907701634
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 260,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2017,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-027",
+    "ms": 276.3699999999999,
+    "inTok": 2012,
+    "outTok": 0,
+    "usd": 0.0002012,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.017286716029047966,
+          "span": [82, 112],
+          "guess": "leaves out the page's one-line",
+          "confidence": 0.15634821355342865,
+          "value": "leaves out the page's one-line"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.007743279915302992,
+          "span": [313, 319],
+          "guess": "layout",
+          "confidence": 0.43524327874183655,
+          "value": "layout"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.04094238951802254,
+          "span": [928, 931],
+          "guess": "lab",
+          "confidence": 0.2094409316778183,
+          "value": "lab"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004299483727663755,
+          "span": [1102, 1106],
+          "guess": "quit",
+          "confidence": 0.3703157305717468,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.7829196905821023,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000007811427167325746,
+          "p_above": 0.000011032416296075098
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 259,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2012,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-029",
+    "ms": 310.8911250000001,
+    "inTok": 2082,
+    "outTok": 0,
+    "usd": 0.00020820000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.01258973777294159,
+          "span": [288, 295],
+          "guess": "unclear",
+          "confidence": 0.28552016615867615,
+          "value": "unclear"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.01216237060725689,
+          "span": [583, 593],
+          "guess": "difficulty",
+          "confidence": 0.27846530079841614,
+          "value": "difficulty"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.027908172458410263,
+          "span": [1023, 1029],
+          "guess": "murmur",
+          "confidence": 0.8230172991752625,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004113113973289728,
+          "span": [1158, 1162],
+          "guess": "quit",
+          "confidence": 0.35616710782051086,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.008878245193604,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000004923463166051079,
+          "p_above": 0.00000737859863875201
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 273,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2082,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-034",
+    "ms": 365.7258330000004,
+    "inTok": 2077,
+    "outTok": 0,
+    "usd": 0.0002077,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.024773525074124336,
+          "span": [35, 57],
+          "guess": "I didn’t keep my shift",
+          "confidence": 0.32191959023475647,
+          "value": "I didn’t keep my shift"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.015397815965116024,
+          "span": [265, 272],
+          "guess": "unclear",
+          "confidence": 0.3858107626438141,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.04983171075582504,
+          "span": [1000, 1006],
+          "guess": "murmur",
+          "confidence": 0.8754118084907532,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004409160930663347,
+          "span": [1135, 1139],
+          "guess": "quit",
+          "confidence": 0.39483216404914856,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.7001086655659082,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000011961159543716349,
+          "p_above": 0.000017442465832573362
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 272,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2077,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-042",
+    "ms": 356.09833399999843,
+    "inTok": 2022,
+    "outTok": 0,
+    "usd": 0.0002022,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.023763606324791908,
+          "span": [36, 59],
+          "guess": "You caught none of them",
+          "confidence": 0.43208616971969604,
+          "value": "You caught none of them"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.01311398670077324,
+          "span": [235, 242],
+          "guess": "unclear",
+          "confidence": 0.6324343085289001,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.024855298921465874,
+          "span": [970, 976],
+          "guess": "murmur",
+          "confidence": 0.8076087832450867,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004203283693641424,
+          "span": [1105, 1109],
+          "guess": "quit",
+          "confidence": 0.3733289837837219,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.9776641007931723,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.0000067954533733427525,
+          "p_above": 0.000010531892257858999
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 261,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2022,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-054",
+    "ms": 294.70900000000074,
+    "inTok": 2002,
+    "outTok": 0,
+    "usd": 0.00020020000000000001,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.00785171240568161,
+          "span": [35, 52],
+          "guess": "Yes, it felt hard",
+          "confidence": 0.39595046639442444,
+          "value": "Yes, it felt hard"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.0023466104175895452,
+          "span": [509, 519],
+          "guess": "difficulty",
+          "confidence": 0.97135990858078,
+          "value": "difficulty"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.030236005783081055,
+          "span": [949, 955],
+          "guess": "murmur",
+          "confidence": 0.8107811212539673,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.0044234152883291245,
+          "span": [1084, 1088],
+          "guess": "quit",
+          "confidence": 0.35609152913093567,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.0410044256495703,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000006155547907837899,
+          "p_above": 0.000008293810424220283
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 257,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2002,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-060",
+    "ms": 286.81179099999827,
+    "inTok": 1987,
+    "outTok": 0,
+    "usd": 0.0001987,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.01713462732732296,
+          "span": [76, 84],
+          "guess": "no catch",
+          "confidence": 0.2768709659576416,
+          "value": "no catch"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.015968507155776024,
+          "span": [280, 286],
+          "guess": "layout",
+          "confidence": 0.2251901775598526,
+          "value": "layout"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.04449233040213585,
+          "span": [934, 940],
+          "guess": "murmur",
+          "confidence": 0.8411377668380737,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004172958433628082,
+          "span": [1069, 1073],
+          "guess": "quit",
+          "confidence": 0.3524594306945801,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.7577029898357509,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000008299194632854778,
+          "p_above": 0.00001431496457371395
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 254,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1987,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-068",
+    "ms": 288.26987499999996,
+    "inTok": 1997,
+    "outTok": 0,
+    "usd": 0.00019970000000000003,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.023308515548706055,
+          "span": [1082, 1086],
+          "guess": "quit",
+          "confidence": 0.38969501852989197,
+          "value": "quit"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.012746531516313553,
+          "span": [862, 869],
+          "guess": "tooling",
+          "confidence": 0.2840808629989624,
+          "value": "tooling"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.04880421236157417,
+          "span": [947, 953],
+          "guess": "murmur",
+          "confidence": 0.8581089377403259,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.005177887622267008,
+          "span": [1082, 1086],
+          "guess": "quit",
+          "confidence": 0.48056092858314514,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 2,
+          "mean": 1.5634320500688919,
+          "median": 1,
+          "p10": 0,
+          "p90": 3,
+          "p_below": 0.000003682897840917576,
+          "p_above": 0.000006241973096621223
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 256,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1997,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-071",
+    "ms": 306.511625000001,
+    "inTok": 1987,
+    "outTok": 0,
+    "usd": 0.0001987,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.020883293822407722,
+          "span": [63, 69],
+          "guess": "ledger",
+          "confidence": 0.1595667451620102,
+          "value": "ledger"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.01560762245208025,
+          "span": [211, 218],
+          "guess": "unclear",
+          "confidence": 0.46252119541168213,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.039503566920757294,
+          "span": [946, 952],
+          "guess": "murmur",
+          "confidence": 0.9178487658500671,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.0041963038966059685,
+          "span": [1081, 1085],
+          "guess": "quit",
+          "confidence": 0.35083597898483276,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.816498661563007,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000008370040632144082,
+          "p_above": 0.000012254028661118355
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 254,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1987,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-090",
+    "ms": 341.2795409999999,
+    "inTok": 1982,
+    "outTok": 0,
+    "usd": 0.00019820000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.03541950136423111,
+          "span": [51, 56],
+          "guess": "twice",
+          "confidence": 0.3214413821697235,
+          "value": "twice"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.012357673607766628,
+          "span": [206, 213],
+          "guess": "unclear",
+          "confidence": 0.28175246715545654,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.03147649019956589,
+          "span": [941, 947],
+          "guess": "murmur",
+          "confidence": 0.9498839974403381,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004098455887287855,
+          "span": [1076, 1080],
+          "guess": "quit",
+          "confidence": 0.3899230659008026,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.8190958909767461,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000007585341336380225,
+          "p_above": 0.000015840296327951364
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 253,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1982,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-092",
+    "ms": 289.1659159999999,
+    "inTok": 1987,
+    "outTok": 0,
+    "usd": 0.0001987,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.021640421822667122,
+          "span": [35, 64],
+          "guess": "Did not sustain entertainment",
+          "confidence": 0.4906185567378998,
+          "value": "Did not sustain entertainment"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.00785539485514164,
+          "span": [418, 424],
+          "guess": "pacing",
+          "confidence": 0.24654744565486908,
+          "value": "pacing"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.035866010934114456,
+          "span": [965, 971],
+          "guess": "murmur",
+          "confidence": 0.5396807193756104,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004468804225325584,
+          "span": [1100, 1104],
+          "guess": "quit",
+          "confidence": 0.3790649175643921,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.9026597664942605,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000005820998921990395,
+          "p_above": 0.000010055905477202032
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 254,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1987,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-096",
+    "ms": 289.126542,
+    "inTok": 2022,
+    "outTok": 0,
+    "usd": 0.0002022,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.0015467936173081398,
+          "span": [35, 54],
+          "guess": "Menu button clipped",
+          "confidence": 0.7769603729248047,
+          "value": "Menu button clipped"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.000872542557772249,
+          "span": [318, 324],
+          "guess": "layout",
+          "confidence": 0.9908632040023804,
+          "value": "layout"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.030894948169589043,
+          "span": [972, 978],
+          "guess": "murmur",
+          "confidence": 0.7652131915092468,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004651174880564213,
+          "span": [1107, 1111],
+          "guess": "quit",
+          "confidence": 0.3655393123626709,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.8494655108211707,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000007785589332343079,
+          "p_above": 0.0000075085440585098695
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 261,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2022,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-107",
+    "ms": 263.30212500000016,
+    "inTok": 2032,
+    "outTok": 0,
+    "usd": 0.0002032,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.033467359840869904,
+          "span": [51, 58],
+          "guess": "pressed",
+          "confidence": 0.16744549572467804,
+          "value": "pressed"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.011440272442996502,
+          "span": [524, 534],
+          "guess": "difficulty",
+          "confidence": 0.24893468618392944,
+          "value": "difficulty"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.03308706730604172,
+          "span": [964, 970],
+          "guess": "murmur",
+          "confidence": 0.9797892570495605,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.00498213991522789,
+          "span": [1099, 1103],
+          "guess": "quit",
+          "confidence": 0.36246517300605774,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.9436451514202615,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.00000710468748366111,
+          "p_above": 0.0000122776491480181
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 263,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2032,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-122",
+    "ms": 395.8536669999994,
+    "inTok": 2057,
+    "outTok": 0,
+    "usd": 0.0002057,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.02335170842707157,
+          "span": [134, 146],
+          "guess": "nothing came",
+          "confidence": 0.3036418855190277,
+          "value": "nothing came"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.009447193704545498,
+          "span": [921, 928],
+          "guess": "tooling",
+          "confidence": 0.2672538459300995,
+          "value": "tooling"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.0457235611975193,
+          "span": [1006, 1012],
+          "guess": "murmur",
+          "confidence": 0.33819514513015747,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004222732037305832,
+          "span": [1141, 1145],
+          "guess": "quit",
+          "confidence": 0.3740384876728058,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.1080685236578767,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000004080272901774151,
+          "p_above": 0.000007551371254521655
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 268,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2057,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-123",
+    "ms": 332.2868749999998,
+    "inTok": 2117,
+    "outTok": 0,
+    "usd": 0.00021170000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.02262069471180439,
+          "span": [98, 109],
+          "guess": "Not a word.",
+          "confidence": 0.1647655963897705,
+          "value": "Not a word."
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.003075925400480628,
+          "span": [805, 812],
+          "guess": "delight",
+          "confidence": 0.9458253979682922,
+          "value": "delight"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.02867690660059452,
+          "span": [1032, 1038],
+          "guess": "murmur",
+          "confidence": 0.549260139465332,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.0047671254724264145,
+          "span": [1167, 1171],
+          "guess": "quit",
+          "confidence": 0.3762687146663666,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.6195560768769968,
+          "median": 0,
+          "p10": 0,
+          "p90": 1,
+          "p_below": 0.000012773244634445291,
+          "p_above": 0.000021505009499378502
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 280,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2117,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-127",
+    "ms": 352.1061249999984,
+    "inTok": 2187,
+    "outTok": 0,
+    "usd": 0.00021870000000000003,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.01393845770508051,
+          "span": [42, 54],
+          "guess": "Sit a minute",
+          "confidence": 0.2376052588224411,
+          "value": "Sit a minute"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.01126703992486,
+          "span": [710, 716],
+          "guess": "agency",
+          "confidence": 0.2684018313884735,
+          "value": "agency"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.031150657683610916,
+          "span": [1023, 1029],
+          "guess": "murmur",
+          "confidence": 0.9487590789794922,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004220899660140276,
+          "span": [1158, 1162],
+          "guess": "quit",
+          "confidence": 0.34936457872390747,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.1704243649255557,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.0000046117734200379346,
+          "p_above": 0.000009185479939333163
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 294,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2187,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-138",
+    "ms": 415.6923339999994,
+    "inTok": 1987,
+    "outTok": 0,
+    "usd": 0.0001987,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.03231231868267059,
+          "span": [35, 55],
+          "guess": "There is no pressure",
+          "confidence": 0.4780656397342682,
+          "value": "There is no pressure"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.006841165479272604,
+          "span": [504, 514],
+          "guess": "difficulty",
+          "confidence": 0.9398844838142395,
+          "value": "difficulty"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.03629377856850624,
+          "span": [397, 403],
+          "guess": "pacing",
+          "confidence": 0.2382841855287552,
+          "value": "pacing"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004442344419658184,
+          "span": [1079, 1083],
+          "guess": "quit",
+          "confidence": 0.3936692476272583,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.8809755146989827,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000003899322564393515,
+          "p_above": 0.000009030532055476215
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 254,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1987,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-146",
+    "ms": 444.90287499999977,
+    "inTok": 2217,
+    "outTok": 0,
+    "usd": 0.00022170000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.008707382716238499,
+          "span": [174, 196],
+          "guess": "The page is 808px tall",
+          "confidence": 0.13838405907154083,
+          "value": "The page is 808px tall"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.0037880714517086744,
+          "span": [412, 418],
+          "guess": "layout",
+          "confidence": 0.9855290055274963,
+          "value": "layout"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.012429531663656235,
+          "span": [1066, 1072],
+          "guess": "murmur",
+          "confidence": 0.7020681500434875,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.0039439997635781765,
+          "span": [1201, 1205],
+          "guess": "quit",
+          "confidence": 0.3526076674461365,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.9902158991703119,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000005683716608473333,
+          "p_above": 0.000009028285603562836
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 300,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2217,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-157",
+    "ms": 356.80175000000054,
+    "inTok": 2052,
+    "outTok": 0,
+    "usd": 0.00020520000000000003,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.015227713622152805,
+          "span": [32, 53],
+          "guess": "Nobody reached Sunday",
+          "confidence": 0.5185679793357849,
+          "value": "Nobody reached Sunday"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.010749426670372486,
+          "span": [289, 296],
+          "guess": "unclear",
+          "confidence": 0.27937209606170654,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.049099333584308624,
+          "span": [1024, 1030],
+          "guess": "murmur",
+          "confidence": 0.4620097279548645,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004224555101245642,
+          "span": [1159, 1163],
+          "guess": "quit",
+          "confidence": 0.3613404631614685,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.8789324275873811,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000006760350061085774,
+          "p_above": 0.000012990031791559886
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 267,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2052,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-162",
+    "ms": 308.17312499999935,
+    "inTok": 2032,
+    "outTok": 0,
+    "usd": 0.0002032,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.008571944199502468,
+          "span": [35, 62],
+          "guess": "The card's × wouldn't close",
+          "confidence": 0.7405318021774292,
+          "value": "The card's × wouldn't close"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.006535722408443689,
+          "span": [144, 147],
+          "guess": "bug",
+          "confidence": 0.8113227486610413,
+          "value": "bug"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.029479721561074257,
+          "span": [978, 984],
+          "guess": "murmur",
+          "confidence": 0.7675243020057678,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004513420630246401,
+          "span": [1113, 1117],
+          "guess": "quit",
+          "confidence": 0.3319988548755646,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.005149038355206,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000006629414656345034,
+          "p_above": 0.000010477155228727497
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 263,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2032,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-166",
+    "ms": 296.17133400000057,
+    "inTok": 2072,
+    "outTok": 0,
+    "usd": 0.00020720000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.007819187827408314,
+          "span": [99, 152],
+          "guess": "It was the first time the picture did what I told it.",
+          "confidence": 0.17879801988601685,
+          "value": "It was the first time the picture did what I told it."
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.012296732515096664,
+          "span": [774, 781],
+          "guess": "delight",
+          "confidence": 0.19602078199386597,
+          "value": "delight"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.02357383817434311,
+          "span": [1001, 1007],
+          "guess": "murmur",
+          "confidence": 0.9495817422866821,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004026340786367655,
+          "span": [1136, 1140],
+          "guess": "quit",
+          "confidence": 0.3398054540157318,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.9558676047062484,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.0000063734169089002535,
+          "p_above": 0.000013462999049806967
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 271,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2072,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-168",
+    "ms": 385.5276249999988,
+    "inTok": 1977,
+    "outTok": 0,
+    "usd": 0.0001977,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.02417229488492012,
+          "span": [84, 86],
+          "guess": "no",
+          "confidence": 0.42201709747314453,
+          "value": "no"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.011527100577950478,
+          "span": [496, 506],
+          "guess": "difficulty",
+          "confidence": 0.21841633319854736,
+          "value": "difficulty"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.0353509783744812,
+          "span": [936, 942],
+          "guess": "murmur",
+          "confidence": 0.7312760949134827,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004301311448216438,
+          "span": [1071, 1075],
+          "guess": "quit",
+          "confidence": 0.38547807931900024,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.3855030293775628,
+          "median": 1,
+          "p10": 0,
+          "p90": 3,
+          "p_below": 0.0000036021770029037725,
+          "p_above": 0.000008274872925539967
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 252,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1977,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-172",
+    "ms": 323.4092920000003,
+    "inTok": 2082,
+    "outTok": 0,
+    "usd": 0.00020820000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.019368747249245644,
+          "span": [51, 55],
+          "guess": "quit",
+          "confidence": 0.2677348554134369,
+          "value": "quit"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.007435991894453764,
+          "span": [407, 413],
+          "guess": "pacing",
+          "confidence": 0.37206119298934937,
+          "value": "pacing"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.01828470639884472,
+          "span": [954, 960],
+          "guess": "murmur",
+          "confidence": 0.6807982921600342,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.0044842679053545,
+          "span": [1089, 1093],
+          "guess": "quit",
+          "confidence": 0.44533926248550415,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 2,
+          "mean": 1.5324101687618303,
+          "median": 1,
+          "p10": 0,
+          "p90": 3,
+          "p_below": 0.0000020382876755320467,
+          "p_above": 0.000004840505880565615
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 273,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2082,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-180",
+    "ms": 459.8786660000005,
+    "inTok": 2122,
+    "outTok": 0,
+    "usd": 0.0002122,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.010833343490958214,
+          "span": [91, 124],
+          "guess": "The game is warm and well written",
+          "confidence": 0.34299391508102417,
+          "value": "The game is warm and well written"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.011540273204445839,
+          "span": [327, 334],
+          "guess": "unclear",
+          "confidence": 0.5586147904396057,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.036439355462789536,
+          "span": [1062, 1068],
+          "guess": "murmur",
+          "confidence": 0.8303245902061462,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004168134182691574,
+          "span": [1197, 1201],
+          "guess": "quit",
+          "confidence": 0.358359158039093,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.0762818869678514,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.00000369358281204768,
+          "p_above": 0.000007409245426970301
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 281,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2122,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-184",
+    "ms": 313.9662499999995,
+    "inTok": 2047,
+    "outTok": 0,
+    "usd": 0.00020470000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.034591805189847946,
+          "span": [30, 52],
+          "guess": "Irresistibly enjoyable",
+          "confidence": 0.6756484508514404,
+          "value": "Irresistibly enjoyable"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.0021755872294306755,
+          "span": [774, 781],
+          "guess": "delight",
+          "confidence": 0.9631996750831604,
+          "value": "delight"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.03139512985944748,
+          "span": [1001, 1007],
+          "guess": "murmur",
+          "confidence": 0.7225079536437988,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004328048788011074,
+          "span": [1136, 1140],
+          "guess": "quit",
+          "confidence": 0.32067811489105225,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.5618610958152713,
+          "median": 0,
+          "p10": 0,
+          "p90": 1,
+          "p_below": 0.000009136844710155856,
+          "p_above": 0.00002448149461997673
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 266,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2047,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-192",
+    "ms": 279.79712500000096,
+    "inTok": 1987,
+    "outTok": 0,
+    "usd": 0.0001987,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.012125737965106964,
+          "span": [75, 82],
+          "guess": "no anon",
+          "confidence": 0.4005299210548401,
+          "value": "no anon"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.009431214071810246,
+          "span": [113, 116],
+          "guess": "bug",
+          "confidence": 0.5826093554496765,
+          "value": "bug"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.04043300449848175,
+          "span": [39, 46],
+          "guess": "firefox",
+          "confidence": 0.7539947032928467,
+          "value": "firefox"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004245316609740257,
+          "span": [1082, 1086],
+          "guess": "quit",
+          "confidence": 0.35897302627563477,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.5703112938555134,
+          "median": 0,
+          "p10": 0,
+          "p90": 1,
+          "p_below": 0.000012153633178968448,
+          "p_above": 0.000021120724341017194
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 254,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1987,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-200",
+    "ms": 279.7170420000002,
+    "inTok": 2012,
+    "outTok": 0,
+    "usd": 0.0002012,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.019881675019860268,
+          "span": [234, 241],
+          "guess": "unclear",
+          "confidence": 0.1357441395521164,
+          "value": "unclear"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.01020087581127882,
+          "span": [234, 241],
+          "guess": "unclear",
+          "confidence": 0.8444010019302368,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.039148665964603424,
+          "span": [969, 975],
+          "guess": "murmur",
+          "confidence": 0.9032772779464722,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.0038237026892602444,
+          "span": [1104, 1108],
+          "guess": "quit",
+          "confidence": 0.3560009002685547,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.6363697794489575,
+          "median": 0,
+          "p10": 0,
+          "p90": 1,
+          "p_below": 0.000013731619219470304,
+          "p_above": 0.00001870626692834776
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 259,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2012,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-203",
+    "ms": 264.8122910000002,
+    "inTok": 2007,
+    "outTok": 0,
+    "usd": 0.00020070000000000003,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.037744246423244476,
+          "span": [95, 113],
+          "guess": "aren't translating",
+          "confidence": 0.31288209557533264,
+          "value": "aren't translating"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.013250132091343403,
+          "span": [325, 331],
+          "guess": "layout",
+          "confidence": 0.28799328207969666,
+          "value": "layout"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.030727090314030647,
+          "span": [979, 985],
+          "guess": "murmur",
+          "confidence": 0.8332123160362244,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004658042918890715,
+          "span": [1114, 1118],
+          "guess": "quit",
+          "confidence": 0.33535709977149963,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.6663034110103105,
+          "median": 1,
+          "p10": 0,
+          "p90": 1,
+          "p_below": 0.00001253070240636589,
+          "p_above": 0.000016128624338307418
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 258,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2007,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-204",
+    "ms": 383.28941600000326,
+    "inTok": 1977,
+    "outTok": 0,
+    "usd": 0.0001977,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.11056439578533173,
+          "span": [69, 83],
+          "guess": "deep, fun game",
+          "confidence": 0.1142016351222992,
+          "value": "deep, fun game"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.012185364961624146,
+          "span": [706, 713],
+          "guess": "delight",
+          "confidence": 0.47169315814971924,
+          "value": "delight"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.05313004180788994,
+          "span": [933, 939],
+          "guess": "murmur",
+          "confidence": 0.7524729371070862,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004238774534314871,
+          "span": [1068, 1072],
+          "guess": "quit",
+          "confidence": 0.32372575998306274,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.5501768433706459,
+          "median": 0,
+          "p10": 0,
+          "p90": 1,
+          "p_below": 0.000011845460903714411,
+          "p_above": 0.00001862671342678368
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 252,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1977,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-211",
+    "ms": 266.9217089999984,
+    "inTok": 2117,
+    "outTok": 0,
+    "usd": 0.00021170000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.01745937578380108,
+          "span": [100, 118],
+          "guess": "lack English dates",
+          "confidence": 0.15548883378505707,
+          "value": "lack English dates"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.009017475880682468,
+          "span": [270, 277],
+          "guess": "unclear",
+          "confidence": 0.6000106334686279,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.05131709575653076,
+          "span": [1005, 1011],
+          "guess": "murmur",
+          "confidence": 0.595443606376648,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.003936280030757189,
+          "span": [1140, 1144],
+          "guess": "quit",
+          "confidence": 0.3549571931362152,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.7423442096558425,
+          "median": 1,
+          "p10": 0,
+          "p90": 1,
+          "p_below": 0.000009771024451765697,
+          "p_above": 0.000010654998732206877
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 280,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2117,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-221",
+    "ms": 960.8852079999997,
+    "inTok": 2127,
+    "outTok": 0,
+    "usd": 0.00021270000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.02079428732395172,
+          "span": [35, 61],
+          "guess": "The wedding is progressing",
+          "confidence": 0.294018417596817,
+          "value": "The wedding is progressing"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.004070851020514965,
+          "span": [900, 909],
+          "guess": "direction",
+          "confidence": 0.3744203746318817,
+          "value": "direction"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.030192051082849503,
+          "span": [1065, 1071],
+          "guess": "murmur",
+          "confidence": 0.7437748312950134,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.0038959437515586615,
+          "span": [1200, 1204],
+          "guess": "quit",
+          "confidence": 0.3121483623981476,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.9242940923249402,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000007258934147102991,
+          "p_above": 0.000010672618373064324
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 282,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2127,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-223",
+    "ms": 424.3368330000012,
+    "inTok": 2032,
+    "outTok": 0,
+    "usd": 0.0002032,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.05774127319455147,
+          "span": [35, 53],
+          "guess": "I would if I could",
+          "confidence": 0.08851075172424316,
+          "value": "I would if I could"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.00866940151900053,
+          "span": [254, 261],
+          "guess": "unclear",
+          "confidence": 0.3849872946739197,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.03163091465830803,
+          "span": [989, 995],
+          "guess": "murmur",
+          "confidence": 0.779801607131958,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004097459372133017,
+          "span": [1124, 1128],
+          "guess": "quit",
+          "confidence": 0.34750309586524963,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.886977183443481,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000008644492481835186,
+          "p_above": 0.000014893102161295246
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 263,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2032,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-237",
+    "ms": 315.99570900000253,
+    "inTok": 2117,
+    "outTok": 0,
+    "usd": 0.00021170000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.031153952702879906,
+          "span": [337, 344],
+          "guess": "unclear",
+          "confidence": 0.0722736194729805,
+          "value": "unclear"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.010930820368230343,
+          "span": [337, 344],
+          "guess": "unclear",
+          "confidence": 0.4889054298400879,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.05657379701733589,
+          "span": [1072, 1078],
+          "guess": "murmur",
+          "confidence": 0.8147590756416321,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.005050249397754669,
+          "span": [1207, 1211],
+          "guess": "quit",
+          "confidence": 0.34237879514694214,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.7114696578853409,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000010390526767878328,
+          "p_above": 0.000012566197256091982
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 280,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2117,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-243",
+    "ms": 364.9795419999973,
+    "inTok": 2097,
+    "outTok": 0,
+    "usd": 0.00020970000000000003,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.02012708969414234,
+          "span": [335, 342],
+          "guess": "unclear",
+          "confidence": 0.3344351649284363,
+          "value": "unclear"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.00932037178426981,
+          "span": [335, 342],
+          "guess": "unclear",
+          "confidence": 0.7449637055397034,
+          "value": "unclear"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.03409922495484352,
+          "span": [1070, 1076],
+          "guess": "murmur",
+          "confidence": 0.3390520215034485,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.003941690549254417,
+          "span": [1205, 1209],
+          "guess": "quit",
+          "confidence": 0.3409114480018616,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.0568491323601097,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000004469694431463722,
+          "p_above": 0.000007814430318831
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 276,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2097,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-245",
+    "ms": 420.99312499999724,
+    "inTok": 2142,
+    "outTok": 0,
+    "usd": 0.00021420000000000003,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.007716540712863207,
+          "span": [704, 714],
+          "guess": "repetition",
+          "confidence": 0.1649768352508545,
+          "value": "repetition"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.005294943694025278,
+          "span": [704, 714],
+          "guess": "repetition",
+          "confidence": 0.7387014627456665,
+          "value": "repetition"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.01960136741399765,
+          "span": [1087, 1093],
+          "guess": "murmur",
+          "confidence": 0.8575905561447144,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004034949000924826,
+          "span": [1222, 1226],
+          "guess": "quit",
+          "confidence": 0.3205016255378723,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.0371117072200677,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000005699754638044396,
+          "p_above": 0.000008464140591968317
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 285,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2142,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-246",
+    "ms": 290.32816699999967,
+    "inTok": 2112,
+    "outTok": 0,
+    "usd": 0.0002112,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.012143200263381004,
+          "span": [35, 57],
+          "guess": "I did not become bored",
+          "confidence": 0.4815067946910858,
+          "value": "I did not become bored"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.005723165813833475,
+          "span": [524, 530],
+          "guess": "pacing",
+          "confidence": 0.39538878202438354,
+          "value": "pacing"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.026196502149105072,
+          "span": [1071, 1077],
+          "guess": "murmur",
+          "confidence": 0.7680143117904663,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.0041326312348246574,
+          "span": [1206, 1210],
+          "guess": "quit",
+          "confidence": 0.3412627875804901,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.0857182008095179,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000005849808530911105,
+          "p_above": 0.000008241846444434486
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 279,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2112,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-250",
+    "ms": 446.6593749999993,
+    "inTok": 2062,
+    "outTok": 0,
+    "usd": 0.00020620000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.03615137189626694,
+          "span": [284, 291],
+          "guess": "unclear",
+          "confidence": 0.1536194384098053,
+          "value": "unclear"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.0015587712405249476,
+          "span": [792, 799],
+          "guess": "delight",
+          "confidence": 0.9864487051963806,
+          "value": "delight"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.021845217794179916,
+          "span": [1019, 1025],
+          "guess": "murmur",
+          "confidence": 0.9533779621124268,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004059983417391777,
+          "span": [1154, 1158],
+          "guess": "quit",
+          "confidence": 0.3454707860946655,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.7721501808207178,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000008837166205921676,
+          "p_above": 0.000012265503755770624
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 269,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2062,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-254",
+    "ms": 335.1631249999991,
+    "inTok": 2077,
+    "outTok": 0,
+    "usd": 0.0002077,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.009443927556276321,
+          "span": [35, 41],
+          "guess": "I quit",
+          "confidence": 0.45668402314186096,
+          "value": "I quit"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.007868721149861813,
+          "span": [731, 737],
+          "guess": "agency",
+          "confidence": 0.3050951063632965,
+          "value": "agency"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.019442234188318253,
+          "span": [1044, 1050],
+          "guess": "murmur",
+          "confidence": 0.6656911969184875,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.00430260831490159,
+          "span": [1179, 1183],
+          "guess": "quit",
+          "confidence": 0.4922333359718323,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 2,
+          "mean": 2.042585696958245,
+          "median": 2,
+          "p10": 1,
+          "p90": 3,
+          "p_below": 0.0000014179514664647286,
+          "p_above": 0.0000026711679765867302
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 272,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2077,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-260",
+    "ms": 345.8052499999976,
+    "inTok": 2112,
+    "outTok": 0,
+    "usd": 0.0002112,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.018305204808712006,
+          "span": [35, 55],
+          "guess": "I stopped at 149.7 s",
+          "confidence": 0.2195654809474945,
+          "value": "I stopped at 149.7 s"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.00800442136824131,
+          "span": [819, 826],
+          "guess": "delight",
+          "confidence": 0.6280320882797241,
+          "value": "delight"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.019258763641119003,
+          "span": [1046, 1052],
+          "guess": "murmur",
+          "confidence": 0.5886644721031189,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004179522395133972,
+          "span": [1181, 1185],
+          "guess": "quit",
+          "confidence": 0.3268829584121704,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.8214968344591617,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000009926196071319282,
+          "p_above": 0.00001576133399794344
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 279,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2112,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-265",
+    "ms": 404.914041,
+    "inTok": 2082,
+    "outTok": 0,
+    "usd": 0.00020820000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.01038083154708147,
+          "span": [99, 120],
+          "guess": "working-hours dispute",
+          "confidence": 0.20951205492019653,
+          "value": "working-hours dispute"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.0037729409523308277,
+          "span": [481, 487],
+          "guess": "pacing",
+          "confidence": 0.801653265953064,
+          "value": "pacing"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.04152277112007141,
+          "span": [1028, 1034],
+          "guess": "murmur",
+          "confidence": 0.8057097792625427,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004418942611664534,
+          "span": [1163, 1167],
+          "guess": "quit",
+          "confidence": 0.33547431230545044,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.7712645462760862,
+          "median": 1,
+          "p10": 0,
+          "p90": 1,
+          "p_below": 0.000008883789632818662,
+          "p_above": 0.000011566817192942835
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 273,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2082,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-269",
+    "ms": 304.4694589999999,
+    "inTok": 1992,
+    "outTok": 0,
+    "usd": 0.00019920000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.11099159717559814,
+          "span": [68, 81],
+          "guess": "short session",
+          "confidence": 0.10042323917150497,
+          "value": "short session"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.0014284469652920961,
+          "span": [739, 746],
+          "guess": "delight",
+          "confidence": 0.9899507164955139,
+          "value": "delight"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.02687148004770279,
+          "span": [966, 972],
+          "guess": "murmur",
+          "confidence": 0.8615480065345764,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004249344114214182,
+          "span": [1101, 1105],
+          "guess": "quit",
+          "confidence": 0.40016046166419983,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.6768157353899444,
+          "median": 0,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.00000956359326664824,
+          "p_above": 0.000018448292394168675
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 255,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1992,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-277",
+    "ms": 408.176875000001,
+    "inTok": 2122,
+    "outTok": 0,
+    "usd": 0.0002122,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.016492003574967384,
+          "span": [69, 96],
+          "guess": "choosing a short commitment",
+          "confidence": 0.13817672431468964,
+          "value": "choosing a short commitment"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.015720950439572334,
+          "span": [768, 774],
+          "guess": "agency",
+          "confidence": 0.3124997019767761,
+          "value": "agency"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.028528202325105667,
+          "span": [1089, 1098],
+          "guess": "stairwell",
+          "confidence": 0.4946274757385254,
+          "value": "stairwell"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.003946409560739994,
+          "span": [1216, 1220],
+          "guess": "quit",
+          "confidence": 0.3737429976463318,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.1157937603825558,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.0000056537692216807045,
+          "p_above": 0.000009632255569158588
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 281,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2122,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-282",
+    "ms": 371.15770800000246,
+    "inTok": 2067,
+    "outTok": 0,
+    "usd": 0.0002067,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.011319035664200783,
+          "span": [35, 48],
+          "guess": "Keep the rota",
+          "confidence": 0.7832161784172058,
+          "value": "Keep the rota"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.006221575662493706,
+          "span": [668, 678],
+          "guess": "repetition",
+          "confidence": 0.2752663195133209,
+          "value": "repetition"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.019081925973296165,
+          "span": [1051, 1057],
+          "guess": "murmur",
+          "confidence": 0.9030581116676331,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004880808759480715,
+          "span": [1186, 1190],
+          "guess": "quit",
+          "confidence": 0.3763848841190338,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.8238315957328631,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000007923626071715262,
+          "p_above": 0.000008250747669080738
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 270,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2067,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-285",
+    "ms": 380.76016700000037,
+    "inTok": 2022,
+    "outTok": 0,
+    "usd": 0.0002022,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.0378052219748497,
+          "span": [35, 61],
+          "guess": "I would return voluntarily",
+          "confidence": 0.14877398312091827,
+          "value": "I would return voluntarily"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.0009967358782887459,
+          "span": [758, 765],
+          "guess": "delight",
+          "confidence": 0.9955353736877441,
+          "value": "delight"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.026929887011647224,
+          "span": [985, 991],
+          "guess": "murmur",
+          "confidence": 0.9799771308898926,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004029125906527042,
+          "span": [1120, 1124],
+          "guess": "quit",
+          "confidence": 0.3284415006637573,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.5450830167839457,
+          "median": 0,
+          "p10": 0,
+          "p90": 1,
+          "p_below": 0.000012009474630758632,
+          "p_above": 0.000018271650333190337
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 261,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2022,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-292",
+    "ms": 384.0515000000014,
+    "inTok": 2087,
+    "outTok": 0,
+    "usd": 0.0002087,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.02760736271739006,
+          "span": [310, 317],
+          "guess": "unclear",
+          "confidence": 0.1895873248577118,
+          "value": "unclear"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.0033454718068242073,
+          "span": [391, 397],
+          "guess": "layout",
+          "confidence": 0.9776154160499573,
+          "value": "layout"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.01982170157134533,
+          "span": [1045, 1051],
+          "guess": "murmur",
+          "confidence": 0.8764219880104065,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004344217013567686,
+          "span": [1180, 1184],
+          "guess": "quit",
+          "confidence": 0.3954589366912842,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.021542521037576,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000004999892553314567,
+          "p_above": 0.000007751425073365681
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 274,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2087,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-298",
+    "ms": 338.6392500000002,
+    "inTok": 2092,
+    "outTok": 0,
+    "usd": 0.00020920000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.017050735652446747,
+          "span": [35, 63],
+          "guess": "Keep the phone layout repair",
+          "confidence": 0.3352677524089813,
+          "value": "Keep the phone layout repair"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.005988016724586487,
+          "span": [415, 421],
+          "guess": "layout",
+          "confidence": 0.9491526484489441,
+          "value": "layout"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.00944470800459385,
+          "span": [1158, 1164],
+          "guess": "repair",
+          "confidence": 0.499691903591156,
+          "value": "repair"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004172021057456732,
+          "span": [1204, 1208],
+          "guess": "quit",
+          "confidence": 0.3247535526752472,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 0.725291060173734,
+          "median": 0,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000014008125617692713,
+          "p_above": 0.00002044504799414426
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 275,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2092,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-303",
+    "ms": 368.1957079999993,
+    "inTok": 2127,
+    "outTok": 0,
+    "usd": 0.00021270000000000002,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.008391667157411575,
+          "span": [121, 140],
+          "guess": "I like the recovery",
+          "confidence": 0.1825869381427765,
+          "value": "I like the recovery"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.006782568525522947,
+          "span": [525, 531],
+          "guess": "pacing",
+          "confidence": 0.22385960817337036,
+          "value": "pacing"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.0169175136834383,
+          "span": [1072, 1078],
+          "guess": "murmur",
+          "confidence": 0.9501141309738159,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004067662172019482,
+          "span": [1207, 1211],
+          "guess": "quit",
+          "confidence": 0.36690470576286316,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 1,
+          "mean": 1.1889283339883243,
+          "median": 1,
+          "p10": 0,
+          "p90": 2,
+          "p_below": 0.000003141831712127896,
+          "p_above": 0.000006181770913826767
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 282,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 2127,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  },
+  {
+    "id": "F-343",
+    "ms": 397.273541999999,
+    "inTok": 1952,
+    "outTok": 0,
+    "usd": 0.00019520000000000003,
+    "raw": {
+      "model": "clairic",
+      "answers": {
+        "problem": {
+          "type": "text",
+          "p_null": 0.174138605594635,
+          "span": [30, 70],
+          "guess": "I'm able to interview anyone immediately",
+          "confidence": 0.08910946547985077,
+          "value": "I'm able to interview anyone immediately"
+        },
+        "category": {
+          "type": "text",
+          "p_null": 0.011344373226165771,
+          "span": [693, 700],
+          "guess": "delight",
+          "confidence": 0.5481612682342529,
+          "value": "delight"
+        },
+        "game": {
+          "type": "text",
+          "p_null": 0.05054956302046776,
+          "span": [920, 926],
+          "guess": "murmur",
+          "confidence": 0.8336867690086365,
+          "value": "murmur"
+        },
+        "verdict": {
+          "type": "text",
+          "p_null": 0.004115649964660406,
+          "span": [1055, 1059],
+          "guess": "quit",
+          "confidence": 0.3384607434272766,
+          "value": "quit"
+        },
+        "severity": {
+          "type": "estimate",
+          "value": 0,
+          "mean": 0.4997996998139813,
+          "median": 0,
+          "p10": 0,
+          "p90": 1,
+          "p_below": 0.000012003607480437495,
+          "p_above": 0.000024277711418108083
+        }
+      },
+      "truncated": false,
+      "usage": {
+        "state_tokens": 247,
+        "image_tokens": 0,
+        "schema_tokens": 717,
+        "input_tokens": 1952,
+        "output_tokens": 0,
+        "passes": 5
+      }
+    }
+  }
+]

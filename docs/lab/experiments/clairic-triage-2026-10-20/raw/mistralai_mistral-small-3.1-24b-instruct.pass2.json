@@ -1,0 +1,2417 @@
+[
+  {
+    "id": "F-015",
+    "ms": 7873.706792,
+    "inTok": 643,
+    "outTok": 45,
+    "usd": 0.00025066799999999995,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"repetition\",\n  \"game\": \"pass\",\n  \"verdict\": \"none\",\n  \"severity\": 1,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524408,
+      "id": "chatcmpl-0f63f59b-5713-4b95-93b7-0234c3d9240c",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"repetition\",\n  \"game\": \"pass\",\n  \"verdict\": \"none\",\n  \"severity\": 1,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 643,
+        "completion_tokens": 45,
+        "total_tokens": 688,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.76822853088379
+      }
+    }
+  },
+  {
+    "id": "F-024",
+    "ms": 3862.569292,
+    "inTok": 628,
+    "outTok": 44,
+    "usd": 0.00024484800000000004,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"pass\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524409,
+      "id": "chatcmpl-fcb5b2b4-bb7c-4735-a6c5-3d94843378ce",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"pass\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 628,
+        "completion_tokens": 44,
+        "total_tokens": 672,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.239601135253906
+      }
+    }
+  },
+  {
+    "id": "F-026",
+    "ms": 1140.0383340000008,
+    "inTok": 632,
+    "outTok": 45,
+    "usd": 0.000246807,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"pass\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524412,
+      "id": "chatcmpl-0df00ae2-6d7e-4dc1-8616-332d958cbeff",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"pass\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 632,
+        "completion_tokens": 45,
+        "total_tokens": 677,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.417593002319336
+      }
+    }
+  },
+  {
+    "id": "F-027",
+    "ms": 1126.9165830000002,
+    "inTok": 631,
+    "outTok": 44,
+    "usd": 0.00024590100000000003,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"tooling\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 1,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524414,
+      "id": "chatcmpl-3915dbd7-500e-4ca9-a5ef-ae20eea64fad",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"tooling\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 1,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 631,
+        "completion_tokens": 44,
+        "total_tokens": 675,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.335227966308594
+      }
+    }
+  },
+  {
+    "id": "F-029",
+    "ms": 4154.398790999998,
+    "inTok": 647,
+    "outTok": 49,
+    "usd": 0.000254292,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"pacing\",\n        \"game\": \"pass\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524415,
+      "id": "chatcmpl-8b0db827-4dc2-476f-9fa6-14dc0aea8949",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"pacing\",\n        \"game\": \"pass\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 647,
+        "completion_tokens": 49,
+        "total_tokens": 696,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 23.097684860229492
+      }
+    }
+  },
+  {
+    "id": "F-034",
+    "ms": 1640.7144169999992,
+    "inTok": 645,
+    "outTok": 48,
+    "usd": 0.000253035,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"agency\",\n        \"game\": \"pass\",\n        \"verdict\": \"none\",\n        \"severity\": 1,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524419,
+      "id": "chatcmpl-ce4bc8a0-5461-43b3-bca5-1f000e060628",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"agency\",\n        \"game\": \"pass\",\n        \"verdict\": \"none\",\n        \"severity\": 1,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 645,
+        "completion_tokens": 48,
+        "total_tokens": 693,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.983444213867188
+      }
+    }
+  },
+  {
+    "id": "F-042",
+    "ms": 1295.530791000001,
+    "inTok": 633,
+    "outTok": 49,
+    "usd": 0.00024937799999999997,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"unclear\",\n        \"game\": \"watch\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524421,
+      "id": "chatcmpl-1b9a47d2-30fd-4ef0-a28a-108455d1c8a9",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"unclear\",\n        \"game\": \"watch\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 633,
+        "completion_tokens": 49,
+        "total_tokens": 682,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.65142059326172
+      }
+    }
+  },
+  {
+    "id": "F-054",
+    "ms": 1546.0652919999993,
+    "inTok": 629,
+    "outTok": 51,
+    "usd": 0.000249084,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"difficulty\",\n        \"game\": \"murmur\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524422,
+      "id": "chatcmpl-f3aed56a-de4e-4596-ada7-3910e6bbfa6d",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"difficulty\",\n        \"game\": \"murmur\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 629,
+        "completion_tokens": 51,
+        "total_tokens": 680,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.624893188476562
+      }
+    }
+  },
+  {
+    "id": "F-060",
+    "ms": 1913.296542,
+    "inTok": 626,
+    "outTok": 43,
+    "usd": 0.000243591,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"direction\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524423,
+      "id": "chatcmpl-39989766-4892-48f0-a79e-935211c92c0a",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"direction\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 626,
+        "completion_tokens": 43,
+        "total_tokens": 669,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.1253604888916
+      }
+    }
+  },
+  {
+    "id": "F-068",
+    "ms": 1267.3959590000013,
+    "inTok": 626,
+    "outTok": 48,
+    "usd": 0.000246366,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"tooling\",\n        \"game\": \"lab\",\n        \"verdict\": \"none\",\n        \"severity\": 1,\n        \"fix\": false\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524425,
+      "id": "chatcmpl-f769b596-e04b-4c71-b9e4-d3eed100a6bd",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"tooling\",\n        \"game\": \"lab\",\n        \"verdict\": \"none\",\n        \"severity\": 1,\n        \"fix\": false\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 626,
+        "completion_tokens": 48,
+        "total_tokens": 674,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.37779998779297
+      }
+    }
+  },
+  {
+    "id": "F-071",
+    "ms": 3545.8859169999996,
+    "inTok": 627,
+    "outTok": 45,
+    "usd": 0.000245052,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"valley\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524427,
+      "id": "chatcmpl-1fce09cd-9a93-48ed-a8ba-bff258a12e3b",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"valley\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 627,
+        "completion_tokens": 45,
+        "total_tokens": 672,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.25821304321289
+      }
+    }
+  },
+  {
+    "id": "F-090",
+    "ms": 1125.4131249999991,
+    "inTok": 625,
+    "outTok": 48,
+    "usd": 0.000246015,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"repetition\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524430,
+      "id": "chatcmpl-5c2dc9ac-83ea-4a86-a86f-f27be61f9fd7",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"repetition\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 625,
+        "completion_tokens": 48,
+        "total_tokens": 673,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.345924377441406
+      }
+    }
+  },
+  {
+    "id": "F-092",
+    "ms": 1917.4611669999977,
+    "inTok": 626,
+    "outTok": 93,
+    "usd": 0.00027134100000000003,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"pacing\",\n        \"game\": \"stairwell\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    },\n    {\n        \"category\": \"agency\",\n        \"game\": \"stairwell\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524431,
+      "id": "chatcmpl-2218a419-53ab-4a7b-afe2-d4c822b2b78b",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"pacing\",\n        \"game\": \"stairwell\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    },\n    {\n        \"category\": \"agency\",\n        \"game\": \"stairwell\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 626,
+        "completion_tokens": 93,
+        "total_tokens": 719,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 24.649761199951172
+      }
+    }
+  },
+  {
+    "id": "F-096",
+    "ms": 3878.8362919999963,
+    "inTok": 633,
+    "outTok": 43,
+    "usd": 0.000246048,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"layout\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 1,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524433,
+      "id": "chatcmpl-db4ec254-1a6f-460d-9c09-2ee112485a3d",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"layout\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 1,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 633,
+        "completion_tokens": 43,
+        "total_tokens": 676,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.348493576049805
+      }
+    }
+  },
+  {
+    "id": "F-107",
+    "ms": 1788.0356249999968,
+    "inTok": 634,
+    "outTok": 43,
+    "usd": 0.000246399,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"voice\",\n  \"verdict\": \"none\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524437,
+      "id": "chatcmpl-13585fff-f3f8-4088-9bad-dc7a818a1356",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"voice\",\n  \"verdict\": \"none\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 634,
+        "completion_tokens": 43,
+        "total_tokens": 677,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.380369186401367
+      }
+    }
+  },
+  {
+    "id": "F-122",
+    "ms": 1132.0430419999975,
+    "inTok": 640,
+    "outTok": 44,
+    "usd": 0.00024906,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"valley\",\n  \"verdict\": \"none\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524439,
+      "id": "chatcmpl-8b93a9bf-f8e8-42c5-a82c-201a1c0e60b4",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"valley\",\n  \"verdict\": \"none\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 640,
+        "completion_tokens": 44,
+        "total_tokens": 684,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.622112274169922
+      }
+    }
+  },
+  {
+    "id": "F-123",
+    "ms": 3133.6343329999945,
+    "inTok": 653,
+    "outTok": 46,
+    "usd": 0.000254733,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"stairwell\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524440,
+      "id": "chatcmpl-fcb42038-e170-44e7-b614-ca6dac61c939",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"stairwell\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 653,
+        "completion_tokens": 46,
+        "total_tokens": 699,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 23.13747787475586
+      }
+    }
+  },
+  {
+    "id": "F-127",
+    "ms": 1169.1345000000001,
+    "inTok": 666,
+    "outTok": 51,
+    "usd": 0.00026207099999999995,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"unclear\",\n        \"game\": \"stairwell\",\n        \"verdict\": \"mixed\",\n        \"severity\": 1,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524443,
+      "id": "chatcmpl-7ef0f3ae-76b9-4b01-a9b1-963ac5e41447",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"unclear\",\n        \"game\": \"stairwell\",\n        \"verdict\": \"mixed\",\n        \"severity\": 1,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 666,
+        "completion_tokens": 51,
+        "total_tokens": 717,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 23.804306030273438
+      }
+    }
+  },
+  {
+    "id": "F-138",
+    "ms": 3006.9601669999975,
+    "inTok": 626,
+    "outTok": 46,
+    "usd": 0.000245256,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"difficulty\",\n  \"game\": \"repair\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524444,
+      "id": "chatcmpl-cb25b7a8-6a42-4752-82f9-95dacd34a8dd",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"difficulty\",\n  \"game\": \"repair\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 626,
+        "completion_tokens": 46,
+        "total_tokens": 672,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.276824951171875
+      }
+    }
+  },
+  {
+    "id": "F-146",
+    "ms": 1999.4665419999947,
+    "inTok": 673,
+    "outTok": 45,
+    "usd": 0.000261198,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"layout\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"none\",\n  \"severity\": 1,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524447,
+      "id": "chatcmpl-75cf32ed-1b86-4287-bf90-18e4ba55fc0b",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"layout\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"none\",\n  \"severity\": 1,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 673,
+        "completion_tokens": 45,
+        "total_tokens": 718,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 23.72450828552246
+      }
+    }
+  },
+  {
+    "id": "F-157",
+    "ms": 1084.4736249999987,
+    "inTok": 639,
+    "outTok": 45,
+    "usd": 0.00024926399999999996,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"well\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524449,
+      "id": "chatcmpl-1f031ed5-2ef9-41c9-b6e0-804e21bd47ef",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"well\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 639,
+        "completion_tokens": 45,
+        "total_tokens": 684,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.640724182128906
+      }
+    }
+  },
+  {
+    "id": "F-162",
+    "ms": 921.1117089999971,
+    "inTok": 635,
+    "outTok": 48,
+    "usd": 0.00024952499999999995,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"bug\",\n        \"game\": \"watch\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524450,
+      "id": "chatcmpl-a3d2532d-dd9a-4b65-bd54-6690aa374713",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"bug\",\n        \"game\": \"watch\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 635,
+        "completion_tokens": 48,
+        "total_tokens": 683,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.664684295654297
+      }
+    }
+  },
+  {
+    "id": "F-166",
+    "ms": 1540.3736250000002,
+    "inTok": 643,
+    "outTok": 45,
+    "usd": 0.00025066799999999995,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"warren\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524451,
+      "id": "chatcmpl-0afa6f18-5e3e-4aff-9e74-77b81d02b8fa",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"warren\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 643,
+        "completion_tokens": 45,
+        "total_tokens": 688,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.76822853088379
+      }
+    }
+  },
+  {
+    "id": "F-168",
+    "ms": 1105.6530000000057,
+    "inTok": 624,
+    "outTok": 45,
+    "usd": 0.000243999,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"watch\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524453,
+      "id": "chatcmpl-dbe03155-789d-48f0-ae0e-c7ed415fc364",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"watch\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 624,
+        "completion_tokens": 45,
+        "total_tokens": 669,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.16258430480957
+      }
+    }
+  },
+  {
+    "id": "F-172",
+    "ms": 1724.5937909999993,
+    "inTok": 644,
+    "outTok": 50,
+    "usd": 0.000253794,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"pacing\",\n        \"game\": \"murmur\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524454,
+      "id": "chatcmpl-4666376f-657e-4283-ab00-f1143ee92c27",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"pacing\",\n        \"game\": \"murmur\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 644,
+        "completion_tokens": 50,
+        "total_tokens": 694,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 23.05254554748535
+      }
+    }
+  },
+  {
+    "id": "F-180",
+    "ms": 1238.7059169999993,
+    "inTok": 653,
+    "outTok": 46,
+    "usd": 0.000254733,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524456,
+      "id": "chatcmpl-bdb9b1a8-19f2-4fe6-aaec-3f37bc2a2ada",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 653,
+        "completion_tokens": 46,
+        "total_tokens": 699,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 23.13747787475586
+      }
+    }
+  },
+  {
+    "id": "F-184",
+    "ms": 1101.4102080000011,
+    "inTok": 637,
+    "outTok": 46,
+    "usd": 0.000249117,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524457,
+      "id": "chatcmpl-6cfdc0d2-8bc5-4da5-9458-dfcbaafe79e9",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 637,
+        "completion_tokens": 46,
+        "total_tokens": 683,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.62746238708496
+      }
+    }
+  },
+  {
+    "id": "F-192",
+    "ms": 1146.4372499999954,
+    "inTok": 626,
+    "outTok": 44,
+    "usd": 0.000244146,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"tooling\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524458,
+      "id": "chatcmpl-2957c2e3-4ed7-45cb-bee1-17223757d446",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"tooling\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 626,
+        "completion_tokens": 44,
+        "total_tokens": 670,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.17584800720215
+      }
+    }
+  },
+  {
+    "id": "F-200",
+    "ms": 1046.4743329999983,
+    "inTok": 630,
+    "outTok": 44,
+    "usd": 0.00024555000000000003,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 2,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524459,
+      "id": "chatcmpl-ffd6f106-b65b-440b-9c09-e6ea4556ca01",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 2,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 630,
+        "completion_tokens": 44,
+        "total_tokens": 674,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.30335235595703
+      }
+    }
+  },
+  {
+    "id": "F-203",
+    "ms": 1002.8180409999986,
+    "inTok": 629,
+    "outTok": 44,
+    "usd": 0.00024519900000000004,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"direction\",\n  \"game\": \"valley\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524460,
+      "id": "chatcmpl-0687c46d-ef93-46c2-b1a0-0833d25878e8",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"direction\",\n  \"game\": \"valley\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 629,
+        "completion_tokens": 44,
+        "total_tokens": 673,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.27147674560547
+      }
+    }
+  },
+  {
+    "id": "F-204",
+    "ms": 1821.7355829999942,
+    "inTok": 623,
+    "outTok": 44,
+    "usd": 0.00024309299999999997,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"none\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524461,
+      "id": "chatcmpl-ea54f952-557e-4968-bc43-defd6b382b1c",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"none\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 623,
+        "completion_tokens": 44,
+        "total_tokens": 667,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.08022117614746
+      }
+    }
+  },
+  {
+    "id": "F-211",
+    "ms": 1775.9361659999995,
+    "inTok": 651,
+    "outTok": 93,
+    "usd": 0.00028011599999999996,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"unclear\",\n        \"game\": \"valley\",\n        \"verdict\": \"mixed\",\n        \"severity\": 1,\n        \"fix\": true\n    },\n    {\n        \"category\": \"unclear\",\n        \"game\": \"valley\",\n        \"verdict\": \"mixed\",\n        \"severity\": 1,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524463,
+      "id": "chatcmpl-c13fdf68-d37f-4197-a057-108658c8792d",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"unclear\",\n        \"game\": \"valley\",\n        \"verdict\": \"mixed\",\n        \"severity\": 1,\n        \"fix\": true\n    },\n    {\n        \"category\": \"unclear\",\n        \"game\": \"valley\",\n        \"verdict\": \"mixed\",\n        \"severity\": 1,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 651,
+        "completion_tokens": 93,
+        "total_tokens": 744,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 25.44666290283203
+      }
+    }
+  },
+  {
+    "id": "F-221",
+    "ms": 2558.876707999996,
+    "inTok": 654,
+    "outTok": 94,
+    "usd": 0.000281724,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"agency\",\n        \"game\": \"hearsay\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    },\n    {\n        \"category\": \"delight\",\n        \"game\": \"hearsay\",\n        \"verdict\": \"keep\",\n        \"severity\": 0,\n        \"fix\": false\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524465,
+      "id": "chatcmpl-4ae2ac92-79cd-49b0-82df-e526d8c67c87",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"agency\",\n        \"game\": \"hearsay\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    },\n    {\n        \"category\": \"delight\",\n        \"game\": \"hearsay\",\n        \"verdict\": \"keep\",\n        \"severity\": 0,\n        \"fix\": false\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 654,
+        "completion_tokens": 94,
+        "total_tokens": 748,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 25.592777252197266
+      }
+    }
+  },
+  {
+    "id": "F-223",
+    "ms": 2866.5899999999965,
+    "inTok": 635,
+    "outTok": 47,
+    "usd": 0.00024897,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"hearsay\",\n  \"verdict\": \"mixed\",\n  \"severity\": 1,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524467,
+      "id": "chatcmpl-27faeca9-a44f-49a6-9057-753b48f9d090",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"hearsay\",\n  \"verdict\": \"mixed\",\n  \"severity\": 1,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 635,
+        "completion_tokens": 47,
+        "total_tokens": 682,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.61419677734375
+      }
+    }
+  },
+  {
+    "id": "F-237",
+    "ms": 3689.4677910000028,
+    "inTok": 652,
+    "outTok": 51,
+    "usd": 0.000257157,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"agency\",\n        \"game\": \"neighbours\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524470,
+      "id": "chatcmpl-2f806398-796c-4394-bf80-5755c38969a1",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"agency\",\n        \"game\": \"neighbours\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 652,
+        "completion_tokens": 51,
+        "total_tokens": 703,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 23.358041763305664
+      }
+    }
+  },
+  {
+    "id": "F-243",
+    "ms": 2230.131708000001,
+    "inTok": 649,
+    "outTok": 89,
+    "usd": 0.000277194,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"pacing\",\n        \"game\": \"pass\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    },\n    {\n        \"category\": \"unclear\",\n        \"game\": \"pass\",\n        \"verdict\": \"none\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524474,
+      "id": "chatcmpl-021ae7ec-167a-4417-bddf-6c9bc407a06a",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"pacing\",\n        \"game\": \"pass\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    },\n    {\n        \"category\": \"unclear\",\n        \"game\": \"pass\",\n        \"verdict\": \"none\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 649,
+        "completion_tokens": 89,
+        "total_tokens": 738,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 25.180957794189453
+      }
+    }
+  },
+  {
+    "id": "F-245",
+    "ms": 1093.1030000000028,
+    "inTok": 657,
+    "outTok": 52,
+    "usd": 0.000259467,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"repetition\",\n        \"game\": \"murmur\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524476,
+      "id": "chatcmpl-bd6171b0-f4f3-4507-b5f1-d62e08b3e65f",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"repetition\",\n        \"game\": \"murmur\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 657,
+        "completion_tokens": 52,
+        "total_tokens": 709,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 23.567909240722656
+      }
+    }
+  },
+  {
+    "id": "F-246",
+    "ms": 2845.2810410000093,
+    "inTok": 651,
+    "outTok": 135,
+    "usd": 0.000303426,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"agency\",\n        \"game\": \"warren\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    },\n    {\n        \"category\": \"unclear\",\n        \"game\": \"warren\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    },\n    {\n        \"category\": \"delight\",\n        \"game\": \"warren\",\n        \"verdict\": \"keep\",\n        \"severity\": 0,\n        \"fix\": false\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524477,
+      "id": "chatcmpl-cea38eb7-d737-4e82-ad04-8c3559051a4d",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"agency\",\n        \"game\": \"warren\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    },\n    {\n        \"category\": \"unclear\",\n        \"game\": \"warren\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    },\n    {\n        \"category\": \"delight\",\n        \"game\": \"warren\",\n        \"verdict\": \"keep\",\n        \"severity\": 0,\n        \"fix\": false\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 651,
+        "completion_tokens": 135,
+        "total_tokens": 786,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 27.567157745361328
+      }
+    }
+  },
+  {
+    "id": "F-250",
+    "ms": 1826.4015409999993,
+    "inTok": 641,
+    "outTok": 44,
+    "usd": 0.000249411,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"watch\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524480,
+      "id": "chatcmpl-239ba4ae-6e67-4362-9c25-a7e48eb36515",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"watch\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 641,
+        "completion_tokens": 44,
+        "total_tokens": 685,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.653987884521484
+      }
+    }
+  },
+  {
+    "id": "F-254",
+    "ms": 1994.6172919999954,
+    "inTok": 644,
+    "outTok": 92,
+    "usd": 0.00027710399999999997,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"bug\",\n        \"game\": \"stairwell\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    },\n    {\n        \"category\": \"unclear\",\n        \"game\": \"stairwell\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524482,
+      "id": "chatcmpl-0d1c94cc-a7a0-4646-a545-c57c9a6bbbbc",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"bug\",\n        \"game\": \"stairwell\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    },\n    {\n        \"category\": \"unclear\",\n        \"game\": \"stairwell\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 644,
+        "completion_tokens": 92,
+        "total_tokens": 736,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 25.17304039001465
+      }
+    }
+  },
+  {
+    "id": "F-260",
+    "ms": 2931.5696250000037,
+    "inTok": 651,
+    "outTok": 46,
+    "usd": 0.000254031,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524484,
+      "id": "chatcmpl-fc0899d8-df2e-440b-bebb-1b3da77184ef",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 651,
+        "completion_tokens": 46,
+        "total_tokens": 697,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 23.073726654052734
+      }
+    }
+  },
+  {
+    "id": "F-265",
+    "ms": 4686.4912909999985,
+    "inTok": 647,
+    "outTok": 95,
+    "usd": 0.000279822,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"pacing\",\n        \"game\": \"hearsay\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    },\n    {\n        \"category\": \"agency\",\n        \"game\": \"hearsay\",\n        \"verdict\": \"mixed\",\n        \"severity\": 1,\n        \"fix\": true\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524487,
+      "id": "chatcmpl-4db281e6-090f-4ade-8584-19a8b2f5eb2e",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"pacing\",\n        \"game\": \"hearsay\",\n        \"verdict\": \"mixed\",\n        \"severity\": 2,\n        \"fix\": true\n    },\n    {\n        \"category\": \"agency\",\n        \"game\": \"hearsay\",\n        \"verdict\": \"mixed\",\n        \"severity\": 1,\n        \"fix\": true\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 647,
+        "completion_tokens": 95,
+        "total_tokens": 742,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 25.420133590698242
+      }
+    }
+  },
+  {
+    "id": "F-269",
+    "ms": 1153.3501669999969,
+    "inTok": 627,
+    "outTok": 44,
+    "usd": 0.00024449700000000004,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"voice\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524492,
+      "id": "chatcmpl-9bf174dc-c971-41b6-9d50-baacda1782bb",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"voice\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 627,
+        "completion_tokens": 44,
+        "total_tokens": 671,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.207725524902344
+      }
+    }
+  },
+  {
+    "id": "F-277",
+    "ms": 2342.6078750000015,
+    "inTok": 653,
+    "outTok": 69,
+    "usd": 0.00026749799999999997,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "[\n    {\"category\": \"agency\", \"game\": \"pass\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true},\n    {\"category\": \"pacing\", \"game\": \"pass\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}\n]",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524493,
+      "id": "chatcmpl-ffa3c30c-1716-46dd-8b31-fd3fca27c272",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": [
+        {
+          "category": "agency",
+          "fix": true,
+          "game": "pass",
+          "severity": 3,
+          "verdict": "quit"
+        },
+        {
+          "category": "pacing",
+          "fix": true,
+          "game": "pass",
+          "severity": 3,
+          "verdict": "quit"
+        }
+      ],
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 653,
+        "completion_tokens": 69,
+        "total_tokens": 722,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 24.2987003326416
+      }
+    }
+  },
+  {
+    "id": "F-282",
+    "ms": 3245.2241670000076,
+    "inTok": 645,
+    "outTok": 109,
+    "usd": 0.00028689,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\"category\": \"pacing\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true},\n    {\"category\": \"repetition\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": 1, \"fix\": true},\n    {\"category\": \"delight\", \"game\": \"pass\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524495,
+      "id": "chatcmpl-e7f9e8a9-7288-4c34-a330-f1bbdf5edf9c",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\"category\": \"pacing\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true},\n    {\"category\": \"repetition\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": 1, \"fix\": true},\n    {\"category\": \"delight\", \"game\": \"pass\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 645,
+        "completion_tokens": 109,
+        "total_tokens": 754,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 26.063213348388672
+      }
+    }
+  },
+  {
+    "id": "F-285",
+    "ms": 2556.0257500000007,
+    "inTok": 633,
+    "outTok": 44,
+    "usd": 0.000246603,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"voice\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524498,
+      "id": "chatcmpl-7472df84-643a-4cd4-a5cd-fa5938d4f98f",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"voice\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 633,
+        "completion_tokens": 44,
+        "total_tokens": 677,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.39898109436035
+      }
+    }
+  },
+  {
+    "id": "F-292",
+    "ms": 3069.602417000002,
+    "inTok": 646,
+    "outTok": 44,
+    "usd": 0.000251166,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"layout\",\n  \"game\": \"well\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524501,
+      "id": "chatcmpl-835f0b76-9d79-45a6-aaf6-2dbda2ef799f",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"layout\",\n  \"game\": \"well\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 646,
+        "completion_tokens": 44,
+        "total_tokens": 690,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.81336784362793
+      }
+    }
+  },
+  {
+    "id": "F-298",
+    "ms": 2911.126084000003,
+    "inTok": 648,
+    "outTok": 89,
+    "usd": 0.000276843,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"layout\",\n        \"game\": \"repair\",\n        \"verdict\": \"none\",\n        \"severity\": 0,\n        \"fix\": true\n    },\n    {\n        \"category\": \"direction\",\n        \"game\": \"repair\",\n        \"verdict\": \"none\",\n        \"severity\": 0,\n        \"fix\": false\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524504,
+      "id": "chatcmpl-e03f5279-1e2e-4e97-bede-9bbb3bfca685",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"layout\",\n        \"game\": \"repair\",\n        \"verdict\": \"none\",\n        \"severity\": 0,\n        \"fix\": true\n    },\n    {\n        \"category\": \"direction\",\n        \"game\": \"repair\",\n        \"verdict\": \"none\",\n        \"severity\": 0,\n        \"fix\": false\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 648,
+        "completion_tokens": 89,
+        "total_tokens": 737,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 25.14908218383789
+      }
+    }
+  },
+  {
+    "id": "F-303",
+    "ms": 3186.6982080000016,
+    "inTok": 654,
+    "outTok": 130,
+    "usd": 0.00030170399999999997,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n[\n    {\n        \"category\": \"agency\",\n        \"game\": \"well\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    },\n    {\n        \"category\": \"pacing\",\n        \"game\": \"well\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    },\n    {\n        \"category\": \"delight\",\n        \"game\": \"well\",\n        \"verdict\": \"none\",\n        \"severity\": 0,\n        \"fix\": false\n    }\n]\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524507,
+      "id": "chatcmpl-ec040c80-3a91-4d26-8fc1-8ea803b5e20d",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n[\n    {\n        \"category\": \"agency\",\n        \"game\": \"well\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    },\n    {\n        \"category\": \"pacing\",\n        \"game\": \"well\",\n        \"verdict\": \"quit\",\n        \"severity\": 3,\n        \"fix\": true\n    },\n    {\n        \"category\": \"delight\",\n        \"game\": \"well\",\n        \"verdict\": \"none\",\n        \"severity\": 0,\n        \"fix\": false\n    }\n]\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 654,
+        "completion_tokens": 130,
+        "total_tokens": 784,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 27.41034507751465
+      }
+    }
+  },
+  {
+    "id": "F-343",
+    "ms": 1583.840167000002,
+    "inTok": 618,
+    "outTok": 47,
+    "usd": 0.000243003,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "annotations": null,
+            "audio": null,
+            "content": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"goodhands\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "function_call": null,
+            "reasoning": null,
+            "refusal": null,
+            "role": "assistant",
+            "tool_calls": []
+          },
+          "stop_reason": null,
+          "token_ids": null
+        }
+      ],
+      "created": 1792524510,
+      "id": "chatcmpl-9535e270-7738-4cb3-b7b7-93c297d22fc2",
+      "kv_transfer_params": null,
+      "model": "@cf/mistralai/mistral-small-3.1-24b-v2",
+      "object": "chat.completion",
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "response": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"goodhands\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+      "service_tier": null,
+      "system_fingerprint": null,
+      "tool_calls": [],
+      "usage": {
+        "prompt_tokens": 618,
+        "completion_tokens": 47,
+        "total_tokens": 665,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 22.07230567932129
+      }
+    }
+  }
+]

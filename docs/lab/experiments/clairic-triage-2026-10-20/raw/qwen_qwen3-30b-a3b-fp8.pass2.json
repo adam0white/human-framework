@@ -1,0 +1,2552 @@
+[
+  {
+    "id": "F-015",
+    "ms": 7272.304958000001,
+    "inTok": 638,
+    "outTok": 39,
+    "usd": 0.000045539200000000006,
+    "raw": {
+      "id": "chatcmpl-bde80b68-ff95-484d-95d9-14a8ab67f6c8",
+      "object": "chat.completion",
+      "created": 1792524408,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"repetition\",\n  \"game\": \"pass\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}",
+            "reasoning_content": "{\n  \"category\": \"repetition\",\n  \"game\": \"pass\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 638,
+        "completion_tokens": 39,
+        "total_tokens": 677,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.138998985290527
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-024",
+    "ms": 625.5632909999995,
+    "inTok": 624,
+    "outTok": 31,
+    "usd": 0.0000421466,
+    "raw": {
+      "id": "chatcmpl-0802c12b-2528-4382-ba8c-9b837612eaed",
+      "object": "chat.completion",
+      "created": 1792524408,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"bug\", \"game\": \"pass\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"bug\", \"game\": \"pass\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 624,
+        "completion_tokens": 31,
+        "total_tokens": 655,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.8304567337036133
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-026",
+    "ms": 608.0409589999999,
+    "inTok": 628,
+    "outTok": 32,
+    "usd": 0.0000426852,
+    "raw": {
+      "id": "chatcmpl-53a9139b-181d-40e2-b352-a8729c2b5882",
+      "object": "chat.completion",
+      "created": 1792524409,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"unclear\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"unclear\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 628,
+        "completion_tokens": 32,
+        "total_tokens": 660,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.879429817199707
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-027",
+    "ms": 329.5915409999998,
+    "inTok": 627,
+    "outTok": 32,
+    "usd": 0.000042634300000000006,
+    "raw": {
+      "id": "chatcmpl-266f9333-2d90-492c-9604-3423b39d9798",
+      "object": "chat.completion",
+      "created": 1792524409,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"tooling\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 0, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"tooling\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 0, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 627,
+        "completion_tokens": 32,
+        "total_tokens": 659,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.874805450439453
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-029",
+    "ms": 506.02599999999984,
+    "inTok": 641,
+    "outTok": 32,
+    "usd": 0.000043346899999999997,
+    "raw": {
+      "id": "chatcmpl-e4fafb25-52cc-4cbb-bf13-af976d3e8bac",
+      "object": "chat.completion",
+      "created": 1792524410,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"pacing\", \"game\": \"pass\", \"verdict\": \"quit\", \"severity\": 2, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"pacing\", \"game\": \"pass\", \"verdict\": \"quit\", \"severity\": 2, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 641,
+        "completion_tokens": 32,
+        "total_tokens": 673,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.939549446105957
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-034",
+    "ms": 584.3341670000009,
+    "inTok": 640,
+    "outTok": 39,
+    "usd": 0.000045641000000000006,
+    "raw": {
+      "id": "chatcmpl-69fb7592-4e11-491e-9ddf-8febdd5b5d7c",
+      "object": "chat.completion",
+      "created": 1792524410,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"unclear\",\n  \"game\": \"pass\",\n  \"verdict\": \"mixed\",\n  \"severity\": 1,\n  \"fix\": true\n}",
+            "reasoning_content": "{\n  \"category\": \"unclear\",\n  \"game\": \"pass\",\n  \"verdict\": \"mixed\",\n  \"severity\": 1,\n  \"fix\": true\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 640,
+        "completion_tokens": 39,
+        "total_tokens": 679,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.148248195648193
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-042",
+    "ms": 444.9182500000006,
+    "inTok": 629,
+    "outTok": 41,
+    "usd": 0.0000457511,
+    "raw": {
+      "id": "chatcmpl-00d4fd2a-282f-4038-8eb7-1332343cab47",
+      "object": "chat.completion",
+      "created": 1792524411,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"unclear\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}",
+            "reasoning_content": "{\n  \"category\": \"unclear\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 629,
+        "completion_tokens": 41,
+        "total_tokens": 670,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.158327102661133
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-054",
+    "ms": 456.86625000000095,
+    "inTok": 625,
+    "outTok": 31,
+    "usd": 0.0000421975,
+    "raw": {
+      "id": "chatcmpl-1c187a44-5ab0-4bad-8ea0-8c45227aa22a",
+      "object": "chat.completion",
+      "created": 1792524411,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"difficulty\", \"game\": \"none\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"difficulty\", \"game\": \"none\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 625,
+        "completion_tokens": 31,
+        "total_tokens": 656,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.8350813388824463
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-060",
+    "ms": 357.898541999999,
+    "inTok": 622,
+    "outTok": 34,
+    "usd": 0.0000430498,
+    "raw": {
+      "id": "chatcmpl-e986a66f-b952-43b8-8551-9b7f53c219c6",
+      "object": "chat.completion",
+      "created": 1792524412,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"unclear\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"unclear\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 622,
+        "completion_tokens": 34,
+        "total_tokens": 656,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9126319885253906
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-068",
+    "ms": 341.2097080000003,
+    "inTok": 624,
+    "outTok": 31,
+    "usd": 0.0000421466,
+    "raw": {
+      "id": "chatcmpl-8652cd92-daf4-4b52-b66b-69669530f5df",
+      "object": "chat.completion",
+      "created": 1792524412,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"bug\", \"game\": \"none\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"bug\", \"game\": \"none\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 624,
+        "completion_tokens": 31,
+        "total_tokens": 655,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.8304567337036133
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-071",
+    "ms": 488.3882080000003,
+    "inTok": 622,
+    "outTok": 32,
+    "usd": 0.000042379800000000004,
+    "raw": {
+      "id": "chatcmpl-1cbd58ac-5871-4b45-9530-dd2368b9eb11",
+      "object": "chat.completion",
+      "created": 1792524412,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"bug\", \"game\": \"valley\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"bug\", \"game\": \"valley\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 622,
+        "completion_tokens": 32,
+        "total_tokens": 654,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.851682186126709
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-090",
+    "ms": 533.3602090000004,
+    "inTok": 621,
+    "outTok": 33,
+    "usd": 0.0000426639,
+    "raw": {
+      "id": "chatcmpl-682fe4b0-00a6-41bd-873d-7a5d0be9042f",
+      "object": "chat.completion",
+      "created": 1792524413,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"pacing\", \"game\": \"neighbours\", \"verdict\": \"mixed\", \"severity\": 1, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"pacing\", \"game\": \"neighbours\", \"verdict\": \"mixed\", \"severity\": 1, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 621,
+        "completion_tokens": 33,
+        "total_tokens": 654,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.877532482147217
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-092",
+    "ms": 538.3433750000004,
+    "inTok": 622,
+    "outTok": 34,
+    "usd": 0.0000430498,
+    "raw": {
+      "id": "chatcmpl-8eb1320e-8028-4151-baee-25b491f80b9d",
+      "object": "chat.completion",
+      "created": 1792524414,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"pacing\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"pacing\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 622,
+        "completion_tokens": 34,
+        "total_tokens": 656,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9126319885253906
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-096",
+    "ms": 441.7508749999997,
+    "inTok": 629,
+    "outTok": 31,
+    "usd": 0.000042401099999999996,
+    "raw": {
+      "id": "chatcmpl-9b1c7b39-829c-4a25-a8cf-166cdaa2c79e",
+      "object": "chat.completion",
+      "created": 1792524414,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"layout\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 1, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"layout\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 1, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 629,
+        "completion_tokens": 31,
+        "total_tokens": 660,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.853579521179199
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-107",
+    "ms": 508.3187079999989,
+    "inTok": 631,
+    "outTok": 38,
+    "usd": 0.000044847899999999995,
+    "raw": {
+      "id": "chatcmpl-4cc712ae-43ce-4daf-b49f-c190a083eb17",
+      "object": "chat.completion",
+      "created": 1792524414,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"bug\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}",
+            "reasoning_content": "{\n  \"category\": \"bug\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 631,
+        "completion_tokens": 38,
+        "total_tokens": 669,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.0761518478393555
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-122",
+    "ms": 430.93383299999914,
+    "inTok": 636,
+    "outTok": 32,
+    "usd": 0.0000430924,
+    "raw": {
+      "id": "chatcmpl-1fdc6ef9-2387-4695-a904-a6185529a4c3",
+      "object": "chat.completion",
+      "created": 1792524415,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"bug\", \"game\": \"valley\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"bug\", \"game\": \"valley\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 636,
+        "completion_tokens": 32,
+        "total_tokens": 668,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.916426658630371
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-123",
+    "ms": 483.3098340000015,
+    "inTok": 648,
+    "outTok": 41,
+    "usd": 0.0000467182,
+    "raw": {
+      "id": "chatcmpl-10ff4b23-98dd-460e-9a31-820811c82602",
+      "object": "chat.completion",
+      "created": 1792524415,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"delight\",\n  \"game\": \"stairwell\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}",
+            "reasoning_content": "{\n  \"category\": \"delight\",\n  \"game\": \"stairwell\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 648,
+        "completion_tokens": 41,
+        "total_tokens": 689,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.246194362640381
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-127",
+    "ms": 456.2560830000002,
+    "inTok": 662,
+    "outTok": 34,
+    "usd": 0.0000450858,
+    "raw": {
+      "id": "chatcmpl-13339948-f506-4369-a1de-ef0bacdaf7ec",
+      "object": "chat.completion",
+      "created": 1792524416,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"unclear\", \"game\": \"stairwell\", \"verdict\": \"quit\", \"severity\": 2, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"unclear\", \"game\": \"stairwell\", \"verdict\": \"quit\", \"severity\": 2, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 662,
+        "completion_tokens": 34,
+        "total_tokens": 696,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.0976152420043945
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-138",
+    "ms": 622.5084580000021,
+    "inTok": 622,
+    "outTok": 31,
+    "usd": 0.0000420448,
+    "raw": {
+      "id": "chatcmpl-4483bd8b-060c-4647-8492-52db968c92ce",
+      "object": "chat.completion",
+      "created": 1792524416,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"difficulty\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"difficulty\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 622,
+        "completion_tokens": 31,
+        "total_tokens": 653,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.8212075233459473
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-146",
+    "ms": 444.7583330000016,
+    "inTok": 668,
+    "outTok": 32,
+    "usd": 0.000044721199999999995,
+    "raw": {
+      "id": "chatcmpl-0315fab6-82f0-4e8b-9ff3-a72a199664f2",
+      "object": "chat.completion",
+      "created": 1792524417,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"layout\", \"game\": \"neighbours\", \"verdict\": \"none\", \"severity\": 1, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"layout\", \"game\": \"neighbours\", \"verdict\": \"none\", \"severity\": 1, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 668,
+        "completion_tokens": 32,
+        "total_tokens": 700,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.064413070678711
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-157",
+    "ms": 447.56275000000096,
+    "inTok": 635,
+    "outTok": 34,
+    "usd": 0.0000437115,
+    "raw": {
+      "id": "chatcmpl-fe228187-b76b-4e37-b73c-4afbade3ba4a",
+      "object": "chat.completion",
+      "created": 1792524417,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"pacing\", \"game\": \"murmur\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"pacing\", \"game\": \"murmur\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 635,
+        "completion_tokens": 34,
+        "total_tokens": 669,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9727516174316406
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-162",
+    "ms": 340.72799999999916,
+    "inTok": 631,
+    "outTok": 33,
+    "usd": 0.0000431729,
+    "raw": {
+      "id": "chatcmpl-b90226a2-a305-4996-b994-12e185dc5243",
+      "object": "chat.completion",
+      "created": 1792524418,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"bug\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"bug\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 631,
+        "completion_tokens": 33,
+        "total_tokens": 664,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9237782955169678
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-166",
+    "ms": 372.1090000000004,
+    "inTok": 640,
+    "outTok": 33,
+    "usd": 0.000043631,
+    "raw": {
+      "id": "chatcmpl-18dd5ece-ef78-4db9-a77a-764bf34ae85c",
+      "object": "chat.completion",
+      "created": 1792524418,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"delight\", \"game\": \"warren\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"delight\", \"game\": \"warren\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 640,
+        "completion_tokens": 33,
+        "total_tokens": 673,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9653995037078857
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-168",
+    "ms": 464.47662499999933,
+    "inTok": 620,
+    "outTok": 32,
+    "usd": 0.000042278,
+    "raw": {
+      "id": "chatcmpl-0de12ef5-50e6-481d-8b22-1e901b225970",
+      "object": "chat.completion",
+      "created": 1792524419,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"bug\", \"game\": \"valley\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"bug\", \"game\": \"valley\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 620,
+        "completion_tokens": 32,
+        "total_tokens": 652,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.842432975769043
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-172",
+    "ms": 376.34466699999757,
+    "inTok": 641,
+    "outTok": 34,
+    "usd": 0.0000440169,
+    "raw": {
+      "id": "chatcmpl-60e429e0-37ae-4d94-a75b-74c0af6e5b31",
+      "object": "chat.completion",
+      "created": 1792524419,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"pacing\", \"game\": \"mischief\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"pacing\", \"game\": \"mischief\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 641,
+        "completion_tokens": 34,
+        "total_tokens": 675,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.0004987716674805
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-180",
+    "ms": 445.1185829999995,
+    "inTok": 651,
+    "outTok": 33,
+    "usd": 0.0000441909,
+    "raw": {
+      "id": "chatcmpl-99f6108f-2b72-42a6-b21e-2fe801e87770",
+      "object": "chat.completion",
+      "created": 1792524419,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"agency\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"agency\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 651,
+        "completion_tokens": 33,
+        "total_tokens": 684,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.016269683837891
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-184",
+    "ms": 492.067291000003,
+    "inTok": 634,
+    "outTok": 34,
+    "usd": 0.0000436606,
+    "raw": {
+      "id": "chatcmpl-9f042544-96e5-46ff-beda-6809ed4b155d",
+      "object": "chat.completion",
+      "created": 1792524420,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"delight\", \"game\": \"murmur\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"delight\", \"game\": \"murmur\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 634,
+        "completion_tokens": 34,
+        "total_tokens": 668,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9681267738342285
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-192",
+    "ms": 500.17412500000137,
+    "inTok": 622,
+    "outTok": 32,
+    "usd": 0.000042379800000000004,
+    "raw": {
+      "id": "chatcmpl-b80d6d2c-d1f9-473a-9a7e-4f6b6a9bcca6",
+      "object": "chat.completion",
+      "created": 1792524420,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"tooling\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"tooling\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 622,
+        "completion_tokens": 32,
+        "total_tokens": 654,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.851682186126709
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-200",
+    "ms": 472.4487079999999,
+    "inTok": 627,
+    "outTok": 34,
+    "usd": 0.0000433043,
+    "raw": {
+      "id": "chatcmpl-85ad5c7b-dc41-4933-ab66-f621d7487cc7",
+      "object": "chat.completion",
+      "created": 1792524421,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"unclear\", \"game\": \"murmur\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"unclear\", \"game\": \"murmur\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 627,
+        "completion_tokens": 34,
+        "total_tokens": 661,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9357547760009766
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-203",
+    "ms": 438.8969590000015,
+    "inTok": 626,
+    "outTok": 33,
+    "usd": 0.000042918400000000006,
+    "raw": {
+      "id": "chatcmpl-74b6ea72-056a-4c9b-8d12-de1a0a1e92c8",
+      "object": "chat.completion",
+      "created": 1792524421,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"tooling\", \"game\": \"valley\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"tooling\", \"game\": \"valley\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 626,
+        "completion_tokens": 33,
+        "total_tokens": 659,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.900655508041382
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-204",
+    "ms": 590.2652500000004,
+    "inTok": 620,
+    "outTok": 32,
+    "usd": 0.000042278,
+    "raw": {
+      "id": "chatcmpl-19049236-8970-43e0-a5cb-0fbaeb250cd8",
+      "object": "chat.completion",
+      "created": 1792524422,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"delight\", \"game\": \"none\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"delight\", \"game\": \"none\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 620,
+        "completion_tokens": 32,
+        "total_tokens": 652,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.842432975769043
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-211",
+    "ms": 691.2284169999984,
+    "inTok": 648,
+    "outTok": 40,
+    "usd": 0.0000463832,
+    "raw": {
+      "id": "chatcmpl-227e4f4b-9d4d-4af1-ae48-ed13eacb09cc",
+      "object": "chat.completion",
+      "created": 1792524422,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"unclear\",\n  \"game\": \"valley\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}",
+            "reasoning_content": "{\n  \"category\": \"unclear\",\n  \"game\": \"valley\",\n  \"verdict\": \"none\",\n  \"severity\": 0,\n  \"fix\": false\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 648,
+        "completion_tokens": 40,
+        "total_tokens": 688,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.215719223022461
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-221",
+    "ms": 557.7200420000008,
+    "inTok": 650,
+    "outTok": 40,
+    "usd": 0.000046485,
+    "raw": {
+      "id": "chatcmpl-49e94a3e-5091-4ef9-a79e-2943a2faa70d",
+      "object": "chat.completion",
+      "created": 1792524423,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"agency\",\n  \"game\": \"hearsay\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}",
+            "reasoning_content": "{\n  \"category\": \"agency\",\n  \"game\": \"hearsay\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 650,
+        "completion_tokens": 40,
+        "total_tokens": 690,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.224968910217285
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-223",
+    "ms": 394.1316250000018,
+    "inTok": 631,
+    "outTok": 34,
+    "usd": 0.0000435079,
+    "raw": {
+      "id": "chatcmpl-682646cb-d79d-4065-ac5f-c29c1eb9049f",
+      "object": "chat.completion",
+      "created": 1792524424,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"unclear\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"unclear\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 631,
+        "completion_tokens": 34,
+        "total_tokens": 665,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9542531967163086
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-237",
+    "ms": 368.7246249999989,
+    "inTok": 648,
+    "outTok": 32,
+    "usd": 0.000043703200000000005,
+    "raw": {
+      "id": "chatcmpl-1fe1b9ba-5c50-48f1-8f8d-5c81e6599892",
+      "object": "chat.completion",
+      "created": 1792524424,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"agency\", \"game\": \"neighbours\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"agency\", \"game\": \"neighbours\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 648,
+        "completion_tokens": 32,
+        "total_tokens": 680,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.971921443939209
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-243",
+    "ms": 324.5804590000007,
+    "inTok": 644,
+    "outTok": 32,
+    "usd": 0.0000434996,
+    "raw": {
+      "id": "chatcmpl-924fd2bd-e05b-4ef9-8a51-7be109a67911",
+      "object": "chat.completion",
+      "created": 1792524424,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"pacing\", \"game\": \"pass\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"pacing\", \"game\": \"pass\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 644,
+        "completion_tokens": 32,
+        "total_tokens": 676,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.953423023223877
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-245",
+    "ms": 496.09170900000026,
+    "inTok": 653,
+    "outTok": 41,
+    "usd": 0.000046972700000000005,
+    "raw": {
+      "id": "chatcmpl-99d1a271-7b6e-43dc-b09d-e7dfb8c9b884",
+      "object": "chat.completion",
+      "created": 1792524425,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"repetition\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}",
+            "reasoning_content": "{\n  \"category\": \"repetition\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 653,
+        "completion_tokens": 41,
+        "total_tokens": 694,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.269317150115967
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-246",
+    "ms": 485.5407500000001,
+    "inTok": 647,
+    "outTok": 32,
+    "usd": 0.000043652299999999995,
+    "raw": {
+      "id": "chatcmpl-16d09609-a04c-4152-8af3-0f1cbf5a6191",
+      "object": "chat.completion",
+      "created": 1792524425,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"difficulty\", \"game\": \"warren\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"difficulty\", \"game\": \"warren\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 647,
+        "completion_tokens": 32,
+        "total_tokens": 679,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.967297077178955
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-250",
+    "ms": 513.2632080000003,
+    "inTok": 637,
+    "outTok": 39,
+    "usd": 0.000045488299999999996,
+    "raw": {
+      "id": "chatcmpl-df181928-63d9-4b0c-97bf-b1cafedbe1bc",
+      "object": "chat.completion",
+      "created": 1792524426,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"delight\",\n  \"game\": \"watch\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}",
+            "reasoning_content": "{\n  \"category\": \"delight\",\n  \"game\": \"watch\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 637,
+        "completion_tokens": 39,
+        "total_tokens": 676,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.134374618530273
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-254",
+    "ms": 494.8792500000018,
+    "inTok": 640,
+    "outTok": 33,
+    "usd": 0.000043631,
+    "raw": {
+      "id": "chatcmpl-63272469-928a-415a-ac4a-a8d9bd23dc55",
+      "object": "chat.completion",
+      "created": 1792524426,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"bug\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"bug\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 640,
+        "completion_tokens": 33,
+        "total_tokens": 673,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9653995037078857
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-260",
+    "ms": 386.02804200000173,
+    "inTok": 647,
+    "outTok": 39,
+    "usd": 0.000045997299999999994,
+    "raw": {
+      "id": "chatcmpl-5b5db08e-1a79-41bf-bdd6-46a236a02ea8",
+      "object": "chat.completion",
+      "created": 1792524427,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"none\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}",
+            "reasoning_content": "{\n  \"category\": \"none\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 647,
+        "completion_tokens": 39,
+        "total_tokens": 686,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.180620193481445
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-265",
+    "ms": 551.7560830000002,
+    "inTok": 641,
+    "outTok": 41,
+    "usd": 0.0000463619,
+    "raw": {
+      "id": "chatcmpl-3fd4c55f-a513-458c-8b61-9fdf852834c2",
+      "object": "chat.completion",
+      "created": 1792524427,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"pacing\",\n  \"game\": \"murmur\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}",
+            "reasoning_content": "{\n  \"category\": \"pacing\",\n  \"game\": \"murmur\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 641,
+        "completion_tokens": 41,
+        "total_tokens": 682,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.213822364807129
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-269",
+    "ms": 576.0887500000026,
+    "inTok": 623,
+    "outTok": 34,
+    "usd": 0.000043100700000000006,
+    "raw": {
+      "id": "chatcmpl-b207b159-bf21-4dcd-beff-7609fd36ef58",
+      "object": "chat.completion",
+      "created": 1792524428,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"delight\", \"game\": \"murmur\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"delight\", \"game\": \"murmur\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 623,
+        "completion_tokens": 34,
+        "total_tokens": 657,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9172563552856445
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-277",
+    "ms": 556.6124170000003,
+    "inTok": 649,
+    "outTok": 39,
+    "usd": 0.00004609910000000001,
+    "raw": {
+      "id": "chatcmpl-670a8124-4b9f-4607-ad1b-dffe1f56bcf4",
+      "object": "chat.completion",
+      "created": 1792524428,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"pacing\",\n  \"game\": \"pass\",\n  \"verdict\": \"quit\",\n  \"severity\": 2,\n  \"fix\": true\n}",
+            "reasoning_content": "{\n  \"category\": \"pacing\",\n  \"game\": \"pass\",\n  \"verdict\": \"quit\",\n  \"severity\": 2,\n  \"fix\": true\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 649,
+        "completion_tokens": 39,
+        "total_tokens": 688,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.189869403839111
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-282",
+    "ms": 476.9412919999995,
+    "inTok": 639,
+    "outTok": 32,
+    "usd": 0.000043245100000000004,
+    "raw": {
+      "id": "chatcmpl-16d82639-058f-411b-9ad1-2b422680a2f7",
+      "object": "chat.completion",
+      "created": 1792524429,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"pacing\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": 1, \"fix\": true}",
+            "reasoning_content": "{\"category\": \"pacing\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": 1, \"fix\": true}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 639,
+        "completion_tokens": 32,
+        "total_tokens": 671,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.930300235748291
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-285",
+    "ms": 568.9184999999998,
+    "inTok": 629,
+    "outTok": 32,
+    "usd": 0.0000427361,
+    "raw": {
+      "id": "chatcmpl-96f19a33-6ddb-44fe-9c24-0d2d0a6eb35e",
+      "object": "chat.completion",
+      "created": 1792524429,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"delight\", \"game\": \"voice\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"delight\", \"game\": \"voice\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 629,
+        "completion_tokens": 32,
+        "total_tokens": 661,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.884054183959961
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-292",
+    "ms": 485.13524999999936,
+    "inTok": 642,
+    "outTok": 38,
+    "usd": 0.000045407799999999996,
+    "raw": {
+      "id": "chatcmpl-70cc2d2e-2b86-4646-9155-2f4eba2613e2",
+      "object": "chat.completion",
+      "created": 1792524430,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"layout\",\n  \"game\": \"well\",\n  \"verdict\": \"quit\",\n  \"severity\": 2,\n  \"fix\": true\n}",
+            "reasoning_content": "{\n  \"category\": \"layout\",\n  \"game\": \"well\",\n  \"verdict\": \"quit\",\n  \"severity\": 2,\n  \"fix\": true\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 642,
+        "completion_tokens": 38,
+        "total_tokens": 680,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.127022743225098
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-298",
+    "ms": 394.93775000000096,
+    "inTok": 643,
+    "outTok": 31,
+    "usd": 0.0000431137,
+    "raw": {
+      "id": "chatcmpl-662b44c9-30a6-4fa0-b1a0-c83436bd8ef0",
+      "object": "chat.completion",
+      "created": 1792524430,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"layout\", \"game\": \"repair\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"layout\", \"game\": \"repair\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 643,
+        "completion_tokens": 31,
+        "total_tokens": 674,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9183237552642822
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-303",
+    "ms": 363.78600000000006,
+    "inTok": 650,
+    "outTok": 39,
+    "usd": 0.000046150000000000004,
+    "raw": {
+      "id": "chatcmpl-e013b30e-b9df-4743-99de-c5366e8517b4",
+      "object": "chat.completion",
+      "created": 1792524431,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\n  \"category\": \"pacing\",\n  \"game\": \"repair\",\n  \"verdict\": \"quit\",\n  \"severity\": 2,\n  \"fix\": true\n}",
+            "reasoning_content": "{\n  \"category\": \"pacing\",\n  \"game\": \"repair\",\n  \"verdict\": \"quit\",\n  \"severity\": 2,\n  \"fix\": true\n}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 650,
+        "completion_tokens": 39,
+        "total_tokens": 689,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.194493770599365
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-343",
+    "ms": 686.1335409999992,
+    "inTok": 615,
+    "outTok": 32,
+    "usd": 0.0000420235,
+    "raw": {
+      "id": "chatcmpl-d3f66c6a-83ee-48c6-8c6a-71355dcb77c9",
+      "object": "chat.completion",
+      "created": 1792524431,
+      "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": "{\"category\": \"agency\", \"game\": \"goodhands\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}",
+            "reasoning_content": "{\"category\": \"agency\", \"game\": \"goodhands\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}"
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 615,
+        "completion_tokens": 32,
+        "total_tokens": 647,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.819310188293457
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": null,
+      "tool_calls": []
+    }
+  }
+]

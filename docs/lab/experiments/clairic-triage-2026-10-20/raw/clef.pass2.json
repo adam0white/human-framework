@@ -1,0 +1,4352 @@
+[
+  {
+    "id": "F-015",
+    "ms": 6965.859417,
+    "inTok": 1239,
+    "outTok": 0,
+    "usd": 0.00029736000000000004,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "repetition",
+          "probabilities": {
+            "bug": 0.0064,
+            "unclear": 0.0062,
+            "layout": 0.0042,
+            "pacing": 0.0162,
+            "difficulty": 0.0114,
+            "repetition": 0.8875,
+            "agency": 0.0142,
+            "delight": 0.0285,
+            "direction": 0.0129,
+            "tooling": 0.0125
+          },
+          "confidence": 0.7662
+        },
+        "game": {
+          "type": "choice",
+          "choice": "stairwell",
+          "probabilities": {
+            "murmur": 0.0568,
+            "stairwell": 0.2846,
+            "pass": 0.1267,
+            "glance": 0.0259,
+            "watch": 0.0297,
+            "hearsay": 0.0438,
+            "goodhands": 0.024,
+            "valley": 0.0249,
+            "voice": 0.0171,
+            "well": 0.0136,
+            "warren": 0.0228,
+            "repair": 0.0328,
+            "neighbours": 0.1381,
+            "rope": 0.0123,
+            "lab": 0.1469
+          },
+          "confidence": 0.087
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.1129,
+            "quit": 0.0573,
+            "mixed": 0.4161,
+            "none": 0.4137
+          },
+          "confidence": 0.1471
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.3426,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.249,
+            "1": 0.2134,
+            "2": 0.4837,
+            "3": 0.0539
+          },
+          "confidence": 0.1258
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.7513
+        }
+      },
+      "usage": {
+        "input_tokens": 1239,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-024",
+    "ms": 436.9078749999999,
+    "inTok": 1225,
+    "outTok": 0,
+    "usd": 0.000294,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "bug",
+          "probabilities": {
+            "bug": 0.9215,
+            "unclear": 0.0083,
+            "layout": 0.0022,
+            "pacing": 0.0026,
+            "difficulty": 0.0033,
+            "repetition": 0.0056,
+            "agency": 0.0439,
+            "delight": 0.0016,
+            "direction": 0.0049,
+            "tooling": 0.0061
+          },
+          "confidence": 0.8348
+        },
+        "game": {
+          "type": "choice",
+          "choice": "pass",
+          "probabilities": {
+            "murmur": 0.0046,
+            "stairwell": 0.0214,
+            "pass": 0.8408,
+            "glance": 0.0064,
+            "watch": 0.0052,
+            "hearsay": 0.0198,
+            "goodhands": 0.0188,
+            "valley": 0.0049,
+            "voice": 0.0034,
+            "well": 0.0037,
+            "warren": 0.0059,
+            "repair": 0.0071,
+            "neighbours": 0.0239,
+            "rope": 0.0035,
+            "lab": 0.0306
+          },
+          "confidence": 0.6891
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0309,
+            "quit": 0.1079,
+            "mixed": 0.7149,
+            "none": 0.1463
+          },
+          "confidence": 0.3934
+        },
+        "severity": {
+          "type": "score",
+          "score": 2.2842,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0252,
+            "1": 0.1039,
+            "2": 0.4323,
+            "3": 0.4386
+          },
+          "confidence": 0.1876
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.9282
+        }
+      },
+      "usage": {
+        "input_tokens": 1225,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-026",
+    "ms": 262.97991700000057,
+    "inTok": 1229,
+    "outTok": 0,
+    "usd": 0.00029496,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "unclear",
+          "probabilities": {
+            "bug": 0.0322,
+            "unclear": 0.8892,
+            "layout": 0.0058,
+            "pacing": 0.0049,
+            "difficulty": 0.0099,
+            "repetition": 0.0034,
+            "agency": 0.0325,
+            "delight": 0.002,
+            "direction": 0.0109,
+            "tooling": 0.0092
+          },
+          "confidence": 0.7702
+        },
+        "game": {
+          "type": "choice",
+          "choice": "pass",
+          "probabilities": {
+            "murmur": 0.0488,
+            "stairwell": 0.0607,
+            "pass": 0.2757,
+            "glance": 0.0303,
+            "watch": 0.0427,
+            "hearsay": 0.0871,
+            "goodhands": 0.0358,
+            "valley": 0.0338,
+            "voice": 0.0147,
+            "well": 0.0172,
+            "warren": 0.0281,
+            "repair": 0.0201,
+            "neighbours": 0.0504,
+            "rope": 0.015,
+            "lab": 0.2396
+          },
+          "confidence": 0.0964
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0236,
+            "quit": 0.0314,
+            "mixed": 0.7656,
+            "none": 0.1794
+          },
+          "confidence": 0.4932
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.5619,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.1105,
+            "1": 0.2899,
+            "2": 0.5268,
+            "3": 0.0728
+          },
+          "confidence": 0.1721
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.5936
+        }
+      },
+      "usage": {
+        "input_tokens": 1229,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-027",
+    "ms": 294.09329199999956,
+    "inTok": 1228,
+    "outTok": 0,
+    "usd": 0.00029472,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "tooling",
+          "probabilities": {
+            "bug": 0.0106,
+            "unclear": 0.0271,
+            "layout": 0.0141,
+            "pacing": 0.0044,
+            "difficulty": 0.0018,
+            "repetition": 0.0063,
+            "agency": 0.0049,
+            "delight": 0.0025,
+            "direction": 0.0241,
+            "tooling": 0.9042
+          },
+          "confidence": 0.7993
+        },
+        "game": {
+          "type": "choice",
+          "choice": "lab",
+          "probabilities": {
+            "murmur": 0.0137,
+            "stairwell": 0.0193,
+            "pass": 0.0139,
+            "glance": 0.0162,
+            "watch": 0.0145,
+            "hearsay": 0.0346,
+            "goodhands": 0.0182,
+            "valley": 0.0094,
+            "voice": 0.008,
+            "well": 0.0073,
+            "warren": 0.0136,
+            "repair": 0.0167,
+            "neighbours": 0.0181,
+            "rope": 0.011,
+            "lab": 0.7855
+          },
+          "confidence": 0.5937
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "none",
+          "probabilities": {
+            "keep": 0.0183,
+            "quit": 0.0053,
+            "mixed": 0.2132,
+            "none": 0.7632
+          },
+          "confidence": 0.5044
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.9384,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.2453,
+            "1": 0.5878,
+            "2": 0.1501,
+            "3": 0.0168
+          },
+          "confidence": 0.238
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.1204
+        }
+      },
+      "usage": {
+        "input_tokens": 1228,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-029",
+    "ms": 559.3647500000006,
+    "inTok": 1242,
+    "outTok": 0,
+    "usd": 0.00029808,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "difficulty",
+          "probabilities": {
+            "bug": 0.0315,
+            "unclear": 0.0533,
+            "layout": 0.0083,
+            "pacing": 0.3034,
+            "difficulty": 0.3421,
+            "repetition": 0.0176,
+            "agency": 0.0579,
+            "delight": 0.0171,
+            "direction": 0.1591,
+            "tooling": 0.0097
+          },
+          "confidence": 0.1582
+        },
+        "game": {
+          "type": "choice",
+          "choice": "pass",
+          "probabilities": {
+            "murmur": 0.0143,
+            "stairwell": 0.0378,
+            "pass": 0.6645,
+            "glance": 0.0191,
+            "watch": 0.0248,
+            "hearsay": 0.0429,
+            "goodhands": 0.0218,
+            "valley": 0.0256,
+            "voice": 0.0088,
+            "well": 0.01,
+            "warren": 0.0172,
+            "repair": 0.0137,
+            "neighbours": 0.0362,
+            "rope": 0.0118,
+            "lab": 0.0515
+          },
+          "confidence": 0.4127
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0529,
+            "quit": 0.2132,
+            "mixed": 0.5915,
+            "none": 0.1424
+          },
+          "confidence": 0.2245
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.7766,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0883,
+            "1": 0.2197,
+            "2": 0.519,
+            "3": 0.173
+          },
+          "confidence": 0.1404
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.585
+        }
+      },
+      "usage": {
+        "input_tokens": 1242,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-034",
+    "ms": 294.17712500000016,
+    "inTok": 1241,
+    "outTok": 0,
+    "usd": 0.00029783999999999995,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "unclear",
+          "probabilities": {
+            "bug": 0.0739,
+            "unclear": 0.3074,
+            "layout": 0.0126,
+            "pacing": 0.1148,
+            "difficulty": 0.0711,
+            "repetition": 0.0525,
+            "agency": 0.096,
+            "delight": 0.0729,
+            "direction": 0.1726,
+            "tooling": 0.0262
+          },
+          "confidence": 0.0735
+        },
+        "game": {
+          "type": "choice",
+          "choice": "pass",
+          "probabilities": {
+            "murmur": 0.0099,
+            "stairwell": 0.0167,
+            "pass": 0.7243,
+            "glance": 0.0118,
+            "watch": 0.0242,
+            "hearsay": 0.0242,
+            "goodhands": 0.0201,
+            "valley": 0.0146,
+            "voice": 0.0297,
+            "well": 0.006,
+            "warren": 0.0081,
+            "repair": 0.0046,
+            "neighbours": 0.0432,
+            "rope": 0.0042,
+            "lab": 0.0584
+          },
+          "confidence": 0.4999
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.1588,
+            "quit": 0.0181,
+            "mixed": 0.5481,
+            "none": 0.275
+          },
+          "confidence": 0.2021
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.2975,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.2026,
+            "1": 0.3513,
+            "2": 0.3921,
+            "3": 0.054
+          },
+          "confidence": 0.0948
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.446
+        }
+      },
+      "usage": {
+        "input_tokens": 1241,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-042",
+    "ms": 570.0689160000002,
+    "inTok": 1230,
+    "outTok": 0,
+    "usd": 0.00029519999999999997,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "unclear",
+          "probabilities": {
+            "bug": 0.0753,
+            "unclear": 0.4937,
+            "layout": 0.0063,
+            "pacing": 0.0268,
+            "difficulty": 0.1099,
+            "repetition": 0.0214,
+            "agency": 0.2245,
+            "delight": 0.0038,
+            "direction": 0.0314,
+            "tooling": 0.0069
+          },
+          "confidence": 0.2379
+        },
+        "game": {
+          "type": "choice",
+          "choice": "watch",
+          "probabilities": {
+            "murmur": 0.0161,
+            "stairwell": 0.0357,
+            "pass": 0.0169,
+            "glance": 0.0206,
+            "watch": 0.6071,
+            "hearsay": 0.0276,
+            "goodhands": 0.0124,
+            "valley": 0.0732,
+            "voice": 0.0087,
+            "well": 0.029,
+            "warren": 0.0374,
+            "repair": 0.0119,
+            "neighbours": 0.0309,
+            "rope": 0.0151,
+            "lab": 0.0574
+          },
+          "confidence": 0.34
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0203,
+            "quit": 0.2591,
+            "mixed": 0.6223,
+            "none": 0.0983
+          },
+          "confidence": 0.286
+        },
+        "severity": {
+          "type": "score",
+          "score": 2.0763,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0551,
+            "1": 0.1094,
+            "2": 0.5397,
+            "3": 0.2958
+          },
+          "confidence": 0.1917
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.6906
+        }
+      },
+      "usage": {
+        "input_tokens": 1230,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-054",
+    "ms": 448.06574999999975,
+    "inTok": 1226,
+    "outTok": 0,
+    "usd": 0.00029424000000000003,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "difficulty",
+          "probabilities": {
+            "bug": 0.0069,
+            "unclear": 0.0106,
+            "layout": 0.0038,
+            "pacing": 0.0033,
+            "difficulty": 0.9148,
+            "repetition": 0.0025,
+            "agency": 0.0406,
+            "delight": 0.0064,
+            "direction": 0.0078,
+            "tooling": 0.0033
+          },
+          "confidence": 0.821
+        },
+        "game": {
+          "type": "choice",
+          "choice": "lab",
+          "probabilities": {
+            "murmur": 0.0506,
+            "stairwell": 0.0646,
+            "pass": 0.0411,
+            "glance": 0.0266,
+            "watch": 0.1315,
+            "hearsay": 0.0366,
+            "goodhands": 0.0243,
+            "valley": 0.0455,
+            "voice": 0.0176,
+            "well": 0.037,
+            "warren": 0.0657,
+            "repair": 0.0358,
+            "neighbours": 0.0561,
+            "rope": 0.1485,
+            "lab": 0.2185
+          },
+          "confidence": 0.0471
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0351,
+            "quit": 0.115,
+            "mixed": 0.7864,
+            "none": 0.0635
+          },
+          "confidence": 0.5158
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.9277,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0581,
+            "1": 0.1233,
+            "2": 0.6513,
+            "3": 0.1673
+          },
+          "confidence": 0.2944
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.5614
+        }
+      },
+      "usage": {
+        "input_tokens": 1226,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-060",
+    "ms": 407.45700000000033,
+    "inTok": 1223,
+    "outTok": 0,
+    "usd": 0.00029351999999999997,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "pacing",
+          "probabilities": {
+            "bug": 0.0323,
+            "unclear": 0.0738,
+            "layout": 0.021,
+            "pacing": 0.4637,
+            "difficulty": 0.0149,
+            "repetition": 0.0131,
+            "agency": 0.0806,
+            "delight": 0.0213,
+            "direction": 0.269,
+            "tooling": 0.0103
+          },
+          "confidence": 0.2241
+        },
+        "game": {
+          "type": "choice",
+          "choice": "lab",
+          "probabilities": {
+            "murmur": 0.0721,
+            "stairwell": 0.0724,
+            "pass": 0.0422,
+            "glance": 0.0538,
+            "watch": 0.0886,
+            "hearsay": 0.1101,
+            "goodhands": 0.0622,
+            "valley": 0.0417,
+            "voice": 0.0251,
+            "well": 0.0291,
+            "warren": 0.0574,
+            "repair": 0.0345,
+            "neighbours": 0.1087,
+            "rope": 0.0533,
+            "lab": 0.1488
+          },
+          "confidence": 0.018
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0285,
+            "quit": 0.0812,
+            "mixed": 0.7324,
+            "none": 0.1579
+          },
+          "confidence": 0.4251
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.3058,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.1796,
+            "1": 0.4079,
+            "2": 0.3396,
+            "3": 0.0729
+          },
+          "confidence": 0.0924
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.5582
+        }
+      },
+      "usage": {
+        "input_tokens": 1223,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-068",
+    "ms": 286.57145799999853,
+    "inTok": 1225,
+    "outTok": 0,
+    "usd": 0.000294,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "tooling",
+          "probabilities": {
+            "bug": 0.0854,
+            "unclear": 0.0449,
+            "layout": 0.0146,
+            "pacing": 0.1491,
+            "difficulty": 0.1218,
+            "repetition": 0.0231,
+            "agency": 0.1196,
+            "delight": 0.0202,
+            "direction": 0.0746,
+            "tooling": 0.3467
+          },
+          "confidence": 0.0974
+        },
+        "game": {
+          "type": "choice",
+          "choice": "lab",
+          "probabilities": {
+            "murmur": 0.0726,
+            "stairwell": 0.1127,
+            "pass": 0.0235,
+            "glance": 0.0232,
+            "watch": 0.0393,
+            "hearsay": 0.0685,
+            "goodhands": 0.0347,
+            "valley": 0.0461,
+            "voice": 0.0128,
+            "well": 0.0321,
+            "warren": 0.0337,
+            "repair": 0.0118,
+            "neighbours": 0.0894,
+            "rope": 0.0119,
+            "lab": 0.3877
+          },
+          "confidence": 0.1317
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "quit",
+          "probabilities": {
+            "keep": 0.0182,
+            "quit": 0.6138,
+            "mixed": 0.177,
+            "none": 0.191
+          },
+          "confidence": 0.2598
+        },
+        "severity": {
+          "type": "score",
+          "score": 2.8042,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0267,
+            "1": 0.0217,
+            "2": 0.0723,
+            "3": 0.8793
+          },
+          "confidence": 0.706
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.4181
+        }
+      },
+      "usage": {
+        "input_tokens": 1225,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-071",
+    "ms": 548.0978750000013,
+    "inTok": 1223,
+    "outTok": 0,
+    "usd": 0.00029351999999999997,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "bug",
+          "probabilities": {
+            "bug": 0.673,
+            "unclear": 0.1064,
+            "layout": 0.0202,
+            "pacing": 0.02,
+            "difficulty": 0.0083,
+            "repetition": 0.0255,
+            "agency": 0.0581,
+            "delight": 0.0182,
+            "direction": 0.051,
+            "tooling": 0.0193
+          },
+          "confidence": 0.4139
+        },
+        "game": {
+          "type": "choice",
+          "choice": "valley",
+          "probabilities": {
+            "murmur": 0.0109,
+            "stairwell": 0.0314,
+            "pass": 0.0132,
+            "glance": 0.0132,
+            "watch": 0.0114,
+            "hearsay": 0.0242,
+            "goodhands": 0.0104,
+            "valley": 0.7801,
+            "voice": 0.0068,
+            "well": 0.0067,
+            "warren": 0.0128,
+            "repair": 0.0129,
+            "neighbours": 0.0226,
+            "rope": 0.0099,
+            "lab": 0.0335
+          },
+          "confidence": 0.5853
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0687,
+            "quit": 0.0272,
+            "mixed": 0.6281,
+            "none": 0.276
+          },
+          "confidence": 0.3015
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.307,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.1678,
+            "1": 0.4128,
+            "2": 0.364,
+            "3": 0.0554
+          },
+          "confidence": 0.1121
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.8643
+        }
+      },
+      "usage": {
+        "input_tokens": 1223,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-090",
+    "ms": 532.1675839999989,
+    "inTok": 1222,
+    "outTok": 0,
+    "usd": 0.00029328,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "bug",
+          "probabilities": {
+            "bug": 0.3456,
+            "unclear": 0.081,
+            "layout": 0.0143,
+            "pacing": 0.119,
+            "difficulty": 0.0828,
+            "repetition": 0.1442,
+            "agency": 0.0844,
+            "delight": 0.0238,
+            "direction": 0.0755,
+            "tooling": 0.0294
+          },
+          "confidence": 0.0914
+        },
+        "game": {
+          "type": "choice",
+          "choice": "neighbours",
+          "probabilities": {
+            "murmur": 0.0365,
+            "stairwell": 0.0359,
+            "pass": 0.025,
+            "glance": 0.0196,
+            "watch": 0.0255,
+            "hearsay": 0.051,
+            "goodhands": 0.0213,
+            "valley": 0.0142,
+            "voice": 0.0104,
+            "well": 0.0339,
+            "warren": 0.0264,
+            "repair": 0.0138,
+            "neighbours": 0.5505,
+            "rope": 0.0159,
+            "lab": 0.1201
+          },
+          "confidence": 0.2793
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0836,
+            "quit": 0.1113,
+            "mixed": 0.5095,
+            "none": 0.2956
+          },
+          "confidence": 0.1551
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.5164,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.191,
+            "1": 0.2669,
+            "2": 0.3769,
+            "3": 0.1652
+          },
+          "confidence": 0.0361
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.5777
+        }
+      },
+      "usage": {
+        "input_tokens": 1222,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-092",
+    "ms": 256.519542,
+    "inTok": 1223,
+    "outTok": 0,
+    "usd": 0.00029351999999999997,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "pacing",
+          "probabilities": {
+            "bug": 0.1699,
+            "unclear": 0.0655,
+            "layout": 0.0064,
+            "pacing": 0.5197,
+            "difficulty": 0.0241,
+            "repetition": 0.0207,
+            "agency": 0.1353,
+            "delight": 0.0059,
+            "direction": 0.0367,
+            "tooling": 0.0158
+          },
+          "confidence": 0.2491
+        },
+        "game": {
+          "type": "choice",
+          "choice": "stairwell",
+          "probabilities": {
+            "murmur": 0.0848,
+            "stairwell": 0.1654,
+            "pass": 0.0286,
+            "glance": 0.0285,
+            "watch": 0.093,
+            "hearsay": 0.0743,
+            "goodhands": 0.0476,
+            "valley": 0.0254,
+            "voice": 0.0186,
+            "well": 0.0319,
+            "warren": 0.047,
+            "repair": 0.0209,
+            "neighbours": 0.149,
+            "rope": 0.0237,
+            "lab": 0.1613
+          },
+          "confidence": 0.0422
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0102,
+            "quit": 0.46,
+            "mixed": 0.4625,
+            "none": 0.0673
+          },
+          "confidence": 0.2402
+        },
+        "severity": {
+          "type": "score",
+          "score": 2.1948,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0446,
+            "1": 0.1482,
+            "2": 0.3749,
+            "3": 0.4323
+          },
+          "confidence": 0.1352
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.6578
+        }
+      },
+      "usage": {
+        "input_tokens": 1223,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-096",
+    "ms": 282.3099999999995,
+    "inTok": 1230,
+    "outTok": 0,
+    "usd": 0.00029519999999999997,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "layout",
+          "probabilities": {
+            "bug": 0.0659,
+            "unclear": 0.0031,
+            "layout": 0.9097,
+            "pacing": 0.0013,
+            "difficulty": 0.001,
+            "repetition": 0.0015,
+            "agency": 0.0058,
+            "delight": 0.0013,
+            "direction": 0.0084,
+            "tooling": 0.002
+          },
+          "confidence": 0.8134
+        },
+        "game": {
+          "type": "choice",
+          "choice": "murmur",
+          "probabilities": {
+            "murmur": 0.5714,
+            "stairwell": 0.0444,
+            "pass": 0.0217,
+            "glance": 0.0197,
+            "watch": 0.0233,
+            "hearsay": 0.0437,
+            "goodhands": 0.0254,
+            "valley": 0.0517,
+            "voice": 0.0283,
+            "well": 0.0102,
+            "warren": 0.0165,
+            "repair": 0.0143,
+            "neighbours": 0.037,
+            "rope": 0.0077,
+            "lab": 0.0847
+          },
+          "confidence": 0.2983
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0198,
+            "quit": 0.014,
+            "mixed": 0.6574,
+            "none": 0.3088
+          },
+          "confidence": 0.3708
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.5419,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0674,
+            "1": 0.4215,
+            "2": 0.4129,
+            "3": 0.0982
+          },
+          "confidence": 0.1497
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.8822
+        }
+      },
+      "usage": {
+        "input_tokens": 1230,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-107",
+    "ms": 724.4003749999993,
+    "inTok": 1232,
+    "outTok": 0,
+    "usd": 0.00029568,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "repetition",
+          "probabilities": {
+            "bug": 0.1078,
+            "unclear": 0.0589,
+            "layout": 0.028,
+            "pacing": 0.0582,
+            "difficulty": 0.011,
+            "repetition": 0.5299,
+            "agency": 0.0943,
+            "delight": 0.0164,
+            "direction": 0.0241,
+            "tooling": 0.0714
+          },
+          "confidence": 0.2389
+        },
+        "game": {
+          "type": "choice",
+          "choice": "stairwell",
+          "probabilities": {
+            "murmur": 0.0539,
+            "stairwell": 0.2573,
+            "pass": 0.0364,
+            "glance": 0.0231,
+            "watch": 0.0441,
+            "hearsay": 0.0727,
+            "goodhands": 0.033,
+            "valley": 0.1174,
+            "voice": 0.0169,
+            "well": 0.0158,
+            "warren": 0.0402,
+            "repair": 0.0205,
+            "neighbours": 0.083,
+            "rope": 0.0213,
+            "lab": 0.1644
+          },
+          "confidence": 0.0679
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.1069,
+            "quit": 0.1231,
+            "mixed": 0.5586,
+            "none": 0.2114
+          },
+          "confidence": 0.1777
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.4651,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.1899,
+            "1": 0.2858,
+            "2": 0.3936,
+            "3": 0.1307
+          },
+          "confidence": 0.053
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.5349
+        }
+      },
+      "usage": {
+        "input_tokens": 1232,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-122",
+    "ms": 505.16258299999936,
+    "inTok": 1237,
+    "outTok": 0,
+    "usd": 0.00029688,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "tooling",
+          "probabilities": {
+            "bug": 0.227,
+            "unclear": 0.1378,
+            "layout": 0.0066,
+            "pacing": 0.0235,
+            "difficulty": 0.0082,
+            "repetition": 0.0143,
+            "agency": 0.1238,
+            "delight": 0.0078,
+            "direction": 0.0624,
+            "tooling": 0.3886
+          },
+          "confidence": 0.1574
+        },
+        "game": {
+          "type": "choice",
+          "choice": "valley",
+          "probabilities": {
+            "murmur": 0.0078,
+            "stairwell": 0.137,
+            "pass": 0.0064,
+            "glance": 0.0184,
+            "watch": 0.0183,
+            "hearsay": 0.0695,
+            "goodhands": 0.0097,
+            "valley": 0.457,
+            "voice": 0.0049,
+            "well": 0.0047,
+            "warren": 0.008,
+            "repair": 0.006,
+            "neighbours": 0.0197,
+            "rope": 0.0039,
+            "lab": 0.2287
+          },
+          "confidence": 0.2352
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "none",
+          "probabilities": {
+            "keep": 0.037,
+            "quit": 0.0199,
+            "mixed": 0.4238,
+            "none": 0.5193
+          },
+          "confidence": 0.268
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.3569,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.2301,
+            "1": 0.2636,
+            "2": 0.4254,
+            "3": 0.0809
+          },
+          "confidence": 0.0799
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.5148
+        }
+      },
+      "usage": {
+        "input_tokens": 1237,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-123",
+    "ms": 273.5204580000009,
+    "inTok": 1249,
+    "outTok": 0,
+    "usd": 0.00029976,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "delight",
+          "probabilities": {
+            "bug": 0.007,
+            "unclear": 0.0159,
+            "layout": 0.005,
+            "pacing": 0.0093,
+            "difficulty": 0.006,
+            "repetition": 0.0048,
+            "agency": 0.0127,
+            "delight": 0.9148,
+            "direction": 0.0178,
+            "tooling": 0.0067
+          },
+          "confidence": 0.8199
+        },
+        "game": {
+          "type": "choice",
+          "choice": "stairwell",
+          "probabilities": {
+            "murmur": 0.014,
+            "stairwell": 0.8823,
+            "pass": 0.0062,
+            "glance": 0.0043,
+            "watch": 0.0038,
+            "hearsay": 0.0275,
+            "goodhands": 0.0186,
+            "valley": 0.0055,
+            "voice": 0.0032,
+            "well": 0.0028,
+            "warren": 0.0041,
+            "repair": 0.0035,
+            "neighbours": 0.0102,
+            "rope": 0.0039,
+            "lab": 0.0101
+          },
+          "confidence": 0.7644
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "keep",
+          "probabilities": {
+            "keep": 0.7738,
+            "quit": 0.0146,
+            "mixed": 0.113,
+            "none": 0.0986
+          },
+          "confidence": 0.4953
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.1623,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.8867,
+            "1": 0.0767,
+            "2": 0.0242,
+            "3": 0.0124
+          },
+          "confidence": 0.7239
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.0161
+        }
+      },
+      "usage": {
+        "input_tokens": 1249,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-127",
+    "ms": 383.6350000000002,
+    "inTok": 1263,
+    "outTok": 0,
+    "usd": 0.00030312,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "bug",
+          "probabilities": {
+            "bug": 0.3949,
+            "unclear": 0.0534,
+            "layout": 0.0102,
+            "pacing": 0.0412,
+            "difficulty": 0.0066,
+            "repetition": 0.0961,
+            "agency": 0.2987,
+            "delight": 0.0091,
+            "direction": 0.0709,
+            "tooling": 0.0189
+          },
+          "confidence": 0.1828
+        },
+        "game": {
+          "type": "choice",
+          "choice": "stairwell",
+          "probabilities": {
+            "murmur": 0.0318,
+            "stairwell": 0.1874,
+            "pass": 0.0624,
+            "glance": 0.0353,
+            "watch": 0.0228,
+            "hearsay": 0.1833,
+            "goodhands": 0.1293,
+            "valley": 0.1232,
+            "voice": 0.0117,
+            "well": 0.0103,
+            "warren": 0.0198,
+            "repair": 0.0124,
+            "neighbours": 0.0561,
+            "rope": 0.0072,
+            "lab": 0.107
+          },
+          "confidence": 0.0601
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0399,
+            "quit": 0.0383,
+            "mixed": 0.6809,
+            "none": 0.2409
+          },
+          "confidence": 0.3664
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.5088,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.1273,
+            "1": 0.3205,
+            "2": 0.4683,
+            "3": 0.0839
+          },
+          "confidence": 0.1271
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.768
+        }
+      },
+      "usage": {
+        "input_tokens": 1263,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-138",
+    "ms": 536.5204580000009,
+    "inTok": 1223,
+    "outTok": 0,
+    "usd": 0.00029351999999999997,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "difficulty",
+          "probabilities": {
+            "bug": 0.0047,
+            "unclear": 0.0046,
+            "layout": 0.0031,
+            "pacing": 0.1637,
+            "difficulty": 0.7671,
+            "repetition": 0.0033,
+            "agency": 0.007,
+            "delight": 0.021,
+            "direction": 0.0209,
+            "tooling": 0.0046
+          },
+          "confidence": 0.5736
+        },
+        "game": {
+          "type": "choice",
+          "choice": "repair",
+          "probabilities": {
+            "murmur": 0.0149,
+            "stairwell": 0.0659,
+            "pass": 0.0682,
+            "glance": 0.024,
+            "watch": 0.0344,
+            "hearsay": 0.0218,
+            "goodhands": 0.128,
+            "valley": 0.0402,
+            "voice": 0.0085,
+            "well": 0.0108,
+            "warren": 0.0195,
+            "repair": 0.4191,
+            "neighbours": 0.0344,
+            "rope": 0.0154,
+            "lab": 0.0949
+          },
+          "confidence": 0.1601
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0766,
+            "quit": 0.0581,
+            "mixed": 0.6461,
+            "none": 0.2192
+          },
+          "confidence": 0.2996
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.8982,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.3447,
+            "1": 0.438,
+            "2": 0.1918,
+            "3": 0.0255
+          },
+          "confidence": 0.1308
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.636
+        }
+      },
+      "usage": {
+        "input_tokens": 1223,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-146",
+    "ms": 774.1593330000014,
+    "inTok": 1269,
+    "outTok": 0,
+    "usd": 0.00030456,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "layout",
+          "probabilities": {
+            "bug": 0.004,
+            "unclear": 0.0041,
+            "layout": 0.9541,
+            "pacing": 0.0024,
+            "difficulty": 0.0015,
+            "repetition": 0.0024,
+            "agency": 0.004,
+            "delight": 0.0019,
+            "direction": 0.0208,
+            "tooling": 0.0048
+          },
+          "confidence": 0.901
+        },
+        "game": {
+          "type": "choice",
+          "choice": "hearsay",
+          "probabilities": {
+            "murmur": 0.0191,
+            "stairwell": 0.3123,
+            "pass": 0.0112,
+            "glance": 0.0131,
+            "watch": 0.017,
+            "hearsay": 0.3194,
+            "goodhands": 0.0176,
+            "valley": 0.0151,
+            "voice": 0.0078,
+            "well": 0.0091,
+            "warren": 0.0129,
+            "repair": 0.0103,
+            "neighbours": 0.1748,
+            "rope": 0.0083,
+            "lab": 0.052
+          },
+          "confidence": 0.1801
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0276,
+            "quit": 0.0109,
+            "mixed": 0.5808,
+            "none": 0.3807
+          },
+          "confidence": 0.3109
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.4676,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.062,
+            "1": 0.4265,
+            "2": 0.4933,
+            "3": 0.0182
+          },
+          "confidence": 0.2392
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.8493
+        }
+      },
+      "usage": {
+        "input_tokens": 1269,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-157",
+    "ms": 1091.8140409999996,
+    "inTok": 1236,
+    "outTok": 0,
+    "usd": 0.00029664,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "tooling",
+          "probabilities": {
+            "bug": 0.0401,
+            "unclear": 0.0072,
+            "layout": 0.004,
+            "pacing": 0.1493,
+            "difficulty": 0.0205,
+            "repetition": 0.0053,
+            "agency": 0.0177,
+            "delight": 0.0043,
+            "direction": 0.0699,
+            "tooling": 0.6817
+          },
+          "confidence": 0.4382
+        },
+        "game": {
+          "type": "choice",
+          "choice": "lab",
+          "probabilities": {
+            "murmur": 0.09,
+            "stairwell": 0.0306,
+            "pass": 0.0178,
+            "glance": 0.0116,
+            "watch": 0.027,
+            "hearsay": 0.0485,
+            "goodhands": 0.0213,
+            "valley": 0.0184,
+            "voice": 0.0108,
+            "well": 0.0088,
+            "warren": 0.0202,
+            "repair": 0.0156,
+            "neighbours": 0.0431,
+            "rope": 0.0139,
+            "lab": 0.6224
+          },
+          "confidence": 0.361
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "none",
+          "probabilities": {
+            "keep": 0.0231,
+            "quit": 0.0578,
+            "mixed": 0.1606,
+            "none": 0.7585
+          },
+          "confidence": 0.4733
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.517,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.249,
+            "1": 0.2032,
+            "2": 0.3296,
+            "3": 0.2182
+          },
+          "confidence": 0.0127
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.4076
+        }
+      },
+      "usage": {
+        "input_tokens": 1236,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-162",
+    "ms": 455.7724589999998,
+    "inTok": 1232,
+    "outTok": 0,
+    "usd": 0.00029568,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "bug",
+          "probabilities": {
+            "bug": 0.6046,
+            "unclear": 0.0214,
+            "layout": 0.1897,
+            "pacing": 0.0051,
+            "difficulty": 0.0039,
+            "repetition": 0.0049,
+            "agency": 0.1347,
+            "delight": 0.0041,
+            "direction": 0.0216,
+            "tooling": 0.01
+          },
+          "confidence": 0.3564
+        },
+        "game": {
+          "type": "choice",
+          "choice": "rope",
+          "probabilities": {
+            "murmur": 0.0389,
+            "stairwell": 0.0866,
+            "pass": 0.0446,
+            "glance": 0.0301,
+            "watch": 0.099,
+            "hearsay": 0.0624,
+            "goodhands": 0.0473,
+            "valley": 0.0782,
+            "voice": 0.0171,
+            "well": 0.0341,
+            "warren": 0.0695,
+            "repair": 0.0556,
+            "neighbours": 0.069,
+            "rope": 0.1562,
+            "lab": 0.1114
+          },
+          "confidence": 0.0196
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0265,
+            "quit": 0.044,
+            "mixed": 0.7708,
+            "none": 0.1587
+          },
+          "confidence": 0.496
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.9147,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0463,
+            "1": 0.2308,
+            "2": 0.4849,
+            "3": 0.238
+          },
+          "confidence": 0.1296
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.845
+        }
+      },
+      "usage": {
+        "input_tokens": 1232,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-166",
+    "ms": 845.3530840000021,
+    "inTok": 1240,
+    "outTok": 0,
+    "usd": 0.00029759999999999997,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "delight",
+          "probabilities": {
+            "bug": 0.0207,
+            "unclear": 0.0142,
+            "layout": 0.0039,
+            "pacing": 0.0052,
+            "difficulty": 0.005,
+            "repetition": 0.005,
+            "agency": 0.0378,
+            "delight": 0.8756,
+            "direction": 0.0227,
+            "tooling": 0.0099
+          },
+          "confidence": 0.7438
+        },
+        "game": {
+          "type": "choice",
+          "choice": "warren",
+          "probabilities": {
+            "murmur": 0.0516,
+            "stairwell": 0.0216,
+            "pass": 0.0134,
+            "glance": 0.0148,
+            "watch": 0.0349,
+            "hearsay": 0.0161,
+            "goodhands": 0.0176,
+            "valley": 0.0108,
+            "voice": 0.0114,
+            "well": 0.0095,
+            "warren": 0.6915,
+            "repair": 0.0128,
+            "neighbours": 0.024,
+            "rope": 0.0124,
+            "lab": 0.0576
+          },
+          "confidence": 0.4515
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "keep",
+          "probabilities": {
+            "keep": 0.8241,
+            "quit": 0.0118,
+            "mixed": 0.0766,
+            "none": 0.0875
+          },
+          "confidence": 0.5904
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.1718,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.8838,
+            "1": 0.0756,
+            "2": 0.0256,
+            "3": 0.015
+          },
+          "confidence": 0.7169
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.03
+        }
+      },
+      "usage": {
+        "input_tokens": 1240,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-168",
+    "ms": 417.552166999998,
+    "inTok": 1221,
+    "outTok": 0,
+    "usd": 0.00029303999999999995,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "agency",
+          "probabilities": {
+            "bug": 0.0736,
+            "unclear": 0.2892,
+            "layout": 0.005,
+            "pacing": 0.0178,
+            "difficulty": 0.0395,
+            "repetition": 0.0045,
+            "agency": 0.4164,
+            "delight": 0.0056,
+            "direction": 0.1419,
+            "tooling": 0.0065
+          },
+          "confidence": 0.205
+        },
+        "game": {
+          "type": "choice",
+          "choice": "lab",
+          "probabilities": {
+            "murmur": 0.0313,
+            "stairwell": 0.0679,
+            "pass": 0.1042,
+            "glance": 0.019,
+            "watch": 0.1781,
+            "hearsay": 0.035,
+            "goodhands": 0.026,
+            "valley": 0.0169,
+            "voice": 0.0096,
+            "well": 0.0201,
+            "warren": 0.1542,
+            "repair": 0.0224,
+            "neighbours": 0.0542,
+            "rope": 0.0536,
+            "lab": 0.2075
+          },
+          "confidence": 0.0618
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0288,
+            "quit": 0.0805,
+            "mixed": 0.7525,
+            "none": 0.1382
+          },
+          "confidence": 0.4568
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.6898,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0915,
+            "1": 0.2463,
+            "2": 0.5432,
+            "3": 0.119
+          },
+          "confidence": 0.1711
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.4543
+        }
+      },
+      "usage": {
+        "input_tokens": 1221,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-172",
+    "ms": 382.6334590000006,
+    "inTok": 1242,
+    "outTok": 0,
+    "usd": 0.00029808,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "pacing",
+          "probabilities": {
+            "bug": 0.0118,
+            "unclear": 0.0116,
+            "layout": 0.0051,
+            "pacing": 0.7152,
+            "difficulty": 0.0494,
+            "repetition": 0.0131,
+            "agency": 0.027,
+            "delight": 0.0155,
+            "direction": 0.0147,
+            "tooling": 0.1366
+          },
+          "confidence": 0.4826
+        },
+        "game": {
+          "type": "choice",
+          "choice": "lab",
+          "probabilities": {
+            "murmur": 0.0518,
+            "stairwell": 0.0558,
+            "pass": 0.0242,
+            "glance": 0.0275,
+            "watch": 0.055,
+            "hearsay": 0.0606,
+            "goodhands": 0.0255,
+            "valley": 0.0621,
+            "voice": 0.016,
+            "well": 0.0288,
+            "warren": 0.0335,
+            "repair": 0.0261,
+            "neighbours": 0.0468,
+            "rope": 0.0338,
+            "lab": 0.4525
+          },
+          "confidence": 0.1743
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "quit",
+          "probabilities": {
+            "keep": 0.0155,
+            "quit": 0.662,
+            "mixed": 0.1283,
+            "none": 0.1942
+          },
+          "confidence": 0.3236
+        },
+        "severity": {
+          "type": "score",
+          "score": 2.6164,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0462,
+            "1": 0.0573,
+            "2": 0.1303,
+            "3": 0.7662
+          },
+          "confidence": 0.4792
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.6129
+        }
+      },
+      "usage": {
+        "input_tokens": 1242,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-180",
+    "ms": 436.2881249999991,
+    "inTok": 1250,
+    "outTok": 0,
+    "usd": 0.0003,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "unclear",
+          "probabilities": {
+            "bug": 0.0061,
+            "unclear": 0.403,
+            "layout": 0.0044,
+            "pacing": 0.1771,
+            "difficulty": 0.0095,
+            "repetition": 0.0042,
+            "agency": 0.3335,
+            "delight": 0.0293,
+            "direction": 0.0296,
+            "tooling": 0.0033
+          },
+          "confidence": 0.2299
+        },
+        "game": {
+          "type": "choice",
+          "choice": "valley",
+          "probabilities": {
+            "murmur": 0.0253,
+            "stairwell": 0.0746,
+            "pass": 0.0119,
+            "glance": 0.0136,
+            "watch": 0.0309,
+            "hearsay": 0.0612,
+            "goodhands": 0.0377,
+            "valley": 0.6217,
+            "voice": 0.0081,
+            "well": 0.0086,
+            "warren": 0.0218,
+            "repair": 0.0082,
+            "neighbours": 0.0365,
+            "rope": 0.0061,
+            "lab": 0.0338
+          },
+          "confidence": 0.3597
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0613,
+            "quit": 0.3993,
+            "mixed": 0.4842,
+            "none": 0.0552
+          },
+          "confidence": 0.2009
+        },
+        "severity": {
+          "type": "score",
+          "score": 2.255,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.056,
+            "1": 0.0966,
+            "2": 0.3838,
+            "3": 0.4636
+          },
+          "confidence": 0.1662
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.7281
+        }
+      },
+      "usage": {
+        "input_tokens": 1250,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-184",
+    "ms": 366.7880409999998,
+    "inTok": 1235,
+    "outTok": 0,
+    "usd": 0.0002964,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "delight",
+          "probabilities": {
+            "bug": 0.0057,
+            "unclear": 0.0047,
+            "layout": 0.0046,
+            "pacing": 0.0087,
+            "difficulty": 0.0055,
+            "repetition": 0.0062,
+            "agency": 0.0062,
+            "delight": 0.9225,
+            "direction": 0.0277,
+            "tooling": 0.0082
+          },
+          "confidence": 0.8356
+        },
+        "game": {
+          "type": "choice",
+          "choice": "hearsay",
+          "probabilities": {
+            "murmur": 0.0391,
+            "stairwell": 0.1385,
+            "pass": 0.0266,
+            "glance": 0.0159,
+            "watch": 0.0266,
+            "hearsay": 0.3573,
+            "goodhands": 0.0532,
+            "valley": 0.0295,
+            "voice": 0.0103,
+            "well": 0.0235,
+            "warren": 0.0181,
+            "repair": 0.0095,
+            "neighbours": 0.1706,
+            "rope": 0.0091,
+            "lab": 0.0722
+          },
+          "confidence": 0.1313
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "keep",
+          "probabilities": {
+            "keep": 0.8571,
+            "quit": 0.0141,
+            "mixed": 0.0407,
+            "none": 0.0881
+          },
+          "confidence": 0.6589
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.0519,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.9701,
+            "1": 0.0156,
+            "2": 0.0067,
+            "3": 0.0076
+          },
+          "confidence": 0.9219
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.0127
+        }
+      },
+      "usage": {
+        "input_tokens": 1235,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-192",
+    "ms": 474.81370900000184,
+    "inTok": 1223,
+    "outTok": 0,
+    "usd": 0.00029351999999999997,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "tooling",
+          "probabilities": {
+            "bug": 0.1123,
+            "unclear": 0.0063,
+            "layout": 0.0055,
+            "pacing": 0.0111,
+            "difficulty": 0.0028,
+            "repetition": 0.0024,
+            "agency": 0.0259,
+            "delight": 0.0041,
+            "direction": 0.0107,
+            "tooling": 0.8189
+          },
+          "confidence": 0.649
+        },
+        "game": {
+          "type": "choice",
+          "choice": "lab",
+          "probabilities": {
+            "murmur": 0.0142,
+            "stairwell": 0.0175,
+            "pass": 0.0119,
+            "glance": 0.0131,
+            "watch": 0.0176,
+            "hearsay": 0.0408,
+            "goodhands": 0.0179,
+            "valley": 0.0114,
+            "voice": 0.0089,
+            "well": 0.0084,
+            "warren": 0.0152,
+            "repair": 0.0149,
+            "neighbours": 0.0336,
+            "rope": 0.0103,
+            "lab": 0.7643
+          },
+          "confidence": 0.5599
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "none",
+          "probabilities": {
+            "keep": 0.0225,
+            "quit": 0.0228,
+            "mixed": 0.2034,
+            "none": 0.7513
+          },
+          "confidence": 0.4758
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.9983,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.4272,
+            "1": 0.247,
+            "2": 0.2261,
+            "3": 0.0997
+          },
+          "confidence": 0.0728
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.0794
+        }
+      },
+      "usage": {
+        "input_tokens": 1223,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-200",
+    "ms": 654.9405829999996,
+    "inTok": 1228,
+    "outTok": 0,
+    "usd": 0.00029472,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "unclear",
+          "probabilities": {
+            "bug": 0.0147,
+            "unclear": 0.6951,
+            "layout": 0.0084,
+            "pacing": 0.0349,
+            "difficulty": 0.0103,
+            "repetition": 0.0062,
+            "agency": 0.0238,
+            "delight": 0.0081,
+            "direction": 0.1559,
+            "tooling": 0.0426
+          },
+          "confidence": 0.4574
+        },
+        "game": {
+          "type": "choice",
+          "choice": "lab",
+          "probabilities": {
+            "murmur": 0.0707,
+            "stairwell": 0.0652,
+            "pass": 0.0363,
+            "glance": 0.0241,
+            "watch": 0.036,
+            "hearsay": 0.0815,
+            "goodhands": 0.0724,
+            "valley": 0.0541,
+            "voice": 0.0165,
+            "well": 0.0225,
+            "warren": 0.0439,
+            "repair": 0.0212,
+            "neighbours": 0.0592,
+            "rope": 0.0218,
+            "lab": 0.3746
+          },
+          "confidence": 0.1158
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "none",
+          "probabilities": {
+            "keep": 0.0283,
+            "quit": 0.0465,
+            "mixed": 0.4619,
+            "none": 0.4633
+          },
+          "confidence": 0.2413
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.2901,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.2553,
+            "1": 0.2882,
+            "2": 0.3677,
+            "3": 0.0888
+          },
+          "confidence": 0.0551
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.4712
+        }
+      },
+      "usage": {
+        "input_tokens": 1228,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-203",
+    "ms": 535.7838330000013,
+    "inTok": 1227,
+    "outTok": 0,
+    "usd": 0.00029447999999999996,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "direction",
+          "probabilities": {
+            "bug": 0.0136,
+            "unclear": 0.0167,
+            "layout": 0.0087,
+            "pacing": 0.0063,
+            "difficulty": 0.003,
+            "repetition": 0.007,
+            "agency": 0.0104,
+            "delight": 0.0095,
+            "direction": 0.9134,
+            "tooling": 0.0114
+          },
+          "confidence": 0.8169
+        },
+        "game": {
+          "type": "choice",
+          "choice": "lab",
+          "probabilities": {
+            "murmur": 0.0499,
+            "stairwell": 0.0537,
+            "pass": 0.0227,
+            "glance": 0.0186,
+            "watch": 0.0418,
+            "hearsay": 0.1283,
+            "goodhands": 0.0314,
+            "valley": 0.2187,
+            "voice": 0.0198,
+            "well": 0.0182,
+            "warren": 0.044,
+            "repair": 0.0173,
+            "neighbours": 0.057,
+            "rope": 0.015,
+            "lab": 0.2636
+          },
+          "confidence": 0.0884
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "none",
+          "probabilities": {
+            "keep": 0.0726,
+            "quit": 0.004,
+            "mixed": 0.2972,
+            "none": 0.6262
+          },
+          "confidence": 0.3144
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.7471,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.41,
+            "1": 0.4433,
+            "2": 0.1362,
+            "3": 0.0105
+          },
+          "confidence": 0.1777
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.5776
+        }
+      },
+      "usage": {
+        "input_tokens": 1227,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-204",
+    "ms": 494.9419999999991,
+    "inTok": 1221,
+    "outTok": 0,
+    "usd": 0.00029303999999999995,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "delight",
+          "probabilities": {
+            "bug": 0.0053,
+            "unclear": 0.0045,
+            "layout": 0.0043,
+            "pacing": 0.0116,
+            "difficulty": 0.006,
+            "repetition": 0.0039,
+            "agency": 0.0087,
+            "delight": 0.8394,
+            "direction": 0.11,
+            "tooling": 0.0063
+          },
+          "confidence": 0.6856
+        },
+        "game": {
+          "type": "choice",
+          "choice": "lab",
+          "probabilities": {
+            "murmur": 0.0509,
+            "stairwell": 0.0563,
+            "pass": 0.0517,
+            "glance": 0.0271,
+            "watch": 0.0638,
+            "hearsay": 0.1026,
+            "goodhands": 0.0382,
+            "valley": 0.0845,
+            "voice": 0.0178,
+            "well": 0.0362,
+            "warren": 0.0977,
+            "repair": 0.0336,
+            "neighbours": 0.1044,
+            "rope": 0.029,
+            "lab": 0.2062
+          },
+          "confidence": 0.0345
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "keep",
+          "probabilities": {
+            "keep": 0.795,
+            "quit": 0.0101,
+            "mixed": 0.0852,
+            "none": 0.1097
+          },
+          "confidence": 0.5352
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.0752,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.9495,
+            "1": 0.0342,
+            "2": 0.008,
+            "3": 0.0083
+          },
+          "confidence": 0.8703
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.0224
+        }
+      },
+      "usage": {
+        "input_tokens": 1221,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-211",
+    "ms": 297.2027500000004,
+    "inTok": 1249,
+    "outTok": 0,
+    "usd": 0.00029976,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "unclear",
+          "probabilities": {
+            "bug": 0.0845,
+            "unclear": 0.7037,
+            "layout": 0.0312,
+            "pacing": 0.0127,
+            "difficulty": 0.0096,
+            "repetition": 0.014,
+            "agency": 0.0308,
+            "delight": 0.0068,
+            "direction": 0.0836,
+            "tooling": 0.0231
+          },
+          "confidence": 0.4581
+        },
+        "game": {
+          "type": "choice",
+          "choice": "valley",
+          "probabilities": {
+            "murmur": 0.0242,
+            "stairwell": 0.0598,
+            "pass": 0.0168,
+            "glance": 0.0117,
+            "watch": 0.0208,
+            "hearsay": 0.0423,
+            "goodhands": 0.0318,
+            "valley": 0.6045,
+            "voice": 0.014,
+            "well": 0.0106,
+            "warren": 0.0225,
+            "repair": 0.0175,
+            "neighbours": 0.025,
+            "rope": 0.0125,
+            "lab": 0.086
+          },
+          "confidence": 0.3384
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0403,
+            "quit": 0.0129,
+            "mixed": 0.6687,
+            "none": 0.2781
+          },
+          "confidence": 0.3683
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.5331,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0868,
+            "1": 0.3334,
+            "2": 0.5397,
+            "3": 0.0401
+          },
+          "confidence": 0.2154
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.8547
+        }
+      },
+      "usage": {
+        "input_tokens": 1249,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-221",
+    "ms": 298.50445799999943,
+    "inTok": 1251,
+    "outTok": 0,
+    "usd": 0.00030024,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "agency",
+          "probabilities": {
+            "bug": 0.007,
+            "unclear": 0.1883,
+            "layout": 0.0043,
+            "pacing": 0.0226,
+            "difficulty": 0.0084,
+            "repetition": 0.0043,
+            "agency": 0.5564,
+            "delight": 0.0333,
+            "direction": 0.1689,
+            "tooling": 0.0065
+          },
+          "confidence": 0.306
+        },
+        "game": {
+          "type": "choice",
+          "choice": "hearsay",
+          "probabilities": {
+            "murmur": 0.0182,
+            "stairwell": 0.0159,
+            "pass": 0.017,
+            "glance": 0.017,
+            "watch": 0.0151,
+            "hearsay": 0.7109,
+            "goodhands": 0.0424,
+            "valley": 0.0291,
+            "voice": 0.0108,
+            "well": 0.0116,
+            "warren": 0.013,
+            "repair": 0.0093,
+            "neighbours": 0.0221,
+            "rope": 0.0087,
+            "lab": 0.0589
+          },
+          "confidence": 0.4792
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.2887,
+            "quit": 0.0152,
+            "mixed": 0.6447,
+            "none": 0.0514
+          },
+          "confidence": 0.3358
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.6371,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0697,
+            "1": 0.2617,
+            "2": 0.6304,
+            "3": 0.0382
+          },
+          "confidence": 0.2963
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.8577
+        }
+      },
+      "usage": {
+        "input_tokens": 1251,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-223",
+    "ms": 539.5465000000004,
+    "inTok": 1232,
+    "outTok": 0,
+    "usd": 0.00029568,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "unclear",
+          "probabilities": {
+            "bug": 0.0342,
+            "unclear": 0.6049,
+            "layout": 0.0157,
+            "pacing": 0.0129,
+            "difficulty": 0.0082,
+            "repetition": 0.0065,
+            "agency": 0.1343,
+            "delight": 0.0184,
+            "direction": 0.1413,
+            "tooling": 0.0236
+          },
+          "confidence": 0.3406
+        },
+        "game": {
+          "type": "choice",
+          "choice": "hearsay",
+          "probabilities": {
+            "murmur": 0.0551,
+            "stairwell": 0.1151,
+            "pass": 0.0139,
+            "glance": 0.0181,
+            "watch": 0.023,
+            "hearsay": 0.4719,
+            "goodhands": 0.0237,
+            "valley": 0.0144,
+            "voice": 0.0192,
+            "well": 0.0092,
+            "warren": 0.0168,
+            "repair": 0.0132,
+            "neighbours": 0.1124,
+            "rope": 0.0088,
+            "lab": 0.0852
+          },
+          "confidence": 0.2089
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0952,
+            "quit": 0.0239,
+            "mixed": 0.6174,
+            "none": 0.2635
+          },
+          "confidence": 0.2803
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.4466,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.1393,
+            "1": 0.3254,
+            "2": 0.4847,
+            "3": 0.0506
+          },
+          "confidence": 0.1504
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.64
+        }
+      },
+      "usage": {
+        "input_tokens": 1232,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-237",
+    "ms": 386.9247499999983,
+    "inTok": 1249,
+    "outTok": 0,
+    "usd": 0.00029976,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "layout",
+          "probabilities": {
+            "bug": 0.05,
+            "unclear": 0.2932,
+            "layout": 0.3146,
+            "pacing": 0.0135,
+            "difficulty": 0.0119,
+            "repetition": 0.0107,
+            "agency": 0.1774,
+            "delight": 0.0115,
+            "direction": 0.0994,
+            "tooling": 0.0178
+          },
+          "confidence": 0.1441
+        },
+        "game": {
+          "type": "choice",
+          "choice": "neighbours",
+          "probabilities": {
+            "murmur": 0.0135,
+            "stairwell": 0.0483,
+            "pass": 0.0264,
+            "glance": 0.01,
+            "watch": 0.0083,
+            "hearsay": 0.0283,
+            "goodhands": 0.1442,
+            "valley": 0.0062,
+            "voice": 0.0058,
+            "well": 0.0069,
+            "warren": 0.0078,
+            "repair": 0.0079,
+            "neighbours": 0.6455,
+            "rope": 0.0056,
+            "lab": 0.0353
+          },
+          "confidence": 0.4034
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0447,
+            "quit": 0.0165,
+            "mixed": 0.7048,
+            "none": 0.234
+          },
+          "confidence": 0.405
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.4886,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0998,
+            "1": 0.358,
+            "2": 0.4961,
+            "3": 0.0461
+          },
+          "confidence": 0.1818
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.8018
+        }
+      },
+      "usage": {
+        "input_tokens": 1249,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-243",
+    "ms": 644.6677920000002,
+    "inTok": 1245,
+    "outTok": 0,
+    "usd": 0.0002988,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "unclear",
+          "probabilities": {
+            "bug": 0.0281,
+            "unclear": 0.4533,
+            "layout": 0.0221,
+            "pacing": 0.3436,
+            "difficulty": 0.0177,
+            "repetition": 0.0222,
+            "agency": 0.0476,
+            "delight": 0.0049,
+            "direction": 0.0375,
+            "tooling": 0.023
+          },
+          "confidence": 0.2554
+        },
+        "game": {
+          "type": "choice",
+          "choice": "pass",
+          "probabilities": {
+            "murmur": 0.0033,
+            "stairwell": 0.006,
+            "pass": 0.9033,
+            "glance": 0.0052,
+            "watch": 0.0033,
+            "hearsay": 0.0078,
+            "goodhands": 0.0106,
+            "valley": 0.003,
+            "voice": 0.0022,
+            "well": 0.0022,
+            "warren": 0.003,
+            "repair": 0.0033,
+            "neighbours": 0.0089,
+            "rope": 0.0021,
+            "lab": 0.0358
+          },
+          "confidence": 0.8046
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "quit",
+          "probabilities": {
+            "keep": 0.013,
+            "quit": 0.6084,
+            "mixed": 0.3073,
+            "none": 0.0713
+          },
+          "confidence": 0.2931
+        },
+        "severity": {
+          "type": "score",
+          "score": 2.4476,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0426,
+            "1": 0.0736,
+            "2": 0.2774,
+            "3": 0.6064
+          },
+          "confidence": 0.2692
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.73
+        }
+      },
+      "usage": {
+        "input_tokens": 1245,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-245",
+    "ms": 937.1816670000007,
+    "inTok": 1254,
+    "outTok": 0,
+    "usd": 0.00030095999999999996,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "repetition",
+          "probabilities": {
+            "bug": 0.0078,
+            "unclear": 0.0154,
+            "layout": 0.0093,
+            "pacing": 0.0987,
+            "difficulty": 0.0133,
+            "repetition": 0.6987,
+            "agency": 0.1233,
+            "delight": 0.0043,
+            "direction": 0.0253,
+            "tooling": 0.0039
+          },
+          "confidence": 0.4605
+        },
+        "game": {
+          "type": "choice",
+          "choice": "murmur",
+          "probabilities": {
+            "murmur": 0.7474,
+            "stairwell": 0.0245,
+            "pass": 0.0148,
+            "glance": 0.0119,
+            "watch": 0.0104,
+            "hearsay": 0.0383,
+            "goodhands": 0.0252,
+            "valley": 0.0068,
+            "voice": 0.0238,
+            "well": 0.0073,
+            "warren": 0.0115,
+            "repair": 0.0106,
+            "neighbours": 0.0211,
+            "rope": 0.0066,
+            "lab": 0.0398
+          },
+          "confidence": 0.5336
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0351,
+            "quit": 0.2739,
+            "mixed": 0.62,
+            "none": 0.071
+          },
+          "confidence": 0.2876
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.9461,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0388,
+            "1": 0.1242,
+            "2": 0.6892,
+            "3": 0.1478
+          },
+          "confidence": 0.3518
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.7388
+        }
+      },
+      "usage": {
+        "input_tokens": 1254,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-246",
+    "ms": 509.1909579999992,
+    "inTok": 1248,
+    "outTok": 0,
+    "usd": 0.00029952,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "unclear",
+          "probabilities": {
+            "bug": 0.0284,
+            "unclear": 0.6296,
+            "layout": 0.0076,
+            "pacing": 0.0527,
+            "difficulty": 0.0922,
+            "repetition": 0.0053,
+            "agency": 0.1004,
+            "delight": 0.0375,
+            "direction": 0.0411,
+            "tooling": 0.0052
+          },
+          "confidence": 0.3576
+        },
+        "game": {
+          "type": "choice",
+          "choice": "warren",
+          "probabilities": {
+            "murmur": 0.0164,
+            "stairwell": 0.0823,
+            "pass": 0.0162,
+            "glance": 0.0168,
+            "watch": 0.1477,
+            "hearsay": 0.0207,
+            "goodhands": 0.0243,
+            "valley": 0.0297,
+            "voice": 0.0084,
+            "well": 0.0285,
+            "warren": 0.4764,
+            "repair": 0.0123,
+            "neighbours": 0.0539,
+            "rope": 0.0207,
+            "lab": 0.0457
+          },
+          "confidence": 0.2122
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.1086,
+            "quit": 0.1891,
+            "mixed": 0.6244,
+            "none": 0.0779
+          },
+          "confidence": 0.2579
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.9628,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0697,
+            "1": 0.1323,
+            "2": 0.5635,
+            "3": 0.2345
+          },
+          "confidence": 0.1931
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.754
+        }
+      },
+      "usage": {
+        "input_tokens": 1248,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-250",
+    "ms": 500.72554200000013,
+    "inTok": 1238,
+    "outTok": 0,
+    "usd": 0.00029712,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "pacing",
+          "probabilities": {
+            "bug": 0.0045,
+            "unclear": 0.0065,
+            "layout": 0.0047,
+            "pacing": 0.4651,
+            "difficulty": 0.0205,
+            "repetition": 0.0141,
+            "agency": 0.0102,
+            "delight": 0.397,
+            "direction": 0.0714,
+            "tooling": 0.006
+          },
+          "confidence": 0.311
+        },
+        "game": {
+          "type": "choice",
+          "choice": "watch",
+          "probabilities": {
+            "murmur": 0.0082,
+            "stairwell": 0.0168,
+            "pass": 0.01,
+            "glance": 0.0107,
+            "watch": 0.8181,
+            "hearsay": 0.0574,
+            "goodhands": 0.0101,
+            "valley": 0.0061,
+            "voice": 0.0044,
+            "well": 0.0047,
+            "warren": 0.0107,
+            "repair": 0.0045,
+            "neighbours": 0.0181,
+            "rope": 0.0045,
+            "lab": 0.0157
+          },
+          "confidence": 0.6507
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.3985,
+            "quit": 0.0359,
+            "mixed": 0.5225,
+            "none": 0.0431
+          },
+          "confidence": 0.2466
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.8617,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.3727,
+            "1": 0.4301,
+            "2": 0.16,
+            "3": 0.0372
+          },
+          "confidence": 0.1345
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.2589
+        }
+      },
+      "usage": {
+        "input_tokens": 1238,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-254",
+    "ms": 393.68508400000064,
+    "inTok": 1241,
+    "outTok": 0,
+    "usd": 0.00029783999999999995,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "layout",
+          "probabilities": {
+            "bug": 0.0963,
+            "unclear": 0.1548,
+            "layout": 0.3328,
+            "pacing": 0.0181,
+            "difficulty": 0.0773,
+            "repetition": 0.0047,
+            "agency": 0.2864,
+            "delight": 0.0037,
+            "direction": 0.0178,
+            "tooling": 0.0081
+          },
+          "confidence": 0.1475
+        },
+        "game": {
+          "type": "choice",
+          "choice": "watch",
+          "probabilities": {
+            "murmur": 0.0175,
+            "stairwell": 0.1491,
+            "pass": 0.0278,
+            "glance": 0.0172,
+            "watch": 0.3378,
+            "hearsay": 0.0217,
+            "goodhands": 0.0143,
+            "valley": 0.0302,
+            "voice": 0.0079,
+            "well": 0.0166,
+            "warren": 0.1716,
+            "repair": 0.0316,
+            "neighbours": 0.0481,
+            "rope": 0.0506,
+            "lab": 0.058
+          },
+          "confidence": 0.1196
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "quit",
+          "probabilities": {
+            "keep": 0.0078,
+            "quit": 0.9045,
+            "mixed": 0.074,
+            "none": 0.0137
+          },
+          "confidence": 0.7651
+        },
+        "severity": {
+          "type": "score",
+          "score": 2.8561,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0084,
+            "1": 0.0169,
+            "2": 0.0848,
+            "3": 0.8899
+          },
+          "confidence": 0.7325
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.7745
+        }
+      },
+      "usage": {
+        "input_tokens": 1241,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-260",
+    "ms": 430.3059580000008,
+    "inTok": 1248,
+    "outTok": 0,
+    "usd": 0.00029952,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "delight",
+          "probabilities": {
+            "bug": 0.0048,
+            "unclear": 0.0072,
+            "layout": 0.0047,
+            "pacing": 0.0313,
+            "difficulty": 0.0056,
+            "repetition": 0.0048,
+            "agency": 0.0119,
+            "delight": 0.8953,
+            "direction": 0.0269,
+            "tooling": 0.0075
+          },
+          "confidence": 0.7817
+        },
+        "game": {
+          "type": "choice",
+          "choice": "neighbours",
+          "probabilities": {
+            "murmur": 0.0172,
+            "stairwell": 0.197,
+            "pass": 0.0211,
+            "glance": 0.0165,
+            "watch": 0.0211,
+            "hearsay": 0.0464,
+            "goodhands": 0.0217,
+            "valley": 0.0112,
+            "voice": 0.0092,
+            "well": 0.0098,
+            "warren": 0.0225,
+            "repair": 0.0136,
+            "neighbours": 0.5427,
+            "rope": 0.0086,
+            "lab": 0.0414
+          },
+          "confidence": 0.2931
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "keep",
+          "probabilities": {
+            "keep": 0.9023,
+            "quit": 0.0119,
+            "mixed": 0.0468,
+            "none": 0.039
+          },
+          "confidence": 0.7574
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.1636,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.8923,
+            "1": 0.0738,
+            "2": 0.012,
+            "3": 0.0219
+          },
+          "confidence": 0.7364
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.026
+        }
+      },
+      "usage": {
+        "input_tokens": 1248,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-265",
+    "ms": 442.3462500000023,
+    "inTok": 1242,
+    "outTok": 0,
+    "usd": 0.00029808,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "pacing",
+          "probabilities": {
+            "bug": 0.0148,
+            "unclear": 0.0223,
+            "layout": 0.0068,
+            "pacing": 0.7229,
+            "difficulty": 0.0163,
+            "repetition": 0.0086,
+            "agency": 0.0408,
+            "delight": 0.0154,
+            "direction": 0.1437,
+            "tooling": 0.0084
+          },
+          "confidence": 0.4959
+        },
+        "game": {
+          "type": "choice",
+          "choice": "neighbours",
+          "probabilities": {
+            "murmur": 0.1538,
+            "stairwell": 0.1608,
+            "pass": 0.0248,
+            "glance": 0.0223,
+            "watch": 0.0441,
+            "hearsay": 0.1507,
+            "goodhands": 0.0419,
+            "valley": 0.0212,
+            "voice": 0.0176,
+            "well": 0.0258,
+            "warren": 0.0212,
+            "repair": 0.0154,
+            "neighbours": 0.2075,
+            "rope": 0.0112,
+            "lab": 0.0817
+          },
+          "confidence": 0.0668
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0314,
+            "quit": 0.0467,
+            "mixed": 0.7957,
+            "none": 0.1262
+          },
+          "confidence": 0.5363
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.5844,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0899,
+            "1": 0.2874,
+            "2": 0.5711,
+            "3": 0.0516
+          },
+          "confidence": 0.226
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.7068
+        }
+      },
+      "usage": {
+        "input_tokens": 1242,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-269",
+    "ms": 270.40287499999977,
+    "inTok": 1224,
+    "outTok": 0,
+    "usd": 0.00029376,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "delight",
+          "probabilities": {
+            "bug": 0.0046,
+            "unclear": 0.0056,
+            "layout": 0.0049,
+            "pacing": 0.0154,
+            "difficulty": 0.0052,
+            "repetition": 0.0295,
+            "agency": 0.0126,
+            "delight": 0.8883,
+            "direction": 0.0276,
+            "tooling": 0.0063
+          },
+          "confidence": 0.7681
+        },
+        "game": {
+          "type": "choice",
+          "choice": "murmur",
+          "probabilities": {
+            "murmur": 0.5772,
+            "stairwell": 0.0298,
+            "pass": 0.023,
+            "glance": 0.0197,
+            "watch": 0.0176,
+            "hearsay": 0.1026,
+            "goodhands": 0.0327,
+            "valley": 0.0114,
+            "voice": 0.0296,
+            "well": 0.0102,
+            "warren": 0.0178,
+            "repair": 0.0097,
+            "neighbours": 0.0338,
+            "rope": 0.0096,
+            "lab": 0.0753
+          },
+          "confidence": 0.3093
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "keep",
+          "probabilities": {
+            "keep": 0.9251,
+            "quit": 0.0082,
+            "mixed": 0.0449,
+            "none": 0.0218
+          },
+          "confidence": 0.8112
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.1102,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.9204,
+            "1": 0.058,
+            "2": 0.0125,
+            "3": 0.0091
+          },
+          "confidence": 0.801
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.018
+        }
+      },
+      "usage": {
+        "input_tokens": 1224,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-277",
+    "ms": 504.57037499999933,
+    "inTok": 1250,
+    "outTok": 0,
+    "usd": 0.0003,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "pacing",
+          "probabilities": {
+            "bug": 0.0103,
+            "unclear": 0.0321,
+            "layout": 0.0078,
+            "pacing": 0.4866,
+            "difficulty": 0.0328,
+            "repetition": 0.0119,
+            "agency": 0.2674,
+            "delight": 0.0133,
+            "direction": 0.1266,
+            "tooling": 0.0112
+          },
+          "confidence": 0.2523
+        },
+        "game": {
+          "type": "choice",
+          "choice": "pass",
+          "probabilities": {
+            "murmur": 0.0186,
+            "stairwell": 0.067,
+            "pass": 0.5245,
+            "glance": 0.0205,
+            "watch": 0.0191,
+            "hearsay": 0.0336,
+            "goodhands": 0.0954,
+            "valley": 0.0156,
+            "voice": 0.0108,
+            "well": 0.0137,
+            "warren": 0.0199,
+            "repair": 0.0211,
+            "neighbours": 0.0763,
+            "rope": 0.01,
+            "lab": 0.0539
+          },
+          "confidence": 0.2512
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "quit",
+          "probabilities": {
+            "keep": 0.0147,
+            "quit": 0.7347,
+            "mixed": 0.205,
+            "none": 0.0456
+          },
+          "confidence": 0.4455
+        },
+        "severity": {
+          "type": "score",
+          "score": 2.7346,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0238,
+            "1": 0.0361,
+            "2": 0.1217,
+            "3": 0.8184
+          },
+          "confidence": 0.5818
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.7295
+        }
+      },
+      "usage": {
+        "input_tokens": 1250,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-282",
+    "ms": 393.66958299999897,
+    "inTok": 1239,
+    "outTok": 0,
+    "usd": 0.00029736000000000004,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "pacing",
+          "probabilities": {
+            "bug": 0.0066,
+            "unclear": 0.0099,
+            "layout": 0.0062,
+            "pacing": 0.4537,
+            "difficulty": 0.0721,
+            "repetition": 0.0858,
+            "agency": 0.0236,
+            "delight": 0.034,
+            "direction": 0.3011,
+            "tooling": 0.007
+          },
+          "confidence": 0.2345
+        },
+        "game": {
+          "type": "choice",
+          "choice": "pass",
+          "probabilities": {
+            "murmur": 0.0416,
+            "stairwell": 0.1566,
+            "pass": 0.1986,
+            "glance": 0.05,
+            "watch": 0.1428,
+            "hearsay": 0.0236,
+            "goodhands": 0.1141,
+            "valley": 0.0257,
+            "voice": 0.0132,
+            "well": 0.0184,
+            "warren": 0.0195,
+            "repair": 0.0276,
+            "neighbours": 0.0537,
+            "rope": 0.0165,
+            "lab": 0.0981
+          },
+          "confidence": 0.0542
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.3507,
+            "quit": 0.0069,
+            "mixed": 0.5667,
+            "none": 0.0757
+          },
+          "confidence": 0.2666
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.141,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.1542,
+            "1": 0.5647,
+            "2": 0.267,
+            "3": 0.0141
+          },
+          "confidence": 0.2189
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.774
+        }
+      },
+      "usage": {
+        "input_tokens": 1239,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-285",
+    "ms": 262.37083300000086,
+    "inTok": 1230,
+    "outTok": 0,
+    "usd": 0.00029519999999999997,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "delight",
+          "probabilities": {
+            "bug": 0.0046,
+            "unclear": 0.0056,
+            "layout": 0.0049,
+            "pacing": 0.0071,
+            "difficulty": 0.0048,
+            "repetition": 0.0049,
+            "agency": 0.0101,
+            "delight": 0.9335,
+            "direction": 0.0182,
+            "tooling": 0.0063
+          },
+          "confidence": 0.8579
+        },
+        "game": {
+          "type": "choice",
+          "choice": "voice",
+          "probabilities": {
+            "murmur": 0.0233,
+            "stairwell": 0.0738,
+            "pass": 0.0135,
+            "glance": 0.0187,
+            "watch": 0.0115,
+            "hearsay": 0.0264,
+            "goodhands": 0.0417,
+            "valley": 0.0102,
+            "voice": 0.6783,
+            "well": 0.0053,
+            "warren": 0.0226,
+            "repair": 0.0075,
+            "neighbours": 0.031,
+            "rope": 0.0076,
+            "lab": 0.0286
+          },
+          "confidence": 0.434
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "keep",
+          "probabilities": {
+            "keep": 0.9481,
+            "quit": 0.0074,
+            "mixed": 0.0231,
+            "none": 0.0214
+          },
+          "confidence": 0.8666
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.0638,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.9612,
+            "1": 0.022,
+            "2": 0.0086,
+            "3": 0.0082
+          },
+          "confidence": 0.8995
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.0306
+        }
+      },
+      "usage": {
+        "input_tokens": 1230,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-292",
+    "ms": 321.7417080000014,
+    "inTok": 1243,
+    "outTok": 0,
+    "usd": 0.00029832,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "layout",
+          "probabilities": {
+            "bug": 0.0044,
+            "unclear": 0.0071,
+            "layout": 0.9526,
+            "pacing": 0.0034,
+            "difficulty": 0.0023,
+            "repetition": 0.0019,
+            "agency": 0.0039,
+            "delight": 0.0059,
+            "direction": 0.0166,
+            "tooling": 0.0019
+          },
+          "confidence": 0.8976
+        },
+        "game": {
+          "type": "choice",
+          "choice": "valley",
+          "probabilities": {
+            "murmur": 0.0164,
+            "stairwell": 0.1237,
+            "pass": 0.0162,
+            "glance": 0.0244,
+            "watch": 0.1091,
+            "hearsay": 0.0669,
+            "goodhands": 0.0129,
+            "valley": 0.2729,
+            "voice": 0.0093,
+            "well": 0.1137,
+            "warren": 0.1217,
+            "repair": 0.0104,
+            "neighbours": 0.0584,
+            "rope": 0.0081,
+            "lab": 0.0359
+          },
+          "confidence": 0.0788
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.162,
+            "quit": 0.1424,
+            "mixed": 0.5747,
+            "none": 0.1209
+          },
+          "confidence": 0.1885
+        },
+        "severity": {
+          "type": "score",
+          "score": 2.0036,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0729,
+            "1": 0.1243,
+            "2": 0.5292,
+            "3": 0.2736
+          },
+          "confidence": 0.1676
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.7001
+        }
+      },
+      "usage": {
+        "input_tokens": 1243,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-298",
+    "ms": 2660.735457999999,
+    "inTok": 1244,
+    "outTok": 0,
+    "usd": 0.00029856,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "direction",
+          "probabilities": {
+            "bug": 0.0129,
+            "unclear": 0.0407,
+            "layout": 0.3617,
+            "pacing": 0.007,
+            "difficulty": 0.0064,
+            "repetition": 0.0041,
+            "agency": 0.0291,
+            "delight": 0.0269,
+            "direction": 0.5025,
+            "tooling": 0.0087
+          },
+          "confidence": 0.3188
+        },
+        "game": {
+          "type": "choice",
+          "choice": "repair",
+          "probabilities": {
+            "murmur": 0.0479,
+            "stairwell": 0.17,
+            "pass": 0.0267,
+            "glance": 0.0177,
+            "watch": 0.0224,
+            "hearsay": 0.0564,
+            "goodhands": 0.0329,
+            "valley": 0.0158,
+            "voice": 0.0123,
+            "well": 0.0133,
+            "warren": 0.0166,
+            "repair": 0.3784,
+            "neighbours": 0.0549,
+            "rope": 0.0112,
+            "lab": 0.1235
+          },
+          "confidence": 0.1423
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.1896,
+            "quit": 0.0072,
+            "mixed": 0.6069,
+            "none": 0.1963
+          },
+          "confidence": 0.2571
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.3002,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.1655,
+            "1": 0.3958,
+            "2": 0.4117,
+            "3": 0.027
+          },
+          "confidence": 0.139
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.6841
+        }
+      },
+      "usage": {
+        "input_tokens": 1244,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-303",
+    "ms": 246.70066699999734,
+    "inTok": 1251,
+    "outTok": 0,
+    "usd": 0.00030024,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "pacing",
+          "probabilities": {
+            "bug": 0.0126,
+            "unclear": 0.0314,
+            "layout": 0.0077,
+            "pacing": 0.5792,
+            "difficulty": 0.0165,
+            "repetition": 0.145,
+            "agency": 0.1409,
+            "delight": 0.0207,
+            "direction": 0.0395,
+            "tooling": 0.0065
+          },
+          "confidence": 0.3109
+        },
+        "game": {
+          "type": "choice",
+          "choice": "repair",
+          "probabilities": {
+            "murmur": 0.0213,
+            "stairwell": 0.0571,
+            "pass": 0.0338,
+            "glance": 0.0472,
+            "watch": 0.0707,
+            "hearsay": 0.0366,
+            "goodhands": 0.03,
+            "valley": 0.1419,
+            "voice": 0.0123,
+            "well": 0.0427,
+            "warren": 0.1224,
+            "repair": 0.1848,
+            "neighbours": 0.0608,
+            "rope": 0.0302,
+            "lab": 0.1082
+          },
+          "confidence": 0.0377
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "mixed",
+          "probabilities": {
+            "keep": 0.0637,
+            "quit": 0.1884,
+            "mixed": 0.6547,
+            "none": 0.0932
+          },
+          "confidence": 0.3024
+        },
+        "severity": {
+          "type": "score",
+          "score": 1.8938,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.0775,
+            "1": 0.1923,
+            "2": 0.4892,
+            "3": 0.241
+          },
+          "confidence": 0.1205
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.6839
+        }
+      },
+      "usage": {
+        "input_tokens": 1251,
+        "output_tokens": 0
+      }
+    }
+  },
+  {
+    "id": "F-343",
+    "ms": 294.26337499999863,
+    "inTok": 1216,
+    "outTok": 0,
+    "usd": 0.00029183999999999997,
+    "raw": {
+      "model": "clef",
+      "answers": {
+        "category": {
+          "type": "choice",
+          "choice": "delight",
+          "probabilities": {
+            "bug": 0.0379,
+            "unclear": 0.0216,
+            "layout": 0.0158,
+            "pacing": 0.0686,
+            "difficulty": 0.0513,
+            "repetition": 0.0346,
+            "agency": 0.0383,
+            "delight": 0.4703,
+            "direction": 0.1662,
+            "tooling": 0.0954
+          },
+          "confidence": 0.1889
+        },
+        "game": {
+          "type": "choice",
+          "choice": "goodhands",
+          "probabilities": {
+            "murmur": 0.0076,
+            "stairwell": 0.013,
+            "pass": 0.0079,
+            "glance": 0.0115,
+            "watch": 0.0079,
+            "hearsay": 0.0137,
+            "goodhands": 0.8019,
+            "valley": 0.006,
+            "voice": 0.0045,
+            "well": 0.0056,
+            "warren": 0.0067,
+            "repair": 0.0063,
+            "neighbours": 0.0104,
+            "rope": 0.0051,
+            "lab": 0.0919
+          },
+          "confidence": 0.6276
+        },
+        "verdict": {
+          "type": "choice",
+          "choice": "none",
+          "probabilities": {
+            "keep": 0.3172,
+            "quit": 0.0171,
+            "mixed": 0.2836,
+            "none": 0.3821
+          },
+          "confidence": 0.1031
+        },
+        "severity": {
+          "type": "score",
+          "score": 0.6369,
+          "legend": {
+            "0": "None (praise or neutral)",
+            "1": "Minor",
+            "2": "Real friction",
+            "3": "Made the player quit or blocks play"
+          },
+          "probabilities": {
+            "0": 0.5633,
+            "1": 0.2759,
+            "2": 0.1215,
+            "3": 0.0393
+          },
+          "confidence": 0.2129
+        },
+        "fix": {
+          "type": "noul",
+          "noul": 0.3334
+        }
+      },
+      "usage": {
+        "input_tokens": 1216,
+        "output_tokens": 0
+      }
+    }
+  }
+]

@@ -1,0 +1,1832 @@
+[
+  {
+    "id": "F-015",
+    "ms": 7387.899959,
+    "inTok": 640,
+    "outTok": 49,
+    "usd": 0.0000787,
+    "raw": {
+      "id": "chatcmpl-2ee84201-4390-4193-b651-7522acf2bcb5",
+      "object": "chat.completion",
+      "created": 1792524408,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n  \"category\": \"repetition\",\n  \"game\": \"pass\",\n  \"verdict\": \"mixed\",\n  \"severity\": \"1\",\n  \"fix\": true\n}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 640,
+        "completion_tokens": 49,
+        "total_tokens": 689,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.154545307159424
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-024",
+    "ms": 1212.3513330000005,
+    "inTok": 625,
+    "outTok": 48,
+    "usd": 0.0000769,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"pass\",\n  \"verdict\": \"mixed\",\n  \"severity\": 3,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524408,
+      "id": "87ee3e42076d4d26b4cc68e3d51df6d5",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 625,
+        "completion_tokens": 48,
+        "total_tokens": 673,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 6.990908622741699
+      }
+    }
+  },
+  {
+    "id": "F-026",
+    "ms": 922.9966249999998,
+    "inTok": 630,
+    "outTok": 37,
+    "usd": 0.0000741,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\"category\": \"unclear\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524409,
+      "id": "ba4ecf3d971c4c13932f35e95c1ab269",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 630,
+        "completion_tokens": 37,
+        "total_tokens": 667,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 6.736363410949707
+      }
+    }
+  },
+  {
+    "id": "F-027",
+    "ms": 1267.6296249999996,
+    "inTok": 630,
+    "outTok": 49,
+    "usd": 0.0000777,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"tooling\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 1,\n  \"fix\": false\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524410,
+      "id": "cfd8019a214d497b9536b3ffd743d3f5",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 630,
+        "completion_tokens": 49,
+        "total_tokens": 679,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.063636302947998
+      }
+    }
+  },
+  {
+    "id": "F-029",
+    "ms": 511.292958,
+    "inTok": 644,
+    "outTok": 49,
+    "usd": 0.00007910000000000001,
+    "raw": {
+      "id": "chatcmpl-fa2d0b4b-24c2-4d0b-804e-330b6cfe2f4f",
+      "object": "chat.completion",
+      "created": 1792524411,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"pass\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 644,
+        "completion_tokens": 49,
+        "total_tokens": 693,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.190908908843994
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-034",
+    "ms": 1215.591457999999,
+    "inTok": 643,
+    "outTok": 48,
+    "usd": 0.00007869999999999999,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"difficulty\",\n  \"game\": \"pass\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524412,
+      "id": "7ecf42eadeb24e9da2c846a1a39515a1",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 643,
+        "completion_tokens": 48,
+        "total_tokens": 691,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.536360740661621
+      }
+    }
+  },
+  {
+    "id": "F-042",
+    "ms": 1118.0119579999991,
+    "inTok": 630,
+    "outTok": 50,
+    "usd": 0.000078,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"murmur\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524413,
+      "id": "607206b17e5b4022a22a44a3a872c35a",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 630,
+        "completion_tokens": 50,
+        "total_tokens": 680,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.090909004211426
+      }
+    }
+  },
+  {
+    "id": "F-054",
+    "ms": 904.4563749999998,
+    "inTok": 626,
+    "outTok": 36,
+    "usd": 0.00007340000000000001,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\"category\": \"difficulty\", \"game\": \"unknown\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": false}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524414,
+      "id": "13e677920b934c0db478c3fc8fc7ea23",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 626,
+        "completion_tokens": 36,
+        "total_tokens": 662,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.0545430183410645
+      }
+    }
+  },
+  {
+    "id": "F-060",
+    "ms": 1130.167458,
+    "inTok": 623,
+    "outTok": 50,
+    "usd": 0.00007730000000000001,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"murmur\",\n  \"verdict\": \"mixed\",\n  \"severity\": \"2\",\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524415,
+      "id": "ea75f5f3fe4d4e4e87ccc9621d69e5b6",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 623,
+        "completion_tokens": 50,
+        "total_tokens": 673,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.409088134765625
+      }
+    }
+  },
+  {
+    "id": "F-068",
+    "ms": 861.056333999999,
+    "inTok": 624,
+    "outTok": 37,
+    "usd": 0.0000735,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\"category\": \"tooling\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524416,
+      "id": "e8e86b1d9e8f4b9bb700bc1c95bf0ee2",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 624,
+        "completion_tokens": 37,
+        "total_tokens": 661,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 6.681818008422852
+      }
+    }
+  },
+  {
+    "id": "F-071",
+    "ms": 1135.9672909999972,
+    "inTok": 623,
+    "outTok": 48,
+    "usd": 0.00007670000000000001,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"valley\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524417,
+      "id": "3c0851bdc53345df8cc497e916963e3f",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 623,
+        "completion_tokens": 48,
+        "total_tokens": 671,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.3545427322387695
+      }
+    }
+  },
+  {
+    "id": "F-090",
+    "ms": 917.2676670000001,
+    "inTok": 622,
+    "outTok": 37,
+    "usd": 0.00007329999999999999,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\"category\": \"pacing\", \"game\": \"neighbours\", \"verdict\": \"mixed\", \"severity\": \"2\", \"fix\": true}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524418,
+      "id": "ea62f33a66954cb3b44fe4dc1691ab06",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 622,
+        "completion_tokens": 37,
+        "total_tokens": 659,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 6.663636207580566
+      }
+    }
+  },
+  {
+    "id": "F-092",
+    "ms": 1061.056916999998,
+    "inTok": 623,
+    "outTok": 50,
+    "usd": 0.00007730000000000001,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524419,
+      "id": "83c381e5df124b4da06d723103949f9a",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 623,
+        "completion_tokens": 50,
+        "total_tokens": 673,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.409088134765625
+      }
+    }
+  },
+  {
+    "id": "F-096",
+    "ms": 1111.208584,
+    "inTok": 630,
+    "outTok": 50,
+    "usd": 0.000078,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"layout\",\n  \"game\": \"stairwell\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524420,
+      "id": "e297d161428144cfa5baf3fb1e9a0849",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 630,
+        "completion_tokens": 50,
+        "total_tokens": 680,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.472724914550781
+      }
+    }
+  },
+  {
+    "id": "F-107",
+    "ms": 471.9477079999997,
+    "inTok": 632,
+    "outTok": 36,
+    "usd": 0.000074,
+    "raw": {
+      "id": "chatcmpl-82203f55-132a-4a95-a1f5-d69f65ea20d2",
+      "object": "chat.completion",
+      "created": 1792524421,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\"category\": \"bug\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 3, \"fix\": false}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 632,
+        "completion_tokens": 36,
+        "total_tokens": 668,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 6.7272725105285645
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-122",
+    "ms": 1214.2786670000023,
+    "inTok": 638,
+    "outTok": 48,
+    "usd": 0.0000782,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 1,\n  \"fix\": false\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524422,
+      "id": "d5a1624a862740e68e6e91d7ff044324",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 638,
+        "completion_tokens": 48,
+        "total_tokens": 686,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.490906715393066
+      }
+    }
+  },
+  {
+    "id": "F-123",
+    "ms": 1185.0957500000004,
+    "inTok": 649,
+    "outTok": 51,
+    "usd": 0.0000802,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"stairwell\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524423,
+      "id": "4c049868845b42998eb81885d58e4a10",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 649,
+        "completion_tokens": 51,
+        "total_tokens": 700,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.672724723815918
+      }
+    }
+  },
+  {
+    "id": "F-127",
+    "ms": 1097.5265419999996,
+    "inTok": 663,
+    "outTok": 49,
+    "usd": 0.000081,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"hearsay\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524424,
+      "id": "13750dad867b4816ac5c1b4c7b6208df",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 663,
+        "completion_tokens": 49,
+        "total_tokens": 712,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "neurons": 4.454542636871338
+      }
+    }
+  },
+  {
+    "id": "F-138",
+    "ms": 1189.4488330000022,
+    "inTok": 623,
+    "outTok": 48,
+    "usd": 0.00007670000000000001,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"difficulty\",\n  \"game\": \"repair\",\n  \"verdict\": \"mixed\",\n  \"severity\": 1,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524426,
+      "id": "6d19d3edd75f42269327270871dd47bc",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 623,
+        "completion_tokens": 48,
+        "total_tokens": 671,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 6.972726821899414
+      }
+    }
+  },
+  {
+    "id": "F-146",
+    "ms": 1298.9692910000012,
+    "inTok": 670,
+    "outTok": 48,
+    "usd": 0.0000814,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"layout\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524427,
+      "id": "3b682be0c6b24dcda05b352cbab430ed",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 670,
+        "completion_tokens": 48,
+        "total_tokens": 718,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.781815528869629
+      }
+    }
+  },
+  {
+    "id": "F-157",
+    "ms": 1106.413292000001,
+    "inTok": 636,
+    "outTok": 49,
+    "usd": 0.00007829999999999999,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"tooling\",\n  \"game\": \"lab\",\n  \"verdict\": \"none\",\n  \"severity\": 1,\n  \"fix\": false\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524428,
+      "id": "816a36bc195740dfa61df42436b1c295",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 636,
+        "completion_tokens": 49,
+        "total_tokens": 685,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.1181817054748535
+      }
+    }
+  },
+  {
+    "id": "F-162",
+    "ms": 424.09379199999967,
+    "inTok": 634,
+    "outTok": 37,
+    "usd": 0.0000745,
+    "raw": {
+      "id": "chatcmpl-c09e8dd3-6f7e-4801-b07e-6d0102c861d6",
+      "object": "chat.completion",
+      "created": 1792524429,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\"category\": \"bug\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": true}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 634,
+        "completion_tokens": 37,
+        "total_tokens": 671,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 6.772727012634277
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-166",
+    "ms": 1149.4446669999998,
+    "inTok": 640,
+    "outTok": 49,
+    "usd": 0.0000787,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"bug\",\n  \"game\": \"warren\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524430,
+      "id": "54768c9ab7fd49efbba21e8fb1c23431",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 640,
+        "completion_tokens": 49,
+        "total_tokens": 689,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.536361217498779
+      }
+    }
+  },
+  {
+    "id": "F-168",
+    "ms": 469.3946670000005,
+    "inTok": 620,
+    "outTok": 36,
+    "usd": 0.0000728,
+    "raw": {
+      "id": "chatcmpl-a08b74f1-721c-4461-b11f-fd7bc8670e82",
+      "object": "chat.completion",
+      "created": 1792524431,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\"category\": \"agency\", \"game\": \"none\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": false}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 620,
+        "completion_tokens": 36,
+        "total_tokens": 656,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 6.6181817054748535
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-172",
+    "ms": 968.1332919999986,
+    "inTok": 642,
+    "outTok": 37,
+    "usd": 0.0000753,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\"category\": \"tooling\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524431,
+      "id": "f70a43b35d164b26a96550cec99b02a2",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 642,
+        "completion_tokens": 37,
+        "total_tokens": 679,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.227270126342773
+      }
+    }
+  },
+  {
+    "id": "F-180",
+    "ms": 889.1114589999997,
+    "inTok": 650,
+    "outTok": 48,
+    "usd": 0.0000794,
+    "raw": {
+      "id": "chatcmpl-c7a87249-c718-4a6a-8c8b-54cb0a29b84e",
+      "object": "chat.completion",
+      "created": 1792524432,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"valley\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 650,
+        "completion_tokens": 48,
+        "total_tokens": 698,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.218181610107422
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-184",
+    "ms": 1378.5059999999976,
+    "inTok": 634,
+    "outTok": 50,
+    "usd": 0.00007840000000000001,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"delight\",\n  \"game\": \"hearsay\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524433,
+      "id": "aaef043e75634fdca9bb0df2f7a54754",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 634,
+        "completion_tokens": 50,
+        "total_tokens": 684,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.509088516235352
+      }
+    }
+  },
+  {
+    "id": "F-192",
+    "ms": 1328.069875000001,
+    "inTok": 623,
+    "outTok": 37,
+    "usd": 0.00007340000000000001,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\"category\": \"tooling\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524435,
+      "id": "41d5432539c246d1b37c05c427f9e373",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 623,
+        "completion_tokens": 37,
+        "total_tokens": 660,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.0545430183410645
+      }
+    }
+  },
+  {
+    "id": "F-200",
+    "ms": 949.1239580000038,
+    "inTok": 628,
+    "outTok": 37,
+    "usd": 0.00007390000000000001,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\"category\": \"unclear\", \"game\": \"lab\", \"verdict\": \"mixed\", \"severity\": 2, \"fix\": false}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524436,
+      "id": "d11f898f2f404776bb801ca11d161d22",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 628,
+        "completion_tokens": 37,
+        "total_tokens": 665,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.099997520446777
+      }
+    }
+  },
+  {
+    "id": "F-203",
+    "ms": 701.325957999994,
+    "inTok": 628,
+    "outTok": 36,
+    "usd": 0.00007360000000000001,
+    "raw": {
+      "id": "chatcmpl-b1ff2a3f-7ad9-4e72-977e-2e2a36da7d61",
+      "object": "chat.completion",
+      "created": 1792524437,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\"category\": \"direction\", \"game\": \"valley\", \"verdict\": \"none\", \"severity\": 0, \"fix\": true}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 628,
+        "completion_tokens": 36,
+        "total_tokens": 664,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 6.690908908843994
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-204",
+    "ms": 954.8122079999957,
+    "inTok": 621,
+    "outTok": 37,
+    "usd": 0.0000732,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\"category\": \"delight\", \"game\": \"none\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524437,
+      "id": "93e45f23a77b439b8d5e3c113fb33381",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 621,
+        "completion_tokens": 37,
+        "total_tokens": 658,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.036361217498779
+      }
+    }
+  },
+  {
+    "id": "F-211",
+    "ms": 659.5294579999972,
+    "inTok": 648,
+    "outTok": 49,
+    "usd": 0.0000795,
+    "raw": {
+      "id": "chatcmpl-ee727696-0ee4-4488-bda7-2d9f6b914a80",
+      "object": "chat.completion",
+      "created": 1792524438,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"valley\",\n  \"verdict\": \"mixed\",\n  \"severity\": 1,\n  \"fix\": true\n}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 648,
+        "completion_tokens": 49,
+        "total_tokens": 697,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.2272725105285645
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-221",
+    "ms": 658.7462920000035,
+    "inTok": 653,
+    "outTok": 49,
+    "usd": 0.00008,
+    "raw": {
+      "id": "chatcmpl-fee0a698-d1c9-421b-af66-27b060663790",
+      "object": "chat.completion",
+      "created": 1792524439,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"hearsay\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 653,
+        "completion_tokens": 49,
+        "total_tokens": 702,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.272727012634277
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-223",
+    "ms": 1134.9920000000056,
+    "inTok": 632,
+    "outTok": 50,
+    "usd": 0.0000782,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"murmur\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524440,
+      "id": "e720c00ee99040bb8b11fbc2ccccf1c7",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 632,
+        "completion_tokens": 50,
+        "total_tokens": 682,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.109090805053711
+      }
+    }
+  },
+  {
+    "id": "F-237",
+    "ms": 564.3420410000035,
+    "inTok": 648,
+    "outTok": 49,
+    "usd": 0.0000795,
+    "raw": {
+      "id": "chatcmpl-270ee7d1-d330-4347-8f67-97b84f2516fc",
+      "object": "chat.completion",
+      "created": 1792524441,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 648,
+        "completion_tokens": 49,
+        "total_tokens": 697,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.2272725105285645
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-243",
+    "ms": 1095.2542079999985,
+    "inTok": 645,
+    "outTok": 49,
+    "usd": 0.0000792,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"pass\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524441,
+      "id": "29e0422ffb82424aafc68432f9d6fcf9",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 645,
+        "completion_tokens": 49,
+        "total_tokens": 694,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.581815719604492
+      }
+    }
+  },
+  {
+    "id": "F-245",
+    "ms": 1104.512416999998,
+    "inTok": 654,
+    "outTok": 50,
+    "usd": 0.0000804,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"repetition\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524442,
+      "id": "247dee1f2441488a913c0bd3449b490a",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 654,
+        "completion_tokens": 50,
+        "total_tokens": 704,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.309090614318848
+      }
+    }
+  },
+  {
+    "id": "F-246",
+    "ms": 657.2930829999968,
+    "inTok": 647,
+    "outTok": 50,
+    "usd": 0.0000797,
+    "raw": {
+      "id": "chatcmpl-c9aa0304-ba1b-470e-ad04-c543d943c6f2",
+      "object": "chat.completion",
+      "created": 1792524443,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"warren\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 647,
+        "completion_tokens": 50,
+        "total_tokens": 697,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.24545431137085
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-250",
+    "ms": 1063.7520409999997,
+    "inTok": 637,
+    "outTok": 51,
+    "usd": 0.000079,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"watch\",\n  \"verdict\": \"mixed\",\n  \"severity\": \"1\",\n  \"fix\": \"true\"\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524444,
+      "id": "403188808ce149e886b563b0b3a1f01a",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 637,
+        "completion_tokens": 51,
+        "total_tokens": 688,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.563633918762207
+      }
+    }
+  },
+  {
+    "id": "F-254",
+    "ms": 1091.5564999999988,
+    "inTok": 640,
+    "outTok": 50,
+    "usd": 0.000079,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"unclear\",\n  \"game\": \"warren\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524445,
+      "id": "c3e10d801e93414daa326cb4911023dc",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 640,
+        "completion_tokens": 50,
+        "total_tokens": 690,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.563633918762207
+      }
+    }
+  },
+  {
+    "id": "F-260",
+    "ms": 1286.1617499999993,
+    "inTok": 649,
+    "outTok": 49,
+    "usd": 0.00007960000000000001,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"keep\",\n  \"severity\": 1,\n  \"fix\": false\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524446,
+      "id": "553b24c2acd646f4b424a3b21e2d3f3a",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 649,
+        "completion_tokens": 49,
+        "total_tokens": 698,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.6181793212890625
+      }
+    }
+  },
+  {
+    "id": "F-265",
+    "ms": 1110.9188749999958,
+    "inTok": 643,
+    "outTok": 51,
+    "usd": 0.0000796,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"neighbours\",\n  \"verdict\": \"mixed\",\n  \"severity\": \"2\",\n  \"fix\": \"true\"\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524448,
+      "id": "dceacfe1835e4cf3a45a4ea188ab1923",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 643,
+        "completion_tokens": 51,
+        "total_tokens": 694,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.6181793212890625
+      }
+    }
+  },
+  {
+    "id": "F-269",
+    "ms": 925.5382079999981,
+    "inTok": 624,
+    "outTok": 38,
+    "usd": 0.0000738,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\"category\": \"delight\", \"game\": \"murmur\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524449,
+      "id": "9518bdd3945c48b590e640c3f9bf7f2d",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 624,
+        "completion_tokens": 38,
+        "total_tokens": 662,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.090906620025635
+      }
+    }
+  },
+  {
+    "id": "F-277",
+    "ms": 1097.143750000003,
+    "inTok": 650,
+    "outTok": 48,
+    "usd": 0.0000794,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"pass\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524450,
+      "id": "bfcfd47fe6fe4627b885f479d76b946f",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 650,
+        "completion_tokens": 48,
+        "total_tokens": 698,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.599997520446777
+      }
+    }
+  },
+  {
+    "id": "F-282",
+    "ms": 1024.3746670000037,
+    "inTok": 639,
+    "outTok": 49,
+    "usd": 0.00007860000000000001,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"pacing\",\n  \"game\": \"pass\",\n  \"verdict\": \"mixed\",\n  \"severity\": 1,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524451,
+      "id": "2c7aa2613ece4f26a35f833900cac701",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 639,
+        "completion_tokens": 49,
+        "total_tokens": 688,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.527270317077637
+      }
+    }
+  },
+  {
+    "id": "F-285",
+    "ms": 852.5447080000013,
+    "inTok": 630,
+    "outTok": 37,
+    "usd": 0.0000741,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\"category\": \"delight\", \"game\": \"voice\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524452,
+      "id": "be59d692e0744425abc10adac33b0ae3",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 630,
+        "completion_tokens": 37,
+        "total_tokens": 667,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.1181793212890625
+      }
+    }
+  },
+  {
+    "id": "F-292",
+    "ms": 1026.188457999997,
+    "inTok": 643,
+    "outTok": 48,
+    "usd": 0.00007869999999999999,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"layout\",\n  \"game\": \"valley\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524453,
+      "id": "86942a53fbeb4443b5638138fa28e0b7",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 643,
+        "completion_tokens": 48,
+        "total_tokens": 691,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.536360740661621
+      }
+    }
+  },
+  {
+    "id": "F-298",
+    "ms": 547.4597500000018,
+    "inTok": 644,
+    "outTok": 48,
+    "usd": 0.00007880000000000002,
+    "raw": {
+      "id": "chatcmpl-0a297f27-6035-4afb-910d-dc475a81fca1",
+      "object": "chat.completion",
+      "created": 1792524454,
+      "model": "@cf/google/gemma-4-26b-a4b-it",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n  \"category\": \"layout\",\n  \"game\": \"repair\",\n  \"verdict\": \"mixed\",\n  \"severity\": 2,\n  \"fix\": true\n}\n```",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": 106,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 644,
+        "completion_tokens": 48,
+        "total_tokens": 692,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 7.163636207580566
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null
+    }
+  },
+  {
+    "id": "F-303",
+    "ms": 1098.1087499999994,
+    "inTok": 651,
+    "outTok": 48,
+    "usd": 0.0000795,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"agency\",\n  \"game\": \"unknown\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524454,
+      "id": "22a80907b3944516821e62b64ce9ee8e",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 651,
+        "completion_tokens": 48,
+        "total_tokens": 699,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.60908842086792
+      }
+    }
+  },
+  {
+    "id": "F-343",
+    "ms": 1095.641416999999,
+    "inTok": 617,
+    "outTok": 49,
+    "usd": 0.0000764,
+    "raw": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "logprobs": null,
+          "message": {
+            "content": "```json\n{\n  \"category\": \"difficulty\",\n  \"game\": \"goodhands\",\n  \"verdict\": \"mixed\",\n  \"severity\": \"1\",\n  \"fix\": true\n}\n```",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1792524455,
+      "id": "e67b80e338b947c28f9885aa4c13ed04",
+      "model": "@cf/google/gemma-4-26b-a4b-it-external",
+      "object": "chat.completion",
+      "usage": {
+        "prompt_tokens": 617,
+        "completion_tokens": 49,
+        "total_tokens": 666,
+        "prompt_tokens_details": {
+          "cached_tokens": 576
+        },
+        "neurons": 4.3272705078125
+      }
+    }
+  }
+]

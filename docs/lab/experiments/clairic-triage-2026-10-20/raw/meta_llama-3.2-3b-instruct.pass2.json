@@ -1,0 +1,2825 @@
+[
+  {
+    "id": "F-015",
+    "ms": 7104.982791,
+    "inTok": 657,
+    "outTok": 33,
+    "usd": 0.000044496299999999996,
+    "raw": {
+      "id": "chatcmpl-bdc34db6-09d3-4c39-8d97-3811f8af8c2f",
+      "object": "chat.completion",
+      "created": 1792524407,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"repetition\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": \"1\", \"fix\": \"false\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 657,
+        "completion_tokens": 33,
+        "total_tokens": 690,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.044017791748047
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "repetition",
+        "game": "pass",
+        "verdict": "mixed",
+        "severity": "1",
+        "fix": "false"
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-024",
+    "ms": 327.7626250000003,
+    "inTok": 647,
+    "outTok": 31,
+    "usd": 0.00004331729999999999,
+    "raw": {
+      "id": "chatcmpl-0709ebce-5a3a-4879-9aaf-e4402507998f",
+      "object": "chat.completion",
+      "created": 1792524408,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"bug\", \"game\": \"pass\", \"verdict\": \"quit\", \"severity\": 2, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 647,
+        "completion_tokens": 31,
+        "total_tokens": 678,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9368221759796143
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "bug",
+        "game": "pass",
+        "verdict": "quit",
+        "severity": 2,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-026",
+    "ms": 357.3623749999997,
+    "inTok": 651,
+    "outTok": 34,
+    "usd": 0.0000445259,
+    "raw": {
+      "id": "chatcmpl-1c258a88-1644-46f8-9865-c2f1e9dd2b12",
+      "object": "chat.completion",
+      "created": 1792524408,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"unclear\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": 1, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 651,
+        "completion_tokens": 34,
+        "total_tokens": 685,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.0467448234558105
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "unclear",
+        "game": "murmur",
+        "verdict": "mixed",
+        "severity": 1,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-027",
+    "ms": 405.64887499999986,
+    "inTok": 650,
+    "outTok": 32,
+    "usd": 0.000043805,
+    "raw": {
+      "id": "chatcmpl-675ffa12-d367-4c09-9c7f-fadb933fabaa",
+      "object": "chat.completion",
+      "created": 1792524408,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"tooling\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 0, \"fix\": true}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 650,
+        "completion_tokens": 32,
+        "total_tokens": 682,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.981170654296875
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "tooling",
+        "game": "lab",
+        "verdict": "none",
+        "severity": 0,
+        "fix": true
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-029",
+    "ms": 425.3781250000011,
+    "inTok": 664,
+    "outTok": 34,
+    "usd": 0.0000451876,
+    "raw": {
+      "id": "chatcmpl-fe146add-cf74-4bfe-9883-65505e0465bd",
+      "object": "chat.completion",
+      "created": 1792524409,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"pacing\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 664,
+        "completion_tokens": 34,
+        "total_tokens": 698,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.1068644523620605
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "pacing",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-034",
+    "ms": 397.35016599999835,
+    "inTok": 663,
+    "outTok": 33,
+    "usd": 0.000044801699999999995,
+    "raw": {
+      "id": "chatcmpl-e9924dea-2d09-4635-bde9-cf3ea85746ff",
+      "object": "chat.completion",
+      "created": 1792524409,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"repetition\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": \"1\", \"fix\": \"true\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 663,
+        "completion_tokens": 33,
+        "total_tokens": 696,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.071764945983887
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "repetition",
+        "game": "pass",
+        "verdict": "mixed",
+        "severity": "1",
+        "fix": "true"
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-042",
+    "ms": 406.4450419999994,
+    "inTok": 652,
+    "outTok": 35,
+    "usd": 0.0000449118,
+    "raw": {
+      "id": "chatcmpl-763a7fe0-97c4-49c9-b8e6-d1a2896f4ec0",
+      "object": "chat.completion",
+      "created": 1792524410,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"unclear\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": \"1\", \"fix\": \"false\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 652,
+        "completion_tokens": 35,
+        "total_tokens": 687,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.081844329833984
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "unclear",
+        "game": "murmur",
+        "verdict": "mixed",
+        "severity": "1",
+        "fix": "false"
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-054",
+    "ms": 281.46270800000093,
+    "inTok": 648,
+    "outTok": 33,
+    "usd": 0.0000440382,
+    "raw": {
+      "id": "chatcmpl-dc12a81a-13c8-42e7-a030-db775d9e0968",
+      "object": "chat.completion",
+      "created": 1792524410,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"difficulty\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 2, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 648,
+        "completion_tokens": 33,
+        "total_tokens": 681,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.002396106719971
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "difficulty",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": 2,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-060",
+    "ms": 460.35204200000044,
+    "inTok": 645,
+    "outTok": 33,
+    "usd": 0.0000438855,
+    "raw": {
+      "id": "chatcmpl-7febf9d0-a973-4f02-917d-d5561c1141f8",
+      "object": "chat.completion",
+      "created": 1792524410,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"delight\", \"game\": \"lab\", \"verdict\": \"mixed\", \"severity\": \"0\", \"fix\": \"false\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 645,
+        "completion_tokens": 33,
+        "total_tokens": 678,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.988522529602051
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "delight",
+        "game": "lab",
+        "verdict": "mixed",
+        "severity": "0",
+        "fix": "false"
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-068",
+    "ms": 270.2943749999995,
+    "inTok": 647,
+    "outTok": 31,
+    "usd": 0.00004331729999999999,
+    "raw": {
+      "id": "chatcmpl-5248fc77-7e5e-4034-86f2-766697b293ee",
+      "object": "chat.completion",
+      "created": 1792524411,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"quit\", \"game\": \"lab\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 647,
+        "completion_tokens": 31,
+        "total_tokens": 678,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9368221759796143
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "quit",
+        "game": "lab",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-071",
+    "ms": 355.6377080000002,
+    "inTok": 645,
+    "outTok": 32,
+    "usd": 0.0000435505,
+    "raw": {
+      "id": "chatcmpl-149dd3f1-fd96-47fa-9629-9b183051c0d6",
+      "object": "chat.completion",
+      "created": 1792524411,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"bug\", \"game\": \"valley\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 645,
+        "completion_tokens": 32,
+        "total_tokens": 677,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.958047866821289
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "bug",
+        "game": "valley",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-090",
+    "ms": 373.38629200000105,
+    "inTok": 644,
+    "outTok": 32,
+    "usd": 0.0000434996,
+    "raw": {
+      "id": "chatcmpl-4af1b799-d2e7-4c33-9d81-47897fb7af62",
+      "object": "chat.completion",
+      "created": 1792524411,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"agency\", \"game\": \"neighbours\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 644,
+        "completion_tokens": 32,
+        "total_tokens": 676,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.953423023223877
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "agency",
+        "game": "neighbours",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-092",
+    "ms": 474.0186250000006,
+    "inTok": 645,
+    "outTok": 33,
+    "usd": 0.0000438855,
+    "raw": {
+      "id": "chatcmpl-fb3a30f7-f007-4f29-9b22-f9eb7cbda2ff",
+      "object": "chat.completion",
+      "created": 1792524412,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"bug\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 2, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 645,
+        "completion_tokens": 33,
+        "total_tokens": 678,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.988522529602051
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "bug",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": 2,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-096",
+    "ms": 490.8729170000006,
+    "inTok": 652,
+    "outTok": 33,
+    "usd": 0.0000442418,
+    "raw": {
+      "id": "chatcmpl-ff6e46e5-0bad-482c-bd96-63fe0bcebdaf",
+      "object": "chat.completion",
+      "created": 1792524412,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"layout\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 2, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 652,
+        "completion_tokens": 33,
+        "total_tokens": 685,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.020894527435303
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "layout",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": 2,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-107",
+    "ms": 374.53549999999996,
+    "inTok": 654,
+    "outTok": 40,
+    "usd": 0.0000466886,
+    "raw": {
+      "id": "chatcmpl-294e8058-2f45-4183-a175-e930b149157c",
+      "object": "chat.completion",
+      "created": 1792524413,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"category\": \"agency\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": false\n}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 654,
+        "completion_tokens": 40,
+        "total_tokens": 694,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.243467330932617
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "agency",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-122",
+    "ms": 276.37858400000005,
+    "inTok": 659,
+    "outTok": 31,
+    "usd": 0.000043928100000000004,
+    "raw": {
+      "id": "chatcmpl-24f6ca89-b606-4f58-ab4e-f62bfd0b559a",
+      "object": "chat.completion",
+      "created": 1792524413,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"bug\", \"game\": \"pass\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 659,
+        "completion_tokens": 31,
+        "total_tokens": 690,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.992316961288452
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "bug",
+        "game": "pass",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-123",
+    "ms": 268.24391599999944,
+    "inTok": 669,
+    "outTok": 34,
+    "usd": 0.0000454421,
+    "raw": {
+      "id": "chatcmpl-543363ff-dd6a-4c0c-af5f-3cef0c48e981",
+      "object": "chat.completion",
+      "created": 1792524413,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"delight\", \"game\": \"stairwell\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 669,
+        "completion_tokens": 34,
+        "total_tokens": 703,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.1299872398376465
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "delight",
+        "game": "stairwell",
+        "verdict": "keep",
+        "severity": 0,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-127",
+    "ms": 437.21149999999943,
+    "inTok": 679,
+    "outTok": 40,
+    "usd": 0.000047961100000000004,
+    "raw": {
+      "id": "chatcmpl-8db59246-671f-4aba-8d8b-24b24f6fb68e",
+      "object": "chat.completion",
+      "created": 1792524414,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"category\": \"bug\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": false\n}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 679,
+        "completion_tokens": 40,
+        "total_tokens": 719,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.359081268310547
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "bug",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-138",
+    "ms": 269.89345800000046,
+    "inTok": 645,
+    "outTok": 31,
+    "usd": 0.0000432155,
+    "raw": {
+      "id": "chatcmpl-92ea8e0c-7223-47fb-9a94-386aff7dc11f",
+      "object": "chat.completion",
+      "created": 1792524414,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"difficulty\", \"game\": \"well\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 645,
+        "completion_tokens": 31,
+        "total_tokens": 676,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9275729656219482
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "difficulty",
+        "game": "well",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-146",
+    "ms": 365.88850000000093,
+    "inTok": 685,
+    "outTok": 32,
+    "usd": 0.0000455865,
+    "raw": {
+      "id": "chatcmpl-2f69ab54-e5d7-424c-8e2e-3af96e9e59f2",
+      "object": "chat.completion",
+      "created": 1792524414,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"layout\", \"game\": \"neighbours\", \"verdict\": \"mixed\", \"severity\": 1, \"fix\": true}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 685,
+        "completion_tokens": 32,
+        "total_tokens": 717,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.143031120300293
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "layout",
+        "game": "neighbours",
+        "verdict": "mixed",
+        "severity": 1,
+        "fix": true
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-157",
+    "ms": 295.6032500000001,
+    "inTok": 658,
+    "outTok": 32,
+    "usd": 0.0000442122,
+    "raw": {
+      "id": "chatcmpl-f692e3a3-9fb0-4837-8585-33a9abee5db9",
+      "object": "chat.completion",
+      "created": 1792524415,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"pacing\", \"game\": \"lab\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 658,
+        "completion_tokens": 32,
+        "total_tokens": 690,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.018167018890381
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "pacing",
+        "game": "lab",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-162",
+    "ms": 437.57895800000006,
+    "inTok": 654,
+    "outTok": 34,
+    "usd": 0.0000446786,
+    "raw": {
+      "id": "chatcmpl-6d64fa08-fd6a-425f-b40a-8332a54bbe96",
+      "object": "chat.completion",
+      "created": 1792524415,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"bug\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": \"2\", \"fix\": \"false\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 654,
+        "completion_tokens": 34,
+        "total_tokens": 688,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.0606184005737305
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "bug",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": "2",
+        "fix": "false"
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-166",
+    "ms": 488.55724999999984,
+    "inTok": 662,
+    "outTok": 33,
+    "usd": 0.0000447508,
+    "raw": {
+      "id": "chatcmpl-20389695-d223-4438-b21f-b2856ae77aa2",
+      "object": "chat.completion",
+      "created": 1792524415,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"delight\", \"game\": \"warren\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 662,
+        "completion_tokens": 33,
+        "total_tokens": 695,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.067140579223633
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "delight",
+        "game": "warren",
+        "verdict": "keep",
+        "severity": 0,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-168",
+    "ms": 411.54041699999834,
+    "inTok": 643,
+    "outTok": 33,
+    "usd": 0.000043783700000000006,
+    "raw": {
+      "id": "chatcmpl-0fcaef36-f78a-4d6e-a17e-b8059d3af26b",
+      "object": "chat.completion",
+      "created": 1792524416,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"bug\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 643,
+        "completion_tokens": 33,
+        "total_tokens": 676,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9792733192443848
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "bug",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-172",
+    "ms": 308.9889579999999,
+    "inTok": 662,
+    "outTok": 33,
+    "usd": 0.0000447508,
+    "raw": {
+      "id": "chatcmpl-e2009ced-6866-4a4a-8f77-32579960c4b0",
+      "object": "chat.completion",
+      "created": 1792524416,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"quit\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 662,
+        "completion_tokens": 33,
+        "total_tokens": 695,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.067140579223633
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "quit",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-180",
+    "ms": 298.7859589999989,
+    "inTok": 670,
+    "outTok": 35,
+    "usd": 0.000045828,
+    "raw": {
+      "id": "chatcmpl-7e56dcab-a8b8-4c10-93b4-f8082bd82ea2",
+      "object": "chat.completion",
+      "created": 1792524417,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"unclear\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": \"1\", \"fix\": \"true\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 670,
+        "completion_tokens": 35,
+        "total_tokens": 705,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.16508674621582
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "unclear",
+        "game": "murmur",
+        "verdict": "mixed",
+        "severity": "1",
+        "fix": "true"
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-184",
+    "ms": 414.5655000000006,
+    "inTok": 657,
+    "outTok": 34,
+    "usd": 0.0000448313,
+    "raw": {
+      "id": "chatcmpl-70ae7ebc-c563-455e-8405-e3d83a9caacd",
+      "object": "chat.completion",
+      "created": 1792524417,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"delight\", \"game\": \"murmur\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 657,
+        "completion_tokens": 34,
+        "total_tokens": 691,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.074492454528809
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "delight",
+        "game": "murmur",
+        "verdict": "keep",
+        "severity": 0,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-192",
+    "ms": 424.7161669999987,
+    "inTok": 645,
+    "outTok": 32,
+    "usd": 0.0000435505,
+    "raw": {
+      "id": "chatcmpl-ffdcb3fa-1987-4521-8367-d3837924bee5",
+      "object": "chat.completion",
+      "created": 1792524417,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"tooling\", \"game\": \"lab\", \"verdict\": \"none\", \"severity\": 0, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 645,
+        "completion_tokens": 32,
+        "total_tokens": 677,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.958047866821289
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "tooling",
+        "game": "lab",
+        "verdict": "none",
+        "severity": 0,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-200",
+    "ms": 270.6759170000005,
+    "inTok": 650,
+    "outTok": 34,
+    "usd": 0.000044475000000000004,
+    "raw": {
+      "id": "chatcmpl-69a30446-235d-483d-8235-c4933906ca07",
+      "object": "chat.completion",
+      "created": 1792524418,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"unclear\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": 1, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 650,
+        "completion_tokens": 34,
+        "total_tokens": 684,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.042119979858398
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "unclear",
+        "game": "murmur",
+        "verdict": "mixed",
+        "severity": 1,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-203",
+    "ms": 305.7512499999975,
+    "inTok": 649,
+    "outTok": 32,
+    "usd": 0.0000437541,
+    "raw": {
+      "id": "chatcmpl-d945f6f7-05b9-4e09-84cc-1cdd543e974f",
+      "object": "chat.completion",
+      "created": 1792524418,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"direction\", \"game\": \"valley\", \"verdict\": \"none\", \"severity\": 0, \"fix\": true}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 649,
+        "completion_tokens": 32,
+        "total_tokens": 681,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.976545810699463
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "direction",
+        "game": "valley",
+        "verdict": "none",
+        "severity": 0,
+        "fix": true
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-204",
+    "ms": 425.4625420000011,
+    "inTok": 643,
+    "outTok": 34,
+    "usd": 0.0000441187,
+    "raw": {
+      "id": "chatcmpl-ecd7c316-feb4-453d-9d44-d61e891d38e8",
+      "object": "chat.completion",
+      "created": 1792524418,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"delight\", \"game\": \"murmur\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 643,
+        "completion_tokens": 34,
+        "total_tokens": 677,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.0097479820251465
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "delight",
+        "game": "murmur",
+        "verdict": "keep",
+        "severity": 0,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-211",
+    "ms": 389.1950829999987,
+    "inTok": 664,
+    "outTok": 34,
+    "usd": 0.0000451876,
+    "raw": {
+      "id": "chatcmpl-a8b772e6-b2d9-49a5-9688-17686e80c49b",
+      "object": "chat.completion",
+      "created": 1792524419,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"layout\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": \"1\", \"fix\": \"true\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 664,
+        "completion_tokens": 34,
+        "total_tokens": 698,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.1068644523620605
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "layout",
+        "game": "murmur",
+        "verdict": "mixed",
+        "severity": "1",
+        "fix": "true"
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-221",
+    "ms": 586.4561250000006,
+    "inTok": 673,
+    "outTok": 41,
+    "usd": 0.000047990699999999994,
+    "raw": {
+      "id": "chatcmpl-0545351d-b316-4eda-9c9a-d32661f8c86a",
+      "object": "chat.completion",
+      "created": 1792524419,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"category\": \"delight\",\n  \"game\": \"hearsay\",\n  \"verdict\": \"keep\",\n  \"severity\": 0,\n  \"fix\": false\n}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 673,
+        "completion_tokens": 41,
+        "total_tokens": 714,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.361808776855469
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "delight",
+        "game": "hearsay",
+        "verdict": "keep",
+        "severity": 0,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-223",
+    "ms": 298.531084000002,
+    "inTok": 654,
+    "outTok": 35,
+    "usd": 0.000045013600000000006,
+    "raw": {
+      "id": "chatcmpl-a6dc810d-c0cb-4dca-9f86-fc62667826c8",
+      "object": "chat.completion",
+      "created": 1792524420,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"delight\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": \"1\", \"fix\": \"false\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 654,
+        "completion_tokens": 35,
+        "total_tokens": 689,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.091093063354492
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "delight",
+        "game": "murmur",
+        "verdict": "mixed",
+        "severity": "1",
+        "fix": "false"
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-237",
+    "ms": 260.93195800000103,
+    "inTok": 671,
+    "outTok": 32,
+    "usd": 0.0000448739,
+    "raw": {
+      "id": "chatcmpl-33b09537-caef-4844-b3d8-e9298c320a4b",
+      "object": "chat.completion",
+      "created": 1792524420,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"bug\", \"game\": \"pass\", \"verdict\": \"mixed\", \"severity\": \"1\", \"fix\": \"true\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 671,
+        "completion_tokens": 32,
+        "total_tokens": 703,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.078286647796631
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "bug",
+        "game": "pass",
+        "verdict": "mixed",
+        "severity": "1",
+        "fix": "true"
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-243",
+    "ms": 402.76737499999945,
+    "inTok": 667,
+    "outTok": 32,
+    "usd": 0.0000446703,
+    "raw": {
+      "id": "chatcmpl-6595d39e-187d-456d-a69e-8129aeb282be",
+      "object": "chat.completion",
+      "created": 1792524420,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"repetition\", \"game\": \"pass\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": true}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 667,
+        "completion_tokens": 32,
+        "total_tokens": 699,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.059788703918457
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "repetition",
+        "game": "pass",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": true
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-245",
+    "ms": 381.71716599999854,
+    "inTok": 672,
+    "outTok": 41,
+    "usd": 0.0000479398,
+    "raw": {
+      "id": "chatcmpl-c9cef4bc-78c0-4de4-ad92-4c98fdaf6793",
+      "object": "chat.completion",
+      "created": 1792524421,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"category\": \"repetition\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 2,\n  \"fix\": true\n}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 672,
+        "completion_tokens": 41,
+        "total_tokens": 713,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.357184410095215
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "repetition",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": 2,
+        "fix": true
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-246",
+    "ms": 1496.9147080000002,
+    "inTok": 670,
+    "outTok": 169,
+    "usd": 0.00009071800000000001,
+    "raw": {
+      "id": "chatcmpl-7a803e12-783f-4d0b-abb2-0e71a7f5c957",
+      "object": "chat.completion",
+      "created": 1792524421,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "[\n  {\n    \"category\": \"pacing\",\n    \"game\": \"murmur\",\n    \"verdict\": \"mixed\",\n    \"severity\": 1,\n    \"fix\": false\n  },\n  {\n    \"category\": \"agency\",\n    \"game\": \"murmur\",\n    \"verdict\": \"mixed\",\n    \"severity\": 1,\n    \"fix\": false\n  },\n  {\n    \"category\": \"difficulty\",\n    \"game\": \"murmur\",\n    \"verdict\": \"mixed\",\n    \"severity\": 1,\n    \"fix\": false\n  },\n  {\n    \"category\": \"delight\",\n    \"game\": \"murmur\",\n    \"verdict\": \"keep\",\n    \"severity\": 0,\n    \"fix\": false\n  }\n]",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 670,
+        "completion_tokens": 169,
+        "total_tokens": 839,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 8.248705863952637
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": [
+        {
+          "category": "pacing",
+          "game": "murmur",
+          "verdict": "mixed",
+          "severity": 1,
+          "fix": false
+        },
+        {
+          "category": "agency",
+          "game": "murmur",
+          "verdict": "mixed",
+          "severity": 1,
+          "fix": false
+        },
+        {
+          "category": "difficulty",
+          "game": "murmur",
+          "verdict": "mixed",
+          "severity": 1,
+          "fix": false
+        },
+        {
+          "category": "delight",
+          "game": "murmur",
+          "verdict": "keep",
+          "severity": 0,
+          "fix": false
+        }
+      ],
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-250",
+    "ms": 420.64450000000215,
+    "inTok": 660,
+    "outTok": 32,
+    "usd": 0.000044314,
+    "raw": {
+      "id": "chatcmpl-a39c7698-1d07-4741-966e-2b87a0ee61d8",
+      "object": "chat.completion",
+      "created": 1792524423,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"delight\", \"game\": \"watch\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 660,
+        "completion_tokens": 32,
+        "total_tokens": 692,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.027416229248047
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "delight",
+        "game": "watch",
+        "verdict": "keep",
+        "severity": 0,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-254",
+    "ms": 262.0487920000014,
+    "inTok": 663,
+    "outTok": 33,
+    "usd": 0.000044801699999999995,
+    "raw": {
+      "id": "chatcmpl-cbf3a58c-8ae8-4927-ba1d-88911fffc960",
+      "object": "chat.completion",
+      "created": 1792524423,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"quit\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 663,
+        "completion_tokens": 33,
+        "total_tokens": 696,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.071764945983887
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "quit",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-260",
+    "ms": 449.39087500000096,
+    "inTok": 668,
+    "outTok": 38,
+    "usd": 0.000046731200000000004,
+    "raw": {
+      "id": "chatcmpl-38c21d63-c1d1-418f-8566-51ecfbf315e6",
+      "object": "chat.completion",
+      "created": 1792524423,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"category\": \"quit\",\n  \"game\": \"lab\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": false\n}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 668,
+        "completion_tokens": 38,
+        "total_tokens": 706,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.2472615242004395
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "quit",
+        "game": "lab",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-265",
+    "ms": 373.0371249999989,
+    "inTok": 664,
+    "outTok": 34,
+    "usd": 0.0000451876,
+    "raw": {
+      "id": "chatcmpl-a66e2461-ce97-4268-8bc3-6dbb4e9a735b",
+      "object": "chat.completion",
+      "created": 1792524424,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"bug\", \"game\": \"murmur\", \"verdict\": \"quit\", \"severity\": \"2\", \"fix\": \"false\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 664,
+        "completion_tokens": 34,
+        "total_tokens": 698,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.1068644523620605
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "bug",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": "2",
+        "fix": "false"
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-269",
+    "ms": 566.3123330000017,
+    "inTok": 646,
+    "outTok": 34,
+    "usd": 0.0000442714,
+    "raw": {
+      "id": "chatcmpl-a83841c1-3a70-479f-bc15-d628a1b29b27",
+      "object": "chat.completion",
+      "created": 1792524424,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"delight\", \"game\": \"murmur\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 646,
+        "completion_tokens": 34,
+        "total_tokens": 680,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.023622035980225
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "delight",
+        "game": "murmur",
+        "verdict": "keep",
+        "severity": 0,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-277",
+    "ms": 301.90166600000157,
+    "inTok": 672,
+    "outTok": 38,
+    "usd": 0.000046934799999999997,
+    "raw": {
+      "id": "chatcmpl-ddf56406-463c-447a-af68-1bb3664fd045",
+      "object": "chat.completion",
+      "created": 1792524425,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"category\": \"quit\",\n  \"game\": \"pass\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": false\n}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 672,
+        "completion_tokens": 38,
+        "total_tokens": 710,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.2657599449157715
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "quit",
+        "game": "pass",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-282",
+    "ms": 516.2144580000022,
+    "inTok": 662,
+    "outTok": 35,
+    "usd": 0.0000454208,
+    "raw": {
+      "id": "chatcmpl-08caebc6-8388-4fbf-aefe-5698c899eac5",
+      "object": "chat.completion",
+      "created": 1792524425,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"pacing\", \"game\": \"murmur\", \"verdict\": \"mixed\", \"severity\": \"1\", \"fix\": \"true\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 662,
+        "completion_tokens": 35,
+        "total_tokens": 697,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.128089904785156
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "pacing",
+        "game": "murmur",
+        "verdict": "mixed",
+        "severity": "1",
+        "fix": "true"
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-285",
+    "ms": 416.3979160000017,
+    "inTok": 652,
+    "outTok": 32,
+    "usd": 0.0000439068,
+    "raw": {
+      "id": "chatcmpl-08ae8615-fb20-434a-be0f-39cd641f05f3",
+      "object": "chat.completion",
+      "created": 1792524426,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"delight\", \"game\": \"voice\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 652,
+        "completion_tokens": 32,
+        "total_tokens": 684,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.990419864654541
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "delight",
+        "game": "voice",
+        "verdict": "keep",
+        "severity": 0,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-292",
+    "ms": 434.95929199999955,
+    "inTok": 665,
+    "outTok": 31,
+    "usd": 0.0000442335,
+    "raw": {
+      "id": "chatcmpl-c2ff0d74-cc13-454b-81e6-e2362712f2e1",
+      "object": "chat.completion",
+      "created": 1792524426,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"layout\", \"game\": \"well\", \"verdict\": \"quit\", \"severity\": 3, \"fix\": false}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 665,
+        "completion_tokens": 31,
+        "total_tokens": 696,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.020064353942871
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "layout",
+        "game": "well",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-298",
+    "ms": 411.44525000000067,
+    "inTok": 666,
+    "outTok": 31,
+    "usd": 0.0000442844,
+    "raw": {
+      "id": "chatcmpl-ebad7389-03bd-4ce6-b61c-563eb86de4d2",
+      "object": "chat.completion",
+      "created": 1792524426,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"layout\", \"game\": \"repair\", \"verdict\": \"keep\", \"severity\": 0, \"fix\": true}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 666,
+        "completion_tokens": 31,
+        "total_tokens": 697,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.024689197540283
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "layout",
+        "game": "repair",
+        "verdict": "keep",
+        "severity": 0,
+        "fix": true
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-303",
+    "ms": 288.16549999999916,
+    "inTok": 673,
+    "outTok": 40,
+    "usd": 0.0000476557,
+    "raw": {
+      "id": "chatcmpl-1e882cdb-d6f3-488c-a137-55f5da51f5b2",
+      "object": "chat.completion",
+      "created": 1792524427,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"category\": \"bug\",\n  \"game\": \"murmur\",\n  \"verdict\": \"quit\",\n  \"severity\": 3,\n  \"fix\": false\n}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 673,
+        "completion_tokens": 40,
+        "total_tokens": 713,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 4.331334114074707
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "bug",
+        "game": "murmur",
+        "verdict": "quit",
+        "severity": 3,
+        "fix": false
+      },
+      "tool_calls": []
+    }
+  },
+  {
+    "id": "F-343",
+    "ms": 409.0631659999999,
+    "inTok": 638,
+    "outTok": 33,
+    "usd": 0.0000435292,
+    "raw": {
+      "id": "chatcmpl-30586788-a4d6-4c6c-b500-544dd35f442f",
+      "object": "chat.completion",
+      "created": 1792524427,
+      "model": "@cf/meta/llama-3.2-3b-instruct-v2",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"category\": \"agency\", \"game\": \"goodhands\", \"verdict\": \"mixed\", \"severity\": \"0\", \"fix\": \"false\"}",
+            "refusal": null,
+            "annotations": null,
+            "audio": null,
+            "function_call": null,
+            "reasoning": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop",
+          "stop_reason": null,
+          "token_ids": null,
+          "routed_experts": null
+        }
+      ],
+      "service_tier": null,
+      "usage": {
+        "prompt_tokens": 638,
+        "completion_tokens": 33,
+        "total_tokens": 671,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 3.9561502933502197
+      },
+      "prompt_logprobs": null,
+      "prompt_token_ids": null,
+      "prompt_text": null,
+      "kv_transfer_params": null,
+      "ec_transfer_params": null,
+      "metrics": null,
+      "response": {
+        "category": "agency",
+        "game": "goodhands",
+        "verdict": "mixed",
+        "severity": "0",
+        "fix": "false"
+      },
+      "tool_calls": []
+    }
+  }
+]
