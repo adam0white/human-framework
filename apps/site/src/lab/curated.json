@@ -3748,6 +3748,36 @@
     "lesson:L11"
    ],
    "source": "goodhands/docs/playtests/2026-10-20-r2-tester-d.md"
+  },
+  {
+   "id": "F-266",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Farah (Codex source-unread persona, round 3)",
+   "words": "Hang on. You admit you did not pay what you agreed. That changes how I hear the rest.\" … \"Would I open it tomorrow on my own? yes, because I want to see whether Sevda gets a fair working day and catches her bus.",
+   "verdict": "keep",
+   "routes": [
+    "fix:goodhands say why the interview questions end, and when to call back (open)",
+    "fix:goodhands unique labels for each family's household button (open)",
+    "fix:goodhands the task line names only what is possible when a candidate must leave (open)",
+    "lesson:L13"
+   ],
+   "source": "goodhands/docs/playtests/2026-10-20-r3-tester-e.md"
+  },
+  {
+   "id": "F-267",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Lukas (Codex source-unread persona, round 3)",
+   "words": "Two people giving orders in one kitchen. I like her dry answer more than I like the list of qualities I saw on her card.\" … \"yes, because I want to find out whether Gül can get a fair placement with the Arslans.",
+   "verdict": "keep",
+   "routes": [
+    "fix:goodhands the opening wait names only people already met (open)",
+    "fix:goodhands no title flash on Open the office (open)"
+   ],
+   "source": "goodhands/docs/playtests/2026-10-20-r3-tester-f.md"
   }
  ],
  "lessons": [
@@ -4313,8 +4343,8 @@
   }
  ],
  "routes": {
-  "fix": 274,
-  "lesson": 240,
+  "fix": 279,
+  "lesson": 241,
   "hf": 11,
   "calibration": 42,
   "none": 1
