@@ -2,10 +2,11 @@
  * Game 1 playtest files: record through the worker's state machine, replay, compare hashes; and the import's
  * rejection paths.
  *
- * Two pinned fixtures, each a full run (Day 1 dawn through "Another day") recorded through `Playback` with
+ * Three pinned fixtures, each a full run (Day 1 dawn through "Another day") recorded through `Playback` with
  * irregular real-time ticks: apps/site/test/fixtures/playtest-colony.json under colony-scenario@3 (recorded
  * 2026-10-07, never re-recorded: it proves @3 saves still replay under the @3 rules) and
- * playtest-colony-v4.json under the current rules. A change to the current rules changes only the v4 hash;
+ * playtest-colony-v4.json under @4, and playtest-colony-v5.json under the current rules.
+ * A change to the current rules changes only the v5 hash;
  * re-record it (the @3 fixture is never written) from the repo root:
  *
  *   PLAYTEST_REGEN=1 npx vitest run apps/site/src/voice/sim/playtest.test.ts apps/site/src/colony/sim/playtest.test.ts
@@ -39,8 +40,10 @@ import {
 
 /** colony-scenario@3, pinned; read only. */
 const FIXTURE_V3 = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony.json');
-/** The current rules (colony-scenario@4); the only fixture REGEN writes. */
-const FIXTURE = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v4.json');
+/** Historical @4 fixture, read only. */
+const FIXTURE_V4 = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v4.json');
+/** Current @5 fixture; the only fixture REGEN writes. */
+const FIXTURE = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v5.json');
 const REGEN = Boolean(process.env.PLAYTEST_REGEN);
 const TICKS = [16, 17, 250, 33, 8, 120, 16, 1000, 0, 49];
 
@@ -154,6 +157,61 @@ describe('Game 1 playtest files', () => {
   );
 
   test.skipIf(REGEN)(
+    'the committed @4 fixture replays to its exact hash',
+    () => {
+      const { file: f, rules } = parseColonyPlaytest(readFileSync(FIXTURE_V4, 'utf8'));
+      expect(rules).toBe(4);
+      const g = replayColony(f.seed, createFrameworkHumanSide, f.log, f.minute, rules);
+      expect(hashState(withHistoricPersonEngine(colonyState(g), f.engine))).toBe(f.hash);
+    },
+    60_000,
+  );
+
+  test.skipIf(REGEN).each([
+    [FIXTURE_V3, 3, '1347c6790d6af0', '1778b892677e4f'],
+    [FIXTURE_V4, 4, '19a50932e6dfad', '0aebd284d7354b'],
+  ] as const)(
+    'legacy rules %s: encoded save/load retains pinned midpoint and continuation',
+    async (path, rules, midpoint, continued) => {
+      const { file: f } = parseColonyPlaytest(readFileSync(path, 'utf8'));
+      const mid = replayColony(
+        f.seed,
+        createFrameworkHumanSide,
+        f.log.filter((e) => e.minute < 1500),
+        1500,
+        rules,
+      );
+      // Constants came from the original game code with engine 2.8.0; normalize only that metadata stamp.
+      const historicalHash = (g: ColonyGame) => hashState(withHistoricPersonEngine(colonyState(g), '2.8.0'));
+      expect(historicalHash(mid)).toBe(midpoint);
+      // A saved snapshot is for inspection. The supported loader reconstructs state from seed/log;
+      // this exercises the real encoded export rather than inventing a game-state restore API.
+      const file = await makePlaytestFile<LogEntry>({
+        game: 'colony',
+        seed: mid.seed,
+        scenario: mid.scenarioVersion,
+        minute: mid.minute,
+        log: mid.log,
+        hash: colonyHash(mid),
+        engine: ENGINE_VERSION,
+        snapshot: colonySnapshot(mid),
+      });
+      expect(file.snapshot).not.toBeNull();
+      const pb = new Playback(createFrameworkHumanSide);
+      const { result } = pb.load(JSON.stringify(file), ENGINE_VERSION);
+      expect(result.matches).toBe(true);
+      expect(pb.game?.rules).toBe(rules);
+      if (!pb.game) throw new Error('missing loaded game');
+      expect(historicalHash(pb.game)).toBe(midpoint);
+      pb.game.advance(40);
+      mid.advance(40);
+      expect(historicalHash(pb.game)).toBe(continued);
+      expect(historicalHash(mid)).toBe(continued);
+    },
+    60_000,
+  );
+
+  test.skipIf(REGEN)(
     'the committed current-rules fixture replays to its hash',
     () => {
       const f = parse(readFileSync(FIXTURE, 'utf8'));
@@ -165,10 +223,9 @@ describe('Game 1 playtest files', () => {
   );
 
   test('the @3 rules and the current rules differ on the same run', () => {
-    const text = readFileSync(FIXTURE_V3, 'utf8');
-    const { file: f } = parseColonyPlaytest(text);
+    const { file: f } = parseColonyPlaytest(readFileSync(FIXTURE_V3, 'utf8'));
     const now = replayColony(f.seed, createFrameworkHumanSide, f.log, f.minute);
-    expect(now.rules).toBe(4);
+    expect(now.rules).toBe(5);
     expect(colonyHash(now)).not.toBe(f.hash);
   }, 60_000);
 

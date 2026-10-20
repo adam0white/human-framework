@@ -3,6 +3,9 @@
  * The player's orders become standing suggestions (strength, insist, appeal) re-weighed at each of that
  * person's decisions until the job is done, refused, cancelled or lapsed. Verdicts, thoughts, the why panel,
  * the trust meter and the telegraph all read framework records; nothing here decides for a person.
+ * Rules 5 retains a stated conditional deferral until the job begins or the person sleeps for the night.
+ * HF owns completion wakes for bodily/prayer conditions; the host wakes HF when an unavailable offer returns.
+ * This is one standing suggestion, not a planner or a guarantee of obedience.
  */
 import {
   type Community,
@@ -50,6 +53,7 @@ import { type GameMap, placeById } from './map.ts';
 import { type HumanOrder, PLAYER_VOICE } from './orders.ts';
 import {
   adhanAt,
+  isNight,
   JOBS,
   type Minute,
   ORDER_LIFETIME,
@@ -83,6 +87,10 @@ interface OpenOrder {
   agreed?: boolean;
   /** He has begun the ordered job in a session started after the order reached him. */
   begun?: boolean;
+  /** Rules 5 only: a stated condition keeps the promise open until the person sleeps for the night. */
+  conditional?: boolean;
+  /** Host-side condition: wake HF when the job returns to the offered set. */
+  waitForOffer?: boolean;
 }
 
 interface SideState {
@@ -268,6 +276,15 @@ export class FrameworkHumanSide implements HumanSide {
       interruptPerson(this.community, p, t, `order:${o.orderId}`);
     }
 
+    if (this.rules >= 5) {
+      for (const [id, open] of Object.entries(this.s.orders)) {
+        if (!open?.waitForOffer) continue;
+        const p = this.person(id);
+        if (!world.affordancesFor({ ...p, now: t }).some((a) => a.action === open.order.action)) continue;
+        delete open.waitForOffer;
+        interruptPerson(this.community, p, t, `promise:${open.order.orderId}`);
+      }
+    }
     const live = this.suggestions();
     // An order is done by a job begun after it was given, not by finishing what he was already doing.
     world.onOrderDone = (id, action, startedAt) => {
@@ -278,11 +295,25 @@ export class FrameworkHumanSide implements HumanSide {
     world.onOrderDone = null;
     this.readEvents(events, ev);
     this.readHost(ev);
+    // HF completes meals/prayers and weighs standing suggestions at that same finish event. Its scheduled
+    // decision is the wake for those conditions; a second interrupt here would weigh the order twice.
     for (const [id, o] of Object.entries(this.s.orders)) {
       const act = o && !o.begun ? this.person(id).activity : undefined;
       if (o && act?.action === o.order.action && act.startedAt >= o.since) o.begun = true;
     }
 
+    if (this.rules >= 5 && isNight(m)) {
+      for (const v of this.view()) {
+        const open = this.s.orders[v.id];
+        if (!open?.conditional || open.begun || v.state !== 'asleep') continue;
+        const place = placeById(open.order.placeId).label.split(' ·')[0]?.toLowerCase() ?? 'job';
+        const says = `${v.name.replace(/^Hajja /, '')} didn’t get to the ${place} today.`;
+        ev.lapsed ??= [];
+        ev.lapsed.push({ orderId: open.order.orderId, personId: v.id, says });
+        this.bubble({ personId: v.id, kind: 'notNow', text: says, orderId: open.order.orderId }, ev);
+        this.drop(v.id);
+      }
+    }
     for (const p of this.community.people) {
       if (p.body.alive || this.s.dead.includes(p.id)) continue;
       this.s.dead.push(p.id);
@@ -313,7 +344,7 @@ export class FrameworkHumanSide implements HumanSide {
           ? record.suggestion
           : record.suggestions?.find((x) => x.voiceId === 'player');
       if (open && r && r.voiceId === 'player' && record.at >= open.since) {
-        const kind = verdictKind(r);
+        const kind = verdictKind(r, this.rules);
         const counter = r.counterOffer?.label ?? (kind === 'notNow' ? r.says : undefined);
         if (kind === open.lastKind && (kind !== 'notNow' || counter === open.lastCounter)) continue;
         if (kind === 'notNow' && r.reason.startsWith('need:') && open.agreed) {
@@ -329,7 +360,12 @@ export class FrameworkHumanSide implements HumanSide {
           if (record.chosenAction) this.s.lastAction[id] = record.chosenAction;
           continue;
         }
-        if (kind === 'cannot' && r.reason === 'unavailable' && open.lastKind !== null) {
+        if (
+          kind === 'cannot' &&
+          r.reason === 'unavailable' &&
+          open.lastKind !== null &&
+          (this.rules < 5 || open.agreed)
+        ) {
           // The job went away after a yes (someone else shuttered, the beam is up): the card settles.
           ev.completed.push({ orderId: open.order.orderId, personId: id });
           this.drop(id);
@@ -347,6 +383,18 @@ export class FrameworkHumanSide implements HumanSide {
         };
         (open.lastKind === null ? ev.verdicts : ev.updates).push(verdict);
         open.lastKind = kind;
+        if (this.rules >= 5) {
+          delete open.waitForOffer;
+          if (
+            kind === 'notNow' &&
+            r.verdict === 'deferred' &&
+            r.counterOffer &&
+            r.counterOffer.label !== 'later' &&
+            r.insteadAffordanceId
+          ) {
+            open.conditional = true;
+          }
+        }
         if (kind === 'assent' || kind === 'complied') open.agreed = true;
         if (counter) open.lastCounter = counter;
         else delete open.lastCounter;
@@ -367,7 +415,9 @@ export class FrameworkHumanSide implements HumanSide {
         if (record.chosenAction) this.s.lastAction[id] = record.chosenAction;
         continue;
       }
-      if (open && !r && open.lastKind === null && record.at >= open.since) {
+      if (open && !r && (open.lastKind === null || this.rules >= 5) && record.at >= open.since) {
+        if (this.rules >= 5 && this.world.affordancesFor(p).some((a) => a.action === open.order.action))
+          continue;
         // The job is not on offer to them now, so the framework does not hear the order: answer it here (Classic's
         // "could not (reason)") instead of leaving the card silent until it lapses. A "not now" keeps the order
         // standing, so it is heard and weighed once the job is on offer again.
@@ -381,7 +431,12 @@ export class FrameworkHumanSide implements HumanSide {
           decisionId: record.id,
           ...(no.counterOffer ? { counterOffer: no.counterOffer } : {}),
         };
-        ev.verdicts.push(verdict);
+        if (this.rules >= 5 && no.kind === open.lastKind && no.counterOffer === open.lastCounter) continue;
+        (open.lastKind === null ? ev.verdicts : ev.updates).push(verdict);
+        if (this.rules >= 5 && no.kind === 'notNow' && no.counterOffer) {
+          open.conditional = true;
+          open.waitForOffer = true;
+        }
         open.lastKind = no.kind;
         if (no.counterOffer) open.lastCounter = no.counterOffer;
         this.bubble(
@@ -532,7 +587,9 @@ export class FrameworkHumanSide implements HumanSide {
 
   working(orderId: string): boolean {
     for (const [id, o] of Object.entries(this.s.orders)) {
-      if (o?.order.orderId !== orderId || !o.begun) continue;
+      if (o?.order.orderId !== orderId) continue;
+      if (this.rules >= 5 && o.conditional && !o.begun) return true;
+      if (!o.begun) continue;
       const act = this.person(id).activity;
       // At the job now: no limit. Paused for a drink, a meal or a prayer: up to twice the order lifetime.
       if (act?.action === o.order.action) return true;
@@ -641,7 +698,7 @@ export class FrameworkHumanSide implements HumanSide {
     const affs = this.world.affordancesFor(p);
     const r = preview(p, affs, order.suggestion);
     const no = r.reason === 'unavailable' ? this.world.notOffered(p, order.action) : null;
-    const kind = no?.kind ?? verdictKind(r);
+    const kind = no?.kind ?? verdictKind(r, this.rules);
     const reason = no?.short ?? readableReason(r.reason);
     const text =
       kind === 'assent'

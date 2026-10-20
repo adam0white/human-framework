@@ -206,6 +206,8 @@ export interface HumanSideEvents {
   verdicts: HumanVerdict[];
   /** Later verdict changes for an open card: a deferral that is now being done, a protest, a lapse. */
   updates: HumanVerdict[];
+  /** Rules 5: a conditional promise not reached before the person sleeps for the night. */
+  lapsed?: { orderId: string; personId: VillagerId; says: string }[];
   /** Orders whose job finished (the card settles on this side). */
   completed: { orderId: string; personId: VillagerId }[];
   /** New bubbles emitted this step (verdict lines and thoughts). */
@@ -251,7 +253,8 @@ export interface HumanSide {
    * True once the person has begun the ordered job in a session started after the order reached them, until the
    * order completes or is dropped (a drink or a prayer in between does not end it). The engine does not lapse
    * such a card mid-job (spec §3: a card persists until assented-and-completed); a pause away from the job is
-   * covered only up to an adapter-chosen limit.
+   * covered only up to an adapter-chosen limit. Rules 5 also exempts a stated conditional promise before its
+   * job begins; the adapter reports its lapse separately when the person sleeps for the night.
    */
   working(orderId: string): boolean;
 
@@ -274,12 +277,13 @@ export interface HumanSide {
 
 /**
  * Rules version of the scenario (colony.md, "2026-10-19 level-up"). 3: the rules of the 2026-10-07 build, kept so @3
- * saves and the pinned fixture replay exactly. 4 (current): refusals name their reason, a "you'll be safer" appeal is
+ * saves and the pinned fixture replay exactly. 4: refusals name their reason, a "you'll be safer" appeal is
  * a promise the person holds you to, and a new order to the same person settles the old card as replaced.
+ * 5 (current): stated conditional deferrals remain until begun, refused, cancelled, replaced or night sleep.
  */
-export type ColonyRules = 3 | 4;
-export const CURRENT_RULES: ColonyRules = 4;
-export const RULES: readonly ColonyRules[] = [3, 4];
+export type ColonyRules = 3 | 4 | 5;
+export const CURRENT_RULES: ColonyRules = 5;
+export const RULES: readonly ColonyRules[] = [3, 4, 5];
 export const scenarioOf = (rules: ColonyRules): string => `colony-scenario@${rules}`;
 /** The rules a scenario string names, if this build still plays them. */
 export function rulesOf(scenario: unknown): ColonyRules | null {

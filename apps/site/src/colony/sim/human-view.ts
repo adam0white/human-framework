@@ -33,7 +33,9 @@ export type VerdictKind = Exclude<BubbleKind, 'thought'>;
  * need (an insisted order overridden by thirst, hunger or sleep) is also "not now": the need passes and the order
  * stands. Grey "cannot" is kept for capacity, skill, sleep and a job that is not there.
  */
-export function verdictKind(r: SuggestionResolution): VerdictKind {
+export function verdictKind(r: SuggestionResolution, rules: ColonyRules = 3): VerdictKind {
+  // Rules 5: choosing one's own work is an alternative, not a promise to do the requested job later.
+  if (rules >= 5 && r.verdict === 'modified' && r.reason === 'goal:role') return 'willNot';
   if (r.verdict === 'refused' && r.kind !== 'willNot' && r.reason.startsWith('need:')) return 'notNow';
   switch (r.verdict) {
     case 'assented':
@@ -351,7 +353,7 @@ export function whyOf(
   const r = record.suggestion;
   if (r) {
     out.verdict = {
-      kind: verdictKind(r),
+      kind: verdictKind(r, rules),
       says: sayLine(r, rules),
       reason: r.reason,
       ...(r.counterOffer ? { counterOffer: r.counterOffer.label } : {}),

@@ -637,10 +637,13 @@ export class ColonyGame {
       this.book.setChip(v.orderId, 'human', {
         state,
         label,
+        ...(this.rules >= 5 ? { says: v.says } : {}),
         // The first answer is kept: a later update (another "not now") replaces `label`, and the log and the
         // report would otherwise quote different lines for the same order.
         first: card.human.first ?? { state, label },
-        ...(card.human.settled ? { settled: true } : {}),
+        ...(card.human.settled || (this.rules >= 5 && (v.kind === 'willNot' || v.kind === 'cannot'))
+          ? { settled: true }
+          : {}),
       });
     }
     for (const c of he.completed) {
@@ -653,6 +656,12 @@ export class ColonyGame {
         ...(done ? { state: 'done' as const } : {}),
         settled: true,
       });
+    }
+    for (const lapse of he.lapsed ?? []) {
+      const card = this.book.card(lapse.orderId);
+      if (card?.status !== 'active') continue;
+      card.status = 'lapsed';
+      card.human = { ...card.human, label: lapse.says, says: lapse.says };
     }
     this.moments.push(...he.moments);
     step.moments.push(...he.moments);
