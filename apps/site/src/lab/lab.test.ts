@@ -161,8 +161,8 @@ describe('lab core', () => {
       'not JSON',
       JSON.stringify({ text: '[[{\\"{},:' }),
       `${'['.repeat(65)}0${']'.repeat(65)}`,
-      `[${'[],'.repeat(45_000)}[]]`,
-      `[${'0,'.repeat(360_001)}0]`,
+      `[${'[],'.repeat(60_000)}[]]`,
+      `[${'0,'.repeat(480_001)}0]`,
       JSON.stringify({ text: 'é'.repeat(LIMITS.runInflatedBytes / 2) }),
     ];
     for (const text of inputs) expect(checkRun(text)).toBe(boundedRunJson(text));

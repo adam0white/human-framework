@@ -99,7 +99,7 @@ describe('bounded upload', () => {
 
   it('reports the inflated size and cap in the refusal', async () => {
     await expect(lab().sendRun(largeRun())).rejects.toThrow(
-      'This run is 3.1 MB; the notebook takes up to 3 MB. Your saved export file still has everything.',
+      'This run is 4.1 MB; the notebook takes up to 4 MB. Your saved export file still has everything.',
     );
   });
 

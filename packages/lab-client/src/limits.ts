@@ -1,9 +1,9 @@
 /** Run allocation bounds shared with the notebook Worker. Includes the whole serialized envelope. */
 export const RUN_LIMITS = Object.freeze({
-  inflatedBytes: 3 * 1024 * 1024,
+  inflatedBytes: 4 * 1024 * 1024,
   compressedBytes: 2 * 1024 * 1024,
-  tokens: 360_000,
-  containers: 45_000,
+  tokens: 480_000,
+  containers: 60_000,
   depth: 64,
 });
 

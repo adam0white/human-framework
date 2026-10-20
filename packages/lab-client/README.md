@@ -84,7 +84,7 @@ The integrations cover The Pass, The Glance, The Two Voices, The Rope, Small Wor
 
 ## Server limits and retention
 
-The Worker accepts up to 2 MiB compressed and 3 MiB inflated per run. Before parsing JSON it rejects more than 45,000 containers, 360,000 structural tokens, or 64 levels of nesting. The limits bound allocation, not just transfer size. A conditional R2 counter reserves up to 200 uploads per UTC day; a failed store consumes its reservation, and bounded retries can refuse uploads under contention. The first counter includes runs already stored that day. Requests still running an older deployment are outside the new counter during cutover. Per-address (/64 for IPv6) and shared per-location ingress limits apply before decompression.
+The Worker accepts up to 2 MiB compressed and 4 MiB inflated per run. Before parsing JSON it rejects more than 60,000 containers, 480,000 structural tokens, or 64 levels of nesting. The limits bound allocation, not just transfer size. A conditional R2 counter reserves up to 200 uploads per UTC day; a failed store consumes its reservation, and bounded retries can refuse uploads under contention. The first counter includes runs already stored that day. Requests still running an older deployment are outside the new counter during cutover. Per-address (/64 for IPv6) and shared per-location ingress limits apply before decompression.
 
 Anonymous events have a conditional R2 admission limit of 1,000 batches per UTC day. This is a deliberate small-lab capacity limit: excess or contended requests fail before storage acceptance; failed storage can consume a reservation. It bounds the retained aggregation state to at most 1,000 sessions. Rates and daily capacity are separate limits.
 

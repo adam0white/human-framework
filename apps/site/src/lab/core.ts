@@ -47,13 +47,12 @@ export type RunEnvelope = {
   run: unknown;
 };
 
-// Node 26, fresh-process Worker pipeline (readCapped + parse + stringify + gzip):
-// at 3 MiB/360k tokens/45k containers, unique-key objects peak at 51.6 MiB
-// heap+external (44.2 MiB above baseline), including UTF-16 string storage.
-// Arrays/integers/fractions use less. 4 MiB reaches 60.3 MiB; 8 MiB 110.5 MiB,
-// so retain a smaller byte cap for headroom below the ~60 MiB allocation budget.
-// Raw Node RSS peaks at 134.3 MiB; these are not workerd memory guarantees.
-// Realistic HF density (~0.11 tokens/~0.014 containers per byte) fits at 3 MiB.
+// Node 26, fresh-process Worker pipeline (readCapped + parse + stringify + gzip), worst case
+// unique-key objects with UTF-16 text: 3 MiB peaks at 51.6 MiB heap+external, 4 MiB at 60.3 MiB,
+// 8 MiB at 110.5 MiB. 4 MiB keeps the byte allowance runs had before 0.1.2 and stays near half
+// of the Worker's 128 MB. These are Node allocation measurements, not workerd guarantees.
+// Realistic HF density (~0.11 tokens/~0.014 containers per byte) fits the structural caps at 4 MiB.
+// Longer runs rely on the game's `compact` (lab client 0.1.2), e.g. seed and inputs without state.
 export const LIMITS = {
   /** bytes of one event batch body */
   batchBytes: 8 * 1024,
@@ -64,10 +63,10 @@ export const LIMITS = {
   /** compressed run body */
   runBytes: 2 * 1024 * 1024,
   /** decompressed run body */
-  runInflatedBytes: 3 * 1024 * 1024,
+  runInflatedBytes: 4 * 1024 * 1024,
   /** Pre-parse JSON complexity budget, including primitive values and object members. */
-  runJsonTokens: 360000,
-  runJsonContainers: 45000,
+  runJsonTokens: 480000,
+  runJsonContainers: 60000,
   runJsonDepth: 64,
   /** a session longer than this is clamped when aggregating */
   sessionMs: 12 * 3600 * 1000,

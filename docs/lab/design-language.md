@@ -66,7 +66,7 @@ The device facts and thumb zone are in the [visual language](../design-language.
 
 ## 7. Game menu, save, download and send
 
-Names: **Game menu** for save and run controls, **Download this run** for the local export, **Send this run to the lab** for the private upload, **All games** for the collection link. "Notebook" stays the visual metaphor, not the name of an operation.
+Names: **Game menu** for save and run controls, **Download this run** for the local export, **Send this run to the notebook** for the private upload (the lab client's label; the notebook is the lab's private store), **All games** for the collection link. A game's own menu is never called "Notebook".
 
 - [ ] **DL-26 One discoverable game menu.** Save and run controls live in one consistently labelled place, expressed in the game's fiction and reachable without scrolling. The All games link is a separate destination.
 - [ ] **DL-27 Resume is honest.** The title screen offers Continue only when a valid save exists, with one line saying where it left off ([L8](lessons.md)). Closing the page and resuming does not advance simulated time. *Player test:* reload and resume; nothing lost, nothing done twice.
