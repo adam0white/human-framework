@@ -363,6 +363,26 @@ Quick choices now speak to Halil: “Hacer is here. Stay and talk.” An offered
 
 This remains presentation only. It cannot add dialogue topics, contact the incidental visitor, or guarantee an encounter. Revert this follow-up commit to restore the first design-round presentation; no edition or save migration is needed. The earlier cold-retest and Ramadan 2 encounter deferrals remain.
 
+### Follow-up c (2026-10-20)
+
+Leila's live retest asked for “room for the people” (DL-22), fewer “pressing Say nothing to get to the person I want to meet” stops, and an English meaning beside suhoor (DL-20). Her best moment was Hacer's “Keep the door open, Halil…” (fresh retest; no new ledger ID assigned). This follows the phone and repeated-form concerns in F-240, F-251 and F-257.
+
+The phone now folds the standing suggestion into “Your words”. Current answers stay with the exchange; earlier answers fold away. Routine and running scenes use one Speak row. A paused speaking point expands the existing suggestions; selection replaces the choices with the likely answer and send button. Silence resumes without a suggestion. Consequential offers put their action and reason first. The caption says “Auto-pause at scenes” at both sizes.
+
+The UI resumes routine automatic beats using recorded resume inputs. It pauses once per new two-person scene or new clinic, rent or extra-work offer. Actual answers, manual pauses, Why, imported runs and day cards retain reading time. SceneDay no longer owns a competing automatic pause. The simulation, editions and HF pin are unchanged. Meal meanings appear beside deadline/action text; “Meal terms” remains available before and during play. Spoken scenes keep their own wording.
+
+Costs and risks: quiet needs and ordinary meal windows no longer demand acknowledgement. A player who wants to intervene there must choose Speak or pause time. Short glosses repeat at separate deadline/action entry points so a reader cannot miss the first explanation by opening a different panel. The UI records more resume inputs; old exports replay under their original rules. Engineering renders and pause counts do not establish that Leila would stay for the month.
+
+Revert this follow-up commit to restore Follow-up b's layout and automatic stops. No edition setting or save migration is needed. The earlier Ramadan 2 encounter and historical-wording deferrals remain.
+
+### Follow-up d (2026-10-20)
+
+Yusuf's F-251 request was to “hear Halil answer her, not immediately return to a stack of compliance and deferment messages.” The fun review's stay tests still returned “Fine” beneath Selin's unanswered invitation. A recorded agreement in a current named encounter now becomes Halil's answer and his companion's response inside that exchange. Selin and Hacer use the surfaced Nuran/table memory; Rıza uses the same mechanism. Without a memory, present fatigue or rent concerns can supply the reply. Refusals, protests and delays keep his recorded words and alternative. The original answer stays in Timeline.
+
+“Keep listening” reveals at most four additional authored lines for that scene (two after an agreed stay), without sending words or advancing time. The opening folds under “Earlier in this conversation” once the answer arrives. Words freeze for the scene-and-answer occasion. Leaving, the clock and ordinary suggestions remain available. One quick-choice slot carries an offered competing end, including the shortfall shift and the cigarette-intervention walk; the other keeps an offered scene continuation. Old answers end with their occasion, including same-minute changes, and remain in Timeline. A standing word is a short line with Withdraw under “Your words”. Clock resumption says “Let time pass”, distinct from local listening.
+
+Costs and risks: these are bounded UI-authored exchanges, not new memories, relationship outcomes or a dialogue simulation. They can repeat across encounters. A cold retest must judge whether the completed exchange earns another visit and whether the remaining stay suggestion encourages repetition after the local continuation ends. No new deferral, simulation, edition, protocol or HF pin change. Revert this follow-up commit to restore Follow-up c; no save migration is needed. The existing Ramadan 2 encounter and historical-wording deferrals remain.
+
 ## Deferred
 
 Open, unbuilt or unconfirmed items from the design, the build plan and its fourteen passes. Target is "unscheduled" unless stated.

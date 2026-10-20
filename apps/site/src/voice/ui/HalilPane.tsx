@@ -1,7 +1,9 @@
 /** What the player sees of him (voice.md §8): doing now, the felt body, named feelings, what's on his mind, money. */
+
 import { memo } from 'react';
 import type { HalilView } from '../protocol.ts';
 import { Icon } from './Icon.tsx';
+import { explainTerms, MealTerms } from './terms.tsx';
 
 const STATE_LABEL: Record<HalilView['onMind'][number]['state'], string> = {
   open: '',
@@ -18,8 +20,8 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
       <div className="v-doing">
         {halil.doing ? (
           <>
-            <p className="v-doing-label">{halil.doing.label}</p>
-            {halil.doing.intention && <p className="v-doing-why">{halil.doing.intention}</p>}
+            <p className="v-doing-label">{explainTerms(halil.doing.label)}</p>
+            {halil.doing.intention && <p className="v-doing-why">{explainTerms(halil.doing.intention)}</p>}
             <p className="v-doing-until">until {halil.doing.until}</p>
           </>
         ) : (
@@ -62,7 +64,7 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
         {halil.onMind.length === 0 && <li className="v-muted">Nothing pressing.</li>}
         {halil.onMind.map((c) => (
           <li key={c.id} className={`v-mind-${c.state}`}>
-            <span className="v-mind-label">{c.label}</span>
+            <span className="v-mind-label">{explainTerms(c.label)}</span>
             <span className="v-mind-due">{c.due}</span>
             {STATE_LABEL[c.state] && <span className="v-mind-state">{STATE_LABEL[c.state]}</span>}
           </li>
@@ -75,7 +77,7 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
           <ul className="v-mind v-weighs">
             {halil.weighs.map((w) => (
               <li key={w.label}>
-                <span className="v-mind-label">{w.label}</span>
+                <span className="v-mind-label">{explainTerms(w.label)}</span>
                 <span className="v-mind-due">{w.word}</span>
                 {w.trend !== 'same' && (
                   <span className="v-mind-state">
@@ -99,6 +101,7 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
           <strong>{halil.owed}</strong> owed to Osman
         </span>
       </p>
+      <MealTerms />
     </section>
   );
 });

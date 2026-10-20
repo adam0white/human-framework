@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { storyDates } from './dates.ts';
+import { explainTerms } from './terms.tsx';
 
 export function Intro({
   intro,
@@ -32,7 +33,7 @@ export function Intro({
         <h2 id="intro-title">{storyDates(intro.label)}</h2>
         <ul className="v-lines">
           {intro.lines.map((l) => (
-            <li key={l}>{storyDates(l)}</li>
+            <li key={l}>{explainTerms(storyDates(l))}</li>
           ))}
         </ul>
         {eid && <p className="v-hint">There is no composer today. You can still open Why on any line.</p>}

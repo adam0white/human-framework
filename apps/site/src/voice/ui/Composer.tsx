@@ -3,12 +3,14 @@
  * with its price, one optional reason, a live telegraph of his answer, then Say it or Say nothing.
  * Keyboard: 1–6 pick an option, M / U strength, I insist, D H S A T reasons, Enter says it, Esc says nothing.
  */
+
 import { memo, useEffect, useRef, useState } from 'react';
 import type { Appeal, Draft, Frame, Prefill, Strength, Telegraph } from '../protocol.ts';
 import { storyDates } from './dates.ts';
 import { Icon, STRENGTH_ICON, TONE_ICON, TONE_WORD } from './Icon.tsx';
 import { obstacleWords } from './obstacle.ts';
 import { APPEALS, appealLabel, INSIST_PRICE, STRENGTHS, toneClass } from './parts.tsx';
+import { explainTerms } from './terms.tsx';
 
 const fromPrefill = (p: Prefill): Draft => ({
   optionId: p.optionId,
@@ -38,7 +40,7 @@ function TelegraphLine({ telegraph, pending }: { telegraph: Telegraph | null; pe
     return (
       <p className={`v-telegraph ${toneClass(telegraph.tone)}`} aria-live="polite">
         <span className="v-telegraph-kind">Likely reply</span>
-        <span className="v-telegraph-obstacle">“{obstacle}”</span>
+        <span className="v-telegraph-obstacle">“{explainTerms(obstacle)}”</span>
       </p>
     );
   return (
@@ -50,13 +52,13 @@ function TelegraphLine({ telegraph, pending }: { telegraph: Telegraph | null; pe
           className={`v-verdict-icon tone-icon-${telegraph.tone}`}
         />
       )}
-      <span className="v-telegraph-kind">{telegraph.text}</span>
+      <span className="v-telegraph-kind">{explainTerms(telegraph.text)}</span>
       {/* The kind line usually quotes him already; show the quote and counter-offer only when it doesn't. */}
       {telegraph.says && !telegraph.text.includes(telegraph.says) && (
-        <span className="v-telegraph-says">“{telegraph.says}”</span>
+        <span className="v-telegraph-says">“{explainTerms(telegraph.says)}”</span>
       )}
       {!obstacle && telegraph.counter && !telegraph.text.includes(telegraph.counter) && (
-        <em className="v-telegraph-counter">{telegraph.counter}</em>
+        <em className="v-telegraph-counter">{explainTerms(telegraph.counter)}</em>
       )}
     </p>
   );
@@ -245,7 +247,7 @@ export const Composer = memo(function Composer({
           : 'He isn’t at a decision right now.';
     return (
       <div className="v-composer is-closed" role="status">
-        <p className="v-closed-line">{text}</p>
+        <p className="v-closed-line">{explainTerms(text)}</p>
         <p className="v-closed-sub">You can speak when he is awake and choosing.</p>
       </div>
     );
@@ -264,7 +266,7 @@ export const Composer = memo(function Composer({
         aria-expanded={expanded}
       >
         <span className="v-peek-lean">
-          Leaning: <em>{leaningOpt?.label ?? '—'}</em>
+          Leaning: <em>{explainTerms(leaningOpt?.label ?? '—')}</em>
         </span>
         <span className="v-peek-cta">{expanded ? 'Close' : 'Say something'}</span>
       </button>
@@ -273,11 +275,11 @@ export const Composer = memo(function Composer({
         <div className="v-composer-scroll">
           {leaningOpt && (
             <p className="v-leaning">
-              He’s leaning toward <em>{leaningOpt.label}</em>
+              He’s leaning toward <em>{explainTerms(leaningOpt.label)}</em>
               {leaning?.why ? (
                 <>
                   {' '}
-                  — <span>{leaning.why}</span>
+                  — <span>{explainTerms(leaning.why)}</span>
                 </>
               ) : null}
             </p>
@@ -293,7 +295,7 @@ export const Composer = memo(function Composer({
                 onClick={() => pick(o.id)}
               >
                 <kbd>{i + 1}</kbd>
-                <span className="v-option-label">{o.label}</span>
+                <span className="v-option-label">{explainTerms(o.label)}</span>
                 {o.leaning && <span className="v-option-lean">his leaning</span>}
               </button>
             ))}
@@ -303,10 +305,13 @@ export const Composer = memo(function Composer({
             {prefill ? (
               <>
                 <span className="v-prefill-tag">
-                  Prefilled <em>{options.find((o) => o.id === prefill.optionId)?.label ?? 'something'}</em>{' '}
+                  Prefilled{' '}
+                  <em>
+                    {explainTerms(options.find((o) => o.id === prefill.optionId)?.label ?? 'something')}
+                  </em>{' '}
                   because
                 </span>{' '}
-                {storyDates(prefill.why)}
+                {explainTerms(storyDates(prefill.why))}
               </>
             ) : (
               'Nothing here is prefilled. Pick one, or say nothing.'
@@ -316,7 +321,9 @@ export const Composer = memo(function Composer({
         <div className="v-commit">
           <div className="v-preview">
             <p className="v-draft-summary">
-              <strong className="v-draft-action">{selected?.label ?? 'No action selected'}</strong>
+              <strong className="v-draft-action">
+                {explainTerms(selected?.label ?? 'No action selected')}
+              </strong>
               <span className="v-draft-how">
                 {draft ? STRENGTHS.find((s) => s.id === draft.strength)?.label : 'Choose an action'}
                 {draft?.insist ? ' · Insist' : ''}
@@ -325,9 +332,9 @@ export const Composer = memo(function Composer({
             </p>
             <p className="v-choice-context">
               {selected?.id === prefill?.optionId && prefill
-                ? storyDates(prefill.why)
+                ? explainTerms(storyDates(prefill.why))
                 : selected?.id === leaningOpt?.id
-                  ? leaning?.why
+                  ? explainTerms(leaning?.why ?? '')
                   : ''}
             </p>
             <TelegraphLine

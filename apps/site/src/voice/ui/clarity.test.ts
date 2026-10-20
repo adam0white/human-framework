@@ -174,3 +174,17 @@ it('keeps lab screen tracking in the game without a separate notebook row', () =
   expect(app).not.toContain('v-notebook');
   expect(app).not.toContain('<LabControls');
 });
+
+it('names what Auto does without substituting an unexplained phone abbreviation', () => {
+  const el = render(
+    createElement(TopBar, {
+      ...sampleFrame,
+      fastForward: undefined,
+      actions: {} as VoiceActions,
+      onPlaytestError: () => {},
+    }),
+  );
+  const auto = query(el, '.v-autopause');
+  expect(auto.textContent).toContain('Auto-pause at scenes');
+  expect(auto.querySelector('.v-short')).toBeNull();
+});

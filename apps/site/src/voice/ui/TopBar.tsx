@@ -5,6 +5,7 @@ import { gameLabs, LabMenuContent } from '../../shared/lab.tsx';
 import { PlaytestMenu } from '../../shared/PlaytestMenu.tsx';
 import type { Frame, Pace } from '../protocol.ts';
 import { storyDate } from './dates.ts';
+import { explainTerms } from './terms.tsx';
 import type { VoiceActions } from './useVoice.ts';
 
 const SKY: [number, string][] = [
@@ -98,7 +99,11 @@ export const TopBar = memo(function TopBar({
             .join(', ')}
         </span>
         <div className="v-top-ff" aria-live="polite">
-          {frame.fastForward ? `skipping: ${frame.fastForward}` : frame.sky.fast ? 'fasting' : ''}
+          {frame.fastForward
+            ? `skipping: ${explainTerms(frame.fastForward)}`
+            : frame.sky.fast
+              ? 'fasting'
+              : ''}
         </div>
       </div>
       <div className="v-top-controls">
@@ -146,11 +151,10 @@ export const TopBar = memo(function TopBar({
           className="v-btn v-btn-quiet v-autopause"
           aria-pressed={frame.autoPause}
           onClick={() => actions.setAutoPause(!frame.autoPause)}
-          title="Stop when something matters"
+          title="Pause for a new conversation or consequential offer"
         >
           <span className="v-autopause-mark" aria-hidden="true" />
-          <span className="v-long">Auto-pause</span>
-          <span className="v-short">Auto</span>
+          <span>Auto-pause at scenes</span>
         </button>
         {live && (
           <button type="button" className="v-btn v-btn-quiet v-endday" onClick={actions.endDay}>

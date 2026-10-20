@@ -150,7 +150,7 @@ export function App() {
               onSuggest={suggest}
               onSayNothing={sayNothing}
               onWithdraw={actions.withdraw}
-              onScenePause={() => actions.setPaused(true)}
+              onPause={() => actions.setPaused(true)}
             />
           </div>
           <div className="v-col v-col-right">
