@@ -2378,9 +2378,83 @@ button.v-log-btn {
 .v-model-numbers[open] summary::before {
   content: "▾";
 }
+/* Choice context stays beside the selected action. Only the alternative actions scroll. */
+.v-choice-context {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.3;
+  color: var(--ink-soft);
+}
+.v-phone-reason {
+  display: none;
+}
+.v-telegraph-obstacle {
+  display: block;
+  flex-basis: 100%;
+  font-family: var(--font-line);
+}
+.v-log-controls {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  min-height: 52px;
+  border-top: 1px solid var(--rule);
+  background: var(--paper);
+}
+.v-log-jump {
+  position: static;
+  margin: 4px 16px;
+}
+.v-log-jump[hidden] {
+  display: none;
+}
+.v-log-scene {
+  margin: 12px 0;
+  background: var(--paper-2);
+  border-left: 3px solid var(--edge-strong);
+  border-radius: 0 8px 8px 0;
+}
+.v-log-scene .v-log-btn {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0 8px;
+  padding: 8px 12px;
+}
+.v-log-scene .v-log-text {
+  grid-column: 1 / -1;
+  font-size: 0.86rem;
+}
+.v-scene-record {
+  display: block;
+  margin-top: 12px;
+  color: var(--ink-soft);
+}
+.v-scene-title {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-text);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.v-scene-why {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--edge);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.v-log-answer .v-log-text {
+  font-size: 0.94rem;
+  font-weight: 400;
+}
 @media (max-width: 767px) {
   .v-dock {
-    max-height: 68dvh;
+    max-height: calc(100dvh - 154px);
     min-height: 0;
     display: flex;
     flex-direction: column;
@@ -2398,9 +2472,10 @@ button.v-log-btn {
     flex: 1;
     min-height: 0;
     width: 100%;
-    height: calc(68dvh - 50px);
-    max-height: calc(100dvh - 160px);
-    grid-template-rows: minmax(0, 1fr) auto;
+    height: calc(100dvh - 204px);
+    max-height: calc(100dvh - 204px);
+    grid-template-rows: minmax(44px, 1fr) auto;
+    gap: 6px;
     overflow: hidden;
     padding: 0 12px 10px;
   }
@@ -2409,25 +2484,67 @@ button.v-log-btn {
     overscroll-behavior: contain;
     padding-bottom: 4px;
   }
-  .v-appeals {
-    min-width: 0;
-    margin: 0;
-    padding: 0;
+  .v-composer-scroll .v-leaning {
+    display: none;
   }
   .v-commit {
     min-height: 0;
+    gap: 5px;
   }
   .v-preview {
-    height: 152px;
+    height: 190px;
     display: grid;
-    grid-template-rows: 38px minmax(0, 1fr);
+    grid-template-rows: 38px 56px minmax(0, 1fr);
+    gap: 2px;
     overflow: hidden;
+  }
+  .v-choice-context {
+    overflow-y: auto;
   }
   .v-telegraph {
     height: auto;
     overflow-y: auto;
     align-content: start;
     box-sizing: border-box;
+    padding: 6px 8px;
+    font-size: 0.88rem;
+  }
+  .v-how {
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+  .v-how .v-seg {
+    flex: 1;
+  }
+  .v-how .v-seg button {
+    min-height: 44px;
+    flex: 1;
+  }
+  .v-insist-price {
+    height: 52px;
+    overflow-y: auto;
+    line-height: 1.2;
+    font-size: 0.77rem;
+  }
+  .v-appeals {
+    display: none;
+  }
+  .v-phone-reason {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.84rem;
+  }
+  .v-phone-reason select {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    border: 1px solid var(--edge-strong);
+    border-radius: 8px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    padding: 0 8px;
   }
   .v-say {
     flex-wrap: nowrap;
@@ -2448,16 +2565,18 @@ button.v-log-btn {
   .v-option-lean {
     width: 100%;
   }
-  .v-how .v-seg button {
-    min-height: 44px;
-  }
 }
 
 /* Spoken scenes sit beside the recorded act. They never enter the simulation log. */
 .v-exchange {
   display: grid;
-  gap: 6px;
+  gap: 10px;
   margin-top: 10px;
+  padding-left: 12px;
+  border-left: 1px solid var(--edge-strong);
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--ink);
   font-family: var(--font-line);
 }
 .v-exchange-line strong {
@@ -2480,10 +2599,45 @@ button.v-log-btn {
 .v-draft-action,
 .v-draft-how {
   display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 }
 .v-draft-action {
   font-weight: 600;
+}
+
+/* Scene headings reserve the Why target; no speech lies beneath it. */
+.v-log-scene .v-log-btn {
+  position: relative;
+}
+.v-log-scene .v-log-clock {
+  display: none;
+}
+.v-log-scene .v-scene-title {
+  min-height: 44px;
+  margin-top: 0;
+  padding-right: 52px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+.v-scene-title small {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+.v-log-scene .v-scene-why {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+}
+.v-log-scene .v-exchange {
+  margin-top: 4px;
+  gap: 8px;
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+.v-log-scene .v-scene-record {
+  font-size: 0.72rem;
+  line-height: 1.25;
 }

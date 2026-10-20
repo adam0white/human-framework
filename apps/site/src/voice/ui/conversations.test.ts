@@ -3,9 +3,9 @@ import { createElement } from 'react';
 import { flushSync } from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { expect, it } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import type { LogEntry } from '../protocol.ts';
-import { conversationFor } from './conversations.ts';
+import { type ConversationMoment, conversationFor } from './conversations.ts';
 import { DayLog } from './DayLog.tsx';
 
 const talk: LogEntry = {
@@ -32,8 +32,7 @@ it('renders the stored action and a short spoken Hacer exchange without changing
   expect(el.textContent).toContain('Talk with Hacer at the door? “Fine.”');
   expect(el.textContent).not.toContain('Talk hacer?');
   const lines = el.querySelectorAll('.v-exchange-line');
-  expect(lines.length).toBeGreaterThanOrEqual(2);
-  expect(lines.length).toBeLessThanOrEqual(4);
+  expect(lines).toHaveLength(4);
   expect(lines[0]?.textContent).toContain('Halil:');
   expect(lines[1]?.textContent).toContain('Hacer:');
   expect(JSON.stringify(log)).toBe(before);
@@ -44,7 +43,7 @@ it.each([
   ['I call Selin, because you asked.', 'Selin'],
 ])('gives the other social action %s its own two-person exchange', (text, name) => {
   const lines = view([{ ...talk, text }]).querySelectorAll('.v-exchange-line');
-  expect(lines.length).toBeGreaterThanOrEqual(2);
+  expect(lines).toHaveLength(4);
   expect([...lines].map((e) => e.textContent).join(' ')).toContain(`${name}:`);
   expect([...lines].map((e) => e.textContent).join(' ')).toContain('Halil:');
 });
@@ -117,4 +116,150 @@ it('keeps a displayed conversation unchanged after earlier context is trimmed fr
   } finally {
     root.unmount();
   }
+});
+
+const socialActs = [
+  ['Hacer', talk.text],
+  ['Rıza', 'I have tea with Rıza, to be with someone.'],
+  ['Selin', 'I call Selin, because you asked.'],
+] as const;
+const contexts: {
+  topic: string;
+  note?: string;
+  who?: LogEntry['who'];
+  late?: boolean;
+  felt?: 'tired' | 'hunger';
+  endings: readonly string[];
+}[] = [
+  { topic: 'ordinary company', endings: ['leave the door open', 'take that chair', 'Keep me on the phone'] },
+  {
+    topic: 'evening company',
+    late: true,
+    endings: ['keep the door open', 'chair closer', 'goodnight yet'],
+  },
+  {
+    topic: 'rent worry',
+    note: 'Osman wants the rent.',
+    endings: ['amount out loud', 'go through the sums', 'go through the amount'],
+  },
+  {
+    topic: 'Selin’s health concern',
+    note: 'Selin asked him to see the doctor.',
+    who: 'selin',
+    endings: ['Stand here with me', 'chair here beside mine', 'sound brave'],
+  },
+  {
+    topic: 'tiredness',
+    felt: 'tired',
+    endings: ['stand here with me', 'Keep the chair', 'stay on the phone'],
+  },
+  {
+    topic: 'hunger',
+    felt: 'hunger',
+    endings: ['plan a supper', 'goes on the plate', 'choose something together'],
+  },
+  {
+    topic: 'surfaced memory',
+    note: 'He remembers: iftar with Nuran at our table, last Ramadan.',
+    endings: ['sitting with her', 'chair here beside mine', 'that meal with Mum'],
+  },
+];
+it.each(contexts)('finishes $topic with Halil’s answer and each companion’s offer', (context) => {
+  socialActs.forEach(([name, text], index) => {
+    const entry = { ...talk, text, minute: context.late ? 2520 : talk.minute };
+    const log: LogEntry[] = context.note
+      ? [
+          {
+            ...talk,
+            id: 'context',
+            minute: entry.minute - 1,
+            kind: context.topic === 'surfaced memory' ? 'recall' : 'voice',
+            who: context.who ?? 'halil',
+            text: context.note,
+          },
+          entry,
+        ]
+      : [entry];
+    const moment: ConversationMoment = {
+      minute: entry.minute,
+      halil: {
+        felt: context.felt ? [{ id: context.felt, word: context.felt, level: 0.8 }] : [],
+        onMind: [],
+      },
+    };
+    const lines = conversationFor(entry, log, moment);
+    expect(lines.map((line) => line.speaker)).toEqual(['Halil', name, 'Halil', name]);
+    expect(lines.every((line) => line.words.length > 0)).toBe(true);
+    expect(lines[2]?.words).not.toBe(lines[0]?.words);
+    expect(lines[3]?.words).toContain(context.endings[index]);
+    expect(conversationFor(entry, log, moment)).toEqual(lines);
+  });
+});
+it('finishes incoming calls without claiming Halil placed them or adding an event', () => {
+  const incoming: LogEntry = {
+    ...talk,
+    id: 'incoming',
+    kind: 'voice',
+    who: 'selin',
+    text: 'Selin called. Eid mubarak, Dad.',
+  };
+  const lines = conversationFor(incoming, [incoming]);
+  expect(lines.map((line) => line.speaker)).toEqual(['Halil', 'Selin', 'Halil', 'Selin']);
+  expect(lines[2]?.words).toContain('call me Dad');
+  expect(lines.map((line) => line.words).join(' ')).not.toMatch(/I called|I phoned|I rang/);
+});
+it('reads frozen UI context without RNG and ignores later worries for an old scene', () => {
+  const entry = Object.freeze({ ...talk });
+  const later = Object.freeze({
+    ...talk,
+    id: 'later',
+    kind: 'voice' as const,
+    minute: talk.minute + 1,
+    text: 'Osman wants the rent.',
+  });
+  const log = Object.freeze([entry, later]);
+  const moment: ConversationMoment = {
+    minute: talk.minute,
+    halil: {
+      felt: [{ id: 'tired', level: 0.8, word: 'tired' }],
+      onMind: [],
+    },
+  };
+  Object.freeze(moment.halil.felt[0]);
+  Object.freeze(moment.halil.felt);
+  Object.freeze(moment.halil.onMind);
+  Object.freeze(moment.halil);
+  Object.freeze(moment);
+  const before = JSON.stringify({ log, moment });
+  const rng = vi.spyOn(Math, 'random').mockImplementation(() => {
+    throw new Error('Dialogue must not consume RNG');
+  });
+  try {
+    const lines = conversationFor(entry, log, moment);
+    expect(lines).toEqual(conversationFor(entry, [entry], moment));
+    expect(lines).toHaveLength(4);
+    expect(JSON.stringify({ log, moment })).toBe(before);
+    expect(rng).not.toHaveBeenCalled();
+  } finally {
+    rng.mockRestore();
+  }
+});
+
+it('keeps table-specific admissions tied to a surfaced table memory', () => {
+  const recall: LogEntry = {
+    ...talk,
+    id: 'recall',
+    minute: talk.minute - 1,
+    kind: 'recall',
+    text: 'He remembers: Nuran’s funeral.',
+  };
+  const generic = conversationFor(talk, [recall, talk]);
+  expect(generic[2]?.words).toContain('I miss Nuran today');
+  expect(generic.map((line) => line.words).join(' ')).not.toContain('table');
+  const table = conversationFor(talk, [
+    { ...recall, text: 'He remembers: iftar with Nuran at our table, last Ramadan.' },
+    talk,
+  ]);
+  expect(table[2]?.words).toContain('across the table');
+  expect(table[3]?.words).toContain('Keep the door open');
 });
