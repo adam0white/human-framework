@@ -93,3 +93,7 @@ How this is read: the recommended increment in [hf-roadmap-2026-10-20.md](hf-roa
 "And other small LLMs hosted on Workers AI"
 
 How this is read: a further $5 of Workers AI spend for this round of lab experiments, on top of the $5 approved on 2026-10-18, with a hard cap per experiment and spend recorded in each write-up. The Clairic ledger triage widens into a bake-off: Clairic, Clef (Cloudflare's option-picking decision model) and a few small Workers AI LLMs, scored against the same hand labels. Small Workers AI models are a candidate LLM arm for the island pilot. Write-ups: [docs/lab/experiments/](lab/experiments/).
+
+A further addition the same evening (Adam, verbatim): "Maintenance should include bringing deps to the latest, including compat_date. I'm open to seeing if we can migrate from wrangler to the new CF cli, too, abandoning wrangler json."
+
+How this is read: in this repository only, the Host kit sweep also brings dependencies to their latest versions (majors where they work), including the Worker's `compatibility_date`, and checks whether Cloudflare's new CLI can replace wrangler and `wrangler.jsonc`; it migrates only if that CLI is ready, otherwise a note records the blocker and a target date. Game repositories run their own pass.
