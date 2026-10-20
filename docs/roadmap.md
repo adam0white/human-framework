@@ -58,7 +58,7 @@ These change what a run does, so each needs the engine bump and a recorded reaso
 | R2 V11 | `stepCommunity` allocates per event. Invisible at 200 people; revisit if a host runs more than ~500. | unscheduled |
 | R2 1c, 7c | CI does not install the packed tarball and run an example, and does not check that docs/api.md is current (`api-doc --check`). | unscheduled |
 | TS 5.x | Consumers on TypeScript 5.x are untested (the repo builds with TypeScript 7). | unscheduled |
-| Community and world migration | `migrate` upgrades person snapshots only; community state (`communityState`) and world state have no migration steps. None has been needed (their shape has not changed; world state is the host's), but the first shape change needs one. | unscheduled |
+| Community and world migration | `migrate` upgrades person snapshots only; community state (`communityState`) and world state have no migration steps. None has been needed (their shape has not changed; world state is the host's), but the first shape change needs one. | community: engine 2.15 (§3b, "Memory bound and declared fidelity"); world: a host recipe, not HF |
 | Bench evidence | Bench timings on a quiet machine; 50-year save sizes on seeds other than 1; per-person growth is still about 0.5 KB a year at year 50, almost all the yearbook (P10). | unscheduled |
 
 ## 3. Faculties not yet modelled
