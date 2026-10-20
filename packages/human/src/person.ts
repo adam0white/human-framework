@@ -45,7 +45,15 @@ import {
   proposeGoals,
   revisePurposes,
 } from './agenda/index.ts';
-import { advanceBeliefs, attend, believe, confirm, credence } from './beliefs/index.ts';
+import {
+  advanceBeliefs,
+  attend,
+  believe,
+  confirm,
+  contradicted,
+  credence,
+  noteProvenance,
+} from './beliefs/index.ts';
 import {
   advanceBody,
   BODY_DEFAULTS,
@@ -142,7 +150,9 @@ import {
   careFor,
   closeness,
   judge,
+  type KnownAct,
   markDeceased,
+  noteKnownBy,
   relationshipWith,
   seedRelationships,
   socialEvent,
@@ -727,8 +737,26 @@ function perceiveOne(p: Person, pc: Percept): void {
     const before = credence(p, claim.prop);
     if (direct && claim.confidence >= 0.9) confirm(p, claim.prop, claim.value, at);
     else believe(p, claim.prop, claim.value, claim.confidence, direct ? p.id : (actor ?? 'rumour'), at);
+    // Provenance (2.10.0): recorded only when the claim carries it; first acquisition wins.
+    if (claim.origin !== undefined || claim.lineage !== undefined)
+      noteProvenance(p, claim, direct ? p.id : (actor ?? 'rumour'), at);
     // Hearsay about someone's character moves my relationship with them (reputation).
     applyReputationBelief(p, claim.prop, before, credence(p, claim.prop), at);
+  }
+  // Another source's account, reported by the teller (2.10.0): one source telling two people opposite things.
+  if (pc.channel === 'told' && actor !== undefined && pc.reports) {
+    for (const r of pc.reports.slice(0, 4)) contradicted(p, { ...r, reporterId: actor, at });
+  }
+  // My own act, seen by others (2.10.0): what I believe they now think of me.
+  if (byMe && pc.witnesses) {
+    for (const w of pc.witnesses) {
+      if (w === p.id) continue;
+      const act: KnownAct = { kind: pc.kind };
+      if (target !== undefined) act.targetId = target;
+      if (pc.valence !== undefined) act.valence = pc.valence;
+      if (pc.norms) act.norms = pc.norms;
+      noteKnownBy(p, { otherId: w, act, at, via: 'seen' });
+    }
   }
   // Advice carried by testimony keeps pulling after the speaker falls silent (standing advice, N9).
   if (pc.channel === 'told') rememberAdvice(p, pc);

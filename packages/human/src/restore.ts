@@ -8,6 +8,7 @@
  */
 import { sanitizeCrisis } from './affect/index.ts';
 import { sanitizeAgenda } from './agenda/index.ts';
+import { sanitizeBeliefMeta } from './beliefs/index.ts';
 import { sanitizeBody, sanitizeInjuries } from './body/index.ts';
 import { sanitizeCharacter } from './character/index.ts';
 import { CHRONICLE_DEFAULTS, sanitizeYears } from './chronicle/index.ts';
@@ -185,6 +186,7 @@ export function restore(input: unknown): Person {
   sanitizeCrisis(out.affect);
   sanitizeAgenda(out.agenda);
   sanitizeGists(out.memory);
+  sanitizeBeliefMeta(out.memory);
   // Optional top-level slices (1.8.0 onward), each checked by its owner.
   keepValid(out, 'chronicleYears', sanitizeYears);
   keepValid(out, 'character', sanitizeCharacter);

@@ -450,6 +450,51 @@ export interface Belief {
   updatedAt: Minute;
   /** Sources that contributed and the direction each claimed (bounded), so `confirm` can recalibrate them. */
   sources: { id: EntityId; value: boolean }[];
+  /**
+   * Where this person first got the belief (2.10.0, `beliefs/`). Absent unless an incoming claim carried provenance
+   * (`PerceptClaim.origin` or `lineage`). First acquisition wins; never read by decisions.
+   */
+  provenance?: BeliefProvenance;
+}
+
+/** Where a belief first came from, as far as the person knows (2.10.0). Owned by `beliefs/`. */
+export interface BeliefProvenance {
+  /** Who first said it: the first teller of the chain as told, or this person when they saw it themselves. */
+  origin: EntityId;
+  /** Who this person first heard it from (equal to `origin` when told first-hand or observed). */
+  firstFrom: EntityId;
+  /** Minute the provenance was acquired. */
+  at: Minute;
+  /** Opaque host token (at most 64 characters), carried unchanged through relays; HF never parses it. */
+  lineage?: string;
+}
+
+/** One proposition claim carried by a percept. */
+export interface PerceptClaim {
+  prop: string;
+  value: boolean;
+  confidence: Unit;
+  /** 2.10.0: who first said it, as the teller passes it on (provenance; never read by decisions). */
+  origin?: EntityId;
+  /** 2.10.0: opaque host lineage token (at most 64 characters), carried unchanged by `converse`. */
+  lineage?: string;
+}
+
+/**
+ * A report that `sourceId` told the reporter (the percept's `actorId`) that `prop` is `value` (2.10.0). On an attended
+ * `told` percept it is checked against what `sourceId` told this person (`beliefs.contradicted`).
+ */
+export interface ReportedAccount {
+  sourceId: EntityId;
+  prop: string;
+  value: boolean;
+}
+
+/** A noted contradiction by one source on one proposition (2.10.0, `beliefs/`); kept so it counts once. */
+export interface NotedContradiction {
+  sourceId: EntityId;
+  prop: string;
+  at: Minute;
 }
 
 /** Learned expectation of an action's actual result for this person (prediction-error learning). */
@@ -491,6 +536,8 @@ export interface MemoryState {
   /** Lasting gists (1.8.0, opt-in via `enableGists`; absent = episodes are simply forgotten). Bounded. */
   gists?: Gist[];
   nextGist?: number;
+  /** Contradictions already noted (2.10.0, `beliefs.contradicted`). Absent until one is noted. Bounded. */
+  contradictions?: NotedContradiction[];
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -1231,7 +1278,7 @@ export interface Percept {
   /** Base salience before attention, 0..1. */
   salience: Unit;
   /** Proposition claims carried by the percept (e.g. a rumour). */
-  claims?: { prop: string; value: boolean; confidence: Unit }[];
+  claims?: PerceptClaim[];
   /** Norms the observed act honoured or violated (for judging others). */
   norms?: NormTag[];
   /**
@@ -1259,6 +1306,13 @@ export interface Percept {
   /** At most four additions/withdrawals combined; attended external testimony to this person or a broadcast. */
   consequences?: readonly ReceivedConsequence[];
   withdrawConsequences?: readonly { id: string; revision: number }[];
+  /**
+   * 2.10.0: on a percept of my own act (`actorId` is the perceiver), the people I saw see it. Each one's believed
+   * regard of me moves (`social/impressions.ts`, `noteKnownBy`). Someone present but not listed changes nothing.
+   */
+  witnesses?: readonly PersonId[];
+  /** 2.10.0: on a `told` percept, accounts the teller says another source gave them (at most four). */
+  reports?: readonly ReportedAccount[];
 }
 
 /**
