@@ -1,6 +1,7 @@
 /** Top bar (voice.md §7.2) with the sky band (§4): the hour's light, prayer notches, the fast, and a "now" mark. */
 import { memo } from 'react';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
+import { gameLabs, LabMenuContent } from '../../shared/lab.tsx';
 import { PlaytestMenu } from '../../shared/PlaytestMenu.tsx';
 import type { Frame, Pace } from '../protocol.ts';
 import { storyDate } from './dates.ts';
@@ -162,7 +163,12 @@ export const TopBar = memo(function TopBar({
           onExport={actions.exportPlaytest}
           onLoad={actions.loadPlaytest}
           onError={onPlaytestError}
-          extra={<FullscreenButton variant="item" className="v-fs-item" />}
+          extra={
+            <>
+              <LabMenuContent lab={gameLabs.voice} onSend={actions.sendPlaytest} />
+              <FullscreenButton variant="item" className="v-fs-item" />
+            </>
+          }
         />
         <FullscreenButton className="v-fs" />
       </div>

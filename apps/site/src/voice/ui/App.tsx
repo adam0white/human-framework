@@ -5,7 +5,7 @@
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
-import { gameLabs, LabControls } from '../../shared/lab.tsx';
+import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { Draft } from '../protocol.ts';
 import { Between } from './Between.tsx';
@@ -36,6 +36,7 @@ export function App() {
   const [whyId, setWhyId] = useState<string | null>(null);
 
   const phase = frame?.phase ?? 'premise';
+  useLabScreen(gameLabs.voice, phase === 'premise' ? 'title' : phase === 'report' ? 'ending' : 'play');
   const live = phase === 'day' || phase === 'eid' || phase === 'free';
   const overlay: 'premise' | 'intro' | 'between' | 'report' | null =
     !frame || phase === 'premise'
@@ -182,14 +183,6 @@ export function App() {
           </button>
         ))}
       </nav>
-      <div className="v-notebook">
-        <LabControls
-          lab={gameLabs.voice}
-          screen={phase === 'premise' ? 'title' : phase === 'report' ? 'ending' : 'play'}
-          onSend={actions.sendPlaytest}
-        />
-      </div>
-
       {voice.whyOpen && !overlay && <Why why={voice.why} missing={voice.whyMissing} onClose={closeWhy} />}
 
       {overlay === 'premise' && <Premise ready={frame !== null} onBegin={actions.begin} />}

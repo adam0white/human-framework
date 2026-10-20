@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useWakeLock } from '../../shared/fullscreen.tsx';
-import { gameLabs, LabControls } from '../../shared/lab.tsx';
+import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
+import { gameLabs, LabMenuContent, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { MomentRecord } from '../sim/game.ts';
 import type { Bubble } from '../sim/human-side.ts';
@@ -15,6 +15,7 @@ import { Inspector } from './Inspector.tsx';
 import { Pane } from './Pane.tsx';
 import { PaneBody, PeopleRows } from './PeopleRows.tsx';
 import {
+  AutoPauseToggle,
   Composer,
   type ComposerState,
   EMPTY_COMPOSER,
@@ -89,6 +90,7 @@ export function App() {
   const resultsButton = useRef<HTMLButtonElement>(null);
   const hasSummary = Boolean(colony.summaries[2] || colony.summaries[3]);
   const starting = playback.pause?.kind === 'start';
+  useLabScreen(gameLabs.well, starting ? 'title' : frame?.ended ? 'ending' : 'play');
 
   // The one-time "Tap any bubble" toast, after the first Play.
   // Depends on whether a frame exists, not on each frame: a per-frame re-run would clear the timer before it fired.
@@ -206,6 +208,8 @@ export function App() {
       nudgeId: n.id,
       ...(n.reason ? { reason: n.reason } : {}),
     });
+    // The phone suggestion sheet closes after preparation so it cannot cover Confirm.
+    document.querySelector<HTMLDetailsElement>('.nudge-slot')?.removeAttribute('open');
     // Only Confirm is left: move focus there so Enter confirms (focus would otherwise stay on Use).
     window.setTimeout(() => document.querySelector<HTMLButtonElement>('.composer .btn-confirm')?.focus(), 0);
   };
@@ -319,11 +323,6 @@ export function App() {
 
   return (
     <div className={`colony ${composer.personId ? 'is-choosing' : ''}`}>
-      <LabControls
-        lab={gameLabs.well}
-        screen={starting ? 'title' : frame?.ended ? 'ending' : 'play'}
-        onSend={actions.sendPlaytest}
-      />
       <TopBar
         frame={frame}
         playback={playback}
@@ -339,6 +338,13 @@ export function App() {
             onExport={actions.exportPlaytest}
             onLoad={actions.loadPlaytest}
             onError={actions.playtestError}
+            extra={
+              <>
+                <LabMenuContent lab={gameLabs.well} onSend={actions.sendPlaytest} />
+                <AutoPauseToggle on={playback.autoPause} onChange={actions.setAutoPause} />
+                <FullscreenButton variant="item" />
+              </>
+            }
           />
         }
       />
@@ -371,11 +377,15 @@ export function App() {
         </section>
 
         <aside className="center">
-          {playback.pause && <PauseRibbon pause={playback.pause} onResume={() => actions.setPaused(false)} />}
-          <HurtLine news={frame?.news ?? []} />
+          <div className="order-alerts">
+            {playback.pause && (
+              <PauseRibbon pause={playback.pause} onResume={() => actions.setPaused(false)} />
+            )}
+            <HurtLine news={frame?.news ?? []} />
+            <OrderReply cards={cards} />
+          </div>
           <div className="composer-tray">
             <p className="order-scope">Each order goes to both villages.</p>
-            <OrderReply cards={cards} />
             <Composer
               state={composer}
               frame={frame}

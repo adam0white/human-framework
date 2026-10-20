@@ -20,15 +20,16 @@ export const gameLabs = {
 };
 
 /** Fixed labels only. State, player text and names belong solely in the opt-in export. */
-export function LabControls({
-  lab,
-  screen,
-  onSend,
-}: {
-  lab: Lab;
-  screen: 'title' | 'play' | 'ending';
-  onSend: () => void | Promise<void>;
-}) {
+export function useLabScreen(lab: Lab, screen: 'title' | 'play' | 'ending') {
+  useEffect(() => {
+    lab.screen(screen);
+    if (screen === 'play') lab.milestone('run started');
+    if (screen === 'ending') lab.milestone('ending reached');
+  }, [lab, screen]);
+}
+
+/** Inline items for the game's own menu. Screen tracking stays mounted with the game. */
+export function LabMenuContent({ lab, onSend }: { lab: Lab; onSend: () => void | Promise<void> }) {
   const [eventsOn, setEventsOn] = useState(lab.eventsOn);
   const [sendError, setSendError] = useState('');
   const [sending, setSending] = useState(false);
@@ -44,27 +45,8 @@ export function LabControls({
       document.removeEventListener('change', sync);
     };
   }, [lab]);
-  useEffect(() => {
-    lab.screen(screen);
-    if (screen === 'play') lab.milestone('run started');
-    if (screen === 'ending') lab.milestone('ending reached');
-  }, [lab, screen]);
   return (
-    <details
-      className="lab-controls"
-      style={{
-        position: 'fixed',
-        right: '0.5rem',
-        bottom: 'max(0.5rem, env(safe-area-inset-bottom))',
-        zIndex: 100,
-        maxWidth: 'calc(100vw - 1rem)',
-        padding: '0.4rem',
-        background: '#f7f0e5',
-        color: '#2b2622',
-        border: '1px solid #8b8074',
-      }}
-    >
-      <summary>Playtest notebook</summary>
+    <>
       <button
         type="button"
         disabled={sending}
@@ -86,7 +68,7 @@ export function LabControls({
         Send this run to the notebook
       </button>
       {sendError && <p role="alert">{sendError}</p>}
-      <label>
+      <label className="pt-menu-option">
         <input
           type="checkbox"
           checked={eventsOn}
@@ -98,6 +80,6 @@ export function LabControls({
         Anonymous play events
       </label>
       <a href="https://human.adamwhite.work/lab/privacy/">Privacy</a>
-    </details>
+    </>
   );
 }
