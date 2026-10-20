@@ -1,5 +1,5 @@
 /**
- * Scope: one Notebook entry for saving, full JSON download, privacy and the client's send dialog.
+ * Scope: one Game menu entry (DL-26) for saving, full JSON download, privacy and the client's send dialog.
  * The game owns export/replay correctness and saves. This never sends a run itself or creates a lab client.
  */
 import { showSheet } from './dialog.ts';
@@ -53,18 +53,18 @@ async function supportsCompact(): Promise<boolean> {
   }
 }
 
-/** Returns a single Notebook button; the sheet is created on each open. */
+/** Returns a single Game menu button; the sheet is created on each open. */
 export function notebookMenu(options: NotebookMenuOptions): HTMLButtonElement {
   const entry = document.createElement('button');
   entry.type = 'button';
-  entry.textContent = 'Notebook';
+  entry.textContent = 'Game menu';
   entry.setAttribute('aria-haspopup', 'dialog');
   entry.addEventListener('click', () => {
     const sheet = document.createElement('dialog');
     sheet.className = 'lk-notebook';
-    sheet.setAttribute('aria-label', 'Notebook');
+    sheet.setAttribute('aria-label', 'Game menu');
     const title = document.createElement('h2');
-    title.textContent = 'Notebook';
+    title.textContent = 'Game menu';
     const status = document.createElement('p');
     status.setAttribute('role', 'status');
     const button = (label: string, action: () => void | Promise<void>) => {
@@ -76,7 +76,7 @@ export function notebookMenu(options: NotebookMenuOptions): HTMLButtonElement {
         try {
           await action();
         } catch {
-          status.textContent = 'That did not work. Your run is still here; try downloading the export.';
+          status.textContent = 'That did not work. Your run is still here; try Download this run.';
         } finally {
           node.disabled = false;
         }
@@ -90,7 +90,7 @@ export function notebookMenu(options: NotebookMenuOptions): HTMLButtonElement {
         await options.onSave?.();
         status.textContent = 'Saved.';
       });
-    button('Download the playtest export', () => downloadJson(options.filename, options.getRun()));
+    button('Download this run', () => downloadJson(options.filename, options.getRun()));
     if (options.lab) {
       const lab = options.lab;
       button('Send this run to the notebook', async () => {
@@ -112,8 +112,7 @@ export function notebookMenu(options: NotebookMenuOptions): HTMLButtonElement {
           lab.openSendDialog({ getRun: options.getRun, ...compact });
         } catch {
           showSheet(sheet);
-          status.textContent =
-            'Sending could not open. Download the playtest export; it still has everything.';
+          status.textContent = 'Sending could not open. Download this run; it still has everything.';
         }
       });
       if (lab.setEventsOff && typeof lab.eventsOn === 'boolean') {

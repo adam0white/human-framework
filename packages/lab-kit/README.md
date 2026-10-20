@@ -91,7 +91,7 @@ footer.append(notebookMenu({
 }));
 ```
 
-One Notebook button opens a sheet containing Save (when `onSave` exists), Download the playtest export, Send this run to the notebook, regular-event controls (when the lab exposes them), and Lab privacy. The menu closes before the client dialog opens. Save success and failures are announced. `getRun` is read at action time; download always includes the complete export, never the compact form. The game must provide seed, input log and state, prove replay, and offer Continue with a location summary on its returning-player screen.
+One Game menu button opens a sheet containing Save (when `onSave` exists), Download this run, Send this run to the notebook, regular-event controls (when the lab exposes them), and Lab privacy. The menu closes before the client dialog opens. Save success and failures are announced. `getRun` is read at action time; download always includes the complete export, never the compact form. The game must provide seed, input log and state, prove replay, and offer Continue with a location summary on its returning-player screen.
 
 The client is an **optional peer**, `@adam0white/lab-client >=0.1.1`. Pass an existing lab; the kit does not create one. Omitting `lab` keeps download and Save available and explains why sending is unavailable. This also lets browser automation use the menu without initializing telemetry. Honor the client's privacy signals; never force telemetry on for a test.
 
@@ -133,7 +133,7 @@ Missing package versions fail the build. Missing Git evidence produces `commit: 
 | What-next line | DL-5, DL-8, DL-9, DL-22 | Updating instructions and reserving visible space |
 | Notebook and JSON | DL-24, DL-26, DL-28 | Resume (DL-27), replayable exports (DL-29), send client |
 
-The table follows the revised 2026-10-20 checklist ids. The requested Notebook and export labels are retained here; the revised checklist now recommends Game menu, Download this run and Send this run to the lab. Games can adopt those labels in a later reviewed API change.
+The table follows the revised 2026-10-20 checklist ids. Labels follow DL-26..28: Game menu, Download this run, Send this run to the notebook (the lab client's label).
 
 The kit does not certify any game against the full checklist.
 

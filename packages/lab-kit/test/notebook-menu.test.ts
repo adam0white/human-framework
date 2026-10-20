@@ -87,7 +87,7 @@ describe('Notebook', () => {
     });
     expect(sheet.textContent).toContain('downloaded export still has everything');
     expect(sheet.querySelector('a')?.href).toBe('https://human.adamwhite.work/lab/privacy/');
-    expect(button(sheet, 'Download the playtest export')).toBeDefined();
+    expect(button(sheet, 'Download this run')).toBeDefined();
     button(sheet, 'Save').click();
     await vi.waitFor(() =>
       expect(sheet.querySelector('[role=status]')?.textContent).toContain('That did not work'),
@@ -103,7 +103,7 @@ describe('Notebook', () => {
     vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {});
     const compact = vi.fn(() => ({}));
     const sheet = open({ getRun: () => run, filename: 'run.json', compact });
-    button(sheet, 'Download the playtest export').click();
+    button(sheet, 'Download this run').click();
     expect(JSON.parse((await blob?.text()) ?? '')).toEqual(run);
     expect(compact).not.toHaveBeenCalled();
   });
@@ -124,7 +124,7 @@ it('keeps a send startup failure visible with download still available', async (
     expect(sheet.querySelector('[role=status]')?.textContent).toContain('Sending could not open'),
   );
   expect(sheet.open).toBe(true);
-  expect(button(sheet, 'Download the playtest export')).toBeDefined();
+  expect(button(sheet, 'Download this run')).toBeDefined();
 });
 
 it('does not open Send late if the player closes Notebook during peer detection', async () => {
