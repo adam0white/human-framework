@@ -1,6 +1,6 @@
 /**
  * Real time to sim minutes (spec §2). Speeds are a continuous clock the Keeper sets; a moment eases play to the
- * tactical speed for a few sim minutes on its own and then hands back the chosen speed. Dusk runs at the slow
+ * reading speed while a decision is pending and then hands back the chosen speed. Dusk runs at the slow
  * dusk pace until the Keeper begins the watch. Pacing never touches the rules: it only decides how many whole
  * minutes to step, so outcomes depend on the seed and the input log alone.
  *
@@ -28,6 +28,8 @@ export const RATE: Record<Speed, number> = { tactical: 1, watch: 4, fast: 12, da
 export const DAY_RATE: Record<Speed, number> = { tactical: 0.15, watch: 0.5, fast: 1, days: 2, seasons: 7 };
 /** Dusk: 1/16 of `watch`, so the hour of posting lasts about four real minutes unless the Keeper begins. */
 export const DUSK_RATE = 0.25;
+/** Opening a card consumes its first sim minute before the frame arrives. The remaining two last two real minutes. */
+export const DECISION_RATE = 1 / 60;
 /** Never step more than this many minutes on one tick (a backgrounded tab returns in one piece). */
 const MAX_STEPS_PER_TICK = 20;
 /** Real milliseconds over which a slowdown hands the chosen speed back. */
@@ -54,6 +56,9 @@ export class Pacer {
   private lines = -1;
   private newsUntil = -1;
   private graveUntil = -1;
+  private pendingUntil: number | null = null;
+  /** A resolved decision must not leave its sim-side slowdown running after the answer. */
+  private resolvedSlowUntil = -1;
 
   /** How far into the next minute real time has carried (0..1), for drawing between minutes. */
   get progress(): number {
@@ -64,7 +69,11 @@ export class Pacer {
   slowed(run: WatchRun): boolean {
     const s = run.state;
     if (isSeason(s)) return s.card !== null || this.news(run) || this.grave(run);
-    return s.phase === 'night' && s.minute < s.slowUntil;
+    return (
+      s.phase === 'night' &&
+      ((s.moment !== null && s.minute < s.moment.until) ||
+        (s.minute < s.slowUntil && s.slowUntil > this.resolvedSlowUntil))
+    );
   }
 
   /** Fresh news in the open seasons, while the Keeper runs them faster than `days`. */
@@ -86,8 +95,7 @@ export class Pacer {
       return this.news(run) ? DAY_RATE.days : DAY_RATE[this.speed];
     }
     if (s.phase !== 'night') return 0;
-    // A card is open: 1/16 of the watch speed while the Keeper reads it.
-    if (s.moment && s.minute < s.moment.until) return DUSK_RATE;
+    if (s.moment && s.minute < s.moment.until) return DECISION_RATE;
     const chosen = RATE[this.speed];
     return this.slowed(run) ? Math.min(chosen, RATE.tactical) : chosen;
   }
@@ -167,6 +175,8 @@ export class Pacer {
     this.lines = -1;
     this.newsUntil = -1;
     this.graveUntil = -1;
+    this.pendingUntil = s.moment?.until ?? null;
+    this.resolvedSlowUntil = -1;
     this.wasSeason = s.phase === 'goal' ? null : isSeason(s) || s.phase === 'fair';
     if (s.phase === 'dusk' || s.phase === 'night') {
       if (this.speed === 'days' || this.speed === 'seasons') this.speed = 'watch';
@@ -176,6 +186,8 @@ export class Pacer {
   /** Sets the speed a season or a winter starts at when the run crosses into it. */
   follow(run: WatchRun): void {
     const s = run.state;
+    if (this.pendingUntil !== null && s.moment === null) this.resolvedSlowUntil = s.slowUntil;
+    this.pendingUntil = s.moment?.until ?? null;
     const season = isSeason(s);
     if (this.wasSeason !== true && season) this.speed = 'seasons';
     if (this.wasSeason === true && s.phase === 'dusk') this.speed = 'watch';

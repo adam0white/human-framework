@@ -16,7 +16,7 @@ import { hostWorker } from '../shared/worker-host.ts';
 import { type MainToWorker, WATCH_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
 import { DAY } from './sim/config.ts';
 import { dayOfYear, seasonOfDay } from './sim/life.ts';
-import { clockRuns } from './sim/night.ts';
+import { clockRuns, nightEnd } from './sim/night.ts';
 import { Pacer } from './sim/pace.ts';
 import { WatchRun } from './sim/run.ts';
 import { isSeason } from './sim/season.ts';
@@ -149,7 +149,12 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     const s = run.state;
     const rate = pacer.held || !clockRuns(s) ? 0 : pacer.paced(run);
     // Only what can change the frame: the minute, an input, the phase, the speed and the pace.
-    const key = `${s.minute}|${run.log.length}|${s.phase}|${pacer.speed}|${rate.toFixed(3)}|${pacer.slowed(run)}`;
+    // Reading takes several seconds within one sim minute. Refresh the countdown each real second too.
+    const decisionSeconds =
+      s.moment && rate > 0
+        ? Math.ceil((Math.min(s.moment.until, nightEnd(s)) - s.minute - pacer.progress) / rate - 1e-9)
+        : null;
+    const key = `${s.minute}|${run.log.length}|${s.phase}|${pacer.speed}|${rate.toFixed(3)}|${pacer.slowed(run)}|${decisionSeconds}`;
     if (!force && key === lastKey) return;
     lastKey = key;
     sinceFrame = 0;
@@ -200,6 +205,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       pacer.held = msg.on;
       // Opening the chronicle writes the running page, so the shelf shows where the Keeper stands.
       if (msg.on && behind()) save('auto');
+      flush(true);
       return;
     case 'save':
       if (behind()) save('auto');

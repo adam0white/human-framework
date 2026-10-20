@@ -52,6 +52,7 @@
 
 .w-top {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
   padding: 6px 12px;
@@ -96,6 +97,16 @@
 
 .w-slowed {
   color: var(--w-accent);
+}
+
+.w-clock-rate {
+  flex: 1 0 100%;
+  order: 11;
+  margin: 0;
+  color: var(--w-muted);
+  font-size: 0.85rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .w-speeds {
@@ -440,11 +451,18 @@
 }
 
 .w-moment {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  z-index: 3;
+  max-height: calc(100% - 16px);
+  overflow-y: auto;
   border: 1px solid var(--w-accent);
   border-radius: 12px;
   padding: 10px;
-  margin: 0 0 10px;
-  background: rgba(224, 163, 95, 0.1);
+  margin: 0;
+  background: var(--w-surface);
 }
 
 .w-moment-text {
@@ -459,15 +477,21 @@
   gap: 6px;
 }
 
-.w-option {
+.watch .w-option {
   align-items: flex-start;
   text-align: left;
   padding: 6px 10px;
+  line-height: 1.2;
+}
+
+.w-decision-time {
+  margin: 0 0 8px;
+  line-height: 1.25;
 }
 
 .w-moment-let {
   margin: 6px 0 0;
-  min-height: 40px;
+  min-height: 44px;
   padding: 0 10px;
   border: 0;
   background: transparent;
@@ -573,10 +597,22 @@
 }
 
 .w-bell {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4px 10px;
   align-items: center;
   margin: 4px 0 8px;
+}
+
+.w-bell-context {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 4px 0 0;
+  line-height: 1.35;
+}
+
+.w-lantern-context {
+  margin: 8px 0;
 }
 
 .w-bellbtn {
@@ -584,12 +620,14 @@
   align-items: center;
   gap: 8px;
   min-height: 52px;
-  padding: 0 14px;
   border-radius: 12px;
   border: 1px solid var(--w-accent);
   background: rgba(224, 163, 95, 0.14);
   font-weight: 600;
   flex: 0 0 auto;
+  min-width: 0;
+  justify-content: center;
+  padding: 4px 8px;
 }
 
 .w-bellbtn:disabled {
@@ -834,20 +872,8 @@
   }
 }
 
-/* Phone portrait: a card floats over the map, under the top bar, so the lantern and the bell stay in reach. */
+/* Phone portrait: decisions use two columns within the map, leaving the lantern and bell in reach. */
 @media (max-width: 480px) {
-  .w-moment {
-    position: fixed;
-    top: calc(env(safe-area-inset-top, 0px) + 58px);
-    left: 8px;
-    right: 8px;
-    z-index: 20;
-    max-height: 48vh;
-    overflow-y: auto;
-    margin: 0;
-    background: var(--w-surface);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
-  }
   .w-moment-options {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1453,8 +1479,7 @@
   min-height: 44px;
 }
 
-/* G3-4 phone: the night panel keeps one height, so the lantern and bell rows never move; a card docks over the
-   panel at the bottom, leaving the speeds and the scene in view (the lantern still moves by tapping the wall). */
+/* The night panel keeps one height, so the lantern and bell rows never move when a decision arrives. */
 .w-bellbtn.is-ring-a {
   animation: w-ring-a 0.7s ease-out;
 }
@@ -1507,11 +1532,6 @@
 @media (max-width: 480px) {
   .phase-night .w-panel {
     height: min(44dvh, 270px);
-  }
-  .w-moment {
-    top: auto;
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 8px);
-    max-height: min(56dvh, 420px);
   }
   .w-moment-let {
     display: block;

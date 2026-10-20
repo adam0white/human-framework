@@ -246,3 +246,47 @@ it('syncs anonymous event preferences changed outside the open Game menu', async
   Object.defineProperty(gameLabs.watch, 'eventsOn', { configurable: true, value: false });
   container.remove();
 });
+
+it('shows one clock rate with the reason for a watcher decision', async () => {
+  const { App } = await import('./App.tsx');
+  const { useWatch } = await import('./useWatch.ts');
+  const { WatchRun } = await import('../sim/run.ts');
+  const run = new WatchRun(5);
+  run.input({ k: 'start' });
+  run.input({ k: 'begin' });
+  while (run.state.phase === 'night' && !run.state.moment) run.step();
+  vi.mocked(useWatch).mockReturnValue({
+    frame: buildFrame(run.state, 0, true, 1 / 60),
+    speed: 'fast',
+    error: null,
+    seed: 5,
+    shelf: [],
+    saving: true,
+    current: 'new',
+    actions,
+  });
+  const app = render(createElement(App));
+  expect(app.querySelectorAll('.w-clock-rate')).toHaveLength(1);
+  expect(app.querySelector('.w-clock-rate')?.textContent).toBe('Slow · watcher decision · 1 min / 60 s');
+  expect(app.querySelector('.w-decision-time')?.textContent).toBe(
+    'About 120 seconds to answer; then they decide alone.',
+  );
+  expect(app.querySelector('.w-moment')?.closest('.w-mapwrap')).not.toBeNull();
+  expect(app.querySelector('.w-panel .w-moment')).toBeNull();
+  expect(app.textContent).not.toContain('the night waits on you');
+  expect(app.querySelector('[aria-label="Fast"]')?.getAttribute('aria-pressed')).toBe('true');
+});
+
+it('groups the bell explanation across its row and keeps the ringing label in its labelled target', () => {
+  const run = newGame(5);
+  applyInput(run, { k: 'start' });
+  applyInput(run, { k: 'begin' });
+  const night = render(createElement(NightPanel, { frame: buildFrame(run, 0, false), actions }));
+  expect(night.querySelector('.w-bell-context')?.textContent).toContain('Every pull wears the rope');
+  expect(night.querySelector('.w-bellbtn')?.getAttribute('aria-describedby')).toBe('watch-bell-context');
+  const ringing = render(
+    createElement(NightPanel, { frame: { ...buildFrame(run, 0, false), bellSwinging: true }, actions }),
+  );
+  expect(ringing.querySelector('.w-bellbtn')?.textContent).toContain('Bell swinging');
+  expect(ringing.querySelector('.w-bellbtn')?.hasAttribute('disabled')).toBe(true);
+});

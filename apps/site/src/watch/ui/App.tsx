@@ -18,7 +18,7 @@ import { gameLabs } from '../../shared/lab.tsx';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Moment } from '../sim/moments.ts';
-import { DAY_RATE, RATE, type Speed } from '../sim/pace.ts';
+import type { Speed } from '../sim/pace.ts';
 import type { Press } from '../sim/state.ts';
 import { TALKS_PER_DAY, type Topic } from '../sim/talk.ts';
 import type { Frame, FrameWatcher } from '../sim/view.ts';
@@ -39,12 +39,12 @@ import { Impressions, Pips, Rope, Sacks } from './parts.tsx';
 import { useWatch, type WatchActions } from './useWatch.ts';
 import {
   awayWords,
+  clockRateWords,
   daylightWords,
   hourWords,
   PRESS_WORDS,
   pageWhen,
   ropeWords,
-  slowedWords,
 } from './words.ts';
 
 const SPEEDS: { id: Speed; label: string; icon: IconName }[] = [
@@ -67,20 +67,6 @@ function headerLine(f: Frame): string {
   return f.date;
 }
 
-/**
- * The speed the clock actually runs at while it is eased (a moment, a card, news), so the bar shows it the same way
- * in winter and in the seasons (owner's playtest, 2026-10-05): the slowest speed at or above the pace. Null when
- * the chosen speed holds.
- */
-function easedTo(f: Frame, chosen: Speed): Speed | null {
-  if (!f.slowed || f.rate <= 0) return null;
-  const season = SEASON_PHASES.has(f.phase);
-  const table = season ? DAY_RATE : RATE;
-  const pace = season ? f.rate / 1440 : f.rate;
-  const at = SPEEDS.find((s) => table[s.id] >= pace - 1e-9)?.id ?? 'tactical';
-  return at === chosen ? null : at;
-}
-
 const PRESSES: Press[] = ['ask', 'urge', 'insist'];
 
 const nameIn = (f: Frame, id: WatcherId) => f.watchers.find((w) => w.id === id)?.name ?? '';
@@ -101,7 +87,6 @@ export function App() {
   /** The press picked for the selected watcher before a post is tapped; null follows their current press. */
   const [pressPick, setPressPick] = useState<Press | null>(null);
   const [menu, setMenu] = useState(false);
-  const panel = useRef<HTMLElement | null>(null);
 
   const setSelected = (w: WatcherId | null) => {
     setSelectedState(w);
@@ -127,12 +112,6 @@ export function App() {
     }
   }, [phase]);
 
-  // A new card goes to the top of the panel, where the player will see it even after scrolling.
-  const momentId = frame?.moment?.id;
-  useEffect(() => {
-    if (momentId !== undefined && panel.current) panel.current.scrollTop = 0;
-  }, [momentId]);
-
   // Keep the screen awake only while the clock runs (dusk, night, the open seasons), chronicle closed.
   useWakeLock(frame !== null && RUNNING.has(frame.phase) && !menu);
 
@@ -151,7 +130,6 @@ export function App() {
     );
   }
 
-  const eased = easedTo(frame, speed);
   const pressFor = (who: WatcherId): Press =>
     pressPick ?? frame.watchers.find((w) => w.id === who)?.press ?? 'ask';
   const post = (who: WatcherId, at: PostId | null) => {
@@ -188,10 +166,7 @@ export function App() {
         </a>
         <div className="w-title">
           <h1>The Night Watch</h1>
-          <p>
-            {headerLine(frame)}
-            {frame.slowed ? <span className="w-slowed"> · {slowedWords(frame)}</span> : null}
-          </p>
+          <p>{headerLine(frame)}</p>
         </div>
         {frame.phase !== 'goal' ? (
           <fieldset
@@ -203,12 +178,9 @@ export function App() {
               <button
                 key={s.id}
                 type="button"
-                className={`w-speed${eased === s.id ? ' is-now' : ''}`}
+                className="w-speed"
                 aria-label={s.label}
                 aria-pressed={speed === s.id}
-                title={
-                  eased === s.id ? 'Running at this pace for now; your speed comes back after.' : undefined
-                }
                 onClick={() => actions.setSpeed(s.id)}
               >
                 <Icon name={s.icon} size={16} />
@@ -228,6 +200,7 @@ export function App() {
           <span>Game menu</span>
         </button>
         <FullscreenButton className="w-fs" />
+        {frame.phase !== 'goal' ? <p className="w-clock-rate">{clockRateWords(frame, speed)}</p> : null}
       </header>
 
       {menu ? (
@@ -250,13 +223,13 @@ export function App() {
           ) : (
             <Ticker frame={frame} />
           )}
+          {frame.phase === 'night' ? <NightMoment frame={frame} actions={actions} /> : null}
         </div>
         <section
           className="w-panel"
           aria-live={SEASON_PHASES.has(frame.phase) ? 'off' : 'polite'}
           // One key for the open seasons, so the people list keeps its fold across spring, summer and autumn.
           key={SEASON_PHASES.has(frame.phase) ? 'season' : frame.phase}
-          ref={panel}
         >
           {frame.phase === 'goal' ? (
             <GoalPage frame={frame} actions={actions} shelf={shelf} current={current} />
@@ -534,10 +507,25 @@ export function DuskPanel({
   );
 }
 
-function MomentCard({ m, actions, onLet }: { m: Moment; actions: WatchActions; onLet: () => void }) {
+function MomentCard({
+  m,
+  seconds,
+  actions,
+  onLet,
+}: {
+  m: Moment;
+  seconds: number | null;
+  actions: WatchActions;
+  onLet: () => void;
+}) {
   return (
     <section className="w-moment" aria-label="A moment on the wall">
       <p className="w-moment-text">{m.text}</p>
+      <p className="w-note w-decision-time">
+        {seconds === null
+          ? 'The clock is stopped.'
+          : `About ${seconds} seconds to answer; then they decide alone.`}
+      </p>
       <div className="w-moment-options">
         {m.options.map((o) => (
           <button
@@ -561,8 +549,6 @@ function MomentCard({ m, actions, onLet }: { m: Moment; actions: WatchActions; o
 export function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) {
   const walking = frame.lit === null;
   const off = frame.watchers.filter((w) => w.post === null);
-  // A card the Keeper let be is put away here; it runs out in the night on its own.
-  const [letBe, setLetBe] = useState<number | null>(null);
   // The bell answers a pull: the button rings for a moment when the rope wears.
   const wear = frame.rope.wear;
   const lastWear = useRef(wear);
@@ -571,12 +557,8 @@ export function NightPanel({ frame, actions }: { frame: Frame; actions: WatchAct
     if (wear > lastWear.current) setRinging((n) => n + 1);
     lastWear.current = wear;
   }, [wear]);
-  const m = frame.moment;
   return (
     <div className="w-night">
-      {m && m.id !== letBe ? (
-        <MomentCard key={m.id} m={m} actions={actions} onLet={() => setLetBe(m.id)} />
-      ) : null}
       <div className="w-lantern-pick">
         <span>
           <Icon name="lamp" size={16} /> {walking ? 'The lantern is on its way' : 'The lantern'}
@@ -596,22 +578,20 @@ export function NightPanel({ frame, actions }: { frame: Frame; actions: WatchAct
           </button>
         ))}
       </div>
-      <p className="w-note">
-        Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.
-      </p>
       <div className="w-bell">
         <button
           type="button"
           className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
+          aria-describedby="watch-bell-context"
           disabled={frame.rope.snapped || frame.bellSwinging}
           onClick={() => actions.input({ k: 'bell' })}
         >
           <Icon name="bell" size={20} />
-          <span>{frame.bellSwinging ? 'The bell is still swinging' : 'Ring the bell'}</span>
+          <span>{frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}</span>
         </button>
-        <p className="w-note">
-          Pull from anywhere. The bell calls back those who hear it, loudest at the Gate. Every pull wears the
-          rope; a snapped rope leaves it silent.
+        <p className="w-note w-bell-context" id="watch-bell-context">
+          Pull from anywhere. Calls back watchers who hear it, loudest at the Gate. Every pull wears the rope;
+          a snapped rope leaves it silent.
         </p>
         <div className="w-ropebox">
           <span className="w-bellread">{frame.bellRead ?? '\u00a0'}</span>
@@ -619,6 +599,9 @@ export function NightPanel({ frame, actions }: { frame: Frame; actions: WatchAct
           <span className="w-ropewords">{ropeWords(frame.rope.wear, frame.rope.snapped)}</span>
         </div>
       </div>
+      <p className="w-note w-lantern-context">
+        Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.
+      </p>
       <p className="w-offwall">
         {off.length > 0 ? 'Off the wall: ' : 'Everyone is on the wall.'}
         {off.map((w, i) => (
@@ -645,6 +628,22 @@ export function NightPanel({ frame, actions }: { frame: Frame; actions: WatchAct
         />
       </div>
     </div>
+  );
+}
+
+/** A decision uses the map's space. It never moves or covers the lantern and bell controls. */
+function NightMoment({ frame, actions }: { frame: Frame; actions: WatchActions }) {
+  const [letBe, setLetBe] = useState<number | null>(null);
+  const m = frame.moment;
+  if (!m || m.id === letBe) return null;
+  return (
+    <MomentCard
+      key={m.id}
+      m={m}
+      seconds={frame.decisionSeconds}
+      actions={actions}
+      onLet={() => setLetBe(m.id)}
+    />
   );
 }
 

@@ -121,6 +121,8 @@ export interface Frame {
   watchers: FrameWatcher[];
   /** The card open now (night only). */
   moment: Moment | null;
+  /** Real seconds left to answer at the current playback rate, including partial-minute progress. */
+  decisionSeconds: number | null;
   /** At dusk: the Keeper's read of how each watcher would take their posting, by press. */
   postingReads: Partial<Record<WatcherId, Record<Press, string>>> | null;
   /** At night: where the bell carries, in words (null when it cannot ring). */
@@ -472,6 +474,10 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
     alerts: s.alerts.filter((a) => s.minute - a.minute < 60).slice(-6),
     dawn: s.dawn,
     moment: s.phase === 'night' ? s.moment : null,
+    decisionSeconds:
+      s.phase === 'night' && s.moment && rate > 0
+        ? Math.max(0, Math.ceil((Math.min(s.moment.until, nightEnd(s)) - s.minute - sub) / rate - 1e-9))
+        : null,
     postingReads: postingReads(s),
     bellRead: bell,
     bellSwinging: bellSwinging(s),
