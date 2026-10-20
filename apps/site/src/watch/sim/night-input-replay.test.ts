@@ -1,6 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { withHistoricPersonEngine } from '../../../test/support/engine-stamp.ts';
 import { endState, type PlaytestExport, replay, ruleHash, WatchRun } from './run.ts';
+import type { WatchState } from './state.ts';
+
+// These fixtures were captured under engine 2.9.0; later engines change only the person stamp for these runs.
+const atCaptured = (s: WatchState): WatchState => withHistoricPersonEngine(s, '2.9.0', true) as WatchState;
 
 const legacy = {
   scenario: 10,
@@ -24,7 +29,7 @@ describe('night act input vocabulary and legacy continuation', () => {
     });
     for (let i = 0; i < 80; i++) resumed.step();
     expect(ruleHash(resumed.state)).toBe('26d92083');
-    expect(endState(resumed.state).fullHash).toBe('efe70d11');
+    expect(endState(atCaptured(resumed.state)).fullHash).toBe('efe70d11');
   });
 
   it.each([9, 10])('rejects new night acts in scenario %i before applying the log', (scenario) => {

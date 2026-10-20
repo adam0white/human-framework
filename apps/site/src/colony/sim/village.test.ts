@@ -57,7 +57,7 @@ it('pins an early-warning run and its midpoint save continuation', async () => {
     1500,
     rules,
   );
-  expect(colonyHash(mid)).toBe('134caa6c3962af');
+  expect(hashState(withHistoricPersonEngine(colonyState(mid), file.engine))).toBe('134caa6c3962af');
   const save = await makePlaytestFile({
     game: 'colony',
     seed: mid.seed,
@@ -73,7 +73,7 @@ it('pins an early-warning run and its midpoint save continuation', async () => {
   expect(playback.game?.village).toBe('early-warning');
   playback.game?.advance(40);
   mid.advance(40);
-  expect(colonyHash(mid)).toBe('171cdb3b9f7fcd');
+  expect(hashState(withHistoricPersonEngine(colonyState(mid), file.engine))).toBe('171cdb3b9f7fcd');
   expect(playback.game && colonyHash(playback.game)).toBe(colonyHash(mid));
 });
 

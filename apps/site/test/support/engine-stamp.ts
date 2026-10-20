@@ -2,8 +2,9 @@
 import { ENGINE_VERSION, PERSON_SCHEMA } from '@adam0white/human-framework';
 import { stableStringify } from '../../src/shared/playtest.ts';
 
-export function withHistoricPersonEngine(state: unknown, historicEngine: string): unknown {
-  const copy: unknown = JSON.parse(stableStringify(state));
+export function withHistoricPersonEngine(state: unknown, historicEngine: string, keepOrder = false): unknown {
+  // keepOrder keeps key insertion order, for hashes over plain `JSON.stringify` (The Night Watch's fullHash).
+  const copy: unknown = JSON.parse(keepOrder ? JSON.stringify(state) : stableStringify(state));
   let count = 0;
   const visit = (value: unknown): void => {
     if (value === null || typeof value !== 'object') return;

@@ -2,10 +2,17 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { expect, test } from 'vitest';
+import { withHistoricPersonEngine } from '../../../test/support/engine-stamp.ts';
+import { hashState } from '../../shared/playtest.ts';
 import type { VoiceRules } from '../protocol.ts';
 import { VoiceGame } from './game.ts';
 import { play } from './headless.ts';
-import { RecordedGame, replayVoice, type VoiceLogEntry, voiceHash } from './record.ts';
+import { RecordedGame, replayVoice, type VoiceLogEntry, voiceHash, voiceState } from './record.ts';
+
+// The controls were captured under engine 2.9.0; later engines change only the person stamp for these runs.
+const CAPTURED_ENGINE = '2.9.0';
+const historicHash = (g: VoiceGame): string =>
+  hashState(withHistoricPersonEngine(voiceState(g), CAPTURED_ENGINE));
 
 const path = resolve(import.meta.dirname, '../../../test/fixtures/voice-before-scene-speech.json');
 const ticks = [16, 250, 33, 120, 1000, 49];
@@ -57,7 +64,7 @@ test.skipIf(Boolean(process.env.VOICE_CAPTURE_LEGACY))(
       const checkpoint = replayVoice(c.seed, c.log.slice(0, c.checkpoint.entries), c.rules);
       expect(checkpoint.driftAt, `${c.rules}/${c.policy} checkpoint drift`).toBe(-1);
       expect(checkpoint.rec.game.t).toBe(c.checkpoint.minute);
-      expect(voiceHash(checkpoint.rec.game), `${c.rules}/${c.policy} checkpoint`).toBe(c.checkpoint.hash);
+      expect(historicHash(checkpoint.rec.game), `${c.rules}/${c.policy} checkpoint`).toBe(c.checkpoint.hash);
       // Continue the actual replayed checkpoint, preserving every person and game field.
       for (const entry of c.log.slice(c.checkpoint.entries)) {
         if (Array.isArray(entry)) {
@@ -70,7 +77,7 @@ test.skipIf(Boolean(process.env.VOICE_CAPTURE_LEGACY))(
       }
       expect(checkpoint.rec.game.phase).toBe('report');
       expect(checkpoint.rec.game.t).toBe(c.minute);
-      expect(voiceHash(checkpoint.rec.game), `${c.rules}/${c.policy} continued final`).toBe(c.hash);
+      expect(historicHash(checkpoint.rec.game), `${c.rules}/${c.policy} continued final`).toBe(c.hash);
     }
   },
   240_000,

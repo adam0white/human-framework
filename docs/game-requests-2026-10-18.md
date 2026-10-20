@@ -129,6 +129,21 @@ Behaviour-neutral, engine 2.9.0 ([host-kit](host-kit.md), CHANGELOG 2.9.1).
 - **Warren 1, 2 and 4, done** as recipes with doc tests: the scale of need terms against effort, effort that does not scale with duration, and the community cache write-back. **N1 (Neighbours 3), done** as the travel-cost recipe.
 - Stairwell 2 and 4 and Hearsay 1 are engine 2.10.0 (*Word and witness*).
 
+## Outcome, HF 2.10.0 (2026-10-20, Word and witness)
+
+Engine 2.10.0, opt-in by data (CHANGELOG 2.10.0; control `packages/human/examples/word-and-witness-control.ts`).
+- **Stairwell 1 and 7:** done in 2.9.1 (`seedSourceTrust`, the three trust stores documented, `seedBelief`; outcome above). With 2.10.0, Stairwell 1, 2, 4 and 7 are all done.
+- **Stairwell 2, done:** `contradicted(p, { sourceId, prop, value, reporterId? })` and `Percept.reports`. A source caught giving opposite accounts loses a quarter of its source trust, scaled by trust in the reporter; two independent sources disagreeing costs nobody trust.
+- **Stairwell 4, done:** `Belief.provenance` (first origin, first teller, minute) and `provenanceOf`; `converse(..., { provenance: true })` carries it.
+- **Hearsay 1, done:** the opaque `lineage` token (at most 64 characters) rides on claims and through `converse`; HF never parses it, and the host keeps the graph.
+- **Not asked, added with the slice:** believed regard (`regard` impression cue, `regardOf`, `noteKnownBy`, `Percept.witnesses`) and the `regard:<id>` repair term.
+- **Triage of the rest** (roadmap §3b, "Social and narration asks after 2.10"):
+  - Stairwell 3, a host trait table for reputation: deferred, engine 2.11 by 2026-11-15. A per-person table read by `perceive` fits beside the default traits; it needs a decision on precedence when both apply.
+  - Stairwell 5, word gets back to the subject: partly served. `noteKnownBy(..., { via: 'told' })` now lets the subject learn that someone knows. An opt-in `converse` mode that tells a listener unfavourable claims about themself is deferred, engine 2.11 by 2026-11-15.
+  - Stairwell 6, a relay threshold per person: deferred, engine 2.11 by 2026-11-15, as a per-call option first; deriving it from temperament waits for a source.
+  - Hearsay 2, one operation for observed reputation corrections: deferred, a behaviour-neutral 2.x helper by 2026-11-15.
+  - Hearsay 3, a `converse` phrasing callback: joins the 2.11 narration batch, by 2026-11-15.
+
 ## The Pass, polish round (2026-10-19, against HF 2.8.0)
 
 Filed by The Pass after four source-unread playtests and the HF-character playtester. None blocks the game; the workaround is in the game.

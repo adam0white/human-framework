@@ -1,9 +1,14 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { withHistoricPersonEngine } from '../../../test/support/engine-stamp.ts';
 import { NIGHT_LENGTH, WINTER_RULES } from './config.ts';
 import { planNight } from './night.ts';
 import { endState, type PlaytestExport, replay, ruleHash, WatchRun } from './run.ts';
+import type { WatchState } from './state.ts';
+
+// These fixtures were captured under engine 2.9.0; later engines change only the person stamp for these runs.
+const atCaptured = (s: WatchState): WatchState => withHistoricPersonEngine(s, '2.9.0', true) as WatchState;
 
 const fixture = (scenario: number): PlaytestExport =>
   JSON.parse(
@@ -29,11 +34,11 @@ describe('scenario 12 winter choice', () => {
     while (current.state.minute < exp.endMinute || idx < exp.inputs.length) {
       for (let e = exp.inputs[idx]; e && e.m === current.state.minute; e = exp.inputs[idx]) {
         expect(current.input(e.i)).toBe(true);
-        sequence.update(JSON.stringify(current.state)).update('\n');
+        sequence.update(JSON.stringify(atCaptured(current.state))).update('\n');
         idx++;
       }
       // Full JSON includes all events, alerts, memories and rule state, not only the end hash.
-      sequence.update(JSON.stringify(current.state)).update('\n');
+      sequence.update(JSON.stringify(atCaptured(current.state))).update('\n');
       if (current.state.minute >= exp.endMinute && idx === exp.inputs.length) break;
       current.step();
     }
@@ -42,7 +47,7 @@ describe('scenario 12 winter choice', () => {
     expect(current.export().scenario).toBe(12);
     expect(current.export().end.ruleHash).toBe('3c84c1c3');
     expect(ruleHash(replay({ ...exp, scenario: 12 }))).toBe(exp.end.ruleHash);
-    expect(endState(replay(exp)).fullHash).toBe(exp.end.fullHash);
+    expect(endState(atCaptured(replay(exp))).fullHash).toBe(exp.end.fullHash);
   });
 
   it('applies a choice at first dusk, and a later choice only at the next dusk', () => {
@@ -141,7 +146,7 @@ describe('scenario 12 winter choice', () => {
     expect(exp.end.winterSetting?.active).toBe('milder');
     const s = replay(exp);
     expect(ruleHash(s)).toBe(exp.end.ruleHash);
-    expect(endState(s).fullHash).toBe(exp.end.fullHash);
+    expect(endState(atCaptured(s)).fullHash).toBe(exp.end.fullHash);
     const direct = new WatchRun(exp.seed, { scenario: 12, seed: exp.seed, log: exp.inputs, state: s });
     const resumed = WatchRun.resume(direct.snapshot());
     for (let i = 0; i < 30; i++) {

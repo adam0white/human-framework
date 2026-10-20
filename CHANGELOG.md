@@ -12,6 +12,17 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.10.0] - 2026-10-20
+
+Engine: 2.10.0. *Word and witness* ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.1): who first said a thing, what it costs a source to be caught telling two stories, and how a person believes others now see them. Everything is opt-in by data: a person, percept or call that uses none of the new fields gives byte-identical state and decisions to 2.9.x, and legacy digests are unchanged. The engine stamp moves because the new term can change decisions when a host supplies the evidence. Saves migrate from 2.9.0 by stamping the version.
+
+### Added
+
+- Provenance: an attended claim may carry `origin` and an opaque host `lineage` (at most 64 characters). The belief keeps `provenance = { origin, firstFrom, at, lineage? }` from its first acquisition; later tellings and direct confirmation never overwrite it. `converse(..., { provenance: true })` relays origin and lineage; repetition still compares only proposition and value. `provenanceOf(p, prop)` reads it. Decisions never read provenance.
+- Contradiction: `contradicted(p, { sourceId, prop, value, reporterId?, at? })` lowers source trust when the person learns that one source gave opposite accounts of one proposition: `after = before - 0.25 * w * before`, with `w = 1` when the person heard both accounts and the testimony weight of the reporter otherwise. It applies only against a retained first-hand account from that source with the opposite value, once per source and proposition, never raises trust and touches no other store. Two independent sources disagreeing stays ordinary uncertainty. An attended `told` percept may carry up to four `reports` that run this check.
+- Believed regard: the impression a person holds of another gains an opt-in `regard` cue (how I believe they see me, −1 to 1, half-life 60 days), fed only by the person's own evidence that the other knows: own-act percepts listing `witnesses`, or `noteKnownBy(p, { otherId, act, via: 'told', sourceId })` weighted by trust in the teller. A witness the person did not see changes nothing. `regardOf(p, otherId, now)` reads it. `socialTerms` adds `regard:<id>` (at most 0.3) to repair offers towards someone believed to think badly of the person. The architecture documents how a broken promise reaches the breaker, the promisee and the witnesses.
+- Headless control [`word-and-witness-control.ts`](https://github.com/adam0white/human-framework/blob/main/packages/human/examples/word-and-witness-control.ts): four people over 20 days in two renamed domains, with full, no-regard, no-contradiction, no-provenance and secret-witness arms giving the same verdicts in both domains.
+
 ## [2.9.1] - 2026-10-20
 
 Engine: 2.9.0. The *Host kit* ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.2) and the owner's maintenance sweep. Behaviour-neutral: the engine stamp is unchanged, and every replay, fixture, hash and full-state legacy digest is unchanged. Patch number, not minor, because 2.10.0 is the approved name of *Word and witness*; nothing is removed.
