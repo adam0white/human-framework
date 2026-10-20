@@ -108,6 +108,13 @@ export const GAMES: Game[] = [
     line: 'An early build: a village cuts a refuge into soft stone. You chalk the walls and ring the bell; they dig, carry and decide, and the worn path leads.',
     faculties: ['Will', 'Habits and character', 'Body'],
   },
+  {
+    id: 'hearsay',
+    name: 'Hearsay',
+    href: 'https://hearsay.adamwhite.work',
+    line: 'New: a fortnight keeping the tea garden by the fountain. You hear everything; what you pass on travels door to door, bends at each mouth, and comes home.',
+    faculties: ['Memory and belief', 'Relationships', 'Conscience'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);

@@ -46,6 +46,17 @@ export const EVENT_LABELS: Readonly<Record<string, { scr: readonly string[]; ms:
     ],
     ms: ['ending reached', ...numbered(7, (n) => `night ${n} done`)],
   },
+  hearsay: {
+    scr: ['title', 'play', 'review', 'notebook'],
+    ms: [
+      'run started',
+      'first word told',
+      'first refusal heard',
+      'a rumour reached you',
+      'the engagement settled',
+      'fortnight ended',
+    ],
+  },
   warren: {
     scr: ['title', 'play', 'raid', 'notebook'],
     ms: [
