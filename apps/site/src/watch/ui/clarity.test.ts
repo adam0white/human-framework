@@ -57,7 +57,9 @@ describe('Night Watch first-minute clarity', () => {
   it('reaches the first watcher choice within forty mandatory words across both screens', () => {
     const opening = render(createElement(GoalPage, { frame: goal, actions, shelf: [], current: 'new' }));
     expect(opening.querySelector('h2')?.nextElementSibling?.textContent).toBe('Go up to the wall');
-    expect(opening.querySelector('details')?.textContent).toContain('Every pull wears the rope');
+    expect(opening.querySelector('details:not(.w-flyleaf)')?.textContent).toContain(
+      'Every pull wears the rope',
+    );
     const posting = render(createElement(DuskPanel, duskProps));
     const first = posting.querySelector('.w-roster');
     expect(first).not.toBeNull();
@@ -572,6 +574,63 @@ it('replaces an account with helper choice and restores it without a game input'
   await act(async () => button('Back to Tamar')?.click());
   await act(async () => button('Rest')?.click());
   expect(input).toHaveBeenCalledExactlyOnceWith({ k: 'down', who: 'tamar' });
+  await act(async () => root.unmount());
+  container.remove();
+});
+
+it('explains every disabled posting beside its button', () => {
+  const frame = structuredClone(dusk);
+  const gate = frame.sections.find((section) => section.id === 'gate');
+  const east = frame.sections.find((section) => section.id === 'east');
+  if (!gate || !east) throw new Error('Expected wall sections');
+  for (const post of gate.posts) post.posted = 'kian';
+  east.posts = [];
+  east.fallen = true;
+  const posting = render(createElement(DuskPanel, { ...duskProps, frame, selected: 'tamar' }));
+  for (const button of posting.querySelectorAll('.w-place:disabled')) {
+    const reason = button.nextElementSibling;
+    expect(reason?.classList.contains('w-post-unavailable')).toBe(true);
+    expect(reason?.textContent?.length).toBeGreaterThan(10);
+    expect(button.getAttribute('aria-describedby')).toBe(reason?.id);
+  }
+  expect(posting.querySelector('#post-unavailable-gate')?.textContent).toBe('Every post is assigned.');
+  expect(posting.querySelector('#post-unavailable-east')?.textContent).toBe('The wall has fallen.');
+});
+
+it('shows the explanation for no night acts in the account action row', () => {
+  const run = newGame(4242);
+  applyInput(run, { k: 'start' });
+  applyInput(run, { k: 'begin' });
+  const frame = buildFrame(run, 0, false);
+  const who = frame.watchers.find((watcher) => watcher.id === 'tamar');
+  if (!who) throw new Error('Expected Tamar');
+  who.acts = [];
+  who.actsUnavailable = 'No spoken request can wake them. The bell rouses sleepers who hear it.';
+  const account = render(createElement(NightPanel, { frame, actions, selected: who.id }));
+  expect(account.querySelector('.w-account-commit .w-account-unavailable')?.textContent).toBe(
+    who.actsUnavailable,
+  );
+});
+
+it('records a winter choice from the flyleaf and states when it takes effect', async () => {
+  const { WinterSetting } = await import('./WinterSetting.tsx');
+  const input = vi.fn();
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  await act(async () =>
+    root.render(
+      createElement(WinterSetting, {
+        frame: { ...dusk, phase: 'night', winterSetting: { active: 'hard', next: 'milder' } },
+        actions: { ...actions, input },
+      }),
+    ),
+  );
+  expect(container.textContent).toContain('In force: hard winter. Changes take effect from the next dusk.');
+  const radios = container.querySelectorAll<HTMLInputElement>('input');
+  expect(radios[1]?.checked).toBe(true);
+  await act(async () => radios[0]?.click());
+  expect(input).toHaveBeenCalledExactlyOnceWith({ k: 'winter', winter: 'hard' });
   await act(async () => root.unmount());
   container.remove();
 });

@@ -39,6 +39,7 @@ import {
 import { Impressions, Pips, Rope, Sacks } from './parts.tsx';
 import { PageCommitContext } from './SheetActions.tsx';
 import { useWatch, type WatchActions } from './useWatch.ts';
+import { WinterSetting } from './WinterSetting.tsx';
 import {
   awayWords,
   clockRateWords,
@@ -368,6 +369,9 @@ export function WatchStrip({ frame, selected }: { frame: Frame; selected: Watche
       {frame.winter ? (
         <p className="w-watch-progress">
           {frame.date} · {hourWords(frame.clock, frame.phase)}
+          {frame.winterSetting
+            ? ` · ${frame.winterSetting.active === 'milder' ? 'Milder winter' : 'Hard winter'}`
+            : ''}
         </p>
       ) : null}
       {frame.winter ? (
@@ -475,6 +479,10 @@ export function GoalPage({
       >
         {saved ? 'Begin anew: go up to the wall' : 'Go up to the wall'}
       </button>
+      <details className="w-about w-flyleaf">
+        <summary>The flyleaf · choose the winter</summary>
+        <WinterSetting frame={frame} actions={actions} />
+      </details>
       <details className="w-about">
         <summary>About keeping watch</summary>
         <p>
@@ -628,20 +636,35 @@ export function DuskPanel({
           <div className="w-places">
             {SECTIONS.map((s) => {
               const at = freePost(frame, s.id, sel.id);
+              const section = frame.sections.find((section) => section.id === s.id);
+              const reason = !at
+                ? section?.fallen
+                  ? 'The wall has fallen.'
+                  : section?.posts.length
+                    ? 'Every post is assigned.'
+                    : 'No post is open tonight.'
+                : null;
               return (
-                <button
-                  key={s.id}
-                  type="button"
-                  className="w-place"
-                  disabled={!at}
-                  aria-pressed={sel.posted !== null && postSection(sel.posted) === s.id}
-                  onClick={() => {
-                    if (at) post(sel.id, at);
-                  }}
-                >
-                  {s.name}
-                  {s.id === frame.warned ? <span className="w-tracks"> · tracks</span> : null}
-                </button>
+                <div key={s.id} className="w-place-choice">
+                  <button
+                    type="button"
+                    className="w-place"
+                    aria-describedby={reason ? `post-unavailable-${s.id}` : undefined}
+                    disabled={!at}
+                    aria-pressed={sel.posted !== null && postSection(sel.posted) === s.id}
+                    onClick={() => {
+                      if (at) post(sel.id, at);
+                    }}
+                  >
+                    {s.name}
+                    {s.id === frame.warned ? <span className="w-tracks"> · tracks</span> : null}
+                  </button>
+                  {reason ? (
+                    <p className="w-note w-post-unavailable" id={`post-unavailable-${s.id}`}>
+                      {reason}
+                    </p>
+                  ) : null}
+                </div>
               );
             })}
             <button type="button" className="w-place w-place-off" onClick={() => post(sel.id, null)}>
@@ -931,6 +954,7 @@ function NightAccount({
       </div>
       {!choice ? (
         <footer className="lk-commit w-account-commit">
+          {!acts.length ? <p className="w-note w-account-unavailable">{who.actsUnavailable}</p> : null}
           {down ? (
             <>
               <p className="w-note">{down.read}</p>
@@ -953,6 +977,9 @@ function NightAccount({
                 </button>
               ))}
           </div>
+          {!down && acts.length > 0 && acts.every((act) => !act.available) ? (
+            <p className="w-note w-account-unavailable">{acts[0]?.read}</p>
+          ) : null}
           <p className="w-note">The watch continues. Each request is theirs to answer.</p>
           {frame.moment ? <p className="w-note">A watcher’s decision is still waiting.</p> : null}
         </footer>

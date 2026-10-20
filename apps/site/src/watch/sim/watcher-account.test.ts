@@ -112,3 +112,20 @@ describe('a watcher’s read-only night account', () => {
     expect(account(s)).toEqual({ text: 'They are down and cannot answer.', spoken: false });
   });
 });
+
+it('gives a read-only reason when a night account has no applicable request', () => {
+  const { s, p } = night();
+  s.place.tamar = 'hall';
+  const before = JSON.stringify(s);
+  const frame = buildFrame(s, 0, false);
+  const watcher = frame.watchers.find((w) => w.id === 'tamar');
+  expect(watcher?.acts).toEqual([]);
+  expect(watcher?.actsUnavailable).toContain('Night requests need someone at a post');
+  expect(JSON.stringify(s)).toBe(before);
+  s.place.tamar = 'east-1';
+  p.body.asleep = true;
+  const far = buildFrame(s, 0, false).watchers.find((w) => w.id === 'tamar');
+  // Unseen sleep is never disclosed by an availability explanation.
+  if (!far?.acts.length) expect(far?.actsUnavailable).toBe('Out of your voice: the lantern is at the Gate.');
+  expect(far?.actsUnavailable).not.toMatch(/asleep|sleeping/);
+});

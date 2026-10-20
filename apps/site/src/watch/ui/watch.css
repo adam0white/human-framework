@@ -1954,3 +1954,54 @@ body:has(> .hflab-veil) .watch .w-menu {
 .watch .w-account .w-note {
   margin: 4px 0 0;
 }
+
+/* The reason belongs to its post, including when a disabled button cannot receive focus. */
+.w-place-choice {
+  min-width: 0;
+}
+.watch .w-place-choice .w-place {
+  width: 100%;
+}
+.watch .w-post-unavailable {
+  margin-top: 3px;
+  line-height: 1.2;
+}
+.w-winter-setting {
+  margin: 12px 0;
+  padding: 8px;
+  border: 1px solid var(--w-line);
+}
+.w-winter-setting label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin: 4px 0;
+}
+.w-winter-setting input {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  accent-color: var(--w-accent);
+}
+.w-winter-setting small {
+  display: block;
+  color: var(--w-muted);
+}
+
+/* Live answers use the phone's sheet. Lantern and bell return when the card is dismissed. */
+@media (max-width: 899px) {
+  .watch .w-stage:has(.w-moment):not(:has(.w-account, .w-helper-choice)) {
+    grid-template-rows: auto minmax(64px, 1fr) auto;
+  }
+  .watch .w-stage:has(.w-moment):not(:has(.w-account, .w-helper-choice)) .w-panel {
+    max-height: calc(var(--lk-available-height, 100dvh) - var(--lk-strip-height, 0px) - 64px);
+  }
+  .watch .w-night:has(.w-moment):not(:has(.w-account, .w-helper-choice)) .w-night-commit {
+    display: none;
+  }
+  .watch .w-night:has(.w-moment) .w-option {
+    min-height: 44px;
+  }
+}

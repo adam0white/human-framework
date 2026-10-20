@@ -15,6 +15,7 @@ import { ExportButtons } from './exporting.tsx';
 import { Icon } from './icons.tsx';
 import { SEASON_WORDS, yearWords } from './pages.tsx';
 import type { WatchActions } from './useWatch.ts';
+import { WinterSetting } from './WinterSetting.tsx';
 import { pageWhen } from './words.ts';
 
 interface Group {
@@ -129,6 +130,10 @@ export function Chronicle({
       </button>
       <ExportButtons actions={actions} />
 
+      <section className="w-menu-sec" aria-label="The flyleaf">
+        <h3>The flyleaf</h3>
+        <WinterSetting frame={frame} actions={actions} />
+      </section>
       <section className="w-menu-sec" aria-label="The volumes">
         <h3>The shelf</h3>
         <ul className="w-vols">

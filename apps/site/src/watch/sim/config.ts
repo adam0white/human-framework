@@ -447,3 +447,10 @@ export const SCOUT_TRUE = 0.75;
 
 /** Tactical slowdown window, in sim minutes. */
 export const SLOW_WINDOW = 3;
+
+/** Scenario 12: extra reading and reaction time, without removing or shrinking a threat. */
+export type WinterChoice = 'hard' | 'milder';
+export const WINTER_RULES = {
+  hard: { packDelay: 0, motionReach: MOTION_REACH, approachReserve: 100 },
+  milder: { packDelay: 45, motionReach: 0.1, approachReserve: 100 },
+} as const;

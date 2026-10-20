@@ -314,6 +314,8 @@ export interface BellState {
 
 export interface WatchState {
   version: 4;
+  /** Absent means hard winter, preserving the exact legacy state. Next applies at the next dusk. */
+  winterSetting?: { active: import('./config.ts').WinterChoice; next: import('./config.ts').WinterChoice };
   seed: number;
   /**
    * mulberry32 state: draws whose count follows from what the Keeper and the people do (combat, the rope, births,

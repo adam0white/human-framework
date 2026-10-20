@@ -17,7 +17,6 @@
 import { outwardSigns, type Person, selfReport } from '@adam0white/human-framework';
 import {
   DAY,
-  MOTION_REACH,
   POSTS,
   type PostId,
   postSection,
@@ -27,6 +26,7 @@ import {
   THREATS,
   type ThreatKind,
   type WatcherId,
+  WINTER_RULES,
 } from './config.ts';
 import { ageOf, dayOfYear, householdCount, living, seasonOfDay } from './life.ts';
 import { type Moment, readPosting, readWords } from './moments.ts';
@@ -93,6 +93,8 @@ export interface Motion {
 
 export interface Frame {
   phase: Phase;
+  /** Current winter and the choice for the next dusk. */
+  winterSetting: { active: 'hard' | 'milder'; next: 'hard' | 'milder' } | null;
   /** Minute of the day (0..1439), for the sky. */
   clock: number;
   /** 0 at nightfall, 1 at dawn (negative during dusk). */
@@ -277,6 +279,8 @@ export interface FrameWatcher {
   /** A read-only night account. Only `spoken` accounts are the watcher's own words within voice reach. */
   account: { text: string; spoken: boolean } | null;
   acts: NightAct[];
+  /** Why no night request is offered, using only the Keeper’s current access and observations. */
+  actsUnavailable: string | null;
   handover: string | null;
   restRead: string | null;
 }
@@ -467,7 +471,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
         climb: t.state === 'foot' ? Math.min(1, t.climb / THREATS[t.kind].climb) : 0,
         took: (t.took ?? 0) > 0,
       });
-    } else if (t.state === 'coming' && t.pos >= MOTION_REACH) {
+    } else if (t.state === 'coming' && t.pos >= WINTER_RULES[s.winterSetting?.active ?? 'hard'].motionReach) {
       // Blur: a band of about a tenth of the lane, shifting every few minutes.
       const jitter = (hash(t.id, Math.floor(s.minute / 4)) - 0.5) * 0.12;
       motion.push({
@@ -515,6 +519,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
       const o = outwardSigns(p);
       signs = { tired: o.fatigue > 0.5, afraid: o.fear > 0.35, hurt: o.pain > 0.3 };
     }
+    const acts = nightActs(s, w.id);
     watchers.push({
       id: w.id,
       name: w.name,
@@ -537,7 +542,21 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
       throwing: th ? (th.hit ? ('hit' as const) : ('miss' as const)) : null,
       target: th ? th.token : null,
       account: nightAccount(s, p, section, onLit),
-      acts: nightActs(s, w.id),
+      acts,
+      actsUnavailable:
+        s.phase === 'night' && acts.length === 0
+          ? !inVoice(s, w.id)
+            ? `Out of your voice: ${lit === null ? 'the lantern is moving' : `the lantern is at ${theSection(lit)}`}.`
+            : !post
+              ? s.rope.snapped
+                ? 'They are off the wall. Night requests need someone at a post, and the bell rope is snapped.'
+                : 'They are off the wall. Night requests need someone at a post; the bell calls back those who hear it.'
+              : onLit && (p.body.asleep || ['doze', 'sleep'].includes(p.activity?.action ?? ''))
+                ? s.rope.snapped
+                  ? 'No spoken request can wake them, and the bell rope is snapped.'
+                  : 'No spoken request can wake them. The bell rouses sleepers who hear it.'
+                : 'No rest or help request is offered without a sign of tiredness, hurt or a wolf at the wall.'
+          : null,
       restRead: (() => {
         const fatigue = keeperFatigue(s, w.id);
         return s.phase === 'night' && fatigue.confidence >= 0.12 && fatigue.value > 0.35
@@ -553,6 +572,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
   const bell = bellRead(s);
   return {
     phase: s.phase,
+    winterSetting: { ...(s.winterSetting ?? { active: 'hard', next: 'hard' }) },
     clock: ((s.minute % DAY) + DAY) % DAY,
     nightProgress: (s.minute - s.nightStart) / nightLen,
     sub,

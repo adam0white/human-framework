@@ -38,7 +38,7 @@ for (let guard = 0; guard < 50_000; guard++) {
   } else throw new Error(`control ended before every act: ${s.phase}; used ${[...used].join(', ')}`);
 }
 if (used.size !== wanted.length) throw new Error(`missing acts: ${wanted.filter((k) => !used.has(k))}`);
-const exp = run.export();
+const exp = { ...run.export(), scenario: 11 };
 if (ruleHash(replay(exp)) !== exp.end.ruleHash) throw new Error('control replay diverged');
 console.log(
   `scenario ${exp.scenario}; seed ${exp.seed}; minute ${exp.endMinute}; ruleHash ${exp.end.ruleHash}`,

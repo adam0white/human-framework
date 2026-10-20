@@ -66,7 +66,6 @@ import {
   FOUNDER_MARRIAGES,
   HOME_CHILD_AGE,
   type KinDef,
-  MOTION_REACH,
   type PostId,
   postSection,
   RETIRE_AGE,
@@ -76,6 +75,7 @@ import {
   WATCHERS,
   type WatcherDef,
   type WatcherId,
+  WINTER_RULES,
 } from './config.ts';
 import type { Villager, WatchState } from './state.ts';
 
@@ -506,7 +506,7 @@ export function sectionDanger(s: WatchState, section: SectionId, expect = false)
   let wolf = false;
   for (const t of s.tokens) {
     if (t.section !== section || (t.state !== 'coming' && t.state !== 'foot')) continue;
-    if (t.state === 'coming' && t.pos < MOTION_REACH) continue;
+    if (t.state === 'coming' && t.pos < WINTER_RULES[s.winterSetting?.active ?? 'hard'].motionReach) continue;
     n += 1;
     if (t.kind === 'wolf') wolf = true;
   }

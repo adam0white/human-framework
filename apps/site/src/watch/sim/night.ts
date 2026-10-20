@@ -66,7 +66,6 @@ import {
   FOOT_AIM,
   LANTERN_STEP_MIN,
   LIT_REACH,
-  MOTION_REACH,
   NIGHT_CARRY,
   NIGHT_CARRY_RICH,
   NIGHT_LENGTH,
@@ -83,6 +82,8 @@ import {
   THREATS,
   type ThreatKind,
   type WatcherId,
+  WINTER_RULES,
+  type WinterChoice,
 } from './config.ts';
 import { advanceDay } from './day.ts';
 import { planDirectedNight } from './director.ts';
@@ -129,6 +130,7 @@ import { firstStand, freshLeaves } from './volume.ts';
 export type Input =
   | NightInput
   | { k: 'start' }
+  | { k: 'winter'; winter: WinterChoice }
   | { k: 'continue' }
   | { k: 'fair'; pick: FairOffer['id'] }
   | { k: 'card'; id: number; choice: string }
@@ -247,7 +249,11 @@ export function bellSwinging(s: WatchState): boolean {
 
 /** A threat the wall knows of: motion seen out in the dark, or something at the foot. */
 function knownDanger(s: WatchState): boolean {
-  return s.tokens.some((t) => t.state === 'foot' || (t.state === 'coming' && t.pos >= MOTION_REACH));
+  return s.tokens.some(
+    (t) =>
+      t.state === 'foot' ||
+      (t.state === 'coming' && t.pos >= WINTER_RULES[s.winterSetting?.active ?? 'hard'].motionReach),
+  );
 }
 
 export function nightEnd(s: WatchState): number {
@@ -270,9 +276,11 @@ export function theSection(id: SectionId): string {
 
 /** Draws the night at dusk: the lead threat, the scout's line and the waves. */
 export function planNight(s: WatchState): void {
+  if (s.winterSetting) s.winterSetting.active = s.winterSetting.next;
   s.warnedAlso = null;
   if (s.year > 1) {
     planDirectedNight(s);
+    delayWinterPacks(s);
     return;
   }
   const n = s.winterNight;
@@ -323,6 +331,17 @@ export function planNight(s: WatchState): void {
   }
   spawns.sort((a, b) => a.at - b.at);
   s.spawns = spawns;
+  delayWinterPacks(s);
+}
+
+/** Leave time for a slow thief to approach and climb; never push an already late spawn later. */
+function delayWinterPacks(s: WatchState): void {
+  const rules = WINTER_RULES[s.winterSetting?.active ?? 'hard'];
+  if (!rules.packDelay) return;
+  const latest = s.nightStart + NIGHT_LENGTH - rules.approachReserve;
+  const last = Math.max(...s.spawns.map((spawn) => spawn.at));
+  const delay = Math.max(0, Math.min(rules.packDelay, latest - last));
+  for (const spawn of s.spawns) spawn.at += delay;
 }
 
 export function alert(s: WatchState, a: Omit<Alert, 'minute'>): void {
@@ -568,9 +587,16 @@ function enterDawn(s: WatchState): void {
 /** Applies one Keeper input. Returns false (and changes nothing) when it does not apply in this phase. */
 export function applyInput(s: WatchState, input: Input): boolean {
   switch (input.k) {
+    case 'winter': {
+      if (input.winter !== 'hard' && input.winter !== 'milder') return false;
+      if (s.winterSetting) s.winterSetting.next = input.winter;
+      else if (input.winter !== 'hard') s.winterSetting = { active: 'hard', next: input.winter };
+      return true;
+    }
     case 'start':
       if (s.phase !== 'goal') return false;
       s.phase = 'dusk';
+      if (s.winterSetting) planNight(s);
       return true;
     case 'post': {
       if (s.phase !== 'dusk' && s.phase !== 'goal') return false;
@@ -1001,7 +1027,11 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
       }
     }
     if (action === 'hold-post' && where) {
-      const d = s.tokens.some((t) => t.section === where && (t.state === 'foot' || t.pos >= MOTION_REACH));
+      const d = s.tokens.some(
+        (t) =>
+          t.section === where &&
+          (t.state === 'foot' || t.pos >= WINTER_RULES[s.winterSetting?.active ?? 'hard'].motionReach),
+      );
       if (d)
         observeAct(s.keeper, id, { at: s.minute, clarity, placeId: where, avoided: -1, tags: ['steady'] });
     }
@@ -1221,7 +1251,8 @@ export function stepMinute(s: WatchState): void {
     if (t.state === 'coming') {
       const before = t.pos;
       t.pos = Math.min(1, t.pos + def.speed * (0.8 + 0.4 * hashUnit(s.seed, t.id, m)));
-      if (before < MOTION_REACH && t.pos >= MOTION_REACH) {
+      const motionReach = WINTER_RULES[s.winterSetting?.active ?? 'hard'].motionReach;
+      if (before < motionReach && t.pos >= motionReach) {
         warnWatchers(s, t, 0.45);
         if (!s.called[t.section]) {
           s.called[t.section] = true;
@@ -1433,7 +1464,10 @@ function feelings(s: WatchState, lit: SectionId | null): void {
   for (const sec of SECTION_IDS) {
     const here = postedIn(s, sec);
     const danger = s.tokens.some(
-      (t) => t.section === sec && (t.state === 'foot' || (t.state === 'coming' && t.pos >= MOTION_REACH)),
+      (t) =>
+        t.section === sec &&
+        (t.state === 'foot' ||
+          (t.state === 'coming' && t.pos >= WINTER_RULES[s.winterSetting?.active ?? 'hard'].motionReach)),
     );
     for (const id of here) {
       const p = personOf(s, id);
