@@ -128,6 +128,7 @@ Each bet names its risk and the first cheap experiment, which can run as a lab p
 | **Traditions that travel** | Methods and practices taught, copied, revised and mis-taught across a village | culture reduced to copying | two repair methods, one demonstrator, one changed condition; imitation vs discovery vs frozen, including a bad method spreading (builds on `methods/`) |
 | **Predicting real players** | The HF playtesters pre-register predicted quit and confusion points before opt-in runs arrive, and are scored | tiny, biased sample | before the next game's first 20 opt-in runs, write the predictions down; score them; record a miss honestly |
 | **Lockstep-safe** | Two peers with different delivery delays reach identical per-tick hashes | float or ordering leaks | a two-harness lockstep run of the bench village (libm already makes platforms agree) |
+| **A standalone game engine** (owner, 2026-10-20: "It may become a game engine like standalone tool in the future or whatever we need to make more games") | HF grows from a library games import into an engine-like tool: people, a host loop, saves, replays, playtesters and the lab kit as one starting point for a new game | becoming a generic engine and losing the people at its centre; the framework/game boundary blurs | after the Host kit, time-box one new game started from HF's recipes and kits alone, and list what it had to build that every game builds |
 
 ## Guardrails (what we will not build)
 
