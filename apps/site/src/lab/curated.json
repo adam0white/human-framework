@@ -4367,6 +4367,115 @@
     "lesson:L22"
    ],
    "source": "docs/lab/reviews/calibration-2026-10-20/e-adrfree2.md"
+  },
+  {
+   "id": "F-311",
+   "date": "2026-10-20",
+   "game": "stairwell",
+   "kind": "owner",
+   "who": "owner",
+   "words": "This is gonna stay fun. Keep expanding on it.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L14",
+    "fix:stairwell backstories with hidden outcomes, with F-185 (open, target 2026-11-03)"
+   ],
+   "source": "stairwell/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-312",
+   "date": "2026-10-20",
+   "game": "stairwell",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Find ways to improve the UI on mobile and desktop, including making the building shown bigger.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell DL-23 larger building and labels on phone and desktop, DL-30/31 lab-kit 0.2.0 phone stage (open, Codex 2026-10-20)"
+   ],
+   "source": "stairwell/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-313",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "owner",
+   "who": "owner",
+   "words": "This has good potential. Current issues on mobile. Too little time to understand and react to events and things.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:hearsay DL-15 an event that demands a response slows the clock until answered (open, Codex 2026-10-20)",
+    "lesson:L6"
+   ],
+   "source": "hearsay/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-314",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Too many people to keep track of.",
+   "verdict": "-",
+   "routes": [
+    "fix:hearsay people lists lead with the wedding's people and whoever is present, the rest behind Everyone else, with a who-they-are tag (open, Codex 2026-10-20)"
+   ],
+   "source": "hearsay/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-315",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "owner",
+   "who": "owner",
+   "words": "The goals are not apparent after the intro.",
+   "verdict": "-",
+   "routes": [
+    "fix:hearsay DL-1/DL-9/DL-31 the wedding goal and next step stay in the state strip (open, Codex 2026-10-20)"
+   ],
+   "source": "hearsay/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-316",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Too much scrolling.",
+   "verdict": "-",
+   "routes": [
+    "fix:hearsay DL-22/DL-30 lab-kit 0.2.0 phone stage, brought forward from F-301 (open, Codex 2026-10-20)"
+   ],
+   "source": "hearsay/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-317",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Game should keep track of things to simply disallow me from repeating useless acts like telling about and event to someone again, or spreading old news and whatnot.",
+   "verdict": "-",
+   "routes": [
+    "fix:hearsay DL-4 a story or claim already told to that listener is disabled with the reason, reproduced in the export (13 repeats) (open, Codex 2026-10-20)",
+    "lesson:L4",
+    "lesson:L17"
+   ],
+   "source": "hearsay/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-318",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Also the game is still running while I type this lol. The menu also didn't close when this one opened",
+   "verdict": "-",
+   "routes": [
+    "fix:hearsay the send dialog stops the clock and closes the Game menu, DL-15/DL-24 (open, Codex 2026-10-20)",
+    "fix:lab lab-client onClose hook so every game can stop the clock while the send dialog is open (open, target 2026-11-03)"
+   ],
+   "source": "hearsay/docs/playtests/owner-2026-10-20.md"
   }
  ],
  "lessons": [
@@ -4973,8 +5082,8 @@
   }
  ],
  "routes": {
-  "fix": 340,
-  "lesson": 252,
+  "fix": 349,
+  "lesson": 256,
   "hf": 12,
   "calibration": 42,
   "none": 1
