@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@adam0white/human-framework": "2.9.1",
+    "@adam0white/human-framework": "2.10.0",
     "@adam0white/lab-client": "0.1.2",
     "react": "19.3.1",
     "react-dom": "19.3.1",
