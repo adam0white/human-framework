@@ -81,3 +81,7 @@ Evidence: F-128, F-160, F-164
 ### L20 — The first screen offers the first choice, and the accent marks the task.
 A cold audit of twelve live games on 2026-10-20 found the same two misses in most of them. The one accent went to the selected speed button, a banner or a log stripe instead of the task, and 80 to 200 words of rules stood between the first screen and the first choice. Give the accent to what needs a response, show selection with an outline, and teach rules where they first matter ([checklist](design-language.md) DL-3, DL-6, DL-7).
 Evidence: F-206, F-207, F-211, F-212, F-213, F-214, F-215, F-216
+
+### L21 — A fix exposes the next-weakest part; fix the pattern in the lab, not the game.
+In the 2026-10-20 design round each change removed its tester's quit reason, and the next tester quit on the next-thinnest part: phone panels with no room (clipped safety answers, state unreadable while ordering) or watching and filling forms instead of doing. The same two patterns showed in most games, so the fix went into the lab: the kit 0.2.0 phone stage and phone check (DL-30, DL-31) and agency density (DL-32, DL-33). After that round Voice turned from quit to keep and Well's sessions grew longer (3:29, 4:40, 4:57); the others still quit, now on what remained: the tactile feel of the work (Pass), reading consequences (Watch), inner scroll panels (Valley). Expect a quit after every fix; read it as the next item, and look across games before fixing one.
+Evidence: F-271, F-273, F-275, F-277, F-284, F-288, F-290, F-292, F-301

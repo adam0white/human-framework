@@ -3984,6 +3984,267 @@
     "fix:pass recs in follow-up d, pass@6 edition, pass 19419a9 (done)"
    ],
    "source": "docs/lab/reviews/design-round-2026-10-20/fun-review-pass.md"
+  },
+  {
+   "id": "F-283",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Mateus (Codex source-unread persona, patterns round 1, pass bf28f56)",
+   "words": "I would not return voluntarily as Mateus for the busy cooking I wanted. I did get hands-on steps, but repeating a small text-button sequence did not make me want to continue the service.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass round-1 asks folded into round 2, pass@8, pass edfc217 (done)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/pass.md"
+  },
+  {
+   "id": "F-284",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Siobhan (Codex source-unread persona, patterns round 2, pass d3d3439)",
+   "words": "I wanted the acts of prep and plating to be more satisfying than successive label changes beside the same drawing.\" … \"I would not return voluntarily for this kind of eight-minute break in its observed form.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass DL-33 act on the food itself and see it change as you work it (open, target 2026-11-03, owner call: it nears the no action-game polish line)",
+    "fix:pass DL-23 service targets keep their place while tickets and messages change (open, target 2026-11-03)",
+    "fix:pass DL-30 the cook's spoken sentence fits beside the work controls (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/pass2.md"
+  },
+  {
+   "id": "F-285",
+   "date": "2026-10-20",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nadia (Codex source-unread persona, patterns round 1, HF site aa14a25)",
+   "words": "I would return voluntarily for another evening with Halil. I liked being able to ask and comfort him.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice round-1 asks folded into round 2, HF 98bc07f (done)",
+    "hf:roadmap §3b non-directive words reaching a person (received support): Voice care lines are scene continuations only because HF has no channel"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/voice.md"
+  },
+  {
+   "id": "F-286",
+   "date": "2026-10-20",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Ingrid (Codex source-unread persona, patterns round 2, HF site 7d23938)",
+   "words": "I would return voluntarily for Halil, Selin, Mrs Aydin and Rıza. I would be cautious about controls changing while I read.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice DL-13 a tap sends exactly the words shown and choices hold still under the finger, HF 02f4795 (done, not retested)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/voice2.md"
+  },
+  {
+   "id": "F-287",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Bram (Codex source-unread persona, patterns round 1, HF site aa14a25)",
+   "words": "It takes several taps to send one person.\" … \"I would not return voluntarily on this phone layout; I might try the roomier desktop version.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well round-1 asks folded into round 2, HF 8f3c29b (done)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/well.md"
+  },
+  {
+   "id": "F-288",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Kwame (Codex source-unread persona, patterns round 2, HF site 7d23938)",
+   "words": "I stopped because the repeated cards and suggestion handling were wearing on me.\" … \"I would not return voluntarily in this lunch-break form.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well DL-31 clear destination cards after an order, orders go to both villages said on the phone, safe suggestions in one tap, HF eb60d5b (done, not retested)",
+    "fix:well DL-5 scheduled suggestions repeat work already underway (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/well2.md"
+  },
+  {
+   "id": "F-289",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Callum (Codex source-unread persona, patterns round 1, HF site bf9d176)",
+   "words": "I would not return voluntarily on this phone in its current layout: the first night had a useful placement payoff, but I wanted more legible consequences and the morning choices where my thumb could find them.",
+   "verdict": "quit",
+   "routes": [
+    "fix:watch round-1 asks folded into round 2, HF e6a344f (done)",
+    "fix:watch DL-33 a spoken warning to a watcher at night (deferred, target 2026-11-03, the game has no warning input, docs/games/watch.md)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/watch.md"
+  },
+  {
+   "id": "F-290",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Dara (Codex source-unread persona, patterns round 2, HF site a64b93b)",
+   "words": "Kian's morning answer … 'I went home to sleep' turned that discrepancy into a person's decision.\" … \"Tell me whether that breach was a small loss or a serious step toward failure, and give me a clearer sense of how far this winter has to go.",
+   "verdict": "quit",
+   "routes": [
+    "fix:watch DL-31 bell and lantern stay on screen while a watcher is read (open, target 2026-11-03)",
+    "fix:watch DL-5 one-line night outcome above the morning talks (open, target 2026-11-03, Callum wanted talks first and Dara the outcome first, so show both)",
+    "fix:watch DL-14 say how serious a breach is toward the thaw, in words (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/watch2.md"
+  },
+  {
+   "id": "F-291",
+   "date": "2026-10-20",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Elif (Codex source-unread persona, patterns round 1, valley a5d4c2b)",
+   "words": "I would not return voluntarily on this phone layout tonight. I would try a larger screen: the single desktop look made the map and conversation much easier to read.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley round-1 asks folded into round 2, valley 36324e4 (done)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/valley.md"
+  },
+  {
+   "id": "F-292",
+   "date": "2026-10-20",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Hatice (Codex source-unread persona, patterns round 2, valley 36324e4)",
+   "words": "After work, I do not want to keep sliding a small window to read the village. I would return for the families, but not voluntarily for this phone reading layout.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley DL-30 household context, storm reports and the ledger get whole-sentence reading space on the phone (open, target 2026-11-03)",
+    "fix:valley DL-33 visit or help a selected household with a direct action (open, target 2026-11-03)",
+    "fix:valley DL-13 show the arrival before the conversation (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/valley2.md"
+  },
+  {
+   "id": "F-293",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Yusra (Codex source-unread persona, patterns round 1, warren 6c00dab)",
+   "words": "I would not voluntarily return for another phone tea break in this state. … I wanted a recognisable little refuge; I left with a sequence of warnings and only one tiny bedroom.",
+   "verdict": "quit",
+   "routes": [
+    "fix:warren round-1 asks folded into round 2, warren 2c286d6 (done)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/warren.md"
+  },
+  {
+   "id": "F-294",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Teodor (Codex source-unread persona, patterns round 2, warren 2c286d6)",
+   "words": "Enough for the village is a good stopping point for my lunch break.\" … \"I would return voluntarily on a larger screen. The planning and villagers carrying it out are appealing. On this phone I spent too much attention managing a narrow view of the hill.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren DL-30 the journal opens to a complete entry, never a cut sentence above blank space (open, target 2026-11-03)",
+    "fix:warren DL-31 the room being worked stays fully visible with its safety answer (open, target 2026-11-03)",
+    "fix:warren DL-9 threat context near the bell, in what the village knows (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/warren2.md"
+  },
+  {
+   "id": "F-295",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review (patterns round, pass bf28f56)",
+   "words": "Keep pass@7's direct cooking and service, but do not accept it as the quit fix: it replaces some watching with prescribed taps, while the interesting decisions still concern tables and people.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass recs 1-3 in round 2, pass@8, pass edfc217 (done)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/fun-review-pass.md"
+  },
+  {
+   "id": "F-296",
+   "date": "2026-10-20",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review (patterns round, HF site aa14a25)",
+   "words": "Keep the change: it fixes the instruction-form quit, but repeated care and summaries that erase it still weaken the reason to finish the month.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice recs 1-3 in round 2, HF 98bc07f (done)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/fun-review-voice.md"
+  },
+  {
+   "id": "F-297",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review (patterns round, HF site aa14a25)",
+   "words": "Keep 20b as a phone visibility repair; it does not yet make Twice at the Well a compelling whole run, and scene overlays still hide people and their words.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well recs 1-3 in round 2, HF 8f3c29b (done)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/fun-review-well.md"
+  },
+  {
+   "id": "F-298",
+   "date": "2026-10-20",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review (patterns round, valley a5d4c2b)",
+   "words": "Keep the phone layout repair, but do not call it a fun fix: it preserves the interesting human conflict while hiding some of the evidence and responses that make that conflict playable.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley recs 1-3 in round 2, valley 36324e4 (done)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/fun-review-valley.md"
+  },
+  {
+   "id": "F-299",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review (patterns round, HF site bf9d176)",
+   "words": "Keep the readable posting screen, but do not count this layout change as a cure for the reasons Sofia stopped; the waits and unclear consequences remain.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch waits and unclear consequences, partly in round 2, HF e6a344f (done), the rest with the F-290 routes (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/fun-review-watch.md"
+  },
+  {
+   "id": "F-300",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review (patterns round, warren 6c00dab)",
+   "words": "Keep 20b: it fixes most phone reading and selection barriers, but moves the people's stories behind controls and gives me no reason yet to commit to the whole year.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren recs 1-2 in round 2, warren 2c286d6 (done)",
+    "fix:warren DL-15 a pure receipt (store, lamp) does not hold the inspection rate (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/fun-review-warren.md"
+  },
+  {
+   "id": "F-301",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "harness",
+   "who": "Codex live phone audit (all 14 games, 360x690)",
+   "words": "Warren, Valley, Well, Watch and Neighbours need the phone stage first.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:lab DL-30/31 kit 0.2.0 phone stage adopted in Well, Warren, Valley and Night Watch (done)",
+    "fix:lab DL-30/31 adopt the phone stage in Neighbours, Good Hands, Hearsay, Glance, Stairwell and Rope (open, target 2026-11-03)",
+    "lesson:L21"
+   ],
+   "source": "docs/lab/reviews/patterns-2026-10-20/phone-audit.md"
   }
  ],
  "lessons": [
@@ -4314,6 +4575,22 @@
     "F-215",
     "F-216"
    ]
+  },
+  {
+   "id": "L21",
+   "title": "A fix exposes the next-weakest part; fix the pattern in the lab, not the game.",
+   "text": "In the 2026-10-20 design round each change removed its tester's quit reason, and the next tester quit on the next-thinnest part: phone panels with no room (clipped safety answers, state unreadable while ordering) or watching and filling forms instead of doing. The same two patterns showed in most games, so the fix went into the lab: the kit 0.2.0 phone stage and phone check (DL-30, DL-31) and agency density (DL-32, DL-33). After that round Voice turned from quit to keep and Well's sessions grew longer (3:29, 4:40, 4:57); the others still quit, now on what remained: the tactile feel of the work (Pass), reading consequences (Watch), inner scroll panels (Valley). Expect a quit after every fix; read it as the next item, and look across games before fixing one.",
+   "evidence": [
+    "F-271",
+    "F-273",
+    "F-275",
+    "F-277",
+    "F-284",
+    "F-288",
+    "F-290",
+    "F-292",
+    "F-301"
+   ]
   }
  ],
  "asks": [
@@ -4546,12 +4823,21 @@
    "games": [
     "murmur"
    ]
+  },
+  {
+   "ref": "roadmap §3b non-directive words reaching a person (received support): Voice care lines are scene continuations only because HF has no channel",
+   "from": [
+    "F-285"
+   ],
+   "games": [
+    "voice"
+   ]
   }
  ],
  "routes": {
-  "fix": 305,
-  "lesson": 241,
-  "hf": 11,
+  "fix": 336,
+  "lesson": 242,
+  "hf": 12,
   "calibration": 42,
   "none": 1
  }

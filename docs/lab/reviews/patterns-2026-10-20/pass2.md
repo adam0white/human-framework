@@ -1,0 +1,143 @@
+# The Pass — Siobhan, source-unread playtest
+
+## Assignment and access
+
+Siobhan, 31, runs a small cafe. I play Overcooked 2, Cook Serve Delicious 3 and Good Pizza, Great Pizza. I want to prep and plate myself, feel the rush build, and spend an eight-minute break playing one-handed.
+
+URL: https://pass.adamwhite.work. No game build identifier was visible. The opening footer said “People by the Human Framework 2.8.0”; that is not evidence of a game build number.
+
+I used actual Playwright Chromium in one persistent local Node process, with one browser context and page throughout. The phone viewport was 360×690 CSS pixels, touch emulation, light mode and default text size. Inputs were individual coordinate taps, with screenshots as my only game observation. I did not inspect game source, bundles, DOM state, network payloads or exports. I did not open consent controls, send a run or submit telemetry. No export downloaded.
+
+The eight-minute allowance was a ceiling. The first usable screen appeared at 2026-10-20 14:45:31.773 UTC (09:45:31.773 America/Chicago). I stopped at 14:48:40.495 UTC, elapsed 188.722 seconds (3:08.7). The last gameplay tap was at 170.793 seconds. The mandatory desktop look began at 188.828 seconds, at 1280×800. I took no more gameplay inputs and closed the browser at about 199 seconds.
+
+Timing limitations: the game ran continuously while I read screenshots and wrote the checkpoint. The checkpoint note was 1.7 seconds late, with no inputs between 54.2 and 84.6 seconds. Screenshots through 145.9 seconds were taken immediately after the requested tap; some may precede its rendered answer. From 151.1 seconds onward I allowed about half a second before post-tap screenshots. These observation limits prevent a firm diagnosis of the uncertain service taps. I never intentionally changed the speed or accelerated the clock through scripts. The displayed speed changed on its own, including a brief “Steady · 6 min/s” while the rail was clear.
+
+## First minute
+
+Written at 61.7 seconds after the opening usable screen, before continuing. The automatic screenshot was taken at 60 seconds (`checkpoint-60s.png`); my observed checkpoint is `13-first-minute-observed.png`. Later discoveries will not change these answers.
+
+| Item | Status | Original checkpoint answer and visible evidence |
+|---|---|---|
+| DL-1 A reason to act | PASS | I inherited this cafe and need 5,200 lira (Turkish lira) by Saturday. Cooking and sending meals earns money; the till reached 40 lira after table 3. The opening explicitly states the bank deadline. |
+| DL-2 What can I touch | PASS | Outlined Game menu, opening buttons, Change, speed arrows, Work grill, Work cold side, Service and cook names look tappable. I used the work and service buttons. I have not tried the little kitchen drawing. No decorative thing I tried was inert. One attempted Service tap did not send table 2; I do not know whether I missed the moving button. |
+| DL-3 Urgency and selection | PASS | The red rush message drew me first when it appeared. It asked which table to put first. Table 3 was labelled waiting longest, then First on the pass. The double arrow had the initial selected outline; the text distinguishes my chosen Steady speed from automatic Slow. Plate-ready received a red outline. Cooling tells me table 2 should go. |
+| DL-4 Why the limit | PASS | Initially Work grill and Work cold side said Nothing waiting. Waiting for the next ticket explained what would free those jobs; they became Take a portion when table 3 arrived. I met no other explicit unavailable action. |
+| DL-5 Readable situation | PASS | I can take a portion from table 7 or call Service, table 2! The cook is holding a portion for me: Yours, Chef? I can tell the open dots from filled cooking/ready dots after sending table 3. |
+| DL-6 A choice soon | PASS | The opening offers Open the doors at 0 seconds; I first tapped it at 5.5 seconds. Station/break Change choices were available on the board by 5.5 seconds. I left those agreements alone and opened service at 10.4 seconds. First cooking choice was available by 16.0 seconds; I took grill at 20.7 seconds. A choice was available within 30 seconds, without a long introduction. |
+| DL-7 Learn by doing | PASS for reached interactions; NOT TESTED for others | Taking grill taught me sear, turn, rest, plate, with visible lamb and a single action button. Service on table 3 produced customer words and 40 lira. Calling table 3 first produced First on the pass. These three interaction families were reached. No help used. Board changes and cook conversations are two visible interaction families not yet tested; I cannot count undiscovered ones. |
+
+## Verbatim wall-clock diary
+
+The following is the original JSONL diary, including timestamps, exact inputs, contemporaneous reactions and screenshot references. Reactions sometimes describe the preceding screenshot, while the screenshot taken afterward shows a later state. Their wording has not been corrected after the fact. All screenshot names are relative to `(driver scratch)/retest/pass2-shots/`.
+
+```jsonl
+{"timestamp":"2026-10-20T14:45:31.773Z","elapsed_s":0,"input":"Open live page"}
+{"timestamp":"2026-10-20T14:45:31.791Z","elapsed_s":0.018,"input":"Screenshot","screenshot":"01-opening.png"}
+{"timestamp":"2026-10-20T14:45:37.119Z","elapsed_s":5.346,"input":"Tap (161, 348)","reaction":"I have inherited a cafe and need 5,200 lira by Saturday. Open the doors is the obvious button; Game menu, Load a playtest run and More about the kitchen also look tappable. I want to get cooking."}
+{"timestamp":"2026-10-20T14:45:37.230Z","elapsed_s":5.457,"input":"Screenshot","screenshot":"02-open-doors.png"}
+{"timestamp":"2026-10-20T14:45:42.125Z","elapsed_s":10.352,"input":"Tap (181, 656)","reaction":"They already have stations and breaks agreed. I will open and handle the food as it arrives."}
+{"timestamp":"2026-10-20T14:45:42.192Z","elapsed_s":10.419,"input":"Screenshot","screenshot":"03-service.png"}
+{"timestamp":"2026-10-20T14:45:47.735Z","elapsed_s":15.962,"input":"Observe","reaction":"Work grill and Work cold side look like my jobs, but both say Nothing waiting. The next ticket should give me something. The steady speed is already selected."}
+{"timestamp":"2026-10-20T14:45:47.759Z","elapsed_s":15.986,"input":"Screenshot","screenshot":"04-first-ticket.png"}
+{"timestamp":"2026-10-20T14:45:52.401Z","elapsed_s":20.628,"input":"Tap (80, 400)","reaction":"Table 3 wants grill and cold. Yours, Chef means they are holding it for me. I will take the grill portion."}
+{"timestamp":"2026-10-20T14:45:52.442Z","elapsed_s":20.669,"input":"Screenshot","screenshot":"05-work-grill.png"}
+{"timestamp":"2026-10-20T14:45:56.767Z","elapsed_s":24.994,"input":"Tap (170, 427)","reaction":"There is the lamb and a sear button. That feels like my plate. I want to sear it, turn it and send it."}
+{"timestamp":"2026-10-20T14:45:56.808Z","elapsed_s":25.035,"input":"Screenshot","screenshot":"06-sear.png"}
+{"timestamp":"2026-10-20T14:46:01.132Z","elapsed_s":29.359,"input":"Tap (167, 427)","reaction":"It says turn the lamb at 17:38, but the clock is 17:35. I am tempted to turn it now; I want to see whether that matters."}
+{"timestamp":"2026-10-20T14:46:01.157Z","elapsed_s":29.384,"input":"Screenshot","screenshot":"07-turn.png"}
+{"timestamp":"2026-10-20T14:46:05.368Z","elapsed_s":33.595,"input":"Tap (171, 426)","reaction":"I turned it at its moment. Table 2 has a Service button now, but first I will rest my lamb."}
+{"timestamp":"2026-10-20T14:46:05.409Z","elapsed_s":33.636,"input":"Screenshot","screenshot":"08-rest.png"}
+{"timestamp":"2026-10-20T14:46:10.114Z","elapsed_s":38.341,"input":"Tap (176, 426)","reaction":"Ready to plate has a red outline. Pull it now, a plain portion sooner, makes sense. Plate it."}
+{"timestamp":"2026-10-20T14:46:10.142Z","elapsed_s":38.369,"input":"Screenshot","screenshot":"09-plated.png"}
+{"timestamp":"2026-10-20T14:46:15.619Z","elapsed_s":43.846,"input":"Tap (92, 637)","reaction":"The rush is backing up; choose which table the cooks put first. Table 3 is waiting longest, so I will call them first. My finished grill still shows an open circle, which I do not understand yet."}
+{"timestamp":"2026-10-20T14:46:15.659Z","elapsed_s":43.886,"input":"Screenshot","screenshot":"10-priority.png"}
+{"timestamp":"2026-10-20T14:46:19.828Z","elapsed_s":48.055,"input":"Tap (87, 491)","reaction":"Now the grill dot is filled and Table 3 has Service, out hot. Yes, send that plate."}
+{"timestamp":"2026-10-20T14:46:19.857Z","elapsed_s":48.084,"input":"Screenshot","screenshot":"11-service-three.png"}
+{"timestamp":"2026-10-20T14:46:25.981Z","elapsed_s":54.208,"input":"Tap (94, 491)","reaction":"They paid 40 and called it plain and filling. I like seeing the money go toward Saturday. Table 2 is cooling; I should send that too."}
+{"timestamp":"2026-10-20T14:46:26.009Z","elapsed_s":54.236,"input":"Screenshot","screenshot":"12-service-two.png"}
+{"timestamp":"2026-10-20T14:46:31.790Z","elapsed_s":60.017,"input":"No input; automatic first-minute screenshot","screenshot":"checkpoint-60s.png"}
+{"timestamp":"2026-10-20T14:46:33.476Z","elapsed_s":61.703,"input":"Observe","reaction":"First minute: I can cook and call plates, and I know the bank wants 5,200 lira by Saturday. The work panel is understandable. Buttons move when tickets or text change; my last Service tap did not visibly send table 2. I am not sure if I missed it or it did not take."}
+{"timestamp":"2026-10-20T14:46:33.488Z","elapsed_s":61.715,"input":"Screenshot","screenshot":"13-first-minute-observed.png"}
+{"timestamp":"2026-10-20T14:46:56.330Z","elapsed_s":84.557,"input":"Tap (94, 454)","reaction":"Checkpoint written. I will send table 2 from the button I can actually see now."}
+{"timestamp":"2026-10-20T14:46:56.357Z","elapsed_s":84.584,"input":"Screenshot","screenshot":"14-send-two.png"}
+{"timestamp":"2026-10-20T14:47:03.815Z","elapsed_s":92.042,"input":"Observe","reaction":"While I wrote the checkpoint, the room moved on. Now it is 18:27, the till is 120, the rail is clear, Dilek is eating and the runner called table 7 a little colder. The speed now says Steady 6 min/s. I did not deliberately choose that speed. I missed what changed."}
+{"timestamp":"2026-10-20T14:47:03.837Z","elapsed_s":92.064,"input":"Screenshot","screenshot":"15-room-moved.png"}
+{"timestamp":"2026-10-20T14:47:09.223Z","elapsed_s":97.45,"input":"Observe","reaction":"It is back to Steady 1.5 min/s without my choosing. Selim is eating and back at 18:55; Dilek is back on cold. The kitchen drawing is tiny, but those words tell me what is happening. I want another ticket rather than watching their breaks."}
+{"timestamp":"2026-10-20T14:47:09.238Z","elapsed_s":97.465,"input":"Screenshot","screenshot":"16-next-ticket.png"}
+{"timestamp":"2026-10-20T14:47:14.052Z","elapsed_s":102.279,"input":"Tap (89, 400)","reaction":"Grill needs a cook. I can cover it myself while Selim eats. That is what I came for."}
+{"timestamp":"2026-10-20T14:47:14.089Z","elapsed_s":102.316,"input":"Screenshot","screenshot":"17-cover-grill.png"}
+{"timestamp":"2026-10-20T14:47:18.845Z","elapsed_s":107.072,"input":"Tap (178, 372)","reaction":"I want to touch the lamb itself to sear it."}
+{"timestamp":"2026-10-20T14:47:18.871Z","elapsed_s":107.098,"input":"Screenshot","screenshot":"18-tap-lamb.png"}
+{"timestamp":"2026-10-20T14:47:24.334Z","elapsed_s":112.561,"input":"Tap (172, 426)","reaction":"Touching the lamb did not sear it; the ready to sear button is still there. I will use that. It is one button rather than an order form, but the picture itself seems decorative."}
+{"timestamp":"2026-10-20T14:47:24.374Z","elapsed_s":112.601,"input":"Screenshot","screenshot":"19-sear-seven.png"}
+{"timestamp":"2026-10-20T14:47:30.607Z","elapsed_s":118.834,"input":"Tap (170, 426)","reaction":"Turn the lamb. I can see table 9 waiting, so I want to finish this and get over to the cold side."}
+{"timestamp":"2026-10-20T14:47:30.636Z","elapsed_s":118.863,"input":"Screenshot","screenshot":"20-turn-seven.png"}
+{"timestamp":"2026-10-20T14:47:34.813Z","elapsed_s":123.04,"input":"Tap (175, 426)","reaction":"Rest the lamb. This is straightforward, though the picture has barely changed between steps."}
+{"timestamp":"2026-10-20T14:47:34.853Z","elapsed_s":123.08,"input":"Screenshot","screenshot":"21-rest-seven.png"}
+{"timestamp":"2026-10-20T14:47:41.791Z","elapsed_s":130.018,"input":"Tap (174, 426)","reaction":"Plate table 7. The till and clock are still visible while I work, as are the tickets. The cook names have dropped partly below the screen."}
+{"timestamp":"2026-10-20T14:47:41.822Z","elapsed_s":130.049,"input":"Screenshot","screenshot":"22-plate-seven.png"}
+{"timestamp":"2026-10-20T14:47:45.616Z","elapsed_s":133.843,"input":"Tap (90, 454)","reaction":"Table 9 is ready too. Call it while hot."}
+{"timestamp":"2026-10-20T14:47:45.654Z","elapsed_s":133.881,"input":"Screenshot","screenshot":"23-call-nine.png"}
+{"timestamp":"2026-10-20T14:47:57.697Z","elapsed_s":145.924,"input":"Observe","reaction":"The plate buttons keep changing as food becomes ready. I meant to call table 9, but the visible response now says Service, table 7! The plate has cooled while it waited. I cannot confidently connect that tap to that answer."}
+{"timestamp":"2026-10-20T14:47:57.720Z","elapsed_s":145.947,"input":"Screenshot","screenshot":"24-service-state.png"}
+{"timestamp":"2026-10-20T14:48:02.848Z","elapsed_s":151.075,"input":"Tap (87, 458)","reaction":"The button now clearly says Service, table 9! Cooling. I will send it before taking the next cold portion."}
+{"timestamp":"2026-10-20T14:48:03.402Z","elapsed_s":151.629,"input":"Screenshot","screenshot":"25-send-nine.png"}
+{"timestamp":"2026-10-20T14:48:08.421Z","elapsed_s":156.648,"input":"Tap (261, 400)","reaction":"That sent table 9 and earned 40. Now I want to make the cold plate for table 1 myself."}
+{"timestamp":"2026-10-20T14:48:08.990Z","elapsed_s":157.217,"input":"Screenshot","screenshot":"26-cold-portion.png"}
+{"timestamp":"2026-10-20T14:48:15.963Z","elapsed_s":164.19,"input":"Tap (176, 426)","reaction":"Cut the vegetables. I hoped for doing the prep and plating, and this does let me own a portion, but I am pressing the same place for each verb."}
+{"timestamp":"2026-10-20T14:48:16.517Z","elapsed_s":164.744,"input":"Screenshot","screenshot":"27-cut-vegetables.png"}
+{"timestamp":"2026-10-20T14:48:22.566Z","elapsed_s":170.793,"input":"Tap (171, 427)","reaction":"Dress the salad. Another table 9 is ready while I do this. The rush is more juggling labels than working with the food."}
+{"timestamp":"2026-10-20T14:48:23.117Z","elapsed_s":171.344,"input":"Screenshot","screenshot":"28-dress-salad.png"}
+{"timestamp":"2026-10-20T14:48:33.393Z","elapsed_s":181.62,"input":"Observe","reaction":"I am starting to lose interest around 2:51. I expected the lamb or salad to change under my hands. The labels do change, but the food drawing looks much the same. I have made two lamb portions and one cold portion; that is enough to know this is not the prep-and-plating rush I wanted."}
+{"timestamp":"2026-10-20T14:48:33.418Z","elapsed_s":181.645,"input":"Screenshot","screenshot":"29-before-stop.png"}
+{"timestamp":"2026-10-20T14:48:40.495Z","elapsed_s":188.722,"input":"Stop playing","reaction":"I am leaving now with a clear rail, Monday week 1 at 19:35 and 280 in the till. The runner sent my salad a little colder while I was reading. I have had enough of pressing the same button through almost unchanged food drawings. I would not use the rest of my break on this."}
+{"timestamp":"2026-10-20T14:48:40.519Z","elapsed_s":188.746,"input":"Screenshot","screenshot":"30-phone-stop.png"}
+{"timestamp":"2026-10-20T14:48:40.601Z","elapsed_s":188.828,"input":"Post-stop look at 1280x800","reaction":"One required desktop look after stopping; I will not resume play."}
+{"timestamp":"2026-10-20T14:48:40.641Z","elapsed_s":188.868,"input":"Screenshot","screenshot":"31-desktop-after-stop.png"}
+{"timestamp":"2026-10-20T14:48:50.868Z","elapsed_s":199.095,"input":"Observe","reaction":"Desktop look: the game stays in a narrow central column, with the tiny kitchen drawing, controls and dialogue all visible together. A new table 2 has arrived at 19:42. I am only looking, not taking another portion."}
+```
+
+## Best, worst and loss of interest
+
+**Best:** taking the grill while Selim was eating, at 102.3 seconds. “I can cover it myself while Selim eats. That is what I came for.” The first called plate also mattered: table 3 said “Plain and filling. We were hungry,” and the till rose to 40 lira. I could connect the work to feeding people and the Saturday debt.
+
+**Worst:** I wanted to send a plate, but the changing button positions and successive screenshots left me unsure which table I had called. At 133.8 seconds I aimed at the button previously shown as table 9; the next screen said “Service, table 7! The plate has cooled while it waited.” I cannot establish whether I tapped a changed target or saw a delayed answer. See `22-plate-seven.png` through `25-send-nine.png`. I do not claim a duplicate or a lost input.
+
+Interest faded during the cold portion at 164–171 seconds. I was doing something, but each cooking step meant pressing essentially the same button beside almost unchanged food. At 181.6 seconds I recorded that I had had enough. This is a preference about the act of cooking, separate from whether the rules were understandable.
+
+## Clarity findings
+
+| ID | Status | What I saw |
+|---|---|---|
+| DL-2 | FAIL later in play; first-minute PASS preserved | At 107.1 seconds I tapped the drawn lamb, expecting to sear it. It did not advance the step; “ready to sear the lamb” remained. The adjacent button worked. `18-tap-lamb.png`, `19-sear-seven.png`. This is one observed inert object I expected to touch. |
+| DL-13 | NOT TESTED conclusively for the uncertain service taps | Several cooking actions had explicit first-person answers: “I sear the lamb for table 7. At its moment; taking care.” Service, table 9 subsequently raised the till from 160 to 200. Other service taps were hard to trace. Immediate capture and moving targets limit the finding; no confirmed execution defect. |
+| DL-15 | PASS for observed automatic slowdown; NOT TESTED from a deliberately selected fast speed | Speed and clock remained visible. “A cook is holding a portion for you: Yours, Chef?” appeared with Slow · 0.1 min/s. Cooking used Steady · 1.5 min/s and readiness slowed again. I had time to read and act. A quiet interval briefly displayed 6 min/s, then returned to 1.5. I could not tell why it used 6; I did not deliberately select it. |
+| DL-30 | FAIL at the phone viewport edge; fixed-panel clipping NOT TESTED | In `04-first-ticket.png`, the visible bottom ends in “Selim: ‘Yours, Chef? Table 3’s a grill portion. I’ll” with the rest below the screen. In `30-phone-stop.png`, his new portion offer again continues below the bottom edge. I saw incomplete character sentences on the phone. I did not scroll, so I cannot claim the text was inaccessible or clipped by a fixed-height panel. No “Scroll ↓” panel or overlapping sheets encountered. |
+
+The first-minute rows above remain the original checkpoint judgments. The later inert-lamb finding does not rewrite the first-minute DL-2 answer. No builder checks were performed. No claim is made about unvisited screens, hidden rules, save/reload, exports or sending.
+
+## English, dates, phone layout and hands-on play
+
+| ID | Status | Evidence and limit |
+|---|---|---|
+| DL-20 | PASS for encountered text | Work grill, Work cold side, sear, turn, rest, plate and Service were English. Turkish lira was defined on the opening screen. “maghrib (sunset prayer)” explained the term where it appeared. “lokanta” was not separately defined, but “a kitchen, four weeks of dinner services” let me act without needing that word. |
+| DL-21 | PASS for the current week; other cases NOT TESTED | Today was Monday · wk 1, with the debt due “by Sat.” I understood that as this coming Saturday, five days after Monday. Break times such as 18:35 and 18:55 could be compared with the visible clock. I did not cross a week, month or year, return from a closed-page break or reach the bank deadline. |
+| DL-22 | PASS for reached immediate decisions; dialogue qualification below | Work buttons, the portion step, plate-ready action and the first two visible priority options were usable without scrolling. The current clock, till and tickets stayed visible. Cook dialogue and, during taller cooking states, cook-name controls fell below the phone viewport. I did not need scrolling to perform the reached cooking decisions; the full spoken context did not always fit. See `09-plated.png`, `21-rest-seven.png`, `26-cold-portion.png`. No keyboard use tested. |
+| DL-30 | FAIL as described above | Character sentences continued beyond the phone edge. I did not establish fixed-panel clipping, overlays or inaccessible text. |
+| DL-31 | PASS for the portion work panel; cook orders NOT TESTED | With the lamb or cold-side panel open, I could read the till against 5,200 by Sat, Monday wk 1 and the current time. The panel and tickets named the table concerned. Example: `21-rest-seven.png`, table 7, till 120 and 19:02. Cook buttons could fall below the edge, but I never opened a cook-order or conversation sheet, so that case is untested. |
+| DL-32 | PASS in this short observed session; full five-minute builder check NOT TESTED | I did not encounter a confirmed stretch over 20 real seconds in which I wanted a hands-on act and only waiting was available. The longest clearly observed clear-rail interval was approximately 84.6–97.5 seconds, about 13 seconds, before the next ticket. I wanted another portion. Speed controls were visible throughout; I did not use them. The checkpoint-writing interval was divided attention, not evidence of a forced idle period. My complaint is repetitive acts, not an established lack of acts. |
+| DL-33 | PASS for single-action contextual cooking; inert drawing qualification | Taking a portion opened a work panel with the food drawing and a direct verb button. I did not fill a plan, choose strength/reason or confirm a preview to sear, turn, rest or dress. Service was also one button. Tapping the lamb itself did nothing, so this did not feel like handling the food directly. No cook conversation or planning form tested. |
+
+The desktop look (`31-desktop-after-stop.png`) showed a narrow centered game column. The scene, cook controls and more dialogue fitted together. It did not make the kitchen drawing large or make the food respond to touch. This was one look after stopping, not further play.
+
+## Stop and return
+
+I stopped voluntarily at 188.722 seconds, well before the eight-minute ceiling. My stop reaction refers to the previous clear-rail screen at 19:35 (`29-before-stop.png`). **Correction to that reaction:** by the actual stop screenshot, a new table 2 grill ticket had arrived and the clock read Monday wk 1, 19:42 (`30-phone-stop.png`). The till was 280 lira in both. I did not take the new portion.
+
+I would not return voluntarily for this kind of eight-minute break in its observed form. I understood enough to cook and serve, and I liked covering a break. I wanted the acts of prep and plating to be more satisfying than successive label changes beside the same drawing. I did not finish a service, a week or the debt goal. Budget exhaustion was not the reason I left.
+
+## Changes I would want, ranked
+
+1. Let me act on the food itself and visibly change it as I sear, turn, cut or dress it. I want the prep and plating to feel like work I did.
+2. Keep each service target in a stable place while other tickets and messages change. I want to know which plate I am sending with my thumb.
+3. Fit the cook’s immediate spoken sentence on the phone with the work controls. I should not have to lose the end of “I’ll…” while deciding what to do.

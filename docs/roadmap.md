@@ -97,6 +97,7 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | Promptings follow-ups | Chronicle lines in the reading's vocabulary; prompts against open abstention windows (they veto today and carry no term); upbringing setting the reading | 2.x / engine 2.5 |
 | Held fitra and purpose | Life purpose and vocation as a held self-understanding (reconciliation §7) | unscheduled, review 2026-11-15 |
 | Culture as learned practices | Norm diffusion and consensus between people | unscheduled, review 2026-11-15 |
+| Received support (non-directive words) | A person hears care or a question from another source (a friend, an inner voice) that directs no action; today `converse` needs two Persons and carries testimony or advice, so Voice's care lines are scene continuations with no effect on him (lab ledger F-285, docs/games/voice.md 2026-10-20b) | review 2026-11-15 |
 
 **Game requests and playtesters (2026-10-19, owner-directed increment; triage in [game-requests-2026-10-18.md](game-requests-2026-10-18.md)).**
 

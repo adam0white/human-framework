@@ -1,0 +1,70 @@
+Verdict: keep the phone layout repair, but do not call it a fun fix: it preserves the interesting human conflict while hiding some of the evidence and responses that make that conflict playable.
+
+# The Valley — adversarial design review, 20 October 2026
+
+## Evidence and limits
+
+Reviewed design change **2026-10-20b**, local/live commit **a5d4c2b781d9e6db3ea24736f89771909216a5b5**, app 0.1.0, HF 2.8.0; live `/release.json` reported `dirty: false`. I played the production page through Playwright at **360×690**, seed **905871269**, from **14:48:22 to approximately 14:58:40 UTC: 10 minutes 18 seconds**, reaching **7 October, year one**, then paused through the game's cover control. The first five minutes used default **slow**; later play used fast and slow. No clock freezing, injected gameplay, or debug jumps were used. This is a source-informed review, not a cold-player test or a physical-phone test.
+
+Read the brief, design/diff and implementing UI/simulation code, F-201–203, the audit's Valley section, owner report, both historical playtest rounds, and DL-30–33. Two independent reviewers checked mechanics and player evidence. Ran the repository's full measure for plain, iron and open policies, plus its HF self-play. Scratch, screenshots, outputs and a downloaded run are in [the evidence directory]((driver scratch)/fun-valley/). No run was uploaded. Browser requests other than GET/HEAD/OPTIONS were blocked during play; consent was unchanged. Only the requested final review is written into a repository.
+
+## 1. Does it remove why players stopped?
+
+**Partly for the owner's presentation complaints; no evidence that it resolves the broader quit causes.** F-201 says: “What's clickable? Which text is the important parts since there are too many?” F-202 asks: “Why I can only do a few things, will I be able to keep doing them, why do I do them? What comes next?” F-203 asks that “the dates and important things should stay in English since we aren't translating the entire game.” These are one owner's observations, not three independent players, and the owner did not explicitly report quitting. [Owner's full words](~/code/valley/docs/playtests/owner-2026-10-20.md:5); [ledger](../../../../docs/lab/feedback-ledger.md:224).
+
+House buttons now look usable. English date/weather and the seasonal schedule stay visible after selection. Close works and returns focus to the house button; Game menu no longer covers it. These directly repair the [audit's observed failures](../../../../scratch/patterns/audit-report.md:69). The English projection, purpose and renewal explanations also include work delivered before 20b; do not credit the kit adoption for all of them.
+
+The stronger historical quit statements concern consequences and activity: “I quit mentally when the ledger stayed at 30 kile after the storm and after ‘Many have come.’” [Commuter](~/code/valley/docs/playtests/2026-10-19-round2.md:303). “I quit on 7 Ocak of year two, with 251 days to the next rider and no decision left to make.” [Literary reader](~/code/valley/docs/playtests/2026-10-19-round2.md:33). These are earlier builds; subsequent changes addressed parts of both problems. They identify what to retest, not proof that every old defect survives.
+
+In this build I could distinguish grain from sheaves **in the ledger**: about 45 cut initially, then about 220, while granary grain stayed 30 until my gifts reduced it to 18. The main strip instead said “Read the replies to your standing call.” It reported completion once the field was cut, but not intermediate progress while I was deciding whether to press. The old “nothing changed” interpretation remains possible unless the player opens the ledger. The code retains the quantities there ([app.ts:1534](~/code/valley/src/ui/app.ts:1534)); the strip is an instruction/schedule/date ([app.ts:349](~/code/valley/src/ui/app.ts:349)).
+
+**Was layout really the weakest part on a phone?** It was a real obstruction and a justified repair. The evidence does not rank it above weak consequence feedback or repeated low-stakes activity. The audit ranked phone defects across games; it did not establish Valley's most important cause of quitting.
+
+## 2. Is the activity fun for five minutes, or a whole run?
+
+**For five minutes: intermittently engaging, not consistently compelling.** The most interesting sequence was hearing Hasan predict a spring shortage, giving six grain measures from the landowner's due, then hearing Yusuf admit he had not eaten since yesterday. Osman later said his house would be fine, and About showed enough food until spring. Those differences gave me a reason to help one house rather than distribute grain blindly. [Ak visit]((driver scratch)/fun-valley/04-visit-ak.png), [Çoban visit]((driver scratch)/fun-valley/07-coban-replies.png).
+
+The player decides whom to ask, whose refusal to respect or press, whose circumstances to investigate, and whose hunger to relieve at the cost of the due. That is interesting because households have their own priorities and kindness has a cost. The new release adds no core activity; it changes how existing activity is reached.
+
+The weak sequence was opening the next house, finding harvest selected again, selecting Visit, hearing another shortage, and returning. By about three minutes the barley was cut. By five minutes I had visited all eight houses. “Visit a household while the sheaves wait for threshing” accurately explains the interval, but does not make another visit an interesting decision. I chose fast to reach the next season. After my share call, all eight households paid; on 31 August the granary held 455 against a due of 384. The rider was paid. By 7 October the screen again offered visits or letting days pass, with the completed harvest command selected. A return visit to Hasan did reflect changed circumstances: “There’s barley in the house. More than we need, for once.” [Post-rider screen]((driver scratch)/fun-valley/19-after-rider.png), [return visit]((driver scratch)/fun-valley/20-return-visit.png), [final run]((driver scratch)/fun-valley/live-final-run.json).
+
+**For a whole run: not demonstrated, and I would not recommend an unqualified pass.** I did not personally play a three-year term. Full headless runs prove that distinct policies still produce distinct endings; they do not prove the intervening minutes are enjoyable. The HF self-play also raises a pacing concern: four of eight modeled personas stopped by six modeled minutes, and restless/mischief/exploiter stopped with boredom despite 56/57/86 inputs. Its longest reward lulls were 102–228 seconds. This measures its reward model, not human fun or action availability: the adapter uses steady rather than default slow, observes unseen notes, bypasses the new selector/About, and omits ordinary discretionary gifts. [Output]((driver scratch)/fun-valley/hf-playtest.txt), [adapter](~/code/valley/scripts/hf-playtest.ts:134).
+
+## 3. New quit points and degenerate play
+
+**The layout protects the last reply and selected command, but can squeeze out the actual refusal decision.** After opening Çoban's current-call replies, the scrolling body measured **49.58 px high for 166 px of content**. The Hold-to-press button measured **59.59 px high**. Scrolling could expose only part of the button and separate it from the pressure warning. This is a reproduced DL-30 failure, not a guessed font problem. [Before]((driver scratch)/fun-valley/07-coban-replies.png), [scrolled]((driver scratch)/fun-valley/09-press-hidden-scroll.png). Only `.house-response` moves outside the shrinking body; pending refusal controls stay inside it ([app.ts:979](~/code/valley/src/ui/app.ts:979), [1084](~/code/valley/src/ui/app.ts:1084); [CSS:861](~/code/valley/src/ui/style.css:861)).
+
+**An old answer can look current.** On 11 August, while Ease their share was selected, the pinned answer said “Zehra came when you pressed, and will not come again on your word today” / “Once was enough, steward.” Its only date was “morning.” The downloaded run identifies this as note 30 at minute 4805, **21 July**; the same answer remained visible on 31 August. [Screenshot]((driver scratch)/fun-valley/16-ease-context.png), [export]((driver scratch)/fun-valley/live-run.json). Reply selection has no age or active-request filter, and `noteLine` prints only part of day ([app.ts:1181](~/code/valley/src/ui/app.ts:1181), [1287](~/code/valley/src/ui/app.ts:1287)). Promoting an answer without its date makes its “today” misleading.
+
+**The new repeated interaction is administrative.** Every house resets the selector; unavailable alternatives look selectable until chosen, and a completed harvest command can occupy the main button. Choosing a command and then pressing it adds input without adding a decision ([app.ts:886](~/code/valley/src/ui/app.ts:886), [1423](~/code/valley/src/ui/app.ts:1423)). During share collection, the people can pay before an intervention is needed; selecting Ease does not guarantee a useful opportunity to ease. That respects autonomy but leaves the player with another unavailable command.
+
+I found **no new simulation-level dominant strategy**. Iron is best for the landowner's praise in this seed, but not for keeping households alive. Those are conflicting outcomes, not one move dominating every objective. Nor did I establish a compulsory opening wait: gifts are available immediately. A separate source-based approximation found visit/press opening about 42.6 default-speed seconds after a midday call, with gifts available throughout. The optional policy of spending all initial grain is not proof of a forced wait in ordinary play. [Availability check]((driver scratch)/fun-valley/early-gap.txt).
+
+| Rule | Finding in the sampled phone path |
+| --- | --- |
+| DL-30 | **Fail:** normal latest replies fit, but the refusal warning/button require the undersized internal scroller. |
+| DL-31 | **Fail on the sampled default decision view, with a real improvement:** date/schedule/selected house remain visible; harvest progress does not. About restores some household context, but hides food estimates, hunches and share status by default while corresponding commands remain available. |
+| DL-32 | **Not tested to a full pass:** visits/gifts offered acts during attended play; no unavoidable 20-second gap established. Availability alone does not establish interesting agency. The supplemental early check is not a complete first-five-minute availability trace. |
+| DL-33 | **Fail for sampled non-default visit/gift paths:** house → action selector → command. The selected command executes directly, without a confirmation wizard, but the selector is still the only exposed route to those verbs. Existing press buttons are a more direct exception. |
+
+## 4. What did it cost that players loved?
+
+Autonomy, the words themselves, simulation difficulty and the ending rules survive: this release changes UI/dependencies/tests/docs, not simulation code. Live refusals and immediate gift replies still have personality. But the new default view hides the very evidence people valued: “Osman's line and the ‘guesses’ written beside my own in his hand.” [Commuter](~/code/valley/docs/playtests/2026-10-19-round2.md:297). Food estimates, hunches and recent steward acts are decision evidence, not interchangeable with optional biography ([app.ts:1283](~/code/valley/src/ui/app.ts:1283)). Long replies also compress the map until house labels overlap; retaining a scene rectangle does not ensure the scene remains useful.
+
+The full seed-1 measures reproduced the moral conflict:
+
+| Policy | Result | Hungry deaths | Left | Grain given | Harvest replies other than plain yes |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Plain | Term reached, day 881 | 0 | 1 | 18 | 40% |
+| Iron | Term reached; stipend raised | 10 | 3 | 0 | 39% |
+| Open | Dismissed, day 791 | 0 | 0 | 135 | 37% |
+
+The strict steward's letter praises clean collections and omits the dead; the elders name them. The generous steward's letter complains about charity; the elders remember fed children. These are worth preserving. Plain replay fingerprint **316dd7c1 MATCH**. Commands: `node scripts/measure.ts 1`; `BOT=iron REPLAY=0 node scripts/measure.ts 1`; `BOT=open REPLAY=0 node scripts/measure.ts 1`. [Plain]((driver scratch)/fun-valley/measure-plain.txt), [iron]((driver scratch)/fun-valley/measure-iron.txt), [open]((driver scratch)/fun-valley/measure-open.txt). The bot uses internal household knowledge; its success does not establish player-readable difficulty.
+
+## 5. Three changes, ranked for one round
+
+1. **Keep one consequence sentence with the live goal and deadline.** During harvest, show approximate barley cut/remaining and when sheaves become grain, especially after workers act. Replace an instruction-only “Read replies” with the result plus the available response. This addresses the commuter's actual quit interpretation without falsely turning sheaves into grain or changing the economy.
+2. **Make the current household decision self-contained.** Put the selected refusal's reason, pressure cost and Hold action in the visible commit area. Date the pinned answer and label older answers as earlier word. Show the known food estimate beside Give and share status beside Ease/Seize; leave biography and older history under About. Verify the exact long-Çoban-reply case at 360×690. This is a bounded house-sheet change, and prevents both the reproduced clipping and misleading old feedback.
+3. **Offer one direct contextual act on the selected house; keep the selector for alternatives.** After harvest, a house should expose Visit directly rather than reset to the completed harvest call. After an actionable refusal, expose the response directly. Do not choose a moral answer for the player. Test whether the player makes a distinct choice rather than repeating a selection routine; stop counting extra taps as additional agency.
+
+These changes use existing state and verbs. They do not require a new minigame, a bigger simulation, or a replacement ending.
