@@ -471,4 +471,8 @@ Revert: revert `Keep deferred Well orders as promises (colony-scenario@5)`, `Sho
 
 The historical comparisons normalize only the embedded person-engine metadata, as before. Pointer tests cover the person over a place and the injury changing during a Home press. The 360×690 touch layout check covers the start card, early-warning selection, watching, Rush in the ordinary panel and the full panel: no audit findings; Rush is a visible 44 px target. Real-device and owner acceptance remain pending.
 
-Revert: revert `Explain Well orders and offer an early-warning village`.
+**Round 3b (fun reviews).** The wildcard reviewer wrote, “I could not see who stood where while deciding” and “Paying a cost and not seeing it is the worst kind of hidden number.” The Codex reviewer wrote, “I would keep that qualitative.” Phone sheets now retain about 40% of the viewport for the map, with a one-line injury notice. Full injury details remain in History. Classic notices offer Show, never a Home order. Canvas taps retain the painted person/place and sender at pointerdown; drags and cancellation send nothing. Rush appears beside the selected person. Disabled Confirm says what is missing. The person sheet describes recorded protest and dated recent trust losses; it does not infer a loss from Insist alone. Prayer has no scored ending comparison. Cost: the smaller sheet scrolls, and the selected-person line and village-setting caption yield space while it is open. This is UI only: @3–@6, their fixture hashes and midpoint continuations stay exact. Independent correctness and game-design reviews informed the fixes. Cold-player and owner acceptance remain pending.
+
+Revert (Round 3b): revert `Keep Well scene and order costs readable`.
+
+Revert (Round 3): revert `Explain Well orders and offer an early-warning village`.

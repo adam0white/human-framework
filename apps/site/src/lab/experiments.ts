@@ -25,7 +25,7 @@ export const EXPERIMENTS: Experiment[] = [
     status: 'reported',
     href: '/lab/island/',
     writeup: `${DOCS}/island-2026-10-20.md`,
-    line: 'An HF person and LLM agents left on the same small island with no task. The HF person wandered; Claude built a tower. Nobody found a hidden rule.',
+    line: 'An HF person and LLM agents on the same small island with no task. Claude built a tower; HF, even with its memory and goals wired in, did not play.',
   },
   {
     id: 'triage',

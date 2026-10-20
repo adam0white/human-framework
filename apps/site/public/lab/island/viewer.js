@@ -67,6 +67,24 @@
       value.x < recording.world?.size &&
       value.y < recording.world?.size;
     const numbers = (value) => value && typeof value === 'object' && Object.values(value).every(finite);
+    const goals = (value) =>
+      Array.isArray(value) &&
+      value.every(
+        (goal) =>
+          goal &&
+          typeof goal.id === 'string' &&
+          typeof goal.label === 'string' &&
+          natural(goal.minute) &&
+          ['active', 'achieved', 'abandoned'].includes(goal.status) &&
+          ['hf', 'task'].includes(goal.source) &&
+          typeof goal.proposed === 'boolean' &&
+          typeof goal.adopted === 'boolean',
+      );
+    const inner = (value) =>
+      value &&
+      typeof value === 'object' &&
+      !Array.isArray(value) &&
+      Object.entries(value).every(([key, item]) => (key === 'goals' ? goals(item) : finite(item)));
     if (
       recording?.format !== 'island-recording@1' ||
       typeof recording.mind !== 'string' ||
@@ -96,7 +114,7 @@
           typeof frame.action === 'string' &&
           strings(frame.events) &&
           (frame.why === undefined || typeof frame.why === 'string') &&
-          (frame.inner === undefined || numbers(frame.inner)) &&
+          (frame.inner === undefined || inner(frame.inner)) &&
           Array.isArray(frame.objects) &&
           frame.objects.every(
             (object) => typeof object.id === 'string' && cell(object) && natural(object.level),
@@ -507,7 +525,11 @@
 
     function innerText(frame) {
       const reading = (key) => frame?.inner?.[key] ?? 'not recorded';
-      return `Boredom: ${reading('boredom')}; engagement: ${reading('engagement')}.`;
+      const goals = frame?.inner?.goals;
+      const audit = goals
+        ? ` Goals: ${goals.length ? goals.map((g) => `${g.label} (minute ${g.minute}, ${g.status}, ${g.source})`).join('; ') : 'none'}.`
+        : '';
+      return `Boredom: ${reading('boredom')}; engagement: ${reading('engagement')}.${audit}`;
     }
 
     function preparePanel(panel, recording) {

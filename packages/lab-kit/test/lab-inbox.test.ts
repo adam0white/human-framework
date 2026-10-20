@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -11,7 +11,7 @@ const { buildNoteRequest, parseSuggestion, renderSuggestion, readSuggestion, wri
   await import(helperPath);
 const answers = {
   verdict: { choice: 'mixed', confidence: 0.49 },
-  severity: { score: 1.6 },
+  severity: { score: 1.6, probabilities: { '0': 0.1, '1': 0.3, '2': 0.5, '3': 0.1 } },
   ...Object.fromEntries(
     [
       'bug',
@@ -47,6 +47,7 @@ describe('lab:inbox Clef suggestions', () => {
       verdict: 'mixed',
       confidence: 0.49,
       severity: 'Real friction',
+      blockerProbability: 0.1,
       categories: [
         { category: 'bug', probability: 0.75 },
         { category: 'unclear', probability: 0.5 },
@@ -82,7 +83,7 @@ describe('lab:inbox Clef suggestions', () => {
     ).toContain('&#60;img&#62;');
     expect(renderSuggestion({ ...suggestion, categories: [] })).toContain('categories: none');
   });
-  it('keeps answers by id, never overwrites them and fails closed on a damaged cache', () => {
+  it('keeps valid answers by id, never overwrites them and moves damaged caches aside', () => {
     const dir = mkdtempSync(join(tmpdir(), 'lab-inbox-'));
     try {
       expect(readSuggestion(dir, 'run-1')).toBeNull();
@@ -92,7 +93,11 @@ describe('lab:inbox Clef suggestions', () => {
       expect(JSON.parse(readFileSync(join(dir, 'suggest/run-1.json'), 'utf8'))).toEqual(response);
       mkdirSync(join(dir, 'suggest'), { recursive: true });
       writeFileSync(join(dir, 'suggest/bad.json'), '{}');
-      expect(() => readSuggestion(dir, 'bad')).toThrow();
+      expect(readSuggestion(dir, 'bad')).toBeNull();
+      expect(existsSync(join(dir, 'suggest/bad.json'))).toBe(false);
+      expect(readFileSync(join(dir, 'suggest/bad.invalid.json'), 'utf8')).toBe('{}');
+      expect(() => writeSuggestion(dir, 'invalid', {})).toThrow();
+      expect(existsSync(join(dir, 'suggest/invalid.json'))).toBe(false);
       for (const id of ['../escape', '/absolute', 'a/b', 'a\\b', '']) {
         expect(() => readSuggestion(dir, id)).toThrow();
         expect(() => writeSuggestion(dir, id, response)).toThrow();
@@ -100,6 +105,30 @@ describe('lab:inbox Clef suggestions', () => {
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }
+  });
+  it('marks worst-severity probability at 0.25 even when expected severity rounds lower', () => {
+    for (const [probability, visible] of [
+      [0.2499, false],
+      [0.25, true],
+      [0.2625, true],
+    ] as const) {
+      const suggestion = parseSuggestion({
+        ...response,
+        answers: { ...answers, severity: { score: 1.9769, probabilities: { '3': probability } } },
+      });
+      expect(suggestion.blockerProbability).toBe(probability);
+      const html = renderSuggestion(suggestion);
+      expect(html).toContain('Real friction');
+      expect(html.includes('possible blocker')).toBe(visible);
+      if (visible) expect(html).toContain(`Made the player quit or blocks play: ${probability.toFixed(2)}`);
+    }
+    for (const probabilities of [undefined, { '3': -1 }, { '3': 1.1 }, { '3': '0.25' }])
+      expect(() =>
+        parseSuggestion({
+          ...response,
+          answers: { ...answers, severity: { score: 1.98, probabilities } },
+        }),
+      ).toThrow();
   });
   it('stops new calls at the invocation spend cap', () => {
     expect(canSuggest(0)).toBe(true);
@@ -110,7 +139,8 @@ describe('lab:inbox Clef suggestions', () => {
 });
 
 // Run the actual entry point with fake Wrangler and Clef. These tests cannot reach the network.
-function inboxFixture(inputTokens: number, failAuth = false) {
+type Failure = 'auth' | 'network' | 'http' | 'json' | 'usage' | 'answer' | 'read' | 'write' | 'rename';
+function inboxFixture(inputTokens: number, failure?: Failure) {
   const root = mkdtempSync(join(tmpdir(), 'lab-inbox-script-'));
   mkdirSync(join(root, 'scripts'));
   mkdirSync(join(root, '.lab-inbox/runs'), { recursive: true });
@@ -132,14 +162,33 @@ function inboxFixture(inputTokens: number, failAuth = false) {
     );
   const preload = `
     import child from 'node:child_process';
+    import fs from 'node:fs';
     import { syncBuiltinESMExports } from 'node:module';
     child.execFileSync = (_cmd, args) => {
       if (!args.includes('auth')) return '';
-      if (${failAuth}) throw Object.assign(new Error('synthetic-token-secret'), { stdout: 'synthetic-token-secret' });
+      if (${failure === 'auth'}) throw Object.assign(new Error('synthetic-token-secret'), { stdout: 'synthetic-token-secret' });
       return '{"token":"test-token"}';
     };
+    const failure = ${JSON.stringify(failure) ?? 'undefined'};
+    for (const [method, stage] of [['readFileSync', 'read'], ['writeFileSync', 'write'], ['renameSync', 'rename']]) {
+      const original = fs[method];
+      fs[method] = (file, ...args) => {
+        if (failure === stage && String(file).endsWith('/suggest/two.json'))
+          throw new Error('synthetic-token-secret <script>private data</script>');
+        return original(file, ...args);
+      };
+    }
     syncBuiltinESMExports();
+    let calls = 0;
     globalThis.fetch = async (url, options) => {
+      calls++;
+      if (calls === 1) {
+        if (failure === 'network') throw new Error('synthetic-token-secret');
+        if (failure === 'http') return new Response('synthetic-token-secret', { status: 503 });
+        if (failure === 'json') return new Response('synthetic-token-secret');
+        if (failure === 'usage') return new Response(JSON.stringify({ success: true, result: { answers: {} } }));
+        if (failure === 'answer') return new Response(JSON.stringify({ success: true, result: { answers: {}, usage: { input_tokens: ${inputTokens} } } }));
+      }
       const body = JSON.parse(options.body);
       if (body.state !== 'Source kind: agent\\nFeedback: Three words here') throw new Error('Wrong request');
       return new Response(JSON.stringify({ success: true, result: ${JSON.stringify({ ...response, usage: { input_tokens: inputTokens } })} }));
@@ -186,17 +235,70 @@ describe('lab:inbox entry point without network', () => {
       fixture.cleanup();
     }
   });
-  it('sanitizes Wrangler auth failures instead of exposing captured stdout', () => {
-    const fixture = inboxFixture(1250, true);
-    try {
-      let stderr = '';
+  it.each(['auth', 'network', 'http', 'json', 'answer', 'read', 'write', 'rename'] as const)(
+    'writes every note despite a sanitized %s failure',
+    (failure) => {
+      const fixture = inboxFixture(1250, failure);
+      try {
+        if (failure === 'read' || failure === 'rename') {
+          mkdirSync(join(fixture.root, '.lab-inbox/suggest'), { recursive: true });
+          writeFileSync(join(fixture.root, '.lab-inbox/suggest/two.json'), '{}');
+        }
+        const output = fixture.run();
+        const html = fixture.html();
+        expect(html.match(/<article>/g)).toHaveLength(2);
+        expect(html).toContain('Clef suggestion failed:');
+        expect(html + output).not.toContain('synthetic-token-secret');
+        expect(html + output).not.toContain('<script>');
+        if (failure !== 'auth' && failure !== 'json') expect(html).toContain('Suggested by Clef');
+        if (failure === 'answer')
+          expect(existsSync(join(fixture.root, '.lab-inbox/suggest/two.json'))).toBe(false);
+      } finally {
+        fixture.cleanup();
+      }
+    },
+  );
+  it.each(['{broken', '{}'])(
+    'quarantines invalid cached content %s, re-asks once and then uses the repaired cache',
+    (content) => {
+      const fixture = inboxFixture(1250);
       try {
         fixture.run();
-      } catch (error) {
-        stderr = String((error as { stderr: string }).stderr);
+        writeFileSync(join(fixture.root, '.lab-inbox/suggest/two.json'), content);
+        expect(fixture.run()).toContain('1 calls, 1 cached');
+        expect(readFileSync(join(fixture.root, '.lab-inbox/suggest/two.invalid.json'), 'utf8')).toBe(content);
+        expect(fixture.html().match(/Suggested by Clef/g)).toHaveLength(2);
+        expect(fixture.run()).toContain('0 calls, 2 cached');
+      } finally {
+        fixture.cleanup();
       }
-      expect(stderr).toContain('Could not read Cloudflare token from Wrangler');
-      expect(stderr).not.toContain('synthetic-token-secret');
+    },
+  );
+  it.each(['json', 'usage'] as const)(
+    'stops calls when %s leaves spend unknown but still renders cached notes',
+    (failure) => {
+      const fixture = inboxFixture(1250, failure);
+      try {
+        expect(fixture.run()).toContain('1 calls, 0 cached');
+        expect(fixture.html()).toContain('Clef spend stop: response usage unavailable');
+        expect(fixture.html().match(/<article>/g)).toHaveLength(2);
+        mkdirSync(join(fixture.root, '.lab-inbox/suggest'), { recursive: true });
+        writeFileSync(join(fixture.root, '.lab-inbox/suggest/one.json'), JSON.stringify(response));
+        expect(fixture.run()).toContain('1 calls, 1 cached');
+        expect(fixture.html()).toContain('Suggested by Clef');
+      } finally {
+        fixture.cleanup();
+      }
+    },
+  );
+  it('does not retry a bad answer and counts its usage toward the spend cap', () => {
+    const fixture = inboxFixture(208334, 'answer');
+    try {
+      expect(fixture.run()).toContain('1 calls, 0 cached; 0.05000016 USD');
+      expect(fixture.html()).toContain('Clef suggestion failed:');
+      expect(fixture.html()).toContain('Clef spend stop: reached 0.05 USD');
+      expect(fixture.html()).not.toContain('Suggested by Clef');
+      expect(existsSync(join(fixture.root, '.lab-inbox/suggest/two.json'))).toBe(false);
     } finally {
       fixture.cleanup();
     }

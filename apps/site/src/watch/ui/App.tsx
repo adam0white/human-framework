@@ -27,6 +27,7 @@ import { Chronicle } from './chronicle.tsx';
 import { Icon, type IconName } from './icons.tsx';
 import { MapCanvas } from './MapCanvas.tsx';
 import type { Hit } from './map.ts';
+import { groupedUnavailable, nightActKey, retainedNightActs } from './night-requests.ts';
 import {
   ChronicleStrip,
   ClosedPage,
@@ -743,6 +744,11 @@ export function NightPanel({
   useEffect(() => {
     if ((momentId !== undefined || selected) && body.current) body.current.scrollTop = 0;
   }, [momentId, selected]);
+  const [rosterOpen, setRosterOpen] = useState(false);
+  const [dismissedMoment, setDismissedMoment] = useState<number | null>(null);
+  useEffect(() => {
+    if (momentId !== undefined) setRosterOpen(false);
+  }, [momentId]);
   const walking = frame.lit === null;
   const off = frame.watchers.filter((w) => w.post === null);
   // The bell answers a pull: the button rings for a moment when the rope wears.
@@ -755,14 +761,38 @@ export function NightPanel({
   }, [wear]);
   return (
     <div className="w-night">
+      {!who ? (
+        <header className="lk-sheet-head w-watch-entry">
+          <p className="w-note">Tap a watcher to ask for rest, help or to go down.</p>
+          <button
+            type="button"
+            className="w-chip"
+            aria-expanded={rosterOpen}
+            onClick={() => setRosterOpen((open) => !open)}
+          >
+            {rosterOpen ? 'Back to the watch' : 'Watchers'}
+          </button>
+        </header>
+      ) : null}
       <div className="lk-sheet-body" ref={body} hidden={Boolean(who?.account)}>
         <p className="w-note w-lantern-context">
           Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.
         </p>
         <div hidden={Boolean(who)}>
-          <NightMoment frame={frame} actions={actions} />
+          {!rosterOpen ? (
+            <NightMoment
+              frame={frame}
+              actions={actions}
+              dismissed={dismissedMoment}
+              onDismiss={setDismissedMoment}
+            />
+          ) : null}
         </div>
-        <details className="w-about w-night-details">
+        <details
+          className="w-about w-night-details"
+          open={rosterOpen}
+          onToggle={(event) => setRosterOpen(event.currentTarget.open)}
+        >
           <summary>Watchers and bell</summary>
           <fieldset className="w-night-roster" aria-label="Hear a watcher">
             {frame.watchers.map((w) => (
@@ -861,26 +891,22 @@ function NightAccount({
   const [seenActs, setSeenActs] = useState(who.acts);
   const body = useRef<HTMLDivElement>(null);
   const focus = useRef<HTMLButtonElement>(null);
-  const key = (act: FrameWatcher['acts'][number]) => JSON.stringify(act.input);
+  const key = nightActKey;
   const seen = new Set(seenActs.map(key));
   const added = who.acts.filter((act) => !seen.has(key(act)));
   if (added.length) setSeenActs([...seenActs, ...added]);
-  const current = new Map(who.acts.map((act) => [key(act), act]));
-  const acts = [...new Map([...seenActs, ...who.acts].map((act) => [key(act), act])).values()].map(
-    (act) =>
-      current.get(key(act)) ?? {
-        ...act,
-        available: false,
-        read: `${who.name}’s or the helper’s condition has changed; this request is no longer available.`,
-      },
-  );
+  const acts = retainedNightActs(frame, who, seenActs);
   const down = acts.find((act) => act.input.k === 'down');
   const downLabel = down?.label.includes('hall') ? 'Send down' : 'Rest';
   const candidates = acts.filter((act) => act.input.k === choice);
   const available = candidates.filter((act) => act.available && !/isn.t on offer/i.test(act.read));
   const unavailable = candidates.filter((act) => !available.includes(act));
-  const outOfCall = unavailable.filter((act) => /Too far to call/.test(act.read));
-  const otherUnavailable = unavailable.filter((act) => !outOfCall.includes(act));
+  const unavailableReasons = groupedUnavailable(unavailable, frame);
+  const recentDoze = frame.alerts.findLast(
+    (alert) => alert.who === who.id && alert.text.includes('nods off'),
+  );
+  // Off-wall people have no helper sheet, including after a live handover.
+  const showingChoice = who.post !== null ? choice : null;
   const helperName = (act: FrameWatcher['acts'][number]) =>
     act.input.k === 'down' ? who.name : nameIn(frame, act.input.by);
   useEffect(() => {
@@ -904,7 +930,7 @@ function NightAccount({
   };
   return (
     <>
-      {choice ? (
+      {showingChoice ? (
         <header className="lk-sheet-head w-helper-head">
           <button type="button" className="w-chip" ref={focus} onClick={() => setChoice(null)}>
             Back to {who.name}
@@ -915,11 +941,16 @@ function NightAccount({
         </header>
       ) : null}
       <div className="lk-sheet-body" ref={body}>
-        {choice ? (
+        {showingChoice ? (
           <section
             className="w-helper-choice"
             aria-label={`Send ${choice === 'relieve' ? 'relief' : 'help'} for ${who.name}`}
           >
+            {unavailableReasons.map((reason) => (
+              <p className="w-note" key={reason}>
+                {reason}
+              </p>
+            ))}
             <ul className="w-night-acts">
               {available.map((act) => (
                 <li key={key(act)}>
@@ -932,14 +963,6 @@ function NightAccount({
                 </li>
               ))}
             </ul>
-            {outOfCall.length ? (
-              <p className="w-note">Out of call: {outOfCall.map(helperName).join(', ')} — carry the light.</p>
-            ) : null}
-            {otherUnavailable.length ? (
-              <p className="w-note">
-                Unavailable: {otherUnavailable.map((act) => `${helperName(act)} — ${act.read}`).join(' ')}
-              </p>
-            ) : null}
             {!candidates.length ? <p>No helper is available here.</p> : null}
           </section>
         ) : (
@@ -948,11 +971,16 @@ function NightAccount({
               Back to the wall
             </button>
             {who.account?.spoken ? <blockquote>{who.account.text}</blockquote> : <p>{who.account?.text}</p>}
+            {recentDoze ? (
+              <p className="w-note w-account-doze">
+                Last heard: “{recentDoze.text}”{who.account?.spoken ? ' They can answer now.' : ''}
+              </p>
+            ) : null}
             {who.restRead ? <p className="w-note">Keeper’s read: {who.restRead}.</p> : null}
           </section>
         )}
       </div>
-      {!choice ? (
+      {!showingChoice ? (
         <footer className="lk-commit w-account-commit">
           {!acts.length ? <p className="w-note w-account-unavailable">{who.actsUnavailable}</p> : null}
           {down ? (
@@ -989,17 +1017,26 @@ function NightAccount({
 }
 
 /** A decision occupies the sheet body; the scene and the action row keep their own space. */
-function NightMoment({ frame, actions }: { frame: Frame; actions: WatchActions }) {
-  const [letBe, setLetBe] = useState<number | null>(null);
+function NightMoment({
+  frame,
+  actions,
+  dismissed,
+  onDismiss,
+}: {
+  frame: Frame;
+  actions: WatchActions;
+  dismissed: number | null;
+  onDismiss: (id: number) => void;
+}) {
   const m = frame.moment;
-  if (!m || m.id === letBe) return null;
+  if (!m || m.id === dismissed) return null;
   return (
     <MomentCard
       key={m.id}
       m={m}
       seconds={frame.decisionSeconds}
       actions={actions}
-      onLet={() => setLetBe(m.id)}
+      onLet={() => onDismiss(m.id)}
     />
   );
 }

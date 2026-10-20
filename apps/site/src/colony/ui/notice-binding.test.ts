@@ -35,3 +35,24 @@ it('keeps the rendered injury and its Home target through a press while news cha
     host.remove();
   }
 });
+
+it('offers Show but never an order for a Classic injury, including when it is not shown', async () => {
+  const host = document.createElement('div');
+  const root = createRoot(host);
+  const onRest = vi.fn();
+  const onShow = vi.fn();
+  const news: HurtNews = { personId: 'yusuf', side: 'classic', minute: 2200, how: 'at work' };
+  try {
+    await act(() =>
+      root.render(createElement(HurtLine, { news: [news], shownSide: 'human', onRest, onShow })),
+    );
+    expect(host.textContent).toContain('Classic village · not shown');
+    expect(host.textContent).not.toContain('Send Yusuf home');
+    const show = [...host.querySelectorAll('button')].find((button) => button.textContent === 'Show Yusuf');
+    await act(() => show?.click());
+    expect(onShow).toHaveBeenCalledExactlyOnceWith(news);
+    expect(onRest).not.toHaveBeenCalled();
+  } finally {
+    await act(() => root.unmount());
+  }
+});

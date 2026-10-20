@@ -112,7 +112,7 @@ async function setup(initial: Partial<PaneProps> = {}) {
       hoverPlace,
       ...settings,
       onSelect,
-      onPlace,
+      onPlace: settings.onPlace ?? onPlace,
       onHoverPlace: (place) => {
         onHover(place);
         setHoverPlace(place);
@@ -142,12 +142,19 @@ async function setup(initial: Partial<PaneProps> = {}) {
   };
 }
 
-async function pointer(canvas: HTMLCanvasElement, type: string, x: number, y: number, buttons = 0) {
+async function pointer(
+  canvas: HTMLCanvasElement,
+  type: string,
+  x: number,
+  y: number,
+  buttons = 0,
+  pointerId = 1,
+) {
   await act(() =>
     canvas.dispatchEvent(
       new PointerEvent(type, {
         bubbles: true,
-        pointerId: 1,
+        pointerId,
         pointerType: 'mouse',
         clientX: x,
         clientY: y,
@@ -158,6 +165,51 @@ async function pointer(canvas: HTMLCanvasElement, type: string, x: number, y: nu
 }
 
 describe('Well map pointer interactions', () => {
+  it('ignores a secondary pointer moving or cancelling during a held tap', async () => {
+    const { canvas, onSelect } = await setup({ following: false, selectedId: null });
+    const point = mapPoint({ x: 320, y: 234 }, mapView(360, 380, null, null), 360, 380);
+    await pointer(canvas, 'pointerdown', point.x, point.y, 1);
+    await pointer(canvas, 'pointermove', point.x + 100, point.y, 1, 2);
+    await pointer(canvas, 'pointercancel', point.x, point.y, 0, 2);
+    await pointer(canvas, 'pointerup', point.x, point.y);
+    expect(onSelect).toHaveBeenCalledExactlyOnceWith('yusuf');
+  });
+  it('selects the person painted at pointerdown after a different person is painted under the held finger', async () => {
+    const { canvas, store, onSelect, onPlace } = await setup({ following: false, selectedId: null });
+    const point = mapPoint({ x: 320, y: 234 }, mapView(360, 380, null, null), 360, 380);
+    await pointer(canvas, 'pointerdown', point.x, point.y, 1);
+    const frame = required(store.current.curr);
+    store.current.curr = { ...frame, human: [{ ...required(frame.human[0]), id: 'maryam' }] };
+    await draw();
+    expect(vi.mocked(drawScene).mock.calls.at(-1)?.[1].people[0]?.id).toBe('maryam');
+    await pointer(canvas, 'pointerup', point.x, point.y);
+    expect(onSelect).toHaveBeenCalledExactlyOnceWith('yusuf');
+    expect(onPlace).not.toHaveBeenCalled();
+  });
+
+  it('retains the painted place and sender callback through a camera and selection change', async () => {
+    const { canvas, store, update, onPlace } = await setup({ following: true });
+    const point = mapPoint({ x: 528, y: 304 }, mapView(360, 380, { x: 320, y: 240 }, null), 360, 380);
+    await pointer(canvas, 'pointerdown', point.x, point.y, 1);
+    const changedSender = vi.fn();
+    required(required(store.current.curr).human[0]).x = 3;
+    await update({ selectedId: 'maryam', onPlace: changedSender });
+    await draw();
+    await pointer(canvas, 'pointerup', point.x, point.y);
+    expect(onPlace).toHaveBeenCalledExactlyOnceWith('site');
+    expect(changedSender).not.toHaveBeenCalled();
+  });
+
+  it('sends nothing after a cancelled press', async () => {
+    const { canvas, onSelect, onPlace } = await setup({ following: false, selectedId: null });
+    const point = mapPoint({ x: 320, y: 234 }, mapView(360, 380, null, null), 360, 380);
+    await pointer(canvas, 'pointerdown', point.x, point.y, 1);
+    await pointer(canvas, 'pointercancel', point.x, point.y);
+    await pointer(canvas, 'pointerup', point.x, point.y);
+    expect(onSelect).not.toHaveBeenCalled();
+    expect(onPlace).not.toHaveBeenCalled();
+  });
+
   it('holds the camera while selecting, moving people and resizing the composer', async () => {
     const { canvas, store, update } = await setup({ following: false, selectedId: null });
     const initial = lastTransform(canvas);
@@ -207,6 +259,7 @@ describe('Well map pointer interactions', () => {
     const view = mapView(360, 380, null, null);
     const point = mapPoint({ x: 320, y: 234 }, view, 360, 380);
     required(required(store.current.curr).human[0]).x = 3;
+    await pointer(canvas, 'pointerdown', point.x, point.y, 1);
     await pointer(canvas, 'pointerup', point.x, point.y);
     expect(onSelect).toHaveBeenCalledExactlyOnceWith('yusuf');
   });
@@ -247,6 +300,7 @@ describe('Well map pointer interactions', () => {
     const point = mapPoint({ x: 495, y: 192 }, mapView(360, 380, null, null), 360, 380);
     await pointer(canvas, 'pointermove', point.x, point.y);
     expect(canvas.style.cursor).toBe('pointer');
+    await pointer(canvas, 'pointerdown', point.x, point.y, 1);
     await pointer(canvas, 'pointerup', point.x, point.y);
     expect(onSelect).toHaveBeenCalledExactlyOnceWith('yusuf');
   });
@@ -258,6 +312,7 @@ describe('Well map pointer interactions', () => {
     await draw();
     const view = mapView(360, 380, { x: 320, y: 240 }, null);
     const point = mapPoint({ x: 320, y: 234 }, view, 360, 380);
+    await pointer(canvas, 'pointerdown', point.x, point.y, 1);
     await pointer(canvas, 'pointerup', point.x, point.y);
     expect(onSelect).not.toHaveBeenCalled();
     const choices = container.querySelector('[aria-label="Choose map target"]');

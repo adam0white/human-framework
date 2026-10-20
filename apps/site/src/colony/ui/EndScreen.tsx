@@ -12,7 +12,6 @@ import {
   humanQuotes,
   nearMisses,
   ordersChanged,
-  share,
 } from './end-report.ts';
 import { Icon, NoConcept } from './Icon.tsx';
 import { GoalChip, jobPhrase, PLACE_LABEL, shortName } from './parts.tsx';
@@ -109,7 +108,6 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
     ],
   ];
   const character: [string, string, string][] = [
-    ['Prayers kept', share(ch.prayersKept, ch.prayersDue), share(solo.prayersKept, solo.prayersDue)],
     ['Morale', moodDescription(ch.morale), moodDescription(solo.morale)],
     ['Trust in you', trustDescription(ch.trust), trustDescription(solo.trust)],
   ];

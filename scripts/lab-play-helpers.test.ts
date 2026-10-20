@@ -1,12 +1,114 @@
 import { describe, expect, it } from 'vitest';
-import { MissingPlayControl, makePlayReply, runPlayOperation } from './lab-play-helpers.ts';
+import {
+  clickNamedPlayControl,
+  MissingPlayControl,
+  makePlayReply,
+  runPlayOperation,
+} from './lab-play-helpers.ts';
 
 const previous = { visible: 'Before dawn\nRest', controls: '- button "Rest"', takenAt: 1000 };
 const fresh = { visible: 'Dawn\nOn to dusk', controls: '- button "On to dusk"' };
 const reply = (result: Awaited<ReturnType<typeof runPlayOperation>>, now = 6000) =>
   makePlayReply(result, { now, openedAt: 1000, started: 5000 });
 
+describe('lab:play named control identity', () => {
+  it.each([
+    ['Send Tariq home', 'Send Idris home', 'button'],
+    ['Show Idris', 'Show Tariq', 'button'],
+    ['House Later: after I pray Fajr', 'House Will refuse: busy', 'button'],
+    ['Go to East wall', 'Go to West wall', 'button'],
+    ['Send Tariq home', 'Send Tariq home tomorrow', 'button'],
+    ['Read Tariq', 'Read Idris', 'link'],
+  ])('refuses stale %s instead of activating %s', async (requested, current, currentRole) => {
+    let activated = '';
+    const page = {
+      getByRole(role: string, options: { name: string | RegExp; exact?: boolean }) {
+        const matches =
+          role === currentRole &&
+          (typeof options.name === 'string'
+            ? options.exact
+              ? options.name === current
+              : current.includes(options.name)
+            : options.name.test(current));
+        return { matches };
+      },
+    };
+    const result = await runPlayOperation(
+      { op: 'tap', name: requested },
+      {
+        previous: { visible: requested, controls: `- ${currentRole} "${requested}"`, takenAt: 1000 },
+        act: async () => {
+          const clicked = await clickNamedPlayControl(
+            page,
+            async (target) => {
+              if (!target.matches) return false;
+              activated = current;
+              return true;
+            },
+            requested,
+          );
+          if (!clicked) throw new MissingPlayControl(requested, `No actionable button named ${requested}`);
+          return undefined;
+        },
+        snapshot: async () => ({ visible: current, controls: `- ${currentRole} "${current}"` }),
+      },
+    );
+    expect(activated).toBe('');
+    expect(result.status).toBe(500);
+    expect(reply(result).error).toContain(`${requested} is not on the page now`);
+    expect(reply(result).controls).toBe(`- ${currentRole} "${current}"`);
+    expect(reply(result).requested_control_present_before).toBe(true);
+  });
+
+  it.each([
+    ['button', undefined, true],
+    ['link', undefined, true],
+    ['link', 'link', true],
+    ['link', 'button', false],
+  ] as const)(
+    'matches a current %s with requested role %s: %s',
+    async (currentRole, requestedRole, expected) => {
+      let activated = false;
+      const clicked = await clickNamedPlayControl(
+        {
+          getByRole(role: string, options: { name: string; exact: true }) {
+            return { matches: role === currentRole && options.name === 'Show Tariq' && options.exact };
+          },
+        },
+        async (target) => {
+          if (!target.matches) return false;
+          activated = true;
+          return true;
+        },
+        'Show Tariq',
+        requestedRole,
+      );
+      expect(clicked).toBe(expected);
+      expect(activated).toBe(expected);
+    },
+  );
+});
+
 describe('lab:play operation replies', () => {
+  it.each([
+    ['House Later: after I pray Fajr', '- \'button "House Later: after I pray Fajr"\''],
+    ["House Later: I'm busy", "- 'button \"House Later: I''m busy\"'"],
+  ])('recognizes the quoted snapshot label %s before it disappears', async (name, controls) => {
+    const result = await runPlayOperation(
+      { op: 'tap', name },
+      {
+        previous: { visible: name, controls, takenAt: 1000 },
+        act: async () => {
+          throw new MissingPlayControl(name, 'No actionable button');
+        },
+        snapshot: async () => fresh,
+      },
+    );
+    expect(reply(result).requested_control_present_before).toBe(true);
+    expect(reply(result).error).toContain(`${name} is not on the page now`);
+    expect(reply(result).controls).toBe(fresh.controls);
+  });
+
   it('does not mistake narrative text for the removed text control', async () => {
     const result = await runPlayOperation(
       { op: 'tap', text: 'Rest' },
