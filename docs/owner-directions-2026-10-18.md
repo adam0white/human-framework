@@ -97,3 +97,11 @@ How this is read: a further $5 of Workers AI spend for this round of lab experim
 A further addition the same evening (Adam, verbatim): "Maintenance should include bringing deps to the latest, including compat_date. I'm open to seeing if we can migrate from wrangler to the new CF cli, too, abandoning wrangler json."
 
 How this is read: in this repository only, the Host kit sweep also brings dependencies to their latest versions (majors where they work), including the Worker's `compatibility_date`, and checks whether Cloudflare's new CLI can replace wrangler and `wrangler.jsonc`; it migrates only if that CLI is ready, otherwise a note records the blocker and a target date. Game repositories run their own pass.
+
+## 2026-10-20, testing lanes (Adam, verbatim)
+
+After reading the testing/CI recommendation (keep CI; lanes by touched paths, strictest wins; deploy checks CI instead of re-running the suite; one full suite at a time; one worktree per agent):
+
+> Cool progress and good recommendations, keep going.
+
+Adopted as the lane model and the one-worktree-per-agent rule in AGENTS.md (Engineering rules) and [docs/lab/velocity-sweep-2026-10-20.md](lab/velocity-sweep-2026-10-20.md); measured for a week, to 2026-10-27.
