@@ -149,3 +149,27 @@ it('dates the rent deadline in the suggestion context and optional opening story
   const premise = render(createElement(Premise, { ready: true, onBegin: () => {} }));
   expect(query(premise, '.v-premise-ends').textContent).toContain('Ramadan 15 (Monday 25 March)');
 });
+
+it('marks selected pace with a neutral outline rather than the task accent', () => {
+  const css = readFileSync(resolve(import.meta.dirname, 'voice.css'), 'utf8');
+  const selected = css.match(/\.v-top \.v-seg button\[aria-pressed="true"\]\s*\{([^}]*)\}/)?.[1];
+  expect(selected).toContain('outline:');
+  expect(selected).not.toContain('var(--lantern)');
+  const autoPause = css.match(/\.v-autopause\[aria-pressed="true"\] \.v-autopause-mark\s*\{([^}]*)\}/)?.[1];
+  expect(autoPause).not.toContain('var(--lantern)');
+});
+
+it('gives phone pause and pace controls 44 pixel hit areas without the top-bar override shrinking them', () => {
+  const css = readFileSync(resolve(import.meta.dirname, 'voice.css'), 'utf8');
+  expect(css).toMatch(/\.v-top \.v-btn\s*\{[^}]*min-height:\s*44px/);
+  expect(css).toMatch(/\.v-top \.v-btn\s*\{[^}]*min-width:\s*44px/);
+});
+
+it('reserves a separate notebook row outside the phone tabs', () => {
+  const app = readFileSync(resolve(import.meta.dirname, 'App.tsx'), 'utf8');
+  const css = readFileSync(resolve(import.meta.dirname, 'voice.css'), 'utf8');
+  expect(app).toMatch(/<div className="v-notebook">\s*<LabControls/);
+  expect(css).toMatch(/grid-template-rows:\s*auto minmax\(0, 1fr\) auto auto/);
+  expect(css).toMatch(/\.v-notebook \.lab-controls\s*\{[^}]*position:\s*static !important/);
+  expect(css).toMatch(/\.v-notebook summary\s*\{[^}]*min-height:\s*44px/);
+});

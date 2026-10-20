@@ -54,8 +54,10 @@
 }
 
 .speed-play.is-paused {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: var(--surface);
+  color: var(--text);
+  outline: 2px solid currentColor;
+  outline-offset: -3px;
 }
 
 /* ---------- Bubbles ---------- */
@@ -1340,7 +1342,7 @@ body {
 }
 
 .autopause input:checked + .autopause-track {
-  background: var(--accent);
+  background: var(--text);
 }
 
 .autopause input:checked + .autopause-track::after {
@@ -1711,6 +1713,7 @@ body {
 }
 
 .pause-ribbon .btn {
+  min-height: 44px;
   background: var(--parchment);
   color: var(--ink);
   border-color: var(--parchment);
@@ -1830,6 +1833,12 @@ kbd {
 
 .btn-confirm {
   min-width: 120px;
+}
+
+.btn-confirm:not(:disabled) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
 }
 
 .btn:disabled {
@@ -2765,7 +2774,7 @@ kbd {
   }
 
   .pause-ribbon .btn {
-    min-height: 34px;
+    min-height: 44px;
   }
 
   .pause-ribbon kbd {

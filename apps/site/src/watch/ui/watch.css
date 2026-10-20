@@ -1593,3 +1593,18 @@
     font-size: 0.8rem;
   }
 }
+
+/* The client restores focus to Send when its sheet closes. Keep that origin and the menu hold alive. */
+body:has(> .hflab-veil) .watch .w-menu {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.w-export-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 6px;
+}

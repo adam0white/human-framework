@@ -3,7 +3,7 @@
  * log and the end state as JSON. Copy puts it on the clipboard; Save writes it as a file, which suits a phone,
  * where a long clipboard paste into a message is awkward. If both are blocked the text is shown to select.
  */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gameLabs } from '../../shared/lab.tsx';
 import { Icon } from './icons.tsx';
 import type { WatchActions } from './useWatch.ts';
@@ -12,18 +12,13 @@ function fileName(seed: number, year: number): string {
   return `night-watch-seed${seed}-year${year}.json`;
 }
 
-export function ExportButtons({
-  actions,
-  label,
-  onSend,
-}: {
-  actions: WatchActions;
-  label?: string;
-  onSend?: () => void;
-}) {
+export function ExportButtons({ actions, label }: { actions: WatchActions; label?: string }) {
   const [status, setStatus] = useState('');
   const [text, setText] = useState('');
   const [sending, setSending] = useState(false);
+  const sendPending = useRef(false);
+  const restoreSendFocus = useRef<(() => void) | null>(null);
+  useEffect(() => () => restoreSendFocus.current?.(), []);
   const [eventsOn, setEventsOn] = useState(gameLabs.watch.eventsOn);
   useEffect(() => {
     const sync = () => setEventsOn(gameLabs.watch.eventsOn);
@@ -84,23 +79,50 @@ export function ExportButtons({
         <button
           type="button"
           className="w-secondary"
-          disabled={sending}
-          onClick={async () => {
+          aria-disabled={sending}
+          onClick={async (event) => {
+            if (sendPending.current) return;
+            sendPending.current = true;
+            const opener = event.currentTarget;
             setSending(true);
             try {
               const run = await actions.exportRun();
-              onSend?.();
+              if (!opener.isConnected) return;
+              // Keep the menu mounted and its clock hold active. The client restores this origin.
+              opener.focus();
               gameLabs.watch.openSendDialog({ getRun: () => run });
+              // The client has no close callback. Restore after the hidden menu becomes visible again.
+              const veil = document.querySelector('.hflab-veil');
+              if (veil) {
+                restoreSendFocus.current?.();
+                let frame = 0;
+                const observer = new MutationObserver(() => {
+                  if (veil.isConnected) return;
+                  observer.disconnect();
+                  frame = requestAnimationFrame(() => {
+                    // :has() visibility settles during the next rendering update.
+                    frame = requestAnimationFrame(() => {
+                      if (opener.isConnected) opener.focus();
+                    });
+                  });
+                });
+                observer.observe(document.body, { childList: true });
+                restoreSendFocus.current = () => {
+                  observer.disconnect();
+                  cancelAnimationFrame(frame);
+                };
+              }
             } catch {
               setStatus('This run could not be prepared. Please try again.');
             } finally {
+              sendPending.current = false;
               setSending(false);
             }
           }}
         >
           Send this run to the notebook
         </button>
-        <label className="w-note">
+        <label className="w-note w-export-option">
           <input
             type="checkbox"
             checked={eventsOn}
@@ -111,7 +133,9 @@ export function ExportButtons({
           />{' '}
           Anonymous play events
         </label>
-        <a href="https://human.adamwhite.work/lab/privacy/">Lab privacy</a>
+        <a className="w-export-option" href="https://human.adamwhite.work/lab/privacy/">
+          Lab privacy
+        </a>
       </div>
       {status ? (
         <p className="w-note" role="status">

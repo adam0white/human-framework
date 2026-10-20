@@ -118,11 +118,6 @@ export function App() {
 
   return (
     <div className={`voice phase-${phase}`} data-tab={tab}>
-      <LabControls
-        lab={gameLabs.voice}
-        screen={phase === 'premise' ? 'title' : phase === 'report' ? 'ending' : 'play'}
-        onSend={actions.sendPlaytest}
-      />
       {frame && (
         <TopBar
           phase={frame.phase}
@@ -185,6 +180,13 @@ export function App() {
           </button>
         ))}
       </nav>
+      <div className="v-notebook">
+        <LabControls
+          lab={gameLabs.voice}
+          screen={phase === 'premise' ? 'title' : phase === 'report' ? 'ending' : 'play'}
+          onSend={actions.sendPlaytest}
+        />
+      </div>
 
       {voice.whyOpen && !overlay && <Why why={voice.why} missing={voice.whyMissing} onClose={closeWhy} />}
 

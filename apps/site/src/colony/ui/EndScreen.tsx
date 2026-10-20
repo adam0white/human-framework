@@ -3,6 +3,7 @@ import type { HindsightReply, HindsightRequest } from '../hindsight-worker.ts';
 import type { Hindsight } from '../sim/hindsight.ts';
 import { formatClock } from '../sim/world-types.ts';
 import { dayClock, type EndSummary, NO_CONCEPT } from './contract.ts';
+import { moodDescription, trustDescription } from './descriptions.ts';
 import {
   cardEnd,
   classicOutcome,
@@ -11,7 +12,6 @@ import {
   humanQuotes,
   nearMisses,
   ordersChanged,
-  pct,
   share,
 } from './end-report.ts';
 import { Icon, NoConcept } from './Icon.tsx';
@@ -110,8 +110,8 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
   ];
   const character: [string, string, string][] = [
     ['Prayers kept', share(ch.prayersKept, ch.prayersDue), share(solo.prayersKept, solo.prayersDue)],
-    ['Morale', ch.morale.toFixed(2), solo.morale.toFixed(2)],
-    ['Trust in you', pct(ch.trust), pct(solo.trust)],
+    ['Morale', moodDescription(ch.morale), moodDescription(solo.morale)],
+    ['Trust in you', trustDescription(ch.trust), trustDescription(solo.trust)],
   ];
   return (
     <>

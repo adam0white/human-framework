@@ -43,7 +43,7 @@
   position: fixed;
   inset: 0;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
   height: 100dvh;
   overflow: hidden;
   background: var(--paper);
@@ -228,7 +228,8 @@
 }
 .v-top .v-btn {
   border-color: rgba(237, 230, 214, 0.3);
-  min-height: 34px;
+  min-height: 44px;
+  min-width: 44px;
 }
 .v-top .v-btn:hover:not(:disabled) {
   background: rgba(237, 230, 214, 0.1);
@@ -242,8 +243,11 @@
   font-size: 0.8rem;
 }
 .v-top .v-seg button[aria-pressed="true"] {
-  background: var(--lantern);
-  color: var(--indigo);
+  background: rgba(237, 230, 214, 0.1);
+  color: #ede6d6;
+  outline: 1px solid currentColor;
+  outline-offset: -3px;
+  font-weight: 700;
 }
 .v-top-id {
   display: flex;
@@ -315,8 +319,8 @@
   box-shadow: inset 0 0 0 1.5px currentColor;
 }
 .v-autopause[aria-pressed="true"] .v-autopause-mark {
-  background: var(--lantern);
-  box-shadow: inset 0 0 0 1.5px var(--lantern);
+  background: currentColor;
+  box-shadow: inset 0 0 0 1.5px currentColor;
 }
 .v-pace-cycle {
   display: none;
@@ -2291,4 +2295,46 @@ button.v-log-btn {
   button.v-log-btn {
     grid-template-columns: 40px minmax(0, 1fr) 8px auto;
   }
+}
+
+/* Reserve a row for the notebook so its shared fixed widget cannot cover phone tabs. */
+.v-notebook {
+  min-width: 0;
+  max-height: 40dvh;
+  overflow-y: auto;
+  background: var(--paper-3);
+  border-top: 1px solid var(--edge);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 100;
+}
+.v-notebook .lab-controls {
+  /* biome-ignore lint/complexity/noImportantStyles: Override the shared widget's inline fixed placement only in Voice. */
+  position: static !important;
+}
+.v-notebook summary {
+  min-height: 44px;
+  align-content: center;
+  cursor: pointer;
+}
+.v-notebook button,
+.v-notebook label,
+.v-notebook a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+.v-notebook button {
+  font: inherit;
+  color: inherit;
+  background: var(--paper-2);
+  border: 1px solid var(--edge-strong);
+  border-radius: var(--radius-s);
+  padding: 6px 10px;
+}
+.v-notebook input {
+  margin-right: 8px;
+}
+.v-notebook a {
+  width: fit-content;
+  color: inherit;
 }

@@ -127,7 +127,7 @@ export function Chronicle({
       <button type="button" className="w-secondary" onClick={onClose}>
         Resume the watch
       </button>
-      <ExportButtons actions={actions} onSend={onClose} />
+      <ExportButtons actions={actions} />
 
       <section className="w-menu-sec" aria-label="The volumes">
         <h3>The shelf</h3>

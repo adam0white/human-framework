@@ -726,7 +726,12 @@ export function Composer(props: {
       </p>
       {s.reason && <p className="composer-reason">{s.reason}</p>}
       <details className="order-options">
-        <summary>Order options</summary>
+        <summary>
+          Order options
+          {s.rush && <small> · Rush: faster, hungrier</small>}
+          {s.insist && <small> · Insist: may cost trust</small>}
+          {s.appeal && <small> · Appeal: “{APPEALS.find((a) => a.id === s.appeal)?.label}”</small>}
+        </summary>
         <div className="composer-row toggles">
           <button
             type="button"
@@ -768,10 +773,10 @@ export function Composer(props: {
             </button>
           ))}
         </div>
-        {s.appeal === 'safety' && (
-          <p className="composer-reason">A promise: hurt on this job, they will hold you to it.</p>
-        )}
       </details>
+      {s.appeal === 'safety' && (
+        <p className="composer-reason">A promise: hurt on this job, they will hold you to it.</p>
+      )}
       <div className="composer-actions">
         {who && (
           <button type="button" className="btn btn-small btn-ghost" onClick={() => props.onInspect(who)}>

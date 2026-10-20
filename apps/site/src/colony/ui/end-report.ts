@@ -3,6 +3,7 @@ import type { Hindsight } from '../sim/hindsight.ts';
 import type { OrderCard } from '../sim/orders.ts';
 import { HOUSE_STAGES, STOREROOM_STAGES, type VillagerId } from '../sim/world-types.ts';
 import { dayClock, hhmm } from './contract.ts';
+import { moodDescription, trustDescription } from './descriptions.ts';
 
 /** A goal's number as the chips show it. */
 export function goalValue(g: Pick<GoalView, 'id' | 'target'>, s: GoalSide): string {
@@ -43,14 +44,13 @@ export function ordersChanged(summary: EndSummary): string {
   row('house', `${sb.human.housePct}%`, `${solo.housePct}%`);
   row('injuries', String(sb.human.injuries), String(solo.injuries));
   row('prayers kept', share(ch.prayersKept, ch.prayersDue), share(solo.prayersKept, solo.prayersDue));
-  row('morale', ch.morale.toFixed(2), solo.morale.toFixed(2));
-  row('trust in you', pct(ch.trust), pct(solo.trust));
+  row('morale', moodDescription(ch.morale), moodDescription(solo.morale));
+  row('trust in you', trustDescription(ch.trust), trustDescription(solo.trust));
   // Solo is the whole run without orders, so the count is every order of the run, not only this report's span.
   const n = summary.orders;
   const given = `${n} order${n === 1 ? '' : 's'}${summary.day === 3 ? ' over the run' : ''}`;
-  if (diffs.length === 0)
-    return `Your ${given} changed nothing in the Human village: it came out as it would have without you.`;
-  return `Your ${given} changed: ${diffs.join('; ')}. Everything else in the tables below came out as it would have without you.`;
+  if (diffs.length === 0) return `Your ${given} produced no differences visible in this report.`;
+  return `Your ${given} changed: ${diffs.join('; ')}. No other differences are visible in this report.`;
 }
 
 // ---------------------------------------------------------------------------------------------

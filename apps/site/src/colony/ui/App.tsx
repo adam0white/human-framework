@@ -255,10 +255,10 @@ export function App() {
         else setComposer(EMPTY_COMPOSER);
         return;
       }
-      // Enter confirms only from the page or the composer: on another button (Skip, ×, Results) it is that button's.
+      // Enter confirms only from the page. Focused controls keep their native activation.
       const t = e.target;
-      const inComposer = t === document.body || (t instanceof Element && t.closest('.composer') !== null);
-      if (e.key === 'Enter' && inComposer && !keys.current.end && orderFrom(live.current.composer)) {
+      const fromPage = t === document.body;
+      if (e.key === 'Enter' && fromPage && !keys.current.end && orderFrom(live.current.composer)) {
         e.preventDefault();
         e.stopPropagation();
         confirm();
