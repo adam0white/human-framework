@@ -5,7 +5,7 @@ import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { inferAction, type OrderInput } from '../sim/orders.ts';
-import type { VillagerId } from '../sim/world-types.ts';
+import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { BubbleManager } from './bubbles.ts';
 import type { Nudge } from './contract.ts';
 import { EndScreen } from './EndScreen.tsx';
@@ -21,14 +21,15 @@ import {
   EMPTY_COMPOSER,
   GoalStrip,
   HurtLine,
+  inferredJob,
   keepOneDisclosure,
   MomentBanner,
   OrderLog,
-  OrderReply,
   PaneStats,
   PauseRibbon,
   PLACE_LABEL,
   SuggestionCard,
+  sameJobCopy,
   shortName,
   TopBar,
 } from './parts.tsx';
@@ -88,14 +89,15 @@ export function App() {
   const [toast, setToast] = useState(false);
   const [moment, setMoment] = useState<MomentRecord | null>(null);
   const [drawer, setDrawer] = useState(false);
-  const [ordering, setOrdering] = useState(true);
+  const [ordering, setOrdering] = useState(false);
   const [phoneSheetHeight, setPhoneSheetHeight] = useState<'closed' | 'peek' | 'half' | 'full' | 'fit'>(
-    'half',
+    'closed',
   );
   const [watching, setWatching] = useState<VillagerId | null>(null);
   const [watchingPlace, setWatchingPlace] = useState<PlaceId | null>(null);
   const [followKey, setFollowKey] = useState(0);
   const [holdKey, setHoldKey] = useState(0);
+  const [placeRequest, setPlaceRequest] = useState(0);
   // News changes camera focus only. The prepared order and prior worker stay intact.
   const [newsFollow, setNewsFollow] = useState<{
     personId: VillagerId;
@@ -149,7 +151,8 @@ export function App() {
     setWatching(null);
     setNewsFollow(null);
     setReturnedFollow(false);
-    setOrdering(true);
+    setOrdering(false);
+    setPlaceRequest(0);
     setDrawer(false);
     setEndOpen(true);
   }, [loaded, bubbles]);
@@ -221,22 +224,94 @@ export function App() {
 
   const live = useRef({ composer });
   live.current = { composer };
+  const sendOrder = useCallback(
+    (input: OrderInput, nudgeId?: string) => {
+      actions.order(input, nudgeId);
+      showFlash(`Order given: ${shortName(input.personId)} → ${PLACE_LABEL[input.placeId]}`);
+      setNewsFollow(null);
+      setReturnedFollow(false);
+      setWatching(input.personId);
+      setWatchingPlace(input.placeId);
+      setFollowKey((key) => key + 1);
+      setOrdering(false);
+      setComposer({ ...EMPTY_COMPOSER, personId: input.personId });
+      setHoverPlace(null);
+      document.querySelector<HTMLDetailsElement>('.order-options')?.removeAttribute('open');
+    },
+    [actions, showFlash],
+  );
   const confirm = useCallback(() => {
     const c = live.current.composer;
     const input = orderFrom(c);
-    if (!input) return;
-    actions.order(input, c.nudgeId);
-    showFlash(`Order given: ${shortName(input.personId)} → ${PLACE_LABEL[input.placeId]}`);
-    setNewsFollow(null);
-    setReturnedFollow(false);
-    setWatching(input.personId);
-    setWatchingPlace(input.placeId);
-    setFollowKey((key) => key + 1);
-    setOrdering(false);
-    setComposer(EMPTY_COMPOSER);
-    setHoverPlace(null);
-    document.querySelector<HTMLDetailsElement>('.order-options')?.removeAttribute('open');
-  }, [actions, showFlash]);
+    if (input) sendOrder(input, c.nudgeId);
+  }, [sendOrder]);
+  const selectScenePerson = useCallback(
+    (id: VillagerId) => {
+      pickWho(id);
+      setOrdering(false);
+      setComposer({ ...EMPTY_COMPOSER, personId: id });
+      setFollowKey((key) => key + 1);
+    },
+    [pickWho],
+  );
+  const scenePerson = newsFollow?.personId ?? composer.personId ?? watching;
+  const sendScenePlace = useCallback(
+    (placeId: PlaceId) => {
+      if (!scenePerson) return;
+      if (placeId === 'cedar' && frame && inferredJob(frame, placeId) === 'fell-cedar') {
+        setComposer({
+          ...EMPTY_COMPOSER,
+          personId: scenePerson,
+          placeId,
+          reason: 'The cedar can injure whoever fells it.',
+        });
+        setNewsFollow(null);
+        setOrdering(true);
+      } else sendOrder({ personId: scenePerson, placeId });
+    },
+    [scenePerson, sendOrder, frame],
+  );
+  const sceneInputs = useMemo<OrderInput[]>(
+    () =>
+      scenePerson
+        ? (
+            [
+              'site',
+              'forest',
+              'cedar',
+              'field',
+              'well',
+              'kitchen',
+              'masjid',
+              villagerById(scenePerson)?.home ?? 'home-yusuf',
+            ] as PlaceId[]
+          ).map((placeId) => ({ personId: scenePerson, placeId }))
+        : [],
+    [scenePerson],
+  );
+  // Forecasts use the existing read-only worker prediction path; orders retain their exact inputs.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Refresh when simulation time changes.
+  useEffect(() => {
+    actions.predictPlaces?.(sceneInputs);
+  }, [actions, sceneInputs, frame?.minute]);
+  const scenePlaces = sceneInputs.map((input) => {
+    const person = frame?.human.find((p) => p.id === input.personId);
+    const action = frame ? inferredJob(frame, input.placeId) : null;
+    const predicted = colony.scenePredictions?.[input.placeId];
+    const matching = predicted?.input.personId === input.personId;
+    return {
+      placeId: input.placeId,
+      label: PLACE_LABEL[input.placeId],
+      answer:
+        input.placeId === 'cedar' && action === 'fell-cedar'
+          ? 'Risk of injury · Review order'
+          : action && person?.action === action && person.state === 'working'
+            ? sameJobCopy(action, input.personId)
+            : matching
+              ? predicted.prediction.text
+              : 'Checking answer…',
+    };
+  });
 
   const applyNudge = (n: Nudge) => {
     setOrdering(true);
@@ -342,7 +417,8 @@ export function App() {
     setWatching(null);
     setNewsFollow(null);
     setReturnedFollow(false);
-    setOrdering(true);
+    setOrdering(false);
+    setPlaceRequest(0);
     setDrawer(false);
     setEndOpen(true);
     actions.restart();
@@ -388,12 +464,23 @@ export function App() {
     hoverPlace: highlightPlace,
     destination: newsFollow ? null : ordering ? composer.placeId : watchingPlace,
     following: newsFollow !== null || returnedFollow || (!ordering && watching !== null),
-    frameSelection: phoneSheetHeight !== 'closed',
+    frameSelection: true,
     sceneHeight,
     followKey,
     holdKey,
-    onSelect: pickWho,
-    onPlace: pickWhere,
+    onSelect: selectScenePerson,
+    onPlace: sendScenePlace,
+    scenePlaces,
+    onMorePlaces: () => {
+      if (!scenePerson) return;
+      setComposer({ ...EMPTY_COMPOSER, personId: scenePerson });
+      setOrdering(true);
+      setPlaceRequest((key) => key + 1);
+      window.setTimeout(
+        () => document.querySelector<HTMLDetailsElement>('.destination-picker')?.setAttribute('open', ''),
+        0,
+      );
+    },
     onHoverPlace: setHoverPlace,
   };
 
@@ -437,14 +524,22 @@ export function App() {
         <VillageStrip frame={frame} side={mapSide} />
         <div className="well-scenes lk-scene">
           <div className="well-phone-status" role="status">
-            {flash && <p>{flash}</p>}
+            {flash && !cards.some((c) => c.order.personId === scenePerson && c.human.label) && <p>{flash}</p>}
             {newsFollow
               ? `Watching ${shortName(newsFollow.personId)}`
               : (composer.personId ?? watching)
                 ? `${shortName((composer.personId ?? watching) as VillagerId)} · ${(mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === (composer.personId ?? watching))?.label ?? 'waiting'}`
                 : ''}
-            <OrderReply cards={cards} />
-            <HurtLine news={frame?.news ?? []} onShow={showNewsPerson} />
+            <HurtLine
+              news={frame?.news.slice(-1) ?? []}
+              onShow={showNewsPerson}
+              onRest={(news) =>
+                sendOrder({
+                  personId: news.personId,
+                  placeId: villagerById(news.personId)?.home ?? 'home-yusuf',
+                })
+              }
+            />
           </div>
           <fieldset className="map-toggle">
             <legend className="visually-hidden">Map shown</legend>
@@ -464,10 +559,19 @@ export function App() {
             </header>
             <PaneBody
               rows={
-                <PeopleRows frame={frame} side="classic" selectedId={composer.personId} onSelect={pickWho} />
+                <PeopleRows
+                  frame={frame}
+                  side="classic"
+                  selectedId={composer.personId}
+                  onSelect={selectScenePerson}
+                />
               }
             >
-              <Pane side="classic" {...paneProps} />
+              <Pane
+                side="classic"
+                {...paneProps}
+                scenePlaces={scenePlaces.map((place) => ({ ...place, answer: `Human: ${place.answer}` }))}
+              />
             </PaneBody>
           </section>
 
@@ -499,8 +603,16 @@ export function App() {
                 />
               )}
               {moment && <MomentBanner moment={moment} />}
-              <HurtLine news={frame?.news ?? []} onShow={showNewsPerson} />
-              <OrderReply cards={cards} />
+              <HurtLine
+                news={frame?.news.slice(-1) ?? []}
+                onShow={showNewsPerson}
+                onRest={(news) =>
+                  sendOrder({
+                    personId: news.personId,
+                    placeId: villagerById(news.personId)?.home ?? 'home-yusuf',
+                  })
+                }
+              />
             </div>
             <div className="composer-tray">
               <p className="order-scope">Each order goes to both villages.</p>
@@ -532,7 +644,7 @@ export function App() {
             </div>
             <section className={`queue ${drawer ? 'is-open' : ''}`} aria-label="Order log">
               <div className="queue-head">
-                <h2 className="col-head">Orders</h2>
+                <h2 className="col-head">History</h2>
                 <button
                   type="button"
                   className="icon-x queue-close"
@@ -553,7 +665,7 @@ export function App() {
                 aria-expanded={ordering}
                 onClick={() => setOrdering((open) => !open)}
               >
-                {ordering ? 'Watch village' : 'Give an order'}
+                {ordering ? 'Watch village' : 'Order options'}
               </button>
               {nudge && frame && (
                 <details
@@ -568,6 +680,7 @@ export function App() {
                   </summary>
                   <SuggestionCard
                     nudge={nudge}
+                    frame={frame}
                     cards={cards}
                     minute={frame.minute}
                     queued={nudges.length - 1}
@@ -583,7 +696,7 @@ export function App() {
                 </details>
               )}
               <button type="button" className="orders-button" onClick={() => setDrawer(true)}>
-                Orders ({orderCount})
+                History ({orderCount})
               </button>
             </div>
           </aside>
@@ -597,7 +710,12 @@ export function App() {
             </header>
             <PaneBody
               rows={
-                <PeopleRows frame={frame} side="human" selectedId={composer.personId} onSelect={pickWho} />
+                <PeopleRows
+                  frame={frame}
+                  side="human"
+                  selectedId={composer.personId}
+                  onSelect={selectScenePerson}
+                />
               }
             >
               <Pane side="human" {...paneProps} bubbles={bubbles} />
@@ -627,7 +745,13 @@ export function App() {
           onSheet={setPhoneSheetHeight}
           stageRoot={stageRoot}
           onSceneHeight={setSceneHeight}
+          onShowNews={showNewsPerson}
+          onRestNews={(news) =>
+            sendOrder({ personId: news.personId, placeId: villagerById(news.personId)?.home ?? 'home-yusuf' })
+          }
           job={job}
+          placeRequest={placeRequest}
+          onScenePlace={sendScenePlace}
           inspecting={inspectOpen}
           active={!starting && !showEnd}
           onKeepWatching={() => {

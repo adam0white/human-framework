@@ -132,7 +132,9 @@ async function click(text: string) {
 async function prepare() {
   await act(() => root.render(createElement(App)));
   await act(() => container.querySelector<HTMLButtonElement>('[data-person="yusuf"]')?.click());
-  await act(() => container.querySelector<HTMLButtonElement>('[data-place="site"]')?.click());
+  await act(() =>
+    container.querySelector<HTMLButtonElement>('.destination-picker [data-place="site"]')?.click(),
+  );
 }
 
 describe('Well person news follow', () => {
@@ -150,10 +152,10 @@ describe('Well person news follow', () => {
     await click('Show Maryam');
     await draw();
     const followingMaryam = transform();
-    expect(followingMaryam).not.toEqual(before);
+    expect(followingMaryam).toEqual(before); // Both workers fit in the full village view.
     await click('Back to Yusuf');
     await draw();
-    expect(transform()).not.toEqual(followingMaryam);
+    expect(transform()).toEqual(followingMaryam);
   });
 
   it('returns to the village view when no worker was selected', async () => {

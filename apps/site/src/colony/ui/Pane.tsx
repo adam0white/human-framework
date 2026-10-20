@@ -3,7 +3,7 @@ import { MAP, PLACES, type PlaceId, placeAt } from '../sim/map.ts';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { BubbleManager, ShownBubble } from './bubbles.ts';
 import type { Frame } from './contract.ts';
-import { type MapPoint, type MapView, mapPoint, mapView } from './map-view.ts';
+import { layoutSceneTargets, type MapPoint, type MapView, mapPoint, mapView } from './map-view.ts';
 import { shortName } from './parts.tsx';
 import {
   type DrawPerson,
@@ -33,8 +33,11 @@ export interface PaneProps {
   followKey?: number;
   /** Increment whenever a picker opens to hold the displayed camera, including after local Follow. */
   holdKey?: number;
+  /** Ordinary orders offered directly at their scene destinations. */
+  scenePlaces?: { placeId: PlaceId; label: string; answer: string }[];
   onSelect(id: VillagerId): void;
   onPlace(place: PlaceId): void;
+  onMorePlaces?(): void;
   onHoverPlace(place: PlaceId | null): void;
   bubbles?: BubbleManager;
 }
@@ -106,6 +109,10 @@ function cookingNow(frame: Frame | null, side: Side): boolean {
 export const Pane = memo(function Pane(props: PaneProps) {
   const { side, store, bubbles } = props;
   const wrap = useRef<HTMLDivElement>(null);
+  const placeEls = useRef(new Map<PlaceId, HTMLButtonElement>());
+  const placeLinks = useRef(new Map<PlaceId, SVGLineElement>());
+  const overflowRef = useRef<PlaceId[]>([]);
+  const [overflowPlaces, setOverflowPlaces] = useState<PlaceId[]>([]);
   const canvas = useRef<HTMLCanvasElement>(null);
   const live = useRef(props);
   live.current = props;
@@ -183,10 +190,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
       if (!f || cssW <= 0 || cssH <= 0) return;
       const p = live.current;
       const cooking = cookingNow(f, side);
-      const tracking =
-        p.following !== false ||
-        localFollow.current ||
-        (p.frameSelection === true && window.matchMedia('(max-width: 899px)').matches);
+      const tracking = p.following !== false || localFollow.current || p.frameSelection === true;
       // Moving people (interpolation), the hover outline, kitchen smoke, sleepers' z, lantern flicker and rain
       // animate on real time; anything else only changes with a new frame, a selection, a hover or a resize.
       const moving = s.prev !== null && now - s.at < s.interval;
@@ -247,6 +251,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
                   ? { x: (target.x + target.w / 2) * 32, y: (target.y + target.h / 2) * 32 }
                   : null,
                 pan.current,
+                (p.scenePlaces?.length ?? 0) > 0,
               );
         view.current = box;
         displayedSize.current = { width: cssW, height: cssH };
@@ -278,18 +283,19 @@ export const Pane = memo(function Pane(props: PaneProps) {
           }) ?? [];
       }
 
+      const occupied: { x: number; y: number; w: number; h: number }[] = [];
       if (bubbles) {
         if (f !== lastFrame) {
           bubbles.ingest(f.human, now);
           lastFrame = f;
         }
-        const list = bubbles.tick(now);
+        const list = latestReply(bubbles.tick(now));
         if (bubbles.version !== lastVersion) {
           lastVersion = bubbles.version;
           setShown(list);
         }
 
-        const placed: { x: number; y: number; w: number; h: number }[] = [];
+        const placed = occupied;
         const ordered = [...list].sort(
           (p1, p2) => Number(p1.bubble.kind === 'thought') - Number(p2.bubble.kind === 'thought'),
         );
@@ -309,10 +315,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
           if (!el || !who) continue;
           const a = headAnchor(who.x, who.y, who.id);
           const anchor = mapPoint(a, view.current, cssW, cssH);
-          if (anchor.x < 0 || anchor.x > cssW || anchor.y < 0 || anchor.y > cssH) {
-            el.style.visibility = 'hidden';
-            continue;
-          }
+
           items.push({
             el,
             kind: sb.bubble.kind,
@@ -349,6 +352,58 @@ export const Pane = memo(function Pane(props: PaneProps) {
           const tail = Math.max(10, Math.min(bw - 10, ax - x));
           el.style.setProperty('--tail', `${tail.toFixed(1)}px`);
         }
+      }
+      // Speech claims space first. Place actions then avoid every visible worker and each other.
+      for (const person of people.current) {
+        const point = mapPoint(headAnchor(person.x, person.y, person.id), view.current, cssW, cssH);
+        occupied.push({ x: point.x - 24, y: point.y - 12, w: 48, h: 55 });
+      }
+      for (const label of labels.current) {
+        const point = mapPoint({ x: label.x, y: label.y }, view.current, cssW, cssH);
+        occupied.push({
+          x: point.x - 3,
+          y: point.y - 3,
+          w: (label.w * cssW) / view.current.width + 6,
+          h: (label.h * cssH) / view.current.height + 6,
+        });
+      }
+      const targets = (p.scenePlaces ?? []).flatMap((item) => {
+        const place = PLACES.find((q) => q.id === item.placeId);
+        const el = placeEls.current.get(item.placeId);
+        if (!place || !el) return [];
+        const point = mapPoint(
+          { x: (place.x + place.w / 2) * 32, y: (place.y + place.h / 2) * 32 },
+          view.current,
+          cssW,
+          cssH,
+        );
+        return [{ id: item.placeId, ...point, w: el.offsetWidth || 108, h: el.offsetHeight || 60 }];
+      });
+      const positions = layoutSceneTargets(cssW, cssH, targets, occupied);
+      const overflow: PlaceId[] = [];
+      for (const target of targets) {
+        const el = placeEls.current.get(target.id);
+        if (!el) continue;
+        const position = positions.get(target.id);
+        el.style.visibility = position ? '' : 'hidden';
+        const link = placeLinks.current.get(target.id);
+        if (position) {
+          el.style.transform = `translate(${position.x}px, ${position.y}px)`;
+          if (link) {
+            link.style.visibility = '';
+            link.setAttribute('x1', String(target.x));
+            link.setAttribute('y1', String(target.y));
+            link.setAttribute('x2', String(position.x + target.w / 2));
+            link.setAttribute('y2', String(position.y + target.h / 2));
+          }
+        } else {
+          if (link) link.style.visibility = 'hidden';
+          overflow.push(target.id);
+        }
+      }
+      if (overflow.join() !== overflowRef.current.join()) {
+        overflowRef.current = overflow;
+        setOverflowPlaces(overflow);
       }
     };
     raf = requestAnimationFrame(draw);
@@ -438,77 +493,136 @@ export const Pane = memo(function Pane(props: PaneProps) {
   };
 
   return (
-    <div className={`pane-canvas pane-canvas-${side}`} ref={wrap}>
-      <span className="map-hint">Drag to look around</span>
-      <canvas
-        ref={canvas}
-        aria-label={side === 'classic' ? 'Classic village map' : 'Human village map'}
-        onPointerDown={(e) => {
-          drag.current = { x: e.clientX, y: e.clientY, start: view.current, moved: false };
-          e.currentTarget.setPointerCapture(e.pointerId);
-        }}
-        onPointerCancel={() => {
-          drag.current = null;
-        }}
-        onPointerUp={onPointerUp}
-        onContextMenu={(e) => e.preventDefault()}
-        onPointerMove={onPointerMove}
-        onPointerLeave={() => props.hoverPlace && props.onHoverPlace(null)}
-      />
-      {choices.length > 1 && (
-        <fieldset className="map-choices" aria-label="Choose map target">
-          <legend>Choose a person or place</legend>
-          {choices.map((choice) => (
-            <button
-              type="button"
-              key={'person' in choice ? choice.person : choice.place}
-              onClick={() => choose(choice)}
-            >
-              {choice.label}
-            </button>
-          ))}
-          <button type="button" onClick={() => setChoices([])}>
-            Cancel
+    <div className={`pane-canvas pane-canvas-${side}`}>
+      <div className="map-controls">
+        <span className="map-hint">Drag to look around</span>
+        {(panned || (props.following === false && !props.frameSelection)) && (
+          <button
+            type="button"
+            className="map-follow"
+            onClick={() => {
+              pan.current = null;
+              localFollow.current = true;
+              setChoices([]);
+              setPanned(false);
+            }}
+          >
+            {props.selectedId ? `Follow ${shortName(props.selectedId)}` : 'Centre village'}
           </button>
-        </fieldset>
-      )}
-      {(panned || props.following === false) && (
-        <button
-          type="button"
-          className="map-follow"
-          onClick={() => {
-            pan.current = null;
-            localFollow.current = true;
-            setChoices([]);
-            setPanned(false);
+        )}
+      </div>
+      <div className="map-viewport" ref={wrap}>
+        <canvas
+          ref={canvas}
+          aria-label={side === 'classic' ? 'Classic village map' : 'Human village map'}
+          onPointerDown={(e) => {
+            drag.current = { x: e.clientX, y: e.clientY, start: view.current, moved: false };
+            e.currentTarget.setPointerCapture(e.pointerId);
           }}
-        >
-          {props.selectedId ? `Follow ${shortName(props.selectedId)}` : 'Centre village'}
+          onPointerCancel={() => {
+            drag.current = null;
+          }}
+          onPointerUp={onPointerUp}
+          onContextMenu={(e) => e.preventDefault()}
+          onPointerMove={onPointerMove}
+          onPointerLeave={() => props.hoverPlace && props.onHoverPlace(null)}
+        />
+        {choices.length > 1 && (
+          <fieldset className="map-choices" aria-label="Choose map target">
+            <legend>Choose a person or place</legend>
+            {choices.map((choice) => (
+              <button
+                type="button"
+                key={'person' in choice ? choice.person : choice.place}
+                onClick={() => choose(choice)}
+              >
+                {choice.label}
+              </button>
+            ))}
+            <button type="button" onClick={() => setChoices([])}>
+              Cancel
+            </button>
+          </fieldset>
+        )}
+        {props.selectedId && props.scenePlaces && (
+          <section className="scene-place-layer" aria-label="Order at a place">
+            <svg className="scene-place-links" aria-hidden="true" width="100%" height="100%">
+              {props.scenePlaces.map((item) => (
+                <line
+                  key={item.placeId}
+                  ref={(el) => {
+                    if (el) placeLinks.current.set(item.placeId, el);
+                    else placeLinks.current.delete(item.placeId);
+                  }}
+                  style={{ visibility: 'hidden' }}
+                />
+              ))}
+            </svg>
+            {props.scenePlaces.map((item) => (
+              <button
+                key={item.placeId}
+                type="button"
+                className="scene-place"
+                style={{ visibility: 'hidden' }}
+                data-place={item.placeId}
+                ref={(el) => {
+                  if (el) placeEls.current.set(item.placeId, el);
+                  else placeEls.current.delete(item.placeId);
+                }}
+                onClick={() => props.onPlace(item.placeId)}
+                onPointerEnter={() => props.onHoverPlace(item.placeId)}
+                onPointerLeave={() => props.onHoverPlace(null)}
+              >
+                <strong>{item.label}</strong>
+                <span>{item.answer}</span>
+              </button>
+            ))}
+          </section>
+        )}
+        {bubbles && (
+          <div className="bubble-layer">
+            {shown.map((sb) => (
+              <button
+                key={sb.bubble.id}
+                type="button"
+                className={`bubble bubble-${sb.bubble.kind} ${sb.phase === 'typing' ? 'is-typing' : ''}`}
+                ref={(el) => {
+                  if (el) bubbleEls.current.set(sb.bubble.id, el);
+                  else bubbleEls.current.delete(sb.bubble.id);
+                }}
+                onClick={() => props.onSelect(sb.bubble.personId)}
+                title={`Select ${shortName(sb.bubble.personId)}`}
+                aria-label={
+                  sb.phase === 'typing'
+                    ? `${shortName(sb.bubble.personId)} is answering`
+                    : `${shortName(sb.bubble.personId)}: “${sb.bubble.text}” Select worker`
+                }
+              >
+                <BubbleBody shown={sb} />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      {props.selectedId && overflowPlaces.length > 0 && props.onMorePlaces && (
+        <button type="button" className="scene-more-places" onClick={props.onMorePlaces}>
+          More places ({overflowPlaces.length})
         </button>
       )}
-      {bubbles && (
-        <div className="bubble-layer">
-          {shown.map((sb) => (
-            <button
-              key={sb.bubble.id}
-              type="button"
-              className={`bubble bubble-${sb.bubble.kind} ${sb.phase === 'typing' ? 'is-typing' : ''}`}
-              ref={(el) => {
-                if (el) bubbleEls.current.set(sb.bubble.id, el);
-                else bubbleEls.current.delete(sb.bubble.id);
-              }}
-              onClick={() => props.onSelect(sb.bubble.personId)}
-              title={`Select ${shortName(sb.bubble.personId)}`}
-              aria-label={
-                sb.phase === 'typing'
-                  ? `${shortName(sb.bubble.personId)} is answering`
-                  : `${shortName(sb.bubble.personId)}: “${sb.bubble.text}” Select worker`
-              }
-            >
-              <BubbleBody shown={sb} />
-            </button>
-          ))}
-        </div>
+      {props.selectedId && overflowPlaces.length > 0 && !props.onMorePlaces && (
+        <details className="scene-place-overflow">
+          <summary>More places ({overflowPlaces.length})</summary>
+          <div>
+            {props.scenePlaces
+              ?.filter((item) => overflowPlaces.includes(item.placeId))
+              .map((item) => (
+                <button key={item.placeId} type="button" onClick={() => props.onPlace(item.placeId)}>
+                  <strong>{item.label}</strong>
+                  <span>{item.answer}</span>
+                </button>
+              ))}
+          </div>
+        </details>
       )}
     </div>
   );
@@ -543,4 +657,14 @@ function BubbleBody({ shown }: { shown: ShownBubble }) {
       {b.counterOffer && !saysIt(b.text, b.counterOffer) && <em> {b.counterOffer}</em>}
     </span>
   );
+}
+
+/** Only the most recent spoken answer belongs in the scene; the parent owns answer history. */
+export function latestReply(list: ShownBubble[]): ShownBubble[] {
+  const replies = list.filter((item) => item.bubble.kind !== 'thought');
+  const latest = replies.reduce<ShownBubble | undefined>(
+    (last, item) => (!last || item.bubble.minute >= last.bubble.minute ? item : last),
+    undefined,
+  );
+  return latest ? [latest] : [];
 }

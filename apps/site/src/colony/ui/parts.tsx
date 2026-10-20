@@ -2,7 +2,7 @@ import { memo, type ReactNode, type RefObject, useState } from 'react';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
-import { APPEALS, type AppealChip, type ChipState, type OrderCard } from '../sim/orders.ts';
+import { APPEALS, type AppealChip, type ChipState, inferAction, type OrderCard } from '../sim/orders.ts';
 import {
   type ActionId,
   clockOf,
@@ -92,6 +92,38 @@ const JOB_PHRASE: Partial<Record<string, string>> = {
 
 export function jobPhrase(action: ActionId | string): string {
   return JOB_PHRASE[action] ?? JOBS[action as ActionId]?.label.toLowerCase() ?? String(action);
+}
+
+/** Infer exactly the ordinary order the current issuing-side world would send. */
+export function inferredJob(frame: Frame, place: PlaceId, side: 'human' | 'classic' = 'human'): ActionId {
+  const world = side === 'human' ? frame.humanWorld : frame.classicWorld;
+  return inferAction(place, {
+    minute: frame.minute,
+    house: { stage: world.houseStage, shuttered: world.shuttered },
+    cedarFelled: world.cedarFelled,
+    storeroom: world.project.kind === 'storeroom' ? world.project.stage : null,
+  });
+}
+
+/** Describe an ordinary repeat order without promising that the person will agree. */
+export function sameJobCopy(action: ActionId, personId: VillagerId): string {
+  const ongoing: Partial<Record<ActionId, string>> = {
+    'gather-timber': 'gathering timber',
+    'gather-grain': 'gathering grain',
+    'fell-cedar': 'felling the big cedar',
+    'draw-water': 'drawing water',
+    cook: 'cooking',
+    build: 'building',
+    'raise-beam': 'raising the roof beam',
+    'shutter-house': 'shuttering the house',
+    eat: 'eating',
+    pray: 'praying',
+    shelter: 'sheltering',
+    sleep: 'sleeping',
+    rest: 'resting',
+  };
+  const pronoun = personId === 'maryam' || personId === 'samira' ? 'her' : 'him';
+  return `Already ${ongoing[action] ?? jobPhrase(action)}: keeps ${pronoun} at it`;
 }
 
 export function shortName(id: VillagerId): string {
@@ -574,6 +606,7 @@ export function OrderReply({ cards }: { cards: OrderCard[] }) {
 export function SuggestionCard(props: {
   nudge: Nudge;
   cards?: OrderCard[];
+  frame?: Frame;
   minute: Minute;
   queued: number;
   active: boolean;
@@ -587,12 +620,13 @@ export function SuggestionCard(props: {
     .find(
       (card) =>
         card.order.personId === n.order.personId &&
+        (props.frame
+          ? card.order.action === inferredJob(props.frame, n.order.placeId)
+          : card.order.placeId === n.order.placeId) &&
         (card.human.state === 'willNot' || card.human.state === 'notNow'),
     );
   const history = refusal
-    ? refusal.order.issuedAt >= n.minute
-      ? `Suggested at ${hhmm(n.minute)}, before ${shortName(n.order.personId)} answered “${refusal.human.label ?? 'Not now.'}” This is an old suggestion; Use checks the current answer.`
-      : `Suggested at ${hhmm(n.minute)}. This is an old suggestion. ${shortName(n.order.personId)} has answered “${refusal.human.label ?? 'Not now.'}” Use checks the current answer.`
+    ? `Suggested at ${dayClock(n.minute)}. ${shortName(n.order.personId)} answered an order issued at ${dayClock(refusal.order.issuedAt)}: “${refusal.human.label ?? 'Not now.'}” This is an old suggestion; Use checks the current answer.`
     : null;
   const left = Math.max(0, n.until - props.minute);
   const span = Math.max(1, n.until - n.minute);
@@ -604,7 +638,7 @@ export function SuggestionCard(props: {
             {shortName(n.order.personId)} → {PLACE_LABEL[n.order.placeId]}
           </p>
           <p className="nudge-text">{history ?? n.text}</p>
-          {n.reason && !history && <p className="nudge-reason">{n.reason}</p>}
+          {n.reason && <p className="nudge-reason">{n.reason}</p>}
         </div>
         <button type="button" className="btn btn-small nudge-use" onClick={() => props.onUse(n)}>
           {props.active ? 'In composer' : 'Use'}
@@ -973,7 +1007,15 @@ export function PauseRibbon({
 }
 
 /** Injuries said as they happen, newest first (the storm night used to move only the Injuries number). */
-export function HurtLine({ news, onShow }: { news: readonly HurtNews[]; onShow?(news: HurtNews): void }) {
+export function HurtLine({
+  news,
+  onShow,
+  onRest,
+}: {
+  news: readonly HurtNews[];
+  onShow?(news: HurtNews): void;
+  onRest?(news: HurtNews): void;
+}) {
   if (news.length === 0) return null;
   return (
     <div className="hurt-line" role="status">
@@ -981,6 +1023,11 @@ export function HurtLine({ news, onShow }: { news: readonly HurtNews[]; onShow?(
       {[...news].reverse().map((n) => (
         <div className="hurt-item" key={`${n.side}-${n.personId}-${n.minute}`}>
           <span>{hurtText(n)}</span>
+          {onRest && (
+            <button type="button" className="btn btn-small" onClick={() => onRest(n)}>
+              Send {shortName(n.personId)} home
+            </button>
+          )}
           {onShow && (
             <button type="button" className="btn btn-small" onClick={() => onShow(n)}>
               Show {shortName(n.personId)}

@@ -5059,3 +5059,181 @@ kbd {
     position: static;
   }
 }
+
+/* Round 2: controls consume real space; the camera and speech use only the scene rectangle. */
+.colony .pane-canvas {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.map-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  gap: 4px;
+  padding: 2px 4px;
+  background: var(--surface);
+}
+.colony .map-controls .map-hint,
+.colony .map-controls .map-follow {
+  position: static;
+  inset: auto;
+  margin: 0;
+}
+.colony .map-controls .map-follow {
+  min-height: 44px;
+}
+.map-viewport {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.colony .map-viewport canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.scene-place-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.scene-place {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 108px;
+  min-height: 44px;
+  height: auto;
+  padding: 4px;
+  pointer-events: auto;
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.scene-place strong,
+.scene-place span {
+  display: block;
+}
+.scene-place-overflow {
+  flex: 0 0 auto;
+  background: var(--surface);
+}
+.scene-place-overflow summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.scene-place-overflow > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+}
+.scene-place-overflow button {
+  min-height: 44px;
+  white-space: normal;
+  font-size: 14px;
+}
+@media (max-width: 899px) {
+  .well-scenes.lk-scene {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+  .well-scenes .map-toggle {
+    position: static;
+    grid-row: 1;
+    width: 100%;
+  }
+  .well-scenes .pane {
+    grid-row: 2;
+    min-width: 0;
+  }
+  .well-phone-status {
+    position: static;
+    grid-row: 3;
+    padding: 2px 6px;
+    pointer-events: auto;
+    font-size: 14px;
+  }
+  .well-phone-status:empty {
+    display: none;
+  }
+  .well-phone-status .hurt-line {
+    margin: 0;
+  }
+  .well-phone-status .hurt-line:not(:first-of-type) {
+    display: none;
+  }
+  .well-phone-status button {
+    min-height: 44px;
+  }
+  .colony .map-controls .map-follow {
+    min-height: 44px;
+  }
+  .colony .map-viewport {
+    flex: 1;
+    height: auto;
+  }
+  .well-phone-sheet .lk-sheet-head {
+    flex-wrap: wrap;
+  }
+  .well-phone-sheet .lk-sheet-head h2 {
+    flex: 1;
+  }
+  .well-phone-sheet.lk-sheet {
+    max-height: min(45dvh, 310px);
+  }
+}
+.scene-place-links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+.scene-place-links line {
+  stroke: var(--text-muted);
+  stroke-width: 1.5;
+}
+.scene-place-overflow button strong,
+.scene-place-overflow button span {
+  display: block;
+}
+.scene-more-places {
+  flex: 0 0 auto;
+  min-height: 44px;
+  width: 100%;
+}
+.scene-place,
+.scene-more-places,
+.map-controls {
+  color: var(--text);
+  background: var(--surface);
+}
+.colony .queue:not(.is-open) {
+  display: none;
+}
+@media (min-width: 900px) {
+  .colony .orders-button {
+    display: block;
+    min-height: 44px;
+  }
+  .colony .queue-close {
+    display: block;
+    width: 44px;
+    height: 44px;
+  }
+}

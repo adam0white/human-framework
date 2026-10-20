@@ -162,16 +162,17 @@ describe('Well review follow-up', () => {
     await act(() => workerSummary.click());
     expect(container.querySelector('[data-map="human"]')?.getAttribute('data-following')).toBe('false');
     await act(() => required<HTMLButtonElement>(container, '[data-map="human"]').click());
-    expect(container.querySelector('.composer-line')?.textContent).toContain('Yusuf → House');
-    expect(container.querySelector('.colony')?.classList.contains('is-ordering')).toBe(true);
-    expect(actions.order).toHaveBeenCalledTimes(1);
+    expect(container.querySelector('.composer-line')?.textContent).toContain('Yusuf: now pick a place.');
+    expect(container.querySelector('.colony')?.classList.contains('is-ordering')).toBe(false);
+    expect(actions.order).toHaveBeenCalledTimes(2);
+    expect(actions.order).toHaveBeenLastCalledWith({ personId: 'yusuf', placeId: 'site' }, undefined);
     const suggestion = required<HTMLDetailsElement>(container, '.nudge-slot');
     await act(() => required<HTMLElement>(suggestion, 'summary').click());
     expect(suggestion.open).toBe(true);
     await act(() => required<HTMLButtonElement>(suggestion, '.nudge-head .btn').click());
     expect(suggestion.open).toBe(false);
     expect(container.querySelector('.composer-line')?.textContent).toContain('Yusuf → House');
-    expect(actions.order).toHaveBeenCalledTimes(1);
+    expect(actions.order).toHaveBeenCalledTimes(2);
   });
 
   it.each([

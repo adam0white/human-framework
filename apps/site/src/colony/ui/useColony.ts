@@ -17,6 +17,7 @@ import { startTickLoop } from '../../shared/tick-loop.ts';
 import type { WorkerToMain } from '../protocol.ts';
 import { DEFAULT_SEED, SCENARIO_VERSION } from '../sim/game.ts';
 import type { Prediction, WhyBreakdown } from '../sim/human-side.ts';
+import type { PlaceId } from '../sim/map.ts';
 import type { OrderInput } from '../sim/orders.ts';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { EndSummary, Frame, OutMsg, PlaybackState, Speed } from './contract.ts';
@@ -36,6 +37,7 @@ export interface Colony {
   playback: PlaybackState;
   why: WhyBreakdown | null;
   prediction: { input: OrderInput; prediction: Prediction } | null;
+  scenePredictions?: Partial<Record<PlaceId, { input: OrderInput; prediction: Prediction }>>;
   /** End-of-day reports, by day (Day 2, then Day 3 after "Another day"). */
   summaries: Partial<Record<2 | 3, EndSummary>>;
   error: string | null;
@@ -61,6 +63,7 @@ export interface ColonyActions {
   requestWhy(personId: VillagerId, decisionId?: string): void;
   clearWhy(): void;
   predict(input: OrderInput | null): void;
+  predictPlaces?(inputs: OrderInput[]): void;
   restart(): void;
   /** Download this run as a playtest file. */
   exportPlaytest(): void;
@@ -109,6 +112,10 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   const [summaries, setSummaries] = useState<Colony['summaries']>({});
   const [error, setError] = useState<string | null>(null);
   const [prediction, setPrediction] = useState<Colony['prediction']>(null);
+  const [scenePredictions, setScenePredictions] = useState<NonNullable<Colony['scenePredictions']>>({});
+  const sceneRequests = useRef(new Map<number, { input: OrderInput; batch: number }>());
+  const sceneBatch = useRef(0);
+  const sceneRequestId = useRef(0);
   const [playtest, setPlaytest] = useState<PlaytestStatus>(null);
   const sendToLab = useRef(false);
   const exportPending = useRef(false);
@@ -215,6 +222,16 @@ export function useColony(seed = DEFAULT_SEED): Colony {
           return;
         }
         case 'predicted': {
+          const scene = sceneRequests.current.get(msg.requestId);
+          if (scene) {
+            sceneRequests.current.delete(msg.requestId);
+            if (scene.batch === sceneBatch.current)
+              setScenePredictions((previous) => ({
+                ...previous,
+                [scene.input.placeId]: { input: scene.input, prediction: msg.prediction },
+              }));
+            return;
+          }
           const input = predictInputs.current.get(msg.requestId);
           predictInputs.current.delete(msg.requestId);
           if (input && msg.requestId === predictSeq.current)
@@ -299,6 +316,16 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         predictInputs.current.set(predictSeq.current, input);
         send({ type: 'predict', requestId: predictSeq.current, input });
       },
+      predictPlaces: (inputs) => {
+        sceneBatch.current += 1;
+        sceneRequests.current.clear();
+        for (const input of inputs) {
+          sceneRequestId.current -= 1;
+          sceneRequests.current.set(sceneRequestId.current, { input, batch: sceneBatch.current });
+          send({ type: 'predict', requestId: sceneRequestId.current, input });
+        }
+        if (!inputs.length) setScenePredictions({});
+      },
       restart: () => {
         exportPending.current = false;
         sendToLab.current = false;
@@ -338,5 +365,5 @@ export function useColony(seed = DEFAULT_SEED): Colony {
     [send, init],
   );
 
-  return { store, frame, playback, why, prediction, summaries, error, playtest, actions };
+  return { store, frame, playback, why, prediction, scenePredictions, summaries, error, playtest, actions };
 }

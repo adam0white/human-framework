@@ -6,7 +6,7 @@ import { ColonyGame } from '../sim/game.ts';
 import { createFrameworkHumanSide } from '../sim/human.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { mapPoint, mapView } from './map-view.ts';
-import { Pane, type PaneProps } from './Pane.tsx';
+import { latestReply, Pane, type PaneProps } from './Pane.tsx';
 import { drawScene } from './renderer.ts';
 import type { FrameStore } from './useColony.ts';
 
@@ -293,4 +293,52 @@ describe('Well map pointer interactions', () => {
     expect(onSelect).not.toHaveBeenCalled();
     expect(onPlace).not.toHaveBeenCalled();
   });
+});
+
+it('sends an ordinary order directly from a scene destination with its likely answer', async () => {
+  const { container, onPlace } = await setup({
+    scenePlaces: [
+      { placeId: 'forest', label: 'Forest', answer: 'Already gathering timber: keeps him at it' },
+    ],
+    frameSelection: true,
+  });
+  const action = required(container.querySelector<HTMLButtonElement>('.scene-place'));
+  expect(action.textContent).toContain('Already gathering timber');
+  await act(() => action.click());
+  expect(onPlace).toHaveBeenCalledExactlyOnceWith('forest');
+  const viewport = required(container.querySelector('.map-viewport'));
+  expect(viewport.contains(container.querySelector('canvas'))).toBe(true);
+  expect(viewport.contains(container.querySelector('.map-follow'))).toBe(false);
+});
+
+it('shows only the latest spoken reply, keeping thoughts out of the answer layer', () => {
+  const reply = (id: string, minute: number, kind: 'assent' | 'thought') => ({
+    bubble: { id, minute, kind, personId: 'yusuf' as const, text: id },
+    phase: 'line' as const,
+  });
+  const latest = reply('latest', 12, 'assent');
+  expect(latestReply([reply('older', 10, 'assent'), latest, reply('thought', 15, 'thought')])).toEqual([
+    latest,
+  ]);
+});
+
+it('keeps a selected worker in the scene while order options consume map height', async () => {
+  const { canvas, store } = await setup({
+    following: false,
+    frameSelection: true,
+    scenePlaces: [{ placeId: 'forest', label: 'Forest', answer: 'Gather timber' }],
+  });
+  const person = required(required(store.current.curr).human[0]);
+  person.x = 0;
+  person.y = 0;
+  mapHeight = 180;
+  resizeMap?.();
+  await draw();
+  const transform = lastTransform(canvas);
+  const x = 16 * required(transform[0]) + required(transform[4]);
+  const y = 16 * required(transform[3]) + required(transform[5]);
+  expect(x).toBeGreaterThanOrEqual(0);
+  expect(x).toBeLessThanOrEqual(360);
+  expect(y).toBeGreaterThanOrEqual(0);
+  expect(y).toBeLessThanOrEqual(180);
 });

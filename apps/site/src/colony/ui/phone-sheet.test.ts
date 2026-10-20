@@ -101,7 +101,7 @@ describe('Well shared sheet transitions', () => {
     expect(host.textContent).toContain('Insist: trust at risk');
     await click('More');
     expect(stage.dataset.sheetId).toBe('tools');
-    await click('Orders (0)');
+    await click('History (0)');
     expect(stage.dataset.sheetId).toBe('orders');
     await click('Back');
     expect(stage.dataset.sheetId).toBe('tools');
