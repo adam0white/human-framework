@@ -122,6 +122,13 @@ export const Pane = memo(function Pane(props: PaneProps) {
   const labels = useRef<PersonLabel[]>([]);
   const view = useRef<MapView>({ x: 0, y: 0, width: LOGICAL_W, height: LOGICAL_H });
   const pan = useRef<MapPoint | null>(null);
+  const scenePress = useRef<{
+    pointerId: number;
+    placeId: PlaceId;
+    x: number;
+    y: number;
+    send(place: PlaceId): void;
+  } | null>(null);
   const drag = useRef<{ x: number; y: number; start: MapView; moved: boolean } | null>(null);
   const [panned, setPanned] = useState(false);
   const localFollow = useRef(false);
@@ -379,6 +386,9 @@ export const Pane = memo(function Pane(props: PaneProps) {
         );
         return [{ id: item.placeId, ...point, w: el.offsetWidth || 108, h: el.offsetHeight || 60 }];
       });
+      // Keep the last painted card geometry until this press ends. Camera and people may
+      // continue moving; they cannot replace the destination beneath a held finger.
+      if (scenePress.current || drag.current) return;
       const positions = layoutSceneTargets(cssW, cssH, targets, occupied);
       const overflow: PlaceId[] = [];
       for (const target of targets) {
@@ -569,7 +579,42 @@ export const Pane = memo(function Pane(props: PaneProps) {
                   if (el) placeEls.current.set(item.placeId, el);
                   else placeEls.current.delete(item.placeId);
                 }}
-                onClick={() => props.onPlace(item.placeId)}
+                onPointerDown={(e) => {
+                  if (e.button !== 0) return;
+                  scenePress.current = {
+                    pointerId: e.pointerId,
+                    placeId: item.placeId,
+                    x: e.clientX,
+                    y: e.clientY,
+                    send: props.onPlace,
+                  };
+                  e.currentTarget.setPointerCapture(e.pointerId);
+                }}
+                onPointerUp={(e) => {
+                  const pressed = scenePress.current;
+                  scenePress.current = null;
+                  if (!pressed || pressed.pointerId !== e.pointerId || pressed.placeId !== item.placeId)
+                    return;
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  if (
+                    Math.hypot(e.clientX - pressed.x, e.clientY - pressed.y) <= 8 &&
+                    e.clientX >= rect.left &&
+                    e.clientX <= rect.right &&
+                    e.clientY >= rect.top &&
+                    e.clientY <= rect.bottom
+                  )
+                    pressed.send(pressed.placeId);
+                }}
+                onPointerCancel={() => {
+                  scenePress.current = null;
+                }}
+                onLostPointerCapture={() => {
+                  scenePress.current = null;
+                }}
+                onClick={(e) => {
+                  // Keyboard and assistive activation have no pointer transaction.
+                  if (e.detail === 0) props.onPlace(item.placeId);
+                }}
                 onPointerEnter={() => props.onHoverPlace(item.placeId)}
                 onPointerLeave={() => props.onHoverPlace(null)}
               >

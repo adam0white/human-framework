@@ -342,3 +342,80 @@ it('keeps a selected worker in the scene while order options consume map height'
   expect(y).toBeGreaterThanOrEqual(0);
   expect(y).toBeLessThanOrEqual(180);
 });
+
+it('holds scene cards under a held finger while the followed worker moves', async () => {
+  const { container, store, onPlace } = await setup({
+    following: true,
+    scenePlaces: [
+      { placeId: 'site', label: 'House', answer: 'Later' },
+      { placeId: 'well', label: 'Well', answer: 'Later' },
+    ],
+  });
+  const house = required(container.querySelector<HTMLButtonElement>('[data-place="site"]'));
+  house.setPointerCapture = vi.fn();
+  const before = house.style.transform;
+  await act(() =>
+    house.dispatchEvent(
+      new PointerEvent('pointerdown', {
+        bubbles: true,
+        pointerId: 7,
+        pointerType: 'touch',
+        clientX: 100,
+        clientY: 100,
+        buttons: 1,
+      }),
+    ),
+  );
+  required(required(store.current.curr).human[0]).x = 1;
+  await draw();
+  expect(house.style.transform).toBe(before);
+  await act(() =>
+    house.dispatchEvent(
+      new PointerEvent('pointerup', {
+        bubbles: true,
+        pointerId: 7,
+        pointerType: 'touch',
+        clientX: 100,
+        clientY: 100,
+      }),
+    ),
+  );
+  expect(onPlace).toHaveBeenCalledExactlyOnceWith('site');
+});
+
+it('cancels a scene order when the finger ends over a different place', async () => {
+  const { container, onPlace } = await setup({
+    scenePlaces: [
+      { placeId: 'site', label: 'House', answer: 'Later' },
+      { placeId: 'well', label: 'Well', answer: 'Later' },
+    ],
+  });
+  const house = required(container.querySelector<HTMLButtonElement>('[data-place="site"]'));
+  const well = required(container.querySelector<HTMLButtonElement>('[data-place="well"]'));
+  house.setPointerCapture = vi.fn();
+  await act(() =>
+    house.dispatchEvent(
+      new PointerEvent('pointerdown', {
+        bubbles: true,
+        pointerId: 7,
+        pointerType: 'touch',
+        clientX: 100,
+        clientY: 100,
+        buttons: 1,
+      }),
+    ),
+  );
+  await act(() =>
+    well.dispatchEvent(
+      new PointerEvent('pointerup', {
+        bubbles: true,
+        pointerId: 7,
+        pointerType: 'touch',
+        clientX: 100,
+        clientY: 100,
+      }),
+    ),
+  );
+  await act(() => well.dispatchEvent(new MouseEvent('click', { bubbles: true, detail: 1 })));
+  expect(onPlace).not.toHaveBeenCalled();
+});

@@ -403,3 +403,13 @@ Kwame's live round-2 retest (no ledger id assigned yet; following F-272/F-273) a
 A suggestion without a known danger sends in one tap from its card through the same input and nudge-id path as preparation plus Confirm. Known cedar/beam/weather dangers, Rush, Insist, appeals and authored cooking/shuttering trade-offs retain review and Confirm. Both villages' current jobs inform danger review. People still refuse or defer through the existing simulation. These changes serve DL-5, DL-10, DL-13..14, DL-22, DL-30..31 and DL-33.
 
 Cost and risk: the one-tap route removes the ordinary preview; the card retains its proposal and reason, and says the person may refuse or wait. Destination choices require selecting a person again after watching. Repeated scheduled suggestions for work already underway remain possible; addressing them is deferred to 2026-11-03 because it is outside this UI follow-up. No rule, edition, HF pin, export or clock change. Revert the commit headed `Clear Well orders while watching` to remove this round alone. Owner acceptance and voluntary return remain unverified.
+
+## Design change 2026-10-20c (owner may veto)
+
+F-306 ([Bram’s report](../lab/reviews/calibration-2026-10-20/a2-well-20.md)): “She went back to grain. Roof still eight, meals down to seven. I am done here. I like that they have their own priorities, but on a lunch break I want an order to stick without chasing it through more sheets. I would not come back on this phone.”
+
+### The place under the finger
+
+Scene cards retain the destination and sender resolved at pointerdown. Their layout stays fixed during the press. Releasing outside that card, moving the finger or cancelling sends nothing. Keyboard activation still works. The acknowledgement names the ordered place. Baseline Chromium at 360×690 reproduced House → Well after a 180 ms look-to-press delay while following Idris after an earlier order. A held-pointer sample sent House on both builds; it did not establish that movement during a held pointer caused Bram’s mismatch. Regression tests force movement during a press and release on a different card; they fail on the old handlers. Cards can still move before the press.
+
+Cost: cards can still move before the press. Simulation rules and saves are unchanged in this UI commit. Revert `Order the place under the finger on Well phones`.
