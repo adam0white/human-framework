@@ -18,7 +18,7 @@ function mount() {
     composer: { open: true },
     prefill: { ...draft, source: 'end' as const, why: 'He needs rest.' },
     options: [{ id: 'rest', label: 'rest at home', rank: 1, leaning: true }],
-    leaning: undefined,
+    leaning: undefined as { optionId: string; why: string } | undefined,
     muted: false,
     doingLabel: undefined,
     telegraph: {
@@ -166,4 +166,20 @@ it('shows the current obstacle and its reason together in Halil’s words as a l
     'Likely reply“I want to rest at home first. I’m grieving.”',
   );
   expect(el.querySelector('.v-telegraph')?.textContent).not.toContain('emotion:');
+});
+
+it('names his leaning and its reason in both the phone summary and the options', () => {
+  const { el, props, update } = mount();
+  update({ ...props, leaning: { optionId: 'rest', why: 'the doctor asked him to rest.' } });
+  for (const selector of ['.v-peek-lean', '.v-leaning']) {
+    expect(el.querySelector(selector)?.textContent).toBe(
+      'He’s leaning toward rest at home. His reason: the doctor asked him to rest.',
+    );
+  }
+});
+
+it('states when his reason is unknown instead of borrowing the prefilled reason', () => {
+  const { el } = mount();
+  expect(el.querySelector('.v-leaning')?.textContent).toContain('His reason is not known.');
+  expect(el.querySelector('.v-leaning')?.textContent).not.toContain('He needs rest.');
 });

@@ -29,6 +29,7 @@ import { SHIPPED_SEED, VOICE_SCENARIO_VERSION } from '../protocol.ts';
 import { ExportRequest } from './export-request.ts';
 import { predictionContext } from './obstacle.ts';
 import { PausePolicy } from './pause-policy.ts';
+import { readingTick } from './reading-pace.ts';
 import { openTransport, type Transport } from './transport.ts';
 
 export interface VoiceActions {
@@ -37,7 +38,9 @@ export interface VoiceActions {
   setPace(pace: Pace): void;
   setAutoPause(on: boolean): void;
   predict(draft: Draft | null): void;
-  suggest(draft: Draft): void;
+  suggest(draft: Draft, sceneLine?: string): void;
+  setReading(reading: boolean): void;
+  sceneWord(kind: 'care' | 'question', beat: string, words: string): void;
   withdraw(): void;
   requestWhy(decisionId: string): void;
   /** Keep the held answer readable after the worker’s recent trace expires. */
@@ -69,6 +72,8 @@ export interface Voice {
   whyMissing: boolean;
   error: string | null;
   mock: boolean;
+  reading: boolean;
+  runId: number;
   playtest: PlaytestStatus;
   actions: VoiceActions;
 }
@@ -76,6 +81,7 @@ export interface Voice {
 export function useVoice(seed = SHIPPED_SEED): Voice {
   const transport = useRef<Transport | null>(null);
   const [frame, setFrame] = useState<Frame | null>(null);
+  const [runId, setRunId] = useState(0);
   /** The last frame received on this run: partial frames are filled in from it. */
   const frameRef = useRef<Frame | null>(null);
   const [between, setBetween] = useState<BetweenView | null>(null);
@@ -102,6 +108,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   const retainedWhy = useRef<{ id: string; view: WhyView | null } | null>(null);
   const pausePolicy = useRef(new PausePolicy());
   const manualHold = useRef(false);
+  const reading = useRef(false);
+  const [readingView, setReadingView] = useState(false);
   const readingWhy = useRef(false);
   const awaitingSuggestion = useRef(false);
 
@@ -127,6 +135,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               loadingRun.current = false;
               gen.current = msg.gen;
               resetRef.current();
+              manualHold.current = true;
               setPlaytest({ result: msg.result });
             } else if (msg.type === 'playtestError') {
               loadingRun.current = false;
@@ -180,12 +189,26 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
                 prev,
                 loadingRun.current || manualHold.current || readingWhy.current || awaitingSuggestion.current,
               );
-              // A successful suggestion resumes itself. A failed one stays readable until the player continues.
+              // An unavailable suggestion stays held. Actual answers read on the slowed clock.
               if (awaitingSuggestion.current) {
-                manualHold.current = current.paused;
+                const last = current.log.at(-1);
+                const failed =
+                  (last?.who === 'you' && last.kind === 'note' && /Nothing was said/.test(last.text)) ||
+                  current.sceneWords?.at(-1)?.said === false;
+                manualHold.current = current.paused && !!failed;
                 awaitingSuggestion.current = false;
               }
-              if (pacing) send({ type: pacing });
+              if (
+                !loadingRun.current &&
+                !readingWhy.current &&
+                reading.current &&
+                current.paused &&
+                !manualHold.current &&
+                !current.intro &&
+                ['day', 'free'].includes(current.phase)
+              )
+                send({ type: 'resume' });
+              else if (pacing) send({ type: pacing });
               const context = predictionContext(current);
               if (context !== predictionFrame.current) {
                 predictionFrame.current = context;
@@ -238,7 +261,13 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
           gen: gen.current,
           scenarioVersion: VOICE_SCENARIO_VERSION,
         });
-        stopTicks = startTickLoop((dtMs) => t.post({ type: 'tick', dtMs }));
+        stopTicks = startTickLoop((dtMs) =>
+          t.post({
+            type: 'tick',
+            wallDtMs: dtMs,
+            dtMs: readingTick(dtMs, frameRef.current, reading.current),
+          }),
+        );
         const url = replayParam();
         if (url) {
           setPlaytest({ busy: 'load' });
@@ -263,6 +292,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
 
   const actions = useMemo<VoiceActions>(() => {
     const resetRun = () => {
+      setRunId((id) => id + 1);
       exportRequest.current.reset();
       setPlaytest(null);
       frameRef.current = null;
@@ -278,6 +308,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       pausePolicy.current = new PausePolicy();
       loadingRun.current = false;
       manualHold.current = false;
+      reading.current = false;
+      setReadingView(false);
       readingWhy.current = false;
       awaitingSuggestion.current = false;
       predictDrafts.current.clear();
@@ -308,11 +340,27 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         predictDrafts.current.set(predictSeq.current, draft);
         send({ type: 'predict', requestId: predictSeq.current, draft });
       },
-      suggest: (draft) => {
+      suggest: (draft, sceneLine) => {
         manualHold.current = false;
         awaitingSuggestion.current = true;
-        send({ type: 'suggest', draft });
+        send({ type: 'suggest', draft, ...(sceneLine ? { sceneLine } : {}) });
       },
+      setReading: (on) => {
+        reading.current = on;
+        setReadingView(on);
+        const current = frameRef.current;
+        if (
+          !loadingRun.current &&
+          !readingWhy.current &&
+          on &&
+          current?.paused &&
+          !manualHold.current &&
+          !current.intro &&
+          ['day', 'free'].includes(current.phase)
+        )
+          send({ type: 'resume' });
+      },
+      sceneWord: (kind, beat, words) => send({ type: 'sceneWord', kind, beat, words }),
       withdraw: () => send({ type: 'withdraw' }),
       retainWhy: (decisionId) => {
         retainedWhy.current = { id: decisionId, view: null };
@@ -370,6 +418,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       loadPlaytest: (text) => {
         // Old frames can still arrive while the worker replaces the run. Never send a stale resume into it.
         loadingRun.current = true;
+        reading.current = false;
+        setReadingView(false);
         exportRequest.current.reset();
         setPlaytest({ busy: 'load' });
         pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
@@ -394,5 +444,19 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
     };
   }, [send]);
 
-  return { frame, between, report, telegraph, why, whyOpen, whyMissing, error, mock, playtest, actions };
+  return {
+    frame,
+    between,
+    report,
+    telegraph,
+    why,
+    whyOpen,
+    whyMissing,
+    error,
+    mock,
+    reading: readingView,
+    runId,
+    playtest,
+    actions,
+  };
 }

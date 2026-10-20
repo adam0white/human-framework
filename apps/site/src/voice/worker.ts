@@ -101,7 +101,8 @@ function flush(force = false): void {
   if (!game) return;
   for (const m of game.outbox.splice(0))
     host.post(m.type === 'report' ? { ...m, view: withSilent(game, m.view) } : m);
-  const frame = game.frame();
+  const frame = rec?.frame();
+  if (!frame) return;
   const fields = new Map<string, string | undefined>();
   const changed: Partial<Record<keyof Frame, unknown>> = {};
   const same: (keyof Frame)[] = [];
@@ -188,7 +189,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
   const game = rec.game;
   switch (msg.type) {
     case 'tick': {
-      sinceFrame += Math.max(0, msg.dtMs);
+      sinceFrame += Math.max(0, msg.wallDtMs ?? msg.dtMs);
       const moved = rec.tick(msg.dtMs);
       stepSilent(game);
       // A pause (a beat, the day's end) goes out at once; a running clock at most every FRAME_MS.

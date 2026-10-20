@@ -67,6 +67,7 @@ export type TopBarFields = Pick<
   'day' | 'phase' | 'dayLabel' | 'clock' | 'sky' | 'paused' | 'pace' | 'autoPause'
 > & {
   fastForward: string | undefined;
+  reading?: boolean;
 };
 
 export const TopBar = memo(function TopBar({
@@ -99,11 +100,13 @@ export const TopBar = memo(function TopBar({
             .join(', ')}
         </span>
         <div className="v-top-ff" aria-live="polite">
-          {frame.fastForward
-            ? `skipping: ${explainTerms(frame.fastForward)}`
-            : frame.sky.fast
-              ? 'fasting'
-              : ''}
+          {frame.reading
+            ? ''
+            : frame.fastForward
+              ? `skipping: ${explainTerms(frame.fastForward)}`
+              : frame.sky.fast
+                ? 'fasting'
+                : ''}
         </div>
       </div>
       <div className="v-top-controls">
@@ -125,36 +128,41 @@ export const TopBar = memo(function TopBar({
             </svg>
           )}
         </button>
-        <fieldset className="v-seg v-pace" aria-label="Pace">
-          {PACES.map((p) => (
-            <button
-              key={p.id}
-              type="button"
-              aria-pressed={frame.pace === p.id}
-              onClick={() => actions.setPace(p.id)}
-            >
-              {p.label}
-            </button>
-          ))}
+        <fieldset className="v-seg v-pace" disabled={frame.reading} aria-label="Pace">
+          {frame.reading ? (
+            <span className="v-reading-rate">Reading slowly</span>
+          ) : (
+            PACES.map((p) => (
+              <button
+                key={p.id}
+                type="button"
+                aria-pressed={frame.pace === p.id}
+                onClick={() => actions.setPace(p.id)}
+              >
+                {p.label}
+              </button>
+            ))
+          )}
         </fieldset>
         <button
           type="button"
           className="v-btn v-btn-quiet v-pace-cycle"
           onClick={() => actions.setPace(nextPace(frame.pace))}
           title="Pace"
-          aria-label={`Pace: ${paceLabel(frame.pace)}. Change pace`}
+          disabled={frame.reading}
+          aria-label={frame.reading ? 'Reading slowly' : `Pace: ${paceLabel(frame.pace)}. Change pace`}
         >
-          {paceLabel(frame.pace)}
+          {frame.reading ? 'Reading slowly' : paceLabel(frame.pace)}
         </button>
         <button
           type="button"
           className="v-btn v-btn-quiet v-autopause"
           aria-pressed={frame.autoPause}
           onClick={() => actions.setAutoPause(!frame.autoPause)}
-          title="Pause for a new conversation or consequential offer"
+          title="Slow for a new conversation or consequential offer"
         >
           <span className="v-autopause-mark" aria-hidden="true" />
-          <span>Auto-pause at scenes</span>
+          <span>Slow at scenes</span>
         </button>
         {live && (
           <button type="button" className="v-btn v-btn-quiet v-endday" onClick={actions.endDay}>

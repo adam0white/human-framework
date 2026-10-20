@@ -11,11 +11,12 @@ const cleanups: (() => void)[] = [];
 afterEach(() => {
   for (const cleanup of cleanups.splice(0)) cleanup();
 });
-function mount() {
+function mount(initialPaused = true) {
   const el = document.createElement('div');
   document.body.append(el);
   const root = createRoot(el);
   const frame = structuredClone(sampleFrame);
+  frame.paused = initialPaused;
   frame.day = 1;
   frame.minute = 600;
   frame.clock = '10:00';
@@ -55,6 +56,8 @@ function mount() {
     onSayNothing: vi.fn(),
     onWithdraw: vi.fn(),
     onPause: vi.fn(),
+    onSceneWord: vi.fn(),
+    onReading: vi.fn(),
   };
   const update = () => {
     props.frame.log = [...props.frame.log];
@@ -83,17 +86,16 @@ it('leads with a named exchange and keeps routine and full composer closed', () 
   expect(el.querySelector('.v-composer')).toBeNull();
   expect(el.querySelector('.v-scene-more')?.textContent).toBe('Say something else…');
 });
-it('previews a plain mention and sends the same draft with no reason', () => {
-  const { el, props, update } = mount();
+it('speaks a quick line in one tap through the existing mention path', () => {
+  const { el, props } = mount();
+  const words = el.querySelector('.v-scene-choice')?.textContent;
   click(el, '.v-scene-choice');
-  const draft = props.onPredict.mock.lastCall?.[0] as Draft;
-  expect(draft).toEqual({ optionId: expect.any(String), strength: 'mention', insist: false });
-  expect(el.querySelector('.v-scene-likely')?.textContent).toContain('Reading his likely reply');
-  props.telegraph = { draft, telegraph: { tone: 'yes', text: 'Likely', says: 'Fine.', reason: 'close' } };
-  update();
-  expect(el.querySelector('.v-scene-likely')?.textContent).toContain('Fine.');
-  click(el, '.v-scene-send');
-  expect(props.onSuggest).toHaveBeenCalledWith(draft);
+  expect(props.onSuggest).toHaveBeenCalledWith(
+    { optionId: expect.any(String), strength: 'mention', insist: false },
+    words,
+  );
+  expect(el.querySelector('.v-scene-send')).toBeNull();
+  expect(el.querySelector('.v-scene-likely')).toBeNull();
 });
 it('silence resumes without creating a suggestion and busy scenes have no send controls', () => {
   const { el, props, update } = mount();
@@ -108,6 +110,9 @@ it('silence resumes without creating a suggestion and busy scenes have no send c
 it('opens the optional full composer and returns to the same scene', () => {
   const { el } = mount();
   click(el, '.v-scene-more');
+  expect(el.querySelector('.v-composer')).toBeNull();
+  expect(el.querySelectorAll('.v-scene-word')).toHaveLength(2);
+  click(el, '.v-scene-plan');
   expect(el.querySelector('.v-composer')).not.toBeNull();
   click(el, '.v-scene-editor-close');
   expect(el.querySelector('.v-composer')).toBeNull();
@@ -142,13 +147,13 @@ it('preserves the current reply and keeps the original player words in the timel
   expect(el.querySelector('.v-scene-answer')?.textContent).toContain('Not now. After I rest at home.');
 });
 
-it('keeps running scenes compact, pauses on Speak, and expands only at a speaking point', () => {
-  const { el, props, update } = mount();
+it('keeps running scenes compact and opens inline words without pausing', () => {
+  const { el, props, update } = mount(false);
   props.frame.paused = false;
   update();
   expect(el.querySelector('.v-scene-choice')).toBeNull();
   click(el, '.v-scene-speak');
-  expect(props.onPause).toHaveBeenCalledOnce();
+  expect(props.onPause).not.toHaveBeenCalled();
   expect(el.querySelector('.v-scene-choice')).not.toBeNull();
   click(el, '.v-scene-silence');
   expect(el.querySelector('.v-scene-choice')).toBeNull();
@@ -188,6 +193,7 @@ it('moves unrelated earlier answers into the timeline without a second panel bes
 it('Back in the full composer keeps Enter and Escape cannot send a draft', () => {
   const { el, props } = mount();
   click(el, '.v-scene-more');
+  click(el, '.v-scene-plan');
   const back = el.querySelector<HTMLButtonElement>('.v-scene-editor-close');
   back?.focus();
   const event = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true });
@@ -195,7 +201,7 @@ it('Back in the full composer keeps Enter and Escape cannot send a draft', () =>
   expect(event.defaultPrevented).toBe(false);
   expect(props.onSuggest).not.toHaveBeenCalled();
   click(el, '.v-scene-editor-close');
-  expect(document.activeElement).toBe(el.querySelector('.v-scene-more'));
+  expect(document.activeElement).toBe(el.querySelector('.v-scene-plan'));
 });
 
 it('keeps a known likely encounter beside sleep, including tomorrow after evening', () => {
@@ -222,18 +228,22 @@ it('shows the spoken choices after the scene in a secondary participation region
   expect(reading.compareDocumentPosition(controls) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
 });
 
-it('gives the predicted reply space by replacing the choices and collapses speech after sending', () => {
+it('keeps a sent quick line visible beside the actual answer', () => {
   const { el, props, update } = mount();
-  click(el, '.v-scene-choice');
-  expect(el.querySelector('.v-scene-choice')).toBeNull();
-  const draft = props.onPredict.mock.lastCall?.[0] as Draft;
-  props.telegraph = { draft, telegraph: { tone: 'yes', text: 'Likely', says: 'Fine.', reason: 'close' } };
+  props.frame.sceneWords = [
+    {
+      beat: '1:scene:h:h',
+      kind: 'suggestion',
+      day: 1,
+      minute: 600,
+      clock: '10:00',
+      words: 'Call Selin tonight.',
+      answer: '',
+    },
+  ];
   update();
-  click(el, '.v-scene-send');
-  expect(el.querySelector('.v-scene-choice')).toBeNull();
-  expect(el.querySelector('.v-scene-speak')).not.toBeNull();
+  expect(el.querySelector('.v-spoken-lines')?.textContent).toContain('Call Selin tonight.');
 });
-
 it('puts a consequential offer and its reason in the panel that stops for it', () => {
   const { el, props, update } = mount();
   props.frame.log = [];
@@ -248,11 +258,14 @@ it('puts a consequential offer and its reason in the panel that stops for it', (
   expect(el.querySelector('.v-scene-choice')?.textContent).toContain('pay Osman');
   expect(el.querySelector('.v-scene-offer')?.textContent).toContain('Monday 25 March');
   click(el, '.v-scene-choice');
-  expect(props.onPredict).toHaveBeenLastCalledWith({
-    optionId: 'pay-rent',
-    strength: 'mention',
-    insist: false,
-  });
+  expect(props.onSuggest).toHaveBeenLastCalledWith(
+    {
+      optionId: 'pay-rent',
+      strength: 'mention',
+      insist: false,
+    },
+    'Go and pay Osman the rent.',
+  );
 });
 
 it('reveals a bounded continuation locally without sending words or moving the clock', () => {
@@ -349,4 +362,41 @@ it('holds revealed words through body changes in the same scene and answer occas
   props.frame.minute += 1;
   update();
   expect(el.querySelector('.v-scene-stage .v-exchange')?.textContent).toBe(words);
+});
+
+it('offers care or a question while busy, once per beat, without suggesting an action', () => {
+  const { el, props, update } = mount();
+  props.frame.composer = { open: false, reason: 'busy' };
+  update();
+  click(el, '.v-scene-word');
+  expect(props.onSceneWord).toHaveBeenCalledOnce();
+  expect(props.onSuggest).not.toHaveBeenCalled();
+  expect(el.querySelector('.v-scene-word')).toBeNull();
+  expect(el.querySelector('.v-scene-choice')).toBeNull();
+});
+it('offers no scene speech when asleep or muted', () => {
+  const { el, props, update } = mount();
+  props.frame.composer = { open: false };
+  props.frame.halil.asleep = true;
+  update();
+  expect(el.querySelector('.v-scene-word')).toBeNull();
+  props.frame.halil.asleep = false;
+  props.frame.muted = true;
+  update();
+  expect(el.querySelector('.v-scene-word')).toBeNull();
+});
+
+it('ends quick-reply slowdown without reopening the same resolved occasion', () => {
+  vi.useFakeTimers();
+  try {
+    const { el, props, update } = mount();
+    click(el, '.v-scene-choice');
+    expect(el.querySelector('.v-scene-choice')).toBeNull();
+    update();
+    expect(el.querySelector('.v-scene-choice')).toBeNull();
+    flushSync(() => vi.advanceTimersByTime(6500));
+    expect(props.onReading).toHaveBeenLastCalledWith(false);
+  } finally {
+    vi.useRealTimers();
+  }
 });
