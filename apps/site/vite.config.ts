@@ -15,7 +15,11 @@ export default defineConfig({
   // The framework package version, for playtest files (src/shared/playtest.ts).
   define: { __HF_PACKAGE_VERSION__: JSON.stringify(frameworkPackage.version) },
   resolve: {
-    alias: { '@adam0white/human-framework': resolve(root, '../../packages/human/src/index.ts') },
+    // Workspace packages resolve to source, so tests run from a fresh `npm ci` without building their dist.
+    alias: {
+      '@adam0white/human-framework': resolve(root, '../../packages/human/src/index.ts'),
+      '@adam0white/lab-client': resolve(root, '../../packages/lab-client/src/index.ts'),
+    },
   },
   build: {
     outDir: 'dist',
