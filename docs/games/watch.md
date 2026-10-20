@@ -761,3 +761,63 @@ Revert this increment's commit (the Watch UI, SheetActions, camera layout/test a
 Round-2 cost: the goal strip takes more scene space; the optional pressure explanation can need a scroll, and later dawn accounts follow the conversations. During a timed moment the rope's drawing yields to its unchanged written condition so every decision option fits. Accounts keep the clock running and yield to a newly arriving decision; an inspection can reopen while it is pending. The warning is deferred above rather than added as a rule. DL-32's nine five-minute policies still have a **0-second longest gap in legal lantern/bell availability**, before and after; this is not a claim of meaningful acts every twenty seconds or a fresh player's willingness to return. Original saved exports and midpoint saves retain identical full-state replay/continuation hashes. Round-2 evidence: `scratch/patterns/watch-report.md`, section “Round 2”; real preview renders and phone-audit JSON under `watch-shots/after-b/` and `watch-shots/lab-phone-b/`, with `-b` screenshot suffixes.
 
 Revert round 2: revert its single commit on `pt-watch2` (view/account projection and test, App, MapCanvas, words/progress test, map/hit tests, clarity tests, CSS and these round-2 notes). Keep round 1 at `bf9d176`; no saved run, framework pin or lab-kit source needs migration.
+
+## Design change 2026-10-20c (owner may veto)
+
+Night accounts now offer in-person asks to relieve a tired watcher, help a hurt watcher, or ask them down to sleep or to the hall. Each is one tap, with the Keeper's impression and the cost of leaving another post. Both people must be within voice: the lit stretch and its neighbour. A distant act stays visible with a reason and where to carry the light. HF decides; acceptance and refusal speak in the person's voice. Relief takes over before the outgoing watcher is asked to sleep. A downed watcher needs the existing carry ask, including its existing tending. There is no new healing rule. Accounts report tiredness and injury through the existing self-report, so reserve can hide either. The clock keeps running; bite alerts retain their three-minute slowdown.
+
+This reverses 2026-10-20b's “the lantern and bell remain direct night acts” and “No new action, rule” boundary, and §4's “Posting is closed at night” for relief only. Dusk posting stays the plan. These night acts are asks within the Keeper's voice. At dusk, “Off the wall” becomes “Choose own post”: it removes the assignment and permits choosing an open post. It does not grant the night off. The explanation points to asking for rest at night.
+
+Callum (F-305): “Yunus was just bitten, but tapping him only gives the same keeping-watch line and I cannot find a way to help or move another guard in.” Sam (F-309): “I want to rotate the tired people before they fall asleep, and tapping Tamar only gives me the same nothing-close line.” Sam's second free session: “I wanted her to rest.” Sources: [Callum](../lab/reviews/calibration-2026-10-20/a1-watch-20.md), [Sam](../lab/reviews/calibration-2026-10-20/e-free1.md), [dusk rest](../lab/reviews/calibration-2026-10-20/e-free2.md).
+
+Cost and risk: more ways to repair a bad dusk plan may reduce the weight of posting. Sending relief still leaves the reliever's old post empty. A watcher can refuse, and relief does not guarantee the outgoing watcher will sleep. Fresh-player retests for F-305/F-309 and posting weight remain targeted for 2026-11-03.
+
+Scenario 11 versions the new `relieve`, `help` and `down` inputs. Scenarios 9 and 10 reject them and retain their original rules. The optional request record enters the rule hash only when present. Existing moment kinds, IDs, cap and answer choices are unchanged. The scenario-9 fixture remains `05460984`; a captured scenario-10 run remains `1c799a04`; its midpoint continuation remains `26d92083` (full state `efe70d11`). The owner's older scenario-7 run retains its existing tolerant replay, `42c2c2f6` before and after, with 210 applied and 62 skipped inputs; it is not claimed as an exact replay of the historical export. The one existing test edit updates its current-export version assertion from 10 to 11. The new pinned scenario-11 fixture and `node apps/site/scripts/watch-night-control.ts` exercise each new act and replay to `3c84c1c3`.
+
+`node apps/site/scripts/hf-watch-session.ts seeds=2`, before:
+
+| persona | seed | ended | min | reached | engagement | longest lull | looked away |
+|---|---|---|---|---|---|---|---|
+| commuter | 1 | quit | 8 | 1 night | 0.73 | 0s  | 0 |
+| commuter | 2 | quit | 10 | 1 night | 0.73 | 0s  | 0 |
+| unwinder | 1 | quit | 21 | 2 night | 0.77 | 0s  | 1 |
+| unwinder | 2 | quit | 13 | 2 night | 0.78 | 0s  | 0 |
+| completionist | 1 | quit | 26 | 3 night | 0.8 | 0s  | 1 |
+| completionist | 2 | quit | 12 | 2 night | 0.82 | 0s  | 0 |
+| restless | 1 | quit | 14 | 2 night | 0.64 | 21s dusk | 0 |
+| restless | 2 | quit | 11 | 1 fair | 0.66 | 18s night | 0 |
+| mischief | 1 | quit | 17 | 2 night | 0.68 | 3s night | 0 |
+| mischief | 2 | quit | 14 | 2 dusk | 0.69 | 0s  | 0 |
+| exploiter | 1 | quit | 16 | 2 dawn | 0.69 | 0s  | 0 |
+| exploiter | 2 | quit | 35 | 3 night | 0.67 | 0s  | 1 |
+| rulesLawyer | 1 | quit | 14 | 2 night | 0.7 | 3s night | 0 |
+| rulesLawyer | 2 | quit | 19 | 2 night | 0.68 | 0s  | 0 |
+| returner | 1 | quit | 15 | 2 night | 0.73 | 0s  | 0 |
+| returner | 2 | quit | 10 | 1 night | 0.74 | 0s  | 0 |
+
+The same command after, with the adapter offering the new acts:
+
+| persona | seed | ended | min | reached | engagement | longest lull | looked away |
+|---|---|---|---|---|---|---|---|
+| commuter | 1 | quit | 14 | 2 night | 0.74 | 0s  | 0 |
+| commuter | 2 | quit | 19 | 2 night | 0.72 | 0s  | 0 |
+| unwinder | 1 | quit | 18 | 2 dusk | 0.77 | 0s  | 0 |
+| unwinder | 2 | quit | 17 | 2 night | 0.76 | 0s  | 0 |
+| completionist | 1 | quit | 15 | 2 dawn | 0.8 | 0s  | 0 |
+| completionist | 2 | quit | 16 | 2 night | 0.79 | 0s  | 0 |
+| restless | 1 | quit | 14 | 2 night | 0.65 | 21s dusk | 0 |
+| restless | 2 | quit | 11 | 1 autumn | 0.65 | 18s night | 0 |
+| mischief | 1 | agenda | 20 | 2 night | 0.66 | 3s night | 0 |
+| mischief | 2 | quit | 14 | 2 night | 0.68 | 0s  | 0 |
+| exploiter | 1 | quit | 17 | 2 night | 0.68 | 0s  | 0 |
+| exploiter | 2 | quit | 14 | 2 night | 0.68 | 0s  | 0 |
+| rulesLawyer | 1 | quit | 16 | 2 night | 0.68 | 3s night | 0 |
+| rulesLawyer | 2 | quit | 12 | 2 night | 0.68 | 0s  | 0 |
+| returner | 1 | quit | 9 | 1 dusk | 0.72 | 0s  | 0 |
+| returner | 2 | quit | 9 | 1 night | 0.73 | 0s  | 0 |
+
+These are deterministic simulated sessions with two seeds per persona, not fresh human retests. The action policy changed as well as the available inputs. Session duration, engagement and quitting do not establish that the new controls are discoverable or that posting still carries the same weight.
+
+Verification: act legality, reach, candidates, actual acceptance/refusal, relief without a gap, withdrawal to the hall, account words and exact legacy controls; full repository check and site build; Chromium at 360×690 on tired, hurt, distant and dusk posting screens. New request labels and reads fit when scrolled into view, with no text overflow or target below 44 px.
+
+Revert: revert “Let the Keeper relieve and help watchers at night”.

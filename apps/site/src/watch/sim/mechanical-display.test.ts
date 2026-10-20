@@ -77,7 +77,7 @@ it('new proposal holds survive save/restore and replay; scenario 9 keeps its rul
   const restored = WatchRun.resume(JSON.parse(run.snapshotText()));
   expect(restored.state.proposalHolds).toEqual({});
   const exp = run.export();
-  expect(exp.scenario).toBe(10);
+  expect(exp.scenario).toBe(11);
   expect(ruleHash(replay(exp))).toBe(exp.end.ruleHash);
   const legacy = run.snapshot();
   legacy.scenario = 9;

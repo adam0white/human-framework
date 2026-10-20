@@ -89,6 +89,7 @@ import { planDirectedNight } from './director.ts';
 import { takeOffer } from './fair.ts';
 import { fillLeaf, maybeLimp } from './life.ts';
 import { answerMoment, catchLeaving, checkMoments } from './moments.ts';
+import { applyNightAct, type NightInput, resolveNightRequest } from './night-actions.ts';
 import {
   addVillager,
   arrive,
@@ -126,6 +127,7 @@ import { dawnVoices } from './voices.ts';
 import { firstStand, freshLeaves } from './volume.ts';
 
 export type Input =
+  | NightInput
   | { k: 'start' }
   | { k: 'continue' }
   | { k: 'fair'; pick: FairOffer['id'] }
@@ -368,6 +370,7 @@ function enterNight(s: WatchState): void {
   s.moment = null;
   s.momentLog = [];
   s.asks = {};
+  if (s.nightRequests) s.nightRequests = {};
 }
 
 /** How bad a night's events at a stretch felt, for the person's expectation of standing it again. */
@@ -557,6 +560,7 @@ function enterDawn(s: WatchState): void {
   s.bell = { ...emptyBell(), cry: s.bell.cry };
   s.moment = null;
   s.asks = {};
+  if (s.nightRequests) s.nightRequests = {};
   // An emptied granary does not end the winter: the dawn page tells the night, and the thaw settles the hunger.
   s.phase = 'dawn';
 }
@@ -606,6 +610,10 @@ export function applyInput(s: WatchState, input: Input): boolean {
     }
     case 'bell':
       return ringBell(s, input.who);
+    case 'relieve':
+    case 'help':
+    case 'down':
+      return applyNightAct(s, input);
     case 'answer':
       return answerMoment(s, input.id, input.choice);
     case 'toDusk': {
@@ -894,6 +902,8 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
     const p = personOf(s, id);
     if (!p) continue;
     const name = nameOf(s, id);
+    const answeringNightAsk = !!s.nightRequests?.[id];
+    resolveNightRequest(s, e);
     if (e.kind === 'decide' && e.verdict && !e.review) {
       const posted = s.posts[id];
       const sec = posted ? postSection(posted) : undefined;
@@ -910,7 +920,7 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
       ) {
         // Said to the Keeper (a refusal is told, not guessed), with their own reason, as it happens (owner's
         // playtest, 2026-10-05: refusals explained in the moment, not only after the night). Words only.
-        if (sec && note(s, { who: id, kind: e.verdict, section: sec }))
+        if (sec && !answeringNightAsk && note(s, { who: id, kind: e.verdict, section: sec }))
           alert(s, {
             section: sec,
             kind: 'person',
@@ -945,7 +955,7 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
     const clarity = seen ? 0.9 : 0.35;
     const leaving = action === 'flee' || action === 'run-off' || action === 'sleep' || action === 'go-home';
     if (leaving && where && !p.body.downed) {
-      if (seen) catchLeaving(s, id, action, where);
+      if (seen && s.asks[id]?.sug.affordanceId !== action) catchLeaving(s, id, action, where);
       const kind: NightNote['kind'] =
         action === 'flee' ? 'fled' : action === 'run-off' ? 'ran' : action === 'sleep' ? 'slept' : 'home';
       if (note(s, { who: id, kind, section: where }) && !seen) neighbourCall(s, id, kind, where);
@@ -1079,7 +1089,7 @@ function personLineBare(s: WatchState, n: NightNote): string {
  * A watcher's own reason for turning the Keeper down, in their voice: what they will own to (`selfReport`, so pride
  * may hide pain or fear behind the cold) and where they are going instead. Words only.
  */
-function ownReason(s: WatchState, id: WatcherId, chosen: string, posted: SectionId): string {
+export function ownReason(s: WatchState, id: WatcherId, chosen: string, posted: SectionId): string {
   const p = personOf(s, id);
   if (!p) return '';
   const told = selfReport(p);
@@ -1099,7 +1109,7 @@ function ownReason(s: WatchState, id: WatcherId, chosen: string, posted: Section
 }
 
 /** A refusal (or a "not yet", or another post) as it is said to the Keeper, with the watcher's reason. */
-function refusalLine(
+export function refusalLine(
   s: WatchState,
   id: WatcherId,
   verdict: 'refused' | 'deferred' | 'modified',

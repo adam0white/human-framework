@@ -1,0 +1,2185 @@
+{
+  "game": "the-night-watch",
+  "phase": "G3-4",
+  "scenario": 11,
+  "build": "dev",
+  "framework": "unknown",
+  "seed": 7,
+  "inputs": [
+    {
+      "m": 1020,
+      "i": {
+        "k": "start"
+      }
+    },
+    {
+      "m": 1020,
+      "i": {
+        "k": "post",
+        "watcher": "tamar",
+        "post": null
+      }
+    },
+    {
+      "m": 1020,
+      "i": {
+        "k": "post",
+        "watcher": "kian",
+        "post": null
+      }
+    },
+    {
+      "m": 1020,
+      "i": {
+        "k": "post",
+        "watcher": "mara",
+        "post": null
+      }
+    },
+    {
+      "m": 1020,
+      "i": {
+        "k": "post",
+        "watcher": "tamar",
+        "post": "gate-1",
+        "press": "ask"
+      }
+    },
+    {
+      "m": 1020,
+      "i": {
+        "k": "post",
+        "watcher": "kian",
+        "post": "gate-2",
+        "press": "ask"
+      }
+    },
+    {
+      "m": 1020,
+      "i": {
+        "k": "post",
+        "watcher": "mara",
+        "post": "west-1",
+        "press": "ask"
+      }
+    },
+    {
+      "m": 1020,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 1020,
+      "i": {
+        "k": "begin"
+      }
+    },
+    {
+      "m": 1104,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 1128,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 1152,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 1176,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 1200,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 1224,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 1248,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 1272,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 1296,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 1320,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 1344,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 1368,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 1392,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 1416,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 1440,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 1464,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 1488,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 1512,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 1536,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 1560,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 1584,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 1608,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 1632,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 1656,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 1680,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 1704,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 1728,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 1752,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 1776,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 1800,
+      "i": {
+        "k": "toDusk"
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "post",
+        "watcher": "tamar",
+        "post": null
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "post",
+        "watcher": "kian",
+        "post": null
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "post",
+        "watcher": "mara",
+        "post": null
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "post",
+        "watcher": "joss",
+        "post": null
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "post",
+        "watcher": "yunus",
+        "post": null
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "post",
+        "watcher": "tamar",
+        "post": "mill-1",
+        "press": "ask"
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "post",
+        "watcher": "kian",
+        "post": "mill-2",
+        "press": "ask"
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "post",
+        "watcher": "mara",
+        "post": "gate-1",
+        "press": "ask"
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "post",
+        "watcher": "joss",
+        "post": "east-1",
+        "press": "ask"
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "post",
+        "watcher": "yunus",
+        "post": "west-1",
+        "press": "ask"
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 2460,
+      "i": {
+        "k": "begin"
+      }
+    },
+    {
+      "m": 2520,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 2544,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 2568,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 2592,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 2616,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 2640,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 2664,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 2688,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 2712,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 2736,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 2760,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 2784,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 2808,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 2832,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 2856,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 2880,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 2904,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 2928,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    },
+    {
+      "m": 2940,
+      "i": {
+        "k": "help",
+        "who": "tamar",
+        "by": "mara"
+      }
+    },
+    {
+      "m": 2941,
+      "i": {
+        "k": "relieve",
+        "who": "mara",
+        "by": "tamar"
+      }
+    },
+    {
+      "m": 2952,
+      "i": {
+        "k": "lantern",
+        "section": "east"
+      }
+    },
+    {
+      "m": 2976,
+      "i": {
+        "k": "lantern",
+        "section": "west"
+      }
+    },
+    {
+      "m": 3000,
+      "i": {
+        "k": "lantern",
+        "section": "gate"
+      }
+    },
+    {
+      "m": 3002,
+      "i": {
+        "k": "down",
+        "who": "tamar"
+      }
+    },
+    {
+      "m": 3024,
+      "i": {
+        "k": "lantern",
+        "section": "mill"
+      }
+    }
+  ],
+  "endMinute": 3032,
+  "end": {
+    "version": 4,
+    "seed": 7,
+    "rng": -1775200909,
+    "world": {
+      "rng": 199355621
+    },
+    "bell": {
+      "rungAt": -1000000000,
+      "until": -1000000000,
+      "heard": {},
+      "cry": 0,
+      "pendingCry": null
+    },
+    "minute": 3032,
+    "nightStart": 2520,
+    "phase": "night",
+    "night": 2,
+    "year": 1,
+    "winterNight": 2,
+    "winter": {
+      "nights": 6,
+      "lead": "wolf",
+      "twist": null,
+      "peak": 6,
+      "why": "",
+      "question": null
+    },
+    "leads": [],
+    "chronicle": [],
+    "card": null,
+    "nextCardId": 1,
+    "pairings": [],
+    "proposalHolds": {},
+    "lastVoices": {
+      "kian": "“They were right under the Gate. I ran. Say what you like.” “I stayed because Tamar stayed.”",
+      "mara": "“I kept nodding off at the west wall.”",
+      "tamar": "“They came at the Gate. We sent them off.” “With Kian next to me I could stand it.”"
+    },
+    "expecting": [],
+    "newborns": [],
+    "fair": null,
+    "talks": {
+      "left": 2,
+      "said": [],
+      "asked": []
+    },
+    "volume": {
+      "n": 1,
+      "title": "The Gate",
+      "question": "Who keeps the Gate after Tamar?",
+      "kind": "gate",
+      "who": "tamar",
+      "openedYear": 1,
+      "openedMinute": 1020
+    },
+    "volumes": [],
+    "leaves": [
+      {
+        "id": "born-stands",
+        "condition": "when a child born here first stands the wall",
+        "filled": null
+      },
+      {
+        "id": "married-in",
+        "condition": "when an outsider is married in",
+        "filled": null
+      },
+      {
+        "id": "grew-old",
+        "condition": "when a watcher grows old on the wall, twenty winters on it",
+        "filled": null
+      },
+      {
+        "id": "left",
+        "condition": "when a household gives up and leaves",
+        "filled": null
+      },
+      {
+        "id": "grandchild",
+        "condition": "when someone born here has a child",
+        "filled": null
+      }
+    ],
+    "gateKeeper": "tamar",
+    "heir": null,
+    "gateWilling": {},
+    "marks": {
+      "ruins": [],
+      "extended": [],
+      "lost": null,
+      "bigBell": false,
+      "seed": false
+    },
+    "nextBorn": 1,
+    "yearGrain": {
+      "lostWinter": 0,
+      "harvest": 0,
+      "eaten": 0,
+      "breaches": {},
+      "atWinter": 20,
+      "hungry": false,
+      "stints": {}
+    },
+    "annals": [],
+    "cast": {
+      "tamar": {
+        "id": "tamar",
+        "name": "Tamar",
+        "sex": "female",
+        "home": "gate",
+        "usual": "gate-1",
+        "note": "Sling, steady",
+        "look": 0,
+        "prays": false,
+        "newcomer": false,
+        "known": 0.6,
+        "comes": {
+          "year": 1,
+          "night": 1
+        },
+        "status": "here",
+        "gen": 1,
+        "bornHere": false,
+        "stood": true
+      },
+      "kian": {
+        "id": "kian",
+        "name": "Kian",
+        "sex": "male",
+        "home": "west",
+        "usual": "gate-2",
+        "note": "Fast, eager",
+        "look": 1,
+        "prays": false,
+        "newcomer": false,
+        "known": 0.4,
+        "comes": {
+          "year": 1,
+          "night": 1
+        },
+        "status": "here",
+        "gen": 1,
+        "bornHere": false,
+        "stood": true
+      },
+      "mara": {
+        "id": "mara",
+        "name": "Mara",
+        "sex": "female",
+        "home": "east",
+        "usual": "west-1",
+        "note": "Best sight",
+        "look": 2,
+        "prays": false,
+        "newcomer": false,
+        "known": 0.5,
+        "comes": {
+          "year": 1,
+          "night": 1
+        },
+        "status": "here",
+        "gen": 1,
+        "bornHere": false,
+        "stood": true
+      },
+      "joss": {
+        "id": "joss",
+        "name": "Joss",
+        "sex": "male",
+        "home": "east",
+        "usual": "mill-1",
+        "note": "Smith, strong",
+        "look": 3,
+        "prays": false,
+        "newcomer": false,
+        "known": 0.5,
+        "comes": {
+          "year": 1,
+          "night": 2
+        },
+        "status": "here",
+        "gen": 1,
+        "bornHere": false,
+        "stood": true
+      },
+      "yunus": {
+        "id": "yunus",
+        "name": "Yunus",
+        "sex": "male",
+        "home": "mill",
+        "usual": "mill-2",
+        "note": "Miller, calm",
+        "look": 4,
+        "prays": true,
+        "newcomer": false,
+        "known": 0.6,
+        "comes": {
+          "year": 1,
+          "night": 2
+        },
+        "status": "here",
+        "gen": 1,
+        "bornHere": false,
+        "stood": true
+      },
+      "ruslan": {
+        "id": "ruslan",
+        "name": "Ruslan",
+        "sex": "male",
+        "home": "gate",
+        "usual": "east-2",
+        "note": "Spear, newcomer",
+        "look": 5,
+        "prays": false,
+        "newcomer": true,
+        "known": 0,
+        "comes": {
+          "year": 1,
+          "night": 3
+        },
+        "status": "coming",
+        "gen": 1,
+        "bornHere": false
+      },
+      "lena": {
+        "id": "lena",
+        "name": "Lena",
+        "sex": "female",
+        "home": "east",
+        "usual": "west-1",
+        "note": "Grew up under the wall",
+        "look": 6,
+        "prays": false,
+        "newcomer": false,
+        "known": 0.5,
+        "comes": {
+          "year": 1,
+          "night": 1
+        },
+        "status": "here",
+        "gen": 2,
+        "bornHere": false
+      },
+      "pell": {
+        "id": "pell",
+        "name": "Pell",
+        "sex": "male",
+        "home": "east",
+        "usual": "west-1",
+        "note": "Grew up under the wall",
+        "look": 7,
+        "prays": false,
+        "newcomer": false,
+        "known": 0.5,
+        "comes": {
+          "year": 1,
+          "night": 1
+        },
+        "status": "here",
+        "gen": 2,
+        "bornHere": false
+      },
+      "ada": {
+        "id": "ada",
+        "name": "Ada",
+        "sex": "female",
+        "home": "west",
+        "usual": "gate-2",
+        "note": "Grew up under the wall",
+        "look": 8,
+        "prays": false,
+        "newcomer": false,
+        "known": 0.5,
+        "comes": {
+          "year": 1,
+          "night": 1
+        },
+        "status": "here",
+        "gen": 2,
+        "bornHere": false
+      }
+    },
+    "order": [
+      "tamar",
+      "kian",
+      "mara",
+      "joss",
+      "yunus",
+      "ruslan",
+      "lena",
+      "pell",
+      "ada"
+    ],
+    "posts": {
+      "tamar": null,
+      "kian": "mill-2",
+      "mara": null,
+      "lena": null,
+      "pell": null,
+      "ada": null,
+      "joss": "east-1",
+      "yunus": "west-1"
+    },
+    "press": {
+      "tamar": "ask",
+      "kian": "ask",
+      "mara": "ask",
+      "lena": "ask",
+      "pell": "ask",
+      "ada": "ask",
+      "joss": "ask",
+      "yunus": "ask"
+    },
+    "postedAt": {
+      "tamar": 2460,
+      "kian": 2460,
+      "mara": 2460,
+      "lena": 1020,
+      "pell": 1020,
+      "ada": 1020,
+      "joss": 2460,
+      "yunus": 2460
+    },
+    "place": {
+      "tamar": "home",
+      "kian": "home",
+      "mara": "home",
+      "lena": "home",
+      "pell": "home",
+      "ada": "home",
+      "joss": "east-1",
+      "yunus": "west-1"
+    },
+    "commands": {},
+    "homeThreat": {
+      "west": -1000000000,
+      "gate": 1460,
+      "mill": 2941,
+      "east": -1000000000
+    },
+    "carried": {},
+    "notes": [
+      {
+        "who": "tamar",
+        "kind": "together",
+        "section": "mill",
+        "other": "kian",
+        "minute": 2620
+      },
+      {
+        "who": "kian",
+        "kind": "shaken",
+        "section": "mill",
+        "minute": 2620
+      },
+      {
+        "who": "kian",
+        "kind": "together",
+        "section": "mill",
+        "other": "tamar",
+        "minute": 2620
+      },
+      {
+        "who": "kian",
+        "kind": "slept",
+        "section": "mill",
+        "minute": 2916
+      },
+      {
+        "who": "mara",
+        "kind": "dozed",
+        "section": "gate",
+        "minute": 2940
+      },
+      {
+        "who": "mara",
+        "kind": "slept",
+        "section": "gate",
+        "minute": 2942
+      },
+      {
+        "who": "tamar",
+        "kind": "dozed",
+        "section": "gate",
+        "minute": 3001
+      },
+      {
+        "who": "tamar",
+        "kind": "slept",
+        "section": "gate",
+        "minute": 3002
+      },
+      {
+        "who": "joss",
+        "kind": "dozed",
+        "section": "east",
+        "minute": 3015
+      }
+    ],
+    "day": {
+      "night": 2,
+      "lines": [
+        {
+          "who": "kian",
+          "text": "Kian slept and ate."
+        },
+        {
+          "who": "mara",
+          "text": "Mara slept and ate."
+        },
+        {
+          "who": "tamar",
+          "text": "Tamar slept and ate."
+        },
+        {
+          "who": "joss",
+          "text": "Joss came through the gate today to stand the wall with you.",
+          "came": true
+        },
+        {
+          "who": "yunus",
+          "text": "Yunus came through the gate today to stand the wall with you.",
+          "came": true
+        }
+      ],
+      "ropeBefore": 0,
+      "ropeAfter": 0
+    },
+    "moment": null,
+    "momentLog": [],
+    "nextMomentId": 2,
+    "asks": {
+      "tamar": {
+        "sug": {
+          "voiceId": "keeper",
+          "affordanceId": "sleep",
+          "strength": 0.85,
+          "appeal": "duty",
+          "since": 3002
+        },
+        "until": 3062
+      }
+    },
+    "letGo": {
+      "mara": "gate-1",
+      "tamar": "gate-1"
+    },
+    "lantern": {
+      "x": 2,
+      "target": 2
+    },
+    "rope": {
+      "wear": 0,
+      "snapped": false
+    },
+    "grain": 20,
+    "lead": "wolf",
+    "warned": "mill",
+    "warnedAlso": null,
+    "openPosts": [
+      "west-1",
+      "west-2",
+      "gate-1",
+      "gate-2",
+      "mill-1",
+      "mill-2",
+      "east-1",
+      "east-2"
+    ],
+    "warning": "The scout found pack tracks along the mill race.",
+    "leadCame": [
+      "mill"
+    ],
+    "spawns": [],
+    "tokens": [],
+    "nextTokenId": 14,
+    "called": {
+      "west": false,
+      "gate": false,
+      "mill": true,
+      "east": false
+    },
+    "alerts": [
+      {
+        "section": "mill",
+        "kind": "motion",
+        "text": "Movement in the dark along the mill race.",
+        "slowed": true,
+        "minute": 2615
+      },
+      {
+        "section": "mill",
+        "kind": "person",
+        "who": "kian",
+        "text": "Tamar calls from the mill wall: “Kian’s gone home to bed.”",
+        "slowed": true,
+        "minute": 2916
+      },
+      {
+        "section": "mill",
+        "kind": "foot",
+        "text": "A wolf at the foot of the mill wall.",
+        "slowed": true,
+        "minute": 2939
+      },
+      {
+        "section": "mill",
+        "kind": "person",
+        "who": "mara",
+        "text": "Mara won’t come to help yet. “The cold’s in my bones. Find someone else.”",
+        "slowed": false,
+        "minute": 2940
+      },
+      {
+        "section": "mill",
+        "kind": "driven",
+        "who": "tamar",
+        "text": "Tamar drove a wolf off the mill wall.",
+        "slowed": false,
+        "minute": 2940
+      },
+      {
+        "section": "gate",
+        "kind": "person",
+        "who": "tamar",
+        "text": "Tamar calls: “I’ll take the Gate.”",
+        "slowed": false,
+        "minute": 2941
+      },
+      {
+        "section": "gate",
+        "kind": "person",
+        "who": "mara",
+        "text": "Tamar calls from the Gate: “Mara’s gone home to bed.”",
+        "slowed": true,
+        "minute": 2942
+      },
+      {
+        "section": "mill",
+        "kind": "driven",
+        "text": "Your lantern turned a wolf back at the mill wall.",
+        "slowed": false,
+        "minute": 2948
+      },
+      {
+        "section": "gate",
+        "kind": "person",
+        "who": "tamar",
+        "text": "Tamar calls: “I’m going home to sleep.”",
+        "slowed": false,
+        "minute": 3002
+      }
+    ],
+    "slowUntil": 2945,
+    "throws": [],
+    "tally": {
+      "driven": {
+        "west": {},
+        "gate": {},
+        "mill": {
+          "wolf": 6
+        },
+        "east": {}
+      },
+      "got": {
+        "west": {},
+        "gate": {},
+        "mill": {},
+        "east": {}
+      },
+      "heroes": {
+        "west": [],
+        "gate": [],
+        "mill": [
+          "kian",
+          "tamar",
+          "tamar",
+          "tamar",
+          "tamar"
+        ],
+        "east": []
+      },
+      "grainAtDusk": 20,
+      "bellRung": 0
+    },
+    "dawn": null,
+    "history": [
+      {
+        "night": 1,
+        "warned": "gate",
+        "lead": "wolf",
+        "lost": 0
+      }
+    ],
+    "nightRequests": {
+      "mara": {
+        "kind": "down",
+        "who": "mara",
+        "affordance": "sleep",
+        "afterMinute": 2941,
+        "section": "gate",
+        "until": 3001
+      }
+    },
+    "people": [
+      {
+        "id": "ada",
+        "now": 3031,
+        "activity": "sleep",
+        "needs": {
+          "safety": 0.8,
+          "belonging": 0.893,
+          "esteem": 0.582,
+          "autonomy": 0.7,
+          "competence": 0.582,
+          "leisure": 0.984,
+          "meaning": 0.554
+        },
+        "health": 1,
+        "injuries": [],
+        "capacities": {
+          "moving": 1,
+          "manipulation": 1,
+          "sight": 1
+        },
+        "fear": [],
+        "stress": 0,
+        "inBreak": null,
+        "downed": false,
+        "trustInKeeper": 0.6,
+        "ties": [
+          {
+            "otherId": "kian",
+            "affection": 0.8,
+            "trust": 0.75
+          },
+          {
+            "otherId": "lena",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "mara",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "pell",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "tamar",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "joss",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "yunus",
+            "affection": 0.15,
+            "trust": 0.6
+          }
+        ]
+      },
+      {
+        "id": "joss",
+        "now": 3031,
+        "activity": "doze:east-1",
+        "needs": {
+          "safety": 0.8,
+          "belonging": 0.586,
+          "esteem": 0.587,
+          "autonomy": 0.7,
+          "competence": 0.842,
+          "leisure": 0.6,
+          "meaning": 0.92
+        },
+        "health": 1,
+        "injuries": [],
+        "capacities": {
+          "moving": 1,
+          "manipulation": 1,
+          "sight": 1
+        },
+        "fear": [
+          {
+            "targetId": "mill",
+            "intensity": 0.114
+          }
+        ],
+        "stress": 0,
+        "inBreak": null,
+        "downed": false,
+        "trustInKeeper": 0.5031531502982597,
+        "ties": [
+          {
+            "otherId": "mara",
+            "affection": 0.8,
+            "trust": 0.85
+          },
+          {
+            "otherId": "ruslan",
+            "affection": -0.55,
+            "trust": 0.2
+          },
+          {
+            "otherId": "ada",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "kian",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "lena",
+            "affection": 0.8,
+            "trust": 0.7
+          },
+          {
+            "otherId": "pell",
+            "affection": 0.8,
+            "trust": 0.7
+          },
+          {
+            "otherId": "tamar",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "yunus",
+            "affection": 0.15,
+            "trust": 0.6
+          }
+        ]
+      },
+      {
+        "id": "kian",
+        "now": 3031,
+        "activity": "sleep",
+        "needs": {
+          "safety": 0.864,
+          "belonging": 0.979,
+          "esteem": 0.571,
+          "autonomy": 0.7,
+          "competence": 0.999,
+          "leisure": 0.726,
+          "meaning": 0.999
+        },
+        "health": 1,
+        "injuries": [],
+        "capacities": {
+          "moving": 1,
+          "manipulation": 1,
+          "sight": 1
+        },
+        "fear": [
+          {
+            "targetId": "mill",
+            "intensity": 0.167
+          }
+        ],
+        "stress": 0,
+        "inBreak": null,
+        "downed": false,
+        "trustInKeeper": 0.7520183201864422,
+        "ties": [
+          {
+            "otherId": "tamar",
+            "affection": 0.787,
+            "trust": 0.8
+          },
+          {
+            "otherId": "mara",
+            "affection": 0.3,
+            "trust": 0.55
+          },
+          {
+            "otherId": "ada",
+            "affection": 0.8,
+            "trust": 0.7
+          },
+          {
+            "otherId": "lena",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "pell",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "joss",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "yunus",
+            "affection": 0.15,
+            "trust": 0.6
+          }
+        ]
+      },
+      {
+        "id": "lena",
+        "now": 3031,
+        "activity": "sleep",
+        "needs": {
+          "safety": 0.8,
+          "belonging": 0.893,
+          "esteem": 0.582,
+          "autonomy": 0.7,
+          "competence": 0.582,
+          "leisure": 0.984,
+          "meaning": 0.554
+        },
+        "health": 1,
+        "injuries": [],
+        "capacities": {
+          "moving": 1,
+          "manipulation": 1,
+          "sight": 1
+        },
+        "fear": [],
+        "stress": 0,
+        "inBreak": null,
+        "downed": false,
+        "trustInKeeper": 0.6,
+        "ties": [
+          {
+            "otherId": "mara",
+            "affection": 0.75,
+            "trust": 0.75
+          },
+          {
+            "otherId": "joss",
+            "affection": 0.75,
+            "trust": 0.75
+          },
+          {
+            "otherId": "ada",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "kian",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "pell",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "tamar",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "yunus",
+            "affection": 0.15,
+            "trust": 0.6
+          }
+        ]
+      },
+      {
+        "id": "mara",
+        "now": 3031,
+        "activity": "sleep",
+        "needs": {
+          "safety": 0.8,
+          "belonging": 0.649,
+          "esteem": 0.571,
+          "autonomy": 0.7,
+          "competence": 0.999,
+          "leisure": 0.661,
+          "meaning": 0.999
+        },
+        "health": 1,
+        "injuries": [],
+        "capacities": {
+          "moving": 1,
+          "manipulation": 1,
+          "sight": 1
+        },
+        "fear": [
+          {
+            "targetId": "mill",
+            "intensity": 0.157
+          }
+        ],
+        "stress": 0,
+        "inBreak": null,
+        "downed": false,
+        "trustInKeeper": 0.603405203896264,
+        "ties": [
+          {
+            "otherId": "joss",
+            "affection": 0.85,
+            "trust": 0.85
+          },
+          {
+            "otherId": "kian",
+            "affection": 0.35,
+            "trust": 0.55
+          },
+          {
+            "otherId": "ada",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "lena",
+            "affection": 0.8,
+            "trust": 0.7
+          },
+          {
+            "otherId": "pell",
+            "affection": 0.8,
+            "trust": 0.7
+          },
+          {
+            "otherId": "tamar",
+            "affection": 0.158,
+            "trust": 0.6
+          },
+          {
+            "otherId": "yunus",
+            "affection": 0.15,
+            "trust": 0.6
+          }
+        ]
+      },
+      {
+        "id": "pell",
+        "now": 3031,
+        "activity": "sleep",
+        "needs": {
+          "safety": 0.8,
+          "belonging": 0.893,
+          "esteem": 0.582,
+          "autonomy": 0.7,
+          "competence": 0.582,
+          "leisure": 0.984,
+          "meaning": 0.554
+        },
+        "health": 1,
+        "injuries": [],
+        "capacities": {
+          "moving": 1,
+          "manipulation": 1,
+          "sight": 1
+        },
+        "fear": [],
+        "stress": 0,
+        "inBreak": null,
+        "downed": false,
+        "trustInKeeper": 0.6,
+        "ties": [
+          {
+            "otherId": "mara",
+            "affection": 0.75,
+            "trust": 0.75
+          },
+          {
+            "otherId": "joss",
+            "affection": 0.75,
+            "trust": 0.75
+          },
+          {
+            "otherId": "ada",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "kian",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "lena",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "tamar",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "yunus",
+            "affection": 0.15,
+            "trust": 0.6
+          }
+        ]
+      },
+      {
+        "id": "tamar",
+        "now": 3031,
+        "activity": "sleep",
+        "needs": {
+          "safety": 0.8,
+          "belonging": 0.989,
+          "esteem": 0.569,
+          "autonomy": 0.7,
+          "competence": 1,
+          "leisure": 0.715,
+          "meaning": 1
+        },
+        "health": 1,
+        "injuries": [],
+        "capacities": {
+          "moving": 1,
+          "manipulation": 1,
+          "sight": 1
+        },
+        "fear": [
+          {
+            "targetId": "mill",
+            "intensity": 0.162
+          }
+        ],
+        "stress": 0,
+        "inBreak": null,
+        "downed": false,
+        "trustInKeeper": 0.7025958064593281,
+        "ties": [
+          {
+            "otherId": "kian",
+            "affection": 0.621,
+            "trust": 0.6
+          },
+          {
+            "otherId": "yunus",
+            "affection": 0.5,
+            "trust": 0.7
+          },
+          {
+            "otherId": "ruslan",
+            "affection": -0.2,
+            "trust": 0.35
+          },
+          {
+            "otherId": "ada",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "lena",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "mara",
+            "affection": 0.158,
+            "trust": 0.6
+          },
+          {
+            "otherId": "pell",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "joss",
+            "affection": 0.15,
+            "trust": 0.6
+          }
+        ]
+      },
+      {
+        "id": "yunus",
+        "now": 3031,
+        "activity": "post:west-1",
+        "needs": {
+          "safety": 0.8,
+          "belonging": 0.657,
+          "esteem": 0.516,
+          "autonomy": 0.7,
+          "competence": 0.812,
+          "leisure": 0.6,
+          "meaning": 0.996
+        },
+        "health": 1,
+        "injuries": [],
+        "capacities": {
+          "moving": 1,
+          "manipulation": 1,
+          "sight": 1
+        },
+        "fear": [],
+        "stress": 0.027,
+        "inBreak": null,
+        "downed": false,
+        "trustInKeeper": 0.652106846176961,
+        "ties": [
+          {
+            "otherId": "tamar",
+            "affection": 0.5,
+            "trust": 0.7
+          },
+          {
+            "otherId": "ada",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "joss",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "kian",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "lena",
+            "affection": 0.15,
+            "trust": 0.6
+          },
+          {
+            "otherId": "mara",
+            "affection": 0.158,
+            "trust": 0.6
+          },
+          {
+            "otherId": "pell",
+            "affection": 0.15,
+            "trust": 0.6
+          }
+        ]
+      }
+    ],
+    "keeperImpressions": [
+      {
+        "targetId": "ada",
+        "cues": []
+      },
+      {
+        "targetId": "joss",
+        "seenAt": 2970,
+        "cues": [
+          {
+            "key": "fatigue",
+            "value": 0.2967,
+            "confidence": 0.7902,
+            "seenAt": 2970
+          },
+          {
+            "key": "fear",
+            "value": 0.0491,
+            "confidence": 0.7902,
+            "seenAt": 2970
+          },
+          {
+            "key": "fear@mill",
+            "value": 0.0574,
+            "confidence": 0.8269,
+            "seenAt": 2970
+          },
+          {
+            "key": "mood",
+            "value": 0.5181,
+            "confidence": 0.7902,
+            "seenAt": 2970
+          },
+          {
+            "key": "pain",
+            "value": 0.0057,
+            "confidence": 0.7902,
+            "seenAt": 2970
+          },
+          {
+            "key": "tie:lena",
+            "value": 0.8,
+            "confidence": 0.3993,
+            "seenAt": 2460
+          },
+          {
+            "key": "tie:mara",
+            "value": 0.8,
+            "confidence": 0.3993,
+            "seenAt": 2460
+          },
+          {
+            "key": "tie:pell",
+            "value": 0.8,
+            "confidence": 0.3993,
+            "seenAt": 2460
+          },
+          {
+            "key": "trait:agreeableness",
+            "value": 0.2139,
+            "confidence": 0.5,
+            "seenAt": 2460
+          },
+          {
+            "key": "trait:conscientiousness",
+            "value": 0.6179,
+            "confidence": 0.5,
+            "seenAt": 2460
+          },
+          {
+            "key": "trait:emotionality",
+            "value": 0.4287,
+            "confidence": 0.5,
+            "seenAt": 2460
+          },
+          {
+            "key": "trait:extraversion",
+            "value": 0.473,
+            "confidence": 0.5,
+            "seenAt": 2460
+          },
+          {
+            "key": "trait:honesty",
+            "value": 0.6277,
+            "confidence": 0.5,
+            "seenAt": 2460
+          },
+          {
+            "key": "trait:openness",
+            "value": 0.3342,
+            "confidence": 0.5,
+            "seenAt": 2460
+          },
+          {
+            "key": "trust:keeper",
+            "value": 0.9853,
+            "confidence": 0.6092,
+            "seenAt": 2955
+          }
+        ]
+      },
+      {
+        "targetId": "kian",
+        "seenAt": 2916,
+        "cues": [
+          {
+            "key": "fatigue",
+            "value": 0.2977,
+            "confidence": 0.7524,
+            "seenAt": 2850
+          },
+          {
+            "key": "fear",
+            "value": 0.1119,
+            "confidence": 0.7524,
+            "seenAt": 2850
+          },
+          {
+            "key": "fear@gate",
+            "value": 0.151,
+            "confidence": 0.8773,
+            "seenAt": 1800
+          },
+          {
+            "key": "fear@mill",
+            "value": 0.1273,
+            "confidence": 0.7815,
+            "seenAt": 2850
+          },
+          {
+            "key": "mood",
+            "value": 0.2847,
+            "confidence": 0.7524,
+            "seenAt": 2850
+          },
+          {
+            "key": "pain",
+            "value": 0.0088,
+            "confidence": 0.7524,
+            "seenAt": 2850
+          },
+          {
+            "key": "skill:sling",
+            "value": 0,
+            "confidence": 0.1174,
+            "seenAt": 1471
+          },
+          {
+            "key": "tie:tamar",
+            "value": 0.6,
+            "confidence": 0.2488,
+            "seenAt": 1800
+          },
+          {
+            "key": "trait:agreeableness",
+            "value": 0.598,
+            "confidence": 0.4783,
+            "seenAt": 2916
+          },
+          {
+            "key": "trait:conscientiousness",
+            "value": 0.5115,
+            "confidence": 0.5714,
+            "seenAt": 1292
+          },
+          {
+            "key": "trait:emotionality",
+            "value": 0.5233,
+            "confidence": 0.5714,
+            "seenAt": 1292
+          },
+          {
+            "key": "trait:extraversion",
+            "value": 0.6723,
+            "confidence": 0.4444,
+            "seenAt": 1020
+          },
+          {
+            "key": "trait:honesty",
+            "value": 0.5889,
+            "confidence": 0.4444,
+            "seenAt": 1020
+          },
+          {
+            "key": "trait:openness",
+            "value": 0.731,
+            "confidence": 0.4444,
+            "seenAt": 1020
+          },
+          {
+            "key": "trust:keeper",
+            "value": 0.9679,
+            "confidence": 0.7945,
+            "seenAt": 2897
+          }
+        ]
+      },
+      {
+        "targetId": "lena",
+        "cues": []
+      },
+      {
+        "targetId": "mara",
+        "seenAt": 2942,
+        "cues": [
+          {
+            "key": "fatigue",
+            "value": 0.319,
+            "confidence": 0.7851,
+            "seenAt": 2920
+          },
+          {
+            "key": "fear",
+            "value": 0.04,
+            "confidence": 0.7851,
+            "seenAt": 2920
+          },
+          {
+            "key": "fear@gate",
+            "value": 0.0702,
+            "confidence": 0.7766,
+            "seenAt": 1750
+          },
+          {
+            "key": "fear@mill",
+            "value": 0.0503,
+            "confidence": 0.7818,
+            "seenAt": 2920
+          },
+          {
+            "key": "mood",
+            "value": 0.7151,
+            "confidence": 0.7851,
+            "seenAt": 2920
+          },
+          {
+            "key": "pain",
+            "value": 0.0049,
+            "confidence": 0.7851,
+            "seenAt": 2920
+          },
+          {
+            "key": "tie:joss",
+            "value": 0.85,
+            "confidence": 0.3974,
+            "seenAt": 1020
+          },
+          {
+            "key": "tie:lena",
+            "value": 0.8,
+            "confidence": 0.3974,
+            "seenAt": 1020
+          },
+          {
+            "key": "tie:pell",
+            "value": 0.8,
+            "confidence": 0.3974,
+            "seenAt": 1020
+          },
+          {
+            "key": "trait:agreeableness",
+            "value": 0.7172,
+            "confidence": 0.5276,
+            "seenAt": 2942
+          },
+          {
+            "key": "trait:conscientiousness",
+            "value": 0.6117,
+            "confidence": 0.5,
+            "seenAt": 1020
+          },
+          {
+            "key": "trait:emotionality",
+            "value": 0.7154,
+            "confidence": 0.5,
+            "seenAt": 1020
+          },
+          {
+            "key": "trait:extraversion",
+            "value": 0.455,
+            "confidence": 0.5,
+            "seenAt": 1020
+          },
+          {
+            "key": "trait:honesty",
+            "value": 0.6484,
+            "confidence": 0.5,
+            "seenAt": 1020
+          },
+          {
+            "key": "trait:openness",
+            "value": 0.4341,
+            "confidence": 0.5,
+            "seenAt": 1020
+          },
+          {
+            "key": "trust:keeper",
+            "value": 0.9543,
+            "confidence": 0.7733,
+            "seenAt": 2910
+          }
+        ]
+      },
+      {
+        "targetId": "pell",
+        "cues": []
+      },
+      {
+        "targetId": "tamar",
+        "seenAt": 3002,
+        "cues": [
+          {
+            "key": "fatigue",
+            "value": 0.3343,
+            "confidence": 0.7818,
+            "seenAt": 2940
+          },
+          {
+            "key": "fear",
+            "value": 0.044,
+            "confidence": 0.7818,
+            "seenAt": 2940
+          },
+          {
+            "key": "fear@gate",
+            "value": 0.0415,
+            "confidence": 0.8777,
+            "seenAt": 1770
+          },
+          {
+            "key": "fear@mill",
+            "value": 0.048,
+            "confidence": 0.8268,
+            "seenAt": 2941
+          },
+          {
+            "key": "mood",
+            "value": 0.3673,
+            "confidence": 0.7818,
+            "seenAt": 2940
+          },
+          {
+            "key": "pain",
+            "value": 0.0059,
+            "confidence": 0.7818,
+            "seenAt": 2940
+          },
+          {
+            "key": "skill:sling",
+            "value": 0.2499,
+            "confidence": 0.4824,
+            "seenAt": 2940
+          },
+          {
+            "key": "tie:kian",
+            "value": 0.6,
+            "confidence": 0.2488,
+            "seenAt": 1800
+          },
+          {
+            "key": "trait:agreeableness",
+            "value": 0.4916,
+            "confidence": 0.5683,
+            "seenAt": 3002
+          },
+          {
+            "key": "trait:conscientiousness",
+            "value": 0.7994,
+            "confidence": 0.6178,
+            "seenAt": 2941
+          },
+          {
+            "key": "trait:emotionality",
+            "value": 0.1838,
+            "confidence": 0.6178,
+            "seenAt": 2941
+          },
+          {
+            "key": "trait:extraversion",
+            "value": 0.3507,
+            "confidence": 0.5455,
+            "seenAt": 1020
+          },
+          {
+            "key": "trait:honesty",
+            "value": 0.5513,
+            "confidence": 0.5455,
+            "seenAt": 1020
+          },
+          {
+            "key": "trait:openness",
+            "value": 0.4043,
+            "confidence": 0.5455,
+            "seenAt": 1020
+          },
+          {
+            "key": "trust:keeper",
+            "value": 0.9819,
+            "confidence": 0.8177,
+            "seenAt": 2910
+          }
+        ]
+      },
+      {
+        "targetId": "yunus",
+        "seenAt": 2990,
+        "cues": [
+          {
+            "key": "fatigue",
+            "value": 0.3341,
+            "confidence": 0.6657,
+            "seenAt": 2990
+          },
+          {
+            "key": "fear",
+            "value": 0.004,
+            "confidence": 0.6657,
+            "seenAt": 2990
+          },
+          {
+            "key": "mood",
+            "value": -0.0605,
+            "confidence": 0.6657,
+            "seenAt": 2990
+          },
+          {
+            "key": "pain",
+            "value": 0.0077,
+            "confidence": 0.6657,
+            "seenAt": 2990
+          },
+          {
+            "key": "trait:agreeableness",
+            "value": 0.7491,
+            "confidence": 0.5455,
+            "seenAt": 2460
+          },
+          {
+            "key": "trait:conscientiousness",
+            "value": 0.7293,
+            "confidence": 0.5455,
+            "seenAt": 2460
+          },
+          {
+            "key": "trait:emotionality",
+            "value": 0.2046,
+            "confidence": 0.5455,
+            "seenAt": 2460
+          },
+          {
+            "key": "trait:extraversion",
+            "value": 0.3506,
+            "confidence": 0.5455,
+            "seenAt": 2460
+          },
+          {
+            "key": "trait:honesty",
+            "value": 0.8269,
+            "confidence": 0.5455,
+            "seenAt": 2460
+          },
+          {
+            "key": "trait:openness",
+            "value": 0.5103,
+            "confidence": 0.5455,
+            "seenAt": 2460
+          },
+          {
+            "key": "trust:keeper",
+            "value": 0.9616,
+            "confidence": 0.5703,
+            "seenAt": 2985
+          }
+        ]
+      }
+    ],
+    "ruleHash": "3c84c1c3",
+    "fullHash": "6eb3f19c"
+  }
+}

@@ -23,11 +23,14 @@
  *   start                     "Go up to the wall" (goal page)
  *   speed <slow|watch|fast|days|seasons>
  *   wait <seconds> / wait! <seconds>
- *   select <name>             dusk: tap a watcher (shows how you read them, by press)
+ *   select <name>             tap a watcher: dusk reads; night account and requests
  *   press <ask|urge|insist>   dusk: how hard you press the selected watcher
  *   post <name> <west|gate|mill|east|off> [ask|urge|insist]   dusk: post a watcher (as tapping a stretch)
  *   lantern <west|gate|mill|east>   dusk: where the lantern starts; night: walk it there
  *   begin                     dusk: "Begin the watch"
+ *   relieve <tired> <by>      night: ask an awake watcher to relieve someone tired
+ *   help <hurt> <by>          night: ask an awake watcher to help someone hurt
+ *   down <name>              night: ask them down to rest or to the hall
  *   bell                      night: ring the bell
  *   answer <n>                night: answer the open card with option n; "letbe" says nothing
  *   talk <name> <n>           dawn: raise topic n with someone
@@ -218,10 +221,12 @@ export class Harness {
   }
 
   exec(line: string): void {
+    const previousMoment = this.run.state.moment?.id;
     this.command(line);
-    // As the page: leaving dusk drops the selection.
+    if (this.run.state.moment && this.run.state.moment.id !== previousMoment) this.ui.selected = null;
+    // As the page: night accounts keep selection; reading pages drop it.
     const phase = this.run.state.phase;
-    if (phase !== 'dusk' && phase !== 'goal') {
+    if (!['dusk', 'night', 'goal'].includes(phase)) {
       this.ui.selected = null;
       this.ui.press = null;
     }
@@ -235,9 +240,6 @@ export class Harness {
     switch (cmd.toLowerCase()) {
       case '':
       case 'show':
-        return;
-      case 'help':
-        this.say(HELP);
         return;
       case 'quiet':
         return;
@@ -303,6 +305,23 @@ export class Harness {
       case 'begin':
         this.input({ k: 'begin' });
         return;
+      case 'relieve':
+      case 'help':
+      case 'down': {
+        if (cmd.toLowerCase() === 'help' && a.length === 0) {
+          this.say(HELP);
+          return;
+        }
+        const who = this.who(a[0]);
+        const by = cmd.toLowerCase() === 'down' ? null : this.who(a[1]);
+        const act = f.watchers
+          .find((w) => w.id === who)
+          ?.acts.find((x) => x.input.k === cmd.toLowerCase() && (x.input.k === 'down' || x.input.by === by));
+        if (!act) this.say('(that request is not offered now; select the watcher to hear their account)');
+        else if (!act.available) this.say(act.read);
+        else this.input(act.input);
+        return;
+      }
       case 'bell':
         this.input({ k: 'bell' });
         return;
@@ -447,9 +466,10 @@ export class Harness {
           const at = freePost(f, s.id, sel.id);
           const here = sel.posted !== null && postSection(sel.posted) === s.id;
           return `${here ? '*' : ''}${s.name}${s.id === f.warned ? ' · tracks' : ''}${at ? '' : ' (full)'}`;
-        }).join(' | ')} | Off the wall`,
+        }).join(' | ')} | Choose own post (post <name> off)`,
       );
     }
+    L.push('Choose own post does not give the night off. At night, ask them to go down to rest.');
     L.push('Roster:');
     for (const w of f.watchers) {
       L.push(`  ${this.ui.selected === w.id ? '>' : '-'} ${w.name} — ${w.note}`);
@@ -465,6 +485,19 @@ export class Harness {
 
   private nightPanel(f: Frame): string[] {
     const L: string[] = [];
+    const selected = f.watchers.find((w) => w.id === this.ui.selected);
+    if (selected?.account) {
+      L.push(`${selected.name}: ${selected.account.text}`);
+      for (const act of selected.acts) {
+        const input = act.input;
+        const by = input.k === 'down' ? '' : ` ${f.watchers.find((w) => w.id === input.by)?.name ?? ''}`;
+        L.push(
+          `  ${act.available ? '' : '(unavailable) '}${act.label} — ${act.read} (${act.input.k} ${selected.name}${by})`,
+        );
+      }
+      L.push('The watch continues while you listen. Each request is theirs to answer.');
+    }
+    L.push(`Hear a watcher: ${f.watchers.map((w) => `select ${w.name}`).join(' | ')}`);
     const m = f.moment;
     if (m && m.id !== this.ui.letBe) {
       L.push('*** A moment on the wall ***', m.text);
@@ -484,7 +517,7 @@ export class Harness {
     const off = f.watchers.filter((w) => w.post === null);
     L.push(
       off.length > 0
-        ? `Off the wall: ${off.map((w) => `${w.name} (${W.awayWords(w.place, f.phase)})`).join(', ')}. Posts are set at dusk. Tonight you have the lantern, the bell, and what comes to you.`
+        ? `Off the wall: ${off.map((w) => `${w.name} (${W.awayWords(w.place, f.phase)})`).join(', ')}. Posts are planned at dusk. Select a watcher to ask for relief or help within your voice.`
         : 'Everyone is on the wall.',
     );
     L.push(
@@ -563,7 +596,7 @@ function whereWords(f: Frame, w: Frame['watchers'][number]): string {
   const posted = w.posted
     ? `${name(postSection(w.posted))}, ${W.PRESS_WORDS[w.press].done}`
     : f.phase === 'dusk'
-      ? 'not posted · will find a spot on the wall'
+      ? 'no assigned post · may choose an open post'
       : 'not posted';
   if (!w.posted && f.phase === 'dusk' && !w.post) return posted;
   const stands = w.post ? `on the ${name(postSection(w.post))}` : W.awayWords(w.place, f.phase);
@@ -873,7 +906,7 @@ function menu(f: Frame): string[] {
 // ---- command line ----
 
 const COMMAND_WORDS = new Set(
-  'new show help quiet start speed wait wait! select press post lantern begin bell answer letbe talk dusk card people take leave continue chronicle export'.split(
+  'new show help quiet start speed wait wait! select press post lantern begin relieve help down bell answer letbe talk dusk card people take leave continue chronicle export'.split(
     ' ',
   ),
 );

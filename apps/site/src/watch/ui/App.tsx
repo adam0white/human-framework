@@ -419,7 +419,7 @@ function whereWords(w: FrameWatcher, phase: Frame['phase']): string {
   const posted = w.posted
     ? `${sectionName(postSection(w.posted))}, ${PRESS_WORDS[w.press].done}`
     : phase === 'dusk'
-      ? 'not posted · will find a spot on the wall'
+      ? 'no assigned post · may choose an open post'
       : 'not posted';
   if (!w.posted && phase === 'dusk' && !w.post) return posted;
   const stands = w.post ? `on the ${sectionName(postSection(w.post))}` : awayWords(w.place, phase);
@@ -644,8 +644,11 @@ export function DuskPanel({
               );
             })}
             <button type="button" className="w-place w-place-off" onClick={() => post(sel.id, null)}>
-              Off the wall
+              Choose own post
             </button>
+            <p className="w-note w-own-post-note">
+              This does not give the night off. At night, ask them to go down to rest.
+            </p>
           </div>
         ) : (
           <>
@@ -742,6 +745,24 @@ export function NightPanel({
             </button>
             <p className="w-voice-who">{who.account.spoken ? who.name : 'What the Keeper can tell'}</p>
             {who.account.spoken ? <blockquote>{who.account.text}</blockquote> : <p>{who.account.text}</p>}
+            {who.acts.length ? (
+              <ul className="w-night-acts" aria-label={`Ask about ${who.name}`}>
+                {who.acts.map((act) => (
+                  <li key={JSON.stringify(act.input)}>
+                    <button
+                      type="button"
+                      className="w-night-act"
+                      disabled={!act.available}
+                      onClick={() => actions.input(act.input)}
+                    >
+                      <span>{act.label}</span>
+                      <span className="w-night-act-read">{act.read}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            <p className="w-note">The watch continues while you listen. Each request is theirs to answer.</p>
             {frame.moment ? <p className="w-note">A watcher’s decision is still waiting.</p> : null}
           </section>
         ) : null}
@@ -771,7 +792,7 @@ export function NightPanel({
           </p>
           {off.length ? (
             <p className="w-note">
-              Posts are set at dusk. Tonight you have the lantern, the bell, and what comes to you.
+              Posts are planned at dusk. Tap a watcher to ask for relief or help within your voice.
             </p>
           ) : null}
           <Sacks

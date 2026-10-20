@@ -14,7 +14,7 @@
  * as words and drawn values, never numbers.
  */
 
-import { outwardSigns, type Person } from '@adam0white/human-framework';
+import { outwardSigns, type Person, selfReport } from '@adam0white/human-framework';
 import {
   DAY,
   MOTION_REACH,
@@ -31,6 +31,7 @@ import {
 import { ageOf, dayOfYear, householdCount, living, seasonOfDay } from './life.ts';
 import { type Moment, readPosting, readWords } from './moments.ts';
 import { bellCarry, bellSwinging, inVoice, litSection, nightEnd, presentIds, theSection } from './night.ts';
+import { type NightAct, nightActs } from './night-actions.ts';
 import {
   familyWords,
   isHere,
@@ -275,6 +276,7 @@ export interface FrameWatcher {
   target: number | null;
   /** A read-only night account. Only `spoken` accounts are the watcher's own words within voice reach. */
   account: { text: string; spoken: boolean } | null;
+  acts: NightAct[];
 }
 
 const POSTURE: Record<string, Posture> = {
@@ -321,7 +323,23 @@ function nightAccount(
       text: onLit ? 'They appear asleep. No reply comes.' : 'No reply comes from the dark.',
       spoken: false,
     };
-  const doing = ACCOUNT_ACTION[p.activity?.action ?? ''] ?? 'I’m here.';
+  const told = selfReport(p);
+  const bitten = s.notes.some((n) => n.who === p.id && n.kind === 'bitten');
+  const condition = bitten
+    ? told.pain < 0.2
+      ? 'It’s a scratch.'
+      : section !== null &&
+          s.tokens.some((t) => t.kind === 'wolf' && t.state === 'foot' && t.section === section)
+        ? 'It’s got my leg!'
+        : 'It bit my leg.'
+    : told.pain > 0.2
+      ? 'My leg hurts.'
+      : told.fatigue > 0.4
+        ? 'I can hardly keep my eyes open.'
+        : '';
+  const doing = [condition, ACCOUNT_ACTION[p.activity?.action ?? ''] ?? 'I’m here.']
+    .filter(Boolean)
+    .join(' ');
   if (section === null) return { text: doing, spoken: true };
   const danger = sectionDanger(s, section);
   const seeing =
@@ -503,6 +521,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
       throwing: th ? (th.hit ? ('hit' as const) : ('miss' as const)) : null,
       target: th ? th.token : null,
       account: nightAccount(s, p, section, onLit),
+      acts: nightActs(s, w.id),
     });
   }
   const nightLen = nightEnd(s) - s.nightStart;

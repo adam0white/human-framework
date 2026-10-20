@@ -539,6 +539,9 @@ function occupied(s: WatchState, post: PostId, except: string): boolean {
     if (s.place[p.id] !== post || !isHere(s, p)) continue;
     // At dusk someone standing here but posted elsewhere is about to walk over, so two watchers posted onto each
     // other's stretches swap instead of each waiting for the other to leave.
+    const request = s.nightRequests?.[except];
+    if (request && request.until > s.minute && request.who === p.id && request.affordance === `post:${post}`)
+      continue;
     const posted = s.posts[p.id];
     if (s.phase === 'dusk' && posted && posted !== post) continue;
     return true;

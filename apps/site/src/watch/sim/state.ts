@@ -431,6 +431,8 @@ export interface WatchState {
   nextMomentId: number;
   /** One-shot asks from cards (urge, send, carry), heard alongside the posting until a minute. */
   asks: Partial<Record<WatcherId, { sug: Suggestion; until: number }>>;
+  /** Present only after an in-person scenario-11 night ask. */
+  nightRequests?: Partial<Record<WatcherId, import('./night-actions.ts').NightRequest>>;
   /** Postings set aside tonight by "let go", restored at the next dusk. */
   letGo: Partial<Record<WatcherId, PostId>>;
   /** The Keeper's position along the wall as a section index; lit only when standing at `target`. */

@@ -197,6 +197,23 @@ export class WatchAdapter implements GameAdapter {
         break;
       }
       case 'night': {
+        for (const w of f.watchers) {
+          for (const act of w.acts) {
+            if (!act.available) continue;
+            const input = act.input;
+            const by =
+              input.k === 'down'
+                ? ''
+                : ` ${f.watchers.find((candidate) => candidate.id === input.by)?.name ?? ''}`;
+            out.push({
+              id: `${act.input.k} ${w.name}${by}`,
+              label: `${act.label} (${act.read})`,
+              kind: act.input.k,
+              promise: promiseOf(act.read) * (act.input.k === 'help' ? 1 : 0.85),
+              focus: 0.04,
+            });
+          }
+        }
         const m = f.moment;
         if (m)
           m.options.forEach((o, i) => {

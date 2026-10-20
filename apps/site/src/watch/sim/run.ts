@@ -114,6 +114,7 @@ export function ruleState(s: WatchState, people = summarise(s)): unknown {
     gateKeeper: s.gateKeeper,
     heir: s.heir,
     gateWilling: s.gateWilling,
+    ...(s.nightRequests ? { nightRequests: s.nightRequests } : {}),
     ...(s.proposalHolds ? { proposalHolds: s.proposalHolds } : {}),
     pairings: s.pairings.map((p) => [p.who, p.with, p.until]),
     expecting: s.expecting,
@@ -191,9 +192,10 @@ export function endState(s: WatchState): EndState {
  * Bump when rules change so an old export is not replayed against new rules. 8: the bell rings from the Gate for
  * everyone in range, and world draws have their own streams (2026-10-05). 9: old age kills (natural death at
  * `MORTALITY_MULTIPLIER` times HF's hazard) and households of the old no longer leave (2026-10-07).
+ * 11: in-person relief, help and rest asks at night.
  * 10: each pair waits one year after a proposal; legacy pages without proposalHolds retain the old rules.
  */
-export const WATCH_SCENARIO_VERSION = 10;
+export const WATCH_SCENARIO_VERSION = 11;
 
 /** The oldest scenario whose saved pages still load (`migrateSnapshot`). */
 export const OLDEST_LOADABLE_SCENARIO = 7;
@@ -340,7 +342,7 @@ export class WatchRun {
 export function replay(
   exp: Pick<PlaytestExport, 'scenario' | 'seed' | 'inputs' | 'endMinute' | 'origin'>,
 ): WatchState {
-  if (exp.scenario !== WATCH_SCENARIO_VERSION && exp.scenario !== 9)
+  if (exp.scenario !== WATCH_SCENARIO_VERSION && exp.scenario !== 10 && exp.scenario !== 9)
     throw new Error(`export is scenario ${exp.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
   if (exp.origin)
     throw new Error(
@@ -352,6 +354,8 @@ export function replay(
   let idx = 0;
   for (let guard = 0; guard < 10_000_000; guard++) {
     for (let e = exp.inputs[idx]; e !== undefined && e.m === s.minute; e = exp.inputs[idx]) {
+      if (exp.scenario < 11 && ['relieve', 'help', 'down'].includes(e.i.k))
+        throw new Error(`input ${idx} (${e.i.k}) is not in scenario ${exp.scenario}'s vocabulary`);
       if (!applyInput(s, e.i)) throw new Error(`input ${idx} (${e.i.k}) did not apply at minute ${e.m}`);
       idx += 1;
     }

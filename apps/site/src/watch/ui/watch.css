@@ -1891,3 +1891,34 @@ body:has(> .hflab-veil) .watch .w-menu {
     display: none;
   }
 }
+
+/* Night requests remain in the running account; labels and reads wrap on phones. */
+.w-night-acts {
+  list-style: none;
+  margin: 12px 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.w-night-act {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  white-space: normal;
+  padding: 10px;
+  border: 1px solid var(--w-line);
+  border-radius: 4px;
+  background: transparent;
+}
+.watch .w-night .w-night-act > span {
+  display: block;
+}
+.w-night-act-read {
+  margin-top: 4px;
+  font-size: 0.88em;
+}
+.w-own-post-note {
+  grid-column: 1 / -1;
+  margin: 4px 0;
+}

@@ -349,7 +349,7 @@ function sectionGap(a: SectionId, b: SectionId): number {
   return order.indexOf(a) - order.indexOf(b);
 }
 
-function ask(s: WatchState, who: WatcherId, affordanceId: string): void {
+export function ask(s: WatchState, who: WatcherId, affordanceId: string): void {
   s.asks[who] = {
     sug: { voiceId: KEEPER_ID, affordanceId, strength: 0.85, appeal: 'duty', since: s.minute },
     until: s.minute + ASK_MIN,
