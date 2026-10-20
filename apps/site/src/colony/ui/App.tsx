@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { gameLabs, LabMenuContent, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
-import type { MomentRecord } from '../sim/game.ts';
+import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { inferAction, type OrderInput } from '../sim/orders.ts';
 import type { VillagerId } from '../sim/world-types.ts';
@@ -87,6 +87,16 @@ export function App() {
   const [drawer, setDrawer] = useState(false);
   const [ordering, setOrdering] = useState(true);
   const [watching, setWatching] = useState<VillagerId | null>(null);
+  const [watchingPlace, setWatchingPlace] = useState<PlaceId | null>(null);
+  const [followKey, setFollowKey] = useState(0);
+  const [holdKey, setHoldKey] = useState(0);
+  // News changes camera focus only. The prepared order and prior worker stay intact.
+  const [newsFollow, setNewsFollow] = useState<{
+    personId: VillagerId;
+    side: 'classic' | 'human';
+    returnSide: 'classic' | 'human';
+  } | null>(null);
+  const [returnedFollow, setReturnedFollow] = useState(false);
   /** Phones show one village at a time. Switching keeps the prepared order. */
   const [mapSide, setMapSide] = useState<'classic' | 'human'>('human');
   const flashTimer = useRef(0);
@@ -131,6 +141,8 @@ export function App() {
     setHoverPlace(null);
     setComposer(EMPTY_COMPOSER);
     setWatching(null);
+    setNewsFollow(null);
+    setReturnedFollow(false);
     setOrdering(true);
     setDrawer(false);
     setEndOpen(true);
@@ -183,12 +195,16 @@ export function App() {
   const pickWho = useCallback((id: VillagerId) => {
     setOrdering(true);
     setWatching(null);
+    setNewsFollow(null);
+    setReturnedFollow(false);
     // Keep the chosen place while trying another worker; suggestion reasons belong to the old worker.
     setComposer((c) => (({ nudgeId: _n, reason: _r, ...rest }) => ({ ...rest, personId: id }))(c));
   }, []);
 
   const pickWhere = useCallback(
     (placeId: PlaceId) => {
+      setNewsFollow(null);
+      setReturnedFollow(false);
       if (watching) setOrdering(true);
       setComposer((c) =>
         c.personId ? { ...c, placeId } : watching ? { ...EMPTY_COMPOSER, personId: watching, placeId } : c,
@@ -205,7 +221,11 @@ export function App() {
     if (!input) return;
     actions.order(input, c.nudgeId);
     showFlash(`Order given: ${shortName(input.personId)} → ${PLACE_LABEL[input.placeId]}`);
+    setNewsFollow(null);
+    setReturnedFollow(false);
     setWatching(input.personId);
+    setWatchingPlace(input.placeId);
+    setFollowKey((key) => key + 1);
     setOrdering(false);
     setComposer(EMPTY_COMPOSER);
     setHoverPlace(null);
@@ -215,6 +235,8 @@ export function App() {
   const applyNudge = (n: Nudge) => {
     setOrdering(true);
     setWatching(null);
+    setNewsFollow(null);
+    setReturnedFollow(false);
     setComposer({
       ...EMPTY_COMPOSER,
       personId: n.order.personId,
@@ -310,6 +332,8 @@ export function App() {
     setHoverPlace(null);
     setComposer(EMPTY_COMPOSER);
     setWatching(null);
+    setNewsFollow(null);
+    setReturnedFollow(false);
     setOrdering(true);
     setDrawer(false);
     setEndOpen(true);
@@ -331,11 +355,33 @@ export function App() {
   // Keep the screen awake only while the clock runs.
   useWakeLock(frame !== null && !playback.paused && !frame.ended);
 
+  const showNewsPerson = (news: HurtNews) => {
+    setNewsFollow((previous) => ({
+      personId: news.personId,
+      side: news.side,
+      returnSide: previous?.returnSide ?? mapSide,
+    }));
+    setMapSide(news.side);
+    setReturnedFollow(false);
+    setFollowKey((key) => key + 1);
+  };
+  const returnFromNews = () => {
+    if (!newsFollow) return;
+    setMapSide(newsFollow.returnSide);
+    setNewsFollow(null);
+    setReturnedFollow(true);
+    setFollowKey((key) => key + 1);
+  };
+  const returnWorker = composer.personId ?? watching;
+
   const paneProps = {
     store: colony.store,
-    selectedId: composer.personId ?? watching,
+    selectedId: newsFollow?.personId ?? composer.personId ?? watching,
     hoverPlace: highlightPlace,
-    destination: composer.placeId,
+    destination: newsFollow ? null : ordering ? composer.placeId : watchingPlace,
+    following: newsFollow !== null || returnedFollow || (!ordering && watching !== null),
+    followKey,
+    holdKey,
     onSelect: pickWho,
     onPlace: pickWhere,
     onHoverPlace: setHoverPlace,
@@ -399,7 +445,18 @@ export function App() {
         </section>
 
         <aside className="center">
-          {watching && !ordering && (
+          {newsFollow && (
+            <div className="news-follow" role="status">
+              <span>
+                Watching {shortName(newsFollow.personId)} ·{' '}
+                {newsFollow.side === 'human' ? 'Human' : 'Classic'}
+              </span>
+              <button type="button" className="news-return" onClick={returnFromNews}>
+                {returnWorker ? `Back to ${shortName(returnWorker)}` : 'Back to village'}
+              </button>
+            </div>
+          )}
+          {!newsFollow && watching && !ordering && (
             <p className="watching-worker" role="status">
               Watching {shortName(watching)} ·{' '}
               {(mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === watching)?.label ??
@@ -415,7 +472,7 @@ export function App() {
               />
             )}
             {moment && <MomentBanner moment={moment} />}
-            <HurtLine news={frame?.news ?? []} />
+            <HurtLine news={frame?.news ?? []} onShow={showNewsPerson} />
             <OrderReply cards={cards} />
           </div>
           <div className="composer-tray">
@@ -437,6 +494,13 @@ export function App() {
               onHover={setHoverPlace}
               onConfirm={confirm}
               onInspect={inspectPersonCb}
+              onWatch={() => setOrdering(false)}
+              onCompose={() => {
+                setNewsFollow(null);
+                setReturnedFollow(false);
+                setOrdering(true);
+                setHoldKey((key) => key + 1);
+              }}
             />
           </div>
           <section className={`queue ${drawer ? 'is-open' : ''}`} aria-label="Order log">
@@ -482,6 +546,11 @@ export function App() {
                   active={composer.nudgeId === nudge.id}
                   onUse={applyNudge}
                   onSkip={skipNudge}
+                  onKeepWatching={() => {
+                    // A manual pause resumes into decision slowdown; the second resume acknowledges it.
+                    actions.setPaused(false);
+                    if (playback.paused) actions.setPaused(false);
+                  }}
                 />
               </details>
             )}

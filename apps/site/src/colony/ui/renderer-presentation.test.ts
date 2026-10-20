@@ -58,6 +58,18 @@ const input: SceneInput = {
 };
 
 describe('Well map presentation', () => {
+  it('returns the exact name rectangle drawn for pointer selection', () => {
+    const { ctx, calls } = canvasRecorder();
+    const labels = drawScene(ctx, input);
+    expect(labels).toEqual([expect.objectContaining({ id: 'yusuf' })]);
+    const label = labels?.[0];
+    const text = calls.find((c) => c.method === 'fillText' && c.args[0] === 'Yusuf');
+    expect(label).toBeDefined();
+    expect(text?.args[1]).toBe((label?.x ?? 0) + (label?.w ?? 0) / 2);
+    expect(text?.args[2]).toBeGreaterThan(label?.y ?? 0);
+    expect(text?.args[2]).toBeLessThan((label?.y ?? 0) + (label?.h ?? 0));
+  });
+
   it('keeps names and primary place text at least 14 CSS pixels in both cameras', () => {
     for (const scale of [1, 425 / 360, 640 / 360]) {
       expect(mapTypeSize(scale) / scale).toBeCloseTo(14, 10);

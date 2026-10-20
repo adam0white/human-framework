@@ -5,7 +5,15 @@ import type { BubbleManager, ShownBubble } from './bubbles.ts';
 import type { Frame } from './contract.ts';
 import { type MapPoint, type MapView, mapPoint, mapView } from './map-view.ts';
 import { shortName } from './parts.tsx';
-import { type DrawPerson, drawScene, headAnchor, LOGICAL_H, LOGICAL_W, type Side } from './renderer.ts';
+import {
+  type DrawPerson,
+  drawScene,
+  headAnchor,
+  LOGICAL_H,
+  LOGICAL_W,
+  type PersonLabel,
+  type Side,
+} from './renderer.ts';
 import type { FrameStore } from './useColony.ts';
 
 export interface PaneProps {
@@ -13,8 +21,14 @@ export interface PaneProps {
   store: RefObject<FrameStore>;
   selectedId: VillagerId | null;
   hoverPlace: PlaceId | null;
-  /** Committed destination. Hover may highlight a place but must never move it before a click. */
+  /** Prepared destination while composing; confirmed destination while watching. Hover never moves the camera. */
   destination: PlaceId | null;
+  /** Track only after confirmation or an explicit Follow. Composition preserves the displayed camera. */
+  following?: boolean;
+  /** Increment to discard a manual pan and frame a confirmed order. */
+  followKey?: number;
+  /** Increment whenever a picker opens to hold the displayed camera, including after local Follow. */
+  holdKey?: number;
   onSelect(id: VillagerId): void;
   onPlace(place: PlaceId): void;
   onHoverPlace(place: PlaceId | null): void;
@@ -66,20 +80,16 @@ function hitRadius(e: React.PointerEvent): number {
   return w > 0 ? Math.max(18, (22 * LOGICAL_W) / w) : 18;
 }
 
-function hitPerson(people: DrawPerson[], lx: number, ly: number, radius = 18): VillagerId | null {
-  let best: VillagerId | null = null;
-  let bestD = radius * radius;
+function hitPeople(people: DrawPerson[], lx: number, ly: number, radius = 18): VillagerId[] {
+  const hits: VillagerId[] = [];
   for (const p of people) {
     if (p.state === 'asleep' || p.carriedBy) continue;
     const px = (p.x + 0.5) * 32;
     const py = (p.y + 0.5) * 32 - 6;
     const d = (px - lx) ** 2 + (py - ly) ** 2;
-    if (d < bestD) {
-      bestD = d;
-      best = p.id;
-    }
+    if (d <= radius * radius) hits.push(p.id);
   }
-  return best;
+  return hits;
 }
 
 function cookingNow(frame: Frame | null, side: Side): boolean {
@@ -98,15 +108,26 @@ export const Pane = memo(function Pane(props: PaneProps) {
   const bubbleEls = useRef(new Map<string, HTMLButtonElement>());
   const [shown, setShown] = useState<ShownBubble[]>([]);
   const people = useRef<DrawPerson[]>([]);
+  const labels = useRef<PersonLabel[]>([]);
   const view = useRef<MapView>({ x: 0, y: 0, width: LOGICAL_W, height: LOGICAL_H });
   const pan = useRef<MapPoint | null>(null);
   const drag = useRef<{ x: number; y: number; start: MapView; moved: boolean } | null>(null);
   const [panned, setPanned] = useState(false);
-  // biome-ignore lint/correctness/useExhaustiveDependencies: Selection changes restore camera tracking.
+  const localFollow = useRef(false);
+  const displayedSize = useRef<{ width: number; height: number } | null>(null);
+  type Choice = { person: VillagerId; label: string } | { place: PlaceId; label: string };
+  const [choices, setChoices] = useState<Choice[]>([]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: A confirmed order explicitly resets the camera.
   useEffect(() => {
     pan.current = null;
+    localFollow.current = false;
     setPanned(false);
-  }, [props.selectedId, props.destination]);
+  }, [props.followKey]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: A new composition ends a local Follow override.
+  useEffect(() => {
+    if (props.following === false) localFollow.current = false;
+    setChoices([]);
+  }, [props.selectedId, props.destination, props.following, props.holdKey]);
 
   useEffect(() => {
     const c = canvas.current;
@@ -144,6 +165,10 @@ export const Pane = memo(function Pane(props: PaneProps) {
       f: Frame;
       selectedId: VillagerId | null;
       hoverPlace: PlaceId | null;
+      destination: PlaceId | null;
+      following: boolean | undefined;
+      followKey: number | undefined;
+      tracking: boolean;
       moving: boolean;
       pan: MapPoint | null;
     } | null = null;
@@ -154,6 +179,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
       if (!f || cssW <= 0 || cssH <= 0) return;
       const p = live.current;
       const cooking = cookingNow(f, side);
+      const tracking = p.following !== false || localFollow.current;
       // Moving people (interpolation), the hover outline, kitchen smoke, sleepers' z, lantern flicker and rain
       // animate on real time; anything else only changes with a new frame, a selection, a hover or a resize.
       const moving = s.prev !== null && now - s.at < s.interval;
@@ -174,23 +200,49 @@ export const Pane = memo(function Pane(props: PaneProps) {
         drawn.f === f &&
         drawn.selectedId === p.selectedId &&
         drawn.hoverPlace === p.hoverPlace &&
+        drawn.destination === p.destination &&
+        drawn.following === p.following &&
+        drawn.followKey === p.followKey &&
+        drawn.tracking === tracking &&
         drawn.pan === pan.current;
       if (!still) {
         dirty = false;
-        drawn = { f, selectedId: p.selectedId, hoverPlace: p.hoverPlace, moving, pan: pan.current };
+        drawn = {
+          f,
+          selectedId: p.selectedId,
+          hoverPlace: p.hoverPlace,
+          destination: p.destination,
+          following: p.following,
+          followKey: p.followKey,
+          tracking,
+          moving,
+          pan: pan.current,
+        };
         const world = side === 'classic' ? f.classicWorld : f.humanWorld;
         people.current = interpolate(s, side, now);
         const selected = people.current.find((q) => q.id === p.selectedId);
         const who = selected?.carriedBy ? people.current.find((q) => q.id === selected.carriedBy) : selected;
         const target = PLACES.find((q) => q.id === p.destination);
-        const box = mapView(
-          cssW,
-          cssH,
-          who ? { x: (who.x + 0.5) * 32, y: (who.y + 0.5) * 32 } : null,
-          target ? { x: (target.x + target.w / 2) * 32, y: (target.y + target.h / 2) * 32 } : null,
-          pan.current,
-        );
+        const previousSize = displayedSize.current;
+        const box =
+          previousSize && (!tracking || pan.current)
+            ? {
+                x: pan.current?.x ?? view.current.x,
+                y: pan.current?.y ?? view.current.y,
+                width: (view.current.width * cssW) / previousSize.width,
+                height: (view.current.height * cssH) / previousSize.height,
+              }
+            : mapView(
+                cssW,
+                cssH,
+                tracking && who ? { x: (who.x + 0.5) * 32, y: (who.y + 0.5) * 32 } : null,
+                tracking && target
+                  ? { x: (target.x + target.w / 2) * 32, y: (target.y + target.h / 2) * 32 }
+                  : null,
+                pan.current,
+              );
         view.current = box;
+        displayedSize.current = { width: cssW, height: cssH };
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.fillStyle = side === 'human' ? '#d6caa9' : '#222c38';
         ctx.fillRect(0, 0, c.width, c.height);
@@ -202,20 +254,21 @@ export const Pane = memo(function Pane(props: PaneProps) {
           (-box.x * c.width) / box.width,
           (-box.y * c.height) / box.height,
         );
-        drawScene(ctx, {
-          side,
-          minute: f.minute,
-          darkness: f.darkness,
-          weather: f.weather,
-          world,
-          people: people.current,
-          selectedId: p.selectedId,
-          hoverPlace: p.hoverPlace,
-          showPlaceLabels: true,
-          realTime: now,
-          cooking,
-          labelScale: box.width / cssW,
-        });
+        labels.current =
+          drawScene(ctx, {
+            side,
+            minute: f.minute,
+            darkness: f.darkness,
+            weather: f.weather,
+            world,
+            people: people.current,
+            selectedId: p.selectedId,
+            hoverPlace: p.hoverPlace,
+            showPlaceLabels: true,
+            realTime: now,
+            cooking,
+            labelScale: box.width / cssW,
+          }) ?? [];
       }
 
       if (bubbles) {
@@ -306,18 +359,49 @@ export const Pane = memo(function Pane(props: PaneProps) {
     };
   };
 
+  const choose = (choice: Choice) => {
+    setChoices([]);
+    if ('person' in choice) props.onSelect(choice.person);
+    else props.onPlace(choice.place);
+  };
+
   const onPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
     const wasDrag = drag.current?.moved;
     drag.current = null;
     if (wasDrag) return;
     const { lx, ly } = toLogical(e);
-    const who = hitPerson(people.current, lx, ly, (hitRadius(e) * view.current.width) / LOGICAL_W);
-    if (who) {
-      props.onSelect(who);
-      return;
+    const radius = (hitRadius(e) * view.current.width) / LOGICAL_W;
+    const personIds = new Set(hitPeople(people.current, lx, ly, radius));
+    for (const label of labels.current) {
+      if (lx >= label.x && lx <= label.x + label.w && ly >= label.y && ly <= label.y + label.h)
+        personIds.add(label.id);
     }
-    const pl = placeUnder(lx, ly);
-    if (pl && props.selectedId) props.onPlace(pl);
+    const hits: Choice[] = [...personIds].map((person) => ({
+      person,
+      label: shortName(person),
+    }));
+    if (props.selectedId) {
+      for (const place of PLACES) {
+        const rectangles = [
+          { x: place.x, y: place.y, w: place.w, h: place.h },
+          ...(place.solid ? place.spots.map((s) => ({ ...s, w: 1, h: 1 })) : []),
+        ];
+        if (
+          rectangles.some((r) => {
+            const dx = Math.max(r.x * 32 - lx, 0, lx - (r.x + r.w) * 32);
+            const dy = Math.max(r.y * 32 - ly, 0, ly - (r.y + r.h) * 32);
+            return dx * dx + dy * dy <= radius * radius;
+          })
+        )
+          hits.push({ place: place.id, label: place.label });
+      }
+    }
+    if (hits.length > 1) setChoices(hits);
+    else {
+      setChoices([]);
+      const hit = hits[0];
+      if (hit) choose(hit);
+    }
   };
 
   const onPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
@@ -329,8 +413,8 @@ export const Pane = memo(function Pane(props: PaneProps) {
       if (held.moved) {
         const rect = e.currentTarget.getBoundingClientRect();
         pan.current = {
-          x: held.start.x + held.start.width / 2 - (dx * held.start.width) / rect.width,
-          y: held.start.y + held.start.height / 2 - (dy * held.start.height) / rect.height,
+          x: held.start.x - (dx * held.start.width) / rect.width,
+          y: held.start.y - (dy * held.start.height) / rect.height,
         };
         setPanned(true);
       }
@@ -338,8 +422,10 @@ export const Pane = memo(function Pane(props: PaneProps) {
     }
     if (e.pointerType === 'touch') return;
     const { lx, ly } = toLogical(e);
-    const who = hitPerson(people.current, lx, ly, (hitRadius(e) * view.current.width) / LOGICAL_W);
-    e.currentTarget.style.cursor = who || (props.selectedId && placeUnder(lx, ly)) ? 'pointer' : 'default';
+    const who = hitPeople(people.current, lx, ly, (hitRadius(e) * view.current.width) / LOGICAL_W).length > 0;
+    const label = labels.current.some((r) => lx >= r.x && lx <= r.x + r.w && ly >= r.y && ly <= r.y + r.h);
+    e.currentTarget.style.cursor =
+      who || label || (props.selectedId && placeUnder(lx, ly)) ? 'pointer' : 'default';
     const pl = props.selectedId ? placeUnder(lx, ly) : null;
     if (pl !== props.hoverPlace) props.onHoverPlace(pl);
   };
@@ -362,12 +448,31 @@ export const Pane = memo(function Pane(props: PaneProps) {
         onPointerMove={onPointerMove}
         onPointerLeave={() => props.hoverPlace && props.onHoverPlace(null)}
       />
-      {panned && (
+      {choices.length > 1 && (
+        <fieldset className="map-choices" aria-label="Choose map target">
+          <legend>Choose a person or place</legend>
+          {choices.map((choice) => (
+            <button
+              type="button"
+              key={'person' in choice ? choice.person : choice.place}
+              onClick={() => choose(choice)}
+            >
+              {choice.label}
+            </button>
+          ))}
+          <button type="button" onClick={() => setChoices([])}>
+            Cancel
+          </button>
+        </fieldset>
+      )}
+      {(panned || props.following === false) && (
         <button
           type="button"
           className="map-follow"
           onClick={() => {
             pan.current = null;
+            localFollow.current = true;
+            setChoices([]);
             setPanned(false);
           }}
         >

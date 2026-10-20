@@ -70,6 +70,7 @@ describe('Well first-minute clarity', () => {
     expect(el.querySelector('.destination-picker summary')?.textContent).toContain('House');
     expect(el.querySelector('.composer-line')?.textContent).toContain('Maryam → House');
     expect(el.querySelector('.predict')?.textContent).toContain('the others would go unfed');
+    expect(el.querySelector('.predict')?.textContent).toContain('Ask again after she cooks the meal');
     const confirm = el.querySelector<HTMLButtonElement>('.btn-confirm');
     expect(confirm?.disabled).toBe(false);
     expect(confirm?.closest('details')).toBeNull();

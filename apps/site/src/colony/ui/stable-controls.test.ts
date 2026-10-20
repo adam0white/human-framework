@@ -69,7 +69,7 @@ describe('Well stable order controls', () => {
     );
   });
 
-  it('places Use with the suggestion heading, before optional explanatory text', () => {
+  it('puts the proposal and trade-off in the same decision row as Use', () => {
     const nudge = {
       id: 'cedar',
       minute: 180,
@@ -90,6 +90,9 @@ describe('Well stable order controls', () => {
       }),
     );
     expect(node.querySelector('.nudge-head .btn')?.textContent).toBe('Use');
+    expect(node.querySelector('.nudge-head .nudge-text')?.textContent).toBe(nudge.text);
+    expect(node.querySelector('.nudge-head .nudge-order')?.textContent).toBe('Idris → Cedar');
+    expect(node.querySelector('.nudge-head .nudge-reason')?.textContent).toBe(nudge.reason);
     expect(node.querySelector('.nudge-reason')?.textContent).toBe(nudge.reason);
     expect(node.querySelector('.nudge-timer')?.textContent).toContain('in 60 min');
   });
@@ -120,8 +123,10 @@ describe('Well stable order controls', () => {
   it('bounds the phone sheet and reserves the village above it', () => {
     const phone = css.slice(css.indexOf('/* Map-first phone'));
     expect(phone).toMatch(/\.stage\s*\{[^}]*grid-template-rows: 44px minmax\(0, 1fr\) auto/s);
-    expect(phone).toMatch(/\.composer\s*\{[^}]*height: 154px/s);
+    expect(phone).toMatch(/\.composer\s*\{[^}]*min-height: 154px/s);
     expect(phone).toMatch(/\.pane-canvas\s*\{[^}]*position: absolute/s);
-    expect(phone).toMatch(/\.picker-chips\s*\{[^}]*overflow-y: auto/s);
+    expect(phone).toMatch(/\.picker-chips\s*\{[^}]*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\)/s);
+    expect(phone).toMatch(/\.picker-chips\s*\{[^}]*overflow: visible/s);
+    expect(phone).toMatch(/\.picker-chips button\s*\{[^}]*min-height: 44px/s);
   });
 });

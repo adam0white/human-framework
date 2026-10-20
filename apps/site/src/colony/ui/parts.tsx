@@ -578,6 +578,7 @@ export function SuggestionCard(props: {
   active: boolean;
   onUse(n: Nudge): void;
   onSkip(id: string): void;
+  onKeepWatching?(): void;
 }) {
   const n = props.nudge;
   const left = Math.max(0, n.until - props.minute);
@@ -585,10 +586,14 @@ export function SuggestionCard(props: {
   return (
     <div className={`nudge ${props.active ? 'is-active' : ''}`}>
       <div className="nudge-head">
-        <Portrait id={n.order.personId} size={24} />
-        <span className="kicker">Suggestion</span>
-        {props.queued > 0 && <span className="nudge-more">+{props.queued}</span>}
-        <button type="button" className="btn btn-small" onClick={() => props.onUse(n)}>
+        <div className="nudge-proposal">
+          <p className="nudge-order">
+            {shortName(n.order.personId)} → {PLACE_LABEL[n.order.placeId]}
+          </p>
+          <p className="nudge-text">{n.text}</p>
+          {n.reason && <p className="nudge-reason">{n.reason}</p>}
+        </div>
+        <button type="button" className="btn btn-small nudge-use" onClick={() => props.onUse(n)}>
           {props.active ? 'In composer' : 'Use'}
         </button>
         <button
@@ -601,10 +606,14 @@ export function SuggestionCard(props: {
           ×
         </button>
       </div>
+      {props.onKeepWatching && (
+        <button type="button" className="btn btn-small nudge-keep-watching" onClick={props.onKeepWatching}>
+          Keep watching
+        </button>
+      )}
       <p className="nudge-availability">Availability may have changed. Use to check the current forecast.</p>
-      <p className="nudge-text">{n.text}</p>
-      {n.reason && <p className="nudge-reason">{n.reason}</p>}
       <div className="nudge-foot">
+        {props.queued > 0 && <span className="nudge-more">+{props.queued} waiting</span>}
         <span className="nudge-timer">
           <RingTimer left={left} span={span} />
           <span>
@@ -664,6 +673,9 @@ export function Composer(props: {
   onHover(p: PlaceId | null): void;
   onConfirm(): void;
   onInspect(id: VillagerId): void;
+  /** Opening a picker holds the current map even when returning from watching. */
+  onCompose?(): void;
+  onWatch?(): void;
 }) {
   const s = props.state;
   const who = s.personId;
@@ -677,7 +689,13 @@ export function Composer(props: {
       aria-label="Order"
     >
       <div className="phone-order-fields">
-        <details className="worker-picker" onToggle={(e) => keepOneDisclosure(e.currentTarget)}>
+        <details
+          className="worker-picker"
+          onToggle={(e) => {
+            keepOneDisclosure(e.currentTarget);
+            if (e.currentTarget.open) props.onCompose?.();
+          }}
+        >
           <summary>Worker · {who ? shortName(who) : 'Choose'}</summary>
           <fieldset className="picker-chips" aria-label="Worker">
             {VILLAGERS.map((p) => (
@@ -696,7 +714,13 @@ export function Composer(props: {
             ))}
           </fieldset>
         </details>
-        <details className="destination-picker" onToggle={(e) => keepOneDisclosure(e.currentTarget)}>
+        <details
+          className="destination-picker"
+          onToggle={(e) => {
+            keepOneDisclosure(e.currentTarget);
+            if (e.currentTarget.open) props.onCompose?.();
+          }}
+        >
           <summary>Place · {s.placeId ? PLACE_LABEL[s.placeId] : 'Choose'}</summary>
           <fieldset className="picker-chips" aria-label="Destination">
             {places.map((p) => (
@@ -763,7 +787,14 @@ export function Composer(props: {
               {props.job && <> · {jobPhrase(props.job)}</>}
             </span>
             {!pred && <span className="predict muted">Checking current answer…</span>}
-            {pred && <span className={`predict predict-${pred.kind}`}>{pred.text}</span>}
+            {pred && (
+              <span className={`predict predict-${pred.kind}`}>
+                {pred.text}
+                {who === 'maryam' && pred.text === 'Will refuse: the others would go unfed' && (
+                  <>. Ask again after she cooks the meal.</>
+                )}
+              </span>
+            )}
           </>
         )}
         {(s.rush || s.insist || s.appeal) && (
@@ -847,6 +878,11 @@ export function Composer(props: {
         <p className="composer-reason">A promise: hurt on this job, they will hold you to it.</p>
       )}
       <div className="composer-actions">
+        {props.onWatch && (
+          <button type="button" className="btn watch-village" onClick={props.onWatch}>
+            Watch village
+          </button>
+        )}
         {who && (
           <button type="button" className="btn btn-small btn-ghost" onClick={() => props.onInspect(who)}>
             About {shortName(who)}
@@ -924,13 +960,22 @@ export function PauseRibbon({
 }
 
 /** Injuries said as they happen, newest first (the storm night used to move only the Injuries number). */
-export function HurtLine({ news }: { news: readonly HurtNews[] }) {
+export function HurtLine({ news, onShow }: { news: readonly HurtNews[]; onShow?(news: HurtNews): void }) {
   if (news.length === 0) return null;
-  const items = [...news].reverse().map((n) => hurtText(n));
   return (
-    <p className="hurt-line" role="status">
-      <strong>Hurt</strong> {items.join(' · ')}
-    </p>
+    <div className="hurt-line" role="status">
+      <strong>Hurt</strong>
+      {[...news].reverse().map((n) => (
+        <div className="hurt-item" key={`${n.side}-${n.personId}-${n.minute}`}>
+          <span>{hurtText(n)}</span>
+          {onShow && (
+            <button type="button" className="btn btn-small" onClick={() => onShow(n)}>
+              Show {shortName(n.personId)}
+            </button>
+          )}
+        </div>
+      ))}
+    </div>
   );
 }
 

@@ -3974,11 +3974,12 @@ kbd {
   .composer {
     position: relative;
     display: grid;
-    height: 154px;
+    min-height: 154px;
+    height: auto;
     flex: none;
     padding: 4px 6px;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: 44px 48px 44px;
+    grid-template-rows: 44px minmax(48px, auto) 44px;
     gap: 4px;
     overflow: visible;
   }
@@ -3997,8 +3998,8 @@ kbd {
   .picker-chips {
     position: absolute;
     z-index: 3;
-    top: 50px;
-    bottom: 52px;
+    top: auto;
+    bottom: calc(100% + 6px);
     left: 6px;
     right: 6px;
     display: grid;
@@ -4009,10 +4010,13 @@ kbd {
     margin: 0;
     padding: 2px;
     gap: 4px;
-    overflow-y: auto;
+    overflow: visible;
     background: var(--surface);
+    box-shadow: 0 -2px 8px #0002;
   }
   .picker-chips button {
+    min-height: 44px;
+    min-width: 44px;
     font: inherit;
     font-size: 15px;
     padding: 4px;
@@ -4031,7 +4035,7 @@ kbd {
     margin: 0;
     font-size: 14px;
     line-height: 21px;
-    overflow: auto;
+    overflow: visible;
   }
   .composer-job {
     display: none;
@@ -4262,7 +4266,7 @@ kbd {
     left: -85px;
     right: -86px;
   }
-  .center:has(.order-options[open]) .sheet-tools {
+  .is-ordering .center:has(.order-options[open]) .sheet-tools {
     visibility: hidden;
   }
 
@@ -4270,8 +4274,8 @@ kbd {
     grid-template-rows: 60px 44px minmax(0, 1fr);
   }
   .composer.has-costs {
-    height: 171px;
-    grid-template-rows: 44px 65px 44px;
+    min-height: 171px;
+    grid-template-rows: 44px minmax(65px, auto) 44px;
   }
   .active-costs {
     font:
@@ -4293,16 +4297,8 @@ kbd {
   }
   .nudge-slot[open] .nudge,
   .is-ordering .nudge-slot[open] .nudge {
-    max-height: 126px;
-  }
-  .is-watching .center:has(.nudge-slot[open]) {
-    height: 178px;
-  }
-  .is-watching .center:has(.nudge-slot[open]) .watching-worker {
-    visibility: hidden;
-  }
-  .is-watching .center:has(.nudge-slot[open]) .sheet-tools {
-    margin-top: auto;
+    max-height: none;
+    overflow: visible;
   }
 }
 
@@ -4310,5 +4306,222 @@ kbd {
 @media (max-width: 860px) and (max-height: 500px) and (orientation: landscape) {
   .center {
     max-height: none;
+  }
+}
+
+/* The proposal, its known trade-off and Use form one visible decision. */
+.nudge-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  align-items: start;
+  gap: 6px;
+}
+.nudge-proposal {
+  min-width: 0;
+  grid-column: 1;
+  grid-row: 1;
+}
+.nudge-head .nudge-skip {
+  grid-column: 2;
+  grid-row: 1;
+}
+.nudge-head .nudge-use {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.nudge-proposal .nudge-text,
+.nudge-proposal .nudge-reason {
+  margin: 0 0 6px;
+}
+.nudge-head .btn,
+.nudge-head .nudge-skip {
+  min-width: 44px;
+  min-height: 44px;
+}
+.map-choices {
+  position: absolute;
+  z-index: 6;
+  left: 6px;
+  bottom: 22px;
+  max-width: calc(100% - 12px);
+  min-inline-size: 0;
+  margin: 0;
+  max-height: calc(100% - 64px);
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.map-choices > legend {
+  flex: 0 0 100%;
+  font-size: 15px;
+}
+.map-choices button,
+.map-follow {
+  min-width: 44px;
+  min-height: 44px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+}
+@media (max-width: 860px) and (min-height: 501px) {
+  .nudge-slot .nudge-head {
+    position: static;
+  }
+  .nudge-proposal .nudge-text,
+  .nudge-proposal .nudge-reason {
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .nudge .nudge-availability,
+  .nudge .nudge-help {
+    margin: 4px 0;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+.nudge-order {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Keep the complete forecast and Confirm ahead of the scrollable desktop order history. */
+@media (min-width: 861px) and (min-height: 501px) {
+  .center {
+    position: relative;
+  }
+  .order-alerts .pause-ribbon {
+    display: none;
+  }
+  .nudge-slot[open] .nudge {
+    position: absolute;
+    z-index: 6;
+    left: 0;
+    right: 0;
+    bottom: 56px;
+  }
+  .composer-tray {
+    flex-shrink: 0;
+  }
+  .queue {
+    min-height: 60px;
+  }
+}
+
+.map-choices > legend {
+  padding: 0 4px;
+  background: var(--surface);
+}
+
+/* Follow-up d: a fixed commit/exit row, with disclosures above its controls. */
+.hurt-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hurt-item > span {
+  flex: 1;
+}
+.hurt-item .btn,
+.news-return {
+  min-height: 44px;
+  flex-shrink: 0;
+}
+.news-follow {
+  margin: 0;
+  padding: 4px 6px;
+  background: var(--surface);
+}
+@media (max-width: 860px) and (min-height: 501px) {
+  .center {
+    z-index: 7;
+  }
+  .composer-actions .watch-village {
+    display: block;
+    flex: 1;
+    white-space: nowrap;
+  }
+  .order-options[open] {
+    bottom: 54px;
+    max-height: 210px;
+  }
+  .is-ordering .sheet-tools {
+    bottom: calc(100% + 4px);
+    left: auto;
+    right: 4px;
+    width: 200px;
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    background: var(--surface);
+  }
+  .is-ordering .center:has(.order-options[open]) .sheet-tools {
+    visibility: hidden;
+  }
+  .is-ordering .order-alerts {
+    bottom: calc(100% + 52px);
+  }
+  .order-alerts {
+    pointer-events: auto;
+    max-height: 100px;
+  }
+  .order-alerts .hurt-line {
+    background: var(--surface);
+  }
+  .is-ordering .nudge-slot[open] .nudge {
+    left: auto;
+    right: -4px;
+    width: calc(100vw - 2px);
+  }
+  .nudge-keep-watching {
+    min-height: 44px;
+  }
+  .news-follow {
+    position: absolute;
+    bottom: calc(100% + 52px);
+    left: 4px;
+    right: 4px;
+    z-index: 7;
+  }
+  .center:has(.news-follow) .order-alerts {
+    bottom: calc(100% + 106px);
+  }
+}
+@media (min-width: 861px) and (min-height: 501px) {
+  .order-alerts {
+    max-height: 100px;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .composer-tray {
+    overflow: visible;
+  }
+  .composer {
+    position: relative;
+  }
+  .composer-actions .btn-ghost {
+    display: none;
+  }
+  .order-options[open] {
+    position: absolute;
+    bottom: 58px;
+    left: 10px;
+    right: 10px;
+    z-index: 7;
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 6px;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
   }
 }

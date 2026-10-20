@@ -24,13 +24,21 @@ vi.mock('../../shared/lab.tsx', () => ({
 vi.mock('./useColony.ts', () => ({ useColony: vi.fn() }));
 // Canvas animation is outside this keyboard test; keep the real composer and App handlers.
 vi.mock('./Pane.tsx', () => ({
-  Pane: (props: { side: string; selectedId: string | null; onPlace(place: 'site'): void }) =>
+  Pane: (props: {
+    side: string;
+    selectedId: string | null;
+    following: boolean;
+    followKey: number;
+    onPlace(place: 'site'): void;
+  }) =>
     createElement(
       'button',
       {
         type: 'button',
         'data-map': props.side,
         'data-selected': props.selectedId,
+        'data-following': props.following,
+        'data-follow-key': props.followKey,
         onClick: () => props.onPlace('site'),
       },
       'House',
@@ -106,6 +114,7 @@ describe('Well review follow-up', () => {
     await act(() => workerSummary.dispatchEvent(space));
     expect(space.defaultPrevented).toBe(false);
     expect(actions.setPaused).not.toHaveBeenCalled();
+    expect(container.querySelector('[data-map="human"]')?.getAttribute('data-following')).toBe('false');
     await act(() => workerSummary.click());
     await act(() => required<HTMLButtonElement>(workerPicker, '[data-person="yusuf"]').click());
     expect(workerPicker.open).toBe(false);
@@ -148,6 +157,10 @@ describe('Well review follow-up', () => {
     expect(container.querySelector('.colony')?.classList.contains('is-ordering')).toBe(false);
     expect(container.querySelector('[data-map="human"]')?.getAttribute('data-selected')).toBe('yusuf');
     expect(container.querySelector('.watching-worker')?.textContent).toContain('Yusuf');
+    expect(container.querySelector('[data-map="human"]')?.getAttribute('data-following')).toBe('true');
+    expect(container.querySelector('[data-map="human"]')?.getAttribute('data-follow-key')).toBe('1');
+    await act(() => workerSummary.click());
+    expect(container.querySelector('[data-map="human"]')?.getAttribute('data-following')).toBe('false');
     await act(() => required<HTMLButtonElement>(container, '[data-map="human"]').click());
     expect(container.querySelector('.composer-line')?.textContent).toContain('Yusuf → House');
     expect(container.querySelector('.colony')?.classList.contains('is-ordering')).toBe(true);

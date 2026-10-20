@@ -817,11 +817,15 @@ export function mapTypeSize(labelScale = 1, cssPixels = 14): number {
   return cssPixels * Math.max(1, labelScale);
 }
 
-interface LabelRect {
+export interface LabelRect {
   x: number;
   y: number;
   w: number;
   h: number;
+}
+
+export interface PersonLabel extends LabelRect {
+  id: VillagerId;
 }
 
 /** Keep names inside the map and clear of the other labels when space permits. */
@@ -887,7 +891,8 @@ function drawSelection(ctx: CanvasRenderingContext2D, input: SceneInput) {
   ctx.restore();
 }
 
-function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput) {
+function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput): PersonLabel[] {
+  const labels: PersonLabel[] = [];
   const size = mapTypeSize(input.labelScale);
   const occupied: LabelRect[] = [];
   ctx.font = `600 ${size}px "JetBrains Mono", ui-monospace, monospace`;
@@ -912,6 +917,7 @@ function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput) {
     const anchor = { x: (p.x + 0.5) * T, y: (p.y + 0.5) * T };
     const r = personLabelRect(anchor, w, h, occupied);
     occupied.push(r);
+    labels.push({ ...r, id: p.id });
     ctx.strokeStyle = input.side === 'classic' ? '#b8c6d4' : '#6d5b47';
     ctx.lineWidth = 1;
     ctx.beginPath();
@@ -931,13 +937,15 @@ function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput) {
       ctx.fillText(detail, r.x + r.w / 2, r.y + size * 1.78);
     }
   }
+  return labels;
 }
 
 // ---------------------------------------------------------------------------------------------
 // Entry
 // ---------------------------------------------------------------------------------------------
 
-export function drawScene(ctx: CanvasRenderingContext2D, input: SceneInput): void {
+/** Returns the exact label rectangles painted in this frame for pointer selection. */
+export function drawScene(ctx: CanvasRenderingContext2D, input: SceneInput): PersonLabel[] {
   const sun = input.side === 'human' ? sunAt(input.minute, input.darkness) : { dx: 0, dy: 0, strength: 0 };
   drawGround(ctx, input.side);
   if (input.side === 'human') drawBuildingsHuman(ctx, input, sun);
@@ -962,7 +970,7 @@ export function drawScene(ctx: CanvasRenderingContext2D, input: SceneInput): voi
   drawSleepers(ctx, input, input.people);
   drawSelection(ctx, input);
   drawLabels(ctx, input);
-  drawNames(ctx, input);
+  return drawNames(ctx, input);
 }
 
 /** Bubble anchor in logical pixels (above the head). */
