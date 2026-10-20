@@ -20,7 +20,6 @@ export function GoalCard(props: {
   }, []);
   const storm = props.frame?.timeline.markers.find((m) => m.kind === 'storm');
   const day3 = (props.frame?.day.total ?? 2) > 2;
-  const pauses = day3 ? 'refusals' : 'suggestions, refusals and the storm';
   return (
     <div className="goal-card-backdrop">
       <section className="goal-card" role="dialog" aria-modal="true" aria-labelledby="goal-card-title">
@@ -62,7 +61,7 @@ export function GoalCard(props: {
             {day3
               ? ''
               : ' Suggestions on the clock set up the story and name their risk; following only them will not roof the Human house. Your own orders can.'}
-            {props.autoPause ? ` The game pauses for ${pauses}.` : ''}
+            {props.autoPause ? ' The clock slows while a suggestion awaits your decision.' : ''}
             <span className="keys-hint"> Space pauses.</span>
           </p>
         </details>

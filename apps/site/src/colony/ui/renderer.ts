@@ -40,6 +40,8 @@ export interface SceneInput {
   /** Real time in ms, for rain and lantern flicker only. */
   realTime: number;
   cooking: boolean;
+  /** Logical pixels per CSS pixel, so map labels remain readable on a phone. */
+  labelScale?: number;
 }
 
 interface Look {
@@ -493,16 +495,19 @@ const SHORT_LABEL: Partial<Record<PlaceId, string>> = {
 
 function drawLabels(ctx: CanvasRenderingContext2D, input: SceneInput) {
   const classic = input.side === 'classic';
-  ctx.font = '600 8.5px "JetBrains Mono", ui-monospace, monospace';
+  const size = Math.max(8.5, 14 * (input.labelScale ?? 0));
+  ctx.font = `600 ${size}px "JetBrains Mono", ui-monospace, monospace`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   for (const p of PLACES) {
+    // Avoid redundant tiny building labels on phones; Home stays in the destination picker.
+    if (size > 16 && (p.id.startsWith('home-') || p.id === 'wellhouse')) continue;
     // Human labels are always drawn (so the house can be found before the first tap), faint until choosing.
-    const strong = classic || input.showPlaceLabels || input.hoverPlace === p.id;
+    const strong = size > 16 || classic || input.showPlaceLabels || input.hoverPlace === p.id;
     const r = placeRect(p);
     const label = SHORT_LABEL[p.id] ?? p.label;
     const x = r.x + r.w / 2;
-    const y = p.id === 'cedar' ? r.y - 4 : p.id === 'well' ? r.y - 10 : r.y + 9;
+    const y = p.id === 'cedar' ? r.y + r.h + size : p.id === 'well' ? r.y - size : r.y + size / 2 + 4;
     if (classic) {
       ctx.fillStyle = BLUE.label;
       ctx.fillText(label, x, y);
@@ -510,7 +515,7 @@ function drawLabels(ctx: CanvasRenderingContext2D, input: SceneInput) {
       const wdt = ctx.measureText(label).width + 10;
       ctx.globalAlpha = strong ? 1 : 0.45;
       ctx.fillStyle = input.hoverPlace === p.id ? HUMAN.ink : 'rgba(43, 38, 34, 0.72)';
-      roundRect(ctx, x - wdt / 2, y - 7, wdt, 14, 7);
+      roundRect(ctx, x - wdt / 2, y - size / 2 - 3, wdt, size + 6, 7);
       ctx.fill();
       ctx.fillStyle = '#f3e9d6';
       ctx.fillText(label, x, y + 0.5);

@@ -87,16 +87,28 @@ describe('Well review follow-up', () => {
     expect(container.querySelector('.order-scope')?.textContent).toBe('Each order goes to both villages.');
     expect(container.querySelector('.pane-classic h2')?.textContent).toBe('Classic they obey');
     expect(container.querySelector('.pane-human h2')?.textContent).toBe('Human they decide');
-    const who = required<HTMLSelectElement>(container, '[aria-label="Villager"]');
-    const where = required<HTMLSelectElement>(container, '[aria-label="Place"]');
-    await act(() => {
-      who.value = 'yusuf';
-      who.dispatchEvent(new Event('change', { bubbles: true }));
-    });
-    await act(() => {
-      where.value = 'forest';
-      where.dispatchEvent(new Event('change', { bubbles: true }));
-    });
+    const workerPicker = required<HTMLDetailsElement>(container, '.worker-picker');
+    const workerSummary = required<HTMLElement>(workerPicker, 'summary');
+    workerSummary.focus();
+    const space = new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true });
+    await act(() => workerSummary.dispatchEvent(space));
+    expect(space.defaultPrevented).toBe(false);
+    expect(actions.setPaused).not.toHaveBeenCalled();
+    await act(() => workerSummary.click());
+    await act(() => required<HTMLButtonElement>(workerPicker, '[data-person="yusuf"]').click());
+    expect(workerPicker.open).toBe(false);
+    expect(workerPicker.querySelector('summary')?.textContent).toContain('Yusuf');
+    const placePicker = required<HTMLDetailsElement>(container, '.destination-picker');
+    await act(() => required<HTMLElement>(placePicker, 'summary').click());
+    await act(() => required<HTMLButtonElement>(placePicker, '[data-place="forest"]').click());
+    expect(placePicker.open).toBe(false);
+    expect(container.querySelector('select')).toBeNull();
+    const about = [...container.querySelectorAll('button')].find((b) => b.textContent === 'About Yusuf');
+    expect(about).toBeDefined();
+    await act(() => about?.click());
+    expect(container.querySelector('dialog')).not.toBeNull();
+    expect(actions.pauseForInspector).not.toHaveBeenCalled();
+    await act(() => required<HTMLButtonElement>(container, 'dialog .icon-x').click());
     const disclosure = required<HTMLDetailsElement>(container, '.order-options');
     const toggle = required<HTMLElement>(disclosure, 'summary');
     toggle.focus();

@@ -190,8 +190,16 @@ describe('Game 1 playtest files', () => {
     expect(other.paused).toBe(true);
     expect(replies[0]?.type).toBe('frame');
     other.handle({ type: 'resume' });
-    other.handle({ type: 'tick', dtMs: 250 });
-    expect(other.game?.minute).toBeGreaterThan(pb.game?.minute ?? 0);
+    // Clock preferences and inspection do not enter the exported state or alter continuation.
+    pb.handle({ type: 'setAutoPause', on: false });
+    other.handle({ type: 'setAutoPause', on: false });
+    other.handle({ type: 'setSpeed', speed: 2 });
+    other.handle({ type: 'pause', cause: 'inspector' });
+    expect(other.paused).toBe(false);
+    pb.step(20);
+    other.step(20);
+    expect(colonyHash(gameOf(other))).toBe(colonyHash(gameOf(pb)));
+    expect(gameOf(other).log).toEqual(gameOf(pb).log);
   }, 60_000);
 
   test('a bad file leaves the current run as it was', () => {

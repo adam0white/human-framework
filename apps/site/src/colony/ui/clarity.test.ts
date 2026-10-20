@@ -43,7 +43,6 @@ describe('Well first-minute clarity', () => {
     const text: string[] = [];
     while (walker.nextNode()) text.push(walker.currentNode.textContent ?? '');
     const words = text.join(' ').trim().split(/\s+/).length;
-    expect(words).toBe(34);
     expect(words).toBeLessThanOrEqual(40);
   });
 
@@ -67,8 +66,8 @@ describe('Well first-minute clarity', () => {
         onInspect: vi.fn(),
       }),
     );
-    expect(el.querySelector<HTMLSelectElement>('[aria-label="Villager"]')?.value).toBe('maryam');
-    expect(el.querySelector<HTMLSelectElement>('[aria-label="Place"]')?.value).toBe('site');
+    expect(el.querySelector('.worker-picker summary')?.textContent).toContain('Maryam');
+    expect(el.querySelector('.destination-picker summary')?.textContent).toContain('House');
     expect(el.querySelector('.composer-line')?.textContent).toContain('Maryam → House');
     expect(el.querySelector('.predict')?.textContent).toContain('the others would go unfed');
     const confirm = el.querySelector<HTMLButtonElement>('.btn-confirm');

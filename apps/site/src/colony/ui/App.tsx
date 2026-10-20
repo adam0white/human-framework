@@ -3,7 +3,6 @@ import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { gameLabs, LabMenuContent, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { MomentRecord } from '../sim/game.ts';
-import type { Bubble } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { inferAction, type OrderInput } from '../sim/orders.ts';
 import type { VillagerId } from '../sim/world-types.ts';
@@ -67,7 +66,10 @@ function orderFrom(c: ComposerState): OrderInput | null {
 
 /** Focus is in a form control (text, checkbox, radio, select): Space and Enter belong to it. */
 function isEditable(t: EventTarget | null): boolean {
-  return t instanceof HTMLElement && t.closest('input, textarea, select, [contenteditable="true"]') !== null;
+  return (
+    t instanceof HTMLElement &&
+    t.closest('input, textarea, select, summary, button, [contenteditable="true"]') !== null
+  );
 }
 
 export function App() {
@@ -150,15 +152,10 @@ export function App() {
     });
   }, [frame, composer.placeId]);
 
-  // Inspector: opening pauses; closing resumes only if the inspector's pause is still the current one.
+  // Inspection reads the live village; only the player or a pending choice controls playback.
   const inspectPerson = inspect?.personId ?? null;
   const inspectDecision = inspect?.decisionId;
   const inspectOpen = inspect !== null;
-  useEffect(() => {
-    if (!inspectOpen) return undefined;
-    actions.pauseForInspector();
-    return () => actions.resumeFromInspector();
-  }, [inspectOpen, actions]);
   useEffect(() => {
     if (!inspectPerson) {
       actions.clearWhy();
@@ -229,9 +226,6 @@ export function App() {
     );
   }, [visibleNudgeIds]);
 
-  const openBubble = useCallback((b: Bubble) => {
-    setInspect(b.decisionId ? { personId: b.personId, decisionId: b.decisionId } : { personId: b.personId });
-  }, []);
   const inspectPersonCb = useCallback((id: VillagerId) => setInspect({ personId: id }), []);
   const closeInspect = useCallback(() => setInspect(null), []);
 
@@ -240,8 +234,7 @@ export function App() {
     window.setTimeout(() => resultsButton.current?.focus(), 0);
   }, []);
 
-  // Keys (item 9): Space always toggles pause, in the capture phase, and its keyup is swallowed so a focused
-  // button is not clicked. Enter confirms a ready order. Esc closes the end screen or clears the composer
+  // Keys: Space on the page toggles pause; focused controls keep native activation. Enter confirms a ready order. Esc closes the end screen or clears the composer
   // (the inspector's <dialog> handles its own Esc).
   const keys = useRef({ paused: playback.paused, inspect: inspectOpen, end: false });
   keys.current = { paused: playback.paused, inspect: inspectOpen, end: hasSummary && endOpen };
@@ -318,7 +311,6 @@ export function App() {
     onSelect: pickWho,
     onPlace: pickWhere,
     onHoverPlace: setHoverPlace,
-    onInspect: inspectPersonCb,
   };
 
   return (
@@ -379,8 +371,13 @@ export function App() {
         <aside className="center">
           <div className="order-alerts">
             {playback.pause && (
-              <PauseRibbon pause={playback.pause} onResume={() => actions.setPaused(false)} />
+              <PauseRibbon
+                pause={playback.pause}
+                paused={playback.paused}
+                onResume={() => actions.setPaused(false)}
+              />
             )}
+            {moment && <MomentBanner moment={moment} />}
             <HurtLine news={frame?.news ?? []} />
             <OrderReply cards={cards} />
           </div>
@@ -450,15 +447,14 @@ export function App() {
           <PaneBody
             rows={<PeopleRows frame={frame} side="human" selectedId={composer.personId} onSelect={pickWho} />}
           >
-            <Pane side="human" {...paneProps} bubbles={bubbles} onBubble={openBubble} />
-            {moment && <MomentBanner moment={moment} slowMo={playback.slowMo} />}
+            <Pane side="human" {...paneProps} bubbles={bubbles} />
           </PaneBody>
         </section>
       </main>
 
       <div className="flash-region" role="status" aria-live="polite">
         {flash && <div className="flash">{flash}</div>}
-        {toast && !flash && <div className="flash">Tap any bubble to see why.</div>}
+        {toast && !flash && <div className="flash">Select a worker, then About to see why.</div>}
       </div>
       {colony.error && (
         <div className="flash flash-error" role="alert">

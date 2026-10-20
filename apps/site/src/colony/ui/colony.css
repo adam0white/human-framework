@@ -3747,20 +3747,67 @@ kbd {
   }
 }
 
-/* Stable phone order controls: arriving alerts and suggestions use reserved space. */
+/* Phone orders use normal flow. Alerts have reserved space; suggestions never cover the composer. */
+.clock-rate {
+  grid-column: 1 / -1;
+  font: 12px var(--font-mono);
+}
+
+.topbar {
+  position: relative;
+}
+
+.topbar > .clock-rate {
+  position: absolute;
+  bottom: -4px;
+  left: 8px;
+}
+
+.order-alerts .moment-banner {
+  position: static;
+  transform: none;
+  width: 100%;
+  margin: 0;
+  box-shadow: none;
+  animation: none;
+}
+
 @media (max-width: 860px) and (min-height: 501px) {
+  .colony {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+    grid-template-rows: 68px auto auto;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg);
+  }
+
+  .topbar > .clock-rate {
+    bottom: 2px;
+  }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+  }
+
   .center {
-    position: relative;
-    height: 352px;
+    order: -1;
+    height: auto;
     max-height: none;
-    flex: 0 0 352px;
+    flex: none;
     gap: 0;
     overflow: visible;
   }
 
   .order-alerts {
-    height: 64px;
-    flex: 0 0 64px;
+    height: 116px;
+    flex: 0 0 116px;
     overflow-y: auto;
     overscroll-behavior: contain;
   }
@@ -3771,91 +3818,151 @@ kbd {
     margin: 0;
   }
 
+  .pause-ribbon {
+    align-items: flex-start;
+  }
+
+  .pause-ribbon > div {
+    overflow: visible;
+  }
+
   .composer-tray {
-    position: relative;
-    height: 244px;
-    flex: 0 0 244px;
-    padding-bottom: 44px;
+    position: static;
+    height: auto;
+    flex: none;
+    padding: 0;
     overflow: visible;
   }
 
   .order-scope {
-    height: 20px;
-    flex: 0 0 20px;
-    white-space: nowrap;
+    margin: 0;
+    padding: 2px 8px;
+    line-height: 20px;
   }
 
   .composer {
-    height: 180px;
-    flex: 0 0 180px;
-    overflow-y: auto;
-    align-content: start;
-    grid-template-rows: 64px 44px auto auto;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    flex: none;
+    overflow: visible;
+    gap: 6px;
   }
 
   .phone-order-fields {
-    grid-row: 1;
-  }
-
-  .composer-actions {
-    grid-row: 2;
-    position: static;
-    margin: 0;
-  }
-
-  .composer-line {
-    grid-row: 3;
-  }
-
-  .nudge-slot {
-    position: absolute;
-    inset: auto 0 0;
-    height: 44px;
-    max-height: none;
-    margin: 0;
-    overflow: hidden;
-    z-index: 4;
-    background: var(--surface);
-  }
-
-  .nudge-slot > summary {
-    min-height: 44px;
-    padding: 4px 8px;
-  }
-
-  .nudge-slot > summary small {
-    display: none;
-  }
-
-  .nudge-slot[open] {
-    inset: 0;
-    height: auto;
-    max-height: none;
-    overflow-y: auto;
-    box-shadow: 0 0 0 1px var(--line-strong);
-  }
-
-  .nudge-slot .nudge {
-    margin: 0;
-    padding: 4px 8px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
     gap: 4px;
   }
 
-  .nudge-head .btn {
-    margin-left: auto;
+  .phone-order-fields summary {
+    padding: 10px 8px;
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
   }
 
-  .nudge-text,
-  .nudge-reason,
-  .nudge-help {
+  .picker-chips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-width: 0;
     margin: 0;
-    line-height: 1.25;
+    border: 0;
+    gap: 4px;
+    padding: 4px 0;
+  }
+
+  .picker-chips button {
+    font: inherit;
+    font-size: 15px;
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    min-height: 44px;
+    padding: 6px;
+  }
+
+  .picker-chips button[aria-pressed="true"] {
+    outline: 2px solid currentColor;
+    outline-offset: -3px;
+  }
+
+  .composer-line {
+    min-height: 80px;
+    align-content: start;
+  }
+
+  .composer .toggle small {
+    display: block;
+    font-size: 13px;
+  }
+
+  .composer .toggles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pane-canvas {
+    touch-action: pan-y;
+  }
+
+  .order-options[open],
+  .nudge-slot[open] {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .nudge-slot {
+    position: static;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    z-index: auto;
+  }
+
+  .composer-actions {
+    flex-wrap: wrap;
+  }
+
+  .composer-actions .btn-confirm {
+    min-width: 100px;
   }
 
   .orders-button {
     height: 44px;
-    flex: 0 0 44px;
+    flex: none;
     margin: 0;
+  }
+
+  .pane {
+    flex: none;
+    min-height: 360px;
+    flex-direction: column;
+  }
+
+  .pane-head {
+    width: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+
+  .stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2px 10px;
+  }
+
+  .pane-body {
+    flex: none;
+  }
+
+  .pane-map {
+    flex: none;
+    height: 252px;
   }
 }
 

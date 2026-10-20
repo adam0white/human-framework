@@ -9,6 +9,7 @@ import {
   formatClock,
   JOBS,
   type Minute,
+  SIM_MINUTES_PER_SECOND,
   VILLAGERS,
   type VillagerId,
   villagerById,
@@ -45,7 +46,7 @@ export const PLACE_LABEL: Record<PlaceId, string> = {
   cedar: 'Cedar',
   field: 'Field',
   well: 'Well',
-  wellhouse: 'Well',
+  wellhouse: 'Well-house',
   kitchen: 'Kitchen',
   site: 'House',
   masjid: 'Masjid',
@@ -208,10 +209,10 @@ export function SpeedControls(props: {
 
 export function AutoPauseToggle({ on, onChange }: { on: boolean; onChange(on: boolean): void }) {
   return (
-    <label className="autopause" title="Pause on suggestions, refusals, moments and the storm">
+    <label className="autopause" title="Slow the clock while a suggestion awaits your decision">
       <input type="checkbox" checked={on} onChange={(e) => onChange(e.currentTarget.checked)} />
       <span className="autopause-track" aria-hidden="true" />
-      <span>Auto-pause</span>
+      <span>Slow for choices</span>
     </label>
   );
 }
@@ -242,6 +243,15 @@ export function TopBar(props: {
         <span className="clock-status">{statusLine(f)}</span>
       </div>
       <Timeline frame={f} />
+      <span className="clock-rate" role="status">
+        {f?.ended
+          ? 'Ended'
+          : props.playback.paused
+            ? 'Paused'
+            : props.playback.slowMo
+              ? 'Slow · 1 min/s · suggestion pending'
+              : `Running · ${props.playback.speed * SIM_MINUTES_PER_SECOND} min/s`}
+      </span>
       <div className="topbar-controls">
         {props.onResults && (
           <button type="button" className="btn btn-small" ref={props.resultsRef} onClick={props.onResults}>
@@ -649,41 +659,45 @@ export function Composer(props: {
   return (
     <section className={`composer ${ready ? 'is-ready' : ''}`} aria-label="Order">
       <div className="phone-order-fields">
-        <label>
-          Villager
-          <select
-            aria-label="Villager"
-            value={who ?? ''}
-            onChange={(e) => props.onWho(e.target.value as VillagerId)}
-          >
-            <option value="" disabled>
-              Choose a villager
-            </option>
+        <details className="worker-picker">
+          <summary>Worker · {who ? shortName(who) : 'Choose'}</summary>
+          <fieldset className="picker-chips" aria-label="Worker">
             {VILLAGERS.map((p) => (
-              <option key={p.id} value={p.id}>
+              <button
+                key={p.id}
+                type="button"
+                data-person={p.id}
+                aria-pressed={who === p.id}
+                onClick={(e) => {
+                  props.onWho(p.id);
+                  e.currentTarget.closest('details')?.removeAttribute('open');
+                }}
+              >
                 {shortName(p.id)}
-              </option>
+              </button>
             ))}
-          </select>
-        </label>
-        <label>
-          Place
-          <select
-            aria-label="Place"
-            value={s.placeId ?? ''}
-            disabled={!who}
-            onChange={(e) => props.onWhere(e.target.value as PlaceId)}
-          >
-            <option value="" disabled>
-              Choose a place
-            </option>
+          </fieldset>
+        </details>
+        <details className="destination-picker">
+          <summary>Place · {s.placeId ? PLACE_LABEL[s.placeId] : 'Choose'}</summary>
+          <fieldset className="picker-chips" aria-label="Destination">
             {places.map((p) => (
-              <option key={p} value={p}>
+              <button
+                key={p}
+                type="button"
+                data-place={p}
+                aria-pressed={s.placeId === p}
+                disabled={!who}
+                onClick={(e) => {
+                  props.onWhere(p);
+                  e.currentTarget.closest('details')?.removeAttribute('open');
+                }}
+              >
                 {PLACE_LABEL[p]}
-              </option>
+              </button>
             ))}
-          </select>
-        </label>
+          </fieldset>
+        </details>
       </div>
       <div className="composer-row roster" role="toolbar" aria-label="Who">
         {VILLAGERS.map((p) => {
@@ -794,7 +808,7 @@ export function Composer(props: {
       <div className="composer-actions">
         {who && (
           <button type="button" className="btn btn-small btn-ghost" onClick={() => props.onInspect(who)}>
-            Inspect
+            About {shortName(who)}
           </button>
         )}
         {(who || s.nudgeId) && (
@@ -832,10 +846,19 @@ const PAUSE_TITLE: Record<string, string> = {
   storm: 'The storm',
 };
 
-export function PauseRibbon({ pause, onResume }: { pause: PauseInfo; onResume(): void }) {
+export function PauseRibbon({
+  pause,
+  paused = true,
+  onResume,
+}: {
+  pause: PauseInfo;
+  paused?: boolean;
+  onResume(): void;
+}) {
   if (pause.kind === 'start') return null;
-  const title =
-    pause.kind === 'auto'
+  const title = !paused
+    ? 'Suggestion pending'
+    : pause.kind === 'auto'
       ? `Paused · ${PAUSE_TITLE[pause.reason ?? ''] ?? 'Auto-pause'}`
       : pause.kind === 'inspector'
         ? 'Paused while you inspect'
@@ -847,7 +870,13 @@ export function PauseRibbon({ pause, onResume }: { pause: PauseInfo; onResume():
         {pause.kind === 'auto' && pause.text && <p>{pause.text}</p>}
       </div>
       <button type="button" className="btn btn-small" onClick={onResume}>
-        Resume <kbd>Space</kbd>
+        {paused ? (
+          <>
+            Resume <kbd>Space</kbd>
+          </>
+        ) : (
+          'Keep watching'
+        )}
       </button>
     </div>
   );
@@ -878,13 +907,12 @@ const MOMENT_TITLE: Record<number, string> = {
   5: 'Trust remembered',
 };
 
-export function MomentBanner({ moment, slowMo }: { moment: MomentRecord; slowMo: boolean }) {
+export function MomentBanner({ moment }: { moment: MomentRecord }) {
   return (
     <div className="moment-banner" role="status" aria-live="polite" key={`${moment.id}-${moment.minute}`}>
       <span className="moment-banner-n">Moment {moment.id}</span>
       <strong>{MOMENT_TITLE[moment.id] ?? ''}</strong>
       <p>{moment.line}</p>
-      {slowMo && <span className="moment-banner-slow">slow motion</span>}
     </div>
   );
 }

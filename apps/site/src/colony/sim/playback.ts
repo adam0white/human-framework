@@ -1,12 +1,7 @@
 /**
- * Playback: the worker's state machine without `postMessage` (colony.md §8), so it runs and tests headless.
- * It owns the game, the speed, pause and auto-pause, and turns real time (`tick{dtMs}`) into whole sim minutes.
- *
- * Auto-pause rules (colony.md §8): pause after the minute that caused it, for a suggestion becoming visible
- * (once per nudge), the first Human verdict on a player card that is notNow, willNot or complied (once per card;
- * `cannot` and a "not now" that passes by itself do not pause, see `passesByItself`), a moment (once per moment) and the storm warning and start (once each). Reasons in the same minute
- * coalesce into one pause; the first in that order names it. Stepping stops at the pausing minute and the rest of
- * the tick is dropped. Auto-pause changes only when the player acts, so it is not logged and replay ignores it.
+ * Clock/UI playback only. Pending suggestions slow the clock to one sim minute per real second until answered,
+ * dismissed, expired or acknowledged. Narrative moments, verdicts and weather never interrupt time.
+ * Manual/start pauses remain explicit. None of this changes sim state, inputs or replay rules.
  */
 import {
   makePlaytestFile,
@@ -18,32 +13,15 @@ import type { MainToWorker, PauseInfo, PauseReason, PlaybackState, Speed, Worker
 import { ColonyGame, type LogEntry, SCENARIO_VERSION } from './game.ts';
 import type { HumanSideFactory } from './human-side.ts';
 import { colonyHash, colonySnapshot, parseColonyPlaytest, replayColony } from './playtest.ts';
-import {
-  type Minute,
-  SIM_MINUTES_PER_SECOND,
-  STORM_START,
-  VILLAGERS,
-  type VillagerId,
-  WARNING_AT,
-} from './world-types.ts';
-
+import { type Minute, SIM_MINUTES_PER_SECOND, type VillagerId } from './world-types.ts';
 /** Never advance more than this many sim minutes per tick (a backgrounded tab must not fast-forward). */
 export const MAX_MINUTES_PER_TICK = 8;
-/** Slow-mo when a moment fires with auto-pause off (spec §7, §8): this fraction of the speed for this many ms. */
-const SLOW_FACTOR = 0.25;
-const SLOW_MS = 3000;
+/** Pending choices stay readable while the simulation continues. */
+const DECISION_MINUTES_PER_SECOND = 1;
 /** Longest real-time step one tick may account for. */
 const MAX_DT_MS = 250;
 
-/** Verdicts that pause, once per card (the first one). `cannot` ("I'm asleep") shows on the card but does not stop play. */
-const REFUSALS = new Set(['notNow', 'willNot', 'complied']);
-
-/**
- * A "not now" for a drink, a meal, sleep or a due prayer passes by itself and the order stands: it shows on the card
- * and over the map but does not stop play (2026-10-19 level-up: at dawn these were five stops in forty minutes with
- * nothing to decide, and a prayer deferral should stay a quiet part of the day, not a stop). A "not now" for other
- * work ("that is my work") still pauses: that one is a choice the player may want to answer.
- */
+/** Historical verdict classification retained for the level-up control. Verdicts never alter today's clock. */
 export const passesByItself = (v: { kind: string; reason: string }): boolean =>
   v.kind === 'notNow' &&
   (v.reason.startsWith('need:') || v.reason.startsWith('commitment:salah') || v.reason === 'norm:salah');
@@ -53,9 +31,6 @@ export const START_TEXT =
 export const LOADED_TEXT = 'Playtest file loaded. Play on from here, or look around.';
 export const DAY3_TEXT =
   'Another day: build a store-room beside the house (finish the house first if it is open) and keep 12 meals by 18:00. Keep all six alive.';
-
-const firstName = (id: VillagerId): string =>
-  (VILLAGERS.find((v) => v.id === id)?.name ?? id).replace(/^Hajja /, '');
 
 export interface Candidate {
   reason: PauseReason;
@@ -72,10 +47,9 @@ export class Playback {
   pause: PauseInfo | null = null;
   autoPause = true;
   private carry = 0;
-  private slowLeft = 0;
   private endedSent = false;
-  /** Once-per keys already used (`suggestion:id`, `refusal:order:kind`, `moment:id`, `storm:warning`). */
-  private seen = new Set<string>();
+  /** Playback acknowledgements do not settle suggestions or enter the simulation log. */
+  private acknowledged = new Set<string>();
 
   private readonly factory: HumanSideFactory;
 
@@ -89,13 +63,14 @@ export class Playback {
       pause: this.pause,
       speed: this.speed,
       autoPause: this.autoPause,
-      slowMo: this.slowLeft > 0,
+      slowMo: !this.paused && this.pause?.kind === 'auto',
     };
   }
 
   private frame(): WorkerReply[] {
     const g = this.game;
     if (!g) return [];
+    this.syncDecision();
     const out: WorkerReply[] = [{ type: 'frame', frame: g.frame(), playback: this.state() }];
     if (g.ended && !this.endedSent) {
       this.endedSent = true;
@@ -141,9 +116,8 @@ export class Playback {
     const result = replayResult(f, colonyHash(g), engine, g.minute);
     this.game = g;
     this.carry = 0;
-    this.slowLeft = 0;
     this.endedSent = false;
-    this.seen = new Set();
+    this.acknowledged = new Set();
     this.stop(
       'manual',
       g.scenarioVersion === SCENARIO_VERSION
@@ -167,9 +141,8 @@ export class Playback {
         }
         this.game = new ColonyGame(msg.seed, this.factory);
         this.carry = 0;
-        this.slowLeft = 0;
         this.endedSent = false;
-        this.seen = new Set();
+        this.acknowledged = new Set();
         this.autoPause = msg.autoPause;
         this.stop('start', START_TEXT);
         return this.frame();
@@ -179,29 +152,26 @@ export class Playback {
         this.speed = msg.speed;
         return this.frame();
       case 'pause':
-        if (msg.cause === 'inspector') {
-          // An existing pause wins: closing the inspector must not resume it.
-          if (!this.paused) this.stop('inspector', 'Inspecting');
-        } else if (!this.paused || this.pause?.kind === 'inspector') this.stop('manual', 'Paused');
+        if (msg.cause !== 'inspector') this.stop('manual', 'Paused');
         return this.frame();
       case 'resume':
+        if (this.pause?.kind === 'auto') {
+          for (const n of this.game?.visibleNudges() ?? []) this.acknowledged.add(n.id);
+        }
         this.resume();
         return this.frame();
       case 'setAutoPause':
         this.autoPause = msg.on;
-        if (msg.on) this.slowLeft = 0;
         return this.frame();
       case 'order':
         // Any order that settles the pausing suggestion resumes, also one typed in the composer without `nudgeId`.
         this.game?.issue(msg.input, msg.nudgeId);
-        for (const id of this.game?.lastSettled ?? []) this.resumeOnAct(id);
         return this.frame();
       case 'cancel':
         this.game?.cancel(msg.orderId);
         return this.frame();
       case 'dismissNudge':
         this.game?.dismissNudge(msg.id);
-        this.resumeOnAct(msg.id);
         return this.frame();
       case 'why':
         if (!this.game) return [];
@@ -226,19 +196,33 @@ export class Playback {
     }
   }
 
-  /** Resume on act: the player confirmed or skipped the suggestion that caused the current pause. */
-  private resumeOnAct(nudgeId: string): void {
-    const p = this.pause;
-    if (this.paused && p?.kind === 'auto' && p.reason === 'suggestion' && p.nudgeId === nudgeId)
-      this.resume();
+  /** Keep only a live unanswered suggestion in clock metadata; explicit pauses take precedence. */
+  private syncDecision(): void {
+    if (this.paused) return;
+    const n =
+      this.autoPause && !this.game?.ended
+        ? this.game?.visibleNudges().find((nudge) => !this.acknowledged.has(nudge.id))
+        : undefined;
+    this.pause = n
+      ? {
+          kind: 'auto',
+          reason: 'suggestion',
+          text: n.text,
+          nudgeId: n.id,
+          personId: n.order.personId,
+          minute: this.game?.minute ?? 0,
+        }
+      : null;
   }
 
   private tick(dtMs: number): WorkerReply[] {
     const g = this.game;
     if (!g || this.paused || g.ended) return [];
     const dt = Math.max(0, Math.min(dtMs, MAX_DT_MS));
-    this.carry += (dt / 1000) * SIM_MINUTES_PER_SECOND * this.speed * (this.slowLeft > 0 ? SLOW_FACTOR : 1);
-    this.slowLeft = Math.max(0, this.slowLeft - dt);
+    this.syncDecision();
+    const chosenRate = SIM_MINUTES_PER_SECOND * this.speed;
+    const rate = this.state().slowMo ? Math.min(chosenRate, DECISION_MINUTES_PER_SECOND) : chosenRate;
+    this.carry += (dt / 1000) * rate;
     const whole = Math.min(MAX_MINUTES_PER_TICK, Math.floor(this.carry));
     if (whole <= 0) return [];
     this.carry -= whole;
@@ -248,57 +232,22 @@ export class Playback {
     return this.frame();
   }
 
-  /** Step up to `minutes` sim minutes, stopping at the first minute that auto-pauses. Returns minutes stepped. */
+  /** Step whole sim minutes, dropping fast-clock carry when a new pending decision appears. */
   step(minutes: number): number {
     const g = this.game;
     if (!g) return 0;
     let n = 0;
     for (; n < minutes && !g.ended; ) {
-      const before = new Set(g.visibleNudges().map((x) => x.id));
+      const wasSlow = this.state().slowMo;
       g.advance(1);
       n += 1;
-      if (!this.autoPause && g.lastStep.moments.length > 0) this.slowLeft = SLOW_MS;
-      const pause = coalesce(this.candidates(before), g.minute);
-      if (!pause || !this.autoPause) continue;
-      this.paused = true;
-      this.pause = pause;
-      this.carry = 0;
-      break;
+      this.syncDecision();
+      if (!wasSlow && this.state().slowMo) {
+        this.carry = 0;
+        break;
+      }
     }
     return n;
-  }
-
-  /** Auto-pause reasons the last stepped minute produced, in table order; marks each once-per key as used. */
-  private candidates(visibleBefore: ReadonlySet<string>): Candidate[] {
-    const g = this.game;
-    if (!g) return [];
-    const out: Candidate[] = [];
-    const once = (key: string): boolean => {
-      if (this.seen.has(key)) return false;
-      this.seen.add(key);
-      return true;
-    };
-    for (const n of g.visibleNudges()) {
-      if (visibleBefore.has(n.id) || !once(`suggestion:${n.id}`)) continue;
-      out.push({ reason: 'suggestion', text: n.text, nudgeId: n.id, personId: n.order.personId });
-    }
-    for (const v of g.lastStep.verdicts) {
-      if (!REFUSALS.has(v.kind) || v.reason === 'unavailable' || passesByItself(v)) continue;
-      if (!once(`refusal:${v.orderId}`)) continue;
-      out.push({
-        reason: 'refusal',
-        text: `${firstName(v.personId)}: ${v.says}`,
-        orderId: v.orderId,
-        personId: v.personId,
-      });
-    }
-    for (const m of g.lastStep.moments) {
-      if (!once(`moment:${m.id}`)) continue;
-      out.push({ reason: 'moment', text: m.line, personId: m.personId });
-    }
-    const storm = stormAt(g.minute);
-    if (storm && once(`storm:${storm.key}`)) out.push({ reason: 'storm', text: storm.text });
-    return out;
   }
 }
 
@@ -311,13 +260,4 @@ export function coalesce(found: readonly Candidate[], minute: Minute): PauseInfo
   if (!first) return null;
   const { reason, text, ...ids } = first;
   return { kind: 'auto', reason, text: [text, ...rest.map((c) => c.text)].join(' · '), minute, ...ids };
-}
-
-/** The storm events that pause when the clock reaches them. */
-function stormAt(minute: Minute): { key: string; text: string } | null {
-  if (minute === WARNING_AT)
-    return { key: 'warning', text: 'The sky darkens in the west. The storm comes at 19:00.' };
-  if (minute === STORM_START)
-    return { key: 'start', text: 'The storm breaks. The roof and the store are judged now.' };
-  return null;
 }

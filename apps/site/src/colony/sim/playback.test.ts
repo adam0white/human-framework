@@ -1,9 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import type { PauseInfo, WorkerReply } from '../protocol.ts';
+import type { WorkerReply } from '../protocol.ts';
 import { NUDGES, SCENARIO_VERSION } from './game.ts';
 import { createFrameworkHumanSide } from './human.ts';
 import { coalesce, MAX_MINUTES_PER_TICK, Playback } from './playback.ts';
-import { at, STORM_START, WARNING_AT } from './world-types.ts';
 
 function start(autoPause = true): Playback {
   const pb = new Playback(createFrameworkHumanSide);
@@ -11,15 +10,13 @@ function start(autoPause = true): Playback {
   return pb;
 }
 
-/** Tick until paused or `limit` sim minutes pass. */
-function runUntilPause(pb: Playback, limit = 3000): void {
-  const g = pb.game;
-  if (!g) throw new Error('no game');
-  const until = g.minute + limit;
-  while (!pb.paused && !g.ended && g.minute < until) pb.handle({ type: 'tick', dtMs: 250 });
+/** Advance playback to the next pending decision. */
+function runUntilDecision(pb: Playback): void {
+  for (let i = 0; i < 10000 && !pb.state().slowMo; i++) pb.handle({ type: 'tick', dtMs: 250 });
+  expect(pb.state().slowMo).toBe(true);
 }
 
-describe('playback: start, auto-pause, resume on act', () => {
+describe('playback: explicit pause and continuous decision slowdown', () => {
   it('starts paused behind the goal card and does not step until resumed', () => {
     const pb = start();
     expect(pb.paused).toBe(true);
@@ -32,59 +29,86 @@ describe('playback: start, auto-pause, resume on act', () => {
     expect(pb.game?.minute).toBe(2); // 8 sim-min/s at 1×
   });
 
-  it('pauses at the minute a suggestion appears, never past it, and resumes when it is used', () => {
+  it('slows a pending suggestion without stopping, then restores the chosen speed on commit', () => {
     const pb = start();
     pb.handle({ type: 'resume' });
     pb.handle({ type: 'setSpeed', speed: 2 });
-    runUntilPause(pb);
-    const dawn = NUDGES.find((n) => n.id === 'dawn-site');
+    runUntilDecision(pb);
+    expect(pb.paused).toBe(false);
     expect(pb.pause).toMatchObject({ kind: 'auto', reason: 'suggestion', nudgeId: 'dawn-site' });
-    expect(pb.game?.minute).toBe(dawn?.minute);
-    // Another order leaves it paused; using the suggestion resumes.
-    pb.handle({ type: 'order', input: { personId: 'samira', placeId: 'field' } });
-    expect(pb.paused).toBe(true);
-    pb.handle({ type: 'order', input: { personId: 'yusuf', placeId: 'site' }, nudgeId: 'dawn-site' });
-    expect(pb.paused).toBe(false);
-    expect(pb.game?.visibleNudges().map((n) => n.id)).not.toContain('dawn-site');
-  });
-
-  it('an order typed in the composer that matches the suggestion settles it and resumes too', () => {
-    const pb = start();
-    pb.handle({ type: 'resume' });
-    runUntilPause(pb);
-    expect(pb.pause?.nudgeId).toBe('dawn-site');
+    const minute = pb.game?.minute ?? 0;
+    for (let i = 0; i < 4; i++) pb.handle({ type: 'tick', dtMs: 250 });
+    expect(pb.game?.minute).toBe(minute + 1);
     pb.handle({ type: 'order', input: { personId: 'yusuf', placeId: 'site', rush: true } });
-    expect(pb.paused).toBe(false);
+    expect(pb.state()).toMatchObject({ paused: false, slowMo: false, speed: 2, pause: null });
+    const resolved = pb.game?.minute ?? 0;
+    pb.handle({ type: 'tick', dtMs: 250 });
+    expect(pb.game?.minute).toBe(resolved + 4);
   });
 
-  it('skipping the suggestion also resumes; a manual pause does not resume on act', () => {
+  it('keeps a decision slow beyond three seconds and through inspection, until dismissed', () => {
     const pb = start();
     pb.handle({ type: 'resume' });
-    runUntilPause(pb);
-    pb.handle({ type: 'dismissNudge', id: 'dawn-site' });
+    runUntilDecision(pb);
+    pb.handle({ type: 'pause', cause: 'inspector' });
     expect(pb.paused).toBe(false);
-    pb.handle({ type: 'pause' });
-    pb.handle({ type: 'dismissNudge', id: 'cedar' });
-    expect(pb.pause?.kind).toBe('manual');
+    const minute = pb.game?.minute ?? 0;
+    for (let i = 0; i < 20; i++) pb.handle({ type: 'tick', dtMs: 250 });
+    expect(pb.game?.minute).toBe(minute + 5);
+    expect(pb.state().slowMo).toBe(true);
+    pb.handle({ type: 'dismissNudge', id: 'dawn-site' });
+    expect(pb.state().slowMo).toBe(false);
   });
 
-  it('an inspector pause never replaces another pause; a manual pause replaces it', () => {
+  it('can acknowledge a suggestion without answering it, and never pauses inspection', () => {
     const pb = start();
     pb.handle({ type: 'pause', cause: 'inspector' });
     expect(pb.pause?.kind).toBe('start');
     pb.handle({ type: 'resume' });
+    runUntilDecision(pb);
+    pb.handle({ type: 'resume' });
+    pb.handle({ type: 'tick', dtMs: 250 });
+    expect(pb.state().slowMo).toBe(false);
+    expect(pb.game?.visibleNudges().some((n) => n.id === 'dawn-site')).toBe(true);
     pb.handle({ type: 'pause', cause: 'inspector' });
-    expect(pb.pause?.kind).toBe('inspector');
+    expect(pb.paused).toBe(false);
     pb.handle({ type: 'pause', cause: 'manual' });
+    pb.handle({ type: 'dismissNudge', id: 'dawn-site' });
     expect(pb.pause?.kind).toBe('manual');
   });
 
-  it('with auto-pause off it runs through suggestions and slows down for moments instead', () => {
-    const pb = start(false);
+  it('returns to chosen speed when a suggestion expires or decision slowdown is disabled', () => {
+    const pb = start();
     pb.handle({ type: 'resume' });
-    runUntilPause(pb, at(1, 7, 0));
-    expect(pb.paused).toBe(false);
-    expect(pb.game?.minute ?? 0).toBeGreaterThanOrEqual(at(1, 7, 0));
+    runUntilDecision(pb);
+    const dawn = NUDGES.find((n) => n.id === 'dawn-site');
+    if (!dawn || !pb.game) throw new Error('no dawn suggestion');
+    pb.game.advance(dawn.until - pb.game.minute - 1);
+    pb.step(1);
+    expect(pb.state().slowMo).toBe(false);
+    const other = start();
+    other.handle({ type: 'resume' });
+    runUntilDecision(other);
+    other.handle({ type: 'setAutoPause', on: false });
+    expect(other.state().slowMo).toBe(false);
+  });
+
+  it('ordinary moments, storm notices and answered refusals never stop or slow the clock', () => {
+    for (const autoPause of [true, false]) {
+      const pb = start(autoPause);
+      pb.handle({ type: 'resume' });
+      for (const n of NUDGES) pb.handle({ type: 'dismissNudge', id: n.id });
+      pb.handle({ type: 'setSpeed', speed: 2 });
+      const g = pb.game;
+      if (!g) throw new Error('no game');
+      while (!g.ended) {
+        const last = g.minute;
+        pb.handle({ type: 'tick', dtMs: 250 });
+        expect(g.minute - last).toBeLessThanOrEqual(MAX_MINUTES_PER_TICK);
+        expect(pb.state()).toMatchObject({ paused: false, slowMo: false, pause: null });
+      }
+      expect(g.moments.length).toBeGreaterThan(0);
+    }
   });
 
   it('coalesces reasons of one minute into one pause named by the first', () => {
@@ -106,40 +130,20 @@ describe('playback: start, auto-pause, resume on act', () => {
     expect(coalesce([], 5)).toBeNull();
   });
 
-  it('a full auto-paused run following every suggestion: once-per rules, storm pauses, all five moments', () => {
+  it('still reaches all five moments when every suggestion is followed during continuous play', () => {
     const pb = start();
     pb.handle({ type: 'resume' });
     pb.handle({ type: 'setSpeed', speed: 2 });
     const g = pb.game;
     if (!g) throw new Error('no game');
-    const pauses: PauseInfo[] = [];
-    let last = g.minute;
     while (!g.ended) {
       pb.handle({ type: 'tick', dtMs: 250 });
-      expect(g.minute - last).toBeLessThanOrEqual(MAX_MINUTES_PER_TICK);
-      last = g.minute;
-      if (!pb.paused) continue;
-      const p = pb.pause;
-      if (!p) throw new Error('paused without info');
-      pauses.push(p);
-      expect(p.minute).toBe(g.minute);
-      const n = p.reason === 'suggestion' ? NUDGES.find((x) => x.id === p.nudgeId) : undefined;
-      if (n) pb.handle({ type: 'order', input: { ...n.order, ...(n.prefill ?? {}) }, nudgeId: n.id });
-      else pb.handle({ type: 'resume' });
       expect(pb.paused).toBe(false);
+      for (const n of g.visibleNudges()) {
+        pb.handle({ type: 'order', input: { ...n.order, ...(n.prefill ?? {}) }, nudgeId: n.id });
+      }
     }
-    const keys = pauses.map((p) => `${p.reason}:${p.nudgeId ?? p.orderId ?? p.text}`);
-    expect(new Set(keys).size).toBe(keys.length);
-    expect(pauses.filter((p) => p.reason === 'storm').map((p) => p.minute)).toEqual([
-      WARNING_AT,
-      STORM_START,
-    ]);
-    const shown = pauses.filter((p) => p.reason === 'suggestion').map((p) => p.nudgeId);
-    expect(shown).toContain('dawn-site');
-    expect(shown).toContain('roof-hands-1');
-    expect(pauses.some((p) => p.reason === 'refusal' && p.personId === 'tariq')).toBe(true);
     expect(g.moments.map((m) => m.id).sort()).toEqual([1, 2, 3, 4, 5]);
-    if (process.env.BALANCE) console.log(pauses.map((p) => `${p.minute} ${p.reason} ${p.text}`).join('\n'));
   });
 
   it('offers "Another day" once after Day 2, re-pauses behind the goal card and runs Day 3', () => {

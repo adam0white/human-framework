@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { ColonyGame } from '../sim/game.ts';
 import { createFrameworkHumanSide } from '../sim/human.ts';
 import type { OrderCard } from '../sim/orders.ts';
-import { GoalStrip, OrderReply } from './parts.tsx';
+import { GoalStrip, OrderReply, PauseRibbon, TopBar } from './parts.tsx';
 
 function render(component: Parameters<typeof renderToStaticMarkup>[0]) {
   const node = document.createElement('div');
@@ -33,6 +33,34 @@ function card(id: string, human: OrderCard['human'], status: OrderCard['status']
 }
 
 describe('Well source-unread retest follow-up', () => {
+  it('reports the effective clock rate and distinguishes a pending choice from a pause', () => {
+    const pause = {
+      kind: 'auto' as const,
+      reason: 'suggestion' as const,
+      minute: 330,
+      text: 'Send Yusuf to the house?',
+    };
+    const playback = { paused: false, speed: 2 as const, slowMo: true, autoPause: true, pause };
+    const props = { frame, playback, onPause: () => {}, onSpeed: () => {}, onAutoPause: () => {} };
+    expect(render(createElement(TopBar, props)).querySelector('.clock-rate')?.textContent).toBe(
+      'Slow · 1 min/s · suggestion pending',
+    );
+    expect(
+      render(
+        createElement(TopBar, { ...props, playback: { ...playback, slowMo: false, pause: null } }),
+      ).querySelector('.clock-rate')?.textContent,
+    ).toBe('Running · 16 min/s');
+    expect(
+      render(createElement(TopBar, { ...props, frame: { ...frame, ended: true } })).querySelector(
+        '.clock-rate',
+      )?.textContent,
+    ).toBe('Ended');
+    const ribbon = render(createElement(PauseRibbon, { pause, paused: false, onResume: () => {} }));
+    expect(ribbon.textContent).toContain('Suggestion pending');
+    expect(ribbon.textContent).not.toContain('Paused');
+    expect(ribbon.querySelector('p')?.textContent).toBe('Send Yusuf to the house?');
+  });
+
   it('keeps roof and survival deadlines outside the collapsed goal labels', () => {
     const node = render(createElement(GoalStrip, { goals: frame.goals }));
     expect(node.querySelector('.goal-deadlines')?.textContent).toBe(

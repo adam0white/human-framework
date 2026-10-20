@@ -62,7 +62,7 @@ describe('Well stable order controls', () => {
   });
 
   it('leaves short landscape layouts outside the fixed phone reservation', () => {
-    const stable = css.slice(css.indexOf('/* Stable phone order controls'));
+    const stable = css.slice(css.indexOf('/* Phone orders use normal flow.'));
     expect(stable).toContain('@media (max-width: 860px) and (min-height: 501px)');
     expect(css.slice(css.indexOf('/* Keep the landscape order column'))).toMatch(
       /\.center\s*\{[^}]*max-height: none/s,
@@ -94,12 +94,11 @@ describe('Well stable order controls', () => {
     expect(node.querySelector('.nudge-timer')?.textContent).toContain('in 60 min');
   });
 
-  it('reserves phone alert and suggestion rows and confines expanded suggestions to the order area', () => {
-    const stable = css.slice(css.indexOf('/* Stable phone order controls'));
-    expect(stable).toMatch(/\.order-alerts\s*\{[^}]*height: 64px/s);
-    expect(stable).toMatch(/\.composer-tray\s*\{[^}]*padding-bottom: 44px/s);
-    expect(stable).toMatch(/\.nudge-slot\s*\{[^}]*position: absolute/s);
-    expect(stable).toMatch(/\.nudge-slot\[open\]\s*\{[^}]*inset: 0/s);
-    expect(stable).toMatch(/\.composer-actions\s*\{[^}]*grid-row: 2/s);
+  it('reserves alerts above the order and keeps expanded suggestions in normal flow', () => {
+    const phone = css.slice(css.indexOf('/* Phone orders use normal flow.'));
+    expect(phone).toMatch(/\.order-alerts\s*\{[^}]*height: 116px/s);
+    expect(phone).toMatch(/\.composer-tray\s*\{[^}]*overflow: visible/s);
+    expect(phone).toMatch(/\.nudge-slot\s*\{[^}]*position: static/s);
+    expect(phone).toMatch(/\.composer-line\s*\{[^}]*min-height: 80px/s);
   });
 });
