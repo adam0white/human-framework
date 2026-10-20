@@ -345,6 +345,18 @@ The Halil pane, voices, ends and between-day trust read as words rather than fee
 
 On phones, choices scroll separately from the selected-word summary, likely reply and Say it / Say nothing footer. The footer stays above the tabs. Reason edits request a matching prediction and say “Updating his likely reply…” while it is pending.
 
+## Design change 2026-10-20 (owner may veto)
+
+Scenes lead the Day view. A named exchange, place and hour replace the task-card body. Today’s timeline opens on request. Between encounters, one line says what Halil is doing; before the final day, a morning line recalls Selin’s usual evening call. Workshop customers, river neighbours, recorded Hacer visits and calls, the doctor’s recorded advice and surfaced Nuran memories supply read-only scenes. Incidental customers and neighbours are authored fiction anchored to an actual activity, not extra HF people or recorded events. Prayer remains in the quiet timeline.
+
+F-240, F-251 and F-257 drove this change. Yusuf: “I do not yet want to spend an evening choosing combinations of action, pressure and reason to reach the next human exchange.” Esra: “I would be interested in another scene involving Selin or Nuran, but the repeated instruction sheets did not give me the company I came for.” Her request: “Let me spend more time with an actual exchange between Halil and another person”.
+
+Two plain offered actions plus “Say nothing” replace the default composer. A selection shows the worker’s likely answer; Say it sends the exact offered action as Mention, without insistence or a reason. Labels describe actions honestly: “Call Selin” cannot promise a particular topic. “Say something else…” opens the existing full composer in a keyboard-contained dialog. Auto pauses once when an encounter reaches its existing suggestion window; silence or sending resumes the chosen clock pace. This is a normal recorded pause/resume input, not a simulation change. Why explicitly names his current action; craving prose no longer inherits an action’s Why target. All six full-composer actions have room on the checked phone.
+
+Costs and risks: incidental scenes add authored company without new relationship outcomes. The player still selects, previews and confirms; a cold retest must judge whether that is too much procedure. Quiet play can still produce fewer exchanges than a player who suggests calls or visits. Old exports do not contain the original presentation wording. No rules, edition, HF pin or simulation files change; scenarios voice-1 and voice-2 keep their existing replay paths.
+
+Revert by reverting this design-round commit: restore App’s DayLog and docked Composer, DayLog’s previous Why treatment, Composer’s previous key scope and voice.css; remove SceneDay, scenes and their new tests. No save migration or previous-edition setting is needed because this changes presentation only.
+
 ## Deferred
 
 Open, unbuilt or unconfirmed items from the design, the build plan and its fourteen passes. Target is "unscheduled" unless stated.
@@ -360,6 +372,8 @@ Open, unbuilt or unconfirmed items from the design, the build plan and its fourt
 - Whether a missed promise should cost Osman's standing toward Halil (today only his demand strengthens). A framework change with a balance pass to follow. Unscheduled.
 
 **Game and town**
+
+- Design round: quiet Ramadan 2 still yields only two two-person exchanges in seeds 7, 19 and 31. Add a third ordinary encounter without inventing a completed visit or changing old replays; the scene-first core ships first. Target: 2026-11-03.
 
 - Restoring the original body-specific wording of an old conversation after opening an export: historical felt readings are not in saved log entries. Such rows use their recorded time and surfaced context instead; reconstructing original body speech would need versioned presentation history. Target: 2026-11-03.
 

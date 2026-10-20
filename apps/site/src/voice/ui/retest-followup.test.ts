@@ -2,7 +2,7 @@
 import { createElement } from 'react';
 import { flushSync } from 'react-dom';
 import { createRoot } from 'react-dom/client';
-import { afterEach, expect, it } from 'vitest';
+import { afterEach, expect, it, vi } from 'vitest';
 import type { LogEntry, WhyView } from '../protocol.ts';
 import { DayLog } from './DayLog.tsx';
 import { Why } from './Why.tsx';
@@ -216,4 +216,35 @@ it('takes Latest to the bottom even when a recent conversation is taller than th
   const note: LogEntry = { ...task, id: 'note-after-latest', kind: 'note', text: 'A later ordinary note.' };
   update(createElement(DayLog, { ...props, log: [talk, answer, task, note] }));
   expect(scroller.scrollTop).toBe(1600);
+});
+
+it('does not attach the previous action Why to a craving line', () => {
+  const el = document.createElement('div');
+  document.body.append(el);
+  const root = createRoot(el);
+  const onWhy = vi.fn();
+  flushSync(() =>
+    root.render(
+      createElement(DayLog, {
+        log: [
+          {
+            id: 'cig',
+            day: 1,
+            minute: 2040,
+            clock: '10:00',
+            kind: 'feel',
+            who: 'halil',
+            text: 'He wants a cigarette.',
+            decisionId: 'rest-before',
+          },
+        ],
+        paused: true,
+        onWhy,
+      }),
+    ),
+  );
+  expect(el.textContent).toContain('He wants a cigarette.');
+  expect(el.querySelector('button.v-log-btn')).toBeNull();
+  root.unmount();
+  el.remove();
 });

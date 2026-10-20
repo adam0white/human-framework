@@ -94,12 +94,12 @@ it('labels decision rows Why and opens the corresponding decision without making
     }),
   );
   const button = query<HTMLButtonElement>(el, 'button.v-log-btn');
-  expect(button.textContent).toContain('Why?');
+  expect(button.textContent).toContain('Why this action?');
   expect(button.getAttribute('aria-pressed')).toBe('true');
   button.click();
   expect(selected).toBe('d1');
   expect(el.querySelectorAll('button.v-log-btn')).toHaveLength(1);
-  expect(query(el, 'div.v-log-btn').textContent).not.toContain('Why?');
+  expect(query(el, 'div.v-log-btn').textContent).not.toContain('Why this action?');
   const css = readFileSync(resolve(import.meta.dirname, 'voice.css'), 'utf8');
   expect(css).toMatch(/button\.v-log-btn\s*\{[^}]*border:\s*1px solid/);
   expect(css).toMatch(/\.v-log-row\.is-selected \.v-log-btn\s*\{[^}]*outline:/);

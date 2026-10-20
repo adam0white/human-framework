@@ -1,7 +1,6 @@
 /**
- * Game 2, *The Day You Say Nothing* (docs/games/voice.md §7). One viewport, panels that scroll
- * inside themselves. Desktop: ends and voices | the day with the composer docked | Halil. Phones: tabs plus a
- * bottom-sheet composer. Space toggles pause from every focus state.
+ * Game 2, *The Day You Say Nothing*. The Day view leads with a scene, a quiet routine disclosure,
+ * and plain suggestions. Halil and Ends remain available through tabs. Space toggles the clock.
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
@@ -9,14 +8,12 @@ import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { Draft } from '../protocol.ts';
 import { Between } from './Between.tsx';
-import { Composer } from './Composer.tsx';
-import { DayLog } from './DayLog.tsx';
 import { EndsPane } from './EndsPane.tsx';
 import { HalilPane } from './HalilPane.tsx';
 import { Intro } from './Intro.tsx';
 import { Premise } from './Premise.tsx';
 import { Report } from './Report.tsx';
-import { StandingCard } from './StandingCard.tsx';
+import { SceneDay } from './SceneDay.tsx';
 import { TopBar } from './TopBar.tsx';
 import { useVoice } from './useVoice.ts';
 import { VoicesPane } from './VoicesPane.tsx';
@@ -141,39 +138,23 @@ export function App() {
             <VoicesPane voices={frame.voices} />
           </div>
           <div className="v-col v-col-centre">
-            <DayLog
+            <SceneDay
               key={frame.day}
-              log={frame.log}
-              moment={{ minute: frame.minute, halil: frame.halil }}
-              pauseBeat={frame.pauseBeat}
-              paused={frame.paused}
+              frame={frame}
+              telegraph={voice.telegraph}
+              whyOpen={voice.whyOpen}
+              selected={whyId}
               onWhy={openWhy}
               onRetainWhy={actions.retainWhy}
-              selected={whyId}
+              onPredict={actions.predict}
+              onSuggest={suggest}
+              onSayNothing={sayNothing}
+              onWithdraw={actions.withdraw}
+              onScenePause={() => actions.setPaused(true)}
             />
           </div>
           <div className="v-col v-col-right">
             <HalilPane halil={frame.halil} />
-          </div>
-          <div className="v-dock">
-            {frame.standing && !frame.muted && (
-              <StandingCard standing={frame.standing} onWithdraw={actions.withdraw} />
-            )}
-            {!overlay && (
-              <Composer
-                composer={frame.composer}
-                prefill={frame.prefill}
-                options={frame.options}
-                leaning={frame.leaning}
-                muted={frame.muted}
-                doingLabel={frame.halil.doing?.label}
-                telegraph={voice.telegraph}
-                whyOpen={voice.whyOpen}
-                onPredict={actions.predict}
-                onSuggest={suggest}
-                onSayNothing={sayNothing}
-              />
-            )}
           </div>
         </div>
       )}
