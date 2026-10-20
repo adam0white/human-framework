@@ -59,9 +59,48 @@ export function postXY(l: Layout, section: SectionId, slot: number, count = 2): 
   return { x: cx + offset * gap, y: l.yWall + l.wallH * 0.45 };
 }
 
-export type Hit = { kind: 'post'; post: string } | { kind: 'section'; section: SectionId } | null;
+export type Hit =
+  | { kind: 'post'; post: string }
+  | { kind: 'section'; section: SectionId }
+  | { kind: 'watcher'; watcher: WatcherId }
+  | null;
+
+/** The same resting positions for drawing and selecting figures below the wall. */
+export function offWallWatchers(l: Layout, f: Frame): { id: WatcherId; x: number; y: number }[] {
+  const gw = Math.max(80, Math.min(140, l.w * 0.24));
+  let hall = 0;
+  return f.watchers
+    .filter((w) => w.post === null)
+    .map((w) => {
+      if (w.place === 'hall')
+        return { id: w.id, x: l.w / 2 - gw / 2 - 14 - hall++ * 16, y: l.yVillage + (l.h - l.yVillage) * 0.4 };
+      return {
+        id: w.id,
+        x: (SECTION_IDS.indexOf(w.home) + 0.5) * l.laneW + (hashId(w.id) - 0.5) * 20,
+        y: l.yVillage + (l.h - l.yVillage) * 0.85,
+      };
+    });
+}
 
 export function hitTest(l: Layout, f: Frame, x: number, y: number): Hit {
+  if (f.phase === 'night') {
+    let nearest: { watcher: WatcherId; d: number } | null = null;
+    for (const sec of f.sections)
+      for (const [slot, p] of sec.posts.entries()) {
+        const at = postXY(l, sec.id, slot, sec.posts.length);
+        for (const [offset, watcher] of p.watchers.entries()) {
+          const d = Math.hypot(x - at.x, y - (at.y - offset * 34 - 9));
+          if (d <= 22 && (!nearest || d < nearest.d)) nearest = { watcher, d };
+        }
+      }
+    for (const at of offWallWatchers(l, f)) {
+      const w = f.watchers.find((w) => w.id === at.id);
+      if (w?.place !== 'hall' && w?.place !== 'home') continue;
+      const d = Math.hypot(x - at.x, y - (at.y - 6));
+      if (d <= 16 && (!nearest || d < nearest.d)) nearest = { watcher: at.id, d };
+    }
+    if (nearest) return { kind: 'watcher', watcher: nearest.watcher };
+  }
   // The nearest post within reach: a generous target for a finger (posts sit close on a phone).
   const reach = Math.max(30, l.laneW * 0.3);
   let best: { post: string; d: number } | null = null;
@@ -586,6 +625,13 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
           drawWalker(ctx, way.x * w, way.y * h, lookOf(watcher.look), watcher.age, watcher.limp, o.now);
           continue;
         }
+        if (f.phase === 'night') {
+          ctx.strokeStyle = o.selected === watcher.id ? '#fff3dc' : 'rgba(255, 243, 220, 0.5)';
+          ctx.lineWidth = o.selected === watcher.id ? 2 : 1;
+          ctx.beginPath();
+          ctx.ellipse(sharedAt.x, sharedAt.y + 2, 11, 4, 0, 0, Math.PI * 2);
+          ctx.stroke();
+        }
         drawWatcher(
           ctx,
           sharedAt.x,
@@ -631,21 +677,9 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
   // Watchers off the wall at night: small dim figures by the hall (left of the granary) or by their homes, who
   // walk there from wherever they were drawn.
   if (f.phase === 'night' || f.phase === 'dusk') {
-    const gw = Math.max(80, Math.min(140, w * 0.24));
-    let hall = 0;
-    for (const wt of f.watchers) {
-      if (wt.post !== null) continue;
-      let x: number;
-      let y: number;
-      if (wt.place === 'hall') {
-        x = w / 2 - gw / 2 - 14 - hall * 16;
-        y = l.yVillage + (h - l.yVillage) * 0.4;
-        hall++;
-      } else {
-        const home = wt.home;
-        x = (SECTION_IDS.indexOf(home) + 0.5) * laneW + (hashId(wt.id) - 0.5) * 20;
-        y = l.yVillage + (h - l.yVillage) * 0.85;
-      }
+    for (const { id, x, y } of offWallWatchers(l, f)) {
+      const wt = f.watchers.find((w) => w.id === id);
+      if (!wt) continue;
       const key = `w${wt.id}`;
       touched.add(key);
       const way = tweenTo(ease, key, x / w, y / h, o.now, walkMs(f));

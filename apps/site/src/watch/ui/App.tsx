@@ -37,16 +37,18 @@ import {
   yearWords,
 } from './pages.tsx';
 import { Impressions, Pips, Rope, Sacks } from './parts.tsx';
-import { PageActions, PageCommitContext } from './SheetActions.tsx';
+import { PageCommitContext } from './SheetActions.tsx';
 import { useWatch, type WatchActions } from './useWatch.ts';
 import {
   awayWords,
   clockRateWords,
   daylightWords,
+  grainCondition,
   hourWords,
   PRESS_WORDS,
   pageWhen,
   ropeWords,
+  thawProgress,
 } from './words.ts';
 
 const SPEEDS: { id: Speed; label: string; icon: IconName }[] = [
@@ -86,7 +88,7 @@ function freePost(f: Frame, section: SectionId, who: WatcherId): PostId | null {
 export function App() {
   const { frame, speed, error, seed, shelf, saving, current, actions } = useWatch();
   const [selected, setSelectedState] = useState<WatcherId | null>(null);
-  /** The press picked for the selected watcher before a post is tapped; null follows their current press. */
+  /** The press picked for the selected watcher before a post is tapped; null starts with Ask. */
   const [pressPick, setPressPick] = useState<Press | null>(null);
   const [pageCommit, setPageCommit] = useState<HTMLElement | null>(null);
   const [menu, setMenu] = useState(false);
@@ -100,12 +102,16 @@ export function App() {
     setPressPick(null);
     if (!w)
       requestAnimationFrame(() => {
-        document.querySelector<HTMLButtonElement>(`.w-person-${postingOrigin.current}`)?.focus();
+        const origin =
+          document.querySelector<HTMLElement>(
+            `.phase-dusk .w-person-${postingOrigin.current}, .w-night-details[open] .w-person-${postingOrigin.current}`,
+          ) ?? document.querySelector<HTMLElement>('.w-night-details summary');
+        origin?.focus();
       });
   }, []);
 
   useEffect(() => {
-    if (selected) stage.current?.querySelector<HTMLButtonElement>('.w-order-back')?.focus();
+    if (selected) stage.current?.querySelector<HTMLButtonElement>('.w-order-back, .w-account-close')?.focus();
   }, [selected]);
 
   useEffect(() => {
@@ -113,7 +119,12 @@ export function App() {
   }, [menu, actions]);
 
   const phase = frame?.phase;
+  const previousPhase = useRef(phase);
   const ready = frame !== null;
+  const pendingMoment = frame?.moment?.id;
+  useEffect(() => {
+    if (pendingMoment !== undefined) setSelectedState(null);
+  }, [pendingMoment]);
   useEffect(() => {
     if (!ready || !stage.current) return;
     const root = stage.current;
@@ -151,7 +162,9 @@ export function App() {
     if (labScreen === 'ending') gameLabs.watch.milestone('ending reached');
   }, [labScreen]);
   useEffect(() => {
-    if (phase !== 'dusk' && phase !== 'goal') {
+    if (phase === 'night' && previousPhase.current !== 'night') setSelectedState(null);
+    previousPhase.current = phase;
+    if (phase !== 'dusk' && phase !== 'night' && phase !== 'goal') {
       setSelectedState(null);
       setPressPick(null);
     }
@@ -175,31 +188,48 @@ export function App() {
     );
   }
 
-  const pressFor = (who: WatcherId): Press =>
-    pressPick ?? frame.watchers.find((w) => w.id === who)?.press ?? 'ask';
+  const pressFor = (): Press => pressPick ?? 'ask';
   const post = (who: WatcherId, at: PostId | null) => {
-    actions.input({ k: 'post', watcher: who, post: at, press: pressFor(who) });
+    actions.input({ k: 'post', watcher: who, post: at, press: pressFor() });
     setSelected(null);
   };
 
   const onHit = (hit: Hit) => {
     if (!hit) return;
     if (frame.phase === 'night') {
+      if (hit.kind === 'watcher') {
+        setSelected(hit.watcher);
+        return;
+      }
+      if (hit.kind === 'post') {
+        const at = frame.sections.flatMap((s) => s.posts).find((p) => p.id === hit.post);
+        const who = at?.watchers[0] ?? at?.posted;
+        if (who) {
+          setSelected(who);
+          return;
+        }
+      }
+      setSelectedState(null);
       const section = hit.kind === 'section' ? hit.section : postSection(hit.post as PostId);
       actions.input({ k: 'lantern', section });
       return;
     }
-    if (frame.phase !== 'dusk') return;
+    if (frame.phase !== 'dusk' || hit.kind === 'watcher') return;
     if (hit.kind === 'post') {
       const p = frame.sections.flatMap((s) => s.posts).find((x) => x.id === hit.post);
       const occupant = p?.posted ?? p?.watcher ?? null;
-      if (selected) post(selected, hit.post as PostId);
-      else if (occupant) setSelected(occupant);
+      if (selected) {
+        actions.input({ k: 'post', watcher: selected, post: hit.post as PostId, press: 'ask' });
+        setSelected(null);
+      } else if (occupant) setSelected(occupant);
       return;
     }
     if (selected) {
       const at = freePost(frame, hit.section, selected);
-      if (at) post(selected, at);
+      if (at) {
+        actions.input({ k: 'post', watcher: selected, post: at, press: 'ask' });
+        setSelected(null);
+      }
     }
   };
 
@@ -302,12 +332,20 @@ export function App() {
                   actions={actions}
                   selected={selected}
                   setSelected={setSelected}
-                  press={selected ? pressFor(selected) : 'ask'}
+                  press={selected ? pressFor() : 'ask'}
                   setPress={setPressPick}
                   post={post}
                 />
               ) : null}
-              {frame.phase === 'night' ? <NightPanel frame={frame} actions={actions} /> : null}
+              {frame.phase === 'night' ? (
+                <NightPanel
+                  frame={frame}
+                  actions={actions}
+                  selected={selected}
+                  onClose={() => setSelected(null)}
+                  onSelect={setSelected}
+                />
+              ) : null}
               {frame.phase === 'dawn' ? <DawnPanel frame={frame} actions={actions} /> : null}
               {frame.phase === 'fallen' ? <FallenPage frame={frame} actions={actions} seed={seed} /> : null}
               {SEASON_PHASES.has(frame.phase) ? <SeasonPanel frame={frame} actions={actions} /> : null}
@@ -332,14 +370,22 @@ export function WatchStrip({ frame, selected }: { frame: Frame; selected: Watche
           {frame.date} · {hourWords(frame.clock, frame.phase)}
         </p>
       ) : null}
+      {frame.winter ? (
+        <section className="w-goal-state" aria-label="To the thaw">
+          <p>{thawProgress(frame)}</p>
+          <p className="w-grain-condition">{grainCondition(frame)}</p>
+          <p>{frame.souls.split(' in ')[0]} still here.</p>
+        </section>
+      ) : null}
       {frame.phase === 'dusk' ? <p className="w-state-warning">{frame.warning}</p> : null}
       {who ? (
         <div className="w-selected-state">
           <p>
-            <strong>{who.name}</strong> · {who.note}
+            <strong>{who.name}</strong>
+            {frame.phase === 'dusk' ? ` · ${who.note}` : ''}
           </p>
           <p className="w-person-post">{whereWords(who, frame.phase)}</p>
-          <Impressions impressions={who.impressions} />
+          {frame.phase === 'dusk' ? <Impressions impressions={who.impressions} /> : null}
         </div>
       ) : null}
     </section>
@@ -474,7 +520,7 @@ export function DuskPanel({
           <button type="button" className="w-chip w-order-back" onClick={() => setSelected(null)}>
             Back to watchers
           </button>
-          <p className="w-hint">Where should {sel.name} stand?</p>
+          <p className="w-hint">Tap a scene post to ask.</p>
         </header>
       ) : null}
       <div className="lk-sheet-body">
@@ -629,9 +675,7 @@ function MomentCard({
     <section className="w-moment" aria-label="A moment on the wall">
       <p className="w-moment-text">{m.text}</p>
       <p className="w-note w-decision-time">
-        {seconds === null
-          ? 'The clock is stopped.'
-          : `About ${seconds} seconds to answer; then they decide alone.`}
+        {seconds === null ? 'The clock is stopped.' : `About ${seconds} seconds; then they decide alone.`}
       </p>
       <div className="w-moment-options">
         {m.options.map((o) => (
@@ -653,12 +697,25 @@ function MomentCard({
   );
 }
 
-export function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) {
+export function NightPanel({
+  frame,
+  actions,
+  selected = null,
+  onClose,
+  onSelect,
+}: {
+  frame: Frame;
+  actions: WatchActions;
+  selected?: WatcherId | null;
+  onClose?: () => void;
+  onSelect?: (id: WatcherId) => void;
+}) {
+  const who = frame.watchers.find((w) => w.id === selected);
   const body = useRef<HTMLDivElement>(null);
   const momentId = frame.moment?.id;
   useEffect(() => {
-    if (momentId !== undefined && body.current) body.current.scrollTop = 0;
-  }, [momentId]);
+    if ((momentId !== undefined || selected) && body.current) body.current.scrollTop = 0;
+  }, [momentId, selected]);
   const walking = frame.lit === null;
   const off = frame.watchers.filter((w) => w.post === null);
   // The bell answers a pull: the button rings for a moment when the rope wears.
@@ -675,9 +732,34 @@ export function NightPanel({ frame, actions }: { frame: Frame; actions: WatchAct
         <p className="w-note w-lantern-context">
           Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.
         </p>
-        <NightMoment frame={frame} actions={actions} />
+        <div hidden={Boolean(who)}>
+          <NightMoment frame={frame} actions={actions} />
+        </div>
+        {who?.account ? (
+          <section className="w-account" aria-label={`${who.name} on watch`}>
+            <button type="button" className="w-chip w-account-close" onClick={onClose}>
+              Back to the wall
+            </button>
+            <p className="w-voice-who">{who.account.spoken ? who.name : 'What the Keeper can tell'}</p>
+            {who.account.spoken ? <blockquote>{who.account.text}</blockquote> : <p>{who.account.text}</p>}
+            {frame.moment ? <p className="w-note">A watcher’s decision is still waiting.</p> : null}
+          </section>
+        ) : null}
         <details className="w-about w-night-details">
           <summary>Watchers and bell</summary>
+          <fieldset className="w-night-roster" aria-label="Hear a watcher">
+            {frame.watchers.map((w) => (
+              <button
+                type="button"
+                className={`w-chip w-person-${w.id}`}
+                key={w.id}
+                aria-pressed={selected === w.id}
+                onClick={() => onSelect?.(w.id)}
+              >
+                {w.name}
+              </button>
+            ))}
+          </fieldset>
           <p className="w-note" id="watch-bell-context">
             Pull from anywhere. Calls back watchers who hear it, loudest at the Gate. Every pull wears the
             rope; a snapped rope leaves it silent.
@@ -865,6 +947,7 @@ function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) 
   return (
     <div className="w-page w-dawn">
       <p className="w-kicker">Dawn · {frame.date}</p>
+      <Talks frame={frame} actions={actions} />
       <h2>{d.grainAfter === d.grainBefore && !d.crossed ? 'The wall held.' : 'The wall was crossed.'}</h2>
       {d.scout ? <p className="w-scoutline">{d.scout}</p> : null}
       {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
@@ -892,15 +975,14 @@ function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) 
       {d.ropeSnapped ? (
         <p className="w-note">Someone will have to splice the bell rope today; it will not be new.</p>
       ) : null}
-      <Talks frame={frame} actions={actions} />
-      <PageActions>
-        <button type="button" className="w-primary" onClick={() => actions.input({ k: 'toDusk' })}>
-          {last ? 'Into the thaw' : 'On to dusk'}
-        </button>
-      </PageActions>
       {last ? (
         <p className="w-note">That was the last night watched this winter; the rest goes by routine.</p>
       ) : null}
+      <div className="w-dawn-continue">
+        <button type="button" className="w-primary" onClick={() => actions.input({ k: 'toDusk' })}>
+          {last ? 'Into the thaw' : 'On to dusk'}
+        </button>
+      </div>
     </div>
   );
 }

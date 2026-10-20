@@ -109,3 +109,24 @@ export function ropeWords(wear: number, snapped: boolean): string {
   if (wear < 0.75) return 'The rope is badly frayed';
   return 'The rope hangs by a few strands';
 }
+
+/** Coarse reads of the counted grain and the declared winter, never a success forecast. */
+export function grainCondition(f: Pick<Frame, 'grain' | 'need'>): string {
+  if (f.grain <= 0) return 'Grain: empty; a hungry spring ahead.';
+  if (f.grain < f.need) return 'Grain: below spring food needs; homes may leave.';
+  if (f.grain === f.need) return 'Grain: enough spring food, nothing spare.';
+  if (f.grain <= f.need * 1.5) return 'Grain: little spare above spring food needs.';
+  return 'Grain: plenty above spring food needs.';
+}
+
+export function thawProgress(f: Pick<Frame, 'winter' | 'phase'>): string {
+  const w = f.winter;
+  if (!w) return '';
+  const left = w.nights - w.night;
+  if (left <= 0)
+    return f.phase === 'dawn'
+      ? 'Watch finished; winter passes by routine to the thaw.'
+      : 'Last watch; then winter passes by routine to the thaw.';
+  if (left <= 2) return 'A few watches left; then winter routine to the thaw.';
+  return 'Early watches; the thaw is still far off.';
+}
