@@ -2913,7 +2913,18 @@ button.v-log-btn {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 .v-scene-choice {
-  min-height: 52px;
+  grid-column: 1 / -1;
+  min-height: 44px;
+  padding: 6px 10px;
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+.v-scene-participate-secondary {
+  background: transparent;
+}
+.v-scene-participate-secondary .v-scene-choice {
+  background: transparent;
+  border-color: var(--edge);
 }
 .v-scene-choices .v-scene-more {
   text-align: right;

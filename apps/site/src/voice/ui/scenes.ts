@@ -1,10 +1,11 @@
 /**
- * Read-only scene presentation. Recorded acts anchor UI-authored incidental exchanges (unnamed customers and neighbours); recorded recalls alone
+ * Read-only scene presentation. Recorded acts anchor UI-authored incidental exchanges (incidental customers and neighbours); recorded recalls alone
  * supply Nuran's memories. No scene changes an input, advances time, or consumes simulation randomness.
  * These incidental speakers are narrative presentation, not simulated people or recorded events.
  * It does not infer completed acts, future encounters, consequential requests, or named people’s availability.
  */
 import type { Draft, Frame, LogEntry, OptionView } from '../protocol.ts';
+import { TOWN_DEFAULTS, TOWN_EID_DAY } from '../sim/town.ts';
 import { conversationFor } from './conversations.ts';
 
 export type SceneKind =
@@ -161,7 +162,9 @@ export function deriveScene(frame: SceneFrame): DayScene | null {
   } else if (place.kind === 'workshop' || place.kind === 'street') {
     const bank = ORDINARY[place.kind];
     const pair = bank[hash(`${anchor.day}|${anchor.minute}|${anchor.text}`) % bank.length];
-    const other = place.kind === 'workshop' ? 'A customer' : 'A neighbour';
+    // A day's visitor keeps the same identity across repairs/walks and replayed occasions.
+    const identities = ['Mrs Aydın', 'Mr Demir', 'The baker’s boy'] as const;
+    const other = identities[hash(`${frame.day}|${place.kind}`) % identities.length] ?? identities[0];
     place.names = ['Halil', other];
     if (pair) lines = pair.map((words, index) => ({ speaker: index % 2 === 0 ? other : 'Halil', words }));
   } else if (place.kind === 'clinic') {
@@ -183,19 +186,45 @@ export function deriveScene(frame: SceneFrame): DayScene | null {
   };
 }
 const LABELS: Readonly<Record<string, string>> = {
-  'talk:hacer': 'Talk with Hacer at the door',
-  'tea:riza': 'Have tea with Rıza',
-  'call:selin': 'Call Selin',
-  'see-doctor': 'See the doctor at the clinic',
-  rest: 'Rest at home',
-  'work-repair': 'Work in the workshop',
-  'work-extra': 'Take the afternoon shift',
-  walk: 'Walk by the river',
-  eat: 'Eat at home',
+  'talk:hacer': 'Go and talk with Hacer.',
+  'tea:riza': 'Go and have tea with Rıza.',
+  'call:selin': 'Give Selin a call.',
+  'see-doctor': 'Go and see the doctor.',
+  rest: 'Go home and rest.',
+  'work-repair': 'Go and do some repairs.',
+  'work-extra': 'Take the afternoon shift.',
+  walk: 'Go for a walk by the river.',
+  eat: 'Have something to eat at home.',
+  sleep: 'Go to sleep.',
+  drink: 'Have some water.',
+  wait: 'Give yourself a moment.',
+  smoke: 'Have a cigarette.',
+  'visit-grave': 'Go and visit Nuran’s grave.',
+  shop: 'Go to the market for Eid.',
+  'pay-rent': 'Go and pay Osman the rent.',
 };
+const CONTINUATIONS: Partial<Record<SceneKind, readonly [string, string]>> = {
+  door: ['talk:hacer', 'Hacer is here. Stay and talk.'],
+  tea: ['tea:riza', 'Stay for tea with Rıza.'],
+  call: ['call:selin', 'Stay on the phone with Selin.'],
+};
+/** A familiar routine, never a promised future event or knowledge of another person's state. */
+export function nextEncounter(frame: SceneFrame): string | null {
+  if (frame.day > TOWN_EID_DAY) return null;
+  const lastCall = frame.log.findLast(
+    (entry) =>
+      entry.minute <= frame.minute &&
+      ((entry.kind === 'act' && /^I call Selin\b/.test(entry.text)) ||
+        (entry.kind === 'voice' && entry.who === 'selin' && /^Selin called/.test(entry.text))),
+  );
+  if (lastCall && frame.minute - lastCall.minute < TOWN_DEFAULTS.selinCallGap)
+    return frame.day < TOWN_EID_DAY ? 'Selin usually leaves a day or two between calls.' : null;
+  if (frame.minute % 1440 < 22 * 60) return 'Selin usually calls this evening.';
+  return frame.day < TOWN_EID_DAY ? 'Selin usually calls tomorrow evening.' : null;
+}
 const CHOICES: Record<SceneKind, readonly string[]> = {
   meal: ['call:selin', 'talk:hacer', 'walk', 'rest'],
-  workshop: ['tea:riza', 'rest', 'talk:hacer'],
+  workshop: ['tea:riza', 'talk:hacer', 'rest'],
   street: ['tea:riza', 'call:selin', 'rest'],
   door: ['talk:hacer', 'rest', 'tea:riza'],
   tea: ['tea:riza', 'call:selin', 'rest'],
@@ -205,7 +234,7 @@ const CHOICES: Record<SceneKind, readonly string[]> = {
   grave: ['call:selin', 'tea:riza', 'rest'],
   clinic: ['rest', 'call:selin', 'walk'],
 };
-/** A small literal vocabulary over offered actions. These are suggestions, never invented dialogue topics. */
+/** Short inner-voice lines over offered actions; never invented dialogue topics or extra inputs. */
 export function sceneChoices(
   scene: DayScene | null,
   options: readonly OptionView[],
@@ -219,16 +248,31 @@ export function sceneChoices(
     : scene?.current
       ? CHOICES[scene.kind]
       : social;
+  const continuation = scene?.current ? CONTINUATIONS[scene.kind] : undefined;
   const offered = new Map(options.map((option) => [option.id, option]));
-  const candidates = [...new Set([...preferences, ...social, ...options.map((option) => option.id)])];
+  const candidates = [
+    ...new Set([
+      ...(clinicConcern ? ['see-doctor'] : []),
+      ...(continuation ? [continuation[0]] : []),
+      ...preferences,
+      ...social,
+      ...options.map((option) => option.id),
+    ]),
+  ];
   return candidates
     .filter((id) => offered.has(id) && !/pray|prayer|worship/i.test(`${id} ${offered.get(id)?.label ?? ''}`))
     .slice(0, 2)
     .map((id) => ({
       label:
-        id === 'talk:hacer' && scene?.current && scene.kind === 'door'
-          ? 'Stay and talk with Hacer'
-          : (LABELS[id] ?? offered.get(id)?.label ?? id),
+        id === continuation?.[0]
+          ? continuation[1]
+          : id === 'rest' && scene?.current && scene.kind === 'workshop'
+            ? 'Leave the work for now. Rest at home.'
+            : (LABELS[id] ??
+              `You could ${offered
+                .get(id)
+                ?.label.replace(/^./, (letter) => letter.toLowerCase())
+                .replace(/[.!?]$/, '')}.`),
       draft: { optionId: id, strength: 'mention', insist: false },
     }));
 }

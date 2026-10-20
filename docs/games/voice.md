@@ -357,6 +357,12 @@ Costs and risks: incidental scenes add authored company without new relationship
 
 Revert by reverting this design-round commit: restore App’s DayLog and docked Composer, DayLog’s previous Why treatment, Composer’s previous key scope and voice.css; remove SceneDay, scenes and their new tests. No save migration or previous-edition setting is needed because this changes presentation only.
 
+### Follow-up b (2026-10-20)
+
+Quick choices now speak to Halil: “Hacer is here. Stay and talk.” An offered continuation of the scene comes first; recorded clinic concerns still take priority. Every choice sends the same bare Mention draft. Full-width, sentence-case lines take at most two lines in the checked 360 px render. Their transparent background and smaller type leave the exchange first. Incidental visitors have a short identity selected from the day and place, stable across that day’s occasions, without adding simulated people. Between scenes, Selin’s familiar evening routine stays visible; a recent recorded call gets a conservative reminder that she leaves a day or two between calls, rather than a promised appointment.
+
+This remains presentation only. It cannot add dialogue topics, contact the incidental visitor, or guarantee an encounter. Revert this follow-up commit to restore the first design-round presentation; no edition or save migration is needed. The earlier cold-retest and Ramadan 2 encounter deferrals remain.
+
 ## Deferred
 
 Open, unbuilt or unconfirmed items from the design, the build plan and its fourteen passes. Target is "unscheduled" unless stated.

@@ -174,3 +174,30 @@ it('Back in the full composer keeps Enter and Escape cannot send a draft', () =>
   click(el, '.v-scene-editor-close');
   expect(document.activeElement).toBe(el.querySelector('.v-scene-more'));
 });
+
+it('keeps a known likely encounter beside sleep, including tomorrow after evening', () => {
+  const { el, props, update } = mount();
+  props.frame.log = [];
+  props.frame.halil.asleep = true;
+  props.frame.composer = { open: false };
+  update();
+  expect(el.querySelector('.v-between-scenes')?.textContent).toContain('Halil is asleep.');
+  expect(el.querySelector('.v-next-encounter')?.textContent).toBe('Selin usually calls this evening.');
+  props.frame.minute = 22 * 60;
+  update();
+  expect(el.querySelector('.v-next-encounter')?.textContent).toBe('Selin usually calls tomorrow evening.');
+  props.frame.day = 31;
+  update();
+  expect(el.querySelector('.v-next-encounter')).toBeNull();
+});
+it('shows the spoken choices after the scene in a secondary participation region', () => {
+  const { el } = mount();
+  expect(el.querySelector('.v-scene-choice')?.textContent).toBe('Hacer is here. Stay and talk.');
+  expect(
+    [
+      ...el.querySelectorAll(
+        '.v-scene-day > details, .v-scene-day > .v-scene-reading, .v-scene-day > .v-scene-participate',
+      ),
+    ].map((e) => e.className),
+  ).toEqual(['v-routine', 'v-scene-reading', 'v-scene-participate v-scene-participate-secondary']);
+});

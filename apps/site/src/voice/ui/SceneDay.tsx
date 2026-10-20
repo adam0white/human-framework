@@ -5,7 +5,7 @@ import { spokenLogText } from './conversations.ts';
 import { DayLog } from './DayLog.tsx';
 import { obstacleWords } from './obstacle.ts';
 import { StandingCard } from './StandingCard.tsx';
-import { deriveScene, sceneChoices } from './scenes.ts';
+import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
 export interface SceneDayProps {
   frame: Frame;
   telegraph: { draft: Draft; telegraph: Telegraph } | null;
@@ -54,6 +54,7 @@ export function SceneDay(props: SceneDayProps) {
   const you = answer ? frame.log.findLast((e) => e.kind === 'you' && e.minute <= answer.minute) : undefined;
   const latestAction = frame.log.findLast((e) => e.kind === 'act');
   const choices = sceneChoices(scene ?? null, frame.options);
+  const encounter = nextEncounter(frame);
   const activity = frame.halil.asleep
     ? 'Halil is asleep.'
     : frame.halil.doing
@@ -91,9 +92,7 @@ export function SceneDay(props: SceneDayProps) {
         ) : (
           <div className="v-between-scenes">
             <p>{activity}</p>
-            {frame.day < 30 && frame.minute % 1440 < 18 * 60 && (
-              <p className="v-next-encounter">Selin usually calls in the evening.</p>
-            )}
+            {encounter && <p className="v-next-encounter">{encounter}</p>}
           </div>
         )}
         {frame.pauseBeat && <p className="v-scene-notice">{frame.pauseBeat.text}</p>}
@@ -161,7 +160,7 @@ export function SceneDay(props: SceneDayProps) {
           />
         </dialog>
       ) : (
-        <div className="v-scene-participate">
+        <div className="v-scene-participate v-scene-participate-secondary">
           {available ? (
             <SceneSuggestions
               key={`${scene?.id ?? 'between'}:${frame.composer.open}`}

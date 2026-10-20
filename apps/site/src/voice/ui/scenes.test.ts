@@ -4,7 +4,7 @@ import { VoiceGame } from '../sim/game.ts';
 import { type Driver, play } from '../sim/headless.ts';
 import { voiceHash } from '../sim/record.ts';
 import { TOWN_EID_DAY } from '../sim/town.ts';
-import { deriveScene, sceneChoices } from './scenes.ts';
+import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
 
 const act = (text: string, minute = 2040, id = 'a'): LogEntry => ({
   id,
@@ -76,7 +76,7 @@ describe('read-only day scenes', () => {
     const before = JSON.stringify(input);
     const scene = deriveScene(input);
     expect(scene?.kind).toBe('workshop');
-    expect(scene?.names).toEqual(['Halil', 'A customer']);
+    expect(scene?.names).toEqual(['Halil', expect.stringMatching(/Mrs Aydın|Mr Demir|The baker’s boy/)]);
     expect(scene?.lines).toHaveLength(4);
     expect(scene?.current).toBe(true);
     expect(deriveScene(input)).toEqual(scene);
@@ -124,15 +124,15 @@ describe('read-only day scenes', () => {
     expect(scene?.names).toEqual(['Halil']);
     expect(scene?.lines.some((line) => line.speaker === 'Nuran')).toBe(false);
   });
-  it('offers at most two exact offered actions as bare mentions with literal labels', () => {
+  it('offers at most two exact offered actions as bare mentions with spoken labels', () => {
     const scene = deriveScene(frame([act('I talk with Hacer at the door.')]));
     const result = sceneChoices(scene, freeze(options('talk:hacer', 'rest', 'tea:riza', 'call:selin')));
     expect(result).toEqual([
       {
-        label: 'Stay and talk with Hacer',
+        label: 'Hacer is here. Stay and talk.',
         draft: { optionId: 'talk:hacer', strength: 'mention', insist: false },
       },
-      { label: 'Rest at home', draft: { optionId: 'rest', strength: 'mention', insist: false } },
+      { label: 'Go home and rest.', draft: { optionId: 'rest', strength: 'mention', insist: false } },
     ]);
     expect(sceneChoices(null, options('rest')).map((choice) => choice.draft.optionId)).toEqual(['rest']);
   });
@@ -147,7 +147,7 @@ describe('read-only day scenes', () => {
     ]);
     const scene = deriveScene(frame([act('I repair in the workshop.')]));
     const fallback = sceneChoices(scene, [{ id: 'drink', label: 'Drink water', rank: 0, leaning: false }]);
-    expect(fallback[0]?.label).toBe('Drink water');
+    expect(fallback[0]?.label).toBe('Have some water.');
     expect(fallback[0]?.draft).toEqual({ optionId: 'drink', strength: 'mention', insist: false });
     expect(sceneChoices(null, options('pray-mosque', 'pray-home', 'pray-eid', 'make-up-prayer'))).toEqual([]);
   });
@@ -212,7 +212,42 @@ describe('read-only day scenes', () => {
       ),
     );
     expect(words.size).toBeGreaterThan(1);
-    expect(deriveScene(frame([act('I walk by the river.')]))?.names).toEqual(['Halil', 'A neighbour']);
+    expect(deriveScene(frame([act('I walk by the river.')]))?.names[1]).toMatch(
+      /Mrs Aydın|Mr Demir|The baker’s boy/,
+    );
+  });
+  it('keeps incidental identities stable across occasions in a day without changing frozen state', () => {
+    for (const text of ['I repair in the workshop.', 'I walk by the river.']) {
+      const first = freeze(frame([act(text, 2000)]));
+      const later = freeze(frame([act(text, 2090, 'later')]));
+      expect(deriveScene(first)?.names[1]).toBe(deriveScene(later)?.names[1]);
+      expect(deriveScene(first)?.lines[0]?.speaker).toBe(deriveScene(first)?.names[1]);
+    }
+  });
+  it('prefers offered scene continuations and speaks to Halil without inventing a topic', () => {
+    const cases = [
+      ['I call Selin.', 'call:selin', 'Stay on the phone with Selin.'],
+      ['I have tea with Rıza.', 'tea:riza', 'Stay for tea with Rıza.'],
+    ] as const;
+    for (const [text, id, label] of cases) {
+      const scene = deriveScene(frame([act(text)]));
+      expect(sceneChoices(scene, options('rest', 'talk:hacer', id))[0]).toEqual({
+        label,
+        draft: { optionId: id, strength: 'mention', insist: false },
+      });
+    }
+    expect(sceneChoices(null, options('sleep'))[0]?.label).toBe('Go to sleep.');
+    const workshop = deriveScene(frame([act('I repair in the workshop.')]));
+    expect(sceneChoices(workshop, options('rest', 'talk:hacer')).map((c) => c.label)).toEqual([
+      'Go and talk with Hacer.',
+      'Leave the work for now. Rest at home.',
+    ]);
+  });
+  it('uses remembered calls conservatively rather than promising an ineligible evening call', () => {
+    const input = frame([act('I call Selin.', 1200)]);
+    expect(nextEncounter(input)).toBe('Selin usually leaves a day or two between calls.');
+    expect(nextEncounter({ ...input, day: 32 })).toBeNull();
+    expect(nextEncounter({ ...input, day: 31 })).toBeNull();
   });
   it('does not add conversation during prayer', () => {
     const scene = deriveScene(frame([act('I pray at the mosque.')], 'pray at the mosque'));
