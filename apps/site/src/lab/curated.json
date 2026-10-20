@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-19",
+ "generated": "2026-10-20",
  "ledger": [
   {
    "id": "F-001",
@@ -2552,6 +2552,176 @@
     "lesson:L7"
    ],
    "source": "concordia@neighbours:docs/neighbours/visitor-2026-10-18-received-plans.md"
+  },
+  {
+   "id": "F-184",
+   "date": "2026-10-20",
+   "game": "stairwell",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Irresistibly enjoyable. I can't stop making up something about everyone … This game is the second great success. Congrats!",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L14"
+   ],
+   "source": "stairwell/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-185",
+   "date": "2026-10-20",
+   "game": "stairwell",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Actual backstories that progress and are well hidden from the player so it's difficult to untangle, but with real outcomes like hidden achievements or unlockable story paths and events.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell hidden backstories with outcomes (open, design)"
+   ],
+   "source": "stairwell/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-186",
+   "date": "2026-10-20",
+   "game": "stairwell",
+   "kind": "owner",
+   "who": "owner",
+   "words": "We might be able to give the log section more room on bigger screens, including phone.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell log room on wide screens and phone (open)"
+   ],
+   "source": "stairwell/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-187",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner",
+   "words": "The intentionally missing story parts are definitely something to keep doing, like that email about a subscription; is it a gym membership? We'll never know.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L14"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-188",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner",
+   "words": "'Coffee. Same as yesterday' wasn't the same as yesterday.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur same-as-yesterday line must match yesterday (open)"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-189",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Redundancy, let's eliminate it. Find an intuitive way to not show the outcome at the bottom and in the log.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur outcome shown once (open)"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-190",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner, proud",
+   "words": "It's just the right amount of expiring decisions, backstory, the buildup, habits, everything … If it's time that we rank the games, this goes to the top. We need more!",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L14",
+    "fix:murmur more campaigns (open, design)"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-191",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner, proud",
+   "words": "Some sentences can be slightly longer to clear confusion. This one needs no further tutorial, it becomes self evident.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur lengthen ambiguous lines (open)"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-192",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Sorry my firefox is having a signal and thus no anon events for you.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab check regular events from Firefox (open)"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-193",
+   "date": "2026-10-20",
+   "game": "glance",
+   "kind": "owner",
+   "who": "owner",
+   "words": "is there an end to this? Can't tell. Definitely fun.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance visible end (open)"
+   ],
+   "source": "glance/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-194",
+   "date": "2026-10-20",
+   "game": "glance",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Still a bit confusing; the weir, the river, what to do, the gate levels; but getting better.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:glance opening knowledge (open)"
+   ],
+   "source": "glance/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-195",
+   "date": "2026-10-20",
+   "game": "glance",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Only missing piece is a goal and a bit more knowledge at the beginning. I think showing the end-day report at the beginning for 10 seconds tutorial would be fair.",
+   "verdict": "keep",
+   "routes": [
+    "fix:glance goal and opening report (open)"
+   ],
+   "source": "glance/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-196",
+   "date": "2026-10-20",
+   "game": "rope",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Speed ran things, after auto ending the night it still didn't end",
+   "verdict": "quit",
+   "routes": [
+    "fix:rope night end after auto-end (open)"
+   ],
+   "source": "rope/docs/playtests/owner-2026-10-20.md"
   }
  ],
  "lessons": [
@@ -3102,8 +3272,8 @@
   }
  ],
  "routes": {
-  "fix": 97,
-  "lesson": 206,
+  "fix": 108,
+  "lesson": 209,
   "hf": 11,
   "calibration": 42,
   "none": 0
