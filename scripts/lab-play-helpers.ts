@@ -1,4 +1,4 @@
-/** Pure validation and wall-clock records for the lab's standard tester driver. No browser access. */
+/** Validation, records and operation replies for the tester driver. Browser access is injected. */
 export type PlayKind = 'input' | 'note' | 'pulse' | 'first_minute' | 'want_quit' | 'stop' | 'tool';
 export type PlayReason = 'CONFUSED' | 'BORED' | 'FRUSTRATED' | 'TASTE' | 'BUDGET' | 'TOOL' | 'FINISHED';
 export interface PlayOptions {
@@ -183,6 +183,7 @@ export function makeLogLine(
   op: Record<string, unknown>,
   timing: { now: number; openedAt: number | null; op_ms: number },
   error?: string,
+  requestedControlPresentBefore?: boolean | null,
 ) {
   return {
     t: new Date(timing.now).toISOString(),
@@ -218,5 +219,123 @@ export function makeLogLine(
     reason: typeof op.reason === 'string' && reasons.includes(op.reason) ? op.reason : null,
     op_ms: timing.op_ms,
     error: error ?? null,
+    ...(requestedControlPresentBefore !== undefined
+      ? { requested_control_present_before: requestedControlPresentBefore }
+      : {}),
+  };
+}
+
+export interface PlaySnapshot {
+  visible: string;
+  controls: string;
+  takenAt: number;
+}
+export class MissingPlayControl extends Error {
+  readonly control: string;
+  constructor(control: string, message: string) {
+    super(message);
+    this.control = control;
+  }
+}
+function requestedControlPresent(snapshot: PlaySnapshot | null, op: Record<string, unknown>): boolean | null {
+  if (op.op !== 'tap' || (typeof op.name !== 'string' && typeof op.text !== 'string')) return null;
+  if (!snapshot) return false;
+  const normalize = (text: string) => text.replace(/\s+/g, ' ').trim();
+  const wanted = normalize(typeof op.name === 'string' ? op.name : String(op.text));
+  const roles = typeof op.role === 'string' ? [op.role] : ['button', 'link'];
+  for (const line of snapshot.controls.split('\n')) {
+    const match = /^\s*-\s+(\S+)\s+"((?:\\.|[^"\\])*)"/.exec(line);
+    if (!match?.[1] || match[2] === undefined) continue;
+    let name: string;
+    try {
+      name = JSON.parse(`"${match[2]}"`) as string;
+    } catch {
+      continue;
+    }
+    if (normalize(name) === wanted && (typeof op.text === 'string' || roles.includes(match[1]))) return true;
+  }
+  return (
+    typeof op.text === 'string' && snapshot.visible.split('\n').some((line) => normalize(line) === wanted)
+  );
+}
+interface PlayOutcome {
+  status: number;
+  snapshot: PlaySnapshot | null;
+  snapshotAvailable: boolean;
+  screenshot?: string;
+  error?: string;
+  snapshot_warning?: string;
+  requested_control_present_before: boolean | null;
+}
+export async function runPlayOperation(
+  op: Record<string, unknown>,
+  options: {
+    act: () => Promise<string | undefined>;
+    snapshot: (timeout: number) => Promise<Omit<PlaySnapshot, 'takenAt'>>;
+    previous: PlaySnapshot | null;
+    now?: () => number;
+  },
+): Promise<PlayOutcome> {
+  const now = options.now ?? Date.now;
+  const result: PlayOutcome = {
+    status: 200,
+    snapshot: options.previous,
+    snapshotAvailable: options.previous !== null,
+    requested_control_present_before: requestedControlPresent(options.previous, op),
+  };
+  let operationError: unknown;
+  try {
+    const shot = await options.act();
+    if (shot) result.screenshot = shot;
+  } catch (error) {
+    operationError = error;
+    result.status = 500;
+    result.error = error instanceof Error ? error.message : String(error);
+  } finally {
+    if (op.op !== 'log') {
+      // Snapshot failure must never retry the action or change its result.
+      result.snapshot = null;
+      result.snapshotAvailable = false;
+      for (const timeout of [5000, 15_000]) {
+        try {
+          result.snapshot = { ...(await options.snapshot(timeout)), takenAt: now() };
+          result.snapshotAvailable = true;
+          if (timeout > 5000) result.snapshot_warning = 'Snapshot was unavailable; refreshed on retry.';
+          break;
+        } catch {
+          result.snapshot_warning =
+            'Snapshot unavailable. No controls list is available; request a fresh snapshot.';
+        }
+      }
+    }
+  }
+  if (
+    operationError instanceof MissingPlayControl &&
+    result.requested_control_present_before &&
+    result.snapshotAvailable &&
+    requestedControlPresent(result.snapshot, op) === false &&
+    options.previous
+  ) {
+    const age = Math.max(0, (now() - options.previous.takenAt) / 1000);
+    result.error = `${operationError.control} is not on the page now; it was listed ${Math.round(age)} s ago and the page has changed (game state, not a driver failure)`;
+  }
+  if (!result.snapshotAvailable && !result.snapshot_warning)
+    result.snapshot_warning = 'Snapshot unavailable. No controls list has been captured.';
+  return result;
+}
+export function makePlayReply(
+  result: PlayOutcome,
+  timing: { now: number; started: number; openedAt: number | null },
+) {
+  return {
+    elapsed_s: timing.openedAt === null ? 0 : (timing.now - timing.openedAt) / 1000,
+    op_ms: timing.now - timing.started,
+    visible: result.snapshotAvailable ? (result.snapshot?.visible ?? '') : '',
+    controls: result.snapshotAvailable ? (result.snapshot?.controls ?? '') : '',
+    snapshot_ms: result.snapshotAvailable && result.snapshot ? timing.now - result.snapshot.takenAt : null,
+    requested_control_present_before: result.requested_control_present_before,
+    ...(result.screenshot ? { screenshot: result.screenshot } : {}),
+    ...(result.error !== undefined ? { error: result.error } : {}),
+    ...(result.snapshot_warning ? { snapshot_warning: result.snapshot_warning } : {}),
   };
 }

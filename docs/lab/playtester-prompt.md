@@ -69,7 +69,7 @@ Do not read ahead or consult implementation to make a choice seem sensible.
 The persona has set this time aside. Play at least the floor in real minutes.
 When you would leave, log a `want_quit` line with the moment and the reason, then keep playing.
 A wish to leave is the finding; playing on shows whether it passes or grows.
-Stop before the floor only if the game is broken (no input changes anything for two real minutes, or the page fails) or the driver blocks you. A driver block ends the session at once: give the reason `TOOL` and describe the block. Report a broken game as a game finding, not as `TOOL`.
+Stop before the floor only if the game is broken (no input changes anything for two real minutes, or the page fails) or the driver blocks you. An error saying a control is disabled or not on the page now is the game's answer; continue using the latest controls. A driver block means a visible control that the driver cannot operate after one retry using the names from the latest reply. A driver block ends the session at once: give the reason `TOOL` and describe the block. Report a broken game as a game finding, not as `TOOL`.
 After the floor, stop when you would naturally leave. Do not pass the ceiling.
 Give each want_quit and the final stop one reason word:
 `CONFUSED` (I could not tell what to do or what happened), `BORED` (I understood but nothing worth doing),
@@ -79,6 +79,7 @@ If you would leave the game running or come back later, say so; that is not the 
 About every three real minutes, log a `pulse` line: engagement 1 to 5 and one sentence on why.
 Log the in-game clock or day with each input when the game shows one.
 `npm run lab:play` writes this log for you when you use its `log` op and its browser ops. Each log line is one JSON object: `t` (ISO time), `elapsed_s`, `kind` (`input`, `note`, `pulse`, `first_minute`, `want_quit`, `stop`, or `tool` for a failed driver op), `input`, `reaction`, `game_clock`, `engagement` (pulses) and `reason` (want_quit and stop).
+Replies include `snapshot_ms`, the age of the controls list in milliseconds. If a snapshot fails twice, the reply has empty controls, `snapshot_ms: null` and a `snapshot_warning`; request a `shot` to refresh it before choosing another control. A snapshot failure does not mean the input failed. Replies and log lines include `requested_control_present_before` for named or text taps (`null` for other operations).
 You act every few seconds at best, while a human reads continuously. If a real-time game outruns you, you may use its own slower speed or pause; record when and why.
 
 ## Mandatory checkpoint: First minute

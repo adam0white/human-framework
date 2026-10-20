@@ -13,7 +13,16 @@ import { createRequire } from 'node:module';
 import { homedir } from 'node:os';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { makeLogLine, type PlayOp, parsePlayArgs, validatePlayOp } from './lab-play-helpers.ts';
+import {
+  MissingPlayControl,
+  makeLogLine,
+  makePlayReply,
+  type PlayOp,
+  type PlaySnapshot,
+  parsePlayArgs,
+  runPlayOperation,
+  validatePlayOp,
+} from './lab-play-helpers.ts';
 
 interface Locator {
   first(): Locator;
@@ -177,7 +186,7 @@ async function main() {
     });
     let openedAt: number | null = null;
     let stopped = false;
-    let cached = { visible: '', controls: '' };
+    let cached: PlaySnapshot | null = null;
     let queue = Promise.resolve();
     let logQueue = Promise.resolve();
     const enqueue = (work: () => Promise<void>) => {
@@ -185,8 +194,18 @@ async function main() {
         console.error(error);
       });
     };
-    const log = (op: Record<string, unknown>, started: number, error?: string) => {
-      const line = makeLogLine(op, { now: Date.now(), openedAt, op_ms: Date.now() - started }, error);
+    const log = (
+      op: Record<string, unknown>,
+      started: number,
+      error?: string,
+      requestedControlPresentBefore: boolean | null = null,
+    ) => {
+      const line = makeLogLine(
+        op,
+        { now: Date.now(), openedAt, op_ms: Date.now() - started },
+        error,
+        requestedControlPresentBefore,
+      );
       logQueue = logQueue
         .catch(() => {})
         .then(() => appendFile(resolve(options.out, 'wall-clock.jsonl'), `${JSON.stringify(line)}\n`));
@@ -287,23 +306,28 @@ async function main() {
               !(await click(page.getByRole(op.role ?? 'button', { name: op.name, exact: true }))) &&
               (op.role || !(await click(page.getByRole('link', { name: op.name, exact: true })))) &&
               !(await clickByStem(op.role ?? 'button', op.name))
-            )
-              throw new Error(
-                (await disabledNamed(op.name))
-                  ? `${op.name} is shown but disabled right now (game state, not a driver failure)`
-                  : `No actionable ${op.role ?? 'button/link'} named ${op.name}`,
+            ) {
+              if (await disabledNamed(op.name))
+                throw new Error(
+                  `${op.name} is shown but disabled right now (game state, not a driver failure)`,
+                );
+              throw new MissingPlayControl(
+                op.name,
+                `No actionable ${op.role ?? 'button/link'} named ${op.name}`,
               );
+            }
           } else if ('text' in op && typeof op.text === 'string') {
             if (await click(page.getByRole('button', { name: op.text, exact: true }))) break;
             if (await click(page.getByRole('link', { name: op.text, exact: true }))) break;
             if (await click(page.getByText(op.text, { exact: true }))) break;
             const point = await page.evaluate(textControlPoint, op.text);
-            if (!point)
-              throw new Error(
-                (await disabledNamed(op.text))
-                  ? `${op.text} is shown but disabled right now (game state, not a driver failure)`
-                  : `No visible clickable text: ${op.text}`,
-              );
+            if (!point) {
+              if (await disabledNamed(op.text))
+                throw new Error(
+                  `${op.text} is shown but disabled right now (game state, not a driver failure)`,
+                );
+              throw new MissingPlayControl(op.text, `No visible clickable text: ${op.text}`);
+            }
             await tapPoint(point.x, point.y);
           }
           break;
@@ -373,48 +397,39 @@ async function main() {
       void body.then((parsed) => {
         enqueue(async () => {
           const started = Date.now();
-          let raw: Record<string, unknown> = { op: 'invalid' };
-          let status = 200;
-          let extra: { screenshot?: string; error?: string } = {};
-          try {
-            if (request.method !== 'POST' || request.url !== '/')
-              throw new Error('Use POST / with a JSON operation');
-            if ('error' in parsed) throw parsed.error;
-            const value = parsed.value;
-            if (value && typeof value === 'object' && !Array.isArray(value))
-              raw = value as Record<string, unknown>;
-            const op = validatePlayOp(value);
-            if (op.op !== 'log') {
-              if (openedAt !== null && Date.now() - openedAt >= options.ceiling * 60_000) await stop();
-              if (stopped) throw new Error('Session ceiling reached; browser operations are refused');
-              if (op.op !== 'open' && openedAt === null) throw new Error('Call open first');
-            }
-            const shot = await act(op);
-            if (shot) extra.screenshot = shot;
-            if (op.op !== 'log') await sleep(100);
-            if (op.op !== 'log')
-              cached = {
-                visible: await page.locator('body').innerText({ timeout: 5000 }),
-                controls: await page.locator('body').ariaSnapshot({ timeout: 5000 }),
-              };
-            await log(raw, started);
-          } catch (error) {
-            status = 500;
-            extra = { error: error instanceof Error ? error.message : String(error) };
-            await log(raw, started, extra.error).catch(console.error);
-          }
-          response.writeHead(status, {
+          const value = 'value' in parsed ? parsed.value : undefined;
+          const raw =
+            value && typeof value === 'object' && !Array.isArray(value)
+              ? (value as Record<string, unknown>)
+              : { op: 'invalid' };
+          const result = await runPlayOperation(raw, {
+            previous: cached,
+            act: async () => {
+              if (request.method !== 'POST' || request.url !== '/')
+                throw new Error('Use POST / with a JSON operation');
+              if ('error' in parsed) throw parsed.error;
+              const op = validatePlayOp(value);
+              if (op.op !== 'log') {
+                if (openedAt !== null && Date.now() - openedAt >= options.ceiling * 60_000) await stop();
+                if (stopped) throw new Error('Session ceiling reached; browser operations are refused');
+                if (op.op !== 'open' && openedAt === null) throw new Error('Call open first');
+              }
+              const shot = await act(op);
+              if (op.op !== 'log') await sleep(100);
+              return shot;
+            },
+            snapshot: async (timeout) => ({
+              visible: await page.locator('body').innerText({ timeout }),
+              controls: await page.locator('body').ariaSnapshot({ timeout }),
+            }),
+          });
+          cached = result.snapshot;
+          await log(raw, started, result.error, result.requested_control_present_before).catch(console.error);
+          response.writeHead(result.status, {
             'Content-Type': 'application/json; charset=utf-8',
             'Cache-Control': 'no-store',
           });
-          response.end(
-            JSON.stringify({
-              elapsed_s: openedAt === null ? 0 : (Date.now() - openedAt) / 1000,
-              op_ms: Date.now() - started,
-              ...cached,
-              ...extra,
-            }),
-          );
+          response.end(JSON.stringify(makePlayReply(result, { now: Date.now(), started, openedAt })));
         });
       });
     });
