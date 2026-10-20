@@ -93,6 +93,12 @@ Each game keeps its own scratch copy if it wants one. The copies here are canoni
 - **Read quit chapters together with minutes.** A persona's appetite for play sets how long it plays, so a chapter
   where many sessions stop may be where that much play lands rather than a problem in the chapter.
 
+## Phone check (DL-30)
+
+The LLM retest prompt now asks DL-30..DL-33. Builders run `npm run lab:phone -- <url>`
+on each main screen and opened sheet (use `--steps steps.json --out dir` to keep evidence).
+HF-character adapters cannot see layout; they report these ids unmeasured.
+
 ## Clarity rubric
 
 Ids follow the current checklist (revised at `c8c8134`): feedback is DL-13 and dates DL-21. DL-22 now covers

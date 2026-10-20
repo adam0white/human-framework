@@ -33,7 +33,8 @@
     "api-doc": "npm run build -w packages/human && node scripts/api-doc.ts",
     "examples": "npm run examples -w packages/human",
     "lab:ledger": "node scripts/lab-ledger.ts",
-    "lab:inbox": "node scripts/lab-inbox.ts"
+    "lab:inbox": "node scripts/lab-inbox.ts",
+    "lab:phone": "node scripts/lab-phone.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
