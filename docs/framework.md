@@ -283,3 +283,17 @@ From the polish requests filed against 2.8.0 ([triage](game-requests-2026-10-18.
 - **Doc notes.** Commitment labels should be noun phrases for `reviewLine`; a recurring commitment lapses on a day the host does not live; goal terms are never negative.
 
 The playtester (`packages/playtester`, private) is not HF: it is a tool in which an HF person plays a game through a small adapter. See its module doc and the 2.8.0 entry in [CHANGELOG.md](../CHANGELOG.md).
+
+## Word and witness (2.10.0)
+
+### Belief provenance and contradiction
+
+`beliefs/` owns optional `Belief.provenance` and `memory.contradictions`. An attended claim carrying `origin` or `lineage` records its first known origin, the direct teller (`firstFrom`), the acquisition minute and an optional opaque host token of at most 64 characters. First acquisition wins. `confirm` resets source accounts but preserves this metadata; belief eviction drops it. `provenanceOf(p, prop)` reads it. Metadata never affects credence or decisions. Restore drops malformed provenance and removes over-long lineage tokens without truncating them.
+
+`converse(speaker, listener, { at, provenance: true })` carries origin and lineage on its host-visible claims and testimony percepts, including advice. A speaker without provenance names themself as origin. Relays keep the token unchanged; the host owns the graph and disclosure. With the flag absent or false, output stays unchanged. Repetition and the suppression of news already held compare propositions and values, never lineage.
+
+`contradicted(p, { sourceId, prop, value, reporterId?, at? })` requires a retained account from that same source on that proposition with the opposite value. Two independent sources disagreeing is ordinary uncertainty and costs neither source trust. A missing account returns `no-account`; a matching account returns `same-account`; self returns `self`. A previously noted source/proposition pair returns `already-noted` without changing anything, even after confirmation clears the original account.
+
+An applied contradiction changes only `memory.sourceTrust[sourceId]`: `after = before - 0.25 * weight * before`. Weight is 1 when the person heard both accounts directly. For a third-party report it is `testimonyWeight(trustOf(p, reporterId))`, so a distrusted reporter can frame less and a reporter at or below the 0.2 trust floor causes no loss. This never raises trust. Multiplicative losses commute, subject to floating-point precision, while reporter weights stay fixed. The loss coefficient is an engineering default, equal to the existing loss on confirmed falsehood. Contradiction changes no belief, relationship trust or voice trust and does not establish deceit.
+
+The host can deliver up to four `reports: [{ sourceId, prop, value }]` in one attended `told` percept whose `actorId` names the reporter. `perceive` checks each against the listener's own source accounts. It does not deliver the report to an absent person or infer a contradiction merely because world truth changed. The newest 32 contradiction records are kept by event minute; deduplication lasts while that bounded record remains. Restore validates, deduplicates and bounds this optional store. Calls without the new data write no optional fields.

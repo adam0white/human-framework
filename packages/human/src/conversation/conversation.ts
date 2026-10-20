@@ -29,6 +29,11 @@
  * percept (it is in `claims`, not `told`). A claim this listener already heard from this speaker, in the same
  * direction, is dropped before the speaker chooses, so it is not even a deed. The speaker keeps no memory of what was said to whom; the listener's
  * belief stands in for it.
+ *
+ * SCOPE (Word and witness, 2.10.0): `provenance: true` carries each claim's first known origin and opaque
+ * lineage into testimony. Missing provenance names the speaker as origin. Metadata changes neither claim
+ * selection nor repetition rules; the host still owns the relay graph and disclosure. It does not establish
+ * that an origin is truthful, expose deceit to the listener, or infer who else heard a claim.
  */
 import { clamp01, expit, round } from '../core/index.ts';
 import {
@@ -105,6 +110,8 @@ export interface ConverseContext {
   magnitude?: Unit;
   /** Character-trait vocabulary (defaults to `REPUTATION_TRAITS`). */
   traits?: Record<string, TraitEffect>;
+  /** Carry belief origin and opaque lineage into told claims (off by default). */
+  provenance?: boolean;
 }
 
 /** Host-visible record of one claim. */
@@ -122,6 +129,8 @@ export interface ToldClaim {
   /** The person the claim is about, when it is a character claim. */
   about?: PersonId;
   score: number;
+  origin?: EntityId;
+  lineage?: string;
 }
 
 export interface AdviceGiven {
@@ -296,6 +305,11 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
 
   const norms = new Map<string, NormTag>();
   for (const c of chosen) {
+    if (ctx.provenance) {
+      const meta = speaker.memory.beliefs.find((b) => b.prop === c.prop)?.provenance;
+      c.origin = meta?.origin ?? speaker.id;
+      if (meta?.lineage !== undefined) c.lineage = meta.lineage;
+    }
     out.claims.push(c);
     const pcNorms: NormTag[] = [];
     if (c.backbiting) {
@@ -325,6 +339,9 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
           ? `${nameOf(speaker)} says ${c.about} is ${c.value ? '' : 'not '}${c.prop.split(':')[1] ?? ''}`
           : `${nameOf(speaker)} says ${c.prop} is ${c.value ? 'so' : 'not so'}`,
     };
+    const claim = pc.claims?.[0];
+    if (claim && c.origin !== undefined) claim.origin = c.origin;
+    if (claim && c.lineage !== undefined) claim.lineage = c.lineage;
     if (c.about !== undefined) {
       pc.targetId = c.about;
       const parsed = parseTraitProp(c.prop, table);
@@ -362,6 +379,14 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
       claims: [{ prop: `advice:${a.action}`, value: true, confidence: round(a.cred) }],
       summary: `${nameOf(speaker)} says I should ${a.action}`,
     };
+    if (ctx.provenance) {
+      const meta = beliefs.find((b) => b.prop === `${prefix}${a.action}`)?.provenance;
+      const claim = percept.claims?.[0];
+      if (claim) {
+        claim.origin = meta?.origin ?? speaker.id;
+        if (meta?.lineage !== undefined) claim.lineage = meta.lineage;
+      }
+    }
     if (ctx.placeId !== undefined) percept.placeId = ctx.placeId;
     const suggestion: Suggestion = { voiceId: speaker.id, action: a.action, strength: round(a.strength) };
     if (benevolence >= C.benevolentAppeal) suggestion.appeal = 'benevolence';
