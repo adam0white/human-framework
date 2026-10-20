@@ -66,7 +66,7 @@ The original spec asked for thirty played days and a larger town. The build cut 
 | Zakat al-fitr | Not represented | It is an obligation with an amount and a deadline; nothing in `research/` sources it. |
 | Sewing machine, grocer tab, cards, Osman's van, travel to Selin for Eid | Not built | Out of scope. |
 | Saves at every dawn, "one day each day" pacing | No saves; Replay restarts from the seed; a playtest export (seed + input log + state JSON) replays the run | Out of scope. |
-| Felt-body line figure, per-voice paper styles | Words and small bars; a colour, label and icon per voice | Out of scope. |
+| Felt-body line figure, per-voice paper styles | Felt words; a colour, label and icon per voice | Drawing deferred; feelings stay in words. |
 
 ## 5. The month as played
 
@@ -337,6 +337,14 @@ Faith: unchanged. No line about fasting was added; the debt and craving lines na
 
 **Saves.** New games are rules 2 and export `scenario: "voice-2"`. A `voice-1` file (from before this pass) still loads: the worker, the harness and the tests read the file's scenario first and replay it under rules 1, so it reaches its recorded hash (`rules` is left out of the hash for rules 1). The pinned fixture `apps/site/test/fixtures/playtest-voice.json` is a voice-1 file, still replays to its hash, and `PLAYTEST_REGEN` now regenerates it under rules 1. `levelup.test.ts` holds the five changes against rules 1 and a voice-1 file loading. Any other scenario is refused with the shared message.
 
+## 17. Conversation and phone follow-up (2026-10-20)
+
+Social acts show a short two-person exchange beside the recorded action. `ui/conversations.ts` chooses templates with a hash of the recorded day, minute and action text. It reads surfaced memories and worries from that occasion. It uses felt hunger, tiredness and open concerns only when the frame is at the recorded minute; a later body reading never supplies an earlier line. Displayed scenes remain fixed while their rows remain in the UI. The old answer prefix “Talk hacer?” is translated for display; stored log text, simulation state, rules, package pin and exports stay unchanged.
+
+The Halil pane, voices, ends and between-day trust read as words rather than feeling meters. Independent-choice marks say “chose it”, “chose something else” or “no choice observed yet”; they do not claim a completed act. A newer answer replaces the held answer; a newer autonomous task changes the status to “Earlier answer” with the current task, while the unread words and Why stay available until Latest or another request.
+
+On phones, choices scroll separately from the selected-word summary, likely reply and Say it / Say nothing footer. The footer stays above the tabs. Reason edits request a matching prediction and say “Updating his likely reply…” while it is pending.
+
 ## Deferred
 
 Open, unbuilt or unconfirmed items from the design, the build plan and its fourteen passes. Target is "unscheduled" unless stated.
@@ -352,6 +360,8 @@ Open, unbuilt or unconfirmed items from the design, the build plan and its fourt
 - Whether a missed promise should cost Osman's standing toward Halil (today only his demand strengthens). A framework change with a balance pass to follow. Unscheduled.
 
 **Game and town**
+
+- Restoring the original body-specific wording of an old conversation after opening an export: historical felt readings are not in saved log entries. Such rows use their recorded time and surfaced context instead; reconstructing original body speech would need versioned presentation history. Target: 2026-11-03.
 
 - A silent month that sometimes goes right on its own, so a bad voice has more to undo (one attempt reverted, tenth pass). Unscheduled.
 - Naps about 3 times a day: flat daytime utilities; a nap gate broke other behaviour and was reverted. Needs utility recalibration first. Unscheduled.

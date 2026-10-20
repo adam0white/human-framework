@@ -144,6 +144,7 @@ export function App() {
             <DayLog
               key={frame.day}
               log={frame.log}
+              moment={{ minute: frame.minute, halil: frame.halil }}
               pauseBeat={frame.pauseBeat}
               paused={frame.paused}
               onWhy={openWhy}

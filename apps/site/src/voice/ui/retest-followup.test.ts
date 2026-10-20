@@ -39,10 +39,11 @@ const later: LogEntry = {
   id: 'b',
   decisionId: 'd2',
   clock: '13:55',
+  minute: 835,
   text: '“Not now. After I rest at home.”',
 };
 
-it('holds the unread answer and its Why through later answers and log trimming until Latest is chosen', () => {
+it('holds the unread answer and its Why through background entries and log trimming until Latest is chosen', () => {
   let selected = '';
   const props = {
     paused: false,
@@ -52,7 +53,7 @@ it('holds the unread answer and its Why through later answers and log trimming u
   };
   const { el, update } = render(createElement(DayLog, { ...props, log: [] }));
   update(createElement(DayLog, { ...props, log: [answer] }));
-  update(createElement(DayLog, { ...props, log: [later] }));
+  update(createElement(DayLog, { ...props, log: [{ ...later, kind: 'note' }] }));
   expect(el.textContent).toContain(answer.text);
   expect(el.textContent).not.toContain(later.text);
   flushSync(() => el.querySelector<HTMLButtonElement>('.v-log-answer button')?.click());
@@ -63,6 +64,24 @@ it('holds the unread answer and its Why through later answers and log trimming u
   flushSync(() => latest?.click());
   expect(el.textContent).toContain(later.text);
   expect(el.textContent).not.toContain(answer.text);
+});
+
+it('updates the reading status and held transcript when a newer answer arrives', () => {
+  const props = { paused: false, onWhy: () => {} };
+  const { el, update } = render(createElement(DayLog, { ...props, log: [answer] }));
+  update(createElement(DayLog, { ...props, log: [answer, later] }));
+  expect(el.querySelector('.v-reading')?.textContent).toContain('13:55');
+  expect(el.querySelector('.v-reading')?.textContent).not.toContain('12:00');
+  expect(el.textContent).toContain(later.text);
+});
+it('updates the status for a newer task while keeping the unread answer', () => {
+  const props = { paused: false, onWhy: () => {} };
+  const { el, update } = render(createElement(DayLog, { ...props, log: [answer] }));
+  const task: LogEntry = { ...later, kind: 'act', text: 'I repair in the workshop, to earn.' };
+  update(createElement(DayLog, { ...props, log: [answer, task] }));
+  expect(el.querySelector('.v-reading')).toBeNull();
+  expect(el.querySelector('.v-earlier-answer')?.textContent).toContain(task.text);
+  expect(el.textContent).toContain(answer.text);
 });
 
 const why: WhyView = {

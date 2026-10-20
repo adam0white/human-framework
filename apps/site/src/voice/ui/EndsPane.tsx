@@ -3,13 +3,11 @@
 import { memo } from 'react';
 import type { EndView, UnaskedItem } from '../protocol.ts';
 import { storyDates } from './dates.ts';
-import { Icon } from './Icon.tsx';
-import { Meter } from './parts.tsx';
 
-const UNASKED_MARK: Record<UnaskedItem['state'], { glyph: string; word: string }> = {
-  yes: { glyph: '✓', word: 'chose it' },
-  no: { glyph: '✗', word: 'chose something else' },
-  unknown: { glyph: '–', word: 'not observed' },
+const UNASKED_WORD: Record<UnaskedItem['state'], string> = {
+  yes: 'chose it',
+  no: 'chose something else',
+  unknown: 'no choice observed yet',
 };
 
 /**
@@ -30,17 +28,7 @@ export function UnaskedStrip({
       <ul>
         {items.map((u) => (
           <li key={u.label} className={`v-unasked-item is-${u.state}`}>
-            <span>{u.label}</span>{' '}
-            <span className="v-unasked-mark" title={UNASKED_MARK[u.state].word}>
-              {u.state === 'unknown' ? (
-                <>
-                  {UNASKED_MARK[u.state].glyph}
-                  <span className="v-sr"> {UNASKED_MARK[u.state].word}</span>
-                </>
-              ) : (
-                <Icon name={u.state === 'yes' ? 'check' : 'x'} label={UNASKED_MARK[u.state].word} />
-              )}
-            </span>
+            <span>{u.label}</span> <span className="v-unasked-choice">— {UNASKED_WORD[u.state]}</span>
             {u.day && <span className="v-unasked-day"> ({storyDates(u.day)})</span>}
           </li>
         ))}
@@ -56,8 +44,7 @@ export function EndsList({ ends, compact = false }: { ends: EndView[]; compact?:
         <li key={e.id} className={`v-end v-end-${e.id}`}>
           <p className="v-end-label">“{e.label}”</p>
           <p className="v-end-status">{storyDates(e.status)}</p>
-          {e.progress !== undefined && <Meter value={e.progress} label={e.label} />}
-          {!compact && <p className="v-end-detail">{storyDates(e.detail)}</p>}
+          {!compact && e.id !== 'trust' && <p className="v-end-detail">{storyDates(e.detail)}</p>}
           {!compact && e.after && (
             <p className="v-end-after">
               <span>Without you</span> {e.after}

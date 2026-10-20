@@ -25,8 +25,13 @@ const sameDraft = (a: Draft | null, b: Draft | null) =>
     a.insist === b.insist &&
     a.appeal === b.appeal);
 
-function TelegraphLine({ telegraph }: { telegraph: Telegraph | null }) {
-  if (!telegraph) return <p className="v-telegraph is-empty">Pick something to hear how he’d answer.</p>;
+function TelegraphLine({ telegraph, pending }: { telegraph: Telegraph | null; pending: boolean }) {
+  if (!telegraph)
+    return (
+      <p className="v-telegraph is-empty" aria-live="polite" aria-busy={pending}>
+        {pending ? 'Updating his likely reply…' : 'Pick something to hear how he’d answer.'}
+      </p>
+    );
   return (
     <p className={`v-telegraph ${toneClass(telegraph.tone)}`} aria-live="polite">
       {telegraph.tone && (
@@ -238,7 +243,6 @@ export const Composer = memo(function Composer({
   const leaningOpt = options.find((o) => o.id === leaning?.optionId) ?? options.find((o) => o.leaning);
   const selected = options.find((o) => o.id === draft?.optionId);
   const shownTelegraph = telegraph && sameDraft(telegraph.draft, draft) ? telegraph.telegraph : null;
-  const fromPrefillNow = prefill && !touched && draft && draft.optionId === prefill.optionId;
 
   return (
     <section className={`v-composer is-open ${expanded ? 'is-expanded' : ''}`} aria-label="Say something">
@@ -255,105 +259,114 @@ export const Composer = memo(function Composer({
       </button>
 
       <div className="v-composer-body">
-        {leaningOpt && (
-          <p className="v-leaning">
-            He’s leaning toward <em>{leaningOpt.label}</em>
-            {leaning?.why ? (
-              <>
-                {' '}
-                — <span>{leaning.why}</span>
-              </>
-            ) : null}
-          </p>
-        )}
-
-        <fieldset className="v-options" aria-label="What to suggest">
-          {options.slice(0, 6).map((o, i) => (
-            <button
-              key={o.id}
-              type="button"
-              aria-pressed={draft?.optionId === o.id}
-              className={`v-option ${o.leaning ? 'is-leaning' : ''}`}
-              onClick={() => pick(o.id)}
-            >
-              <kbd>{i + 1}</kbd>
-              <span className="v-option-label">{o.label}</span>
-              {o.leaning && <span className="v-option-lean">his leaning</span>}
-            </button>
-          ))}
-        </fieldset>
-
-        <p className={`v-prefill ${prefill ? '' : 'is-none'}`}>
-          {prefill ? (
-            <>
-              <span className="v-prefill-tag">
-                {fromPrefillNow ? (
-                  'Prefilled because'
-                ) : (
-                  <>
-                    Prefilled <em>{options.find((o) => o.id === prefill.optionId)?.label ?? 'something'}</em>{' '}
-                    because
-                  </>
-                )}
-              </span>{' '}
-              {storyDates(prefill.why)}
-            </>
-          ) : (
-            'Nothing here is prefilled. Pick one, or say nothing.'
+        <div className="v-composer-scroll">
+          {leaningOpt && (
+            <p className="v-leaning">
+              He’s leaning toward <em>{leaningOpt.label}</em>
+              {leaning?.why ? (
+                <>
+                  {' '}
+                  — <span>{leaning.why}</span>
+                </>
+              ) : null}
+            </p>
           )}
-        </p>
 
-        <div className="v-how">
-          <fieldset className="v-seg" aria-label="How strongly">
-            {STRENGTHS.map((s) => (
+          <fieldset className="v-options" aria-label="What to suggest">
+            {options.slice(0, 6).map((o, i) => (
               <button
-                key={s.id}
+                key={o.id}
                 type="button"
-                aria-pressed={draft?.strength === s.id}
-                onClick={() => setStrength(s.id)}
-                title={s.hint}
+                aria-pressed={draft?.optionId === o.id}
+                className={`v-option ${o.leaning ? 'is-leaning' : ''}`}
+                onClick={() => pick(o.id)}
               >
-                <Icon name={STRENGTH_ICON[s.id]} />
-                {s.label} <kbd>{s.key}</kbd>
+                <kbd>{i + 1}</kbd>
+                <span className="v-option-label">{o.label}</span>
+                {o.leaning && <span className="v-option-lean">his leaning</span>}
               </button>
             ))}
           </fieldset>
-          <button
-            type="button"
-            className={`v-insist ${draft?.insist ? 'is-on' : ''}`}
-            aria-pressed={draft?.insist ?? false}
-            onClick={toggleInsist}
-          >
-            <Icon name={STRENGTH_ICON.insist} />
-            Insist <kbd>I</kbd>
-          </button>
-        </div>
-        {draft?.insist && <p className="v-insist-price">{INSIST_PRICE}</p>}
 
-        <fieldset className="v-appeals" aria-label="Reason (optional)">
-          <span className="v-appeals-label">Reason</span>
-          {APPEALS.map((a) => (
+          <p className={`v-prefill ${prefill ? '' : 'is-none'}`}>
+            {prefill ? (
+              <>
+                <span className="v-prefill-tag">
+                  Prefilled <em>{options.find((o) => o.id === prefill.optionId)?.label ?? 'something'}</em>{' '}
+                  because
+                </span>{' '}
+                {storyDates(prefill.why)}
+              </>
+            ) : (
+              'Nothing here is prefilled. Pick one, or say nothing.'
+            )}
+          </p>
+
+          <div className="v-how">
+            <fieldset className="v-seg" aria-label="How strongly">
+              {STRENGTHS.map((s) => (
+                <button
+                  key={s.id}
+                  type="button"
+                  aria-pressed={draft?.strength === s.id}
+                  onClick={() => setStrength(s.id)}
+                  title={s.hint}
+                >
+                  <Icon name={STRENGTH_ICON[s.id]} />
+                  {s.label} <kbd>{s.key}</kbd>
+                </button>
+              ))}
+            </fieldset>
             <button
-              key={a.id}
               type="button"
-              aria-pressed={draft?.appeal === a.id}
-              className="v-chip"
-              onClick={() => toggleAppeal(a.id)}
+              className={`v-insist ${draft?.insist ? 'is-on' : ''}`}
+              aria-pressed={draft?.insist ?? false}
+              onClick={toggleInsist}
             >
-              {a.label} <kbd>{a.key}</kbd>
+              <Icon name={STRENGTH_ICON.insist} />
+              Insist <kbd>I</kbd>
             </button>
-          ))}
-        </fieldset>
+          </div>
+          <p className="v-insist-price" aria-hidden={!draft?.insist}>
+            {INSIST_PRICE}
+          </p>
 
+          <fieldset className="v-appeals" aria-label="Reason (optional)">
+            <span className="v-appeals-label">Reason</span>
+            {APPEALS.map((a) => (
+              <button
+                key={a.id}
+                type="button"
+                aria-pressed={draft?.appeal === a.id}
+                className="v-chip"
+                onClick={() => toggleAppeal(a.id)}
+              >
+                {a.label} <kbd>{a.key}</kbd>
+              </button>
+            ))}
+          </fieldset>
+        </div>
         <div className="v-commit">
-          <TelegraphLine telegraph={selected ? shownTelegraph : null} />
+          <div className="v-preview">
+            <p className="v-draft-summary">
+              <strong className="v-draft-action">{selected?.label ?? 'No action selected'}</strong>
+              <span className="v-draft-how">
+                {draft ? STRENGTHS.find((s) => s.id === draft.strength)?.label : 'Choose an action'}
+                {draft?.insist ? ' · Insist' : ''}
+                {draft?.appeal ? ` · ${appealLabel(draft.appeal)}` : ''}
+              </span>
+            </p>
+            <TelegraphLine
+              telegraph={selected ? shownTelegraph : null}
+              pending={!!selected && !shownTelegraph}
+            />
+          </div>
           <div className="v-say">
             <button type="button" className="v-btn v-btn-quiet" onClick={sayNothing}>
               Say nothing <kbd>Esc</kbd>
             </button>
             <button type="button" className="v-btn v-btn-primary" onClick={confirm} disabled={!selected}>
-              Say it{selected ? `: ${draft?.insist ? 'insist' : draft?.strength} · ${selected.label}` : ''}
-              {draft?.appeal ? ` · ${appealLabel(draft.appeal)}` : ''} <kbd>Enter</kbd>
+              Say it <kbd>Enter</kbd>
             </button>
           </div>
         </div>

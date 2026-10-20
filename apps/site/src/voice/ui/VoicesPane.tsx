@@ -1,11 +1,18 @@
 /**
- * The voices he hears (voice.md §8). Yours carries the trust thread (a bar and the last three events); the others
+ * The voices he hears (voice.md §8). Yours carries the trust thread (words and the last three events); the others
  * show a trust word, what they last urged, whether it is still on his mind, and any conflict between voices.
  */
 import { memo } from 'react';
 import type { VoiceView } from '../protocol.ts';
 import { Icon, VOICE_ICON } from './Icon.tsx';
-import { Meter } from './parts.tsx';
+/** Numeric prefixes belong to the model record, not the player's account of the event. */
+export const trustEventWords = (text: string): string => text.replace(/^[+−-]\d+(?:\.\d+)?\s+/, '');
+export const trustChangeWords = (from: number, to: number): string =>
+  Math.abs(to - from) < 0.005
+    ? 'He listens much as this morning.'
+    : to > from
+      ? 'He listens more closely than this morning.'
+      : 'He listens less closely than this morning.';
 
 export const VoicesPane = memo(function VoicesPane({ voices }: { voices: VoiceView[] }) {
   return (
@@ -26,21 +33,11 @@ export const VoicesPane = memo(function VoicesPane({ voices }: { voices: VoiceVi
               <span className="v-voice-rel">{v.relation}</span>
             </div>
             <p className="v-voice-trust">{v.trustWord}</p>
-            {v.trust !== undefined && (
-              <div className="v-thread">
-                <Meter value={v.trust} label="His trust in you" />
-                <span className="v-thread-num">{v.trust.toFixed(2)}</span>
-              </div>
-            )}
             {v.history.length > 0 && (
               <ul className="v-voice-history">
                 {v.history.slice(-3).map((h) => (
                   <li key={`${h.delta}-${h.text}`} className={h.delta >= 0 ? 'is-up' : 'is-down'}>
-                    <span className="v-delta">
-                      {h.delta >= 0 ? '+' : '−'}
-                      {Math.abs(h.delta).toFixed(2)}
-                    </span>{' '}
-                    {h.text}
+                    {trustEventWords(h.text)}
                   </li>
                 ))}
               </ul>
@@ -50,12 +47,7 @@ export const VoicesPane = memo(function VoicesPane({ voices }: { voices: VoiceVi
                 <span>
                   urged <em>{v.lastUrged.label}</em> · {v.lastUrged.when}
                 </span>
-                {v.lastUrged.standing && (
-                  <span className="v-voice-standing">
-                    still on his mind
-                    <Meter value={v.lastUrged.weight} label="still on his mind" />
-                  </span>
-                )}
+                {v.lastUrged.standing && <span className="v-voice-standing">still on his mind</span>}
               </div>
             )}
             {v.conflict && <p className="v-voice-conflict">{v.conflict}</p>}
