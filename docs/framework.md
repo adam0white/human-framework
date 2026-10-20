@@ -297,3 +297,22 @@ The playtester (`packages/playtester`, private) is not HF: it is a tool in which
 An applied contradiction changes only `memory.sourceTrust[sourceId]`: `after = before - 0.25 * weight * before`. Weight is 1 when the person heard both accounts directly. For a third-party report it is `testimonyWeight(trustOf(p, reporterId))`, so a distrusted reporter can frame less and a reporter at or below the 0.2 trust floor causes no loss. This never raises trust. Multiplicative losses commute, subject to floating-point precision, while reporter weights stay fixed. The loss coefficient is an engineering default, equal to the existing loss on confirmed falsehood. Contradiction changes no belief, relationship trust or voice trust and does not establish deceit.
 
 The host can deliver up to four `reports: [{ sourceId, prop, value }]` in one attended `told` percept whose `actorId` names the reporter. `perceive` checks each against the listener's own source accounts. It does not deliver the report to an absent person or infer a contradiction merely because world truth changed. The newest 32 contradiction records are kept by event minute; deduplication lasts while that bounded record remains. Restore validates, deduplicates and bounds this optional store. Calls without the new data write no optional fields.
+
+### Believed regard
+
+`social/impressions.ts` owns the opt-in `regard` cue: how I believe another person regards me, from −1 to 1, with prior 0 and evidence half-life 60 days. `regardOf(p, otherId, now)` returns the estimate and confidence without mutation. `noteKnownBy(p, { otherId, act, via, sourceId?, at? })` records my evidence that the other knows of my act. `via: 'seen'` has weight 1; `via: 'told'` uses information-source trust in `sourceId`, and writes nothing without a source or when its testimony weight is zero. An attended own-act percept (`actorId === p.id`) names the people I saw see it in `witnesses`. A secret witness or an unknown relay supplies no evidence.
+
+The sample projects my own understanding: the act's explicit valence, or defaults (`promise-broken` −0.6, `promise-kept` +0.3, `harm` −0.6, `help` +0.4, `apology` +0.2, otherwise 0), counts in full for its target and at half strength for a third party. My self-judgement under my held norms adds 0.3 × praiseworthiness. The sample is clamped to −1..1; negative samples carry twice the evidence weight. These coefficients are engineering defaults. HF does not read the other's actual view or infer undisclosed knowledge.
+
+`socialTerms` adds `regard:<id>` only for a target with a negative regard cue on an offer tagged `repair` or with action `apology`/`amends`: `min(0.3, 0.5 × (−mean) × confidence × (0.5 + agreeableness))`, rounded like other terms. The term never applies to someone held as deceased. Without a regard cue no term is added, even if other impression cues exist. This can change a close choice; it guarantees neither repair nor forgiveness.
+
+For a broken promise, the host delivers each person's evidence separately:
+
+| Person / store | Delivery |
+|---|---|
+| Breaker's own commitment record | The composite's internal `recordMissed` records the lapse when `tick` or `finish` finds the broken commitment; it sends no percept to anyone else. |
+| Promisee's relationship with the breaker | Deliver a `promise-broken` percept with `actorId` = breaker and `targetId` = promisee. Its relationship changes only after that percept is attended. |
+| Witnesses' judgement of the breaker | Include `norms` on the percept each witness receives; each judges under their own held norms. |
+| Breaker's believed regard | Deliver the breaker's own-act percept with `witnesses` naming only people the breaker saw see it; use `noteKnownBy` for a subsequently learned relay. |
+
+Relationships (`social.relationships`) and impressions (`social.impressions`) are separate stores. The promisee's actual trust in the breaker is a relationship value; the breaker's belief about the promisee's view is an impression cue. Recording one does not copy it into the other.
