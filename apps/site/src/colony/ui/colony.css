@@ -5247,3 +5247,36 @@ kbd {
     flex: 1 0 100%;
   }
 }
+
+.person-order {
+  padding: 6px;
+  overflow-wrap: anywhere;
+}
+.person-order p {
+  margin: 0 0 6px;
+}
+.person-order-actions {
+  display: flex;
+  gap: 6px;
+}
+.person-order button {
+  min-height: 44px;
+  flex: 1;
+  white-space: normal;
+}
+.person-order-insist {
+  width: 100%;
+  margin-top: 6px;
+}
+@media (max-width: 899px) {
+  .well-selected-person {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  .center > .person-order {
+    display: none;
+  }
+  .well-phone-sheet .person-order {
+    padding: 0;
+  }
+}

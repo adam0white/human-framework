@@ -24,6 +24,8 @@ export interface DrawPerson {
   action?: ActionId | null;
   /** Exact current view label; never inferred from the destination selection. */
   label?: string;
+  /** Latest standing request or its outcome, in words. */
+  orderStatus?: string;
   placeId?: PlaceId | null;
   hp: number;
   /** Classic only. */
@@ -894,7 +896,12 @@ function drawSelection(ctx: CanvasRenderingContext2D, input: SceneInput) {
 function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput): PersonLabel[] {
   const labels: PersonLabel[] = [];
   const size = mapTypeSize(input.labelScale);
-  const occupied: LabelRect[] = [];
+  const occupied: LabelRect[] = input.people.map((p) => ({
+    x: (p.x + 0.5) * T - size,
+    y: (p.y + 0.5) * T - size * 1.7,
+    w: size * 2,
+    h: size * 2.3,
+  }));
   ctx.font = `600 ${size}px "JetBrains Mono", ui-monospace, monospace`;
   for (const p of PLACES) {
     if (size > 16 && (p.id.startsWith('home-') || p.id === 'wellhouse')) continue;
@@ -909,11 +916,19 @@ function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput): PersonLabe
   for (const p of people) {
     const name = p.name?.replace('Hajja ', '').split(' ')[0] ?? p.id.charAt(0).toUpperCase() + p.id.slice(1);
     ctx.font = `600 ${size}px system-ui, sans-serif`;
-    const detail = p.id === input.selectedId ? p.label : undefined;
+    const detail = p.orderStatus ?? (p.id === input.selectedId ? p.label : undefined);
     const nameWidth = ctx.measureText(name).width;
     ctx.font = `500 ${size * 0.8}px system-ui, sans-serif`;
-    const w = Math.max(nameWidth, detail ? ctx.measureText(detail).width : 0) + size * 0.7;
-    const h = size * (detail ? 2.4 : 1.35);
+    const lines: string[] = [];
+    const maxWidth = Math.min(LOGICAL_W - size, (size / 14) * 180);
+    for (const word of detail?.split(' ') ?? []) {
+      const previous = lines.at(-1);
+      if (previous && ctx.measureText(`${previous} ${word}`).width <= maxWidth) {
+        lines[lines.length - 1] = `${previous} ${word}`;
+      } else lines.push(word);
+    }
+    const w = Math.max(nameWidth, ...lines.map((line) => ctx.measureText(line).width)) + size * 0.7;
+    const h = size * (1.35 + lines.length * 1.05);
     const anchor = { x: (p.x + 0.5) * T, y: (p.y + 0.5) * T };
     const r = personLabelRect(anchor, w, h, occupied);
     occupied.push(r);
@@ -932,9 +947,9 @@ function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput): PersonLabe
     ctx.textBaseline = 'middle';
     ctx.font = `600 ${size}px system-ui, sans-serif`;
     ctx.fillText(name, r.x + r.w / 2, r.y + size * 0.68);
-    if (detail) {
-      ctx.font = `500 ${size * 0.8}px system-ui, sans-serif`;
-      ctx.fillText(detail, r.x + r.w / 2, r.y + size * 1.78);
+    ctx.font = `500 ${size * 0.8}px system-ui, sans-serif`;
+    for (const [index, line] of lines.entries()) {
+      ctx.fillText(line, r.x + r.w / 2, r.y + size * (1.78 + index * 1.05));
     }
   }
   return labels;

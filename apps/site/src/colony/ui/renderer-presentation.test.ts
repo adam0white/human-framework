@@ -122,3 +122,18 @@ describe('Well map presentation', () => {
     expect(working.calls.some((c) => c.method === 'rotate' && c.args[0] === 0.24)).toBe(true);
   });
 });
+
+it('wraps a person order in its scene tag, including an unselected person', () => {
+  const { ctx, calls } = canvasRecorder();
+  const status = "House: won't — that is my work";
+  const labels = drawScene(ctx, {
+    ...input,
+    selectedId: null,
+    people: input.people.map((p) => ({ ...p, orderStatus: status })),
+  });
+  const texts = calls.filter((c) => c.method === 'fillText').map((c) => String(c.args[0]));
+  expect(texts.join(' ')).toContain(status);
+  expect(labels?.[0]?.w).toBeLessThanOrEqual(
+    180 * (input.labelScale ?? 1) + 14 * (input.labelScale ?? 1) * 0.7,
+  );
+});

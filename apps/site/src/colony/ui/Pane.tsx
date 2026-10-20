@@ -4,6 +4,7 @@ import type { VillagerId } from '../sim/world-types.ts';
 import type { BubbleManager, ShownBubble } from './bubbles.ts';
 import type { Frame } from './contract.ts';
 import { layoutSceneTargets, type MapPoint, type MapView, mapPoint, mapView } from './map-view.ts';
+import { latestPersonOrder, personOrderStatus } from './order-status.ts';
 import { shortName } from './parts.tsx';
 import {
   type DrawPerson,
@@ -59,6 +60,8 @@ export function interpolate(store: FrameStore, side: Side, now: number): DrawPer
     }
     const person: DrawPerson = { id: p.id, x, y, state: p.state, carriedBy: p.carriedBy, hp: p.hp };
     person.name = p.name;
+    const card = latestPersonOrder(curr.cards, p.id);
+    person.orderStatus = card ? personOrderStatus(card, side) : undefined;
     person.label = p.label;
     if ('action' in p) person.action = p.action;
     if ('placeId' in p) person.placeId = p.placeId;
@@ -291,6 +294,20 @@ export const Pane = memo(function Pane(props: PaneProps) {
       }
 
       const occupied: { x: number; y: number; w: number; h: number }[] = [];
+      // A reply may move or hide, but must not cover the person being addressed.
+      for (const person of people.current) {
+        const point = mapPoint(headAnchor(person.x, person.y, person.id), view.current, cssW, cssH);
+        occupied.push({ x: point.x - 22, y: point.y - 10, w: 44, h: 48 });
+      }
+      for (const label of labels.current) {
+        const point = mapPoint(label, view.current, cssW, cssH);
+        occupied.push({
+          x: point.x,
+          y: point.y,
+          w: (label.w * cssW) / view.current.width,
+          h: (label.h * cssH) / view.current.height,
+        });
+      }
       if (bubbles) {
         if (f !== lastFrame) {
           bubbles.ingest(f.human, now);
@@ -332,31 +349,36 @@ export const Pane = memo(function Pane(props: PaneProps) {
             bh: el.offsetHeight,
           });
         }
-        for (const { el, kind, ax, ay, bw, bh } of items) {
+        for (const { el, ax, ay, bw, bh } of items) {
           const x = Math.max(4, Math.min(cssW - bw - 4, ax - bw / 2));
-          let y = ay - bh - 6;
-          // Verdicts stack upward past bubbles already placed this frame; a colliding thought
-          // is hidden instead, so a crowd of idle thoughts never buries an answer.
-          const overlaps = () =>
-            placed.find((r) => x < r.x + r.w && x + bw > r.x && y < r.y + r.h && y + bh > r.y);
-          if (kind === 'thought' && overlaps()) {
+          const candidates = [
+            { x, y: ay - bh - 6 },
+            { x, y: ay + 42 },
+            { x: ax + 26, y: ay - bh / 2 },
+            { x: ax - bw - 26, y: ay - bh / 2 },
+          ];
+          // Search the remaining scene too. In a short sheet scene the persistent reply
+          // lives in the person's order panel; it must not bury workers to stay on the map.
+          for (let cy = 4; cy + bh <= cssH - 4; cy += 12) {
+            for (let cx = 4; cx + bw <= cssW - 4; cx += 12) candidates.push({ x: cx, y: cy });
+          }
+          const position = candidates.find(
+            (r) =>
+              r.x >= 4 &&
+              r.y >= 4 &&
+              r.x + bw <= cssW - 4 &&
+              r.y + bh <= cssH - 4 &&
+              !placed.some((o) => r.x < o.x + o.w && r.x + bw > o.x && r.y < o.y + o.h && r.y + bh > o.y),
+          );
+          if (!position) {
             el.style.visibility = 'hidden';
             continue;
           }
           el.style.visibility = '';
-          for (let guard = 0; guard < 6; guard++) {
-            const hit = overlaps();
-            if (!hit) break;
-            y = hit.y - bh - 3;
-          }
-          if (y < 4) {
-            // No room above: drop below the head instead.
-            y = Math.max(4, ay + 22);
-          }
-          y = Math.max(4, Math.min(cssH - bh - 4, y));
-          placed.push({ x, y, w: bw, h: bh });
-          el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
-          const tail = Math.max(10, Math.min(bw - 10, ax - x));
+          const { x: placedX, y } = position;
+          placed.push({ x: placedX, y, w: bw, h: bh });
+          el.style.transform = `translate(${placedX.toFixed(1)}px, ${y.toFixed(1)}px)`;
+          const tail = Math.max(10, Math.min(bw - 10, ax - placedX));
           el.style.setProperty('--tail', `${tail.toFixed(1)}px`);
         }
       }

@@ -412,4 +412,8 @@ F-306 ([Bram’s report](../lab/reviews/calibration-2026-10-20/a2-well-20.md)): 
 
 Scene cards retain the destination and sender resolved at pointerdown. Their layout stays fixed during the press. Releasing outside that card, moving the finger or cancelling sends nothing. Keyboard activation still works. The acknowledgement names the ordered place. Baseline Chromium at 360×690 reproduced House → Well after a 180 ms look-to-press delay while following Idris after an earlier order. A held-pointer sample sent House on both builds; it did not establish that movement during a held pointer caused Bram’s mismatch. Regression tests force movement during a press and release on a different card; they fail on the old handlers. Cards can still move before the press.
 
-Cost: cards can still move before the press. Simulation rules and saves are unchanged in this UI commit. Revert `Order the place under the finger on Well phones`.
+### The order stays on the person
+
+Name tags and the selected-person line say House: waiting, later, on it, won’t, done, or didn’t get to it. Tapping a person opens their latest Human reply with Ask again and Cancel order. Ask again preserves the original request options. A refusal offers Insist with its trust warning. Long name-tag text wraps. Speech yields space to workers and names; when no space remains, the reply stays in the person’s order sheet. The phone’s state strip and selected-person line remain above that sheet.
+
+Cost: status and controls take scene space. Ask again repeats the original request and can be refused. Simulation rules and save editions are unchanged in this UI commit. Revert `Show each Well order’s state on the person`.

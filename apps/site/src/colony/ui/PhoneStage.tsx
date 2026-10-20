@@ -3,9 +3,10 @@ import { type RefObject, useEffect, useRef, useState } from 'react';
 import type { HurtNews } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
-import { APPEALS } from '../sim/orders.ts';
+import { APPEALS, type OrderCard } from '../sim/orders.ts';
 import { type ActionId, VILLAGERS, type VillagerId, villagerById } from '../sim/world-types.ts';
 import { dayClock, type Frame, type Nudge } from './contract.ts';
+import { latestPersonOrder } from './order-status.ts';
 import {
   type ComposerState,
   EMPTY_COMPOSER,
@@ -13,6 +14,7 @@ import {
   inferredJob,
   jobPhrase,
   OrderLog,
+  PersonOrder,
   PLACE_LABEL,
   SuggestionCard,
   shortName,
@@ -78,13 +80,16 @@ export function VillageStrip({ frame, side }: { frame: Frame | null; side: 'huma
   );
 }
 
-type View = 'tools' | 'order' | 'worker' | 'place' | 'options' | 'suggestion' | 'orders';
+type View = 'person' | 'tools' | 'order' | 'worker' | 'place' | 'options' | 'suggestion' | 'orders';
 export function PhoneSheet(props: {
   stageRoot: RefObject<HTMLElement | null>;
   onSceneHeight(height: number): void;
   onWatch?(): void;
   shownSide?: 'classic' | 'human';
   placeRequest?: number;
+  personRequest?: number;
+  onAgain(card: OrderCard): void;
+  onInsist(card: OrderCard): void;
   onScenePlace?(place: PlaceId): void;
   onShowNews?(news: HurtNews): void;
   onRestNews?(news: HurtNews): void;
@@ -118,6 +123,7 @@ export function PhoneSheet(props: {
   const s = props.state;
   const nudge = props.frame?.nudges[0];
   const cards = props.frame?.cards ?? [];
+  const personOrder = latestPersonOrder(cards, s.personId);
   const ready = Boolean(s.personId && s.placeId);
   useEffect(() => {
     const root = props.stageRoot.current;
@@ -181,6 +187,12 @@ export function PhoneSheet(props: {
     setScenePicker(true);
     controller.current?.open({ id: 'place', height: 'half' });
   }, [props.placeRequest, props.active]);
+  useEffect(() => {
+    if (!props.personRequest || !props.active) return;
+    if (!latestPersonOrder(latest.current.frame?.cards ?? [], latest.current.state.personId)) return;
+    setScenePicker(false);
+    controller.current?.open({ id: 'person', height: 'fit' });
+  }, [props.personRequest, props.active]);
   function show(next: View, target: EventTarget | null) {
     setScenePicker(false);
     const opener = target instanceof HTMLElement ? target : undefined;
@@ -205,6 +217,7 @@ export function PhoneSheet(props: {
     }
   }
   const title = {
+    person: s.personId ? `${shortName(s.personId)} · latest order` : 'Latest order',
     tools: 'Village actions',
     order: 'Order options',
     worker: 'Choose worker',
@@ -254,6 +267,20 @@ export function PhoneSheet(props: {
           </button>
         </header>
         <div className="lk-sheet-body">
+          {view === 'person' && personOrder && (
+            <PersonOrder
+              card={personOrder}
+              onAgain={(card) => {
+                props.onAgain(card);
+                close();
+              }}
+              onCancel={props.onCancel}
+              onInsist={(card) => {
+                props.onInsist(card);
+                close();
+              }}
+            />
+          )}
           {view === 'tools' && (
             <div className="well-phone-choices">
               <button type="button" id="well-tools-options" onClick={(e) => show('options', e.currentTarget)}>
@@ -476,7 +503,7 @@ export function PhoneSheet(props: {
               {suggestionNeedsReview(nudge, props.frame) ? 'Review order' : 'Send order'}
             </button>
           )}
-          {view !== 'suggestion' && (
+          {view !== 'suggestion' && view !== 'person' && (
             <button
               type="button"
               className="btn-confirm"

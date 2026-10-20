@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ColonyGame, NUDGES, type Nudge } from '../sim/game.ts';
 import { createFrameworkHumanSide } from '../sim/human.ts';
+import type { OrderCard } from '../sim/orders.ts';
 import { PhoneSheet } from './PhoneStage.tsx';
 import { EMPTY_COMPOSER } from './parts.tsx';
 
@@ -46,18 +47,26 @@ async function click(text: string) {
   if (!button) throw new Error(`Missing ${text}`);
   await act(() => button.click());
 }
-async function mount(active = true, nudge?: Nudge) {
+async function mount(active = true, nudge?: Nudge, orderCard?: OrderCard) {
   const stageRoot = createRef<HTMLElement>();
   stageRoot.current = stage;
   const onOrdering = vi.fn();
   const onInspect = vi.fn();
   const onUse = vi.fn();
   const onWatch = vi.fn();
+  const onAgain = vi.fn();
+  const onInsist = vi.fn();
+  const onCancel = vi.fn();
   await act(() =>
     root.render(
       createElement(PhoneSheet, {
         stageRoot,
-        frame: nudge ? { ...frame, nudges: [nudge] } : frame,
+        frame: {
+          ...frame,
+          ...(nudge ? { nudges: [nudge] } : {}),
+          ...(orderCard ? { cards: [orderCard] } : {}),
+        },
+        personRequest: orderCard ? 1 : 0,
         state: {
           ...EMPTY_COMPOSER,
           personId: 'maryam',
@@ -80,14 +89,16 @@ async function mount(active = true, nudge?: Nudge) {
         onUse,
         onWatch,
         onSkip: vi.fn(),
-        onCancel: vi.fn(),
+        onAgain,
+        onInsist,
+        onCancel,
         onSheet: vi.fn(),
         onSceneHeight: vi.fn(),
         onKeepWatching: vi.fn(),
       }),
     ),
   );
-  return { onOrdering, onInspect, onUse, onWatch };
+  return { onOrdering, onInspect, onUse, onWatch, onAgain, onInsist, onCancel };
 }
 describe('Well shared sheet transitions', () => {
   it('does not create a browser history entry behind the title card', async () => {
@@ -154,4 +165,45 @@ it('Watch village uses the parent clean-view handler', async () => {
   await click('Watch village');
   expect(onWatch).toHaveBeenCalledOnce();
   expect(host.querySelector('.lk-sheet')?.hasAttribute('hidden')).toBe(true);
+});
+
+const refusedOrder: OrderCard = {
+  order: {
+    id: 'o1',
+    issuedAt: 300,
+    rollKey: 300,
+    personId: 'maryam',
+    placeId: 'site',
+    action: 'build',
+    rush: false,
+    insist: false,
+  },
+  status: 'active',
+  classic: { state: 'ok' },
+  human: {
+    state: 'willNot',
+    label: 'They eat from my hands.',
+    says: 'And leave the pot cold? They eat from my hands.',
+  },
+};
+it('opens a person’s latest reply without History, with a direct retry and a visible Insist cost', async () => {
+  const { onAgain } = await mount(true, undefined, refusedOrder);
+  expect(stage.dataset.sheetId).toBe('person');
+  expect(host.querySelector('.person-order-reply')?.textContent).toContain(
+    'And leave the pot cold? They eat from my hands.',
+  );
+  expect(host.querySelector('.person-order-insist')?.textContent).toBe('Insist · may cost trust');
+  await click('Ask again');
+  expect(onAgain).toHaveBeenCalledExactlyOnceWith(refusedOrder);
+  expect(stage.dataset.sheet).toBe('closed');
+});
+it('cancels the selected person’s order directly', async () => {
+  const { onCancel } = await mount(true, undefined, refusedOrder);
+  await click('Cancel order');
+  expect(onCancel).toHaveBeenCalledExactlyOnceWith('o1');
+});
+it('keeps the trust warning on the direct Insist action', async () => {
+  const { onInsist } = await mount(true, undefined, refusedOrder);
+  await click('Insist · may cost trust');
+  expect(onInsist).toHaveBeenCalledExactlyOnceWith(refusedOrder);
 });

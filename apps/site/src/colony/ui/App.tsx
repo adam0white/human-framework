@@ -4,13 +4,14 @@ import { gameLabs, LabMenuContent, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { PlaceId } from '../sim/map.ts';
-import { inferAction, type OrderInput } from '../sim/orders.ts';
+import { inferAction, type OrderCard, type OrderInput } from '../sim/orders.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { BubbleManager } from './bubbles.ts';
 import type { Nudge } from './contract.ts';
 import { EndScreen } from './EndScreen.tsx';
 import { GoalCard } from './GoalCard.tsx';
 import { Inspector } from './Inspector.tsx';
+import { latestPersonOrder, personOrderStatus, repeatPersonOrder } from './order-status.ts';
 import { Pane } from './Pane.tsx';
 import { PaneBody, PeopleRows } from './PeopleRows.tsx';
 import { PhoneSheet, VillageStrip } from './PhoneStage.tsx';
@@ -27,6 +28,7 @@ import {
   OrderLog,
   PaneStats,
   PauseRibbon,
+  PersonOrder,
   PLACE_LABEL,
   SuggestionCard,
   sameJobCopy,
@@ -100,6 +102,8 @@ export function App() {
   const [followKey, setFollowKey] = useState(0);
   const [holdKey, setHoldKey] = useState(0);
   const [placeRequest, setPlaceRequest] = useState(0);
+  const [personRequest, setPersonRequest] = useState(0);
+  const [personOrderOpen, setPersonOrderOpen] = useState(false);
   // News changes camera focus only. The prepared order and prior worker stay intact.
   const [newsFollow, setNewsFollow] = useState<{
     personId: VillagerId;
@@ -157,6 +161,8 @@ export function App() {
     setReturnedFollow(false);
     setOrdering(false);
     setPlaceRequest(0);
+    setPersonRequest(0);
+    setPersonOrderOpen(false);
     setDrawer(false);
     setEndOpen(true);
   }, [loaded, bubbles]);
@@ -257,8 +263,14 @@ export function App() {
       setOrdering(false);
       setComposer({ ...EMPTY_COMPOSER, personId: id });
       setFollowKey((key) => key + 1);
+      setPersonRequest((key) => key + 1);
+      setPersonOrderOpen(true);
+      if (latestPersonOrder(frame?.cards ?? [], id)) {
+        setChoosingPlace(false);
+        setWatching(id);
+      }
     },
-    [pickWho],
+    [pickWho, frame?.cards],
   );
   const scenePerson = newsFollow?.personId ?? composer.personId ?? watching;
   const sendScenePlace = useCallback(
@@ -448,6 +460,8 @@ export function App() {
     setReturnedFollow(false);
     setOrdering(false);
     setPlaceRequest(0);
+    setPersonRequest(0);
+    setPersonOrderOpen(false);
     setDrawer(false);
     setEndOpen(true);
     actions.restart();
@@ -461,6 +475,9 @@ export function App() {
   const nudges = frame?.nudges ?? [];
   const nudge = nudges[0];
   const cards = frame?.cards ?? [];
+  const selectedOrder = latestPersonOrder(cards, scenePerson);
+  const askAgain = (card: OrderCard) => sendOrder(repeatPersonOrder(card));
+  const insistOrder = (card: OrderCard) => sendOrder({ ...repeatPersonOrder(card), insist: true });
   const orderCount = cards.filter((c) => c.status !== 'cancelled').length;
   const highlightPlace = !newsFollow && (choosingPlace || ordering) ? (hoverPlace ?? composer.placeId) : null;
   // The end screen is open for the latest report until closed; "Another day" closes it by clearing `ended`.
@@ -562,11 +579,15 @@ export function App() {
           <div className="well-phone-status" role="status">
             {!scopeExplained && <p className="well-first-order">Each order goes to both villages.</p>}
             {flash && <p>{flash}</p>}
-            {newsFollow
-              ? `Watching ${shortName(newsFollow.personId)}`
-              : (composer.personId ?? watching)
-                ? `${shortName((composer.personId ?? watching) as VillagerId)} · ${(mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === (composer.personId ?? watching))?.label ?? 'waiting'}`
-                : ''}
+            {scenePerson && (
+              <p className="well-selected-person">
+                {shortName(scenePerson)} ·{' '}
+                {selectedOrder
+                  ? personOrderStatus(selectedOrder, mapSide)
+                  : ((mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === scenePerson)
+                      ?.label ?? 'waiting')}
+              </p>
+            )}
             <HurtLine
               news={frame?.news.slice(-1) ?? []}
               shownSide={mapSide}
@@ -655,6 +676,14 @@ export function App() {
                 }
               />
             </div>
+            {personOrderOpen && selectedOrder && (
+              <PersonOrder
+                card={selectedOrder}
+                onAgain={askAgain}
+                onCancel={actions.cancel}
+                onInsist={insistOrder}
+              />
+            )}
             <div className="composer-tray">
               <p className="order-scope">Each order goes to both villages.</p>
               <Composer
@@ -799,6 +828,9 @@ export function App() {
           }
           job={job}
           placeRequest={placeRequest}
+          personRequest={personRequest}
+          onAgain={askAgain}
+          onInsist={insistOrder}
           onScenePlace={sendScenePlace}
           inspecting={inspectOpen}
           active={!starting && !showEnd}

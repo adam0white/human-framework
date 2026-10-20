@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ColonyGame } from '../sim/game.ts';
 import { createFrameworkHumanSide } from '../sim/human.ts';
 import type { PlaceId } from '../sim/map.ts';
+import { BubbleManager } from './bubbles.ts';
 import { mapPoint, mapView } from './map-view.ts';
 import { latestReply, Pane, type PaneProps } from './Pane.tsx';
 import { drawScene } from './renderer.ts';
@@ -418,4 +419,25 @@ it('cancels a scene order when the finger ends over a different place', async ()
   );
   await act(() => well.dispatchEvent(new MouseEvent('click', { bubbles: true, detail: 1 })));
   expect(onPlace).not.toHaveBeenCalled();
+});
+
+it('hides a reply that cannot fit without covering the selected person', async () => {
+  const bubbles = new BubbleManager();
+  vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockReturnValue(340);
+  vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockReturnValue(220);
+  const { container, store } = await setup({ bubbles, following: false });
+  required(required(store.current.curr).human[0]).bubble = {
+    id: 'answer',
+    minute: 0,
+    personId: 'yusuf',
+    kind: 'notNow',
+    text: 'After I eat.',
+  };
+  store.current.curr = { ...required(store.current.curr) };
+  mapHeight = 180;
+  resizeMap?.();
+  await draw();
+  await draw();
+  const bubble = required(container.querySelector<HTMLButtonElement>('.bubble'));
+  expect(bubble.style.visibility).toBe('hidden');
 });

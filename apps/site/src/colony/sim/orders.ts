@@ -179,6 +179,8 @@ export type ChipState =
 export interface SideChip {
   state: ChipState;
   label?: string;
+  /** Rules 5: the latest spoken answer, separate from the condition label. */
+  says?: string;
   /** That side has finished with the card (completed the job). Refusals and no-ops settle implicitly. */
   settled?: boolean;
   /** The first answer, when a later update replaced it (Human: "after I pray Fajr", then "after I drink"). */

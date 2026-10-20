@@ -29,6 +29,7 @@ import {
 import { moodDescription, trustDescription } from './descriptions.ts';
 import { goalValue, humanQuotes } from './end-report.ts';
 import { Icon, type IconName, RingTimer } from './Icon.tsx';
+import { PLACE_LABEL, personOrderStatus } from './order-status.ts';
 import { LOOKS } from './renderer.ts';
 
 export const ROLE_LABEL: Record<string, string> = {
@@ -40,20 +41,7 @@ export const ROLE_LABEL: Record<string, string> = {
   'well-keeper': 'Well-keeper',
 };
 
-/** Visible place names. `site` is the House everywhere on screen (playtest item 12). */
-export const PLACE_LABEL: Record<PlaceId, string> = {
-  forest: 'Forest',
-  cedar: 'Cedar',
-  field: 'Field',
-  well: 'Well',
-  wellhouse: 'Well-house',
-  kitchen: 'Kitchen',
-  site: 'House',
-  masjid: 'Masjid',
-  'home-maryam': 'Home',
-  'home-yusuf': 'Home',
-  'home-idris': 'Home',
-};
+export { PLACE_LABEL } from './order-status.ts';
 
 /** Place chip icons. */
 export const PLACE_ICON: Record<PlaceId, IconName> = {
@@ -584,6 +572,45 @@ export const OrderLog = memo(function OrderLog({
     </ul>
   );
 });
+
+/** A person's latest answer and direct controls stay outside History. */
+export function PersonOrder({
+  card,
+  onAgain,
+  onCancel,
+  onInsist,
+}: {
+  card: OrderCard;
+  onAgain(card: OrderCard): void;
+  onCancel(id: string): void;
+  onInsist(card: OrderCard): void;
+}) {
+  const refused = card.human.state === 'willNot';
+  return (
+    <section className="person-order" aria-label="Latest order">
+      <p className="person-order-state">
+        <strong>Human · {personOrderStatus(card)}</strong>
+      </p>
+      {(card.human.says ?? card.human.label) && (
+        <p className="person-order-reply">Latest Human reply: {card.human.says ?? card.human.label}</p>
+      )}
+      {card.order.insist && <p>Insist was used. Asking again may cost trust.</p>}
+      <div className="person-order-actions">
+        <button type="button" onClick={() => onAgain(card)}>
+          Ask again
+        </button>
+        <button type="button" disabled={card.status !== 'active'} onClick={() => onCancel(card.order.id)}>
+          Cancel order
+        </button>
+      </div>
+      {refused && (
+        <button type="button" className="person-order-insist" onClick={() => onInsist(card)}>
+          Insist · may cost trust
+        </button>
+      )}
+    </section>
+  );
+}
 
 /** The newest answered order stays beside the phone composer. Labels can be counter-offers, not speech. */
 export function OrderReply({ cards }: { cards: OrderCard[] }) {
