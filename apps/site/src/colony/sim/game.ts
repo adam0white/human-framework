@@ -27,6 +27,7 @@ import {
   type OrderCard,
   type OrderInput,
 } from './orders.ts';
+import { VILLAGES, type Village } from './village.ts';
 import {
   applyWorldMinute,
   at,
@@ -37,6 +38,7 @@ import {
   END_MINUTE,
   formatClock,
   HOUSE_STAGES,
+  JOBS,
   type Minute,
   nextStageCost,
   type Resources,
@@ -259,7 +261,8 @@ export type LogEntry =
   | { minute: Minute; kind: 'order'; input: OrderInput; nudgeId?: string }
   | { minute: Minute; kind: 'cancel'; orderId: string }
   | { minute: Minute; kind: 'dismiss'; nudgeId: string }
-  | { minute: Minute; kind: 'continue' };
+  | { minute: Minute; kind: 'continue' }
+  | { minute: 0; kind: 'village'; village: 'early-warning'; preparationAt: number };
 
 export interface CharacterOutcome {
   prayersKept: number;
@@ -315,6 +318,7 @@ export interface Frame {
   /** Moments fired so far, in order (the UI captions each new one). */
   moments: MomentRecord[];
   humanKind: string;
+  village: Village;
   ended: boolean;
   /** 2880, or 4320 after "Another day". */
   endMinute: Minute;
@@ -427,6 +431,10 @@ function sideScore(w: SideWorld, alive: number): SideScore {
 const status = (met: boolean, failed: boolean): GoalStatus => (met ? 'met' : failed ? 'failed' : 'open');
 
 export class ColonyGame {
+  /** Page receipts are rebuilt by replay. Private fields never enter comparable simulation state. */
+  #receipts = new Map<string, string>();
+  #afterHome = new Map<string, string>();
+  #classicReceipts = new Map<string, string>();
   readonly seed: number;
   minute: Minute = 0;
   /** End of the run: `END_MINUTE`, raised to `DAY3_END` by `continueDay`. */
@@ -459,10 +467,27 @@ export class ColonyGame {
   /** Who was hurt lately, on which side and how (the page's news line). Derived from the steps; not hashed. */
   news: HurtNews[] = [];
 
-  constructor(seed: number, factory: HumanSideFactory, rules: ColonyRules = CURRENT_RULES) {
+  get village(): Village {
+    return this.humanWorld.preparationAt === undefined ? 'default' : 'early-warning';
+  }
+
+  constructor(
+    seed: number,
+    factory: HumanSideFactory,
+    rules: ColonyRules = CURRENT_RULES,
+    village: Village = 'default',
+  ) {
     this.seed = seed;
     this.factory = factory;
     this.rules = rules;
+    if (!Object.hasOwn(VILLAGES, village)) throw new Error('Unknown village');
+    if (village !== 'default') {
+      if (rules < 6) throw new Error('Early warning requires rules 6');
+      const preparationAt = VILLAGES[village].preparationAt;
+      this.classicWorld.preparationAt = preparationAt;
+      this.humanWorld.preparationAt = preparationAt;
+      this.log.push({ minute: 0, kind: 'village', village, preparationAt });
+    }
     this.classic = new ClassicSim(seed, VILLAGERS, this.classicWorld);
     this.human = factory(rules);
     this.human.init(seed, VILLAGERS, this.humanWorld, MAP);
@@ -564,7 +589,19 @@ export class ColonyGame {
     until?: Minute,
     rules: ColonyRules = CURRENT_RULES,
   ): ColonyGame {
-    const g = new ColonyGame(seed, factory, rules);
+    const config = log[0]?.kind === 'village' ? log[0] : null;
+    if (
+      log.some(
+        (e, index) =>
+          e.kind === 'village' &&
+          (index !== 0 ||
+            e.minute !== 0 ||
+            e.village !== 'early-warning' ||
+            e.preparationAt !== VILLAGES['early-warning'].preparationAt),
+      )
+    )
+      throw new Error('Invalid village configuration');
+    const g = new ColonyGame(seed, factory, rules, config?.village ?? 'default');
     let i = 0;
     for (;;) {
       // Entries first: a `continue` is stamped at the Day-2 end, when the game has already ended.
@@ -575,7 +612,9 @@ export class ColonyGame {
         else if (e.kind === 'cancel') g.cancel(e.orderId);
         else if (e.kind === 'dismiss') g.dismissNudge(e.nudgeId);
         else if (e.kind === 'continue') g.continueDay();
-        else throw new Error(`replay: unknown log entry kind ${String((e as { kind?: unknown }).kind)}`);
+        else if (e.kind === 'village' && i === 0) {
+          /* Constructor already applied the dawn choice. */
+        } else throw new Error(`replay: unknown log entry kind ${String((e as { kind?: unknown }).kind)}`);
       }
       if (g.ended || g.minute >= (until ?? g.endMinute)) break;
       g.advance(1);
@@ -612,8 +651,19 @@ export class ColonyGame {
     }
 
     const ce = this.classic.step(m);
-    for (const c of ce.completed)
+    for (const c of ce.completed) {
+      const project = projectOf(this.classicWorld);
+      const result =
+        c.action === 'build' || c.action === 'raise-beam'
+          ? `${project.kind === 'house' ? 'House' : 'Store-room'} ${project.stage} of ${project.stages}`
+          : c.action === 'shutter-house'
+            ? 'House shuttered; roof work has stopped'
+            : c.action === 'sleep'
+              ? 'Sleep order ended'
+              : `Finished ${JOBS[c.action].doing}`;
+      this.#classicReceipts.set(c.orderId, `${formatClock(m + 1)} · ${result}`);
       this.book.setChip(c.orderId, 'classic', { state: 'ok', label: 'done', settled: true });
+    }
     for (const n of ce.noop) {
       const card = this.book.card(n.orderId);
       if (card && card.classic.state !== 'noop')
@@ -650,6 +700,10 @@ export class ColonyGame {
       const card = this.book.card(c.orderId);
       if (!card) continue;
       // A yes or a "not now" that was then carried out shows as done; "under protest" stays visible.
+      this.#receipts.set(
+        c.orderId,
+        `${formatClock(m + 1)} · ${c.result ?? 'No further work offered; order ended'}`,
+      );
       const done = card.human.state === 'assent' || card.human.state === 'notNow';
       this.book.setChip(c.orderId, 'human', {
         ...card.human,
@@ -662,6 +716,26 @@ export class ColonyGame {
       if (card?.status !== 'active') continue;
       card.status = 'lapsed';
       card.human = { ...card.human, label: lapse.says, says: lapse.says };
+    }
+    // Record the first choice after a Home action ends, rather than replacing that history with a live label.
+    for (const card of this.book.cards) {
+      if (
+        !card.order.placeId.startsWith('home-') ||
+        !this.#receipts.has(card.order.id) ||
+        this.#afterHome.has(card.order.id)
+      )
+        continue;
+      const person = this.human.view().find((p) => p.id === card.order.personId);
+      if (
+        person?.action &&
+        person.action !== card.order.action &&
+        person.state !== 'dead' &&
+        person.state !== 'down'
+      )
+        this.#afterHome.set(
+          card.order.id,
+          `${formatClock(m + 1)} · After Home ended, chose: ${person.label}`,
+        );
     }
     this.moments.push(...he.moments);
     step.moments.push(...he.moments);
@@ -844,7 +918,11 @@ export class ColonyGame {
     const markers: TimelineMarker[] = [
       { minute: at(2, 5, 0), kind: 'day', label: 'Day 2' },
       { minute: SQUALL_START, kind: 'squall', label: 'Squall', until: SQUALL_END },
-      { minute: WARNING_AT, kind: 'warning', label: 'Sky darkens' },
+      {
+        minute: this.humanWorld.preparationAt ?? WARNING_AT,
+        kind: 'warning',
+        label: this.village === 'default' ? 'Sky darkens' : 'Elders warn of tonight’s storm',
+      },
       { minute: STORM_START, kind: 'storm', label: 'Storm', until: STORM_END },
     ];
     if (this.endMinute > END_MINUTE) {
@@ -883,13 +961,30 @@ export class ColonyGame {
   visibleNudges(): Nudge[] {
     const done = (w: SideWorld) => w.house.stage >= HOUSE_STAGES || w.house.shuttered;
     const roofed = done(this.classicWorld) && done(this.humanWorld);
-    return NUDGES.filter(
-      (n) =>
-        !this.dismissed.has(n.id) &&
-        this.minute >= n.minute &&
-        this.minute < n.until &&
-        !(n.id === 'storm-shutter' && roofed),
-    ).map((n) => (n.id === 'tariq-again' && !this.tariqInSquall() ? { ...n, reason: TARIQ_AGAIN_FRESH } : n));
+    const nudges =
+      this.village === 'default'
+        ? NUDGES
+        : NUDGES.map((n) =>
+            n.id === 'storm-pot'
+              ? {
+                  ...n,
+                  minute: VILLAGES['early-warning'].preparationAt + 30,
+                  until: VILLAGES['early-warning'].preparationAt + 90,
+                  text: 'The elders expect a storm tonight. Ask Maryam to put another pot by?',
+                }
+              : n,
+          );
+    return nudges
+      .filter(
+        (n) =>
+          !this.dismissed.has(n.id) &&
+          this.minute >= n.minute &&
+          this.minute < n.until &&
+          !(n.id === 'storm-shutter' && roofed),
+      )
+      .map((n) =>
+        n.id === 'tariq-again' && !this.tariqInSquall() ? { ...n, reason: TARIQ_AGAIN_FRESH } : n,
+      );
   }
 
   /** Classic progress toward the next stage: the furthest-along builder's job (Classic builds whole stages). */
@@ -929,10 +1024,24 @@ export class ColonyGame {
       classicWorld: worldView(this.classicWorld, this.classicProgress()),
       humanWorld: worldView(this.humanWorld, this.humanWorld.house.progress),
       scoreboard: this.scoreboard(),
-      cards: structuredClone(this.book.cards),
+      cards: structuredClone(this.book.cards).map((card) => {
+        const classicReceipt = this.#classicReceipts.get(card.order.id);
+        if (classicReceipt) card.classic.outcome = classicReceipt;
+        const receipt = this.#receipts.get(card.order.id);
+        if (receipt) {
+          const home = card.order.placeId.startsWith('home-');
+          const person = home ? this.human.view().find((p) => p.id === card.order.personId) : null;
+          card.human.outcome =
+            receipt +
+            (this.#afterHome.has(card.order.id) ? `. ${this.#afterHome.get(card.order.id)}` : '') +
+            (person ? `. Now: ${person.label}` : '');
+        }
+        return card;
+      }),
       nudges: this.visibleNudges(),
       moments: [...this.moments],
       humanKind: this.human.kind,
+      village: this.village,
       ended: this.ended,
       endMinute: this.endMinute,
       day: { current: clockOf(this.minute).day, total: this.endMinute > END_MINUTE ? 3 : 2 },
@@ -971,7 +1080,7 @@ export class ColonyGame {
    * stepping a minute at a time is stepping all at once, so the report is the same either way.
    */
   advanceSolo(max = Number.POSITIVE_INFINITY): void {
-    if (!this.soloGame) this.soloGame = new ColonyGame(this.seed, this.factory, this.rules);
+    if (!this.soloGame) this.soloGame = new ColonyGame(this.seed, this.factory, this.rules, this.village);
     const s = this.soloGame;
     let left = Math.min(max, this.minute - s.minute);
     while (left > 0) {
@@ -985,7 +1094,7 @@ export class ColonyGame {
 
   /** The Solo control (same seed, no orders), advanced to this game's end and continued with it. */
   solo(): ColonyGame {
-    if (!this.soloGame) this.soloGame = new ColonyGame(this.seed, this.factory, this.rules);
+    if (!this.soloGame) this.soloGame = new ColonyGame(this.seed, this.factory, this.rules, this.village);
     const s = this.soloGame;
     s.advance(END_MINUTE - s.minute);
     if (this.endMinute > END_MINUTE && s.endMinute === END_MINUTE) s.continueDay();

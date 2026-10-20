@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { VILLAGES, type Village } from '../sim/village.ts';
 import { dayClock, type Frame } from './contract.ts';
 import { AutoPauseToggle } from './parts.tsx';
 
@@ -13,7 +14,10 @@ export function GoalCard(props: {
   autoPause: boolean;
   onAutoPause(on: boolean): void;
   onPlay(): void;
+  onVillage?(village: Village): void;
 }) {
+  const [selectedVillage, setVillage] = useState<Village>(props.frame?.village ?? 'default');
+  useEffect(() => setVillage(props.frame?.village ?? 'default'), [props.frame?.village]);
   const play = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     play.current?.focus();
@@ -32,6 +36,25 @@ export function GoalCard(props: {
             : 'Roof the house, store 12 meals and keep everyone alive before the storm.'}
         </p>
         <p>Select a villager, then tap a place.</p>
+        {props.onVillage && props.frame?.minute === 0 && (
+          <fieldset className="village-choice">
+            <legend>Choose this village</legend>
+            {(Object.keys(VILLAGES) as Village[]).map((village) => (
+              <label key={village}>
+                <input
+                  type="radio"
+                  name="village"
+                  checked={selectedVillage === village}
+                  onChange={() => {
+                    setVillage(village);
+                    props.onVillage?.(village);
+                  }}
+                />
+                {VILLAGES[village].label}
+              </label>
+            ))}
+          </fieldset>
+        )}
         <button type="button" className="btn btn-play" ref={play} onClick={props.onPlay}>
           Play
         </button>

@@ -23,7 +23,11 @@ export function latestPersonOrder(cards: readonly OrderCard[], id: VillagerId | 
 }
 
 /** Presentation only; the simulation owns whether an order stands and how the person answered. */
-export function personOrderStatus(card: OrderCard, side: 'human' | 'classic' = 'human'): string {
+export function personOrderStatus(
+  card: OrderCard,
+  side: 'human' | 'classic' = 'human',
+  compact = false,
+): string {
   const chip = card[side];
   const label = chip.label?.replace(/[.!]$/, '');
   const reason = (chip.says ?? label)?.replace(/[.!]$/, '').split(';').at(-1)?.trim();
@@ -33,8 +37,14 @@ export function personOrderStatus(card: OrderCard, side: 'human' | 'classic' = '
   else if (chip.state === 'willNot') answer = `won't${reason && reason.length <= 32 ? ` — “${reason}”` : ''}`;
   else if (chip.state === 'cannot' || chip.state === 'noop')
     answer = `can't${reason && reason.length <= 28 ? ` — ${reason}` : ''}`;
-  else if (chip.settled || chip.state === 'done') answer = 'done';
-  else if (card.status === 'lapsed') answer = "didn't get to it";
+  else if (chip.settled || chip.state === 'done') {
+    answer = chip.outcome ?? 'done';
+    if (compact && chip.outcome) {
+      const result = chip.outcome.replace(/^Day \d+ · \d{2}:\d{2} · /, '').split('. Day ')[0] ?? chip.outcome;
+      const now = chip.outcome.split('. Now: ')[1];
+      answer = result + (now ? `; now ${now}` : '');
+    }
+  } else if (card.status === 'lapsed') answer = "didn't get to it";
   else if (chip.state === 'notNow') {
     // A counter-offer can name another job. Only a stated condition describes a promise here.
     const condition = label?.match(/(?:after|when)\b.*$/i)?.[0];
@@ -48,4 +58,12 @@ export function personOrderStatus(card: OrderCard, side: 'human' | 'classic' = '
 export function repeatPersonOrder(card: OrderCard): OrderInput {
   const { personId, placeId, rush, insist, appeal } = card.order;
   return { personId, placeId, rush, insist, ...(appeal ? { appeal } : {}) };
+}
+
+/** Home translates to one existing action. It does not change the person's standing work. */
+export function homeOrderMeaning(card: OrderCard): string | null {
+  if (!card.order.placeId.startsWith('home-')) return null;
+  return card.order.action === 'sleep'
+    ? 'Home asks for one sleep, normally until dawn. When sleep ends, they choose their own work again.'
+    : 'Home asks them to eat once. After eating, they choose their own work again; it does not keep them indoors.';
 }

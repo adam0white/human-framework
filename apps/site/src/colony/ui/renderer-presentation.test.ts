@@ -185,3 +185,18 @@ it('keeps the selected destination name within the visible preview', () => {
   expect(Number(house?.args[1]) - 45 / 2).toBeGreaterThanOrEqual(520);
   expect(Number(house?.args[1]) + 45 / 2).toBeLessThanOrEqual(680);
 });
+
+it('uses a complete name tag when a short sheet scene cannot fit the receipt', () => {
+  const { ctx, calls } = canvasRecorder();
+  const bounds = { x: 100, y: 220, w: 250, h: 35 };
+  const labels = drawScene(ctx, {
+    ...input,
+    visibleBounds: bounds,
+    people: input.people.map((p) => ({
+      ...p,
+      orderStatus: 'Home: Finished sleep at home; now Gathering timber',
+    })),
+  });
+  expect(labels[0]?.h).toBeLessThanOrEqual(bounds.h);
+  expect(calls.filter((c) => c.method === 'fillText').map((c) => c.args[0])).toContain('Yusuf');
+});

@@ -367,7 +367,18 @@ export class FrameworkHumanSide implements HumanSide {
           (this.rules < 5 || open.agreed)
         ) {
           // The job went away after a yes (someone else shuttered, the beam is up): the card settles.
-          ev.completed.push({ orderId: open.order.orderId, personId: id });
+          const w = this.world.world;
+          const construction = ['build', 'raise-beam', 'shutter-house'].includes(open.order.action);
+          const result = !construction
+            ? 'This action is no longer available; order ended'
+            : w.storeroom !== null
+              ? `Store-room ${w.storeroom} of 6; shared job ended`
+              : w.house.shuttered
+                ? 'House shuttered; roof work has stopped'
+                : w.house.stage >= 10
+                  ? 'House roof finished'
+                  : 'The shared job is no longer available';
+          ev.completed.push({ orderId: open.order.orderId, personId: id, result });
           this.drop(id);
           continue;
         }
@@ -528,7 +539,18 @@ export class FrameworkHumanSide implements HumanSide {
       if (f.status === 'interrupted') continue;
       const open = this.s.orders[f.personId];
       if (!open || open.order.action !== f.action || f.startedAt < open.since) continue;
-      ev.completed.push({ orderId: open.order.orderId, personId: f.personId });
+      const house = this.world.world.house;
+      const progress =
+        f.action === 'build' || f.action.startsWith('raise-beam')
+          ? this.world.world.storeroom !== null
+            ? `; Store-room ${this.world.world.storeroom} of 6`
+            : `; House ${house.stage} of 10${house.stage < 10 ? ', work remains' : ', roof finished'}`
+          : '';
+      ev.completed.push({
+        orderId: open.order.orderId,
+        personId: f.personId,
+        result: `${f.status === 'failed' ? 'Failed: ' : ''}${f.action === 'sleep' ? 'Finished ' : ''}${f.summary}${progress}`,
+      });
       this.drop(f.personId);
     }
   }

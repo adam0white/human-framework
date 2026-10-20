@@ -470,7 +470,13 @@ export class ClassicSim {
     const timber = r.timber < STOCK_CAP.timber ? 'gather-timber' : null;
     switch (u.role) {
       case 'cook':
-        if (r.meals < (this.world.minute >= WARNING_AT ? STOCK_CAP.stormMeals : STOCK_CAP.meals) && canCook)
+        if (
+          r.meals <
+            (this.world.minute >= (this.world.preparationAt ?? WARNING_AT)
+              ? STOCK_CAP.stormMeals
+              : STOCK_CAP.meals) &&
+          canCook
+        )
           return 'cook';
         if (r.water < 2) return 'draw-water';
         return grain ?? water;

@@ -40,7 +40,7 @@ export function branch(
   log: readonly LogEntry[],
   from: Minute,
 ): Hindsight {
-  const before = log.filter((e) => e.minute < from && e.kind !== 'continue');
+  const before = log.filter((e) => (e.minute < from || e.kind === 'village') && e.kind !== 'continue');
   const g = ColonyGame.replay(seed, factory, before, from);
   const issuedBefore = g.book.cards.length;
   const policy = standing(GOOD2, 75, { rush: true });

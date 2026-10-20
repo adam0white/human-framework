@@ -8,13 +8,21 @@ import type { PlaytestFile, ReplayResult } from '../shared/playtest.ts';
 import type { EndSummary, Frame } from './sim/game.ts';
 import type { Prediction, WhyBreakdown } from './sim/human-side.ts';
 import type { OrderInput } from './sim/orders.ts';
+import type { Village } from './sim/village.ts';
 import type { Minute, VillagerId } from './sim/world-types.ts';
 
 export type Speed = 0.5 | 1 | 2;
 
 export type MainToWorker =
   /** `gen` numbers the run; every reply echoes it so the page can drop replies from a run it replaced. Starts paused. */
-  | { type: 'init'; seed: number; scenarioVersion: string; gen: number; autoPause: boolean }
+  | {
+      type: 'init';
+      seed: number;
+      scenarioVersion: string;
+      gen: number;
+      autoPause: boolean;
+      village?: Village;
+    }
   | { type: 'tick'; dtMs: number }
   | { type: 'setSpeed'; speed: Speed }
   | { type: 'pause'; cause?: 'manual' | 'inspector' }

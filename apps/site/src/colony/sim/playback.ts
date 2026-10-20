@@ -139,7 +139,7 @@ export class Playback {
           this.game = null;
           return [{ type: 'error', message: `scenario ${msg.scenarioVersion} is not ${SCENARIO_VERSION}` }];
         }
-        this.game = new ColonyGame(msg.seed, this.factory);
+        this.game = new ColonyGame(msg.seed, this.factory, undefined, msg.village);
         this.carry = 0;
         this.endedSent = false;
         this.acknowledged = new Set();

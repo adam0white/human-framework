@@ -5,6 +5,7 @@ import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { inferAction, type OrderCard, type OrderInput } from '../sim/orders.ts';
+import { VILLAGES } from '../sim/village.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { BubbleManager } from './bubbles.ts';
 import type { Nudge } from './contract.ts';
@@ -578,6 +579,7 @@ export function App() {
           />
         }
       />
+      <p className="well-desktop-village village-setting">{VILLAGES[frame?.village ?? 'default'].label}</p>
       <GoalStrip goals={frame?.goals ?? []} />
 
       <main
@@ -599,7 +601,7 @@ export function App() {
                   aria-label={`Open ${shortName(scenePerson)}’s latest order: ${personOrderStatus(selectedOrder, mapSide)}`}
                   onClick={() => selectScenePerson(scenePerson)}
                 >
-                  {shortName(scenePerson)} · {personOrderStatus(selectedOrder, mapSide)} · Latest order
+                  {shortName(scenePerson)} · {personOrderStatus(selectedOrder, mapSide, true)} · Latest order
                 </button>
               ) : (
                 <p className="well-selected-person">
@@ -883,6 +885,7 @@ export function App() {
           text={playback.pause?.text ?? ''}
           autoPause={playback.autoPause}
           onAutoPause={actions.setAutoPause}
+          onVillage={(village) => actions.restart(village)}
           onPlay={() => actions.setPaused(false)}
         />
       )}

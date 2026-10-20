@@ -19,6 +19,7 @@ import { DEFAULT_SEED, SCENARIO_VERSION } from '../sim/game.ts';
 import type { Prediction, WhyBreakdown } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import type { OrderInput } from '../sim/orders.ts';
+import type { Village } from '../sim/village.ts';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { EndSummary, Frame, OutMsg, PlaybackState, Speed } from './contract.ts';
 
@@ -66,7 +67,7 @@ export interface ColonyActions {
   predict(input: OrderInput | null): void;
   predictPlaces?(inputs: OrderInput[]): void;
   predictSuggestion?(input: OrderInput | null): void;
-  restart(): void;
+  restart(village?: Village): void;
   /** Download this run as a playtest file. */
   exportPlaytest(): void;
   sendPlaytest(): void;
@@ -138,11 +139,12 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   const send = useCallback((msg: OutMsg) => worker.current?.postMessage(msg), []);
 
   const init = useCallback(
-    (w: Worker | null) => {
+    (w: Worker | null, village: Village = 'default') => {
       gen.current = Math.max(gen.current, pendingLoad.current) + 1;
       setPlayback(START_PLAYBACK(autoPause.current));
       const msg: OutMsg = {
         type: 'init',
+        village,
         seed,
         scenarioVersion: SCENARIO_VERSION,
         gen: gen.current,
@@ -350,7 +352,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         }
         if (!inputs.length) setScenePredictions({});
       },
-      restart: () => {
+      restart: (village) => {
         exportPending.current = false;
         sendToLab.current = false;
         setSummaries({});
@@ -362,7 +364,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         whyWant.current = null;
         predictInputs.current.clear();
         store.current = emptyStore();
-        init(worker.current);
+        init(worker.current, village);
       },
       sendPlaytest: () => {
         if (exportPending.current) return;

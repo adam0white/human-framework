@@ -170,7 +170,13 @@ export interface HostEvents {
   carried: { carrier: VillagerId; victim: VillagerId; minute: Minute; hunger: number }[];
   beams: { lead: VillagerId; partners: VillagerId[]; ok: boolean; minute: Minute }[];
   /** Outcomes of activities a player order led to (to settle cards). */
-  finished: { personId: VillagerId; action: string; status: Outcome['status']; startedAt: number }[];
+  finished: {
+    personId: VillagerId;
+    action: string;
+    status: Outcome['status'];
+    startedAt: number;
+    summary: string;
+  }[];
 }
 
 export interface HostState {
@@ -647,7 +653,8 @@ export class ColonyHostWorld implements World {
     // A full store needs no cook, unless a meal is due on the cook's own duty. From the warning she cooks for the
     // storm; in the storm the fire is out.
     const potLow =
-      w.resources.meals < (m >= WARNING_AT ? HOST.cookBelowStorm : HOST.cookBelow) || meal !== undefined;
+      w.resources.meals < (m >= (w.preparationAt ?? WARNING_AT) ? HOST.cookBelowStorm : HOST.cookBelow) ||
+      meal !== undefined;
     if (
       !stormNoCook(m) &&
       potLow &&
@@ -896,6 +903,7 @@ export class ColonyHostWorld implements World {
           personId: id,
           action: act.action,
           status: out.status,
+          summary: out.summary ?? aff.label,
           startedAt: act.startedAt,
         });
         if (out.status !== 'interrupted') this.onOrderDone?.(id, act.action, act.startedAt);
@@ -1298,18 +1306,21 @@ export class ColonyHostWorld implements World {
         summary: 'No roof of our own tonight.',
       });
     }
-    if (m === WARNING_AT) {
+    if (m === (w.preparationAt ?? WARNING_AT)) {
       for (const o of this.community.people) {
         if (!o.body.alive) continue;
         this.queue([villagerId(o.id)], {
           at: t,
-          channel: 'saw',
+          channel: w.preparationAt === undefined ? 'saw' : 'heard',
           kind: 'weather-warning',
           valence: -0.5,
           salience: 0.9,
           near: true,
           claims: [{ prop: 'storm:tonight', value: true, confidence: 0.8 }],
-          summary: 'the sky darkening in the west',
+          summary:
+            w.preparationAt === undefined
+              ? 'the sky darkening in the west'
+              : 'the elders warn: the storm will reach us tonight',
         });
         if (!o.body.asleep) interruptPerson(this.community, o, t, 'percept:weather-warning');
       }

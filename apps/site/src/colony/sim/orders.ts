@@ -177,6 +177,8 @@ export type ChipState =
   | 'willNot';
 
 export interface SideChip {
+  /** Presentation receipt, derived from completion events; never stored in the order book. */
+  outcome?: string;
   state: ChipState;
   label?: string;
   /** Rules 5: the latest spoken answer, separate from the condition label. */

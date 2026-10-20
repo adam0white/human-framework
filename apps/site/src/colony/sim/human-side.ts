@@ -209,7 +209,7 @@ export interface HumanSideEvents {
   /** Rules 5: a conditional promise not reached before the person sleeps for the night. */
   lapsed?: { orderId: string; personId: VillagerId; says: string }[];
   /** Orders whose job finished (the card settles on this side). */
-  completed: { orderId: string; personId: VillagerId }[];
+  completed: { orderId: string; personId: VillagerId; result?: string }[];
   /** New bubbles emitted this step (verdict lines and thoughts). */
   bubbles: Bubble[];
   injuries: { personId: VillagerId; kind: 'collapse' | 'injury' | 'weather'; minute: Minute }[];
@@ -279,11 +279,12 @@ export interface HumanSide {
  * Rules version of the scenario (colony.md, "2026-10-19 level-up"). 3: the rules of the 2026-10-07 build, kept so @3
  * saves and the pinned fixture replay exactly. 4: refusals name their reason, a "you'll be safer" appeal is
  * a promise the person holds you to, and a new order to the same person settles the old card as replaced.
- * 5 (current): stated conditional deferrals remain until begun, refused, cancelled, replaced or night sleep.
+ * 5: stated conditional deferrals remain until begun, refused, cancelled, replaced or night sleep.
+ * 6 (current): opt-in early preparation warning, keeping the default village identical to 5.
  */
-export type ColonyRules = 3 | 4 | 5;
-export const CURRENT_RULES: ColonyRules = 5;
-export const RULES: readonly ColonyRules[] = [3, 4, 5];
+export type ColonyRules = 3 | 4 | 5 | 6;
+export const CURRENT_RULES: ColonyRules = 6;
+export const RULES: readonly ColonyRules[] = [3, 4, 5, 6];
 export const scenarioOf = (rules: ColonyRules): string => `colony-scenario@${rules}`;
 /** The rules a scenario string names, if this build still plays them. */
 export function rulesOf(scenario: unknown): ColonyRules | null {

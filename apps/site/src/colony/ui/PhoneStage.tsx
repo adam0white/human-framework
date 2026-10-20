@@ -4,6 +4,7 @@ import type { HurtNews } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type OrderCard } from '../sim/orders.ts';
+import { VILLAGES } from '../sim/village.ts';
 import { type ActionId, VILLAGERS, type VillagerId, villagerById } from '../sim/world-types.ts';
 import { dayClock, type Frame, type Nudge } from './contract.ts';
 import { latestPersonOrder } from './order-status.ts';
@@ -59,6 +60,7 @@ export function VillageStrip({ frame, side }: { frame: Frame | null; side: 'huma
           {deadline === undefined ? 'not scheduled' : dayClock(deadline).replace('D', 'Day ')}
         </span>
       </button>
+      <p className="village-setting">{VILLAGES[frame?.village ?? 'default'].label}</p>
       <p className="lk-strip-detail" data-expanded={expanded}>
         The {side === 'human' ? 'Human' : 'Classic'} village has completed {stage} of {target}{' '}
         {label.toLowerCase()} stages and stores {meals} meals.{' '}
@@ -338,6 +340,15 @@ export function PhoneSheet(props: {
                     ? `${shortName(s.personId)}: now pick a place.`
                     : `${shortName(s.personId)} → ${PLACE_LABEL[s.placeId]}`}
               </p>
+              {s.personId && (
+                <button
+                  type="button"
+                  aria-pressed={s.rush}
+                  onClick={() => props.onChange({ ...s, rush: !s.rush })}
+                >
+                  Rush · faster, hungrier
+                </button>
+              )}
               {ready && (
                 <p>
                   {props.job && <>{jobPhrase(props.job)} · </>}

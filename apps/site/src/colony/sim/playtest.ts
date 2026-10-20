@@ -12,6 +12,7 @@ import { ColonyGame, type LogEntry } from './game.ts';
 import { type ColonyRules, CURRENT_RULES, type HumanSideFactory, rulesOf, scenarioOf } from './human-side.ts';
 import { PLACES, type PlaceId } from './map.ts';
 import { APPEALS, type AppealChip, type OrderInput } from './orders.ts';
+import { VILLAGES } from './village.ts';
 import { DAY3_END, VILLAGERS, type VillagerId } from './world-types.ts';
 
 export function colonyState(g: ColonyGame): Record<string, unknown> {
@@ -61,7 +62,10 @@ export function parseColonyPlaytest(text: string): { file: PlaytestFile<LogEntry
     named = undefined;
   }
   const rules = rulesOf(named) ?? CURRENT_RULES;
-  return { file: parsePlaytest(text, 'colony', scenarioOf(rules), validateColonyLog), rules };
+  const file = parsePlaytest(text, 'colony', scenarioOf(rules), validateColonyLog);
+  if (rules < 6 && file.log.some((e) => e.kind === 'village'))
+    throw new Error('Village choice requires rules 6');
+  return { file, rules };
 }
 
 const PLACE_IDS = PLACES.map((p) => p.id) as PlaceId[];
@@ -91,8 +95,27 @@ export function validateColonyLog(log: readonly unknown[]): LogEntry[] {
     const o = check.obj(e, what);
     const minute = check.int(o.minute, `${what}.minute`, last, DAY3_END);
     last = minute;
-    const kind = check.oneOf(o.kind, ['order', 'cancel', 'dismiss', 'continue'] as const, `${what}.kind`);
+    const kind = check.oneOf(
+      o.kind,
+      ['order', 'cancel', 'dismiss', 'continue', 'village'] as const,
+      `${what}.kind`,
+    );
     switch (kind) {
+      case 'village':
+        check.keys(o, ['minute', 'kind', 'village', 'preparationAt'], what);
+        if (
+          i !== 0 ||
+          minute !== 0 ||
+          o.village !== 'early-warning' ||
+          o.preparationAt !== VILLAGES['early-warning'].preparationAt
+        )
+          throw new Error(`${what}: invalid dawn village choice`);
+        return {
+          minute: 0,
+          kind,
+          village: 'early-warning',
+          preparationAt: VILLAGES['early-warning'].preparationAt,
+        };
       case 'order': {
         check.keys(o, ['minute', 'kind', 'input', 'nudgeId'], what);
         const out: LogEntry = { minute, kind, input: orderOf(o.input, `${what}.input`) };

@@ -966,8 +966,15 @@ function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput): PersonLabe
         lines[lines.length - 1] = `${previous} ${word}`;
       } else lines.push(word);
     }
-    const w = Math.max(nameWidth, ...lines.map((line) => ctx.measureText(line).width)) + size * 0.7;
-    const h = size * (1.35 + lines.length * 1.05);
+    let w = Math.max(nameWidth, ...lines.map((line) => ctx.measureText(line).width)) + size * 0.7;
+    let h = size * (1.35 + lines.length * 1.05);
+    // The selected-person line and sheet keep the receipt when the remaining scene fits only a name.
+    if (w > bounds.w || h > bounds.h) {
+      lines.length = 0;
+      w = nameWidth + size * 0.7;
+      h = size * 1.35;
+    }
+    if (w > bounds.w || h > bounds.h) continue;
     const anchor = { x: (p.x + 0.5) * T, y: (p.y + 0.5) * T };
     const r = personLabelRect(anchor, w, h, occupied, bounds);
     occupied.push(r);

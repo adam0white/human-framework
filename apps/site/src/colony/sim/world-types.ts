@@ -520,6 +520,8 @@ export interface HouseState {
 }
 
 export interface SideWorld {
+  /** Opt-in early preparation forecast; absent in the default and historical villages. */
+  preparationAt?: Minute;
   minute: Minute;
   resources: Resources;
   house: HouseState;

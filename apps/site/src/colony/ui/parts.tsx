@@ -29,7 +29,7 @@ import {
 import { moodDescription, trustDescription } from './descriptions.ts';
 import { goalValue, humanQuotes } from './end-report.ts';
 import { Icon, type IconName, RingTimer } from './Icon.tsx';
-import { PLACE_LABEL, personOrderStatus } from './order-status.ts';
+import { homeOrderMeaning, PLACE_LABEL, personOrderStatus } from './order-status.ts';
 import { LOOKS } from './renderer.ts';
 import { suggestionChoice } from './suggestion-choice.ts';
 
@@ -536,6 +536,9 @@ export function OrderCardView({ card, onCancel }: { card: OrderCard; onCancel(id
             <span className="card-says says-noop"> · Classic: {card.classic.label}</span>
           )}
         </div>
+        {card.classic.outcome && <p className="card-outcome">Classic · {card.classic.outcome}</p>}
+        {card.human.outcome && <p className="card-outcome">Human · {card.human.outcome}</p>}
+        {homeOrderMeaning(card) && <p className="card-outcome">{homeOrderMeaning(card)}</p>}
         <div className="card-chips">
           <Chip
             side="classic"
@@ -593,8 +596,12 @@ export function PersonOrder({
         <strong>Human · {personOrderStatus(card)}</strong>
       </p>
       {(card.human.says ?? card.human.label) && (
-        <p className="person-order-reply">Latest Human reply: {card.human.says ?? card.human.label}</p>
+        <p className="person-order-reply">
+          {card.human.outcome ? 'Before completion' : 'Latest Human reply'}:{' '}
+          {card.human.says ?? card.human.label}
+        </p>
       )}
+      {homeOrderMeaning(card) && <p>{homeOrderMeaning(card)}</p>}
       {card.order.insist && <p>Insist was used. Asking again may cost trust.</p>}
       <div className="person-order-actions">
         <button type="button" onClick={() => onAgain(card)}>
@@ -1087,11 +1094,19 @@ export function HurtLine({
   onShow?(news: HurtNews): void;
   onRest?(news: HurtNews): void;
 }) {
-  if (news.length === 0) return null;
+  const [heldNews, setHeldNews] = useState<readonly HurtNews[] | null>(null);
+  const shownNews = heldNews ?? news;
+  if (shownNews.length === 0) return null;
   return (
-    <div className="hurt-line" role="status">
+    <div
+      className="hurt-line"
+      role="status"
+      onPointerDownCapture={() => setHeldNews(shownNews)}
+      onPointerCancel={() => setHeldNews(null)}
+      onPointerUp={() => window.setTimeout(() => setHeldNews(null), 0)}
+    >
       <strong>Hurt</strong>
-      {[...news].reverse().map((n) => (
+      {[...shownNews].reverse().map((n) => (
         <div className="hurt-item" key={`${n.side}-${n.personId}-${n.minute}`}>
           <span>
             {hurtText(n)}
@@ -1100,12 +1115,26 @@ export function HurtLine({
               : ''}
           </span>
           {onRest && (
-            <button type="button" className="btn btn-small" onClick={() => onRest(n)}>
+            <button
+              type="button"
+              className="btn btn-small"
+              onClick={() => {
+                onRest(n);
+                setHeldNews(null);
+              }}
+            >
               Send {shortName(n.personId)} home
             </button>
           )}
           {onShow && (
-            <button type="button" className="btn btn-small" onClick={() => onShow(n)}>
+            <button
+              type="button"
+              className="btn btn-small"
+              onClick={() => {
+                onShow(n);
+                setHeldNews(null);
+              }}
+            >
               Show {shortName(n.personId)}
             </button>
           )}

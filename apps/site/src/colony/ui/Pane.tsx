@@ -61,7 +61,7 @@ export function interpolate(store: FrameStore, side: Side, now: number): DrawPer
     const person: DrawPerson = { id: p.id, x, y, state: p.state, carriedBy: p.carriedBy, hp: p.hp };
     person.name = p.name;
     const card = latestPersonOrder(curr.cards, p.id);
-    person.orderStatus = card ? personOrderStatus(card, side) : undefined;
+    person.orderStatus = card ? personOrderStatus(card, side, true) : undefined;
     person.label = p.label;
     if ('action' in p) person.action = p.action;
     if ('placeId' in p) person.placeId = p.placeId;
@@ -476,7 +476,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
       person,
       label: shortName(person),
     }));
-    if (props.selectedId) {
+    if (props.selectedId && personIds.size === 0) {
       for (const place of PLACES) {
         const rectangles = [
           { x: place.x, y: place.y, w: place.w, h: place.h },

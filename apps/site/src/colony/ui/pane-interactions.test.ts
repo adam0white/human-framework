@@ -451,3 +451,14 @@ it('keeps the place-picker row when every scene action fits, so fit cannot resiz
   expect(picker).not.toBeNull();
   expect(picker?.textContent).toBe('Choose place');
 });
+
+it('selects the person standing at a place even when another worker is selected', async () => {
+  vi.mocked(drawScene).mockReturnValue([{ id: 'idris', x: 100, y: 100, w: 90, h: 44 }]);
+  const { canvas, container, onSelect, onPlace } = await setup({ following: false, selectedId: 'tariq' });
+  const point = mapPoint({ x: 140, y: 120 }, mapView(360, 380, null, null), 360, 380);
+  await pointer(canvas, 'pointerdown', point.x, point.y, 1);
+  await pointer(canvas, 'pointerup', point.x, point.y);
+  expect(onSelect).toHaveBeenCalledExactlyOnceWith('idris');
+  expect(onPlace).not.toHaveBeenCalled();
+  expect(container.querySelector('[aria-label="Choose map target"]')).toBeNull();
+});

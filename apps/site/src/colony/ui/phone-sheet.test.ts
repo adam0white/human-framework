@@ -208,3 +208,11 @@ it('keeps the trust warning on the direct Insist action', async () => {
   await click('Insist · may cost trust');
   expect(onInsist).toHaveBeenCalledExactlyOnceWith(refusedOrder);
 });
+
+it('opens actual options, including Rush, from the labelled Order options button', async () => {
+  await mount();
+  await click('Watch village');
+  await click('Order options · Maryam');
+  expect(stage.dataset.sheetId).toBe('order');
+  expect(host.querySelector('.lk-sheet-body')?.textContent).toContain('Rush · faster, hungrier');
+});
