@@ -2,7 +2,7 @@
 import { act, createElement, createRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ColonyGame } from '../sim/game.ts';
+import { ColonyGame, NUDGES, type Nudge } from '../sim/game.ts';
 import { createFrameworkHumanSide } from '../sim/human.ts';
 import { PhoneSheet } from './PhoneStage.tsx';
 import { EMPTY_COMPOSER } from './parts.tsx';
@@ -46,16 +46,18 @@ async function click(text: string) {
   if (!button) throw new Error(`Missing ${text}`);
   await act(() => button.click());
 }
-async function mount(active = true) {
+async function mount(active = true, nudge?: Nudge) {
   const stageRoot = createRef<HTMLElement>();
   stageRoot.current = stage;
   const onOrdering = vi.fn();
   const onInspect = vi.fn();
+  const onUse = vi.fn();
+  const onWatch = vi.fn();
   await act(() =>
     root.render(
       createElement(PhoneSheet, {
         stageRoot,
-        frame,
+        frame: nudge ? { ...frame, nudges: [nudge] } : frame,
         state: {
           ...EMPTY_COMPOSER,
           personId: 'maryam',
@@ -75,7 +77,8 @@ async function mount(active = true) {
         onWho: vi.fn(),
         onWhere: vi.fn(),
         onConfirm: vi.fn(),
-        onUse: vi.fn(),
+        onUse,
+        onWatch,
         onSkip: vi.fn(),
         onCancel: vi.fn(),
         onSheet: vi.fn(),
@@ -84,7 +87,7 @@ async function mount(active = true) {
       }),
     ),
   );
-  return { onOrdering, onInspect };
+  return { onOrdering, onInspect, onUse, onWatch };
 }
 describe('Well shared sheet transitions', () => {
   it('does not create a browser history entry behind the title card', async () => {
@@ -128,4 +131,27 @@ describe('Well shared sheet transitions', () => {
     expect(stage.dataset.sheet).toBe('full');
     expect(host.querySelectorAll('[data-lk-snap]')).toHaveLength(4);
   });
+});
+
+it.each(['dawn-site', 'cedar'])(
+  'suggestion %s closes for ordinary send and opens review only for danger',
+  async (id) => {
+    const n = NUDGES.find((n) => n.id === id);
+    if (!n) throw new Error('Missing suggestion');
+    const { onUse } = await mount(true, n);
+    await click('More');
+    await click('Suggestion');
+    expect(stage.dataset.sheetId).toBe('suggestion');
+    await click(id === 'cedar' ? 'Review order' : 'Send order');
+    expect(onUse).toHaveBeenCalledExactlyOnceWith(n);
+    expect(stage.dataset.sheetId).toBe(id === 'cedar' ? 'order' : undefined);
+    if (id === 'cedar')
+      expect(host.querySelector('.lk-sheet-body')?.textContent).toContain('build the house');
+  },
+);
+it('Watch village uses the parent clean-view handler', async () => {
+  const { onWatch } = await mount();
+  await click('Watch village');
+  expect(onWatch).toHaveBeenCalledOnce();
+  expect(host.querySelector('.lk-sheet')?.hasAttribute('hidden')).toBe(true);
 });

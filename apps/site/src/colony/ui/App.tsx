@@ -31,6 +31,7 @@ import {
   SuggestionCard,
   sameJobCopy,
   shortName,
+  suggestionNeedsReview,
   TopBar,
 } from './parts.tsx';
 import { useColony } from './useColony.ts';
@@ -94,7 +95,8 @@ export function App() {
     'closed',
   );
   const [watching, setWatching] = useState<VillagerId | null>(null);
-  const [watchingPlace, setWatchingPlace] = useState<PlaceId | null>(null);
+  const [choosingPlace, setChoosingPlace] = useState(false);
+  const [scopeExplained, setScopeExplained] = useState(false);
   const [followKey, setFollowKey] = useState(0);
   const [holdKey, setHoldKey] = useState(0);
   const [placeRequest, setPlaceRequest] = useState(0);
@@ -149,6 +151,8 @@ export function App() {
     setHoverPlace(null);
     setComposer(EMPTY_COMPOSER);
     setWatching(null);
+    setChoosingPlace(false);
+    setScopeExplained(false);
     setNewsFollow(null);
     setReturnedFollow(false);
     setOrdering(false);
@@ -204,6 +208,7 @@ export function App() {
   const pickWho = useCallback((id: VillagerId) => {
     setOrdering(true);
     setWatching(null);
+    setChoosingPlace(true);
     setNewsFollow(null);
     setReturnedFollow(false);
     // Keep the chosen place while trying another worker; suggestion reasons belong to the old worker.
@@ -222,16 +227,17 @@ export function App() {
     [watching],
   );
 
-  const live = useRef({ composer });
-  live.current = { composer };
+  const live = useRef({ composer, ordering });
+  live.current = { composer, ordering };
   const sendOrder = useCallback(
     (input: OrderInput, nudgeId?: string) => {
       actions.order(input, nudgeId);
-      showFlash(`Order given: ${shortName(input.personId)} → ${PLACE_LABEL[input.placeId]}`);
+      showFlash(`Order given to both villages: ${shortName(input.personId)} → ${PLACE_LABEL[input.placeId]}`);
+      setScopeExplained(true);
+      setChoosingPlace(false);
       setNewsFollow(null);
       setReturnedFollow(false);
       setWatching(input.personId);
-      setWatchingPlace(input.placeId);
       setFollowKey((key) => key + 1);
       setOrdering(false);
       setComposer({ ...EMPTY_COMPOSER, personId: input.personId });
@@ -314,8 +320,23 @@ export function App() {
   });
 
   const applyNudge = (n: Nudge) => {
+    const prepared = {
+      ...EMPTY_COMPOSER,
+      personId: n.order.personId,
+      placeId: n.order.placeId,
+      rush: Boolean(n.prefill?.rush ?? n.order.rush),
+      insist: Boolean(n.prefill?.insist ?? n.order.insist),
+      appeal: n.order.appeal ?? null,
+    };
+    if (!suggestionNeedsReview(n, frame)) {
+      const input = orderFrom(prepared);
+      if (input) sendOrder(input, n.id);
+      document.querySelector<HTMLDetailsElement>('.nudge-slot')?.removeAttribute('open');
+      return;
+    }
     setOrdering(true);
     setWatching(null);
+    setChoosingPlace(true);
     setNewsFollow(null);
     setReturnedFollow(false);
     setComposer({
@@ -386,7 +407,13 @@ export function App() {
       // Enter confirms only from the page. Focused controls keep their native activation.
       const t = e.target;
       const fromPage = t === document.body;
-      if (e.key === 'Enter' && fromPage && !keys.current.end && orderFrom(live.current.composer)) {
+      if (
+        e.key === 'Enter' &&
+        fromPage &&
+        live.current.ordering &&
+        !keys.current.end &&
+        orderFrom(live.current.composer)
+      ) {
         e.preventDefault();
         e.stopPropagation();
         confirm();
@@ -415,6 +442,8 @@ export function App() {
     setHoverPlace(null);
     setComposer(EMPTY_COMPOSER);
     setWatching(null);
+    setChoosingPlace(false);
+    setScopeExplained(false);
     setNewsFollow(null);
     setReturnedFollow(false);
     setOrdering(false);
@@ -433,7 +462,7 @@ export function App() {
   const nudge = nudges[0];
   const cards = frame?.cards ?? [];
   const orderCount = cards.filter((c) => c.status !== 'cancelled').length;
-  const highlightPlace = hoverPlace ?? composer.placeId;
+  const highlightPlace = !newsFollow && (choosingPlace || ordering) ? (hoverPlace ?? composer.placeId) : null;
   // The end screen is open for the latest report until closed; "Another day" closes it by clearing `ended`.
   const showEnd = hasSummary && endOpen && Boolean(frame?.ended);
   // Keep the screen awake only while the clock runs.
@@ -457,12 +486,19 @@ export function App() {
     setFollowKey((key) => key + 1);
   };
   const returnWorker = composer.personId ?? watching;
+  const watchVillage = () => {
+    setChoosingPlace(false);
+    setOrdering(false);
+    setHoverPlace(null);
+    setWatching(composer.personId ?? watching);
+    setFollowKey((key) => key + 1);
+  };
 
   const paneProps = {
     store: colony.store,
     selectedId: newsFollow?.personId ?? composer.personId ?? watching,
     hoverPlace: highlightPlace,
-    destination: newsFollow ? null : ordering ? composer.placeId : watchingPlace,
+    destination: newsFollow || !ordering ? null : composer.placeId,
     following: newsFollow !== null || returnedFollow || (!ordering && watching !== null),
     frameSelection: true,
     sceneHeight,
@@ -470,7 +506,7 @@ export function App() {
     holdKey,
     onSelect: selectScenePerson,
     onPlace: sendScenePlace,
-    scenePlaces,
+    scenePlaces: choosingPlace && !ordering && !newsFollow ? scenePlaces : [],
     onMorePlaces: () => {
       if (!scenePerson) return;
       setComposer({ ...EMPTY_COMPOSER, personId: scenePerson });
@@ -486,7 +522,7 @@ export function App() {
 
   return (
     <div
-      className={`colony ${composer.personId ? 'is-choosing' : ''} ${ordering ? 'is-ordering' : 'is-watching'}`}
+      className={`colony ${choosingPlace ? 'is-choosing' : ''} ${ordering ? 'is-ordering' : 'is-watching'}`}
     >
       <TopBar
         frame={frame}
@@ -524,7 +560,8 @@ export function App() {
         <VillageStrip frame={frame} side={mapSide} />
         <div className="well-scenes lk-scene">
           <div className="well-phone-status" role="status">
-            {flash && !cards.some((c) => c.order.personId === scenePerson && c.human.label) && <p>{flash}</p>}
+            {!scopeExplained && <p className="well-first-order">Each order goes to both villages.</p>}
+            {flash && <p>{flash}</p>}
             {newsFollow
               ? `Watching ${shortName(newsFollow.personId)}`
               : (composer.personId ?? watching)
@@ -532,6 +569,7 @@ export function App() {
                 : ''}
             <HurtLine
               news={frame?.news.slice(-1) ?? []}
+              shownSide={mapSide}
               onShow={showNewsPerson}
               onRest={(news) =>
                 sendOrder({
@@ -570,7 +608,10 @@ export function App() {
               <Pane
                 side="classic"
                 {...paneProps}
-                scenePlaces={scenePlaces.map((place) => ({ ...place, answer: `Human: ${place.answer}` }))}
+                scenePlaces={paneProps.scenePlaces.map((place) => ({
+                  ...place,
+                  answer: `Human: ${place.answer}`,
+                }))}
               />
             </PaneBody>
           </section>
@@ -633,7 +674,7 @@ export function App() {
                 onHover={setHoverPlace}
                 onConfirm={confirm}
                 onInspect={inspectPersonCb}
-                onWatch={() => setOrdering(false)}
+                onWatch={watchVillage}
                 onCompose={() => {
                   setNewsFollow(null);
                   setReturnedFollow(false);
@@ -663,7 +704,10 @@ export function App() {
                 type="button"
                 className="order-toggle"
                 aria-expanded={ordering}
-                onClick={() => setOrdering((open) => !open)}
+                onClick={() => {
+                  if (ordering) watchVillage();
+                  else setOrdering(true);
+                }}
               >
                 {ordering ? 'Watch village' : 'Order options'}
               </button>
@@ -676,7 +720,9 @@ export function App() {
                 >
                   <summary>
                     Suggestion<span className="nudge-who"> · {shortName(nudge.order.personId)}</span>
-                    <small>Use prepares; Confirm sends.</small>
+                    <small>
+                      {suggestionNeedsReview(nudge, frame) ? 'Review, then Confirm.' : 'Send in one tap.'}
+                    </small>
                   </summary>
                   <SuggestionCard
                     nudge={nudge}
@@ -727,6 +773,8 @@ export function App() {
           state={composer}
           ordering={ordering}
           onOrdering={setOrdering}
+          onWatch={watchVillage}
+          shownSide={mapSide}
           prediction={
             colony.prediction &&
             previewInput &&

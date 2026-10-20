@@ -603,6 +603,22 @@ export function OrderReply({ cards }: { cards: OrderCard[] }) {
 // Suggestion card (items 6, 8): text, reason, countdown in sim time, Use and skip
 // ---------------------------------------------------------------------------------------------
 
+/** Review known dangers and authored trade-offs; ordinary suggestions use the existing default order. */
+export function suggestionNeedsReview(n: Nudge, frame?: Frame | null): boolean {
+  if (!frame) return true;
+  if (n.prefill?.rush ?? n.order.rush) return true;
+  if ((n.prefill?.insist ?? n.order.insist) || n.order.appeal) return true;
+  if (n.id === 'cook-forest' || n.id === 'storm-shutter') return true;
+  return (['classic', 'human'] as const).some((side) => {
+    const job = inferredJob(frame, n.order.placeId, side);
+    if (job === 'fell-cedar' || job === 'raise-beam' || job === 'shutter-house') return true;
+    return (
+      (frame.weather.kind === 'squall' || frame.weather.kind === 'storm') &&
+      ['forest', 'cedar', 'field', 'site', 'well'].includes(n.order.placeId)
+    );
+  });
+}
+
 export function SuggestionCard(props: {
   nudge: Nudge;
   cards?: OrderCard[];
@@ -615,6 +631,7 @@ export function SuggestionCard(props: {
   onKeepWatching?(): void;
 }) {
   const n = props.nudge;
+  const review = suggestionNeedsReview(n, props.frame);
   const refusal = [...(props.cards ?? [])]
     .reverse()
     .find(
@@ -626,7 +643,7 @@ export function SuggestionCard(props: {
         (card.human.state === 'willNot' || card.human.state === 'notNow'),
     );
   const history = refusal
-    ? `Suggested at ${dayClock(n.minute)}. ${shortName(n.order.personId)} answered an order issued at ${dayClock(refusal.order.issuedAt)}: “${refusal.human.label ?? 'Not now.'}” This is an old suggestion; Use checks the current answer.`
+    ? `Suggested at ${dayClock(n.minute)}. ${shortName(n.order.personId)} answered an order issued at ${dayClock(refusal.order.issuedAt)}: “${refusal.human.label ?? 'Not now.'}” This is an old suggestion; the person may answer differently now.`
     : null;
   const left = Math.max(0, n.until - props.minute);
   const span = Math.max(1, n.until - n.minute);
@@ -641,7 +658,7 @@ export function SuggestionCard(props: {
           {n.reason && <p className="nudge-reason">{n.reason}</p>}
         </div>
         <button type="button" className="btn btn-small nudge-use" onClick={() => props.onUse(n)}>
-          {props.active ? 'In composer' : 'Use'}
+          {props.active ? 'In composer' : review ? 'Review order' : 'Send order'}
         </button>
         <button
           type="button"
@@ -658,7 +675,9 @@ export function SuggestionCard(props: {
           Keep watching
         </button>
       )}
-      <p className="nudge-availability">Availability may have changed. Use to check the current forecast.</p>
+      <p className="nudge-availability">
+        Availability may have changed. The person can still refuse or wait.
+      </p>
       <div className="nudge-foot">
         {props.queued > 0 && <span className="nudge-more">+{props.queued} waiting</span>}
         <span className="nudge-timer">
@@ -668,7 +687,10 @@ export function SuggestionCard(props: {
           </span>
         </span>
       </div>
-      <p className="nudge-help">Use fills an order. Confirm sends it. You can skip or choose your own.</p>
+      <p className="nudge-help">
+        {review ? 'Review the order, then Confirm sends it.' : 'Send order sends it to both villages.'} You
+        can skip or choose your own.
+      </p>
     </div>
   );
 }
@@ -1011,7 +1033,9 @@ export function HurtLine({
   news,
   onShow,
   onRest,
+  shownSide,
 }: {
+  shownSide?: 'classic' | 'human';
   news: readonly HurtNews[];
   onShow?(news: HurtNews): void;
   onRest?(news: HurtNews): void;
@@ -1022,7 +1046,12 @@ export function HurtLine({
       <strong>Hurt</strong>
       {[...news].reverse().map((n) => (
         <div className="hurt-item" key={`${n.side}-${n.personId}-${n.minute}`}>
-          <span>{hurtText(n)}</span>
+          <span>
+            {hurtText(n)}
+            {shownSide && n.side !== shownSide
+              ? ` · ${n.side === 'classic' ? 'Classic' : 'Human'} village · not shown`
+              : ''}
+          </span>
           {onRest && (
             <button type="button" className="btn btn-small" onClick={() => onRest(n)}>
               Send {shortName(n.personId)} home

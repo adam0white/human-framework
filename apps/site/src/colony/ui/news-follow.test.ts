@@ -152,10 +152,10 @@ describe('Well person news follow', () => {
     await click('Show Maryam');
     await draw();
     const followingMaryam = transform();
-    expect(followingMaryam).toEqual(before); // Both workers fit in the full village view.
+    expect(followingMaryam).not.toEqual(before); // Show follows the person, without destination cards.
     await click('Back to Yusuf');
     await draw();
-    expect(transform()).toEqual(followingMaryam);
+    expect(transform()).toEqual(before);
   });
 
   it('returns to the village view when no worker was selected', async () => {

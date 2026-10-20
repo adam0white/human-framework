@@ -2,7 +2,7 @@
 import { act, createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { ColonyGame } from '../sim/game.ts';
+import { ColonyGame, NUDGES } from '../sim/game.ts';
 import { createFrameworkHumanSide } from '../sim/human.ts';
 import { App } from './App.tsx';
 import type { PaneProps } from './Pane.tsx';
@@ -14,7 +14,12 @@ vi.mock('./Pane.tsx', () => ({
   Pane: (p: PaneProps) =>
     createElement(
       'div',
-      {},
+      {
+        'data-scene': p.side,
+        'data-places': p.scenePlaces?.length ?? 0,
+        'data-following': p.following,
+        'data-highlight': p.hoverPlace,
+      },
       createElement(
         'button',
         { type: 'button', onClick: () => p.onSelect('idris') },
@@ -137,4 +142,76 @@ it('opens optional place controls without sending when destinations need more ro
   await click('More places human');
   expect(colony.actions.order).not.toHaveBeenCalled();
   expect(container.querySelector('.colony')?.classList.contains('is-ordering')).toBe(true);
+});
+
+it('clears destination cards after sending and Watch village, then restores them on selection', async () => {
+  await act(() => root.render(createElement(App)));
+  await click('Scene select human');
+  expect(container.querySelector('[data-scene="human"]')?.getAttribute('data-places')).toBe('8');
+  await click('Scene forest human');
+  expect(container.querySelector('[data-scene="human"]')?.getAttribute('data-places')).toBe('0');
+  expect(container.querySelector('[data-scene="human"]')?.getAttribute('data-following')).toBe('true');
+  await click('Scene select human');
+  await act(() => container.querySelector<HTMLButtonElement>('.watch-village')?.click());
+  expect(container.querySelector('[data-scene="human"]')?.getAttribute('data-places')).toBe('0');
+  await click('Scene select human');
+  expect(container.querySelector('[data-scene="human"]')?.getAttribute('data-places')).toBe('8');
+});
+it('shows the order scope before the first order and in every acknowledgement', async () => {
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-phone-status')?.textContent).toContain(
+    'Each order goes to both villages.',
+  );
+  await click('Scene select human');
+  await click('Scene forest human');
+  expect(container.querySelector('.well-phone-status')?.textContent).toContain(
+    'Order given to both villages: Idris → Forest',
+  );
+  expect(container.querySelector('.well-first-order')).toBeNull();
+});
+it('sends a safe suggestion in one tap with exactly its prepared payload and nudge id', async () => {
+  const n = NUDGES[0];
+  if (!n || !colony.frame) throw new Error('Missing dawn suggestion');
+  colony.frame = { ...colony.frame, nudges: [n] };
+  await act(() => root.render(createElement(App)));
+  await act(() => container.querySelector<HTMLButtonElement>('.nudge-use')?.click());
+  expect(colony.actions.order).toHaveBeenCalledExactlyOnceWith(n.order, n.id);
+  expect(container.querySelector('[data-scene="human"]')?.getAttribute('data-places')).toBe('0');
+});
+it('keeps cedar suggestion review before sending', async () => {
+  const n = NUDGES.find((n) => n.id === 'cedar');
+  if (!n || !colony.frame) throw new Error('Missing cedar suggestion');
+  colony.frame = { ...colony.frame, nudges: [n] };
+  await act(() => root.render(createElement(App)));
+  await act(() => container.querySelector<HTMLButtonElement>('.nudge-use')?.click());
+  expect(colony.actions.order).not.toHaveBeenCalled();
+  await act(() => container.querySelector<HTMLButtonElement>('.btn-confirm')?.click());
+  expect(colony.actions.order).toHaveBeenCalledExactlyOnceWith(n.order, n.id);
+});
+it('names injury news from the village not shown and offers to show the person there', async () => {
+  if (!colony.frame) throw new Error('Missing frame');
+  colony.frame = {
+    ...colony.frame,
+    news: [{ personId: 'idris', side: 'classic', minute: 330, how: 'hurt at work' }],
+  };
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-phone-status .hurt-line')?.textContent).toContain(
+    'Classic village · not shown',
+  );
+  await click('Show Idris');
+  expect(container.querySelector('.stage')?.classList.contains('show-classic')).toBe(true);
+  expect(container.querySelector('.well-phone-status .hurt-line')?.textContent).not.toContain('not shown');
+});
+
+it('Watch village keeps a draft available but prevents hidden keyboard confirmation and highlighting', async () => {
+  const n = NUDGES.find((n) => n.id === 'cedar');
+  if (!n || !colony.frame) throw new Error('Missing cedar suggestion');
+  colony.frame = { ...colony.frame, nudges: [n] };
+  await act(() => root.render(createElement(App)));
+  await act(() => container.querySelector<HTMLButtonElement>('.nudge-use')?.click());
+  await act(() => container.querySelector<HTMLButtonElement>('.watch-village')?.click());
+  expect(container.querySelector('[data-scene="human"]')?.getAttribute('data-highlight')).toBeNull();
+  await act(() => document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })));
+  expect(colony.actions.order).not.toHaveBeenCalled();
+  expect(container.querySelector('.composer-line')?.textContent).toContain('Idris → Cedar');
 });

@@ -171,8 +171,9 @@ describe('Well review follow-up', () => {
     expect(suggestion.open).toBe(true);
     await act(() => required<HTMLButtonElement>(suggestion, '.nudge-head .btn').click());
     expect(suggestion.open).toBe(false);
-    expect(container.querySelector('.composer-line')?.textContent).toContain('Yusuf → House');
-    expect(actions.order).toHaveBeenCalledTimes(2);
+    expect(container.querySelector('.composer-line')?.textContent).toContain('Yusuf: now pick a place.');
+    expect(actions.order).toHaveBeenCalledTimes(3);
+    expect(actions.order).toHaveBeenLastCalledWith({ personId: 'yusuf', placeId: 'site' }, 'dawn-site');
   });
 
   it.each([

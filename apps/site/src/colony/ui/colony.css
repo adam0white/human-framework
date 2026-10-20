@@ -5237,3 +5237,13 @@ kbd {
     height: 44px;
   }
 }
+
+/* Keep the other village's injury report readable beside its responses. */
+@media (max-width: 899px) {
+  .well-phone-status .hurt-item {
+    flex-wrap: wrap;
+  }
+  .well-phone-status .hurt-item > span {
+    flex: 1 0 100%;
+  }
+}

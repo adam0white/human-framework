@@ -8,7 +8,7 @@ import { createFrameworkHumanSide } from '../sim/human.ts';
 import type { OrderCard } from '../sim/orders.ts';
 import { dayClock } from './contract.ts';
 import { VillageStrip } from './PhoneStage.tsx';
-import { HurtLine, inferredJob, SuggestionCard, sameJobCopy } from './parts.tsx';
+import { HurtLine, inferredJob, SuggestionCard, sameJobCopy, suggestionNeedsReview } from './parts.tsx';
 
 (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -114,5 +114,28 @@ describe('Well round 2 task copy', () => {
     await act(() => button?.click());
     expect(onRest).toHaveBeenCalledExactlyOnceWith(news);
     await act(() => root.unmount());
+  });
+});
+
+describe('Well suggestion danger review', () => {
+  const dawn = NUDGES[0];
+  if (!dawn) throw new Error('Missing dawn suggestion');
+  it('checks both villages for a dangerous beam and cedar job', () => {
+    expect(suggestionNeedsReview(dawn, frame)).toBe(false);
+    expect(
+      suggestionNeedsReview(dawn, { ...frame, classicWorld: { ...frame.classicWorld, houseStage: 6 } }),
+    ).toBe(true);
+    const cedar = { ...dawn, order: { ...dawn.order, placeId: 'cedar' as const } };
+    expect(
+      suggestionNeedsReview(cedar, { ...frame, humanWorld: { ...frame.humanWorld, cedarFelled: true } }),
+    ).toBe(true);
+  });
+  it('retains review for weather danger, forced work, rush and a safety promise', () => {
+    expect(suggestionNeedsReview(dawn, { ...frame, weather: { ...frame.weather, kind: 'storm' } })).toBe(
+      true,
+    );
+    expect(suggestionNeedsReview({ ...dawn, prefill: { rush: true } }, frame)).toBe(true);
+    expect(suggestionNeedsReview({ ...dawn, prefill: { insist: true } }, frame)).toBe(true);
+    expect(suggestionNeedsReview({ ...dawn, order: { ...dawn.order, appeal: 'safety' } }, frame)).toBe(true);
   });
 });
