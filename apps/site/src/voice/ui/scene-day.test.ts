@@ -400,3 +400,109 @@ it('ends quick-reply slowdown without reopening the same resolved occasion', () 
     vi.useRealTimers();
   }
 });
+
+it('keeps a personal reply through later activities and statuses until the player leaves it', () => {
+  vi.useFakeTimers();
+  try {
+    const { el, props, update } = mount(false);
+    props.frame.sceneWords = [
+      {
+        beat: 'personal',
+        kind: 'care',
+        day: 1,
+        minute: 600,
+        clock: '10:00',
+        words: 'You can miss her.',
+        answer: 'I miss sitting across from her. That is what keeps coming back.',
+      },
+    ];
+    update();
+    flushSync(() => vi.advanceTimersByTime(60_000));
+    props.frame.minute = 700;
+    props.frame.clock = '11:40';
+    props.frame.log = [
+      {
+        id: 'later',
+        day: 1,
+        minute: 700,
+        clock: '11:40',
+        kind: 'act',
+        who: 'halil',
+        text: 'I rest at home.',
+      },
+    ];
+    props.frame.halil.doing = { label: 'rest at home', intention: 'rest', until: '12:00' };
+    update();
+    expect(el.querySelector('.v-scene-reading')?.textContent).toContain('I miss sitting across from her.');
+    expect(el.querySelector('.v-scene-reading')?.textContent).not.toContain('Halil is rest at home.');
+    click(el, '.v-personal-leave');
+    expect(el.querySelector('.v-spoken-lines')).toBeNull();
+    expect(el.querySelector('.v-between-scenes')?.textContent).toContain('Halil is rest at home.');
+  } finally {
+    vi.useRealTimers();
+  }
+});
+
+it('dismisses a personal reply immediately during its slowed reading period', () => {
+  const { el, props, update } = mount(false);
+  click(el, '.v-scene-speak');
+  click(el, '.v-scene-more');
+  click(el, '.v-scene-word');
+  props.frame.sceneWords = [
+    {
+      beat: 'personal',
+      kind: 'care',
+      day: 1,
+      minute: 600,
+      clock: '10:00',
+      words: 'You can miss her.',
+      answer: 'I miss Nuran.',
+    },
+  ];
+  update();
+  expect(el.querySelector('.v-personal-reply')).not.toBeNull();
+  click(el, '.v-personal-leave');
+  expect(el.querySelector('.v-spoken-lines')).toBeNull();
+});
+
+it('retains the company that planning interrupted when later activities arrive', () => {
+  const { el, props, update } = mount();
+  click(el, '.v-scene-more');
+  click(el, '.v-scene-plan');
+  expect(el.querySelector('.v-planning-context')?.textContent).toContain('Halil and Hacer');
+  props.frame.log = [
+    { id: 'rest', day: 1, minute: 620, clock: '10:20', kind: 'act', who: 'halil', text: 'I rest at home.' },
+  ];
+  props.frame.minute = 620;
+  update();
+  expect(el.querySelector('.v-planning-context')?.textContent).toContain('Halil and Hacer');
+  expect(el.querySelector('.v-planning-context')?.textContent).toContain('At his door');
+});
+
+it('lets time pass during automatic slowdown even when the call is busy and all care is exhausted', () => {
+  const { el, props, update } = mount(false);
+  Object.assign(props, { sceneReading: true });
+  props.frame.composer = { open: false, reason: 'busy' };
+  props.frame.halil.doing = { label: 'call Selin', intention: 'company', until: '10:20' };
+  props.frame.log = [
+    { id: 'call', day: 1, minute: 600, clock: '10:00', kind: 'act', who: 'halil', text: 'I call Selin.' },
+  ];
+  props.frame.sceneWords = [
+    {
+      beat: 'earlier',
+      kind: 'care',
+      day: 0,
+      minute: 600,
+      clock: '10:00',
+      words: 'It is good to hear Selin with you.',
+      answer: 'We need not fill every silence.',
+    },
+  ];
+  update();
+  const wait = [...el.querySelectorAll<HTMLButtonElement>('button')].find(
+    (b) => b.textContent === 'Let time pass',
+  );
+  expect(wait).toBeDefined();
+  flushSync(() => wait?.click());
+  expect(props.onSayNothing).toHaveBeenCalledOnce();
+});

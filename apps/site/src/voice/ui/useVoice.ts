@@ -29,7 +29,7 @@ import { SHIPPED_SEED, VOICE_SCENARIO_VERSION } from '../protocol.ts';
 import { ExportRequest } from './export-request.ts';
 import { predictionContext } from './obstacle.ts';
 import { PausePolicy } from './pause-policy.ts';
-import { readingTick } from './reading-pace.ts';
+import { pendingSceneOffer, readingTick } from './reading-pace.ts';
 import { openTransport, type Transport } from './transport.ts';
 
 export interface VoiceActions {
@@ -40,6 +40,7 @@ export interface VoiceActions {
   predict(draft: Draft | null): void;
   suggest(draft: Draft, sceneLine?: string): void;
   setReading(reading: boolean): void;
+  dismissSceneOffer(): void;
   sceneWord(kind: 'care' | 'question', beat: string, words: string): void;
   withdraw(): void;
   requestWhy(decisionId: string): void;
@@ -73,6 +74,7 @@ export interface Voice {
   error: string | null;
   mock: boolean;
   reading: boolean;
+  sceneReading: boolean;
   runId: number;
   playtest: PlaytestStatus;
   actions: VoiceActions;
@@ -109,6 +111,12 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   const pausePolicy = useRef(new PausePolicy());
   const manualHold = useRef(false);
   const reading = useRef(false);
+  const [resolvedSceneOffer, setResolvedSceneOffer] = useState<string | null>(null);
+  const resolvedScene = useRef<string | null>(null);
+  const sceneReading = useCallback((current: Frame | null) => {
+    const key = pendingSceneOffer(current);
+    return key !== null && key !== resolvedScene.current;
+  }, []);
   const [readingView, setReadingView] = useState(false);
   const readingWhy = useRef(false);
   const awaitingSuggestion = useRef(false);
@@ -201,7 +209,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               if (
                 !loadingRun.current &&
                 !readingWhy.current &&
-                reading.current &&
+                (reading.current || sceneReading(current)) &&
                 current.paused &&
                 !manualHold.current &&
                 !current.intro &&
@@ -265,7 +273,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
           t.post({
             type: 'tick',
             wallDtMs: dtMs,
-            dtMs: readingTick(dtMs, frameRef.current, reading.current),
+            dtMs: readingTick(dtMs, frameRef.current, reading.current, sceneReading(frameRef.current)),
           }),
         );
         const url = replayParam();
@@ -288,7 +296,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       opened?.close();
       transport.current = null;
     };
-  }, [send]);
+  }, [send, sceneReading]);
 
   const actions = useMemo<VoiceActions>(() => {
     const resetRun = () => {
@@ -309,6 +317,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       loadingRun.current = false;
       manualHold.current = false;
       reading.current = false;
+      resolvedScene.current = null;
+      setResolvedSceneOffer(null);
       setReadingView(false);
       readingWhy.current = false;
       awaitingSuggestion.current = false;
@@ -340,7 +350,13 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         predictDrafts.current.set(predictSeq.current, draft);
         send({ type: 'predict', requestId: predictSeq.current, draft });
       },
+      dismissSceneOffer: () => {
+        resolvedScene.current = pendingSceneOffer(frameRef.current);
+        setResolvedSceneOffer(resolvedScene.current);
+      },
       suggest: (draft, sceneLine) => {
+        resolvedScene.current = pendingSceneOffer(frameRef.current);
+        setResolvedSceneOffer(resolvedScene.current);
         manualHold.current = false;
         awaitingSuggestion.current = true;
         send({ type: 'suggest', draft, ...(sceneLine ? { sceneLine } : {}) });
@@ -454,7 +470,9 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
     whyMissing,
     error,
     mock,
-    reading: readingView,
+    reading:
+      readingView || (pendingSceneOffer(frame) !== null && pendingSceneOffer(frame) !== resolvedSceneOffer),
+    sceneReading: sceneReading(frame),
     runId,
     playtest,
     actions,

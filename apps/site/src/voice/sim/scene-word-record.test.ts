@@ -128,3 +128,28 @@ test('stale displayed wording is retained as Unsaid rather than replaced with an
   const restored = replayVoice(7, validateVoiceLog(rec.log), 2).rec;
   expect(restored.sceneWords).toEqual(rec.sceneWords);
 });
+
+test('the bounded particular replays its authored reply without changing simulation state', () => {
+  const rec = new RecordedGame(new VoiceGame(7, 2));
+  const changedWords = new Set([
+    'You do not have to talk more about what the doctor said.',
+    'You do not have to say more about missing Nuran at the table.',
+  ]);
+  play(rec, {
+    stop: (g) => sceneWordChoices(g.frame()).some((choice) => changedWords.has(choice.words)),
+  });
+  const frame = rec.frame();
+  const choice = sceneWordChoices(frame).find((offered) => changedWords.has(offered.words));
+  if (!choice) throw Error('No bounded particular reached');
+  const before = voiceHash(rec.game);
+  rec.apply({ type: 'sceneWord', beat: sceneBeat(frame), ...choice });
+  expect(rec.sceneWords.at(-1)?.said).not.toBe(false);
+  expect(voiceHash(rec.game)).toBe(before);
+  const restored = replayVoice(7, validateVoiceLog(rec.log), 2);
+  expect(restored.driftAt).toBe(-1);
+  expect(restored.rec.sceneWords).toEqual(rec.sceneWords);
+  expect(voiceHash(restored.rec.game)).toBe(before);
+  rec.tick(100);
+  restored.rec.tick(100);
+  expect(voiceHash(restored.rec.game)).toBe(voiceHash(rec.game));
+});

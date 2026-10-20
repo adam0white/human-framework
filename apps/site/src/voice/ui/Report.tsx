@@ -3,10 +3,11 @@
  * faith or acceptance. Keep listening resumes from Eid night; Replay restarts the seed; New town picks a new one.
  */
 import { useEffect, useRef } from 'react';
-import type { ReportView } from '../protocol.ts';
+import type { ReportView, SceneWords } from '../protocol.ts';
 import { EndsList, UnaskedStrip } from './EndsPane.tsx';
 import { ModelNotes } from './parts.tsx';
 import { Strip, StripLegend } from './Strip.tsx';
+import { companyWords } from './speech-summary.ts';
 
 function Lines({ lines, empty }: { lines: string[]; empty: string }) {
   if (lines.length === 0) return <p className="v-muted">{empty}</p>;
@@ -25,14 +26,18 @@ export function Report({
   onReplay,
   onNewTown,
   onDownload,
+  sceneWords = [],
 }: {
   view: ReportView;
+  sceneWords?: readonly SceneWords[] | undefined;
   onKeepListening: () => void;
   onReplay: () => void;
   onNewTown: () => void;
   /** Download this run as a playtest file. */
   onDownload?: () => void;
 }) {
+  const company = companyWords(sceneWords);
+  const spoke = view.spoke !== false || company.length > 0;
   const head = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     head.current?.focus();
@@ -44,6 +49,14 @@ export function Report({
         <h1 id="report-title" ref={head} tabIndex={-1}>
           Without you
         </h1>
+
+        {company.length > 0 && (
+          <section>
+            <h2>What you said</h2>
+            <Lines lines={company} empty="" />
+            {view.spoke === false && <p>You kept him company without suggesting anything.</p>}
+          </section>
+        )}
 
         {view.eid.summary.length > 0 && (
           <section className="v-report-summary">
@@ -59,11 +72,16 @@ export function Report({
 
         {view.ledger && view.ledger.length > 0 && (
           <section>
-            <h2>What you used to say, and what he did on Eid</h2>
+            <h2>What you suggested, and what he did on Eid</h2>
             <ul className="v-lines v-ledger">
               {view.ledger.map((l) => (
                 <li key={l.said}>
-                  <strong>{l.said}</strong> → {l.eid}
+                  <strong>
+                    {l.said
+                      .replace(/said /g, 'suggested ')
+                      .replace(/on the days you spoke/g, 'on the days you played')}
+                  </strong>{' '}
+                  → {l.eid}
                 </li>
               ))}
             </ul>
@@ -114,8 +132,8 @@ export function Report({
         <section>
           <h2>His ends when Ramadan ended</h2>
           <p className="v-report-caption">
-            As of Eid morning: what the month you spoke in left him with. Under each, what came of it without
-            you, on Eid and in the six days after.
+            As of Eid morning: his record of the month. Under each, what came of it on Eid and in the six days
+            after.
           </p>
           <UnaskedStrip items={view.unasked} lead="At Eid morning he would have done unasked:" />
           <EndsList ends={view.ends} />
@@ -135,9 +153,11 @@ export function Report({
 
         {view.silent && (
           <section className="v-report-silent">
-            <h2>The month you never spoke</h2>
+            <h2>A month without your suggestions</h2>
             <p className={view.silent.rows.length > 0 ? 'v-report-caption' : 'v-silent-same'}>
-              {view.silent.intro}
+              {view.spoke === false
+                ? 'You made no suggestions this month.'
+                : 'The same town from the same start, run again without your suggestions.'}
             </p>
             {view.silent.rows.length > 0 && (
               <ul className="v-lines v-silent-rows">
@@ -148,7 +168,7 @@ export function Report({
                       <span className="v-silent-label">As played</span> {r.spoke}
                     </span>
                     <span>
-                      <span className="v-silent-label">Had you said nothing</span> {r.silent}
+                      <span className="v-silent-label">Without your suggestions</span> {r.silent}
                     </span>
                   </li>
                 ))}
@@ -156,7 +176,7 @@ export function Report({
             )}
             {view.silent.same && <p className="v-silent-same">{view.silent.same}</p>}
             {view.silent.smaller && <p className="v-silent-same">{view.silent.smaller}</p>}
-            {/* When you never spoke the section is its one line; the caption goes with a comparison. */}
+            {/* Without suggestions there is no simulation comparison; care remains recorded above. */}
             {(view.silent.rows.length > 0 || view.silent.same) && (
               <p className="v-silent-caption">{view.silent.caption}</p>
             )}
@@ -164,7 +184,7 @@ export function Report({
         )}
 
         <section>
-          <h2>{view.spoke === false ? 'The days you watched, and Eid' : 'The days you spoke, and Eid'}</h2>
+          <h2>{!spoke ? 'The days you watched, and Eid' : 'The days you spoke, and Eid'}</h2>
           <div className="v-strips">
             {view.rows.map((r) => (
               <Strip key={r.label} row={r} />

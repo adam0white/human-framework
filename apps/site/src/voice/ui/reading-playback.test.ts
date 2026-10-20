@@ -89,6 +89,44 @@ it('slows reading ticks, keeps frame scheduling on wall time, and respects manua
     flushSync(() => actions.setReading(true));
     expect(channel.post.mock.calls.some(([msg]) => msg.type === 'resume')).toBe(false);
     expect(voice.runId).toBe(1);
+    // A stay offer slows the clock before the player opens speech, including at Fast.
+    const call = {
+      ...frame,
+      paused: false,
+      pace: 'fast' as const,
+      fastForward: undefined,
+      minute: 1200,
+      composer: { open: true },
+      halil: { ...frame.halil, asleep: false, doing: null },
+      log: [
+        {
+          id: 'call',
+          day: frame.day,
+          minute: 1200,
+          clock: '20:00',
+          kind: 'act' as const,
+          who: 'halil' as const,
+          text: 'I call Selin.',
+        },
+      ],
+      options: [{ id: 'call:selin', label: 'call Selin', rank: 1, leaning: true }],
+    };
+    flushSync(() => actions.setReading(false));
+    flushSync(() => channel.receive({ type: 'frame', gen: init.gen + 1, frame: call }));
+    expect(voice.reading).toBe(true);
+    channel.tick(60_000);
+    expect(channel.post).toHaveBeenLastCalledWith({ type: 'tick', dtMs: 250, wallDtMs: 60_000 });
+    flushSync(() => actions.dismissSceneOffer());
+    expect(voice.reading).toBe(false);
+    channel.tick(60_000);
+    expect(channel.post).toHaveBeenLastCalledWith({ type: 'tick', dtMs: 60_000, wallDtMs: 60_000 });
+    const previousCall = call.log[0];
+    if (!previousCall) throw Error('Missing call');
+    call.log[0] = { ...previousCall, id: 'call-next' };
+    flushSync(() => channel.receive({ type: 'frame', gen: init.gen + 1, frame: call }));
+    expect(voice.reading).toBe(true);
+    flushSync(() => actions.suggest({ optionId: 'call:selin', strength: 'mention', insist: false }));
+    expect(voice.reading).toBe(false);
   } finally {
     root.unmount();
   }

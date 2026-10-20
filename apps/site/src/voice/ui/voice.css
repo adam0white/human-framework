@@ -3138,3 +3138,128 @@ button.v-log-btn {
 .v-spoken-lines p {
   margin: 6px 0;
 }
+
+/* Planning keeps the people and the concern above one scrolling workspace. */
+.v-scene-editor {
+  inset: 72px 12px 48px;
+  width: min(820px, calc(100% - 24px));
+  height: calc(100dvh - 120px);
+  max-height: calc(100dvh - 120px);
+  padding: 10px 12px;
+  overflow: hidden;
+}
+.v-scene-editor[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.v-scene-editor .v-scene-editor-close {
+  flex: 0 0 auto;
+  align-self: start;
+  min-height: 44px;
+  margin: 0;
+}
+.v-scene-editor .v-composer {
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.v-scene-editor .v-planning-context {
+  flex: 0 0 auto;
+  max-height: 40%;
+  overflow-y: auto;
+  border-left: 3px solid var(--you);
+  padding: 4px 10px;
+  background: var(--paper);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.v-scene-editor .v-planning-context p {
+  margin: 0;
+}
+.v-scene-editor .v-planning-context p + p {
+  margin-top: 5px;
+}
+.v-scene-editor .v-planning-person span {
+  color: var(--ink-soft);
+}
+.v-scene-editor .v-composer-body,
+.v-scene-editor .v-composer.is-expanded .v-composer-body {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  overflow: hidden;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 8px;
+  padding: 0;
+}
+.v-scene-editor .v-planning-scroll {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  padding: 0 2px 8px 0;
+}
+.v-scene-editor .v-composer-scroll {
+  overflow: visible;
+  padding-bottom: 8px;
+}
+.v-scene-editor .v-commit {
+  gap: 8px;
+}
+.v-scene-editor .v-preview {
+  min-height: 0;
+}
+.v-scene-editor .v-draft-summary,
+.v-scene-editor .v-draft-action,
+.v-scene-editor .v-draft-how {
+  height: auto;
+  overflow: visible;
+}
+.v-scene-editor .v-say {
+  padding-top: 8px;
+  border-top: 1px solid var(--edge-strong);
+  background: var(--paper-3);
+}
+.v-scene-editor .v-say .v-btn {
+  min-height: 44px;
+}
+@media (max-width: 767px) {
+  .v-scene-editor {
+    inset: 8px;
+    width: calc(100% - 16px);
+    height: calc(100dvh - 16px);
+    max-height: calc(100dvh - 16px);
+    padding: 8px 10px max(8px, env(safe-area-inset-bottom));
+  }
+  .v-scene-editor .v-options {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .v-scene-editor .v-option {
+    min-height: 44px;
+  }
+}
+
+/* Status prose wraps instead of being cut off beside the clock. */
+.v-top-ff {
+  height: auto;
+  min-height: 1.1em;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+@media (max-width: 767px) {
+  .v-top-day {
+    overflow: visible;
+    line-height: 1.3;
+  }
+}
+.v-personal-leave {
+  min-height: 44px;
+}

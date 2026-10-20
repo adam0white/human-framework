@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import type { Draft, Frame, Telegraph } from '../protocol.ts';
+import type { Draft, Frame, SceneWords, Telegraph } from '../protocol.ts';
 import { Composer } from './Composer.tsx';
 import { spokenLogText } from './conversations.ts';
 import { DayLog } from './DayLog.tsx';
 import { storyDates } from './dates.ts';
+import { planningContext } from './PlanningContext.tsx';
 import { consequentialOffer, speakingOpportunity } from './pause-policy.ts';
 import { currentReply, sceneResponse } from './scene-response.ts';
 import { sceneBeat, sceneWordChoices } from './scene-words.ts';
@@ -23,6 +24,9 @@ export interface SceneDayProps {
   onWithdraw: () => void;
   onPause?: () => void;
   onReading?: (reading: boolean) => void;
+  active?: boolean;
+  sceneReading?: boolean;
+  onPersonalReply?: (held: boolean) => void;
 }
 /** Scenes are presentation only. Inputs still use the existing suggestion protocol. */
 export function SceneDay(props: SceneDayProps) {
@@ -32,7 +36,35 @@ export function SceneDay(props: SceneDayProps) {
   const cache = useRef<{ id: string; scene: NonNullable<typeof derived> } | null>(null);
   if (derived && cache.current?.id !== derived.id) cache.current = { id: derived.id, scene: derived };
   const scene = derived?.current ? cache.current?.scene : null;
+  // A personal answer belongs to the reader, not to a later activity or status update.
+  const personal = useRef<{ key: string; line: SceneWords; scene: typeof scene } | null>(null);
+  const received = useRef<string | null>(null);
+  const [leftReply, setLeftReply] = useState<string | null>(null);
+  const latestWords = frame.sceneWords?.at(-1);
+  const wordKey = latestWords ? JSON.stringify(latestWords) : null;
+  if (wordKey !== received.current) {
+    received.current = wordKey;
+    personal.current =
+      latestWords &&
+      latestWords.day === frame.day &&
+      latestWords.kind !== 'suggestion' &&
+      latestWords.said !== false
+        ? { key: wordKey ?? '', line: latestWords, scene }
+        : null;
+  }
+  const heldPersonal = personal.current?.key !== leftReply ? personal.current : null;
+  const onPersonalReply = props.onPersonalReply;
+  const hasPersonalReply = !!heldPersonal;
+  useEffect(() => {
+    onPersonalReply?.(hasPersonalReply);
+    return () => onPersonalReply?.(false);
+  }, [hasPersonalReply, onPersonalReply]);
+  const leaveReply = () => setLeftReply(personal.current?.key ?? null);
+  useEffect(() => {
+    if (props.active === false) setLeftReply(personal.current?.key ?? null);
+  }, [props.active]);
   const [editor, setEditor] = useState(false);
+  const planningSnapshot = useRef<ReturnType<typeof planningContext> | null>(null);
   const [speaking, setSpeaking] = useState<string | null>(null);
   const [moreFor, setMoreFor] = useState<string | null>(null);
   const [sentBeat, setSentBeat] = useState<string | null>(null);
@@ -66,8 +98,11 @@ export function SceneDay(props: SceneDayProps) {
     frame.sceneWords
       ?.filter(
         (line) =>
-          line.beat === beat ||
-          (answerHold && line === frame.sceneWords?.at(-1) && line.kind !== 'suggestion') ||
+          (line.beat === beat && JSON.stringify(line) !== leftReply) ||
+          (answerHold &&
+            JSON.stringify(line) !== leftReply &&
+            line === frame.sceneWords?.at(-1) &&
+            line.kind !== 'suggestion') ||
           (line.kind === 'suggestion' &&
             line.day === frame.day &&
             line.minute === lastRequest?.minute &&
@@ -87,7 +122,7 @@ export function SceneDay(props: SceneDayProps) {
   const expanded =
     speaking === beat ||
     (frame.paused && opportunity !== null && opportunity !== resolvedOpportunity.current);
-  const reading = (expanded && canSpeak) || editor || answerHold;
+  const reading = (expanded && canSpeak && !heldPersonal) || editor || answerHold;
   const onReading = props.onReading;
   useEffect(() => {
     onReading?.(reading);
@@ -96,6 +131,7 @@ export function SceneDay(props: SceneDayProps) {
   const sent = sentBeat === beat;
   const speakWord = (kind: 'care' | 'question') => {
     if (sent || !wordChoices.some((line) => line.kind === kind)) return;
+    leaveReply();
     setSentBeat(beat);
     setAnswerHold(true);
     if (answerTimer.current) clearTimeout(answerTimer.current);
@@ -118,6 +154,9 @@ export function SceneDay(props: SceneDayProps) {
   const visibleLines = progressed
     ? [...response.lines, ...(page >= 2 ? response.more : [])]
     : (scene?.lines ?? []);
+  const livePlanning = planningContext(frame, scene ?? null, visibleLines);
+  const shownPlanning = { ...(planningSnapshot.current ?? livePlanning) };
+  if (livePlanning.rent) shownPlanning.rent = livePlanning.rent;
   const condensed = moreWords && visibleLines.length > 2;
   const presentedLines = condensed ? visibleLines.slice(-1) : visibleLines;
   const canListen = !!response && !refused && page < 2;
@@ -178,7 +217,26 @@ export function SceneDay(props: SceneDayProps) {
         )}
       </div>
       <div className="v-scene-reading">
-        {scene ? (
+        {heldPersonal ? (
+          <article className="v-personal-reply">
+            <p className="v-scene-place">
+              {heldPersonal.scene?.place ?? 'With Halil'} · {heldPersonal.line.clock}
+            </p>
+            <h1>{heldPersonal.scene?.names.join(' and ') ?? 'Halil'}</h1>
+            <div className="v-spoken-lines" aria-live="polite">
+              <p>
+                <strong>You:</strong> “{heldPersonal.line.words}”
+              </p>
+              <p>
+                <strong>{heldPersonal.line.answer.startsWith('He keeps') ? 'Scene' : 'Halil'}:</strong>{' '}
+                {heldPersonal.line.answer}
+              </p>
+            </div>
+            <button type="button" className="v-personal-leave v-btn v-btn-quiet" onClick={leaveReply}>
+              Back to today
+            </button>
+          </article>
+        ) : scene ? (
           <article className="v-scene-stage" key={scene.id}>
             <p className="v-scene-place">
               {scene.place} · {scene.clock}
@@ -206,7 +264,10 @@ export function SceneDay(props: SceneDayProps) {
               <button
                 type="button"
                 className="v-conversation-listen v-btn v-btn-quiet"
-                onClick={() => setListened({ id: responseKey, page: page + 1 })}
+                onClick={() => {
+                  leaveReply();
+                  setListened({ id: responseKey, page: page + 1 });
+                }}
               >
                 Keep listening
               </button>
@@ -218,8 +279,10 @@ export function SceneDay(props: SceneDayProps) {
             {encounter && <p className="v-next-encounter">{encounter}</p>}
           </div>
         )}
-        {frame.pauseBeat && !scene && <p className="v-scene-notice">{explainTerms(frame.pauseBeat.text)}</p>}
-        {spoken.length > 0 && (
+        {!heldPersonal && frame.pauseBeat && !scene && (
+          <p className="v-scene-notice">{explainTerms(frame.pauseBeat.text)}</p>
+        )}
+        {!heldPersonal && spoken.length > 0 && (
           <div className="v-spoken-lines" aria-live="polite">
             {spoken.map((line) => (
               <div key={`${line.beat}:${line.kind}:${line.minute}:${line.words}`}>
@@ -241,7 +304,7 @@ export function SceneDay(props: SceneDayProps) {
             ))}
           </div>
         )}
-        {reply}
+        {!heldPersonal && reply}
       </div>
       {editor ? (
         <dialog
@@ -264,6 +327,7 @@ export function SceneDay(props: SceneDayProps) {
             Back to the scene
           </button>
           <Composer
+            planningContext={shownPlanning}
             composer={frame.composer}
             prefill={frame.prefill}
             options={frame.options}
@@ -285,13 +349,31 @@ export function SceneDay(props: SceneDayProps) {
         </dialog>
       ) : (
         <div className="v-scene-participate v-scene-participate-secondary">
-          {canSpeak ? (
+          {heldPersonal ? (
+            <div className="v-scene-compact">
+              <p className="v-scene-wait">
+                {frame.paused ? 'Time is stopped.' : 'Time is passing.'} Later activity is in Timeline.
+              </p>
+              {(frame.paused || props.sceneReading) && (
+                <button type="button" className="v-btn v-btn-quiet" onClick={onSayNothing}>
+                  Let time pass
+                </button>
+              )}
+            </div>
+          ) : canSpeak ? (
             !expanded ? (
               <div className="v-scene-compact">
-                <button type="button" className="v-scene-speak v-btn" onClick={() => setSpeaking(beat)}>
+                <button
+                  type="button"
+                  className="v-scene-speak v-btn"
+                  onClick={() => {
+                    leaveReply();
+                    setSpeaking(beat);
+                  }}
+                >
                   Speak
                 </button>
-                {frame.paused ? (
+                {frame.paused || props.sceneReading ? (
                   <button type="button" className="v-btn v-btn-quiet" onClick={onSayNothing}>
                     Let time pass
                   </button>
@@ -311,6 +393,7 @@ export function SceneDay(props: SceneDayProps) {
                         key={choice.draft.optionId}
                         onClick={() => {
                           if (sending.current === receipt) return;
+                          leaveReply();
                           sending.current = receipt;
                           resolvedOpportunity.current = opportunity;
                           setAnswerHold(true);
@@ -372,6 +455,7 @@ export function SceneDay(props: SceneDayProps) {
                     className="v-scene-plan"
                     onClick={() => {
                       onPredict(null);
+                      planningSnapshot.current = planningContext(frame, scene ?? null, presentedLines);
                       setEditor(true);
                     }}
                   >
@@ -391,7 +475,7 @@ export function SceneDay(props: SceneDayProps) {
                       ? 'You have spoken. Give him a little room.'
                       : 'He is occupied. You can speak when he is choosing.'}
               </p>
-              {frame.paused && !frame.muted && (
+              {(frame.paused || props.sceneReading) && !frame.muted && (
                 <button type="button" className="v-scene-listen v-btn" onClick={onSayNothing}>
                   Let time pass
                 </button>
