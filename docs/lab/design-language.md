@@ -1,66 +1,79 @@
 # Lab design language: the clarity checklist
 
-Adopted 2026-10-20 for every lab game (owner: "Opus taste, a consistent design language", [owner directions](../owner-directions-2026-10-18.md)). This file covers **clarity**: whether a new player knows what to do. The **look** (tokens, type, marks, voice) is the Field Notebook language in [../design-language.md](../design-language.md); this file does not repeat it.
+Adopted 2026-10-20 for every lab game (owner: "Opus taste, a consistent design language", [owner directions](../owner-directions-2026-10-18.md)). Revised the same day after a Codex adversarial review.
 
-Why it exists: on 2026-10-20 the owner played The Valley and could not tell what to do, what was clickable, which text mattered, why actions were limited or what came next, and Turkish dates hid the calendar. Each of those is a lab failure, not a Valley failure, so each becomes a check here.
+**Who owns what.** The [visual language](../design-language.md) owns tokens, type and drawing. This file owns observable clarity tests. [Lessons](lessons.md) keep the feedback and the reasons. Where a lesson reads stronger than an item here, the item's test governs.
 
-**How to use it.** Every item has an id (`DL-n`) and a test a playtester can run without reading source. A game passes an item or files a fix for it. Playtest reports, the auto playtesters ([rubric](../../packages/playtester/README.md#clarity-rubric)) and the [source-unread prompt](playtester-prompt.md) all report failures by these ids. A game may break an item on purpose; it then says why in its own design doc.
+**Why it exists.** The coordinator's paraphrase of the owner's 2026-10-20 Valley report: no idea what to do, what is clickable, which text matters, why actions are limited or what comes next; dates and key terms must stay English; the run upload was refused after a little play. Each is checked here across the whole lab. It is not a claim that every game has every Valley defect.
+
+**What it is not.** Not a demand for tutorials, a task manager or a single best move. Discovery, mystery, natural difficulty and uncertain outcomes stay. Clarity means the player can read the situation and their responses, not that the game plays itself.
+
+## How to use it
+
+- Each item gets one status per tested build: `pass`, `fail`, `not tested` or `exception` (the game's design doc says why). Record the screen, the inputs and the build. A filed fix stays `fail` until retested.
+- Test only what you met in play. Nothing unmet counts as a pass or a fail.
+- **Player test** lines are run by a cold, source-unread tester ([prompt](playtester-prompt.md)). **Builder check** lines need the code or the export and are run by the game's developer or reviewer; a source-unread tester marks them `not tested`.
+- Automated playtesters ([rubric](../../packages/playtester/README.md#clarity-rubric)) report only the signals they measure and mark the rest unmeasured. An adapter that lists actions cannot prove those actions were visible.
+- Ranked fixes go to the [feedback ledger](feedback-ledger.md) as `fix:<game> DL-n <what>`. DL-1 to DL-7 are reported for every game in every round.
+- Numbers below (30 s, 40 words, 60 words, 44 px, 360×690) are lab defaults. They serve comprehension and never override it.
 
 ## 1. The first minute
 
-A cold player, with no tutorial skipped and no prior knowledge, can answer five questions within 60 seconds of the first playable screen.
+The 60-second clock starts at the first screen where the player can act.
 
-- [ ] **DL-1 Goal.** The screen says what this session is for, in one plain sentence ("Feed the room until close", "Get everyone down before dark"). *Test:* after 60 s, the tester can state the goal in their own words.
-- [ ] **DL-2 What can I touch.** Every control looks like a control: a button has a border or fill, and a link or tappable row has the accent or an underline. Body text and drawings never look tappable. *Test:* the tester lists everything tappable; nothing they list is inert, and nothing they missed is a control.
-- [ ] **DL-3 What matters now.** At most one thing on screen asks for attention, in the one accent (`--rope`). *Test:* the tester names the one thing to look at first, and it is the thing the game meant.
-- [ ] **DL-4 Why the limit.** When an action is unavailable, greyed out or capped, the screen says why in the fiction, next to the action ("Too tired to dig again today", "Only two hands free"). A limit never appears unexplained. *Test:* for each disabled or missing action the tester can say why.
-- [ ] **DL-5 What next.** After any action, and after any quiet stretch, one line says what comes next or what to do now ("Next: the delivery at 10:00", "Pick who carries the rope"). *Test:* at any moment the tester can say what they are waiting for or what they should do.
-- [ ] **DL-6 First verb fast.** The first meaningful choice comes within 30 seconds, before any long text. Story before the first choice is at most about 40 words. *Test:* time from first screen to first input that changes the game.
-- [ ] **DL-7 Teach by doing.** New rules appear when they first matter, one at a time, attached to the thing they explain (progressive disclosure). No rules page is required reading. *Test:* the tester never needs the help page to make the first three choices.
+- [ ] **DL-1 A reason to act.** The opening conveys the character's situation or purpose. The larger story and optional goals may stay undiscovered. *Player test:* at 60 s the tester can describe, in their own words, a reason to act now.
+- [ ] **DL-2 What can I touch.** Controls look like controls. Interactive people, objects and map regions share one visible cue and a visible selected state. Decorative text and drawings do not imply interaction. *Player test:* before tapping, name what looks interactive, then try it. Record what turned out inert and any control found later by accident.
+- [ ] **DL-3 What is urgent, what is selected.** Placement, labels and marks distinguish urgency, selection and available controls, not colour alone. Several things may matter at once. *Player test:* name what the screen draws you to first and any competing cues; say what is urgent and what is selected.
+- [ ] **DL-4 Why the limit, and how it changes.** A visible but unavailable action shows the known circumstance or capability that prevents it and how that may change ("Too tired to dig; rest tonight"). When the condition changes, the action and its reason update. *Player test:* for each unavailable action met, say what prevents it and what would free it, if the character would know. *Builder check:* every limit comes from a capability or circumstance that recovers or changes; an arbitrary daily quota is recorded as an exception (AGENTS.md: limits from capabilities, not caps).
+- [ ] **DL-5 The situation is readable.** The player can see what is underway, what is waiting and which responses exist. The player chooses what to pursue. An explicit "next" prompt is used only where play would otherwise be unclear, not after every action. *Player test:* at any moment the tester can name an available response or say what is underway, without being told the best move.
+- [ ] **DL-6 A choice soon.** A meaningful choice is available within 30 s of the first usable screen, with at most about 40 mandatory story words before it, counted across every intervening screen. *Player test:* record when the first choice became available and, separately, when the tester first acted.
+- [ ] **DL-7 Learn by doing.** A new interaction is understandable when it becomes relevant, preferably through an ordinary action and its consequence. Short contextual help is added only where testing finds confusion. *Player test:* ask what the first choices meant, not only whether the tester made them.
 
-## 2. Text hierarchy
+## 2. Text and status
 
-- [ ] **DL-8 Three levels, no more.** (1) What to do now: largest, near the actions. (2) What just happened: the journal or log, normal size. (3) Flavour and background: soft ink (`--ink-soft`), smaller, skippable. *Test:* the tester can say, for any line, whether they must read it.
-- [ ] **DL-9 The log is not the instructions.** Instructions never live only in a scrolling log. If a log line carries a task, it is also pinned as the "what next" line (DL-5).
-- [ ] **DL-10 One name per thing.** A person, place, resource or verb keeps one name everywhere: button, log, help, end report. *Test:* the tester never asks whether two words mean the same thing.
-- [ ] **DL-11 Short lines.** Sentences under about 20 words; a screen's must-read text fits in about 60 words on a phone.
+- [ ] **DL-8 Priority without discarding story.** Immediate interactions and known urgency have clear visual priority; consequences stay readable; context stays discoverable. A story clue is never styled as disposable decoration. *Player test:* the tester can tell what needs a response now, without being told which details will matter later.
+- [ ] **DL-9 Obligations outside the log.** A required interaction or known time-critical obligation can be found outside an easily missed log line, and its status can be checked on request. Not every thread is pinned.
+- [ ] **DL-10 Stable labels.** Action-critical labels keep one name across buttons, log, help and end report. Aliases and setting terms are introduced clearly; dialogue may speak naturally if the referent stays recognisable. *Player test:* ask whether two labels met name the same thing; record any unresolved confusion.
+- [ ] **DL-11 Short where it counts.** Aim for at most about 60 essential words per immediate decision, labels, reasons and costs included. Longer context stays available on request. Use the shortest sentence that keeps the needed distinction; never cut an explanation just to meet the count. *Builder check:* the rendered layout fits, separately from the word count.
+- [ ] **DL-12 Session boundaries are clear.** At the end of a day, chapter or game the tester can tell whether play has ended, what resolved and whether it continues. Waiting at top speed is never the only way to find out that a game is over.
 
-## 3. Affordances and feedback
+## 3. Feedback and time
 
-- [ ] **DL-12 Every verb answers.** Each input gets a visible answer within a second: the thing changes, a person replies, or a line says why nothing happened ([L4](lessons.md)). *Test:* the tester never taps twice to check whether the first tap worked.
-- [ ] **DL-13 Selection is visible.** Whatever is selected or in progress stays marked until it ends.
-- [ ] **DL-14 Before, not after.** What a choice will cost and risk is shown in plain words before the player commits ([L5](lessons.md)).
-- [ ] **DL-15 Slow down, don't stop.** When a choice is waiting, the clock slows and the screen says so ([L6](lessons.md)). Pauses are for menus only.
-- [ ] **DL-16 No dead problems.** The game never states a problem the player has no verb for ([L19](lessons.md)).
+- [ ] **DL-13 Inputs are acknowledged.** An accepted input is acknowledged promptly: selected, sent, queued, underway or refused. The game never claims execution before it happens. A delayed answer arrives on the game clock and stays traceable to the request ([L4](lessons.md)). *Player test:* when unsure whether a tap worked, does a repeat cause a duplicate or an unexplained result?
+- [ ] **DL-14 Known costs before committing.** Before a consequential choice, show the costs and risks the character knows or can foresee, as estimates where they are not counted. Hidden consequences may stay hidden ([L5](lessons.md), within the character's knowledge).
+- [ ] **DL-15 Time is visible; slowdown, not pause.** The screen shows whether time is moving and at what speed. Play stays continuous. A pending consequential choice (an event demanding a response, not any available action) slows time enough to read and answer it; the chosen speed returns when it resolves. Opening an inspection sheet is not a free pause; system menus and a closed page may stop time ([L6](lessons.md)). *Player test:* from fast speed, meet a live choice, inspect it and answer; record real time used and whether the chance was still open. In a quiet stretch, find how to wait or change speed. A harness that freezes between commands cannot test this.
+- [ ] **DL-16 Tasks have responses.** A problem presented as the player's task has a response, or makes its prerequisite clear. A response may mitigate, investigate, wait or accept a loss. Background hardship and other people's troubles may stay outside the player's control, as long as no missing control is implied ([L19](lessons.md)).
 
 ## 4. Show, don't count
 
-- [ ] **DL-17 Feelings are drawn or said, not numbered.** A person's tiredness, mood or trust appears as a drawing, a posture or their own words; never a bar or a percentage ([visual language](../design-language.md#marks)).
-- [ ] **DL-18 Numbers only where the fiction counts.** Money, time on a clock, loaves on a shelf: fine. A number that the character could not know: not fine.
-- [ ] **DL-19 Approximate, but readable.** "Most of the water is gone" is enough to decide by. If players keep guessing wrong, the wording is too vague, not too honest.
+- [ ] **DL-17 Feelings are drawn or said.** A person's tiredness, mood or trust appears as a drawing, a posture or their own words, never a bar or a percentage ([visual language](../design-language.md#marks)).
+- [ ] **DL-18 Numbers only where the fiction counts.** Money, a clock, loaves on a shelf: fine, if the character has counted them. A number the character could not know, or has not observed: not fine.
+- [ ] **DL-19 Cues mean what they seem.** *Player test:* before a consequential choice, ask what the tester thinks the cue means; afterwards, separate a misleading cue from incomplete knowledge, an uncertain outcome or a risk knowingly taken. Fix misleading cues. A wrong prediction alone is not a clarity failure.
 
 ## 5. Language
 
-- [ ] **DL-20 English for the load-bearing words.** Dates, times, days of the week, units, button labels, goals and key terms are in English ("Tuesday 14 May", "Harvest", "Rest"). *Test:* the tester never needs a translation to act.
-- [ ] **DL-21 Local flavour as seasoning.** Names, greetings, food, place names and the odd word may be in the setting's language (Turkish in The Valley is welcome). A non-English word that the player must understand to act appears with its English meaning the first time, or is replaced by the English.
-- [ ] **DL-22 Dates read at a glance.** Day of week plus day number, or "Day 3 of 12"; the calendar the player must plan by is the Gregorian one, in English, even when the fiction keeps another calendar alongside.
+- [ ] **DL-20 English for what you act on.** Action-critical labels, units, goals and dates are understandable in English. Names, greetings, food, places and the odd word may be in the setting's language (Turkish flavour in The Valley is welcome). A setting term needed for play (kahya, kile, usta) shows a plain English meaning nearby on first use and on request.
+- [ ] **DL-21 Dates read at a glance.** Use an English date ("Tuesday 14 May") or a clearly defined relative day or season ("Day 3 of the harvest"), with enough context to tell deadlines apart across months or years. Another calendar may run alongside where the fiction wants it. *Player test:* compare a deadline with today and describe the relevant unit without translation, on first play and after returning from a break.
 
 ## 6. Phone layout
 
-The device facts and thumb zone are in the [visual language](../design-language.md#layout) and [L9](lessons.md).
+The device facts and thumb zone are in the [visual language](../design-language.md#layout). 360×690 CSS px is the lab's content-viewport fixture (an estimate of a Galaxy S26 in Chrome, not a guarantee about any phone).
 
-- [ ] **DL-23 Actions above the fold.** At 360×690 visible CSS px, the current actions and the "what next" line are visible without scrolling.
-- [ ] **DL-24 Targets 44 px or more.** Every tap target is at least 44×44 CSS px with room between targets.
-- [ ] **DL-25 One sheet at a time.** Drawers and sheets never stack; closing one returns to the scene.
-- [ ] **DL-26 No horizontal scroll** on the page, and text is never smaller than 15 px.
+- [ ] **DL-22 The response is on screen.** At default text size in the 360×690 fixture, the immediate gameplay response and its essential context are visible without scrolling. Frequent actions sit within thumb reach where practical; further actions sit behind a labelled control. Readable text and non-overlapping targets come before bottom-40% placement. Long sheets may scroll; their actions stay reachable with the keyboard open. *Builder check:* test safe areas, long labels and two people on screen.
+- [ ] **DL-23 Targets.** Standalone controls have non-overlapping hit areas of at least 44×44 CSS px (the house target; WCAG AA's minimum is 24). Dense scene selection uses zoom, a disambiguation list or a labelled action.
+- [ ] **DL-24 One sheet at a time, with a way back.** Sheets never stack. A sheet that opens another task remembers its origin: cancel returns there, closing the outer sheet returns to the scene, and focus returns to the control that opened it.
+- [ ] **DL-25 Reflow.** No horizontal page scroll. The 17 px phone base holds; secondary text stays readable in both themes; content and controls survive 200% text size and 320 CSS px width.
 
-## 7. Notebook, save and export
+## 7. Game menu, save, download and send
 
-- [ ] **DL-27 Same place everywhere.** Each game has one "Notebook" entry (a menu item or the footer) holding: save and resume, download the playtest export, and "Send this run to the notebook" (the lab client dialog).
-- [ ] **DL-28 Resume is obvious.** A returning player sees "Continue" first, with where they left off in one line ([L8](lessons.md)).
-- [ ] **DL-29 Sending never fails silently.** If a run cannot be sent (too large, offline, notebook full), the dialog says why in one sentence and says the downloaded export still has everything. A game whose state replays from seed and inputs passes a `compact` function to the dialog, so long runs still send (lab client 0.1.2).
-- [ ] **DL-30 Export replays.** The export holds seed, input log and state, and replays the run (AGENTS.md).
+Names: **Game menu** for save and run controls, **Download this run** for the local export, **Send this run to the lab** for the private upload, **All games** for the collection link. "Notebook" stays the visual metaphor, not the name of an operation.
 
-## How failures are reported
+- [ ] **DL-26 One discoverable game menu.** Save and run controls live in one consistently labelled place, expressed in the game's fiction and reachable without scrolling. The All games link is a separate destination.
+- [ ] **DL-27 Resume is honest.** The title screen offers Continue only when a valid save exists, with one line saying where it left off ([L8](lessons.md)). Closing the page and resuming does not advance simulated time. *Player test:* reload and resume; nothing lost, nothing done twice.
+- [ ] **DL-28 Sending works for ordinary play.** Success shows a reference. Failure (offline, notebook full, too long) says why in one sentence, keeps the note, offers the next step and leaves Download this run working; retry works when the cause clears. No unlimited length is promised. *Player test (only in a session authorized to send):* send after a short session and after a representative long one. *Builder check:* upload bounds are tested against representative exports; a game whose state replays from seed and inputs passes `compact` to the send dialog (lab client 0.1.2) and tests that the compacted run replays; the dialog says what was left out before the player sends.
+- [ ] **DL-29 Export replays.** *Builder check:* the export holds seed, input log and state and replays the run exactly (AGENTS.md). *Player test:* only where the game offers a player-facing replay or import; otherwise `not tested`.
 
-A playtest report lists each failed item as `DL-n: what the tester saw, in their words`, and the ranked fixes go to the [feedback ledger](feedback-ledger.md) as `fix:<game> DL-n <what>`. The first-minute items DL-1 to DL-7 are reported for every game in every round; the rest when the tester meets them.
+## Boundaries
+
+- **Faith stays quiet.** Clarity applies to the player's available responses, not to every private motive. Quiet religious life never needs an objective, alert, countdown, tutorial or score. "She will be back shortly" is enough when someone steps away to pray. A person's undisclosed motive may stay undisclosed.
+- **Approximate reads stay approximate** (AGENTS.md game direction). No item here asks for true numbers, exact odds or an omniscient progress bar.

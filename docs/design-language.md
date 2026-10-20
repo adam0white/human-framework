@@ -36,4 +36,4 @@ Only `--rope` calls for attention. Never add a second loud color.
 
 ## Voice
 - Short sentences in plain words. People speak in first person in Caveat. The narrator speaks in Literata, in past tense, like a journal entry.
-- Faith stays quiet. A prayer at dusk is a line in the journal, never a mechanic.
+- Faith stays quiet. A prayer at dusk is a line in the journal. Prayer and fasting may be ordinary parts of life, never the theme, goal or central mechanic (AGENTS.md).
