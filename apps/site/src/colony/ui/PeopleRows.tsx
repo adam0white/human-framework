@@ -1,10 +1,11 @@
 import { memo, type ReactNode, useEffect, useRef, useState } from 'react';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { Frame } from './contract.ts';
+import { needDescription } from './descriptions.ts';
 import { Portrait, shortName } from './parts.tsx';
 
-/** Height the status rows need (a header and six 24 px rows); below it the map keeps the whole pane. */
-const ROWS_H = 180;
+/** Reserve space for a header and six readable, tappable rows. */
+const ROWS_H = 310;
 /** The map's aspect (20×14 tiles). */
 const MAP_ASPECT = 448 / 640;
 
@@ -47,7 +48,7 @@ function Bar({ label, value, urgent }: { label: string; value: number; urgent?: 
   );
 }
 
-/** One row per person: who, what they are doing, and the two numbers that side has for them. */
+/** Human needs appear as approximate descriptions; Classic keeps its mechanical meters. */
 export const PeopleRows = memo(function PeopleRows(props: {
   frame: Frame | null;
   side: 'classic' | 'human';
@@ -76,8 +77,18 @@ export const PeopleRows = memo(function PeopleRows(props: {
             label: v.protest ? `${v.label} (under protest)` : v.label,
             dead: v.state === 'dead',
             bars: [
-              { label: 'Food', value: food?.value ?? 1, urgent: food?.urgent },
-              { label: 'Sleep', value: sleep?.value ?? 1, urgent: sleep?.urgent },
+              {
+                label: 'Food',
+                value: food?.value ?? 1,
+                urgent: food?.urgent,
+                description: needDescription('food', food?.value ?? 1),
+              },
+              {
+                label: 'Sleep',
+                value: sleep?.value ?? 1,
+                urgent: sleep?.urgent,
+                description: needDescription('sleep', sleep?.value ?? 1),
+              },
             ],
           };
         });
@@ -105,9 +116,15 @@ export const PeopleRows = memo(function PeopleRows(props: {
             <Portrait id={r.id} size={18} />
             <span className="prow-name">{shortName(r.id)}</span>
             <span className="prow-doing">{r.label}</span>
-            {r.bars.map((b) => (
-              <Bar key={b.label} label={b.label} value={b.value} urgent={b.urgent} />
-            ))}
+            {r.bars.map((b) =>
+              'description' in b ? (
+                <span key={b.label} className={b.urgent ? 'need-description is-urgent' : 'need-description'}>
+                  {b.description}
+                </span>
+              ) : (
+                <Bar key={b.label} label={b.label} value={b.value} urgent={b.urgent} />
+              ),
+            )}
           </button>
         </li>
       ))}

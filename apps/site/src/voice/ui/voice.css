@@ -2247,3 +2247,48 @@ fieldset.v-appeals {
     justify-content: flex-end;
   }
 }
+
+/* Clarity: a decision opens Why; ordinary chronicle lines remain prose. */
+button.v-log-btn {
+  border: 1px solid var(--edge-strong);
+  background: var(--paper-2);
+  min-height: 44px;
+  grid-template-columns: 46px minmax(0, 1fr) 10px auto;
+  margin: 3px 0;
+}
+.v-log-why {
+  grid-column: 4;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.v-log-row.is-selected .v-log-btn {
+  outline: 2px solid var(--ink-soft);
+  outline-offset: -2px;
+  background: var(--paper-2);
+}
+.v-premise-context {
+  margin-top: 12px;
+}
+.v-premise-context > summary {
+  cursor: pointer;
+  min-height: 44px;
+  align-content: center;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.v-top-when {
+  flex-wrap: wrap;
+  gap: 2px 10px;
+}
+.v-top-date {
+  font-size: 0.78rem;
+  color: inherit;
+  white-space: nowrap;
+}
+@media (max-width: 767px) {
+  button.v-log-btn {
+    grid-template-columns: 40px minmax(0, 1fr) 8px auto;
+  }
+}

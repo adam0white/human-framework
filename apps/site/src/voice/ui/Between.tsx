@@ -3,6 +3,7 @@
  * skip the player may leave up to two standing whispers, each with a strength and an optional reason, and sees
  * the cost before letting the days pass.
  */
+
 import { useEffect, useRef, useState } from 'react';
 import {
   type Appeal,
@@ -11,6 +12,7 @@ import {
   type StandingWhisper,
   type Strength,
 } from '../protocol.ts';
+import { storyDates } from './dates.ts';
 import { EndsList, UnaskedStrip } from './EndsPane.tsx';
 import { Icon, STRENGTH_ICON } from './Icon.tsx';
 import { APPEALS, STRENGTHS } from './parts.tsx';
@@ -76,7 +78,7 @@ export function Between({
       <div>
         <ul className="v-lines">
           {view.lines.slice(0, 6).map((l) => (
-            <li key={l}>{l}</li>
+            <li key={l}>{storyDates(l)}</li>
           ))}
         </ul>
         {view.yours && view.yours.length > 0 && (
@@ -84,7 +86,7 @@ export function Between({
             <h3 className="v-sub">What your words did</h3>
             <ul className="v-lines">
               {view.yours.map((l) => (
-                <li key={l}>{l}</li>
+                <li key={l}>{storyDates(l)}</li>
               ))}
             </ul>
           </>
@@ -118,7 +120,7 @@ export function Between({
   );
   const next = (
     <div className="v-between-next">
-      <p className="v-next-label">{nextLabel}</p>
+      <p className="v-next-label">{storyDates(nextLabel)}</p>
       {skip && (
         <div className="v-whispers">
           <p className="v-whispers-head">
@@ -211,14 +213,14 @@ export function Between({
     >
       <div className="v-card v-between">
         <h2 id="between-title" ref={head} tabIndex={-1}>
-          {view.closed}
+          {storyDates(view.closed)}
         </h2>
         {narrowSkip ? (
           <>
             {next}
             <details className="v-between-recap">
               <summary>
-                <span className="v-recap-title">{view.closed.replace(/ is over\.$/, '')}</span>
+                <span className="v-recap-title">{storyDates(view.closed.replace(/ is over\.$/, ''))}</span>
                 {(view.unasked ?? [])
                   .filter((u) => u.state !== 'unknown')
                   .map((u) => (

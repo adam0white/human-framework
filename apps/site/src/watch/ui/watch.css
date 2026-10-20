@@ -121,9 +121,10 @@
 }
 
 .w-speed[aria-pressed="true"] {
-  background: var(--w-accent);
-  color: #1b1408;
-  border-color: transparent;
+  background: var(--w-surface-2);
+  color: var(--w-text);
+  border-color: var(--w-text);
+  box-shadow: inset 0 0 0 1px var(--w-text);
 }
 
 .w-stage {
@@ -285,8 +286,10 @@
 }
 
 .w-person[aria-pressed="true"] {
-  border-color: var(--w-accent);
-  box-shadow: 0 0 0 2px var(--w-accent) inset;
+  background: var(--w-surface-2);
+  color: var(--w-text);
+  border-color: var(--w-text);
+  box-shadow: inset 0 0 0 1px var(--w-text);
 }
 
 .w-person-head {
@@ -404,12 +407,17 @@
 }
 
 .w-press[aria-pressed="true"] {
-  background: rgba(224, 163, 95, 0.22);
-  border-color: var(--w-accent);
+  background: var(--w-surface-2);
+  color: var(--w-text);
+  border-color: var(--w-text);
+  box-shadow: inset 0 0 0 1px var(--w-text);
 }
 
 .w-place[aria-pressed="true"] {
-  border-color: var(--w-accent);
+  background: var(--w-surface-2);
+  color: var(--w-text);
+  border-color: var(--w-text);
+  box-shadow: inset 0 0 0 1px var(--w-text);
 }
 
 .w-day {
@@ -554,8 +562,10 @@
 }
 
 .w-chip[aria-pressed="true"] {
-  background: rgba(224, 163, 95, 0.22);
-  border-color: var(--w-accent);
+  background: var(--w-surface-2);
+  color: var(--w-text);
+  border-color: var(--w-text);
+  box-shadow: inset 0 0 0 1px var(--w-text);
 }
 
 .w-tracks {
@@ -854,8 +864,10 @@
 }
 /* The pace the clock runs at while a moment, a card or news eases it (the chosen speed still breathes). */
 .w-speed.is-now {
-  border-color: var(--w-accent);
-  box-shadow: inset 0 0 0 1px var(--w-accent);
+  background: var(--w-surface-2);
+  color: var(--w-text);
+  border-color: var(--w-text);
+  box-shadow: inset 0 0 0 1px var(--w-text);
 }
 @keyframes w-breathe {
   50% {
@@ -1533,4 +1545,51 @@
 .w-granary-mark {
   font-size: 0.78rem;
   color: var(--w-muted);
+}
+
+/* At dusk the filled accent belongs to the decision to begin. */
+.phase-dusk .w-alert.is-moment:last-child {
+  background: rgba(13, 16, 34, 0.92);
+  color: var(--w-text);
+  border: 1px solid var(--w-line);
+}
+.phase-dusk .w-warning,
+.phase-dusk .w-tracks,
+.phase-dusk .w-slowed {
+  color: var(--w-text);
+}
+.phase-dusk .w-imps {
+  --w-accent: var(--w-muted);
+}
+.w-about {
+  margin: 12px 0;
+}
+.w-about summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.w-about summary::before {
+  content: "+ ";
+  white-space: pre;
+}
+.w-about[open] summary::before {
+  content: "− ";
+}
+.w-chronicle span {
+  display: inline;
+}
+@media (max-width: 480px) {
+  .w-chronicle {
+    padding: 0 8px;
+  }
+  .w-chronicle span {
+    display: inline;
+    font-size: 0.85rem;
+  }
+  .w-home {
+    font-size: 0.8rem;
+  }
 }

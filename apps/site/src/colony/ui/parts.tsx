@@ -26,6 +26,7 @@ import {
   type PlaybackState,
   type Speed,
 } from './contract.ts';
+import { moodDescription, trustDescription } from './descriptions.ts';
 import { goalValue, humanQuotes } from './end-report.ts';
 import { Icon, type IconName, RingTimer } from './Icon.tsx';
 import { LOOKS } from './renderer.ts';
@@ -428,16 +429,12 @@ export function PaneStats({ frame, side }: { frame: Frame | null; side: 'classic
       {side === 'human' && (
         <>
           <div>
-            <dt>Prayers</dt>
-            <dd>{h && h.prayersDue > 0 ? `${Math.round((100 * h.prayersKept) / h.prayersDue)}%` : '–'}</dd>
-          </div>
-          <div>
             <dt>Morale</dt>
-            <dd>{h ? `${h.morale >= 0 ? '+' : ''}${h.morale.toFixed(2)}` : '0'}</dd>
+            <dd>{h ? moodDescription(h.morale) : 'Settled'}</dd>
           </div>
           <div>
             <dt>Trust</dt>
-            <dd>{h ? `${Math.round(h.trust * 100)}%` : '–'}</dd>
+            <dd>{h ? trustDescription(h.trust) : 'Getting acquainted'}</dd>
           </div>
         </>
       )}
@@ -575,6 +572,7 @@ export function SuggestionCard(props: {
         </button>
       </div>
       <p className="nudge-text">{n.text}</p>
+      <p className="nudge-help">Use fills an order. Confirm sends it. You can skip or choose your own.</p>
       {n.reason && <p className="nudge-reason">{n.reason}</p>}
       <div className="nudge-foot">
         <span className="nudge-timer">
@@ -636,6 +634,43 @@ export function Composer(props: {
   const pred = props.prediction && ready && props.prediction.personId === who ? props.prediction : null;
   return (
     <section className={`composer ${ready ? 'is-ready' : ''}`} aria-label="Order">
+      <div className="phone-order-fields">
+        <label>
+          Villager
+          <select
+            aria-label="Villager"
+            value={who ?? ''}
+            onChange={(e) => props.onWho(e.target.value as VillagerId)}
+          >
+            <option value="" disabled>
+              Choose a villager
+            </option>
+            {VILLAGERS.map((p) => (
+              <option key={p.id} value={p.id}>
+                {shortName(p.id)}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Place
+          <select
+            aria-label="Place"
+            value={s.placeId ?? ''}
+            disabled={!who}
+            onChange={(e) => props.onWhere(e.target.value as PlaceId)}
+          >
+            <option value="" disabled>
+              Choose a place
+            </option>
+            {places.map((p) => (
+              <option key={p} value={p}>
+                {PLACE_LABEL[p]}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
       <div className="composer-row roster" role="toolbar" aria-label="Who">
         {VILLAGERS.map((p) => {
           const hv = props.frame?.human.find((h) => h.id === p.id);
@@ -690,50 +725,53 @@ export function Composer(props: {
         )}
       </p>
       {s.reason && <p className="composer-reason">{s.reason}</p>}
-      <div className="composer-row toggles">
-        <button
-          type="button"
-          className={`toggle ${s.rush ? 'is-on' : ''}`}
-          aria-pressed={s.rush}
-          disabled={!who}
-          onClick={() => props.onChange({ ...s, rush: !s.rush })}
-        >
-          <Icon name="rush" size={16} />
-          <span className="toggle-label">Rush</span> <small>faster, hungrier</small>
-        </button>
-        <button
-          type="button"
-          className={`toggle toggle-insist ${s.insist ? 'is-on' : ''}`}
-          aria-pressed={s.insist}
-          disabled={!who}
-          onClick={() => props.onChange({ ...s, insist: !s.insist })}
-        >
-          <Icon name="insist" size={16} />
-          <span className="toggle-label">Insist</span> <small>may cost trust</small>
-        </button>
-      </div>
-      <div className="composer-row appeals">
-        {APPEALS.map((a) => (
+      <details className="order-options">
+        <summary>Order options</summary>
+        <div className="composer-row toggles">
           <button
-            key={a.id}
             type="button"
-            className={`appeal ${s.appeal === a.id ? 'is-on' : ''}`}
-            aria-pressed={s.appeal === a.id}
-            aria-label={`Appeal: “${a.label}”`}
-            title={`“${a.label}”`}
+            className={`toggle ${s.rush ? 'is-on' : ''}`}
+            aria-pressed={s.rush}
             disabled={!who}
-            onClick={() => props.onChange({ ...s, appeal: s.appeal === a.id ? null : a.id })}
+            onClick={() => props.onChange({ ...s, rush: !s.rush })}
           >
-            <span className="appeal-full">“{a.label}”</span>
-            <span className="appeal-short" aria-hidden="true">
-              “{APPEAL_SHORT[a.id] ?? a.label}”
-            </span>
+            <Icon name="rush" size={16} />
+            <span className="toggle-label">Rush</span> <small>faster, hungrier</small>
           </button>
-        ))}
-      </div>
-      {s.appeal === 'safety' && (
-        <p className="composer-reason">A promise: hurt on this job, they will hold you to it.</p>
-      )}
+          <button
+            type="button"
+            className={`toggle toggle-insist ${s.insist ? 'is-on' : ''}`}
+            aria-pressed={s.insist}
+            disabled={!who}
+            onClick={() => props.onChange({ ...s, insist: !s.insist })}
+          >
+            <Icon name="insist" size={16} />
+            <span className="toggle-label">Insist</span> <small>may cost trust</small>
+          </button>
+        </div>
+        <div className="composer-row appeals">
+          {APPEALS.map((a) => (
+            <button
+              key={a.id}
+              type="button"
+              className={`appeal ${s.appeal === a.id ? 'is-on' : ''}`}
+              aria-pressed={s.appeal === a.id}
+              aria-label={`Appeal: “${a.label}”`}
+              title={`“${a.label}”`}
+              disabled={!who}
+              onClick={() => props.onChange({ ...s, appeal: s.appeal === a.id ? null : a.id })}
+            >
+              <span className="appeal-full">“{a.label}”</span>
+              <span className="appeal-short" aria-hidden="true">
+                “{APPEAL_SHORT[a.id] ?? a.label}”
+              </span>
+            </button>
+          ))}
+        </div>
+        {s.appeal === 'safety' && (
+          <p className="composer-reason">A promise: hurt on this job, they will hold you to it.</p>
+        )}
+      </details>
       <div className="composer-actions">
         {who && (
           <button type="button" className="btn btn-small btn-ghost" onClick={() => props.onInspect(who)}>

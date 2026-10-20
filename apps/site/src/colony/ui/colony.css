@@ -2368,7 +2368,7 @@ kbd {
     width: 24px;
   }
 
-  /* Composer tray: compact, horizontally scrolling rows; the suggestion card overlays it. */
+  /* Composer and suggestion occupy separate rows. */
   .composer-tray {
     flex: 1;
     min-height: 0;
@@ -2446,9 +2446,7 @@ kbd {
   }
 
   .nudge-slot {
-    position: absolute;
-    inset: auto 6px 6px 6px;
-    z-index: 5;
+    position: static;
   }
 
   .nudge {
@@ -3451,5 +3449,241 @@ kbd {
 
   .queue {
     min-height: 0;
+  }
+}
+
+/* Clarity: readable controls, approximate people, and suggestions outside the order. */
+.phone-order-fields {
+  display: none;
+}
+
+.colony
+  :is(
+    .stats,
+    .pane-head h2,
+    .pane-classic .pane-head h2,
+    .goal-label,
+    .goal-label small,
+    .gbar-name,
+    .gbar-name small,
+    .goals-toggle,
+    .roster-btn,
+    .place-chip,
+    .toggle,
+    .toggle small,
+    .appeal,
+    .composer-line,
+    .composer-reason,
+    .nudge,
+    .nudge-text,
+    .nudge-reason,
+    .nudge-help,
+    .nudge-timer,
+    .kicker,
+    .prow,
+    .prow-head,
+    .need,
+    .need-description,
+    .small,
+    .pause-ribbon strong,
+    .pause-ribbon p,
+    .clock-day,
+    .clock-time,
+    .btn,
+    .goal-card-context,
+    .trust-history,
+    .why-terms,
+    .why-option,
+    .legend,
+    .inspector-caption,
+    .no-concept-list,
+    .card-sub,
+    .card-title,
+    .col-head,
+    .chip,
+    .card-chips,
+    .orders-button
+  ) {
+  font-size: max(15px, 0.9375rem);
+}
+
+.colony :is(button, select, summary) {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.colony :is(.icon-x, .card-x, .nudge-skip) {
+  width: 44px;
+  height: 44px;
+}
+
+.colony :is(.speed-btn.is-on, .roster-btn.is-on, .place-chip.is-on, .toggle.is-on, .appeal.is-on) {
+  background: var(--surface);
+  color: var(--text);
+  outline: 2px solid currentColor;
+  outline-offset: -3px;
+}
+
+.order-options > summary,
+.nudge-slot > summary,
+.goal-card-context > summary {
+  cursor: pointer;
+  padding: 10px 6px;
+  font-size: 15px;
+}
+
+.nudge-slot {
+  position: static;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.nudge-slot > summary small {
+  display: block;
+  margin-left: 16px;
+  font-size: 15px;
+}
+
+.nudge-slot .nudge {
+  border: 0;
+  box-shadow: none;
+  background: var(--surface);
+}
+
+.order-options .composer-row {
+  margin-top: 6px;
+}
+
+.prow {
+  min-height: 44px;
+  grid-template-columns: 20px 65px minmax(65px, 1fr) 70px 70px;
+}
+
+.inspector-human .need {
+  grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr);
+}
+
+@media (max-width: 860px) {
+  .stage {
+    --phone-center-h: auto;
+  }
+
+  .center {
+    flex: 0 0 auto;
+    max-height: calc(100dvh - 190px);
+    overflow: auto;
+  }
+
+  .composer-tray {
+    flex: none;
+    overflow: visible;
+    gap: 0;
+  }
+
+  .composer {
+    height: auto;
+    overflow: visible;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 6px 8px;
+    gap: 4px;
+  }
+
+  .composer > .roster,
+  .composer > .place-chips {
+    display: none;
+  }
+
+  .phone-order-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .phone-order-fields label {
+    display: grid;
+    gap: 2px;
+    font-size: 15px;
+  }
+
+  .phone-order-fields select {
+    width: 100%;
+    min-width: 0;
+    padding: 4px;
+    font: inherit;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+  }
+
+  .composer-line,
+  .composer-reason {
+    white-space: normal;
+    overflow: visible;
+    line-height: 1.3;
+    margin: 2px 0;
+  }
+
+  .composer-line .predict {
+    display: block;
+    margin-left: 0;
+  }
+
+  .composer-actions {
+    grid-row: 3;
+    position: static;
+    padding: 0;
+  }
+
+  .order-options {
+    grid-row: 4;
+  }
+
+  .order-options[open] {
+    max-height: 160px;
+    overflow-y: auto;
+  }
+
+  .order-options .appeals {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .order-options .appeal {
+    flex: 1 1 auto;
+    padding: 8px;
+  }
+
+  .nudge-slot[open] {
+    max-height: 170px;
+    overflow-y: auto;
+  }
+
+  .nudge-slot.is-active {
+    display: block;
+  }
+
+  .pane-head {
+    width: 130px;
+    padding: 3px 6px;
+  }
+
+  .stats {
+    overflow: visible;
+  }
+
+  .stats > div {
+    flex-wrap: wrap;
+    gap: 0 5px;
+  }
+
+  .pause-ribbon > div,
+  .pause-ribbon p {
+    white-space: normal;
+  }
+
+  .pause-ribbon > div {
+    display: block;
   }
 }

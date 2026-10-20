@@ -386,11 +386,15 @@ export function App() {
               onInspect={inspectPersonCb}
             />
             {nudge && frame && (
-              <div
+              <details
                 className={`nudge-slot ${composer.nudgeId === nudge.id ? 'is-active' : ''}`}
                 role="status"
                 aria-live="polite"
               >
+                <summary>
+                  Suggestion · {shortName(nudge.order.personId)}
+                  <small>Use prepares; Confirm sends.</small>
+                </summary>
                 <SuggestionCard
                   nudge={nudge}
                   minute={frame.minute}
@@ -399,7 +403,7 @@ export function App() {
                   onUse={applyNudge}
                   onSkip={skipNudge}
                 />
-              </div>
+              </details>
             )}
           </div>
           <section className={`queue ${drawer ? 'is-open' : ''}`} aria-label="Order log">

@@ -6,7 +6,6 @@
 import { useState } from 'react';
 import type { SeasonCard } from '../sim/state.ts';
 import type { Frame, FrameVillager, FrameVolume } from '../sim/view.ts';
-import { ExportButtons } from './exporting.tsx';
 import { Icon } from './icons.tsx';
 import { Impressions, Sacks } from './parts.tsx';
 import type { WatchActions } from './useWatch.ts';
@@ -305,10 +304,7 @@ export function ClosedPage({ frame, actions }: { frame: Frame; actions: WatchAct
       <button type="button" className="w-primary" onClick={() => actions.input({ k: 'continue' })}>
         <Icon name="book-open" size={18} /> Open the next volume
       </button>
-      <ExportButtons
-        actions={actions}
-        label="Playtesting? Send the team this volume as it closed: it replays your whole chronicle."
-      />
+      <p className="w-note">Open Game menu to download or send this run.</p>
     </div>
   );
 }
@@ -326,10 +322,7 @@ export function FallenPage({ frame, actions, seed }: { frame: Frame; actions: Wa
       </p>
       <Epilogue v={v} />
       <p>The village cannot stay. The chronicle closes this volume.</p>
-      <ExportButtons
-        actions={actions}
-        label="Playtesting? Send the team the chronicle before you begin anew: it replays the whole run."
-      />
+      <p className="w-note">Open Game menu to download or send this run.</p>
       <button type="button" className="w-primary" onClick={() => actions.restart(seed + 1)}>
         Begin a new village
       </button>

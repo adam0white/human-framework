@@ -126,6 +126,7 @@ export function App() {
       {frame && (
         <TopBar
           phase={frame.phase}
+          day={frame.day}
           dayLabel={frame.dayLabel}
           clock={frame.clock}
           sky={frame.sky}

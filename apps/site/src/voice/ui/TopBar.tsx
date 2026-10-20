@@ -3,6 +3,7 @@ import { memo } from 'react';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import { PlaytestMenu } from '../../shared/PlaytestMenu.tsx';
 import type { Frame, Pace } from '../protocol.ts';
+import { storyDate } from './dates.ts';
 import type { VoiceActions } from './useVoice.ts';
 
 const SKY: [number, string][] = [
@@ -61,7 +62,7 @@ const nextPace = (p: Pace): Pace => {
 /** The frame fields the top bar shows, passed one by one so `memo` can compare them. */
 export type TopBarFields = Pick<
   Frame,
-  'phase' | 'dayLabel' | 'clock' | 'sky' | 'paused' | 'pace' | 'autoPause'
+  'day' | 'phase' | 'dayLabel' | 'clock' | 'sky' | 'paused' | 'pace' | 'autoPause'
 > & {
   fastForward: string | undefined;
 };
@@ -83,6 +84,7 @@ export const TopBar = memo(function TopBar({
         </a>
         <div className="v-top-when">
           <span className="v-top-day">{frame.dayLabel}</span>
+          <span className="v-top-date">{storyDate(frame.day)}</span>
           <span className="v-top-clock">{frame.clock}</span>
         </div>
       </div>

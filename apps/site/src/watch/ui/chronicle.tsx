@@ -110,9 +110,9 @@ export function Chronicle({
     ) : null;
 
   return (
-    <div className="w-menu" role="dialog" aria-label="The chronicle">
+    <div className="w-menu" role="dialog" aria-label="Game menu">
       <div className="w-menu-head">
-        <h2>The chronicle</h2>
+        <h2>Game menu</h2>
         <button type="button" className="w-x" onClick={onClose}>
           <Icon name="x" size={18} label="Close" />
         </button>
@@ -123,6 +123,11 @@ export function Chronicle({
           ? 'Every page you live is kept as you go; what is written is not unwritten.'
           : 'This browser is not keeping saves; the playtest export still works.'}
       </p>
+
+      <button type="button" className="w-secondary" onClick={onClose}>
+        Resume the watch
+      </button>
+      <ExportButtons actions={actions} onSend={onClose} />
 
       <section className="w-menu-sec" aria-label="The volumes">
         <h3>The shelf</h3>
@@ -212,7 +217,6 @@ export function Chronicle({
 
       <section className="w-menu-sec" aria-label="Playtest and new village">
         <h3>Playtest</h3>
-        <ExportButtons actions={actions} />
         {/* Two steps, so a slip under the export never ends a chronicle (G3-4 designer review). */}
         {confirmNew ? (
           <fieldset className="w-confirm" aria-label="Begin a new village?">

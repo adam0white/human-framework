@@ -5,6 +5,7 @@
  */
 import { memo, useEffect, useRef, useState } from 'react';
 import type { Appeal, Draft, Frame, Prefill, Strength, Telegraph } from '../protocol.ts';
+import { storyDates } from './dates.ts';
 import { Icon, STRENGTH_ICON, TONE_ICON, TONE_WORD } from './Icon.tsx';
 import { APPEALS, appealLabel, INSIST_PRICE, STRENGTHS, toneClass } from './parts.tsx';
 
@@ -83,7 +84,7 @@ export const Composer = memo(function Composer({
   const touchedRef = useRef(touched);
   touchedRef.current = touched;
 
-  const prefillKey = open ? (prefill ? `${prefill.optionId}|${prefill.why}` : 'none') : 'closed';
+  const prefillKey = open ? (prefill ? `${prefill.optionId}|${storyDates(prefill.why)}` : 'none') : 'closed';
   const prefillRef = useRef(prefill);
   prefillRef.current = prefill;
   const optionIds = options.map((o) => o.id).join('|');
@@ -295,7 +296,7 @@ export const Composer = memo(function Composer({
                   </>
                 )}
               </span>{' '}
-              {prefill.why}
+              {storyDates(prefill.why)}
             </>
           ) : (
             'Nothing here is prefilled. Pick one, or say nothing.'

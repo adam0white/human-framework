@@ -3,7 +3,8 @@
  * log and the end state as JSON. Copy puts it on the clipboard; Save writes it as a file, which suits a phone,
  * where a long clipboard paste into a message is awkward. If both are blocked the text is shown to select.
  */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { gameLabs } from '../../shared/lab.tsx';
 import { Icon } from './icons.tsx';
 import type { WatchActions } from './useWatch.ts';
 
@@ -11,9 +12,30 @@ function fileName(seed: number, year: number): string {
   return `night-watch-seed${seed}-year${year}.json`;
 }
 
-export function ExportButtons({ actions, label }: { actions: WatchActions; label?: string }) {
+export function ExportButtons({
+  actions,
+  label,
+  onSend,
+}: {
+  actions: WatchActions;
+  label?: string;
+  onSend?: () => void;
+}) {
   const [status, setStatus] = useState('');
   const [text, setText] = useState('');
+  const [sending, setSending] = useState(false);
+  const [eventsOn, setEventsOn] = useState(gameLabs.watch.eventsOn);
+  useEffect(() => {
+    const sync = () => setEventsOn(gameLabs.watch.eventsOn);
+    window.addEventListener('storage', sync);
+    window.addEventListener('focus', sync);
+    document.addEventListener('change', sync);
+    return () => {
+      window.removeEventListener('storage', sync);
+      window.removeEventListener('focus', sync);
+      document.removeEventListener('change', sync);
+    };
+  }, []);
 
   const copy = async () => {
     const data = await actions.exportRun();
@@ -57,8 +79,39 @@ export function ExportButtons({ actions, label }: { actions: WatchActions; label
           <Icon name="copy" size={16} /> Copy the playtest
         </button>
         <button type="button" className="w-secondary" onClick={saveFile}>
-          <Icon name="download" size={16} /> Save it as a file
+          <Icon name="download" size={16} /> Download this run
         </button>
+        <button
+          type="button"
+          className="w-secondary"
+          disabled={sending}
+          onClick={async () => {
+            setSending(true);
+            try {
+              const run = await actions.exportRun();
+              onSend?.();
+              gameLabs.watch.openSendDialog({ getRun: () => run });
+            } catch {
+              setStatus('This run could not be prepared. Please try again.');
+            } finally {
+              setSending(false);
+            }
+          }}
+        >
+          Send this run to the notebook
+        </button>
+        <label className="w-note">
+          <input
+            type="checkbox"
+            checked={eventsOn}
+            onChange={(event) => {
+              gameLabs.watch.setEventsOff(!event.target.checked);
+              setEventsOn(gameLabs.watch.eventsOn);
+            }}
+          />{' '}
+          Anonymous play events
+        </label>
+        <a href="https://human.adamwhite.work/lab/privacy/">Lab privacy</a>
       </div>
       {status ? (
         <p className="w-note" role="status">

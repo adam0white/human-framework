@@ -27,38 +27,47 @@ export function GoalCard(props: {
         <p className="eyebrow">{day3 ? 'Day 3' : 'Day 1 · 05:00'}</p>
         <h2 id="goal-card-title">Twice at the Well</h2>
         {day3 && props.text && <p className="goal-card-storm">{props.text}</p>}
-        <p className="goal-card-sides">
-          Two copies of one village hear every order you give. <b>Classic</b> units obey. <b>Human</b> people
-          weigh your order against their own needs, duties and trust in you, and may say no.
-        </p>
-        {storm && !day3 && (
-          <p className="goal-card-storm">
-            A storm arrives at <b>{dayClock(storm.minute)}</b>.
-          </p>
-        )}
-        <ol className="goal-card-goals">
-          {(props.frame?.goals ?? []).map((g) => (
-            <li key={g.id}>
-              <b>{g.label}</b>
-              <span>
-                {g.target} · by {dayClock(g.deadlineMinute)}
-              </span>
-            </li>
-          ))}
-        </ol>
-        <p className="muted small">
-          Both villages are scored on the same goals. Pick a villager, then a place, then Confirm.
+        <p className="goal-card-goal">
           {day3
-            ? ''
-            : ' Suggestions on the clock set up the story and name their risk; following only them will not roof the Human house. Your own orders can.'}
-          {props.autoPause ? ` The game pauses for ${pauses}.` : ''}
-          <span className="keys-hint"> Space pauses.</span>
+            ? 'Finish the store-room and keep everyone alive.'
+            : 'Roof the house, store 12 meals and keep everyone alive before the storm.'}
         </p>
+        <p>Choose a villager and place, then Confirm.</p>
+        <button type="button" className="btn btn-play" ref={play} onClick={props.onPlay}>
+          Play
+        </button>
+        <details className="goal-card-context">
+          <summary>More about the village</summary>
+          <p className="goal-card-sides">
+            Two copies of one village hear every order you give. <b>Classic</b> units obey. <b>Human</b>{' '}
+            people weigh your order against their own needs, duties and trust in you, and may say no.
+          </p>
+          {storm && !day3 && (
+            <p className="goal-card-storm">
+              A storm arrives at <b>{dayClock(storm.minute)}</b>.
+            </p>
+          )}
+          <ol className="goal-card-goals">
+            {(props.frame?.goals ?? []).map((g) => (
+              <li key={g.id}>
+                <b>{g.label}</b>
+                <span>
+                  {g.target} · by {dayClock(g.deadlineMinute)}
+                </span>
+              </li>
+            ))}
+          </ol>
+          <p className="muted small">
+            Both villages are scored on the same goals. Pick a villager, then a place, then Confirm.
+            {day3
+              ? ''
+              : ' Suggestions on the clock set up the story and name their risk; following only them will not roof the Human house. Your own orders can.'}
+            {props.autoPause ? ` The game pauses for ${pauses}.` : ''}
+            <span className="keys-hint"> Space pauses.</span>
+          </p>
+        </details>
         <div className="goal-card-actions">
           <AutoPauseToggle on={props.autoPause} onChange={props.onAutoPause} />
-          <button type="button" className="btn btn-play" ref={play} onClick={props.onPlay}>
-            Play
-          </button>
         </div>
       </section>
     </div>

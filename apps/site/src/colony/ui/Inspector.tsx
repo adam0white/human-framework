@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import type { TermFamily, TrustView, WhyBreakdown, WhyOption } from '../sim/human-side.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { type Frame, NO_CONCEPT } from './contract.ts';
+import { needDescription, trustDescription } from './descriptions.ts';
 import { Icon, NoConcept } from './Icon.tsx';
 import { saysIt } from './Pane.tsx';
 import { Portrait, ROLE_LABEL } from './parts.tsx';
@@ -43,56 +44,26 @@ const VERDICT_LABEL: Record<string, string> = {
 /** Terms that round to zero say nothing ("belonging 0.00"); they are left out of bars and lists. */
 const visible = (o: WhyOption) => o.terms.filter((t) => Math.abs(t.value) >= 0.005);
 
-function OptionBar({ option, scale }: { option: WhyOption; scale: number }) {
+function OptionBar({ option }: { option: WhyOption }) {
   const terms = visible(option);
-  const pos = terms.filter((t) => t.value > 0);
-  const neg = terms.filter((t) => t.value < 0);
-  const pct = (v: number) => `${((Math.abs(v) / scale) * 50).toFixed(2)}%`;
   return (
     <li className={`why-option ${option.chosen ? 'is-chosen' : ''}`}>
       <div className="why-option-head">
         <span>
-          {option.chosen && <span className="chosen-dot" title="chosen" />}
+          {option.chosen ? 'Chose: ' : 'Considered: '}
           {option.label}
         </span>
-        <span className="why-utility">{option.utility.toFixed(2)}</span>
       </div>
       {option.vetoed && (
         <p className={`veto veto-${option.vetoed.kind}`}>
           {option.vetoed.kind === 'willNot' ? 'Will not' : 'Cannot'}: {option.vetoed.reason}
         </p>
       )}
-      <div
-        className="why-bar"
-        role="img"
-        aria-label={terms.map((t) => `${t.label} ${t.value.toFixed(2)}`).join(', ')}
-      >
-        <div className="why-neg">
-          {neg.map((t) => (
-            <span
-              key={t.source}
-              style={{ width: pct(t.value), background: FAMILY_VAR[t.family] }}
-              title={`${t.label} ${t.value.toFixed(2)}`}
-            />
-          ))}
-        </div>
-        <div className="why-zero" />
-        <div className="why-pos">
-          {pos.map((t) => (
-            <span
-              key={t.source}
-              style={{ width: pct(t.value), background: FAMILY_VAR[t.family] }}
-              title={`${t.label} +${t.value.toFixed(2)}`}
-            />
-          ))}
-        </div>
-      </div>
       <p className="why-terms">
         {terms.map((t) => (
           <span key={t.source}>
             <i style={{ background: FAMILY_VAR[t.family] }} />
-            {t.label} {t.value > 0 ? '+' : ''}
-            {t.value.toFixed(2)}
+            {t.label}: {t.value > 0 ? 'draws them toward this' : 'holds them back'}
           </span>
         ))}
       </p>
@@ -103,23 +74,16 @@ function OptionBar({ option, scale }: { option: WhyOption; scale: number }) {
 export function TrustMeter({ trust }: { trust: TrustView }) {
   return (
     <div className="trust">
-      <div className="trust-head">
-        <span>Trust in you</span>
-        <strong>{Math.round(trust.value * 100)}%</strong>
-      </div>
-      <div className="trust-track">
-        <span style={{ width: `${trust.value * 100}%` }} />
-      </div>
+      <p>
+        Trust in you: <strong>{trustDescription(trust.value)}</strong>
+      </p>
       {trust.history.length === 0 ? (
         <p className="muted small">Nothing has moved it today.</p>
       ) : (
         <ul className="trust-history">
           {trust.history.slice(0, 3).map((e) => (
             <li key={`${e.minute}-${e.label}`}>
-              <span className={e.delta >= 0 ? 'up' : 'down'}>
-                {e.delta >= 0 ? '+' : ''}
-                {Math.round(e.delta * 100)}
-              </span>
+              <span className={e.delta >= 0 ? 'up' : 'down'}>{e.delta >= 0 ? 'Reassured' : 'Less sure'}</span>
               {e.label}
             </li>
           ))}
@@ -178,15 +142,6 @@ export function Inspector(props: {
       opener?.focus?.();
     };
   }, [onClose]);
-  const scale = Math.max(
-    0.5,
-    ...(why?.options ?? []).map((o) =>
-      Math.max(
-        o.terms.filter((t) => t.value > 0).reduce((s, t) => s + t.value, 0),
-        -o.terms.filter((t) => t.value < 0).reduce((s, t) => s + t.value, 0),
-      ),
-    ),
-  );
   const families = [...new Set((why?.options ?? []).flatMap((o) => visible(o).map((t) => t.family)))];
   return (
     <dialog
@@ -252,10 +207,7 @@ export function Inspector(props: {
               {hv.needs.map((n) => (
                 <div className={`need ${n.urgent ? 'is-urgent' : ''}`} key={n.id}>
                   <span>{n.label}</span>
-                  <span className="need-track">
-                    <span style={{ width: `${Math.round(n.value * 100)}%` }} />
-                  </span>
-                  <span className="need-n">{Math.round(n.value * 100)}</span>
+                  <span className="need-description">{needDescription(n.id, n.value)}</span>
                 </div>
               ))}
               <p className="emotion">
@@ -283,7 +235,7 @@ export function Inspector(props: {
                 <p className="narration">{why.narration}</p>
                 <ol className="why-options">
                   {why.options.slice(0, 3).map((o) => (
-                    <OptionBar key={o.affordanceId} option={o} scale={scale} />
+                    <OptionBar key={o.affordanceId} option={o} />
                   ))}
                 </ol>
                 {families.length > 0 && (
@@ -309,8 +261,16 @@ export function Inspector(props: {
                       {why.deltas.map((d) => (
                         <tr key={d.need}>
                           <td>{d.need}</td>
-                          <td>{d.advertised.toFixed(2)}</td>
-                          <td>{d.believed.toFixed(2)}</td>
+                          <td>
+                            {d.advertised > 0 ? 'May help' : d.advertised < 0 ? 'May strain' : 'No change'}
+                          </td>
+                          <td>
+                            {d.believed > 0
+                              ? 'Expects relief'
+                              : d.believed < 0
+                                ? 'Expects strain'
+                                : 'Expects no change'}
+                          </td>
                         </tr>
                       ))}
                     </tbody>

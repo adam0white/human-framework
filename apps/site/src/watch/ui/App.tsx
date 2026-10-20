@@ -14,7 +14,7 @@
  */
 import { useEffect, useRef, useState } from 'react';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
-import { gameLabs, LabControls } from '../../shared/lab.tsx';
+import { gameLabs } from '../../shared/lab.tsx';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Moment } from '../sim/moments.ts';
@@ -113,6 +113,13 @@ export function App() {
   }, [menu, actions]);
 
   const phase = frame?.phase;
+  const labScreen = !phase ? null : phase === 'goal' ? 'title' : phase === 'fallen' ? 'ending' : 'play';
+  useEffect(() => {
+    if (!labScreen) return;
+    gameLabs.watch.screen(labScreen);
+    if (labScreen === 'play') gameLabs.watch.milestone('run started');
+    if (labScreen === 'ending') gameLabs.watch.milestone('ending reached');
+  }, [labScreen]);
   useEffect(() => {
     if (phase !== 'dusk' && phase !== 'goal') {
       setSelectedState(null);
@@ -175,17 +182,9 @@ export function App() {
 
   return (
     <div className={`watch phase-${frame.phase}${frame.slowed ? ' is-slowed' : ''}`}>
-      <LabControls
-        lab={gameLabs.watch}
-        screen={frame.phase === 'goal' ? 'title' : frame.phase === 'fallen' ? 'ending' : 'play'}
-        onSend={async () => {
-          const run = await actions.exportRun();
-          gameLabs.watch.openSendDialog({ getRun: () => run });
-        }}
-      />
       <header className="w-top">
-        <a className="w-home" href="/" aria-label="Human Framework home">
-          HF
+        <a className="w-home" href="/games/" aria-label="All games">
+          All games
         </a>
         <div className="w-title">
           <h1>The Night Watch</h1>
@@ -221,12 +220,12 @@ export function App() {
         <button
           type="button"
           className="w-chronicle"
-          aria-label="Chronicle"
+          aria-label="Game menu"
           aria-expanded={menu}
           onClick={() => setMenu((m) => !m)}
         >
           <Icon name="book-open" size={18} />
-          <span>Chronicle</span>
+          <span>Game menu</span>
         </button>
         <FullscreenButton className="w-fs" />
       </header>
@@ -327,7 +326,7 @@ function whereWords(w: FrameWatcher, phase: Frame['phase']): string {
   return `${posted} · ${stands}`;
 }
 
-function GoalPage({
+export function GoalPage({
   frame,
   actions,
   shelf,
@@ -366,21 +365,7 @@ function GoalPage({
           <p className="w-note">Or begin a new chronicle below.</p>
         </div>
       ) : null}
-      <p className="w-kicker">The chronicle opens</p>
       <h2>Bring every soul and the granary to the thaw.</h2>
-      <p>
-        You are the Keeper. At dusk the scout tells you what is coming; you post the watchers. At night you
-        carry the lantern to one stretch of wall, and only there can you see what comes. The bell hangs over
-        the Gate and its rope runs the length of the wall-walk, so you can pull it from anywhere: it wakes and
-        calls back everyone who hears it, loudest near the Gate. Your own voice carries only from your lantern
-        to the next stretch. Every pull wears the rope, and a snapped rope leaves the bell silent.
-      </p>
-      <p className="w-note">
-        The watchers are people. Tired, frightened or worried for home, they may not stand where you put them.
-        Ask leaves it to them; urge leans on them; insist can get them there under protest, and wins you no
-        goodwill when it goes well.
-      </p>
-      <Sacks have={frame.grain} lost={0} label="The granary is full" />
       <button
         type="button"
         className={saved ? 'w-secondary' : 'w-primary'}
@@ -388,11 +373,27 @@ function GoalPage({
       >
         {saved ? 'Begin anew: go up to the wall' : 'Go up to the wall'}
       </button>
+      <details className="w-about">
+        <summary>About keeping watch</summary>
+        <p>
+          You are the Keeper. At dusk the scout tells you what is coming; you post the watchers. At night you
+          carry the lantern to one stretch of wall, and only there can you see what comes. The bell hangs over
+          the Gate and its rope runs the length of the wall-walk, so you can pull it from anywhere: it wakes
+          and calls back everyone who hears it, loudest near the Gate. Your own voice carries only from your
+          lantern to the next stretch. Every pull wears the rope, and a snapped rope leaves the bell silent.
+        </p>
+        <p className="w-note">
+          The watchers are people. Tired, frightened or worried for home, they may not stand where you put
+          them. Ask leaves it to them; urge leans on them; insist can get them there under protest, and wins
+          you no goodwill when it goes well.
+        </p>
+      </details>
+      <Sacks have={frame.grain} lost={0} label="The granary is full" />
     </div>
   );
 }
 
-function DuskPanel({
+export function DuskPanel({
   frame,
   actions,
   selected,
@@ -411,14 +412,17 @@ function DuskPanel({
 }) {
   const sel = selected ? frame.watchers.find((w) => w.id === selected) : undefined;
   const reads = selected ? frame.postingReads?.[selected] : undefined;
-  const posts = frame.sections.reduce((n, s) => n + s.posts.length, 0);
-  const count = frame.watchers.length;
   return (
     <div className="w-dusk">
       <p className="w-warning">
         <Icon name="sunrise" size={18} /> {frame.warning}
       </p>
-      {frame.winter ? <WinterNote frame={frame} /> : null}
+      {frame.winter ? (
+        <details className="w-about">
+          <summary>This winter</summary>
+          <WinterNote frame={frame} />
+        </details>
+      ) : null}
       {frame.day && frame.day.lines.length > 0 ? (
         // Opened when someone arrived, so a new name on the roster is explained as it appears (owner's playtest).
         <details className="w-day" open={frame.day.lines.some((l) => l.came)}>
@@ -433,10 +437,14 @@ function DuskPanel({
       <p className="w-hint">
         {sel
           ? `Where should ${sel.name} stand? Tap a post on the wall or a stretch below.`
-          : `Tap a watcher, then a post. ${count < posts ? 'There are more posts than watchers: some wall stands empty.' : 'Every post can be held.'}`}
+          : 'Tap a watcher, then a post.'}
       </p>
       {sel ? (
         <div className="w-postcard">
+          <p className="w-note">
+            Ask leaves it to them; urge leans on them; insist can get them there under protest. Tired or
+            frightened watchers may leave their post.
+          </p>
           <fieldset className="w-presses">
             <legend>
               How hard do you press {sel.name}?
@@ -550,7 +558,7 @@ function MomentCard({ m, actions, onLet }: { m: Moment; actions: WatchActions; o
   );
 }
 
-function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) {
+export function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) {
   const walking = frame.lit === null;
   const off = frame.watchers.filter((w) => w.post === null);
   // A card the Keeper let be is put away here; it runs out in the night on its own.
@@ -588,6 +596,9 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
           </button>
         ))}
       </div>
+      <p className="w-note">
+        Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.
+      </p>
       <div className="w-bell">
         <button
           type="button"
@@ -598,6 +609,10 @@ function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions })
           <Icon name="bell" size={20} />
           <span>{frame.bellSwinging ? 'The bell is still swinging' : 'Ring the bell'}</span>
         </button>
+        <p className="w-note">
+          Pull from anywhere. The bell calls back those who hear it, loudest at the Gate. Every pull wears the
+          rope; a snapped rope leaves it silent.
+        </p>
         <div className="w-ropebox">
           <span className="w-bellread">{frame.bellRead ?? '\u00a0'}</span>
           <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />

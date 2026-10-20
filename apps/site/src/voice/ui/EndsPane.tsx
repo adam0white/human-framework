@@ -1,6 +1,8 @@
 /** His ends (voice.md §3): things he holds, in his words, as his record. Not points; no pass or fail. */
+
 import { memo } from 'react';
 import type { EndView, UnaskedItem } from '../protocol.ts';
+import { storyDates } from './dates.ts';
 import { Icon } from './Icon.tsx';
 import { Meter } from './parts.tsx';
 
@@ -39,7 +41,7 @@ export function UnaskedStrip({
                 <Icon name={u.state === 'yes' ? 'check' : 'x'} label={UNASKED_MARK[u.state].word} />
               )}
             </span>
-            {u.day && <span className="v-unasked-day"> ({u.day})</span>}
+            {u.day && <span className="v-unasked-day"> ({storyDates(u.day)})</span>}
           </li>
         ))}
       </ul>
@@ -53,9 +55,9 @@ export function EndsList({ ends, compact = false }: { ends: EndView[]; compact?:
       {ends.map((e) => (
         <li key={e.id} className={`v-end v-end-${e.id}`}>
           <p className="v-end-label">“{e.label}”</p>
-          <p className="v-end-status">{e.status}</p>
+          <p className="v-end-status">{storyDates(e.status)}</p>
           {e.progress !== undefined && <Meter value={e.progress} label={e.label} />}
-          {!compact && <p className="v-end-detail">{e.detail}</p>}
+          {!compact && <p className="v-end-detail">{storyDates(e.detail)}</p>}
           {!compact && e.after && (
             <p className="v-end-after">
               <span>Without you</span> {e.after}

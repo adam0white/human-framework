@@ -4,6 +4,7 @@
  */
 import { memo, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { BeatKind, LogEntry } from '../protocol.ts';
+import { storyDates } from './dates.ts';
 import { BEAT_ICON, Icon, TONE_ICON, TONE_WORD, VOICE_ICON } from './Icon.tsx';
 import { toneClass, VOICE_COLOURS, VOICE_NAMES } from './parts.tsx';
 
@@ -108,7 +109,7 @@ export const DayLog = memo(function DayLog({
                       <span className="v-sr">: </span>
                     </span>
                   )}
-                  {e.text}
+                  {storyDates(e.text)}
                   {count > 1 && to ? <span className="v-log-span"> · until {to}</span> : null}
                   {count === 1 && e.until && e.kind === 'act' ? (
                     <span className="v-log-span"> · until {e.until}</span>
@@ -136,8 +137,10 @@ export const DayLog = memo(function DayLog({
                     className="v-log-btn"
                     onClick={() => e.decisionId && onWhy(e.decisionId)}
                     title="Why?"
+                    aria-pressed={e.decisionId === selected}
                   >
                     {body}
+                    <span className="v-log-why">Why?</span>
                   </button>
                 ) : (
                   <div className="v-log-btn">{body}</div>
