@@ -89,7 +89,7 @@ describe('Well stable order controls', () => {
         onSkip: vi.fn(),
       }),
     );
-    expect(node.querySelector('.nudge-head .btn')?.textContent).toBe('Use');
+    expect(node.querySelector('.nudge-head .btn')?.textContent).toBe('Review order');
     expect(node.querySelector('.nudge-head .nudge-text')?.textContent).toBe(nudge.text);
     expect(node.querySelector('.nudge-head .nudge-order')?.textContent).toBe('Idris → Cedar');
     expect(node.querySelector('.nudge-head .nudge-reason')?.textContent).toBe(nudge.reason);
@@ -116,7 +116,7 @@ describe('Well stable order controls', () => {
       }),
     );
     expect(node.querySelector('.nudge-availability')?.textContent).toBe(
-      'Availability may have changed. Use to check the current forecast.',
+      'Availability may have changed. The person can still refuse or wait.',
     );
   });
 

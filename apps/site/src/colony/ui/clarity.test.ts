@@ -78,7 +78,7 @@ describe('Well first-minute clarity', () => {
     expect(el.querySelector('.order-options')?.textContent).toContain('may cost trust');
   });
 
-  it('teaches suggestions at arrival and makes Use preparation explicit', () => {
+  it('teaches suggestions at arrival and makes danger review explicit', () => {
     const nudge = NUDGES[0];
     if (!nudge) throw new Error('missing suggestion');
     const el = render(
@@ -92,11 +92,12 @@ describe('Well first-minute clarity', () => {
       }),
     );
     expect(el.querySelector('.nudge-help')?.textContent).toBe(
-      'Use fills an order. Confirm sends it. You can skip or choose your own.',
+      'Review the order, then Confirm sends it. You can skip or choose your own.',
     );
     const source = readFileSync(sourcePath('App.tsx'), 'utf8');
     expect(source).toContain('<details');
-    expect(source).toContain('Use prepares; Confirm sends.');
+    expect(source).toContain('Review, then Confirm.');
+    expect(source).toContain('Send in one tap.');
     const css = readFileSync(sourcePath('colony.css'), 'utf8');
     for (const match of css.matchAll(/\.nudge-slot\s*\{([^}]+)\}/g)) {
       expect(match[1]).not.toContain('fixed');

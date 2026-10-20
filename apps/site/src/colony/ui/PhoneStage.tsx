@@ -16,6 +16,7 @@ import {
   PLACE_LABEL,
   SuggestionCard,
   shortName,
+  suggestionNeedsReview,
 } from './parts.tsx';
 
 /** Phone presentation only. Orders still pass through the same callbacks and simulation. */
@@ -81,6 +82,8 @@ type View = 'tools' | 'order' | 'worker' | 'place' | 'options' | 'suggestion' | 
 export function PhoneSheet(props: {
   stageRoot: RefObject<HTMLElement | null>;
   onSceneHeight(height: number): void;
+  onWatch?(): void;
+  shownSide?: 'classic' | 'human';
   placeRequest?: number;
   onScenePlace?(place: PlaceId): void;
   onShowNews?(news: HurtNews): void;
@@ -196,8 +199,10 @@ export function PhoneSheet(props: {
   function prepareSuggestion(n: Nudge) {
     controller.current?.close();
     props.onUse(n);
-    props.onOrdering(true);
-    controller.current?.open({ id: 'order', height: 'half', openerSelector: '#well-give-order' });
+    if (suggestionNeedsReview(n, props.frame)) {
+      props.onOrdering(true);
+      controller.current?.open({ id: 'order', height: 'half', openerSelector: '#well-give-order' });
+    }
   }
   const title = {
     tools: 'Village actions',
@@ -438,6 +443,7 @@ export function PhoneSheet(props: {
               }}
               onKeepWatching={() => {
                 props.onKeepWatching();
+                props.onWatch?.();
                 close();
               }}
             />
@@ -446,6 +452,7 @@ export function PhoneSheet(props: {
             <>
               <HurtLine
                 news={props.frame?.news ?? []}
+                {...(props.shownSide ? { shownSide: props.shownSide } : {})}
                 onShow={props.onShowNews ?? (() => {})}
                 {...(props.onRestNews ? { onRest: props.onRestNews } : {})}
               />
@@ -458,6 +465,7 @@ export function PhoneSheet(props: {
             type="button"
             onClick={() => {
               if (view === 'suggestion') props.onKeepWatching();
+              props.onWatch?.();
               close();
             }}
           >
@@ -465,7 +473,7 @@ export function PhoneSheet(props: {
           </button>
           {view === 'suggestion' && nudge && (
             <button type="button" onClick={() => prepareSuggestion(nudge)}>
-              Use suggestion
+              {suggestionNeedsReview(nudge, props.frame) ? 'Review order' : 'Send order'}
             </button>
           )}
           {view !== 'suggestion' && (
