@@ -1,0 +1,184 @@
+# Twice at the Well — Bram, free stop
+
+## Session
+
+- Persona: Bram, 35, warehouse shift lead. Plays Mini Motorways, RimWorld on PC and Bad North. Likes quick orders and watching people carry them out. Curious, at home in the evening with a phone.
+- URL: https://human.adamwhite.work/colony/
+- Date: 2026-10-20. No build identifier encountered.
+- Device: 360×690 CSS px, touch emulation, light mode, default text size. One post-stop look at 1280×800.
+- Access: supplied `npm run lab:play` driver, port 43511, PID 62656. Only normal visible controls, screenshots and documented driver operations used. Driver killed by exact PID after the desktop look.
+- Limits: floor 0, ceiling 25 real minutes. First usable screen is elapsed 0.487 s. Play stopped at elapsed 386.703 s (6m 26.7s); game clock last observed D2 21:00. The desktop observation ended at 398.185 s, D2 22:05. These are separate from play.
+- Source boundary: read the assignment brief and its two permitted documents. No game source, tests, other repository documents, prior reports, internal state or hidden/debug APIs inspected. No telemetry submission, run sending or consent changes. No export downloaded.
+- Evidence: screenshots and driver-written `wall-clock.jsonl` in `well-free1-shots/` beside this report. The diary below copies the reactions recorded during play; visible answers are separately identified. The driver log was not read back to explain the game.
+- Timing qualification: the first-minute note was recorded at 65.352 s, about five seconds late. Its table below uses only observations reached before 60 s. A 20-second driver wait at about 129 s outlasted the shell's first output window; its response was not captured in this transcript. The wait ran normally; the next screenshot worked. No driver block occurred.
+
+## First minute
+
+Original checkpoint reaction, verbatim, at 65.352 s:
+
+> I need the roof finished and twelve meals before Day 2 at 19:00, with everyone alive. Play, Choose person, the people and place labels, tabs and speed controls look tappable; I used the worker list and House. Human is selected, Tariq is selected and building, and the roof count and storm deadline draw me first. Yusuf would build after Fajr and then said on it; Maryam would not leave cooking because others would go unfed. I can leave Tariq building or send him elsewhere. My first real choice was choosing a worker at about thirteen seconds and Yusuf at eighteen seconds; House was offered at eighteen and ordered at twenty-one. I learned that these people can defer or refuse and that some already work without my orders. I have not opened help. I am curious whether my orders actually improve anything.
+
+The checkpoint request supplied `D1 09:00` as its clock estimate; the preceding live reply actually showed D1 09:52. Neither that later roof count nor any later discovery contributes to the statuses below.
+
+| Item | Status | Evidence available by 60 seconds |
+|---|---|---|
+| DL-1 A reason to act | PASS | Finish the roof, store twelve meals and keep everyone alive before the storm. The opening states this; the state strip gives Day 2 19:00. |
+| DL-2 What can I touch | PASS for the first-minute interactions | Play, Choose person, worker buttons, place buttons, tabs and speeds looked actionable. Used the worker list and House. No inert target tried before 60 s. Direct person selection on the scene remained untested at this checkpoint. See the later accidental order below. |
+| DL-3 Urgency and selection | PASS | Roof and storm deadline drew attention first. Human tab had the selected outline; selected Maryam had an orange scene label in screenshot 03. Tariq's status then said Building. The suggestion competed for attention and slowed the clock. |
+| DL-4 Why the limit | PASS for reasons encountered | Yusuf: “Later: after I pray Fajr,” followed by “on it.” Maryam: “Will refuse: the others would go unfed,” then later “after I eat a meal.” These made the immediate reason understandable. Did not establish every possible recovery condition. Confirm was also disabled until a place was chosen. |
+| DL-5 Readable situation | PASS | Could leave Tariq building, assign another place, or decline the cedar suggestion. Maryam's Cooking and Tariq's Building explained work already underway. |
+| DL-6 A choice soon | PASS | Play available on the first screen; worker-list entry available at 6.552 s. Worker alternatives actually seen at 13.465 s; first worker choice, Yusuf, at 18.297 s. House alternatives appeared then; first work order at 21.213 s. This was within 30 s and followed the short opening instruction. |
+| DL-7 Learn by doing | PASS for reached interactions | Inspected three workers, issued one work order, and declined one suggestion by 60 s. Yusuf deferred then accepted; Maryam was already cooking; Tariq already building. Cedar explicitly warned of injury. No help opened. Other interactions, including insistence, rushing and injury response, were NOT TESTED in the first minute. |
+
+Screenshots 01–04 support the first-minute visual observations. No later knowledge upgrades this checkpoint.
+
+## Verbatim diary
+
+Times are real elapsed seconds from the driver. Reactions remain in their original wording, including guesses and misunderstandings. Game times below come from visible replies when captured, rather than treating the request's clock estimate as exact. A screenshot can precede the reply's clock by a small amount.
+
+| Elapsed | Input / visible answer | Verbatim reaction |
+|---:|---|---|
+| 0.487 | Open. D1 05:00, paused; opening goal and Play. | I want to see who needs orders and what we are building. |
+| 3.413 | Shot 01, opening. | Play is the obvious start. I need a roof and twelve meals before the storm. |
+| 6.552 | Play. Running, 8 min/s. | Let us get the roof crew moving. |
+| 10.024 | Shot 02. D1 05:29; roof 2/10, meals 0/12. | The people and buildings look like the things to tap. The Human tab is selected and the storm deadline is above the map. |
+| 13.465 | Choose person. Worker sheet; suggestion pending, 1 min/s. | I will pick someone for the roof first. |
+| 18.297 | Yusuf. Walking to Masjid; House: later after Fajr. | Yusuf can take the house job if he is free. |
+| 21.213 | House. “Order given to both villages: Yusuf → House”; later after Fajr. | After prayer is fine. I expect this to put the roof job in his queue. |
+| 24.383 | Order options · Yusuf. D1 06:07; House: on it, meals 4. | That answered immediately. I want to put someone else on food while he is away. |
+| 27.167 | Worker · Yusuf. Worker list; meals 2. | Worker should let me swap to Maryam. |
+| 30.458 | Maryam. Cooking; refuses work that would leave others unfed. | Meals are already being eaten. Let me keep the kitchen working. |
+| 33.258 | Shot 03. Maryam Eating; roof 3/10, meals 4. | She is already cooking, so I should leave her there. The refusal reasons help me avoid wrecking the food supply. |
+| 36.733 | Order options · Maryam. | The place buttons cover most of the map, but the roof and deadline are still readable. I want another builder. |
+| 39.680 | Worker · Maryam. Worker list. | Changing workers takes a couple of menus. I could probably tap them directly instead. |
+| 42.606 | Tariq. Building; House: already building, keeps him at it. | Let us see if Tariq is available to build too. |
+| 46.715 | Suggestion. Idris → Cedar; three timber, injury risk; lapses 09:00. | He is already building. I want to hear what this suggestion is before I interrupt anyone else. |
+| 49.877 | Shot 04. Cedar suggestion. | Three timber sounds useful, but keep everyone alive was the brief. I am not taking an injury risk just for speed yet. |
+| 53.200 | Skip suggestion. Running 8 min/s. | No cedar for now. I want ordinary timber without hurting Idris. |
+| 65.304 | Wait 3 s. D1 09:52, roof 4/10. | I am watching the builders for a moment before moving anyone else. |
+| 65.352 | First-minute log. | Full original reaction is quoted in First minute above. |
+| 69.879 | Choose place. Opens place list. | I want the map clear enough to pick Idris directly. |
+| 73.394 | Watch village. Sheet closes; Tariq remains selected, Eating. | Watch village sounds like it will clear these order labels. |
+| 78.520 | Tap x151 y295 near Idris in screenshot 05. Instead: Tariq → Masjid, waiting. | There is Idris. I will tap the person instead of going back through the worker menu. |
+| 83.844 | Note. | Oops. I tapped Idris under his name and that sent Tariq to Masjid. Watch village did not clear Tariq as the worker. I meant to select Idris, not move my builder. |
+| 84.120 | Order options · Tariq. “It isn’t prayer time. at the next prayer.” | I need to put Tariq back on the roof. |
+| 87.668 | Place · Choose. | House again. |
+| 87.947 | House. Preview: build the house, Likely yes. | I want him building, as before. |
+| 92.172 | Confirm. Tariq → House, waiting. | Back on the roof. That is a lot of taps to undo my map mistake. |
+| 92.509 | Suggestion. Maryam → Forest; will refuse, others would go unfed. | What is the new suggestion? |
+| 98.201 | Skip suggestion. Tariq House on it; meals 12. | Why suggest dragging the cook into the forest when she says people will go unfed? I will leave her alone. |
+| 98.447 | Tap state strip. Expands goal explanation; meals 11. | I want to know what the roof still needs, not move the cook. |
+| 103.101 | Classic · obey. Roof 7/10, meals 6. | I have barely changed the jobs. I want to see whether the other village is doing better with those same orders. |
+| 106.879 | Human · decide. Roof 6/10, meals 13. | Classic has more roof but fewer meals. That comparison is interesting; I would rather keep the people fed. |
+| 111.734 | Order options · Tariq. House: later, when there’s timber. | We are over the meal target. I want Idris gathering ordinary timber so the builders can finish. |
+| 111.928 | Worker · Tariq. | I will use the list this time so I do not send another accidental order. |
+| 115.231 | Idris. Walking to Forest; House: can't, needs a builder. | The builder is waiting for timber, so this should matter. |
+| 122.529 | Note. Shot 07 showed Idris already gathering timber. | Idris is already gathering timber too. Most of the useful jobs seem to happen without me. I am still interested in seeing the roof get done, but right now my safest order is to leave everyone alone. |
+| 122.747 | 2×. Running 16 min/s, roof 7/10. | I will speed up because the workers are already doing what I want and I want to see the roof result. |
+| Approx. 129 | Wait 20 s. Reply not captured; next operation succeeded. Exact timestamp remains in the driver-written diary. | I am letting Idris bring wood in. I want to see whether Tariq picks up building again on his own. |
+| 172.292 | Shot 08. D1 18:59; roof 7/10, meals 9; Idris Drinking. | Checking whether the timber wait paid off. |
+| 174.988 | Suggestion. Yusuf → House; one more wall before dark. | The roof has stayed at seven. Maybe this suggestion explains what I can do about the shortage. |
+| 179.380 | Send order. Yusuf House: later after Maghrib. | Yes, that is exactly the sort of call I want to make. One more wall before dark, if he can manage it. |
+| 179.427 | Pulse, engagement 3/5. | I like giving a clear useful order, but I have spent much of this stretch checking people who are already doing their jobs. |
+| 197.725 | Wait 15 s. D1 21:44; Yusuf House done, roof 7/10; Idris hurt in squall. | I am giving Yusuf time to pray and get back to the house. I want to see this last wall happen. |
+| 201.906 | Send Idris home. Waiting. | Idris got hurt even though I avoided the cedar. Get him home now. |
+| 202.096 | Shot 09. | I like having the response right on the injury notice. But I thought the storm was tomorrow; I did not expect a squall tonight. |
+| 207.059 | Suggestion. Tariq → Forest; timber short; night squall and trust warning. | I want to know if there is something else I should do for the injured worker. |
+| 211.176 | Shot 10. | Now it says timber is short. Sending another man out into the squall seems like a bad trade after Idris got hurt. |
+| 211.372 | Skip suggestion. Running 16 min/s. | No. They can rest tonight. I will try to get the roof finished in daylight. |
+| 239.821 | Wait 25 s. D2 05:34; Home: can't — I'm asleep; roof 7/10, meals 4. | I am letting the night pass rather than sending people into danger. I want daylight jobs again. |
+| 245.899 | History (5). D2 07:00; roof 8/10. Idris Home: eat, then asleep. Tariq House: will not, “raise the beam with Yusuf.” | Idris now says he cannot go home because he is asleep. I thought he had already gone. I want to check what happened to that order. |
+| 252.093 | Shot 11. Orders sheet. | Home is labelled eat in the history. I wanted rest for an injury. Tariq also says raise the beam with Yusuf, so maybe the last stages need them together. |
+| 252.328 | Watch village. | I want to see the morning suggestion now. |
+| 252.604 | Suggestion. Tariq → Forest; rested, usual small risk of slip. | What can I do to get the last two roof stages done? |
+| 256.652 | Send order. Tariq: later after drinking at well. | Yes. Daylight and rested is what I was waiting for. Tariq can get the timber while Idris recovers. |
+| 262.563 | Collapse state strip. D2 08:47; Forest done; roof 8/10. | I have the deadline now; I am folding this paragraph away so I can see the people. |
+| 282.761 | Wait 20 s. D2 09:19; roof 8/10, meals 7; slow for suggestion. | Watching Tariq get the timber. I want my order to make a visible difference to the roof. |
+| 287.756 | Suggestion. Samira → House; busy with own work, may cost trust. | The timber order is done, but the roof has not moved. What is holding it up now? |
+| 295.067 | Skip suggestion. A suggestion remains pending. | No, I want my builders together, not Samira off her own work. |
+| 295.293 | Order options · Tariq. | Tariq has the timber. I will send him back to the house now. |
+| 295.539 | Place · Choose. | Back to House. |
+| 300.380 | House. Preview: Likely yes. | Let us get both builders on this beam. |
+| 303.142 | Confirm. Tariq House waiting. | This says likely yes, so I expect him to start building again. |
+| 306.303 | Suggestion. New suggestion: Danyal → House, well can wait an hour. Tariq House on it. | I skipped that suggestion. Why are we still crawling at one minute a second? |
+| 310.248 | Review order. Danyal House likely yes; Rush: faster, hungrier. | Another pair of hands sounds useful. I will see the warning before moving him off the well. |
+| 315.294 | Confirm. Danyal House on it. | I will take the extra hunger to get this roof done before the storm. |
+| 339.598 | Wait 20 s. D2 16:22; roof 9/10, meals 8; Danyal House done. | There are more hands on the house now. I am watching for the roof count to change. |
+| 345.013 | Shot 12. D2 16:34, suggestion pending. | One stage left and only a few hours. I want to tell someone to finish it, but I do not know who is holding it up. |
+| 348.668 | Suggestion. Maryam → Kitchen; cannot cook 19:00–03:00. | Please let this be something for the last stage. |
+| 355.098 | Send order. D2 16:48; meals 16/12; Maryam later when store runs low. | Yes, food before the fire goes out. That is a useful warning and I can act on it. |
+| 359.550 | Pulse, engagement 4/5. | The deadline has made this interesting: food is covered now, but there is one roof stage left and I want to get it done. |
+| 365.285 | ½×. Already D2 19:53; Idris hurt in storm, out in open; roof 9/10, meals 9. | I need time to find the builder and read his answer before the storm. I am slowing down. |
+| 369.931 | Send Idris home. Waiting, then on it. | I was too slow and Idris is hurt again. Send him home. I thought I had already done that yesterday. |
+| 374.174 | WANT_QUIT — CONFUSED. | I want to put this down now. I got the meals above target, sent Idris home, and the builder orders said done, but I still have nine roof stages and Idris outside getting hurt again. I cannot tell what done and home actually bought me. |
+| 378.835 | Show Idris. D2 20:47; Home done; injury notice persists. | One last look: did he at least get indoors this time? |
+| 382.045 | Shot 13. D2 21:00; Home done, injury notice dated 19:40. | It says Home done, but the injury notice still says out in the open. I do not know his current safety from that. |
+| 386.703 | STOP — CONFUSED. | I am stopping here. The last check did not clear it up: Home is done but I still cannot tell whether Idris is safe, and I do not know why a done building order leaves the roof unfinished. I would not leave this running unattended. I might return once to try the builders together earlier, but not tonight. |
+| 392.652 | Post-stop resize, 1280×800. D2 21:42. | Post-stop desktop look only; no more play. |
+| 398.185 | Shot 14. Human roof failed 9/10; food met 17; survival open until D3 05:00. | On desktop I can finally see goal verdicts: Human food met, roof failed, everyone lives still open until Day 3 dawn. The phone strip only showed current meals and the old storm deadline. This explains more, but it is after I stopped. |
+
+Shots 05, 06 and 07 also record the clear map, Classic state and Idris's existing timber work. They carried no additional reaction beyond those above.
+
+## Moments, pulses and leaving
+
+Best moment: 348–359 s, the explicit warning that cooking would stop at 19:00, issuing the kitchen order, seeing meals above target, and wanting that last roof stage. Engagement reached 4/5. I cannot attribute the jump to sixteen meals solely to that order: the answer itself said “later, when the store runs low,” and Maryam was already cooking earlier.
+
+Another strong moment: 175–179 s, deciding whether to ask for one more wall before dark. That felt like giving a useful shift instruction with a human condition attached.
+
+Worst moment: 365–386 s, too late to slow the storm approach, another injury to Idris, and uncertainty about what Home and done meant. The injury notice was explicitly timestamped; its persistence does not prove he was still outside at the time of the screenshot. My confusion was about current safety, not proof of a failed movement rule.
+
+Want_quit: one, at 374.174 s, CONFUSED. The follow-up Show Idris did not clear it up. Stopped at 386.703 s for CONFUSED. The floor was zero, so no forced continuation was required. I did continue for that one last look.
+
+Pulse series:
+
+| Elapsed | Engagement | Original reason |
+|---:|---:|---|
+| 179.427 s | 3/5 | I like giving a clear useful order, but I have spent much of this stretch checking people who are already doing their jobs. |
+| 359.550 s | 4/5 | The deadline has made this interesting: food is covered now, but there is one roof stage left and I want to get it done. |
+
+Hard, but kept going: yes, in a narrow sense. At 365.285 s I used ½× because I wanted enough time to inspect a builder before the deadline. I had previously selected 2× voluntarily to watch routine work finish. The slowdown came too late; the storm had already started by its reply. I still sent Idris home and checked him. I did not seek an easier difficulty or an accessibility menu. Driver-mediated reading and action latency contributed to this missed opportunity; it is not evidence that a continuously reading human would also miss it.
+
+I would not leave the game running unattended. I might return once to try coordinating builders earlier. This is a tentative return, not a commitment to finish.
+
+## Clarity findings
+
+These describe what I could reproduce from the visible page. They do not explain the simulation or establish missing rules.
+
+1. **DL-2 / DL-19: selecting a person instead issued a destination order.** In screenshot 05 Idris stands below his name near Masjid. At 78.520 s I tapped x151 y295, intending to select him. The visible answer was “Order given to both villages: Tariq → Masjid.” Tariq remained selected after Watch village. The exact cause of the hit result is unknown. The misunderstanding and resulting order are observed. Correcting it took the order menu, place picker, House and Confirm. This is a later failure, separate from the first-minute pass for the list controls.
+2. **DL-10 / DL-13: I could not map Home and done to the result I wanted.** “Send Idris home” became `Idris → Home`, then “on it,” then “can't — I'm asleep.” History described Home as “eat.” Later another Home order became done while the scene still drew Idris near the forest and retained the dated injury notice. I wanted shelter and recovery; I could not establish whether the command meant either. Screenshots 09, 11 and 13; 201–252 s and 370–386 s. Likewise House orders marked done while the roof remained incomplete. This may mean a finite unit of work, but I did not learn its unit. I do not claim done falsely described its internal task.
+3. **DL-9 / DL-22: the phone view did not tell me the recorded goal outcomes I needed after the deadline.** At stop it still showed `Roof 9 of 10`, current `Meals 8 / 12`, and `Storm Day 2 19:00`. The post-stop desktop view exposed Human roof failed, food met at seventeen meals, and survival open until Day 3 05:00. I had interpreted the falling current meal count as ongoing failure against the food target. Screenshot 13 versus 14. I did not check whether another phone control could expose those verdicts; the finding is that they were absent from the strip and the expanded state explanation I encountered, not that no phone route exists.
+4. **DL-30, desktop only: injury notice clipped in the single post-stop desktop look.** Screenshot 14 shows the narrow left text column ending around `Day 2 · / 21:50 / Tariq / (Huma / n), hurt`, with the lower notice and response buttons cut off by the panel boundary. The driver's full visible-text response supplies the sentence, but the image does not display it in full. This is separate from the phone result.
+
+Other confusion, without claiming a missing rule: I expected the large storm tomorrow and did not anticipate the Day 1 squall. The desktop timeline later named the squall. I did not establish whether an equivalent warning existed on the phone before it happened. Several suggestions invited work the worker would refuse; I treated these as questionable proposals and declined them, rather than evidence that the controls failed.
+
+## Required checks across the session
+
+| Item | Result | Observation and limits |
+|---|---|---|
+| DL-20 English | PASS for acting | Orders, costs, goals and response reasons were in usable English. Fajr, Maghrib and Masjid were names met in prayer context; “after I pray Fajr” made the immediate condition usable without knowing the word's clock definition. I did not need another local unit or term to act. On-request glossary coverage was NOT TESTED. |
+| DL-21 Dates | PASS for deadlines encountered; return-from-break NOT TESTED | D1/D2 times and “Storm Day 2 19:00” let me compare today with tomorrow. Suggestion lapse times also showed relative minutes. Cooking's 19:00–03:00 interval was understandable. Survival's D3 05:00 deadline was first learned after stop on desktop, not established during phone play. No reload or return from a break. |
+| DL-22 Phone response visibility | Mixed: immediate orders PASS; goal outcome context FAIL as described above | Main order, suggestion, injury response and confirmation controls were visible without scrolling in the captured phone views. Roof, meals and storm deadline remained above the sheets. Post-deadline goal verdicts were not conveyed in the strip I used. |
+| DL-30 Nothing cut off | No phone sentence clipping observed in the immediate decision sheets; full coverage NOT TESTED | Screenshots 03, 04 and 10 show complete immediate reasons and reachable actions. History screenshot 11 shows only the first rows and part of the next; older entries require scrolling. I did not scroll this history or establish a clipped essential sentence there. Desktop screenshot 14 has the distinct observed injury-notice clipping described above. |
+| DL-31 State while acting | PASS for roof/meals/storm deadline; survival context NOT TESTED on phone | With cedar, night-work and rush sheets open I could still read roof progress, meals and Day 2 19:00, plus the named subject. Example screenshot 10: roof 7/10, meals 6, storm Day 2 19:00, Tariq → Forest. The reduced map still showed people, though labels crowded it. I did not know the survival deadline while ordering on phone. |
+| DL-32 Something for hands | Availability NOT ESTABLISHED; observed waiting and preference recorded | The longest deliberate uninterrupted wait was 25 real seconds through the night at 2×. I wanted daylight work and chose not to send a worker into the squall. That was voluntary waiting, not a proved absence of acts. There were also 20-second waits for timber/building. Controls remained available; I did not establish that only watching was possible. My 122 s reaction records that useful work already seemed autonomous. No source or scripted availability audit performed. |
+| DL-33 Acts in scene | Mixed | Yusuf's initial House order was a direct place-button act after selecting him; the injury notice sent Home in one tap. Reassigning through Order options opened Worker/Place/Confirm menus. Direct scene selection led to the accidental Masjid order. I did not establish that forms were the only way to order. I wanted quick orders; the menu route felt slow. |
+| DL-13 Acknowledgment | Prompt acknowledgment observed; outcome meaning unclear | Accepted orders immediately showed “Order given to both villages” with waiting/later/on it/done states. The unresolved finding concerns what completion meant, not a missing acknowledgment. |
+| DL-14 Known costs | PASS for encountered decisions | Cedar injury risk, night/trust warning and Rush: faster, hungrier were shown before commitment. I knowingly accepted hunger for Danyal's rush. |
+| DL-15 Time and choice slowdown | Observed working, with instrument limit | Speeds explicitly showed 8, 16 or 4 min/s. Suggestions slowed to 1 min/s and returned to chosen speed after resolving. Multiple choices remained open while I read. The game advanced between operations, so the driver did not freeze it. The later speed reduction came after the deadline; continuous human reading was not replicated. |
+| DL-12 Session boundary | Game end NOT TESTED | Stopped during the storm. Desktop afterward showed survival still open. Did not reach Day 3 dawn or a final result screen. |
+| DL-23, DL-25 | NOT TESTED in full | No hit-area measurement, 320 px viewport, enlarged text or second theme. A successful tap does not prove target dimensions. |
+| DL-24 | No sheet stacking observed; full focus/back behavior NOT TESTED | Worker/place sheets replaced one another; Watch village returned to the scene. |
+| DL-26–29 | NOT TESTED except menu label visible | Game menu was visible. Did not open it, reload, resume, export, send, import or replay. Sending was prohibited. |
+| DL-17–18 | No builder conclusion | I observed person labels, words and desktop morale/trust words. Did not audit the simulation's observability or numerical knowledge. |
+
+## Stop state and post-stop desktop look
+
+At the phone stop: roof 9/10, current meals 8/12, storm deadline already passed, Idris Home done, and a dated injury notice. The game had not ended. I stopped because I could not tell what my apparently completed orders had achieved or what to do next to resolve the unfinished roof and safety concerns.
+
+The one desktop look afterward materially changed what I knew. Both villages and the goal verdicts were visible together. Classic had roof 10/10 and failed food at eleven; Human had roof 9/10 and met food at seventeen. Survival was 6/6 for each and open until D3 05:00. Current meal stocks were different from those deadline counts. This later information must not be read back into my phone decisions or first-minute answers. Time continued advancing during the resize and screenshot; no further gameplay orders were issued. The driver was then killed with `kill 62656`.
+
+## Changes I would want as Bram, ranked
+
+1. Tell me what a completed order achieved: one roof stage, one trip, one meal, or continued work. Make Home's actual purpose clear when I send an injured person there.
+2. Keep the goal verdicts and the survival deadline visible on the phone after the storm starts, as they were on desktop. I want to distinguish stored meals now from the food goal already met.
+3. Make it clear whether a map tap selects a person or orders the currently selected person to a place. I want to change workers without accidentally moving the last one.

@@ -4295,7 +4295,7 @@
    "words": "Yunus was just bitten, but tapping him only gives the same keeping-watch line and I cannot find a way to help or move another guard in.",
    "verdict": "quit",
    "routes": [
-    "fix:watch a way to help a watcher in trouble (open, target 2026-11-03)",
+    "fix:watch a way to help a watcher in trouble (done, HF 0a1c9e1 and 43ba4c8: Send help and Send down, retested at F-350, discoverability open at F-347)",
     "lesson:L22"
    ],
    "source": "docs/lab/reviews/calibration-2026-10-20/a1-watch-20.md"
@@ -4309,7 +4309,7 @@
    "words": "I like that they have their own priorities, but on a lunch break I want an order to stick without chasing it through more sheets. I would not come back on this phone.",
    "verdict": "quit",
    "routes": [
-    "fix:well orders that stick on the phone (open, target 2026-11-03)",
+    "fix:well orders that stick on the phone (done, HF 76d50d5, eee2660, eff7743, 269c50f, retested, follow-ups open at F-352 to F-356)",
     "lesson:L22"
    ],
    "source": "docs/lab/reviews/calibration-2026-10-20/a2-well-20.md"
@@ -4350,7 +4350,7 @@
    "words": "I want to rotate the tired people before they fall asleep, and tapping Tamar only gives me the same nothing-close line.",
    "verdict": "quit",
    "routes": [
-    "fix:watch a verb to relieve, rotate or replace a tired watcher during the night (open, target 2026-11-03)",
+    "fix:watch a verb to relieve, rotate or replace a tired watcher during the night (done, HF 0a1c9e1 and 43ba4c8, retested at F-348 and F-351)",
     "lesson:L19",
     "lesson:L22"
    ],
@@ -4573,6 +4573,164 @@
     "lesson:L19"
    ],
    "source": "goodhands/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-347",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Sam (free stop, live HF site, lab:play, watch-free1)",
+   "words": "Let me find a request to move or wake a watcher from their night account, or tell me there why I cannot. I want to defend the threatened stretch with the people I have.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch night acts discoverable from every watcher's account, or the account says why none is offered (open, target 2026-11-03)",
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/watch-free1.md"
+  },
+  {
+   "id": "F-348",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Sam (free stop, live HF site, lab:play, watch-free2)",
+   "words": "I got a tired watcher off duty without leaving his post empty. Joss drove off a wolf while I handled that. This felt like running a watch, with people carrying out their own work.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/watch-free2.md"
+  },
+  {
+   "id": "F-349",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Sam (free stop, live HF site, lab:play, watch-free2)",
+   "words": "Tell me why a post is unavailable beside the disabled post button. I should not have to guess whether it is full.",
+   "verdict": "-",
+   "routes": [
+    "fix:watch say why a post is unavailable beside the disabled post button (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/watch-free2.md"
+  },
+  {
+   "id": "F-350",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Sam (floor 15, live HF site, lab:play, watch-floor1)",
+   "words": "Tamar can go down with Kian taking over. That is the sort of decision I came for.",
+   "verdict": "keep",
+   "routes": [
+    "fix:watch keep every live answer visible on the phone, including the say-nothing option (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/watch-floor1.md"
+  },
+  {
+   "id": "F-351",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Sam (floor 15, live HF site, lab:play, watch-floor2)",
+   "words": "I would put the phone down here and let the rest of the night run. Mara is holding, but checking people keeps giving me the same answer and I am waiting for the next thing to happen. I would come back at dawn, not abandon the village.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/watch-floor2.md"
+  },
+  {
+   "id": "F-352",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Bram (free stop, live HF site, lab:play, well-free1)",
+   "words": "I cannot tell what done and home actually bought me.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well say what a done order achieved and how long Home keeps a person in (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/well-free1.md"
+  },
+  {
+   "id": "F-353",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Bram (free stop, live HF site, lab:play, well-free1)",
+   "words": "Oops. I tapped Idris under his name and that sent Tariq to Masjid.",
+   "verdict": "-",
+   "routes": [
+    "fix:well a tap on a person standing at a place selects the person, not an order to the place (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/well-free1.md"
+  },
+  {
+   "id": "F-354",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Bram (free stop, live HF site, lab:play, well-free2)",
+   "words": "I sent Idris home last night, and now he is hurt out in the open again. I cannot tell whether my home order wore off or whether shuttering happened. I would put the phone down here.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well say what a done order achieved and how long Home keeps a person in (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/well-free2.md"
+  },
+  {
+   "id": "F-355",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Bram (floor 15, live HF site, lab:play, well-floor1)",
+   "words": "I tapped Send Yusuf home, but the answer says Idris Home. The injury notice changed while I was reading. That makes me nervous about quick orders.",
+   "verdict": "-",
+   "routes": [
+    "fix:well a quick order from a notice keeps the person the notice named when it was read (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/well-floor1.md"
+  },
+  {
+   "id": "F-356",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Bram (floor 15, live HF site, lab:play, well-floor2)",
+   "words": "The game tells me to use Rush, but I cannot find it in Order options even with a full panel and a scroll.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well Rush reachable in the phone order panel, or the advice stops naming it (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/well-floor2.md"
+  },
+  {
+   "id": "F-357",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "playtester",
+   "who": "Sam (control, A Dark Room, protocol 2, adr-free1)",
+   "words": "I would leave this running and do something else now. The camp is working and I am mostly waiting between collections. I still want to buy the second hut before I step away, and I would come back to see it grow.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/adr-free1.md"
+  },
+  {
+   "id": "F-358",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "playtester",
+   "who": "Sam (four Night Watch sessions and one Well session, lab:play)",
+   "words": "Stopping because the driver cannot operate Ring the bell after the required retry. I would have continued and would return to try another night; I have not reached a voluntary quit.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab lab:play refuses a listed enabled control at a phase change, cause unknown, reproduce from the five stops (open, target 2026-11-03)",
+    "fix:lab blind coding of the earliest wish to leave for this retest (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/watchwell-2026-10-20/README.md"
   }
  ],
  "lessons": [
@@ -5179,8 +5337,8 @@
   }
  ],
  "routes": {
-  "fix": 358,
-  "lesson": 260,
+  "fix": 368,
+  "lesson": 264,
   "hf": 12,
   "calibration": 42,
   "none": 1
