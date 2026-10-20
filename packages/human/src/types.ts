@@ -495,6 +495,8 @@ export interface NotedContradiction {
   sourceId: EntityId;
   prop: string;
   at: Minute;
+  /** Testimony weight already applied, 0..1; absent means 1 (heard both accounts directly). */
+  weight?: Unit;
 }
 
 /** Learned expectation of an action's actual result for this person (prediction-error learning). */
@@ -1309,6 +1311,7 @@ export interface Percept {
   /**
    * 2.10.0: on a percept of my own act (`actorId` is the perceiver), the people I saw see it. Each one's believed
    * regard of me moves (`social/impressions.ts`, `noteKnownBy`). Someone present but not listed changes nothing.
+   * The first 8 are read.
    */
   witnesses?: readonly PersonId[];
   /** 2.10.0: on a `told` percept, accounts the teller says another source gave them (at most four). */

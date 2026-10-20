@@ -745,15 +745,16 @@ function perceiveOne(p: Person, pc: Percept): void {
     applyReputationBelief(p, claim.prop, before, credence(p, claim.prop), at);
   }
   // Another source's account, reported by the teller (2.10.0): one source telling two people opposite things.
-  if (pc.channel === 'told' && actor !== undefined && pc.reports) {
+  if (pc.channel === 'told' && actor !== undefined && Array.isArray(pc.reports)) {
     // One trust basis for the whole percept: a report that lowers the reporter's own trust must not reweigh the rest.
     const reporterTrust = trustOf(p, actor);
     for (const r of pc.reports.slice(0, 4))
       applyContradiction(p, { ...r, reporterId: actor, at }, reporterTrust);
   }
   // My own act, seen by others (2.10.0): what I believe they now think of me.
-  if (byMe && pc.witnesses) {
-    for (const w of pc.witnesses) {
+  if (byMe && Array.isArray(pc.witnesses)) {
+    for (const w of pc.witnesses.slice(0, 8)) {
+      if (typeof w !== 'string') continue;
       if (w === p.id) continue;
       const act: KnownAct = { kind: pc.kind };
       if (target !== undefined) act.targetId = target;

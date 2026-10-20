@@ -164,7 +164,8 @@ describe('contradiction of one source', () => {
         for (const e of events) account(p, e.prop);
         for (const e of ordered) {
           const result = contradicted(p, e);
-          expect(result.applied).toBe(true);
+          // A reporter at or below the trust floor carries no weight and records nothing (2.10.0 review).
+          expect(result.applied).toBe(!('reporterId' in e && e.reporterId === 'distrusted'));
           expect(result.after).toBeLessThanOrEqual(result.before);
           expect(result.after).toBeGreaterThanOrEqual(0);
         }
@@ -310,5 +311,54 @@ describe('contradiction review fixes (2.10.0)', () => {
     expect(contradicted(q, { sourceId: 's', prop: 'q', value: false, reporterId: id }).after).toBe(
       contradicted(ordinary, { sourceId: 's', prop: 'q', value: false, reporterId: 'ordinary' }).after,
     );
+  });
+});
+
+describe('contradiction weight per pair (2.10.0 review)', () => {
+  const fresh = () =>
+    createPerson({
+      id: 'p',
+      name: 'P',
+      seed: 17,
+      now: 10,
+      bornAt: -30 * 365 * 1440,
+      sex: 'female',
+      norms: [],
+    });
+  const setup = () => {
+    const p = fresh();
+    seedSourceTrust(p, 'liar', 0.8);
+    seedSourceTrust(p, 'ally', 0.1);
+    seedSourceTrust(p, 'friend', 0.7);
+    seedBelief(p, 'q', { value: true, credence: 0.9, source: 'liar' });
+    return p;
+  };
+
+  it('an untrusted reporter records nothing and cannot shield the source', () => {
+    const p = setup();
+    expect(contradicted(p, { sourceId: 'liar', prop: 'q', value: false, reporterId: 'ally' })).toMatchObject({
+      applied: false,
+      reason: 'untrusted-reporter',
+      after: 0.8,
+    });
+    expect(p.memory.contradictions).toBeUndefined();
+    expect(contradicted(p, { sourceId: 'liar', prop: 'q', value: false }).after).toBeCloseTo(0.6, 12);
+  });
+
+  it('a pair loses trust once, at the strongest weight, whatever the order', () => {
+    const weak = setup();
+    contradicted(weak, { sourceId: 'liar', prop: 'q', value: false, reporterId: 'friend' });
+    const w = weak.memory.contradictions?.[0]?.weight;
+    expect(w).toBe(testimonyWeight(0.7));
+    contradicted(weak, { sourceId: 'liar', prop: 'q', value: false });
+    expect(weak.memory.contradictions?.[0]).not.toHaveProperty('weight');
+    const strong = setup();
+    contradicted(strong, { sourceId: 'liar', prop: 'q', value: false });
+    expect(
+      contradicted(strong, { sourceId: 'liar', prop: 'q', value: false, reporterId: 'friend' }).reason,
+    ).toBe('already-noted');
+    expect(trustOf(weak, 'liar')).toBeCloseTo(trustOf(strong, 'liar'), 12);
+    expect(trustOf(strong, 'liar')).toBeCloseTo(0.6, 12);
+    expect(restore(snapshot(weak)).memory.contradictions).toEqual(weak.memory.contradictions);
   });
 });

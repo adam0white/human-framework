@@ -252,3 +252,31 @@ describe('converse provenance opt-in', () => {
     });
   });
 });
+
+describe('converse provenance changes no decision (2.10.0 review)', () => {
+  test('a listener told with and without provenance differs only in belief provenance and decides the same', () => {
+    const offers: Affordance[] = [
+      { id: 'fetch', action: 'fetch', label: 'fetch', duration: 30, effort: 0.1, advertises: { water: 0.5 } },
+      { id: 'rest', action: 'rest', label: 'rest', duration: 30, effort: 0, advertises: { sleep: 0.2 } },
+    ];
+    const hear = (provenance: boolean) => {
+      const speaker = person('speaker');
+      const listener = person();
+      seedSourceTrust(listener, speaker.id, 0.9);
+      confirm(speaker, fact.prop, true, 10);
+      perceive(listener, converse(speaker, listener, { at: 10, provenance }).told);
+      return listener;
+    };
+    const withMeta = hear(true);
+    const without = hear(false);
+    expect(provenanceOf(withMeta, fact.prop)?.origin).toBe('speaker');
+    expect(provenanceOf(without, fact.prop)).toBeUndefined();
+    const strip = (p: Person) => {
+      const s = JSON.parse(JSON.stringify(p)) as Person;
+      for (const b of s.memory.beliefs) delete (b as { provenance?: unknown }).provenance;
+      return s;
+    };
+    expect(strip(withMeta)).toEqual(strip(without));
+    expect(decide(withMeta, offers)).toEqual(decide(without, offers));
+  });
+});

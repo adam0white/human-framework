@@ -363,7 +363,7 @@ export function provenanceOf(p: Person, prop: string): BeliefProvenance | undefi
 
 export interface ContradictionResult {
   applied: boolean;
-  reason?: 'no-account' | 'same-account' | 'already-noted' | 'self';
+  reason?: 'no-account' | 'same-account' | 'already-noted' | 'self' | 'untrusted-reporter';
   before: Unit;
   after: Unit;
 }
@@ -396,19 +396,32 @@ export function applyContradiction(
     after: t,
   });
   if (ev.sourceId === p.id || ev.sourceId === 'self') return refused('self');
-  if (p.memory.contradictions?.some((x) => x.sourceId === ev.sourceId && x.prop === ev.prop))
-    return refused('already-noted');
+  const weight = reporterTrust === undefined ? 1 : testimonyWeight(reporterTrust);
+  // One loss per (source, proposition), at the strongest evidence: a weaker earlier report leaves room for the rest.
+  const prior = p.memory.contradictions?.find((x) => x.sourceId === ev.sourceId && x.prop === ev.prop);
+  const priorWeight = prior === undefined ? 0 : (prior.weight ?? 1);
+  if (prior !== undefined && priorWeight >= weight) return refused('already-noted');
   const account = findBelief(p, ev.prop)?.sources.find((s) => s.id === ev.sourceId);
   if (!account) return refused('no-account');
   if (account.value === ev.value) return refused('same-account');
+  // A reporter at or below the trust floor carries no weight and must not use up the pair.
+  if (weight <= 0) return refused('untrusted-reporter');
   const at = ev.at ?? p.now;
   if (!validMinute(at)) throw new Error('human: contradiction time must be a finite supported minute');
-  const weight = reporterTrust === undefined ? 1 : testimonyWeight(reporterTrust);
-  const after = seedSourceTrust(p, ev.sourceId, t - BELIEF_DEFAULTS.contradictionLoss * weight * t);
-  const noted = p.memory.contradictions ?? [];
-  noted.push({ sourceId: ev.sourceId, prop: ev.prop, at });
-  noted.sort((a, b) => a.at - b.at);
-  p.memory.contradictions = noted.slice(-BELIEF_DEFAULTS.maxContradictions);
+  const loss = BELIEF_DEFAULTS.contradictionLoss;
+  // Multiplicative, so the total over a pair is `1 - loss * strongest weight` whatever the arrival order.
+  const after = seedSourceTrust(p, ev.sourceId, (t * (1 - loss * weight)) / (1 - loss * priorWeight));
+  if (prior !== undefined) {
+    if (weight >= 1) delete prior.weight;
+    else prior.weight = weight;
+  } else {
+    const noted = p.memory.contradictions ?? [];
+    const row: NotedContradiction = { sourceId: ev.sourceId, prop: ev.prop, at };
+    if (weight < 1) row.weight = weight;
+    noted.push(row);
+    noted.sort((a, b) => a.at - b.at);
+    p.memory.contradictions = noted.slice(-BELIEF_DEFAULTS.maxContradictions);
+  }
   return { applied: true, before: t, after };
 }
 
@@ -437,7 +450,11 @@ export function sanitizeBeliefMeta(memory: Person['memory']): void {
     if (props.has(x.prop)) continue;
     props.add(x.prop);
     seen.set(x.sourceId, props);
-    clean.push({ sourceId: x.sourceId, prop: x.prop, at: x.at });
+    const row: NotedContradiction = { sourceId: x.sourceId, prop: x.prop, at: x.at };
+    // A malformed weight reads as 1 (fully applied): restore never reopens a pair to a further loss.
+    if (typeof x.weight === 'number' && Number.isFinite(x.weight) && x.weight > 0 && x.weight < 1)
+      row.weight = x.weight;
+    clean.push(row);
   }
   clean.sort((a, b) => a.at - b.at);
   if (clean.length === 0) delete memory.contradictions;

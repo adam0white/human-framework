@@ -19,7 +19,8 @@
  * 2.8.0 to 2.9.0 stamps the version; prompting cues and practice half-lives stay absent unless supplied,
  * review terms may carry refs, and an outcome naming several commitments now keeps each rather than only
  * the earliest-ending one. 2.9.0 to 2.10.0 stamps the version; belief provenance, noted contradictions and
- * believed regard stay absent unless a host supplies them. A migrated save continues under the current engine's rules: it restores and runs,
+ * believed regard stay absent unless a host supplies them;
+ * `regard` becomes a reserved impression cue key. A migrated save continues under the current engine's rules: it restores and runs,
  * but it does not reproduce what the old engine would have done next where the rules changed (1.4.0 to 1.5.0
  * changed how standing advice is heard; 1.8.0 to 1.9.0 changed the omission rule). Saves older than 1.4.0 and unknown versions are refused with an error.
  *
