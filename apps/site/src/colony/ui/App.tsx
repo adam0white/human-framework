@@ -22,6 +22,7 @@ import {
   HurtLine,
   MomentBanner,
   OrderLog,
+  OrderReply,
   PaneStats,
   PauseRibbon,
   PLACE_LABEL,
@@ -373,6 +374,8 @@ export function App() {
           {playback.pause && <PauseRibbon pause={playback.pause} onResume={() => actions.setPaused(false)} />}
           <HurtLine news={frame?.news ?? []} />
           <div className="composer-tray">
+            <p className="order-scope">Each order goes to both villages.</p>
+            <OrderReply cards={cards} />
             <Composer
               state={composer}
               frame={frame}

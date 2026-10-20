@@ -1150,7 +1150,7 @@ body {
   box-sizing: border-box;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: 56px 44px minmax(0, 1fr);
+  grid-template-rows: 56px auto minmax(0, 1fr);
   gap: 8px;
 }
 
@@ -1378,7 +1378,8 @@ body {
   align-items: center;
   gap: 10px;
   min-width: 0;
-  padding: 0 10px;
+  min-height: 44px;
+  padding: 6px 10px;
   border-radius: var(--radius);
   background: var(--surface);
   border: 1px solid var(--line);
@@ -1411,16 +1412,27 @@ body {
   min-width: 0;
   font-weight: 600;
   font-size: 0.85rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .goal-label small {
+  display: block;
   font-weight: 400;
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 0.68rem;
+}
+
+.goal-deadlines,
+.order-reply {
+  display: none;
+}
+
+.order-scope {
+  margin: 0;
+  padding: 0 8px;
+  font-size: 15px;
+  line-height: 1.3;
 }
 
 .goal-dots {
@@ -2170,8 +2182,7 @@ kbd {
   .colony {
     --center-w: 280px;
   }
-  .title,
-  .goal-label small {
+  .title {
     display: none;
   }
 }
@@ -2182,7 +2193,7 @@ kbd {
   .colony {
     padding: 0 0 env(safe-area-inset-bottom);
     gap: 0;
-    grid-template-rows: 48px 40px minmax(0, 1fr);
+    grid-template-rows: 48px auto minmax(0, 1fr);
   }
 
   .topbar {
@@ -2254,7 +2265,8 @@ kbd {
     border-left: 0;
     border-right: 0;
     gap: 6px;
-    padding: 0 8px;
+    padding: 4px 8px;
+    flex-wrap: wrap;
   }
 
   .goal-strip-toggle {
@@ -2267,7 +2279,36 @@ kbd {
   }
 
   .goal {
+    flex-basis: 25%;
     justify-content: center;
+  }
+
+  .goal-deadlines {
+    display: flex;
+    flex: 0 0 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0 8px;
+    order: 1;
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .goal-deadlines span {
+    white-space: nowrap;
+  }
+
+  .goal-strip.is-open .goal {
+    flex-basis: auto;
+  }
+
+  .order-reply {
+    display: block;
+    margin: 0;
+    padding: 4px 8px;
+    border-left: 2px solid var(--line-strong);
+    font-size: 15px;
+    line-height: 1.3;
   }
 
   .goal-label,
@@ -2363,7 +2404,9 @@ kbd {
   }
 
   .pane-head h2 span {
-    display: none;
+    display: block;
+    margin-left: 0;
+    font-size: 15px;
   }
 
   .stats {
@@ -3580,7 +3623,8 @@ kbd {
 
   .center {
     flex: 0 0 auto;
-    max-height: calc(100dvh - 190px);
+    /* Leave both village names and their meanings visible beside the maps. */
+    max-height: calc(100dvh - 280px);
     overflow: auto;
   }
 
@@ -3676,6 +3720,12 @@ kbd {
   .pane-head {
     width: 130px;
     padding: 3px 6px;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+
+  .pane-head h2 {
+    flex: none;
   }
 
   .stats {

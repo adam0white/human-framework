@@ -318,6 +318,8 @@ export function GoalChip({
 
 export const GoalStrip = memo(function GoalStrip({ goals }: { goals: GoalView[] }) {
   const [open, setOpen] = useState(false);
+  const roof = goals.find((g) => g.id === 'roof');
+  const lives = goals.find((g) => g.id === 'lives');
   return (
     <section className={`goal-strip ${open ? 'is-open' : ''}`} aria-label="Goals">
       <button
@@ -348,6 +350,12 @@ export const GoalStrip = memo(function GoalStrip({ goals }: { goals: GoalView[] 
           <GoalChip goal={g} side="human" s={g.human} />
         </div>
       ))}
+      {(roof || lives) && (
+        <div className="goal-deadlines">
+          {roof && <span>Roof before {dayClock(roof.deadlineMinute)}</span>}
+          {lives && <span>Everyone lives by {dayClock(lives.deadlineMinute)}</span>}
+        </div>
+      )}
     </section>
   );
 });
@@ -539,6 +547,20 @@ export const OrderLog = memo(function OrderLog({
     </ul>
   );
 });
+
+/** The newest answered order stays beside the phone composer. Labels can be counter-offers, not speech. */
+export function OrderReply({ cards }: { cards: OrderCard[] }) {
+  const card = cards.findLast(
+    (c) => (c.status === 'active' || c.status === 'done') && c.human.state !== 'pending' && c.human.label,
+  );
+  if (!card) return null;
+  return (
+    <p className="order-reply" role="status">
+      Human · <strong>{shortName(card.order.personId)}</strong> → {PLACE_LABEL[card.order.placeId]}:{' '}
+      {CHIP_TEXT[card.human.state]} · {card.human.label}
+    </p>
+  );
+}
 
 // ---------------------------------------------------------------------------------------------
 // Suggestion card (items 6, 8): text, reason, countdown in sim time, Use and skip

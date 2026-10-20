@@ -80,6 +80,9 @@ describe('Well review follow-up', () => {
     const root = createRoot(container);
     roots.push(root);
     await act(() => root.render(createElement(App)));
+    expect(container.querySelector('.order-scope')?.textContent).toBe('Each order goes to both villages.');
+    expect(container.querySelector('.pane-classic h2')?.textContent).toBe('Classic they obey');
+    expect(container.querySelector('.pane-human h2')?.textContent).toBe('Human they decide');
     const who = required<HTMLSelectElement>(container, '[aria-label="Villager"]');
     const where = required<HTMLSelectElement>(container, '[aria-label="Place"]');
     await act(() => {
