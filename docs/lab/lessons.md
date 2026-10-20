@@ -77,3 +77,7 @@ Evidence: F-012, F-029, F-046, F-090
 ### L19 — Do not state a problem the player has no verb to act on.
 When the screen says the water is dry or the boiler pump needs ₺2,400, the player needs a way to find water, ask for the book or give to the fund. A named problem with no action reads as an unfair wall, and players quit at it. Either give the verb, or do not name the problem. Two games showed it independently (Stairwell, Warren); this is the recurrence that makes it a lesson.
 Evidence: F-128, F-160, F-164
+
+### L20 — The first screen offers the first choice, and the accent marks the task.
+A cold audit of twelve live games on 2026-10-20 found the same two misses in most of them. The one accent went to the selected speed button, a banner or a log stripe instead of the task, and 80 to 200 words of rules stood between the first screen and the first choice. Give the accent to what needs a response, show selection with an outline, and teach rules where they first matter ([checklist](design-language.md) DL-3, DL-6, DL-7).
+Evidence: F-206, F-207, F-211, F-212, F-213, F-214, F-215, F-216

@@ -2774,6 +2774,263 @@
     "fix:warren goal and state legibility (open)"
    ],
    "source": "warren/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-201",
+   "date": "2026-10-20",
+   "game": "valley",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Yeah this is looking like a good start but I had no idea what we're supposed to be doing here. What's clickable? Which text is the important parts since there are too many?",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley goal, affordance and text hierarchy (open)",
+    "lesson:L14"
+   ],
+   "source": "valley/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-202",
+   "date": "2026-10-20",
+   "game": "valley",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Why I can only do a few things, will I be able to keep doing them, why do I do them? What comes next?",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley why/renewal of actions and what next (open)"
+   ],
+   "source": "valley/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-203",
+   "date": "2026-10-20",
+   "game": "valley",
+   "kind": "owner",
+   "who": "owner",
+   "words": "… the dates and important things should stay in English since we aren't translating the entire game.",
+   "verdict": "-",
+   "routes": [
+    "fix:valley dates and key terms in English (open)",
+    "lesson:L14"
+   ],
+   "source": "valley/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-204",
+   "date": "2026-10-20",
+   "game": "valley",
+   "kind": "owner",
+   "who": "owner",
+   "words": "This one has the potential to become a deep, fun game.",
+   "verdict": "keep",
+   "routes": [
+    "none"
+   ],
+   "source": "valley/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-205",
+   "date": "2026-10-20",
+   "game": "valley",
+   "kind": "owner",
+   "who": "coordinator",
+   "words": "Notebook send refused the run as too complex or too large after little play; export is 2.98 MB, almost all embedded state.",
+   "verdict": "-",
+   "routes": [
+    "fix:valley compact notebook run (open)",
+    "fix:lab upload bound (open, lab agent)"
+   ],
+   "source": "valley/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-206",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "During service the accent marks a speed button. 'The rail is clear.' and the cook-selection instruction compete; neither tells me which decision matters.",
+   "verdict": "-",
+   "routes": [
+    "fix:pass DL-5 say what the rail is waiting on (open)",
+    "fix:pass DL-22 jobs and request stay on screen at 360x690 after choosing a cook (open)",
+    "fix:pass DL-3 accent the task, not the speed control (open)",
+    "lesson:L20"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-207",
+   "date": "2026-10-20",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "'Tap a gauge to have it read. Tap a keeper to talk to him.' is generic. It does not name the current waiting job, next event or present danger.",
+   "verdict": "-",
+   "routes": [
+    "fix:glance DL-6 opening down to the goal and the first reading (open)",
+    "fix:glance DL-5 show the waiting job and its expected return (open)",
+    "fix:glance DL-22 gate sheet fits 690 px (open)",
+    "lesson:L20"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-208",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "'There are two voices in her head. One is yours.' states the role, but no plain session goal or end condition.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur DL-1 one line on the reason to act and what the player's voice can change (open)",
+    "fix:murmur DL-3 the current choice outranks the rival voice (open)",
+    "fix:murmur DL-23 menu and silence targets 44 px (open)"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-209",
+   "date": "2026-10-20",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "When everyone refuses until the hut path is climbed, no persistent line says whether I should lead, wait, or follow.",
+   "verdict": "-",
+   "routes": [
+    "fix:rope DL-4 visible reason beside each unavailable verb, updated on refusal (open)",
+    "fix:rope DL-22 target, request and commit fit the phone (open)",
+    "fix:rope DL-6 shorter opening (open)"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-210",
+   "date": "2026-10-20",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "Three conversation paragraphs precede the repair. 'Ask Sam to watch' competes with the task before the lantern and 'Try carrying it.'",
+   "verdict": "-",
+   "routes": [
+    "fix:repair DL-6 first repair action in the first viewport, conversation optional (open)",
+    "fix:repair DL-22 probe and read controls beside the meter instruction (open)",
+    "fix:repair DL-23 44 px secondary controls (open)"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-211",
+   "date": "2026-10-20",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "Planning dates '18 Temmuz', '15 Eylül', '5 Ağustos', '16 Aralık' lack English dates; '384 kile' has no first-use meaning.",
+   "verdict": "-",
+   "routes": [
+    "fix:valley DL-21 English planning dates (open)",
+    "fix:valley DL-20 gloss kile, kahya and agha on first use (open)",
+    "fix:valley DL-2 mark tappable houses (open)",
+    "fix:valley DL-4 say when the hamlet can be called again (open)",
+    "lesson:L20"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-212",
+   "date": "2026-10-20",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "'Anything new?' becomes disabled after one question without an adjacent reason.",
+   "verdict": "-",
+   "routes": [
+    "fix:stairwell DL-4 reason beside 'Anything new?' (open)",
+    "fix:stairwell DL-3 accent the bread job, not the speed control (open)",
+    "fix:stairwell DL-26 one game menu with export and send, Continue with the saved day (open)",
+    "lesson:L20"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-213",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "a normal narrative sentence is also a button: 'The barley stood ripe. Riders had burned two villages…' It looks like story, not a control.",
+   "verdict": "-",
+   "routes": [
+    "fix:warren DL-2 journal entries that open look like controls (open)",
+    "fix:warren DL-6 opening down to the refuge goal and the first chalk instruction (open)",
+    "fix:warren DL-21 English date (open)",
+    "lesson:L20"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-214",
+   "date": "2026-10-20",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "Enter town sits below a long introduction: first phone screenshot shows no start control. About 150+ words precede it.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours DL-6 Enter town above the introduction (open)",
+    "fix:neighbours DL-5 the immediate verb above the resident description on phones (open)",
+    "fix:neighbours DL-26 one game menu (open)",
+    "lesson:L20"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-215",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "'Go up to the wall' is below the opening viewport (top y 819). Roughly 150 words of bell, voice, rope and watcher rules precede it.",
+   "verdict": "-",
+   "routes": [
+    "fix:watch DL-6 start under the goal, rules taught at first use (open)",
+    "fix:watch DL-3 only 'Begin the watch' takes the accent (open)",
+    "fix:watch DL-26 one game menu with resume, download and send (open)",
+    "lesson:L20"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-216",
+   "date": "2026-10-20",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "Opening text exceeds 200 words before 'Begin', including character history, four days, four ends and five other voices.",
+   "verdict": "-",
+   "routes": [
+    "fix:voice DL-6 opening down to the goal and one line on suggesting (open)",
+    "fix:voice DL-2 log entries that are controls look like controls (open)",
+    "fix:voice DL-21 English weekday and date beside each fasting day (open)",
+    "lesson:L20"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
+  },
+  {
+   "id": "F-217",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Codex source-unread clarity audit",
+   "words": "At 05:30 the amber suggestion covers my current order controls.",
+   "verdict": "-",
+   "routes": [
+    "fix:well DL-22 suggestions never cover the order composer (open)",
+    "fix:well DL-6 shorter opening, suggestions taught when they arrive (open)",
+    "fix:well DL-17 describe mood, trust and need instead of exact values (open)"
+   ],
+   "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
   }
  ],
  "lessons": [
@@ -3089,6 +3346,21 @@
     "F-160",
     "F-164"
    ]
+  },
+  {
+   "id": "L20",
+   "title": "The first screen offers the first choice, and the accent marks the task.",
+   "text": "A cold audit of twelve live games on 2026-10-20 found the same two misses in most of them. The one accent went to the selected speed button, a banner or a log stripe instead of the task, and 80 to 200 words of rules stood between the first screen and the first choice. Give the accent to what needs a response, show selection with an outline, and teach rules where they first matter ([checklist](design-language.md) DL-3, DL-6, DL-7).",
+   "evidence": [
+    "F-206",
+    "F-207",
+    "F-211",
+    "F-212",
+    "F-213",
+    "F-214",
+    "F-215",
+    "F-216"
+   ]
   }
  ],
  "asks": [
@@ -3324,10 +3596,10 @@
   }
  ],
  "routes": {
-  "fix": 111,
-  "lesson": 210,
+  "fix": 153,
+  "lesson": 220,
   "hf": 11,
   "calibration": 42,
-  "none": 0
+  "none": 1
  }
 }
