@@ -3746,3 +3746,122 @@ kbd {
     display: block;
   }
 }
+
+/* Stable phone order controls: arriving alerts and suggestions use reserved space. */
+@media (max-width: 860px) and (min-height: 501px) {
+  .center {
+    position: relative;
+    height: 352px;
+    max-height: none;
+    flex: 0 0 352px;
+    gap: 0;
+    overflow: visible;
+  }
+
+  .order-alerts {
+    height: 64px;
+    flex: 0 0 64px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .order-alerts .pause-ribbon,
+  .order-alerts .hurt-line,
+  .order-alerts .order-reply {
+    margin: 0;
+  }
+
+  .composer-tray {
+    position: relative;
+    height: 244px;
+    flex: 0 0 244px;
+    padding-bottom: 44px;
+    overflow: visible;
+  }
+
+  .order-scope {
+    height: 20px;
+    flex: 0 0 20px;
+    white-space: nowrap;
+  }
+
+  .composer {
+    height: 180px;
+    flex: 0 0 180px;
+    overflow-y: auto;
+    align-content: start;
+    grid-template-rows: 64px 44px auto auto;
+  }
+
+  .phone-order-fields {
+    grid-row: 1;
+  }
+
+  .composer-actions {
+    grid-row: 2;
+    position: static;
+    margin: 0;
+  }
+
+  .composer-line {
+    grid-row: 3;
+  }
+
+  .nudge-slot {
+    position: absolute;
+    inset: auto 0 0;
+    height: 44px;
+    max-height: none;
+    margin: 0;
+    overflow: hidden;
+    z-index: 4;
+    background: var(--surface);
+  }
+
+  .nudge-slot > summary {
+    min-height: 44px;
+    padding: 4px 8px;
+  }
+
+  .nudge-slot > summary small {
+    display: none;
+  }
+
+  .nudge-slot[open] {
+    inset: 0;
+    height: auto;
+    max-height: none;
+    overflow-y: auto;
+    box-shadow: 0 0 0 1px var(--line-strong);
+  }
+
+  .nudge-slot .nudge {
+    margin: 0;
+    padding: 4px 8px;
+    gap: 4px;
+  }
+
+  .nudge-head .btn {
+    margin-left: auto;
+  }
+
+  .nudge-text,
+  .nudge-reason,
+  .nudge-help {
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .orders-button {
+    height: 44px;
+    flex: 0 0 44px;
+    margin: 0;
+  }
+}
+
+/* Keep the landscape order column at the grid's available height. */
+@media (max-width: 860px) and (max-height: 500px) and (orientation: landscape) {
+  .center {
+    max-height: none;
+  }
+}

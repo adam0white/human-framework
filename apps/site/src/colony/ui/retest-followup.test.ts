@@ -56,14 +56,14 @@ describe('Well source-unread retest follow-up', () => {
     expect(node.textContent).toBe('Human · Yusuf → House: not now · After I eat a meal.');
     expect(node.querySelector('[role="status"]')).not.toBeNull();
     cards[0] = card('o1', { state: 'assent', label: 'Fine.' });
-    expect(render(createElement(OrderReply, { cards })).textContent).toContain('yes · Fine.');
+    expect(render(createElement(OrderReply, { cards })).textContent).toContain('agreed · Fine.');
     expect(render(createElement(OrderReply, { cards })).textContent).not.toContain('After I eat');
   });
 
   it('keeps a meaningful reply while a newer order is pending, without mutating cards', () => {
     const cards = [card('o1', { state: 'assent', label: 'Fine.' }), card('o2', { state: 'pending' })];
     const before = structuredClone(cards);
-    expect(render(createElement(OrderReply, { cards })).textContent).toContain('yes · Fine.');
+    expect(render(createElement(OrderReply, { cards })).textContent).toContain('agreed · Fine.');
     expect(cards).toEqual(before);
     cards.push(card('o3', { state: 'willNot', label: 'No.' }, 'done'));
     expect(render(createElement(OrderReply, { cards })).textContent).toContain('will not · No.');

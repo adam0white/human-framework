@@ -99,7 +99,6 @@ describe('Well first-minute clarity', () => {
     expect(source).toContain('Use prepares; Confirm sends.');
     const css = readFileSync(sourcePath('colony.css'), 'utf8');
     for (const match of css.matchAll(/\.nudge-slot\s*\{([^}]+)\}/g)) {
-      expect(match[1]).not.toContain('absolute');
       expect(match[1]).not.toContain('fixed');
     }
   });

@@ -1,6 +1,6 @@
 /**
- * The playtest menu both games put in their top bar, and the notice that reports a load. A small "Playtest"
- * button opens two plain actions (with `className` including `pt-compact`, it shrinks to "⋯" on phones): download this run as a file, or load a file (replayed in the worker). Everything
+ * The Game menu both games put in their top bar, and the notice that reports a load. The menu
+ * offers run files, inline lab actions and a way back to all games. Everything
  * a file says is rendered as React text.
  */
 import { useEffect, useId, useRef, useState } from 'react';
@@ -37,9 +37,12 @@ export function PlaytestMenu({
     if (!open) return;
     first.current?.focus();
     const onDown = (e: PointerEvent) => {
+      // The lab dialog mounts in body. Keep its opener mounted until it restores focus.
+      if (e.target instanceof Element && e.target.closest('.hflab-veil')) return;
       if (!root.current?.contains(e.target as Node)) setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
+      if (document.querySelector('.hflab-veil')) return;
       if (e.key === 'Escape') {
         e.stopPropagation();
         setOpen(false);
@@ -74,13 +77,10 @@ export function PlaytestMenu({
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen((o) => !o)}
-        title="Playtest file"
-        aria-label="Playtest file"
+        title="Game menu"
+        aria-label="Game menu"
       >
-        <span className="pt-long">Playtest</span>
-        <span className="pt-short" aria-hidden="true">
-          ⋯
-        </span>
+        Game menu
       </button>
       {open && (
         <div className="pt-menu-list" id={id}>
@@ -92,12 +92,13 @@ export function PlaytestMenu({
               onExport();
             }}
           >
-            Download playtest file
+            Download this run
           </button>
           <button type="button" onClick={load}>
             Load playtest file
           </button>
           {extra}
+          <a href="/games/">All games</a>
         </div>
       )}
     </div>

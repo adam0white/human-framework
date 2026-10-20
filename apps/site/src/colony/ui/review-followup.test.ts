@@ -5,7 +5,7 @@ import { act, createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { ColonyGame } from '../sim/game.ts';
+import { ColonyGame, NUDGES } from '../sim/game.ts';
 import { createFrameworkHumanSide } from '../sim/human.ts';
 import { App } from './App.tsx';
 import { EndScreen } from './EndScreen.tsx';
@@ -15,7 +15,11 @@ import { type Colony, useColony } from './useColony.ts';
 
 (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 // Telemetry transport is outside this local keyboard regression.
-vi.mock('../../shared/lab.tsx', () => ({ gameLabs: { well: {} }, LabControls: () => null }));
+vi.mock('../../shared/lab.tsx', () => ({
+  gameLabs: { well: {} },
+  useLabScreen: () => {},
+  LabMenuContent: () => null,
+}));
 
 vi.mock('./useColony.ts', () => ({ useColony: vi.fn() }));
 // Canvas animation is outside this keyboard test; keep the real composer and App handlers.
@@ -66,7 +70,7 @@ describe('Well review follow-up', () => {
     };
     vi.mocked(useColony).mockReturnValue({
       store: { current: { curr: frame, prev: null, at: 0, interval: 62 } },
-      frame,
+      frame: { ...frame, nudges: NUDGES.slice(0, 1) },
       playback: { paused: true, pause: null, speed: 1, autoPause: true, slowMo: false },
       why: null,
       prediction: null,
@@ -110,6 +114,13 @@ describe('Well review follow-up', () => {
       { personId: 'yusuf', placeId: 'forest' },
       undefined,
     );
+    const suggestion = required<HTMLDetailsElement>(container, '.nudge-slot');
+    await act(() => required<HTMLElement>(suggestion, 'summary').click());
+    expect(suggestion.open).toBe(true);
+    await act(() => required<HTMLButtonElement>(suggestion, '.nudge-head .btn').click());
+    expect(suggestion.open).toBe(false);
+    expect(container.querySelector('.composer-line')?.textContent).toContain('Yusuf → House');
+    expect(actions.order).toHaveBeenCalledTimes(1);
   });
 
   it.each([

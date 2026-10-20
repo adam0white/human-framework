@@ -1,5 +1,4 @@
 import { memo, type ReactNode, type RefObject, useState } from 'react';
-import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -230,7 +229,6 @@ export function TopBar(props: {
   playtest?: ReactNode;
 }) {
   const f = props.frame;
-  const [menu, setMenu] = useState(false);
   const night = f ? f.darkness > 0.5 : false;
   return (
     <header className="topbar">
@@ -255,24 +253,6 @@ export function TopBar(props: {
           <AutoPauseToggle on={props.playback.autoPause} onChange={props.onAutoPause} />
         </span>
         {props.playtest}
-        <FullscreenButton className="topbar-fs" />
-        <span className="topbar-more">
-          <button
-            type="button"
-            className="speed-btn"
-            aria-label="More"
-            aria-expanded={menu}
-            onClick={() => setMenu((m) => !m)}
-          >
-            ⋯
-          </button>
-          {menu && (
-            <span className="more-menu">
-              <AutoPauseToggle on={props.playback.autoPause} onChange={props.onAutoPause} />
-              <FullscreenButton variant="item" />
-            </span>
-          )}
-        </span>
       </div>
     </header>
   );
@@ -455,30 +435,37 @@ export function PaneStats({ frame, side }: { frame: Frame | null; side: 'classic
 // ---------------------------------------------------------------------------------------------
 
 export const CHIP_TEXT: Record<ChipState, string> = {
-  pending: '…',
-  ok: '✓',
-  done: '✓',
+  pending: 'waiting',
+  ok: 'agreed',
+  done: 'done',
   noop: 'could not',
-  assent: 'yes',
+  assent: 'agreed',
   notNow: 'not now',
-  complied: 'under protest',
+  complied: 'agreed under protest',
   cannot: 'cannot',
   willNot: 'will not',
 };
+
+function chipText(state: ChipState, settled?: boolean): string {
+  if (settled && state === 'complied') return 'done under protest';
+  return CHIP_TEXT[state === 'ok' && settled ? 'done' : state];
+}
 
 function Chip({
   side,
   state,
   label,
+  settled,
 }: {
   side: 'classic' | 'human';
   state: ChipState;
   label?: string | undefined;
+  settled?: boolean | undefined;
 }) {
   return (
     <span className={`chip chip-${state}`} title={label ? `${side}: ${label}` : side}>
       <span className="chip-side">{side === 'classic' ? 'C' : 'H'}</span>
-      {CHIP_TEXT[state]}
+      {chipText(state, settled)}
     </span>
   );
 }
@@ -516,8 +503,13 @@ export function OrderCardView({ card, onCancel }: { card: OrderCard; onCancel(id
           )}
         </div>
         <div className="card-chips">
-          <Chip side="classic" state={card.classic.state} label={card.classic.label} />
-          <Chip side="human" state={card.human.state} label={card.human.label} />
+          <Chip
+            side="classic"
+            state={card.classic.state}
+            label={card.classic.label}
+            settled={card.classic.settled}
+          />
+          <Chip side="human" state={card.human.state} label={card.human.label} settled={card.human.settled} />
         </div>
       </div>
       {card.status === 'active' && (
@@ -557,7 +549,7 @@ export function OrderReply({ cards }: { cards: OrderCard[] }) {
   return (
     <p className="order-reply" role="status">
       Human · <strong>{shortName(card.order.personId)}</strong> → {PLACE_LABEL[card.order.placeId]}:{' '}
-      {CHIP_TEXT[card.human.state]} · {card.human.label}
+      {chipText(card.human.state, card.human.settled)} · {card.human.label}
     </p>
   );
 }
@@ -583,6 +575,9 @@ export function SuggestionCard(props: {
         <Portrait id={n.order.personId} size={24} />
         <span className="kicker">Suggestion</span>
         {props.queued > 0 && <span className="nudge-more">+{props.queued}</span>}
+        <button type="button" className="btn btn-small" onClick={() => props.onUse(n)}>
+          {props.active ? 'In composer' : 'Use'}
+        </button>
         <button
           type="button"
           className="nudge-skip"
@@ -594,7 +589,6 @@ export function SuggestionCard(props: {
         </button>
       </div>
       <p className="nudge-text">{n.text}</p>
-      <p className="nudge-help">Use fills an order. Confirm sends it. You can skip or choose your own.</p>
       {n.reason && <p className="nudge-reason">{n.reason}</p>}
       <div className="nudge-foot">
         <span className="nudge-timer">
@@ -603,10 +597,8 @@ export function SuggestionCard(props: {
             lapses {hhmm(n.until)} · in {left} min
           </span>
         </span>
-        <button type="button" className="btn btn-small" onClick={() => props.onUse(n)}>
-          {props.active ? 'In composer' : 'Use'}
-        </button>
       </div>
+      <p className="nudge-help">Use fills an order. Confirm sends it. You can skip or choose your own.</p>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 import { createElement } from 'react';
 import { flushSync } from 'react-dom';
 import { createRoot } from 'react-dom/client';
-import { afterEach, expect, it } from 'vitest';
+import { afterEach, expect, it, vi } from 'vitest';
 import { sampleFrame } from '../sim/fixtures.ts';
 import { Composer } from './Composer.tsx';
 import { DayLog } from './DayLog.tsx';
@@ -12,6 +12,9 @@ import { EndsList } from './EndsPane.tsx';
 import { Premise } from './Premise.tsx';
 import { TopBar } from './TopBar.tsx';
 import type { VoiceActions } from './useVoice.ts';
+
+// These component checks do not exercise telemetry transport.
+vi.mock('../../shared/lab.tsx', () => ({ gameLabs: { voice: {} }, LabMenuContent: () => null }));
 
 const cleanups: (() => void)[] = [];
 function render(node: React.ReactNode) {
@@ -165,11 +168,9 @@ it('gives phone pause and pace controls 44 pixel hit areas without the top-bar o
   expect(css).toMatch(/\.v-top \.v-btn\s*\{[^}]*min-width:\s*44px/);
 });
 
-it('reserves a separate notebook row outside the phone tabs', () => {
+it('keeps lab screen tracking in the game without a separate notebook row', () => {
   const app = readFileSync(resolve(import.meta.dirname, 'App.tsx'), 'utf8');
-  const css = readFileSync(resolve(import.meta.dirname, 'voice.css'), 'utf8');
-  expect(app).toMatch(/<div className="v-notebook">\s*<LabControls/);
-  expect(css).toMatch(/grid-template-rows:\s*auto minmax\(0, 1fr\) auto auto/);
-  expect(css).toMatch(/\.v-notebook \.lab-controls\s*\{[^}]*position:\s*static !important/);
-  expect(css).toMatch(/\.v-notebook summary\s*\{[^}]*min-height:\s*44px/);
+  expect(app).toContain('useLabScreen(gameLabs.voice,');
+  expect(app).not.toContain('v-notebook');
+  expect(app).not.toContain('<LabControls');
 });
