@@ -328,8 +328,14 @@ export function sanitizeProspection(
       r.receivedAt > now
     )
       continue;
-    if (revisions.some((old) => identity(old, r as unknown as ConsequenceRevision))) return undefined;
-    revisions.push({ sourceId: r.sourceId, id: r.id, revision: r.revision, receivedAt: r.receivedAt });
+    const validated: ConsequenceRevision = {
+      sourceId: r.sourceId,
+      id: r.id,
+      revision: r.revision,
+      receivedAt: r.receivedAt,
+    };
+    if (revisions.some((old) => identity(old, validated))) return undefined;
+    revisions.push(validated);
   }
   const valid: RetainedConsequence[] = [];
   for (const e of entries) {

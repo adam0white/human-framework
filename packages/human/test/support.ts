@@ -30,6 +30,27 @@ import { ENGINE_VERSION, MINUTES_PER_DAY, PERSON_SCHEMA } from '../src/types.ts'
 export const ADULT = -30 * 365 * MINUTES_PER_DAY;
 export const NOON = 12 * 60;
 
+/** A villager with the given seed; `opts` can override noon and the given neighbours. */
+export function villagerAtNoon(
+  id: string,
+  seed: number,
+  others: string[],
+  opts: Parameters<typeof villagerSpec>[3] = {},
+): Person {
+  return createPerson(villagerSpec(id, id, seed, { now: NOON, others, ...opts }));
+}
+
+/** Fresh peers in `ids` order, then a fresh village offering actions to the original person. */
+export function offersInVillage(
+  p: Person,
+  ids: string[],
+  villager: (id: string, seed: number) => Person,
+  opts: { peerSeed: number; seed: number; foodStock: number },
+): Affordance[] {
+  const others = ids.filter((id) => id !== p.id).map((id) => villager(id, opts.peerSeed));
+  return createVillage([p, ...others], { seed: opts.seed, foodStock: opts.foodStock }).affordancesFor(p);
+}
+
 /** A plain affordance: one hour, effort 0.2, advertising nothing unless `over` says so. */
 export const aff = (id: string, over: Partial<Affordance> = {}): Affordance => ({
   id,

@@ -20,16 +20,15 @@ import {
   voiceOf,
 } from '../src/index.ts';
 import type { Affordance, Command, Person } from '../src/types.ts';
+import { NOON, offersInVillage, villagerAtNoon } from './support.ts';
 
-const NOON = 12 * 60;
 const ids = ['a', 'b', 'c'];
 
 function villager(id: string, seed: number, opts: Parameters<typeof villagerSpec>[3] = {}): Person {
-  return createPerson(villagerSpec(id, id, seed, { now: NOON, others: ids, ...opts }));
+  return villagerAtNoon(id, seed, ids, opts);
 }
 function offers(p: Person, foodStock = 30): Affordance[] {
-  const others = ids.filter((id) => id !== p.id).map((id) => villager(id, 99));
-  return createVillage([p, ...others], { seed: 1, foodStock }).affordancesFor(p);
+  return offersInVillage(p, ids, villager, { peerSeed: 99, seed: 1, foodStock });
 }
 const order = (action: string, extra: Partial<Command> = {}): Command => ({
   voiceId: 'player',

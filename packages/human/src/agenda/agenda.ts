@@ -544,7 +544,7 @@ function deadlinePressure(g: Goal, now: Minute): number {
 }
 
 /** Shared existing amount and urgency reader; no future knowledge is consulted here. @internal */
-export function goalValue(g: Goal, aff: Affordance, now: Minute): number {
+function goalValue(g: Goal, aff: Affordance, now: Minute): number {
   const amount = goalAmount(g, aff);
   return amount > 0
     ? g.importance * clamp01(amount * AGENDA_DEFAULTS.goalAmountGain) * deadlinePressure(g, now)

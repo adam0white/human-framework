@@ -39,6 +39,7 @@ export const logit = (p: number): number => {
   const q = clamp(p, 1e-6, 1 - 1e-6);
   return dlog(q / (1 - q));
 };
+/** @deprecated since 2.9.1, removed in 3.0; use sigmoid */
 export const expit = sigmoid;
 
 /** Exponential decay of `value` toward `target` over `dt` minutes with the given half-life. */

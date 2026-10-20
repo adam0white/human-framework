@@ -293,7 +293,7 @@ export function socialContext(ctx: ConsiderContext): SocialContext {
 }
 
 /** Same perceived-body effort estimate for actual offers and received successors. @internal */
-export function effortValue(p: Person, aff: Affordance, ctx: ConsiderContext): number {
+function effortValue(p: Person, aff: Affordance, ctx: ConsiderContext): number {
   const K = COGNITION_DEFAULTS;
   const per = ctx.body.perceived;
   const effort = clamp01(aff.effort);
@@ -310,7 +310,7 @@ export function effortValue(p: Person, aff: Affordance, ctx: ConsiderContext): n
 }
 
 /** Same material valuation for actual offers and received successor costs. @internal */
-export function materialValue(p: Person, material: number, scarcity: number): number {
+function materialValue(p: Person, material: number, scarcity: number): number {
   const K = COGNITION_DEFAULTS;
   const v = p.values;
   const weight = (v.security + v.achievement + v.power) / 3;
