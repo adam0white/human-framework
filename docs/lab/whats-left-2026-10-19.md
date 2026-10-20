@@ -3,32 +3,41 @@
 Owner, 2026-10-19: "slow down on the Claude usage … we can move most of the stuff to codex. Keep note of what's left."
 From here on, Codex does the work by default. Claude handles only design judgement and reviews that need taste.
 
-## Still running at the soft stop (each told to finish its current step, deploy and report)
-- In-site games (Colony, Voice, The Night Watch): merge the round-2 fixes, then deploy.
-- Neighbours: Phase D deploy, and the offer-design fix for the background repair lever (nbh-01z.37).
-- The Valley and The Warren: their current rounds.
-- Codex bake-off: writes docs/lab/agent-routing.md.
+## Outcome of the soft-stop queue (2026-10-19)
 
-## Next work: Codex
-- Add CI workflows to pass, glance, murmur, valley, stairwell and warren.
-- Add lab-client to The Rope, Small Works, Neighbours, Valley, Stairwell, Warren and the in-site games.
-- Fix The Rope's empty /release.json.
-- Make gate.test.ts faster (about 194 s of its 300 s setup limit).
-- Fix harness bugs: seed arguments, multi-word commands, `show` and `chronicle`.
-- Fix text and state consistency bugs listed in the playtests:
-  - Night Watch: "It was done", "tore into the store", map names, looping cards.
-  - Voice: ends ticks, summary counts, pick numbering.
-  - Colony: Health 100 while hurt.
-- Commit Small Works' playtester adapters if they are still uncommitted.
+- Colony, Voice and The Night Watch: all three original branches and their staged playtests committed and merged. First public delivery verified at `8b25c28`; follow-up corrections are in `3e069af`.
+- Neighbours: Phase D and the crash fix are committed locally. Evidence and tape regeneration still block publication; no Claude calls were made.
+- Valley and Warren: their existing rounds remain intact; CI and the lab integration are delivered below.
+- Bake-off: [agent routing](agent-routing.md), both Selin playtests and the merged ledger are committed and pushed in `e4800fb`.
 
-- Fix the lab worker review findings in docs/lab/reviews/ (bake-off 2026-10-19):
-  - Blocker: a past day keeps only its first 600 batches.
-  - A 7.6 KB upload costs 160 MB of memory.
-  - IPv6 rotation defeats the rate limit.
-  - Unknown game ids are accepted.
-  - The opt-out is not shared across tabs.
-  - A race at midnight drops events.
-  - Target 2026-10-20.
+## Codex work completed
+
+- [x] Add CI workflows to pass, glance, murmur, valley, stairwell and warren. All six first runs passed; the later integration/upgrade runs passed too.
+- [x] Add lab-client to Rope, Small Works, Neighbours, Valley, Stairwell, Warren and the in-site games. All use released client 0.1.1; Neighbours is committed locally and held behind its evidence gate. The in-site source is `3e069af`.
+- [x] Fix Rope's empty `/release.json`: build stamping and service-worker bypass are deployed and checked against the exact commit.
+- [x] Speed up `gate.test.ts` without dropping any of its 144 paired simulations or four assertions. Committed in `e4800fb`; the reviewed isolated gate ran in 8.87 s.
+- [x] Fix harness seed arguments, multi-word commands, `show` and `chronicle` (`3e069af`).
+- [x] Fix confirmed text/state inconsistencies (`3e069af`): Night Watch's false thaw success, zero-loss and mixed-breach raid narration, proposal/practice loops; Voice's end ticks, summary counts and stable pick numbering; Colony's injury display. The reported Watch map-name mismatch was not reproduced in three retained legacy exports; the replay-frame follow-up remains targeted for 2026-10-20 in [findings](../findings.md).
+- [x] Commit Small Works and Neighbours playtester adapters (`f1e9c4a`, included in main).
+- [x] Fix the lab worker review findings in [reviews](reviews/) (`3e069af`): resumable aggregation replaces the first-600 cutoff; bounded preview and JSON complexity replace unbounded work; IPv6 /64 keys share rate limits; unknown games and unreviewed labels are rejected; opt-out crosses tabs; late writes after midnight are retained; conditional reservations cap daily uploads. Raw data already deleted by the old worker cannot be recovered. Over-bound legacy days stay retained for offline recovery.
+- [x] Fix two additional review findings: mixed-breach Watch narration preserves legacy scenario-9 continuation; Voice exports survive restart and ignore stale worker/build replies. The Voice bug was reproduced and retested through the mounted React hook in a browser.
+
+### Delivered external consumers
+
+All entries below use client 0.1.1. Their signed commits are pushed, their checks passed, and live manifests and JS/CSS bytes matched clean builds. Rope has no current CI workflow; the other seven exact-commit CI runs passed.
+
+| Game | Commit |
+|---|---|
+| Pass | `156c064` |
+| Glance | `5e6e2f2` |
+| Two Voices | `1ffe13e` |
+| Rope | `9203659` |
+| Small Works | `ccf367f7` |
+| Valley | `8177e467` |
+| Stairwell | `5f3b463d` |
+| Warren | `ed0f65d0` |
+
+Client asset: [lab-client-v0.1.1](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.1.1). Its public download was fetched and its SHA-512 matched the fresh packed consumer. The npm publish workflow correctly skipped the absent package; first publication remains an owner step. Final HF deployment and live browser receipts are recorded in `scratch/codex-finish-report.md`; `/release.json` identifies the live source.
 
 ## Next work: owner
 - `npm login`, then `npm publish -w packages/lab-client`, then add the trusted publisher.
@@ -49,7 +58,7 @@ From here on, Codex does the work by default. Claude handles only design judgeme
 
 ## Small Works and Neighbours on HF 2.8.0 (hard stop, 2026-10-19)
 
-Not committed: the four adapter files under `packages/playtester/examples/` (smallworks-*, neighbours-*) are staged but their commit is waiting on 1Password signing. Target 2026-10-26.
+Committed and pushed: the four adapter files under `packages/playtester/examples/` (smallworks-*, neighbours-*) landed in `f1e9c4a`. Signing is available; no signing setting was disabled.
 
 HF requests (to be moved to docs/game-requests-2026-10-18.md, target 2026-10-26):
 - **SW-1, mental effort should fill the slow fatigue store.** Confirmed (2.8.0 dist): the store fills only from physical effort above `depletionFloor` 0.3; bench work (effort 0.03 to 0.08, high focus) never tires anyone across a week. Proposal: an optional, off-by-default focus term in the fill. Workaround: none honest; Small Works leaves fatigue to sleep pressure.
@@ -58,22 +67,13 @@ HF requests (to be moved to docs/game-requests-2026-10-18.md, target 2026-10-26)
 - **Neighbours 4a, perceived unfinished shared work.** Confirmed: repairs 0 of 6,699 chances without a goal, 30 of 369 with a goal adopted on seeing the damage (`hall-care.ts`, adoptGoal/abandonGoal). Proposal: a documented recipe or helper. Assumed: other games hit the same pattern.
 
 Game status:
-- Small Works: live at 5623597, HF 2.8.0, engine small-works@5, CI green. The remaining items are deferred to 2026-10-26 in that repo's HANDOFF.md.
-- Neighbours: 9094b17 (local, not pushed); a second commit is waiting on signing. Live is still e3d0382 / HF 2.6.0. Remaining, target 2026-10-26: regenerate the evidence and three tapes (about 10 opus calls through the local `claude` CLI) with phase-d-regeneration.md; run check-evidence, parity and the browser suite; push, CI, deploy, /release.json; HANDOFF and bead nbh-01z.37. A: 40/40 with no retry. B: the host's cause is fixed by hall care.
+- Small Works: live at `ccf367f7`, HF 2.8.0, client 0.1.1; checks, CI and exact live assets verified. The scenario-design work remains deferred to 2026-10-26 in that repository.
+- Neighbours: `9148a96` on `neighbours`, committed locally and unpushed, including Phase D, the crash fix, lab integration and client 0.1.1. Live remains `e3d0382` / HF 2.6.0. No evidence, tape or provenance was rewritten.
 
-## Neighbours (final report 2026-10-19, target 2026-10-26)
-- State: 9094b17 is committed locally and unpushed. The crash fix, the browser tests and the five playtests are staged. The live site is still e3d0382 on HF 2.6.0.
-- Steps, in order:
-  1. Commit the staged work once signing works.
-  2. Regenerate the evidence and the 3 replay tapes (about 10 opus calls), and write phase-d-regeneration.md.
-  3. Run check-evidence, parity and the full browser suite.
-  4. Push, wait for CI, deploy, and verify /release.json.
-  5. Update HANDOFF.md and the bead nbh-01z.37. HANDOFF still has the wrong diagnosis for A.
-- Playtester fixes:
-  - hints that stay after they stop applying;
-  - "Open/Keep this section" options that don't say which section;
-  - a duplicate journal line;
-  - lab readouts shown to players;
-  - Sam is hungry with no way to eat.
-- Design: residents should bring requests to the player, and the player should be seated at evenings. Verdict: "the town does not need me".
-- HF request 4a: a recipe for "perceived unfinished shared work".
+## Neighbours publication gate (target 2026-10-26)
+
+- The crash fix is signed commit `1d47c6b`. A rejected intervention now leaves the Python engine usable rather than turning a refusal into a fatal bridge error. Combined local integration checks are recorded in that repository's HANDOFF.
+- Current evidence fails its package-lock source digest. Zero-call tape replay rejects changed source. The three tape generators invoke Claude CLI. Under the original no-Claude instruction, publication stays blocked; Neighbours was neither pushed nor deployed.
+- Next: regenerate evidence and all three tapes, write `phase-d-regeneration.md`, run check-evidence/parity/full browser gates, then push/deploy from `neighbours` and verify the live release. The existing `nbh-01z.37` and that repository's HANDOFF own the remaining work.
+- Retained playtester follow-ups: stale hints; unnamed Open/Keep section options; duplicate journal line; lab readouts in player views; Sam's hunger without an eating option. Residents bringing requests and the player sitting at evenings remain design work. Verdict: "the town does not need me".
+- HF request 4a remains a recipe for perceived unfinished shared work. No new HF faculty or 2.10 slice was started.
