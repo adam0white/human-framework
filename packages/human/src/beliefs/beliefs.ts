@@ -12,21 +12,31 @@
  * Three independent stores: `social.relationships[].trust` moves through authored ties, social events
  * (including forgiveness), judged acts and reputation; `will.voices[].trust` moves through followed-advice
  * outcomes, insisting, commands, `noteVoicePromise`, `seedVoice` and `adoptVoiceTrust` (also used by upbringing).
- * This module owns `memory.sourceTrust`: `seedSourceTrust` authors it and `confirm` recalibrates it.
+ * This module owns `memory.sourceTrust`: `seedSourceTrust` authors it, `confirm` recalibrates it and
+ * `contradicted` reduces it when one source gives incompatible accounts.
  * `believe`, including testimony delivered by `perceive`, weights claims by source trust, read by `trustOf`.
+ *
+ * SCOPE (Word and witness): optional provenance records the first known origin, direct teller and opaque
+ * host lineage of a belief. It does not change credence or decisions, reconstruct a relay graph, verify an
+ * origin, or survive belief eviction. Contradiction reduces information-source trust only when a retained
+ * first-hand account from that source opposes the newly learned account. Independent sources disagreeing
+ * are not a contradiction here. A third-party report is weighted by the reporter's source trust; this does
+ * not prove deceit, change the belief, or change relationship or voice trust. Loss and retention limits are
+ * engineering defaults, not calibrated effect sizes. Deduplication lasts only while its bounded record stays.
  */
-import { clamp, clamp01, decay, dpow, expit, logit } from '../core/index.ts';
+import { clamp, clamp01, decay, dpow, expit, isNum, isObj, logit } from '../core/index.ts';
 import type {
   Belief,
   BeliefProvenance,
   EntityId,
   Minute,
+  NotedContradiction,
   Percept,
   PerceptClaim,
   Person,
   Unit,
 } from '../types.ts';
-import { MINUTES_PER_DAY } from '../types.ts';
+import { MAX_MINUTE, MINUTES_PER_DAY } from '../types.ts';
 
 export const BELIEF_DEFAULTS = {
   maxBeliefs: 300,
@@ -46,6 +56,9 @@ export const BELIEF_DEFAULTS = {
   /** Trust change on confirmation: gain toward 1, loss toward 0 (loss > gain). */
   trustGain: 0.1,
   trustLoss: 0.25,
+  /** Loss of source trust after attending incompatible accounts from that same source. */
+  contradictionLoss: 0.25,
+  maxContradictions: 32,
   /** Half-life of log-odds drift toward 0. */
   driftHalfLife: 45 * MINUTES_PER_DAY,
   // Attention
@@ -310,12 +323,29 @@ export function contested(
 // removed a second, unused belief-based implementation here so the two could not drift apart.
 
 // ---------------------------------------------------------------------------------------------
-// Word and witness (2.10.0): provenance and contradiction. STUBS pre-staged by the lead; the worker implements them.
+// Word and witness (2.10.0): provenance and contradiction.
 // ---------------------------------------------------------------------------------------------
 
+const validId = (x: unknown): x is string => typeof x === 'string' && x.length > 0;
+const validMinute = (x: unknown): x is Minute => isNum(x) && Math.abs(x) <= MAX_MINUTE;
+
+function cleanProvenance(x: unknown): BeliefProvenance | undefined {
+  if (!isObj(x) || !validId(x.origin) || !validId(x.firstFrom) || !validMinute(x.at)) return undefined;
+  if (x.lineage !== undefined && typeof x.lineage !== 'string') return undefined;
+  const out: BeliefProvenance = { origin: x.origin, firstFrom: x.firstFrom, at: x.at };
+  if (typeof x.lineage === 'string' && x.lineage.length <= 64) out.lineage = x.lineage;
+  return out;
+}
+
 /** Record where a belief came from, if it has no provenance yet (first acquisition wins). @internal */
-export function noteProvenance(_p: Person, _claim: PerceptClaim, _teller: EntityId, _at: Minute): void {
-  // TODO(2.10 provenance worker)
+export function noteProvenance(p: Person, claim: PerceptClaim, teller: EntityId, at: Minute): void {
+  if (claim.origin === undefined && claim.lineage === undefined) return;
+  const b = findBelief(p, claim.prop);
+  if (!b || b.provenance !== undefined) return;
+  const input: BeliefProvenance = { origin: claim.origin ?? teller, firstFrom: teller, at };
+  if (claim.lineage !== undefined) input.lineage = claim.lineage;
+  const meta = cleanProvenance(input);
+  if (meta !== undefined) b.provenance = meta;
 }
 
 /** Where this person first got the belief on `prop`, or undefined. */
@@ -338,15 +368,58 @@ export function contradicted(
   p: Person,
   ev: { sourceId: EntityId; prop: string; value: boolean; reporterId?: EntityId; at?: Minute },
 ): ContradictionResult {
-  // TODO(2.10 contradiction worker)
   const t = trustOf(p, ev.sourceId);
-  return { applied: false, reason: 'no-account', before: t, after: t };
+  const refused = (reason: ContradictionResult['reason']): ContradictionResult => ({
+    applied: false,
+    reason,
+    before: t,
+    after: t,
+  });
+  if (ev.sourceId === p.id || ev.sourceId === 'self') return refused('self');
+  if (p.memory.contradictions?.some((x) => x.sourceId === ev.sourceId && x.prop === ev.prop))
+    return refused('already-noted');
+  const account = findBelief(p, ev.prop)?.sources.find((s) => s.id === ev.sourceId);
+  if (!account) return refused('no-account');
+  if (account.value === ev.value) return refused('same-account');
+  const at = ev.at ?? p.now;
+  if (!validMinute(at)) throw new Error('human: contradiction time must be a finite supported minute');
+  const weight = ev.reporterId === undefined ? 1 : testimonyWeight(trustOf(p, ev.reporterId));
+  const after = seedSourceTrust(p, ev.sourceId, t - BELIEF_DEFAULTS.contradictionLoss * weight * t);
+  const noted = p.memory.contradictions ?? [];
+  noted.push({ sourceId: ev.sourceId, prop: ev.prop, at });
+  noted.sort((a, b) => a.at - b.at);
+  p.memory.contradictions = noted.slice(-BELIEF_DEFAULTS.maxContradictions);
+  return { applied: true, before: t, after };
 }
 
 /**
  * Restore (2.10.0): drop malformed provenance (lineage over 64 characters is dropped, not truncated) and bound and
  * validate `contradictions`. A save the engine wrote is unchanged. @internal
  */
-export function sanitizeBeliefMeta(_memory: Person['memory']): void {
-  // TODO(2.10 beliefs worker)
+export function sanitizeBeliefMeta(memory: Person['memory']): void {
+  for (const b of memory.beliefs) {
+    if (!isObj(b) || b.provenance === undefined) continue;
+    const meta = cleanProvenance(b.provenance);
+    if (meta === undefined) delete b.provenance;
+    else b.provenance = meta;
+  }
+  if (memory.contradictions === undefined) return;
+  if (!Array.isArray(memory.contradictions)) {
+    delete memory.contradictions;
+    return;
+  }
+  const clean: NotedContradiction[] = [];
+  const seen = new Map<EntityId, Set<string>>();
+  for (const x of memory.contradictions as unknown[]) {
+    if (!isObj(x) || typeof x.sourceId !== 'string' || typeof x.prop !== 'string' || !validMinute(x.at))
+      continue;
+    const props = seen.get(x.sourceId) ?? new Set<string>();
+    if (props.has(x.prop)) continue;
+    props.add(x.prop);
+    seen.set(x.sourceId, props);
+    clean.push({ sourceId: x.sourceId, prop: x.prop, at: x.at });
+  }
+  clean.sort((a, b) => a.at - b.at);
+  if (clean.length === 0) delete memory.contradictions;
+  else memory.contradictions = clean.slice(-BELIEF_DEFAULTS.maxContradictions);
 }
