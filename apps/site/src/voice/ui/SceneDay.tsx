@@ -3,9 +3,12 @@ import type { Draft, Frame, Telegraph } from '../protocol.ts';
 import { Composer } from './Composer.tsx';
 import { spokenLogText } from './conversations.ts';
 import { DayLog } from './DayLog.tsx';
+import { storyDates } from './dates.ts';
 import { obstacleWords } from './obstacle.ts';
+import { consequentialOffer, speakingOpportunity } from './pause-policy.ts';
 import { StandingCard } from './StandingCard.tsx';
 import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
+import { explainTerms } from './terms.tsx';
 export interface SceneDayProps {
   frame: Frame;
   telegraph: { draft: Draft; telegraph: Telegraph } | null;
@@ -17,7 +20,7 @@ export interface SceneDayProps {
   onSuggest: (draft: Draft) => void;
   onSayNothing: () => void;
   onWithdraw: () => void;
-  onScenePause?: () => void;
+  onPause?: () => void;
 }
 /** Scenes are presentation only. Inputs still use the existing suggestion protocol. */
 export function SceneDay(props: SceneDayProps) {
@@ -43,18 +46,35 @@ export function SceneDay(props: SceneDayProps) {
     setEditor(false);
   };
   const available = frame.composer.open && !frame.muted;
-  const read = useRef(new Set<string>());
-  const sceneId = scene?.id;
-  useEffect(() => {
-    if (!sceneId || !available || read.current.has(sceneId)) return;
-    read.current.add(sceneId);
-    if (frame.autoPause && !frame.paused) props.onScenePause?.();
-  }, [sceneId, available, frame.autoPause, frame.paused, props.onScenePause]);
   const answer = frame.log.findLast((e) => e.kind === 'answer');
   const you = answer ? frame.log.findLast((e) => e.kind === 'you' && e.minute <= answer.minute) : undefined;
   const latestAction = frame.log.findLast((e) => e.kind === 'act');
-  const choices = sceneChoices(scene ?? null, frame.options);
+  const offer = consequentialOffer(frame);
+  const ordinaryChoices = sceneChoices(scene ?? null, frame.options);
+  const priority =
+    offer &&
+    sceneChoices(
+      null,
+      frame.options.filter((o) => o.id === offer.optionId),
+    )[0];
+  const choices = priority
+    ? [priority, ...ordinaryChoices.filter((c) => c.draft.optionId !== priority.draft.optionId)].slice(0, 2)
+    : ordinaryChoices;
   const encounter = nextEncounter(frame);
+  const opportunity = speakingOpportunity(frame);
+  const earlier = !!answer && !!latestAction && latestAction.minute > answer.minute;
+  const replyText =
+    answer &&
+    spokenLogText(answer.text).replace(
+      /^(Talk with Hacer at the door|Have tea with Rıza|Call Selin)\?\s*/,
+      '',
+    );
+  const reply = answer && (
+    <div className="v-scene-answer" aria-live="polite">
+      <small>His answer · {answer.clock}</small>
+      <p>Halil: {explainTerms(replyText ?? '')}</p>
+    </div>
+  );
   const activity = frame.halil.asleep
     ? 'Halil is asleep.'
     : frame.halil.doing
@@ -62,17 +82,38 @@ export function SceneDay(props: SceneDayProps) {
       : 'Halil is deciding what to do.';
   return (
     <section className="v-scene-day" aria-label="The day">
-      <details className="v-routine">
-        <summary>Today’s timeline</summary>
-        <DayLog
-          log={frame.log}
-          moment={{ minute: frame.minute, halil: frame.halil }}
-          paused={frame.paused}
-          onWhy={props.onWhy}
-          onRetainWhy={props.onRetainWhy}
-          selected={props.selected}
-        />
-      </details>
+      <div className="v-scene-tools">
+        <details className="v-routine">
+          <summary>Timeline</summary>
+          <DayLog
+            log={frame.log}
+            moment={{ minute: frame.minute, halil: frame.halil }}
+            paused={frame.paused}
+            onWhy={props.onWhy}
+            onRetainWhy={props.onRetainWhy}
+            selected={props.selected}
+          />
+        </details>
+        {(frame.standing || you) && !frame.muted && (
+          <details className="v-held-words">
+            <summary>Your words</summary>
+            {frame.standing ? (
+              <StandingCard standing={frame.standing} onWithdraw={props.onWithdraw} />
+            ) : (
+              <p>{you && explainTerms(spokenLogText(you.text))}</p>
+            )}
+          </details>
+        )}
+        {latestAction?.decisionId && (
+          <button
+            type="button"
+            className="v-current-why"
+            onClick={() => latestAction.decisionId && props.onWhy(latestAction.decisionId)}
+          >
+            Why his current action?
+          </button>
+        )}
+      </div>
       <div className="v-scene-reading">
         {scene ? (
           <article className="v-scene-stage" key={scene.id}>
@@ -95,30 +136,17 @@ export function SceneDay(props: SceneDayProps) {
             {encounter && <p className="v-next-encounter">{encounter}</p>}
           </div>
         )}
-        {frame.pauseBeat && <p className="v-scene-notice">{frame.pauseBeat.text}</p>}
-        {latestAction?.decisionId && (
-          <button
-            type="button"
-            className="v-current-why"
-            onClick={() => latestAction.decisionId && props.onWhy(latestAction.decisionId)}
-          >
-            Why his current action?
-          </button>
-        )}
-        {answer && (
-          <div className="v-scene-answer" aria-live="polite">
-            <small>
-              {latestAction && latestAction.minute > answer.minute ? 'Earlier answer' : 'His answer'} ·{' '}
-              {answer.clock}
-            </small>
-            {you && <p>{spokenLogText(you.text)}</p>}
-            <p>Halil: “{spokenLogText(answer.text)}”</p>
-          </div>
+        {frame.pauseBeat && !scene && <p className="v-scene-notice">{explainTerms(frame.pauseBeat.text)}</p>}
+        {earlier ? (
+          <details className="v-earlier-reply">
+            <summary>Earlier answer · {answer?.clock}</summary>
+            {you && <p>{explainTerms(spokenLogText(you.text))}</p>}
+            {reply}
+          </details>
+        ) : (
+          reply
         )}
       </div>
-      {frame.standing && !frame.muted && (
-        <StandingCard standing={frame.standing} onWithdraw={props.onWithdraw} />
-      )}
       {editor ? (
         <dialog
           ref={dialog}
@@ -163,7 +191,11 @@ export function SceneDay(props: SceneDayProps) {
         <div className="v-scene-participate v-scene-participate-secondary">
           {available ? (
             <SceneSuggestions
-              key={`${scene?.id ?? 'between'}:${frame.composer.open}`}
+              key={`${opportunity ?? 'routine'}:${offer?.optionId ?? ''}`}
+              offer={offer ? explainTerms(storyDates(offer.why)) : null}
+              expand={frame.paused && opportunity !== null}
+              paused={frame.paused}
+              onPause={props.onPause}
               choices={choices}
               telegraph={props.telegraph}
               onPredict={onPredict}
@@ -176,13 +208,20 @@ export function SceneDay(props: SceneDayProps) {
               }}
             />
           ) : (
-            <p className="v-scene-wait">
-              {frame.muted
-                ? 'You are silent today. Watch.'
-                : frame.halil.asleep
-                  ? 'You can speak when he wakes.'
-                  : 'He is busy. You can speak when he is choosing.'}
-            </p>
+            <div className="v-scene-compact">
+              <p className="v-scene-wait">
+                {frame.muted
+                  ? 'You are silent today. Watch.'
+                  : frame.halil.asleep
+                    ? 'You can speak when he wakes.'
+                    : 'He is busy. You can speak when he is choosing.'}
+              </p>
+              {frame.paused && !frame.muted && (
+                <button type="button" className="v-scene-listen v-btn" onClick={onSayNothing}>
+                  Keep listening
+                </button>
+              )}
+            </div>
           )}
         </div>
       )}
@@ -197,11 +236,21 @@ function SceneSuggestions({
   onSayNothing,
   onMore,
   moreRef,
+  expand,
+  paused,
+  onPause,
+  offer,
 }: Pick<SceneDayProps, 'telegraph' | 'onPredict' | 'onSuggest' | 'onSayNothing'> & {
+  offer: string | null;
+  expand: boolean;
+  paused: boolean;
+  onPause?: (() => void) | undefined;
   choices: ReturnType<typeof sceneChoices>;
   onMore: () => void;
   moreRef: RefObject<HTMLButtonElement | null>;
 }) {
+  const [opened, setOpened] = useState<boolean | null>(null);
+  const expanded = opened ?? expand;
   const [draft, setDraft] = useState<Draft | null>(null);
   const selected = draft && choices.some((c) => c.draft.optionId === draft.optionId) ? draft : null;
   const id = selected?.optionId;
@@ -219,57 +268,91 @@ function SceneSuggestions({
     !telegraph.draft.appeal
       ? telegraph.telegraph
       : null;
+  const silence = () => {
+    setDraft(null);
+    setOpened(false);
+    onPredict(null);
+    onSayNothing();
+  };
+  if (!expanded)
+    return (
+      <div className="v-scene-compact">
+        <button
+          type="button"
+          className="v-scene-speak v-btn"
+          aria-expanded={false}
+          onClick={() => {
+            onPause?.();
+            setOpened(true);
+          }}
+        >
+          Speak
+        </button>
+        {paused ? (
+          <button type="button" className="v-scene-listen v-btn v-btn-quiet" onClick={silence}>
+            Keep listening
+          </button>
+        ) : (
+          <span className="v-scene-wait">Listening. Silence needs no tap.</span>
+        )}
+      </div>
+    );
   return (
     <>
-      <div className="v-scene-choices">
-        {choices.map((choice) => (
-          <button
-            type="button"
-            className="v-scene-choice"
-            key={choice.draft.optionId}
-            aria-pressed={selected?.optionId === choice.draft.optionId}
-            onClick={() => setDraft(choice.draft)}
-          >
-            {choice.label}
-          </button>
-        ))}
-        <button
-          type="button"
-          className="v-scene-silence"
-          onClick={() => {
-            setDraft(null);
-            onPredict(null);
-            onSayNothing();
-          }}
-        >
+      {offer && <p className="v-scene-offer">{offer}</p>}
+      {selected ? (
+        <>
+          <p className="v-selected-words">
+            {choices.find((choice) => choice.draft.optionId === selected.optionId)?.label}
+          </p>
+          <div className="v-scene-preview">
+            <p className="v-scene-likely" aria-live="polite">
+              {prediction
+                ? `Likely: “${explainTerms(obstacleWords(prediction) ?? prediction.says)}”`
+                : 'Reading his likely reply…'}
+            </p>
+            <button
+              type="button"
+              className="v-scene-send v-btn"
+              disabled={!prediction}
+              onClick={() => {
+                onSuggest(selected);
+                setDraft(null);
+                setOpened(false);
+                onPredict(null);
+              }}
+            >
+              Say it
+            </button>
+          </div>
+        </>
+      ) : (
+        <div className="v-scene-choices">
+          {choices.map((choice) => (
+            <button
+              type="button"
+              className="v-scene-choice"
+              key={choice.draft.optionId}
+              onClick={() => setDraft(choice.draft)}
+            >
+              {choice.label}
+            </button>
+          ))}
+        </div>
+      )}
+      <div className="v-scene-choice-tools">
+        <button type="button" className="v-scene-silence" onClick={silence}>
           Say nothing
         </button>
-        <button ref={moreRef} type="button" className="v-scene-more" onClick={onMore}>
-          Say something else…
-        </button>
-      </div>
-      <div className="v-scene-preview">
-        <p className="v-scene-likely" aria-live="polite">
-          {selected
-            ? prediction
-              ? `Likely: “${obstacleWords(prediction) ?? prediction.says}”`
-              : 'Reading his likely reply…'
-            : 'You can leave him to it.'}
-        </p>
-        <button
-          type="button"
-          className="v-scene-send v-btn"
-          disabled={!selected || !prediction}
-          onClick={() => {
-            if (selected) {
-              onSuggest(selected);
-              setDraft(null);
-              onPredict(null);
-            }
-          }}
-        >
-          Say it
-        </button>
+        {selected ? (
+          <button type="button" className="v-scene-more" onClick={() => setDraft(null)}>
+            Change words
+          </button>
+        ) : (
+          <button ref={moreRef} type="button" className="v-scene-more" onClick={onMore}>
+            Say something else…
+          </button>
+        )}
       </div>
     </>
   );

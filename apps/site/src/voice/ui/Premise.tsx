@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { storyDates } from './dates.ts';
 import { ModelNotes } from './parts.tsx';
+import { MealTerms } from './terms.tsx';
 
 export function Premise({ ready, onBegin }: { ready: boolean; onBegin: () => void }) {
   const button = useRef<HTMLButtonElement>(null);
@@ -69,6 +70,7 @@ export function Premise({ ready, onBegin }: { ready: boolean; onBegin: () => voi
             Story calendar: Ramadan 1 is Monday 11 March 2024. These dates locate this fictional month; they
             are not a religious calendar.
           </p>
+          <MealTerms />
         </details>
         <ModelNotes />
       </div>

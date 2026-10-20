@@ -52,6 +52,7 @@ function mount() {
     onSuggest: vi.fn(),
     onSayNothing: vi.fn(),
     onWithdraw: vi.fn(),
+    onPause: vi.fn(),
   };
   const update = () => flushSync(() => root.render(createElement(SceneDay, props)));
   update();
@@ -107,8 +108,9 @@ it('opens the optional full composer and returns to the same scene', () => {
   expect(el.querySelector('.v-composer')).toBeNull();
   expect(el.querySelector('.v-scene-stage')?.textContent).toContain('Hacer');
 });
-it('preserves the actual reply beside the player words after the suggestion resolves', () => {
+it('preserves the actual reply and keeps the player words on request after the suggestion resolves', () => {
   const { el, props, update } = mount();
+  props.frame.standing = undefined;
   props.frame.log.push(
     {
       id: 'you',
@@ -131,35 +133,51 @@ it('preserves the actual reply beside the player words after the suggestion reso
     },
   );
   update();
-  expect(el.querySelector('.v-scene-answer')?.textContent).toContain('You: mention · call Selin');
+  expect(el.querySelector('.v-held-words')?.textContent).toContain('You: mention · call Selin');
   expect(el.querySelector('.v-scene-answer')?.textContent).toContain('Not now. After I rest at home.');
 });
 
-it('pauses a new encounter once when suggestions become available, respecting Auto', () => {
-  const { props, update } = mount();
-  const onScenePause = vi.fn();
-  Object.assign(props, { onScenePause });
-  props.frame.log[0] = { ...props.frame.log[0]!, id: 'fresh' };
+it('keeps running scenes compact, pauses on Speak, and expands only at a speaking point', () => {
+  const { el, props, update } = mount();
   props.frame.paused = false;
-  props.frame.autoPause = true;
   update();
-  expect(onScenePause).toHaveBeenCalledOnce();
+  expect(el.querySelector('.v-scene-choice')).toBeNull();
+  click(el, '.v-scene-speak');
+  expect(props.onPause).toHaveBeenCalledOnce();
+  expect(el.querySelector('.v-scene-choice')).not.toBeNull();
+  click(el, '.v-scene-silence');
+  expect(el.querySelector('.v-scene-choice')).toBeNull();
+  expect(el.querySelector('.v-scene-speak')).not.toBeNull();
+});
+it('leaves routine decisions compact even while paused, with silence costing no input', () => {
+  const { el, props, update } = mount();
+  props.frame.log = [];
+  props.frame.paused = true;
+  props.frame.prefill = undefined;
   update();
-  expect(onScenePause).toHaveBeenCalledOnce();
-  props.frame.log = [
+  expect(el.querySelector('.v-scene-choice')).toBeNull();
+  expect(el.querySelector('.v-scene-speak')).not.toBeNull();
+  expect(props.onSayNothing).not.toHaveBeenCalled();
+});
+it('keeps standing words and earlier answers available without repeating their panels over a scene', () => {
+  const { el, props, update } = mount();
+  props.frame.log.unshift(
     {
-      id: 'h2',
+      id: 'y',
       day: 1,
-      minute: 600,
-      clock: '10:00',
-      kind: 'act',
-      who: 'halil',
-      text: 'I talk with Hacer at the door.',
+      minute: 590,
+      clock: '09:50',
+      kind: 'you',
+      who: 'you',
+      text: 'You: mention · eat at home',
     },
-  ];
-  props.frame.autoPause = false;
+    { id: 'a', day: 1, minute: 590, clock: '09:50', kind: 'answer', who: 'halil', text: 'Fine.' },
+  );
   update();
-  expect(onScenePause).toHaveBeenCalledOnce();
+  expect(el.querySelector<HTMLDetailsElement>('.v-held-words')?.open).toBe(false);
+  expect(el.querySelector<HTMLDetailsElement>('.v-earlier-reply')?.open).toBe(false);
+  expect(el.querySelector('.v-earlier-reply')?.textContent).toContain('Fine.');
+  expect(el.querySelector('.v-scene-reading > .v-scene-answer')).toBeNull();
 });
 
 it('Back in the full composer keeps Enter and Escape cannot send a draft', () => {
@@ -193,11 +211,41 @@ it('keeps a known likely encounter beside sleep, including tomorrow after evenin
 it('shows the spoken choices after the scene in a secondary participation region', () => {
   const { el } = mount();
   expect(el.querySelector('.v-scene-choice')?.textContent).toBe('Hacer is here. Stay and talk.');
-  expect(
-    [
-      ...el.querySelectorAll(
-        '.v-scene-day > details, .v-scene-day > .v-scene-reading, .v-scene-day > .v-scene-participate',
-      ),
-    ].map((e) => e.className),
-  ).toEqual(['v-routine', 'v-scene-reading', 'v-scene-participate v-scene-participate-secondary']);
+  const reading = el.querySelector('.v-scene-reading');
+  const controls = el.querySelector('.v-scene-participate');
+  if (!reading || !controls) throw new Error('Missing scene or reply controls');
+  expect(reading.compareDocumentPosition(controls) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+});
+
+it('gives the predicted reply space by replacing the choices and collapses speech after sending', () => {
+  const { el, props, update } = mount();
+  click(el, '.v-scene-choice');
+  expect(el.querySelector('.v-scene-choice')).toBeNull();
+  const draft = props.onPredict.mock.lastCall?.[0] as Draft;
+  props.telegraph = { draft, telegraph: { tone: 'yes', text: 'Likely', says: 'Fine.', reason: 'close' } };
+  update();
+  click(el, '.v-scene-send');
+  expect(el.querySelector('.v-scene-choice')).toBeNull();
+  expect(el.querySelector('.v-scene-speak')).not.toBeNull();
+});
+
+it('puts a consequential offer and its reason in the panel that stops for it', () => {
+  const { el, props, update } = mount();
+  props.frame.log = [];
+  props.frame.prefill = {
+    optionId: 'pay-rent',
+    strength: 'mention',
+    source: 'end',
+    why: 'Osman wants 300 by Ramadan 15.',
+  };
+  props.frame.options.push({ id: 'pay-rent', label: 'pay Osman the rent', rank: 3, leaning: false });
+  update();
+  expect(el.querySelector('.v-scene-choice')?.textContent).toContain('pay Osman');
+  expect(el.querySelector('.v-scene-offer')?.textContent).toContain('Monday 25 March');
+  click(el, '.v-scene-choice');
+  expect(props.onPredict).toHaveBeenLastCalledWith({
+    optionId: 'pay-rent',
+    strength: 'mention',
+    insist: false,
+  });
 });

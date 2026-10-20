@@ -363,6 +363,18 @@ Quick choices now speak to Halil: “Hacer is here. Stay and talk.” An offered
 
 This remains presentation only. It cannot add dialogue topics, contact the incidental visitor, or guarantee an encounter. Revert this follow-up commit to restore the first design-round presentation; no edition or save migration is needed. The earlier cold-retest and Ramadan 2 encounter deferrals remain.
 
+### Follow-up c (2026-10-20)
+
+Leila's live retest asked for “room for the people” (DL-22), fewer “pressing Say nothing to get to the person I want to meet” stops, and an English meaning beside suhoor (DL-20). Her best moment was Hacer's “Keep the door open, Halil…” (fresh retest; no new ledger ID assigned). This follows the phone and repeated-form concerns in F-240, F-251 and F-257.
+
+The phone now folds the standing suggestion into “Your words”. Current answers stay with the exchange; earlier answers fold away. Routine and running scenes use one Speak row. A paused speaking point expands the existing suggestions; selection replaces the choices with the likely answer and send button. Silence resumes without a suggestion. Consequential offers put their action and reason first. The caption says “Auto-pause at scenes” at both sizes.
+
+The UI resumes routine automatic beats using recorded resume inputs. It pauses once per new two-person scene or new clinic, rent or extra-work offer. Actual answers, manual pauses, Why, imported runs and day cards retain reading time. SceneDay no longer owns a competing automatic pause. The simulation, editions and HF pin are unchanged. Meal meanings appear beside deadline/action text; “Meal terms” remains available before and during play. Spoken scenes keep their own wording.
+
+Costs and risks: quiet needs and ordinary meal windows no longer demand acknowledgement. A player who wants to intervene there must choose Speak or pause time. Short glosses repeat at separate deadline/action entry points so a reader cannot miss the first explanation by opening a different panel. The UI records more resume inputs; old exports replay under their original rules. Engineering renders and pause counts do not establish that Leila would stay for the month.
+
+Revert this follow-up commit to restore Follow-up b's layout and automatic stops. No edition setting or save migration is needed. The earlier Ramadan 2 encounter and historical-wording deferrals remain.
+
 ## Deferred
 
 Open, unbuilt or unconfirmed items from the design, the build plan and its fourteen passes. Target is "unscheduled" unless stated.

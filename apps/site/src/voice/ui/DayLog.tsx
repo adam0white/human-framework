@@ -2,12 +2,14 @@
  * The day, in his narration (voice.md §7.2). Scrolls inside its own panel. A spoken answer holds the transcript until Latest, another answer or a new request;
  * the simulation clock runs on. The held snapshot survives the worker trimming its recent log. Consecutive entries of the same action collapse into one line with a time span.
  */
+
 import { memo, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { BeatKind, LogEntry } from '../protocol.ts';
 import { type ConversationMoment, conversationFor, type SpokenLine, spokenLogText } from './conversations.ts';
 import { storyDates } from './dates.ts';
 import { BEAT_ICON, Icon, TONE_ICON, TONE_WORD, VOICE_ICON } from './Icon.tsx';
 import { toneClass, VOICE_COLOURS, VOICE_NAMES } from './parts.tsx';
+import { explainTerms } from './terms.tsx';
 
 interface Row {
   entry: LogEntry;
@@ -133,7 +135,7 @@ export const DayLog = memo(function DayLog({
           {newerTask && (
             <>
               {' '}
-              Latest task at {newerTask.clock}: {spokenLogText(newerTask.text)}
+              Latest task at {newerTask.clock}: {explainTerms(spokenLogText(newerTask.text))}
             </>
           )}{' '}
           {paused ? 'Clock paused.' : 'Clock continues.'}
@@ -145,7 +147,7 @@ export const DayLog = memo(function DayLog({
             <Icon name={BEAT_ICON[pauseBeat.kind]} size={18} />
             {BEAT_LABEL[pauseBeat.kind]}
           </span>
-          <span className="v-beat-text">{pauseBeat.text}</span>
+          <span className="v-beat-text">{explainTerms(pauseBeat.text)}</span>
           <kbd>Space</kbd>
         </div>
       )}
@@ -175,7 +177,7 @@ export const DayLog = memo(function DayLog({
                       <span className="v-sr">: </span>
                     </span>
                   )}
-                  {!exchange.length && storyDates(spokenLogText(e.text))}
+                  {!exchange.length && explainTerms(storyDates(spokenLogText(e.text)))}
                   {exchange.length > 0 && (
                     <>
                       <span className="v-scene-title">
@@ -192,7 +194,7 @@ export const DayLog = memo(function DayLog({
                     </>
                   )}
                   {exchange.length > 0 && (
-                    <span className="v-scene-record">{storyDates(spokenLogText(e.text))}</span>
+                    <span className="v-scene-record">{explainTerms(storyDates(spokenLogText(e.text)))}</span>
                   )}
                   {count > 1 && to ? <span className="v-log-span"> · until {to}</span> : null}
                   {count === 1 && e.until && e.kind === 'act' ? (
