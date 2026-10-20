@@ -12,6 +12,13 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+### Added
+
+- Host setup: `seedSourceTrust` authors testimony trust and `seedBelief` authors starting knowledge without an observation marker or reputation update. Both clamp finite values; source trust rejects self ids. The architecture documents relationship, voice and source trust separately.
+- Saves: `fingerprint(person)` hashes the restored, recursively key-sorted saved form with a browser-safe 64-bit string hash. Key insertion order and optional empty slices removed by restore do not change the digest; this is a change detector, not a cryptographic check.
+- Host recipes: [host-kit](docs/host-kit.md) covers travel, effort and duration, need and work utility, community-state write-back and feeding residents, with executable tests.
+- Death news: `tellDeath` accepts `{ late: 'now' | 'throw' }`. The existing tolerant default is preserved; explicit strict mode rejects ahead-of-time listeners before delivering news to anyone. The reported default throw did not reproduce on this baseline.
+
 ### Maintenance
 
 - Update Vitest 5.0.3 → 5.0.5 and Wrangler 4.149.0 → 4.151.3; retain latest TypeScript 7.0.2, Vite 8.3.4, Biome 2.5.15, @vitejs/plugin-react 6.1.2 and @types packages.

@@ -8,6 +8,12 @@
  * gained, the trust-asymmetry finding). It does NOT model motivated reasoning, belief networks or
  * inference between propositions, source memory errors, or social consensus effects; parameters are
  * engineering defaults for game time scales.
+ *
+ * Three independent stores: `social.relationships[].trust` moves through authored ties, social events
+ * (including forgiveness), judged acts and reputation; `will.voices[].trust` moves through followed-advice
+ * outcomes, insisting, commands, `noteVoicePromise`, `seedVoice` and `adoptVoiceTrust` (also used by upbringing).
+ * This module owns `memory.sourceTrust`: `seedSourceTrust` authors it and `confirm` recalibrates it.
+ * `believe`, including testimony delivered by `perceive`, weights claims by source trust, read by `trustOf`.
  */
 import { clamp, clamp01, decay, dpow, expit, logit } from '../core/index.ts';
 import type { Belief, EntityId, Minute, Percept, Person, Unit } from '../types.ts';
@@ -108,9 +114,28 @@ export function attend(p: Person, percepts: Percept[], ctx: AttendContext): Perc
   return out;
 }
 
+/** Information-source trust, independent of relationship trust and advising-voice trust. */
 export function trustOf(p: Person, sourceId: EntityId): Unit {
   if (sourceId === p.id || sourceId === 'self') return BELIEF_DEFAULTS.selfTrust;
   return p.memory.sourceTrust[sourceId] ?? BELIEF_DEFAULTS.defaultTrust;
+}
+
+/**
+ * Set authored trust in an information source, clamped to 0..1. Writes only `memory.sourceTrust`;
+ * it does not change relationship trust or advising-voice trust. Nonfinite trust and self ids throw.
+ * Later `believe` (including testimony through `perceive`) reads this trust; `confirm` recalibrates it.
+ */
+export function seedSourceTrust(p: Person, sourceId: EntityId, trust: Unit): Unit {
+  if (!Number.isFinite(trust)) throw new Error('human: source trust must be finite');
+  if (sourceId === p.id || sourceId === 'self') throw new Error('human: self trust cannot be seeded');
+  const value = clamp01(trust);
+  Object.defineProperty(p.memory.sourceTrust, sourceId, {
+    value,
+    writable: true,
+    enumerable: true,
+    configurable: true,
+  });
+  return value;
 }
 
 /** Testimony weight from trust: 0 at or below the floor, never negative, so low trust alone never flips a claim. @internal */
@@ -153,6 +178,30 @@ function ensureBelief(p: Person, prop: string, now: Minute): Belief {
     p.memory.beliefs.push(b);
     evictBeliefs(p, prop);
   }
+  return b;
+}
+
+/**
+ * Set or replace an authored belief without applying source trust or recording an observation.
+ * `credence` is the probability that `value` holds, clamped to 0..1 and stored as bounded signed
+ * log-odds. `at` defaults to the person's current minute. Nonfinite credence or time throws.
+ * Only `memory.beliefs` changes, with ordinary belief eviction. An omitted source leaves no sources;
+ * a named source records its claim for later `confirm`, without changing any trust store now.
+ * It does not apply reputation to relationships; use `seedTie` to author a relationship.
+ */
+export function seedBelief(
+  p: Person,
+  prop: string,
+  spec: { value: boolean; credence: Unit; at?: Minute; source?: EntityId },
+): Belief {
+  const at = spec.at ?? p.now;
+  if (!Number.isFinite(spec.credence)) throw new Error('human: belief credence must be finite');
+  if (!Number.isFinite(at)) throw new Error('human: belief time must be finite');
+  const b = ensureBelief(p, prop, at);
+  const limit = BELIEF_DEFAULTS.maxLogOdds;
+  b.logOdds = clamp((spec.value ? 1 : -1) * logit(clamp01(spec.credence)), -limit, limit);
+  b.updatedAt = at;
+  b.sources = spec.source === undefined ? [] : [{ id: spec.source, value: spec.value }];
   return b;
 }
 
