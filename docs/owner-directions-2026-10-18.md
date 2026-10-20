@@ -45,3 +45,11 @@ How this is read:
 "more games and more grandiose ideas, including starting to think about how we'll publish these more broadly, and ... how we may start earning some money from these without pushing too much."
 
 How this is read: a plan, not a launch. Agents create no accounts and publish nowhere new without the owner; earning stays gentle (no ads during play, no dark patterns, nothing gambling-like) and faith stays gentle. The plan is [docs/lab/publishing-and-earning-2026-10-20.md](lab/publishing-and-earning-2026-10-20.md).
+
+## 2026-10-20, later (Adam, verbatim)
+
+"I like that we're settling a great deal of reusable things across games to evolve the game lab as a whole and keep quality improving. Starting with HF, of course, but also the lab approach itself, the auto play testers which is a great way to auto polish games, and Opus taste, a consistent design language."
+
+How this is read: quality work should land once and reach every game. Four shared layers carry it: HF itself; the lab approach (ledger, lessons, routing); the auto playtesters, which every game's polish round uses; and one design language for clarity and look, kept by Opus review. The clarity checklist is [docs/lab/design-language.md](lab/design-language.md); the visual language stays in [docs/design-language.md](design-language.md).
+
+The same day the owner reported, about The Valley (paraphrased by the coordinator, not verbatim): no idea what to do, what is clickable, which text matters, why actions are limited or what comes next; dates and key terms must stay English, while Turkish flavour is fine. The opt-in run upload was also refused as too complex or too large after a little play.
