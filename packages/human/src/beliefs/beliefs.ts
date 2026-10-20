@@ -186,7 +186,8 @@ function ensureBelief(p: Person, prop: string, now: Minute): Belief {
  * `credence` is the probability that `value` holds, clamped to 0..1 and stored as bounded signed
  * log-odds. `at` defaults to the person's current minute. Nonfinite credence or time throws.
  * Only `memory.beliefs` changes, with ordinary belief eviction. An omitted source leaves no sources;
- * a named source records its claim for later `confirm`, without changing any trust store now.
+ * a named source records its claim for later `confirm`, without changing any trust store now. The person's own id
+ * and 'self' are refused (they mark observation): use `confirm` for something the person saw.
  * It does not apply reputation to relationships; use `seedTie` to author a relationship.
  */
 export function seedBelief(
@@ -197,6 +198,11 @@ export function seedBelief(
   const at = spec.at ?? p.now;
   if (!Number.isFinite(spec.credence)) throw new Error('human: belief credence must be finite');
   if (!Number.isFinite(at)) throw new Error('human: belief time must be finite');
+  // The person's own id and 'self' mark direct observation (`observedDiscount`, `confirm`); authoring is not seeing.
+  if (spec.source === p.id || spec.source === 'self')
+    throw new Error(
+      'human: an authored belief cannot name the person as its source; use confirm for an observation',
+    );
   const b = ensureBelief(p, prop, at);
   const limit = BELIEF_DEFAULTS.maxLogOdds;
   b.logOdds = clamp((spec.value ? 1 : -1) * logit(clamp01(spec.credence)), -limit, limit);

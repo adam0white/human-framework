@@ -5,6 +5,7 @@ import {
   confirm,
   createPerson,
   credence,
+  type Person,
   perceive,
   seedBelief,
   seedSourceTrust,
@@ -119,12 +120,26 @@ describe('authored belief', () => {
     const authored = person();
     const observed = person();
     seedBelief(authored, 'door:open', { value: true, credence: 0.9 });
-    seedBelief(observed, 'door:open', { value: true, credence: 0.9, source: 'self' });
-    const initial = authored.memory.beliefs[0]?.logOdds ?? 0;
-    for (const p of [authored, observed]) believe(p, 'door:open', false, 0.9, 'speaker', 90);
-    const authoredChange = initial - (authored.memory.beliefs[0]?.logOdds ?? 0);
-    const observedChange = initial - (observed.memory.beliefs[0]?.logOdds ?? 0);
-    expect(authoredChange).toBeGreaterThan(observedChange);
+    confirm(observed, 'door:open', true, 90);
+    const before = (p: Person) => p.memory.beliefs[0]?.logOdds ?? 0;
+    const change = (p: Person) => {
+      const b0 = before(p);
+      believe(p, 'door:open', false, 0.9, 'speaker', 90);
+      return b0 - before(p);
+    };
+    expect(authored.memory.beliefs[0]?.sources).toEqual([]);
+    expect(change(authored)).toBeGreaterThan(change(observed));
+  });
+
+  test('refuses the person as an authored source and changes nothing', () => {
+    for (const source of ['self', 'me']) {
+      const p = person();
+      const before = JSON.stringify(p);
+      expect(() => seedBelief(p, 'door:open', { value: true, credence: 0.9, source })).toThrow(
+        /cannot name the person/,
+      );
+      expect(JSON.stringify(p)).toBe(before);
+    }
   });
 
   test('clamps both probability endpoints and caps log-odds in either direction', () => {
