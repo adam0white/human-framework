@@ -31,7 +31,7 @@ import {
 import { ageOf, dayOfYear, householdCount, living, seasonOfDay } from './life.ts';
 import { type Moment, readPosting, readWords } from './moments.ts';
 import { bellCarry, bellSwinging, inVoice, litSection, nightEnd, presentIds, theSection } from './night.ts';
-import { type NightAct, nightActs } from './night-actions.ts';
+import { type NightAct, nightActs, nightBodyCondition, nightHandover } from './night-actions.ts';
 import {
   familyWords,
   isHere,
@@ -43,7 +43,7 @@ import {
   sectionDanger,
   villager,
 } from './people.ts';
-import { type Impression, keeperImpressions } from './reads.ts';
+import { type Impression, keeperFatigue, keeperImpressions } from './reads.ts';
 import { EAT_PER_HEAD, SPRING_DAY } from './season.ts';
 import type {
   Alert,
@@ -277,6 +277,8 @@ export interface FrameWatcher {
   /** A read-only night account. Only `spoken` accounts are the watcher's own words within voice reach. */
   account: { text: string; spoken: boolean } | null;
   acts: NightAct[];
+  handover: string | null;
+  restRead: string | null;
 }
 
 const POSTURE: Record<string, Posture> = {
@@ -325,29 +327,43 @@ function nightAccount(
     };
   const told = selfReport(p);
   const bitten = s.notes.some((n) => n.who === p.id && n.kind === 'bitten');
+  const known = nightBodyCondition(s, p.id);
   const condition = bitten
     ? told.pain < 0.2
-      ? 'It’s a scratch.'
+      ? 'I’m hurt, but it’s a scratch.'
       : section !== null &&
           s.tokens.some((t) => t.kind === 'wolf' && t.state === 'foot' && t.section === section)
-        ? 'It’s got my leg!'
-        : 'It bit my leg.'
+        ? 'It’s got my leg! I’m hurt.'
+        : 'It bit my leg. I’m hurt.'
     : told.pain > 0.2
       ? 'My leg hurts.'
-      : told.fatigue > 0.4
-        ? 'I can hardly keep my eyes open.'
+      : known.hurt
+        ? 'I’m hurt.'
         : '';
-  const doing = [condition, ACCOUNT_ACTION[p.activity?.action ?? ''] ?? 'I’m here.']
+  const tired = known.tired ? 'I’m tired.' : '';
+  const doing = [
+    condition,
+    tired,
+    condition || tired ? '' : (ACCOUNT_ACTION[p.activity?.action ?? ''] ?? 'I’m here.'),
+  ]
     .filter(Boolean)
     .join(' ');
   if (section === null) return { text: doing, spoken: true };
+  const fatigue = keeperFatigue(s, p.id);
+  const concise = condition || tired || (fatigue.confidence >= 0.12 && fatigue.value > 0.35);
   const danger = sectionDanger(s, section);
   const seeing =
     danger.chance > 0.08
-      ? 'Something is close on this stretch.'
+      ? concise
+        ? 'Something is close.'
+        : 'Something is close on this stretch.'
       : danger.chance > 0
-        ? 'The scout warned us about this stretch. I can’t make anything out yet.'
-        : 'Nothing close that I can make out.';
+        ? concise
+          ? 'The scout warned of this stretch.'
+          : 'The scout warned us about this stretch. I can’t make anything out yet.'
+        : concise
+          ? 'Nothing close.'
+          : 'Nothing close that I can make out.';
   return { text: `${doing} ${seeing}`, spoken: true };
 }
 
@@ -522,6 +538,15 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
       target: th ? th.token : null,
       account: nightAccount(s, p, section, onLit),
       acts: nightActs(s, w.id),
+      restRead: (() => {
+        const fatigue = keeperFatigue(s, w.id);
+        return s.phase === 'night' && fatigue.confidence >= 0.12 && fatigue.value > 0.35
+          ? fatigue.dusk
+            ? 'seemed tiring at dusk'
+            : 'seemed tiring at the last look'
+          : null;
+      })(),
+      handover: s.phase === 'night' ? nightHandover(s, w.id) : null,
     });
   }
   const nightLen = nightEnd(s) - s.nightStart;

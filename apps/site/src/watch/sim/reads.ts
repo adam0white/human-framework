@@ -6,7 +6,8 @@
  * G3-3: what the Keeper learned of someone's nature, ties, trust, aim and fears of a place does not fade through
  * the months he doesn't watch them on the wall. Those cues are read as they stood a few weeks after he last saw
  * them, and the read says how old it is ("from last winter"). Passing states (tired, hurt, frightened) still fade
- * on HF's clock. This is how the frame shows the impression; the Keeper's HF estimates are unchanged.
+ * on HF's clock. At night this view holds the fatigue read available at dusk until a newer observation replaces
+ * it. This is how the frame shows the impression; the Keeper's HF estimates are unchanged.
  */
 import { estimate, impressionOf, MINUTES_PER_DAY } from '@adam0white/human-framework';
 import { SECTIONS, type SectionId, type WatcherId } from './config.ts';
@@ -30,6 +31,15 @@ const HOLD = 30 * MINUTES_PER_DAY;
 /** Passing states fade on HF's clock; everything else is held (see the module comment). */
 const passing = (key: string) => key === 'fatigue' || key === 'pain' || key === 'fear';
 
+/** Hold a dusk fatigue impression through this night; a new observation can replace it. */
+export function keeperFatigue(s: WatchState, id: WatcherId) {
+  const cue = estimate(s.keeper, id, 'fatigue', s.minute);
+  const dusk = s.phase === 'night' && cue.seenAt !== undefined && cue.seenAt < s.nightStart;
+  // This is the read the Keeper could see at dusk, even if the underlying glimpse was older.
+  const atDusk = Math.max(s.nightStart - 60, cue.seenAt ?? s.minute);
+  return { ...(dusk ? estimate(s.keeper, id, 'fatigue', atDusk) : cue), dusk };
+}
+
 /** Up to `max` phrases, the surest first. A stranger gets one: "you don't know them yet". */
 export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impression[] {
   const read = impressionOf(s.keeper, id, s.minute);
@@ -38,15 +48,19 @@ export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impres
   for (const raw of read.cues) {
     const at = raw.seenAt;
     const c =
-      passing(raw.key) || at === undefined || s.minute - at <= HOLD
-        ? raw
-        : { key: raw.key, ...estimate(s.keeper, id, raw.key, at + HOLD) };
+      raw.key === 'fatigue'
+        ? { key: raw.key, ...keeperFatigue(s, id) }
+        : passing(raw.key) || at === undefined || s.minute - at <= HOLD
+          ? raw
+          : { key: raw.key, ...estimate(s.keeper, id, raw.key, at + HOLD) };
     if (c.confidence < SAY_MIN) continue;
     const v = c.value;
     const sure = Math.round(c.confidence * 20) / 20;
     let text: string | null = null;
-    if (c.key === 'fatigue') text = v > 0.55 ? 'worn out' : v > 0.35 ? 'tiring' : null;
-    else if (c.key === 'pain') text = v > 0.45 ? 'hurting badly' : v > 0.2 ? 'hurt' : null;
+    if (c.key === 'fatigue') {
+      text = v > 0.55 ? 'worn out' : v > 0.35 ? 'tiring' : null;
+      if (text && keeperFatigue(s, id).dusk) text = `seemed ${text} at dusk`;
+    } else if (c.key === 'pain') text = v > 0.45 ? 'hurting badly' : v > 0.2 ? 'hurt' : null;
     else if (c.key === 'fear') text = v > 0.45 ? 'frightened' : v > 0.22 ? 'uneasy' : null;
     else if (c.key.startsWith('fear@')) {
       const place = c.key.slice(5);

@@ -8,6 +8,7 @@ import { type PostId, postSection, type SectionId, type WatcherId } from './conf
 import { ask, readWords } from './moments.ts';
 import { alert, inVoice, ownReason, presentIds, theSection } from './night.ts';
 import { isPost, KEEPER_ID, nameOf, personOf, villager, WatchWorld } from './people.ts';
+import { keeperFatigue } from './reads.ts';
 import type { WatchState } from './state.ts';
 
 export type NightInput =
@@ -36,10 +37,9 @@ function awake(s: WatchState, id: WatcherId): boolean {
 }
 
 /** Outward signs and what a nearby watcher admits, not a numerical needs display. */
-export function nightCondition(s: WatchState, who: WatcherId): { tired: boolean; hurt: boolean } {
+export function nightBodyCondition(s: WatchState, who: WatcherId): { tired: boolean; hurt: boolean } {
   const p = personOf(s, who);
   if (!p) return { tired: false, hurt: false };
-  const pl = s.place[who];
   const signs = outwardSigns(p);
   const told = selfReport(p);
   const near = inVoice(s, who);
@@ -51,9 +51,20 @@ export function nightCondition(s: WatchState, who: WatcherId): { tired: boolean;
       !!villager(s, who).limp ||
       signs.pain > 0.3 ||
       p.body.injuries.some((i) => (i.bleeding ?? 0) > 0) ||
-      (isPost(pl) &&
-        s.tokens.some((t) => t.kind === 'wolf' && t.state === 'foot' && t.section === postSection(pl))) ||
       (near && told.pain > 0.2),
+  };
+}
+
+/** Danger can justify help before an injury. It is not evidence that a watcher is hurt. */
+export function nightCondition(s: WatchState, who: WatcherId): { tired: boolean; hurt: boolean } {
+  const body = nightBodyCondition(s, who);
+  const pl = s.place[who];
+  return {
+    ...body,
+    hurt:
+      body.hurt ||
+      (isPost(pl) &&
+        s.tokens.some((t) => t.kind === 'wolf' && t.state === 'foot' && t.section === postSection(pl))),
   };
 }
 
@@ -128,6 +139,8 @@ function reading(s: WatchState, id: WatcherId, input: NightInput, affordance: st
 export function nightActs(s: WatchState, who: WatcherId): NightAct[] {
   if (s.phase !== 'night' || !presentIds(s).includes(who) || !isPost(s.place[who])) return [];
   const condition = nightCondition(s, who);
+  const read = keeperFatigue(s, who);
+  condition.tired ||= read.confidence >= 0.12 && read.value > 0.35;
   if (!condition.tired && !condition.hurt) return [];
   const name = nameOf(s, who);
   const inputs: { input: NightInput; label: string }[] = [];
@@ -165,17 +178,53 @@ export function nightActs(s: WatchState, who: WatcherId): NightAct[] {
     if (blocked || !affordance) return { input, label, read: blocked ?? "you can't tell", available: false };
     const old = s.place[id];
     const leaves =
-      input.k !== 'down' && isPost(old) && old !== s.place[who]
-        ? `; leaves their post on ${theSection(postSection(old))} empty`
-        : '';
-    const cover =
-      input.k === 'relieve'
-        ? `; relief takes over before you ask ${name} to sleep`
-        : input.k === 'down'
-          ? '; the post stands empty if they leave'
-          : '';
+      isPost(old) && (input.k === 'down' || old !== s.place[who]) ? `; ${leavingRead(s, id)}` : '';
+    const cover = input.k === 'relieve' ? `; relief takes over before you ask ${name} to sleep` : '';
     return { input, label, read: `${reading(s, id, input, affordance)}${leaves}${cover}`, available: true };
   });
+}
+
+/** Coverage is the people still on this stretch, including people sharing a post. */
+function leavingRead(s: WatchState, id: WatcherId): string {
+  const post = s.place[id];
+  if (!isPost(post)) return '';
+  const section = postSection(post);
+  const remaining = presentIds(s)
+    .filter(
+      (other) => other !== id && isPost(s.place[other]) && postSection(s.place[other] as PostId) === section,
+    )
+    .map((other) => nameOf(s, other));
+  const names =
+    remaining.length < 2 ? remaining[0] : `${remaining.slice(0, -1).join(', ')} and ${remaining.at(-1)}`;
+  return names ? `leaves ${names} at ${theSection(section)}` : `leaves ${theSection(section)} empty`;
+}
+
+/** Requests wait for HF's answer. Post changes have no travel phase in the existing rules. */
+export function nightHandover(s: WatchState, who: WatcherId): string | null {
+  for (const [by, r] of Object.entries(s.nightRequests ?? {})) {
+    if (!r || r.who !== who || r.until <= s.minute || by === who) continue;
+    return `${nameOf(s, by)} has been called ${r.kind === 'help' ? `to help ${nameOf(s, who)} at` : 'to'} ${theSection(r.section)}; waiting for an answer.`;
+  }
+  const old = s.letGo[who];
+  if (!old) return null;
+  const section = postSection(old);
+  const accepted = s.alerts.findLast(
+    (a) =>
+      a.minute >= s.nightStart &&
+      a.section === section &&
+      a.who !== who &&
+      a.who &&
+      s.posts[a.who] === old &&
+      a.text.includes('I’ll take'),
+  );
+  if (!accepted?.who) return null;
+  if (s.place[accepted.who] !== old) return `${nameOf(s, accepted.who)} has left ${theSection(section)}.`;
+  const going = s.nightRequests?.[who];
+  if (!isPost(s.place[who]))
+    return `${nameOf(s, accepted.who)} has ${theSection(section)}; ${nameOf(s, who)} has gone down.`;
+  if (going?.kind === 'down' && going.afterMinute === accepted.minute)
+    return `${nameOf(s, accepted.who)} has ${theSection(section)}; ${nameOf(s, who)} has been asked to go down.`;
+  return `${nameOf(s, accepted.who)} has ${theSection(section)}; ${nameOf(s, who)} is still on the wall.`;
 }
 
 export function applyNightAct(s: WatchState, input: NightInput): boolean {

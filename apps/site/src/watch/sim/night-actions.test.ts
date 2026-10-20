@@ -1,7 +1,8 @@
+import { glimpse, outwardSigns } from '@adam0white/human-framework';
 import { describe, expect, it } from 'vitest';
 import { clockRuns } from './night.ts';
 import { type NightInput, nightActs, resolveNightRequest } from './night-actions.ts';
-import { personOf } from './people.ts';
+import { arrive, personOf } from './people.ts';
 import { WatchRun } from './run.ts';
 import { buildFrame } from './view.ts';
 
@@ -63,6 +64,58 @@ function act(s: ReturnType<typeof night>['s'], k: NightInput['k'], by = 'kian') 
 }
 
 describe('night asks on a watcher', () => {
+  it('keeps a dusk fatigue read eligible throughout the night without changing current condition', () => {
+    const { run, s, target } = night();
+    const oldRead = s.keeper.social.impressions?.find((read) => read.targetId === 'tamar');
+    if (oldRead) oldRead.cues = oldRead.cues.filter((cue) => cue.key !== 'fatigue');
+    glimpse(s.keeper, 'tamar', { ...outwardSigns(target), fatigue: 0.5 }, s.nightStart - 120, 1);
+    target.body.sleepPressure = 0.05;
+    target.body.exertion = 0;
+    target.social.reserve = { fatigue: 1 };
+    expect(act(s, 'relieve')?.available).toBe(true);
+    expect(buildFrame(s, 0, false).watchers.find((w) => w.id === 'tamar')?.impressions).toContainEqual(
+      expect.objectContaining({ text: 'seemed tiring at dusk' }),
+    );
+    s.minute += 200;
+    expect(act(s, 'relieve')?.available).toBe(true);
+    expect(run.input({ k: 'down', who: 'tamar' })).toBe(true);
+    expect(s.asks.tamar?.sug.affordanceId).toBe('sleep');
+    glimpse(s.keeper, 'tamar', { ...outwardSigns(target), fatigue: 0 }, s.minute, 1);
+    expect(act(s, 'relieve')).toBeUndefined();
+  });
+
+  it('names remaining watchers on a stretch for both dispatch and going down', () => {
+    const { s } = night();
+    s.winterNight = 2;
+    arrive(s);
+    s.place.mara = 'mill-1';
+    s.place.joss = 'mill-2';
+    expect(act(s, 'relieve')?.read).toContain('leaves Mara and Joss at the mill wall');
+    expect(act(s, 'relieve')?.read).not.toContain('mill wall empty');
+    s.place.mara = 'gate-1';
+    s.place.joss = 'gate-2';
+    expect(act(s, 'down')?.read).toContain('leaves Mara and Joss at the Gate');
+    s.place.mara = 'home';
+    s.place.joss = 'home';
+    expect(act(s, 'down')?.read).toContain('leaves the Gate empty');
+  });
+
+  it('projects waiting and completed handover in the account without claiming an unanswered call is travel', () => {
+    const { run, s } = night();
+    run.input({ k: 'relieve', who: 'tamar', by: 'kian' });
+    const progress = () => buildFrame(s, 0, false).watchers.find((w) => w.id === 'tamar')?.handover;
+    expect(progress()).toMatch(/Kian.*Gate.*answer/);
+    for (let i = 0; i < 15 && s.place.tamar === 'gate-1'; i++) run.step();
+    expect(progress()).toContain('Kian has the Gate; Tamar');
+    expect(progress()).toMatch(/asked to go down|gone down/);
+    s.place.tamar = 'home';
+    delete s.nightRequests?.tamar;
+    s.alerts = s.alerts.filter((alert) => alert.who !== 'tamar');
+    expect(progress()).toBe('Kian has the Gate; Tamar has gone down.');
+    s.place.kian = 'home';
+    expect(progress()).toBe('Kian has left the Gate.');
+  });
+
   it.each(['relieve', 'help', 'down'] as const)('%s is legal only at night', (k) => {
     const { run, s, target } = night();
     hurt(target);
@@ -180,6 +233,9 @@ describe('night asks on a watcher', () => {
       { id: 100, kind: 'wolf', section: 'gate', pos: 1, hp: 1, climb: 0, state: 'foot', since: s.minute },
     ];
     expect(act(s, 'help')?.available).toBe(true);
+    expect(buildFrame(s, 0, false).watchers.find((w) => w.id === 'tamar')?.account?.text).not.toMatch(
+      /hurt|bit|bleed/,
+    );
   });
 
   it('projects reads without changing state, RNG, time or moments', () => {
@@ -370,12 +426,12 @@ describe('the night account speaks about the person', () => {
     });
     expect(account()?.text).toContain('It’s got my leg!');
     target.social.reserve = { pain: 1 };
-    expect(account()?.text).toContain('It’s a scratch.');
+    expect(account()?.text).toContain('I’m hurt, but it’s a scratch.');
     s.place.tamar = 'east-1';
     expect(account()).toEqual({ text: 'Too far away for your voice to reach.', spoken: false });
   });
 
-  it('admits tiredness and injury in words, with reserve filtering the self-report', () => {
+  it('names known tiredness and injury even when reserve softens the self-report', () => {
     const { s, target } = night();
     const account = () => buildFrame(s, 0, false).watchers.find((w) => w.id === 'tamar')?.account;
     expect(account()?.spoken).toBe(true);
@@ -384,6 +440,6 @@ describe('the night account speaks about the person', () => {
     expect(account()?.text).toMatch(/leg|hurt|bleed|bit/i);
     expect(account()?.text).not.toMatch(/\d|%/);
     target.social.reserve = { fatigue: 1, pain: 1 };
-    expect(account()?.text).not.toMatch(/leg|hurt|bleed|bit/i);
+    expect(account()?.text).toMatch(/hurt/i);
   });
 });

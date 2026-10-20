@@ -1922,3 +1922,35 @@ body:has(> .hflab-veil) .watch .w-menu {
   grid-column: 1 / -1;
   margin: 4px 0;
 }
+
+/* The account replaces lantern controls. Rest stays in the sheet's reserved action row. */
+.watch .lk-sheet-body[hidden] {
+  display: none;
+}
+.w-account-commit .w-helper-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.w-account-commit .w-night-act {
+  margin-top: 4px;
+}
+.w-helper-choice .w-night-acts {
+  margin: 6px 0;
+}
+.w-helper-choice .w-night-act-read {
+  margin: 0 0 4px;
+}
+.w-handover {
+  margin: 4px 0;
+}
+
+.watch .w-account blockquote {
+  margin: 4px 0 0;
+  line-height: 1.4;
+}
+
+.watch .w-account .w-note {
+  margin: 4px 0 0;
+}

@@ -385,6 +385,7 @@ export function WatchStrip({ frame, selected }: { frame: Frame; selected: Watche
             {frame.phase === 'dusk' ? ` · ${who.note}` : ''}
           </p>
           <p className="w-person-post">{whereWords(who, frame.phase)}</p>
+          {who.handover ? <p className="w-handover">{who.handover}</p> : null}
           {frame.phase === 'dusk' ? <Impressions impressions={who.impressions} /> : null}
         </div>
       ) : null}
@@ -731,41 +732,13 @@ export function NightPanel({
   }, [wear]);
   return (
     <div className="w-night">
-      <div className="lk-sheet-body" ref={body}>
+      <div className="lk-sheet-body" ref={body} hidden={Boolean(who?.account)}>
         <p className="w-note w-lantern-context">
           Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.
         </p>
         <div hidden={Boolean(who)}>
           <NightMoment frame={frame} actions={actions} />
         </div>
-        {who?.account ? (
-          <section className="w-account" aria-label={`${who.name} on watch`}>
-            <button type="button" className="w-chip w-account-close" onClick={onClose}>
-              Back to the wall
-            </button>
-            <p className="w-voice-who">{who.account.spoken ? who.name : 'What the Keeper can tell'}</p>
-            {who.account.spoken ? <blockquote>{who.account.text}</blockquote> : <p>{who.account.text}</p>}
-            {who.acts.length ? (
-              <ul className="w-night-acts" aria-label={`Ask about ${who.name}`}>
-                {who.acts.map((act) => (
-                  <li key={JSON.stringify(act.input)}>
-                    <button
-                      type="button"
-                      className="w-night-act"
-                      disabled={!act.available}
-                      onClick={() => actions.input(act.input)}
-                    >
-                      <span>{act.label}</span>
-                      <span className="w-night-act-read">{act.read}</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-            <p className="w-note">The watch continues while you listen. Each request is theirs to answer.</p>
-            {frame.moment ? <p className="w-note">A watcher’s decision is still waiting.</p> : null}
-          </section>
-        ) : null}
         <details className="w-about w-night-details">
           <summary>Watchers and bell</summary>
           <fieldset className="w-night-roster" aria-label="Hear a watcher">
@@ -803,45 +776,188 @@ export function NightPanel({
           />
         </details>
       </div>
-      <footer className="lk-commit w-night-commit">
-        <div className="w-lantern-pick">
-          <span>
-            <Icon name="lamp" size={16} /> {walking ? 'The lantern is on its way' : 'The lantern'}
-            <span className="w-tap-hint"> · choose a stretch, or tap the wall</span>
-          </span>
-          {SECTIONS.map((s, i) => (
-            <button
-              key={s.id}
-              type="button"
-              className="w-chip"
-              aria-pressed={frame.lantern.target === i}
-              disabled={frame.sections[i]?.fallen === true}
-              onClick={() => actions.input({ k: 'lantern', section: s.id })}
-            >
-              {s.name}
-              {frame.sections[i]?.fallen ? ' · fallen' : ''}
-            </button>
-          ))}
-        </div>
-        <div className="w-bell">
-          <button
-            type="button"
-            className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
-            aria-describedby="watch-bell-context"
-            disabled={frame.rope.snapped || frame.bellSwinging}
-            onClick={() => actions.input({ k: 'bell' })}
-          >
-            <Icon name="bell" size={20} />
-            <span>{frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}</span>
-          </button>
-          <div className="w-ropebox">
-            <span className="w-bellread">{frame.bellRead ?? '\u00a0'}</span>
-            <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />
-            <span className="w-ropewords">{ropeWords(frame.rope.wear, frame.rope.snapped)}</span>
+      {who?.account ? (
+        <NightAccount key={who.id} who={who} frame={frame} actions={actions} onClose={onClose} />
+      ) : (
+        <footer className="lk-commit w-night-commit">
+          <div className="w-lantern-pick">
+            <span>
+              <Icon name="lamp" size={16} /> {walking ? 'The lantern is on its way' : 'The lantern'}
+              <span className="w-tap-hint"> · choose a stretch, or tap the wall</span>
+            </span>
+            {SECTIONS.map((s, i) => (
+              <button
+                key={s.id}
+                type="button"
+                className="w-chip"
+                aria-pressed={frame.lantern.target === i}
+                disabled={frame.sections[i]?.fallen === true}
+                onClick={() => actions.input({ k: 'lantern', section: s.id })}
+              >
+                {s.name}
+                {frame.sections[i]?.fallen ? ' · fallen' : ''}
+              </button>
+            ))}
           </div>
-        </div>
-      </footer>
+          <div className="w-bell">
+            <button
+              type="button"
+              className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
+              aria-describedby="watch-bell-context"
+              disabled={frame.rope.snapped || frame.bellSwinging}
+              onClick={() => actions.input({ k: 'bell' })}
+            >
+              <Icon name="bell" size={20} />
+              <span>{frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}</span>
+            </button>
+            <div className="w-ropebox">
+              <span className="w-bellread">{frame.bellRead ?? '\u00a0'}</span>
+              <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />
+              <span className="w-ropewords">{ropeWords(frame.rope.wear, frame.rope.snapped)}</span>
+            </div>
+          </div>
+        </footer>
+      )}
     </div>
+  );
+}
+
+/** Helper choice replaces the account. An option never vanishes silently during this visit. */
+function NightAccount({
+  who,
+  frame,
+  actions,
+  onClose,
+}: {
+  who: FrameWatcher;
+  frame: Frame;
+  actions: WatchActions;
+  onClose?: () => void;
+}) {
+  const [choice, setChoice] = useState<'relieve' | 'help' | null>(null);
+  const [seenActs, setSeenActs] = useState(who.acts);
+  const body = useRef<HTMLDivElement>(null);
+  const focus = useRef<HTMLButtonElement>(null);
+  const key = (act: FrameWatcher['acts'][number]) => JSON.stringify(act.input);
+  const seen = new Set(seenActs.map(key));
+  const added = who.acts.filter((act) => !seen.has(key(act)));
+  if (added.length) setSeenActs([...seenActs, ...added]);
+  const current = new Map(who.acts.map((act) => [key(act), act]));
+  const acts = [...new Map([...seenActs, ...who.acts].map((act) => [key(act), act])).values()].map(
+    (act) =>
+      current.get(key(act)) ?? {
+        ...act,
+        available: false,
+        read: `${who.name}’s or the helper’s condition has changed; this request is no longer available.`,
+      },
+  );
+  const down = acts.find((act) => act.input.k === 'down');
+  const downLabel = down?.label.includes('hall') ? 'Send down' : 'Rest';
+  const candidates = acts.filter((act) => act.input.k === choice);
+  const available = candidates.filter((act) => act.available && !/isn.t on offer/i.test(act.read));
+  const unavailable = candidates.filter((act) => !available.includes(act));
+  const outOfCall = unavailable.filter((act) => /Too far to call/.test(act.read));
+  const otherUnavailable = unavailable.filter((act) => !outOfCall.includes(act));
+  const helperName = (act: FrameWatcher['acts'][number]) =>
+    act.input.k === 'down' ? who.name : nameIn(frame, act.input.by);
+  useEffect(() => {
+    if (body.current) body.current.scrollTop = 0;
+    // Both sheets have a Back control; focus follows the sheet being shown.
+    if (choice !== undefined) focus.current?.focus();
+  }, [choice]);
+  useEffect(() => {
+    if (!choice) return;
+    const back = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      event.stopImmediatePropagation();
+      setChoice(null);
+    };
+    window.addEventListener('keydown', back, true);
+    return () => window.removeEventListener('keydown', back, true);
+  }, [choice]);
+  const dispatch = (act: FrameWatcher['acts'][number]) => {
+    actions.input(act.input);
+    setChoice(null);
+  };
+  return (
+    <>
+      {choice ? (
+        <header className="lk-sheet-head w-helper-head">
+          <button type="button" className="w-chip" ref={focus} onClick={() => setChoice(null)}>
+            Back to {who.name}
+          </button>
+          <p className="w-voice-who">
+            {choice === 'relieve' ? 'Send relief' : 'Send help'} for {who.name}
+          </p>
+        </header>
+      ) : null}
+      <div className="lk-sheet-body" ref={body}>
+        {choice ? (
+          <section
+            className="w-helper-choice"
+            aria-label={`Send ${choice === 'relieve' ? 'relief' : 'help'} for ${who.name}`}
+          >
+            <ul className="w-night-acts">
+              {available.map((act) => (
+                <li key={key(act)}>
+                  <p className="w-night-act-read">
+                    {helperName(act)}: {act.read}
+                  </p>
+                  <button type="button" className="w-night-act" onClick={() => dispatch(act)}>
+                    {act.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            {outOfCall.length ? (
+              <p className="w-note">Out of call: {outOfCall.map(helperName).join(', ')} — carry the light.</p>
+            ) : null}
+            {otherUnavailable.length ? (
+              <p className="w-note">
+                Unavailable: {otherUnavailable.map((act) => `${helperName(act)} — ${act.read}`).join(' ')}
+              </p>
+            ) : null}
+            {!candidates.length ? <p>No helper is available here.</p> : null}
+          </section>
+        ) : (
+          <section className="w-account" aria-label={`${who.name} on watch`}>
+            <button type="button" className="w-chip w-account-close" ref={focus} onClick={onClose}>
+              Back to the wall
+            </button>
+            {who.account?.spoken ? <blockquote>{who.account.text}</blockquote> : <p>{who.account?.text}</p>}
+            {who.restRead ? <p className="w-note">Keeper’s read: {who.restRead}.</p> : null}
+          </section>
+        )}
+      </div>
+      {!choice ? (
+        <footer className="lk-commit w-account-commit">
+          {down ? (
+            <>
+              <p className="w-note">{down.read}</p>
+              <button
+                type="button"
+                className="w-night-act"
+                disabled={!down.available}
+                onClick={() => dispatch(down)}
+              >
+                {downLabel}
+              </button>
+            </>
+          ) : null}
+          <div className="w-helper-controls">
+            {(['relieve', 'help'] as const)
+              .filter((kind) => acts.some((act) => act.input.k === kind))
+              .map((kind) => (
+                <button key={kind} type="button" className="w-chip" onClick={() => setChoice(kind)}>
+                  {kind === 'relieve' ? 'Send relief' : 'Send help'}
+                </button>
+              ))}
+          </div>
+          <p className="w-note">The watch continues. Each request is theirs to answer.</p>
+          {frame.moment ? <p className="w-note">A watcher’s decision is still waiting.</p> : null}
+        </footer>
+      ) : null}
+    </>
   );
 }
 
