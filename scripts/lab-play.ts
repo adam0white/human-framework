@@ -31,7 +31,7 @@ interface Locator {
 interface Page {
   goto(url: string, options: { waitUntil: string; timeout: number }): Promise<unknown>;
   locator(selector: string): Locator;
-  getByRole(role: string, options: { name: string; exact: boolean }): Locator;
+  getByRole(role: string, options: { name: string | RegExp; exact?: boolean }): Locator;
   getByLabel(name: string, options: { exact: boolean }): Locator;
   getByText(text: string, options: { exact: boolean }): Locator;
   evaluate<T, A>(fn: (arg: A) => T, arg: A): Promise<T>;
@@ -84,7 +84,8 @@ async function loadPlaywright(): Promise<Playwright> {
 const visible = (locator: Locator) => locator.filter({ visible: true }).first();
 const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
-// An on-screen point where the element itself receives the tap, or null when it is covered.
+// An on-screen point where the element (or the container it sits in) receives the tap, or null
+// when something else covers it.
 function uncoveredPoint(el: Element, centre: boolean): { x: number; y: number } | null {
   if (centre) el.scrollIntoView({ block: 'center', inline: 'nearest' });
   const box = el.getBoundingClientRect();
@@ -94,7 +95,8 @@ function uncoveredPoint(el: Element, centre: boolean): { x: number; y: number } 
       const y = box.top + box.height * fy;
       if (x < 0 || y < 0 || x >= innerWidth || y >= innerHeight) continue;
       const hit = document.elementFromPoint(x, y);
-      if (hit && (hit === el || el.contains(hit))) return { x, y };
+      // An ancestor counts too: scene cards may pass taps to a delegating parent.
+      if (hit && (hit === el || el.contains(hit) || hit.contains(el))) return { x, y };
     }
   return null;
 }
@@ -237,6 +239,36 @@ async function main() {
         return false;
       }
     };
+    // A control whose name carries live status ("House Later: after I pray Fajr" becomes "House
+    // Will refuse: …" seconds later) may have changed since it was listed. Fall back to the
+    // longest word prefix of the requested name that starts exactly one visible control's name.
+    const clickByStem = async (role: string, name: string) => {
+      const words = name.trim().split(/\s+/);
+      for (let n = words.length - 1; n >= 1; n--) {
+        const stem = words.slice(0, n).join(' ');
+        if (stem.length < 3) break;
+        const escaped = stem.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const matches = page.getByRole(role, { name: new RegExp(`^${escaped}`) }).filter({ visible: true });
+        const count = await matches.count();
+        if (count === 1) return click(matches);
+        if (count > 1) return false;
+      }
+      return false;
+    };
+    // Whether a visible control by this name (or text) exists but is disabled: the game's answer.
+    const disabledNamed = async (name: string) =>
+      page.evaluate((wanted: string) => {
+        const norm = (t: string) => t.replace(/\s+/g, ' ').trim().toLowerCase();
+        return [...document.querySelectorAll('button, [role=button], .button, .disabled')].some((el) => {
+          const box = el.getBoundingClientRect();
+          const off =
+            (el as HTMLButtonElement).disabled ||
+            el.getAttribute('aria-disabled') === 'true' ||
+            el.classList.contains('disabled');
+          const label = norm(el.getAttribute('aria-label') ?? el.textContent ?? '');
+          return off && box.width > 0 && box.height > 0 && label.startsWith(norm(wanted).slice(0, 40));
+        });
+      }, name);
     const tapPoint = async (x: number, y: number) => {
       if (phone) await page.touchscreen.tap(x, y);
       else await page.mouse.click(x, y);
@@ -253,15 +285,25 @@ async function main() {
           else if ('name' in op && typeof op.name === 'string') {
             if (
               !(await click(page.getByRole(op.role ?? 'button', { name: op.name, exact: true }))) &&
-              (op.role || !(await click(page.getByRole('link', { name: op.name, exact: true }))))
+              (op.role || !(await click(page.getByRole('link', { name: op.name, exact: true })))) &&
+              !(await clickByStem(op.role ?? 'button', op.name))
             )
-              throw new Error(`No actionable ${op.role ?? 'button/link'} named ${op.name}`);
+              throw new Error(
+                (await disabledNamed(op.name))
+                  ? `${op.name} is shown but disabled right now (game state, not a driver failure)`
+                  : `No actionable ${op.role ?? 'button/link'} named ${op.name}`,
+              );
           } else if ('text' in op && typeof op.text === 'string') {
             if (await click(page.getByRole('button', { name: op.text, exact: true }))) break;
             if (await click(page.getByRole('link', { name: op.text, exact: true }))) break;
             if (await click(page.getByText(op.text, { exact: true }))) break;
             const point = await page.evaluate(textControlPoint, op.text);
-            if (!point) throw new Error(`No visible clickable text: ${op.text}`);
+            if (!point)
+              throw new Error(
+                (await disabledNamed(op.text))
+                  ? `${op.text} is shown but disabled right now (game state, not a driver failure)`
+                  : `No visible clickable text: ${op.text}`,
+              );
             await tapPoint(point.x, point.y);
           }
           break;
