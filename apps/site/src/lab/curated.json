@@ -1642,6 +1642,916 @@
     "fix:warren false bell answered (done)"
    ],
    "source": "warren/docs/playtests/warren-playtest-2026-10-19-r2.md"
+  },
+  {
+   "id": "F-118",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "literary reader (Opus), round 2",
+   "words": "The place feels lived in. The people stop feeling like people after the third visit.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L2",
+    "fix:valley scene-aware return greetings (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-119",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "edge-pusher (Fable), round 2",
+   "words": "The Valley answers a lazy kahya with real teeth and a generous-to-insane kahya with silence.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L11",
+    "fix:valley giveaway reaches gossip and the ending (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-120",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "grand-strategy fan (Sonnet), round 2",
+   "words": "Two years short (80 each), no consequence visible beyond a thankful letter.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L3",
+    "fix:valley dismissal says the term ran short (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-121",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "harness",
+   "who": "mischief seed 1, iteration 2",
+   "words": "mischief seed 1: quit after 5 min at y1 d23 15h (emotion:boredom:novel)",
+   "verdict": "quit",
+   "routes": [
+    "calibration:C1",
+    "lesson:L16"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-122",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "harness",
+   "who": "HF adapter report, iteration 2",
+   "words": "a press sent at night has its answer the next morning, after the adapter's answer window, so it logs 'nothing came of press'…",
+   "verdict": "-",
+   "routes": [
+    "calibration:C14",
+    "lesson:L17"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-123",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Nurten (teacher persona, Fable), round 1",
+   "words": "Best moment: Wednesday 19:31, 'Sevim and Nermin on the stairs. Not a word.' I had swapped their papers that afternoon. That is a consequence I felt.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13",
+    "lesson:L11"
+   ],
+   "source": "stairwell/docs/playtests/round-1-2026-10-19.md"
+  },
+  {
+   "id": "F-124",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Murat (casual, Opus), round 2",
+   "words": "What confused me: I opened 'Tell…' for Hüseyin, he walked off, and I ended up telling Nermin instead. Wrong person, my secret gone.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L6",
+    "fix:stairwell talk panel stays with the chosen person (done)"
+   ],
+   "source": "stairwell/docs/playtests/round-2-2026-10-19.md"
+  },
+  {
+   "id": "F-125",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Deniz (mischief, Sonnet), round 2",
+   "words": "I never learned why words were pulled. Was it the lies, the misdelivery, or the knocking?",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L1",
+    "lesson:L11",
+    "fix:stairwell withdrawn words give their cause (done)"
+   ],
+   "source": "stairwell/docs/playtests/round-2-2026-10-19.md"
+  },
+  {
+   "id": "F-126",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Hale (story seeker, Fable), round 2",
+   "words": "The whole week's silence paid off in three lines.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "stairwell/docs/playtests/round-2-2026-10-19.md"
+  },
+  {
+   "id": "F-127",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Hale (story seeker, Fable), round 2",
+   "words": "Tarık 'Sit a minute, if you can' (Wed 07:23, Sat 07:22) and 'Sit, have a tea. Five minutes' (Sat 10:32): no command accepts the invitation.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4",
+    "lesson:L14",
+    "fix:stairwell sit a minute action (done)"
+   ],
+   "source": "stairwell/docs/playtests/round-2-2026-10-19.md"
+  },
+  {
+   "id": "F-128",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Bayram (retired kapıcı persona, Haiku), round 2",
+   "words": "I nearly quit on Wednesday when the boiler pump went. It cost ₺2,400 and I had ₺115. Nothing I could do.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L14",
+    "fix:stairwell ask for the fund book or put the question to the flats (open)",
+    "lesson:L19"
+   ],
+   "source": "stairwell/docs/playtests/round-2-2026-10-19.md"
+  },
+  {
+   "id": "F-129",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "harness",
+   "who": "HF cohort report, iteration 2",
+   "words": "The returner fell from 7/8 returns to 0/3. Its sessions ended by agenda (2) or a Monday quit (1). I have not traced why; it is an open item for the next build.",
+   "verdict": "mixed",
+   "routes": [
+    "calibration:C5",
+    "lesson:L16",
+    "fix:stairwell trace returner drop from 7/8 to 0/3 (open)"
+   ],
+   "source": "stairwell/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "id": "F-130",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "colony-sim veteran (Opus)",
+   "words": "At trot speed, the smoke and the riders both arrived inside a single wait, so I never got to ring the bell.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L6",
+    "fix:warren smoke and riders slow the days (done)",
+    "fix:warren smoke slows the days (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-131",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "colony-sim veteran (Opus)",
+   "words": "Look on a 'no air' mark should say what fixes it, the same way it explains the stone.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L12",
+    "fix:warren Look explains stale air (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-132",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "idle/incremental addict (Sonnet)",
+   "words": "I quit at autumn 25, year 2, because I saw no growth and no reason to come back.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L14",
+    "fix:warren visible growth record for idle players (open)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-133",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "harness",
+   "who": "HF-character harness report",
+   "words": "The many 'silent-input' lines are partly an adapter artefact: the screen shows a chalk mark at once, which the adapter did not report as an event.",
+   "verdict": "-",
+   "routes": [
+    "calibration:C14",
+    "lesson:L17"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-134",
+   "date": "2026-10-19",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "cozy story (Fable), round 2",
+   "words": "Sam is still furniture. He says he has the morning free twice; People & supplies has no control for him at all…",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4",
+    "fix:repair answer Sam's morning offer (done)"
+   ],
+   "source": "repair-game/docs/restart/playtest-10.md"
+  },
+  {
+   "id": "F-135",
+   "date": "2026-10-19",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "cozy story (Fable), round 2",
+   "words": "Show-don't-count needs words that change ('drags a little less') or I am turning a knob blind.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4",
+    "fix:repair felt music-box gradient (done)"
+   ],
+   "source": "repair-game/docs/restart/playtest-10.md"
+  },
+  {
+   "id": "F-136",
+   "date": "2026-10-19",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "sceptic (Opus), round 2",
+   "words": "The overdue complaint made me want to go back and fix the reading light.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "repair-game/docs/restart/playtest-10.md"
+  },
+  {
+   "id": "F-137",
+   "date": "2026-10-19",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "sceptic (Opus), round 2",
+   "words": "After the honest unfinished return, Evan shows 'takes your word, with a little caution', the same as Nora, whom I simply ignored.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair distinguish honest late return from neglect (open)"
+   ],
+   "source": "repair-game/docs/restart/playtest-10.md"
+  },
+  {
+   "id": "F-138",
+   "date": "2026-10-19",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "design expert (Opus), round 2",
+   "words": "There is no pressure: three accepted jobs fit in half a day.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L15",
+    "fix:repair commitments compete for bench, stock and Sam's hours (open)"
+   ],
+   "source": "repair-game/docs/restart/playtest-10.md"
+  },
+  {
+   "id": "F-139",
+   "date": "2026-10-19",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "edge pusher (Sonnet), round 2",
+   "words": "around Day 6, when nothing new happens, Mum repeats herself daily, and the people no longer say anything about the overdue work.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L7",
+    "lesson:L2",
+    "fix:repair repeat morning request once (done)"
+   ],
+   "source": "repair-game/docs/restart/playtest-10.md"
+  },
+  {
+   "id": "F-140",
+   "date": "2026-10-19",
+   "game": "repair",
+   "kind": "harness",
+   "who": "HF-character report, controlled rerun",
+   "words": "Confirmed: most of the shift from the table above comes from the harness, not the game.",
+   "verdict": "-",
+   "routes": [
+    "calibration:C4",
+    "lesson:L17",
+    "lesson:L16"
+   ],
+   "source": "repair-game/docs/restart/playtest-10.md"
+  },
+  {
+   "id": "F-141",
+   "date": "2026-10-19",
+   "game": "repair",
+   "kind": "harness",
+   "who": "restless, alpha.3 seed 1",
+   "words": "quit (boredom) 5 min",
+   "verdict": "quit",
+   "routes": [
+    "calibration:C1",
+    "calibration:C5",
+    "lesson:L16"
+   ],
+   "source": "repair-game/docs/restart/playtest-10.md"
+  },
+  {
+   "id": "F-142",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "story-seeker (Opus)",
+   "words": "On Wednesday I said nothing, and she got up anyway with the pencil-styled line 'Feet on the floor.' That was the best moment of the week.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "murmur/docs/playtests/story-seeker-2026-10-19.md"
+  },
+  {
+   "id": "F-143",
+   "date": "2026-10-19",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "skeptic (Sonnet)",
+   "words": "I insisted on a white lie ('Yes, Mum.') and was warmly rewarded. No judgment, just cake.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L11"
+   ],
+   "source": "murmur/docs/playtests/skeptic-2026-10-19.md"
+  },
+  {
+   "id": "F-144",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Selin (casual, Sonnet)",
+   "words": "I nearly quit at Monday 08:10. I tapped Sevim's door, found I was already late, and got 'It's gone cold. Never mind.' In the first minutes I had no idea the clock was already running against me.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L5",
+    "lesson:L7"
+   ],
+   "source": "stairwell/docs/playtests/round-1-2026-10-19.md"
+  },
+  {
+   "id": "F-145",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Selin (casual, Sonnet)",
+   "words": "The notebook, the gossip and the overheard stair conversations got me. Nermin telling me 'Sevim is tight with money' and then me passing it on was a small thrill.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "stairwell/docs/playtests/round-1-2026-10-19.md"
+  },
+  {
+   "id": "F-146",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Selin (casual, Sonnet)",
+   "words": "Mon 08:07: when a neighbour's panel opens, 'Anything new? / Tell… / A word for me on Sunday' are below the fold. I had to scroll the page. The page is 808px tall in a 780px viewport.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L9"
+   ],
+   "source": "stairwell/docs/playtests/round-1-2026-10-19.md"
+  },
+  {
+   "id": "F-147",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Kerem (mischief, Opus)",
+   "words": "The bill came on Sunday: seven promises, zero hands. That was funny, a whole building smiling at me and then sitting on its hands. But nothing warned me it was coming.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L10",
+    "lesson:L13"
+   ],
+   "source": "stairwell/docs/playtests/round-1-2026-10-19.md"
+  },
+  {
+   "id": "F-148",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Kerem (mischief, Opus)",
+   "words": "On Monday from 07:15 I tried it eight or more times on bread and shopping, at occupied and empty doors. Nothing happened and no message appeared.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4"
+   ],
+   "source": "stairwell/docs/playtests/round-1-2026-10-19.md"
+  },
+  {
+   "id": "F-149",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Nurten (wildcard, Fable)",
+   "words": "from Thursday morning the whole building went mute; nobody answered a word for three days, yet the tips kept coming.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4",
+    "lesson:L17"
+   ],
+   "source": "stairwell/docs/playtests/round-1-2026-10-19.md"
+  },
+  {
+   "id": "F-150",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Nurten (wildcard, Fable)",
+   "words": "I nearly quit Tuesday around 13:51, at Tarık's door for the fourth time with his shopping now marked LATE for a reason that was not mine.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell hand over on the step (done)"
+   ],
+   "source": "stairwell/docs/playtests/round-1-2026-10-19.md"
+  },
+  {
+   "id": "F-151",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Nurten (wildcard, Fable)",
+   "words": "The journal repeats the same 3-4 facts ('Tarık has a kind heart', the water notice) 10-20 times per afternoon. By Monday 19:00 I was filtering it out.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L2"
+   ],
+   "source": "stairwell/docs/playtests/round-1-2026-10-19.md"
+  },
+  {
+   "id": "F-152",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Nurten (wildcard, Fable)",
+   "words": "I liked the betrayal, but … the ask felt too cheap for the result to sting.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L10",
+    "lesson:L13"
+   ],
+   "source": "stairwell/docs/playtests/round-1-2026-10-19.md"
+  },
+  {
+   "id": "F-153",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Ayla (story, Haiku)",
+   "words": "The parcel from the jeweller pulled me in, but it went nowhere. Nermin's 'Did you see who came in?' and 'Come, I have something to tell you' went nowhere too.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L14"
+   ],
+   "source": "stairwell/docs/playtests/round-1-2026-10-19.md"
+  },
+  {
+   "id": "F-154",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Murat (casual, Opus)",
+   "words": "Yes, I'd open it tomorrow, mostly to find out who the man at Derya's door is and what happens to the boiler money.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L14"
+   ],
+   "source": "stairwell/docs/playtests/round-2-2026-10-19.md"
+  },
+  {
+   "id": "F-155",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Murat (casual, Opus)",
+   "words": "I opened 'Tell…' for Hüseyin, he walked off, and I ended up telling Nermin instead. Wrong person, my secret gone.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L6"
+   ],
+   "source": "stairwell/docs/playtests/round-2-2026-10-19.md"
+  },
+  {
+   "id": "F-156",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Murat (casual, Opus)",
+   "words": "'Make something up…' sat at y≈820, below the 780 px screen.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L9"
+   ],
+   "source": "stairwell/docs/playtests/round-2-2026-10-19.md"
+  },
+  {
+   "id": "F-157",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "Nobody reached Sunday. Every session ended between Monday and Wednesday, so the meeting, the hands and the `outcome` field were never exercised",
+   "verdict": "quit",
+   "routes": [
+    "calibration:C5",
+    "lesson:L16"
+   ],
+   "source": "stairwell/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "id": "F-158",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "The returner fell from 7/8 returns to 0/3. Its sessions ended by agenda (2) or a Monday quit (1). I have not traced why",
+   "verdict": "-",
+   "routes": [
+    "calibration:C5"
+   ],
+   "source": "stairwell/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "id": "F-159",
+   "date": "2026-10-19",
+   "game": "stairwell",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "So 'answered' shows that the game always replies on screen. It does not show that the reply is specific.",
+   "verdict": "-",
+   "routes": [
+    "calibration:C11"
+   ],
+   "source": "stairwell/docs/playtests/hf-characters-2026-10-19.md"
+  },
+  {
+   "id": "F-160",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "colony-sim veteran (Opus)",
+   "words": "From the 21st of harvest, year one, onward, the top bar said 'the water jars are dry'. Tapping the well did nothing. When I quit, about 150 in-game days later, I still hadn't found water.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L19",
+    "fix:warren water is paid household work (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-161",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "colony-sim veteran (Opus)",
+   "words": "That is a genuine RimWorld moment: they died-ish for supper. I love it and hate it.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-162",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "colony-sim veteran (Opus)",
+   "words": "The card's × wouldn't close. The driver showed the picture of the hill was lying on top of it.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L9",
+    "fix:warren person card close button (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-163",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "idle addict (Sonnet)",
+   "words": "As an idle-game player, I found nothing to grow, so I left. Raiders hurt three people every few months, I never saw them coming, and a year passed with almost no visible change. 3/10.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L7",
+    "fix:warren visible growth record for idle players (open)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-164",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "history teacher (wildcard, Haiku)",
+   "words": "I quit on the 38th because the water had been dry about 18 days and the door had not moved.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L19",
+    "lesson:L4"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-165",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "history teacher (wildcard, Haiku)",
+   "words": "The rule came up only in the journal on the 38th: 'open on two opposite sides only. Three at most.' I needed that rule before I placed it.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L5",
+    "fix:warren door tool states its rule (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-166",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "history teacher (wildcard, Haiku)",
+   "words": "I chalked a wall, waited 30 seconds, and Musa broke through it. It was the first time the picture did what I told it.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L4"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-167",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "mischief (Opus)",
+   "words": "The village notices my lies and stops believing me, person by person, in a way that is believable and a little funny.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L11",
+    "lesson:L13"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-168",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "mischief (Opus)",
+   "words": "Silent invisible walls are the least fun kind of no.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L1",
+    "lesson:L4",
+    "fix:warren chalk refusal answered by Yusuf Usta (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-169",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "mischief (Opus)",
+   "words": "I never found out whether my false alarms changed how a raid went; the screen never showed it either way.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L10"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-170",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "mischief (Opus)",
+   "words": "It felt like a gold star for a raid I slept through.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L3"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-171",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "mischief (Opus)",
+   "words": "Reading nine people's cards cost a week of game time (12th to 19th of autumn).",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L6",
+    "fix:warren open notebook slows the days (done)"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-172",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "mischief 15.5 min, quit at autumn y1, bored 2/2, rewards 0 (rose to 34.5)",
+   "verdict": "quit",
+   "routes": [
+    "calibration:C1",
+    "lesson:L16"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-173",
+   "date": "2026-10-19",
+   "game": "warren",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "Every persona was frustrated by the first raid, and the mischief of chalking toward the neighbours and ringing a false bell went unanswered.",
+   "verdict": "mixed",
+   "routes": [
+    "calibration:C11"
+   ],
+   "source": "warren/docs/playtests/warren-playtest-2026-10-19-r1.md"
+  },
+  {
+   "id": "F-174",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "literary reader (Opus)",
+   "words": "around them the same few lines repeat, and the births and weddings have no scenes. The place feels lived in. The people stop feeling like people after the third visit.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L2",
+    "lesson:L13",
+    "fix:valley wedding and birth visit openers (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-175",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "literary reader (Opus)",
+   "words": "I quit on 7 Ocak of year two, with 251 days to the next rider and no decision left to make.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L7"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-176",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "edge-pusher (Fable)",
+   "words": "Pleasant once, filler by the fourth time. I only stayed because I wanted to see the second rider.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L7",
+    "lesson:L2"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-177",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "edge-pusher (Fable)",
+   "words": "I was not bored at the end. I was waiting to be caught for the grain, and I was caught for the harvest instead.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-178",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "grand-strategy fan (Sonnet)",
+   "words": "the game barely lets me act. Two years of play felt like waiting for events, and nothing I did visibly compounded.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L4",
+    "lesson:L7",
+    "fix:valley readable shortfall forecast and ledger (done)"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-179",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "grand-strategy fan (Sonnet)",
+   "words": "Frustration came from pressing. Halil replied, 'The last kahya said that too,' and Gülsüm, 'No. Not for you.' I did not know pressing had a cost until I saw it.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L10"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-180",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "train commuter (Haiku)",
+   "words": "I would have closed the tab around 21 Temmuz, year one. The game is warm and well written, but after about 30 commands I still could not tell whether my actions changed anything.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L4",
+    "lesson:L5"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-181",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "The early quits (commuter, restless, mischief) cluster around year one, day 3, where five lines in a row read 'X came because you pressed, then would not'.",
+   "verdict": "quit",
+   "routes": [
+    "calibration:C9",
+    "lesson:L10"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-182",
+   "date": "2026-10-19",
+   "game": "valley",
+   "kind": "harness",
+   "who": "HF personas",
+   "words": "The mischief persona now stops from boredom rather than distress.",
+   "verdict": "-",
+   "routes": [
+    "calibration:C1",
+    "lesson:L16"
+   ],
+   "source": "valley/docs/playtests/2026-10-19-round2.md"
+  },
+  {
+   "id": "F-183",
+   "date": "2026-10-18",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "impatient speedrunner visitor",
+   "words": "Later actions had readable consequences. Opening felt automatic.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L7"
+   ],
+   "source": "concordia@neighbours:docs/neighbours/visitor-2026-10-18-received-plans.md"
   }
  ],
  "lessons": [
@@ -1657,7 +2567,9 @@
     "F-053",
     "F-075",
     "F-080",
-    "F-086"
+    "F-086",
+    "F-125",
+    "F-168"
    ]
   },
   {
@@ -1669,7 +2581,12 @@
     "F-031",
     "F-034",
     "F-045",
-    "F-072"
+    "F-072",
+    "F-118",
+    "F-139",
+    "F-151",
+    "F-174",
+    "F-176"
    ]
   },
   {
@@ -1684,7 +2601,9 @@
     "F-045",
     "F-062",
     "F-065",
-    "F-085"
+    "F-085",
+    "F-120",
+    "F-170"
    ]
   },
   {
@@ -1699,7 +2618,19 @@
     "F-077",
     "F-082",
     "F-084",
-    "F-085"
+    "F-085",
+    "F-102",
+    "F-105",
+    "F-127",
+    "F-134",
+    "F-135",
+    "F-148",
+    "F-149",
+    "F-164",
+    "F-166",
+    "F-168",
+    "F-178",
+    "F-180"
    ]
   },
   {
@@ -1711,7 +2642,11 @@
     "F-044",
     "F-069",
     "F-070",
-    "F-081"
+    "F-081",
+    "F-105",
+    "F-144",
+    "F-165",
+    "F-180"
    ]
   },
   {
@@ -1722,7 +2657,11 @@
     "F-043",
     "F-074",
     "F-083",
-    "F-091"
+    "F-091",
+    "F-124",
+    "F-130",
+    "F-155",
+    "F-171"
    ]
   },
   {
@@ -1735,7 +2674,14 @@
     "F-025",
     "F-051",
     "F-069",
-    "F-073"
+    "F-073",
+    "F-139",
+    "F-144",
+    "F-163",
+    "F-175",
+    "F-176",
+    "F-178",
+    "F-183"
    ]
   },
   {
@@ -1755,7 +2701,10 @@
     "F-093",
     "F-094",
     "F-095",
-    "F-096"
+    "F-096",
+    "F-146",
+    "F-156",
+    "F-162"
    ]
   },
   {
@@ -1770,7 +2719,12 @@
     "F-056",
     "F-080",
     "F-087",
-    "F-088"
+    "F-088",
+    "F-147",
+    "F-152",
+    "F-169",
+    "F-179",
+    "F-181"
    ]
   },
   {
@@ -1783,7 +2737,12 @@
     "F-056",
     "F-057",
     "F-078",
-    "F-079"
+    "F-079",
+    "F-119",
+    "F-123",
+    "F-125",
+    "F-143",
+    "F-167"
    ]
   },
   {
@@ -1793,7 +2752,8 @@
    "evidence": [
     "F-037",
     "F-042",
-    "F-052"
+    "F-052",
+    "F-131"
    ]
   },
   {
@@ -1812,7 +2772,18 @@
     "F-064",
     "F-074",
     "F-076",
-    "F-092"
+    "F-092",
+    "F-123",
+    "F-126",
+    "F-136",
+    "F-142",
+    "F-145",
+    "F-147",
+    "F-152",
+    "F-161",
+    "F-167",
+    "F-174",
+    "F-177"
    ]
   },
   {
@@ -1822,7 +2793,12 @@
    "evidence": [
     "F-004",
     "F-060",
-    "F-061"
+    "F-061",
+    "F-127",
+    "F-128",
+    "F-132",
+    "F-153",
+    "F-154"
    ]
   },
   {
@@ -1836,18 +2812,26 @@
     "F-054",
     "F-078",
     "F-086",
-    "F-089"
+    "F-089",
+    "F-138"
    ]
   },
   {
    "id": "L16",
    "title": "Read simulated testers as a different signal from people.",
-   "text": "HF-character testers are good at finding loops, cliffs and fatigue. They were never bored in these games. Hard-to-please LLM testers and the owner were. Use all three, and trust the owner's play most.",
+   "text": "HF-character testers are good at finding loops, cliffs and fatigue. Early Pass, Murmur and Glance cohorts reported no boredom stops, while LLM testers and the owner reported dull stretches. Later Warren, Valley and Small Works runs report boredom stops. Keep the build and harness version with each finding; a changed harness can move the result without a changed game. Use all three, and trust the owner's play most.",
    "evidence": [
     "F-002",
     "F-035",
     "F-066",
-    "F-081"
+    "F-081",
+    "F-121",
+    "F-129",
+    "F-140",
+    "F-141",
+    "F-157",
+    "F-172",
+    "F-182"
    ]
   },
   {
@@ -1856,7 +2840,11 @@
    "text": "Several reports were harness artefacts: a first ask that failed after \"open\", and tips the text harness left out. Replay the export, then fix what replays.",
    "evidence": [
     "F-024",
-    "F-027"
+    "F-027",
+    "F-122",
+    "F-133",
+    "F-140",
+    "F-149"
    ]
   },
   {
@@ -1868,6 +2856,16 @@
     "F-029",
     "F-046",
     "F-090"
+   ]
+  },
+  {
+   "id": "L19",
+   "title": "Do not state a problem the player has no verb to act on.",
+   "text": "When the screen says the water is dry or the boiler pump needs ₺2,400, the player needs a way to find water, ask for the book or give to the fund. A named problem with no action reads as an unfair wall, and players quit at it. Either give the verb, or do not name the problem. Two games showed it independently (Stairwell, Warren); this is the recurrence that makes it a lesson.",
+   "evidence": [
+    "F-128",
+    "F-160",
+    "F-164"
    ]
   }
  ],
@@ -2104,10 +3102,10 @@
   }
  ],
  "routes": {
-  "fix": 71,
-  "lesson": 128,
+  "fix": 97,
+  "lesson": 206,
   "hf": 11,
-  "calibration": 28,
+  "calibration": 42,
   "none": 0
  }
 }

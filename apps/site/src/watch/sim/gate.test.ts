@@ -2,33 +2,24 @@
  * The G3-1 gate, headless: dusk planning against the scout's warning visibly matters. Each seed plays three
  * nights with one plan applied at every dusk and no night inputs; outcomes are sacks lost.
  */
-import { beforeAll, describe, expect, it } from 'vitest';
-import { type PlanName, planInputs } from '../../../test/watch/plans.ts';
+
+import { availableParallelism } from 'node:os';
+import { Worker } from 'node:worker_threads';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import type { GateResult } from '../../../test/watch/gate-worker.ts';
+import type { PlanName } from '../../../test/watch/plans.ts';
 import { START_GRAIN } from './config.ts';
-import { WatchRun } from './run.ts';
 
 const SEEDS = Array.from({ length: 24 }, (_, i) => 1000 + i * 7919);
 const NIGHTS = 3;
 
-export function playPlan(seed: number, plan: PlanName, lantern: boolean, nights = NIGHTS): number[] {
-  const run = new WatchRun(seed);
-  run.input({ k: 'start' });
-  const lost: number[] = [];
-  for (let n = 0; n < nights; n++) {
-    for (const i of planInputs(run.state, plan, lantern)) run.input(i);
-    run.input({ k: 'begin' });
-    while (run.state.phase === 'night') run.step();
-    const last = run.state.history.at(-1);
-    lost.push(last?.lost ?? 0);
-    if (run.state.phase !== 'dawn') break;
-    run.input({ k: 'toDusk' });
-  }
-  return lost;
-}
-
-function summarise(plan: PlanName, lantern: boolean) {
+function summarise(plan: PlanName, lantern: boolean, results: GateResult[]) {
   // One run per seed: night 1 of the three-night run is the first-night figure (a one-night run is its prefix).
-  const runs = SEEDS.map((seed) => playPlan(seed, plan, lantern));
+  const runs = SEEDS.map((seed) => {
+    const found = results.filter((r) => r.seed === seed && r.plan === plan && r.lantern === lantern);
+    if (found.length !== 1 || !found[0]) throw new Error(`expected one run for ${seed}/${plan}/${lantern}`);
+    return found[0].lost;
+  });
   const totals = runs.map((lost) => lost.reduce((a, b) => a + b, 0));
   const firstNight = runs.map((lost) => lost[0] ?? 0);
   const mean = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
@@ -46,11 +37,46 @@ function summarise(plan: PlanName, lantern: boolean) {
 
 describe('G3-1 gate: dusk planning against the warning', () => {
   let rows: ReturnType<typeof summarise>[] = [];
+  const workers: Worker[] = [];
+  // This also runs if Vitest times out the hook before its pending work settles.
+  afterAll(async () => {
+    await Promise.all(workers.map((worker) => worker.terminate()));
+  });
   // The runs are made once, before the tests, not while collecting them.
-  beforeAll(() => {
+  beforeAll(async () => {
+    // These CPU-bound runs share no state. Bound workers, and preserve the seed pairing below.
+    const count = Math.min(8, availableParallelism());
+    const batches = Array.from({ length: count }, (_, i) => SEEDS.filter((_, j) => j % count === i));
+    let results: GateResult[];
+    try {
+      for (const seeds of batches) {
+        workers.push(
+          new Worker(new URL('../../../test/watch/gate-worker.ts', import.meta.url), {
+            workerData: { seeds, nights: NIGHTS },
+            execArgv: [],
+          }),
+        );
+      }
+      results = (
+        await Promise.all(
+          workers.map(
+            (worker) =>
+              new Promise<GateResult[]>((resolve, reject) => {
+                worker.once('message', resolve);
+                worker.once('error', reject);
+                worker.once('exit', (code) =>
+                  reject(new Error(`gate worker exited before returning results (${code})`)),
+                );
+              }),
+          ),
+        )
+      ).flat();
+    } finally {
+      await Promise.all(workers.map((worker) => worker.terminate()));
+    }
     rows = (['matched', 'usual', 'mismatched'] as const).flatMap((plan) => [
-      summarise(plan, false),
-      summarise(plan, true),
+      summarise(plan, false, results),
+      summarise(plan, true, results),
     ]);
   }, 300_000);
   const row = (plan: PlanName, lantern: boolean) => {

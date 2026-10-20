@@ -1,0 +1,40 @@
+# Agent routing: Codex or Claude
+
+Which kinds of subagent work go to Codex (`codex exec`, model `gpt-6.1-sol`, default medium effort) and which stay with Claude subagents. Written 2026-10-19 from a bake-off on real backlog tasks. The owner asked for it ("Codex also has token usage left") and later said "we can move most of the stuff to codex". Redo the comparison when either side's model changes.
+
+## Rules
+
+1. **Default to Codex** for bounded work with a clear done-check: test speedups, integrations that follow a README, ledger triage, text-harness playtests, CI workflows, mechanical fixes listed in a playtest.
+2. **Keep Claude (Opus) for the deepest review pass** on security- or money-relevant code, and for design or taste calls that need the repo's history. For other reviews, run Codex first and add Claude only when the stakes justify it. The two reviewers found different defects, so on important code use both.
+3. **Browser work in the tested environment needed `danger-full-access`.** In these scratch runs, Chromium failed to launch under `workspace-write` and loaded pages with full access. A text harness avoids the question and is cheaper.
+4. **Commits.** In these scratch runs, `workspace-write` denied `.git/index.lock`, so Codex could not commit. Under `danger-full-access` it made a correctly signed commit through 1Password (`G`, ED25519). On task types that passed the bake-off, Codex may run checks, commit (signed) and push itself. The hard rules still hold: kill by exact PID, no credentials in output, no edits to files other agents own, and `npm run check` before every commit.
+5. **Network.** In these scratch runs, `workspace-write` could not reach the registry (`ENOTFOUND registry.npmjs.org`). Do installs yourself first, or use full access.
+6. **Invocation.** `codex exec -C <dir> -s <mode> -m gpt-6.1-sol --json -o <last.md> "<brief>" < /dev/null`. Without `< /dev/null`, the tested invocation stalled on "Reading additional input from stdin". Put `/opt/homebrew/bin` first on PATH, or `npx` may pick an nvm Node 23.
+7. **Audit.** The `--json` event log lists every command Codex ran. Use it to check constraints, for example that a source-unread playtester read no source. For Claude, `claude -p --output-format stream-json --verbose` gives the same log.
+
+## Bake-off (2026-10-19)
+
+Same brief for both sides, separate git worktrees, run under heavy machine load (load average about 89). Claude ran headless (`claude -p`), because the session's subagent limit was full. Claude started 5–8 minutes after Codex, so wall times are rough.
+
+| Task | Codex | Claude | Winner | Why |
+|---|---|---|---|---|
+| T1 gate.test.ts speedup | Still running when this was written; see "State" | Sonnet. Stopped at the owner's soft stop on Claude use, unfinished | Open | No full comparison |
+| T2 lab client in The Rope, plus `/release.json` | 405 s. Clean diff: stamp script, CSP, service-worker skip for release.json, tests, HANDOFF. Coarse screen names (`climb`, `debrief`). Disclosed that a test briefly made fixture commits in temp repos | Sonnet, 391 s. Same structure, plus a names module: screens carry the climb and mountain, and milestones mark summit and all home | Claude, narrowly | Richer quit points, no rule slip. Both found the service-worker caching bug on their own |
+| T3 review of `apps/site/worker/lab.ts` | 328 s, blind third pass. Five should-fix findings, all reproduced with stubs: event labels publish personal text, opt-out not shared across tabs, unbounded overshoot of the daily run cap (250 of 250 stored), a midnight race that drops events, the 5,000-run index boundary | Opus, 656 s. One blocker (verified in code: the first 600 batches are frozen into a past day's aggregate), a 7.6 KB gzip upload that costs 160 MB of heap, unknown game ids accepted, IPv6 /64 rotation defeats the rate limits, a 30 s `waitUntil` cutoff. Plus nits and a list of missing tests | Claude | Deeper and more severe findings. Codex's tab and midnight findings were not in Claude's list, so the two reviews add up |
+| T4 Night Watch, source-unread, via the text harness | 336 s. Source-unread play through the harness (checked in the log). Six nights, the thaw, the fair, second-winter dusk. Honest, specific, and caught a real doc bug: the usage example `new 7` makes seed 1 | Opus, 1,021 s. All harness calls, through a logging wrapper it wrote. Went further, into winter 2. Disclosed that its own grep filter hid the Gate row | Codex, on value | Similar depth of insight, a third of the time, no Claude tokens. Both found that `post X off` does not rest a watcher |
+| T5 ledger triage | 255 s. 27 rows, quotes verified (spot-checked 5 of 5). Found Small Works' `docs/restart/playtest-10.md` and Murmur's new reports. Corrected L16 against new evidence | Sonnet, 314 s. 43 rows, more rows from Stairwell, Warren and Valley, and a new lesson L19 with evidence from two games. It wrongly said Small Works had no playtest after 2026-10-10 and missed Murmur's new reports | Codex | Better coverage and no false claims. Claude's extra rows are good and get merged in |
+
+Environment evidence (scratch runs, 2026-10-19): under `workspace-write`, signing was blocked, network was blocked and Chromium crashed. Under `danger-full-access`, the signed commit succeeded and Chromium loaded a page.
+
+## State
+
+The bake-off results go to Codex batches with commit and push rights (full access):
+
+- Ledger: merge both triage results onto current main, then `npm run lab:ledger`.
+- The Rope: land Claude's integration, deploy, and check `/release.json` live.
+- CI workflows for pass, glance, murmur, valley, stairwell and warren, modelled on repair-game. In valley, stairwell and warren, only `.github/workflows/ci.yml` is added.
+- T1: land Codex's gate speedup after review.
+
+The rest of the Codex queue in [whats-left-2026-10-19.md](whats-left-2026-10-19.md) waits until the agents that own those files have stopped. That covers the harness bugs and the Watch, Voice and Colony text bugs. Target: 2026-10-20.
+
+Playtest reports from T4: [Codex](../games/watch-playtest-2026-10-19-selin-codex.md), [Claude](../games/watch-playtest-2026-10-19-selin-claude.md).
