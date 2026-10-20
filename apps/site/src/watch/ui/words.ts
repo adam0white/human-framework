@@ -1,5 +1,20 @@
 /** Words for things the play UI never shows as numbers: which night, the hour, rope wear. */
+
+import type { Speed } from '../sim/pace.ts';
 import { type Frame, ordinal } from '../sim/view.ts';
+
+/** One clock-rate indicator, separate from the date so its reason stays visible on a phone. */
+export function clockRateWords(f: Frame, chosen: Speed): string {
+  if (f.rate <= 0) return 'Clock stopped';
+  const season = f.phase === 'spring' || f.phase === 'summer' || f.phase === 'autumn';
+  const rate = season ? f.rate / 1440 : f.rate;
+  const unit = season ? 'day' : 'min';
+  const pace =
+    rate < 1 ? `1 ${unit} / ${Number((1 / rate).toFixed(1))} s` : `${Number(rate.toFixed(1))} ${unit}/s`;
+  if (f.slowed) return `Slow · ${slowedWords(f)} · ${pace}`;
+  const label = { tactical: 'Slow', watch: 'Watch', fast: 'Fast', days: 'Days', seasons: 'Seasons' }[chosen];
+  return `${f.phase === 'dusk' ? 'Dusk' : label} · ${pace}`;
+}
 
 /** Why the clock is eased, in the header's words. */
 export function slowedWords(f: Frame): string {
@@ -13,7 +28,7 @@ export function slowedWords(f: Frame): string {
     }
     return 'the days slow for the news';
   }
-  return f.moment ? 'the night waits on you' : 'the night slows';
+  return f.moment ? 'watcher decision' : 'the night slows';
 }
 
 export function hourWords(clock: number, phase: string): string {
