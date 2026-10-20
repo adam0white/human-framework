@@ -1,24 +1,39 @@
 import { execFileSync } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
+import { mkdtempSync, writeFileSync } from 'node:fs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('node:child_process', () => ({ execFileSync: vi.fn() }));
 vi.mock('node:fs', () => ({
   readFileSync: vi.fn(() => '{"version":"2.10.0"}'),
   writeFileSync: vi.fn(),
+  mkdtempSync: vi.fn(() => '/tmp/hf-deploy-mock'),
+  rmSync: vi.fn(),
 }));
 
 const commit = 'abc123';
 const check = (overrides = {}) => ({
   id: 1,
   name: 'ci',
+  check_suite: { id: 100 },
   head_sha: commit,
   status: 'completed',
   conclusion: 'success',
   html_url: 'https://example.test/ci/1',
   ...overrides,
 });
+const workflow = (overrides = {}) => ({
+  id: 10,
+  name: 'CI',
+  head_sha: commit,
+  head_branch: 'main',
+  event: 'push',
+  status: 'completed',
+  conclusion: 'success',
+  check_suite_id: 100,
+  ...overrides,
+});
 let responses: unknown[];
+let workflows: unknown[];
 let dirty: string;
 let branch: string;
 let pushed: string;
@@ -35,6 +50,7 @@ beforeEach(() => {
   vi.useFakeTimers();
   argv = process.argv;
   responses = [[check()]];
+  workflows = [[workflow()]];
   dirty = '';
   branch = 'main';
   pushed = commit;
@@ -50,9 +66,11 @@ beforeEach(() => {
       return commit;
     }
     if (cmd === 'gh') {
-      const response = responses.length > 1 ? responses.shift() : responses[0];
+      const isWorkflow = words.at(-1)?.includes('actions/runs?');
+      const queue = isWorkflow ? workflows : responses;
+      const response = queue.length > 1 ? queue.shift() : queue[0];
       if (response instanceof Error) throw response;
-      return JSON.stringify([{ check_runs: response }]);
+      return JSON.stringify([isWorkflow ? { workflow_runs: response } : { check_runs: response }]);
     }
     return '';
   });
@@ -66,10 +84,10 @@ afterEach(() => {
 });
 
 describe('deploy CI gate', () => {
-  it('trusts exact-HEAD successful CI by default after installing, then deploys and verifies', async () => {
+  it('trusts exact-HEAD successful CI before isolated installation, then deploys and verifies', async () => {
     await run();
     expect(calls()).toContainEqual(['npm', ['ci', '--no-audit', '--no-fund']]);
-    expect(calls().findIndex(([cmd]) => cmd === 'gh')).toBeGreaterThan(
+    expect(calls().findIndex(([cmd]) => cmd === 'gh')).toBeLessThan(
       calls().findIndex(([cmd]) => cmd === 'npm'),
     );
     expect(calls()).not.toContainEqual(['npm', ['run', 'check']]);
@@ -88,24 +106,23 @@ describe('deploy CI gate', () => {
     expect(fetch).not.toHaveBeenCalled();
   });
 
-  it('polls missing and pending checks every 15 seconds', async () => {
+  it('polls pending workflow and checks every 15 seconds', async () => {
+    workflows = [[workflow({ status: 'queued', conclusion: null })], [workflow()], [workflow()]];
     responses = [[], [check({ status: 'in_progress', conclusion: null })], [check()]];
     const result = run('--dry-run');
     await vi.advanceTimersByTimeAsync(0);
-    expect(console.log).toHaveBeenCalledWith(`Waiting for CI for ${commit}: missing`);
+    expect(console.log).toHaveBeenCalledWith(`Waiting for CI for ${commit}: queued`);
     await vi.advanceTimersByTimeAsync(15_000);
     expect(console.log).toHaveBeenCalledWith(`Waiting for CI for ${commit}: in_progress`);
     await vi.advanceTimersByTimeAsync(15_000);
     await result;
-    expect(calls().filter(([cmd]) => cmd === 'gh')).toHaveLength(3);
+    expect(calls().filter(([cmd]) => cmd === 'gh')).toHaveLength(6);
   });
 
-  it('ignores successful checks for another SHA and times out after 15 minutes', async () => {
+  it('rejects successful checks for another SHA immediately', async () => {
     responses = [[check({ head_sha: 'other' })]];
-    const result = expect(run('--dry-run')).rejects.toThrow('Cannot deploy without successful CI');
-    await vi.advanceTimersByTimeAsync(15 * 60_000);
-    await result;
-    expect(console.log).toHaveBeenCalledWith(`Waiting for CI for ${commit}: missing`);
+    await expect(run('--dry-run')).rejects.toThrow('Missing or invalid ci check');
+    expect(vi.getTimerCount()).toBe(0);
     expect(calls()).not.toContainEqual(['npm', ['run', 'build']]);
     expect(calls()).not.toContainEqual(['npm', ['run', 'check']]);
   });
@@ -115,7 +132,7 @@ describe('deploy CI gate', () => {
     async (conclusion) => {
       responses = [[check({ conclusion })]];
       await expect(run()).rejects.toThrow('Cannot deploy without successful CI');
-      expect(calls().filter(([cmd]) => cmd === 'gh')).toHaveLength(1);
+      expect(calls().filter(([cmd]) => cmd === 'gh')).toHaveLength(2);
       expect(calls()).not.toContainEqual(['npm', ['run', 'check']]);
       expect(calls()).not.toContainEqual(['npm', ['run', 'build']]);
     },
@@ -143,35 +160,38 @@ describe('deploy CI gate', () => {
   );
 
   it('allows explicit local fallback after the CI wait expires', async () => {
-    responses = [[]];
+    workflows = [[workflow({ status: 'in_progress', conclusion: null })]];
+    responses = [[check({ status: 'in_progress', conclusion: null })]];
     const result = run('--full-check', '--dry-run');
     await vi.advanceTimersByTimeAsync(15 * 60_000);
     await result;
     expect(calls()).toContainEqual(['npm', ['run', 'check']]);
   });
 
-  it('does not trust clean-commit CI for a dirty dry run', async () => {
+  it('trusts exact-commit CI for an isolated dirty dry run', async () => {
     dirty = ' M scripts/deploy.ts';
-    await expect(run('--dry-run')).rejects.toThrow('--full-check');
-    expect(calls().some(([cmd]) => cmd === 'gh')).toBe(false);
-    expect(calls()).not.toContainEqual(['npm', ['run', 'build']]);
+    await run('--dry-run');
+    expect(calls().some(([cmd]) => cmd === 'gh')).toBe(true);
+    expect(calls()).toContainEqual(['npm', ['run', 'build']]);
+    expect(calls()).not.toContainEqual(['git', ['status', '--porcelain']]);
   });
 
-  it('permits local checks for a dirty dry run only with --full-check', async () => {
+  it('uses isolated local checks for a dirty dry run when CI is missing and --full-check is set', async () => {
     dirty = ' M scripts/deploy.ts';
+    workflows = [[]];
     await run('--dry-run', '--full-check');
-    expect(calls().some(([cmd]) => cmd === 'gh')).toBe(false);
+    expect(calls().some(([cmd]) => cmd === 'gh')).toBe(true);
     expect(calls()).toContainEqual(['npm', ['run', 'check']]);
   });
 
-  it.each(['branch', 'dirty', 'unpushed'])(
+  it.each(['branch', 'unpushed'])(
     'preserves the existing non-dry-run %s guard before installation',
     async (guard) => {
       if (guard === 'branch') branch = 'feature';
-      if (guard === 'dirty') dirty = ' M file';
       if (guard === 'unpushed') pushed = 'other';
       await expect(run('--full-check')).rejects.toThrow();
       expect(calls().some(([cmd]) => cmd === 'npm')).toBe(false);
+      expect(mkdtempSync).not.toHaveBeenCalled();
     },
   );
 });
