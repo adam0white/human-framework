@@ -89,6 +89,11 @@ Check load-bearing English and dates when you meet them:
   English dates and clearly defined relative days or seasons are valid.
 - **DL-22:** On the phone fixture, is the immediate response and essential context on screen without scrolling?
   This is a layout check; a text-only harness marks it `NOT TESTED`.
+- **DL-30:** Was any sentence cut off mid-way, hidden under another element, or behind a "Scroll ↓" in a small panel?
+  Quote the visible fragment and name the screenshot. Note sheets that overlapped each other or the scene's controls.
+- **DL-31:** With an order or answer sheet open, could you still read the goal's progress, the deadline and the person concerned?
+- **DL-32:** What was the longest stretch where you wanted to do something and could only watch? What did you want to do?
+- **DL-33:** When you wanted to do the obvious thing (speak, cook, dig), did you do it on the thing itself, or did a form open?
 
 Report clarity failures as `DL-n: what I saw, in my words`.
 Use the supplied checklist for other DL ids if included in your brief.
@@ -103,7 +108,7 @@ Return:
 3. The verbatim diary, with elapsed times, inputs and important visible answers.
 4. Best moment; worst moment; when you became bored, frustrated or wanted to quit.
 5. Clarity failures with DL ids, quotes and screenshot/transcript references.
-6. English and dates: DL-20 and DL-21; phone layout: DL-22. Mark anything unmet `NOT TESTED`.
+6. English and dates: DL-20 and DL-21; phone layout: DL-22, DL-30, DL-31; hands on: DL-32, DL-33. Mark anything unmet `NOT TESTED`.
 7. Where you stopped, why, and whether you would return voluntarily.
 8. Up to three changes you would want as this player, ranked by importance.
 

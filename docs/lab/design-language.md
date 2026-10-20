@@ -15,7 +15,7 @@ Adopted 2026-10-20 for every lab game (owner: "Opus taste, a consistent design l
 - **Player test** lines are run by a cold, source-unread tester ([prompt](playtester-prompt.md)). **Builder check** lines need the code or the export and are run by the game's developer or reviewer; a source-unread tester marks them `not tested`.
 - Automated playtesters ([rubric](../../packages/playtester/README.md#clarity-rubric)) report only the signals they measure and mark the rest unmeasured. An adapter that lists actions cannot prove those actions were visible.
 - Ranked fixes go to the [feedback ledger](feedback-ledger.md) as `fix:<game> DL-n <what>`. DL-1 to DL-7 are reported for every game in every round.
-- Numbers below (30 s, 40 words, 60 words, 44 px, 360×690) are lab defaults. They serve comprehension and never override it.
+- Numbers below (20 s, 30 s, 40 words, 60 words, 44 px, 360×690) are lab defaults. They serve comprehension and never override it.
 
 ## 1. The first minute
 
@@ -63,6 +63,10 @@ The device facts and thumb zone are in the [visual language](../design-language.
 - [ ] **DL-23 Targets.** Standalone controls have non-overlapping hit areas of at least 44×44 CSS px (the house target; WCAG AA's minimum is 24). Dense scene selection uses zoom, a disambiguation list or a labelled action.
 - [ ] **DL-24 One sheet at a time, with a way back.** Sheets never stack. A sheet that opens another task remembers its origin: cancel returns there, closing the outer sheet returns to the scene, and focus returns to the control that opened it.
 - [ ] **DL-25 Reflow.** No horizontal page scroll. The 17 px phone base holds; secondary text stays readable in both themes; content and controls survive 200% text size and 320 CSS px width.
+- [ ] **DL-30 Nothing is cut off.** Action-critical text (a remedy, a reason, a cost, a label, a person's words) is never clipped, ellipsised, hidden under another element or pushed behind a "Scroll ↓" inside a fixed-height panel. The panel grows to fit the essential sentence, or the copy gets shorter; the box never decides. Longer context may sit behind a labelled control. *Player test:* record any sentence cut mid-way, any text under another element and any panel you had to scroll to find the response. *Builder check:* run `npm run lab:phone` (HF repo) at 360×690 on each main screen and each opened sheet; it reports clipped text, overlapping targets, targets under 44 px and horizontal scroll. No `text-overflow: ellipsis`, `line-clamp` or fixed height on action-critical text; a sheet's actions sit in a commit row that stays visible while its body scrolls.
+- [ ] **DL-31 Read the state while acting.** While a sheet is open to give an order or an answer, the state that decision depends on (the goal's progress, the deadline, the person concerned) stays readable, and the part of the scene it concerns stays visible. Lab kit pattern (0.2.0, `lk-stage`): the scene fills the screen; a state strip stays readable when collapsed (chips wrap, never truncate); one bottom sheet with peek, half and full heights never covers the strip, and the scene keeps the selected subject in its visible part. *Player test:* with an order or answer sheet open, say the goal's progress and the deadline from what is on screen.
+
+Origin: the 2026-10-20 design round. Each fix removed its target quit reason, and the next testers left over panel space: "reading clipped safety answers" (Warren, F-275); roof, meals and the storm deadline unreadable on the phone while ordering (Well, F-273).
 
 ## 7. Game menu, save, download and send
 
@@ -72,6 +76,17 @@ Names: **Game menu** for save and run controls, **Download this run** for the lo
 - [ ] **DL-27 Resume is honest.** The title screen offers Continue only when a valid save exists, with one line saying where it left off ([L8](lessons.md)). Closing the page and resuming does not advance simulated time. *Player test:* reload and resume; nothing lost, nothing done twice.
 - [ ] **DL-28 Sending works for ordinary play.** Success shows a reference. Failure (offline, notebook full, too long) says why in one sentence, keeps the note, offers the next step and leaves Download this run working; retry works when the cause clears. No unlimited length is promised. *Player test (only in a session authorized to send):* send after a short session and after a representative long one. *Builder check:* upload bounds are tested against representative exports; a game whose state replays from seed and inputs passes `compact` to the send dialog (lab client 0.1.2) and tests that the compacted run replays; the dialog says what was left out before the player sends.
 - [ ] **DL-29 Export replays.** *Builder check:* the export holds seed, input log and state and replays the run exactly (AGENTS.md). *Player test:* only where the game offers a player-facing replay or import; otherwise `not tested`.
+
+## 8. Hands on (agency density)
+
+The same round's other quits were about doing. "I came for running a busy room and mostly watched it run" (Pass, F-276). "There is no chopping or serving action to perform while it cooks" (Pass, F-277). "Say something else…" opened "a form with Mention, Urge, Insist and Reason. I expected another way to speak to him" (Voice, F-271).
+
+A **hands-on act** is something the player's character does to a person or a thing in the scene, in the fiction (turn the meat, call the plate, speak a line, shut the door), with a consequence the player can see or hear soon. Choosing from a form, confirming a preview, setting a timer length and waiting are not hands-on acts. Agency density is how often one is available.
+
+- [ ] **DL-32 Something for your hands.** While the player is attending at the default speed, a meaningful hands-on act is available at least every 20 s of real time. Watching is fine when the player chooses it; the speed control or "let time pass" is then the act. A stretch where the only option is to wait fails, unless the game's design doc names it as deliberate (the held breath before a raid). The act need not be urgent or optimal, and people in the scene may refuse it. *Player test:* note the longest stretch where you wanted to do something and could only watch, and what you wanted to do. *Builder check:* in a scripted or headless run of the first five minutes at default speed, report the longest attended gap with no hands-on act available.
+- [ ] **DL-33 Acts happen in the scene, not in forms.** The core verb (cook, speak, dig, send) is done on the scene's people and objects, or in the character's own voice, in one act. A form (a list of actions, a strength, a reason, then Confirm) is for planning ahead and fine control; it is never the only way to do the core verb. Preview-then-confirm stays for consequential or irreversible choices (DL-14). *Player test:* when you wanted to do the obvious thing, did you do it on the thing itself, or did a form open?
+
+Boundaries: acts run on the game clock with DL-15 slowdown, never as reflex timing, combos or scores (AGENTS.md: no action-game polish). A hands-on act draws on a capability that tires and recovers, said in words (DL-4, DL-17). Prayer, fasting and other quiet faith are never offered as filler acts. Each game records how it meets DL-32 and DL-33 in its design doc, as an owner-vetoable design change.
 
 ## Boundaries
 
