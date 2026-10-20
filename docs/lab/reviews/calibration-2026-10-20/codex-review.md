@@ -99,3 +99,7 @@ Four sessions can expose a large floor artifact; they cannot estimate a stable e
 ## Verdict
 
 The calibration establishes useful access failures and a reason to distrust raw stop time as a standalone enjoyment score. Its 55-report descriptive totals reproduce: median 257 seconds, range 150–395, 45 stops before five minutes, outcomes 37/9/6/3 and the stated primary-reason counts. It does not establish that the instrument causes most quits, that ADR converted from no return to return, or that compulsory continued play is a better measure of voluntary engagement. Correct the endpoint and quote errors, narrow the timing interpretation, preserve the owner's actual distinctions, and present protocol 2 as a provisional continued-exposure procedure alongside free-stop testing. The operational changes are reasonable; the causal conclusion and validation claim need the controlled follow-up above.
+
+## Second pass (conclusion and "Floor against free stop", after the experiment)
+
+Codex, read-only, blockers only. Three blockers, all applied: the opening no longer assigns cause ("at least partly the game") or says the comparison "separated" the games; the comparison bullet now states only that both A Dark Room sessions outlasted both Night Watch sessions, with n=2 and the device and genre confound; the floor bullet now records that both floor sessions reported a temporary recovery and that the floor's effect cannot be separated from delayed reporting. L22 was softened to match.
