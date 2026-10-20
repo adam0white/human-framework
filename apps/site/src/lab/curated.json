@@ -145,7 +145,7 @@
    "verdict": "mixed",
    "routes": [
     "lesson:L4",
-    "fix:rope sending far-off escorts (open)"
+    "fix:rope sending far-off escorts (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open)"
    ],
    "source": "rope/docs/playtests/owner-2026-10-19.md"
   },
@@ -1921,7 +1921,7 @@
    "words": "After the honest unfinished return, Evan shows 'takes your word, with a little caution', the same as Nora, whom I simply ignored.",
    "verdict": "mixed",
    "routes": [
-    "fix:repair distinguish honest late return from neglect (open)"
+    "fix:repair distinguish honest late return from neglect (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open)"
    ],
    "source": "repair-game/docs/restart/playtest-10.md"
   },
@@ -1935,7 +1935,7 @@
    "verdict": "mixed",
    "routes": [
     "lesson:L15",
-    "fix:repair commitments compete for bench, stock and Sam's hours (open)"
+    "fix:repair commitments compete for bench, stock and Sam's hours (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open)"
    ],
    "source": "repair-game/docs/restart/playtest-10.md"
   },
@@ -2719,7 +2719,7 @@
    "words": "Speed ran things, after auto ending the night it still didn't end",
    "verdict": "quit",
    "routes": [
-    "fix:rope night end after auto-end (open)"
+    "fix:rope night end after auto-end (journal-return fix with regression in rope, owner sequence unconfirmed, frozen 2026-10-20, docs/lab/ranking-2026-10-20.md)"
    ],
    "source": "rope/docs/playtests/owner-2026-10-20.md"
   },
@@ -3422,9 +3422,9 @@
    "words": "I would not voluntarily resume this run on the train. I would consider another try if I could understand movement toward a person and read every reply reliably.",
    "verdict": "quit",
    "routes": [
-    "fix:rope DL-22 every person's answer readable from the opening promise (open, target 2026-11-03)",
-    "fix:rope DL-5 say whether I am walking toward the selected person and why I have not reached them (open, target 2026-11-03)",
-    "fix:rope DL-16 a way to bring a pair together when distance prevents roping up (open, target 2026-11-03)"
+    "fix:rope DL-22 every person's answer readable from the opening promise (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)",
+    "fix:rope DL-5 say whether I am walking toward the selected person and why I have not reached them (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)",
+    "fix:rope DL-16 a way to bring a pair together when distance prevents roping up (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/rope.md"
   },
@@ -3467,8 +3467,8 @@
    "words": "At 217.610 s I wanted to stop: one repair felt complete and I had had enough scrolling. I would return for another small repair, with reservations about the phone handling and the amount of physical work shown.",
    "verdict": "keep",
    "routes": [
-    "fix:repair DL-5 show what cleaning or replacing did to the contact faces and the switch (open, target 2026-11-03)",
-    "fix:repair DL-22 instruction, repair response and next test reachable together on the phone (open, target 2026-11-03)"
+    "fix:repair DL-5 show what cleaning or replacing did to the contact faces and the switch (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)",
+    "fix:repair DL-22 instruction, repair response and next test reachable together on the phone (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/repair.md"
   },
@@ -3541,9 +3541,9 @@
    "words": "I would not return voluntarily from this session. I had not yet found the helpful conversation I came for.",
    "verdict": "quit",
    "routes": [
-    "fix:neighbours DL-13 tell me at once that my walk request is waiting for Play (open, target 2026-11-03)",
-    "fix:neighbours DL-5 carry the inspector question into Ada's conversation with what I would promise (open, target 2026-11-03)",
-    "fix:neighbours DL-22 read each immediate hall response in full without the sheet moving (open, target 2026-11-03)"
+    "fix:neighbours DL-13 tell me at once that my walk request is waiting for Play (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)",
+    "fix:neighbours DL-5 carry the inspector question into Ada's conversation with what I would promise (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)",
+    "fix:neighbours DL-22 read each immediate hall response in full without the sheet moving (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/neighbours.md"
   },
@@ -3586,9 +3586,9 @@
    "words": "I would return voluntarily to finish the descent, but I would be reluctant to start another climb until I could read execution of a request more confidently.",
    "verdict": "mixed",
    "routes": [
-    "fix:rope DL-5 tell accepted, being carried out and finished apart (open, target 2026-11-03)",
-    "fix:rope DL-3 identify each person and posture without overlapping names (open, target 2026-11-03)",
-    "fix:rope DL-22 every recorded answer readable on the phone (open, target 2026-11-03)"
+    "fix:rope DL-5 tell accepted, being carried out and finished apart (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)",
+    "fix:rope DL-3 identify each person and posture without overlapping names (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)",
+    "fix:rope DL-22 every recorded answer readable on the phone (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/rope-round4.md"
   },
@@ -3662,9 +3662,9 @@
    "words": "I stopped at 149.7 s because the kind act had landed and this felt like a complete bus-sized visit. I would return voluntarily to see what happens with the Hall …",
    "verdict": "keep",
    "routes": [
-    "fix:neighbours DL-5 the inspector conversation cue matches the first action shown (open, target 2026-11-03)",
-    "fix:neighbours DL-22 the noticeboard explanation stays visible with the work offer on the phone (open, target 2026-11-03)",
-    "fix:neighbours DL-5 say the hour is queued for Play, and separate expected finish from the promise deadline (open, target 2026-11-03)"
+    "fix:neighbours DL-5 the inspector conversation cue matches the first action shown (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)",
+    "fix:neighbours DL-22 the noticeboard explanation stays visible with the work offer on the phone (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)",
+    "fix:neighbours DL-5 say the hour is queued for Play, and separate expected finish from the promise deadline (frozen 2026-10-20, docs/lab/ranking-2026-10-20.md, was open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/clarity-followups-2026-10-20/neighbours-round4.md"
   },
