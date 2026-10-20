@@ -17,6 +17,7 @@ import { EndsList, UnaskedStrip } from './EndsPane.tsx';
 import { Icon, STRENGTH_ICON } from './Icon.tsx';
 import { APPEALS, STRENGTHS } from './parts.tsx';
 import { Strip, StripLegend } from './Strip.tsx';
+import { trustChangeWords, trustEventWords } from './VoicesPane.tsx';
 
 const MAX_WHISPERS = 2;
 // Seventh pass: a pick's strength and reason controls sit below the list, not under the picked row, so picking
@@ -58,7 +59,11 @@ export function Between({
       }),
     );
 
-  const delta = view.trust.to - view.trust.from;
+  const change = trustChangeWords(view.trust.from, view.trust.to);
+  const recapWords = (line: string) =>
+    line.replace(/His trust in you went (\d+(?:\.\d+)?) → (\d+(?:\.\d+)?)\./, (_, from: string, to: string) =>
+      trustChangeWords(Number(from), Number(to)),
+    );
   const cost = view.choices[0]?.cost;
   const nextLabel = view.next
     ? view.next.skipped > 0
@@ -78,7 +83,7 @@ export function Between({
       <div>
         <ul className="v-lines">
           {view.lines.slice(0, 6).map((l) => (
-            <li key={l}>{storyDates(l)}</li>
+            <li key={l}>{storyDates(recapWords(l))}</li>
           ))}
         </ul>
         {view.yours && view.yours.length > 0 && (
@@ -86,7 +91,7 @@ export function Between({
             <h3 className="v-sub">What your words did</h3>
             <ul className="v-lines">
               {view.yours.map((l) => (
-                <li key={l}>{storyDates(l)}</li>
+                <li key={l}>{storyDates(recapWords(l))}</li>
               ))}
             </ul>
           </>
@@ -95,17 +100,11 @@ export function Between({
         <StripLegend rows={[view.strip]} />
         <div className="v-between-trust">
           <h3 className="v-sub">His trust in you</h3>
-          <p>
-            {view.trust.from.toFixed(2)} → <strong>{view.trust.to.toFixed(2)}</strong>{' '}
-            <span className={delta >= 0 ? 'is-up' : 'is-down'}>
-              ({delta >= 0 ? '+' : '−'}
-              {Math.abs(delta).toFixed(2)})
-            </span>
-          </p>
+          <p>{change}</p>
           {view.trust.events.length > 0 && (
             <ul className="v-voice-history">
               {view.trust.events.map((e) => (
-                <li key={e}>{e}</li>
+                <li key={e}>{trustEventWords(e)}</li>
               ))}
             </ul>
           )}
@@ -221,19 +220,9 @@ export function Between({
             <details className="v-between-recap">
               <summary>
                 <span className="v-recap-title">{storyDates(view.closed.replace(/ is over\.$/, ''))}</span>
-                {(view.unasked ?? [])
-                  .filter((u) => u.state !== 'unknown')
-                  .map((u) => (
-                    <Icon
-                      key={u.label}
-                      name={u.state === 'yes' ? 'check' : 'x'}
-                      label={`${u.label}: ${u.state === 'yes' ? 'would do unasked' : 'not yet'}`}
-                      className={`v-recap-mark is-${u.state}`}
-                    />
-                  ))}
                 <span className="v-recap-trust">
                   <Icon name="ear" label="His trust in you" />
-                  {view.trust.to.toFixed(2)}
+                  {change}
                 </span>
               </summary>
               {recap}

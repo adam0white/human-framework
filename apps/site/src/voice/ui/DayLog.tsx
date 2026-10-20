@@ -1,9 +1,10 @@
 /**
- * The day, in his narration (voice.md §7.2). Scrolls inside its own panel. A spoken answer holds the transcript until Latest is chosen;
+ * The day, in his narration (voice.md §7.2). Scrolls inside its own panel. A spoken answer holds the transcript until Latest, another answer or a new request;
  * the simulation clock runs on. The held snapshot survives the worker trimming its recent log. Consecutive entries of the same action collapse into one line with a time span.
  */
 import { memo, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { BeatKind, LogEntry } from '../protocol.ts';
+import { type ConversationMoment, conversationFor, type SpokenLine, spokenLogText } from './conversations.ts';
 import { storyDates } from './dates.ts';
 import { BEAT_ICON, Icon, TONE_ICON, TONE_WORD, VOICE_ICON } from './Icon.tsx';
 import { toneClass, VOICE_COLOURS, VOICE_NAMES } from './parts.tsx';
@@ -49,8 +50,10 @@ export const DayLog = memo(function DayLog({
   onWhy,
   selected,
   onRetainWhy,
+  moment,
 }: {
   log: LogEntry[];
+  moment?: ConversationMoment;
   pauseBeat?: { kind: BeatKind; text: string };
   paused: boolean;
   onWhy: (decisionId: string) => void;
@@ -60,17 +63,30 @@ export const DayLog = memo(function DayLog({
   const [held, setHeld] = useState<LogEntry[] | null>(null);
   const seen = useRef<string | undefined>(undefined);
   const visible = held ?? log;
+  // Presentation-only snapshots stay fixed while a row is retained, even when its earlier context is trimmed.
+  const scenes = useRef(new Map<string, SpokenLine[]>());
+  const retained = new Set([...log, ...(held ?? [])].map((e) => e.id));
+  for (const id of scenes.current.keys()) if (!retained.has(id)) scenes.current.delete(id);
+  for (const entry of log) {
+    if (!scenes.current.has(entry.id)) scenes.current.set(entry.id, conversationFor(entry, log, moment));
+  }
   const rows = useMemo(() => collapse(visible), [visible]);
   useLayoutEffect(() => {
     const previous = seen.current;
     seen.current = log.at(-1)?.id;
     const start = previous ? log.findIndex((e) => e.id === previous) + 1 : 0;
-    if (held) return;
-    const answerIndex = log.findIndex((e, i) => i >= start && e.kind === 'answer');
-    if (answerIndex < 0) return;
+    const answerIndex = log.findLastIndex((e, i) => i >= start && e.kind === 'answer');
     const answer = log[answerIndex];
-    setHeld(log.slice(0, answerIndex + 1));
-    if (answer?.decisionId) onRetainWhy?.(answer.decisionId);
+    // A new request replaces the reading. Autonomous tasks update the status without discarding his words.
+    const replaced = log.some((e, i) => i >= start && i > answerIndex && e.kind === 'you');
+    if (replaced) {
+      if (held) setHeld(null);
+      return;
+    }
+    if (answerIndex >= 0) {
+      setHeld(log.slice(0, answerIndex + 1));
+      if (answer?.decisionId) onRetainWhy?.(answer.decisionId);
+    }
   }, [log, held, onRetainWhy]);
   const scroller = useRef<HTMLDivElement>(null);
   const [stuck, setStuck] = useState(true);
@@ -88,11 +104,23 @@ export const DayLog = memo(function DayLog({
     setStuck(el.scrollHeight - el.scrollTop - el.clientHeight < 24);
   };
 
+  const heldAnswer = held?.at(-1);
+  const newerTask = heldAnswer
+    ? log.findLast((e) => e.kind === 'act' && e.minute > heldAnswer.minute)
+    : undefined;
+
   return (
     <section className="v-day" aria-label="The day">
       {held && (
-        <div className="v-reading">
-          Reading his answer · {held.at(-1)?.clock}. {paused ? 'Clock paused.' : 'Clock continues.'}
+        <div className={newerTask ? 'v-earlier-answer' : 'v-reading'}>
+          {newerTask ? 'Earlier answer' : 'Reading his answer'} · {heldAnswer?.clock}.
+          {newerTask && (
+            <>
+              {' '}
+              Latest task at {newerTask.clock}: {spokenLogText(newerTask.text)}
+            </>
+          )}{' '}
+          {paused ? 'Clock paused.' : 'Clock continues.'}
         </div>
       )}
       {!held && pauseBeat && paused && (
@@ -109,6 +137,7 @@ export const DayLog = memo(function DayLog({
         {rows.length === 0 && <p className="v-log-empty">Nothing yet today.</p>}
         <ol>
           {rows.map(({ entry: e, to, count }) => {
+            const exchange = scenes.current.get(e.id) ?? [];
             const voice = e.who !== 'halil' ? e.who : null;
             const clickable = Boolean(e.decisionId);
             const body = (
@@ -130,7 +159,16 @@ export const DayLog = memo(function DayLog({
                       <span className="v-sr">: </span>
                     </span>
                   )}
-                  {storyDates(e.text)}
+                  {storyDates(spokenLogText(e.text))}
+                  {exchange.length > 0 && (
+                    <span className="v-exchange">
+                      {exchange.map((line) => (
+                        <span className="v-exchange-line" key={line.speaker}>
+                          <strong>{line.speaker}:</strong> “{line.words}”
+                        </span>
+                      ))}
+                    </span>
+                  )}
                   {count > 1 && to ? <span className="v-log-span"> · until {to}</span> : null}
                   {count === 1 && e.until && e.kind === 'act' ? (
                     <span className="v-log-span"> · until {e.until}</span>

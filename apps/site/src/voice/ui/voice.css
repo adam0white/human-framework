@@ -680,16 +680,13 @@
 }
 .v-felt li {
   display: grid;
-  grid-template-columns: 74px 1fr 92px;
+  grid-template-columns: 74px minmax(0, 1fr);
   align-items: center;
   gap: 8px;
   font-size: 0.84rem;
 }
 .v-felt-id {
   color: var(--ink-soft);
-}
-.v-felt .v-meter {
-  width: 100%;
 }
 .v-felt-word {
   font-family: var(--font-line);
@@ -1044,7 +1041,18 @@ button.v-log-btn:hover {
   background: var(--indigo);
   color: #ede6d6;
 }
+.v-composer-scroll {
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
+.v-insist-price[aria-hidden="true"] {
+  visibility: hidden;
+}
 .v-composer-body {
+  min-width: 0;
   display: grid;
   gap: 8px;
   max-width: 760px;
@@ -2336,8 +2344,9 @@ button.v-log-btn {
   color: inherit;
 }
 
-/* A held answer owns its transcript until the reader chooses Latest. */
-.v-reading {
+/* A held answer remains readable; its status names newer work. */
+.v-reading,
+.v-earlier-answer {
   padding: 6px 16px;
   font-size: 0.82rem;
   color: var(--ink-soft);
@@ -2372,12 +2381,60 @@ button.v-log-btn {
 @media (max-width: 767px) {
   .v-dock {
     max-height: 68dvh;
-    overflow-y: auto;
-    overscroll-behavior: contain;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .v-composer.is-expanded {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .v-composer-peek {
+    flex-shrink: 0;
   }
   .v-composer.is-expanded .v-composer-body {
-    max-height: none;
-    overflow-y: visible;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    height: calc(68dvh - 50px);
+    max-height: calc(100dvh - 160px);
+    grid-template-rows: minmax(0, 1fr) auto;
+    overflow: hidden;
+    padding: 0 12px 10px;
+  }
+  .v-composer-scroll {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-bottom: 4px;
+  }
+  .v-appeals {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .v-commit {
+    min-height: 0;
+  }
+  .v-preview {
+    height: 152px;
+    display: grid;
+    grid-template-rows: 38px minmax(0, 1fr);
+    overflow: hidden;
+  }
+  .v-telegraph {
+    height: auto;
+    overflow-y: auto;
+    align-content: start;
+    box-sizing: border-box;
+  }
+  .v-say {
+    flex-wrap: nowrap;
+  }
+  .v-say .v-btn {
+    white-space: nowrap;
+    min-width: 0;
   }
   .v-options {
     display: grid;
@@ -2394,4 +2451,39 @@ button.v-log-btn {
   .v-how .v-seg button {
     min-height: 44px;
   }
+}
+
+/* Spoken scenes sit beside the recorded act. They never enter the simulation log. */
+.v-exchange {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+  font-family: var(--font-line);
+}
+.v-exchange-line strong {
+  font-family: var(--font-text);
+  font-size: 0.82em;
+  font-weight: 600;
+}
+.v-unasked-choice {
+  color: var(--ink-soft);
+}
+
+.v-draft-summary {
+  margin: 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  font-size: 0.8rem;
+  line-height: 1.15;
+  min-width: 0;
+}
+.v-draft-action,
+.v-draft-how {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.v-draft-action {
+  font-weight: 600;
 }

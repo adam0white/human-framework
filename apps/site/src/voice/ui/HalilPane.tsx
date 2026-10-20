@@ -2,7 +2,6 @@
 import { memo } from 'react';
 import type { HalilView } from '../protocol.ts';
 import { Icon } from './Icon.tsx';
-import { Meter } from './parts.tsx';
 
 const STATE_LABEL: Record<HalilView['onMind'][number]['state'], string> = {
   open: '',
@@ -33,7 +32,6 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
         {halil.felt.map((f) => (
           <li key={f.id}>
             <span className="v-felt-id">{f.id === 'tired' ? 'tiredness' : f.id}</span>
-            <Meter value={f.level} label={f.id} tone={f.level >= 0.7 ? 'is-high' : ''} />
             <span className="v-felt-word">{f.word}</span>
           </li>
         ))}
@@ -41,11 +39,7 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
       {halil.feelings.length > 0 && (
         <p className="v-feelings">
           {halil.feelings.map((f) => (
-            <span
-              key={f.name}
-              className="v-feeling"
-              style={{ opacity: 0.55 + 0.45 * Math.min(1, f.intensity) }}
-            >
+            <span key={f.name} className="v-feeling">
               {f.word}
             </span>
           ))}
