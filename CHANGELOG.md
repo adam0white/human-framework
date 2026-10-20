@@ -12,11 +12,15 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.9.1] - 2026-10-20
+
+Engine: 2.9.0. The *Host kit* ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.2) and the owner's maintenance sweep. Behaviour-neutral: the engine stamp is unchanged, and every replay, fixture, hash and full-state legacy digest is unchanged. Patch number, not minor, because 2.10.0 is the approved name of *Word and witness*; nothing is removed.
+
 ### Added
 
 - Host setup: `seedSourceTrust` authors testimony trust and `seedBelief` authors starting knowledge without an observation marker or reputation update. Both clamp finite values; source trust rejects self ids. The architecture documents relationship, voice and source trust separately.
 - Saves: `fingerprint(person)` hashes the restored, recursively key-sorted saved form with a browser-safe 64-bit string hash. Key insertion order and optional empty slices removed by restore do not change the digest; this is a change detector, not a cryptographic check.
-- Host recipes: [host-kit](docs/host-kit.md) covers travel, effort and duration, need and work utility, community-state write-back and feeding residents, with executable tests.
+- Host recipes: [host-kit](https://github.com/adam0white/human-framework/blob/main/docs/host-kit.md) covers travel, effort and duration, need and work utility, community-state write-back and feeding residents, with executable tests.
 - Death news: `tellDeath` accepts `{ late: 'now' | 'throw' }`. The existing tolerant default is preserved; explicit strict mode rejects ahead-of-time listeners before delivering news to anyone. The reported default throw did not reproduce on this baseline.
 
 ### Maintenance
@@ -25,6 +29,17 @@ absolute links in sections, since they are copied into the release page.
 - Update React and React DOM 19.3.0 → 19.3.1, fake-indexeddb 6.2.5 → 6.2.6 and happy-dom 20.14.6 → 21.0.4. Align the site HF pin 2.8.0 → 2.9.0 with the local source its build and tests already use; lab-client, lab-kit and playtester workspace versions stay unchanged.
 - Refresh the lockfile and allowScripts for esbuild 0.28.2 and workerd 1.20261019.1. Remove the sharp override because the new miniflare dependency pins the patched 0.35.5 version itself.
 - Advance the Worker compatibility date 2026-10-01 → 2026-10-20 after reviewing Cloudflare's compatibility flag history; no additional flags needed. Update the documented tool versions.
+- Pin Vite 8.3.4 across the workspace (`overrides`): Vitest had hoisted Vite 8.3.2, which has open advisories fixed in 8.3.3.
+- Refactors without behaviour change, from the [maintenance audit](https://github.com/adam0white/human-framework/blob/main/docs/reviews/hf-maintenance-audit-2026-10-20.md): `finish` (person), `evaluate` (will) and `stepCommunity` (sim) split into private helpers; three internal-only `export` keywords dropped (`effortValue`, `materialValue`, `goalValue`, never in the package entry); shared test builders; a validated-revision comparison without a double cast; stale scope and architecture comments corrected.
+- CI: `npm run api-doc -- --check` fails when docs/api.md is stale, and a packed-tarball consumer smoke test runs a public example outside the workspace.
+
+### Deprecated
+
+- `expit` (use `sigmoid`, the same function), removed in 3.0. The `now` argument of `repent` and `recordRepair` is optional and is removed in 3.0. The 2.0 options-object forms and `TRAIT_NAMES` keep their 3.0 removal: the audit found no game using them, but the README promises them until 3.0 and removing an export is breaking.
+
+### Not migrated
+
+- Cloudflare's `cf` CLI (1.0.0-beta.19) was tried as a replacement for wrangler; its build and dry-run deploy reject this workspace root, so deployment stays on wrangler (recheck 2026-12-01, docs/findings.md).
 
 ## [2.9.0] - 2026-10-19
 
