@@ -125,6 +125,33 @@ describe('lab client', () => {
     expect(privacySignal({ navigator: { doNotTrack: '0' } })).toBe(false);
   });
 
+  it.each([
+    { navigator: { globalPrivacyControl: true }, doNotTrack: undefined },
+    { navigator: { doNotTrack: '1' }, doNotTrack: undefined },
+    { navigator: {}, doNotTrack: '1' },
+  ])('suppresses regular events under a privacy signal: %j', async (signals) => {
+    const calls: string[] = [];
+    vi.stubGlobal('location', { hostname: 'murmur.adamwhite.work' });
+    vi.stubGlobal('navigator', signals.navigator);
+    vi.stubGlobal('doNotTrack', signals.doNotTrack);
+    vi.stubGlobal('sessionStorage', undefined);
+    vi.stubGlobal('localStorage', undefined);
+    vi.stubGlobal('fetch', async (url: string) => {
+      calls.push(url);
+      return Response.json({ id: 'r-abcdefghjk' });
+    });
+    const lab = createLab({ game: 'murmur', build: {} });
+    lab.screen('play');
+    lab.milestone('run started');
+    lab.setEventsOff(false); // A game toggle must not override the browser's signal.
+    lab.flush();
+    expect(lab.eventsOn).toBe(false);
+    expect(calls).toEqual([]);
+    // The player's explicit submission remains available under the same signal.
+    expect(await lab.sendRun({ seed: 3 })).toBe('r-abcdefghjk');
+    expect(calls).toEqual(['https://human.adamwhite.work/lab/api/run']);
+  });
+
   it('classes viewports by width only', () => {
     expect([360, 412, 768, 1440].map(viewportClass)).toEqual(['phone', 'phone', 'tablet', 'desktop']);
   });

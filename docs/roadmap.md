@@ -146,6 +146,8 @@ Site-wide, from the R2 reviews (all unscheduled):
 - H2 S5, S6: before Game 3 imports pages or replays files from playtesters, cap decompression, validate, and route people through `restore`.
 - Real devices: a real Galaxy S26 (wake lock, fullscreen, safe areas), iOS, the file download, and Game 1 in landscape with large text are unverified.
 
+**Lab deferred (2026-10-20).** F-192: test regular-event delivery in a working isolated Firefox, with GPC off and on, including navigation and a cross-origin request to the lab endpoint. Playwright launches failed here; client/Worker privacy controls pass ([findings](findings.md)). Confirm the owner's setting only with read access or a voluntary report. Target 2026-10-27. Preserve GPC/DNT suppression.
+
 ## Demonstrated conditional methods (authorized 2026-10-10)
 
 Bounded conditional action acquisition supports the standalone repair-game apprenticeship probe. Implemented faculty and domain-neutral control: `methods/`, `examples/method-control.ts`. Release/consumer integration remains part of technical done in [learning-probe.md](learning-probe.md). General planning, inferred cue extraction, multi-step procedure synthesis and calibrated real-world learning rates remain **unscheduled**; this increment does not activate them.

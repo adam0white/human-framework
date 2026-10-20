@@ -544,6 +544,19 @@ describe('lab worker', () => {
     expect(res.headers.get('Access-Control-Allow-Methods')).toContain('POST');
   });
 
+  it.each(['Sec-GPC', 'DNT'])('stores an explicit run even under %s', async (signal) => {
+    const { env, store } = fakeEnv();
+    const response = await call(
+      post('/lab/api/run', gzipSync(JSON.stringify({ v: 1, game: 'murmur', run: { seed: 3 } })), {
+        'Content-Type': 'application/gzip',
+        [signal]: '1',
+      }),
+      env,
+    );
+    expect(response.status).toBe(200);
+    expect([...store.keys()].filter((key) => key.startsWith('runs/'))).toHaveLength(1);
+  });
+
   it('stores an opt-in run privately, re-compressed, and indexes it', async () => {
     const { env, store } = fakeEnv();
     const envelope = {
