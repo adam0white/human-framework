@@ -4391,7 +4391,7 @@
    "words": "Find ways to improve the UI on mobile and desktop, including making the building shown bigger.",
    "verdict": "-",
    "routes": [
-    "fix:stairwell DL-23 larger building and labels on phone and desktop, DL-30/31 lab-kit 0.2.0 phone stage (open, Codex 2026-10-20)"
+    "fix:stairwell DL-23 larger building and labels on phone and desktop, DL-30/31 lab-kit 0.2.0 phone stage (done, stairwell e972919 and 6c5396e)"
    ],
    "source": "stairwell/docs/playtests/owner-2026-10-20.md"
   },
@@ -4404,7 +4404,7 @@
    "words": "This has good potential. Current issues on mobile. Too little time to understand and react to events and things.",
    "verdict": "mixed",
    "routes": [
-    "fix:hearsay DL-15 an event that demands a response slows the clock until answered (open, Codex 2026-10-20)",
+    "fix:hearsay DL-15 an event that demands a response slows the clock until answered (done, hearsay 6b4c7a9, first incident readable 43 s → 120 s)",
     "lesson:L6"
    ],
    "source": "hearsay/docs/playtests/owner-2026-10-20.md"
@@ -4418,7 +4418,7 @@
    "words": "Too many people to keep track of.",
    "verdict": "-",
    "routes": [
-    "fix:hearsay people lists lead with the wedding's people and whoever is present, the rest behind Everyone else, with a who-they-are tag (open, Codex 2026-10-20)"
+    "fix:hearsay people lists lead with the wedding's people and whoever is present, the rest behind Everyone else, with a who-they-are tag (done, hearsay 6b4c7a9)"
    ],
    "source": "hearsay/docs/playtests/owner-2026-10-20.md"
   },
@@ -4431,7 +4431,7 @@
    "words": "The goals are not apparent after the intro.",
    "verdict": "-",
    "routes": [
-    "fix:hearsay DL-1/DL-9/DL-31 the wedding goal and next step stay in the state strip (open, Codex 2026-10-20)"
+    "fix:hearsay DL-1/DL-9/DL-31 the wedding goal and next step stay in the state strip (done, hearsay 6b4c7a9)"
    ],
    "source": "hearsay/docs/playtests/owner-2026-10-20.md"
   },
@@ -4444,7 +4444,7 @@
    "words": "Too much scrolling.",
    "verdict": "-",
    "routes": [
-    "fix:hearsay DL-22/DL-30 lab-kit 0.2.0 phone stage, brought forward from F-301 (open, Codex 2026-10-20)"
+    "fix:hearsay DL-22/DL-30 lab-kit 0.2.0 phone stage, brought forward from F-301 (done, hearsay 6b4c7a9)"
    ],
    "source": "hearsay/docs/playtests/owner-2026-10-20.md"
   },
@@ -4457,7 +4457,7 @@
    "words": "Game should keep track of things to simply disallow me from repeating useless acts like telling about and event to someone again, or spreading old news and whatnot.",
    "verdict": "-",
    "routes": [
-    "fix:hearsay DL-4 a story or claim already told to that listener is disabled with the reason, reproduced in the export (13 repeats) (open, Codex 2026-10-20)",
+    "fix:hearsay DL-4 a story or claim already told to that listener is disabled with the reason, reproduced in the export (13 repeats) (done, hearsay e5e5bd5)",
     "lesson:L4",
     "lesson:L17"
    ],
@@ -4472,7 +4472,7 @@
    "words": "Also the game is still running while I type this lol. The menu also didn't close when this one opened",
    "verdict": "-",
    "routes": [
-    "fix:hearsay the send dialog stops the clock and closes the Game menu, DL-15/DL-24 (open, Codex 2026-10-20)",
+    "fix:hearsay the send dialog stops the clock and closes the Game menu, DL-15/DL-24 (done, hearsay e5e5bd5)",
     "fix:lab lab-client onClose hook so every game can stop the clock while the send dialog is open (open, target 2026-11-03)"
    ],
    "source": "hearsay/docs/playtests/owner-2026-10-20.md"
