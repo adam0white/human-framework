@@ -1,5 +1,6 @@
 import { type PhoneStage, phoneStage } from '@adam0white/lab-kit';
 import { type RefObject, useEffect, useRef, useState } from 'react';
+import type { HurtNews } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { APPEALS } from '../sim/orders.ts';
@@ -8,9 +9,10 @@ import { dayClock, type Frame, type Nudge } from './contract.ts';
 import {
   type ComposerState,
   EMPTY_COMPOSER,
+  HurtLine,
+  inferredJob,
   jobPhrase,
   OrderLog,
-  OrderReply,
   PLACE_LABEL,
   SuggestionCard,
   shortName,
@@ -19,11 +21,13 @@ import {
 /** Phone presentation only. Orders still pass through the same callbacks and simulation. */
 export function VillageStrip({ frame, side }: { frame: Frame | null; side: 'human' | 'classic' }) {
   const [expanded, setExpanded] = useState(false);
-  const roof = frame?.goals.find((g) => g.id === 'roof' || g.id === 'project');
+  const roof = frame?.goals.find((g) => g.id === 'project') ?? frame?.goals.find((g) => g.id === 'roof');
+  const food = frame?.goals.find((g) => g.id === 'stock');
   const world = side === 'human' ? frame?.humanWorld : frame?.classicWorld;
   const meals = frame?.scoreboard[side].meals ?? 0;
   const storm = frame?.timeline.markers.find((m) => m.kind === 'storm');
-  const deadline = storm?.minute ?? roof?.deadlineMinute;
+  const stormPassed = Boolean(frame && storm && frame.minute >= (storm.until ?? storm.minute));
+  const deadline = stormPassed ? roof?.deadlineMinute : (storm?.minute ?? roof?.deadlineMinute);
   const stage = world?.project.stage ?? world?.houseStage ?? 0;
   const target = world?.project.stages ?? roof?.targetValue ?? 10;
   const label = world?.project.kind === 'storeroom' ? 'Store-room' : 'Roof';
@@ -42,16 +46,33 @@ export function VillageStrip({ frame, side }: { frame: Frame | null; side: 'huma
         <span>
           {side === 'human' ? 'Human' : 'Classic'} · {label} {stage} of {target}
         </span>
-        <span>Meals {meals}</span>
         <span>
-          Storm {deadline === undefined ? 'not scheduled' : dayClock(deadline).replace('D', 'Day ')}
+          Meals {meals}
+          {food ? ` / ${food.targetValue}` : ''}
+        </span>
+        <span>
+          {stormPassed ? `${label} by ` : 'Storm '}
+          {deadline === undefined ? 'not scheduled' : dayClock(deadline).replace('D', 'Day ')}
         </span>
       </button>
       <p className="lk-strip-detail" data-expanded={expanded}>
         The {side === 'human' ? 'Human' : 'Classic'} village has completed {stage} of {target}{' '}
         {label.toLowerCase()} stages and stores {meals} meals.{' '}
-        {deadline !== undefined && `The storm arrives on ${dayClock(deadline).replace('D', 'Day ')}.`}
+        {deadline !== undefined &&
+          (stormPassed
+            ? `${label} due ${dayClock(deadline).replace('D', 'Day ')}.`
+            : `The storm arrives on ${dayClock(deadline).replace('D', 'Day ')}.`)}
+        {food &&
+          ` Food target: ${food.targetValue} meals by ${dayClock(food.deadlineMinute).replace('D', 'Day ')}.`}
       </p>
+      {stormPassed && storm && (
+        <details className="well-storm-history">
+          <summary>Weather history</summary>
+          <p>
+            Storm passed · {dayClock(storm.minute)}–{dayClock(storm.until ?? storm.minute)}
+          </p>
+        </details>
+      )}
     </section>
   );
 }
@@ -60,6 +81,10 @@ type View = 'tools' | 'order' | 'worker' | 'place' | 'options' | 'suggestion' | 
 export function PhoneSheet(props: {
   stageRoot: RefObject<HTMLElement | null>;
   onSceneHeight(height: number): void;
+  placeRequest?: number;
+  onScenePlace?(place: PlaceId): void;
+  onShowNews?(news: HurtNews): void;
+  onRestNews?(news: HurtNews): void;
   job: ActionId | null;
   inspecting: boolean;
   active: boolean;
@@ -80,6 +105,7 @@ export function PhoneSheet(props: {
   onSheet(height: 'closed' | 'peek' | 'half' | 'full' | 'fit'): void;
 }) {
   const [view, setView] = useState<View>('order');
+  const [scenePicker, setScenePicker] = useState(false);
   const [open, setOpen] = useState(props.ordering && props.active);
   const [canBack, setCanBack] = useState(false);
   const controller = useRef<PhoneStage | null>(null);
@@ -137,13 +163,23 @@ export function PhoneSheet(props: {
     if (!props.active) return;
     if (props.ordering && !currentId.current)
       controller.current?.open({ id: 'order', height: 'half', openerSelector: '#well-give-order' });
-    if (!props.ordering && currentId.current === 'order') controller.current?.close();
+    if (
+      !props.ordering &&
+      (currentId.current === 'order' || currentId.current === 'place' || currentId.current === 'options')
+    )
+      controller.current?.close();
   }, [props.ordering, props.active]);
   useEffect(() => {
     controller.current?.refresh();
     if (!props.inspecting) document.getElementById('well-about-worker')?.focus();
   }, [props.inspecting]);
+  useEffect(() => {
+    if (!props.placeRequest || !props.active) return;
+    setScenePicker(true);
+    controller.current?.open({ id: 'place', height: 'half' });
+  }, [props.placeRequest, props.active]);
   function show(next: View, target: EventTarget | null) {
+    setScenePicker(false);
     const opener = target instanceof HTMLElement ? target : undefined;
     controller.current?.open({
       id: next,
@@ -165,7 +201,7 @@ export function PhoneSheet(props: {
   }
   const title = {
     tools: 'Village actions',
-    order: 'Give an order',
+    order: 'Order options',
     worker: 'Choose worker',
     place: 'Choose place',
     options: 'Order options',
@@ -180,10 +216,10 @@ export function PhoneSheet(props: {
           id="well-give-order"
           onClick={(e) => {
             props.onOrdering(true);
-            show('order', e.currentTarget);
+            show(s.personId ? 'order' : 'worker', e.currentTarget);
           }}
         >
-          Give an order
+          {s.personId ? `Order options · ${shortName(s.personId)}` : 'Choose person'}
         </button>
         {nudge && (
           <button type="button" onClick={(e) => show('suggestion', e.currentTarget)}>
@@ -191,7 +227,7 @@ export function PhoneSheet(props: {
           </button>
         )}
         <button type="button" onClick={(e) => show('orders', e.currentTarget)}>
-          Orders ({cards.length})
+          History ({cards.length})
         </button>
       </nav>
       <section className="well-phone-sheet lk-sheet" hidden={!open || props.inspecting} aria-label={title}>
@@ -228,7 +264,7 @@ export function PhoneSheet(props: {
                 </button>
               )}
               <button type="button" id="well-tools-orders" onClick={(e) => show('orders', e.currentTarget)}>
-                Orders ({cards.length})
+                History ({cards.length})
               </button>
               {(['peek', 'half', 'full', 'fit'] as const).map((size) => (
                 <button type="button" key={size} data-lk-snap={size}>
@@ -288,7 +324,6 @@ export function PhoneSheet(props: {
               <button type="button" id="well-order-options" onClick={(e) => show('options', e.currentTarget)}>
                 Order options
               </button>
-              <OrderReply cards={cards} />
             </>
           )}
           {view === 'worker' && (
@@ -300,7 +335,8 @@ export function PhoneSheet(props: {
                   aria-pressed={s.personId === p.id}
                   onClick={() => {
                     props.onWho(p.id);
-                    back();
+                    props.onOrdering(false);
+                    close();
                   }}
                 >
                   {shortName(p.id)}
@@ -327,8 +363,16 @@ export function PhoneSheet(props: {
                   type="button"
                   aria-pressed={s.placeId === p}
                   onClick={() => {
-                    props.onWhere(p);
-                    back();
+                    if (scenePicker && props.onScenePlace) {
+                      props.onScenePlace(p);
+                      setScenePicker(false);
+                      if (p === 'cedar' && props.frame && inferredJob(props.frame, p) === 'fell-cedar')
+                        controller.current?.open({ id: 'order', height: 'half' });
+                      else close();
+                    } else {
+                      props.onWhere(p);
+                      back();
+                    }
                   }}
                 >
                   {PLACE_LABEL[p]}
@@ -382,6 +426,7 @@ export function PhoneSheet(props: {
           {view === 'suggestion' && nudge && props.frame && (
             <SuggestionCard
               nudge={nudge}
+              frame={props.frame}
               minute={props.frame.minute}
               cards={cards}
               queued={props.frame.nudges.length - 1}
@@ -397,7 +442,16 @@ export function PhoneSheet(props: {
               }}
             />
           )}
-          {view === 'orders' && <OrderLog cards={cards} onCancel={props.onCancel} />}
+          {view === 'orders' && (
+            <>
+              <HurtLine
+                news={props.frame?.news ?? []}
+                onShow={props.onShowNews ?? (() => {})}
+                {...(props.onRestNews ? { onRest: props.onRestNews } : {})}
+              />
+              <OrderLog cards={cards} onCancel={props.onCancel} />
+            </>
+          )}
         </div>
         <footer className="lk-commit">
           <button

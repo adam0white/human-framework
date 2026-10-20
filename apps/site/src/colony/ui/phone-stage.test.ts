@@ -39,8 +39,8 @@ describe('Well phone stage', () => {
           id: 'order',
           issuedAt: 640,
           personId: 'maryam',
-          placeId: 'site',
-          action: 'build',
+          placeId: 'forest',
+          action: 'gather-timber',
           rollKey: 0,
           rush: false,
           insist: false,
@@ -62,10 +62,10 @@ describe('Well phone stage', () => {
         onSkip: () => {},
       }),
     );
-    expect(html).toContain('Suggested at 15:20, before Maryam answered');
+    expect(html).toContain('Suggested at D1 15:20. Maryam answered an order issued at D1 15:40');
     expect(html).toContain('And leave the pot cold at noon? No.');
     expect(html).not.toContain('free until noon');
-    expect(html).not.toContain('She can leave the kitchen');
+    expect(html).toContain('She can leave the kitchen');
     expect(cards).toEqual(before);
     // A deferral can arrive after a suggestion even when the order was issued earlier.
     // The card has no answer timestamp; do not invent their relative timing.
@@ -81,7 +81,7 @@ describe('Well phone stage', () => {
         onSkip: () => {},
       }),
     );
-    expect(delayedHtml).toContain('This is an old suggestion.');
+    expect(delayedHtml).toContain('This is an old suggestion;');
     expect(delayedHtml).toContain('And leave the pot cold at noon? No.');
     expect(delayedHtml).not.toContain('free until noon');
     expect(delayedHtml).not.toContain('before Maryam');

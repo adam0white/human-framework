@@ -31,7 +31,7 @@ export function GoalCard(props: {
             ? 'Finish the store-room and keep everyone alive.'
             : 'Roof the house, store 12 meals and keep everyone alive before the storm.'}
         </p>
-        <p>Choose a villager and place, then Confirm.</p>
+        <p>Select a villager, then tap a place.</p>
         <button type="button" className="btn btn-play" ref={play} onClick={props.onPlay}>
           Play
         </button>
@@ -57,7 +57,7 @@ export function GoalCard(props: {
             ))}
           </ol>
           <p className="muted small">
-            Both villages are scored on the same goals. Pick a villager, then a place, then Confirm.
+            Both villages are scored on the same goals. Order options lets you add an appeal or a reason.
             {day3
               ? ''
               : ' Suggestions on the clock set up the story and name their risk; following only them will not roof the Human house. Your own orders can.'}
