@@ -13,6 +13,7 @@
       "!.claude",
       "!.worktrees",
       "!.lab-inbox",
+      "!scratch",
       "!apps/site/src/lab/curated.json",
       "!**/test/fixtures/*.json"
     ]
