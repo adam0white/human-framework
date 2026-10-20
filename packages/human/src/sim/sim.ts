@@ -834,23 +834,8 @@ function contagionBetween(p: Person, q: Person, act: Activity, t: Minute, log: (
   }
 }
 
-/**
- * Advance the community to `until`, processing person events in (time, id) order. Returns the events.
- */
-export function stepCommunity(c: Community, world: World, until: Minute, opts: StepOptions = {}): SimEvent[] {
-  const events: SimEvent[] = [];
-  const quantum = Math.max(1, opts.idleQuantum ?? SIM_DEFAULTS.idleQuantum);
-  const maxEvents = opts.maxEvents ?? SIM_DEFAULTS.maxEvents;
-  const salience = opts.interruptSalience ?? SIM_DEFAULTS.interruptSalience;
-  // Communities created before joint support (plain JSON from an older host) get the new bookkeeping.
-  c.interrupts ??= {};
-  c.joint ??= { nextId: 0, proposals: [], excluded: {} };
-  const log = (e: SimEvent) => {
-    if (events.length < maxEvents) events.push(e);
-  };
-  const contagion = opts.contagion ?? true;
-  c.queued ??= {};
-  c.dayDone ??= {};
+/** Synchronize the host's commands before selecting the next event. */
+function synchronizeCommands(c: Community, opts: StepOptions, log: (e: SimEvent) => void): void {
   if (opts.controlled) {
     for (const p of c.people) {
       const cmd = opts.controlled[p.id];
@@ -873,32 +858,123 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
       }
     }
   }
-  const decideOpts = (p: Person, reason: string | undefined, affordances: readonly Affordance[]) => {
-    const o: Parameters<typeof decide>[2] = {};
-    // Voices: queued conversation advice first (fresher), then the host's standing suggestions that are heard now
-    // (standing-advice SCOPE); one per voice. At reviews they still weigh in, but `decide` resolves them quietly
-    // (no counters, pressure or autonomy cost), so one request is not re-counted as many verdicts.
-    const standing = opts.suggestions?.[p.id];
-    const merged: Suggestion[] = [];
-    const seen = new Set<string>();
-    const heard = (standing ? (Array.isArray(standing) ? standing : [standing]) : []).filter((s) =>
-      standingHeard(c, p, s, affordances, p.now),
-    );
-    for (const s of [...(c.queued?.[p.id] ?? []), ...heard]) {
-      if (seen.has(s.voiceId)) continue;
-      seen.add(s.voiceId);
-      merged.push(s);
+}
+
+/** Run life-course bookkeeping and the host's day hook at the first event of a new day. */
+function bookkeepDay(
+  p: Person,
+  world: World,
+  t: Minute,
+  dayDone: NonNullable<Community['dayDone']>,
+  opts: StepOptions,
+): void {
+  // First event of a new day: life-course rolls for the days crossed, then the host's day hook.
+  const day = dayOf(t);
+  const lastDay = dayDone[p.id];
+  if (lastDay === undefined || day > lastDay) {
+    dayDone[p.id] = day;
+    const lc = opts.lifecourse;
+    if (lc && lastDay !== undefined && p.body.alive) {
+      const dt = (day - lastDay) * MINUTES_PER_DAY;
+      if (lc.chronicOnsets) {
+        const onsetOpts: Parameters<typeof chronicOnsets>[3] = {};
+        if (lc.conditions) onsetOpts.conditions = lc.conditions;
+        const ex = lc.exposures?.(p);
+        if (ex) onsetOpts.exposures = ex;
+        for (const ill of chronicOnsets(p, dt, p.rng, onsetOpts)) sicken(p, ill);
+      }
+      if (lc.mortality) {
+        const roll = mortalityEvent(
+          p,
+          dt,
+          p.rng,
+          lc.multiplier !== undefined ? { multiplier: lc.multiplier } : {},
+        );
+        if (roll.died) die(p);
+      }
     }
-    const [first, ...rest] = merged;
-    if (first) o.suggestion = first;
-    if (rest.length > 0) o.suggestions = rest;
-    const scarcity = world.scarcityFor?.(p);
-    if (scarcity !== undefined && scarcity > 0) o.scarcity = scarcity;
-    if (opts.necessity !== undefined) o.necessity = opts.necessity;
-    const forced = reason ?? c.interrupts[p.id]?.reason;
-    if (forced !== undefined && !p.activity) o.interrupt = forced;
-    return o;
+    if (p.body.alive) world.onDay?.(p, day);
+  }
+}
+
+/** Merge heard advice and the host's decision options in their existing precedence order. */
+function decisionOptions(
+  c: Community,
+  world: World,
+  p: Person,
+  opts: StepOptions,
+  reason: string | undefined,
+  affordances: readonly Affordance[],
+): Parameters<typeof decide>[2] {
+  const o: Parameters<typeof decide>[2] = {};
+  // Voices: queued conversation advice first (fresher), then the host's standing suggestions that are heard now
+  // (standing-advice SCOPE); one per voice. At reviews they still weigh in, but `decide` resolves them quietly
+  // (no counters, pressure or autonomy cost), so one request is not re-counted as many verdicts.
+  const standing = opts.suggestions?.[p.id];
+  const merged: Suggestion[] = [];
+  const seen = new Set<string>();
+  const heard = (standing ? (Array.isArray(standing) ? standing : [standing]) : []).filter((s) =>
+    standingHeard(c, p, s, affordances, p.now),
+  );
+  for (const s of [...(c.queued?.[p.id] ?? []), ...heard]) {
+    if (seen.has(s.voiceId)) continue;
+    seen.add(s.voiceId);
+    merged.push(s);
+  }
+  const [first, ...rest] = merged;
+  if (first) o.suggestion = first;
+  if (rest.length > 0) o.suggestions = rest;
+  const scarcity = world.scarcityFor?.(p);
+  if (scarcity !== undefined && scarcity > 0) o.scarcity = scarcity;
+  if (opts.necessity !== undefined) o.necessity = opts.necessity;
+  const forced = reason ?? c.interrupts[p.id]?.reason;
+  if (forced !== undefined && !p.activity) o.interrupt = forced;
+  return o;
+}
+
+/** Add pending joint mirrors to world offers and apply this minute's declined-offer exclusions. */
+function offersForDecision(
+  c: Community,
+  world: World,
+  p: Person,
+  t: Minute,
+): { asked: JointProposal[]; mirrors: Map<string, JointProposal>; affordances: Affordance[] } {
+  // Offers: the world's, plus mirrors of joint proposals awaiting this person's answer, minus offers a partner
+  // just declined (this minute only).
+  const asked = pendingProposals(c).filter((x) => x.partnerIds.includes(p.id) && !x.accepted.includes(p.id));
+  const mirrors = new Map<string, JointProposal>();
+  let affordances = world.affordancesFor(p);
+  for (const x of asked) {
+    const m = mirrorFor(world, p, x);
+    mirrors.set(m.id, x);
+    affordances = [...affordances.filter((a) => a.id !== m.id), m];
+  }
+  const ex = c.joint.excluded[p.id];
+  if (ex) {
+    if (ex.at === t) affordances = affordances.filter((a) => !ex.ids.includes(a.id));
+    else delete c.joint.excluded[p.id];
+  }
+  return { asked, mirrors, affordances };
+}
+
+/**
+ * Advance the community to `until`, processing person events in (time, id) order. Returns the events.
+ */
+export function stepCommunity(c: Community, world: World, until: Minute, opts: StepOptions = {}): SimEvent[] {
+  const events: SimEvent[] = [];
+  const quantum = Math.max(1, opts.idleQuantum ?? SIM_DEFAULTS.idleQuantum);
+  const maxEvents = opts.maxEvents ?? SIM_DEFAULTS.maxEvents;
+  const salience = opts.interruptSalience ?? SIM_DEFAULTS.interruptSalience;
+  // Communities created before joint support (plain JSON from an older host) get the new bookkeeping.
+  c.interrupts ??= {};
+  c.joint ??= { nextId: 0, proposals: [], excluded: {} };
+  const log = (e: SimEvent) => {
+    if (events.length < maxEvents) events.push(e);
   };
+  const contagion = opts.contagion ?? true;
+  c.queued ??= {};
+  c.dayDone ??= {};
+  synchronizeCommands(c, opts, log);
 
   // Pairs whose shared activity already ran its conversation and contagion at `pairMinute` (both partners
   // finishing the same joint activity at the same minute would otherwise run them twice).
@@ -918,33 +994,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     if (!next || t > until) break;
     const p = next;
     tick(p, t);
-    // First event of a new day: life-course rolls for the days crossed, then the host's day hook.
-    const day = dayOf(t);
-    const lastDay = c.dayDone[p.id];
-    if (lastDay === undefined || day > lastDay) {
-      c.dayDone[p.id] = day;
-      const lc = opts.lifecourse;
-      if (lc && lastDay !== undefined && p.body.alive) {
-        const dt = (day - lastDay) * MINUTES_PER_DAY;
-        if (lc.chronicOnsets) {
-          const onsetOpts: Parameters<typeof chronicOnsets>[3] = {};
-          if (lc.conditions) onsetOpts.conditions = lc.conditions;
-          const ex = lc.exposures?.(p);
-          if (ex) onsetOpts.exposures = ex;
-          for (const ill of chronicOnsets(p, dt, p.rng, onsetOpts)) sicken(p, ill);
-        }
-        if (lc.mortality) {
-          const roll = mortalityEvent(
-            p,
-            dt,
-            p.rng,
-            lc.multiplier !== undefined ? { multiplier: lc.multiplier } : {},
-          );
-          if (roll.died) die(p);
-        }
-      }
-      if (p.body.alive) world.onDay?.(p, day);
-    }
+    bookkeepDay(p, world, t, c.dayDone, opts);
     if (!p.body.alive) {
       log({ at: t, personId: p.id, kind: 'died', detail: `${p.name} died` });
       if (opts.tellDeaths ?? true) tellDeath(c, p, t);
@@ -1010,24 +1060,8 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
       act = p.activity;
     }
 
-    // Offers: the world's, plus mirrors of joint proposals awaiting this person's answer, minus offers a partner
-    // just declined (this minute only).
-    const asked = pendingProposals(c).filter(
-      (x) => x.partnerIds.includes(p.id) && !x.accepted.includes(p.id),
-    );
-    const mirrors = new Map<string, JointProposal>();
-    let affordances = world.affordancesFor(p);
-    for (const x of asked) {
-      const m = mirrorFor(world, p, x);
-      mirrors.set(m.id, x);
-      affordances = [...affordances.filter((a) => a.id !== m.id), m];
-    }
-    const ex = c.joint.excluded[p.id];
-    if (ex) {
-      if (ex.at === t) affordances = affordances.filter((a) => !ex.ids.includes(a.id));
-      else delete c.joint.excluded[p.id];
-    }
-    const record = decide(p, affordances, decideOpts(p, perceptReason, affordances));
+    const { asked, mirrors, affordances } = offersForDecision(c, world, p, t);
+    const record = decide(p, affordances, decisionOptions(c, world, p, opts, perceptReason, affordances));
     delete c.interrupts[p.id];
     // Conversation advice is weighed until the next fresh decision, then it has been heard.
     if (!act) delete c.queued[p.id];
