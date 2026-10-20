@@ -9,9 +9,11 @@ import { consequentialOffer, speakingOpportunity } from './pause-policy.ts';
 import { currentReply, sceneResponse } from './scene-response.ts';
 import { sceneBeat, sceneWordChoices } from './scene-words.ts';
 import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
+import { useStableSpeechFrame } from './stable-speech-frame.ts';
 import { explainTerms } from './terms.tsx';
 export interface SceneDayProps {
   frame: Frame;
+  liveFrame?: Frame;
   telegraph: { draft: Draft; telegraph: Telegraph } | null;
   whyOpen: boolean;
   selected: string | null;
@@ -30,6 +32,40 @@ export interface SceneDayProps {
 }
 /** Scenes are presentation only. Inputs still use the existing suggestion protocol. */
 export function SceneDay(props: SceneDayProps) {
+  const stable = useStableSpeechFrame(props.frame);
+  const [unsaid, setUnsaid] = useState<string | null>(null);
+  const suggest = (draft: Draft, words?: string) => {
+    const live = props.liveFrame ?? props.frame;
+    if (words && sceneBeat(stable.frame) !== sceneBeat(live)) {
+      // This occasion ended even if the same action is offered again. Do not send it to a new one.
+      setUnsaid(words);
+      return;
+    }
+    setUnsaid(null);
+    props.onSuggest(draft, words);
+  };
+  return (
+    <SceneDayContent
+      key={stable.frame.day}
+      {...props}
+      frame={stable.frame}
+      onSuggest={suggest}
+      unsaid={unsaid}
+      onDismissUnsaid={() => setUnsaid(null)}
+      onKeyDownCapture={stable.onKeyDownCapture}
+      onPointerDownCapture={stable.onPointerDownCapture}
+    />
+  );
+}
+
+function SceneDayContent(
+  props: SceneDayProps & {
+    unsaid: string | null;
+    onDismissUnsaid: () => void;
+    onKeyDownCapture: (event: { key: string; target: EventTarget | null }) => void;
+    onPointerDownCapture: (event: { pointerId: number }) => void;
+  },
+) {
   const { frame, onPredict, onSuggest, onSayNothing } = props;
   const derived = deriveScene(frame);
   // Freeze a scene's words for its occasion; a later body reading cannot rewrite the exchange.
@@ -54,7 +90,7 @@ export function SceneDay(props: SceneDayProps) {
   }
   const heldPersonal = personal.current?.key !== leftReply ? personal.current : null;
   const onPersonalReply = props.onPersonalReply;
-  const hasPersonalReply = !!heldPersonal;
+  const hasPersonalReply = !!heldPersonal || props.unsaid !== null;
   useEffect(() => {
     onPersonalReply?.(hasPersonalReply);
     return () => onPersonalReply?.(false);
@@ -102,7 +138,7 @@ export function SceneDay(props: SceneDayProps) {
           (answerHold &&
             JSON.stringify(line) !== leftReply &&
             line === frame.sceneWords?.at(-1) &&
-            line.kind !== 'suggestion') ||
+            (line.kind !== 'suggestion' || line.said === false)) ||
           (line.kind === 'suggestion' &&
             line.day === frame.day &&
             line.minute === lastRequest?.minute &&
@@ -129,8 +165,8 @@ export function SceneDay(props: SceneDayProps) {
     return () => onReading?.(false);
   }, [reading, onReading]);
   const sent = sentBeat === beat;
-  const speakWord = (kind: 'care' | 'question') => {
-    if (sent || !wordChoices.some((line) => line.kind === kind)) return;
+  const speakWord = (line: (typeof wordChoices)[number]) => {
+    if (sent) return;
     leaveReply();
     setSentBeat(beat);
     setAnswerHold(true);
@@ -138,8 +174,7 @@ export function SceneDay(props: SceneDayProps) {
     answerTimer.current = setTimeout(() => setAnswerHold(false), 6000);
     setSpeaking(null);
     setMoreFor(null);
-    const words = wordChoices.find((line) => line.kind === kind)?.words;
-    if (words) props.onSceneWord?.(kind, beat, words);
+    props.onSceneWord?.(line.kind, beat, line.words);
   };
   const answer = currentReply(frame, scene ?? null);
   const responseKey = `${scene?.id ?? ''}:${answer?.id ?? ''}`;
@@ -182,7 +217,12 @@ export function SceneDay(props: SceneDayProps) {
       ? `Halil is ${frame.halil.doing.label}.`
       : 'Halil is deciding what to do.';
   return (
-    <section className="v-scene-day" aria-label="The day">
+    <section
+      className="v-scene-day"
+      aria-label="The day"
+      onPointerDownCapture={props.onPointerDownCapture}
+      onKeyDownCapture={props.onKeyDownCapture}
+    >
       <div className="v-scene-tools">
         <details className="v-routine">
           <summary>Timeline</summary>
@@ -217,6 +257,21 @@ export function SceneDay(props: SceneDayProps) {
         )}
       </div>
       <div className="v-scene-reading">
+        {props.unsaid && (
+          <div className="v-spoken-lines" role="status">
+            <p>
+              <strong>Unsaid:</strong> “{props.unsaid}”
+            </p>
+            <p>That moment has passed. Nothing was said.</p>
+            <button
+              type="button"
+              className="v-personal-leave v-btn v-btn-quiet"
+              onClick={props.onDismissUnsaid}
+            >
+              Back to today
+            </button>
+          </div>
+        )}
         {heldPersonal ? (
           <article className="v-personal-reply">
             <p className="v-scene-place">
@@ -390,7 +445,7 @@ export function SceneDay(props: SceneDayProps) {
                       <button
                         type="button"
                         className="v-scene-choice"
-                        key={choice.draft.optionId}
+                        key={`${beat}:${choice.draft.optionId}:${choice.label}`}
                         onClick={() => {
                           if (sending.current === receipt) return;
                           leaveReply();
@@ -416,8 +471,8 @@ export function SceneDay(props: SceneDayProps) {
                       <button
                         type="button"
                         className="v-scene-word"
-                        key={line.kind}
-                        onClick={() => speakWord(line.kind)}
+                        key={`${beat}:${line.kind}:${line.words}`}
+                        onClick={() => speakWord(line)}
                       >
                         {line.words}
                       </button>

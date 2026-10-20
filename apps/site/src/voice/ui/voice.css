@@ -3263,3 +3263,8 @@ button.v-log-btn {
 .v-personal-leave {
   min-height: 44px;
 }
+
+/* Standalone speech and playback targets meet DL-23 before choices expand. */
+.v-scene-compact .v-btn {
+  min-height: 44px;
+}

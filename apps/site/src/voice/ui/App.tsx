@@ -14,6 +14,7 @@ import { Intro } from './Intro.tsx';
 import { Premise } from './Premise.tsx';
 import { Report } from './Report.tsx';
 import { SceneDay } from './SceneDay.tsx';
+import { useStableSpeechFrame } from './stable-speech-frame.ts';
 import { TopBar } from './TopBar.tsx';
 import { useVoice } from './useVoice.ts';
 import { VoicesPane } from './VoicesPane.tsx';
@@ -27,7 +28,9 @@ const TABS: { id: Tab; label: string }[] = [
 ];
 
 export function App() {
-  const voice = useVoice();
+  const liveVoice = useVoice();
+  const stable = useStableSpeechFrame(liveVoice.frame);
+  const voice = { ...liveVoice, frame: stable.frame };
   const { frame, actions } = voice;
   const [tab, setTab] = useState<Tab>('day');
   const [holdingReply, setHoldingReply] = useState(false);
@@ -123,7 +126,12 @@ export function App() {
   }, [overlay, closeWhy]);
 
   return (
-    <div className={`voice phase-${phase}`} data-tab={tab}>
+    <div
+      className={`voice phase-${phase}`}
+      data-tab={tab}
+      onPointerDownCapture={stable.onPointerDownCapture}
+      onKeyDownCapture={stable.onKeyDownCapture}
+    >
       {frame && (
         <TopBar
           phase={frame.phase}
@@ -148,8 +156,9 @@ export function App() {
           </div>
           <div className="v-col v-col-centre">
             <SceneDay
-              key={`${voice.runId}:${frame.day}`}
+              key={voice.runId}
               frame={frame}
+              liveFrame={liveVoice.frame ?? frame}
               active={tab === 'day' && overlay === null}
               telegraph={voice.telegraph}
               whyOpen={voice.whyOpen}

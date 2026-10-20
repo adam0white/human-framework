@@ -10,8 +10,10 @@ import { SceneDay } from './SceneDay.tsx';
 const cleanups: (() => void)[] = [];
 afterEach(() => {
   for (const cleanup of cleanups.splice(0)) cleanup();
+  vi.useRealTimers();
 });
 function mount(initialPaused = true) {
+  vi.useFakeTimers();
   const el = document.createElement('div');
   document.body.append(el);
   const root = createRoot(el);
@@ -59,9 +61,12 @@ function mount(initialPaused = true) {
     onSceneWord: vi.fn(),
     onReading: vi.fn(),
   };
-  const update = () => {
-    props.frame.log = [...props.frame.log];
+  const update = (settle = true) => {
+    props.frame = structuredClone(props.frame);
     flushSync(() => root.render(createElement(SceneDay, props)));
+    if (settle) flushSync(() => vi.advanceTimersByTime(600));
+    // Worker frames are immutable snapshots; keep the editable test input separate.
+    props.frame = structuredClone(props.frame);
   };
   update();
   cleanups.push(() => {
@@ -505,4 +510,118 @@ it('lets time pass during automatic slowdown even when the call is busy and all 
   expect(wait).toBeDefined();
   flushSync(() => wait?.click());
   expect(props.onSayNothing).toHaveBeenCalledOnce();
+});
+
+function pointer(el: Element, type: string, id = 1) {
+  flushSync(() => el.dispatchEvent(new PointerEvent(type, { bubbles: true, pointerId: id })));
+}
+
+it('keeps suggestion order and scene height through a pointer gesture and sends the rendered identity', () => {
+  const { el, props, update } = mount();
+  const target = el.querySelector('.v-scene-choice');
+  if (!target) throw Error('No suggestion');
+  const words = target.textContent;
+  const scene = el.querySelector('.v-scene-reading')?.textContent;
+  const labels = [...el.querySelectorAll('.v-scene-choice')].map((b) => b.textContent);
+  pointer(target, 'pointerdown');
+  props.frame.log = [
+    {
+      id: 'river',
+      day: 1,
+      minute: 610,
+      clock: '10:10',
+      kind: 'act',
+      who: 'halil',
+      text: 'I walk by the river.',
+    },
+  ];
+  props.frame.options = [
+    { id: 'tea:riza', label: 'tea with Rıza', rank: 1, leaning: true },
+    { id: 'talk:hacer', label: 'talk with Hacer', rank: 2, leaning: false },
+  ];
+  update(false);
+  flushSync(() => vi.advanceTimersByTime(2000));
+  expect([...el.querySelectorAll('.v-scene-choice')].map((b) => b.textContent)).toEqual(labels);
+  expect(el.querySelector('.v-scene-reading')?.textContent).toBe(scene);
+  pointer(target, 'pointerup');
+  flushSync(() => target.dispatchEvent(new MouseEvent('click', { bubbles: true })));
+  expect(props.onSuggest).not.toHaveBeenCalled();
+  expect(el.querySelector('[role=status]')?.textContent).toContain(`Unsaid: “${words}”`);
+});
+
+it('binds care words and occasion to the rendered line instead of the current kind slot', () => {
+  const { el, props, update } = mount();
+  click(el, '.v-scene-more');
+  const target = el.querySelector('.v-scene-word');
+  if (!target) throw Error('No care line');
+  const words = target.textContent;
+  pointer(target, 'pointerdown');
+  props.frame.halil.felt = [{ id: 'tired', word: 'tired', level: 0.9 }];
+  update(false);
+  expect(target.textContent).toBe(words);
+  pointer(target, 'pointerup');
+  flushSync(() => target.dispatchEvent(new MouseEvent('click', { bubbles: true })));
+  expect(props.onSceneWord).toHaveBeenCalledWith('care', expect.any(String), words);
+});
+
+it('keeps fresh content readable for 600 ms and applies the latest frame without another arrival', () => {
+  const { el, props, update } = mount();
+  props.frame.prefill = { optionId: 'walk', strength: 'mention', source: 'end', why: 'Walk instead.' };
+  props.frame.options.push({ id: 'walk', label: 'walk', rank: 3, leaning: false });
+  update(false);
+  const fresh = [...el.querySelectorAll('.v-scene-choice')].map((b) => b.textContent);
+  props.frame.prefill = { optionId: 'work-extra', strength: 'mention', source: 'end', why: 'Work instead.' };
+  props.frame.options.push({ id: 'work-extra', label: 'work', rank: 4, leaning: false });
+  update(false);
+  flushSync(() => vi.advanceTimersByTime(599));
+  expect([...el.querySelectorAll('.v-scene-choice')].map((b) => b.textContent)).toEqual(fresh);
+  flushSync(() => vi.advanceTimersByTime(1));
+  expect(el.querySelector('.v-scene-choice')?.textContent).toBe('Take the afternoon shift.');
+});
+
+it('releases a cancelled pointer outside the scene without dispatching speech', () => {
+  const { el, props, update } = mount();
+  const target = el.querySelector('.v-scene-choice');
+  if (!target) throw Error('No suggestion');
+  pointer(target, 'pointerdown');
+  props.frame.composer = { open: false, reason: 'busy' };
+  update(false);
+  pointer(window.document.body, 'pointercancel');
+  flushSync(() => vi.advanceTimersByTime(600));
+  expect(el.querySelector('.v-scene-choice')).toBeNull();
+  expect(props.onSuggest).not.toHaveBeenCalled();
+});
+
+it('sends the rendered option after same-occasion reordering instead of the new first option', () => {
+  const { el, props, update } = mount();
+  const target = el.querySelector('.v-scene-choice');
+  if (!target) throw Error('No suggestion');
+  pointer(target, 'pointerdown');
+  props.frame.prefill = { optionId: 'walk', strength: 'mention', source: 'end', why: 'Walk now.' };
+  props.frame.options.push({ id: 'walk', label: 'walk', rank: 3, leaning: false });
+  update(false);
+  pointer(target, 'pointerup');
+  flushSync(() => target.dispatchEvent(new MouseEvent('click', { bubbles: true })));
+  expect(props.onSuggest).toHaveBeenCalledWith(
+    { optionId: 'talk:hacer', strength: 'mention', insist: false },
+    'Hacer is here. Stay and talk.',
+  );
+});
+
+it('keeps a keyboard-activated line intact through keyup and sends its original words', () => {
+  const { el, props, update } = mount();
+  const target = el.querySelector('.v-scene-choice');
+  if (!target) throw Error('No suggestion');
+  flushSync(() => target.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })));
+  props.frame.prefill = { optionId: 'walk', strength: 'mention', source: 'end', why: 'Walk now.' };
+  props.frame.options.push({ id: 'walk', label: 'walk', rank: 3, leaning: false });
+  update(false);
+  flushSync(() => vi.advanceTimersByTime(2000));
+  expect(el.querySelector('.v-scene-choice')).toBe(target);
+  flushSync(() => target.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', bubbles: true })));
+  flushSync(() => target.dispatchEvent(new MouseEvent('click', { bubbles: true })));
+  expect(props.onSuggest).toHaveBeenCalledWith(
+    { optionId: 'talk:hacer', strength: 'mention', insist: false },
+    'Hacer is here. Stay and talk.',
+  );
 });
