@@ -367,6 +367,23 @@ Open, unbuilt or unconfirmed items from the design, the build plan and its fourt
 - Zakat al-fitr: not represented until `research/` sources its amount and deadline. Unscheduled.
 - Low-priority: toolbar height and a favicon 404 (second pass). Unscheduled.
 
+**Round-2 polish list (source-unread testers, 2026-10-19; [playtest](voice-playtest-2026-10-19.md))**
+
+Not built: the round stopped on the owner's soft stop before any fix. Every item needs checking against the testers' exports first; items that change log text or decisions need a rules version. Target for all: 2026-11-05 unless stated.
+
+- Flattery exploit: saying or whispering what he already wants raises trust ("+0.01 eat at home went well"; twelve days of "stay out late with Rıza" raised trust while rent went unpaid). Agreement should earn trust only when the word served his ends. Close it.
+- The afternoon-shift whisper fired on 1 of 12 skipped days, while the between-days card promises he hears each word whenever he could act on it. Fix the delivery or make the card say honestly when he hears it.
+- Whispering a habit through the last days can leave him relying on you. Keep this edge and make it legible on the card or report.
+- Summaries that contradict the state: "pay Osman ✓" while still owed; "paid 300 on Ramadan 16" next to "Pay Osman → Not at all"; "Call Selin → Not at all" next to "called her himself 6 times"; walk counts that disagree; "see the doctor ✗ not yet" right after he went; "eat at suhoor ✓" after he slept through it; "walk, not the cigarette ✓" when he smoked; "call Selin ✗" while he called yesterday; whisper summary counts that do not add to 12.
+- Reason chips S (for Selin) and A (you shouldn't be alone) change nothing he says. Show the reason in his answer, or say honestly that it did not move him.
+- Faith, gentler: remove the leaked note "(a simplification: the game holds Fajr open until Dhuhr)"; make the "torn between pray at home and pray at the mosque" line rarer than daily; fix the Eid prayer joined twice.
+- Text: vary "After I X, then I will"; fix "After I tea with Rıza"; remove duplicates ("Fine." twice, "+0.01 +0.01", "Ramadan 15 Ramadan 15").
+- Pacing: drop the repeat shift offer right after a shift; drop pauses with nothing to say (thirst); the 12:45 to 22:00 jump that skips iftar after an insisted shift.
+- Hide raw numbers the design forbids (trust 0.50, Why "+0.61"), or put them in words.
+- Harness only: `pick N` numbering shifts after a re-render; reason toggles disagree with the help text; Mention and Insist can both show as on; an unquoted argument (`new 11`, `wait 20`) must join the previous command; `new <seed>` must honour the seed.
+- Selin and Hacer scenes on screen; a Selin call on days the player speaks. Target: 2026-12-01.
+- Collapsing dead time (long rest and sleep stretches) if it proves large. Target: 2026-12-01.
+
 **Framework seams the game exposed**
 
 - Joint activities are one-sided: a joint-activity handshake (`proposeJoint`) is the fix; co-present-only talk (W8) silenced the voices. Unscheduled.
