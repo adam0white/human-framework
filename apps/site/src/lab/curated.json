@@ -3056,7 +3056,7 @@
    "verdict": "quit",
    "routes": [
     "fix:hearsay Rıza's lean on screen (done)",
-    "fix:hearsay wedding road with named doubts (open)",
+    "fix:hearsay wedding road with named doubts (done)",
     "lesson:L13"
    ],
    "source": "hearsay/docs/playtests/2026-10-20-r2-tester-b.md"
@@ -3070,8 +3070,8 @@
    "words": "The neighbours take their cups away because I answered the person missing her cart. That feels unfair in a way that isn't interesting to me. … I wouldn't open it tomorrow on my own.",
    "verdict": "quit",
    "routes": [
-    "fix:hearsay DL-19 telling the concerned person is not backbiting (open)",
-    "fix:hearsay DL-15 a listener stays while the talk panel is open (open)"
+    "fix:hearsay DL-19 telling the concerned person is not backbiting (done)",
+    "fix:hearsay DL-15 a listener stays while the talk panel is open (done)"
    ],
    "source": "hearsay/docs/playtests/2026-10-20-r3-tester-c.md"
   },
@@ -3084,11 +3084,82 @@
    "words": "The wedding is progressing, but I don't feel that I'm directing it. … I would come back for a clear plan I could try, and a visible sign that my particular choice helped or hurt it.",
    "verdict": "quit",
    "routes": [
-    "fix:hearsay wedding road with named doubts and causes (open)",
+    "fix:hearsay wedding road with named doubts and causes (done)",
     "lesson:L13",
     "lesson:L14"
    ],
    "source": "hearsay/docs/playtests/2026-10-20-r3-tester-d.md"
+  },
+  {
+   "id": "F-222",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Codex source-unread persona Leyla (round 4)",
+   "words": "I did get somewhere—two doubts settled—but I don't want another round of choosing a name and a word tonight. I wouldn't open it tomorrow on my own.",
+   "verdict": "quit",
+   "routes": [
+    "fix:hearsay scenes with choices at the family coffee (done)",
+    "lesson:L7"
+   ],
+   "source": "hearsay/docs/playtests/2026-10-20-r4-tester-e.md"
+  },
+  {
+   "id": "F-223",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Codex source-unread persona Burak (round 4)",
+   "words": "I would if I could see a concrete way to recover his trust and whether my message is actually on its way.",
+   "verdict": "quit",
+   "routes": [
+    "fix:hearsay threads for messages on their way and a way to mend Rıza's trust (done)",
+    "lesson:L13",
+    "lesson:L19"
+   ],
+   "source": "hearsay/docs/playtests/2026-10-20-r4-tester-f.md"
+  },
+  {
+   "id": "F-224",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Codex adversarial fun review",
+   "words": "Conversations become a form before they become relationships … Exposure ends with a penalty where I want a decision.",
+   "verdict": "quit",
+   "routes": [
+    "fix:hearsay confrontation as a scene with choices (done)",
+    "lesson:L19"
+   ],
+   "source": "hearsay/docs/playtests/2026-10-20-r4-fun-review.md"
+  },
+  {
+   "id": "F-225",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Codex source-unread persona Tom (round 5)",
+   "words": "Yes, I would open it tomorrow to find evidence of Emre's kindness and see whether Rıza gives his word. The family coffee made me want to come back; the repeated chatter nearly lost me.",
+   "verdict": "keep",
+   "routes": [
+    "fix:hearsay quieter ambient promise chatter (open)",
+    "lesson:L14"
+   ],
+   "source": "hearsay/docs/playtests/2026-10-20-r5-tester-h.md"
+  },
+  {
+   "id": "F-226",
+   "date": "2026-10-20",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Codex source-unread persona Joanna (round 5)",
+   "words": "I wouldn't open it tomorrow on my own. … A clearer reason for Cem's refusal and a new dilemma involving Elif would have made me more likely to return.",
+   "verdict": "quit",
+   "routes": [
+    "fix:hearsay quick-reply story stays the one chosen (open)",
+    "fix:hearsay a dilemma with Elif (open)"
+   ],
+   "source": "hearsay/docs/playtests/2026-10-20-r5-tester-g.md"
   }
  ],
  "lessons": [
@@ -3654,8 +3725,8 @@
   }
  ],
  "routes": {
-  "fix": 159,
-  "lesson": 224,
+  "fix": 165,
+  "lesson": 229,
   "hf": 11,
   "calibration": 42,
   "none": 1
