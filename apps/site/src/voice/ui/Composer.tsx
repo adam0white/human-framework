@@ -181,7 +181,9 @@ export const Composer = memo(function Composer({
       const active = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       if (active instanceof HTMLSelectElement || active instanceof HTMLInputElement) return;
       if (active instanceof HTMLTextAreaElement) return;
-      const inSheet = active?.closest('.v-why, .v-standing, .v-overlay, .v-tabs, .v-day');
+      const inSheet = active?.closest(
+        '.v-why, .v-standing, .v-overlay, .v-tabs, .v-day, .v-scene-editor-close',
+      );
       if (inSheet && (e.key === 'Enter' || e.key === 'Escape')) return;
       // Game design review (GD4): after a mouse click the clicked option keeps focus, so Enter used to re-pick it
       // and never send. A pressed option, a strength, insist or reason button sends on Enter; an option not yet

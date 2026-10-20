@@ -155,7 +155,7 @@ export const DayLog = memo(function DayLog({
           {rows.map(({ entry: e, to, count }) => {
             const exchange = scenes.current.get(e.id) ?? [];
             const voice = e.who !== 'halil' ? e.who : null;
-            const clickable = Boolean(e.decisionId);
+            const clickable = Boolean(e.decisionId) && (e.kind === 'act' || e.kind === 'answer');
             const body = (
               <>
                 <span className="v-log-clock">{e.clock}</span>
@@ -222,7 +222,7 @@ export const DayLog = memo(function DayLog({
                       <button
                         type="button"
                         className="v-scene-why"
-                        aria-label={`Why this conversation at ${e.clock}?`}
+                        aria-label={`Why his action at ${e.clock}?`}
                         aria-pressed={e.decisionId === selected}
                         onClick={() => e.decisionId && onWhy(e.decisionId)}
                       >
@@ -235,11 +235,11 @@ export const DayLog = memo(function DayLog({
                     type="button"
                     className="v-log-btn"
                     onClick={() => e.decisionId && onWhy(e.decisionId)}
-                    title="Why?"
+                    title="Why this recorded action?"
                     aria-pressed={e.decisionId === selected}
                   >
                     {body}
-                    <span className="v-log-why">Why?</span>
+                    <span className="v-log-why">Why this action?</span>
                   </button>
                 ) : (
                   <div className="v-log-btn">{body}</div>
