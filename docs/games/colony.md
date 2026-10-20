@@ -357,3 +357,13 @@ What changed, and why:
 | Round-2 playtest: suggestions. Do not suggest what someone already does. Say what skipping costs. A suggestion that arrives during a wait must not pass unanswered. Add auto-pause modes (suggestions and storm only). | 2026-11-05 |
 | Round-2 playtest bugs. Moment 2 says "at dusk" for a morning. The under-protest line leaks `~Build~` markup. `cancel` on a closed order should say why (accepted, done or refused). `until` gives "That time has passed" or a bare "Paused". The "that is my work" line repeats. Harness: an unquoted `new 5`, `wait 20` or `inspect idris` must work, and `new <seed>` must honour the seed. | 2026-11-05 |
 | Round-2 playtest: show the economy (timber stock, what each house stage needs). | 2026-11-05 |
+
+## Design change 2026-10-20 (owner may veto)
+
+The phone now shows one large village map and a short order sheet. Classic and Human view buttons keep the same prepared order. Worker and place chips stay behind labelled pickers. The selected worker, destination and connecting line stay visible while composing. Confirm shrinks the sheet, keeps the worker selected, and follows their actual movement. Dragging looks elsewhere; Follow restores tracking. Names, current work postures and nearby Human replies make activity visible. The log retains replies. Switching workers preserves the destination. Suggestions warn that availability may have changed, and preparation refreshes the forecast as the village changes. Ordinary moments retain the previous round's continuous clock; only pending suggestions slow playback.
+
+Aiko (F-249): “I would not return voluntarily on this phone layout today.” Pedro (F-258): “I would not return voluntarily on this phone layout. The differences in people's replies interest me, but I want to see the people act.” His first request was: “Let me see the workers and the selected job while giving an order on the phone. I need to watch somebody go and do it.”
+
+Cost and risk: the phone shows one village at a time. Its portrait camera crops the village and needs dragging to look elsewhere; framing a distant worker and destination zooms out. Extra order options and the suggestion explanation scroll inside the bounded sheet. Only actual simulation travel is drawn: completion does not invent a return trip when the person chooses something else. Real phone feel and voluntary return still need a fresh playtest. This is UI only: no edition, rules, HF pin or export format change. Existing @3 and @4 exports must retain their exact replay hashes.
+
+Revert: revert the commit headed `Put the village first on phones` (listed in the design-round well report). No saved-run migration is needed.

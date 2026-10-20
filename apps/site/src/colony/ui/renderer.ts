@@ -6,7 +6,7 @@
 import type { WorldView } from '../sim/game.ts';
 import type { VillagerState } from '../sim/human-side.ts';
 import { MAP, MAP_H, MAP_W, PLACES, type Place, type PlaceId, TILE_PX } from '../sim/map.ts';
-import { BEAM_STAGE, clockOf, type VillagerId, type Weather } from '../sim/world-types.ts';
+import { type ActionId, BEAM_STAGE, clockOf, type VillagerId, type Weather } from '../sim/world-types.ts';
 
 export const LOGICAL_W = MAP_W * TILE_PX;
 export const LOGICAL_H = MAP_H * TILE_PX;
@@ -20,6 +20,11 @@ export interface DrawPerson {
   y: number;
   state: VillagerState;
   carriedBy: VillagerId | null;
+  name?: string;
+  action?: ActionId | null;
+  /** Exact current view label; never inferred from the destination selection. */
+  label?: string;
+  placeId?: PlaceId | null;
   hp: number;
   /** Classic only. */
   hunger?: number;
@@ -326,19 +331,21 @@ function drawBuildingsHuman(ctx: CanvasRenderingContext2D, input: SceneInput, su
     }
   }
 
-  // Masjid: whitewashed, small dome.
+  // Masjid: a white rectangular hall and a narrow tower; the well is a blue ring.
   const m = insetRect(placeRect(place('masjid')), 3);
   ctx.fillStyle = HUMAN.white;
   roundRect(ctx, m.x, m.y, m.w, m.h, 5);
   ctx.fill();
-  ctx.fillStyle = '#e9e1d0';
-  ctx.beginPath();
-  ctx.arc(m.x + m.w / 2, m.y + m.h / 2 - 3, 13, 0, Math.PI * 2);
-  ctx.fill();
   ctx.fillStyle = HUMAN.whiteRoof;
-  ctx.beginPath();
-  ctx.arc(m.x + m.w / 2 - 2, m.y + m.h / 2 - 5, 9, 0, Math.PI * 2);
-  ctx.fill();
+  ctx.fillRect(m.x + 5, m.y + 5, m.w - 10, m.h - 16);
+  ctx.strokeStyle = '#8c927e';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(m.x + 5, m.y + 5, m.w - 10, m.h - 16);
+  // A straight-sided tower has a different silhouette from the circular water below.
+  ctx.fillStyle = HUMAN.white;
+  ctx.fillRect(m.x + m.w - 9, m.y - 12, 9, 30);
+  ctx.fillStyle = '#78866f';
+  ctx.fillRect(m.x + m.w - 11, m.y - 14, 13, 4);
   ctx.fillStyle = '#7d8a8f';
   ctx.beginPath();
   ctx.roundRect(m.x + m.w / 2 - 5, m.y + m.h - 11, 10, 11, [5, 5, 0, 0]);
@@ -495,7 +502,7 @@ const SHORT_LABEL: Partial<Record<PlaceId, string>> = {
 
 function drawLabels(ctx: CanvasRenderingContext2D, input: SceneInput) {
   const classic = input.side === 'classic';
-  const size = Math.max(8.5, 14 * (input.labelScale ?? 0));
+  const size = mapTypeSize(input.labelScale, 14);
   ctx.font = `600 ${size}px "JetBrains Mono", ui-monospace, monospace`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -584,6 +591,23 @@ function drawPersonHuman(ctx: CanvasRenderingContext2D, p: DrawPerson, sun: Sun,
   ctx.fill();
   if (p.state === 'carried') ctx.translate(0, -18);
   if (lying) ctx.rotate(-Math.PI / 2);
+  // Postures follow the reported state. A selected destination cannot make someone work.
+  if (p.state === 'working') ctx.rotate(0.24);
+  if (p.state === 'resting' || p.state === 'sheltering' || p.state === 'praying') {
+    ctx.translate(0, 7);
+    ctx.scale(1, 0.74);
+  }
+  // Visible feet distinguish travel from standing at a job.
+  if (p.state === 'walking' || p.state === 'carrying') {
+    ctx.strokeStyle = look.body;
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(-3, -3);
+    ctx.lineTo(-9, 6);
+    ctx.moveTo(3, -3);
+    ctx.lineTo(10, 3);
+    ctx.stroke();
+  }
   // Body.
   ctx.fillStyle = look.body;
   roundRect(ctx, -7, -18, 14, 18, 6);
@@ -620,6 +644,27 @@ function drawPersonHuman(ctx: CanvasRenderingContext2D, p: DrawPerson, sun: Sun,
     ctx.fillStyle = '#2f241c';
     ctx.beginPath();
     ctx.arc(0, -25, 6, Math.PI * 1.05, Math.PI * 1.95);
+    ctx.fill();
+  }
+  if (p.state === 'working' || p.state === 'eating') {
+    // Arms extend toward the work or meal, instead of standing with hands down.
+    ctx.strokeStyle = look.skin;
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(5, -14);
+    ctx.lineTo(15, -11);
+    ctx.lineTo(p.state === 'eating' ? 5 : 18, p.state === 'eating' ? -21 : -4);
+    ctx.stroke();
+    ctx.fillStyle = p.state === 'eating' ? '#c9975b' : '#72543b';
+    ctx.fillRect(13, -8, 10, 4);
+    if (p.action === 'draw-water') {
+      ctx.fillStyle = HUMAN.water;
+      ctx.fillRect(13, -4, 10, 9);
+    }
+  }
+  if (p.state === 'carrying') {
+    ctx.fillStyle = '#e9e1d0';
+    roundRect(ctx, -15, -22, 29, 9, 4);
     ctx.fill();
   }
   if (p.protest) {
@@ -767,6 +812,127 @@ function drawAtmosphere(ctx: CanvasRenderingContext2D, input: SceneInput) {
   }
 }
 
+/** Minimum type size in CSS pixels, converted into the caller's logical coordinates. */
+export function mapTypeSize(labelScale = 1, cssPixels = 14): number {
+  return cssPixels * Math.max(1, labelScale);
+}
+
+interface LabelRect {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+/** Keep names inside the map and clear of the other labels when space permits. */
+export function personLabelRect(
+  anchor: { x: number; y: number },
+  w: number,
+  h: number,
+  occupied: readonly LabelRect[],
+): LabelRect {
+  const candidates = [
+    { x: anchor.x - w / 2, y: anchor.y + 14 },
+    { x: anchor.x - w / 2, y: anchor.y - h - 33 },
+    { x: anchor.x + 18, y: anchor.y - h / 2 },
+    { x: anchor.x - w - 18, y: anchor.y - h / 2 },
+    { x: anchor.x - w / 2, y: anchor.y + 14 + h + 4 },
+  ].map((r) => ({
+    x: Math.max(3, Math.min(LOGICAL_W - w - 3, r.x)),
+    y: Math.max(3, Math.min(LOGICAL_H - h - 3, r.y)),
+    w,
+    h,
+  }));
+  const overlap = (r: LabelRect) =>
+    occupied.reduce(
+      (sum, o) =>
+        sum +
+        Math.max(0, Math.min(r.x + w, o.x + o.w) - Math.max(r.x, o.x)) *
+          Math.max(0, Math.min(r.y + h, o.y + o.h) - Math.max(r.y, o.y)),
+      0,
+    );
+  return candidates.reduce((best, r) => (overlap(r) < overlap(best) ? r : best), candidates[0] as LabelRect);
+}
+
+function drawSelection(ctx: CanvasRenderingContext2D, input: SceneInput) {
+  const selected = input.people.find((p) => p.id === input.selectedId);
+  if (!selected) return;
+  const x = (selected.x + 0.5) * T;
+  const y = (selected.y + 0.5) * T;
+  const scale = Math.max(1, input.labelScale ?? 1);
+  ctx.save();
+  if (input.hoverPlace) {
+    const r = placeRect(place(input.hoverPlace));
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(r.x + r.w / 2, r.y + r.h / 2);
+    ctx.strokeStyle = '#fff8e8';
+    ctx.lineWidth = 5 * scale;
+    ctx.stroke();
+    ctx.strokeStyle = '#8a3d20';
+    ctx.lineWidth = 2 * scale;
+    ctx.setLineDash([6 * scale, 4 * scale]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    drawHover(ctx, input);
+  }
+  ctx.strokeStyle = '#fff8e8';
+  ctx.lineWidth = 5 * scale;
+  ctx.beginPath();
+  ctx.ellipse(x, y + 8, 16, 7, 0, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.strokeStyle = '#8a3d20';
+  ctx.lineWidth = 2 * scale;
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput) {
+  const size = mapTypeSize(input.labelScale);
+  const occupied: LabelRect[] = [];
+  ctx.font = `600 ${size}px "JetBrains Mono", ui-monospace, monospace`;
+  for (const p of PLACES) {
+    if (size > 16 && (p.id.startsWith('home-') || p.id === 'wellhouse')) continue;
+    const r = placeRect(p);
+    const w = ctx.measureText(SHORT_LABEL[p.id] ?? p.label).width + 10;
+    const y = p.id === 'cedar' ? r.y + r.h + size : p.id === 'well' ? r.y - size : r.y + size / 2 + 4;
+    occupied.push({ x: r.x + r.w / 2 - w / 2, y: y - size / 2 - 3, w, h: size + 6 });
+  }
+  const people = [...input.people]
+    .filter((p) => p.carriedBy === null && (p.state !== 'asleep' || p.id === input.selectedId))
+    .sort((a, b) => Number(b.id === input.selectedId) - Number(a.id === input.selectedId));
+  for (const p of people) {
+    const name = p.name?.replace('Hajja ', '').split(' ')[0] ?? p.id.charAt(0).toUpperCase() + p.id.slice(1);
+    ctx.font = `600 ${size}px system-ui, sans-serif`;
+    const detail = p.id === input.selectedId ? p.label : undefined;
+    const nameWidth = ctx.measureText(name).width;
+    ctx.font = `500 ${size * 0.8}px system-ui, sans-serif`;
+    const w = Math.max(nameWidth, detail ? ctx.measureText(detail).width : 0) + size * 0.7;
+    const h = size * (detail ? 2.4 : 1.35);
+    const anchor = { x: (p.x + 0.5) * T, y: (p.y + 0.5) * T };
+    const r = personLabelRect(anchor, w, h, occupied);
+    occupied.push(r);
+    ctx.strokeStyle = input.side === 'classic' ? '#b8c6d4' : '#6d5b47';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(anchor.x, anchor.y + 8);
+    ctx.lineTo(Math.max(r.x, Math.min(r.x + r.w, anchor.x)), r.y + r.h / 2);
+    ctx.stroke();
+    ctx.fillStyle = p.id === input.selectedId ? '#8a3d20' : '#f8eedc';
+    roundRect(ctx, r.x, r.y, r.w, r.h, 4);
+    ctx.fill();
+    ctx.fillStyle = p.id === input.selectedId ? '#fff8e8' : '#2b2622';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = `600 ${size}px system-ui, sans-serif`;
+    ctx.fillText(name, r.x + r.w / 2, r.y + size * 0.68);
+    if (detail) {
+      ctx.font = `500 ${size * 0.8}px system-ui, sans-serif`;
+      ctx.fillText(detail, r.x + r.w / 2, r.y + size * 1.78);
+    }
+  }
+}
+
 // ---------------------------------------------------------------------------------------------
 // Entry
 // ---------------------------------------------------------------------------------------------
@@ -794,7 +960,9 @@ export function drawScene(ctx: CanvasRenderingContext2D, input: SceneInput): voi
   }
   drawAtmosphere(ctx, input);
   drawSleepers(ctx, input, input.people);
+  drawSelection(ctx, input);
   drawLabels(ctx, input);
+  drawNames(ctx, input);
 }
 
 /** Bubble anchor in logical pixels (above the head). */
