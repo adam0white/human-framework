@@ -6,14 +6,14 @@ From here on, Codex does the work by default. Claude handles only design judgeme
 ## Outcome of the soft-stop queue (2026-10-19)
 
 - Colony, Voice and The Night Watch: all three original branches and their staged playtests committed and merged. First public delivery verified at `8b25c28`; follow-up corrections are in `3e069af`.
-- Neighbours: Phase D and the crash fix are committed locally. Evidence and tape regeneration still block publication; no Claude calls were made.
+- Neighbours (owner update, 2026-10-20): Phase D and the crash fix are now published at clean `deb30ce` on `neighbours`. Genuine regeneration used ten Claude CLI calls; all checks, hosted CI and live verification passed. Adam accepts feel separately.
 - Valley and Warren: their existing rounds remain intact; CI and the lab integration are delivered below.
 - Bake-off: [agent routing](agent-routing.md), both Selin playtests and the merged ledger are committed and pushed in `e4800fb`.
 
 ## Codex work completed
 
 - [x] Add CI workflows to pass, glance, murmur, valley, stairwell and warren. All six first runs passed; the later integration/upgrade runs passed too.
-- [x] Add lab-client to Rope, Small Works, Neighbours, Valley, Stairwell, Warren and the in-site games. All use released client 0.1.1; Neighbours is committed locally and held behind its evidence gate. The in-site source is `3e069af`.
+- [x] Add lab-client to Rope, Small Works, Neighbours, Valley, Stairwell, Warren and the in-site games. All use released client 0.1.1; Neighbours is now live at `deb30ce` after owner-authorized regeneration. The in-site source is `3e069af`.
 - [x] Fix Rope's empty `/release.json`: build stamping and service-worker bypass are deployed and checked against the exact commit.
 - [x] Speed up `gate.test.ts` without dropping any of its 144 paired simulations or four assertions. Committed in `e4800fb`; the reviewed isolated gate ran in 8.87 s.
 - [x] Fix harness seed arguments, multi-word commands, `show` and `chronicle` (`3e069af`).
@@ -68,12 +68,13 @@ HF requests (to be moved to docs/game-requests-2026-10-18.md, target 2026-10-26)
 
 Game status:
 - Small Works: live at `ccf367f7`, HF 2.8.0, client 0.1.1; checks, CI and exact live assets verified. The scenario-design work remains deferred to 2026-10-26 in that repository.
-- Neighbours: `9148a96` on `neighbours`, committed locally and unpushed, including Phase D, the crash fix, lab integration and client 0.1.1. Live remains `e3d0382` / HF 2.6.0. No evidence, tape or provenance was rewritten.
+- Neighbours: live clean `deb30ce` on `neighbours`, HF 2.8.0/client 0.1.1, Cloudflare `7629641c-ae76-4deb-aec0-f5d543be0795`. Actual generation refreshed evidence and native tapes; no digest or response was edited by hand. Hosted CI passed on runtime/evidence source `ff72917`; the later commit records receipts only.
 
-## Neighbours publication gate (target 2026-10-26)
+## Neighbours publication gate — cleared 2026-10-20
 
-- The crash fix is signed commit `1d47c6b`. A rejected intervention now leaves the Python engine usable rather than turning a refusal into a fatal bridge error. Combined local integration checks are recorded in that repository's HANDOFF.
-- Current evidence fails its package-lock source digest. Zero-call tape replay rejects changed source. The three tape generators invoke Claude CLI. Under the original no-Claude instruction, publication stays blocked; Neighbours was neither pushed nor deployed.
-- Next: regenerate evidence and all three tapes, write `phase-d-regeneration.md`, run check-evidence/parity/full browser gates, then push/deploy from `neighbours` and verify the live release. The existing `nbh-01z.37` and that repository's HANDOFF own the remaining work.
+- The owner authorized Claude CLI for genuine regeneration. All three native tapes were rerun: seven mixed-town decisions, one GM proposal and two frozen bench proposals, **ten calls total**. No usage-limit error occurred; all separately replay exactly with zero calls.
+- Five current-source deterministic studies pass provenance. The genuine probe found seed 101 now has a natural case; the study restored all three original seeds and nine cases. The seed 101 whole proposal prevents cart return in the measured interval relative to no proposal; its mechanism is not isolated. The native provider catalog remains separately frozen to 42/73, with its historical Phase C exclusion labelled explicitly. The unavailable private-checkpoint assistance report remains byte-pinned historical HF 2.6.0 evidence.
+- Local gates passed: 469 unit tests, 39 real-browser tests plus four final-study retests, 37 enabled native controls, 35 late native/WASM parity checkpoints, 30-day/208-person stress, lint, types, builds, provenance and audit. Independent source-unread watching found a phone pointer defect; a real regression and bounded map correction fixed it. Hosted [CI 39373059475](https://github.com/adam0white/concordia/actions/runs/39373059475) passed every gate.
+- Signed commits are pushed only to `neighbours`. Final live stamp: `deb30cefc9abae3a2a5de55a624dfcedc7724f31`, `dirty: false`, HF 2.8.0, Cloudflare `7629641c-ae76-4deb-aec0-f5d543be0795`. The served page loads the clean bundle, and fourteen bundle/runtime/report files match exact build bytes. [Regeneration record](https://github.com/adam0white/concordia/blob/neighbours/docs/neighbours/phase-d-regeneration.md), [visitor evidence](https://github.com/adam0white/concordia/blob/neighbours/docs/neighbours/visitor-2026-10-20-finish3.md). The existing `nbh-01z.37` owns remaining gameplay work; Adam accepts feel separately.
 - Retained playtester follow-ups: stale hints; unnamed Open/Keep section options; duplicate journal line; lab readouts in player views; Sam's hunger without an eating option. Residents bringing requests and the player sitting at evenings remain design work. Verdict: "the town does not need me".
 - HF request 4a remains a recipe for perceived unfinished shared work. No new HF faculty or 2.10 slice was started.
