@@ -36,6 +36,10 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
+      - name: API reference freshness
+        run: node scripts/api-doc.ts --check
+      - name: Packed HF consumer example
+        run: node scripts/pack-smoke.ts
 
   # Vitest shards by a hash of the file path, not by duration, so shards are uneven. Measured 2026-10-05 on the
   # 2-CPU private-repo runner (one worker per shard): the suite is about 420 s of test work; four shards ran

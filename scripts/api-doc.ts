@@ -1,6 +1,6 @@
 /**
  * Regenerates docs/api.md from the built declarations of @adam0white/human-framework (packages/human/dist).
- * Run: `npm run api-doc` (builds the package first).
+ * Run: `npm run api-doc` (builds the package first), or add `-- --check` to check without writing docs/api.md.
  *
  * It follows the re-exports of dist/index.d.ts (`export *`, `export { a as b }`, `export type { ... }`) to
  * the declaring file, takes the first sentence of each export's doc comment, and groups exports by the
@@ -8,7 +8,7 @@
  * community driver (sim/). The parser relies on the shape tsc emits for .d.ts files (top-level statements
  * start at column 0); it is not a general TypeScript parser.
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
@@ -233,5 +233,29 @@ for (const g of groupNames) {
     lines.push('');
   }
 }
-writeFileSync(out, `${lines.join('\n').trimEnd()}\n`);
-console.log(`api-doc: ${exportsMap.size} exports in ${groupNames.length} modules -> ${relative(root, out)}`);
+const generated = `${lines.join('\n').trimEnd()}\n`;
+if (process.argv.includes('--check')) {
+  const current = existsSync(out) ? readFileSync(out, 'utf8') : undefined;
+  if (current !== generated) {
+    console.error(`api-doc: ${relative(root, out)} is stale; run npm run api-doc`);
+    if (current === undefined) {
+      console.error('  Reference file is missing.');
+    } else {
+      const before = current.split('\n');
+      const after = generated.split('\n');
+      const first = after.findIndex((line, i) => line !== before[i]);
+      const index = first < 0 ? after.length : first;
+      console.error(`  First difference at line ${index + 1}:`);
+      console.error(`- ${clip(before[index] ?? '(end of file)', 160)}`);
+      console.error(`+ ${clip(after[index] ?? '(end of file)', 160)}`);
+    }
+    process.exitCode = 1;
+  } else {
+    console.log(`api-doc: ${relative(root, out)} is current (${exportsMap.size} exports)`);
+  }
+} else {
+  writeFileSync(out, generated);
+  console.log(
+    `api-doc: ${exportsMap.size} exports in ${groupNames.length} modules -> ${relative(root, out)}`,
+  );
+}

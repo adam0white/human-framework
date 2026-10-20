@@ -1,4 +1,4 @@
-/** Human Framework v1 public surface. */
+/** Human Framework public surface. */
 export const FRAMEWORK_VERSION = '2.9.0';
 
 // `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `skipAffect` stays internal.
