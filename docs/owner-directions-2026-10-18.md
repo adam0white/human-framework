@@ -63,3 +63,9 @@ How this is read:
 - "Those reports were probably mine": the two newest notebook runs (Stairwell `r-4btpch9kdq`, Hearsay `r-qax48tk58y`) are owner runs, as the ledger already records (F-311..F-318). Earlier runs with no note or a stub note may be his too; they stay unattributed (not confirmed).
 - One ranked list of games on human.adamwhite.work, at /games/: [ranking](lab/ranking-2026-10-20.md). The bottom of the ranking is frozen: still playable and listed as a frozen experiment, with no further work. The owner can unfreeze any of them.
 - Cross-game feedback and the next steps in UI and gameplay: [strengths and next games](lab/strengths-and-next-games-2026-10-20.md).
+
+## 2026-10-20, HF roadmap (Adam, verbatim)
+
+"I also would like a cool roadmap for HF, and possibly an ideation consultation that only has the starting ambition and research and my directions without knowing the current state, so that we can push HF forward, instead of forgetting about it and delving into games."
+
+How this is read: HF gets its own forward plan so that game work does not crowd it out. Three consultants read only the starting ambition, `research/` and these directions, then the proposals were reconciled with what exists. The roadmap is [hf-roadmap-2026-10-20.md](hf-roadmap-2026-10-20.md); it ends with a recommended next increment, which waits for the owner's approval.

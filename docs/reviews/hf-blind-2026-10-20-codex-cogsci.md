@@ -1,0 +1,66 @@
+# Blind consultation, 2026-10-20: Codex, computational cognitive scientist
+
+Raw final message of one of three blind consultants for [the HF roadmap](../hf-roadmap-2026-10-20.md), run with `codex exec` in the blind packet directory (starting ambition, `research/`, owner directions; architecture, roadmap, code and game docs excluded). Unedited; its links point into the packet copy at `~/code/.lab-scratch/hf-blind/`, whose `research/` files match this repository's apart from a few redacted implementation-status passages.
+
+## (1) What a framework with this ambition should become
+
+HF should become a reusable causal model of a person who acts from a limited perspective, pursues competing purposes, remembers selectively, learns locally, and can refuse the player for intelligible reasons. Its scientific value should come from distinctions that change behavior under controlled interventions. Its game value should come from people whose conduct surprises the player but becomes understandable through experience. The game supplies circumstances and possible actions; HF supplies how this person notices, interprets, chooses, attempts, and changes. The actor loop stays deterministic, seeded, and LLM-free. Breadth should mean that the same mechanisms produce useful differences across games.
+
+**Vision: Put a person with a history, a perspective, and commitments of their own into any game, and let living there change them.**
+
+## (2) The 10 most important capabilities, ranked
+
+These are proposals, not claims about existing implementation. The packet’s [empirical review](/Users/abdul/code/.lab-scratch/hf-blind/research/empirical-models.md) supports several distinctions below, but does not validate their numerical implementation. Memory, metacognition, and developmental mechanisms especially need dedicated evidence reviews.
+
+For every headless scenario, compare the proposed mechanism with a simpler alternative across predefined seeds. Match random draws to corresponding events: equal starting seeds alone do not control randomness when policies consume different draws. Unit tests establish implementation behavior; human evidence and player studies answer separate questions.
+
+1. **A subjective perspective.**  
+   **What:** Separate world facts, observations, beliefs, confidence, and attention. Permit ignorance and mistaken inference. **Why:** Without this, every other faculty operates on information a person could not possess. **Games:** Investigation, exploration, uncertain logistics. **Unit:** Changing an unobserved fact leaves the person’s beliefs unchanged. **Headless control:** A traveller receives an outdated bridge report. Compare receiving a correction with receiving nothing. Route changes must follow available evidence, never the hidden bridge state.
+
+2. **Independent purposes and sustained intentions.**  
+   **What:** Concurrent needs, relationships, aspirations, and commitments; intentions that survive interruption; acceptance, postponement, refusal, and reconsideration. **Why:** This makes player suggestions consequential and characters more than task executors. Hunger can constrain action without deleting purpose. **Games:** Companion adventures, household management, colony leadership. **Unit:** Postponing an intention preserves its target and resumption conditions. **Headless control:** Suggest overtime to someone with a prior commitment. Compare ordinary circumstances with a credible emergency. Require reasons tied to the changed circumstances, without making either compliance or refusal universally correct.
+
+3. **Memory that changes future action.**  
+   **What:** Distinguish remembered episodes, learned facts, procedures, and remembered sources. Retrieval depends on cues; forgetting need not erase every consequence of experience. **Why:** A backstory matters when it changes later perception or choice. **Games:** Returning-home stories, mysteries, survival across repeated expeditions. **Unit:** Remembering someone’s claim does not convert that claim into observed fact. **Headless control:** Give otherwise matched people different experiences of a machine failure. Compare later precautions with relevant memory enabled and disabled. Test an unrelated machine to detect indiscriminate generalization.
+
+4. **Embodied capacity and imperfect self-perception.**  
+   **What:** Distinct sleep pressure, energy availability, pain, injury, exertion, and perceived condition, at the resolution a game needs. **Why:** Natural difficulty comes from changing capabilities and recovery costs. **Games:** Expeditions, rescue, workshop survival. **Unit:** Rest changes current performance without instantly increasing learned competence. **Headless control:** Compare restricted and adequate sleep over several days. Measure task performance separately from subjective sleepiness. Require the dissociation described in the packet’s sleep evidence, without claiming portable clinical coefficients.
+
+5. **Bounded thinking and metacognition.**  
+   **What:** Limited attention, working memory, planning time, uncertainty monitoring, and decisions to inspect or seek help. **Why:** Intelligence should change how someone approaches a problem, rather than grant unseen answers or unlearned skills. **Games:** Emergency diagnosis, tactical command, difficult repairs. **Unit:** A planner stopped at its budget cannot use an unexplored outcome. **Headless control:** Cross time pressure with access to an informative inspection. Compare bounded planning with a simple reactive policy. Inspection should sometimes justify its cost and sometimes arrive too late.
+
+6. **Specific learning, habits, and method revision.**  
+   **What:** Practice with feedback, cue-linked automaticity, retention, explicit transfer, and concrete if–then plans after failure. **Why:** Progress should expand what someone can do and reduce repeated mistakes. **Games:** Apprenticeship, craft, rehabilitation, maintaining a settlement. **Unit:** Training one task produces no transfer across an unspecified connection. **Headless control:** Cross informative feedback with success/failure labels under matched exposure and body state. Retest related and unrelated tasks using matched draws. Failure alone must not grant extra learning. See [learning-through-work](/Users/abdul/code/.lab-scratch/hf-blind/research/learning-through-work.md).
+
+7. **Emotion through appraisal and regulation.**  
+   **What:** Separate bodily signals, interpretations, feelings, action tendencies, expression, and regulatory strategies. **Why:** Identical events can mean loss, threat, relief, or insult to different people. **Games:** Caregiving, tense negotiations, recovery after disaster. **Unit:** Concealing expression does not automatically remove the underlying appraisal. **Headless control:** Present the same setback under different perceived controllability. Compare changing the situation, reappraising it, and doing neither. Measure subsequent choices and costs; do not require one strategy to work everywhere.
+
+8. **Social understanding without mind-reading.**  
+   **What:** Person-specific beliefs about reliability, competence, intentions, and shared plans; structured requests, refusals, disclosures, and renegotiation. **Why:** Relationships require histories and misunderstandings, not one friendship number. **Games:** Cooperative survival, neighbourhood disputes, small-team expeditions. **Unit:** An absent person does not learn that an agreement was fulfilled until informed. **Headless control:** Compare a missed delivery caused by inability with one believed deliberate. Vary which explanation reaches the recipient. Measure later reliance and negotiation. The [cooperation record](/Users/abdul/code/.lab-scratch/hf-blind/research/cooperation-boundary.md) explicitly supports separating facts, communication, commitments, and reasons.
+
+9. **Held norms, assent, and reparative action.**  
+   **What:** Represent what the person understands, whether they accept its application, what they intended, what they did, and what repair actually occurred. **Why:** Meaningful conduct requires distinctions between temptation, choice, consequence, regret, and restitution. **Games:** Ordinary trust, entrusted work, family responsibility; faith remains quiet background. **Unit:** An unassented intrusion creates no breach; invoking a lens changes neither state nor RNG. **Headless control:** Compare matched `whisper` and `intrusion` readings with identical appraisals and practised responses. Conduct should match. A `fault` reading may alter felt guilt through belief, never establish wrongdoing. Use only the understandings sourced in [reconciliation](/Users/abdul/code/.lab-scratch/hf-blind/research/reconciliation.md) and [duty repair](/Users/abdul/code/.lab-scratch/hf-blind/research/duty-repair-sources.md).
+
+10. **Slow change through roles and opportunities.**  
+    **What:** Separate maturation, accumulated experience, changing opportunities, and slowly revised commitments or tendencies. **Why:** Long games need development without treating personality as either fixed destiny or a rapidly filling meter. **Games:** Family chronicles, lifelong vocations, multigenerational settlements. **Unit:** A birthday alone grants no profession-specific competence or virtue. **Headless control:** Follow matched starting people through sustained support, scarce opportunity, and later improved access. Compare fixed-person and experience-sensitive models. Specify which differences should persist or recover; the packet does not establish universal rates.
+
+## (3) Ambitious long bets
+
+- **Learning causal explanations of the world.** A person learns which interventions change outcomes and carries useful knowledge into new situations. **Risk:** Expensive inference that offers no advantage over authored rules. Predictive processing and active inference are candidate models, not established universal explanations. **First cheap experiment:** Two possible machine faults, one diagnostic intervention, and a changed operating context. Compare a small causal model with cached action values and a rule policy.
+
+- **Coordination through genuinely separate perspectives.** Several instances of `Person` could form plans, communicate changes, and recover from misunderstanding without shared omniscience. **Risk:** Recursive beliefs become computationally expensive and difficult to explain. **First cheap experiment:** Two workers must rendezvous after one receives a changed location. Allow only structured messages and first-order beliefs. Compare explicit acknowledgement with broadcasting alone.
+
+- **Autobiographical self-revision.** A person changes a practical self-belief—“I cannot manage this work”—after accumulating relevant experience, then chooses differently. **Risk:** Circular reasoning: the self-belief causes the behavior used to confirm it. **First cheap experiment:** Hold competence constant while crossing prior self-belief with diagnostic feedback. Test help-seeking and task selection on a new task. Disable self-belief updates as the control.
+
+- **A credible life course.** Childhood experience, education, care, work, illness, and aging interact without prescribing one inevitable biography. **Risk:** Long simulations amplify unsupported coefficients into apparently scientific destinies. **First cheap experiment:** Model one bounded apprenticeship across months. Cross access to instruction with practice opportunity, then remove support. Establish acquisition, retention, and dependence before attempting birth-to-death simulation.
+
+## (4) What to avoid
+
+- **One universal human currency.** A single utility, stress, intelligence, happiness, or willpower score cannot explain every conflict. Numerical aggregation may serve a game; label it as a convention.
+- **Spiritual computation.** Never quantify ruh or compute divine acceptance. Qalb, nafs, fitra, and aql remain read-only lenses plus held readings per person, never scalars or hidden causal substitutes.
+- **Invented religious authority.** Preserve source, interpretation, and the person’s understanding separately. Pending sourcing stays pending. Restitution does not establish forgiveness; religious practice earns no hidden optimization bonus.
+- **Scientific claims borrowed from equations.** A Bayesian update or free-energy objective can be useful without being a verified account of the person. Similar descriptions across theology and psychology do not establish identical mechanisms.
+- **Trait commands and inherited destinies.** Personality describes tendencies in context. Heritability does not specify an individual’s genetic percentage, ceiling, morality, or future.
+- **Perfect memory and infallible explanations.** A causal trace can explain the simulation. A character’s self-report can still be incomplete or mistaken.
+- **Breadth without demonstrated reuse.** Require a capability to matter in one controlled scenario, then transfer it to a materially different game. Accept the simpler alternative when added machinery earns nothing.
+- **Confusing three achievements.** Correct software, defensible human modeling, and compelling games require different evidence. A deterministic replay establishes only the first of these.

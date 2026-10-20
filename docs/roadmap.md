@@ -12,6 +12,8 @@ The H2 summary marked many of these "deferred, 2.1". 2.1.0 (released 2026-10-05)
 
 Item ids (P, Q, S) are the rows of the [H2 review summary](reviews/2026-10-04-h2-summary.md); R2 ids (V, S, 1b, 3a, B1.3, …) are rows of the [R2 review summary](reviews/2026-10-04-summary.md). Review this page when the next goal is set.
 
+**HF roadmap (2026-10-20).** The vision, three horizons and the recommended next increment are in [hf-roadmap-2026-10-20.md](hf-roadmap-2026-10-20.md), built from a blind consultation and the games' requests. This page stays the authoritative list of deferred items and targets; the roadmap orders them.
+
 ## 1. Framework: engine changes (2.2)
 
 These change what a run does, so each needs the engine bump and a recorded reason.
@@ -88,11 +90,11 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 |---|---|---|
 | Future bodily state in prospection | Done in 2.5.0 for offers that declare `followedBy` ([framework.md](framework.md#bodily-forecast-250)). Left: forecast a received successor's span; apply host surroundings (fasting perception done in 2.6.0) | Engine 2.8 |
 | Cumulative exertion in the body | Exertion relaxes toward current effort, so hours of climbing leave no extra fatigue for the descent. A slow glycogen/muscle-fatigue store would make the 2.5.0 forecast bite on long efforts; opt-in, so the three games replay unchanged | Done, engine 2.6.0 (`body.depletion`) |
-| Muhasaba (reconciliation §7) | Done in 2.7.0 for commitments (`review/`). Left: revise a method or a prompting response in review | Engine 2.10 (was 2.9; not in 2.9.0) |
-| Multi-step planning (bounded) | Chains of two or three received or known routes with waiting cost; the most requested missing faculty | Engine 2.10 (was 2.6; not started) |
-| Sabr and shukr as appraisal styles | Reappraisal and gratitude in `affect/`, attentional and regulatory effects only | Engine 2.10 (was 2.6; not started) |
-| Present bias and temporal discounting | Person-level discount style over the 2.3.0 temporal goals | Engine 2.10 (was 2.6; not started) |
-| The other's view of me | Impressions both ways; a missed promise costs standing with the promisee | Engine 2.10 (was 2.6; not started) |
+| Muhasaba (reconciliation §7) | Done in 2.7.0 for commitments (`review/`). Left: revise a method or a prompting response in review | Engine 2.14 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Multi-step planning (bounded) | Chains of two or three received or known routes with waiting cost; the most requested missing faculty | Engine 2.12 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Sabr and shukr as appraisal styles | Reappraisal and gratitude in `affect/`, attentional and regulatory effects only | Engine 2.14 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Present bias and temporal discounting | Person-level discount style over the 2.3.0 temporal goals | Engine 2.12 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| The other's view of me | Impressions both ways; a missed promise costs standing with the promisee | Engine 2.10, with belief provenance (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | Qalb lens | Read-only narration lens over attention, conviction, mood and trust (no scalar) | 2.x (behaviour-neutral) |
 | Promptings follow-ups | Chronicle lines in the reading's vocabulary; prompts against open abstention windows (they veto today and carry no term); upbringing setting the reading | 2.x / engine 2.5 |
 | Held fitra and purpose | Life purpose and vocation as a held self-understanding (reconciliation §7) | unscheduled, review 2026-11-15 |
@@ -114,13 +116,13 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | Comparisons that can tell builds apart | At 3 seeds a persona, build-to-build changes stay within one session; add more seeds or a noise estimate per line | 2026-11-15 |
 | The Glance adapter's gate policy | Base personas lose every full run; check whether the inherited gate rule or the game causes it | 2026-11-01 |
 | An HF designer | Experiment done: no value over a plain LLM reviewer (findings, 2026-10-19). Not pursued | Closed 2026-10-19 |
-| Narration variety | Per-person variants for deferral and assent sentences (Rope rank 4, Glance 4); a plain third-person `promptingLine` (Pass 2); chronicle verbs that avoid inflecting nouns (Pass 3). One batch, since each moves narration fixtures | Engine 2.10 (was 2.9; not in 2.9.0) |
-| Why a suggestion failed | `SuggestionResolution.decidedBy` (inertia or the separating term, with margin) so lines can say "not straight off my break" (Pass 1) | Engine 2.10 (was 2.9; not in 2.9.0) |
-| A firm self-rule | Opt-in `Commitment.firm` on a self abstention: `refused/willNot`, reason `rule:<label>` (Pass 4) | Engine 2.10 (was 2.9; not in 2.9.0) |
-| A voice answering the person's request | `noteRequestAnswered(p, voiceId, { granted, importance, at })`, the mirror of `noteVoicePromise` (Pass 5); needs a sourced effect size first | Engine 2.10 (was 2.9; not in 2.9.0) |
-| Involuntary sleep onset | Opt-in doze hazard from true sleepiness, posture and stimulation, ended by a salient percept (Glance 2) | Engine 2.10 |
-| Reading a quantity | `estimate(p, { truth, difficulty })` returning value and confidence from body state (Glance 3) | Engine 2.10 |
-| Bladder | A real voiding need, so hosts stop advertising pain `relief` for the toilet (Rope Kestrel) | unscheduled, review 2026-11-15 |
+| Narration variety | Per-person variants for deferral and assent sentences (Rope rank 4, Glance 4); a plain third-person `promptingLine` (Pass 2); chronicle verbs that avoid inflecting nouns (Pass 3). One batch, since each moves narration fixtures | Engine 2.11 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Why a suggestion failed | `SuggestionResolution.decidedBy` (inertia or the separating term, with margin) so lines can say "not straight off my break" (Pass 1) | Engine 2.11 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| A firm self-rule | Opt-in `Commitment.firm` on a self abstention: `refused/willNot`, reason `rule:<label>` (Pass 4) | Engine 2.11 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| A voice answering the person's request | `noteRequestAnswered(p, voiceId, { granted, importance, at })`, the mirror of `noteVoicePromise` (Pass 5); needs a sourced effect size first | after a sourced effect size; review 2026-11-15 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Involuntary sleep onset | Opt-in doze hazard from true sleepiness, posture and stimulation, ended by a salient percept (Glance 2) | Engine 2.13 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Reading a quantity | `estimateQuantity(p, { truth, difficulty })` (Glance asked for `estimate`, already exported for impressions of others) returning value and confidence from body state (Glance 3) | Engine 2.13 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Bladder | A real voiding need, so hosts stop advertising pain `relief` for the toilet (Rope Kestrel) | Engine 2.13 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | A duty held by a group | Shared commitment met by any member (Pass 6) | unscheduled, review 2026-11-15 |
 | Engagement and boredom on a seconds scale | The playtester's fast `engagement` store, if a second user needs it inside HF | unscheduled, review 2026-11-15 |
 | Neighbours: residents repair once | Not reproduced; may be the town running out of repairs | Review 2026-11-01 |
@@ -129,6 +131,12 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | A resolve term that names its resolve | `Term.ref` on `review:resolve` (Pass 8) | Done, engine 2.9.0 |
 | A separate review label | `reviewLabel` on commitments, if noun-phrase labels prove too limiting (Voices 3; documented instead) | unscheduled, review 2026-11-15 |
 | Valley requests (trust from a voice's acts, goods between households, second-person recall, `tellDeath` past the listener, `fingerprint`, a memory bound) | Filed 2026-10-19 against 2.8.0, not triaged in 2.9.0; second-person recall joins the narration batch | Triage by 2026-11-01 |
+| Belief provenance and contradiction | Optional `origin` and an opaque lineage token on testimony, carried by `converse`; `contradicted(p, sourceId, prop, at)` lowers source trust by a documented asymmetric rule (Stairwell 2, 4; Hearsay 1). Recommended next increment, *Word and witness* | Engine 2.10 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Setup API and trust stores | `seedSourceTrust`, `seedBelief`, and one paragraph naming relationship, voice and source trust and what moves each (Stairwell 1, 7) | 2.x, before engine 2.10 |
+| Host kit | Recipes or helpers for travel/setup cost through `effort` and `duration`, which does not scale with duration (N1, Neighbours 3, Warren 2); the scale of need terms against effort and making work matter (Warren 1); `fingerprint(person)` (Valley 5), an opt-in tolerant `tellDeath` (Valley 4), notes on the community cache (Warren 4) and feeding residents (Stairwell 8) | 2.x, 2026-11-01 |
+| A thousand lives (bench) | 100, 1,000 and coarse 10,000 people: ms per person-day, bytes per person, starved decisions; measurement only | 2026-11-15 |
+| Memory bound and declared fidelity | A memory bound in `Retention` (Valley 6); what coarse stepping preserves exactly; community-state migration steps (this supersedes the community half of "Community and world migration" in §2; world state stays the host's, with a documented recipe) | Engine 2.15 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Untriaged social and narration asks | Word getting back to the subject, per-person relay threshold, host reputation trait tables (Stairwell 3, 5, 6); a composite reputation correction and a `converse` phrasing callback (Hearsay 2, 3); perceived unfinished shared work (Neighbours 4a); varied, cause-naming lapse lines (N2) and work narration that reads `material` as money (Warren 6), both joining the 2.11 narration batch; repeated-offer-set cost (Warren 3) and a spatial reach helper (Warren 5) | Triage with engine 2.10, by 2026-11-15 |
 
 ## 4. Example games
 
