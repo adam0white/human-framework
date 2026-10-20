@@ -3716,6 +3716,38 @@
     "lesson:L15"
    ],
    "source": "goodhands/docs/playtests/2026-10-20-r1-tester-b.md"
+  },
+  {
+   "id": "F-264",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Aylin (Codex source-unread persona, round 2)",
+   "words": "She counted meals as wages when the agreement said wages. I am glad I can tell the game I doubt her. This is the first moment I feel I am making a judgment, rather than filling in a form.",
+   "verdict": "keep",
+   "routes": [
+    "fix:goodhands every scene choice gets a spoken answer (open)",
+    "fix:goodhands finishing an interview says whether she waits or goes home (open)",
+    "lesson:L13"
+   ],
+   "source": "goodhands/docs/playtests/2026-10-20-r2-tester-c.md"
+  },
+  {
+   "id": "F-265",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Josh (Codex source-unread persona, round 2)",
+   "words": "I wanted the fallout from lying about her, but what I got was a working-hours dispute. That bit had people in it; the time around it felt empty.",
+   "verdict": "quit",
+   "routes": [
+    "fix:goodhands the first days test a quality Nermin vouched for without seeing it (open)",
+    "fix:goodhands quiet office hours bring small city news (open)",
+    "fix:goodhands speed as buttons, phone from every tab (open)",
+    "lesson:L7",
+    "lesson:L11"
+   ],
+   "source": "goodhands/docs/playtests/2026-10-20-r2-tester-d.md"
   }
  ],
  "lessons": [
@@ -4281,8 +4313,8 @@
   }
  ],
  "routes": {
-  "fix": 269,
-  "lesson": 237,
+  "fix": 274,
+  "lesson": 240,
   "hf": 11,
   "calibration": 42,
   "none": 1
