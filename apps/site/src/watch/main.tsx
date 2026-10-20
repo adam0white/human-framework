@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../shared/theme.css';
+import '@adam0white/lab-kit/stage.css';
 import './ui/watch.css';
 import { App } from './ui/App.tsx';
 

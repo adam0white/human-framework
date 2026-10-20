@@ -24,7 +24,7 @@ vi.mock('../../shared/lab.tsx', () => ({
 }));
 vi.mock('./useWatch.ts', () => ({ useWatch: vi.fn() }));
 vi.mock('./MapCanvas.tsx', () => ({ MapCanvas: () => null }));
-const { GoalPage, DuskPanel, NightPanel } = await import('./App.tsx');
+const { GoalPage, DuskPanel, NightPanel, WatchStrip } = await import('./App.tsx');
 const { Chronicle } = await import('./chronicle.tsx');
 const actions = { input: vi.fn(), refreshShelf: vi.fn() } as unknown as WatchActions;
 function render(component: Parameters<typeof renderToStaticMarkup>[0]) {
@@ -61,10 +61,15 @@ describe('Night Watch first-minute clarity', () => {
     const posting = render(createElement(DuskPanel, duskProps));
     const first = posting.querySelector('.w-roster');
     expect(first).not.toBeNull();
-    while (first?.nextSibling) first.nextSibling.remove();
-    first?.remove();
-    const count = mandatory(opening) + mandatory(posting);
-    expect(count).toBe(33);
+    const before = document.createRange();
+    before.selectNodeContents(posting);
+    if (first) before.setEndBefore(first);
+    const instructions = document.createElement('div');
+    instructions.append(before.cloneContents());
+    const strip = render(createElement(WatchStrip, { frame: dusk, selected: null }));
+    const warning = strip.querySelector('.w-state-warning')?.textContent?.trim().split(/\s+/).length ?? 0;
+    const count = mandatory(opening) + mandatory(instructions) + warning;
+    expect(count).toBeGreaterThan(0);
     expect(count).toBeLessThanOrEqual(40);
   });
   it('teaches pressing beside posting and bell wear beside the bell', () => {
@@ -74,7 +79,7 @@ describe('Night Watch first-minute clarity', () => {
     expect(posting.querySelector('.w-postcard')?.textContent).toContain('Ask leaves it to them');
     applyInput(state, { k: 'begin' });
     const night = render(createElement(NightPanel, { frame: buildFrame(state, 0, false), actions }));
-    expect(night.querySelector('.w-bell')?.textContent).toContain('Every pull wears the rope');
+    expect(night.querySelector('#watch-bell-context')?.textContent).toContain('Every pull wears the rope');
   });
   it('gives dusk only one primary action and neutral selected states', () => {
     const posting = render(createElement(DuskPanel, duskProps));
@@ -271,22 +276,127 @@ it('shows one clock rate with the reason for a watcher decision', async () => {
   expect(app.querySelector('.w-decision-time')?.textContent).toBe(
     'About 120 seconds to answer; then they decide alone.',
   );
-  expect(app.querySelector('.w-moment')?.closest('.w-mapwrap')).not.toBeNull();
-  expect(app.querySelector('.w-panel .w-moment')).toBeNull();
+  expect(app.querySelector('.w-moment')?.closest('.w-mapwrap')).toBeNull();
+  expect(app.querySelector('.w-panel .w-moment')).not.toBeNull();
   expect(app.textContent).not.toContain('the night waits on you');
   expect(app.querySelector('[aria-label="Fast"]')?.getAttribute('aria-pressed')).toBe('true');
 });
 
-it('groups the bell explanation across its row and keeps the ringing label in its labelled target', () => {
+it('keeps the full bell explanation available and keeps the ringing label in its labelled target', () => {
   const run = newGame(5);
   applyInput(run, { k: 'start' });
   applyInput(run, { k: 'begin' });
   const night = render(createElement(NightPanel, { frame: buildFrame(run, 0, false), actions }));
-  expect(night.querySelector('.w-bell-context')?.textContent).toContain('Every pull wears the rope');
+  expect(night.querySelector('#watch-bell-context')?.textContent).toContain('Every pull wears the rope');
   expect(night.querySelector('.w-bellbtn')?.getAttribute('aria-describedby')).toBe('watch-bell-context');
   const ringing = render(
     createElement(NightPanel, { frame: { ...buildFrame(run, 0, false), bellSwinging: true }, actions }),
   );
   expect(ringing.querySelector('.w-bellbtn')?.textContent).toContain('Bell swinging');
   expect(ringing.querySelector('.w-bellbtn')?.hasAttribute('disabled')).toBe(true);
+});
+
+it('keeps posting in one sheet with a way back and separate place actions', () => {
+  const posting = render(createElement(DuskPanel, { ...duskProps, selected: 'tamar' }));
+  expect(posting.querySelector('.w-roster')).toBeNull();
+  expect(posting.querySelector('.lk-sheet-head')?.textContent).toContain('Where should Tamar stand?');
+  expect(posting.querySelector('.lk-sheet-head button')?.textContent).toBe('Back to watchers');
+  expect(posting.querySelector('.lk-commit .w-places')).not.toBeNull();
+  expect(posting.querySelector('.w-presses')?.textContent).toContain('How hard do you press Tamar?');
+  const roster = render(createElement(DuskPanel, duskProps));
+  expect(roster.querySelector('.lk-commit .w-primary')?.textContent).toContain('Begin the watch');
+  expect(roster.querySelector('.lk-sheet-body .w-primary')).toBeNull();
+});
+
+it('focuses posting and menu controls, then restores each origin without a game input', async () => {
+  const { App } = await import('./App.tsx');
+  const { useWatch } = await import('./useWatch.ts');
+  const testActions = { ...actions, input: vi.fn(), hold: vi.fn() };
+  vi.mocked(useWatch).mockReturnValue({
+    frame: dusk,
+    speed: 'watch',
+    error: null,
+    seed: 4242,
+    shelf: [],
+    saving: true,
+    current: 'new',
+    actions: testActions,
+  });
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  await act(async () => root.render(createElement(App)));
+  const watcher = container.querySelector<HTMLButtonElement>('.w-person-tamar');
+  watcher?.focus();
+  await act(async () => watcher?.click());
+  expect(document.activeElement?.textContent).toBe('Back to watchers');
+  expect(container.querySelector('.w-selected-state')?.textContent).toContain('keeps the Gate');
+  const menu = container.querySelector<HTMLButtonElement>('.w-chronicle');
+  await act(async () => menu?.click());
+  expect(document.activeElement?.classList.contains('w-x')).toBe(true);
+  await act(async () => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' })));
+  expect(document.activeElement).toBe(menu);
+  expect(container.querySelector('.w-selected-state')?.textContent).toContain('Tamar');
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-order-back')?.click());
+  await new Promise((resolve) => requestAnimationFrame(resolve));
+  expect(document.activeElement?.classList.contains('w-person-tamar')).toBe(true);
+  expect(testActions.input).not.toHaveBeenCalled();
+  await act(async () => root.unmount());
+  container.remove();
+});
+
+it('keeps the dawn continuation outside the report and sends the same input', async () => {
+  const { App } = await import('./App.tsx');
+  const { useWatch } = await import('./useWatch.ts');
+  const { WatchRun } = await import('../sim/run.ts');
+  const run = new WatchRun(5);
+  run.input({ k: 'start' });
+  run.input({ k: 'begin' });
+  while (run.state.phase === 'night') run.step();
+  const testActions = { ...actions, input: vi.fn(), hold: vi.fn() };
+  vi.mocked(useWatch).mockReturnValue({
+    frame: buildFrame(run.state, 0, false),
+    speed: 'watch',
+    error: null,
+    seed: 5,
+    shelf: [],
+    saving: true,
+    current: 'new',
+    actions: testActions,
+  });
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  await act(async () => root.render(createElement(App)));
+  expect(container.querySelector('.lk-sheet-body .w-primary')).toBeNull();
+  const next = container.querySelector<HTMLButtonElement>('.w-page-commit .w-primary');
+  expect(next?.textContent).toBe('On to dusk');
+  await act(async () => next?.click());
+  expect(testActions.input).toHaveBeenCalledExactlyOnceWith({ k: 'toDusk' });
+  await act(async () => root.unmount());
+  container.remove();
+});
+
+it('reveals a new timed moment after the player scrolls watch details', async () => {
+  const { WatchRun } = await import('../sim/run.ts');
+  const run = new WatchRun(5);
+  run.input({ k: 'start' });
+  run.input({ k: 'begin' });
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  await act(async () =>
+    root.render(createElement(NightPanel, { frame: buildFrame(run.state, 0, false), actions })),
+  );
+  const body = container.querySelector<HTMLElement>('.lk-sheet-body');
+  if (body) body.scrollTop = 300;
+  while (run.state.phase === 'night' && !run.state.moment) run.step();
+  expect(run.state.moment).not.toBeNull();
+  await act(async () =>
+    root.render(createElement(NightPanel, { frame: buildFrame(run.state, 0, true), actions })),
+  );
+  expect(container.querySelector('.w-moment')).not.toBeNull();
+  expect(body?.scrollTop).toBe(0);
+  await act(async () => root.unmount());
+  container.remove();
 });

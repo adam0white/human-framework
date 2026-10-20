@@ -3,11 +3,13 @@
  * when one is open), the fair, the thaw, a closed volume and a fallen village, plus the live chronicle strip over the
  * map. Everything is words and drawn values; choices that cannot be undone say so on the page.
  */
+
 import { useState } from 'react';
 import type { SeasonCard } from '../sim/state.ts';
 import type { Frame, FrameVillager, FrameVolume } from '../sim/view.ts';
 import { Icon } from './icons.tsx';
 import { Impressions, Sacks } from './parts.tsx';
+import { PageActions } from './SheetActions.tsx';
 import type { WatchActions } from './useWatch.ts';
 import { epilogueText, metWords, ordinalWord, picksWords, rootsWords } from './words.ts';
 
@@ -208,9 +210,11 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
           </li>
         ))}
       </ul>
-      <button type="button" className="w-primary" onClick={() => actions.input({ k: 'continue' })}>
-        Leave the fair
-      </button>
+      <PageActions>
+        <button type="button" className="w-primary" onClick={() => actions.input({ k: 'continue' })}>
+          Leave the fair
+        </button>
+      </PageActions>
     </div>
   );
 }
@@ -266,9 +270,11 @@ export function ThawPage({ frame, actions }: { frame: Frame; actions: WatchActio
         <p className="w-note">The wall and the houses stand as they did.</p>
       )}
       <Leaves frame={frame} />
-      <button type="button" className="w-primary" onClick={() => actions.input({ k: 'continue' })}>
-        {closing ? 'Turn to the volume’s last page' : 'Into the spring'}
-      </button>
+      <PageActions>
+        <button type="button" className="w-primary" onClick={() => actions.input({ k: 'continue' })}>
+          {closing ? 'Turn to the volume’s last page' : 'Into the spring'}
+        </button>
+      </PageActions>
     </div>
   );
 }
@@ -301,9 +307,11 @@ export function ClosedPage({ frame, actions }: { frame: Frame; actions: WatchAct
       </p>
       <Epilogue v={v} />
       <p className="w-note">The village goes on. The next volume asks its own question of the living.</p>
-      <button type="button" className="w-primary" onClick={() => actions.input({ k: 'continue' })}>
-        <Icon name="book-open" size={18} /> Open the next volume
-      </button>
+      <PageActions>
+        <button type="button" className="w-primary" onClick={() => actions.input({ k: 'continue' })}>
+          <Icon name="book-open" size={18} /> Open the next volume
+        </button>
+      </PageActions>
       <p className="w-note">Open Game menu to download or send this run.</p>
     </div>
   );
@@ -323,9 +331,11 @@ export function FallenPage({ frame, actions, seed }: { frame: Frame; actions: Wa
       <Epilogue v={v} />
       <p>The village cannot stay. The chronicle closes this volume.</p>
       <p className="w-note">Open Game menu to download or send this run.</p>
-      <button type="button" className="w-primary" onClick={() => actions.restart(seed + 1)}>
-        Begin a new village
-      </button>
+      <PageActions>
+        <button type="button" className="w-primary" onClick={() => actions.restart(seed + 1)}>
+          Begin a new village
+        </button>
+      </PageActions>
     </div>
   );
 }

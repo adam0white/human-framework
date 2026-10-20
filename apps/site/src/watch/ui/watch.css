@@ -81,15 +81,9 @@
   font-weight: 500;
   font-size: 1.15rem;
   margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .w-title p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   margin: 0;
   color: var(--w-muted);
   font-size: 0.85rem;
@@ -1410,17 +1404,6 @@
   border-left: 3px solid #b8574a;
   background: rgba(184, 87, 74, 0.12);
 }
-@media (max-width: 600px) {
-  .w-primary.w-sticky {
-    position: sticky;
-    bottom: calc(8px + env(safe-area-inset-bottom, 0px));
-    z-index: 3;
-    /* An opaque band around it, fading above, so cards scroll under a bar rather than show around a floating button. */
-    box-shadow:
-      0 0 0 10px var(--w-surface),
-      0 -22px 14px var(--w-surface);
-  }
-}
 
 /* G3-4: the chronicle menu on a phone, its load buttons, and the playtest export. */
 @media (max-width: 600px) {
@@ -1614,12 +1597,6 @@
   }
 }
 
-/* The client restores focus to Send when its sheet closes. Keep that origin and the menu hold alive. */
-body:has(> .hflab-veil) .watch .w-menu {
-  visibility: hidden;
-  pointer-events: none;
-}
-
 .w-export-option {
   display: inline-flex;
   align-items: center;
@@ -1627,4 +1604,232 @@ body:has(> .hflab-veil) .watch .w-menu {
   min-height: 44px;
   min-width: 44px;
   padding: 6px;
+}
+
+/* Lab kit 0.2 phone stage. The sheet takes space; no fixed bar sits over the roster. */
+.watch {
+  --paper: var(--w-bg);
+  --ink: var(--w-text);
+  --ink-soft: var(--w-line);
+}
+.watch .w-title h1,
+.watch .w-title p {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+.watch .w-title {
+  min-width: 130px;
+}
+.watch .w-stage.lk-stage {
+  height: 100%;
+  padding: 0;
+  grid-template-rows: auto minmax(120px, 1fr) auto;
+  overflow: hidden;
+}
+.watch .w-state {
+  padding: 5px 12px;
+  background: var(--w-bg);
+  color: var(--w-muted);
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+.watch .w-state p {
+  margin: 0;
+}
+.w-state-warning {
+  color: var(--w-text);
+}
+.w-selected-state {
+  margin-top: 4px;
+}
+.w-selected-state .w-imps {
+  margin-top: 3px;
+}
+.watch .w-panel.lk-sheet {
+  height: auto;
+  max-height: calc(var(--lk-available-height, 100dvh) - var(--lk-strip-height, 0px) - 120px);
+  padding: 0;
+  overflow: visible;
+  background: var(--w-surface);
+}
+.w-panel-parts,
+.w-dusk,
+.w-night {
+  display: contents;
+}
+.watch .lk-sheet-body {
+  padding: 8px 12px;
+}
+.watch .lk-sheet-head {
+  padding: 4px 12px;
+}
+.watch .lk-sheet-head .w-hint {
+  flex: 1 1 130px;
+  margin: 0;
+}
+.watch .lk-commit {
+  padding: 6px 12px;
+  background: var(--w-surface);
+}
+.watch .lk-commit .w-primary {
+  margin: 0;
+}
+.watch .lk-commit .w-note {
+  margin: 0;
+}
+.watch .w-postcard {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+}
+.watch .w-places {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+.watch .w-place {
+  min-height: 44px;
+  padding: 4px;
+}
+.watch .w-press-help,
+.watch .w-night-details {
+  margin: 0;
+}
+.watch .w-moment {
+  position: static;
+  max-height: none;
+  overflow: visible;
+}
+.watch .w-night-commit {
+  display: block;
+}
+.watch .w-night-commit .w-lantern-pick {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  margin: 0 0 6px;
+}
+.watch .w-speed span {
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  white-space: normal;
+  line-height: 1.1;
+}
+.watch .w-night-commit .w-lantern-pick > span {
+  grid-column: 1 / -1;
+  font-size: 0.85rem;
+}
+.watch .w-bell {
+  margin: 0;
+}
+.watch .w-lantern-context {
+  margin: 0 0 6px;
+}
+.watch .lk-stage .w-rope {
+  height: 26px;
+}
+/* Winter date belongs to the persistent state strip, beside the person concerned. */
+.watch:has(.w-watch-progress) .w-title p {
+  display: none;
+}
+.watch .w-state:empty {
+  display: none;
+}
+.watch .w-moment + .w-night-details {
+  margin-top: 6px;
+}
+@media (min-width: 900px) {
+  .watch .w-stage.lk-stage {
+    grid-template-columns: minmax(0, 1fr) 380px;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .watch .w-panel.lk-sheet {
+    max-height: 100%;
+  }
+}
+/* At large text sizes, the document can scroll rather than clipping the sheet's header or actions. */
+@media (max-width: 899px) {
+  .watch:has(.w-stage[data-reflow="true"]) {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+  .watch .w-stage.lk-stage[data-reflow="true"] {
+    height: auto;
+    overflow: visible;
+  }
+  .watch .w-stage[data-reflow="true"] .w-panel {
+    max-height: none;
+  }
+}
+
+.watch .w-panel-parts[hidden] {
+  display: none;
+}
+.watch .w-panel .w-menu {
+  position: static;
+  width: 100%;
+  max-height: none;
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.watch .w-panel .w-lines {
+  max-height: none;
+}
+.watch .w-posting-read {
+  margin: 0 0 4px;
+}
+.watch .w-stage[data-reflow="true"] .lk-sheet-body {
+  overflow: visible;
+}
+
+/* A timed choice uses the reading space; optional watch context returns after the answer. */
+.watch .w-night > .lk-sheet-body:has(.w-moment) > :is(.w-lantern-context, .w-night-details) {
+  display: none;
+}
+@media (max-width: 360px) {
+  .watch .w-title {
+    min-width: 120px;
+  }
+  .watch .w-chronicle {
+    padding: 0 4px;
+  }
+}
+
+/* The client restores focus to Send when its sheet closes. Keep that origin and the menu hold alive. */
+body:has(> .hflab-veil) .watch .w-menu {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.watch .w-page-commit:empty,
+.watch .w-page-commit[hidden] {
+  display: none;
+}
+@media (max-width: 340px) {
+  .watch .w-night > .lk-sheet-body:has(.w-moment) .w-moment {
+    padding: 6px;
+  }
+  .watch .w-night > .lk-sheet-body:has(.w-moment) .w-decision-time {
+    margin-bottom: 4px;
+  }
+  .watch .w-night > .lk-sheet-body:has(.w-moment) .w-moment-text {
+    margin-bottom: 4px;
+  }
+  .watch .w-night > .lk-sheet-body:has(.w-moment) .w-moment-let {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 340px) {
+  .watch .w-night:has(.w-moment) .w-tap-hint {
+    display: none;
+  }
 }

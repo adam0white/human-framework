@@ -12,7 +12,8 @@
  * the thaw, a closed volume and a fallen village are pages (`pages.tsx`). Dawn adds talks. The chronicle dialog is
  * the menu and the saves shelf (`chronicle.tsx`).
  */
-import { useEffect, useRef, useState } from 'react';
+import { phoneStage } from '@adam0white/lab-kit';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
 import type { PageInfo } from '../protocol.ts';
@@ -36,6 +37,7 @@ import {
   yearWords,
 } from './pages.tsx';
 import { Impressions, Pips, Rope, Sacks } from './parts.tsx';
+import { PageActions, PageCommitContext } from './SheetActions.tsx';
 import { useWatch, type WatchActions } from './useWatch.ts';
 import {
   awayWords,
@@ -86,18 +88,61 @@ export function App() {
   const [selected, setSelectedState] = useState<WatcherId | null>(null);
   /** The press picked for the selected watcher before a post is tapped; null follows their current press. */
   const [pressPick, setPressPick] = useState<Press | null>(null);
+  const [pageCommit, setPageCommit] = useState<HTMLElement | null>(null);
   const [menu, setMenu] = useState(false);
+  const stage = useRef<HTMLElement>(null);
+  const postingOrigin = useRef<WatcherId | null>(null);
+  const menuOrigin = useRef<HTMLElement | null>(null);
 
-  const setSelected = (w: WatcherId | null) => {
+  const setSelected = useCallback((w: WatcherId | null) => {
+    if (w) postingOrigin.current = w;
     setSelectedState(w);
     setPressPick(null);
-  };
+    if (!w)
+      requestAnimationFrame(() => {
+        document.querySelector<HTMLButtonElement>(`.w-person-${postingOrigin.current}`)?.focus();
+      });
+  }, []);
+
+  useEffect(() => {
+    if (selected) stage.current?.querySelector<HTMLButtonElement>('.w-order-back')?.focus();
+  }, [selected]);
 
   useEffect(() => {
     actions.hold(menu);
   }, [menu, actions]);
 
   const phase = frame?.phase;
+  const ready = frame !== null;
+  useEffect(() => {
+    if (!ready || !stage.current) return;
+    const root = stage.current;
+    const controller = phoneStage(root, {
+      observeOnly: true,
+      onSceneRect: () => {
+        root.dataset.reflow = String(
+          Math.max(
+            parseFloat(getComputedStyle(root).fontSize),
+            parseFloat(getComputedStyle(document.documentElement).fontSize),
+          ) > 24,
+        );
+      },
+    });
+    return () => controller.destroy();
+  }, [ready]);
+  useEffect(() => {
+    const back = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      if (menu) setMenu(false);
+      else if (selected) setSelected(null);
+    };
+    window.addEventListener('keydown', back);
+    return () => window.removeEventListener('keydown', back);
+  }, [menu, selected, setSelected]);
+  useEffect(() => {
+    if (menu) stage.current?.querySelector<HTMLButtonElement>('.w-menu .w-x')?.focus();
+    else menuOrigin.current?.focus();
+  }, [menu]);
   const labScreen = !phase ? null : phase === 'goal' ? 'title' : phase === 'fallen' ? 'ending' : 'play';
   useEffect(() => {
     if (!labScreen) return;
@@ -194,7 +239,10 @@ export function App() {
           className="w-chronicle"
           aria-label="Game menu"
           aria-expanded={menu}
-          onClick={() => setMenu((m) => !m)}
+          onClick={(event) => {
+            menuOrigin.current = event.currentTarget;
+            setMenu((m) => !m);
+          }}
         >
           <Icon name="book-open" size={18} />
           <span>Game menu</span>
@@ -203,69 +251,103 @@ export function App() {
         {frame.phase !== 'goal' ? <p className="w-clock-rate">{clockRateWords(frame, speed)}</p> : null}
       </header>
 
-      {menu ? (
-        <Chronicle
-          frame={frame}
-          actions={actions}
-          seed={seed}
-          shelf={shelf}
-          saving={saving}
-          current={current}
-          onClose={() => setMenu(false)}
-        />
-      ) : null}
-
-      <main className="w-stage">
-        <div className="w-mapwrap">
+      <main
+        className="w-stage lk-stage"
+        ref={stage}
+        data-sheet="fit"
+        data-ordering={Boolean(selected)}
+        data-menu={menu}
+      >
+        <WatchStrip frame={frame} selected={selected} />
+        <div className="w-mapwrap lk-scene" inert={menu}>
           <MapCanvas frame={frame} selected={selected} onHit={onHit} />
           {SEASON_PHASES.has(frame.phase) || frame.phase === 'fair' ? (
             <ChronicleStrip frame={frame} />
           ) : (
             <Ticker frame={frame} />
           )}
-          {frame.phase === 'night' ? <NightMoment frame={frame} actions={actions} /> : null}
         </div>
         <section
-          className="w-panel"
+          className="w-panel lk-sheet"
+          aria-label={frame.phase === 'dusk' ? 'Post the watchers' : 'The watch'}
           aria-live={SEASON_PHASES.has(frame.phase) ? 'off' : 'polite'}
           // One key for the open seasons, so the people list keeps its fold across spring, summer and autumn.
           key={SEASON_PHASES.has(frame.phase) ? 'season' : frame.phase}
         >
-          {frame.phase === 'goal' ? (
-            <GoalPage frame={frame} actions={actions} shelf={shelf} current={current} />
-          ) : null}
-          {frame.phase === 'dusk' ? (
-            <DuskPanel
+          {menu ? (
+            <Chronicle
               frame={frame}
               actions={actions}
-              selected={selected}
-              setSelected={setSelected}
-              press={selected ? pressFor(selected) : 'ask'}
-              setPress={setPressPick}
-              post={post}
+              seed={seed}
+              shelf={shelf}
+              saving={saving}
+              current={current}
+              onClose={() => setMenu(false)}
             />
           ) : null}
-          {frame.phase === 'night' ? <NightPanel frame={frame} actions={actions} /> : null}
-          {frame.phase === 'dawn' ? <DawnPanel frame={frame} actions={actions} /> : null}
-          {frame.phase === 'fallen' ? <FallenPage frame={frame} actions={actions} seed={seed} /> : null}
-          {SEASON_PHASES.has(frame.phase) ? <SeasonPanel frame={frame} actions={actions} /> : null}
-          {frame.phase === 'fair' ? <FairPage frame={frame} actions={actions} /> : null}
-          {frame.phase === 'thaw' ? <ThawPage frame={frame} actions={actions} /> : null}
-          {frame.phase === 'closed' ? <ClosedPage frame={frame} actions={actions} /> : null}
+
+          <PageCommitContext value={pageCommit}>
+            <div
+              hidden={menu}
+              className={
+                frame.phase === 'dusk' || frame.phase === 'night' ? 'w-panel-parts' : 'lk-sheet-body'
+              }
+            >
+              {frame.phase === 'goal' ? (
+                <GoalPage frame={frame} actions={actions} shelf={shelf} current={current} />
+              ) : null}
+              {frame.phase === 'dusk' ? (
+                <DuskPanel
+                  frame={frame}
+                  actions={actions}
+                  selected={selected}
+                  setSelected={setSelected}
+                  press={selected ? pressFor(selected) : 'ask'}
+                  setPress={setPressPick}
+                  post={post}
+                />
+              ) : null}
+              {frame.phase === 'night' ? <NightPanel frame={frame} actions={actions} /> : null}
+              {frame.phase === 'dawn' ? <DawnPanel frame={frame} actions={actions} /> : null}
+              {frame.phase === 'fallen' ? <FallenPage frame={frame} actions={actions} seed={seed} /> : null}
+              {SEASON_PHASES.has(frame.phase) ? <SeasonPanel frame={frame} actions={actions} /> : null}
+              {frame.phase === 'fair' ? <FairPage frame={frame} actions={actions} /> : null}
+              {frame.phase === 'thaw' ? <ThawPage frame={frame} actions={actions} /> : null}
+              {frame.phase === 'closed' ? <ClosedPage frame={frame} actions={actions} /> : null}
+            </div>
+          </PageCommitContext>
+          <footer className="lk-commit w-page-commit" hidden={menu} ref={setPageCommit} />
         </section>
       </main>
     </div>
   );
 }
 
+export function WatchStrip({ frame, selected }: { frame: Frame; selected: WatcherId | null }) {
+  const who = frame.watchers.find((w) => w.id === selected);
+  return (
+    <section className="w-state lk-strip" aria-label="Watch state">
+      {frame.winter ? (
+        <p className="w-watch-progress">
+          {frame.date} · {hourWords(frame.clock, frame.phase)}
+        </p>
+      ) : null}
+      {frame.phase === 'dusk' ? <p className="w-state-warning">{frame.warning}</p> : null}
+      {who ? (
+        <div className="w-selected-state">
+          <p>
+            <strong>{who.name}</strong> · {who.note}
+          </p>
+          <p className="w-person-post">{whereWords(who, frame.phase)}</p>
+          <Impressions impressions={who.impressions} />
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
 function Ticker({ frame }: { frame: Frame }) {
-  if (frame.phase === 'dusk') {
-    return (
-      <ol className="w-ticker" aria-hidden="true">
-        <li className="w-alert is-moment">{frame.warning}</li>
-      </ol>
-    );
-  }
+  if (frame.phase === 'dusk') return null;
   if (frame.phase !== 'night') return null;
   const now = frame.nightProgress;
   const recent = frame.alerts.slice(-3);
@@ -387,58 +469,115 @@ export function DuskPanel({
   const reads = selected ? frame.postingReads?.[selected] : undefined;
   return (
     <div className="w-dusk">
-      <p className="w-warning">
-        <Icon name="sunrise" size={18} /> {frame.warning}
-      </p>
-      {frame.winter ? (
-        <details className="w-about">
-          <summary>This winter</summary>
-          <WinterNote frame={frame} />
-        </details>
+      {sel ? (
+        <header className="lk-sheet-head">
+          <button type="button" className="w-chip w-order-back" onClick={() => setSelected(null)}>
+            Back to watchers
+          </button>
+          <p className="w-hint">Where should {sel.name} stand?</p>
+        </header>
       ) : null}
-      {frame.day && frame.day.lines.length > 0 ? (
-        // Opened when someone arrived, so a new name on the roster is explained as it appears (owner's playtest).
-        <details className="w-day" open={frame.day.lines.some((l) => l.came)}>
-          <summary>Today</summary>
-          <ul>
-            {frame.day.lines.map((l) => (
-              <li key={`${l.who}-${l.text}`}>{l.text}</li>
+      <div className="lk-sheet-body">
+        {!sel && (
+          <>
+            {frame.winter ? (
+              <details className="w-about">
+                <summary>This winter</summary>
+                <WinterNote frame={frame} />
+              </details>
+            ) : null}
+            {frame.day && frame.day.lines.length > 0 ? (
+              // Opened when someone arrived, so a new name on the roster is explained as it appears (owner's playtest).
+              <details className="w-day" open={frame.day.lines.some((l) => l.came)}>
+                <summary>Today</summary>
+                <ul>
+                  {frame.day.lines.map((l) => (
+                    <li key={`${l.who}-${l.text}`}>{l.text}</li>
+                  ))}
+                </ul>
+              </details>
+            ) : null}
+            <p className="w-hint">Tap a watcher, then a post.</p>
+          </>
+        )}
+        {sel ? (
+          <div className="w-postcard">
+            <fieldset className="w-presses">
+              <legend>
+                How hard do you press {sel.name}?
+                {reads ? null : <span className="w-note"> Pick a post to read them.</span>}
+              </legend>
+              {PRESSES.map((p) => (
+                <button
+                  key={p}
+                  type="button"
+                  className="w-press"
+                  aria-pressed={press === p}
+                  onClick={() => {
+                    setPress(p);
+                    if (sel.posted) actions.input({ k: 'post', watcher: sel.id, post: sel.posted, press: p });
+                  }}
+                >
+                  <span>{PRESS_WORDS[p].verb}</span>
+                </button>
+              ))}
+            </fieldset>
+            {reads ? (
+              <p className="w-note w-posting-read" aria-live="polite">
+                {reads[press]}
+              </p>
+            ) : null}
+            <details className="w-about w-press-help">
+              <summary>About asking and pressing</summary>
+              <p className="w-note">
+                Ask leaves it to them; urge leans on them; insist can get them there under protest. Tired or
+                frightened watchers may leave their post.
+              </p>
+            </details>
+          </div>
+        ) : null}
+        {!sel && (
+          <ul className="w-roster">
+            {frame.watchers.map((w) => (
+              <li key={w.id}>
+                <button
+                  type="button"
+                  className={`w-person w-person-${w.id}`}
+                  aria-pressed={selected === w.id}
+                  onClick={() => setSelected(selected === w.id ? null : w.id)}
+                >
+                  <span className="w-person-head">
+                    <span className="w-person-name">{w.name}</span>
+                    <span className="w-person-note">{w.note}</span>
+                  </span>
+                  <span className="w-person-post">{whereWords(w, frame.phase)}</span>
+                  <Impressions impressions={w.impressions} />
+                </button>
+              </li>
             ))}
           </ul>
-        </details>
-      ) : null}
-      <p className="w-hint">
-        {sel
-          ? `Where should ${sel.name} stand? Tap a post on the wall or a stretch below.`
-          : 'Tap a watcher, then a post.'}
-      </p>
-      {sel ? (
-        <div className="w-postcard">
-          <p className="w-note">
-            Ask leaves it to them; urge leans on them; insist can get them there under protest. Tired or
-            frightened watchers may leave their post.
-          </p>
-          <fieldset className="w-presses">
-            <legend>
-              How hard do you press {sel.name}?
-              {reads ? null : <span className="w-note"> Pick a post to read them.</span>}
-            </legend>
-            {PRESSES.map((p) => (
+        )}
+        {!sel && (
+          <div className="w-lantern-pick">
+            <span>Start the lantern at</span>
+            {SECTIONS.map((s) => (
               <button
-                key={p}
+                key={s.id}
                 type="button"
-                className="w-press"
-                aria-pressed={press === p}
-                onClick={() => {
-                  setPress(p);
-                  if (sel.posted) actions.input({ k: 'post', watcher: sel.id, post: sel.posted, press: p });
-                }}
+                className="w-chip"
+                aria-pressed={frame.lantern.target === SECTIONS.indexOf(s)}
+                disabled={frame.sections.find((x) => x.id === s.id)?.fallen === true}
+                onClick={() => actions.input({ k: 'lantern', section: s.id })}
               >
-                <span>{PRESS_WORDS[p].verb}</span>
-                {reads ? <small>{reads[p]}</small> : null}
+                {s.name}
+                {frame.sections.find((x) => x.id === s.id)?.fallen ? ' · fallen' : ''}
               </button>
             ))}
-          </fieldset>
+          </div>
+        )}
+      </div>
+      <footer className="lk-commit">
+        {sel ? (
           <div className="w-places">
             {SECTIONS.map((s) => {
               const at = freePost(frame, s.id, sel.id);
@@ -462,47 +601,15 @@ export function DuskPanel({
               Off the wall
             </button>
           </div>
-        </div>
-      ) : null}
-      <ul className="w-roster">
-        {frame.watchers.map((w) => (
-          <li key={w.id}>
-            <button
-              type="button"
-              className={`w-person w-person-${w.id}`}
-              aria-pressed={selected === w.id}
-              onClick={() => setSelected(selected === w.id ? null : w.id)}
-            >
-              <span className="w-person-head">
-                <span className="w-person-name">{w.name}</span>
-                <span className="w-person-note">{w.note}</span>
-              </span>
-              <span className="w-person-post">{whereWords(w, frame.phase)}</span>
-              <Impressions impressions={w.impressions} />
+        ) : (
+          <>
+            <button type="button" className="w-primary" onClick={() => actions.input({ k: 'begin' })}>
+              <Icon name="moon" size={18} /> Begin the watch
             </button>
-          </li>
-        ))}
-      </ul>
-      <div className="w-lantern-pick">
-        <span>Start the lantern at</span>
-        {SECTIONS.map((s) => (
-          <button
-            key={s.id}
-            type="button"
-            className="w-chip"
-            aria-pressed={frame.lantern.target === SECTIONS.indexOf(s)}
-            disabled={frame.sections.find((x) => x.id === s.id)?.fallen === true}
-            onClick={() => actions.input({ k: 'lantern', section: s.id })}
-          >
-            {s.name}
-            {frame.sections.find((x) => x.id === s.id)?.fallen ? ' · fallen' : ''}
-          </button>
-        ))}
-      </div>
-      <button type="button" className="w-primary w-sticky" onClick={() => actions.input({ k: 'begin' })}>
-        <Icon name="moon" size={18} /> Begin the watch
-      </button>
-      <p className="w-note">The sun is going down; the watch begins at nightfall on its own.</p>
+            <p className="w-note">The sun is going down; the watch begins at nightfall on its own.</p>
+          </>
+        )}
+      </footer>
     </div>
   );
 }
@@ -547,6 +654,11 @@ function MomentCard({
 }
 
 export function NightPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) {
+  const body = useRef<HTMLDivElement>(null);
+  const momentId = frame.moment?.id;
+  useEffect(() => {
+    if (momentId !== undefined && body.current) body.current.scrollTop = 0;
+  }, [momentId]);
   const walking = frame.lit === null;
   const off = frame.watchers.filter((w) => w.post === null);
   // The bell answers a pull: the button rings for a moment when the rope wears.
@@ -559,79 +671,78 @@ export function NightPanel({ frame, actions }: { frame: Frame; actions: WatchAct
   }, [wear]);
   return (
     <div className="w-night">
-      <div className="w-lantern-pick">
-        <span>
-          <Icon name="lamp" size={16} /> {walking ? 'The lantern is on its way' : 'The lantern'}
-          <span className="w-tap-hint"> · choose a stretch, or tap the wall</span>
-        </span>
-        {SECTIONS.map((s, i) => (
-          <button
-            key={s.id}
-            type="button"
-            className="w-chip"
-            aria-pressed={frame.lantern.target === i}
-            disabled={frame.sections[i]?.fallen === true}
-            onClick={() => actions.input({ k: 'lantern', section: s.id })}
-          >
-            {s.name}
-            {frame.sections[i]?.fallen ? ' · fallen' : ''}
-          </button>
-        ))}
-      </div>
-      <div className="w-bell">
-        <button
-          type="button"
-          className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
-          aria-describedby="watch-bell-context"
-          disabled={frame.rope.snapped || frame.bellSwinging}
-          onClick={() => actions.input({ k: 'bell' })}
-        >
-          <Icon name="bell" size={20} />
-          <span>{frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}</span>
-        </button>
-        <p className="w-note w-bell-context" id="watch-bell-context">
-          Pull from anywhere. Calls back watchers who hear it, loudest at the Gate. Every pull wears the rope;
-          a snapped rope leaves it silent.
+      <div className="lk-sheet-body" ref={body}>
+        <p className="w-note w-lantern-context">
+          Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.
         </p>
-        <div className="w-ropebox">
-          <span className="w-bellread">{frame.bellRead ?? '\u00a0'}</span>
-          <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />
-          <span className="w-ropewords">{ropeWords(frame.rope.wear, frame.rope.snapped)}</span>
+        <NightMoment frame={frame} actions={actions} />
+        <details className="w-about w-night-details">
+          <summary>Watchers and bell</summary>
+          <p className="w-note" id="watch-bell-context">
+            Pull from anywhere. Calls back watchers who hear it, loudest at the Gate. Every pull wears the
+            rope; a snapped rope leaves it silent.
+          </p>
+          <p className="w-offwall">
+            {off.length
+              ? `Off the wall: ${off.map((w) => `${w.name} (${awayWords(w.place, frame.phase)})`).join(', ')}`
+              : 'Everyone is on the wall.'}
+          </p>
+          {off.length ? (
+            <p className="w-note">
+              Posts are set at dusk. Tonight you have the lantern, the bell, and what comes to you.
+            </p>
+          ) : null}
+          <Sacks
+            have={frame.grain}
+            lost={Math.max(0, frame.grainAtDusk - frame.grain)}
+            need={frame.need}
+            label="The granary; the mark is what the village eats until the harvest"
+          />
+        </details>
+      </div>
+      <footer className="lk-commit w-night-commit">
+        <div className="w-lantern-pick">
+          <span>
+            <Icon name="lamp" size={16} /> {walking ? 'The lantern is on its way' : 'The lantern'}
+            <span className="w-tap-hint"> · choose a stretch, or tap the wall</span>
+          </span>
+          {SECTIONS.map((s, i) => (
+            <button
+              key={s.id}
+              type="button"
+              className="w-chip"
+              aria-pressed={frame.lantern.target === i}
+              disabled={frame.sections[i]?.fallen === true}
+              onClick={() => actions.input({ k: 'lantern', section: s.id })}
+            >
+              {s.name}
+              {frame.sections[i]?.fallen ? ' · fallen' : ''}
+            </button>
+          ))}
         </div>
-      </div>
-      <p className="w-note w-lantern-context">
-        Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.
-      </p>
-      <p className="w-offwall">
-        {off.length > 0 ? 'Off the wall: ' : 'Everyone is on the wall.'}
-        {off.map((w, i) => (
-          <span key={w.id}>
-            {i > 0 ? ', ' : ''}
-            {w.name} ({awayWords(w.place, frame.phase)})
-          </span>
-        ))}
-        {off.length > 0 && (
-          // Owner's playtest: no way to pull someone over from another wall. Posts are set at dusk by design;
-          // say so where the gap shows, and name what the night does offer.
-          <span className="w-offwall-why">
-            Posts are set at dusk. Tonight you have the lantern, the bell, and what comes to you.
-          </span>
-        )}
-      </p>
-      <div className="w-granary">
-        <span>The granary</span>
-        <Sacks
-          have={frame.grain}
-          lost={Math.max(0, frame.grainAtDusk - frame.grain)}
-          need={frame.need}
-          label={`${frame.grain < frame.grainAtDusk ? 'Sacks have been taken tonight' : 'No sacks taken tonight'}; the mark is what the village eats until the harvest`}
-        />
-      </div>
+        <div className="w-bell">
+          <button
+            type="button"
+            className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
+            aria-describedby="watch-bell-context"
+            disabled={frame.rope.snapped || frame.bellSwinging}
+            onClick={() => actions.input({ k: 'bell' })}
+          >
+            <Icon name="bell" size={20} />
+            <span>{frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}</span>
+          </button>
+          <div className="w-ropebox">
+            <span className="w-bellread">{frame.bellRead ?? '\u00a0'}</span>
+            <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />
+            <span className="w-ropewords">{ropeWords(frame.rope.wear, frame.rope.snapped)}</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
 
-/** A decision uses the map's space. It never moves or covers the lantern and bell controls. */
+/** A decision occupies the sheet body; the scene and the action row keep their own space. */
 function NightMoment({ frame, actions }: { frame: Frame; actions: WatchActions }) {
   const [letBe, setLetBe] = useState<number | null>(null);
   const m = frame.moment;
@@ -782,9 +893,11 @@ function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) 
         <p className="w-note">Someone will have to splice the bell rope today; it will not be new.</p>
       ) : null}
       <Talks frame={frame} actions={actions} />
-      <button type="button" className="w-primary" onClick={() => actions.input({ k: 'toDusk' })}>
-        {last ? 'Into the thaw' : 'On to dusk'}
-      </button>
+      <PageActions>
+        <button type="button" className="w-primary" onClick={() => actions.input({ k: 'toDusk' })}>
+          {last ? 'Into the thaw' : 'On to dusk'}
+        </button>
+      </PageActions>
       {last ? (
         <p className="w-note">That was the last night watched this winter; the rest goes by routine.</p>
       ) : null}

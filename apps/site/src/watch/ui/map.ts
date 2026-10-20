@@ -37,8 +37,9 @@ export interface Layout {
 /** By day the village below the wall gets more room, for the people in it. */
 export function layoutFor(w: number, h: number, day = false): Layout {
   const yTree = Math.round(h * 0.13);
-  const yWall = Math.round(h * (day ? 0.5 : 0.7));
   const wallH = Math.max(18, Math.round(h * 0.055));
+  // Keep the staggered names and the Keeper inside a short phone scene. Hit tests use this same camera.
+  const yWall = Math.min(Math.round(h * (day ? 0.5 : 0.7)), h - wallH - 35);
   return { w, h, laneW: w / SECTION_IDS.length, yTree, yWall, wallH, yVillage: yWall + wallH };
 }
 
