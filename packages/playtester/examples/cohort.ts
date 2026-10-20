@@ -21,6 +21,7 @@ import {
   type Designer,
   designReview,
   EDGE_PERSONAS,
+  formatClarityReport,
   type GameAdapter,
   PERSONAS,
   type Persona,
@@ -83,6 +84,7 @@ if (cmd === 'run') {
   console.log(`  frustrated by ${JSON.stringify(Object.keys(summary.frustratedBy).slice(0, 3))}`);
   for (const e of summary.edges)
     console.log(`  edge ${e.kind} ${e.subject} [${e.label}]: ${e.reason} (${e.detail})`);
+  console.log(formatClarityReport(summary.clarity));
   const out = arg('out');
   if (out) writeFileSync(out, `${JSON.stringify(summary, null, 1)}\n`);
 } else if (cmd === 'compare') {

@@ -7,6 +7,7 @@
  * across its evenings. Deterministic for the same build, personas and seeds.
  */
 import type { GameAdapter } from './adapter.ts';
+import { type ClarityFinding, clarityReport } from './clarity.ts';
 import { type Edge, findEdges, type PlayedSession } from './edges.ts';
 import { PERSONAS, type Persona } from './persona.ts';
 import { readSession } from './reading.ts';
@@ -69,6 +70,8 @@ export interface CohortSummary {
   /** Rewards shown (event valence at least the reward line) by event kind. */
   rewardedBy: Record<string, number>;
   edges: Edge[];
+  /** Screen-only rubric findings, including first-input measurements and evidence gaps. */
+  clarity: ClarityFinding[];
   note: string;
 }
 
@@ -219,6 +222,7 @@ export function summarise(
     frustratedBy: sortRecord(frustratedBy, 10),
     rewardedBy: sortRecord(rewardedBy),
     edges: findEdges(played),
+    clarity: clarityReport(played.map((x) => x.trace)),
     note: 'Edge labels are rules written down (edges.ts), not judgements; every number is a playtesting premise, not an estimate of real players.',
   };
 }

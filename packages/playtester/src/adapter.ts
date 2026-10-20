@@ -55,6 +55,12 @@ export interface Observation {
   outcome?: 'win' | 'loss' | 'mixed';
   /** What the screen shows as unfinished, in the game's words ("the bank wants ₺4,000 on Sunday"). */
   loops?: string[];
+  /** Goal sentence printed on screen; empty string means no goal is shown, omitted means not exposed. */
+  goal?: string;
+  /** Current instruction printed on screen; empty string means none, omitted means not exposed. */
+  next?: string;
+  /** Visible copy classified by the screen's hierarchy; only `now` is must-read. */
+  text?: { level: 'now' | 'happened' | 'flavour'; text: string }[];
 }
 
 /** One thing the player could do now. */
@@ -71,6 +77,8 @@ export interface PlayAction {
   tags?: string[];
   /** Mischief: an input whose point is to provoke (insisting for sport, agreeing with the tempter). */
   mischief?: boolean;
+  /** A visible but unavailable control. Copy its displayed reason, never infer one from game state. */
+  disabled?: { reason?: string };
 }
 
 export interface GameAdapter {
@@ -102,4 +110,35 @@ export function answerOf(e: PlayEvent): 1 | string[] | undefined {
 /** Whether a recorded answer answers the input `id`. */
 export function answers(a: ShownEvent['a'], id: string): boolean {
   return a === 1 || (Array.isArray(a) && a.some((x) => id.startsWith(x)));
+}
+
+/** Screen-only evidence saved before an input. Undefined fields were not exposed by the adapter. */
+export interface ClarityScreen {
+  goal?: string;
+  next?: string;
+  text?: Observation['text'];
+  loops?: string[];
+  openLoop?: number;
+  /** Raw visible menu, before a persona changes promises; omitted while looking away. */
+  menu?: Pick<PlayAction, 'id' | 'label' | 'promise' | 'disabled'>[];
+}
+
+export function clarityScreen(obs: Observation, menu?: PlayAction[]): ClarityScreen {
+  return {
+    ...(obs.goal !== undefined ? { goal: obs.goal } : {}),
+    ...(obs.next !== undefined ? { next: obs.next } : {}),
+    ...(obs.text !== undefined ? { text: obs.text.map((x) => ({ ...x })) } : {}),
+    ...(obs.loops !== undefined ? { loops: [...obs.loops] } : {}),
+    ...(obs.features.openLoop !== undefined ? { openLoop: obs.features.openLoop } : {}),
+    ...(menu
+      ? {
+          menu: menu.map((a) => ({
+            id: a.id,
+            label: a.label,
+            promise: a.promise,
+            ...(a.disabled ? { disabled: { ...a.disabled } } : {}),
+          })),
+        }
+      : {}),
+  };
 }

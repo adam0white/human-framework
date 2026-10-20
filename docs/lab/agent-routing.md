@@ -12,6 +12,8 @@ Which kinds of subagent work go to Codex (`codex exec`, model `gpt-6.1-sol`, def
 6. **Invocation.** `codex exec -C <dir> -s <mode> -m gpt-6.1-sol --json -o <last.md> "<brief>" < /dev/null`. Without `< /dev/null`, the tested invocation stalled on "Reading additional input from stdin". Put `/opt/homebrew/bin` first on PATH, or `npx` may pick an nvm Node 23.
 7. **Audit.** The `--json` event log lists every command Codex ran. Use it to check constraints, for example that a source-unread playtester read no source. For Claude, `claude -p --output-format stream-json --verbose` gives the same log.
 
+For source-unread LLM playtests, use the [canonical tester prompt](playtester-prompt.md), including its timed first-minute check.
+
 ## Bake-off (2026-10-19)
 
 Same brief for both sides, separate git worktrees, run under heavy machine load (load average about 89). Claude ran headless (`claude -p`), because the session's subagent limit was full. Claude started 5–8 minutes after Codex, so wall times are rough.

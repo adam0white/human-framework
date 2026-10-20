@@ -58,6 +58,8 @@ import {
 } from '@adam0white/human-framework';
 import {
   answerOf,
+  type ClarityScreen,
+  clarityScreen,
   type GameAdapter,
   type Observation,
   type PlayAction,
@@ -155,6 +157,8 @@ export interface Beat {
   offered: number;
   /** Every event shown this beat (seen or not): kind, valence, and what it answered (1 = any input). */
   shown: ShownEvent[];
+  /** Visible screen evidence for the clarity rubric; optional for old saved traces. */
+  screen?: ClarityScreen;
 }
 
 export interface Moment {
@@ -182,7 +186,14 @@ export interface SessionTrace {
   moments: Moment[];
   ended: { t: number; clock: string; reason: 'quit' | 'agenda' | 'game-over' | 'time-limit'; why: string };
   /** What the last screen showed: where, how it ended (if it did), and what it left unfinished. */
-  final: { chapter: string; outcome?: 'win' | 'loss' | 'mixed'; openLoop: number; loops: string[] };
+  final: {
+    chapter: string;
+    outcome?: 'win' | 'loss' | 'mixed';
+    openLoop: number;
+    loops: string[];
+  };
+  /** Final visible events, retained separately so the existing final-screen report stays unchanged. */
+  closingShown?: ShownEvent[];
   /** HF minute the session started. */
   startedAt: number;
   /** The HF person after the session (for inspection). */
@@ -418,11 +429,13 @@ export function playSession(
     let why = stanceWhy;
     let picked: PlayAction | undefined;
     let offered = 0;
+    let menu: PlayAction[] | undefined;
     if (stance === 'play') {
       const plain = adapter.actions();
       const edges = mind.style && adapter.edgeActions ? adapter.edgeActions() : [];
       const edgeIds = new Set(edges.map((a) => a.id));
-      const game = mind.shape([...plain, ...edges.filter((a) => !plain.some((x) => x.id === a.id))]);
+      menu = [...plain, ...edges.filter((a) => !plain.some((x) => x.id === a.id))];
+      const game = mind.shape(menu.filter((a) => !a.disabled));
       offered = game.length;
       if (game.length > 0) {
         const offers: Affordance[] = game.map((a) => {
@@ -478,6 +491,7 @@ export function playSession(
       missed: obs.events.length - noticed.length,
       chapter: obs.chapter ?? obs.phase,
       offered,
+      screen: clarityScreen(obs, menu),
       kind: choiceKind,
       ...(choiceEdge ? { edge: true as const } : {}),
       // Mischief in the trace: an input the adapter marks as mischief, or a confrontation chosen by the
@@ -520,6 +534,11 @@ export function playSession(
         openLoop: clampU(obs.features.openLoop ?? 0),
         loops: [...(obs.loops ?? [])],
       },
+      closingShown: obs.events.map((e) => ({
+        k: e.kind,
+        v: round(e.valence),
+        ...(answerOf(e) ? { a: answerOf(e) } : {}),
+      })),
       startedAt: start,
       player: p,
     };

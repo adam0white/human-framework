@@ -1,4 +1,5 @@
 export * from './adapter.ts';
+export * from './clarity.ts';
 export * from './cohort.ts';
 export * from './compare.ts';
 export * from './designer.ts';

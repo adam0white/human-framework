@@ -92,3 +92,71 @@ Each game keeps its own scratch copy if it wants one. The copies here are canoni
   valences before blaming the game (`CALIBRATION-NOTES.md`, C2 and C6).
 - **Read quit chapters together with minutes.** A persona's appetite for play sets how long it plays, so a chapter
   where many sessions stop may be where that much play lands rather than a problem in the chapter.
+
+## Clarity rubric
+
+Ids follow the current checklist (revised at `c8c8134`): feedback is DL-13 and dates DL-21. DL-22 now covers
+phone layout, which the adapter cannot measure. Low/equal promises and missing explicit goal/next copy remain
+review signals: several useful choices and a readable scene without a next prompt can be valid.
+
+Every cohort adds `summary.clarity` and prints **First minute (DL-1..DL-7)**, followed by other DL findings.
+`clarityReport(trace)` or `clarityReport(traces)` returns plain-JSON findings with `dl`, `signal`, `status`,
+`game`, `persona`, `seed`, `seconds`, optional `beats`, and `detail`. `formatClarityReport(findings)` formats them.
+The [lab checklist](../../docs/lab/design-language.md) defines the DL ids. Use the
+[source-unread prompt](../../docs/lab/playtester-prompt.md) for human-language and visual checks.
+
+| Recorded signal | DL id | Default |
+|---|---|---|
+| Time to first available action and, separately, first input; idle beats while actions were available | DL-6 | Warn after 30s, or 5 idle beats |
+| First-minute menu has no enabled action above a promise threshold | DL-3 | Highest promise at most 0.4 |
+| Many enabled actions look equally promising in the first minute | DL-3 | At least 3 within 0.05 of the highest |
+| Offered action disappears or becomes disabled without a reason or an event | DL-4 | Compare consecutive recorded menus |
+| Disabled action has no shown reason | DL-4 | Any such control |
+| Repeated inputs have no matching `answers` event | DL-13 | 3 attempts with complete 9s response windows |
+| No events, next line or visible open loop during a stretch | DL-5 | At least 30s; next, loops and openLoop must be exposed |
+| Empty goal copy throughout sampled first-minute screens | DL-1 | No non-empty goal in the first 60s |
+| Empty what-next line on a playable screen | DL-5 | Any sampled screen |
+| Voluntary quit / boredom during the first recorded chapter | DL-1 / DL-7 | Agenda stops excluded; proxy, not a diagnosis |
+| Non-English calendar word in load-bearing copy | DL-20, DL-21 | Whole words: Turkish plus common French, German, Spanish names |
+| Non-ASCII-heavy load-bearing copy | DL-20; DL-21 for clocks | More than half of at least 6 letters; language heuristic |
+| Must-read copy is too long | DL-11 | More than 60 words across exposed now, goal, next and control copy (exact duplicates counted once) |
+
+`CLARITY_DEFAULTS` exports every threshold. They are playtesting premises, not measurements of real readers.
+The session records the raw menu before persona style changes promises. Disabled controls are recorded but never
+scored or applied. The snapshots copy only adapter fields; the report reads no game source, hidden state or RNG.
+First input means an adapter input was applied; only a player can establish whether it was meaningful.
+
+Adapters may add these optional fields, copied from the screen:
+
+```ts
+// Observation
+{ goal: 'Get everyone down before dark.', next: 'Choose who carries the rope.',
+  text: [{ level: 'now', text: 'Choose a carrier.' },
+         { level: 'happened', text: 'The rope slipped.' },
+         { level: 'flavour', text: 'Wind in the pines.' }] }
+// PlayAction: visible but unavailable
+{ id: 'climb', label: 'Climb', kind: 'climb', promise: 0,
+  disabled: { reason: 'Your hands need a rest.' } }
+```
+
+An omitted `goal`, `next` or `text` means the adapter does not expose that evidence. Use `goal: ''` or `next: ''`
+when the screen genuinely shows no such line, and `text: []` when it shows no classified copy. `disabled: {}`
+means the screen gives no reason. Do not invent copy or explanations to make a report pass. Existing adapters
+remain unchanged because their current contract does not supply exact goal/next screen copy.
+The language check includes clock, now, goal, next, control labels and disabled reasons.
+`loops` and `features.openLoop` retain their existing meaning: visibly unfinished business.
+
+A finding is a **warning**, a **measurement** (choice/input timing), or **unmeasured** (missing evidence).
+No warnings is not a full rubric pass. DL-2 requires visual control checks; DL-7's teaching check requires a
+source-unread tester. Other layout, comprehension, translation and calendar-format checks remain with that tester.
+Local names in `flavour` and `happened` copy are not checked for language. Calendar and script detection can have
+false positives: inspect the quoted copy. Ambient events cannot answer an input unless the adapter marks them as
+answers. A three-second beat cannot time prompt acknowledgement precisely; 9s is only a coarse DL-13 silence warning. Final
+observation answers are retained, and incomplete response windows are not judged. Old traces without screen
+snapshots mark the optional checks unmeasured. First-chapter findings after 60s appear under other findings.
+
+Run the synthetic clear/unclear screen controls with:
+
+```fish
+npx vitest run --project playtester packages/playtester/test/clarity.test.ts
+```
