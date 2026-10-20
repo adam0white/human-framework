@@ -1,5 +1,5 @@
 /**
- * Short scenes beside recorded social acts. Reads only the act's time and already surfaced log facts;
+ * Four-line scenes beside recorded social acts. Reads only the act's time and already surfaced log facts;
  * never consumes simulation RNG, writes a log record, invents a remembered event or promises an outcome.
  * Felt body and open concerns are read only when the frame is at the act’s minute. Later feelings never rewrite history.
  */
@@ -117,16 +117,136 @@ const TIRED: Record<Companion, Pair> = {
   ],
 };
 const HUNGRY: Record<Companion, Pair> = {
-  Hacer: [
-    'I am hungry, Hacer. It is hard to think of much else.',
-    'I hear you. We can talk a little, if you like.',
-  ],
-  Rıza: ['My mind keeps wandering to food, Rıza.', 'Then tell me what you are thinking of. I will listen.'],
-  Selin: [
-    'I am hungry, love. My mind keeps wandering.',
-    'Then we will take it slowly, Dad. I am glad to hear you.',
-  ],
+  Hacer: ['I am hungry, Hacer. It is hard to think of much else.', 'What food is on your mind, Halil?'],
+  Rıza: ['My mind keeps wandering to food, Rıza.', 'What food are you thinking of, Halil?'],
+  Selin: ['I am hungry, love. My mind keeps wandering.', 'What would you like to eat, Dad?'],
 };
+// The reply answers the opening and ends with an offer for this encounter, not a new task.
+// These words do not establish a promise, another remembered event or a simulation outcome.
+type Topic = 'everyday' | 'late' | 'rent' | 'health' | 'tired' | 'hunger' | 'memory' | 'table-memory';
+const CONTINUATIONS: Record<Topic, Record<Companion, Pair>> = {
+  everyday: {
+    Hacer: [
+      'It was quiet inside. Having you here at the door is the part I wanted.',
+      'Then leave the door open, Halil. I can stand here with you a little.',
+    ],
+    Rıza: [
+      'No news, Rıza. I came for the chair beside you more than the tea.',
+      'Then take that chair. You do not have to bring news to sit with me.',
+    ],
+    Selin: [
+      'It is good to hear someone call me Dad. The house is quiet without you.',
+      'Keep me on the phone, Dad. Sit down and tell me about the quiet house.',
+    ],
+  },
+  late: {
+    Hacer: [
+      'Lonely, if I am honest. I would rather stand here than go back inside.',
+      'Then keep the door open a little longer. I can stay here beside you.',
+    ],
+    Rıza: [
+      'I am in no hurry to go home to a quiet room, Rıza.',
+      'Then pull your chair closer. Give me some company too.',
+    ],
+    Selin: [
+      'Lonely, love. I wanted to hear someone call me Dad tonight.',
+      'You have me on the phone now, Dad. Sit down; we need not say goodnight yet.',
+    ],
+  },
+  rent: {
+    Hacer: [
+      'Even while I talk to you, I am adding up what I owe.',
+      'Say the amount out loud, Halil. I can stand here while you work through it.',
+    ],
+    Rıza: [
+      'I am sitting with you, but I am still doing sums for Osman in my head.',
+      'Do them out loud, then. I can go through the sums with you here.',
+    ],
+    Selin: [
+      'I am afraid every time we speak I will have to tell you I still owe him.',
+      'You can say it to me, Dad. Keep me on the phone while you go through the amount.',
+    ],
+  },
+  health: {
+    Hacer: [
+      'I am worried too. I wish Selin were here instead of worrying from far away.',
+      'She is not at your door, Halil, but I am. Stand here with me a little.',
+    ],
+    Rıza: [
+      'The doctor frightens me, Rıza. It is easier to say Selin is worried.',
+      'Move your chair here beside mine. You can say you are frightened to me.',
+    ],
+    Selin: [
+      'Frightened, love. Saying that to you is harder than talking about the doctor.',
+      'Stay on the phone with me, Dad. You do not have to sound brave for me.',
+    ],
+  },
+  tired: {
+    Hacer: [
+      'I do not have the energy to tell you the whole day, Hacer.',
+      'Then just stand here with me. You need not tell the whole day at once.',
+    ],
+    Rıza: [
+      'I do not have the energy for a proper conversation. I still wanted this chair beside you.',
+      'Keep the chair, Halil. I can do the talking for a while.',
+    ],
+    Selin: [
+      'I am too tired for a long answer. I still want to hear about your day.',
+      'Then let me talk for a bit, Dad. You can stay on the phone and rest.',
+    ],
+  },
+  hunger: {
+    Hacer: [
+      'Something warm, Hacer. That is what I keep thinking of: a warm supper.',
+      'Tell me what you would put in it. We can plan a supper here at the door.',
+    ],
+    Rıza: [
+      'A warm supper. I know I came for your company, but that is what is in my head.',
+      'Describe it to me, Halil. Let me help you choose what goes on the plate.',
+    ],
+    Selin: [
+      'I keep thinking about a warm supper. It is hard to keep my mind on the phone.',
+      'Then tell me what you would like to eat, Dad. We can choose something together.',
+    ],
+  },
+  memory: {
+    Hacer: [
+      'I miss Nuran today, Hacer. I did not want to say her name to an empty room.',
+      'Keep the door open, Halil. You can say her name here with me.',
+    ],
+    Rıza: [
+      'I miss her today, Rıza. That is what I came here with.',
+      'Put your chair beside mine, Halil. You can talk about Nuran here with me.',
+    ],
+    Selin: [
+      'I miss your mum today, love. I wanted to say that to someone who misses her too.',
+      'Stay on the phone with me, Dad. We can talk about Mum before we say goodbye.',
+    ],
+  },
+  'table-memory': {
+    Hacer: [
+      'I miss having Nuran across the table. That is the part I keep coming back to today.',
+      'Keep the door open, Halil. Tell me about sitting with her. I can stand here with you.',
+    ],
+    Rıza: [
+      'I miss sitting across from her, Rıza. There is no one in her place at my table.',
+      'Bring your chair here beside mine. You need not sit by yourself just now.',
+    ],
+    Selin: [
+      'I miss having your mum across the table. I wish you were here with me today.',
+      'Keep me on the phone a little longer, Dad. Tell me about that meal with Mum.',
+    ],
+  },
+};
+function exchange(who: Companion, opening: Pair, topic: Topic): SpokenLine[] {
+  const ending = CONTINUATIONS[topic][who];
+  return [
+    { speaker: 'Halil', words: opening[0] },
+    { speaker: who, words: opening[1] },
+    { speaker: 'Halil', words: ending[0] },
+    { speaker: who, words: ending[1] },
+  ];
+}
 function companion(entry: LogEntry): Companion | undefined {
   if (entry.kind === 'act' && entry.who === 'halil') {
     if (/^I talk with Hacer at the door\b/.test(entry.text)) return 'Hacer';
@@ -162,16 +282,16 @@ export function conversationFor(
   );
   if (memory) {
     const recalled = memory.text.replace(/^He remembers:\s*/, '').replace(/\.$/, '');
-    return [
-      { speaker: 'Halil', words: `I was remembering ${recalled}.` },
-      {
-        speaker: who,
-        words:
-          who === 'Selin'
-            ? 'You can talk about Mum with me, Dad.'
-            : 'You can tell me about Nuran, Halil. I have time.',
-      },
-    ];
+    return exchange(
+      who,
+      [
+        `I was remembering ${recalled}.`,
+        who === 'Selin'
+          ? 'You can talk about Mum with me, Dad.'
+          : 'You can tell me about Nuran, Halil. I have time.',
+      ],
+      /\btable\b/i.test(recalled) ? 'table-memory' : 'memory',
+    );
   }
   const present = moment?.minute === entry.minute ? moment.halil : undefined;
   const felt = present?.felt
@@ -201,8 +321,16 @@ export function conversationFor(
       : HUNGRY[who]
     : variants[hash(`${entry.day}|${entry.minute}|${who}|${entry.text}`) % variants.length];
   if (!pair) return [];
-  return [
-    { speaker: 'Halil', words: pair[0] },
-    { speaker: who, words: pair[1] },
-  ];
+  const topic: Topic = felt
+    ? felt.id === 'tired'
+      ? 'tired'
+      : 'hunger'
+    : bank === WORRIES
+      ? 'rent'
+      : bank === HEALTH
+        ? 'health'
+        : bank === LATE
+          ? 'late'
+          : 'everyday';
+  return exchange(who, pair, topic);
 }

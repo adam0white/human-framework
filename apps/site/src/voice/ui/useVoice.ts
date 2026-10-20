@@ -27,6 +27,7 @@ import type {
 } from '../protocol.ts';
 import { SHIPPED_SEED, VOICE_SCENARIO_VERSION } from '../protocol.ts';
 import { ExportRequest } from './export-request.ts';
+import { predictionContext } from './obstacle.ts';
 import { openTransport, type Transport } from './transport.ts';
 
 export interface VoiceActions {
@@ -93,6 +94,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   const seedRef = useRef(seed);
   const predictSeq = useRef(0);
   const predictDrafts = useRef(new Map<number, Draft>());
+  const activeDraft = useRef<Draft | null>(null);
+  const predictionFrame = useRef<string | null>(null);
   const whyWant = useRef<string | null>(null);
   const retainedWhy = useRef<{ id: string; view: WhyView | null } | null>(null);
 
@@ -161,6 +164,26 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               if (same && prev) for (const k of same) next[k] = prev[k];
               frameRef.current = next as unknown as Frame;
               setFrame(frameRef.current);
+              const current = frameRef.current;
+              const context = predictionContext(current);
+              if (context !== predictionFrame.current) {
+                predictionFrame.current = context;
+                const draft = activeDraft.current;
+                if (draft) {
+                  // A matching draft is insufficient: his likely answer belongs to a particular moment.
+                  predictSeq.current += 1;
+                  predictDrafts.current.clear();
+                  setTelegraph(null);
+                  if (
+                    current.composer.open &&
+                    !current.muted &&
+                    current.options.some((o) => o.id === draft.optionId)
+                  ) {
+                    predictDrafts.current.set(predictSeq.current, draft);
+                    send({ type: 'predict', requestId: predictSeq.current, draft });
+                  } else activeDraft.current = null;
+                }
+              }
               return;
             }
             case 'predicted': {
@@ -214,7 +237,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       opened?.close();
       transport.current = null;
     };
-  }, []);
+  }, [send]);
 
   const actions = useMemo<VoiceActions>(() => {
     const resetRun = () => {
@@ -231,6 +254,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       whyWant.current = null;
       retainedWhy.current = null;
       predictDrafts.current.clear();
+      activeDraft.current = null;
+      predictionFrame.current = null;
     };
     resetRef.current = resetRun;
     return {
@@ -240,6 +265,9 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       setAutoPause: (on) => send({ type: 'setAutoPause', on }),
       predict: (draft) => {
         predictSeq.current += 1;
+        predictDrafts.current.clear();
+        activeDraft.current = draft;
+        setTelegraph(null);
         if (!draft) {
           setTelegraph(null);
           return;

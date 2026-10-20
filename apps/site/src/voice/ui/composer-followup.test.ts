@@ -3,7 +3,7 @@ import { createElement } from 'react';
 import { flushSync } from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import { afterEach, expect, it, vi } from 'vitest';
-import type { Draft } from '../protocol.ts';
+import type { Draft, Telegraph } from '../protocol.ts';
 import { Composer } from './Composer.tsx';
 
 const cleanups: (() => void)[] = [];
@@ -23,7 +23,7 @@ function mount() {
     doingLabel: undefined,
     telegraph: {
       draft,
-      telegraph: { text: 'He would agree.', says: 'Yes.', reason: 'rest', tone: 'yes' as const },
+      telegraph: { text: 'He would agree.', says: 'Yes.', reason: 'rest', tone: 'yes' } as Telegraph,
     },
     whyOpen: false,
     onPredict,
@@ -101,4 +101,69 @@ it('keeps the chosen action, strength and optional reason beside the fixed reply
   expect(summary()?.querySelector('.v-draft-how')?.textContent).toBe('Urge · Insist · it’s your duty');
   expect(el.querySelector('.v-preview .v-telegraph')).not.toBeNull();
   expect(el.querySelector('.v-btn-primary')?.textContent).toBe('Say it Enter');
+});
+
+it('keeps the selected action context and optional reason control beside the reply', () => {
+  const { el } = mount();
+  click(el, '.v-option');
+  const commit = el.querySelector('.v-commit');
+  expect(commit?.querySelector('.v-choice-context')?.textContent).toBe('He needs rest.');
+  expect(commit?.querySelector('select[aria-label="Reason (optional)"]')).not.toBeNull();
+  const reason = commit?.querySelector<HTMLSelectElement>('select');
+  if (!reason) throw new Error('Missing reason selector');
+  flushSync(() => {
+    reason.value = 'safety';
+    reason.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  expect(commit?.querySelector('.v-draft-how')?.textContent).toContain('your health');
+});
+
+it('does not attach the prefilled explanation to another selected action', () => {
+  const { el, props, update } = mount();
+  update({
+    ...props,
+    options: [...props.options, { id: 'walk', label: 'walk outside', rank: 2, leaning: false }],
+  });
+  click(el, '.v-option:nth-child(2)');
+  expect(el.querySelector('.v-choice-context')?.textContent).not.toContain('He needs rest.');
+  expect(el.querySelector('.v-draft-action')?.textContent).toBe('walk outside');
+});
+
+it('leaves Enter on a focused log control to that control instead of sending a draft', () => {
+  const { el, props } = mount();
+  click(el, '.v-option');
+  const button = document.createElement('button');
+  const day = document.createElement('section');
+  day.className = 'v-day';
+  day.append(button);
+  document.body.append(day);
+  try {
+    button.focus();
+    button.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }));
+    expect(props.onSuggest).not.toHaveBeenCalled();
+  } finally {
+    day.remove();
+  }
+});
+
+it('shows the current obstacle and its reason together in Halil’s words as a likely reply', () => {
+  const { el, props, update } = mount();
+  click(el, '.v-option');
+  update({
+    ...props,
+    telegraph: {
+      draft: props.telegraph.draft,
+      telegraph: {
+        tone: 'notNow',
+        text: 'Not now — after I rest at home',
+        says: 'Not now. After I rest at home.',
+        counter: 'after I rest at home',
+        reason: 'emotion:grief:rest',
+      },
+    },
+  });
+  expect(el.querySelector('.v-telegraph')?.textContent).toBe(
+    'Likely reply“I want to rest at home first. I’m grieving.”',
+  );
+  expect(el.querySelector('.v-telegraph')?.textContent).not.toContain('emotion:');
 });

@@ -90,13 +90,29 @@ export const DayLog = memo(function DayLog({
   }, [log, held, onRetainWhy]);
   const scroller = useRef<HTMLDivElement>(null);
   const [stuck, setStuck] = useState(true);
+  const [jump, setJump] = useState(0);
+  const jumped = useRef(0);
+  const readScene = useRef<string | undefined>(undefined);
   const lastId = visible.at(-1)?.id;
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: re-stick whenever a new entry lands.
   useLayoutEffect(() => {
     const el = scroller.current;
-    if (el && stuck) el.scrollTop = el.scrollHeight;
-  }, [lastId, stuck]);
+    if (!el || !stuck) return;
+    const recent = rows.slice(-4).findLast(({ entry }) => (scenes.current.get(entry.id)?.length ?? 0) > 0);
+    const newScene = recent && recent.entry.id !== readScene.current;
+    readScene.current = recent?.entry.id;
+    if (jump !== jumped.current) {
+      jumped.current = jump;
+      el.scrollTop = el.scrollHeight;
+      return;
+    }
+    const scene = newScene ? [...el.querySelectorAll<HTMLElement>('.v-log-scene')].at(-1) : undefined;
+    // A new conversation starts at its first line. Later task rows keep following Latest.
+    el.scrollTop = scene
+      ? el.scrollTop + scene.getBoundingClientRect().top - el.getBoundingClientRect().top
+      : el.scrollHeight;
+  }, [lastId, stuck, jump]);
 
   const onScroll = () => {
     const el = scroller.current;
@@ -159,15 +175,24 @@ export const DayLog = memo(function DayLog({
                       <span className="v-sr">: </span>
                     </span>
                   )}
-                  {storyDates(spokenLogText(e.text))}
+                  {!exchange.length && storyDates(spokenLogText(e.text))}
                   {exchange.length > 0 && (
-                    <span className="v-exchange">
-                      {exchange.map((line) => (
-                        <span className="v-exchange-line" key={line.speaker}>
-                          <strong>{line.speaker}:</strong> “{line.words}”
-                        </span>
-                      ))}
-                    </span>
+                    <>
+                      <span className="v-scene-title">
+                        Halil and {exchange.find((line) => line.speaker !== 'Halil')?.speaker}{' '}
+                        <small>· {e.clock}</small>
+                      </span>
+                      <span className="v-exchange">
+                        {exchange.map((line) => (
+                          <span className="v-exchange-line" key={`${line.speaker}:${line.words}`}>
+                            <strong>{line.speaker}:</strong> “{line.words}”
+                          </span>
+                        ))}
+                      </span>
+                    </>
+                  )}
+                  {exchange.length > 0 && (
+                    <span className="v-scene-record">{storyDates(spokenLogText(e.text))}</span>
                   )}
                   {count > 1 && to ? <span className="v-log-span"> · until {to}</span> : null}
                   {count === 1 && e.until && e.kind === 'act' ? (
@@ -181,7 +206,7 @@ export const DayLog = memo(function DayLog({
                 )}
               </>
             );
-            const cls = `v-log-row v-log-${e.kind} ${toneClass(e.tone)} ${e.beat ? 'is-beat' : ''} ${
+            const cls = `v-log-row ${exchange.length ? 'v-log-scene' : ''} v-log-${e.kind} ${toneClass(e.tone)} ${e.beat ? 'is-beat' : ''} ${
               selected && e.decisionId === selected ? 'is-selected' : ''
             }`;
             return (
@@ -190,7 +215,22 @@ export const DayLog = memo(function DayLog({
                 className={cls}
                 style={voice ? ({ '--who': VOICE_COLOURS[voice] } as React.CSSProperties) : undefined}
               >
-                {clickable ? (
+                {exchange.length ? (
+                  <div className="v-log-btn">
+                    {body}
+                    {clickable && (
+                      <button
+                        type="button"
+                        className="v-scene-why"
+                        aria-label={`Why this conversation at ${e.clock}?`}
+                        aria-pressed={e.decisionId === selected}
+                        onClick={() => e.decisionId && onWhy(e.decisionId)}
+                      >
+                        Why?
+                      </button>
+                    )}
+                  </div>
+                ) : clickable ? (
                   <button
                     type="button"
                     className="v-log-btn"
@@ -209,18 +249,20 @@ export const DayLog = memo(function DayLog({
           })}
         </ol>
       </div>
-      {(held || !stuck) && (
+      <div className="v-log-controls">
         <button
+          hidden={!held && stuck}
           type="button"
           className="v-log-jump"
           onClick={() => {
             setHeld(null);
             setStuck(true);
+            setJump((n) => n + 1);
           }}
         >
           Latest ↓{held && log.at(-1)?.id !== held.at(-1)?.id ? ' · newer entries' : ''}
         </button>
-      )}
+      </div>
     </section>
   );
 });

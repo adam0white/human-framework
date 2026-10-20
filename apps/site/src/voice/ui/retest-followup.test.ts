@@ -165,3 +165,55 @@ it('retains concrete refusal limits and known social, meal and need influences',
   expect(el.textContent).toContain('I want to keep my word to Osman.');
   expect(el.textContent).toContain('I want to make time for my meal.');
 });
+
+it('lets a player read a scene without opening Why and keeps Latest in its own flow row', () => {
+  let whyId = '';
+  const talk: LogEntry = {
+    ...answer,
+    kind: 'act',
+    id: 'talk',
+    text: 'I talk with Hacer at the door, because you asked.',
+  };
+  const { el } = render(
+    createElement(DayLog, {
+      log: [talk, answer],
+      paused: true,
+      onWhy: (id) => {
+        whyId = id;
+      },
+    }),
+  );
+  const scene = el.querySelector<HTMLElement>('.v-log-scene');
+  expect(scene).not.toBeNull();
+  expect(scene?.querySelector('.v-scene-title')?.textContent).toContain('Halil and Hacer');
+  expect(scene?.querySelector('.v-exchange')?.closest('button')).toBeNull();
+  flushSync(() => scene?.querySelector<HTMLElement>('.v-exchange')?.click());
+  expect(whyId).toBe('');
+  flushSync(() => scene?.querySelector<HTMLButtonElement>('.v-scene-why')?.click());
+  expect(whyId).toBe('d1');
+  expect(el.querySelector('.v-log-controls > .v-log-jump')).not.toBeNull();
+});
+
+it('takes Latest to the bottom even when a recent conversation is taller than the log panel', () => {
+  const props = { paused: true, onWhy: () => {} };
+  const talk: LogEntry = {
+    ...answer,
+    id: 'talk',
+    kind: 'act',
+    text: 'I talk with Hacer at the door, because you asked.',
+  };
+  const { el, update } = render(createElement(DayLog, { ...props, log: [talk, answer] }));
+  const scroller = el.querySelector<HTMLElement>('.v-log');
+  if (!scroller) throw new Error('Missing scroller');
+  Object.defineProperty(scroller, 'scrollHeight', { value: 1500, configurable: true });
+  Object.defineProperty(scroller, 'clientHeight', { value: 300 });
+  const task: LogEntry = { ...later, kind: 'act', text: 'I rest at home.' };
+  update(createElement(DayLog, { ...props, log: [talk, answer, task] }));
+  flushSync(() => el.querySelector<HTMLButtonElement>('.v-log-jump')?.click());
+  expect(scroller.scrollTop).toBe(1500);
+  expect(el.textContent).toContain(task.text);
+  Object.defineProperty(scroller, 'scrollHeight', { value: 1600 });
+  const note: LogEntry = { ...task, id: 'note-after-latest', kind: 'note', text: 'A later ordinary note.' };
+  update(createElement(DayLog, { ...props, log: [talk, answer, task, note] }));
+  expect(scroller.scrollTop).toBe(1600);
+});

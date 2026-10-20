@@ -7,6 +7,7 @@ import { memo, useEffect, useRef, useState } from 'react';
 import type { Appeal, Draft, Frame, Prefill, Strength, Telegraph } from '../protocol.ts';
 import { storyDates } from './dates.ts';
 import { Icon, STRENGTH_ICON, TONE_ICON, TONE_WORD } from './Icon.tsx';
+import { obstacleWords } from './obstacle.ts';
 import { APPEALS, appealLabel, INSIST_PRICE, STRENGTHS, toneClass } from './parts.tsx';
 
 const fromPrefill = (p: Prefill): Draft => ({
@@ -32,6 +33,14 @@ function TelegraphLine({ telegraph, pending }: { telegraph: Telegraph | null; pe
         {pending ? 'Updating his likely reply…' : 'Pick something to hear how he’d answer.'}
       </p>
     );
+  const obstacle = obstacleWords(telegraph);
+  if (obstacle)
+    return (
+      <p className={`v-telegraph ${toneClass(telegraph.tone)}`} aria-live="polite">
+        <span className="v-telegraph-kind">Likely reply</span>
+        <span className="v-telegraph-obstacle">“{obstacle}”</span>
+      </p>
+    );
   return (
     <p className={`v-telegraph ${toneClass(telegraph.tone)}`} aria-live="polite">
       {telegraph.tone && (
@@ -46,7 +55,7 @@ function TelegraphLine({ telegraph, pending }: { telegraph: Telegraph | null; pe
       {telegraph.says && !telegraph.text.includes(telegraph.says) && (
         <span className="v-telegraph-says">“{telegraph.says}”</span>
       )}
-      {telegraph.counter && !telegraph.text.includes(telegraph.counter) && (
+      {!obstacle && telegraph.counter && !telegraph.text.includes(telegraph.counter) && (
         <em className="v-telegraph-counter">{telegraph.counter}</em>
       )}
     </p>
@@ -172,7 +181,7 @@ export const Composer = memo(function Composer({
       const active = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       if (active instanceof HTMLSelectElement || active instanceof HTMLInputElement) return;
       if (active instanceof HTMLTextAreaElement) return;
-      const inSheet = active?.closest('.v-why, .v-standing, .v-overlay, .v-tabs');
+      const inSheet = active?.closest('.v-why, .v-standing, .v-overlay, .v-tabs, .v-day');
       if (inSheet && (e.key === 'Enter' || e.key === 'Escape')) return;
       // Game design review (GD4): after a mouse click the clicked option keeps focus, so Enter used to re-pick it
       // and never send. A pressed option, a strength, insist or reason button sends on Enter; an option not yet
@@ -288,7 +297,7 @@ export const Composer = memo(function Composer({
             ))}
           </fieldset>
 
-          <p className={`v-prefill ${prefill ? '' : 'is-none'}`}>
+          <p hidden={selected?.id === prefill?.optionId} className={`v-prefill ${prefill ? '' : 'is-none'}`}>
             {prefill ? (
               <>
                 <span className="v-prefill-tag">
@@ -301,7 +310,29 @@ export const Composer = memo(function Composer({
               'Nothing here is prefilled. Pick one, or say nothing.'
             )}
           </p>
-
+        </div>
+        <div className="v-commit">
+          <div className="v-preview">
+            <p className="v-draft-summary">
+              <strong className="v-draft-action">{selected?.label ?? 'No action selected'}</strong>
+              <span className="v-draft-how">
+                {draft ? STRENGTHS.find((s) => s.id === draft.strength)?.label : 'Choose an action'}
+                {draft?.insist ? ' · Insist' : ''}
+                {draft?.appeal ? ` · ${appealLabel(draft.appeal)}` : ''}
+              </span>
+            </p>
+            <p className="v-choice-context">
+              {selected?.id === prefill?.optionId && prefill
+                ? storyDates(prefill.why)
+                : selected?.id === leaningOpt?.id
+                  ? leaning?.why
+                  : ''}
+            </p>
+            <TelegraphLine
+              telegraph={selected ? shownTelegraph : null}
+              pending={!!selected && !shownTelegraph}
+            />
+          </div>
           <div className="v-how">
             <fieldset className="v-seg" aria-label="How strongly">
               {STRENGTHS.map((s) => (
@@ -345,22 +376,21 @@ export const Composer = memo(function Composer({
               </button>
             ))}
           </fieldset>
-        </div>
-        <div className="v-commit">
-          <div className="v-preview">
-            <p className="v-draft-summary">
-              <strong className="v-draft-action">{selected?.label ?? 'No action selected'}</strong>
-              <span className="v-draft-how">
-                {draft ? STRENGTHS.find((s) => s.id === draft.strength)?.label : 'Choose an action'}
-                {draft?.insist ? ' · Insist' : ''}
-                {draft?.appeal ? ` · ${appealLabel(draft.appeal)}` : ''}
-              </span>
-            </p>
-            <TelegraphLine
-              telegraph={selected ? shownTelegraph : null}
-              pending={!!selected && !shownTelegraph}
-            />
-          </div>
+          <label className="v-phone-reason">
+            <span>Reason</span>
+            <select
+              aria-label="Reason (optional)"
+              value={draft?.appeal ?? ''}
+              onChange={(e) => edit({ appeal: (e.target.value || undefined) as Appeal | undefined })}
+            >
+              <option value="">No reason</option>
+              {APPEALS.map((a) => (
+                <option key={a.id} value={a.id}>
+                  {a.label}
+                </option>
+              ))}
+            </select>
+          </label>
           <div className="v-say">
             <button type="button" className="v-btn v-btn-quiet" onClick={sayNothing}>
               Say nothing <kbd>Esc</kbd>
