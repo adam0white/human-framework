@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { gzipSync } from 'node:zlib';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { checkRun, RUN_LIMITS } from '../../../../packages/lab-client/src/index.ts';
 import worker, { cleanup, type Env } from '../../worker/lab.ts';
 import {
   aggregateDay,
@@ -145,6 +146,40 @@ describe('lab core', () => {
     expect(parseRun(`${bytes} `).ok).toBe(false);
     // UTF-8 bytes, rather than UTF-16 code units, govern the same limit as readCapped.
     expect(boundedRunJson(envelope(`{"pad":"${'é'.repeat(LIMITS.runInflatedBytes / 2)}"}`))).toBe(false);
+  });
+
+  it('keeps client and Worker allocation bounds and scan semantics aligned', () => {
+    expect(RUN_LIMITS).toEqual({
+      inflatedBytes: LIMITS.runInflatedBytes,
+      compressedBytes: LIMITS.runBytes,
+      tokens: LIMITS.runJsonTokens,
+      containers: LIMITS.runJsonContainers,
+      depth: LIMITS.runJsonDepth,
+    });
+    const inputs = [
+      '{}',
+      'not JSON',
+      JSON.stringify({ text: '[[{\\"{},:' }),
+      `${'['.repeat(65)}0${']'.repeat(65)}`,
+      `[${'[],'.repeat(45_000)}[]]`,
+      `[${'0,'.repeat(360_001)}0]`,
+      JSON.stringify({ text: 'é'.repeat(LIMITS.runInflatedBytes / 2) }),
+    ];
+    for (const text of inputs) expect(checkRun(text)).toBe(boundedRunJson(text));
+  });
+
+  it('keeps only a boolean compacted flag alongside the existing envelope fields', () => {
+    for (const compacted of [true, false]) {
+      const parsed = parseRun(
+        JSON.stringify({ v: 1, game: 'pass', run: { seed: 1 }, compacted, other: 'drop' }),
+      );
+      expect(parsed).toEqual({
+        ok: true,
+        run: { v: 1, game: 'pass', run: { seed: 1 }, build: {}, compacted },
+      });
+    }
+    const parsed = parseRun(JSON.stringify({ v: 1, game: 'pass', run: {}, compacted: 'true' }));
+    expect(parsed.ok && parsed.run).not.toHaveProperty('compacted');
   });
 
   it('accepts a well-formed batch and drops unknown fields', () => {

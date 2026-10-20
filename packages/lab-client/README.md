@@ -12,7 +12,7 @@ Privacy note for players: https://human.adamwhite.work/lab/privacy/. Endpoint an
 Until the first npm publish (an owner step, see below), install the release tarball by URL:
 
 ```sh
-npm install https://github.com/adam0white/human-framework/releases/download/lab-client-v0.1.1/adam0white-lab-client-0.1.1.tgz
+npm install https://github.com/adam0white/human-framework/releases/download/lab-client-v0.1.2/adam0white-lab-client-0.1.2.tgz
 ```
 
 After it is on npm: `npm install @adam0white/lab-client`.
@@ -46,11 +46,32 @@ To test against a local lab Worker (`npx wrangler dev --port 8799` in this repos
 - `createLab({ game, build?, endpoint?, captureErrors?, sendFromLocalhost? })` returns a `Lab`.
 - `lab.screen(name)`, `lab.milestone(name)`, `lab.flush()`.
 - `lab.eventsOn`, `lab.setEventsOff(off)`: the player's per-game opt-out, kept in localStorage and synchronized across open tabs on the same origin. Turning events off clears queued events in those tabs.
-- `lab.sendRun(run, { note?, who? })`: resolves to the run's reference id (`r-…`).
-- `lab.openSendDialog({ getRun, title?, who?, onSent? })`.
-- Helpers: `privacySignal`, `viewportClass`, `runEnvelope`, `gzip`.
+- `lab.sendRun(run, { note?, who?, compact?, compactNote? })`: resolves to the run's reference id (`r-…`).
+- `lab.openSendDialog({ getRun, title?, who?, compact?, compactNote?, onSent? })`.
+- Helpers: `privacySignal`, `viewportClass`, `runEnvelope`, `gzip`, `RUN_LIMITS`, `checkRun`.
 
 Uncaught errors are counted by default as their type and place only (for example `TypeError at app.js:12:5`), never the message text, at most 5 per session. Pass `captureErrors: false` to turn that off.
+
+## Large runs
+
+`RUN_LIMITS` exports the notebook caps as `inflatedBytes`, `compressedBytes`, `tokens`, `containers`, and `depth`. `checkRun(text)` returns whether serialized text fits the inflated UTF-8 and structural bounds. It scans quoted strings and escapes without parsing JSON; it does not validate syntax, game schemas, or replayability. Pass the whole envelope, including notes and build information.
+
+`sendRun` and `sendEnvelopeText` refuse an oversized or overly complex envelope before gzip or upload. They also refuse a gzip body above the compressed limit before upload. An under-limit run keeps the exact 0.1.1 envelope format.
+
+A game may supply `compact(run) => unknown`. It is called once, only when the full envelope exceeds the inflated or structural bounds. Its replacement is rechecked in an envelope with `compacted: true`; a replacement that still exceeds a bound is refused. Compression alone never triggers compaction. `compactNote` explains the replacement in the dialog; the default is “This run was shortened to fit the notebook.” The dialog shows the exact replacement and that explanation before enabling Send. Neither function compacts a run silently after consent.
+
+Prefer a replayable seed-and-inputs export without redundant snapshots, while retaining the version/build metadata the game's replay loader needs. The game owns that export shape and must verify its compact form still replays. For example, if the game's export has these fields:
+
+```ts
+lab.openSendDialog({
+  getRun: () => exportRun(state),
+  compact: (run) => {
+    const { seed, inputs, build, version } = run as GameExport;
+    return { seed, inputs, build, version };
+  },
+  compactNote: 'The seed, inputs and replay version are included; state snapshots are omitted.',
+});
+```
 
 ## Which games use it
 
@@ -63,7 +84,7 @@ The integrations cover The Pass, The Glance, The Two Voices, The Rope, Small Wor
 
 ## Server limits and retention
 
-The Worker accepts up to 2 MiB compressed and 4 MiB inflated per run. Before parsing JSON it rejects more than 30,000 containers, 120,000 structural tokens, or 64 levels of nesting. The limits bound allocation, not just transfer size. A conditional R2 counter reserves up to 200 uploads per UTC day; a failed store consumes its reservation, and bounded retries can refuse uploads under contention. The first counter includes runs already stored that day. Requests still running an older deployment are outside the new counter during cutover. Per-address (/64 for IPv6) and shared per-location ingress limits apply before decompression.
+The Worker accepts up to 2 MiB compressed and 3 MiB inflated per run. Before parsing JSON it rejects more than 45,000 containers, 360,000 structural tokens, or 64 levels of nesting. The limits bound allocation, not just transfer size. A conditional R2 counter reserves up to 200 uploads per UTC day; a failed store consumes its reservation, and bounded retries can refuse uploads under contention. The first counter includes runs already stored that day. Requests still running an older deployment are outside the new counter during cutover. Per-address (/64 for IPv6) and shared per-location ingress limits apply before decompression.
 
 Anonymous events have a conditional R2 admission limit of 1,000 batches per UTC day. This is a deliberate small-lab capacity limit: excess or contended requests fail before storage acceptance; failed storage can consume a reservation. It bounds the retained aggregation state to at most 1,000 sessions. Rates and daily capacity are separate limits.
 

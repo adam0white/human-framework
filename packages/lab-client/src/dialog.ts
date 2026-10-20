@@ -4,9 +4,10 @@
  * can use it. It shows exactly what will be sent before anything is sent.
  */
 import type { Lab } from './index.ts';
-import { gzip, PRIVACY_URL, runEnvelope } from './util.ts';
+import { checkRun, compressedRefusal, RUN_LIMITS, runRefusal } from './limits.ts';
+import { type CompactOptions, gzip, PRIVACY_URL, runEnvelope } from './util.ts';
 
-export type SendDialogOptions = {
+export type SendDialogOptions = CompactOptions & {
   lab: Lab;
   /** Returns the game's playtest export (seed, input log, state) at the moment the dialog opens. */
   getRun: () => unknown;
@@ -68,6 +69,10 @@ function el<K extends keyof HTMLElementTagNameMap>(
 
 const kb = (n: number) => (n < 1024 ? `${n} bytes` : `${(n / 1024).toFixed(n < 10240 ? 1 : 0)} KB`);
 
+function errorMessage(error: unknown, fallback: string): string {
+  return error instanceof Error && error.message ? error.message : fallback;
+}
+
 export function openSendDialog(options: SendDialogOptions): void {
   const { lab } = options;
   if (!document.getElementById(STYLE_ID)) {
@@ -94,6 +99,7 @@ export function openSendDialog(options: SendDialogOptions): void {
     readOnly: true,
     'aria-label': 'The exact text that is sent',
   });
+  const compactNotice = el('p', { className: 'soft' });
   const sizes = el('span', {});
   const summary = el('summary', {}, 'Exactly what is sent ', sizes);
   const details = el('details', {}, summary, exact);
@@ -107,30 +113,66 @@ export function openSendDialog(options: SendDialogOptions): void {
   const eventsRow = el('label', { className: 'check', for: 'hflab-events' }, eventsBox, eventsNote);
   if (!lab.eventsOn) eventsBox.disabled = true;
 
-  const text = () => JSON.stringify(runEnvelope(lab.game, build, run, { note: note.value, who: who.value }));
+  const text = () =>
+    JSON.stringify(
+      runEnvelope(lab.game, build, run, {
+        note: note.value,
+        who: who.value,
+        compacted,
+      }),
+    );
   eventsBox.addEventListener('change', () => lab.setEventsOff(!eventsBox.checked));
+  let compacted = false;
+  let compactAttempted = false;
   let pending = 0;
+  let approvedText = '';
+  let sending = false;
+  let closed = false;
   const refresh = async () => {
-    const t = text();
-    exact.value = JSON.stringify(JSON.parse(t), null, 1);
     const ticket = ++pending;
-    sizes.textContent = `(${kb(new TextEncoder().encode(t).length)})`;
+    send.disabled = true;
+    approvedText = '';
+    status.className = 'status';
+    status.textContent = 'Checking run size…';
     try {
+      if (run === undefined) throw new Error('There is no run to send yet.');
+      if (typeof CompressionStream === 'undefined') {
+        throw new Error('This browser cannot compress the run. Download the run file from the game instead.');
+      }
+      let t = text();
+      if (!checkRun(t) && options.compact && !compactAttempted) {
+        compactAttempted = true;
+        // A failed compactor must not mutate the held run and bypass disclosure on a later edit.
+        const replacement = options.compact(JSON.parse(JSON.stringify(run)));
+        if (replacement === undefined || replacement === null) throw new Error(runRefusal(t));
+        run = JSON.parse(JSON.stringify(replacement));
+        compacted = true;
+        compactNotice.textContent = options.compactNote ?? 'This run was shortened to fit the notebook.';
+        t = text();
+      }
+      // Display the actual serialized bytes, including the compaction marker, before consent.
+      exact.value = t;
+      sizes.textContent = `(${kb(new TextEncoder().encode(t).length)})`;
+      if (!checkRun(t)) throw new Error(runRefusal(t));
       const gz = await gzip(t);
-      if (ticket === pending)
-        sizes.textContent = `(${kb(new TextEncoder().encode(t).length)}, ${kb(gz.size)} compressed)`;
-    } catch {}
+      if (closed || ticket !== pending || sending) return;
+      sizes.textContent = `(${kb(new TextEncoder().encode(t).length)}, ${kb(gz.size)} compressed)`;
+      if (gz.size > RUN_LIMITS.compressedBytes) throw new Error(compressedRefusal(gz.size));
+      approvedText = t;
+      status.textContent = '';
+      send.disabled = false;
+    } catch (error) {
+      if (closed || ticket !== pending) return;
+      status.className = 'status err';
+      status.textContent = `Not sent: ${errorMessage(error, 'the run could not be prepared.')}`;
+    }
   };
-  details.addEventListener('toggle', () => {
-    if (details.open) void refresh();
+  note.addEventListener('input', () => {
+    if (!sending) void refresh();
   });
-  let timer: ReturnType<typeof setTimeout> | undefined;
-  const later = () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => void refresh(), 300);
-  };
-  note.addEventListener('input', later);
-  who.addEventListener('input', later);
+  who.addEventListener('input', () => {
+    if (!sending) void refresh();
+  });
 
   const sheet = el(
     'div',
@@ -150,6 +192,7 @@ export function openSendDialog(options: SendDialogOptions): void {
       el('span', { className: 'soft' }, '(optional, no need for a name)'),
     ),
     who,
+    compactNotice,
     details,
     eventsRow,
     el(
@@ -165,7 +208,8 @@ export function openSendDialog(options: SendDialogOptions): void {
   const veil = el('div', { className: 'hflab-veil' }, sheet);
 
   const close = () => {
-    clearTimeout(timer);
+    closed = true;
+    pending++;
     veil.remove();
     document.removeEventListener('keydown', onKey, true);
     opener?.focus?.();
@@ -196,26 +240,16 @@ export function openSendDialog(options: SendDialogOptions): void {
   });
   cancel.addEventListener('click', close);
 
-  if (run === undefined) {
-    status.className = 'status err';
-    status.textContent = 'There is no run to send yet.';
-    send.disabled = true;
-  } else if (typeof CompressionStream === 'undefined') {
-    status.className = 'status err';
-    status.textContent = 'This browser cannot compress the run. Download the run file from the game instead.';
-    send.disabled = true;
-  }
-
   send.addEventListener('click', async () => {
+    if (!approvedText || send.disabled || sending || closed) return;
+    sending = true;
     send.disabled = true;
     status.className = 'status';
     status.textContent = 'Sending…';
     // What is shown stays what is sent: the fields are locked while the request is in flight.
     note.readOnly = true;
     who.readOnly = true;
-    const sent = text();
-    clearTimeout(timer);
-    exact.value = JSON.stringify(JSON.parse(sent), null, 1);
+    const sent = approvedText;
     try {
       const id = await lab.sendEnvelopeText(sent);
       status.className = 'status ok';
@@ -226,7 +260,8 @@ export function openSendDialog(options: SendDialogOptions): void {
       options.onSent?.(id);
     } catch (e) {
       status.className = 'status err';
-      status.textContent = `Not sent: ${(e as Error).message || 'the notebook could not be reached.'}`;
+      status.textContent = `Not sent: ${errorMessage(e, 'the notebook could not be reached.')}`;
+      sending = false;
       send.disabled = false;
       note.readOnly = false;
       who.readOnly = false;
@@ -234,5 +269,6 @@ export function openSendDialog(options: SendDialogOptions): void {
   });
 
   document.body.append(veil);
+  void refresh();
   note.focus();
 }

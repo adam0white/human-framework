@@ -41,6 +41,8 @@ export type RunEnvelope = {
   /** optional "who you are" label, e.g. 'owner' */
   who?: string;
   build?: { c?: string; hf?: string; a?: string };
+  /** The game shortened its replay export before sending. */
+  compacted?: boolean;
   /** the game's own playtest export (seed, input log, state) */
   run: unknown;
 };
@@ -216,6 +218,7 @@ export function parseRun(text: string): { ok: true; run: RunEnvelope } | { ok: f
     return { ok: false, error: 'note too long' };
   const out: RunEnvelope = { v: 1, game: r.game, run: r.run, build: cleanBuild(r.build) };
   const note = typeof r.note === 'string' ? r.note.trim().slice(0, LIMITS.noteChars) : '';
+  if (typeof r.compacted === 'boolean') out.compacted = r.compacted;
   if (note) out.note = note;
   const who = cleanText(r.who, LIMITS.whoChars);
   if (who) out.who = who;

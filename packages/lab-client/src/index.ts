@@ -15,9 +15,12 @@
  * Not covered: replay links, offline queueing of runs, and any analytics beyond the fields above.
  */
 import { openSendDialog, type SendDialogOptions } from './dialog.ts';
-import { type Build, DEFAULT_ENDPOINT, gzip, runEnvelope } from './util.ts';
+import { checkRun, compressedRefusal, RUN_LIMITS, runRefusal } from './limits.ts';
+import { type Build, type CompactOptions, DEFAULT_ENDPOINT, gzip, prepareRun } from './util.ts';
 
-export { type Build, DEFAULT_ENDPOINT, gzip, PRIVACY_URL, runEnvelope } from './util.ts';
+export { checkRun, RUN_LIMITS } from './limits.ts';
+
+export { type Build, type CompactOptions, DEFAULT_ENDPOINT, gzip, PRIVACY_URL, runEnvelope } from './util.ts';
 export { openSendDialog, type SendDialogOptions };
 
 const SID_KEY = 'hf-lab-session';
@@ -51,7 +54,7 @@ export type Lab = {
   /** Turn regular events off or on for this game in this browser (remembered in localStorage). */
   setEventsOff(off: boolean): void;
   /** Sends a run directly. Resolves to the run's reference id. */
-  sendRun(run: unknown, extra?: { note?: string; who?: string }): Promise<string>;
+  sendRun(run: unknown, extra?: { note?: string; who?: string } & CompactOptions): Promise<string>;
   /** Sends an envelope already serialized (the dialog sends exactly the text it showed). */
   sendEnvelopeText(text: string): Promise<string>;
   /** Opens the "Send this run to the notebook" dialog. */
@@ -266,11 +269,13 @@ export function createLab(options: LabOptions): Lab {
       setItem(local, offKey, value ? '1' : null);
       if (value) queue.length = 0;
     },
-    sendRun(run, extra = {}) {
-      return lab.sendEnvelopeText(JSON.stringify(runEnvelope(game, build, run, extra)));
+    async sendRun(run, extra = {}) {
+      return lab.sendEnvelopeText(prepareRun(game, build, run, extra));
     },
     async sendEnvelopeText(text) {
+      if (!checkRun(text)) throw new Error(runRefusal(text));
       const body = await gzip(text);
+      if (body.size > RUN_LIMITS.compressedBytes) throw new Error(compressedRefusal(body.size));
       const res = await fetch(`${endpoint}/run`, {
         method: 'POST',
         body,
