@@ -1,12 +1,12 @@
 /**
  * SCOPE: the composite. `createPerson` wires every faculty's constructor; `tick` advances all faculties in
  * closed form from `p.now` to a later minute under the current activity's body load (idle awake otherwise),
- * splitting at the activity's end; `perceive` runs attention, then beliefs, relationships, judgement of
- * others' acts, memory and appraisal; `decide` scores offers and resolves the will (`answerNow` answers a
- * suggestion immediately); `begin` and `finish` bracket an activity and route the outcome into body, needs,
- * skills, habits, memory, conscience, agenda, relationships and trust in advising voices. Direct control is
- * `command`, `releaseCommand` and `previewCommand`; `knockDown` and `standUp` move a person in and out of the
- * downed state; `observeSkill` is observational learning; `setRetention` sets the per-person retention
+ * splitting at the activity's end and the absolute hourly grid; `perceive` runs attention, then beliefs,
+ * relationships, judgement of others' acts, memory and appraisal; `decide` scores offers and resolves the
+ * will (`answerNow` answers a suggestion immediately); `begin` and `finish` bracket an activity and route the
+ * outcome into body, needs, skills, habits, memory, conscience, agenda, relationships and trust in advising
+ * voices. Direct control is `command`, `releaseCommand` and `previewCommand`; `knockDown` and `standUp`
+ * move a person in and out of the downed state; `observeSkill` is observational learning; `setRetention` sets the per-person retention
  * bounds; `readPerson` is the read-only summary. Snapshot and restore live in `restore.ts`. This file owns
  * `now`, `activity`, `trace`, `nextDecision` and `retention`; every other slice is written only through its
  * owning module. It sequences the modules and makes no behavioural claims of its own beyond the engineering
@@ -1348,6 +1348,130 @@ export interface FinishOptions {
   transfer?: SkillTransfer;
 }
 
+/** Realized need changes, using readings captured before and after the outcome's deltas. */
+function realizedNeedDeltas(
+  act: Activity,
+  given: Partial<Record<NeedId, number>>,
+  before: NeedReading[],
+  after: NeedReading[],
+): Partial<Record<NeedId, number>> {
+  const aff = act.affordance;
+  const realized: Partial<Record<NeedId, number>> = {};
+  for (const id of [...PHYSIOLOGICAL_NEEDS, ...PSYCHOLOGICAL_NEEDS]) {
+    if (given[id] === undefined) continue;
+    realized[id] =
+      id === 'food' || id === 'water' || id === 'relief'
+        ? levelOf(after, id) - levelOf(before, id)
+        : given[id];
+  }
+  for (const id of ['sleep', 'rest'] as const) {
+    if (aff.advertises[id] !== undefined && given[id] === undefined) {
+      realized[id] = levelOf(after, id) - (act.needsAtStart[id] ?? levelOf(before, id));
+    }
+  }
+  return realized;
+}
+
+/** Record the deed and apply its appraisal, repentance, repair and regulation. */
+function respondToConscience(
+  p: Person,
+  act: Activity,
+  now: Minute,
+  completed: boolean,
+  minutes: number,
+): { deed: ReturnType<typeof recordDeed>; tags: string[] } {
+  const aff = act.affordance;
+  const deed = recordDeed(p, aff, act.intention, now, completed, act.necessity ? { necessity: true } : {});
+  for (const ev of deed.appraisal) appraise(p, ev);
+  const tags = aff.tags ?? [];
+  if (completed && (tags.includes('worship') || tags.includes('repent'))) {
+    // Worship closes breaches against God alone; guilt toward a wronged person waits for repair.
+    const repented = new Set<string>();
+    for (const b of p.conscience.breaches) {
+      if (!b.repaired && b.victimId === undefined && repent(p, b.id, now)) repented.add(b.normId);
+    }
+    for (const b of p.conscience.breaches)
+      if (!b.repaired && b.victimId !== undefined) repented.delete(b.normId);
+    for (const normId of [...repented].sort())
+      release(p, { id: 'guilt', causePrefix: `breach:${normId}` }, 0.6);
+    regulate(p, minutes, 'worship');
+  }
+  if (completed && (tags.includes('repair') || tags.includes('apologize')) && aff.targetId !== undefined) {
+    recordRepair(p, aff.targetId, now);
+    release(p, { id: 'guilt', targetId: aff.targetId });
+    socialEvent(p, { at: now, kind: 'apology', otherId: aff.targetId, byMe: true, magnitude: 0.7 });
+  }
+  if (act.mode === 'sleep' || tags.includes('rest') || tags.includes('reflection')) {
+    regulate(p, minutes, tags.includes('reflection') ? 'reflection' : 'rest');
+  }
+  return { deed, tags };
+}
+
+/** Record relationships and character experience from a completed activity. */
+function recordParticipation(p: Person, aff: Affordance, tags: string[], now: Minute, minutes: number): void {
+  const D = PERSON_DEFAULTS;
+  if (p.character && (aff.with ?? []).some((o) => o !== p.id)) noteCharacterSocial(p, minutes);
+  const kind: SocialEventKind = tags.includes('work') ? 'shared-work' : 'chat';
+  for (const other of aff.with ?? []) {
+    if (other === p.id) continue;
+    socialEvent(p, { at: now, kind, otherId: other, byMe: true, magnitude: D.participationMagnitude });
+  }
+  if (aff.targetId !== undefined && aff.targetId !== p.id) {
+    const care = tags.includes('help') ? 'help' : tags.includes('gift') ? 'gift' : undefined;
+    if (care) socialEvent(p, { at: now, kind: care, otherId: aff.targetId, byMe: true, magnitude: 0.7 });
+  }
+}
+
+/** Learn from each advising voice after the activity's conscience and agenda results are known. */
+function learnActivityVoices(
+  p: Person,
+  act: Activity,
+  after: NeedReading[],
+  now: Minute,
+  felt: number,
+  broken: Commitment[],
+  breached: number,
+): void {
+  const aff = act.affordance;
+  const D = PERSON_DEFAULTS;
+  // Trust in every voice that pushed this activity: how it felt, minus bodily harm the host's deltas do not
+  // show (needs that fell during the activity and are now urgent).
+  const voices = act.suggestions ?? (act.suggestion ? [act.suggestion] : []);
+  if (voices.length > 0) {
+    let harm = 0;
+    for (const id of ['food', 'water', 'sleep', 'rest'] as const) {
+      if (urgencyOf(after, id) < D.voiceHarmUrgency) continue;
+      harm += Math.max(0, (act.needsAtStart[id] ?? levelOf(after, id)) - levelOf(after, id));
+    }
+    // Doing what a voice pushed broke a commitment or the person's own standards: that costs the voice as harm
+    // does (review 2026-10-03: thirty broken fasts under insistence had moved trust only 0.50 -> 0.41). Omissions
+    // the push caused later (a missed prayer during a pushed activity) are not attributed here.
+    let breach = 0;
+    for (const c of broken) breach += D.missedDistress * c.importance;
+    breach += D.missedDistress * 0.5 * breached;
+    for (const res of voices) {
+      const protest = res.verdict === 'complied' || res.verdict === 'commanded';
+      const reason =
+        breach > 0
+          ? protest
+            ? 'breach-under-protest'
+            : 'breach'
+          : harm > 0
+            ? protest
+              ? 'harm-under-protest'
+              : 'harm'
+            : felt >= 0
+              ? 'went-well'
+              : 'went-badly';
+      learnFromVoice(p, res, clampSigned(felt - D.voiceHarmGain * harm - breach), {
+        at: now,
+        action: aff.action,
+        reason,
+      });
+    }
+  }
+}
+
 /**
  * Apply what happened. Physiological deltas go to the body, psychological ones to the needs, then skills,
  * habits, memory (expectation learning and an episode), conscience (deed, breaches, repair), agenda,
@@ -1384,19 +1508,7 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
   // Realized deltas: what the body actually took in for food/water/relief (a drink at full hydration
   // realizes nothing), host values for psychological needs, and measured since the start for sleep/rest.
   const after = readNeeds(p, readBodyOf(p));
-  const realized: Partial<Record<NeedId, number>> = {};
-  for (const id of [...PHYSIOLOGICAL_NEEDS, ...PSYCHOLOGICAL_NEEDS]) {
-    if (given[id] === undefined) continue;
-    realized[id] =
-      id === 'food' || id === 'water' || id === 'relief'
-        ? levelOf(after, id) - levelOf(before, id)
-        : given[id];
-  }
-  for (const id of ['sleep', 'rest'] as const) {
-    if (aff.advertises[id] !== undefined && given[id] === undefined) {
-      realized[id] = levelOf(after, id) - (act.needsAtStart[id] ?? levelOf(before, id));
-    }
-  }
+  const realized = realizedNeedDeltas(act, given, before, after);
 
   // Felt valence.
   let felt = 0;
@@ -1464,29 +1576,7 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
   remember(p, episode);
 
   // Conscience.
-  const deed = recordDeed(p, aff, act.intention, now, completed, act.necessity ? { necessity: true } : {});
-  for (const ev of deed.appraisal) appraise(p, ev);
-  const tags = aff.tags ?? [];
-  if (completed && (tags.includes('worship') || tags.includes('repent'))) {
-    // Worship closes breaches against God alone; guilt toward a wronged person waits for repair.
-    const repented = new Set<string>();
-    for (const b of p.conscience.breaches) {
-      if (!b.repaired && b.victimId === undefined && repent(p, b.id, now)) repented.add(b.normId);
-    }
-    for (const b of p.conscience.breaches)
-      if (!b.repaired && b.victimId !== undefined) repented.delete(b.normId);
-    for (const normId of [...repented].sort())
-      release(p, { id: 'guilt', causePrefix: `breach:${normId}` }, 0.6);
-    regulate(p, minutes, 'worship');
-  }
-  if (completed && (tags.includes('repair') || tags.includes('apologize')) && aff.targetId !== undefined) {
-    recordRepair(p, aff.targetId, now);
-    release(p, { id: 'guilt', targetId: aff.targetId });
-    socialEvent(p, { at: now, kind: 'apology', otherId: aff.targetId, byMe: true, magnitude: 0.7 });
-  }
-  if (act.mode === 'sleep' || tags.includes('rest') || tags.includes('reflection')) {
-    regulate(p, minutes, tags.includes('reflection') ? 'reflection' : 'rest');
-  }
+  const { deed, tags } = respondToConscience(p, act, now, completed, minutes);
 
   // Agenda.
   const routed: Outcome = { ...outcome };
@@ -1509,55 +1599,10 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
   }
 
   // Relationships from taking part together.
-  if (completed) {
-    if (p.character && (aff.with ?? []).some((o) => o !== p.id)) noteCharacterSocial(p, minutes);
-    const kind: SocialEventKind = tags.includes('work') ? 'shared-work' : 'chat';
-    for (const other of aff.with ?? []) {
-      if (other === p.id) continue;
-      socialEvent(p, { at: now, kind, otherId: other, byMe: true, magnitude: D.participationMagnitude });
-    }
-    if (aff.targetId !== undefined && aff.targetId !== p.id) {
-      const care = tags.includes('help') ? 'help' : tags.includes('gift') ? 'gift' : undefined;
-      if (care) socialEvent(p, { at: now, kind: care, otherId: aff.targetId, byMe: true, magnitude: 0.7 });
-    }
-  }
+  if (completed) recordParticipation(p, aff, tags, now, minutes);
 
-  // Trust in every voice that pushed this activity: how it felt, minus bodily harm the host's deltas do not
-  // show (needs that fell during the activity and are now urgent).
-  const voices = act.suggestions ?? (act.suggestion ? [act.suggestion] : []);
-  if (voices.length > 0) {
-    let harm = 0;
-    for (const id of ['food', 'water', 'sleep', 'rest'] as const) {
-      if (urgencyOf(after, id) < D.voiceHarmUrgency) continue;
-      harm += Math.max(0, (act.needsAtStart[id] ?? levelOf(after, id)) - levelOf(after, id));
-    }
-    // Doing what a voice pushed broke a commitment or the person's own standards: that costs the voice as harm
-    // does (review 2026-10-03: thirty broken fasts under insistence had moved trust only 0.50 -> 0.41). Omissions
-    // the push caused later (a missed prayer during a pushed activity) are not attributed here.
-    let breach = 0;
-    for (const c of broken) breach += D.missedDistress * c.importance;
-    breach += D.missedDistress * 0.5 * deed.breached.length;
-    for (const res of voices) {
-      const protest = res.verdict === 'complied' || res.verdict === 'commanded';
-      const reason =
-        breach > 0
-          ? protest
-            ? 'breach-under-protest'
-            : 'breach'
-          : harm > 0
-            ? protest
-              ? 'harm-under-protest'
-              : 'harm'
-            : felt >= 0
-              ? 'went-well'
-              : 'went-badly';
-      learnFromVoice(p, res, clampSigned(felt - D.voiceHarmGain * harm - breach), {
-        at: now,
-        action: aff.action,
-        reason,
-      });
-    }
-  }
+  // Voice learning follows both conscience and agenda, so it includes their breaches.
+  learnActivityVoices(p, act, after, now, felt, broken, deed.breached.length);
 
   // Chronicle, while the activity is still current.
   const noted: Parameters<typeof noteOutcome>[2] = { kept: kept.map((c) => c.id) };
