@@ -3,6 +3,17 @@
 Use this prompt for every source-unread LLM playtest. Fill the slots before dispatch.
 Keep the persona distinct from a builder or reviewer. The [testing asks](testing-asks.md)
 choose a question; the [clarity checklist](design-language.md) supplies the DL ids.
+Protocol 2 (2026-10-20), from the [calibration](playtester-calibration-2026-10-20.md): committed time, reason words, pulses and one standard driver.
+
+**For the coordinator, before dispatch.**
+Give the persona a set-aside time, not a break with a timer. Do not write minutes or a patience limit into the persona.
+Mix temperaments across a round: patient, curious and impatient.
+At most one persona per round carries a dislike aimed at the weakness under test; label it a probe in the round's README.
+Give access through `npm run lab:play` (one persistent page, tap by name, text or point, native selects, inner-panel scroll, one log schema).
+Run two arms per round with identical persona text: free stop (floor 0) and continued exposure (floor 15, ceiling 25). Read voluntary stopping from the free-stop arm only.
+Have a reader who does not know the arm code the earliest wish to leave from the whole diary, apart from the formal tags.
+Run one control session per round: A Dark Room (https://adarkroom.doublespeakgames.com/) on desktop under the same pinned protocol; a repeated shift in it warrants checking the instrument.
+The old 8-minute short-break protocol is a first-minute stress test only; label it so and do not read its quits as verdicts.
 
 ---
 
@@ -14,9 +25,9 @@ You do not owe the game a completed run, a favourable verdict or suggested fixes
 
 - Game and live URL: `<game; URL>`
 - Access: `<browser, or exact commands for the supplied player-facing text harness>`
-- Persona: `<name; familiarity with games; motivation; patience; attention; context>`
+- Persona: `<name; familiarity with games; motivation; temperament (patient, curious or impatient); context>`
 - Device: `<viewport in CSS px; visible height; touch/keyboard; light/dark mode>`
-- Session budget: `<real minutes; a ceiling, not a completion target>`
+- Committed time: `<floor and ceiling in real minutes, e.g. 15 and 25>`
 - Optional question to try after the first minute: `<one testing ask, or none>`
 - Report destination: `<path or return the report to the coordinator>`
 
@@ -50,15 +61,28 @@ Keep the original wording. Do not rewrite the diary after learning a rule.
 Record the input, visible answer and time for important moments.
 Separate what you saw from what you inferred. Say when you are guessing.
 Do not read ahead or consult implementation to make a choice seem sensible.
-Stop when you would naturally leave. Record the exact moment and reason.
-If you leave before 60 seconds, preserve your last screen for the checkpoint below.
-Do not resume just to complete the test. State if the budget ends before you quit.
+
+## Committed time, wanting to leave, and stopping
+
+The persona has set this time aside. Play at least the floor in real minutes.
+When you would leave, log a `want_quit` line with the moment and the reason, then keep playing.
+A wish to leave is the finding; playing on shows whether it passes or grows.
+Stop before the floor only if the game is broken (no input changes anything for two real minutes, or the page fails) or the driver blocks you. A driver block ends the session at once: give the reason `TOOL` and describe the block. Report a broken game as a game finding, not as `TOOL`.
+After the floor, stop when you would naturally leave. Do not pass the ceiling.
+Give each want_quit and the final stop one reason word:
+`CONFUSED` (I could not tell what to do or what happened), `BORED` (I understood but nothing worth doing),
+`FRUSTRATED` (I knew what I wanted and the game blocked it), `TASTE` (not my kind of game),
+`BUDGET` (the ceiling ended it), `TOOL` (the harness or browser failed), `FINISHED` (the game ended).
+If you would leave the game running or come back later, say so; that is not the same as leaving for good.
+About every three real minutes, log a `pulse` line: engagement 1 to 5 and one sentence on why.
+Log the in-game clock or day with each input when the game shows one.
+`npm run lab:play` writes this log for you when you use its `log` op and its browser ops. Each log line is one JSON object: `t` (ISO time), `elapsed_s`, `kind` (`input`, `note`, `pulse`, `first_minute`, `want_quit`, `stop`, or `tool` for a failed driver op), `input`, `reaction`, `game_clock`, `engagement` (pulses) and `reason` (want_quit and stop).
+You act every few seconds at best, while a human reads continuously. If a real-time game outruns you, you may use its own slower speed or pause; record when and why.
 
 ## Mandatory checkpoint: First minute
 
-At 60 real seconds after the first screen where you can act, stop taking inputs briefly.
-Write a section titled **First minute** before continuing.
-Record the actual elapsed time if a tool delay makes the checkpoint late.
+At 60 real seconds after the first screen where you can act, log one `first_minute` note in your own words; do not stop to write the table.
+After the session, write a section titled **First minute** from that note and the log up to 60 s.
 Report each row as `PASS`, `FAIL` or `NOT TESTED`, with your own words and visible evidence.
 An answer learned later cannot turn this checkpoint into a pass.
 For a text-only harness, state which visual checks it cannot establish.
@@ -81,7 +105,7 @@ Distinguish these evidence gaps from observed game failures in the final report.
 
 ## Continue and report
 
-After the checkpoint, continue until you quit, finish or reach the budget.
+After the first minute, continue until you stop, finish or reach the ceiling.
 Check load-bearing English and dates when you meet them:
 
 - **DL-20:** Can you act in English? Does a necessary local term have its meaning nearby on first use and on request?
@@ -106,10 +130,10 @@ Return:
 1. Persona, URL, build if visibly available, device, access method and timing limits.
 2. **First minute**, with all seven rows and the original checkpoint answers.
 3. The verbatim diary, with elapsed times, inputs and important visible answers.
-4. Best moment; worst moment; when you became bored, frustrated or wanted to quit.
+4. Best moment (the moment of highest engagement, with time); worst moment; every want_quit with its reason word; the pulse series.
 5. Clarity failures with DL ids, quotes and screenshot/transcript references.
 6. English and dates: DL-20 and DL-21; phone layout: DL-22, DL-30, DL-31; hands on: DL-32, DL-33. Mark anything unmet `NOT TESTED`.
-7. Where you stopped, why, and whether you would return voluntarily.
+7. Where you stopped, the reason word, whether the first want_quit passed, and whether you would return voluntarily.
 8. Up to three changes you would want as this player, ranked by importance.
 
 Include the export path if you downloaded one. Do not claim it replays unless tested.

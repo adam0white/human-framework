@@ -1,0 +1,111 @@
+# Playtester calibration, 2026-10-20
+
+**Conclusion.** A bare stop time from the lab's source-unread LLM testers is not a fun measure. Under the protocol the lab used all day (8-minute ceiling, short-break persona, testers writing their own browser driver), two widely loved browser games also stopped early: Universal Paperclips at 2:00 and A Dark Room at 4:13. So an early stop does not by itself say a game is weak. These sessions do not estimate how much of the HF games' early stopping comes from the instrument and how much from the games. A cleaned free-stop comparison then separated the two kinds of game. With the standard driver, an evening persona with no timer or planted dislike, and free stopping, A Dark Room ran to 7:10 and 10:43, while The Night Watch stopped at 3:52 and 5:02. All four Night Watch testers (two of them under a 15-minute floor) named the same missing verb: a way to relieve or rotate a tired watcher. Two sessions per arm, on different devices and genres, cannot settle it. The reading they support is that the old protocol compressed loved and weak openings into one band, and that The Night Watch's early stop is at least partly the game, with a nameable cause. The reasons the testers give remain useful: they name a specific part to reproduce and, where it replays, to fix. The changes below (one standard driver, a reason word for each wish to leave, engagement pulses, the first-minute table written afterwards, personas without a timer) are now in the canonical [prompt](playtester-prompt.md). The committed floor is a provisional continued-exposure test, run beside free-stop sessions, not a replacement for them.
+
+This answers the concern raised after the [patterns round](reviews/patterns-2026-10-20/README.md): across the 2026-10-20 source-unread sessions, most testers stopped at 3-5 minutes whichever fix had landed ([L21](lessons.md)). Was that the games or the instrument? A Codex adversarial review of the first draft found three blockers (an unsupported causal headline, forced persistence read as engagement, mismatched endpoints) and six should-fix errors. This version corrects them; the [review section](#adversarial-review) lists what changed.
+
+## What was measured
+
+**Corpus.** 55 source-unread Codex sessions in the four 2026-10-20 review folders ([clarity retest](reviews/clarity-retest-2026-10-20/README.md), [follow-ups](reviews/clarity-followups-2026-10-20/README.md), [design round](reviews/design-round-2026-10-20/README.md), [patterns](reviews/patterns-2026-10-20/README.md)). Each ran the canonical prompt with `codex exec`, model gpt-6.1-sol at high effort, at 360×690 touch, with an 8-minute ceiling. Each tester wrote its own Playwright control server. Eight Sonnet readers coded every report ([coding table](reviews/calibration-2026-10-20/report-coding.md)). The classifications are their judgement, with borderline rows marked. The owner's verdicts were set beside the LLM sessions game by game ([owner comparison](reviews/calibration-2026-10-20/owner-calibration.md)).
+
+**New sessions.** Same model and the same approach (each tester wrote its own driver; controllers differed), 2026-10-20 ([reports](reviews/calibration-2026-10-20/README.md)). Times are from the first usable screen unless marked "nav" (from navigation, a few seconds earlier).
+
+| Session | Game | Protocol | Persona setting | First negative reaction | First thought of leaving | First tagged `want_quit` | Stop | Stop reason | Highest pulse (time) | Return statement |
+|---|---|---|---|---|---|---|---|---|---|---|
+| c2 | Universal Paperclips, desktop | old, 8-min | lunch break, 8 minutes, dislikes repeated clicking | 0:36 | not collected comparably | not collected | 2:00 | BORED | not collected | no, "during another short lunch" |
+| c1c | A Dark Room, desktop | old, 8-min | lunch break, 8 minutes, dislikes waiting | 2:01 | 3:30 ("going back to work") | not collected | 4:13 | BORED | not collected | conditional: "when I could leave an idle game open" |
+| c1, c1b | A Dark Room, desktop | old | as c1c | - | - | - | 1:17, 2:17 | TOOL (locator could not click text-styled controls) | - | - |
+| a1 | The Night Watch, phone | old, persona minutes and ceiling 8 → 20 | night-shift break, 20 minutes | 2:40 | 6:09 (strongest frustration) | not collected | 6:28 (8-min sessions: 3:40, 3:59) | FRUSTRATED (could not help a bitten watcher) | not collected | no, "on this shift break" |
+| a2 | Twice at the Well, phone | old, 8 → 20 (nav) | lunch break, 20 minutes | 0:41 | 6:49 | not collected | 7:12 (8-min sessions: 4:40, 4:57) | FRUSTRATED (orders did not stick) | not collected | no, "on this phone" |
+| n1 | A Dark Room, desktop | floor 15, ceiling 25 | free evening, patient, no dislike clause | 11:52 (pulse 3) | 11:40 ("happily leave this running while I made tea") | 13:32 | 16:55 | BORED | 5 at 5:58 (cart bought 5:52) | "I would return voluntarily to see this village grow" |
+| n2 | Universal Paperclips, desktop | floor 15 | Sunday afternoon, curious | about 6:00 (pulse 3) | 7:07 | 7:07; passed briefly, again 13:07 | 15:05, at the floor | BORED | 4 at 2:57 (first AutoClipper 2:24) | would check back for cash later |
+| n3 | The Night Watch, phone | floor 15 (nav) | night off at home, patient | 5:57 (pulse 3, tool) | 7:19 | 7:19, TOOL | 15:14, at the floor | TOOL (could not scroll the dawn report) | 4 at 3:01 (bell and "Holding!" 3:37) | for the bell and watchers, conditional |
+| n4 | The Valley, phone | floor 15 | quiet evening, curious | 6:07 (tool) | 6:07 | 6:07, TOOL | 15:09, at the floor | TOOL (could not operate a native selector) | 4 at 2:54 (newborn visit 2:23-2:35) | "another evening with a working controller", conditional |
+
+The two aborted A Dark Room attempts make ten attempts in all. Four ended in a driver block (c1, c1b, n3, n4), and n1 lost its first 100 s to one. Every cell is a single session: these are observed differences, and neither repeatability nor effect size is known.
+
+## Floor against free stop on one HF build
+
+The reviewer's cheapest next experiment, run the same afternoon. Four fresh sessions ran on the live Night Watch at 360×690, and two on A Dark Room on desktop. All six used the standard driver `npm run lab:play` and the same persona frame ("an evening at home"; Frostpunk, Kingdom Two Crowns and FTL for Watch; idle games for A Dark Room), with no timer, no temperament label and no dislike clause. The only difference within The Night Watch was the floor. The reports are `e-*.md` in the [session folder](reviews/calibration-2026-10-20/README.md). The earliest wish to leave below is each tester's first `want_quit`. It was not yet coded blind from the diaries, so a blind coding is still owed.
+
+| Session | Game | Floor | First `want_quit` | Reason | Stop | Pulses (1-5) | Best moment | Return |
+|---|---|---|---|---|---|---|---|---|
+| e-free1 | The Night Watch | 0 | 4:35 | FRUSTRATED: "I want to rotate the tired people before they fall asleep" | 5:02 | 4 | 2:26, waking Tamar: "Holding!" | no |
+| e-free2 | The Night Watch | 0 | 3:42 | CONFUSED: "I do not know how to rotate a tired watcher out" | 3:52 | 3 | 3:08, Kian's tired answer | no |
+| e-floor1 | The Night Watch | 15 | 8:24 | FRUSTRATED: "I want to cover his post" | 15:14 | 4, 4, 2, 3, 2 | 2:53, Tamar: "Holding!" | conditional |
+| e-floor2 | The Night Watch | 15 | 9:59 | FRUSTRATED: "at night I cannot send a replacement" | 15:16 | 3, 4, 3, 4, 2 | about 12:05 (pulse), waking Joss by name | conditional |
+| e-adrfree1 | A Dark Room | 0 | 7:00 | FRUSTRATED: the room view would not come back | 7:10 | 4, 3 | 3:33, the first cart haul | yes, "return later" |
+| e-adrfree2 | A Dark Room | 0 | 10:37 | FRUSTRATED: tabs and stores vanished from view | 10:43 | 4, 4, 2 | 4:52, "Fifty wood in one go!" | yes, if the view behaves |
+
+What it shows:
+- **The cleaned instrument separates the games.** Under the old protocol A Dark Room (4:13) and The Night Watch (3:40, 3:59) stopped in the same band. Cleaned and free-stopped, A Dark Room ran about twice as long as The Night Watch.
+- **The Night Watch's reason converges.** Four of four testers, under either arm, wanted to relieve, rotate or replace a tired watcher during the night and found no verb for it ([L19](lessons.md)). An earlier session points the same way: a1's "I cannot find a way to help or move another guard in". That is a game finding to reproduce and fix, routed as F-309.
+- **The best moment converges too.** Waking a watcher by name and hearing the reply was the best moment in three of four sessions (Tamar's "Holding!" twice, Joss once), and in n3. Build on it.
+- **The floor moves the tag later and buys little more.** Floor testers tagged their first wish to leave at 8:24 and 9:59 and named the same cause. Their later pulses fell to 2. This is consistent with the floor delaying the tag rather than revealing a recovery, and it cannot separate the two.
+- **The A Dark Room reasons may be partly the driver.** Both A Dark Room testers saw room tabs and stores vanish from the screenshots and come back. This is unknown: it may be the game's sliding panels caught mid-move by headless screenshots, and it was not replayed.
+- **The driver held.** Six full sessions ran on `lab:play` with six recoverable misses (taps on controls not on screen at that moment) and no TOOL stop.
+
+Two sessions per cell, with the device and genre confounded between games. Rates and effect sizes are unknown.
+
+## Confirmed
+
+1. **No hidden budget ended a session.** `codex exec` has no turn or time cap in this setup (`codex exec --help`, `~/.codex/config.toml`). Every new session ended by its own decision and wrote its report. Cumulative input per session was 0.5-9 M tokens, with no truncation. In the corpus none of the 55 reached the 8-minute ceiling. The median stop was 4:17 (range 2:30-6:35), and 45 of 55 stopped before 5:00. Coded outcomes: 37 quit, 9 natural stopping point, 6 keep, 3 mixed. Coded stop reasons: 21 FRUSTRATED, 15 BORED, 9 natural stopping point, 7 CONFUSED, 2 TASTE, 1 BUDGET. One report names the budget, and it says the budget did not force the stop.
+2. **The briefs set a short allowance.** All 12 patterns-round persona texts state 8 minutes ("lunch break, 8 minutes, phone one-handed"; "evening on the sofa, 8 minutes"). Ten of the 12 carry a dislike or impatience clause; the other two state a want ("wants the plan and its safety answer readable at once"). Across the corpus, 16 of 55 personas carry an explicit time cap and 26 a short-break setting (keyword match). The coders judged that 29 of 36 dislike clauses name the weakness the round was testing. Fifteen stop sentences give the break as the frame for leaving.
+3. **The old prompt makes stopping the expected end.** It says "You do not owe the game a completed run", "Stop when you would naturally leave" and "Do not resume just to complete the test". The report must say "when you became bored, frustrated or wanted to quit" and "whether you would return voluntarily". This permits a stop rather than requiring one, and the old prompt also disclaims a favourable verdict. A tester reads it all before the first screen. The first-minute table, written mid-play, was often late (more than 40 s in one Pass session), and 43 of 55 reports mention tool delay.
+4. **Testers' own drivers fail in ways that can read like game faults.** In the new sessions the failures were text-styled controls (A Dark Room), a native `<select>` on a touch page (Valley) and an inner-panel scroll (Night Watch dawn report). The old prompt said "Do not repair the game or harness", so a blocked tester stops. The lab now has one standard driver, `npm run lab:play`, smoke-tested live on all three (text tap, native select, inner-panel scroll).
+5. **Under the old protocol, loved games stop early too.** c2 and c1c above. This shows the old procedure can produce an early stop outside HF. It does not give a false-negative rate, a human threshold, or the share of HF stops that the instrument caused. The control personas' dislike clauses were written to mirror the HF briefs, and they target exactly these games' openings (repeated clicking, waiting).
+
+## Observed, not established
+
+- **A longer allowance alone moved stops later, not proportionally.** Raising only the persona's minutes and the ceiling from 8 to 20 moved Watch from 3:40 and 3:59 to 6:28, and Well from 4:40 and 4:57 to 7:12, with game-specific reasons each time. These are single sessions on later builds.
+- **Under the floor, departure thoughts came later on A Dark Room.** n1's first thought of leaving came at 11:40 and its tag at 13:32, against 3:30 in c1c. The return statements are similar in kind: both would leave an idle game running and come back. The persona setting, the dislike clause and the floor changed together, so this measures a package, and the floor may itself encourage reasons to stay. The [experiment](#floor-against-free-stop-on-one-hf-build) tests the floor alone.
+- **The tester acts in bursts.** Across 43 corpus log files the median span between the first and last logged events was 4:34. About 40% of that span fell in gaps of 15 s or more between logged events, and logged events ran at about 7-12 per minute. These are exploratory summaries of whole log files. They include some post-session lines, mix event types and logging schemas, and include deliberate waits and tool time as well as model thinking. They do not measure inactivity during play, and no human speed was measured beside them. The plain point holds: a real-time game keeps running while the tester composes its next step.
+- **The owner and the LLMs report the same symptoms and express different verdicts, on unmatched sessions.** On Valley the owner wrote "I had no idea what we're supposed to be doing here" and also "This one has the potential to become a deep, fun game". On Warren he wrote "Good start" next to "I need to understand the goals". These are statements of development potential, weaker than present-tense enjoyment. The LLM testers named similar confusion and stopped. Game by game: the owner liked The Pass (7 of 7 LLM sessions on later editions quit), Twice at the Well (8 of 8 quit, on phone, against his desktop play) and The Valley (both 2026-10-20 sessions quit). On Warren the owner said "Good start" and the LLM sessions quit or were mixed, which roughly agrees. Glance agrees (keep), and Murmur and Stairwell partly. Rope runs the other way: the owner disliked it, and some LLM testers liked it. Why the verdicts differ is unknown. Candidates are owner investment and familiarity, device, builds, real minutes and the short allowance.
+
+## Unknown
+
+- **No same-build pair exists.** No 2026-10-20 LLM session is confirmed to have run the build the owner played; Murmur is the nearest (one gameplay commit apart). The Night Watch verdict is 15 days and many fixes older.
+- **The owner's real minutes are unknown on every game.** His exports show game time reached (The Pass six nights, Night Watch four winters, Valley day 12, Warren about five days). Game days do not establish real minutes.
+- **Device.** The owner played Well and Night Watch on desktop, and his device elsewhere is mostly unknown. The LLMs played at 360×690. The controls ran on desktop because both are desktop layouts (A Dark Room renders 980 px wide at phone size; Paperclips refuses phones).
+- **Model familiarity with the controls.** It is likely, and its direction is unknown.
+- **Which phone "Scroll ↓" (DL-30) reports were driver artefacts.** The live phone audit (`npm run lab:phone`, DOM measurement) found clipping independently, so DL-30 is not only an artefact.
+
+## What early stops mean, and don't
+
+They mean:
+- **The named reason is a candidate to reproduce.** A watcher the player cannot help, or an order that lands on the wrong place, is worth replaying. Only reproduced behaviour is a confirmed game fault ([L17](lessons.md)). Observation, interpretation, access limits and reproduction status stay separate.
+- **They show the opening as a stranger meets it.** Short sessions are still the lab's best instrument for first-minute clarity (DL-1..DL-7).
+
+They do not mean:
+- **They are not a fun score.** Loved games stopped early under the same procedure.
+- **They are not a matched comparison with the owner.** The builds, devices, minutes and investment all differ.
+- **They do not show whether a player returns.** Idle and management games ask the player to step away. "Leave it running in another tab" (c1c, n1, n2) is not leaving for good, and the old protocol does not separate the two.
+- **A stop after a fix does not show the fix failed.** Read the reason and the earliest wish to leave, not the bare stop.
+
+## Recommended protocol
+
+Now in [playtester-prompt.md](playtester-prompt.md) and `npm run lab:play`:
+
+1. **One standard driver.** `npm run lab:play` gives one persistent page and taps by name, text or point. It handles native selects, inner-panel scroll and timed waits, and writes one log schema with op latency, the in-game clock and an automatic 60 s screenshot. Testers no longer write their own. A driver block ends the session at once with `TOOL`; it is censored access evidence, not a game finding.
+2. **Two arms per round.** Run free-stop sessions (floor 0), which measure voluntary stopping, beside floor sessions (floor 15), a continued-exposure test of whether a wish to leave passes. Never read a floor-bound stop or a floor session's return statement as voluntary engagement.
+3. **A reason word for each wish to leave and each stop.** CONFUSED, BORED, FRUSTRATED, TASTE, BUDGET (an administrative end), TOOL (driver or page failure; a broken game is reported as a game finding) and FINISHED.
+4. **A pulse every three minutes,** engagement 1 to 5 with one sentence, plus the moment of highest engagement. The time of the pulse and the time of the act it praises are reported separately.
+5. **The earliest wish to leave is coded from the whole diary** by a reader who does not know the arm, separately from the formal tags, the stop and the return statement.
+6. **The first-minute table is written afterwards** from a 60 s note.
+7. **Personas without a timer.** A persona gets a set-aside time, a temperament and no planted dislike. At most one persona per round is a labelled probe with a dislike aimed at the weakness under test. Hold persona text identical across compared arms.
+8. **A repeated control.** Each round runs A Dark Room on desktop under the same pinned protocol (persona, model, effort, driver, viewport). A repeated shift in the control warrants investigation of the instrument. One session cannot settle it, and a desktop control cannot clear a phone-only driver fault.
+
+The 8-minute short-break protocol remains a deliberate first-minute stress test. Label it so, and do not read its stops as verdicts.
+
+## Adversarial review
+
+Codex (read-only, gpt-6.1-sol, 2026-10-20) reviewed the first draft. It confirmed the corpus totals (median 257 s, 45 before 5:00, outcomes 37/9/6/3, the reason counts) and the timing arithmetic. Changes made because of it:
+
+- **Blocker: the headline claimed the stops come "mostly" from the instrument.** It is now limited to what the controls show, and the share is called unknown.
+- **Blocker: the floor was read as engagement.** It is now a provisional continued-exposure arm beside free-stop sessions. Floor-bound stops and return statements are labelled as such.
+- **Blocker: endpoints were mismatched, and the A Dark Room "no → would return" claim was wrong.** The old tester said "I would consider returning voluntarily when I could leave an idle game open". The table now separates first negative reaction, first thought of leaving, first tag and stop, and marks the old protocol's missing measures.
+- **Should-fix:** the timing statistics are now described as exploratory whole-file summaries, with no claim that the gaps are all model generation. Warren is "quit or mixed", not "every LLM quit". "Always produces a quit" was removed. The driver count is now ten attempts with four blocks. Reasons are candidates to reproduce. The persona claim is restated per text. The controls are described as diagnostic examples. TOOL is split from broken-game stops.
+- **Nits:** pulse times are separated from the acts they rate, and timing origins are labelled.
+- **Reviewer's next experiment:** run as [floor against free stop](#floor-against-free-stop-on-one-hf-build), plus two clean A Dark Room controls.
+
+The review is kept with the [session reports](reviews/calibration-2026-10-20/README.md) as `codex-review.md`.

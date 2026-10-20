@@ -34,7 +34,8 @@
     "examples": "npm run examples -w packages/human",
     "lab:ledger": "node scripts/lab-ledger.ts",
     "lab:inbox": "node scripts/lab-inbox.ts",
-    "lab:phone": "node scripts/lab-phone.ts"
+    "lab:phone": "node scripts/lab-phone.ts",
+    "lab:play": "node scripts/lab-play.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",

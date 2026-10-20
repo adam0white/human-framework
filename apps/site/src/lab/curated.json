@@ -4245,6 +4245,128 @@
     "lesson:L21"
    ],
    "source": "docs/lab/reviews/patterns-2026-10-20/phone-audit.md"
+  },
+  {
+   "id": "F-302",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "playtester",
+   "who": "Ravi (control, Universal Paperclips, old protocol)",
+   "words": "I am stopping here. I like the price-versus-demand part, but I came to run a line and I am still pressing Make Paperclip. … I do not want to spend the rest of lunch finding out by clicking.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/calibration-2026-10-20/c2-clips-old.md"
+  },
+  {
+   "id": "F-303",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "playtester",
+   "who": "Marta (control, A Dark Room, old protocol)",
+   "words": "I could gather another ten wood, but I still cannot spend it or choose what to build. I like the recovery and the growing pile; I do not want another minute of this loop on my lunch break.",
+   "verdict": "quit",
+   "routes": [
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/calibration-2026-10-20/c1c-adr-old.md"
+  },
+  {
+   "id": "F-304",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "playtester",
+   "who": "Marta (control, A Dark Room, protocol 2)",
+   "words": "I am stopping active play here to make tea and let the workers run. … I would return voluntarily to see this village grow.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/calibration-2026-10-20/n1-adr-v2.md"
+  },
+  {
+   "id": "F-305",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Callum (20-minute allowance, live HF site)",
+   "words": "Yunus was just bitten, but tapping him only gives the same keeping-watch line and I cannot find a way to help or move another guard in.",
+   "verdict": "quit",
+   "routes": [
+    "fix:watch a way to help a watcher in trouble (open, target 2026-11-03)",
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/calibration-2026-10-20/a1-watch-20.md"
+  },
+  {
+   "id": "F-306",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Bram (20-minute allowance, live HF site)",
+   "words": "I like that they have their own priorities, but on a lunch break I want an order to stick without chasing it through more sheets. I would not come back on this phone.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well orders that stick on the phone (open, target 2026-11-03)",
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/calibration-2026-10-20/a2-well-20.md"
+  },
+  {
+   "id": "F-307",
+   "date": "2026-10-20",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Elif (protocol 2, live valley)",
+   "words": "I would leave this browser session now because I cannot reliably select Send them grain, the response I want most. This is my controller limitation, not evidence that the game refuses the gift.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:lab npm run lab:play drives native selects and inner-panel scroll (done)",
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/calibration-2026-10-20/n4-valley-v2.md"
+  },
+  {
+   "id": "F-308",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "playtester",
+   "who": "Ravi (control, Universal Paperclips, protocol 2)",
+   "words": "I would put this in another tab now. I understand what I am waiting for, but another fifty-odd dollars is a long stretch of watching the same numbers. I will keep playing for the time I set aside.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/calibration-2026-10-20/n2-clips-v2.md"
+  },
+  {
+   "id": "F-309",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Sam (four sessions, free stop and floor, live HF site, lab:play)",
+   "words": "I want to rotate the tired people before they fall asleep, and tapping Tamar only gives me the same nothing-close line.",
+   "verdict": "quit",
+   "routes": [
+    "fix:watch a verb to relieve, rotate or replace a tired watcher during the night (open, target 2026-11-03)",
+    "lesson:L19",
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/calibration-2026-10-20/e-free1.md"
+  },
+  {
+   "id": "F-310",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "playtester",
+   "who": "Sam (control, A Dark Room, free stop, lab:play)",
+   "words": "I would let the settlement run and return later if the room view behaves. The growth itself interests me…",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/calibration-2026-10-20/e-adrfree2.md"
   }
  ],
  "lessons": [
@@ -4591,6 +4713,22 @@
     "F-292",
     "F-301"
    ]
+  },
+  {
+   "id": "L22",
+   "title": "An early stop is not a fun score; read the reason, and measure the instrument too.",
+   "text": "Under the 8-minute short-break protocol, two widely loved browser games stopped early, like ours: Universal Paperclips at 2:00 and A Dark Room at 4:13. A stop time therefore cannot say on its own that a game is weak, and it cannot be matched against the owner, whose verdicts (often \"potential\", given after days of game time on other builds and devices) sat beside the same confusion the testers named. The testers' own drivers also failed in ways that read like game faults. With the instrument cleaned (standard driver, no timer, free stop), A Dark Room ran 7-11 minutes while The Night Watch still stopped at 4-5, and all four Watch testers named the same missing verb. So the cleaned instrument can separate games, but the share of our earlier stops caused by the instrument is not known. Treat each named reason as a candidate to reproduce. Use protocol 2 ([calibration](playtester-calibration-2026-10-20.md)): the standard driver, free-stop and floor arms side by side, a reason word for every wish to leave, pulses, and a repeated control game.",
+   "evidence": [
+    "F-302",
+    "F-303",
+    "F-304",
+    "F-305",
+    "F-306",
+    "F-307",
+    "F-308",
+    "F-309",
+    "F-310"
+   ]
   }
  ],
  "asks": [
@@ -4835,8 +4973,8 @@
   }
  ],
  "routes": {
-  "fix": 336,
-  "lesson": 242,
+  "fix": 340,
+  "lesson": 252,
   "hf": 12,
   "calibration": 42,
   "none": 1
